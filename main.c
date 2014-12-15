@@ -26,11 +26,11 @@
 #include "cl.h"
 #include "cl_set.h"
 #include "bpn.h"
+#include "gplot.h"
 
 void disp_perf(double *error, int trial);
 
 FILE *fout;
-FILE *gp;
 char fname[30];
 
 int main(int argc, char *argv[0])
@@ -76,24 +76,7 @@ int main(int argc, char *argv[0])
 			exit(EXIT_FAILURE);
 		} 
 #ifdef GNUPLOT
-#ifdef _WIN32
-		gp = _popen("C:\Program Files (x86)\gnuplot\bin\pgnuplot.exe", "w");
-#else
-		gp = popen("gnuplot", "w");
-#endif
-		if(gp != NULL) {
-		    fprintf(gp, "set terminal wxt noraise enhanced font 'Arial,12'\n");
-		    fprintf(gp, "set grid\n");
-		    fprintf(gp, "set border linewidth 1\n");
-		    fprintf(gp, "set nokey\n");
-		    fprintf(gp, "set xlabel 'trials'\n");
-		    fprintf(gp, "set ylabel 'system error'\n");
-		    fprintf(gp, "set style line 1 lt -1 lw 1 ps 1 lc rgb 'red'\n");
-		    fprintf(gp, "set style line 2 lt -1 lw 1 ps 1 lc rgb 'blue'\n");
-		}
-		else {
-			printf("error running gnuplot\n");
-		}
+		gplot_init(fname);
 #endif
 		printf("\nExperiment: %d\n", e);
 
@@ -135,8 +118,7 @@ int main(int argc, char *argv[0])
 		kill_set(&pset);
 		fclose(fout);
 #ifdef GNUPLOT
-		if(gp != NULL)
-			pclose(gp);
+		gplot_close();
 #endif
 	}
 #ifdef NEURAL_CONDITIONS
@@ -164,13 +146,6 @@ void disp_perf(double *error, int trial)
 	fflush(stdout);
 	fflush(fout);
 #ifdef GNUPLOT
-	if(gp != NULL) {
-		fprintf(gp, "plot '%s' using 1:2 title 'error' w lp ls 1 pt 4 pi 50\n", fname);
-		fprintf(gp,"replot\n");
-		fflush(gp);
-	}
-	else {
-		printf("error with gnuplot\n");
-	}
+	gplot_draw();
 #endif
 }
