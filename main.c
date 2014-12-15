@@ -20,19 +20,13 @@
 #include <stdbool.h>
 #include <math.h>
 #include <errno.h>
-#include <time.h>
 #include "cons.h"
 #include "random.h"
 #include "cl.h"
 #include "cl_set.h"
 #include "bpn.h"
 #include "function.h"
-#include "gplot.h"
-
-void disp_perf(double *error, int trial);
-
-FILE *fout;
-char fname[30];
+#include "perf.h"
 
 int main(int argc, char *argv[0])
 {    
@@ -40,17 +34,12 @@ int main(int argc, char *argv[0])
 		printf("Usage: xcsf [MaxTrials] [NumExp]\n");
 		exit(EXIT_FAILURE);
 	} 
-	// file for writing output; uses the date/time/exp as file name
-	time_t t = time(NULL);
-	struct tm tm = *localtime(&t);
-	char basefname[30];
-	sprintf(basefname, "out/%04d-%02d-%02d-%02d%02d%02d", tm.tm_year + 1900, 
-			tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 	// initilise environment
 	init_constants(argc, argv);
 	init_random();
 	func_init();
+	gen_outfname();
 #ifdef NEURAL_CONDITIONS
 	// classifiers currently fixed to 3 layer networks
 	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
@@ -60,19 +49,9 @@ int main(int argc, char *argv[0])
 	// run experiments
 	double err[PERF_AVG_TRIALS];
 	for(int e = 1; e < NUM_EXPERIMENTS+1; e++) {
-		// create output file
-		sprintf(fname, "%s-%d.dat", basefname, e);
-		fout = fopen(fname, "wt");
-		if(fout == 0) {
-			printf("Error opening file: %s. %s.\n", fname, strerror(errno));
-			exit(EXIT_FAILURE);
-		} 
-#ifdef GNUPLOT
-		gplot_init(fname);
-#endif
 		printf("\nExperiment: %d\n", e);
-
 		init_pop();
+		outfile_init(e);
 		// each trial in the experiment
 		for(int trial = 0; trial < MAX_TRIALS; trial++) {
 			// get problem function state and solution
@@ -87,7 +66,7 @@ int main(int argc, char *argv[0])
 			double abserr = fabs(answer - pre);
 			err[trial%PERF_AVG_TRIALS] = abserr;
 			if(trial%PERF_AVG_TRIALS == 0 && trial > 0)
-				disp_perf(err, trial);
+				disp_perf(err, trial, pop_num);
 			// provide reinforcement to the set
 			update_set(&mset, &msize, &mnum, answer, &kset, state);
 			// run the genetic algorithm
@@ -97,37 +76,11 @@ int main(int argc, char *argv[0])
 			free_set(&mset);       
 		}
 		kill_set(&pset);
-		fclose(fout);
-#ifdef GNUPLOT
-		gplot_close();
-#endif
+		outfile_close();
 	}
 	func_free();
 #ifdef NEURAL_CONDITIONS
 	neural_free();
 #endif
 	return EXIT_SUCCESS;
-}
-
-void disp_perf(double *error, int trial)
-{
-	double serr = 0.0;
-	for(int i = 0; i < PERF_AVG_TRIALS; i++)
-		serr += error[i];
-	serr /= (double)PERF_AVG_TRIALS;
-	printf("%d %.5f %d", trial, serr, pop_num);
-	fprintf(fout, "%d %.5f %d", trial, serr, pop_num);
-#ifdef SELF_ADAPT_MUTATION
-	for(int i = 0; i < NUM_MU; i++) {
-		printf(" %.5f", avg_mut(&pset, i));
-		fprintf(fout, " %.5f", avg_mut(&pset, i));
-	}
-#endif
-	printf("\n");
-	fprintf(fout, "\n");
-	fflush(stdout);
-	fflush(fout);
-#ifdef GNUPLOT
-	gplot_draw();
-#endif
 }

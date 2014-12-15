@@ -14,8 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifdef GNUPLOT
-void gplot_init(char *datafile);
-void gplot_draw();
-void gplot_close();
-#endif
+void disp_perf(double *error, int trial, int pnum);
+void gen_outfname();
+void outfile_init(int exp_num);
+void outfile_close();
