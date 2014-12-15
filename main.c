@@ -47,17 +47,10 @@ int main(int argc, char *argv[0])
 	sprintf(basefname, "out/%04d-%02d-%02d-%02d%02d%02d", tm.tm_year + 1900, 
 			tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-	// set constants and initilise random number generator
-	init_constants();
-	if(argc > 1) {
-		MAX_TRIALS = atoi(argv[1]);
-		if(argc > 2)
-			NUM_EXPERIMENTS = atoi(argv[2]);
-	}    
+	// initilise environment
+	init_constants(argc, argv);
 	init_random();
-	// initialise problem function
 	func_init();
-
 #ifdef NEURAL_CONDITIONS
 	// classifiers currently fixed to 3 layer networks
 	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};

@@ -208,7 +208,7 @@ void tidyup()
 	head=NULL;
 }
 
-void init_constants()
+void init_constants(int argc, char **argv)
 {
 	init_config("cons.txt");
 	POP_SIZE = atoi(getvalue("POP_SIZE"));
@@ -253,4 +253,11 @@ void init_constants()
 	MIN_CON = atof(getvalue("MIN_CON"));
 	S_MUTATION = atof(getvalue("S_MUTATION"));
 	tidyup();  
+	
+	// override cons.txt with command line values
+	if(argc > 1) {
+		MAX_TRIALS = atoi(argv[1]);
+		if(argc > 2)
+			NUM_EXPERIMENTS = atoi(argv[2]);
+	}    
 }

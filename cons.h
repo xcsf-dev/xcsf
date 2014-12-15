@@ -17,7 +17,7 @@
 #define max( a, b ) ( ((a) > (b)) ? (a) : (b) )
 #define min( a, b ) ( ((a) < (b)) ? (a) : (b) )
 
-void init_constants();
+void init_constants(int argc, char **argv);
 
 // values are read from cons.txt
 int POP_SIZE;
