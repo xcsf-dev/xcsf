@@ -26,6 +26,7 @@
 #include "cl.h"
 #include "cl_set.h"
 #include "bpn.h"
+#include "function.h"
 #include "gplot.h"
 
 void disp_perf(double *error, int trial);
@@ -54,10 +55,8 @@ int main(int argc, char *argv[0])
 			NUM_EXPERIMENTS = atoi(argv[2]);
 	}    
 	init_random();
-
-	// create problem function
-	state_length = 1; // 1 input 1 output problem
-	double state[state_length];
+	// initialise problem function
+	func_init();
 
 #ifdef NEURAL_CONDITIONS
 	// classifiers currently fixed to 3 layer networks
@@ -83,25 +82,14 @@ int main(int argc, char *argv[0])
 		init_pop();
 		// each trial in the experiment
 		for(int trial = 0; trial < MAX_TRIALS; trial++) {
-			// sine function problem
-			double answer = 0.0;
-			for(int i = 0; i < state_length; i++) {
-				state[i] = (drand()*2.0) -1.0;
-				answer += state[i];
-			}
-			answer *= 4.0 * M_PI;
-			answer = sin(answer);
-
-			// sextic polynomial function problem
-			//for(int i = 0; i < state_length; i++)
-			//	state[i] = (drand()*2.0) -1.0;
-			//double answer = pow(state[0],6)+(2*pow(state[0],4))+pow(state[0],2);
-
+			// get problem function state and solution
+			double *state = func_state();
+			double answer = func_answer();
 			// create match set
 			NODE *mset = NULL, *kset = NULL;
 			int msize = 0, mnum = 0;
 			match_set(&mset, &msize, &mnum, state, trial, &kset);
-			// calculate system prediction
+			// calculate system prediction and track performance
 			double pre = weighted_pred(&mset, state);
 			double abserr = fabs(answer - pre);
 			err[trial%PERF_AVG_TRIALS] = abserr;
@@ -121,6 +109,7 @@ int main(int argc, char *argv[0])
 		gplot_close();
 #endif
 	}
+	func_free();
 #ifdef NEURAL_CONDITIONS
 	neural_free();
 #endif
