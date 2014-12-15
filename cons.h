@@ -33,6 +33,7 @@ double DELTA;
 double THETA_DEL;
 double THETA_GA;
 double THETA_MNA;
+int THETA_OFFSPRING;
 double BETA;
 double ALPHA; 
 double NU;

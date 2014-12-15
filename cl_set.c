@@ -173,50 +173,53 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 	double fit_sum = set_total_fit(set);
 	CL *c1p = select_rw(set, fit_sum);
 	CL *c2p = select_rw(set, fit_sum);
-	// create copies of parents
-	CL *c1 = malloc(sizeof(CL));
-	CL *c2 = malloc(sizeof(CL));
-	copy_cl(c1, c1p);
-	copy_cl(c2, c2p);
-	// reduce offspring err, fit
-	c1->err = ERR_REDUC * ((c1p->err + c2p->err)/2.0);
-	c2->err = c1->err;
-	c1->fit = c1p->fit / c1p->num;
-	c2->fit = c2p->fit / c2p->num;
-	c1->fit = FIT_REDUC * (c1->fit + c2->fit)/2.0;
-	c2->fit = c1->fit;
+
+	for(int i = 0; i < THETA_OFFSPRING/2; i++) {
+		// create copies of parents
+		CL *c1 = malloc(sizeof(CL));
+		CL *c2 = malloc(sizeof(CL));
+		copy_cl(c1, c1p);
+		copy_cl(c2, c2p);
+		// reduce offspring err, fit
+		c1->err = ERR_REDUC * ((c1p->err + c2p->err)/2.0);
+		c2->err = c1->err;
+		c1->fit = c1p->fit / c1p->num;
+		c2->fit = c2p->fit / c2p->num;
+		c1->fit = FIT_REDUC * (c1->fit + c2->fit)/2.0;
+		c2->fit = c1->fit;
 #ifdef NEURAL_CONDITIONS
-	if(!mutate(c1) && GA_SUBSUMPTION) {
-		c1p->num++;
-		pop_num_sum++;
-		free_cl(c1);
-	}
-	else {
-		pop_add_cl(c1);
-	}
-	if(!mutate(c2) && GA_SUBSUMPTION) {
-		c2p->num++;
-		pop_num_sum++;
-		free_cl(c2);
-	}
-	else {
-		pop_add_cl(c2);
-	}
+		if(!mutate(c1) && GA_SUBSUMPTION) {
+			c1p->num++;
+			pop_num_sum++;
+			free_cl(c1);
+		}
+		else {
+			pop_add_cl(c1);
+		}
+		if(!mutate(c2) && GA_SUBSUMPTION) {
+			c2p->num++;
+			pop_num_sum++;
+			free_cl(c2);
+		}
+		else {
+			pop_add_cl(c2);
+		}
 #else
-	// apply genetic operators to offspring
-	two_pt_cross(c1, c2);
-	mutate(c1);
-	mutate(c2);
-	// add offspring to population
-	if(GA_SUBSUMPTION) {
-		ga_subsume(c1, c1p, c2p, set, size);
-		ga_subsume(c2, c1p, c2p, set, size);
-	}
-	else {
-		pop_add_cl(c1);
-		pop_add_cl(c2);
-	}
+		// apply genetic operators to offspring
+		two_pt_cross(c1, c2);
+		mutate(c1);
+		mutate(c2);
+		// add offspring to population
+		if(GA_SUBSUMPTION) {
+			ga_subsume(c1, c1p, c2p, set, size);
+			ga_subsume(c2, c1p, c2p, set, size);
+		}
+		else {
+			pop_add_cl(c1);
+			pop_add_cl(c2);
+		}
 #endif
+	}
 	// enforce population size limit
 	while(pop_num_sum > POP_SIZE) {
 		NODE *del = pop_del();

@@ -226,6 +226,7 @@ void init_constants()
 	THETA_DEL = atof(getvalue("THETA_DEL"));
 	THETA_GA = atof(getvalue("THETA_GA"));
 	THETA_MNA = atoi(getvalue("THETA_MNA"));
+	THETA_OFFSPRING = atoi(getvalue("THETA_OFFSPRING"));
 	BETA = atof(getvalue("BETA"));
 	ALPHA = atof(getvalue("ALPHA")); 
 	NU = atof(getvalue("NU"));
