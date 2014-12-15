@@ -17,7 +17,7 @@
 CC=gcc
 
 FLAGS=
-CFLAGS=$(FLAGS) -Wall -Wextra -std=c11 -pipe -g
+CFLAGS=$(FLAGS) -Wall -Wextra -std=gnu11 -pipe -g
 LDFLAGS=$(FLAGS)
 LIB=-lm
  
@@ -26,12 +26,16 @@ GENPROF=0
 USEPROF=0
 SAM=0
 NEURAL=0
+GNUPLOT=0
 
 ifeq ($(SAM),1)
 	CFLAGS+= -DSELF_ADAPT_MUTATION
 endif
 ifeq ($(NEURAL),1)
 	CFLAGS+= -DNEURAL_CONDITIONS
+endif
+ifeq ($(GNUPLOT),1)
+	CFLAGS+= -DGNUPLOT
 endif
 ifeq ($(OPT),1)
 	FLAGS+= -Ofast -march=native

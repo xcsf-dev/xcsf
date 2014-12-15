@@ -16,7 +16,6 @@
  */
 #define max( a, b ) ( ((a) > (b)) ? (a) : (b) )
 #define min( a, b ) ( ((a) < (b)) ? (a) : (b) )
-#define M_PI 3.14159265358979323846264338327
 
 void init_constants();
 

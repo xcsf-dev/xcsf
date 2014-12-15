@@ -30,6 +30,8 @@
 void disp_perf(double *error, int trial);
 
 FILE *fout;
+FILE *gp;
+char fname[30];
 
 int main(int argc, char *argv[0])
 {    
@@ -41,7 +43,6 @@ int main(int argc, char *argv[0])
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 	char basefname[30];
-	char fname[30];
 	sprintf(basefname, "dat/%04d-%02d-%02d-%02d%02d%02d", tm.tm_year + 1900, 
 			tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
@@ -74,6 +75,26 @@ int main(int argc, char *argv[0])
 			printf("Error opening file: %s. %s.\n", fname, strerror(errno));
 			exit(EXIT_FAILURE);
 		} 
+#ifdef GNUPLOT
+#ifdef _WIN32
+		gp = _popen("C:\Program Files (x86)\gnuplot\bin\pgnuplot.exe", "w");
+#else
+		gp = popen("gnuplot", "w");
+#endif
+		if(gp != NULL) {
+		    fprintf(gp, "set terminal wxt noraise enhanced font 'Arial,12'\n");
+		    fprintf(gp, "set grid\n");
+		    fprintf(gp, "set border linewidth 1\n");
+		    fprintf(gp, "set nokey\n");
+		    fprintf(gp, "set xlabel 'trials'\n");
+		    fprintf(gp, "set ylabel 'system error'\n");
+		    fprintf(gp, "set style line 1 lt -1 lw 1 ps 1 lc rgb 'red'\n");
+		    fprintf(gp, "set style line 2 lt -1 lw 1 ps 1 lc rgb 'blue'\n");
+		}
+		else {
+			printf("error running gnuplot\n");
+		}
+#endif
 		printf("\nExperiment: %d\n", e);
 
 		init_pop();
@@ -113,6 +134,10 @@ int main(int argc, char *argv[0])
 		}
 		kill_set(&pset);
 		fclose(fout);
+#ifdef GNUPLOT
+		if(gp != NULL)
+			pclose(gp);
+#endif
 	}
 #ifdef NEURAL_CONDITIONS
 	neural_free();
@@ -138,4 +163,14 @@ void disp_perf(double *error, int trial)
 	fprintf(fout, "\n");
 	fflush(stdout);
 	fflush(fout);
+#ifdef GNUPLOT
+	if(gp != NULL) {
+		fprintf(gp, "plot '%s' using 1:2 title 'error' w lp ls 1 pt 4 pi 50\n", fname);
+		fprintf(gp,"replot\n");
+		fflush(gp);
+	}
+	else {
+		printf("error with gnuplot\n");
+	}
+#endif
 }
