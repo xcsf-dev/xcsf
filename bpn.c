@@ -33,7 +33,6 @@ typedef struct NEURON {
 
 void neuron_init(NEURON *n, int num_inputs);
 double propagate_neuron(NEURON *n, double *input);
-double sig(double x);
 
 int num_layers; // input layer + number of hidden layers + output layer
 int *num_neurons; // number of neurons in each layer
