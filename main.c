@@ -44,7 +44,7 @@ int main(int argc, char *argv[0])
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 	char basefname[30];
-	sprintf(basefname, "dat/%04d-%02d-%02d-%02d%02d%02d", tm.tm_year + 1900, 
+	sprintf(basefname, "out/%04d-%02d-%02d-%02d%02d%02d", tm.tm_year + 1900, 
 			tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 	// set constants and initilise random number generator
