@@ -21,6 +21,8 @@
 #include <errno.h>
 #include "cons.h"
 #include "perf.h"
+#include "cl.h"
+#include "cl_set.h"
   
 FILE *fout;
 char fname[30];
