@@ -92,9 +92,9 @@ void outfile_close()
 void gplot_init()
 {
 #ifdef _WIN32
-	gp = _popen("C:\Program Files (x86)\gnuplot\bin\pgnuplot.exe", "w");
+	gp = _popen("C:\Program Files (x86)\gnuplot\bin\pgnuplot.exe -persistent", "w");
 #else
-	gp = popen("gnuplot", "w");
+	gp = popen("gnuplot -persistent", "w");
 #endif
 	if(gp != NULL) {
 		fprintf(gp, "set terminal wxt noraise enhanced font 'Arial,12'\n");
