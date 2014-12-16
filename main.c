@@ -53,7 +53,7 @@ int main(int argc, char *argv[0])
 	double terr[PERF_AVG_TRIALS];
 	for(int e = 1; e < NUM_EXPERIMENTS+1; e++) {
 		printf("\nExperiment: %d\n", e);
-		init_pop();
+		pop_init();
 		outfile_init(e);
 		// each trial in the experiment
 		for(int cnt = 0; cnt < MAX_TRIALS; cnt++) {
@@ -63,7 +63,7 @@ int main(int argc, char *argv[0])
 			if(cnt%PERF_AVG_TRIALS == 0 && cnt > 0)
 				disp_perf(err, terr, cnt, pop_num);
 		}
-		kill_set(&pset);
+		set_kill(&pset);
 		outfile_close();
 	}
 	func_free();
@@ -81,18 +81,18 @@ void trial(int cnt, _Bool train, double *err)
 	// create match set
 	NODE *mset = NULL, *kset = NULL;
 	int msize = 0, mnum = 0;
-	match_set(&mset, &msize, &mnum, state, cnt, &kset);
+	set_match(&mset, &msize, &mnum, state, cnt, &kset);
 	// calculate system prediction and track performance
-	double pre = weighted_pred(&mset, state);
+	double pre = set_pred(&mset, state);
 	double abserr = fabs(answer - pre);
 	err[cnt%PERF_AVG_TRIALS] = abserr;
 	if(train) {
 		// provide reinforcement to the set
-		update_set(&mset, &msize, &mnum, answer, &kset, state);
+		set_update(&mset, &msize, &mnum, answer, &kset, state);
 		// run the genetic algorithm
 		ga(&mset, msize, mnum, cnt, &kset);
 	}
 	// clean up
-	clean_set(&kset, &mset, true);
-	free_set(&mset);    
+	set_clean(&kset, &mset, true);
+	set_free(&mset);    
 }

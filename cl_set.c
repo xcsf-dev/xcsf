@@ -24,18 +24,18 @@
 #include "cl_set.h"
 
 NODE *pop_del();
-CL *select_rw(NODE **set, double fit_sum);
+CL *set_select_parent(NODE **set, double fit_sum);
 double set_total_fit(NODE **set);
-double mean_time(NODE **set, int num_sum);
-double total_time(NODE **set);
-void pop_add_cl(CL *c);
-void set_add_cl(NODE **set, CL *c);
+double set_mean_time(NODE **set, int num_sum);
+double set_total_time(NODE **set);
+void pop_add(CL *c);
+void set_add(NODE **set, CL *c);
 void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size);
 void set_subsumption(NODE **set, int *size, int *num, NODE **kset);
 void set_times(NODE **set, int time);
-void update_set_fit(NODE **set, int size, int num);
+void set_update_fit(NODE **set, int size, int num);
 
-void init_pop()
+void pop_init()
 {
 	// initialise population
 	pset = NULL; // population linked list
@@ -47,17 +47,17 @@ void init_pop()
 			CL *new = malloc(sizeof(CL));
 			cl_init(new, POP_SIZE, 0);
 			cond_rand(new);
-			pop_add_cl(new);
+			pop_add(new);
 		}
 	}
 }
 
-void match_set(NODE **set, int *size, int *num, double *state, int time, NODE **kset)
+void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset)
 {
 	// find matching classifiers in the population
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
 		if(match(iter->cl, state)) {
-			set_add_cl(set, iter->cl);
+			set_add(set, iter->cl);
 			*num += iter->cl->num;
 			(*size)++;
 		}
@@ -70,22 +70,22 @@ void match_set(NODE **set, int *size, int *num, double *state, int time, NODE **
 		cond_match(new, state);
 		(*size)++;
 		(*num)++;
-		pop_add_cl(new);
-		set_add_cl(set, new); 
+		pop_add(new);
+		set_add(set, new); 
 		// enforce population size limit
 		while(pop_num_sum > POP_SIZE) {
 			NODE * del = pop_del();
 			if(match(del->cl, state))
 				set_validate(set, size, num);
 			if(del->cl->num == 0) {
-				set_add_cl(kset, del->cl);
+				set_add(kset, del->cl);
 				free(del);
 			}
 		}
 	}
 }
 
-double weighted_pred(NODE **set, double *state)
+double set_pred(NODE **set, double *state)
 {
 	// fitness weighted prediction
 	double presum = 0.0;
@@ -97,7 +97,7 @@ double weighted_pred(NODE **set, double *state)
 	return presum/fitsum;
 }
 
-void set_add_cl(NODE **set, CL *c)
+void set_add(NODE **set, CL *c)
 {
 	// adds a classifier to the set
 	if(*set == NULL) {
@@ -113,7 +113,7 @@ void set_add_cl(NODE **set, CL *c)
 	}
 }
 
-void pop_add_cl(CL *c)
+void pop_add(CL *c)
 {
 	// adds a classifier to the population set
 	pop_num_sum++;
@@ -166,13 +166,13 @@ NODE *pop_del()
 void ga(NODE **set, int size, int num, int time, NODE **kset)
 {
 	// check if the genetic algorithm should be run
-	if(size == 0 || time - mean_time(set, num) < THETA_GA)
+	if(size == 0 || time - set_mean_time(set, num) < THETA_GA)
 		return;
 	set_times(set, time);
 	// select parents
 	double fit_sum = set_total_fit(set);
-	CL *c1p = select_rw(set, fit_sum);
-	CL *c2p = select_rw(set, fit_sum);
+	CL *c1p = set_select_parent(set, fit_sum);
+	CL *c2p = set_select_parent(set, fit_sum);
 
 	for(int i = 0; i < THETA_OFFSPRING/2; i++) {
 		// create copies of parents
@@ -194,7 +194,7 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 			cl_free(c1);
 		}
 		else {
-			pop_add_cl(c1);
+			pop_add(c1);
 		}
 		if(!mutate(c2) && GA_SUBSUMPTION) {
 			c2p->num++;
@@ -202,7 +202,7 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 			cl_free(c2);
 		}
 		else {
-			pop_add_cl(c2);
+			pop_add(c2);
 		}
 #else
 		// apply genetic operators to offspring
@@ -215,8 +215,8 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 			ga_subsume(c2, c1p, c2p, set, size);
 		}
 		else {
-			pop_add_cl(c1);
-			pop_add_cl(c2);
+			pop_add(c1);
+			pop_add(c2);
 		}
 #endif
 	}
@@ -224,7 +224,7 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 	while(pop_num_sum > POP_SIZE) {
 		NODE *del = pop_del();
 		if(del->cl->num == 0) {
-			set_add_cl(kset, del->cl);
+			set_add(kset, del->cl);
 			free(del);
 		}
 	}
@@ -261,12 +261,12 @@ void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 		}
 		// if no subsumers are found the offspring is added to the population
 		else {
-			pop_add_cl(c);   
+			pop_add(c);   
 		}
 	}
 }
 
-void update_set(NODE **set, int *size, int *num, double r, NODE **kset, double *state)
+void set_update(NODE **set, int *size, int *num, double r, NODE **kset, double *state)
 {
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
 		CL *c = iter->cl;
@@ -275,12 +275,12 @@ void update_set(NODE **set, int *size, int *num, double r, NODE **kset, double *
 		pred_update(c, r, state);
 		cl_update_size(c, *num);
 	}
-	update_set_fit(set, *size, *num);
+	set_update_fit(set, *size, *num);
 	if(SET_SUBSUMPTION)
 		set_subsumption(set, size, num, kset);
 }
 
-void update_set_fit(NODE **set, int size, int num_sum)
+void set_update_fit(NODE **set, int size, int num_sum)
 {
 	double acc_sum = 0.0;
 	double accs[size];
@@ -319,7 +319,7 @@ void set_subsumption(NODE **set, int *size, int *num, NODE **kset)
 			if(general(s, c)) {
 				s->num += c->num;
 				c->num = 0;
-				set_add_cl(kset, c);
+				set_add(kset, c);
 				set_validate(set, size, num);
 				set_validate(&pset, &pop_num, &pop_num_sum);
 			}
@@ -353,7 +353,7 @@ void set_validate(NODE **set, int *size, int *num)
 	}
 }
 
-void print_set(NODE *set)
+void set_print(NODE *set)
 {
 	for(NODE *iter = set; iter != NULL; iter = iter->next)
 		cl_print(iter->cl);
@@ -373,7 +373,7 @@ double set_total_fit(NODE **set)
 	return sum;
 }
 
-CL *select_rw(NODE **set, double fit_sum)
+CL *set_select_parent(NODE **set, double fit_sum)
 {
 	// selects a classifier using roullete wheel section with the fitness
 	double p = drand() * fit_sum;
@@ -386,7 +386,7 @@ CL *select_rw(NODE **set, double fit_sum)
 	return iter->cl;
 }
 
-double total_time(NODE **set)
+double set_total_time(NODE **set)
 {
 	double sum = 0.0;
 	for(NODE *iter = *set; iter != NULL; iter = iter->next)
@@ -394,12 +394,12 @@ double total_time(NODE **set)
 	return sum;
 }
 
-double mean_time(NODE **set, int num_sum)
+double set_mean_time(NODE **set, int num_sum)
 {
-	return total_time(set) / num_sum;
+	return set_total_time(set) / num_sum;
 }
 
-void free_set(NODE **set)
+void set_free(NODE **set)
 {
 	// frees the set only, not the classifiers
 	NODE *iter = *set;
@@ -410,7 +410,7 @@ void free_set(NODE **set)
 	}
 }
 
-void kill_set(NODE **set)
+void set_kill(NODE **set)
 {
 	// frees the set and classifiers
 	NODE *iter = *set;
@@ -422,7 +422,7 @@ void kill_set(NODE **set)
 	}
 }
 
-void clean_set(NODE **kset, NODE **set, _Bool in_set)
+void set_clean(NODE **kset, NODE **set, _Bool in_set)
 {
 	// if in_set = false, removes classifiers from kset
 	// that are *not* in the set; otherwise removes only
@@ -444,7 +444,7 @@ void clean_set(NODE **kset, NODE **set, _Bool in_set)
 }
 
 #ifdef SELF_ADAPT_MUTATION
-double avg_mut(NODE **set, int m)
+double set_avg_mut(NODE **set, int m)
 {
 	// returns the average classifier mutation rate
 	double sum = 0.0;

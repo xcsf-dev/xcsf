@@ -20,18 +20,18 @@ typedef struct NODE
 	struct NODE *next;
 } NODE;
  
-void init_pop();
-double weighted_pred(NODE **set, double *state);
-void match_set(NODE **set, int *size, int *num, double *state, int time, NODE **kset);
+void pop_init();
+double set_pred(NODE **set, double *state);
+void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset);
 void ga(NODE **set, int size, int num, int time, NODE **kset);
 void set_validate(NODE **set, int *size, int *num);
-void print_set(NODE *set);
-void free_set(NODE **set);
-void kill_set(NODE **set);
-void clean_set(NODE **kset, NODE **set, _Bool in_set);
-void update_set(NODE **set, int *size, int *num, double r, NODE **kset, double *state);
+void set_print(NODE *set);
+void set_free(NODE **set);
+void set_kill(NODE **set);
+void set_clean(NODE **kset, NODE **set, _Bool in_set);
+void set_update(NODE **set, int *size, int *num, double r, NODE **kset, double *state);
 #ifdef SELF_ADAPT_MUTATION
-double avg_mut(NODE **set, int m);
+double set_avg_mut(NODE **set, int m);
 #endif
 
 NODE *pset;
