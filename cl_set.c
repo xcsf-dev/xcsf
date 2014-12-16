@@ -33,15 +33,9 @@
 #include "cl_set.h"
 
 NODE *pop_del();
-CL *set_select_parent(NODE **set, double fit_sum);
-double set_total_fit(NODE **set);
-double set_mean_time(NODE **set, int num_sum);
-double set_total_time(NODE **set);
 void pop_add(CL *c);
 void set_add(NODE **set, CL *c);
-void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size);
 void set_subsumption(NODE **set, int *size, int *num, NODE **kset);
-void set_times(NODE **set, int time);
 void set_update_fit(NODE **set, int size, int num);
 
 void pop_init()
@@ -172,109 +166,6 @@ NODE *pop_del()
 	return iter;
 }
 
-void ga(NODE **set, int size, int num, int time, NODE **kset)
-{
-	// check if the genetic algorithm should be run
-	if(size == 0 || time - set_mean_time(set, num) < THETA_GA)
-		return;
-	set_times(set, time);
-	// select parents
-	double fit_sum = set_total_fit(set);
-	CL *c1p = set_select_parent(set, fit_sum);
-	CL *c2p = set_select_parent(set, fit_sum);
-
-	for(int i = 0; i < THETA_OFFSPRING/2; i++) {
-		// create copies of parents
-		CL *c1 = malloc(sizeof(CL));
-		CL *c2 = malloc(sizeof(CL));
-		cl_copy(c1, c1p);
-		cl_copy(c2, c2p);
-		// reduce offspring err, fit
-		c1->err = ERR_REDUC * ((c1p->err + c2p->err)/2.0);
-		c2->err = c1->err;
-		c1->fit = c1p->fit / c1p->num;
-		c2->fit = c2p->fit / c2p->num;
-		c1->fit = FIT_REDUC * (c1->fit + c2->fit)/2.0;
-		c2->fit = c1->fit;
-#ifdef NEURAL_CONDITIONS
-		if(!mutate(c1) && GA_SUBSUMPTION) {
-			c1p->num++;
-			pop_num_sum++;
-			cl_free(c1);
-		}
-		else {
-			pop_add(c1);
-		}
-		if(!mutate(c2) && GA_SUBSUMPTION) {
-			c2p->num++;
-			pop_num_sum++;
-			cl_free(c2);
-		}
-		else {
-			pop_add(c2);
-		}
-#else
-		// apply genetic operators to offspring
-		two_pt_cross(c1, c2);
-		mutate(c1);
-		mutate(c2);
-		// add offspring to population
-		if(GA_SUBSUMPTION) {
-			ga_subsume(c1, c1p, c2p, set, size);
-			ga_subsume(c2, c1p, c2p, set, size);
-		}
-		else {
-			pop_add(c1);
-			pop_add(c2);
-		}
-#endif
-	}
-	// enforce population size limit
-	while(pop_num_sum > POP_SIZE) {
-		NODE *del = pop_del();
-		if(del->cl->num == 0) {
-			set_add(kset, del->cl);
-			free(del);
-		}
-	}
-}   
-
-void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
-{
-	// check if either parent subsumes the offspring
-	if(subsumes(c1p, c)) {
-		c1p->num++;
-		pop_num_sum++;
-		cl_free(c);
-	}
-	else if(subsumes(c2p, c)) {
-		c2p->num++;
-		pop_num_sum++;
-		cl_free(c);
-	}
-	// attempt to find a random subsumer from the set
-	else {
-		NODE *candidates[size];
-		int choices = 0;
-		for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-			if(subsumes(iter->cl, c)) {
-				candidates[choices] = iter;
-				choices++;
-			}
-		}
-		// found
-		if(choices > 0) {
-			candidates[irand(0,choices)]->cl->num++;
-			pop_num_sum++;
-			cl_free(c);
-		}
-		// if no subsumers are found the offspring is added to the population
-		else {
-			pop_add(c);   
-		}
-	}
-}
-
 void set_update(NODE **set, int *size, int *num, double r, NODE **kset, double *state)
 {
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
@@ -380,19 +271,6 @@ double set_total_fit(NODE **set)
 	for(NODE *iter = *set; iter != NULL; iter = iter->next)
 		sum += iter->cl->fit;
 	return sum;
-}
-
-CL *set_select_parent(NODE **set, double fit_sum)
-{
-	// selects a classifier using roullete wheel section with the fitness
-	double p = drand() * fit_sum;
-	NODE *iter = *set;
-	double sum = iter->cl->fit;
-	while(p > sum) {
-		iter = iter->next;
-		sum += iter->cl->fit;
-	}
-	return iter->cl;
 }
 
 double set_total_time(NODE **set)

@@ -20,16 +20,22 @@ typedef struct NODE
 	struct NODE *next;
 } NODE;
  
-void pop_init();
+NODE *pop_del();
+double set_mean_time(NODE **set, int num_sum);
 double set_pred(NODE **set, double *state);
-void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset);
-void ga(NODE **set, int size, int num, int time, NODE **kset);
-void set_validate(NODE **set, int *size, int *num);
-void set_print(NODE *set);
+double set_total_fit(NODE **set);
+double set_total_time(NODE **set);
+void pop_add(CL *c);
+void pop_init();
+void set_add(NODE **set, CL *c);
+void set_clean(NODE **kset, NODE **set, _Bool in_set);
 void set_free(NODE **set);
 void set_kill(NODE **set);
-void set_clean(NODE **kset, NODE **set, _Bool in_set);
+void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset);
+void set_print(NODE *set);
+void set_times(NODE **set, int time);
 void set_update(NODE **set, int *size, int *num, double r, NODE **kset, double *state);
+void set_validate(NODE **set, int *size, int *num);
 #ifdef SELF_ADAPT_MUTATION
 double set_avg_mut(NODE **set, int m);
 #endif

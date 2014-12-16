@@ -39,6 +39,7 @@
 #include "random.h"
 #include "cl.h"
 #include "cl_set.h"
+#include "ga.h"
 #include "neural.h"
 #include "function.h"
 #include "perf.h"
