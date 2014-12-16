@@ -16,6 +16,3 @@
  */
 void neural_init(int layers, int *neurons);
 void neural_free();
-void neural_propagate(double *input);
-double neural_output(int i);
-void neural_set_weights(double *nw);

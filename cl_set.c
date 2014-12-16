@@ -21,7 +21,6 @@
 #include "cons.h"
 #include "random.h"
 #include "cl.h"
-#include "condition.h"
 #include "cl_set.h"
 
 NODE *pop_del();

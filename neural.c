@@ -36,6 +36,10 @@ typedef struct NEURON {
 } NEURON;
 
 void neuron_init(NEURON *n, int num_inputs);
+void neural_propagate(double *input);
+double neural_output(int i);
+void neural_set_weights(double *nw);
+double propagate_neuron(NEURON *n, double *input);
 double propagate_neuron(NEURON *n, double *input);
 
 int num_layers; // input layer + number of hidden layers + output layer

@@ -23,7 +23,6 @@
 #include "cons.h"
 #include "random.h"
 #include "cl.h"
-#include "condition.h"
 
 double gasdev(CL *c, int m);
 
