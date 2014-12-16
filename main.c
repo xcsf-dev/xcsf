@@ -37,9 +37,9 @@ int main(int argc, char *argv[0])
 		exit(EXIT_FAILURE);
 	} 
 
-	// initilise environment
-	init_constants(argc, argv);
-	init_random();
+	// initialise environment
+	constants_init(argc, argv);
+	random_init();
 	func_init();
 	gen_outfname();
 #ifdef NEURAL_CONDITIONS

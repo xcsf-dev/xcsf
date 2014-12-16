@@ -19,7 +19,7 @@
 #include "mt64.h"
 #include "random.h"
 
-void init_random()
+void random_init()
 {
 	time_t now = time (0);
 	unsigned char *p = (unsigned char *)&now;

@@ -44,7 +44,60 @@ pchar getvalue(pchar name);
 
 psection head;
 psection current;
-
+ 
+void constants_init(int argc, char **argv)
+{
+	init_config("cons.txt");
+	POP_SIZE = atoi(getvalue("POP_SIZE"));
+	if(strcmp(getvalue("POP_INIT"), "false") == 0)
+		POP_INIT = false;
+	else
+		POP_INIT = true;
+	NUM_EXPERIMENTS = atoi(getvalue("NUM_EXPERIMENTS"));
+	MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
+	P_CROSSOVER = atof(getvalue("P_CROSSOVER"));
+	P_MUTATION = atof(getvalue("P_MUTATION"));
+	THETA_SUB = atof(getvalue("THETA_SUB"));
+	EPS_0 = atof(getvalue("EPS_0"));
+	DELTA = atof(getvalue("DELTA"));
+	THETA_DEL = atof(getvalue("THETA_DEL"));
+	THETA_GA = atof(getvalue("THETA_GA"));
+	THETA_MNA = atoi(getvalue("THETA_MNA"));
+	THETA_OFFSPRING = atoi(getvalue("THETA_OFFSPRING"));
+	BETA = atof(getvalue("BETA"));
+	ALPHA = atof(getvalue("ALPHA")); 
+	NU = atof(getvalue("NU"));
+	INIT_FITNESS = atof(getvalue("INIT_FITNESS"));
+	INIT_ERROR = atof(getvalue("INIT_ERROR"));
+	ERR_REDUC = atof(getvalue("ERR_REDUC"));
+	FIT_REDUC = atof(getvalue("FIT_REDUC"));
+	if(strcmp(getvalue("GA_SUBSUMPTION"), "false") == 0)
+		GA_SUBSUMPTION = false;
+	else
+		GA_SUBSUMPTION = true;
+	if(strcmp(getvalue("SET_SUBSUMPTION"), "false") == 0)
+		SET_SUBSUMPTION = false;
+	else
+		SET_SUBSUMPTION = true;
+	PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
+	XCSF_X0 = atof(getvalue("XCSF_X0"));
+	XCSF_ETA = atof(getvalue("XCSF_ETA"));
+	XCSF_EXPONENT = atoi(getvalue("XCSF_EXPONENT"));
+	NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
+	muEPS_0 = atof(getvalue("muEPS_0"));
+	NUM_MU = atoi(getvalue("NUM_MU"));
+	MAX_CON = atof(getvalue("MAX_CON"));
+	MIN_CON = atof(getvalue("MIN_CON"));
+	S_MUTATION = atof(getvalue("S_MUTATION"));
+	tidyup();  
+	
+	// override cons.txt with command line values
+	if(argc > 1) {
+		MAX_TRIALS = atoi(argv[1]);
+		if(argc > 2)
+			NUM_EXPERIMENTS = atoi(argv[2]);
+	}    
+} 
 void trim(pchar s) // Remove tabs/spaces/lf/cr  both ends
 {
 	size_t i=0,j;
@@ -206,58 +259,4 @@ void tidyup()
 	}
 	while(current);
 	head=NULL;
-}
-
-void init_constants(int argc, char **argv)
-{
-	init_config("cons.txt");
-	POP_SIZE = atoi(getvalue("POP_SIZE"));
-	if(strcmp(getvalue("POP_INIT"), "false") == 0)
-		POP_INIT = false;
-	else
-		POP_INIT = true;
-	NUM_EXPERIMENTS = atoi(getvalue("NUM_EXPERIMENTS"));
-	MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
-	P_CROSSOVER = atof(getvalue("P_CROSSOVER"));
-	P_MUTATION = atof(getvalue("P_MUTATION"));
-	THETA_SUB = atof(getvalue("THETA_SUB"));
-	EPS_0 = atof(getvalue("EPS_0"));
-	DELTA = atof(getvalue("DELTA"));
-	THETA_DEL = atof(getvalue("THETA_DEL"));
-	THETA_GA = atof(getvalue("THETA_GA"));
-	THETA_MNA = atoi(getvalue("THETA_MNA"));
-	THETA_OFFSPRING = atoi(getvalue("THETA_OFFSPRING"));
-	BETA = atof(getvalue("BETA"));
-	ALPHA = atof(getvalue("ALPHA")); 
-	NU = atof(getvalue("NU"));
-	INIT_FITNESS = atof(getvalue("INIT_FITNESS"));
-	INIT_ERROR = atof(getvalue("INIT_ERROR"));
-	ERR_REDUC = atof(getvalue("ERR_REDUC"));
-	FIT_REDUC = atof(getvalue("FIT_REDUC"));
-	if(strcmp(getvalue("GA_SUBSUMPTION"), "false") == 0)
-		GA_SUBSUMPTION = false;
-	else
-		GA_SUBSUMPTION = true;
-	if(strcmp(getvalue("SET_SUBSUMPTION"), "false") == 0)
-		SET_SUBSUMPTION = false;
-	else
-		SET_SUBSUMPTION = true;
-	PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
-	XCSF_X0 = atof(getvalue("XCSF_X0"));
-	XCSF_ETA = atof(getvalue("XCSF_ETA"));
-	XCSF_EXPONENT = atoi(getvalue("XCSF_EXPONENT"));
-	NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
-	muEPS_0 = atof(getvalue("muEPS_0"));
-	NUM_MU = atoi(getvalue("NUM_MU"));
-	MAX_CON = atof(getvalue("MAX_CON"));
-	MIN_CON = atof(getvalue("MIN_CON"));
-	S_MUTATION = atof(getvalue("S_MUTATION"));
-	tidyup();  
-	
-	// override cons.txt with command line values
-	if(argc > 1) {
-		MAX_TRIALS = atoi(argv[1]);
-		if(argc > 2)
-			NUM_EXPERIMENTS = atoi(argv[2]);
-	}    
 }
