@@ -13,7 +13,16 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ **************
+ * Description: 
+ **************
+ * The performance output module.
+ *
+ * Writes system performance to a file and standard out. If GNUPlot is enabled,
+ * a 2D plot is redrawn each time the performance is updated.
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

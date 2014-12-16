@@ -13,7 +13,18 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ **************
+ * Description: 
+ **************
+ * The hyperrectangle classifier condition module.
+ *
+ * Provides functionality to create real-valued hyperrectangle (interval)
+ * conditions whereby a classifier matches for a given problem instance if, and
+ * only if, all of the current state variables fall within all {lower, upper}
+ * intervals. Includes operations for copying, mutating, printing, etc.
  */
+
 #ifndef NEURAL_CONDITIONS
 #include <stdio.h>
 #include <stdlib.h>

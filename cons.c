@@ -13,7 +13,17 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ **************
+ * Description: 
+ **************
+ * The constants module.
+ *
+ * Reads in the global constants from cons.txt. The number of trials and number
+ * of experiments to perform can be overridden by passing command line
+ * arguments.
  */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

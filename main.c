@@ -13,7 +13,22 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ **************
+ * Description: 
+ **************
+ * The main XCSF module.  
+ *
+ * 1) Initialises the environment: constants, random number generator, problem
+ * function, and performance output writing. If neural conditions are enabled
+ * then a single neural network is initialised in memory for the classifiers to
+ * copy their weights into and compute the matching function.
+ *
+ * 2) Executes the experiments: iteratively retrieving a problem instance,
+ * generating a match set, calculating a system prediction, providing
+ * reinforcement and running the genetic algorithm.
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -55,7 +70,7 @@ int main(int argc, char *argv[0])
 		printf("\nExperiment: %d\n", e);
 		pop_init();
 		outfile_init(e);
-		// each trial in the experiment
+		// each trial in an experiment
 		for(int cnt = 0; cnt < MAX_TRIALS; cnt++) {
 			trial(cnt, true, err); // train
 			trial(cnt, false, terr);// test
@@ -63,6 +78,7 @@ int main(int argc, char *argv[0])
 			if(cnt%PERF_AVG_TRIALS == 0 && cnt > 0)
 				disp_perf(err, terr, cnt, pop_num);
 		}
+		// clean up
 		set_kill(&pset);
 		outfile_close();
 	}

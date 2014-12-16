@@ -13,7 +13,16 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ **************
+ * Description: 
+ **************
+ * The problem function module.
+ *
+ * Initialises the problem function that XCSF is to learn, and provides
+ * mechanisms to retrieve the next problem instance and solution values.
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

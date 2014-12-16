@@ -13,7 +13,16 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ **************
+ * Description: 
+ **************
+ * The self-adaptive mutation module.
+ *
+ * Initialises the classifier mutation rates and performs self-adaptation using
+ * a normal distribution.
  */
+
 #ifdef SELF_ADAPT_MUTATION   	
 #include <stdio.h>
 #include <stdlib.h>
