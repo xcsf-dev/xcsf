@@ -41,13 +41,17 @@ void print_cl(CL *c);
 double del_vote(CL *c, double avg_fit);
 double acc(CL *c);
 void update_fit(CL *c, double acc_sum, double acc);
+double update_err(CL *c, double p, double *state);
 double update_size(CL *c, double num_sum);
 _Bool subsumer(CL *c);
 
 // classifier predictions
-void update_pre(CL *c, double p, double *state);
-double compute_pre(CL *c, double *state);
-double update_err(CL *c, double p, double *state);
+void pred_init(CL *c);
+void pred_copy(CL *to, CL *from);
+void pred_free(CL *c);
+void pred_print(CL *c);
+void pred_update(CL *c, double p, double *state);
+double pred_compute(CL *c, double *state);
 
 // classifier conditions
 _Bool two_pt_cross(CL *c1, CL *c2);

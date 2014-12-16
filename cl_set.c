@@ -91,7 +91,7 @@ double weighted_pred(NODE **set, double *state)
 	double presum = 0.0;
 	double fitsum = 0.0;
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		presum += compute_pre(iter->cl, state) * iter->cl->fit;
+		presum += pred_compute(iter->cl, state) * iter->cl->fit;
 		fitsum += iter->cl->fit;
 	}
 	return presum/fitsum;
@@ -272,7 +272,7 @@ void update_set(NODE **set, int *size, int *num, double r, NODE **kset, double *
 		CL *c = iter->cl;
 		c->exp++;
 		update_err(c, r, state);
-		update_pre(c, r, state);
+		pred_update(c, r, state);
 		update_size(c, *num);
 	}
 	update_set_fit(set, *size, *num);

@@ -31,11 +31,8 @@ void init_cl(CL *c, int size, int time)
 	c->exp = 0;
 	c->size = size;
 	c->time = time;
-	c->weights_length = (state_length*XCSF_EXPONENT)+1;
 	con_init(c);
-	c->weights = malloc(sizeof(double) * c->weights_length);
-	for(int i = 0; i < c->weights_length; i++)
-		c->weights[i] = 0.0;
+	pred_init(c);
 #ifdef SELF_ADAPT_MUTATION
 	sam_init(c);
 #endif
@@ -44,9 +41,8 @@ void init_cl(CL *c, int size, int time)
 void copy_cl(CL *to, CL *from)
 {
 	init_cl(to, from->size, from->time);
-	to->weights_length = from->weights_length;
-	memcpy(to->weights, from->weights, sizeof(double)*from->weights_length);
 	con_copy(to, from);
+	pred_copy(to, from);
 #ifdef SELF_ADAPT_MUTATION
 	sam_copy(to, from);
 #endif
@@ -67,31 +63,9 @@ double del_vote(CL *c, double avg_fit)
 	return c->size * c->num * avg_fit / (c->fit / c->num); 
 }
 
-void update_pre(CL *c, double p, double *state)
-{
-	double error = p - compute_pre(c, state);
-	double norm = XCSF_X0 * XCSF_X0;
-	for(int i = 0; i < state_length; i++)
-		norm += state[i] * state[i];
-	double correction = (XCSF_ETA * error) / norm;
-	c->weights[0] += XCSF_X0 * correction;
-	for(int i = 0; i < c->weights_length-1; i+=XCSF_EXPONENT)
-		for(int j = 0; j < XCSF_EXPONENT; j++)
-			c->weights[i+j+1] += correction * pow(state[i/XCSF_EXPONENT], j+1);
-}
-
-double compute_pre(CL *c, double *state)
-{
-	double pre = XCSF_X0 * c->weights[0];
-	for(int i = 0; i < c->weights_length-1; i+=XCSF_EXPONENT)
-		for(int j = 0; j < XCSF_EXPONENT; j++)
-			pre += pow(state[i/XCSF_EXPONENT], j+1) * c->weights[i+j+1];
-	return pre;
-} 
-
 double update_err(CL *c, double p, double *state)
 {
-	double pre = compute_pre(c, state);
+	double pre = pred_compute(c, state);
 	if(c->exp < 1.0/BETA) 
 		c->err = (c->err * (c->exp-1.0) + fabs(p - pre)) / (double)c->exp;
 	else
@@ -124,7 +98,7 @@ double update_size(CL *c, double num_sum)
 void free_cl(CL *c)
 {
 	con_free(c);
-	free(c->weights);
+	pred_free(c);
 #ifdef SELF_ADAPT_MUTATION
 	sam_free(c);
 #endif
@@ -134,9 +108,6 @@ void free_cl(CL *c)
 void print_cl(CL *c)
 {
 	con_print(c);
+	pred_print(c);
 	printf("%f %f %d %d %f %d\n", c->err, c->fit, c->num, c->exp, c->size, c->time);
-	printf("weights: ");
-	for(int i = 0; i < c->weights_length; i++)
-		printf("%f, ", c->weights[i]);
-	printf("\n");
 }  
