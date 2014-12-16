@@ -18,15 +18,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "random.h"
 #include "bpn.h"
-#include "cons.h"
 
 typedef struct NEURON {
 	double output;
 	double state;
 	double *weights;
-	double *weights_change;
 	double *input;
 	int num_inputs;
 } NEURON;
@@ -60,13 +57,7 @@ void neuron_init(NEURON *n, int num_inputs)
 	n->state = 0.0;
 	n->num_inputs = num_inputs; 
 	n->weights = malloc((num_inputs+1)*sizeof(double));
-	n->weights_change = malloc((num_inputs+1)*sizeof(double));
 	n->input = malloc(num_inputs*sizeof(double));
-	// randomise weights [-0.1,0.1]
-	for(int w = 0; w < num_inputs+1; w++) {
-		n->weights[w] = 0.2 * (drand() - 0.5);
-		n->weights_change[w] = 0.0;
-	}
 }
 
 void neural_propagate(double *input)
@@ -122,7 +113,6 @@ void neural_free()
 		for(int i = 0; i < num_neurons[l]; i++) {
 			NEURON *n = &layer[l-1][i];
 			free(n->weights);
-			free(n->weights_change);
 			free(n->input);
 		}
 	}
