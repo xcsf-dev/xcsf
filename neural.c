@@ -14,11 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#ifdef NEURAL_CONDITIONS
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #include <math.h>
-#include "bpn.h"
+#include "random.h"
+#include "cons.h"
+#include "cl.h"
+#include "neural.h"
+
+#define NUM_OUTPUT 1 // only one output required for matching
 
 typedef struct NEURON {
 	double output;
@@ -34,6 +41,95 @@ double propagate_neuron(NEURON *n, double *input);
 int num_layers; // input layer + number of hidden layers + output layer
 int *num_neurons; // number of neurons in each layer
 NEURON **layer; // neural network
+ 
+void con_init(CL *c)
+{
+	c->con_length = ((state_length+1)*NUM_HIDDEN_NEURONS)
+		+((NUM_HIDDEN_NEURONS+1)*NUM_OUTPUT);
+	c->con = malloc(sizeof(double) * c->con_length);
+	c->weights = malloc(sizeof(double) * c->weights_length);
+	for(int i = 0; i < c->weights_length; i++)
+		c->weights[i] = 0.0;
+}
+
+void con_free(CL *c)
+{
+	free(c->con);
+}
+
+void con_copy(CL *to, CL *from)
+{
+	to->con_length = from->con_length;
+	memcpy(to->con, from->con, sizeof(double)*from->con_length);
+}
+
+void con_rand(CL *c)
+{
+	for(int i = 0; i < c->con_length; i++)
+		c->con[i] = (drand()*2.0)-1.0;
+}
+
+void con_match(CL *c, double *state)
+{
+	// generates random weights until the network matches for input state
+	do {
+		for(int i = 0; i < c->con_length; i++)
+			c->con[i] = (drand()*2.0)-1.0;
+	} while(!match(c, state));
+}
+
+_Bool match(CL *c, double *state)
+{
+	// classifier matches if the first output neuron > 0.5
+	neural_set_weights(c->con);
+	neural_propagate(state);
+	if(neural_output(0) > 0.5)
+		return true;
+	return false;
+}
+
+_Bool mutate(CL *c)
+{
+	double mod = false;
+	double step = S_MUTATION;
+#ifdef SELF_ADAPT_MUTATION
+	sam_adapt(c);
+	if(NUM_MU > 0) {
+		P_MUTATION = c->mu[0];
+		if(NUM_MU > 1)
+			step = c->mu[1];
+	}
+#endif
+	for(int i = 0; i < c->con_length; i++) {
+		if(drand() < P_MUTATION) {
+			c->con[i] += ((drand()*2.0)-1.0)*step;
+			if(c->con[i] > 1.0)
+				c->con[i] = 1.0;
+			else if(c->con[i] < -1.0)
+				c->con[i] = -1.0;
+			mod = true;
+		}
+	}
+	return mod;
+}
+
+_Bool subsumes(CL *c1, CL *c2)
+{
+	return false;
+}
+
+_Bool general(CL *c1, CL *c2)
+{
+	return false;
+}   
+
+void con_print(CL *c)
+{
+	printf("neural weights:");
+	for(int i = 0; i < c->con_length; i++)
+		printf(" %5f, ", c->con[i]);
+	printf("\n");
+}  
 
 void neural_init(int layers, int *neurons)
 {
@@ -122,4 +218,6 @@ void neural_free()
 	// free pointers to layers
 	free(layer);
 	free(num_neurons);
-}
+}    
+
+#endif

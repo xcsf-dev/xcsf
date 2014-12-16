@@ -24,7 +24,7 @@
 #include "random.h"
 #include "cl.h"
 #include "cl_set.h"
-#include "bpn.h"
+#include "neural.h"
 #include "function.h"
 #include "perf.h"
 

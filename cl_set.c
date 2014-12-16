@@ -21,6 +21,7 @@
 #include "cons.h"
 #include "random.h"
 #include "cl.h"
+#include "condition.h"
 #include "cl_set.h"
 
 NODE *pop_del();
@@ -46,7 +47,7 @@ void init_pop()
 		while(pop_num_sum < POP_SIZE) {
 			CL *new = malloc(sizeof(CL));
 			init_cl(new, POP_SIZE, 0);
-			rand_con(new);
+			con_rand(new);
 			pop_add_cl(new);
 		}
 	}
@@ -67,7 +68,7 @@ void match_set(NODE **set, int *size, int *num, double *state, int time, NODE **
 		// new classifier with matching condition
 		CL *new = malloc(sizeof(CL));
 		init_cl(new, *num+1, time);
-		match_con(new, state);
+		con_match(new, state);
 		(*size)++;
 		(*num)++;
 		pop_add_cl(new);
