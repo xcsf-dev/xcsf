@@ -126,11 +126,17 @@ _Bool mutate(CL *c)
 
 _Bool subsumes(CL *c1, CL *c2)
 {
+	// remove unused parameter warnings
+	(void)c1;
+	(void)c2;
 	return false;
 }
 
 _Bool general(CL *c1, CL *c2)
 {
+	// remove unused parameter warnings
+	(void)c1;
+	(void)c2;
 	return false;
 }   
 
