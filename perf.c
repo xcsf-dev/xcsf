@@ -35,14 +35,18 @@ void gplot_close();
 FILE *gp;
 #endif
 
-void disp_perf(double *error, int trial, int pnum)
+void disp_perf(double *error, double *terror, int trial, int pnum)
 {
 	double serr = 0.0;
-	for(int i = 0; i < PERF_AVG_TRIALS; i++)
+	double terr = 0.0;
+	for(int i = 0; i < PERF_AVG_TRIALS; i++) {
 		serr += error[i];
+		terr += terror[i];
+	}
 	serr /= (double)PERF_AVG_TRIALS;
-	printf("%d %.5f %d", trial, serr, pnum);
-	fprintf(fout, "%d %.5f %d", trial, serr, pnum);
+	terr /= (double)PERF_AVG_TRIALS;
+	printf("%d %.5f %.5f %d", trial, serr, terr, pnum);
+	fprintf(fout, "%d %.5f %.5f %d", trial, serr, terr, pnum);
 #ifdef SELF_ADAPT_MUTATION
 	for(int i = 0; i < NUM_MU; i++) {
 		printf(" %.5f", avg_mut(&pset, i));
@@ -57,6 +61,7 @@ void disp_perf(double *error, int trial, int pnum)
 	gplot_draw();
 #endif
 }          
+
 void gen_outfname()
 {
 	// file for writing output; uses the date/time/exp as file name
@@ -100,7 +105,7 @@ void gplot_init()
 		fprintf(gp, "set terminal wxt noraise enhanced font 'Arial,12'\n");
 		fprintf(gp, "set grid\n");
 		fprintf(gp, "set border linewidth 1\n");
-		fprintf(gp, "set nokey\n");
+		//fprintf(gp, "set nokey\n");
 		fprintf(gp, "set xlabel 'trials'\n");
 		fprintf(gp, "set ylabel 'system error'\n");
 		fprintf(gp, "set style line 1 lt -1 lw 1 ps 1 lc rgb 'red'\n");
@@ -122,7 +127,8 @@ void gplot_close()
 void gplot_draw()
 {
 	if(gp != NULL) {
-		fprintf(gp, "plot '%s' using 1:2 title 'error' w lp ls 1 pt 4 pi 50\n", fname);
+		fprintf(gp, "plot '%s' using 1:2 title 'test error' w lp ls 1 pt 4 pi 50, ", fname);
+		fprintf(gp, "'%s' using 1:3 title 'train error' w lp ls 2 pt 8 pi 50\n", fname);
 		fprintf(gp,"replot\n");
 		fflush(gp);
 	}

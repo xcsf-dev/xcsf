@@ -28,6 +28,8 @@
 #include "function.h"
 #include "perf.h"
 
+void trial(int trial, _Bool train, double *err);
+
 int main(int argc, char *argv[0])
 {    
 	if(argc < 1 || argc > 3) {
@@ -48,32 +50,18 @@ int main(int argc, char *argv[0])
 
 	// run experiments
 	double err[PERF_AVG_TRIALS];
+	double terr[PERF_AVG_TRIALS];
 	for(int e = 1; e < NUM_EXPERIMENTS+1; e++) {
 		printf("\nExperiment: %d\n", e);
 		init_pop();
 		outfile_init(e);
 		// each trial in the experiment
-		for(int trial = 0; trial < MAX_TRIALS; trial++) {
-			// get problem function state and solution
-			double *state = func_state();
-			double answer = func_answer();
-			// create match set
-			NODE *mset = NULL, *kset = NULL;
-			int msize = 0, mnum = 0;
-			match_set(&mset, &msize, &mnum, state, trial, &kset);
-			// calculate system prediction and track performance
-			double pre = weighted_pred(&mset, state);
-			double abserr = fabs(answer - pre);
-			err[trial%PERF_AVG_TRIALS] = abserr;
-			if(trial%PERF_AVG_TRIALS == 0 && trial > 0)
-				disp_perf(err, trial, pop_num);
-			// provide reinforcement to the set
-			update_set(&mset, &msize, &mnum, answer, &kset, state);
-			// run the genetic algorithm
-			ga(&mset, msize, mnum, trial, &kset);
-			// clean up
-			clean_set(&kset, &mset, true);
-			free_set(&mset);       
+		for(int cnt = 0; cnt < MAX_TRIALS; cnt++) {
+			trial(cnt, true, err); // train
+			trial(cnt, false, terr);// test
+			// display performance
+			if(cnt%PERF_AVG_TRIALS == 0 && cnt > 0)
+				disp_perf(err, terr, cnt, pop_num);
 		}
 		kill_set(&pset);
 		outfile_close();
@@ -83,4 +71,28 @@ int main(int argc, char *argv[0])
 	neural_free();
 #endif
 	return EXIT_SUCCESS;
+}
+
+void trial(int cnt, _Bool train, double *err)
+{
+	// get problem function state and solution
+	double *state = func_state(train);
+	double answer = func_answer();
+	// create match set
+	NODE *mset = NULL, *kset = NULL;
+	int msize = 0, mnum = 0;
+	match_set(&mset, &msize, &mnum, state, cnt, &kset);
+	// calculate system prediction and track performance
+	double pre = weighted_pred(&mset, state);
+	double abserr = fabs(answer - pre);
+	err[cnt%PERF_AVG_TRIALS] = abserr;
+	if(train) {
+		// provide reinforcement to the set
+		update_set(&mset, &msize, &mnum, answer, &kset, state);
+		// run the genetic algorithm
+		ga(&mset, msize, mnum, cnt, &kset);
+	}
+	// clean up
+	clean_set(&kset, &mset, true);
+	free_set(&mset);    
 }

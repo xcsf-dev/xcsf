@@ -16,6 +16,6 @@
  */
 
 void func_init();
-double *func_state();
+double *func_state(_Bool train);
 double func_answer();
 void func_free();
