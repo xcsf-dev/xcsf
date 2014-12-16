@@ -154,7 +154,7 @@ _Bool mutate(CL *c)
 _Bool subsumes(CL *c1, CL *c2)
 {
 	// returns whether c1 subsumes c2
-	if(subsumer(c1)) {
+	if(cl_subsumer(c1)) {
 		for(int i = 0; i < state_length*2; i+=2) {
 			if(c1->cond[i] > c2->cond[i] || c1->cond[i+1] < c2->cond[i+1])
 				return false;

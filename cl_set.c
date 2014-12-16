@@ -45,7 +45,7 @@ void init_pop()
 	if(POP_INIT) {
 		while(pop_num_sum < POP_SIZE) {
 			CL *new = malloc(sizeof(CL));
-			init_cl(new, POP_SIZE, 0);
+			cl_init(new, POP_SIZE, 0);
 			cond_rand(new);
 			pop_add_cl(new);
 		}
@@ -66,7 +66,7 @@ void match_set(NODE **set, int *size, int *num, double *state, int time, NODE **
 	while(*size < THETA_MNA) {
 		// new classifier with matching condition
 		CL *new = malloc(sizeof(CL));
-		init_cl(new, *num+1, time);
+		cl_init(new, *num+1, time);
 		cond_match(new, state);
 		(*size)++;
 		(*num)++;
@@ -141,11 +141,11 @@ NODE *pop_del()
 	double avg_fit = set_total_fit(&pset) / pop_num_sum;
 	double sum = 0.0;
 	for(iter = pset; iter != NULL; iter = iter->next)
-		sum += del_vote(iter->cl, avg_fit);
+		sum += cl_del_vote(iter->cl, avg_fit);
 	double p = drand() * sum;
 	sum = 0.0;
 	for(iter=pset; iter != NULL; prev=iter, iter=iter->next) {
-		sum += del_vote(iter->cl, avg_fit);
+		sum += cl_del_vote(iter->cl, avg_fit);
 		if(sum > p) {
 			iter->cl->num--;
 			pop_num_sum--;
@@ -178,8 +178,8 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 		// create copies of parents
 		CL *c1 = malloc(sizeof(CL));
 		CL *c2 = malloc(sizeof(CL));
-		copy_cl(c1, c1p);
-		copy_cl(c2, c2p);
+		cl_copy(c1, c1p);
+		cl_copy(c2, c2p);
 		// reduce offspring err, fit
 		c1->err = ERR_REDUC * ((c1p->err + c2p->err)/2.0);
 		c2->err = c1->err;
@@ -191,7 +191,7 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 		if(!mutate(c1) && GA_SUBSUMPTION) {
 			c1p->num++;
 			pop_num_sum++;
-			free_cl(c1);
+			cl_free(c1);
 		}
 		else {
 			pop_add_cl(c1);
@@ -199,7 +199,7 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 		if(!mutate(c2) && GA_SUBSUMPTION) {
 			c2p->num++;
 			pop_num_sum++;
-			free_cl(c2);
+			cl_free(c2);
 		}
 		else {
 			pop_add_cl(c2);
@@ -236,12 +236,12 @@ void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 	if(subsumes(c1p, c)) {
 		c1p->num++;
 		pop_num_sum++;
-		free_cl(c);
+		cl_free(c);
 	}
 	else if(subsumes(c2p, c)) {
 		c2p->num++;
 		pop_num_sum++;
-		free_cl(c);
+		cl_free(c);
 	}
 	// attempt to find a random subsumer from the set
 	else {
@@ -257,7 +257,7 @@ void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 		if(choices > 0) {
 			candidates[irand(0,choices)]->cl->num++;
 			pop_num_sum++;
-			free_cl(c);
+			cl_free(c);
 		}
 		// if no subsumers are found the offspring is added to the population
 		else {
@@ -271,9 +271,9 @@ void update_set(NODE **set, int *size, int *num, double r, NODE **kset, double *
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
 		CL *c = iter->cl;
 		c->exp++;
-		update_err(c, r, state);
+		cl_update_err(c, r, state);
 		pred_update(c, r, state);
-		update_size(c, *num);
+		cl_update_size(c, *num);
 	}
 	update_set_fit(set, *size, *num);
 	if(SET_SUBSUMPTION)
@@ -287,14 +287,14 @@ void update_set_fit(NODE **set, int size, int num_sum)
 	// calculate accuracies
 	int i = 0;
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		accs[i] = acc(iter->cl);
+		accs[i] = cl_acc(iter->cl);
 		acc_sum += accs[i] * num_sum;
 		i++;
 	}
 	// update fitnesses
 	i = 0;
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		update_fit(iter->cl, acc_sum, accs[i]);
+		cl_update_fit(iter->cl, acc_sum, accs[i]);
 		i++;
 	}
 }
@@ -306,7 +306,7 @@ void set_subsumption(NODE **set, int *size, int *num, NODE **kset)
 	// find the most general subsumer in the set
 	for(iter = *set; iter != NULL; iter = iter->next) {
 		CL *c = iter->cl;
-		if(subsumer(c)) {
+		if(cl_subsumer(c)) {
 			if(s == NULL || general(c, s))
 				s = c;
 		}
@@ -356,7 +356,7 @@ void set_validate(NODE **set, int *size, int *num)
 void print_set(NODE *set)
 {
 	for(NODE *iter = set; iter != NULL; iter = iter->next)
-		print_cl(iter->cl);
+		cl_print(iter->cl);
 }
 
 void set_times(NODE **set, int time)
@@ -415,7 +415,7 @@ void kill_set(NODE **set)
 	// frees the set and classifiers
 	NODE *iter = *set;
 	while(iter != NULL) {
-		free_cl(iter->cl);
+		cl_free(iter->cl);
 		*set = iter->next;
 		free(iter);
 		iter = *set;
@@ -436,7 +436,7 @@ void clean_set(NODE **kset, NODE **set, _Bool in_set)
 					*kset = kiter->next;
 				else
 					prev_kiter->next = kiter->next;
-				free_cl(kiter->cl);
+				cl_free(kiter->cl);
 				free(kiter);
 			}
 		}

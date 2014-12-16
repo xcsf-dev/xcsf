@@ -33,19 +33,19 @@ typedef struct CL
 #endif
 } CL;
 
-// classifier
-void init_cl(CL *c, int size, int time);
-void copy_cl(CL *to, CL *from);
-void free_cl(CL *c);
-void print_cl(CL *c);
-double del_vote(CL *c, double avg_fit);
-double acc(CL *c);
-void update_fit(CL *c, double acc_sum, double acc);
-double update_err(CL *c, double p, double *state);
-double update_size(CL *c, double num_sum);
-_Bool subsumer(CL *c);
+// general classifier
+void cl_init(CL *c, int size, int time);
+void cl_copy(CL *to, CL *from);
+void cl_free(CL *c);
+void cl_print(CL *c);
+double cl_del_vote(CL *c, double avg_fit);
+double cl_acc(CL *c);
+void cl_update_fit(CL *c, double acc_sum, double acc);
+double cl_update_err(CL *c, double p, double *state);
+double cl_update_size(CL *c, double num_sum);
+_Bool cl_subsumer(CL *c);
 
-// classifier predictions
+// classifier prediction
 void pred_init(CL *c);
 void pred_copy(CL *to, CL *from);
 void pred_free(CL *c);
@@ -53,7 +53,7 @@ void pred_print(CL *c);
 void pred_update(CL *c, double p, double *state);
 double pred_compute(CL *c, double *state);
 
-// classifier conditions
+// classifier condition
 void cond_init(CL *c);
 void cond_free(CL *c);
 void cond_copy(CL *to, CL *from);
