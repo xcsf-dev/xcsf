@@ -9,3 +9,6 @@ Conditions are represented as either real-valued intervals as in the original
 XCSF, or as MLP neural networks if compiled with NEURAL=1.  
 
 Self-adaptive mutation rates can be toggled by compiling with SAM=1 or SAM=0.
+
+An updated GNUPlot of the current system error can be enabled by compiling with
+GNUPLOT=1 (on GNU/Linux gnuplot-x11 must be installed.)
