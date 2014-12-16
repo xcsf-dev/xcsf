@@ -26,40 +26,40 @@
 
 void bounds(double *a, double *b);
 
-void con_init(CL *c)
+void cond_init(CL *c)
 {
-	c->con_length = state_length*2;
-	c->con = malloc(sizeof(double) * c->con_length);
+	c->cond_length = state_length*2;
+	c->cond = malloc(sizeof(double) * c->cond_length);
 }
 
-void con_free(CL *c)
+void cond_free(CL *c)
 {
-	free(c->con);
+	free(c->cond);
 }
 
-void con_copy(CL *to, CL *from)
+void cond_copy(CL *to, CL *from)
 {
-	to->con_length = from->con_length;
-	memcpy(to->con, from->con, sizeof(double)*from->con_length);
+	to->cond_length = from->cond_length;
+	memcpy(to->cond, from->cond, sizeof(double)*from->cond_length);
 
 }                             
 
-void con_rand(CL *c)
+void cond_rand(CL *c)
 {
 	for(int i = 0; i < state_length+1; i+=2) {
-		c->con[i] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
-		c->con[i+1] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
-		bounds(&(c->con[i]), &(c->con[i+1]));
+		c->cond[i] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
+		c->cond[i+1] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
+		bounds(&(c->cond[i]), &(c->cond[i+1]));
 	}
 }
 
-void con_match(CL *c, double *state)
+void cond_match(CL *c, double *state)
 {
-	// generate a condition that matches the state
+	// generate a conddition that matches the state
 	for(int i = 0; i < state_length*2; i+=2) {
-		c->con[i] = state[i/2] - (S_MUTATION*2.0);
-		c->con[i+1] = state[i/2] + (S_MUTATION*2.0);
-		bounds(&(c->con[i]), &(c->con[i+1]));
+		c->cond[i] = state[i/2] - (S_MUTATION*2.0);
+		c->cond[i+1] = state[i/2] + (S_MUTATION*2.0);
+		bounds(&(c->cond[i]), &(c->cond[i+1]));
 	}
 }
 
@@ -84,9 +84,9 @@ void bounds(double *a, double *b)
 
 _Bool match(CL *c, double *state)
 {
-	// return whether the condition matches the state
+	// return whether the conddition matches the state
 	for(int i = 0; i < state_length*2; i+=2) {
-		if(state[i/2] < c->con[i] || state[i/2] > c->con[i+1])
+		if(state[i/2] < c->cond[i] || state[i/2] > c->cond[i+1])
 			return false;
 	}
 	return true;
@@ -106,21 +106,21 @@ _Bool two_pt_cross(CL *c1, CL *c2)
 		else if(p1 == p2) {
 			p2++;
 		}
-		double cond1[state_length*2];
-		double cond2[state_length*2];
-		memcpy(cond1, c1->con, sizeof(double)*state_length*2);
-		memcpy(cond2, c2->con, sizeof(double)*state_length*2);
+		double condd1[state_length*2];
+		double condd2[state_length*2];
+		memcpy(condd1, c1->cond, sizeof(double)*state_length*2);
+		memcpy(condd2, c2->cond, sizeof(double)*state_length*2);
 		for(int i = p1; i < p2; i++) { 
-			if(cond1[i] != cond2[i]) {
+			if(condd1[i] != condd2[i]) {
 				changed = true;
-				double help = c1->con[i];
-				c1->con[i] = cond2[i];
-				c2->con[i] = help;
+				double help = c1->cond[i];
+				c1->cond[i] = condd2[i];
+				c2->cond[i] = help;
 			}
 		}
 		if(changed) {
-			memcpy(c1->con, cond1, sizeof(double)*state_length*2);
-			memcpy(c2->con, cond2, sizeof(double)*state_length*2);
+			memcpy(c1->cond, condd1, sizeof(double)*state_length*2);
+			memcpy(c2->cond, condd2, sizeof(double)*state_length*2);
 		}
 	}
 	return changed;
@@ -140,12 +140,12 @@ _Bool mutate(CL *c)
 #endif
 	for(int i = 0; i < state_length*2; i+=2) {
 		if(drand() < P_MUTATION)
-			c->con[i] += ((drand()*2.0)-1.0)*step;
+			c->cond[i] += ((drand()*2.0)-1.0)*step;
 		if(drand() < P_MUTATION)
-			c->con[i+1] += ((drand()*2.0)-1.0)*step;
+			c->cond[i+1] += ((drand()*2.0)-1.0)*step;
 
 		// bounds
-		bounds(&(c->con[i]), &(c->con[i+1]));
+		bounds(&(c->cond[i]), &(c->cond[i+1]));
 
 	}
 	return true;
@@ -156,7 +156,7 @@ _Bool subsumes(CL *c1, CL *c2)
 	// returns whether c1 subsumes c2
 	if(subsumer(c1)) {
 		for(int i = 0; i < state_length*2; i+=2) {
-			if(c1->con[i] > c2->con[i] || c1->con[i+1] < c2->con[i+1])
+			if(c1->cond[i] > c2->cond[i] || c1->cond[i+1] < c2->cond[i+1])
 				return false;
 		}
 		return true;
@@ -171,8 +171,8 @@ _Bool general(CL *c1, CL *c2)
 	for(int i = 0; i < state_length; i++)
 		max += MAX_CON - MIN_CON + 1.0;
 	for(int i = 0; i < state_length*2; i+=2) {
-		gen1 += c1->con[i+1] - c1->con[i] + 1.0;
-		gen2 += c2->con[i+1] - c2->con[i] + 1.0;
+		gen1 += c1->cond[i+1] - c1->cond[i] + 1.0;
+		gen2 += c2->cond[i+1] - c2->cond[i] + 1.0;
 	}
 	if(gen1/max > gen2/max)
 		return false;
@@ -180,12 +180,12 @@ _Bool general(CL *c1, CL *c2)
 		return true;
 }  
 
-void con_print(CL *c)
+void cond_print(CL *c)
 {
 	printf("intervals:");
-	for(int i = 0; i < c->con_length; i+=2) {
-		printf(" (%5f, ", c->con[i]);
-		printf("%5f)", c->con[i+1]);
+	for(int i = 0; i < c->cond_length; i+=2) {
+		printf(" (%5f, ", c->cond[i]);
+		printf("%5f)", c->cond[i+1]);
 	}
 	printf("\n");
 }

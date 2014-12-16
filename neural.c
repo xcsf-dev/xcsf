@@ -46,46 +46,43 @@ int num_layers; // input layer + number of hidden layers + output layer
 int *num_neurons; // number of neurons in each layer
 NEURON **layer; // neural network
  
-void con_init(CL *c)
+void cond_init(CL *c)
 {
-	c->con_length = ((state_length+1)*NUM_HIDDEN_NEURONS)
+	c->cond_length = ((state_length+1)*NUM_HIDDEN_NEURONS)
 		+((NUM_HIDDEN_NEURONS+1)*NUM_OUTPUT);
-	c->con = malloc(sizeof(double) * c->con_length);
-	c->weights = malloc(sizeof(double) * c->weights_length);
-	for(int i = 0; i < c->weights_length; i++)
-		c->weights[i] = 0.0;
+	c->cond = malloc(sizeof(double) * c->cond_length);
 }
 
-void con_free(CL *c)
+void cond_free(CL *c)
 {
-	free(c->con);
+	free(c->cond);
 }
 
-void con_copy(CL *to, CL *from)
+void cond_copy(CL *to, CL *from)
 {
-	to->con_length = from->con_length;
-	memcpy(to->con, from->con, sizeof(double)*from->con_length);
+	to->cond_length = from->cond_length;
+	memcpy(to->cond, from->cond, sizeof(double)*from->cond_length);
 }
 
-void con_rand(CL *c)
+void cond_rand(CL *c)
 {
-	for(int i = 0; i < c->con_length; i++)
-		c->con[i] = (drand()*2.0)-1.0;
+	for(int i = 0; i < c->cond_length; i++)
+		c->cond[i] = (drand()*2.0)-1.0;
 }
 
-void con_match(CL *c, double *state)
+void cond_match(CL *c, double *state)
 {
 	// generates random weights until the network matches for input state
 	do {
-		for(int i = 0; i < c->con_length; i++)
-			c->con[i] = (drand()*2.0)-1.0;
+		for(int i = 0; i < c->cond_length; i++)
+			c->cond[i] = (drand()*2.0)-1.0;
 	} while(!match(c, state));
 }
 
 _Bool match(CL *c, double *state)
 {
 	// classifier matches if the first output neuron > 0.5
-	neural_set_weights(c->con);
+	neural_set_weights(c->cond);
 	neural_propagate(state);
 	if(neural_output(0) > 0.5)
 		return true;
@@ -104,13 +101,13 @@ _Bool mutate(CL *c)
 			step = c->mu[1];
 	}
 #endif
-	for(int i = 0; i < c->con_length; i++) {
+	for(int i = 0; i < c->cond_length; i++) {
 		if(drand() < P_MUTATION) {
-			c->con[i] += ((drand()*2.0)-1.0)*step;
-			if(c->con[i] > 1.0)
-				c->con[i] = 1.0;
-			else if(c->con[i] < -1.0)
-				c->con[i] = -1.0;
+			c->cond[i] += ((drand()*2.0)-1.0)*step;
+			if(c->cond[i] > 1.0)
+				c->cond[i] = 1.0;
+			else if(c->cond[i] < -1.0)
+				c->cond[i] = -1.0;
 			mod = true;
 		}
 	}
@@ -127,11 +124,11 @@ _Bool general(CL *c1, CL *c2)
 	return false;
 }   
 
-void con_print(CL *c)
+void cond_print(CL *c)
 {
 	printf("neural weights:");
-	for(int i = 0; i < c->con_length; i++)
-		printf(" %5f, ", c->con[i]);
+	for(int i = 0; i < c->cond_length; i++)
+		printf(" %5f, ", c->cond[i]);
 	printf("\n");
 }  
 

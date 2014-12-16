@@ -31,7 +31,7 @@ void init_cl(CL *c, int size, int time)
 	c->exp = 0;
 	c->size = size;
 	c->time = time;
-	con_init(c);
+	cond_init(c);
 	pred_init(c);
 #ifdef SELF_ADAPT_MUTATION
 	sam_init(c);
@@ -41,7 +41,7 @@ void init_cl(CL *c, int size, int time)
 void copy_cl(CL *to, CL *from)
 {
 	init_cl(to, from->size, from->time);
-	con_copy(to, from);
+	cond_copy(to, from);
 	pred_copy(to, from);
 #ifdef SELF_ADAPT_MUTATION
 	sam_copy(to, from);
@@ -97,7 +97,7 @@ double update_size(CL *c, double num_sum)
 
 void free_cl(CL *c)
 {
-	con_free(c);
+	cond_free(c);
 	pred_free(c);
 #ifdef SELF_ADAPT_MUTATION
 	sam_free(c);
@@ -107,7 +107,7 @@ void free_cl(CL *c)
 
 void print_cl(CL *c)
 {
-	con_print(c);
+	cond_print(c);
 	pred_print(c);
 	printf("%f %f %d %d %f %d\n", c->err, c->fit, c->num, c->exp, c->size, c->time);
 }  

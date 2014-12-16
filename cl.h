@@ -16,8 +16,8 @@
  */
 typedef struct CL
 {
-	double *con;
-	int con_length;
+	double *cond;
+	int cond_length;
 	double *weights;
 	int weights_length;
 	double err;
@@ -54,17 +54,17 @@ void pred_update(CL *c, double p, double *state);
 double pred_compute(CL *c, double *state);
 
 // classifier conditions
-_Bool two_pt_cross(CL *c1, CL *c2);
-void con_init(CL *c);
-void con_free(CL *c);
-void con_copy(CL *to, CL *from);
-void con_rand(CL *c);
-void con_match(CL *c, double *state);
-void con_print(CL *c);
+void cond_init(CL *c);
+void cond_free(CL *c);
+void cond_copy(CL *to, CL *from);
+void cond_rand(CL *c);
+void cond_match(CL *c, double *state);
+void cond_print(CL *c);
 _Bool match(CL *c, double *state);
 _Bool mutate(CL *c);
 _Bool subsumes(CL *c1, CL *c2);
 _Bool general(CL *c1, CL *c2);
+_Bool two_pt_cross(CL *c1, CL *c2);
 
 // self-adaptive mutation
 void sam_init(CL *c);
