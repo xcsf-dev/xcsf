@@ -30,5 +30,5 @@ http://sourceforge.net/projects/xcslib/
 Jaume Bacardit, Natalio Krasnogor and Maria Franco's GAssist (C++):
 http://ico2s.org/software/gassist.html
 
-Ryan Urbanowicz and Jason Moore's ExSTraCS (python):
-http://sourceforge.net/projects/exstracs/
+Ryan Urbanowicz's UCS, XCS, ExSTraCS (python):
+http://www.ryanurbanowicz.com/software
