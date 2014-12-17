@@ -52,7 +52,6 @@ void cond_copy(CL *to, CL *from)
 {
 	to->cond_length = from->cond_length;
 	memcpy(to->cond, from->cond, sizeof(double)*from->cond_length);
-
 }                             
 
 void cond_rand(CL *c)
