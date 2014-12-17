@@ -95,7 +95,7 @@ void cond_bounds(double *a, double *b)
 
 _Bool cond_match(CL *c, double *state)
 {
-	// return whether the conddition matches the state
+	// return whether the condition matches the state
 	for(int i = 0; i < state_length*2; i+=2) {
 		if(state[i/2] < c->cond[i] || state[i/2] > c->cond[i+1])
 			return false;
