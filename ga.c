@@ -143,7 +143,8 @@ void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
  
 CL *ga_select_parent(NODE **set, double fit_sum)
 {
-	// selects a classifier using roullete wheel section with the fitness
+	// selects a classifier using roullete wheel selection with the fitness
+	// (a fitness proportionate selection mechanism.)
 	double p = drand() * fit_sum;
 	NODE *iter = *set;
 	double sum = iter->cl->fit;
