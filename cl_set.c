@@ -74,7 +74,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 		set_add(set, new); 
 		// enforce population size limit
 		while(pop_num_sum > POP_SIZE) {
-			NODE * del = pop_del();
+			NODE *del = pop_del();
 			if(cond_match(del->cl, state))
 				set_validate(set, size, num);
 			if(del->cl->num == 0) {

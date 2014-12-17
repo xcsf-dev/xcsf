@@ -101,8 +101,7 @@ void trial(int cnt, _Bool train, double *err)
 	set_match(&mset, &msize, &mnum, state, cnt, &kset);
 	// calculate system prediction and track performance
 	double pre = set_pred(&mset, state);
-	double abserr = fabs(answer - pre);
-	err[cnt%PERF_AVG_TRIALS] = abserr;
+	err[cnt%PERF_AVG_TRIALS] = fabs(answer - pre);
 	if(train) {
 		// provide reinforcement to the set
 		set_update(&mset, &msize, &mnum, answer, &kset, state);
