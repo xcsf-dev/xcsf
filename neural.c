@@ -45,12 +45,11 @@ typedef struct NEURON {
 	int num_inputs;
 } NEURON;
 
-void neuron_init(NEURON *n, int num_inputs);
-void neural_propagate(double *input);
 double neural_output(int i);
+double neuron_propagate(NEURON *n, double *input);
+void neural_propagate(double *input);
 void neural_set_weights(double *nw);
-double propagate_neuron(NEURON *n, double *input);
-double propagate_neuron(NEURON *n, double *input);
+void neuron_init(NEURON *n, int num_inputs);
 
 int num_layers; // input layer + number of hidden layers + output layer
 int *num_neurons; // number of neurons in each layer
@@ -189,7 +188,7 @@ void neural_propagate(double *input)
 	memcpy(output[0], input, num_neurons[0]*sizeof(double));
 	for(int l = 1; l < num_layers; l++) {
 		for(int i = 0; i < num_neurons[l]; i++) {
-			output[l][i] = propagate_neuron(&layer[l-1][i], output[l-1]);
+			output[l][i] = neuron_propagate(&layer[l-1][i], output[l-1]);
 		}
 	}
 	for(int l = 0; l < num_layers; l++)
@@ -201,7 +200,7 @@ double neural_output(int i)
 	return layer[num_layers-2][i].output;
 }
 
-double propagate_neuron(NEURON *n, double *input)
+double neuron_propagate(NEURON *n, double *input)
 {
 	n->state = 0.0;
 	for(int i = 0; i < n->num_inputs; i++) {
@@ -244,5 +243,4 @@ void neural_free()
 	free(layer);
 	free(num_neurons);
 }    
-
 #endif
