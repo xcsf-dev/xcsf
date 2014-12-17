@@ -59,7 +59,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 {
 	// find matching classifiers in the population
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
-		if(match(iter->cl, state)) {
+		if(cond_match(iter->cl, state)) {
 			set_add(set, iter->cl);
 			*num += iter->cl->num;
 			(*size)++;
@@ -70,7 +70,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 		// new classifier with matching condition
 		CL *new = malloc(sizeof(CL));
 		cl_init(new, *num+1, time);
-		cond_match(new, state);
+		cond_cover(new, state);
 		(*size)++;
 		(*num)++;
 		pop_add(new);
@@ -78,7 +78,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 		// enforce population size limit
 		while(pop_num_sum > POP_SIZE) {
 			NODE * del = pop_del();
-			if(match(del->cl, state))
+			if(cond_match(del->cl, state))
 				set_validate(set, size, num);
 			if(del->cl->num == 0) {
 				set_add(kset, del->cl);
@@ -207,7 +207,7 @@ void set_subsumption(NODE **set, int *size, int *num, NODE **kset)
 	for(iter = *set; iter != NULL; iter = iter->next) {
 		CL *c = iter->cl;
 		if(cl_subsumer(c)) {
-			if(s == NULL || general(c, s))
+			if(s == NULL || cond_general(c, s))
 				s = c;
 		}
 	}
@@ -216,7 +216,7 @@ void set_subsumption(NODE **set, int *size, int *num, NODE **kset)
 		iter = *set; 
 		while(iter != NULL) {
 			CL *c = iter->cl;
-			if(general(s, c)) {
+			if(cond_general(s, c)) {
 				s->num += c->num;
 				c->num = 0;
 				set_add(kset, c);

@@ -35,7 +35,7 @@
 #include "cons.h"
 #include "cl.h"
 
-void bounds(double *a, double *b);
+void cond_bounds(double *a, double *b);
 
 void cond_init(CL *c)
 {
@@ -60,21 +60,21 @@ void cond_rand(CL *c)
 	for(int i = 0; i < state_length+1; i+=2) {
 		c->cond[i] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
 		c->cond[i+1] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
-		bounds(&(c->cond[i]), &(c->cond[i+1]));
+		cond_bounds(&(c->cond[i]), &(c->cond[i+1]));
 	}
 }
 
-void cond_match(CL *c, double *state)
+void cond_cover(CL *c, double *state)
 {
 	// generate a conddition that matches the state
 	for(int i = 0; i < state_length*2; i+=2) {
 		c->cond[i] = state[i/2] - (S_MUTATION*2.0);
 		c->cond[i+1] = state[i/2] + (S_MUTATION*2.0);
-		bounds(&(c->cond[i]), &(c->cond[i+1]));
+		cond_bounds(&(c->cond[i]), &(c->cond[i+1]));
 	}
 }
 
-void bounds(double *a, double *b)
+void cond_bounds(double *a, double *b)
 {
 	// lower and upper limits
 	if(*a < MIN_CON)
@@ -93,7 +93,7 @@ void bounds(double *a, double *b)
 	}                              
 }
 
-_Bool match(CL *c, double *state)
+_Bool cond_match(CL *c, double *state)
 {
 	// return whether the conddition matches the state
 	for(int i = 0; i < state_length*2; i+=2) {
@@ -103,8 +103,9 @@ _Bool match(CL *c, double *state)
 	return true;
 }
 
-_Bool two_pt_cross(CL *c1, CL *c2) 
+_Bool cond_crossover(CL *c1, CL *c2) 
 {
+	// two point crossover
 	_Bool changed = false;
 	if(drand() < P_CROSSOVER) {
 		int p1 = irand(0, state_length*2);
@@ -137,7 +138,7 @@ _Bool two_pt_cross(CL *c1, CL *c2)
 	return changed;
 }
 
-_Bool mutate(CL *c)
+_Bool cond_mutate(CL *c)
 {
 	double step = S_MUTATION;
 #ifdef SELF_ADAPT_MUTATION
@@ -147,22 +148,18 @@ _Bool mutate(CL *c)
 		if(NUM_MU > 1)
 			step = c->mu[1];
 	}
-
 #endif
 	for(int i = 0; i < state_length*2; i+=2) {
 		if(drand() < P_MUTATION)
 			c->cond[i] += ((drand()*2.0)-1.0)*step;
 		if(drand() < P_MUTATION)
 			c->cond[i+1] += ((drand()*2.0)-1.0)*step;
-
-		// bounds
-		bounds(&(c->cond[i]), &(c->cond[i+1]));
-
+		cond_bounds(&(c->cond[i]), &(c->cond[i+1]));
 	}
 	return true;
 }
 
-_Bool subsumes(CL *c1, CL *c2)
+_Bool cond_subsumes(CL *c1, CL *c2)
 {
 	// returns whether c1 subsumes c2
 	if(cl_subsumer(c1)) {
@@ -175,7 +172,7 @@ _Bool subsumes(CL *c1, CL *c2)
 	return false;
 }
 
-_Bool general(CL *c1, CL *c2)
+_Bool cond_general(CL *c1, CL *c2)
 {
 	// returns whether c1 is more general than c2
 	double gen1 = 0.0, gen2 = 0.0, max = 0.0;

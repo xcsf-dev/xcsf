@@ -80,16 +80,16 @@ void cond_rand(CL *c)
 		c->cond[i] = (drand()*2.0)-1.0;
 }
 
-void cond_match(CL *c, double *state)
+void cond_cover(CL *c, double *state)
 {
 	// generates random weights until the network matches for input state
 	do {
 		for(int i = 0; i < c->cond_length; i++)
 			c->cond[i] = (drand()*2.0)-1.0;
-	} while(!match(c, state));
+	} while(!cond_match(c, state));
 }
 
-_Bool match(CL *c, double *state)
+_Bool cond_match(CL *c, double *state)
 {
 	// classifier matches if the first output neuron > 0.5
 	neural_set_weights(c->cond);
@@ -99,7 +99,7 @@ _Bool match(CL *c, double *state)
 	return false;
 }
 
-_Bool mutate(CL *c)
+_Bool cond_mutate(CL *c)
 {
 	double mod = false;
 	double step = S_MUTATION;
@@ -124,7 +124,7 @@ _Bool mutate(CL *c)
 	return mod;
 }
 
-_Bool subsumes(CL *c1, CL *c2)
+_Bool cond_crossover(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -132,7 +132,15 @@ _Bool subsumes(CL *c1, CL *c2)
 	return false;
 }
 
-_Bool general(CL *c1, CL *c2)
+_Bool cond_subsumes(CL *c1, CL *c2)
+{
+	// remove unused parameter warnings
+	(void)c1;
+	(void)c2;
+	return false;
+}
+
+_Bool cond_general(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;

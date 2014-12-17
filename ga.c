@@ -36,6 +36,8 @@
 #include "ga.h"
 
 CL *ga_select_parent(NODE **set, double fit_sum);
+_Bool ga_crossover(CL *c1, CL *c2);
+_Bool ga_mutate(CL *c);
 void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size);
 
 void ga(NODE **set, int size, int num, int time, NODE **kset)
@@ -63,7 +65,7 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 		c1->fit = FIT_REDUC * (c1->fit + c2->fit)/2.0;
 		c2->fit = c1->fit;
 #ifdef NEURAL_CONDITIONS
-		if(!mutate(c1) && GA_SUBSUMPTION) {
+		if(!ga_mutate(c1) && GA_SUBSUMPTION) {
 			c1p->num++;
 			pop_num_sum++;
 			cl_free(c1);
@@ -71,7 +73,7 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 		else {
 			pop_add(c1);
 		}
-		if(!mutate(c2) && GA_SUBSUMPTION) {
+		if(!ga_mutate(c2) && GA_SUBSUMPTION) {
 			c2p->num++;
 			pop_num_sum++;
 			cl_free(c2);
@@ -81,9 +83,9 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 		}
 #else
 		// apply genetic operators to offspring
-		two_pt_cross(c1, c2);
-		mutate(c1);
-		mutate(c2);
+		ga_crossover(c1, c2);
+		ga_mutate(c1);
+		ga_mutate(c2);
 		// add offspring to population
 		if(GA_SUBSUMPTION) {
 			ga_subsume(c1, c1p, c2p, set, size);
@@ -108,12 +110,12 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 {
 	// check if either parent subsumes the offspring
-	if(subsumes(c1p, c)) {
+	if(cond_subsumes(c1p, c)) {
 		c1p->num++;
 		pop_num_sum++;
 		cl_free(c);
 	}
-	else if(subsumes(c2p, c)) {
+	else if(cond_subsumes(c2p, c)) {
 		c2p->num++;
 		pop_num_sum++;
 		cl_free(c);
@@ -123,7 +125,7 @@ void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 		NODE *candidates[size];
 		int choices = 0;
 		for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-			if(subsumes(iter->cl, c)) {
+			if(cond_subsumes(iter->cl, c)) {
 				candidates[choices] = iter;
 				choices++;
 			}
@@ -153,4 +155,14 @@ CL *ga_select_parent(NODE **set, double fit_sum)
 		sum += iter->cl->fit;
 	}
 	return iter->cl;
+}
+
+_Bool ga_mutate(CL *c)
+{
+	return cond_mutate(c);
+}
+
+_Bool ga_crossover(CL *c1, CL *c2)
+{
+	return cond_crossover(c1, c2);
 }

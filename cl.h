@@ -38,40 +38,40 @@ typedef struct CL
 } CL;
 
 // general classifier
-void cl_init(CL *c, int size, int time);
-void cl_copy(CL *to, CL *from);
-void cl_free(CL *c);
-void cl_print(CL *c);
-double cl_del_vote(CL *c, double avg_fit);
+_Bool cl_subsumer(CL *c);
 double cl_acc(CL *c);
-void cl_update_fit(CL *c, double acc_sum, double acc);
+double cl_del_vote(CL *c, double avg_fit);
 double cl_update_err(CL *c, double p, double *state);
 double cl_update_size(CL *c, double num_sum);
-_Bool cl_subsumer(CL *c);
+void cl_copy(CL *to, CL *from);
+void cl_free(CL *c);
+void cl_init(CL *c, int size, int time);
+void cl_print(CL *c);
+void cl_update_fit(CL *c, double acc_sum, double acc);
 
 // classifier prediction
-void pred_init(CL *c);
+double pred_compute(CL *c, double *state);
 void pred_copy(CL *to, CL *from);
 void pred_free(CL *c);
+void pred_init(CL *c);
 void pred_print(CL *c);
 void pred_update(CL *c, double p, double *state);
-double pred_compute(CL *c, double *state);
 
 // classifier condition
-void cond_init(CL *c);
-void cond_free(CL *c);
+_Bool cond_crossover(CL *c1, CL *c2);
+_Bool cond_general(CL *c1, CL *c2);
+_Bool cond_match(CL *c, double *state);
+_Bool cond_mutate(CL *c);
+_Bool cond_subsumes(CL *c1, CL *c2);
 void cond_copy(CL *to, CL *from);
-void cond_rand(CL *c);
-void cond_match(CL *c, double *state);
+void cond_cover(CL *c, double *state);
+void cond_free(CL *c);
+void cond_init(CL *c);
 void cond_print(CL *c);
-_Bool match(CL *c, double *state);
-_Bool mutate(CL *c);
-_Bool subsumes(CL *c1, CL *c2);
-_Bool general(CL *c1, CL *c2);
-_Bool two_pt_cross(CL *c1, CL *c2);
+void cond_rand(CL *c);
 
 // self-adaptive mutation
-void sam_init(CL *c);
-void sam_free(CL *c);
-void sam_copy(CL *to, CL *from);
 void sam_adapt(CL *c);       
+void sam_copy(CL *to, CL *from);
+void sam_free(CL *c);
+void sam_init(CL *c);
