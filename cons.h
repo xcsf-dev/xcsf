@@ -60,7 +60,6 @@ int NUM_HIDDEN_NEURONS; // number of hidden neurons to perform matching conditio
 // prediction parameters
 double XCSF_X0;
 double XCSF_ETA; // learning rate for updating the computed prediction
-int XCSF_EXPONENT; // num exponents in the prediction, 1=linear, 2=quadratic, etc.
 // subsumption parameters
 _Bool GA_SUBSUMPTION; // whether to try and subsume offspring classifiers
 _Bool SET_SUBSUMPTION; // whether to perform match set subsumption

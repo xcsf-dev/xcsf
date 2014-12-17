@@ -92,7 +92,6 @@ void constants_init(int argc, char **argv)
 	PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
 	XCSF_X0 = atof(getvalue("XCSF_X0"));
 	XCSF_ETA = atof(getvalue("XCSF_ETA"));
-	XCSF_EXPONENT = atoi(getvalue("XCSF_EXPONENT"));
 	NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
 	muEPS_0 = atof(getvalue("muEPS_0"));
 	NUM_MU = atoi(getvalue("NUM_MU"));

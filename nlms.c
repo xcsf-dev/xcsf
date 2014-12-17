@@ -37,9 +37,15 @@
 
 void pred_init(CL *c)
 {
-	c->weights_length = (state_length*XCSF_EXPONENT)+1;
+#ifdef QUADRATIC
+	// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
+	c->weights_length = 1+2*state_length+state_length*(state_length-1)/2;
+#else
+	c->weights_length = state_length+1;
+#endif
 	c->weights = malloc(sizeof(double) * c->weights_length);
-	for(int i = 0; i < c->weights_length; i++)
+	c->weights[0] = XCSF_X0;
+	for(int i = 1; i < c->weights_length; i++)
 		c->weights[i] = 0.0;
 }
 
@@ -48,12 +54,52 @@ void pred_copy(CL *to, CL *from)
 	to->weights_length = from->weights_length;
 	memcpy(to->weights, from->weights, sizeof(double)*from->weights_length);
 }
- 
+
 void pred_free(CL *c)
 {
 	free(c->weights);
 }
 
+#ifdef QUADRATIC
+void pred_update(CL *c, double p, double *state)
+{
+	double error = p - pred_compute(c, state);
+	double norm = XCSF_X0 * XCSF_X0;
+	for(int i = 0; i < state_length; i++)
+		norm += state[i] * state[i];
+	double correction = (XCSF_ETA * error) / norm;
+	// update first coefficient
+	c->weights[0] += XCSF_X0 * correction;
+	int index = 1;
+	// update linear coefficients
+	for(int i = 0; i < state_length; i++)
+		c->weights[index++] += correction * state[i];
+	// update quadratic coefficients
+	for(int i = 0; i < state_length; i++) {
+		for(int j = i; j < state_length; j++) {
+			c->weights[index++] += correction * state[i] * state[j];
+		}
+	}
+}
+
+double pred_compute(CL *c, double *state)
+{
+	// first coefficient is offset
+	double pre = XCSF_X0 * c->weights[0];
+	int index = 1;
+	// multiply linear coefficients with the prediction input
+	for(int i = 0; i < state_length; i++)
+		pre += c->weights[index++] * state[i];
+	// multiply quadratic coefficients with prediction input
+	for(int i = 0; i < state_length; i++) {
+		for(int j = i; j < state_length; j++) {
+			pre += c->weights[index++] * state[i] * state[j];
+		}
+	}
+	return pre;
+} 
+
+#else
 void pred_update(CL *c, double p, double *state)
 {
 	double error = p - pred_compute(c, state);
@@ -62,20 +108,18 @@ void pred_update(CL *c, double p, double *state)
 		norm += state[i] * state[i];
 	double correction = (XCSF_ETA * error) / norm;
 	c->weights[0] += XCSF_X0 * correction;
-	for(int i = 0; i < c->weights_length-1; i+=XCSF_EXPONENT)
-		for(int j = 0; j < XCSF_EXPONENT; j++)
-			c->weights[i+j+1] += correction * pow(state[i/XCSF_EXPONENT], j+1);
+	for(int i = 0; i < c->weights_length-1; i++)
+		c->weights[i] += correction * state[i];
 }
 
 double pred_compute(CL *c, double *state)
 {
 	double pre = XCSF_X0 * c->weights[0];
-	for(int i = 0; i < c->weights_length-1; i+=XCSF_EXPONENT)
-		for(int j = 0; j < XCSF_EXPONENT; j++)
-			pre += pow(state[i/XCSF_EXPONENT], j+1) * c->weights[i+j+1];
+	for(int i = 0; i < c->weights_length-1; i++)
+		pre += state[i] * c->weights[i];
 	return pre;
 } 
- 
+#endif
 
 void pred_print(CL *c)
 {
