@@ -32,9 +32,6 @@
 #include "cl.h"
 #include "cl_set.h"
 
-NODE *pop_del();
-void pop_add(CL *c);
-void set_add(NODE **set, CL *c);
 void set_subsumption(NODE **set, int *size, int *num, NODE **kset);
 void set_update_fit(NODE **set, int size, int num);
 
