@@ -110,6 +110,6 @@ void trial(int cnt, _Bool train, double *err)
 		ga(&mset, msize, mnum, cnt, &kset);
 	}
 	// clean up
-	set_clean(&kset, &mset, true);
-	set_free(&mset);    
+	set_kill(&kset); // kills deleted classifiers
+	set_free(&mset); // frees the match set list
 }
