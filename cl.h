@@ -18,11 +18,12 @@ typedef struct CL
 {
 	double *cond;
 	int cond_length;
+	int weights_length;
 	double *weights;
 #ifdef RLS
 	double *matrix;
 #endif
-	int weights_length;
+	double pre;
 	double err;
 	double fit;
 	int num;

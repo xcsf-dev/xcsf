@@ -78,10 +78,8 @@ void init_matrix(double *matrix)
  
 void pred_copy(CL *to, CL *from)
 {
-	to->weights_length = from->weights_length;
 	memcpy(to->weights, from->weights, sizeof(double)*from->weights_length);
 	memcpy(to->matrix, from->matrix, sizeof(double)*pow(from->weights_length,2));
-	init_matrix(to->matrix);
 }
  
 void pred_free(CL *c)
@@ -113,7 +111,8 @@ void pred_update(CL *c, double p, double *state)
 		tmp_vec[i] /= divisor;
 
 	// update weights using the error
-	double error = p - pred_compute(c, state);
+	// pre has been updated for the current state during set_pred()
+	double error = p - c->pre; // pred_compute(c, state);
 	for(int i = 0; i < c->weights_length; i++)
 		c->weights[i] += error * tmp_vec[i];
 
@@ -151,6 +150,7 @@ double pred_compute(CL *c, double *state)
 			pre += c->weights[index++] * state[i] * state[j];
 		}
 	}
+	c->pre = pre;
 	return pre;
 } 
 

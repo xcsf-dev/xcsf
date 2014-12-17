@@ -51,7 +51,6 @@ void pred_init(CL *c)
 
 void pred_copy(CL *to, CL *from)
 {
-	to->weights_length = from->weights_length;
 	memcpy(to->weights, from->weights, sizeof(double)*from->weights_length);
 }
 
@@ -63,7 +62,8 @@ void pred_free(CL *c)
 #ifdef QUADRATIC
 void pred_update(CL *c, double p, double *state)
 {
-	double error = p - pred_compute(c, state);
+	// pre has been updated for the current state during set_pred()
+	double error = p - c->pre; //pred_compute(c, state);
 	double norm = XCSF_X0 * XCSF_X0;
 	for(int i = 0; i < state_length; i++)
 		norm += state[i] * state[i];
@@ -96,13 +96,15 @@ double pred_compute(CL *c, double *state)
 			pre += c->weights[index++] * state[i] * state[j];
 		}
 	}
+	c->pre = pre;
 	return pre;
 } 
 
 #else
 void pred_update(CL *c, double p, double *state)
 {
-	double error = p - pred_compute(c, state);
+	// pre has been updated for the current state during set_pred()
+	double error = p - c->pre; //pred_compute(c, state);
 	double norm = XCSF_X0 * XCSF_X0;
 	for(int i = 0; i < state_length; i++)
 		norm += state[i] * state[i];
@@ -117,6 +119,7 @@ double pred_compute(CL *c, double *state)
 	double pre = XCSF_X0 * c->weights[0];
 	for(int i = 0; i < c->weights_length-1; i++)
 		pre += state[i] * c->weights[i];
+	c->pre = pre;
 	return pre;
 } 
 #endif
