@@ -1,9 +1,9 @@
 XCSF learning classifier system for function approximation.
 
 Linear or quadratic (if compiled with QUADRATIC=1) computed prediction, updated
-with the modified delta update (also known as the Widrow-Hoff or least mean
-squares update.) Quadratic recursive least squares (RLS) computed prediction
-can be enabled by compiling with RLS=1.
+with the modified Delta update (also known as the Widrow-Hoff or least mean
+squares update.) Recursive least squares (RLS) update can be enabled by
+compiling with RLS=1.
 
 Conditions are represented as either real-valued intervals as in the original
 XCSF, or as MLP neural networks if compiled with NEURAL=1.  
