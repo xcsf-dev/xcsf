@@ -59,7 +59,6 @@ void pred_free(CL *c)
 	free(c->weights);
 }
 
-#ifdef QUADRATIC
 void pred_update(CL *c, double p, double *state)
 {
 	// pre has been updated for the current state during set_pred()
@@ -74,12 +73,14 @@ void pred_update(CL *c, double p, double *state)
 	// update linear coefficients
 	for(int i = 0; i < state_length; i++)
 		c->weights[index++] += correction * state[i];
+#ifdef QUADRATIC
 	// update quadratic coefficients
 	for(int i = 0; i < state_length; i++) {
 		for(int j = i; j < state_length; j++) {
 			c->weights[index++] += correction * state[i] * state[j];
 		}
 	}
+#endif
 }
 
 double pred_compute(CL *c, double *state)
@@ -90,39 +91,17 @@ double pred_compute(CL *c, double *state)
 	// multiply linear coefficients with the prediction input
 	for(int i = 0; i < state_length; i++)
 		pre += c->weights[index++] * state[i];
+#ifdef QUADRATIC
 	// multiply quadratic coefficients with prediction input
 	for(int i = 0; i < state_length; i++) {
 		for(int j = i; j < state_length; j++) {
 			pre += c->weights[index++] * state[i] * state[j];
 		}
 	}
-	c->pre = pre;
-	return pre;
-} 
-
-#else
-void pred_update(CL *c, double p, double *state)
-{
-	// pre has been updated for the current state during set_pred()
-	double error = p - c->pre; //pred_compute(c, state);
-	double norm = XCSF_X0 * XCSF_X0;
-	for(int i = 0; i < state_length; i++)
-		norm += state[i] * state[i];
-	double correction = (XCSF_ETA * error) / norm;
-	c->weights[0] += XCSF_X0 * correction;
-	for(int i = 0; i < c->weights_length-1; i++)
-		c->weights[i] += correction * state[i];
-}
-
-double pred_compute(CL *c, double *state)
-{
-	double pre = XCSF_X0 * c->weights[0];
-	for(int i = 0; i < c->weights_length-1; i++)
-		pre += state[i] * c->weights[i];
-	c->pre = pre;
-	return pre;
-} 
 #endif
+	c->pre = pre;
+	return pre;
+} 
 
 void pred_print(CL *c)
 {

@@ -17,7 +17,7 @@
  **************
  * Description: 
  **************
- * The quadratic recursive least square classifier computed prediction module.
+ * The recursive least square classifier computed prediction module.
  */
 
 #ifdef RLS
@@ -44,8 +44,12 @@ double *tmp_matrix2;
 
 void pred_init(CL *c)
 {
+#ifdef QUADRATIC
 	// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
 	c->weights_length = 1+2*state_length+state_length*(state_length-1)/2;
+#else
+	c->weights_length = state_length+1;
+#endif
 	c->weights = malloc(sizeof(double) * c->weights_length);
 	c->weights[0] = XCSF_X0;
 	for(int i = 1; i < c->weights_length; i++)
@@ -95,10 +99,12 @@ void pred_update(CL *c, double p, double *state)
 	// linear terms
 	for(int i = 0; i < state_length; i++)
 		tmp_input[index++] = state[i];
+#ifdef QUADRATIC
 	// quadratic terms
 	for(int i = 0; i < state_length; i++)
 		for(int j = 0; j < state_length; j++)
 			tmp_input[index++] = pow(state[i],2);
+#endif
 
 	// determine gain vector = matrix * tmp_input
 	matrix_vector_multiply(c->matrix, tmp_input, tmp_vec, c->weights_length);
@@ -144,12 +150,14 @@ double pred_compute(CL *c, double *state)
 	// multiply linear coefficients with the prediction input
 	for(int i = 0; i < state_length; i++)
 		pre += c->weights[index++] * state[i];
+#ifdef QUADRATIC
 	// multiply quadratic coefficients with prediction input
 	for(int i = 0; i < state_length; i++) {
 		for(int j = i; j < state_length; j++) {
 			pre += c->weights[index++] * state[i] * state[j];
 		}
 	}
+#endif
 	c->pre = pre;
 	return pre;
 } 
