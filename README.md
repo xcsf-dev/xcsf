@@ -1,11 +1,9 @@
 XCSF learning classifier system for function approximation.
 
-The parameter XCSF_EXPONENT sets the number of polynomial exponents used for
-computing the prediction; e.g., 1 = linear, 2 = quadratic, 3 = cubic, etc.
-Updates are performed with the modified delta update (also known as the
-Widrow-Hoff or least mean squares update). Quadratic Recursive Least Squares
-(RLS) computed prediction can be enabled by compiling with RLS=1 (in this case
-XCSF_EXPONENT is ignored.)
+Linear or quadratic (if compiled with QUADRATIC=1) computed prediction, updated
+with the modified delta update (also known as the Widrow-Hoff or least mean
+squares update.) Quadratic recursive least squares (RLS) computed prediction
+can be enabled by compiling with RLS=1.
 
 Conditions are represented as either real-valued intervals as in the original
 XCSF, or as MLP neural networks if compiled with NEURAL=1.  
