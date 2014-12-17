@@ -25,6 +25,7 @@
  * Widrow-Hoff update.)
  */
 
+#ifndef RLS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -83,3 +84,4 @@ void pred_print(CL *c)
 		printf("%f, ", c->weights[i]);
 	printf("\n");
 }
+#endif

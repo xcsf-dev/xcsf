@@ -19,6 +19,9 @@ typedef struct CL
 	double *cond;
 	int cond_length;
 	double *weights;
+#ifdef RLS
+	double *matrix;
+#endif
 	int weights_length;
 	double err;
 	double fit;
