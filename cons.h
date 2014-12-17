@@ -27,39 +27,39 @@
 void constants_init(int argc, char **argv);
 
 // experiment parameters
-int NUM_EXPERIMENTS; // number of experiments to run
-int MAX_TRIALS; // number of problem instances to run in one experiment
-int PERF_AVG_TRIALS; // number of problem instances to average performance output
-int POP_SIZE; // maximum number of macro-classifiers in the population
 _Bool POP_INIT; // population initially empty or filled with random conditions
 double THETA_MNA; // minimum number of classifiers in a match set
+int MAX_TRIALS; // number of problem instances to run in one experiment
+int NUM_EXPERIMENTS; // number of experiments to run
+int PERF_AVG_TRIALS; // number of problem instances to average performance output
+int POP_SIZE; // maximum number of macro-classifiers in the population
 // classifier parameters
-double BETA; // learning rate for updating error, fitness, and set size
 double ALPHA; // linear coefficient used in calculating classifier accuracy
-double NU; // exponent used in calculating classifier accuracy
-double INIT_FITNESS; // initial classifier fitness value
-double INIT_ERROR; // initial classifier error value
+double BETA; // learning rate for updating error, fitness, and set size
+double DELTA; // fit used in prob of deletion if fit less than this frac of avg pop fit 
+double EPS_0; // classifier target error, under which the fitness is set to 1
 double ERR_REDUC; // amount to reduce an offspring's error
 double FIT_REDUC; // amount to reduce an offspring's fitness
-double EPS_0; // classifier target error, under which the fitness is set to 1
+double INIT_ERROR; // initial classifier error value
+double INIT_FITNESS; // initial classifier fitness value
+double NU; // exponent used in calculating classifier accuracy
 double THETA_DEL; // min experience before fitness used in probability of deletion
-double DELTA; // fit used in prob of deletion if fit less than this frac of avg pop fit 
 // genetic algorithm parameters
-double THETA_GA; // average match set time between GA invocations
-int THETA_OFFSPRING; // number of offspring to create each GA invocation
 double P_CROSSOVER; // probability of applying crossover (for hyperrectangles)
 double P_MUTATION; // probability of mutation occuring per allele
+double THETA_GA; // average match set time between GA invocations
+int THETA_OFFSPRING; // number of offspring to create each GA invocation
 // self-adaptive mutation parameters
 double muEPS_0; // minimum value of a self-adaptive mutation rate
 int NUM_MU; // number of self-adaptive mutation rates
 // classifier condition parameters
-double S_MUTATION; // maximum amount to mutate an allele
-double MIN_CON; // minimum value of a hyperrectangle interval
 double MAX_CON; // maximum value of a hyperrectangle interval
+double MIN_CON; // minimum value of a hyperrectangle interval
+double S_MUTATION; // maximum amount to mutate an allele
 int NUM_HIDDEN_NEURONS; // number of hidden neurons to perform matching condition
 // prediction parameters
-double XCSF_X0;
 double XCSF_ETA; // learning rate for updating the computed prediction
+double XCSF_X0; // prediction weight vector offset value
 // subsumption parameters
 _Bool GA_SUBSUMPTION; // whether to try and subsume offspring classifiers
 _Bool SET_SUBSUMPTION; // whether to perform match set subsumption
