@@ -171,7 +171,7 @@ void set_update(NODE **set, int *size, int *num, double r, NODE **kset, double *
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
 		CL *c = iter->cl;
 		c->exp++;
-		cl_update_err(c, r, state);
+		pred_update_err(c, r);
 		pred_update(c, r, state);
 		cl_update_size(c, *num);
 	}

@@ -41,7 +41,6 @@ typedef struct CL
 _Bool cl_subsumer(CL *c);
 double cl_acc(CL *c);
 double cl_del_vote(CL *c, double avg_fit);
-double cl_update_err(CL *c, double p, double *state);
 double cl_update_size(CL *c, double num_sum);
 void cl_copy(CL *to, CL *from);
 void cl_free(CL *c);
@@ -51,6 +50,7 @@ void cl_update_fit(CL *c, double acc_sum, double acc);
 
 // classifier prediction
 double pred_compute(CL *c, double *state);
+double pred_update_err(CL *c, double p);
 void pred_copy(CL *to, CL *from);
 void pred_free(CL *c);
 void pred_init(CL *c);

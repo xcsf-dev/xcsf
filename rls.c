@@ -91,7 +91,18 @@ void pred_free(CL *c)
 	free(c->weights);
 	free(c->matrix);
 }
-
+     
+double pred_update_err(CL *c, double p)
+{
+	// pre has been updated for the current state during set_pred()
+	//double pre = pred_compute(c, state);
+	if(c->exp < 1.0/BETA) 
+		c->err = (c->err * (c->exp-1.0) + fabs(p - c->pre)) / (double)c->exp;
+	else
+		c->err += BETA * (fabs(p - c->pre) - c->err);
+	return c->err * c->num;
+}
+ 
 void pred_update(CL *c, double p, double *state)
 {
 	tmp_input[0] = XCSF_X0;
