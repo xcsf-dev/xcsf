@@ -17,9 +17,7 @@
  **************
  * Description: 
  **************
- * The quadratic recursive least mean square classifier computed prediction
- * module.
- *
+ * The quadratic recursive least square classifier computed prediction module.
  */
 
 #ifdef RLS
