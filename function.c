@@ -21,9 +21,10 @@
  *
  * Initialises the problem function that XCSF is to learn, and provides
  * mechanisms to retrieve the next problem instance and solution values. Reads
- * in a variable length data with variable number of parameters (with the last
- * parameter on a data line used as the target output. All input and output
- * parameters in the data file must be normalised in the range [-1,1].
+ * in a variable length comma separated data file with variable number of
+ * parameters (with the last parameter on a data line used as the target
+ * output. All input and output parameters in the data file must be normalised
+ * in the range [-1,1].
  */
 
 #include <stdio.h>
