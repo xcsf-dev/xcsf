@@ -15,6 +15,12 @@ Self-adaptive mutation rates can be toggled by compiling with SAM=1 or SAM=0.
 An updated GNUPlot of the current system error can be enabled by compiling with
 GNUPLOT=1 (on GNU/Linux gnuplot-x11 must be installed.)
 
+--------------
+Example usage:
+--------------
+To initiate the learning of in/sine_1var_train.dat and test performance on
+in/sine_1var_test.dat run: xcsf sine_1var
+
 ------------------------------------------------------------------------------
 Some additional sources of LCS code:
 
