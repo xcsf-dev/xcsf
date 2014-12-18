@@ -94,7 +94,7 @@ void trial(int cnt, _Bool train, double *err)
 {
 	// get problem function state and solution
 	double *state = func_state(train);
-	double answer = func_answer();
+	double answer = func_answer(train);
 	// create match set
 	NODE *mset = NULL, *kset = NULL;
 	int msize = 0, mnum = 0;

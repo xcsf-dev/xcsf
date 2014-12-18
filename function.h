@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void func_init(char *infile);
 double *func_state(_Bool train);
-double func_answer();
+double func_answer(_Bool train);
 void func_free();
+void func_init(char *infile);

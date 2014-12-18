@@ -24,7 +24,9 @@
  * in a variable length comma separated data file with variable number of
  * parameters (with the last parameter on a data line used as the target
  * output. All input and output parameters in the data file must be normalised
- * in the range [-1,1].
+ * in the range [-1,1]. Train and test set data files must be named as 
+ * follows: {name}_train.dat and {name}_test.dat. To run XCSF on the data the
+ * name must be specified at run time: xcsf {name}.
  */
 
 #include <stdio.h>
@@ -37,82 +39,107 @@
 #include "cons.h"
 #include "function.h"
 
-#define NUM_TEST 20 // number of data entries for testing (at end of file)
 #define MAX_DATA 100000
 #define MAX_LINE_LENGTH 200
 #define DELIM ","
 
-double *data; // data file variables read from a file
+double *train_data; // data file variables read from a file
+double *test_data; // data file variables read from a file
 int cur_prob; // index of the current problem instance
-int num_prob; // number of problem instances in the data file
+int num_train_prob; // number of training problem instances in the data file
+int num_test_prob; // number of testing problem instances in the data file
+int num_test; // number of data entries for testing (at end of file)
 int num_vars; // number of problem input + output variables
 
 double *state; // current problem instance input variables
 
+void func_read(char *fname, double **data, int *num_prob, int *num_vars);
+
 void func_init(char *infile)
 {
-	// initialise problem function
-	// read in (a small comma separated) data file
-	FILE *fin = fopen(infile, "rt");
+	// read in the training data
+	char name[200];
+	sprintf(name, "in/%s_train.dat", infile);
+	func_read(name, &train_data, &num_train_prob, &num_vars);
+	// initialise state array
+	state_length = num_vars-1; // last var is output
+	state = malloc(sizeof(double)*state_length);
+	// read in the testing data
+	sprintf(name, "in/%s_test.dat", infile);
+	func_read(name, &test_data, &num_test_prob, &num_vars);
+}
+ 
+void func_read(char *fname, double **data, int *num_prob, int *num_vars)
+{
+ 	FILE *fin = fopen(fname, "rt");
 	if(fin == 0) {
-		printf("Error opening file: %s. %s.\n", infile, strerror(errno));
+		printf("Error opening file: %s. %s.\n", fname, strerror(errno));
 		exit(EXIT_FAILURE);
 	}    
 	// ascertain the file length and number of vars per line
+	*num_prob = 0;
+	*num_vars = 0;
 	char line[MAX_LINE_LENGTH];
-	for(num_prob = 0; fgets(line, MAX_LINE_LENGTH, fin) != NULL; num_prob++) {
-		// number of lines
-		if(num_prob > MAX_DATA) {
-			printf("input data file is too big; maximum: %d\n", MAX_DATA);
+	while(fgets(line, MAX_LINE_LENGTH, fin) != NULL) {
+		if(*num_prob > MAX_DATA) {
+			printf("data file %s is too big; maximum: %d\n", fname, MAX_DATA);
 			exit(EXIT_FAILURE);
 		}        
 		// use the first line to count the number of variables on a line
-		if(num_prob == 0) {
+		if(*num_prob == 0) {
 			char *ptok = strtok(line, DELIM);
 			while(ptok != NULL) {
 				if(strlen(ptok) > 0)
-					num_vars++;
+					(*num_vars)++;
 				ptok = strtok(NULL, DELIM);
 			}
 		}
+		// count number of lines
+		(*num_prob)++;
 	}
 	// read data file to memory
 	rewind(fin);
-	state_length = num_vars-1; // last var is output
-	state = malloc(sizeof(double)*state_length);
-	data = malloc(sizeof(double)*num_vars*num_prob);
+	*data = malloc(sizeof(double) * (*num_vars) * (*num_prob));
 	for(int i = 0; fgets(line,MAX_LINE_LENGTH,fin) != NULL; i++) {
-		data[i*num_vars] = atof(strtok(line, DELIM));
-		for(int j = 1; j < num_vars; j++)
-			data[i*num_vars+j] = atof(strtok(NULL, DELIM));
+		(*data)[i * (*num_vars)] = atof(strtok(line, DELIM));
+		for(int j = 1; j < *num_vars; j++)
+			(*data)[i * (*num_vars)+j] = atof(strtok(NULL, DELIM));
 	}
-	// close
 	fclose(fin);
-	printf("Loaded input data file: %s\n", infile);
-	printf("%d data entries with %d input variables per entry\n", 
-			num_prob, state_length);
+	printf("Loaded: %s\n", fname);
+	printf("%d data entries with %d input variables per entry\n",
+			*num_prob, *num_vars-1);
+
 }
 
 double *func_state(_Bool train)
 {
 	// returns the problem input state
-	if(train)
-		cur_prob = irand(0,num_prob-NUM_TEST);
-	else
-		cur_prob = irand(num_prob-NUM_TEST,num_prob);
-	for(int i = 0; i < state_length; i++)
-		state[i] = data[cur_prob*num_vars+i];
+	if(train) {
+		cur_prob = irand(0,num_train_prob);
+		for(int i = 0; i < state_length; i++)
+			state[i] = train_data[cur_prob*num_vars+i];
+	}
+	else {
+		cur_prob = irand(0,num_test_prob);
+		for(int i = 0; i < state_length; i++)
+			state[i] = test_data[cur_prob*num_vars+i];
+	}
 	return state;
 }
 
-double func_answer()
+double func_answer(_Bool train)
 {
 	// returns the problem solution
-	return data[cur_prob*num_vars+state_length];
+	if(train)
+		return train_data[cur_prob*num_vars+state_length];
+	else
+		return test_data[cur_prob*num_vars+state_length];
 }
 
 void func_free()
 {
-	free(data);
+	free(train_data);
+	free(test_data);
 	free(state);
 }
