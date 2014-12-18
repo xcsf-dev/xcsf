@@ -136,8 +136,8 @@ void gplot_close()
 void gplot_draw()
 {
 	if(gp != NULL) {
-		fprintf(gp, "plot '%s' using 1:2 title 'test error' w lp ls 1 pt 4 pi 50, ", fname);
-		fprintf(gp, "'%s' using 1:3 title 'train error' w lp ls 2 pt 8 pi 50\n", fname);
+		fprintf(gp, "plot '%s' using 1:2 title 'train error' w lp ls 1 pt 4 pi 50, ", fname);
+		fprintf(gp, "'%s' using 1:3 title 'test error' w lp ls 2 pt 8 pi 50\n", fname);
 		fprintf(gp,"replot\n");
 		fflush(gp);
 	}
