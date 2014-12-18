@@ -67,8 +67,8 @@ void cond_cover(CL *c, double *state)
 {
 	// generate a condition that matches the state
 	for(int i = 0; i < state_length*2; i+=2) {
-		c->cond[i] = state[i/2] - (S_MUTATION*2.0);
-		c->cond[i+1] = state[i/2] + (S_MUTATION*2.0);
+		c->cond[i] = state[i/2] - (S_MUTATION*drand());
+		c->cond[i+1] = state[i/2] + (S_MUTATION*drand());
 		cond_bounds(&(c->cond[i]), &(c->cond[i+1]));
 	}
 }
