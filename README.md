@@ -18,7 +18,9 @@ GNUPLOT=1 (on GNU/Linux gnuplot-x11 must be installed.)
 Example usage:
 --------------
 To initiate the learning of in/sine_1var_train.dat and test performance on
-in/sine_1var_test.dat run: xcsf sine_1var
+in/sine_1var_test.dat run: 
+
+xcsf sine_1var
 
 ------------------------------------
 Some additional sources of LCS code:
