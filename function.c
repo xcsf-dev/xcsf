@@ -20,7 +20,10 @@
  * The problem function module.
  *
  * Initialises the problem function that XCSF is to learn, and provides
- * mechanisms to retrieve the next problem instance and solution values.
+ * mechanisms to retrieve the next problem instance and solution values. Reads
+ * in a variable length data with variable number of parameters (with the last
+ * parameter on a data line used as the target output. All input and output
+ * parameters in the data file must be normalised in the range [-1,1].
  */
 
 #include <stdio.h>
@@ -80,12 +83,9 @@ void func_init()
 	state_length = num_vars-1; // last var is output
 	data = malloc(sizeof(double)*num_vars*num_prob);
 	for(int i = 0; fgets(line,MAX_LINE_LENGTH,fin) != NULL; i++) {
-		// read input vars
-		data[i*num_vars] = (atof(strtok(line,DELIM)) /10.0)-1.0;
-		for(int j = 1; j < state_length; j++)
-			data[i*num_vars+j] = (atof(strtok(NULL, DELIM)) /10.0)-1.0;
-		// read output var
-		data[i*num_vars+state_length] = (atof(strtok(NULL, DELIM)) *2.0)-1.0;
+		data[i*num_vars] = atof(strtok(line, DELIM));
+		for(int j = 1; j < num_vars; j++)
+			data[i*num_vars+j] = atof(strtok(NULL, DELIM));
 	}
 	// close
 	fclose(fin);
