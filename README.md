@@ -1,7 +1,6 @@
 ===========================================================
 XCSF learning classifier system for function approximation.
 ===========================================================
-
 Linear or quadratic (if compiled with QUADRATIC=1) computed prediction, updated
 with the modified Delta update (also known as the Widrow-Hoff or least mean
 squares update.) Recursive least squares (RLS) update can be enabled by
@@ -21,9 +20,9 @@ Example usage:
 To initiate the learning of in/sine_1var_train.dat and test performance on
 in/sine_1var_test.dat run: xcsf sine_1var
 
-------------------------------------------------------------------------------
+------------------------------------
 Some additional sources of LCS code:
-
+------------------------------------
 Martin Butz's XCSJava:
 http://illigal.org/wp-content/uploads/illigal/pub/src/XCSJava/
 
