@@ -36,6 +36,7 @@
 FILE *fout;
 char fname[30];
 char basefname[30];
+char *probname;
  
 #ifdef GNUPLOT
 void gplot_init();
@@ -71,13 +72,14 @@ void disp_perf(double *error, double *terror, int trial, int pnum)
 #endif
 }          
 
-void gen_outfname()
+void gen_outfname(char *pname)
 {
 	// file for writing output; uses the date/time/exp as file name
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 	sprintf(basefname, "out/%04d-%02d-%02d-%02d%02d%02d", tm.tm_year + 1900, 
 			tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+	probname = pname;
 }
 
 void outfile_init(int exp_num)
@@ -105,6 +107,34 @@ void outfile_close()
 #ifdef GNUPLOT
 void gplot_init()
 {
+	// set gnuplot title
+	char buffer[20];
+	char title[200];
+	title[0] = '\0';
+	sprintf(buffer, "%s", probname);
+	strcat(title, buffer);
+#ifdef QUADRATIC
+	strcat(title, ", QUADRATIC");
+#else
+	strcat(title, ", LINEAR");
+#endif
+#ifdef RLS
+	strcat(title, " RLS");
+#else
+	strcat(title, " NLMS");
+#endif
+#ifdef SAM
+	strcat(title, ", SAM");
+#endif
+#ifdef NEURAL_CONDITIONS
+	strcat(title, ", NEURAL COND");
+#else
+	strcat(title, ", RECT COND");
+#endif
+	sprintf(buffer, ", P=%d", POP_SIZE);
+	strcat(title, buffer);
+
+	// execute gnuplot
 #ifdef _WIN32
 	gp = _popen("C:\Program Files (x86)\gnuplot\bin\pgnuplot.exe -persistent", "w");
 #else
@@ -114,6 +144,7 @@ void gplot_init()
 		fprintf(gp, "set terminal wxt noraise enhanced font 'Arial,12'\n");
 		fprintf(gp, "set grid\n");
 		fprintf(gp, "set border linewidth 1\n");
+		fprintf(gp, "set title \"%s\"\n", title);
 		//fprintf(gp, "set nokey\n");
 		fprintf(gp, "set xlabel 'trials'\n");
 		fprintf(gp, "set ylabel 'system error'\n");

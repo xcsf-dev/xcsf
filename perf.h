@@ -15,6 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 void disp_perf(double *error, double *terror, int trial, int pnum);
-void gen_outfname();
+void gen_outfname(char *pname);
 void outfile_init(int exp_num);
 void outfile_close();

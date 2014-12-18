@@ -57,7 +57,7 @@ int main(int argc, char *argv[0])
 	constants_init(argc, argv);
 	random_init();
 	func_init(argv[1]);
-	gen_outfname();
+	gen_outfname(argv[1]);
 #ifdef NEURAL_CONDITIONS
 	// classifiers currently fixed to 3 layer networks
 	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
