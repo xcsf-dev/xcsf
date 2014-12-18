@@ -48,15 +48,15 @@ void trial(int trial, _Bool train, double *err);
 
 int main(int argc, char *argv[0])
 {    
-	if(argc < 1 || argc > 3) {
-		printf("Usage: xcsf [MaxTrials] [NumExp]\n");
+	if(argc < 2 || argc > 4) {
+		printf("Usage: xcsf inputfile [MaxTrials] [NumExp]\n");
 		exit(EXIT_FAILURE);
 	} 
 
 	// initialise environment
 	constants_init(argc, argv);
 	random_init();
-	func_init();
+	func_init(argv[1]);
 	gen_outfname();
 #ifdef NEURAL_CONDITIONS
 	// classifiers currently fixed to 3 layer networks

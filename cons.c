@@ -101,10 +101,10 @@ void constants_init(int argc, char **argv)
 	tidyup();  
 	
 	// override cons.txt with command line values
-	if(argc > 1) {
-		MAX_TRIALS = atoi(argv[1]);
-		if(argc > 2)
-			NUM_EXPERIMENTS = atoi(argv[2]);
+	if(argc > 2) {
+		MAX_TRIALS = atoi(argv[2]);
+		if(argc > 3)
+			NUM_EXPERIMENTS = atoi(argv[3]);
 	}    
 } 
 void trim(pchar s) // Remove tabs/spaces/lf/cr  both ends
