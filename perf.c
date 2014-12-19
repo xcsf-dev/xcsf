@@ -123,7 +123,7 @@ void gplot_init()
 #else
 	strcat(title, " NLMS");
 #endif
-#ifdef SAM
+#ifdef SELF_ADAPT_MUTATION
 	strcat(title, ", SAM");
 #endif
 #ifdef NEURAL_CONDITIONS
