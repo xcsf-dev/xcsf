@@ -20,7 +20,7 @@ typedef struct CL
 	int cond_length;
 	int weights_length;
 	double *weights;
-#ifdef RLS
+#ifdef RLS_PREDICTION
 	double *matrix;
 #endif
 	double pre;

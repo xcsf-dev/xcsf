@@ -20,7 +20,7 @@
  * The recursive least square classifier computed prediction module.
  */
 
-#ifdef RLS
+#ifdef RLS_PREDICTION
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

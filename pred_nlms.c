@@ -25,7 +25,7 @@
  * Widrow-Hoff update.)
  */
 
-#ifndef RLS
+#ifdef NLMS_PREDICTION
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

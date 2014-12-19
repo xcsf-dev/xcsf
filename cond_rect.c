@@ -25,7 +25,7 @@
  * intervals. Includes operations for copying, mutating, printing, etc.
  */
 
-#ifndef NEURAL_CONDITIONS
+#ifdef RECTANGLE_CONDITIONS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -24,23 +24,29 @@ LIB=-lm
 OPT=1
 GENPROF=0
 USEPROF=0
+COND=0
+PRED=0
+QUADRATIC=0 # for NLMS and RLS
 SAM=0
-NEURAL=0
 GNUPLOT=0
-RLS=0
-QUADRATIC=0
 
-ifeq ($(RLS),1)
-	CFLAGS+= -DRLS
-endif
-ifeq ($(QUADRATIC),1)
-	CFLAGS+= -DQUADRATIC
+# conditions
+ifeq ($(COND),0)
+	CFLAGS+= -DRECTANGLE_CONDITIONS
+else ifeq ($(COND),1)
+	CFLAGS+= -DNEURAL_CONDITIONS
 endif
 ifeq ($(SAM),1)
 	CFLAGS+= -DSELF_ADAPT_MUTATION
+endif  
+# predictions
+ifeq ($(PRED),0)
+	CFLAGS+= -DNLMS_PREDICTION
+else ifeq ($(PRED),1)
+	CFLAGS+= -DRLS_PREDICTION
 endif
-ifeq ($(NEURAL),1)
-	CFLAGS+= -DNEURAL_CONDITIONS
+ifeq ($(QUADRATIC),1)
+	CFLAGS+= -DQUADRATIC
 endif
 ifeq ($(GNUPLOT),1)
 	CFLAGS+= -DGNUPLOT
