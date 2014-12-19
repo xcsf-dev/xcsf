@@ -33,7 +33,7 @@
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
-#include "neural.h"
+#include "cond_neural.h"
 
 #define NUM_OUTPUT 1 // only one output required for matching
 

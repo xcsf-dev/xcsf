@@ -40,7 +40,7 @@
 #include "cl.h"
 #include "cl_set.h"
 #include "ga.h"
-#include "neural.h"
+#include "cond_neural.h"
 #include "function.h"
 #include "perf.h"
 
