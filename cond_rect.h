@@ -16,6 +16,7 @@
  */
 
 #ifdef RECTANGLE_CONDITIONS
+
 typedef struct COND {
 	double *interval;
 	int interval_length;
@@ -23,4 +24,5 @@ typedef struct COND {
 	double *mu;
 #endif
 } COND;
+
 #endif
