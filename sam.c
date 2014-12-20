@@ -69,7 +69,6 @@ double gasdev()
 	static int iset = 0;
 	static double gset;
 	double fac, rsq, v1, v2;
-
 	if(iset == 0) {
 		do {
 			v1 = (drand()*2.0)-1.0;
