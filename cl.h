@@ -17,15 +17,12 @@
 
 #include "cond_rect.h"
 #include "cond_neural.h"
+#include "pred_nlms.h"
+#include "pred_rls.h"
 
 typedef struct CL {
 	COND cond;
-	int weights_length;
-	double *weights;
-#ifdef RLS_PREDICTION
-	double *matrix;
-#endif
-	double pre;
+	PRED pred;
 	double err;
 	double fit;
 	int num;
@@ -38,21 +35,20 @@ typedef struct CL {
 _Bool cl_subsumer(CL *c);
 double cl_acc(CL *c);
 double cl_del_vote(CL *c, double avg_fit);
-double cl_update_size(CL *c, double num_sum);
 void cl_copy(CL *to, CL *from);
 void cl_free(CL *c);
 void cl_init(CL *c, int size, int time);
 void cl_print(CL *c);
+void cl_update(CL *c, double *state, double p, int set_num);
 void cl_update_fit(CL *c, double acc_sum, double acc);
 
 // classifier prediction
-double pred_compute(CL *c, double *state);
-double pred_update_err(CL *c, double p);
-void pred_copy(CL *to, CL *from);
-void pred_free(CL *c);
-void pred_init(CL *c);
-void pred_print(CL *c);
-void pred_update(CL *c, double p, double *state);
+double pred_compute(PRED *pred, double *state);
+void pred_copy(PRED *to, PRED *from);
+void pred_free(PRED *pred);
+void pred_init(PRED *pred);
+void pred_print(PRED *pred);
+void pred_update(PRED *pred, double p, double *state);
 
 // classifier condition
 _Bool cond_crossover(COND *cond1, COND *cond2);

@@ -42,29 +42,29 @@ double *tmp_vec;
 double *tmp_matrix1;
 double *tmp_matrix2;
 
-void pred_init(CL *c)
+void pred_init(PRED *pred)
 {
 #ifdef QUADRATIC
 	// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
-	c->weights_length = 1+2*state_length+state_length*(state_length-1)/2;
+	pred->weights_length = 1+2*state_length+state_length*(state_length-1)/2;
 #else
-	c->weights_length = state_length+1;
+	pred->weights_length = state_length+1;
 #endif
-	c->weights = malloc(sizeof(double) * c->weights_length);
-	c->weights[0] = XCSF_X0;
-	for(int i = 1; i < c->weights_length; i++)
-		c->weights[i] = 0.0;
+	pred->weights = malloc(sizeof(double) * pred->weights_length);
+	pred->weights[0] = XCSF_X0;
+	for(int i = 1; i < pred->weights_length; i++)
+		pred->weights[i] = 0.0;
 
 	// initialise gain matrix
-	c->matrix = malloc(sizeof(double)*pow(c->weights_length,2));
-	init_matrix(c->matrix);
+	pred->matrix = malloc(sizeof(double)*pow(pred->weights_length,2));
+	init_matrix(pred->matrix);
 
 	// initialise temporary arrays (only needs to be done once)
 	if(tmp_vec == NULL) {
-		tmp_vec = malloc(sizeof(double)*c->weights_length);
-		tmp_input = malloc(sizeof(double)*c->weights_length);
-		tmp_matrix1 = malloc(sizeof(double)*pow(c->weights_length,2));
-		tmp_matrix2 = malloc(sizeof(double)*pow(c->weights_length,2));
+		tmp_vec = malloc(sizeof(double)*pred->weights_length);
+		tmp_input = malloc(sizeof(double)*pred->weights_length);
+		tmp_matrix1 = malloc(sizeof(double)*pow(pred->weights_length,2));
+		tmp_matrix2 = malloc(sizeof(double)*pow(pred->weights_length,2));
 	}
 }
  	
@@ -80,30 +80,19 @@ void init_matrix(double *matrix)
 	}
 }
  
-void pred_copy(CL *to, CL *from)
+void pred_copy(PRED *to, PRED *from)
 {
 	memcpy(to->weights, from->weights, sizeof(double)*from->weights_length);
 	memcpy(to->matrix, from->matrix, sizeof(double)*pow(from->weights_length,2));
 }
  
-void pred_free(CL *c)
+void pred_free(PRED *pred)
 {
-	free(c->weights);
-	free(c->matrix);
+	free(pred->weights);
+	free(pred->matrix);
 }
      
-double pred_update_err(CL *c, double p)
-{
-	// pre has been updated for the current state during set_pred()
-	//double pre = pred_compute(c, state);
-	if(c->exp < 1.0/BETA) 
-		c->err = (c->err * (c->exp-1.0) + fabs(p - c->pre)) / (double)c->exp;
-	else
-		c->err += BETA * (fabs(p - c->pre) - c->err);
-	return c->err * c->num;
-}
- 
-void pred_update(CL *c, double p, double *state)
+void pred_update(PRED *pred, double p, double *state)
 {
 	tmp_input[0] = XCSF_X0;
 	int index = 1;
@@ -118,24 +107,24 @@ void pred_update(CL *c, double p, double *state)
 #endif
 
 	// determine gain vector = matrix * tmp_input
-	matrix_vector_multiply(c->matrix, tmp_input, tmp_vec, c->weights_length);
+	matrix_vector_multiply(pred->matrix, tmp_input, tmp_vec, pred->weights_length);
 	
 	// divide gain vector by lambda + tmp_vec
 	double divisor = RLS_LAMBDA;
-	for(int i = 0; i < c->weights_length; i++)
+	for(int i = 0; i < pred->weights_length; i++)
 		divisor += tmp_input[i] * tmp_vec[i];
-	for(int i = 0; i < c->weights_length; i++)
+	for(int i = 0; i < pred->weights_length; i++)
 		tmp_vec[i] /= divisor;
 
 	// update weights using the error
 	// pre has been updated for the current state during set_pred()
-	double error = p - c->pre; // pred_compute(c, state);
-	for(int i = 0; i < c->weights_length; i++)
-		c->weights[i] += error * tmp_vec[i];
+	double error = p - pred->pre; // pred_compute(c, state);
+	for(int i = 0; i < pred->weights_length; i++)
+		pred->weights[i] += error * tmp_vec[i];
 
 	// update gain matrix
-	for(int i = 0; i < c->weights_length; i++) {
-		for(int j = 0; j < c->weights_length; j++) {
+	for(int i = 0; i < pred->weights_length; i++) {
+		for(int j = 0; j < pred->weights_length; j++) {
 			double tmp = tmp_vec[i] * tmp_input[j];
 			if(i == j)
 				tmp_matrix1[i*state_length+j] = 1.0 - tmp;
@@ -143,41 +132,41 @@ void pred_update(CL *c, double p, double *state)
 				tmp_matrix1[i*state_length+j] = -tmp;
 		}
 	}
-	matrix_matrix_multiply(tmp_matrix1, c->matrix, tmp_matrix2, c->weights_length);
+	matrix_matrix_multiply(tmp_matrix1, pred->matrix, tmp_matrix2, pred->weights_length);
 
 	// divide gain matrix entries by lambda
-	for(int row = 0; row < c->weights_length; row++) {
-		for(int col = 0; col < c->weights_length; col++) {
-			c->matrix[row*state_length+col] = tmp_matrix2[row*state_length+col] / RLS_LAMBDA;
+	for(int row = 0; row < pred->weights_length; row++) {
+		for(int col = 0; col < pred->weights_length; col++) {
+			pred->matrix[row*state_length+col] = tmp_matrix2[row*state_length+col] / RLS_LAMBDA;
 		}
 	}
 }
 
-double pred_compute(CL *c, double *state)
+double pred_compute(PRED *pred, double *state)
 {
 	// first coefficient is offset
-	double pre = XCSF_X0 * c->weights[0];
+	double pre = XCSF_X0 * pred->weights[0];
 	int index = 1;
 	// multiply linear coefficients with the prediction input
 	for(int i = 0; i < state_length; i++)
-		pre += c->weights[index++] * state[i];
+		pre += pred->weights[index++] * state[i];
 #ifdef QUADRATIC
 	// multiply quadratic coefficients with prediction input
 	for(int i = 0; i < state_length; i++) {
 		for(int j = i; j < state_length; j++) {
-			pre += c->weights[index++] * state[i] * state[j];
+			pre += pred->weights[index++] * state[i] * state[j];
 		}
 	}
 #endif
-	c->pre = pre;
+	pred->pre = pre;
 	return pre;
 } 
 
-void pred_print(CL *c)
+void pred_print(PRED *pred)
 {
 	printf("weights: ");
-	for(int i = 0; i < c->weights_length; i++)
-		printf("%f, ", c->weights[i]);
+	for(int i = 0; i < pred->weights_length; i++)
+		printf("%f, ", pred->weights[i]);
 	printf("\n");
 }
 

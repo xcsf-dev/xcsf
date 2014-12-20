@@ -91,7 +91,7 @@ double set_pred(NODE **set, double *state)
 	double presum = 0.0;
 	double fitsum = 0.0;
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		presum += pred_compute(iter->cl, state) * iter->cl->fit;
+		presum += pred_compute(&iter->cl->pred, state) * iter->cl->fit;
 		fitsum += iter->cl->fit;
 	}
 	return presum/fitsum;
@@ -165,13 +165,8 @@ NODE *pop_del()
 
 void set_update(NODE **set, int *size, int *num, double r, NODE **kset, double *state)
 {
-	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		CL *c = iter->cl;
-		c->exp++;
-		pred_update_err(c, r);
-		pred_update(c, r, state);
-		cl_update_size(c, *num);
-	}
+	for(NODE *iter = *set; iter != NULL; iter = iter->next)
+		cl_update(iter->cl, state, r, *num);
 	set_update_fit(set, *size, *num);
 	if(SET_SUBSUMPTION)
 		set_subsumption(set, size, num, kset);
