@@ -17,6 +17,7 @@
 
 //#ifdef NEURAL_CONDITIONS
 #ifndef RECTANGLE_CONDITIONS
+
 typedef struct NEURON {
 	double output;
 	double state;
@@ -34,6 +35,4 @@ typedef struct COND {
 #endif
 } COND;
 
-void neural_init(int layers, int *neurons);
-void neural_free();
 #endif
