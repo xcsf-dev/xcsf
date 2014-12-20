@@ -40,7 +40,6 @@
 #include "cl.h"
 #include "cl_set.h"
 #include "ga.h"
-#include "cond_neural.h"
 #include "function.h"
 #include "perf.h"
 
@@ -58,11 +57,6 @@ int main(int argc, char *argv[0])
 	random_init();
 	func_init(argv[1]);
 	gen_outfname(argv[1]);
-#ifdef NEURAL_CONDITIONS
-	// classifiers currently fixed to 3 layer networks
-	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
-	neural_init(3, neurons);
-#endif
 
 	// run experiments
 	double err[PERF_AVG_TRIALS];
@@ -84,9 +78,6 @@ int main(int argc, char *argv[0])
 		outfile_close();
 	}
 	func_free();
-#ifdef NEURAL_CONDITIONS
-	neural_free();
-#endif
 	return EXIT_SUCCESS;
 }
 

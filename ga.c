@@ -110,12 +110,12 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 {
 	// check if either parent subsumes the offspring
-	if(cond_subsumes(c1p, c)) {
+	if(cl_subsumer(c1p) && cond_subsumes(&c1p->cond, &c->cond)) {
 		c1p->num++;
 		pop_num_sum++;
 		cl_free(c);
 	}
-	else if(cond_subsumes(c2p, c)) {
+	else if(cl_subsumer(c2p) && cond_subsumes(&c2p->cond, &c->cond)) {
 		c2p->num++;
 		pop_num_sum++;
 		cl_free(c);
@@ -125,7 +125,8 @@ void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 		NODE *candidates[size];
 		int choices = 0;
 		for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-			if(cond_subsumes(iter->cl, c)) {
+			if(cl_subsumer(iter->cl) 
+					&& cond_subsumes(&iter->cl->cond, &c->cond)) {
 				candidates[choices] = iter;
 				choices++;
 			}
@@ -159,10 +160,10 @@ CL *ga_select_parent(NODE **set, double fit_sum)
 
 _Bool ga_mutate(CL *c)
 {
-	return cond_mutate(c);
+	return cond_mutate(&c->cond);
 }
 
 _Bool ga_crossover(CL *c1, CL *c2)
 {
-	return cond_crossover(c1, c2);
+	return cond_crossover(&c1->cond, &c2->cond);
 }

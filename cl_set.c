@@ -46,7 +46,7 @@ void pop_init()
 		while(pop_num_sum < POP_SIZE) {
 			CL *new = malloc(sizeof(CL));
 			cl_init(new, POP_SIZE, 0);
-			cond_rand(new);
+			cond_rand(&new->cond);
 			pop_add(new);
 		}
 	}
@@ -56,7 +56,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 {
 	// find matching classifiers in the population
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
-		if(cond_match(iter->cl, state)) {
+		if(cond_match(&iter->cl->cond, state)) {
 			set_add(set, iter->cl);
 			*num += iter->cl->num;
 			(*size)++;
@@ -67,7 +67,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 		// new classifier with matching condition
 		CL *new = malloc(sizeof(CL));
 		cl_init(new, *num+1, time);
-		cond_cover(new, state);
+		cond_cover(&new->cond, state);
 		(*size)++;
 		(*num)++;
 		pop_add(new);
@@ -75,7 +75,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 		// enforce population size limit
 		while(pop_num_sum > POP_SIZE) {
 			NODE *del = pop_del();
-			if(cond_match(del->cl, state))
+			if(cond_match(&del->cl->cond, state))
 				set_validate(set, size, num);
 			if(del->cl->num == 0) {
 				set_add(kset, del->cl);
@@ -204,7 +204,7 @@ void set_subsumption(NODE **set, int *size, int *num, NODE **kset)
 	for(iter = *set; iter != NULL; iter = iter->next) {
 		CL *c = iter->cl;
 		if(cl_subsumer(c)) {
-			if(s == NULL || cond_general(c, s))
+			if(s == NULL || cond_general(&(c->cond), &(s->cond)))
 				s = c;
 		}
 	}
@@ -213,7 +213,7 @@ void set_subsumption(NODE **set, int *size, int *num, NODE **kset)
 		iter = *set; 
 		while(iter != NULL) {
 			CL *c = iter->cl;
-			if(cond_general(s, c)) {
+			if(cond_general(&(s->cond), &(c->cond))) {
 				s->num += c->num;
 				c->num = 0;
 				set_add(kset, c);
@@ -334,7 +334,7 @@ double set_avg_mut(NODE **set, int m)
 	double sum = 0.0;
 	int cnt = 0;
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		sum += iter->cl->mu[m];
+		sum += iter->cl->cond.mu[m];
 		cnt++;
 	}
 	return sum/cnt;

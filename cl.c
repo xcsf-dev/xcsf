@@ -40,21 +40,15 @@ void cl_init(CL *c, int size, int time)
 	c->exp = 0;
 	c->size = size;
 	c->time = time;
-	cond_init(c);
+	cond_init(&c->cond);
 	pred_init(c);
-#ifdef SELF_ADAPT_MUTATION
-	sam_init(c);
-#endif
 }
 
 void cl_copy(CL *to, CL *from)
 {
 	cl_init(to, from->size, from->time);
-	cond_copy(to, from);
+	cond_copy(&to->cond, &from->cond);
 	pred_copy(to, from);
-#ifdef SELF_ADAPT_MUTATION
-	sam_copy(to, from);
-#endif
 }
 
 _Bool cl_subsumer(CL *c)
@@ -96,17 +90,14 @@ double cl_update_size(CL *c, double num_sum)
 
 void cl_free(CL *c)
 {
-	cond_free(c);
+	cond_free(&c->cond);
 	pred_free(c);
-#ifdef SELF_ADAPT_MUTATION
-	sam_free(c);
-#endif
 	free(c);
 }
 
 void cl_print(CL *c)
 {
-	cond_print(c);
+	cond_print(&c->cond);
 	pred_print(c);
 	printf("%f %f %d %d %f %d\n", c->err, c->fit, c->num, c->exp, c->size, c->time);
 }  

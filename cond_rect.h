@@ -1,5 +1,5 @@
-/*
- * Copyright (C) 2012--2015 Richard Preen <rpreen@gmail.com>
+ /*
+ * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,25 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#ifdef NEURAL_CONDITIONS
-#ifndef RECTANGLE_CONDITIONS
-typedef struct NEURON {
-	double output;
-	double state;
-	double *weights;
-	double *input;
-	int num_inputs;
-} NEURON;
-
+#ifdef RECTANGLE_CONDITIONS
 typedef struct COND {
-	int num_layers; // input layer + number of hidden layers + output layer
-	int *num_neurons; // number of neurons in each layer
-	NEURON **layer; // neural network
+	double *interval;
+	int interval_length;
 #ifdef SELF_ADAPT_MUTATION
 	double *mu;
 #endif
 } COND;
-
-void neural_init(int layers, int *neurons);
-void neural_free();
 #endif

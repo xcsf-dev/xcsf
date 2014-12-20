@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,10 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-typedef struct CL
-{
-	double *cond;
-	int cond_length;
+
+#include "cond_rect.h"
+#include "cond_neural.h"
+
+typedef struct CL {
+	COND cond;
 	int weights_length;
 	double *weights;
 #ifdef RLS_PREDICTION
@@ -30,11 +32,6 @@ typedef struct CL
 	int exp;
 	double size;
 	int time;
-#ifdef SELF_ADAPT_MUTATION
-	double *mu;
-	int *iset;
-	double *gset;
-#endif
 } CL;
 
 // general classifier
@@ -58,20 +55,21 @@ void pred_print(CL *c);
 void pred_update(CL *c, double p, double *state);
 
 // classifier condition
-_Bool cond_crossover(CL *c1, CL *c2);
-_Bool cond_general(CL *c1, CL *c2);
-_Bool cond_match(CL *c, double *state);
-_Bool cond_mutate(CL *c);
-_Bool cond_subsumes(CL *c1, CL *c2);
-void cond_copy(CL *to, CL *from);
-void cond_cover(CL *c, double *state);
-void cond_free(CL *c);
-void cond_init(CL *c);
-void cond_print(CL *c);
-void cond_rand(CL *c);
+_Bool cond_crossover(COND *cond1, COND *cond2);
+_Bool cond_general(COND *cond1, COND *cond2);
+_Bool cond_match(COND *cond, double *state);
+_Bool cond_mutate(COND *cond);
+_Bool cond_subsumes(COND *cond1, COND *cond2);
+void cond_copy(COND *to, COND *from);
+void cond_cover(COND *cond, double *state);
+void cond_free(COND *cond);
+void cond_init(COND *cond);
+void cond_print(COND *cond);
+void cond_rand(COND *cond);
 
 // self-adaptive mutation
-void sam_adapt(CL *c);       
-void sam_copy(CL *to, CL *from);
-void sam_free(CL *c);
-void sam_init(CL *c);
+void sam_adapt(double *mu);       
+void sam_copy(double *to, double *from);
+void sam_free(double *mu);
+void sam_init(double **mu);
+void sam_print(double *mu);

@@ -31,52 +31,52 @@
 #include <math.h>
 #include "cons.h"
 #include "random.h"
-#include "cl.h"
 
-double gasdev(CL *c, int m);
+double gasdev();
 
-void sam_init(CL *c)
+void sam_init(double **mu)
 {
-	c->mu = malloc(sizeof(double)*NUM_MU);
-	c->iset = malloc(sizeof(int)*NUM_MU);
-	c->gset = malloc(sizeof(double)*NUM_MU);
-	for(int i = 0; i < NUM_MU; i++) {
-		c->mu[i] = drand();
-		c->iset[i] = 0;
-		c->gset[i] = 0.0;
-	}     
+	*mu = malloc(sizeof(double)*NUM_MU);
+	for(int i = 0; i < NUM_MU; i++)
+		(*mu)[i] = drand();
 }
 
-void sam_copy(CL *to, CL *from)
+void sam_copy(double *to, double *from)
 {
-	memcpy(to->mu, from->mu, sizeof(double)*NUM_MU);
-	memcpy(to->gset, from->gset, sizeof(double)*NUM_MU);
-	memcpy(to->iset, from->iset, sizeof(int)*NUM_MU);
+	memcpy(to, from, sizeof(double)*NUM_MU);
 }
 
-void sam_free(CL *c)
+void sam_free(double *mu)
 {
-	free(c->mu);
-	free(c->iset);
-	free(c->gset);
+	free(mu);
 }
 
-void sam_adapt(CL *c)
+void sam_adapt(double *mu)
 {
 	for(int i = 0; i < NUM_MU; i++) {
-		c->mu[i] *= exp(gasdev(c,i));
-		if(c->mu[i] < muEPS_0)
-			c->mu[i] = muEPS_0;
-		else if(c->mu[i] > 1.0)
-			c->mu[i] = 1.0;
+		mu[i] *= exp(gasdev());
+		if(mu[i] < muEPS_0)
+			mu[i] = muEPS_0;
+		else if(mu[i] > 1.0)
+			mu[i] = 1.0;
 	}
 }
 
-double gasdev(CL *c, int m)
+void sam_print(double *mu)
+{
+	printf("mu: \n");
+	for(int i = 0; i < NUM_MU; i++)
+		printf("%f, ", mu[i]);
+	printf("\n");
+}
+
+double gasdev()
 {
 	// from numerical recipes in c
+	static int iset = 0;
+	static double gset;
 	double fac, rsq, v1, v2;
-	if(c->iset[m] == 0) {
+	if(iset == 0) {
 		do {
 			v1 = (drand()*2.0)-1.0;
 			v2 = (drand()*2.0)-1.0;
@@ -84,13 +84,13 @@ double gasdev(CL *c, int m)
 		}
 		while(rsq >= 1.0 || rsq == 0.0);
 		fac = sqrt(-2.0*log(rsq)/rsq);
-		c->gset[m] = v1*fac;
-		c->iset[m] = 1;
+		gset = v1*fac;
+		iset = 1;
 		return v2*fac;
 	}
 	else {
-		c->iset[m] = 0;
-		return c->gset[m];
+		iset = 0;
+		return gset;
 	}
 }
 #endif     

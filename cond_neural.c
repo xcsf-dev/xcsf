@@ -24,180 +24,199 @@
  * copying, mutating, printing, etc.
  */
 
-#ifdef NEURAL_CONDITIONS
-#include <stdlib.h>
+//#ifdef NEURAL_CONDITIONS
+#ifndef RECTANGLE_CONDITIONS
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
-#include "cond_neural.h"
 
-#define NUM_OUTPUT 1 // only one output required for matching
-
-typedef struct NEURON {
-	double output;
-	double state;
-	double *weights;
-	double *input;
-	int num_inputs;
-} NEURON;
-
-double neural_output(int i);
+double neural_output(COND *cond, int i);
 double neuron_propagate(NEURON *n, double *input);
-void neural_propagate(double *input);
-void neural_set_weights(double *nw);
+void neural_propagate(COND *cond, double *input);
 void neuron_init(NEURON *n, int num_inputs);
 
-int num_layers; // input layer + number of hidden layers + output layer
-int *num_neurons; // number of neurons in each layer
-NEURON **layer; // neural network
- 
-void cond_init(CL *c)
+void cond_init(COND *cond)
 {
-	c->cond_length = ((state_length+1)*NUM_HIDDEN_NEURONS)
-		+((NUM_HIDDEN_NEURONS+1)*NUM_OUTPUT);
-	c->cond = malloc(sizeof(double) * c->cond_length);
+	// set number of layers
+	cond->num_layers = 3;
+	// set number of neurons in each layer
+	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
+	cond->num_neurons = malloc(sizeof(int)*cond->num_layers);
+	memcpy(cond->num_neurons, neurons, sizeof(int)*cond->num_layers);
+	// array offsets by 1 since input layer is assumed   
+	// malloc layers
+	cond->layer = (NEURON**) malloc((cond->num_layers-1)*sizeof(NEURON*));
+	for(int l = 1; l < cond->num_layers; l++) 
+		cond->layer[l-1] = (NEURON*) malloc(cond->num_neurons[l]*sizeof(NEURON));
+	// malloc neurons in each layer
+	for(int l = 1; l < cond->num_layers; l++) {
+		for(int i = 0; i < cond->num_neurons[l]; i++)
+			neuron_init(&cond->layer[l-1][i], cond->num_neurons[l-1]);
+	}
+#ifdef SELF_ADAPT_MUTATION
+	sam_init(&cond->mu);
+#endif
 }
 
-void cond_free(CL *c)
+void cond_free(COND *cond)
 {
-	free(c->cond);
+	// free neurons
+	for(int l = 1; l < cond->num_layers; l++) {
+		for(int i = 0; i < cond->num_neurons[l]; i++) {
+			NEURON *n = &cond->layer[l-1][i];
+			free(n->weights);
+			free(n->input);
+		}
+	}
+	// free layers
+	for(int l = 1; l < cond->num_layers; l++) 
+		free(cond->layer[l-1]);
+	// free pointers to layers
+	free(cond->layer);
+	free(cond->num_neurons);    
+#ifdef SELF_ADAPT_MUTATION
+	sam_free(cond->mu);
+#endif
 }
 
-void cond_copy(CL *to, CL *from)
+void cond_copy(COND *to, COND *from)
 {
-	to->cond_length = from->cond_length;
-	memcpy(to->cond, from->cond, sizeof(double)*from->cond_length);
+	to->num_layers = from->num_layers;
+	memcpy(to->num_neurons, from->num_neurons, sizeof(int)*from->num_layers);
+	for(int l = 1; l < from->num_layers; l++) {
+		for(int i = 0; i < from->num_neurons[l]; i++) {
+			NEURON *a = &to->layer[l-1][i];
+			NEURON *b = &from->layer[l-1][i];
+			a->output = b->output;
+			a->state = b->state;
+			memcpy(a->weights, b->weights, sizeof(double)*a->num_inputs+1);
+			memcpy(a->input, b->input, sizeof(double)*a->num_inputs);
+			a->num_inputs = b->num_inputs;
+		}
+	}
+#ifdef SELF_ADAPT_MUTATION
+	memcpy(to->mu, from->mu, sizeof(double)*NUM_MU);
+#endif
 }
 
-void cond_rand(CL *c)
+void cond_rand(COND *cond)
 {
-	for(int i = 0; i < c->cond_length; i++)
-		c->cond[i] = (drand()*2.0)-1.0;
+	for(int l = 1; l < cond->num_layers; l++) {
+		for(int i = 0; i < cond->num_neurons[l]; i++) {
+			NEURON *n = &cond->layer[l-1][i];
+			for(int w = 0; w < n->num_inputs; w++) 
+				n->weights[w] = (drand()*2.0)-1.0;
+		}
+	}
 }
 
-void cond_cover(CL *c, double *state)
+void cond_cover(COND *cond, double *state)
 {
 	// generates random weights until the network matches for input state
 	do {
-		for(int i = 0; i < c->cond_length; i++)
-			c->cond[i] = (drand()*2.0)-1.0;
-	} while(!cond_match(c, state));
+		cond_rand(cond);
+	} while(!cond_match(cond, state));
 }
 
-_Bool cond_match(CL *c, double *state)
+_Bool cond_match(COND *cond, double *state)
 {
 	// classifier matches if the first output neuron > 0.5
-	neural_set_weights(c->cond);
-	neural_propagate(state);
-	if(neural_output(0) > 0.5)
+	neural_propagate(cond, state);
+	if(neural_output(cond, 0) > 0.5)
 		return true;
 	return false;
 }
 
-_Bool cond_mutate(CL *c)
+_Bool cond_mutate(COND *cond)
 {
-	double mod = false;
+	_Bool mod = false;
 	double step = S_MUTATION;
 #ifdef SELF_ADAPT_MUTATION
-	sam_adapt(c);
+	sam_adapt(cond->mu);
 	if(NUM_MU > 0) {
-		P_MUTATION = c->mu[0];
+		P_MUTATION = cond->mu[0];
 		if(NUM_MU > 1)
-			step = c->mu[1];
+			step = cond->mu[1];
 	}
 #endif
-	for(int i = 0; i < c->cond_length; i++) {
-		if(drand() < P_MUTATION) {
-			c->cond[i] += ((drand()*2.0)-1.0)*step;
-			if(c->cond[i] > 1.0)
-				c->cond[i] = 1.0;
-			else if(c->cond[i] < -1.0)
-				c->cond[i] = -1.0;
-			mod = true;
+	for(int l = 1; l < cond->num_layers; l++) {
+		for(int i = 0; i < cond->num_neurons[l]; i++) {
+			NEURON *n = &cond->layer[l-1][i];
+			for(int w = 0; w < n->num_inputs; w++) {
+				if(drand() < P_MUTATION) {
+					n->weights[w] = ((drand()*2.0)-1.0)*step;
+					if(n->weights[w] > 1.0)
+						n->weights[w] = 1.0;
+					else if(n->weights[w] < -1.0)
+						n->weights[w] = -1.0;
+					mod = true;
+				}
+			}
 		}
 	}
 	return mod;
 }
 
-_Bool cond_crossover(CL *c1, CL *c2)
+_Bool cond_crossover(COND *cond1, COND *cond2)
 {
 	// remove unused parameter warnings
-	(void)c1;
-	(void)c2;
+	(void)cond1;
+	(void)cond2;
 	return false;
 }
 
-_Bool cond_subsumes(CL *c1, CL *c2)
+_Bool cond_subsumes(COND *cond1, COND *cond2)
 {
 	// remove unused parameter warnings
-	(void)c1;
-	(void)c2;
+	(void)cond1;
+	(void)cond2;
 	return false;
 }
 
-_Bool cond_general(CL *c1, CL *c2)
+_Bool cond_general(COND *cond1, COND *cond2)
 {
 	// remove unused parameter warnings
-	(void)c1;
-	(void)c2;
+	(void)cond1;
+	(void)cond2;
 	return false;
 }   
 
-void cond_print(CL *c)
+void cond_print(COND *cond)
 {
 	printf("neural weights:");
-	for(int i = 0; i < c->cond_length; i++)
-		printf(" %5f, ", c->cond[i]);
+	for(int l = 1; l < cond->num_layers; l++) {
+		for(int i = 0; i < cond->num_neurons[l]; i++) {
+			NEURON *n = &cond->layer[l-1][i];
+			for(int w = 0; w < n->num_inputs; w++) 
+				printf(" %5f, ", n->weights[w]);
+		}
+	}
 	printf("\n");
 }  
 
-void neural_init(int layers, int *neurons)
+void neural_propagate(COND *cond, double *input)
 {
-	num_layers = layers;
-	// set number of neurons in each layer
-	num_neurons = malloc(sizeof(int)*num_layers);
-	memcpy(num_neurons, neurons, sizeof(int)*num_layers);
-	// array offsets by 1 since input layer is assumed   
-	layer = (NEURON**) malloc((num_layers-1)*sizeof(NEURON*));
-	for(int l = 1; l < num_layers; l++) 
-		layer[l-1] = (NEURON*) malloc(num_neurons[l]*sizeof(NEURON));
-	for(int l = 1; l < num_layers; l++) {
-		for(int i = 0; i < num_neurons[l]; i++)
-			neuron_init(&layer[l-1][i], num_neurons[l-1]);
-	}
-}
-
-void neuron_init(NEURON *n, int num_inputs)
-{
-	n->output = 0.0;
-	n->state = 0.0;
-	n->num_inputs = num_inputs; 
-	n->weights = malloc((num_inputs+1)*sizeof(double));
-	n->input = malloc(num_inputs*sizeof(double));
-}
-
-void neural_propagate(double *input)
-{
-	double *output[num_layers];
-	for(int l = 0; l < num_layers; l++)
-		output[l] = malloc(num_neurons[l]*sizeof(double));
-	memcpy(output[0], input, num_neurons[0]*sizeof(double));
-	for(int l = 1; l < num_layers; l++) {
-		for(int i = 0; i < num_neurons[l]; i++) {
-			output[l][i] = neuron_propagate(&layer[l-1][i], output[l-1]);
+	double *output[cond->num_layers];
+	for(int l = 0; l < cond->num_layers; l++)
+		output[l] = malloc(cond->num_neurons[l]*sizeof(double));
+	memcpy(output[0], input, cond->num_neurons[0]*sizeof(double));
+	for(int l = 1; l < cond->num_layers; l++) {
+		for(int i = 0; i < cond->num_neurons[l]; i++) {
+			output[l][i] = neuron_propagate(&cond->layer[l-1][i], output[l-1]);
 		}
 	}
-	for(int l = 0; l < num_layers; l++)
+	for(int l = 0; l < cond->num_layers; l++)
 		free(output[l]);
 }
 
-double neural_output(int i)
+double neural_output(COND *cond, int i)
 {
-	return layer[num_layers-2][i].output;
+	return cond->layer[cond->num_layers-2][i].output;
 }
 
 double neuron_propagate(NEURON *n, double *input)
@@ -211,36 +230,13 @@ double neuron_propagate(NEURON *n, double *input)
 	n->output = tanh(n->state);
 	return n->output;
 }
-
-void neural_set_weights(double *nw)
+ 
+void neuron_init(NEURON *n, int num_inputs)
 {
-	int cnt = 0;
-	for(int l = 1; l < num_layers; l++) {
-		for(int i = 0; i < num_neurons[l]; i++) {
-			for(int w = 0; w < num_neurons[l-1]+1; w++) {
-				NEURON *n = &layer[l-1][i];   	
-				n->weights[w] = nw[cnt];
-				cnt++;
-			}
-		}
-	}
+	n->output = 0.0;
+	n->state = 0.0;
+	n->num_inputs = num_inputs; 
+	n->weights = malloc((num_inputs+1)*sizeof(double));
+	n->input = malloc(num_inputs*sizeof(double));
 }
-
-void neural_free()
-{
-	// free neurons
-	for(int l = 1; l < num_layers; l++) {
-		for(int i = 0; i < num_neurons[l]; i++) {
-			NEURON *n = &layer[l-1][i];
-			free(n->weights);
-			free(n->input);
-		}
-	}
-	// free layers
-	for(int l = 1; l < num_layers; l++) 
-		free(layer[l-1]);
-	// free pointers to layers
-	free(layer);
-	free(num_neurons);
-}    
 #endif
