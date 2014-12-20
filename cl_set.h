@@ -27,6 +27,7 @@ double set_total_fit(NODE **set);
 double set_total_time(NODE **set);
 void pop_add(CL *c);
 void pop_init();
+void pop_enforce_limit(NODE **kset);
 void set_add(NODE **set, CL *c);
 void set_clean(NODE **kset, NODE **set, _Bool in_set);
 void set_free(NODE **set);

@@ -97,14 +97,7 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 		}
 #endif
 	}
-	// enforce population size limit
-	while(pop_num_sum > POP_SIZE) {
-		NODE *del = pop_del();
-		if(del->cl->num == 0) {
-			set_add(kset, del->cl);
-			free(del);
-		}
-	}
+	pop_enforce_limit(kset);
 }   
 
 void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)

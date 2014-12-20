@@ -51,68 +51,7 @@ void pop_init()
 		}
 	}
 }
-
-void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset)
-{
-	// find matching classifiers in the population
-	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
-		if(cond_match(&iter->cl->cond, state)) {
-			set_add(set, iter->cl);
-			*num += iter->cl->num;
-			(*size)++;
-		}
-	}   
-	// perform covering if match set is < THETA_MNA
-	while(*size < THETA_MNA) {
-		// new classifier with matching condition
-		CL *new = malloc(sizeof(CL));
-		cl_init(new, *num+1, time);
-		cond_cover(&new->cond, state);
-		(*size)++;
-		(*num)++;
-		pop_add(new);
-		set_add(set, new); 
-		// enforce population size limit
-		while(pop_num_sum > POP_SIZE) {
-			NODE *del = pop_del();
-			if(cond_match(&del->cl->cond, state))
-				set_validate(set, size, num);
-			if(del->cl->num == 0) {
-				set_add(kset, del->cl);
-				free(del);
-			}
-		}
-	}
-}
-
-double set_pred(NODE **set, double *state)
-{
-	// fitness weighted prediction
-	double presum = 0.0;
-	double fitsum = 0.0;
-	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		presum += pred_compute(&iter->cl->pred, state) * iter->cl->fit;
-		fitsum += iter->cl->fit;
-	}
-	return presum/fitsum;
-}
-
-void set_add(NODE **set, CL *c)
-{
-	// adds a classifier to the set
-	if(*set == NULL) {
-		*set = malloc(sizeof(NODE));
-		(*set)->cl = c;
-		(*set)->next = NULL;
-	}
-	else {
-		NODE *new = malloc(sizeof(NODE));
-		new->cl = c;
-		new->next = *set;
-		*set = new;
-	}
-}
-
+            
 void pop_add(CL *c)
 {
 	// adds a classifier to the population set
@@ -161,6 +100,71 @@ NODE *pop_del()
 		}
 	}   
 	return iter;
+}
+ 
+void pop_enforce_limit(NODE **kset)
+{
+ 	while(pop_num_sum > POP_SIZE) {
+		NODE *del = pop_del();
+		if(del->cl->num == 0) {
+			set_add(kset, del->cl);
+			free(del);
+		}
+	}     
+}
+ 
+void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset)
+{
+	// find matching classifiers in the population
+	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
+		if(cond_match(&iter->cl->cond, state)) {
+			set_add(set, iter->cl);
+			*num += iter->cl->num;
+			(*size)++;
+		}
+	}   
+	// perform covering if match set is < THETA_MNA
+	while(*size < THETA_MNA) {
+		// new classifier with matching condition
+		CL *new = malloc(sizeof(CL));
+		cl_init(new, *num+1, time);
+		cond_cover(&new->cond, state);
+		(*size)++;
+		(*num)++;
+		pop_add(new);
+		set_add(set, new); 
+		pop_enforce_limit(kset);
+		// remove any deleted classifiers from the match set
+		set_validate(set, size, num);
+	}
+}
+
+double set_pred(NODE **set, double *state)
+{
+	// fitness weighted prediction
+	double presum = 0.0;
+	double fitsum = 0.0;
+	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
+		presum += pred_compute(&iter->cl->pred, state) * iter->cl->fit;
+		fitsum += iter->cl->fit;
+	}
+	return presum/fitsum;
+}
+
+void set_add(NODE **set, CL *c)
+{
+	// adds a classifier to the set
+	if(*set == NULL) {
+		*set = malloc(sizeof(NODE));
+		(*set)->cl = c;
+		(*set)->next = NULL;
+	}
+	else {
+		NODE *new = malloc(sizeof(NODE));
+		new->cl = c;
+		new->next = *set;
+		*set = new;
+	}
 }
 
 void set_update(NODE **set, int *size, int *num, double r, NODE **kset, double *state)
