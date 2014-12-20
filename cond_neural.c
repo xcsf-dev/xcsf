@@ -35,10 +35,10 @@
 #include "cons.h"
 #include "cl.h"
 
-double neural_output(COND *cond, int i);
-double neuron_propagate(NEURON *n, double *input);
-void neural_propagate(COND *cond, double *input);
-void neuron_init(NEURON *n, int num_inputs);
+double cond_neural_output(COND *cond, int i);
+double cond_neuron_propagate(NEURON *n, double *input);
+void cond_neural_propagate(COND *cond, double *input);
+void cond_neuron_init(NEURON *n, int num_inputs);
 
 void cond_init(COND *cond)
 {
@@ -56,7 +56,7 @@ void cond_init(COND *cond)
 	// malloc neurons in each layer
 	for(int l = 1; l < cond->num_layers; l++) {
 		for(int i = 0; i < cond->num_neurons[l]; i++)
-			neuron_init(&cond->layer[l-1][i], cond->num_neurons[l-1]);
+			cond_neuron_init(&cond->layer[l-1][i], cond->num_neurons[l-1]);
 	}
 #ifdef SELF_ADAPT_MUTATION
 	sam_init(&cond->mu);
@@ -126,8 +126,8 @@ void cond_cover(COND *cond, double *state)
 _Bool cond_match(COND *cond, double *state)
 {
 	// classifier matches if the first output neuron > 0.5
-	neural_propagate(cond, state);
-	if(neural_output(cond, 0) > 0.5)
+	cond_neural_propagate(cond, state);
+	if(cond_neural_output(cond, 0) > 0.5)
 		return true;
 	return false;
 }
@@ -199,7 +199,7 @@ void cond_print(COND *cond)
 	printf("\n");
 }  
 
-void neural_propagate(COND *cond, double *input)
+void cond_neural_propagate(COND *cond, double *input)
 {
 	double *output[cond->num_layers];
 	for(int l = 0; l < cond->num_layers; l++)
@@ -207,19 +207,19 @@ void neural_propagate(COND *cond, double *input)
 	memcpy(output[0], input, cond->num_neurons[0]*sizeof(double));
 	for(int l = 1; l < cond->num_layers; l++) {
 		for(int i = 0; i < cond->num_neurons[l]; i++) {
-			output[l][i] = neuron_propagate(&cond->layer[l-1][i], output[l-1]);
+			output[l][i] = cond_neuron_propagate(&cond->layer[l-1][i], output[l-1]);
 		}
 	}
 	for(int l = 0; l < cond->num_layers; l++)
 		free(output[l]);
 }
 
-double neural_output(COND *cond, int i)
+double cond_neural_output(COND *cond, int i)
 {
 	return cond->layer[cond->num_layers-2][i].output;
 }
 
-double neuron_propagate(NEURON *n, double *input)
+double cond_neuron_propagate(NEURON *n, double *input)
 {
 	n->state = 0.0;
 	for(int i = 0; i < n->num_inputs; i++) {
@@ -231,7 +231,7 @@ double neuron_propagate(NEURON *n, double *input)
 	return n->output;
 }
  
-void neuron_init(NEURON *n, int num_inputs)
+void cond_neuron_init(NEURON *n, int num_inputs)
 {
 	n->output = 0.0;
 	n->state = 0.0;
