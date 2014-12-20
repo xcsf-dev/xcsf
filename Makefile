@@ -44,6 +44,8 @@ ifeq ($(PRED),0)
 	CFLAGS+= -DNLMS_PREDICTION
 else ifeq ($(PRED),1)
 	CFLAGS+= -DRLS_PREDICTION
+else ifeq ($(PRED),2)
+	CFLAGS+= -DNEURAL_PREDICTION
 endif
 ifeq ($(QUADRATIC),1)
 	CFLAGS+= -DQUADRATIC

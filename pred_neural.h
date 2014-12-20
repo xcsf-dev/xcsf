@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2012--2015 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -15,11 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef NLMS_PREDICTION
+#ifdef NEURAL_PREDICTION
+ 
+typedef struct PRED_NEURON {
+	double output;
+	double state;
+	double *weights;
+	double *weights_change;
+	double *input;
+	int num_inputs;
+} PRED_NEURON;
 
 typedef struct PRED {
-	int weights_length;
-	double *weights;
+	int num_layers; // input layer + number of hidden layers + output layer
+	int *num_neurons; // number of neurons in each layer
+	PRED_NEURON **layer; // neural network
 	double pre;
 } PRED;
 

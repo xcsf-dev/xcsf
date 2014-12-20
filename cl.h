@@ -19,6 +19,7 @@
 #include "cond_neural.h"
 #include "pred_nlms.h"
 #include "pred_rls.h"
+#include "pred_neural.h"
 
 typedef struct CL {
 	COND cond;

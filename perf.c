@@ -113,15 +113,20 @@ void gplot_init()
 	title[0] = '\0';
 	sprintf(buffer, "%s", probname);
 	strcat(title, buffer);
+
+#ifdef NEURAL_PREDICTION
+	strcat(title, " NEURAL PRED");
+#else
 #ifdef QUADRATIC
 	strcat(title, ", QUADRATIC");
 #else
 	strcat(title, ", LINEAR");
 #endif
-#ifdef RLS
+#ifdef RLS_PREDICTION
 	strcat(title, " RLS");
-#else
+#elif NLMS_PREDICTION
 	strcat(title, " NLMS");
+#endif
 #endif
 #ifdef SELF_ADAPT_MUTATION
 	strcat(title, ", SAM");
