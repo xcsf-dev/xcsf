@@ -34,7 +34,6 @@
 #include "neural.h"
  
 #define NUM_OUTPUT 1 // only one output
-#define NEURAL_BETA 0.2
 #define NEURAL_THETA 0.2
  
 double neuron_propagate(NEURON *n, double *input);
@@ -205,10 +204,10 @@ void neuron_learn(NEURON *n, double error)
 {
 	int i;
 	for(i = 0; i < n->num_inputs; i++) {
-		n->weights_change[i] = error * n->input[i] * NEURAL_BETA;
+		n->weights_change[i] = error * n->input[i] * BETA;
 		n->weights[i] += n->weights_change[i];
 	}
-	n->weights_change[i] = error * NEURAL_BETA;
+	n->weights_change[i] = error * BETA;
 	n->weights[i] += n->weights_change[i];
 }  
 
