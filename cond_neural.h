@@ -18,18 +18,8 @@
 //#ifdef NEURAL_CONDITIONS
 #ifndef RECTANGLE_CONDITIONS
 
-typedef struct NEURON {
-	double output;
-	double state;
-	double *weights;
-	double *input;
-	int num_inputs;
-} NEURON;
-
 typedef struct COND {
-	int num_layers; // input layer + number of hidden layers + output layer
-	int *num_neurons; // number of neurons in each layer
-	NEURON **layer; // neural network
+	BPN bpn;
 #ifdef SELF_ADAPT_MUTATION
 	double *mu;
 #endif

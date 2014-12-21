@@ -14,12 +14,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+  
+typedef struct NEURON {
+	double output;
+	double state;
+	double *weights;
+	double *weights_change;
+	double *input;
+	int num_inputs;
+} NEURON;
 
-#ifdef NEURAL_PREDICTION
-
-typedef struct PRED {
-	BPN bpn;
-	double pre;
-} PRED;
-
-#endif
+typedef struct BPN {
+    int num_layers; // input layer + number of hidden layers + output layer
+	int *num_neurons; // number of neurons in each layer
+	NEURON **layer; // neural network
+} BPN;
+ 
+double neural_output(BPN *bpn, int i);
+void neural_copy(BPN *to, BPN *from);
+void neural_free(BPN *bpn);
+void neural_init(BPN *bpn);
+void neural_learn(BPN *bpn, double *output, double *state);
+void neural_print(BPN *bpn);
+void neural_propagate(BPN *bpn, double *input);
+void neural_rand(BPN *bpn);

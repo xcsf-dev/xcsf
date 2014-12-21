@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "neural.h"
 #include "cond_rect.h"
 #include "cond_neural.h"
 #include "pred_nlms.h"
