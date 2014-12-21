@@ -98,6 +98,7 @@ void neural_learn(BPN *bpn, double *output, double *state)
 {
 	// network already propagated state in set_pred()
 	// neural_propagate(bpn, state);
+	(void)state; // remove unused parameter warning
 	
 	// output layer
 	double out_error[bpn->num_neurons[bpn->num_layers-1]];
