@@ -21,7 +21,7 @@
  *
  * Creates a weight vector representing an MLP neural network to calculate the
  * expected value given a problem instance and provides functions to adapt the
- * weights using the backpropagation algorithm. Activation function: tanh.
+ * weights using the backpropagation algorithm.
  */
 
 #include <stdlib.h>
@@ -40,6 +40,8 @@
 double neuron_propagate(NEURON *n, double *input);
 void neuron_init(NEURON *n, int num_inputs);
 void neuron_learn(NEURON *n, double error);
+double d1sig(double x);
+double sig(double x);
 
 void neural_init(BPN *bpn)
 {
@@ -94,12 +96,14 @@ double neural_output(BPN *bpn, int i)
 
 void neural_learn(BPN *bpn, double *output, double *state)
 {
-	neural_propagate(bpn, state);
+	// network already propagated state in set_pred()
+	// neural_propagate(bpn, state);
+	
 	// output layer
 	double out_error[bpn->num_neurons[bpn->num_layers-1]];
 	int o = bpn->num_layers-2;
 	for(int i = 0; i < bpn->num_neurons[bpn->num_layers-1]; i++) {
-		out_error[i] = (output[i] - bpn->layer[o][i].output) * tanh(bpn->layer[o][i].state);
+		out_error[i] = (output[i] - bpn->layer[o][i].output) * d1sig(bpn->layer[o][i].state);
 		neuron_learn(&bpn->layer[o][i], out_error[i]);
 	}
 	// hidden layers
@@ -112,7 +116,7 @@ void neural_learn(BPN *bpn, double *output, double *state)
 			// this neuron's error uses the next layer's error
 			for(int k = 0; k < bpn->num_neurons[l+1]; k++)
 				error[j] += prev_error[k] * bpn->layer[l][k].weights[j];
-			error[j] *= tanh(bpn->layer[l-1][j].state);
+			error[j] *= d1sig(bpn->layer[l-1][j].state);
 			neuron_learn(&bpn->layer[l-1][j], error[j]);
 		}
 		prev_error = error;
@@ -192,7 +196,7 @@ double neuron_propagate(NEURON *n, double *input)
 		n->state += n->weights[i] * input[i];
 	}
 	n->state += n->weights[n->num_inputs];
-	n->output = tanh(n->state);
+	n->output = sig(n->state);
 	return n->output;
 }
  
@@ -205,4 +209,15 @@ void neuron_learn(NEURON *n, double error)
 	}
 	n->weights_change[i] = error * NEURAL_BETA;
 	n->weights[i] += n->weights_change[i];
+}  
+
+double sig(double x)
+{
+	return 2.0 / (1.0 + exp(-1.0 * x + NEURAL_THETA)) - 1.0;
+}
+
+double d1sig(double x)
+{
+	double r = exp(-1.0 * x + NEURAL_THETA);
+	return (2.0 * r) / ((r + 1.0) * (r + 1.0));
 }
