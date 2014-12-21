@@ -35,12 +35,16 @@
  
 #define NUM_OUTPUT 1 // only one output
 #define NEURAL_THETA 0.2
+#define MAX_LAYERS 3
+#define MAX_NEURONS 50
  
 double neuron_propagate(NEURON *n, double *input);
 void neuron_init(NEURON *n, int num_inputs);
 void neuron_learn(NEURON *n, double error);
 double d1sig(double x);
 double sig(double x);
+
+double tmpOut[MAX_LAYERS][MAX_NEURONS];
 
 void neural_init(BPN *bpn)
 {
@@ -75,17 +79,12 @@ void neural_rand(BPN *bpn)
 
 void neural_propagate(BPN *bpn, double *input)
 {
-	double *output[bpn->num_layers];
-	for(int l = 0; l < bpn->num_layers; l++)
-		output[l] = malloc(bpn->num_neurons[l]*sizeof(double));
-	memcpy(output[0], input, bpn->num_neurons[0]*sizeof(double));
+	memcpy(tmpOut[0], input, bpn->num_neurons[0]*sizeof(double));
 	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
-			output[l][i] = neuron_propagate(&bpn->layer[l-1][i], output[l-1]);
+			tmpOut[l][i] = neuron_propagate(&bpn->layer[l-1][i], tmpOut[l-1]);
 		}
 	}
-	for(int l = 0; l < bpn->num_layers; l++)
-		free(output[l]);
 }
          
 double neural_output(BPN *bpn, int i)
