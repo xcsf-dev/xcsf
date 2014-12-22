@@ -15,8 +15,8 @@ Self-adaptive mutation rates can be enabled by compiling with SAM=1.
 An updated GNUPlot of the current system error can be enabled by compiling with
 GNUPLOT=1 (on GNU/Linux gnuplot-x11 must be installed.)
 
-The matching function (where most processing occurs) can be parallelised using
-OpenMP by compiling with PARALLEL=1.
+The matching and set prediction functions (where most processing occurs) can be
+parallelised using OpenMP by compiling with PARALLEL=1.
 
 --------------
 Example usage:
