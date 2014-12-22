@@ -158,7 +158,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 
 double set_pred(NODE **set, int size, double *state)
 {
-	// fitness weighted prediction
+	// match set fitness weighted prediction
 	double presum = 0.0;
 	double fitsum = 0.0;
 #ifdef PARALLEL_PRED
