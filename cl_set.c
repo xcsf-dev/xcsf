@@ -140,7 +140,6 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 			set_add(set, iter->cl);
 			*num += iter->cl->num;
 			(*size)++;                    
-			iter = iter->next;
 		}
 	}   
 #endif
