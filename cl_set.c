@@ -123,17 +123,14 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 		blist[j] = iter;
 		j++;
 	}
-	int s = 0; int n = 0;
-	#pragma omp parallel for reduction(+:s,n)
+	#pragma omp parallel for
 	for(int i = 0; i < pop_num; i++) {
 		if(cond_match(&blist[i]->cl->cond, state)) {
 			set_add(set, blist[i]->cl);
-			n += blist[i]->cl->num;
-			s++;                    
 		}
 	}
-	*num = n;
-	*size = s;
+	// count size and numerosity
+	set_validate(set, size, num);
 #else
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
 		if(cond_match(&iter->cl->cond, state)) {
@@ -159,15 +156,30 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 	}
 }
 
-double set_pred(NODE **set, double *state)
+double set_pred(NODE **set, int size, double *state)
 {
 	// fitness weighted prediction
 	double presum = 0.0;
 	double fitsum = 0.0;
+#ifdef PARALLEL_PRED
+	NODE *blist[size];
+	int j = 0;
+	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
+		blist[j] = iter;
+		j++;
+	}
+	#pragma omp parallel for reduction(+:presum,fitsum)
+	for(int i = 0; i < size; i++) {
+		presum += pred_compute(&blist[i]->cl->pred, state) * blist[i]->cl->fit;
+		fitsum += blist[i]->cl->fit;
+	}
+#else
+	(void)size; // remove unused parameter warnings
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
 		presum += pred_compute(&iter->cl->pred, state) * iter->cl->fit;
 		fitsum += iter->cl->fit;
 	}
+#endif
 	return presum/fitsum;
 }
 

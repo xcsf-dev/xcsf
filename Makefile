@@ -29,7 +29,7 @@ PRED=0
 QUADRATIC=0 # for NLMS and RLS
 SAM=0
 GNUPLOT=0
-PARALLEL=0
+PARALLEL=1
 
 # conditions
 ifeq ($(COND),0)
@@ -60,7 +60,8 @@ ifeq ($(OPT),1)
 	FLAGS+= -Ofast -march=native
 endif
 ifeq ($(PARALLEL),1)
-	CFLAGS+= -DPARALLEL_MATCH    
+	CFLAGS+= -DPARALLEL_MATCH
+	CFLAGS+= -DPARALLEL_PRED
 	FLAGS+= -fopenmp
 endif
 ifeq ($(GENPROF),1)
