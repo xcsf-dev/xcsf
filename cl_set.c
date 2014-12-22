@@ -115,6 +115,7 @@ void pop_enforce_limit(NODE **kset)
 
 void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset)
 {
+	// add classifiers that match the input state to the match set  
 #ifdef PARALLEL_MATCH
 	NODE *blist[pop_num];
 	int j = 0;
@@ -134,7 +135,6 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 	*num = n;
 	*size = s;
 #else
-	// add classifiers that match the input state to the match set  
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
 		if(cond_match(&iter->cl->cond, state)) {
 			set_add(set, iter->cl);
