@@ -19,7 +19,7 @@ CC=gcc
 FLAGS=
 CFLAGS=$(FLAGS) -Wall -Wextra -std=gnu11 -pipe -g
 LDFLAGS=$(FLAGS)
-LIB=-lm
+LIB=-lm -lpthread
  
 OPT=1
 GENPROF=0
@@ -29,6 +29,7 @@ PRED=0
 QUADRATIC=0 # for NLMS and RLS
 SAM=0
 GNUPLOT=0
+PARALLEL=0
 
 # conditions
 ifeq ($(COND),0)
@@ -50,11 +51,17 @@ endif
 ifeq ($(QUADRATIC),1)
 	CFLAGS+= -DQUADRATIC
 endif
+# 2d plot display
 ifeq ($(GNUPLOT),1)
 	CFLAGS+= -DGNUPLOT
 endif
+# optimisations
 ifeq ($(OPT),1)
 	FLAGS+= -Ofast -march=native
+endif
+ifeq ($(PARALLEL),1)
+	CFLAGS+= -DPARALLEL_MATCH    
+	FLAGS+= -fopenmp
 endif
 ifeq ($(GENPROF),1)
 	FLAGS+= -fprofile-generate

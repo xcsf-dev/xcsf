@@ -27,6 +27,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <math.h>
 #include "cons.h"
 #include "random.h"
 #include "cl.h"
@@ -34,6 +35,7 @@
 
 void set_subsumption(NODE **set, int *size, int *num, NODE **kset);
 void set_update_fit(NODE **set, int size, int num);
+void parallel_prop(double *state);
 
 void pop_init()
 {
@@ -110,18 +112,36 @@ void pop_enforce_limit(NODE **kset)
 			set_add(kset, del->cl);
 	}     
 }
- 
+
 void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset)
 {
-	// find matching classifiers in the population
+#ifdef PARALLEL_MATCH
+	NODE *blist[POP_SIZE];
+	int j = 0;
+	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
+		blist[j] = iter;
+		j++;
+	}
+	#pragma omp parallel for
+	for(int i = 0; i < j; i++) {
+		if(cond_match(&blist[i]->cl->cond, state)) {
+			set_add(set, blist[i]->cl);
+			*num += blist[i]->cl->num;
+			(*size)++;                    
+		}
+	}
+#else
+	// add classifiers that match the input state to the match set  
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
 		if(cond_match(&iter->cl->cond, state)) {
 			set_add(set, iter->cl);
 			*num += iter->cl->num;
-			(*size)++;
+			(*size)++;                    
+			iter = iter->next;
 		}
 	}   
-	// perform covering if match set is < THETA_MNA
+#endif
+	// perform covering if match set size is < THETA_MNA
 	while(*size < THETA_MNA) {
 		// new classifier with matching condition
 		CL *new = malloc(sizeof(CL));

@@ -44,8 +44,6 @@ void neuron_learn(NEURON *n, double error);
 double d1sig(double x);
 double sig(double x);
 
-double tmpOut[MAX_LAYERS][MAX_NEURONS];
-
 void neural_init(BPN *bpn)
 {
  	// set number of layers
@@ -79,6 +77,7 @@ void neural_rand(BPN *bpn)
 
 void neural_propagate(BPN *bpn, double *input)
 {
+	double tmpOut[MAX_LAYERS][MAX_NEURONS];
 	memcpy(tmpOut[0], input, bpn->num_neurons[0]*sizeof(double));
 	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
