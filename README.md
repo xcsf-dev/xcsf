@@ -29,10 +29,10 @@ xcsf sine_1var
 ------------------------------------
 Some additional sources of LCS code:
 ------------------------------------
-Martin Butz's XCSJava:
+Martin Butz's XCS (java):
 http://illigal.org/wp-content/uploads/illigal/pub/src/XCSJava/
 
-Patrick Stalph and Martin Butz's JavaXCSF:
+Patrick Stalph and Martin Butz's XCSF (java):
 http://www.wsi.uni-tuebingen.de/lehrstuehle/cognitive-modeling/code/overview.html
 
 Pier Luca Lanzi and Daniele Loiacono's xcslib (C++):
