@@ -122,14 +122,17 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 		blist[j] = iter;
 		j++;
 	}
-	#pragma omp parallel for
+	int s = 0; int n = 0;
+	#pragma omp parallel for reduction(+:s,n)
 	for(int i = 0; i < j; i++) {
 		if(cond_match(&blist[i]->cl->cond, state)) {
 			set_add(set, blist[i]->cl);
-			*num += blist[i]->cl->num;
-			(*size)++;                    
+			n += blist[i]->cl->num;
+			s++;                    
 		}
 	}
+	*num = n;
+	*size = s;
 #else
 	// add classifiers that match the input state to the match set  
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
