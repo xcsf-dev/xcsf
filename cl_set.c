@@ -116,7 +116,7 @@ void pop_enforce_limit(NODE **kset)
 void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset)
 {
 #ifdef PARALLEL_MATCH
-	NODE *blist[POP_SIZE];
+	NODE *blist[pop_num];
 	int j = 0;
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
 		blist[j] = iter;
