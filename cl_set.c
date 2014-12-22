@@ -124,7 +124,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 	}
 	int s = 0; int n = 0;
 	#pragma omp parallel for reduction(+:s,n)
-	for(int i = 0; i < j; i++) {
+	for(int i = 0; i < pop_num; i++) {
 		if(cond_match(&blist[i]->cl->cond, state)) {
 			set_add(set, blist[i]->cl);
 			n += blist[i]->cl->num;
