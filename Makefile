@@ -29,7 +29,7 @@ PRED=0
 QUADRATIC=0 # for NLMS and RLS
 SAM=0
 GNUPLOT=0
-PARALLEL=1
+PARALLEL=0
 
 # conditions
 ifeq ($(COND),0)
