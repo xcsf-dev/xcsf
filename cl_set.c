@@ -123,14 +123,21 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 		blist[j] = iter;
 		j++;
 	}
-	#pragma omp parallel for
+	// update current matching conditions
+	int s = 0; int n = 0;
+	#pragma omp parallel for reduction(+:s,n)
 	for(int i = 0; i < pop_num; i++) {
 		if(cond_match(&blist[i]->cl->cond, state)) {
-			set_add(set, blist[i]->cl);
+			s++;
+			n += blist[i]->cl->num;
 		}
 	}
-	// count size and numerosity
-	set_validate(set, size, num);
+	*size = s; *num = n;
+	// build m list
+	for(int i = 0; i < pop_num; i++) {
+		if(blist[i]->cl->cond.m)
+			set_add(set, blist[i]->cl);
+	}
 #else
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
 		if(cond_match(&iter->cl->cond, state)) {

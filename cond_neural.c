@@ -76,8 +76,11 @@ _Bool cond_match(COND *cond, double *state)
 {
 	// classifier matches if the first output neuron > 0.5
 	neural_propagate(&cond->bpn, state);
-	if(neural_output(&cond->bpn, 0) > 0.5)
+	if(neural_output(&cond->bpn, 0) > 0.5) {
+		cond->m = true;
 		return true;
+	}
+	cond->m = false;
 	return false;
 }
 

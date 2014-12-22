@@ -20,6 +20,7 @@
 
 typedef struct COND {
 	BPN bpn;
+	_Bool m;
 #ifdef SELF_ADAPT_MUTATION
 	double *mu;
 #endif

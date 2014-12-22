@@ -20,6 +20,7 @@
 typedef struct COND {
 	double *interval;
 	int interval_length;
+	_Bool m;
 #ifdef SELF_ADAPT_MUTATION
 	double *mu;
 #endif

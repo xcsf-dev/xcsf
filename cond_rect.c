@@ -104,9 +104,12 @@ _Bool cond_match(COND *cond, double *state)
 {
 	// return whether the condition matches the state
 	for(int i = 0; i < cond->interval_length; i+=2) {
-		if(state[i/2] < cond->interval[i] || state[i/2] > cond->interval[i+1])
+		if(state[i/2] < cond->interval[i] || state[i/2] > cond->interval[i+1]) {
+			cond->m = false;
 			return false;
+		}
 	}
+	cond->m = true;
 	return true;
 }
 
