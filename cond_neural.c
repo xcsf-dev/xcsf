@@ -100,7 +100,7 @@ _Bool cond_mutate(COND *cond)
 	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
 			NEURON *n = &bpn->layer[l-1][i];
-			for(int w = 0; w < n->num_inputs; w++) {
+			for(int w = 0; w < n->num_inputs+1; w++) {
 				if(drand() < P_MUTATION) {
 					n->weights[w] = ((drand()*2.0)-1.0)*step;
 					if(n->weights[w] > 1.0)
