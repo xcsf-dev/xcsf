@@ -87,13 +87,12 @@ _Bool cond_match(COND *cond, double *state)
 _Bool cond_mutate(COND *cond)
 {
 	_Bool mod = false;
-	double step = S_MUTATION;
 #ifdef SELF_ADAPT_MUTATION
 	sam_adapt(cond->mu);
 	if(NUM_MU > 0) {
 		P_MUTATION = cond->mu[0];
 		if(NUM_MU > 1)
-			step = cond->mu[1];
+			S_MUTATION = cond->mu[1];
 	}
 #endif
 	BPN *bpn = &cond->bpn;
@@ -102,7 +101,7 @@ _Bool cond_mutate(COND *cond)
 			NEURON *n = &bpn->layer[l-1][i];
 			for(int w = 0; w < n->num_inputs+1; w++) {
 				if(drand() < P_MUTATION) {
-					n->weights[w] += ((drand()*2.0)-1.0)*step;
+					n->weights[w] += ((drand()*2.0)-1.0)*S_MUTATION;
 					if(n->weights[w] > 1.0)
 						n->weights[w] = 1.0;
 					else if(n->weights[w] < -1.0)
