@@ -101,12 +101,14 @@ _Bool cond_mutate(COND *cond)
 			NEURON *n = &bpn->layer[l-1][i];
 			for(int w = 0; w < n->num_inputs+1; w++) {
 				if(drand() < P_MUTATION) {
+					double orig = n->weights[w];
 					n->weights[w] += ((drand()*2.0)-1.0)*S_MUTATION;
 					if(n->weights[w] > 1.0)
 						n->weights[w] = 1.0;
 					else if(n->weights[w] < -1.0)
 						n->weights[w] = -1.0;
-					mod = true;
+					if(n->weights[w] != orig)
+						mod = true;
 				}
 			}
 		}
