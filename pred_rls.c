@@ -37,11 +37,6 @@ void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n);
 void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n);
 void init_matrix(double *matrix);
 
-double *tmp_input;
-double *tmp_vec;
-double *tmp_matrix1;
-double *tmp_matrix2;
-
 void pred_init(PRED *pred)
 {
 #ifdef QUADRATIC
@@ -59,13 +54,12 @@ void pred_init(PRED *pred)
 	pred->matrix = malloc(sizeof(double)*pow(pred->weights_length,2));
 	init_matrix(pred->matrix);
 
-	// initialise temporary arrays (only needs to be done once)
-	if(tmp_vec == NULL) {
-		tmp_vec = malloc(sizeof(double)*pred->weights_length);
-		tmp_input = malloc(sizeof(double)*pred->weights_length);
-		tmp_matrix1 = malloc(sizeof(double)*pow(pred->weights_length,2));
-		tmp_matrix2 = malloc(sizeof(double)*pow(pred->weights_length,2));
-	}
+	// initialise temporary arrays
+	// for parallel update each must be private
+	pred->tmp_vec = malloc(sizeof(double)*pred->weights_length);
+	pred->tmp_input = malloc(sizeof(double)*pred->weights_length);
+	pred->tmp_matrix1 = malloc(sizeof(double)*pow(pred->weights_length,2));
+	pred->tmp_matrix2 = malloc(sizeof(double)*pow(pred->weights_length,2));
 }
  	
 void init_matrix(double *matrix)
@@ -90,54 +84,61 @@ void pred_free(PRED *pred)
 {
 	free(pred->weights);
 	free(pred->matrix);
+	free(pred->tmp_input);
+	free(pred->tmp_vec);
+	free(pred->tmp_matrix1);
+	free(pred->tmp_matrix2);
 }
      
 void pred_update(PRED *pred, double p, double *state)
 {
-	tmp_input[0] = XCSF_X0;
+	pred->tmp_input[0] = XCSF_X0;
 	int index = 1;
 	// linear terms
 	for(int i = 0; i < state_length; i++)
-		tmp_input[index++] = state[i];
+		pred->tmp_input[index++] = state[i];
 #ifdef QUADRATIC
 	// quadratic terms
 	for(int i = 0; i < state_length; i++)
 		for(int j = 0; j < state_length; j++)
-			tmp_input[index++] = pow(state[i],2);
+			pred->tmp_input[index++] = pow(state[i],2);
 #endif
 
 	// determine gain vector = matrix * tmp_input
-	matrix_vector_multiply(pred->matrix, tmp_input, tmp_vec, pred->weights_length);
-	
+	matrix_vector_multiply(pred->matrix, pred->tmp_input, pred->tmp_vec, 
+			pred->weights_length);
+
 	// divide gain vector by lambda + tmp_vec
 	double divisor = RLS_LAMBDA;
 	for(int i = 0; i < pred->weights_length; i++)
-		divisor += tmp_input[i] * tmp_vec[i];
+		divisor += pred->tmp_input[i] * pred->tmp_vec[i];
 	for(int i = 0; i < pred->weights_length; i++)
-		tmp_vec[i] /= divisor;
+		pred->tmp_vec[i] /= divisor;
 
 	// update weights using the error
 	// pre has been updated for the current state during set_pred()
 	double error = p - pred->pre; // pred_compute(c, state);
 	for(int i = 0; i < pred->weights_length; i++)
-		pred->weights[i] += error * tmp_vec[i];
+		pred->weights[i] += error * pred->tmp_vec[i];
 
 	// update gain matrix
 	for(int i = 0; i < pred->weights_length; i++) {
 		for(int j = 0; j < pred->weights_length; j++) {
-			double tmp = tmp_vec[i] * tmp_input[j];
+			double tmp = pred->tmp_vec[i] * pred->tmp_input[j];
 			if(i == j)
-				tmp_matrix1[i*state_length+j] = 1.0 - tmp;
+				pred->tmp_matrix1[i*state_length+j] = 1.0 - tmp;
 			else
-				tmp_matrix1[i*state_length+j] = -tmp;
+				pred->tmp_matrix1[i*state_length+j] = -tmp;
 		}
 	}
-	matrix_matrix_multiply(tmp_matrix1, pred->matrix, tmp_matrix2, pred->weights_length);
+	matrix_matrix_multiply(pred->tmp_matrix1, pred->matrix, pred->tmp_matrix2, 
+			pred->weights_length);
 
 	// divide gain matrix entries by lambda
 	for(int row = 0; row < pred->weights_length; row++) {
 		for(int col = 0; col < pred->weights_length; col++) {
-			pred->matrix[row*state_length+col] = tmp_matrix2[row*state_length+col] / RLS_LAMBDA;
+			pred->matrix[row*state_length+col] = 
+				pred->tmp_matrix2[row*state_length+col] / RLS_LAMBDA;
 		}
 	}
 }
@@ -164,7 +165,7 @@ double pred_compute(PRED *pred, double *state)
 
 void pred_print(PRED *pred)
 {
-	printf("weights: ");
+	printf("RLS weights: ");
 	for(int i = 0; i < pred->weights_length; i++)
 		printf("%f, ", pred->weights[i]);
 	printf("\n");

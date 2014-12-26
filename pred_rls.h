@@ -22,6 +22,11 @@ typedef struct PRED {
 	double *weights;
 	double *matrix;
 	double pre;
+	// to enable parallel update each temp array must be private
+	double *tmp_input;
+	double *tmp_vec;
+	double *tmp_matrix1;
+	double *tmp_matrix2;
 } PRED;
 
 #endif
