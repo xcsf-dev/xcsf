@@ -69,7 +69,7 @@ void neural_rand(BPN *bpn)
  	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
 			NEURON *n = &bpn->layer[l-1][i];
-			for(int w = 0; w < n->num_inputs; w++) 
+			for(int w = 0; w < n->num_inputs+1; w++)
 				n->weights[w] = (drand()*2.0)-1.0;
 		}
 	}    
@@ -146,7 +146,7 @@ void neural_print(BPN *bpn)
 	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
 			NEURON *n = &bpn->layer[l-1][i];
-			for(int w = 0; w < n->num_inputs; w++) 
+			for(int w = 0; w < n->num_inputs+1; w++) 
 				printf(" %5f, ", n->weights[w]);
 		}
 	}
