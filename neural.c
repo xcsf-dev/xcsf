@@ -161,9 +161,9 @@ void neural_copy(BPN *to, BPN *from)
 			NEURON *b = &from->layer[l-1][i];
 			a->output = b->output;
 			a->state = b->state;
-			memcpy(a->weights, b->weights, sizeof(double)*a->num_inputs+1);
-			memcpy(a->weights_change, b->weights_change, sizeof(double)*a->num_inputs+1);
-			memcpy(a->input, b->input, sizeof(double)*a->num_inputs);
+			memcpy(a->weights, b->weights, sizeof(double)*b->num_inputs+1);
+			memcpy(a->weights_change, b->weights_change, sizeof(double)*b->num_inputs+1);
+			memcpy(a->input, b->input, sizeof(double)*b->num_inputs);
 			a->num_inputs = b->num_inputs;
 		}
 	}    
