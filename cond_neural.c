@@ -37,7 +37,8 @@
 
 void cond_init(COND *cond)
 {
-	neural_init(&cond->bpn);
+	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
+	neural_init(&cond->bpn, 3, neurons);
 #ifdef SELF_ADAPT_MUTATION
 	sam_init(&cond->mu);
 #endif

@@ -33,8 +33,8 @@ typedef struct BPN {
 double neural_output(BPN *bpn, int i);
 void neural_copy(BPN *to, BPN *from);
 void neural_free(BPN *bpn);
-void neural_init(BPN *bpn);
 void neural_learn(BPN *bpn, double *output, double *state);
 void neural_print(BPN *bpn);
 void neural_propagate(BPN *bpn, double *input);
 void neural_rand(BPN *bpn);
+void neural_init(BPN *bpn, int layers, int *neurons);

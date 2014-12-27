@@ -33,7 +33,6 @@
 #include "cons.h"
 #include "neural.h"
  
-#define NUM_OUTPUT 1 // only one output
 #define NEURAL_THETA 0.2
 #define MAX_LAYERS 3
 #define MAX_NEURONS 50
@@ -44,12 +43,11 @@ void neuron_learn(NEURON *n, double error);
 double d1sig(double x);
 double sig(double x);
 
-void neural_init(BPN *bpn)
+void neural_init(BPN *bpn, int layers, int *neurons)
 {
  	// set number of layers
-	bpn->num_layers = 3;
+	bpn->num_layers = layers;
 	// set number of neurons in each layer
-	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, NUM_OUTPUT};
 	bpn->num_neurons = malloc(sizeof(int)*bpn->num_layers);
 	memcpy(bpn->num_neurons, neurons, sizeof(int)*bpn->num_layers);
 	// array offsets by 1 since input layer is assumed   

@@ -37,7 +37,8 @@
 
 void pred_init(PRED *pred)
 {
-	neural_init(&pred->bpn);
+	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
+	neural_init(&pred->bpn, 3, neurons);
 }
 
 void pred_free(PRED *pred)
