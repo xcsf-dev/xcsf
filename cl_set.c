@@ -108,8 +108,10 @@ void pop_enforce_limit(NODE **kset)
 {
  	while(pop_num_sum > POP_SIZE) {
 		NODE *del = pop_del();
-		if(del->cl->num == 0)
+		if(del->cl->num == 0) {
 			set_add(kset, del->cl);
+			free(del);
+		}
 	}     
 }
 
