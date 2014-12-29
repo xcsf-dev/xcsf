@@ -71,47 +71,46 @@ void pop_add(CL *c)
 	}
 }
 
-NODE *pop_del()
+void pop_del(NODE **kset)
 {
 	// selects a classifier using roullete wheel selection with the deletion 
 	// vote; sets its numerosity to zero, and removes it from the population 
-	// set; returns the classifier to be deleted.
-	NODE *iter;
-	NODE *prev = NULL;
+	
+	// select a roullete point
 	double avg_fit = set_total_fit(&pset) / pop_num_sum;
 	double sum = 0.0;
-	for(iter = pset; iter != NULL; iter = iter->next)
+	for(NODE *iter = pset; iter != NULL; iter = iter->next)
 		sum += cl_del_vote(iter->cl, avg_fit);
 	double p = drand() * sum;
+
+	// find the classifier to delete using the point
 	sum = 0.0;
-	for(iter=pset; iter != NULL; prev=iter, iter=iter->next) {
+	NODE *prev = NULL;
+	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
 		sum += cl_del_vote(iter->cl, avg_fit);
 		if(sum > p) {
 			iter->cl->num--;
 			pop_num_sum--;
 			// macro classifier must be deleted
 			if(iter->cl->num == 0) {
+				set_add(kset, iter->cl);
 				pop_num--;
 				if(prev == NULL)
 					pset = iter->next;
 				else
-					prev->next = iter->next;
+					prev->next = iter->next;    
+				free(iter);
+				return;
 			}
-			return iter;
 		}
+		prev = iter; 
 	}   
-	return iter;
 }
- 
+
 void pop_enforce_limit(NODE **kset)
 {
- 	while(pop_num_sum > POP_SIZE) {
-		NODE *del = pop_del();
-		if(del->cl->num == 0) {
-			set_add(kset, del->cl);
-			free(del);
-		}
-	}     
+	while(pop_num_sum > POP_SIZE)
+		pop_del(kset);
 }
 
 void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset)
@@ -126,7 +125,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 	}
 	// update current matching conditions
 	int s = 0; int n = 0;
-	#pragma omp parallel for reduction(+:s,n)
+#pragma omp parallel for reduction(+:s,n)
 	for(int i = 0; i < pop_num; i++) {
 		if(cond_match(&blist[i]->cl->cond, state)) {
 			s++;
@@ -176,7 +175,7 @@ double set_pred(NODE **set, int size, double *state)
 		blist[j] = iter;
 		j++;
 	}
-	#pragma omp parallel for reduction(+:presum,fitsum)
+#pragma omp parallel for reduction(+:presum,fitsum)
 	for(int i = 0; i < size; i++) {
 		presum += pred_compute(&blist[i]->cl->pred, state) * blist[i]->cl->fit;
 		fitsum += blist[i]->cl->fit;

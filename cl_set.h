@@ -20,12 +20,12 @@ typedef struct NODE
 	struct NODE *next;
 } NODE;
  
-NODE *pop_del();
 double set_mean_time(NODE **set, int num_sum);
 double set_pred(NODE **set, int size, double *state);
 double set_total_fit(NODE **set);
 double set_total_time(NODE **set);
 void pop_add(CL *c);
+void pop_del(NODE **kset);
 void pop_init();
 void pop_enforce_limit(NODE **kset);
 void set_add(NODE **set, CL *c);
