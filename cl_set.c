@@ -350,27 +350,6 @@ void set_kill(NODE **set)
 	}
 }
 
-void set_clean(NODE **kset, NODE **set, _Bool in_set)
-{
-	// if in_set = false, removes classifiers from kset
-	// that are *not* in the set; otherwise removes only
-	// classifiers from kset that *are* in the set
-	NODE *iter, *kiter, *prev_kiter = NULL;
-	for(iter = *set; iter != NULL; iter = iter->next) {
-		for(kiter = *kset; kiter != NULL; kiter = kiter->next) {
-			if((!in_set && iter->cl != kiter->cl) ||
-					(in_set && iter->cl == kiter->cl)) {
-				if(prev_kiter == NULL)
-					*kset = kiter->next;
-				else
-					prev_kiter->next = kiter->next;
-				cl_free(kiter->cl);
-				free(kiter);
-			}
-		}
-	}
-}
-
 #ifdef SELF_ADAPT_MUTATION
 double set_avg_mut(NODE **set, int m)
 {
