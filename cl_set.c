@@ -35,7 +35,6 @@
 
 void set_subsumption(NODE **set, int *size, int *num, NODE **kset);
 void set_update_fit(NODE **set, int size, int num);
-void parallel_prop(double *state);
 
 void pop_init()
 {
