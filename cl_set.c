@@ -253,6 +253,7 @@ void set_subsumption(NODE **set, int *size, int *num, NODE **kset)
 		iter = *set; 
 		while(iter != NULL) {
 			CL *c = iter->cl;
+			iter = iter->next;
 			if(cond_general(&(s->cond), &(c->cond))) {
 				s->num += c->num;
 				c->num = 0;
@@ -260,7 +261,6 @@ void set_subsumption(NODE **set, int *size, int *num, NODE **kset)
 				set_validate(set, size, num);
 				set_validate(&pset, &pop_num, &pop_num_sum);
 			}
-			iter = iter->next;
 		}
 	}
 }
