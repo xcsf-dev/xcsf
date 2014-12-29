@@ -100,8 +100,8 @@ void pop_del(NODE **kset)
 				else
 					prev->next = iter->next;    
 				free(iter);
-				return;
 			}
+			return;
 		}
 		prev = iter; 
 	}   
