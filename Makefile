@@ -24,37 +24,34 @@ LIB=-lm -lpthread
 OPT=1
 GENPROF=0
 USEPROF=0
-COND=0
-PRED=0
-QUADRATIC=0 # for NLMS and RLS
+CON=0
+PRE=0
 SAM=0
 GNUPLOT=0
 PARALLEL=0
 
-# conditions
-ifeq ($(COND),0)
-	CFLAGS+= -DRECTANGLE_CONDITIONS
-else ifeq ($(COND),1)
-	CFLAGS+= -DNEURAL_CONDITIONS
-endif
+# conditions:
+# 0 = rect
+# 1 = neural
+	CFLAGS+= -DCON=$(CON)
+
 ifeq ($(SAM),1)
-	CFLAGS+= -DSELF_ADAPT_MUTATION
-endif  
-# predictions
-ifeq ($(PRED),0)
-	CFLAGS+= -DNLMS_PREDICTION
-else ifeq ($(PRED),1)
-	CFLAGS+= -DRLS_PREDICTION
-else ifeq ($(PRED),2)
-	CFLAGS+= -DNEURAL_PREDICTION
-endif
-ifeq ($(QUADRATIC),1)
-	CFLAGS+= -DQUADRATIC
-endif
+	CFLAGS+= -DSAM
+endif    
+
+# predictions: 
+# 0 = nlms linear
+# 1 = nlms quadratic
+# 2 = rls linear
+# 3 = rls quadratic
+# 4 = neural
+	CFLAGS+= -DPRE=$(PRE)
+
 # 2d plot display
 ifeq ($(GNUPLOT),1)
 	CFLAGS+= -DGNUPLOT
 endif
+
 # optimisations
 ifeq ($(OPT),1)
 	FLAGS+= -Ofast -march=native

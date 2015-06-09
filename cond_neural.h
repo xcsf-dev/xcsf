@@ -15,13 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#ifdef NEURAL_CONDITIONS
-#ifndef RECTANGLE_CONDITIONS
+#if CON == 1
 
 typedef struct COND {
 	BPN bpn;
 	_Bool m;
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	double *mu;
 #endif
 } COND;

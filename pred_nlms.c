@@ -25,7 +25,7 @@
  * Widrow-Hoff update.)
  */
 
-#ifdef NLMS_PREDICTION
+#if PRE == 0 || PRE == 1
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,7 +38,7 @@
 
 void pred_init(PRED *pred)
 {
-#ifdef QUADRATIC
+#if PRE == 1
 	// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
 	pred->weights_length = 1+2*state_length+state_length*(state_length-1)/2;
 #else
@@ -74,7 +74,7 @@ void pred_update(PRED *pred, double p, double *state)
 	// update linear coefficients
 	for(int i = 0; i < state_length; i++)
 		pred->weights[index++] += correction * state[i];
-#ifdef QUADRATIC
+#if PRE == 1
 	// update quadratic coefficients
 	for(int i = 0; i < state_length; i++) {
 		for(int j = i; j < state_length; j++) {
@@ -92,7 +92,7 @@ double pred_compute(PRED *pred, double *state)
 	// multiply linear coefficients with the prediction input
 	for(int i = 0; i < state_length; i++)
 		pre += pred->weights[index++] * state[i];
-#ifdef QUADRATIC
+#if PRE == 1
 	// multiply quadratic coefficients with prediction input
 	for(int i = 0; i < state_length; i++) {
 		for(int j = i; j < state_length; j++) {

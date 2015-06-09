@@ -23,7 +23,8 @@
  * a normal distribution.
  */
 
-#ifdef SELF_ADAPT_MUTATION   	
+#ifdef SAM
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

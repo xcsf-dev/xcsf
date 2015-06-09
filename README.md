@@ -1,16 +1,20 @@
 ===========================================================
 XCSF learning classifier system for function approximation.
 ===========================================================
-Linear or quadratic (if compiled with QUADRATIC=1) computed prediction, updated
-with the modified Delta update (also known as the Widrow-Hoff or least mean
-squares update.) Recursive least squares update can be enabled by compiling
-with PRED=1. MLP neural networks can be used to compute the prediction and
-updated with the backpropagation algorithm by compiling with PRED=2.
+Evolved Conditions:
+CON = 0: real-valued hyperrectangle intervals
+CON = 1: multilayer perceptron neural networks
 
-Conditions are represented as either real-valued intervals as in the original
-XCSF, or as MLP neural networks if compiled with COND=1.  
+Mutation for conditions:
+SAM = 0: fixed rate
+SAM = 1: self-adaptive rate
 
-Self-adaptive mutation rates can be enabled by compiling with SAM=1.
+Computed Predictions:
+PRE = 0: linear least squares (aka modified Delta update or Widrow-Hoff).
+PRE = 1: quadratic least squares
+PRE = 2: linear recursive least squares
+PRE = 3: quadratic recursive least squares
+PRE = 4: backpropagation multilayer perceptron neural networks
 
 An updated GNUPlot of the current system error can be enabled by compiling with
 GNUPLOT=1 (on GNU/Linux gnuplot-x11 must be installed.)

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef RLS_PREDICTION
+#if PRE == 2 || PRE == 3
 
 typedef struct PRED {
 	int weights_length;

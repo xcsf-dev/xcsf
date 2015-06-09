@@ -20,7 +20,8 @@
  * The recursive least square classifier computed prediction module.
  */
 
-#ifdef RLS_PREDICTION
+#if PRE == 2 || PRE == 3
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,7 +40,7 @@ void init_matrix(double *matrix, int n);
 
 void pred_init(PRED *pred)
 {
-#ifdef QUADRATIC
+#if PRE == 3
 	// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
 	pred->weights_length = 1+2*state_length+state_length*(state_length-1)/2;
 #else
@@ -93,7 +94,7 @@ void pred_update(PRED *pred, double p, double *state)
 	// linear terms
 	for(int i = 0; i < state_length; i++)
 		tmp_input[index++] = state[i];
-#ifdef QUADRATIC
+#if PRE == 3
 	// quadratic terms
 	for(int i = 0; i < state_length; i++)
 		for(int j = i; j < state_length; j++)
@@ -145,7 +146,7 @@ double pred_compute(PRED *pred, double *state)
 	// multiply linear coefficients with the prediction input
 	for(int i = 0; i < state_length; i++)
 		pre += pred->weights[index++] * state[i];
-#ifdef QUADRATIC
+#if PRE == 3
 	// multiply quadratic coefficients with prediction input
 	for(int i = 0; i < state_length; i++) {
 		for(int j = i; j < state_length; j++) {

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef NEURAL_PREDICTION
+#if PRE == 4
 
 typedef struct PRED {
 	BPN bpn;

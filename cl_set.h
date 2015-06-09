@@ -36,7 +36,7 @@ void set_print(NODE *set);
 void set_times(NODE **set, int time);
 void set_update(NODE **set, int *size, int *num, double r, NODE **kset, double *state);
 void set_validate(NODE **set, int *size, int *num);
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 double set_avg_mut(NODE **set, int m);
 #endif
 

@@ -57,7 +57,7 @@ void disp_perf(double *error, double *terror, int trial, int pnum)
 	terr /= (double)PERF_AVG_TRIALS;
 	printf("%d %.5f %.5f %d", trial, serr, terr, pnum);
 	fprintf(fout, "%d %.5f %.5f %d", trial, serr, terr, pnum);
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	for(int i = 0; i < NUM_MU; i++) {
 		printf(" %.5f", set_avg_mut(&pset, i));
 		fprintf(fout, " %.5f", set_avg_mut(&pset, i));
@@ -114,28 +114,28 @@ void gplot_init()
 	sprintf(buffer, "%s", probname);
 	strcat(title, buffer);
 
-#ifdef NEURAL_PREDICTION
-	strcat(title, " NEURAL PRED");
+#if CON == 0
+	strcat(title, " RECT COND");
 #else
-#ifdef QUADRATIC
-	strcat(title, ", QUADRATIC");
-#else
-	strcat(title, ", LINEAR");
+	strcat(title, " NEURAL COND");
 #endif
-#ifdef RLS_PREDICTION
-	strcat(title, " RLS");
-#elif NLMS_PREDICTION
-	strcat(title, " NLMS");
-#endif
-#endif
-#ifdef SELF_ADAPT_MUTATION
+
+#ifdef SAM
 	strcat(title, ", SAM");
 #endif
-#ifdef NEURAL_CONDITIONS
-	strcat(title, ", NEURAL COND");
-#else
-	strcat(title, ", RECT COND");
+
+#if PRE == 0
+	strcat(title, ", LINEAR NLMS");
+#elif PRE == 1
+	strcat(title, ", QUADRATIC NLMS");
+#elif PRE == 2
+	strcat(title, ", LINEAR RLS");
+#elif PRE == 3
+	strcat(title, ", QUADRATIC NLMS");
+#elif PRE == 4
+	strcat(title, ", NEURAL PRED");
 #endif
+
 	sprintf(buffer, ", P=%d", POP_SIZE);
 	strcat(title, buffer);
 

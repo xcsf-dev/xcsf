@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef RECTANGLE_CONDITIONS
+#if CON == 0
 
 typedef struct COND {
 	double *interval;
 	int interval_length;
 	_Bool m;
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	double *mu;
 #endif
 } COND;

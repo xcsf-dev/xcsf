@@ -24,8 +24,8 @@
  * covering, matching, copying, mutating, printing, etc.
  */
 
-//#ifdef NEURAL_CONDITIONS
-#ifndef RECTANGLE_CONDITIONS
+#if CON == 1
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,7 +39,7 @@ void cond_init(COND *cond)
 {
 	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
 	neural_init(&cond->bpn, 3, neurons);
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	sam_init(&cond->mu);
 #endif
 }
@@ -47,7 +47,7 @@ void cond_init(COND *cond)
 void cond_free(COND *cond)
 {
 	neural_free(&cond->bpn);
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	sam_free(cond->mu);
 #endif
 }
@@ -55,7 +55,7 @@ void cond_free(COND *cond)
 void cond_copy(COND *to, COND *from)
 {
 	neural_copy(&to->bpn, &from->bpn);
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	memcpy(to->mu, from->mu, sizeof(double)*NUM_MU);
 #endif
 }
@@ -88,7 +88,7 @@ _Bool cond_match(COND *cond, double *state)
 _Bool cond_mutate(COND *cond)
 {
 	_Bool mod = false;
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	sam_adapt(cond->mu);
 	if(NUM_MU > 0) {
 		P_MUTATION = cond->mu[0];

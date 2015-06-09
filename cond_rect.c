@@ -25,7 +25,8 @@
  * intervals. Includes operations for copying, mutating, printing, etc.
  */
 
-#ifdef RECTANGLE_CONDITIONS
+#if CON == 0
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -41,7 +42,7 @@ void cond_init(COND *cond)
 {
 	cond->interval_length = state_length*2;
 	cond->interval = malloc(sizeof(double) * cond->interval_length);
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	sam_init(&cond->mu);
 #endif
 }
@@ -49,7 +50,7 @@ void cond_init(COND *cond)
 void cond_free(COND *cond)
 {
 	free(cond->interval);
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	sam_free(cond->mu);
 #endif
 }
@@ -57,7 +58,7 @@ void cond_free(COND *cond)
 void cond_copy(COND *to, COND *from)
 {
 	memcpy(to->interval, from->interval, sizeof(double) * to->interval_length);
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	memcpy(to->mu, from->mu, sizeof(double)*NUM_MU);
 #endif
 }                             
@@ -153,7 +154,7 @@ _Bool cond_mutate(COND *cond)
 {
 	_Bool mod = false;
 	double step = S_MUTATION;
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 	sam_adapt(cond->mu);
 	if(NUM_MU > 0) {
 		P_MUTATION = cond->mu[0];

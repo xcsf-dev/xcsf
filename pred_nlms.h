@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef NLMS_PREDICTION
+#if PRE == 0 || PRE == 1
 
 typedef struct PRED {
 	int weights_length;

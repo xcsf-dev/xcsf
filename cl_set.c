@@ -348,7 +348,7 @@ void set_kill(NODE **set)
 	}
 }
 
-#ifdef SELF_ADAPT_MUTATION
+#ifdef SAM
 double set_avg_mut(NODE **set, int m)
 {
 	// returns the average classifier mutation rate
