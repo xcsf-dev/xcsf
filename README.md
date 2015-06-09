@@ -1,26 +1,26 @@
 ===========================================================
 XCSF learning classifier system for function approximation.
 ===========================================================
-Evolved Conditions:
-CON = 0: real-valued hyperrectangle intervals
-CON = 1: multilayer perceptron neural networks
+Evolved Conditions:<br>
+CON = 0: real-valued hyperrectangle intervals<br>
+CON = 1: multilayer perceptron neural networks<br>
 
-Mutation for conditions:
-SAM = 0: fixed rate
-SAM = 1: self-adaptive rate
+Mutation for conditions:<br>
+SAM = 0: fixed rate<br>
+SAM = 1: self-adaptive rate<br>
 
-Computed Predictions:
-PRE = 0: linear least squares (aka modified Delta update or Widrow-Hoff).
-PRE = 1: quadratic least squares
-PRE = 2: linear recursive least squares
-PRE = 3: quadratic recursive least squares
-PRE = 4: backpropagation multilayer perceptron neural networks
+Computed Predictions:<br>
+PRE = 0: linear least squares (aka modified Delta update or Widrow-Hoff).<br>
+PRE = 1: quadratic least squares<br>
+PRE = 2: linear recursive least squares<br>
+PRE = 3: quadratic recursive least squares<br>
+PRE = 4: backpropagation multilayer perceptron neural networks<br>
 
-An updated GNUPlot of the current system error can be enabled by compiling with
-GNUPLOT=1 (on GNU/Linux gnuplot-x11 must be installed.)
+An updated GNUPlot of the current system error can be enabled by compiling with<br>
+GNUPLOT=1 (on GNU/Linux gnuplot-x11 must be installed.)<br>
 
-The matching and set prediction functions (where most processing occurs) can be
-parallelised using OpenMP by compiling with PARALLEL=1.
+The matching and set prediction functions (where most processing occurs) can be<br>
+parallelised using OpenMP by compiling with PARALLEL=1.<br>
 
 --------------
 Example usage:
