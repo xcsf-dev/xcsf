@@ -17,9 +17,11 @@
 
 #include "neural.h"
 #include "gp.h"
+#include "dgp.h"
 #include "cond_rect.h"
 #include "cond_neural.h"
 #include "cond_gp.h"
+#include "cond_dgp.h"
 #include "pred_nlms.h"
 #include "pred_rls.h"
 #include "pred_neural.h"

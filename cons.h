@@ -57,6 +57,7 @@ double MAX_CON; // maximum value of a hyperrectangle interval
 double MIN_CON; // minimum value of a hyperrectangle interval
 double S_MUTATION; // maximum amount to mutate an allele
 int NUM_HIDDEN_NEURONS; // number of hidden neurons to perform matching condition
+int DGP_NUM_NODES; // number of nodes in a DGP graph
 // prediction parameters
 double XCSF_ETA; // learning rate for updating the computed prediction
 double XCSF_X0; // prediction weight vector offset value

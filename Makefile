@@ -24,7 +24,7 @@ LIB=-lm -lpthread
 OPT=1
 GENPROF=0
 USEPROF=0
-CON=1
+CON=3
 PRE=4
 SAM=1
 GNUPLOT=1
@@ -34,6 +34,7 @@ PARALLEL=1
 # 0 = rect
 # 1 = neural
 # 2 = tree GP
+# 3 = dynamical graph GP
 	CFLAGS+= -DCON=$(CON)
 
 ifeq ($(SAM),1)

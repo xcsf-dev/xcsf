@@ -120,6 +120,8 @@ void gplot_init()
 	strcat(title, " NEURAL COND");
 #elif CON == 2
 	strcat(title, " TREE-GP COND");
+#elif CON == 3
+	strcat(title, " GRAPH-DGP COND");
 #endif
 
 #ifdef SAM
