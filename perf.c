@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2015--2016 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -116,8 +116,10 @@ void gplot_init()
 
 #if CON == 0
 	strcat(title, " RECT COND");
-#else
+#elif CON == 1
 	strcat(title, " NEURAL COND");
+#elif CON == 2
+	strcat(title, " TREE-GP COND");
 #endif
 
 #ifdef SAM

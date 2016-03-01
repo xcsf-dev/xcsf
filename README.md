@@ -4,6 +4,7 @@ XCSF learning classifier system for function approximation.
 Evolved Conditions:<br>
 CON = 0: real-valued hyperrectangle intervals<br>
 CON = 1: multilayer perceptron neural networks<br>
+CON = 2: GP trees<br>
 
 Mutation for conditions:<br>
 SAM = 0: fixed rate<br>
@@ -29,21 +30,3 @@ To initiate the learning of in/sine_1var_train.dat and test performance on
 in/sine_1var_test.dat run: 
 
 xcsf sine_1var
-
-------------------------------------
-Some additional sources of LCS code:
-------------------------------------
-Martin Butz's XCS (java):
-http://illigal.org/wp-content/uploads/illigal/pub/src/XCSJava/
-
-Patrick Stalph and Martin Butz's XCSF (java):
-http://www.wsi.uni-tuebingen.de/lehrstuehle/cognitive-modeling/code/overview.html
-
-Pier Luca Lanzi and Daniele Loiacono's xcslib (C++):
-http://sourceforge.net/projects/xcslib/
-
-Jaume Bacardit, Natalio Krasnogor and Maria Franco's GAssist (C++):
-http://ico2s.org/software/gassist.html
-
-Ryan Urbanowicz's UCS, XCS, ExSTraCS (python):
-http://www.ryanurbanowicz.com/software

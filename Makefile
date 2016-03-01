@@ -1,5 +1,5 @@
 # 
-#  Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+#  Copyright (C) 2015--2016 Richard Preen <rpreen@gmail.com>
 # 
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -24,15 +24,16 @@ LIB=-lm -lpthread
 OPT=1
 GENPROF=0
 USEPROF=0
-CON=0
-PRE=0
-SAM=0
-GNUPLOT=0
-PARALLEL=0
+CON=1
+PRE=4
+SAM=1
+GNUPLOT=1
+PARALLEL=1
 
 # conditions:
 # 0 = rect
 # 1 = neural
+# 2 = tree GP
 	CFLAGS+= -DCON=$(CON)
 
 ifeq ($(SAM),1)

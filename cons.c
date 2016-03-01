@@ -29,6 +29,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "cons.h"
+#if CON == 2
+#include "gp.h"
+#endif
 
 #define MAXLEN 127
 typedef char *pchar;
@@ -106,6 +109,10 @@ void constants_init(int argc, char **argv)
 		if(argc > 3)
 			NUM_EXPERIMENTS = atoi(argv[3]);
 	}    
+
+#if CON == 2
+	tree_init_cons();
+#endif
 } 
 void trim(pchar s) // Remove tabs/spaces/lf/cr  both ends
 {

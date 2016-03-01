@@ -1,5 +1,5 @@
  /*
- * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2015--2016 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 
 #include "neural.h"
+#include "gp.h"
 #include "cond_rect.h"
 #include "cond_neural.h"
+#include "cond_gp.h"
 #include "pred_nlms.h"
 #include "pred_rls.h"
 #include "pred_neural.h"
