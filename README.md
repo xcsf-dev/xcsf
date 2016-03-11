@@ -1,5 +1,5 @@
 ===========================================================
-XCSF learning classifier system for function approximation.
+XCSF learning classifier system
 ===========================================================
 Evolved Conditions:<br>
 CON = 0: real-valued hyperrectangle intervals<br>
