@@ -135,7 +135,7 @@ void gplot_init()
 #elif PRE == 2
 	strcat(title, ", LINEAR RLS");
 #elif PRE == 3
-	strcat(title, ", QUADRATIC NLMS");
+	strcat(title, ", QUADRATIC RLS");
 #elif PRE == 4
 	strcat(title, ", NEURAL PRED");
 #endif
