@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012--2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,9 +51,9 @@ void pred_copy(PRED *to, PRED *from)
 	neural_copy(&to->bpn, &from->bpn);
 }
 
-double out[1];
 void pred_update(PRED *pred, double p, double *state)
 {
+	double out[1];
 	out[0] = p;
 	neural_learn(&pred->bpn, out, state);
 }

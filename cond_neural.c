@@ -104,10 +104,10 @@ _Bool cond_mutate(COND *cond)
 				if(drand() < P_MUTATION) {
 					double orig = n->weights[w];
 					n->weights[w] += ((drand()*2.0)-1.0)*S_MUTATION;
-					if(n->weights[w] > 1.0)
-						n->weights[w] = 1.0;
-					else if(n->weights[w] < -1.0)
-						n->weights[w] = -1.0;
+//					if(n->weights[w] > 1.0)
+//						n->weights[w] = 1.0;
+//					else if(n->weights[w] < -1.0)
+//						n->weights[w] = -1.0;
 					if(n->weights[w] != orig)
 						mod = true;
 				}

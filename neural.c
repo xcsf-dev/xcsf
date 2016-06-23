@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012--2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,6 @@
 #include "cons.h"
 #include "neural.h"
  
-#define NEURAL_THETA 0.2
 #define MAX_LAYERS 3
 #define MAX_NEURONS 50
  
@@ -42,6 +41,8 @@ void neuron_init(NEURON *n, int num_inputs);
 void neuron_learn(NEURON *n, double error);
 double d1sig(double x);
 double sig(double x);
+double sig_plain(double x);
+double gaussian(double x);
 
 void neural_init(BPN *bpn, int layers, int *neurons)
 {
@@ -209,11 +210,23 @@ void neuron_learn(NEURON *n, double error)
 
 double sig(double x)
 {
-	return 2.0 / (1.0 + exp(-1.0 * x + NEURAL_THETA)) - 1.0;
+	// bipolar sigmoid: outputs [-1,1]
+	return 2.0 / (1.0 + exp(-x)) - 1.0;
 }
 
 double d1sig(double x)
 {
-	double r = exp(-1.0 * x + NEURAL_THETA);
+	double r = exp(-x);
 	return (2.0 * r) / ((r + 1.0) * (r + 1.0));
 }
+
+double sig_plain(double x)
+{
+	// plain sigmoid: outputs [0,1]
+	return 1.0 / (1.0 + exp(-x));
+}
+
+double gaussian(double x)
+{
+	return exp((-x * x) / 2.0);
+} 

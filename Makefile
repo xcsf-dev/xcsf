@@ -1,5 +1,5 @@
 # 
-#  Copyright (C) 2015--2016 Richard Preen <rpreen@gmail.com>
+#  Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
 # 
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -24,8 +24,8 @@ LIB=-lm -lpthread
 OPT=1
 GENPROF=0
 USEPROF=0
-CON=3
-PRE=4
+CON=0
+PRE=3
 SAM=1
 GNUPLOT=1
 PARALLEL=1
