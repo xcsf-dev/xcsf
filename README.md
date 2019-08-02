@@ -1,6 +1,5 @@
-=================================
 XCSF learning classifier system
-=================================
+-----------
 Evolved Conditions:<br>
 CON = 0: real-valued hyperrectangle intervals<br>
 CON = 1: multilayer perceptron neural networks<br>
@@ -26,7 +25,7 @@ parallelised using OpenMP by compiling with PARALLEL=1.<br>
 
 --------------
 Example usage:
---------------
+
 To initiate the learning of in/sine_1var_train.dat and test performance on
 in/sine_1var_test.dat run: 
 
