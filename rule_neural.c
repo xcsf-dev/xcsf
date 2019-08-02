@@ -91,8 +91,6 @@ _Bool cond_mutate(CL *c)
 	sam_adapt(c->cond.mu);
 	if(NUM_MU > 0) {
 		S_MUTATION = c->cond.mu[0];
-		if(NUM_MU > 1)
-			P_MUTATION = c->cond.mu[1];
 	}
 #endif
 	BPN *bpn = &c->cond.bpn;
@@ -100,12 +98,10 @@ _Bool cond_mutate(CL *c)
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
 			NEURON *n = &bpn->layer[l-1][i];
 			for(int w = 0; w < n->num_inputs+1; w++) {
-				if(drand() < P_MUTATION) {
-					double orig = n->weights[w];
-					n->weights[w] += ((drand()*2.0)-1.0)*S_MUTATION;
-					if(n->weights[w] != orig)
-						mod = true;
-				}
+				double orig = n->weights[w];
+				n->weights[w] += ((drand()*2.0)-1.0)*S_MUTATION;
+				if(n->weights[w] != orig)
+					mod = true;
 			}
 		}
 	}
