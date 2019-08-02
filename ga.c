@@ -62,7 +62,8 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 		c2->fit = c2p->fit / c2p->num;
 		c1->fit = FIT_REDUC * (c1->fit + c2->fit)/2.0;
 		c2->fit = c1->fit;
-#ifdef NEURAL_CONDITIONS
+#if CON == -1 || CON == 1 || CON == 2 || CON == 3 || CON == 11 || CON == 12
+		// conditions that do not fully support subsumption or crossover
 		if(!cl_mutate(c1) && GA_SUBSUMPTION) {
 			c1p->num++;
 			pop_num_sum++;
