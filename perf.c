@@ -122,7 +122,9 @@ void gplot_init()
 	strcat(title, " TREE-GP COND");
 #elif CON == 3
 	strcat(title, " GRAPH-DGP COND");
-#elif CON == 10
+#elif CON == 11
+	strcat(title, " GRAPH-DGP RULE");
+#elif CON == 12
 	strcat(title, " NEURAL RULE");
 #endif
 

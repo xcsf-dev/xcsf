@@ -7,6 +7,7 @@ CON = 2: GP trees<br>
 CON = 3: dynamical GP graphs<br>
 <br>
 CON = 11: both conditions and predictions in single dynamical GP graphs<br>
+CON = 12: both conditions and predictions in single neural networks<br>
 
 Mutation for conditions:<br>
 SAM = 0: fixed rate<br>

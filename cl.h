@@ -26,6 +26,7 @@
 #include "pred_rls.h"
 #include "pred_neural.h"
 #include "rule_dgp.h"
+#include "rule_neural.h"
 
 typedef struct CL {
 	COND cond;
