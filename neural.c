@@ -155,6 +155,7 @@ void neural_copy(BPN *to, BPN *from)
 		for(int i = 0; i < from->num_neurons[l]; i++) {
 			NEURON *a = &to->layer[l-1][i];
 			NEURON *b = &from->layer[l-1][i];
+			a->activation_ptr = b->activation_ptr;
 			a->output = b->output;
 			a->state = b->state;
 			memcpy(a->weights, b->weights, sizeof(double)*b->num_inputs+1);
