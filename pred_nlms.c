@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,8 +36,9 @@
 #include "cons.h"
 #include "cl.h"
 
-void pred_init(PRED *pred)
+void pred_init(CL *c)
 {
+	PRED *pred = &c->pred;
 #if PRE == 1
 	// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
 	pred->weights_length = 1+2*state_length+state_length*(state_length-1)/2;
@@ -50,18 +51,19 @@ void pred_init(PRED *pred)
 		pred->weights[i] = 0.0;
 }
 
-void pred_copy(PRED *to, PRED *from)
+void pred_copy(CL *to, CL *from)
 {
-	memcpy(to->weights, from->weights, sizeof(double)*from->weights_length);
+	memcpy(to->pred.weights, from->pred.weights, sizeof(double)*from->pred.weights_length);
 }
 
-void pred_free(PRED *pred)
+void pred_free(CL *c)
 {
-	free(pred->weights);
+	free(c->pred.weights);
 }
 
-void pred_update(PRED *pred, double p, double *state)
+void pred_update(CL *c, double p, double *state)
 {
+	PRED *pred = &c->pred;
 	// pre has been updated for the current state during set_pred()
 	double error = p - pred->pre; //pred_compute(c, state);
 	double norm = XCSF_X0 * XCSF_X0;
@@ -84,8 +86,9 @@ void pred_update(PRED *pred, double p, double *state)
 #endif
 }
 
-double pred_compute(PRED *pred, double *state)
+double pred_compute(CL *c, double *state)
 {
+	PRED *pred = &c->pred;
 	// first coefficient is offset
 	double pre = XCSF_X0 * pred->weights[0];
 	int index = 1;
@@ -104,8 +107,9 @@ double pred_compute(PRED *pred, double *state)
 	return pre;
 } 
 
-void pred_print(PRED *pred)
+void pred_print(CL *c)
 {
+	PRED *pred = &c->pred;
 	printf("weights: ");
 	for(int i = 0; i < pred->weights_length; i++)
 		printf("%f, ", pred->weights[i]);

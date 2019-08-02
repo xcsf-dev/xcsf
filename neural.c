@@ -37,14 +37,10 @@
 #define MAX_NEURONS 50
  
 double neuron_propagate(NEURON *n, double *input);
-void neuron_init(NEURON *n, int num_inputs);
+void neuron_init(NEURON *n, int num_inputs, double (*aptr)(double));
 void neuron_learn(NEURON *n, double error);
-double d1sig(double x);
-double sig(double x);
-double sig_plain(double x);
-double gaussian(double x);
 
-void neural_init(BPN *bpn, int layers, int *neurons)
+void neural_init(BPN *bpn, int layers, int *neurons, double (**aptr)(double))
 {
  	// set number of layers
 	bpn->num_layers = layers;
@@ -56,10 +52,10 @@ void neural_init(BPN *bpn, int layers, int *neurons)
 	bpn->layer = (NEURON**) malloc((bpn->num_layers-1)*sizeof(NEURON*));
 	for(int l = 1; l < bpn->num_layers; l++) 
 		bpn->layer[l-1] = (NEURON*) malloc(bpn->num_neurons[l]*sizeof(NEURON));
-	// malloc neurons in each layer
+	// malloc neurons in each other layer
 	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++)
-			neuron_init(&bpn->layer[l-1][i], bpn->num_neurons[l-1]);
+			neuron_init(&bpn->layer[l-1][i], bpn->num_neurons[l-1], aptr[l-1]);
 	}   
 }
 
@@ -100,7 +96,7 @@ void neural_learn(BPN *bpn, double *output, double *state)
 	double out_error[bpn->num_neurons[bpn->num_layers-1]];
 	int o = bpn->num_layers-2;
 	for(int i = 0; i < bpn->num_neurons[bpn->num_layers-1]; i++) {
-		out_error[i] = (output[i] - bpn->layer[o][i].output) * d1sig(bpn->layer[o][i].state);
+		out_error[i] = (output[i] - bpn->layer[o][i].output);
 		neuron_learn(&bpn->layer[o][i], out_error[i]);
 	}
 	// hidden layers
@@ -113,7 +109,6 @@ void neural_learn(BPN *bpn, double *output, double *state)
 			// this neuron's error uses the next layer's error
 			for(int k = 0; k < bpn->num_neurons[l+1]; k++)
 				error[j] += prev_error[k] * bpn->layer[l][k].weights[j];
-			error[j] *= d1sig(bpn->layer[l-1][j].state);
 			neuron_learn(&bpn->layer[l-1][j], error[j]);
 		}
 		prev_error = error;
@@ -170,8 +165,9 @@ void neural_copy(BPN *to, BPN *from)
 	}    
 }
  
-void neuron_init(NEURON *n, int num_inputs)
+void neuron_init(NEURON *n, int num_inputs, double (*aptr)(double))
 {
+	n->activation_ptr = aptr;
 	n->output = 0.0;
 	n->state = 0.0;
 	n->num_inputs = num_inputs; 
@@ -193,7 +189,7 @@ double neuron_propagate(NEURON *n, double *input)
 		n->state += n->weights[i] * input[i];
 	}
 	n->state += n->weights[n->num_inputs];
-	n->output = sig(n->state);
+	n->output = (n->activation_ptr)(n->state);
 	return n->output;
 }
  
@@ -210,7 +206,7 @@ void neuron_learn(NEURON *n, double error)
 
 double sig(double x)
 {
-	// bipolar sigmoid: outputs [-1,1]
+	// bipolar logistic function: outputs [-1,1]
 	return 2.0 / (1.0 + exp(-x)) - 1.0;
 }
 
@@ -230,3 +226,13 @@ double gaussian(double x)
 {
 	return exp((-x * x) / 2.0);
 } 
+
+double relu(double x)
+{
+	return max(0.0, x);
+}
+
+double bent_identity(double x)
+{
+	return ((sqrt(x*x+1.0)-1.0)/2.0)+x;
+}

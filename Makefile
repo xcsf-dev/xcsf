@@ -30,6 +30,11 @@ SAM=1
 GNUPLOT=1
 PARALLEL=1
 
+# monolithic condition/prediction
+ifeq ($(CON),10)
+	PRE=10
+endif
+
 # conditions:
 # 0 = rect
 # 1 = neural

@@ -35,39 +35,40 @@
 #include "cons.h"
 #include "cl.h"
 
-void pred_init(PRED *pred)
+void pred_init(CL *c)
 {
 	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
-	neural_init(&pred->bpn, 3, neurons);
+	double (*activations[2])(double) = {sig, sig};
+	neural_init(&c->pred.bpn, 3, neurons, activations);
 }
 
-void pred_free(PRED *pred)
+void pred_free(CL *c)
 {
-	neural_free(&pred->bpn);
+	neural_free(&c->pred.bpn);
 }
 
-void pred_copy(PRED *to, PRED *from)
+void pred_copy(CL *to, CL *from)
 {
-	neural_copy(&to->bpn, &from->bpn);
+	neural_copy(&to->pred.bpn, &from->pred.bpn);
 }
 
-void pred_update(PRED *pred, double p, double *state)
+void pred_update(CL *c, double p, double *state)
 {
 	double out[1];
 	out[0] = p;
-	neural_learn(&pred->bpn, out, state);
+	neural_learn(&c->pred.bpn, out, state);
 }
 
-double pred_compute(PRED *pred, double *state)
+double pred_compute(CL *c, double *state)
 {
-	neural_propagate(&pred->bpn, state);
-	pred->pre = neural_output(&pred->bpn, 0);
-	return pred->pre;
+	neural_propagate(&c->pred.bpn, state);
+	c->pred.pre = neural_output(&c->pred.bpn, 0);
+	return c->pred.pre;
 }
 
-void pred_print(PRED *pred)
+void pred_print(CL *c)
 {
-	neural_print(&pred->bpn);
+	neural_print(&c->pred.bpn);
 }  
 
 #endif

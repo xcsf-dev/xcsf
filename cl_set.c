@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ void pop_init()
 		while(pop_num_sum < POP_SIZE) {
 			CL *new = malloc(sizeof(CL));
 			cl_init(new, POP_SIZE, 0);
-			cond_rand(&new->cond);
+			cl_rand(new);
 			pop_add(new);
 		}
 	}
@@ -127,7 +127,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 	int s = 0; int n = 0;
 #pragma omp parallel for reduction(+:s,n)
 	for(int i = 0; i < pop_num; i++) {
-		if(cond_match(&blist[i]->cl->cond, state)) {
+		if(cl_match(blist[i]->cl, state)) {
 			s++;
 			n += blist[i]->cl->num;
 		}
@@ -135,12 +135,12 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 	*size = s; *num = n;
 	// build m list
 	for(int i = 0; i < pop_num; i++) {
-		if(blist[i]->cl->cond.m)
+		if(cl_match_state(blist[i]->cl))
 			set_add(set, blist[i]->cl);
 	}
 #else
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
-		if(cond_match(&iter->cl->cond, state)) {
+		if(cl_match(iter->cl, state)) {
 			set_add(set, iter->cl);
 			*num += iter->cl->num;
 			(*size)++;                    
@@ -152,7 +152,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 		// new classifier with matching condition
 		CL *new = malloc(sizeof(CL));
 		cl_init(new, *num+1, time);
-		cond_cover(&new->cond, state);
+		cl_cover(new, state);
 		(*size)++;
 		(*num)++;
 		pop_add(new);
@@ -177,13 +177,13 @@ double set_pred(NODE **set, int size, double *state)
 	}
 #pragma omp parallel for reduction(+:presum,fitsum)
 	for(int i = 0; i < size; i++) {
-		presum += pred_compute(&blist[i]->cl->pred, state) * blist[i]->cl->fit;
+		presum += cl_predict(blist[i]->cl, state) * blist[i]->cl->fit;
 		fitsum += blist[i]->cl->fit;
 	}
 #else
 	(void)size; // remove unused parameter warnings
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		presum += pred_compute(&iter->cl->pred, state) * iter->cl->fit;
+		presum += cl_predict(iter->cl, state) * iter->cl->fit;
 		fitsum += iter->cl->fit;
 	}
 #endif
@@ -242,7 +242,7 @@ void set_subsumption(NODE **set, int *size, int *num, NODE **kset)
 	for(iter = *set; iter != NULL; iter = iter->next) {
 		CL *c = iter->cl;
 		if(cl_subsumer(c)) {
-			if(s == NULL || cond_general(&(c->cond), &(s->cond)))
+			if(s == NULL || cl_general(c, s))
 				s = c;
 		}
 	}
@@ -252,7 +252,7 @@ void set_subsumption(NODE **set, int *size, int *num, NODE **kset)
 		while(iter != NULL) {
 			CL *c = iter->cl;
 			iter = iter->next;
-			if(cond_general(&(s->cond), &(c->cond))) {
+			if(cl_general(s, c)) {
 				s->num += c->num;
 				c->num = 0;
 				set_add(kset, c);
@@ -355,7 +355,7 @@ double set_avg_mut(NODE **set, int m)
 	double sum = 0.0;
 	int cnt = 0;
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		sum += iter->cl->cond.mu[m];
+		sum += cl_mutation_rate(iter->cl, m);
 		cnt++;
 	}
 	return sum/cnt;

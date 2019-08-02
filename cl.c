@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,15 +43,15 @@ void cl_init(CL *c, int size, int time)
 	c->exp = 0;
 	c->size = size;
 	c->time = time;
-	cond_init(&c->cond);
-	pred_init(&c->pred);
+	cond_init(c);
+	pred_init(c);
 }
 
 void cl_copy(CL *to, CL *from)
 {
 	cl_init(to, from->size, from->time);
-	cond_copy(&to->cond, &from->cond);
-	pred_copy(&to->pred, &from->pred);
+	cond_copy(to, from);
+	pred_copy(to, from);
 }
 
 _Bool cl_subsumer(CL *c)
@@ -81,7 +81,7 @@ void cl_update(CL *c, double *state, double p, int set_num)
 {
 	c->exp++;
 	cl_update_err(c, p);
-	pred_update(&c->pred, p, state);
+	pred_update(c, p, state);
 	cl_update_size(c, set_num);
 }
 
@@ -111,14 +111,66 @@ double cl_update_size(CL *c, double num_sum)
 
 void cl_free(CL *c)
 {
-	cond_free(&c->cond);
-	pred_free(&c->pred);
+	cond_free(c);
+	pred_free(c);
 	free(c);
 }
 
 void cl_print(CL *c)
 {
-	cond_print(&c->cond);
-	pred_print(&c->pred);
+	cond_print(c);
+	pred_print(c);
 	printf("%f %f %d %d %f %d\n", c->err, c->fit, c->num, c->exp, c->size, c->time);
 }  
+
+void cl_cover(CL *c, double *state)
+{
+	cond_cover(c, state);
+}
+
+_Bool cl_general(CL *c1, CL *c2)
+{
+    return cond_general(c1, c2);
+}
+
+_Bool cl_subsumes(CL *c1, CL *c2)
+{
+	return cond_subsumes(c1, c2);
+}
+
+void cl_rand(CL *c)
+{
+	cond_rand(c);
+}
+
+_Bool cl_match(CL *c, double *state)
+{
+	return cond_match(c, state);
+}
+
+_Bool cl_match_state(CL *c)
+{
+	return c->cond.m;
+}
+
+double cl_predict(CL *c, double *state)
+{
+	return pred_compute(c, state);
+}
+
+_Bool cl_mutate(CL *c)
+{
+	return cond_mutate(c);
+}
+ 
+_Bool cl_crossover(CL *c1, CL *c2)
+{
+	return cond_crossover(c1, c2);
+}  
+
+#ifdef SAM
+double cl_mutation_rate(CL *c, int m)
+{
+	return c->cond.mu[m];
+}
+#endif

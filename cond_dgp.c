@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2016--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,95 +27,95 @@
 #include "cons.h"
 #include "cl.h"
 
-void cond_init(COND *cond)
+void cond_init(CL *c)
 {
-	graph_init(&cond->dgp, DGP_NUM_NODES);
+	graph_init(&c->cond.dgp, DGP_NUM_NODES);
 #ifdef SAM
-	sam_init(&cond->mu);
+	sam_init(&c->cond.mu);
 #endif
 }
 
-void cond_free(COND *cond)
+void cond_free(CL *c)
 {
-	graph_free(&cond->dgp);
+	graph_free(&c->cond.dgp);
 #ifdef SAM
-	sam_free(cond->mu);
+	sam_free(c->cond.mu);
 #endif
 }
 
-void cond_copy(COND *to, COND *from)
+void cond_copy(CL *to, CL *from)
 {
-	graph_copy(&to->dgp, &from->dgp);
+	graph_copy(&to->cond.dgp, &from->cond.dgp);
 #ifdef SAM
-	memcpy(to->mu, from->mu, sizeof(double)*NUM_MU);
+	memcpy(to->cond.mu, from->cond.mu, sizeof(double)*NUM_MU);
 #endif
 }
 
-void cond_rand(COND *cond)
+void cond_rand(CL *c)
 {
-	graph_rand(&cond->dgp);
+	graph_rand(&c->cond.dgp);
 }
 
-void cond_cover(COND *cond, double *state)
+void cond_cover(CL *c, double *state)
 {
 	// generates random graphs until the network matches for input state
 	do {
-		cond_rand(cond);
-	} while(!cond_match(cond, state));
+		cond_rand(c);
+	} while(!cond_match(c, state));
 }
 
-_Bool cond_match(COND *cond, double *state)
+_Bool cond_match(CL *c, double *state)
 {
 	// classifier matches if the first output node > 0.5
-	graph_update(&cond->dgp, state);
-	if(graph_output(&cond->dgp, 0) > 0.5) {
-		cond->m = true;
+	graph_update(&c->cond.dgp, state);
+	if(graph_output(&c->cond.dgp, 0) > 0.5) {
+		c->cond.m = true;
 		return true;
 	}
-	cond->m = false;
+	c->cond.m = false;
 	return false;
 }
 
-_Bool cond_mutate(COND *cond)
+_Bool cond_mutate(CL *c)
 {
 	_Bool mod = false;
 #ifdef SAM
-	sam_adapt(cond->mu);
+	sam_adapt(c->cond.mu);
 	if(NUM_MU > 0)
-		P_MUTATION = cond->mu[0];
+		P_MUTATION = c->cond.mu[0];
 #endif
 
-	mod = graph_mutate(&cond->dgp, P_MUTATION);
+	mod = graph_mutate(&c->cond.dgp, P_MUTATION);
 	return mod;
 }
 
-_Bool cond_crossover(COND *cond1, COND *cond2)
+_Bool cond_crossover(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
-	(void)cond1;
-	(void)cond2;
+	(void)c1;
+	(void)c2;
 	return false;
 }
 
-_Bool cond_subsumes(COND *cond1, COND *cond2)
+_Bool cond_subsumes(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
-	(void)cond1;
-	(void)cond2;
+	(void)c1;
+	(void)c2;
 	return false;
 }
 
-_Bool cond_general(COND *cond1, COND *cond2)
+_Bool cond_general(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
-	(void)cond1;
-	(void)cond2;
+	(void)c1;
+	(void)c2;
 	return false;
 }   
 
-void cond_print(COND *cond)
+void cond_print(CL *c)
 {
-	graph_print(&cond->dgp);
+	graph_print(&c->cond.dgp);
 }  
 
 #endif

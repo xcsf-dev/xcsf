@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2016--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,65 +35,68 @@
 #include "cons.h"
 #include "cl.h"
 
-void cond_init(COND *cond)
+void cond_init(CL *c)
 {
 	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
-	neural_init(&cond->bpn, 3, neurons);
+	double (*activations[2])(double) = {sig, sig};
+	neural_init(&c->cond.bpn, 3, neurons, activations);
 #ifdef SAM
-	sam_init(&cond->mu);
+	sam_init(&c->cond.mu);
 #endif
 }
 
-void cond_free(COND *cond)
+void cond_free(CL *c)
 {
-	neural_free(&cond->bpn);
+	neural_free(&c->cond.bpn);
 #ifdef SAM
-	sam_free(cond->mu);
+	sam_free(c->cond.mu);
 #endif
 }
 
-void cond_copy(COND *to, COND *from)
+void cond_copy(CL *to, CL *from)
 {
-	neural_copy(&to->bpn, &from->bpn);
+	neural_copy(&to->cond.bpn, &from->cond.bpn);
 #ifdef SAM
-	memcpy(to->mu, from->mu, sizeof(double)*NUM_MU);
+	memcpy(to->cond.mu, from->cond.mu, sizeof(double)*NUM_MU);
 #endif
 }
 
-void cond_rand(COND *cond)
+void cond_rand(CL *c)
 {
-	neural_rand(&cond->bpn);
+	neural_rand(&c->cond.bpn);
 }
 
-void cond_cover(COND *cond, double *state)
+void cond_cover(CL *c, double *state)
 {
 	// generates random weights until the network matches for input state
 	do {
-		cond_rand(cond);
-	} while(!cond_match(cond, state));
+		cond_rand(c);
+	} while(!cond_match(c, state));
 }
 
-_Bool cond_match(COND *cond, double *state)
+_Bool cond_match(CL *c, double *state)
 {
 	// classifier matches if the first output neuron > 0.5
-	neural_propagate(&cond->bpn, state);
-	if(neural_output(&cond->bpn, 0) > 0.5) {
-		cond->m = true;
-		return true;
+	neural_propagate(&c->cond.bpn, state);
+	if(neural_output(&c->cond.bpn, 0) > 0.5) {
+		c->cond.m = true;
 	}
-	cond->m = false;
-	return false;
+	else {
+		c->cond.m = false;
+	}
+	return c->cond.m;
 }
 
-_Bool cond_mutate(COND *cond)
+_Bool cond_mutate(CL *c)
 {
+	COND *cond = &c->cond;
 	_Bool mod = false;
 #ifdef SAM
 	sam_adapt(cond->mu);
 	if(NUM_MU > 0) {
-		P_MUTATION = cond->mu[0];
+		S_MUTATION = cond->mu[0];
 		if(NUM_MU > 1)
-			S_MUTATION = cond->mu[1];
+			P_MUTATION = cond->mu[1];
 	}
 #endif
 	BPN *bpn = &cond->bpn;
@@ -113,33 +116,33 @@ _Bool cond_mutate(COND *cond)
 	return mod;
 }
 
-_Bool cond_crossover(COND *cond1, COND *cond2)
+_Bool cond_crossover(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
-	(void)cond1;
-	(void)cond2;
+	(void)c1;
+	(void)c2;
 	return false;
 }
 
-_Bool cond_subsumes(COND *cond1, COND *cond2)
+_Bool cond_subsumes(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
-	(void)cond1;
-	(void)cond2;
+	(void)c1;
+	(void)c2;
 	return false;
 }
 
-_Bool cond_general(COND *cond1, COND *cond2)
+_Bool cond_general(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
-	(void)cond1;
-	(void)cond2;
+	(void)c1;
+	(void)c2;
 	return false;
 }   
 
-void cond_print(COND *cond)
+void cond_print(CL *c)
 {
-	neural_print(&cond->bpn);
+	neural_print(&c->cond.bpn);
 }  
 
 #endif

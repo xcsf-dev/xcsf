@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,47 +38,47 @@
 
 void cond_bounds(double *a, double *b);
 
-void cond_init(COND *cond)
+void cond_init(CL *c)
 {
-	cond->interval_length = state_length*2;
-	cond->interval = malloc(sizeof(double) * cond->interval_length);
+	c->cond.interval_length = state_length*2;
+	c->cond.interval = malloc(sizeof(double) * c->cond.interval_length);
 #ifdef SAM
-	sam_init(&cond->mu);
+	sam_init(&c->cond.mu);
 #endif
 }
 
-void cond_free(COND *cond)
+void cond_free(CL *c)
 {
-	free(cond->interval);
+	free(c->cond.interval);
 #ifdef SAM
-	sam_free(cond->mu);
+	sam_free(c->cond.mu);
 #endif
 }
 
-void cond_copy(COND *to, COND *from)
+void cond_copy(CL *to, CL *from)
 {
-	memcpy(to->interval, from->interval, sizeof(double) * to->interval_length);
+	memcpy(to->cond.interval, from->cond.interval, sizeof(double) * to->cond.interval_length);
 #ifdef SAM
-	memcpy(to->mu, from->mu, sizeof(double)*NUM_MU);
+	memcpy(to->cond.mu, from->cond.mu, sizeof(double)*NUM_MU);
 #endif
 }                             
 
-void cond_rand(COND *cond)
+void cond_rand(CL *c)
 {
-	for(int i = 0; i < cond->interval_length; i+=2) {
-		cond->interval[i] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
-		cond->interval[i+1] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
-		cond_bounds(&cond->interval[i], &cond->interval[i+1]);
+	for(int i = 0; i < c->cond.interval_length; i+=2) {
+		c->cond.interval[i] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
+		c->cond.interval[i+1] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
+		cond_bounds(&c->cond.interval[i], &c->cond.interval[i+1]);
 	}
 }
 
-void cond_cover(COND *cond, double *state)
+void cond_cover(CL *c, double *state)
 {
 	// generate a condition that matches the state
-	for(int i = 0; i < cond->interval_length; i+=2) {
-		cond->interval[i] = state[i/2] - (S_MUTATION*drand());
-		cond->interval[i+1] = state[i/2] + (S_MUTATION*drand());
-		cond_bounds(&cond->interval[i], &cond->interval[i+1]);
+	for(int i = 0; i < c->cond.interval_length; i+=2) {
+		c->cond.interval[i] = state[i/2] - (S_MUTATION*drand());
+		c->cond.interval[i+1] = state[i/2] + (S_MUTATION*drand());
+		cond_bounds(&c->cond.interval[i], &c->cond.interval[i+1]);
 	}
 }
 
@@ -101,24 +101,24 @@ void cond_bounds(double *a, double *b)
 	}                              
 }
 
-_Bool cond_match(COND *cond, double *state)
+_Bool cond_match(CL *c, double *state)
 {
 	// return whether the condition matches the state
-	for(int i = 0; i < cond->interval_length; i+=2) {
-		if(state[i/2] < cond->interval[i] || state[i/2] > cond->interval[i+1]) {
-			cond->m = false;
+	for(int i = 0; i < c->cond.interval_length; i+=2) {
+		if(state[i/2] < c->cond.interval[i] || state[i/2] > c->cond.interval[i+1]) {
+			c->cond.m = false;
 			return false;
 		}
 	}
-	cond->m = true;
+	c->cond.m = true;
 	return true;
 }
 
-_Bool cond_crossover(COND *cond1, COND *cond2) 
+_Bool cond_crossover(CL *c1, CL *c2) 
 {
 	// two point crossover
 	_Bool changed = false;
-	int length = cond1->interval_length;
+	int length = c1->cond.interval_length;
 	if(drand() < P_CROSSOVER) {
 		int p1 = irand(0, length);
 		int p2 = irand(0, length)+1;
@@ -130,73 +130,73 @@ _Bool cond_crossover(COND *cond1, COND *cond2)
 		else if(p1 == p2) {
 			p2++;
 		}
-		double c1[length];
-		double c2[length];
-		memcpy(c1, cond1->interval, sizeof(double)*length);
-		memcpy(c2, cond2->interval, sizeof(double)*length);
+		double cl1[length];
+		double cl2[length];
+		memcpy(cl1, c1->cond.interval, sizeof(double)*length);
+		memcpy(cl2, c2->cond.interval, sizeof(double)*length);
 		for(int i = p1; i < p2; i++) { 
-			if(c1[i] != c2[i]) {
+			if(cl1[i] != cl2[i]) {
 				changed = true;
-				double help = cond1->interval[i];
-				cond1->interval[i] = c2[i];
-				cond2->interval[i] = help;
+				double help = c1->cond.interval[i];
+				c1->cond.interval[i] = cl2[i];
+				c2->cond.interval[i] = help;
 			}
 		}
 		if(changed) {
-			memcpy(cond1->interval, c1, sizeof(double)*length);
-			memcpy(cond2->interval, c2, sizeof(double)*length);
+			memcpy(c1->cond.interval, cl1, sizeof(double)*length);
+			memcpy(c2->cond.interval, cl2, sizeof(double)*length);
 		}
 	}
 	return changed;
 }
 
-_Bool cond_mutate(COND *cond)
+_Bool cond_mutate(CL *c)
 {
 	_Bool mod = false;
 	double step = S_MUTATION;
 #ifdef SAM
-	sam_adapt(cond->mu);
+	sam_adapt(c->cond.mu);
 	if(NUM_MU > 0) {
-		P_MUTATION = cond->mu[0];
+		P_MUTATION = c->cond.mu[0];
 		if(NUM_MU > 1)
-			step = cond->mu[1];
+			step = c->cond.mu[1];
 	}
 #endif
-	for(int i = 0; i < cond->interval_length; i+=2) {
+	for(int i = 0; i < c->cond.interval_length; i+=2) {
 		if(drand() < P_MUTATION) {
-			cond->interval[i] += ((drand()*2.0)-1.0)*step;
+			c->cond.interval[i] += ((drand()*2.0)-1.0)*step;
 			mod = true;
 		}
 		if(drand() < P_MUTATION) {
-			cond->interval[i+1] += ((drand()*2.0)-1.0)*step;
+			c->cond.interval[i+1] += ((drand()*2.0)-1.0)*step;
 			mod = true;
 		}
-		cond_bounds(&cond->interval[i], &cond->interval[i+1]);
+		cond_bounds(&c->cond.interval[i], &c->cond.interval[i+1]);
 	}
 	return mod;
 }
 
-_Bool cond_subsumes(COND *cond1, COND *cond2)
+_Bool cond_subsumes(CL *c1, CL *c2)
 {
-	// returns whether cond1 subsumes cond2
-	for(int i = 0; i < cond1->interval_length; i+=2) {
-		if(cond1->interval[i] > cond2->interval[i] 
-				|| cond1->interval[i+1] < cond2->interval[i+1]) {
+	// returns whether c1 subsumes c2
+	for(int i = 0; i < c1->cond.interval_length; i+=2) {
+		if(c1->cond.interval[i] > c2->cond.interval[i] 
+				|| c1->cond.interval[i+1] < c2->cond.interval[i+1]) {
 			return false;
 		}
 	}
 	return true;
 }
 
-_Bool cond_general(COND *cond1, COND *cond2)
+_Bool cond_general(CL *c1, CL *c2)
 {
 	// returns whether cond1 is more general than cond2
 	double gen1 = 0.0, gen2 = 0.0, max = 0.0;
 	for(int i = 0; i < state_length; i++)
 		max += MAX_CON - MIN_CON + 1.0;
-	for(int i = 0; i < cond1->interval_length; i+=2) {
-		gen1 += cond1->interval[i+1] - cond1->interval[i] + 1.0;
-		gen2 += cond2->interval[i+1] - cond2->interval[i] + 1.0;
+	for(int i = 0; i < c1->cond.interval_length; i+=2) {
+		gen1 += c1->cond.interval[i+1] - c1->cond.interval[i] + 1.0;
+		gen2 += c2->cond.interval[i+1] - c2->cond.interval[i] + 1.0;
 	}
 	if(gen1/max > gen2/max)
 		return false;
@@ -204,12 +204,12 @@ _Bool cond_general(COND *cond1, COND *cond2)
 		return true;
 }  
 
-void cond_print(COND *cond)
+void cond_print(CL *c)
 {
 	printf("intervals:");
-	for(int i = 0; i < cond->interval_length; i+=2) {
-		printf(" (%5f, ", cond->interval[i]);
-		printf("%5f)", cond->interval[i+1]);
+	for(int i = 0; i < c->cond.interval_length; i+=2) {
+		printf(" (%5f, ", c->cond.interval[i]);
+		printf("%5f)", c->cond.interval[i+1]);
 	}
 	printf("\n");
 }
