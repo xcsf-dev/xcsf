@@ -1,9 +1,9 @@
 # 
-#  Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
+#  Copyright (C) 2016--2019 Richard Preen <rpreen@gmail.com>
 # 
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
+#  the Free Software Foundation, either version 3 of the License, or
 #  (at your option) any later version.
 # 
 #  This program is distributed in the hope that it will be useful,
@@ -31,8 +31,8 @@ GNUPLOT=1
 PARALLEL=1
 
 # monolithic condition/prediction
-ifeq ($(CON),10)
-	PRE=10
+ifeq ($(shell test $(CON) -gt 10; echo $$?),0)
+	PRE=CON
 endif
 
 # conditions:
@@ -40,6 +40,7 @@ endif
 # 1 = neural
 # 2 = tree GP
 # 3 = dynamical graph GP
+# 11 = DGP single condition and prediction rules
 	CFLAGS+= -DCON=$(CON)
 
 ifeq ($(SAM),1)
