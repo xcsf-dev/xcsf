@@ -1,6 +1,7 @@
 XCSF learning classifier system
 -----------
 Evolved Conditions:<br>
+CON =-1: always matching dummy condition<br>
 CON = 0: real-valued hyperrectangle intervals<br>
 CON = 1: multilayer perceptron neural networks<br>
 CON = 2: GP trees<br>

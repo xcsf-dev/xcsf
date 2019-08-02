@@ -36,6 +36,7 @@ ifeq ($(shell test $(CON) -gt 10; echo $$?),0)
 endif
 
 # conditions:
+#-1 = always match dummy condition
 # 0 = rect
 # 1 = neural
 # 2 = tree GP
