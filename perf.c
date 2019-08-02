@@ -114,7 +114,9 @@ void gplot_init()
 	sprintf(buffer, "%s", probname);
 	strcat(title, buffer);
 
-#if CON == 0
+#if CON == -1
+	strcat(title, " DUMMY COND");
+#elif CON == 0
 	strcat(title, " RECT COND");
 #elif CON == 1
 	strcat(title, " NEURAL COND");
