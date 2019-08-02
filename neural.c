@@ -33,7 +33,7 @@
 #include "cons.h"
 #include "neural.h"
  
-#define MAX_LAYERS 3
+#define MAX_LAYERS 10
 #define MAX_NEURONS 50
  
 double neuron_propagate(NEURON *n, double *input);
