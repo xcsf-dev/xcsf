@@ -18,6 +18,7 @@
 #include "neural.h"
 #include "gp.h"
 #include "dgp.h"
+#include "cond_dummy.h"
 #include "cond_rect.h"
 #include "cond_neural.h"
 #include "cond_gp.h"
