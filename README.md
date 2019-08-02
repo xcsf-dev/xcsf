@@ -1,6 +1,6 @@
-===========================================================
+=================================
 XCSF learning classifier system
-===========================================================
+=================================
 Evolved Conditions:<br>
 CON = 0: real-valued hyperrectangle intervals<br>
 CON = 1: multilayer perceptron neural networks<br>
