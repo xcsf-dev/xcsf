@@ -15,7 +15,7 @@ SAM = 0: fixed rate<br>
 SAM = 1: self-adaptive rate<br>
 
 Computed Predictions:<br>
-PRE = 0: linear least squares (aka modified Delta update or Widrow-Hoff).<br>
+PRE = 0: linear least squares<br>
 PRE = 1: quadratic least squares<br>
 PRE = 2: linear recursive least squares<br>
 PRE = 3: quadratic recursive least squares<br>
