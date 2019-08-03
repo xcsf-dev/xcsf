@@ -37,7 +37,7 @@
 
 void cond_init(CL *c)
 {
-	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
+	int neurons[3] = {num_x_vars, NUM_HIDDEN_NEURONS, 1};
 	double (*activations[2])(double) = {sig, sig};
 	neural_init(&c->cond.bpn, 3, neurons, activations);
 #ifdef SAM
@@ -66,18 +66,18 @@ void cond_rand(CL *c)
 	neural_rand(&c->cond.bpn);
 }
 
-void cond_cover(CL *c, double *state)
+void cond_cover(CL *c, double *x)
 {
 	// generates random weights until the network matches for input state
 	do {
 		cond_rand(c);
-	} while(!cond_match(c, state));
+	} while(!cond_match(c, x));
 }
 
-_Bool cond_match(CL *c, double *state)
+_Bool cond_match(CL *c, double *x)
 {
 	// classifier matches if the first output neuron > 0.5
-	neural_propagate(&c->cond.bpn, state);
+	neural_propagate(&c->cond.bpn, x);
 	if(neural_output(&c->cond.bpn, 0) > 0.5) {
 		c->cond.m = true;
 	}
