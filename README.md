@@ -40,7 +40,7 @@ Example with GP tree conditions and neural network predictors:
 Running:
 -----------
 
-Example learning on data/sine_1var_train and testing on data/sine_1var_test:
+Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`:
 
 1. Change to the application folder: `cd xcsf`
 2. Modify constants as needed: `cons.txt`
