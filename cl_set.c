@@ -180,8 +180,8 @@ void set_pred(NODE **set, int size, double *x, double *y)
 		double *predictions = cl_predict(blist[i]->cl, x);
 		for(int var = 0; var < num_y_vars; var++) {
 			presum[var] += predictions[var] * blist[i]->cl->fit;
-			fitsum += blist[i]->cl->fit;
 		}
+		fitsum += blist[i]->cl->fit;
 	}
 #else
 	(void)size; // remove unused parameter warnings
@@ -189,8 +189,8 @@ void set_pred(NODE **set, int size, double *x, double *y)
 		double *predictions = cl_predict(iter->cl, x);
 		for(int i = 0; i < num_y_vars; i++) {
 			presum[i] += predictions[i] * iter->cl->fit;
-			fitsum += iter->cl->fit;
 		}
+		fitsum += iter->cl->fit;
 	}    
 #endif
 	for(int i = 0; i < num_y_vars; i++) {
