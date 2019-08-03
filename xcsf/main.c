@@ -20,9 +20,7 @@
  * The main XCSF module.  
  *
  * 1) Initialises the environment: constants, random number generator, problem
- * function, and performance output writing. If neural conditions are enabled
- * then a single neural network is initialised in memory for the classifiers to
- * copy their weights into and compute the matching function.
+ * function, and performance output writing.
  *
  * 2) Executes the experiments: iteratively retrieving a problem instance,
  * generating a match set, calculating a system prediction, providing
