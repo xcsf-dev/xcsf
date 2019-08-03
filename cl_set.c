@@ -193,8 +193,8 @@ void set_pred(NODE **set, int size, double *x, double *y)
 		fitsum += iter->cl->fit;
 	}    
 #endif
-	for(int i = 0; i < num_y_vars; i++) {
-		y[i] = presum[i]/fitsum;
+	for(int var = 0; var < num_y_vars; var++) {
+		y[var] = presum[var]/fitsum;
 	}
 	// clean up
 	free(presum);
