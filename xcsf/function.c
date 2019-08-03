@@ -44,6 +44,8 @@
 #define MAX_LINE_LENGTH 200
 #define DELIM ","
 
+#define PATH_TO_DATA "../../data"
+
 double *train_x; // data file variables read from file
 double *train_y;
 double *test_x;
@@ -58,14 +60,14 @@ void func_init(char *infile)
 {
 	char name[200];
 	// read the input variables
-	sprintf(name, "in/%s_train_x.csv", infile);
+	sprintf(name, "%s/%s_train_x.csv", PATH_TO_DATA, infile);
 	func_read(name, &train_x, &num_train_prob, &num_x_vars);
-	sprintf(name, "in/%s_test_x.csv", infile);
+	sprintf(name, "%s/%s_test_x.csv", PATH_TO_DATA, infile);
 	func_read(name, &test_x, &num_test_prob, &num_x_vars);
 	// read the output variables
- 	sprintf(name, "in/%s_train_y.csv", infile);
+ 	sprintf(name, "%s/%s_train_y.csv", PATH_TO_DATA, infile);
 	func_read(name, &train_y, &num_train_prob, &num_y_vars);
-	sprintf(name, "in/%s_test_y.csv", infile);
+	sprintf(name, "%s/%s_test_y.csv", PATH_TO_DATA, infile);
 	func_read(name, &test_y, &num_test_prob, &num_y_vars);
 }
  

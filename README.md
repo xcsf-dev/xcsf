@@ -27,10 +27,21 @@ GNUPLOT=1 (on GNU/Linux gnuplot-x11 must be installed.)<br>
 The matching and set prediction functions (where most processing occurs) can be<br>
 parallelised using OpenMP by compiling with PARALLEL=1.<br>
 
---------------
-Example usage:
+Building:
+-----------
 
-To initiate the learning of in/sine_1var_train.dat and test performance on
-in/sine_1var_test.dat run: 
+Example with GP tree conditions and neural network predictors:
 
-xcsf sine_1var
+0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
+1. Change to the build directory: `cd xcsf/build`
+2. Run cmake: `cmake .. -DCMAKE_BUILD_TYPE=RELEASE` -DCON=2 -DPRE=4
+3. Run make: `make`
+
+Running:
+-----------
+
+Example learning on data/sine_1var_train and testing on data/sine_1var_test:
+
+1. Change to the application folder: `cd xcsf`
+2. Modify constants as needed: `cons.txt`
+3. Run: `./xcsf sine_1var`
