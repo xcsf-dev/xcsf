@@ -11,8 +11,8 @@ CON = 11: both conditions and predictions in single dynamical GP graphs<br>
 CON = 12: both conditions and predictions in single neural networks<br>
 
 Mutation for conditions:<br>
-SAM = 0: fixed rate<br>
-SAM = 1: self-adaptive rate<br>
+SAM = OFF: fixed rate<br>
+SAM = ON: self-adaptive rate<br>
 
 Computed Predictions:<br>
 PRE = 0: linear least squares<br>
@@ -22,10 +22,10 @@ PRE = 3: quadratic recursive least squares<br>
 PRE = 4: backpropagation multilayer perceptron neural networks<br>
 
 An updated GNUPlot of the current system error can be enabled by compiling with<br>
-GNUPLOT=1 (on GNU/Linux gnuplot-x11 must be installed.)<br>
+GNUPLOT = ON (on GNU/Linux gnuplot-x11 must be installed.)<br>
 
 The matching and set prediction functions (where most processing occurs) can be<br>
-parallelised using OpenMP by compiling with PARALLEL=1.<br>
+parallelised using OpenMP by compiling with PARALLEL = ON.<br>
 
 Building:
 -----------
