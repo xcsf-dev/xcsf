@@ -196,6 +196,8 @@ void set_pred(NODE **set, int size, double *x, double *y)
 	for(int i = 0; i < num_y_vars; i++) {
 		y[i] = presum[i]/fitsum;
 	}
+	// clean up
+	free(presum);
 }
 
 void set_add(NODE **set, CL *c)
