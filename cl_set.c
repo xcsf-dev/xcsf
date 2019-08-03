@@ -187,8 +187,8 @@ void set_pred(NODE **set, int size, double *x, double *y)
 	(void)size; // remove unused parameter warnings
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
 		double *predictions = cl_predict(iter->cl, x);
-		for(int i = 0; i < num_y_vars; i++) {
-			presum[i] += predictions[i] * iter->cl->fit;
+		for(int var = 0; var < num_y_vars; var++) {
+			presum[var] += predictions[var] * iter->cl->fit;
 		}
 		fitsum += iter->cl->fit;
 	}    
