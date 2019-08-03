@@ -32,7 +32,7 @@
 #include "cons.h"
 #include "cl.h"
 
-double cl_update_err(CL *c, double p);
+double cl_update_err(CL *c, double *y);
 double cl_update_size(CL *c, double num_sum);
 
 void cl_init(CL *c, int size, int time)
@@ -77,21 +77,30 @@ double cl_acc(CL *c)
 		return ALPHA * pow(c->err / EPS_0, -NU);
 }
 
-void cl_update(CL *c, double *state, double p, int set_num)
+void cl_update(CL *c, double *x, double *y, int set_num)
 {
 	c->exp++;
-	cl_update_err(c, p);
-	pred_update(c, p, state);
+	cl_update_err(c, y);
+	pred_update(c, y, x);
 	cl_update_size(c, set_num);
 }
 
-double cl_update_err(CL *c, double p)
+double cl_update_err(CL *c, double *y)
 {
+	// calculate MSE
+	double error = 0.0;
+	for(int i = 0; i < num_y_vars; i++) {
+		error += (y[i] - c->pred.pre[i]) * (y[i] - c->pred.pre[i]);
+	}
+	error /= (double)num_y_vars;
+
 	// prediction has been updated for the current state during set_pred()
-	if(c->exp < 1.0/BETA) 
-		c->err = (c->err * (c->exp-1.0) + fabs(p - c->pred.pre)) / (double)c->exp;
-	else
-		c->err += BETA * (fabs(p - c->pred.pre) - c->err);
+	if(c->exp < 1.0/BETA) {
+		c->err = (c->err * (c->exp-1.0) + error) / (double)c->exp;
+	}
+	else {
+		c->err += BETA * (error - c->err);
+	}
 	return c->err * c->num;
 }
  
@@ -123,9 +132,9 @@ void cl_print(CL *c)
 	printf("%f %f %d %d %f %d\n", c->err, c->fit, c->num, c->exp, c->size, c->time);
 }  
 
-void cl_cover(CL *c, double *state)
+void cl_cover(CL *c, double *x)
 {
-	cond_cover(c, state);
+	cond_cover(c, x);
 }
 
 _Bool cl_general(CL *c1, CL *c2)
@@ -143,9 +152,9 @@ void cl_rand(CL *c)
 	cond_rand(c);
 }
 
-_Bool cl_match(CL *c, double *state)
+_Bool cl_match(CL *c, double *x)
 {
-	return cond_match(c, state);
+	return cond_match(c, x);
 }
 
 _Bool cl_match_state(CL *c)
@@ -153,9 +162,9 @@ _Bool cl_match_state(CL *c)
 	return c->cond.m;
 }
 
-double cl_predict(CL *c, double *state)
+double *cl_predict(CL *c, double *x)
 {
-	return pred_compute(c, state);
+	return pred_compute(c, x);
 }
 
 _Bool cl_mutate(CL *c)

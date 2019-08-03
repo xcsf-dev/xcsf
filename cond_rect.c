@@ -40,7 +40,7 @@ void cond_bounds(double *a, double *b);
 
 void cond_init(CL *c)
 {
-	c->cond.interval_length = state_length*2;
+	c->cond.interval_length = num_x_vars*2;
 	c->cond.interval = malloc(sizeof(double) * c->cond.interval_length);
 #ifdef SAM
 	sam_init(&c->cond.mu);
@@ -72,12 +72,12 @@ void cond_rand(CL *c)
 	}
 }
 
-void cond_cover(CL *c, double *state)
+void cond_cover(CL *c, double *x)
 {
 	// generate a condition that matches the state
 	for(int i = 0; i < c->cond.interval_length; i+=2) {
-		c->cond.interval[i] = state[i/2] - (S_MUTATION*drand());
-		c->cond.interval[i+1] = state[i/2] + (S_MUTATION*drand());
+		c->cond.interval[i] = x[i/2] - (S_MUTATION*drand());
+		c->cond.interval[i+1] = x[i/2] + (S_MUTATION*drand());
 		cond_bounds(&c->cond.interval[i], &c->cond.interval[i+1]);
 	}
 }
@@ -101,11 +101,11 @@ void cond_bounds(double *a, double *b)
 	}                              
 }
 
-_Bool cond_match(CL *c, double *state)
+_Bool cond_match(CL *c, double *x)
 {
 	// return whether the condition matches the state
 	for(int i = 0; i < c->cond.interval_length; i+=2) {
-		if(state[i/2] < c->cond.interval[i] || state[i/2] > c->cond.interval[i+1]) {
+		if(x[i/2] < c->cond.interval[i] || x[i/2] > c->cond.interval[i+1]) {
 			c->cond.m = false;
 			return false;
 		}
@@ -192,7 +192,7 @@ _Bool cond_general(CL *c1, CL *c2)
 {
 	// returns whether cond1 is more general than cond2
 	double gen1 = 0.0, gen2 = 0.0, max = 0.0;
-	for(int i = 0; i < state_length; i++)
+	for(int i = 0; i < num_x_vars; i++)
 		max += MAX_CON - MIN_CON + 1.0;
 	for(int i = 0; i < c1->cond.interval_length; i+=2) {
 		gen1 += c1->cond.interval[i+1] - c1->cond.interval[i] + 1.0;

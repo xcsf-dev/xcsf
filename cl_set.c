@@ -113,7 +113,7 @@ void pop_enforce_limit(NODE **kset)
 		pop_del(kset);
 }
 
-void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset)
+void set_match(NODE **set, int *size, int *num, double *x, int time, NODE **kset)
 {
 	// add classifiers that match the input state to the match set  
 #ifdef PARALLEL_MATCH
@@ -127,7 +127,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 	int s = 0; int n = 0;
 #pragma omp parallel for reduction(+:s,n)
 	for(int i = 0; i < pop_num; i++) {
-		if(cl_match(blist[i]->cl, state)) {
+		if(cl_match(blist[i]->cl, x)) {
 			s++;
 			n += blist[i]->cl->num;
 		}
@@ -140,7 +140,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 	}
 #else
 	for(NODE *iter = pset; iter != NULL; iter = iter->next) {
-		if(cl_match(iter->cl, state)) {
+		if(cl_match(iter->cl, x)) {
 			set_add(set, iter->cl);
 			*num += iter->cl->num;
 			(*size)++;                    
@@ -152,7 +152,7 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 		// new classifier with matching condition
 		CL *new = malloc(sizeof(CL));
 		cl_init(new, *num+1, time);
-		cl_cover(new, state);
+		cl_cover(new, x);
 		(*size)++;
 		(*num)++;
 		pop_add(new);
@@ -163,10 +163,10 @@ void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **
 	}
 }
 
-double set_pred(NODE **set, int size, double *state)
+void set_pred(NODE **set, int size, double *x, double *y)
 {
 	// match set fitness weighted prediction
-	double presum = 0.0;
+	double *presum = calloc(num_y_vars, sizeof(double));
 	double fitsum = 0.0;
 #ifdef PARALLEL_PRED
 	NODE *blist[size];
@@ -175,19 +175,27 @@ double set_pred(NODE **set, int size, double *state)
 		blist[j] = iter;
 		j++;
 	}
-#pragma omp parallel for reduction(+:presum,fitsum)
+#pragma omp parallel for reduction(+:presum[:num_y_vars],fitsum)
 	for(int i = 0; i < size; i++) {
-		presum += cl_predict(blist[i]->cl, state) * blist[i]->cl->fit;
-		fitsum += blist[i]->cl->fit;
+		double *predictions = cl_predict(blist[i]->cl, x);
+		for(int var = 0; var < num_y_vars; var++) {
+			presum[var] += predictions[var] * blist[i]->cl->fit;
+			fitsum += blist[i]->cl->fit;
+		}
 	}
 #else
 	(void)size; // remove unused parameter warnings
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		presum += cl_predict(iter->cl, state) * iter->cl->fit;
-		fitsum += iter->cl->fit;
-	}
+		double *predictions = cl_predict(iter->cl, x);
+		for(int i = 0; i < num_y_vars; i++) {
+			presum[i] += predictions[i] * iter->cl->fit;
+			fitsum += iter->cl->fit;
+		}
+	}    
 #endif
-	return presum/fitsum;
+	for(int i = 0; i < num_y_vars; i++) {
+		y[i] = presum[i]/fitsum;
+	}
 }
 
 void set_add(NODE **set, CL *c)
@@ -206,10 +214,10 @@ void set_add(NODE **set, CL *c)
 	}
 }
 
-void set_update(NODE **set, int *size, int *num, double r, NODE **kset, double *state)
+void set_update(NODE **set, int *size, int *num, double *y, NODE **kset, double *x)
 {
 	for(NODE *iter = *set; iter != NULL; iter = iter->next)
-		cl_update(iter->cl, state, r, *num);
+		cl_update(iter->cl, x, y, *num);
 	set_update_fit(set, *size, *num);
 	if(SET_SUBSUMPTION)
 		set_subsumption(set, size, num, kset);

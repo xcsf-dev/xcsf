@@ -21,20 +21,20 @@ typedef struct NODE
 } NODE;
  
 double set_mean_time(NODE **set, int num_sum);
-double set_pred(NODE **set, int size, double *state);
 double set_total_fit(NODE **set);
 double set_total_time(NODE **set);
 void pop_add(CL *c);
 void pop_del(NODE **kset);
-void pop_init();
 void pop_enforce_limit(NODE **kset);
+void pop_init();
 void set_add(NODE **set, CL *c);
 void set_free(NODE **set);
 void set_kill(NODE **set);
-void set_match(NODE **set, int *size, int *num, double *state, int time, NODE **kset);
+void set_match(NODE **set, int *size, int *num, double *x, int time, NODE **kset);
+void set_pred(NODE **set, int size, double *x, double *y);
 void set_print(NODE *set);
 void set_times(NODE **set, int time);
-void set_update(NODE **set, int *size, int *num, double r, NODE **kset, double *state);
+void set_update(NODE **set, int *size, int *num, double *y, NODE **kset, double *x);
 void set_validate(NODE **set, int *size, int *num);
 #ifdef SAM
 double set_avg_mut(NODE **set, int m);

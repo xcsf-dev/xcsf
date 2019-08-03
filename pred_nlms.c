@@ -41,78 +41,107 @@ void pred_init(CL *c)
 	PRED *pred = &c->pred;
 #if PRE == 1
 	// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
-	pred->weights_length = 1+2*state_length+state_length*(state_length-1)/2;
+	pred->weights_length = 1+2*num_x_vars+num_x_vars*(num_x_vars-1)/2;
 #else
-	pred->weights_length = state_length+1;
+	pred->weights_length = num_x_vars+1;
 #endif
-	pred->weights = malloc(sizeof(double) * pred->weights_length);
-	pred->weights[0] = XCSF_X0;
-	for(int i = 1; i < pred->weights_length; i++)
-		pred->weights[i] = 0.0;
+
+	pred->weights = malloc(sizeof(double*)*num_y_vars);
+	for(int var = 0; var < num_y_vars; var++) {
+		pred->weights[var] = malloc(sizeof(double)*pred->weights_length);
+	}
+ 	for(int var = 0; var < num_y_vars; var++) {
+		pred->weights[var][0] = XCSF_X0;
+		for(int i = 1; i < pred->weights_length; i++) {
+			pred->weights[var][i] = 0.0;
+		}
+	}
+
+	pred->pre = malloc(sizeof(double)*num_y_vars);
 }
 
 void pred_copy(CL *to, CL *from)
 {
-	memcpy(to->pred.weights, from->pred.weights, sizeof(double)*from->pred.weights_length);
+	for(int var = 0; var < num_y_vars; var++) {
+		memcpy(to->pred.weights[var], from->pred.weights[var], 
+				sizeof(double)*from->pred.weights_length);
+	}
+	memcpy(to->pred.pre, from->pred.pre, sizeof(double)*num_y_vars);
 }
 
 void pred_free(CL *c)
 {
+	for(int var = 0; var < num_y_vars; var++) {
+		free(c->pred.weights[var]);
+	}
 	free(c->pred.weights);
+	free(c->pred.pre);
 }
 
-void pred_update(CL *c, double p, double *state)
+void pred_update(CL *c, double *y, double *x)
 {
 	PRED *pred = &c->pred;
-	// pre has been updated for the current state during set_pred()
-	double error = p - pred->pre; //pred_compute(c, state);
+
 	double norm = XCSF_X0 * XCSF_X0;
-	for(int i = 0; i < state_length; i++)
-		norm += state[i] * state[i];
-	double correction = (XCSF_ETA * error) / norm;
-	// update first coefficient
-	pred->weights[0] += XCSF_X0 * correction;
-	int index = 1;
-	// update linear coefficients
-	for(int i = 0; i < state_length; i++)
-		pred->weights[index++] += correction * state[i];
-#if PRE == 1
-	// update quadratic coefficients
-	for(int i = 0; i < state_length; i++) {
-		for(int j = i; j < state_length; j++) {
-			pred->weights[index++] += correction * state[i] * state[j];
+	for(int i = 0; i < num_x_vars; i++) {
+		norm += x[i] * x[i];
+	}      
+
+	// pre has been updated for the current state during set_pred()
+	for(int var = 0; var < num_y_vars; var++) {
+		double error = y[var] - pred->pre[var]; // pred_compute(c, x);
+		double correction = (XCSF_ETA * error) / norm;
+		// update first coefficient
+		pred->weights[var][0] += XCSF_X0 * correction;
+		int index = 1;
+		// update linear coefficients
+		for(int i = 0; i < num_x_vars; i++) {
+			pred->weights[var][index++] += correction * x[i];
 		}
-	}
+#if PRE == 1
+		// update quadratic coefficients
+		for(int i = 0; i < num_x_vars; i++) {
+			for(int j = i; j < num_x_vars; j++) {
+				pred->weights[var][index++] += correction * x[i] * x[j];
+			}
+		}
 #endif
+	}
 }
 
-double pred_compute(CL *c, double *state)
+double *pred_compute(CL *c, double *x)
 {
 	PRED *pred = &c->pred;
-	// first coefficient is offset
-	double pre = XCSF_X0 * pred->weights[0];
-	int index = 1;
-	// multiply linear coefficients with the prediction input
-	for(int i = 0; i < state_length; i++)
-		pre += pred->weights[index++] * state[i];
-#if PRE == 1
-	// multiply quadratic coefficients with prediction input
-	for(int i = 0; i < state_length; i++) {
-		for(int j = i; j < state_length; j++) {
-			pre += pred->weights[index++] * state[i] * state[j];
+	for(int var = 0; var < num_y_vars; var++) {
+		// first coefficient is offset
+		double pre = XCSF_X0 * pred->weights[var][0];
+		int index = 1;
+		// multiply linear coefficients with the prediction input
+		for(int i = 0; i < num_x_vars; i++) {
+			pre += pred->weights[var][index++] * x[i];
 		}
-	}
+#if PRE == 1
+		// multiply quadratic coefficients with prediction input
+		for(int i = 0; i < num_x_vars; i++) {
+			for(int j = i; j < num_x_vars; j++) {
+				pre += pred->weights[var][index++] * x[i] * x[j];
+			}
+		}
 #endif
-	pred->pre = pre;
-	return pre;
+		pred->pre[var] = pre;
+	}
+	return pred->pre;
 } 
 
 void pred_print(CL *c)
 {
 	PRED *pred = &c->pred;
 	printf("weights: ");
-	for(int i = 0; i < pred->weights_length; i++)
-		printf("%f, ", pred->weights[i]);
-	printf("\n");
+	for(int var = 0; var < num_y_vars; var++) {
+		for(int i = 0; i < pred->weights_length; i++) {
+			printf("%f, ", pred->weights[var][i]);
+		}
+		printf("\n");
+	}
 }
 #endif

@@ -83,23 +83,36 @@ int main(int argc, char *argv[0])
 
 void trial(int cnt, _Bool train, double *err)
 {
-	// get problem function state and solution
-	double *state = func_state(train);
-	double answer = func_answer(train);
+	// get random sample
+	double *x = malloc(sizeof(double)*num_x_vars);
+	double *y = malloc(sizeof(double)*num_y_vars);
+	func_rand_sample(x, y, train);
+
 	// create match set
 	NODE *mset = NULL, *kset = NULL;
 	int msize = 0, mnum = 0;
-	set_match(&mset, &msize, &mnum, state, cnt, &kset);
+	set_match(&mset, &msize, &mnum, x, cnt, &kset);
+
 	// calculate system prediction and track performance
-	double pre = set_pred(&mset, msize, state);
-	err[cnt%PERF_AVG_TRIALS] = fabs(answer - pre);
+	double *pred = malloc(sizeof(double)*num_y_vars);
+	set_pred(&mset, msize, x, pred);
+	err[cnt%PERF_AVG_TRIALS] = 0.0;
+	for(int i = 0; i < num_y_vars; i++) {
+		err[cnt%PERF_AVG_TRIALS] += (y[i]-pred[i])*(y[i]-pred[i]);
+	}
+	err[cnt%PERF_AVG_TRIALS] /= (double)num_y_vars; // MSE
+
 	if(train) {
 		// provide reinforcement to the set
-		set_update(&mset, &msize, &mnum, answer, &kset, state);
+		set_update(&mset, &msize, &mnum, y, &kset, x);
 		// run the genetic algorithm
 		ga(&mset, msize, mnum, cnt, &kset);
 	}
+
 	// clean up
+	free(pred);
+	free(x);
+	free(y);
 	set_kill(&kset); // kills deleted classifiers
 	set_free(&mset); // frees the match set list
 }

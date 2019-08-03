@@ -42,6 +42,7 @@ endif
 # 2 = tree GP
 # 3 = dynamical graph GP
 # 11 = DGP single condition and prediction rules
+# 12 = neural network single condition and prediction rules
 	CFLAGS+= -DCON=$(CON)
 
 ifeq ($(SAM),1)

@@ -26,7 +26,7 @@ typedef struct COND {
 } COND;
   
 typedef struct PRED {
-	double pre;
+	double *pre;
 } PRED;
 
 #endif

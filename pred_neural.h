@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012--2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2012--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 typedef struct PRED {
 	BPN bpn;
-	double pre;
+	double *pre;
 } PRED;
 
 #endif

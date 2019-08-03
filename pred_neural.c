@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2016--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,14 +37,16 @@
 
 void pred_init(CL *c)
 {
-	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 1};
+	int neurons[3] = {num_x_vars, NUM_HIDDEN_NEURONS, num_y_vars};
 	double (*activations[2])(double) = {sig, sig};
 	neural_init(&c->pred.bpn, 3, neurons, activations);
+	c->pred.pre = malloc(sizeof(double)*num_y_vars);
 }
 
 void pred_free(CL *c)
 {
 	neural_free(&c->pred.bpn);
+	free(c->pred.pre);
 }
 
 void pred_copy(CL *to, CL *from)
@@ -52,17 +54,17 @@ void pred_copy(CL *to, CL *from)
 	neural_copy(&to->pred.bpn, &from->pred.bpn);
 }
 
-void pred_update(CL *c, double p, double *state)
+void pred_update(CL *c, double *y, double *x)
 {
-	double out[1];
-	out[0] = p;
-	neural_learn(&c->pred.bpn, out, state);
+	neural_learn(&c->pred.bpn, y, x);
 }
 
-double pred_compute(CL *c, double *state)
+double *pred_compute(CL *c, double *x)
 {
-	neural_propagate(&c->pred.bpn, state);
-	c->pred.pre = neural_output(&c->pred.bpn, 0);
+	neural_propagate(&c->pred.bpn, x);
+	for(int i = 0; i < num_y_vars; i++) {
+		c->pred.pre[i] = neural_output(&c->pred.bpn, i);
+	}
 	return c->pred.pre;
 }
 

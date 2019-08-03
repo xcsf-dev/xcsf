@@ -34,7 +34,7 @@
 
 void cond_init(CL *c)
 {
-	int neurons[3] = {state_length, NUM_HIDDEN_NEURONS, 2};
+	int neurons[3] = {num_x_vars, NUM_HIDDEN_NEURONS, num_y_vars+1};
 	double (*activations[2])(double) = {sig, sig};
 	neural_init(&c->cond.bpn, 3, neurons, activations);
 #ifdef SAM
@@ -63,18 +63,18 @@ void cond_rand(CL *c)
 	neural_rand(&c->cond.bpn);
 }
 
-void cond_cover(CL *c, double *state)
+void cond_cover(CL *c, double *x)
 {
 	// generates random weights until the network matches for input state
 	do {
 		cond_rand(c);
-	} while(!cond_match(c, state));
+	} while(!cond_match(c, x));
 }
 
-_Bool cond_match(CL *c, double *state)
+_Bool cond_match(CL *c, double *x)
 {
 	// classifier matches if the first output neuron > 0.5
-	neural_propagate(&c->cond.bpn, state);
+	neural_propagate(&c->cond.bpn, x);
 	if(neural_output(&c->cond.bpn, 0) > 0.5) {
 		c->cond.m = true;
 	}
@@ -139,12 +139,12 @@ void cond_print(CL *c)
  
 void pred_init(CL *c)
 {
-	(void)c;
+	c->pred.pre = malloc(sizeof(double)*num_y_vars);
 }
 
 void pred_free(CL *c)
 {
-	(void)c;
+	free(c->pred.pre);
 }
 
 void pred_copy(CL *to, CL *from)
@@ -153,17 +153,19 @@ void pred_copy(CL *to, CL *from)
 	(void)from;
 }
 
-void pred_update(CL *c, double p, double *state)
+void pred_update(CL *c, double *y, double *x)
 {
 	(void)c;
-	(void)p;
-	(void)state;
+	(void)y;
+	(void)x;
 }
 
-double pred_compute(CL *c, double *state)
+double *pred_compute(CL *c, double *x)
 {
-	(void)state;
-	c->pred.pre = neural_output(&c->cond.bpn, 1);
+	(void)x;
+	for(int i = 0; i < num_y_vars; i++) {
+		c->pred.pre[i] = neural_output(&c->cond.bpn, 1+i);
+	}
 	return c->pred.pre;
 }
 

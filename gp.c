@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2016--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ int tree_grow(int *buffer, int p, int max, int depth)
 
 	// add constant or external input
 	if(prim == 0 || depth == 0) {
-		prim = irand(GP_NUM_FUNC, GP_NUM_FUNC+GP_CONS+state_length);
+		prim = irand(GP_NUM_FUNC, GP_NUM_FUNC+GP_CONS+num_x_vars);
 		buffer[p] = prim;
 		return(p+1);
 	}
@@ -94,25 +94,25 @@ int tree_grow(int *buffer, int p, int max, int depth)
 	return(0);
 }
 
-double tree_eval(GP_TREE *gp, double *state)
+double tree_eval(GP_TREE *gp, double *x)
 {
 	int node = gp->tree[(gp->p)++];
 
 	// external input
 	if(node >= GP_NUM_FUNC+GP_CONS)
-		return(state[node-GP_NUM_FUNC-GP_CONS]);
+		return(x[node-GP_NUM_FUNC-GP_CONS]);
 	// constant
 	else if(node >= GP_NUM_FUNC)
 		return(cons[node-GP_NUM_FUNC]);
 
 	// function
 	switch(node) {
-		case ADD : return(tree_eval(gp,state) + tree_eval(gp,state));
-		case SUB : return(tree_eval(gp,state) - tree_eval(gp,state));
-		case MUL : return(tree_eval(gp,state) * tree_eval(gp,state));
+		case ADD : return(tree_eval(gp,x) + tree_eval(gp,x));
+		case SUB : return(tree_eval(gp,x) - tree_eval(gp,x));
+		case MUL : return(tree_eval(gp,x) * tree_eval(gp,x));
 		case DIV : { 
-					   double num = tree_eval(gp,state); 
-					   double den = tree_eval(gp,state);
+					   double num = tree_eval(gp,x); 
+					   double den = tree_eval(gp,x);
 					   if(den == 0.0) 
 						   return(num);
 					   else 
@@ -205,7 +205,7 @@ void tree_mutation(GP_TREE *offspring, double rate)
 	for(int i = 0; i < len; i++) {  
 		if(drand() < rate) {
 			if(offspring->tree[i] >= GP_NUM_FUNC)
-				offspring->tree[i] = irand(GP_NUM_FUNC, GP_NUM_FUNC+GP_CONS+state_length);
+				offspring->tree[i] = irand(GP_NUM_FUNC, GP_NUM_FUNC+GP_CONS+num_x_vars);
 			else
 				switch(offspring->tree[i]) {
 					case ADD: 

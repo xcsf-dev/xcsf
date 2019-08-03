@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2016--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -123,7 +123,7 @@ void node_rand_conn(GNODE *node, int n)
 			node->conn[i] = 0; // inert
 		}
 		else if(drand() < 0.2) {
-			node->conn[i] = -irand(1,state_length+1);
+			node->conn[i] = -irand(1,num_x_vars+1);
 			(node->k)++;
 		}
 		else {
@@ -181,7 +181,7 @@ _Bool node_mutate(GNODE *node, double rate, int n)
 			if(drand() < 0.1)
 				node->conn[i] = 0;
 			else if(drand() < 0.2)
-				node->conn[i] = -irand(1,state_length+1);
+				node->conn[i] = -irand(1,num_x_vars+1);
 			else
 				node->conn[i] = irand(1,n+1);
 			if(old != node->conn[i])

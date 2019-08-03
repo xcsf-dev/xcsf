@@ -43,39 +43,39 @@ typedef struct CL {
 // general classifier
 _Bool cl_crossover(CL *c1, CL *c2);
 _Bool cl_general(CL *c1, CL *c2);
-_Bool cl_match(CL *c, double *state);
+_Bool cl_match(CL *c, double *x);
 _Bool cl_match_state(CL *c);
 _Bool cl_mutate(CL *c);
 _Bool cl_subsumer(CL *c);
 _Bool cl_subsumes(CL *c1, CL *c2);
+double *cl_predict(CL *c, double *x);
 double cl_acc(CL *c);
 double cl_del_vote(CL *c, double avg_fit);
-double cl_predict(CL *c, double *state);
 void cl_copy(CL *to, CL *from);
-void cl_cover(CL *c, double *state);
+void cl_cover(CL *c, double *x);
 void cl_free(CL *c);
 void cl_init(CL *c, int size, int time);
 void cl_print(CL *c);
 void cl_rand(CL *c);
-void cl_update(CL *c, double *state, double p, int set_num);
+void cl_update(CL *c, double *x, double *y, int set_num);
 void cl_update_fit(CL *c, double acc_sum, double acc);
 
 // classifier prediction
-double pred_compute(CL *c, double *state);
+double *pred_compute(CL *c, double *x);
 void pred_copy(CL *to, CL *from);
 void pred_free(CL *c);
 void pred_init(CL *c);
 void pred_print(CL *c);
-void pred_update(CL *c, double p, double *state);
+void pred_update(CL *c, double *y, double *x);
 
 // classifier condition
 _Bool cond_crossover(CL *c1, CL *c2);
 _Bool cond_general(CL *c1, CL *c2);
-_Bool cond_match(CL *c, double *state);
+_Bool cond_match(CL *c, double *x);
 _Bool cond_mutate(CL *c);
 _Bool cond_subsumes(CL *c1, CL *c2);
 void cond_copy(CL *to, CL *from);
-void cond_cover(CL *c, double *state);
+void cond_cover(CL *c, double *x);
 void cond_free(CL *c);
 void cond_init(CL *c);
 void cond_print(CL *c);

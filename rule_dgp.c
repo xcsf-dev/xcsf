@@ -58,18 +58,18 @@ void cond_rand(CL *c)
 	graph_rand(&c->cond.dgp);
 }
 
-void cond_cover(CL *c, double *state)
+void cond_cover(CL *c, double *x)
 {
 	// generates random graphs until the network matches for input state
 	do {
 		cond_rand(c);
-	} while(!cond_match(c, state));
+	} while(!cond_match(c, x));
 }
 
-_Bool cond_match(CL *c, double *state)
+_Bool cond_match(CL *c, double *x)
 {
 	// classifier matches if the first output node > 0.5
-	graph_update(&c->cond.dgp, state);
+	graph_update(&c->cond.dgp, x);
 	if(graph_output(&c->cond.dgp, 0) > 0.5) {
 		c->cond.m = true;
 	}
@@ -123,12 +123,12 @@ void cond_print(CL *c)
 
 void pred_init(CL *c)
 {
-	(void)c;
+	c->pred.pre = malloc(sizeof(double)*num_y_vars);
 }
 
 void pred_free(CL *c)
 {
-	(void)c;
+	free(c->pred.pre);
 }
 
 void pred_copy(CL *to, CL *from)
@@ -137,17 +137,19 @@ void pred_copy(CL *to, CL *from)
 	(void)from;
 }
 
-void pred_update(CL *c, double p, double *state)
+void pred_update(CL *c, double *y, double *x)
 {
 	(void)c;
-	(void)p;
-	(void)state;
+	(void)y;
+	(void)x;
 }
 
-double pred_compute(CL *c, double *state)
+double *pred_compute(CL *c, double *x)
 {
-	(void)state;
-	c->pred.pre = graph_output(&c->cond.dgp, 1);
+	(void)x;
+	for(int i = 0; i < num_y_vars; i++) {
+		c->pred.pre[i] = graph_output(&c->cond.dgp, 1+i);
+	}
 	return c->pred.pre;
 }
 
