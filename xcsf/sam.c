@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,8 +23,6 @@
  * a normal distribution.
  */
 
-#ifdef SAM
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,37 +35,45 @@ double gasdev();
 
 void sam_init(double **mu)
 {
-	*mu = malloc(sizeof(double)*NUM_MU);
-	for(int i = 0; i < NUM_MU; i++)
-		(*mu)[i] = drand();
+	if(NUM_SAM > 0) {
+		*mu = malloc(sizeof(double)*NUM_SAM);
+		for(int i = 0; i < NUM_SAM; i++) {
+			(*mu)[i] = drand();
+		}
+	}
 }
 
 void sam_copy(double *to, double *from)
 {
-	memcpy(to, from, sizeof(double)*NUM_MU);
+	memcpy(to, from, sizeof(double)*NUM_SAM);
 }
 
 void sam_free(double *mu)
 {
-	free(mu);
+	if(NUM_SAM > 0) {
+		free(mu);
+	}
 }
 
 void sam_adapt(double *mu)
 {
-	for(int i = 0; i < NUM_MU; i++) {
+	for(int i = 0; i < NUM_SAM; i++) {
 		mu[i] *= exp(gasdev());
-		if(mu[i] < muEPS_0)
+		if(mu[i] < muEPS_0) {
 			mu[i] = muEPS_0;
-		else if(mu[i] > 1.0)
+		}
+		else if(mu[i] > 1.0) {
 			mu[i] = 1.0;
+		}
 	}
 }
 
 void sam_print(double *mu)
 {
 	printf("mu: \n");
-	for(int i = 0; i < NUM_MU; i++)
+	for(int i = 0; i < NUM_SAM; i++) {
 		printf("%f, ", mu[i]);
+	}
 	printf("\n");
 }
 
@@ -94,4 +100,3 @@ double gasdev()
 		return gset;
 	}
 }
-#endif     

@@ -72,7 +72,7 @@ void cond_rect_copy(CL *to, CL *from)
 	COND_RECT *to_cond = to->cond;
 	COND_RECT *from_cond = from->cond;
 	memcpy(to_cond->interval, from_cond->interval, sizeof(double)*to_cond->interval_length);
-	memcpy(to_cond->mu, from_cond->mu, sizeof(double)*NUM_MU);
+	sam_copy(to_cond->mu, from_cond->mu);
 }                             
 
 void cond_rect_rand(CL *c)
@@ -178,14 +178,12 @@ _Bool cond_rect_mutate(CL *c)
 	COND_RECT *cond = c->cond;
 	_Bool mod = false;
 	double step = S_MUTATION;
-#ifdef SAM
-	sam_adapt(cond->mu);
-	if(NUM_MU > 0) {
+	if(NUM_SAM > 0) {
+		sam_adapt(cond->mu);
 		P_MUTATION = cond->mu[0];
-		if(NUM_MU > 1)
+		if(NUM_SAM > 1)
 			step = cond->mu[1];
 	}
-#endif
 	for(int i = 0; i < cond->interval_length; i+=2) {
 		if(drand() < P_MUTATION) {
 			cond->interval[i] += ((drand()*2.0)-1.0)*step;

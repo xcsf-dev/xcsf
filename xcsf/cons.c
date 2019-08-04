@@ -96,7 +96,7 @@ void constants_init(int argc, char **argv)
 	XCSF_X0 = atof(getvalue("XCSF_X0"));
 	XCSF_ETA = atof(getvalue("XCSF_ETA"));
 	muEPS_0 = atof(getvalue("muEPS_0"));
-	NUM_MU = atoi(getvalue("NUM_MU"));
+	NUM_SAM = atoi(getvalue("NUM_SAM"));
 	S_MUTATION = atof(getvalue("S_MUTATION"));
 	MIN_CON = atof(getvalue("MIN_CON"));
 	MAX_CON = atof(getvalue("MAX_CON"));

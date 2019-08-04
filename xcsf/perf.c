@@ -57,12 +57,10 @@ void disp_perf(double *error, double *terror, int trial, int pnum)
 	terr /= (double)PERF_AVG_TRIALS;
 	printf("%d %.5f %.5f %d", trial, serr, terr, pnum);
 	fprintf(fout, "%d %.5f %.5f %d", trial, serr, terr, pnum);
-#ifdef SAM
-	for(int i = 0; i < NUM_MU; i++) {
+	for(int i = 0; i < NUM_SAM; i++) {
 		printf(" %.5f", set_avg_mut(&pset, i));
 		fprintf(fout, " %.5f", set_avg_mut(&pset, i));
 	}
-#endif
 	printf("\n");
 	fprintf(fout, "\n");
 	fflush(stdout);
@@ -158,9 +156,9 @@ void gplot_init()
 		}
 	}
 
-#ifdef SAM
-	strcat(title, ", SAM");
-#endif
+	if(NUM_SAM > 0) {
+		strcat(title, ", SAM");
+	}
 
 	sprintf(buffer, ", P=%d", POP_SIZE);
 	strcat(title, buffer);

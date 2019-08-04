@@ -57,7 +57,7 @@ int THETA_OFFSPRING; // number of offspring to create each GA invocation
 
 // self-adaptive mutation parameters
 double muEPS_0; // minimum value of a self-adaptive mutation rate
-int NUM_MU; // number of self-adaptive mutation rates
+int NUM_SAM; // number of self-adaptive mutation rates
 
 // classifier condition parameters
 double MAX_CON; // maximum value of a hyperrectangle interval

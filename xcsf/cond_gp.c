@@ -61,7 +61,7 @@ void cond_gp_copy(CL *to, CL *from)
 	COND_GP *to_cond = to->cond;
 	COND_GP *from_cond = from->cond;
 	tree_copy(&to_cond->gp, &from_cond->gp);
-	memcpy(to_cond->mu, from_cond->mu, sizeof(double)*NUM_MU);
+	sam_copy(to_cond->mu, from_cond->mu);
 }
 
 void cond_gp_rand(CL *c)
@@ -103,14 +103,12 @@ _Bool cond_gp_match_state(CL *c)
 _Bool cond_gp_mutate(CL *c)
 {
 	COND_GP *cond = c->cond;
-#ifdef SAM
-	sam_adapt(cond->mu);
-	if(NUM_MU > 0) {
+	if(NUM_SAM > 0) {
+		sam_adapt(cond->mu);
 		P_MUTATION = cond->mu[0];
-		if(NUM_MU > 1)
+		if(NUM_SAM > 1)
 			S_MUTATION = cond->mu[1];
 	}
-#endif
 
 	if(drand() < P_MUTATION) {
 		tree_mutation(&cond->gp, P_MUTATION);

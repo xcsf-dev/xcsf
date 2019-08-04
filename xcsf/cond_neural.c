@@ -70,7 +70,7 @@ void cond_neural_copy(CL *to, CL *from)
 	COND_NEURAL *to_cond = to->cond;
 	COND_NEURAL *from_cond = from->cond;
 	neural_copy(&to_cond->bpn, &from_cond->bpn);
-	memcpy(to_cond->mu, from_cond->mu, sizeof(double)*NUM_MU);
+	sam_copy(to_cond->mu, from_cond->mu);
 }
 
 void cond_neural_rand(CL *c)
@@ -111,12 +111,10 @@ _Bool cond_neural_mutate(CL *c)
 {
 	COND_NEURAL *cond = c->cond;
 	_Bool mod = false;
-#ifdef SAM
-	sam_adapt(cond->mu);
-	if(NUM_MU > 0) {
+	if(NUM_SAM > 0) {
+		sam_adapt(cond->mu);
 		S_MUTATION = cond->mu[0];
 	}
-#endif
 	BPN *bpn = &cond->bpn;
 	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {

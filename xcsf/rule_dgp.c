@@ -66,7 +66,7 @@ void rule_dgp_cond_copy(CL *to, CL *from)
 	RULE_DGP_COND *to_cond = to->cond;
 	RULE_DGP_COND *from_cond = from->cond;
 	graph_copy(&to_cond->dgp, &from_cond->dgp);
-	memcpy(to_cond->mu, from_cond->mu, sizeof(double)*NUM_MU);
+	sam_copy(to_cond->mu, from_cond->mu);
 }
 
 void rule_dgp_cond_rand(CL *c)
@@ -107,12 +107,10 @@ _Bool rule_dgp_cond_mutate(CL *c)
 {
 	RULE_DGP_COND *cond = c->cond;
 	_Bool mod = false;
-#ifdef SAM
-	sam_adapt(cond->mu);
-	if(NUM_MU > 0)
+	if(NUM_SAM > 0) {
+		sam_adapt(cond->mu);
 		P_MUTATION = cond->mu[0];
-#endif
-
+	}
 	mod = graph_mutate(&cond->dgp, P_MUTATION);
 	return mod;
 }
