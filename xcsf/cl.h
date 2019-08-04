@@ -32,110 +32,110 @@ typedef struct CL {
 // classifier condition
 
 struct CondVtbl {
-	_Bool (*cond_impl_crossover)(CL const * const c1, CL const * const c2);
-	_Bool (*cond_impl_general)(CL const * const c1, CL const * const c2);
-	_Bool (*cond_impl_match)(CL const * const c, double *x);
-	_Bool (*cond_impl_match_state)(CL const * const c);
-	_Bool (*cond_impl_mutate)(CL const * const c);
-	_Bool (*cond_impl_subsumes)(CL const * const c1, CL const * const c2);
-	double (*cond_impl_mu)(CL const * const c, int m);
-	void (*cond_impl_copy)(CL const * const to, CL const * const from);
-	void (*cond_impl_cover)(CL const * const c, double *x);
-	void (*cond_impl_free)(CL const * const c);
-	void (*cond_impl_init)(CL const * const c);
-	void (*cond_impl_print)(CL const * const c);
-	void (*cond_impl_rand)(CL const * const c);
+	_Bool (*cond_impl_crossover)(CL *c1, CL *c2);
+	_Bool (*cond_impl_general)(CL *c1, CL *c2);
+	_Bool (*cond_impl_match)(CL *c, double *x);
+	_Bool (*cond_impl_match_state)(CL *c);
+	_Bool (*cond_impl_mutate)(CL *c);
+	_Bool (*cond_impl_subsumes)(CL *c1, CL *c2);
+	double (*cond_impl_mu)(CL *c, int m);
+	void (*cond_impl_copy)(CL *to, CL *from);
+	void (*cond_impl_cover)(CL *c, double *x);
+	void (*cond_impl_free)(CL *c);
+	void (*cond_impl_init)(CL *c);
+	void (*cond_impl_print)(CL *c);
+	void (*cond_impl_rand)(CL *c);
 };
 
-static inline _Bool cond_crossover(CL const * const c1, CL const * const c2) {
+static inline _Bool cond_crossover(CL *c1, CL *c2) {
 	return (*c1->cond_vptr->cond_impl_crossover)(c1, c2);
 }
 
-static inline _Bool cond_general(CL const * const c1, CL const * const c2) {
+static inline _Bool cond_general(CL *c1, CL *c2) {
 	return (*c1->cond_vptr->cond_impl_general)(c1, c2);
 }
 
-static inline _Bool cond_match(CL const * const c, double *x) {
+static inline _Bool cond_match(CL *c, double *x) {
 	return (*c->cond_vptr->cond_impl_match)(c, x);
 }
 
-static inline _Bool cond_match_state(CL const * const c) {
+static inline _Bool cond_match_state(CL *c) {
 	return (*c->cond_vptr->cond_impl_match_state)(c);
 }
 
-static inline _Bool cond_mutate(CL const * const c) {
+static inline _Bool cond_mutate(CL *c) {
 	return (*c->cond_vptr->cond_impl_mutate)(c);
 }
 
-static inline _Bool cond_subsumes(CL const * const c1, CL const * const c2) {
+static inline _Bool cond_subsumes(CL *c1, CL *c2) {
 	return (*c1->cond_vptr->cond_impl_subsumes)(c1, c2);
 }
 
-static inline double cond_mu(CL const * const c, int m) {
+static inline double cond_mu(CL *c, int m) {
 	return (*c->cond_vptr->cond_impl_mu)(c, m);
 }
 
-static inline void cond_copy(CL const * const to, CL const * const from) {
+static inline void cond_copy(CL *to, CL *from) {
 	(*to->cond_vptr->cond_impl_copy)(to, from);
 }
 
-static inline void cond_cover(CL const * const c, double *x) {
+static inline void cond_cover(CL *c, double *x) {
 	(*c->cond_vptr->cond_impl_cover)(c, x);
 }
 
-static inline void cond_free(CL const * const c) {
+static inline void cond_free(CL *c) {
 	(*c->cond_vptr->cond_impl_free)(c);
 }
 
-static inline void cond_init(CL const * const c) {
+static inline void cond_init(CL *c) {
 	(*c->cond_vptr->cond_impl_init)(c);
 }
 
-static inline void cond_print(CL const * const c) {
+static inline void cond_print(CL *c) {
 	(*c->cond_vptr->cond_impl_print)(c);
 }
 
-static inline void cond_rand(CL const * const c) {
+static inline void cond_rand(CL *c) {
 	(*c->cond_vptr->cond_impl_rand)(c);
 }
 
 // classifier prediction    
 
 struct PredVtbl {
-	double *(*pred_impl_compute)(CL const * const c, double *x);
-	double (*pred_impl_pre)(CL const * const c, int p);
-	void (*pred_impl_copy)(CL const * const to,  CL const * const from);
-	void (*pred_impl_free)(CL const * const c);
-	void (*pred_impl_init)(CL const * const c);
-	void (*pred_impl_print)(CL const * const c);
-	void (*pred_impl_update)(CL const * const c, double *y, double *x);
+	double *(*pred_impl_compute)(CL *c, double *x);
+	double (*pred_impl_pre)(CL *c, int p);
+	void (*pred_impl_copy)(CL *to,  CL *from);
+	void (*pred_impl_free)(CL *c);
+	void (*pred_impl_init)(CL *c);
+	void (*pred_impl_print)(CL *c);
+	void (*pred_impl_update)(CL *c, double *y, double *x);
 };
  
-static inline double *pred_compute(CL const * const c, double *x) {
+static inline double *pred_compute(CL *c, double *x) {
 	return (*c->pred_vptr->pred_impl_compute)(c, x);
 }
 
-static inline double pred_pre(CL const * const c, int p) {
+static inline double pred_pre(CL *c, int p) {
 	return (*c->pred_vptr->pred_impl_pre)(c, p);
 }
 
-static inline void pred_copy(CL const * const to, CL const * const from) {
+static inline void pred_copy(CL *to, CL *from) {
 	(*to->pred_vptr->pred_impl_copy)(to, from);
 }
 
-static inline void pred_free(CL const * const c) {
+static inline void pred_free(CL *c) {
 	(*c->pred_vptr->pred_impl_free)(c);
 }
 
-static inline void pred_init(CL const * const c) {
+static inline void pred_init(CL *c) {
 	(*c->pred_vptr->pred_impl_init)(c);
 }
 
-static inline void pred_print(CL const * const c) {
+static inline void pred_print(CL *c) {
 	(*c->pred_vptr->pred_impl_print)(c);
 }
 
-static inline void pred_update(CL const * const c, double *y, double *x) {
+static inline void pred_update(CL *c, double *y, double *x) {
 	(*c->pred_vptr->pred_impl_update)(c, y, x);
 }
  
