@@ -39,48 +39,10 @@ set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g3")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -Ofast -march=native")
 set(CMAKE_C_FLAGS_RELWITHDEBINFO "-Ofast -march=native -g3 ") 
 
-# conditions:
-#-1 = always match dummy condition
-# 0 = rect
-# 1 = neural
-# 2 = tree GP
-# 3 = dynamical graph GP
-# 11 = DGP single condition and prediction rules
-# 12 = neural network single condition and prediction rules
-
-if(NOT CON)
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DCON=0") # default
-else()
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DCON=${CON}")
-endif()
-                                                       
-# predictions: 
-# 0 = nlms linear
-# 1 = nlms quadratic
-# 2 = rls linear
-# 3 = rls quadratic
-# 4 = neural    
- 
-# monolithic condition/prediction
-if(CON GREATER 10)
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPRE=${CON}")
-else()
-	if(NOT PRE)
-		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPRE=0") # default
-	else()
-		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPRE=${PRE}")
-	endif()
-endif()
-
-option(SAM "Self-adaptive mutation rate" ON)
 option(GNUPLOT "Plot performance with GNUPLOT" ON)
 option(PARALLEL "Parallel match set and prediction" ON)
 option(GENPROF "Generate profile" OFF)
 option(USEPROF "Use profile" OFF)
-
-if(SAM)
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSAM")
-endif()
 
 if(GNUPLOT)
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT")
@@ -99,7 +61,6 @@ endif()
 if(USEPROF)
 	set(PROFILE_FLAGS "-fprofile-use")
 endif()
-
 
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS_RELEASE: ${CMAKE_C_FLAGS_RELEASE}")

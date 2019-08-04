@@ -18,13 +18,13 @@ PRED_TYPE = 1: quadratic least squares<br>
 PRED_TYPE = 2: linear recursive least squares<br>
 PRED_TYPE = 3: quadratic recursive least squares<br>
 PRED_TYPE = 4: backpropagation multilayer perceptron neural networks<br>
-
+ 
+Mutation for conditions:<br>
+NUM_SAM = 0: fixed rates (P_MUTATION and S_MUTATION)<br>
+NUM_SAM > 0: self-adaptive rate<br>
+ 
 Compiler options:
 -----------
-
-Mutation for conditions:<br>
-SAM = OFF: fixed rate<br>
-SAM = ON: self-adaptive rate<br>
 
 An updated GNUPlot of the current system error can be enabled by compiling with<br>
 GNUPLOT = ON (on GNU/Linux gnuplot-x11 must be installed.)<br>
