@@ -43,7 +43,7 @@
 
 void trial(int trial, _Bool train, double *err);
 
-int main(int argc, char *argv[0])
+int main(int argc, char **argv)
 {    
 	if(argc < 2 || argc > 4) {
 		printf("Usage: xcsf inputfile [MaxTrials] [NumExp]\n");
