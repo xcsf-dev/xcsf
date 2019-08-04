@@ -24,8 +24,6 @@
  * covering, matching, copying, mutating, printing, etc.
  */
 
-#if CON == 1
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,62 +32,84 @@
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
-
-void cond_init(CL *c)
+#include "neural.h"
+#include "cond_neural.h"
+ 
+typedef struct COND_NEURAL {
+	BPN bpn;
+	_Bool m;
+	double *mu;
+} COND_NEURAL;
+ 
+void cond_neural_init(CL *c)
 {
+	COND_NEURAL *cond = malloc(sizeof(COND_NEURAL));
 	int neurons[3] = {num_x_vars, NUM_HIDDEN_NEURONS, 1};
 	double (*activations[2])(double) = {sig, sig};
-	neural_init(&c->cond.bpn, 3, neurons, activations);
-#ifdef SAM
-	sam_init(&c->cond.mu);
-#endif
+	neural_init(&cond->bpn, 3, neurons, activations);
+	c->cond = cond;
+	sam_init(&cond->mu);
 }
 
-void cond_free(CL *c)
+void cond_neural_free(CL *c)
 {
-	neural_free(&c->cond.bpn);
-#ifdef SAM
-	sam_free(c->cond.mu);
-#endif
-}
+	COND_NEURAL *cond = c->cond;
+	neural_free(&cond->bpn);
+	sam_free(cond->mu);
+	free(c->cond);
+}                  
 
-void cond_copy(CL *to, CL *from)
+double cond_neural_mu(CL *c, int m)
 {
-	neural_copy(&to->cond.bpn, &from->cond.bpn);
-#ifdef SAM
-	memcpy(to->cond.mu, from->cond.mu, sizeof(double)*NUM_MU);
-#endif
+	COND_NEURAL *cond = c->cond;
+	return cond->mu[m];
 }
-
-void cond_rand(CL *c)
+ 
+void cond_neural_copy(CL *to, CL *from)
 {
-	neural_rand(&c->cond.bpn);
+	COND_NEURAL *to_cond = to->cond;
+	COND_NEURAL *from_cond = from->cond;
+	neural_copy(&to_cond->bpn, &from_cond->bpn);
+	memcpy(to_cond->mu, from_cond->mu, sizeof(double)*NUM_MU);
 }
 
-void cond_cover(CL *c, double *x)
+void cond_neural_rand(CL *c)
+{
+	COND_NEURAL *cond = c->cond;
+	neural_rand(&cond->bpn);
+}
+
+void cond_neural_cover(CL *c, double *x)
 {
 	// generates random weights until the network matches for input state
 	do {
-		cond_rand(c);
-	} while(!cond_match(c, x));
+		cond_neural_rand(c);
+	} while(!cond_neural_match(c, x));
 }
 
-_Bool cond_match(CL *c, double *x)
+_Bool cond_neural_match(CL *c, double *x)
 {
 	// classifier matches if the first output neuron > 0.5
-	neural_propagate(&c->cond.bpn, x);
-	if(neural_output(&c->cond.bpn, 0) > 0.5) {
-		c->cond.m = true;
+	COND_NEURAL *cond = c->cond;
+	neural_propagate(&cond->bpn, x);
+	if(neural_output(&cond->bpn, 0) > 0.5) {
+		cond->m = true;
 	}
 	else {
-		c->cond.m = false;
+		cond->m = false;
 	}
-	return c->cond.m;
+	return cond->m;
+}                
+
+_Bool cond_neural_match_state(CL *c)
+{
+	COND_NEURAL *cond = c->cond;
+	return cond->m;
 }
 
-_Bool cond_mutate(CL *c)
+_Bool cond_neural_mutate(CL *c)
 {
-	COND *cond = &c->cond;
+	COND_NEURAL *cond = c->cond;
 	_Bool mod = false;
 #ifdef SAM
 	sam_adapt(cond->mu);
@@ -112,7 +132,7 @@ _Bool cond_mutate(CL *c)
 	return mod;
 }
 
-_Bool cond_crossover(CL *c1, CL *c2)
+_Bool cond_neural_crossover(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -120,7 +140,7 @@ _Bool cond_crossover(CL *c1, CL *c2)
 	return false;
 }
 
-_Bool cond_subsumes(CL *c1, CL *c2)
+_Bool cond_neural_subsumes(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -128,7 +148,7 @@ _Bool cond_subsumes(CL *c1, CL *c2)
 	return false;
 }
 
-_Bool cond_general(CL *c1, CL *c2)
+_Bool cond_neural_general(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -136,9 +156,8 @@ _Bool cond_general(CL *c1, CL *c2)
 	return false;
 }   
 
-void cond_print(CL *c)
+void cond_neural_print(CL *c)
 {
-	neural_print(&c->cond.bpn);
+	COND_NEURAL *cond = c->cond;
+	neural_print(&cond->bpn);
 }  
-
-#endif

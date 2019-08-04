@@ -24,8 +24,6 @@
  * backpropagation algorithm.
  */
 
-#if PRE == 4
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -34,43 +32,63 @@
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
-
-void pred_init(CL *c)
+#include "neural.h"
+#include "pred_neural.h"
+ 
+typedef struct PRED_NEURAL {
+	BPN bpn;
+	double *pre;
+} PRED_NEURAL;
+ 
+void pred_neural_init(CL *c)
 {
+	PRED_NEURAL *pred = malloc(sizeof(PRED_NEURAL));
 	int neurons[3] = {num_x_vars, NUM_HIDDEN_NEURONS, num_y_vars};
 	double (*activations[2])(double) = {sig, sig};
-	neural_init(&c->pred.bpn, 3, neurons, activations);
-	c->pred.pre = malloc(sizeof(double)*num_y_vars);
+	neural_init(&pred->bpn, 3, neurons, activations);
+	pred->pre = malloc(sizeof(double)*num_y_vars);
+	c->pred = pred;
 }
 
-void pred_free(CL *c)
+void pred_neural_free(CL *c)
 {
-	neural_free(&c->pred.bpn);
-	free(c->pred.pre);
+	PRED_NEURAL *pred = c->pred;
+	neural_free(&pred->bpn);
+	free(pred->pre);
+	free(pred);
 }
 
-void pred_copy(CL *to, CL *from)
+void pred_neural_copy(CL *to, CL *from)
 {
-	neural_copy(&to->pred.bpn, &from->pred.bpn);
+	PRED_NEURAL *to_pred = to->pred;
+	PRED_NEURAL *from_pred = from->pred;
+	neural_copy(&to_pred->bpn, &from_pred->bpn);
 }
 
-void pred_update(CL *c, double *y, double *x)
+void pred_neural_update(CL *c, double *y, double *x)
 {
-	neural_learn(&c->pred.bpn, y, x);
+	PRED_NEURAL *pred = c->pred;
+	neural_learn(&pred->bpn, y, x);
 }
 
-double *pred_compute(CL *c, double *x)
+double *pred_neural_compute(CL *c, double *x)
 {
-	neural_propagate(&c->pred.bpn, x);
+	PRED_NEURAL *pred = c->pred;
+	neural_propagate(&pred->bpn, x);
 	for(int i = 0; i < num_y_vars; i++) {
-		c->pred.pre[i] = neural_output(&c->pred.bpn, i);
+		pred->pre[i] = neural_output(&pred->bpn, i);
 	}
-	return c->pred.pre;
+	return pred->pre;
 }
-
-void pred_print(CL *c)
+                        
+double pred_neural_pre(CL *c, int p)
 {
-	neural_print(&c->pred.bpn);
+	PRED_NEURAL *pred = c->pred;
+	return pred->pre[p];
+}
+ 
+void pred_neural_print(CL *c)
+{
+	PRED_NEURAL *pred = c->pred;
+	neural_print(&pred->bpn);
 }  
-
-#endif

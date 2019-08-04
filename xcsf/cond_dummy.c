@@ -20,8 +20,6 @@
  * Always matching condition module.
  */
 
-#if CON == -1
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -30,76 +28,92 @@
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
-
-void cond_init(CL *c)
+#include "cond_dummy.h"
+ 
+typedef struct COND_DUMMY {
+	_Bool m;
+	double *mu;
+} COND_DUMMY;
+ 
+void cond_dummy_init(CL *c)
 {
-	(void)c;
-#ifdef SAM
-	sam_init(&c->cond.mu);
-#endif
+	COND_DUMMY *cond = malloc(sizeof(COND_DUMMY));
+	c->cond = cond;
+	sam_init(&cond->mu);
 }
 
-void cond_free(CL *c)
+void cond_dummy_free(CL *c)
 {
-	(void)c;
-#ifdef SAM
-	sam_free(c->cond.mu);
-#endif
+	COND_DUMMY *cond = c->cond;
+	sam_free(cond->mu);
+	free(c->cond);
 }
-
-void cond_copy(CL *to, CL *from)
+ 
+double cond_dummy_mu(CL *c, int m)
+{
+	COND_DUMMY *cond = c->cond;
+	return cond->mu[m];
+}
+ 
+void cond_dummy_copy(CL *to, CL *from)
 {
 	(void)to;
 	(void)from;
 }                             
 
-void cond_rand(CL *c)
+void cond_dummy_rand(CL *c)
 {
 	(void)c;
 }
 
-void cond_cover(CL *c, double *state)
+void cond_dummy_cover(CL *c, double *state)
 {
 	(void)c;
 	(void)state;
 }
 
-_Bool cond_match(CL *c, double *state)
+_Bool cond_dummy_match(CL *c, double *state)
 {
 	(void)state;
-	c->cond.m = true;
-	return c->cond.m;
+	COND_DUMMY *cond = c->cond;
+	cond->m = true;
+	return cond->m;
 }
-
-_Bool cond_crossover(CL *c1, CL *c2) 
+ 
+_Bool cond_dummy_match_state(CL *c)
+{
+	COND_DUMMY *cond = c->cond;
+	return cond->m;
+}
+ 
+_Bool cond_dummy_crossover(CL *c1, CL *c2) 
 {
 	(void)c1;
 	(void)c2;
 	return false;
 }
 
-_Bool cond_mutate(CL *c)
+_Bool cond_dummy_mutate(CL *c)
 {
 	(void)c;
 	return false;
 }
 
-_Bool cond_subsumes(CL *c1, CL *c2)
+_Bool cond_dummy_subsumes(CL *c1, CL *c2)
 {
 	(void)c1;
 	(void)c2;
 	return true;
 }
 
-_Bool cond_general(CL *c1, CL *c2)
+_Bool cond_dummy_general(CL *c1, CL *c2)
 {
 	(void)c1;
 	(void)c2;
 	return true;
 }  
 
-void cond_print(CL *c)
+void cond_dummy_print(CL *c)
 {
 	(void)c;
 }
-#endif

@@ -36,9 +36,7 @@ void set_print(NODE *set);
 void set_times(NODE **set, int time);
 void set_update(NODE **set, int *size, int *num, double *y, NODE **kset, double *x);
 void set_validate(NODE **set, int *size, int *num);
-#ifdef SAM
 double set_avg_mut(NODE **set, int m);
-#endif
 
 NODE *pset;
 int pop_num;

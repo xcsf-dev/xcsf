@@ -15,13 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#if PRE == 2 || PRE == 3
+double pred_rls_pre(CL *c, int p);
+double *pred_rls_compute(CL *c, double *x);
+void pred_rls_copy(CL *to,  CL *from);
+void pred_rls_free(CL *c);
+void pred_rls_init(CL *c);
+void pred_rls_print(CL *c);
+void pred_rls_update(CL *c, double *y, double *x);
 
-typedef struct PRED {
-	int weights_length;
-	double **weights;
-	double *matrix;
-	double *pre;
-} PRED;
-
-#endif
+static struct PredVtbl const pred_rls_vtbl = {
+	&pred_rls_compute,
+	&pred_rls_pre,
+	&pred_rls_copy,
+	&pred_rls_free,
+	&pred_rls_init,
+	&pred_rls_print,
+	&pred_rls_update
+};

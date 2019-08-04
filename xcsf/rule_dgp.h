@@ -14,19 +14,51 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
-#if CON == 11
- 
-typedef struct COND {
-	GRAPH dgp;
-	_Bool m;
-#ifdef SAM
-	double *mu;
-#endif
-} COND;
-  
-typedef struct PRED {
-	double *pre;
-} PRED;
 
-#endif
+_Bool rule_dgp_cond_crossover(CL *c1, CL *c2);
+_Bool rule_dgp_cond_general(CL *c1, CL *c2);
+_Bool rule_dgp_cond_match(CL *c, double *x);
+_Bool rule_dgp_cond_match_state(CL *c);
+_Bool rule_dgp_cond_mutate(CL *c);
+_Bool rule_dgp_cond_subsumes(CL *c1, CL *c2);
+void rule_dgp_cond_copy(CL *to, CL *from);
+void rule_dgp_cond_cover(CL *c, double *x);
+void rule_dgp_cond_free(CL *c);
+void rule_dgp_cond_init(CL *c);
+void rule_dgp_cond_print(CL *c);
+void rule_dgp_cond_rand(CL *c);
+double rule_dgp_cond_mu(CL *c, int m);
+
+static struct CondVtbl const rule_dgp_cond_vtbl = {
+	&rule_dgp_cond_crossover,
+	&rule_dgp_cond_general,
+	&rule_dgp_cond_match,
+	&rule_dgp_cond_match_state,
+	&rule_dgp_cond_mutate,
+	&rule_dgp_cond_subsumes,
+	&rule_dgp_cond_mu,
+	&rule_dgp_cond_copy,
+	&rule_dgp_cond_cover,
+	&rule_dgp_cond_free,
+	&rule_dgp_cond_init,
+	&rule_dgp_cond_print,
+	&rule_dgp_cond_rand
+};      
+
+double rule_dgp_pred_pre(CL *c, int p);
+double *rule_dgp_pred_compute(CL *c, double *x);
+void rule_dgp_pred_copy(CL *to,  CL *from);
+void rule_dgp_pred_free(CL *c);
+void rule_dgp_pred_init(CL *c);
+void rule_dgp_pred_print(CL *c);
+void rule_dgp_pred_update(CL *c, double *y, double *x);
+
+static struct PredVtbl const rule_dgp_pred_vtbl = {
+	&rule_dgp_pred_compute,
+	&rule_dgp_pred_pre,
+	&rule_dgp_pred_copy,
+	&rule_dgp_pred_free,
+	&rule_dgp_pred_init,
+	&rule_dgp_pred_print,
+	&rule_dgp_pred_update
+};

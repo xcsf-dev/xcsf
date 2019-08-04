@@ -14,14 +14,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+                        
+_Bool cond_dummy_crossover(CL *c1, CL *c2);
+_Bool cond_dummy_general(CL *c1, CL *c2);
+_Bool cond_dummy_match(CL *c, double *x);
+_Bool cond_dummy_match_state(CL *c);
+_Bool cond_dummy_mutate(CL *c);
+_Bool cond_dummy_subsumes(CL *c1, CL *c2);
+void cond_dummy_copy(CL *to, CL *from);
+void cond_dummy_cover(CL *c, double *x);
+void cond_dummy_free(CL *c);
+void cond_dummy_init(CL *c);
+void cond_dummy_print(CL *c);
+void cond_dummy_rand(CL *c);
+double cond_dummy_mu(CL *c, int m);
 
-#if CON == -1
-
-typedef struct COND {
-	_Bool m;
-#ifdef SAM
-	double *mu;
-#endif
-} COND;
-
-#endif
+static struct CondVtbl const cond_dummy_vtbl = {
+	&cond_dummy_crossover,
+	&cond_dummy_general,
+	&cond_dummy_match,
+	&cond_dummy_match_state,
+	&cond_dummy_mutate,
+	&cond_dummy_subsumes,
+	&cond_dummy_mu,
+	&cond_dummy_copy,
+	&cond_dummy_cover,
+	&cond_dummy_free,
+	&cond_dummy_init,
+	&cond_dummy_print,
+	&cond_dummy_rand
+};     

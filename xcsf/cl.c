@@ -31,6 +31,16 @@
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
+#include "cond_dummy.h"
+#include "cond_rect.h"
+#include "cond_gp.h"
+#include "cond_dgp.h"
+#include "cond_neural.h"
+#include "pred_nlms.h"
+#include "pred_rls.h"
+#include "pred_neural.h"
+#include "rule_dgp.h"
+#include "rule_neural.h"
 
 double cl_update_err(CL *c, double *y);
 double cl_update_size(CL *c, double num_sum);
@@ -43,6 +53,51 @@ void cl_init(CL *c, int size, int time)
 	c->exp = 0;
 	c->size = size;
 	c->time = time;
+
+	switch(PRED_TYPE) {
+		case 0:
+			c->pred_vptr = &pred_nlms_vtbl;
+			break;
+		case 1:
+			c->pred_vptr = &pred_neural_vtbl;
+			break;
+		case 2:
+			c->pred_vptr = &pred_rls_vtbl;
+			break;
+		default:
+			printf("Invalid prediction type specified: %d\n", PRED_TYPE);
+			exit(EXIT_FAILURE);
+	}
+
+	switch(COND_TYPE) {
+		case -1:
+			c->cond_vptr = &cond_dummy_vtbl;
+			break;
+		case 0:
+			c->cond_vptr = &cond_rect_vtbl;
+			break;
+		case 1:
+			c->cond_vptr = &cond_neural_vtbl;
+			break;
+		case 2:
+			c->cond_vptr = &cond_gp_vtbl;
+			break;
+		case 3:
+			c->cond_vptr = &cond_dgp_vtbl;
+			break;
+		case 11:
+			c->cond_vptr = &rule_dgp_cond_vtbl;
+			c->pred_vptr = &rule_dgp_pred_vtbl;
+			break;
+		case 12:
+			c->cond_vptr = &rule_neural_cond_vtbl;
+			c->pred_vptr = &rule_neural_pred_vtbl;
+			break;
+		default:
+			printf("Invalid condition type specified: %d\n", COND_TYPE);
+			exit(EXIT_FAILURE);
+	}
+
 	cond_init(c);
 	pred_init(c);
 }
@@ -90,7 +145,8 @@ double cl_update_err(CL *c, double *y)
 	// calculate MSE
 	double error = 0.0;
 	for(int i = 0; i < num_y_vars; i++) {
-		error += (y[i] - c->pred.pre[i]) * (y[i] - c->pred.pre[i]);
+		double pre = pred_pre(c, i);
+		error += (y[i] - pre) * (y[i] - pre);
 	}
 	error /= (double)num_y_vars;
 
@@ -159,7 +215,7 @@ _Bool cl_match(CL *c, double *x)
 
 _Bool cl_match_state(CL *c)
 {
-	return c->cond.m;
+	return cond_match_state(c);
 }
 
 double *cl_predict(CL *c, double *x)
@@ -177,9 +233,7 @@ _Bool cl_crossover(CL *c1, CL *c2)
 	return cond_crossover(c1, c2);
 }  
 
-#ifdef SAM
 double cl_mutation_rate(CL *c, int m)
 {
-	return c->cond.mu[m];
+	return cond_mu(c, m);
 }
-#endif

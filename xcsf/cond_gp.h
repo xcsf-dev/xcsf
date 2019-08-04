@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2016--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,40 @@
  *
  */
 
-#if CON == 2
+#include "gp.h"
 
-typedef struct COND {
+typedef struct COND_GP {
 	GP_TREE gp;
 	_Bool m;
-#ifdef SAM
 	double *mu;
-#endif
-} COND;
+} COND_GP;
 
-#endif
+_Bool cond_gp_crossover(CL *c1, CL *c2);
+_Bool cond_gp_general(CL *c1, CL *c2);
+_Bool cond_gp_match(CL *c, double *x);
+_Bool cond_gp_match_state(CL *c);
+_Bool cond_gp_mutate(CL *c);
+_Bool cond_gp_subsumes(CL *c1, CL *c2);
+void cond_gp_copy(CL *to, CL *from);
+void cond_gp_cover(CL *c, double *x);
+void cond_gp_free(CL *c);
+void cond_gp_init(CL *c);
+void cond_gp_print(CL *c);
+void cond_gp_rand(CL *c);
+double cond_gp_mu(CL *c, int m);
+
+static struct CondVtbl const cond_gp_vtbl = {
+	&cond_gp_crossover,
+	&cond_gp_general,
+	&cond_gp_match,
+	&cond_gp_match_state,
+	&cond_gp_mutate,
+	&cond_gp_subsumes,
+	&cond_gp_mu,
+	&cond_gp_copy,
+	&cond_gp_cover,
+	&cond_gp_free,
+	&cond_gp_init,
+	&cond_gp_print,
+	&cond_gp_rand
+};      

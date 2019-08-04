@@ -46,6 +46,9 @@ double INIT_FITNESS; // initial classifier fitness value
 double NU; // exponent used in calculating classifier accuracy
 double THETA_DEL; // min experience before fitness used in probability of deletion
 
+int COND_TYPE; // classifier condition type: hyperrectangles, GP trees, etc.
+int PRED_TYPE; // classifier prediction type: least squares, neural nets, etc.
+
 // genetic algorithm parameters
 double P_CROSSOVER; // probability of applying crossover (for hyperrectangles)
 double P_MUTATION; // probability of mutation occuring per allele

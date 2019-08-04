@@ -114,36 +114,52 @@ void gplot_init()
 	sprintf(buffer, "%s", probname);
 	strcat(title, buffer);
 
-#if CON == -1
-	strcat(title, " DUMMY COND");
-#elif CON == 0
-	strcat(title, " RECT COND");
-#elif CON == 1
-	strcat(title, " NEURAL COND");
-#elif CON == 2
-	strcat(title, " TREE-GP COND");
-#elif CON == 3
-	strcat(title, " GRAPH-DGP COND");
-#elif CON == 11
-	strcat(title, " GRAPH-DGP RULE");
-#elif CON == 12
-	strcat(title, " NEURAL RULE");
-#endif
+	switch(COND_TYPE) {
+		case -1:
+			strcat(title, " DUMMY COND");
+			break;
+		case 0:
+			strcat(title, " RECT COND");
+			break;
+		case 1:
+			strcat(title, " NEURAL COND");
+			break;
+		case 2:
+			strcat(title, " TREE-GP COND");
+			break;
+		case 3:
+			strcat(title, " GRAPH-DGP COND");
+			break;
+		case 11:
+			strcat(title, " GRAPH-DGP RULE");
+			break;
+		case 12:
+			strcat(title, " NEURAL RULE");
+			break;
+	}
+
+	if(COND_TYPE < 10) {
+		switch(PRED_TYPE) {
+			case 0:
+				strcat(title, ", LINEAR NLMS");
+				break;
+			case 1:
+				strcat(title, ", QUADRATIC NLMS");
+				break;
+			case 2:
+				strcat(title, ", LINEAR RLS");
+				break;
+			case 3:
+				strcat(title, ", QUADRATIC RLS");
+				break;
+			case 4:
+				strcat(title, ", NEURAL PRED");
+				break;
+		}
+	}
 
 #ifdef SAM
 	strcat(title, ", SAM");
-#endif
-
-#if PRE == 0
-	strcat(title, ", LINEAR NLMS");
-#elif PRE == 1
-	strcat(title, ", QUADRATIC NLMS");
-#elif PRE == 2
-	strcat(title, ", LINEAR RLS");
-#elif PRE == 3
-	strcat(title, ", QUADRATIC RLS");
-#elif PRE == 4
-	strcat(title, ", NEURAL PRED");
 #endif
 
 	sprintf(buffer, ", P=%d", POP_SIZE);

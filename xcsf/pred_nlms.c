@@ -25,8 +25,6 @@
  * Widrow-Hoff update.)
  */
 
-#if PRE == 0 || PRE == 1
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -35,10 +33,18 @@
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
-
-void pred_init(CL *c)
+#include "pred_nlms.h"
+  
+typedef struct PRED_NLMS {
+	int weights_length;
+	double **weights;
+	double *pre;
+} PRED_NLMS;
+ 
+void pred_nlms_init(CL *c)
 {
-	PRED *pred = &c->pred;
+	PRED_NLMS *pred = malloc(sizeof(PRED_NLMS));
+	c->pred = pred;
 #if PRE == 1
 	// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
 	pred->weights_length = 1+2*num_x_vars+num_x_vars*(num_x_vars-1)/2;
@@ -60,27 +66,31 @@ void pred_init(CL *c)
 	pred->pre = malloc(sizeof(double)*num_y_vars);
 }
 
-void pred_copy(CL *to, CL *from)
+void pred_nlms_copy(CL *to, CL *from)
 {
+	PRED_NLMS *to_pred = to->pred;
+	PRED_NLMS *from_pred = from->pred;
 	for(int var = 0; var < num_y_vars; var++) {
-		memcpy(to->pred.weights[var], from->pred.weights[var], 
-				sizeof(double)*from->pred.weights_length);
+		memcpy(to_pred->weights[var], from_pred->weights[var], 
+				sizeof(double)*from_pred->weights_length);
 	}
-	memcpy(to->pred.pre, from->pred.pre, sizeof(double)*num_y_vars);
+	memcpy(to_pred->pre, from_pred->pre, sizeof(double)*num_y_vars);
 }
 
-void pred_free(CL *c)
+void pred_nlms_free(CL *c)
 {
+	PRED_NLMS *pred = c->pred;
 	for(int var = 0; var < num_y_vars; var++) {
-		free(c->pred.weights[var]);
+		free(pred->weights[var]);
 	}
-	free(c->pred.weights);
-	free(c->pred.pre);
+	free(pred->weights);
+	free(pred->pre);
+	free(pred);
 }
 
-void pred_update(CL *c, double *y, double *x)
+void pred_nlms_update(CL *c, double *y, double *x)
 {
-	PRED *pred = &c->pred;
+	PRED_NLMS *pred = c->pred;
 
 	double norm = XCSF_X0 * XCSF_X0;
 	for(int i = 0; i < num_x_vars; i++) {
@@ -89,7 +99,7 @@ void pred_update(CL *c, double *y, double *x)
 
 	// pre has been updated for the current state during set_pred()
 	for(int var = 0; var < num_y_vars; var++) {
-		double error = y[var] - pred->pre[var]; // pred_compute(c, x);
+		double error = y[var] - pred->pre[var]; // pred_nlms_compute(c, x);
 		double correction = (XCSF_ETA * error) / norm;
 		// update first coefficient
 		pred->weights[var][0] += XCSF_X0 * correction;
@@ -109,9 +119,9 @@ void pred_update(CL *c, double *y, double *x)
 	}
 }
 
-double *pred_compute(CL *c, double *x)
+double *pred_nlms_compute(CL *c, double *x)
 {
-	PRED *pred = &c->pred;
+	PRED_NLMS *pred = c->pred;
 	for(int var = 0; var < num_y_vars; var++) {
 		// first coefficient is offset
 		double pre = XCSF_X0 * pred->weights[var][0];
@@ -133,9 +143,15 @@ double *pred_compute(CL *c, double *x)
 	return pred->pre;
 } 
 
-void pred_print(CL *c)
+double pred_nlms_pre(CL *c, int p)
 {
-	PRED *pred = &c->pred;
+	PRED_NLMS *pred = c->pred;
+	return pred->pre[p];
+}
+
+void pred_nlms_print(CL *c)
+{
+	PRED_NLMS *pred = c->pred;
 	printf("weights: ");
 	for(int var = 0; var < num_y_vars; var++) {
 		for(int i = 0; i < pred->weights_length; i++) {
@@ -144,4 +160,3 @@ void pred_print(CL *c)
 		printf("\n");
 	}
 }
-#endif

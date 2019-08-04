@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2016--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,15 +15,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
- 
-#if CON == 3
 
-typedef struct COND {
-	GRAPH dgp;
-	_Bool m;
-#ifdef SAM
-	double *mu;
-#endif
-} COND;
+_Bool cond_dgp_crossover(CL *c1, CL *c2);
+_Bool cond_dgp_general(CL *c1, CL *c2);
+_Bool cond_dgp_match(CL *c, double *x);
+_Bool cond_dgp_match_state(CL *c);
+_Bool cond_dgp_mutate(CL *c);
+_Bool cond_dgp_subsumes(CL *c1, CL *c2);
+void cond_dgp_copy(CL *to, CL *from);
+void cond_dgp_cover(CL *c, double *x);
+void cond_dgp_free(CL *c);
+void cond_dgp_init(CL *c);
+void cond_dgp_print(CL *c);
+void cond_dgp_rand(CL *c);
+double cond_dgp_mu(CL *c, int m);
 
-#endif
+static struct CondVtbl const cond_dgp_vtbl = {
+	&cond_dgp_crossover,
+	&cond_dgp_general,
+	&cond_dgp_match,
+	&cond_dgp_match_state,
+	&cond_dgp_mutate,
+	&cond_dgp_subsumes,
+	&cond_dgp_mu,
+	&cond_dgp_copy,
+	&cond_dgp_cover,
+	&cond_dgp_free,
+	&cond_dgp_init,
+	&cond_dgp_print,
+	&cond_dgp_rand
+};      

@@ -20,8 +20,6 @@
  * The recursive least square classifier computed prediction module.
  */
 
-#if PRE == 2 || PRE == 3
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -30,6 +28,7 @@
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
+#include "pred_rls.h"
 
 #define RLS_SCALE_FACTOR 1000.0
 #define RLS_LAMBDA 1.0
@@ -37,10 +36,18 @@
 void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n);
 void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n);
 void init_matrix(double *matrix, int n);
-
-void pred_init(CL *c)
+ 
+typedef struct PRED_RLS {
+	int weights_length;
+	double **weights;
+	double *matrix;
+	double *pre;
+} PRED_RLS;
+ 
+void pred_rls_init(CL *c)
 {
-	PRED *pred = &c->pred;
+	PRED_RLS *pred = malloc(sizeof(PRED_RLS));
+	c->pred = pred;
 #if PRE == 3
 	// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
 	pred->weights_length = 1+2*num_x_vars+num_x_vars*(num_x_vars-1)/2;
@@ -81,28 +88,32 @@ void init_matrix(double *matrix, int n)
 	}
 }
  
-void pred_copy(CL *to, CL *from)
+void pred_rls_copy(CL *to, CL *from)
 {
+	PRED_RLS *to_pred = to->pred;
+	PRED_RLS *from_pred = from->pred;
 	for(int var = 0; var < num_y_vars; var++) {
-		memcpy(to->pred.weights[var], from->pred.weights[var], 
-				sizeof(double)*from->pred.weights_length);
+		memcpy(to_pred->weights[var], from_pred->weights[var], 
+				sizeof(double)*from_pred->weights_length);
 	}
-	memcpy(to->pred.pre, from->pred.pre, sizeof(double)*num_y_vars);
+	memcpy(to_pred->pre, from_pred->pre, sizeof(double)*num_y_vars);
 }
  
-void pred_free(CL *c)
+void pred_rls_free(CL *c)
 {
+	PRED_RLS *pred = c->pred;
 	for(int var = 0; var < num_y_vars; var++) {
-		free(c->pred.weights[var]);
+		free(pred->weights[var]);
 	}
-	free(c->pred.weights);
-	free(c->pred.matrix);
-	free(c->pred.pre);
+	free(pred->weights);
+	free(pred->matrix);
+	free(pred->pre);
+	free(pred);
 }
      
-void pred_update(CL *c, double *y, double *x)
+void pred_rls_update(CL *c, double *y, double *x)
 {
-	PRED *pred = &c->pred;
+	PRED_RLS *pred = c->pred;
 	int n = pred->weights_length;
 	int n_sqrd = n*n;
 	double tmp_input[n];
@@ -168,9 +179,9 @@ void pred_update(CL *c, double *y, double *x)
 	}
 }
 
-double *pred_compute(CL *c, double *x)
+double *pred_rls_compute(CL *c, double *x)
 {
-	PRED *pred = &c->pred;
+	PRED_RLS *pred = c->pred;
 	for(int var = 0; var < num_y_vars; var++) {
 		// first coefficient is offset
 		double pre = XCSF_X0 * pred->weights[var][0];
@@ -191,10 +202,16 @@ double *pred_compute(CL *c, double *x)
 	}
 	return pred->pre;
 } 
-
-void pred_print(CL *c)
+ 
+double pred_rls_pre(CL *c, int p)
 {
-	PRED *pred = &c->pred;
+	PRED_RLS *pred = c->pred;
+	return pred->pre[p];
+}
+ 
+void pred_rls_print(CL *c)
+{
+	PRED_RLS *pred = c->pred;
 	printf("RLS weights: ");
 	for(int var = 0; var < num_y_vars; var++) {
 		for(int i = 0; i < pred->weights_length; i++) {
@@ -233,4 +250,3 @@ void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n)
 		}
 	}
 }
-#endif

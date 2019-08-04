@@ -14,19 +14,51 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
-#if CON == 12
-      
-typedef struct COND {
-	BPN bpn;
-	_Bool m;
-#ifdef SAM
-	double *mu;
-#endif
-} COND;
-       
-typedef struct PRED {
-	double *pre;
-} PRED;
- 
-#endif
+
+_Bool rule_neural_cond_crossover(CL *c1, CL *c2);
+_Bool rule_neural_cond_general(CL *c1, CL *c2);
+_Bool rule_neural_cond_match(CL *c, double *x);
+_Bool rule_neural_cond_match_state(CL *c);
+_Bool rule_neural_cond_mutate(CL *c);
+_Bool rule_neural_cond_subsumes(CL *c1, CL *c2);
+void rule_neural_cond_copy(CL *to, CL *from);
+void rule_neural_cond_cover(CL *c, double *x);
+void rule_neural_cond_free(CL *c);
+void rule_neural_cond_init(CL *c);
+void rule_neural_cond_print(CL *c);
+void rule_neural_cond_rand(CL *c);
+double rule_neural_cond_mu(CL *c, int m);
+
+static struct CondVtbl const rule_neural_cond_vtbl = {
+	&rule_neural_cond_crossover,
+	&rule_neural_cond_general,
+	&rule_neural_cond_match,
+	&rule_neural_cond_match_state,
+	&rule_neural_cond_mutate,
+	&rule_neural_cond_subsumes,
+	&rule_neural_cond_mu,
+	&rule_neural_cond_copy,
+	&rule_neural_cond_cover,
+	&rule_neural_cond_free,
+	&rule_neural_cond_init,
+	&rule_neural_cond_print,
+	&rule_neural_cond_rand
+};      
+
+double rule_neural_pred_pre(CL *c, int p);
+double *rule_neural_pred_compute(CL *c, double *x);
+void rule_neural_pred_copy(CL *to,  CL *from);
+void rule_neural_pred_free(CL *c);
+void rule_neural_pred_init(CL *c);
+void rule_neural_pred_print(CL *c);
+void rule_neural_pred_update(CL *c, double *y, double *x);
+
+static struct PredVtbl const rule_neural_pred_vtbl = {
+	&rule_neural_pred_compute,
+	&rule_neural_pred_pre,
+	&rule_neural_pred_copy,
+	&rule_neural_pred_free,
+	&rule_neural_pred_init,
+	&rule_neural_pred_print,
+	&rule_neural_pred_update
+};

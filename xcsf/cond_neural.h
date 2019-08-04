@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012--2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2012--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,14 +15,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#if CON == 1
+_Bool cond_neural_crossover(CL *c1, CL *c2);
+_Bool cond_neural_general(CL *c1, CL *c2);
+_Bool cond_neural_match(CL *c, double *x);
+_Bool cond_neural_match_state(CL *c);
+_Bool cond_neural_mutate(CL *c);
+_Bool cond_neural_subsumes(CL *c1, CL *c2);
+void cond_neural_copy(CL *to, CL *from);
+void cond_neural_cover(CL *c, double *x);
+void cond_neural_free(CL *c);
+void cond_neural_init(CL *c);
+void cond_neural_print(CL *c);
+void cond_neural_rand(CL *c);
+double cond_neural_mu(CL *c, int m);
 
-typedef struct COND {
-	BPN bpn;
-	_Bool m;
-#ifdef SAM
-	double *mu;
-#endif
-} COND;
-
-#endif
+static struct CondVtbl const cond_neural_vtbl = {
+	&cond_neural_crossover,
+	&cond_neural_general,
+	&cond_neural_match,
+	&cond_neural_match_state,
+	&cond_neural_mutate,
+	&cond_neural_subsumes,
+	&cond_neural_mu,
+	&cond_neural_copy,
+	&cond_neural_cover,
+	&cond_neural_free,
+	&cond_neural_init,
+	&cond_neural_print,
+	&cond_neural_rand
+};      

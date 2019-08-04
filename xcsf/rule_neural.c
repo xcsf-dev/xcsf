@@ -21,8 +21,6 @@
  * Performs both condition matching and prediction.
  */
 
-#if CON == 12
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,69 +29,96 @@
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
-
-void cond_init(CL *c)
+#include "neural.h"
+#include "rule_neural.h"
+  
+typedef struct RULE_NEURAL_COND {
+	BPN bpn;
+	_Bool m;
+	double *mu;
+} RULE_NEURAL_COND;
+       
+typedef struct RULE_NEURAL_PRED {
+	double *pre;
+} RULE_NEURAL_PRED;
+ 
+void rule_neural_cond_init(CL *c)
 {
+	RULE_NEURAL_COND *cond = malloc(sizeof(RULE_NEURAL_COND));
 	int neurons[3] = {num_x_vars, NUM_HIDDEN_NEURONS, num_y_vars+1};
 	double (*activations[2])(double) = {sig, sig};
-	neural_init(&c->cond.bpn, 3, neurons, activations);
-#ifdef SAM
-	sam_init(&c->cond.mu);
-#endif
+	neural_init(&cond->bpn, 3, neurons, activations);
+	c->cond = cond;
+	sam_init(&cond->mu);
 }
 
-void cond_free(CL *c)
+void rule_neural_cond_free(CL *c)
 {
-	neural_free(&c->cond.bpn);
-#ifdef SAM
-	sam_free(c->cond.mu);
-#endif
-}
+	RULE_NEURAL_COND *cond = c->cond;
+	neural_free(&cond->bpn);
+	sam_free(cond->mu);
+	free(c->cond);
+}  
 
-void cond_copy(CL *to, CL *from)
+double rule_neural_cond_mu(CL *c, int m)
 {
-	neural_copy(&to->cond.bpn, &from->cond.bpn);
-#ifdef SAM
-	memcpy(to->cond.mu, from->cond.mu, sizeof(double)*NUM_MU);
-#endif
+	RULE_NEURAL_COND *cond = c->cond;
+	return cond->mu[m];
 }
 
-void cond_rand(CL *c)
+void rule_neural_cond_copy(CL *to, CL *from)
 {
-	neural_rand(&c->cond.bpn);
+	RULE_NEURAL_COND *to_cond = to->cond;
+	RULE_NEURAL_COND *from_cond = from->cond;
+	neural_copy(&to_cond->bpn, &from_cond->bpn);
+	memcpy(to_cond->mu, from_cond->mu, sizeof(double)*NUM_MU);
 }
 
-void cond_cover(CL *c, double *x)
+void rule_neural_cond_rand(CL *c)
+{
+	RULE_NEURAL_COND *cond = c->cond;
+	neural_rand(&cond->bpn);
+}
+
+void rule_neural_cond_cover(CL *c, double *x)
 {
 	// generates random weights until the network matches for input state
 	do {
-		cond_rand(c);
-	} while(!cond_match(c, x));
+		rule_neural_cond_rand(c);
+	} while(!rule_neural_cond_match(c, x));
 }
 
-_Bool cond_match(CL *c, double *x)
+_Bool rule_neural_cond_match(CL *c, double *x)
 {
 	// classifier matches if the first output neuron > 0.5
-	neural_propagate(&c->cond.bpn, x);
-	if(neural_output(&c->cond.bpn, 0) > 0.5) {
-		c->cond.m = true;
+	RULE_NEURAL_COND *cond = c->cond;
+	neural_propagate(&cond->bpn, x);
+	if(neural_output(&cond->bpn, 0) > 0.5) {
+		cond->m = true;
 	}
 	else {
-		c->cond.m = false;
+		cond->m = false;
 	}
-	return c->cond.m;
+	return cond->m;
+}    
+
+_Bool rule_neural_cond_match_state(CL *c)
+{
+	RULE_NEURAL_COND *cond = c->cond;
+	return cond->m;
 }
 
-_Bool cond_mutate(CL *c)
+_Bool rule_neural_cond_mutate(CL *c)
 {
+	RULE_NEURAL_COND *cond = c->cond;
 	_Bool mod = false;
 #ifdef SAM
-	sam_adapt(c->cond.mu);
+	sam_adapt(cond->mu);
 	if(NUM_MU > 0) {
-		S_MUTATION = c->cond.mu[0];
+		S_MUTATION = cond->mu[0];
 	}
 #endif
-	BPN *bpn = &c->cond.bpn;
+	BPN *bpn = &cond->bpn;
 	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
 			NEURON *n = &bpn->layer[l-1][i];
@@ -108,7 +133,7 @@ _Bool cond_mutate(CL *c)
 	return mod;
 }
 
-_Bool cond_crossover(CL *c1, CL *c2)
+_Bool rule_neural_cond_crossover(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -116,7 +141,7 @@ _Bool cond_crossover(CL *c1, CL *c2)
 	return false;
 }
 
-_Bool cond_subsumes(CL *c1, CL *c2)
+_Bool rule_neural_cond_subsumes(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -124,7 +149,7 @@ _Bool cond_subsumes(CL *c1, CL *c2)
 	return false;
 }
 
-_Bool cond_general(CL *c1, CL *c2)
+_Bool rule_neural_cond_general(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -132,46 +157,57 @@ _Bool cond_general(CL *c1, CL *c2)
 	return false;
 }   
 
-void cond_print(CL *c)
+void rule_neural_cond_print(CL *c)
 {
-	neural_print(&c->cond.bpn);
+	RULE_NEURAL_COND *cond = c->cond;
+	neural_print(&cond->bpn);
 }  
  
-void pred_init(CL *c)
+void rule_neural_pred_init(CL *c)
 {
-	c->pred.pre = malloc(sizeof(double)*num_y_vars);
+	RULE_NEURAL_PRED *pred = malloc(sizeof(RULE_NEURAL_COND));
+	pred->pre = malloc(sizeof(double)*num_y_vars);
+	c->pred = pred;
 }
 
-void pred_free(CL *c)
+void rule_neural_pred_free(CL *c)
 {
-	free(c->pred.pre);
+	RULE_NEURAL_PRED *pred = c->pred;
+	free(pred->pre);
+	free(c->pred);
 }
 
-void pred_copy(CL *to, CL *from)
+void rule_neural_pred_copy(CL *to, CL *from)
 {
 	(void)to;
 	(void)from;
 }
 
-void pred_update(CL *c, double *y, double *x)
+void rule_neural_pred_update(CL *c, double *y, double *x)
 {
 	(void)c;
 	(void)y;
 	(void)x;
 }
 
-double *pred_compute(CL *c, double *x)
+double *rule_neural_pred_compute(CL *c, double *x)
 {
 	(void)x;
+	RULE_NEURAL_COND *cond = c->cond;
+	RULE_NEURAL_PRED *pred = c->pred;
 	for(int i = 0; i < num_y_vars; i++) {
-		c->pred.pre[i] = neural_output(&c->cond.bpn, 1+i);
+		pred->pre[i] = neural_output(&cond->bpn, 1+i);
 	}
-	return c->pred.pre;
+	return pred->pre;
 }
-
-void pred_print(CL *c)
+  
+double rule_neural_pred_pre(CL *c, int p)
+{
+	RULE_NEURAL_PRED *pred = c->pred;
+	return pred->pre[p];
+}
+ 
+void rule_neural_pred_print(CL *c)
 {
 	(void)c;
 }  
-  
-#endif

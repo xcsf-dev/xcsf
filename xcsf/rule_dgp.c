@@ -18,8 +18,6 @@
  * Performs both condition matching and prediction in a single evolved graph.
  */
  
-#if CON == 11
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,37 +26,56 @@
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
-
-void cond_init(CL *c)
+#include "dgp.h"
+#include "rule_dgp.h"
+  
+typedef struct RULE_DGP_COND {
+	GRAPH dgp;
+	_Bool m;
+	double *mu;
+} RULE_DGP_COND;
+  
+typedef struct RULE_DGP_PRED {
+	double *pre;
+} RULE_DGP_PRED;
+ 
+void rule_dgp_cond_init(CL *c)
 {
-	graph_init(&c->cond.dgp, DGP_NUM_NODES);
-#ifdef SAM
-	sam_init(&c->cond.mu);
-#endif
+	RULE_DGP_COND *cond = malloc(sizeof(RULE_DGP_COND));
+	graph_init(&cond->dgp, DGP_NUM_NODES);
+	c->cond = cond;
+	sam_init(&cond->mu);
 }
 
-void cond_free(CL *c)
+void rule_dgp_cond_free(CL *c)
 {
-	graph_free(&c->cond.dgp);
-#ifdef SAM
-	sam_free(c->cond.mu);
-#endif
+	RULE_DGP_COND *cond = c->cond;
+	graph_free(&cond->dgp);
+	sam_free(cond->mu);
+	free(c->cond);
+}
+ 
+double rule_dgp_cond_mu(CL *c, int m)
+{
+	RULE_DGP_COND *cond = c->cond;
+	return cond->mu[m];
+}
+ 
+void rule_dgp_cond_copy(CL *to, CL *from)
+{
+	RULE_DGP_COND *to_cond = to->cond;
+	RULE_DGP_COND *from_cond = from->cond;
+	graph_copy(&to_cond->dgp, &from_cond->dgp);
+	memcpy(to_cond->mu, from_cond->mu, sizeof(double)*NUM_MU);
 }
 
-void cond_copy(CL *to, CL *from)
+void rule_dgp_cond_rand(CL *c)
 {
-	graph_copy(&to->cond.dgp, &from->cond.dgp);
-#ifdef SAM
-	memcpy(to->cond.mu, from->cond.mu, sizeof(double)*NUM_MU);
-#endif
+	RULE_DGP_COND *cond = c->cond;
+	graph_rand(&cond->dgp);
 }
 
-void cond_rand(CL *c)
-{
-	graph_rand(&c->cond.dgp);
-}
-
-void cond_cover(CL *c, double *x)
+void rule_dgp_cond_cover(CL *c, double *x)
 {
 	// generates random graphs until the network matches for input state
 	do {
@@ -66,33 +83,41 @@ void cond_cover(CL *c, double *x)
 	} while(!cond_match(c, x));
 }
 
-_Bool cond_match(CL *c, double *x)
+_Bool rule_dgp_cond_match(CL *c, double *x)
 {
 	// classifier matches if the first output node > 0.5
-	graph_update(&c->cond.dgp, x);
-	if(graph_output(&c->cond.dgp, 0) > 0.5) {
-		c->cond.m = true;
+	RULE_DGP_COND *cond = c->cond;
+	graph_update(&cond->dgp, x);
+	if(graph_output(&cond->dgp, 0) > 0.5) {
+		cond->m = true;
 	}
 	else {
-		c->cond.m = false;
+		cond->m = false;
 	}
-	return c->cond.m;
+	return cond->m;
+}    
+
+_Bool rule_dgp_cond_match_state(CL *c)
+{
+	RULE_DGP_COND *cond = c->cond;
+	return cond->m;
 }
 
-_Bool cond_mutate(CL *c)
+_Bool rule_dgp_cond_mutate(CL *c)
 {
+	RULE_DGP_COND *cond = c->cond;
 	_Bool mod = false;
 #ifdef SAM
-	sam_adapt(c->cond.mu);
+	sam_adapt(cond->mu);
 	if(NUM_MU > 0)
-		P_MUTATION = c->cond.mu[0];
+		P_MUTATION = cond->mu[0];
 #endif
 
-	mod = graph_mutate(&c->cond.dgp, P_MUTATION);
+	mod = graph_mutate(&cond->dgp, P_MUTATION);
 	return mod;
 }
 
-_Bool cond_crossover(CL *c1, CL *c2)
+_Bool rule_dgp_cond_crossover(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -100,7 +125,7 @@ _Bool cond_crossover(CL *c1, CL *c2)
 	return false;
 }
 
-_Bool cond_subsumes(CL *c1, CL *c2)
+_Bool rule_dgp_cond_subsumes(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -108,7 +133,7 @@ _Bool cond_subsumes(CL *c1, CL *c2)
 	return false;
 }
 
-_Bool cond_general(CL *c1, CL *c2)
+_Bool rule_dgp_cond_general(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -116,46 +141,57 @@ _Bool cond_general(CL *c1, CL *c2)
 	return false;
 }   
 
-void cond_print(CL *c)
+void rule_dgp_cond_print(CL *c)
 {
-	graph_print(&c->cond.dgp);
+	RULE_DGP_COND *cond = c->cond;
+	graph_print(&cond->dgp);
 }  
 
-void pred_init(CL *c)
+void rule_dgp_pred_init(CL *c)
 {
-	c->pred.pre = malloc(sizeof(double)*num_y_vars);
+	RULE_DGP_PRED *pred = malloc(sizeof(RULE_DGP_PRED));
+	pred->pre = malloc(sizeof(double)*num_y_vars);
+	c->pred = pred;
 }
 
-void pred_free(CL *c)
+void rule_dgp_pred_free(CL *c)
 {
-	free(c->pred.pre);
+	RULE_DGP_PRED *pred = c->pred;
+	free(pred->pre);
+	free(pred);
 }
 
-void pred_copy(CL *to, CL *from)
+void rule_dgp_pred_copy(CL *to, CL *from)
 {
 	(void)to;
 	(void)from;
 }
 
-void pred_update(CL *c, double *y, double *x)
+void rule_dgp_pred_update(CL *c, double *y, double *x)
 {
 	(void)c;
 	(void)y;
 	(void)x;
 }
 
-double *pred_compute(CL *c, double *x)
+double *rule_dgp_pred_compute(CL *c, double *x)
 {
 	(void)x;
+	RULE_DGP_COND *cond = c->cond;
+	RULE_DGP_PRED *pred = c->pred;
 	for(int i = 0; i < num_y_vars; i++) {
-		c->pred.pre[i] = graph_output(&c->cond.dgp, 1+i);
+		pred->pre[i] = graph_output(&cond->dgp, 1+i);
 	}
-	return c->pred.pre;
+	return pred->pre;
 }
-
-void pred_print(CL *c)
+ 
+double rule_dgp_pred_pre(CL *c, int p)
+{
+	RULE_DGP_PRED *pred = c->pred;
+	return pred->pre[p];
+}
+ 
+void rule_dgp_pred_print(CL *c)
 {
 	(void)c;
 }
-
-#endif

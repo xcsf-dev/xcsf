@@ -29,9 +29,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "cons.h"
-#if CON == 2
 #include "gp.h"
-#endif
 
 #define MAXLEN 127
 typedef char *pchar;
@@ -61,6 +59,8 @@ psection current;
 void constants_init(int argc, char **argv)
 {
 	init_config("cons.txt");
+	COND_TYPE = atoi(getvalue("COND_TYPE"));
+	PRED_TYPE = atoi(getvalue("PRED_TYPE"));
 	POP_SIZE = atoi(getvalue("POP_SIZE"));
 	if(strcmp(getvalue("POP_INIT"), "false") == 0)
 		POP_INIT = false;
@@ -111,9 +111,7 @@ void constants_init(int argc, char **argv)
 			NUM_EXPERIMENTS = atoi(argv[3]);
 	}    
 
-#if CON == 2
 	tree_init_cons();
-#endif
 } 
 void trim(pchar s) // Remove tabs/spaces/lf/cr  both ends
 {

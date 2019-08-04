@@ -16,8 +16,6 @@
  *
  */
  
-#if CON == 3
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,70 +24,94 @@
 #include "random.h"
 #include "cons.h"
 #include "cl.h"
-
-void cond_init(CL *c)
+#include "dgp.h"
+#include "cond_dgp.h"
+  
+typedef struct COND_DGP {
+	GRAPH dgp;
+	_Bool m;
+	double *mu;
+} COND_DGP;
+ 
+void cond_dgp_init(CL *c)
 {
-	graph_init(&c->cond.dgp, DGP_NUM_NODES);
-#ifdef SAM
-	sam_init(&c->cond.mu);
-#endif
+	COND_DGP *cond = malloc(sizeof(COND_DGP));
+	graph_init(&cond->dgp, DGP_NUM_NODES);
+	c->cond = cond;
+	sam_init(&cond->mu);
 }
 
-void cond_free(CL *c)
+void cond_dgp_free(CL *c)
 {
-	graph_free(&c->cond.dgp);
-#ifdef SAM
-	sam_free(c->cond.mu);
-#endif
+	COND_DGP *cond = c->cond;
+	graph_free(&cond->dgp);
+	sam_free(cond->mu);
+	free(c->cond);
+}                  
+
+double cond_dgp_mu(CL *c, int m)
+{
+	COND_DGP *cond = c->cond;
+	return cond->mu[m];
+}
+ 
+void cond_dgp_copy(CL *to, CL *from)
+{
+	COND_DGP *to_cond = to->cond;
+	COND_DGP *from_cond = from->cond;
+	graph_copy(&to_cond->dgp, &from_cond->dgp);
+	memcpy(to_cond->mu, from_cond->mu, sizeof(double)*NUM_MU);
 }
 
-void cond_copy(CL *to, CL *from)
+void cond_dgp_rand(CL *c)
 {
-	graph_copy(&to->cond.dgp, &from->cond.dgp);
-#ifdef SAM
-	memcpy(to->cond.mu, from->cond.mu, sizeof(double)*NUM_MU);
-#endif
+	COND_DGP *cond = c->cond;
+	graph_rand(&cond->dgp);
 }
 
-void cond_rand(CL *c)
-{
-	graph_rand(&c->cond.dgp);
-}
-
-void cond_cover(CL *c, double *state)
+void cond_dgp_cover(CL *c, double *state)
 {
 	// generates random graphs until the network matches for input state
 	do {
-		cond_rand(c);
-	} while(!cond_match(c, state));
+		cond_dgp_rand(c);
+	} while(!cond_dgp_match(c, state));
 }
 
-_Bool cond_match(CL *c, double *state)
+_Bool cond_dgp_match(CL *c, double *state)
 {
 	// classifier matches if the first output node > 0.5
-	graph_update(&c->cond.dgp, state);
-	if(graph_output(&c->cond.dgp, 0) > 0.5) {
-		c->cond.m = true;
-		return true;
+	COND_DGP *cond = c->cond;
+	graph_update(&cond->dgp, state);
+	if(graph_output(&cond->dgp, 0) > 0.5) {
+		cond->m = true;
 	}
-	c->cond.m = false;
-	return false;
+	else {
+		cond->m = false;
+	}
+	return cond->m;
+}            
+
+_Bool cond_dgp_match_state(CL *c)
+{
+	COND_DGP *cond = c->cond;
+	return cond->m;
 }
 
-_Bool cond_mutate(CL *c)
+_Bool cond_dgp_mutate(CL *c)
 {
+	COND_DGP *cond = c->cond;
 	_Bool mod = false;
 #ifdef SAM
-	sam_adapt(c->cond.mu);
+	sam_adapt(cond->mu);
 	if(NUM_MU > 0)
-		P_MUTATION = c->cond.mu[0];
+		P_MUTATION = cond->mu[0];
 #endif
 
-	mod = graph_mutate(&c->cond.dgp, P_MUTATION);
+	mod = graph_mutate(&cond->dgp, P_MUTATION);
 	return mod;
 }
 
-_Bool cond_crossover(CL *c1, CL *c2)
+_Bool cond_dgp_crossover(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -97,7 +119,7 @@ _Bool cond_crossover(CL *c1, CL *c2)
 	return false;
 }
 
-_Bool cond_subsumes(CL *c1, CL *c2)
+_Bool cond_dgp_subsumes(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -105,7 +127,7 @@ _Bool cond_subsumes(CL *c1, CL *c2)
 	return false;
 }
 
-_Bool cond_general(CL *c1, CL *c2)
+_Bool cond_dgp_general(CL *c1, CL *c2)
 {
 	// remove unused parameter warnings
 	(void)c1;
@@ -113,9 +135,8 @@ _Bool cond_general(CL *c1, CL *c2)
 	return false;
 }   
 
-void cond_print(CL *c)
+void cond_dgp_print(CL *c)
 {
-	graph_print(&c->cond.dgp);
+	COND_DGP *cond = c->cond;
+	graph_print(&cond->dgp);
 }  
-
-#endif

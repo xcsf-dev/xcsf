@@ -15,12 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#if PRE == 0 || PRE == 1
+double pred_nlms_pre(CL *c, int p);
+double *pred_nlms_compute(CL *c, double *x);
+void pred_nlms_copy(CL *to,  CL *from);
+void pred_nlms_free(CL *c);
+void pred_nlms_init(CL *c);
+void pred_nlms_print(CL *c);
+void pred_nlms_update(CL *c, double *y, double *x);
 
-typedef struct PRED {
-	int weights_length;
-	double **weights;
-	double *pre;
-} PRED;
-
-#endif
+static struct PredVtbl const pred_nlms_vtbl = {
+	&pred_nlms_compute,
+	&pred_nlms_pre,
+	&pred_nlms_copy,
+	&pred_nlms_free,
+	&pred_nlms_init,
+	&pred_nlms_print,
+	&pred_nlms_update
+};
