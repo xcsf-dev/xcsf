@@ -20,7 +20,7 @@ typedef struct CL {
 	struct CondVtbl const *cond_vptr; // functions acting on conditions
 	struct PredVtbl const *pred_vptr; // functions acting on predictions
 	void *cond; // condition structure
-	void *pred; // prediction strcuture
+	void *pred; // prediction structure
 	double err;
 	double fit;
 	int num;
