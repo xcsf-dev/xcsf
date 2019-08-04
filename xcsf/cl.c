@@ -56,13 +56,15 @@ void cl_init(CL *c, int size, int time)
 
 	switch(PRED_TYPE) {
 		case 0:
+		case 1:
 			c->pred_vptr = &pred_nlms_vtbl;
 			break;
-		case 1:
-			c->pred_vptr = &pred_neural_vtbl;
-			break;
 		case 2:
+		case 3:
 			c->pred_vptr = &pred_rls_vtbl;
+			break;
+		case 4:
+			c->pred_vptr = &pred_neural_vtbl;
 			break;
 		default:
 			printf("Invalid prediction type specified: %d\n", PRED_TYPE);
