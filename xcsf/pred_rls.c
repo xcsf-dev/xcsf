@@ -48,12 +48,14 @@ void pred_rls_init(CL *c)
 {
 	PRED_RLS *pred = malloc(sizeof(PRED_RLS));
 	c->pred = pred;
-#if PRE == 3
-	// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
-	pred->weights_length = 1+2*num_x_vars+num_x_vars*(num_x_vars-1)/2;
-#else
-	pred->weights_length = num_x_vars+1;
-#endif
+
+	if(PRED_TYPE == 3) {
+		// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
+		pred->weights_length = 1+2*num_x_vars+num_x_vars*(num_x_vars-1)/2;
+	}
+	else {
+		pred->weights_length = num_x_vars+1;
+	}
 
 	pred->weights = malloc(sizeof(double*)*num_y_vars);
 	for(int var = 0; var < num_y_vars; var++) {
@@ -127,14 +129,15 @@ void pred_rls_update(CL *c, double *y, double *x)
 	for(int i = 0; i < num_x_vars; i++) {
 		tmp_input[index++] = x[i];
 	}
-#if PRE == 3
-	// quadratic terms
-	for(int i = 0; i < num_x_vars; i++) {
-		for(int j = i; j < num_x_vars; j++) {
-			tmp_input[index++] = x[i] * x[j];
+
+	if(PRED_TYPE == 3) {
+		// quadratic terms
+		for(int i = 0; i < num_x_vars; i++) {
+			for(int j = i; j < num_x_vars; j++) {
+				tmp_input[index++] = x[i] * x[j];
+			}
 		}
 	}
-#endif
 
 	// determine gain vector = matrix * tmp_input
 	matrix_vector_multiply(pred->matrix, tmp_input, tmp_vec, n);
@@ -190,14 +193,16 @@ double *pred_rls_compute(CL *c, double *x)
 		for(int i = 0; i < num_x_vars; i++) {
 			pre += pred->weights[var][index++] * x[i];
 		}
-#if PRE == 3
-		// multiply quadratic coefficients with prediction input
-		for(int i = 0; i < num_x_vars; i++) {
-			for(int j = i; j < num_x_vars; j++) {
-				pre += pred->weights[var][index++] * x[i] * x[j];
+
+		if(PRED_TYPE == 3) {
+			// multiply quadratic coefficients with prediction input
+			for(int i = 0; i < num_x_vars; i++) {
+				for(int j = i; j < num_x_vars; j++) {
+					pre += pred->weights[var][index++] * x[i] * x[j];
+				}
 			}
 		}
-#endif
+
 		pred->pre[var] = pre;
 	}
 	return pred->pre;
