@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Riintd Preen <rpreen@gmail.com>
+ * Copyright (C) 2016--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@
 
 #define GP_MAX_LEN 10000
 #define GP_DEPTH 5
-#define GP_CONS 100
 #define GP_NUM_FUNC 4
 #define ADD 0
 #define SUB 1
@@ -30,14 +29,13 @@ typedef struct GP_TREE {
 	int p;
 } GP_TREE;
  
-void tree_init(GP_TREE *gp);
-void tree_init_cons();
-void tree_free(GP_TREE *gp);
-void tree_rand(GP_TREE *gp);
-void tree_copy(GP_TREE *to, GP_TREE *from);
-int tree_print(GP_TREE *gp, int p);
-double tree_eval(GP_TREE *gp, double *state);
-void tree_crossover(GP_TREE *p1, GP_TREE *p2);
-void tree_mutation(GP_TREE *offspring, double rate);
-
-double cons[GP_CONS];
+void tree_free_cons(XCSF *xcsf);
+void tree_init_cons(XCSF *xcsf);
+void tree_init(XCSF *xcsf, GP_TREE *gp);
+void tree_free(XCSF *xcsf, GP_TREE *gp);
+void tree_rand(XCSF *xcsf, GP_TREE *gp);
+void tree_copy(XCSF *xcsf, GP_TREE *to, GP_TREE *from);
+int tree_print(XCSF *xcsf, GP_TREE *gp, int p);
+double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x);
+void tree_crossover(XCSF *xcsf, GP_TREE *p1, GP_TREE *p2);
+void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate);

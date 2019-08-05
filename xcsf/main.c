@@ -33,81 +33,103 @@
 #include <stdbool.h>
 #include <math.h>
 #include <errno.h>
+#include "data_structures.h"
 #include "cons.h"
 #include "random.h"
 #include "cl.h"
 #include "cl_set.h"
 #include "ga.h"
-#include "function.h"
+#include "input.h"
 #include "perf.h"
 
-void trial(XCSF *xcsf, int cnt, _Bool train, double *err);
+void trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err);
 
 int main(int argc, char **argv)
 {    
-	// initialise environment
-	if(argc < 2 || argc > 4) {
-		printf("Usage: xcsf inputfile [MaxTrials] [NumExp]\n");
+	if(argc < 2 || argc > 3) {
+		printf("Usage: xcsf inputfile [MaxTrials]\n");
 		exit(EXIT_FAILURE);
 	} 
 
-	constants_init();        
-    // override cons.txt with command line values
-    if(argc > 2) {
-        MAX_TRIALS = atoi(argv[2]);
-        if(argc > 3) {
-            NUM_EXPERIMENTS = atoi(argv[3]);
-        }
-    }    
 	random_init();
-	func_init(argv[1]);
-	gen_outfname(argv[1]);
 
-	// run experiments
-	double err[PERF_AVG_TRIALS];
-	double terr[PERF_AVG_TRIALS];
-	for(int e = 1; e < NUM_EXPERIMENTS+1; e++) {
-		printf("\nExperiment: %d\n", e);
-		XCSF *xcsf = malloc(sizeof(XCSF));
-		pop_init(xcsf);
-		outfile_init(e);
-		// each trial in an experiment
-		for(int cnt = 0; cnt < MAX_TRIALS; cnt++) {
-			trial(xcsf, cnt, true, err); // train
-			trial(xcsf, cnt, false, terr);// test
-			// display performance
-			if(cnt%PERF_AVG_TRIALS == 0 && cnt > 0)
-				disp_perf(xcsf, err, terr, cnt);
+	// initialise XCSF
+	XCSF *xcsf = malloc(sizeof(XCSF));
+	constants_init(xcsf); // read cons.txt default parameters      
+    // override with command line values
+    if(argc > 2) {
+        xcsf->MAX_TRIALS = atoi(argv[2]);
+    }    
+ 
+	// read csv input data
+	INPUT_DATA *train_data = malloc(sizeof(INPUT_DATA));
+	INPUT_DATA *test_data = malloc(sizeof(INPUT_DATA));
+	input_read_csv(argv[1], train_data, test_data);
+
+	xcsf->num_x_vars = train_data->x_cols;
+	xcsf->num_y_vars = train_data->y_cols;
+     
+#ifdef GNUPLOT
+	gen_outfname(xcsf, argv[1]);
+	outfile_init(xcsf, 1);
+#endif
+
+	pop_init(xcsf);
+
+	// performance tracking
+	double err[xcsf->PERF_AVG_TRIALS];
+	double terr[xcsf->PERF_AVG_TRIALS];
+
+	double *x = malloc(sizeof(double)*xcsf->num_x_vars);
+	double *y = malloc(sizeof(double)*xcsf->num_y_vars);
+
+	// each trial in an experiment
+	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
+		// train
+		input_rand_sample(train_data, x, y);
+		trial(xcsf, cnt, x, y, true, err);
+		// test
+		input_rand_sample(test_data, x, y);
+		trial(xcsf, cnt, x, y, false, terr);
+		// display performance
+		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
+			disp_perf(xcsf, err, terr, cnt);
 		}
-		// clean up
-		set_kill(&xcsf->pset);
-		outfile_close();
-		free(xcsf);
 	}
-	func_free();
+
+	// clean up
+	free(x);
+	free(y);
+	set_kill(xcsf, &xcsf->pset);
+	constants_free(xcsf);        
+	free(xcsf);
+	input_free(train_data);
+	input_free(test_data);
+	free(train_data);
+	free(test_data);
+
+#ifdef GNUPLOT
+	outfile_close(xcsf);
+#endif
+
 	return EXIT_SUCCESS;
 }
 
-void trial(XCSF *xcsf, int cnt, _Bool train, double *err)
+void trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err)
 {
-	// get random sample
-	double *x = malloc(sizeof(double)*num_x_vars);
-	double *y = malloc(sizeof(double)*num_y_vars);
-	func_rand_sample(x, y, train);
-
 	// create match set
 	NODE *mset = NULL, *kset = NULL;
 	int msize = 0, mnum = 0;
 	set_match(xcsf, &mset, &msize, &mnum, x, cnt, &kset);
 
 	// calculate system prediction and track performance
-	double *pred = malloc(sizeof(double)*num_y_vars);
-	set_pred(&mset, msize, x, pred);
-	err[cnt%PERF_AVG_TRIALS] = 0.0;
-	for(int i = 0; i < num_y_vars; i++) {
-		err[cnt%PERF_AVG_TRIALS] += (y[i]-pred[i])*(y[i]-pred[i]);
+	double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
+	set_pred(xcsf, &mset, msize, x, pred);
+	err[cnt % xcsf->PERF_AVG_TRIALS] = 0.0;
+	for(int i = 0; i < xcsf->num_y_vars; i++) {
+		err[cnt % xcsf->PERF_AVG_TRIALS] += (y[i]-pred[i])*(y[i]-pred[i]);
 	}
-	err[cnt%PERF_AVG_TRIALS] /= (double)num_y_vars; // MSE
+	err[cnt % xcsf->PERF_AVG_TRIALS] /= (double)xcsf->num_y_vars; // MSE
 
 	if(train) {
 		// provide reinforcement to the set
@@ -118,10 +140,8 @@ void trial(XCSF *xcsf, int cnt, _Bool train, double *err)
 
 	// clean up
 	free(pred);
-	free(x);
-	free(y);
-	set_kill(&kset); // kills deleted classifiers
-	set_free(&mset); // frees the match set list
+	set_kill(xcsf, &kset); // kills deleted classifiers
+	set_free(xcsf, &mset); // frees the match set list
 }
 
 int xcsf_square(int number)

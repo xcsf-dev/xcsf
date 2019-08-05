@@ -36,9 +36,9 @@
 #include <stdbool.h>
 #include <math.h>
 #include <errno.h>
+#include "data_structures.h"
 #include "random.h"
-#include "cons.h"
-#include "function.h"
+#include "input.h"
 
 #define MAX_DATA 100000
 #define MAX_LINE_LENGTH 200
@@ -46,32 +46,23 @@
 
 #define PATH_TO_DATA "../../data"
 
-double *train_x; // data file variables read from file
-double *train_y;
-double *test_x;
-double *test_y;
-int num_train_prob; // number of training problem instances in the data file
-int num_test_prob; // number of testing problem instances in the data file
-int num_test; // number of data entries for testing (at end of file)
+void csv_read(char *fname, double **data, int *num_prob, int *num_vars);
 
-void func_read(char *fname, double **data, int *num_prob, int *num_vars);
-
-void func_init(char *infile)
+void input_read_csv(char *infile, INPUT_DATA *train_data, INPUT_DATA *test_data)
 {
+	// expects an identical number of x and y rows
 	char name[200];
-	// read the input variables
 	sprintf(name, "%s/%s_train_x.csv", PATH_TO_DATA, infile);
-	func_read(name, &train_x, &num_train_prob, &num_x_vars);
+	csv_read(name, &train_data->x, &train_data->rows, &train_data->x_cols);
+	sprintf(name, "%s/%s_train_y.csv", PATH_TO_DATA, infile);
+	csv_read(name, &train_data->y, &train_data->rows, &train_data->y_cols);
 	sprintf(name, "%s/%s_test_x.csv", PATH_TO_DATA, infile);
-	func_read(name, &test_x, &num_test_prob, &num_x_vars);
-	// read the output variables
- 	sprintf(name, "%s/%s_train_y.csv", PATH_TO_DATA, infile);
-	func_read(name, &train_y, &num_train_prob, &num_y_vars);
+	csv_read(name, &test_data->x, &test_data->rows, &test_data->x_cols);
 	sprintf(name, "%s/%s_test_y.csv", PATH_TO_DATA, infile);
-	func_read(name, &test_y, &num_test_prob, &num_y_vars);
+	csv_read(name, &test_data->y, &test_data->rows, &test_data->y_cols);
 }
  
-void func_read(char *fname, double **data, int *num_rows, int *num_cols)
+void csv_read(char *fname, double **data, int *num_rows, int *num_cols)
 {
 	// Provided a file name: will set the data, num_rows, num_cols 
  	FILE *fin = fopen(fname, "rt");
@@ -92,8 +83,9 @@ void func_read(char *fname, double **data, int *num_rows, int *num_cols)
 		if(*num_rows == 0) {
 			char *ptok = strtok(line, DELIM);
 			while(ptok != NULL) {
-				if(strlen(ptok) > 0)
+				if(strlen(ptok) > 0) {
 					(*num_cols)++;
+				}
 				ptok = strtok(NULL, DELIM);
 			}
 		}
@@ -105,39 +97,27 @@ void func_read(char *fname, double **data, int *num_rows, int *num_cols)
 	*data = malloc(sizeof(double) * (*num_cols) * (*num_rows));
 	for(int i = 0; fgets(line,MAX_LINE_LENGTH,fin) != NULL; i++) {
 		(*data)[i * (*num_cols)] = atof(strtok(line, DELIM));
-		for(int j = 1; j < *num_cols; j++)
+		for(int j = 1; j < *num_cols; j++) {
 			(*data)[i * (*num_cols)+j] = atof(strtok(NULL, DELIM));
+		}
 	}
 	fclose(fin);
 	printf("Loaded: %s: %d rows, %d cols\n", fname, *num_rows, *num_cols);
 }
 
-void func_rand_sample(double *x, double *y, _Bool train)
+void input_rand_sample(INPUT_DATA *data, double *x, double *y)
 {
-	if(train) {
-		int cur_prob = irand(0,num_train_prob);
-		for(int i = 0; i < num_x_vars; i++) {
-			x[i] = train_x[cur_prob*num_x_vars+i];
-		}
-		for(int i = 0; i < num_y_vars; i++) {
-			y[i] = train_y[cur_prob*num_y_vars+i];
-		}
+	int idx = irand(0,data->rows);
+	for(int i = 0; i < data->x_cols; i++) {
+		x[i] = data->x[idx * data->x_cols + i];
 	}
-	else {
-		int cur_prob = irand(0,num_test_prob);
-		for(int i = 0; i < num_x_vars; i++) {
-			x[i] = test_x[cur_prob*num_x_vars+i];
-		}
-		for(int i = 0; i < num_y_vars; i++) {
-			y[i] = test_y[cur_prob*num_y_vars+i];
-		}
+	for(int i = 0; i < data->y_cols; i++) {
+		y[i] = data->y[idx * data->y_cols + i];
 	}
 }
 
-void func_free()
-{
-	free(train_x);
-	free(train_y);
-	free(test_x);
-	free(test_y);
+void input_free(INPUT_DATA *data)
+{                 
+	free(data->x);
+	free(data->y);
 }

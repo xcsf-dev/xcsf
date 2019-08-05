@@ -30,61 +30,69 @@
 #include <stdbool.h>
 #include <math.h>
 #include "random.h"
-#include "cons.h"
+#include "data_structures.h"
 #include "cl.h"
 #include "cond_gp.h"
-
-void cond_gp_init(CL *c)
+#include "gp.h"
+ 
+typedef struct COND_GP {
+	GP_TREE gp;
+	_Bool m;
+	double *mu;
+} COND_GP;
+ 
+void cond_gp_init(XCSF *xcsf, CL *c)
 {
 	COND_GP *cond = malloc(sizeof(COND_GP));
-	tree_init(&cond->gp);
+	tree_init(xcsf, &cond->gp);
 	c->cond = cond;
-	sam_init(&cond->mu);
+	sam_init(xcsf, &cond->mu);
 }
 
-void cond_gp_free(CL *c)
+void cond_gp_free(XCSF *xcsf, CL *c)
 {
 	COND_GP *cond = c->cond;
-	tree_free(&cond->gp);
-	sam_free(cond->mu);
+	tree_free(xcsf, &cond->gp);
+	sam_free(xcsf, cond->mu);
 	free(c->cond);
 }
  
-double cond_gp_mu(CL *c, int m)
+double cond_gp_mu(XCSF *xcsf, CL *c, int m)
 {
+	(void)xcsf;
 	COND_GP *cond = c->cond;
 	return cond->mu[m];
 }
  
-void cond_gp_copy(CL *to, CL *from)
+void cond_gp_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	COND_GP *to_cond = to->cond;
 	COND_GP *from_cond = from->cond;
-	tree_copy(&to_cond->gp, &from_cond->gp);
-	sam_copy(to_cond->mu, from_cond->mu);
+	tree_copy(xcsf, &to_cond->gp, &from_cond->gp);
+	sam_copy(xcsf, to_cond->mu, from_cond->mu);
 }
 
-void cond_gp_rand(CL *c)
+void cond_gp_rand(XCSF *xcsf, CL *c)
 {
 	COND_GP *cond = c->cond;
-	tree_free(&cond->gp);
-	tree_rand(&cond->gp);
+	tree_free(xcsf, &cond->gp);
+	tree_rand(xcsf, &cond->gp);
 }
 
-void cond_gp_cover(CL *c, double *state)
+void cond_gp_cover(XCSF *xcsf, CL *c, double *state)
 {
 	// generates random weights until the tree matches for input state
 	do {
-		cond_gp_rand(c);
-	} while(!cond_gp_match(c, state));
+		cond_gp_rand(xcsf, c);
+	} while(!cond_gp_match(xcsf, c, state));
 }
 
-_Bool cond_gp_match(CL *c, double *state)
+_Bool cond_gp_match(XCSF *xcsf, CL *c, double *state)
 {
 	// classifier matches if the tree output > 0.5
 	COND_GP *cond = c->cond;
 	cond->gp.p = 0;
-	double result = tree_eval(&cond->gp, state);
+	double result = tree_eval(xcsf, &cond->gp, state);
 	if(result > 0.5) {
 		cond->m = true;
 	}
@@ -94,24 +102,25 @@ _Bool cond_gp_match(CL *c, double *state)
 	return cond->m;
 }    
 
-_Bool cond_gp_match_state(CL *c)
+_Bool cond_gp_match_state(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	COND_GP *cond = c->cond;
 	return cond->m;
 }
  
-_Bool cond_gp_mutate(CL *c)
+_Bool cond_gp_mutate(XCSF *xcsf, CL *c)
 {
 	COND_GP *cond = c->cond;
-	if(NUM_SAM > 0) {
-		sam_adapt(cond->mu);
-		P_MUTATION = cond->mu[0];
-		if(NUM_SAM > 1)
-			S_MUTATION = cond->mu[1];
+	if(xcsf->NUM_SAM > 0) {
+		sam_adapt(xcsf, cond->mu);
+		xcsf->P_MUTATION = cond->mu[0];
+		if(xcsf->NUM_SAM > 1)
+			xcsf->S_MUTATION = cond->mu[1];
 	}
 
-	if(drand() < P_MUTATION) {
-		tree_mutation(&cond->gp, P_MUTATION);
+	if(drand() < xcsf->P_MUTATION) {
+		tree_mutation(xcsf, &cond->gp, xcsf->P_MUTATION);
 		return true;
 	}
 	else {
@@ -119,12 +128,12 @@ _Bool cond_gp_mutate(CL *c)
 	}
 }
 
-_Bool cond_gp_crossover(CL *c1, CL *c2)
+_Bool cond_gp_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
 	COND_GP *cond1 = c1->cond;
 	COND_GP *cond2 = c2->cond;
-	if(drand() < P_CROSSOVER) {
-		tree_crossover(&cond1->gp, &cond2->gp);
+	if(drand() < xcsf->P_CROSSOVER) {
+		tree_crossover(xcsf, &cond1->gp, &cond2->gp);
 		return true;
 	}
 	else {
@@ -132,24 +141,25 @@ _Bool cond_gp_crossover(CL *c1, CL *c2)
 	}
 }
 
-_Bool cond_gp_subsumes(CL *c1, CL *c2)
+_Bool cond_gp_subsumes(XCSF *xcsf, CL *c1, CL *c2)
 {
-	// remove unused parameter warnings
+	(void)xcsf;
 	(void)c1;
 	(void)c2;
 	return false;
 }
 
-_Bool cond_gp_general(CL *c1, CL *c2)
+_Bool cond_gp_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-	// remove unused parameter warnings
+	(void)xcsf;
 	(void)c1;
 	(void)c2;
 	return false;
 }   
 
-void cond_gp_print(CL *c)
+void cond_gp_print(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	COND_GP *cond = c->cond;
-	tree_print(&cond->gp, 0);
+	tree_print(xcsf, &cond->gp, 0);
 }  

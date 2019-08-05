@@ -14,21 +14,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-_Bool cond_neural_crossover(CL *c1, CL *c2);
-_Bool cond_neural_general(CL *c1, CL *c2);
-_Bool cond_neural_match(CL *c, double *x);
-_Bool cond_neural_match_state(CL *c);
-_Bool cond_neural_mutate(CL *c);
-_Bool cond_neural_subsumes(CL *c1, CL *c2);
-void cond_neural_copy(CL *to, CL *from);
-void cond_neural_cover(CL *c, double *x);
-void cond_neural_free(CL *c);
-void cond_neural_init(CL *c);
-void cond_neural_print(CL *c);
-void cond_neural_rand(CL *c);
-double cond_neural_mu(CL *c, int m);
-
+  
+_Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_neural_match(XCSF *xcsf, CL *c, double *x);
+_Bool cond_neural_match_state(XCSF *xcsf, CL *c);
+_Bool cond_neural_mutate(XCSF *xcsf, CL *c);
+_Bool cond_neural_subsumes(XCSF *xcsf, CL *c1, CL *c2);
+void cond_neural_copy(XCSF *xcsf, CL *to, CL *from);
+void cond_neural_cover(XCSF *xcsf, CL *c, double *x);
+void cond_neural_free(XCSF *xcsf, CL *c);
+void cond_neural_init(XCSF *xcsf, CL *c);
+void cond_neural_print(XCSF *xcsf, CL *c);
+void cond_neural_rand(XCSF *xcsf, CL *c);
+double cond_neural_mu(XCSF *xcsf, CL *c, int m);
+ 
 static struct CondVtbl const cond_neural_vtbl = {
 	&cond_neural_crossover,
 	&cond_neural_general,

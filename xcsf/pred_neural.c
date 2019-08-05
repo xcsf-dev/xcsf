@@ -29,8 +29,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include "data_structures.h"
 #include "random.h"
-#include "cons.h"
 #include "cl.h"
 #include "neural.h"
 #include "pred_neural.h"
@@ -40,55 +40,56 @@ typedef struct PRED_NEURAL {
 	double *pre;
 } PRED_NEURAL;
  
-void pred_neural_init(CL *c)
+void pred_neural_init(XCSF *xcsf, CL *c)
 {
 	PRED_NEURAL *pred = malloc(sizeof(PRED_NEURAL));
-	int neurons[3] = {num_x_vars, NUM_HIDDEN_NEURONS, num_y_vars};
+	int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars};
 	double (*activations[2])(double) = {sig, sig};
-	neural_init(&pred->bpn, 3, neurons, activations);
-	pred->pre = malloc(sizeof(double)*num_y_vars);
+	neural_init(xcsf, &pred->bpn, 3, neurons, activations);
+	pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
 	c->pred = pred;
 }
 
-void pred_neural_free(CL *c)
+void pred_neural_free(XCSF *xcsf, CL *c)
 {
 	PRED_NEURAL *pred = c->pred;
-	neural_free(&pred->bpn);
+	neural_free(xcsf, &pred->bpn);
 	free(pred->pre);
 	free(pred);
 }
 
-void pred_neural_copy(CL *to, CL *from)
+void pred_neural_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	PRED_NEURAL *to_pred = to->pred;
 	PRED_NEURAL *from_pred = from->pred;
-	neural_copy(&to_pred->bpn, &from_pred->bpn);
+	neural_copy(xcsf, &to_pred->bpn, &from_pred->bpn);
 }
 
-void pred_neural_update(CL *c, double *y, double *x)
+void pred_neural_update(XCSF *xcsf, CL *c, double *y, double *x)
 {
 	PRED_NEURAL *pred = c->pred;
-	neural_learn(&pred->bpn, y, x);
+	neural_learn(xcsf, &pred->bpn, y, x);
 }
 
-double *pred_neural_compute(CL *c, double *x)
+double *pred_neural_compute(XCSF *xcsf, CL *c, double *x)
 {
 	PRED_NEURAL *pred = c->pred;
-	neural_propagate(&pred->bpn, x);
-	for(int i = 0; i < num_y_vars; i++) {
-		pred->pre[i] = neural_output(&pred->bpn, i);
+	neural_propagate(xcsf, &pred->bpn, x);
+	for(int i = 0; i < xcsf->num_y_vars; i++) {
+		pred->pre[i] = neural_output(xcsf, &pred->bpn, i);
 	}
 	return pred->pre;
 }
                         
-double pred_neural_pre(CL *c, int p)
+double pred_neural_pre(XCSF *xcsf, CL *c, int p)
 {
+	(void)xcsf;
 	PRED_NEURAL *pred = c->pred;
 	return pred->pre[p];
 }
  
-void pred_neural_print(CL *c)
+void pred_neural_print(XCSF *xcsf, CL *c)
 {
 	PRED_NEURAL *pred = c->pred;
-	neural_print(&pred->bpn);
+	neural_print(xcsf, &pred->bpn);
 }  

@@ -30,8 +30,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include "data_structures.h"
 #include "random.h"
-#include "cons.h"
 #include "cl.h"
 #include "pred_nlms.h"
   
@@ -41,48 +41,49 @@ typedef struct PRED_NLMS {
 	double *pre;
 } PRED_NLMS;
  
-void pred_nlms_init(CL *c)
+void pred_nlms_init(XCSF *xcsf, CL *c)
 {
 	PRED_NLMS *pred = malloc(sizeof(PRED_NLMS));
 	c->pred = pred;
 
-	if(PRED_TYPE == 1) {
+	if(xcsf->PRED_TYPE == 1) {
 		// offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
-		pred->weights_length = 1+2*num_x_vars+num_x_vars*(num_x_vars-1)/2;
+		pred->weights_length = 1 + 2 * xcsf->num_x_vars + 
+			xcsf->num_x_vars * (xcsf->num_x_vars - 1) / 2;
 	}
 	else {
-		pred->weights_length = num_x_vars+1;
+		pred->weights_length = xcsf->num_x_vars+1;
 	}
 
-	pred->weights = malloc(sizeof(double*)*num_y_vars);
-	for(int var = 0; var < num_y_vars; var++) {
+	pred->weights = malloc(sizeof(double*) * xcsf->num_y_vars);
+	for(int var = 0; var < xcsf->num_y_vars; var++) {
 		pred->weights[var] = malloc(sizeof(double)*pred->weights_length);
 	}
- 	for(int var = 0; var < num_y_vars; var++) {
-		pred->weights[var][0] = XCSF_X0;
+ 	for(int var = 0; var < xcsf->num_y_vars; var++) {
+		pred->weights[var][0] = xcsf->XCSF_X0;
 		for(int i = 1; i < pred->weights_length; i++) {
 			pred->weights[var][i] = 0.0;
 		}
 	}
 
-	pred->pre = malloc(sizeof(double)*num_y_vars);
+	pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
 }
 
-void pred_nlms_copy(CL *to, CL *from)
+void pred_nlms_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	PRED_NLMS *to_pred = to->pred;
 	PRED_NLMS *from_pred = from->pred;
-	for(int var = 0; var < num_y_vars; var++) {
+	for(int var = 0; var < xcsf->num_y_vars; var++) {
 		memcpy(to_pred->weights[var], from_pred->weights[var], 
 				sizeof(double)*from_pred->weights_length);
 	}
-	memcpy(to_pred->pre, from_pred->pre, sizeof(double)*num_y_vars);
+	memcpy(to_pred->pre, from_pred->pre, sizeof(double) * xcsf->num_y_vars);
 }
 
-void pred_nlms_free(CL *c)
+void pred_nlms_free(XCSF *xcsf, CL *c)
 {
 	PRED_NLMS *pred = c->pred;
-	for(int var = 0; var < num_y_vars; var++) {
+	for(int var = 0; var < xcsf->num_y_vars; var++) {
 		free(pred->weights[var]);
 	}
 	free(pred->weights);
@@ -90,31 +91,31 @@ void pred_nlms_free(CL *c)
 	free(pred);
 }
 
-void pred_nlms_update(CL *c, double *y, double *x)
+void pred_nlms_update(XCSF *xcsf, CL *c, double *y, double *x)
 {
 	PRED_NLMS *pred = c->pred;
 
-	double norm = XCSF_X0 * XCSF_X0;
-	for(int i = 0; i < num_x_vars; i++) {
+	double norm = xcsf->XCSF_X0 * xcsf->XCSF_X0;
+	for(int i = 0; i < xcsf->num_x_vars; i++) {
 		norm += x[i] * x[i];
 	}      
 
 	// pre has been updated for the current state during set_pred()
-	for(int var = 0; var < num_y_vars; var++) {
+	for(int var = 0; var < xcsf->num_y_vars; var++) {
 		double error = y[var] - pred->pre[var]; // pred_nlms_compute(c, x);
-		double correction = (XCSF_ETA * error) / norm;
+		double correction = (xcsf->XCSF_ETA * error) / norm;
 		// update first coefficient
-		pred->weights[var][0] += XCSF_X0 * correction;
+		pred->weights[var][0] += xcsf->XCSF_X0 * correction;
 		int index = 1;
 		// update linear coefficients
-		for(int i = 0; i < num_x_vars; i++) {
+		for(int i = 0; i < xcsf->num_x_vars; i++) {
 			pred->weights[var][index++] += correction * x[i];
 		}
 
-		if(PRED_TYPE == 1) {
+		if(xcsf->PRED_TYPE == 1) {
 			// update quadratic coefficients
-			for(int i = 0; i < num_x_vars; i++) {
-				for(int j = i; j < num_x_vars; j++) {
+			for(int i = 0; i < xcsf->num_x_vars; i++) {
+				for(int j = i; j < xcsf->num_x_vars; j++) {
 					pred->weights[var][index++] += correction * x[i] * x[j];
 				}
 			}
@@ -122,22 +123,22 @@ void pred_nlms_update(CL *c, double *y, double *x)
 	}
 }
 
-double *pred_nlms_compute(CL *c, double *x)
+double *pred_nlms_compute(XCSF *xcsf, CL *c, double *x)
 {
 	PRED_NLMS *pred = c->pred;
-	for(int var = 0; var < num_y_vars; var++) {
+	for(int var = 0; var < xcsf->num_y_vars; var++) {
 		// first coefficient is offset
-		double pre = XCSF_X0 * pred->weights[var][0];
+		double pre = xcsf->XCSF_X0 * pred->weights[var][0];
 		int index = 1;
 		// multiply linear coefficients with the prediction input
-		for(int i = 0; i < num_x_vars; i++) {
+		for(int i = 0; i < xcsf->num_x_vars; i++) {
 			pre += pred->weights[var][index++] * x[i];
 		}
 
-		if(PRED_TYPE == 1) {
+		if(xcsf->PRED_TYPE == 1) {
 			// multiply quadratic coefficients with prediction input
-			for(int i = 0; i < num_x_vars; i++) {
-				for(int j = i; j < num_x_vars; j++) {
+			for(int i = 0; i < xcsf->num_x_vars; i++) {
+				for(int j = i; j < xcsf->num_x_vars; j++) {
 					pre += pred->weights[var][index++] * x[i] * x[j];
 				}
 			}
@@ -148,17 +149,18 @@ double *pred_nlms_compute(CL *c, double *x)
 	return pred->pre;
 } 
 
-double pred_nlms_pre(CL *c, int p)
+double pred_nlms_pre(XCSF *xcsf, CL *c, int p)
 {
+	(void)xcsf;
 	PRED_NLMS *pred = c->pred;
 	return pred->pre[p];
 }
 
-void pred_nlms_print(CL *c)
+void pred_nlms_print(XCSF *xcsf, CL *c)
 {
 	PRED_NLMS *pred = c->pred;
 	printf("weights: ");
-	for(int var = 0; var < num_y_vars; var++) {
+	for(int var = 0; var < xcsf->num_y_vars; var++) {
 		for(int i = 0; i < pred->weights_length; i++) {
 			printf("%f, ", pred->weights[var][i]);
 		}

@@ -16,28 +16,20 @@
  *
  */
 
-#include "gp.h"
-
-typedef struct COND_GP {
-	GP_TREE gp;
-	_Bool m;
-	double *mu;
-} COND_GP;
-
-_Bool cond_gp_crossover(CL *c1, CL *c2);
-_Bool cond_gp_general(CL *c1, CL *c2);
-_Bool cond_gp_match(CL *c, double *x);
-_Bool cond_gp_match_state(CL *c);
-_Bool cond_gp_mutate(CL *c);
-_Bool cond_gp_subsumes(CL *c1, CL *c2);
-void cond_gp_copy(CL *to, CL *from);
-void cond_gp_cover(CL *c, double *x);
-void cond_gp_free(CL *c);
-void cond_gp_init(CL *c);
-void cond_gp_print(CL *c);
-void cond_gp_rand(CL *c);
-double cond_gp_mu(CL *c, int m);
-
+_Bool cond_gp_crossover(XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_gp_general(XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_gp_match(XCSF *xcsf, CL *c, double *x);
+_Bool cond_gp_match_state(XCSF *xcsf, CL *c);
+_Bool cond_gp_mutate(XCSF *xcsf, CL *c);
+_Bool cond_gp_subsumes(XCSF *xcsf, CL *c1, CL *c2);
+void cond_gp_copy(XCSF *xcsf, CL *to, CL *from);
+void cond_gp_cover(XCSF *xcsf, CL *c, double *x);
+void cond_gp_free(XCSF *xcsf, CL *c);
+void cond_gp_init(XCSF *xcsf, CL *c);
+void cond_gp_print(XCSF *xcsf, CL *c);
+void cond_gp_rand(XCSF *xcsf, CL *c);
+double cond_gp_mu(XCSF *xcsf, CL *c, int m);
+ 
 static struct CondVtbl const cond_gp_vtbl = {
 	&cond_gp_crossover,
 	&cond_gp_general,

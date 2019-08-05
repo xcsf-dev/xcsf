@@ -15,154 +15,141 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-struct CondVtbl;
-typedef struct CL {
-	struct CondVtbl const *cond_vptr; // functions acting on conditions
-	struct PredVtbl const *pred_vptr; // functions acting on predictions
-	void *cond; // condition structure
-	void *pred; // prediction structure
-	double err;
-	double fit;
-	int num;
-	int exp;
-	double size;
-	int time;
-} CL;
 
 // classifier condition
 
 struct CondVtbl {
-	_Bool (*cond_impl_crossover)(CL *c1, CL *c2);
-	_Bool (*cond_impl_general)(CL *c1, CL *c2);
-	_Bool (*cond_impl_match)(CL *c, double *x);
-	_Bool (*cond_impl_match_state)(CL *c);
-	_Bool (*cond_impl_mutate)(CL *c);
-	_Bool (*cond_impl_subsumes)(CL *c1, CL *c2);
-	double (*cond_impl_mu)(CL *c, int m);
-	void (*cond_impl_copy)(CL *to, CL *from);
-	void (*cond_impl_cover)(CL *c, double *x);
-	void (*cond_impl_free)(CL *c);
-	void (*cond_impl_init)(CL *c);
-	void (*cond_impl_print)(CL *c);
-	void (*cond_impl_rand)(CL *c);
+	_Bool (*cond_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
+	_Bool (*cond_impl_general)(XCSF *xcsf, CL *c1, CL *c2);
+	_Bool (*cond_impl_match)(XCSF *xcsf, CL *c, double *x);
+	_Bool (*cond_impl_match_state)(XCSF *xcsf, CL *c);
+	_Bool (*cond_impl_mutate)(XCSF *xcsf, CL *c);
+	_Bool (*cond_impl_subsumes)(XCSF *xcsf, CL *c1, CL *c2);
+	double (*cond_impl_mu)(XCSF *xcsf, CL *c, int m);
+	void (*cond_impl_copy)(XCSF *xcsf, CL *to, CL *from);
+	void (*cond_impl_cover)(XCSF *xcsf, CL *c, double *x);
+	void (*cond_impl_free)(XCSF *xcsf, CL *c);
+	void (*cond_impl_init)(XCSF *xcsf, CL *c);
+	void (*cond_impl_print)(XCSF *xcsf, CL *c);
+	void (*cond_impl_rand)(XCSF *xcsf, CL *c);
 };
 
-static inline _Bool cond_crossover(CL *c1, CL *c2) {
-	return (*c1->cond_vptr->cond_impl_crossover)(c1, c2);
+static inline _Bool cond_crossover(XCSF *xcsf, CL *c1, CL *c2) {
+	return (*c1->cond_vptr->cond_impl_crossover)(xcsf, c1, c2);
 }
 
-static inline _Bool cond_general(CL *c1, CL *c2) {
-	return (*c1->cond_vptr->cond_impl_general)(c1, c2);
+static inline _Bool cond_general(XCSF *xcsf, CL *c1, CL *c2) {
+	return (*c1->cond_vptr->cond_impl_general)(xcsf, c1, c2);
 }
 
-static inline _Bool cond_match(CL *c, double *x) {
-	return (*c->cond_vptr->cond_impl_match)(c, x);
+static inline _Bool cond_match(XCSF *xcsf, CL *c, double *x) {
+	return (*c->cond_vptr->cond_impl_match)(xcsf, c, x);
 }
 
-static inline _Bool cond_match_state(CL *c) {
-	return (*c->cond_vptr->cond_impl_match_state)(c);
+static inline _Bool cond_match_state(XCSF *xcsf, CL *c) {
+	return (*c->cond_vptr->cond_impl_match_state)(xcsf, c);
 }
 
-static inline _Bool cond_mutate(CL *c) {
-	return (*c->cond_vptr->cond_impl_mutate)(c);
+static inline _Bool cond_mutate(XCSF *xcsf, CL *c) {
+	return (*c->cond_vptr->cond_impl_mutate)(xcsf, c);
 }
 
-static inline _Bool cond_subsumes(CL *c1, CL *c2) {
-	return (*c1->cond_vptr->cond_impl_subsumes)(c1, c2);
+static inline _Bool cond_subsumes(XCSF *xcsf, CL *c1, CL *c2) {
+	return (*c1->cond_vptr->cond_impl_subsumes)(xcsf, c1, c2);
 }
 
-static inline double cond_mu(CL *c, int m) {
-	return (*c->cond_vptr->cond_impl_mu)(c, m);
+static inline double cond_mu(XCSF *xcsf, CL *c, int m) {
+	return (*c->cond_vptr->cond_impl_mu)(xcsf, c, m);
 }
 
-static inline void cond_copy(CL *to, CL *from) {
-	(*to->cond_vptr->cond_impl_copy)(to, from);
+static inline void cond_copy(XCSF *xcsf, CL *to, CL *from) {
+	(*to->cond_vptr->cond_impl_copy)(xcsf, to, from);
 }
 
-static inline void cond_cover(CL *c, double *x) {
-	(*c->cond_vptr->cond_impl_cover)(c, x);
+static inline void cond_cover(XCSF *xcsf, CL *c, double *x) {
+	(*c->cond_vptr->cond_impl_cover)(xcsf, c, x);
 }
 
-static inline void cond_free(CL *c) {
-	(*c->cond_vptr->cond_impl_free)(c);
+static inline void cond_free(XCSF *xcsf, CL *c) {
+	(*c->cond_vptr->cond_impl_free)(xcsf, c);
 }
 
-static inline void cond_init(CL *c) {
-	(*c->cond_vptr->cond_impl_init)(c);
+static inline void cond_init(XCSF *xcsf, CL *c) {
+	(*c->cond_vptr->cond_impl_init)(xcsf, c);
 }
 
-static inline void cond_print(CL *c) {
-	(*c->cond_vptr->cond_impl_print)(c);
+static inline void cond_print(XCSF *xcsf, CL *c) {
+	(*c->cond_vptr->cond_impl_print)(xcsf, c);
 }
 
-static inline void cond_rand(CL *c) {
-	(*c->cond_vptr->cond_impl_rand)(c);
+static inline void cond_rand(XCSF *xcsf, CL *c) {
+	(*c->cond_vptr->cond_impl_rand)(xcsf, c);
 }
 
 // classifier prediction    
 
 struct PredVtbl {
-	double *(*pred_impl_compute)(CL *c, double *x);
-	double (*pred_impl_pre)(CL *c, int p);
-	void (*pred_impl_copy)(CL *to,  CL *from);
-	void (*pred_impl_free)(CL *c);
-	void (*pred_impl_init)(CL *c);
-	void (*pred_impl_print)(CL *c);
-	void (*pred_impl_update)(CL *c, double *y, double *x);
+	double *(*pred_impl_compute)(XCSF *xcsf, CL *c, double *x);
+	double (*pred_impl_pre)(XCSF *xcsf, CL *c, int p);
+	void (*pred_impl_copy)(XCSF *xcsf, CL *to,  CL *from);
+	void (*pred_impl_free)(XCSF *xcsf, CL *c);
+	void (*pred_impl_init)(XCSF *xcsf, CL *c);
+	void (*pred_impl_print)(XCSF *xcsf, CL *c);
+	void (*pred_impl_update)(XCSF *xcsf, CL *c, double *y, double *x);
 };
  
-static inline double *pred_compute(CL *c, double *x) {
-	return (*c->pred_vptr->pred_impl_compute)(c, x);
+static inline double *pred_compute(XCSF *xcsf, CL *c, double *x) {
+	return (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
 }
 
-static inline double pred_pre(CL *c, int p) {
-	return (*c->pred_vptr->pred_impl_pre)(c, p);
+static inline double pred_pre(XCSF *xcsf, CL *c, int p) {
+	return (*c->pred_vptr->pred_impl_pre)(xcsf, c, p);
 }
 
-static inline void pred_copy(CL *to, CL *from) {
-	(*to->pred_vptr->pred_impl_copy)(to, from);
+static inline void pred_copy(XCSF *xcsf, CL *to, CL *from) {
+	(*to->pred_vptr->pred_impl_copy)(xcsf, to, from);
 }
 
-static inline void pred_free(CL *c) {
-	(*c->pred_vptr->pred_impl_free)(c);
+static inline void pred_free(XCSF *xcsf, CL *c) {
+	(*c->pred_vptr->pred_impl_free)(xcsf, c);
 }
 
-static inline void pred_init(CL *c) {
-	(*c->pred_vptr->pred_impl_init)(c);
+static inline void pred_init(XCSF *xcsf, CL *c) {
+	(*c->pred_vptr->pred_impl_init)(xcsf, c);
 }
 
-static inline void pred_print(CL *c) {
-	(*c->pred_vptr->pred_impl_print)(c);
+static inline void pred_print(XCSF *xcsf, CL *c) {
+	(*c->pred_vptr->pred_impl_print)(xcsf, c);
 }
 
-static inline void pred_update(CL *c, double *y, double *x) {
-	(*c->pred_vptr->pred_impl_update)(c, y, x);
+static inline void pred_update(XCSF *xcsf, CL *c, double *y, double *x) {
+	(*c->pred_vptr->pred_impl_update)(xcsf, c, y, x);
 }
  
 // general classifier
-_Bool cl_crossover(CL *c1, CL *c2);
-_Bool cl_general(CL *c1, CL *c2);
-_Bool cl_match(CL *c, double *x);
-_Bool cl_match_state(CL *c);
-_Bool cl_mutate(CL *c);
-_Bool cl_subsumer(CL *c);
-_Bool cl_subsumes(CL *c1, CL *c2);
-double *cl_predict(CL *c, double *x);
-double cl_acc(CL *c);
-double cl_del_vote(CL *c, double avg_fit);
-void cl_copy(CL *to, CL *from);
-void cl_cover(CL *c, double *x);
-void cl_free(CL *c);
-void cl_init(CL *c, int size, int time);
-void cl_print(CL *c);
-void cl_rand(CL *c);
-void cl_update(CL *c, double *x, double *y, int set_num);
-void cl_update_fit(CL *c, double acc_sum, double acc);
+_Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2);
+_Bool cl_general(XCSF *xcsf, CL *c1, CL *c2);
+_Bool cl_match(XCSF *xcsf, CL *c, double *x);
+_Bool cl_match_state(XCSF *xcsf, CL *c);
+_Bool cl_mutate(XCSF *xcsf, CL *c);
+_Bool cl_subsumer(XCSF *xcsf, CL *c);
+_Bool cl_subsumes(XCSF *xcsf, CL *c1, CL *c2);
+double *cl_predict(XCSF *xcsf, CL *c, double *x);
+double cl_acc(XCSF *xcsf, CL *c);
+double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit);
+void cl_copy(XCSF *xcsf, CL *to, CL *from);
+void cl_cover(XCSF *xcsf, CL *c, double *x);
+void cl_free(XCSF *xcsf, CL *c);
+void cl_init(XCSF *xcsf, CL *c, int size, int time);
+void cl_print(XCSF *xcsf, CL *c);
+void cl_rand(XCSF *xcsf, CL *c);
+void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num);
+void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc);
  
 // self-adaptive mutation
-double cl_mutation_rate(CL *c, int m);
-void sam_adapt(double *mu);       
-void sam_copy(double *to, double *from);
-void sam_free(double *mu);
-void sam_init(double **mu);
-void sam_print(double *mu);
+double cl_mutation_rate(XCSF *xcsf, CL *c, int m);
+void sam_adapt(XCSF *xcsf, double *mu);       
+void sam_copy(XCSF *xcsf, double *to, double *from);
+void sam_free(XCSF *xcsf, double *mu);
+void sam_init(XCSF *xcsf, double **mu);
+void sam_print(XCSF *xcsf, double *mu);

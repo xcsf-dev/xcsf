@@ -23,8 +23,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include "data_structures.h"
 #include "random.h"
-#include "cons.h"
 #include "cl.h"
 #include "dgp.h"
 #include "rule_dgp.h"
@@ -39,56 +39,57 @@ typedef struct RULE_DGP_PRED {
 	double *pre;
 } RULE_DGP_PRED;
  
-void rule_dgp_cond_init(CL *c)
+void rule_dgp_cond_init(XCSF *xcsf, CL *c)
 {
 	RULE_DGP_COND *cond = malloc(sizeof(RULE_DGP_COND));
-	graph_init(&cond->dgp, DGP_NUM_NODES);
+	graph_init(xcsf, &cond->dgp, xcsf->DGP_NUM_NODES);
 	c->cond = cond;
-	sam_init(&cond->mu);
+	sam_init(xcsf, &cond->mu);
 }
 
-void rule_dgp_cond_free(CL *c)
+void rule_dgp_cond_free(XCSF *xcsf, CL *c)
 {
 	RULE_DGP_COND *cond = c->cond;
-	graph_free(&cond->dgp);
-	sam_free(cond->mu);
+	graph_free(xcsf, &cond->dgp);
+	sam_free(xcsf, cond->mu);
 	free(c->cond);
 }
  
-double rule_dgp_cond_mu(CL *c, int m)
+double rule_dgp_cond_mu(XCSF *xcsf, CL *c, int m)
 {
+	(void)xcsf;
 	RULE_DGP_COND *cond = c->cond;
 	return cond->mu[m];
 }
  
-void rule_dgp_cond_copy(CL *to, CL *from)
+void rule_dgp_cond_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	RULE_DGP_COND *to_cond = to->cond;
 	RULE_DGP_COND *from_cond = from->cond;
-	graph_copy(&to_cond->dgp, &from_cond->dgp);
-	sam_copy(to_cond->mu, from_cond->mu);
+	graph_copy(xcsf, &to_cond->dgp, &from_cond->dgp);
+	sam_copy(xcsf, to_cond->mu, from_cond->mu);
 }
 
-void rule_dgp_cond_rand(CL *c)
+void rule_dgp_cond_rand(XCSF *xcsf, CL *c)
 {
 	RULE_DGP_COND *cond = c->cond;
-	graph_rand(&cond->dgp);
+	graph_rand(xcsf, &cond->dgp);
 }
 
-void rule_dgp_cond_cover(CL *c, double *x)
+void rule_dgp_cond_cover(XCSF *xcsf, CL *c, double *x)
 {
 	// generates random graphs until the network matches for input state
 	do {
-		cond_rand(c);
-	} while(!cond_match(c, x));
+		rule_dgp_cond_rand(xcsf, c);
+	} while(!rule_dgp_cond_match(xcsf, c, x));
 }
 
-_Bool rule_dgp_cond_match(CL *c, double *x)
+_Bool rule_dgp_cond_match(XCSF *xcsf, CL *c, double *x)
 {
 	// classifier matches if the first output node > 0.5
 	RULE_DGP_COND *cond = c->cond;
-	graph_update(&cond->dgp, x);
-	if(graph_output(&cond->dgp, 0) > 0.5) {
+	graph_update(xcsf, &cond->dgp, x);
+	if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
 		cond->m = true;
 	}
 	else {
@@ -97,99 +98,105 @@ _Bool rule_dgp_cond_match(CL *c, double *x)
 	return cond->m;
 }    
 
-_Bool rule_dgp_cond_match_state(CL *c)
+_Bool rule_dgp_cond_match_state(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	RULE_DGP_COND *cond = c->cond;
 	return cond->m;
 }
 
-_Bool rule_dgp_cond_mutate(CL *c)
+_Bool rule_dgp_cond_mutate(XCSF *xcsf, CL *c)
 {
 	RULE_DGP_COND *cond = c->cond;
 	_Bool mod = false;
-	if(NUM_SAM > 0) {
-		sam_adapt(cond->mu);
-		P_MUTATION = cond->mu[0];
+	if(xcsf->NUM_SAM > 0) {
+		sam_adapt(xcsf, cond->mu);
+		xcsf->P_MUTATION = cond->mu[0];
 	}
-	mod = graph_mutate(&cond->dgp, P_MUTATION);
+	mod = graph_mutate(xcsf, &cond->dgp, xcsf->P_MUTATION);
 	return mod;
 }
 
-_Bool rule_dgp_cond_crossover(CL *c1, CL *c2)
+_Bool rule_dgp_cond_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-	// remove unused parameter warnings
+	(void)xcsf;
 	(void)c1;
 	(void)c2;
 	return false;
 }
 
-_Bool rule_dgp_cond_subsumes(CL *c1, CL *c2)
+_Bool rule_dgp_cond_subsumes(XCSF *xcsf, CL *c1, CL *c2)
 {
-	// remove unused parameter warnings
+	(void)xcsf;
 	(void)c1;
 	(void)c2;
 	return false;
 }
 
-_Bool rule_dgp_cond_general(CL *c1, CL *c2)
+_Bool rule_dgp_cond_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-	// remove unused parameter warnings
+	(void)xcsf;
 	(void)c1;
 	(void)c2;
 	return false;
 }   
 
-void rule_dgp_cond_print(CL *c)
+void rule_dgp_cond_print(XCSF *xcsf, CL *c)
 {
 	RULE_DGP_COND *cond = c->cond;
-	graph_print(&cond->dgp);
+	graph_print(xcsf, &cond->dgp);
 }  
 
-void rule_dgp_pred_init(CL *c)
+void rule_dgp_pred_init(XCSF *xcsf, CL *c)
 {
 	RULE_DGP_PRED *pred = malloc(sizeof(RULE_DGP_PRED));
-	pred->pre = malloc(sizeof(double)*num_y_vars);
+	pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
 	c->pred = pred;
 }
 
-void rule_dgp_pred_free(CL *c)
+void rule_dgp_pred_free(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	RULE_DGP_PRED *pred = c->pred;
 	free(pred->pre);
 	free(pred);
 }
 
-void rule_dgp_pred_copy(CL *to, CL *from)
+void rule_dgp_pred_copy(XCSF *xcsf, CL *to, CL *from)
 {
+	(void)xcsf;
 	(void)to;
 	(void)from;
 }
 
-void rule_dgp_pred_update(CL *c, double *y, double *x)
+void rule_dgp_pred_update(XCSF *xcsf, CL *c, double *y, double *x)
 {
+	(void)xcsf;
 	(void)c;
 	(void)y;
 	(void)x;
 }
 
-double *rule_dgp_pred_compute(CL *c, double *x)
+double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x)
 {
 	(void)x;
 	RULE_DGP_COND *cond = c->cond;
 	RULE_DGP_PRED *pred = c->pred;
-	for(int i = 0; i < num_y_vars; i++) {
-		pred->pre[i] = graph_output(&cond->dgp, 1+i);
+	for(int i = 0; i < xcsf->num_y_vars; i++) {
+		pred->pre[i] = graph_output(xcsf, &cond->dgp, 1+i);
 	}
 	return pred->pre;
 }
  
-double rule_dgp_pred_pre(CL *c, int p)
+double rule_dgp_pred_pre(XCSF *xcsf, CL *c, int p)
 {
+	(void)xcsf;
 	RULE_DGP_PRED *pred = c->pred;
 	return pred->pre[p];
 }
  
-void rule_dgp_pred_print(CL *c)
+void rule_dgp_pred_print(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	(void)c;
 }

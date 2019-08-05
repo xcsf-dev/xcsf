@@ -122,6 +122,7 @@ else()
 	add_subdirectory(xcsf)
 
 	file(COPY MyProject.py DESTINATION .)             
+	file(COPY xcsf/cons.txt DESTINATION .)             
 
 endif()
 

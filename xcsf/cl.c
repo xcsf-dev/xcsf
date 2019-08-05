@@ -29,7 +29,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "random.h"
-#include "cons.h"
+#include "data_structures.h"
 #include "cl.h"
 #include "cond_dummy.h"
 #include "cond_rect.h"
@@ -42,19 +42,19 @@
 #include "rule_dgp.h"
 #include "rule_neural.h"
 
-double cl_update_err(CL *c, double *y);
-double cl_update_size(CL *c, double num_sum);
+double cl_update_err(XCSF *xcsf, CL *c, double *y);
+double cl_update_size(XCSF *xcsf, CL *c, double num_sum);
 
-void cl_init(CL *c, int size, int time)
+void cl_init(XCSF *xcsf, CL *c, int size, int time)
 {
-	c->fit = INIT_FITNESS;
-	c->err = INIT_ERROR;
+	c->fit = xcsf->INIT_FITNESS;
+	c->err = xcsf->INIT_ERROR;
 	c->num = 1;
 	c->exp = 0;
 	c->size = size;
 	c->time = time;
 
-	switch(PRED_TYPE) {
+	switch(xcsf->PRED_TYPE) {
 		case 0:
 		case 1:
 			c->pred_vptr = &pred_nlms_vtbl;
@@ -67,11 +67,11 @@ void cl_init(CL *c, int size, int time)
 			c->pred_vptr = &pred_neural_vtbl;
 			break;
 		default:
-			printf("Invalid prediction type specified: %d\n", PRED_TYPE);
+			printf("Invalid prediction type specified: %d\n", xcsf->PRED_TYPE);
 			exit(EXIT_FAILURE);
 	}
 
-	switch(COND_TYPE) {
+	switch(xcsf->COND_TYPE) {
 		case -1:
 			c->cond_vptr = &cond_dummy_vtbl;
 			break;
@@ -96,146 +96,150 @@ void cl_init(CL *c, int size, int time)
 			c->pred_vptr = &rule_neural_pred_vtbl;
 			break;
 		default:
-			printf("Invalid condition type specified: %d\n", COND_TYPE);
+			printf("Invalid condition type specified: %d\n", xcsf->COND_TYPE);
 			exit(EXIT_FAILURE);
 	}
 
-	cond_init(c);
-	pred_init(c);
+	cond_init(xcsf, c);
+	pred_init(xcsf, c);
 }
 
-void cl_copy(CL *to, CL *from)
+void cl_copy(XCSF *xcsf, CL *to, CL *from)
 {
-	cl_init(to, from->size, from->time);
-	cond_copy(to, from);
-	pred_copy(to, from);
+	cl_init(xcsf, to, from->size, from->time);
+	cond_copy(xcsf, to, from);
+	pred_copy(xcsf, to, from);
 }
 
-_Bool cl_subsumer(CL *c)
+_Bool cl_subsumer(XCSF *xcsf, CL *c)
 {
-	if(c->exp > THETA_SUB && c->err < EPS_0)
+	if(c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
 		return true;
-	else
+	}
+	else {
 		return false;
+	}
 }
 
-double cl_del_vote(CL *c, double avg_fit)
+double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit)
 {
-	if(c->fit / c->num >= DELTA * avg_fit || c->exp < THETA_DEL)
+	if(c->fit / c->num >= xcsf->DELTA * avg_fit || c->exp < xcsf->THETA_DEL)
 		return c->size * c->num;
 	return c->size * c->num * avg_fit / (c->fit / c->num); 
 }
 
-double cl_acc(CL *c)
+double cl_acc(XCSF *xcsf, CL *c)
 {
-	if(c->err <= EPS_0)
+	if(c->err <= xcsf->EPS_0)
 		return 1.0;
 	else
-		return ALPHA * pow(c->err / EPS_0, -NU);
+		return xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
 }
 
-void cl_update(CL *c, double *x, double *y, int set_num)
+void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num)
 {
 	c->exp++;
-	cl_update_err(c, y);
-	pred_update(c, y, x);
-	cl_update_size(c, set_num);
+	cl_update_err(xcsf, c, y);
+	pred_update(xcsf, c, y, x);
+	cl_update_size(xcsf, c, set_num);
 }
 
-double cl_update_err(CL *c, double *y)
+double cl_update_err(XCSF *xcsf, CL *c, double *y)
 {
 	// calculate MSE
 	double error = 0.0;
-	for(int i = 0; i < num_y_vars; i++) {
-		double pre = pred_pre(c, i);
+	for(int i = 0; i < xcsf->num_y_vars; i++) {
+		double pre = pred_pre(xcsf, c, i);
 		error += (y[i] - pre) * (y[i] - pre);
 	}
-	error /= (double)num_y_vars;
+	error /= (double)xcsf->num_y_vars;
 
 	// prediction has been updated for the current state during set_pred()
-	if(c->exp < 1.0/BETA) {
+	if(c->exp < 1.0/xcsf->BETA) {
 		c->err = (c->err * (c->exp-1.0) + error) / (double)c->exp;
 	}
 	else {
-		c->err += BETA * (error - c->err);
+		c->err += xcsf->BETA * (error - c->err);
 	}
 	return c->err * c->num;
 }
  
-void cl_update_fit(CL *c, double acc_sum, double acc)
+void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc)
 {
-	c->fit += BETA * ((acc * c->num) / acc_sum - c->fit);
+	c->fit += xcsf->BETA * ((acc * c->num) / acc_sum - c->fit);
 }
 
-double cl_update_size(CL *c, double num_sum)
+double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
 {
-	if(c->exp < 1.0/BETA)
+	if(c->exp < 1.0/xcsf->BETA)
 		c->size = (c->size * (c->exp-1.0) + num_sum) / (double)c->exp; 
 	else
-		c->size += BETA * (num_sum - c->size);
+		c->size += xcsf->BETA * (num_sum - c->size);
 	return c->size * c->num;
 }
 
-void cl_free(CL *c)
+void cl_free(XCSF *xcsf, CL *c)
 {
-	cond_free(c);
-	pred_free(c);
+	cond_free(xcsf, c);
+	pred_free(xcsf, c);
 	free(c);
 }
 
-void cl_print(CL *c)
+void cl_print(XCSF *xcsf, CL *c)
 {
-	cond_print(c);
-	pred_print(c);
-	printf("%f %f %d %d %f %d\n", c->err, c->fit, c->num, c->exp, c->size, c->time);
+	printf("***********************************************\n");
+	cond_print(xcsf, c);
+	pred_print(xcsf, c);
+	printf("err=%f, fit=%f, num=%d, exp=%d, size=%f, time=%d\n", 
+			c->err, c->fit, c->num, c->exp, c->size, c->time);
 }  
 
-void cl_cover(CL *c, double *x)
+void cl_cover(XCSF *xcsf, CL *c, double *x)
 {
-	cond_cover(c, x);
+	cond_cover(xcsf, c, x);
 }
 
-_Bool cl_general(CL *c1, CL *c2)
+_Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-    return cond_general(c1, c2);
+    return cond_general(xcsf, c1, c2);
 }
 
-_Bool cl_subsumes(CL *c1, CL *c2)
+_Bool cl_subsumes(XCSF *xcsf, CL *c1, CL *c2)
 {
-	return cond_subsumes(c1, c2);
+	return cond_subsumes(xcsf, c1, c2);
 }
 
-void cl_rand(CL *c)
+void cl_rand(XCSF *xcsf, CL *c)
 {
-	cond_rand(c);
+	cond_rand(xcsf, c);
 }
 
-_Bool cl_match(CL *c, double *x)
+_Bool cl_match(XCSF *xcsf, CL *c, double *x)
 {
-	return cond_match(c, x);
+	return cond_match(xcsf, c, x);
 }
 
-_Bool cl_match_state(CL *c)
+_Bool cl_match_state(XCSF *xcsf, CL *c)
 {
-	return cond_match_state(c);
+	return cond_match_state(xcsf, c);
 }
 
-double *cl_predict(CL *c, double *x)
+double *cl_predict(XCSF *xcsf, CL *c, double *x)
 {
-	return pred_compute(c, x);
+	return pred_compute(xcsf, c, x);
 }
 
-_Bool cl_mutate(CL *c)
+_Bool cl_mutate(XCSF *xcsf, CL *c)
 {
-	return cond_mutate(c);
+	return cond_mutate(xcsf, c);
 }
  
-_Bool cl_crossover(CL *c1, CL *c2)
+_Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-	return cond_crossover(c1, c2);
+	return cond_crossover(xcsf, c1, c2);
 }  
 
-double cl_mutation_rate(CL *c, int m)
+double cl_mutation_rate(XCSF *xcsf, CL *c, int m)
 {
-	return cond_mu(c, m);
+	return cond_mu(xcsf, c, m);
 }

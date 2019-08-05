@@ -4,18 +4,19 @@ extern "C" int xcsf_square(int);
 
 extern "C" {   
 #include <stdbool.h>
-#include "cl.h"
-#include "cl_set.h"
+#include "data_structures.h"
+#include "cons.h"
 }
 
 struct XCS
-{
+{        
 	XCSF xcs;
 	XCS(std::string infname, int max_trials) {
-		xcs.pop_num = max_trials;
+		constants_init(&xcs);
 	}
 	int get_pop_num() {
-		return xcs.pop_num;
+		return xcs.POP_SIZE;
+		//return xcs.pop_num;
 	}
 };
 

@@ -28,20 +28,20 @@
 #include <string.h>
 #include <time.h>
 #include <errno.h>
-#include "cons.h"
+#include "data_structures.h"
 #include "cl.h"
 #include "cl_set.h"
 #include "perf.h"
   
+#ifdef GNUPLOT
 FILE *fout;
 char fname[30];
 char basefname[30];
 char *probname;
  
-#ifdef GNUPLOT
-void gplot_init();
-void gplot_draw();
-void gplot_close();
+void gplot_init(XCSF *xcsf);
+void gplot_draw(XCSF *xcsf);
+void gplot_close(XCSF *xcsf);
 FILE *gp;
 #endif
 
@@ -49,28 +49,33 @@ void disp_perf(XCSF *xcsf, double *error, double *terror, int trial)
 {
 	double serr = 0.0;
 	double terr = 0.0;
-	for(int i = 0; i < PERF_AVG_TRIALS; i++) {
+	for(int i = 0; i < xcsf->PERF_AVG_TRIALS; i++) {
 		serr += error[i];
 		terr += terror[i];
 	}
-	serr /= (double)PERF_AVG_TRIALS;
-	terr /= (double)PERF_AVG_TRIALS;
+	serr /= (double)xcsf->PERF_AVG_TRIALS;
+	terr /= (double)xcsf->PERF_AVG_TRIALS;
 	printf("%d %.5f %.5f %d", trial, serr, terr, xcsf->pop_num);
-	fprintf(fout, "%d %.5f %.5f %d", trial, serr, terr, xcsf->pop_num);
-	for(int i = 0; i < NUM_SAM; i++) {
-		printf(" %.5f", set_avg_mut(&xcsf->pset, i));
-		fprintf(fout, " %.5f", set_avg_mut(&xcsf->pset, i));
+ 	for(int i = 0; i < xcsf->NUM_SAM; i++) {
+		printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
 	}
-	printf("\n");
-	fprintf(fout, "\n");
+	printf("\n");    
 	fflush(stdout);
-	fflush(fout);
+
 #ifdef GNUPLOT
-	gplot_draw();
+	fprintf(fout, "%d %.5f %.5f %d", trial, serr, terr, xcsf->pop_num);
+	for(int i = 0; i < xcsf->NUM_SAM; i++) {
+		fprintf(fout, " %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
+	}
+	fprintf(fout, "\n");
+	fflush(fout);
+
+	gplot_draw(xcsf);
 #endif
 }          
 
-void gen_outfname(char *pname)
+#ifdef GNUPLOT
+void gen_outfname(XCSF *xcsf, char *pname)
 {
 	// file for writing output; uses the date/time/exp as file name
 	time_t t = time(NULL);
@@ -78,9 +83,10 @@ void gen_outfname(char *pname)
 	sprintf(basefname, "out/%04d-%02d-%02d-%02d%02d%02d", tm.tm_year + 1900, 
 			tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 	probname = pname;
+	(void)xcsf;
 }
 
-void outfile_init(int exp_num)
+void outfile_init(XCSF *xcsf, int exp_num)
 {                	
 	// create output file
 	sprintf(fname, "%s-%d.dat", basefname, exp_num);
@@ -89,21 +95,16 @@ void outfile_init(int exp_num)
 		printf("Error opening file: %s. %s.\n", fname, strerror(errno));
 		exit(EXIT_FAILURE);
 	}       
-#ifdef GNUPLOT
-	gplot_init();
-#endif
+	gplot_init(xcsf);
 }
 
-void outfile_close()
+void outfile_close(XCSF *xcsf)
 {
 	fclose(fout);
-#ifdef GNUPLOT
-	gplot_close();
-#endif     
+	gplot_close(xcsf);
 }
 
-#ifdef GNUPLOT
-void gplot_init()
+void gplot_init(XCSF *xcsf)
 {
 	// set gnuplot title
 	char buffer[20];
@@ -112,7 +113,7 @@ void gplot_init()
 	sprintf(buffer, "%s", probname);
 	strcat(title, buffer);
 
-	switch(COND_TYPE) {
+	switch(xcsf->COND_TYPE) {
 		case -1:
 			strcat(title, " DUMMY COND");
 			break;
@@ -136,8 +137,8 @@ void gplot_init()
 			break;
 	}
 
-	if(COND_TYPE < 10) {
-		switch(PRED_TYPE) {
+	if(xcsf->COND_TYPE < 10) {
+		switch(xcsf->PRED_TYPE) {
 			case 0:
 				strcat(title, ", LINEAR NLMS");
 				break;
@@ -156,11 +157,11 @@ void gplot_init()
 		}
 	}
 
-	if(NUM_SAM > 0) {
+	if(xcsf->NUM_SAM > 0) {
 		strcat(title, ", SAM");
 	}
 
-	sprintf(buffer, ", P=%d", POP_SIZE);
+	sprintf(buffer, ", P=%d", xcsf->POP_SIZE);
 	strcat(title, buffer);
 
 	// execute gnuplot
@@ -185,15 +186,18 @@ void gplot_init()
 	}
 }
 
-void gplot_close()
+void gplot_close(XCSF *xcsf)
 {
-	if(gp != NULL)
+	if(gp != NULL) {
 		pclose(gp);
-	else
+	}
+	else {
 		printf("error closing gnuplot\n");
+	}
+	(void)xcsf;
 }
 
-void gplot_draw()
+void gplot_draw(XCSF *xcsf)
 {
 	if(gp != NULL) {
 		fprintf(gp, "plot '%s' using 1:2 title 'train error' w lp ls 1 pt 4 pi 50, ", fname);
@@ -204,5 +208,6 @@ void gplot_draw()
 	else {
 		printf("error writing to gnuplot\n");
 	}
+	(void)xcsf;
 }
 #endif    

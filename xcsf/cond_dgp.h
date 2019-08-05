@@ -15,21 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-_Bool cond_dgp_crossover(CL *c1, CL *c2);
-_Bool cond_dgp_general(CL *c1, CL *c2);
-_Bool cond_dgp_match(CL *c, double *x);
-_Bool cond_dgp_match_state(CL *c);
-_Bool cond_dgp_mutate(CL *c);
-_Bool cond_dgp_subsumes(CL *c1, CL *c2);
-void cond_dgp_copy(CL *to, CL *from);
-void cond_dgp_cover(CL *c, double *x);
-void cond_dgp_free(CL *c);
-void cond_dgp_init(CL *c);
-void cond_dgp_print(CL *c);
-void cond_dgp_rand(CL *c);
-double cond_dgp_mu(CL *c, int m);
-
+ 
+_Bool cond_dgp_crossover(XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_dgp_general(XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_dgp_match(XCSF *xcsf, CL *c, double *x);
+_Bool cond_dgp_match_state(XCSF *xcsf, CL *c);
+_Bool cond_dgp_mutate(XCSF *xcsf, CL *c);
+_Bool cond_dgp_subsumes(XCSF *xcsf, CL *c1, CL *c2);
+void cond_dgp_copy(XCSF *xcsf, CL *to, CL *from);
+void cond_dgp_cover(XCSF *xcsf, CL *c, double *x);
+void cond_dgp_free(XCSF *xcsf, CL *c);
+void cond_dgp_init(XCSF *xcsf, CL *c);
+void cond_dgp_print(XCSF *xcsf, CL *c);
+void cond_dgp_rand(XCSF *xcsf, CL *c);
+double cond_dgp_mu(XCSF *xcsf, CL *c, int m);
+ 
 static struct CondVtbl const cond_dgp_vtbl = {
 	&cond_dgp_crossover,
 	&cond_dgp_general,

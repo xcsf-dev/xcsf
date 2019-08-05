@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-double pred_nlms_pre(CL *c, int p);
-double *pred_nlms_compute(CL *c, double *x);
-void pred_nlms_copy(CL *to,  CL *from);
-void pred_nlms_free(CL *c);
-void pred_nlms_init(CL *c);
-void pred_nlms_print(CL *c);
-void pred_nlms_update(CL *c, double *y, double *x);
+double pred_nlms_pre(XCSF *xcsf, CL *c, int p);
+double *pred_nlms_compute(XCSF *xcsf, CL *c, double *x);
+void pred_nlms_copy(XCSF *xcsf, CL *to,  CL *from);
+void pred_nlms_free(XCSF *xcsf, CL *c);
+void pred_nlms_init(XCSF *xcsf, CL *c);
+void pred_nlms_print(XCSF *xcsf, CL *c);
+void pred_nlms_update(XCSF *xcsf, CL *c, double *y, double *x);
 
 static struct PredVtbl const pred_nlms_vtbl = {
 	&pred_nlms_compute,

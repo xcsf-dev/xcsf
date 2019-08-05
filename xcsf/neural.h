@@ -31,14 +31,14 @@ typedef struct BPN {
 	NEURON **layer; // neural network
 } BPN;
  
-double neural_output(BPN *bpn, int i);
-void neural_copy(BPN *to, BPN *from);
-void neural_free(BPN *bpn);
-void neural_learn(BPN *bpn, double *output, double *state);
-void neural_print(BPN *bpn);
-void neural_propagate(BPN *bpn, double *input);
-void neural_rand(BPN *bpn);
-void neural_init(BPN *bpn, int layers, int *neurons, double (**aptr)(double));
+double neural_output(XCSF *xcsf, BPN *bpn, int i);
+void neural_copy(XCSF *xcsf, BPN *to, BPN *from);
+void neural_free(XCSF *xcsf, BPN *bpn);
+void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state);
+void neural_print(XCSF *xcsf, BPN *bpn);
+void neural_propagate(XCSF *xcsf, BPN *bpn, double *input);
+void neural_rand(XCSF *xcsf, BPN *bpn);
+void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, double (**aptr)(double));
 
 // activation functions
 double d1sig(double x);

@@ -30,12 +30,12 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include "data_structures.h"
 #include "random.h"
-#include "cons.h"
 #include "cl.h"
 #include "cond_rect.h"
 
-void cond_rect_bounds(double *a, double *b);
+void cond_rect_bounds(XCSF *xcsf, double *a, double *b);
   
 typedef struct COND_RECT {
 	double *interval;
@@ -44,69 +44,74 @@ typedef struct COND_RECT {
 	double *mu;
 } COND_RECT;
  
-void cond_rect_init(CL *c)
+void cond_rect_init(XCSF *xcsf, CL *c)
 {
 	COND_RECT *cond = malloc(sizeof(COND_RECT));
-	cond->interval_length = num_x_vars*2;
+	cond->interval_length = xcsf->num_x_vars * 2;
 	cond->interval = malloc(sizeof(double) * cond->interval_length);
 	c->cond = cond;
-	sam_init(&cond->mu);
+	sam_init(xcsf, &cond->mu);
 }
 
-void cond_rect_free(CL *c)
+void cond_rect_free(XCSF *xcsf, CL *c)
 {
 	COND_RECT *cond = c->cond;
 	free(cond->interval);
-	sam_free(cond->mu);
+	sam_free(xcsf, cond->mu);
 	free(c->cond);
 }
 
-double cond_rect_mu(CL *c, int m)
+double cond_rect_mu(XCSF *xcsf, CL *c, int m)
 {
+	(void)xcsf;
 	COND_RECT *cond = c->cond;
 	return cond->mu[m];
 }
 
-void cond_rect_copy(CL *to, CL *from)
+void cond_rect_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	COND_RECT *to_cond = to->cond;
 	COND_RECT *from_cond = from->cond;
 	memcpy(to_cond->interval, from_cond->interval, sizeof(double)*to_cond->interval_length);
-	sam_copy(to_cond->mu, from_cond->mu);
+	sam_copy(xcsf, to_cond->mu, from_cond->mu);
 }                             
 
-void cond_rect_rand(CL *c)
+void cond_rect_rand(XCSF *xcsf, CL *c)
 {
 	COND_RECT *cond = c->cond;
 	for(int i = 0; i < cond->interval_length; i+=2) {
-		cond->interval[i] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
-		cond->interval[i+1] = ((MAX_CON-MIN_CON)*drand())+MIN_CON;
-		cond_rect_bounds(&cond->interval[i], &cond->interval[i+1]);
+		cond->interval[i] = ((xcsf->MAX_CON - xcsf->MIN_CON) * drand()) + xcsf->MIN_CON;
+		cond->interval[i+1] = ((xcsf->MAX_CON - xcsf->MIN_CON) * drand())+ xcsf->MIN_CON;
+		cond_rect_bounds(xcsf, &cond->interval[i], &cond->interval[i+1]);
 	}
 }
 
-void cond_rect_cover(CL *c, double *x)
+void cond_rect_cover(XCSF *xcsf, CL *c, double *x)
 {
 	COND_RECT *cond = c->cond;
 	// generate a condition that matches the state
 	for(int i = 0; i < cond->interval_length; i+=2) {
-		cond->interval[i] = x[i/2] - (S_MUTATION*drand());
-		cond->interval[i+1] = x[i/2] + (S_MUTATION*drand());
-		cond_rect_bounds(&cond->interval[i], &cond->interval[i+1]);
+		cond->interval[i] = x[i/2] - (xcsf->S_MUTATION*drand());
+		cond->interval[i+1] = x[i/2] + (xcsf->S_MUTATION*drand());
+		cond_rect_bounds(xcsf, &cond->interval[i], &cond->interval[i+1]);
 	}
 }
 
-void cond_rect_bounds(double *a, double *b)
+void cond_rect_bounds(XCSF *xcsf, double *a, double *b)
 {
 	// lower and upper limits
-	if(*a < MIN_CON)
-		*a = MIN_CON;
-	else if(*a > MAX_CON)
-		*a = MAX_CON;
-	if(*b < MIN_CON)
-		*b = MIN_CON;
-	else if(*b > MAX_CON)
-		*b = MAX_CON;
+	if(*a < xcsf->MIN_CON) {
+		*a = xcsf->MIN_CON;
+	}
+	else if(*a > xcsf->MAX_CON) {
+		*a = xcsf->MAX_CON;
+	}
+	if(*b < xcsf->MIN_CON) {
+		*b = xcsf->MIN_CON;
+	}
+	else if(*b > xcsf->MAX_CON) {
+		*b = xcsf->MAX_CON;
+	}
 	// order
 	if(*a > *b) {
 		double tmp = *a;
@@ -115,8 +120,9 @@ void cond_rect_bounds(double *a, double *b)
 	}                              
 }
 
-_Bool cond_rect_match(CL *c, double *x)
+_Bool cond_rect_match(XCSF *xcsf, CL *c, double *x)
 {
+	(void)xcsf;
 	COND_RECT *cond = c->cond;
 	// return whether the condition matches the state
 	for(int i = 0; i < cond->interval_length; i+=2) {
@@ -129,20 +135,21 @@ _Bool cond_rect_match(CL *c, double *x)
 	return true;
 }
 
-_Bool cond_rect_match_state(CL *c)
+_Bool cond_rect_match_state(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	COND_RECT *cond = c->cond;
 	return cond->m;
 }
 
-_Bool cond_rect_crossover(CL *c1, CL *c2) 
+_Bool cond_rect_crossover(XCSF *xcsf, CL *c1, CL *c2) 
 {
 	COND_RECT *cond1 = c1->cond;
 	COND_RECT *cond2 = c2->cond;
 	// two point crossover
 	_Bool changed = false;
 	int length = cond1->interval_length;
-	if(drand() < P_CROSSOVER) {
+	if(drand() < xcsf->P_CROSSOVER) {
 		int p1 = irand(0, length);
 		int p2 = irand(0, length)+1;
 		if(p1 > p2) {
@@ -173,33 +180,35 @@ _Bool cond_rect_crossover(CL *c1, CL *c2)
 	return changed;
 }
 
-_Bool cond_rect_mutate(CL *c)
+_Bool cond_rect_mutate(XCSF *xcsf, CL *c)
 {
 	COND_RECT *cond = c->cond;
 	_Bool mod = false;
-	double step = S_MUTATION;
-	if(NUM_SAM > 0) {
-		sam_adapt(cond->mu);
-		P_MUTATION = cond->mu[0];
-		if(NUM_SAM > 1)
+	double step = xcsf->S_MUTATION;
+	if(xcsf->NUM_SAM > 0) {
+		sam_adapt(xcsf, cond->mu);
+		xcsf->P_MUTATION = cond->mu[0];
+		if(xcsf->NUM_SAM > 1) {
 			step = cond->mu[1];
+		}
 	}
 	for(int i = 0; i < cond->interval_length; i+=2) {
-		if(drand() < P_MUTATION) {
+		if(drand() < xcsf->P_MUTATION) {
 			cond->interval[i] += ((drand()*2.0)-1.0)*step;
 			mod = true;
 		}
-		if(drand() < P_MUTATION) {
+		if(drand() < xcsf->P_MUTATION) {
 			cond->interval[i+1] += ((drand()*2.0)-1.0)*step;
 			mod = true;
 		}
-		cond_rect_bounds(&cond->interval[i], &cond->interval[i+1]);
+		cond_rect_bounds(xcsf, &cond->interval[i], &cond->interval[i+1]);
 	}
 	return mod;
 }
 
-_Bool cond_rect_subsumes(CL *c1, CL *c2)
+_Bool cond_rect_subsumes(XCSF *xcsf, CL *c1, CL *c2)
 {
+	(void)xcsf;
 	COND_RECT *cond1 = c1->cond;
 	COND_RECT *cond2 = c2->cond;
 	// returns whether c1 subsumes c2
@@ -212,14 +221,15 @@ _Bool cond_rect_subsumes(CL *c1, CL *c2)
 	return true;
 }
 
-_Bool cond_rect_general(CL *c1, CL *c2)
+_Bool cond_rect_general(XCSF *xcsf, CL *c1, CL *c2)
 {
 	// returns whether cond1 is more general than cond2
 	COND_RECT *cond1 = c1->cond;
 	COND_RECT *cond2 = c2->cond;
 	double gen1 = 0.0, gen2 = 0.0, max = 0.0;
-	for(int i = 0; i < num_x_vars; i++)
-		max += MAX_CON - MIN_CON + 1.0;
+	for(int i = 0; i < xcsf->num_x_vars; i++) {
+		max += xcsf->MAX_CON - xcsf->MIN_CON + 1.0;
+	}
 	for(int i = 0; i < cond1->interval_length; i+=2) {
 		gen1 += cond1->interval[i+1] - cond1->interval[i] + 1.0;
 		gen2 += cond2->interval[i+1] - cond2->interval[i] + 1.0;
@@ -232,8 +242,9 @@ _Bool cond_rect_general(CL *c1, CL *c2)
 	}
 }  
 
-void cond_rect_print(CL *c)
+void cond_rect_print(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	COND_RECT *cond = c->cond;
 	printf("intervals:");
 	for(int i = 0; i < cond->interval_length; i+=2) {

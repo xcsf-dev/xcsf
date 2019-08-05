@@ -28,13 +28,13 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
-#include "cons.h"
+#include "data_structures.h"
 #include "random.h"
 #include "cl.h"
 #include "cl_set.h"
 
 void set_subsumption(XCSF *xcsf, NODE **set, int *size, int *num, NODE **kset);
-void set_update_fit(NODE **set, int size, int num);
+void set_update_fit(XCSF *xcsf, NODE **set, int size, int num_sum);
 
 void pop_init(XCSF *xcsf)
 {
@@ -43,11 +43,11 @@ void pop_init(XCSF *xcsf)
     xcsf->pop_num = 0; // num macro-classifiers
     xcsf->pop_num_sum = 0; // numerosity sum
 
-    if(POP_INIT) {
-        while(xcsf->pop_num_sum < POP_SIZE) {
+    if(xcsf->POP_INIT) {
+        while(xcsf->pop_num_sum < xcsf->POP_SIZE) {
             CL *new = malloc(sizeof(CL));
-            cl_init(new, POP_SIZE, 0);
-            cl_rand(new);
+            cl_init(xcsf, new, xcsf->POP_SIZE, 0);
+            cl_rand(xcsf, new);
             pop_add(xcsf, new);
         }
     }
@@ -77,10 +77,10 @@ void pop_del(XCSF *xcsf, NODE **kset)
     // vote; sets its numerosity to zero, and removes it from the population 
 
     // select a roullete point
-    double avg_fit = set_total_fit(&xcsf->pset) / xcsf->pop_num_sum;
+    double avg_fit = set_total_fit(xcsf, &xcsf->pset) / xcsf->pop_num_sum;
     double sum = 0.0;
     for(NODE *iter = xcsf->pset; iter != NULL; iter = iter->next) {
-        sum += cl_del_vote(iter->cl, avg_fit);
+        sum += cl_del_vote(xcsf, iter->cl, avg_fit);
     }
     double p = drand() * sum;
 
@@ -88,13 +88,13 @@ void pop_del(XCSF *xcsf, NODE **kset)
     sum = 0.0;
     NODE *prev = NULL;
     for(NODE *iter = xcsf->pset; iter != NULL; iter = iter->next) {
-        sum += cl_del_vote(iter->cl, avg_fit);
+        sum += cl_del_vote(xcsf, iter->cl, avg_fit);
         if(sum > p) {
             iter->cl->num--;
             xcsf->pop_num_sum--;
             // macro classifier must be deleted
             if(iter->cl->num == 0) {
-                set_add(kset, iter->cl);
+                set_add(xcsf, kset, iter->cl);
                 xcsf->pop_num--;
                 if(prev == NULL) {
                     xcsf->pset = iter->next;
@@ -112,7 +112,7 @@ void pop_del(XCSF *xcsf, NODE **kset)
 
 void pop_enforce_limit(XCSF *xcsf, NODE **kset)
 {
-    while(xcsf->pop_num_sum > POP_SIZE) {
+    while(xcsf->pop_num_sum > xcsf->POP_SIZE) {
         pop_del(xcsf, kset);
     }
 }
@@ -131,7 +131,7 @@ void set_match(XCSF *xcsf, NODE **set, int *size, int *num, double *x, int time,
     int s = 0; int n = 0;
 #pragma omp parallel for reduction(+:s,n)
     for(int i = 0; i < xcsf->pop_num; i++) {
-        if(cl_match(blist[i]->cl, x)) {
+        if(cl_match(xcsf, blist[i]->cl, x)) {
             s++;
             n += blist[i]->cl->num;
         }
@@ -139,39 +139,39 @@ void set_match(XCSF *xcsf, NODE **set, int *size, int *num, double *x, int time,
     *size = s; *num = n;
     // build m list
     for(int i = 0; i < xcsf->pop_num; i++) {
-        if(cl_match_state(blist[i]->cl)) {
-            set_add(set, blist[i]->cl);
+        if(cl_match_state(xcsf, blist[i]->cl)) {
+            set_add(xcsf, set, blist[i]->cl);
         }
     }
 #else
     for(NODE *iter = xcsf->pset; iter != NULL; iter = iter->next) {
-        if(cl_match(iter->cl, x)) {
-            set_add(set, iter->cl);
+        if(cl_match(xcsf, iter->cl, x)) {
+            set_add(xcsf, set, iter->cl);
             *num += iter->cl->num;
             (*size)++;                    
         }
     }   
 #endif
     // perform covering if match set size is < THETA_MNA
-    while(*size < THETA_MNA) {
+    while(*size < xcsf->THETA_MNA) {
         // new classifier with matching condition
         CL *new = malloc(sizeof(CL));
-        cl_init(new, *num+1, time);
-        cl_cover(new, x);
+        cl_init(xcsf, new, *num+1, time);
+        cl_cover(xcsf, new, x);
         (*size)++;
         (*num)++;
         pop_add(xcsf, new);
-        set_add(set, new); 
+        set_add(xcsf, set, new); 
         pop_enforce_limit(xcsf, kset);
         // remove any deleted classifiers from the match set
-        set_validate(set, size, num);
+        set_validate(xcsf, set, size, num);
     }
 }
 
-void set_pred(NODE **set, int size, double *x, double *y)
+void set_pred(XCSF *xcsf, NODE **set, int size, double *x, double *y)
 {
     // match set fitness weighted prediction
-    double *presum = calloc(num_y_vars, sizeof(double));
+    double *presum = calloc(xcsf->num_y_vars, sizeof(double));
     double fitsum = 0.0;
 #ifdef PARALLEL_PRED
     NODE *blist[size];
@@ -180,10 +180,10 @@ void set_pred(NODE **set, int size, double *x, double *y)
         blist[j] = iter;
         j++;
     }
-#pragma omp parallel for reduction(+:presum[:num_y_vars],fitsum)
+#pragma omp parallel for reduction(+:presum[:xcsf->num_y_vars],fitsum)
     for(int i = 0; i < size; i++) {
-        double *predictions = cl_predict(blist[i]->cl, x);
-        for(int var = 0; var < num_y_vars; var++) {
+        double *predictions = cl_predict(xcsf, blist[i]->cl, x);
+        for(int var = 0; var < xcsf->num_y_vars; var++) {
             presum[var] += predictions[var] * blist[i]->cl->fit;
         }
         fitsum += blist[i]->cl->fit;
@@ -191,21 +191,21 @@ void set_pred(NODE **set, int size, double *x, double *y)
 #else
     (void)size; // remove unused parameter warnings
     for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-        double *predictions = cl_predict(iter->cl, x);
-        for(int var = 0; var < num_y_vars; var++) {
+        double *predictions = cl_predict(xcsf, iter->cl, x);
+        for(int var = 0; var < xcsf->num_y_vars; var++) {
             presum[var] += predictions[var] * iter->cl->fit;
         }
         fitsum += iter->cl->fit;
     }    
 #endif
-    for(int var = 0; var < num_y_vars; var++) {
+    for(int var = 0; var < xcsf->num_y_vars; var++) {
         y[var] = presum[var]/fitsum;
     }
     // clean up
     free(presum);
 }
 
-void set_add(NODE **set, CL *c)
+void set_add(XCSF *xcsf, NODE **set, CL *c)
 {
     // adds a classifier to the set
     if(*set == NULL) {
@@ -219,34 +219,35 @@ void set_add(NODE **set, CL *c)
         new->next = *set;
         *set = new;
     }
+	(void)xcsf;
 }
 
 void set_update(XCSF *xcsf, NODE **set, int *size, int *num, double *y, NODE **kset, double *x)
 {
     for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-        cl_update(iter->cl, x, y, *num);
+        cl_update(xcsf, iter->cl, x, y, *num);
     }
-    set_update_fit(set, *size, *num);
-    if(SET_SUBSUMPTION) {
+    set_update_fit(xcsf, set, *size, *num);
+    if(xcsf->SET_SUBSUMPTION) {
         set_subsumption(xcsf, set, size, num, kset);
     }
 }
 
-void set_update_fit(NODE **set, int size, int num_sum)
+void set_update_fit(XCSF *xcsf, NODE **set, int size, int num_sum)
 {
     double acc_sum = 0.0;
     double accs[size];
     // calculate accuracies
     int i = 0;
     for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-        accs[i] = cl_acc(iter->cl);
+        accs[i] = cl_acc(xcsf, iter->cl);
         acc_sum += accs[i] * num_sum;
         i++;
     }
     // update fitnesses
     i = 0;
     for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-        cl_update_fit(iter->cl, acc_sum, accs[i]);
+        cl_update_fit(xcsf, iter->cl, acc_sum, accs[i]);
         i++;
     }
 }
@@ -258,8 +259,8 @@ void set_subsumption(XCSF *xcsf, NODE **set, int *size, int *num, NODE **kset)
     // find the most general subsumer in the set
     for(iter = *set; iter != NULL; iter = iter->next) {
         CL *c = iter->cl;
-        if(cl_subsumer(c)) {
-            if(s == NULL || cl_general(c, s)) {
+        if(cl_subsumer(xcsf, c)) {
+            if(s == NULL || cl_general(xcsf, c, s)) {
                 s = c;
             }
         }
@@ -270,18 +271,18 @@ void set_subsumption(XCSF *xcsf, NODE **set, int *size, int *num, NODE **kset)
         while(iter != NULL) {
             CL *c = iter->cl;
             iter = iter->next;
-            if(cl_general(s, c)) {
+            if(cl_general(xcsf, s, c)) {
                 s->num += c->num;
                 c->num = 0;
-                set_add(kset, c);
-                set_validate(set, size, num);
-                set_validate(&xcsf->pset, &xcsf->pop_num, &xcsf->pop_num_sum);
+                set_add(xcsf, kset, c);
+                set_validate(xcsf, set, size, num);
+                set_validate(xcsf, &xcsf->pset, &xcsf->pop_num, &xcsf->pop_num_sum);
             }
         }
     }
 }
 
-void set_validate(NODE **set, int *size, int *num)
+void set_validate(XCSF *xcsf, NODE **set, int *size, int *num)
 {
     // remove nodes pointing to classifiers with 0 numerosity
     *size = 0;
@@ -308,46 +309,51 @@ void set_validate(NODE **set, int *size, int *num)
             iter = iter->next;
         }
     }
+	(void)xcsf;
 }
 
-void set_print(NODE *set)
+void set_print(XCSF *xcsf, NODE *set)
 {
     for(NODE *iter = set; iter != NULL; iter = iter->next) {
-        cl_print(iter->cl);
+        cl_print(xcsf, iter->cl);
     }
+	(void)xcsf;
 }
 
-void set_times(NODE **set, int time)
+void set_times(XCSF *xcsf, NODE **set, int time)
 {
     for(NODE *iter = *set; iter != NULL; iter = iter->next) {
         iter->cl->time = time;
     }
+	(void)xcsf;
 }
 
-double set_total_fit(NODE **set)
+double set_total_fit(XCSF *xcsf, NODE **set)
 {
     double sum = 0.0;
     for(NODE *iter = *set; iter != NULL; iter = iter->next) {
         sum += iter->cl->fit;
     }
+	(void)xcsf;
     return sum;
 }
 
-double set_total_time(NODE **set)
+double set_total_time(XCSF *xcsf, NODE **set)
 {
     double sum = 0.0;
     for(NODE *iter = *set; iter != NULL; iter = iter->next) {
         sum += iter->cl->time * iter->cl->num;
     }
+	(void)xcsf;
     return sum;
 }
 
-double set_mean_time(NODE **set, int num_sum)
+double set_mean_time(XCSF *xcsf, NODE **set, int num_sum)
 {
-    return set_total_time(set) / num_sum;
+    return set_total_time(xcsf, set) / num_sum;
 }
 
-void set_free(NODE **set)
+void set_free(XCSF *xcsf, NODE **set)
 {
     // frees the set only, not the classifiers
     NODE *iter = *set;
@@ -356,27 +362,28 @@ void set_free(NODE **set)
         free(iter);
         iter = *set;
     }
+	(void)xcsf;
 }
 
-void set_kill(NODE **set)
+void set_kill(XCSF *xcsf, NODE **set)
 {
     // frees the set and classifiers
     NODE *iter = *set;
     while(iter != NULL) {
-        cl_free(iter->cl);
+        cl_free(xcsf, iter->cl);
         *set = iter->next;
         free(iter);
         iter = *set;
     }
 }
 
-double set_avg_mut(NODE **set, int m)
+double set_avg_mut(XCSF *xcsf, NODE **set, int m)
 {
     // returns the average classifier mutation rate
     double sum = 0.0;
     int cnt = 0;
     for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-        sum += cl_mutation_rate(iter->cl, m);
+        sum += cl_mutation_rate(xcsf, iter->cl, m);
         cnt++;
     }
     return sum/cnt;

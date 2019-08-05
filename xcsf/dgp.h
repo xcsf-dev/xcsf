@@ -36,13 +36,13 @@ typedef struct GRAPH {
 	GNODE *nodes; // nodes
 } GRAPH;
 
-void graph_init(GRAPH *dgp, int n);
-void graph_free(GRAPH *dgp);
-void graph_rand(GRAPH *dgp);
-void graph_print(GRAPH *dgp);
-void graph_copy(GRAPH *to, GRAPH *from);
-_Bool graph_mutate(GRAPH *dgp, double rate);
-void graph_update(GRAPH *dgp, double *inputs);
-double graph_output(GRAPH *dgp, int i);
-void graph_reset(GRAPH *dgp);
-double graph_avg_k(GRAPH *dgp);
+void graph_init(XCSF *xcsf, GRAPH *dgp, int n);
+void graph_free(XCSF *xcsf, GRAPH *dgp);
+void graph_rand(XCSF *xcsf, GRAPH *dgp);
+void graph_print(XCSF *xcsf, GRAPH *dgp);
+void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from);
+_Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate);
+void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs);
+double graph_output(XCSF *xcsf, GRAPH *dgp, int i);
+void graph_reset(XCSF *xcsf, GRAPH *dgp);
+double graph_avg_k(XCSF *xcsf, GRAPH *dgp);

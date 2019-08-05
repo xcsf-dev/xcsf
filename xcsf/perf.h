@@ -16,6 +16,6 @@
  */
 
 void disp_perf(XCSF *xcsf, double *error, double *terror, int trial);
-void gen_outfname(char *pname);
-void outfile_init(int exp_num);
-void outfile_close();
+void gen_outfname(XCSF *xcsf, char *pname);
+void outfile_init(XCSF *xcsf, int exp_num);
+void outfile_close(XCSF *xcsf);

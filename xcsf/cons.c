@@ -28,6 +28,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "data_structures.h"
 #include "cons.h"
 #include "gp.h"
 
@@ -56,62 +57,68 @@ pchar getvalue(pchar name);
 psection head;
 psection current;
 
-void constants_init()
+void constants_init(XCSF *xcsf)
 {
     init_config("cons.txt");
-    COND_TYPE = atoi(getvalue("COND_TYPE"));
-    PRED_TYPE = atoi(getvalue("PRED_TYPE"));
-    POP_SIZE = atoi(getvalue("POP_SIZE"));
+    xcsf->COND_TYPE = atoi(getvalue("COND_TYPE"));
+    xcsf->PRED_TYPE = atoi(getvalue("PRED_TYPE"));
+    xcsf->POP_SIZE = atoi(getvalue("POP_SIZE"));
     if(strcmp(getvalue("POP_INIT"), "false") == 0) {
-        POP_INIT = false;
+        xcsf->POP_INIT = false;
     }
     else {
-        POP_INIT = true;
+        xcsf->POP_INIT = true;
     }
-    NUM_EXPERIMENTS = atoi(getvalue("NUM_EXPERIMENTS"));
-    MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
-    P_CROSSOVER = atof(getvalue("P_CROSSOVER"));
-    P_MUTATION = atof(getvalue("P_MUTATION"));
-    THETA_SUB = atof(getvalue("THETA_SUB"));
-    EPS_0 = atof(getvalue("EPS_0"));
-    DELTA = atof(getvalue("DELTA"));
-    THETA_DEL = atof(getvalue("THETA_DEL"));
-    THETA_GA = atof(getvalue("THETA_GA"));
-    THETA_MNA = atoi(getvalue("THETA_MNA"));
-    THETA_OFFSPRING = atoi(getvalue("THETA_OFFSPRING"));
-    BETA = atof(getvalue("BETA"));
-    ALPHA = atof(getvalue("ALPHA")); 
-    NU = atof(getvalue("NU"));
-    INIT_FITNESS = atof(getvalue("INIT_FITNESS"));
-    INIT_ERROR = atof(getvalue("INIT_ERROR"));
-    ERR_REDUC = atof(getvalue("ERR_REDUC"));
-    FIT_REDUC = atof(getvalue("FIT_REDUC"));
+    xcsf->MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
+    xcsf->P_CROSSOVER = atof(getvalue("P_CROSSOVER"));
+    xcsf->P_MUTATION = atof(getvalue("P_MUTATION"));
+    xcsf->THETA_SUB = atof(getvalue("THETA_SUB"));
+    xcsf->EPS_0 = atof(getvalue("EPS_0"));
+    xcsf->DELTA = atof(getvalue("DELTA"));
+    xcsf->THETA_DEL = atof(getvalue("THETA_DEL"));
+    xcsf->THETA_GA = atof(getvalue("THETA_GA"));
+    xcsf->THETA_MNA = atoi(getvalue("THETA_MNA"));
+    xcsf->THETA_OFFSPRING = atoi(getvalue("THETA_OFFSPRING"));
+    xcsf->BETA = atof(getvalue("BETA"));
+    xcsf->ALPHA = atof(getvalue("ALPHA")); 
+    xcsf->NU = atof(getvalue("NU"));
+    xcsf->INIT_FITNESS = atof(getvalue("INIT_FITNESS"));
+    xcsf->INIT_ERROR = atof(getvalue("INIT_ERROR"));
+    xcsf->ERR_REDUC = atof(getvalue("ERR_REDUC"));
+    xcsf->FIT_REDUC = atof(getvalue("FIT_REDUC"));
     if(strcmp(getvalue("GA_SUBSUMPTION"), "false") == 0) {
-        GA_SUBSUMPTION = false;
+        xcsf->GA_SUBSUMPTION = false;
     }
     else {
-        GA_SUBSUMPTION = true;
+        xcsf->GA_SUBSUMPTION = true;
     }
     if(strcmp(getvalue("SET_SUBSUMPTION"), "false") == 0) {
-        SET_SUBSUMPTION = false;
+        xcsf->SET_SUBSUMPTION = false;
     }
     else {
-        SET_SUBSUMPTION = true;
+        xcsf->SET_SUBSUMPTION = true;
     }
-    PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
-    XCSF_X0 = atof(getvalue("XCSF_X0"));
-    XCSF_ETA = atof(getvalue("XCSF_ETA"));
-    muEPS_0 = atof(getvalue("muEPS_0"));
-    NUM_SAM = atoi(getvalue("NUM_SAM"));
-    S_MUTATION = atof(getvalue("S_MUTATION"));
-    MIN_CON = atof(getvalue("MIN_CON"));
-    MAX_CON = atof(getvalue("MAX_CON"));
-    NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
-    DGP_NUM_NODES = atoi(getvalue("DGP_NUM_NODES"));
+    xcsf->PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
+    xcsf->XCSF_X0 = atof(getvalue("XCSF_X0"));
+    xcsf->XCSF_ETA = atof(getvalue("XCSF_ETA"));
+    xcsf->muEPS_0 = atof(getvalue("muEPS_0"));
+    xcsf->NUM_SAM = atoi(getvalue("NUM_SAM"));
+    xcsf->S_MUTATION = atof(getvalue("S_MUTATION"));
+    xcsf->MIN_CON = atof(getvalue("MIN_CON"));
+    xcsf->MAX_CON = atof(getvalue("MAX_CON"));
+    xcsf->NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
+    xcsf->DGP_NUM_NODES = atoi(getvalue("DGP_NUM_NODES"));
+    xcsf->GP_NUM_CONS = atoi(getvalue("GP_NUM_CONS"));
     tidyup();  
 
-    tree_init_cons();
+    tree_init_cons(xcsf);
 } 
+
+void constants_free(XCSF *xcsf) 
+{
+    tree_free_cons(xcsf);
+}
+
 void trim(pchar s) // Remove tabs/spaces/lf/cr  both ends
 {
     size_t i=0,j;
@@ -209,14 +216,18 @@ pchar getvalue(pchar name) {
 }
 
 void process(pchar configline) {
-    if(strlen(configline)== 0) // ignore empty lines
+    if(strlen(configline)== 0) { // ignore empty lines
         return;
-    if(configline[0]==';')  // lines starting with a ; are comments
+	}
+    if(configline[0]==';') {  // lines starting with a ; are comments
         return; 
-    if(configline[0]=='[') 
+	}
+    if(configline[0]=='[') {
         newsection(configline);
-    else 
+	}
+    else {
         newnvpair(configline);
+	}
 }
 
 int isname(pchar section,pchar name) {
@@ -224,8 +235,9 @@ int isname(pchar section,pchar name) {
     trim(section);
     current = findsection(section);
     if(current) {
-        if(getvalue(name))
+        if(getvalue(name)) {
             result =1;
+		}
     }
     return result;
 }
@@ -234,12 +246,15 @@ void init_config(pchar filename) {
     FILE * f;
     char buff[MAXLEN];
     f = fopen(filename,"rt");
-    if(f==NULL)
+    if(f==NULL) {
+		printf("ERROR: cannot open %s\n", filename);
         return;
+	}
     head = NULL;
     while(!feof(f)) {
-        if(fgets(buff,MAXLEN-2,f)==NULL)
+        if(fgets(buff,MAXLEN-2,f)==NULL) {
             break;
+		}
         trim(buff);
         process(buff);
     }

@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-double pred_neural_pre(CL *c, int p);
-double *pred_neural_compute(CL *c, double *x);
-void pred_neural_copy(CL *to,  CL *from);
-void pred_neural_free(CL *c);
-void pred_neural_init(CL *c);
-void pred_neural_print(CL *c);
-void pred_neural_update(CL *c, double *y, double *x);
+double pred_neural_pre(XCSF *xcsf, CL *c, int p);
+double *pred_neural_compute(XCSF *xcsf, CL *c, double *x);
+void pred_neural_copy(XCSF *xcsf, CL *to,  CL *from);
+void pred_neural_free(XCSF *xcsf, CL *c);
+void pred_neural_init(XCSF *xcsf, CL *c);
+void pred_neural_print(XCSF *xcsf, CL *c);
+void pred_neural_update(XCSF *xcsf, CL *c, double *y, double *x);
 
 static struct PredVtbl const pred_neural_vtbl = {
 	&pred_neural_compute,

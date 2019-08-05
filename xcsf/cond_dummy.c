@@ -25,8 +25,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include "data_structures.h"
 #include "random.h"
-#include "cons.h"
 #include "cl.h"
 #include "cond_dummy.h"
  
@@ -35,85 +35,98 @@ typedef struct COND_DUMMY {
 	double *mu;
 } COND_DUMMY;
  
-void cond_dummy_init(CL *c)
+void cond_dummy_init(XCSF *xcsf, CL *c)
 {
 	COND_DUMMY *cond = malloc(sizeof(COND_DUMMY));
 	c->cond = cond;
-	sam_init(&cond->mu);
+	sam_init(xcsf, &cond->mu);
+	(void)xcsf;
 }
 
-void cond_dummy_free(CL *c)
+void cond_dummy_free(XCSF *xcsf, CL *c)
 {
 	COND_DUMMY *cond = c->cond;
-	sam_free(cond->mu);
+	sam_free(xcsf, cond->mu);
 	free(c->cond);
+	(void)xcsf;
 }
  
-double cond_dummy_mu(CL *c, int m)
+double cond_dummy_mu(XCSF *xcsf, CL *c, int m)
 {
 	COND_DUMMY *cond = c->cond;
+	(void)xcsf;
 	return cond->mu[m];
 }
  
-void cond_dummy_copy(CL *to, CL *from)
+void cond_dummy_copy(XCSF *xcsf, CL *to, CL *from)
 {
+	(void)xcsf;
 	(void)to;
 	(void)from;
 }                             
 
-void cond_dummy_rand(CL *c)
+void cond_dummy_rand(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	(void)c;
 }
 
-void cond_dummy_cover(CL *c, double *state)
+void cond_dummy_cover(XCSF *xcsf, CL *c, double *state)
 {
+	(void)xcsf;
 	(void)c;
 	(void)state;
 }
 
-_Bool cond_dummy_match(CL *c, double *state)
+_Bool cond_dummy_match(XCSF *xcsf, CL *c, double *state)
 {
+	(void)xcsf;
 	(void)state;
 	COND_DUMMY *cond = c->cond;
 	cond->m = true;
 	return cond->m;
 }
  
-_Bool cond_dummy_match_state(CL *c)
+_Bool cond_dummy_match_state(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	COND_DUMMY *cond = c->cond;
 	return cond->m;
 }
  
-_Bool cond_dummy_crossover(CL *c1, CL *c2) 
+_Bool cond_dummy_crossover(XCSF *xcsf, CL *c1, CL *c2) 
 {
+	(void)xcsf;
 	(void)c1;
 	(void)c2;
 	return false;
 }
 
-_Bool cond_dummy_mutate(CL *c)
+_Bool cond_dummy_mutate(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	(void)c;
 	return false;
 }
 
-_Bool cond_dummy_subsumes(CL *c1, CL *c2)
+_Bool cond_dummy_subsumes(XCSF *xcsf, CL *c1, CL *c2)
 {
+	(void)xcsf;
 	(void)c1;
 	(void)c2;
 	return true;
 }
 
-_Bool cond_dummy_general(CL *c1, CL *c2)
+_Bool cond_dummy_general(XCSF *xcsf, CL *c1, CL *c2)
 {
+	(void)xcsf;
 	(void)c1;
 	(void)c2;
 	return true;
 }  
 
-void cond_dummy_print(CL *c)
+void cond_dummy_print(XCSF *xcsf, CL *c)
 {
+	(void)xcsf;
 	(void)c;
 }

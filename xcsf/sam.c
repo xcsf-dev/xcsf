@@ -28,39 +28,39 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
-#include "cons.h"
+#include "data_structures.h"
 #include "random.h"
 
 double gasdev();
 
-void sam_init(double **mu)
+void sam_init(XCSF *xcsf, double **mu)
 {
-	if(NUM_SAM > 0) {
-		*mu = malloc(sizeof(double)*NUM_SAM);
-		for(int i = 0; i < NUM_SAM; i++) {
+	if(xcsf->NUM_SAM > 0) {
+		*mu = malloc(sizeof(double) * xcsf->NUM_SAM);
+		for(int i = 0; i < xcsf->NUM_SAM; i++) {
 			(*mu)[i] = drand();
 		}
 	}
 }
 
-void sam_copy(double *to, double *from)
+void sam_copy(XCSF *xcsf, double *to, double *from)
 {
-	memcpy(to, from, sizeof(double)*NUM_SAM);
+	memcpy(to, from, sizeof(double) * xcsf->NUM_SAM);
 }
 
-void sam_free(double *mu)
+void sam_free(XCSF *xcsf, double *mu)
 {
-	if(NUM_SAM > 0) {
+	if(xcsf->NUM_SAM > 0) {
 		free(mu);
 	}
 }
 
-void sam_adapt(double *mu)
+void sam_adapt(XCSF *xcsf, double *mu)
 {
-	for(int i = 0; i < NUM_SAM; i++) {
+	for(int i = 0; i < xcsf->NUM_SAM; i++) {
 		mu[i] *= exp(gasdev());
-		if(mu[i] < muEPS_0) {
-			mu[i] = muEPS_0;
+		if(mu[i] < xcsf->muEPS_0) {
+			mu[i] = xcsf->muEPS_0;
 		}
 		else if(mu[i] > 1.0) {
 			mu[i] = 1.0;
@@ -68,10 +68,10 @@ void sam_adapt(double *mu)
 	}
 }
 
-void sam_print(double *mu)
+void sam_print(XCSF *xcsf, double *mu)
 {
 	printf("mu: \n");
-	for(int i = 0; i < NUM_SAM; i++) {
+	for(int i = 0; i < xcsf->NUM_SAM; i++) {
 		printf("%f, ", mu[i]);
 	}
 	printf("\n");
