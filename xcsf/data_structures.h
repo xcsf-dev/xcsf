@@ -43,9 +43,9 @@ typedef struct NODE {
  
 // xcsf data structure
 typedef struct XCSF {
-    NODE *pset; // linked list of classifiers
-    int pop_num; // number of macro-classifiers in the population
-    int pop_num_sum; // the total population numerosity
+	NODE *pset; // linked list of classifiers
+	int pop_num; // number of macro-classifiers in the population
+	int pop_num_sum; // the total population numerosity
  
 	// experiment parameters
 	_Bool POP_INIT; // population initially empty or filled with random conditions
