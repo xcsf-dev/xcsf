@@ -37,8 +37,8 @@ typedef struct CL {
  
 // classifier linked list node
 typedef struct NODE {
-    CL *cl;
-    struct NODE *next;
+	CL *cl;
+	struct NODE *next;
 } NODE;
  
 // xcsf data structure
