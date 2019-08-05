@@ -14,20 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- **************
- * Description: 
- **************
- * The problem function module.
- *
- * Initialises the problem function that XCSF is to learn, and provides
- * mechanisms to retrieve the next problem instance and solution values. Reads
- * in a variable length comma separated data file with variable number of
- * parameters (with the last parameter on a data line used as the target
- * output. All input and output parameters in the data file must be normalised
- * in the range [-1,1]. 
- * Train and test set data files must be named as follows:
- * {name}_{train|test}_{x|y}.csv with input variables x and labelled outputs y. 
- * To run XCSF on the data the name must be specified at run time: xcsf {name}.
  */
 
 #include <stdio.h>
