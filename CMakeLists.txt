@@ -14,9 +14,10 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+#  Building Python library REQUIRES: sudo apt install libboost-python-dev
 
 cmake_minimum_required(VERSION 2.8.3)
- 
+  
 project(XCSF CXX C)
 set(PROJECT_VENDOR "Richard Preen")
 set(PROJECT_CONTACT "rpreen@gmail.com")
@@ -39,33 +40,87 @@ set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g3")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -Ofast -march=native")
 set(CMAKE_C_FLAGS_RELWITHDEBINFO "-Ofast -march=native -g3 ") 
 
-option(GNUPLOT "Plot performance with GNUPLOT" ON)
 option(PARALLEL "Parallel match set and prediction" ON)
-option(GENPROF "Generate profile" OFF)
-option(USEPROF "Use profile" OFF)
-
-if(GNUPLOT)
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT")
-endif()
 
 if(PARALLEL)
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_MATCH")
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_PRED")
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fopenmp")
 endif()
-	
-if(GENPROF)
-	set(PROFILE_FLAGS "-fprofile-generate")
-endif()
-	
-if(USEPROF)
-	set(PROFILE_FLAGS "-fprofile-use")
+ 
+option(XCSF_PYTHON_LIBRARY "Build XCSF Python library" OFF)
+
+if(NOT XCSF_PYTHON_LIBRARY)
+	    #######################
+		# Compile XCSF binary
+		#######################
+	          
+		option(GNUPLOT "Plot performance with GNUPLOT" ON)
+		option(GENPROF "Generate profile" OFF)
+		option(USEPROF "Use profile" OFF)
+	 
+		if(GNUPLOT)
+			set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT")
+		endif()
+	 	
+		if(GENPROF)
+			set(PROFILE_FLAGS "-fprofile-generate")
+		endif()
+			
+		if(USEPROF)
+			set(PROFILE_FLAGS "-fprofile-use")
+		endif()
+	 
+		add_subdirectory(xcsf)
+		file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/xcsf/out)
+	 
+else()
+	##########################
+	# Compile XCSF Python lib
+	##########################
+
+	FIND_PACKAGE(PythonInterp)
+
+	if (PYTHONINTERP_FOUND)
+		if (UNIX AND NOT APPLE)
+			if (PYTHON_VERSION_MAJOR EQUAL 3)
+				FIND_PACKAGE(Boost COMPONENTS python${PYTHON_VERSION_SUFFIX})
+				FIND_PACKAGE(PythonInterp 3)
+				FIND_PACKAGE(PythonLibs 3 REQUIRED)
+			else()
+				FIND_PACKAGE(Boost COMPONENTS python)
+				FIND_PACKAGE(PythonInterp)
+				FIND_PACKAGE(PythonLibs REQUIRED)
+			endif()
+		else()
+			if (PYTHON_VERSION_MAJOR EQUAL 3)
+				FIND_PACKAGE(Boost COMPONENTS python${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR})
+				FIND_PACKAGE(PythonInterp 3)
+				FIND_PACKAGE(PythonLibs 3 REQUIRED)
+			else()
+				FIND_PACKAGE(Boost COMPONENTS python${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR})
+				FIND_PACKAGE(PythonInterp)
+				FIND_PACKAGE(PythonLibs REQUIRED)
+			endif()
+		endif()
+	else()
+		message("Python not found")
+	endif()
+
+	message(STATUS "PYTHON_LIBRARIES = ${PYTHON_LIBRARIES}")
+	message(STATUS "PYTHON_EXECUTABLE = ${PYTHON_EXECUTABLE}")
+	message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
+	message(STATUS "Boost_LIBRARIES = ${Boost_LIBRARIES}")
+
+	INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
+	LINK_LIBRARIES(${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
+
+	add_subdirectory(xcsf)
+
+	file(COPY MyProject.py DESTINATION .)             
+
 endif()
 
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS_RELEASE: ${CMAKE_C_FLAGS_RELEASE}")
 message(STATUS "CMAKE_C_FLAGS_DEBUG: ${CMAKE_C_FLAGS_DEBUG}")
- 
-add_subdirectory(xcsf)
-
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/xcsf/out)
