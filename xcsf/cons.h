@@ -24,7 +24,7 @@
 #define max( a, b ) ( ((a) > (b)) ? (a) : (b) )
 #define min( a, b ) ( ((a) < (b)) ? (a) : (b) )
 
-void constants_init(int argc, char **argv);
+void constants_init();
 
 // experiment parameters
 _Bool POP_INIT; // population initially empty or filled with random conditions

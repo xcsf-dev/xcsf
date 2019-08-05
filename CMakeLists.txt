@@ -43,9 +43,13 @@ set(CMAKE_C_FLAGS_RELWITHDEBINFO "-Ofast -march=native -g3 ")
 option(PARALLEL "Parallel match set and prediction" ON)
 
 if(PARALLEL)
+	find_package(OpenMP REQUIRED)
+	add_definitions(${OpenMP_C_FLAGS})
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_MATCH")
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_PRED")
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fopenmp")
+	add_definitions(${OpenMP_CXX_FLAGS})
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 endif()
  
 option(XCSF_PYTHON_LIBRARY "Build XCSF Python library" OFF)

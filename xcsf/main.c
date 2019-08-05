@@ -41,17 +41,24 @@
 #include "function.h"
 #include "perf.h"
 
-void trial(int trial, _Bool train, double *err);
+void trial(XCSF *xcsf, int cnt, _Bool train, double *err);
 
 int main(int argc, char **argv)
 {    
+	// initialise environment
 	if(argc < 2 || argc > 4) {
 		printf("Usage: xcsf inputfile [MaxTrials] [NumExp]\n");
 		exit(EXIT_FAILURE);
 	} 
 
-	// initialise environment
-	constants_init(argc, argv);
+	constants_init();        
+    // override cons.txt with command line values
+    if(argc > 2) {
+        MAX_TRIALS = atoi(argv[2]);
+        if(argc > 3) {
+            NUM_EXPERIMENTS = atoi(argv[3]);
+        }
+    }    
 	random_init();
 	func_init(argv[1]);
 	gen_outfname(argv[1]);
@@ -61,25 +68,27 @@ int main(int argc, char **argv)
 	double terr[PERF_AVG_TRIALS];
 	for(int e = 1; e < NUM_EXPERIMENTS+1; e++) {
 		printf("\nExperiment: %d\n", e);
-		pop_init();
+		XCSF *xcsf = malloc(sizeof(XCSF));
+		pop_init(xcsf);
 		outfile_init(e);
 		// each trial in an experiment
 		for(int cnt = 0; cnt < MAX_TRIALS; cnt++) {
-			trial(cnt, true, err); // train
-			trial(cnt, false, terr);// test
+			trial(xcsf, cnt, true, err); // train
+			trial(xcsf, cnt, false, terr);// test
 			// display performance
 			if(cnt%PERF_AVG_TRIALS == 0 && cnt > 0)
-				disp_perf(err, terr, cnt, pop_num);
+				disp_perf(xcsf, err, terr, cnt);
 		}
 		// clean up
-		set_kill(&pset);
+		set_kill(&xcsf->pset);
 		outfile_close();
+		free(xcsf);
 	}
 	func_free();
 	return EXIT_SUCCESS;
 }
 
-void trial(int cnt, _Bool train, double *err)
+void trial(XCSF *xcsf, int cnt, _Bool train, double *err)
 {
 	// get random sample
 	double *x = malloc(sizeof(double)*num_x_vars);
@@ -89,7 +98,7 @@ void trial(int cnt, _Bool train, double *err)
 	// create match set
 	NODE *mset = NULL, *kset = NULL;
 	int msize = 0, mnum = 0;
-	set_match(&mset, &msize, &mnum, x, cnt, &kset);
+	set_match(xcsf, &mset, &msize, &mnum, x, cnt, &kset);
 
 	// calculate system prediction and track performance
 	double *pred = malloc(sizeof(double)*num_y_vars);
@@ -102,9 +111,9 @@ void trial(int cnt, _Bool train, double *err)
 
 	if(train) {
 		// provide reinforcement to the set
-		set_update(&mset, &msize, &mnum, y, &kset, x);
+		set_update(xcsf, &mset, &msize, &mnum, y, &kset, x);
 		// run the genetic algorithm
-		ga(&mset, msize, mnum, cnt, &kset);
+		ga(xcsf, &mset, msize, mnum, cnt, &kset);
 	}
 
 	// clean up
@@ -113,4 +122,9 @@ void trial(int cnt, _Bool train, double *err)
 	free(y);
 	set_kill(&kset); // kills deleted classifiers
 	set_free(&mset); // frees the match set list
+}
+
+int xcsf_square(int number)
+{
+	return number*number;
 }

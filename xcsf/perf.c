@@ -29,9 +29,9 @@
 #include <time.h>
 #include <errno.h>
 #include "cons.h"
-#include "perf.h"
 #include "cl.h"
 #include "cl_set.h"
+#include "perf.h"
   
 FILE *fout;
 char fname[30];
@@ -45,7 +45,7 @@ void gplot_close();
 FILE *gp;
 #endif
 
-void disp_perf(double *error, double *terror, int trial, int pnum)
+void disp_perf(XCSF *xcsf, double *error, double *terror, int trial)
 {
 	double serr = 0.0;
 	double terr = 0.0;
@@ -55,11 +55,11 @@ void disp_perf(double *error, double *terror, int trial, int pnum)
 	}
 	serr /= (double)PERF_AVG_TRIALS;
 	terr /= (double)PERF_AVG_TRIALS;
-	printf("%d %.5f %.5f %d", trial, serr, terr, pnum);
-	fprintf(fout, "%d %.5f %.5f %d", trial, serr, terr, pnum);
+	printf("%d %.5f %.5f %d", trial, serr, terr, xcsf->pop_num);
+	fprintf(fout, "%d %.5f %.5f %d", trial, serr, terr, xcsf->pop_num);
 	for(int i = 0; i < NUM_SAM; i++) {
-		printf(" %.5f", set_avg_mut(&pset, i));
-		fprintf(fout, " %.5f", set_avg_mut(&pset, i));
+		printf(" %.5f", set_avg_mut(&xcsf->pset, i));
+		fprintf(fout, " %.5f", set_avg_mut(&xcsf->pset, i));
 	}
 	printf("\n");
 	fprintf(fout, "\n");

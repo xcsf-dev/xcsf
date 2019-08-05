@@ -14,30 +14,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-typedef struct NODE
-{
-	CL *cl;
-	struct NODE *next;
+
+typedef struct NODE {
+    CL *cl;
+    struct NODE *next;
 } NODE;
  
+typedef struct XCSF {
+    NODE *pset;
+    int pop_num;
+    int pop_num_sum;
+} XCSF;     
+
 double set_mean_time(NODE **set, int num_sum);
 double set_total_fit(NODE **set);
 double set_total_time(NODE **set);
-void pop_add(CL *c);
-void pop_del(NODE **kset);
-void pop_enforce_limit(NODE **kset);
-void pop_init();
+void pop_add(XCSF *xcsf, CL *c);
+void pop_del(XCSF *xcsf, NODE **kset);
+void pop_enforce_limit(XCSF *xcsf, NODE **kset);
+void pop_init(XCSF *xcsf);
 void set_add(NODE **set, CL *c);
 void set_free(NODE **set);
 void set_kill(NODE **set);
-void set_match(NODE **set, int *size, int *num, double *x, int time, NODE **kset);
+void set_match(XCSF *xcsf, NODE **set, int *size, int *num, double *x, int time, NODE **kset);
 void set_pred(NODE **set, int size, double *x, double *y);
 void set_print(NODE *set);
 void set_times(NODE **set, int time);
-void set_update(NODE **set, int *size, int *num, double *y, NODE **kset, double *x);
+void set_update(XCSF *xcsf, NODE **set, int *size, int *num, double *y, NODE **kset, double *x);
 void set_validate(NODE **set, int *size, int *num);
 double set_avg_mut(NODE **set, int m);
-
-NODE *pset;
-int pop_num;
-int pop_num_sum;

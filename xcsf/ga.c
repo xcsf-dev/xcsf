@@ -36,9 +36,9 @@
 #include "ga.h"
 
 CL *ga_select_parent(NODE **set, double fit_sum);
-void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size);
+void ga_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, NODE **set, int size);
 
-void ga(NODE **set, int size, int num, int time, NODE **kset)
+void ga(XCSF *xcsf, NODE **set, int size, int num, int time, NODE **kset)
 {
 	// check if the genetic algorithm should be run
 	if(size == 0 || time - set_mean_time(set, num) < THETA_GA)
@@ -66,19 +66,19 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 		// conditions that do not fully support subsumption or crossover
 		if(!cl_mutate(c1) && GA_SUBSUMPTION) {
 			c1p->num++;
-			pop_num_sum++;
+			xcsf->pop_num_sum++;
 			cl_free(c1);
 		}
 		else {
-			pop_add(c1);
+			pop_add(xcsf, c1);
 		}
 		if(!cl_mutate(c2) && GA_SUBSUMPTION) {
 			c2p->num++;
-			pop_num_sum++;
+			xcsf->pop_num_sum++;
 			cl_free(c2);
 		}
 		else {
-			pop_add(c2);
+			pop_add(xcsf, c2);
 		}
 #else
 		// apply genetic operators to offspring
@@ -87,29 +87,29 @@ void ga(NODE **set, int size, int num, int time, NODE **kset)
 		cl_mutate(c2);
 		// add offspring to population
 		if(GA_SUBSUMPTION) {
-			ga_subsume(c1, c1p, c2p, set, size);
-			ga_subsume(c2, c1p, c2p, set, size);
+			ga_subsume(xcsf, c1, c1p, c2p, set, size);
+			ga_subsume(xcsf, c2, c1p, c2p, set, size);
 		}
 		else {
-			pop_add(c1);
-			pop_add(c2);
+			pop_add(xcsf, c1);
+			pop_add(xcsf, c2);
 		}
 #endif
 	}
-	pop_enforce_limit(kset);
+	pop_enforce_limit(xcsf, kset);
 }   
 
-void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
+void ga_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 {
 	// check if either parent subsumes the offspring
 	if(cl_subsumer(c1p) && cl_subsumes(c1p, c)) {
 		c1p->num++;
-		pop_num_sum++;
+		xcsf->pop_num_sum++;
 		cl_free(c);
 	}
 	else if(cl_subsumer(c2p) && cl_subsumes(c2p, c)) {
 		c2p->num++;
-		pop_num_sum++;
+		xcsf->pop_num_sum++;
 		cl_free(c);
 	}
 	// attempt to find a random subsumer from the set
@@ -126,12 +126,12 @@ void ga_subsume(CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 		// found
 		if(choices > 0) {
 			candidates[irand(0,choices)]->cl->num++;
-			pop_num_sum++;
+			xcsf->pop_num_sum++;
 			cl_free(c);
 		}
 		// if no subsumers are found the offspring is added to the population
 		else {
-			pop_add(c);   
+			pop_add(xcsf, c);   
 		}
 	}
 }

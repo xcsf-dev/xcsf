@@ -1,9 +1,26 @@
 #include <string>
 
+extern "C" int xcsf_square(int);
+
+extern "C" {   
+#include <stdbool.h>
+#include "cl.h"
+#include "cl_set.h"
+}
+
+struct XCS
+{
+	XCSF xcs;
+	XCS(std::string infname, int max_trials) {
+		xcs.pop_num = max_trials;
+	}
+	int get_pop_num() {
+		return xcs.pop_num;
+	}
+};
+
 namespace {
-  // A couple of simple C++ functions that we want to expose to Python.
   std::string greet() { return "hello, world"; }
-  int square(int number) { return number * number; }
 }
 
 #include <boost/python.hpp>
@@ -11,7 +28,11 @@ using namespace boost::python;
 
 BOOST_PYTHON_MODULE(xcsf)
 {
+	class_<XCS>("XCS", init<std::string, int>())
+		.def("get_pop_num", &XCS::get_pop_num);
+
     // Add regular functions to the module.
     def("greet", greet);
-    def("square", square);
+    def("square", xcsf_square);
+
 }
