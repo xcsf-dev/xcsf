@@ -56,10 +56,10 @@ int main(int argc, char **argv)
 	// initialise XCSF
 	XCSF *xcsf = malloc(sizeof(XCSF));
 	constants_init(xcsf); // read cons.txt default parameters      
-    // override with command line values
-    if(argc > 2) {
-        xcsf->MAX_TRIALS = atoi(argv[2]);
-    }    
+	// override with command line values
+	if(argc > 2) {
+		xcsf->MAX_TRIALS = atoi(argv[2]);
+	}    
  
 	// read csv input data
 	INPUT_DATA *train_data = malloc(sizeof(INPUT_DATA));
