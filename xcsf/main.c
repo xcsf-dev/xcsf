@@ -71,7 +71,7 @@ int main(int argc, char **argv)
 	xcsf->num_y_vars = train_data->y_cols;
      
 #ifdef GNUPLOT
-	gen_outfname(xcsf, argv[1]);
+	gen_outfname(xcsf);
 	outfile_init(xcsf, 1);
 #endif
 

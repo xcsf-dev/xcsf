@@ -37,7 +37,6 @@
 FILE *fout;
 char fname[30];
 char basefname[30];
-char *probname;
  
 void gplot_init(XCSF *xcsf);
 void gplot_draw(XCSF *xcsf);
@@ -75,14 +74,13 @@ void disp_perf(XCSF *xcsf, double *error, double *terror, int trial)
 }          
 
 #ifdef GNUPLOT
-void gen_outfname(XCSF *xcsf, char *pname)
+void gen_outfname(XCSF *xcsf)
 {
 	// file for writing output; uses the date/time/exp as file name
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 	sprintf(basefname, "out/%04d-%02d-%02d-%02d%02d%02d", tm.tm_year + 1900, 
 			tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-	probname = pname;
 	(void)xcsf;
 }
 
@@ -110,8 +108,6 @@ void gplot_init(XCSF *xcsf)
 	char buffer[20];
 	char title[200];
 	title[0] = '\0';
-	sprintf(buffer, "%s", probname);
-	strcat(title, buffer);
 
 	switch(xcsf->COND_TYPE) {
 		case -1:
