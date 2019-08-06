@@ -14,7 +14,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Building Python library REQUIRES: sudo apt install libboost-python-dev
+#  Building Python library REQUIRES: 
+#  libboost-python-dev
 
 cmake_minimum_required(VERSION 2.8.3)
   
@@ -117,7 +118,7 @@ else()
 	message(STATUS "Boost_LIBRARIES = ${Boost_LIBRARIES}")
 
 	INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
-	LINK_LIBRARIES(${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
+	LINK_LIBRARIES(${Boost_LIBRARIES} boost_numpy ${PYTHON_LIBRARIES})
 
 	add_subdirectory(xcsf)
 
