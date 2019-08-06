@@ -6,6 +6,7 @@ as a Python library.
 
 Features:
 ------------------------
+[See `cons.txt' for a full list of options.]
 
 Evolved Conditions:
 
