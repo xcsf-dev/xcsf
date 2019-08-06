@@ -9,26 +9,26 @@ Features:
 
 Evolved Conditions:
 
-COND_TYPE =-1: always matching dummy condition
-COND_TYPE = 0: real-valued hyperrectangle intervals
-COND_TYPE = 1: multilayer perceptron neural networks
-COND_TYPE = 2: GP trees
-COND_TYPE = 3: dynamical GP graphs
+- COND_TYPE =-1: always matching dummy condition
+- COND_TYPE = 0: real-valued hyperrectangle intervals
+- COND_TYPE = 1: multilayer perceptron neural networks
+- COND_TYPE = 2: GP trees
+- COND_TYPE = 3: dynamical GP graphs
 
-COND_TYPE = 11: both conditions and predictions in single dynamical GP graphs
-COND_TYPE = 12: both conditions and predictions in single neural networks
+- COND_TYPE = 11: both conditions and predictions in single dynamical GP graphs
+- COND_TYPE = 12: both conditions and predictions in single neural networks
 
 Computed Predictions:
 
-PRED_TYPE = 0: linear least squares
-PRED_TYPE = 1: quadratic least squares
-PRED_TYPE = 2: linear recursive least squares
-PRED_TYPE = 3: quadratic recursive least squares
-PRED_TYPE = 4: backpropagation multilayer perceptron neural networks
+- PRED_TYPE = 0: linear least squares
+- PRED_TYPE = 1: quadratic least squares
+- PRED_TYPE = 2: linear recursive least squares
+- PRED_TYPE = 3: quadratic recursive least squares
+- PRED_TYPE = 4: backpropagation multilayer perceptron neural networks
  
 Mutation for conditions:
-NUM_SAM = 0: fixed rates (P_MUTATION and S_MUTATION)
-NUM_SAM > 0: self-adaptive rate
+- NUM_SAM = 0: fixed rates (P_MUTATION and S_MUTATION)
+- NUM_SAM > 0: self-adaptive rate
  
 Compiler options:
 ------------------------
