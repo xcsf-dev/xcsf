@@ -41,7 +41,8 @@ struct XCS
 		constants_init(&xcs);
 		xcs.num_x_vars = num_x_vars;
 		xcs.num_y_vars = num_y_vars;
-		pop_init(&xcs);
+		xcs.pop_num = 0;
+		xcs.pop_num_sum = 0;
 
 		train_data.rows = 0;
 		train_data.x_cols = 0;
@@ -83,6 +84,7 @@ struct XCS
 			free(train_data.x);
 			free(train_data.y);
 		}
+
 		// load training data
 		train_data.rows = train_X.shape(0);
 		train_data.x_cols = train_X.shape(1);
@@ -106,6 +108,10 @@ struct XCS
 		flatten(test_X, test_data.x);
 		flatten(test_Y, test_data.y);
 
+ 		// first execution
+		if(xcs.pop_num == 0) {
+			pop_init(&xcs);
+		}       
 		// execute
 		experiment(&xcs, &train_data, &test_data);
 	}

@@ -37,6 +37,7 @@ xcs = xcsf.XCS(num_inputs, num_outputs)
 
 # override cons.txt
 xcs.max_trials = 50000
+xcs.pred_type = 4 # neural network predictors
 
 # fit function
 xcs.fit(train_X, train_Y, test_X, test_Y)
