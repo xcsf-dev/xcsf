@@ -61,7 +61,7 @@ if(NOT XCSF_PYTHON_LIBRARY)
 	# Compile XCSF binary
 	#######################
 
-	option(GNUPLOT "Plot performance with GNUPLOT" ON)
+	option(GNUPLOT "Plot performance with GNUPLOT" OFF)
 	option(GENPROF "Generate profile" OFF)
 	option(USEPROF "Use profile" OFF)
 
