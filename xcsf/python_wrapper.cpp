@@ -144,8 +144,6 @@ struct XCS
 		return xcs.GP_NUM_CONS;
 	}
      
-	//double *gp_cons;
-                
  	double get_xcsf_eta() {
 		return xcs.XCSF_ETA;
 	}
@@ -184,6 +182,143 @@ struct XCS
 
 	double get_num_y_vars() {
 		return xcs.num_y_vars;
+	}                      
+
+	/* SETTERS */
+	void set_pop_init(_Bool a) {
+		xcs.POP_INIT = a;
+	}
+
+	void set_theta_mna(double a) {
+		xcs.THETA_MNA = a;
+	}
+  
+	void set_max_trials(int a) {
+		xcs.MAX_TRIALS = a;
+	}
+ 
+	void set_perf_avg_trials(int a) {
+		xcs.PERF_AVG_TRIALS = a;
+	}
+  
+	void set_pop_size(int a) {
+		xcs.POP_SIZE = a;
+	}
+
+ 	void set_alpha(double a) {
+		xcs.ALPHA = a;
+	}
+ 
+ 	void set_beta(double a) {
+		xcs.BETA = a;
+	}
+  
+ 	void set_delta(double a) {
+		xcs.DELTA = a;
+	}
+     
+ 	void set_eps_0(double a) {
+		xcs.EPS_0 = a;
+	} 
+
+ 	void set_err_reduc(double a) {
+		xcs.ERR_REDUC = a;
+	}
+ 
+ 	void set_fit_reduc(double a) {
+		xcs.FIT_REDUC = a;
+	}
+     
+ 	void set_init_error(double a) {
+		xcs.INIT_ERROR = a;
+	}
+      
+ 	void set_init_fitness(double a) {
+		xcs.INIT_FITNESS = a;
+	}
+       
+ 	void set_nu(double a) {
+		xcs.NU = a;
+	}
+        
+ 	void set_theta_del(double a) {
+		xcs.THETA_DEL = a;
+	}
+         
+ 	void set_cond_type(int a) {
+		xcs.COND_TYPE = a;
+	}
+          
+ 	void set_pred_type(int a) {
+		xcs.PRED_TYPE = a;
+	}
+         
+ 	void set_p_crossover(double a) {
+		xcs.P_CROSSOVER = a;
+	}
+          
+ 	void set_p_mutation(double a) {
+		xcs.P_MUTATION = a;
+	}
+           
+ 	void set_theta_ga(double a) {
+		xcs.THETA_GA = a;
+	}
+            
+ 	void set_theta_offspring(int a) {
+		xcs.THETA_OFFSPRING = a;
+	}
+            
+ 	void set_mueps_0(double a) {
+		xcs.muEPS_0 = a;
+	}
+             
+ 	void set_num_sam(int a) {
+		xcs.NUM_SAM = a;
+	}
+             
+ 	void set_max_con(double a) {
+		xcs.MAX_CON = a;
+	}
+              
+ 	void set_min_con(double a) {
+		xcs.MIN_CON = a;
+	}
+               
+ 	void set_s_mutation(double a) {
+		xcs.S_MUTATION = a;
+	}
+              
+ 	void set_num_hidden_neurons(int a) {
+		xcs.NUM_HIDDEN_NEURONS = a;
+	}
+               
+ 	void set_dgp_num_nodes(int a) {
+		xcs.DGP_NUM_NODES = a;
+	}
+                
+ 	void set_gp_num_cons(int a) {
+		xcs.GP_NUM_CONS = a;
+	}
+     
+ 	void set_xcsf_eta(double a) {
+		xcs.XCSF_ETA = a;
+	}
+
+ 	void set_xcsf_x0(double a) {
+		xcs.XCSF_X0 = a;
+	}
+ 
+ 	void set_theta_sub(double a) {
+		xcs.THETA_SUB = a;
+	}
+                   
+	void set_ga_subsumption(_Bool a) {
+		xcs.GA_SUBSUMPTION = a;
+	}
+                    
+	void set_set_subsumption(_Bool a) {
+		xcs.SET_SUBSUMPTION = a;
 	}
 };
 
@@ -232,5 +367,39 @@ BOOST_PYTHON_MODULE(xcsf)
 		.def("get_pop_num_sum", &XCS::get_pop_num_sum)
 		.def("get_num_x_vars", &XCS::get_num_x_vars)
 		.def("get_num_y_vars", &XCS::get_num_x_vars)
-		;                         
+		.def("set_pop_init", &XCS::set_pop_init)
+		.def("set_theta_mna", &XCS::set_theta_mna)
+		.def("set_max_trials", &XCS::set_max_trials)
+		.def("set_perf_avg_trials", &XCS::set_perf_avg_trials)
+		.def("set_pop_size", &XCS::set_pop_size)
+		.def("set_alpha", &XCS::set_alpha)
+		.def("set_beta", &XCS::set_beta)
+		.def("set_delta", &XCS::set_delta)
+		.def("set_eps_0", &XCS::set_eps_0)
+		.def("set_err_reduc", &XCS::set_err_reduc)
+		.def("set_fit_reduc", &XCS::set_fit_reduc)
+		.def("set_init_error", &XCS::set_init_error)
+		.def("set_init_fitness", &XCS::set_init_fitness)
+		.def("set_nu", &XCS::set_nu)
+		.def("set_theta_del", &XCS::set_theta_del)
+		.def("set_cond_type", &XCS::set_cond_type)
+		.def("set_pred_type", &XCS::set_pred_type)
+		.def("set_p_crossover", &XCS::set_p_crossover)
+		.def("set_p_mutation", &XCS::set_p_mutation)
+		.def("set_theta_ga", &XCS::set_theta_ga)
+		.def("set_theta_offspring", &XCS::set_theta_offspring)
+		.def("set_mueps_0", &XCS::set_mueps_0)
+		.def("set_num_sam", &XCS::set_num_sam)
+		.def("set_max_con", &XCS::set_max_con)
+		.def("set_min_con", &XCS::set_min_con)
+		.def("set_s_mutation", &XCS::set_s_mutation)
+		.def("set_num_hidden_neurons", &XCS::set_num_hidden_neurons)
+		.def("set_dgp_num_nodes", &XCS::set_dgp_num_nodes)
+		.def("set_gp_num_cons", &XCS::set_gp_num_cons)
+		.def("set_xcsf_eta", &XCS::set_xcsf_eta)
+		.def("set_xcsf_x0", &XCS::set_xcsf_x0)
+		.def("set_theta_sub", &XCS::set_theta_sub)
+		.def("set_ga_subsumption", &XCS::set_ga_subsumption)
+		.def("set_set_subsumption", &XCS::set_set_subsumption)
+		;
 }
