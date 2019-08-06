@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,8 +35,9 @@ void random_init()
 	unsigned seed = 0;
 	size_t i;
 
-	for(i = 0; i < sizeof(now); i++)
+	for(i = 0; i < sizeof(now); i++) {
 		seed = (seed * (UCHAR_MAX + 2U)) + p[i];
+	}
 
 	init_genrand64(seed);
 }
