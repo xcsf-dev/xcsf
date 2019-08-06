@@ -26,6 +26,10 @@ struct XCS
 		xcs.num_y_vars = train_data.y_cols;
 		pop_init(&xcs);
 	}
+  
+	void fit() {
+		experiment(&xcs, &train_data, &test_data);
+	}
                   
 	/* GETTERS */
 	_Bool get_pop_init() {
@@ -162,10 +166,6 @@ struct XCS
                     
 	_Bool get_set_subsumption() {
 		return xcs.SET_SUBSUMPTION;
-	}
- 
-	void fit() {
-		experiment(&xcs, &train_data, &test_data);
 	}
 
 	int get_pop_num() {
