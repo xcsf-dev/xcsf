@@ -42,6 +42,7 @@
 #include "input.h"
 #include "perf.h"
 
+void experiment(XCSF *xcsf, INPUT *train_data, INPUT *test_data);
 void trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err);
 
 int main(int argc, char **argv)
@@ -62,8 +63,8 @@ int main(int argc, char **argv)
 	}    
  
 	// read csv input data
-	INPUT_DATA *train_data = malloc(sizeof(INPUT_DATA));
-	INPUT_DATA *test_data = malloc(sizeof(INPUT_DATA));
+	INPUT *train_data = malloc(sizeof(INPUT));
+	INPUT *test_data = malloc(sizeof(INPUT));
 	input_read_csv(argv[1], train_data, test_data);
 
 	xcsf->num_x_vars = train_data->x_cols;
@@ -74,12 +75,34 @@ int main(int argc, char **argv)
 	outfile_init(xcsf, 1);
 #endif
 
+	// initialise population
 	pop_init(xcsf);
+	// run an experiment
+	experiment(xcsf, train_data, test_data);
 
+	// clean up
+	set_kill(xcsf, &xcsf->pset);
+	constants_free(xcsf);        
+	free(xcsf);
+	input_free(train_data);
+	input_free(test_data);
+	free(train_data);
+	free(test_data);
+
+#ifdef GNUPLOT
+	outfile_close(xcsf);
+#endif
+
+	return EXIT_SUCCESS;
+}
+ 
+void experiment(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
+{
 	// performance tracking
 	double err[xcsf->PERF_AVG_TRIALS];
 	double terr[xcsf->PERF_AVG_TRIALS];
-
+ 
+	// current input
 	double *x = malloc(sizeof(double)*xcsf->num_x_vars);
 	double *y = malloc(sizeof(double)*xcsf->num_y_vars);
 
@@ -100,21 +123,8 @@ int main(int argc, char **argv)
 	// clean up
 	free(x);
 	free(y);
-	set_kill(xcsf, &xcsf->pset);
-	constants_free(xcsf);        
-	free(xcsf);
-	input_free(train_data);
-	input_free(test_data);
-	free(train_data);
-	free(test_data);
-
-#ifdef GNUPLOT
-	outfile_close(xcsf);
-#endif
-
-	return EXIT_SUCCESS;
 }
-
+ 
 void trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err)
 {
 	// create match set
@@ -142,9 +152,4 @@ void trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err)
 	free(pred);
 	set_kill(xcsf, &kset); // kills deleted classifiers
 	set_free(xcsf, &mset); // frees the match set list
-}
-
-int xcsf_square(int number)
-{
-	return number*number;
 }

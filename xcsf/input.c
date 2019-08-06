@@ -30,21 +30,19 @@
 #define MAX_LINE_LENGTH 200
 #define DELIM ","
 
-#define PATH_TO_DATA "../../data"
-
 void csv_read(char *fname, double **data, int *num_prob, int *num_vars);
 
-void input_read_csv(char *infile, INPUT_DATA *train_data, INPUT_DATA *test_data)
+void input_read_csv(char *infile, INPUT *train_data, INPUT *test_data)
 {
 	// expects an identical number of x and y rows
 	char name[200];
-	sprintf(name, "%s/%s_train_x.csv", PATH_TO_DATA, infile);
+	sprintf(name, "%s_train_x.csv", infile);
 	csv_read(name, &train_data->x, &train_data->rows, &train_data->x_cols);
-	sprintf(name, "%s/%s_train_y.csv", PATH_TO_DATA, infile);
+	sprintf(name, "%s_train_y.csv", infile);
 	csv_read(name, &train_data->y, &train_data->rows, &train_data->y_cols);
-	sprintf(name, "%s/%s_test_x.csv", PATH_TO_DATA, infile);
+	sprintf(name, "%s_test_x.csv", infile);
 	csv_read(name, &test_data->x, &test_data->rows, &test_data->x_cols);
-	sprintf(name, "%s/%s_test_y.csv", PATH_TO_DATA, infile);
+	sprintf(name, "%s_test_y.csv", infile);
 	csv_read(name, &test_data->y, &test_data->rows, &test_data->y_cols);
 }
  
@@ -91,7 +89,7 @@ void csv_read(char *fname, double **data, int *num_rows, int *num_cols)
 	printf("Loaded: %s: %d rows, %d cols\n", fname, *num_rows, *num_cols);
 }
 
-void input_rand_sample(INPUT_DATA *data, double *x, double *y)
+void input_rand_sample(INPUT *data, double *x, double *y)
 {
 	int idx = irand(0,data->rows);
 	for(int i = 0; i < data->x_cols; i++) {
@@ -102,7 +100,7 @@ void input_rand_sample(INPUT_DATA *data, double *x, double *y)
 	}
 }
 
-void input_free(INPUT_DATA *data)
+void input_free(INPUT *data)
 {                 
 	free(data->x);
 	free(data->y);

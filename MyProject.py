@@ -1,9 +1,13 @@
 import xcsf.xcsf as xcsf
 
-print(xcsf.greet())
+xcs = xcsf.XCS("../data/sine_1var", 5000)
 
-print(xcsf.square(4))
+print("pop_num = " + str(xcs.get_pop_num())) 
 
-xcs = xcsf.XCS("sine_1var", 5000)
+print("num_x_vars = " + str(xcs.get_num_x_vars())) 
+print("num_y_vars = " + str(xcs.get_num_y_vars())) 
 
-print("POP_SIZE = " + str(xcs.get_pop_num())) 
+print("cond_type = "+str(xcs.get_cond_type()))
+print("pred_type = "+str(xcs.get_pred_type()))
+
+xcs.fit()

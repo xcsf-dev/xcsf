@@ -15,6 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void input_read_csv(char *infile, INPUT_DATA *train_data, INPUT_DATA *test_data);
-void input_free(INPUT_DATA *data);
-void input_rand_sample(INPUT_DATA *data, double *x, double *y);
+void input_read_csv(char *infile, INPUT *train_data, INPUT *test_data);
+void input_free(INPUT *data);
+void input_rand_sample(INPUT *data, double *x, double *y);

@@ -102,10 +102,11 @@ typedef struct XCSF {
 
 } XCSF;                  
 
-typedef struct INPUT_DATA {
+// input data structure
+typedef struct INPUT {
 	double *x;
 	double *y;
 	int x_cols;
 	int y_cols;
 	int rows;
-} INPUT_DATA;
+} INPUT;
