@@ -16,15 +16,16 @@
 #
 #  Building Python library REQUIRES: 
 #  libboost-python-dev
+#  libboost-numpy-dev
 
 cmake_minimum_required(VERSION 2.8.3)
-  
+
 project(XCSF CXX C)
 set(PROJECT_VENDOR "Richard Preen")
 set(PROJECT_CONTACT "rpreen@gmail.com")
 set(PROJECT_URL "https://github.com/rpreen/xcsf")
 set(PROJECT_DESCRIPTION "XCSF: Learning Classifier System")
- 
+
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -W -Wall -Wextra ")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wunused ")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wmaybe-uninitialized")
@@ -52,33 +53,33 @@ if(PARALLEL)
 	add_definitions(${OpenMP_CXX_FLAGS})
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 endif()
- 
+
 option(XCSF_PYTHON_LIBRARY "Build XCSF Python library" OFF)
 
 if(NOT XCSF_PYTHON_LIBRARY)
-	    #######################
-		# Compile XCSF binary
-		#######################
-	          
-		option(GNUPLOT "Plot performance with GNUPLOT" ON)
-		option(GENPROF "Generate profile" OFF)
-		option(USEPROF "Use profile" OFF)
-	 
-		if(GNUPLOT)
-			set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT")
-		endif()
-	 	
-		if(GENPROF)
-			set(PROFILE_FLAGS "-fprofile-generate")
-		endif()
-			
-		if(USEPROF)
-			set(PROFILE_FLAGS "-fprofile-use")
-		endif()
-	 
-		add_subdirectory(xcsf)
-		file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/xcsf/out)
-	 
+	#######################
+	# Compile XCSF binary
+	#######################
+
+	option(GNUPLOT "Plot performance with GNUPLOT" ON)
+	option(GENPROF "Generate profile" OFF)
+	option(USEPROF "Use profile" OFF)
+
+	if(GNUPLOT)
+		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT")
+	endif()
+
+	if(GENPROF)
+		set(PROFILE_FLAGS "-fprofile-generate")
+	endif()
+
+	if(USEPROF)
+		set(PROFILE_FLAGS "-fprofile-use")
+	endif()
+
+	add_subdirectory(xcsf)
+	file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/xcsf/out)
+
 else()
 	##########################
 	# Compile XCSF Python lib
