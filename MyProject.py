@@ -36,7 +36,7 @@ num_outputs = np.shape(train_Y)[1]
 xcs = xcsf.XCS(num_inputs, num_outputs)
 
 # override cons.txt
-xcs.set_max_trials(50000)
+xcs.max_trials = 50000
 
 # fit function
 xcs.fit(train_X, train_Y, test_X, test_Y)
