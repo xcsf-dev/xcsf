@@ -6,7 +6,7 @@ as a Python library.
 
 Features:
 ------------------------
-[See `cons.txt` for a full list of options.]
+See `cons.txt` for a full list of options.
 
 Evolved Conditions:
 
@@ -63,7 +63,7 @@ Requirements:
 - cmake
 - OpenMP
 - Python
-- Boost Python and numpy libaries
+- Boost Python and numpy libaries (libboost-python-dev libboost-numpy-dev)
 
 Building:
 
