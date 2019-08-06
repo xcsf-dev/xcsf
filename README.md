@@ -15,7 +15,6 @@ Evolved Conditions:
 - COND_TYPE = 1: multilayer perceptron neural networks
 - COND_TYPE = 2: GP trees
 - COND_TYPE = 3: dynamical GP graphs
-
 - COND_TYPE = 11: both conditions and predictions in single dynamical GP graphs
 - COND_TYPE = 12: both conditions and predictions in single neural networks
 
