@@ -173,7 +173,11 @@ struct XCS
 	int get_pop_num() {
 		return xcs.pop_num;
 	}
-
+ 
+	int get_pop_num_sum() {
+		return xcs.pop_num_sum;
+	}
+ 
 	double get_num_x_vars() {
 		return xcs.num_x_vars;
 	}
@@ -225,6 +229,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.def("get_ga_subsumption", &XCS::get_ga_subsumption)
 		.def("get_set_subsumption", &XCS::get_set_subsumption)
 		.def("get_pop_num", &XCS::get_pop_num)
+		.def("get_pop_num_sum", &XCS::get_pop_num_sum)
 		.def("get_num_x_vars", &XCS::get_num_x_vars)
 		.def("get_num_y_vars", &XCS::get_num_x_vars)
 		;                         
