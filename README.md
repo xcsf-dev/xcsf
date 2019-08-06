@@ -72,4 +72,4 @@ Running:
 
 Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`:
 
-1. python MyProject.py
+1. `python MyProject.py`
