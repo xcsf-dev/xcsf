@@ -57,6 +57,14 @@ Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`:
 Python library:
 ------------------------
 
+Requirements:
+
+- C/C++ compiler
+- cmake
+- OpenMP
+- Python
+- Boost Python and numpy libaries
+
 Building:
 
 0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
