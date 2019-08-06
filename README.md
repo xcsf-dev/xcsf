@@ -34,11 +34,8 @@ Mutation for conditions:
 Compiler options:
 ------------------------
 
-A real-time GNUPlot of the system error can be enabled by compiling with
-GNUPLOT = ON
-
-The matching and set prediction functions (where most processing occurs) can be
-parallelised using OpenMP by compiling with PARALLEL = ON.
+- GNUPLOT = ON: real-time GNUPlot of the system error
+- PARALLEL = ON: matching and set prediction functions parallelised with OpenMP
   
 Stand-alone executable:
 ------------------------
