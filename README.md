@@ -69,7 +69,7 @@ Building:
 
 0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
 1. Change to the build directory: `cd xcsf/build`
-2. Run cmake: `cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYTHON_LIBRARY`
+2. Run cmake: `cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYTHON_LIBRARY=ON`
 3. Run make: `make`
 
 Running:
