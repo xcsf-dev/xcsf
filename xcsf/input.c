@@ -45,11 +45,11 @@ void input_read_csv(char *infile, INPUT *train_data, INPUT *test_data)
 	sprintf(name, "%s_test_y.csv", infile);
 	csv_read(name, &test_data->y, &test_data->rows, &test_data->y_cols);
 }
- 
+
 void csv_read(char *fname, double **data, int *num_rows, int *num_cols)
 {
 	// Provided a file name: will set the data, num_rows, num_cols 
- 	FILE *fin = fopen(fname, "rt");
+	FILE *fin = fopen(fname, "rt");
 	if(fin == 0) {
 		printf("Error opening file: %s. %s.\n", fname, strerror(errno));
 		exit(EXIT_FAILURE);

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,13 +26,13 @@
 #include "cl.h"
 #include "dgp.h"
 #include "cond_dgp.h"
-  
+
 typedef struct COND_DGP {
 	GRAPH dgp;
 	_Bool m;
 	double *mu;
 } COND_DGP;
- 
+
 void cond_dgp_init(XCSF *xcsf, CL *c)
 {
 	COND_DGP *cond = malloc(sizeof(COND_DGP));
@@ -55,7 +55,7 @@ double cond_dgp_mu(XCSF *xcsf, CL *c, int m)
 	COND_DGP *cond = c->cond;
 	return cond->mu[m];
 }
- 
+
 void cond_dgp_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	COND_DGP *to_cond = to->cond;

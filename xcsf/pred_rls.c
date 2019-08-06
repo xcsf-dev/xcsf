@@ -36,14 +36,14 @@
 void matrix_matrix_multiply(XCSF *xcsf, double *srca, double *srcb, double *dest, int n);
 void matrix_vector_multiply(XCSF *xcsf, double *srcm, double *srcv, double *dest, int n);
 void init_matrix(XCSF *xcsf, double *matrix, int n);
- 
+
 typedef struct PRED_RLS {
 	int weights_length;
 	double **weights;
 	double *matrix;
 	double *pre;
 } PRED_RLS;
- 
+
 void pred_rls_init(XCSF *xcsf, CL *c)
 {
 	PRED_RLS *pred = malloc(sizeof(PRED_RLS));
@@ -76,7 +76,7 @@ void pred_rls_init(XCSF *xcsf, CL *c)
 	// initialise current prediction
 	pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
 }
- 	
+
 void init_matrix(XCSF *xcsf, double *matrix, int n)
 {
 	(void)xcsf;
@@ -91,7 +91,7 @@ void init_matrix(XCSF *xcsf, double *matrix, int n)
 		}
 	}
 }
- 
+
 void pred_rls_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	PRED_RLS *to_pred = to->pred;
@@ -102,7 +102,7 @@ void pred_rls_copy(XCSF *xcsf, CL *to, CL *from)
 	}
 	memcpy(to_pred->pre, from_pred->pre, sizeof(double) * xcsf->num_y_vars);
 }
- 
+
 void pred_rls_free(XCSF *xcsf, CL *c)
 {
 	PRED_RLS *pred = c->pred;
@@ -114,7 +114,7 @@ void pred_rls_free(XCSF *xcsf, CL *c)
 	free(pred->pre);
 	free(pred);
 }
-     
+
 void pred_rls_update(XCSF *xcsf, CL *c, double *y, double *x)
 {
 	PRED_RLS *pred = c->pred;
@@ -209,14 +209,14 @@ double *pred_rls_compute(XCSF *xcsf, CL *c, double *x)
 	}
 	return pred->pre;
 } 
- 
+
 double pred_rls_pre(XCSF *xcsf, CL *c, int p)
 {
 	(void)xcsf;
 	PRED_RLS *pred = c->pred;
 	return pred->pre[p];
 }
- 
+
 void pred_rls_print(XCSF *xcsf, CL *c)
 {
 	PRED_RLS *pred = c->pred;
@@ -227,14 +227,14 @@ void pred_rls_print(XCSF *xcsf, CL *c)
 		}
 		printf("\n");
 	}
-//	printf("RLS matrix: ");
-//	int n = pred->weights_length;
-//	for(int i = 0; i < n; i++) {
-//		for(int j = 0; j < n; j++) {
-//			printf("%f, ", pred->matrix[i*n+j]);
-//		}
-//	}
-//	printf("\n");
+	//	printf("RLS matrix: ");
+	//	int n = pred->weights_length;
+	//	for(int i = 0; i < n; i++) {
+	//		for(int j = 0; j < n; j++) {
+	//			printf("%f, ", pred->matrix[i*n+j]);
+	//		}
+	//	}
+	//	printf("\n");
 }
 
 void matrix_matrix_multiply(XCSF *xcsf, double *srca, double *srcb, double *dest, int n)

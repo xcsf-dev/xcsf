@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-  
+
 typedef struct NEURON {
 	double output;
 	double state;
@@ -26,11 +26,11 @@ typedef struct NEURON {
 } NEURON;
 
 typedef struct BPN {
-    int num_layers; // input layer + number of hidden layers + output layer
+	int num_layers; // input layer + number of hidden layers + output layer
 	int *num_neurons; // number of neurons in each layer
 	NEURON **layer; // neural network
 } BPN;
- 
+
 double neural_output(XCSF *xcsf, BPN *bpn, int i);
 void neural_copy(XCSF *xcsf, BPN *to, BPN *from);
 void neural_free(XCSF *xcsf, BPN *bpn);

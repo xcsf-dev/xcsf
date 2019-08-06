@@ -32,12 +32,12 @@
 #include "cl.h"
 #include "cl_set.h"
 #include "perf.h"
-  
+
 #ifdef GNUPLOT
 FILE *fout;
 char fname[30];
 char basefname[30];
- 
+
 void gplot_init(XCSF *xcsf);
 void gplot_draw(XCSF *xcsf);
 void gplot_close(XCSF *xcsf);
@@ -55,7 +55,7 @@ void disp_perf(XCSF *xcsf, double *error, double *terror, int trial)
 	serr /= (double)xcsf->PERF_AVG_TRIALS;
 	terr /= (double)xcsf->PERF_AVG_TRIALS;
 	printf("%d %.5f %.5f %d", trial, serr, terr, xcsf->pop_num);
- 	for(int i = 0; i < xcsf->NUM_SAM; i++) {
+	for(int i = 0; i < xcsf->NUM_SAM; i++) {
 		printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
 	}
 	printf("\n");    

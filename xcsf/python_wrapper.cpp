@@ -7,16 +7,16 @@ namespace p = boost::python;
 namespace np = boost::python::numpy;
 
 extern "C" {   
-	#include <stdbool.h>
-	#include "data_structures.h"
-	#include "cons.h"
-	#include "random.h"
-	#include "input.h"
-	#include "cl_set.h"
+#include <stdbool.h>
+#include "data_structures.h"
+#include "cons.h"
+#include "random.h"
+#include "input.h"
+#include "cl_set.h"
 }
 
 extern "C" void experiment(XCSF *, INPUT *, INPUT *); 
- 
+
 /* flatten and convert numpy arrays */
 void flatten(np::ndarray &orig, double *ret)
 {
@@ -28,7 +28,7 @@ void flatten(np::ndarray &orig, double *ret)
 		}
 	}
 }
- 
+
 /* XCSF class */
 struct XCS
 {        
@@ -51,7 +51,7 @@ struct XCS
 		test_data.x_cols = 0;
 		test_data.y_cols = 0;
 	}
- 
+
 	void fit() {
 		experiment(&xcs, &train_data, &test_data);
 	}
@@ -93,7 +93,7 @@ struct XCS
 		train_data.y = (double *) malloc(sizeof(double) * train_data.rows * train_data.y_cols);
 		flatten(train_X, train_data.x);
 		flatten(train_Y, train_data.y);
- 
+
 		// clear any previous testing data
 		if(test_data.rows != 0) {
 			free(test_data.x);
@@ -108,7 +108,7 @@ struct XCS
 		flatten(test_X, test_data.x);
 		flatten(test_Y, test_data.y);
 
- 		// first execution
+		// first execution
 		if(xcs.pop_num == 0) {
 			pop_init(&xcs);
 		}       

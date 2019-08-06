@@ -114,7 +114,7 @@ void graph_print(XCSF *xcsf, GRAPH *dgp)
 		node_print(xcsf, &dgp->nodes[i]);
 	}
 }
- 
+
 void node_init(XCSF *xcsf, GNODE *node, int n)
 {
 	node->initial_state = (2.0*drand())-1.0; 
@@ -155,7 +155,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 			mod = true;
 		}
 	}
-	
+
 	// mutate T
 	if(drand() < rate) {
 		int t = dgp->t;

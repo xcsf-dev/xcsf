@@ -163,7 +163,7 @@ double cl_update_err(XCSF *xcsf, CL *c, double *y)
 	}
 	return c->err * c->num;
 }
- 
+
 void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc)
 {
 	c->fit += xcsf->BETA * ((acc * c->num) / acc_sum - c->fit);
@@ -201,7 +201,7 @@ void cl_cover(XCSF *xcsf, CL *c, double *x)
 
 _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-    return cond_general(xcsf, c1, c2);
+	return cond_general(xcsf, c1, c2);
 }
 
 _Bool cl_subsumes(XCSF *xcsf, CL *c1, CL *c2)
@@ -233,7 +233,7 @@ _Bool cl_mutate(XCSF *xcsf, CL *c)
 {
 	return cond_mutate(xcsf, c);
 }
- 
+
 _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
 	return cond_crossover(xcsf, c1, c2);

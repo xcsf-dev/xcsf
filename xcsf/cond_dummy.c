@@ -29,12 +29,12 @@
 #include "random.h"
 #include "cl.h"
 #include "cond_dummy.h"
- 
+
 typedef struct COND_DUMMY {
 	_Bool m;
 	double *mu;
 } COND_DUMMY;
- 
+
 void cond_dummy_init(XCSF *xcsf, CL *c)
 {
 	COND_DUMMY *cond = malloc(sizeof(COND_DUMMY));
@@ -50,14 +50,14 @@ void cond_dummy_free(XCSF *xcsf, CL *c)
 	free(c->cond);
 	(void)xcsf;
 }
- 
+
 double cond_dummy_mu(XCSF *xcsf, CL *c, int m)
 {
 	COND_DUMMY *cond = c->cond;
 	(void)xcsf;
 	return cond->mu[m];
 }
- 
+
 void cond_dummy_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	(void)xcsf;
@@ -86,14 +86,14 @@ _Bool cond_dummy_match(XCSF *xcsf, CL *c, double *state)
 	cond->m = true;
 	return cond->m;
 }
- 
+
 _Bool cond_dummy_match_state(XCSF *xcsf, CL *c)
 {
 	(void)xcsf;
 	COND_DUMMY *cond = c->cond;
 	return cond->m;
 }
- 
+
 _Bool cond_dummy_crossover(XCSF *xcsf, CL *c1, CL *c2) 
 {
 	(void)xcsf;

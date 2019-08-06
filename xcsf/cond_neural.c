@@ -34,13 +34,13 @@
 #include "cl.h"
 #include "neural.h"
 #include "cond_neural.h"
- 
+
 typedef struct COND_NEURAL {
 	BPN bpn;
 	_Bool m;
 	double *mu;
 } COND_NEURAL;
- 
+
 void cond_neural_init(XCSF *xcsf, CL *c)
 {
 	COND_NEURAL *cond = malloc(sizeof(COND_NEURAL));
@@ -65,7 +65,7 @@ double cond_neural_mu(XCSF *xcsf, CL *c, int m)
 	COND_NEURAL *cond = c->cond;
 	return cond->mu[m];
 }
- 
+
 void cond_neural_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	COND_NEURAL *to_cond = to->cond;

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-  
+
 _Bool rule_dgp_cond_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool rule_dgp_cond_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool rule_dgp_cond_match(XCSF *xcsf, CL *c, double *x);
@@ -28,7 +28,7 @@ void rule_dgp_cond_init(XCSF *xcsf, CL *c);
 void rule_dgp_cond_print(XCSF *xcsf, CL *c);
 void rule_dgp_cond_rand(XCSF *xcsf, CL *c);
 double rule_dgp_cond_mu(XCSF *xcsf, CL *c, int m);
- 
+
 static struct CondVtbl const rule_dgp_cond_vtbl = {
 	&rule_dgp_cond_crossover,
 	&rule_dgp_cond_general,
@@ -44,7 +44,7 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
 	&rule_dgp_cond_print,
 	&rule_dgp_cond_rand
 };      
-  
+
 double rule_dgp_pred_pre(XCSF *xcsf, CL *c, int p);
 double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x);
 void rule_dgp_pred_copy(XCSF *xcsf, CL *to,  CL *from);
@@ -52,7 +52,7 @@ void rule_dgp_pred_free(XCSF *xcsf, CL *c);
 void rule_dgp_pred_init(XCSF *xcsf, CL *c);
 void rule_dgp_pred_print(XCSF *xcsf, CL *c);
 void rule_dgp_pred_update(XCSF *xcsf, CL *c, double *y, double *x);
- 
+
 static struct PredVtbl const rule_dgp_pred_vtbl = {
 	&rule_dgp_pred_compute,
 	&rule_dgp_pred_pre,

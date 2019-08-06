@@ -17,7 +17,7 @@
  * The DGP classifier rule module.
  * Performs both condition matching and prediction in a single evolved graph.
  */
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,17 +28,17 @@
 #include "cl.h"
 #include "dgp.h"
 #include "rule_dgp.h"
-  
+
 typedef struct RULE_DGP_COND {
 	GRAPH dgp;
 	_Bool m;
 	double *mu;
 } RULE_DGP_COND;
-  
+
 typedef struct RULE_DGP_PRED {
 	double *pre;
 } RULE_DGP_PRED;
- 
+
 void rule_dgp_cond_init(XCSF *xcsf, CL *c)
 {
 	RULE_DGP_COND *cond = malloc(sizeof(RULE_DGP_COND));
@@ -54,14 +54,14 @@ void rule_dgp_cond_free(XCSF *xcsf, CL *c)
 	sam_free(xcsf, cond->mu);
 	free(c->cond);
 }
- 
+
 double rule_dgp_cond_mu(XCSF *xcsf, CL *c, int m)
 {
 	(void)xcsf;
 	RULE_DGP_COND *cond = c->cond;
 	return cond->mu[m];
 }
- 
+
 void rule_dgp_cond_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	RULE_DGP_COND *to_cond = to->cond;
@@ -187,14 +187,14 @@ double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x)
 	}
 	return pred->pre;
 }
- 
+
 double rule_dgp_pred_pre(XCSF *xcsf, CL *c, int p)
 {
 	(void)xcsf;
 	RULE_DGP_PRED *pred = c->pred;
 	return pred->pre[p];
 }
- 
+
 void rule_dgp_pred_print(XCSF *xcsf, CL *c)
 {
 	(void)xcsf;

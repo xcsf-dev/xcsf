@@ -32,17 +32,17 @@
 #include "data_structures.h"
 #include "random.h"
 #include "neural.h"
- 
+
 #define MAX_LAYERS 10
 #define MAX_NEURONS 50
- 
+
 double neuron_propagate(XCSF *xcsf, NEURON *n, double *input);
 void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, double (*aptr)(double));
 void neuron_learn(XCSF *xcsf, NEURON *n, double error);
 
 void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, double (**aptr)(double))
 {
- 	// set number of layers
+	// set number of layers
 	bpn->num_layers = layers;
 	// set number of neurons in each layer
 	bpn->num_neurons = malloc(sizeof(int)*bpn->num_layers);
@@ -63,7 +63,7 @@ void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, double (**aptr)
 
 void neural_rand(XCSF *xcsf, BPN *bpn)
 {
- 	for(int l = 1; l < bpn->num_layers; l++) {
+	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
 			NEURON *n = &bpn->layer[l-1][i];
 			for(int w = 0; w < n->num_inputs+1; w++) {
@@ -84,7 +84,7 @@ void neural_propagate(XCSF *xcsf, BPN *bpn, double *input)
 		}
 	}
 }
-         
+
 double neural_output(XCSF *xcsf, BPN *bpn, int i)
 {
 	(void)xcsf;
@@ -96,7 +96,7 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
 	// network already propagated state in set_pred()
 	// neural_propagate(bpn, state);
 	(void)state; // remove unused parameter warning
-	
+
 	// output layer
 	double out_error[bpn->num_neurons[bpn->num_layers-1]];
 	int o = bpn->num_layers-2;
@@ -145,7 +145,7 @@ void neural_free(XCSF *xcsf, BPN *bpn)
 
 void neural_print(XCSF *xcsf, BPN *bpn)
 {
- 	printf("neural weights:");
+	printf("neural weights:");
 	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
 			NEURON *n = &bpn->layer[l-1][i];
@@ -177,7 +177,7 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
 	}    
 	(void)xcsf;
 }
- 
+
 void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, double (*aptr)(double))
 {
 	n->activation_ptr = aptr;
@@ -194,7 +194,7 @@ void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, double (*aptr)(double))
 	}
 	(void)xcsf;
 }
- 
+
 double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
 {
 	(void)xcsf;
@@ -207,7 +207,7 @@ double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
 	n->output = (n->activation_ptr)(n->state);
 	return n->output;
 }
- 
+
 void neuron_learn(XCSF *xcsf, NEURON *n, double error)
 {
 	int i;

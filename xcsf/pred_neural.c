@@ -34,12 +34,12 @@
 #include "cl.h"
 #include "neural.h"
 #include "pred_neural.h"
- 
+
 typedef struct PRED_NEURAL {
 	BPN bpn;
 	double *pre;
 } PRED_NEURAL;
- 
+
 void pred_neural_init(XCSF *xcsf, CL *c)
 {
 	PRED_NEURAL *pred = malloc(sizeof(PRED_NEURAL));
@@ -80,14 +80,14 @@ double *pred_neural_compute(XCSF *xcsf, CL *c, double *x)
 	}
 	return pred->pre;
 }
-                        
+
 double pred_neural_pre(XCSF *xcsf, CL *c, int p)
 {
 	(void)xcsf;
 	PRED_NEURAL *pred = c->pred;
 	return pred->pre[p];
 }
- 
+
 void pred_neural_print(XCSF *xcsf, CL *c)
 {
 	PRED_NEURAL *pred = c->pred;

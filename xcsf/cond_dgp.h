@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
- 
+
 _Bool cond_dgp_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_dgp_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_dgp_match(XCSF *xcsf, CL *c, double *x);
@@ -29,7 +29,7 @@ void cond_dgp_init(XCSF *xcsf, CL *c);
 void cond_dgp_print(XCSF *xcsf, CL *c);
 void cond_dgp_rand(XCSF *xcsf, CL *c);
 double cond_dgp_mu(XCSF *xcsf, CL *c, int m);
- 
+
 static struct CondVtbl const cond_dgp_vtbl = {
 	&cond_dgp_crossover,
 	&cond_dgp_general,

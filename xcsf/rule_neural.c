@@ -31,17 +31,17 @@
 #include "cl.h"
 #include "neural.h"
 #include "rule_neural.h"
-  
+
 typedef struct RULE_NEURAL_COND {
 	BPN bpn;
 	_Bool m;
 	double *mu;
 } RULE_NEURAL_COND;
-       
+
 typedef struct RULE_NEURAL_PRED {
 	double *pre;
 } RULE_NEURAL_PRED;
- 
+
 void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
 	RULE_NEURAL_COND *cond = malloc(sizeof(RULE_NEURAL_COND));
@@ -162,7 +162,7 @@ void rule_neural_cond_print(XCSF *xcsf, CL *c)
 	RULE_NEURAL_COND *cond = c->cond;
 	neural_print(xcsf, &cond->bpn);
 }  
- 
+
 void rule_neural_pred_init(XCSF *xcsf, CL *c)
 {
 	RULE_NEURAL_PRED *pred = malloc(sizeof(RULE_NEURAL_COND));
@@ -203,14 +203,14 @@ double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x)
 	}
 	return pred->pre;
 }
-  
+
 double rule_neural_pred_pre(XCSF *xcsf, CL *c, int p)
 {
 	(void)xcsf;
 	RULE_NEURAL_PRED *pred = c->pred;
 	return pred->pre[p];
 }
- 
+
 void rule_neural_pred_print(XCSF *xcsf, CL *c)
 {
 	(void)xcsf;

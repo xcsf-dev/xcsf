@@ -37,7 +37,7 @@ void random_init()
 
 	for(i = 0; i < sizeof(now); i++)
 		seed = (seed * (UCHAR_MAX + 2U)) + p[i];
-	
+
 	init_genrand64(seed);
 }
 
@@ -50,5 +50,5 @@ int irand(int min, int max)
 double drand()
 {
 	// Mersenne Twister 64bit version
-    return genrand64_real1();
+	return genrand64_real1();
 }

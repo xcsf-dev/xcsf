@@ -97,7 +97,7 @@ struct PredVtbl {
 	void (*pred_impl_print)(XCSF *xcsf, CL *c);
 	void (*pred_impl_update)(XCSF *xcsf, CL *c, double *y, double *x);
 };
- 
+
 static inline double *pred_compute(XCSF *xcsf, CL *c, double *x) {
 	return (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
 }
@@ -125,7 +125,7 @@ static inline void pred_print(XCSF *xcsf, CL *c) {
 static inline void pred_update(XCSF *xcsf, CL *c, double *y, double *x) {
 	(*c->pred_vptr->pred_impl_update)(xcsf, c, y, x);
 }
- 
+
 // general classifier
 _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2);
@@ -145,7 +145,7 @@ void cl_print(XCSF *xcsf, CL *c);
 void cl_rand(XCSF *xcsf, CL *c);
 void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num);
 void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc);
- 
+
 // self-adaptive mutation
 double cl_mutation_rate(XCSF *xcsf, CL *c, int m);
 void sam_adapt(XCSF *xcsf, double *mu);       

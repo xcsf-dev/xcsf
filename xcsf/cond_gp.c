@@ -23,7 +23,7 @@
  * classifier matches for a given problem instance. Includes operations for
  * covering, matching, copying, mutating, printing, etc.
  */
-  
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,13 +34,13 @@
 #include "cl.h"
 #include "cond_gp.h"
 #include "gp.h"
- 
+
 typedef struct COND_GP {
 	GP_TREE gp;
 	_Bool m;
 	double *mu;
 } COND_GP;
- 
+
 void cond_gp_init(XCSF *xcsf, CL *c)
 {
 	COND_GP *cond = malloc(sizeof(COND_GP));
@@ -56,14 +56,14 @@ void cond_gp_free(XCSF *xcsf, CL *c)
 	sam_free(xcsf, cond->mu);
 	free(c->cond);
 }
- 
+
 double cond_gp_mu(XCSF *xcsf, CL *c, int m)
 {
 	(void)xcsf;
 	COND_GP *cond = c->cond;
 	return cond->mu[m];
 }
- 
+
 void cond_gp_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	COND_GP *to_cond = to->cond;
@@ -108,7 +108,7 @@ _Bool cond_gp_match_state(XCSF *xcsf, CL *c)
 	COND_GP *cond = c->cond;
 	return cond->m;
 }
- 
+
 _Bool cond_gp_mutate(XCSF *xcsf, CL *c)
 {
 	COND_GP *cond = c->cond;

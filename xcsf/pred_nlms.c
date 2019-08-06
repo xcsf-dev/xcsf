@@ -34,13 +34,13 @@
 #include "random.h"
 #include "cl.h"
 #include "pred_nlms.h"
-  
+
 typedef struct PRED_NLMS {
 	int weights_length;
 	double **weights;
 	double *pre;
 } PRED_NLMS;
- 
+
 void pred_nlms_init(XCSF *xcsf, CL *c)
 {
 	PRED_NLMS *pred = malloc(sizeof(PRED_NLMS));
@@ -59,7 +59,7 @@ void pred_nlms_init(XCSF *xcsf, CL *c)
 	for(int var = 0; var < xcsf->num_y_vars; var++) {
 		pred->weights[var] = malloc(sizeof(double)*pred->weights_length);
 	}
- 	for(int var = 0; var < xcsf->num_y_vars; var++) {
+	for(int var = 0; var < xcsf->num_y_vars; var++) {
 		pred->weights[var][0] = xcsf->XCSF_X0;
 		for(int i = 1; i < pred->weights_length; i++) {
 			pred->weights[var][i] = 0.0;

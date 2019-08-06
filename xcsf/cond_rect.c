@@ -36,14 +36,14 @@
 #include "cond_rect.h"
 
 void cond_rect_bounds(XCSF *xcsf, double *a, double *b);
-  
+
 typedef struct COND_RECT {
 	double *interval;
 	int interval_length;
 	_Bool m;
 	double *mu;
 } COND_RECT;
- 
+
 void cond_rect_init(XCSF *xcsf, CL *c)
 {
 	COND_RECT *cond = malloc(sizeof(COND_RECT));

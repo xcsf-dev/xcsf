@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-  
+
 #define MAX_T 10 // maximum number of cycles to update graph
 #define NUM_FUNC 7 // number of node available functions
 #define MAX_K 2 // maximum inputs to a node
- 
+
 typedef struct GNODE {
 	int conn[MAX_K]; // connectivity map to other nodes
 	int k; // number of inputs

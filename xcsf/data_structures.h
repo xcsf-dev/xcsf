@@ -34,19 +34,19 @@ typedef struct CL {
 	double size;
 	int time;
 } CL;
- 
+
 // classifier linked list node
 typedef struct NODE {
 	CL *cl;
 	struct NODE *next;
 } NODE;
- 
+
 // xcsf data structure
 typedef struct XCSF {
 	NODE *pset; // linked list of classifiers
 	int pop_num; // number of macro-classifiers in the population
 	int pop_num_sum; // the total population numerosity
- 
+
 	// experiment parameters
 	_Bool POP_INIT; // population initially empty or filled with random conditions
 	double THETA_MNA; // minimum number of classifiers in a match set
