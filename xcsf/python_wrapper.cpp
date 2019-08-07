@@ -74,14 +74,14 @@ struct XCS
 	void fit() {
 		xcsf_experiment2(&xcs, &train_data, &test_data);
 	}
- 
+
 	void fit(np::ndarray &train_X, np::ndarray &train_Y) {
 		// check inputs are correctly sized
 		if(train_X.shape(0) != train_Y.shape(0)) {
 			printf("error: training X and Y rows are not equal\n");
 			return;
 		}  
- 
+
 		// clear any previous training data
 		if(train_data.rows != 0) {
 			free(train_data.x);
@@ -104,7 +104,7 @@ struct XCS
 		// execute
 		xcsf_experiment1(&xcs, &train_data);        
 	}
- 
+
 	void fit(np::ndarray &train_X, np::ndarray &train_Y, 
 			np::ndarray &test_X, np::ndarray &test_Y) {
 		// check inputs are correctly sized
@@ -179,10 +179,10 @@ struct XCS
 		double *output = (double *) malloc(sizeof(double) * rows * xcs.num_y_vars);
 		xcsf_predict(&xcs, input, output, rows);
 
-    	// copy predictions to numpy array
+		// copy predictions to numpy array
 		Py_intptr_t shape[2] = { rows, xcs.num_y_vars };
 		np::ndarray result = np::empty(2, shape, np::dtype::get_builtin<double>());
- 		for(int row = 0; row < rows; row++) {
+		for(int row = 0; row < rows; row++) {
 			for(int col = 0; col < xcs.num_y_vars; col++) {
 				result[row][col] = output[xcs.num_y_vars*row+col];
 			}
@@ -334,11 +334,11 @@ struct XCS
 	int get_pop_num_sum() {
 		return xcs.pop_num_sum;
 	}
- 
+
 	int get_time() {
 		return xcs.time;
 	}
- 
+
 	double get_num_x_vars() {
 		return xcs.num_x_vars;
 	}
