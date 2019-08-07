@@ -149,12 +149,12 @@ double cl_update_err(XCSF *xcsf, CL *c, double *y)
 	// calculate MSE
 	double error = 0.0;
 	for(int i = 0; i < xcsf->num_y_vars; i++) {
+		// prediction has been updated for the current input during set_pred()
 		double pre = pred_pre(xcsf, c, i);
 		error += (y[i] - pre) * (y[i] - pre);
 	}
 	error /= (double)xcsf->num_y_vars;
 
-	// prediction has been updated for the current state during set_pred()
 	if(c->exp < 1.0/xcsf->BETA) {
 		c->err = (c->err * (c->exp-1.0) + error) / (double)c->exp;
 	}
