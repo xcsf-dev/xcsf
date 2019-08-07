@@ -98,24 +98,18 @@ void xcsf_experiment1(XCSF *xcsf, INPUT *train_data)
 	// performance tracking
 	double err[xcsf->PERF_AVG_TRIALS];
 
-	// current input
-	double *x = malloc(sizeof(double)*xcsf->num_x_vars);
-	double *y = malloc(sizeof(double)*xcsf->num_y_vars);
- 
 	// each trial in an experiment
 	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-		// train
-		input_rand_sample(train_data, x, y);
-		xcsf_trial(xcsf, cnt, x, y, true, err);
+		// select a random training sample
+		int row = irand(0, train_data->rows);
+		double *x = &train_data->x[row * train_data->x_cols];
+		double *y = &train_data->y[row * train_data->y_cols];
+		xcsf_trial(xcsf, cnt, x, y, true, err); // train
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
 			disp_perf1(xcsf, err, cnt);
 		}
 	}
-
-	// clean up
-	free(x);
-	free(y);      
 
 #ifdef GNUPLOT
 	gplot_free(xcsf);
@@ -132,27 +126,23 @@ void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 	double err[xcsf->PERF_AVG_TRIALS];
 	double terr[xcsf->PERF_AVG_TRIALS];
 
-	// current input
-	double *x = malloc(sizeof(double)*xcsf->num_x_vars);
-	double *y = malloc(sizeof(double)*xcsf->num_y_vars);
-
 	// each trial in an experiment
 	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-		// train
-		input_rand_sample(train_data, x, y);
-		xcsf_trial(xcsf, xcsf->time, x, y, true, err);
-		// test
-		input_rand_sample(test_data, x, y);
-		xcsf_trial(xcsf, xcsf->time, x, y, false, terr);
+		// select a random training sample
+		int row = irand(0, train_data->rows);
+		double *x = &train_data->x[row * train_data->x_cols];
+		double *y = &train_data->y[row * train_data->y_cols];
+		xcsf_trial(xcsf, xcsf->time, x, y, true, err); // train
+		// select a random testing sample
+		row = irand(0, test_data->rows);
+		x = &test_data->x[row * test_data->x_cols];
+		y = &test_data->y[row * test_data->y_cols];
+		xcsf_trial(xcsf, xcsf->time, x, y, false, terr); // test
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
 			disp_perf2(xcsf, err, terr, cnt);
 		}
 	}
-
-	// clean up
-	free(x);
-	free(y);
 
 #ifdef GNUPLOT
 	gplot_free(xcsf);

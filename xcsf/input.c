@@ -89,17 +89,6 @@ void csv_read(char *fname, double **data, int *num_rows, int *num_cols)
 	printf("Loaded: %s: %d rows, %d cols\n", fname, *num_rows, *num_cols);
 }
 
-void input_rand_sample(INPUT *data, double *x, double *y)
-{
-	int idx = irand(0,data->rows);
-	for(int i = 0; i < data->x_cols; i++) {
-		x[i] = data->x[idx * data->x_cols + i];
-	}
-	for(int i = 0; i < data->y_cols; i++) {
-		y[i] = data->y[idx * data->y_cols + i];
-	}
-}
-
 void input_free(INPUT *data)
 {                 
 	free(data->x);

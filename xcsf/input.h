@@ -17,4 +17,3 @@
 
 void input_read_csv(char *infile, INPUT *train_data, INPUT *test_data);
 void input_free(INPUT *data);
-void input_rand_sample(INPUT *data, double *x, double *y);
