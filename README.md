@@ -1,12 +1,11 @@
 XCSF learning classifier system
-------------------------
 
 An implementation of XCSF that can be built either as a stand-alone binary or
 as a Python library.
 
 ------------------------
 Features:
-------------------------
+
 See `cons.txt` for a full list of options.
 
 Evolved Conditions:
@@ -33,14 +32,12 @@ Mutation for conditions:
  
 ------------------------
 Compiler options:
-------------------------
 
 - GNUPLOT = ON: real-time GNUPlot of the system error
 - PARALLEL = ON: matching and set prediction functions parallelised with OpenMP
   
 ------------------------
 Stand-alone executable:
-------------------------
 
 Building:
 
@@ -57,7 +54,6 @@ Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 
 ------------------------
 Python library:
-------------------------
 
 Requirements:
 
