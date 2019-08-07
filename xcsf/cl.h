@@ -141,7 +141,7 @@ void cl_copy(XCSF *xcsf, CL *to, CL *from);
 void cl_cover(XCSF *xcsf, CL *c, double *x);
 void cl_free(XCSF *xcsf, CL *c);
 void cl_init(XCSF *xcsf, CL *c, int size, int time);
-void cl_print(XCSF *xcsf, CL *c);
+void cl_print(XCSF *xcsf, CL *c, _Bool print_cond, _Bool print_pred);
 void cl_rand(XCSF *xcsf, CL *c);
 void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num);
 void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc);

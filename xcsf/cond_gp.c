@@ -159,7 +159,8 @@ _Bool cond_gp_general(XCSF *xcsf, CL *c1, CL *c2)
 
 void cond_gp_print(XCSF *xcsf, CL *c)
 {
-	(void)xcsf;
 	COND_GP *cond = c->cond;
+        printf("GP tree: ");
 	tree_print(xcsf, &cond->gp, 0);
+        printf("\n");
 }  

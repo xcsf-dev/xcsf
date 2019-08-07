@@ -185,11 +185,17 @@ void cl_free(XCSF *xcsf, CL *c)
 	free(c);
 }
 
-void cl_print(XCSF *xcsf, CL *c)
+void cl_print(XCSF *xcsf, CL *c, _Bool print_cond, _Bool print_pred)
 {
-	printf("***********************************************\n");
-	cond_print(xcsf, c);
-	pred_print(xcsf, c);
+        if(print_cond || print_cond) {
+	    printf("***********************************************\n");
+        }
+        if(print_cond) {
+            cond_print(xcsf, c);
+        }
+        if(print_pred) {
+            pred_print(xcsf, c);
+        }
 	printf("err=%f, fit=%f, num=%d, exp=%d, size=%f, time=%d\n", 
 			c->err, c->fit, c->num, c->exp, c->size, c->time);
 }  

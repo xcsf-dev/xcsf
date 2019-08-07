@@ -35,6 +35,7 @@ extern "C" {
 extern "C" void xcsf_experiment1(XCSF *, INPUT *);
 extern "C" void xcsf_experiment2(XCSF *, INPUT *, INPUT *);
 extern "C" void xcsf_predict(XCSF *, double *, double *, int);
+extern "C" void xcsf_print_pop(XCSF *, _Bool, _Bool);
 
 /* XCSF class */
 struct XCS
@@ -134,6 +135,10 @@ struct XCS
 				p::make_tuple(sizeof(double), sizeof(double)), p::object());
 		return result;
 	}
+
+        void print_pop(_Bool print_cond, _Bool print_pred) {
+            xcsf_print_pop(&xcs, print_cond, print_pred);
+        }
 
 	/* GETTERS */
 	_Bool get_pop_init() { return xcs.POP_INIT; }
@@ -264,5 +269,6 @@ BOOST_PYTHON_MODULE(xcsf)
 		.def("time", &XCS::get_time)
 		.def("num_x_vars", &XCS::get_num_x_vars)
 		.def("num_y_vars", &XCS::get_num_y_vars)
+		.def("print_pop", &XCS::print_pop)
 		;
 }

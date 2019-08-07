@@ -27,7 +27,7 @@ void set_free(XCSF *xcsf, NODE **set);
 void set_kill(XCSF *xcsf, NODE **set);
 void set_match(XCSF *xcsf, NODE **set, int *size, int *num, double *x, NODE **kset);
 void set_pred(XCSF *xcsf, NODE **set, int size, double *x, double *y);
-void set_print(XCSF *xcsf, NODE *set);
+void set_print(XCSF *xcsf, NODE *set, _Bool print_cond, _Bool print_pred);
 void set_times(XCSF *xcsf, NODE **set);
 void set_update(XCSF *xcsf, NODE **set, int *size, int *num, double *y, NODE **kset, double *x);
 void set_validate(XCSF *xcsf, NODE **set, int *size, int *num);

@@ -220,3 +220,8 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
 		set_free(xcsf, &mset); // frees the match set list      
 	}
 }
+
+void xcsf_print_pop(XCSF *xcsf, _Bool print_cond, _Bool print_pred)
+{
+    set_print(xcsf, xcsf->pset, print_cond, print_pred);
+}

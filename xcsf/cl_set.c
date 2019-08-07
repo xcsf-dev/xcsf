@@ -313,12 +313,11 @@ void set_validate(XCSF *xcsf, NODE **set, int *size, int *num)
 	(void)xcsf;
 }
 
-void set_print(XCSF *xcsf, NODE *set)
+void set_print(XCSF *xcsf, NODE *set, _Bool print_cond, _Bool print_pred)
 {
 	for(NODE *iter = set; iter != NULL; iter = iter->next) {
-		cl_print(xcsf, iter->cl);
+		cl_print(xcsf, iter->cl, print_cond, print_pred);
 	}
-	(void)xcsf;
 }
 
 void set_times(XCSF *xcsf, NODE **set)
