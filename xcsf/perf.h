@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void disp_perf(XCSF *xcsf, double *error, double *terror, int trial);
-void gen_outfname(XCSF *xcsf);
-void outfile_init(XCSF *xcsf, int exp_num);
-void outfile_close(XCSF *xcsf);
+void disp_perf1(XCSF *xcsf, double *error, int trial);
+void disp_perf2(XCSF *xcsf, double *error, double *terror, int trial);
+void gplot_init(XCSF *xcsf);
+void gplot_free(XCSF *xcsf);

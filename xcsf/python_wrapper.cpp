@@ -15,7 +15,8 @@ extern "C" {
 #include "cl_set.h"
 }
 
-extern "C" void experiment(XCSF *, INPUT *, INPUT *); 
+extern "C" void experiment1(XCSF *, INPUT *);
+extern "C" void experiment2(XCSF *, INPUT *, INPUT *);
 
 /* flatten and convert numpy arrays */
 void flatten(np::ndarray &orig, double *ret)
@@ -52,9 +53,41 @@ struct XCS
 	}
 
 	void fit() {
-		experiment(&xcs, &train_data, &test_data);
+		experiment2(&xcs, &train_data, &test_data);
 	}
+ 
+	void fit(np::ndarray &train_X,
+			np::ndarray &train_Y) {
 
+		// check inputs are correctly sized
+		if(train_X.shape(0) != train_Y.shape(0)) {
+			printf("error: training X and Y rows are not equal\n");
+			return;
+		}  
+ 
+		// clear any previous training data
+		if(train_data.rows != 0) {
+			free(train_data.x);
+			free(train_data.y);
+		}
+
+		// load training data
+		train_data.rows = train_X.shape(0);
+		train_data.x_cols = train_X.shape(1);
+		train_data.y_cols = train_Y.shape(1);
+		train_data.x = (double *) malloc(sizeof(double) * train_data.rows * train_data.x_cols);
+		train_data.y = (double *) malloc(sizeof(double) * train_data.rows * train_data.y_cols);
+		flatten(train_X, train_data.x);
+		flatten(train_Y, train_data.y);
+
+		// first execution
+		if(xcs.pop_num == 0) {
+			pop_init(&xcs);
+		}       
+		// execute
+		experiment1(&xcs, &train_data);        
+	}
+ 
 	void fit(np::ndarray &train_X,
 			np::ndarray &train_Y, 
 			np::ndarray &test_X,
@@ -112,7 +145,7 @@ struct XCS
 			pop_init(&xcs);
 		}       
 		// execute
-		experiment(&xcs, &train_data, &test_data);
+		experiment2(&xcs, &train_data, &test_data);
 	}
 
 	/* GETTERS */
@@ -412,11 +445,13 @@ BOOST_PYTHON_MODULE(xcsf)
 	random_init();
 
 	void (XCS::*fit1)() = &XCS::fit;
-	void (XCS::*fit2)(np::ndarray&, np::ndarray&, np::ndarray&, np::ndarray&) = &XCS::fit;
+	void (XCS::*fit2)(np::ndarray&, np::ndarray&) = &XCS::fit;
+	void (XCS::*fit3)(np::ndarray&, np::ndarray&, np::ndarray&, np::ndarray&) = &XCS::fit;
 
 	p::class_<XCS>("XCS", p::init<int, int>())
 		.def("fit", fit1)
 		.def("fit", fit2)
+		.def("fit", fit3)
 		.add_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
 		.add_property("THETA_MNA", &XCS::get_theta_mna, &XCS::set_theta_mna)
 		.add_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials)

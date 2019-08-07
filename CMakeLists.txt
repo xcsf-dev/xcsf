@@ -41,9 +41,14 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pipe")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g3")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -Ofast -march=native")
 set(CMAKE_C_FLAGS_RELWITHDEBINFO "-Ofast -march=native -g3 ") 
-
+ 
+option(GNUPLOT "Plot performance with GNUPLOT" OFF)
+if(GNUPLOT)
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT")
+	file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/out)
+endif()
+ 
 option(PARALLEL "Parallel match set and prediction" ON)
-
 if(PARALLEL)
 	find_package(OpenMP REQUIRED)
 	add_definitions(${OpenMP_C_FLAGS})
@@ -61,13 +66,8 @@ if(NOT XCSF_PYTHON_LIBRARY)
 	# Compile XCSF binary
 	#######################
 
-	option(GNUPLOT "Plot performance with GNUPLOT" OFF)
 	option(GENPROF "Generate profile" OFF)
 	option(USEPROF "Use profile" OFF)
-
-	if(GNUPLOT)
-		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT")
-	endif()
 
 	if(GENPROF)
 		set(PROFILE_FLAGS "-fprofile-generate")
@@ -78,7 +78,6 @@ if(NOT XCSF_PYTHON_LIBRARY)
 	endif()
 
 	add_subdirectory(xcsf)
-	file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/xcsf/out)
 
 else()
 	##########################
@@ -124,9 +123,10 @@ else()
 	add_subdirectory(xcsf)
 
 	file(COPY MyProject.py DESTINATION .)             
-	file(COPY xcsf/cons.txt DESTINATION .)             
 
 endif()
+
+file(COPY cons.txt DESTINATION .)             
 
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS_RELEASE: ${CMAKE_C_FLAGS_RELEASE}")

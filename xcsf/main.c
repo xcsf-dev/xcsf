@@ -42,7 +42,8 @@
 #include "input.h"
 #include "perf.h"
 
-void experiment(XCSF *xcsf, INPUT *train_data, INPUT *test_data);
+void experiment1(XCSF *xcsf, INPUT *train_data);
+void experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data);
 void trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err);
 
 int main(int argc, char **argv)
@@ -70,15 +71,10 @@ int main(int argc, char **argv)
 	xcsf->num_x_vars = train_data->x_cols;
 	xcsf->num_y_vars = train_data->y_cols;
 
-#ifdef GNUPLOT
-	gen_outfname(xcsf);
-	outfile_init(xcsf, 1);
-#endif
-
 	// initialise population
 	pop_init(xcsf);
 	// run an experiment
-	experiment(xcsf, train_data, test_data);
+	experiment2(xcsf, train_data, test_data);
 
 	// clean up
 	set_kill(xcsf, &xcsf->pset);
@@ -89,15 +85,48 @@ int main(int argc, char **argv)
 	free(train_data);
 	free(test_data);
 
-#ifdef GNUPLOT
-	outfile_close(xcsf);
-#endif
-
 	return EXIT_SUCCESS;
 }
 
-void experiment(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
-{
+void experiment1(XCSF *xcsf, INPUT *train_data)
+{  
+#ifdef GNUPLOT
+	gplot_init(xcsf);
+#endif
+ 
+	// performance tracking
+	double err[xcsf->PERF_AVG_TRIALS];
+
+	// current input
+	double *x = malloc(sizeof(double)*xcsf->num_x_vars);
+	double *y = malloc(sizeof(double)*xcsf->num_y_vars);
+ 
+	// each trial in an experiment
+	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
+		// train
+		input_rand_sample(train_data, x, y);
+		trial(xcsf, cnt, x, y, true, err);
+		// display performance
+		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
+			disp_perf1(xcsf, err, cnt);
+		}
+	}
+
+	// clean up
+	free(x);
+	free(y);      
+
+#ifdef GNUPLOT
+	gplot_free(xcsf);
+#endif
+}
+
+void experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
+{   
+#ifdef GNUPLOT
+	gplot_init(xcsf);
+#endif
+ 
 	// performance tracking
 	double err[xcsf->PERF_AVG_TRIALS];
 	double terr[xcsf->PERF_AVG_TRIALS];
@@ -116,13 +145,17 @@ void experiment(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 		trial(xcsf, cnt, x, y, false, terr);
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
-			disp_perf(xcsf, err, terr, cnt);
+			disp_perf2(xcsf, err, terr, cnt);
 		}
 	}
 
 	// clean up
 	free(x);
 	free(y);
+
+#ifdef GNUPLOT
+	gplot_free(xcsf);
+#endif
 }
 
 void trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err)

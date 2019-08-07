@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <time.h>
 #include <errno.h>
 #include "data_structures.h"
@@ -34,17 +35,39 @@
 #include "perf.h"
 
 #ifdef GNUPLOT
-FILE *fout;
-char fname[30];
-char basefname[30];
-
-void gplot_init(XCSF *xcsf);
-void gplot_draw(XCSF *xcsf);
-void gplot_close(XCSF *xcsf);
-FILE *gp;
+FILE *gp; // file containing gnuplot script
+FILE *fout; // file containing performance data
+char fname[50]; // file name for performance data
+void gplot_draw(XCSF *xcsf, _Bool test_error);
 #endif
+ 
+void disp_perf1(XCSF *xcsf, double *error, int trial)
+{
+	double serr = 0.0;
+	for(int i = 0; i < xcsf->PERF_AVG_TRIALS; i++) {
+		serr += error[i];
+	}
+	serr /= (double)xcsf->PERF_AVG_TRIALS;
+	printf("%d %.5f %d", trial, serr, xcsf->pop_num);
+	for(int i = 0; i < xcsf->NUM_SAM; i++) {
+		printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
+	}
+	printf("\n");    
+	fflush(stdout);
 
-void disp_perf(XCSF *xcsf, double *error, double *terror, int trial)
+#ifdef GNUPLOT
+	fprintf(fout, "%d %.5f %d", trial, serr, xcsf->pop_num);
+	for(int i = 0; i < xcsf->NUM_SAM; i++) {
+		fprintf(fout, " %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
+	}
+	fprintf(fout, "\n");
+	fflush(fout);
+
+	gplot_draw(xcsf, false);
+#endif
+}          
+ 
+void disp_perf2(XCSF *xcsf, double *error, double *terror, int trial)
 {
 	double serr = 0.0;
 	double terr = 0.0;
@@ -69,41 +92,26 @@ void disp_perf(XCSF *xcsf, double *error, double *terror, int trial)
 	fprintf(fout, "\n");
 	fflush(fout);
 
-	gplot_draw(xcsf);
+	gplot_draw(xcsf, true);
 #endif
 }          
 
 #ifdef GNUPLOT
-void gen_outfname(XCSF *xcsf)
-{
-	// file for writing output; uses the date/time/exp as file name
+void gplot_init(XCSF *xcsf)
+{ 	
+ 	// file name for writing performance uses the current date-time
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
-	sprintf(basefname, "out/%04d-%02d-%02d-%02d%02d%02d", tm.tm_year + 1900, 
-			tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-	(void)xcsf;
-}
+	sprintf(fname, "out/%04d-%02d-%02d-%02d%02d%02d.dat", tm.tm_year + 1900, 
+			tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
-void outfile_init(XCSF *xcsf, int exp_num)
-{                	
-	// create output file
-	sprintf(fname, "%s-%d.dat", basefname, exp_num);
+	// create file for writing performance
 	fout = fopen(fname, "wt");
 	if(fout == 0) {
 		printf("Error opening file: %s. %s.\n", fname, strerror(errno));
 		exit(EXIT_FAILURE);
 	}       
-	gplot_init(xcsf);
-}
 
-void outfile_close(XCSF *xcsf)
-{
-	fclose(fout);
-	gplot_close(xcsf);
-}
-
-void gplot_init(XCSF *xcsf)
-{
 	// set gnuplot title
 	char buffer[20];
 	char title[200];
@@ -182,23 +190,28 @@ void gplot_init(XCSF *xcsf)
 	}
 }
 
-void gplot_close(XCSF *xcsf)
+void gplot_free(XCSF *xcsf)
 {
+	(void)xcsf;
+	// close gnuplot
 	if(gp != NULL) {
 		pclose(gp);
 	}
 	else {
 		printf("error closing gnuplot\n");
 	}
-	(void)xcsf;
+	// close data file
+	fclose(fout);
 }
 
-void gplot_draw(XCSF *xcsf)
+void gplot_draw(XCSF *xcsf, _Bool test_error)
 {
 	if(gp != NULL) {
 		fprintf(gp, "plot '%s' using 1:2 title 'train error' w lp ls 1 pt 4 pi 50, ", fname);
-		fprintf(gp, "'%s' using 1:3 title 'test error' w lp ls 2 pt 8 pi 50\n", fname);
-		fprintf(gp,"replot\n");
+		if(test_error) {
+			fprintf(gp, "'%s' using 1:3 title 'test error' w lp ls 2 pt 8 pi 50", fname);
+		}
+		fprintf(gp,"\nreplot\n");
 		fflush(gp);
 	}
 	else {

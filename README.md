@@ -50,9 +50,7 @@ Running:
 
 Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 
-1. Change to the application folder: `cd xcsf`
-2. Modify constants as needed: `cons.txt`
-3. Run: `./xcsf ../../data/sine_1var`              
+1. Run: `./xcsf/xcsf ../data/sine_1var`              
 
 Python library:
 ------------------------

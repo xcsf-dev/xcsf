@@ -28,7 +28,6 @@ if(NOT XCSF_PYTHON_LIBRARY)
  
 	add_executable(xcsf ${SOURCES})
 	target_link_libraries(xcsf m)
-	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cons.txt ${CMAKE_CURRENT_BINARY_DIR}/cons.txt COPYONLY)
 
 else()
 	##########################
