@@ -84,41 +84,26 @@ else()
 	# Compile XCSF Python lib
 	##########################
 
-	FIND_PACKAGE(PythonInterp)
-
-	if (PYTHONINTERP_FOUND)
-		if (UNIX AND NOT APPLE)
-			if (PYTHON_VERSION_MAJOR EQUAL 3)
-				FIND_PACKAGE(Boost COMPONENTS python${PYTHON_VERSION_SUFFIX})
-				FIND_PACKAGE(PythonInterp 3)
-				FIND_PACKAGE(PythonLibs 3 REQUIRED)
-			else()
-				FIND_PACKAGE(Boost COMPONENTS python)
-				FIND_PACKAGE(PythonInterp)
-				FIND_PACKAGE(PythonLibs REQUIRED)
-			endif()
-		else()
-			if (PYTHON_VERSION_MAJOR EQUAL 3)
-				FIND_PACKAGE(Boost COMPONENTS python${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR})
-				FIND_PACKAGE(PythonInterp 3)
-				FIND_PACKAGE(PythonLibs 3 REQUIRED)
-			else()
-				FIND_PACKAGE(Boost COMPONENTS python${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR})
-				FIND_PACKAGE(PythonInterp)
-				FIND_PACKAGE(PythonLibs REQUIRED)
-			endif()
-		endif()
+	find_package(Python3)
+	if(Python3_FOUND)
+		# Python 3
+		find_package(Boost COMPONENTS python3 numpy3 REQUIRED)
+		find_package(PythonInterp 3 REQUIRED)
+		find_package(PythonLibs 3 REQUIRED)
 	else()
-		message("Python not found")
+		# Python 2
+		find_package(Boost COMPONENTS python numpy REQUIRED)
+		find_package(PythonInterp REQUIRED)
+		find_package(PythonLibs REQUIRED)
 	endif()
-
+ 
 	message(STATUS "PYTHON_LIBRARIES = ${PYTHON_LIBRARIES}")
 	message(STATUS "PYTHON_EXECUTABLE = ${PYTHON_EXECUTABLE}")
 	message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
 	message(STATUS "Boost_LIBRARIES = ${Boost_LIBRARIES}")
 
-	INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
-	LINK_LIBRARIES(${Boost_LIBRARIES} boost_numpy ${PYTHON_LIBRARIES})
+	include_directories(${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
+	link_libraries(${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
 
 	add_subdirectory(xcsf)
 

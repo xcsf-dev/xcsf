@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import xcsf.xcsf as xcsf
 import random
 import math
@@ -7,7 +8,7 @@ import csv
 # read csv data
 def read_input_csv(path, name, t, v):
     tmp = []
-    with open(path+name+"_"+t+"_"+v+".csv", 'rb') as csvfile:
+    with open(path+name+"_"+t+"_"+v+".csv", 'rt') as csvfile:
         data = csv.reader(csvfile, delimiter=',')
         for row in data:
             tmp.append(row)
