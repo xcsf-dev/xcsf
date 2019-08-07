@@ -45,7 +45,7 @@
 void xcsf_experiment1(XCSF *xcsf, INPUT *train_data);
 void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data);
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows);
-void xcsf_trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err);
+void xcsf_trial(XCSF *xcsf, int cnt, double *pred, double *x, double *y, _Bool train, double *err);
 
 int main(int argc, char **argv)
 {    
@@ -98,18 +98,24 @@ void xcsf_experiment1(XCSF *xcsf, INPUT *train_data)
 	// performance tracking
 	double err[xcsf->PERF_AVG_TRIALS];
 
+	// stores current system prediction
+	double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
+
 	// each trial in an experiment
 	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
 		// select a random training sample
 		int row = irand(0, train_data->rows);
 		double *x = &train_data->x[row * train_data->x_cols];
 		double *y = &train_data->y[row * train_data->y_cols];
-		xcsf_trial(xcsf, cnt, x, y, true, err); // train
+		xcsf_trial(xcsf, cnt, pred, x, y, true, err); // train
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
 			disp_perf1(xcsf, err, cnt);
 		}
 	}
+
+	// clean up
+	free(pred);
 
 #ifdef GNUPLOT
 	gplot_free(xcsf);
@@ -126,30 +132,36 @@ void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 	double err[xcsf->PERF_AVG_TRIALS];
 	double terr[xcsf->PERF_AVG_TRIALS];
 
+	// stores current system prediction
+	double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
+
 	// each trial in an experiment
 	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
 		// select a random training sample
 		int row = irand(0, train_data->rows);
 		double *x = &train_data->x[row * train_data->x_cols];
 		double *y = &train_data->y[row * train_data->y_cols];
-		xcsf_trial(xcsf, xcsf->time, x, y, true, err); // train
+		xcsf_trial(xcsf, xcsf->time, pred, x, y, true, err); // train
 		// select a random testing sample
 		row = irand(0, test_data->rows);
 		x = &test_data->x[row * test_data->x_cols];
 		y = &test_data->y[row * test_data->y_cols];
-		xcsf_trial(xcsf, xcsf->time, x, y, false, terr); // test
+		xcsf_trial(xcsf, xcsf->time, pred, x, y, false, terr); // test
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
 			disp_perf2(xcsf, err, terr, cnt);
 		}
 	}
 
+	// clean up
+	free(pred);
+
 #ifdef GNUPLOT
 	gplot_free(xcsf);
 #endif
 }
 
-void xcsf_trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err)
+void xcsf_trial(XCSF *xcsf, int cnt, double *pred, double *x, double *y, _Bool train, double *err)
 {
 	// create match set
 	NODE *mset = NULL, *kset = NULL;
@@ -157,7 +169,6 @@ void xcsf_trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *
 	set_match(xcsf, &mset, &msize, &mnum, x, cnt, &kset);
 
 	// calculate system prediction and track performance
-	double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
 	set_pred(xcsf, &mset, msize, x, pred);
 	err[cnt % xcsf->PERF_AVG_TRIALS] = 0.0;
 	for(int i = 0; i < xcsf->num_y_vars; i++) {
@@ -175,7 +186,6 @@ void xcsf_trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *
 	}
 
 	// clean up
-	free(pred);
 	set_kill(xcsf, &kset); // kills deleted classifiers
 	set_free(xcsf, &mset); // frees the match set list
 }
