@@ -36,18 +36,6 @@ extern "C" void xcsf_experiment1(XCSF *, INPUT *);
 extern "C" void xcsf_experiment2(XCSF *, INPUT *, INPUT *);
 extern "C" void xcsf_predict(XCSF *, double *, double *, int);
 
-/* flatten and convert numpy arrays */
-void flatten(np::ndarray &orig, double *ret)
-{
-	int rows = orig.shape(0);
-	int cols = orig.shape(1);
-	for(int i = 0; i < rows; i++) {
-		for(int j = 0; j < cols; j++) {
-			ret[i*cols+j] = p::extract<double>(orig[i][j]);
-		}
-	}
-}
-
 /* XCSF class */
 struct XCS
 {        
@@ -62,17 +50,16 @@ struct XCS
 		xcs.pop_num = 0;
 		xcs.pop_num_sum = 0;
 		xcs.time = 0;
-
 		train_data.rows = 0;
 		train_data.x_cols = 0;
 		train_data.y_cols = 0;
+		train_data.x = NULL;
+		train_data.y = NULL;
 		test_data.rows = 0;
 		test_data.x_cols = 0;
 		test_data.y_cols = 0;
-	}
-
-	void fit() {
-		xcsf_experiment2(&xcs, &train_data, &test_data);
+		test_data.x = NULL;
+		test_data.y = NULL;
 	}
 
 	void fit(np::ndarray &train_X, np::ndarray &train_Y) {
@@ -81,22 +68,12 @@ struct XCS
 			printf("error: training X and Y rows are not equal\n");
 			return;
 		}  
-
-		// clear any previous training data
-		if(train_data.rows != 0) {
-			free(train_data.x);
-			free(train_data.y);
-		}
-
 		// load training data
 		train_data.rows = train_X.shape(0);
 		train_data.x_cols = train_X.shape(1);
 		train_data.y_cols = train_Y.shape(1);
-		train_data.x = (double *) malloc(sizeof(double) * train_data.rows * train_data.x_cols);
-		train_data.y = (double *) malloc(sizeof(double) * train_data.rows * train_data.y_cols);
-		flatten(train_X, train_data.x);
-		flatten(train_Y, train_data.y);
-
+		train_data.x = reinterpret_cast<double*>(train_X.get_data());
+		train_data.y = reinterpret_cast<double*>(train_Y.get_data());
 		// first execution
 		if(xcs.pop_num == 0) {
 			pop_init(&xcs);
@@ -124,36 +101,18 @@ struct XCS
 			printf("error: number of training and testing Y cols are not equal\n");
 			return;
 		}
-
-		// clear any previous training data
-		if(train_data.rows != 0) {
-			free(train_data.x);
-			free(train_data.y);
-		}
-
 		// load training data
 		train_data.rows = train_X.shape(0);
 		train_data.x_cols = train_X.shape(1);
 		train_data.y_cols = train_Y.shape(1);
-		train_data.x = (double *) malloc(sizeof(double) * train_data.rows * train_data.x_cols);
-		train_data.y = (double *) malloc(sizeof(double) * train_data.rows * train_data.y_cols);
-		flatten(train_X, train_data.x);
-		flatten(train_Y, train_data.y);
-
-		// clear any previous testing data
-		if(test_data.rows != 0) {
-			free(test_data.x);
-			free(test_data.y);
-		} 
+		train_data.x = reinterpret_cast<double*>(train_X.get_data());
+		train_data.y = reinterpret_cast<double*>(train_Y.get_data());
 		// load testing data
 		test_data.rows = test_X.shape(0);
 		test_data.x_cols = test_X.shape(1);
 		test_data.y_cols = test_Y.shape(1);
-		test_data.x = (double *) malloc(sizeof(double) * test_data.rows * test_data.x_cols);
-		test_data.y = (double *) malloc(sizeof(double) * test_data.rows * test_data.y_cols);
-		flatten(test_X, test_data.x);
-		flatten(test_Y, test_data.y);
-
+		train_data.x = reinterpret_cast<double*>(train_X.get_data());
+		train_data.y = reinterpret_cast<double*>(train_Y.get_data());
 		// first execution
 		if(xcs.pop_num == 0) {
 			pop_init(&xcs);
@@ -163,22 +122,12 @@ struct XCS
 	}
 
 	np::ndarray predict(np::ndarray &T) {
-		// number of inputs to predict
-		Py_intptr_t const* Tshape = T.get_shape();
-		int rows = Tshape[0];
-
-		// copy inputs from numpy array
-		double *input = (double *) malloc(sizeof(double) * rows * xcs.num_x_vars);
-		for(int row = 0; row < rows; row++) {
-			for(int col = 0; col < xcs.num_x_vars; col++) {
-				input[xcs.num_x_vars*row+col] = p::extract<double>(T[row][col]);
-			}
-		}
-
-		// predict outputs of the inputs
+		// inputs to predict
+		double *input = reinterpret_cast<double*>(T.get_data());
+        int rows = T.shape(0);
+		// predicted outputs
 		double *output = (double *) malloc(sizeof(double) * rows * xcs.num_y_vars);
 		xcsf_predict(&xcs, input, output, rows);
-
 		// return numpy array
 		np::ndarray result = np::from_data(output, np::dtype::get_builtin<double>(),
 			p::make_tuple(rows, xcs.num_y_vars), 
@@ -269,14 +218,12 @@ BOOST_PYTHON_MODULE(xcsf)
 	np::initialize();
 	random_init();
 
-	void (XCS::*fit1)() = &XCS::fit;
-	void (XCS::*fit2)(np::ndarray&, np::ndarray&) = &XCS::fit;
-	void (XCS::*fit3)(np::ndarray&, np::ndarray&, np::ndarray&, np::ndarray&) = &XCS::fit;
+	void (XCS::*fit1)(np::ndarray&, np::ndarray&) = &XCS::fit;
+	void (XCS::*fit2)(np::ndarray&, np::ndarray&, np::ndarray&, np::ndarray&) = &XCS::fit;
 
 	p::class_<XCS>("XCS", p::init<int, int>())
 		.def("fit", fit1)
 		.def("fit", fit2)
-		.def("fit", fit3)
 		.def("predict", &XCS::predict)
 		.add_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
 		.add_property("THETA_MNA", &XCS::get_theta_mna, &XCS::set_theta_mna)
