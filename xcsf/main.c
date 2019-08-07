@@ -42,9 +42,10 @@
 #include "input.h"
 #include "perf.h"
 
-void experiment1(XCSF *xcsf, INPUT *train_data);
-void experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data);
-void trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err);
+void xcsf_experiment1(XCSF *xcsf, INPUT *train_data);
+void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data);
+void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows);
+void xcsf_trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err);
 
 int main(int argc, char **argv)
 {    
@@ -74,7 +75,7 @@ int main(int argc, char **argv)
 	// initialise population
 	pop_init(xcsf);
 	// run an experiment
-	experiment2(xcsf, train_data, test_data);
+	xcsf_experiment2(xcsf, train_data, test_data);
 
 	// clean up
 	set_kill(xcsf, &xcsf->pset);
@@ -88,7 +89,7 @@ int main(int argc, char **argv)
 	return EXIT_SUCCESS;
 }
 
-void experiment1(XCSF *xcsf, INPUT *train_data)
+void xcsf_experiment1(XCSF *xcsf, INPUT *train_data)
 {  
 #ifdef GNUPLOT
 	gplot_init(xcsf);
@@ -105,7 +106,7 @@ void experiment1(XCSF *xcsf, INPUT *train_data)
 	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
 		// train
 		input_rand_sample(train_data, x, y);
-		trial(xcsf, cnt, x, y, true, err);
+		xcsf_trial(xcsf, cnt, x, y, true, err);
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
 			disp_perf1(xcsf, err, cnt);
@@ -121,7 +122,7 @@ void experiment1(XCSF *xcsf, INPUT *train_data)
 #endif
 }
 
-void experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
+void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 {   
 #ifdef GNUPLOT
 	gplot_init(xcsf);
@@ -139,10 +140,10 @@ void experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
 		// train
 		input_rand_sample(train_data, x, y);
-		trial(xcsf, cnt, x, y, true, err);
+		xcsf_trial(xcsf, xcsf->time, x, y, true, err);
 		// test
 		input_rand_sample(test_data, x, y);
-		trial(xcsf, cnt, x, y, false, terr);
+		xcsf_trial(xcsf, xcsf->time, x, y, false, terr);
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
 			disp_perf2(xcsf, err, terr, cnt);
@@ -158,7 +159,7 @@ void experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 #endif
 }
 
-void trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err)
+void xcsf_trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err)
 {
 	// create match set
 	NODE *mset = NULL, *kset = NULL;
@@ -179,10 +180,27 @@ void trial(XCSF *xcsf, int cnt, double *x, double *y, _Bool train, double *err)
 		set_update(xcsf, &mset, &msize, &mnum, y, &kset, x);
 		// run the genetic algorithm
 		ga(xcsf, &mset, msize, mnum, cnt, &kset);
+		// increment learning time
+		xcsf->time += 1;
 	}
 
 	// clean up
 	free(pred);
 	set_kill(xcsf, &kset); // kills deleted classifiers
 	set_free(xcsf, &mset); // frees the match set list
+}
+
+void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
+{   
+	for(int row = 0; row < rows; row++) {
+		// create match set
+		NODE *mset = NULL, *kset = NULL;
+		int msize = 0, mnum = 0;
+		set_match(xcsf, &mset, &msize, &mnum, &input[row*xcsf->num_x_vars], xcsf->time, &kset);
+		// calculate system prediction
+		set_pred(xcsf, &mset, msize, &input[row*xcsf->num_x_vars], &output[row*xcsf->num_y_vars]);
+		// clean up
+		set_kill(xcsf, &kset); // kills deleted classifiers
+		set_free(xcsf, &mset); // frees the match set list      
+	}
 }

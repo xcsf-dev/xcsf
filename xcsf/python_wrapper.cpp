@@ -15,8 +15,9 @@ extern "C" {
 #include "cl_set.h"
 }
 
-extern "C" void experiment1(XCSF *, INPUT *);
-extern "C" void experiment2(XCSF *, INPUT *, INPUT *);
+extern "C" void xcsf_experiment1(XCSF *, INPUT *);
+extern "C" void xcsf_experiment2(XCSF *, INPUT *, INPUT *);
+extern "C" void xcsf_predict(XCSF *, double *, double *, int);
 
 /* flatten and convert numpy arrays */
 void flatten(np::ndarray &orig, double *ret)
@@ -43,6 +44,7 @@ struct XCS
 		xcs.num_y_vars = num_y_vars;
 		xcs.pop_num = 0;
 		xcs.pop_num_sum = 0;
+		xcs.time = 0;
 
 		train_data.rows = 0;
 		train_data.x_cols = 0;
@@ -53,7 +55,7 @@ struct XCS
 	}
 
 	void fit() {
-		experiment2(&xcs, &train_data, &test_data);
+		xcsf_experiment2(&xcs, &train_data, &test_data);
 	}
  
 	void fit(np::ndarray &train_X,
@@ -85,7 +87,7 @@ struct XCS
 			pop_init(&xcs);
 		}       
 		// execute
-		experiment1(&xcs, &train_data);        
+		xcsf_experiment1(&xcs, &train_data);        
 	}
  
 	void fit(np::ndarray &train_X,
@@ -145,7 +147,35 @@ struct XCS
 			pop_init(&xcs);
 		}       
 		// execute
-		experiment2(&xcs, &train_data, &test_data);
+		xcsf_experiment2(&xcs, &train_data, &test_data);
+	}
+
+	np::ndarray predict(np::ndarray &T) {
+		// number of inputs to predict
+		Py_intptr_t const* Tshape = T.get_shape();
+		int rows = Tshape[0];
+
+		// copy inputs from numpy array
+		double *input = (double *) malloc(sizeof(double) * rows * xcs.num_x_vars);
+		for(int row = 0; row < rows; row++) {
+			for(int col = 0; col < xcs.num_x_vars; col++) {
+				input[xcs.num_x_vars*row+col] = p::extract<double>(T[row][col]);
+			}
+		}
+
+		// predict outputs of the inputs
+		double *output = (double *) malloc(sizeof(double) * rows * xcs.num_y_vars);
+		xcsf_predict(&xcs, input, output, rows);
+
+    	// copy predictions to numpy array
+		Py_intptr_t shape[2] = { rows, xcs.num_y_vars };
+		np::ndarray result = np::empty(2, shape, np::dtype::get_builtin<double>());
+ 		for(int row = 0; row < rows; row++) {
+			for(int col = 0; col < xcs.num_y_vars; col++) {
+				result[row][col] = output[xcs.num_y_vars*row+col];
+			}
+		}
+		return result;
 	}
 
 	/* GETTERS */
@@ -292,7 +322,11 @@ struct XCS
 	int get_pop_num_sum() {
 		return xcs.pop_num_sum;
 	}
-
+ 
+	int get_time() {
+		return xcs.time;
+	}
+ 
 	double get_num_x_vars() {
 		return xcs.num_x_vars;
 	}
@@ -452,6 +486,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.def("fit", fit1)
 		.def("fit", fit2)
 		.def("fit", fit3)
+		.def("predict", &XCS::predict)
 		.add_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
 		.add_property("THETA_MNA", &XCS::get_theta_mna, &XCS::set_theta_mna)
 		.add_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials)
@@ -488,6 +523,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("SET_SUBSUMPTION", &XCS::get_set_subsumption, &XCS::set_set_subsumption)
 		.def("pop_num", &XCS::get_pop_num)
 		.def("pop_num_sum", &XCS::get_pop_num_sum)
+		.def("time", &XCS::get_time)
 		.def("num_x_vars", &XCS::get_num_x_vars)
 		.def("num_y_vars", &XCS::get_num_x_vars)
 		;

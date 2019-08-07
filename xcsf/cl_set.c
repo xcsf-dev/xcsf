@@ -42,6 +42,7 @@ void pop_init(XCSF *xcsf)
 	xcsf->pset = NULL; // population linked list
 	xcsf->pop_num = 0; // num macro-classifiers
 	xcsf->pop_num_sum = 0; // numerosity sum
+	xcsf->time = 0; // number of learning trials performed
 
 	if(xcsf->POP_INIT) {
 		while(xcsf->pop_num_sum < xcsf->POP_SIZE) {

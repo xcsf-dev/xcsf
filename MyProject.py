@@ -42,3 +42,14 @@ xcs.PRED_TYPE = 0
  
 # fit function
 xcs.fit(train_X, train_Y)
+
+# get some predictions
+pred = xcs.predict(train_X[:5])
+
+# show the predctions vs. answers
+print("*****************************")
+print("predictions = ")
+print(pred)
+print("*****************************")
+print("answers = ")
+print(train_Y[:5])
