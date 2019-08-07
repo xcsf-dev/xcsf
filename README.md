@@ -76,4 +76,4 @@ Running:
 
 See example MyProject.py
 
-1. `python MyProject.py`
+1. `python3 MyProject.py`
