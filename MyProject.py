@@ -2,13 +2,13 @@
 import xcsf.xcsf as xcsf
 import numpy as np
 from sklearn import datasets
-from sklearn.preprocessing import normalize
+from sklearn.preprocessing import minmax_scale
 
 iris = datasets.load_iris()
 train_X, train_Y = iris.data, iris.target
 
-train_X = normalize(train_X)
-train_Y = normalize(train_Y.reshape(train_Y.shape[0],-1), norm='max', axis=0)
+train_X = minmax_scale(train_X, feature_range=(-1,1))
+train_Y = minmax_scale(train_Y, feature_range=(-1,1)).reshape(train_Y.shape[0],1)
 
 print("train_X shape = "+str(np.shape(train_X)))
 print("train_Y shape = "+str(np.shape(train_Y)))
