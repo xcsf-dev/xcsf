@@ -37,7 +37,6 @@ struct XCS
 	INPUT test_data;
 
 	XCS(int num_x_vars, int num_y_vars) {
-		random_init();
 		constants_init(&xcs);
 		xcs.num_x_vars = num_x_vars;
 		xcs.num_y_vars = num_y_vars;
@@ -410,6 +409,7 @@ struct XCS
 BOOST_PYTHON_MODULE(xcsf)
 {
 	np::initialize();
+	random_init();
 
 	void (XCS::*fit1)() = &XCS::fit;
 	void (XCS::*fit2)(np::ndarray&, np::ndarray&, np::ndarray&, np::ndarray&) = &XCS::fit;
