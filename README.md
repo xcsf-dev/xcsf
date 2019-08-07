@@ -1,4 +1,3 @@
-------------------------
 XCSF learning classifier system
 ------------------------
 
