@@ -45,7 +45,8 @@
 void xcsf_experiment1(XCSF *xcsf, INPUT *train_data);
 void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data);
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows);
-void xcsf_trial(XCSF *xcsf, int cnt, double *pred, double *x, double *y, _Bool train, double *err);
+double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
+double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
 
 int main(int argc, char **argv)
 {    
@@ -97,7 +98,6 @@ void xcsf_experiment1(XCSF *xcsf, INPUT *train_data)
  
 	// performance tracking
 	double err[xcsf->PERF_AVG_TRIALS];
-
 	// stores current system prediction
 	double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
 
@@ -107,7 +107,7 @@ void xcsf_experiment1(XCSF *xcsf, INPUT *train_data)
 		int row = irand(0, train_data->rows);
 		double *x = &train_data->x[row * train_data->x_cols];
 		double *y = &train_data->y[row * train_data->y_cols];
-		xcsf_trial(xcsf, cnt, pred, x, y, true, err); // train
+		err[cnt % xcsf->PERF_AVG_TRIALS] = xcsf_learn_trial(xcsf, pred, x, y);
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
 			disp_perf1(xcsf, err, cnt);
@@ -131,7 +131,6 @@ void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 	// performance tracking
 	double err[xcsf->PERF_AVG_TRIALS];
 	double terr[xcsf->PERF_AVG_TRIALS];
-
 	// stores current system prediction
 	double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
 
@@ -141,12 +140,12 @@ void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 		int row = irand(0, train_data->rows);
 		double *x = &train_data->x[row * train_data->x_cols];
 		double *y = &train_data->y[row * train_data->y_cols];
-		xcsf_trial(xcsf, xcsf->time, pred, x, y, true, err); // train
+		err[cnt % xcsf->PERF_AVG_TRIALS] = xcsf_learn_trial(xcsf, pred, x, y);
 		// select a random testing sample
 		row = irand(0, test_data->rows);
 		x = &test_data->x[row * test_data->x_cols];
 		y = &test_data->y[row * test_data->y_cols];
-		xcsf_trial(xcsf, xcsf->time, pred, x, y, false, terr); // test
+		terr[cnt % xcsf->PERF_AVG_TRIALS] = xcsf_test_trial(xcsf, pred, x, y);
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
 			disp_perf2(xcsf, err, terr, cnt);
@@ -160,34 +159,51 @@ void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 	gplot_free(xcsf);
 #endif
 }
-
-void xcsf_trial(XCSF *xcsf, int cnt, double *pred, double *x, double *y, _Bool train, double *err)
+ 
+double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
 	// create match set
 	NODE *mset = NULL, *kset = NULL;
 	int msize = 0, mnum = 0;
 	set_match(xcsf, &mset, &msize, &mnum, x, &kset);
-
-	// calculate system prediction and track performance
+	// calculate system prediction
 	set_pred(xcsf, &mset, msize, x, pred);
-	err[cnt % xcsf->PERF_AVG_TRIALS] = 0.0;
-	for(int i = 0; i < xcsf->num_y_vars; i++) {
-		err[cnt % xcsf->PERF_AVG_TRIALS] += (y[i]-pred[i])*(y[i]-pred[i]);
-	}
-	err[cnt % xcsf->PERF_AVG_TRIALS] /= (double)xcsf->num_y_vars; // MSE
-
-	if(train) {
-		// provide reinforcement to the set
-		set_update(xcsf, &mset, &msize, &mnum, y, &kset, x);
-		// run the genetic algorithm
-		ga(xcsf, &mset, msize, mnum, &kset);
-		// increment learning time
-		xcsf->time += 1;
-	}
-
+	// provide reinforcement to the set
+	set_update(xcsf, &mset, &msize, &mnum, y, &kset, x);
+	// run the genetic algorithm
+	ga(xcsf, &mset, msize, mnum, &kset);
+	// increment learning time
+	xcsf->time += 1;
 	// clean up
 	set_kill(xcsf, &kset); // kills deleted classifiers
 	set_free(xcsf, &mset); // frees the match set list
+	// return the system error
+	double error = 0.0;
+	for(int i = 0; i < xcsf->num_y_vars; i++) {
+		error += (y[i]-pred[i])*(y[i]-pred[i]);
+	}
+	error /= (double)xcsf->num_y_vars; // MSE
+	return error;
+}
+ 
+double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
+{
+	// create match set
+	NODE *mset = NULL, *kset = NULL;
+	int msize = 0, mnum = 0;
+	set_match(xcsf, &mset, &msize, &mnum, x, &kset);
+	// calculate system prediction
+	set_pred(xcsf, &mset, msize, x, pred);
+	// clean up
+	set_kill(xcsf, &kset); // kills deleted classifiers
+	set_free(xcsf, &mset); // frees the match set list  
+	// return the system error
+	double error = 0.0;
+	for(int i = 0; i < xcsf->num_y_vars; i++) {
+		error += (y[i]-pred[i])*(y[i]-pred[i]);
+	}
+	error /= (double)xcsf->num_y_vars; // MSE
+	return error;      
 }
 
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
