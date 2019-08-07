@@ -13,7 +13,7 @@ See `cons.txt` for a full list of options.
 Evolved Conditions:
 
 - COND_TYPE =-1: always matching dummy condition
-- COND_TYPE = 0: real-valued hyperrectangle intervals
+- COND_TYPE = 0: hyperrectangles
 - COND_TYPE = 1: multilayer perceptron neural networks
 - COND_TYPE = 2: GP trees
 - COND_TYPE = 3: dynamical GP graphs
