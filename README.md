@@ -72,6 +72,6 @@ Building:
 
 Running:
 
-Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
+See example MyProject.py
 
 1. `python MyProject.py`
