@@ -61,7 +61,9 @@ Requirements:
 - cmake
 - OpenMP
 - Python
-- Boost Python and numpy libaries (libboost-python-dev libboost-numpy-dev)
+- Boost Python and numpy libaries (at least version 1.56.0 for Python3)
+	+ Ubuntu 18.04: `sudo apt install libboost-python-dev libboost-numpy-dev`
+	+ OS X: `brew install boost-python3 boost-numpy3`
 
 Building:
 
