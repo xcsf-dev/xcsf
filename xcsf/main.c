@@ -225,3 +225,12 @@ void xcsf_print_pop(XCSF *xcsf, _Bool print_cond, _Bool print_pred)
 {
     set_print(xcsf, xcsf->pset, print_cond, print_pred);
 }
+
+void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool print_cond, _Bool print_pred)
+{
+	// create match set
+	NODE *mset = NULL, *kset = NULL;
+	int msize = 0, mnum = 0;
+	set_match(xcsf, &mset, &msize, &mnum, input, &kset);
+    set_print(xcsf, mset, print_cond, print_pred);
+}

@@ -36,6 +36,7 @@ extern "C" void xcsf_experiment1(XCSF *, INPUT *);
 extern "C" void xcsf_experiment2(XCSF *, INPUT *, INPUT *);
 extern "C" void xcsf_predict(XCSF *, double *, double *, int);
 extern "C" void xcsf_print_pop(XCSF *, _Bool, _Bool);
+extern "C" void xcsf_print_match_set(XCSF *, double *, _Bool, _Bool);
 
 /* XCSF class */
 struct XCS
@@ -138,6 +139,11 @@ struct XCS
 
         void print_pop(_Bool print_cond, _Bool print_pred) {
             xcsf_print_pop(&xcs, print_cond, print_pred);
+        }
+
+        void print_match_set(np::ndarray &X, _Bool print_cond, _Bool print_pred) {
+			double *input = reinterpret_cast<double*>(X.get_data());
+            xcsf_print_match_set(&xcs, input, print_cond, print_pred);
         }
 
 	/* GETTERS */
@@ -270,5 +276,6 @@ BOOST_PYTHON_MODULE(xcsf)
 		.def("num_x_vars", &XCS::get_num_x_vars)
 		.def("num_y_vars", &XCS::get_num_y_vars)
 		.def("print_pop", &XCS::print_pop)
+		.def("print_match_set", &XCS::print_match_set)
 		;
 }
