@@ -1,44 +1,28 @@
 #!/usr/bin/python3
 import xcsf.xcsf as xcsf
-import random
-import math
 import numpy as np
-import csv
+from sklearn import datasets
+from sklearn.preprocessing import normalize
 
-# read csv data
-def read_input_csv(path, name, t, v):
-    tmp = []
-    with open(path+name+"_"+t+"_"+v+".csv", 'rt') as csvfile:
-        data = csv.reader(csvfile, delimiter=',')
-        for row in data:
-            tmp.append(row)
-    return tmp
+iris = datasets.load_iris()
+train_X, train_Y = iris.data, iris.target
+train_X = normalize(train_X)
+train_Y = normalize(train_Y.reshape(train_Y.shape[0],-1), norm='max', axis=0)
 
-data_path = "../data/"
-data_name = "sine_1var"
-train_X_list = read_input_csv(data_path, data_name, "train", "x")
-train_Y_list = read_input_csv(data_path, data_name, "train", "y")
-test_X_list = read_input_csv(data_path, data_name, "test", "x")
-test_Y_list = read_input_csv(data_path, data_name, "test", "y")
+print("train_X shape = "+str(np.shape(train_X)))
+print("train_Y shape = "+str(np.shape(train_Y)))
 
-# convert to numpy arrays
-train_X = np.asarray(train_X_list, dtype=np.float64)
-train_Y = np.asarray(train_Y_list, dtype=np.float64)
-test_X = np.asarray(test_X_list, dtype=np.float64)
-test_Y = np.asarray(test_Y_list, dtype=np.float64)
+num_input_vars = len(train_X[0])
+num_output_vars = 1
+print("xvars = "+str(num_input_vars) + " yvars = " + str(num_output_vars))
 
-print("train_X = "+str(np.shape(train_X))+" train_Y = "+str(np.shape(train_Y)))
-print("test_X = "+str(np.shape(test_X))+" test_Y = "+str(np.shape(test_Y)))      
-
-num_inputs = np.shape(train_X)[1]
-num_outputs = np.shape(train_Y)[1]
-
-## initialise XCSF
-xcs = xcsf.XCS(num_inputs, num_outputs)
+# initialise XCSF
+xcs = xcsf.XCS(num_input_vars, num_output_vars)
 
 # override cons.txt
-xcs.MAX_TRIALS = 50000
-xcs.PRED_TYPE = 4 # neural network predictors
-
+xcs.MAX_TRIALS = 10000
+xcs.COND_TYPE = 0
+xcs.PRED_TYPE = 0
+ 
 # fit function
-xcs.fit(train_X, train_Y, test_X, test_Y)
+xcs.fit(train_X, train_Y)
