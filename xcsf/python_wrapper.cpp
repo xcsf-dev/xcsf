@@ -75,9 +75,7 @@ struct XCS
 		xcsf_experiment2(&xcs, &train_data, &test_data);
 	}
  
-	void fit(np::ndarray &train_X,
-			np::ndarray &train_Y) {
-
+	void fit(np::ndarray &train_X, np::ndarray &train_Y) {
 		// check inputs are correctly sized
 		if(train_X.shape(0) != train_Y.shape(0)) {
 			printf("error: training X and Y rows are not equal\n");
@@ -107,11 +105,8 @@ struct XCS
 		xcsf_experiment1(&xcs, &train_data);        
 	}
  
-	void fit(np::ndarray &train_X,
-			np::ndarray &train_Y, 
-			np::ndarray &test_X,
-			np::ndarray &test_Y) {
-
+	void fit(np::ndarray &train_X, np::ndarray &train_Y, 
+			np::ndarray &test_X, np::ndarray &test_Y) {
 		// check inputs are correctly sized
 		if(train_X.shape(0) != train_Y.shape(0)) {
 			printf("error: training X and Y rows are not equal\n");
