@@ -179,14 +179,10 @@ struct XCS
 		double *output = (double *) malloc(sizeof(double) * rows * xcs.num_y_vars);
 		xcsf_predict(&xcs, input, output, rows);
 
-		// copy predictions to numpy array
-		Py_intptr_t shape[2] = { rows, xcs.num_y_vars };
-		np::ndarray result = np::empty(2, shape, np::dtype::get_builtin<double>());
-		for(int row = 0; row < rows; row++) {
-			for(int col = 0; col < xcs.num_y_vars; col++) {
-				result[row][col] = output[xcs.num_y_vars*row+col];
-			}
-		}
+		// return numpy array
+		np::ndarray result = np::from_data(output, np::dtype::get_builtin<double>(),
+			p::make_tuple(rows, xcs.num_y_vars), 
+			p::make_tuple(sizeof(double), sizeof(double)), p::object());
 		return result;
 	}
 
