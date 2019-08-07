@@ -191,298 +191,81 @@ struct XCS
 	}
 
 	/* GETTERS */
-	_Bool get_pop_init() {
-		return xcs.POP_INIT;
-	}
-
-	double get_theta_mna() {
-		return xcs.THETA_MNA;
-	}
-
-	int get_max_trials() {
-		return xcs.MAX_TRIALS;
-	}
-
-	int get_perf_avg_trials() {
-		return xcs.PERF_AVG_TRIALS;
-	}
-
-	int get_pop_size() {
-		return xcs.POP_SIZE;
-	}
-
-	double get_alpha() {
-		return xcs.ALPHA;
-	}
-
-	double get_beta() {
-		return xcs.BETA;
-	}
-
-	double get_delta() {
-		return xcs.DELTA;
-	}
-
-	double get_eps_0() {
-		return xcs.EPS_0;
-	} 
-
-	double get_err_reduc() {
-		return xcs.ERR_REDUC;
-	}
-
-	double get_fit_reduc() {
-		return xcs.FIT_REDUC;
-	}
-
-	double get_init_error() {
-		return xcs.INIT_ERROR;
-	}
-
-	double get_init_fitness() {
-		return xcs.INIT_FITNESS;
-	}
-
-	double get_nu() {
-		return xcs.NU;
-	}
-
-	double get_theta_del() {
-		return xcs.THETA_DEL;
-	}
-
-	int get_cond_type() {
-		return xcs.COND_TYPE;
-	}
-
-	int get_pred_type() {
-		return xcs.PRED_TYPE;
-	}
-
-	double get_p_crossover() {
-		return xcs.P_CROSSOVER;
-	}
-
-	double get_p_mutation() {
-		return xcs.P_MUTATION;
-	}
-
-	double get_theta_ga() {
-		return xcs.THETA_GA;
-	}
-
-	int get_theta_offspring() {
-		return xcs.THETA_OFFSPRING;
-	}
-
-	double get_mueps_0() {
-		return xcs.muEPS_0;
-	}
-
-	int get_num_sam() {
-		return xcs.NUM_SAM;
-	}
-
-	double get_max_con() {
-		return xcs.MAX_CON;
-	}
-
-	double get_min_con() {
-		return xcs.MIN_CON;
-	}
-
-	double get_s_mutation() {
-		return xcs.S_MUTATION;
-	}
-
-	int get_num_hidden_neurons() {
-		return xcs.NUM_HIDDEN_NEURONS;
-	}
-
-	int get_dgp_num_nodes() {
-		return xcs.DGP_NUM_NODES;
-	}
-
-	int get_gp_num_cons() {
-		return xcs.GP_NUM_CONS;
-	}
-
-	double get_xcsf_eta() {
-		return xcs.XCSF_ETA;
-	}
-
-	double get_xcsf_x0() {
-		return xcs.XCSF_X0;
-	}
-
-	double get_theta_sub() {
-		return xcs.THETA_SUB;
-	}
-
-	_Bool get_ga_subsumption() {
-		return xcs.GA_SUBSUMPTION;
-	}
-
-	_Bool get_set_subsumption() {
-		return xcs.SET_SUBSUMPTION;
-	}
-
-	int get_pop_num() {
-		return xcs.pop_num;
-	}
-
-	int get_pop_num_sum() {
-		return xcs.pop_num_sum;
-	}
-
-	int get_time() {
-		return xcs.time;
-	}
-
-	double get_num_x_vars() {
-		return xcs.num_x_vars;
-	}
-
-	double get_num_y_vars() {
-		return xcs.num_y_vars;
-	}                      
+	_Bool get_pop_init() { return xcs.POP_INIT; }
+	double get_theta_mna() { return xcs.THETA_MNA; }
+	int get_max_trials() { return xcs.MAX_TRIALS; }
+	int get_perf_avg_trials() { return xcs.PERF_AVG_TRIALS; }
+	int get_pop_size() { return xcs.POP_SIZE; }
+	double get_alpha() { return xcs.ALPHA; }
+	double get_beta() { return xcs.BETA; }
+	double get_delta() { return xcs.DELTA; }
+	double get_eps_0() { return xcs.EPS_0; }
+	double get_err_reduc() { return xcs.ERR_REDUC; }
+	double get_fit_reduc() { return xcs.FIT_REDUC; }
+	double get_init_error() { return xcs.INIT_ERROR; }
+	double get_init_fitness() { return xcs.INIT_FITNESS; }
+	double get_nu() { return xcs.NU; }
+	double get_theta_del() { return xcs.THETA_DEL; }
+	int get_cond_type() { return xcs.COND_TYPE; }
+	int get_pred_type() { return xcs.PRED_TYPE; }
+	double get_p_crossover() { return xcs.P_CROSSOVER; }
+	double get_p_mutation() { return xcs.P_MUTATION; }
+	double get_theta_ga() { return xcs.THETA_GA; }
+	int get_theta_offspring() { return xcs.THETA_OFFSPRING; }
+	double get_mueps_0() { return xcs.muEPS_0; }
+	int get_num_sam() { return xcs.NUM_SAM; }
+	double get_max_con() { return xcs.MAX_CON; }
+	double get_min_con() { return xcs.MIN_CON; }
+	double get_s_mutation() { return xcs.S_MUTATION; }
+	int get_num_hidden_neurons() { return xcs.NUM_HIDDEN_NEURONS; }
+	int get_dgp_num_nodes() { return xcs.DGP_NUM_NODES; }
+	int get_gp_num_cons() { return xcs.GP_NUM_CONS; }
+	double get_xcsf_eta() { return xcs.XCSF_ETA; }
+	double get_xcsf_x0() { return xcs.XCSF_X0; }
+	double get_theta_sub() { return xcs.THETA_SUB; }
+	_Bool get_ga_subsumption() { return xcs.GA_SUBSUMPTION; }
+	_Bool get_set_subsumption() { return xcs.SET_SUBSUMPTION; }
+	int get_pop_num() { return xcs.pop_num; }
+	int get_pop_num_sum() { return xcs.pop_num_sum; }
+	int get_time() { return xcs.time; }
+	double get_num_x_vars() { return xcs.num_x_vars; }
+	double get_num_y_vars() { return xcs.num_y_vars; }                      
 
 	/* SETTERS */
-	void set_pop_init(_Bool a) {
-		xcs.POP_INIT = a;
-	}
-
-	void set_theta_mna(double a) {
-		xcs.THETA_MNA = a;
-	}
-
-	void set_max_trials(int a) {
-		xcs.MAX_TRIALS = a;
-	}
-
-	void set_perf_avg_trials(int a) {
-		xcs.PERF_AVG_TRIALS = a;
-	}
-
-	void set_pop_size(int a) {
-		xcs.POP_SIZE = a;
-	}
-
-	void set_alpha(double a) {
-		xcs.ALPHA = a;
-	}
-
-	void set_beta(double a) {
-		xcs.BETA = a;
-	}
-
-	void set_delta(double a) {
-		xcs.DELTA = a;
-	}
-
-	void set_eps_0(double a) {
-		xcs.EPS_0 = a;
-	} 
-
-	void set_err_reduc(double a) {
-		xcs.ERR_REDUC = a;
-	}
-
-	void set_fit_reduc(double a) {
-		xcs.FIT_REDUC = a;
-	}
-
-	void set_init_error(double a) {
-		xcs.INIT_ERROR = a;
-	}
-
-	void set_init_fitness(double a) {
-		xcs.INIT_FITNESS = a;
-	}
-
-	void set_nu(double a) {
-		xcs.NU = a;
-	}
-
-	void set_theta_del(double a) {
-		xcs.THETA_DEL = a;
-	}
-
-	void set_cond_type(int a) {
-		xcs.COND_TYPE = a;
-	}
-
-	void set_pred_type(int a) {
-		xcs.PRED_TYPE = a;
-	}
-
-	void set_p_crossover(double a) {
-		xcs.P_CROSSOVER = a;
-	}
-
-	void set_p_mutation(double a) {
-		xcs.P_MUTATION = a;
-	}
-
-	void set_theta_ga(double a) {
-		xcs.THETA_GA = a;
-	}
-
-	void set_theta_offspring(int a) {
-		xcs.THETA_OFFSPRING = a;
-	}
-
-	void set_mueps_0(double a) {
-		xcs.muEPS_0 = a;
-	}
-
-	void set_num_sam(int a) {
-		xcs.NUM_SAM = a;
-	}
-
-	void set_max_con(double a) {
-		xcs.MAX_CON = a;
-	}
-
-	void set_min_con(double a) {
-		xcs.MIN_CON = a;
-	}
-
-	void set_s_mutation(double a) {
-		xcs.S_MUTATION = a;
-	}
-
-	void set_num_hidden_neurons(int a) {
-		xcs.NUM_HIDDEN_NEURONS = a;
-	}
-
-	void set_dgp_num_nodes(int a) {
-		xcs.DGP_NUM_NODES = a;
-	}
-
-	void set_gp_num_cons(int a) {
-		xcs.GP_NUM_CONS = a;
-	}
-
-	void set_xcsf_eta(double a) {
-		xcs.XCSF_ETA = a;
-	}
-
-	void set_xcsf_x0(double a) {
-		xcs.XCSF_X0 = a;
-	}
-
-	void set_theta_sub(double a) {
-		xcs.THETA_SUB = a;
-	}
-
-	void set_ga_subsumption(_Bool a) {
-		xcs.GA_SUBSUMPTION = a;
-	}
-
-	void set_set_subsumption(_Bool a) {
-		xcs.SET_SUBSUMPTION = a;
-	}
+	void set_pop_init(_Bool a) { xcs.POP_INIT = a; }
+	void set_theta_mna(double a) { xcs.THETA_MNA = a; }
+	void set_max_trials(int a) { xcs.MAX_TRIALS = a; }
+	void set_perf_avg_trials(int a) { xcs.PERF_AVG_TRIALS = a; }
+	void set_pop_size(int a) { xcs.POP_SIZE = a; }
+	void set_alpha(double a) { xcs.ALPHA = a; }
+	void set_beta(double a) { xcs.BETA = a; }
+	void set_delta(double a) { xcs.DELTA = a; }
+	void set_eps_0(double a) { xcs.EPS_0 = a; } 
+	void set_err_reduc(double a) { xcs.ERR_REDUC = a; }
+	void set_fit_reduc(double a) { xcs.FIT_REDUC = a; }
+	void set_init_error(double a) { xcs.INIT_ERROR = a; }
+	void set_init_fitness(double a) { xcs.INIT_FITNESS = a; }
+	void set_nu(double a) { xcs.NU = a; }
+	void set_theta_del(double a) { xcs.THETA_DEL = a; }
+	void set_cond_type(int a) { xcs.COND_TYPE = a; }
+	void set_pred_type(int a) { xcs.PRED_TYPE = a; }
+	void set_p_crossover(double a) { xcs.P_CROSSOVER = a; }
+	void set_p_mutation(double a) { xcs.P_MUTATION = a; }
+	void set_theta_ga(double a) { xcs.THETA_GA = a; }
+	void set_theta_offspring(int a) { xcs.THETA_OFFSPRING = a; }
+	void set_mueps_0(double a) { xcs.muEPS_0 = a; }
+	void set_num_sam(int a) { xcs.NUM_SAM = a; }
+	void set_max_con(double a) { xcs.MAX_CON = a; }
+	void set_min_con(double a) { xcs.MIN_CON = a; }
+	void set_s_mutation(double a) { xcs.S_MUTATION = a; }
+	void set_num_hidden_neurons(int a) { xcs.NUM_HIDDEN_NEURONS = a; }
+	void set_dgp_num_nodes(int a) { xcs.DGP_NUM_NODES = a; }
+	void set_gp_num_cons(int a) { xcs.GP_NUM_CONS = a; }
+	void set_xcsf_eta(double a) { xcs.XCSF_ETA = a; }
+	void set_xcsf_x0(double a) { xcs.XCSF_X0 = a; }
+	void set_theta_sub(double a) { xcs.THETA_SUB = a; }
+	void set_ga_subsumption(_Bool a) { xcs.GA_SUBSUMPTION = a; }
+	void set_set_subsumption(_Bool a) { xcs.SET_SUBSUMPTION = a; }
 };
 
 BOOST_PYTHON_MODULE(xcsf)
