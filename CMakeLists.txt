@@ -67,12 +67,11 @@ if(NOT XCSF_PYTHON_LIBRARY)
 	#######################
 
 	option(GENPROF "Generate profile" OFF)
-	option(USEPROF "Use profile" OFF)
-
 	if(GENPROF)
 		set(PROFILE_FLAGS "-fprofile-generate")
 	endif()
 
+	option(USEPROF "Use profile" OFF)
 	if(USEPROF)
 		set(PROFILE_FLAGS "-fprofile-use")
 	endif()
