@@ -46,7 +46,7 @@ xcs.fit(train_X, train_Y)
 # get some predictions
 pred = xcs.predict(train_X[:5])
 
-# show the predctions vs. answers
+# show the predictions vs. answers
 print("*****************************")
 print("predictions = ")
 print(pred)
