@@ -166,7 +166,7 @@ void xcsf_trial(XCSF *xcsf, int cnt, double *pred, double *x, double *y, _Bool t
 	// create match set
 	NODE *mset = NULL, *kset = NULL;
 	int msize = 0, mnum = 0;
-	set_match(xcsf, &mset, &msize, &mnum, x, cnt, &kset);
+	set_match(xcsf, &mset, &msize, &mnum, x, &kset);
 
 	// calculate system prediction and track performance
 	set_pred(xcsf, &mset, msize, x, pred);
@@ -180,7 +180,7 @@ void xcsf_trial(XCSF *xcsf, int cnt, double *pred, double *x, double *y, _Bool t
 		// provide reinforcement to the set
 		set_update(xcsf, &mset, &msize, &mnum, y, &kset, x);
 		// run the genetic algorithm
-		ga(xcsf, &mset, msize, mnum, cnt, &kset);
+		ga(xcsf, &mset, msize, mnum, &kset);
 		// increment learning time
 		xcsf->time += 1;
 	}
@@ -196,7 +196,7 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
 		// create match set
 		NODE *mset = NULL, *kset = NULL;
 		int msize = 0, mnum = 0;
-		set_match(xcsf, &mset, &msize, &mnum, &input[row*xcsf->num_x_vars], xcsf->time, &kset);
+		set_match(xcsf, &mset, &msize, &mnum, &input[row*xcsf->num_x_vars], &kset);
 		// calculate system prediction
 		set_pred(xcsf, &mset, msize, &input[row*xcsf->num_x_vars], &output[row*xcsf->num_y_vars]);
 		// clean up

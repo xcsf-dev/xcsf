@@ -118,7 +118,7 @@ void pop_enforce_limit(XCSF *xcsf, NODE **kset)
 	}
 }
 
-void set_match(XCSF *xcsf, NODE **set, int *size, int *num, double *x, int time, NODE **kset)
+void set_match(XCSF *xcsf, NODE **set, int *size, int *num, double *x, NODE **kset)
 {
 	// add classifiers that match the input state to the match set  
 #ifdef PARALLEL_MATCH
@@ -157,7 +157,7 @@ void set_match(XCSF *xcsf, NODE **set, int *size, int *num, double *x, int time,
 	while(*size < xcsf->THETA_MNA) {
 		// new classifier with matching condition
 		CL *new = malloc(sizeof(CL));
-		cl_init(xcsf, new, *num+1, time);
+		cl_init(xcsf, new, *num+1, xcsf->time);
 		cl_cover(xcsf, new, x);
 		(*size)++;
 		(*num)++;
@@ -321,12 +321,11 @@ void set_print(XCSF *xcsf, NODE *set)
 	(void)xcsf;
 }
 
-void set_times(XCSF *xcsf, NODE **set, int time)
+void set_times(XCSF *xcsf, NODE **set)
 {
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-		iter->cl->time = time;
+		iter->cl->time = xcsf->time;
 	}
-	(void)xcsf;
 }
 
 double set_total_fit(XCSF *xcsf, NODE **set)

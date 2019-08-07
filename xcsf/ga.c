@@ -38,13 +38,13 @@
 CL *ga_select_parent(XCSF *xcsf, NODE **set, double fit_sum);
 void ga_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, NODE **set, int size);
 
-void ga(XCSF *xcsf, NODE **set, int size, int num, int time, NODE **kset)
+void ga(XCSF *xcsf, NODE **set, int size, int num, NODE **kset)
 {
 	// check if the genetic algorithm should be run
-	if(size == 0 || time - set_mean_time(xcsf, set, num) < xcsf->THETA_GA) {
+	if(size == 0 || xcsf->time - set_mean_time(xcsf, set, num) < xcsf->THETA_GA) {
 		return;
 	}
-	set_times(xcsf, set, time);
+	set_times(xcsf, set);
 	// select parents
 	double fit_sum = set_total_fit(xcsf, set);
 	CL *c1p = ga_select_parent(xcsf, set, fit_sum);
