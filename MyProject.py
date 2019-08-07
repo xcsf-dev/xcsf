@@ -13,13 +13,13 @@ train_Y = normalize(train_Y.reshape(train_Y.shape[0],-1), norm='max', axis=0)
 print("train_X shape = "+str(np.shape(train_X)))
 print("train_Y shape = "+str(np.shape(train_Y)))
 
-num_input_vars = np.shape(train_X)[1]
-num_output_vars = np.shape(train_Y)[1] 
+xvars = np.shape(train_X)[1]
+yvars = np.shape(train_Y)[1] 
 
-print("xvars = "+str(num_input_vars) + " yvars = " + str(num_output_vars))
+print("xvars = "+str(xvars) + " yvars = " + str(yvars))
 
 # initialise XCSF
-xcs = xcsf.XCS(num_input_vars, num_output_vars)
+xcs = xcsf.XCS(xvars, yvars)
 
 # override cons.txt
 xcs.MAX_TRIALS = 10000
