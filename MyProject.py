@@ -36,20 +36,25 @@ xcs = xcsf.XCS(xvars, yvars)
 
 # override cons.txt
 xcs.POP_SIZE = 5000
-xcs.MAX_TRIALS = 50000
-xcs.COND_TYPE = 0
-xcs.PRED_TYPE = 0
+xcs.MAX_TRIALS = 100000
+xcs.COND_TYPE = 2 # GP tree conditions
+xcs.PRED_TYPE = 4 # neural network predictors
  
 # fit function
 xcs.fit(train_X, train_Y)
 
-# get some predictions
-pred = xcs.predict(train_X[:5])
+# get predictions
+pred = xcs.predict(train_X)
 
-# show the predictions vs. answers
+# show some predictions vs. answers
 print("*****************************")
-print("predictions = ")
-print(pred)
+print("first 10 predictions = ")
+print(pred[:10])
 print("*****************************")
-print("answers = ")
-print(train_Y[:5])
+print("first 10 answers = ")
+print(train_Y[:10])
+
+# mean squared error
+mse = (np.square(pred - train_Y)).mean(axis=0)
+print("*****************************")
+print("MSE = "+str(mse))
