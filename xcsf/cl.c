@@ -123,17 +123,20 @@ _Bool cl_subsumer(XCSF *xcsf, CL *c)
 
 double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit)
 {
-	if(c->fit / c->num >= xcsf->DELTA * avg_fit || c->exp < xcsf->THETA_DEL)
+	if(c->fit / c->num >= xcsf->DELTA * avg_fit || c->exp < xcsf->THETA_DEL) {
 		return c->size * c->num;
+	}
 	return c->size * c->num * avg_fit / (c->fit / c->num); 
 }
 
 double cl_acc(XCSF *xcsf, CL *c)
 {
-	if(c->err <= xcsf->EPS_0)
+	if(c->err <= xcsf->EPS_0) {
 		return 1.0;
-	else
+	}
+	else {
 		return xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
+	}
 }
 
 void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num)
@@ -171,10 +174,12 @@ void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc)
 
 double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
 {
-	if(c->exp < 1.0/xcsf->BETA)
+	if(c->exp < 1.0/xcsf->BETA) {
 		c->size = (c->size * (c->exp-1.0) + num_sum) / (double)c->exp; 
-	else
+	}
+	else {
 		c->size += xcsf->BETA * (num_sum - c->size);
+	}
 	return c->size * c->num;
 }
 
@@ -187,15 +192,15 @@ void cl_free(XCSF *xcsf, CL *c)
 
 void cl_print(XCSF *xcsf, CL *c, _Bool print_cond, _Bool print_pred)
 {
-        if(print_cond || print_cond) {
-	    printf("***********************************************\n");
-        }
-        if(print_cond) {
-            cond_print(xcsf, c);
-        }
-        if(print_pred) {
-            pred_print(xcsf, c);
-        }
+	if(print_cond || print_cond) {
+		printf("***********************************************\n");
+	}
+	if(print_cond) {
+		cond_print(xcsf, c);
+	}
+	if(print_pred) {
+		pred_print(xcsf, c);
+	}
 	printf("err=%f, fit=%f, num=%d, exp=%d, size=%f, time=%d\n", 
 			c->err, c->fit, c->num, c->exp, c->size, c->time);
 }  
