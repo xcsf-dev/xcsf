@@ -124,14 +124,14 @@ struct XCS
 	np::ndarray predict(np::ndarray &T) {
 		// inputs to predict
 		double *input = reinterpret_cast<double*>(T.get_data());
-        int rows = T.shape(0);
+		int rows = T.shape(0);
 		// predicted outputs
 		double *output = (double *) malloc(sizeof(double) * rows * xcs.num_y_vars);
 		xcsf_predict(&xcs, input, output, rows);
 		// return numpy array
 		np::ndarray result = np::from_data(output, np::dtype::get_builtin<double>(),
-			p::make_tuple(rows, xcs.num_y_vars), 
-			p::make_tuple(sizeof(double), sizeof(double)), p::object());
+				p::make_tuple(rows, xcs.num_y_vars), 
+				p::make_tuple(sizeof(double), sizeof(double)), p::object());
 		return result;
 	}
 
