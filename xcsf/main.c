@@ -182,7 +182,7 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 	for(int i = 0; i < xcsf->num_y_vars; i++) {
 		error += (y[i]-pred[i])*(y[i]-pred[i]);
 	}
-	error /= (double)xcsf->num_y_vars; // MSE
+	error /= xcsf->num_y_vars; // MSE
 	return error;
 }
  
@@ -202,7 +202,7 @@ double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 	for(int i = 0; i < xcsf->num_y_vars; i++) {
 		error += (y[i]-pred[i])*(y[i]-pred[i]);
 	}
-	error /= (double)xcsf->num_y_vars; // MSE
+	error /= xcsf->num_y_vars; // MSE
 	return error;      
 }
 
