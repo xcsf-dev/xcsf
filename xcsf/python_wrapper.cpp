@@ -111,8 +111,8 @@ struct XCS
 		test_data.rows = test_X.shape(0);
 		test_data.x_cols = test_X.shape(1);
 		test_data.y_cols = test_Y.shape(1);
-		train_data.x = reinterpret_cast<double*>(train_X.get_data());
-		train_data.y = reinterpret_cast<double*>(train_Y.get_data());
+		test_data.x = reinterpret_cast<double*>(test_X.get_data());
+		test_data.y = reinterpret_cast<double*>(test_Y.get_data());
 		// first execution
 		if(xcs.pop_num == 0) {
 			pop_init(&xcs);
