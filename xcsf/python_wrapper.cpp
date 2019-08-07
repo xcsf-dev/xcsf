@@ -542,6 +542,6 @@ BOOST_PYTHON_MODULE(xcsf)
 		.def("pop_num_sum", &XCS::get_pop_num_sum)
 		.def("time", &XCS::get_time)
 		.def("num_x_vars", &XCS::get_num_x_vars)
-		.def("num_y_vars", &XCS::get_num_x_vars)
+		.def("num_y_vars", &XCS::get_num_y_vars)
 		;
 }
