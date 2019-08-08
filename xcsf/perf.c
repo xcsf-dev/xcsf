@@ -119,44 +119,47 @@ void gplot_init(XCSF *xcsf)
 
 	switch(xcsf->COND_TYPE) {
 		case -1:
-			strcat(title, " DUMMY COND");
+			strcat(title, " dummy cond");
 			break;
 		case 0:
-			strcat(title, " RECT COND");
+			strcat(title, " hyperrectangle cond");
 			break;
 		case 1:
-			strcat(title, " NEURAL COND");
-			break;
+			strcat(title, " hyperellipsoid cond");
+			break
 		case 2:
-			strcat(title, " TREE-GP COND");
+			strcat(title, " neural cond");
 			break;
 		case 3:
-			strcat(title, " GRAPH-DGP COND");
+			strcat(title, " tree-GP cond");
+			break;
+		case 4:
+			strcat(title, " graph-DGP cond");
 			break;
 		case 11:
-			strcat(title, " GRAPH-DGP RULE");
+			strcat(title, " graph-DGP rules");
 			break;
 		case 12:
-			strcat(title, " NEURAL RULE");
+			strcat(title, " neural rules");
 			break;
 	}
 
 	if(xcsf->COND_TYPE < 10) {
 		switch(xcsf->PRED_TYPE) {
 			case 0:
-				strcat(title, ", LINEAR NLMS");
+				strcat(title, ", linear nlms");
 				break;
 			case 1:
-				strcat(title, ", QUADRATIC NLMS");
+				strcat(title, ", quadratic nlms");
 				break;
 			case 2:
-				strcat(title, ", LINEAR RLS");
+				strcat(title, ", linear rls");
 				break;
 			case 3:
-				strcat(title, ", QUADRATIC RLS");
+				strcat(title, ", quadratic rls");
 				break;
 			case 4:
-				strcat(title, ", NEURAL PRED");
+				strcat(title, ", neural pred");
 				break;
 		}
 	}
