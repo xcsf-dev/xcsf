@@ -63,48 +63,34 @@ void ga(XCSF *xcsf, NODE **set, int size, int num, NODE **kset)
 		c2->fit = c2p->fit / c2p->num;
 		c1->fit = xcsf->FIT_REDUC * (c1->fit + c2->fit)/2.0;
 		c2->fit = c1->fit;
-
-		switch(xcsf->COND_TYPE) {
-			// conditions that do not fully support subsumption or crossover
-			case -1:
-			case 1:
-			case 2:
-			case 3:
-			case 11:
-			case 12:
-				if(!cl_mutate(xcsf, c1) && xcsf->GA_SUBSUMPTION) {
-					c1p->num++;
-					xcsf->pop_num_sum++;
-					cl_free(xcsf, c1);
-				}
-				else {
-					pop_add(xcsf, c1);
-				}
-				if(!cl_mutate(xcsf, c2) && xcsf->GA_SUBSUMPTION) {
-					c2p->num++;
-					xcsf->pop_num_sum++;
-					cl_free(xcsf, c2);
-				}
-				else {
-					pop_add(xcsf, c2);
-				}
-				break;
-
-			default:
-				// apply genetic operators to offspring
-				cl_crossover(xcsf, c1, c2);
-				cl_mutate(xcsf, c1);
-				cl_mutate(xcsf, c2);
-				// add offspring to population
-				if(xcsf->GA_SUBSUMPTION) {
-					ga_subsume(xcsf, c1, c1p, c2p, set, size);
-					ga_subsume(xcsf, c2, c1p, c2p, set, size);
-				}
-				else {
-					pop_add(xcsf, c1);
-					pop_add(xcsf, c2);
-				}
-				break;
+		// apply genetic operators to offspring
+		_Bool cmod = cl_crossover(xcsf, c1, c2);
+		_Bool m1mod = cl_mutate(xcsf, c1);
+		_Bool m2mod = cl_mutate(xcsf, c2);
+		// add offspring to population
+		if(xcsf->GA_SUBSUMPTION) {
+			// c1 no crossover or mutation changes
+			if(!cmod && !m1mod) {
+				c1p->num++;
+				xcsf->pop_num_sum++;
+				cl_free(xcsf, c1);      
+			}
+			else {
+				ga_subsume(xcsf, c1, c1p, c2p, set, size);
+			}
+			// c2 no crossover or mutation changes
+ 			if(!cmod && !m2mod) {
+				c2p->num++;
+				xcsf->pop_num_sum++;
+				cl_free(xcsf, c2);      
+			}
+			else {
+				ga_subsume(xcsf, c2, c1p, c2p, set, size);
+			}    
+		}
+		else {
+			pop_add(xcsf, c1);
+			pop_add(xcsf, c2);
 		}
 	}
 	pop_enforce_limit(xcsf, kset);

@@ -155,7 +155,7 @@ _Bool cond_rectangle_crossover(XCSF *xcsf, CL *c1, CL *c2)
 _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
 {
 	COND_RECTANGLE *cond = c->cond;
-	_Bool mod = false;
+	_Bool changed = false;
 	double step = xcsf->S_MUTATION;
 	if(xcsf->NUM_SAM > 0) {
 		sam_adapt(xcsf, cond->mu);
@@ -174,12 +174,14 @@ _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
 			else if(cond->center[i] > xcsf->MAX_CON) {
 				cond->center[i] = xcsf->MAX_CON;
 			}    
+			changed = true;
 		}
 		if(drand() < xcsf->P_MUTATION) {
 			cond->stretch[i] += ((drand()*2.0)-1.0)*step;
+			changed = true;
 		}
 	}
-	return mod;
+	return changed;
 }
 
 _Bool cond_rectangle_general(XCSF *xcsf, CL *c1, CL *c2)
