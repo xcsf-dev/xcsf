@@ -169,7 +169,7 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 	// calculate system prediction
 	set_pred(xcsf, &mset, msize, x, pred);
 	// provide reinforcement to the set
-	set_update(xcsf, &mset, &msize, &mnum, y, &kset, x);
+	set_update(xcsf, &mset, &msize, &mnum, x, y, &kset);
 	// run the genetic algorithm
 	ga(xcsf, &mset, msize, mnum, &kset);
 	// increment learning time

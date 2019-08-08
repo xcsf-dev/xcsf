@@ -223,7 +223,7 @@ void set_add(XCSF *xcsf, NODE **set, CL *c)
 	(void)xcsf;
 }
 
-void set_update(XCSF *xcsf, NODE **set, int *size, int *num, double *y, NODE **kset, double *x)
+void set_update(XCSF *xcsf, NODE **set, int *size, int *num, double *x, double *y, NODE **kset)
 {
 	for(NODE *iter = *set; iter != NULL; iter = iter->next) {
 		cl_update(xcsf, iter->cl, x, y, *num);
