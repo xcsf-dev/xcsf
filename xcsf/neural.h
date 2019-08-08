@@ -47,3 +47,4 @@ double gaussian(double x);
 double relu(double x);
 double bent_identity(double x);
 double identity(double x);
+double soft_plus(double x);

@@ -64,6 +64,12 @@ void pred_neural_init(XCSF *xcsf, CL *c)
             hfunc = &tanh;
             break;
         case 5:
+            hfunc = &sin;
+            break;
+        case 6:
+            hfunc = &soft_plus;
+            break;
+        case 7:
             hfunc = &identity;
             break;
         default:

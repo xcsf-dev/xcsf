@@ -36,150 +36,156 @@
 #include "cond_neural.h"
 
 typedef struct COND_NEURAL {
-    BPN bpn;
-    _Bool m;
-    double *mu;
+	BPN bpn;
+	_Bool m;
+	double *mu;
 } COND_NEURAL;
 
 void cond_neural_init(XCSF *xcsf, CL *c)
 {
-    COND_NEURAL *cond = malloc(sizeof(COND_NEURAL));
-    // network with 1 hidden layer
-    int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, 1};
-    // select hidden neuron activation function
-    double (*hfunc)(double) = &logistic;
-    switch(xcsf->HIDDEN_NEURON_ACTIVATION) {
-        case 0:
-            hfunc = &logistic;
-            break;
-        case 1:
-            hfunc = &relu;
-            break;
-        case 2:
-            hfunc = &gaussian;
-            break;
-        case 3:
-            hfunc = &bent_identity;
-            break;
-        case 4:
-            hfunc = &tanh;
-            break;
-        case 5:
-            hfunc = &identity;
-            break;
-        default:
-            printf("error: invalid hidden activation function: %d\n",
-                    xcsf->HIDDEN_NEURON_ACTIVATION);
-            exit(EXIT_FAILURE);
-    }
-    double (*activations[2])(double) = {hfunc, logistic};
-    // initialise neural network
-    neural_init(xcsf, &cond->bpn, 3, neurons, activations);
-    c->cond = cond;
-    sam_init(xcsf, &cond->mu);
+	COND_NEURAL *cond = malloc(sizeof(COND_NEURAL));
+	// network with 1 hidden layer
+	int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, 1};
+	// select hidden neuron activation function
+	double (*hfunc)(double) = &logistic;
+	switch(xcsf->HIDDEN_NEURON_ACTIVATION) {
+		case 0:
+			hfunc = &logistic;
+			break;
+		case 1:
+			hfunc = &relu;
+			break;
+		case 2:
+			hfunc = &gaussian;
+			break;
+		case 3:
+			hfunc = &bent_identity;
+			break;
+		case 4:
+			hfunc = &tanh;
+			break;
+		case 5:
+			hfunc = &sin;
+			break;
+		case 6:
+			hfunc = &soft_plus;
+			break;
+		case 7:
+			hfunc = &identity;
+			break;    
+		default:
+			printf("error: invalid hidden activation function: %d\n",
+					xcsf->HIDDEN_NEURON_ACTIVATION);
+			exit(EXIT_FAILURE);
+	}
+	double (*activations[2])(double) = {hfunc, logistic};
+	// initialise neural network
+	neural_init(xcsf, &cond->bpn, 3, neurons, activations);
+	c->cond = cond;
+	sam_init(xcsf, &cond->mu);
 }
 
 void cond_neural_free(XCSF *xcsf, CL *c)
 {
-    COND_NEURAL *cond = c->cond;
-    neural_free(xcsf, &cond->bpn);
-    sam_free(xcsf, cond->mu);
-    free(c->cond);
+	COND_NEURAL *cond = c->cond;
+	neural_free(xcsf, &cond->bpn);
+	sam_free(xcsf, cond->mu);
+	free(c->cond);
 }                  
 
 double cond_neural_mu(XCSF *xcsf, CL *c, int m)
 {
-    (void)xcsf;
-    COND_NEURAL *cond = c->cond;
-    return cond->mu[m];
+	(void)xcsf;
+	COND_NEURAL *cond = c->cond;
+	return cond->mu[m];
 }
 
 void cond_neural_copy(XCSF *xcsf, CL *to, CL *from)
 {
-    COND_NEURAL *to_cond = to->cond;
-    COND_NEURAL *from_cond = from->cond;
-    neural_copy(xcsf, &to_cond->bpn, &from_cond->bpn);
-    sam_copy(xcsf, to_cond->mu, from_cond->mu);
+	COND_NEURAL *to_cond = to->cond;
+	COND_NEURAL *from_cond = from->cond;
+	neural_copy(xcsf, &to_cond->bpn, &from_cond->bpn);
+	sam_copy(xcsf, to_cond->mu, from_cond->mu);
 }
 
 void cond_neural_rand(XCSF *xcsf, CL *c)
 {
-    COND_NEURAL *cond = c->cond;
-    neural_rand(xcsf, &cond->bpn);
+	COND_NEURAL *cond = c->cond;
+	neural_rand(xcsf, &cond->bpn);
 }
 
 void cond_neural_cover(XCSF *xcsf, CL *c, double *x)
 {
-    // generates random weights until the network matches for input state
-    do {
-        cond_neural_rand(xcsf, c);
-    } while(!cond_neural_match(xcsf, c, x));
+	// generates random weights until the network matches for input state
+	do {
+		cond_neural_rand(xcsf, c);
+	} while(!cond_neural_match(xcsf, c, x));
 }
 
 _Bool cond_neural_match(XCSF *xcsf, CL *c, double *x)
 {
-    // classifier matches if the first output neuron > 0.5
-    COND_NEURAL *cond = c->cond;
-    neural_propagate(xcsf, &cond->bpn, x);
-    if(neural_output(xcsf, &cond->bpn, 0) > 0.5) {
-        cond->m = true;
-    }
-    else {
-        cond->m = false;
-    }
-    return cond->m;
+	// classifier matches if the first output neuron > 0.5
+	COND_NEURAL *cond = c->cond;
+	neural_propagate(xcsf, &cond->bpn, x);
+	if(neural_output(xcsf, &cond->bpn, 0) > 0.5) {
+		cond->m = true;
+	}
+	else {
+		cond->m = false;
+	}
+	return cond->m;
 }                
 
 _Bool cond_neural_match_state(XCSF *xcsf, CL *c)
 {
-    (void)xcsf;
-    COND_NEURAL *cond = c->cond;
-    return cond->m;
+	(void)xcsf;
+	COND_NEURAL *cond = c->cond;
+	return cond->m;
 }
 
 _Bool cond_neural_mutate(XCSF *xcsf, CL *c)
 {
-    COND_NEURAL *cond = c->cond;
-    _Bool mod = false;
-    if(xcsf->NUM_SAM > 0) {
-        sam_adapt(xcsf, cond->mu);
-        xcsf->S_MUTATION = cond->mu[0];
-    }
-    BPN *bpn = &cond->bpn;
-    for(int l = 1; l < bpn->num_layers; l++) {
-        for(int i = 0; i < bpn->num_neurons[l]; i++) {
-            NEURON *n = &bpn->layer[l-1][i];
-            for(int w = 0; w < n->num_inputs+1; w++) {
-                double orig = n->weights[w];
-                n->weights[w] += ((drand()*2.0)-1.0) * xcsf->S_MUTATION;
-                if(n->weights[w] != orig) {
-                    mod = true;
-                }
-            }
-        }
-    }
-    return mod;
+	COND_NEURAL *cond = c->cond;
+	_Bool mod = false;
+	if(xcsf->NUM_SAM > 0) {
+		sam_adapt(xcsf, cond->mu);
+		xcsf->S_MUTATION = cond->mu[0];
+	}
+	BPN *bpn = &cond->bpn;
+	for(int l = 1; l < bpn->num_layers; l++) {
+		for(int i = 0; i < bpn->num_neurons[l]; i++) {
+			NEURON *n = &bpn->layer[l-1][i];
+			for(int w = 0; w < n->num_inputs+1; w++) {
+				double orig = n->weights[w];
+				n->weights[w] += ((drand()*2.0)-1.0) * xcsf->S_MUTATION;
+				if(n->weights[w] != orig) {
+					mod = true;
+				}
+			}
+		}
+	}
+	return mod;
 }
 
 _Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
-    return false;
+	(void)xcsf;
+	(void)c1;
+	(void)c2;
+	return false;
 }
 
 _Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
-    return false;
+	(void)xcsf;
+	(void)c1;
+	(void)c2;
+	return false;
 }   
 
 void cond_neural_print(XCSF *xcsf, CL *c)
 {
-    (void)xcsf;
-    COND_NEURAL *cond = c->cond;
-    neural_print(xcsf, &cond->bpn);
+	(void)xcsf;
+	COND_NEURAL *cond = c->cond;
+	neural_print(xcsf, &cond->bpn);
 }  

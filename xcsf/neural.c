@@ -233,23 +233,29 @@ double logistic_plain(double x)
 
 double gaussian(double x)
 {
+	// outputs: (0,1]
     return exp((-x * x) / 2.0);
 } 
 
 double relu(double x)
 {
-    // rectified linear unit
+    // rectified linear unit: outputs [0,1]
     return fmax(0.0, x);
 }
 
 double bent_identity(double x)
 {
-    // bent identity function
+    // bent identity function: outputs [-inf,inf]
     return ((sqrt(x*x+1.0)-1.0)/2.0)+x;
 }
 
 double identity(double x)
 {
-    // plain identity
     return x;
+}
+
+double soft_plus(double x)
+{
+	// soft plus function: outputs [0,inf]
+	return log(1.0 + exp(x));
 }
