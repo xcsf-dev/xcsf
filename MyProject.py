@@ -1,4 +1,20 @@
 #!/usr/bin/python3
+#
+# Copyright (C) 2019 Richard Preen <rpreen@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 import xcsf.xcsf as xcsf
 import numpy as np
 from sklearn import datasets
@@ -39,7 +55,7 @@ xcs.POP_SIZE = 5000
 xcs.MAX_TRIALS = 100000
 xcs.COND_TYPE = 2 # GP tree conditions
 xcs.PRED_TYPE = 4 # neural network predictors
- 
+
 # fit function
 xcs.fit(train_X, train_Y)
 
