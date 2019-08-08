@@ -24,7 +24,6 @@ struct CondVtbl {
 	_Bool (*cond_impl_match)(XCSF *xcsf, CL *c, double *x);
 	_Bool (*cond_impl_match_state)(XCSF *xcsf, CL *c);
 	_Bool (*cond_impl_mutate)(XCSF *xcsf, CL *c);
-	_Bool (*cond_impl_subsumes)(XCSF *xcsf, CL *c1, CL *c2);
 	double (*cond_impl_mu)(XCSF *xcsf, CL *c, int m);
 	void (*cond_impl_copy)(XCSF *xcsf, CL *to, CL *from);
 	void (*cond_impl_cover)(XCSF *xcsf, CL *c, double *x);
@@ -52,10 +51,6 @@ static inline _Bool cond_match_state(XCSF *xcsf, CL *c) {
 
 static inline _Bool cond_mutate(XCSF *xcsf, CL *c) {
 	return (*c->cond_vptr->cond_impl_mutate)(xcsf, c);
-}
-
-static inline _Bool cond_subsumes(XCSF *xcsf, CL *c1, CL *c2) {
-	return (*c1->cond_vptr->cond_impl_subsumes)(xcsf, c1, c2);
 }
 
 static inline double cond_mu(XCSF *xcsf, CL *c, int m) {
@@ -133,7 +128,6 @@ _Bool cl_match(XCSF *xcsf, CL *c, double *x);
 _Bool cl_match_state(XCSF *xcsf, CL *c);
 _Bool cl_mutate(XCSF *xcsf, CL *c);
 _Bool cl_subsumer(XCSF *xcsf, CL *c);
-_Bool cl_subsumes(XCSF *xcsf, CL *c1, CL *c2);
 double *cl_predict(XCSF *xcsf, CL *c, double *x);
 double cl_acc(XCSF *xcsf, CL *c);
 double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit);

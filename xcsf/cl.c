@@ -219,11 +219,6 @@ _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
 	return cond_general(xcsf, c1, c2);
 }
 
-_Bool cl_subsumes(XCSF *xcsf, CL *c1, CL *c2)
-{
-	return cond_subsumes(xcsf, c1, c2);
-}
-
 void cl_rand(XCSF *xcsf, CL *c)
 {
 	cond_rand(xcsf, c);

@@ -125,14 +125,6 @@ _Bool rule_dgp_cond_crossover(XCSF *xcsf, CL *c1, CL *c2)
 	return false;
 }
 
-_Bool rule_dgp_cond_subsumes(XCSF *xcsf, CL *c1, CL *c2)
-{
-	(void)xcsf;
-	(void)c1;
-	(void)c2;
-	return false;
-}
-
 _Bool rule_dgp_cond_general(XCSF *xcsf, CL *c1, CL *c2)
 {
 	(void)xcsf;

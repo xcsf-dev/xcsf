@@ -113,12 +113,12 @@ void ga(XCSF *xcsf, NODE **set, int size, int num, NODE **kset)
 void ga_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 {
 	// check if either parent subsumes the offspring
-	if(cl_subsumer(xcsf, c1p) && cl_subsumes(xcsf, c1p, c)) {
+	if(cl_subsumer(xcsf, c1p) && cl_general(xcsf, c1p, c)) {
 		c1p->num++;
 		xcsf->pop_num_sum++;
 		cl_free(xcsf, c);
 	}
-	else if(cl_subsumer(xcsf, c2p) && cl_subsumes(xcsf, c2p, c)) {
+	else if(cl_subsumer(xcsf, c2p) && cl_general(xcsf, c2p, c)) {
 		c2p->num++;
 		xcsf->pop_num_sum++;
 		cl_free(xcsf, c);
@@ -128,8 +128,7 @@ void ga_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, NODE **set, int size)
 		NODE *candidates[size];
 		int choices = 0;
 		for(NODE *iter = *set; iter != NULL; iter = iter->next) {
-			if(cl_subsumer(xcsf, iter->cl) 
-					&& cl_subsumes(xcsf, iter->cl, c)) {
+			if(cl_subsumer(xcsf, iter->cl) && cl_general(xcsf, iter->cl, c)) {
 				candidates[choices] = iter;
 				choices++;
 			}

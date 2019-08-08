@@ -180,11 +180,6 @@ _Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c)
 	return mod;
 }
 
-_Bool cond_ellipsoid_subsumes(XCSF *xcsf, CL *c1, CL *c2)
-{
-	return cond_ellipsoid_general(xcsf, c1, c2);
-}
-
 _Bool cond_ellipsoid_general(XCSF *xcsf, CL *c1, CL *c2)
 {
 	// returns whether cond1 is more general than cond2

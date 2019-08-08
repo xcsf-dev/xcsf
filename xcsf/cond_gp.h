@@ -21,7 +21,6 @@ _Bool cond_gp_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_gp_match(XCSF *xcsf, CL *c, double *x);
 _Bool cond_gp_match_state(XCSF *xcsf, CL *c);
 _Bool cond_gp_mutate(XCSF *xcsf, CL *c);
-_Bool cond_gp_subsumes(XCSF *xcsf, CL *c1, CL *c2);
 void cond_gp_copy(XCSF *xcsf, CL *to, CL *from);
 void cond_gp_cover(XCSF *xcsf, CL *c, double *x);
 void cond_gp_free(XCSF *xcsf, CL *c);
@@ -36,7 +35,6 @@ static struct CondVtbl const cond_gp_vtbl = {
 	&cond_gp_match,
 	&cond_gp_match_state,
 	&cond_gp_mutate,
-	&cond_gp_subsumes,
 	&cond_gp_mu,
 	&cond_gp_copy,
 	&cond_gp_cover,

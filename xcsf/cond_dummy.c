@@ -109,14 +109,6 @@ _Bool cond_dummy_mutate(XCSF *xcsf, CL *c)
 	return false;
 }
 
-_Bool cond_dummy_subsumes(XCSF *xcsf, CL *c1, CL *c2)
-{
-	(void)xcsf;
-	(void)c1;
-	(void)c2;
-	return true;
-}
-
 _Bool cond_dummy_general(XCSF *xcsf, CL *c1, CL *c2)
 {
 	(void)xcsf;

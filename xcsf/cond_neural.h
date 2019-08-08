@@ -20,7 +20,6 @@ _Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_neural_match(XCSF *xcsf, CL *c, double *x);
 _Bool cond_neural_match_state(XCSF *xcsf, CL *c);
 _Bool cond_neural_mutate(XCSF *xcsf, CL *c);
-_Bool cond_neural_subsumes(XCSF *xcsf, CL *c1, CL *c2);
 void cond_neural_copy(XCSF *xcsf, CL *to, CL *from);
 void cond_neural_cover(XCSF *xcsf, CL *c, double *x);
 void cond_neural_free(XCSF *xcsf, CL *c);
@@ -35,7 +34,6 @@ static struct CondVtbl const cond_neural_vtbl = {
 	&cond_neural_match,
 	&cond_neural_match_state,
 	&cond_neural_mutate,
-	&cond_neural_subsumes,
 	&cond_neural_mu,
 	&cond_neural_copy,
 	&cond_neural_cover,
