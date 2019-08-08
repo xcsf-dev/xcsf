@@ -47,7 +47,7 @@ Mutation for conditions:
 Compiler options:
 ------------------------
 
-- GNUPLOT = ON: real-time GNUPlot of the system error
+- GNUPLOT = ON: real-time GNUPlot of the system error; data saved in folder: `out`
 - PARALLEL = ON: matching and set prediction functions parallelised with OpenMP
   
 ------------------------
