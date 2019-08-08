@@ -53,7 +53,7 @@ xcs = xcsf.XCS(xvars, yvars)
 # override cons.txt
 xcs.POP_SIZE = 5000
 xcs.MAX_TRIALS = 100000
-xcs.COND_TYPE = 2 # GP tree conditions
+xcs.COND_TYPE = 3 # GP tree conditions
 xcs.PRED_TYPE = 4 # neural network predictors
 
 # fit function
