@@ -159,22 +159,26 @@ int tree_print(XCSF *xcsf, GP_TREE *gp, int p)
 	int a1 = 0; 
 	int a2 = 0;
 	switch(node) {
-		case ADD: printf( "(");
-				  a1 = tree_print(xcsf, gp, ++p); 
-				  printf( " + "); 
-				  break;
-		case SUB: printf( "(");
-				  a1 = tree_print(xcsf, gp, ++p); 
-				  printf( " - "); 
-				  break;
-		case MUL: printf( "(");
-				  a1 = tree_print(xcsf, gp, ++p); 
-				  printf( " * "); 
-				  break;
-		case DIV: printf( "(");
-				  a1 = tree_print(xcsf, gp, ++p); 
-				  printf( " / "); 
-				  break;
+		case ADD: 
+			printf( "(");
+			a1 = tree_print(xcsf, gp, ++p); 
+			printf( " + "); 
+			break;
+		case SUB: 
+			printf( "(");
+			a1 = tree_print(xcsf, gp, ++p); 
+			printf( " - "); 
+			break;
+		case MUL: 
+			printf( "(");
+			a1 = tree_print(xcsf, gp, ++p); 
+			printf( " * "); 
+			break;
+		case DIV: 
+			printf( "(");
+			a1 = tree_print(xcsf, gp, ++p); 
+			printf( " / "); 
+			break;
 	}
 	a2 = tree_print(xcsf, gp, a1); 
 	printf(")"); 
