@@ -32,7 +32,8 @@
 #include "data_structures.h"
 #include "cl.h"
 #include "cond_dummy.h"
-#include "cond_rect.h"
+#include "cond_rectangle.h"
+#include "cond_ellipsoid.h"
 #include "cond_gp.h"
 #include "cond_dgp.h"
 #include "cond_neural.h"
@@ -76,15 +77,18 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
 			c->cond_vptr = &cond_dummy_vtbl;
 			break;
 		case 0:
-			c->cond_vptr = &cond_rect_vtbl;
+			c->cond_vptr = &cond_rectangle_vtbl;
 			break;
 		case 1:
-			c->cond_vptr = &cond_neural_vtbl;
+			c->cond_vptr = &cond_ellipsoid_vtbl;
 			break;
 		case 2:
-			c->cond_vptr = &cond_gp_vtbl;
+			c->cond_vptr = &cond_neural_vtbl;
 			break;
 		case 3:
+			c->cond_vptr = &cond_gp_vtbl;
+			break;
+		case 4:
 			c->cond_vptr = &cond_dgp_vtbl;
 			break;
 		case 11:
