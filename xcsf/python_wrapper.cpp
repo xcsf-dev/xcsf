@@ -137,14 +137,14 @@ struct XCS
 		return result;
 	}
 
-        void print_pop(_Bool print_cond, _Bool print_pred) {
-            xcsf_print_pop(&xcs, print_cond, print_pred);
-        }
+	void print_pop(_Bool print_cond, _Bool print_pred) {
+		xcsf_print_pop(&xcs, print_cond, print_pred);
+	}
 
-        void print_match_set(np::ndarray &X, _Bool print_cond, _Bool print_pred) {
-			double *input = reinterpret_cast<double*>(X.get_data());
-            xcsf_print_match_set(&xcs, input, print_cond, print_pred);
-        }
+	void print_match_set(np::ndarray &X, _Bool print_cond, _Bool print_pred) {
+		double *input = reinterpret_cast<double*>(X.get_data());
+		xcsf_print_match_set(&xcs, input, print_cond, print_pred);
+	}
 
 	/* GETTERS */
 	_Bool get_pop_init() { return xcs.POP_INIT; }
