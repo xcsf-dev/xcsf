@@ -32,8 +32,8 @@ extern "C" {
 #include "cl_set.h"
 }
 
-extern "C" void xcsf_fit1(XCSF *, INPUT *);
-extern "C" void xcsf_fit2(XCSF *, INPUT *, INPUT *);
+extern "C" void xcsf_fit1(XCSF *, INPUT *, _Bool);
+extern "C" void xcsf_fit2(XCSF *, INPUT *, INPUT *, _Bool);
 extern "C" void xcsf_predict(XCSF *, double *, double *, int);
 extern "C" void xcsf_print_pop(XCSF *, _Bool, _Bool);
 extern "C" void xcsf_print_match_set(XCSF *, double *, _Bool, _Bool);
@@ -64,7 +64,7 @@ struct XCS
 		test_data.y = NULL;
 	}
 
-	void fit(np::ndarray &train_X, np::ndarray &train_Y) {
+	void fit(np::ndarray &train_X, np::ndarray &train_Y, _Bool shuffle) {
 		// check inputs are correctly sized
 		if(train_X.shape(0) != train_Y.shape(0)) {
 			printf("error: training X and Y rows are not equal\n");
@@ -81,11 +81,11 @@ struct XCS
 			pop_init(&xcs);
 		}       
 		// execute
-		xcsf_fit1(&xcs, &train_data);        
+		xcsf_fit1(&xcs, &train_data, shuffle);
 	}
 
 	void fit(np::ndarray &train_X, np::ndarray &train_Y, 
-			np::ndarray &test_X, np::ndarray &test_Y) {
+			np::ndarray &test_X, np::ndarray &test_Y, _Bool shuffle) {
 		// check inputs are correctly sized
 		if(train_X.shape(0) != train_Y.shape(0)) {
 			printf("error: training X and Y rows are not equal\n");
@@ -120,7 +120,7 @@ struct XCS
 			pop_init(&xcs);
 		}       
 		// execute
-		xcsf_fit2(&xcs, &train_data, &test_data);
+		xcsf_fit2(&xcs, &train_data, &test_data, shuffle);
 	}
 
 	np::ndarray predict(np::ndarray &T) {
@@ -231,8 +231,8 @@ BOOST_PYTHON_MODULE(xcsf)
 	np::initialize();
 	random_init();
 
-	void (XCS::*fit1)(np::ndarray&, np::ndarray&) = &XCS::fit;
-	void (XCS::*fit2)(np::ndarray&, np::ndarray&, np::ndarray&, np::ndarray&) = &XCS::fit;
+	void (XCS::*fit1)(np::ndarray&, np::ndarray&, _Bool) = &XCS::fit;
+	void (XCS::*fit2)(np::ndarray&, np::ndarray&, np::ndarray&, np::ndarray&, _Bool) = &XCS::fit;
 
 	p::class_<XCS>("XCS", p::init<int, int>())
 		.def("fit", fit1)

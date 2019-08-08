@@ -42,8 +42,8 @@
 #include "input.h"
 #include "perf.h"
 
-void xcsf_fit1(XCSF *xcsf, INPUT *train_data);
-void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data);
+void xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle);
+void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle);
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows);
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 	// initialise population
 	pop_init(xcsf);
 	// run an experiment
-	xcsf_fit2(xcsf, train_data, test_data);
+	xcsf_fit2(xcsf, train_data, test_data, true);
 
 	// clean up
 	set_kill(xcsf, &xcsf->pset);
@@ -90,7 +90,7 @@ int main(int argc, char **argv)
 	return EXIT_SUCCESS;
 }
 
-void xcsf_fit1(XCSF *xcsf, INPUT *train_data)
+void xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 {  
 #ifdef GNUPLOT
 	gplot_init(xcsf);
@@ -100,13 +100,20 @@ void xcsf_fit1(XCSF *xcsf, INPUT *train_data)
 	double err[xcsf->PERF_AVG_TRIALS];
 	// stores current system prediction
 	double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
-
+	// current sample
+	int row = 0;
 	// each trial in an experiment
 	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-		// select a random training sample
-		int row = irand(0, train_data->rows);
+		// select next training sample
+		if(shuffle) {
+			row = irand(0, train_data->rows);
+		}
+		else {
+			row = (cnt % train_data->rows + train_data->rows) % train_data->rows;
+		}
 		double *x = &train_data->x[row * train_data->x_cols];
 		double *y = &train_data->y[row * train_data->y_cols];
+		// execute a training step and return the error
 		err[cnt % xcsf->PERF_AVG_TRIALS] = xcsf_learn_trial(xcsf, pred, x, y);
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
@@ -122,7 +129,7 @@ void xcsf_fit1(XCSF *xcsf, INPUT *train_data)
 #endif
 }
 
-void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
+void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 {   
 #ifdef GNUPLOT
 	gplot_init(xcsf);
@@ -133,18 +140,31 @@ void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 	double terr[xcsf->PERF_AVG_TRIALS];
 	// stores current system prediction
 	double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
-
+	// current sample
+	int row = 0;
 	// each trial in an experiment
 	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-		// select a random training sample
-		int row = irand(0, train_data->rows);
+ 		// select next training sample
+		if(shuffle) {
+			row = irand(0, train_data->rows);
+		}
+		else {
+			row = (cnt % train_data->rows + train_data->rows) % train_data->rows;
+		}     	
 		double *x = &train_data->x[row * train_data->x_cols];
 		double *y = &train_data->y[row * train_data->y_cols];
 		err[cnt % xcsf->PERF_AVG_TRIALS] = xcsf_learn_trial(xcsf, pred, x, y);
-		// select a random testing sample
+		// select next testing sample
 		row = irand(0, test_data->rows);
+		if(shuffle) {
+			row = irand(0, test_data->rows);
+		}
+		else {
+			row = (cnt % test_data->rows + test_data->rows) % test_data->rows;
+		}     	
 		x = &test_data->x[row * test_data->x_cols];
 		y = &test_data->y[row * test_data->y_cols];
+		// calculate the system error
 		terr[cnt % xcsf->PERF_AVG_TRIALS] = xcsf_test_trial(xcsf, pred, x, y);
 		// display performance
 		if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {

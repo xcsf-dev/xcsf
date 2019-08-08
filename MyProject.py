@@ -52,12 +52,13 @@ xcs = xcsf.XCS(xvars, yvars)
 
 # override cons.txt
 xcs.POP_SIZE = 5000
-xcs.MAX_TRIALS = 100000
-xcs.COND_TYPE = 3 # GP tree conditions
+xcs.MAX_TRIALS = 50000
+xcs.COND_TYPE = 0 # hyperrectangle conditions
 xcs.PRED_TYPE = 4 # neural network predictors
+xcs.HIDDEN_NEURON_ACTIVATION = 0 # logistic
 
-# fit function
-xcs.fit(train_X, train_Y)
+# fit function, shuffle training data
+xcs.fit(train_X, train_Y, True)
 
 # get predictions
 pred = xcs.predict(train_X)
