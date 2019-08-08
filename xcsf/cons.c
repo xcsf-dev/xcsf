@@ -107,6 +107,7 @@ void constants_init(XCSF *xcsf)
 	xcsf->MIN_CON = atof(getvalue("MIN_CON"));
 	xcsf->MAX_CON = atof(getvalue("MAX_CON"));
 	xcsf->NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
+	xcsf->HIDDEN_NEURON_ACTIVATION = atoi(getvalue("HIDDEN_NEURON_ACTIVATION"));
 	xcsf->DGP_NUM_NODES = atoi(getvalue("DGP_NUM_NODES"));
 	xcsf->GP_NUM_CONS = atoi(getvalue("GP_NUM_CONS"));
 	tidyup();  

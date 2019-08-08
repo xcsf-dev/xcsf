@@ -36,60 +36,88 @@
 #include "pred_neural.h"
 
 typedef struct PRED_NEURAL {
-	BPN bpn;
-	double *pre;
+    BPN bpn;
+    double *pre;
 } PRED_NEURAL;
 
 void pred_neural_init(XCSF *xcsf, CL *c)
 {
-	PRED_NEURAL *pred = malloc(sizeof(PRED_NEURAL));
-	int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars};
-	double (*activations[2])(double) = {sig, sig};
-	neural_init(xcsf, &pred->bpn, 3, neurons, activations);
-	pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
-	c->pred = pred;
+    PRED_NEURAL *pred = malloc(sizeof(PRED_NEURAL));
+    // network with 1 hidden layer
+    int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars};
+    // select hidden neuron activation function
+    double (*hfunc)(double) = &logistic;
+    switch(xcsf->HIDDEN_NEURON_ACTIVATION) {
+        case 0:
+            hfunc = &logistic;
+            break;
+        case 1:
+            hfunc = &relu;
+            break;
+        case 2:
+            hfunc = &gaussian;
+            break;
+        case 3:
+            hfunc = &bent_identity;
+            break;
+        case 4:
+            hfunc = &tanh;
+            break;
+        case 5:
+            hfunc = &identity;
+            break;
+        default:
+            printf("error: invalid hidden activation function: %d\n",
+                    xcsf->HIDDEN_NEURON_ACTIVATION);
+            exit(EXIT_FAILURE);
+    }
+    double (*activations[2])(double) = {hfunc, logistic};
+    // initialise neural network
+    neural_init(xcsf, &pred->bpn, 3, neurons, activations);
+    pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
+    c->pred = pred;
 }
 
 void pred_neural_free(XCSF *xcsf, CL *c)
 {
-	PRED_NEURAL *pred = c->pred;
-	neural_free(xcsf, &pred->bpn);
-	free(pred->pre);
-	free(pred);
+    PRED_NEURAL *pred = c->pred;
+    neural_free(xcsf, &pred->bpn);
+    free(pred->pre);
+    free(pred);
 }
 
 void pred_neural_copy(XCSF *xcsf, CL *to, CL *from)
 {
-	PRED_NEURAL *to_pred = to->pred;
-	PRED_NEURAL *from_pred = from->pred;
-	neural_copy(xcsf, &to_pred->bpn, &from_pred->bpn);
+    PRED_NEURAL *to_pred = to->pred;
+    PRED_NEURAL *from_pred = from->pred;
+    neural_copy(xcsf, &to_pred->bpn, &from_pred->bpn);
 }
 
 void pred_neural_update(XCSF *xcsf, CL *c, double *y, double *x)
 {
-	PRED_NEURAL *pred = c->pred;
-	neural_learn(xcsf, &pred->bpn, y, x);
+    PRED_NEURAL *pred = c->pred;
+    neural_learn(xcsf, &pred->bpn, y, x);
 }
 
 double *pred_neural_compute(XCSF *xcsf, CL *c, double *x)
 {
-	PRED_NEURAL *pred = c->pred;
-	neural_propagate(xcsf, &pred->bpn, x);
-	for(int i = 0; i < xcsf->num_y_vars; i++) {
-		pred->pre[i] = neural_output(xcsf, &pred->bpn, i);
-	}
-	return pred->pre;
+    PRED_NEURAL *pred = c->pred;
+    neural_propagate(xcsf, &pred->bpn, x);
+    for(int i = 0; i < xcsf->num_y_vars; i++) {
+        pred->pre[i] = neural_output(xcsf, &pred->bpn, i);
+    }
+    return pred->pre;
 }
 
 double pred_neural_pre(XCSF *xcsf, CL *c, int p)
 {
-	(void)xcsf;
-	PRED_NEURAL *pred = c->pred;
-	return pred->pre[p];
+    (void)xcsf;
+    PRED_NEURAL *pred = c->pred;
+    return pred->pre[p];
 }
 
 void pred_neural_print(XCSF *xcsf, CL *c)
 {
-	PRED_NEURAL *pred = c->pred;
-	neural_print(xcsf, &pred->bpn);
+    PRED_NEURAL *pred = c->pred;
+    neural_print(xcsf, &pred->bpn);
 }  

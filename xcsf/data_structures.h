@@ -84,6 +84,7 @@ typedef struct XCSF {
 	double MIN_CON; // minimum value of a hyperrectangle interval
 	double S_MUTATION; // maximum amount to mutate an allele
 	int NUM_HIDDEN_NEURONS; // number of hidden neurons to perform matching condition
+	int HIDDEN_NEURON_ACTIVATION; // activation function for the hidden layer
 	int DGP_NUM_NODES; // number of nodes in a DGP graph
 	int GP_NUM_CONS; // number of constants available for GP trees
 	double *gp_cons; // stores constants available for GP trees

@@ -174,6 +174,7 @@ struct XCS
 	double get_min_con() { return xcs.MIN_CON; }
 	double get_s_mutation() { return xcs.S_MUTATION; }
 	int get_num_hidden_neurons() { return xcs.NUM_HIDDEN_NEURONS; }
+	int get_hidden_neuron_activation() { return xcs.HIDDEN_NEURON_ACTIVATION; }
 	int get_dgp_num_nodes() { return xcs.DGP_NUM_NODES; }
 	int get_gp_num_cons() { return xcs.GP_NUM_CONS; }
 	double get_xcsf_eta() { return xcs.XCSF_ETA; }
@@ -215,6 +216,7 @@ struct XCS
 	void set_min_con(double a) { xcs.MIN_CON = a; }
 	void set_s_mutation(double a) { xcs.S_MUTATION = a; }
 	void set_num_hidden_neurons(int a) { xcs.NUM_HIDDEN_NEURONS = a; }
+	void set_hidden_neuron_activation(int a) { xcs.HIDDEN_NEURON_ACTIVATION = a; }
 	void set_dgp_num_nodes(int a) { xcs.DGP_NUM_NODES = a; }
 	void set_gp_num_cons(int a) { xcs.GP_NUM_CONS = a; }
 	void set_xcsf_eta(double a) { xcs.XCSF_ETA = a; }
@@ -263,6 +265,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("MIN_CON", &XCS::get_min_con, &XCS::set_min_con)
 		.add_property("S_MUTATION", &XCS::get_s_mutation, &XCS::set_s_mutation)
 		.add_property("NUM_HIDDEN_NEURONS", &XCS::get_num_hidden_neurons, &XCS::set_num_hidden_neurons)
+		.add_property("HIDDEN_NEURON_ACTIVATION", &XCS::get_hidden_neuron_activation, &XCS::set_hidden_neuron_activation)
 		.add_property("DGP_NUM_NODES", &XCS::get_dgp_num_nodes, &XCS::set_dgp_num_nodes)
 		.add_property("GP_NUM_CONS", &XCS::get_gp_num_cons, &XCS::set_gp_num_cons)
 		.add_property("XCSF_ETA", &XCS::get_xcsf_eta, &XCS::set_xcsf_eta)

@@ -16,19 +16,19 @@
  */
 
 typedef struct NEURON {
-	double output;
-	double state;
-	double *weights;
-	double *weights_change;
-	double *input;
-	int num_inputs;
-	double (*activation_ptr)(double);
+    double output;
+    double state;
+    double *weights;
+    double *weights_change;
+    double *input;
+    int num_inputs;
+    double (*activation_ptr)(double);
 } NEURON;
 
 typedef struct BPN {
-	int num_layers; // input layer + number of hidden layers + output layer
-	int *num_neurons; // number of neurons in each layer
-	NEURON **layer; // neural network
+    int num_layers; // input layer + number of hidden layers + output layer
+    int *num_neurons; // number of neurons in each layer
+    NEURON **layer; // neural network
 } BPN;
 
 double neural_output(XCSF *xcsf, BPN *bpn, int i);
@@ -41,9 +41,9 @@ void neural_rand(XCSF *xcsf, BPN *bpn);
 void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, double (**aptr)(double));
 
 // activation functions
-double d1sig(double x);
-double sig(double x);
-double sig_plain(double x);
+double logistic(double x);
+double logistic_plain(double x);
 double gaussian(double x);
 double relu(double x);
 double bent_identity(double x);
+double identity(double x);
