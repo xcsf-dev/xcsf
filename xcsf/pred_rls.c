@@ -33,9 +33,9 @@
 #define RLS_SCALE_FACTOR 1000.0
 #define RLS_LAMBDA 1.0
 
-void matrix_matrix_multiply(XCSF *xcsf, double *srca, double *srcb, double *dest, int n);
-void matrix_vector_multiply(XCSF *xcsf, double *srcm, double *srcv, double *dest, int n);
-void init_matrix(XCSF *xcsf, double *matrix, int n);
+void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n);
+void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n);
+void init_matrix(double *matrix, int n);
 
 typedef struct PRED_RLS {
 	int weights_length;
@@ -71,15 +71,14 @@ void pred_rls_init(XCSF *xcsf, CL *c)
 
 	// initialise gain matrix
 	pred->matrix = malloc(sizeof(double)*pred->weights_length*pred->weights_length);
-	init_matrix(xcsf, pred->matrix, pred->weights_length);
+	init_matrix(pred->matrix, pred->weights_length);
 
 	// initialise current prediction
 	pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
 }
 
-void init_matrix(XCSF *xcsf, double *matrix, int n)
+void init_matrix(double *matrix, int n)
 {
-	(void)xcsf;
 	for(int row = 0; row < n; row++) {
 		for(int col = 0; col < n; col++) {
 			if(row != col) {
@@ -142,7 +141,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *y, double *x)
 	}
 
 	// determine gain vector = matrix * tmp_input
-	matrix_vector_multiply(xcsf, pred->matrix, tmp_input, tmp_vec, n);
+	matrix_vector_multiply(pred->matrix, tmp_input, tmp_vec, n);
 
 	// divide gain vector by lambda + tmp_vec
 	double divisor = RLS_LAMBDA;
@@ -174,7 +173,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *y, double *x)
 			}
 		}
 	}
-	matrix_matrix_multiply(xcsf, tmp_matrix1, pred->matrix, tmp_matrix2, n);
+	matrix_matrix_multiply(tmp_matrix1, pred->matrix, tmp_matrix2, n);
 
 	// divide gain matrix entries by lambda
 	for(int row = 0; row < n; row++) {
@@ -237,9 +236,8 @@ void pred_rls_print(XCSF *xcsf, CL *c)
 	//	printf("\n");
 }
 
-void matrix_matrix_multiply(XCSF *xcsf, double *srca, double *srcb, double *dest, int n)
+void matrix_matrix_multiply( double *srca, double *srcb, double *dest, int n)
 {
-	(void)xcsf;
 	for(int i = 0; i < n; i++) {
 		for(int j = 0; j < n; j++) {
 			dest[i*n+j] = srca[i*n] * srcb[j];
@@ -250,9 +248,8 @@ void matrix_matrix_multiply(XCSF *xcsf, double *srca, double *srcb, double *dest
 	}
 }
 
-void matrix_vector_multiply(XCSF *xcsf, double *srcm, double *srcv, double *dest, int n)
+void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n)
 {
-	(void)xcsf;
 	for(int i = 0; i < n; i++) {
 		dest[i] = srcm[i*n] * srcv[0];
 		for(int j = 1; j < n; j++) {
