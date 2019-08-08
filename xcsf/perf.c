@@ -126,7 +126,7 @@ void gplot_init(XCSF *xcsf)
 			break;
 		case 1:
 			strcat(title, " hyperellipsoid cond");
-			break
+			break;
 		case 2:
 			strcat(title, " neural cond");
 			break;
