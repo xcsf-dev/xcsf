@@ -174,7 +174,7 @@ _Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c)
 			}    
 		}
 		if(drand() < xcsf->P_MUTATION) {
-			cond->stretch[i] = ((drand()*2.0)-1.0)*step;
+			cond->stretch[i] += ((drand()*2.0)-1.0)*step;
 		}
 	}
 	return mod;
