@@ -42,8 +42,8 @@
 #include "input.h"
 #include "perf.h"
 
-void xcsf_experiment1(XCSF *xcsf, INPUT *train_data);
-void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data);
+void xcsf_fit1(XCSF *xcsf, INPUT *train_data);
+void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data);
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows);
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 	// initialise population
 	pop_init(xcsf);
 	// run an experiment
-	xcsf_experiment2(xcsf, train_data, test_data);
+	xcsf_fit2(xcsf, train_data, test_data);
 
 	// clean up
 	set_kill(xcsf, &xcsf->pset);
@@ -90,7 +90,7 @@ int main(int argc, char **argv)
 	return EXIT_SUCCESS;
 }
 
-void xcsf_experiment1(XCSF *xcsf, INPUT *train_data)
+void xcsf_fit1(XCSF *xcsf, INPUT *train_data)
 {  
 #ifdef GNUPLOT
 	gplot_init(xcsf);
@@ -122,7 +122,7 @@ void xcsf_experiment1(XCSF *xcsf, INPUT *train_data)
 #endif
 }
 
-void xcsf_experiment2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
+void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data)
 {   
 #ifdef GNUPLOT
 	gplot_init(xcsf);

@@ -32,8 +32,8 @@ extern "C" {
 #include "cl_set.h"
 }
 
-extern "C" void xcsf_experiment1(XCSF *, INPUT *);
-extern "C" void xcsf_experiment2(XCSF *, INPUT *, INPUT *);
+extern "C" void xcsf_fit1(XCSF *, INPUT *);
+extern "C" void xcsf_fit2(XCSF *, INPUT *, INPUT *);
 extern "C" void xcsf_predict(XCSF *, double *, double *, int);
 extern "C" void xcsf_print_pop(XCSF *, _Bool, _Bool);
 extern "C" void xcsf_print_match_set(XCSF *, double *, _Bool, _Bool);
@@ -81,7 +81,7 @@ struct XCS
 			pop_init(&xcs);
 		}       
 		// execute
-		xcsf_experiment1(&xcs, &train_data);        
+		xcsf_fit1(&xcs, &train_data);        
 	}
 
 	void fit(np::ndarray &train_X, np::ndarray &train_Y, 
@@ -120,7 +120,7 @@ struct XCS
 			pop_init(&xcs);
 		}       
 		// execute
-		xcsf_experiment2(&xcs, &train_data, &test_data);
+		xcsf_fit2(&xcs, &train_data, &test_data);
 	}
 
 	np::ndarray predict(np::ndarray &T) {
