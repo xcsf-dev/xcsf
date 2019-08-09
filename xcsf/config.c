@@ -29,29 +29,20 @@
 #include "gp.h"
 
 #define MAXLEN 127
-typedef char *pchar;
-typedef struct nv *pnv;
-typedef struct section *psection;
+typedef struct nv {
+	char *name;
+	char *value;
+	struct nv *next;
+} nv;
 
-struct nv {
-	pchar name;
-	pchar value;
-	pnv next;
-};
-
-struct section {
-	pchar name;
-	pnv nvlist;
-	psection next;
-};
+nv *head;
 
 void init_config(const char *filename);
-int isname(pchar section,pchar name);
+void process(char *configline);
+void trim(char *s);
+void newnvpair(const char *config);
+char *getvalue(char *name);
 void tidyup();
-pchar getvalue(pchar name);     
-
-psection head;
-psection current;
 
 void constants_init(XCSF *xcsf, const char *filename)
 {
@@ -116,149 +107,98 @@ void constants_free(XCSF *xcsf)
 	tree_free_cons(xcsf);
 }
 
-void trim(pchar s) // Remove tabs/spaces/lf/cr  both ends
+void trim(char *s) // Remove tabs/spaces/lf/cr both ends
 {
-	size_t i=0,j;
+	size_t i = 0, j;
 	while((s[i]==' ' || s[i]=='\t' || s[i] =='\n' || s[i]=='\r')) {
 		i++;
 	}
-	if(i>0) {
-		for( j=0; j < strlen(s);j++) {
-			s[j]=s[j+i];
+	if(i > 0) {
+		for(j = 0; j < strlen(s); j++) {
+			s[j] = s[j+i];
 		}
-		s[j]='\0';
+		s[j] = '\0';
 	}
-	i=strlen(s)-1;
+	i = strlen(s)-1;
 	while((s[i]==' ' || s[i]=='\t'|| s[i] =='\n' || s[i]=='\r')) {
 		i--;
 	}
 	if(i < (strlen(s)-1)) {
-		s[i+1]='\0';
+		s[i+1] = '\0';
 	}
 }
 
-void newsection(pchar config) {
-	psection newsect = malloc(sizeof(struct section));
+void newnvpair(const char *config) {
+	// first pair
 	if(head == NULL) {
-		head = newsect;
+		head = malloc(sizeof(nv));
+		head->next = NULL;
 	}
+	// other pairs
 	else {
-		current->next = newsect;
+		nv *new = malloc(sizeof(nv));
+		new->next = head;
+		head = new;
 	}
-	current = newsect;
-	newsect->name = malloc(strlen(config));
-	strncpy(newsect->name,config+1,strlen(config)-1);
-	newsect->name[strlen(config)-2]= '\0';
-	newsect->nvlist = NULL; 
-	newsect->next   = NULL;
-}
-
-void newnvpair(pchar config) {
-	pchar name= NULL;
-	pchar value = NULL;
-	pnv newnv = NULL;
-	pnv lastnv;
-	size_t valuelen;
-	size_t p=0;
-	int err=2;
-	if(current==NULL) {
-		exit(1);
-	}
-	for(p=0; (p < strlen(config)) ;p++) {
-		if (config[p]=='=' ) {
-			err=0;
+	// get length of name
+	size_t namelen = 0; // length of name
+	int err = 2;
+	for(namelen = 0; namelen < strlen(config); namelen++) {
+		if(config[namelen] == '=') {
+			err = 0;
 			break;
 		}
 	}
-	if(err==2) {
+	// no = found
+	if(err == 2) {
 		exit(2);
 	}
-	newnv = malloc(sizeof(struct nv));
-	name=malloc(p+1);
-	strncpy(name,config,p);
-	name[p]='\0';
-	valuelen = strlen(config)-p-1;
-	value= malloc(valuelen+1);
-	strncpy(value,config+p+1,valuelen);
-	value[valuelen]='\0';
-	newnv->name = name;
-	newnv->value = value;
-	newnv->next = NULL;
-	if(current->nvlist == NULL) {
-		current->nvlist = newnv;
-	}
-	else {
-		lastnv= current->nvlist;
-		while((lastnv->next ) != NULL)
-			lastnv=lastnv->next;
-		lastnv->next = newnv;
-	}
+	// get name
+	char *name = malloc(namelen+1);
+	strncpy(name,config,namelen);
+	name[namelen] = '\0';
+	// get value
+	size_t valuelen = strlen(config)-namelen-1; // length of value
+	char *value = malloc(valuelen+1);
+	strncpy(value, config+namelen+1, valuelen);
+	value[valuelen] = '\0';
+	// add pair
+	head->name = name;
+	head->value = value;
 }
 
-psection findsection(pchar sectionname) {
-	psection result = NULL;
-	current = head;
-	while(current) {
-		if(strcmp(current->name,sectionname)==0) {
-			result=current;
+char *getvalue(char *name) {
+	char *result = NULL;
+	for(nv *iter = head; iter != NULL; iter = iter->next) {
+		if(strcmp(name, iter->name) == 0) {
+			result = iter->value;
 			break;
 		}
-		current = current->next;
 	}
 	return result;
 }
 
-pchar getvalue(pchar name) {
-	pchar result = NULL;
-	pnv currnv = current->nvlist;
-	while(currnv) {
-		if((strcmp(name,currnv->name)== 0 )) {
-			result = currnv->value;
-			break;
-		}
-		currnv = currnv->next;
-	}
-	return result;
-}
-
-void process(pchar configline) {
-	if(strlen(configline)== 0) { // ignore empty lines
+void process(char *configline) {
+	if(strlen(configline) == 0) { // ignore empty lines
 		return;
 	}
-	if(configline[0]=='#') {  // lines starting with # are comments
+	if(configline[0] == '#') {  // lines starting with # are comments
 		return; 
 	}
-	if(configline[0]=='[') {
-		newsection(configline);
-	}
-	else {
-		newnvpair(configline);
-	}
-}
-
-int isname(pchar section,pchar name) {
-	int result = 0;
-	trim(section);
-	current = findsection(section);
-	if(current) {
-		if(getvalue(name)) {
-			result =1;
-		}
-	}
-	return result;
+	newnvpair(configline);
 }
 
 void init_config(const char *filename) {
 	FILE * f;
 	char buff[MAXLEN];
 	f = fopen(filename,"rt");
-	if(f==NULL) {
+	if(f == NULL) {
 		printf("ERROR: cannot open %s\n", filename);
 		return;
 	}
 	head = NULL;
 	while(!feof(f)) {
-		if(fgets(buff,MAXLEN-2,f)==NULL) {
+		if(fgets(buff, MAXLEN-2, f) == NULL) {
 			break;
 		}
 		trim(buff);
@@ -268,28 +208,14 @@ void init_config(const char *filename) {
 }
 
 void tidyup()
-{	
-	pnv currentnv;
-	pnv	nextnv;
-	psection nextsection;
-	current = head;
-	do {
-		currentnv = current->nvlist;
-		do {
-			if(currentnv) {					
-				nextnv = currentnv->next;				
-				free(currentnv->value);
-				free(currentnv->name);
-				free(currentnv);
-				currentnv = nextnv;
-			} 
-		} while(currentnv);
-		if(current) {	
-			nextsection = current->next;
-			free(current->name);
-			free(current);
-			current = nextsection;
-		}
-	} while(current);
-	head=NULL;
+{ 
+	nv *iter = head;
+	while(iter != NULL) {
+		free(head->value);
+		free(head->name);
+		head = iter->next;
+		free(iter);
+		iter = head;
+	}    
+	head = NULL;
 }
