@@ -59,7 +59,8 @@ Requirements:
 
 - ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
 - The [cmake][cmake] build system.
-- OpenMP.
+- (PARALLEL=ON) OpenMP
+- (GNUPLOT=ON) GNUPlot
  
 Building:
 ------------------------
@@ -74,8 +75,8 @@ Running:
 
 Arguments: 
 
-[1] (required) a path to input csv files.
-[2] (optional) a configuration file; defaults to using `default.ini`
+1: (required) a path to input csv files.
+2: (optional) a configuration file; defaults to using `default.ini`
 
 Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 
