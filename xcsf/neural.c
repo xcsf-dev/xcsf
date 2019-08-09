@@ -257,5 +257,5 @@ double identity(double x)
 double soft_plus(double x)
 {
 	// soft plus function: outputs [0,inf]
-	return log(1.0 + exp(x));
+	return log1p(exp(x));
 }
