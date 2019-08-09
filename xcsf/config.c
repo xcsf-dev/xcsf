@@ -112,13 +112,15 @@ void constants_free(XCSF *xcsf)
 
 void trim(char *s) // Remove tabs/spaces/lf/cr both ends
 {
-	size_t i = 0, j;
+	size_t i = 0;
 	while((s[i]==' ' || s[i]=='\t' || s[i] =='\n' || s[i]=='\r')) {
 		i++;
 	}
 	if(i > 0) {
-		for(j = 0; j < strlen(s); j++) {
+		size_t j = 0;
+		while(j < strlen(s)) {
 			s[j] = s[j+i];
+			j++;
 		}
 		s[j] = '\0';
 	}
