@@ -80,7 +80,7 @@ Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 Requirements:
 ------------------------
 
-- C11/C++11 compliant compilers
+- [C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) [C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compilers
 - cmake
 - OpenMP
 - Python
