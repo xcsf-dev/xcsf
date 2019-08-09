@@ -46,7 +46,8 @@ Mutation for conditions:
 - NUM_SAM = 2: Self-adapts P_MUTATION and S_MUTATION
  
 ------------------------
-Compiler options:
+# Compiler options:
+------------------------
 
 - GNUPLOT = ON: real-time GNUPlot of the system error; data saved in folder: `out`
 - PARALLEL = ON: matching and set prediction functions parallelised with OpenMP
