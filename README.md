@@ -5,6 +5,8 @@ as a Python library.
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b)](https://www.codacy.com/app/rpreen/xcsf)
 
+[![Build Status](https://travis-ci.org/rpreen/xcsf.svg?branch=master)](https://travis-ci.org/rpreen/xcsf)
+
 ------------------------
 ## Features
 
