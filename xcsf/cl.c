@@ -196,7 +196,7 @@ void cl_free(XCSF *xcsf, CL *c)
 
 void cl_print(XCSF *xcsf, CL *c, _Bool print_cond, _Bool print_pred)
 {
-	if(print_cond || print_cond) {
+	if(print_cond || print_pred) {
 		printf("***********************************************\n");
 	}
 	if(print_cond) {
