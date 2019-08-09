@@ -59,7 +59,6 @@ Requirements:
 
 - ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
 - The [cmake][cmake] build system.
-- (PARALLEL=ON) OpenMP
 - (GNUPLOT=ON) GNUPlot
  
 Building:
