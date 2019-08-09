@@ -19,16 +19,10 @@ import xcsf.xcsf as xcsf
 import numpy as np
 from sklearn import datasets
 from sklearn.preprocessing import minmax_scale
+import matplotlib.pyplot as plt
 
 # load example data set
-#data = datasets.load_iris() # classification
-#data = datasets.load_digits() # classification
-#data = datasets.load_wine() # classification
-#data = datasets.load_breast_cancer() # classification
-#data = datasets.load_linnerud() # multivariate regression
-#data = datasets.load_diabetes() # regression
 data = datasets.load_boston() # regression
-
 train_X, train_Y = data.data, data.target
 
 # scale [-1,1]
@@ -52,26 +46,42 @@ xcs = xcsf.XCS(xvars, yvars)
 
 # override cons.txt
 xcs.POP_SIZE = 5000
-xcs.MAX_TRIALS = 50000
+xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.COND_TYPE = 0 # hyperrectangle conditions
 xcs.PRED_TYPE = 4 # neural network predictors
 xcs.HIDDEN_NEURON_ACTIVATION = 0 # logistic
 
-# fit function, shuffle training data
-xcs.fit(train_X, train_Y, True)
+##################################
+# Example plotting in matplotlib
+##################################
 
-# get predictions
-pred = xcs.predict(train_X)
+n = 100 # 100,000 trials
+evals = np.zeros(n)
+psize = np.zeros(n)
+mse = np.zeros(n)
+for i in range(n):
+    xcs.fit(train_X, train_Y, True)
+    pred = xcs.predict(train_X)
+    mse[i] = (np.square(pred - train_Y)).mean(axis=0)
+    evals[i] = xcs.time()
+    psize[i] = xcs.pop_num()
+    print("%d %.5f %d" % (evals[i], mse[i], psize[i]))
+
+plt.figure(figsize=(10,6))
+plt.plot(evals, mse)
+plt.grid(linestyle='dotted', linewidth=1)
+plt.axhline(y=xcs.EPS_0, xmin=0.0, xmax=1.0, color='r')
+plt.title('XCSF Training Performance', fontsize=14)
+plt.xlabel('Evaluations', fontsize=12)
+plt.xlim([0,n*xcs.MAX_TRIALS])
+plt.ylabel('Mean squared error', fontsize=12)
+plt.show()
 
 # show some predictions vs. answers
+pred = xcs.predict(train_X)
 print("*****************************")
 print("first 10 predictions = ")
 print(pred[:10])
 print("*****************************")
 print("first 10 answers = ")
 print(train_Y[:10])
-
-# mean squared error
-mse = (np.square(pred - train_Y)).mean(axis=0)
-print("*****************************")
-print("MSE = "+str(mse))
