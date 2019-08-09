@@ -78,6 +78,7 @@ Arguments:
 2: (optional) a configuration file; defaults to using `default.ini`
 
 Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
+
 Run: `./xcsf/xcsf ../data/sine_1var`              
 
 ------------------------
