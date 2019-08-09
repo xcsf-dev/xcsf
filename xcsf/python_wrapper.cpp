@@ -26,7 +26,7 @@ namespace np = boost::python::numpy;
 extern "C" {   
 #include <stdbool.h>
 #include "data_structures.h"
-#include "cons.h"
+#include "config.h"
 #include "random.h"
 #include "input.h"
 #include "cl_set.h"
@@ -45,8 +45,11 @@ struct XCS
 	INPUT train_data;
 	INPUT test_data;
 
-	XCS(int num_x_vars, int num_y_vars) {
-		constants_init(&xcs);
+	XCS(int num_x_vars, int num_y_vars) : 
+		XCS(num_x_vars, num_y_vars, "default.ini") {}
+
+	XCS(int num_x_vars, int num_y_vars, const char *filename) {
+		constants_init(&xcs, filename);
 		xcs.num_x_vars = num_x_vars;
 		xcs.num_y_vars = num_y_vars;
 		xcs.pop_num = 0;
@@ -235,6 +238,7 @@ BOOST_PYTHON_MODULE(xcsf)
 	void (XCS::*fit2)(np::ndarray&, np::ndarray&, np::ndarray&, np::ndarray&, _Bool) = &XCS::fit;
 
 	p::class_<XCS>("XCS", p::init<int, int>())
+		.def(p::init<int, int, const char *>())
 		.def("fit", fit1)
 		.def("fit", fit2)
 		.def("predict", &XCS::predict)

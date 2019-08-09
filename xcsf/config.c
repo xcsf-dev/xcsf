@@ -17,11 +17,7 @@
  **************
  * Description: 
  **************
- * The constants module.
- *
- * Reads in the global constants from cons.txt. The number of trials and number
- * of experiments to perform can be overridden by passing command line
- * arguments.
+ * Reads the XCSF parameters from a configuration file.
  */
 
 #include <stdio.h>
@@ -29,7 +25,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "data_structures.h"
-#include "cons.h"
+#include "config.h"
 #include "gp.h"
 
 #define MAXLEN 127
@@ -49,7 +45,7 @@ struct section {
 	psection next;
 };
 
-void init_config(pchar filename);
+void init_config(const char *filename);
 int isname(pchar section,pchar name);
 void tidyup();
 pchar getvalue(pchar name);     
@@ -57,9 +53,9 @@ pchar getvalue(pchar name);
 psection head;
 psection current;
 
-void constants_init(XCSF *xcsf)
+void constants_init(XCSF *xcsf, const char *filename)
 {
-	init_config("cons.txt");
+	init_config(filename);
 	xcsf->COND_TYPE = atoi(getvalue("COND_TYPE"));
 	xcsf->PRED_TYPE = atoi(getvalue("PRED_TYPE"));
 	xcsf->POP_SIZE = atoi(getvalue("POP_SIZE"));
@@ -123,26 +119,32 @@ void constants_free(XCSF *xcsf)
 void trim(pchar s) // Remove tabs/spaces/lf/cr  both ends
 {
 	size_t i=0,j;
-	while((s[i]==' ' || s[i]=='\t' || s[i] =='\n' || s[i]=='\r'))
+	while((s[i]==' ' || s[i]=='\t' || s[i] =='\n' || s[i]=='\r')) {
 		i++;
+	}
 	if(i>0) {
-		for( j=0; j < strlen(s);j++)
+		for( j=0; j < strlen(s);j++) {
 			s[j]=s[j+i];
+		}
 		s[j]='\0';
 	}
 	i=strlen(s)-1;
-	while((s[i]==' ' || s[i]=='\t'|| s[i] =='\n' || s[i]=='\r'))
+	while((s[i]==' ' || s[i]=='\t'|| s[i] =='\n' || s[i]=='\r')) {
 		i--;
-	if(i < (strlen(s)-1))
+	}
+	if(i < (strlen(s)-1)) {
 		s[i+1]='\0';
+	}
 }
 
 void newsection(pchar config) {
 	psection newsect = malloc(sizeof(struct section));
-	if(head == NULL)
+	if(head == NULL) {
 		head = newsect;
-	else
+	}
+	else {
 		current->next = newsect;
+	}
 	current = newsect;
 	newsect->name = malloc(strlen(config));
 	strncpy(newsect->name,config+1,strlen(config)-1);
@@ -159,29 +161,32 @@ void newnvpair(pchar config) {
 	size_t valuelen;
 	size_t p=0;
 	int err=2;
-	if(current==NULL)
+	if(current==NULL) {
 		exit(1);
+	}
 	for(p=0; (p < strlen(config)) ;p++) {
 		if (config[p]=='=' ) {
 			err=0;
 			break;
 		}
 	}
-	if(err==2)
+	if(err==2) {
 		exit(2);
+	}
 	newnv = malloc(sizeof(struct nv));
 	name=malloc(p+1);
 	strncpy(name,config,p);
 	name[p]='\0';
 	valuelen = strlen(config)-p-1;
 	value= malloc(valuelen+1);
-	strncpy(value,config+p+1,valuelen );
+	strncpy(value,config+p+1,valuelen);
 	value[valuelen]='\0';
 	newnv->name = name;
 	newnv->value = value;
 	newnv->next = NULL;
-	if(current->nvlist == NULL)
+	if(current->nvlist == NULL) {
 		current->nvlist = newnv;
+	}
 	else {
 		lastnv= current->nvlist;
 		while((lastnv->next ) != NULL)
@@ -220,7 +225,7 @@ void process(pchar configline) {
 	if(strlen(configline)== 0) { // ignore empty lines
 		return;
 	}
-	if(configline[0]==';') {  // lines starting with a ; are comments
+	if(configline[0]=='#') {  // lines starting with # are comments
 		return; 
 	}
 	if(configline[0]=='[') {
@@ -243,7 +248,7 @@ int isname(pchar section,pchar name) {
 	return result;
 }
 
-void init_config(pchar filename) {
+void init_config(const char *filename) {
 	FILE * f;
 	char buff[MAXLEN];
 	f = fopen(filename,"rt");
@@ -268,7 +273,7 @@ void tidyup()
 	pnv	nextnv;
 	psection nextsection;
 	current = head;
-	do  {
+	do {
 		currentnv = current->nvlist;
 		do {
 			if(currentnv) {					
@@ -278,15 +283,13 @@ void tidyup()
 				free(currentnv);
 				currentnv = nextnv;
 			} 
-		}
-		while(currentnv);
+		} while(currentnv);
 		if(current) {	
 			nextsection = current->next;
 			free(current->name);
 			free(current);
 			current = nextsection;
 		}
-	}
-	while(current);
+	} while(current);
 	head=NULL;
 }

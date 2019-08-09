@@ -110,7 +110,7 @@ else()
 
 endif()
 
-file(COPY cons.txt DESTINATION .)             
+file(COPY default.ini DESTINATION .)             
 
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS_RELEASE: ${CMAKE_C_FLAGS_RELEASE}")

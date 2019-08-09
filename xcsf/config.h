@@ -16,5 +16,5 @@
  *
  */
  
-void constants_init(XCSF *xcsf);
+void constants_init(XCSF *xcsf, const char *filename);
 void constants_free(XCSF *xcsf);

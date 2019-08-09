@@ -55,7 +55,7 @@ xcs.HIDDEN_NEURON_ACTIVATION = 0 # logistic
 # Example plotting in matplotlib
 ##################################
 
-n = 100 # 100,000 trials
+n = 50 # 50,000 trials
 evals = np.zeros(n)
 psize = np.zeros(n)
 mse = np.zeros(n)

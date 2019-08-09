@@ -34,7 +34,7 @@
 #include <math.h>
 #include <errno.h>
 #include "data_structures.h"
-#include "cons.h"
+#include "config.h"
 #include "random.h"
 #include "cl.h"
 #include "cl_set.h"
@@ -51,7 +51,7 @@ double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
 int main(int argc, char **argv)
 {    
 	if(argc < 2 || argc > 3) {
-		printf("Usage: xcsf inputfile [MaxTrials]\n");
+		printf("Usage: xcsf inputfile [config.ini]\n");
 		exit(EXIT_FAILURE);
 	} 
 
@@ -59,11 +59,13 @@ int main(int argc, char **argv)
 
 	// initialise XCSF
 	XCSF *xcsf = malloc(sizeof(XCSF));
-	constants_init(xcsf); // read cons.txt default parameters      
-	// override with command line values
+    // read parameters from configuration file
 	if(argc > 2) {
-		xcsf->MAX_TRIALS = atoi(argv[2]);
+		constants_init(xcsf, argv[2]);
 	}    
+	else {
+		constants_init(xcsf, "default.ini");
+	}
 
 	// read csv input data
 	INPUT *train_data = malloc(sizeof(INPUT));

@@ -8,7 +8,7 @@ as a Python library.
 Features:
 ------------------------
 
-See `cons.txt` for a full list of options.
+See `default.ini` for a full list of options.
 
 Evolved Conditions:
 
@@ -63,6 +63,9 @@ Building:
 
 Running:
 
+Arguments: 
+[1] (required) a path to input csv files
+[2] (optional) a configuration file; defaults to using `default.ini`
 Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 
 1. Run: `./xcsf/xcsf ../data/sine_1var`              
