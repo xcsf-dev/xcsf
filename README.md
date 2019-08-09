@@ -3,6 +3,8 @@
 An implementation of XCSF that can be built either as a stand-alone binary or
 as a Python library.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b)](https://www.codacy.com/app/rpreen/xcsf)
+
 ------------------------
 ## Features
 
