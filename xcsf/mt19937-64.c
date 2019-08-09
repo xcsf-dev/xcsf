@@ -107,17 +107,18 @@ void init_by_array64(unsigned long long init_key[],
 /* generates a random number on [0, 2^64-1]-interval */
 unsigned long long genrand64_int64(void)
 {
-	int i;
 	unsigned long long x;
-	static unsigned long long mag01[2]={0ULL, MATRIX_A};
 
 	if (mti >= NN) { /* generate NN words at one time */
 
 		/* if init_genrand64() has not been called, */
 		/* a default initial seed is used     */
-		if (mti == NN+1) 
+		if (mti == NN+1) {
 			init_genrand64(5489ULL); 
+		}
 
+		int i;
+		static unsigned long long mag01[2]={0ULL, MATRIX_A};
 		for (i=0;i<NN-MM;i++) {
 			x = (mt[i]&UM)|(mt[i+1]&LM);
 			mt[i] = mt[i+MM] ^ (x>>1) ^ mag01[(int)(x&1ULL)];
