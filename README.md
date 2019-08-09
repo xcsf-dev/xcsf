@@ -53,7 +53,14 @@ Mutation for conditions:
   
 ------------------------
 # Stand-alone executable:
+ 
+Requirements:
+------------------------
 
+- ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
+- The [cmake][cmake] build system.
+- OpenMP.
+ 
 Building:
 ------------------------
 
@@ -67,7 +74,7 @@ Running:
 
 Arguments: 
 
-[1] (required) a path to input csv files
+[1] (required) a path to input csv files.
 [2] (optional) a configuration file; defaults to using `default.ini`
 
 Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
@@ -80,9 +87,8 @@ Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 Requirements:
 ------------------------
 
-- ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) ![C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compilers
-- The [cmake][cmake] build system
-- OpenMP
+- All of the above for building the stand-alone executable.
+- ![C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compiler.
 - Python
 - Boost Python and numpy libaries (at least version 1.56.0 for Python3)
 	+ Ubuntu 18.04: `sudo apt install libboost-python-dev libboost-numpy-dev`
