@@ -98,6 +98,6 @@ Run: `./xcsf/xcsf ../data/sine_1var`
 
 See example MyProject.py
 
-`python3 MyProject.py`
+Run: `python3 MyProject.py`
 
 [cmake]: http://www.cmake.org/ "CMake tool"
