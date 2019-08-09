@@ -41,9 +41,9 @@ Computed Predictions:
 Mutation for conditions:
 ------------------------
 
-- `NUM_SAM = 0`: Fixed rates (P_MUTATION and S_MUTATION)
-- `NUM_SAM = 1`: Self-adapts P_MUTATION
-- `NUM_SAM = 2`: Self-adapts P_MUTATION and S_MUTATION
+- `NUM_SAM = 0`: Fixed rates for `P_MUTATION` and `S_MUTATION`
+- `NUM_SAM = 1`: Self-adapts `P_MUTATION`
+- `NUM_SAM = 2`: Self-adapts `P_MUTATION` and `S_MUTATION`
  
 ------------------------
 # Compiler options:
