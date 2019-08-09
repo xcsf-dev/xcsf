@@ -160,13 +160,11 @@ void newnvpair(const char *config) {
 	}
 	// get name
 	char *name = malloc(namelen+1);
-	strncpy(name,config,namelen);
-	name[namelen] = '\0';
+	snprintf(name, namelen+1, "%s", config);
 	// get value
 	size_t valuelen = strnlen(config,MAXLEN)-namelen-1; // length of value
 	char *value = malloc(valuelen+1);
-	strncpy(value, config+namelen+1, valuelen);
-	value[valuelen] = '\0';
+	snprintf(value, valuelen, "%s", config+namelen+1);
 	// add pair
 	head->name = name;
 	head->value = value;
