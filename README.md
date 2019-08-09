@@ -4,11 +4,11 @@ An implementation of XCSF that can be built either as a stand-alone binary or
 as a Python library.
 
 ------------------------
-## Features:
+## Features
 
 See `default.ini` for a full list of options.
 
-### Evolved Conditions:
+### Evolved Conditions
 
 * `COND_TYPE =-1`: Always matching dummy condition
 * `COND_TYPE = 0`: Hyperrectangles
@@ -19,7 +19,7 @@ See `default.ini` for a full list of options.
 * `COND_TYPE = 11`: Both conditions and predictions in single dynamical GP graphs
 * `COND_TYPE = 12`: Both conditions and predictions in single neural networks
 
-### Computed Predictions:
+### Computed Predictions
 
 * `PRED_TYPE = 0`: Linear least squares
 * `PRED_TYPE = 1`: Quadratic least squares
@@ -27,44 +27,44 @@ See `default.ini` for a full list of options.
 * `PRED_TYPE = 3`: Quadratic recursive least squares
 * `PRED_TYPE = 4`: Stochastic gradient descent multilayer perceptron neural networks
 	* `HIDDEN_NEURON_ACTIVATION = 0`: Logistic (-1,1)
-	* `HIDDEN_NEURON_ACTIVATION = 1`: Rectified linear unit [0,inf)
-	* `HIDDEN_NEURON_ACTIVATION = 2`: Gaussian (0,1]
+	* `HIDDEN_NEURON_ACTIVATION = 1`: Rectified linear unit (0,inf)
+	* `HIDDEN_NEURON_ACTIVATION = 2`: Gaussian (0,1)
 	* `HIDDEN_NEURON_ACTIVATION = 3`: Bent identity (-inf,inf)
 	* `HIDDEN_NEURON_ACTIVATION = 4`: TanH (-1,1)
-	* `HIDDEN_NEURON_ACTIVATION = 5`: Sinusoid [-1,1]
+	* `HIDDEN_NEURON_ACTIVATION = 5`: Sinusoid (-1,1)
 	* `HIDDEN_NEURON_ACTIVATION = 6`: Soft plus (0,inf)
 	* `HIDDEN_NEURON_ACTIVATION = 7`: Identity (-inf,inf)
 
  
-### Mutation for conditions:
+### Mutation for conditions
 
 * `NUM_SAM = 0`: Fixed rates for `P_MUTATION` and `S_MUTATION`
 * `NUM_SAM = 1`: Self-adapts `P_MUTATION`
 * `NUM_SAM = 2`: Self-adapts `P_MUTATION` and `S_MUTATION`
  
 ------------------------
-## Compiler options:
+## Compiler options
 
 * `GNUPLOT = ON`: real-time GNUPlot of the system error; data saved in folder: `out`
 * `PARALLEL = ON`: matching and set prediction functions parallelised with OpenMP
   
 ------------------------
-## Stand-alone executable:
+## Stand-alone executable
  
-### Requirements:
+### Requirements
 
 * ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
 * The [cmake][cmake] build system.
 * (GNUPLOT=ON) GNUPlot
  
-### Building:
+### Building
 
 0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
 1. Change to the build directory: `cd xcsf/build`
 2. Run cmake: `cmake .. -DCMAKE_BUILD_TYPE=RELEASE`
 3. Run make: `make`
 
-### Running:
+### Running
 
 Arguments: 
 
@@ -76,9 +76,9 @@ Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 Run: `./xcsf/xcsf ../data/sine_1var`              
 
 ------------------------
-## Python library:
+## Python library
 
-### Requirements:
+### Requirements
 
 * All of the above for building the stand-alone executable.
 * ![C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compiler.
@@ -87,14 +87,14 @@ Run: `./xcsf/xcsf ../data/sine_1var`
 	* Ubuntu 18.04: `sudo apt install libboost-python-dev libboost-numpy-dev`
 	* OS X: `brew install boost-python3 boost-numpy3`
 
-### Building:
+### Building
 
 0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
 1. Change to the build directory: `cd xcsf/build`
 2. Run cmake: `cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYTHON_LIBRARY=ON`
 3. Run make: `make`
 
-### Running:
+### Running
 
 See example MyProject.py
 
