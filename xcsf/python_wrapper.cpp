@@ -180,6 +180,7 @@ struct XCS
 	int get_hidden_neuron_activation() { return xcs.HIDDEN_NEURON_ACTIVATION; }
 	int get_dgp_num_nodes() { return xcs.DGP_NUM_NODES; }
 	int get_gp_num_cons() { return xcs.GP_NUM_CONS; }
+	int get_gp_init_depth() { return xcs.GP_INIT_DEPTH; }
 	double get_xcsf_eta() { return xcs.XCSF_ETA; }
 	double get_xcsf_x0() { return xcs.XCSF_X0; }
 	double get_rls_scale_factor() { return xcs.RLS_SCALE_FACTOR; }
@@ -224,6 +225,7 @@ struct XCS
 	void set_hidden_neuron_activation(int a) { xcs.HIDDEN_NEURON_ACTIVATION = a; }
 	void set_dgp_num_nodes(int a) { xcs.DGP_NUM_NODES = a; }
 	void set_gp_num_cons(int a) { xcs.GP_NUM_CONS = a; }
+	void set_gp_init_depth(int a) { xcs.GP_INIT_DEPTH = a; }
 	void set_xcsf_eta(double a) { xcs.XCSF_ETA = a; }
 	void set_xcsf_x0(double a) { xcs.XCSF_X0 = a; }
 	void set_rls_scale_factor(double a) { xcs.RLS_SCALE_FACTOR = a; }
@@ -276,6 +278,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("HIDDEN_NEURON_ACTIVATION", &XCS::get_hidden_neuron_activation, &XCS::set_hidden_neuron_activation)
 		.add_property("DGP_NUM_NODES", &XCS::get_dgp_num_nodes, &XCS::set_dgp_num_nodes)
 		.add_property("GP_NUM_CONS", &XCS::get_gp_num_cons, &XCS::set_gp_num_cons)
+		.add_property("GP_INIT_DEPTH", &XCS::get_gp_init_depth, &XCS::set_gp_init_depth)
 		.add_property("XCSF_ETA", &XCS::get_xcsf_eta, &XCS::set_xcsf_eta)
 		.add_property("XCSF_X0", &XCS::get_xcsf_x0, &XCS::set_xcsf_x0)
 		.add_property("RLS_SCALE_FACTOR", &XCS::get_rls_scale_factor, &XCS::set_rls_scale_factor)

@@ -99,6 +99,7 @@ void constants_init(XCSF *xcsf, const char *filename)
 	xcsf->HIDDEN_NEURON_ACTIVATION = atoi(getvalue("HIDDEN_NEURON_ACTIVATION"));
 	xcsf->DGP_NUM_NODES = atoi(getvalue("DGP_NUM_NODES"));
 	xcsf->GP_NUM_CONS = atoi(getvalue("GP_NUM_CONS"));
+	xcsf->GP_INIT_DEPTH = atoi(getvalue("GP_INIT_DEPTH"));
 	tidyup();  
 
 	tree_init_cons(xcsf);

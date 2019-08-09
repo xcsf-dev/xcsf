@@ -54,7 +54,7 @@ void tree_rand(XCSF *xcsf, GP_TREE *gp)
 	int buffer[GP_MAX_LEN];
 	int len = 0;
 	do {
-		len = tree_grow(xcsf, buffer, 0, GP_MAX_LEN, GP_DEPTH);
+		len = tree_grow(xcsf, buffer, 0, GP_MAX_LEN, xcsf->GP_INIT_DEPTH);
 	} while(len < 0);
 
 	// copy tree to this individual

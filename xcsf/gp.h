@@ -17,7 +17,6 @@
  */
 
 #define GP_MAX_LEN 10000
-#define GP_DEPTH 5
 #define GP_NUM_FUNC 4
 #define ADD 0
 #define SUB 1
