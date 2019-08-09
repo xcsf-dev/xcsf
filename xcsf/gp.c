@@ -47,6 +47,7 @@ int tree_traverse(int *tree, int p);
 
 void tree_init_cons(XCSF *xcsf)
 {
+	// initialise the constants shared among all GP trees
 	xcsf->gp_cons = malloc(sizeof(double) * xcsf->GP_NUM_CONS);
 	for(int i = 0; i < xcsf->GP_NUM_CONS; i++) {
 		xcsf->gp_cons[i] = (xcsf->MAX_CON - xcsf->MIN_CON) * drand() + xcsf->MIN_CON;
@@ -86,6 +87,7 @@ void tree_free(XCSF *xcsf, GP_TREE *gp)
 
 int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
 {
+	// only used to create an initial tree
 	int prim = irand(0,2);
 	int one_child;
 
@@ -213,6 +215,7 @@ void tree_copy(XCSF *xcsf, GP_TREE *to, GP_TREE *from)
 
 void tree_crossover(XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
 {
+	// uniform sub-tree crossover
 	int len1 = tree_traverse(p1->tree, 0);
 	int len2 = tree_traverse(p2->tree, 0);
 	int start1 = irand(0,len1);
@@ -240,14 +243,17 @@ void tree_crossover(XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
 
 void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate) 
 {   
+	// point mutation
 	int len = tree_traverse(offspring->tree, 0);
 	for(int i = 0; i < len; i++) {  
 		if(drand() < rate) {
+			// terminals randomly replaced with other terminals
 			if(offspring->tree[i] >= GP_NUM_FUNC) {
 				offspring->tree[i] = irand(GP_NUM_FUNC, 
 						GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->num_x_vars);
 			}
 			else {
+				// functions randomly replaced with other functions
 				switch(offspring->tree[i]) {
 					case ADD: 
 					case SUB: 
