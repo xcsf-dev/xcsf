@@ -38,7 +38,7 @@ print("train_Y shape = "+str(np.shape(train_Y)))
 
 # get number of input and output variables
 xvars = np.shape(train_X)[1]
-yvars = np.shape(train_Y)[1] 
+yvars = np.shape(train_Y)[1]
 print("xvars = "+str(xvars) + " yvars = " + str(yvars))
 
 # initialise XCSF
