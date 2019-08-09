@@ -82,9 +82,8 @@ double gasdev()
 	// from numerical recipes in c
 	static int iset = 0;
 	static double gset;
-	double fac, rsq, v1;
 	if(iset == 0) {
-		double v2;
+		double fac, rsq, v1, v2;
 		do {
 			v1 = (drand()*2.0)-1.0;
 			v2 = (drand()*2.0)-1.0;
