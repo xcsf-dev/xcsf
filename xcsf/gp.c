@@ -89,7 +89,6 @@ int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
 {
 	// only used to create an initial tree
 	int prim = irand(0,2);
-	int one_child;
 
 	if(p >= max) {
 		return(-1);
@@ -113,7 +112,7 @@ int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
 			case MUL: 
 			case DIV:
 				buffer[p] = prim;
-				one_child = tree_grow(xcsf, buffer, p+1, max, depth-1);
+				int one_child = tree_grow(xcsf, buffer, p+1, max, depth-1);
 				if(one_child < 0) {
 					return(-1);
 				}
