@@ -9,7 +9,6 @@ as a Python library.
 See `default.ini` for a full list of options.
 
 ### Evolved Conditions:
-------------------------
 
 * `COND_TYPE =-1`: Always matching dummy condition
 * `COND_TYPE = 0`: Hyperrectangles
@@ -21,7 +20,6 @@ See `default.ini` for a full list of options.
 * `COND_TYPE = 12`: Both conditions and predictions in single neural networks
 
 ### Computed Predictions:
-------------------------
 
 * `PRED_TYPE = 0`: Linear least squares
 * `PRED_TYPE = 1`: Quadratic least squares
@@ -39,7 +37,6 @@ See `default.ini` for a full list of options.
 
  
 ### Mutation for conditions:
-------------------------
 
 * `NUM_SAM = 0`: Fixed rates for `P_MUTATION` and `S_MUTATION`
 * `NUM_SAM = 1`: Self-adapts `P_MUTATION`
@@ -55,14 +52,12 @@ See `default.ini` for a full list of options.
 ## Stand-alone executable:
  
 ### Requirements:
-------------------------
 
 * ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
 * The [cmake][cmake] build system.
 * (GNUPLOT=ON) GNUPlot
  
 ### Building:
-------------------------
 
 0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
 1. Change to the build directory: `cd xcsf/build`
@@ -70,7 +65,6 @@ See `default.ini` for a full list of options.
 3. Run make: `make`
 
 ### Running:
-------------------------
 
 Arguments: 
 
@@ -85,7 +79,6 @@ Run: `./xcsf/xcsf ../data/sine_1var`
 ## Python library:
 
 ### Requirements:
-------------------------
 
 * All of the above for building the stand-alone executable.
 * ![C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compiler.
@@ -95,7 +88,6 @@ Run: `./xcsf/xcsf ../data/sine_1var`
 	* OS X: `brew install boost-python3 boost-numpy3`
 
 ### Building:
-------------------------
 
 0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
 1. Change to the build directory: `cd xcsf/build`
@@ -103,7 +95,6 @@ Run: `./xcsf/xcsf ../data/sine_1var`
 3. Run make: `make`
 
 ### Running:
-------------------------
 
 See example MyProject.py
 
