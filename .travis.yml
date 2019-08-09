@@ -1,0 +1,20 @@
+language: cpp
+
+dist: bionic
+
+addons:
+
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+      env:
+        - BUILD_TYPE="RELEASE"
+
+script:
+- cd "${TRAVIS_BUILD_DIR}/build"
+- cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" ..
+- make
