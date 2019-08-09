@@ -1,0 +1,23 @@
+# Travis-CI build script
+
+language: cpp
+
+addons:
+  matrix:
+    include:
+      # Ubuntu 18.04
+      - os: linux
+        addons:
+          apt:
+            sources:
+              - ubuntu-toolchain-r-test
+            packages:
+              - g++-8
+              - python3
+              - libboost-python-dev
+              - libboost-numpy-dev
+        env:
+          - MATRIX_EVAL="CC=gcc-8" CMAKE_CXX="g++-8" BUILD_TYPE="RELEASE"
+
+before install:
+  - eval "${MATRIX_EVAL}"
