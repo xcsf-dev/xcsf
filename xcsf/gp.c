@@ -215,7 +215,7 @@ void tree_copy(XCSF *xcsf, GP_TREE *to, GP_TREE *from)
 
 void tree_crossover(XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
 {
-	// uniform sub-tree crossover
+	// sub-tree crossover
 	int len1 = tree_traverse(p1->tree, 0);
 	int len2 = tree_traverse(p2->tree, 0);
 	int start1 = irand(0,len1);
