@@ -47,14 +47,12 @@ Mutation for conditions:
  
 ------------------------
 # Compiler options:
-------------------------
 
 - GNUPLOT = ON: real-time GNUPlot of the system error; data saved in folder: `out`
 - PARALLEL = ON: matching and set prediction functions parallelised with OpenMP
   
 ------------------------
 # Stand-alone executable:
-------------------------
 
 Building:
 ------------------------
@@ -78,7 +76,6 @@ Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 
 ------------------------
 # Python library:
-------------------------
 
 Requirements:
 ------------------------
