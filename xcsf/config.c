@@ -118,17 +118,17 @@ void trim(char *s) // Remove tabs/spaces/lf/cr both ends
 	}
 	if(i > 0) {
 		size_t j = 0;
-		while(j < strlen(s)) {
+		while(j < strnlen(s, MAXLEN)) {
 			s[j] = s[j+i];
 			j++;
 		}
 		s[j] = '\0';
 	}
-	i = strlen(s)-1;
+	i = strnlen(s, MAXLEN)-1;
 	while((s[i]==' ' || s[i]=='\t'|| s[i] =='\n' || s[i]=='\r')) {
 		i--;
 	}
-	if(i < (strlen(s)-1)) {
+	if(i < (strnlen(s, MAXLEN)-1)) {
 		s[i+1] = '\0';
 	}
 }
@@ -148,7 +148,7 @@ void newnvpair(const char *config) {
 	// get length of name
 	size_t namelen = 0; // length of name
 	int err = 2;
-	for(namelen = 0; namelen < strlen(config); namelen++) {
+	for(namelen = 0; namelen < strnlen(config, MAXLEN); namelen++) {
 		if(config[namelen] == '=') {
 			err = 0;
 			break;
@@ -163,7 +163,7 @@ void newnvpair(const char *config) {
 	strncpy(name,config,namelen);
 	name[namelen] = '\0';
 	// get value
-	size_t valuelen = strlen(config)-namelen-1; // length of value
+	size_t valuelen = strnlen(config,MAXLEN)-namelen-1; // length of value
 	char *value = malloc(valuelen+1);
 	strncpy(value, config+namelen+1, valuelen);
 	value[valuelen] = '\0';
@@ -184,7 +184,7 @@ char *getvalue(char *name) {
 }
 
 void process(char *configline) {
-	if(strlen(configline) == 0) { // ignore empty lines
+	if(strnlen(configline,MAXLEN) == 0) { // ignore empty lines
 		return;
 	}
 	if(configline[0] == '#') {  // lines starting with # are comments

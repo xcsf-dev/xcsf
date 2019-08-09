@@ -67,7 +67,7 @@ void csv_read(char *fname, double **data, int *num_rows, int *num_cols)
 		if(*num_rows == 0) {
 			char *ptok = strtok(line, DELIM);
 			while(ptok != NULL) {
-				if(strlen(ptok) > 0) {
+				if(strnlen(ptok,MAX_LINE_LENGTH) > 0) {
 					(*num_cols)++;
 				}
 				ptok = strtok(NULL, DELIM);
