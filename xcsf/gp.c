@@ -25,7 +25,14 @@
 #include "random.h"
 #include "data_structures.h"
 #include "gp.h"
-
+ 
+#define GP_MAX_LEN 10000
+#define GP_NUM_FUNC 4
+#define ADD 0
+#define SUB 1
+#define MUL 2
+#define DIV 3
+ 
 int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth);
 int tree_traverse(int *tree, int p);
 

@@ -15,14 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-#define GP_MAX_LEN 10000
-#define GP_NUM_FUNC 4
-#define ADD 0
-#define SUB 1
-#define MUL 2
-#define DIV 3
-  
+ 
 typedef struct GP_TREE {
 	int *tree;
 	int p;
