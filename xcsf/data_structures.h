@@ -92,6 +92,8 @@ typedef struct XCSF {
 	// prediction parameters
 	double XCSF_ETA; // learning rate for updating the computed prediction
 	double XCSF_X0; // prediction weight vector offset value
+	double RLS_SCALE_FACTOR; // initial diagonal values of the RLS gain-matrix
+	double RLS_LAMBDA; // forget rate for RLS: small values may be unstable
 
 	// subsumption parameters
 	_Bool GA_SUBSUMPTION; // whether to try and subsume offspring classifiers

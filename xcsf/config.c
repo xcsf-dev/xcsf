@@ -88,6 +88,8 @@ void constants_init(XCSF *xcsf, const char *filename)
 	xcsf->PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
 	xcsf->XCSF_X0 = atof(getvalue("XCSF_X0"));
 	xcsf->XCSF_ETA = atof(getvalue("XCSF_ETA"));
+	xcsf->RLS_SCALE_FACTOR = atof(getvalue("RLS_SCALE_FACTOR"));
+	xcsf->RLS_LAMBDA = atof(getvalue("RLS_LAMBDA"));
 	xcsf->muEPS_0 = atof(getvalue("muEPS_0"));
 	xcsf->NUM_SAM = atoi(getvalue("NUM_SAM"));
 	xcsf->S_MUTATION = atof(getvalue("S_MUTATION"));

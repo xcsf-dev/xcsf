@@ -182,6 +182,8 @@ struct XCS
 	int get_gp_num_cons() { return xcs.GP_NUM_CONS; }
 	double get_xcsf_eta() { return xcs.XCSF_ETA; }
 	double get_xcsf_x0() { return xcs.XCSF_X0; }
+	double get_rls_scale_factor() { return xcs.RLS_SCALE_FACTOR; }
+	double get_rls_lambda() { return xcs.RLS_LAMBDA; }
 	double get_theta_sub() { return xcs.THETA_SUB; }
 	_Bool get_ga_subsumption() { return xcs.GA_SUBSUMPTION; }
 	_Bool get_set_subsumption() { return xcs.SET_SUBSUMPTION; }
@@ -224,6 +226,8 @@ struct XCS
 	void set_gp_num_cons(int a) { xcs.GP_NUM_CONS = a; }
 	void set_xcsf_eta(double a) { xcs.XCSF_ETA = a; }
 	void set_xcsf_x0(double a) { xcs.XCSF_X0 = a; }
+	void set_rls_scale_factor(double a) { xcs.RLS_SCALE_FACTOR = a; }
+	void set_rls_lambda(double a) { xcs.RLS_LAMBDA = a; }
 	void set_theta_sub(double a) { xcs.THETA_SUB = a; }
 	void set_ga_subsumption(_Bool a) { xcs.GA_SUBSUMPTION = a; }
 	void set_set_subsumption(_Bool a) { xcs.SET_SUBSUMPTION = a; }
@@ -274,6 +278,8 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("GP_NUM_CONS", &XCS::get_gp_num_cons, &XCS::set_gp_num_cons)
 		.add_property("XCSF_ETA", &XCS::get_xcsf_eta, &XCS::set_xcsf_eta)
 		.add_property("XCSF_X0", &XCS::get_xcsf_x0, &XCS::set_xcsf_x0)
+		.add_property("RLS_SCALE_FACTOR", &XCS::get_rls_scale_factor, &XCS::set_rls_scale_factor)
+		.add_property("RLS_LAMBDA", &XCS::get_rls_lambda, &XCS::set_rls_lambda)
 		.add_property("THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub)
 		.add_property("GA_SUBSUMPTION", &XCS::get_ga_subsumption, &XCS::set_ga_subsumption)
 		.add_property("SET_SUBSUMPTION", &XCS::get_set_subsumption, &XCS::set_set_subsumption)

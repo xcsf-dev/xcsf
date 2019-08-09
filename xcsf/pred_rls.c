@@ -30,12 +30,9 @@
 #include "cl.h"
 #include "pred_rls.h"
 
-#define RLS_SCALE_FACTOR 1000.0
-#define RLS_LAMBDA 1.0
-
 void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n);
 void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n);
-void init_matrix(double *matrix, int n);
+void init_matrix(XCSF *xcsf, double *matrix, int n);
 
 typedef struct PRED_RLS {
 	int weights_length;
@@ -71,13 +68,13 @@ void pred_rls_init(XCSF *xcsf, CL *c)
 
 	// initialise gain matrix
 	pred->matrix = malloc(sizeof(double)*pred->weights_length*pred->weights_length);
-	init_matrix(pred->matrix, pred->weights_length);
+	init_matrix(xcsf, pred->matrix, pred->weights_length);
 
 	// initialise current prediction
 	pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
 }
 
-void init_matrix(double *matrix, int n)
+void init_matrix(XCSF *xcsf, double *matrix, int n)
 {
 	for(int row = 0; row < n; row++) {
 		for(int col = 0; col < n; col++) {
@@ -85,7 +82,7 @@ void init_matrix(double *matrix, int n)
 				matrix[row*n+col] = 0.0;
 			}
 			else {
-				matrix[row*n+col] = RLS_SCALE_FACTOR;
+				matrix[row*n+col] = xcsf->RLS_SCALE_FACTOR;
 			}
 		}
 	}
@@ -144,7 +141,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *y, double *x)
 	matrix_vector_multiply(pred->matrix, tmp_input, tmp_vec, n);
 
 	// divide gain vector by lambda + tmp_vec
-	double divisor = RLS_LAMBDA;
+	double divisor = xcsf->RLS_LAMBDA;
 	for(int i = 0; i < n; i++) {
 		divisor += tmp_input[i] * tmp_vec[i];
 	}
@@ -178,7 +175,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *y, double *x)
 	// divide gain matrix entries by lambda
 	for(int row = 0; row < n; row++) {
 		for(int col = 0; col < n; col++) {
-			pred->matrix[row*n+col] = tmp_matrix2[row*n+col] / RLS_LAMBDA;
+			pred->matrix[row*n+col] = tmp_matrix2[row*n+col] / xcsf->RLS_LAMBDA;
 		}
 	}
 }
