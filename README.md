@@ -81,7 +81,7 @@ Requirements:
 ------------------------
 
 - ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) ![C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compilers
-- cmake
+- The [cmake][cmake] build system
 - OpenMP
 - Python
 - Boost Python and numpy libaries (at least version 1.56.0 for Python3)
@@ -102,3 +102,5 @@ Running:
 See example MyProject.py
 
 1. `python3 MyProject.py`
+
+[cmake]: http://www.cmake.org/ "CMake tool"
