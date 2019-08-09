@@ -40,7 +40,7 @@ void tree_init_cons(XCSF *xcsf)
 {
 	xcsf->gp_cons = malloc(sizeof(double) * xcsf->GP_NUM_CONS);
 	for(int i = 0; i < xcsf->GP_NUM_CONS; i++) {
-		xcsf->gp_cons[i] = (2.0*drand())-1.0;
+		xcsf->gp_cons[i] = (xcsf->MAX_CON - xcsf->MIN_CON) * drand() + xcsf->MIN_CON;
 	}
 }     
 
