@@ -86,6 +86,9 @@ typedef struct XCSF {
 	int NUM_HIDDEN_NEURONS; // number of hidden neurons to perform matching condition
 	int HIDDEN_NEURON_ACTIVATION; // activation function for the hidden layer
 	int DGP_NUM_NODES; // number of nodes in a DGP graph
+	_Bool RESET_STATES; // whether to reset the initial states of DGP graphs
+	int MAX_K; // maximum number of connections a DGP node may have
+	int MAX_T; // maximum number of cycles to update a DGP graph
 	int GP_NUM_CONS; // number of constants available for GP trees
 	int GP_INIT_DEPTH; // initial depth of GP trees
 	double *gp_cons; // stores constants available for GP trees

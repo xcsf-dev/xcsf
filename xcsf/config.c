@@ -98,6 +98,14 @@ void constants_init(XCSF *xcsf, const char *filename)
 	xcsf->NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
 	xcsf->HIDDEN_NEURON_ACTIVATION = atoi(getvalue("HIDDEN_NEURON_ACTIVATION"));
 	xcsf->DGP_NUM_NODES = atoi(getvalue("DGP_NUM_NODES"));
+	if(strcmp(getvalue("RESET_STATES"), "false") == 0) {
+		xcsf->RESET_STATES = false;
+	}
+	else {
+		xcsf->RESET_STATES = true;
+	}
+	xcsf->MAX_K = atoi(getvalue("MAX_K"));
+	xcsf->MAX_T = atoi(getvalue("MAX_T"));
 	xcsf->GP_NUM_CONS = atoi(getvalue("GP_NUM_CONS"));
 	xcsf->GP_INIT_DEPTH = atoi(getvalue("GP_INIT_DEPTH"));
 	tidyup();  

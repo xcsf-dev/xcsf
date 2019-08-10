@@ -179,6 +179,9 @@ struct XCS
 	int get_num_hidden_neurons() { return xcs.NUM_HIDDEN_NEURONS; }
 	int get_hidden_neuron_activation() { return xcs.HIDDEN_NEURON_ACTIVATION; }
 	int get_dgp_num_nodes() { return xcs.DGP_NUM_NODES; }
+	int get_reset_states() { return xcs.RESET_STATES; }
+	int get_max_k() { return xcs.MAX_K; }
+	int get_max_t() { return xcs.MAX_T; }
 	int get_gp_num_cons() { return xcs.GP_NUM_CONS; }
 	int get_gp_init_depth() { return xcs.GP_INIT_DEPTH; }
 	double get_xcsf_eta() { return xcs.XCSF_ETA; }
@@ -224,6 +227,9 @@ struct XCS
 	void set_num_hidden_neurons(int a) { xcs.NUM_HIDDEN_NEURONS = a; }
 	void set_hidden_neuron_activation(int a) { xcs.HIDDEN_NEURON_ACTIVATION = a; }
 	void set_dgp_num_nodes(int a) { xcs.DGP_NUM_NODES = a; }
+	void set_reset_states(int a) { xcs.RESET_STATES = a; }
+	void set_max_k(int a) { xcs.MAX_K = a; }
+	void set_max_t(int a) { xcs.MAX_T = a; }
 	void set_gp_num_cons(int a) { xcs.GP_NUM_CONS = a; }
 	void set_gp_init_depth(int a) { xcs.GP_INIT_DEPTH = a; }
 	void set_xcsf_eta(double a) { xcs.XCSF_ETA = a; }
@@ -277,6 +283,9 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("NUM_HIDDEN_NEURONS", &XCS::get_num_hidden_neurons, &XCS::set_num_hidden_neurons)
 		.add_property("HIDDEN_NEURON_ACTIVATION", &XCS::get_hidden_neuron_activation, &XCS::set_hidden_neuron_activation)
 		.add_property("DGP_NUM_NODES", &XCS::get_dgp_num_nodes, &XCS::set_dgp_num_nodes)
+		.add_property("RESET_STATES", &XCS::get_reset_states, &XCS::set_reset_states)
+		.add_property("MAX_K", &XCS::get_max_k, &XCS::set_max_k)
+		.add_property("MAX_T", &XCS::get_max_t, &XCS::set_max_t)
 		.add_property("GP_NUM_CONS", &XCS::get_gp_num_cons, &XCS::set_gp_num_cons)
 		.add_property("GP_INIT_DEPTH", &XCS::get_gp_init_depth, &XCS::set_gp_init_depth)
 		.add_property("XCSF_ETA", &XCS::get_xcsf_eta, &XCS::set_xcsf_eta)

@@ -26,134 +26,168 @@
 #include "random.h"
 #include "dgp.h"
 
-void node_add(XCSF *xcsf, GRAPH *dgp, GNODE *new);
-void node_free(XCSF *xcsf, GNODE *node);
-void node_rand_conn(XCSF *xcsf, GNODE *node, int n);
-_Bool node_mutate(XCSF *xcsf, GNODE *node, double rate, int n);
-void node_print(XCSF *xcsf, GNODE *node);
-char node_symbol(XCSF *xcsf, int func);
-void node_init(XCSF *xcsf, GNODE *node, int n);
-void node_copy(XCSF *xcsf, GNODE *to, GNODE *from);
+#define NUM_FUNC 7 // number of node functions available
+
+char node_symbol(int func);
 void node_update(XCSF *xcsf, double *state, int func, double input);
+
+void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
+{
+	dgp->avgk = 0.0;
+	dgp->t = 0;
+	dgp->n = n;
+	dgp->state = malloc(sizeof(double)*dgp->n);
+	dgp->initial_state = malloc(sizeof(double)*dgp->n);
+	dgp->function = malloc(sizeof(int)*dgp->n);
+	dgp->connectivity = malloc(sizeof(int)*dgp->n*xcsf->MAX_K);
+	graph_rand(xcsf, dgp);
+}
+
+void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from)
+{ 	
+	to->avgk = from->avgk;
+	to->t = from->t;
+	to->n = from->n;
+	memcpy(to->state, from->state, sizeof(double)*from->n);
+	memcpy(to->initial_state, from->initial_state, sizeof(double)*from->n);
+	memcpy(to->function, from->function, sizeof(int)*from->n);
+	memcpy(to->connectivity, from->connectivity, sizeof(int)*from->n*xcsf->MAX_K);
+}
 
 double graph_output(XCSF *xcsf, GRAPH *dgp, int i)
 {
 	(void)xcsf;
-	return dgp->nodes[i].state;
+	return dgp->state[i];
 }
 
 void graph_reset(XCSF *xcsf, GRAPH *dgp)
 {
 	(void)xcsf;
 	for(int i = 0; i < dgp->n; i++) {
-		dgp->nodes[i].state = dgp->nodes[i].initial_state;
+		dgp->state[i] = dgp->initial_state[i];
 	}
 }
 
 void graph_rand(XCSF *xcsf, GRAPH *dgp)
 {
+	dgp->t = irand(1,xcsf->MAX_T);
 	for(int i = 0; i < dgp->n; i++) {
-		node_init(xcsf, &dgp->nodes[i], dgp->n);
+		dgp->function[i] = irand(0, NUM_FUNC);
+		dgp->initial_state[i] = ((xcsf->MAX_CON-xcsf->MIN_CON)*drand())+xcsf->MIN_CON;
+		dgp->state[i] = ((xcsf->MAX_CON-xcsf->MIN_CON)*drand())+xcsf->MIN_CON;
 	}
+	for(int i = 0; i < dgp->n * xcsf->MAX_K; i++) {
+		if(drand() < 0.5) {
+			dgp->connectivity[i] = 0; // inert
+		}
+		else {
+			// other nodes within the graph
+			if(drand() < 0.5) {
+				dgp->connectivity[i] = irand(1,dgp->n+1);
+			}
+			// external inputs
+			else {
+				dgp->connectivity[i] = -(irand(1,xcsf->num_x_vars+1));
+			}
+		}
+	}  
+	// set avg k
+	dgp->avgk = 0;
+	for(int i = 0; i < dgp->n*xcsf->MAX_K; i++) {
+		if(dgp->connectivity[i] != 0) {
+			dgp->avgk++;
+		}
+	}
+	dgp->avgk /= (double)dgp->n;
 }
 
 void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs)
 {
-	graph_reset(xcsf, dgp);
+	if(xcsf->RESET_STATES) {
+		graph_reset(xcsf, dgp);
+	}
 	for(int t = 0; t < dgp->t; t++) {
-		// synchronous update
+		// synchronously update each node
 		for(int i = 0; i < dgp->n; i++) {
-			GNODE *a = &dgp->nodes[i];
-			for(int k = 0; k < MAX_K; k++) {
-				// external input
-				if(a->conn[k] < 0) {
-					node_update(xcsf, &a->state, a->func, inputs[abs(a->conn[k])-1]);
+			// each connection
+			for(int k = 0; k < xcsf->MAX_K; k++) {
+				int c = dgp->connectivity[(i*xcsf->MAX_K)+k];
+				// inert
+				if(c == 0) {
+					continue;
 				}
-				// internal input
-				else if(a->conn[k] > 0) {
-					node_update(xcsf, &a->state, a->func, dgp->nodes[a->conn[k]-1].state);
+				// another node within the graph
+				else if(c > 0) {
+					node_update(xcsf, &dgp->state[i], dgp->function[i], dgp->state[c-1]);
+				}
+				// external input
+				else {
+					node_update(xcsf, &dgp->state[i], dgp->function[i], inputs[abs(c)-1]);
 				}
 			}
 		}
 	}
 }
 
-void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
-{
-	dgp->t = irand(0,MAX_T)+1;
-	dgp->n = n;
-	dgp->nodes = malloc(sizeof(GNODE)*dgp->n);
-	graph_rand(xcsf, dgp);
-}
-
-void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from)
-{
-	(void)xcsf;
-	to->t = from->t;
-	to->n = from->n;
-	free(to->nodes);
-	to->nodes = malloc(sizeof(GNODE)*from->n);
-	memcpy(to->nodes, from->nodes, sizeof(GNODE)*from->n);
-}
-
-void node_copy(XCSF *xcsf, GNODE *to, GNODE *from)
-{
-	(void)xcsf;
-	to->k = from->k;
-	to->state = from->state;
-	to->initial_state = from->initial_state;
-	to->func = from->func;
-	memcpy(to->conn, from->conn, sizeof(int)*MAX_K);
-}
-
 void graph_print(XCSF *xcsf, GRAPH *dgp)
 {
 	printf("Graph: N=%d; T=%d\n", dgp->n, dgp->t);
 	for(int i = 0; i < dgp->n; i++) {
-		printf("(%d) ", i+1);
-		node_print(xcsf, &dgp->nodes[i]);
+		printf("Node %d: %c state=%f init_state=%f con=[", 
+				i, node_symbol(dgp->function[i]), 
+				dgp->state[i], dgp->initial_state[i]);
+		printf("%d", dgp->connectivity[0]);
+		for(int j = 1; j < xcsf->MAX_K; j++) {
+			printf(", %d", dgp->connectivity[i]);
+		}
+		printf("]\n");
 	}
-}
-
-void node_init(XCSF *xcsf, GNODE *node, int n)
-{
-	node->initial_state = (2.0*drand())-1.0; 
-	node->state = node->initial_state;
-	node->func = irand(0,NUM_FUNC);
-	node_rand_conn(xcsf, node, n);
-}
-
-void node_rand_conn(XCSF *xcsf, GNODE *node, int n)
-{
-	node->k = 0;
-	for(int i = 0; i < MAX_K; i++) {
-		if(drand() < 0.1) {
-			node->conn[i] = 0; // inert
-		}
-		else if(drand() < 0.2) {
-			node->conn[i] = -irand(1,xcsf->num_x_vars+1);
-			(node->k)++;
-		}
-		else {
-			node->conn[i] = irand(1,n+1);
-			(node->k)++;
-		}
-	}
+	(void)xcsf;
 }
 
 void graph_free(XCSF *xcsf, GRAPH *dgp)
 {
+	free(dgp->connectivity);
+	free(dgp->state);
+	free(dgp->initial_state);
+	free(dgp->function);
 	(void)xcsf;
-	free(dgp->nodes);
 }
 
 _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 {
 	_Bool mod = false;
 	for(int i = 0; i < dgp->n; i++) {
-		if(node_mutate(xcsf, &dgp->nodes[i], rate, dgp->n)) {
-			mod = true;
+		// mutate function
+		if(drand() < rate) {
+			int old = dgp->function[i];
+			dgp->function[i] = irand(0, NUM_FUNC);
+			if(old != dgp->function[i]) {
+				mod = true;
+			}              
 		}
+		// mutate connectivity map
+		for(int j = 0; j < xcsf->MAX_K; j++) {
+			int idx = (i*xcsf->MAX_K)+j;
+			if(drand() < rate) {
+				int old = dgp->connectivity[idx];
+				// inert
+				if(drand() < 0.1) {
+					dgp->connectivity[idx] = 0;
+				}
+				// external connection
+				else if(drand() < 0.2) {
+					dgp->connectivity[idx] = -(irand(1,xcsf->num_x_vars+1));
+				}
+				// another node
+				else {
+					dgp->connectivity[idx] = irand(1,dgp->n+1);
+				}
+				if(old != dgp->connectivity[idx]) {
+					mod = true;
+				}
+			}
+		}   
 	}
 
 	// mutate T
@@ -165,7 +199,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 			}
 		}
 		else {
-			if(dgp->t < MAX_T) {
+			if(dgp->t < xcsf->MAX_T) {
 				(dgp->t)++;
 			}
 		}
@@ -174,79 +208,27 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 		}
 	}
 
-	return mod;
-}
-
-_Bool node_mutate(XCSF *xcsf, GNODE *node, double rate, int n)
-{  
-	_Bool mod = false;
-	// mutate function
-	if(drand() < rate) {
-		int old = node->func;
-		node->func = irand(0,NUM_FUNC);
-		if(old != node->func) {
-			mod = true;
-		}
-	}                    
-	// mutate connectivity map
-	for(int i = 0; i < MAX_K; i++) {
-		if(drand() < rate) {
-			int old = node->conn[i];
-			if(drand() < 0.1) {
-				node->conn[i] = 0;
-			}
-			else if(drand() < 0.2) {
-				node->conn[i] = -irand(1,xcsf->num_x_vars+1);
-			}
-			else {
-				node->conn[i] = irand(1,n+1);
-			}
-			if(old != node->conn[i]) {
-				mod = true;
-			}
-		}
-	}
 	// refresh k
 	if(mod) {
-		node->k = 0;
-		for(int i = 0; i < MAX_K; i++) {
-			if(node->conn[i] != 0) {
-				(node->k)++;
+		dgp->avgk = 0;
+		for(int i = 0; i < dgp->n*xcsf->MAX_K; i++) {
+			if(dgp->connectivity[i] != 0) {
+				dgp->avgk++;
 			}
 		}
-	}
+		dgp->avgk /= (double)dgp->n;
+	}    
 	return mod;
 }
 
 double graph_avg_k(XCSF *xcsf, GRAPH *dgp)
 {
 	(void)xcsf;
-	int k = 0;
-	for(int i = 0; i < dgp->n; i++) {
-		if(dgp->nodes[i].func > 3) { // sin/cos
-			if(dgp->nodes[i].k > 0) {
-				k++;
-			}
-		}
-		else {
-			k += dgp->nodes[i].k;
-		}
-	}
-	return k/(double)dgp->n;
+	return dgp->avgk;
 }
 
-void node_print(XCSF *xcsf, GNODE *node)
+char node_symbol(int func)
 {
-	printf("Node: (%c) c: ", node_symbol(xcsf, node->func));
-	for(int i = 0; i < MAX_K; i++) {
-		printf("%d,", node->conn[i]);
-	}
-	printf(" s: %f\n", node->state);
-}
-
-char node_symbol(XCSF *xcsf, int func)
-{
-	(void)xcsf;
 	switch(func) {
 		case 0: return '+';
 		case 1: return '-';
@@ -261,7 +243,6 @@ char node_symbol(XCSF *xcsf, int func)
 
 void node_update(XCSF *xcsf, double *state, int func, double input)
 {
-	(void)xcsf;
 	switch(func) {
 		case 0: *state += input; break;
 		case 1: *state -= input; break;
@@ -272,8 +253,10 @@ void node_update(XCSF *xcsf, double *state, int func, double input)
 		case 6: *state = tanh(input); break;
 		default: break;
 	}
-	if(*state > 1.0)
-		*state = 1.0;
-	else if(*state < -1.0)
-		*state = -1.0;
+	if(*state > xcsf->MAX_CON) {
+		*state = xcsf->MAX_CON;
+	}
+	else if(*state < xcsf->MIN_CON) {
+		*state = xcsf->MIN_CON;
+	}
 }

@@ -16,24 +16,14 @@
  *
  */
 
-#define MAX_T 10 // maximum number of cycles to update graph
-#define NUM_FUNC 7 // number of node available functions
-#define MAX_K 2 // maximum inputs to a node
-
-typedef struct GNODE {
-	int conn[MAX_K]; // connectivity map to other nodes
-	int k; // number of inputs
-	double state; // current internal state
-	double initial_state; // initial state
-	int func;  // arithmetic function
-} GNODE;
-
 typedef struct GRAPH {
-	double real_error;
-	double fitness;
-	int n; // number of nodes in this graph
+	int *connectivity; // connectivity map
+	double *state; // current internal state
+	double *initial_state; // initial states
+	int *function; // node functions
+	int n; // number of nodes
 	int t; // number of cycles to run
-	GNODE *nodes; // nodes
+	double avgk; // average number of active connections
 } GRAPH;
 
 void graph_init(XCSF *xcsf, GRAPH *dgp, int n);
