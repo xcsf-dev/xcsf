@@ -156,14 +156,17 @@ void graph_free(XCSF *xcsf, GRAPH *dgp)
 
 _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 {
-	_Bool mod = false;
+	_Bool fmod = false;
+	_Bool cmod = false;
+	_Bool tmod = false;
+
 	for(int i = 0; i < dgp->n; i++) {
 		// mutate function
 		if(drand() < rate) {
 			int old = dgp->function[i];
 			dgp->function[i] = irand(0, NUM_FUNC);
 			if(old != dgp->function[i]) {
-				mod = true;
+				fmod = true;
 			}              
 		}
 		// mutate connectivity map
@@ -184,7 +187,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 					dgp->connectivity[idx] = irand(1,dgp->n+1);
 				}
 				if(old != dgp->connectivity[idx]) {
-					mod = true;
+					cmod = true;
 				}
 			}
 		}   
@@ -204,12 +207,12 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 			}
 		}
 		if(t != dgp->t) {
-			mod = true;
+			tmod = true;
 		}
 	}
 
 	// refresh k
-	if(mod) {
+	if(cmod) {
 		dgp->avgk = 0;
 		for(int i = 0; i < dgp->n*xcsf->MAX_K; i++) {
 			if(dgp->connectivity[i] != 0) {
@@ -217,8 +220,14 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 			}
 		}
 		dgp->avgk /= (double)dgp->n;
-	}    
-	return mod;
+	}            
+
+	if(fmod || cmod || tmod) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 double graph_avg_k(XCSF *xcsf, GRAPH *dgp)
