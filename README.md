@@ -89,7 +89,7 @@ Run: `./xcsf/xcsf ../data/sine_1var`
 * Python
 * Boost Python and numpy libraries (at least version 1.56.0 for Python3)
   * Ubuntu 18.04: `sudo apt install libboost-python-dev libboost-numpy-dev`
-  * OS X: `brew install boost-python3 boost-numpy3`
+  * OS X: `brew install boost-python3`
 
 ### Building
 
