@@ -47,6 +47,7 @@ void tidyup();
 void constants_init(XCSF *xcsf, const char *filename)
 {
 	init_config(filename);
+	xcsf->OMP_NUM_THREADS = atoi(getvalue("OMP_NUM_THREADS"));
 	xcsf->COND_TYPE = atoi(getvalue("COND_TYPE"));
 	xcsf->PRED_TYPE = atoi(getvalue("PRED_TYPE"));
 	xcsf->POP_SIZE = atoi(getvalue("POP_SIZE"));

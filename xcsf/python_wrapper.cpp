@@ -25,6 +25,7 @@ namespace np = boost::python::numpy;
 
 extern "C" {   
 #include <stdbool.h>
+#include <omp.h>
 #include "data_structures.h"
 #include "config.h"
 #include "random.h"
@@ -50,6 +51,7 @@ struct XCS
 
 	XCS(int num_x_vars, int num_y_vars, const char *filename) {
 		constants_init(&xcs, filename);
+		omp_set_num_threads(xcs.OMP_NUM_THREADS);
 		xcs.num_x_vars = num_x_vars;
 		xcs.num_y_vars = num_y_vars;
 		xcs.pop_num = 0;
@@ -150,6 +152,7 @@ struct XCS
 	}
 
 	/* GETTERS */
+	int get_omp_num_threads() { return xcs.OMP_NUM_THREADS; }
 	_Bool get_pop_init() { return xcs.POP_INIT; }
 	double get_theta_mna() { return xcs.THETA_MNA; }
 	int get_max_trials() { return xcs.MAX_TRIALS; }
@@ -179,7 +182,7 @@ struct XCS
 	int get_num_hidden_neurons() { return xcs.NUM_HIDDEN_NEURONS; }
 	int get_hidden_neuron_activation() { return xcs.HIDDEN_NEURON_ACTIVATION; }
 	int get_dgp_num_nodes() { return xcs.DGP_NUM_NODES; }
-	int get_reset_states() { return xcs.RESET_STATES; }
+	_Bool get_reset_states() { return xcs.RESET_STATES; }
 	int get_max_k() { return xcs.MAX_K; }
 	int get_max_t() { return xcs.MAX_T; }
 	int get_gp_num_cons() { return xcs.GP_NUM_CONS; }
@@ -198,6 +201,7 @@ struct XCS
 	double get_num_y_vars() { return xcs.num_y_vars; }                      
 
 	/* SETTERS */
+	void set_omp_num_threads(int a) { xcs.OMP_NUM_THREADS = a; }
 	void set_pop_init(_Bool a) { xcs.POP_INIT = a; }
 	void set_theta_mna(double a) { xcs.THETA_MNA = a; }
 	void set_max_trials(int a) { xcs.MAX_TRIALS = a; }
@@ -227,7 +231,7 @@ struct XCS
 	void set_num_hidden_neurons(int a) { xcs.NUM_HIDDEN_NEURONS = a; }
 	void set_hidden_neuron_activation(int a) { xcs.HIDDEN_NEURON_ACTIVATION = a; }
 	void set_dgp_num_nodes(int a) { xcs.DGP_NUM_NODES = a; }
-	void set_reset_states(int a) { xcs.RESET_STATES = a; }
+	void set_reset_states(_Bool a) { xcs.RESET_STATES = a; }
 	void set_max_k(int a) { xcs.MAX_K = a; }
 	void set_max_t(int a) { xcs.MAX_T = a; }
 	void set_gp_num_cons(int a) { xcs.GP_NUM_CONS = a; }
@@ -254,6 +258,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.def("fit", fit1)
 		.def("fit", fit2)
 		.def("predict", &XCS::predict)
+		.add_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads, &XCS::set_omp_num_threads)
 		.add_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
 		.add_property("THETA_MNA", &XCS::get_theta_mna, &XCS::set_theta_mna)
 		.add_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials)

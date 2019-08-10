@@ -32,6 +32,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include <omp.h>
 #include <errno.h>
 #include "data_structures.h"
 #include "config.h"
@@ -66,6 +67,7 @@ int main(int argc, char **argv)
 	else {
 		constants_init(xcsf, "default.ini");
 	}
+	omp_set_num_threads(xcsf->OMP_NUM_THREADS);
 
 	// read csv input data
 	INPUT *train_data = malloc(sizeof(INPUT));

@@ -49,6 +49,7 @@ typedef struct XCSF {
 	int time; // current number of executed trials
 
 	// experiment parameters
+	int OMP_NUM_THREADS; // number of threads for parallel processing
 	_Bool POP_INIT; // population initially empty or filled with random conditions
 	double THETA_MNA; // minimum number of classifiers in a match set
 	int MAX_TRIALS; // number of problem instances to run in one experiment
