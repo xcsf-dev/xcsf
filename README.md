@@ -5,7 +5,8 @@ as a Python library.
 
 License|Codacy Review|Linux Build
 :--:|:--:|:--:
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)|[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b)](https://www.codacy.com/app/rpreen/xcsf)|[![Build Status](https://travis-ci.org/rpreen/xcsf.svg?branch=master)](https://travis-ci.org/rpreen/xcsf)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frpreen%2Fxcsf.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Frpreen%2Fxcsf?ref=badge_shield)
+|[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b)](https://www.codacy.com/app/rpreen/xcsf)|[![Build Status](https://travis-ci.org/rpreen/xcsf.svg?branch=master)](https://travis-ci.org/rpreen/xcsf)
 
 ------------------------
 ## Features
@@ -106,3 +107,7 @@ See example MyProject.py
 Run: `python3 MyProject.py`
 
 [cmake]: http://www.cmake.org/ "CMake tool"
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frpreen%2Fxcsf.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Frpreen%2Fxcsf?ref=badge_large)
