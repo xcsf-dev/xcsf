@@ -67,7 +67,9 @@ int main(int argc, char **argv)
 	else {
 		constants_init(xcsf, "default.ini");
 	}
+#ifdef PARALLEL
 	omp_set_num_threads(xcsf->OMP_NUM_THREADS);
+#endif
 
 	// read csv input data
 	INPUT *train_data = malloc(sizeof(INPUT));

@@ -51,7 +51,9 @@ struct XCS
 
 	XCS(int num_x_vars, int num_y_vars, const char *filename) {
 		constants_init(&xcs, filename);
+#ifdef PARALLEL
 		omp_set_num_threads(xcs.OMP_NUM_THREADS);
+#endif
 		xcs.num_x_vars = num_x_vars;
 		xcs.num_y_vars = num_y_vars;
 		xcs.pop_num = 0;
