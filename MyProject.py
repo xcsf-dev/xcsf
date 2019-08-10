@@ -45,7 +45,7 @@ print("xvars = "+str(xvars) + " yvars = " + str(yvars))
 # initialise XCSF
 xcs = xcsf.XCS(xvars, yvars)
 
-# override cons.txt
+# override default.ini
 xcs.POP_SIZE = 5000
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.COND_TYPE = 0 # hyperrectangles
