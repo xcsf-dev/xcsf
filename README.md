@@ -59,6 +59,7 @@ See `default.ini` for a full list of options.
 
 * ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
 * The [cmake][cmake] build system.
+  * OS X: `brew install cmake`
 * (GNUPLOT=ON) GNUPlot
  
 ### Building
