@@ -20,6 +20,7 @@ import numpy as np
 from sklearn import datasets
 from sklearn.preprocessing import minmax_scale
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 # load example data set
 data = datasets.load_boston() # regression
@@ -47,7 +48,7 @@ xcs = xcsf.XCS(xvars, yvars)
 # override cons.txt
 xcs.POP_SIZE = 5000
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
-xcs.COND_TYPE = 0 # hyperrectangle conditions
+xcs.COND_TYPE = 0 # hyperrectangles
 xcs.PRED_TYPE = 4 # neural network predictors
 xcs.HIDDEN_NEURON_ACTIVATION = 0 # logistic
 
@@ -60,14 +61,22 @@ evals = np.zeros(n)
 psize = np.zeros(n)
 mse = np.zeros(n)
 print("evals mse popsize sam0 sam1")
+bar = tqdm(total=n) # progress bar
 for i in range(n):
+    # train 
     xcs.fit(train_X, train_Y, True)
+    # get training error
     pred = xcs.predict(train_X)
     mse[i] = (np.square(pred - train_Y)).mean(axis=0)
-    evals[i] = xcs.time()
-    psize[i] = xcs.pop_num()
-    print("%d %.5f %d %.3f %.3f" % 
+    evals[i] = xcs.time() # number of evaluations so far
+    psize[i] = xcs.pop_num() # current population size
+    # update status
+    status = ("%d %.5f %d %.3f %.3f" % 
         (evals[i], mse[i], psize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1)))
+    bar.set_description(status)
+    bar.refresh()
+    bar.update(1)
+bar.close()
 
 plt.figure(figsize=(10,6))
 plt.plot(evals, mse)
