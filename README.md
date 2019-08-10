@@ -1,6 +1,6 @@
 # XCSF learning classifier system
 
-An implementation of XCSF for regression problem that can be built as either a
+An implementation of XCSF for regression problems that can be built as either a
 stand-alone binary or as a Python library.
 
 License|Codacy Review|Linux Build|Fossa
