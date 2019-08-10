@@ -87,7 +87,7 @@ Run: `./xcsf/xcsf ../data/sine_1var`
 * All of the above for building the stand-alone executable.
 * ![C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compiler.
 * Python
-* Boost Python and numpy libaries (at least version 1.56.0 for Python3)
+* Boost Python and numpy libraries (at least version 1.56.0 for Python3)
   * Ubuntu 18.04: `sudo apt install libboost-python-dev libboost-numpy-dev`
   * OS X: `brew install boost-python3 boost-numpy3`
 
