@@ -6,48 +6,25 @@ dist: bionic # Ubuntu 18.04
 matrix:
   include:
 
-    # SonarCube
+    # Stand-alone
     - os: linux
       compiler: gcc
       addons: &gcc6
-      apt:
-        sources: ['ubuntu-toolchain-r-test']
-        packages: ['g++-6']
-        env: BUILD_TYPE="RELEASE" XCSF_PYLIB="OFF" SONAR="ON"
-      sonarcloud:
-        organization: "rpreen"
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-6']
+      env: BUILD_TYPE="RELEASE" XCSF_PYLIB="OFF"
+ 
+    # Python library
+    - os: linux
+      compiler: gcc
+      addons: &gcc6
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-6', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
+      env: BUILD_TYPE="RELEASE" XCSF_PYLIB="ON"
 
 script:
-  - |
-    if [[ "${SONAR}" == "ON" ]]; then
-      cp sonar-project.properties "${TRAVIS_BUILD_DIR}/build";
-      mkdir -p "${TRAVIS_BUILD_DIR}/sonar";
-      cd "${TRAVIS_BUILD_DIR}/sonar";
-      wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-2.6.1.zip;
-      wget https://sonarqube.com/static/cpp/build-wrapper-linux-x86.zip;
-      unzip sonar-scanner-2.6.1.zip;
-      unzip build-wrapper-linux-x86.zip;
-      export PATH=$PWD/sonar-scanner-2.6.1/bin:$PWD/build-wrapper-linux-x86:$PATH;
-      cd "${TRAVIS_BUILD_DIR}/build";
-      cmake -DCMAKE_BUILD_TYPE="${BUILD_TYPE}" -DXCSF_PYTHON_LIBRARY="${XCSF_PYLIB}" ..;
-      build-wrapper-linux-x86-64 --out-dir . make clean all; 
-      echo ${SONAR_TOKEN};
-      echo ${SONAR_GITHUB_TOKEN};
-      sonar-scanner -e -X -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN} -Dsonar.github.oauth=${SONAR_GITHUB_TOKEN};
-    else
-      cd "${TRAVIS_BUILD_DIR}/build";
-      cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..;
-      make;
-    fi
-
-
-
-            # Python library
-          - os: linux
-            compiler: gcc
-            addons: &gcc6
-            apt:
-              sources: ['ubuntu-toolchain-r-test']
-              packages: ['g++-6', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
-              env: BUILD_TYPE="RELEASE" XCSF_PYLIB="ON"
-
+  - cd "${TRAVIS_BUILD_DIR}/build"
+  - cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
+  - make
