@@ -156,9 +156,9 @@ void graph_free(XCSF *xcsf, GRAPH *dgp)
 
 _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 {
-	_Bool fmod = false;
-	_Bool cmod = false;
-	_Bool tmod = false;
+	_Bool fmodified = false;
+	_Bool cmodified = false;
+	_Bool tmodified = false;
 
 	for(int i = 0; i < dgp->n; i++) {
 		// mutate function
@@ -166,7 +166,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 			int old = dgp->function[i];
 			dgp->function[i] = irand(0, NUM_FUNC);
 			if(old != dgp->function[i]) {
-				fmod = true;
+				fmodified = true;
 			}              
 		}
 		// mutate connectivity map
@@ -187,7 +187,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 					dgp->connectivity[idx] = irand(1,dgp->n+1);
 				}
 				if(old != dgp->connectivity[idx]) {
-					cmod = true;
+					cmodified = true;
 				}
 			}
 		}   
@@ -207,12 +207,12 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 			}
 		}
 		if(t != dgp->t) {
-			tmod = true;
+			tmodified = true;
 		}
 	}
 
 	// refresh k
-	if(cmod) {
+	if(cmodified) {
 		dgp->avgk = 0;
 		for(int i = 0; i < dgp->n*xcsf->MAX_K; i++) {
 			if(dgp->connectivity[i] != 0) {
@@ -222,7 +222,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 		dgp->avgk /= (double)dgp->n;
 	}            
 
-	if(fmod || cmod || tmod) {
+	if(fmodified || cmodified || tmodified) {
 		return true;
 	}
 	else {
