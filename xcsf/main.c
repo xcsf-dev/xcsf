@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 
 	// initialise XCSF
 	XCSF *xcsf = malloc(sizeof(XCSF));
-    // read parameters from configuration file
+	// read parameters from configuration file
 	if(argc > 2) {
 		constants_init(xcsf, argv[2]);
 	}    
@@ -101,7 +101,7 @@ void xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 #ifdef GNUPLOT
 	gplot_init(xcsf);
 #endif
- 
+
 	// performance tracking
 	double err[xcsf->PERF_AVG_TRIALS];
 	// stores current system prediction
@@ -140,7 +140,7 @@ void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 #ifdef GNUPLOT
 	gplot_init(xcsf);
 #endif
- 
+
 	// performance tracking
 	double err[xcsf->PERF_AVG_TRIALS];
 	double terr[xcsf->PERF_AVG_TRIALS];
@@ -150,7 +150,7 @@ void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 	int row = 0;
 	// each trial in an experiment
 	for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
- 		// select next training sample
+		// select next training sample
 		if(shuffle) {
 			row = irand(0, train_data->rows);
 		}
@@ -185,7 +185,7 @@ void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 	gplot_free(xcsf);
 #endif
 }
- 
+
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
 	// create match set
@@ -211,7 +211,7 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 	error /= xcsf->num_y_vars; // MSE
 	return error;
 }
- 
+
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
 	// create match set
@@ -249,7 +249,7 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
 
 void xcsf_print_pop(XCSF *xcsf, _Bool print_cond, _Bool print_pred)
 {
-    set_print(xcsf, xcsf->pset, print_cond, print_pred);
+	set_print(xcsf, xcsf->pset, print_cond, print_pred);
 }
 
 void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool print_cond, _Bool print_pred)
@@ -258,5 +258,5 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool print_cond, _Bool pri
 	NODE *mset = NULL, *kset = NULL;
 	int msize = 0, mnum = 0;
 	set_match(xcsf, &mset, &msize, &mnum, input, &kset);
-    set_print(xcsf, mset, print_cond, print_pred);
+	set_print(xcsf, mset, print_cond, print_pred);
 }
