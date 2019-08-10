@@ -59,13 +59,15 @@ n = 50 # 50,000 trials
 evals = np.zeros(n)
 psize = np.zeros(n)
 mse = np.zeros(n)
+print("evals mse popsize sam0 sam1")
 for i in range(n):
     xcs.fit(train_X, train_Y, True)
     pred = xcs.predict(train_X)
     mse[i] = (np.square(pred - train_Y)).mean(axis=0)
     evals[i] = xcs.time()
     psize[i] = xcs.pop_num()
-    print("%d %.5f %d" % (evals[i], mse[i], psize[i]))
+    print("%d %.5f %d %.3f %.3f" % 
+        (evals[i], mse[i], psize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1)))
 
 plt.figure(figsize=(10,6))
 plt.plot(evals, mse)

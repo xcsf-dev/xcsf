@@ -378,6 +378,10 @@ void set_kill(XCSF *xcsf, NODE **set)
 
 double set_avg_mut(XCSF *xcsf, NODE **set, int m)
 {
+	if(m >= xcsf->NUM_SAM) {
+		return -1;
+	}
+
     // returns the average classifier mutation rate
     double sum = 0.0;
     int cnt = 0;

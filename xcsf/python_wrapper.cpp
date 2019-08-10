@@ -201,6 +201,7 @@ struct XCS
 	int get_time() { return xcs.time; }
 	double get_num_x_vars() { return xcs.num_x_vars; }
 	double get_num_y_vars() { return xcs.num_y_vars; }                      
+	double get_pop_avg_mu(int m) { return set_avg_mut(&xcs, &xcs.pset, m); }
 
 	/* SETTERS */
 	void set_omp_num_threads(int a) { xcs.OMP_NUM_THREADS = a; }
@@ -307,6 +308,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.def("time", &XCS::get_time)
 		.def("num_x_vars", &XCS::get_num_x_vars)
 		.def("num_y_vars", &XCS::get_num_y_vars)
+		.def("pop_avg_mu", &XCS::get_pop_avg_mu)
 		.def("print_pop", &XCS::print_pop)
 		.def("print_match_set", &XCS::print_match_set)
 		;

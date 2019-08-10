@@ -147,23 +147,29 @@ _Bool cond_neural_mutate(XCSF *xcsf, CL *c)
 {
 	COND_NEURAL *cond = c->cond;
 	_Bool mod = false;
-	if(xcsf->NUM_SAM > 0) {
-		sam_adapt(xcsf, cond->mu);
-		xcsf->S_MUTATION = cond->mu[0];
-	}
-	BPN *bpn = &cond->bpn;
-	for(int l = 1; l < bpn->num_layers; l++) {
-		for(int i = 0; i < bpn->num_neurons[l]; i++) {
-			NEURON *n = &bpn->layer[l-1][i];
-			for(int w = 0; w < n->num_inputs+1; w++) {
-				double orig = n->weights[w];
-				n->weights[w] += ((drand()*2.0)-1.0) * xcsf->S_MUTATION;
-				if(n->weights[w] != orig) {
-					mod = true;
-				}
-			}
+    if(xcsf->NUM_SAM > 0) {
+        sam_adapt(xcsf, cond->mu);
+        xcsf->P_MUTATION = cond->mu[0];
+		if(xcsf->NUM_SAM > 1) {
+			xcsf->S_MUTATION = cond->mu[1];
 		}
-	}
+    }
+
+    BPN *bpn = &cond->bpn;
+    for(int l = 1; l < bpn->num_layers; l++) {
+        for(int i = 0; i < bpn->num_neurons[l]; i++) {
+            NEURON *n = &bpn->layer[l-1][i];
+            for(int w = 0; w < n->num_inputs+1; w++) {
+				if(drand() < xcsf->P_MUTATION) {
+					double orig = n->weights[w];
+					n->weights[w] += ((drand()*2.0)-1.0) * xcsf->S_MUTATION;
+					if(n->weights[w] != orig) {
+						mod = true;
+					}
+				}
+            }
+        }
+    }
 	return mod;
 }
 
