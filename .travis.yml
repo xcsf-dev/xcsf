@@ -1,20 +1,30 @@
 language: cpp
+sudo: false
 
-dist: bionic
-
-addons:
+dist: bionic # Ubuntu 18.04
 
 matrix:
   include:
+
+    # Stand-alone
     - os: linux
-      addons:
+      compiler: gcc
+      addons: &gcc6
         apt:
-          sources:
-            - ubuntu-toolchain-r-test
-      env:
-        - BUILD_TYPE="RELEASE"
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-6']
+      env: BUILD_TYPE="RELEASE" XCSF_PYLIB="OFF"
+ 
+    # Python library
+    - os: linux
+      compiler: gcc
+      addons: &gcc6
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-6', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
+      env: BUILD_TYPE="RELEASE" XCSF_PYLIB="ON"
 
 script:
-- cd "${TRAVIS_BUILD_DIR}/build"
-- cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" ..
-- make
+  - cd "${TRAVIS_BUILD_DIR}/build"
+  - cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
+  - make
