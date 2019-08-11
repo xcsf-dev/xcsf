@@ -13,10 +13,6 @@
 # 
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#  Building Python library REQUIRES: 
-#  libboost-python-dev
-#  libboost-numpy-dev
 
 cmake_minimum_required(VERSION 2.8.3)
 
