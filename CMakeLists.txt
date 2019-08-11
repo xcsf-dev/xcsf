@@ -52,15 +52,16 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pipe")
  
 option(GNUPLOT "Plot performance with GNUPLOT" OFF)
 if(GNUPLOT)
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT")
-	file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/out)
+	find_package(Gnuplot REQUIRED)
+	if(GNUPLOT_FOUND)
+		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT")
+		file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/out)
+	endif()
 endif()
  
 option(PARALLEL "Parallel match set and prediction" ON)
 if(PARALLEL)
-	set(CMAKE_CXX_COMPILER "g++")
-	set(CMAKE_C_COMPILER "gcc")
-
+	find_package(OpenMP REQUIRED)
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_MATCH")
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_PRED")
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fopenmp")
@@ -70,29 +71,7 @@ if(PARALLEL)
 endif()
 
 option(XCSF_PYTHON_LIBRARY "Build XCSF Python library" OFF)
-
-if(NOT XCSF_PYTHON_LIBRARY)
-	#######################
-	# Compile XCSF binary
-	#######################
-
-	option(GENPROF "Generate profile" OFF)
-	if(GENPROF)
-		set(PROFILE_FLAGS "-fprofile-generate")
-	endif()
-
-	option(USEPROF "Use profile" OFF)
-	if(USEPROF)
-		set(PROFILE_FLAGS "-fprofile-use")
-	endif()
-
-	add_subdirectory(xcsf)
-
-else()
-	##########################
-	# Compile XCSF Python lib
-	##########################
-
+if(XCSF_PYTHON_LIBRARY)
 	find_package(Python3)
 	if(Python3_FOUND)
 		# Python 3
@@ -114,12 +93,10 @@ else()
 	include_directories(${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
 	link_libraries(${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
 
-	add_subdirectory(xcsf)
-
 	file(COPY MyProject.py DESTINATION .)             
-
 endif()
 
+add_subdirectory(xcsf)
 file(COPY default.ini DESTINATION .)             
  
 set(CMAKE_C_FLAGS_DEBUG "-g3")
