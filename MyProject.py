@@ -63,7 +63,7 @@ mse = np.zeros(n)
 print("evals mse popsize sam0 sam1")
 bar = tqdm(total=n) # progress bar
 for i in range(n):
-    # train 
+    # train
     xcs.fit(train_X, train_Y, True)
     # get training error
     pred = xcs.predict(train_X)
@@ -71,7 +71,7 @@ for i in range(n):
     evals[i] = xcs.time() # number of evaluations so far
     psize[i] = xcs.pop_num() # current population size
     # update status
-    status = ("%d %.5f %d %.3f %.3f" % 
+    status = ("%d %.5f %d %.3f %.3f" %
         (evals[i], mse[i], psize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1)))
     bar.set_description(status)
     bar.refresh()
