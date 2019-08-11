@@ -58,6 +58,9 @@ endif()
  
 option(PARALLEL "Parallel match set and prediction" ON)
 if(PARALLEL)
+	set(CMAKE_CXX_COMPILER "g++")
+	set(CMAKE_C_COMPILER "gcc")
+
 	find_package(OpenMP REQUIRED)
 	add_definitions(${OpenMP_C_FLAGS})
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_MATCH")
