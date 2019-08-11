@@ -33,6 +33,8 @@ script:
     if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
       brew install gcc libomp
       brew install cmake || brew upgrade cmake
+      cmake -DCMAKE_C_COMPILER=/usr/local/bin/gcc -DCMAKE_CXX_COMPILER=/usr/local/bin/g++ -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
+    else
+      cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
     fi
-  - cmake -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
   - make
