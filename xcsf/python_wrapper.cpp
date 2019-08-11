@@ -25,12 +25,15 @@ namespace np = boost::python::numpy;
 
 extern "C" {   
 #include <stdbool.h>
-#include <omp.h>
 #include "data_structures.h"
 #include "config.h"
 #include "random.h"
 #include "input.h"
 #include "cl_set.h"
+
+#ifdef PARALLEL
+#include <omp.h>
+#endif
 }
 
 extern "C" void xcsf_fit1(XCSF *, INPUT *, _Bool);

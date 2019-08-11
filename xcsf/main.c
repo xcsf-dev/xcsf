@@ -32,7 +32,6 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
-#include <omp.h>
 #include <errno.h>
 #include "data_structures.h"
 #include "config.h"
@@ -42,6 +41,10 @@
 #include "ga.h"
 #include "input.h"
 #include "perf.h"
+
+#ifdef PARALLEL
+#include <omp.h>
+#endif
 
 void xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle);
 void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle);
