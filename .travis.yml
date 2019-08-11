@@ -31,6 +31,7 @@ script:
   - |
     if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
       brew install libomp
+      brew install cmake || brew upgrade cmake
     fi
   - cd "${TRAVIS_BUILD_DIR}/build"
   - cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
