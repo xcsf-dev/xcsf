@@ -82,16 +82,13 @@ if(XCSF_PYTHON_LIBRARY)
 		find_package(PythonInterp REQUIRED)
 		find_package(PythonLibs REQUIRED)
 	endif()
- 
+	include_directories(${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
+	link_libraries(${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
+	file(COPY MyProject.py DESTINATION .)             
 	message(STATUS "PYTHON_LIBRARIES = ${PYTHON_LIBRARIES}")
 	message(STATUS "PYTHON_EXECUTABLE = ${PYTHON_EXECUTABLE}")
 	message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
 	message(STATUS "Boost_LIBRARIES = ${Boost_LIBRARIES}")
-
-	include_directories(${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
-	link_libraries(${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
-
-	file(COPY MyProject.py DESTINATION .)             
 endif()
 
 add_subdirectory(xcsf)
