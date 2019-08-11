@@ -8,18 +8,18 @@ matrix:
     - os: linux
       compiler: gcc
       addons: &gcc6
-      apt:
-        sources: ['ubuntu-toolchain-r-test']
-        packages: ['g++-6']
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-6']
       env: BADGE=linux BUILD_TYPE="RELEASE" XCSF_PYLIB="OFF"
 
     # Python library
     - os: linux
       compiler: gcc
       addons: &gcc6
-      apt:
-        sources: ['ubuntu-toolchain-r-test']
-        packages: ['g++-6', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-6', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
       env: BADGE=linux BUILD_TYPE="RELEASE" XCSF_PYLIB="ON"
 
     # Stand-alone
