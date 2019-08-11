@@ -60,7 +60,7 @@ See `default.ini` for a full list of options.
 * The [cmake][cmake] build system.
   * OS X: `brew install cmake`
 * OpenMP (PARALLEL=ON)
-  * OS X: `brew install clang-omp`
+  * OS X: GNU Compiler Collection supports OpenMP: `brew install gcc`
 * GNUPlot (GNUPLOT=ON)
   * Ubuntu 18.04: `sudo apt install gnuplot`
   * OS X: `brew install gnuplot`
