@@ -230,6 +230,65 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 	}
 }
 
+_Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
+{
+	// uniform crossover -- due to the competing conventions problem
+	// P_CROSSOVER = 0.0 may perform better
+	if(drand() > xcsf->P_CROSSOVER) {
+		return false;
+	}
+
+	// cross number of cycles
+	if(drand() < 0.5) {
+		int tmp = dgp1->t;
+		dgp1->t = dgp2->t;
+		dgp2->t = tmp;
+	}
+
+	// cross functions and states
+	for(int i = 0; i < dgp1->n; i++) {
+		if(drand() < 0.5) {
+			double tmp = dgp1->function[i];
+			dgp1->function[i] = dgp2->function[i];
+			dgp2->function[i] = tmp;
+		}
+		if(drand() < 0.5) {
+			double tmp = dgp1->initial_state[i];
+			dgp1->initial_state[i] = dgp2->initial_state[i];
+			dgp2->initial_state[i] = tmp;
+		}     
+		if(drand() < 0.5) {
+			double tmp = dgp1->state[i];
+			dgp1->state[i] = dgp2->state[i];
+			dgp2->state[i] = tmp;
+		} 
+	}
+
+	// cross connections
+	for(int i = 0; i < dgp1->n * xcsf->MAX_K; i++) {
+		if(drand() < 0.5) {
+			double tmp = dgp1->connectivity[i];
+			dgp1->connectivity[i] = dgp2->connectivity[i];
+			dgp2->connectivity[i] = tmp;
+		}
+	}  
+
+	// update avg k
+	dgp1->avgk = 0;
+	dgp2->avgk = 0;
+	for(int i = 0; i < dgp1->n*xcsf->MAX_K; i++) {
+		if(dgp1->connectivity[i] != 0) {
+			dgp1->avgk++;
+		}
+		if(dgp2->connectivity[i] != 0) {
+			dgp2->avgk++;
+		}
+	}
+	dgp1->avgk /= (double)dgp1->n;     
+	dgp2->avgk /= (double)dgp2->n;      
+	return true;
+}
+
 double graph_avg_k(XCSF *xcsf, GRAPH *dgp)
 {
 	(void)xcsf;

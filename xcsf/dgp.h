@@ -32,6 +32,7 @@ void graph_rand(XCSF *xcsf, GRAPH *dgp);
 void graph_print(XCSF *xcsf, GRAPH *dgp);
 void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from);
 _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate);
+_Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
 void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs);
 double graph_output(XCSF *xcsf, GRAPH *dgp, int i);
 void graph_reset(XCSF *xcsf, GRAPH *dgp);

@@ -108,21 +108,18 @@ _Bool rule_dgp_cond_match_state(XCSF *xcsf, CL *c)
 _Bool rule_dgp_cond_mutate(XCSF *xcsf, CL *c)
 {
 	RULE_DGP_COND *cond = c->cond;
-	_Bool mod = false;
 	if(xcsf->NUM_SAM > 0) {
 		sam_adapt(xcsf, cond->mu);
 		xcsf->P_MUTATION = cond->mu[0];
 	}
-	mod = graph_mutate(xcsf, &cond->dgp, xcsf->P_MUTATION);
-	return mod;
+	return graph_mutate(xcsf, &cond->dgp, xcsf->P_MUTATION);
 }
 
 _Bool rule_dgp_cond_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-	(void)xcsf;
-	(void)c1;
-	(void)c2;
-	return false;
+	RULE_DGP_COND *cond1 = c1->cond;
+	RULE_DGP_COND *cond2 = c2->cond;
+	return graph_crossover(xcsf, &cond1->dgp, &cond2->dgp);
 }
 
 _Bool rule_dgp_cond_general(XCSF *xcsf, CL *c1, CL *c2)
