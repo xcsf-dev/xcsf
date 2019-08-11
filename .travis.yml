@@ -24,15 +24,15 @@ matrix:
 
     # Stand-alone
     - os: osx
-      compiler: clang
-      env: BADGE=osx BUILD_TYPE="RELEASE" PARALLEL="ON" XCSF_PYLIB="OFF"
+      compiler: gcc
+      env: BADGE=osx BUILD_TYPE="RELEASE" PARALLEL="ON" XCSF_PYLIB="OFF" 
 
 script:
+  - cd "${TRAVIS_BUILD_DIR}/build"
   - |
     if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
-      brew install libomp
+      brew install gcc
       brew install cmake || brew upgrade cmake
     fi
-  - cd "${TRAVIS_BUILD_DIR}/build"
-  - cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
+  - cmake .. -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" CXX=g++-6 CC=gcc-6
   - make
