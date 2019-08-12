@@ -38,6 +38,8 @@ script:
   - cd "${TRAVIS_BUILD_DIR}/build"
   - |
     if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
+      curl -LO https://raw.githubusercontent.com/GiovanniBussi/macports-ci/master/macports-ci
+      source ./macports-ci install
       macports install gcc9 libomp cmake
       if [[ "${XCSF_PYLIB}" == "ON" ]]; then
         macports install python37 python3-mt
