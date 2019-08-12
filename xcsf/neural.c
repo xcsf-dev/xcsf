@@ -76,12 +76,12 @@ void neural_rand(XCSF *xcsf, BPN *bpn)
 
 void neural_propagate(XCSF *xcsf, BPN *bpn, double *input)
 {
-	double tmpOut[MAX_LAYERS][MAX_NEURONS];
-	memcpy(tmpOut[0], input, bpn->num_neurons[0]*sizeof(double));
+	double tmpOut[MAX_NEURONS];
 	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
-			tmpOut[l][i] = neuron_propagate(xcsf, &bpn->layer[l-1][i], tmpOut[l-1]);
+			tmpOut[i] = neuron_propagate(xcsf, &bpn->layer[l-1][i], input);
 		}
+		input = tmpOut;
 	}
 }
 
