@@ -53,27 +53,46 @@ See `default.ini` for a full list of options.
 * `PARALLEL = ON`: matching and set prediction functions parallelised with OpenMP
   
 ------------------------
-## Stand-alone executable
- 
-### Requirements
+## Requirements
 
+### Stand-alone binary
+ 
 * ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
 * The [cmake][cmake] build system: at least version 3.12.
-  * OS X: `brew install cmake`
-* OpenMP (PARALLEL=ON): use GNU Compiler Collections
-  * OS X: `brew install gcc libomp` and add `-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9` to cmake command
+* OpenMP (PARALLEL=ON): supported by the GNU Compiler Collections
 * GNUPlot (GNUPLOT=ON)
-  * Ubuntu 18.04: `sudo apt install gnuplot`
-  * OS X: `brew install gnuplot`
+
+### Python library
  
-### Building
+* All of the above for building the stand-alone executable.
+* ![C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compiler.
+* Python
+* Boost Python and numpy libraries (at least version 1.56.0 for Python3)
+
+### Installing
+
+* Ubuntu 18.04
+  * `sudo apt install python3 libboost-python-dev libboost-numpy-dev`
+  * `sudo apt install gnuplot`
+ 
+* OS X:
+  * `brew install cmake`
+  * `brew install gcc libomp` 
+  * `brew install python3 boost-python3`
+  * `brew install gnuplot`
+  
+## Building
 
 0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
 1. Change to the build directory: `cd xcsf/build`
-2. Run cmake: `cmake .. -DCMAKE_BUILD_TYPE=RELEASE`
+2. Run cmake
+  * Ubuntu 18.04: `cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYTHON_LIBRARY=ON`
+  * OSX:  `cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYTHON_LIBRARY=ON -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9`
 3. Run make: `make`
 
-### Running
+## Running
+
+### Stand-alone
 
 Arguments: 
 
@@ -84,26 +103,7 @@ Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 
 Run: `./xcsf/xcsf ../data/sine_1var`              
 
-------------------------
-## Python library
-
-### Requirements
-
-* All of the above for building the stand-alone executable.
-* ![C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compiler.
-* Python
-* Boost Python and numpy libraries (at least version 1.56.0 for Python3)
-  * Ubuntu 18.04: `sudo apt install libboost-python-dev libboost-numpy-dev`
-  * OS X: `brew install boost-python3`
-
-### Building
-
-0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
-1. Change to the build directory: `cd xcsf/build`
-2. Run cmake: `cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYTHON_LIBRARY=ON`
-3. Run make: `make`
-
-### Running
+### Python library
 
 See example MyProject.py
 
