@@ -46,7 +46,7 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = malloc(sizeof(RULE_NEURAL_COND));
     int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars+1};
-    double (*activations[2])(double) = {logistic, logistic};
+    double (*activations[2])(double) = {logistic, identity};
     neural_init(xcsf, &cond->bpn, 3, neurons, activations);
     c->cond = cond;
     sam_init(xcsf, &cond->mu);

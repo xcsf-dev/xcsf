@@ -77,7 +77,7 @@ void pred_neural_init(XCSF *xcsf, CL *c)
                     xcsf->HIDDEN_NEURON_ACTIVATION);
             exit(EXIT_FAILURE);
     }
-    double (*activations[2])(double) = {hfunc, logistic};
+    double (*activations[2])(double) = {hfunc, identity};
     // initialise neural network
     neural_init(xcsf, &pred->bpn, 3, neurons, activations);
     pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
