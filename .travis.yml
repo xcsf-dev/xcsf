@@ -1,10 +1,10 @@
 language: cpp
 
-dist: bionic # Ubuntu 18.04
+dist: bionic
 
 matrix:
   include:
-    # Stand-alone
+    # Stand-alone Ubuntu 18.04
     - os: linux
       compiler: gcc
       addons: &gcc6
@@ -13,7 +13,7 @@ matrix:
           packages: ['g++-6']
       env: BADGE=linux BUILD_TYPE="RELEASE" XCSF_PYLIB="OFF"
 
-    # Python library
+    # Python library Ubuntu 18.04
     - os: linux
       compiler: gcc
       addons: &gcc6
@@ -22,18 +22,27 @@ matrix:
           packages: ['g++-6', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
       env: BADGE=linux BUILD_TYPE="RELEASE" XCSF_PYLIB="ON"
 
-    # Stand-alone
+    # Stand-alone OSX
     - os: osx
       osx_image: xcode10.1
       compiler: gcc
       env: BADGE=osx BUILD_TYPE="RELEASE" PARALLEL="ON" XCSF_PYLIB="OFF" 
-
+ 
+    # Python library OSX
+    - os: osx
+      osx_image: xcode10.1
+      compiler: gcc
+      env: BADGE=osx BUILD_TYPE="RELEASE" PARALLEL="ON" XCSF_PYLIB="ON" 
+ 
 script:
   - cd "${TRAVIS_BUILD_DIR}/build"
   - |
-    if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
+    if [[ "${TRAVIS_OS_NAME}" != "linux" ]] then
       brew install gcc libomp
       brew install cmake || brew upgrade cmake
+      if [[ "${XCSF_PYLIB}" == "ON" ]] then
+        brew install python3 boost-python3
+      fi
       cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
     else
       cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
