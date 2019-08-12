@@ -74,7 +74,7 @@ See `default.ini` for a full list of options.
 1. Change to the build directory: `cd xcsf/build`
 2. Run cmake:
 	* Ubuntu 18.04: `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..`
-	* OSX:  `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 ..`
+	* OS X:  `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 ..`
 3. Run make: `make`
 
 ## Running
