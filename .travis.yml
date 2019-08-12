@@ -37,10 +37,10 @@ matrix:
 script:
   - cd "${TRAVIS_BUILD_DIR}/build"
   - |
-    if [[ "${TRAVIS_OS_NAME}" != "linux" ]] then
+    if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
       brew install gcc libomp
       brew install cmake || brew upgrade cmake
-      if [[ "${XCSF_PYLIB}" == "ON" ]] then
+      if [[ "${XCSF_PYLIB}" == "ON" ]]; then
         brew install python3 boost-python3
       fi
       cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
