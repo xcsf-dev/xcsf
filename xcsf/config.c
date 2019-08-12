@@ -97,6 +97,7 @@ void constants_init(XCSF *xcsf, const char *filename)
 	xcsf->MIN_CON = atof(getvalue("MIN_CON"));
 	xcsf->MAX_CON = atof(getvalue("MAX_CON"));
 	xcsf->NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
+	xcsf->MOMENTUM = atof(getvalue("MOMENTUM"));
 	xcsf->HIDDEN_NEURON_ACTIVATION = atoi(getvalue("HIDDEN_NEURON_ACTIVATION"));
 	xcsf->DGP_NUM_NODES = atoi(getvalue("DGP_NUM_NODES"));
 	if(strcmp(getvalue("RESET_STATES"), "false") == 0) {

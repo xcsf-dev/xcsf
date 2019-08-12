@@ -186,6 +186,7 @@ struct XCS
 	double get_s_mutation() { return xcs.S_MUTATION; }
 	int get_num_hidden_neurons() { return xcs.NUM_HIDDEN_NEURONS; }
 	int get_hidden_neuron_activation() { return xcs.HIDDEN_NEURON_ACTIVATION; }
+	double get_momentum() { return xcs.MOMENTUM; }
 	int get_dgp_num_nodes() { return xcs.DGP_NUM_NODES; }
 	_Bool get_reset_states() { return xcs.RESET_STATES; }
 	int get_max_k() { return xcs.MAX_K; }
@@ -236,6 +237,7 @@ struct XCS
 	void set_s_mutation(double a) { xcs.S_MUTATION = a; }
 	void set_num_hidden_neurons(int a) { xcs.NUM_HIDDEN_NEURONS = a; }
 	void set_hidden_neuron_activation(int a) { xcs.HIDDEN_NEURON_ACTIVATION = a; }
+	void set_momentum(double a) { xcs.MOMENTUM = a; }
 	void set_dgp_num_nodes(int a) { xcs.DGP_NUM_NODES = a; }
 	void set_reset_states(_Bool a) { xcs.RESET_STATES = a; }
 	void set_max_k(int a) { xcs.MAX_K = a; }

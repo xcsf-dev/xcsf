@@ -130,6 +130,7 @@ void neural_free(XCSF *xcsf, BPN *bpn)
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
 			NEURON *n = &bpn->layer[l-1][i];
 			free(n->weights);
+			free(n->weights_change);
 			free(n->input);
 		}
 	}
@@ -181,10 +182,12 @@ void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, double (*aptr)(double))
 	n->output = 0.0;
 	n->num_inputs = num_inputs; 
 	n->weights = malloc((num_inputs+1)*sizeof(double));
+	n->weights_change = malloc((num_inputs+1)*sizeof(double));
 	n->input = malloc(num_inputs*sizeof(double));
 	// randomise weights [-0.1,0.1]
 	for(int w = 0; w < num_inputs+1; w++) {
 		n->weights[w] = 0.2 * (drand() - 0.5);
+		n->weights_change[w] = 0.0;
 	}
 	(void)xcsf;
 }
@@ -205,9 +208,13 @@ double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
 void neuron_learn(XCSF *xcsf, NEURON *n, double error)
 {
 	for(int i = 0; i < n->num_inputs; i++) {
-		n->weights[i] += error * n->input[i] * xcsf->BETA; 
+		n->weights[i] += xcsf->MOMENTUM * n->weights_change[i];
+		n->weights_change[i] = error * n->input[i] * xcsf->BETA;
+		n->weights[i] += n->weights_change[i];
 	}
-	n->weights[n->num_inputs] += error * xcsf->BETA;
+	n->weights[n->num_inputs] += xcsf->MOMENTUM * n->weights_change[n->num_inputs];
+	n->weights_change[n->num_inputs] = error * xcsf->BETA;
+	n->weights[n->num_inputs] += n->weights_change[n->num_inputs];
 }  
 
 double logistic(double x)
