@@ -30,15 +30,6 @@ See `default.ini` for a full list of options.
 * `PRED_TYPE = 2`: Linear recursive least squares
 * `PRED_TYPE = 3`: Quadratic recursive least squares
 * `PRED_TYPE = 4`: Stochastic gradient descent multilayer perceptron neural networks
-  * `HIDDEN_NEURON_ACTIVATION = 0`: Logistic (-1,1)
-  * `HIDDEN_NEURON_ACTIVATION = 1`: Rectified linear unit (0,inf)
-  * `HIDDEN_NEURON_ACTIVATION = 2`: Gaussian (0,1)
-  * `HIDDEN_NEURON_ACTIVATION = 3`: Bent identity (-inf,inf)
-  * `HIDDEN_NEURON_ACTIVATION = 4`: TanH (-1,1)
-  * `HIDDEN_NEURON_ACTIVATION = 5`: Sinusoid (-1,1)
-  * `HIDDEN_NEURON_ACTIVATION = 6`: Soft plus (0,inf)
-  * `HIDDEN_NEURON_ACTIVATION = 7`: Identity (-inf,inf)
-
  
 ### Mutation for conditions
 
@@ -49,8 +40,9 @@ See `default.ini` for a full list of options.
 ------------------------
 ## Compiler options
 
-* `GNUPLOT = ON`: real-time GNUPlot of the system error; data saved in folder: `out`
-* `PARALLEL = ON`: matching and set prediction functions parallelised with OpenMP
+* `XCSF_PYTHON_LIBRARY = ON`: python library (cmake default = OFF)
+* `PARALLEL = ON`: matching and set prediction functions parallelised with OpenMP (cmake default = ON)
+* `GNUPLOT = ON`: real-time GNUPlot of the system error; data saved in folder: `out` (cmake default = OFF)
   
 ------------------------
 ## Requirements
