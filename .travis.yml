@@ -43,8 +43,8 @@ script:
       if [[ "${XCSF_PYLIB}" == "ON" ]]; then
         brew install python3 boost-python3
       fi
-      cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
+      cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYLIB="$XCSF_PYLIB" ..
     else
-      cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
+      cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYLIB="$XCSF_PYLIB" ..
     fi
   - make

@@ -40,7 +40,7 @@ See `default.ini` for a full list of options.
 ------------------------
 ## Compiler options
 
-* `XCSF_PYTHON_LIBRARY = ON`: python library (cmake default = OFF)
+* `XCSF_PYLIB = ON`: python library (cmake default = OFF)
 * `PARALLEL = ON`: matching and set prediction functions parallelised with OpenMP (cmake default = ON)
 * `GNUPLOT = ON`: real-time GNUPlot of the system error; data saved in folder: `out` (cmake default = OFF)
   
@@ -73,8 +73,8 @@ See `default.ini` for a full list of options.
 0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
 1. Change to the build directory: `cd xcsf/build`
 2. Run cmake:
-	* Ubuntu 18.04: `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYTHON_LIBRARY=ON ..`
-	* OSX:  `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYTHON_LIBRARY=ON -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 ..`
+	* Ubuntu 18.04: `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..`
+	* OSX:  `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 ..`
 3. Run make: `make`
 
 ## Running
