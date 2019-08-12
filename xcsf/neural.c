@@ -42,207 +42,207 @@ void neuron_learn(XCSF *xcsf, NEURON *n, double error);
 
 void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, double (**aptr)(double))
 {
-    // set number of layers
-    bpn->num_layers = layers;
-    // set number of neurons in each layer
-    bpn->num_neurons = malloc(sizeof(int)*bpn->num_layers);
-    memcpy(bpn->num_neurons, neurons, sizeof(int)*bpn->num_layers);
-    // array offsets by 1 since input layer is assumed   
-    // malloc layers
-    bpn->layer = (NEURON**) malloc((bpn->num_layers-1)*sizeof(NEURON*));
-    for(int l = 1; l < bpn->num_layers; l++) {
-        bpn->layer[l-1] = (NEURON*) malloc(bpn->num_neurons[l]*sizeof(NEURON));
-    }
-    // malloc neurons in each other layer
-    for(int l = 1; l < bpn->num_layers; l++) {
-        for(int i = 0; i < bpn->num_neurons[l]; i++) {
-            neuron_init(xcsf, &bpn->layer[l-1][i], bpn->num_neurons[l-1], aptr[l-1]);
-        }
-    }   
+	// set number of layers
+	bpn->num_layers = layers;
+	// set number of neurons in each layer
+	bpn->num_neurons = malloc(sizeof(int)*bpn->num_layers);
+	memcpy(bpn->num_neurons, neurons, sizeof(int)*bpn->num_layers);
+	// array offsets by 1 since input layer is assumed   
+	// malloc layers
+	bpn->layer = (NEURON**) malloc((bpn->num_layers-1)*sizeof(NEURON*));
+	for(int l = 1; l < bpn->num_layers; l++) {
+		bpn->layer[l-1] = (NEURON*) malloc(bpn->num_neurons[l]*sizeof(NEURON));
+	}
+	// malloc neurons in each other layer
+	for(int l = 1; l < bpn->num_layers; l++) {
+		for(int i = 0; i < bpn->num_neurons[l]; i++) {
+			neuron_init(xcsf, &bpn->layer[l-1][i], bpn->num_neurons[l-1], aptr[l-1]);
+		}
+	}   
 }
 
 void neural_rand(XCSF *xcsf, BPN *bpn)
 {
-    for(int l = 1; l < bpn->num_layers; l++) {
-        for(int i = 0; i < bpn->num_neurons[l]; i++) {
-            NEURON *n = &bpn->layer[l-1][i];
-            for(int w = 0; w < n->num_inputs+1; w++) {
-                n->weights[w] = (drand()*2.0)-1.0;
-            }
-        }
-    }    
-    (void)xcsf;
+	for(int l = 1; l < bpn->num_layers; l++) {
+		for(int i = 0; i < bpn->num_neurons[l]; i++) {
+			NEURON *n = &bpn->layer[l-1][i];
+			for(int w = 0; w < n->num_inputs+1; w++) {
+				n->weights[w] = (drand()*2.0)-1.0;
+			}
+		}
+	}    
+	(void)xcsf;
 }
 
 void neural_propagate(XCSF *xcsf, BPN *bpn, double *input)
 {
-    double tmpOut[MAX_LAYERS][MAX_NEURONS];
-    memcpy(tmpOut[0], input, bpn->num_neurons[0]*sizeof(double));
-    for(int l = 1; l < bpn->num_layers; l++) {
-        for(int i = 0; i < bpn->num_neurons[l]; i++) {
-            tmpOut[l][i] = neuron_propagate(xcsf, &bpn->layer[l-1][i], tmpOut[l-1]);
-        }
-    }
+	double tmpOut[MAX_LAYERS][MAX_NEURONS];
+	memcpy(tmpOut[0], input, bpn->num_neurons[0]*sizeof(double));
+	for(int l = 1; l < bpn->num_layers; l++) {
+		for(int i = 0; i < bpn->num_neurons[l]; i++) {
+			tmpOut[l][i] = neuron_propagate(xcsf, &bpn->layer[l-1][i], tmpOut[l-1]);
+		}
+	}
 }
 
 double neural_output(XCSF *xcsf, BPN *bpn, int i)
 {
-    (void)xcsf;
-    return bpn->layer[bpn->num_layers-2][i].output;
+	(void)xcsf;
+	return bpn->layer[bpn->num_layers-2][i].output;
 }
 
 void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
 {
-    // network already propagated state in set_pred()
-    // neural_propagate(bpn, state);
-    (void)state; // remove unused parameter warning
+	// network already propagated state in set_pred()
+	// neural_propagate(bpn, state);
+	(void)state; // remove unused parameter warning
 
-    // output layer
-    double out_error[bpn->num_neurons[bpn->num_layers-1]];
-    int o = bpn->num_layers-2;
-    for(int i = 0; i < bpn->num_neurons[bpn->num_layers-1]; i++) {
-        out_error[i] = (output[i] - bpn->layer[o][i].output);
-        neuron_learn(xcsf, &bpn->layer[o][i], out_error[i]);
-    }
-    // hidden layers
-    double *prev_error = out_error;
-    for(int l = bpn->num_layers-2; l > 0; l--) {
-        double error[bpn->num_neurons[l]];
-        for(int i = 0; i < bpn->num_neurons[l]; i++) {
-            error[i] = 0.0;
-        }
-        for(int j = 0; j < bpn->num_neurons[l]; j++) {
-            // this neuron's error uses the next layer's error
-            for(int k = 0; k < bpn->num_neurons[l+1]; k++) {
-                error[j] += prev_error[k] * bpn->layer[l][k].weights[j];
-            }
-            neuron_learn(xcsf, &bpn->layer[l-1][j], error[j]);
-        }
-        prev_error = error;
-    }    
+	// output layer
+	double out_error[bpn->num_neurons[bpn->num_layers-1]];
+	int o = bpn->num_layers-2;
+	for(int i = 0; i < bpn->num_neurons[bpn->num_layers-1]; i++) {
+		out_error[i] = (output[i] - bpn->layer[o][i].output);
+		neuron_learn(xcsf, &bpn->layer[o][i], out_error[i]);
+	}
+	// hidden layers
+	double *prev_error = out_error;
+	for(int l = bpn->num_layers-2; l > 0; l--) {
+		double error[bpn->num_neurons[l]];
+		for(int i = 0; i < bpn->num_neurons[l]; i++) {
+			error[i] = 0.0;
+		}
+		for(int j = 0; j < bpn->num_neurons[l]; j++) {
+			// this neuron's error uses the next layer's error
+			for(int k = 0; k < bpn->num_neurons[l+1]; k++) {
+				error[j] += prev_error[k] * bpn->layer[l][k].weights[j];
+			}
+			neuron_learn(xcsf, &bpn->layer[l-1][j], error[j]);
+		}
+		prev_error = error;
+	}    
 }
 
 void neural_free(XCSF *xcsf, BPN *bpn)
 {
-    (void)xcsf;
-    // free neurons
-    for(int l = 1; l < bpn->num_layers; l++) {
-        for(int i = 0; i < bpn->num_neurons[l]; i++) {
-            NEURON *n = &bpn->layer[l-1][i];
-            free(n->weights);
-            free(n->input);
-        }
-    }
-    // free layers
-    for(int l = 1; l < bpn->num_layers; l++) {
-        free(bpn->layer[l-1]);
-    }
-    // free pointers to layers
-    free(bpn->layer);
-    free(bpn->num_neurons);    
+	(void)xcsf;
+	// free neurons
+	for(int l = 1; l < bpn->num_layers; l++) {
+		for(int i = 0; i < bpn->num_neurons[l]; i++) {
+			NEURON *n = &bpn->layer[l-1][i];
+			free(n->weights);
+			free(n->input);
+		}
+	}
+	// free layers
+	for(int l = 1; l < bpn->num_layers; l++) {
+		free(bpn->layer[l-1]);
+	}
+	// free pointers to layers
+	free(bpn->layer);
+	free(bpn->num_neurons);    
 }
 
 void neural_print(XCSF *xcsf, BPN *bpn)
 {
-    printf("neural weights:");
-    for(int l = 1; l < bpn->num_layers; l++) {
-        for(int i = 0; i < bpn->num_neurons[l]; i++) {
-            NEURON *n = &bpn->layer[l-1][i];
-            for(int w = 0; w < n->num_inputs+1; w++) {
-                printf(" %5f, ", n->weights[w]);
-            }
-        }
-    }
-    printf("\n");       
-    (void)xcsf;
+	printf("neural weights:");
+	for(int l = 1; l < bpn->num_layers; l++) {
+		for(int i = 0; i < bpn->num_neurons[l]; i++) {
+			NEURON *n = &bpn->layer[l-1][i];
+			for(int w = 0; w < n->num_inputs+1; w++) {
+				printf(" %5f, ", n->weights[w]);
+			}
+		}
+	}
+	printf("\n");       
+	(void)xcsf;
 }
 
 void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
 {                                  	
-    to->num_layers = from->num_layers;
-    memcpy(to->num_neurons, from->num_neurons, sizeof(int)*from->num_layers);
-    for(int l = 1; l < from->num_layers; l++) {
-        for(int i = 0; i < from->num_neurons[l]; i++) {
-            NEURON *a = &to->layer[l-1][i];
-            NEURON *b = &from->layer[l-1][i];
-            a->activation_ptr = b->activation_ptr;
-            a->output = b->output;
-            memcpy(a->weights, b->weights, sizeof(double)*b->num_inputs+1);
-            memcpy(a->input, b->input, sizeof(double)*b->num_inputs);
-            a->num_inputs = b->num_inputs;
-        }
-    }    
-    (void)xcsf;
+	to->num_layers = from->num_layers;
+	memcpy(to->num_neurons, from->num_neurons, sizeof(int)*from->num_layers);
+	for(int l = 1; l < from->num_layers; l++) {
+		for(int i = 0; i < from->num_neurons[l]; i++) {
+			NEURON *a = &to->layer[l-1][i];
+			NEURON *b = &from->layer[l-1][i];
+			a->activation_ptr = b->activation_ptr;
+			a->output = b->output;
+			memcpy(a->weights, b->weights, sizeof(double)*b->num_inputs+1);
+			memcpy(a->input, b->input, sizeof(double)*b->num_inputs);
+			a->num_inputs = b->num_inputs;
+		}
+	}    
+	(void)xcsf;
 }
 
 void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, double (*aptr)(double))
 {
-    n->activation_ptr = aptr;
-    n->output = 0.0;
-    n->num_inputs = num_inputs; 
-    n->weights = malloc((num_inputs+1)*sizeof(double));
-    n->input = malloc(num_inputs*sizeof(double));
-    // randomise weights [-0.1,0.1]
-    for(int w = 0; w < num_inputs+1; w++) {
-        n->weights[w] = 0.2 * (drand() - 0.5);
-    }
-    (void)xcsf;
+	n->activation_ptr = aptr;
+	n->output = 0.0;
+	n->num_inputs = num_inputs; 
+	n->weights = malloc((num_inputs+1)*sizeof(double));
+	n->input = malloc(num_inputs*sizeof(double));
+	// randomise weights [-0.1,0.1]
+	for(int w = 0; w < num_inputs+1; w++) {
+		n->weights[w] = 0.2 * (drand() - 0.5);
+	}
+	(void)xcsf;
 }
 
 double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
 {
-    (void)xcsf;
-    n->output = 0.0;
-    for(int i = 0; i < n->num_inputs; i++) {
-        n->input[i] = input[i];
-        n->output += n->weights[i] * input[i];
-    }
-    n->output += n->weights[n->num_inputs];
-    n->output = (n->activation_ptr)(n->output);
-    return n->output;
+	(void)xcsf;
+	n->output = 0.0;
+	for(int i = 0; i < n->num_inputs; i++) {
+		n->input[i] = input[i];
+		n->output += n->weights[i] * input[i];
+	}
+	n->output += n->weights[n->num_inputs];
+	n->output = (n->activation_ptr)(n->output);
+	return n->output;
 }
 
 void neuron_learn(XCSF *xcsf, NEURON *n, double error)
 {
-    for(int i = 0; i < n->num_inputs; i++) {
-        n->weights[i] += error * n->input[i] * xcsf->BETA; 
-    }
-    n->weights[n->num_inputs] += error * xcsf->BETA;
+	for(int i = 0; i < n->num_inputs; i++) {
+		n->weights[i] += error * n->input[i] * xcsf->BETA; 
+	}
+	n->weights[n->num_inputs] += error * xcsf->BETA;
 }  
 
 double logistic(double x)
 {
-    // bipolar logistic sigmoid function: outputs [-1,1]
-    return 2.0 / (1.0 + exp(-x)) - 1.0;
+	// bipolar logistic sigmoid function: outputs [-1,1]
+	return 2.0 / (1.0 + exp(-x)) - 1.0;
 }
 
 double logistic_plain(double x)
 {
-    // plain logistic sigmoid: outputs [0,1]
-    return 1.0 / (1.0 + exp(-x));
+	// plain logistic sigmoid: outputs [0,1]
+	return 1.0 / (1.0 + exp(-x));
 }
 
 double gaussian(double x)
 {
 	// outputs: (0,1]
-    return exp((-x * x) / 2.0);
+	return exp((-x * x) / 2.0);
 } 
 
 double relu(double x)
 {
-    // rectified linear unit: outputs [0,1]
-    return fmax(0.0, x);
+	// rectified linear unit: outputs [0,1]
+	return fmax(0.0, x);
 }
 
 double bent_identity(double x)
 {
-    // bent identity function: outputs [-inf,inf]
-    return ((sqrt(x*x+1.0)-1.0)/2.0)+x;
+	// bent identity function: outputs [-inf,inf]
+	return ((sqrt(x*x+1.0)-1.0)/2.0)+x;
 }
 
 double identity(double x)
 {
-    return x;
+	return x;
 }
 
 double soft_plus(double x)

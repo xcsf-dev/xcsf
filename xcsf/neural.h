@@ -16,17 +16,17 @@
  */
 
 typedef struct NEURON {
-    double output;
-    double *weights;
-    double *input;
-    int num_inputs;
-    double (*activation_ptr)(double);
+	double output;
+	double *weights;
+	double *input;
+	int num_inputs;
+	double (*activation_ptr)(double);
 } NEURON;
 
 typedef struct BPN {
-    int num_layers; // input layer + number of hidden layers + output layer
-    int *num_neurons; // number of neurons in each layer
-    NEURON **layer; // neural network
+	int num_layers; // input layer + number of hidden layers + output layer
+	int *num_neurons; // number of neurons in each layer
+	NEURON **layer; // neural network
 } BPN;
 
 double neural_output(XCSF *xcsf, BPN *bpn, int i);
