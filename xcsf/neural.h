@@ -17,9 +17,7 @@
 
 typedef struct NEURON {
     double output;
-    double state;
     double *weights;
-    double *weights_change;
     double *input;
     int num_inputs;
     double (*activation_ptr)(double);

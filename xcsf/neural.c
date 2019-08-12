@@ -130,7 +130,6 @@ void neural_free(XCSF *xcsf, BPN *bpn)
         for(int i = 0; i < bpn->num_neurons[l]; i++) {
             NEURON *n = &bpn->layer[l-1][i];
             free(n->weights);
-            free(n->weights_change);
             free(n->input);
         }
     }
@@ -168,9 +167,7 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
             NEURON *b = &from->layer[l-1][i];
             a->activation_ptr = b->activation_ptr;
             a->output = b->output;
-            a->state = b->state;
             memcpy(a->weights, b->weights, sizeof(double)*b->num_inputs+1);
-            memcpy(a->weights_change, b->weights_change, sizeof(double)*b->num_inputs+1);
             memcpy(a->input, b->input, sizeof(double)*b->num_inputs);
             a->num_inputs = b->num_inputs;
         }
@@ -182,15 +179,12 @@ void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, double (*aptr)(double))
 {
     n->activation_ptr = aptr;
     n->output = 0.0;
-    n->state = 0.0;
     n->num_inputs = num_inputs; 
     n->weights = malloc((num_inputs+1)*sizeof(double));
-    n->weights_change = malloc((num_inputs+1)*sizeof(double));
     n->input = malloc(num_inputs*sizeof(double));
     // randomise weights [-0.1,0.1]
     for(int w = 0; w < num_inputs+1; w++) {
         n->weights[w] = 0.2 * (drand() - 0.5);
-        n->weights_change[w] = 0.0;
     }
     (void)xcsf;
 }
@@ -198,25 +192,22 @@ void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, double (*aptr)(double))
 double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
 {
     (void)xcsf;
-    n->state = 0.0;
+    n->output = 0.0;
     for(int i = 0; i < n->num_inputs; i++) {
         n->input[i] = input[i];
-        n->state += n->weights[i] * input[i];
+        n->output += n->weights[i] * input[i];
     }
-    n->state += n->weights[n->num_inputs];
-    n->output = (n->activation_ptr)(n->state);
+    n->output += n->weights[n->num_inputs];
+    n->output = (n->activation_ptr)(n->output);
     return n->output;
 }
 
 void neuron_learn(XCSF *xcsf, NEURON *n, double error)
 {
-    int i;
-    for(i = 0; i < n->num_inputs; i++) {
-        n->weights_change[i] = error * n->input[i] * xcsf->BETA;
-        n->weights[i] += n->weights_change[i];
+    for(int i = 0; i < n->num_inputs; i++) {
+        n->weights[i] += error * n->input[i] * xcsf->BETA; 
     }
-    n->weights_change[i] = error * xcsf->BETA;
-    n->weights[i] += n->weights_change[i];
+    n->weights[n->num_inputs] += error * xcsf->BETA;
 }  
 
 double logistic(double x)
