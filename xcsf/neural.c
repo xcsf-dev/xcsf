@@ -209,11 +209,11 @@ void neuron_learn(XCSF *xcsf, NEURON *n, double error)
 {
 	for(int i = 0; i < n->num_inputs; i++) {
 		n->weights[i] += xcsf->MOMENTUM * n->weights_change[i];
-		n->weights_change[i] = error * n->input[i] * xcsf->BETA;
+		n->weights_change[i] = error * n->input[i] * xcsf->XCSF_ETA;
 		n->weights[i] += n->weights_change[i];
 	}
 	n->weights[n->num_inputs] += xcsf->MOMENTUM * n->weights_change[n->num_inputs];
-	n->weights_change[n->num_inputs] = error * xcsf->BETA;
+	n->weights_change[n->num_inputs] = error * xcsf->XCSF_ETA;
 	n->weights[n->num_inputs] += n->weights_change[n->num_inputs];
 }  
 
