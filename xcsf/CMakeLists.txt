@@ -16,7 +16,7 @@
 #
  
 
-if(NOT XCSF_PYTHON_LIBRARY)
+if(NOT XCSF_PYLIB)
 	#######################
 	# Compile XCSF binary
 	#######################
