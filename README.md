@@ -52,7 +52,7 @@ See `default.ini` for a full list of options.
 * ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
 * [CMake](https://www.cmake.org "CMake") (>= 3.12)
 * [OpenMP](https://www.openmp.org "OpenMP") (PARALLEL=ON): supported by the GNU Compiler Collections
-* [Gnuplot] (https://www.gnuplot.info "Gnuplot") (GNUPLOT=ON)
+* [Gnuplot](https://www.gnuplot.info "Gnuplot") (GNUPLOT=ON)
 
 ### Python library
  
