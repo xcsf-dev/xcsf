@@ -72,14 +72,9 @@ See `default.ini` for a full list of options.
 ### Installing
 
 * Ubuntu 18.04
-  * `sudo apt install python3 libboost-python-dev libboost-numpy-dev`
-  * `sudo apt install gnuplot`
- 
+  * `sudo apt install python3 libboost-python-dev libboost-numpy-dev gnuplot`
 * OS X:
-  * `brew install cmake`
-  * `brew install gcc libomp` 
-  * `brew install python3 boost-python3`
-  * `brew install gnuplot`
+  * `brew install cmake gcc libomp python3 boost-python3 gnuplot`
   
 ## Building
 
