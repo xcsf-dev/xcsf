@@ -4,15 +4,6 @@ dist: bionic
 
 matrix:
   include:
-    # Stand-alone Ubuntu 18.04
-    - os: linux
-      compiler: gcc
-      addons: &gcc6
-        apt:
-          sources: ['ubuntu-toolchain-r-test']
-          packages: ['g++-6']
-      env: BADGE=linux BUILD_TYPE="RELEASE" XCSF_PYLIB="OFF"
-
     # Python library Ubuntu 18.04
     - os: linux
       compiler: gcc
@@ -22,17 +13,11 @@ matrix:
           packages: ['g++-6', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
       env: BADGE=linux BUILD_TYPE="RELEASE" XCSF_PYLIB="ON"
 
-    # Stand-alone OSX
-    - os: osx
-      osx_image: xcode10.1
-      compiler: gcc
-      env: BADGE=osx BUILD_TYPE="RELEASE" PARALLEL="ON" XCSF_PYLIB="OFF" 
- 
     # Python library OSX
     - os: osx
       osx_image: xcode10.1
       compiler: gcc
-      env: BADGE=osx BUILD_TYPE="RELEASE" PARALLEL="ON" XCSF_PYLIB="ON" 
+      env: BADGE=osx BUILD_TYPE="RELEASE" XCSF_PYLIB="ON" 
  
 script:
   - cd "${TRAVIS_BUILD_DIR}/build"
@@ -40,7 +25,7 @@ script:
     if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
       curl -LO https://raw.githubusercontent.com/GiovanniBussi/macports-ci/master/macports-ci
       source ./macports-ci install
-      sudo port -N install gcc9 libomp cmake
+      sudo port -N install cmake gcc9 libomp
       if [[ "${XCSF_PYLIB}" == "ON" ]]; then
         sudo port -N install python37 python3-mt
       fi
