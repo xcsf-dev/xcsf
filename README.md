@@ -60,8 +60,8 @@ See `default.ini` for a full list of options.
 * ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
 * The [cmake][cmake] build system: at least version 3.12.
   * OS X: `brew install cmake`
-* OpenMP (PARALLEL=ON)
-  * OS X: `brew install libomp`
+* OpenMP (PARALLEL=ON): use GNU Compiler Collections
+  * OS X: `brew install gcc libomp` and add -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 to cmake command
 * GNUPlot (GNUPLOT=ON)
   * Ubuntu 18.04: `sudo apt install gnuplot`
   * OS X: `brew install gnuplot`
