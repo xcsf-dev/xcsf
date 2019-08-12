@@ -24,6 +24,7 @@ matrix:
 
     # Stand-alone
     - os: osx
+      osx_image: xcode10.1
       compiler: gcc
       env: BADGE=osx BUILD_TYPE="RELEASE" PARALLEL="ON" XCSF_PYLIB="OFF" 
 
@@ -31,8 +32,6 @@ script:
   - cd "${TRAVIS_BUILD_DIR}/build"
   - |
     if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
-      softwareupdate --list
-      softwareupdate --install "Command Line Tools (macOS High Sierra version 10.13) for Xcode-9.4"
       brew install gcc libomp
       brew install cmake || brew upgrade cmake
       cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYTHON_LIBRARY="$XCSF_PYLIB" ..
