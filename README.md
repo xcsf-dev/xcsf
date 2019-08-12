@@ -71,7 +71,7 @@ See `default.ini` for a full list of options.
 
 ### Installing
 
-* Ubuntu 18.04
+* Ubuntu 18.04:
   * `sudo apt install python3 libboost-python-dev libboost-numpy-dev gnuplot`
 * OS X:
   * `brew install cmake gcc libomp python3 boost-python3 gnuplot`
@@ -80,7 +80,7 @@ See `default.ini` for a full list of options.
 
 0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
 1. Change to the build directory: `cd xcsf/build`
-2. Run cmake
+2. Run cmake:
 	* Ubuntu 18.04: `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYTHON_LIBRARY=ON ..`
 	* OSX:  `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYTHON_LIBRARY=ON -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 ..`
 3. Run make: `make`
