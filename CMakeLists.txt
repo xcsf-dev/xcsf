@@ -77,7 +77,6 @@ endif()
 
 option(XCSF_PYLIB "Build XCSF Python library" OFF)
 if(XCSF_PYLIB)
-	find_package(Python3 REQUIRED)
 	find_package(Boost COMPONENTS python3 numpy3 REQUIRED)
 	find_package(PythonInterp 3 REQUIRED)
 	find_package(PythonLibs 3 REQUIRED)
