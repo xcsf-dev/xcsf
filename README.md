@@ -58,7 +58,7 @@ See `default.ini` for a full list of options.
  
 * All of the above for building the stand-alone executable.
 * ![C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compiler.
-* [Python](https://www.python.org "Python")
+* [Python](https://www.python.org "Python") (>= 3)
 * [Boost](https://www.boost.org "Boost") (>= 1.56.0 for Python3)
 
 ### Installing
