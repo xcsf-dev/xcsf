@@ -50,16 +50,16 @@ See `default.ini` for a full list of options.
 ### Stand-alone binary
  
 * ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
-* The [cmake][cmake] build system: at least version 3.12.
-* OpenMP (PARALLEL=ON): supported by the GNU Compiler Collections
-* GNUPlot (GNUPLOT=ON)
+* [CMake](https://www.cmake.org "CMake") (>= 3.12)
+* [OpenMP](https://www.openmp.org "OpenMP") (PARALLEL=ON): supported by the GNU Compiler Collections
+* [Gnuplot] (https://www.gnuplot.info "Gnuplot") (GNUPLOT=ON)
 
 ### Python library
  
 * All of the above for building the stand-alone executable.
 * ![C++11](https://img.shields.io/badge/C++-11-blue.svg?style=flat) compliant compiler.
-* Python
-* Boost Python and numpy libraries (at least version 1.56.0 for Python3)
+* [Python](https://www.python.org "Python")
+* [Boost](https://www.boost.org "Boost") (>= 1.56.0 for Python3)
 
 ### Installing
 
@@ -95,5 +95,3 @@ Run: `./xcsf/xcsf ../data/sine_1var`
 See example MyProject.py
 
 Run: `python3 MyProject.py`
-
-[cmake]: http://www.cmake.org/ "CMake tool"
