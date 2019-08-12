@@ -61,7 +61,7 @@ See `default.ini` for a full list of options.
 * The [cmake][cmake] build system: at least version 3.12.
   * OS X: `brew install cmake`
 * OpenMP (PARALLEL=ON): use GNU Compiler Collections
-  * OS X: `brew install gcc libomp` and add -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 to cmake command
+  * OS X: `brew install gcc libomp` and add `-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9` to cmake command
 * GNUPlot (GNUPLOT=ON)
   * Ubuntu 18.04: `sudo apt install gnuplot`
   * OS X: `brew install gnuplot`
