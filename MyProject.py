@@ -61,8 +61,8 @@ xcs = xcsf.XCS(xvars, yvars)
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
-xcs.COND_TYPE = 3 # tree-GP conditions
-xcs.PRED_TYPE = 4 # neural network predictors
+xcs.COND_TYPE = 2 # evolved neural network conditions
+xcs.PRED_TYPE = 4 # sgd neural network predictors
 xcs.HIDDEN_NEURON_ACTIVATION = 1 # relu
 xcs.NUM_HIDDEN_NEURONS = 10
 
