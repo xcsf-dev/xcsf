@@ -48,39 +48,49 @@ void cond_neural_init(XCSF *xcsf, CL *c)
 	int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, 1};
 	// select hidden neuron activation function
 	double (*hfunc)(double) = &logistic;
+    double (*dfunc)(double) = &d1logistic;
 	switch(xcsf->HIDDEN_NEURON_ACTIVATION) {
 		case 0:
-			hfunc = &logistic;
-			break;
-		case 1:
-			hfunc = &relu;
-			break;
-		case 2:
-			hfunc = &gaussian;
-			break;
-		case 3:
-			hfunc = &bent_identity;
-			break;
-		case 4:
-			hfunc = &tanh;
-			break;
-		case 5:
-			hfunc = &sin;
-			break;
-		case 6:
-			hfunc = &soft_plus;
-			break;
-		case 7:
-			hfunc = &identity;
-			break;    
+            hfunc = &logistic;
+            dfunc = &d1logistic;
+            break;
+        case 1:
+            hfunc = &relu;
+            dfunc = &d1relu;
+            break;
+        case 2:
+            hfunc = &gaussian;
+            dfunc = &d1gaussian;
+            break;
+        case 3:
+            hfunc = &bent_identity;
+            dfunc = &d1bent_identity;
+            break;
+        case 4:
+            hfunc = &tanh;
+            dfunc = &d1tanh;
+            break;
+        case 5:
+            hfunc = &sin;
+            dfunc = &cos;
+            break;
+        case 6:
+            hfunc = &soft_plus;
+            dfunc = &logistic_plain;
+            break;
+        case 7:
+            hfunc = &identity;
+            dfunc = &identity;
+            break;   
 		default:
 			printf("error: invalid hidden activation function: %d\n",
 					xcsf->HIDDEN_NEURON_ACTIVATION);
 			exit(EXIT_FAILURE);
 	}
 	double (*activations[2])(double) = {hfunc, logistic};
+    double (*derivatives[2])(double) = {dfunc, identity};
 	// initialise neural network
-	neural_init(xcsf, &cond->bpn, 3, neurons, activations);
+	neural_init(xcsf, &cond->bpn, 3, neurons, activations, derivatives);
 	c->cond = cond;
 	sam_init(xcsf, &cond->mu);
 }

@@ -37,10 +37,12 @@
 #define MAX_NEURONS 50
 
 double neuron_propagate(XCSF *xcsf, NEURON *n, double *input);
-void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, double (*aptr)(double));
+void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, 
+		double (*aptr)(double), double (*dptr)(double));
 void neuron_learn(XCSF *xcsf, NEURON *n, double error);
 
-void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, double (**aptr)(double))
+void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, 
+		double (**aptr)(double), double (**dptr)(double))
 {
 	// set number of layers
 	bpn->num_layers = layers;
@@ -56,7 +58,8 @@ void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, double (**aptr)
 	// malloc neurons in each other layer
 	for(int l = 1; l < bpn->num_layers; l++) {
 		for(int i = 0; i < bpn->num_neurons[l]; i++) {
-			neuron_init(xcsf, &bpn->layer[l-1][i], bpn->num_neurons[l-1], aptr[l-1]);
+			neuron_init(xcsf, &bpn->layer[l-1][i], bpn->num_neurons[l-1], 
+				aptr[l-1], dptr[l-1]);
 		}
 	}   
 }
@@ -101,8 +104,9 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
 	double out_error[bpn->num_neurons[bpn->num_layers-1]];
 	int o = bpn->num_layers-2;
 	for(int i = 0; i < bpn->num_neurons[bpn->num_layers-1]; i++) {
-		out_error[i] = (output[i] - bpn->layer[o][i].output);
-		neuron_learn(xcsf, &bpn->layer[o][i], out_error[i]);
+		NEURON *neuro = &bpn->layer[o][i];
+		out_error[i] = (output[i]-neuro->output); //*(neuro->deriv_ptr)(neuro->state);
+		neuron_learn(xcsf, neuro, out_error[i]);
 	}
 	// hidden layers
 	double *prev_error = out_error;
@@ -112,11 +116,13 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
 			error[i] = 0.0;
 		}
 		for(int j = 0; j < bpn->num_neurons[l]; j++) {
+			NEURON *neuro = &bpn->layer[l-1][j];
 			// this neuron's error uses the next layer's error
 			for(int k = 0; k < bpn->num_neurons[l+1]; k++) {
 				error[j] += prev_error[k] * bpn->layer[l][k].weights[j];
 			}
-			neuron_learn(xcsf, &bpn->layer[l-1][j], error[j]);
+			//error[j] *= (neuro->deriv_ptr)(neuro->state);
+			neuron_learn(xcsf, neuro, error[j]);
 		}
 		prev_error = error;
 	}    
@@ -166,8 +172,10 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
 		for(int i = 0; i < from->num_neurons[l]; i++) {
 			NEURON *a = &to->layer[l-1][i];
 			NEURON *b = &from->layer[l-1][i];
-			a->activation_ptr = b->activation_ptr;
+			a->activ_ptr = b->activ_ptr;
+			a->deriv_ptr = b->deriv_ptr;
 			a->output = b->output;
+			a->state = b->state;
 			memcpy(a->weights, b->weights, sizeof(double)*b->num_inputs+1);
 			memcpy(a->input, b->input, sizeof(double)*b->num_inputs);
 			a->num_inputs = b->num_inputs;
@@ -176,10 +184,13 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
 	(void)xcsf;
 }
 
-void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, double (*aptr)(double))
+void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, 
+		double (*aptr)(double), double (*dptr)(double))
 {
-	n->activation_ptr = aptr;
+	n->activ_ptr = aptr;
+	n->deriv_ptr = dptr;
 	n->output = 0.0;
+	n->state = 0.0;
 	n->num_inputs = num_inputs; 
 	n->weights = malloc((num_inputs+1)*sizeof(double));
 	n->weights_change = malloc((num_inputs+1)*sizeof(double));
@@ -195,13 +206,13 @@ void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, double (*aptr)(double))
 double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
 {
 	(void)xcsf;
-	n->output = 0.0;
+	n->state = 0.0;
 	for(int i = 0; i < n->num_inputs; i++) {
 		n->input[i] = input[i];
-		n->output += n->weights[i] * input[i];
+		n->state += n->weights[i] * input[i];
 	}
-	n->output += n->weights[n->num_inputs];
-	n->output = (n->activation_ptr)(n->output);
+	n->state += n->weights[n->num_inputs];
+	n->output = (n->activ_ptr)(n->state);
 	return n->output;
 }
 
@@ -223,16 +234,30 @@ double logistic(double x)
 	return 2.0 / (1.0 + exp(-x)) - 1.0;
 }
 
+double d1logistic(double x)
+{
+	// bipolar logistic derivative
+	double r = exp(-x);
+	return (2.0 * r) /((r + 1.0) * (r + 1.0));
+}
+
 double logistic_plain(double x)
 {
 	// plain logistic sigmoid: outputs [0,1]
 	return 1.0 / (1.0 + exp(-x));
 }
 
+double d1logistic_plain(double x)
+{
+	// logistic derivative
+	double r = logistic_plain(x);
+	return r * (1.0 - r);
+}
+
 double gaussian(double x)
 {
 	// outputs: (0,1]
-	return exp((-x * x) / 2.0);
+	return exp(-x * x);
 } 
 
 double relu(double x)
@@ -256,4 +281,31 @@ double soft_plus(double x)
 {
 	// soft plus function: outputs [0,inf]
 	return log1p(exp(x));
+}
+
+double d1tanh(double x)
+{
+	// derivative of tanh
+	double r = tanh(x);
+	return 1.0 - r*r;
+}
+
+double d1gaussian(double x)
+{
+	return -2.0 * x * exp((-x * x) / 2.0);
+}
+
+double d1bent_identity(double x)
+{
+	return (2.0*sqrt(x*x+1.0)/x)+1.0;
+}
+
+double d1relu(double x)
+{
+	if(x <= 0.0) {
+		return 0.0;
+	}
+	else {
+		return 1.0;
+	}
 }

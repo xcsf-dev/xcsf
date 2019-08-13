@@ -17,11 +17,13 @@
 
 typedef struct NEURON {
 	double output;
+	double state;
 	double *weights;
 	double *weights_change;
 	double *input;
 	int num_inputs;
-	double (*activation_ptr)(double);
+	double (*activ_ptr)(double);
+	double (*deriv_ptr)(double);
 } NEURON;
 
 typedef struct BPN {
@@ -37,7 +39,8 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state);
 void neural_print(XCSF *xcsf, BPN *bpn);
 void neural_propagate(XCSF *xcsf, BPN *bpn, double *input);
 void neural_rand(XCSF *xcsf, BPN *bpn);
-void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, double (**aptr)(double));
+void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, 
+		double (**aptr)(double), double (**dptr)(double));
 
 // activation functions
 double logistic(double x);
@@ -47,3 +50,9 @@ double relu(double x);
 double bent_identity(double x);
 double identity(double x);
 double soft_plus(double x);
+double d1logistic(double x);
+double d1logistic_plain(double x);
+double d1tanh(double x);
+double d1bent_identity(double x);
+double d1gaussian(double x);
+double d1relu(double x);
