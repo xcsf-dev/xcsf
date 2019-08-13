@@ -105,7 +105,7 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
     int o = bpn->num_layers-2;
     for(int i = 0; i < bpn->num_neurons[bpn->num_layers-1]; i++) {
         NEURON * neuro = &bpn->layer[o][i];
-        out_error[i] = output[i] - neuro->output;
+        out_error[i] = (output[i] - neuro->output) * (neuro->deriv_ptr)(neuro->state);
         neuron_learn(xcsf, neuro, out_error[i]);
     }
     // hidden layers
