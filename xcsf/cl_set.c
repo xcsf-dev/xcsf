@@ -272,7 +272,7 @@ void set_subsumption(XCSF *xcsf, NODE **set, int *size, int *num, NODE **kset)
         while(iter != NULL) {
             CL *c = iter->cl;
             iter = iter->next;
-            if(cl_general(xcsf, s, c)) {
+            if(s != c && cl_general(xcsf, s, c)) {
                 s->num += c->num;
                 c->num = 0;
                 set_add(xcsf, kset, c);
