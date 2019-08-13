@@ -29,6 +29,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include <float.h>
 #include "data_structures.h"
 #include "random.h"
 #include "neural.h"
@@ -212,6 +213,7 @@ double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
     }
     n->state += n->weights[n->num_inputs];
     n->output = (n->activ_ptr)(n->state);
+    n->output = fmax(xcsf->MIN_CON, fmin(xcsf->MAX_CON, n->output));
     return n->output;
 }
 
@@ -261,7 +263,7 @@ double gaussian(double x)
 
 double relu(double x)
 {
-    // rectified linear unit: outputs [0,1]
+    // rectified linear unit: outputs [0,inf]
     return fmax(0.0, x);
 }
 
@@ -274,6 +276,12 @@ double bent_identity(double x)
 double identity(double x)
 {
     return x;
+}
+
+double d1identity(double x)
+{
+	(void)x;
+	return 1.0;
 }
 
 double soft_plus(double x)

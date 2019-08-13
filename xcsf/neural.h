@@ -56,3 +56,4 @@ double d1tanh(double x);
 double d1bent_identity(double x);
 double d1gaussian(double x);
 double d1relu(double x);
+double d1identity(double x);

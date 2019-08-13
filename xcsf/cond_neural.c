@@ -80,15 +80,15 @@ void cond_neural_init(XCSF *xcsf, CL *c)
             break;
         case 7:
             hfunc = &identity;
-            dfunc = &identity;
+            dfunc = &d1identity;
             break;   
         default:
             printf("error: invalid hidden activation function: %d\n",
                     xcsf->HIDDEN_NEURON_ACTIVATION);
             exit(EXIT_FAILURE);
     }
-    double (*activations[2])(double) = {hfunc, logistic};
-    double (*derivatives[2])(double) = {dfunc, d1logistic};
+    double (*activations[2])(double) = {hfunc, identity};
+    double (*derivatives[2])(double) = {dfunc, d1identity};
     // initialise neural network
     neural_init(xcsf, &cond->bpn, 3, neurons, activations, derivatives);
     c->cond = cond;
