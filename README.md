@@ -73,8 +73,14 @@ See `default.ini` for a full list of options.
 0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
 1. Change to the build directory: `cd xcsf/build`
 2. Run cmake:
-	* Ubuntu 18.04: `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..`
-	* OS X:  `cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 ..`
+  * Ubuntu 18.04:
+    ```
+    cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..
+    ```
+  * OS X:
+    ```
+    cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 ..
+    ```
 3. Run make: `make`
 
 ## Running
