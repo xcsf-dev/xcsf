@@ -88,8 +88,8 @@ for i in range(n):
     evals[i] = xcs.time() # number of evaluations so far
     psize[i] = xcs.pop_num() # current population size
     # update status
-    status = ("evals=%d train_mse=%.5f test_mse=%.5f popsize=%d sam0=%.3f sam1=%.3f" %
-        (evals[i], train_mse[i], test_mse[i], psize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1)))
+    status = ("evals=%d train_mse=%.5f test_mse=%.5f popsize=%d sam0=%.3f sam1=%.3f sam2=%.3f"
+        % (evals[i], train_mse[i], test_mse[i], psize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2)))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)
@@ -105,7 +105,7 @@ print('Linear regression MSE = %.4f' % (lm_mse))
 
 # compare with MLP regressor
 mlp = MLPRegressor(hidden_layer_sizes=(100,), activation='relu', solver='adam', learning_rate='adaptive',
-max_iter=1000, learning_rate_init=0.01, alpha=0.01) 
+        max_iter=1000, learning_rate_init=0.01, alpha=0.01) 
 mlp.fit(train_X, train_Y.ravel())
 mlp_pred = mlp.predict(test_X)
 mlp_mse = mean_squared_error(mlp_pred, test_Y)
