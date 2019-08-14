@@ -378,8 +378,18 @@ void set_kill(XCSF *xcsf, NODE **set)
 
 double set_avg_mut(XCSF *xcsf, NODE **set, int m)
 {
+	// return the fixed value if not adapted
 	if(m >= xcsf->NUM_SAM) {
-		return -1;
+		switch(m) {
+			case 0:
+				return xcsf->P_MUTATION;
+			case 1:
+				return xcsf->S_MUTATION;
+			case 2:
+				return xcsf->P_FUNC_MUTATION;
+			default:
+				return -1;
+		}
 	}
 
     // returns the average classifier mutation rate
