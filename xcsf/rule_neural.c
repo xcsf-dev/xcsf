@@ -45,11 +45,11 @@ typedef struct RULE_NEURAL_PRED {
 void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = malloc(sizeof(RULE_NEURAL_COND));
-    int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars+1};
+    int neurons[2] = {xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars+1};
     // select layer activation functions
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
     // initialise neural network
-    neural_init(xcsf, &cond->bpn, 3, neurons, activations);
+    neural_init(xcsf, &cond->bpn, 2, neurons, activations);
     c->cond = cond;
     sam_init(xcsf, &cond->mu);
 }
@@ -116,31 +116,31 @@ _Bool rule_neural_cond_mutate(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = c->cond;
     _Bool mod = false;
-	// update mutation rates
-	sam_adapt(xcsf, cond->mu);
-	// apply mutation
+    // update mutation rates
+    sam_adapt(xcsf, cond->mu);
+    // apply mutation
     BPN *bpn = &cond->bpn;
-    for(int l = 1; l < bpn->num_layers; l++) {
-        for(int i = 0; i < bpn->num_neurons[l]; i++) {
-            NEURON *n = &bpn->layer[l-1][i];
-			// mutate activation function
-			if(drand() < xcsf->P_FUNC_MUTATION) {
-				neuron_set_activation(xcsf, n, irand(0,NUM_ACTIVATIONS));
-				mod = true;
-			}
-			// mutate weights and biases
-            for(int w = 0; w < n->num_inputs+1; w++) {
-				if(drand() < xcsf->P_MUTATION) {
-					double orig = n->weights[w];
-					n->weights[w] += ((drand()*2.0)-1.0) * xcsf->S_MUTATION;
-					if(n->weights[w] != orig) {
-						mod = true;
-					}
-				}
+    for(int i = 0; i < bpn->num_layers; i++) {
+        for(int j = 0; j < bpn->num_neurons[i]; j++) {
+            NEURON *n = &bpn->layer[i][j];
+            // mutate activation function
+            if(drand() < xcsf->P_FUNC_MUTATION) {
+                neuron_set_activation(xcsf, n, irand(0,NUM_ACTIVATIONS));
+                mod = true;
+            }
+            // mutate weights and biases
+            for(int k = 0; k < n->num_inputs+1; k++) {
+                if(drand() < xcsf->P_MUTATION) {
+                    double orig = n->weights[k];
+                    n->weights[k] += ((drand()*2.0)-1.0) * xcsf->S_MUTATION;
+                    if(n->weights[k] != orig) {
+                        mod = true;
+                    }
+                }
             }
         }
     }      
-    return mod;
+    return mod;     
 }
 
 _Bool rule_neural_cond_crossover(XCSF *xcsf, CL *c1, CL *c2)

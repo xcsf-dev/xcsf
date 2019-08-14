@@ -44,11 +44,11 @@ void pred_neural_init(XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = malloc(sizeof(PRED_NEURAL));
     // network with 1 hidden layer
-    int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars};
+    int neurons[2] = {xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars};
     // select layer activation functions
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
     // initialise neural network
-    neural_init(xcsf, &pred->bpn, 3, neurons, activations);
+    neural_init(xcsf, &pred->bpn, 2, neurons, activations);
     pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
     c->pred = pred;
 }

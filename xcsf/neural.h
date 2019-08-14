@@ -26,20 +26,21 @@
 #define IDENTITY 7 
 
 typedef struct NEURON {
-	double output;
-	double state;
-	double *weights;
-	double *weights_change;
-	double *input;
-	int num_inputs;
-	double (*activ_ptr)(double);
-	double (*deriv_ptr)(double);
+    double output;
+    double state;
+    double *weights;
+    double *weights_change;
+    double *input;
+    int num_inputs;
+    double (*activ_ptr)(double);
+    double (*deriv_ptr)(double);
 } NEURON;
 
 typedef struct BPN {
-	int num_layers; // input layer + number of hidden layers + output layer
-	int *num_neurons; // number of neurons in each layer
-	NEURON **layer; // neural network
+    int num_layers; // input layer + number of hidden layers + output layer
+    int *num_neurons; // number of neurons in each layer
+    NEURON **layer; // neural network
+    double **tmp; // temporary storage
 } BPN;
 
 double neural_output(XCSF *xcsf, BPN *bpn, int i);
