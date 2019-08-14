@@ -34,9 +34,6 @@
 #include "random.h"
 #include "neural.h"
 
-#define MAX_LAYERS 10
-#define MAX_NEURONS 50
-
 double neuron_propagate(XCSF *xcsf, NEURON *n, double *input);
 void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, int func);
 void neuron_learn(XCSF *xcsf, NEURON *n, double error);
