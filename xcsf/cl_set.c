@@ -189,6 +189,10 @@ void set_pred(XCSF *xcsf, NODE **set, int size, double *x, double *y)
         }
         fitsum += blist[i]->cl->fit;
     }
+    #pragma omp parallel for
+    for(int var = 0; var < xcsf->num_y_vars; var++) {
+        y[var] = presum[var]/fitsum;
+    }
 #else
     (void)size; // remove unused parameter warnings
     for(NODE *iter = *set; iter != NULL; iter = iter->next) {
@@ -198,10 +202,10 @@ void set_pred(XCSF *xcsf, NODE **set, int size, double *x, double *y)
         }
         fitsum += iter->cl->fit;
     }    
-#endif
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         y[var] = presum[var]/fitsum;
     }
+#endif
     // clean up
     free(presum);
 }
