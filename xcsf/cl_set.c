@@ -130,7 +130,7 @@ void set_match(XCSF *xcsf, NODE **set, int *size, int *num, double *x, NODE **ks
     }
     // update current matching conditions
     int s = 0; int n = 0;
-#pragma omp parallel for reduction(+:s,n)
+    #pragma omp parallel for reduction(+:s,n)
     for(int i = 0; i < xcsf->pop_num; i++) {
         if(cl_match(xcsf, blist[i]->cl, x)) {
             s++;
@@ -181,7 +181,7 @@ void set_pred(XCSF *xcsf, NODE **set, int size, double *x, double *y)
         blist[j] = iter;
         j++;
     }
-#pragma omp parallel for reduction(+:presum[:xcsf->num_y_vars],fitsum)
+    #pragma omp parallel for reduction(+:presum[:xcsf->num_y_vars],fitsum)
     for(int i = 0; i < size; i++) {
         double *predictions = cl_predict(xcsf, blist[i]->cl, x);
         for(int var = 0; var < xcsf->num_y_vars; var++) {
@@ -225,9 +225,22 @@ void set_add(XCSF *xcsf, NODE **set, CL *c)
 
 void set_update(XCSF *xcsf, NODE **set, int *size, int *num, double *x, double *y, NODE **kset)
 {
+#ifdef PARALLEL_UPDATE
+    NODE *blist[*size];
+    int j = 0;
+    for(NODE *iter = *set; iter != NULL; iter = iter->next) {
+        blist[j] = iter;
+        j++;
+    }
+    #pragma omp parallel for
+    for(int i = 0; i < *size; i++) {
+        cl_update(xcsf, blist[i]->cl, x, y, *num);
+    }
+#else
     for(NODE *iter = *set; iter != NULL; iter = iter->next) {
         cl_update(xcsf, iter->cl, x, y, *num);
     }
+#endif
     set_update_fit(xcsf, set, *size, *num);
     if(xcsf->SET_SUBSUMPTION) {
         set_subsumption(xcsf, set, size, num, kset);
@@ -378,19 +391,19 @@ void set_kill(XCSF *xcsf, NODE **set)
 
 double set_avg_mut(XCSF *xcsf, NODE **set, int m)
 {
-	// return the fixed value if not adapted
-	if(m >= xcsf->NUM_SAM) {
-		switch(m) {
-			case 0:
-				return xcsf->P_MUTATION;
-			case 1:
-				return xcsf->S_MUTATION;
-			case 2:
-				return xcsf->P_FUNC_MUTATION;
-			default:
-				return -1;
-		}
-	}
+    // return the fixed value if not adapted
+    if(m >= xcsf->NUM_SAM) {
+        switch(m) {
+            case 0:
+                return xcsf->P_MUTATION;
+            case 1:
+                return xcsf->S_MUTATION;
+            case 2:
+                return xcsf->P_FUNC_MUTATION;
+            default:
+                return -1;
+        }
+    }
 
     // returns the average classifier mutation rate
     double sum = 0.0;
