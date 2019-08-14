@@ -194,7 +194,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
 	}
 
 	// mutate T
-	if(drand() < xcsf->P_MUTATION) {
+	if(drand() < xcsf->S_MUTATION) {
 		int t = dgp->t;
 		if(drand() < 0.5) {
 			if(dgp->t > 1) {
