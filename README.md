@@ -61,43 +61,39 @@ See `default.ini` for a full list of options.
 * [Python](https://www.python.org "Python") (>= 3)
 * [Boost](https://www.boost.org "Boost") (>= 1.56.0 for Python3)
 
-### Installing
-
-* Ubuntu 18.04:
-  * `sudo apt install python3 libboost-python-dev libboost-numpy-dev gnuplot`
-* OS X:
-  * `brew install cmake gcc libomp python3 boost-python3 gnuplot`
-  
 ## Building
 
-0. Clone: `git clone --recurse-submodules git@github.com:rpreen/xcsf.git`
-1. Change to the build directory: `cd xcsf/build`
-2. Run cmake:
-  * Ubuntu 18.04:
-    ```
-    cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..
-    ```
-  * OS X:
-    ```
-    cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 ..
-    ```
-3. Run make: `make`
+* Ubuntu 18.04:
+```
+$ sudo apt install python3 libboost-python-dev libboost-numpy-dev gnuplot
+$ git clone --recurse-submodules git@github.com:rpreen/xcsf.git
+$ cd xcsf/build
+$ cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..
+$ make
+```
 
 ## Running
 
 ### Stand-alone
 
+After building with cmake option: `-DXCSF_PYLIB=OFF`
+
 Arguments: 
 
-1: (required) a path to input csv files.
-2: (optional) a configuration file; defaults to using `default.ini`
+1. (required) a path to input csv files.
+2. (optional) a configuration file; defaults to using `default.ini`
 
 Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 
-Run: `./xcsf/xcsf ../data/sine_1var`              
+```
+$ ./xcsf/xcsf ../data/sine_1var
+```
 
 ### Python library
 
-See example MyProject.py
+After building with cmake option: `-DXCSF_PYLIB=ON`
 
-Run: `python3 MyProject.py`
+See example MyProject.py
+```
+$ python3 MyProject.py
+```
