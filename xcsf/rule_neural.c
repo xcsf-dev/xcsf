@@ -46,9 +46,10 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = malloc(sizeof(RULE_NEURAL_COND));
     int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars+1};
-    double (*activations[2])(double) = {logistic, identity};
-    double (*derivatives[2])(double) = {d1logistic, d1identity};
-    neural_init(xcsf, &cond->bpn, 3, neurons, activations, derivatives);
+    // select layer activation functions
+    int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
+    // initialise neural network
+    neural_init(xcsf, &cond->bpn, 3, neurons, activations);
     c->cond = cond;
     sam_init(xcsf, &cond->mu);
 }
@@ -79,7 +80,7 @@ void rule_neural_cond_copy(XCSF *xcsf, CL *to, CL *from)
 void rule_neural_cond_rand(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = c->cond;
-    neural_rand(xcsf, &cond->bpn);
+    neural_rand(xcsf, &cond->bpn);   
 }
 
 void rule_neural_cond_cover(XCSF *xcsf, CL *c, double *x)

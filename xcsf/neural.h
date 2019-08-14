@@ -15,6 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define NUM_ACTIVATIONS 8
+#define LOGISTIC 0 
+#define RELU 1 
+#define GAUSSIAN 2 
+#define BENT_IDENTITY 3 
+#define TANH 4 
+#define SIN 5 
+#define SOFT_PLUS 6 
+#define IDENTITY 7 
+
 typedef struct NEURON {
 	double output;
 	double state;
@@ -39,21 +49,4 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state);
 void neural_print(XCSF *xcsf, BPN *bpn);
 void neural_propagate(XCSF *xcsf, BPN *bpn, double *input);
 void neural_rand(XCSF *xcsf, BPN *bpn);
-void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, 
-		double (**aptr)(double), double (**dptr)(double));
-
-// activation functions
-double logistic(double x);
-double logistic_plain(double x);
-double gaussian(double x);
-double relu(double x);
-double bent_identity(double x);
-double identity(double x);
-double soft_plus(double x);
-double d1logistic(double x);
-double d1logistic_plain(double x);
-double d1tanh(double x);
-double d1bent_identity(double x);
-double d1gaussian(double x);
-double d1relu(double x);
-double d1identity(double x);
+void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activ);
