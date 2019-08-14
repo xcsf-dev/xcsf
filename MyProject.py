@@ -88,7 +88,7 @@ for i in range(n):
     evals[i] = xcs.time() # number of evaluations so far
     psize[i] = xcs.pop_num() # current population size
     # update status
-    status = ("evals=%d train_mse=%.5f test_mse=%.5f popsize=%d sam0=%.3f sam1=%.3f sam2=%.3f"
+    status = ("evals=%d train_mse=%.5f test_mse=%.5f popsize=%d pmut=%.3f smut=%.3f pfmut=%.3f"
         % (evals[i], train_mse[i], test_mse[i], psize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2)))
     bar.set_description(status)
     bar.refresh()
