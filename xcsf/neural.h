@@ -50,3 +50,4 @@ void neural_print(XCSF *xcsf, BPN *bpn);
 void neural_propagate(XCSF *xcsf, BPN *bpn, double *input);
 void neural_rand(XCSF *xcsf, BPN *bpn);
 void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activ);
+void neuron_set_activation(XCSF *xcsf, NEURON *n, int func);

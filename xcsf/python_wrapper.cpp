@@ -177,6 +177,7 @@ struct XCS
 	int get_pred_type() { return xcs.PRED_TYPE; }
 	double get_p_crossover() { return xcs.P_CROSSOVER; }
 	double get_p_mutation() { return xcs.P_MUTATION; }
+	double get_p_func_mutation() { return xcs.P_FUNC_MUTATION; }
 	double get_theta_ga() { return xcs.THETA_GA; }
 	int get_theta_offspring() { return xcs.THETA_OFFSPRING; }
 	double get_mueps_0() { return xcs.muEPS_0; }
@@ -208,7 +209,12 @@ struct XCS
 	double get_pop_avg_mu(int m) { return set_avg_mut(&xcs, &xcs.pset, m); }
 
 	/* SETTERS */
-	void set_omp_num_threads(int a) { xcs.OMP_NUM_THREADS = a; }
+	void set_omp_num_threads(int a) {
+		xcs.OMP_NUM_THREADS = a; 
+#ifdef PARALLEL
+		omp_set_num_threads(xcs.OMP_NUM_THREADS);
+#endif
+	}
 	void set_pop_init(_Bool a) { xcs.POP_INIT = a; }
 	void set_theta_mna(double a) { xcs.THETA_MNA = a; }
 	void set_max_trials(int a) { xcs.MAX_TRIALS = a; }
@@ -228,6 +234,7 @@ struct XCS
 	void set_pred_type(int a) { xcs.PRED_TYPE = a; }
 	void set_p_crossover(double a) { xcs.P_CROSSOVER = a; }
 	void set_p_mutation(double a) { xcs.P_MUTATION = a; }
+	void set_p_func_mutation(double a) { xcs.P_FUNC_MUTATION = a; }
 	void set_theta_ga(double a) { xcs.THETA_GA = a; }
 	void set_theta_offspring(int a) { xcs.THETA_OFFSPRING = a; }
 	void set_mueps_0(double a) { xcs.muEPS_0 = a; }
@@ -286,6 +293,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("PRED_TYPE", &XCS::get_pred_type, &XCS::set_pred_type)
 		.add_property("P_CROSSOVER", &XCS::get_p_crossover, &XCS::set_p_crossover)
 		.add_property("P_MUTATION", &XCS::get_p_mutation, &XCS::set_p_mutation)
+		.add_property("P_FUNC_MUTATION", &XCS::get_p_func_mutation, &XCS::set_p_func_mutation)
 		.add_property("THETA_GA", &XCS::get_theta_ga, &XCS::set_theta_ga)
 		.add_property("THETA_OFFSPRING", &XCS::get_theta_offspring, &XCS::set_theta_offspring)
 		.add_property("muEPS_0", &XCS::get_mueps_0, &XCS::set_mueps_0)

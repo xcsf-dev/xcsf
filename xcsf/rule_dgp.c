@@ -108,11 +108,9 @@ _Bool rule_dgp_cond_match_state(XCSF *xcsf, CL *c)
 _Bool rule_dgp_cond_mutate(XCSF *xcsf, CL *c)
 {
 	RULE_DGP_COND *cond = c->cond;
-	if(xcsf->NUM_SAM > 0) {
-		sam_adapt(xcsf, cond->mu);
-		xcsf->P_MUTATION = cond->mu[0];
-	}
-	return graph_mutate(xcsf, &cond->dgp, xcsf->P_MUTATION);
+	// update mutation rates
+	sam_adapt(xcsf, cond->mu);
+	return graph_mutate(xcsf, &cond->dgp);
 }
 
 _Bool rule_dgp_cond_crossover(XCSF *xcsf, CL *c1, CL *c2)

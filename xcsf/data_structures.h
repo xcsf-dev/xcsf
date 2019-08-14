@@ -73,6 +73,8 @@ typedef struct XCSF {
 	// genetic algorithm parameters
 	double P_CROSSOVER; // probability of applying crossover (for hyperrectangles)
 	double P_MUTATION; // probability of mutation occuring per allele
+	double P_FUNC_MUTATION; // probability of performing mutating a graph/net function
+	double S_MUTATION; // maximum amount to mutate an allele
 	double THETA_GA; // average match set time between GA invocations
 	int THETA_OFFSPRING; // number of offspring to create each GA invocation
 
@@ -83,7 +85,6 @@ typedef struct XCSF {
 	// classifier condition parameters
 	double MAX_CON; // maximum value of a hyperrectangle interval
 	double MIN_CON; // minimum value of a hyperrectangle interval
-	double S_MUTATION; // maximum amount to mutate an allele
 	int NUM_HIDDEN_NEURONS; // number of hidden neurons to perform matching condition
 	int HIDDEN_NEURON_ACTIVATION; // activation function for the hidden layer
 	double MOMENTUM; // momentum for gradient descent

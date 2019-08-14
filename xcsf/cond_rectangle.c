@@ -172,25 +172,18 @@ _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
 {
 	COND_RECTANGLE *cond = c->cond;
 	_Bool changed = false;
-	double step = xcsf->S_MUTATION;
-	// adapt mutation rates
-	if(xcsf->NUM_SAM > 0) {
-		sam_adapt(xcsf, cond->mu);
-		xcsf->P_MUTATION = cond->mu[0];
-		if(xcsf->NUM_SAM > 1) {
-			step = cond->mu[1];
-		}
-	}
-
+	// update mutation rates
+	sam_adapt(xcsf, cond->mu);
+	// apply mutation
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
 		// lower interval
 		if(drand() < xcsf->P_MUTATION) {
-			cond->lower[i] += ((drand()*2.0)-1.0)*step;
+			cond->lower[i] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
 			changed = true;
 		}
 		// upper interval
 		if(drand() < xcsf->P_MUTATION) {
-			cond->upper[i] += ((drand()*2.0)-1.0)*step;
+			cond->upper[i] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
 			changed = true;
 		}
 		cond_rectangle_bounds(xcsf, &cond->lower[i], &cond->upper[i]);

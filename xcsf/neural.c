@@ -39,7 +39,6 @@
 
 double neuron_propagate(XCSF *xcsf, NEURON *n, double *input);
 void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, int func);
-void neuron_set_activation(XCSF *xcsf, NEURON *n, int func);
 void neuron_learn(XCSF *xcsf, NEURON *n, double error);
 double logistic(double x);
 double logistic_plain(double x);

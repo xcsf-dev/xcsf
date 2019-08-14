@@ -57,6 +57,7 @@ void sam_free(XCSF *xcsf, double *mu)
 
 void sam_adapt(XCSF *xcsf, double *mu)
 {
+	// adapt rates
 	for(int i = 0; i < xcsf->NUM_SAM; i++) {
 		mu[i] *= exp(gasdev());
 		if(mu[i] < xcsf->muEPS_0) {
@@ -66,6 +67,16 @@ void sam_adapt(XCSF *xcsf, double *mu)
 			mu[i] = 1.0;
 		}
 	}
+	// apply rates
+	if(xcsf->NUM_SAM > 0) {
+		xcsf->P_MUTATION = mu[0];
+		if(xcsf->NUM_SAM > 1) {
+			xcsf->S_MUTATION = mu[1];
+			if(xcsf->NUM_SAM > 2) {
+				xcsf->P_FUNC_MUTATION = mu[2];
+			}
+		}
+	} 
 }
 
 void sam_print(XCSF *xcsf, double *mu)

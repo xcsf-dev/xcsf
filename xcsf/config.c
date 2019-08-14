@@ -60,6 +60,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
     xcsf->P_CROSSOVER = atof(getvalue("P_CROSSOVER"));
     xcsf->P_MUTATION = atof(getvalue("P_MUTATION"));
+    xcsf->P_FUNC_MUTATION = atof(getvalue("P_FUNC_MUTATION"));
     xcsf->THETA_SUB = atof(getvalue("THETA_SUB"));
     xcsf->EPS_0 = atof(getvalue("EPS_0"));
     xcsf->DELTA = atof(getvalue("DELTA"));

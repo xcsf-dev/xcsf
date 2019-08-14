@@ -154,7 +154,7 @@ void graph_free(XCSF *xcsf, GRAPH *dgp)
 	(void)xcsf;
 }
 
-_Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
+_Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
 {
 	_Bool fmodified = false;
 	_Bool cmodified = false;
@@ -162,7 +162,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 
 	for(int i = 0; i < dgp->n; i++) {
 		// mutate function
-		if(drand() < rate) {
+		if(drand() < xcsf->P_FUNC_MUTATION) {
 			int old = dgp->function[i];
 			dgp->function[i] = irand(0, NUM_FUNC);
 			if(old != dgp->function[i]) {
@@ -172,7 +172,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 		// mutate connectivity map
 		for(int j = 0; j < xcsf->MAX_K; j++) {
 			int idx = (i*xcsf->MAX_K)+j;
-			if(drand() < rate) {
+			if(drand() < xcsf->P_MUTATION) {
 				int old = dgp->connectivity[idx];
 				// inert
 				if(drand() < 0.1) {
@@ -194,7 +194,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp, double rate)
 	}
 
 	// mutate T
-	if(drand() < rate) {
+	if(drand() < xcsf->P_MUTATION) {
 		int t = dgp->t;
 		if(drand() < 0.5) {
 			if(dgp->t > 1) {

@@ -112,13 +112,9 @@ _Bool cond_gp_match_state(XCSF *xcsf, CL *c)
 _Bool cond_gp_mutate(XCSF *xcsf, CL *c)
 {
 	COND_GP *cond = c->cond;
-	if(xcsf->NUM_SAM > 0) {
-		sam_adapt(xcsf, cond->mu);
-		xcsf->P_MUTATION = cond->mu[0];
-		if(xcsf->NUM_SAM > 1)
-			xcsf->S_MUTATION = cond->mu[1];
-	}
-
+	// update mutation rates
+	sam_adapt(xcsf, cond->mu);
+    // apply mutation
 	if(drand() < xcsf->P_MUTATION) {
 		tree_mutation(xcsf, &cond->gp, xcsf->P_MUTATION);
 		return true;

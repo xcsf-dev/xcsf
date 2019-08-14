@@ -154,18 +154,12 @@ _Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c)
 {
 	COND_ELLIPSOID *cond = c->cond;
 	_Bool changed = false;
-	double step = xcsf->S_MUTATION;
-	if(xcsf->NUM_SAM > 0) {
-		sam_adapt(xcsf, cond->mu);
-		xcsf->P_MUTATION = cond->mu[0];
-		if(xcsf->NUM_SAM > 1) {
-			step = cond->mu[1];
-		}
-	}
-
+	// update mutation rates
+	sam_adapt(xcsf, cond->mu);
+    // apply mutation
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
 		if(drand() < xcsf->P_MUTATION) {
-			cond->center[i] += ((drand()*2.0)-1.0)*step;
+			cond->center[i] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
 			if(cond->center[i] < xcsf->MIN_CON) {
 				cond->center[i] = xcsf->MIN_CON;
 			}
@@ -175,7 +169,7 @@ _Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c)
 			changed = true;
 		}
 		if(drand() < xcsf->P_MUTATION) {
-			cond->radius[i] += ((drand()*2.0)-1.0)*step;
+			cond->radius[i] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
 			changed = true;
 		}
 	}
