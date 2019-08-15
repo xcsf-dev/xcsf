@@ -37,20 +37,6 @@
 double neuron_propagate(XCSF *xcsf, NEURON *n, double *input);
 void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, int func);
 void neuron_learn(XCSF *xcsf, NEURON *n, double error);
-double logistic(double x);
-double logistic_plain(double x);
-double gaussian(double x);
-double relu(double x);
-double bent_identity(double x);
-double identity(double x);
-double soft_plus(double x);
-double d1logistic(double x);
-double d1logistic_plain(double x);
-double d1tanh(double x);
-double d1bent_identity(double x);
-double d1gaussian(double x);
-double d1relu(double x);
-double d1identity(double x);
 
 void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activ)
 {
@@ -120,7 +106,7 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
     // neural_propagate(xcsf, bpn, state);
     (void)state; // remove unused parameter warning
 
-    // output layer
+    // output layer (errors = deltas)
     double *out_error = bpn->tmp[bpn->num_layers-1];
     for(int i = 0; i < bpn->num_neurons[bpn->num_layers-1]; i++) {
         NEURON * neuro = &bpn->layer[bpn->num_layers-1][i];
@@ -249,132 +235,108 @@ void neuron_learn(XCSF *xcsf, NEURON *n, double error)
     n->weights[n->num_inputs] += n->weights_change[n->num_inputs];
 }
 
+// bipolar logistic sigmoid function: outputs [-1,1]
+static inline double logistic_activ(double x) {return 2./(1+exp(-x))-1;}
+static inline double logistic_deriv(double x) {double y = (x+1.)/2.; return 2*(1-y)*y;}
+static inline double gaussian_activ(double x) {return exp(-x*x);}
+static inline double gaussian_deriv(double x) {return -2*x*exp((-x*x)/2.);}
+static inline double relu_activ(double x) {return x*(x>0);}
+static inline double relu_deriv(double x) {return (x > 0);}
+static inline double bent_identity_activ(double x) {return ((sqrt(x*x+1)-1)/2.)+x;}
+static inline double bent_identity_deriv(double x) {return (2*sqrt(x*x+1)/x)+1;}
+static inline double identity_activ(double x) {return x;}
+static inline double identity_deriv(double x) {(void)x; return 1;}
+static inline double soft_plus_activ(double x) {return log1p(exp(x));}
+static inline double tanh_activ(double x) {return (exp(2*x)-1)/(exp(2*x)+1);}
+static inline double tanh_deriv(double x) {return 1-x*x;}
+static inline double logistic_plain(double x) {return (1-x)*x;}
+static inline double leaky_activ(double x) {return (x>0) ? x : .1*x;}
+static inline double leaky_deriv(double x) {return (x>0)+.1;}
+static inline double elu_activ(double x) {return (x >= 0)*x + (x < 0)*(exp(x)-1);}
+static inline double elu_deriv(double x) {return (x >= 0) + (x < 0)*(x + 1);}
+static inline double ramp_activ(double x) {return x*(x>0)+.1*x;}
+static inline double ramp_deriv(double x) {return (x>0)+.1;}
+static inline double stair_activ(double x)
+{
+    int n = floor(x);
+    if (n%2 == 0) {return floor(x/2.);}
+    else {return (x-n)+floor(x/2.);}
+}
+static inline double stair_deriv(double x)
+{
+    if(floor(x) == x) {return 0;}
+    return 1;
+}
+static inline double hardtan_activ(double x)
+{
+    if (x < -1) {return -1;}
+    if (x > 1) {return 1;}
+    return x;
+}
+static inline double hardtan_deriv(double x)
+{
+    if (x > -1 && x < 1) {return 1;}
+    return 0;
+}
+ 
 void neuron_set_activation(XCSF *xcsf, NEURON *n, int func)
 {
     switch(func) {
         case LOGISTIC:
-            n->activ_ptr = &logistic;
-            n->deriv_ptr = &d1logistic;
+            n->activ_ptr = &logistic_activ;
+            n->deriv_ptr = &logistic_deriv;
             break;
         case RELU:
-            n->activ_ptr = &relu;
-            n->deriv_ptr = &d1relu;
+            n->activ_ptr = &relu_activ;
+            n->deriv_ptr = &relu_deriv;
             break;
         case GAUSSIAN:
-            n->activ_ptr = &gaussian;
-            n->deriv_ptr = &d1gaussian;
+            n->activ_ptr = &gaussian_activ;
+            n->deriv_ptr = &gaussian_deriv;
             break;
         case BENT_IDENTITY:
-            n->activ_ptr = &bent_identity;
-            n->deriv_ptr = &d1bent_identity;
+            n->activ_ptr = &bent_identity_activ;
+            n->deriv_ptr = &bent_identity_deriv;
             break;
         case TANH:
-            n->activ_ptr = &tanh;
-            n->deriv_ptr = &d1tanh;
+            n->activ_ptr = &tanh_activ;
+            n->deriv_ptr = &tanh_deriv;
             break;
         case SIN:
             n->activ_ptr = &sin;
             n->deriv_ptr = &cos;
             break;
         case SOFT_PLUS:
-            n->activ_ptr = &soft_plus;
+            n->activ_ptr = &soft_plus_activ;
             n->deriv_ptr = &logistic_plain;
             break;
         case IDENTITY:
-            n->activ_ptr = &identity;
-            n->deriv_ptr = &d1identity;
+            n->activ_ptr = &identity_activ;
+            n->deriv_ptr = &identity_deriv;
+            break;
+        case HARDTAN:
+            n->activ_ptr = &hardtan_activ;
+            n->deriv_ptr = &hardtan_deriv;
+            break;
+        case STAIR:
+            n->activ_ptr = &stair_activ;
+            n->deriv_ptr = &stair_deriv;
+            break;
+        case LEAKY:
+            n->activ_ptr = &leaky_activ;
+            n->deriv_ptr = &leaky_deriv;
+            break;
+        case ELU:
+            n->activ_ptr = &elu_activ;
+            n->deriv_ptr = &elu_deriv;
+            break;
+        case RAMP:
+            n->activ_ptr = &ramp_activ;
+            n->deriv_ptr = &ramp_deriv;
             break;
         default:
             printf("error: invalid activation function: %d\n", func);
             exit(EXIT_FAILURE);
     }                                    
     (void)xcsf;
-}
-
-double logistic(double x)
-{
-    // bipolar logistic sigmoid function: outputs [-1,1]
-    return 2.0 / (1.0 + exp(-x)) - 1.0;
-}
-
-double d1logistic(double x)
-{
-    // bipolar logistic derivative
-    double r = exp(-x);
-    return (2.0 * r) /((r + 1.0) * (r + 1.0));
-}
-
-double logistic_plain(double x)
-{
-    // plain logistic sigmoid: outputs [0,1]
-    return 1.0 / (1.0 + exp(-x));
-}
-
-double d1logistic_plain(double x)
-{
-    // logistic derivative
-    double r = logistic_plain(x);
-    return r * (1.0 - r);
-}
-
-double gaussian(double x)
-{
-    // outputs: (0,1]
-    return exp(-x * x);
-} 
-
-double relu(double x)
-{
-    // rectified linear unit: outputs [0,inf]
-    return fmax(0.0, x);
-}
-
-double bent_identity(double x)
-{
-    // bent identity function: outputs [-inf,inf]
-    return ((sqrt(x*x+1.0)-1.0)/2.0)+x;
-}
-
-double identity(double x)
-{
-    return x;
-}
-
-double d1identity(double x)
-{
-    (void)x;
-    return 1.0;
-}
-
-double soft_plus(double x)
-{
-    // soft plus function: outputs [0,inf]
-    return log1p(exp(x));
-}
-
-double d1tanh(double x)
-{
-    // derivative of tanh
-    double r = tanh(x);
-    return 1.0 - r*r;
-}
-
-double d1gaussian(double x)
-{
-    return -2.0 * x * exp((-x * x) / 2.0);
-}
-
-double d1bent_identity(double x)
-{
-    return (2.0*sqrt(x*x+1.0)/x)+1.0;
-}
-
-double d1relu(double x)
-{
-    if(x <= 0.0) {
-        return 0.0;
-    }
-    else {
-        return 1.0;
-    }
 }

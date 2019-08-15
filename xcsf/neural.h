@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define NUM_ACTIVATIONS 8
 #define LOGISTIC 0 
 #define RELU 1 
 #define GAUSSIAN 2 
@@ -24,6 +23,12 @@
 #define SIN 5 
 #define SOFT_PLUS 6 
 #define IDENTITY 7 
+#define HARDTAN 8
+#define STAIR 9
+#define LEAKY 10
+#define ELU 11
+#define RAMP 12
+#define NUM_ACTIVATIONS 13
 
 typedef struct NEURON {
     double output;
