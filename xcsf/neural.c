@@ -139,7 +139,7 @@ void neural_free(XCSF *xcsf, BPN *bpn)
         for(int j = 0; j < bpn->num_neurons[i]; j++) {
             NEURON *n = &bpn->layer[i][j];
             free(n->weights);
-            free(n->weights_change);
+            free(n->v);
             free(n->input);
         }
     }
@@ -185,7 +185,7 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
             a->output = b->output;
             a->state = b->state;
             memcpy(a->weights, b->weights, sizeof(double)*b->num_inputs+1);
-            memcpy(a->weights_change, b->weights_change, sizeof(double)*b->num_inputs+1);
+            memcpy(a->v, b->v, sizeof(double)*b->num_inputs+1);
             memcpy(a->input, b->input, sizeof(double)*b->num_inputs);
             a->num_inputs = b->num_inputs;
         }
@@ -200,12 +200,12 @@ void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, int func)
     n->state = 0.0;
     n->num_inputs = num_inputs; 
     n->weights = malloc((num_inputs+1)*sizeof(double));
-    n->weights_change = malloc((num_inputs+1)*sizeof(double));
+    n->v = malloc((num_inputs+1)*sizeof(double));
     n->input = malloc(num_inputs*sizeof(double));
     // randomise weights [-0.1,0.1]
     for(int i = 0; i < num_inputs+1; i++) {
         n->weights[i] = 0.2 * (drand() - 0.5);
-        n->weights_change[i] = 0.0;
+        n->v[i] = 0.0;
     }
 }
 
@@ -226,13 +226,17 @@ double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
 void neuron_learn(XCSF *xcsf, NEURON *n, double error)
 {
     for(int i = 0; i < n->num_inputs; i++) {
-        n->weights[i] += xcsf->MOMENTUM * n->weights_change[i];
-        n->weights_change[i] = error * n->input[i] * xcsf->XCSF_ETA;
-        n->weights[i] += n->weights_change[i];
+        n->v[i] = xcsf->MOMENTUM * n->v[i] + (error * n->input[i] * xcsf->XCSF_ETA);
+        n->weights[i] += n->v[i];
+        if(xcsf->NESTEROV) {
+            n->weights[i] += xcsf->MOMENTUM * n->v[i];
+        }
     }
-    n->weights[n->num_inputs] += xcsf->MOMENTUM * n->weights_change[n->num_inputs];
-    n->weights_change[n->num_inputs] = error * xcsf->XCSF_ETA;
-    n->weights[n->num_inputs] += n->weights_change[n->num_inputs];
+    n->v[n->num_inputs] = xcsf->MOMENTUM * n->v[n->num_inputs] + (error * n->input[n->num_inputs] * xcsf->XCSF_ETA);
+    n->weights[n->num_inputs] += n->v[n->num_inputs];
+    if(xcsf->NESTEROV) {
+        n->weights[n->num_inputs] += xcsf->MOMENTUM * n->v[n->num_inputs];
+    }
 }
 
 // bipolar logistic sigmoid function: outputs [-1,1]

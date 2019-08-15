@@ -65,6 +65,7 @@ xcs.COND_TYPE = 2 # evolved neural network conditions
 xcs.PRED_TYPE = 4 # sgd neural network predictors
 xcs.HIDDEN_NEURON_ACTIVATION = 1 # relu
 xcs.NUM_HIDDEN_NEURONS = 10
+xcs.XCSF_ETA=0.01
 
 ##################################
 # Example plotting in matplotlib

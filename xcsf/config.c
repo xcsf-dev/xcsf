@@ -47,73 +47,73 @@ void tidyup();
 void constants_init(XCSF *xcsf, const char *filename)
 {
     init_config(filename);
-    xcsf->OMP_NUM_THREADS = atoi(getvalue("OMP_NUM_THREADS"));
+    // integers
     xcsf->COND_TYPE = atoi(getvalue("COND_TYPE"));
-    xcsf->PRED_TYPE = atoi(getvalue("PRED_TYPE"));
-    xcsf->POP_SIZE = atoi(getvalue("POP_SIZE"));
-    if(strcmp(getvalue("POP_INIT"), "false") == 0) {
-        xcsf->POP_INIT = false;
-    }
-    else {
-        xcsf->POP_INIT = true;
-    }
-    xcsf->MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
-    xcsf->P_CROSSOVER = atof(getvalue("P_CROSSOVER"));
-    xcsf->P_MUTATION = atof(getvalue("P_MUTATION"));
-    xcsf->P_FUNC_MUTATION = atof(getvalue("P_FUNC_MUTATION"));
-    xcsf->THETA_SUB = atof(getvalue("THETA_SUB"));
-    xcsf->EPS_0 = atof(getvalue("EPS_0"));
-    xcsf->DELTA = atof(getvalue("DELTA"));
-    xcsf->THETA_DEL = atof(getvalue("THETA_DEL"));
-    xcsf->THETA_GA = atof(getvalue("THETA_GA"));
-    xcsf->THETA_MNA = atoi(getvalue("THETA_MNA"));
-    xcsf->THETA_OFFSPRING = atoi(getvalue("THETA_OFFSPRING"));
-    xcsf->BETA = atof(getvalue("BETA"));
-    xcsf->ALPHA = atof(getvalue("ALPHA")); 
-    xcsf->NU = atof(getvalue("NU"));
-    xcsf->INIT_FITNESS = atof(getvalue("INIT_FITNESS"));
-    xcsf->INIT_ERROR = atof(getvalue("INIT_ERROR"));
-    xcsf->ERR_REDUC = atof(getvalue("ERR_REDUC"));
-    xcsf->FIT_REDUC = atof(getvalue("FIT_REDUC"));
-    if(strcmp(getvalue("GA_SUBSUMPTION"), "false") == 0) {
-        xcsf->GA_SUBSUMPTION = false;
-    }
-    else {
-        xcsf->GA_SUBSUMPTION = true;
-    }
-    if(strcmp(getvalue("SET_SUBSUMPTION"), "false") == 0) {
-        xcsf->SET_SUBSUMPTION = false;
-    }
-    else {
-        xcsf->SET_SUBSUMPTION = true;
-    }
-    xcsf->PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
-    xcsf->XCSF_X0 = atof(getvalue("XCSF_X0"));
-    xcsf->XCSF_ETA = atof(getvalue("XCSF_ETA"));
-    xcsf->RLS_SCALE_FACTOR = atof(getvalue("RLS_SCALE_FACTOR"));
-    xcsf->RLS_LAMBDA = atof(getvalue("RLS_LAMBDA"));
-    xcsf->muEPS_0 = atof(getvalue("muEPS_0"));
-    xcsf->NUM_SAM = atoi(getvalue("NUM_SAM"));
-    xcsf->S_MUTATION = atof(getvalue("S_MUTATION"));
-    xcsf->MIN_CON = atof(getvalue("MIN_CON"));
-    xcsf->MAX_CON = atof(getvalue("MAX_CON"));
-    xcsf->NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
-    xcsf->MOMENTUM = atof(getvalue("MOMENTUM"));
-    xcsf->HIDDEN_NEURON_ACTIVATION = atoi(getvalue("HIDDEN_NEURON_ACTIVATION"));
     xcsf->DGP_NUM_NODES = atoi(getvalue("DGP_NUM_NODES"));
-    if(strcmp(getvalue("RESET_STATES"), "false") == 0) {
-        xcsf->RESET_STATES = false;
-    }
-    else {
-        xcsf->RESET_STATES = true;
-    }
+    xcsf->GP_INIT_DEPTH = atoi(getvalue("GP_INIT_DEPTH"));
+    xcsf->GP_NUM_CONS = atoi(getvalue("GP_NUM_CONS"));
+    xcsf->HIDDEN_NEURON_ACTIVATION = atoi(getvalue("HIDDEN_NEURON_ACTIVATION"));
     xcsf->MAX_K = atoi(getvalue("MAX_K"));
     xcsf->MAX_T = atoi(getvalue("MAX_T"));
-    xcsf->GP_NUM_CONS = atoi(getvalue("GP_NUM_CONS"));
-    xcsf->GP_INIT_DEPTH = atoi(getvalue("GP_INIT_DEPTH"));
-    tidyup();  
-
+    xcsf->MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
+    xcsf->NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
+    xcsf->NUM_SAM = atoi(getvalue("NUM_SAM"));
+    xcsf->OMP_NUM_THREADS = atoi(getvalue("OMP_NUM_THREADS"));
+    xcsf->PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
+    xcsf->POP_SIZE = atoi(getvalue("POP_SIZE"));
+    xcsf->PRED_TYPE = atoi(getvalue("PRED_TYPE"));
+    xcsf->THETA_MNA = atoi(getvalue("THETA_MNA"));
+    xcsf->THETA_OFFSPRING = atoi(getvalue("THETA_OFFSPRING"));
+    // floats
+    xcsf->ALPHA = atof(getvalue("ALPHA")); 
+    xcsf->BETA = atof(getvalue("BETA"));
+    xcsf->DELTA = atof(getvalue("DELTA"));
+    xcsf->EPS_0 = atof(getvalue("EPS_0"));
+    xcsf->ERR_REDUC = atof(getvalue("ERR_REDUC"));
+    xcsf->FIT_REDUC = atof(getvalue("FIT_REDUC"));
+    xcsf->INIT_ERROR = atof(getvalue("INIT_ERROR"));
+    xcsf->INIT_FITNESS = atof(getvalue("INIT_FITNESS"));
+    xcsf->MAX_CON = atof(getvalue("MAX_CON"));
+    xcsf->MIN_CON = atof(getvalue("MIN_CON"));
+    xcsf->MOMENTUM = atof(getvalue("MOMENTUM"));
+    xcsf->NU = atof(getvalue("NU"));
+    xcsf->P_CROSSOVER = atof(getvalue("P_CROSSOVER"));
+    xcsf->P_FUNC_MUTATION = atof(getvalue("P_FUNC_MUTATION"));
+    xcsf->P_MUTATION = atof(getvalue("P_MUTATION"));
+    xcsf->RLS_LAMBDA = atof(getvalue("RLS_LAMBDA"));
+    xcsf->RLS_SCALE_FACTOR = atof(getvalue("RLS_SCALE_FACTOR"));
+    xcsf->S_MUTATION = atof(getvalue("S_MUTATION"));
+    xcsf->THETA_DEL = atof(getvalue("THETA_DEL"));
+    xcsf->THETA_GA = atof(getvalue("THETA_GA"));
+    xcsf->THETA_SUB = atof(getvalue("THETA_SUB"));
+    xcsf->XCSF_ETA = atof(getvalue("XCSF_ETA"));
+    xcsf->XCSF_X0 = atof(getvalue("XCSF_X0"));
+    xcsf->muEPS_0 = atof(getvalue("muEPS_0"));
+    // Bools
+    xcsf->POP_INIT = false;
+    if(strcmp(getvalue("POP_INIT"), "true") == 0) {
+        xcsf->POP_INIT = true;
+    }
+    xcsf->GA_SUBSUMPTION = false;
+    if(strcmp(getvalue("GA_SUBSUMPTION"), "true") == 0) {
+        xcsf->GA_SUBSUMPTION = true;
+    }
+    xcsf->SET_SUBSUMPTION = false;
+    if(strcmp(getvalue("SET_SUBSUMPTION"), "true") == 0) {
+        xcsf->SET_SUBSUMPTION = true;
+    }
+    xcsf->NESTEROV = false;
+    if(strcmp(getvalue("NESTEROV"), "true") == 0) {
+        xcsf->NESTEROV = true;
+    }
+    xcsf->RESET_STATES = false;
+    if(strcmp(getvalue("RESET_STATES"), "true") == 0) {
+        xcsf->RESET_STATES = true;
+    }
+    // initialise (shared) tree-GP constants
     tree_init_cons(xcsf);
+    // clean up
+    tidyup();
 } 
 
 void constants_free(XCSF *xcsf) 
