@@ -247,12 +247,12 @@ static inline double bent_identity_deriv(double x) {return (2*sqrt(x*x+1)/x)+1;}
 static inline double identity_activ(double x) {return x;}
 static inline double identity_deriv(double x) {(void)x; return 1;}
 static inline double soft_plus_activ(double x) {return log1p(exp(x));}
-static inline double tanh_activ(double x) {return (exp(2*x)-1)/(exp(2*x)+1);}
+static inline double tanh_activ(double x) {return (expm1(2*x))/(exp(2*x)+1);}
 static inline double tanh_deriv(double x) {return 1-x*x;}
 static inline double logistic_plain(double x) {return (1-x)*x;}
 static inline double leaky_activ(double x) {return (x>0) ? x : .1*x;}
 static inline double leaky_deriv(double x) {return (x>0)+.1;}
-static inline double elu_activ(double x) {return (x >= 0)*x + (x < 0)*(exp(x)-1);}
+static inline double elu_activ(double x) {return (x >= 0)*x + (x < 0)*expm1(x);}
 static inline double elu_deriv(double x) {return (x >= 0) + (x < 0)*(x + 1);}
 static inline double ramp_activ(double x) {return x*(x>0)+.1*x;}
 static inline double ramp_deriv(double x) {return (x>0)+.1;}
