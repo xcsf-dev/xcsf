@@ -226,13 +226,14 @@ double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
 void neuron_learn(XCSF *xcsf, NEURON *n, double error)
 {
     for(int i = 0; i < n->num_inputs; i++) {
-        n->v[i] = xcsf->MOMENTUM * n->v[i] + (error * n->input[i] * xcsf->XCSF_ETA);
+        n->v[i] = (xcsf->MOMENTUM * n->v[i]) + (error * n->input[i] * xcsf->XCSF_ETA);
         n->weights[i] += n->v[i];
         if(xcsf->NESTEROV) {
             n->weights[i] += xcsf->MOMENTUM * n->v[i];
         }
     }
-    n->v[n->num_inputs] = xcsf->MOMENTUM * n->v[n->num_inputs] + (error * n->input[n->num_inputs] * xcsf->XCSF_ETA);
+    n->v[n->num_inputs] = (xcsf->MOMENTUM * n->v[n->num_inputs])
+        + (error * n->input[n->num_inputs] * xcsf->XCSF_ETA);
     n->weights[n->num_inputs] += n->v[n->num_inputs];
     if(xcsf->NESTEROV) {
         n->weights[n->num_inputs] += xcsf->MOMENTUM * n->v[n->num_inputs];
@@ -241,7 +242,7 @@ void neuron_learn(XCSF *xcsf, NEURON *n, double error)
 
 // bipolar logistic sigmoid function: outputs [-1,1]
 static inline double logistic_activ(double x) {return 2./(1+exp(-x))-1;}
-static inline double logistic_deriv(double x) {double y = (x+1.)/2.; return 2*(1-y)*y;}
+static inline double logistic_deriv(double x) {double r=exp(-x); return (2*r)/((r+1)*(r+1));}
 static inline double gaussian_activ(double x) {return exp(-x*x);}
 static inline double gaussian_deriv(double x) {return -2*x*exp((-x*x)/2.);}
 static inline double relu_activ(double x) {return x*(x>0);}
