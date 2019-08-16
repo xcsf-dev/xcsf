@@ -268,6 +268,10 @@ void neuron_set_activation(XCSF *xcsf, NEURON *n, int func)
             n->activ = &sin;
             n->deriv = &cos;
             break;
+        case COS:
+            n->activ = &cos;
+            n->deriv = &cos_deriv;
+            break;
         case SOFT_PLUS:
             n->activ = &soft_plus_activ;
             n->deriv = &logistic_plain;

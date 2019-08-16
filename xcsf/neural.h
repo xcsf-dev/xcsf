@@ -21,14 +21,15 @@
 #define IDENTITY 3 
 #define GAUSSIAN 4 
 #define SIN 5 
-#define SOFT_PLUS 6 
-#define BENT_IDENTITY 7 
-#define HARDTAN 8
-#define STAIR 9
-#define LEAKY 10
-#define ELU 11
-#define RAMP 12
-#define NUM_ACTIVATIONS 13
+#define COS 6
+#define SOFT_PLUS 7 
+#define BENT_IDENTITY 8 
+#define HARDTAN 9
+#define STAIR 10
+#define LEAKY 11
+#define ELU 12
+#define RAMP 13
+#define NUM_ACTIVATIONS 14
 
 typedef double (*activ_ptr)(double);
 typedef double (*deriv_ptr)(double);
@@ -81,6 +82,7 @@ static inline double elu_activ(double x) {return (x >= 0)*x + (x < 0)*expm1(x);}
 static inline double elu_deriv(double x) {return (x >= 0) + (x < 0)*(x + 1);}
 static inline double ramp_activ(double x) {return x*(x>0)+.1*x;}
 static inline double ramp_deriv(double x) {return (x>0)+.1;}
+static inline double cos_deriv(double x) {return -sin(x);}
 static inline double stair_activ(double x)
 {
     int n = floor(x);

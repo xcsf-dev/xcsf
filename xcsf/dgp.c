@@ -321,6 +321,9 @@ void node_set_activation(activ_ptr *activ, int func)
         case SIN:
             *activ = &sin;
             break;
+        case COS:
+            *activ = &cos;
+            break;
         case SOFT_PLUS:
             *activ = &soft_plus_activ;
             break;
