@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2016--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,16 @@
  *
  */
 
+typedef double (*activ_ptr)(double);
+
 typedef struct GRAPH {
-	int *connectivity; // connectivity map
-	double *state; // current internal state
-	double *initial_state; // initial states
-	int *function; // node functions
-	int n; // number of nodes
-	int t; // number of cycles to run
-	double avgk; // average number of active connections
+    int *connectivity; // connectivity map
+    double *state; // current internal state
+    double *initial_state; // initial states
+    activ_ptr *activ;
+    int n; // number of nodes
+    int t; // number of cycles to run
+    double avgk; // average number of active connections
 } GRAPH;
 
 void graph_init(XCSF *xcsf, GRAPH *dgp, int n);
