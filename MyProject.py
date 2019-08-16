@@ -32,7 +32,7 @@ data = datasets.load_boston()
 # split into training and test sets
 train_X, test_X, train_Y, test_Y = train_test_split(data.data, data.target, test_size = 0.1, random_state = 5)
 
-# scale [-1,1]
+# scale [0,1]
 train_X = minmax_scale(train_X, feature_range=(0,1))
 train_Y = minmax_scale(train_Y, feature_range=(0,1))
 test_X = minmax_scale(test_X, feature_range=(0,1))
