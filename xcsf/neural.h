@@ -62,8 +62,10 @@ void neural_rand(XCSF *xcsf, BPN *bpn);
 void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activ);
 void neuron_set_activation(XCSF *xcsf, NEURON *n, int func);  
 
-static inline double logistic_activ(double x) {return 2./(1+exp(-x))-1;}
-static inline double logistic_deriv(double x) {double r=exp(-x); return (2*r)/((r+1)*(r+1));}
+static inline double logistic_activ(double x) {return 1./(1.+exp(-x));}
+static inline double logistic_deriv(double x) {return (1-x)*x;}
+//static inline double logistic_activ(double x) {return 2./(1+exp(-x))-1;} // bipolar
+//static inline double logistic_deriv(double x) {double r=exp(-x); return (2*r)/((r+1)*(r+1));}
 static inline double gaussian_activ(double x) {return exp(-x*x);}
 static inline double gaussian_deriv(double x) {return -2*x*exp((-x*x)/2.);}
 static inline double relu_activ(double x) {return x*(x>0);}
