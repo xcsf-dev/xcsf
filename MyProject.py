@@ -61,7 +61,8 @@ xcs = xcsf.XCS(xvars, yvars)
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
-xcs.COND_TYPE = 2 # evolved neural network conditions
+xcs.COND_TYPE = 4 # evolved (weightless) neural network conditions
+xcs.MAX_T=1 # one forward pass
 xcs.PRED_TYPE = 4 # sgd neural network predictors
 xcs.HIDDEN_NEURON_ACTIVATION = 1 # relu
 xcs.NUM_HIDDEN_NEURONS = 10
@@ -74,6 +75,7 @@ xcs.XCSF_ETA=0.01
 n = 50 # 50,000 evaluations
 evals = np.zeros(n)
 psize = np.zeros(n)
+msize = np.zeros(n)
 train_mse = np.zeros(n)
 test_mse = np.zeros(n)
 bar = tqdm(total=n) # progress bar
@@ -88,9 +90,10 @@ for i in range(n):
     test_mse[i] = mean_squared_error(pred, test_Y)
     evals[i] = xcs.time() # number of evaluations so far
     psize[i] = xcs.pop_num() # current population size
+    msize[i] = xcs.msetsize() # avg match set size
     # update status
-    status = ("evals=%d train_mse=%.5f test_mse=%.5f popsize=%d pmut=%.3f smut=%.3f pfmut=%.3f"
-        % (evals[i], train_mse[i], test_mse[i], psize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2)))
+    status = ("evals=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f pmut=%.3f smut=%.3f pfmut=%.3f"
+        % (evals[i], train_mse[i], test_mse[i], psize[i], msize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2)))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)
@@ -110,17 +113,20 @@ mlp.fit(train_X, train_Y.ravel())
 mlp_pred = mlp.predict(test_X)
 mlp_mse = mean_squared_error(mlp_pred, test_Y)
 print('MLP Regressor MSE = %.4f' % (mlp_mse))
-
+ 
 # plot XCSF learning performance
+psize[:] = [x / xcs.POP_SIZE for x in psize] # scale for plotting
+msize[:] = [x / xcs.POP_SIZE for x in msize]
 plt.figure(figsize=(10,6))
-plt.plot(evals, train_mse, label='Train')
-plt.plot(evals, test_mse, label='Test')
+plt.plot(evals, train_mse, label='Train MSE')
+plt.plot(evals, test_mse, label='Test MSE')
+plt.plot(evals, psize, label='Population macro-classifiers / P')
+plt.plot(evals, msize, label='Avg. match-set macro-classifiers / P')
 plt.grid(linestyle='dotted', linewidth=1)
-plt.axhline(y=xcs.EPS_0, xmin=0.0, xmax=1.0, color='r')
+plt.axhline(y=xcs.EPS_0, xmin=0.0, xmax=1.0, linestyle='dashed', color='k')
 plt.title('XCSF Training Performance', fontsize=14)
 plt.xlabel('Evaluations', fontsize=12)
 plt.xlim([0,n*xcs.MAX_TRIALS])
-plt.ylabel('Mean squared error', fontsize=12)
 plt.legend()
 plt.show()
 
