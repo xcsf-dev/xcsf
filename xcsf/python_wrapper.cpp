@@ -208,6 +208,7 @@ struct XCS
 	double get_num_x_vars() { return xcs.num_x_vars; }
 	double get_num_y_vars() { return xcs.num_y_vars; }                      
 	double get_pop_avg_mu(int m) { return set_avg_mut(&xcs, &xcs.pset, m); }
+    double get_msetsize() { return xcs.msetsize; }
 
 	/* SETTERS */
 	void set_omp_num_threads(int a) {
@@ -328,5 +329,6 @@ BOOST_PYTHON_MODULE(xcsf)
 		.def("pop_avg_mu", &XCS::get_pop_avg_mu)
 		.def("print_pop", &XCS::print_pop)
 		.def("print_match_set", &XCS::print_match_set)
+		.def("msetsize", &XCS::get_msetsize)
 		;
 }

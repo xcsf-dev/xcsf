@@ -212,6 +212,8 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 		error += (y[i]-pred[i])*(y[i]-pred[i]);
 	}
 	error /= xcsf->num_y_vars; // MSE
+    // update average set size
+    xcsf->msetsize += (msize - xcsf->msetsize)*xcsf->BETA;
 	return error;
 }
 
@@ -232,6 +234,8 @@ double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 		error += (y[i]-pred[i])*(y[i]-pred[i]);
 	}
 	error /= xcsf->num_y_vars; // MSE
+    // update average set size
+    xcsf->msetsize += (xcsf->msetsize - msize)*xcsf->BETA;
 	return error;      
 }
 

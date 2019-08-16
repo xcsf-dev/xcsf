@@ -47,6 +47,7 @@ typedef struct XCSF {
 	int pop_num; // number of macro-classifiers in the population
 	int pop_num_sum; // the total population numerosity
 	int time; // current number of executed trials
+    double msetsize; // average match set size
 
 	// experiment parameters
 	int OMP_NUM_THREADS; // number of threads for parallel processing

@@ -43,6 +43,7 @@ void pop_init(XCSF *xcsf)
     xcsf->pop_num = 0; // num macro-classifiers
     xcsf->pop_num_sum = 0; // numerosity sum
     xcsf->time = 0; // number of learning trials performed
+    xcsf->msetsize = 0.0; // average match set size
 
     if(xcsf->POP_INIT) {
         while(xcsf->pop_num_sum < xcsf->POP_SIZE) {
