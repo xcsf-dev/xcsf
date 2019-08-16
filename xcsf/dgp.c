@@ -28,7 +28,6 @@
 #include "dgp.h"
 
 void node_set_activation(activ_ptr *activ, int func);
-void node_update(XCSF *xcsf, double *state, int func, double input);
 
 void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
 {
@@ -299,26 +298,6 @@ double graph_avg_k(XCSF *xcsf, GRAPH *dgp)
 {
     (void)xcsf;
     return dgp->avgk;
-}
-
-void node_update(XCSF *xcsf, double *state, int func, double input)
-{
-    switch(func) {
-        case 0: *state += input; break;
-        case 1: *state -= input; break;
-        case 2: *state *= input; break;
-        case 3: if(input != 0.0) *state /= input; break;
-        case 4: *state = sin(input); break;
-        case 5: *state = cos(input); break;
-        case 6: *state = tanh(input); break;
-        default: break;
-    }
-    if(*state > xcsf->MAX_CON) {
-        *state = xcsf->MAX_CON;
-    }
-    else if(*state < xcsf->MIN_CON) {
-        *state = xcsf->MIN_CON;
-    }
 }
 
 void node_set_activation(activ_ptr *activ, int func)
