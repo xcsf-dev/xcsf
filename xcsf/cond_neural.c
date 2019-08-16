@@ -45,11 +45,11 @@ void cond_neural_init(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = malloc(sizeof(COND_NEURAL));
     // network with 1 hidden layer
-    int neurons[2] = {xcsf->NUM_HIDDEN_NEURONS, 1};
+    int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, 1};
     // select layer activation functions
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
     // initialise neural network
-    neural_init(xcsf, &cond->bpn, 2, neurons, activations);
+    neural_init(xcsf, &cond->bpn, 3, neurons, activations);
     c->cond = cond;
     sam_init(xcsf, &cond->mu);
 }

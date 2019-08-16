@@ -41,10 +41,11 @@ void neuron_learn(XCSF *xcsf, NEURON *n, double error);
 void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activ)
 {
     // set number of hidden and output layers
-    bpn->num_layers = layers;
+    bpn->num_layers = layers-1;
     // set number of neurons in each layer
     bpn->num_neurons = malloc(sizeof(int)*bpn->num_layers);
-    memcpy(bpn->num_neurons, neurons, sizeof(int)*bpn->num_layers);
+    // only store the number of hidden and output neurons
+    memcpy(&bpn->num_neurons[0], &neurons[1], sizeof(int)*bpn->num_layers);
     // malloc layers
     bpn->layer = (NEURON**) malloc((bpn->num_layers)*sizeof(NEURON*));
     for(int i = 0; i < bpn->num_layers; i++) {
@@ -52,7 +53,7 @@ void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activ)
     }
     // initialise first hidden layer
     for(int i = 0; i < bpn->num_neurons[0]; i++) {
-        neuron_init(xcsf, &bpn->layer[0][i], xcsf->num_x_vars, activ[0]);
+        neuron_init(xcsf, &bpn->layer[0][i], neurons[0], activ[0]);
     }
     // initialise each other layer
     for(int i = 1; i < bpn->num_layers; i++) {
@@ -110,7 +111,7 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
     double *out_error = bpn->tmp[bpn->num_layers-1];
     for(int i = 0; i < bpn->num_neurons[bpn->num_layers-1]; i++) {
         NEURON * neuro = &bpn->layer[bpn->num_layers-1][i];
-        out_error[i] = (output[i] - neuro->output) * (neuro->deriv_ptr)(neuro->state);
+        out_error[i] = (output[i] - neuro->output) * (neuro->deriv)(neuro->state);
         neuron_learn(xcsf, neuro, out_error[i]);
     }
     // hidden layers
@@ -124,7 +125,7 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
                 error[j] += prev_error[k] * bpn->layer[i+1][k].weights[j];
             }
             NEURON * neuro = &bpn->layer[i][j];
-            error[j] *= (neuro->deriv_ptr)(neuro->state);
+            error[j] *= (neuro->deriv)(neuro->state);
             neuron_learn(xcsf, neuro, error[j]);
         }
         prev_error = error;
@@ -180,8 +181,8 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
         for(int j = 0; j < from->num_neurons[i]; j++) {
             NEURON *a = &to->layer[i][j];
             NEURON *b = &from->layer[i][j];
-            a->activ_ptr = b->activ_ptr;
-            a->deriv_ptr = b->deriv_ptr;
+            a->activ = b->activ;
+            a->deriv = b->deriv;
             a->output = b->output;
             a->state = b->state;
             memcpy(a->weights, b->weights, sizeof(double)*b->num_inputs+1);
@@ -218,7 +219,7 @@ double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
         n->state += n->weights[i] * input[i];
     }
     n->state += n->weights[n->num_inputs];
-    n->output = (n->activ_ptr)(n->state);
+    n->output = (n->activ)(n->state);
     n->output = fmax(xcsf->MIN_CON, fmin(xcsf->MAX_CON, n->output));
     return n->output;
 }
@@ -240,104 +241,60 @@ void neuron_learn(XCSF *xcsf, NEURON *n, double error)
     }
 }
 
-// bipolar logistic sigmoid function: outputs [-1,1]
-static inline double logistic_activ(double x) {return 2./(1+exp(-x))-1;}
-static inline double logistic_deriv(double x) {double r=exp(-x); return (2*r)/((r+1)*(r+1));}
-static inline double gaussian_activ(double x) {return exp(-x*x);}
-static inline double gaussian_deriv(double x) {return -2*x*exp((-x*x)/2.);}
-static inline double relu_activ(double x) {return x*(x>0);}
-static inline double relu_deriv(double x) {return (x > 0);}
-static inline double bent_identity_activ(double x) {return ((sqrt(x*x+1)-1)/2.)+x;}
-static inline double bent_identity_deriv(double x) {return (2*sqrt(x*x+1)/x)+1;}
-static inline double identity_activ(double x) {return x;}
-static inline double identity_deriv(double x) {(void)x; return 1;}
-static inline double soft_plus_activ(double x) {return log1p(exp(x));}
-static inline double tanh_activ(double x) {return (expm1(2*x))/(exp(2*x)+1);}
-static inline double tanh_deriv(double x) {return 1-x*x;}
-static inline double logistic_plain(double x) {return (1-x)*x;}
-static inline double leaky_activ(double x) {return (x>0) ? x : .1*x;}
-static inline double leaky_deriv(double x) {return (x>0)+.1;}
-static inline double elu_activ(double x) {return (x >= 0)*x + (x < 0)*expm1(x);}
-static inline double elu_deriv(double x) {return (x >= 0) + (x < 0)*(x + 1);}
-static inline double ramp_activ(double x) {return x*(x>0)+.1*x;}
-static inline double ramp_deriv(double x) {return (x>0)+.1;}
-static inline double stair_activ(double x)
-{
-    int n = floor(x);
-    if (n%2 == 0) {return floor(x/2.);}
-    else {return (x-n)+floor(x/2.);}
-}
-static inline double stair_deriv(double x)
-{
-    if(floor(x) == x) {return 0;}
-    return 1;
-}
-static inline double hardtan_activ(double x)
-{
-    if (x < -1) {return -1;}
-    if (x > 1) {return 1;}
-    return x;
-}
-static inline double hardtan_deriv(double x)
-{
-    if (x > -1 && x < 1) {return 1;}
-    return 0;
-}
- 
 void neuron_set_activation(XCSF *xcsf, NEURON *n, int func)
 {
     switch(func) {
         case LOGISTIC:
-            n->activ_ptr = &logistic_activ;
-            n->deriv_ptr = &logistic_deriv;
+            n->activ = &logistic_activ;
+            n->deriv = &logistic_deriv;
             break;
         case RELU:
-            n->activ_ptr = &relu_activ;
-            n->deriv_ptr = &relu_deriv;
+            n->activ = &relu_activ;
+            n->deriv = &relu_deriv;
             break;
         case GAUSSIAN:
-            n->activ_ptr = &gaussian_activ;
-            n->deriv_ptr = &gaussian_deriv;
+            n->activ = &gaussian_activ;
+            n->deriv = &gaussian_deriv;
             break;
         case BENT_IDENTITY:
-            n->activ_ptr = &bent_identity_activ;
-            n->deriv_ptr = &bent_identity_deriv;
+            n->activ = &bent_identity_activ;
+            n->deriv = &bent_identity_deriv;
             break;
         case TANH:
-            n->activ_ptr = &tanh_activ;
-            n->deriv_ptr = &tanh_deriv;
+            n->activ = &tanh_activ;
+            n->deriv = &tanh_deriv;
             break;
         case SIN:
-            n->activ_ptr = &sin;
-            n->deriv_ptr = &cos;
+            n->activ = &sin;
+            n->deriv = &cos;
             break;
         case SOFT_PLUS:
-            n->activ_ptr = &soft_plus_activ;
-            n->deriv_ptr = &logistic_plain;
+            n->activ = &soft_plus_activ;
+            n->deriv = &logistic_plain;
             break;
         case IDENTITY:
-            n->activ_ptr = &identity_activ;
-            n->deriv_ptr = &identity_deriv;
+            n->activ = &identity_activ;
+            n->deriv = &identity_deriv;
             break;
         case HARDTAN:
-            n->activ_ptr = &hardtan_activ;
-            n->deriv_ptr = &hardtan_deriv;
+            n->activ = &hardtan_activ;
+            n->deriv = &hardtan_deriv;
             break;
         case STAIR:
-            n->activ_ptr = &stair_activ;
-            n->deriv_ptr = &stair_deriv;
+            n->activ = &stair_activ;
+            n->deriv = &stair_deriv;
             break;
         case LEAKY:
-            n->activ_ptr = &leaky_activ;
-            n->deriv_ptr = &leaky_deriv;
+            n->activ = &leaky_activ;
+            n->deriv = &leaky_deriv;
             break;
         case ELU:
-            n->activ_ptr = &elu_activ;
-            n->deriv_ptr = &elu_deriv;
+            n->activ = &elu_activ;
+            n->deriv = &elu_deriv;
             break;
         case RAMP:
-            n->activ_ptr = &ramp_activ;
-            n->deriv_ptr = &ramp_deriv;
+            n->activ = &ramp_activ;
+            n->deriv = &ramp_deriv;
             break;
         default:
             printf("error: invalid activation function: %d\n", func);
