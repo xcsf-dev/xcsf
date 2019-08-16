@@ -113,7 +113,7 @@ mlp.fit(train_X, train_Y.ravel())
 mlp_pred = mlp.predict(test_X)
 mlp_mse = mean_squared_error(mlp_pred, test_Y)
 print('MLP Regressor MSE = %.4f' % (mlp_mse))
- 
+
 # plot XCSF learning performance
 psize[:] = [x / xcs.POP_SIZE for x in psize] # scale for plotting
 msize[:] = [x / xcs.POP_SIZE for x in msize]
