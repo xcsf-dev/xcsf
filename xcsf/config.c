@@ -86,8 +86,8 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->THETA_DEL = atof(getvalue("THETA_DEL"));
     xcsf->THETA_GA = atof(getvalue("THETA_GA"));
     xcsf->THETA_SUB = atof(getvalue("THETA_SUB"));
-    xcsf->XCSF_ETA = atof(getvalue("XCSF_ETA"));
-    xcsf->XCSF_X0 = atof(getvalue("XCSF_X0"));
+    xcsf->ETA = atof(getvalue("ETA"));
+    xcsf->X0 = atof(getvalue("X0"));
     xcsf->muEPS_0 = atof(getvalue("muEPS_0"));
     // Bools
     xcsf->POP_INIT = false;

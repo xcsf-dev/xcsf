@@ -195,8 +195,8 @@ struct XCS
 	int get_max_t() { return xcs.MAX_T; }
 	int get_gp_num_cons() { return xcs.GP_NUM_CONS; }
 	int get_gp_init_depth() { return xcs.GP_INIT_DEPTH; }
-	double get_xcsf_eta() { return xcs.XCSF_ETA; }
-	double get_xcsf_x0() { return xcs.XCSF_X0; }
+	double get_eta() { return xcs.ETA; }
+	double get_x0() { return xcs.X0; }
 	double get_rls_scale_factor() { return xcs.RLS_SCALE_FACTOR; }
 	double get_rls_lambda() { return xcs.RLS_LAMBDA; }
 	double get_theta_sub() { return xcs.THETA_SUB; }
@@ -254,8 +254,8 @@ struct XCS
 	void set_max_t(int a) { xcs.MAX_T = a; }
 	void set_gp_num_cons(int a) { xcs.GP_NUM_CONS = a; }
 	void set_gp_init_depth(int a) { xcs.GP_INIT_DEPTH = a; }
-	void set_xcsf_eta(double a) { xcs.XCSF_ETA = a; }
-	void set_xcsf_x0(double a) { xcs.XCSF_X0 = a; }
+	void set_eta(double a) { xcs.ETA = a; }
+	void set_x0(double a) { xcs.X0 = a; }
 	void set_rls_scale_factor(double a) { xcs.RLS_SCALE_FACTOR = a; }
 	void set_rls_lambda(double a) { xcs.RLS_LAMBDA = a; }
 	void set_theta_sub(double a) { xcs.THETA_SUB = a; }
@@ -314,8 +314,8 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("MAX_T", &XCS::get_max_t, &XCS::set_max_t)
 		.add_property("GP_NUM_CONS", &XCS::get_gp_num_cons, &XCS::set_gp_num_cons)
 		.add_property("GP_INIT_DEPTH", &XCS::get_gp_init_depth, &XCS::set_gp_init_depth)
-		.add_property("XCSF_ETA", &XCS::get_xcsf_eta, &XCS::set_xcsf_eta)
-		.add_property("XCSF_X0", &XCS::get_xcsf_x0, &XCS::set_xcsf_x0)
+		.add_property("ETA", &XCS::get_eta, &XCS::set_eta)
+		.add_property("X0", &XCS::get_x0, &XCS::set_x0)
 		.add_property("RLS_SCALE_FACTOR", &XCS::get_rls_scale_factor, &XCS::set_rls_scale_factor)
 		.add_property("RLS_LAMBDA", &XCS::get_rls_lambda, &XCS::set_rls_lambda)
 		.add_property("THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub)

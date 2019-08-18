@@ -66,7 +66,7 @@ xcs.MAX_T=1 # one forward pass
 xcs.PRED_TYPE = 4 # sgd neural network predictors
 xcs.HIDDEN_NEURON_ACTIVATION = 1 # relu
 xcs.NUM_HIDDEN_NEURONS = 10
-xcs.XCSF_ETA=0.01
+xcs.ETA=0.01
 
 ##################################
 # Example plotting in matplotlib

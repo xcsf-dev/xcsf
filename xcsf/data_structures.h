@@ -99,8 +99,8 @@ typedef struct XCSF {
 	double *gp_cons; // stores constants available for GP trees
 
 	// prediction parameters
-	double XCSF_ETA; // learning rate for updating the computed prediction
-	double XCSF_X0; // prediction weight vector offset value
+	double ETA; // learning rate for updating the computed prediction
+	double X0; // prediction weight vector offset value
 	double RLS_SCALE_FACTOR; // initial diagonal values of the RLS gain-matrix
 	double RLS_LAMBDA; // forget rate for RLS: small values may be unstable
 

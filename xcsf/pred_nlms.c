@@ -60,7 +60,7 @@ void pred_nlms_init(XCSF *xcsf, CL *c)
 		pred->weights[var] = malloc(sizeof(double)*pred->weights_length);
 	}
 	for(int var = 0; var < xcsf->num_y_vars; var++) {
-		pred->weights[var][0] = xcsf->XCSF_X0;
+		pred->weights[var][0] = xcsf->X0;
 		for(int i = 1; i < pred->weights_length; i++) {
 			pred->weights[var][i] = 0.0;
 		}
@@ -95,7 +95,7 @@ void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
 	PRED_NLMS *pred = c->pred;
 
-	double norm = xcsf->XCSF_X0 * xcsf->XCSF_X0;
+	double norm = xcsf->X0 * xcsf->X0;
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
 		norm += x[i] * x[i];
 	}      
@@ -103,9 +103,9 @@ void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y)
 	// pre has been updated for the current state during set_pred()
 	for(int var = 0; var < xcsf->num_y_vars; var++) {
 		double error = y[var] - pred->pre[var]; // pred_nlms_compute(c, x);
-		double correction = (xcsf->XCSF_ETA * error) / norm;
+		double correction = (xcsf->ETA * error) / norm;
 		// update first coefficient
-		pred->weights[var][0] += xcsf->XCSF_X0 * correction;
+		pred->weights[var][0] += xcsf->X0 * correction;
 		int index = 1;
 		// update linear coefficients
 		for(int i = 0; i < xcsf->num_x_vars; i++) {
@@ -128,7 +128,7 @@ double *pred_nlms_compute(XCSF *xcsf, CL *c, double *x)
 	PRED_NLMS *pred = c->pred;
 	for(int var = 0; var < xcsf->num_y_vars; var++) {
 		// first coefficient is offset
-		double pre = xcsf->XCSF_X0 * pred->weights[var][0];
+		double pre = xcsf->X0 * pred->weights[var][0];
 		int index = 1;
 		// multiply linear coefficients with the prediction input
 		for(int i = 0; i < xcsf->num_x_vars; i++) {
