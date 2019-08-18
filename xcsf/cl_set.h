@@ -15,20 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-double set_mean_time(XCSF *xcsf, NODE **set, int num_sum);
-double set_total_fit(XCSF *xcsf, NODE **set);
-double set_total_time(XCSF *xcsf, NODE **set);
-void pop_add(XCSF *xcsf, CL *c);
-void pop_del(XCSF *xcsf, NODE **kset);
-void pop_enforce_limit(XCSF *xcsf, NODE **kset);
+void set_init(XCSF *xcsf, SET *set);
+double set_mean_time(XCSF *xcsf, SET *set);
+double set_total_fit(XCSF *xcsf, SET *set);
+double set_total_time(XCSF *xcsf, SET *set);
+void pop_del(XCSF *xcsf, SET *kset);
+void pop_enforce_limit(XCSF *xcsf, SET *kset);
 void pop_init(XCSF *xcsf);
-void set_add(XCSF *xcsf, NODE **set, CL *c);
-void set_free(XCSF *xcsf, NODE **set);
-void set_kill(XCSF *xcsf, NODE **set);
-void set_match(XCSF *xcsf, NODE **set, int *size, int *num, double *x, NODE **kset);
-void set_pred(XCSF *xcsf, NODE **set, int size, double *x, double *y);
-void set_print(XCSF *xcsf, NODE *set, _Bool print_cond, _Bool print_pred);
-void set_times(XCSF *xcsf, NODE **set);
-void set_update(XCSF *xcsf, NODE **set, int *size, int *num, double *x, double *y, NODE **kset);
-void set_validate(XCSF *xcsf, NODE **set, int *size, int *num);
-double set_avg_mut(XCSF *xcsf, NODE **set, int m);
+void set_add(XCSF *xcsf, SET *set, CL *c);
+void set_free(XCSF *xcsf, SET *set);
+void set_kill(XCSF *xcsf, SET *set);
+void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x);
+void set_pred(XCSF *xcsf, SET *set, double *x, double *p);
+void set_print(XCSF *xcsf, SET *set, _Bool print_cond, _Bool print_pred);
+void set_times(XCSF *xcsf, SET *set);
+void set_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y);
+void set_validate(XCSF *xcsf, SET *set);
+double set_avg_mut(XCSF *xcsf, SET *set, int m);

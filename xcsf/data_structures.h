@@ -40,12 +40,17 @@ typedef struct NODE {
 	CL *cl;
 	struct NODE *next;
 } NODE;
-
+ 
+// classifier set
+typedef struct SET {
+    NODE *list; // linked list of classifiers
+    int size; // number of macro-classifiers
+    int num; // the total numerosity of classifiers
+} SET;
+ 
 // xcsf data structure
 typedef struct XCSF {
-	NODE *pset; // linked list of classifiers
-	int pop_num; // number of macro-classifiers in the population
-	int pop_num_sum; // the total population numerosity
+	SET pset; // population set
 	int time; // current number of executed trials
     double msetsize; // average match set size
 

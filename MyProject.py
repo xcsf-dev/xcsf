@@ -89,7 +89,7 @@ for i in range(n):
     pred = xcs.predict(test_X)
     test_mse[i] = mean_squared_error(pred, test_Y)
     evals[i] = xcs.time() # number of evaluations so far
-    psize[i] = xcs.pop_num() # current population size
+    psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
     # update status
     status = ("evals=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f pmut=%.3f smut=%.3f pfmut=%.3f"

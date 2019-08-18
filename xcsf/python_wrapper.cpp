@@ -57,11 +57,9 @@ struct XCS
 #ifdef PARALLEL
 		omp_set_num_threads(xcs.OMP_NUM_THREADS);
 #endif
+        xcs.time = 0;
 		xcs.num_x_vars = num_x_vars;
 		xcs.num_y_vars = num_y_vars;
-		xcs.pop_num = 0;
-		xcs.pop_num_sum = 0;
-		xcs.time = 0;
 		train_data.rows = 0;
 		train_data.x_cols = 0;
 		train_data.y_cols = 0;
@@ -87,7 +85,7 @@ struct XCS
 		train_data.x = reinterpret_cast<double*>(train_X.get_data());
 		train_data.y = reinterpret_cast<double*>(train_Y.get_data());
 		// first execution
-		if(xcs.pop_num == 0) {
+		if(xcs.time == 0) {
 			pop_init(&xcs);
 		}       
 		// execute
@@ -126,7 +124,7 @@ struct XCS
 		test_data.x = reinterpret_cast<double*>(test_X.get_data());
 		test_data.y = reinterpret_cast<double*>(test_Y.get_data());
 		// first execution
-		if(xcs.pop_num == 0) {
+		if(xcs.time == 0) {
 			pop_init(&xcs);
 		}       
 		// execute
@@ -162,7 +160,7 @@ struct XCS
 	double get_theta_mna() { return xcs.THETA_MNA; }
 	int get_max_trials() { return xcs.MAX_TRIALS; }
 	int get_perf_avg_trials() { return xcs.PERF_AVG_TRIALS; }
-	int get_pop_size() { return xcs.POP_SIZE; }
+	int get_pop_max_size() { return xcs.POP_SIZE; }
 	double get_alpha() { return xcs.ALPHA; }
 	double get_beta() { return xcs.BETA; }
 	double get_delta() { return xcs.DELTA; }
@@ -202,8 +200,8 @@ struct XCS
 	double get_theta_sub() { return xcs.THETA_SUB; }
 	_Bool get_ga_subsumption() { return xcs.GA_SUBSUMPTION; }
 	_Bool get_set_subsumption() { return xcs.SET_SUBSUMPTION; }
-	int get_pop_num() { return xcs.pop_num; }
-	int get_pop_num_sum() { return xcs.pop_num_sum; }
+	int get_pop_size() { return xcs.pset.size; }
+	int get_pop_num() { return xcs.pset.num; }
 	int get_time() { return xcs.time; }
 	double get_num_x_vars() { return xcs.num_x_vars; }
 	double get_num_y_vars() { return xcs.num_y_vars; }                      
@@ -221,7 +219,7 @@ struct XCS
 	void set_theta_mna(double a) { xcs.THETA_MNA = a; }
 	void set_max_trials(int a) { xcs.MAX_TRIALS = a; }
 	void set_perf_avg_trials(int a) { xcs.PERF_AVG_TRIALS = a; }
-	void set_pop_size(int a) { xcs.POP_SIZE = a; }
+	void set_pop_max_size(int a) { xcs.POP_SIZE = a; }
 	void set_alpha(double a) { xcs.ALPHA = a; }
 	void set_beta(double a) { xcs.BETA = a; }
 	void set_delta(double a) { xcs.DELTA = a; }
@@ -281,7 +279,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("THETA_MNA", &XCS::get_theta_mna, &XCS::set_theta_mna)
 		.add_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials)
 		.add_property("PERF_AVG_TRIALS", &XCS::get_perf_avg_trials, &XCS::set_perf_avg_trials)
-		.add_property("POP_SIZE", &XCS::get_pop_size, &XCS::set_pop_size)
+		.add_property("POP_SIZE", &XCS::get_pop_max_size, &XCS::set_pop_max_size)
 		.add_property("ALPHA", &XCS::get_alpha, &XCS::set_alpha)
 		.add_property("BETA", &XCS::get_beta, &XCS::set_beta)
 		.add_property("DELTA", &XCS::get_delta, &XCS::set_delta)
@@ -321,8 +319,8 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub)
 		.add_property("GA_SUBSUMPTION", &XCS::get_ga_subsumption, &XCS::set_ga_subsumption)
 		.add_property("SET_SUBSUMPTION", &XCS::get_set_subsumption, &XCS::set_set_subsumption)
+		.def("pop_size", &XCS::get_pop_size)
 		.def("pop_num", &XCS::get_pop_num)
-		.def("pop_num_sum", &XCS::get_pop_num_sum)
 		.def("time", &XCS::get_time)
 		.def("num_x_vars", &XCS::get_num_x_vars)
 		.def("num_y_vars", &XCS::get_num_y_vars)

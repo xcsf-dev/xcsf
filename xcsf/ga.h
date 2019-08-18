@@ -15,4 +15,4 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void ga(XCSF *xcsf, NODE **set, int size, int num, NODE **kset);
+void ga(XCSF *xcsf, SET *set, SET *kset);

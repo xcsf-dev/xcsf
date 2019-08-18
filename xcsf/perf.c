@@ -48,7 +48,7 @@ void disp_perf1(XCSF *xcsf, double *error, int trial)
 		serr += error[i];
 	}
 	serr /= (double)xcsf->PERF_AVG_TRIALS;
-	printf("%d %.5f %d", trial, serr, xcsf->pop_num);
+	printf("%d %.5f %d", trial, serr, xcsf->pset.size);
 	for(int i = 0; i < xcsf->NUM_SAM; i++) {
 		printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
 	}
@@ -56,7 +56,7 @@ void disp_perf1(XCSF *xcsf, double *error, int trial)
 	fflush(stdout);
 
 #ifdef GNUPLOT
-	fprintf(fout, "%d %.5f %d", trial, serr, xcsf->pop_num);
+	fprintf(fout, "%d %.5f %d", trial, serr, xcsf->pset.size);
 	for(int i = 0; i < xcsf->NUM_SAM; i++) {
 		fprintf(fout, " %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
 	}
@@ -77,7 +77,7 @@ void disp_perf2(XCSF *xcsf, double *error, double *terror, int trial)
 	}
 	serr /= (double)xcsf->PERF_AVG_TRIALS;
 	terr /= (double)xcsf->PERF_AVG_TRIALS;
-	printf("%d %.5f %.5f %d", trial, serr, terr, xcsf->pop_num);
+	printf("%d %.5f %.5f %d", trial, serr, terr, xcsf->pset.size);
 	for(int i = 0; i < xcsf->NUM_SAM; i++) {
 		printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
 	}
@@ -85,7 +85,7 @@ void disp_perf2(XCSF *xcsf, double *error, double *terror, int trial)
 	fflush(stdout);
 
 #ifdef GNUPLOT
-	fprintf(fout, "%d %.5f %.5f %d", trial, serr, terr, xcsf->pop_num);
+	fprintf(fout, "%d %.5f %.5f %d", trial, serr, terr, xcsf->pset.size);
 	for(int i = 0; i < xcsf->NUM_SAM; i++) {
 		fprintf(fout, " %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
 	}
