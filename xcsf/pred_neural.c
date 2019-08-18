@@ -68,7 +68,7 @@ void pred_neural_copy(XCSF *xcsf, CL *to, CL *from)
     neural_copy(xcsf, &to_pred->bpn, &from_pred->bpn);
 }
 
-void pred_neural_update(XCSF *xcsf, CL *c, double *y, double *x)
+void pred_neural_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
     PRED_NEURAL *pred = c->pred;
     neural_learn(xcsf, &pred->bpn, y, x);

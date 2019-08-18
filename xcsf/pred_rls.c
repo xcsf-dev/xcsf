@@ -125,7 +125,7 @@ void pred_rls_free(XCSF *xcsf, CL *c)
     free(pred);
 }
 
-void pred_rls_update(XCSF *xcsf, CL *c, double *y, double *x)
+void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
     PRED_RLS *pred = c->pred;
     int n = pred->weights_length;

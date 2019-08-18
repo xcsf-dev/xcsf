@@ -49,7 +49,7 @@ void rule_neural_pred_copy(XCSF *xcsf, CL *to,  CL *from);
 void rule_neural_pred_free(XCSF *xcsf, CL *c);
 void rule_neural_pred_init(XCSF *xcsf, CL *c);
 void rule_neural_pred_print(XCSF *xcsf, CL *c);
-void rule_neural_pred_update(XCSF *xcsf, CL *c, double *y, double *x);
+void rule_neural_pred_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const rule_neural_pred_vtbl = {
 	&rule_neural_pred_compute,

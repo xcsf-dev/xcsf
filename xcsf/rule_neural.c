@@ -187,7 +187,7 @@ void rule_neural_pred_copy(XCSF *xcsf, CL *to, CL *from)
     (void)from;
 }
 
-void rule_neural_pred_update(XCSF *xcsf, CL *c, double *y, double *x)
+void rule_neural_pred_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
     (void)xcsf;
     (void)c;

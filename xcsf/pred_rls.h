@@ -21,7 +21,7 @@ void pred_rls_copy(XCSF *xcsf, CL *to,  CL *from);
 void pred_rls_free(XCSF *xcsf, CL *c);
 void pred_rls_init(XCSF *xcsf, CL *c);
 void pred_rls_print(XCSF *xcsf, CL *c);
-void pred_rls_update(XCSF *xcsf, CL *c, double *y, double *x);
+void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const pred_rls_vtbl = {
 	&pred_rls_compute,

@@ -91,7 +91,7 @@ void pred_nlms_free(XCSF *xcsf, CL *c)
 	free(pred);
 }
 
-void pred_nlms_update(XCSF *xcsf, CL *c, double *y, double *x)
+void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
 	PRED_NLMS *pred = c->pred;
 

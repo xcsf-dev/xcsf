@@ -21,7 +21,7 @@ void pred_nlms_copy(XCSF *xcsf, CL *to,  CL *from);
 void pred_nlms_free(XCSF *xcsf, CL *c);
 void pred_nlms_init(XCSF *xcsf, CL *c);
 void pred_nlms_print(XCSF *xcsf, CL *c);
-void pred_nlms_update(XCSF *xcsf, CL *c, double *y, double *x);
+void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const pred_nlms_vtbl = {
 	&pred_nlms_compute,

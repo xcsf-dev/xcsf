@@ -90,7 +90,7 @@ struct PredVtbl {
 	void (*pred_impl_free)(XCSF *xcsf, CL *c);
 	void (*pred_impl_init)(XCSF *xcsf, CL *c);
 	void (*pred_impl_print)(XCSF *xcsf, CL *c);
-	void (*pred_impl_update)(XCSF *xcsf, CL *c, double *y, double *x);
+	void (*pred_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
 };
 
 static inline double *pred_compute(XCSF *xcsf, CL *c, double *x) {
@@ -117,8 +117,8 @@ static inline void pred_print(XCSF *xcsf, CL *c) {
 	(*c->pred_vptr->pred_impl_print)(xcsf, c);
 }
 
-static inline void pred_update(XCSF *xcsf, CL *c, double *y, double *x) {
-	(*c->pred_vptr->pred_impl_update)(xcsf, c, y, x);
+static inline void pred_update(XCSF *xcsf, CL *c, double *x, double *y) {
+	(*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
 }
 
 // general classifier
