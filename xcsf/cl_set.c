@@ -168,7 +168,7 @@ void set_pred(XCSF *xcsf, SET *set, double *x, double *p)
         }
         fitsum += blist[i]->cl->fit;
     }
-#pragma omp parallel for
+    #pragma omp parallel for
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         p[var] = presum[var]/fitsum;
     }
