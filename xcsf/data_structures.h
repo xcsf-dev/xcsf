@@ -89,8 +89,8 @@ typedef struct XCSF {
     int NUM_SAM; // number of self-adaptive mutation rates
 
     // classifier condition parameters
-    double MAX_CON; // maximum value of a hyperrectangle interval
-    double MIN_CON; // minimum value of a hyperrectangle interval
+    double MAX_CON; // maximum value expected from inputs
+    double MIN_CON; // minimum value expected from inputs
     int NUM_HIDDEN_NEURONS; // number of hidden neurons to perform matching condition
     int HIDDEN_NEURON_ACTIVATION; // activation function for the hidden layer
     double MOMENTUM; // momentum for gradient descent
