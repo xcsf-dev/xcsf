@@ -83,7 +83,7 @@ Arguments:
 1. (required) a path to input csv files.
 2. (optional) a configuration file; defaults to using `default.ini`
 
-Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
+Example learning on `data/sine_3var_train` and testing on `data/sine_3var_test`
 
 ```
 $ ./xcsf/xcsf ../data/sine_3var
