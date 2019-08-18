@@ -86,7 +86,7 @@ Arguments:
 Example learning on `data/sine_1var_train` and testing on `data/sine_1var_test`
 
 ```
-$ ./xcsf/xcsf ../data/sine_1var
+$ ./xcsf/xcsf ../data/sine_3var
 ```
 
 ### Python library
