@@ -27,6 +27,7 @@
 #include "data_structures.h"
 #include "config.h"
 #include "gp.h"
+#include "loss.h"
 
 #define MAXLEN 127
 typedef struct nv {
@@ -53,6 +54,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->GP_INIT_DEPTH = atoi(getvalue("GP_INIT_DEPTH"));
     xcsf->GP_NUM_CONS = atoi(getvalue("GP_NUM_CONS"));
     xcsf->HIDDEN_NEURON_ACTIVATION = atoi(getvalue("HIDDEN_NEURON_ACTIVATION"));
+    xcsf->LOSS_FUNC = atoi(getvalue("LOSS_FUNC"));
     xcsf->MAX_K = atoi(getvalue("MAX_K"));
     xcsf->MAX_T = atoi(getvalue("MAX_T"));
     xcsf->MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
@@ -112,6 +114,8 @@ void constants_init(XCSF *xcsf, const char *filename)
     }
     // initialise (shared) tree-GP constants
     tree_init_cons(xcsf);
+    // initialise loss/error function
+    loss_set_func(xcsf);
     // clean up
     tidyup();
 } 

@@ -30,6 +30,7 @@ extern "C" {
 #include "random.h"
 #include "input.h"
 #include "cl_set.h"
+#include "loss.h"
 
 #ifdef PARALLEL
 #include <omp.h>
@@ -161,6 +162,7 @@ struct XCS
 	int get_max_trials() { return xcs.MAX_TRIALS; }
 	int get_perf_avg_trials() { return xcs.PERF_AVG_TRIALS; }
 	int get_pop_max_size() { return xcs.POP_SIZE; }
+	int get_loss_func() { return xcs.LOSS_FUNC; }
 	double get_alpha() { return xcs.ALPHA; }
 	double get_beta() { return xcs.BETA; }
 	double get_delta() { return xcs.DELTA; }
@@ -220,6 +222,7 @@ struct XCS
 	void set_max_trials(int a) { xcs.MAX_TRIALS = a; }
 	void set_perf_avg_trials(int a) { xcs.PERF_AVG_TRIALS = a; }
 	void set_pop_max_size(int a) { xcs.POP_SIZE = a; }
+	void set_loss_func(int a) { xcs.LOSS_FUNC = a; loss_set_func(&xcs); }
 	void set_alpha(double a) { xcs.ALPHA = a; }
 	void set_beta(double a) { xcs.BETA = a; }
 	void set_delta(double a) { xcs.DELTA = a; }
@@ -280,6 +283,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials)
 		.add_property("PERF_AVG_TRIALS", &XCS::get_perf_avg_trials, &XCS::set_perf_avg_trials)
 		.add_property("POP_SIZE", &XCS::get_pop_max_size, &XCS::set_pop_max_size)
+		.add_property("LOSS_FUNC", &XCS::get_loss_func, &XCS::set_loss_func)
 		.add_property("ALPHA", &XCS::get_alpha, &XCS::set_alpha)
 		.add_property("BETA", &XCS::get_beta, &XCS::set_beta)
 		.add_property("DELTA", &XCS::get_delta, &XCS::set_delta)

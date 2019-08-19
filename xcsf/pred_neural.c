@@ -84,11 +84,11 @@ double *pred_neural_compute(XCSF *xcsf, CL *c, double *x)
     return pred->pre;
 }
 
-double pred_neural_pre(XCSF *xcsf, CL *c, int p)
+double *pred_neural_pre(XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     PRED_NEURAL *pred = c->pred;
-    return pred->pre[p];
+    return pred->pre;
 }
 
 void pred_neural_print(XCSF *xcsf, CL *c)

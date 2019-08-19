@@ -206,11 +206,11 @@ double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x)
     return pred->pre;
 }
 
-double rule_neural_pred_pre(XCSF *xcsf, CL *c, int p)
+double *rule_neural_pred_pre(XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     RULE_NEURAL_PRED *pred = c->pred;
-    return pred->pre[p];
+    return pred->pre;
 }
 
 void rule_neural_pred_print(XCSF *xcsf, CL *c)

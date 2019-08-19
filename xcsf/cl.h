@@ -85,7 +85,7 @@ static inline void cond_rand(XCSF *xcsf, CL *c) {
 
 struct PredVtbl {
 	double *(*pred_impl_compute)(XCSF *xcsf, CL *c, double *x);
-	double (*pred_impl_pre)(XCSF *xcsf, CL *c, int p);
+	double *(*pred_impl_pre)(XCSF *xcsf, CL *c);
 	void (*pred_impl_copy)(XCSF *xcsf, CL *to,  CL *from);
 	void (*pred_impl_free)(XCSF *xcsf, CL *c);
 	void (*pred_impl_init)(XCSF *xcsf, CL *c);
@@ -97,8 +97,8 @@ static inline double *pred_compute(XCSF *xcsf, CL *c, double *x) {
 	return (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
 }
 
-static inline double pred_pre(XCSF *xcsf, CL *c, int p) {
-	return (*c->pred_vptr->pred_impl_pre)(xcsf, c, p);
+static inline double *pred_pre(XCSF *xcsf, CL *c) {
+	return (*c->pred_vptr->pred_impl_pre)(xcsf, c);
 }
 
 static inline void pred_copy(XCSF *xcsf, CL *to, CL *from) {

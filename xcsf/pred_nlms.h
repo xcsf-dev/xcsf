@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-double pred_nlms_pre(XCSF *xcsf, CL *c, int p);
+double *pred_nlms_pre(XCSF *xcsf, CL *c);
 double *pred_nlms_compute(XCSF *xcsf, CL *c, double *x);
 void pred_nlms_copy(XCSF *xcsf, CL *to,  CL *from);
 void pred_nlms_free(XCSF *xcsf, CL *c);

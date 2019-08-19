@@ -61,6 +61,7 @@ typedef struct XCSF {
     int MAX_TRIALS; // number of problem instances to run in one experiment
     int PERF_AVG_TRIALS; // number of problem instances to average performance output
     int POP_SIZE; // maximum number of macro-classifiers in the population
+    int LOSS_FUNC; // which loss/error function to apply
 
     // classifier parameters
     double ALPHA; // linear coefficient used in calculating classifier accuracy
@@ -117,6 +118,7 @@ typedef struct XCSF {
     // set by environment
     int num_x_vars; // number of problem input variables
     int num_y_vars; // number of problem output variables
+    double (*loss_ptr)(struct XCSF*, double*, double*); // pointer to loss/error function apply
 
 } XCSF;                  
 

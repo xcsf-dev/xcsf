@@ -1,5 +1,5 @@
-/*
- * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
+ /*
+ * Copyright (C) 2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,22 +13,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
  */
 
-double *pred_rls_pre(XCSF *xcsf, CL *c);
-double *pred_rls_compute(XCSF *xcsf, CL *c, double *x);
-void pred_rls_copy(XCSF *xcsf, CL *to,  CL *from);
-void pred_rls_free(XCSF *xcsf, CL *c);
-void pred_rls_init(XCSF *xcsf, CL *c);
-void pred_rls_print(XCSF *xcsf, CL *c);
-void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y);
-
-static struct PredVtbl const pred_rls_vtbl = {
-	&pred_rls_compute,
-	&pred_rls_pre,
-	&pred_rls_copy,
-	&pred_rls_free,
-	&pred_rls_init,
-	&pred_rls_print,
-	&pred_rls_update
-};
+double loss_mse(XCSF *xcsf, double *pred, double *y);
+double loss_rmse(XCSF *xcsf, double *pred, double *y);
+void loss_set_func(XCSF *xcsf);

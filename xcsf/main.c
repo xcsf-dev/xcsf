@@ -29,6 +29,7 @@
 #include "data_structures.h"
 #include "config.h"
 #include "random.h"
+#include "loss.h"
 #include "cl.h"
 #include "cl_set.h"
 #include "ga.h"
@@ -71,7 +72,6 @@ int main(int argc, char **argv)
     INPUT *train_data = malloc(sizeof(INPUT));
     INPUT *test_data = malloc(sizeof(INPUT));
     input_read_csv(argv[1], train_data, test_data);
-
     xcsf->num_x_vars = train_data->x_cols;
     xcsf->num_y_vars = train_data->y_cols;
 
@@ -197,18 +197,13 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
     ga(xcsf, &mset, &kset);
     // increment learning time
     xcsf->time += 1;
+    // update average set size
+    xcsf->msetsize += (mset.size - xcsf->msetsize)*xcsf->BETA;
     // clean up
     set_kill(xcsf, &kset); // kills deleted classifiers
     set_free(xcsf, &mset); // frees the match set list
     // return the system error
-    double error = 0.0;
-    for(int i = 0; i < xcsf->num_y_vars; i++) {
-        error += (y[i]-pred[i])*(y[i]-pred[i]);
-    }
-    error /= xcsf->num_y_vars; // MSE
-    // update average set size
-    xcsf->msetsize += (mset.size - xcsf->msetsize)*xcsf->BETA;
-    return error;
+    return (xcsf->loss_ptr)(xcsf, pred, y);
 }
 
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
@@ -220,18 +215,13 @@ double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
     set_match(xcsf, &mset, &kset, x);
     // calculate system prediction
     set_pred(xcsf, &mset, x, pred);
+    // update average set size
+    xcsf->msetsize += (xcsf->msetsize - mset.size)*xcsf->BETA;
     // clean up
     set_kill(xcsf, &kset); // kills deleted classifiers
     set_free(xcsf, &mset); // frees the match set list  
     // return the system error
-    double error = 0.0;
-    for(int i = 0; i < xcsf->num_y_vars; i++) {
-        error += (y[i]-pred[i])*(y[i]-pred[i]);
-    }
-    error /= xcsf->num_y_vars; // MSE
-    // update average set size
-    xcsf->msetsize += (xcsf->msetsize - mset.size)*xcsf->BETA;
-    return error;      
+    return (xcsf->loss_ptr)(xcsf, pred, y);
 }
 
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)

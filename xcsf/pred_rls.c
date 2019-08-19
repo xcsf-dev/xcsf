@@ -209,11 +209,11 @@ double *pred_rls_compute(XCSF *xcsf, CL *c, double *x)
     return pred->pre;
 } 
 
-double pred_rls_pre(XCSF *xcsf, CL *c, int p)
+double *pred_rls_pre(XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     PRED_RLS *pred = c->pred;
-    return pred->pre[p];
+    return pred->pre;
 }
 
 void pred_rls_print(XCSF *xcsf, CL *c)

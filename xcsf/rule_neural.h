@@ -43,7 +43,7 @@ static struct CondVtbl const rule_neural_cond_vtbl = {
 	&rule_neural_cond_rand
 };      
 
-double rule_neural_pred_pre(XCSF *xcsf, CL *c, int p);
+double *rule_neural_pred_pre(XCSF *xcsf, CL *c);
 double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x);
 void rule_neural_pred_copy(XCSF *xcsf, CL *to,  CL *from);
 void rule_neural_pred_free(XCSF *xcsf, CL *c);
