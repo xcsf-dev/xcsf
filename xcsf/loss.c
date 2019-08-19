@@ -49,6 +49,17 @@ double loss_rmse(XCSF *xcsf, double *pred, double *y)
     return sqrt(error);
 }
 
+double loss_log(XCSF *xcsf, double *pred, double *y)
+{
+    // logistic log loss for multi-class classification
+    // assumes the sum of predictions = 1
+    double error = 0.0;
+    for(int i = 0; i < xcsf->num_y_vars; i++) {
+        error += y[i] * log(fmax(pred[i], 1e-15));
+    }
+    return -error;
+}
+
 void loss_set_func(XCSF *xcsf)
 {
     switch(xcsf->LOSS_FUNC) {
@@ -60,6 +71,9 @@ void loss_set_func(XCSF *xcsf)
             break;
         case 2:
             xcsf->loss_ptr = &loss_rmse;
+            break;
+        case 3:
+            xcsf->loss_ptr = &loss_log;
             break;
         default:
             printf("invalid loss function: %d\n", xcsf->LOSS_FUNC);
