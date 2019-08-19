@@ -56,6 +56,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->GP_NUM_CONS = atoi(getvalue("GP_NUM_CONS"));
     xcsf->HIDDEN_NEURON_ACTIVATION = atoi(getvalue("HIDDEN_NEURON_ACTIVATION"));
     xcsf->LOSS_FUNC = atoi(getvalue("LOSS_FUNC"));
+    xcsf->MAX_FORWARD = atoi(getvalue("MAX_FORWARD"));
     xcsf->MAX_K = atoi(getvalue("MAX_K"));
     xcsf->MAX_T = atoi(getvalue("MAX_T"));
     xcsf->MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));

@@ -20,12 +20,12 @@ typedef double (*activ_ptr)(double);
 
 typedef struct GRAPH {
     int *connectivity; // connectivity map
+    double *weights;
     double *state; // current internal state
     double *initial_state; // initial states
     activ_ptr *activ;
     int n; // number of nodes
     int t; // number of cycles to run
-    double avgk; // average number of active connections
 } GRAPH;
 
 void graph_init(XCSF *xcsf, GRAPH *dgp, int n);
@@ -38,4 +38,3 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
 void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs);
 double graph_output(XCSF *xcsf, GRAPH *dgp, int i);
 void graph_reset(XCSF *xcsf, GRAPH *dgp);
-double graph_avg_k(XCSF *xcsf, GRAPH *dgp);

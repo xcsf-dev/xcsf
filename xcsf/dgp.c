@@ -31,25 +31,25 @@ void node_set_activation(activ_ptr *activ, int func);
 
 void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
 {
-    dgp->avgk = 0.0;
     dgp->t = 0;
     dgp->n = n;
     dgp->state = malloc(sizeof(double)*dgp->n);
     dgp->initial_state = malloc(sizeof(double)*dgp->n);
     dgp->activ = malloc(sizeof(activ_ptr)*dgp->n);
     dgp->connectivity = malloc(sizeof(int)*dgp->n*xcsf->MAX_K);
+    dgp->weights = malloc(sizeof(double)*dgp->n*xcsf->MAX_K);
     graph_rand(xcsf, dgp);
 }
 
 void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from)
 { 	
-    to->avgk = from->avgk;
     to->t = from->t;
     to->n = from->n;
     memcpy(to->state, from->state, sizeof(double)*from->n);
     memcpy(to->initial_state, from->initial_state, sizeof(double)*from->n);
     memcpy(to->activ, from->activ, sizeof(activ_ptr)*from->n);
     memcpy(to->connectivity, from->connectivity, sizeof(int)*from->n*xcsf->MAX_K);
+    memcpy(to->weights, from->weights, sizeof(double)*from->n*xcsf->MAX_K);
 }
 
 double graph_output(XCSF *xcsf, GRAPH *dgp, int i)
@@ -75,34 +75,17 @@ void graph_rand(XCSF *xcsf, GRAPH *dgp)
         dgp->state[i] = ((xcsf->MAX_CON-xcsf->MIN_CON)*drand())+xcsf->MIN_CON;
     }
 
-    // each node
-    for(int i = 0; i < dgp->n; i++) {
-        // each node's connection
-        for(int j = 0; j < xcsf->MAX_K; j++) {
-            int idx = (i*xcsf->MAX_K)+j;
-            if(drand() < 0.5) {
-                dgp->connectivity[idx] = 0; // inert
-            }
-            else {
-                // other nodes within the graph
-                if(drand() < 0.5) {
-                    dgp->connectivity[idx] = irand(1,dgp->n+1);
-                }
-                // external inputs
-                else {
-                    dgp->connectivity[idx] = -(irand(1,xcsf->num_x_vars+1));
-                }
-            }
+    for(int i = 0; i < dgp->n * xcsf->MAX_K; i++) {
+        dgp->weights[i] = (drand()*2.0)-1.0;
+        // other nodes within the graph
+        if(drand() < 0.5) {
+            dgp->connectivity[i] = irand(0,dgp->n);
         }
-    }  
-    // set avg k
-    dgp->avgk = 0;
-    for(int i = 0; i < dgp->n*xcsf->MAX_K; i++) {
-        if(dgp->connectivity[i] != 0) {
-            dgp->avgk++;
+        // external inputs
+        else {
+            dgp->connectivity[i] = -(irand(1,xcsf->num_x_vars+1));
         }
     }
-    dgp->avgk /= (double)dgp->n;
 }
 
 void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs)
@@ -115,18 +98,15 @@ void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs)
         for(int i = dgp->n-1; i >= 0; i--) {
             // each connection
             for(int k = 0; k < xcsf->MAX_K; k++) {
-                int c = dgp->connectivity[(i*xcsf->MAX_K)+k];
-                // inert
-                if(c == 0) {
-                    continue;
-                }
+                int idx = (i*xcsf->MAX_K)+k;
+                int c = dgp->connectivity[idx];
                 // another node within the graph
-                else if(c > 0) {
-                    dgp->state[i] += dgp->state[c-1];
+                if(c >= 0) {
+                    dgp->state[i] += dgp->weights[idx] * dgp->state[c];
                 }
                 // external input
                 else {
-                    dgp->state[i] += inputs[abs(c)-1];
+                    dgp->state[i] += dgp->weights[idx] * inputs[abs(c)-1];
                 }
             }
             dgp->state[i] = dgp->activ[i](dgp->state[i]);
@@ -146,11 +126,11 @@ void graph_print(XCSF *xcsf, GRAPH *dgp)
         }
         printf("]\n");
     }
-    (void)xcsf;
 }
 
 void graph_free(XCSF *xcsf, GRAPH *dgp)
 {
+    free(dgp->weights);
     free(dgp->connectivity);
     free(dgp->state);
     free(dgp->initial_state);
@@ -173,33 +153,37 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
                 fmodified = true;
             }              
         }
+        // mutate initial state
+        if(drand() < xcsf->P_MUTATION) {
+            dgp->initial_state[i] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
+        }
 
         // mutate connectivity map
         for(int j = 0; j < xcsf->MAX_K; j++) {
             int idx = (i*xcsf->MAX_K)+j;
             if(drand() < xcsf->P_MUTATION) {
                 int old = dgp->connectivity[idx];
-                // inert
-                if(drand() < 0.1) {
-                    dgp->connectivity[idx] = 0;
-                }
                 // external connection
-                else if(drand() < 0.2) {
+                if(drand() < 0.2) {
                     dgp->connectivity[idx] = -(irand(1,xcsf->num_x_vars+1));
                 }
                 // another node
                 else {
-                    dgp->connectivity[idx] = irand(1,dgp->n+1);
+                    dgp->connectivity[idx] = irand(0,dgp->n);
                 }
                 if(old != dgp->connectivity[idx]) {
                     cmodified = true;
                 }
             }
+            // mutate weights
+            if(drand() < xcsf->P_MUTATION) {
+                dgp->weights[idx] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
+            }
         }   
     }               
 
     // mutate T
-    if(drand() < xcsf->S_MUTATION) {
+    if(drand() < xcsf->P_MUTATION) {
         int t = dgp->t;
         if(drand() < 0.5) {
             if(dgp->t > 1) {
@@ -215,17 +199,6 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
             tmodified = true;
         }
     }
-
-    // refresh k
-    if(cmodified) {
-        dgp->avgk = 0;
-        for(int i = 0; i < dgp->n*xcsf->MAX_K; i++) {
-            if(dgp->connectivity[i] != 0) {
-                dgp->avgk++;
-            }
-        }
-        dgp->avgk /= (double)dgp->n;
-    }            
 
     if(fmodified || cmodified || tmodified) {
         return true;
@@ -277,27 +250,17 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
             dgp2->connectivity[i] = tmp;
         }
     }  
-
-    // update avg k
-    dgp1->avgk = 0;
-    dgp2->avgk = 0;
-    for(int i = 0; i < dgp1->n*xcsf->MAX_K; i++) {
-        if(dgp1->connectivity[i] != 0) {
-            dgp1->avgk++;
+ 
+    // cross weights
+    for(int i = 0; i < dgp1->n * xcsf->MAX_K; i++) {
+        if(drand() < 0.5) {
+            double tmp = dgp1->weights[i];
+            dgp1->weights[i] = dgp2->weights[i];
+            dgp2->weights[i] = tmp;
         }
-        if(dgp2->connectivity[i] != 0) {
-            dgp2->avgk++;
-        }
-    }
-    dgp1->avgk /= (double)dgp1->n;     
-    dgp2->avgk /= (double)dgp2->n;      
+    }  
+ 
     return true;
-}
-
-double graph_avg_k(XCSF *xcsf, GRAPH *dgp)
-{
-    (void)xcsf;
-    return dgp->avgk;
 }
 
 void node_set_activation(activ_ptr *activ, int func)
