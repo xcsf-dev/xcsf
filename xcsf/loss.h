@@ -16,6 +16,7 @@
  * 
  */
 
+double loss_mae(XCSF *xcsf, double *pred, double *y);
 double loss_mse(XCSF *xcsf, double *pred, double *y);
 double loss_rmse(XCSF *xcsf, double *pred, double *y);
 void loss_set_func(XCSF *xcsf);

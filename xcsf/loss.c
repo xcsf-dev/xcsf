@@ -23,6 +23,16 @@
 #include "data_structures.h"
 #include "loss.h"
 
+double loss_mae(XCSF *xcsf, double *pred, double *y)
+{
+    double error = 0.0;
+    for(int i = 0; i < xcsf->num_y_vars; i++) {
+        error += fabs(y[i] - pred[i]);
+    }
+    error /= (double)xcsf->num_y_vars;
+    return error;
+}
+ 
 double loss_mse(XCSF *xcsf, double *pred, double *y)
 {
     double error = 0.0;
@@ -43,9 +53,12 @@ void loss_set_func(XCSF *xcsf)
 {
     switch(xcsf->LOSS_FUNC) {
         case 0:
-            xcsf->loss_ptr = &loss_mse;
+            xcsf->loss_ptr = &loss_mae;
             break;
         case 1:
+            xcsf->loss_ptr = &loss_mse;
+            break;
+        case 2:
             xcsf->loss_ptr = &loss_rmse;
             break;
         default:
