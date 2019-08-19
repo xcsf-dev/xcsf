@@ -61,6 +61,7 @@ void neural_propagate(XCSF *xcsf, BPN *bpn, double *input);
 void neural_rand(XCSF *xcsf, BPN *bpn);
 void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activ);
 void neuron_set_activation(XCSF *xcsf, NEURON *n, int func);  
+_Bool neural_mutate(XCSF *xcsf, BPN *bpn);
 
 static inline double logistic_activ(double x) {return 1./(1.+exp(-x));}
 static inline double logistic_deriv(double x) {return (1-x)*x;}

@@ -115,32 +115,9 @@ _Bool cond_neural_match_state(XCSF *xcsf, CL *c)
 _Bool cond_neural_mutate(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
-    _Bool mod = false;
     // update mutation rates
     sam_adapt(xcsf, cond->mu);
-    // apply mutation
-    BPN *bpn = &cond->bpn;
-    for(int i = 0; i < bpn->num_layers; i++) {
-        for(int j = 0; j < bpn->num_neurons[i]; j++) {
-            NEURON *n = &bpn->layer[i][j];
-            // mutate activation function
-            if(drand() < xcsf->P_FUNC_MUTATION) {
-                neuron_set_activation(xcsf, n, irand(0,NUM_ACTIVATIONS));
-                mod = true;
-            }
-            // mutate weights and biases
-            for(int k = 0; k < n->num_inputs+1; k++) {
-                if(drand() < xcsf->P_MUTATION) {
-                    double orig = n->weights[k];
-                    n->weights[k] += ((drand()*2.0)-1.0) * xcsf->S_MUTATION;
-                    if(n->weights[k] != orig) {
-                        mod = true;
-                    }
-                }
-            }
-        }
-    }      
-    return mod;
+    return neural_mutate(xcsf, &cond->bpn);
 }
 
 _Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
