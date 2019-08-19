@@ -156,7 +156,7 @@ double cl_update_err(XCSF *xcsf, CL *c, double *y)
 {
     // prediction has been updated for the current input during set_pred()
     double *pred = pred_pre(xcsf, c);
-    double error = loss_mse(xcsf, pred, y);
+    double error = (xcsf->loss_ptr)(xcsf, pred, y);
 
     if(c->exp < 1.0/xcsf->BETA) {
         c->err = (c->err * (c->exp-1.0) + error) / (double)c->exp;
