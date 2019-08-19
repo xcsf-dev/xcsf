@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h> 
+#include <errno.h>
 #include "data_structures.h"
 #include "loss.h"
 
@@ -49,6 +50,6 @@ void loss_set_func(XCSF *xcsf)
             break;
         default:
             printf("invalid loss function: %d\n", xcsf->LOSS_FUNC);
-            exit(0);
+            exit(EXIT_FAILURE);
     }
 }

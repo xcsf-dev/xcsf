@@ -24,6 +24,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <errno.h>
 #include "data_structures.h"
 #include "config.h"
 #include "gp.h"
@@ -171,7 +172,8 @@ void newnvpair(const char *config) {
     }
     // no = found
     if(err == 2) {
-        exit(2);
+        printf("error reading config: no '=' found\n");
+        exit(EXIT_FAILURE);
     }
     // get name
     char *name = malloc(namelen+1);
