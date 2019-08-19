@@ -164,7 +164,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
             if(drand() < xcsf->P_MUTATION) {
                 int old = dgp->connectivity[idx];
                 // external connection
-                if(drand() < 0.2) {
+                if(drand() < 0.5) {
                     dgp->connectivity[idx] = -(irand(1,xcsf->num_x_vars+1));
                 }
                 // another node
