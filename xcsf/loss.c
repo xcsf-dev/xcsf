@@ -52,7 +52,8 @@ double loss_rmse(XCSF *xcsf, double *pred, double *y)
 double loss_log(XCSF *xcsf, double *pred, double *y)
 {
     // logistic log loss for multi-class classification
-    // assumes the sum of predictions = 1
+    // assumes the sum of predictions = 1 and
+    // a single target y_i has a value of 1
     double error = 0.0;
     for(int i = 0; i < xcsf->num_y_vars; i++) {
         error += y[i] * log(fmax(pred[i], 1e-15));
