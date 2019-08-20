@@ -188,7 +188,8 @@ double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
 
 void cl_free(XCSF *xcsf, CL *c)
 {
-	sam_free(xcsf, c->mu);
+    free(c->prediction);
+    sam_free(xcsf, c->mu);
     cond_free(xcsf, c);
     pred_free(xcsf, c);
     free(c);
