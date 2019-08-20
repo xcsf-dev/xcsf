@@ -26,15 +26,15 @@
 #include <stdbool.h>
 #include <math.h>
 #include <errno.h>
-#include "data_structures.h"
+#include "xcsf.h"
 #include "config.h"
 #include "random.h"
 #include "loss.h"
+#include "input.h"
+#include "perf.h"
 #include "cl.h"
 #include "cl_set.h"
 #include "ga.h"
-#include "input.h"
-#include "perf.h"
 
 #ifdef PARALLEL
 #include <omp.h>

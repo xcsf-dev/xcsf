@@ -31,8 +31,8 @@
 #include <string.h>
 #include <math.h>
 #include <float.h>
+#include "xcsf.h"
 #include "random.h"
-#include "data_structures.h"
 #include "gp.h"
  
 #define GP_MAX_LEN 10000

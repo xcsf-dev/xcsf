@@ -21,10 +21,10 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include "xcsf.h"
 #include "random.h"
-#include "data_structures.h"
-#include "cl.h"
 #include "dgp.h"
+#include "cl.h"
 #include "condition.h"
 #include "cond_dgp.h"
 

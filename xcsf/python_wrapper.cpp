@@ -25,12 +25,12 @@ namespace np = boost::python::numpy;
 
 extern "C" {   
 #include <stdbool.h>
-#include "data_structures.h"
+#include "xcsf.h"
 #include "config.h"
 #include "random.h"
 #include "input.h"
-#include "cl_set.h"
 #include "loss.h"
+#include "cl_set.h"
 
 #ifdef PARALLEL
 #include <omp.h>

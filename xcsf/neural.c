@@ -30,7 +30,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include <float.h>
-#include "data_structures.h"
+#include "xcsf.h"
 #include "random.h"
 #include "neural.h"
 

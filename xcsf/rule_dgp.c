@@ -23,7 +23,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
-#include "data_structures.h"
+#include "xcsf.h"
 #include "random.h"
 #include "cl.h"
 #include "dgp.h"

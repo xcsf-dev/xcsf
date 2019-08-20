@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <math.h> 
 #include <errno.h>
-#include "data_structures.h"
+#include "xcsf.h"
 #include "loss.h"
 
 double loss_mae(XCSF *xcsf, double *pred, double *y)

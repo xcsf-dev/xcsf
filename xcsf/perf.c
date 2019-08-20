@@ -29,7 +29,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <errno.h>
-#include "data_structures.h"
+#include "xcsf.h"
 #include "cl.h"
 #include "cl_set.h"
 #include "perf.h"

@@ -28,24 +28,24 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include "xcsf.h"
 #include "random.h"
-#include "data_structures.h"
-#include "cl.h"
+#include "loss.h"
 #include "condition.h"
-#include "prediction.h"
 #include "cond_dummy.h"
 #include "cond_rectangle.h"
 #include "cond_ellipsoid.h"
 #include "cond_gp.h"
 #include "cond_dgp.h"
 #include "cond_neural.h"
+#include "prediction.h"
 #include "pred_nlms.h"
 #include "pred_rls.h"
 #include "pred_neural.h"
 #include "rule_dgp.h"
 #include "rule_neural.h"
-#include "loss.h"
 #include "sam.h"
+#include "cl.h"
 
 double cl_update_err(XCSF *xcsf, CL *c, double *y);
 double cl_update_size(XCSF *xcsf, CL *c, double num_sum);

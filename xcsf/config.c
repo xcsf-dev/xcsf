@@ -25,9 +25,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <errno.h>
-#include "data_structures.h"
-#include "config.h"
+#include "xcsf.h"
 #include "gp.h"
+#include "config.h"
 #include "loss.h"
 
 #define MAXLEN 127

@@ -29,7 +29,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "data_structures.h"
+#include "xcsf.h"
 #include "random.h"
 #include "cl.h"
 #include "cl_set.h"    
