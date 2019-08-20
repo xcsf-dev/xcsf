@@ -29,7 +29,6 @@
 
 typedef struct COND_DGP {
 	GRAPH dgp;
-	_Bool m;
 } COND_DGP;
 
 void cond_dgp_init(XCSF *xcsf, CL *c)
@@ -73,20 +72,13 @@ _Bool cond_dgp_match(XCSF *xcsf, CL *c, double *state)
 	COND_DGP *cond = c->cond;
 	graph_update(xcsf, &cond->dgp, state);
 	if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
-		cond->m = true;
+		c->m = true;
 	}
 	else {
-		cond->m = false;
+		c->m = false;
 	}
-	return cond->m;
+	return c->m;
 }            
-
-_Bool cond_dgp_match_state(XCSF *xcsf, CL *c)
-{
-	(void)xcsf;
-	COND_DGP *cond = c->cond;
-	return cond->m;
-}
 
 _Bool cond_dgp_mutate(XCSF *xcsf, CL *c)
 {

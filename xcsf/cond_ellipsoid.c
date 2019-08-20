@@ -38,7 +38,6 @@
 typedef struct COND_ELLIPSOID {
 	double *center;
 	double *radius;
-	_Bool m;
 } COND_ELLIPSOID;
 
 double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x);
@@ -88,14 +87,13 @@ void cond_ellipsoid_cover(XCSF *xcsf, CL *c, double *x)
 
 _Bool cond_ellipsoid_match(XCSF *xcsf, CL *c, double *x)
 {
-	COND_ELLIPSOID *cond = c->cond;
 	if(cond_ellipsoid_dist(xcsf, c, x) < 1.0) {
-		cond->m = true;
+		c->m = true;
 	}
 	else {
-		cond->m = false;
+		c->m = false;
 	}
-	return cond->m;
+	return c->m;
 }
  
 double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x)
@@ -109,13 +107,6 @@ double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x)
 	return dist;
 }
  
-_Bool cond_ellipsoid_match_state(XCSF *xcsf, CL *c)
-{
-	(void)xcsf;
-	COND_ELLIPSOID *cond = c->cond;
-	return cond->m;
-}
-
 _Bool cond_ellipsoid_crossover(XCSF *xcsf, CL *c1, CL *c2) 
 {
 	COND_ELLIPSOID *cond1 = c1->cond;

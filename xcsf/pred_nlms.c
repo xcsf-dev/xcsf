@@ -38,7 +38,6 @@
 typedef struct PRED_NLMS {
 	int weights_length;
 	double **weights;
-	double *pre;
 } PRED_NLMS;
 
 void pred_nlms_init(XCSF *xcsf, CL *c)
@@ -65,8 +64,6 @@ void pred_nlms_init(XCSF *xcsf, CL *c)
 			pred->weights[var][i] = 0.0;
 		}
 	}
-
-	pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
 }
 
 void pred_nlms_copy(XCSF *xcsf, CL *to, CL *from)
@@ -77,7 +74,6 @@ void pred_nlms_copy(XCSF *xcsf, CL *to, CL *from)
 		memcpy(to_pred->weights[var], from_pred->weights[var], 
 				sizeof(double)*from_pred->weights_length);
 	}
-	memcpy(to_pred->pre, from_pred->pre, sizeof(double) * xcsf->num_y_vars);
 }
 
 void pred_nlms_free(XCSF *xcsf, CL *c)
@@ -87,7 +83,6 @@ void pred_nlms_free(XCSF *xcsf, CL *c)
 		free(pred->weights[var]);
 	}
 	free(pred->weights);
-	free(pred->pre);
 	free(pred);
 }
 
@@ -100,9 +95,9 @@ void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y)
 		norm += x[i] * x[i];
 	}      
 
-	// pre has been updated for the current state during set_pred()
+	// prediction has been updated for the current state during set_pred()
 	for(int var = 0; var < xcsf->num_y_vars; var++) {
-		double error = y[var] - pred->pre[var]; // pred_nlms_compute(c, x);
+		double error = y[var] - c->prediction[var]; // pred_nlms_compute(c, x);
 		double correction = (xcsf->ETA * error) / norm;
 		// update first coefficient
 		pred->weights[var][0] += xcsf->X0 * correction;
@@ -144,17 +139,10 @@ double *pred_nlms_compute(XCSF *xcsf, CL *c, double *x)
 			}
 		}
 
-		pred->pre[var] = pre;
+		c->prediction[var] = pre;
 	}
-	return pred->pre;
+	return c->prediction;
 } 
-
-double *pred_nlms_pre(XCSF *xcsf, CL *c)
-{
-	(void)xcsf;
-	PRED_NLMS *pred = c->pred;
-	return pred->pre;
-}
 
 void pred_nlms_print(XCSF *xcsf, CL *c)
 {

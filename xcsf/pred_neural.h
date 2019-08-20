@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-double *pred_neural_pre(XCSF *xcsf, CL *c);
 double *pred_neural_compute(XCSF *xcsf, CL *c, double *x);
 void pred_neural_copy(XCSF *xcsf, CL *to,  CL *from);
 void pred_neural_free(XCSF *xcsf, CL *c);
@@ -25,7 +24,6 @@ void pred_neural_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const pred_neural_vtbl = {
 	&pred_neural_compute,
-	&pred_neural_pre,
 	&pred_neural_copy,
 	&pred_neural_free,
 	&pred_neural_init,

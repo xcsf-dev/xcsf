@@ -123,7 +123,7 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
     }
     // build m list
     for(int i = 0; i < xcsf->pset.size; i++) {
-        if(cl_match_state(xcsf, blist[i]->cl)) {
+        if(cl_m(xcsf, blist[i]->cl)) {
             set_add(xcsf, mset, blist[i]->cl);
         }
     }

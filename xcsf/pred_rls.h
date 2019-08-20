@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-double *pred_rls_pre(XCSF *xcsf, CL *c);
 double *pred_rls_compute(XCSF *xcsf, CL *c, double *x);
 void pred_rls_copy(XCSF *xcsf, CL *to,  CL *from);
 void pred_rls_free(XCSF *xcsf, CL *c);
@@ -25,7 +24,6 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const pred_rls_vtbl = {
 	&pred_rls_compute,
-	&pred_rls_pre,
 	&pred_rls_copy,
 	&pred_rls_free,
 	&pred_rls_init,

@@ -55,6 +55,8 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
     c->exp = 0;
     c->size = size;
     c->time = time;
+    c->prediction = calloc(xcsf->num_y_vars, sizeof(double));
+    c->m = false;
 
     switch(xcsf->PRED_TYPE) {
         case 0:
@@ -157,8 +159,7 @@ void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num)
 double cl_update_err(XCSF *xcsf, CL *c, double *y)
 {
     // prediction has been updated for the current input during set_pred()
-    double *pred = pred_pre(xcsf, c);
-    double error = (xcsf->loss_ptr)(xcsf, pred, y);
+    double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
 
     if(c->exp < 1.0/xcsf->BETA) {
         c->err = (c->err * (c->exp-1.0) + error) / (double)c->exp;
@@ -228,9 +229,10 @@ _Bool cl_match(XCSF *xcsf, CL *c, double *x)
     return cond_match(xcsf, c, x);
 }
 
-_Bool cl_match_state(XCSF *xcsf, CL *c)
+_Bool cl_m(XCSF *xcsf, CL *c)
 {
-    return cond_match_state(xcsf, c);
+    (void)xcsf;
+    return c->m;
 }
 
 double *cl_predict(XCSF *xcsf, CL *c, double *x)

@@ -18,7 +18,6 @@
 _Bool cond_dummy_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_dummy_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_dummy_match(XCSF *xcsf, CL *c, double *x);
-_Bool cond_dummy_match_state(XCSF *xcsf, CL *c);
 _Bool cond_dummy_mutate(XCSF *xcsf, CL *c);
 void cond_dummy_copy(XCSF *xcsf, CL *to, CL *from);
 void cond_dummy_cover(XCSF *xcsf, CL *c, double *x);
@@ -31,7 +30,6 @@ static struct CondVtbl const cond_dummy_vtbl = {
 	&cond_dummy_crossover,
 	&cond_dummy_general,
 	&cond_dummy_match,
-	&cond_dummy_match_state,
 	&cond_dummy_mutate,
 	&cond_dummy_copy,
 	&cond_dummy_cover,

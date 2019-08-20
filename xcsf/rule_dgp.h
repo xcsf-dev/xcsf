@@ -18,7 +18,6 @@
 _Bool rule_dgp_cond_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool rule_dgp_cond_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool rule_dgp_cond_match(XCSF *xcsf, CL *c, double *x);
-_Bool rule_dgp_cond_match_state(XCSF *xcsf, CL *c);
 _Bool rule_dgp_cond_mutate(XCSF *xcsf, CL *c);
 void rule_dgp_cond_copy(XCSF *xcsf, CL *to, CL *from);
 void rule_dgp_cond_cover(XCSF *xcsf, CL *c, double *x);
@@ -31,7 +30,6 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
 	&rule_dgp_cond_crossover,
 	&rule_dgp_cond_general,
 	&rule_dgp_cond_match,
-	&rule_dgp_cond_match_state,
 	&rule_dgp_cond_mutate,
 	&rule_dgp_cond_copy,
 	&rule_dgp_cond_cover,
@@ -41,7 +39,6 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
 	&rule_dgp_cond_rand
 };      
 
-double *rule_dgp_pred_pre(XCSF *xcsf, CL *c);
 double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x);
 void rule_dgp_pred_copy(XCSF *xcsf, CL *to,  CL *from);
 void rule_dgp_pred_free(XCSF *xcsf, CL *c);
@@ -51,7 +48,6 @@ void rule_dgp_pred_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const rule_dgp_pred_vtbl = {
 	&rule_dgp_pred_compute,
-	&rule_dgp_pred_pre,
 	&rule_dgp_pred_copy,
 	&rule_dgp_pred_free,
 	&rule_dgp_pred_init,

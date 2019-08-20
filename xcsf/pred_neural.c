@@ -37,7 +37,6 @@
 
 typedef struct PRED_NEURAL {
     BPN bpn;
-    double *pre;
 } PRED_NEURAL;
 
 void pred_neural_init(XCSF *xcsf, CL *c)
@@ -49,7 +48,6 @@ void pred_neural_init(XCSF *xcsf, CL *c)
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
     // initialise neural network
     neural_init(xcsf, &pred->bpn, 3, neurons, activations);
-    pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
     c->pred = pred;
 }
 
@@ -57,7 +55,6 @@ void pred_neural_free(XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     neural_free(xcsf, &pred->bpn);
-    free(pred->pre);
     free(pred);
 }
 
@@ -79,16 +76,9 @@ double *pred_neural_compute(XCSF *xcsf, CL *c, double *x)
     PRED_NEURAL *pred = c->pred;
     neural_propagate(xcsf, &pred->bpn, x);
     for(int i = 0; i < xcsf->num_y_vars; i++) {
-        pred->pre[i] = neural_output(xcsf, &pred->bpn, i);
+        c->prediction[i] = neural_output(xcsf, &pred->bpn, i);
     }
-    return pred->pre;
-}
-
-double *pred_neural_pre(XCSF *xcsf, CL *c)
-{
-    (void)xcsf;
-    PRED_NEURAL *pred = c->pred;
-    return pred->pre;
+    return c->prediction;
 }
 
 void pred_neural_print(XCSF *xcsf, CL *c)

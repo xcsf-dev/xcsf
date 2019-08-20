@@ -38,7 +38,6 @@
 typedef struct COND_RECTANGLE {
 	double *lower;
 	double *upper;
-	_Bool m;
 } COND_RECTANGLE;
 
 void cond_rectangle_bounds(XCSF *xcsf, double *l, double *u);
@@ -114,19 +113,12 @@ _Bool cond_rectangle_match(XCSF *xcsf, CL *c, double *x)
 	COND_RECTANGLE *cond = c->cond;
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
 		if(cond->lower[i] > x[i] || cond->upper[i] < x[i]) {
-			cond->m = false;
-			return false;
+			c->m = false;
+			return c->m;
 		}
 	}
-	cond->m = true;
-	return cond->m;
-}
-
-_Bool cond_rectangle_match_state(XCSF *xcsf, CL *c)
-{
-	(void)xcsf;
-	COND_RECTANGLE *cond = c->cond;
-	return cond->m;
+	c->m = true;
+	return c->m;
 }
 
 _Bool cond_rectangle_crossover(XCSF *xcsf, CL *c1, CL *c2) 

@@ -35,13 +35,11 @@
 
 typedef struct RULE_NEURAL_COND {
     BPN bpn;
-    _Bool m;
 } RULE_NEURAL_COND;
 
 typedef struct RULE_NEURAL_PRED {
     BPN bpn;
     double *input;
-    double *pre;
 } RULE_NEURAL_PRED;
 
 void rule_neural_cond_init(XCSF *xcsf, CL *c)
@@ -89,20 +87,13 @@ _Bool rule_neural_cond_match(XCSF *xcsf, CL *c, double *x)
     RULE_NEURAL_COND *cond = c->cond;
     neural_propagate(xcsf, &cond->bpn, x);
     if(neural_output(xcsf, &cond->bpn, 0) > 0.5) {
-        cond->m = true;
+        c->m = true;
     }
     else {
-        cond->m = false;
+        c->m = false;
     }
-    return cond->m;
+    return c->m;
 }    
-
-_Bool rule_neural_cond_match_state(XCSF *xcsf, CL *c)
-{
-    (void)xcsf;
-    RULE_NEURAL_COND *cond = c->cond;
-    return cond->m;
-}
 
 _Bool rule_neural_cond_mutate(XCSF *xcsf, CL *c)
 {
@@ -141,7 +132,6 @@ void rule_neural_pred_init(XCSF *xcsf, CL *c)
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
     // initialise neural network
     neural_init(xcsf, &pred->bpn, 3, neurons, activations);
-    pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
     pred->input = malloc(sizeof(double) * xcsf->MAX_FORWARD);
     c->pred = pred;
 }
@@ -150,7 +140,6 @@ void rule_neural_pred_free(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_PRED *pred = c->pred;
     neural_free(xcsf, &pred->bpn);
-    free(pred->pre);
     free(pred->input);
     free(c->pred);
 }
@@ -181,16 +170,9 @@ double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x)
     // propagate outputs through prediction network
     neural_propagate(xcsf, &pred->bpn, pred->input);
     for(int i = 0; i <  xcsf->num_y_vars; i++) {
-        pred->pre[i] = neural_output(xcsf, &pred->bpn, i);
+        c->prediction[i] = neural_output(xcsf, &pred->bpn, i);
     }
-    return pred->pre;
-}
-
-double *rule_neural_pred_pre(XCSF *xcsf, CL *c)
-{
-    (void)xcsf;
-    RULE_NEURAL_PRED *pred = c->pred;
-    return pred->pre;
+    return c->prediction;
 }
 
 void rule_neural_pred_print(XCSF *xcsf, CL *c)

@@ -34,6 +34,8 @@ typedef struct CL {
     int exp; // experience
     double size; // average set size
     int time; // time of creation
+    _Bool m; // whether the classifier matches current input
+    double *prediction; // current classifier prediction
 } CL;
 
 // classifier linked list node

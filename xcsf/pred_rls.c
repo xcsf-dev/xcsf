@@ -38,13 +38,11 @@ typedef struct PRED_RLS {
     int weights_length;
     double **weights;
     double *matrix;
-    double *pre;   
     // temporary storage for updating weights
     double *tmp_input;
     double *tmp_vec;
     double *tmp_matrix1;
     double *tmp_matrix2;
-
 } PRED_RLS;
 
 void pred_rls_init(XCSF *xcsf, CL *c)
@@ -75,8 +73,6 @@ void pred_rls_init(XCSF *xcsf, CL *c)
     int len_sqrd = pred->weights_length * pred->weights_length;
     pred->matrix = malloc(sizeof(double) * len_sqrd);
     init_matrix(xcsf, pred->matrix, pred->weights_length);
-    // initialise current prediction
-    pred->pre = malloc(sizeof(double) * xcsf->num_y_vars);
     // initialise temporary storage for weight updating
     pred->tmp_input = malloc(sizeof(double) * pred->weights_length);
     pred->tmp_vec = malloc(sizeof(double) * pred->weights_length);
@@ -106,7 +102,6 @@ void pred_rls_copy(XCSF *xcsf, CL *to, CL *from)
         memcpy(to_pred->weights[var], from_pred->weights[var], 
                 sizeof(double)*from_pred->weights_length);
     }
-    memcpy(to_pred->pre, from_pred->pre, sizeof(double) * xcsf->num_y_vars);
 }
 
 void pred_rls_free(XCSF *xcsf, CL *c)
@@ -117,7 +112,6 @@ void pred_rls_free(XCSF *xcsf, CL *c)
     }
     free(pred->weights);
     free(pred->matrix);
-    free(pred->pre);
     free(pred->tmp_input);
     free(pred->tmp_vec);
     free(pred->tmp_matrix1);
@@ -154,9 +148,9 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
         pred->tmp_vec[i] /= divisor;
     }
     // update weights using the error
-    // pre has been updated for the current state during set_pred()
+    // prediction has been updated for the current state during set_pred()
     for(int var = 0; var < xcsf->num_y_vars; var++) {
-        double error = y[var] - pred->pre[var]; // pred_compute();
+        double error = y[var] - c->prediction[var]; // pred_compute();
         for(int i = 0; i < n; i++) {
             pred->weights[var][i] += error * pred->tmp_vec[i];
         }
@@ -204,17 +198,10 @@ double *pred_rls_compute(XCSF *xcsf, CL *c, double *x)
             }
         }
 
-        pred->pre[var] = pre;
+        c->prediction[var] = pre;
     }
-    return pred->pre;
+    return c->prediction;
 } 
-
-double *pred_rls_pre(XCSF *xcsf, CL *c)
-{
-    (void)xcsf;
-    PRED_RLS *pred = c->pred;
-    return pred->pre;
-}
 
 void pred_rls_print(XCSF *xcsf, CL *c)
 {

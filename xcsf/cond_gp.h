@@ -19,7 +19,6 @@
 _Bool cond_gp_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_gp_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_gp_match(XCSF *xcsf, CL *c, double *x);
-_Bool cond_gp_match_state(XCSF *xcsf, CL *c);
 _Bool cond_gp_mutate(XCSF *xcsf, CL *c);
 void cond_gp_copy(XCSF *xcsf, CL *to, CL *from);
 void cond_gp_cover(XCSF *xcsf, CL *c, double *x);
@@ -32,7 +31,6 @@ static struct CondVtbl const cond_gp_vtbl = {
 	&cond_gp_crossover,
 	&cond_gp_general,
 	&cond_gp_match,
-	&cond_gp_match_state,
 	&cond_gp_mutate,
 	&cond_gp_copy,
 	&cond_gp_cover,

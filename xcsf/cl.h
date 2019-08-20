@@ -22,7 +22,6 @@ struct CondVtbl {
 	_Bool (*cond_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
 	_Bool (*cond_impl_general)(XCSF *xcsf, CL *c1, CL *c2);
 	_Bool (*cond_impl_match)(XCSF *xcsf, CL *c, double *x);
-	_Bool (*cond_impl_match_state)(XCSF *xcsf, CL *c);
 	_Bool (*cond_impl_mutate)(XCSF *xcsf, CL *c);
 	void (*cond_impl_copy)(XCSF *xcsf, CL *to, CL *from);
 	void (*cond_impl_cover)(XCSF *xcsf, CL *c, double *x);
@@ -42,10 +41,6 @@ static inline _Bool cond_general(XCSF *xcsf, CL *c1, CL *c2) {
 
 static inline _Bool cond_match(XCSF *xcsf, CL *c, double *x) {
 	return (*c->cond_vptr->cond_impl_match)(xcsf, c, x);
-}
-
-static inline _Bool cond_match_state(XCSF *xcsf, CL *c) {
-	return (*c->cond_vptr->cond_impl_match_state)(xcsf, c);
 }
 
 static inline _Bool cond_mutate(XCSF *xcsf, CL *c) {
@@ -80,7 +75,6 @@ static inline void cond_rand(XCSF *xcsf, CL *c) {
 
 struct PredVtbl {
 	double *(*pred_impl_compute)(XCSF *xcsf, CL *c, double *x);
-	double *(*pred_impl_pre)(XCSF *xcsf, CL *c);
 	void (*pred_impl_copy)(XCSF *xcsf, CL *to,  CL *from);
 	void (*pred_impl_free)(XCSF *xcsf, CL *c);
 	void (*pred_impl_init)(XCSF *xcsf, CL *c);
@@ -90,10 +84,6 @@ struct PredVtbl {
 
 static inline double *pred_compute(XCSF *xcsf, CL *c, double *x) {
 	return (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
-}
-
-static inline double *pred_pre(XCSF *xcsf, CL *c) {
-	return (*c->pred_vptr->pred_impl_pre)(xcsf, c);
 }
 
 static inline void pred_copy(XCSF *xcsf, CL *to, CL *from) {
@@ -120,7 +110,7 @@ static inline void pred_update(XCSF *xcsf, CL *c, double *x, double *y) {
 _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cl_match(XCSF *xcsf, CL *c, double *x);
-_Bool cl_match_state(XCSF *xcsf, CL *c);
+_Bool cl_m(XCSF *xcsf, CL *c);
 _Bool cl_mutate(XCSF *xcsf, CL *c);
 _Bool cl_subsumer(XCSF *xcsf, CL *c);
 double *cl_predict(XCSF *xcsf, CL *c, double *x);

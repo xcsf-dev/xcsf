@@ -37,7 +37,6 @@
 
 typedef struct COND_GP {
 	GP_TREE gp;
-	_Bool m;
 } COND_GP;
 
 void cond_gp_init(XCSF *xcsf, CL *c)
@@ -83,25 +82,17 @@ _Bool cond_gp_match(XCSF *xcsf, CL *c, double *state)
 	cond->gp.p = 0;
 	double result = tree_eval(xcsf, &cond->gp, state);
 	if(result > 0.5) {
-		cond->m = true;
+		c->m = true;
 	}
 	else {
-		cond->m = false;
+		c->m = false;
 	}
-	return cond->m;
+	return c->m;
 }    
-
-_Bool cond_gp_match_state(XCSF *xcsf, CL *c)
-{
-	(void)xcsf;
-	COND_GP *cond = c->cond;
-	return cond->m;
-}
 
 _Bool cond_gp_mutate(XCSF *xcsf, CL *c)
 {
 	COND_GP *cond = c->cond;
-    // apply mutation
 	if(rand_uniform(0,1) < xcsf->P_MUTATION) {
 		tree_mutation(xcsf, &cond->gp, xcsf->P_MUTATION);
 		return true;

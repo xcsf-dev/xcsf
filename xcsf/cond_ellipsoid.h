@@ -18,7 +18,6 @@
 _Bool cond_ellipsoid_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_ellipsoid_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_ellipsoid_match(XCSF *xcsf, CL *c, double *x);
-_Bool cond_ellipsoid_match_state(XCSF *xcsf, CL *c);
 _Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c);
 void cond_ellipsoid_copy(XCSF *xcsf, CL *to, CL *from);
 void cond_ellipsoid_cover(XCSF *xcsf, CL *c, double *x);
@@ -31,7 +30,6 @@ static struct CondVtbl const cond_ellipsoid_vtbl = {
 	&cond_ellipsoid_crossover,
 	&cond_ellipsoid_general,
 	&cond_ellipsoid_match,
-	&cond_ellipsoid_match_state,
 	&cond_ellipsoid_mutate,
 	&cond_ellipsoid_copy,
 	&cond_ellipsoid_cover,

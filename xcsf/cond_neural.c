@@ -37,7 +37,6 @@
 
 typedef struct COND_NEURAL {
     BPN bpn;
-    _Bool m;
 } COND_NEURAL;
 
 void cond_neural_init(XCSF *xcsf, CL *c)
@@ -86,20 +85,13 @@ _Bool cond_neural_match(XCSF *xcsf, CL *c, double *x)
     COND_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->bpn, x);
     if(neural_output(xcsf, &cond->bpn, 0) > 0.5) {
-        cond->m = true;
+        c->m = true;
     }
     else {
-        cond->m = false;
+        c->m = false;
     }
-    return cond->m;
+    return c->m;
 }                
-
-_Bool cond_neural_match_state(XCSF *xcsf, CL *c)
-{
-    (void)xcsf;
-    COND_NEURAL *cond = c->cond;
-    return cond->m;
-}
 
 _Bool cond_neural_mutate(XCSF *xcsf, CL *c)
 {
