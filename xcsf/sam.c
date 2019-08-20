@@ -99,7 +99,6 @@ void sam_10_rates_init(XCSF *xcsf, double **mu)
 
 void sam_log_normal_adapt(XCSF *xcsf, double *mu)
 {
-    // adapt rates
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         mu[i] *= exp(rand_normal());
         if(mu[i] < xcsf->SAM_MIN) {
