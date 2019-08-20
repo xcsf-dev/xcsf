@@ -182,6 +182,7 @@ struct XCS
 	int get_theta_offspring() { return xcs.THETA_OFFSPRING; }
 	double get_mueps_0() { return xcs.muEPS_0; }
 	int get_num_sam() { return xcs.NUM_SAM; }
+	int get_sam_type() { return xcs.SAM_TYPE; }
 	double get_max_con() { return xcs.MAX_CON; }
 	double get_min_con() { return xcs.MIN_CON; }
 	double get_s_mutation() { return xcs.S_MUTATION; }
@@ -243,6 +244,7 @@ struct XCS
 	void set_theta_offspring(int a) { xcs.THETA_OFFSPRING = a; }
 	void set_mueps_0(double a) { xcs.muEPS_0 = a; }
 	void set_num_sam(int a) { xcs.NUM_SAM = a; }
+	void set_sam_type(int a) { xcs.SAM_TYPE = a; }
 	void set_max_con(double a) { xcs.MAX_CON = a; }
 	void set_min_con(double a) { xcs.MIN_CON = a; }
 	void set_s_mutation(double a) { xcs.S_MUTATION = a; }
@@ -305,6 +307,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("THETA_OFFSPRING", &XCS::get_theta_offspring, &XCS::set_theta_offspring)
 		.add_property("muEPS_0", &XCS::get_mueps_0, &XCS::set_mueps_0)
 		.add_property("NUM_SAM", &XCS::get_num_sam, &XCS::set_num_sam)
+		.add_property("SAM_TYPE", &XCS::get_sam_type, &XCS::set_sam_type)
 		.add_property("MAX_CON", &XCS::get_max_con, &XCS::set_max_con)
 		.add_property("MIN_CON", &XCS::get_min_con, &XCS::set_min_con)
 		.add_property("S_MUTATION", &XCS::get_s_mutation, &XCS::set_s_mutation)

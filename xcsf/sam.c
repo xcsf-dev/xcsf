@@ -19,8 +19,7 @@
  **************
  * The self-adaptive mutation module.
  *
- * Initialises the classifier mutation rates and performs self-adaptation using
- * a normal distribution.
+ * Initialises the classifier mutation rates and performs self-adaptation.
  */
 
 #include <stdio.h>
@@ -31,16 +30,36 @@
 #include "data_structures.h"
 #include "random.h"
 
+void sam_log_normal_init(XCSF *xcsf, double **mu);
+void sam_log_normal_adapt(XCSF *xcsf, double *mu);
+
+void sam_10_rates_init(XCSF *xcsf, double **mu);
+void sam_10_rates_adapt(XCSF *xcsf, double *mu);
+static const double mrates[10] = {0.0001,0.001,0.002,0.005,0.01,0.01,0.02,0.05,0.1,1.0}; 
+
 void sam_init(XCSF *xcsf, double **mu)
 {
 	if(xcsf->NUM_SAM > 0) {
 		*mu = malloc(sizeof(double) * xcsf->NUM_SAM);
-		for(int i = 0; i < xcsf->NUM_SAM; i++) {
-			(*mu)[i] = rand_uniform(0,1);
-		}
-	}
+        if(xcsf->SAM_TYPE == 0) {
+            sam_log_normal_init(xcsf, mu);
+        }
+        else {
+            sam_10_rates_init(xcsf, mu);
+        }
+    }
 }
-
+  
+void sam_adapt(XCSF *xcsf, double *mu)
+{
+    if(xcsf->SAM_TYPE == 0) {
+        sam_log_normal_adapt(xcsf, mu);
+    }
+    else {
+        sam_10_rates_adapt(xcsf, mu);
+    }
+}
+ 
 void sam_copy(XCSF *xcsf, double *to, double *from)
 {
 	memcpy(to, from, sizeof(double) * xcsf->NUM_SAM);
@@ -52,8 +71,34 @@ void sam_free(XCSF *xcsf, double *mu)
 		free(mu);
 	}
 }
+ 
+void sam_print(XCSF *xcsf, double *mu)
+{
+	printf("mu: \n");
+	for(int i = 0; i < xcsf->NUM_SAM; i++) {
+		printf("%f, ", mu[i]);
+	}
+	printf("\n");
+}
 
-void sam_adapt(XCSF *xcsf, double *mu)
+void sam_log_normal_init(XCSF *xcsf, double **mu)
+{
+    for(int i = 0; i < xcsf->NUM_SAM; i++) {
+        (*mu)[i] = rand_uniform(0,1);
+    }
+}
+
+void sam_10_rates_init(XCSF *xcsf, double **mu)
+{
+    // initialise 10 possible mutation rates
+
+    // select one of the rates
+    for(int i = 0; i < xcsf->NUM_SAM; i++) {
+        (*mu)[i] = mrates[irand_uniform(0,10)];
+    }
+}
+
+void sam_log_normal_adapt(XCSF *xcsf, double *mu)
 {
 	// adapt rates
 	for(int i = 0; i < xcsf->NUM_SAM; i++) {
@@ -77,11 +122,11 @@ void sam_adapt(XCSF *xcsf, double *mu)
 	} 
 }
 
-void sam_print(XCSF *xcsf, double *mu)
+void sam_10_rates_adapt(XCSF *xcsf, double *mu)
 {
-	printf("mu: \n");
 	for(int i = 0; i < xcsf->NUM_SAM; i++) {
-		printf("%f, ", mu[i]);
-	}
-	printf("\n");
+        if(rand_uniform(0,1) < 0.1) {
+            mu[i] = mrates[irand_uniform(0,10)];
+        }
+    }
 }

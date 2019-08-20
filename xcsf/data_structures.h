@@ -89,8 +89,9 @@ typedef struct XCSF {
     int THETA_OFFSPRING; // number of offspring to create each GA invocation
 
     // self-adaptive mutation parameters
-    double muEPS_0; // minimum value of a self-adaptive mutation rate
+    int SAM_TYPE; // 0 = log normal, 1 = ten normally distributed rates
     int NUM_SAM; // number of self-adaptive mutation rates
+    double muEPS_0; // minimum value of a self-adaptive mutation rate
 
     // classifier condition parameters
     double MAX_CON; // maximum value expected from inputs

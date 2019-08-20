@@ -66,6 +66,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
     xcsf->POP_SIZE = atoi(getvalue("POP_SIZE"));
     xcsf->PRED_TYPE = atoi(getvalue("PRED_TYPE"));
+    xcsf->SAM_TYPE = atoi(getvalue("SAM_TYPE"));
     xcsf->THETA_MNA = atoi(getvalue("THETA_MNA"));
     xcsf->THETA_OFFSPRING = atoi(getvalue("THETA_OFFSPRING"));
     // floats
