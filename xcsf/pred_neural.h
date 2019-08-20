@@ -16,10 +16,8 @@
  */
 
 double *pred_neural_compute(XCSF *xcsf, CL *c, double *x);
-_Bool pred_neural_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_neural_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_neural_mutate(XCSF *xcsf, CL *c);
-void pred_neural_rand(XCSF *xcsf, CL *c);
 void pred_neural_copy(XCSF *xcsf, CL *to,  CL *from);
 void pred_neural_free(XCSF *xcsf, CL *c);
 void pred_neural_init(XCSF *xcsf, CL *c);
@@ -27,9 +25,7 @@ void pred_neural_print(XCSF *xcsf, CL *c);
 void pred_neural_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const pred_neural_vtbl = {
-    &pred_neural_general,
     &pred_neural_crossover,
-    &pred_neural_rand,
     &pred_neural_mutate,
     &pred_neural_compute,
     &pred_neural_copy,

@@ -156,12 +156,6 @@ void pred_nlms_print(XCSF *xcsf, CL *c)
 	}
 }
  
-_Bool pred_nlms_general(XCSF *xcsf, CL *c1, CL *c2)
-{
-    (void)xcsf; (void)c1; (void)c2;
-    return true;
-}
- 
 _Bool pred_nlms_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
@@ -172,9 +166,4 @@ _Bool pred_nlms_mutate(XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
     return false;
-}
-
-void pred_nlms_rand(XCSF *xcsf, CL *c)
-{
-    (void)xcsf; (void)c;
 }

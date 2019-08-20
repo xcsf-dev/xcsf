@@ -73,9 +73,7 @@ static inline void cond_rand(XCSF *xcsf, CL *c) {
 // classifier prediction    
 
 struct PredVtbl {
-	_Bool (*pred_impl_general)(XCSF *xcsf, CL *c1, CL *c2);
 	_Bool (*pred_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
-	void (*pred_impl_rand)(XCSF *xcsf, CL *c);
 	_Bool (*pred_impl_mutate)(XCSF *xcsf, CL *c);
 	double *(*pred_impl_compute)(XCSF *xcsf, CL *c, double *x);
 	void (*pred_impl_copy)(XCSF *xcsf, CL *to,  CL *from);
@@ -85,16 +83,8 @@ struct PredVtbl {
 	void (*pred_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
 };
  
-static inline _Bool pred_general(XCSF *xcsf, CL *c1, CL *c2) {
-	return (*c1->pred_vptr->pred_impl_general)(xcsf, c1, c2);
-}
- 
 static inline _Bool pred_crossover(XCSF *xcsf, CL *c1, CL *c2) {
 	return (*c1->pred_vptr->pred_impl_crossover)(xcsf, c1, c2);
-}
- 
-static inline void pred_rand(XCSF *xcsf, CL *c) {
-	(*c->pred_vptr->pred_impl_rand)(xcsf, c);
 }
  
 static inline _Bool pred_mutate(XCSF *xcsf, CL *c) {

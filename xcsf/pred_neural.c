@@ -87,12 +87,6 @@ void pred_neural_print(XCSF *xcsf, CL *c)
     neural_print(xcsf, &pred->bpn);
 }  
  
-_Bool pred_neural_general(XCSF *xcsf, CL *c1, CL *c2)
-{
-    (void)xcsf; (void)c1; (void)c2;
-    return true;
-}
- 
 _Bool pred_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
@@ -103,9 +97,4 @@ _Bool pred_neural_mutate(XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
     return false;
-}
-
-void pred_neural_rand(XCSF *xcsf, CL *c)
-{
-    (void)xcsf; (void)c;
 }

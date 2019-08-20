@@ -176,13 +176,7 @@ void rule_neural_pred_print(XCSF *xcsf, CL *c)
     RULE_NEURAL_PRED *pred = c->pred;
     neural_print(xcsf, &pred->bpn);
 }  
- 
-_Bool rule_neural_pred_general(XCSF *xcsf, CL *c1, CL *c2)
-{
-    (void)xcsf; (void)c1; (void)c2;
-    return true;
-}
- 
+
 _Bool rule_neural_pred_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
@@ -193,9 +187,4 @@ _Bool rule_neural_pred_mutate(XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
     return false;
-}
-
-void rule_neural_pred_rand(XCSF *xcsf, CL *c)
-{
-    (void)xcsf; (void)c;
 }
