@@ -218,7 +218,10 @@ void cl_cover(XCSF *xcsf, CL *c, double *x)
 
 _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-    return cond_general(xcsf, c1, c2);
+    if(cond_general(xcsf, c1, c2)) {
+        return pred_general(xcsf, c1, c2);
+    }
+    return false;
 }
 
 void cl_rand(XCSF *xcsf, CL *c)

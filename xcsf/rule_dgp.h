@@ -40,6 +40,7 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
 };      
 
 double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x);
+_Bool rule_dgp_pred_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool rule_dgp_pred_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool rule_dgp_pred_mutate(XCSF *xcsf, CL *c);
 void rule_dgp_pred_rand(XCSF *xcsf, CL *c);
@@ -50,6 +51,7 @@ void rule_dgp_pred_print(XCSF *xcsf, CL *c);
 void rule_dgp_pred_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const rule_dgp_pred_vtbl = {
+    &rule_dgp_pred_general,
     &rule_dgp_pred_crossover,
     &rule_dgp_pred_rand,
     &rule_dgp_pred_mutate,

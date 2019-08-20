@@ -16,6 +16,7 @@
  */
 
 double *pred_rls_compute(XCSF *xcsf, CL *c, double *x);
+_Bool pred_rls_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_rls_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_rls_mutate(XCSF *xcsf, CL *c);
 void pred_rls_rand(XCSF *xcsf, CL *c);
@@ -26,6 +27,7 @@ void pred_rls_print(XCSF *xcsf, CL *c);
 void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const pred_rls_vtbl = {
+    &pred_rls_general,
     &pred_rls_crossover,
     &pred_rls_rand,
     &pred_rls_mutate,
