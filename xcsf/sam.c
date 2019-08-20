@@ -33,9 +33,11 @@
 
 void sam_log_normal_init(XCSF *xcsf, double **mu);
 void sam_log_normal_adapt(XCSF *xcsf, double *mu);
-void sam_10_rates_init(XCSF *xcsf, double **mu);
-void sam_10_rates_adapt(XCSF *xcsf, double *mu);
-static const double mrates[10] = {0.0001,0.001,0.002,0.005,0.01,0.01,0.02,0.05,0.1,1.0}; 
+
+#define NUM_RATES 10
+static const double mrates[NUM_RATES] = {0.0001,0.001,0.002,0.005,0.01,0.01,0.02,0.05,0.1,1.0}; 
+void sam_rate_selection_init(XCSF *xcsf, double **mu);
+void sam_rate_selection_adapt(XCSF *xcsf, double *mu);
 
 void sam_init(XCSF *xcsf, double **mu)
 {
@@ -45,7 +47,7 @@ void sam_init(XCSF *xcsf, double **mu)
             sam_log_normal_init(xcsf, mu);
         }
         else {
-            sam_10_rates_init(xcsf, mu);
+            sam_rate_selection_init(xcsf, mu);
         }
     }
 }
@@ -56,7 +58,7 @@ void sam_adapt(XCSF *xcsf, double *mu)
         sam_log_normal_adapt(xcsf, mu);
     }
     else {
-        sam_10_rates_adapt(xcsf, mu);
+        sam_rate_selection_adapt(xcsf, mu);
     }
 }
 
@@ -90,13 +92,6 @@ void sam_log_normal_init(XCSF *xcsf, double **mu)
     }
 }
 
-void sam_10_rates_init(XCSF *xcsf, double **mu)
-{
-    for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        (*mu)[i] = mrates[irand_uniform(0,10)];
-    }
-}
-
 void sam_log_normal_adapt(XCSF *xcsf, double *mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
@@ -109,12 +104,19 @@ void sam_log_normal_adapt(XCSF *xcsf, double *mu)
         }
     }
 }
-
-void sam_10_rates_adapt(XCSF *xcsf, double *mu)
+ 
+void sam_rate_selection_init(XCSF *xcsf, double **mu)
+{
+    for(int i = 0; i < xcsf->SAM_NUM; i++) {
+        (*mu)[i] = mrates[irand_uniform(0,NUM_RATES)];
+    }
+}
+ 
+void sam_rate_selection_adapt(XCSF *xcsf, double *mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         if(rand_uniform(0,1) < 0.1) {
-            mu[i] = mrates[irand_uniform(0,10)];
+            mu[i] = mrates[irand_uniform(0,NUM_RATES)];
         }
     }
 } 
