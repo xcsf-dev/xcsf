@@ -145,7 +145,7 @@ void rule_dgp_pred_print(XCSF *xcsf, CL *c)
 _Bool rule_dgp_pred_general(XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
-    return false;
+    return true;
 }
  
 _Bool rule_dgp_pred_crossover(XCSF *xcsf, CL *c1, CL *c2)

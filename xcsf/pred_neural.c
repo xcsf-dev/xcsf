@@ -90,7 +90,7 @@ void pred_neural_print(XCSF *xcsf, CL *c)
 _Bool pred_neural_general(XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
-    return false;
+    return true;
 }
  
 _Bool pred_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
