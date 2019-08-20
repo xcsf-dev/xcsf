@@ -61,11 +61,11 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->MAX_T = atoi(getvalue("MAX_T"));
     xcsf->MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
     xcsf->NUM_HIDDEN_NEURONS = atoi(getvalue("NUM_HIDDEN_NEURONS"));
-    xcsf->NUM_SAM = atoi(getvalue("NUM_SAM"));
     xcsf->OMP_NUM_THREADS = atoi(getvalue("OMP_NUM_THREADS"));
     xcsf->PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
     xcsf->POP_SIZE = atoi(getvalue("POP_SIZE"));
     xcsf->PRED_TYPE = atoi(getvalue("PRED_TYPE"));
+    xcsf->SAM_NUM = atoi(getvalue("SAM_NUM"));
     xcsf->SAM_TYPE = atoi(getvalue("SAM_TYPE"));
     xcsf->THETA_MNA = atoi(getvalue("THETA_MNA"));
     xcsf->THETA_OFFSPRING = atoi(getvalue("THETA_OFFSPRING"));
@@ -88,12 +88,12 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->RLS_LAMBDA = atof(getvalue("RLS_LAMBDA"));
     xcsf->RLS_SCALE_FACTOR = atof(getvalue("RLS_SCALE_FACTOR"));
     xcsf->S_MUTATION = atof(getvalue("S_MUTATION"));
+    xcsf->SAM_MIN = atof(getvalue("SAM_MIN"));
     xcsf->THETA_DEL = atof(getvalue("THETA_DEL"));
     xcsf->THETA_GA = atof(getvalue("THETA_GA"));
     xcsf->THETA_SUB = atof(getvalue("THETA_SUB"));
     xcsf->ETA = atof(getvalue("ETA"));
     xcsf->X0 = atof(getvalue("X0"));
-    xcsf->muEPS_0 = atof(getvalue("muEPS_0"));
     // Bools
     xcsf->POP_INIT = false;
     if(strcmp(getvalue("POP_INIT"), "true") == 0) {

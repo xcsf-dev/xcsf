@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 // classifier condition
 
 struct CondVtbl {
@@ -109,13 +108,14 @@ static inline void pred_update(XCSF *xcsf, CL *c, double *x, double *y) {
 // general classifier
 _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cl_match(XCSF *xcsf, CL *c, double *x);
 _Bool cl_m(XCSF *xcsf, CL *c);
+_Bool cl_match(XCSF *xcsf, CL *c, double *x);
 _Bool cl_mutate(XCSF *xcsf, CL *c);
 _Bool cl_subsumer(XCSF *xcsf, CL *c);
 double *cl_predict(XCSF *xcsf, CL *c, double *x);
 double cl_acc(XCSF *xcsf, CL *c);
 double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit);
+double cl_mutation_rate(XCSF *xcsf, CL *c, int m);
 void cl_copy(XCSF *xcsf, CL *to, CL *from);
 void cl_cover(XCSF *xcsf, CL *c, double *x);
 void cl_free(XCSF *xcsf, CL *c);
@@ -124,11 +124,3 @@ void cl_print(XCSF *xcsf, CL *c, _Bool print_cond, _Bool print_pred);
 void cl_rand(XCSF *xcsf, CL *c);
 void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num);
 void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc);
-
-// self-adaptive mutation
-double cl_mutation_rate(XCSF *xcsf, CL *c, int m);
-void sam_adapt(XCSF *xcsf, double *mu);       
-void sam_copy(XCSF *xcsf, double *to, double *from);
-void sam_free(XCSF *xcsf, double *mu);
-void sam_init(XCSF *xcsf, double **mu);
-void sam_print(XCSF *xcsf, double *mu);

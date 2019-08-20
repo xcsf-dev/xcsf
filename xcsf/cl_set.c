@@ -376,7 +376,7 @@ void set_kill(XCSF *xcsf, SET *set)
 double set_avg_mut(XCSF *xcsf, SET *set, int m)
 {
     // return the fixed value if not adapted
-    if(m >= xcsf->NUM_SAM) {
+    if(m >= xcsf->SAM_NUM) {
         switch(m) {
             case 0:
                 return xcsf->P_MUTATION;

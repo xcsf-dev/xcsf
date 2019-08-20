@@ -90,8 +90,8 @@ typedef struct XCSF {
 
     // self-adaptive mutation parameters
     int SAM_TYPE; // 0 = log normal, 1 = ten normally distributed rates
-    int NUM_SAM; // number of self-adaptive mutation rates
-    double muEPS_0; // minimum value of a self-adaptive mutation rate
+    int SAM_NUM; // number of self-adaptive mutation rates
+    double SAM_MIN; // minimum value of a log normal adaptive mutation rate
 
     // classifier condition parameters
     double MAX_CON; // maximum value expected from inputs

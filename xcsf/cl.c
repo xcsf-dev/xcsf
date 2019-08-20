@@ -43,6 +43,7 @@
 #include "rule_dgp.h"
 #include "rule_neural.h"
 #include "loss.h"
+#include "sam.h"
 
 double cl_update_err(XCSF *xcsf, CL *c, double *y);
 double cl_update_size(XCSF *xcsf, CL *c, double num_sum);
@@ -243,6 +244,17 @@ double *cl_predict(XCSF *xcsf, CL *c, double *x)
 
 _Bool cl_mutate(XCSF *xcsf, CL *c)
 {
+    // apply mutation rates
+	if(xcsf->SAM_NUM > 0) {
+		xcsf->P_MUTATION = c->mu[0];
+		if(xcsf->SAM_NUM > 1) {
+			xcsf->S_MUTATION = c->mu[1];
+			if(xcsf->SAM_NUM > 2) {
+				xcsf->P_FUNC_MUTATION = c->mu[2];
+			}
+		}
+	} 
+    // mutate condition
     return cond_mutate(xcsf, c);
 }
 

@@ -34,6 +34,7 @@
 #include "cl.h"
 #include "cl_set.h"    
 #include "ga.h"
+#include "sam.h"
 
 CL *ga_select_parent(XCSF *xcsf, SET *set, double fit_sum);
 void ga_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set);
