@@ -71,7 +71,7 @@ void pop_del(XCSF *xcsf, SET *kset)
     for(NODE *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         sum += cl_del_vote(xcsf, iter->cl, avg_fit);
     }
-    double p = drand() * sum;
+    double p = rand_uniform(0,sum);
 
     // find the classifier to delete using the point
     sum = 0.0;

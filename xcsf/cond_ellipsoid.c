@@ -82,8 +82,8 @@ void cond_ellipsoid_rand(XCSF *xcsf, CL *c)
 {
 	COND_ELLIPSOID *cond = c->cond;
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
-		cond->center[i] = ((xcsf->MAX_CON - xcsf->MIN_CON) * drand()) + xcsf->MIN_CON;
-		cond->radius[i] = (xcsf->MAX_CON - xcsf->MIN_CON) * drand() * 0.5;
+		cond->center[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
+		cond->radius[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
 	}
 }
 
@@ -92,7 +92,7 @@ void cond_ellipsoid_cover(XCSF *xcsf, CL *c, double *x)
 	COND_ELLIPSOID *cond = c->cond;
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
 		cond->center[i] = x[i];
-		cond->radius[i] = (xcsf->MAX_CON - xcsf->MIN_CON) * drand() * 0.5;
+		cond->radius[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
 	}
 }
 
@@ -131,15 +131,15 @@ _Bool cond_ellipsoid_crossover(XCSF *xcsf, CL *c1, CL *c2)
 	COND_ELLIPSOID *cond1 = c1->cond;
 	COND_ELLIPSOID *cond2 = c2->cond;
 	_Bool changed = false;
-	if(drand() < xcsf->P_CROSSOVER) {
+	if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
 		for(int i = 0; i < xcsf->num_x_vars; i++) {
-			if(drand() < 0.5) {
+			if(rand_uniform(0,1) < 0.5) {
 				double tmp = cond1->center[i];
 				cond1->center[i] = cond2->center[i];
 				cond2->center[i] = tmp;
 				changed = true;
 			}
-			if(drand() < 0.5) {
+			if(rand_uniform(0,1) < 0.5) {
 				double tmp = cond1->radius[i];
 				cond1->radius[i] = cond2->radius[i];
 				cond2->radius[i] = tmp;
@@ -158,8 +158,8 @@ _Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c)
 	sam_adapt(xcsf, cond->mu);
     // apply mutation
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
-		if(drand() < xcsf->P_MUTATION) {
-			cond->center[i] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
+		if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+			cond->center[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
 			if(cond->center[i] < xcsf->MIN_CON) {
 				cond->center[i] = xcsf->MIN_CON;
 			}
@@ -168,8 +168,8 @@ _Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c)
 			}    
 			changed = true;
 		}
-		if(drand() < xcsf->P_MUTATION) {
-			cond->radius[i] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
+		if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+			cond->radius[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
 			changed = true;
 		}
 	}

@@ -108,7 +108,7 @@ void xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         // select next training sample
         if(shuffle) {
-            row = irand(0, train_data->rows);
+            row = irand_uniform(0, train_data->rows);
         }
         else {
             row = (cnt % train_data->rows + train_data->rows) % train_data->rows;
@@ -148,7 +148,7 @@ void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         // select next training sample
         if(shuffle) {
-            row = irand(0, train_data->rows);
+            row = irand_uniform(0, train_data->rows);
         }
         else {
             row = (cnt % train_data->rows + train_data->rows) % train_data->rows;
@@ -157,9 +157,9 @@ void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
         double *y = &train_data->y[row * train_data->y_cols];
         err[cnt % xcsf->PERF_AVG_TRIALS] = xcsf_learn_trial(xcsf, pred, x, y);
         // select next testing sample
-        row = irand(0, test_data->rows);
+        row = irand_uniform(0, test_data->rows);
         if(shuffle) {
-            row = irand(0, test_data->rows);
+            row = irand_uniform(0, test_data->rows);
         }
         else {
             row = (cnt % test_data->rows + test_data->rows) % test_data->rows;

@@ -74,7 +74,7 @@ void neural_rand(XCSF *xcsf, BPN *bpn)
         for(int j = 0; j < bpn->num_neurons[i]; j++) {
             NEURON *n = &bpn->layer[i][j];
             for(int k = 0; k < n->num_inputs+1; k++) {
-                n->weights[k] = (drand()*2.0)-1.0;
+                n->weights[k] = rand_uniform(-1,1);
             }
         }
     }    
@@ -203,9 +203,8 @@ void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, int func)
     n->weights = malloc((num_inputs+1)*sizeof(double));
     n->v = malloc((num_inputs+1)*sizeof(double));
     n->input = malloc(num_inputs*sizeof(double));
-    // randomise weights [-0.1,0.1]
     for(int i = 0; i < num_inputs+1; i++) {
-        n->weights[i] = 0.2 * (drand() - 0.5);
+        n->weights[i] = rand_uniform(-0.1,0.1);
         n->v[i] = 0.0;
     }
 }
@@ -309,15 +308,15 @@ _Bool neural_mutate(XCSF *xcsf, BPN *bpn)
         for(int j = 0; j < bpn->num_neurons[i]; j++) {
             NEURON *n = &bpn->layer[i][j];
             // mutate activation function
-            if(drand() < xcsf->P_FUNC_MUTATION) {
-                neuron_set_activation(xcsf, n, irand(0,NUM_ACTIVATIONS));
+            if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
+                neuron_set_activation(xcsf, n, irand_uniform(0,NUM_ACTIVATIONS));
                 mod = true;
             }
             // mutate weights and biases
             for(int k = 0; k < n->num_inputs+1; k++) {
-                if(drand() < xcsf->P_MUTATION) {
+                if(rand_uniform(0,1) < xcsf->P_MUTATION) {
                     double orig = n->weights[k];
-                    n->weights[k] += ((drand()*2.0)-1.0) * xcsf->S_MUTATION;
+                    n->weights[k] += rand_uniform(-1,1) * xcsf->S_MUTATION;
                     if(n->weights[k] != orig) {
                         mod = true;
                     }

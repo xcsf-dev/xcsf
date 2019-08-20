@@ -121,7 +121,7 @@ void ga_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set)
         }
         // found
         if(choices > 0) {
-            candidates[irand(0,choices)]->cl->num++;
+            candidates[irand_uniform(0,choices)]->cl->num++;
             xcsf->pset.num++;
             cl_free(xcsf, c);
         }
@@ -137,7 +137,7 @@ CL *ga_select_parent(XCSF *xcsf, SET *set, double fit_sum)
     (void)xcsf;
     // selects a classifier using roullete wheel selection with the fitness
     // (a fitness proportionate selection mechanism.)
-    double p = drand() * fit_sum;
+    double p = rand_uniform(0,fit_sum);
     NODE *iter = set->list;
     double sum = iter->cl->fit;
     while(p > sum) {

@@ -115,7 +115,7 @@ _Bool cond_gp_mutate(XCSF *xcsf, CL *c)
 	// update mutation rates
 	sam_adapt(xcsf, cond->mu);
     // apply mutation
-	if(drand() < xcsf->P_MUTATION) {
+	if(rand_uniform(0,1) < xcsf->P_MUTATION) {
 		tree_mutation(xcsf, &cond->gp, xcsf->P_MUTATION);
 		return true;
 	}
@@ -128,7 +128,7 @@ _Bool cond_gp_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
 	COND_GP *cond1 = c1->cond;
 	COND_GP *cond2 = c2->cond;
-	if(drand() < xcsf->P_CROSSOVER) {
+	if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
 		tree_crossover(xcsf, &cond1->gp, &cond2->gp);
 		return true;
 	}

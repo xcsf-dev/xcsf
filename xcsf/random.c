@@ -25,12 +25,13 @@
 
 #include <time.h>
 #include <limits.h>
+#include <math.h>
 #include "mt64.h"
 #include "random.h"
 
 void random_init()
 {
-	time_t now = time (0);
+	time_t now = time(0);
 	unsigned char *p = (unsigned char *)&now;
 	unsigned seed = 0;
 	size_t i;
@@ -41,15 +42,43 @@ void random_init()
 
 	init_genrand64(seed);
 }
-
-// not inclusive of max
-int irand(int min, int max)
-{
-	return min + (drand() * (max-min));
-}
-
+ 
 double drand()
 {
 	// Mersenne Twister 64bit version
 	return genrand64_real1();
 }
+ 
+int irand_uniform(int min, int max)
+{
+    // not inclusive of max
+	return min + (drand() * (max-min));
+}
+
+double rand_uniform(double min, double max)
+{
+	return min + (drand() * (max-min));
+}
+
+double rand_normal()
+{
+    // from numerical recipes in c
+    static int iset = 0;
+    static double gset;
+    if(iset == 0) {
+        double fac, rsq, v1, v2;
+        do {
+            v1 = rand_uniform(-1,1);
+            v2 = rand_uniform(-1,1);
+            rsq = (v1*v1)+(v2*v2);
+        } while(rsq >= 1.0 || rsq == 0.0);
+        fac = sqrt(-2.0*log(rsq)/rsq);
+        gset = v1*fac;
+        iset = 1;
+        return v2*fac;
+    }
+    else {
+        iset = 0;
+        return gset;
+    }
+} 

@@ -50,7 +50,7 @@ void tree_init_cons(XCSF *xcsf)
 	// initialise the constants shared among all GP trees
 	xcsf->gp_cons = malloc(sizeof(double) * xcsf->GP_NUM_CONS);
 	for(int i = 0; i < xcsf->GP_NUM_CONS; i++) {
-		xcsf->gp_cons[i] = (xcsf->MAX_CON - xcsf->MIN_CON) * drand() + xcsf->MIN_CON;
+		xcsf->gp_cons[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
 	}
 }     
 
@@ -88,7 +88,7 @@ void tree_free(XCSF *xcsf, GP_TREE *gp)
 int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
 {
 	// only used to create an initial tree
-	int prim = irand(0,2);
+	int prim = irand_uniform(0,2);
 
 	if(p >= max) {
 		return(-1);
@@ -99,13 +99,13 @@ int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
 
 	// add constant or external input
 	if(prim == 0 || depth == 0) {
-		prim = irand(GP_NUM_FUNC, GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->num_x_vars);
+		prim = irand_uniform(GP_NUM_FUNC, GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->num_x_vars);
 		buffer[p] = prim;
 		return(p+1);
 	}
 	// add new function
 	else {
-		prim = irand(0,GP_NUM_FUNC);
+		prim = irand_uniform(0,GP_NUM_FUNC);
 		switch(prim) {
 			case ADD: 
 			case SUB: 
@@ -217,9 +217,9 @@ void tree_crossover(XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
 	// sub-tree crossover
 	int len1 = tree_traverse(p1->tree, 0);
 	int len2 = tree_traverse(p2->tree, 0);
-	int start1 = irand(0,len1);
+	int start1 = irand_uniform(0,len1);
 	int end1 = tree_traverse(p1->tree, start1);
-	int start2 = irand(0,len2);
+	int start2 = irand_uniform(0,len2);
 	int end2 = tree_traverse(p2->tree, start2);
 
 	int nlen1 = start1+(end2-start2)+(len1-end1);
@@ -245,10 +245,10 @@ void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate)
 	// point mutation
 	int len = tree_traverse(offspring->tree, 0);
 	for(int i = 0; i < len; i++) {  
-		if(drand() < rate) {
+		if(rand_uniform(0,1) < rate) {
 			// terminals randomly replaced with other terminals
 			if(offspring->tree[i] >= GP_NUM_FUNC) {
-				offspring->tree[i] = irand(GP_NUM_FUNC, 
+				offspring->tree[i] = irand_uniform(GP_NUM_FUNC, 
 						GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->num_x_vars);
 			}
 			else {
@@ -258,7 +258,7 @@ void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate)
 					case SUB: 
 					case MUL: 
 					case DIV:
-						offspring->tree[i] = irand(0, GP_NUM_FUNC);
+						offspring->tree[i] = irand_uniform(0, GP_NUM_FUNC);
 				}
 			}
 		}

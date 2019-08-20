@@ -31,14 +31,12 @@
 #include "data_structures.h"
 #include "random.h"
 
-double gasdev();
-
 void sam_init(XCSF *xcsf, double **mu)
 {
 	if(xcsf->NUM_SAM > 0) {
 		*mu = malloc(sizeof(double) * xcsf->NUM_SAM);
 		for(int i = 0; i < xcsf->NUM_SAM; i++) {
-			(*mu)[i] = drand();
+			(*mu)[i] = rand_uniform(0,1);
 		}
 	}
 }
@@ -59,7 +57,7 @@ void sam_adapt(XCSF *xcsf, double *mu)
 {
 	// adapt rates
 	for(int i = 0; i < xcsf->NUM_SAM; i++) {
-		mu[i] *= exp(gasdev());
+		mu[i] *= exp(rand_normal());
 		if(mu[i] < xcsf->muEPS_0) {
 			mu[i] = xcsf->muEPS_0;
 		}
@@ -86,27 +84,4 @@ void sam_print(XCSF *xcsf, double *mu)
 		printf("%f, ", mu[i]);
 	}
 	printf("\n");
-}
-
-double gasdev()
-{
-	// from numerical recipes in c
-	static int iset = 0;
-	static double gset;
-	if(iset == 0) {
-		double fac, rsq, v1, v2;
-		do {
-			v1 = (drand()*2.0)-1.0;
-			v2 = (drand()*2.0)-1.0;
-			rsq = (v1*v1)+(v2*v2);
-		} while(rsq >= 1.0 || rsq == 0.0);
-		fac = sqrt(-2.0*log(rsq)/rsq);
-		gset = v1*fac;
-		iset = 1;
-		return v2*fac;
-	}
-	else {
-		iset = 0;
-		return gset;
-	}
 }

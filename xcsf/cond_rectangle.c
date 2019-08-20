@@ -82,8 +82,8 @@ void cond_rectangle_rand(XCSF *xcsf, CL *c)
 {
 	COND_RECTANGLE *cond = c->cond;
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
-		cond->lower[i] = ((xcsf->MAX_CON - xcsf->MIN_CON) * drand()) + xcsf->MIN_CON;
-		cond->upper[i] = ((xcsf->MAX_CON - xcsf->MIN_CON) * drand()) + xcsf->MIN_CON;
+		cond->lower[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
+		cond->upper[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
 		cond_rectangle_bounds(xcsf, &cond->lower[i], &cond->upper[i]);
 	}
 }
@@ -113,8 +113,8 @@ void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x)
 {
 	COND_RECTANGLE *cond = c->cond;
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
-		cond->lower[i] = x[i] - ((xcsf->MAX_CON - xcsf->MIN_CON) * drand() * 0.5);
-		cond->upper[i] = x[i] + ((xcsf->MAX_CON - xcsf->MIN_CON) * drand() * 0.5);
+		cond->lower[i] = x[i] - rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
+		cond->upper[i] = x[i] + rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
 		cond_rectangle_bounds(xcsf, &cond->lower[i], &cond->upper[i]);
 	}
 }
@@ -145,17 +145,17 @@ _Bool cond_rectangle_crossover(XCSF *xcsf, CL *c1, CL *c2)
 	COND_RECTANGLE *cond2 = c2->cond;
 	_Bool changed = false;
 	// uniform crossover
-	if(drand() < xcsf->P_CROSSOVER) {
+	if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
 		for(int i = 0; i < xcsf->num_x_vars; i++) {
 			// lower interval
-			if(drand() < 0.5) {
+			if(rand_uniform(0,1) < 0.5) {
 				double tmp = cond1->lower[i];
 				cond1->lower[i] = cond2->lower[i];
 				cond2->lower[i] = tmp;
 				changed = true;
 			}
 			// upper interval
-			if(drand() < 0.5) {
+			if(rand_uniform(0,1) < 0.5) {
 				double tmp = cond1->upper[i];
 				cond1->upper[i] = cond2->upper[i];
 				cond2->upper[i] = tmp;
@@ -177,13 +177,13 @@ _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
 	// apply mutation
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
 		// lower interval
-		if(drand() < xcsf->P_MUTATION) {
-			cond->lower[i] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
+		if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+			cond->lower[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
 			changed = true;
 		}
 		// upper interval
-		if(drand() < xcsf->P_MUTATION) {
-			cond->upper[i] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
+		if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+			cond->upper[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
 			changed = true;
 		}
 		cond_rectangle_bounds(xcsf, &cond->lower[i], &cond->upper[i]);

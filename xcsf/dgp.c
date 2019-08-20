@@ -68,22 +68,22 @@ void graph_reset(XCSF *xcsf, GRAPH *dgp)
 
 void graph_rand(XCSF *xcsf, GRAPH *dgp)
 {
-    dgp->t = irand(1,xcsf->MAX_T);
+    dgp->t = irand_uniform(1,xcsf->MAX_T);
     for(int i = 0; i < dgp->n; i++) {
-        node_set_activation(&dgp->activ[i], irand(0, NUM_ACTIVATIONS));
-        dgp->initial_state[i] = ((xcsf->MAX_CON-xcsf->MIN_CON)*drand())+xcsf->MIN_CON;
-        dgp->state[i] = ((xcsf->MAX_CON-xcsf->MIN_CON)*drand())+xcsf->MIN_CON;
+        node_set_activation(&dgp->activ[i], irand_uniform(0, NUM_ACTIVATIONS));
+        dgp->initial_state[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
+        dgp->state[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
     }
 
     for(int i = 0; i < dgp->n * xcsf->MAX_K; i++) {
-        dgp->weights[i] = (drand()*2.0)-1.0;
+        dgp->weights[i] = rand_uniform(-1,1);
         // other nodes within the graph
-        if(drand() < 0.5) {
-            dgp->connectivity[i] = irand(0,dgp->n);
+        if(rand_uniform(0,1) < 0.5) {
+            dgp->connectivity[i] = irand_uniform(0,dgp->n);
         }
         // external inputs
         else {
-            dgp->connectivity[i] = -(irand(1,xcsf->num_x_vars+1));
+            dgp->connectivity[i] = -(irand_uniform(1,xcsf->num_x_vars+1));
         }
     }
 }
@@ -146,46 +146,46 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
 
     for(int i = 0; i < dgp->n; i++) {
         // mutate function
-        if(drand() < xcsf->P_FUNC_MUTATION) {
+        if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
             activ_ptr old = dgp->activ[i];
-            node_set_activation(&dgp->activ[i], irand(0, NUM_ACTIVATIONS));
+            node_set_activation(&dgp->activ[i], irand_uniform(0, NUM_ACTIVATIONS));
             if(old != dgp->activ[i]) {
                 fmodified = true;
             }              
         }
         // mutate initial state
-        if(drand() < xcsf->P_MUTATION) {
-            dgp->initial_state[i] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
+        if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+            dgp->initial_state[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
         }
 
         // mutate connectivity map
         for(int j = 0; j < xcsf->MAX_K; j++) {
             int idx = (i*xcsf->MAX_K)+j;
-            if(drand() < xcsf->P_MUTATION) {
+            if(rand_uniform(0,1) < xcsf->P_MUTATION) {
                 int old = dgp->connectivity[idx];
                 // external connection
-                if(drand() < 0.5) {
-                    dgp->connectivity[idx] = -(irand(1,xcsf->num_x_vars+1));
+                if(rand_uniform(0,1) < 0.5) {
+                    dgp->connectivity[idx] = -(irand_uniform(1,xcsf->num_x_vars+1));
                 }
                 // another node
                 else {
-                    dgp->connectivity[idx] = irand(0,dgp->n);
+                    dgp->connectivity[idx] = irand_uniform(0,dgp->n);
                 }
                 if(old != dgp->connectivity[idx]) {
                     cmodified = true;
                 }
             }
             // mutate weights
-            if(drand() < xcsf->P_MUTATION) {
-                dgp->weights[idx] += ((drand()*2.0)-1.0)*xcsf->S_MUTATION;
+            if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+                dgp->weights[idx] += rand_uniform(-1,1) * xcsf->S_MUTATION;
             }
         }   
     }               
 
     // mutate T
-    if(drand() < xcsf->P_MUTATION) {
+    if(rand_uniform(0,1) < xcsf->P_MUTATION) {
         int t = dgp->t;
-        if(drand() < 0.5) {
+        if(rand_uniform(0,1) < 0.5) {
             if(dgp->t > 1) {
                 (dgp->t)--;
             }
@@ -212,12 +212,12 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 {
     // uniform crossover -- due to the competing conventions problem
     // P_CROSSOVER = 0.0 may perform better
-    if(drand() > xcsf->P_CROSSOVER) {
+    if(rand_uniform(0,1) > xcsf->P_CROSSOVER) {
         return false;
     }
 
     // cross number of cycles
-    if(drand() < 0.5) {
+    if(rand_uniform(0,1) < 0.5) {
         int tmp = dgp1->t;
         dgp1->t = dgp2->t;
         dgp2->t = tmp;
@@ -225,17 +225,17 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 
     // cross functions and states
     for(int i = 0; i < dgp1->n; i++) {
-        if(drand() < 0.5) {
+        if(rand_uniform(0,1) < 0.5) {
             activ_ptr tmp = dgp1->activ[i];
             dgp1->activ[i] = dgp2->activ[i];
             dgp2->activ[i] = tmp;
         }
-        if(drand() < 0.5) {
+        if(rand_uniform(0,1) < 0.5) {
             double tmp = dgp1->initial_state[i];
             dgp1->initial_state[i] = dgp2->initial_state[i];
             dgp2->initial_state[i] = tmp;
         }     
-        if(drand() < 0.5) {
+        if(rand_uniform(0,1) < 0.5) {
             double tmp = dgp1->state[i];
             dgp1->state[i] = dgp2->state[i];
             dgp2->state[i] = tmp;
@@ -244,7 +244,7 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 
     // cross connections
     for(int i = 0; i < dgp1->n * xcsf->MAX_K; i++) {
-        if(drand() < 0.5) {
+        if(rand_uniform(0,1) < 0.5) {
             double tmp = dgp1->connectivity[i];
             dgp1->connectivity[i] = dgp2->connectivity[i];
             dgp2->connectivity[i] = tmp;
@@ -253,7 +253,7 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
  
     // cross weights
     for(int i = 0; i < dgp1->n * xcsf->MAX_K; i++) {
-        if(drand() < 0.5) {
+        if(rand_uniform(0,1) < 0.5) {
             double tmp = dgp1->weights[i];
             dgp1->weights[i] = dgp2->weights[i];
             dgp2->weights[i] = tmp;
