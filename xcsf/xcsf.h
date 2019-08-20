@@ -29,7 +29,7 @@ typedef struct CL {
     void *pred; // prediction structure
     double *mu; // self-adaptive mutation rates
     double err; // error
-    double fit; // fintess
+    double fit; // fitness
     int num; // numerosity
     int exp; // experience
     double size; // average set size
