@@ -33,6 +33,7 @@
 #include "data_structures.h"
 #include "random.h"
 #include "cl.h"
+#include "prediction.h"
 #include "pred_nlms.h"
 
 typedef struct PRED_NLMS {

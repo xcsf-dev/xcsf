@@ -31,6 +31,8 @@
 #include "random.h"
 #include "data_structures.h"
 #include "cl.h"
+#include "condition.h"
+#include "prediction.h"
 #include "cond_dummy.h"
 #include "cond_rectangle.h"
 #include "cond_ellipsoid.h"

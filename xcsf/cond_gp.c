@@ -32,6 +32,7 @@
 #include "random.h"
 #include "data_structures.h"
 #include "cl.h"
+#include "condition.h"
 #include "cond_gp.h"
 #include "gp.h"
 

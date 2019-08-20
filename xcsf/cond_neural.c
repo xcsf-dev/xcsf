@@ -33,6 +33,7 @@
 #include "random.h"
 #include "cl.h"
 #include "neural.h"
+#include "condition.h"
 #include "cond_neural.h"
 
 typedef struct COND_NEURAL {

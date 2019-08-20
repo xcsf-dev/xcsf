@@ -27,6 +27,8 @@
 #include "random.h"
 #include "cl.h"
 #include "dgp.h"
+#include "condition.h"
+#include "prediction.h"
 #include "rule_dgp.h"
 
 typedef struct RULE_DGP{

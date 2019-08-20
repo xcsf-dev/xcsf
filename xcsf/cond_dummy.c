@@ -28,6 +28,7 @@
 #include "data_structures.h"
 #include "random.h"
 #include "cl.h"
+#include "condition.h"
 #include "cond_dummy.h"
 
 void cond_dummy_init(XCSF *xcsf, CL *c)

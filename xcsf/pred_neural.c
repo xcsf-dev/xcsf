@@ -33,6 +33,7 @@
 #include "random.h"
 #include "cl.h"
 #include "neural.h"
+#include "prediction.h"
 #include "pred_neural.h"
 
 typedef struct PRED_NEURAL {

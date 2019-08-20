@@ -25,6 +25,7 @@
 #include "data_structures.h"
 #include "cl.h"
 #include "dgp.h"
+#include "condition.h"
 #include "cond_dgp.h"
 
 typedef struct COND_DGP {

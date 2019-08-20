@@ -28,6 +28,7 @@
 #include "data_structures.h"
 #include "random.h"
 #include "cl.h"
+#include "prediction.h"
 #include "pred_rls.h"
 
 void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n);

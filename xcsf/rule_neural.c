@@ -31,6 +31,8 @@
 #include "cl.h"
 #include "neural.h"
 #include "dgp.h"
+#include "condition.h"
+#include "prediction.h"
 #include "rule_neural.h"
 
 typedef struct RULE_NEURAL_COND {

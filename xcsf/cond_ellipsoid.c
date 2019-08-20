@@ -33,6 +33,7 @@
 #include "data_structures.h"
 #include "random.h"
 #include "cl.h"
+#include "condition.h"
 #include "cond_ellipsoid.h"
 
 typedef struct COND_ELLIPSOID {
