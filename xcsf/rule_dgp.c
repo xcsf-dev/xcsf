@@ -97,9 +97,7 @@ _Bool rule_dgp_cond_crossover(XCSF *xcsf, CL *c1, CL *c2)
 
 _Bool rule_dgp_cond_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void)xcsf; (void)c1; (void)c2;
     return false;
 }   
 
@@ -111,29 +109,22 @@ void rule_dgp_cond_print(XCSF *xcsf, CL *c)
 
 void rule_dgp_pred_init(XCSF *xcsf, CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void)xcsf; (void)c;
 }
 
 void rule_dgp_pred_free(XCSF *xcsf, CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void)xcsf; (void)c;
 }
 
 void rule_dgp_pred_copy(XCSF *xcsf, CL *to, CL *from)
 {
-    (void)xcsf;
-    (void)to;
-    (void)from;
+    (void)xcsf; (void)to; (void)from;
 }
 
 void rule_dgp_pred_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
-    (void)xcsf;
-    (void)c;
-    (void)y;
-    (void)x;
+    (void)xcsf; (void)c; (void)y; (void)x;
 }
 
 double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x)
@@ -148,6 +139,5 @@ double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x)
 
 void rule_dgp_pred_print(XCSF *xcsf, CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void)xcsf; (void)c;
 }

@@ -104,17 +104,13 @@ _Bool rule_neural_cond_mutate(XCSF *xcsf, CL *c)
 
 _Bool rule_neural_cond_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void)xcsf; (void)c1; (void)c2;
     return false;
 }
 
 _Bool rule_neural_cond_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void)xcsf; (void)c1; (void)c2;
     return false;
 }   
 

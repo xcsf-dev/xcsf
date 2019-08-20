@@ -32,69 +32,55 @@
 
 void cond_dummy_init(XCSF *xcsf, CL *c)
 {
-	(void)xcsf;
-    (void)c;
+	(void)xcsf; (void)c;
 }
 
 void cond_dummy_free(XCSF *xcsf, CL *c)
 {
-	(void)xcsf;
-    (void)c;
+	(void)xcsf; (void)c;
 }
 
 void cond_dummy_copy(XCSF *xcsf, CL *to, CL *from)
 {
-	(void)xcsf;
-	(void)to;
-	(void)from;
+	(void)xcsf; (void)to; (void)from;
 }                             
 
 void cond_dummy_rand(XCSF *xcsf, CL *c)
 {
-	(void)xcsf;
-	(void)c;
+	(void)xcsf; (void)c;
 }
 
 void cond_dummy_cover(XCSF *xcsf, CL *c, double *state)
 {
-	(void)xcsf;
-	(void)c;
-	(void)state;
+	(void)xcsf; (void)c; (void)state;
 }
 
 _Bool cond_dummy_match(XCSF *xcsf, CL *c, double *state)
 {
-	(void)xcsf;
-	(void)state;
+	(void)xcsf; (void)state;
 	c->m = true;
 	return c->m;
 }
 
 _Bool cond_dummy_crossover(XCSF *xcsf, CL *c1, CL *c2) 
 {
-	(void)xcsf;
-	(void)c1;
-	(void)c2;
+	(void)xcsf; (void)c1; (void)c2;
 	return false;
 }
 
 _Bool cond_dummy_mutate(XCSF *xcsf, CL *c)
 {
-	(void)xcsf;
-	(void)c;
+	(void)xcsf; (void)c;
 	return false;
 }
 
 _Bool cond_dummy_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-	(void)xcsf;
-	(void)c1;
-	(void)c2;
+	(void)xcsf; (void)c1; (void)c2;
 	return true;
 }  
 
 void cond_dummy_print(XCSF *xcsf, CL *c)
 {
-	(void)xcsf;
-	(void)c;
+	(void)xcsf; (void)c;
 }
