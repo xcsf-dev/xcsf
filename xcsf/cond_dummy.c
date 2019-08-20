@@ -32,30 +32,19 @@
 
 typedef struct COND_DUMMY {
 	_Bool m;
-	double *mu;
 } COND_DUMMY;
 
 void cond_dummy_init(XCSF *xcsf, CL *c)
 {
 	COND_DUMMY *cond = malloc(sizeof(COND_DUMMY));
 	c->cond = cond;
-	sam_init(xcsf, &cond->mu);
 	(void)xcsf;
 }
 
 void cond_dummy_free(XCSF *xcsf, CL *c)
 {
-	COND_DUMMY *cond = c->cond;
-	sam_free(xcsf, cond->mu);
+	(void)xcsf;
 	free(c->cond);
-	(void)xcsf;
-}
-
-double cond_dummy_mu(XCSF *xcsf, CL *c, int m)
-{
-	COND_DUMMY *cond = c->cond;
-	(void)xcsf;
-	return cond->mu[m];
 }
 
 void cond_dummy_copy(XCSF *xcsf, CL *to, CL *from)

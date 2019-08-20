@@ -36,7 +36,6 @@
 typedef struct RULE_NEURAL_COND {
     BPN bpn;
     _Bool m;
-    double *mu;
 } RULE_NEURAL_COND;
 
 typedef struct RULE_NEURAL_PRED {
@@ -55,30 +54,20 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
     // initialise neural network
     neural_init(xcsf, &cond->bpn, 3, neurons, activations);
     c->cond = cond;
-    sam_init(xcsf, &cond->mu);
 }
 
 void rule_neural_cond_free(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = c->cond;
     neural_free(xcsf, &cond->bpn);
-    sam_free(xcsf, cond->mu);
     free(c->cond);
 }  
-
-double rule_neural_cond_mu(XCSF *xcsf, CL *c, int m)
-{
-    (void)xcsf;
-    RULE_NEURAL_COND *cond = c->cond;
-    return cond->mu[m];
-}
 
 void rule_neural_cond_copy(XCSF *xcsf, CL *to, CL *from)
 {
     RULE_NEURAL_COND *to_cond = to->cond;
     RULE_NEURAL_COND *from_cond = from->cond;
     neural_copy(xcsf, &to_cond->bpn, &from_cond->bpn);
-    sam_copy(xcsf, to_cond->mu, from_cond->mu);
 }
 
 void rule_neural_cond_rand(XCSF *xcsf, CL *c)
@@ -118,8 +107,6 @@ _Bool rule_neural_cond_match_state(XCSF *xcsf, CL *c)
 _Bool rule_neural_cond_mutate(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = c->cond;
-    // update mutation rates
-    sam_adapt(xcsf, cond->mu);
     // apply mutation
     return neural_mutate(xcsf, &cond->bpn);
 }

@@ -26,7 +26,6 @@ void cond_rectangle_free(XCSF *xcsf, CL *c);
 void cond_rectangle_init(XCSF *xcsf, CL *c);
 void cond_rectangle_print(XCSF *xcsf, CL *c);
 void cond_rectangle_rand(XCSF *xcsf, CL *c);
-double cond_rectangle_mu(XCSF *xcsf, CL *c, int m);
 
 static struct CondVtbl const cond_rectangle_vtbl = {
 	&cond_rectangle_crossover,
@@ -34,7 +33,6 @@ static struct CondVtbl const cond_rectangle_vtbl = {
 	&cond_rectangle_match,
 	&cond_rectangle_match_state,
 	&cond_rectangle_mutate,
-	&cond_rectangle_mu,
 	&cond_rectangle_copy,
 	&cond_rectangle_cover,
 	&cond_rectangle_free,

@@ -27,12 +27,13 @@ typedef struct CL {
     struct PredVtbl const *pred_vptr; // functions acting on predictions
     void *cond; // condition structure
     void *pred; // prediction structure
-    double err;
-    double fit;
-    int num;
-    int exp;
-    double size;
-    int time;
+    double *mu; // self-adaptive mutation rates
+    double err; // error
+    double fit; // fintess
+    int num; // numerosity
+    int exp; // experience
+    double size; // average set size
+    int time; // time of creation
 } CL;
 
 // classifier linked list node

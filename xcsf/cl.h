@@ -24,7 +24,6 @@ struct CondVtbl {
 	_Bool (*cond_impl_match)(XCSF *xcsf, CL *c, double *x);
 	_Bool (*cond_impl_match_state)(XCSF *xcsf, CL *c);
 	_Bool (*cond_impl_mutate)(XCSF *xcsf, CL *c);
-	double (*cond_impl_mu)(XCSF *xcsf, CL *c, int m);
 	void (*cond_impl_copy)(XCSF *xcsf, CL *to, CL *from);
 	void (*cond_impl_cover)(XCSF *xcsf, CL *c, double *x);
 	void (*cond_impl_free)(XCSF *xcsf, CL *c);
@@ -51,10 +50,6 @@ static inline _Bool cond_match_state(XCSF *xcsf, CL *c) {
 
 static inline _Bool cond_mutate(XCSF *xcsf, CL *c) {
 	return (*c->cond_vptr->cond_impl_mutate)(xcsf, c);
-}
-
-static inline double cond_mu(XCSF *xcsf, CL *c, int m) {
-	return (*c->cond_vptr->cond_impl_mu)(xcsf, c, m);
 }
 
 static inline void cond_copy(XCSF *xcsf, CL *to, CL *from) {

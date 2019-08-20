@@ -26,7 +26,6 @@ void cond_neural_free(XCSF *xcsf, CL *c);
 void cond_neural_init(XCSF *xcsf, CL *c);
 void cond_neural_print(XCSF *xcsf, CL *c);
 void cond_neural_rand(XCSF *xcsf, CL *c);
-double cond_neural_mu(XCSF *xcsf, CL *c, int m);
 
 static struct CondVtbl const cond_neural_vtbl = {
 	&cond_neural_crossover,
@@ -34,7 +33,6 @@ static struct CondVtbl const cond_neural_vtbl = {
 	&cond_neural_match,
 	&cond_neural_match_state,
 	&cond_neural_mutate,
-	&cond_neural_mu,
 	&cond_neural_copy,
 	&cond_neural_cover,
 	&cond_neural_free,

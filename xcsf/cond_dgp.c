@@ -30,7 +30,6 @@
 typedef struct COND_DGP {
 	GRAPH dgp;
 	_Bool m;
-	double *mu;
 } COND_DGP;
 
 void cond_dgp_init(XCSF *xcsf, CL *c)
@@ -38,30 +37,20 @@ void cond_dgp_init(XCSF *xcsf, CL *c)
 	COND_DGP *cond = malloc(sizeof(COND_DGP));
 	graph_init(xcsf, &cond->dgp, xcsf->DGP_NUM_NODES);
 	c->cond = cond;
-	sam_init(xcsf, &cond->mu);
 }
 
 void cond_dgp_free(XCSF *xcsf, CL *c)
 {
 	COND_DGP *cond = c->cond;
 	graph_free(xcsf, &cond->dgp);
-	sam_free(xcsf, cond->mu);
 	free(c->cond);
 }                  
-
-double cond_dgp_mu(XCSF *xcsf, CL *c, int m)
-{
-	(void)xcsf;
-	COND_DGP *cond = c->cond;
-	return cond->mu[m];
-}
 
 void cond_dgp_copy(XCSF *xcsf, CL *to, CL *from)
 {
 	COND_DGP *to_cond = to->cond;
 	COND_DGP *from_cond = from->cond;
 	graph_copy(xcsf, &to_cond->dgp, &from_cond->dgp);
-	sam_copy(xcsf, to_cond->mu, from_cond->mu);
 }
 
 void cond_dgp_rand(XCSF *xcsf, CL *c)
@@ -102,8 +91,6 @@ _Bool cond_dgp_match_state(XCSF *xcsf, CL *c)
 _Bool cond_dgp_mutate(XCSF *xcsf, CL *c)
 {
 	COND_DGP *cond = c->cond;
-	// update mutation rates
-	sam_adapt(xcsf, cond->mu);
 	return graph_mutate(xcsf, &cond->dgp);
 }
 

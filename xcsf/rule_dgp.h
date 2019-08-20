@@ -26,7 +26,6 @@ void rule_dgp_cond_free(XCSF *xcsf, CL *c);
 void rule_dgp_cond_init(XCSF *xcsf, CL *c);
 void rule_dgp_cond_print(XCSF *xcsf, CL *c);
 void rule_dgp_cond_rand(XCSF *xcsf, CL *c);
-double rule_dgp_cond_mu(XCSF *xcsf, CL *c, int m);
 
 static struct CondVtbl const rule_dgp_cond_vtbl = {
 	&rule_dgp_cond_crossover,
@@ -34,7 +33,6 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
 	&rule_dgp_cond_match,
 	&rule_dgp_cond_match_state,
 	&rule_dgp_cond_mutate,
-	&rule_dgp_cond_mu,
 	&rule_dgp_cond_copy,
 	&rule_dgp_cond_cover,
 	&rule_dgp_cond_free,

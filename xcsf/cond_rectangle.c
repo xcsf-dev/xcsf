@@ -39,7 +39,6 @@ typedef struct COND_RECTANGLE {
 	double *lower;
 	double *upper;
 	_Bool m;
-	double *mu;
 } COND_RECTANGLE;
 
 void cond_rectangle_bounds(XCSF *xcsf, double *l, double *u);
@@ -50,23 +49,15 @@ void cond_rectangle_init(XCSF *xcsf, CL *c)
 	cond->lower = malloc(sizeof(double) * xcsf->num_x_vars);
 	cond->upper = malloc(sizeof(double) * xcsf->num_x_vars); 
 	c->cond = cond;
-	sam_init(xcsf, &cond->mu);
 }
 
 void cond_rectangle_free(XCSF *xcsf, CL *c)
 {
+    (void)xcsf;
 	COND_RECTANGLE *cond = c->cond;
 	free(cond->lower);
 	free(cond->upper);
-	sam_free(xcsf, cond->mu);
 	free(c->cond);
-}
-
-double cond_rectangle_mu(XCSF *xcsf, CL *c, int m)
-{
-	(void)xcsf;
-	COND_RECTANGLE *cond = c->cond;
-	return cond->mu[m];
 }
 
 void cond_rectangle_copy(XCSF *xcsf, CL *to, CL *from)
@@ -75,7 +66,6 @@ void cond_rectangle_copy(XCSF *xcsf, CL *to, CL *from)
 	COND_RECTANGLE *from_cond = from->cond;
 	memcpy(to_cond->lower, from_cond->lower, sizeof(double)*xcsf->num_x_vars);
 	memcpy(to_cond->upper, from_cond->upper, sizeof(double)*xcsf->num_x_vars);
-	sam_copy(xcsf, to_cond->mu, from_cond->mu);
 }                             
 
 void cond_rectangle_rand(XCSF *xcsf, CL *c)
@@ -172,9 +162,6 @@ _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
 {
 	COND_RECTANGLE *cond = c->cond;
 	_Bool changed = false;
-	// update mutation rates
-	sam_adapt(xcsf, cond->mu);
-	// apply mutation
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
 		// lower interval
 		if(rand_uniform(0,1) < xcsf->P_MUTATION) {

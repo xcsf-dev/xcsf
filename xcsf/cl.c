@@ -105,6 +105,7 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
             exit(EXIT_FAILURE);
     }
 
+    sam_init(xcsf, &c->mu);
     cond_init(xcsf, c);
     pred_init(xcsf, c);
 }
@@ -112,6 +113,7 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
 void cl_copy(XCSF *xcsf, CL *to, CL *from)
 {
     cl_init(xcsf, to, from->size, from->time);
+	sam_copy(xcsf, to->mu, from->mu);
     cond_copy(xcsf, to, from);
     pred_copy(xcsf, to, from);
 }
@@ -185,6 +187,7 @@ double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
 
 void cl_free(XCSF *xcsf, CL *c)
 {
+	sam_free(xcsf, c->mu);
     cond_free(xcsf, c);
     pred_free(xcsf, c);
     free(c);
@@ -247,5 +250,6 @@ _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2)
 
 double cl_mutation_rate(XCSF *xcsf, CL *c, int m)
 {
-    return cond_mu(xcsf, c, m);
+    (void)xcsf;
+    return c->mu[m];
 }

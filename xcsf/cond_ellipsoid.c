@@ -39,7 +39,6 @@ typedef struct COND_ELLIPSOID {
 	double *center;
 	double *radius;
 	_Bool m;
-	double *mu;
 } COND_ELLIPSOID;
 
 double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x);
@@ -50,23 +49,15 @@ void cond_ellipsoid_init(XCSF *xcsf, CL *c)
 	cond->center = malloc(sizeof(double) * xcsf->num_x_vars);
 	cond->radius = malloc(sizeof(double) * xcsf->num_x_vars); 
 	c->cond = cond;
-	sam_init(xcsf, &cond->mu);
 }
 
 void cond_ellipsoid_free(XCSF *xcsf, CL *c)
 {
+    (void)xcsf;
 	COND_ELLIPSOID *cond = c->cond;
 	free(cond->center);
 	free(cond->radius);
-	sam_free(xcsf, cond->mu);
 	free(c->cond);
-}
-
-double cond_ellipsoid_mu(XCSF *xcsf, CL *c, int m)
-{
-	(void)xcsf;
-	COND_ELLIPSOID *cond = c->cond;
-	return cond->mu[m];
 }
 
 void cond_ellipsoid_copy(XCSF *xcsf, CL *to, CL *from)
@@ -75,7 +66,6 @@ void cond_ellipsoid_copy(XCSF *xcsf, CL *to, CL *from)
 	COND_ELLIPSOID *from_cond = from->cond;
 	memcpy(to_cond->center, from_cond->center, sizeof(double)*xcsf->num_x_vars);
 	memcpy(to_cond->radius, from_cond->radius, sizeof(double)*xcsf->num_x_vars);
-	sam_copy(xcsf, to_cond->mu, from_cond->mu);
 }                             
 
 void cond_ellipsoid_rand(XCSF *xcsf, CL *c)
@@ -154,9 +144,6 @@ _Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c)
 {
 	COND_ELLIPSOID *cond = c->cond;
 	_Bool changed = false;
-	// update mutation rates
-	sam_adapt(xcsf, cond->mu);
-    // apply mutation
 	for(int i = 0; i < xcsf->num_x_vars; i++) {
 		if(rand_uniform(0,1) < xcsf->P_MUTATION) {
 			cond->center[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;

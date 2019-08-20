@@ -38,7 +38,6 @@
 typedef struct COND_GP {
 	GP_TREE gp;
 	_Bool m;
-	double *mu;
 } COND_GP;
 
 void cond_gp_init(XCSF *xcsf, CL *c)
@@ -46,22 +45,13 @@ void cond_gp_init(XCSF *xcsf, CL *c)
 	COND_GP *cond = malloc(sizeof(COND_GP));
 	tree_init(xcsf, &cond->gp);
 	c->cond = cond;
-	sam_init(xcsf, &cond->mu);
 }
 
 void cond_gp_free(XCSF *xcsf, CL *c)
 {
 	COND_GP *cond = c->cond;
 	tree_free(xcsf, &cond->gp);
-	sam_free(xcsf, cond->mu);
 	free(c->cond);
-}
-
-double cond_gp_mu(XCSF *xcsf, CL *c, int m)
-{
-	(void)xcsf;
-	COND_GP *cond = c->cond;
-	return cond->mu[m];
 }
 
 void cond_gp_copy(XCSF *xcsf, CL *to, CL *from)
@@ -69,7 +59,6 @@ void cond_gp_copy(XCSF *xcsf, CL *to, CL *from)
 	COND_GP *to_cond = to->cond;
 	COND_GP *from_cond = from->cond;
 	tree_copy(xcsf, &to_cond->gp, &from_cond->gp);
-	sam_copy(xcsf, to_cond->mu, from_cond->mu);
 }
 
 void cond_gp_rand(XCSF *xcsf, CL *c)
@@ -112,8 +101,6 @@ _Bool cond_gp_match_state(XCSF *xcsf, CL *c)
 _Bool cond_gp_mutate(XCSF *xcsf, CL *c)
 {
 	COND_GP *cond = c->cond;
-	// update mutation rates
-	sam_adapt(xcsf, cond->mu);
     // apply mutation
 	if(rand_uniform(0,1) < xcsf->P_MUTATION) {
 		tree_mutation(xcsf, &cond->gp, xcsf->P_MUTATION);
@@ -155,8 +142,8 @@ _Bool cond_gp_general(XCSF *xcsf, CL *c1, CL *c2)
 
 void cond_gp_print(XCSF *xcsf, CL *c)
 {
-	COND_GP *cond = c->cond;
-        printf("GP tree: ");
-	tree_print(xcsf, &cond->gp, 0);
-        printf("\n");
+    COND_GP *cond = c->cond;
+    printf("GP tree: ");
+    tree_print(xcsf, &cond->gp, 0);
+    printf("\n");
 }  

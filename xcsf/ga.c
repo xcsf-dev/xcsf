@@ -63,6 +63,9 @@ void ga(XCSF *xcsf, SET *set, SET *kset)
         c2->fit = c2p->fit / c2p->num;
         c1->fit = xcsf->FIT_REDUC * (c1->fit + c2->fit)/2.0;
         c2->fit = c1->fit;
+        // adapt mutation rates
+        sam_adapt(xcsf, c1->mu);
+        sam_adapt(xcsf, c2->mu);
         // apply genetic operators to offspring
         _Bool cmod = cl_crossover(xcsf, c1, c2);
         _Bool m1mod = cl_mutate(xcsf, c1);

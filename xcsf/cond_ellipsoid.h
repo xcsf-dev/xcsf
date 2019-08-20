@@ -26,7 +26,6 @@ void cond_ellipsoid_free(XCSF *xcsf, CL *c);
 void cond_ellipsoid_init(XCSF *xcsf, CL *c);
 void cond_ellipsoid_print(XCSF *xcsf, CL *c);
 void cond_ellipsoid_rand(XCSF *xcsf, CL *c);
-double cond_ellipsoid_mu(XCSF *xcsf, CL *c, int m);
 
 static struct CondVtbl const cond_ellipsoid_vtbl = {
 	&cond_ellipsoid_crossover,
@@ -34,7 +33,6 @@ static struct CondVtbl const cond_ellipsoid_vtbl = {
 	&cond_ellipsoid_match,
 	&cond_ellipsoid_match_state,
 	&cond_ellipsoid_mutate,
-	&cond_ellipsoid_mu,
 	&cond_ellipsoid_copy,
 	&cond_ellipsoid_cover,
 	&cond_ellipsoid_free,
