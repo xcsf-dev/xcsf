@@ -116,7 +116,7 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
 void cl_copy(XCSF *xcsf, CL *to, CL *from)
 {
     cl_init(xcsf, to, from->size, from->time);
-	sam_copy(xcsf, to->mu, from->mu);
+    sam_copy(xcsf, to->mu, from->mu);
     cond_copy(xcsf, to, from);
     pred_copy(xcsf, to, from);
 }
