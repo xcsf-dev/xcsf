@@ -50,6 +50,7 @@ void constants_init(XCSF *xcsf, const char *filename)
 {
     init_config(filename);
     // integers
+    xcsf->ACT_TYPE = atoi(getvalue("ACT_TYPE"));
     xcsf->COND_TYPE = atoi(getvalue("COND_TYPE"));
     xcsf->DGP_NUM_NODES = atoi(getvalue("DGP_NUM_NODES"));
     xcsf->GP_INIT_DEPTH = atoi(getvalue("GP_INIT_DEPTH"));

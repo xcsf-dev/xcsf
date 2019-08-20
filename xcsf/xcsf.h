@@ -25,8 +25,10 @@
 typedef struct CL {
     struct CondVtbl const *cond_vptr; // functions acting on conditions
     struct PredVtbl const *pred_vptr; // functions acting on predictions
+    struct ActVtbl const *act_vptr; // functions acting on actions
     void *cond; // condition structure
     void *pred; // prediction structure
+    void *act; // action structure
     double *mu; // self-adaptive mutation rates
     double err; // error
     double fit; // fitness
@@ -36,6 +38,7 @@ typedef struct CL {
     int time; // time of creation
     _Bool m; // whether the classifier matches current input
     double *prediction; // current classifier prediction
+    double *action; // current classifier action
 } CL;
 
 // classifier linked list node
@@ -79,6 +82,7 @@ typedef struct XCSF {
     double THETA_DEL; // min experience before fitness used in probability of deletion
     int COND_TYPE; // classifier condition type: hyperrectangles, GP trees, etc.
     int PRED_TYPE; // classifier prediction type: least squares, neural nets, etc.
+    int ACT_TYPE; // classifier action type
 
     // genetic algorithm parameters
     double P_CROSSOVER; // probability of applying crossover (for hyperrectangles)
@@ -123,6 +127,7 @@ typedef struct XCSF {
     // set by environment
     int num_x_vars; // number of problem input variables
     int num_y_vars; // number of problem output variables
+    int num_classes; // number of class labels
     double (*loss_ptr)(struct XCSF*, double*, double*); // pointer to loss/error function
 
 } XCSF;                  

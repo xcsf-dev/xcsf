@@ -74,6 +74,7 @@ int main(int argc, char **argv)
     input_read_csv(argv[1], train_data, test_data);
     xcsf->num_x_vars = train_data->x_cols;
     xcsf->num_y_vars = train_data->y_cols;
+    xcsf->num_classes = 0; // regression
 
     // initialise population
     pop_init(xcsf);

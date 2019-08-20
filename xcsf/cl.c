@@ -31,20 +31,10 @@
 #include "xcsf.h"
 #include "random.h"
 #include "loss.h"
-#include "condition.h"
-#include "cond_dummy.h"
-#include "cond_rectangle.h"
-#include "cond_ellipsoid.h"
-#include "cond_gp.h"
-#include "cond_dgp.h"
-#include "cond_neural.h"
-#include "prediction.h"
-#include "pred_nlms.h"
-#include "pred_rls.h"
-#include "pred_neural.h"
-#include "rule_dgp.h"
-#include "rule_neural.h"
 #include "sam.h"
+#include "condition.h"
+#include "prediction.h"
+#include "action.h"
 #include "cl.h"
 
 double cl_update_err(XCSF *xcsf, CL *c, double *y);
@@ -59,66 +49,19 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
     c->size = size;
     c->time = time;
     c->prediction = calloc(xcsf->num_y_vars, sizeof(double));
+    c->action = calloc(xcsf->num_y_vars, sizeof(double));
     c->m = false;
-
-    switch(xcsf->PRED_TYPE) {
-        case 0:
-        case 1:
-            c->pred_vptr = &pred_nlms_vtbl;
-            break;
-        case 2:
-        case 3:
-            c->pred_vptr = &pred_rls_vtbl;
-            break;
-        case 4:
-            c->pred_vptr = &pred_neural_vtbl;
-            break;
-        default:
-            printf("Invalid prediction type specified: %d\n", xcsf->PRED_TYPE);
-            exit(EXIT_FAILURE);
-    }
-
-    switch(xcsf->COND_TYPE) {
-        case -1:
-            c->cond_vptr = &cond_dummy_vtbl;
-            break;
-        case 0:
-            c->cond_vptr = &cond_rectangle_vtbl;
-            break;
-        case 1:
-            c->cond_vptr = &cond_ellipsoid_vtbl;
-            break;
-        case 2:
-            c->cond_vptr = &cond_neural_vtbl;
-            break;
-        case 3:
-            c->cond_vptr = &cond_gp_vtbl;
-            break;
-        case 4:
-            c->cond_vptr = &cond_dgp_vtbl;
-            break;
-        case 11:
-            c->cond_vptr = &rule_dgp_cond_vtbl;
-            c->pred_vptr = &rule_dgp_pred_vtbl;
-            break;
-        case 12:
-            c->cond_vptr = &rule_neural_cond_vtbl;
-            c->pred_vptr = &rule_neural_pred_vtbl;
-            break;
-        default:
-            printf("Invalid condition type specified: %d\n", xcsf->COND_TYPE);
-            exit(EXIT_FAILURE);
-    }
-
+    action_init(xcsf, c);
+    prediction_init(xcsf, c);
+    condition_init(xcsf, c);
     sam_init(xcsf, &c->mu);
-    cond_init(xcsf, c);
-    pred_init(xcsf, c);
 }
 
 void cl_copy(XCSF *xcsf, CL *to, CL *from)
 {
     cl_init(xcsf, to, from->size, from->time);
     sam_copy(xcsf, to->mu, from->mu);
+    act_copy(xcsf, to, from);
     cond_copy(xcsf, to, from);
     pred_copy(xcsf, to, from);
 }
@@ -156,6 +99,7 @@ void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num)
     c->exp++;
     cl_update_err(xcsf, c, y);
     pred_update(xcsf, c, x, y);
+    act_update(xcsf, c, x, y);
     cl_update_size(xcsf, c, set_num);
 }
 
@@ -192,8 +136,10 @@ double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
 void cl_free(XCSF *xcsf, CL *c)
 {
     free(c->prediction);
+    free(c->action);
     sam_free(xcsf, c->mu);
     cond_free(xcsf, c);
+    act_free(xcsf, c);
     pred_free(xcsf, c);
     free(c);
 }
@@ -208,6 +154,7 @@ void cl_print(XCSF *xcsf, CL *c, _Bool print_cond, _Bool print_pred)
     }
     if(print_pred) {
         pred_print(xcsf, c);
+        act_print(xcsf, c);
     }
     printf("err=%f, fit=%f, num=%d, exp=%d, size=%f, time=%d\n", 
             c->err, c->fit, c->num, c->exp, c->size, c->time);
@@ -220,12 +167,16 @@ void cl_cover(XCSF *xcsf, CL *c, double *x)
 
 _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-    return cond_general(xcsf, c1, c2);
+    if(cond_general(xcsf, c1, c2)) {
+        return act_general(xcsf, c1, c2);
+    }
+    return false;
 }
 
 void cl_rand(XCSF *xcsf, CL *c)
 {
     cond_rand(xcsf, c);
+    act_rand(xcsf, c);
 }
 
 _Bool cl_match(XCSF *xcsf, CL *c, double *x)
@@ -259,7 +210,8 @@ _Bool cl_mutate(XCSF *xcsf, CL *c)
     // mutate
     _Bool cm = cond_mutate(xcsf, c);
     _Bool pm = pred_mutate(xcsf, c);
-    if(cm || pm) {
+    _Bool am = act_mutate(xcsf, c);
+    if(cm || pm || am) {
         return true;
     }
     return false;
@@ -269,7 +221,8 @@ _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
     _Bool cc = cond_crossover(xcsf, c1, c2);
     _Bool pc = pred_crossover(xcsf, c1, c2);
-    if(cc || pc) {
+    _Bool ac = act_crossover(xcsf, c1, c2);
+    if(cc || pc || ac) {
         return true;
     }
     return false;

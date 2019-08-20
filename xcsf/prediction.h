@@ -1,4 +1,4 @@
- /*
+/*
  * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,6 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+void prediction_init(XCSF *xcsf, CL *c);
 
 struct PredVtbl {
 	_Bool (*pred_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);

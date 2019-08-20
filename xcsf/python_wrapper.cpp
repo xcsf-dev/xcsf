@@ -61,6 +61,7 @@ struct XCS
         xcs.time = 0;
 		xcs.num_x_vars = num_x_vars;
 		xcs.num_y_vars = num_y_vars;
+        xcs.num_classes = 0;
 		train_data.rows = 0;
 		train_data.x_cols = 0;
 		train_data.y_cols = 0;
@@ -173,6 +174,7 @@ struct XCS
 	double get_init_fitness() { return xcs.INIT_FITNESS; }
 	double get_nu() { return xcs.NU; }
 	double get_theta_del() { return xcs.THETA_DEL; }
+	int get_act_type() { return xcs.ACT_TYPE; }
 	int get_cond_type() { return xcs.COND_TYPE; }
 	int get_pred_type() { return xcs.PRED_TYPE; }
 	double get_p_crossover() { return xcs.P_CROSSOVER; }
@@ -209,6 +211,7 @@ struct XCS
 	int get_time() { return xcs.time; }
 	double get_num_x_vars() { return xcs.num_x_vars; }
 	double get_num_y_vars() { return xcs.num_y_vars; }                      
+	double get_num_classes() { return xcs.num_classes; }
 	double get_pop_avg_mu(int m) { return set_avg_mut(&xcs, &xcs.pset, m); }
     double get_msetsize() { return xcs.msetsize; }
 
@@ -235,6 +238,7 @@ struct XCS
 	void set_init_fitness(double a) { xcs.INIT_FITNESS = a; }
 	void set_nu(double a) { xcs.NU = a; }
 	void set_theta_del(double a) { xcs.THETA_DEL = a; }
+	void set_act_type(int a) { xcs.ACT_TYPE = a; }
 	void set_cond_type(int a) { xcs.COND_TYPE = a; }
 	void set_pred_type(int a) { xcs.PRED_TYPE = a; }
 	void set_p_crossover(double a) { xcs.P_CROSSOVER = a; }
@@ -298,6 +302,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("INIT_FITNESS", &XCS::get_init_fitness, &XCS::set_init_fitness)
 		.add_property("NU", &XCS::get_nu, &XCS::set_nu)
 		.add_property("THETA_DEL", &XCS::get_theta_del, &XCS::set_theta_del)
+		.add_property("ACT_TYPE", &XCS::get_act_type, &XCS::set_act_type)
 		.add_property("COND_TYPE", &XCS::get_cond_type, &XCS::set_cond_type)
 		.add_property("PRED_TYPE", &XCS::get_pred_type, &XCS::set_pred_type)
 		.add_property("P_CROSSOVER", &XCS::get_p_crossover, &XCS::set_p_crossover)
@@ -334,6 +339,7 @@ BOOST_PYTHON_MODULE(xcsf)
 		.def("time", &XCS::get_time)
 		.def("num_x_vars", &XCS::get_num_x_vars)
 		.def("num_y_vars", &XCS::get_num_y_vars)
+		.def("num_classes", &XCS::get_num_classes)
 		.def("pop_avg_mu", &XCS::get_pop_avg_mu)
 		.def("print_pop", &XCS::print_pop)
 		.def("print_match_set", &XCS::print_match_set)
