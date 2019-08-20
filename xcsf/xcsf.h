@@ -123,7 +123,7 @@ typedef struct XCSF {
     // set by environment
     int num_x_vars; // number of problem input variables
     int num_y_vars; // number of problem output variables
-    double (*loss_ptr)(struct XCSF*, double*, double*); // pointer to loss/error function apply
+    double (*loss_ptr)(struct XCSF*, double*, double*); // pointer to loss/error function
 
 } XCSF;                  
 
