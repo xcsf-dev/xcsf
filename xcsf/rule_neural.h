@@ -27,19 +27,22 @@ void rule_neural_cond_print(XCSF *xcsf, CL *c);
 void rule_neural_cond_rand(XCSF *xcsf, CL *c);
 
 static struct CondVtbl const rule_neural_cond_vtbl = {
-	&rule_neural_cond_crossover,
-	&rule_neural_cond_general,
-	&rule_neural_cond_match,
-	&rule_neural_cond_mutate,
-	&rule_neural_cond_copy,
-	&rule_neural_cond_cover,
-	&rule_neural_cond_free,
-	&rule_neural_cond_init,
-	&rule_neural_cond_print,
-	&rule_neural_cond_rand
+    &rule_neural_cond_crossover,
+    &rule_neural_cond_general,
+    &rule_neural_cond_match,
+    &rule_neural_cond_mutate,
+    &rule_neural_cond_copy,
+    &rule_neural_cond_cover,
+    &rule_neural_cond_free,
+    &rule_neural_cond_init,
+    &rule_neural_cond_print,
+    &rule_neural_cond_rand
 };      
 
 double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x);
+_Bool rule_neural_pred_crossover(XCSF *xcsf, CL *c1, CL *c2);
+_Bool rule_neural_pred_mutate(XCSF *xcsf, CL *c);
+void rule_neural_pred_rand(XCSF *xcsf, CL *c);
 void rule_neural_pred_copy(XCSF *xcsf, CL *to,  CL *from);
 void rule_neural_pred_free(XCSF *xcsf, CL *c);
 void rule_neural_pred_init(XCSF *xcsf, CL *c);
@@ -47,10 +50,13 @@ void rule_neural_pred_print(XCSF *xcsf, CL *c);
 void rule_neural_pred_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const rule_neural_pred_vtbl = {
-	&rule_neural_pred_compute,
-	&rule_neural_pred_copy,
-	&rule_neural_pred_free,
-	&rule_neural_pred_init,
-	&rule_neural_pred_print,
-	&rule_neural_pred_update
+    &rule_neural_pred_crossover,
+    &rule_neural_pred_rand,
+    &rule_neural_pred_mutate,
+    &rule_neural_pred_compute,
+    &rule_neural_pred_copy,
+    &rule_neural_pred_free,
+    &rule_neural_pred_init,
+    &rule_neural_pred_print,
+    &rule_neural_pred_update
 };

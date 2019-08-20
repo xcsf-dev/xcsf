@@ -224,6 +224,7 @@ _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
 void cl_rand(XCSF *xcsf, CL *c)
 {
     cond_rand(xcsf, c);
+    pred_rand(xcsf, c);
 }
 
 _Bool cl_match(XCSF *xcsf, CL *c, double *x)
@@ -254,13 +255,23 @@ _Bool cl_mutate(XCSF *xcsf, CL *c)
             }
         }
     } 
-    // mutate condition
-    return cond_mutate(xcsf, c);
+    // mutate
+    _Bool cm = cond_mutate(xcsf, c);
+    _Bool pm = pred_mutate(xcsf, c);
+    if(cm || pm) {
+        return true;
+    }
+    return false;
 }
 
 _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-    return cond_crossover(xcsf, c1, c2);
+    _Bool cc = cond_crossover(xcsf, c1, c2);
+    _Bool pc = pred_crossover(xcsf, c1, c2);
+    if(cc || pc) {
+        return true;
+    }
+    return false;
 }  
 
 double cl_mutation_rate(XCSF *xcsf, CL *c, int m)

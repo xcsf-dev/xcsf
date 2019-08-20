@@ -244,3 +244,20 @@ void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n)
         }
     }
 }
+
+_Bool pred_rls_crossover(XCSF *xcsf, CL *c1, CL *c2)
+{
+    (void)xcsf; (void)c1; (void)c2;
+    return false;
+}
+
+_Bool pred_rls_mutate(XCSF *xcsf, CL *c)
+{
+    (void)xcsf; (void)c;
+    return false;
+}
+
+void pred_rls_rand(XCSF *xcsf, CL *c)
+{
+    (void)xcsf; (void)c;
+}

@@ -16,17 +16,23 @@
  */
 
 double *pred_nlms_compute(XCSF *xcsf, CL *c, double *x);
-void pred_nlms_copy(XCSF *xcsf, CL *to,  CL *from);
+_Bool pred_nlms_crossover(XCSF *xcsf, CL *c1, CL *c2);
+_Bool pred_nlms_mutate(XCSF *xcsf, CL *c);
+void pred_nlms_rand(XCSF *xcsf, CL *c);
+void pred_nlms_copy(XCSF *xcsf, CL *to, CL *from);
 void pred_nlms_free(XCSF *xcsf, CL *c);
 void pred_nlms_init(XCSF *xcsf, CL *c);
 void pred_nlms_print(XCSF *xcsf, CL *c);
 void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct PredVtbl const pred_nlms_vtbl = {
-	&pred_nlms_compute,
-	&pred_nlms_copy,
-	&pred_nlms_free,
-	&pred_nlms_init,
-	&pred_nlms_print,
-	&pred_nlms_update
+    &pred_nlms_crossover,
+    &pred_nlms_rand,
+    &pred_nlms_mutate,
+    &pred_nlms_compute,
+    &pred_nlms_copy,
+    &pred_nlms_free,
+    &pred_nlms_init,
+    &pred_nlms_print,
+    &pred_nlms_update
 };
