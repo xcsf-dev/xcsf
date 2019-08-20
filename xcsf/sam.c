@@ -39,8 +39,8 @@ static const double mrates[10] = {0.0001,0.001,0.002,0.005,0.01,0.01,0.02,0.05,0
 
 void sam_init(XCSF *xcsf, double **mu)
 {
-	if(xcsf->SAM_NUM > 0) {
-		*mu = malloc(sizeof(double) * xcsf->SAM_NUM);
+    if(xcsf->SAM_NUM > 0) {
+        *mu = malloc(sizeof(double) * xcsf->SAM_NUM);
         if(xcsf->SAM_TYPE == 0) {
             sam_log_normal_init(xcsf, mu);
         }
@@ -49,7 +49,7 @@ void sam_init(XCSF *xcsf, double **mu)
         }
     }
 }
-  
+
 void sam_adapt(XCSF *xcsf, double *mu)
 {
     if(xcsf->SAM_TYPE == 0) {
@@ -59,28 +59,28 @@ void sam_adapt(XCSF *xcsf, double *mu)
         sam_10_rates_adapt(xcsf, mu);
     }
 }
- 
+
 void sam_copy(XCSF *xcsf, double *to, double *from)
 {
-	if(xcsf->SAM_NUM > 0) {
-	    memcpy(to, from, sizeof(double) * xcsf->SAM_NUM);
+    if(xcsf->SAM_NUM > 0) {
+        memcpy(to, from, sizeof(double) * xcsf->SAM_NUM);
     }
 }
 
 void sam_free(XCSF *xcsf, double *mu)
 {
-	if(xcsf->SAM_NUM > 0) {
-		free(mu);
-	}
+    if(xcsf->SAM_NUM > 0) {
+        free(mu);
+    }
 }
- 
+
 void sam_print(XCSF *xcsf, double *mu)
 {
-	printf("mu: \n");
-	for(int i = 0; i < xcsf->SAM_NUM; i++) {
-		printf("%f, ", mu[i]);
-	}
-	printf("\n");
+    printf("mu: \n");
+    for(int i = 0; i < xcsf->SAM_NUM; i++) {
+        printf("%f, ", mu[i]);
+    }
+    printf("\n");
 }
 
 void sam_log_normal_init(XCSF *xcsf, double **mu)
@@ -99,21 +99,21 @@ void sam_10_rates_init(XCSF *xcsf, double **mu)
 
 void sam_log_normal_adapt(XCSF *xcsf, double *mu)
 {
-	// adapt rates
-	for(int i = 0; i < xcsf->SAM_NUM; i++) {
-		mu[i] *= exp(rand_normal());
-		if(mu[i] < xcsf->SAM_MIN) {
-			mu[i] = xcsf->SAM_MIN;
-		}
-		else if(mu[i] > 1.0) {
-			mu[i] = 1.0;
-		}
-	}
+    // adapt rates
+    for(int i = 0; i < xcsf->SAM_NUM; i++) {
+        mu[i] *= exp(rand_normal());
+        if(mu[i] < xcsf->SAM_MIN) {
+            mu[i] = xcsf->SAM_MIN;
+        }
+        else if(mu[i] > 1.0) {
+            mu[i] = 1.0;
+        }
+    }
 }
 
 void sam_10_rates_adapt(XCSF *xcsf, double *mu)
 {
-	for(int i = 0; i < xcsf->SAM_NUM; i++) {
+    for(int i = 0; i < xcsf->SAM_NUM; i++) {
         if(rand_uniform(0,1) < 0.1) {
             mu[i] = mrates[irand_uniform(0,10)];
         }
