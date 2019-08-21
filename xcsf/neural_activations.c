@@ -17,10 +17,7 @@
  
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
-#include "xcsf.h"
 #include "neural_activations.h"
-#include "neural.h"
 
 void activation_set(activate_ptr *activate, int func)
 {
@@ -30,8 +27,8 @@ void activation_set(activate_ptr *activate, int func)
         case GAUSSIAN: *activate = &gaussian_activate; break;
         case BENT_IDENTITY: *activate = &bent_identity_activate; break;
         case TANH: *activate = &tanh_activate; break;
-        case SIN: *activate = &sin; break;
-        case COS: *activate = &cos; break;
+        case SIN: *activate = &sin_activate; break;
+        case COS: *activate = &cos_activate; break;
         case SOFT_PLUS: *activate = &soft_plus_activate; break;
         case IDENTITY: *activate = &identity_activate; break;
         case HARDTAN: *activate = &hardtan_activate; break;
@@ -53,7 +50,7 @@ void gradient_set(gradient_ptr *gradient, int func)
         case GAUSSIAN: *gradient = &gaussian_gradient; break;
         case BENT_IDENTITY: *gradient = &bent_identity_gradient; break;
         case TANH: *gradient = &tanh_gradient; break;
-        case SIN: *gradient = &cos; break;
+        case SIN: *gradient = &sin_gradient; break;
         case COS: *gradient = &cos_gradient; break;
         case SOFT_PLUS: *gradient = &logistic_plain; break;
         case IDENTITY: *gradient = &identity_gradient; break;

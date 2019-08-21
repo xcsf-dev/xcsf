@@ -61,6 +61,9 @@ static inline double elu_activate(double x) {return (x >= 0)*x + (x < 0)*expm1(x
 static inline double elu_gradient(double x) {return (x >= 0) + (x < 0)*(x + 1);}
 static inline double ramp_activate(double x) {return x*(x>0)+.1*x;}
 static inline double ramp_gradient(double x) {return (x>0)+.1;}
+static inline double sin_activate(double x) {return sin(x);}
+static inline double sin_gradient(double x) {return cos(x);}
+static inline double cos_activate(double x) {return cos(x);}
 static inline double cos_gradient(double x) {return -sin(x);}
 static inline double stair_activate(double x)
 {
