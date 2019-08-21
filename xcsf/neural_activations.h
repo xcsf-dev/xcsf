@@ -52,9 +52,9 @@ static inline double bent_identity_gradient(double x) {return (2*sqrt(x*x+1)/x)+
 static inline double identity_activate(double x) {return x;}
 static inline double identity_gradient(double x) {(void)x; return 1;}
 static inline double soft_plus_activate(double x) {return log1p(exp(x));}
+static inline double soft_plus_gradient(double x) {return 1./(1.+exp(-x));}
 static inline double tanh_activate(double x) {return (expm1(2*x))/(exp(2*x)+1);}
 static inline double tanh_gradient(double x) {return 1-x*x;}
-static inline double logistic_plain(double x) {return (1-x)*x;}
 static inline double leaky_activate(double x) {return (x>0) ? x : .1*x;}
 static inline double leaky_gradient(double x) {return (x>0)+.1;}
 static inline double elu_activate(double x) {return (x >= 0)*x + (x < 0)*expm1(x);}

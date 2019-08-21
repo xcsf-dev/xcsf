@@ -52,7 +52,7 @@ void gradient_set(gradient_ptr *gradient, int func)
         case TANH: *gradient = &tanh_gradient; break;
         case SIN: *gradient = &sin_gradient; break;
         case COS: *gradient = &cos_gradient; break;
-        case SOFT_PLUS: *gradient = &logistic_plain; break;
+        case SOFT_PLUS: *gradient = &soft_plus_gradient; break;
         case IDENTITY: *gradient = &identity_gradient; break;
         case HARDTAN: *gradient = &hardtan_gradient; break;
         case STAIR: *gradient = &stair_gradient; break;
