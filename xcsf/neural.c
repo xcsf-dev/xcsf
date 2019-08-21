@@ -98,8 +98,8 @@ void neural_propagate(XCSF *xcsf, BPN *bpn, double *input)
 
 double neural_output(XCSF *xcsf, BPN *bpn, int i)
 {
-    (void)xcsf;
-    return bpn->layer[bpn->num_layers-1][i].output;
+    double out = bpn->layer[bpn->num_layers-1][i].output;
+    return fmax(xcsf->MIN_CON, fmin(xcsf->MAX_CON, out));
 }
 
 void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
@@ -222,7 +222,7 @@ double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
     }
     n->state += n->weights[n->num_inputs];
     n->output = (n->activate)(n->state);
-    n->output = fmax(xcsf->MIN_CON, fmin(xcsf->MAX_CON, n->output));
+    n->output = fmax(DBL_MIN, fmin(DBL_MAX, n->output));
     return n->output;
 }
 

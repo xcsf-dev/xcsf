@@ -39,10 +39,10 @@ typedef double (*gradient_ptr)(double);
 void activation_set(activate_ptr *activate, int func);
 void gradient_set(gradient_ptr *gradient, int func);
 
-static inline double logistic_activate(double x) {return 1./(1.+exp(-x));}
-static inline double logistic_gradient(double x) {return (1-x)*x;}
-//static inline double logistic_activate(double x) {return 2./(1+exp(-x))-1;} // bipolar
-//static inline double logistic_gradient(double x) {double r=exp(-x); return (2*r)/((r+1)*(r+1));}
+//static inline double logistic_activate(double x) {return 1./(1.+exp(-x));}
+//static inline double logistic_gradient(double x) {return (1-x)*x;}
+static inline double logistic_activate(double x) {return 2./(1+exp(-x))-1;} // bipolar
+static inline double logistic_gradient(double x) {double r=exp(-x); return (2*r)/((r+1)*(r+1));}
 static inline double gaussian_activate(double x) {return exp(-x*x);}
 static inline double gaussian_gradient(double x) {return -2*x*exp((-x*x)/2.);}
 static inline double relu_activate(double x) {return x*(x>0);}
