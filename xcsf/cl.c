@@ -51,10 +51,15 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
     c->prediction = calloc(xcsf->num_y_vars, sizeof(double));
     c->action = calloc(xcsf->num_y_vars, sizeof(double));
     c->m = false;
-    action_init(xcsf, c);
-    prediction_init(xcsf, c);
-    condition_init(xcsf, c);
+    // set functions
+    action_set(xcsf, c);
+    prediction_set(xcsf, c);
+    condition_set(xcsf, c);
+    // initialise structures
     sam_init(xcsf, &c->mu);
+    cond_init(xcsf, c);
+    pred_init(xcsf, c);
+    act_init(xcsf, c);
 }
 
 void cl_copy(XCSF *xcsf, CL *to, CL *from)

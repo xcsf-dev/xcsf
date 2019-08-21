@@ -24,10 +24,8 @@
 #include <float.h>
 #include "xcsf.h"
 #include "random.h"
-#include "neural.h"
+#include "neural_activations.h"
 #include "dgp.h"
-
-void node_set_activation(activ_ptr *activ, int func);
 
 void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
 {
@@ -35,7 +33,7 @@ void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
     dgp->n = n;
     dgp->state = malloc(sizeof(double)*dgp->n);
     dgp->initial_state = malloc(sizeof(double)*dgp->n);
-    dgp->activ = malloc(sizeof(activ_ptr)*dgp->n);
+    dgp->activate = malloc(sizeof(activate_ptr)*dgp->n);
     dgp->connectivity = malloc(sizeof(int)*dgp->n*xcsf->MAX_K);
     dgp->weights = malloc(sizeof(double)*dgp->n*xcsf->MAX_K);
     graph_rand(xcsf, dgp);
@@ -47,7 +45,7 @@ void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from)
     to->n = from->n;
     memcpy(to->state, from->state, sizeof(double)*from->n);
     memcpy(to->initial_state, from->initial_state, sizeof(double)*from->n);
-    memcpy(to->activ, from->activ, sizeof(activ_ptr)*from->n);
+    memcpy(to->activate, from->activate, sizeof(activate_ptr)*from->n);
     memcpy(to->connectivity, from->connectivity, sizeof(int)*from->n*xcsf->MAX_K);
     memcpy(to->weights, from->weights, sizeof(double)*from->n*xcsf->MAX_K);
 }
@@ -70,7 +68,7 @@ void graph_rand(XCSF *xcsf, GRAPH *dgp)
 {
     dgp->t = irand_uniform(1,xcsf->MAX_T);
     for(int i = 0; i < dgp->n; i++) {
-        node_set_activation(&dgp->activ[i], irand_uniform(0, NUM_ACTIVATIONS));
+        activation_set(&dgp->activate[i], irand_uniform(0, NUM_ACTIVATIONS));
         dgp->initial_state[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
         dgp->state[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
     }
@@ -109,7 +107,7 @@ void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs)
                     dgp->state[i] += dgp->weights[idx] * inputs[abs(c)-1];
                 }
             }
-            dgp->state[i] = dgp->activ[i](dgp->state[i]);
+            dgp->state[i] = dgp->activate[i](dgp->state[i]);
         }
     }
 }
@@ -134,7 +132,7 @@ void graph_free(XCSF *xcsf, GRAPH *dgp)
     free(dgp->connectivity);
     free(dgp->state);
     free(dgp->initial_state);
-    free(dgp->activ);
+    free(dgp->activate);
     (void)xcsf;
 }
 
@@ -147,9 +145,9 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
     for(int i = 0; i < dgp->n; i++) {
         // mutate function
         if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
-            activ_ptr old = dgp->activ[i];
-            node_set_activation(&dgp->activ[i], irand_uniform(0, NUM_ACTIVATIONS));
-            if(old != dgp->activ[i]) {
+            activate_ptr old = dgp->activate[i];
+            activation_set(&dgp->activate[i], irand_uniform(0, NUM_ACTIVATIONS));
+            if(old != dgp->activate[i]) {
                 fmodified = true;
             }              
         }
@@ -226,9 +224,9 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
     // cross functions and states
     for(int i = 0; i < dgp1->n; i++) {
         if(rand_uniform(0,1) < 0.5) {
-            activ_ptr tmp = dgp1->activ[i];
-            dgp1->activ[i] = dgp2->activ[i];
-            dgp2->activ[i] = tmp;
+            activate_ptr tmp = dgp1->activate[i];
+            dgp1->activate[i] = dgp2->activate[i];
+            dgp2->activate[i] = tmp;
         }
         if(rand_uniform(0,1) < 0.5) {
             double tmp = dgp1->initial_state[i];
@@ -261,55 +259,4 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
     }  
  
     return true;
-}
-
-void node_set_activation(activ_ptr *activ, int func)
-{
-    switch(func) {
-        case LOGISTIC:
-            *activ = &logistic_activ;
-            break;
-        case RELU:
-            *activ = &relu_activ;
-            break;
-        case GAUSSIAN:
-            *activ = &gaussian_activ;
-            break;
-        case BENT_IDENTITY:
-            *activ = &bent_identity_activ;
-            break;
-        case TANH:
-            *activ = &tanh_activ;
-            break;
-        case SIN:
-            *activ = &sin;
-            break;
-        case COS:
-            *activ = &cos;
-            break;
-        case SOFT_PLUS:
-            *activ = &soft_plus_activ;
-            break;
-        case IDENTITY:
-            *activ = &identity_activ;
-            break;
-        case HARDTAN:
-            *activ = &hardtan_activ;
-            break;
-        case STAIR:
-            *activ = &stair_activ;
-            break;
-        case LEAKY:
-            *activ = &leaky_activ;
-            break;
-        case ELU:
-            *activ = &elu_activ;
-            break;
-        case RAMP:
-            *activ = &ramp_activ;
-            break;
-        default:
-            printf("error: invalid activation function: %d\n", func);
-            exit(EXIT_FAILURE);
-    }                                    
 }

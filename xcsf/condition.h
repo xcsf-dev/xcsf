@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void condition_init(XCSF *xcsf, CL *c);
+void condition_set(XCSF *xcsf, CL *c);
 
 struct CondVtbl {
 	_Bool (*cond_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);

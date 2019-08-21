@@ -32,6 +32,7 @@
 #include "xcsf.h"
 #include "random.h"
 #include "cl.h"
+#include "neural_activations.h"
 #include "neural.h"
 #include "prediction.h"
 #include "pred_neural.h"

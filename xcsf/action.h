@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void action_init(XCSF *xcsf, CL *c);
+void action_set(XCSF *xcsf, CL *c);
 
 struct ActVtbl {
 	_Bool (*act_impl_general)(XCSF *xcsf, CL *c1, CL *c2);

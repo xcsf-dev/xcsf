@@ -29,6 +29,7 @@
 #include "xcsf.h"
 #include "random.h"
 #include "cl.h"
+#include "neural_activations.h"
 #include "neural.h"
 #include "dgp.h"
 #include "condition.h"
@@ -48,7 +49,7 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = malloc(sizeof(RULE_NEURAL_COND));
     // network with 1 hidden layer
-    int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, 1+xcsf->MAX_FORWARD};
+    int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1};
     // select layer activation functions
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
     // initialise neural network
@@ -165,6 +166,7 @@ double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x)
     for(int i = 0; i < xcsf->MAX_FORWARD; i++) {
         pred->input[i] = neural_output(xcsf, &cond->bpn, 1+i);
     }
+
     // propagate outputs through prediction network
     neural_propagate(xcsf, &pred->bpn, pred->input);
     for(int i = 0; i <  xcsf->num_y_vars; i++) {

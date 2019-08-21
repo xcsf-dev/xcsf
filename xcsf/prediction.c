@@ -25,7 +25,7 @@
 #include "pred_rls.h"
 #include "pred_neural.h"     
 
-void prediction_init(XCSF *xcsf, CL *c)
+void prediction_set(XCSF *xcsf, CL *c)
 {
     switch(xcsf->PRED_TYPE) {
         case 0:
@@ -43,5 +43,4 @@ void prediction_init(XCSF *xcsf, CL *c)
             printf("Invalid prediction type specified: %d\n", xcsf->PRED_TYPE);
             exit(EXIT_FAILURE);
     }
-    pred_init(xcsf, c);
 }

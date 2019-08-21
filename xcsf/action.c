@@ -23,7 +23,7 @@
 #include "action.h"
 #include "act_constant.h"
 
-void action_init(XCSF *xcsf, CL *c)
+void action_set(XCSF *xcsf, CL *c)
 {
     switch(xcsf->ACT_TYPE) {
         case 0:
@@ -33,5 +33,4 @@ void action_init(XCSF *xcsf, CL *c)
             printf("Invalid action type specified: %d\n", xcsf->ACT_TYPE);
             exit(EXIT_FAILURE);
     }
-    act_init(xcsf, c);
 }

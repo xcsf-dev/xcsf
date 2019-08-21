@@ -32,13 +32,14 @@
 #include <float.h>
 #include "xcsf.h"
 #include "random.h"
+#include "neural_activations.h"
 #include "neural.h"
 
 double neuron_propagate(XCSF *xcsf, NEURON *n, double *input);
 void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, int func);
 void neuron_learn(XCSF *xcsf, NEURON *n, double error);
 
-void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activ)
+void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activations)
 {
     // set number of hidden and output layers
     bpn->num_layers = layers-1;
@@ -53,12 +54,12 @@ void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activ)
     }
     // initialise first hidden layer
     for(int i = 0; i < bpn->num_neurons[0]; i++) {
-        neuron_init(xcsf, &bpn->layer[0][i], neurons[0], activ[0]);
+        neuron_init(xcsf, &bpn->layer[0][i], neurons[0], activations[0]);
     }
     // initialise each other layer
     for(int i = 1; i < bpn->num_layers; i++) {
         for(int j = 0; j < bpn->num_neurons[i]; j++) {
-            neuron_init(xcsf, &bpn->layer[i][j], bpn->num_neurons[i-1], activ[i]);
+            neuron_init(xcsf, &bpn->layer[i][j], bpn->num_neurons[i-1], activations[i]);
         }
     }   
     // temporary storage
@@ -111,7 +112,7 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
     double *out_error = bpn->tmp[bpn->num_layers-1];
     for(int i = 0; i < bpn->num_neurons[bpn->num_layers-1]; i++) {
         NEURON * neuro = &bpn->layer[bpn->num_layers-1][i];
-        out_error[i] = (output[i] - neuro->output) * (neuro->deriv)(neuro->state);
+        out_error[i] = (output[i] - neuro->output) * (neuro->gradient)(neuro->state);
         neuron_learn(xcsf, neuro, out_error[i]);
     }
     // hidden layers
@@ -125,7 +126,7 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state)
                 error[j] += prev_error[k] * bpn->layer[i+1][k].weights[j];
             }
             NEURON * neuro = &bpn->layer[i][j];
-            error[j] *= (neuro->deriv)(neuro->state);
+            error[j] *= (neuro->gradient)(neuro->state);
             neuron_learn(xcsf, neuro, error[j]);
         }
         prev_error = error;
@@ -181,8 +182,8 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
         for(int j = 0; j < from->num_neurons[i]; j++) {
             NEURON *a = &to->layer[i][j];
             NEURON *b = &from->layer[i][j];
-            a->activ = b->activ;
-            a->deriv = b->deriv;
+            a->activate = b->activate;
+            a->gradient = b->gradient;
             a->output = b->output;
             a->state = b->state;
             memcpy(a->weights, b->weights, sizeof(double)*b->num_inputs+1);
@@ -196,7 +197,9 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
 
 void neuron_init(XCSF *xcsf, NEURON *n, int num_inputs, int func)
 {
-    neuron_set_activation(xcsf, n, func);
+    (void)xcsf;
+    activation_set(&n->activate, func);
+    gradient_set(&n->gradient, func);
     n->output = 0.0;
     n->state = 0.0;
     n->num_inputs = num_inputs; 
@@ -218,7 +221,7 @@ double neuron_propagate(XCSF *xcsf, NEURON *n, double *input)
         n->state += n->weights[i] * input[i];
     }
     n->state += n->weights[n->num_inputs];
-    n->output = (n->activ)(n->state);
+    n->output = (n->activate)(n->state);
     n->output = fmax(xcsf->MIN_CON, fmin(xcsf->MAX_CON, n->output));
     return n->output;
 }
@@ -235,72 +238,6 @@ void neuron_learn(XCSF *xcsf, NEURON *n, double error)
 	n->weights[n->num_inputs] += n->v[n->num_inputs];
 }
 
-void neuron_set_activation(XCSF *xcsf, NEURON *n, int func)
-{
-    switch(func) {
-        case LOGISTIC:
-            n->activ = &logistic_activ;
-            n->deriv = &logistic_deriv;
-            break;
-        case RELU:
-            n->activ = &relu_activ;
-            n->deriv = &relu_deriv;
-            break;
-        case GAUSSIAN:
-            n->activ = &gaussian_activ;
-            n->deriv = &gaussian_deriv;
-            break;
-        case BENT_IDENTITY:
-            n->activ = &bent_identity_activ;
-            n->deriv = &bent_identity_deriv;
-            break;
-        case TANH:
-            n->activ = &tanh_activ;
-            n->deriv = &tanh_deriv;
-            break;
-        case SIN:
-            n->activ = &sin;
-            n->deriv = &cos;
-            break;
-        case COS:
-            n->activ = &cos;
-            n->deriv = &cos_deriv;
-            break;
-        case SOFT_PLUS:
-            n->activ = &soft_plus_activ;
-            n->deriv = &logistic_plain;
-            break;
-        case IDENTITY:
-            n->activ = &identity_activ;
-            n->deriv = &identity_deriv;
-            break;
-        case HARDTAN:
-            n->activ = &hardtan_activ;
-            n->deriv = &hardtan_deriv;
-            break;
-        case STAIR:
-            n->activ = &stair_activ;
-            n->deriv = &stair_deriv;
-            break;
-        case LEAKY:
-            n->activ = &leaky_activ;
-            n->deriv = &leaky_deriv;
-            break;
-        case ELU:
-            n->activ = &elu_activ;
-            n->deriv = &elu_deriv;
-            break;
-        case RAMP:
-            n->activ = &ramp_activ;
-            n->deriv = &ramp_deriv;
-            break;
-        default:
-            printf("error: invalid activation function: %d\n", func);
-            exit(EXIT_FAILURE);
-    }                                    
-    (void)xcsf;
-}  
-
 _Bool neural_mutate(XCSF *xcsf, BPN *bpn)
 {
     _Bool mod = false;
@@ -309,7 +246,9 @@ _Bool neural_mutate(XCSF *xcsf, BPN *bpn)
             NEURON *n = &bpn->layer[i][j];
             // mutate activation function
             if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
-                neuron_set_activation(xcsf, n, irand_uniform(0,NUM_ACTIVATIONS));
+                int rand_activate = irand_uniform(0,NUM_ACTIVATIONS);
+                activation_set(&n->activate, rand_activate);
+                gradient_set(&n->gradient, rand_activate);
                 mod = true;
             }
             // mutate weights and biases

@@ -28,13 +28,10 @@
 #include "cond_dgp.h"
 #include "cond_neural.h"       
 #include "prediction.h"
-#include "pred_nlms.h"
-#include "pred_rls.h"
-#include "pred_neural.h"     
 #include "rule_dgp.h"
 #include "rule_neural.h"
 
-void condition_init(XCSF *xcsf, CL *c)
+void condition_set(XCSF *xcsf, CL *c)
 {
     switch(xcsf->COND_TYPE) {
         case -1:
@@ -67,5 +64,4 @@ void condition_init(XCSF *xcsf, CL *c)
             printf("Invalid condition type specified: %d\n", xcsf->COND_TYPE);
             exit(EXIT_FAILURE);
     }
-    cond_init(xcsf, c);
 }

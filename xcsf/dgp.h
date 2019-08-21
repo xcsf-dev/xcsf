@@ -16,14 +16,14 @@
  *
  */
 
-typedef double (*activ_ptr)(double);
+typedef double (*activate_ptr)(double);
 
 typedef struct GRAPH {
     int *connectivity; // connectivity map
     double *weights;
     double *state; // current internal state
     double *initial_state; // initial states
-    activ_ptr *activ;
+    activate_ptr *activate;
     int n; // number of nodes
     int t; // number of cycles to run
 } GRAPH;
