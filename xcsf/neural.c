@@ -88,7 +88,7 @@ void neural_propagate(XCSF *xcsf, BPN *bpn, double *input)
     (void)xcsf;
     for(int i = 0; i < bpn->num_layers; i++) {
         layer_forward(&bpn->layers[i], input);
-        input = bpn->layers[i].output;
+        input = layer_output(&bpn->layers[i]);
     }
 }
 
@@ -124,8 +124,8 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
 double neural_output(XCSF *xcsf, BPN *bpn, int i)
 {
     if(i < bpn->num_outputs) {
-        double out = bpn->layers[bpn->num_layers-1].output[i];
-        return fmax(xcsf->MIN_CON, fmin(xcsf->MAX_CON, out));
+        double *output = layer_output(&bpn->layers[bpn->num_layers-1]);
+        return fmax(xcsf->MIN_CON, fmin(xcsf->MAX_CON, output[i]));
     }
     printf("neural_output(): requested (%d) in output layer of size (%d)\n",
             i, bpn->num_outputs);

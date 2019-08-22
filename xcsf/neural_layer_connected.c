@@ -188,3 +188,8 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
     } 
     return mod;
 }
+
+double *neural_layer_connected_output(LAYER *l)
+{
+    return l->output;
+}

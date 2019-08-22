@@ -25,7 +25,12 @@ struct LayerVtbl {
 	void (*layer_impl_update)(XCSF *xcsf, LAYER *l);
 	void (*layer_impl_backward)(LAYER *l);
 	void (*layer_impl_forward)(LAYER *l, double *input);
+	double* (*layer_impl_output)(LAYER *l);
 };
+
+static inline double* layer_output(LAYER *l) {
+	return (*l->layer_vptr->layer_impl_output)(l);
+}
     
 static inline void layer_init(LAYER *l, int num_inputs, int num_outputs, int activation) {
 	(*l->layer_vptr->layer_impl_init)(l, num_inputs, num_outputs, activation);
