@@ -191,7 +191,6 @@ struct XCS
 	int get_num_hidden_neurons() { return xcs.NUM_HIDDEN_NEURONS; }
 	int get_hidden_neuron_activation() { return xcs.HIDDEN_NEURON_ACTIVATION; }
 	double get_momentum() { return xcs.MOMENTUM; }
-	_Bool get_nesterov() { return xcs.NESTEROV; }
 	int get_dgp_num_nodes() { return xcs.DGP_NUM_NODES; }
 	int get_max_forward() { return xcs.MAX_FORWARD; }
 	_Bool get_reset_states() { return xcs.RESET_STATES; }
@@ -255,7 +254,6 @@ struct XCS
 	void set_num_hidden_neurons(int a) { xcs.NUM_HIDDEN_NEURONS = a; }
 	void set_hidden_neuron_activation(int a) { xcs.HIDDEN_NEURON_ACTIVATION = a; }
 	void set_momentum(double a) { xcs.MOMENTUM = a; }
-	void set_nesterov(_Bool a) { xcs.NESTEROV = a; }
 	void set_dgp_num_nodes(int a) { xcs.DGP_NUM_NODES = a; }
 	void set_max_forward(int a) { xcs.MAX_FORWARD = a; }
 	void set_reset_states(_Bool a) { xcs.RESET_STATES = a; }
@@ -322,7 +320,6 @@ BOOST_PYTHON_MODULE(xcsf)
 		.add_property("MAX_FORWARD", &XCS::get_max_forward, &XCS::set_max_forward)
 		.add_property("RESET_STATES", &XCS::get_reset_states, &XCS::set_reset_states)
 		.add_property("MOMENTUM", &XCS::get_momentum, &XCS::set_momentum)
-		.add_property("NESTEROV", &XCS::get_nesterov, &XCS::set_nesterov)
 		.add_property("MAX_K", &XCS::get_max_k, &XCS::set_max_k)
 		.add_property("MAX_T", &XCS::get_max_t, &XCS::set_max_t)
 		.add_property("GP_NUM_CONS", &XCS::get_gp_num_cons, &XCS::set_gp_num_cons)

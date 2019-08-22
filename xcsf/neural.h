@@ -14,32 +14,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
-typedef struct NEURON {
-    double output;
-    double state;
-    double *weights;
-    double *v;
+
+typedef struct LAYER {
     double *input;
+    double *output;
+    double *weights;
+    double *state;
+    double *biases;
+    double *bias_updates;
+    double *weight_updates;
+    double *delta;
     int num_inputs;
+    int num_outputs;
+    int num_weights;
+    int activation_type;
     activate_ptr activate;
     gradient_ptr gradient;
-} NEURON;
+} LAYER;
 
 typedef struct BPN {
-    int num_layers; // input layer + number of hidden layers + output layer
-    int *num_neurons; // number of neurons in each layer
-    NEURON **layer; // neural network
-    double **tmp; // temporary storage
+    int num_layers; // hidden + output
+    int num_inputs;
+    int num_outputs;
+    LAYER *layers;
 } BPN;
 
 double neural_output(XCSF *xcsf, BPN *bpn, int i);
 void neural_copy(XCSF *xcsf, BPN *to, BPN *from);
 void neural_free(XCSF *xcsf, BPN *bpn);
-void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *state);
-void neural_print(XCSF *xcsf, BPN *bpn);
+void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *input);
+void neural_print(XCSF *xcsf, BPN *bpn, _Bool print_weights);
 void neural_propagate(XCSF *xcsf, BPN *bpn, double *input);
 void neural_rand(XCSF *xcsf, BPN *bpn);
-void neural_init(XCSF *xcsf, BPN *bpn, int layers, int *neurons, int *activations);
-void neuron_set_activateation(XCSF *xcsf, NEURON *n, int func);  
+void neural_init(XCSF *xcsf, BPN *bpn, int num_layers, int *neurons, int *activations);
 _Bool neural_mutate(XCSF *xcsf, BPN *bpn);

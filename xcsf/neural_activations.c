@@ -37,7 +37,7 @@ void activation_set(activate_ptr *activate, int func)
         case ELU: *activate = &elu_activate; break;
         case RAMP: *activate = &ramp_activate; break;
         default:
-            printf("error: invalid activation function: %d\n", func);
+            printf("activation_set(): invalid activation function: %d\n", func);
             exit(EXIT_FAILURE);
     }
 }
@@ -60,7 +60,30 @@ void gradient_set(gradient_ptr *gradient, int func)
         case ELU: *gradient = &elu_gradient; break;
         case RAMP: *gradient = &ramp_gradient; break;
         default:
-            printf("error: invalid activation function: %d\n", func);
+            printf("gradient_set(): invalid activation function: %d\n", func);
+            exit(EXIT_FAILURE);
+    }
+}
+
+char *activation_string(int func)
+{
+     switch(func) {
+        case LOGISTIC: return "logistic";
+        case RELU: return "relu";
+        case GAUSSIAN: return "gaussian";
+        case BENT_IDENTITY: return "bent_identity";
+        case TANH: return "tanh"; 
+        case SIN: return "sin";
+        case COS: return "cos";
+        case SOFT_PLUS: return "soft_plus";
+        case IDENTITY: return "identity";
+        case HARDTAN: return "hardtan";
+        case STAIR: return "stair";
+        case LEAKY: return "leaky";
+        case ELU: return "elu";
+        case RAMP: return "ramp";
+        default:
+            printf("activation_string(): invalid activation function: %d\n", func);
             exit(EXIT_FAILURE);
     }
 }

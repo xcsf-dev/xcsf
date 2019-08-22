@@ -108,10 +108,6 @@ void constants_init(XCSF *xcsf, const char *filename)
     if(strcmp(getvalue("SET_SUBSUMPTION"), "true") == 0) {
         xcsf->SET_SUBSUMPTION = true;
     }
-    xcsf->NESTEROV = false;
-    if(strcmp(getvalue("NESTEROV"), "true") == 0) {
-        xcsf->NESTEROV = true;
-    }
     xcsf->RESET_STATES = false;
     if(strcmp(getvalue("RESET_STATES"), "true") == 0) {
         xcsf->RESET_STATES = true;

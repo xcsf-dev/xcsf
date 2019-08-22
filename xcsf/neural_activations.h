@@ -38,6 +38,7 @@ typedef double (*gradient_ptr)(double);
 
 void activation_set(activate_ptr *activate, int func);
 void gradient_set(gradient_ptr *gradient, int func);
+char *activation_string(int func);
 
 //static inline double logistic_activate(double x) {return 1./(1.+exp(-x));}
 //static inline double logistic_gradient(double x) {return (1-x)*x;}

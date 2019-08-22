@@ -117,5 +117,5 @@ void cond_neural_print(XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     COND_NEURAL *cond = c->cond;
-    neural_print(xcsf, &cond->bpn);
+    neural_print(xcsf, &cond->bpn, true);
 }
