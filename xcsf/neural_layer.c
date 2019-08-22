@@ -21,6 +21,7 @@
 #include <stdbool.h>
 #include "xcsf.h"       
 #include "neural_activations.h"
+#include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 

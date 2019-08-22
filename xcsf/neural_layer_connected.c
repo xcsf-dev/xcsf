@@ -25,9 +25,9 @@
 #include "xcsf.h"
 #include "random.h"
 #include "neural_activations.h"
+#include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
-#include "neural.h"
 
 void neural_layer_connected_print(LAYER *l, _Bool print_weights)
 {
@@ -54,7 +54,6 @@ void neural_layer_connected_init(LAYER *l, int num_inputs, int num_outputs, int 
     l->num_inputs = num_inputs;
     l->num_outputs = num_outputs;
     l->num_weights = num_inputs*num_outputs;
-    l->input = calloc(l->num_inputs, sizeof(double));
     l->state = calloc(l->num_outputs, sizeof(double));
     l->output = calloc(l->num_outputs, sizeof(double));
     l->weights = calloc(l->num_weights, sizeof(double));
@@ -87,7 +86,6 @@ void neural_layer_connected_copy(LAYER *to, LAYER *from)
  
 void neural_layer_connected_free(LAYER *l)
 {
-    free(l->input);
     free(l->state);
     free(l->output);
     free(l->weights);
@@ -109,8 +107,6 @@ void neural_layer_connected_rand(LAYER *l)
 
 void neural_layer_connected_forward(LAYER *l, double *input)
 {
-    // store input
-    memcpy(l->input, input, l->num_inputs*sizeof(double));
     // propagate each neuron
     for(int i = 0; i < l->num_outputs; i++) {
         l->state[i] = 0.0;
@@ -126,9 +122,12 @@ void neural_layer_connected_forward(LAYER *l, double *input)
     }
 }
 
-void neural_layer_connected_backward(LAYER *l)
+void neural_layer_connected_backward(LAYER *l, BPN *bpn)
 {
-    // apply gradients
+    // bpn input = this layer's input
+    // bpn delta = previous layer's delta
+
+    // calculate gradients
     for(int i = 0; i < l->num_outputs; i++) {
         l->delta[i] *= (l->gradient)(l->state[i]);
     }
@@ -139,9 +138,18 @@ void neural_layer_connected_backward(LAYER *l)
     // calculate weight updates
     for(int i = 0; i < l->num_outputs; i++) {
         for(int j = 0; j < l->num_inputs; j++) {
-            l->weight_updates[i*l->num_inputs+j] += l->delta[i] * l->input[j];
+            l->weight_updates[i*l->num_inputs+j] += l->delta[i] * bpn->input[j];
         }
     }   
+
+    // add this layer's error to the previous layer's
+    if(bpn->delta) { // input layer has no delta or weights
+        for(int i = 0; i < l->num_outputs; i++) {
+            for(int j = 0; j < l->num_inputs; j++) {
+                bpn->delta[j] += l->delta[i] * l->weights[i*l->num_inputs+j];
+            }
+        }
+    }
 }
 
 void neural_layer_connected_update(XCSF *xcsf, LAYER *l)

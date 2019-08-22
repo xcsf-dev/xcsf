@@ -19,7 +19,6 @@
 
 typedef struct LAYER {
     int layer_type;
-    double *input;
     double *output;
     double *weights;
     double *state;
@@ -44,7 +43,7 @@ struct LayerVtbl {
 	void (*layer_impl_rand)(LAYER *l);
 	void (*layer_impl_print)(LAYER *l, _Bool print_weights);
 	void (*layer_impl_update)(XCSF *xcsf, LAYER *l);
-	void (*layer_impl_backward)(LAYER *l);
+	void (*layer_impl_backward)(LAYER *l, BPN *bpn);
 	void (*layer_impl_forward)(LAYER *l, double *input);
 	double* (*layer_impl_output)(LAYER *l);
 };
@@ -61,8 +60,8 @@ static inline void layer_forward(LAYER *l, double *input) {
 	(*l->layer_vptr->layer_impl_forward)(l, input);
 }
   
-static inline void layer_backward(LAYER *l) {
-	(*l->layer_vptr->layer_impl_backward)(l);
+static inline void layer_backward(LAYER *l, BPN *bpn) {
+	(*l->layer_vptr->layer_impl_backward)(l, bpn);
 }
  
 static inline void layer_update(XCSF *xcsf, LAYER *l) {

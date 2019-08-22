@@ -19,7 +19,9 @@ typedef struct BPN {
     int num_layers; // hidden + output
     int num_inputs;
     int num_outputs;
+    double *delta;
     struct LAYER *layers;
+    double *input;
 } BPN;
 
 double neural_output(XCSF *xcsf, BPN *bpn, int i);

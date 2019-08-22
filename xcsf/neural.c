@@ -25,9 +25,9 @@
 #include "xcsf.h"
 #include "random.h"
 #include "neural_activations.h"
+#include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
-#include "neural.h"
 
 void neural_init(XCSF *xcsf, BPN *bpn, int num_layers, int *neurons, int *activations)
 {
@@ -91,27 +91,33 @@ void neural_propagate(XCSF *xcsf, BPN *bpn, double *input)
 
 void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
 {
-    (void)input; // input already propagated in set_pred()
-    /* backward phase */
-    // output layer
+    /* reset deltas */
+    for(int i = 0; i < bpn->num_layers; i++) {
+        LAYER *l = &bpn->layers[i];
+        memset(l->delta, 0, sizeof(double)*l->num_outputs);
+    }
+
+    // calculate output layer error
     LAYER *p = &bpn->layers[bpn->num_layers-1];
     for(int i = 0; i < p->num_outputs; i++) {
         p->delta[i] = (truth[i] - p->output[i]);
     }
-    layer_backward(p);
-    // hidden layers
-    for(int i = bpn->num_layers-2; i >= 0; i--) {
+
+    /* backward phase */
+    for(int i = bpn->num_layers-1; i >= 0; i--) {
         LAYER *l = &bpn->layers[i];
-        for(int j = 0; j < l->num_outputs; j++) {
-            // this layer uses the next layer's error
-            l->delta[j] = 0.0;
-            for(int k = 0; k < p->num_outputs; k++) {
-                l->delta[j] += p->delta[k] * p->weights[k*p->num_inputs+j];
-            }
+        if(i == 0) {
+            bpn->input = input;
+            bpn->delta = 0;
         }
-        layer_backward(l);
-        p = l;
+        else {
+            LAYER *prev = &bpn->layers[i-1];
+            bpn->input = prev->output;
+            bpn->delta = prev->delta;
+        }
+        layer_backward(l, bpn);
     }
+
     /* update phase */
     for(int i = 0; i < bpn->num_layers; i++) {
         layer_update(xcsf, &bpn->layers[i]);
