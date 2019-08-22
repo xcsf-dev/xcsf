@@ -33,6 +33,11 @@ typedef struct LAYER {
     void (*forward)(struct LAYER*, double*);
     void (*backward)(struct LAYER*);
     void (*update)(XCSF*, struct LAYER*);
+    void (*copy)(struct LAYER*, struct LAYER*);
+    void (*free)(struct LAYER*);
+    void (*rand)(struct LAYER*);
+    void (*print)(struct LAYER*, _Bool);
+    _Bool (*mutate)(XCSF*, struct LAYER*);
 } LAYER;
 
 typedef struct BPN {

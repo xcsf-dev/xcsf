@@ -47,7 +47,9 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
     to->num_outputs = from->num_outputs;
     to->num_inputs = from->num_inputs;
     for(int i = 0; i < from->num_layers; i++) {
-        neural_layer_connected_copy(&to->layers[i], &from->layers[i]);
+        LAYER *lto = &to->layers[i];
+        LAYER *lfrom = &from->layers[i];
+        lto->copy(lto, lfrom);
     }
 }
 
@@ -56,14 +58,7 @@ void neural_free(XCSF *xcsf, BPN *bpn)
     (void)xcsf;
     for(int i = 0; i < bpn->num_layers; i++) {
         LAYER *l = &bpn->layers[i];
-        free(l->input);
-        free(l->state);
-        free(l->output);
-        free(l->weights);
-        free(l->biases);
-        free(l->bias_updates);
-        free(l->weight_updates);
-        free(l->delta);
+        l->free(l);
     }
     free(bpn->layers);
 }
@@ -72,7 +67,8 @@ void neural_rand(XCSF *xcsf, BPN *bpn)
 {
     (void)xcsf;
     for(int i = 0; i < bpn->num_layers; i++) {
-        neural_layer_connected_rand(&bpn->layers[i]);
+        LAYER *l = &bpn->layers[i];
+        l->rand(l);
     }
 }    
 
@@ -80,7 +76,8 @@ _Bool neural_mutate(XCSF *xcsf, BPN *bpn)
 {
     _Bool mod = false;
     for(int i = 0; i < bpn->num_layers; i++) {
-        if(neural_layer_connected_mutate(xcsf, &bpn->layers[i])) {
+        LAYER *l = &bpn->layers[i];
+        if(l->mutate(xcsf, l)) {
             mod = true;
         }
     }
@@ -142,7 +139,8 @@ void neural_print(XCSF *xcsf, BPN *bpn, _Bool print_weights)
 {
     (void)xcsf;
     for(int i = 0; i < bpn->num_layers; i++) {
+        LAYER *l = &bpn->layers[i];
         printf("layer (%d) ", i);
-        neural_layer_connected_print(&bpn->layers[i], print_weights);
+        l->print(l, print_weights);
     }
 }
