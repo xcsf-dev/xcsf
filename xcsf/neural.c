@@ -90,7 +90,7 @@ void neural_propagate(XCSF *xcsf, BPN *bpn, double *input)
     for(int i = 0; i < bpn->num_layers; i++) {
         LAYER *l = &bpn->layers[i];
         l->forward(l, input);
-        input = bpn->layers[i].output;
+        input = l->output;
     }
 }
 
