@@ -29,25 +29,6 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-void neural_layer_connected_print(LAYER *l, _Bool print_weights)
-{
-    printf("connected %s nin = %d, nout = %d, ",
-        activation_string(l->activation_type), l->num_inputs, l->num_outputs);
-    printf("weights (%d): ", l->num_weights);
-    if(print_weights) {
-        for(int i = 0; i < l->num_weights; i++) {
-            printf(" %.4f, ", l->weights[i]);
-        }
-    }
-    printf("biases (%d): ", l->num_outputs);
-    if(print_weights) {
-        for(int i = 0; i < l->num_outputs; i++) {
-            printf(" %.4f, ", l->biases[i]);
-        }
-    }
-    printf("\n");
-}
-
 void neural_layer_connected_init(LAYER *l, int num_inputs, int num_outputs, int activation)
 {
     l->layer_type = CONNECTED;
@@ -201,4 +182,23 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
 double *neural_layer_connected_output(LAYER *l)
 {
     return l->output;
+}
+
+void neural_layer_connected_print(LAYER *l, _Bool print_weights)
+{
+    printf("connected %s nin = %d, nout = %d, ",
+        activation_string(l->activation_type), l->num_inputs, l->num_outputs);
+    printf("weights (%d): ", l->num_weights);
+    if(print_weights) {
+        for(int i = 0; i < l->num_weights; i++) {
+            printf(" %.4f, ", l->weights[i]);
+        }
+    }
+    printf("biases (%d): ", l->num_outputs);
+    if(print_weights) {
+        for(int i = 0; i < l->num_outputs; i++) {
+            printf(" %.4f, ", l->biases[i]);
+        }
+    }
+    printf("\n");
 }
