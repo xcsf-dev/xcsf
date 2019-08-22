@@ -26,16 +26,8 @@
 #include "random.h"
 #include "neural_activations.h"
 #include "neural.h"
+#include "neural_layer.h"
 #include "neural_layer_connected.h"
- 
-void neural_layer_connected_copy(LAYER *to, LAYER *from);
-void neural_layer_connected_rand(LAYER *l);
-void neural_layer_connected_forward(LAYER *l, double *input);
-void neural_layer_connected_backward(LAYER *l);
-void neural_layer_connected_update(XCSF *xcsf, LAYER *l);
-void neural_layer_connected_print(LAYER *l, _Bool print_weights);
-_Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l);
-void neural_layer_connected_free(LAYER *l);
 
 void neural_layer_connected_print(LAYER *l, _Bool print_weights)
 {
@@ -78,14 +70,6 @@ void neural_layer_connected_init(LAYER *l, int num_inputs, int num_outputs, int 
     for(int i = 0; i < l->num_outputs; i++) {
         l->biases[i] = rand_uniform(-0.1,0.1);
     }
-    l->forward = &neural_layer_connected_forward;
-    l->backward = &neural_layer_connected_backward;
-    l->update = &neural_layer_connected_update;
-    l->copy = &neural_layer_connected_copy;
-    l->free = &neural_layer_connected_free;
-    l->mutate = &neural_layer_connected_mutate;
-    l->rand = &neural_layer_connected_rand;
-    l->print = &neural_layer_connected_print;
 }
 
 void neural_layer_connected_copy(LAYER *to, LAYER *from)

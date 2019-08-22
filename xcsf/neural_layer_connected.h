@@ -15,5 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+  
 void neural_layer_connected_init(LAYER *l, int num_inputs, int num_outputs, int activation);
+void neural_layer_connected_copy(LAYER *to, LAYER *from);
+void neural_layer_connected_rand(LAYER *l);
+void neural_layer_connected_forward(LAYER *l, double *input);
+void neural_layer_connected_backward(LAYER *l);
+void neural_layer_connected_update(XCSF *xcsf, LAYER *l);
+void neural_layer_connected_print(LAYER *l, _Bool print_weights);
+_Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l);
+void neural_layer_connected_free(LAYER *l);
+
+static struct LayerVtbl const layer_connected_vtbl = {
+    &neural_layer_connected_init,
+    &neural_layer_connected_mutate,
+    &neural_layer_connected_copy,
+    &neural_layer_connected_free,
+    &neural_layer_connected_rand,
+    &neural_layer_connected_print,
+    &neural_layer_connected_update,
+    &neural_layer_connected_backward,
+    &neural_layer_connected_forward
+};

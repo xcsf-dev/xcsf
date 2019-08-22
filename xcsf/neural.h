@@ -30,14 +30,7 @@ typedef struct LAYER {
     int activation_type;
     activate_ptr activate;
     gradient_ptr gradient;
-    void (*forward)(struct LAYER*, double*);
-    void (*backward)(struct LAYER*);
-    void (*update)(XCSF*, struct LAYER*);
-    void (*copy)(struct LAYER*, struct LAYER*);
-    void (*free)(struct LAYER*);
-    void (*rand)(struct LAYER*);
-    void (*print)(struct LAYER*, _Bool);
-    _Bool (*mutate)(XCSF*, struct LAYER*);
+    struct LayerVtbl const *layer_vptr; // functions acting on layers
 } LAYER;
 
 typedef struct BPN {
