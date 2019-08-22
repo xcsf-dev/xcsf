@@ -14,7 +14,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+#define CONNECTED 0
 
+typedef struct LAYER {
+    int layer_type;
+    double *input;
+    double *output;
+    double *weights;
+    double *state;
+    double *biases;
+    double *bias_updates;
+    double *weight_updates;
+    double *delta;
+    int num_inputs;
+    int num_outputs;
+    int num_weights;
+    int activation_type;
+    activate_ptr activate;
+    gradient_ptr gradient;
+    struct LayerVtbl const *layer_vptr; // functions acting on layers
+} LAYER;
+ 
 struct LayerVtbl {
 	void (*layer_impl_init)(LAYER *l, int num_inputs, int num_outputs, int activation);
 	_Bool (*layer_impl_mutate)(XCSF *xcsf, LAYER *l);
@@ -67,3 +88,5 @@ static inline void layer_rand(LAYER *l) {
 static inline void layer_print(LAYER *l, _Bool print_weights) {
 	(*l->layer_vptr->layer_impl_print)(l, print_weights);
 }
+
+void neural_layer_init(LAYER *l, int type, int num_inputs, int num_outputs, int activation);

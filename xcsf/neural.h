@@ -15,29 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-typedef struct LAYER {
-    double *input;
-    double *output;
-    double *weights;
-    double *state;
-    double *biases;
-    double *bias_updates;
-    double *weight_updates;
-    double *delta;
-    int num_inputs;
-    int num_outputs;
-    int num_weights;
-    int activation_type;
-    activate_ptr activate;
-    gradient_ptr gradient;
-    struct LayerVtbl const *layer_vptr; // functions acting on layers
-} LAYER;
-
 typedef struct BPN {
     int num_layers; // hidden + output
     int num_inputs;
     int num_outputs;
-    LAYER *layers;
+    struct LAYER *layers;
 } BPN;
 
 double neural_output(XCSF *xcsf, BPN *bpn, int i);

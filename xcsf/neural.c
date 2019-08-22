@@ -25,9 +25,9 @@
 #include "xcsf.h"
 #include "random.h"
 #include "neural_activations.h"
-#include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
+#include "neural.h"
 
 void neural_init(XCSF *xcsf, BPN *bpn, int num_layers, int *neurons, int *activations)
 {
@@ -37,10 +37,7 @@ void neural_init(XCSF *xcsf, BPN *bpn, int num_layers, int *neurons, int *activa
     bpn->num_outputs = neurons[num_layers-1];
     bpn->layers = malloc(bpn->num_layers*sizeof(LAYER));
     for(int i = 0; i < bpn->num_layers; i++) {
-        LAYER *l = &bpn->layers[i];
-        // make connected layer
-        l->layer_vptr = &layer_connected_vtbl;
-        layer_init(l, neurons[i], neurons[i+1], activations[i]);
+        neural_layer_init(&bpn->layers[i], CONNECTED, neurons[i], neurons[i+1], activations[i]);
     }
 }
 
