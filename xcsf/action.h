@@ -31,7 +31,7 @@ struct ActVtbl {
 };
  
 static inline _Bool act_general(XCSF *xcsf, CL *c1, CL *c2) {
-	return (*c1->act_vptr->act_impl_crossover)(xcsf, c1, c2);
+	return (*c1->act_vptr->act_impl_general)(xcsf, c1, c2);
 }
  
 static inline _Bool act_crossover(XCSF *xcsf, CL *c1, CL *c2) {
@@ -59,7 +59,7 @@ static inline void act_init(XCSF *xcsf, CL *c) {
 }
  
 static inline void act_rand(XCSF *xcsf, CL *c) {
-	(*c->act_vptr->act_impl_free)(xcsf, c);
+	(*c->act_vptr->act_impl_rand)(xcsf, c);
 }
  
 static inline void act_print(XCSF *xcsf, CL *c) {
