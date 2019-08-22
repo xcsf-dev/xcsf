@@ -77,36 +77,16 @@ _Bool neural_mutate(XCSF *xcsf, BPN *bpn)
     }
     return mod;
 }
- 
 
 void neural_propagate(XCSF *xcsf, BPN *bpn, double *input)
 {
     (void)xcsf;
-    neural_layer_connected_forward(&bpn->layers[0], input);
-    for(int i = 1; i < bpn->num_layers; i++) {
-        neural_layer_connected_forward(&bpn->layers[i], bpn->layers[i-1].output);
+    for(int i = 0; i < bpn->num_layers; i++) {
+        LAYER *l = &bpn->layers[i];
+        l->forward(l, input);
+        input = bpn->layers[i].output;
     }
 }
-
-double neural_output(XCSF *xcsf, BPN *bpn, int i)
-{
-    if(i < bpn->num_outputs) {
-        double out = bpn->layers[bpn->num_layers-1].output[i];
-        return fmax(xcsf->MIN_CON, fmin(xcsf->MAX_CON, out));
-    }
-    printf("error: requested output (%d) in output layer of size (%d)\n",
-        i, bpn->num_outputs);
-    exit(EXIT_FAILURE);
-}    
-
-void neural_print(XCSF *xcsf, BPN *bpn, _Bool print_weights)
-{
-    (void)xcsf;
-    for(int i = 0; i < bpn->num_layers; i++) {
-        printf("layer (%d) ", i);
-        neural_layer_connected_print(&bpn->layers[i], print_weights);
-    }
-}        
 
 void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
 {
@@ -117,7 +97,7 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
     for(int i = 0; i < p->num_outputs; i++) {
         p->delta[i] = (truth[i] - p->output[i]);
     }
-    neural_layer_connected_backward(p);
+    p->backward(p);
     // hidden layers
     for(int i = bpn->num_layers-2; i >= 0; i--) {
         LAYER *l = &bpn->layers[i];
@@ -128,11 +108,32 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
                 l->delta[j] += p->delta[k] * p->weights[k*p->num_inputs+j];
             }
         }
-        neural_layer_connected_backward(l);
+        l->backward(l);
         p = l;
     }
     /* update phase */
     for(int i = 0; i < bpn->num_layers; i++) {
-        neural_layer_connected_update(xcsf, &bpn->layers[i]);
+        LAYER *l = &bpn->layers[i];
+        l->update(xcsf, l);
+    }
+} 
+
+double neural_output(XCSF *xcsf, BPN *bpn, int i)
+{
+    if(i < bpn->num_outputs) {
+        double out = bpn->layers[bpn->num_layers-1].output[i];
+        return fmax(xcsf->MIN_CON, fmin(xcsf->MAX_CON, out));
+    }
+    printf("neural_output(): requested (%d) in output layer of size (%d)\n",
+            i, bpn->num_outputs);
+    exit(EXIT_FAILURE);
+}
+
+void neural_print(XCSF *xcsf, BPN *bpn, _Bool print_weights)
+{
+    (void)xcsf;
+    for(int i = 0; i < bpn->num_layers; i++) {
+        printf("layer (%d) ", i);
+        neural_layer_connected_print(&bpn->layers[i], print_weights);
     }
 }

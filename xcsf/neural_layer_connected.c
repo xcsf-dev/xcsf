@@ -69,6 +69,9 @@ void neural_layer_connected_init(LAYER *l, int num_inputs, int num_outputs, int 
     for(int i = 0; i < l->num_outputs; i++) {
         l->biases[i] = rand_uniform(-0.1,0.1);
     }
+    l->forward = &neural_layer_connected_forward;
+    l->backward = &neural_layer_connected_backward;
+    l->update = &neural_layer_connected_update;
 }
 
 void neural_layer_connected_copy(LAYER *to, LAYER *from)
