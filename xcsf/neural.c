@@ -55,10 +55,19 @@ void neural_free(XCSF *xcsf, BPN *bpn)
 {
     (void)xcsf;
     for(int i = 0; i < bpn->num_layers; i++) {
-        neural_layer_connected_free(&bpn->layers[i]);
+        LAYER *l = &bpn->layers[i];
+        free(l->input);
+        free(l->state);
+        free(l->output);
+        free(l->weights);
+        free(l->biases);
+        free(l->bias_updates);
+        free(l->weight_updates);
+        free(l->delta);
     }
+    free(bpn->layers);
 }
-
+ 
 void neural_rand(XCSF *xcsf, BPN *bpn)
 {
     (void)xcsf;

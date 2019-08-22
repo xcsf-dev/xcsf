@@ -18,7 +18,6 @@
  
 void neural_layer_connected_init(LAYER *l, int num_inputs, int num_outputs, int activation);
 void neural_layer_connected_copy(LAYER *to, LAYER *from);
-void neural_layer_connected_free(LAYER *l);
 void neural_layer_connected_rand(LAYER *l);
 void neural_layer_connected_forward(LAYER *l, double *input);
 void neural_layer_connected_backward(LAYER *l);

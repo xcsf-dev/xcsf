@@ -86,18 +86,6 @@ void neural_layer_connected_copy(LAYER *to, LAYER *from)
     to->gradient = from->gradient;
 }
 
-void neural_layer_connected_free(LAYER *l)
-{
-    free(l->input);
-    free(l->state);
-    free(l->output);
-    free(l->weights);
-    free(l->biases);
-    free(l->bias_updates);
-    free(l->weight_updates);
-    free(l->delta);
-}
-
 void neural_layer_connected_rand(LAYER *l)
 {
     for(int i = 0; i < l->num_weights; i++) {
