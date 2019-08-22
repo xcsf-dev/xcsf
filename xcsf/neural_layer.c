@@ -27,7 +27,7 @@
 void neural_layer_init(LAYER *l, int type, int num_inputs, int num_outputs, int activation)
 {
     switch(type) {
-        case 0:
+        case CONNECTED:
             l->layer_vptr = &layer_connected_vtbl;
             break;
         default:
