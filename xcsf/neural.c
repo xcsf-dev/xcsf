@@ -94,7 +94,9 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
     /* reset deltas */
     for(int i = 0; i < bpn->num_layers; i++) {
         LAYER *l = &bpn->layers[i];
-        memset(l->delta, 0, sizeof(double)*l->num_outputs);
+        for(int j = 0; j < l->num_outputs; j++) {
+            l->delta[j] = 0.0;
+        }
     }
 
     // calculate output layer error
