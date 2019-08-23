@@ -32,7 +32,7 @@
 #include <math.h>
 #include <float.h>
 #include "xcsf.h"
-#include "random.h"
+#include "util.h"
 #include "gp.h"
  
 #define GP_MAX_LEN 10000

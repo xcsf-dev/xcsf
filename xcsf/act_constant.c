@@ -20,7 +20,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "xcsf.h"       
-#include "random.h"
+#include "util.h"
 #include "action.h"
 #include "act_constant.h"
  

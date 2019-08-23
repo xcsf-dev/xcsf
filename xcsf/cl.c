@@ -29,7 +29,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "xcsf.h"
-#include "random.h"
+#include "util.h"
 #include "loss.h"
 #include "sam.h"
 #include "condition.h"

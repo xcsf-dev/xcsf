@@ -30,7 +30,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "xcsf.h"
-#include "random.h"
+#include "util.h"
 #include "cl.h"
 #include "cl_set.h"    
 #include "ga.h"
