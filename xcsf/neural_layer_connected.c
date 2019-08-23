@@ -98,8 +98,8 @@ void neural_layer_connected_forward(LAYER *l, double *input)
         // bias
         l->state[i] += l->biases[i];
         // output
+        l->state[i] = constrain(DBL_MIN, DBL_MAX, l->state[i]);
         l->output[i] = (l->activate)(l->state[i]);
-        l->output[i] = fmax(DBL_MIN, fmin(DBL_MAX, l->output[i]));
     }
 }
 

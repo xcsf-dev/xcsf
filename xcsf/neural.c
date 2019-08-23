@@ -130,7 +130,7 @@ double neural_output(XCSF *xcsf, BPN *bpn, int i)
 {
     if(i < bpn->num_outputs) {
         double *output = layer_output(&bpn->layers[bpn->num_layers-1]);
-        return fmax(xcsf->MIN_CON, fmin(xcsf->MAX_CON, output[i]));
+        return constrain(xcsf->MIN_CON, xcsf->MAX_CON, output[i]);
     }
     printf("neural_output(): requested (%d) in output layer of size (%d)\n",
             i, bpn->num_outputs);
