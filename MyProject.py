@@ -17,7 +17,7 @@
 #
 import xcsf.xcsf as xcsf
 import numpy as np
-from sklearn import datasets
+from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import minmax_scale
@@ -27,23 +27,23 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 np.set_printoptions(suppress=True)
 
-# load example data set
-data = datasets.load_boston()
+# Load Boston data from https://www.openml.org/d/531
+data = fetch_openml(data_id=531)
 
 # split into training and test sets
 train_X, test_X, train_Y, test_Y = train_test_split(data.data, data.target, test_size = 0.1, random_state = 5)
+
+# reshape into 2D numpy arrays
+if(len(np.shape(train_Y)) == 1):
+    train_Y = np.reshape(train_Y, (train_Y.shape[0], 1))
+if(len(np.shape(test_Y)) == 1):
+    test_Y = np.reshape(test_Y, (test_Y.shape[0], 1))
 
 # scale [0,1]
 train_X = minmax_scale(train_X, feature_range=(0,1))
 train_Y = minmax_scale(train_Y, feature_range=(0,1))
 test_X = minmax_scale(test_X, feature_range=(0,1))
 test_Y = minmax_scale(test_Y, feature_range=(0,1))
-
-# XCSF inputs must be 2D numpy arrays
-if(len(np.shape(train_Y)) == 1):
-    train_Y = np.reshape(train_Y, (train_Y.shape[0], 1))
-if(len(np.shape(test_Y)) == 1):
-    test_Y = np.reshape(test_Y, (test_Y.shape[0], 1))
 
 print("train_X shape = "+str(np.shape(train_X)))
 print("train_Y shape = "+str(np.shape(train_Y)))
