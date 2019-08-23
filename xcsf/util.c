@@ -24,30 +24,30 @@
 
 void random_init()
 {
-	time_t now = time(0);
-	unsigned char *p = (unsigned char *)&now;
-	unsigned seed = 0;
-	for(size_t i = 0; i < sizeof(now); i++) {
-		seed = (seed * (UCHAR_MAX + 2U)) + p[i];
-	}
-	init_genrand64(seed);
+    time_t now = time(0);
+    unsigned char *p = (unsigned char *)&now;
+    unsigned seed = 0;
+    for(size_t i = 0; i < sizeof(now); i++) {
+        seed = (seed * (UCHAR_MAX + 2U)) + p[i];
+    }
+    init_genrand64(seed);
 }
- 
+
 double drand()
 {
-	// Mersenne Twister 64bit version
-	return genrand64_real1();
+    // Mersenne Twister 64bit version
+    return genrand64_real1();
 }
- 
+
 int irand_uniform(int min, int max)
 {
     // not inclusive of max
-	return min + (drand() * (max-min));
+    return min + (drand() * (max-min));
 }
 
 double rand_uniform(double min, double max)
 {
-	return min + (drand() * (max-min));
+    return min + (drand() * (max-min));
 }
 
 double rand_normal()
