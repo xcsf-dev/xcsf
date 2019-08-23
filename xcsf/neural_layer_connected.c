@@ -171,9 +171,9 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
     }
     // mutate activation function
     if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
-        int rand_activate = irand_uniform(0,NUM_ACTIVATIONS);
-        activation_set(&l->activate, rand_activate);
-        gradient_set(&l->gradient, rand_activate);
+        l->activation_type = irand_uniform(0,NUM_ACTIVATIONS);
+        activation_set(&l->activate, l->activation_type);
+        gradient_set(&l->gradient, l->activation_type);
         mod = true;
     } 
     return mod;
