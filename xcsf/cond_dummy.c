@@ -78,7 +78,7 @@ _Bool cond_dummy_mutate(XCSF *xcsf, CL *c)
 _Bool cond_dummy_general(XCSF *xcsf, CL *c1, CL *c2)
 {
 	(void)xcsf; (void)c1; (void)c2;
-	return true;
+	return false;
 }  
 
 void cond_dummy_print(XCSF *xcsf, CL *c)
