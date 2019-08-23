@@ -41,7 +41,7 @@ typedef struct CL {
     double *action; // current classifier action
 } CL;
 
-// classifier linked list node
+// classifier linked list
 typedef struct CLIST {
     CL *cl;
     struct CLIST *next;
