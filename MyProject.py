@@ -25,6 +25,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
 import matplotlib.pyplot as plt
 from tqdm import tqdm
+np.set_printoptions(suppress=True)
 
 # load example data set
 data = datasets.load_boston()
