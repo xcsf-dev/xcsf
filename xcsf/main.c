@@ -28,7 +28,7 @@
 #include <errno.h>
 #include "xcsf.h"
 #include "config.h"
-#include "util.h"
+#include "utils.h"
 #include "loss.h"
 #include "input.h"
 #include "perf.h"

@@ -31,7 +31,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "xcsf.h"
-#include "util.h"
+#include "utils.h"
 #include "cl.h"
 #include "prediction.h"
 #include "pred_nlms.h"

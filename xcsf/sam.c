@@ -28,7 +28,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "xcsf.h"
-#include "util.h"
+#include "utils.h"
 #include "sam.h"
 
 void sam_log_normal_init(XCSF *xcsf, double **mu);

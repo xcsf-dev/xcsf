@@ -31,7 +31,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "xcsf.h"
-#include "util.h"
+#include "utils.h"
 #include "cl.h"
 #include "condition.h"
 #include "cond_ellipsoid.h"

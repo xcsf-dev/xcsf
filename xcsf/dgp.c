@@ -23,7 +23,7 @@
 #include <math.h>
 #include <float.h>
 #include "xcsf.h"
-#include "util.h"
+#include "utils.h"
 #include "neural_activations.h"
 #include "dgp.h"
 

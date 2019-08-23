@@ -23,7 +23,7 @@
 #include <math.h>
 #include <errno.h>
 #include "xcsf.h"
-#include "util.h"
+#include "utils.h"
 #include "input.h"
 
 #define MAX_DATA 100000

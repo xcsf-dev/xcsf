@@ -20,7 +20,7 @@
 #include <limits.h>
 #include <math.h>
 #include "mt64.h"
-#include "util.h"
+#include "utils.h"
 
 void random_init()
 {

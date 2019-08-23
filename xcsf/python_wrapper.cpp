@@ -27,7 +27,7 @@ extern "C" {
 #include <stdbool.h>
 #include "xcsf.h"
 #include "config.h"
-#include "util.h"
+#include "utils.h"
 #include "input.h"
 #include "loss.h"
 #include "cl_set.h"

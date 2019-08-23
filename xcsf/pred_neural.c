@@ -30,7 +30,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "xcsf.h"
-#include "util.h"
+#include "utils.h"
 #include "cl.h"
 #include "neural_activations.h"
 #include "neural.h"
