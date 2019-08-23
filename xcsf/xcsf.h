@@ -42,14 +42,14 @@ typedef struct CL {
 } CL;
 
 // classifier linked list node
-typedef struct NODE {
+typedef struct CLIST {
     CL *cl;
-    struct NODE *next;
-} NODE;
+    struct CLIST *next;
+} CLIST;
 
 // classifier set
 typedef struct SET {
-    NODE *list; // linked list of classifiers
+    CLIST *list; // linked list of classifiers
     int size; // number of macro-classifiers
     int num; // the total numerosity of classifiers
 } SET;

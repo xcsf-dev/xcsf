@@ -115,9 +115,9 @@ void ga_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set)
     }
     // attempt to find a random subsumer from the set
     else {
-        NODE *candidates[set->size];
+        CLIST *candidates[set->size];
         int choices = 0;
-        for(NODE *iter = set->list; iter != NULL; iter = iter->next) {
+        for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             if(cl_subsumer(xcsf, iter->cl) && cl_general(xcsf, iter->cl, c)) {
                 candidates[choices] = iter;
                 choices++;
@@ -142,7 +142,7 @@ CL *ga_select_parent(XCSF *xcsf, SET *set, double fit_sum)
     // selects a classifier using roullete wheel selection with the fitness
     // (a fitness proportionate selection mechanism.)
     double p = rand_uniform(0,fit_sum);
-    NODE *iter = set->list;
+    CLIST *iter = set->list;
     double sum = iter->cl->fit;
     while(p > sum) {
         iter = iter->next;
