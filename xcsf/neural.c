@@ -28,44 +28,50 @@
 #include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
+#include "neural_layer_dropout.h"
 
 void neural_init(XCSF *xcsf, BPN *bpn, int num_layers, int *neurons, int *activations)
 {
-    (void)xcsf;
+//    bpn->num_layers = 3;
+//    bpn->num_inputs = neurons[0];
+//    bpn->num_outputs = neurons[2];
+//    bpn->layers = malloc(bpn->num_layers*sizeof(LAYER));
+//    neural_layer_connected_init(xcsf, &bpn->layers[0], neurons[0], neurons[1], activations[0]);
+//    neural_layer_dropout_init(xcsf, &bpn->layers[1], neurons[1], 0.1);
+//    neural_layer_connected_init(xcsf, &bpn->layers[2], neurons[1], neurons[2], activations[1]);
+
     bpn->num_layers = num_layers-1; // number of hidden and output layers
     bpn->num_inputs = neurons[0];
     bpn->num_outputs = neurons[num_layers-1];
     bpn->layers = malloc(bpn->num_layers*sizeof(LAYER));
     for(int i = 0; i < bpn->num_layers; i++) {
-        neural_layer_init(&bpn->layers[i], CONNECTED, neurons[i], neurons[i+1], activations[i]);
+        neural_layer_connected_init(xcsf, &bpn->layers[i], neurons[i],
+                neurons[i+1], activations[i]);
     }
 }
 
 void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
 {
-    (void)xcsf;
     to->num_layers = from->num_layers;
     to->num_outputs = from->num_outputs;
     to->num_inputs = from->num_inputs;
     for(int i = 0; i < from->num_layers; i++) {
-        layer_copy(&to->layers[i], &from->layers[i]);
+        layer_copy(xcsf, &to->layers[i], &from->layers[i]);
     }
 }
 
 void neural_free(XCSF *xcsf, BPN *bpn)
 {
-    (void)xcsf;
     for(int i = 0; i < bpn->num_layers; i++) {
-        layer_free(&bpn->layers[i]);
+        layer_free(xcsf, &bpn->layers[i]);
     }
     free(bpn->layers);
 }
- 
+
 void neural_rand(XCSF *xcsf, BPN *bpn)
 {
-    (void)xcsf;
     for(int i = 0; i < bpn->num_layers; i++) {
-        layer_rand(&bpn->layers[i]);
+        layer_rand(xcsf, &bpn->layers[i]);
     }
 }    
 
@@ -82,10 +88,9 @@ _Bool neural_mutate(XCSF *xcsf, BPN *bpn)
 
 void neural_propagate(XCSF *xcsf, BPN *bpn, double *input)
 {
-    (void)xcsf;
     for(int i = 0; i < bpn->num_layers; i++) {
-        layer_forward(&bpn->layers[i], input);
-        input = layer_output(&bpn->layers[i]);
+        layer_forward(xcsf, &bpn->layers[i], input);
+        input = layer_output(xcsf, &bpn->layers[i]);
     }
 }
 
@@ -117,7 +122,7 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
             bpn->input = prev->output;
             bpn->delta = prev->delta;
         }
-        layer_backward(l, bpn);
+        layer_backward(xcsf, l, bpn);
     }
 
     /* update phase */
@@ -129,7 +134,7 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
 double neural_output(XCSF *xcsf, BPN *bpn, int i)
 {
     if(i < bpn->num_outputs) {
-        double *output = layer_output(&bpn->layers[bpn->num_layers-1]);
+        double *output = layer_output(xcsf, &bpn->layers[bpn->num_layers-1]);
         return constrain(xcsf->MIN_CON, xcsf->MAX_CON, output[i]);
     }
     printf("neural_output(): requested (%d) in output layer of size (%d)\n",
@@ -139,9 +144,8 @@ double neural_output(XCSF *xcsf, BPN *bpn, int i)
 
 void neural_print(XCSF *xcsf, BPN *bpn, _Bool print_weights)
 {
-    (void)xcsf;
     for(int i = 0; i < bpn->num_layers; i++) {
         printf("layer (%d) ", i);
-        layer_print(&bpn->layers[i], print_weights);
+        layer_print(xcsf, &bpn->layers[i], print_weights);
     }
 }

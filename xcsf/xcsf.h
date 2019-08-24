@@ -124,6 +124,7 @@ typedef struct XCSF {
     double THETA_SUB; // minimum experience of a classifier to become a subsumer
 
     // set by environment
+    _Bool train; // training or test mode
     int num_x_vars; // number of problem input variables
     int num_y_vars; // number of problem output variables
     int num_classes; // number of class labels

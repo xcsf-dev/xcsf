@@ -99,6 +99,7 @@ void xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
     gplot_init(xcsf);
 #endif
 
+    xcsf->train = true;
     // performance tracking
     double err[xcsf->PERF_AVG_TRIALS];
     // stores current system prediction
@@ -138,6 +139,7 @@ void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
     gplot_init(xcsf);
 #endif
 
+    xcsf->train = true;
     // performance tracking
     double err[xcsf->PERF_AVG_TRIALS];
     double terr[xcsf->PERF_AVG_TRIALS];
@@ -227,6 +229,7 @@ double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
 {   
+    xcsf->train = false;
     for(int row = 0; row < rows; row++) {
         SET mset, kset;
         set_init(xcsf, &mset);

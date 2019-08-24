@@ -29,9 +29,12 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-void neural_layer_connected_init(LAYER *l, int num_inputs, int num_outputs, int activation)
+void neural_layer_connected_init(XCSF *xcsf, LAYER *l, int num_inputs, int
+        num_outputs, int activation)
 {
+    (void)xcsf;
     l->layer_type = CONNECTED;
+    l->layer_vptr = &layer_connected_vtbl;
     l->num_inputs = num_inputs;
     l->num_outputs = num_outputs;
     l->num_weights = num_inputs*num_outputs;
@@ -53,8 +56,9 @@ void neural_layer_connected_init(LAYER *l, int num_inputs, int num_outputs, int 
     }
 }
 
-void neural_layer_connected_copy(LAYER *to, LAYER *from)
+void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from)
 {
+    (void)xcsf;
     to->num_inputs = from->num_inputs;
     to->num_outputs = from->num_outputs;
     to->num_weights = from->num_weights;
@@ -64,9 +68,10 @@ void neural_layer_connected_copy(LAYER *to, LAYER *from)
     to->activate = from->activate;
     to->gradient = from->gradient;
 }
- 
-void neural_layer_connected_free(LAYER *l)
+
+void neural_layer_connected_free(XCSF *xcsf, LAYER *l)
 {
+    (void)xcsf;
     free(l->state);
     free(l->output);
     free(l->weights);
@@ -75,9 +80,10 @@ void neural_layer_connected_free(LAYER *l)
     free(l->weight_updates);
     free(l->delta);
 }
- 
-void neural_layer_connected_rand(LAYER *l)
+
+void neural_layer_connected_rand(XCSF *xcsf, LAYER *l)
 {
+    (void)xcsf;
     for(int i = 0; i < l->num_weights; i++) {
         l->weights[i] = rand_uniform(-1,1);
     }
@@ -86,8 +92,9 @@ void neural_layer_connected_rand(LAYER *l)
     }
 }
 
-void neural_layer_connected_forward(LAYER *l, double *input)
+void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
 {
+    (void)xcsf;
     // propagate each neuron
     for(int i = 0; i < l->num_outputs; i++) {
         l->state[i] = 0.0;
@@ -103,8 +110,9 @@ void neural_layer_connected_forward(LAYER *l, double *input)
     }
 }
 
-void neural_layer_connected_backward(LAYER *l, BPN *bpn)
+void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, BPN *bpn)
 {
+    (void)xcsf;
     // bpn input = this layer's input
     // bpn delta = previous layer's delta
 
@@ -179,15 +187,17 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
     return mod;
 }
 
-double *neural_layer_connected_output(LAYER *l)
+double *neural_layer_connected_output(XCSF *xcsf, LAYER *l)
 {
+    (void)xcsf;
     return l->output;
 }
 
-void neural_layer_connected_print(LAYER *l, _Bool print_weights)
+void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
 {
+    (void)xcsf;
     printf("connected %s nin = %d, nout = %d, ",
-        activation_string(l->activation_type), l->num_inputs, l->num_outputs);
+            activation_string(l->activation_type), l->num_inputs, l->num_outputs);
     printf("weights (%d): ", l->num_weights);
     if(print_weights) {
         for(int i = 0; i < l->num_weights; i++) {

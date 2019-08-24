@@ -16,6 +16,7 @@
  */
  
 #define CONNECTED 0
+#define DROPOUT 1
 
 typedef struct LAYER {
     int layer_type;
@@ -33,35 +34,33 @@ typedef struct LAYER {
     activate_ptr activate;
     gradient_ptr gradient;
     struct LayerVtbl const *layer_vptr; // functions acting on layers
+    double scale;
+    double probability;
+    double *rand;
 } LAYER;
  
 struct LayerVtbl {
-	void (*layer_impl_init)(LAYER *l, int num_inputs, int num_outputs, int activation);
 	_Bool (*layer_impl_mutate)(XCSF *xcsf, LAYER *l);
-	void (*layer_impl_copy)(LAYER *to,  LAYER *from);
-	void (*layer_impl_free)(LAYER *l);
-	void (*layer_impl_rand)(LAYER *l);
-	void (*layer_impl_print)(LAYER *l, _Bool print_weights);
+	void (*layer_impl_copy)(XCSF *xcsf, LAYER *to,  LAYER *from);
+	void (*layer_impl_free)(XCSF *xcsf, LAYER *l);
+	void (*layer_impl_rand)(XCSF *xcsf, LAYER *l);
+	void (*layer_impl_print)(XCSF *xcsf, LAYER *l, _Bool print_weights);
 	void (*layer_impl_update)(XCSF *xcsf, LAYER *l);
-	void (*layer_impl_backward)(LAYER *l, BPN *bpn);
-	void (*layer_impl_forward)(LAYER *l, double *input);
-	double* (*layer_impl_output)(LAYER *l);
+	void (*layer_impl_backward)(XCSF *xcsf, LAYER *l, BPN *bpn);
+	void (*layer_impl_forward)(XCSF *xcsf, LAYER *l, double *input);
+	double* (*layer_impl_output)(XCSF *xcsf, LAYER *l);
 };
 
-static inline double* layer_output(LAYER *l) {
-	return (*l->layer_vptr->layer_impl_output)(l);
+static inline double* layer_output(XCSF *xcsf, LAYER *l) {
+	return (*l->layer_vptr->layer_impl_output)(xcsf, l);
 }
     
-static inline void layer_init(LAYER *l, int num_inputs, int num_outputs, int activation) {
-	(*l->layer_vptr->layer_impl_init)(l, num_inputs, num_outputs, activation);
-}
-   
-static inline void layer_forward(LAYER *l, double *input) {
-	(*l->layer_vptr->layer_impl_forward)(l, input);
+static inline void layer_forward(XCSF *xcsf, LAYER *l, double *input) {
+	(*l->layer_vptr->layer_impl_forward)(xcsf, l, input);
 }
   
-static inline void layer_backward(LAYER *l, BPN *bpn) {
-	(*l->layer_vptr->layer_impl_backward)(l, bpn);
+static inline void layer_backward(XCSF *xcsf, LAYER *l, BPN *bpn) {
+	(*l->layer_vptr->layer_impl_backward)(xcsf, l, bpn);
 }
  
 static inline void layer_update(XCSF *xcsf, LAYER *l) {
@@ -72,20 +71,21 @@ static inline _Bool layer_mutate(XCSF *xcsf, LAYER *l) {
 	return (*l->layer_vptr->layer_impl_mutate)(xcsf, l);
 }
  
-static inline void layer_copy(LAYER *to, LAYER *from) {
-	(*to->layer_vptr->layer_impl_copy)(to, from);
+static inline void layer_copy(XCSF *xcsf, LAYER *to, LAYER *from) {
+	(*to->layer_vptr->layer_impl_copy)(xcsf, to, from);
 }
 
-static inline void layer_free(LAYER *l) {
-	(*l->layer_vptr->layer_impl_free)(l);
+static inline void layer_free(XCSF *xcsf, LAYER *l) {
+	(*l->layer_vptr->layer_impl_free)(xcsf, l);
 }
 
-static inline void layer_rand(LAYER *l) {
-	(*l->layer_vptr->layer_impl_rand)(l);
+static inline void layer_rand(XCSF *xcsf, LAYER *l) {
+	(*l->layer_vptr->layer_impl_rand)(xcsf, l);
 }
  
-static inline void layer_print(LAYER *l, _Bool print_weights) {
-	(*l->layer_vptr->layer_impl_print)(l, print_weights);
+static inline void layer_print(XCSF *xcsf, LAYER *l, _Bool print_weights) {
+	(*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
 
-void neural_layer_init(LAYER *l, int type, int num_inputs, int num_outputs, int activation);
+void neural_layer_init(XCSF *xcsf, LAYER *l, int type, int num_inputs, int
+        num_outputs, int activation);

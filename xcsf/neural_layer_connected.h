@@ -15,20 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-  
-void neural_layer_connected_init(LAYER *l, int num_inputs, int num_outputs, int activation);
-void neural_layer_connected_copy(LAYER *to, LAYER *from);
-void neural_layer_connected_rand(LAYER *l);
-void neural_layer_connected_forward(LAYER *l, double *input);
-void neural_layer_connected_backward(LAYER *l, BPN *bpn);
+
+void neural_layer_connected_init(XCSF *xcsf, LAYER *l, int num_inputs, int
+        num_outputs, int activation);
+void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from);
+void neural_layer_connected_rand(XCSF *xcsf, LAYER *l);
+void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input);
+void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, BPN *bpn);
 void neural_layer_connected_update(XCSF *xcsf, LAYER *l);
-void neural_layer_connected_print(LAYER *l, _Bool print_weights);
+void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
 _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l);
-void neural_layer_connected_free(LAYER *l);
-double* neural_layer_connected_output(LAYER *l);
+void neural_layer_connected_free(XCSF *xcsf, LAYER *l);
+double* neural_layer_connected_output(XCSF *xcsf, LAYER *l);
 
 static struct LayerVtbl const layer_connected_vtbl = {
-    &neural_layer_connected_init,
     &neural_layer_connected_mutate,
     &neural_layer_connected_copy,
     &neural_layer_connected_free,
