@@ -56,6 +56,8 @@ void neural_layer_dropout_free(XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
     free(l->output);
+    free(l->delta);
+    free(l->rand);
 }
 
 void neural_layer_dropout_rand(XCSF *xcsf, LAYER *l)
