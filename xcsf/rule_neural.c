@@ -53,6 +53,7 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
     int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1};
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
     neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    neural_rand(xcsf, &new->bpn);
     c->cond = new;
 }
 
@@ -127,6 +128,7 @@ void rule_neural_pred_init(XCSF *xcsf, CL *c)
     int neurons[3] = {xcsf->MAX_FORWARD, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars};
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
     neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    neural_rand(xcsf, &new->bpn);
     new->input = malloc(sizeof(double)*xcsf->MAX_FORWARD);
     c->pred = new;
 }

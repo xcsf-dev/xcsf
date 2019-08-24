@@ -47,6 +47,7 @@ void pred_neural_init(XCSF *xcsf, CL *c)
     int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars};
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
     neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    neural_rand(xcsf, &new->bpn);
     c->pred = new;
 }
 

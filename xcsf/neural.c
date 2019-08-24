@@ -96,7 +96,7 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
                 neural_layer_dropout_init(xcsf, new, f->num_inputs, f->probability);
                 break;
             default:
-                printf("error copying neural layer\n");
+                printf("neural_copy(): copying from an invalid layer type\n");
                 exit(EXIT_FAILURE);
         }
         layer_copy(xcsf, new, f);

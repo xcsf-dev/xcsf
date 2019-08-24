@@ -48,12 +48,6 @@ void neural_layer_connected_init(XCSF *xcsf, LAYER *l, int num_inputs, int
     l->activation_type = activation;
     activation_set(&l->activate, activation);
     gradient_set(&l->gradient, activation);
-    for(int i = 0; i < l->num_weights; i++) {
-        l->weights[i] = rand_uniform(-0.1,0.1);
-    }
-    for(int i = 0; i < l->num_outputs; i++) {
-        l->biases[i] = rand_uniform(-0.1,0.1);
-    }
 }
 
 void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from)

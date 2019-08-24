@@ -49,6 +49,7 @@ void cond_neural_init(XCSF *xcsf, CL *c)
     int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, 1};
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
     neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    neural_rand(xcsf, &new->bpn);
     c->cond = new;
 }
 
