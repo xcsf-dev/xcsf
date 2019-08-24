@@ -69,6 +69,7 @@ void pred_nlms_init(XCSF *xcsf, CL *c)
 
 void pred_nlms_copy(XCSF *xcsf, CL *to, CL *from)
 {
+    pred_nlms_init(xcsf, to);
 	PRED_NLMS *to_pred = to->pred;
 	PRED_NLMS *from_pred = from->pred;
 	for(int var = 0; var < xcsf->num_y_vars; var++) {

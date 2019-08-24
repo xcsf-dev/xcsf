@@ -59,12 +59,6 @@ void tree_free_cons(XCSF *xcsf)
 	free(xcsf->gp_cons);
 }
 
-void tree_init(XCSF *xcsf, GP_TREE *gp)
-{
-	(void)xcsf;
-	gp->tree = malloc(sizeof(int)*1);
-}
-
 void tree_rand(XCSF *xcsf, GP_TREE *gp)
 {
 	// create new random tree
@@ -205,7 +199,6 @@ int tree_print(XCSF *xcsf, GP_TREE *gp, int p)
 void tree_copy(XCSF *xcsf, GP_TREE *to, GP_TREE *from)
 {
 	(void)xcsf;
-	free(to->tree);
 	int len = tree_traverse(from->tree, 0);
 	to->tree = malloc(sizeof(int)*len);
 	memcpy(to->tree, from->tree, sizeof(int)*len);

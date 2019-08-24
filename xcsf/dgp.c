@@ -36,7 +36,6 @@ void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
     dgp->activate = malloc(sizeof(activate_ptr)*dgp->n);
     dgp->connectivity = malloc(sizeof(int)*dgp->n*xcsf->MAX_K);
     dgp->weights = malloc(sizeof(double)*dgp->n*xcsf->MAX_K);
-    graph_rand(xcsf, dgp);
 }
 
 void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from)

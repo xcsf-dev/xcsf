@@ -41,16 +41,15 @@ typedef struct COND_NEURAL {
     BPN bpn;
 } COND_NEURAL;
 
+void cond_neural_rand(XCSF *xcsf, CL *c);
+
 void cond_neural_init(XCSF *xcsf, CL *c)
 {
-    COND_NEURAL *cond = malloc(sizeof(COND_NEURAL));
-    // network with 1 hidden layer
+    COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, 1};
-    // select layer activation functions
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
-    // initialise neural network
-    neural_init(xcsf, &cond->bpn, 3, neurons, activations);
-    c->cond = cond;
+    neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    c->cond = new;
 }
 
 void cond_neural_free(XCSF *xcsf, CL *c)
@@ -62,9 +61,10 @@ void cond_neural_free(XCSF *xcsf, CL *c)
 
 void cond_neural_copy(XCSF *xcsf, CL *to, CL *from)
 {
-    COND_NEURAL *to_cond = to->cond;
+    COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     COND_NEURAL *from_cond = from->cond;
-    neural_copy(xcsf, &to_cond->bpn, &from_cond->bpn);
+    neural_copy(xcsf, &new->bpn, &from_cond->bpn);
+    to->cond = new;
 }
 
 void cond_neural_rand(XCSF *xcsf, CL *c)
@@ -75,7 +75,6 @@ void cond_neural_rand(XCSF *xcsf, CL *c)
 
 void cond_neural_cover(XCSF *xcsf, CL *c, double *x)
 {
-    // generates random weights until the network matches for input state
     do {
         cond_neural_rand(xcsf, c);
     } while(!cond_neural_match(xcsf, c, x));
@@ -83,7 +82,6 @@ void cond_neural_cover(XCSF *xcsf, CL *c, double *x)
 
 _Bool cond_neural_match(XCSF *xcsf, CL *c, double *x)
 {
-    // classifier matches if the first output neuron > 0.5
     COND_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->bpn, x);
     if(neural_output(xcsf, &cond->bpn, 0) > 0.5) {
@@ -115,7 +113,6 @@ _Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2)
 
 void cond_neural_print(XCSF *xcsf, CL *c)
 {
-    (void)xcsf;
     COND_NEURAL *cond = c->cond;
     neural_print(xcsf, &cond->bpn, true);
 }

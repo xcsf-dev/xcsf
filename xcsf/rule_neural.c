@@ -45,16 +45,15 @@ typedef struct RULE_NEURAL_PRED {
     double *input;
 } RULE_NEURAL_PRED;
 
+void rule_neural_cond_rand(XCSF *xcsf, CL *c);
+
 void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
-    RULE_NEURAL_COND *cond = malloc(sizeof(RULE_NEURAL_COND));
-    // network with 1 hidden layer
+    RULE_NEURAL_COND *new = malloc(sizeof(RULE_NEURAL_COND));
     int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1};
-    // select layer activation functions
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
-    // initialise neural network
-    neural_init(xcsf, &cond->bpn, 3, neurons, activations);
-    c->cond = cond;
+    neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    c->cond = new;
 }
 
 void rule_neural_cond_free(XCSF *xcsf, CL *c)
@@ -66,9 +65,10 @@ void rule_neural_cond_free(XCSF *xcsf, CL *c)
 
 void rule_neural_cond_copy(XCSF *xcsf, CL *to, CL *from)
 {
-    RULE_NEURAL_COND *to_cond = to->cond;
+    RULE_NEURAL_COND *new = malloc(sizeof(RULE_NEURAL_COND));
     RULE_NEURAL_COND *from_cond = from->cond;
-    neural_copy(xcsf, &to_cond->bpn, &from_cond->bpn);
+    neural_copy(xcsf, &new->bpn, &from_cond->bpn);
+    to->cond = new;
 }
 
 void rule_neural_cond_rand(XCSF *xcsf, CL *c)
@@ -86,7 +86,6 @@ void rule_neural_cond_cover(XCSF *xcsf, CL *c, double *x)
 
 _Bool rule_neural_cond_match(XCSF *xcsf, CL *c, double *x)
 {
-    // classifier matches if the first output neuron > 0.5
     RULE_NEURAL_COND *cond = c->cond;
     neural_propagate(xcsf, &cond->bpn, x);
     if(neural_output(xcsf, &cond->bpn, 0) > 0.5) {
@@ -101,7 +100,6 @@ _Bool rule_neural_cond_match(XCSF *xcsf, CL *c, double *x)
 _Bool rule_neural_cond_mutate(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = c->cond;
-    // apply mutation
     return neural_mutate(xcsf, &cond->bpn);
 }
 
@@ -125,14 +123,12 @@ void rule_neural_cond_print(XCSF *xcsf, CL *c)
 
 void rule_neural_pred_init(XCSF *xcsf, CL *c)
 {
-    RULE_NEURAL_PRED *pred = malloc(sizeof(RULE_NEURAL_COND));
+    RULE_NEURAL_PRED *new = malloc(sizeof(RULE_NEURAL_PRED));
     int neurons[3] = {xcsf->MAX_FORWARD, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars};
-    // select layer activation functions
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
-    // initialise neural network
-    neural_init(xcsf, &pred->bpn, 3, neurons, activations);
-    pred->input = malloc(sizeof(double) * xcsf->MAX_FORWARD);
-    c->pred = pred;
+    neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    new->input = malloc(sizeof(double)*xcsf->MAX_FORWARD);
+    c->pred = new;
 }
 
 void rule_neural_pred_free(XCSF *xcsf, CL *c)
@@ -145,9 +141,11 @@ void rule_neural_pred_free(XCSF *xcsf, CL *c)
 
 void rule_neural_pred_copy(XCSF *xcsf, CL *to, CL *from)
 {
-    RULE_NEURAL_PRED *to_pred = to->pred;
+    RULE_NEURAL_PRED *new = malloc(sizeof(RULE_NEURAL_PRED));
     RULE_NEURAL_PRED *from_pred = from->pred;
-    neural_copy(xcsf, &to_pred->bpn, &from_pred->bpn);
+    neural_copy(xcsf, &new->bpn, &from_pred->bpn);
+    new->input = malloc(sizeof(double)*xcsf->MAX_FORWARD);
+    to->pred = new;
 }
 
 void rule_neural_pred_update(XCSF *xcsf, CL *c, double *x, double *y)
@@ -160,14 +158,11 @@ void rule_neural_pred_update(XCSF *xcsf, CL *c, double *x, double *y)
 double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x)
 {
     (void)x;
-    // get output of condition network (propagated during matching)
     RULE_NEURAL_COND *cond = c->cond;
     RULE_NEURAL_PRED *pred = c->pred;
     for(int i = 0; i < xcsf->MAX_FORWARD; i++) {
         pred->input[i] = neural_output(xcsf, &cond->bpn, 1+i);
     }
-
-    // propagate outputs through prediction network
     neural_propagate(xcsf, &pred->bpn, pred->input);
     for(int i = 0; i <  xcsf->num_y_vars; i++) {
         c->prediction[i] = neural_output(xcsf, &pred->bpn, i);

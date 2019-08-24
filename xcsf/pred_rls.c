@@ -97,6 +97,7 @@ void init_matrix(XCSF *xcsf, double *matrix, int n)
 
 void pred_rls_copy(XCSF *xcsf, CL *to, CL *from)
 {
+    pred_rls_init(xcsf, to);
     PRED_RLS *to_pred = to->pred;
     PRED_RLS *from_pred = from->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {

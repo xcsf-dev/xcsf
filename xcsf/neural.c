@@ -79,8 +79,6 @@ void neural_add_layer(XCSF *xcsf, BPN *bpn, LAYER *l)
 
 void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
 {
-    neural_free(xcsf, to);
-
     to->head = NULL;
     to->tail = NULL;
     to->num_layers = 0;

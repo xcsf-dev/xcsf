@@ -29,80 +29,84 @@
 #include "cond_dgp.h"
 
 typedef struct COND_DGP {
-	GRAPH dgp;
+    GRAPH dgp;
 } COND_DGP;
+
+void cond_dgp_rand(XCSF *xcsf, CL *c);
 
 void cond_dgp_init(XCSF *xcsf, CL *c)
 {
-	COND_DGP *cond = malloc(sizeof(COND_DGP));
-	graph_init(xcsf, &cond->dgp, xcsf->DGP_NUM_NODES);
-	c->cond = cond;
+    COND_DGP *new = malloc(sizeof(COND_DGP));
+    graph_init(xcsf, &new->dgp, xcsf->DGP_NUM_NODES);
+    graph_rand(xcsf, &new->dgp);
+    c->cond = new;
 }
 
 void cond_dgp_free(XCSF *xcsf, CL *c)
 {
-	COND_DGP *cond = c->cond;
-	graph_free(xcsf, &cond->dgp);
-	free(c->cond);
+    COND_DGP *cond = c->cond;
+    graph_free(xcsf, &cond->dgp);
+    free(c->cond);
 }                  
 
 void cond_dgp_copy(XCSF *xcsf, CL *to, CL *from)
 {
-	COND_DGP *to_cond = to->cond;
-	COND_DGP *from_cond = from->cond;
-	graph_copy(xcsf, &to_cond->dgp, &from_cond->dgp);
+    COND_DGP *new = malloc(sizeof(COND_DGP));
+    COND_DGP *from_cond = from->cond;
+    graph_init(xcsf, &new->dgp, from_cond->dgp.n);
+    graph_copy(xcsf, &new->dgp, &from_cond->dgp);
+    to->cond = new;
 }
 
 void cond_dgp_rand(XCSF *xcsf, CL *c)
 {
-	COND_DGP *cond = c->cond;
-	graph_rand(xcsf, &cond->dgp);
+    COND_DGP *cond = c->cond;
+    graph_rand(xcsf, &cond->dgp);
 }
 
 void cond_dgp_cover(XCSF *xcsf, CL *c, double *state)
 {
-	// generates random graphs until the network matches for input state
-	do {
-		cond_dgp_rand(xcsf, c);
-	} while(!cond_dgp_match(xcsf, c, state));
+    do {
+        cond_dgp_rand(xcsf, c);
+    } while(!cond_dgp_match(xcsf, c, state));
 }
 
 _Bool cond_dgp_match(XCSF *xcsf, CL *c, double *state)
 {
-	// classifier matches if the first output node > 0.5
-	COND_DGP *cond = c->cond;
-	graph_update(xcsf, &cond->dgp, state);
-	if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
-		c->m = true;
-	}
-	else {
-		c->m = false;
-	}
-	return c->m;
+    // classifier matches if the first output node > 0.5
+    COND_DGP *cond = c->cond;
+    graph_update(xcsf, &cond->dgp, state);
+    if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
+        c->m = true;
+    }
+    else {
+        c->m = false;
+    }
+    return c->m;
 }            
 
 _Bool cond_dgp_mutate(XCSF *xcsf, CL *c)
 {
-	COND_DGP *cond = c->cond;
-	return graph_mutate(xcsf, &cond->dgp);
+    COND_DGP *cond = c->cond;
+    return graph_mutate(xcsf, &cond->dgp);
 }
 
 _Bool cond_dgp_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-	COND_DGP *cond1 = c1->cond;
-	COND_DGP *cond2 = c2->cond;
-	return graph_crossover(xcsf, &cond1->dgp, &cond2->dgp);
+    COND_DGP *cond1 = c1->cond;
+    COND_DGP *cond2 = c2->cond;
+    return graph_crossover(xcsf, &cond1->dgp, &cond2->dgp);
 }
 
 _Bool cond_dgp_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-	(void)xcsf; (void)c1; (void)c2;
-	return false;
+    (void)xcsf; (void)c1; (void)c2;
+    return false;
 }   
 
 void cond_dgp_print(XCSF *xcsf, CL *c)
 {
-	(void)xcsf;
-	COND_DGP *cond = c->cond;
-	graph_print(xcsf, &cond->dgp);
+    (void)xcsf;
+    COND_DGP *cond = c->cond;
+    graph_print(xcsf, &cond->dgp);
 }  

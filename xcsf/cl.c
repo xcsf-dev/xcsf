@@ -54,12 +54,8 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
     // set functions
     action_set(xcsf, c);
     prediction_set(xcsf, c);
-    condition_set(xcsf, c);
-    // initialise structures
+    condition_set(xcsf, c); 
     sam_init(xcsf, &c->mu);
-    cond_init(xcsf, c);
-    pred_init(xcsf, c);
-    act_init(xcsf, c);
 }
 
 void cl_copy(XCSF *xcsf, CL *to, CL *from)
@@ -167,6 +163,7 @@ void cl_print(XCSF *xcsf, CL *c, _Bool print_cond, _Bool print_pred)
 
 void cl_cover(XCSF *xcsf, CL *c, double *x)
 {
+    cl_rand(xcsf, c);
     cond_cover(xcsf, c, x);
 }
 
@@ -179,9 +176,10 @@ _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
 }
 
 void cl_rand(XCSF *xcsf, CL *c)
-{
-    cond_rand(xcsf, c);
-    act_rand(xcsf, c);
+{ 
+    cond_init(xcsf, c);
+    pred_init(xcsf, c);
+    act_init(xcsf, c);
 }
 
 _Bool cl_match(XCSF *xcsf, CL *c, double *x)

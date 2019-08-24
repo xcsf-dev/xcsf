@@ -24,7 +24,6 @@ void cond_dummy_cover(XCSF *xcsf, CL *c, double *x);
 void cond_dummy_free(XCSF *xcsf, CL *c);
 void cond_dummy_init(XCSF *xcsf, CL *c);
 void cond_dummy_print(XCSF *xcsf, CL *c);
-void cond_dummy_rand(XCSF *xcsf, CL *c);
 
 static struct CondVtbl const cond_dummy_vtbl = {
 	&cond_dummy_crossover,
@@ -36,5 +35,4 @@ static struct CondVtbl const cond_dummy_vtbl = {
 	&cond_dummy_free,
 	&cond_dummy_init,
 	&cond_dummy_print,
-	&cond_dummy_rand
 };     

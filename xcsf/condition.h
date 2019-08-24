@@ -27,7 +27,6 @@ struct CondVtbl {
 	void (*cond_impl_free)(XCSF *xcsf, CL *c);
 	void (*cond_impl_init)(XCSF *xcsf, CL *c);
 	void (*cond_impl_print)(XCSF *xcsf, CL *c);
-	void (*cond_impl_rand)(XCSF *xcsf, CL *c);
 };
 
 static inline _Bool cond_crossover(XCSF *xcsf, CL *c1, CL *c2) {
@@ -64,8 +63,4 @@ static inline void cond_init(XCSF *xcsf, CL *c) {
 
 static inline void cond_print(XCSF *xcsf, CL *c) {
 	(*c->cond_vptr->cond_impl_print)(xcsf, c);
-}
-
-static inline void cond_rand(XCSF *xcsf, CL *c) {
-	(*c->cond_vptr->cond_impl_rand)(xcsf, c);
 }

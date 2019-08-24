@@ -24,7 +24,6 @@ void rule_neural_cond_cover(XCSF *xcsf, CL *c, double *x);
 void rule_neural_cond_free(XCSF *xcsf, CL *c);
 void rule_neural_cond_init(XCSF *xcsf, CL *c);
 void rule_neural_cond_print(XCSF *xcsf, CL *c);
-void rule_neural_cond_rand(XCSF *xcsf, CL *c);
 
 static struct CondVtbl const rule_neural_cond_vtbl = {
     &rule_neural_cond_crossover,
@@ -36,7 +35,6 @@ static struct CondVtbl const rule_neural_cond_vtbl = {
     &rule_neural_cond_free,
     &rule_neural_cond_init,
     &rule_neural_cond_print,
-    &rule_neural_cond_rand
 };      
 
 double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x);

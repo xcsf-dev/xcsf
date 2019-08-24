@@ -43,14 +43,11 @@ typedef struct PRED_NEURAL {
 
 void pred_neural_init(XCSF *xcsf, CL *c)
 {
-    PRED_NEURAL *pred = malloc(sizeof(PRED_NEURAL));
-    // network with 1 hidden layer
+    PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars};
-    // select layer activation functions
     int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
-    // initialise neural network
-    neural_init(xcsf, &pred->bpn, 3, neurons, activations);
-    c->pred = pred;
+    neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    c->pred = new;
 }
 
 void pred_neural_free(XCSF *xcsf, CL *c)
@@ -62,9 +59,10 @@ void pred_neural_free(XCSF *xcsf, CL *c)
 
 void pred_neural_copy(XCSF *xcsf, CL *to, CL *from)
 {
-    PRED_NEURAL *to_pred = to->pred;
+    PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     PRED_NEURAL *from_pred = from->pred;
-    neural_copy(xcsf, &to_pred->bpn, &from_pred->bpn);
+    neural_copy(xcsf, &new->bpn, &from_pred->bpn);
+    to->pred = new;
 }
 
 void pred_neural_update(XCSF *xcsf, CL *c, double *x, double *y)

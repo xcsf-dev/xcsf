@@ -35,11 +35,14 @@ typedef struct RULE_DGP{
     GRAPH dgp;
 } RULE_DGP;
 
+void rule_dgp_cond_rand(XCSF *xcsf, CL *c);
+
 void rule_dgp_cond_init(XCSF *xcsf, CL *c)
 {
-    RULE_DGP *cond = malloc(sizeof(RULE_DGP));
-    graph_init(xcsf, &cond->dgp, xcsf->DGP_NUM_NODES);
-    c->cond = cond;
+    RULE_DGP *new = malloc(sizeof(RULE_DGP));
+    graph_init(xcsf, &new->dgp, xcsf->DGP_NUM_NODES);
+    graph_rand(xcsf, &new->dgp);
+    c->cond = new;
 }
 
 void rule_dgp_cond_free(XCSF *xcsf, CL *c)
@@ -51,9 +54,11 @@ void rule_dgp_cond_free(XCSF *xcsf, CL *c)
 
 void rule_dgp_cond_copy(XCSF *xcsf, CL *to, CL *from)
 {
-    RULE_DGP *to_cond = to->cond;
+    RULE_DGP *new = malloc(sizeof(RULE_DGP));
     RULE_DGP *from_cond = from->cond;
-    graph_copy(xcsf, &to_cond->dgp, &from_cond->dgp);
+    graph_init(xcsf, &new->dgp, from_cond->dgp.n);
+    graph_copy(xcsf, &new->dgp, &from_cond->dgp);
+    to->cond = new;
 }
 
 void rule_dgp_cond_rand(XCSF *xcsf, CL *c)
@@ -64,7 +69,6 @@ void rule_dgp_cond_rand(XCSF *xcsf, CL *c)
 
 void rule_dgp_cond_cover(XCSF *xcsf, CL *c, double *x)
 {
-    // generates random graphs until the network matches for input state
     do {
         rule_dgp_cond_rand(xcsf, c);
     } while(!rule_dgp_cond_match(xcsf, c, x));
@@ -72,7 +76,6 @@ void rule_dgp_cond_cover(XCSF *xcsf, CL *c, double *x)
 
 _Bool rule_dgp_cond_match(XCSF *xcsf, CL *c, double *x)
 {
-    // classifier matches if the first output node > 0.5
     RULE_DGP *cond = c->cond;
     graph_update(xcsf, &cond->dgp, x);
     if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
@@ -143,7 +146,7 @@ void rule_dgp_pred_print(XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
 }
- 
+
 _Bool rule_dgp_pred_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;

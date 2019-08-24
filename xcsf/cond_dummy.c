@@ -46,11 +46,6 @@ void cond_dummy_copy(XCSF *xcsf, CL *to, CL *from)
 	(void)xcsf; (void)to; (void)from;
 }                             
 
-void cond_dummy_rand(XCSF *xcsf, CL *c)
-{
-	(void)xcsf; (void)c;
-}
-
 void cond_dummy_cover(XCSF *xcsf, CL *c, double *state)
 {
 	(void)xcsf; (void)c; (void)state;

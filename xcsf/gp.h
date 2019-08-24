@@ -23,7 +23,6 @@ typedef struct GP_TREE {
  
 void tree_free_cons(XCSF *xcsf);
 void tree_init_cons(XCSF *xcsf);
-void tree_init(XCSF *xcsf, GP_TREE *gp);
 void tree_free(XCSF *xcsf, GP_TREE *gp);
 void tree_rand(XCSF *xcsf, GP_TREE *gp);
 void tree_copy(XCSF *xcsf, GP_TREE *to, GP_TREE *from);
