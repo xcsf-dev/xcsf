@@ -59,14 +59,8 @@ void neural_layer_connected_init(XCSF *xcsf, LAYER *l, int num_inputs, int
 void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from)
 {
     (void)xcsf;
-    to->num_inputs = from->num_inputs;
-    to->num_outputs = from->num_outputs;
-    to->num_weights = from->num_weights;
     memcpy(to->weights, from->weights, from->num_weights*sizeof(double));
     memcpy(to->biases, from->biases, from->num_outputs*sizeof(double));
-    to->activation_type = from->activation_type;
-    to->activate = from->activate;
-    to->gradient = from->gradient;
 }
 
 void neural_layer_connected_free(XCSF *xcsf, LAYER *l)

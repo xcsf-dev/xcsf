@@ -15,13 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// double linked list of layers
+typedef struct LLIST {
+    struct LAYER *layer;
+    struct LLIST *prev;
+    struct LLIST *next;
+} LLIST;
+
 typedef struct BPN {
     int num_layers; // hidden + output
     int num_inputs;
     int num_outputs;
     double *delta;
-    struct LAYER *layers;
     double *input;
+    LLIST *head;
+    LLIST *tail;
 } BPN;
 
 double neural_output(XCSF *xcsf, BPN *bpn, int i);
