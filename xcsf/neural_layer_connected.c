@@ -29,10 +29,11 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-void neural_layer_connected_init(XCSF *xcsf, LAYER *l, int num_inputs, int
+LAYER *neural_layer_connected_init(XCSF *xcsf, int num_inputs, int
         num_outputs, int activation)
 {
     (void)xcsf;
+    LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
     l->num_inputs = num_inputs;
@@ -48,6 +49,7 @@ void neural_layer_connected_init(XCSF *xcsf, LAYER *l, int num_inputs, int
     l->activation_type = activation;
     activation_set(&l->activate, activation);
     gradient_set(&l->gradient, activation);
+    return l;
 }
 
 void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from)
