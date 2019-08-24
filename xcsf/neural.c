@@ -101,6 +101,7 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
                 printf("error copying neural layer\n");
                 exit(EXIT_FAILURE);
         }
+        layer_copy(xcsf, new, f);
         neural_add_layer(xcsf, to, new);
     }
 }
