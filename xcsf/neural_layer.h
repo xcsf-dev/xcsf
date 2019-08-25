@@ -17,6 +17,7 @@
  
 #define CONNECTED 0
 #define DROPOUT 1
+#define SOFTMAX 2
 
 typedef struct LAYER {
     int layer_type;
@@ -37,6 +38,8 @@ typedef struct LAYER {
     double scale;
     double probability;
     double *rand;
+    int groups;
+    double temp;
 } LAYER;
  
 struct LayerVtbl {

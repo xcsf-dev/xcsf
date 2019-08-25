@@ -21,4 +21,5 @@ double loss_mse(XCSF *xcsf, double *pred, double *y);
 double loss_rmse(XCSF *xcsf, double *pred, double *y);
 double loss_log(XCSF *xcsf, double *pred, double *y);
 double loss_binary_log(XCSF *xcsf, double *pred, double *y);
+double loss_onehot_acc(XCSF *xcsf, double *pred, double *y);
 void loss_set_func(XCSF *xcsf);

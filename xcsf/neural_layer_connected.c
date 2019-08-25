@@ -85,7 +85,7 @@ void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
     (void)xcsf;
     // propagate each neuron
     for(int i = 0; i < l->num_outputs; i++) {
-        l->state[i] = 0.0;
+        l->state[i] = 0;
         // weights
         for(int j = 0; j < l->num_inputs; j++) {
             l->state[i] += input[j] * l->weights[i*l->num_inputs+j];

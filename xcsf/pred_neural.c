@@ -37,6 +37,7 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 #include "neural_layer_dropout.h"
+#include "neural_layer_softmax.h"
 #include "prediction.h"
 #include "pred_neural.h"
 
@@ -52,9 +53,10 @@ void pred_neural_init(XCSF *xcsf, CL *c)
     // create and add layers to the network
     neural_layer_connected_init(xcsf, &new->bpn,
             xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
-    //neural_layer_dropout_init(xcsf, &new->bpn, xcsf->NUM_HIDDEN_NEURONS, 0.1);
+    //neural_layer_dropout_init(xcsf, &new->bpn, xcsf->NUM_HIDDEN_NEURONS, 0.5);
     neural_layer_connected_init(xcsf, &new->bpn, 
             xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, IDENTITY);
+    //neural_layer_softmax_init(xcsf, &new->bpn, xcsf->num_y_vars, 1);
     // initialise all weights randomly
     neural_rand(xcsf, &new->bpn);
     c->pred = new;

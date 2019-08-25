@@ -61,6 +61,20 @@ double loss_log(XCSF *xcsf, double *pred, double *y)
     return -error;
 }
 
+double loss_onehot_acc(XCSF *xcsf, double *pred, double *y)
+{
+    int p = 0;
+    for(int i = 1; i < xcsf->num_y_vars; i++) {
+        if(pred[i] > pred[p]) {
+            p = i;
+        }
+    }
+    if(y[p] != 1) {
+        return 1;
+    }
+    return 0;
+}
+
 double loss_binary_log(XCSF *xcsf, double *pred, double *y)
 {
     // binary logistic log loss
@@ -89,6 +103,9 @@ void loss_set_func(XCSF *xcsf)
             break;
         case 4:
             xcsf->loss_ptr = &loss_binary_log;
+            break;
+        case 5:
+            xcsf->loss_ptr = &loss_onehot_acc;
             break;
         default:
             printf("invalid loss function: %d\n", xcsf->LOSS_FUNC);

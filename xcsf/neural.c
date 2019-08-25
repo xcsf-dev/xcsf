@@ -29,6 +29,7 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 #include "neural_layer_dropout.h"
+#include "neural_layer_softmax.h"
 
 void neural_init(XCSF *xcsf, BPN *bpn)
 {
@@ -76,6 +77,9 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
                 break;
             case DROPOUT:
                 neural_layer_dropout_init(xcsf, to, f->num_inputs, f->probability);
+                break;
+            case SOFTMAX:
+                neural_layer_softmax_init(xcsf, to, f->num_inputs, f->temp);
                 break;
             default:
                 printf("neural_copy(): copying from an invalid layer type\n");
@@ -159,7 +163,6 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
     for(LLIST *iter = bpn->tail; iter != NULL; iter = iter->prev) {
         layer_update(xcsf, iter->layer);
     }
-
 } 
 
 double neural_output(XCSF *xcsf, BPN *bpn, int i)
