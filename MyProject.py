@@ -60,12 +60,12 @@ xcs = xcsf.XCS(xvars, yvars)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
-xcs.POP_SIZE = 1000
+xcs.POP_SIZE = 200
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.COND_TYPE = 2 # evolved neural network conditions
 xcs.PRED_TYPE = 4 # sgd neural network predictors
 xcs.HIDDEN_NEURON_ACTIVATION = 1 # relu
-xcs.NUM_HIDDEN_NEURONS = 10
+xcs.NUM_HIDDEN_NEURONS = 1
 xcs.ETA = 0.01
 
 ##################################
