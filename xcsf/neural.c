@@ -30,30 +30,17 @@
 #include "neural_layer_connected.h"
 #include "neural_layer_dropout.h"
 
-void neural_add_layer(XCSF *xcsf, BPN *bpn, LAYER *l);
-
-void neural_init(XCSF *xcsf, BPN *bpn, int num_layers, int *neurons, int *activations)
+void neural_init(XCSF *xcsf, BPN *bpn)
 {
+    (void)xcsf;
     bpn->head = NULL;
     bpn->tail = NULL;
     bpn->num_layers = 0;
-    bpn->num_inputs = neurons[0];
-    bpn->num_outputs = neurons[num_layers-1];
-    for(int i = 0; i < num_layers-1; i++) {
-        LAYER *l = neural_layer_connected_init(xcsf, neurons[i], neurons[i+1], activations[i]);
-        neural_add_layer(xcsf, bpn, l);
-    }
-
-    //LAYER *l;
-    //l = neural_layer_connected_init(xcsf, neurons[0], neurons[1], activations[0]);
-    //neural_add_layer(xcsf, bpn, l);
-    //l = neural_layer_dropout_init(xcsf, neurons[1], 0.1);
-    //neural_add_layer(xcsf, bpn, l);
-    //l = neural_layer_connected_init(xcsf, neurons[1], neurons[2], activations[1]);
-    //neural_add_layer(xcsf, bpn, l);
+    bpn->num_inputs = 0;
+    bpn->num_outputs = 0;
 }
 
-void neural_add_layer(XCSF *xcsf, BPN *bpn, LAYER *l)
+void neural_layer_add(XCSF *xcsf, BPN *bpn, LAYER *l)
 {
     (void)xcsf;
     if(bpn->head == NULL) {
@@ -62,6 +49,8 @@ void neural_add_layer(XCSF *xcsf, BPN *bpn, LAYER *l)
         bpn->head->prev = NULL;
         bpn->head->next = NULL;
         bpn->tail = bpn->head;
+        bpn->num_inputs = l->num_inputs;
+        bpn->num_outputs = l->num_outputs;
     }
     else {
         LLIST *new = malloc(sizeof(LLIST));
@@ -70,6 +59,7 @@ void neural_add_layer(XCSF *xcsf, BPN *bpn, LAYER *l)
         new->prev = NULL;
         bpn->head->prev = new;
         bpn->head = new;
+        bpn->num_outputs = l->num_outputs;
     }
     bpn->num_layers++;
 }
@@ -82,22 +72,20 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
     to->num_outputs = from->num_outputs;
     to->num_inputs = from->num_inputs;
     for(LLIST *iter = from->tail; iter != NULL; iter = iter->prev) {
-        LAYER *new;
         LAYER *f = iter->layer;
         switch(f->layer_type) {
             case CONNECTED:
-                new = neural_layer_connected_init(xcsf, f->num_inputs, 
+                 neural_layer_connected_init(xcsf, to, f->num_inputs, 
                         f->num_outputs, f->activation_type);
                 break;
             case DROPOUT:
-                new = neural_layer_dropout_init(xcsf, f->num_inputs, f->probability);
+                neural_layer_dropout_init(xcsf, to, f->num_inputs, f->probability);
                 break;
             default:
                 printf("neural_copy(): copying from an invalid layer type\n");
                 exit(EXIT_FAILURE);
         }
-        layer_copy(xcsf, new, f);
-        neural_add_layer(xcsf, to, new);
+        layer_copy(xcsf, to->head->layer, f);
     }
 }
 

@@ -29,16 +29,14 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-LAYER *neural_layer_connected_init(XCSF *xcsf, int num_inputs, int
-        num_outputs, int activation)
+void neural_layer_connected_init(XCSF *xcsf, BPN *bpn, int ninputs, int noutputs, int act)
 {
-    (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
-    l->num_inputs = num_inputs;
-    l->num_outputs = num_outputs;
-    l->num_weights = num_inputs*num_outputs;
+    l->num_inputs = ninputs;
+    l->num_outputs = noutputs;
+    l->num_weights = ninputs*noutputs;
     l->state = calloc(l->num_outputs, sizeof(double));
     l->output = calloc(l->num_outputs, sizeof(double));
     l->weights = calloc(l->num_weights, sizeof(double));
@@ -46,10 +44,10 @@ LAYER *neural_layer_connected_init(XCSF *xcsf, int num_inputs, int
     l->bias_updates = calloc(l->num_outputs, sizeof(double));
     l->weight_updates = calloc(l->num_weights, sizeof(double));
     l->delta = calloc(l->num_outputs, sizeof(double));
-    l->activation_type = activation;
-    activation_set(&l->activate, activation);
-    gradient_set(&l->gradient, activation);
-    return l;
+    l->activation_type = act;
+    activation_set(&l->activate, act);
+    gradient_set(&l->gradient, act);
+    neural_layer_add(xcsf, bpn, l);
 }
 
 void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from)

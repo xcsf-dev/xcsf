@@ -87,5 +87,4 @@ static inline void layer_print(XCSF *xcsf, LAYER *l, _Bool print_weights) {
 	(*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
 
-void neural_layer_init(XCSF *xcsf, LAYER *l, int type, int num_inputs, int
-        num_outputs, int activation);
+void neural_layer_init(XCSF *xcsf, LAYER *l, int type, int ninputs, int noutputs, int act);

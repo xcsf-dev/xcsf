@@ -34,6 +34,9 @@
 #include "cl.h"
 #include "neural_activations.h"
 #include "neural.h"
+#include "neural_layer.h"
+#include "neural_layer_connected.h"
+#include "neural_layer_dropout.h"
 #include "condition.h"
 #include "cond_neural.h"
 
@@ -46,9 +49,13 @@ void cond_neural_rand(XCSF *xcsf, CL *c);
 void cond_neural_init(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
-    int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, 1};
-    int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
-    neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    // initialise empty network
+    neural_init(xcsf, &new->bpn);
+    // create and add layers to the network
+    neural_layer_connected_init(xcsf, &new->bpn, 
+            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
+    neural_layer_connected_init(xcsf, &new->bpn, xcsf->NUM_HIDDEN_NEURONS, 1, IDENTITY);
+    // initialise all weights randomly
     neural_rand(xcsf, &new->bpn);
     c->cond = new;
 }

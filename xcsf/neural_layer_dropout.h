@@ -16,7 +16,7 @@
  *
  */
   
-LAYER *neural_layer_dropout_init(XCSF *xcsf, int num_inputs, double probability);
+void neural_layer_dropout_init(XCSF *xcsf, BPN *bpn, int ninputs, double probability);
 void neural_layer_dropout_copy(XCSF *xcsf, LAYER *to, LAYER *from);
 void neural_layer_dropout_rand(XCSF *xcsf, LAYER *l);
 void neural_layer_dropout_forward(XCSF *xcsf, LAYER *l, double *input);

@@ -31,6 +31,9 @@
 #include "cl.h"
 #include "neural_activations.h"
 #include "neural.h"
+#include "neural_layer.h"
+#include "neural_layer_connected.h"
+#include "neural_layer_dropout.h"
 #include "dgp.h"
 #include "condition.h"
 #include "prediction.h"
@@ -50,9 +53,14 @@ void rule_neural_cond_rand(XCSF *xcsf, CL *c);
 void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *new = malloc(sizeof(RULE_NEURAL_COND));
-    int neurons[3] = {xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1};
-    int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
-    neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    // initialise empty network
+    neural_init(xcsf, &new->bpn);
+    // create and add layers to the network
+    neural_layer_connected_init(xcsf, &new->bpn,
+            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
+    neural_layer_connected_init(xcsf, &new->bpn,
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1, IDENTITY);
+    // initialise all weights randomly
     neural_rand(xcsf, &new->bpn);
     c->cond = new;
 }
@@ -125,12 +133,17 @@ void rule_neural_cond_print(XCSF *xcsf, CL *c)
 void rule_neural_pred_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_PRED *new = malloc(sizeof(RULE_NEURAL_PRED));
-    int neurons[3] = {xcsf->MAX_FORWARD, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars};
-    int activations[2] = {xcsf->HIDDEN_NEURON_ACTIVATION, IDENTITY};
-    neural_init(xcsf, &new->bpn, 3, neurons, activations);
+    // initialise empty network
+    neural_init(xcsf, &new->bpn);
+    // create and add layers to the network
+    neural_layer_connected_init(xcsf, &new->bpn,
+            xcsf->MAX_FORWARD, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
+    neural_layer_connected_init(xcsf, &new->bpn, 
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, IDENTITY);
+    // initialise all weights randomly
     neural_rand(xcsf, &new->bpn);
     new->input = malloc(sizeof(double)*xcsf->MAX_FORWARD);
-    c->pred = new;
+    c->pred = new;  
 }
 
 void rule_neural_pred_free(XCSF *xcsf, CL *c)

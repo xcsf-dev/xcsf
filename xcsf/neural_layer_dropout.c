@@ -29,20 +29,19 @@
 #include "neural_layer.h"
 #include "neural_layer_dropout.h"
 
-LAYER *neural_layer_dropout_init(XCSF *xcsf, int num_inputs, double probability)
+void neural_layer_dropout_init(XCSF *xcsf, BPN *bpn, int ninputs, double probability)
 {
-    (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = DROPOUT;
     l->layer_vptr = &layer_dropout_vtbl;
-    l->num_inputs = num_inputs;
-    l->num_outputs = num_inputs;
+    l->num_inputs = ninputs;
+    l->num_outputs = ninputs;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = malloc(l->num_inputs*sizeof(double));
     l->probability = probability;
     l->rand = malloc(l->num_inputs*sizeof(double));
     l->scale = 1./(1.-probability);
-    return l;
+    neural_layer_add(xcsf, bpn, l); 
 }
 
 void neural_layer_dropout_copy(XCSF *xcsf, LAYER *to, LAYER *from)
