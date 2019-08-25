@@ -36,7 +36,7 @@ void condition_set(XCSF *xcsf, CL *c)
 {
     int type = xcsf->COND_TYPE;
     if(xcsf->COND_ENSEMBLE) {
-        type = irand_uniform(-1,5);
+        type = irand_uniform(0,5);
     }
 
     switch(type) {
