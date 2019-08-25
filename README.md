@@ -1,7 +1,6 @@
 # XCSF learning classifier system
 
-An implementation of XCSF for regression problems that can be built as either a
-stand-alone binary or as a Python library.
+An implementation of XCSF that can be built as either a stand-alone binary or as a Python library.
 
 License|Codacy Review|Linux Build|OSX Build|Fossa
 :--:|:--:|:--:|:--:|:--:
@@ -30,13 +29,7 @@ See `default.ini` for a full list of options.
 * `PRED_TYPE = 2`: Linear recursive least squares
 * `PRED_TYPE = 3`: Quadratic recursive least squares
 * `PRED_TYPE = 4`: Stochastic gradient descent multilayer perceptron neural networks
- 
-### Mutation for conditions
 
-* `NUM_SAM = 0`: Fixed rates for `P_MUTATION` and `S_MUTATION`
-* `NUM_SAM = 1`: Self-adapts `P_MUTATION`
-* `NUM_SAM = 2`: Self-adapts `P_MUTATION` and `S_MUTATION`
- 
 ------------------------
 ## Compiler options
 
