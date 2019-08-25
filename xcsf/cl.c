@@ -210,7 +210,6 @@ _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
 
 _Bool cl_mutate(XCSF *xcsf, CL *c)
 {
-    // apply mutation rates
     if(xcsf->SAM_NUM > 0) {
         xcsf->P_MUTATION = c->mu[0];
         if(xcsf->SAM_NUM > 1) {
@@ -220,7 +219,6 @@ _Bool cl_mutate(XCSF *xcsf, CL *c)
             }
         }
     } 
-    // mutate
     _Bool cm = cond_mutate(xcsf, c);
     _Bool pm = pred_mutate(xcsf, c);
     _Bool am = act_mutate(xcsf, c);
@@ -232,7 +230,6 @@ _Bool cl_mutate(XCSF *xcsf, CL *c)
 
 _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-    // attempt crossover if types are identical
     _Bool cc = false, pc = false, ac = false;
     if(cl_cond_type_identical(c1, c2)) {
         cc = cond_crossover(xcsf, c1, c2);
@@ -256,7 +253,7 @@ _Bool cl_cond_type_identical(CL *c1, CL *c2)
     }
     return false;
 }
- 
+
 _Bool cl_pred_type_identical(CL *c1, CL *c2)
 {
     if(c1->pred_vptr == c2->pred_vptr) {
@@ -264,7 +261,7 @@ _Bool cl_pred_type_identical(CL *c1, CL *c2)
     }
     return false;
 }
-  
+
 _Bool cl_act_type_identical(CL *c1, CL *c2)
 {
     if(c1->act_vptr == c2->act_vptr) {
@@ -272,10 +269,9 @@ _Bool cl_act_type_identical(CL *c1, CL *c2)
     }
     return false;
 }
- 
+
 double cl_mutation_rate(XCSF *xcsf, CL *c, int m)
 {
     (void)xcsf;
     return c->mu[m];
 }  
-
