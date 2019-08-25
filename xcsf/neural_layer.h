@@ -38,7 +38,6 @@ typedef struct LAYER {
     double scale;
     double probability;
     double *rand;
-    int groups;
     double temp;
 } LAYER;
  
