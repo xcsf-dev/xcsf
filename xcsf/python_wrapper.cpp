@@ -177,6 +177,9 @@ struct XCS
     int get_act_type() { return xcs.ACT_TYPE; }
     int get_cond_type() { return xcs.COND_TYPE; }
     int get_pred_type() { return xcs.PRED_TYPE; }
+    _Bool get_act_ensemble() { return xcs.ACT_ENSEMBLE; }
+    _Bool get_cond_ensemble() { return xcs.COND_ENSEMBLE; }
+    _Bool get_pred_ensemble() { return xcs.PRED_ENSEMBLE; }
     double get_p_crossover() { return xcs.P_CROSSOVER; }
     double get_p_mutation() { return xcs.P_MUTATION; }
     double get_p_func_mutation() { return xcs.P_FUNC_MUTATION; }
@@ -240,6 +243,9 @@ struct XCS
     void set_act_type(int a) { xcs.ACT_TYPE = a; }
     void set_cond_type(int a) { xcs.COND_TYPE = a; }
     void set_pred_type(int a) { xcs.PRED_TYPE = a; }
+    void set_act_ensemble(int a) { xcs.ACT_ENSEMBLE = a; }
+    void set_cond_ensemble(int a) { xcs.COND_ENSEMBLE = a; }
+    void set_pred_ensemble(int a) { xcs.PRED_ENSEMBLE = a; }
     void set_p_crossover(double a) { xcs.P_CROSSOVER = a; }
     void set_p_mutation(double a) { xcs.P_MUTATION = a; }
     void set_p_func_mutation(double a) { xcs.P_FUNC_MUTATION = a; }
@@ -303,6 +309,9 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("ACT_TYPE", &XCS::get_act_type, &XCS::set_act_type)
         .add_property("COND_TYPE", &XCS::get_cond_type, &XCS::set_cond_type)
         .add_property("PRED_TYPE", &XCS::get_pred_type, &XCS::set_pred_type)
+        .add_property("ACT_ENSEMBLE", &XCS::get_act_ensemble, &XCS::set_act_ensemble)
+        .add_property("COND_ENSEMBLE", &XCS::get_cond_ensemble, &XCS::set_cond_ensemble)
+        .add_property("PRED_ENSEMBLE", &XCS::get_pred_ensemble, &XCS::set_pred_ensemble)
         .add_property("P_CROSSOVER", &XCS::get_p_crossover, &XCS::set_p_crossover)
         .add_property("P_MUTATION", &XCS::get_p_mutation, &XCS::set_p_mutation)
         .add_property("P_FUNC_MUTATION", &XCS::get_p_func_mutation, &XCS::set_p_func_mutation)

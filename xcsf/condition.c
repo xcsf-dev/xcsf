@@ -20,6 +20,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "xcsf.h"       
+#include "utils.h"
 #include "condition.h"
 #include "cond_dummy.h"
 #include "cond_rectangle.h"
@@ -33,7 +34,12 @@
 
 void condition_set(XCSF *xcsf, CL *c)
 {
-    switch(xcsf->COND_TYPE) {
+    int type = xcsf->COND_TYPE;
+    if(xcsf->COND_ENSEMBLE) {
+        type = irand_uniform(-1,5);
+    }
+
+    switch(type) {
         case -1:
             c->cond_vptr = &cond_dummy_vtbl;
             break;

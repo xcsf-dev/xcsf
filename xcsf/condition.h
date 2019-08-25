@@ -46,7 +46,7 @@ static inline _Bool cond_mutate(XCSF *xcsf, CL *c) {
 }
 
 static inline void cond_copy(XCSF *xcsf, CL *to, CL *from) {
-	(*to->cond_vptr->cond_impl_copy)(xcsf, to, from);
+	(*from->cond_vptr->cond_impl_copy)(xcsf, to, from);
 }
 
 static inline void cond_cover(XCSF *xcsf, CL *c, double *x) {

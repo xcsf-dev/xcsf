@@ -20,12 +20,18 @@
 #include <string.h>
 #include <stdbool.h>
 #include "xcsf.h"       
+#include "utils.h"
 #include "action.h"
 #include "act_constant.h"
 
 void action_set(XCSF *xcsf, CL *c)
 {
-    switch(xcsf->ACT_TYPE) {
+    int type = xcsf->ACT_TYPE;
+    if(xcsf->ACT_ENSEMBLE) {
+        type = irand_uniform(0,0);
+    }
+
+    switch(type) {
         case 0:
             c->act_vptr = &act_constant_vtbl;
             break;

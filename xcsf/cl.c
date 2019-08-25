@@ -39,6 +39,9 @@
 
 double cl_update_err(XCSF *xcsf, CL *c, double *y);
 double cl_update_size(XCSF *xcsf, CL *c, double num_sum);
+_Bool cl_cond_type_identical(CL *c1, CL *c2);
+_Bool cl_pred_type_identical(CL *c1, CL *c2);
+_Bool cl_act_type_identical(CL *c1, CL *c2);
 
 void cl_init(XCSF *xcsf, CL *c, int size, int time)
 {
@@ -51,30 +54,38 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
     c->prediction = calloc(xcsf->num_y_vars, sizeof(double));
     c->action = calloc(xcsf->num_y_vars, sizeof(double));
     c->m = false;
-    // set functions
-    action_set(xcsf, c);
-    prediction_set(xcsf, c);
-    condition_set(xcsf, c); 
     sam_init(xcsf, &c->mu);
 }
 
 void cl_copy(XCSF *xcsf, CL *to, CL *from)
 {
-    cl_init(xcsf, to, from->size, from->time);
+    // copy functions
+    to->cond_vptr = from->cond_vptr;
+    to->pred_vptr = from->pred_vptr;
+    to->act_vptr = from->act_vptr;
+    // copy structures
     sam_copy(xcsf, to->mu, from->mu);
     act_copy(xcsf, to, from);
     cond_copy(xcsf, to, from);
     pred_copy(xcsf, to, from);
 }
 
-_Bool cl_subsumer(XCSF *xcsf, CL *c)
+void cl_cover(XCSF *xcsf, CL *c, double *x)
 {
-    if(c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    cl_rand(xcsf, c);
+    cond_cover(xcsf, c, x);
+}
+
+void cl_rand(XCSF *xcsf, CL *c)
+{
+    // set functions
+    action_set(xcsf, c);
+    prediction_set(xcsf, c);
+    condition_set(xcsf, c); 
+    // initialise structures
+    cond_init(xcsf, c);
+    pred_init(xcsf, c);
+    act_init(xcsf, c);
 }
 
 double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit)
@@ -161,27 +172,6 @@ void cl_print(XCSF *xcsf, CL *c, _Bool print_cond, _Bool print_pred)
             c->err, c->fit, c->num, c->exp, c->size, c->time);
 }  
 
-void cl_cover(XCSF *xcsf, CL *c, double *x)
-{
-    cl_rand(xcsf, c);
-    cond_cover(xcsf, c, x);
-}
-
-_Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
-{
-    if(cond_general(xcsf, c1, c2)) {
-        return act_general(xcsf, c1, c2);
-    }
-    return false;
-}
-
-void cl_rand(XCSF *xcsf, CL *c)
-{ 
-    cond_init(xcsf, c);
-    pred_init(xcsf, c);
-    act_init(xcsf, c);
-}
-
 _Bool cl_match(XCSF *xcsf, CL *c, double *x)
 {
     return cond_match(xcsf, c, x);
@@ -197,6 +187,26 @@ double *cl_predict(XCSF *xcsf, CL *c, double *x)
 {
     return pred_compute(xcsf, c, x);
 }
+
+_Bool cl_subsumer(XCSF *xcsf, CL *c)
+{
+    if(c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+_Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
+{
+    if(cl_cond_type_identical(c1, c2) && cond_general(xcsf, c1, c2)) {
+        if(cl_act_type_identical(c1, c2)) {
+            return act_general(xcsf, c1, c2);
+        }
+    }
+    return false;
+} 
 
 _Bool cl_mutate(XCSF *xcsf, CL *c)
 {
@@ -222,17 +232,50 @@ _Bool cl_mutate(XCSF *xcsf, CL *c)
 
 _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-    _Bool cc = cond_crossover(xcsf, c1, c2);
-    _Bool pc = pred_crossover(xcsf, c1, c2);
-    _Bool ac = act_crossover(xcsf, c1, c2);
+    // attempt crossover if types are identical
+    _Bool cc = false, pc = false, ac = false;
+    if(cl_cond_type_identical(c1, c2)) {
+        cc = cond_crossover(xcsf, c1, c2);
+    }
+    if(cl_pred_type_identical(c1, c2)) {
+        pc = pred_crossover(xcsf, c1, c2);
+    }
+    if(cl_act_type_identical(c1, c2)) {
+        ac = act_crossover(xcsf, c1, c2);
+    }
     if(cc || pc || ac) {
         return true;
     }
     return false;
 }  
 
+_Bool cl_cond_type_identical(CL *c1, CL *c2)
+{
+    if(c1->cond_vptr == c2->cond_vptr) {
+        return true;
+    }
+    return false;
+}
+ 
+_Bool cl_pred_type_identical(CL *c1, CL *c2)
+{
+    if(c1->pred_vptr == c2->pred_vptr) {
+        return true;
+    }
+    return false;
+}
+  
+_Bool cl_act_type_identical(CL *c1, CL *c2)
+{
+    if(c1->act_vptr == c2->act_vptr) {
+        return true;
+    }
+    return false;
+}
+ 
 double cl_mutation_rate(XCSF *xcsf, CL *c, int m)
 {
     (void)xcsf;
     return c->mu[m];
-}
+}  
+

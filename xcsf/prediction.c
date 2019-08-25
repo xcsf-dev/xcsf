@@ -20,6 +20,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "xcsf.h"       
+#include "utils.h"
 #include "prediction.h"
 #include "pred_nlms.h"
 #include "pred_rls.h"
@@ -27,7 +28,12 @@
 
 void prediction_set(XCSF *xcsf, CL *c)
 {
-    switch(xcsf->PRED_TYPE) {
+    int type = xcsf->PRED_TYPE;
+    if(xcsf->PRED_ENSEMBLE) {
+        type = irand_uniform(0,5);
+    }
+
+    switch(type) {
         case 0:
         case 1:
             c->pred_vptr = &pred_nlms_vtbl;

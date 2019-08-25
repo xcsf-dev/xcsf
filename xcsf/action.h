@@ -47,7 +47,7 @@ static inline double *act_compute(XCSF *xcsf, CL *c, double *x) {
 }
 
 static inline void act_copy(XCSF *xcsf, CL *to, CL *from) {
-	(*to->act_vptr->act_impl_copy)(xcsf, to, from);
+	(*from->act_vptr->act_impl_copy)(xcsf, to, from);
 }
 
 static inline void act_free(XCSF *xcsf, CL *c) {

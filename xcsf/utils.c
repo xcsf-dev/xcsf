@@ -16,6 +16,7 @@
  *
  */
 
+#include <stdio.h>
 #include <time.h>
 #include <limits.h>
 #include <math.h>
@@ -42,7 +43,7 @@ double drand()
 int irand_uniform(int min, int max)
 {
     // not inclusive of max
-    return min + (drand() * (max-min));
+    return floor(rand_uniform(min, max));
 }
 
 double rand_uniform(double min, double max)

@@ -41,7 +41,7 @@ static inline double *pred_compute(XCSF *xcsf, CL *c, double *x) {
 }
 
 static inline void pred_copy(XCSF *xcsf, CL *to, CL *from) {
-	(*to->pred_vptr->pred_impl_copy)(xcsf, to, from);
+	(*from->pred_vptr->pred_impl_copy)(xcsf, to, from);
 }
 
 static inline void pred_free(XCSF *xcsf, CL *c) {

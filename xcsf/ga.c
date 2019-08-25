@@ -55,6 +55,8 @@ void ga(XCSF *xcsf, SET *set, SET *kset)
         // create copies of parents
         CL *c1 = malloc(sizeof(CL));
         CL *c2 = malloc(sizeof(CL));
+        cl_init(xcsf, c1, c1p->size, c1p->time);
+        cl_init(xcsf, c2, c2p->size, c2p->time);
         cl_copy(xcsf, c1, c1p);
         cl_copy(xcsf, c2, c2p);
         // reduce offspring err, fit
