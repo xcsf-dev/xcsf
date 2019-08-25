@@ -43,7 +43,7 @@ typedef struct LAYER {
  
 struct LayerVtbl {
 	_Bool (*layer_impl_mutate)(XCSF *xcsf, LAYER *l);
-	void (*layer_impl_copy)(XCSF *xcsf, LAYER *to,  LAYER *from);
+	void (*layer_impl_copy)(XCSF *xcsf, LAYER *to, LAYER *from);
 	void (*layer_impl_free)(XCSF *xcsf, LAYER *l);
 	void (*layer_impl_rand)(XCSF *xcsf, LAYER *l);
 	void (*layer_impl_print)(XCSF *xcsf, LAYER *l, _Bool print_weights);
