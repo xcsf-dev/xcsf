@@ -66,11 +66,7 @@ void neural_layer_add(XCSF *xcsf, BPN *bpn, LAYER *l)
 
 void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
 {
-    to->head = NULL;
-    to->tail = NULL;
-    to->num_layers = 0;
-    to->num_outputs = from->num_outputs;
-    to->num_inputs = from->num_inputs;
+    neural_init(xcsf, to);
     for(LLIST *iter = from->tail; iter != NULL; iter = iter->prev) {
         LAYER *f = iter->layer;
         switch(f->layer_type) {
