@@ -25,9 +25,8 @@
 #define SIN 5 
 #define COS 6
 #define SOFT_PLUS 7 
-#define BENT_IDENTITY 8 
-#define LEAKY 9
-#define NUM_ACTIVATIONS 10
+#define LEAKY 8
+#define NUM_ACTIVATIONS 9
  
 typedef double (*activate_ptr)(double);
 typedef double (*gradient_ptr)(double);
@@ -42,8 +41,6 @@ static inline double gaussian_activate(double x) {return exp(-x*x);}
 static inline double gaussian_gradient(double x) {return -2*x*exp(-x*x);}
 static inline double relu_activate(double x) {return x*(x>0);}
 static inline double relu_gradient(double x) {return (x > 0);}
-static inline double bent_identity_activate(double x) {return ((sqrt(x*x+1)-1)/2.)+x;}
-static inline double bent_identity_gradient(double x) {return (x/(2*sqrt(x*x+1)))+1;}
 static inline double identity_activate(double x) {return x;}
 static inline double identity_gradient(double x) {(void)x; return 1;}
 static inline double soft_plus_activate(double x) {return log1p(exp(x));}

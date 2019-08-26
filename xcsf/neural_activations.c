@@ -25,7 +25,6 @@ void activation_set(activate_ptr *activate, int func)
         case LOGISTIC: *activate = &logistic_activate; break;
         case RELU: *activate = &relu_activate; break;
         case GAUSSIAN: *activate = &gaussian_activate; break;
-        case BENT_IDENTITY: *activate = &bent_identity_activate; break;
         case TANH: *activate = &tanh_activate; break;
         case SIN: *activate = &sin_activate; break;
         case COS: *activate = &cos_activate; break;
@@ -44,7 +43,6 @@ void gradient_set(gradient_ptr *gradient, int func)
         case LOGISTIC: *gradient = &logistic_gradient; break;
         case RELU: *gradient = &relu_gradient; break;
         case GAUSSIAN: *gradient = &gaussian_gradient; break;
-        case BENT_IDENTITY: *gradient = &bent_identity_gradient; break;
         case TANH: *gradient = &tanh_gradient; break;
         case SIN: *gradient = &sin_gradient; break;
         case COS: *gradient = &cos_gradient; break;
@@ -63,7 +61,6 @@ char *activation_string(int func)
         case LOGISTIC: return "logistic";
         case RELU: return "relu";
         case GAUSSIAN: return "gaussian";
-        case BENT_IDENTITY: return "bent_identity";
         case TANH: return "tanh"; 
         case SIN: return "sin";
         case COS: return "cos";
