@@ -93,7 +93,7 @@ void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
         // bias
         l->state[i] += l->biases[i];
         // output
-        l->state[i] = constrain(-1, 1, l->state[i]);
+        l->state[i] = constrain(-100, 100, l->state[i]);
         l->output[i] = (l->activate)(l->state[i]);
     }
 }
