@@ -65,14 +65,14 @@ xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.COND_TYPE = 2 # evolved neural network conditions
 xcs.PRED_TYPE = 4 # sgd neural network predictors
 xcs.HIDDEN_NEURON_ACTIVATION = 1 # relu
-xcs.NUM_HIDDEN_NEURONS = 1
+xcs.NUM_HIDDEN_NEURONS = 10
 xcs.ETA = 0.01
 
 ##################################
 # Example plotting in matplotlib
 ##################################
 
-n = 50 # 50,000 evaluations
+n = 100 # 100,000 evaluations
 evals = np.zeros(n)
 psize = np.zeros(n)
 msize = np.zeros(n)
