@@ -41,7 +41,7 @@ typedef struct COND_RECTANGLE {
     double *upper;
 } COND_RECTANGLE;
 
-void cond_rectangle_bounds(XCSF *xcsf, double *l, double *u);
+void cond_rectangle_order(double *l, double *u);
 
 void cond_rectangle_init(XCSF *xcsf, CL *c)
 {
@@ -51,7 +51,7 @@ void cond_rectangle_init(XCSF *xcsf, CL *c)
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         new->lower[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
         new->upper[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
-        cond_rectangle_bounds(xcsf, &new->lower[i], &new->upper[i]);
+        cond_rectangle_order(&new->lower[i], &new->upper[i]);
     }  
     c->cond = new;     
 }
@@ -76,20 +76,8 @@ void cond_rectangle_copy(XCSF *xcsf, CL *to, CL *from)
     to->cond = new;
 }                             
 
-void cond_rectangle_bounds(XCSF *xcsf, double *l, double *u)
+void cond_rectangle_order(double *l, double *u)
 {
-    if(*l < xcsf->MIN_CON) {
-        *l = xcsf->MIN_CON;
-    }
-    else if(*l > xcsf->MAX_CON) {
-        *l = xcsf->MAX_CON;
-    }   
-    if(*u < xcsf->MIN_CON) {
-        *u = xcsf->MIN_CON;
-    }
-    else if(*u > xcsf->MAX_CON) {
-        *u = xcsf->MAX_CON;
-    }   
     if(*l > *u) {
         double tmp = *l;
         *l = *u;
@@ -103,13 +91,20 @@ void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x)
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         cond->lower[i] = x[i] - rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
         cond->upper[i] = x[i] + rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
-        cond_rectangle_bounds(xcsf, &cond->lower[i], &cond->upper[i]);
+        cond_rectangle_order(&cond->lower[i], &cond->upper[i]);
     }
 }
  
 void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
-    (void)xcsf; (void)c; (void)x; (void)y;
+    (void)y;
+    COND_RECTANGLE *cond = c->cond;
+    for(int i = 0; i < xcsf->num_x_vars; i++) {
+        double center = ((cond->upper[i] - cond->lower[i]) * 0.5) + cond->lower[i];
+        double delta = xcsf->BETA * (x[i] - center);
+        cond->lower[i] += delta;
+        cond->upper[i] += delta;
+    }
 }
  
 _Bool cond_rectangle_match(XCSF *xcsf, CL *c, double *x)
@@ -130,25 +125,22 @@ _Bool cond_rectangle_crossover(XCSF *xcsf, CL *c1, CL *c2)
     COND_RECTANGLE *cond1 = c1->cond;
     COND_RECTANGLE *cond2 = c2->cond;
     _Bool changed = false;
-    // uniform crossover
     if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
         for(int i = 0; i < xcsf->num_x_vars; i++) {
-            // lower interval
             if(rand_uniform(0,1) < 0.5) {
                 double tmp = cond1->lower[i];
                 cond1->lower[i] = cond2->lower[i];
                 cond2->lower[i] = tmp;
                 changed = true;
             }
-            // upper interval
             if(rand_uniform(0,1) < 0.5) {
                 double tmp = cond1->upper[i];
                 cond1->upper[i] = cond2->upper[i];
                 cond2->upper[i] = tmp;
                 changed = true;
             }
-            cond_rectangle_bounds(xcsf, &cond1->lower[i], &cond1->upper[i]);
-            cond_rectangle_bounds(xcsf, &cond2->lower[i], &cond2->upper[i]);
+            cond_rectangle_order(&cond1->lower[i], &cond1->upper[i]);
+            cond_rectangle_order(&cond2->lower[i], &cond2->upper[i]);
         }
     }
     return changed;
@@ -159,17 +151,15 @@ _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
     COND_RECTANGLE *cond = c->cond;
     _Bool changed = false;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
-        // lower interval
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
             cond->lower[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
             changed = true;
         }
-        // upper interval
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
             cond->upper[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
             changed = true;
         }
-        cond_rectangle_bounds(xcsf, &cond->lower[i], &cond->upper[i]);
+        cond_rectangle_order(&cond->lower[i], &cond->upper[i]);
     }
     return changed;
 }
