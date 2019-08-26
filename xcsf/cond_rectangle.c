@@ -91,7 +91,6 @@ void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x)
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         cond->lower[i] = x[i] - rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
         cond->upper[i] = x[i] + rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
-        cond_rectangle_order(&cond->lower[i], &cond->upper[i]);
     }
 }
  
