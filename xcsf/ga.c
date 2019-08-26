@@ -72,7 +72,7 @@ void ga(XCSF *xcsf, SET *set, SET *kset)
             c2->err = c1->err;
             c1->fit = c1p->fit / c1p->num;
             c2->fit = c2p->fit / c2p->num;
-            c1->fit = xcsf->FIT_REDUC * (c1->fit + c2->fit)/2.0;
+            c1->fit = xcsf->FIT_REDUC * ((c1->fit + c2->fit)/2.0);
             c2->fit = c1->fit;
         }
         else {
