@@ -36,23 +36,23 @@ void activation_set(activate_ptr *activate, int func);
 void gradient_set(gradient_ptr *gradient, int func);
 char *activation_string(int func);
 
-static inline double logistic_activate(double x) {return 1./(1.+exp(-x));}
-static inline double logistic_gradient(double x) {double fx=1./(1.+exp(-x)); return (1-fx)*fx;}
-static inline double gaussian_activate(double x) {return exp(-x*x);}
-static inline double gaussian_gradient(double x) {return -2*x*exp(-x*x);}
-static inline double relu_activate(double x) {return x*(x>0);}
-static inline double relu_gradient(double x) {return (x>0);}
-static inline double selu_activate(double x) {return (x>=0)*1.0507*x+(x<0)*1.0507*1.6732*(exp(x)-1);}
-static inline double selu_gradient(double x) {return (x>=0)*1.0507+(x<0)*(1.6732*exp(x));}
-static inline double identity_activate(double x) {return x;}
-static inline double identity_gradient(double x) {(void)x; return 1;}
-static inline double soft_plus_activate(double x) {return log1p(exp(x));}
-static inline double soft_plus_gradient(double x) {return 1./(1.+exp(-x));}
-static inline double tanh_activate(double x) {return tanh(x);}
-static inline double tanh_gradient(double x) {double t=tanh(x); return 1-t*t;}
-static inline double leaky_activate(double x) {return (x>0) ? x : .1*x;}
-static inline double leaky_gradient(double x) {return (x<0) ? .1 : 1;}
-static inline double sin_activate(double x) {return sin(x);}
-static inline double sin_gradient(double x) {return cos(x);}
-static inline double cos_activate(double x) {return cos(x);}
-static inline double cos_gradient(double x) {return -sin(x);}
+static inline double logistic_activate(double x){return 1./(1.+exp(-x));}
+static inline double logistic_gradient(double x){double fx=1./(1.+exp(-x)); return (1-fx)*fx;}
+static inline double gaussian_activate(double x){return exp(-x*x);}
+static inline double gaussian_gradient(double x){return -2*x*exp(-x*x);}
+static inline double relu_activate(double x){return x*(x>0);}
+static inline double relu_gradient(double x){return (x>0);}
+static inline double selu_activate(double x){return (x>=0)*1.0507*x+(x<0)*1.0507*1.6732*expm1(x);}
+static inline double selu_gradient(double x){return (x>=0)*1.0507+(x<0)*(1.6732*exp(x));}
+static inline double identity_activate(double x){return x;}
+static inline double identity_gradient(double x){(void)x; return 1;}
+static inline double soft_plus_activate(double x){return log1p(exp(x));}
+static inline double soft_plus_gradient(double x){return 1./(1.+exp(-x));}
+static inline double tanh_activate(double x){return tanh(x);}
+static inline double tanh_gradient(double x){double t=tanh(x); return 1-t*t;}
+static inline double leaky_activate(double x){return (x>0) ? x : .1*x;}
+static inline double leaky_gradient(double x){return (x<0) ? .1 : 1;}
+static inline double sin_activate(double x){return sin(x);}
+static inline double sin_gradient(double x){return cos(x);}
+static inline double cos_activate(double x){return cos(x);}
+static inline double cos_gradient(double x){return -sin(x);}
