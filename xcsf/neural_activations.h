@@ -50,8 +50,8 @@ static inline double soft_plus_activate(double x) {return log1p(exp(x));}
 static inline double soft_plus_gradient(double x) {return 1./(1.+exp(-x));}
 static inline double tanh_activate(double x) {return tanh(x);}
 static inline double tanh_gradient(double x) {double t=tanh(x); return 1-t*t;}
-static inline double leaky_activate(double x) {return (x>0) ? x : .01*x;}
-static inline double leaky_gradient(double x) {return (x<0) ? .01 : 1;}
+static inline double leaky_activate(double x) {return (x>0) ? x : .1*x;}
+static inline double leaky_gradient(double x) {return (x<0) ? .1 : 1;}
 static inline double sin_activate(double x) {return sin(x);}
 static inline double sin_gradient(double x) {return cos(x);}
 static inline double cos_activate(double x) {return cos(x);}
