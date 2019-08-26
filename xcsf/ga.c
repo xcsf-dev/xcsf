@@ -150,7 +150,6 @@ CL *ga_select_parent(XCSF *xcsf, SET *set, double fit_sum)
 {
     (void)xcsf;
     // selects a classifier using roullete wheel selection with the fitness
-    // (a fitness proportionate selection mechanism.)
     double p = rand_uniform(0,fit_sum);
     CLIST *iter = set->list;
     double sum = iter->cl->fit;
