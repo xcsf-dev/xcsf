@@ -26,12 +26,8 @@
 #define COS 6
 #define SOFT_PLUS 7 
 #define BENT_IDENTITY 8 
-#define HARDTAN 9
-#define STAIR 10
-#define LEAKY 11
-#define ELU 12
-#define RAMP 13
-#define NUM_ACTIVATIONS 14
+#define LEAKY 9
+#define NUM_ACTIVATIONS 10
  
 typedef double (*activate_ptr)(double);
 typedef double (*gradient_ptr)(double);
@@ -41,50 +37,22 @@ void gradient_set(gradient_ptr *gradient, int func);
 char *activation_string(int func);
 
 static inline double logistic_activate(double x) {return 1./(1.+exp(-x));}
-static inline double logistic_gradient(double x) {return (1-x)*x;}
-//static inline double logistic_activate(double x) {return 2./(1+exp(-x))-1;} // bipolar
-//static inline double logistic_gradient(double x) {double y=(x+1.)/2.; return 2*(1-y)*y;}
+static inline double logistic_gradient(double x) {double fx=1./(1.+exp(-x)); return (1-fx)*fx;}
 static inline double gaussian_activate(double x) {return exp(-x*x);}
-static inline double gaussian_gradient(double x) {return -2*x*exp((-x*x)/2.);}
+static inline double gaussian_gradient(double x) {return -2*x*exp(-x*x);}
 static inline double relu_activate(double x) {return x*(x>0);}
 static inline double relu_gradient(double x) {return (x > 0);}
 static inline double bent_identity_activate(double x) {return ((sqrt(x*x+1)-1)/2.)+x;}
-static inline double bent_identity_gradient(double x) {return (2*sqrt(x*x+1)/x)+1;}
+static inline double bent_identity_gradient(double x) {return (x/(2*sqrt(x*x+1)))+1;}
 static inline double identity_activate(double x) {return x;}
 static inline double identity_gradient(double x) {(void)x; return 1;}
 static inline double soft_plus_activate(double x) {return log1p(exp(x));}
 static inline double soft_plus_gradient(double x) {return 1./(1.+exp(-x));}
-static inline double tanh_activate(double x) {return (expm1(2*x))/(exp(2*x)+1);}
-static inline double tanh_gradient(double x) {return 1-x*x;}
-static inline double leaky_activate(double x) {return (x>0) ? x : .1*x;}
-static inline double leaky_gradient(double x) {return (x>0)+.1;}
-static inline double elu_activate(double x) {return (x >= 0)*x + (x < 0)*expm1(x);}
-static inline double elu_gradient(double x) {return (x >= 0) + (x < 0)*(x + 1);}
-static inline double ramp_activate(double x) {return x*(x>0)+.1*x;}
-static inline double ramp_gradient(double x) {return (x>0)+.1;}
+static inline double tanh_activate(double x) {return tanh(x);}
+static inline double tanh_gradient(double x) {double t=tanh(x); return 1-t*t;}
+static inline double leaky_activate(double x) {return (x>0) ? x : .01*x;}
+static inline double leaky_gradient(double x) {return (x<0) ? .01 : 1;}
 static inline double sin_activate(double x) {return sin(x);}
 static inline double sin_gradient(double x) {return cos(x);}
 static inline double cos_activate(double x) {return cos(x);}
 static inline double cos_gradient(double x) {return -sin(x);}
-static inline double stair_activate(double x)
-{
-    int n = floor(x);
-    if (n%2 == 0) {return floor(x/2.);}
-    else {return (x-n)+floor(x/2.);}
-}
-static inline double stair_gradient(double x)
-{
-    if(floor(x) == x) {return 0;}
-    return 1;
-}
-static inline double hardtan_activate(double x)
-{
-    if (x < -1) {return -1;}
-    if (x > 1) {return 1;}
-    return x;
-}
-static inline double hardtan_gradient(double x)
-{
-    if (x > -1 && x < 1) {return 1;}
-    return 0;
-}

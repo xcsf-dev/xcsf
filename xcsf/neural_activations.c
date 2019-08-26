@@ -31,11 +31,7 @@ void activation_set(activate_ptr *activate, int func)
         case COS: *activate = &cos_activate; break;
         case SOFT_PLUS: *activate = &soft_plus_activate; break;
         case IDENTITY: *activate = &identity_activate; break;
-        case HARDTAN: *activate = &hardtan_activate; break;
-        case STAIR: *activate = &stair_activate; break;
         case LEAKY: *activate = &leaky_activate; break;
-        case ELU: *activate = &elu_activate; break;
-        case RAMP: *activate = &ramp_activate; break;
         default:
             printf("activation_set(): invalid activation function: %d\n", func);
             exit(EXIT_FAILURE);
@@ -54,11 +50,7 @@ void gradient_set(gradient_ptr *gradient, int func)
         case COS: *gradient = &cos_gradient; break;
         case SOFT_PLUS: *gradient = &soft_plus_gradient; break;
         case IDENTITY: *gradient = &identity_gradient; break;
-        case HARDTAN: *gradient = &hardtan_gradient; break;
-        case STAIR: *gradient = &stair_gradient; break;
         case LEAKY: *gradient = &leaky_gradient; break;
-        case ELU: *gradient = &elu_gradient; break;
-        case RAMP: *gradient = &ramp_gradient; break;
         default:
             printf("gradient_set(): invalid activation function: %d\n", func);
             exit(EXIT_FAILURE);
@@ -77,11 +69,7 @@ char *activation_string(int func)
         case COS: return "cos";
         case SOFT_PLUS: return "soft_plus";
         case IDENTITY: return "identity";
-        case HARDTAN: return "hardtan";
-        case STAIR: return "stair";
         case LEAKY: return "leaky";
-        case ELU: return "elu";
-        case RAMP: return "ramp";
         default:
             printf("activation_string(): invalid activation function: %d\n", func);
             exit(EXIT_FAILURE);

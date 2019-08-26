@@ -37,6 +37,7 @@ void neural_layer_connected_init(XCSF *xcsf, BPN *bpn, int ninputs, int noutputs
     l->num_inputs = ninputs;
     l->num_outputs = noutputs;
     l->num_weights = ninputs*noutputs;
+    l->state = calloc(l->num_outputs, sizeof(double));
     l->output = calloc(l->num_outputs, sizeof(double));
     l->weights = calloc(l->num_weights, sizeof(double));
     l->biases = calloc(l->num_outputs, sizeof(double));
@@ -59,6 +60,7 @@ void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from)
 void neural_layer_connected_free(XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
+    free(l->state);
     free(l->output);
     free(l->weights);
     free(l->biases);
@@ -83,16 +85,16 @@ void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
     (void)xcsf;
     // propagate each neuron
     for(int i = 0; i < l->num_outputs; i++) {
-        l->output[i] = 0;
+        l->state[i] = 0;
         // weights
         for(int j = 0; j < l->num_inputs; j++) {
-            l->output[i] += input[j] * l->weights[i*l->num_inputs+j];
+            l->state[i] += input[j] * l->weights[i*l->num_inputs+j];
         }
         // bias
-        l->output[i] += l->biases[i];
+        l->state[i] += l->biases[i];
         // output
-        l->output[i] = constrain(-100, 100, l->output[i]);
-        l->output[i] = (l->activate)(l->output[i]);
+        l->state[i] = constrain(-100, 100, l->state[i]);
+        l->output[i] = (l->activate)(l->state[i]);
     }
 }
 
@@ -104,7 +106,7 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, BPN *bpn)
 
     // calculate gradients
     for(int i = 0; i < l->num_outputs; i++) {
-        l->delta[i] *= (l->gradient)(l->output[i]);
+        l->delta[i] *= (l->gradient)(l->state[i]);
     }
     // calculate bias updates
     for(int i = 0; i < l->num_outputs; i++) {
