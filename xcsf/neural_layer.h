@@ -23,7 +23,6 @@ typedef struct LAYER {
     int layer_type;
     double *output;
     double *weights;
-    double *state;
     double *biases;
     double *bias_updates;
     double *weight_updates;
