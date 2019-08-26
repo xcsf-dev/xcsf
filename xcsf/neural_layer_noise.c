@@ -48,7 +48,7 @@ void neural_layer_noise_copy(XCSF *xcsf, LAYER *to, LAYER *from)
 {
     (void)xcsf;
     to->num_inputs = from->num_inputs;
-    to->num_outputs = from->num_inputs;
+    to->num_outputs = from->num_outputs;
     to->probability = from->probability;
     to->scale = from->scale;
 }
