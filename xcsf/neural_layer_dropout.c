@@ -121,5 +121,7 @@ double *neural_layer_dropout_output(XCSF *xcsf, LAYER *l)
 
 void neural_layer_dropout_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
 {
-    (void)xcsf; (void)l; (void)print_weights;
+    (void)xcsf; (void)print_weights;
+    printf("dropout nin = %d, nout = %d prob = %f\n",
+            l->num_inputs, l->num_outputs, l->probability);
 }
