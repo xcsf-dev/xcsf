@@ -86,9 +86,13 @@ void cond_ellipsoid_cover(XCSF *xcsf, CL *c, double *x)
  
 void cond_ellipsoid_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
-    (void)xcsf; (void)c; (void)x; (void)y;
+    (void)y;
+    COND_ELLIPSOID *cond = c->cond;
+    for(int i = 0; i < xcsf->num_x_vars; i++) {
+        cond->center[i] += xcsf->BETA * (x[i] - cond->center[i]);
+    }
 }
- 
+
 _Bool cond_ellipsoid_match(XCSF *xcsf, CL *c, double *x)
 {
     if(cond_ellipsoid_dist(xcsf, c, x) < 1.0) {
