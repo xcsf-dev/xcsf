@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+double rand_normal(double mu, double sigma);
 double constrain(double min, double max, double a);
-double rand_normal();
 double rand_uniform(double min, double max);
 int iconstrain(int min, int max, int a);
 int irand_uniform(int min, int max);

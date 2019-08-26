@@ -95,7 +95,7 @@ void sam_log_normal_init(XCSF *xcsf, double **mu)
 void sam_log_normal_adapt(XCSF *xcsf, double *mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        mu[i] *= exp(rand_normal());
+        mu[i] *= exp(rand_normal(0,1));
         if(mu[i] < xcsf->SAM_MIN) {
             mu[i] = xcsf->SAM_MIN;
         }

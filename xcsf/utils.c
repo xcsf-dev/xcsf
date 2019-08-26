@@ -17,8 +17,10 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include <limits.h>
+#include <float.h>
 #include <math.h>
 #include "mt64.h"
 #include "utils.h"
@@ -51,28 +53,26 @@ double rand_uniform(double min, double max)
     return min + (drand() * (max-min));
 }
 
-double rand_normal()
+double rand_normal(double mu, double sigma)
 {
-    // from numerical recipes in c
-    static int iset = 0;
-    static double gset;
-    if(iset == 0) {
-        double fac, rsq, v1, v2;
-        do {
-            v1 = rand_uniform(-1,1);
-            v2 = rand_uniform(-1,1);
-            rsq = (v1*v1)+(v2*v2);
-        } while(rsq >= 1.0 || rsq == 0.0);
-        fac = sqrt(-2.0*log(rsq)/rsq);
-        gset = v1*fac;
-        iset = 1;
-        return v2*fac;
+    // Box-Muller transform
+    static const double epsilon = DBL_MIN;
+    static const double two_pi = 2*M_PI;
+    static double z1;
+    static _Bool generate;
+    generate = !generate;
+    if(!generate) {
+        return z1 * sigma + mu;
     }
-    else {
-        iset = 0;
-        return gset;
-    }
-} 
+    double u1, u2;
+    do {
+        u1 = drand();
+        u2 = drand();
+    } while(u1 <= epsilon);
+    double z0 = sqrt(-2.0 * log(u1)) * cos(two_pi * u2);
+    z1 = sqrt(-2.0 * log(u1)) * sin(two_pi * u2);
+    return z0 * sigma + mu;
+}
 
 double constrain(double min, double max, double a)
 {
