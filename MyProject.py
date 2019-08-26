@@ -31,7 +31,7 @@ np.set_printoptions(suppress=True)
 data = fetch_openml(data_id=531)
 
 # split into training and test sets
-train_X, test_X, train_Y, test_Y = train_test_split(data.data, data.target, test_size = 0.1, random_state = 5)
+train_X, test_X, train_Y, test_Y = train_test_split(data.data, data.target, test_size=0.1)
 
 # reshape into 2D numpy arrays
 if(len(np.shape(train_Y)) == 1):
