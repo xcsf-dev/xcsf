@@ -31,6 +31,7 @@ void activation_set(activate_ptr *activate, int func)
         case SOFT_PLUS: *activate = &soft_plus_activate; break;
         case IDENTITY: *activate = &identity_activate; break;
         case LEAKY: *activate = &leaky_activate; break;
+        case SELU: *activate = &selu_activate; break;
         default:
             printf("activation_set(): invalid activation function: %d\n", func);
             exit(EXIT_FAILURE);
@@ -49,6 +50,7 @@ void gradient_set(gradient_ptr *gradient, int func)
         case SOFT_PLUS: *gradient = &soft_plus_gradient; break;
         case IDENTITY: *gradient = &identity_gradient; break;
         case LEAKY: *gradient = &leaky_gradient; break;
+        case SELU: *gradient = &selu_gradient; break;
         default:
             printf("gradient_set(): invalid activation function: %d\n", func);
             exit(EXIT_FAILURE);
@@ -67,6 +69,7 @@ char *activation_string(int func)
         case SOFT_PLUS: return "soft_plus";
         case IDENTITY: return "identity";
         case LEAKY: return "leaky";
+        case SELU: return "selu";
         default:
             printf("activation_string(): invalid activation function: %d\n", func);
             exit(EXIT_FAILURE);

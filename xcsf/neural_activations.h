@@ -26,7 +26,8 @@
 #define COS 6
 #define SOFT_PLUS 7 
 #define LEAKY 8
-#define NUM_ACTIVATIONS 9
+#define SELU 9
+#define NUM_ACTIVATIONS 10
  
 typedef double (*activate_ptr)(double);
 typedef double (*gradient_ptr)(double);
@@ -40,7 +41,9 @@ static inline double logistic_gradient(double x) {double fx=1./(1.+exp(-x)); ret
 static inline double gaussian_activate(double x) {return exp(-x*x);}
 static inline double gaussian_gradient(double x) {return -2*x*exp(-x*x);}
 static inline double relu_activate(double x) {return x*(x>0);}
-static inline double relu_gradient(double x) {return (x > 0);}
+static inline double relu_gradient(double x) {return (x>0);}
+static inline double selu_activate(double x) {return (x>=0)*1.0507*x+(x<0)*1.0507*1.6732*(exp(x)-1);}
+static inline double selu_gradient(double x) {return (x>=0)*1.0507+(x<0)*(1.6732*exp(x));}
 static inline double identity_activate(double x) {return x;}
 static inline double identity_gradient(double x) {(void)x; return 1;}
 static inline double soft_plus_activate(double x) {return log1p(exp(x));}
