@@ -29,6 +29,7 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 #include "neural_layer_dropout.h"
+#include "neural_layer_noise.h"
 #include "neural_layer_softmax.h"
 
 void neural_init(XCSF *xcsf, BPN *bpn)
@@ -77,6 +78,9 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
                 break;
             case DROPOUT:
                 neural_layer_dropout_init(xcsf, to, f->num_inputs, f->probability);
+                break;
+            case NOISE:
+                neural_layer_noise_init(xcsf, to, f->num_inputs, f->probability, f->scale);
                 break;
             case SOFTMAX:
                 neural_layer_softmax_init(xcsf, to, f->num_inputs, f->temp);

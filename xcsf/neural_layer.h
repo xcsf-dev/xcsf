@@ -17,7 +17,8 @@
  
 #define CONNECTED 0
 #define DROPOUT 1
-#define SOFTMAX 2
+#define NOISE 2
+#define SOFTMAX 3
 
 typedef struct LAYER {
     int layer_type;
