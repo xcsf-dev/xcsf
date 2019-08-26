@@ -64,18 +64,22 @@ void cond_dgp_rand(XCSF *xcsf, CL *c)
     graph_rand(xcsf, &cond->dgp);
 }
 
-void cond_dgp_cover(XCSF *xcsf, CL *c, double *state)
+void cond_dgp_cover(XCSF *xcsf, CL *c, double *x)
 {
     do {
         cond_dgp_rand(xcsf, c);
-    } while(!cond_dgp_match(xcsf, c, state));
+    } while(!cond_dgp_match(xcsf, c, x));
 }
-
-_Bool cond_dgp_match(XCSF *xcsf, CL *c, double *state)
+ 
+void cond_dgp_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
-    // classifier matches if the first output node > 0.5
+    (void)xcsf; (void)c; (void)x; (void)y;
+}
+ 
+_Bool cond_dgp_match(XCSF *xcsf, CL *c, double *x)
+{
     COND_DGP *cond = c->cond;
-    graph_update(xcsf, &cond->dgp, state);
+    graph_update(xcsf, &cond->dgp, x);
     if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
         c->m = true;
     }

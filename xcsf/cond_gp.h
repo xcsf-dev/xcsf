@@ -25,15 +25,17 @@ void cond_gp_cover(XCSF *xcsf, CL *c, double *x);
 void cond_gp_free(XCSF *xcsf, CL *c);
 void cond_gp_init(XCSF *xcsf, CL *c);
 void cond_gp_print(XCSF *xcsf, CL *c);
+void cond_gp_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct CondVtbl const cond_gp_vtbl = {
-	&cond_gp_crossover,
-	&cond_gp_general,
-	&cond_gp_match,
-	&cond_gp_mutate,
-	&cond_gp_copy,
-	&cond_gp_cover,
-	&cond_gp_free,
-	&cond_gp_init,
-	&cond_gp_print,
+    &cond_gp_crossover,
+    &cond_gp_general,
+    &cond_gp_match,
+    &cond_gp_mutate,
+    &cond_gp_copy,
+    &cond_gp_cover,
+    &cond_gp_free,
+    &cond_gp_init,
+    &cond_gp_print,
+    &cond_gp_update
 };      

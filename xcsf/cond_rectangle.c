@@ -106,7 +106,12 @@ void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x)
         cond_rectangle_bounds(xcsf, &cond->lower[i], &cond->upper[i]);
     }
 }
-
+ 
+void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y)
+{
+    (void)xcsf; (void)c; (void)x; (void)y;
+}
+ 
 _Bool cond_rectangle_match(XCSF *xcsf, CL *c, double *x)
 {
     COND_RECTANGLE *cond = c->cond;

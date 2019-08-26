@@ -70,21 +70,24 @@ void cond_gp_rand(XCSF *xcsf, CL *c)
     tree_free(xcsf, &cond->gp);
     tree_rand(xcsf, &cond->gp);
 }
-
-void cond_gp_cover(XCSF *xcsf, CL *c, double *state)
+ 
+void cond_gp_cover(XCSF *xcsf, CL *c, double *x)
 {
-    // generates random weights until the tree matches for input state
     do {
         cond_gp_rand(xcsf, c);
-    } while(!cond_gp_match(xcsf, c, state));
+    } while(!cond_gp_match(xcsf, c, x));
+}
+ 
+void cond_gp_update(XCSF *xcsf, CL *c, double *x, double *y)
+{
+    (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool cond_gp_match(XCSF *xcsf, CL *c, double *state)
+_Bool cond_gp_match(XCSF *xcsf, CL *c, double *x)
 {
-    // classifier matches if the tree output > 0.5
     COND_GP *cond = c->cond;
     cond->gp.p = 0;
-    double result = tree_eval(xcsf, &cond->gp, state);
+    double result = tree_eval(xcsf, &cond->gp, x);
     if(result > 0.5) {
         c->m = true;
     }

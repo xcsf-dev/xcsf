@@ -24,15 +24,17 @@ void cond_ellipsoid_cover(XCSF *xcsf, CL *c, double *x);
 void cond_ellipsoid_free(XCSF *xcsf, CL *c);
 void cond_ellipsoid_init(XCSF *xcsf, CL *c);
 void cond_ellipsoid_print(XCSF *xcsf, CL *c);
+void cond_ellipsoid_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct CondVtbl const cond_ellipsoid_vtbl = {
-	&cond_ellipsoid_crossover,
-	&cond_ellipsoid_general,
-	&cond_ellipsoid_match,
-	&cond_ellipsoid_mutate,
-	&cond_ellipsoid_copy,
-	&cond_ellipsoid_cover,
-	&cond_ellipsoid_free,
-	&cond_ellipsoid_init,
-	&cond_ellipsoid_print,
+    &cond_ellipsoid_crossover,
+    &cond_ellipsoid_general,
+    &cond_ellipsoid_match,
+    &cond_ellipsoid_mutate,
+    &cond_ellipsoid_copy,
+    &cond_ellipsoid_cover,
+    &cond_ellipsoid_free,
+    &cond_ellipsoid_init,
+    &cond_ellipsoid_print,
+    &cond_ellipsoid_update
 };      

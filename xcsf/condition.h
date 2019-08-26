@@ -1,4 +1,4 @@
- /*
+/*
  * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,49 +18,54 @@
 void condition_set(XCSF *xcsf, CL *c);
 
 struct CondVtbl {
-	_Bool (*cond_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
-	_Bool (*cond_impl_general)(XCSF *xcsf, CL *c1, CL *c2);
-	_Bool (*cond_impl_match)(XCSF *xcsf, CL *c, double *x);
-	_Bool (*cond_impl_mutate)(XCSF *xcsf, CL *c);
-	void (*cond_impl_copy)(XCSF *xcsf, CL *to, CL *from);
-	void (*cond_impl_cover)(XCSF *xcsf, CL *c, double *x);
-	void (*cond_impl_free)(XCSF *xcsf, CL *c);
-	void (*cond_impl_init)(XCSF *xcsf, CL *c);
-	void (*cond_impl_print)(XCSF *xcsf, CL *c);
+    _Bool (*cond_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
+    _Bool (*cond_impl_general)(XCSF *xcsf, CL *c1, CL *c2);
+    _Bool (*cond_impl_match)(XCSF *xcsf, CL *c, double *x);
+    _Bool (*cond_impl_mutate)(XCSF *xcsf, CL *c);
+    void (*cond_impl_copy)(XCSF *xcsf, CL *to, CL *from);
+    void (*cond_impl_cover)(XCSF *xcsf, CL *c, double *x);
+    void (*cond_impl_free)(XCSF *xcsf, CL *c);
+    void (*cond_impl_init)(XCSF *xcsf, CL *c);
+    void (*cond_impl_print)(XCSF *xcsf, CL *c);
+    void (*cond_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
 };
 
+static inline void cond_update(XCSF *xcsf, CL *c, double *x, double *y) {
+    (*c->cond_vptr->cond_impl_update)(xcsf, c, x, y);
+}
+
 static inline _Bool cond_crossover(XCSF *xcsf, CL *c1, CL *c2) {
-	return (*c1->cond_vptr->cond_impl_crossover)(xcsf, c1, c2);
+    return (*c1->cond_vptr->cond_impl_crossover)(xcsf, c1, c2);
 }
 
 static inline _Bool cond_general(XCSF *xcsf, CL *c1, CL *c2) {
-	return (*c1->cond_vptr->cond_impl_general)(xcsf, c1, c2);
+    return (*c1->cond_vptr->cond_impl_general)(xcsf, c1, c2);
 }
 
 static inline _Bool cond_match(XCSF *xcsf, CL *c, double *x) {
-	return (*c->cond_vptr->cond_impl_match)(xcsf, c, x);
+    return (*c->cond_vptr->cond_impl_match)(xcsf, c, x);
 }
 
 static inline _Bool cond_mutate(XCSF *xcsf, CL *c) {
-	return (*c->cond_vptr->cond_impl_mutate)(xcsf, c);
+    return (*c->cond_vptr->cond_impl_mutate)(xcsf, c);
 }
 
 static inline void cond_copy(XCSF *xcsf, CL *to, CL *from) {
-	(*from->cond_vptr->cond_impl_copy)(xcsf, to, from);
+    (*from->cond_vptr->cond_impl_copy)(xcsf, to, from);
 }
 
 static inline void cond_cover(XCSF *xcsf, CL *c, double *x) {
-	(*c->cond_vptr->cond_impl_cover)(xcsf, c, x);
+    (*c->cond_vptr->cond_impl_cover)(xcsf, c, x);
 }
 
 static inline void cond_free(XCSF *xcsf, CL *c) {
-	(*c->cond_vptr->cond_impl_free)(xcsf, c);
+    (*c->cond_vptr->cond_impl_free)(xcsf, c);
 }
 
 static inline void cond_init(XCSF *xcsf, CL *c) {
-	(*c->cond_vptr->cond_impl_init)(xcsf, c);
+    (*c->cond_vptr->cond_impl_init)(xcsf, c);
 }
 
 static inline void cond_print(XCSF *xcsf, CL *c) {
-	(*c->cond_vptr->cond_impl_print)(xcsf, c);
+    (*c->cond_vptr->cond_impl_print)(xcsf, c);
 }

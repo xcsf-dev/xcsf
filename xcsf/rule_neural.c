@@ -92,7 +92,12 @@ void rule_neural_cond_cover(XCSF *xcsf, CL *c, double *x)
         rule_neural_cond_rand(xcsf, c);
     } while(!rule_neural_cond_match(xcsf, c, x));
 }
-
+ 
+void rule_neural_cond_update(XCSF *xcsf, CL *c, double *x, double *y)
+{
+    (void)xcsf; (void)c; (void)x; (void)y;
+}
+ 
 _Bool rule_neural_cond_match(XCSF *xcsf, CL *c, double *x)
 {
     RULE_NEURAL_COND *cond = c->cond;

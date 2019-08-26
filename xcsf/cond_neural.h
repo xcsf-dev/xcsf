@@ -24,15 +24,17 @@ void cond_neural_cover(XCSF *xcsf, CL *c, double *x);
 void cond_neural_free(XCSF *xcsf, CL *c);
 void cond_neural_init(XCSF *xcsf, CL *c);
 void cond_neural_print(XCSF *xcsf, CL *c);
+void cond_neural_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct CondVtbl const cond_neural_vtbl = {
-	&cond_neural_crossover,
-	&cond_neural_general,
-	&cond_neural_match,
-	&cond_neural_mutate,
-	&cond_neural_copy,
-	&cond_neural_cover,
-	&cond_neural_free,
-	&cond_neural_init,
-	&cond_neural_print,
+    &cond_neural_crossover,
+    &cond_neural_general,
+    &cond_neural_match,
+    &cond_neural_mutate,
+    &cond_neural_copy,
+    &cond_neural_cover,
+    &cond_neural_free,
+    &cond_neural_init,
+    &cond_neural_print,
+    &cond_neural_update
 };      

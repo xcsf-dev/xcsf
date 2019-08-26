@@ -24,15 +24,17 @@ void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x);
 void cond_rectangle_free(XCSF *xcsf, CL *c);
 void cond_rectangle_init(XCSF *xcsf, CL *c);
 void cond_rectangle_print(XCSF *xcsf, CL *c);
+void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct CondVtbl const cond_rectangle_vtbl = {
-	&cond_rectangle_crossover,
-	&cond_rectangle_general,
-	&cond_rectangle_match,
-	&cond_rectangle_mutate,
-	&cond_rectangle_copy,
-	&cond_rectangle_cover,
-	&cond_rectangle_free,
-	&cond_rectangle_init,
-	&cond_rectangle_print,
+    &cond_rectangle_crossover,
+    &cond_rectangle_general,
+    &cond_rectangle_match,
+    &cond_rectangle_mutate,
+    &cond_rectangle_copy,
+    &cond_rectangle_cover,
+    &cond_rectangle_free,
+    &cond_rectangle_init,
+    &cond_rectangle_print,
+    &cond_rectangle_update
 };      

@@ -74,6 +74,11 @@ void rule_dgp_cond_cover(XCSF *xcsf, CL *c, double *x)
     } while(!rule_dgp_cond_match(xcsf, c, x));
 }
 
+void rule_dgp_cond_update(XCSF *xcsf, CL *c, double *x, double *y)
+{
+    (void)xcsf; (void)c; (void)x; (void)y;
+}
+
 _Bool rule_dgp_cond_match(XCSF *xcsf, CL *c, double *x)
 {
     RULE_DGP *cond = c->cond;

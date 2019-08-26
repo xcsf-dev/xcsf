@@ -24,6 +24,7 @@ void rule_dgp_cond_cover(XCSF *xcsf, CL *c, double *x);
 void rule_dgp_cond_free(XCSF *xcsf, CL *c);
 void rule_dgp_cond_init(XCSF *xcsf, CL *c);
 void rule_dgp_cond_print(XCSF *xcsf, CL *c);
+void rule_dgp_cond_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct CondVtbl const rule_dgp_cond_vtbl = {
     &rule_dgp_cond_crossover,
@@ -35,6 +36,7 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
     &rule_dgp_cond_free,
     &rule_dgp_cond_init,
     &rule_dgp_cond_print,
+    &rule_dgp_cond_update
 };      
 
 double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x);

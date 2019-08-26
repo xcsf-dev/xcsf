@@ -83,7 +83,12 @@ void cond_ellipsoid_cover(XCSF *xcsf, CL *c, double *x)
         cond->radius[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
     }
 }
-
+ 
+void cond_ellipsoid_update(XCSF *xcsf, CL *c, double *x, double *y)
+{
+    (void)xcsf; (void)c; (void)x; (void)y;
+}
+ 
 _Bool cond_ellipsoid_match(XCSF *xcsf, CL *c, double *x)
 {
     if(cond_ellipsoid_dist(xcsf, c, x) < 1.0) {
