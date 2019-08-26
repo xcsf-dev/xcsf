@@ -59,20 +59,28 @@ void ga(XCSF *xcsf, SET *set, SET *kset)
         cl_init(xcsf, c2, c2p->size, c2p->time);
         cl_copy(xcsf, c1, c1p);
         cl_copy(xcsf, c2, c2p);
-        // reduce offspring err, fit
-        c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err)/2.0);
-        c2->err = c1->err;
-        c1->fit = c1p->fit / c1p->num;
-        c2->fit = c2p->fit / c2p->num;
-        c1->fit = xcsf->FIT_REDUC * (c1->fit + c2->fit)/2.0;
-        c2->fit = c1->fit;
         // adapt mutation rates
         sam_adapt(xcsf, c1->mu);
         sam_adapt(xcsf, c2->mu);
         // apply genetic operators to offspring
         _Bool cmod = cl_crossover(xcsf, c1, c2);
         _Bool m1mod = cl_mutate(xcsf, c1);
-        _Bool m2mod = cl_mutate(xcsf, c2);
+        _Bool m2mod = cl_mutate(xcsf, c2); 
+        // reduce offspring err, fit
+        if(cmod) {
+            c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err)/2.0);
+            c2->err = c1->err;
+            c1->fit = c1p->fit / c1p->num;
+            c2->fit = c2p->fit / c2p->num;
+            c1->fit = xcsf->FIT_REDUC * (c1->fit + c2->fit)/2.0;
+            c2->fit = c1->fit;
+        }
+        else {
+            c1->err = xcsf->ERR_REDUC * c1p->err;
+            c2->err = xcsf->ERR_REDUC * c2p->err;
+            c1->fit = xcsf->FIT_REDUC * (c1p->fit / c1p->num);
+            c2->fit = xcsf->FIT_REDUC * (c2p->fit / c2p->num);
+        }
         // add offspring to population
         if(xcsf->GA_SUBSUMPTION) {
             // c1 no crossover or mutation changes
