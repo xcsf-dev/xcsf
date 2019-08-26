@@ -27,14 +27,14 @@ void act_constant_rand(XCSF *xcsf, CL *c);
 void act_constant_update(XCSF *xcsf, CL *c, double *x, double *y);
 
 static struct ActVtbl const act_constant_vtbl = {
-	&act_constant_crossover,
-	&act_constant_general,
-	&act_constant_mutate,
+    &act_constant_general,
+    &act_constant_crossover,
+    &act_constant_mutate,
     &act_constant_compute,
-	&act_constant_copy,
-	&act_constant_free,
-	&act_constant_init,
-	&act_constant_rand,
-	&act_constant_print,
-	&act_constant_update
+    &act_constant_copy,
+    &act_constant_free,
+    &act_constant_init,
+    &act_constant_rand,
+    &act_constant_print,
+    &act_constant_update
 };     
