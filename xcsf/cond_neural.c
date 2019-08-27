@@ -54,7 +54,7 @@ void cond_neural_init(XCSF *xcsf, CL *c)
     // create and add layers to the network
     neural_layer_connected_init(xcsf, &new->net, 
             xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
-    neural_layer_connected_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 1, IDENTITY);
+    neural_layer_connected_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 1, LOGISTIC);
     // initialise all weights randomly
     neural_rand(xcsf, &new->net);
     c->cond = new;
@@ -114,11 +114,11 @@ _Bool cond_neural_mutate(XCSF *xcsf, CL *c)
 
 _Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-//    COND_NEURAL *cond1 = c1->cond;
-//    COND_NEURAL *cond2 = c2->cond;
-//    return neural_crossover(xcsf, &cond1->net, &cond2->net);
-    (void)xcsf; (void)c1; (void)c2;
-    return false;
+    COND_NEURAL *cond1 = c1->cond;
+    COND_NEURAL *cond2 = c2->cond;
+    return neural_crossover(xcsf, &cond1->net, &cond2->net);
+//    (void)xcsf; (void)c1; (void)c2;
+//    return false;
 }
 
 _Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2)
