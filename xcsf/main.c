@@ -136,7 +136,6 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
     gplot_init(xcsf);
 #endif
 
-    xcsf->train = true;
     double perr = 0, err = 0, pterr = 0;
     double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
@@ -149,6 +148,7 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
         }     	
         double *x = &train_data->x[row * train_data->x_cols];
         double *y = &train_data->y[row * train_data->y_cols];
+        xcsf->train = true;
         double error = xcsf_learn_trial(xcsf, pred, x, y);
         perr += error; 
         err += error;
@@ -161,6 +161,7 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
         }     	
         x = &test_data->x[row * test_data->x_cols];
         y = &test_data->y[row * test_data->y_cols];
+        xcsf->train = false;
         pterr += xcsf_test_trial(xcsf, pred, x, y);
         if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
             disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
