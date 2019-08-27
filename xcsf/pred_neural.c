@@ -51,15 +51,22 @@ void pred_neural_init(XCSF *xcsf, CL *c)
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     // initialise empty network
     neural_init(xcsf, &new->net);
+
     // create and add layers to the network
+    //neural_layer_noise_init(xcsf, &new->net, xcsf->num_x_vars, 0.5, 0.5);
+    //neural_layer_dropout_init(xcsf, &new->net, xcsf->num_x_vars, 0.5);
+    
     neural_layer_connected_init(xcsf, &new->net,
             xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
-    //neural_layer_dropout_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 0.5);
+
     //neural_layer_noise_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 0.1, 0.5);
+    //neural_layer_dropout_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 0.5);
+    
     neural_layer_connected_init(xcsf, &new->net, 
-            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, IDENTITY);
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, LOGISTIC);
+
     //neural_layer_softmax_init(xcsf, &new->net, xcsf->num_y_vars, 1);
-    // initialise all weights randomly
+    
     neural_rand(xcsf, &new->net);
     c->pred = new;
 }
