@@ -40,8 +40,8 @@
 #include <omp.h>
 #endif
 
-void xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle);
-void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle);
+double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle);
+double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle);
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows);
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
@@ -93,22 +93,17 @@ int main(int argc, char **argv)
     return EXIT_SUCCESS;
 }
 
-void xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
+double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 {  
 #ifdef GNUPLOT
     gplot_init(xcsf);
 #endif
 
     xcsf->train = true;
-    // performance tracking
-    double err[xcsf->PERF_AVG_TRIALS];
-    // stores current system prediction
+    double perr = 0, err = 0;
     double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
-    // current sample
-    int row = 0;
-    // each trial in an experiment
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        // select next training sample
+        int row = 0;
         if(shuffle) {
             row = irand_uniform(0, train_data->rows);
         }
@@ -117,39 +112,35 @@ void xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
         }
         double *x = &train_data->x[row * train_data->x_cols];
         double *y = &train_data->y[row * train_data->y_cols];
-        // execute a training step and return the error
-        err[cnt % xcsf->PERF_AVG_TRIALS] = xcsf_learn_trial(xcsf, pred, x, y);
-        // display performance
+        double error = xcsf_learn_trial(xcsf, pred, x, y);
+        perr += error;
+        err += error;
         if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
-            disp_perf1(xcsf, err, cnt);
+            disp_perf1(xcsf, perr/xcsf->PERF_AVG_TRIALS, cnt);
+            perr = 0;
         }
     }
 
-    // clean up
     free(pred);
 
 #ifdef GNUPLOT
     gplot_free(xcsf);
 #endif
+
+    return err/xcsf->MAX_TRIALS;
 }
 
-void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
+double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 {   
 #ifdef GNUPLOT
     gplot_init(xcsf);
 #endif
 
     xcsf->train = true;
-    // performance tracking
-    double err[xcsf->PERF_AVG_TRIALS];
-    double terr[xcsf->PERF_AVG_TRIALS];
-    // stores current system prediction
+    double perr = 0, err = 0, pterr = 0;
     double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
-    // current sample
-    int row = 0;
-    // each trial in an experiment
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        // select next training sample
+        int row = 0;
         if(shuffle) {
             row = irand_uniform(0, train_data->rows);
         }
@@ -158,8 +149,9 @@ void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
         }     	
         double *x = &train_data->x[row * train_data->x_cols];
         double *y = &train_data->y[row * train_data->y_cols];
-        err[cnt % xcsf->PERF_AVG_TRIALS] = xcsf_learn_trial(xcsf, pred, x, y);
-        // select next testing sample
+        double error = xcsf_learn_trial(xcsf, pred, x, y);
+        perr += error; 
+        err += error;
         row = irand_uniform(0, test_data->rows);
         if(shuffle) {
             row = irand_uniform(0, test_data->rows);
@@ -169,20 +161,20 @@ void xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
         }     	
         x = &test_data->x[row * test_data->x_cols];
         y = &test_data->y[row * test_data->y_cols];
-        // calculate the system error
-        terr[cnt % xcsf->PERF_AVG_TRIALS] = xcsf_test_trial(xcsf, pred, x, y);
-        // display performance
+        pterr += xcsf_test_trial(xcsf, pred, x, y);
         if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
-            disp_perf2(xcsf, err, terr, cnt);
+            disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
+            perr = 0; pterr = 0;
         }
     }
 
-    // clean up
     free(pred);
 
 #ifdef GNUPLOT
     gplot_free(xcsf);
 #endif
+
+    return err/xcsf->MAX_TRIALS;
 }
 
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)

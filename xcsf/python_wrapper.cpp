@@ -37,8 +37,8 @@ extern "C" {
 #endif
 }
 
-extern "C" void xcsf_fit1(XCSF *, INPUT *, _Bool);
-extern "C" void xcsf_fit2(XCSF *, INPUT *, INPUT *, _Bool);
+extern "C" double xcsf_fit1(XCSF *, INPUT *, _Bool);
+extern "C" double xcsf_fit2(XCSF *, INPUT *, INPUT *, _Bool);
 extern "C" void xcsf_predict(XCSF *, double *, double *, int);
 extern "C" void xcsf_print_pop(XCSF *, _Bool, _Bool);
 extern "C" void xcsf_print_match_set(XCSF *, double *, _Bool, _Bool);
@@ -74,11 +74,11 @@ struct XCS
         test_data.y = NULL;
     }
 
-    void fit(np::ndarray &train_X, np::ndarray &train_Y, _Bool shuffle) {
+    double fit(np::ndarray &train_X, np::ndarray &train_Y, _Bool shuffle) {
         // check inputs are correctly sized
         if(train_X.shape(0) != train_Y.shape(0)) {
             printf("error: training X and Y rows are not equal\n");
-            return;
+            return 0;
         }
         // load training data
         train_data.rows = train_X.shape(0);
@@ -91,27 +91,27 @@ struct XCS
             pop_init(&xcs);
         }
         // execute
-        xcsf_fit1(&xcs, &train_data, shuffle);
+        return xcsf_fit1(&xcs, &train_data, shuffle);
     }
 
-    void fit(np::ndarray &train_X, np::ndarray &train_Y, 
+    double fit(np::ndarray &train_X, np::ndarray &train_Y, 
             np::ndarray &test_X, np::ndarray &test_Y, _Bool shuffle) {
         // check inputs are correctly sized
         if(train_X.shape(0) != train_Y.shape(0)) {
             printf("error: training X and Y rows are not equal\n");
-            return;
+            return 0;
         }
         if(test_X.shape(0) != test_Y.shape(0)) {
             printf("error: testing X and Y rows are not equal\n");
-            return;
+            return 0;
         }
         if(train_X.shape(1) != test_X.shape(1)) {
             printf("error: number of training and testing X cols are not equal\n");
-            return;
+            return 0;
         }
         if(train_Y.shape(1) != test_Y.shape(1)) {
             printf("error: number of training and testing Y cols are not equal\n");
-            return;
+            return 0;
         }
         // load training data
         train_data.rows = train_X.shape(0);
@@ -130,7 +130,7 @@ struct XCS
             pop_init(&xcs);
         }
         // execute
-        xcsf_fit2(&xcs, &train_data, &test_data, shuffle);
+        return xcsf_fit2(&xcs, &train_data, &test_data, shuffle);
     }
 
     np::ndarray predict(np::ndarray &T) {
@@ -281,8 +281,8 @@ BOOST_PYTHON_MODULE(xcsf)
     np::initialize();
     random_init();
 
-    void (XCS::*fit1)(np::ndarray&, np::ndarray&, _Bool) = &XCS::fit;
-    void (XCS::*fit2)(np::ndarray&, np::ndarray&, np::ndarray&, np::ndarray&, _Bool) = &XCS::fit;
+    double (XCS::*fit1)(np::ndarray&, np::ndarray&, _Bool) = &XCS::fit;
+    double (XCS::*fit2)(np::ndarray&, np::ndarray&, np::ndarray&, np::ndarray&, _Bool) =&XCS::fit;
 
     p::class_<XCS>("XCS", p::init<int, int>())
         .def(p::init<int, int, const char *>())
