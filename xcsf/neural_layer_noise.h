@@ -16,11 +16,11 @@
  *
  */
   
-void neural_layer_noise_init(XCSF *xcsf, BPN *bpn, int ninputs, double p, double s);
+void neural_layer_noise_init(XCSF *xcsf, NET *net, int ninputs, double p, double s);
 void neural_layer_noise_copy(XCSF *xcsf, LAYER *to, LAYER *from);
 void neural_layer_noise_rand(XCSF *xcsf, LAYER *l);
 void neural_layer_noise_forward(XCSF *xcsf, LAYER *l, double *input);
-void neural_layer_noise_backward(XCSF *xcsf, LAYER *l, BPN *bpn);
+void neural_layer_noise_backward(XCSF *xcsf, LAYER *l, NET *net);
 void neural_layer_noise_update(XCSF *xcsf, LAYER *l);
 void neural_layer_noise_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
 _Bool neural_layer_noise_mutate(XCSF *xcsf, LAYER *l);

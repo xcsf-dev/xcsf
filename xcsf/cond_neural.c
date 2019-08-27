@@ -41,7 +41,7 @@
 #include "cond_neural.h"
 
 typedef struct COND_NEURAL {
-    BPN bpn;
+    NET net;
 } COND_NEURAL;
 
 void cond_neural_rand(XCSF *xcsf, CL *c);
@@ -50,20 +50,20 @@ void cond_neural_init(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     // initialise empty network
-    neural_init(xcsf, &new->bpn);
+    neural_init(xcsf, &new->net);
     // create and add layers to the network
-    neural_layer_connected_init(xcsf, &new->bpn, 
+    neural_layer_connected_init(xcsf, &new->net, 
             xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
-    neural_layer_connected_init(xcsf, &new->bpn, xcsf->NUM_HIDDEN_NEURONS, 1, IDENTITY);
+    neural_layer_connected_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 1, IDENTITY);
     // initialise all weights randomly
-    neural_rand(xcsf, &new->bpn);
+    neural_rand(xcsf, &new->net);
     c->cond = new;
 }
 
 void cond_neural_free(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
-    neural_free(xcsf, &cond->bpn);
+    neural_free(xcsf, &cond->net);
     free(c->cond);
 }                  
 
@@ -71,14 +71,14 @@ void cond_neural_copy(XCSF *xcsf, CL *to, CL *from)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     COND_NEURAL *from_cond = from->cond;
-    neural_copy(xcsf, &new->bpn, &from_cond->bpn);
+    neural_copy(xcsf, &new->net, &from_cond->net);
     to->cond = new;
 }
 
 void cond_neural_rand(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
-    neural_rand(xcsf, &cond->bpn);
+    neural_rand(xcsf, &cond->net);
 }
 
 void cond_neural_cover(XCSF *xcsf, CL *c, double *x)
@@ -96,8 +96,8 @@ void cond_neural_update(XCSF *xcsf, CL *c, double *x, double *y)
 _Bool cond_neural_match(XCSF *xcsf, CL *c, double *x)
 {
     COND_NEURAL *cond = c->cond;
-    neural_propagate(xcsf, &cond->bpn, x);
-    if(neural_output(xcsf, &cond->bpn, 0) > 0.5) {
+    neural_propagate(xcsf, &cond->net, x);
+    if(neural_output(xcsf, &cond->net, 0) > 0.5) {
         c->m = true;
     }
     else {
@@ -109,7 +109,7 @@ _Bool cond_neural_match(XCSF *xcsf, CL *c, double *x)
 _Bool cond_neural_mutate(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
-    return neural_mutate(xcsf, &cond->bpn);
+    return neural_mutate(xcsf, &cond->net);
 }
 
 _Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
@@ -127,5 +127,5 @@ _Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2)
 void cond_neural_print(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
-    neural_print(xcsf, &cond->bpn, true);
+    neural_print(xcsf, &cond->net, true);
 }

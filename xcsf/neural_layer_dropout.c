@@ -29,7 +29,7 @@
 #include "neural_layer.h"
 #include "neural_layer_dropout.h"
 
-void neural_layer_dropout_init(XCSF *xcsf, BPN *bpn, int ninputs, double probability)
+void neural_layer_dropout_init(XCSF *xcsf, NET *net, int ninputs, double probability)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = DROPOUT;
@@ -41,7 +41,7 @@ void neural_layer_dropout_init(XCSF *xcsf, BPN *bpn, int ninputs, double probabi
     l->probability = probability;
     l->rand = malloc(l->num_inputs*sizeof(double));
     l->scale = 1./(1.-probability);
-    neural_layer_add(xcsf, bpn, l); 
+    neural_layer_add(xcsf, net, l); 
 }
 
 void neural_layer_dropout_copy(XCSF *xcsf, LAYER *to, LAYER *from)
@@ -86,18 +86,18 @@ void neural_layer_dropout_forward(XCSF *xcsf, LAYER *l, double *input)
     }
 }
 
-void neural_layer_dropout_backward(XCSF *xcsf, LAYER *l, BPN *bpn)
+void neural_layer_dropout_backward(XCSF *xcsf, LAYER *l, NET *net)
 {
     (void)xcsf;
-    if(!bpn->delta) {
+    if(!net->delta) {
         return;
     }
     for(int i = 0; i < l->num_inputs; i++) {
         if(l->rand[i] < l->probability) {
-            bpn->delta[i] = 0;
+            net->delta[i] = 0;
         }
         else {
-            bpn->delta[i] += l->delta[i] * l->scale;
+            net->delta[i] += l->delta[i] * l->scale;
         }
     }
 }

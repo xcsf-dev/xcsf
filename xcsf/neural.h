@@ -22,7 +22,7 @@ typedef struct LLIST {
     struct LLIST *next;
 } LLIST;
 
-typedef struct BPN {
+typedef struct NET {
     int num_layers; // hidden + output
     int num_inputs;
     int num_outputs;
@@ -30,15 +30,15 @@ typedef struct BPN {
     double *input;
     LLIST *head;
     LLIST *tail;
-} BPN;
+} NET;
 
-_Bool neural_mutate(XCSF *xcsf, BPN *bpn);
-double neural_output(XCSF *xcsf, BPN *bpn, int i);
-void neural_layer_add(XCSF *xcsf, BPN *bpn, struct LAYER *l);
-void neural_copy(XCSF *xcsf, BPN *to, BPN *from);
-void neural_free(XCSF *xcsf, BPN *bpn);
-void neural_init(XCSF *xcsf, BPN *bpn);
-void neural_learn(XCSF *xcsf, BPN *bpn, double *output, double *input);
-void neural_print(XCSF *xcsf, BPN *bpn, _Bool print_weights);
-void neural_propagate(XCSF *xcsf, BPN *bpn, double *input);
-void neural_rand(XCSF *xcsf, BPN *bpn);
+_Bool neural_mutate(XCSF *xcsf, NET *net);
+double neural_output(XCSF *xcsf, NET *net, int i);
+void neural_layer_add(XCSF *xcsf, NET *net, struct LAYER *l);
+void neural_copy(XCSF *xcsf, NET *to, NET *from);
+void neural_free(XCSF *xcsf, NET *net);
+void neural_init(XCSF *xcsf, NET *net);
+void neural_learn(XCSF *xcsf, NET *net, double *output, double *input);
+void neural_print(XCSF *xcsf, NET *net, _Bool print_weights);
+void neural_propagate(XCSF *xcsf, NET *net, double *input);
+void neural_rand(XCSF *xcsf, NET *net);

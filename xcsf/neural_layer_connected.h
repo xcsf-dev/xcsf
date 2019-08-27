@@ -16,11 +16,11 @@
  *
  */
 
-void neural_layer_connected_init(XCSF *xcsf, BPN *bpn, int ninputs, int noutputs, int act);
+void neural_layer_connected_init(XCSF *xcsf, NET *net, int ninputs, int noutputs, int act);
 void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from);
 void neural_layer_connected_rand(XCSF *xcsf, LAYER *l);
 void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input);
-void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, BPN *bpn);
+void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net);
 void neural_layer_connected_update(XCSF *xcsf, LAYER *l);
 void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
 _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l);

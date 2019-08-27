@@ -29,7 +29,7 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-void neural_layer_connected_init(XCSF *xcsf, BPN *bpn, int ninputs, int noutputs, int act)
+void neural_layer_connected_init(XCSF *xcsf, NET *net, int ninputs, int noutputs, int act)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
@@ -47,7 +47,7 @@ void neural_layer_connected_init(XCSF *xcsf, BPN *bpn, int ninputs, int noutputs
     l->activation_type = act;
     activation_set(&l->activate, act);
     gradient_set(&l->gradient, act);
-    neural_layer_add(xcsf, bpn, l);
+    neural_layer_add(xcsf, net, l);
 }
 
 void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from)
@@ -98,11 +98,11 @@ void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
     }
 }
 
-void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, BPN *bpn)
+void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
 {
     (void)xcsf;
-    // bpn input = this layer's input
-    // bpn delta = previous layer's delta
+    // net input = this layer's input
+    // net delta = previous layer's delta
 
     // calculate gradients
     for(int i = 0; i < l->num_outputs; i++) {
@@ -115,15 +115,15 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, BPN *bpn)
     // calculate weight updates
     for(int i = 0; i < l->num_outputs; i++) {
         for(int j = 0; j < l->num_inputs; j++) {
-            l->weight_updates[i*l->num_inputs+j] += l->delta[i] * bpn->input[j];
+            l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
         }
     }   
 
     // add this layer's error to the previous layer's
-    if(bpn->delta) { // input layer has no delta or weights
+    if(net->delta) { // input layer has no delta or weights
         for(int i = 0; i < l->num_outputs; i++) {
             for(int j = 0; j < l->num_inputs; j++) {
-                bpn->delta[j] += l->delta[i] * l->weights[i*l->num_inputs+j];
+                net->delta[j] += l->delta[i] * l->weights[i*l->num_inputs+j];
             }
         }
     }

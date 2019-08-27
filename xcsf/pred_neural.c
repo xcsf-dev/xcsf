@@ -43,31 +43,31 @@
 #include "pred_neural.h"
 
 typedef struct PRED_NEURAL {
-    BPN bpn;
+    NET net;
 } PRED_NEURAL;
 
 void pred_neural_init(XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     // initialise empty network
-    neural_init(xcsf, &new->bpn);
+    neural_init(xcsf, &new->net);
     // create and add layers to the network
-    neural_layer_connected_init(xcsf, &new->bpn,
+    neural_layer_connected_init(xcsf, &new->net,
             xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
-    //neural_layer_dropout_init(xcsf, &new->bpn, xcsf->NUM_HIDDEN_NEURONS, 0.5);
-    //neural_layer_noise_init(xcsf, &new->bpn, xcsf->NUM_HIDDEN_NEURONS, 0.1, 0.5);
-    neural_layer_connected_init(xcsf, &new->bpn, 
+    //neural_layer_dropout_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 0.5);
+    //neural_layer_noise_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 0.1, 0.5);
+    neural_layer_connected_init(xcsf, &new->net, 
             xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, IDENTITY);
-    //neural_layer_softmax_init(xcsf, &new->bpn, xcsf->num_y_vars, 1);
+    //neural_layer_softmax_init(xcsf, &new->net, xcsf->num_y_vars, 1);
     // initialise all weights randomly
-    neural_rand(xcsf, &new->bpn);
+    neural_rand(xcsf, &new->net);
     c->pred = new;
 }
 
 void pred_neural_free(XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = c->pred;
-    neural_free(xcsf, &pred->bpn);
+    neural_free(xcsf, &pred->net);
     free(pred);
 }
 
@@ -75,22 +75,22 @@ void pred_neural_copy(XCSF *xcsf, CL *to, CL *from)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     PRED_NEURAL *from_pred = from->pred;
-    neural_copy(xcsf, &new->bpn, &from_pred->bpn);
+    neural_copy(xcsf, &new->net, &from_pred->net);
     to->pred = new;
 }
 
 void pred_neural_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
     PRED_NEURAL *pred = c->pred;
-    neural_learn(xcsf, &pred->bpn, y, x);
+    neural_learn(xcsf, &pred->net, y, x);
 }
 
 double *pred_neural_compute(XCSF *xcsf, CL *c, double *x)
 {
     PRED_NEURAL *pred = c->pred;
-    neural_propagate(xcsf, &pred->bpn, x);
+    neural_propagate(xcsf, &pred->net, x);
     for(int i = 0; i < xcsf->num_y_vars; i++) {
-        c->prediction[i] = neural_output(xcsf, &pred->bpn, i);
+        c->prediction[i] = neural_output(xcsf, &pred->net, i);
     }
     return c->prediction;
 }
@@ -98,7 +98,7 @@ double *pred_neural_compute(XCSF *xcsf, CL *c, double *x)
 void pred_neural_print(XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = c->pred;
-    neural_print(xcsf, &pred->bpn, true);
+    neural_print(xcsf, &pred->net, true);
 }  
  
 _Bool pred_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
@@ -110,5 +110,5 @@ _Bool pred_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
 _Bool pred_neural_mutate(XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = c->pred;
-    return neural_mutate(xcsf, &pred->bpn);
+    return neural_mutate(xcsf, &pred->net);
 }

@@ -49,7 +49,7 @@ struct LayerVtbl {
 	void (*layer_impl_rand)(XCSF *xcsf, LAYER *l);
 	void (*layer_impl_print)(XCSF *xcsf, LAYER *l, _Bool print_weights);
 	void (*layer_impl_update)(XCSF *xcsf, LAYER *l);
-	void (*layer_impl_backward)(XCSF *xcsf, LAYER *l, BPN *bpn);
+	void (*layer_impl_backward)(XCSF *xcsf, LAYER *l, NET *net);
 	void (*layer_impl_forward)(XCSF *xcsf, LAYER *l, double *input);
 	double* (*layer_impl_output)(XCSF *xcsf, LAYER *l);
 };
@@ -62,8 +62,8 @@ static inline void layer_forward(XCSF *xcsf, LAYER *l, double *input) {
 	(*l->layer_vptr->layer_impl_forward)(xcsf, l, input);
 }
   
-static inline void layer_backward(XCSF *xcsf, LAYER *l, BPN *bpn) {
-	(*l->layer_vptr->layer_impl_backward)(xcsf, l, bpn);
+static inline void layer_backward(XCSF *xcsf, LAYER *l, NET *net) {
+	(*l->layer_vptr->layer_impl_backward)(xcsf, l, net);
 }
  
 static inline void layer_update(XCSF *xcsf, LAYER *l) {

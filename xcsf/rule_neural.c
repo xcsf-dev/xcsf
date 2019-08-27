@@ -40,11 +40,11 @@
 #include "rule_neural.h"
 
 typedef struct RULE_NEURAL_COND {
-    BPN bpn;
+    NET net;
 } RULE_NEURAL_COND;
 
 typedef struct RULE_NEURAL_PRED {
-    BPN bpn;
+    NET net;
     double *input;
 } RULE_NEURAL_PRED;
 
@@ -54,21 +54,21 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *new = malloc(sizeof(RULE_NEURAL_COND));
     // initialise empty network
-    neural_init(xcsf, &new->bpn);
+    neural_init(xcsf, &new->net);
     // create and add layers to the network
-    neural_layer_connected_init(xcsf, &new->bpn,
+    neural_layer_connected_init(xcsf, &new->net,
             xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
-    neural_layer_connected_init(xcsf, &new->bpn,
+    neural_layer_connected_init(xcsf, &new->net,
             xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1, IDENTITY);
     // initialise all weights randomly
-    neural_rand(xcsf, &new->bpn);
+    neural_rand(xcsf, &new->net);
     c->cond = new;
 }
 
 void rule_neural_cond_free(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = c->cond;
-    neural_free(xcsf, &cond->bpn);
+    neural_free(xcsf, &cond->net);
     free(c->cond);
 }  
 
@@ -76,14 +76,14 @@ void rule_neural_cond_copy(XCSF *xcsf, CL *to, CL *from)
 {
     RULE_NEURAL_COND *new = malloc(sizeof(RULE_NEURAL_COND));
     RULE_NEURAL_COND *from_cond = from->cond;
-    neural_copy(xcsf, &new->bpn, &from_cond->bpn);
+    neural_copy(xcsf, &new->net, &from_cond->net);
     to->cond = new;
 }
 
 void rule_neural_cond_rand(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = c->cond;
-    neural_rand(xcsf, &cond->bpn);
+    neural_rand(xcsf, &cond->net);
 }
 
 void rule_neural_cond_cover(XCSF *xcsf, CL *c, double *x)
@@ -101,8 +101,8 @@ void rule_neural_cond_update(XCSF *xcsf, CL *c, double *x, double *y)
 _Bool rule_neural_cond_match(XCSF *xcsf, CL *c, double *x)
 {
     RULE_NEURAL_COND *cond = c->cond;
-    neural_propagate(xcsf, &cond->bpn, x);
-    if(neural_output(xcsf, &cond->bpn, 0) > 0.5) {
+    neural_propagate(xcsf, &cond->net, x);
+    if(neural_output(xcsf, &cond->net, 0) > 0.5) {
         c->m = true;
     }
     else {
@@ -114,7 +114,7 @@ _Bool rule_neural_cond_match(XCSF *xcsf, CL *c, double *x)
 _Bool rule_neural_cond_mutate(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = c->cond;
-    return neural_mutate(xcsf, &cond->bpn);
+    return neural_mutate(xcsf, &cond->net);
 }
 
 _Bool rule_neural_cond_crossover(XCSF *xcsf, CL *c1, CL *c2)
@@ -132,21 +132,21 @@ _Bool rule_neural_cond_general(XCSF *xcsf, CL *c1, CL *c2)
 void rule_neural_cond_print(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = c->cond;
-    neural_print(xcsf, &cond->bpn, true);
+    neural_print(xcsf, &cond->net, true);
 }  
 
 void rule_neural_pred_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_PRED *new = malloc(sizeof(RULE_NEURAL_PRED));
     // initialise empty network
-    neural_init(xcsf, &new->bpn);
+    neural_init(xcsf, &new->net);
     // create and add layers to the network
-    neural_layer_connected_init(xcsf, &new->bpn,
+    neural_layer_connected_init(xcsf, &new->net,
             xcsf->MAX_FORWARD, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
-    neural_layer_connected_init(xcsf, &new->bpn, 
+    neural_layer_connected_init(xcsf, &new->net, 
             xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, IDENTITY);
     // initialise all weights randomly
-    neural_rand(xcsf, &new->bpn);
+    neural_rand(xcsf, &new->net);
     new->input = malloc(sizeof(double)*xcsf->MAX_FORWARD);
     c->pred = new;  
 }
@@ -154,7 +154,7 @@ void rule_neural_pred_init(XCSF *xcsf, CL *c)
 void rule_neural_pred_free(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_PRED *pred = c->pred;
-    neural_free(xcsf, &pred->bpn);
+    neural_free(xcsf, &pred->net);
     free(pred->input);
     free(c->pred);
 }
@@ -163,7 +163,7 @@ void rule_neural_pred_copy(XCSF *xcsf, CL *to, CL *from)
 {
     RULE_NEURAL_PRED *new = malloc(sizeof(RULE_NEURAL_PRED));
     RULE_NEURAL_PRED *from_pred = from->pred;
-    neural_copy(xcsf, &new->bpn, &from_pred->bpn);
+    neural_copy(xcsf, &new->net, &from_pred->net);
     new->input = malloc(sizeof(double)*xcsf->MAX_FORWARD);
     to->pred = new;
 }
@@ -172,7 +172,7 @@ void rule_neural_pred_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
     (void)x;
     RULE_NEURAL_PRED *pred = c->pred;
-    neural_learn(xcsf, &pred->bpn, y, pred->input);
+    neural_learn(xcsf, &pred->net, y, pred->input);
 }
 
 double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x)
@@ -181,11 +181,11 @@ double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x)
     RULE_NEURAL_COND *cond = c->cond;
     RULE_NEURAL_PRED *pred = c->pred;
     for(int i = 0; i < xcsf->MAX_FORWARD; i++) {
-        pred->input[i] = neural_output(xcsf, &cond->bpn, 1+i);
+        pred->input[i] = neural_output(xcsf, &cond->net, 1+i);
     }
-    neural_propagate(xcsf, &pred->bpn, pred->input);
+    neural_propagate(xcsf, &pred->net, pred->input);
     for(int i = 0; i <  xcsf->num_y_vars; i++) {
-        c->prediction[i] = neural_output(xcsf, &pred->bpn, i);
+        c->prediction[i] = neural_output(xcsf, &pred->net, i);
     }
     return c->prediction;
 }
@@ -193,7 +193,7 @@ double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x)
 void rule_neural_pred_print(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_PRED *pred = c->pred;
-    neural_print(xcsf, &pred->bpn, true);
+    neural_print(xcsf, &pred->net, true);
 }  
 
 _Bool rule_neural_pred_crossover(XCSF *xcsf, CL *c1, CL *c2)

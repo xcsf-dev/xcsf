@@ -29,7 +29,7 @@
 #include "neural_layer.h"
 #include "neural_layer_softmax.h"
  
-void neural_layer_softmax_init(XCSF *xcsf, BPN *bpn, int ninputs, double temp)
+void neural_layer_softmax_init(XCSF *xcsf, NET *net, int ninputs, double temp)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = SOFTMAX;
@@ -39,7 +39,7 @@ void neural_layer_softmax_init(XCSF *xcsf, BPN *bpn, int ninputs, double temp)
     l->num_outputs = ninputs;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = calloc(l->num_inputs, sizeof(double));
-    neural_layer_add(xcsf, bpn, l); 
+    neural_layer_add(xcsf, net, l); 
 }
 
 void neural_layer_softmax_copy(XCSF *xcsf, LAYER *to, LAYER *from)
@@ -75,11 +75,11 @@ void neural_layer_softmax_forward(XCSF *xcsf, LAYER *l, double *input)
     }                                     
 }
 
-void neural_layer_softmax_backward(XCSF *xcsf, LAYER *l, BPN *bpn)
+void neural_layer_softmax_backward(XCSF *xcsf, LAYER *l, NET *net)
 {
     (void)xcsf;
     for(int i = 0; i < l->num_inputs; i++) {
-        bpn->delta[i] += l->delta[i];
+        net->delta[i] += l->delta[i];
     }
 }
 

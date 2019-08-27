@@ -32,41 +32,41 @@
 #include "neural_layer_noise.h"
 #include "neural_layer_softmax.h"
 
-void neural_init(XCSF *xcsf, BPN *bpn)
+void neural_init(XCSF *xcsf, NET *net)
 {
     (void)xcsf;
-    bpn->head = NULL;
-    bpn->tail = NULL;
-    bpn->num_layers = 0;
-    bpn->num_inputs = 0;
-    bpn->num_outputs = 0;
+    net->head = NULL;
+    net->tail = NULL;
+    net->num_layers = 0;
+    net->num_inputs = 0;
+    net->num_outputs = 0;
 }
 
-void neural_layer_add(XCSF *xcsf, BPN *bpn, LAYER *l)
+void neural_layer_add(XCSF *xcsf, NET *net, LAYER *l)
 {
     (void)xcsf;
-    if(bpn->head == NULL) {
-        bpn->head = malloc(sizeof(LLIST));
-        bpn->head->layer = l;
-        bpn->head->prev = NULL;
-        bpn->head->next = NULL;
-        bpn->tail = bpn->head;
-        bpn->num_inputs = l->num_inputs;
-        bpn->num_outputs = l->num_outputs;
+    if(net->head == NULL) {
+        net->head = malloc(sizeof(LLIST));
+        net->head->layer = l;
+        net->head->prev = NULL;
+        net->head->next = NULL;
+        net->tail = net->head;
+        net->num_inputs = l->num_inputs;
+        net->num_outputs = l->num_outputs;
     }
     else {
         LLIST *new = malloc(sizeof(LLIST));
         new->layer = l;
-        new->next = bpn->head;
+        new->next = net->head;
         new->prev = NULL;
-        bpn->head->prev = new;
-        bpn->head = new;
-        bpn->num_outputs = l->num_outputs;
+        net->head->prev = new;
+        net->head = new;
+        net->num_outputs = l->num_outputs;
     }
-    bpn->num_layers++;
+    net->num_layers++;
 }
 
-void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
+void neural_copy(XCSF *xcsf, NET *to, NET *from)
 {
     neural_init(xcsf, to);
     for(LLIST *iter = from->tail; iter != NULL; iter = iter->prev) {
@@ -93,30 +93,30 @@ void neural_copy(XCSF *xcsf, BPN *to, BPN *from)
     }
 }
 
-void neural_free(XCSF *xcsf, BPN *bpn)
+void neural_free(XCSF *xcsf, NET *net)
 {
-    LLIST *iter = bpn->tail;
+    LLIST *iter = net->tail;
     while(iter != NULL) {
         layer_free(xcsf, iter->layer);
         free(iter->layer);
-        bpn->tail = iter->prev;
+        net->tail = iter->prev;
         free(iter);
-        iter = bpn->tail;
-        bpn->num_layers--;
+        iter = net->tail;
+        net->num_layers--;
     }  
 }
 
-void neural_rand(XCSF *xcsf, BPN *bpn)
+void neural_rand(XCSF *xcsf, NET *net)
 {
-    for(LLIST *iter = bpn->tail; iter != NULL; iter = iter->prev) {
+    for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_rand(xcsf, iter->layer);
     }
 }    
 
-_Bool neural_mutate(XCSF *xcsf, BPN *bpn)
+_Bool neural_mutate(XCSF *xcsf, NET *net)
 {
     _Bool mod = false;
-    for(LLIST *iter = bpn->tail; iter != NULL; iter = iter->prev) {
+    for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         if(layer_mutate(xcsf, iter->layer)) {
             mod = true;
         }
@@ -124,18 +124,18 @@ _Bool neural_mutate(XCSF *xcsf, BPN *bpn)
     return mod;
 }
 
-void neural_propagate(XCSF *xcsf, BPN *bpn, double *input)
+void neural_propagate(XCSF *xcsf, NET *net, double *input)
 {
-    for(LLIST *iter = bpn->tail; iter != NULL; iter = iter->prev) {
+    for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_forward(xcsf, iter->layer, input);
         input = layer_output(xcsf, iter->layer);
     }
 }
 
-void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
+void neural_learn(XCSF *xcsf, NET *net, double *truth, double *input)
 {
     /* reset deltas */
-    for(LLIST *iter = bpn->tail; iter != NULL; iter = iter->prev) {
+    for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         LAYER *l = iter->layer;
         for(int j = 0; j < l->num_outputs; j++) {
             l->delta[j] = 0.0;
@@ -143,47 +143,47 @@ void neural_learn(XCSF *xcsf, BPN *bpn, double *truth, double *input)
     }
 
     // calculate output layer error
-    LAYER *p = bpn->head->layer;
+    LAYER *p = net->head->layer;
     for(int i = 0; i < p->num_outputs; i++) {
         p->delta[i] = (truth[i] - p->output[i]);
     }
 
     /* backward phase */
-    for(LLIST *iter = bpn->head; iter != NULL; iter = iter->next) {
+    for(LLIST *iter = net->head; iter != NULL; iter = iter->next) {
         LAYER *l = iter->layer;
         if(iter->next == NULL) {
-            bpn->input = input;
-            bpn->delta = 0;
+            net->input = input;
+            net->delta = 0;
         }
         else {
             LAYER *prev = iter->next->layer;
-            bpn->input = prev->output;
-            bpn->delta = prev->delta;
+            net->input = prev->output;
+            net->delta = prev->delta;
         }
-        layer_backward(xcsf, l, bpn);
+        layer_backward(xcsf, l, net);
     }
 
     /* update phase */
-    for(LLIST *iter = bpn->tail; iter != NULL; iter = iter->prev) {
+    for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_update(xcsf, iter->layer);
     }
 } 
 
-double neural_output(XCSF *xcsf, BPN *bpn, int i)
+double neural_output(XCSF *xcsf, NET *net, int i)
 {
-    if(i < bpn->num_outputs) {
-        double *output = layer_output(xcsf, bpn->head->layer);
+    if(i < net->num_outputs) {
+        double *output = layer_output(xcsf, net->head->layer);
         return constrain(xcsf->MIN_CON, xcsf->MAX_CON, output[i]);
     }
     printf("neural_output(): requested (%d) in output layer of size (%d)\n",
-            i, bpn->num_outputs);
+            i, net->num_outputs);
     exit(EXIT_FAILURE);
 }
 
-void neural_print(XCSF *xcsf, BPN *bpn, _Bool print_weights)
+void neural_print(XCSF *xcsf, NET *net, _Bool print_weights)
 {
     int i = 0;
-    for(LLIST *iter = bpn->tail; iter != NULL; iter = iter->prev) {
+    for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         printf("layer (%d) ", i);
         layer_print(xcsf, iter->layer, print_weights);
         i++;

@@ -29,7 +29,7 @@
 #include "neural_layer.h"
 #include "neural_layer_noise.h"
 
-void neural_layer_noise_init(XCSF *xcsf, BPN *bpn, int ninputs, double p, double s)
+void neural_layer_noise_init(XCSF *xcsf, NET *net, int ninputs, double p, double s)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = NOISE;
@@ -41,7 +41,7 @@ void neural_layer_noise_init(XCSF *xcsf, BPN *bpn, int ninputs, double p, double
     l->probability = p;
     l->scale = s;
     l->rand = malloc(l->num_inputs*sizeof(double));
-    neural_layer_add(xcsf, bpn, l); 
+    neural_layer_add(xcsf, net, l); 
 }
 
 void neural_layer_noise_copy(XCSF *xcsf, LAYER *to, LAYER *from)
@@ -86,14 +86,14 @@ void neural_layer_noise_forward(XCSF *xcsf, LAYER *l, double *input)
     }
 }
 
-void neural_layer_noise_backward(XCSF *xcsf, LAYER *l, BPN *bpn)
+void neural_layer_noise_backward(XCSF *xcsf, LAYER *l, NET *net)
 {
     (void)xcsf;
-    if(!bpn->delta) {
+    if(!net->delta) {
         return;
     }
     for(int i = 0; i < l->num_inputs; i++) {
-        bpn->delta[i] += l->delta[i];
+        net->delta[i] += l->delta[i];
     }
 }
 
