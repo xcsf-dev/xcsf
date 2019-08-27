@@ -53,11 +53,8 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     } 
 
-    random_init();
-
-    // initialise XCSF
     XCSF *xcsf = malloc(sizeof(XCSF));
-    // read parameters from configuration file
+    random_init();
     if(argc > 2) {
         constants_init(xcsf, argv[2]);
     }    
@@ -68,7 +65,6 @@ int main(int argc, char **argv)
     omp_set_num_threads(xcsf->OMP_NUM_THREADS);
 #endif
 
-    // read csv input data
     INPUT *train_data = malloc(sizeof(INPUT));
     INPUT *test_data = malloc(sizeof(INPUT));
     input_read_csv(argv[1], train_data, test_data);
@@ -76,12 +72,9 @@ int main(int argc, char **argv)
     xcsf->num_y_vars = train_data->y_cols;
     xcsf->num_classes = 0; // regression
 
-    // initialise population
     pop_init(xcsf);
-    // run an experiment
     xcsf_fit2(xcsf, train_data, test_data, true);
 
-    // clean up
     set_kill(xcsf, &xcsf->pset);
     constants_free(xcsf);        
     free(xcsf);
@@ -89,7 +82,6 @@ int main(int argc, char **argv)
     input_free(test_data);
     free(train_data);
     free(test_data);
-
     return EXIT_SUCCESS;
 }
 
@@ -120,7 +112,6 @@ double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
             perr = 0;
         }
     }
-
     free(pred);
 
 #ifdef GNUPLOT
@@ -168,7 +159,6 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
             perr = 0; pterr = 0;
         }
     }
-
     free(pred);
 
 #ifdef GNUPLOT
@@ -183,22 +173,14 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
     SET mset, kset;
     set_init(xcsf, &mset);
     set_init(xcsf, &kset);
-    // create match set
     set_match(xcsf, &mset, &kset, x);
-    // calculate system prediction
     set_pred(xcsf, &mset, x, pred);
-    // provide reinforcement to the set
     set_update(xcsf, &mset, &kset, x, y);
-    // run the genetic algorithm
     ga(xcsf, &mset, &kset);
-    // increment learning time
     xcsf->time += 1;
-    // update average set size
     xcsf->msetsize += (mset.size - xcsf->msetsize)*xcsf->BETA;
-    // clean up
     set_kill(xcsf, &kset); // kills deleted classifiers
     set_free(xcsf, &mset); // frees the match set list
-    // return the system error
     return (xcsf->loss_ptr)(xcsf, pred, y);
 }
 
@@ -207,16 +189,11 @@ double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
     SET mset, kset;
     set_init(xcsf, &mset);
     set_init(xcsf, &kset);
-    // create match set
     set_match(xcsf, &mset, &kset, x);
-    // calculate system prediction
     set_pred(xcsf, &mset, x, pred);
-    // update average set size
     xcsf->msetsize += (xcsf->msetsize - mset.size)*xcsf->BETA;
-    // clean up
     set_kill(xcsf, &kset); // kills deleted classifiers
     set_free(xcsf, &mset); // frees the match set list  
-    // return the system error
     return (xcsf->loss_ptr)(xcsf, pred, y);
 }
 
@@ -227,11 +204,8 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
         SET mset, kset;
         set_init(xcsf, &mset);
         set_init(xcsf, &kset);
-        // create match set
         set_match(xcsf, &mset, &kset, &input[row*xcsf->num_x_vars]);
-        // calculate system prediction
         set_pred(xcsf, &mset, &input[row*xcsf->num_x_vars], &output[row*xcsf->num_y_vars]);
-        // clean up
         set_kill(xcsf, &kset); // kills deleted classifiers
         set_free(xcsf, &mset); // frees the match set list      
     }
@@ -247,7 +221,6 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool print_cond, _Bool pri
     SET mset, kset;
     set_init(xcsf, &mset);
     set_init(xcsf, &kset);
-    // create match set
     set_match(xcsf, &mset, &kset, input);
     set_print(xcsf, &mset, print_cond, print_pred);
 }
