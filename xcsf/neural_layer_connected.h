@@ -24,10 +24,12 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net);
 void neural_layer_connected_update(XCSF *xcsf, LAYER *l);
 void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
 _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l);
+_Bool neural_layer_connected_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2);
 void neural_layer_connected_free(XCSF *xcsf, LAYER *l);
 double* neural_layer_connected_output(XCSF *xcsf, LAYER *l);
 
 static struct LayerVtbl const layer_connected_vtbl = {
+    &neural_layer_connected_crossover,
     &neural_layer_connected_mutate,
     &neural_layer_connected_copy,
     &neural_layer_connected_free,

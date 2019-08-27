@@ -175,6 +175,39 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
     return mod;
 }
 
+_Bool neural_layer_connected_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2)
+{
+    (void)xcsf;
+    // assumes equally sized connected layers
+    // cross weights
+    for(int i = 0; i < l1->num_weights; i++) {
+        if(rand_uniform(0,1) < 0.5) {
+            double tmp = l1->weights[i];
+            l1->weights[i] = l2->weights[i];
+            l2->weights[i] = tmp;
+        }
+    }
+    // cross biases
+    for(int i = 0; i < l1->num_outputs; i++) {
+        if(rand_uniform(0,1) < 0.5) {
+            double tmp = l1->biases[i];
+            l1->biases[i] = l2->biases[i];
+            l2->biases[i] = tmp;
+        }
+    }
+    // cross activation function
+    if(rand_uniform(0,1) < 0.5) {
+        int tmp = l1->activation_type;
+        l1->activation_type = l2->activation_type;
+        l2->activation_type = tmp;
+        activation_set(&l1->activate, l1->activation_type);
+        gradient_set(&l1->gradient, l1->activation_type);
+        activation_set(&l2->activate, l2->activation_type);
+        gradient_set(&l2->gradient, l2->activation_type);
+    } 
+    return true;   
+}
+
 double *neural_layer_connected_output(XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;

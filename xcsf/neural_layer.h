@@ -43,6 +43,7 @@ typedef struct LAYER {
 } LAYER;
  
 struct LayerVtbl {
+	_Bool (*layer_impl_crossover)(XCSF *xcsf, LAYER *l1, LAYER *l2);
 	_Bool (*layer_impl_mutate)(XCSF *xcsf, LAYER *l);
 	void (*layer_impl_copy)(XCSF *xcsf, LAYER *to, LAYER *from);
 	void (*layer_impl_free)(XCSF *xcsf, LAYER *l);
@@ -53,7 +54,11 @@ struct LayerVtbl {
 	void (*layer_impl_forward)(XCSF *xcsf, LAYER *l, double *input);
 	double* (*layer_impl_output)(XCSF *xcsf, LAYER *l);
 };
-
+ 
+static inline _Bool layer_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2) {
+	return (*l1->layer_vptr->layer_impl_crossover)(xcsf, l1, l2);
+}
+ 
 static inline double* layer_output(XCSF *xcsf, LAYER *l) {
 	return (*l->layer_vptr->layer_impl_output)(xcsf, l);
 }
