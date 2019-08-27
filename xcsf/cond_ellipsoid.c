@@ -38,7 +38,7 @@
 
 typedef struct COND_ELLIPSOID {
     double *center;
-    double *radius;
+    double *spread;
 } COND_ELLIPSOID;
 
 double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x);
@@ -47,10 +47,10 @@ void cond_ellipsoid_init(XCSF *xcsf, CL *c)
 {
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
     new->center = malloc(sizeof(double)*xcsf->num_x_vars);
-    new->radius = malloc(sizeof(double)*xcsf->num_x_vars); 
+    new->spread = malloc(sizeof(double)*xcsf->num_x_vars); 
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         new->center[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
-        new->radius[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON)*0.5;
+        new->spread[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON)*0.5;
     }
     c->cond = new;
 }
@@ -60,7 +60,7 @@ void cond_ellipsoid_free(XCSF *xcsf, CL *c)
     (void)xcsf;
     COND_ELLIPSOID *cond = c->cond;
     free(cond->center);
-    free(cond->radius);
+    free(cond->spread);
     free(c->cond);
 }
 
@@ -69,9 +69,9 @@ void cond_ellipsoid_copy(XCSF *xcsf, CL *to, CL *from)
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
     COND_ELLIPSOID *from_cond = from->cond;
     new->center = malloc(sizeof(double)*xcsf->num_x_vars);
-    new->radius = malloc(sizeof(double)*xcsf->num_x_vars); 
+    new->spread = malloc(sizeof(double)*xcsf->num_x_vars); 
     memcpy(new->center, from_cond->center, sizeof(double)*xcsf->num_x_vars);
-    memcpy(new->radius, from_cond->radius, sizeof(double)*xcsf->num_x_vars);
+    memcpy(new->spread, from_cond->spread, sizeof(double)*xcsf->num_x_vars);
     to->cond = new;
 }                             
 
@@ -80,7 +80,7 @@ void cond_ellipsoid_cover(XCSF *xcsf, CL *c, double *x)
     COND_ELLIPSOID *cond = c->cond;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         cond->center[i] = x[i];
-        cond->radius[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
+        cond->spread[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
     }
 }
  
@@ -109,7 +109,7 @@ double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x)
     COND_ELLIPSOID *cond = c->cond;
     double dist = 0.0;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
-        double d = (x[i] - cond->center[i]) / cond->radius[i];
+        double d = (x[i] - cond->center[i]) / cond->spread[i];
         dist += d*d; // squared distance
     }
     return dist;
@@ -129,9 +129,9 @@ _Bool cond_ellipsoid_crossover(XCSF *xcsf, CL *c1, CL *c2)
                 changed = true;
             }
             if(rand_uniform(0,1) < 0.5) {
-                double tmp = cond1->radius[i];
-                cond1->radius[i] = cond2->radius[i];
-                cond2->radius[i] = tmp;
+                double tmp = cond1->spread[i];
+                cond1->spread[i] = cond2->spread[i];
+                cond2->spread[i] = tmp;
                 changed = true;
             }
         }
@@ -155,7 +155,7 @@ _Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c)
             changed = true;
         }
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-            cond->radius[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
+            cond->spread[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
             changed = true;
         }
     }
@@ -168,10 +168,10 @@ _Bool cond_ellipsoid_general(XCSF *xcsf, CL *c1, CL *c2)
     COND_ELLIPSOID *cond1 = c1->cond;
     COND_ELLIPSOID *cond2 = c2->cond;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
-        double l1 = cond1->center[i] - cond1->radius[i];
-        double l2 = cond2->center[i] - cond2->radius[i];
-        double u1 = cond1->center[i] + cond1->radius[i];
-        double u2 = cond2->center[i] + cond2->radius[i];
+        double l1 = cond1->center[i] - cond1->spread[i];
+        double l2 = cond2->center[i] - cond2->spread[i];
+        double u1 = cond1->center[i] + cond1->spread[i];
+        double u2 = cond2->center[i] + cond2->spread[i];
         if(l1 > l2 || u1 < u2) {
             return false;
         }
@@ -185,7 +185,7 @@ void cond_ellipsoid_print(XCSF *xcsf, CL *c)
     printf("ellipsoid:");
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         printf(" (%5f, ", cond->center[i]);
-        printf("%5f)", cond->radius[i]);
+        printf("%5f)", cond->spread[i]);
     }
     printf("\n");
 }
