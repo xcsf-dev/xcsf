@@ -72,11 +72,12 @@ void neural_layer_connected_free(XCSF *xcsf, LAYER *l)
 void neural_layer_connected_rand(XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
+    double scale = sqrt(2./l->num_inputs);
     for(int i = 0; i < l->num_weights; i++) {
-        l->weights[i] = rand_uniform(-1,1);
+        l->weights[i] = rand_uniform(-1,1) * scale;
     }
     for(int i = 0; i < l->num_outputs; i++) {
-        l->biases[i] = rand_uniform(-1,1);
+        l->biases[i] = 0;
     }
 }
 
