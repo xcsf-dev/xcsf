@@ -14,14 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- **************
- * Description: 
- **************
- * The tree GP condition module.
- *
- * Provides functionality to create GP trees that compute whether the
- * classifier matches for a given problem instance. Includes operations for
- * covering, matching, copying, mutating, printing, etc.
  */
 
 #include <stdio.h>

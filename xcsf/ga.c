@@ -14,15 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- **************
- * Description: 
- **************
- * The genetic algorithm module.
- *
- * Selects parents to create offspring via crossover and mutation, and inserts
- * the newly created classifiers into the population. The maximum population
- * size limit is then enforced by deleting excess classifiers from the
- * population. Performs GA subsumption if enabled.
  */
 
 #include <stdio.h>

@@ -14,14 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- **************
- * Description: 
- **************
- * The MLP neural network classifier computed prediction module.
- *
- * Creates a weight vector representing an MLP neural network to calculate the
- * expected value given a problem instance and adapts the weights using the
- * backpropagation algorithm.
  */
 
 #include <stdlib.h>

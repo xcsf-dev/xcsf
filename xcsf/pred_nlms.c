@@ -14,15 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- **************
- * Description: 
- **************
- * The normalised least mean square classifier computed prediction module.
- *
- * Creates a weight vector representing a polynomial function to compute the
- * expected value given a problem instance and adapts the weights using the
- * least mean square update (also known as the modified Delta rule, or
- * Widrow-Hoff update.)
  */
 
 #include <stdio.h>

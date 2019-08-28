@@ -14,13 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- **************
- * Description: 
- **************
- * The classifier module.  
- *
- * Performs general operations applied to an individual classifier: creation,
- * copying, deletion, updating, and printing.
  */
 
 #include <stdio.h>

@@ -14,15 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- ************* 
- * Description
- *************
- * An implementation of GP trees based upon TinyGP. 
- *
- * For a description see: 
- * Poli, R., Langdon, W. B., and McPhee, N. F. (2008) "A Field Guide to Genetic Programming".
- * Available: [https://dces.essex.ac.uk/staff/rpoli/gp-field-guide/A_Field_Guide_to_Genetic_Programming.pdf]
- *
  */
 
 #include <stdio.h>
