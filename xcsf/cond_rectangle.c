@@ -107,11 +107,11 @@ _Bool cond_rectangle_match(XCSF *xcsf, CL *c, double *x)
 double cond_rectangle_dist(XCSF *xcsf, CL *c, double *x)
 {
     COND_RECTANGLE *cond = c->cond;
-    double dist = 0.0;
+    double dist = 0;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
-        double rel = fabs((x[i] - cond->center[i]) / cond->spread[i]);
-        if(rel > dist) {
-            dist = rel; // max distance
+        double d = fabs((x[i] - cond->center[i]) / cond->spread[i]);
+        if(d > dist) {
+            dist = d; // max distance
         }
     }
     return dist;
