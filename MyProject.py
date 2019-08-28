@@ -72,8 +72,8 @@ xcs.ETA = 0.01
 # Example plotting in matplotlib
 ##################################
 
-n = 100 # 100,000 evaluations
-evals = np.zeros(n)
+n = 100 # 100,000 trials
+trials = np.zeros(n)
 psize = np.zeros(n)
 msize = np.zeros(n)
 train_mse = np.zeros(n)
@@ -88,12 +88,12 @@ for i in range(n):
     # get testing error
     pred = xcs.predict(test_X)
     test_mse[i] = mean_squared_error(pred, test_Y)
-    evals[i] = xcs.time() # number of evaluations so far
+    trials[i] = xcs.time() # number of trials so far
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
     # update status
-    status = ("evals=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f pmut=%.3f smut=%.3f pfmut=%.3f"
-        % (evals[i], train_mse[i], test_mse[i], psize[i], msize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2)))
+    status = ("trials=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f pmut=%.3f smut=%.3f pfmut=%.3f"
+        % (trials[i], train_mse[i], test_mse[i], psize[i], msize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2)))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)
@@ -116,16 +116,17 @@ print('MLP Regressor MSE = %.4f' % (mlp_mse))
 
 # plot XCSF learning performance
 plt.figure(figsize=(10,6))
-plt.plot(evals, train_mse, label='Train MSE')
-plt.plot(evals, test_mse, label='Test MSE')
+plt.plot(trials, train_mse, label='Train MSE')
+plt.plot(trials, test_mse, label='Test MSE')
 #psize[:] = [x / xcs.POP_SIZE for x in psize] # scale for plotting
 #msize[:] = [x / xcs.POP_SIZE for x in msize]
-#plt.plot(evals, psize, label='Population macro-classifiers / P')
-#plt.plot(evals, msize, label='Avg. match-set macro-classifiers / P')
+#plt.plot(trials, psize, label='Population macro-classifiers / P')
+#plt.plot(trials, msize, label='Avg. match-set macro-classifiers / P')
 plt.grid(linestyle='dotted', linewidth=1)
 plt.axhline(y=xcs.EPS_0, xmin=0.0, xmax=1.0, linestyle='dashed', color='k')
 plt.title('XCSF Training Performance', fontsize=14)
-plt.xlabel('Evaluations', fontsize=12)
+plt.xlabel('Trials', fontsize=12)
+plt.ylabel('Mean Squared Error', fontsize=12)
 plt.xlim([0,n*xcs.MAX_TRIALS])
 plt.legend()
 plt.show()
