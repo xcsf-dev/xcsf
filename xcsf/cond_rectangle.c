@@ -95,7 +95,7 @@ void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y)
  
 _Bool cond_rectangle_match(XCSF *xcsf, CL *c, double *x)
 {
-    if(cond_rectangle_dist(xcsf, c, x) < 1.0) {
+    if(cond_rectangle_dist(xcsf, c, x) < 1) {
         c->m = true;
     }
     else {

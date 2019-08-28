@@ -95,7 +95,7 @@ void cond_ellipsoid_update(XCSF *xcsf, CL *c, double *x, double *y)
 
 _Bool cond_ellipsoid_match(XCSF *xcsf, CL *c, double *x)
 {
-    if(cond_ellipsoid_dist(xcsf, c, x) < 1.0) {
+    if(cond_ellipsoid_dist(xcsf, c, x) < 1) {
         c->m = true;
     }
     else {
