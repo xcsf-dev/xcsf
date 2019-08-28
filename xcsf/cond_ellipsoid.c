@@ -50,7 +50,7 @@ void cond_ellipsoid_init(XCSF *xcsf, CL *c)
     new->spread = malloc(sizeof(double)*xcsf->num_x_vars); 
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         new->center[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
-        new->spread[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON)*0.5;
+        new->spread[i] = rand_uniform(0.05, xcsf->MAX_CON);
     }
     c->cond = new;
 }
@@ -80,7 +80,7 @@ void cond_ellipsoid_cover(XCSF *xcsf, CL *c, double *x)
     COND_ELLIPSOID *cond = c->cond;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         cond->center[i] = x[i];
-        cond->spread[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON) * 0.5;
+        cond->spread[i] = rand_uniform(0.05, xcsf->MAX_CON);
     }
 }
  
@@ -110,7 +110,10 @@ double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x)
     double dist = 0.0;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         double d = (x[i] - cond->center[i]) / cond->spread[i];
-        dist += d*d; // squared distance
+        d *= d; // squared distance
+        if(d > dist) {
+            dist = d;
+        }
     }
     return dist;
 }
