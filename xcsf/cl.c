@@ -156,11 +156,15 @@ void cl_print(XCSF *xcsf, CL *c, _Bool print_cond, _Bool print_pred)
         printf("***********************************************\n");
     }
     if(print_cond) {
+        printf("\nCONDITION\n");
         cond_print(xcsf, c);
     }
     if(print_pred) {
+        printf("\nPREDICTOR\n");
         pred_print(xcsf, c);
+        printf("\nACTION\n");
         act_print(xcsf, c);
+        printf("\n");
     }
     printf("err=%f, fit=%f, num=%d, exp=%d, size=%f, time=%d\n", 
             c->err, c->fit, c->num, c->exp, c->size, c->time);
