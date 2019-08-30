@@ -138,11 +138,11 @@ _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
     _Bool changed = false;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-            cond->center[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
+            cond->center[i] += rand_normal(0, xcsf->S_MUTATION);
             changed = true;
         }
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-            cond->spread[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
+            cond->spread[i] += rand_normal(0, xcsf->S_MUTATION);
             changed = true;
         }
     }
