@@ -92,7 +92,7 @@ for i in range(n):
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
     # update status
-    status = ("trials=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f pmut=%.3f smut=%.3f pfmut=%.3f"
+    status = ("trials=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f smut=%.3f pmut=%.3f pfmut=%.3f"
         % (trials[i], train_mse[i], test_mse[i], psize[i], msize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2)))
     bar.set_description(status)
     bar.refresh()

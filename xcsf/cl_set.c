@@ -372,9 +372,9 @@ double set_avg_mut(XCSF *xcsf, SET *set, int m)
     if(m >= xcsf->SAM_NUM) {
         switch(m) {
             case 0:
-                return xcsf->P_MUTATION;
-            case 1:
                 return xcsf->S_MUTATION;
+            case 1:
+                return xcsf->P_MUTATION;
             case 2:
                 return xcsf->P_FUNC_MUTATION;
             default:
