@@ -84,16 +84,12 @@ void neural_layer_connected_rand(XCSF *xcsf, LAYER *l)
 void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
 {
     (void)xcsf;
-    // propagate each neuron
     for(int i = 0; i < l->num_outputs; i++) {
         l->state[i] = 0;
-        // weights
         for(int j = 0; j < l->num_inputs; j++) {
             l->state[i] += input[j] * l->weights[i*l->num_inputs+j];
         }
-        // bias
         l->state[i] += l->biases[i];
-        // output
         l->state[i] = constrain(-100, 100, l->state[i]);
         l->output[i] = (l->activate)(l->state[i]);
     }
@@ -105,22 +101,17 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
     // net input = this layer's input
     // net delta = previous layer's delta
 
-    // calculate gradients
     for(int i = 0; i < l->num_outputs; i++) {
         l->delta[i] *= (l->gradient)(l->state[i]);
     }
-    // calculate bias updates
     for(int i = 0; i < l->num_outputs; i++) {
         l->bias_updates[i] += l->delta[i];
     }
-    // calculate weight updates
     for(int i = 0; i < l->num_outputs; i++) {
         for(int j = 0; j < l->num_inputs; j++) {
             l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
         }
     }   
-
-    // add this layer's error to the previous layer's
     if(net->delta) { // input layer has no delta or weights
         for(int i = 0; i < l->num_outputs; i++) {
             for(int j = 0; j < l->num_inputs; j++) {
@@ -146,27 +137,24 @@ void neural_layer_connected_update(XCSF *xcsf, LAYER *l)
 _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
 {
     _Bool mod = false;
-    // mutate weights
     for(int i = 0; i < l->num_weights; i++) {
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
             double orig = l->weights[i];
-            l->weights[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
+            l->weights[i] += rand_normal(0, xcsf->S_MUTATION);
             if(l->weights[i] != orig) {
                 mod = true;
             }
         }
     }
-    // mutate biases
     for(int i = 0; i < l->num_outputs; i++) {
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
             double orig = l->biases[i];
-            l->biases[i] += rand_uniform(-1,1) * xcsf->S_MUTATION;
+            l->biases[i] += rand_uniform(0, xcsf->S_MUTATION);
             if(l->biases[i] != orig) {
                 mod = true;
             }
         }
     }
-    // mutate activation function
     if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
         l->activation_type = irand_uniform(0,NUM_ACTIVATIONS);
         activation_set(&l->activate, l->activation_type);
@@ -180,7 +168,6 @@ _Bool neural_layer_connected_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2)
 {
     (void)xcsf;
     // assumes equally sized connected layers
-    // cross weights
     for(int i = 0; i < l1->num_weights; i++) {
         if(rand_uniform(0,1) < 0.5) {
             double tmp = l1->weights[i];
@@ -188,7 +175,6 @@ _Bool neural_layer_connected_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2)
             l2->weights[i] = tmp;
         }
     }
-    // cross biases
     for(int i = 0; i < l1->num_outputs; i++) {
         if(rand_uniform(0,1) < 0.5) {
             double tmp = l1->biases[i];
@@ -196,7 +182,6 @@ _Bool neural_layer_connected_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2)
             l2->biases[i] = tmp;
         }
     }
-    // cross activation function
     if(rand_uniform(0,1) < 0.5) {
         int tmp = l1->activation_type;
         l1->activation_type = l2->activation_type;

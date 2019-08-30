@@ -48,14 +48,11 @@ void rule_neural_cond_rand(XCSF *xcsf, CL *c);
 void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *new = malloc(sizeof(RULE_NEURAL_COND));
-    // initialise empty network
     neural_init(xcsf, &new->net);
-    // create and add layers to the network
     neural_layer_connected_init(xcsf, &new->net,
             xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
     neural_layer_connected_init(xcsf, &new->net,
             xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1, IDENTITY);
-    // initialise all weights randomly
     neural_rand(xcsf, &new->net);
     c->cond = new;
 }
@@ -133,14 +130,11 @@ void rule_neural_cond_print(XCSF *xcsf, CL *c)
 void rule_neural_pred_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_PRED *new = malloc(sizeof(RULE_NEURAL_PRED));
-    // initialise empty network
     neural_init(xcsf, &new->net);
-    // create and add layers to the network
     neural_layer_connected_init(xcsf, &new->net,
             xcsf->MAX_FORWARD, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
     neural_layer_connected_init(xcsf, &new->net, 
             xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, IDENTITY);
-    // initialise all weights randomly
     neural_rand(xcsf, &new->net);
     new->input = malloc(sizeof(double)*xcsf->MAX_FORWARD);
     c->pred = new;  

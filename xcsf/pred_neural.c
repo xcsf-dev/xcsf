@@ -41,24 +41,22 @@ typedef struct PRED_NEURAL {
 void pred_neural_init(XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
-    // initialise empty network
     neural_init(xcsf, &new->net);
 
-    // create and add layers to the network
     //neural_layer_noise_init(xcsf, &new->net, xcsf->num_x_vars, 0.5, 0.5);
     //neural_layer_dropout_init(xcsf, &new->net, xcsf->num_x_vars, 0.5);
-    
+
     neural_layer_connected_init(xcsf, &new->net,
             xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
 
     //neural_layer_noise_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 0.1, 0.5);
     //neural_layer_dropout_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 0.5);
-    
+
     neural_layer_connected_init(xcsf, &new->net, 
             xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, LOGISTIC);
 
     //neural_layer_softmax_init(xcsf, &new->net, xcsf->num_y_vars, 1);
-    
+
     neural_rand(xcsf, &new->net);
     c->pred = new;
 }
@@ -99,14 +97,12 @@ void pred_neural_print(XCSF *xcsf, CL *c)
     PRED_NEURAL *pred = c->pred;
     neural_print(xcsf, &pred->net, true);
 }  
- 
+
 _Bool pred_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-//    PRED_NEURAL *pred1 = c1->pred;
-//    PRED_NEURAL *pred2 = c2->pred;
-//    return neural_crossover(xcsf, &pred1->net, &pred2->net);
-    (void)xcsf; (void)c1; (void)c2;
-    return false;
+    PRED_NEURAL *pred1 = c1->pred;
+    PRED_NEURAL *pred2 = c2->pred;
+    return neural_crossover(xcsf, &pred1->net, &pred2->net);
 }
 
 _Bool pred_neural_mutate(XCSF *xcsf, CL *c)
