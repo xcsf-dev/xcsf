@@ -101,10 +101,7 @@ double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x)
     double dist = 0;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         double d = (x[i] - cond->center[i]) / cond->spread[i];
-        d *= d; // squared distance
-        if(d > dist) {
-            dist = d;
-        }
+        dist += d*d; // squared distance
     }
     return dist;
 }
