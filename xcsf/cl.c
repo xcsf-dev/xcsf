@@ -209,9 +209,9 @@ _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
 _Bool cl_mutate(XCSF *xcsf, CL *c)
 {
     if(xcsf->SAM_NUM > 0) {
-        xcsf->P_MUTATION = c->mu[0];
+        xcsf->S_MUTATION = c->mu[0];
         if(xcsf->SAM_NUM > 1) {
-            xcsf->S_MUTATION = c->mu[1];
+            xcsf->P_MUTATION = c->mu[1];
             if(xcsf->SAM_NUM > 2) {
                 xcsf->P_FUNC_MUTATION = c->mu[2];
             }

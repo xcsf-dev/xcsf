@@ -74,7 +74,7 @@ void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x)
         cond->spread[i] = rand_uniform(0.05, xcsf->MAX_CON);
     }
 }
- 
+
 void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
     (void)y;
@@ -83,7 +83,7 @@ void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y)
         cond->center[i] += xcsf->BETA * (x[i] - cond->center[i]);
     }
 }
- 
+
 _Bool cond_rectangle_match(XCSF *xcsf, CL *c, double *x)
 {
     if(cond_rectangle_dist(xcsf, c, x) < 1) {
@@ -107,7 +107,7 @@ double cond_rectangle_dist(XCSF *xcsf, CL *c, double *x)
     }
     return dist;
 }
- 
+
 _Bool cond_rectangle_crossover(XCSF *xcsf, CL *c1, CL *c2) 
 {
     COND_RECTANGLE *cond1 = c1->cond;
@@ -137,18 +137,22 @@ _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
     COND_RECTANGLE *cond = c->cond;
     _Bool changed = false;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
-        if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-            cond->center[i] += rand_normal(0, xcsf->S_MUTATION);
-            if(cond->center[i] < xcsf->MIN_CON) {
-                cond->center[i] = xcsf->MIN_CON;
-            }
-            else if(cond->center[i] > xcsf->MAX_CON) {
-                cond->center[i] = xcsf->MAX_CON;
-            }
+        double orig = cond->center[i];
+        cond->center[i] += rand_normal(0, xcsf->S_MUTATION);
+        if(cond->center[i] < xcsf->MIN_CON) {
+            cond->center[i] = xcsf->MIN_CON;
+        }
+        else if(cond->center[i] > xcsf->MAX_CON) {
+            cond->center[i] = xcsf->MAX_CON;
+        }
+        if(orig != cond->center[i]) {
             changed = true;
         }
-        if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-            cond->spread[i] += rand_normal(0, xcsf->S_MUTATION);
+    }
+    for(int i = 0; i < xcsf->num_x_vars; i++) {
+        double orig = cond->spread[i];
+        cond->spread[i] += rand_normal(0, xcsf->S_MUTATION);
+        if(orig != cond->spread[i]) {
             changed = true;
         }
     }

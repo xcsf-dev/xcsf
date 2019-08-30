@@ -137,28 +137,17 @@ void graph_free(XCSF *xcsf, GRAPH *dgp)
 
 _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
 {
-    _Bool fmodified = false;
-    _Bool cmodified = false;
-    _Bool tmodified = false;
-
     for(int i = 0; i < dgp->n; i++) {
         // mutate function
         if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
-            activate_ptr old = dgp->activate[i];
             activation_set(&dgp->activate[i], irand_uniform(0, NUM_ACTIVATIONS));
-            if(old != dgp->activate[i]) {
-                fmodified = true;
-            }              
         }
-        if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-            dgp->initial_state[i] += rand_normal(0, xcsf->S_MUTATION);
-        }
-
+        // mutate initial state
+        dgp->initial_state[i] += rand_normal(0, xcsf->S_MUTATION);
         // mutate connectivity map
         for(int j = 0; j < xcsf->MAX_K; j++) {
             int idx = (i*xcsf->MAX_K)+j;
             if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-                int old = dgp->connectivity[idx];
                 // external connection
                 if(rand_uniform(0,1) < 0.5) {
                     dgp->connectivity[idx] = -(irand_uniform(1,xcsf->num_x_vars+1));
@@ -167,19 +156,13 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
                 else {
                     dgp->connectivity[idx] = irand_uniform(0,dgp->n);
                 }
-                if(old != dgp->connectivity[idx]) {
-                    cmodified = true;
-                }
             }
             // mutate weights
-            if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-                dgp->weights[idx] += rand_normal(0, xcsf->S_MUTATION);
-            }
+            dgp->weights[idx] += rand_normal(0, xcsf->S_MUTATION);
         }   
     }               
-
+    // mutate T
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-        int t = dgp->t;
         if(rand_uniform(0,1) < 0.5) {
             if(dgp->t > 1) {
                 (dgp->t)--;
@@ -190,17 +173,8 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
                 (dgp->t)++;
             }
         }
-        if(t != dgp->t) {
-            tmodified = true;
-        }
     }
-
-    if(fmodified || cmodified || tmodified) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return true;
 }
 
 _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)

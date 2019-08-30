@@ -138,21 +138,17 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
 {
     _Bool mod = false;
     for(int i = 0; i < l->num_weights; i++) {
-        if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-            double orig = l->weights[i];
-            l->weights[i] += rand_normal(0, xcsf->S_MUTATION);
-            if(l->weights[i] != orig) {
-                mod = true;
-            }
+        double orig = l->weights[i];
+        l->weights[i] += rand_normal(0, xcsf->S_MUTATION);
+        if(l->weights[i] != orig) {
+            mod = true;
         }
     }
     for(int i = 0; i < l->num_outputs; i++) {
-        if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-            double orig = l->biases[i];
-            l->biases[i] += rand_normal(0, xcsf->S_MUTATION);
-            if(l->biases[i] != orig) {
-                mod = true;
-            }
+        double orig = l->biases[i];
+        l->biases[i] += rand_normal(0, xcsf->S_MUTATION);
+        if(l->biases[i] != orig) {
+            mod = true;
         }
     }
     if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
