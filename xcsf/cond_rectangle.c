@@ -139,6 +139,12 @@ _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
             cond->center[i] += rand_normal(0, xcsf->S_MUTATION);
+            if(cond->center[i] < xcsf->MIN_CON) {
+                cond->center[i] = xcsf->MIN_CON;
+            }
+            else if(cond->center[i] > xcsf->MAX_CON) {
+                cond->center[i] = xcsf->MAX_CON;
+            }
             changed = true;
         }
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
