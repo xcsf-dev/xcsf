@@ -149,7 +149,7 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
     for(int i = 0; i < l->num_outputs; i++) {
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
             double orig = l->biases[i];
-            l->biases[i] += rand_uniform(0, xcsf->S_MUTATION);
+            l->biases[i] += rand_normal(0, xcsf->S_MUTATION);
             if(l->biases[i] != orig) {
                 mod = true;
             }
