@@ -52,7 +52,7 @@ void pred_neural_init(XCSF *xcsf, CL *c)
     neural_layer_insert(xcsf, &new->net, l, 0); 
 
     l = neural_layer_connected_init(xcsf,
-            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_x_vars, LOGISTIC);
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, LOGISTIC);
     neural_layer_insert(xcsf, &new->net, l, 1); 
 
     //l = neural_layer_softmax_init(xcsf, &new->net, xcsf->num_y_vars, 1);
