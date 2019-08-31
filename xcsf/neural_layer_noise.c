@@ -29,19 +29,19 @@
 #include "neural_layer.h"
 #include "neural_layer_noise.h"
 
-void neural_layer_noise_init(XCSF *xcsf, NET *net, int ninputs, double p, double s)
+void neural_layer_noise_add(XCSF *xcsf, NET *net, int in, double prob, double std, int p)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = NOISE;
     l->layer_vptr = &layer_noise_vtbl;
-    l->num_inputs = ninputs;
-    l->num_outputs = ninputs;
+    l->num_inputs = in;
+    l->num_outputs = in;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = malloc(l->num_inputs*sizeof(double));
-    l->probability = p;
-    l->scale = s;
+    l->probability = prob;
+    l->scale = std;
     l->rand = malloc(l->num_inputs*sizeof(double));
-    neural_layer_add(xcsf, net, l); 
+    neural_layer_insert(xcsf, net, l, p); 
 }
 
 void neural_layer_noise_copy(XCSF *xcsf, LAYER *to, LAYER *from)
@@ -123,6 +123,6 @@ double *neural_layer_noise_output(XCSF *xcsf, LAYER *l)
 void neural_layer_noise_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
 {
     (void)xcsf; (void)print_weights;
-    printf("noise nin = %d, nout = %d, prob = %f, stdev = %f\n",
+    printf("noise nin = %d, out = %d, prob = %f, stdev = %f\n",
             l->num_inputs, l->num_outputs, l->probability, l->scale);
 }

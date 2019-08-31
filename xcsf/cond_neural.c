@@ -42,9 +42,9 @@ void cond_neural_init(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     neural_init(xcsf, &new->net);
-    neural_layer_connected_init(xcsf, &new->net, 
-            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
-    neural_layer_connected_init(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 1, LOGISTIC);
+    neural_layer_connected_add(xcsf, &new->net, 
+            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, 0);
+    neural_layer_connected_add(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 1, LOGISTIC, 1);
     neural_rand(xcsf, &new->net);
     c->cond = new;
 }

@@ -35,7 +35,7 @@ typedef struct NET {
 _Bool neural_crossover(XCSF *xcsf, NET *net1, NET *net2);
 _Bool neural_mutate(XCSF *xcsf, NET *net);
 double neural_output(XCSF *xcsf, NET *net, int i);
-void neural_layer_add(XCSF *xcsf, NET *net, struct LAYER *l);
+void neural_layer_insert(XCSF *xcsf, NET *net, struct LAYER *l, int p);
 void neural_copy(XCSF *xcsf, NET *to, NET *from);
 void neural_free(XCSF *xcsf, NET *net);
 void neural_init(XCSF *xcsf, NET *net);

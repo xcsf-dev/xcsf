@@ -29,14 +29,14 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-void neural_layer_connected_init(XCSF *xcsf, NET *net, int ninputs, int noutputs, int act)
+void neural_layer_connected_add(XCSF *xcsf, NET *net, int in, int out, int act, int p)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
-    l->num_inputs = ninputs;
-    l->num_outputs = noutputs;
-    l->num_weights = ninputs*noutputs;
+    l->num_inputs = in;
+    l->num_outputs = out;
+    l->num_weights = in*out;
     l->state = calloc(l->num_outputs, sizeof(double));
     l->output = calloc(l->num_outputs, sizeof(double));
     l->weights = calloc(l->num_weights, sizeof(double));
@@ -47,7 +47,7 @@ void neural_layer_connected_init(XCSF *xcsf, NET *net, int ninputs, int noutputs
     l->activation_type = act;
     activation_set(&l->activate, act);
     gradient_set(&l->gradient, act);
-    neural_layer_add(xcsf, net, l);
+    neural_layer_insert(xcsf, net, l, p);
 }
 
 void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from)
@@ -199,7 +199,7 @@ double *neural_layer_connected_output(XCSF *xcsf, LAYER *l)
 void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
 {
     (void)xcsf;
-    printf("connected %s nin = %d, nout = %d, ",
+    printf("connected %s in = %d, out = %d, ",
             activation_string(l->activation_type), l->num_inputs, l->num_outputs);
     printf("weights (%d): ", l->num_weights);
     if(print_weights) {

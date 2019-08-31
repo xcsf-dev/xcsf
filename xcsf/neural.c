@@ -42,9 +42,10 @@ void neural_init(XCSF *xcsf, NET *net)
     net->num_outputs = 0;
 }
 
-void neural_layer_add(XCSF *xcsf, NET *net, LAYER *l)
+void neural_layer_insert(XCSF *xcsf, NET *net, LAYER *l, int p)
 {
     (void)xcsf;
+    // empty list
     if(net->head == NULL) {
         net->head = malloc(sizeof(LLIST));
         net->head->layer = l;
@@ -53,8 +54,9 @@ void neural_layer_add(XCSF *xcsf, NET *net, LAYER *l)
         net->tail = net->head;
         net->num_inputs = l->num_inputs;
         net->num_outputs = l->num_outputs;
-    }
-    else {
+    } 
+    // insert at head
+    else if(p >= net->num_layers) {
         LLIST *new = malloc(sizeof(LLIST));
         new->layer = l;
         new->next = net->head;
@@ -63,33 +65,55 @@ void neural_layer_add(XCSF *xcsf, NET *net, LAYER *l)
         net->head = new;
         net->num_outputs = l->num_outputs;
     }
+    // insert before head
+    else {
+        LLIST *iter = net->tail; 
+        for(int i = 0; i < p && iter != NULL; i++) {
+            iter = iter->prev;
+        }
+        LLIST *new = malloc(sizeof(LLIST));
+        new->layer = l;
+        new->prev = iter;
+        new->next = iter->next;
+        iter->next = new;
+        // new tail
+        if(new->next == NULL) {
+            net->tail = new;
+            net->num_inputs = l->num_inputs;
+        }
+        else {
+            new->next->prev = new;
+        }
+    }
     net->num_layers++;
 }
 
 void neural_copy(XCSF *xcsf, NET *to, NET *from)
 {
     neural_init(xcsf, to);
+    int p = 0;
     for(LLIST *iter = from->tail; iter != NULL; iter = iter->prev) {
         LAYER *f = iter->layer;
         switch(f->layer_type) {
             case CONNECTED:
-                 neural_layer_connected_init(xcsf, to, f->num_inputs, 
-                        f->num_outputs, f->activation_type);
+                neural_layer_connected_add(xcsf, to, f->num_inputs, 
+                        f->num_outputs, f->activation_type, p);
                 break;
             case DROPOUT:
-                neural_layer_dropout_init(xcsf, to, f->num_inputs, f->probability);
+                neural_layer_dropout_add(xcsf, to, f->num_inputs, f->probability, p);
                 break;
             case NOISE:
-                neural_layer_noise_init(xcsf, to, f->num_inputs, f->probability, f->scale);
+                neural_layer_noise_add(xcsf, to, f->num_inputs, f->probability, f->scale, p);
                 break;
             case SOFTMAX:
-                neural_layer_softmax_init(xcsf, to, f->num_inputs, f->temp);
+                neural_layer_softmax_add(xcsf, to, f->num_inputs, f->temp, p);
                 break;
             default:
                 printf("neural_copy(): copying from an invalid layer type\n");
                 exit(EXIT_FAILURE);
         }
         layer_copy(xcsf, to->head->layer, f);
+        p++;
     }
 }
 
@@ -123,7 +147,7 @@ _Bool neural_mutate(XCSF *xcsf, NET *net)
     }
     return mod;
 }
- 
+
 _Bool neural_crossover(XCSF *xcsf, NET *net1, NET *net2)
 {
     // assumes identical number, size, and type of layers
@@ -139,7 +163,7 @@ _Bool neural_crossover(XCSF *xcsf, NET *net1, NET *net2)
     }
     return false;
 }
- 
+
 void neural_propagate(XCSF *xcsf, NET *net, double *input)
 {
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
