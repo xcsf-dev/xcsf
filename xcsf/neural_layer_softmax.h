@@ -16,8 +16,8 @@
  *
  */
 
-void neural_layer_softmax_add(XCSF *xcsf, NET *net, int in, double temp, int p);
-void neural_layer_softmax_copy(XCSF *xcsf, LAYER *to, LAYER *from);
+LAYER *neural_layer_softmax_init(XCSF *xcsf, int in, double temp);
+LAYER *neural_layer_softmax_copy(XCSF *xcsf, LAYER *from);
 void neural_layer_softmax_rand(XCSF *xcsf, LAYER *l);
 void neural_layer_softmax_forward(XCSF *xcsf, LAYER *l, double *input);
 void neural_layer_softmax_backward(XCSF *xcsf, LAYER *l, NET *net);

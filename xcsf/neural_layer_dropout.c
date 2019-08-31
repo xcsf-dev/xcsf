@@ -29,28 +29,36 @@
 #include "neural_layer.h"
 #include "neural_layer_dropout.h"
 
-void neural_layer_dropout_add(XCSF *xcsf, NET *net, int in, double prob, int p)
+LAYER *neural_layer_dropout_init(XCSF *xcsf, int in, double prob)
 {
+    (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = DROPOUT;
     l->layer_vptr = &layer_dropout_vtbl;
     l->num_inputs = in;
     l->num_outputs = in;
     l->output = calloc(l->num_inputs, sizeof(double));
-    l->delta = malloc(l->num_inputs*sizeof(double));
+    l->delta = malloc(l->num_inputs * sizeof(double));
     l->probability = prob;
-    l->rand = malloc(l->num_inputs*sizeof(double));
+    l->rand = malloc(l->num_inputs * sizeof(double));
     l->scale = 1./(1.-prob);
-    neural_layer_insert(xcsf, net, l, p); 
+    return l;
 }
 
-void neural_layer_dropout_copy(XCSF *xcsf, LAYER *to, LAYER *from)
+LAYER *neural_layer_dropout_copy(XCSF *xcsf, LAYER *from)
 {
     (void)xcsf;
-    to->num_inputs = from->num_inputs;
-    to->num_outputs = from->num_inputs;
-    to->probability = from->probability;
-    to->scale = from->scale;
+    LAYER *l = malloc(sizeof(LAYER));
+    l->layer_type = from->layer_type;
+    l->layer_vptr = from->layer_vptr;
+    l->num_inputs = from->num_inputs;
+    l->num_outputs = from->num_inputs;
+    l->probability = from->probability;
+    l->scale = from->scale;
+    l->output = calloc(from->num_inputs, sizeof(double));
+    l->delta = malloc(from->num_inputs * sizeof(double));
+    l->rand = malloc(from->num_inputs * sizeof(double));
+    return l;
 }
  
 void neural_layer_dropout_free(XCSF *xcsf, LAYER *l)

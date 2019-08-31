@@ -16,8 +16,8 @@
  *
  */
   
-void neural_layer_dropout_add(XCSF *xcsf, NET *net, int in, double prob, int p);
-void neural_layer_dropout_copy(XCSF *xcsf, LAYER *to, LAYER *from);
+LAYER *neural_layer_dropout_init(XCSF *xcsf, int in, double prob);
+LAYER *neural_layer_dropout_copy(XCSF *xcsf, LAYER *from);
 void neural_layer_dropout_rand(XCSF *xcsf, LAYER *l);
 void neural_layer_dropout_forward(XCSF *xcsf, LAYER *l, double *input);
 void neural_layer_dropout_backward(XCSF *xcsf, LAYER *l, NET *net);

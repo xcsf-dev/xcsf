@@ -29,28 +29,36 @@
 #include "neural_layer.h"
 #include "neural_layer_noise.h"
 
-void neural_layer_noise_add(XCSF *xcsf, NET *net, int in, double prob, double std, int p)
+LAYER *neural_layer_noise_init(XCSF *xcsf, int in, double prob, double std)
 {
+    (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = NOISE;
     l->layer_vptr = &layer_noise_vtbl;
     l->num_inputs = in;
     l->num_outputs = in;
     l->output = calloc(l->num_inputs, sizeof(double));
-    l->delta = malloc(l->num_inputs*sizeof(double));
+    l->delta = malloc(l->num_inputs * sizeof(double));
     l->probability = prob;
     l->scale = std;
-    l->rand = malloc(l->num_inputs*sizeof(double));
-    neural_layer_insert(xcsf, net, l, p); 
+    l->rand = malloc(l->num_inputs * sizeof(double));
+    return l;
 }
 
-void neural_layer_noise_copy(XCSF *xcsf, LAYER *to, LAYER *from)
+LAYER *neural_layer_noise_copy(XCSF *xcsf, LAYER *from)
 {
     (void)xcsf;
-    to->num_inputs = from->num_inputs;
-    to->num_outputs = from->num_outputs;
-    to->probability = from->probability;
-    to->scale = from->scale;
+    LAYER *l = malloc(sizeof(LAYER));
+    l->layer_type = from->layer_type;
+    l->layer_vptr = from->layer_vptr;
+    l->num_inputs = from->num_inputs;
+    l->num_outputs = from->num_outputs;
+    l->output = calloc(from->num_inputs, sizeof(double));
+    l->delta = malloc(from->num_inputs * sizeof(double));
+    l->probability = from->probability;
+    l->scale = from->scale;
+    l->rand = malloc(from->num_inputs * sizeof(double));
+    return l;
 }
  
 void neural_layer_noise_free(XCSF *xcsf, LAYER *l)

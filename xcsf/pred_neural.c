@@ -42,23 +42,23 @@ void pred_neural_init(XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     neural_init(xcsf, &new->net);
+    LAYER *l;
 
-    //neural_layer_noise_add(xcsf, &new->net, xcsf->num_x_vars, 0.5, 0.5, 0);
-    //neural_layer_dropout_add(xcsf, &new->net, xcsf->num_x_vars, 0.5, 0);
+    //l = neural_layer_noise_init(xcsf, &new->net, xcsf->num_x_vars, 0.5, 0.5);
+    //l = neural_layer_dropout_init(xcsf, &new->net, xcsf->num_x_vars, 0.5);
 
-    neural_layer_connected_add(xcsf, &new->net,
-            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, 0);
+    l = neural_layer_connected_init(xcsf,
+            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
+    neural_layer_insert(xcsf, &new->net, l, 0); 
 
-    //neural_layer_noise_add(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 0.1, 0.5, 1);
-    //neural_layer_dropout_add(xcsf, &new->net, xcsf->NUM_HIDDEN_NEURONS, 0.5, 1);
+    l = neural_layer_connected_init(xcsf,
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_x_vars, LOGISTIC);
+    neural_layer_insert(xcsf, &new->net, l, 1); 
 
-    neural_layer_connected_add(xcsf, &new->net, 
-            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, LOGISTIC, 1);
+    //l = neural_layer_softmax_init(xcsf, &new->net, xcsf->num_y_vars, 1);
 
-    //neural_layer_softmax_add(xcsf, &new->net, xcsf->num_y_vars, 1, 2);
-
-    neural_rand(xcsf, &new->net);
     c->pred = new;
+
 }
 
 void pred_neural_free(XCSF *xcsf, CL *c)

@@ -45,7 +45,7 @@ typedef struct LAYER {
 struct LayerVtbl {
 	_Bool (*layer_impl_crossover)(XCSF *xcsf, LAYER *l1, LAYER *l2);
 	_Bool (*layer_impl_mutate)(XCSF *xcsf, LAYER *l);
-	void (*layer_impl_copy)(XCSF *xcsf, LAYER *to, LAYER *from);
+	LAYER* (*layer_impl_copy)(XCSF *xcsf, LAYER *from);
 	void (*layer_impl_free)(XCSF *xcsf, LAYER *l);
 	void (*layer_impl_rand)(XCSF *xcsf, LAYER *l);
 	void (*layer_impl_print)(XCSF *xcsf, LAYER *l, _Bool print_weights);
@@ -79,8 +79,8 @@ static inline _Bool layer_mutate(XCSF *xcsf, LAYER *l) {
 	return (*l->layer_vptr->layer_impl_mutate)(xcsf, l);
 }
  
-static inline void layer_copy(XCSF *xcsf, LAYER *to, LAYER *from) {
-	(*to->layer_vptr->layer_impl_copy)(xcsf, to, from);
+static inline LAYER* layer_copy(XCSF *xcsf, LAYER *from) {
+	return (*from->layer_vptr->layer_impl_copy)(xcsf, from);
 }
 
 static inline void layer_free(XCSF *xcsf, LAYER *l) {
@@ -94,5 +94,3 @@ static inline void layer_rand(XCSF *xcsf, LAYER *l) {
 static inline void layer_print(XCSF *xcsf, LAYER *l, _Bool print_weights) {
 	(*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
-
-void neural_layer_init(XCSF *xcsf, LAYER *l, int type, int ninputs, int noutputs, int act);

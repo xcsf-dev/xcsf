@@ -29,7 +29,7 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-void neural_layer_connected_add(XCSF *xcsf, NET *net, int in, int out, int act, int p)
+LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
@@ -47,14 +47,32 @@ void neural_layer_connected_add(XCSF *xcsf, NET *net, int in, int out, int act, 
     l->activation_type = act;
     activation_set(&l->activate, act);
     gradient_set(&l->gradient, act);
-    neural_layer_insert(xcsf, net, l, p);
+    neural_layer_connected_rand(xcsf, l);
+    return l;
 }
 
-void neural_layer_connected_copy(XCSF *xcsf, LAYER *to, LAYER *from)
+LAYER *neural_layer_connected_copy(XCSF *xcsf, LAYER *from)
 {
     (void)xcsf;
-    memcpy(to->weights, from->weights, from->num_weights*sizeof(double));
-    memcpy(to->biases, from->biases, from->num_outputs*sizeof(double));
+    LAYER *l = malloc(sizeof(LAYER));
+    l->layer_type = from->layer_type;
+    l->layer_vptr = from->layer_vptr;
+    l->num_inputs = from->num_inputs;
+    l->num_outputs = from->num_outputs;
+    l->num_weights = from->num_weights;
+    l->state = calloc(from->num_outputs, sizeof(double));
+    l->output = calloc(from->num_outputs, sizeof(double));
+    l->weights = malloc(from->num_weights * sizeof(double));
+    l->biases = malloc(from->num_outputs * sizeof(double));
+    l->bias_updates = calloc(from->num_outputs, sizeof(double));
+    l->weight_updates = calloc(from->num_weights, sizeof(double));
+    l->delta = calloc(from->num_outputs, sizeof(double));
+    l->activation_type = from->activation_type;
+    activation_set(&l->activate, from->activation_type);
+    gradient_set(&l->gradient, from->activation_type);
+    memcpy(l->weights, from->weights, from->num_weights * sizeof(double));
+    memcpy(l->biases, from->biases, from->num_outputs * sizeof(double));
+    return l;
 }
 
 void neural_layer_connected_free(XCSF *xcsf, LAYER *l)
@@ -204,13 +222,13 @@ void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
     printf("weights (%d): ", l->num_weights);
     if(print_weights) {
         for(int i = 0; i < l->num_weights; i++) {
-            printf(" %.4f, ", l->weights[i]);
+            printf("%.4f, ", l->weights[i]);
         }
     }
     printf("biases (%d): ", l->num_outputs);
     if(print_weights) {
         for(int i = 0; i < l->num_outputs; i++) {
-            printf(" %.4f, ", l->biases[i]);
+            printf("%.4f, ", l->biases[i]);
         }
     }
     printf("\n");

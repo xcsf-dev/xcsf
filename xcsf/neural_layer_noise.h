@@ -16,8 +16,8 @@
  *
  */
   
-void neural_layer_noise_add(XCSF *xcsf, NET *net, int in, double prob, double std, int p);
-void neural_layer_noise_copy(XCSF *xcsf, LAYER *to, LAYER *from);
+LAYER *neural_layer_noise_init(XCSF *xcsf, int in, double prob, double std);
+LAYER *neural_layer_noise_copy(XCSF *xcsf, LAYER *from);
 void neural_layer_noise_rand(XCSF *xcsf, LAYER *l);
 void neural_layer_noise_forward(XCSF *xcsf, LAYER *l, double *input);
 void neural_layer_noise_backward(XCSF *xcsf, LAYER *l, NET *net);
