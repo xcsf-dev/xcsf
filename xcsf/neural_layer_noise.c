@@ -123,6 +123,6 @@ double *neural_layer_noise_output(XCSF *xcsf, LAYER *l)
 void neural_layer_noise_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
 {
     (void)xcsf; (void)print_weights;
-    printf("noise nin = %d, out = %d, prob = %f, stdev = %f\n",
+    printf("noise in = %d, out = %d, prob = %f, stdev = %f\n",
             l->num_inputs, l->num_outputs, l->probability, l->scale);
 }
