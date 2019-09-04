@@ -28,8 +28,13 @@ struct CondVtbl {
     void (*cond_impl_init)(XCSF *xcsf, CL *c);
     void (*cond_impl_print)(XCSF *xcsf, CL *c);
     void (*cond_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
+    int (*cond_impl_size)(XCSF *xcsf, CL *c);
 };
-
+ 
+static inline int cond_size(XCSF *xcsf, CL *c) {
+    return (*c->cond_vptr->cond_impl_size)(xcsf, c);
+}
+ 
 static inline void cond_update(XCSF *xcsf, CL *c, double *x, double *y) {
     (*c->cond_vptr->cond_impl_update)(xcsf, c, x, y);
 }

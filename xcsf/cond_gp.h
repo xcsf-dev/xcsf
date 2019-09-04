@@ -26,6 +26,7 @@ void cond_gp_free(XCSF *xcsf, CL *c);
 void cond_gp_init(XCSF *xcsf, CL *c);
 void cond_gp_print(XCSF *xcsf, CL *c);
 void cond_gp_update(XCSF *xcsf, CL *c, double *x, double *y);
+int cond_gp_size(XCSF *xcsf, CL *c);
 
 static struct CondVtbl const cond_gp_vtbl = {
     &cond_gp_crossover,
@@ -37,5 +38,6 @@ static struct CondVtbl const cond_gp_vtbl = {
     &cond_gp_free,
     &cond_gp_init,
     &cond_gp_print,
-    &cond_gp_update
+    &cond_gp_update,
+    &cond_gp_size
 };      

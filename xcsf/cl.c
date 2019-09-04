@@ -273,3 +273,13 @@ double cl_mutation_rate(XCSF *xcsf, CL *c, int m)
     (void)xcsf;
     return c->mu[m];
 }  
+
+int cl_cond_size(XCSF *xcsf, CL *c)
+{
+    return cond_size(xcsf, c);
+}
+
+int cl_pred_size(XCSF *xcsf, CL *c)
+{
+    return pred_size(xcsf, c);
+}

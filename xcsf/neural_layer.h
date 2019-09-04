@@ -24,6 +24,9 @@ typedef struct LAYER {
     int layer_type;
     double *state;
     double *output;
+    _Bool *active;
+    int num_active;
+    int options;
     double *weights;
     double *biases;
     double *bias_updates;

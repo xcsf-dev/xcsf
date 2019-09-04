@@ -32,3 +32,5 @@ void set_times(XCSF *xcsf, SET *set);
 void set_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y);
 void set_validate(XCSF *xcsf, SET *set);
 double set_avg_mut(XCSF *xcsf, SET *set, int m);
+double set_avg_cond_size(XCSF *xcsf, SET *set);
+double set_avg_pred_size(XCSF *xcsf, SET *set);

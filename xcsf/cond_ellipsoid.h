@@ -25,6 +25,7 @@ void cond_ellipsoid_free(XCSF *xcsf, CL *c);
 void cond_ellipsoid_init(XCSF *xcsf, CL *c);
 void cond_ellipsoid_print(XCSF *xcsf, CL *c);
 void cond_ellipsoid_update(XCSF *xcsf, CL *c, double *x, double *y);
+int cond_ellipsoid_size(XCSF *xcsf, CL *c);
 
 static struct CondVtbl const cond_ellipsoid_vtbl = {
     &cond_ellipsoid_crossover,
@@ -36,5 +37,6 @@ static struct CondVtbl const cond_ellipsoid_vtbl = {
     &cond_ellipsoid_free,
     &cond_ellipsoid_init,
     &cond_ellipsoid_print,
-    &cond_ellipsoid_update
+    &cond_ellipsoid_update,
+    &cond_ellipsoid_size
 };      

@@ -37,6 +37,7 @@ LAYER *neural_layer_noise_init(XCSF *xcsf, int in, double prob, double std)
     l->layer_vptr = &layer_noise_vtbl;
     l->num_inputs = in;
     l->num_outputs = in;
+    l->num_active = 0;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = malloc(l->num_inputs * sizeof(double));
     l->probability = prob;
@@ -53,6 +54,7 @@ LAYER *neural_layer_noise_copy(XCSF *xcsf, LAYER *from)
     l->layer_vptr = from->layer_vptr;
     l->num_inputs = from->num_inputs;
     l->num_outputs = from->num_outputs;
+    l->num_active = from->num_active;
     l->output = calloc(from->num_inputs, sizeof(double));
     l->delta = malloc(from->num_inputs * sizeof(double));
     l->probability = from->probability;

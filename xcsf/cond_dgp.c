@@ -114,3 +114,10 @@ void cond_dgp_print(XCSF *xcsf, CL *c)
     COND_DGP *cond = c->cond;
     graph_print(xcsf, &cond->dgp);
 }  
+
+int cond_dgp_size(XCSF *xcsf, CL *c)
+{
+    (void)xcsf;
+    COND_DGP *cond = c->cond;
+    return cond->dgp.n;
+}

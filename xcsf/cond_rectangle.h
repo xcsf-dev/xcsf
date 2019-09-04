@@ -25,6 +25,7 @@ void cond_rectangle_free(XCSF *xcsf, CL *c);
 void cond_rectangle_init(XCSF *xcsf, CL *c);
 void cond_rectangle_print(XCSF *xcsf, CL *c);
 void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y);
+int cond_rectangle_size(XCSF *xcsf, CL *c);
 
 static struct CondVtbl const cond_rectangle_vtbl = {
     &cond_rectangle_crossover,
@@ -36,5 +37,6 @@ static struct CondVtbl const cond_rectangle_vtbl = {
     &cond_rectangle_free,
     &cond_rectangle_init,
     &cond_rectangle_print,
-    &cond_rectangle_update
+    &cond_rectangle_update,
+    &cond_rectangle_size
 };      

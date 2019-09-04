@@ -26,7 +26,12 @@ struct PredVtbl {
 	void (*pred_impl_init)(XCSF *xcsf, CL *c);
 	void (*pred_impl_print)(XCSF *xcsf, CL *c);
 	void (*pred_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
+        int (*pred_impl_size)(XCSF *xcsf, CL *c);
 };
+  
+static inline int pred_size(XCSF *xcsf, CL *c) {
+	return (*c->pred_vptr->pred_impl_size)(xcsf, c);
+}
  
 static inline _Bool pred_crossover(XCSF *xcsf, CL *c1, CL *c2) {
 	return (*c1->pred_vptr->pred_impl_crossover)(xcsf, c1, c2);

@@ -44,21 +44,24 @@ void pred_neural_init(XCSF *xcsf, CL *c)
     neural_init(xcsf, &new->net);
     LAYER *l;
 
-    //l = neural_layer_noise_init(xcsf, &new->net, xcsf->num_x_vars, 0.5, 0.5);
-    //l = neural_layer_dropout_init(xcsf, &new->net, xcsf->num_x_vars, 0.5);
+    //l = neural_layer_noise_init(xcsf, xcsf->num_x_vars, 0.5, 0.5);
+    //l = neural_layer_dropout_init(xcsf, xcsf->num_x_vars, 0.2);
+    //neural_layer_insert(xcsf, &new->net, l, 0); 
 
     l = neural_layer_connected_init(xcsf,
-            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
+            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, 1);
     neural_layer_insert(xcsf, &new->net, l, 0); 
 
-    l = neural_layer_connected_init(xcsf,
-            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, LOGISTIC);
+    //l = neural_layer_dropout_init(xcsf, xcsf->NUM_HIDDEN_NEURONS, 0.5);
+    //neural_layer_insert(xcsf, &new->net, l, 2); 
+
+    l = neural_layer_connected_init(xcsf, xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, LOGISTIC,0);
     neural_layer_insert(xcsf, &new->net, l, 1); 
 
-    //l = neural_layer_softmax_init(xcsf, &new->net, xcsf->num_y_vars, 1);
+    //l = neural_layer_softmax_init(xcsf, xcsf->num_y_vars, 1);
+    //neural_layer_insert(xcsf, &new->net, l, 4);
 
     c->pred = new;
-
 }
 
 void pred_neural_free(XCSF *xcsf, CL *c)
@@ -95,7 +98,7 @@ double *pred_neural_compute(XCSF *xcsf, CL *c, double *x)
 void pred_neural_print(XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = c->pred;
-    neural_print(xcsf, &pred->net, true);
+    neural_print(xcsf, &pred->net, false);
 }  
 
 _Bool pred_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
@@ -109,4 +112,10 @@ _Bool pred_neural_mutate(XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     return neural_mutate(xcsf, &pred->net);
+}
+
+int pred_neural_size(XCSF *xcsf, CL *c)
+{
+    PRED_NEURAL *pred = c->pred;
+    return neural_size(xcsf, &pred->net);
 }

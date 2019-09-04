@@ -243,3 +243,13 @@ void neural_print(XCSF *xcsf, NET *net, _Bool print_weights)
         i++;
     }
 }
+
+int neural_size(XCSF *xcsf, NET *net)
+{
+    (void)xcsf;
+    int size = 0;
+    for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        size += iter->layer->num_active;
+    }
+    return size;
+}

@@ -81,3 +81,9 @@ void cond_dummy_print(XCSF *xcsf, CL *c)
 {
 	(void)xcsf; (void)c;
 }
+
+int cond_dummy_size(XCSF *xcsf, CL *c)
+{
+    (void)xcsf; (void)c;
+    return 0;
+}

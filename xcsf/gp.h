@@ -19,6 +19,7 @@
 typedef struct GP_TREE {
 	int *tree;
 	int p;
+        int len;
 } GP_TREE;
  
 void tree_free_cons(XCSF *xcsf);

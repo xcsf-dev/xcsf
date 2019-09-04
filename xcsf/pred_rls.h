@@ -23,6 +23,7 @@ void pred_rls_free(XCSF *xcsf, CL *c);
 void pred_rls_init(XCSF *xcsf, CL *c);
 void pred_rls_print(XCSF *xcsf, CL *c);
 void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y);
+int pred_rls_size(XCSF *xcsf, CL *c);
 
 static struct PredVtbl const pred_rls_vtbl = {
     &pred_rls_crossover,
@@ -32,5 +33,6 @@ static struct PredVtbl const pred_rls_vtbl = {
     &pred_rls_free,
     &pred_rls_init,
     &pred_rls_print,
-    &pred_rls_update
+    &pred_rls_update,
+    &pred_rls_size
 };

@@ -184,3 +184,9 @@ void cond_ellipsoid_print(XCSF *xcsf, CL *c)
     }
     printf("\n");
 }
+
+int cond_ellipsoid_size(XCSF *xcsf, CL *c)
+{
+    (void)c;
+    return xcsf->num_x_vars * 2;
+}

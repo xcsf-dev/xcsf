@@ -391,3 +391,25 @@ double set_avg_mut(XCSF *xcsf, SET *set, int m)
     }
     return sum/cnt;
 }
+
+double set_avg_cond_size(XCSF *xcsf, SET *set)
+{
+    int sum = 0;
+    int cnt = 0;
+    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        sum += cl_cond_size(xcsf, iter->cl);
+        cnt++;
+    }
+    return sum/(double)cnt;
+}
+
+double set_avg_pred_size(XCSF *xcsf, SET *set)
+{
+    int sum = 0;
+    int cnt = 0;
+    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        sum += cl_pred_size(xcsf, iter->cl);
+        cnt++;
+    }
+    return sum/(double)cnt;
+}

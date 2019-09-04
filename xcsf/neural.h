@@ -44,3 +44,4 @@ void neural_learn(XCSF *xcsf, NET *net, double *output, double *input);
 void neural_print(XCSF *xcsf, NET *net, _Bool print_weights);
 void neural_propagate(XCSF *xcsf, NET *net, double *input);
 void neural_rand(XCSF *xcsf, NET *net);
+int neural_size(XCSF *xcsf, NET *net);

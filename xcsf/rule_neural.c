@@ -51,10 +51,10 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
     neural_init(xcsf, &new->net);
     LAYER *l;
     l = neural_layer_connected_init(xcsf,
-            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
+            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, 1);
     neural_layer_insert(xcsf, &new->net, l, 0); 
     l = neural_layer_connected_init(xcsf, 
-            xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1, IDENTITY);
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1, IDENTITY, 0);
     neural_layer_insert(xcsf, &new->net, l, 1); 
     c->cond = new;
 }
@@ -127,7 +127,13 @@ void rule_neural_cond_print(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *cond = c->cond;
     neural_print(xcsf, &cond->net, true);
-}  
+}    
+
+int rule_neural_cond_size(XCSF *xcsf, CL *c)
+{
+    RULE_NEURAL_COND *cond = c->cond;
+    return neural_size(xcsf, &cond->net);
+} 
 
 void rule_neural_pred_init(XCSF *xcsf, CL *c)
 {
@@ -135,10 +141,10 @@ void rule_neural_pred_init(XCSF *xcsf, CL *c)
     neural_init(xcsf, &new->net);
     LAYER *l;
     l = neural_layer_connected_init(xcsf,
-            xcsf->MAX_FORWARD, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
+            xcsf->MAX_FORWARD, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, 1);
     neural_layer_insert(xcsf, &new->net, l, 0); 
     l = neural_layer_connected_init(xcsf,
-            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, IDENTITY);
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, IDENTITY, 0);
     neural_layer_insert(xcsf, &new->net, l, 1); 
     new->input = malloc(sizeof(double)*xcsf->MAX_FORWARD);
     c->pred = new;  
@@ -199,4 +205,10 @@ _Bool rule_neural_pred_mutate(XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
     return false;
+}
+
+int rule_neural_pred_size(XCSF *xcsf, CL *c)
+{
+    RULE_NEURAL_PRED *pred = c->pred;
+    return neural_size(xcsf, &pred->net);
 }

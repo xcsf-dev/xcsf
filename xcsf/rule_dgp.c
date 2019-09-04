@@ -116,6 +116,13 @@ void rule_dgp_cond_print(XCSF *xcsf, CL *c)
     RULE_DGP *cond = c->cond;
     graph_print(xcsf, &cond->dgp);
 }  
+ 
+int rule_dgp_cond_size(XCSF *xcsf, CL *c)
+{
+    (void)xcsf;
+    RULE_DGP *cond = c->cond;
+    return cond->dgp.n;
+}
 
 void rule_dgp_pred_init(XCSF *xcsf, CL *c)
 {
@@ -162,4 +169,11 @@ _Bool rule_dgp_pred_mutate(XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
     return false;
+}
+
+int rule_dgp_pred_size(XCSF *xcsf, CL *c)
+{
+    (void)xcsf;
+    (void)c;
+    return 0;
 }

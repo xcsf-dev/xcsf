@@ -254,3 +254,10 @@ _Bool pred_rls_mutate(XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
     return false;
 }
+
+int pred_rls_size(XCSF *xcsf, CL *c)
+{
+    (void)xcsf;
+    PRED_RLS *pred = c->pred;
+    return pred->weights_length;
+}

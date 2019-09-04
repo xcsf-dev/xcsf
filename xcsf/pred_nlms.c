@@ -160,3 +160,10 @@ _Bool pred_nlms_mutate(XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
     return false;
 }
+
+int pred_nlms_size(XCSF *xcsf, CL *c)
+{
+    (void)xcsf;
+    PRED_NLMS *pred = c->pred;
+    return pred->weights_length;
+}

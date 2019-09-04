@@ -44,9 +44,9 @@ void cond_neural_init(XCSF *xcsf, CL *c)
     neural_init(xcsf, &new->net);
     LAYER *l;
     l = neural_layer_connected_init(xcsf,
-            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION);
+            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, 1);
     neural_layer_insert(xcsf, &new->net, l, 0); 
-    l = neural_layer_connected_init(xcsf, xcsf->NUM_HIDDEN_NEURONS, 1, LOGISTIC);
+    l = neural_layer_connected_init(xcsf, xcsf->NUM_HIDDEN_NEURONS, 1, LOGISTIC, 0);
     neural_layer_insert(xcsf, &new->net, l, 1); 
     c->cond = new;
 }
@@ -119,5 +119,11 @@ _Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2)
 void cond_neural_print(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
-    neural_print(xcsf, &cond->net, true);
+    neural_print(xcsf, &cond->net, false);
+}
+
+int cond_neural_size(XCSF *xcsf, CL *c)
+{
+    COND_NEURAL *cond = c->cond;
+    return neural_size(xcsf, &cond->net);
 }

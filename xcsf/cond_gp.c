@@ -133,3 +133,10 @@ void cond_gp_print(XCSF *xcsf, CL *c)
     tree_print(xcsf, &cond->gp, 0);
     printf("\n");
 }  
+
+int cond_gp_size(XCSF *xcsf, CL *c)
+{
+    (void)xcsf;
+    COND_GP *cond = c->cond;
+    return cond->gp.len;
+}
