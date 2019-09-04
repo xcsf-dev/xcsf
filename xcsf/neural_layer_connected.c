@@ -147,21 +147,17 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
     (void)xcsf;
     // net input = this layer's input
     // net delta = previous layer's delta
-    for(int i = 0; i < l->num_outputs; i++) {
-        if(l->active[i]) {
-            l->delta[i] *= (l->gradient)(l->state[i]);
-            l->bias_updates[i] += l->delta[i];
-            for(int j = 0; j < l->num_inputs; j++) {
-                l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
-            }
+    for(int i = 0; i < l->num_active; i++) {
+        l->delta[i] *= (l->gradient)(l->state[i]);
+        l->bias_updates[i] += l->delta[i];
+        for(int j = 0; j < l->num_inputs; j++) {
+            l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
         }
     }   
     if(net->delta) { // input layer has no delta or weights
-        for(int i = 0; i < l->num_outputs; i++) {
+        for(int i = 0; i < l->num_active; i++) {
             for(int j = 0; j < l->num_inputs; j++) {
-                if(l->active[i]) {
-                    net->delta[j] += l->delta[i] * l->weights[i*l->num_inputs+j];
-                }
+                net->delta[j] += l->delta[i] * l->weights[i*l->num_inputs+j];
             }
         }
     }
@@ -169,11 +165,12 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
 
 void neural_layer_connected_update(XCSF *xcsf, LAYER *l)
 {
-    for(int i = 0; i < l->num_outputs; i++) {
+    for(int i = 0; i < l->num_active; i++) {
         l->biases[i] += xcsf->ETA * l->bias_updates[i];
         l->bias_updates[i] *= xcsf->MOMENTUM;
     }
-    for(int i = 0; i < l->num_weights; i++) {
+    int w = l->num_inputs * l->num_active;
+    for(int i = 0; i < w; i++) {
         l->weights[i] += xcsf->ETA * l->weight_updates[i];
         l->weight_updates[i] *= xcsf->MOMENTUM;
     }
@@ -184,37 +181,29 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
     _Bool mod = false;
     // mutate number of neurons
     if(l->options > 0 && rand_uniform(0,1) < xcsf->P_MUTATION) {
+        int idx = l->num_active - 1;
         // remove
         if(l->num_active > 1 && rand_uniform(0,1) < 0.5) {
-            for(int i = 0; i < l->num_outputs; i++) {
-                if(l->active[i]) {
-                    l->active[i] = false;
-                    l->num_active--;
-                    mod = true;
-                    break;
-                }
-            }
+            l->active[idx] = false;
+            l->num_active--;
+            mod = true;
         }
         // add
         else {
-            for(int i = 0; i < l->num_outputs; i++) {
-                if(!l->active[i]) {
-                    l->active[i] = true;
-                    l->num_active++;
-                    // randomise weights
-                    l->biases[i] = 0;
-                    double scale = sqrt(2./l->num_inputs);
-                    for(int j = 0; j < l->num_inputs; j++) {
-                        l->weights[i*l->num_inputs+j] = rand_uniform(-1,1) * scale;
-                    }
-                    mod = true;
-                    break;
-                }
+            l->active[idx] = true;
+            l->num_active++;
+            // randomise weights
+            l->biases[idx] = 0;
+            double scale = sqrt(2./l->num_inputs);
+            for(int i = 0; i < l->num_inputs; i++) {
+                l->weights[idx*l->num_inputs+i] = rand_uniform(-1,1) * scale;
             }
+            mod = true;
         }
     } 
     // mutate weights
-    for(int i = 0; i < l->num_weights; i++) {
+    int w = l->num_inputs * l->num_active;
+    for(int i = 0; i < w; i++) {
         double orig = l->weights[i];
         l->weights[i] += rand_normal(0, xcsf->S_MUTATION);
         if(l->weights[i] != orig) {
@@ -222,7 +211,7 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
         }
     }
     // mutate biases
-    for(int i = 0; i < l->num_outputs; i++) {
+    for(int i = 0; i < l->num_active; i++) {
         double orig = l->biases[i];
         l->biases[i] += rand_normal(0, xcsf->S_MUTATION);
         if(l->biases[i] != orig) {
