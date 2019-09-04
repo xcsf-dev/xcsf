@@ -189,7 +189,7 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
             mod = true;
         }
         // add
-        else {
+        else if(l->num_active < l->num_outputs) {
             l->active[idx] = true;
             l->num_active++;
             // randomise weights
