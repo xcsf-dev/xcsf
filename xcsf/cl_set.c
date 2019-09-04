@@ -55,41 +55,51 @@ void set_init(XCSF *xcsf, SET *set)
 
 void pop_del(XCSF *xcsf, SET *kset)
 {
-    // selects a classifier using roullete wheel selection with the deletion 
-    // vote; sets its numerosity to zero, and removes it from the population 
-
-    // select a roullete point
+    // selects two classifiers using roullete wheel selection with the deletion vote
+    // deletes the one with the largest condition + prediction length
     double avg_fit = set_total_fit(xcsf, &xcsf->pset) / xcsf->pset.num;
-    double sum = 0.0;
+    double total = 0;
     for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
-        sum += cl_del_vote(xcsf, iter->cl, avg_fit);
+        total += cl_del_vote(xcsf, iter->cl, avg_fit);
     }
-    double p = rand_uniform(0,sum);
 
-    // find the classifier to delete using the point
-    sum = 0.0;
-    CLIST *prev = NULL;
-    for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
-        sum += cl_del_vote(xcsf, iter->cl, avg_fit);
-        if(sum > p) {
-            (iter->cl->num)--;
-            (xcsf->pset.num)--;
-            // macro classifier must be deleted
-            if(iter->cl->num == 0) {
-                set_add(xcsf, kset, iter->cl);
-                (xcsf->pset.size)--;
-                if(prev == NULL) {
-                    xcsf->pset.list = iter->next;
+    CLIST *del = NULL;
+    CLIST *delprev = NULL;
+    int delsize = 0;
+
+    for(int i = 0; i < 2; i++) {
+        double p = rand_uniform(0,total);
+        double sum = 0;
+        CLIST *prev = NULL;
+        for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+            sum += cl_del_vote(xcsf, iter->cl, avg_fit);
+            if(sum > p) {
+                int size = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
+                if(del == NULL || size > delsize) {
+                    del = iter;
+                    delprev = prev;
+                    delsize = size;
                 }
-                else {
-                    prev->next = iter->next;    
-                }
-                free(iter);
+                break;
             }
-            return;
+            prev = iter;
         }
-        prev = iter; 
-    }   
+    }
+
+    (del->cl->num)--;
+    (xcsf->pset.num)--;
+    // macro classifier must be deleted
+    if(del->cl->num == 0) {
+        set_add(xcsf, kset, del->cl);
+        (xcsf->pset.size)--;
+        if(delprev == NULL) {
+            xcsf->pset.list = del->next;
+        }
+        else {
+            delprev->next = del->next;
+        }
+        free(del);
+    }
 }
 
 void pop_enforce_limit(XCSF *xcsf, SET *kset)
