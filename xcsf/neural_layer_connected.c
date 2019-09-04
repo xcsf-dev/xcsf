@@ -182,6 +182,37 @@ void neural_layer_connected_update(XCSF *xcsf, LAYER *l)
 _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
 {
     _Bool mod = false;
+    // mutate number of neurons
+    if(l->options > 0 && rand_uniform(0,1) < xcsf->P_MUTATION) {
+        // remove
+        if(l->num_active > 1 && rand_uniform(0,1) < 0.5) {
+            for(int i = 0; i < l->num_outputs; i++) {
+                if(l->active[i]) {
+                    l->active[i] = false;
+                    l->num_active--;
+                    mod = true;
+                    break;
+                }
+            }
+        }
+        // add
+        else {
+            for(int i = 0; i < l->num_outputs; i++) {
+                if(!l->active[i]) {
+                    l->active[i] = true;
+                    l->num_active++;
+                    // randomise weights
+                    l->biases[i] = 0;
+                    double scale = sqrt(2./l->num_inputs);
+                    for(int j = 0; j < l->num_inputs; j++) {
+                        l->weights[i*l->num_inputs+j] = rand_uniform(-1,1) * scale;
+                    }
+                    mod = true;
+                    break;
+                }
+            }
+        }
+    } 
     // mutate weights
     for(int i = 0; i < l->num_weights; i++) {
         double orig = l->weights[i];
@@ -197,35 +228,6 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
         if(l->biases[i] != orig) {
             mod = true;
         }
-    }
-    if(l->options > 0 && rand_uniform(0,1) < xcsf->P_MUTATION) {
-        // remove a neuron
-        if(rand_uniform(0,1) < 0.5) {
-            for(int i = 0; i < l->num_outputs; i++) {
-                if(l->active[i]) {
-                    l->active[i] = false;
-                    l->num_active--;
-                    break;
-                }
-            }
-        }
-        // add a neuron
-        else {
-            for(int i = 0; i < l->num_outputs; i++) {
-                if(!l->active[i]) {
-                    l->active[i] = true;
-                    l->num_active++;
-                    // randomise weights
-                    l->biases[i] = 0;
-                    double scale = sqrt(2./l->num_inputs);
-                    for(int j = 0; j < l->num_inputs; j++) {
-                        l->weights[i*l->num_inputs+j] = rand_uniform(-1,1) * scale;
-                    }
-                    break;
-                }
-            }
-        }
-        mod = true;
     }
     // mutate activation functions
     if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
