@@ -98,17 +98,16 @@ void neural_layer_connected_free(XCSF *xcsf, LAYER *l)
 void neural_layer_connected_rand(XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
-    double scale = sqrt(2./l->num_inputs);
     for(int i = 0; i < l->num_weights; i++) {
-        l->weights[i] = rand_uniform(-1,1) * scale;
+        l->weights[i] = rand_normal(0,0.1);
     }
     for(int i = 0; i < l->num_outputs; i++) {
         l->biases[i] = 0;
     }
-
+    // initialise 1 active neuron and evolve number
     if(l->options > 0) {
-        l->active[0] = true; // initialise 1 active neuron
         l->num_active = 1;
+        l->active[0] = true;
         for(int i = 1; i < l->num_outputs; i++) {
             l->active[i] = false;
         }
@@ -194,9 +193,8 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
             l->num_active++;
             // randomise weights
             l->biases[idx] = 0;
-            double scale = sqrt(2./l->num_inputs);
             for(int i = 0; i < l->num_inputs; i++) {
-                l->weights[idx*l->num_inputs+i] = rand_uniform(-1,1) * scale;
+                l->weights[idx*l->num_inputs+i] = rand_normal(0,0.1);
             }
             mod = true;
         }
@@ -226,57 +224,6 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
         mod = true;
     } 
     return mod;
-}
-
-_Bool neural_layer_connected_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2)
-{
-    (void)xcsf;
-    // assumes equally sized connected layers
-    // cross weights
-    for(int i = 0; i < l1->num_weights; i++) {
-        if(rand_uniform(0,1) < 0.5) {
-            double tmp = l1->weights[i];
-            l1->weights[i] = l2->weights[i];
-            l2->weights[i] = tmp;
-        }
-    }
-    // cross biases
-    for(int i = 0; i < l1->num_outputs; i++) {
-        if(rand_uniform(0,1) < 0.5) {
-            double tmp = l1->biases[i];
-            l1->biases[i] = l2->biases[i];
-            l2->biases[i] = tmp;
-        }
-    }
-    // cross activation functions
-    if(rand_uniform(0,1) < 0.5) {
-        int tmp = l1->activation_type;
-        l1->activation_type = l2->activation_type;
-        l2->activation_type = tmp;
-        activation_set(&l1->activate, l1->activation_type);
-        gradient_set(&l1->gradient, l1->activation_type);
-        activation_set(&l2->activate, l2->activation_type);
-        gradient_set(&l2->gradient, l2->activation_type);
-    } 
-    // cross whether neurons are active
-    if(l1->options > 0 && l2->options > 0) {
-        l1->num_active = 0;
-        l2->num_active = 0;
-        for(int i = 0; i < l1->num_outputs; i++) {
-            if(rand_uniform(0,1) < 0.5) {
-                _Bool tmp = l1->active[i];
-                l1->active[i] = l2->active[i];
-                l2->active[i] = tmp;
-            }
-            if(l1->active[i]) {
-                l1->num_active++;
-            }
-            if(l2->active[i]) {
-                l2->num_active++;
-            }
-        }
-    }
-    return true;   
 }
 
 double *neural_layer_connected_output(XCSF *xcsf, LAYER *l)

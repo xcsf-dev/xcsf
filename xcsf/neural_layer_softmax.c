@@ -110,12 +110,6 @@ _Bool neural_layer_softmax_mutate(XCSF *xcsf, LAYER *l)
     return false;
 }
 
-_Bool neural_layer_softmax_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2)
-{
-    (void)xcsf; (void)l1; (void)l2;
-    return false;
-}
-
 void neural_layer_softmax_free(XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;

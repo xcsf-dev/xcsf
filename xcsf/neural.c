@@ -162,22 +162,6 @@ _Bool neural_mutate(XCSF *xcsf, NET *net)
     return mod;
 }
 
-_Bool neural_crossover(XCSF *xcsf, NET *net1, NET *net2)
-{
-    // assumes identical number, size, and type of layers
-    if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
-        LLIST *iter1 = net1->tail;
-        LLIST *iter2 = net2->tail;
-        while(iter1 != NULL && iter2 != NULL) {
-            layer_crossover(xcsf, iter1->layer, iter2->layer);
-            iter1 = iter1->prev;
-            iter2 = iter2->prev;
-        }
-        return true;
-    }
-    return false;
-}
-
 void neural_propagate(XCSF *xcsf, NET *net, double *input)
 {
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {

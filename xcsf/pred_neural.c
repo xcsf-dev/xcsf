@@ -103,9 +103,8 @@ void pred_neural_print(XCSF *xcsf, CL *c)
 
 _Bool pred_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-    PRED_NEURAL *pred1 = c1->pred;
-    PRED_NEURAL *pred2 = c2->pred;
-    return neural_crossover(xcsf, &pred1->net, &pred2->net);
+    (void)xcsf; (void) c1; (void)c2;
+    return false;
 }
 
 _Bool pred_neural_mutate(XCSF *xcsf, CL *c)

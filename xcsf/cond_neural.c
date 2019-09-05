@@ -105,9 +105,8 @@ _Bool cond_neural_mutate(XCSF *xcsf, CL *c)
 
 _Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-    COND_NEURAL *cond1 = c1->cond;
-    COND_NEURAL *cond2 = c2->cond;
-    return neural_crossover(xcsf, &cond1->net, &cond2->net);
+    (void)xcsf; (void) c1; (void)c2;
+    return false;
 }
 
 _Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2)

@@ -24,12 +24,10 @@ void neural_layer_noise_backward(XCSF *xcsf, LAYER *l, NET *net);
 void neural_layer_noise_update(XCSF *xcsf, LAYER *l);
 void neural_layer_noise_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
 _Bool neural_layer_noise_mutate(XCSF *xcsf, LAYER *l);
-_Bool neural_layer_noise_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2);
 void neural_layer_noise_free(XCSF *xcsf, LAYER *l);
 double* neural_layer_noise_output(XCSF *xcsf, LAYER *l);
 
 static struct LayerVtbl const layer_noise_vtbl = {
-    &neural_layer_noise_crossover,
     &neural_layer_noise_mutate,
     &neural_layer_noise_copy,
     &neural_layer_noise_free,

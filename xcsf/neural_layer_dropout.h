@@ -24,12 +24,10 @@ void neural_layer_dropout_backward(XCSF *xcsf, LAYER *l, NET *net);
 void neural_layer_dropout_update(XCSF *xcsf, LAYER *l);
 void neural_layer_dropout_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
 _Bool neural_layer_dropout_mutate(XCSF *xcsf, LAYER *l);
-_Bool neural_layer_dropout_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2);
 void neural_layer_dropout_free(XCSF *xcsf, LAYER *l);
 double* neural_layer_dropout_output(XCSF *xcsf, LAYER *l);
 
 static struct LayerVtbl const layer_dropout_vtbl = {
-    &neural_layer_dropout_crossover,
     &neural_layer_dropout_mutate,
     &neural_layer_dropout_copy,
     &neural_layer_dropout_free,

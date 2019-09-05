@@ -24,12 +24,10 @@ void neural_layer_softmax_backward(XCSF *xcsf, LAYER *l, NET *net);
 void neural_layer_softmax_update(XCSF *xcsf, LAYER *l);
 void neural_layer_softmax_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
 _Bool neural_layer_softmax_mutate(XCSF *xcsf, LAYER *l);
-_Bool neural_layer_softmax_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2);
 void neural_layer_softmax_free(XCSF *xcsf, LAYER *l);
 double* neural_layer_softmax_output(XCSF *xcsf, LAYER *l);
 
 static struct LayerVtbl const layer_softmax_vtbl = {
-    &neural_layer_softmax_crossover,
     &neural_layer_softmax_mutate,
     &neural_layer_softmax_copy,
     &neural_layer_softmax_free,

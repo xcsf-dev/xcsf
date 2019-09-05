@@ -118,12 +118,6 @@ _Bool neural_layer_noise_mutate(XCSF *xcsf, LAYER *l)
     return false;
 }
 
-_Bool neural_layer_noise_crossover(XCSF *xcsf, LAYER *l1, LAYER *l2)
-{
-    (void)xcsf; (void)l1; (void)l2;
-    return false;
-}
-
 double *neural_layer_noise_output(XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
