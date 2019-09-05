@@ -31,26 +31,44 @@
 
 LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, int opt)
 {
+    (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
+    l->activation_type = act;
+    activation_set(&l->activate, act);
+    gradient_set(&l->gradient, act);
     l->num_inputs = in;
     l->num_outputs = out;
     l->num_weights = in*out;
-    l->options = opt;
-    l->num_active = 0;
-    l->active = malloc(l->num_outputs * sizeof(_Bool));
     l->state = calloc(l->num_outputs, sizeof(double));
     l->output = calloc(l->num_outputs, sizeof(double));
-    l->weights = calloc(l->num_weights, sizeof(double));
     l->biases = calloc(l->num_outputs, sizeof(double));
     l->bias_updates = calloc(l->num_outputs, sizeof(double));
     l->weight_updates = calloc(l->num_weights, sizeof(double));
     l->delta = calloc(l->num_outputs, sizeof(double));
-    l->activation_type = act;
-    activation_set(&l->activate, act);
-    gradient_set(&l->gradient, act);
-    neural_layer_connected_rand(xcsf, l);
+    l->active = malloc(l->num_outputs * sizeof(_Bool));
+    l->options = opt;
+    if(l->options > 0) {
+        // initialise 1 active neuron and evolve number
+        l->num_active = 1;
+        l->active[0] = true;
+        for(int i = 1; i < l->num_outputs; i++) {
+            l->active[i] = false;
+        }
+    }
+    else {
+        // fixed number of neurons
+        l->num_active = l->num_outputs;
+        for(int i = 0; i < l->num_outputs; i++) {
+            l->active[i] = true;
+        }
+    }
+    // small random weights
+    l->weights = malloc(l->num_weights * sizeof(double));
+    for(int i = 0; i < l->num_weights; i++) {
+        l->weights[i] = rand_normal(0,0.1);
+    }
     return l;
 }
 
@@ -99,25 +117,10 @@ void neural_layer_connected_rand(XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
     for(int i = 0; i < l->num_weights; i++) {
-        l->weights[i] = rand_normal(0,0.1);
+        l->weights[i] = rand_normal(0,1);
     }
     for(int i = 0; i < l->num_outputs; i++) {
-        l->biases[i] = 0;
-    }
-    // initialise 1 active neuron and evolve number
-    if(l->options > 0) {
-        l->num_active = 1;
-        l->active[0] = true;
-        for(int i = 1; i < l->num_outputs; i++) {
-            l->active[i] = false;
-        }
-    }
-    // fixed number of neurons
-    else {
-        l->num_active = l->num_outputs;
-        for(int i = 0; i < l->num_outputs; i++) {
-            l->active[i] = true;
-        }
+        l->biases[i] = rand_normal(0,1);
     }
 }
 
