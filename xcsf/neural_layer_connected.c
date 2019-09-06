@@ -47,27 +47,22 @@ LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, int opt
     l->bias_updates = calloc(l->num_outputs, sizeof(double));
     l->weight_updates = calloc(l->num_weights, sizeof(double));
     l->delta = calloc(l->num_outputs, sizeof(double));
-    l->active = malloc(l->num_outputs * sizeof(_Bool));
-    l->options = opt;
-    if(l->options > 0) {
-        // initialise 1 active neuron and evolve number
-        l->num_active = 1;
-        l->active[0] = true;
-        for(int i = 1; i < l->num_outputs; i++) {
-            l->active[i] = false;
-        }
-    }
-    else {
-        // fixed number of neurons
-        l->num_active = l->num_outputs;
-        for(int i = 0; i < l->num_outputs; i++) {
-            l->active[i] = true;
-        }
-    }
     // small random weights
     l->weights = malloc(l->num_weights * sizeof(double));
     for(int i = 0; i < l->num_weights; i++) {
         l->weights[i] = rand_normal(0,0.1);
+    }
+    // initial number of active neurons
+    l->active = calloc(l->num_outputs, sizeof(_Bool));
+    l->options = opt;
+    if(l->options > 0) {
+        l->num_active = 1;
+    }
+    else {
+        l->num_active = l->num_outputs;
+    }
+    for(int i = 0; i < l->num_active; i++) {
+        l->active[i] = true;
     }
     return l;
 }
