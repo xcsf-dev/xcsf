@@ -31,10 +31,7 @@
 
 double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 {  
-#ifdef GNUPLOT
     gplot_init(xcsf);
-#endif
-
     xcsf->train = true;
     double perr = 0, err = 0;
     double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
@@ -57,20 +54,13 @@ double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
         }
     }
     free(pred);
-
-#ifdef GNUPLOT
     gplot_free(xcsf);
-#endif
-
     return err/xcsf->MAX_TRIALS;
 }
 
 double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 {   
-#ifdef GNUPLOT
     gplot_init(xcsf);
-#endif
-
     double perr = 0, err = 0, pterr = 0;
     double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
@@ -104,11 +94,7 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
         }
     }
     free(pred);
-
-#ifdef GNUPLOT
     gplot_free(xcsf);
-#endif
-
     return err/xcsf->MAX_TRIALS;
 }
 
@@ -196,6 +182,7 @@ void xcsf_load(XCSF *xcsf, char *fname)
     printf("xcsf loaded %lu elements\n", (unsigned long)s);
     fclose(fp);
 }
+
 size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;

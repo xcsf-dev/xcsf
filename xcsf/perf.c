@@ -76,9 +76,9 @@ void disp_perf2(XCSF *xcsf, double error, double terror, int trial)
 #endif
 }          
 
-#ifdef GNUPLOT
 void gplot_init(XCSF *xcsf)
 { 	
+#ifdef GNUPLOT
     // file name for writing performance uses the current date-time
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
@@ -171,11 +171,16 @@ void gplot_init(XCSF *xcsf)
     else {
         printf("error starting gnuplot\n");
     }
+
+#else
+    (void)xcsf;
+#endif
 }
 
 void gplot_free(XCSF *xcsf)
 {
     (void)xcsf;
+#ifdef GNUPLOT
     // close gnuplot
     if(gp != NULL) {
         pclose(gp);
@@ -185,8 +190,10 @@ void gplot_free(XCSF *xcsf)
     }
     // close data file
     fclose(fout);
+#endif
 }
 
+#ifdef GNUPLOT
 void gplot_draw(XCSF *xcsf, _Bool test_error)
 {
     if(gp != NULL) {
