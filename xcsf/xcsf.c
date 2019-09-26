@@ -29,6 +29,11 @@
 #include "cl_set.h"
 #include "ga.h"
 
+double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
+double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
+size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
+size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
+
 double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 {  
     gplot_init(xcsf);
