@@ -284,22 +284,22 @@ int cl_pred_size(XCSF *xcsf, CL *c)
     return pred_size(xcsf, c);
 }
 
-size_t cl_save(XCSF *xcsf, CL *c, FILE *fout)
+size_t cl_save(XCSF *xcsf, CL *c, FILE *fp)
 {
     printf("Saving XCSF state is not currently supported\n");
     exit(EXIT_FAILURE);
 
     size_t s = 0;
-    s += fwrite(c->mu, sizeof(double), xcsf->SAM_NUM, fout);
-    s += fwrite(&c->err, sizeof(double), 1, fout);
-    s += fwrite(&c->fit, sizeof(double), 1, fout);
-    s += fwrite(&c->num, sizeof(int), 1, fout);
-    s += fwrite(&c->exp, sizeof(int), 1, fout);
-    s += fwrite(&c->size, sizeof(double), 1, fout);
-    s += fwrite(&c->time, sizeof(int), 1, fout);
-    s += fwrite(&c->m, sizeof(_Bool), 1, fout);
-    s += fwrite(c->prediction, sizeof(double), xcsf->num_y_vars, fout);
-    s += fwrite(c->action, sizeof(double), xcsf->num_y_vars, fout);
+    s += fwrite(c->mu, sizeof(double), xcsf->SAM_NUM, fp);
+    s += fwrite(&c->err, sizeof(double), 1, fp);
+    s += fwrite(&c->fit, sizeof(double), 1, fp);
+    s += fwrite(&c->num, sizeof(int), 1, fp);
+    s += fwrite(&c->exp, sizeof(int), 1, fp);
+    s += fwrite(&c->size, sizeof(double), 1, fp);
+    s += fwrite(&c->time, sizeof(int), 1, fp);
+    s += fwrite(&c->m, sizeof(_Bool), 1, fp);
+    s += fwrite(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
+    s += fwrite(c->action, sizeof(double), xcsf->num_y_vars, fp);
 
     // TODO:
     // cond_vptr
@@ -313,25 +313,25 @@ size_t cl_save(XCSF *xcsf, CL *c, FILE *fout)
     return s;
 }
 
-size_t cl_load(XCSF *xcsf, CL *c, FILE *fout)
+size_t cl_load(XCSF *xcsf, CL *c, FILE *fp)
 {
     printf("Loading XCSF state is not currently supported\n");
     exit(EXIT_FAILURE);
 
     size_t s = 0;
     c->mu = malloc(xcsf->SAM_NUM * sizeof(double));
-    s += fread(c->mu, sizeof(double), xcsf->SAM_NUM, fout);
-    s += fread(&c->err, sizeof(double), 1, fout);
-    s += fread(&c->fit, sizeof(double), 1, fout);
-    s += fread(&c->num, sizeof(int), 1, fout);
-    s += fread(&c->exp, sizeof(int), 1, fout);
-    s += fread(&c->size, sizeof(double), 1, fout);
-    s += fread(&c->time, sizeof(int), 1, fout);
-    s += fread(&c->m, sizeof(_Bool), 1, fout);
+    s += fread(c->mu, sizeof(double), xcsf->SAM_NUM, fp);
+    s += fread(&c->err, sizeof(double), 1, fp);
+    s += fread(&c->fit, sizeof(double), 1, fp);
+    s += fread(&c->num, sizeof(int), 1, fp);
+    s += fread(&c->exp, sizeof(int), 1, fp);
+    s += fread(&c->size, sizeof(double), 1, fp);
+    s += fread(&c->time, sizeof(int), 1, fp);
+    s += fread(&c->m, sizeof(_Bool), 1, fp);
     c->prediction = malloc(xcsf->num_y_vars * sizeof(double));
-    s += fread(c->prediction, sizeof(double), xcsf->num_y_vars, fout);
+    s += fread(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
     c->action = malloc(xcsf->num_y_vars * sizeof(double));
-    s += fread(c->action, sizeof(double), xcsf->num_y_vars, fout);
+    s += fread(c->action, sizeof(double), xcsf->num_y_vars, fp);
 
     // TODO:
     // cond_vptr

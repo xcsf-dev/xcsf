@@ -422,27 +422,27 @@ double set_avg_pred_size(XCSF *xcsf, SET *set)
     return sum/(double)cnt;
 }
 
-size_t pop_save(XCSF *xcsf, FILE *fout)
+size_t pop_save(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
-    s += fwrite(&xcsf->pset.size, sizeof(int), 1, fout);
-    s += fwrite(&xcsf->pset.num, sizeof(int), 1, fout);
+    s += fwrite(&xcsf->pset.size, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->pset.num, sizeof(int), 1, fp);
     for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
-        s += cl_save(xcsf, iter->cl, fout);
+        s += cl_save(xcsf, iter->cl, fp);
     }
     return s;
 }
 
-size_t pop_load(XCSF *xcsf, FILE *fout)
+size_t pop_load(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     int size = 0, num = 0;
-    s += fread(&size, sizeof(int), 1, fout);
-    s += fread(&num, sizeof(int), 1, fout);
+    s += fread(&size, sizeof(int), 1, fp);
+    s += fread(&num, sizeof(int), 1, fp);
     set_init(xcsf, &xcsf->pset);
     for(int i = 0; i < size; i++) {
         CL *c = malloc(sizeof(CL));
-        s += cl_load(xcsf, c, fout);
+        s += cl_load(xcsf, c, fp);
         set_add(xcsf, &xcsf->pset, c);
     }
     return s;
