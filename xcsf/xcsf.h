@@ -128,7 +128,6 @@ typedef struct XCSF {
     int num_y_vars; // number of problem output variables
     int num_classes; // number of class labels
     double (*loss_ptr)(struct XCSF*, double*, double*); // pointer to loss/error function
-
 } XCSF;                  
 
 // input data structure
