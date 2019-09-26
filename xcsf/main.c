@@ -298,7 +298,7 @@ void xcsf_save(XCSF *xcsf, char *fname)
 
     // pset
 
-    printf("saved %lu elements\n", s);
+    printf("saved %lu elements\n", (unsigned long)s);
     fclose(fout);
 }
 
@@ -380,6 +380,6 @@ void xcsf_load(XCSF *xcsf, char *fname)
 
     // pset
 
-    printf("loaded %lu elements\n", s);
+    printf("loaded %lu elements\n", (unsigned long)s);
     fclose(fout);
 }
