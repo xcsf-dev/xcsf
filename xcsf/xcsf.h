@@ -82,7 +82,7 @@ typedef struct XCSF {
     _Bool PRED_ENSEMBLE;
     _Bool ACT_ENSEMBLE;
 
-    // genetic algorithm parameters
+    // evolutionary algorithm parameters
     double P_CROSSOVER; // probability of applying crossover (for hyperrectangles)
     double P_MUTATION; // probability of mutation occuring per allele
     double P_FUNC_MUTATION; // probability of performing mutating a graph/net function

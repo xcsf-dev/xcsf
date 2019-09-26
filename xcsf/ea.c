@@ -32,7 +32,7 @@ void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set);
 
 void ea(XCSF *xcsf, SET *set, SET *kset)
 {
-    // check if the genetic algorithm should be run
+    // check if the evolutionary algorithm should be run
     if(set->size == 0 || xcsf->time - set_mean_time(xcsf, set) < xcsf->THETA_EA) {
         return;
     }
@@ -53,7 +53,7 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
         // adapt mutation rates
         sam_adapt(xcsf, c1->mu);
         sam_adapt(xcsf, c2->mu);
-        // apply genetic operators to offspring
+        // apply evolutionary operators to offspring
         _Bool cmod = cl_crossover(xcsf, c1, c2);
         _Bool m1mod = cl_mutate(xcsf, c1);
         _Bool m2mod = cl_mutate(xcsf, c2); 
