@@ -41,6 +41,8 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows);
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
+void xcsf_save(XCSF *xcsf, char *fname);
+void xcsf_load(XCSF *xcsf, char *fname);
 
 int main(int argc, char **argv)
 {    
@@ -219,4 +221,41 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool print_cond, _Bool pri
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, input);
     set_print(xcsf, &mset, print_cond, print_pred);
+}
+
+void xcsf_save(XCSF *xcsf, char *fname)
+{
+    // TODO:
+    printf("Saving XCSF state is not currently supported\n");
+    return;
+
+    FILE *fout = fopen(fname, "wb");
+    if(fout == 0) {
+        printf("Error opening save file: %s. %s.\n", fname, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+
+    fwrite(&xcsf->time, sizeof(int), 1, fout);
+
+    fclose(fout);
+}
+
+void xcsf_load(XCSF *xcsf, char *fname)
+{
+    // TODO:
+    printf("Loading XCSF state is not currently supported\n");
+    return;
+
+    FILE *fin = fopen(fname, "rb");
+    if(fin == 0) {
+        printf("Error opening load file: %s. %s.\n", fname, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+
+    if(fread(&xcsf->time, sizeof(int), 1, fin) == 0) {
+        printf("Error reading load file: %s. %s.\n", fname, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+
+    fclose(fin);
 }

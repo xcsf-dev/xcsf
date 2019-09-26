@@ -42,6 +42,8 @@ extern "C" double xcsf_fit2(XCSF *, INPUT *, INPUT *, _Bool);
 extern "C" void xcsf_predict(XCSF *, double *, double *, int);
 extern "C" void xcsf_print_pop(XCSF *, _Bool, _Bool);
 extern "C" void xcsf_print_match_set(XCSF *, double *, _Bool, _Bool);
+extern "C" void xcsf_save(XCSF *, char *);
+extern "C" void xcsf_load(XCSF *, char *);
 
 /* XCSF class */
 struct XCS
@@ -72,6 +74,14 @@ struct XCS
         test_data.y_cols = 0;
         test_data.x = NULL;
         test_data.y = NULL;
+    }
+
+    void save(char *fname) {
+        xcsf_save(&xcs, fname);
+    }
+
+    void load(char *fname) {
+        xcsf_load(&xcs, fname);
     }
 
     double fit(np::ndarray &train_X, np::ndarray &train_Y, _Bool shuffle) {
@@ -291,6 +301,8 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("fit", fit1)
         .def("fit", fit2)
         .def("predict", &XCS::predict)
+        .def("save", &XCS::save)
+        .def("load", &XCS::load)
         .add_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads, &XCS::set_omp_num_threads)
         .add_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
         .add_property("THETA_MNA", &XCS::get_theta_mna, &XCS::set_theta_mna)
