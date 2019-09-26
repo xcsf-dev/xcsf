@@ -185,7 +185,7 @@ struct XCS
     double get_p_crossover() { return xcs.P_CROSSOVER; }
     double get_p_mutation() { return xcs.P_MUTATION; }
     double get_p_func_mutation() { return xcs.P_FUNC_MUTATION; }
-    double get_theta_ga() { return xcs.THETA_GA; }
+    double get_theta_ea() { return xcs.THETA_EA; }
     int get_theta_offspring() { return xcs.THETA_OFFSPRING; }
     double get_sam_min() { return xcs.SAM_MIN; }
     int get_sam_num() { return xcs.SAM_NUM; }
@@ -208,7 +208,7 @@ struct XCS
     double get_rls_scale_factor() { return xcs.RLS_SCALE_FACTOR; }
     double get_rls_lambda() { return xcs.RLS_LAMBDA; }
     double get_theta_sub() { return xcs.THETA_SUB; }
-    _Bool get_ga_subsumption() { return xcs.GA_SUBSUMPTION; }
+    _Bool get_ea_subsumption() { return xcs.EA_SUBSUMPTION; }
     _Bool get_set_subsumption() { return xcs.SET_SUBSUMPTION; }
     int get_pop_size() { return xcs.pset.size; }
     int get_pop_num() { return xcs.pset.num; }
@@ -253,7 +253,7 @@ struct XCS
     void set_p_crossover(double a) { xcs.P_CROSSOVER = a; }
     void set_p_mutation(double a) { xcs.P_MUTATION = a; }
     void set_p_func_mutation(double a) { xcs.P_FUNC_MUTATION = a; }
-    void set_theta_ga(double a) { xcs.THETA_GA = a; }
+    void set_theta_ea(double a) { xcs.THETA_EA = a; }
     void set_theta_offspring(int a) { xcs.THETA_OFFSPRING = a; }
     void set_sam_min(double a) { xcs.SAM_MIN = a; }
     void set_sam_num(int a) { xcs.SAM_NUM = a; }
@@ -276,7 +276,7 @@ struct XCS
     void set_rls_scale_factor(double a) { xcs.RLS_SCALE_FACTOR = a; }
     void set_rls_lambda(double a) { xcs.RLS_LAMBDA = a; }
     void set_theta_sub(double a) { xcs.THETA_SUB = a; }
-    void set_ga_subsumption(_Bool a) { xcs.GA_SUBSUMPTION = a; }
+    void set_ea_subsumption(_Bool a) { xcs.EA_SUBSUMPTION = a; }
     void set_set_subsumption(_Bool a) { xcs.SET_SUBSUMPTION = a; }
 };
 
@@ -321,7 +321,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("P_CROSSOVER", &XCS::get_p_crossover, &XCS::set_p_crossover)
         .add_property("P_MUTATION", &XCS::get_p_mutation, &XCS::set_p_mutation)
         .add_property("P_FUNC_MUTATION", &XCS::get_p_func_mutation, &XCS::set_p_func_mutation)
-        .add_property("THETA_GA", &XCS::get_theta_ga, &XCS::set_theta_ga)
+        .add_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea)
         .add_property("THETA_OFFSPRING", &XCS::get_theta_offspring, &XCS::set_theta_offspring)
         .add_property("SAM_MIN", &XCS::get_sam_min, &XCS::set_sam_min)
         .add_property("SAM_NUM", &XCS::get_sam_num, &XCS::set_sam_num)
@@ -344,7 +344,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("RLS_SCALE_FACTOR", &XCS::get_rls_scale_factor, &XCS::set_rls_scale_factor)
         .add_property("RLS_LAMBDA", &XCS::get_rls_lambda, &XCS::set_rls_lambda)
         .add_property("THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub)
-        .add_property("GA_SUBSUMPTION", &XCS::get_ga_subsumption, &XCS::set_ga_subsumption)
+        .add_property("EA_SUBSUMPTION", &XCS::get_ea_subsumption, &XCS::set_ea_subsumption)
         .add_property("SET_SUBSUMPTION", &XCS::get_set_subsumption, &XCS::set_set_subsumption)
         .def("pop_size", &XCS::get_pop_size)
         .def("pop_num", &XCS::get_pop_num)

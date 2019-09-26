@@ -30,7 +30,7 @@ typedef struct CL {
     int num; // numerosity
     int exp; // experience
     double size; // average participated set size
-    int time; // time GA last executed in a participating set
+    int time; // time EA last executed in a participating set
     _Bool m; // whether the classifier matches current input
     double *prediction; // current classifier prediction
     double *action; // current classifier action
@@ -87,8 +87,8 @@ typedef struct XCSF {
     double P_MUTATION; // probability of mutation occuring per allele
     double P_FUNC_MUTATION; // probability of performing mutating a graph/net function
     double S_MUTATION; // maximum amount to mutate an allele
-    double THETA_GA; // average match set time between GA invocations
-    int THETA_OFFSPRING; // number of offspring to create each GA invocation
+    double THETA_EA; // average match set time between EA invocations
+    int THETA_OFFSPRING; // number of offspring to create each EA invocation
 
     // self-adaptive mutation parameters
     int SAM_TYPE; // 0 = log normal, 1 = ten normally distributed rates
@@ -117,7 +117,7 @@ typedef struct XCSF {
     double RLS_LAMBDA; // forget rate for RLS: small values may be unstable
 
     // subsumption parameters
-    _Bool GA_SUBSUMPTION; // whether to try and subsume offspring classifiers
+    _Bool EA_SUBSUMPTION; // whether to try and subsume offspring classifiers
     _Bool SET_SUBSUMPTION; // whether to perform match set subsumption
     double THETA_SUB; // minimum experience of a classifier to become a subsumer
 

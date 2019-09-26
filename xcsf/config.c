@@ -87,7 +87,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->S_MUTATION = atof(getvalue("S_MUTATION"));
     xcsf->SAM_MIN = atof(getvalue("SAM_MIN"));
     xcsf->THETA_DEL = atof(getvalue("THETA_DEL"));
-    xcsf->THETA_GA = atof(getvalue("THETA_GA"));
+    xcsf->THETA_EA = atof(getvalue("THETA_EA"));
     xcsf->THETA_SUB = atof(getvalue("THETA_SUB"));
     xcsf->ETA = atof(getvalue("ETA"));
     xcsf->X0 = atof(getvalue("X0"));
@@ -96,9 +96,9 @@ void constants_init(XCSF *xcsf, const char *filename)
     if(strcmp(getvalue("POP_INIT"), "true") == 0) {
         xcsf->POP_INIT = true;
     }
-    xcsf->GA_SUBSUMPTION = false;
-    if(strcmp(getvalue("GA_SUBSUMPTION"), "true") == 0) {
-        xcsf->GA_SUBSUMPTION = true;
+    xcsf->EA_SUBSUMPTION = false;
+    if(strcmp(getvalue("EA_SUBSUMPTION"), "true") == 0) {
+        xcsf->EA_SUBSUMPTION = true;
     }
     xcsf->SET_SUBSUMPTION = false;
     if(strcmp(getvalue("SET_SUBSUMPTION"), "true") == 0) {

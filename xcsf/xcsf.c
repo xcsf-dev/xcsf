@@ -27,7 +27,7 @@
 #include "perf.h"
 #include "cl.h"
 #include "cl_set.h"
-#include "ga.h"
+#include "ea.h"
 
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
@@ -111,7 +111,7 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
     set_match(xcsf, &mset, &kset, x);
     set_pred(xcsf, &mset, x, pred);
     set_update(xcsf, &mset, &kset, x, y);
-    ga(xcsf, &mset, &kset);
+    ea(xcsf, &mset, &kset);
     xcsf->time += 1;
     xcsf->msetsize += (mset.size - xcsf->msetsize)*xcsf->BETA;
     set_kill(xcsf, &kset); // kills deleted classifiers
@@ -220,7 +220,7 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->P_MUTATION, sizeof(double), 1, fp);
     s += fwrite(&xcsf->P_FUNC_MUTATION, sizeof(double), 1, fp);
     s += fwrite(&xcsf->S_MUTATION, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->THETA_GA, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->THETA_EA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->THETA_OFFSPRING, sizeof(int), 1, fp);
     s += fwrite(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->SAM_NUM, sizeof(int), 1, fp);
@@ -239,7 +239,7 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->X0, sizeof(double), 1, fp);
     s += fwrite(&xcsf->RLS_SCALE_FACTOR, sizeof(double), 1, fp);
     s += fwrite(&xcsf->RLS_LAMBDA, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->GA_SUBSUMPTION, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->THETA_SUB, sizeof(double), 1, fp);
     s += fwrite(&xcsf->stage, sizeof(int), 1, fp);
@@ -285,7 +285,7 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->P_MUTATION, sizeof(double), 1, fp);
     s += fread(&xcsf->P_FUNC_MUTATION, sizeof(double), 1, fp);
     s += fread(&xcsf->S_MUTATION, sizeof(double), 1, fp);
-    s += fread(&xcsf->THETA_GA, sizeof(double), 1, fp);
+    s += fread(&xcsf->THETA_EA, sizeof(double), 1, fp);
     s += fread(&xcsf->THETA_OFFSPRING, sizeof(int), 1, fp);
     s += fread(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->SAM_NUM, sizeof(int), 1, fp);
@@ -304,7 +304,7 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->X0, sizeof(double), 1, fp);
     s += fread(&xcsf->RLS_SCALE_FACTOR, sizeof(double), 1, fp);
     s += fread(&xcsf->RLS_LAMBDA, sizeof(double), 1, fp);
-    s += fread(&xcsf->GA_SUBSUMPTION, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->THETA_SUB, sizeof(double), 1, fp);
     s += fread(&xcsf->stage, sizeof(int), 1, fp);
