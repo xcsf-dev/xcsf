@@ -139,3 +139,15 @@ typedef struct INPUT {
     int y_cols;
     int rows;
 } INPUT;
+                  
+double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle);
+double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle);
+double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
+double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
+size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
+size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
+void xcsf_load(XCSF *xcsf, char *fname);
+void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows);
+void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool print_cond, _Bool print_pred);
+void xcsf_print_pop(XCSF *xcsf, _Bool print_cond, _Bool print_pred);
+void xcsf_save(XCSF *xcsf, char *fname);

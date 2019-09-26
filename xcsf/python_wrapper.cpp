@@ -37,14 +37,6 @@ extern "C" {
 #endif
 }
 
-extern "C" double xcsf_fit1(XCSF *, INPUT *, _Bool);
-extern "C" double xcsf_fit2(XCSF *, INPUT *, INPUT *, _Bool);
-extern "C" void xcsf_predict(XCSF *, double *, double *, int);
-extern "C" void xcsf_print_pop(XCSF *, _Bool, _Bool);
-extern "C" void xcsf_print_match_set(XCSF *, double *, _Bool, _Bool);
-extern "C" void xcsf_save(XCSF *, char *);
-extern "C" void xcsf_load(XCSF *, char *);
-
 /* XCSF class */
 struct XCS
 {        
