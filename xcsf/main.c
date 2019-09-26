@@ -225,16 +225,11 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool print_cond, _Bool pri
 
 void xcsf_save(XCSF *xcsf, char *fname)
 {
-    // TODO:
-    printf("Saving XCSF state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     FILE *fout = fopen(fname, "wb");
     if(fout == 0) {
         printf("Error opening save file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
-
     size_t s = 0;
     s += fwrite(&xcsf->time, sizeof(int), 1, fout);
     s += fwrite(&xcsf->msetsize, sizeof(double), 1, fout);
@@ -295,25 +290,18 @@ void xcsf_save(XCSF *xcsf, char *fname)
     s += fwrite(&xcsf->GP_NUM_CONS, sizeof(int), 1, fout);
     s += fwrite(&xcsf->GP_INIT_DEPTH, sizeof(int), 1, fout);
     s += fwrite(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fout);
-
-    // pset
-
-    printf("saved %lu elements\n", (unsigned long)s);
+    s += pop_save(xcsf, fout);
+    printf("xcsf saved %lu elements\n", (unsigned long)s);
     fclose(fout);
 }
 
 void xcsf_load(XCSF *xcsf, char *fname)
 {
-    // TODO:
-    printf("Loading XCSF state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     FILE *fout = fopen(fname, "rb");
     if(fout == 0) {
         printf("Error opening load file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
-
     size_t s = 0;
     s += fread(&xcsf->time, sizeof(int), 1, fout);
     s += fread(&xcsf->msetsize, sizeof(double), 1, fout);
@@ -377,9 +365,7 @@ void xcsf_load(XCSF *xcsf, char *fname)
     xcsf->gp_cons = malloc(sizeof(double)*xcsf->GP_NUM_CONS);
     s += fread(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fout);
     loss_set_func(xcsf);
-
-    // pset
-
-    printf("loaded %lu elements\n", (unsigned long)s);
+    s += pop_load(xcsf, fout);
+    printf("xcsf loaded %lu elements\n", (unsigned long)s);
     fclose(fout);
 }

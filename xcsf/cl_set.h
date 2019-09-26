@@ -34,3 +34,5 @@ void set_validate(XCSF *xcsf, SET *set);
 double set_avg_mut(XCSF *xcsf, SET *set, int m);
 double set_avg_cond_size(XCSF *xcsf, SET *set);
 double set_avg_pred_size(XCSF *xcsf, SET *set);
+size_t pop_save(XCSF *xcsf, FILE *fout);
+size_t pop_load(XCSF *xcsf, FILE *fout);

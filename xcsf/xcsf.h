@@ -29,8 +29,8 @@ typedef struct CL {
     double fit; // fitness
     int num; // numerosity
     int exp; // experience
-    double size; // average set size
-    int time; // time of creation
+    double size; // average participated set size
+    int time; // time GA last executed in a participating set
     _Bool m; // whether the classifier matches current input
     double *prediction; // current classifier prediction
     double *action; // current classifier action

@@ -35,3 +35,5 @@ void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num);
 void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc);
 int cl_cond_size(XCSF *xcsf, CL *c);
 int cl_pred_size(XCSF *xcsf, CL *c);
+size_t cl_save(XCSF *xcsf, CL *c, FILE *fout);
+size_t cl_load(XCSF *xcsf, CL *c, FILE *fout);
