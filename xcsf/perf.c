@@ -27,13 +27,6 @@
 #include "cl_set.h"
 #include "perf.h"
 
-#ifdef GNUPLOT
-FILE *gp; // file containing gnuplot script
-FILE *fout; // file containing performance data
-char fname[50]; // file name for performance data
-void gplot_draw(XCSF *xcsf, _Bool test_error);
-#endif
-
 void disp_perf1(XCSF *xcsf, double error, int trial)
 {
     printf("%d %.5f %d", trial, error, xcsf->pset.size);
@@ -42,16 +35,8 @@ void disp_perf1(XCSF *xcsf, double error, int trial)
     }
     printf("\n");    
     fflush(stdout);
-
 #ifdef GNUPLOT
-    fprintf(fout, "%d %.5f %d", trial, error, xcsf->pset.size);
-    for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        fprintf(fout, " %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
-    }
-    fprintf(fout, "\n");
-    fflush(fout);
-
-    gplot_draw(xcsf, false);
+    gplot_perf1(xcsf, error, trial);
 #endif
 }          
 
@@ -63,22 +48,54 @@ void disp_perf2(XCSF *xcsf, double error, double terror, int trial)
     }
     printf("\n");    
     fflush(stdout);
-
 #ifdef GNUPLOT
+    gplot_perf2(xcsf, error, trial);
+#endif
+}          
+ 
+#ifndef GNUPLOT
+
+void gplot_init(XCSF *xcsf)
+{
+    (void)xcsf;
+}
+
+void gplot_free(XCSF *xcsf)
+{
+    (void)xcsf;
+}
+
+#else
+
+FILE *gp; // file containing gnuplot script
+FILE *fout; // file containing performance data
+char fname[50]; // file name for performance data
+void gplot_draw(XCSF *xcsf, _Bool test_error);
+ 
+void gplot_perf1(XCSF *xcsf, double error, int trial)
+{
+    fprintf(fout, "%d %.5f %d", trial, error, xcsf->pset.size);
+    for(int i = 0; i < xcsf->SAM_NUM; i++) {
+        fprintf(fout, " %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
+    }
+    fprintf(fout, "\n");
+    fflush(fout);
+    gplot_draw(xcsf, false); 
+}
+ 
+void gplot_perf2(XCSF *xcsf, double error, double terror, int trial)
+{
     fprintf(fout, "%d %.5f %.5f %d", trial, error, terror, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         fprintf(fout, " %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
     }
     fprintf(fout, "\n");
     fflush(fout);
-
-    gplot_draw(xcsf, true);
-#endif
-}          
+    gplot_draw(xcsf, true); 
+}
 
 void gplot_init(XCSF *xcsf)
 { 	
-#ifdef GNUPLOT
     // file name for writing performance uses the current date-time
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
@@ -171,16 +188,11 @@ void gplot_init(XCSF *xcsf)
     else {
         printf("error starting gnuplot\n");
     }
-
-#else
-    (void)xcsf;
-#endif
 }
 
 void gplot_free(XCSF *xcsf)
 {
     (void)xcsf;
-#ifdef GNUPLOT
     // close gnuplot
     if(gp != NULL) {
         pclose(gp);
@@ -190,10 +202,8 @@ void gplot_free(XCSF *xcsf)
     }
     // close data file
     fclose(fout);
-#endif
 }
 
-#ifdef GNUPLOT
 void gplot_draw(XCSF *xcsf, _Bool test_error)
 {
     if(gp != NULL) {
@@ -209,4 +219,4 @@ void gplot_draw(XCSF *xcsf, _Bool test_error)
     }
     (void)xcsf;
 }
-#endif    
+#endif
