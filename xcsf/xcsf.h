@@ -58,7 +58,7 @@ typedef struct XCSF {
     // experiment parameters
     int OMP_NUM_THREADS; // number of threads for parallel processing
     _Bool POP_INIT; // population initially empty or filled with random conditions
-    double THETA_MNA; // minimum number of classifiers in a match set
+    int THETA_MNA; // minimum number of classifiers in a match set
     int MAX_TRIALS; // number of problem instances to run in one experiment
     int PERF_AVG_TRIALS; // number of problem instances to average performance output
     int POP_SIZE; // maximum number of macro-classifiers in the population
