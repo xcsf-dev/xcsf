@@ -56,7 +56,7 @@ LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, int opt
     l->active = calloc(l->num_outputs, sizeof(_Bool));
     l->options = opt;
     if(l->options > 0) {
-        l->num_active = 1;
+        l->num_active = 1;// + irand_uniform(0,l->num_outputs);
     }
     else {
         l->num_active = l->num_outputs;
