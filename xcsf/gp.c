@@ -138,7 +138,7 @@ double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x)
                    }
     }
     printf("eval() shouldn't be here\n");
-    return(0);
+    return 0;
 }
 
 int tree_print(XCSF *xcsf, GP_TREE *gp, int p) 
@@ -184,7 +184,7 @@ int tree_print(XCSF *xcsf, GP_TREE *gp, int p)
     }
     a2 = tree_print(xcsf, gp, a1); 
     printf(")"); 
-    return(a2);
+    return a2;
 }
 
 void tree_copy(XCSF *xcsf, GP_TREE *to, GP_TREE *from)
@@ -264,7 +264,7 @@ int tree_traverse(int *tree, int p)
             return(tree_traverse(tree, tree_traverse(tree, ++p)));
     }
     printf("traverse() shouldn't be here\n");
-    return(0);
+    return 0;
 }
 
 size_t tree_save(XCSF *xcsf, GP_TREE *gp, FILE *fp)
@@ -276,7 +276,7 @@ size_t tree_save(XCSF *xcsf, GP_TREE *gp, FILE *fp)
     s += fwrite(gp->tree, sizeof(int), gp->len, fp);
     return s;
 }
- 
+
 size_t tree_load(XCSF *xcsf, GP_TREE *gp, FILE *fp)
 {
     (void)xcsf;
