@@ -104,8 +104,8 @@ int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
                 return(tree_grow(xcsf, buffer, one_child, max, depth-1));
         }
     }
-    printf("grow() shouldn't be here\n");
-    return(0);
+    printf("tree_grow() shouldn't be here\n");
+    exit(EXIT_FAILURE);
 }
 
 double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x)
@@ -129,7 +129,7 @@ double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x)
         case DIV : { 
                        double num = tree_eval(xcsf,gp,x); 
                        double den = tree_eval(xcsf,gp,x);
-                       if(den == 0.0) {
+                       if(den == 0) {
                            return(num);
                        }
                        else {
@@ -138,7 +138,7 @@ double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x)
                    }
     }
     printf("eval() shouldn't be here\n");
-    return(0.0);
+    return(0);
 }
 
 int tree_print(XCSF *xcsf, GP_TREE *gp, int p) 
