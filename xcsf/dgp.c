@@ -31,22 +31,22 @@ void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
 {
     dgp->t = 0;
     dgp->n = n;
-    dgp->state = malloc(sizeof(double)*dgp->n);
-    dgp->initial_state = malloc(sizeof(double)*dgp->n);
-    dgp->activate = malloc(sizeof(activate_ptr)*dgp->n);
-    dgp->connectivity = malloc(sizeof(int)*dgp->n*xcsf->MAX_K);
-    dgp->weights = malloc(sizeof(double)*dgp->n*xcsf->MAX_K);
+    dgp->state = malloc(sizeof(double) * dgp->n);
+    dgp->initial_state = malloc(sizeof(double) * dgp->n);
+    dgp->function = malloc(sizeof(int) * dgp->n);
+    dgp->connectivity = malloc(sizeof(int) * dgp->n * xcsf->MAX_K);
+    dgp->weights = malloc(sizeof(double) * dgp->n * xcsf->MAX_K);
 }
 
 void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from)
 { 	
     to->t = from->t;
     to->n = from->n;
-    memcpy(to->state, from->state, sizeof(double)*from->n);
-    memcpy(to->initial_state, from->initial_state, sizeof(double)*from->n);
-    memcpy(to->activate, from->activate, sizeof(activate_ptr)*from->n);
-    memcpy(to->connectivity, from->connectivity, sizeof(int)*from->n*xcsf->MAX_K);
-    memcpy(to->weights, from->weights, sizeof(double)*from->n*xcsf->MAX_K);
+    memcpy(to->state, from->state, sizeof(double) * from->n);
+    memcpy(to->initial_state, from->initial_state, sizeof(double) * from->n);
+    memcpy(to->function, from->function, sizeof(int) * from->n);
+    memcpy(to->connectivity, from->connectivity, sizeof(int) * from->n * xcsf->MAX_K);
+    memcpy(to->weights, from->weights, sizeof(double) * from->n * xcsf->MAX_K);
 }
 
 double graph_output(XCSF *xcsf, GRAPH *dgp, int i)
@@ -67,7 +67,7 @@ void graph_rand(XCSF *xcsf, GRAPH *dgp)
 {
     dgp->t = irand_uniform(1,xcsf->MAX_T);
     for(int i = 0; i < dgp->n; i++) {
-        activation_set(&dgp->activate[i], irand_uniform(0, NUM_ACTIVATIONS));
+        dgp->function[i] = irand_uniform(0, NUM_ACTIVATIONS);
         dgp->initial_state[i] = rand_normal(0,0.1);
         dgp->state[i] = rand_normal(0,0.1);
     }
@@ -95,7 +95,7 @@ void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs)
         for(int i = dgp->n-1; i >= 0; i--) {
             // each connection
             for(int k = 0; k < xcsf->MAX_K; k++) {
-                int idx = (i*xcsf->MAX_K)+k;
+                int idx = (i * xcsf->MAX_K) + k;
                 int c = dgp->connectivity[idx];
                 // another node within the graph
                 if(c >= 0) {
@@ -106,7 +106,7 @@ void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs)
                     dgp->state[i] += dgp->weights[idx] * inputs[abs(c)-1];
                 }
             }
-            dgp->state[i] = dgp->activate[i](dgp->state[i]);
+            dgp->state[i] = neural_activate(dgp->function[i], dgp->state[i]);
         }
     }
 }
@@ -115,11 +115,12 @@ void graph_print(XCSF *xcsf, GRAPH *dgp)
 {
     printf("Graph: N=%d; T=%d\n", dgp->n, dgp->t);
     for(int i = 0; i < dgp->n; i++) {
-        printf("Node %d: state=%f init_state=%f con=[", 
-                i, dgp->state[i], dgp->initial_state[i]);
+        printf("Node %d: func=%s state=%f init_state=%f con=[", 
+                i, activation_string(dgp->function[i]),
+                dgp->state[i], dgp->initial_state[i]);
         printf("%d", dgp->connectivity[0]);
         for(int j = 1; j < xcsf->MAX_K; j++) {
-            printf(", %d", dgp->connectivity[i]);
+            printf(",%d", dgp->connectivity[i]);
         }
         printf("]\n");
     }
@@ -132,7 +133,7 @@ void graph_free(XCSF *xcsf, GRAPH *dgp)
     free(dgp->connectivity);
     free(dgp->state);
     free(dgp->initial_state);
-    free(dgp->activate);
+    free(dgp->function);
 }
 
 _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
@@ -140,7 +141,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
     for(int i = 0; i < dgp->n; i++) {
         // mutate function
         if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
-            activation_set(&dgp->activate[i], irand_uniform(0, NUM_ACTIVATIONS));
+            dgp->function[i] = irand_uniform(0, NUM_ACTIVATIONS);
         }
         // mutate initial state
         dgp->initial_state[i] += rand_normal(0, xcsf->S_MUTATION);
@@ -191,9 +192,9 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 
     for(int i = 0; i < dgp1->n; i++) {
         if(rand_uniform(0,1) < 0.5) {
-            activate_ptr tmp = dgp1->activate[i];
-            dgp1->activate[i] = dgp2->activate[i];
-            dgp2->activate[i] = tmp;
+            int tmp = dgp1->function[i];
+            dgp1->function[i] = dgp2->function[i];
+            dgp2->function[i] = tmp;
         }
         if(rand_uniform(0,1) < 0.5) {
             double tmp = dgp1->initial_state[i];
@@ -228,24 +229,31 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 
 size_t graph_save(XCSF *xcsf, GRAPH *dgp, FILE *fp)
 {
-    printf("Saving dgp state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
-    (void)xcsf;
     size_t s = 0;
-    // TODO
-    (void)dgp; (void)fp;
+    s += fwrite(&dgp->n, sizeof(int), 1, fp);
+    s += fwrite(&dgp->t, sizeof(int), 1, fp);
+    s += fwrite(dgp->state, sizeof(double), dgp->n, fp);
+    s += fwrite(dgp->initial_state, sizeof(double), dgp->n, fp);
+    s += fwrite(dgp->function, sizeof(int), dgp->n, fp);
+    s += fwrite(dgp->connectivity, sizeof(int), dgp->n * xcsf->MAX_K, fp);
+    s += fwrite(dgp->weights, sizeof(double), dgp->n * xcsf->MAX_K, fp);
     return s;
 }
 
 size_t graph_load(XCSF *xcsf, GRAPH *dgp, FILE *fp)
 {
-    printf("Loading dgp state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
-    (void)xcsf;
     size_t s = 0;
-    // TODO
-    (void)dgp; (void)fp;
+    s += fread(&dgp->n, sizeof(int), 1, fp);
+    s += fread(&dgp->t, sizeof(int), 1, fp);
+    dgp->state = malloc(sizeof(double) * dgp->n);
+    dgp->initial_state = malloc(sizeof(double) * dgp->n);
+    dgp->function = malloc(sizeof(int) * dgp->n);
+    dgp->connectivity = malloc(sizeof(int) * dgp->n * xcsf->MAX_K);
+    dgp->weights = malloc(sizeof(double) * dgp->n * xcsf->MAX_K);
+    s += fread(dgp->state, sizeof(double), dgp->n, fp);
+    s += fread(dgp->initial_state, sizeof(double), dgp->n, fp);
+    s += fread(dgp->function, sizeof(int), dgp->n, fp);
+    s += fread(dgp->connectivity, sizeof(int), dgp->n * xcsf->MAX_K, fp);
+    s += fread(dgp->weights, sizeof(double), dgp->n * xcsf->MAX_K, fp);
     return s;
 }

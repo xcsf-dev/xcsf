@@ -18,7 +18,26 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "neural_activations.h"
-
+ 
+double neural_activate(int func, double state)
+{
+    switch(func) {
+        case LOGISTIC: return logistic_activate(state);
+        case RELU: return relu_activate(state);
+        case GAUSSIAN: return gaussian_activate(state);
+        case TANH: return tanh_activate(state);
+        case SIN: return sin_activate(state);
+        case COS: return cos_activate(state);
+        case SOFT_PLUS: return soft_plus_activate(state);
+        case IDENTITY: return identity_activate(state);
+        case LEAKY: return leaky_activate(state);
+        case SELU: return selu_activate(state);
+        default:
+            printf("neural_activate(): invalid activation function: %d\n", func);
+            exit(EXIT_FAILURE);
+    }
+}
+ 
 void activation_set(activate_ptr *activate, int func)
 {
     switch(func) {

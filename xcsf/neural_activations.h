@@ -32,6 +32,7 @@
 typedef double (*activate_ptr)(double);
 typedef double (*gradient_ptr)(double);
 
+double neural_activate(int func, double state);
 void activation_set(activate_ptr *activate, int func);
 void gradient_set(gradient_ptr *gradient, int func);
 char *activation_string(int func);
