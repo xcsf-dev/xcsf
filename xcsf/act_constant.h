@@ -25,8 +25,8 @@ void act_constant_init(XCSF *xcsf, CL *c);
 void act_constant_print(XCSF *xcsf, CL *c);
 void act_constant_rand(XCSF *xcsf, CL *c);
 void act_constant_update(XCSF *xcsf, CL *c, double *x, double *y);
-void act_constant_save(XCSF *xcsf, CL *c, FILE *fp);
-void act_constant_load(XCSF *xcsf, CL *c, FILE *fp);
+size_t act_constant_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t act_constant_load(XCSF *xcsf, CL *c, FILE *fp);
 
 static struct ActVtbl const act_constant_vtbl = {
     &act_constant_general,

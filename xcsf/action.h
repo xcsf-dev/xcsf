@@ -28,16 +28,16 @@ struct ActVtbl {
 	void (*act_impl_rand)(XCSF *xcsf, CL *c);
 	void (*act_impl_print)(XCSF *xcsf, CL *c);
 	void (*act_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
-	void (*act_impl_save)(XCSF *xcsf, CL *c, FILE *fp);
-	void (*act_impl_load)(XCSF *xcsf, CL *c, FILE *fp);
+	size_t (*act_impl_save)(XCSF *xcsf, CL *c, FILE *fp);
+	size_t (*act_impl_load)(XCSF *xcsf, CL *c, FILE *fp);
 };
 
-static inline void act_save(XCSF *xcsf, CL *c, FILE *fp) {
-	(*c->act_vptr->act_impl_save)(xcsf, c, fp);
+static inline size_t act_save(XCSF *xcsf, CL *c, FILE *fp) {
+	return (*c->act_vptr->act_impl_save)(xcsf, c, fp);
 }
  
-static inline void act_load(XCSF *xcsf, CL *c, FILE *fp) {
-	(*c->act_vptr->act_impl_load)(xcsf, c, fp);
+static inline size_t act_load(XCSF *xcsf, CL *c, FILE *fp) {
+	return (*c->act_vptr->act_impl_load)(xcsf, c, fp);
 }
  
 static inline _Bool act_general(XCSF *xcsf, CL *c1, CL *c2) {
