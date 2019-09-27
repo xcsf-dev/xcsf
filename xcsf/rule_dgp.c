@@ -173,8 +173,7 @@ _Bool rule_dgp_pred_mutate(XCSF *xcsf, CL *c)
 
 int rule_dgp_pred_size(XCSF *xcsf, CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void)xcsf; (void)c;
     return 0;
 }
 
