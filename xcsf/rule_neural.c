@@ -223,8 +223,9 @@ size_t rule_neural_cond_save(XCSF *xcsf, CL *c, FILE *fp)
 
 size_t rule_neural_cond_load(XCSF *xcsf, CL *c, FILE *fp)
 {
-    RULE_NEURAL_COND *cond = c->cond;
-    size_t s = neural_load(xcsf, &cond->net, fp);
+    RULE_NEURAL_COND *new = malloc(sizeof(RULE_NEURAL_COND));
+    size_t s = neural_load(xcsf, &new->net, fp);
+    c->cond = new;
     //printf("rule neural cond loaded %lu elements\n", (unsigned long)s);
     return s;
 }
@@ -239,8 +240,9 @@ size_t rule_neural_pred_save(XCSF *xcsf, CL *c, FILE *fp)
 
 size_t rule_neural_pred_load(XCSF *xcsf, CL *c, FILE *fp)
 {
-    RULE_NEURAL_PRED *pred = c->pred;
-    size_t s = neural_load(xcsf, &pred->net, fp);
+    RULE_NEURAL_PRED *new = malloc(sizeof(RULE_NEURAL_PRED));
+    size_t s = neural_load(xcsf, &new->net, fp);
+    c->pred = new;
     //printf("rule neural pred loaded %lu elements\n", (unsigned long)s);
     return s;
 }

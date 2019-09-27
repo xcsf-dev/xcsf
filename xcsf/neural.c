@@ -240,24 +240,32 @@ int neural_size(XCSF *xcsf, NET *net)
 
 size_t neural_save(XCSF *xcsf, NET *net, FILE *fp)
 {
+    (void)xcsf;
     printf("Saving neural state is not currently supported\n");
     exit(EXIT_FAILURE);
 
-    (void)xcsf;
-    size_t s = 0;
     // TODO
-    (void)net; (void)fp;
+    size_t s = 0;
+    s += fwrite(&net->num_layers, sizeof(double), 1, fp);
+    s += fwrite(&net->num_inputs, sizeof(double), 1, fp);
+    s += fwrite(&net->num_outputs, sizeof(double), 1, fp);
+
+    //printf("neural saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
 size_t neural_load(XCSF *xcsf, NET *net, FILE *fp)
 {
+    (void)xcsf;
     printf("Loading neural state is not currently supported\n");
     exit(EXIT_FAILURE);
 
-    (void)xcsf;
-    size_t s = 0;
     // TODO
-    (void)net; (void)fp;
+    size_t s = 0;
+    s += fread(&net->num_layers, sizeof(double), 1, fp);
+    s += fread(&net->num_inputs, sizeof(double), 1, fp);
+    s += fread(&net->num_outputs, sizeof(double), 1, fp);
+
+    //printf("neural loaded %lu elements\n", (unsigned long)s);
     return s;
 }

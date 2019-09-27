@@ -137,8 +137,9 @@ size_t cond_neural_save(XCSF *xcsf, CL *c, FILE *fp)
 
 size_t cond_neural_load(XCSF *xcsf, CL *c, FILE *fp)
 {
-    COND_NEURAL *cond = c->cond;
-    size_t s = neural_load(xcsf, &cond->net, fp);
+    COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
+    size_t s = neural_load(xcsf, &new->net, fp);
+    c->cond = new;
     //printf("cond neural loaded %lu elements\n", (unsigned long)s);
     return s;
 }

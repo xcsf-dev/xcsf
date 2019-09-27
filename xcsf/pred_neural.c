@@ -129,8 +129,9 @@ size_t pred_neural_save(XCSF *xcsf, CL *c, FILE *fp)
 
 size_t pred_neural_load(XCSF *xcsf, CL *c, FILE *fp)
 {
-    PRED_NEURAL *pred = c->pred;
-    size_t s = neural_load(xcsf, &pred->net, fp);
+    PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
+    size_t s = neural_load(xcsf, &new->net, fp);
+    c->pred = new;
     //printf("pred neural loaded %lu elements\n", (unsigned long)s);
     return s;
 }
