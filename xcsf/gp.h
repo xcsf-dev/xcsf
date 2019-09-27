@@ -31,3 +31,5 @@ int tree_print(XCSF *xcsf, GP_TREE *gp, int p);
 double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x);
 void tree_crossover(XCSF *xcsf, GP_TREE *p1, GP_TREE *p2);
 void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate);
+size_t tree_save(XCSF *xcsf, GP_TREE *gp, FILE *fp);
+size_t tree_load(XCSF *xcsf, GP_TREE *gp, FILE *fp);

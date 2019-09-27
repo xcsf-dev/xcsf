@@ -266,3 +266,24 @@ int tree_traverse(int *tree, int p)
     printf("traverse() shouldn't be here\n");
     return(0);
 }
+
+size_t tree_save(XCSF *xcsf, GP_TREE *gp, FILE *fp)
+{
+    (void)xcsf;
+    size_t s = 0;
+    s += fwrite(&gp->p, sizeof(int), 1, fp);
+    s += fwrite(&gp->len, sizeof(int), 1, fp);
+    s += fwrite(gp->tree, sizeof(int), gp->len, fp);
+    return s;
+}
+ 
+size_t tree_load(XCSF *xcsf, GP_TREE *gp, FILE *fp)
+{
+    (void)xcsf;
+    size_t s = 0;
+    s += fread(&gp->p, sizeof(int), 1, fp);
+    s += fread(&gp->len, sizeof(int), 1, fp);
+    gp->tree = malloc(sizeof(int)*gp->len);
+    s += fread(gp->tree, sizeof(int), gp->len, fp);
+    return s;
+}
