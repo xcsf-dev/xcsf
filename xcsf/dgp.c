@@ -237,6 +237,7 @@ size_t graph_save(XCSF *xcsf, GRAPH *dgp, FILE *fp)
     s += fwrite(dgp->function, sizeof(int), dgp->n, fp);
     s += fwrite(dgp->connectivity, sizeof(int), dgp->n * xcsf->MAX_K, fp);
     s += fwrite(dgp->weights, sizeof(double), dgp->n * xcsf->MAX_K, fp);
+    //printf("graph saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -255,5 +256,6 @@ size_t graph_load(XCSF *xcsf, GRAPH *dgp, FILE *fp)
     s += fread(dgp->function, sizeof(int), dgp->n, fp);
     s += fread(dgp->connectivity, sizeof(int), dgp->n * xcsf->MAX_K, fp);
     s += fread(dgp->weights, sizeof(double), dgp->n * xcsf->MAX_K, fp);
+    //printf("graph loaded %lu elements\n", (unsigned long)s);
     return s;
 }
