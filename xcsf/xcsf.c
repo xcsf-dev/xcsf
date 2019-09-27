@@ -213,9 +213,6 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->COND_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->PRED_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->ACT_TYPE, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->COND_ENSEMBLE, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->PRED_ENSEMBLE, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->ACT_ENSEMBLE, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->P_CROSSOVER, sizeof(double), 1, fp);
     s += fwrite(&xcsf->P_MUTATION, sizeof(double), 1, fp);
     s += fwrite(&xcsf->P_FUNC_MUTATION, sizeof(double), 1, fp);
@@ -278,9 +275,6 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->COND_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->PRED_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->ACT_TYPE, sizeof(int), 1, fp);
-    s += fread(&xcsf->COND_ENSEMBLE, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->PRED_ENSEMBLE, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->ACT_ENSEMBLE, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->P_CROSSOVER, sizeof(double), 1, fp);
     s += fread(&xcsf->P_MUTATION, sizeof(double), 1, fp);
     s += fread(&xcsf->P_FUNC_MUTATION, sizeof(double), 1, fp);
