@@ -63,16 +63,6 @@ void act_constant_copy(XCSF *xcsf, CL *to, CL *from)
     memcpy(to->action, from->action, sizeof(double)*xcsf->num_y_vars);
 }
 
-void act_constant_free(XCSF *xcsf, CL *c)
-{
-    (void)xcsf; (void)c;
-}
-
-void act_constant_init(XCSF *xcsf, CL *c)
-{
-    (void)xcsf; (void)c;
-}
-
 void act_constant_print(XCSF *xcsf, CL *c)
 {
     printf("%.1f", c->action[0]);
@@ -94,8 +84,28 @@ void act_constant_rand(XCSF *xcsf, CL *c)
         }
     }          
 }
+ 
+void act_constant_free(XCSF *xcsf, CL *c)
+{
+    (void)xcsf; (void)c;
+}
 
+void act_constant_init(XCSF *xcsf, CL *c)
+{
+    (void)xcsf; (void)c;
+}
+ 
 void act_constant_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
+}
+
+void act_constant_save(XCSF *xcsf, CL *c, FILE *fp)
+{
+    (void)xcsf; (void)c; (void)fp;
+}
+
+void act_constant_load(XCSF *xcsf, CL *c, FILE *fp)
+{
+    (void)xcsf; (void)c; (void)fp;
 }
