@@ -187,8 +187,9 @@ size_t rule_dgp_cond_save(XCSF *xcsf, CL *c, FILE *fp)
 
 size_t rule_dgp_cond_load(XCSF *xcsf, CL *c, FILE *fp)
 {
-    RULE_DGP *cond = c->cond;
-    size_t s = graph_load(xcsf, &cond->dgp, fp);
+    RULE_DGP *new = malloc(sizeof(RULE_DGP));
+    size_t s = graph_load(xcsf, &new->dgp, fp);
+    c->cond = new;
     //printf("rule dgp loaded %lu elements\n", (unsigned long)s);
     return s;
 }
