@@ -300,14 +300,11 @@ size_t cl_save(XCSF *xcsf, CL *c, FILE *fp)
     s += fwrite(&c->m, sizeof(_Bool), 1, fp);
     s += fwrite(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
     s += fwrite(c->action, sizeof(double), xcsf->num_y_vars, fp);
+    s += act_save(xcsf, c, fp);
 
     // TODO:
-    // cond_vptr
-    // cond
-    // pred_vptr
-    // pred
-    // act_vptr
-    // act
+    // s += cond_save(xcsf, c, fp);
+    // s += pred_save(xcsf, c, fp);
 
     //printf("cl saved %lu elements\n", (unsigned long)s);
     return s;
@@ -332,14 +329,14 @@ size_t cl_load(XCSF *xcsf, CL *c, FILE *fp)
     s += fread(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
     c->action = malloc(xcsf->num_y_vars * sizeof(double));
     s += fread(c->action, sizeof(double), xcsf->num_y_vars, fp);
+    action_set(xcsf, c);
+    prediction_set(xcsf, c);
+    condition_set(xcsf, c);
+    s += act_load(xcsf, c, fp);
 
     // TODO:
-    // cond_vptr
-    // cond
-    // pred_vptr
-    // pred
-    // act_vptr
-    // act
+    // s += cond_load(xcsf, c, fp);
+    // s += pred_load(xcsf, c, fp);
 
     //printf("cl loaded %lu elements\n", (unsigned long)s);
     return s;
