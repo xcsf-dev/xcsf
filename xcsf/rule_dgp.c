@@ -177,3 +177,50 @@ int rule_dgp_pred_size(XCSF *xcsf, CL *c)
     (void)c;
     return 0;
 }
+
+size_t rule_dgp_cond_save(XCSF *xcsf, CL *c, FILE *fp)
+{
+    printf("Saving rule dgp cond state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    RULE_DGP *cond = c->cond;
+    size_t s = 0;
+    // TODO
+    (void)cond; (void)xcsf; (void)fp;
+    return s;
+}
+
+size_t rule_dgp_cond_load(XCSF *xcsf, CL *c, FILE *fp)
+{
+    printf("Loading rule dgp cond state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    RULE_DGP *cond = c->cond;
+    size_t s = 0;
+    // TODO
+    (void)cond; (void)xcsf; (void)fp;
+    return s;
+}
+size_t rule_dgp_pred_save(XCSF *xcsf, CL *c, FILE *fp)
+{
+    printf("Saving rule dgp pred state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    RULE_DGP *cond = c->cond;
+    size_t s = 0;
+    // TODO
+    (void)cond; (void)xcsf; (void)fp;
+    return s;
+}
+
+size_t rule_dgp_pred_load(XCSF *xcsf, CL *c, FILE *fp)
+{
+    printf("Loading rule dgp pred state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    RULE_DGP *cond = c->cond;
+    size_t s = 0;
+    // TODO
+    (void)cond; (void)xcsf; (void)fp;
+    return s;
+}

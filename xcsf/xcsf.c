@@ -184,8 +184,8 @@ void xcsf_load(XCSF *xcsf, char *fname)
     size_t s = 0;
     s += xcsf_load_params(xcsf, fp);
     s += pop_load(xcsf, fp);
-    printf("xcsf loaded %lu elements\n", (unsigned long)s);
     fclose(fp);
+    printf("xcsf loaded %lu elements\n", (unsigned long)s);
 }
 
 size_t xcsf_save_params(XCSF *xcsf, FILE *fp)

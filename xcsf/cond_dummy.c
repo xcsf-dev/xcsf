@@ -87,3 +87,15 @@ int cond_dummy_size(XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
     return 0;
 }
+
+size_t cond_dummy_save(XCSF *xcsf, CL *c, FILE *fp)
+{
+    (void)xcsf; (void)c; (void)fp;
+    return 0;
+}
+
+size_t cond_dummy_load(XCSF *xcsf, CL *c, FILE *fp)
+{
+    (void)xcsf; (void)c; (void)fp;
+    return 0;
+}

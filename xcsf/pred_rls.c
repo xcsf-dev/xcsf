@@ -261,3 +261,27 @@ int pred_rls_size(XCSF *xcsf, CL *c)
     PRED_RLS *pred = c->pred;
     return pred->weights_length;
 }
+
+size_t pred_rls_save(XCSF *xcsf, CL *c, FILE *fp)
+{
+    printf("Saving RLS state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    PRED_RLS *pred = c->pred;
+    size_t s = 0;
+    // TODO
+    (void)pred; (void)xcsf; (void)fp;
+    return s;
+}
+
+size_t pred_rls_load(XCSF *xcsf, CL *c, FILE *fp)
+{
+    printf("Loading RLS state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    PRED_RLS *pred = c->pred;
+    size_t s = 0;
+    // TODO
+    (void)pred; (void)xcsf; (void)fp;
+    return s;
+}

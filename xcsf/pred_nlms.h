@@ -24,6 +24,8 @@ void pred_nlms_init(XCSF *xcsf, CL *c);
 void pred_nlms_print(XCSF *xcsf, CL *c);
 void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y);
 int pred_nlms_size(XCSF *xcsf, CL *c);
+size_t pred_nlms_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t pred_nlms_load(XCSF *xcsf, CL *c, FILE *fp);
 
 static struct PredVtbl const pred_nlms_vtbl = {
     &pred_nlms_crossover,
@@ -34,5 +36,7 @@ static struct PredVtbl const pred_nlms_vtbl = {
     &pred_nlms_init,
     &pred_nlms_print,
     &pred_nlms_update,
-    &pred_nlms_size
+    &pred_nlms_size,
+    &pred_nlms_save,
+    &pred_nlms_load
 };

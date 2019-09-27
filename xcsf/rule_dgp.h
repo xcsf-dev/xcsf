@@ -26,6 +26,8 @@ void rule_dgp_cond_init(XCSF *xcsf, CL *c);
 void rule_dgp_cond_print(XCSF *xcsf, CL *c);
 void rule_dgp_cond_update(XCSF *xcsf, CL *c, double *x, double *y);
 int rule_dgp_cond_size(XCSF *xcsf, CL *c);
+size_t rule_dgp_cond_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t rule_dgp_cond_load(XCSF *xcsf, CL *c, FILE *fp);
 
 static struct CondVtbl const rule_dgp_cond_vtbl = {
     &rule_dgp_cond_crossover,
@@ -38,7 +40,9 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
     &rule_dgp_cond_init,
     &rule_dgp_cond_print,
     &rule_dgp_cond_update,
-    &rule_dgp_cond_size
+    &rule_dgp_cond_size,
+    &rule_dgp_cond_save,
+    &rule_dgp_cond_load
 };      
 
 double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x);
@@ -50,6 +54,8 @@ void rule_dgp_pred_init(XCSF *xcsf, CL *c);
 void rule_dgp_pred_print(XCSF *xcsf, CL *c);
 void rule_dgp_pred_update(XCSF *xcsf, CL *c, double *x, double *y);
 int rule_dgp_pred_size(XCSF *xcsf, CL *c);
+size_t rule_dgp_pred_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t rule_dgp_pred_load(XCSF *xcsf, CL *c, FILE *fp);
 
 static struct PredVtbl const rule_dgp_pred_vtbl = {
     &rule_dgp_pred_crossover,
@@ -60,5 +66,7 @@ static struct PredVtbl const rule_dgp_pred_vtbl = {
     &rule_dgp_pred_init,
     &rule_dgp_pred_print,
     &rule_dgp_pred_update,
-    &rule_dgp_pred_size
+    &rule_dgp_pred_size,
+    &rule_dgp_pred_save,
+    &rule_dgp_pred_load
 };

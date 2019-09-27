@@ -26,6 +26,8 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c);
 void rule_neural_cond_print(XCSF *xcsf, CL *c);
 void rule_neural_cond_update(XCSF *xcsf, CL *c, double *x, double *y);
 int rule_neural_cond_size(XCSF *xcsf, CL *c);
+size_t rule_neural_cond_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t rule_neural_cond_load(XCSF *xcsf, CL *c, FILE *fp);
 
 static struct CondVtbl const rule_neural_cond_vtbl = {
     &rule_neural_cond_crossover,
@@ -38,7 +40,9 @@ static struct CondVtbl const rule_neural_cond_vtbl = {
     &rule_neural_cond_init,
     &rule_neural_cond_print,
     &rule_neural_cond_update,
-    &rule_neural_cond_size
+    &rule_neural_cond_size,
+    &rule_neural_cond_save,
+    &rule_neural_cond_load
 };      
 
 double *rule_neural_pred_compute(XCSF *xcsf, CL *c, double *x);
@@ -50,6 +54,8 @@ void rule_neural_pred_init(XCSF *xcsf, CL *c);
 void rule_neural_pred_print(XCSF *xcsf, CL *c);
 void rule_neural_pred_update(XCSF *xcsf, CL *c, double *x, double *y);
 int rule_neural_pred_size(XCSF *xcsf, CL *c);
+size_t rule_neural_pred_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t rule_neural_pred_load(XCSF *xcsf, CL *c, FILE *fp);
 
 static struct PredVtbl const rule_neural_pred_vtbl = {
     &rule_neural_pred_crossover,
@@ -60,5 +66,7 @@ static struct PredVtbl const rule_neural_pred_vtbl = {
     &rule_neural_pred_init,
     &rule_neural_pred_print,
     &rule_neural_pred_update,
-    &rule_neural_pred_size
+    &rule_neural_pred_size,
+    &rule_neural_pred_save,
+    &rule_neural_pred_load
 };

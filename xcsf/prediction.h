@@ -18,49 +18,59 @@
 void prediction_set(XCSF *xcsf, CL *c);
 
 struct PredVtbl {
-	_Bool (*pred_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
-	_Bool (*pred_impl_mutate)(XCSF *xcsf, CL *c);
-	double *(*pred_impl_compute)(XCSF *xcsf, CL *c, double *x);
-	void (*pred_impl_copy)(XCSF *xcsf, CL *to,  CL *from);
-	void (*pred_impl_free)(XCSF *xcsf, CL *c);
-	void (*pred_impl_init)(XCSF *xcsf, CL *c);
-	void (*pred_impl_print)(XCSF *xcsf, CL *c);
-	void (*pred_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
-        int (*pred_impl_size)(XCSF *xcsf, CL *c);
+    _Bool (*pred_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
+    _Bool (*pred_impl_mutate)(XCSF *xcsf, CL *c);
+    double *(*pred_impl_compute)(XCSF *xcsf, CL *c, double *x);
+    void (*pred_impl_copy)(XCSF *xcsf, CL *to,  CL *from);
+    void (*pred_impl_free)(XCSF *xcsf, CL *c);
+    void (*pred_impl_init)(XCSF *xcsf, CL *c);
+    void (*pred_impl_print)(XCSF *xcsf, CL *c);
+    void (*pred_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
+    int (*pred_impl_size)(XCSF *xcsf, CL *c);
+    size_t (*pred_impl_save)(XCSF *xcsf, CL *c, FILE *fp);
+    size_t (*pred_impl_load)(XCSF *xcsf, CL *c, FILE *fp);
 };
-  
+
+static inline size_t pred_save(XCSF *xcsf, CL *c, FILE *fp) {
+    return (*c->pred_vptr->pred_impl_save)(xcsf, c, fp);
+}
+
+static inline size_t pred_load(XCSF *xcsf, CL *c, FILE *fp) {
+    return (*c->pred_vptr->pred_impl_load)(xcsf, c, fp);
+}
+
 static inline int pred_size(XCSF *xcsf, CL *c) {
-	return (*c->pred_vptr->pred_impl_size)(xcsf, c);
+    return (*c->pred_vptr->pred_impl_size)(xcsf, c);
 }
- 
+
 static inline _Bool pred_crossover(XCSF *xcsf, CL *c1, CL *c2) {
-	return (*c1->pred_vptr->pred_impl_crossover)(xcsf, c1, c2);
+    return (*c1->pred_vptr->pred_impl_crossover)(xcsf, c1, c2);
 }
- 
+
 static inline _Bool pred_mutate(XCSF *xcsf, CL *c) {
-	return (*c->pred_vptr->pred_impl_mutate)(xcsf, c);
+    return (*c->pred_vptr->pred_impl_mutate)(xcsf, c);
 }
- 
+
 static inline double *pred_compute(XCSF *xcsf, CL *c, double *x) {
-	return (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
+    return (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
 }
 
 static inline void pred_copy(XCSF *xcsf, CL *to, CL *from) {
-	(*from->pred_vptr->pred_impl_copy)(xcsf, to, from);
+    (*from->pred_vptr->pred_impl_copy)(xcsf, to, from);
 }
 
 static inline void pred_free(XCSF *xcsf, CL *c) {
-	(*c->pred_vptr->pred_impl_free)(xcsf, c);
+    (*c->pred_vptr->pred_impl_free)(xcsf, c);
 }
 
 static inline void pred_init(XCSF *xcsf, CL *c) {
-	(*c->pred_vptr->pred_impl_init)(xcsf, c);
+    (*c->pred_vptr->pred_impl_init)(xcsf, c);
 }
 
 static inline void pred_print(XCSF *xcsf, CL *c) {
-	(*c->pred_vptr->pred_impl_print)(xcsf, c);
+    (*c->pred_vptr->pred_impl_print)(xcsf, c);
 }
 
 static inline void pred_update(XCSF *xcsf, CL *c, double *x, double *y) {
-	(*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
+    (*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
 }

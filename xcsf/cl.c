@@ -286,9 +286,6 @@ int cl_pred_size(XCSF *xcsf, CL *c)
 
 size_t cl_save(XCSF *xcsf, CL *c, FILE *fp)
 {
-    printf("Saving XCSF state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     size_t s = 0;
     s += fwrite(c->mu, sizeof(double), xcsf->SAM_NUM, fp);
     s += fwrite(&c->err, sizeof(double), 1, fp);
@@ -301,20 +298,14 @@ size_t cl_save(XCSF *xcsf, CL *c, FILE *fp)
     s += fwrite(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
     s += fwrite(c->action, sizeof(double), xcsf->num_y_vars, fp);
     s += act_save(xcsf, c, fp);
-
-    // TODO:
-    // s += cond_save(xcsf, c, fp);
-    // s += pred_save(xcsf, c, fp);
-
+    s += pred_save(xcsf, c, fp);
+    s += cond_save(xcsf, c, fp);
     //printf("cl saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
 size_t cl_load(XCSF *xcsf, CL *c, FILE *fp)
 {
-    printf("Loading XCSF state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     size_t s = 0;
     c->mu = malloc(xcsf->SAM_NUM * sizeof(double));
     s += fread(c->mu, sizeof(double), xcsf->SAM_NUM, fp);
@@ -333,11 +324,8 @@ size_t cl_load(XCSF *xcsf, CL *c, FILE *fp)
     prediction_set(xcsf, c);
     condition_set(xcsf, c);
     s += act_load(xcsf, c, fp);
-
-    // TODO:
-    // s += cond_load(xcsf, c, fp);
-    // s += pred_load(xcsf, c, fp);
-
+    s += pred_load(xcsf, c, fp);
+    s += cond_load(xcsf, c, fp);
     //printf("cl loaded %lu elements\n", (unsigned long)s);
     return s;
 }

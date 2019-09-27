@@ -29,8 +29,18 @@ struct CondVtbl {
     void (*cond_impl_print)(XCSF *xcsf, CL *c);
     void (*cond_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
     int (*cond_impl_size)(XCSF *xcsf, CL *c);
+    size_t (*cond_impl_save)(XCSF *xcsf, CL *c, FILE *fp);
+    size_t (*cond_impl_load)(XCSF *xcsf, CL *c, FILE *fp);
 };
- 
+
+static inline size_t cond_save(XCSF *xcsf, CL *c, FILE *fp) {
+    return (*c->cond_vptr->cond_impl_save)(xcsf, c, fp);
+}
+
+static inline size_t cond_load(XCSF *xcsf, CL *c, FILE *fp) {
+    return (*c->cond_vptr->cond_impl_load)(xcsf, c, fp);
+}
+
 static inline int cond_size(XCSF *xcsf, CL *c) {
     return (*c->cond_vptr->cond_impl_size)(xcsf, c);
 }

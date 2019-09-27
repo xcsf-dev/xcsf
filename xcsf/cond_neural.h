@@ -26,6 +26,8 @@ void cond_neural_init(XCSF *xcsf, CL *c);
 void cond_neural_print(XCSF *xcsf, CL *c);
 void cond_neural_update(XCSF *xcsf, CL *c, double *x, double *y);
 int cond_neural_size(XCSF *xcsf, CL *c);
+size_t cond_neural_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t cond_neural_load(XCSF *xcsf, CL *c, FILE *fp);
 
 static struct CondVtbl const cond_neural_vtbl = {
     &cond_neural_crossover,
@@ -38,5 +40,7 @@ static struct CondVtbl const cond_neural_vtbl = {
     &cond_neural_init,
     &cond_neural_print,
     &cond_neural_update,
-    &cond_neural_size
+    &cond_neural_size,
+    &cond_neural_save,
+    &cond_neural_load
 };      

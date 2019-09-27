@@ -26,6 +26,8 @@ void cond_dummy_init(XCSF *xcsf, CL *c);
 void cond_dummy_print(XCSF *xcsf, CL *c);
 void cond_dummy_update(XCSF *xcsf, CL *c, double *x, double *y);
 int cond_dummy_size(XCSF *xcsf, CL *c);
+size_t cond_dummy_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t cond_dummy_load(XCSF *xcsf, CL *c, FILE *fp);
 
 static struct CondVtbl const cond_dummy_vtbl = {
     &cond_dummy_crossover,
@@ -38,5 +40,7 @@ static struct CondVtbl const cond_dummy_vtbl = {
     &cond_dummy_init,
     &cond_dummy_print,
     &cond_dummy_update,
-    &cond_dummy_size
-};     
+    &cond_dummy_size,
+    &cond_dummy_save,
+    &cond_dummy_load
+};

@@ -121,3 +121,27 @@ int cond_dgp_size(XCSF *xcsf, CL *c)
     COND_DGP *cond = c->cond;
     return cond->dgp.n;
 }
+
+size_t cond_dgp_save(XCSF *xcsf, CL *c, FILE *fp)
+{
+    printf("Saving dgp cond state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    COND_DGP *cond = c->cond;
+    size_t s = 0;
+    // TODO
+    (void)cond; (void)xcsf; (void)fp;
+    return s;
+}
+
+size_t cond_dgp_load(XCSF *xcsf, CL *c, FILE *fp)
+{
+    printf("Loading dgp cond state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    COND_DGP *cond = c->cond;
+    size_t s = 0;
+    // TODO
+    (void)cond; (void)xcsf; (void)fp;
+    return s;
+}

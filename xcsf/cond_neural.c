@@ -126,3 +126,27 @@ int cond_neural_size(XCSF *xcsf, CL *c)
     COND_NEURAL *cond = c->cond;
     return neural_size(xcsf, &cond->net);
 }
+
+size_t cond_neural_save(XCSF *xcsf, CL *c, FILE *fp)
+{
+    printf("Saving neural cond state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    COND_NEURAL *cond = c->cond;
+    size_t s = 0;
+    // TODO
+    (void)cond; (void)xcsf; (void)fp;
+    return s;
+}
+
+size_t cond_neural_load(XCSF *xcsf, CL *c, FILE *fp)
+{
+    printf("Loading neural cond state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    COND_NEURAL *cond = c->cond;
+    size_t s = 0;
+    // TODO
+    (void)cond; (void)xcsf; (void)fp;
+    return s;
+}

@@ -24,6 +24,8 @@ void pred_neural_init(XCSF *xcsf, CL *c);
 void pred_neural_print(XCSF *xcsf, CL *c);
 void pred_neural_update(XCSF *xcsf, CL *c, double *x, double *y);
 int pred_neural_size(XCSF *xcsf, CL *c);
+size_t pred_neural_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t pred_neural_load(XCSF *xcsf, CL *c, FILE *fp);
 
 static struct PredVtbl const pred_neural_vtbl = {
     &pred_neural_crossover,
@@ -34,5 +36,7 @@ static struct PredVtbl const pred_neural_vtbl = {
     &pred_neural_init,
     &pred_neural_print,
     &pred_neural_update,
-    &pred_neural_size
+    &pred_neural_size,
+    &pred_neural_save,
+    &pred_neural_load
 };

@@ -27,6 +27,8 @@ void cond_dgp_init(XCSF *xcsf, CL *c);
 void cond_dgp_print(XCSF *xcsf, CL *c);
 void cond_dgp_update(XCSF *xcsf, CL *c, double *x, double *y);
 int cond_dgp_size(XCSF *xcsf, CL *c);
+size_t cond_dgp_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t cond_dgp_load(XCSF *xcsf, CL *c, FILE *fp);
 
 static struct CondVtbl const cond_dgp_vtbl = {
     &cond_dgp_crossover,
@@ -39,5 +41,7 @@ static struct CondVtbl const cond_dgp_vtbl = {
     &cond_dgp_init,
     &cond_dgp_print,
     &cond_dgp_update,
-    &cond_dgp_size
+    &cond_dgp_size,
+    &cond_dgp_save,
+    &cond_dgp_load
 };

@@ -190,3 +190,26 @@ int cond_ellipsoid_size(XCSF *xcsf, CL *c)
     (void)c;
     return xcsf->num_x_vars * 2;
 }
+
+size_t cond_ellipsoid_save(XCSF *xcsf, CL *c, FILE *fp)
+{
+    size_t s = 0;
+    COND_ELLIPSOID *cond = c->cond;
+    s += fwrite(cond->center, sizeof(double), xcsf->num_x_vars, fp);
+    s += fwrite(cond->spread, sizeof(double), xcsf->num_x_vars, fp);
+    //printf("ellipsoid saved %lu elements\n", (unsigned long)s);
+    return s;
+}
+
+size_t cond_ellipsoid_load(XCSF *xcsf, CL *c, FILE *fp)
+{
+    size_t s = 0;
+    COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
+    new->center = malloc(sizeof(double)*xcsf->num_x_vars);
+    new->spread = malloc(sizeof(double)*xcsf->num_x_vars);
+    s += fread(new->center, sizeof(double), xcsf->num_x_vars, fp);
+    s += fread(new->spread, sizeof(double), xcsf->num_x_vars, fp);
+    c->cond = new;
+    //printf("ellipsoid loaded %lu elements\n", (unsigned long)s);
+    return s;
+}
