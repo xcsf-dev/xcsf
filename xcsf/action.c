@@ -27,12 +27,7 @@
 
 void action_set(XCSF *xcsf, CL *c)
 {
-    int type = xcsf->ACT_TYPE;
-    if(xcsf->ACT_ENSEMBLE) {
-        type = irand_uniform(0,0);
-    }
-
-    switch(type) {
+    switch(xcsf->ACT_TYPE) {
         case 0:
             c->act_vptr = &act_constant_vtbl;
             break;

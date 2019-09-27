@@ -35,12 +35,7 @@
 
 void condition_set(XCSF *xcsf, CL *c)
 {
-    int type = xcsf->COND_TYPE;
-    if(xcsf->COND_ENSEMBLE) {
-        type = irand_uniform(0,5);
-    }
-
-    switch(type) {
+    switch(xcsf->COND_TYPE) {
         case -1:
             c->cond_vptr = &cond_dummy_vtbl;
             break;

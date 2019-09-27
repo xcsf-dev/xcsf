@@ -28,12 +28,7 @@
 
 void prediction_set(XCSF *xcsf, CL *c)
 {
-    int type = xcsf->PRED_TYPE;
-    if(xcsf->PRED_ENSEMBLE) {
-        type = irand_uniform(0,5);
-    }
-
-    switch(type) {
+    switch(xcsf->PRED_TYPE) {
         case 0:
         case 1:
             c->pred_vptr = &pred_nlms_vtbl;

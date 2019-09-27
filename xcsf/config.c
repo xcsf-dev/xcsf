@@ -108,18 +108,6 @@ void constants_init(XCSF *xcsf, const char *filename)
     if(strcmp(getvalue("RESET_STATES"), "true") == 0) {
         xcsf->RESET_STATES = true;
     }
-    xcsf->COND_ENSEMBLE = false;
-    if(strcmp(getvalue("COND_ENSEMBLE"), "true") == 0) {
-        xcsf->COND_ENSEMBLE = true;
-    }
-    xcsf->PRED_ENSEMBLE = false;
-    if(strcmp(getvalue("PRED_ENSEMBLE"), "true") == 0) {
-        xcsf->PRED_ENSEMBLE = true;
-    }
-    xcsf->ACT_ENSEMBLE = false;
-    if(strcmp(getvalue("ACT_ENSEMBLE"), "true") == 0) {
-        xcsf->ACT_ENSEMBLE = true;
-    }
     // initialise (shared) tree-GP constants
     tree_init_cons(xcsf);
     // initialise loss/error function
