@@ -28,13 +28,15 @@ typedef struct GRAPH {
     int t; // number of cycles to run
 } GRAPH;
 
-void graph_init(XCSF *xcsf, GRAPH *dgp, int n);
-void graph_free(XCSF *xcsf, GRAPH *dgp);
-void graph_rand(XCSF *xcsf, GRAPH *dgp);
-void graph_print(XCSF *xcsf, GRAPH *dgp);
-void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from);
-_Bool graph_mutate(XCSF *xcsf, GRAPH *dgp);
 _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
-void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs);
+_Bool graph_mutate(XCSF *xcsf, GRAPH *dgp);
 double graph_output(XCSF *xcsf, GRAPH *dgp, int i);
+size_t graph_load(XCSF *xcsf, GRAPH *dgp, FILE *fp);
+size_t graph_save(XCSF *xcsf, GRAPH *dgp, FILE *fp);
+void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from);
+void graph_free(XCSF *xcsf, GRAPH *dgp);
+void graph_init(XCSF *xcsf, GRAPH *dgp, int n);
+void graph_print(XCSF *xcsf, GRAPH *dgp);
+void graph_rand(XCSF *xcsf, GRAPH *dgp);
 void graph_reset(XCSF *xcsf, GRAPH *dgp);
+void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs);

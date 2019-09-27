@@ -225,3 +225,27 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
  
     return true;
 }
+
+size_t graph_save(XCSF *xcsf, GRAPH *dgp, FILE *fp)
+{
+    printf("Saving dgp state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    (void)xcsf;
+    size_t s = 0;
+    // TODO
+    (void)dgp; (void)fp;
+    return s;
+}
+
+size_t graph_load(XCSF *xcsf, GRAPH *dgp, FILE *fp)
+{
+    printf("Loading dgp state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    (void)xcsf;
+    size_t s = 0;
+    // TODO
+    (void)dgp; (void)fp;
+    return s;
+}
