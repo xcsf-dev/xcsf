@@ -32,9 +32,6 @@
 
 double cl_update_err(XCSF *xcsf, CL *c, double *y);
 double cl_update_size(XCSF *xcsf, CL *c, double num_sum);
-_Bool cl_cond_type_identical(CL *c1, CL *c2);
-_Bool cl_pred_type_identical(CL *c1, CL *c2);
-_Bool cl_act_type_identical(CL *c1, CL *c2);
 
 void cl_init(XCSF *xcsf, CL *c, int size, int time)
 {
@@ -198,10 +195,8 @@ _Bool cl_subsumer(XCSF *xcsf, CL *c)
 
 _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-    if(cl_cond_type_identical(c1, c2) && cond_general(xcsf, c1, c2)) {
-        if(cl_act_type_identical(c1, c2)) {
-            return act_general(xcsf, c1, c2);
-        }
+    if(cond_general(xcsf, c1, c2)) {
+        return act_general(xcsf, c1, c2);
     }
     return false;
 } 
@@ -228,45 +223,14 @@ _Bool cl_mutate(XCSF *xcsf, CL *c)
 
 _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2)
 {
-    _Bool cc = false, pc = false, ac = false;
-    if(cl_cond_type_identical(c1, c2)) {
-        cc = cond_crossover(xcsf, c1, c2);
-    }
-    if(cl_pred_type_identical(c1, c2)) {
-        pc = pred_crossover(xcsf, c1, c2);
-    }
-    if(cl_act_type_identical(c1, c2)) {
-        ac = act_crossover(xcsf, c1, c2);
-    }
+    _Bool cc = cond_crossover(xcsf, c1, c2);
+    _Bool pc = pred_crossover(xcsf, c1, c2);
+    _Bool ac = act_crossover(xcsf, c1, c2);
     if(cc || pc || ac) {
         return true;
     }
     return false;
 }  
-
-_Bool cl_cond_type_identical(CL *c1, CL *c2)
-{
-    if(c1->cond_vptr == c2->cond_vptr) {
-        return true;
-    }
-    return false;
-}
-
-_Bool cl_pred_type_identical(CL *c1, CL *c2)
-{
-    if(c1->pred_vptr == c2->pred_vptr) {
-        return true;
-    }
-    return false;
-}
-
-_Bool cl_act_type_identical(CL *c1, CL *c2)
-{
-    if(c1->act_vptr == c2->act_vptr) {
-        return true;
-    }
-    return false;
-}
 
 double cl_mutation_rate(XCSF *xcsf, CL *c, int m)
 {
