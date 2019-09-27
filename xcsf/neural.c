@@ -246,9 +246,9 @@ size_t neural_save(XCSF *xcsf, NET *net, FILE *fp)
 
     // TODO
     size_t s = 0;
-    s += fwrite(&net->num_layers, sizeof(double), 1, fp);
-    s += fwrite(&net->num_inputs, sizeof(double), 1, fp);
-    s += fwrite(&net->num_outputs, sizeof(double), 1, fp);
+    s += fwrite(&net->num_layers, sizeof(int), 1, fp);
+    s += fwrite(&net->num_inputs, sizeof(int), 1, fp);
+    s += fwrite(&net->num_outputs, sizeof(int), 1, fp);
 
     //printf("neural saved %lu elements\n", (unsigned long)s);
     return s;
@@ -262,9 +262,9 @@ size_t neural_load(XCSF *xcsf, NET *net, FILE *fp)
 
     // TODO
     size_t s = 0;
-    s += fread(&net->num_layers, sizeof(double), 1, fp);
-    s += fread(&net->num_inputs, sizeof(double), 1, fp);
-    s += fread(&net->num_outputs, sizeof(double), 1, fp);
+    s += fread(&net->num_layers, sizeof(int), 1, fp);
+    s += fread(&net->num_inputs, sizeof(int), 1, fp);
+    s += fread(&net->num_outputs, sizeof(int), 1, fp);
 
     //printf("neural loaded %lu elements\n", (unsigned long)s);
     return s;
