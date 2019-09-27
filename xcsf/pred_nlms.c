@@ -82,7 +82,6 @@ void pred_nlms_free(XCSF *xcsf, CL *c)
 void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
     PRED_NLMS *pred = c->pred;
-
     double norm = xcsf->X0 * xcsf->X0;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         norm += x[i] * x[i];
