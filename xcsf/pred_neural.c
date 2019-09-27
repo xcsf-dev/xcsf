@@ -121,24 +121,16 @@ int pred_neural_size(XCSF *xcsf, CL *c)
 
 size_t pred_neural_save(XCSF *xcsf, CL *c, FILE *fp)
 {
-    printf("Saving neural pred state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     PRED_NEURAL *pred = c->pred;
-    size_t s = 0;
-    // TODO
-    (void)pred; (void)xcsf; (void)fp;
+    size_t s = neural_save(xcsf, &pred->net, fp);
+    //printf("pred neural saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
 size_t pred_neural_load(XCSF *xcsf, CL *c, FILE *fp)
 {
-    printf("Loading neural pred state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     PRED_NEURAL *pred = c->pred;
-    size_t s = 0;
-    // TODO
-    (void)pred; (void)xcsf; (void)fp;
+    size_t s = neural_load(xcsf, &pred->net, fp);
+    //printf("pred neural loaded %lu elements\n", (unsigned long)s);
     return s;
 }

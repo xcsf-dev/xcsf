@@ -215,47 +215,32 @@ int rule_neural_pred_size(XCSF *xcsf, CL *c)
 
 size_t rule_neural_cond_save(XCSF *xcsf, CL *c, FILE *fp)
 {
-    printf("Saving rule neural cond state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     RULE_NEURAL_COND *cond = c->cond;
-    size_t s = 0;
-    // TODO
-    (void)cond; (void)xcsf; (void)fp;
+    size_t s = neural_save(xcsf, &cond->net, fp);
+    //printf("rule neural cond saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
 size_t rule_neural_cond_load(XCSF *xcsf, CL *c, FILE *fp)
 {
-    printf("Loading rule neural cond state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     RULE_NEURAL_COND *cond = c->cond;
-    size_t s = 0;
-    // TODO
-    (void)cond; (void)xcsf; (void)fp;
+    size_t s = neural_load(xcsf, &cond->net, fp);
+    //printf("rule neural cond loaded %lu elements\n", (unsigned long)s);
     return s;
 }
+
 size_t rule_neural_pred_save(XCSF *xcsf, CL *c, FILE *fp)
 {
-    printf("Saving rule neural pred state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     RULE_NEURAL_PRED *pred = c->pred;
-    size_t s = 0;
-    // TODO
-    (void)pred; (void)xcsf; (void)fp;
+    size_t s = neural_save(xcsf, &pred->net, fp);
+    //printf("rule neural pred saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
 size_t rule_neural_pred_load(XCSF *xcsf, CL *c, FILE *fp)
 {
-    printf("Loading rule neural pred state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     RULE_NEURAL_PRED *pred = c->pred;
-    size_t s = 0;
-    // TODO
-    (void)pred; (void)xcsf; (void)fp;
+    size_t s = neural_load(xcsf, &pred->net, fp);
+    //printf("rule neural pred loaded %lu elements\n", (unsigned long)s);
     return s;
 }

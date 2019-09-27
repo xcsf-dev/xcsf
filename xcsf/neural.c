@@ -237,3 +237,27 @@ int neural_size(XCSF *xcsf, NET *net)
     }
     return size;
 }
+
+size_t neural_save(XCSF *xcsf, NET *net, FILE *fp)
+{
+    printf("Saving neural state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    (void)xcsf;
+    size_t s = 0;
+    // TODO
+    (void)net; (void)fp;
+    return s;
+}
+
+size_t neural_load(XCSF *xcsf, NET *net, FILE *fp)
+{
+    printf("Loading neural state is not currently supported\n");
+    exit(EXIT_FAILURE);
+
+    (void)xcsf;
+    size_t s = 0;
+    // TODO
+    (void)net; (void)fp;
+    return s;
+}
