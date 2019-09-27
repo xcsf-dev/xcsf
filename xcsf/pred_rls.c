@@ -261,27 +261,32 @@ int pred_rls_size(XCSF *xcsf, CL *c)
     PRED_RLS *pred = c->pred;
     return pred->weights_length;
 }
-
+ 
 size_t pred_rls_save(XCSF *xcsf, CL *c, FILE *fp)
 {
-    printf("Saving RLS state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
     PRED_RLS *pred = c->pred;
     size_t s = 0;
-    // TODO
-    (void)pred; (void)xcsf; (void)fp;
+    s += fwrite(&pred->weights_length, sizeof(int), 1, fp);
+    for(int var = 0; var < xcsf->num_y_vars; var++) {
+        s += fwrite(&pred->weights[var], sizeof(double), pred->weights_length, fp);
+    }
+    int len_sqrd = pred->weights_length * pred->weights_length;
+    s += fwrite(&pred->matrix, sizeof(double), len_sqrd, fp);
+    //printf("rls saved %lu elements\n", (unsigned long)s);
     return s;
 }
-
+ 
 size_t pred_rls_load(XCSF *xcsf, CL *c, FILE *fp)
 {
-    printf("Loading RLS state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
+    pred_rls_init(xcsf, c);
     PRED_RLS *pred = c->pred;
     size_t s = 0;
-    // TODO
-    (void)pred; (void)xcsf; (void)fp;
+    s += fread(&pred->weights_length, sizeof(int), 1, fp);
+    for(int var = 0; var < xcsf->num_y_vars; var++) {
+        s += fread(&pred->weights[var], sizeof(double), pred->weights_length, fp);
+    }
+    int len_sqrd = pred->weights_length * pred->weights_length;
+    s += fread(&pred->matrix, sizeof(double), len_sqrd, fp);
+    //printf("rls loaded %lu elements\n", (unsigned long)s);
     return s;
 }
