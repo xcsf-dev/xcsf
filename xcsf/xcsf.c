@@ -181,6 +181,10 @@ void xcsf_load(XCSF *xcsf, char *fname)
         printf("Error opening load file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
+    if(xcsf->pset.size > 0) {
+        set_kill(xcsf, &xcsf->pset);
+        set_init(xcsf, &xcsf->pset);
+    }
     size_t s = 0;
     s += xcsf_load_params(xcsf, fp);
     s += pop_load(xcsf, fp);
