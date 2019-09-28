@@ -53,6 +53,8 @@ struct XCS
         omp_set_num_threads(xcs.OMP_NUM_THREADS);
 #endif
         xcs.time = 0;
+        xcs.pset.size = 0;
+        xcs.pset.num = 0;
         xcs.num_x_vars = num_x_vars;
         xcs.num_y_vars = num_y_vars;
         xcs.num_classes = 0;
