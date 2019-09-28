@@ -29,13 +29,9 @@
 #define SELU 9
 #define NUM_ACTIVATIONS 10
  
-typedef double (*activate_ptr)(double);
-typedef double (*gradient_ptr)(double);
-
-double neural_activate(int func, double state);
-void activation_set(activate_ptr *activate, int func);
-void gradient_set(gradient_ptr *gradient, int func);
-char *activation_string(int func);
+double neural_activate(int function, double state);
+double neural_gradient(int function, double state);
+char *activation_string(int function);
 
 static inline double logistic_activate(double x){return 1./(1.+exp(-x));}
 static inline double logistic_gradient(double x){double fx=1./(1.+exp(-x)); return (1-fx)*fx;}

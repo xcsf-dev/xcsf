@@ -35,9 +35,7 @@ LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, int opt
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
-    l->activation_type = act;
-    activation_set(&l->activate, act);
-    gradient_set(&l->gradient, act);
+    l->function = act;
     l->num_inputs = in;
     l->num_outputs = out;
     l->num_weights = in*out;
@@ -47,12 +45,10 @@ LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, int opt
     l->bias_updates = calloc(l->num_outputs, sizeof(double));
     l->weight_updates = calloc(l->num_weights, sizeof(double));
     l->delta = calloc(l->num_outputs, sizeof(double));
-    // small random weights
     l->weights = malloc(l->num_weights * sizeof(double));
     for(int i = 0; i < l->num_weights; i++) {
         l->weights[i] = rand_normal(0,0.1);
     }
-    // initial number of active neurons
     l->active = calloc(l->num_outputs, sizeof(_Bool));
     l->options = opt;
     if(l->options > 0) {
@@ -86,9 +82,7 @@ LAYER *neural_layer_connected_copy(XCSF *xcsf, LAYER *from)
     l->bias_updates = calloc(from->num_outputs, sizeof(double));
     l->weight_updates = calloc(from->num_weights, sizeof(double));
     l->delta = calloc(from->num_outputs, sizeof(double));
-    l->activation_type = from->activation_type;
-    activation_set(&l->activate, from->activation_type);
-    gradient_set(&l->gradient, from->activation_type);
+    l->function = from->function;
     memcpy(l->weights, from->weights, from->num_weights * sizeof(double));
     memcpy(l->biases, from->biases, from->num_outputs * sizeof(double));
     memcpy(l->active, from->active, from->num_outputs * sizeof(_Bool));
@@ -130,7 +124,7 @@ void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
             }
             l->state[i] += l->biases[i];
             l->state[i] = constrain(-100, 100, l->state[i]);
-            l->output[i] = (l->activate)(l->state[i]);
+            l->output[i] = neural_activate(l->function, l->state[i]);
         }
         else {
             l->state[i] = 0;
@@ -142,10 +136,10 @@ void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
 void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
 {
     (void)xcsf;
-    // net input = this layer's input
-    // net delta = previous layer's delta
+    // net->input[] = this layer's input
+    // net->delta[] = previous layer's delta
     for(int i = 0; i < l->num_active; i++) {
-        l->delta[i] *= (l->gradient)(l->state[i]);
+        l->delta[i] *= neural_gradient(l->function, l->state[i]);
         l->bias_updates[i] += l->delta[i];
         for(int j = 0; j < l->num_inputs; j++) {
             l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
@@ -216,9 +210,7 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
     }
     // mutate activation functions
     if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
-        l->activation_type = irand_uniform(0,NUM_ACTIVATIONS);
-        activation_set(&l->activate, l->activation_type);
-        gradient_set(&l->gradient, l->activation_type);
+        l->function = irand_uniform(0,NUM_ACTIVATIONS);
         mod = true;
     } 
     return mod;
@@ -234,7 +226,7 @@ void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
 {
     (void)xcsf;
     printf("connected %s in = %d, out = %d, active = %d, ",
-            activation_string(l->activation_type), l->num_inputs, l->num_outputs, l->num_active);
+            activation_string(l->function), l->num_inputs, l->num_outputs, l->num_active);
     printf("weights (%d): ", l->num_weights);
     if(print_weights) {
         for(int i = 0; i < l->num_weights; i++) {
@@ -252,18 +244,52 @@ void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
 
 size_t neural_layer_connected_save(XCSF *xcsf, LAYER *l, FILE *fp)
 {
-    // TODO
-    printf("Saving connected layer is not currently supported\n");
-    exit(EXIT_FAILURE);
-    (void)xcsf; (void)l; (void)fp;
-    return 0;
+    (void)xcsf;
+    size_t s = 0;
+    s += fwrite(&l->num_inputs, sizeof(int), 1, fp);
+    s += fwrite(&l->num_outputs, sizeof(int), 1, fp);
+    s += fwrite(&l->num_weights, sizeof(int), 1, fp);
+    s += fwrite(&l->options, sizeof(int), 1, fp);
+    s += fwrite(&l->num_active, sizeof(int), 1, fp);
+    s += fwrite(&l->function, sizeof(int), 1, fp);
+    s += fwrite(l->active, sizeof(_Bool), l->num_outputs, fp);
+    s += fwrite(l->state, sizeof(double), l->num_outputs, fp);
+    s += fwrite(l->output, sizeof(double), l->num_outputs, fp);
+    s += fwrite(l->weights, sizeof(double), l->num_weights, fp);
+    s += fwrite(l->biases, sizeof(double), l->num_outputs, fp);
+    s += fwrite(l->bias_updates, sizeof(double), l->num_outputs, fp);
+    s += fwrite(l->weight_updates, sizeof(double), l->num_weights, fp);
+    s += fwrite(l->delta, sizeof(double), l->num_outputs, fp);
+    //printf("neural layer connected saved %lu elements\n", (unsigned long)s);
+    return s;
 }
 
 size_t neural_layer_connected_load(XCSF *xcsf, LAYER *l, FILE *fp)
 {
-    // TODO
-    printf("Loading connected layer is not currently supported\n");
-    exit(EXIT_FAILURE);
-    (void)xcsf; (void)l; (void)fp;
-    return 0;
+    (void)xcsf;
+    size_t s = 0;
+    s += fread(&l->num_inputs, sizeof(int), 1, fp);
+    s += fread(&l->num_outputs, sizeof(int), 1, fp);
+    s += fread(&l->num_weights, sizeof(int), 1, fp);
+    s += fread(&l->options, sizeof(int), 1, fp);
+    s += fread(&l->num_active, sizeof(int), 1, fp);
+    s += fread(&l->function, sizeof(int), 1, fp);
+    l->active = malloc(l->num_outputs * sizeof(_Bool));
+    l->state = malloc(l->num_outputs * sizeof(double));
+    l->output = malloc(l->num_outputs * sizeof(double));
+    l->weights = malloc(l->num_weights * sizeof(double));
+    l->biases = malloc(l->num_outputs * sizeof(double));
+    l->bias_updates = malloc(l->num_outputs * sizeof(double));
+    l->weight_updates = malloc(l->num_weights * sizeof(double));
+    l->delta = malloc(l->num_outputs * sizeof(double));
+    s += fread(l->active, sizeof(_Bool), l->num_outputs, fp);
+    s += fread(l->state, sizeof(double), l->num_outputs, fp);
+    s += fread(l->output, sizeof(double), l->num_outputs, fp);
+    s += fread(l->weights, sizeof(double), l->num_weights, fp);
+    s += fread(l->biases, sizeof(double), l->num_outputs, fp);
+    s += fread(l->bias_updates, sizeof(double), l->num_outputs, fp);
+    s += fread(l->weight_updates, sizeof(double), l->num_weights, fp);
+    s += fread(l->delta, sizeof(double), l->num_outputs, fp);
+    //printf("neural layer connected loaded %lu elements\n", (unsigned long)s);
+    return s;
 }

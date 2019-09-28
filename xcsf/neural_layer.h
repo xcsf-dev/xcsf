@@ -35,14 +35,12 @@ typedef struct LAYER {
     int num_inputs;
     int num_outputs;
     int num_weights;
-    int activation_type;
-    activate_ptr activate;
-    gradient_ptr gradient;
-    struct LayerVtbl const *layer_vptr; // functions acting on layers
+    int function;
     double scale;
     double probability;
     double *rand;
     double temp;
+    struct LayerVtbl const *layer_vptr; // functions acting on layers
 } LAYER;
  
 struct LayerVtbl {
@@ -102,3 +100,5 @@ static inline void layer_rand(XCSF *xcsf, LAYER *l) {
 static inline void layer_print(XCSF *xcsf, LAYER *l, _Bool print_weights) {
 	(*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
+
+void neural_layer_set_vptr(LAYER *l);

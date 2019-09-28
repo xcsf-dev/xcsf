@@ -240,17 +240,13 @@ int neural_size(XCSF *xcsf, NET *net)
 
 size_t neural_save(XCSF *xcsf, NET *net, FILE *fp)
 {
-    (void)xcsf;
-    printf("Saving neural state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
-    // TODO
     size_t s = 0;
     s += fwrite(&net->num_layers, sizeof(int), 1, fp);
     s += fwrite(&net->num_inputs, sizeof(int), 1, fp);
     s += fwrite(&net->num_outputs, sizeof(int), 1, fp);
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        //s += layer_save(xcsf, iter->layer, fp);
+        s += fwrite(&iter->layer->layer_type, sizeof(int), 1, fp);
+        s += layer_save(xcsf, iter->layer, fp);
     }
     //printf("neural saved %lu elements\n", (unsigned long)s);
     return s;
@@ -258,22 +254,19 @@ size_t neural_save(XCSF *xcsf, NET *net, FILE *fp)
 
 size_t neural_load(XCSF *xcsf, NET *net, FILE *fp)
 {
-    printf("Loading neural state is not currently supported\n");
-    exit(EXIT_FAILURE);
-
-    // TODO
     size_t s = 0;
     int nlayers = 0, ninputs = 0, noutputs = 0;
     s += fread(&nlayers, sizeof(int), 1, fp);
     s += fread(&ninputs, sizeof(int), 1, fp);
     s += fread(&noutputs, sizeof(int), 1, fp);
-
     neural_init(xcsf, net);
     for(int i = 0; i < nlayers; i++) {
-        //LAYER *l = neural_layer_load(xcsf, ..., fp);
-        //neural_layer_insert(xcsf, net, l, i);
+        LAYER *l = malloc(sizeof(LAYER));
+        s += fread(&l->layer_type, sizeof(int), 1, fp);
+        neural_layer_set_vptr(l);
+        s += layer_load(xcsf, l, fp);
+        neural_layer_insert(xcsf, net, l, i);
     }
-
     //printf("neural loaded %lu elements\n", (unsigned long)s);
     return s;
 }
