@@ -29,19 +29,12 @@
 #include <omp.h>
 #endif
 
-void xcs_reload(char *dataf, char *fname);
-
 int main(int argc, char **argv)
 {    
     if(argc < 2 || argc > 4) {
         printf("Usage: xcsf inputfile [config.ini] [xcs.bin]\n");
         exit(EXIT_FAILURE);
     } 
-
-    if(argc == 4) {
-        xcs_reload(argv[1], argv[3]);
-        exit(EXIT_SUCCESS);
-    }
 
     XCSF *xcsf = malloc(sizeof(XCSF));
     random_init();
@@ -60,13 +53,26 @@ int main(int argc, char **argv)
     xcsf->num_x_vars = train_data->x_cols;
     xcsf->num_y_vars = train_data->y_cols;
     xcsf->num_classes = 0; // regression
-    pop_init(xcsf);
+ 
+    // reload state of a previous experiment
+    if(argc == 4) {
+        printf("LOADING XCSF\n");
+        xcsf->pset.size = 0;
+        xcsf->pset.num = 0;
+        xcsf_load(xcsf, argv[3]);
+    }
+    // start a new experiment
+    else {
+        pop_init(xcsf);
+    }
+
+    // train model
     xcsf_fit2(xcsf, train_data, test_data, true);
 
     //printf("SAVING XCSF\n");
-    //xcsf_print_pop(xcsf, true, true);
     //xcsf_save(xcsf, "test.bin");
 
+    // clean up
     set_kill(xcsf, &xcsf->pset);
     constants_free(xcsf);
     free(xcsf);
@@ -75,33 +81,4 @@ int main(int argc, char **argv)
     free(train_data);
     free(test_data);
     return EXIT_SUCCESS;
-}
-
-void xcs_reload(char *dataf, char *fname)
-{
-    XCSF *xcsf = malloc(sizeof(XCSF));
-    random_init();
-    constants_init(xcsf, "default.ini");
-#ifdef PARALLEL
-    omp_set_num_threads(xcsf->OMP_NUM_THREADS);
-#endif
-    INPUT *train_data = malloc(sizeof(INPUT));
-    INPUT *test_data = malloc(sizeof(INPUT));
-    input_read_csv(dataf, train_data, test_data);
-    xcsf->num_x_vars = train_data->x_cols;
-    xcsf->num_y_vars = train_data->y_cols;
-    xcsf->num_classes = 0; // regression
-    xcsf->pset.size = 0;
-    xcsf->pset.num = 0;
-    printf("LOADING XCSF\n");
-    xcsf_load(xcsf, fname);
-    //xcsf_print_pop(xcsf, true, true);
-    xcsf_fit2(xcsf, train_data, test_data, true);
-    set_kill(xcsf, &xcsf->pset);
-    constants_free(xcsf);
-    free(xcsf);
-    input_free(train_data);
-    input_free(test_data);
-    free(train_data);
-    free(test_data);
 }
