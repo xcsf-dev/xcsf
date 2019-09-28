@@ -257,7 +257,6 @@ size_t neural_layer_connected_save(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fwrite(l->biases, sizeof(double), l->num_outputs, fp);
     s += fwrite(l->bias_updates, sizeof(double), l->num_outputs, fp);
     s += fwrite(l->weight_updates, sizeof(double), l->num_weights, fp);
-    s += fwrite(l->delta, sizeof(double), l->num_outputs, fp);
     //printf("neural layer connected saved %lu elements\n", (unsigned long)s);
     return s;
 }
@@ -274,18 +273,17 @@ size_t neural_layer_connected_load(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->function, sizeof(int), 1, fp);
     l->state = calloc(l->num_outputs, sizeof(double));
     l->output = calloc(l->num_outputs, sizeof(double));
+    l->delta = calloc(l->num_outputs, sizeof(double));
     l->active = malloc(l->num_outputs * sizeof(_Bool));
     l->weights = malloc(l->num_weights * sizeof(double));
     l->biases = malloc(l->num_outputs * sizeof(double));
     l->bias_updates = malloc(l->num_outputs * sizeof(double));
     l->weight_updates = malloc(l->num_weights * sizeof(double));
-    l->delta = malloc(l->num_outputs * sizeof(double));
     s += fread(l->active, sizeof(_Bool), l->num_outputs, fp);
     s += fread(l->weights, sizeof(double), l->num_weights, fp);
     s += fread(l->biases, sizeof(double), l->num_outputs, fp);
     s += fread(l->bias_updates, sizeof(double), l->num_outputs, fp);
     s += fread(l->weight_updates, sizeof(double), l->num_weights, fp);
-    s += fread(l->delta, sizeof(double), l->num_outputs, fp);
     //printf("neural layer connected loaded %lu elements\n", (unsigned long)s);
     return s;
 }
