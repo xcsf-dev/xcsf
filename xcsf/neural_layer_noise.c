@@ -133,18 +133,29 @@ void neural_layer_noise_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
 
 size_t neural_layer_noise_save(XCSF *xcsf, LAYER *l, FILE *fp)
 {
-    // TODO
-    printf("Saving noise layer is not currently supported\n");
-    exit(EXIT_FAILURE);
-    (void)xcsf; (void)l; (void)fp;
-    return 0;
+    (void)xcsf;
+    size_t s = 0;
+    s += fwrite(&l->num_inputs, sizeof(int), 1, fp);
+    s += fwrite(&l->num_outputs, sizeof(int), 1, fp);
+    s += fwrite(&l->num_active, sizeof(int), 1, fp);
+    s += fwrite(&l->probability, sizeof(double), 1, fp);
+    s += fwrite(&l->scale, sizeof(double), 1, fp);
+    //printf("neural layer noise saved %lu elements\n", (unsigned long)s);
+    return s;
 }
 
 size_t neural_layer_noise_load(XCSF *xcsf, LAYER *l, FILE *fp)
 {
-    // TODO
-    printf("Loading noise layer is not currently supported\n");
-    exit(EXIT_FAILURE);
-    (void)xcsf; (void)l; (void)fp;
-    return 0;
+    (void)xcsf;
+    size_t s = 0;
+    s += fread(&l->num_inputs, sizeof(int), 1, fp);
+    s += fread(&l->num_outputs, sizeof(int), 1, fp);
+    s += fread(&l->num_active, sizeof(int), 1, fp);
+    s += fread(&l->probability, sizeof(double), 1, fp);
+    s += fread(&l->scale, sizeof(double), 1, fp);
+    l->output = calloc(l->num_inputs, sizeof(double));
+    l->delta = malloc(l->num_inputs * sizeof(double));
+    l->rand = malloc(l->num_inputs * sizeof(double));
+    //printf("neural layer noise loaded %lu elements\n", (unsigned long)s);
+    return s;
 }
