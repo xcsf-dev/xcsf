@@ -142,7 +142,6 @@ size_t neural_layer_dropout_save(XCSF *xcsf, LAYER *l, FILE *fp)
     size_t s = 0;
     s += fwrite(&l->num_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->num_outputs, sizeof(int), 1, fp);
-    s += fwrite(&l->num_active, sizeof(int), 1, fp);
     s += fwrite(&l->probability, sizeof(double), 1, fp);
     s += fwrite(&l->scale, sizeof(double), 1, fp);
     //printf("neural layer dropout saved %lu elements\n", (unsigned long)s);
@@ -155,9 +154,9 @@ size_t neural_layer_dropout_load(XCSF *xcsf, LAYER *l, FILE *fp)
     size_t s = 0;
     s += fread(&l->num_inputs, sizeof(int), 1, fp);
     s += fread(&l->num_outputs, sizeof(int), 1, fp);
-    s += fread(&l->num_active, sizeof(int), 1, fp);
     s += fread(&l->probability, sizeof(double), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
+    l->num_active = 0;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = malloc(l->num_inputs * sizeof(double));
     l->rand = malloc(l->num_inputs * sizeof(double));
