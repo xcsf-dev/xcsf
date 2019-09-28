@@ -67,7 +67,7 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 {   
     gplot_init(xcsf);
     double perr = 0, err = 0, pterr = 0;
-    double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
+    double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         int row = 0;
         if(shuffle) {
@@ -113,7 +113,7 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
     set_update(xcsf, &mset, &kset, x, y);
     ea(xcsf, &mset, &kset);
     xcsf->time += 1;
-    xcsf->msetsize += (mset.size - xcsf->msetsize)*xcsf->BETA;
+    xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
     set_kill(xcsf, &kset); // kills deleted classifiers
     set_free(xcsf, &mset); // frees the match set list
     return (xcsf->loss_ptr)(xcsf, pred, y);
@@ -126,7 +126,7 @@ double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, x);
     set_pred(xcsf, &mset, x, pred);
-    xcsf->msetsize += (xcsf->msetsize - mset.size)*xcsf->BETA;
+    xcsf->msetsize += (xcsf->msetsize - mset.size) * xcsf->BETA;
     set_kill(xcsf, &kset); // kills deleted classifiers
     set_free(xcsf, &mset); // frees the match set list  
     return (xcsf->loss_ptr)(xcsf, pred, y);
@@ -139,8 +139,8 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
         SET mset, kset;
         set_init(xcsf, &mset);
         set_init(xcsf, &kset);
-        set_match(xcsf, &mset, &kset, &input[row*xcsf->num_x_vars]);
-        set_pred(xcsf, &mset, &input[row*xcsf->num_x_vars], &output[row*xcsf->num_y_vars]);
+        set_match(xcsf, &mset, &kset, &input[row * xcsf->num_x_vars]);
+        set_pred(xcsf, &mset, &input[row * xcsf->num_x_vars], &output[row * xcsf->num_y_vars]);
         set_kill(xcsf, &kset); // kills deleted classifiers
         set_free(xcsf, &mset); // frees the match set list      
     }
