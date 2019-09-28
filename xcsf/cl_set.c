@@ -26,6 +26,8 @@
 #include "cl.h"
 #include "cl_set.h"
 
+#define MAX_COVER 1000000
+
 void set_subsumption(XCSF *xcsf, SET *set, SET *kset);
 void set_update_fit(XCSF *xcsf, SET *set);
 
@@ -138,7 +140,7 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
     }   
 #endif
     // perform covering if match set size is < THETA_MNA
-    while(mset->size < xcsf->THETA_MNA) {
+    for(int i = 0; mset->size < xcsf->THETA_MNA; i++) {
         // new classifier with matching condition
         CL *new = malloc(sizeof(CL));
         cl_init(xcsf, new, (mset->num)+1, xcsf->time);
@@ -148,6 +150,11 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
         pop_enforce_limit(xcsf, kset);
         // remove any deleted classifiers from the match set
         set_validate(xcsf, mset);
+
+        if(i > MAX_COVER) {
+            printf("Error: maximum covering attempts (%d) exceeded\n", MAX_COVER);
+            exit(EXIT_FAILURE);
+        }
     }
 }
 
