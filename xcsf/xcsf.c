@@ -39,7 +39,7 @@ double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
     gplot_init(xcsf);
     xcsf->train = true;
     double perr = 0, err = 0;
-    double *pred = malloc(sizeof(double)*xcsf->num_y_vars);
+    double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         int row = 0;
         if(shuffle) {
