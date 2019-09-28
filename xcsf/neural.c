@@ -176,7 +176,7 @@ void neural_learn(XCSF *xcsf, NET *net, double *truth, double *input)
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         LAYER *l = iter->layer;
         for(int j = 0; j < l->num_outputs; j++) {
-            l->delta[j] = 0.0;
+            l->delta[j] = 0;
         }
     }
 
