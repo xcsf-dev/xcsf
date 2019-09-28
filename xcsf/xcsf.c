@@ -170,8 +170,8 @@ void xcsf_save(XCSF *xcsf, char *fname)
     size_t s = 0;
     s += xcsf_save_params(xcsf, fp);
     s += pop_save(xcsf, fp);
-    printf("xcsf saved %lu elements\n", (unsigned long)s);
     fclose(fp);
+    printf("xcsf saved %lu elements\n", (unsigned long)s);
 }
 
 void xcsf_load(XCSF *xcsf, char *fname)
