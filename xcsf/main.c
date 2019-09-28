@@ -40,7 +40,7 @@ int main(int argc, char **argv)
     random_init();
     if(argc > 2) {
         constants_init(xcsf, argv[2]);
-    }    
+    }
     else {
         constants_init(xcsf, "default.ini");
     }
@@ -58,12 +58,58 @@ int main(int argc, char **argv)
     pop_init(xcsf);
     xcsf_fit2(xcsf, train_data, test_data, true);
 
+    //printf("SAVING XCSF\n");
+    //xcsf_print_pop(xcsf, true, true);
+    //xcsf_save(xcsf, "test.bin");
+
     set_kill(xcsf, &xcsf->pset);
-    constants_free(xcsf);        
+    constants_free(xcsf);
     free(xcsf);
     input_free(train_data);
     input_free(test_data);
     free(train_data);
     free(test_data);
+
+//    ///////////////////////////
+//    // Example reloading state
+//    ///////////////////////////
+//
+//    xcsf = malloc(sizeof(XCSF));
+//    random_init();
+//    if(argc > 2) {
+//        constants_init(xcsf, argv[2]);
+//    }
+//    else {
+//        constants_init(xcsf, "default.ini");
+//    }
+//#ifdef PARALLEL
+//    omp_set_num_threads(xcsf->OMP_NUM_THREADS);
+//#endif
+//
+//    train_data = malloc(sizeof(INPUT));
+//    test_data = malloc(sizeof(INPUT));
+//    input_read_csv(argv[1], train_data, test_data);
+//    xcsf->num_x_vars = train_data->x_cols;
+//    xcsf->num_y_vars = train_data->y_cols;
+//    xcsf->num_classes = 0; // regression
+//
+//    xcsf->pset.size = 0;
+//    xcsf->pset.num = 0;
+//
+//    printf("LOADING XCSF\n");
+//    xcsf_load(xcsf, "test.bin");
+//
+//    //xcsf_print_pop(xcsf, true, true);
+//
+//    xcsf_fit2(xcsf, train_data, test_data, true);
+//
+//    set_kill(xcsf, &xcsf->pset);
+//    constants_free(xcsf);        
+//    free(xcsf);
+//    input_free(train_data);
+//    input_free(test_data);
+//    free(train_data);
+//    free(test_data);
+ 
     return EXIT_SUCCESS;
 }
