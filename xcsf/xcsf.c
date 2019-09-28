@@ -160,7 +160,7 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool print_cond, _Bool pri
     set_print(xcsf, &mset, print_cond, print_pred);
 }
 
-void xcsf_save(XCSF *xcsf, char *fname)
+size_t xcsf_save(XCSF *xcsf, char *fname)
 {
     FILE *fp = fopen(fname, "wb");
     if(fp == 0) {
@@ -171,10 +171,11 @@ void xcsf_save(XCSF *xcsf, char *fname)
     s += xcsf_save_params(xcsf, fp);
     s += pop_save(xcsf, fp);
     fclose(fp);
-    printf("xcsf saved %lu elements\n", (unsigned long)s);
+    //printf("xcsf saved %lu elements\n", (unsigned long)s);
+    return s;
 }
 
-void xcsf_load(XCSF *xcsf, char *fname)
+size_t xcsf_load(XCSF *xcsf, char *fname)
 {
     FILE *fp = fopen(fname, "rb");
     if(fp == 0) {
@@ -189,7 +190,8 @@ void xcsf_load(XCSF *xcsf, char *fname)
     s += xcsf_load_params(xcsf, fp);
     s += pop_load(xcsf, fp);
     fclose(fp);
-    printf("xcsf loaded %lu elements\n", (unsigned long)s);
+    //printf("xcsf loaded %lu elements\n", (unsigned long)s);
+    return s;
 }
 
 size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
@@ -243,7 +245,7 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->THETA_SUB, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->stage, sizeof(int), 1, fp);
+//    s += fwrite(&xcsf->stage, sizeof(int), 1, fp);
     s += fwrite(&xcsf->train, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->num_x_vars, sizeof(int), 1, fp);
     s += fwrite(&xcsf->num_y_vars, sizeof(int), 1, fp);
@@ -305,7 +307,7 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->THETA_SUB, sizeof(double), 1, fp);
-    s += fread(&xcsf->stage, sizeof(int), 1, fp);
+//    s += fread(&xcsf->stage, sizeof(int), 1, fp);
     s += fread(&xcsf->train, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->num_x_vars, sizeof(int), 1, fp);
     s += fread(&xcsf->num_y_vars, sizeof(int), 1, fp);
