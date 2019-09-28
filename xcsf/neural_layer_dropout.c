@@ -135,3 +135,21 @@ void neural_layer_dropout_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
     printf("dropout in = %d, out = %d prob = %f\n",
             l->num_inputs, l->num_outputs, l->probability);
 }
+
+size_t neural_layer_dropout_save(XCSF *xcsf, LAYER *l, FILE *fp)
+{
+    // TODO
+    printf("Saving dropout layer is not currently supported\n");
+    exit(EXIT_FAILURE);
+    (void)xcsf; (void)l; (void)fp;
+    return 0;
+}
+
+size_t neural_layer_dropout_load(XCSF *xcsf, LAYER *l, FILE *fp)
+{
+    // TODO
+    printf("Loading dropout layer is not currently supported\n");
+    exit(EXIT_FAILURE);
+    (void)xcsf; (void)l; (void)fp;
+    return 0;
+}

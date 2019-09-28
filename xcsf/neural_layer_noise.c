@@ -130,3 +130,21 @@ void neural_layer_noise_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
     printf("noise in = %d, out = %d, prob = %f, stdev = %f\n",
             l->num_inputs, l->num_outputs, l->probability, l->scale);
 }
+
+size_t neural_layer_noise_save(XCSF *xcsf, LAYER *l, FILE *fp)
+{
+    // TODO
+    printf("Saving noise layer is not currently supported\n");
+    exit(EXIT_FAILURE);
+    (void)xcsf; (void)l; (void)fp;
+    return 0;
+}
+
+size_t neural_layer_noise_load(XCSF *xcsf, LAYER *l, FILE *fp)
+{
+    // TODO
+    printf("Loading noise layer is not currently supported\n");
+    exit(EXIT_FAILURE);
+    (void)xcsf; (void)l; (void)fp;
+    return 0;
+}

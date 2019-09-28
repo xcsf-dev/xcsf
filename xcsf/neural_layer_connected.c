@@ -249,3 +249,21 @@ void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
     }
     printf("\n");
 }
+
+size_t neural_layer_connected_save(XCSF *xcsf, LAYER *l, FILE *fp)
+{
+    // TODO
+    printf("Saving connected layer is not currently supported\n");
+    exit(EXIT_FAILURE);
+    (void)xcsf; (void)l; (void)fp;
+    return 0;
+}
+
+size_t neural_layer_connected_load(XCSF *xcsf, LAYER *l, FILE *fp)
+{
+    // TODO
+    printf("Loading connected layer is not currently supported\n");
+    exit(EXIT_FAILURE);
+    (void)xcsf; (void)l; (void)fp;
+    return 0;
+}

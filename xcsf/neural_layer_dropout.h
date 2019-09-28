@@ -26,6 +26,8 @@ void neural_layer_dropout_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
 _Bool neural_layer_dropout_mutate(XCSF *xcsf, LAYER *l);
 void neural_layer_dropout_free(XCSF *xcsf, LAYER *l);
 double* neural_layer_dropout_output(XCSF *xcsf, LAYER *l);
+size_t neural_layer_dropout_save(XCSF *xcsf, LAYER *l, FILE *fp);
+size_t neural_layer_dropout_load(XCSF *xcsf, LAYER *l, FILE *fp);
 
 static struct LayerVtbl const layer_dropout_vtbl = {
     &neural_layer_dropout_mutate,
@@ -36,5 +38,7 @@ static struct LayerVtbl const layer_dropout_vtbl = {
     &neural_layer_dropout_update,
     &neural_layer_dropout_backward,
     &neural_layer_dropout_forward,
-    &neural_layer_dropout_output
+    &neural_layer_dropout_output,
+    &neural_layer_dropout_save,
+    &neural_layer_dropout_load
 };

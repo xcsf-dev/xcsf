@@ -55,7 +55,17 @@ struct LayerVtbl {
 	void (*layer_impl_backward)(XCSF *xcsf, LAYER *l, NET *net);
 	void (*layer_impl_forward)(XCSF *xcsf, LAYER *l, double *input);
 	double* (*layer_impl_output)(XCSF *xcsf, LAYER *l);
+    size_t (*layer_impl_save)(XCSF *xcsf, LAYER *l, FILE *fp);
+    size_t (*layer_impl_load)(XCSF *xcsf, LAYER *l, FILE *fp);
 };
+
+static inline size_t layer_save(XCSF *xcsf, LAYER *l, FILE *fp) {
+	return (*l->layer_vptr->layer_impl_save)(xcsf, l, fp);
+}
+
+static inline size_t layer_load(XCSF *xcsf, LAYER *l, FILE *fp) {
+	return (*l->layer_vptr->layer_impl_load)(xcsf, l, fp);
+}
  
 static inline double* layer_output(XCSF *xcsf, LAYER *l) {
 	return (*l->layer_vptr->layer_impl_output)(xcsf, l);

@@ -26,6 +26,8 @@ void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
 _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l);
 void neural_layer_connected_free(XCSF *xcsf, LAYER *l);
 double* neural_layer_connected_output(XCSF *xcsf, LAYER *l);
+size_t neural_layer_connected_save(XCSF *xcsf, LAYER *l, FILE *fp);
+size_t neural_layer_connected_load(XCSF *xcsf, LAYER *l, FILE *fp);
 
 static struct LayerVtbl const layer_connected_vtbl = {
     &neural_layer_connected_mutate,
@@ -36,5 +38,7 @@ static struct LayerVtbl const layer_connected_vtbl = {
     &neural_layer_connected_update,
     &neural_layer_connected_backward,
     &neural_layer_connected_forward,
-    &neural_layer_connected_output
+    &neural_layer_connected_output,
+    &neural_layer_connected_save,
+    &neural_layer_connected_load,
 };

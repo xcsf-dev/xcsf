@@ -122,3 +122,21 @@ double* neural_layer_softmax_output(XCSF *xcsf, LAYER *l)
     (void)xcsf;
     return l->output;
 }
+
+size_t neural_layer_softmax_save(XCSF *xcsf, LAYER *l, FILE *fp)
+{
+    // TODO
+    printf("Saving softmax layer is not currently supported\n");
+    exit(EXIT_FAILURE);
+    (void)xcsf; (void)l; (void)fp;
+    return 0;
+}
+
+size_t neural_layer_softmax_load(XCSF *xcsf, LAYER *l, FILE *fp)
+{
+    // TODO
+    printf("Loading softmax layer is not currently supported\n");
+    exit(EXIT_FAILURE);
+    (void)xcsf; (void)l; (void)fp;
+    return 0;
+}
