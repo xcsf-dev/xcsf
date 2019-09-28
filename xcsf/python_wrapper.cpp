@@ -70,12 +70,12 @@ struct XCS
         test_data.y = NULL;
     }
 
-    void save(char *fname) {
-        xcsf_save(&xcs, fname);
+    size_t save(char *fname) {
+        return xcsf_save(&xcs, fname);
     }
 
-    void load(char *fname) {
-        xcsf_load(&xcs, fname);
+    size_t load(char *fname) {
+        return xcsf_load(&xcs, fname);
     }
 
     double fit(np::ndarray &train_X, np::ndarray &train_Y, _Bool shuffle) {
