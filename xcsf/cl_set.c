@@ -34,7 +34,7 @@ void set_update_fit(XCSF *xcsf, SET *set);
 void pop_init(XCSF *xcsf)
 {
     xcsf->time = 0; // number of learning trials performed
-    xcsf->msetsize = 0.0; // average match set size
+    xcsf->msetsize = 0; // average match set size
     set_init(xcsf, &xcsf->pset);
     // initialise population
     if(xcsf->POP_INIT) {
@@ -162,7 +162,7 @@ void set_pred(XCSF *xcsf, SET *set, double *x, double *p)
 {
     // match set fitness weighted prediction
     double *presum = calloc(xcsf->num_y_vars, sizeof(double));
-    double fitsum = 0.0;
+    double fitsum = 0;
 #ifdef PARALLEL_PRED
     CLIST *blist[set->size];
     int j = 0;
@@ -243,7 +243,7 @@ void set_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y)
 
 void set_update_fit(XCSF *xcsf, SET *set)
 {
-    double acc_sum = 0.0;
+    double acc_sum = 0;
     double accs[set->size];
     // calculate accuracies
     int i = 0;
@@ -337,7 +337,7 @@ void set_times(XCSF *xcsf, SET *set)
 double set_total_fit(XCSF *xcsf, SET *set)
 {
     (void)xcsf;
-    double sum = 0.0;
+    double sum = 0;
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += iter->cl->fit;
     }
@@ -347,7 +347,7 @@ double set_total_fit(XCSF *xcsf, SET *set)
 double set_total_time(XCSF *xcsf, SET *set)
 {
     (void)xcsf;
-    double sum = 0.0;
+    double sum = 0;
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += iter->cl->time * iter->cl->num;
     }
@@ -400,7 +400,7 @@ double set_avg_mut(XCSF *xcsf, SET *set, int m)
     }
 
     // returns the average classifier mutation rate
-    double sum = 0.0;
+    double sum = 0;
     int cnt = 0;
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += cl_mutation_rate(xcsf, iter->cl, m);
