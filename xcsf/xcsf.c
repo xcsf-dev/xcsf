@@ -162,6 +162,11 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa,
     set_free(xcsf, &mset); // frees the match set list
 }
 
+double xcsf_version()
+{
+    return 1.00;
+}
+
 size_t xcsf_save(XCSF *xcsf, char *fname)
 {
     FILE *fp = fopen(fname, "wb");
@@ -170,6 +175,8 @@ size_t xcsf_save(XCSF *xcsf, char *fname)
         exit(EXIT_FAILURE);
     }
     size_t s = 0;
+    double version = xcsf_version();
+    s += fwrite(&version, sizeof(double), 1, fp);
     s += xcsf_save_params(xcsf, fp);
     s += pop_save(xcsf, fp);
     fclose(fp);
@@ -189,6 +196,15 @@ size_t xcsf_load(XCSF *xcsf, char *fname)
         set_init(xcsf, &xcsf->pset);
     }
     size_t s = 0;
+    double version = 0;
+    s += fread(&version, sizeof(double), 1, fp);
+    if(version != xcsf_version()) {
+        printf("Error loading file: %s. Version mismatch. ", fname);
+        printf("This version: %f. ", xcsf_version());
+        printf("Loaded version: %f.\n", version);
+        exit(EXIT_FAILURE);
+    }
+
     s += xcsf_load_params(xcsf, fp);
     s += pop_load(xcsf, fp);
     fclose(fp);

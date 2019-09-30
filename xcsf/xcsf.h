@@ -143,3 +143,4 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa,
 void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);
 size_t xcsf_load(XCSF *xcsf, char *fname);
 size_t xcsf_save(XCSF *xcsf, char *fname);
+double xcsf_version();

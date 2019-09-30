@@ -70,13 +70,9 @@ struct XCS
         test_data.y = NULL;
     }
 
-    size_t save(char *fname) {
-        return xcsf_save(&xcs, fname);
-    }
-
-    size_t load(char *fname) {
-        return xcsf_load(&xcs, fname);
-    }
+    double version() { return xcsf_version(); }
+    size_t save(char *fname) { return xcsf_save(&xcs, fname); }
+    size_t load(char *fname) { return xcsf_load(&xcs, fname); }
 
     double fit(np::ndarray &train_X, np::ndarray &train_Y, _Bool shuffle) {
         // check inputs are correctly sized
@@ -291,6 +287,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("predict", &XCS::predict)
         .def("save", &XCS::save)
         .def("load", &XCS::load)
+        .def("version", &XCS::version)
         .add_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads, &XCS::set_omp_num_threads)
         .add_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
         .add_property("THETA_MNA", &XCS::get_theta_mna, &XCS::set_theta_mna)
