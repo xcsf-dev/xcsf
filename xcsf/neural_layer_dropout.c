@@ -39,11 +39,11 @@ LAYER *neural_layer_dropout_init(XCSF *xcsf, int in, double prob)
     l->num_outputs = in;
     l->num_active = 0;
     l->options = 0;
+    l->probability = prob;
+    l->scale = 1./(1.-prob);
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = malloc(l->num_inputs * sizeof(double));
-    l->probability = prob;
     l->rand = malloc(l->num_inputs * sizeof(double));
-    l->scale = 1./(1.-prob);
     return l;
 }
 
