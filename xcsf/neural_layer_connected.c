@@ -29,7 +29,7 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, int opt)
+LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, u_int32_t opt)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
@@ -51,7 +51,7 @@ LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, int opt
     }
     l->active = calloc(l->num_outputs, sizeof(_Bool));
     l->options = opt;
-    if(l->options > 0) {
+    if(l->options & LAYER_EVOLVE_NEURONS) {
         l->num_active = 1;// + irand_uniform(0,l->num_outputs);
     }
     else {
@@ -135,20 +135,22 @@ void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
 
 void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
 {
-    (void)xcsf;
     // net->input[] = this layer's input
     // net->delta[] = previous layer's delta
-    for(int i = 0; i < l->num_active; i++) {
-        l->delta[i] *= neural_gradient(l->function, l->state[i]);
-        l->bias_updates[i] += l->delta[i];
-        for(int j = 0; j < l->num_inputs; j++) {
-            l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
-        }
-    }   
-    if(net->delta) { // input layer has no delta or weights
+    (void)xcsf;
+    if(l->options & LAYER_SGD_WEIGHTS) {
         for(int i = 0; i < l->num_active; i++) {
+            l->delta[i] *= neural_gradient(l->function, l->state[i]);
+            l->bias_updates[i] += l->delta[i];
             for(int j = 0; j < l->num_inputs; j++) {
-                net->delta[j] += l->delta[i] * l->weights[i*l->num_inputs+j];
+                l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
+            }
+        }
+        if(net->delta) { // input layer has no delta or weights
+            for(int i = 0; i < l->num_active; i++) {
+                for(int j = 0; j < l->num_inputs; j++) {
+                    net->delta[j] += l->delta[i] * l->weights[i*l->num_inputs+j];
+                }
             }
         }
     }
@@ -156,63 +158,71 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
 
 void neural_layer_connected_update(XCSF *xcsf, LAYER *l)
 {
-    for(int i = 0; i < l->num_active; i++) {
-        l->biases[i] += xcsf->ETA * l->bias_updates[i];
-        l->bias_updates[i] *= xcsf->MOMENTUM;
-    }
-    int w = l->num_inputs * l->num_active;
-    for(int i = 0; i < w; i++) {
-        l->weights[i] += xcsf->ETA * l->weight_updates[i];
-        l->weight_updates[i] *= xcsf->MOMENTUM;
+    if(l->options & LAYER_SGD_WEIGHTS) {
+        for(int i = 0; i < l->num_active; i++) {
+            l->biases[i] += xcsf->ETA * l->bias_updates[i];
+            l->bias_updates[i] *= xcsf->MOMENTUM;
+        }
+        int w = l->num_inputs * l->num_active;
+        for(int i = 0; i < w; i++) {
+            l->weights[i] += xcsf->ETA * l->weight_updates[i];
+            l->weight_updates[i] *= xcsf->MOMENTUM;
+        }
     }
 }
 
 _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
 {
     _Bool mod = false;
-    // mutate number of neurons
-    if(l->options > 0 && rand_uniform(0,1) < xcsf->P_MUTATION) {
-        int idx = l->num_active - 1;
-        // remove
-        if(l->num_active > 1 && rand_uniform(0,1) < 0.5) {
-            l->active[idx] = false;
-            l->num_active--;
-            mod = true;
-        }
-        // add
-        else if(l->num_active < l->num_outputs) {
-            l->active[idx] = true;
-            l->num_active++;
-            // randomise weights
-            l->biases[idx] = 0;
-            for(int i = 0; i < l->num_inputs; i++) {
-                l->weights[idx*l->num_inputs+i] = rand_normal(0,0.1);
+
+    if(l->options & LAYER_EVOLVE_NEURONS) {
+        if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+            int idx = l->num_active - 1;
+            // remove
+            if(l->num_active > 1 && rand_uniform(0,1) < 0.5) {
+                l->active[idx] = false;
+                l->num_active--;
+                mod = true;
             }
-            mod = true;
+            // add
+            else if(l->num_active < l->num_outputs) {
+                l->active[idx] = true;
+                l->num_active++;
+                // randomise weights
+                l->biases[idx] = 0;
+                for(int i = 0; i < l->num_inputs; i++) {
+                    l->weights[idx*l->num_inputs+i] = rand_normal(0,0.1);
+                }
+                mod = true;
+            }
         }
     } 
-    // mutate weights
-    int w = l->num_inputs * l->num_active;
-    for(int i = 0; i < w; i++) {
-        double orig = l->weights[i];
-        l->weights[i] += rand_normal(0, xcsf->S_MUTATION);
-        if(l->weights[i] != orig) {
-            mod = true;
+
+    if(l->options & LAYER_EVOLVE_WEIGHTS) {
+        int w = l->num_inputs * l->num_active;
+        for(int i = 0; i < w; i++) {
+            double orig = l->weights[i];
+            l->weights[i] += rand_normal(0, xcsf->S_MUTATION);
+            if(l->weights[i] != orig) {
+                mod = true;
+            }
+        }
+        for(int i = 0; i < l->num_active; i++) {
+            double orig = l->biases[i];
+            l->biases[i] += rand_normal(0, xcsf->S_MUTATION);
+            if(l->biases[i] != orig) {
+                mod = true;
+            }
         }
     }
-    // mutate biases
-    for(int i = 0; i < l->num_active; i++) {
-        double orig = l->biases[i];
-        l->biases[i] += rand_normal(0, xcsf->S_MUTATION);
-        if(l->biases[i] != orig) {
+
+    if(l->options & LAYER_EVOLVE_FUNCTIONS) {
+        if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
+            l->function = irand_uniform(0,NUM_ACTIVATIONS);
             mod = true;
-        }
+        } 
     }
-    // mutate activation functions
-    if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
-        l->function = irand_uniform(0,NUM_ACTIVATIONS);
-        mod = true;
-    } 
+
     return mod;
 }
 
@@ -249,7 +259,7 @@ size_t neural_layer_connected_save(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fwrite(&l->num_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->num_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->num_weights, sizeof(int), 1, fp);
-    s += fwrite(&l->options, sizeof(int), 1, fp);
+    s += fwrite(&l->options, sizeof(u_int32_t), 1, fp);
     s += fwrite(&l->num_active, sizeof(int), 1, fp);
     s += fwrite(&l->function, sizeof(int), 1, fp);
     s += fwrite(l->active, sizeof(_Bool), l->num_outputs, fp);
@@ -268,7 +278,7 @@ size_t neural_layer_connected_load(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->num_inputs, sizeof(int), 1, fp);
     s += fread(&l->num_outputs, sizeof(int), 1, fp);
     s += fread(&l->num_weights, sizeof(int), 1, fp);
-    s += fread(&l->options, sizeof(int), 1, fp);
+    s += fread(&l->options, sizeof(u_int32_t), 1, fp);
     s += fread(&l->num_active, sizeof(int), 1, fp);
     s += fread(&l->function, sizeof(int), 1, fp);
     l->state = calloc(l->num_outputs, sizeof(double));

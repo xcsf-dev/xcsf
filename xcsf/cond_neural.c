@@ -42,12 +42,22 @@ void cond_neural_init(XCSF *xcsf, CL *c)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     neural_init(xcsf, &new->net);
-    LAYER *l;
-    l = neural_layer_connected_init(xcsf,
-            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, 1);
+
+    u_int32_t lopt = 0;
+    lopt |= LAYER_EVOLVE_WEIGHTS;
+    lopt |= LAYER_EVOLVE_NEURONS;
+    lopt |= LAYER_EVOLVE_FUNCTIONS;
+
+    // hidden layer
+    LAYER *l = neural_layer_connected_init(xcsf, xcsf->num_x_vars,
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, lopt);
     neural_layer_insert(xcsf, &new->net, l, 0); 
-    l = neural_layer_connected_init(xcsf, xcsf->NUM_HIDDEN_NEURONS, 1, LOGISTIC, 0);
+
+    // output layer
+    lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
+    l = neural_layer_connected_init(xcsf, xcsf->NUM_HIDDEN_NEURONS, 1, LOGISTIC, lopt);
     neural_layer_insert(xcsf, &new->net, l, 1); 
+
     c->cond = new;
 }
 

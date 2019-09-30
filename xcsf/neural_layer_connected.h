@@ -16,7 +16,7 @@
  *
  */
 
-LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, int opt);
+LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, u_int32_t opt);
 LAYER *neural_layer_connected_copy(XCSF *xcsf, LAYER *from);
 void neural_layer_connected_rand(XCSF *xcsf, LAYER *l);
 void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input);

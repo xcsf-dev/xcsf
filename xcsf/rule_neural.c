@@ -49,12 +49,21 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *new = malloc(sizeof(RULE_NEURAL_COND));
     neural_init(xcsf, &new->net);
-    LAYER *l;
-    l = neural_layer_connected_init(xcsf,
-            xcsf->num_x_vars, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, 1);
+
+    u_int32_t lopt = 0; 
+    lopt |= LAYER_EVOLVE_WEIGHTS;
+    lopt |= LAYER_EVOLVE_NEURONS;
+    lopt |= LAYER_EVOLVE_FUNCTIONS;
+
+    // hidden layer
+    LAYER *l = neural_layer_connected_init(xcsf, xcsf->num_x_vars,
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, lopt);
     neural_layer_insert(xcsf, &new->net, l, 0); 
+
+    // output layer
+    lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
     l = neural_layer_connected_init(xcsf, 
-            xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1, IDENTITY, 0);
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->MAX_FORWARD+1, IDENTITY, lopt);
     neural_layer_insert(xcsf, &new->net, l, 1); 
     c->cond = new;
 }
@@ -139,13 +148,23 @@ void rule_neural_pred_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_PRED *new = malloc(sizeof(RULE_NEURAL_PRED));
     neural_init(xcsf, &new->net);
-    LAYER *l;
-    l = neural_layer_connected_init(xcsf,
-            xcsf->MAX_FORWARD, xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, 1);
+
+    u_int32_t lopt = 0;
+    lopt |= LAYER_EVOLVE_WEIGHTS;
+    lopt |= LAYER_EVOLVE_NEURONS;
+    lopt |= LAYER_EVOLVE_FUNCTIONS;
+    lopt |= LAYER_SGD_WEIGHTS;
+
+    // hidden layer
+    LAYER *l = neural_layer_connected_init(xcsf, xcsf->MAX_FORWARD,
+            xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, lopt);
     neural_layer_insert(xcsf, &new->net, l, 0); 
-    l = neural_layer_connected_init(xcsf,
-            xcsf->NUM_HIDDEN_NEURONS, xcsf->num_y_vars, IDENTITY, 0);
-    neural_layer_insert(xcsf, &new->net, l, 1); 
+
+    // output layer
+    lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
+    l = neural_layer_connected_init(xcsf, xcsf->NUM_HIDDEN_NEURONS,
+            xcsf->num_y_vars, IDENTITY, lopt);
+    neural_layer_insert(xcsf, &new->net, l, 1);
     new->input = malloc(sizeof(double)*xcsf->MAX_FORWARD);
     c->pred = new;  
 }

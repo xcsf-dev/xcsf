@@ -20,13 +20,18 @@
 #define NOISE 2
 #define SOFTMAX 3
 
+#define LAYER_EVOLVE_WEIGHTS    (1<<0)
+#define LAYER_EVOLVE_NEURONS    (1<<1)
+#define LAYER_EVOLVE_FUNCTIONS  (1<<2)
+#define LAYER_SGD_WEIGHTS       (1<<3)
+
 typedef struct LAYER {
     int layer_type;
     double *state;
     double *output;
     _Bool *active;
     int num_active;
-    int options;
+    u_int32_t options;
     double *weights;
     double *biases;
     double *bias_updates;
