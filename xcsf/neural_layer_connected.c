@@ -120,7 +120,7 @@ void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
         if(l->active[i]) {
             l->state[i] = 0;
             for(int j = 0; j < l->num_inputs; j++) {
-                l->state[i] += input[j] * l->weights[i*l->num_inputs+j];
+                l->state[i] += input[j] * l->weights[i * l->num_inputs + j];
             }
             l->state[i] += l->biases[i];
             l->state[i] = constrain(-100, 100, l->state[i]);
@@ -143,14 +143,14 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
         if(l->options & LAYER_SGD_WEIGHTS) {
             l->bias_updates[i] += l->delta[i];
             for(int j = 0; j < l->num_inputs; j++) {
-                l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
+                l->weight_updates[i * l->num_inputs + j] += l->delta[i] * net->input[j];
             }
         }
     }
     if(net->delta) { // input layer has no delta or weights
         for(int i = 0; i < l->num_active; i++) {
             for(int j = 0; j < l->num_inputs; j++) {
-                net->delta[j] += l->delta[i] * l->weights[i*l->num_inputs+j];
+                net->delta[j] += l->delta[i] * l->weights[i * l->num_inputs + j];
             }
         }
     }
@@ -191,7 +191,7 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
                 // randomise weights
                 l->biases[idx] = 0;
                 for(int i = 0; i < l->num_inputs; i++) {
-                    l->weights[idx*l->num_inputs+i] = rand_normal(0,0.1);
+                    l->weights[idx * l->num_inputs + i] = rand_normal(0,0.1);
                 }
                 mod = true;
             }
@@ -218,7 +218,7 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
 
     if(l->options & LAYER_EVOLVE_FUNCTIONS) {
         if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
-            l->function = irand_uniform(0,NUM_ACTIVATIONS);
+            l->function = irand_uniform(0, NUM_ACTIVATIONS);
             mod = true;
         } 
     }
