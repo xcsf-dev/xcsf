@@ -57,7 +57,7 @@ void set_init(XCSF *xcsf, SET *set)
 
 void pop_del(XCSF *xcsf, SET *kset)
 {
-    // selects two classifiers using roullete wheel selection with the deletion vote
+    // selects two classifiers using roulete wheel selection with the deletion vote
     // deletes the one with the largest condition + prediction length
     double avg_fit = set_total_fit(xcsf, &xcsf->pset) / xcsf->pset.num;
     double total = 0;
