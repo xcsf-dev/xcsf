@@ -142,7 +142,7 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
         set_match(xcsf, &mset, &kset, &input[row * xcsf->num_x_vars]);
         set_pred(xcsf, &mset, &input[row * xcsf->num_x_vars], &output[row * xcsf->num_y_vars]);
         set_kill(xcsf, &kset); // kills deleted classifiers
-        set_free(xcsf, &mset); // frees the match set list      
+        set_free(xcsf, &mset); // frees the match set list
     }
 }
 
@@ -158,6 +158,8 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa,
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, input);
     set_print(xcsf, &mset, printc, printa, printp);
+    set_kill(xcsf, &kset); // kills deleted classifiers
+    set_free(xcsf, &mset); // frees the match set list
 }
 
 size_t xcsf_save(XCSF *xcsf, char *fname)
