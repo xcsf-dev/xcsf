@@ -38,7 +38,7 @@ LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int func, u_int3
     l->function = func;
     l->num_inputs = in;
     l->num_outputs = out;
-    l->num_weights = in*out;
+    l->num_weights = in * out;
     l->state = calloc(l->num_outputs, sizeof(double));
     l->output = calloc(l->num_outputs, sizeof(double));
     l->biases = calloc(l->num_outputs, sizeof(double));
