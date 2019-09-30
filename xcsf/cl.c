@@ -88,12 +88,10 @@ double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit)
 
 double cl_acc(XCSF *xcsf, CL *c)
 {
-    if(c->err <= xcsf->EPS_0) {
-        return 1;
-    }
-    else {
+    if(c->err > xcsf->EPS_0) {
         return xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
     }
+    return 1;
 }
 
 void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num)
@@ -110,9 +108,8 @@ double cl_update_err(XCSF *xcsf, CL *c, double *y)
 {
     // prediction has been updated for the current input during set_pred()
     double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
-
-    if(c->exp < 1/xcsf->BETA) {
-        c->err = (c->err * (c->exp-1) + error) / (double)c->exp;
+    if(c->exp < 1 / xcsf->BETA) {
+        c->err = (c->err * (c->exp - 1) + error) / c->exp;
     }
     else {
         c->err += xcsf->BETA * (error - c->err);
@@ -127,8 +124,8 @@ void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc)
 
 double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
 {
-    if(c->exp < 1/xcsf->BETA) {
-        c->size = (c->size * (c->exp-1) + num_sum) / (double)c->exp;
+    if(c->exp < 1 / xcsf->BETA) {
+        c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;
     }
     else {
         c->size += xcsf->BETA * (num_sum - c->size);
