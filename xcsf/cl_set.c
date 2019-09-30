@@ -400,8 +400,7 @@ double set_avg_mut(XCSF *xcsf, SET *set, int m)
     }
 
     // returns the average classifier mutation rate
-    double sum = 0;
-    int cnt = 0;
+    double sum = 0; int cnt = 0;
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += cl_mutation_rate(xcsf, iter->cl, m);
         cnt++;
