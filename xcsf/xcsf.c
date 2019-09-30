@@ -146,18 +146,18 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
     }
 }
 
-void xcsf_print_pop(XCSF *xcsf, _Bool print_cond, _Bool print_pred)
+void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
 {
-    set_print(xcsf, &xcsf->pset, print_cond, print_pred);
+    set_print(xcsf, &xcsf->pset, printc, printa, printp);
 }
 
-void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool print_cond, _Bool print_pred)
+void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa, _Bool printp)
 {
     SET mset, kset;
     set_init(xcsf, &mset);
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, input);
-    set_print(xcsf, &mset, print_cond, print_pred);
+    set_print(xcsf, &mset, printc, printa, printp);
 }
 
 size_t xcsf_save(XCSF *xcsf, char *fname)
@@ -255,7 +255,7 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
     return s;
 }
- 
+
 size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;

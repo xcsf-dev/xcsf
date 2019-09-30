@@ -89,7 +89,7 @@ double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit)
 double cl_acc(XCSF *xcsf, CL *c)
 {
     if(c->err <= xcsf->EPS_0) {
-        return 1.0;
+        return 1;
     }
     else {
         return xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
@@ -111,8 +111,8 @@ double cl_update_err(XCSF *xcsf, CL *c, double *y)
     // prediction has been updated for the current input during set_pred()
     double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
 
-    if(c->exp < 1.0/xcsf->BETA) {
-        c->err = (c->err * (c->exp-1.0) + error) / (double)c->exp;
+    if(c->exp < 1/xcsf->BETA) {
+        c->err = (c->err * (c->exp-1) + error) / (double)c->exp;
     }
     else {
         c->err += xcsf->BETA * (error - c->err);
@@ -127,8 +127,8 @@ void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc)
 
 double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
 {
-    if(c->exp < 1.0/xcsf->BETA) {
-        c->size = (c->size * (c->exp-1.0) + num_sum) / (double)c->exp; 
+    if(c->exp < 1/xcsf->BETA) {
+        c->size = (c->size * (c->exp-1) + num_sum) / (double)c->exp;
     }
     else {
         c->size += xcsf->BETA * (num_sum - c->size);
@@ -147,20 +147,22 @@ void cl_free(XCSF *xcsf, CL *c)
     free(c);
 }
 
-void cl_print(XCSF *xcsf, CL *c, _Bool print_cond, _Bool print_pred)
+void cl_print(XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp)
 {
-    if(print_cond || print_pred) {
+    if(printc || printa || printp) {
         printf("***********************************************\n");
-    }
-    if(print_cond) {
-        printf("\nCONDITION\n");
-        cond_print(xcsf, c);
-    }
-    if(print_pred) {
-        printf("\nPREDICTOR\n");
-        pred_print(xcsf, c);
-        printf("\nACTION\n");
-        act_print(xcsf, c);
+        if(printc) {
+            printf("\nCONDITION\n");
+            cond_print(xcsf, c);
+        }
+        if(printp) {
+            printf("\nPREDICTOR\n");
+            pred_print(xcsf, c);
+        }
+        if(printa) {
+            printf("\nACTION\n");
+            act_print(xcsf, c);
+        }
         printf("\n");
     }
     printf("err=%f, fit=%f, num=%d, exp=%d, size=%f, time=%d\n", 

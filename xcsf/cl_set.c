@@ -320,10 +320,10 @@ void set_validate(XCSF *xcsf, SET *set)
     }
 }
 
-void set_print(XCSF *xcsf, SET *set, _Bool print_cond, _Bool print_pred)
+void set_print(XCSF *xcsf, SET *set, _Bool printc, _Bool printa, _Bool printp)
 {
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        cl_print(xcsf, iter->cl, print_cond, print_pred);
+        cl_print(xcsf, iter->cl, printc, printa, printp);
     }
 }
 

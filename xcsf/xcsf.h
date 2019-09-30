@@ -139,7 +139,7 @@ typedef struct INPUT {
 double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle);
 double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle);
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows);
-void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool print_cond, _Bool print_pred);
-void xcsf_print_pop(XCSF *xcsf, _Bool print_cond, _Bool print_pred);
+void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa, _Bool printp);
+void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);
 size_t xcsf_load(XCSF *xcsf, char *fname);
 size_t xcsf_save(XCSF *xcsf, char *fname);
