@@ -98,10 +98,10 @@ void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num)
 {
     c->exp++;
     cl_update_err(xcsf, c, y);
+    cl_update_size(xcsf, c, set_num);
     cond_update(xcsf, c, x, y);
     pred_update(xcsf, c, x, y);
     act_update(xcsf, c, x, y);
-    cl_update_size(xcsf, c, set_num);
 }
 
 double cl_update_err(XCSF *xcsf, CL *c, double *y)
