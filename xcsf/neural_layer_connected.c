@@ -138,19 +138,17 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
     // net->input[] = this layer's input
     // net->delta[] = previous layer's delta
     (void)xcsf;
-    if(l->options & LAYER_SGD_WEIGHTS) {
-        for(int i = 0; i < l->num_active; i++) {
-            l->delta[i] *= neural_gradient(l->function, l->state[i]);
-            l->bias_updates[i] += l->delta[i];
-            for(int j = 0; j < l->num_inputs; j++) {
-                l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
-            }
+    for(int i = 0; i < l->num_active; i++) {
+        l->delta[i] *= neural_gradient(l->function, l->state[i]);
+        l->bias_updates[i] += l->delta[i];
+        for(int j = 0; j < l->num_inputs; j++) {
+            l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
         }
-        if(net->delta) { // input layer has no delta or weights
-            for(int i = 0; i < l->num_active; i++) {
-                for(int j = 0; j < l->num_inputs; j++) {
-                    net->delta[j] += l->delta[i] * l->weights[i*l->num_inputs+j];
-                }
+    }
+    if(net->delta) { // input layer has no delta or weights
+        for(int i = 0; i < l->num_active; i++) {
+            for(int j = 0; j < l->num_inputs; j++) {
+                net->delta[j] += l->delta[i] * l->weights[i*l->num_inputs+j];
             }
         }
     }
