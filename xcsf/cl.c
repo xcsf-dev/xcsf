@@ -187,9 +187,7 @@ _Bool cl_subsumer(XCSF *xcsf, CL *c)
     if(c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 
 _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
