@@ -29,13 +29,13 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int act, u_int32_t opt)
+LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int func, u_int32_t opt)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
-    l->function = act;
+    l->function = func;
     l->num_inputs = in;
     l->num_outputs = out;
     l->num_weights = in*out;
