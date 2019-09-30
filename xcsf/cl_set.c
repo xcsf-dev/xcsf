@@ -406,7 +406,7 @@ double set_avg_mut(XCSF *xcsf, SET *set, int m)
         sum += cl_mutation_rate(xcsf, iter->cl, m);
         cnt++;
     }
-    return sum/cnt;
+    return sum / cnt;
 }
 
 double set_avg_cond_size(XCSF *xcsf, SET *set)
@@ -416,7 +416,7 @@ double set_avg_cond_size(XCSF *xcsf, SET *set)
         sum += cl_cond_size(xcsf, iter->cl);
         cnt++;
     }
-    return sum/(double)cnt;
+    return (double) sum / cnt;
 }
 
 double set_avg_pred_size(XCSF *xcsf, SET *set)
@@ -426,7 +426,7 @@ double set_avg_pred_size(XCSF *xcsf, SET *set)
         sum += cl_pred_size(xcsf, iter->cl);
         cnt++;
     }
-    return sum/(double)cnt;
+    return (double) sum / cnt;
 }
 
 size_t pop_save(XCSF *xcsf, FILE *fp)
