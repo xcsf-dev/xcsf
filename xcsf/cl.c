@@ -80,10 +80,10 @@ void cl_rand(XCSF *xcsf, CL *c)
 
 double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit)
 {
-    if(c->fit / c->num >= xcsf->DELTA * avg_fit || c->exp < xcsf->THETA_DEL) {
-        return c->size * c->num;
+    if(c->exp > xcsf->THETA_DEL && c->fit / c->num < xcsf->DELTA * avg_fit) {
+        return c->size * c->num * avg_fit / (c->fit / c->num);
     }
-    return c->size * c->num * avg_fit / (c->fit / c->num); 
+    return c->size * c->num;
 }
 
 double cl_acc(XCSF *xcsf, CL *c)
