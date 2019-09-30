@@ -140,9 +140,11 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
     (void)xcsf;
     for(int i = 0; i < l->num_active; i++) {
         l->delta[i] *= neural_gradient(l->function, l->state[i]);
-        l->bias_updates[i] += l->delta[i];
-        for(int j = 0; j < l->num_inputs; j++) {
-            l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
+        if(l->options & LAYER_SGD_WEIGHTS) {
+            l->bias_updates[i] += l->delta[i];
+            for(int j = 0; j < l->num_inputs; j++) {
+                l->weight_updates[i*l->num_inputs+j] += l->delta[i] * net->input[j];
+            }
         }
     }
     if(net->delta) { // input layer has no delta or weights
