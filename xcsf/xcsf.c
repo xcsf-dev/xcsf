@@ -191,12 +191,7 @@ size_t xcsf_load(XCSF *xcsf, char *fname)
         printf("Error opening load file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
-    if(xcsf->pset.size > 0) {
-        set_kill(xcsf, &xcsf->pset);
-        set_init(xcsf, &xcsf->pset);
-    }
-    size_t s = 0;
-    double version = 0;
+    size_t s = 0; double version = 0;
     s += fread(&version, sizeof(double), 1, fp);
     if(version != xcsf_version()) {
         printf("Error loading file: %s. Version mismatch. ", fname);
@@ -204,7 +199,10 @@ size_t xcsf_load(XCSF *xcsf, char *fname)
         printf("Loaded version: %f.\n", version);
         exit(EXIT_FAILURE);
     }
-
+    if(xcsf->pset.size > 0) {
+        set_kill(xcsf, &xcsf->pset);
+        set_init(xcsf, &xcsf->pset);
+    }
     s += xcsf_load_params(xcsf, fp);
     s += pop_load(xcsf, fp);
     fclose(fp);
