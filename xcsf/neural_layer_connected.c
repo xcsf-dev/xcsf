@@ -242,8 +242,11 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
 
     if(l->options & LAYER_EVOLVE_FUNCTIONS) {
         if(rand_uniform(0,1) < xcsf->F_MUTATION) {
+            int orig_function = l->function;
             l->function = irand_uniform(0, NUM_ACTIVATIONS);
-            mod = true;
+            if(l->function != orig_function) {
+                mod = true;
+            }
         } 
     }
 
