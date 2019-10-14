@@ -80,11 +80,12 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->MOMENTUM = atof(getvalue("MOMENTUM"));
     xcsf->NU = atof(getvalue("NU"));
     xcsf->P_CROSSOVER = atof(getvalue("P_CROSSOVER"));
-    xcsf->P_FUNC_MUTATION = atof(getvalue("P_FUNC_MUTATION"));
+    xcsf->F_MUTATION = atof(getvalue("F_MUTATION"));
     xcsf->P_MUTATION = atof(getvalue("P_MUTATION"));
+    xcsf->S_MUTATION = atof(getvalue("S_MUTATION"));
+    xcsf->E_MUTATION = atof(getvalue("E_MUTATION"));
     xcsf->RLS_LAMBDA = atof(getvalue("RLS_LAMBDA"));
     xcsf->RLS_SCALE_FACTOR = atof(getvalue("RLS_SCALE_FACTOR"));
-    xcsf->S_MUTATION = atof(getvalue("S_MUTATION"));
     xcsf->SAM_MIN = atof(getvalue("SAM_MIN"));
     xcsf->THETA_DEL = atof(getvalue("THETA_DEL"));
     xcsf->THETA_EA = atof(getvalue("THETA_EA"));

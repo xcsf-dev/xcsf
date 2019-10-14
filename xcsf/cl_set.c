@@ -26,6 +26,16 @@
 #include "cl.h"
 #include "cl_set.h"
 
+#include "neural_activations.h"
+#include "neural.h"
+#include "neural_layer.h"
+#include "neural_layer_connected.h"
+#include "neural_layer_dropout.h"
+#include "neural_layer_noise.h"
+#include "neural_layer_softmax.h"
+#include "prediction.h"
+#include "pred_neural.h"
+
 #define MAX_COVER 1000000
 
 void set_subsumption(XCSF *xcsf, SET *set, SET *kset);
@@ -393,7 +403,9 @@ double set_avg_mut(XCSF *xcsf, SET *set, int m)
             case 1:
                 return xcsf->P_MUTATION;
             case 2:
-                return xcsf->P_FUNC_MUTATION;
+                return xcsf->E_MUTATION;
+            case 3:
+                return xcsf->F_MUTATION;
             default:
                 return -1;
         }
@@ -452,4 +464,15 @@ size_t pop_load(XCSF *xcsf, FILE *fp)
         set_add(xcsf, &xcsf->pset, c);
     }
     return s;
+}
+
+double set_avg_eta(XCSF *xcsf, SET *set, int layer)
+{
+    double sum = 0;
+    int cnt = 0;
+    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        sum += pred_neural_eta(xcsf, iter->cl, layer);
+        cnt++;
+    }
+    return sum/cnt;
 }

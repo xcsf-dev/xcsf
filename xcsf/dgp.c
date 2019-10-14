@@ -140,7 +140,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
 {
     for(int i = 0; i < dgp->n; i++) {
         // mutate function
-        if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
+        if(rand_uniform(0,1) < xcsf->F_MUTATION) {
             dgp->function[i] = irand_uniform(0, NUM_ACTIVATIONS);
         }
         // mutate initial state

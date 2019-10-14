@@ -237,8 +237,9 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->ACT_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->P_CROSSOVER, sizeof(double), 1, fp);
     s += fwrite(&xcsf->P_MUTATION, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->P_FUNC_MUTATION, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->F_MUTATION, sizeof(double), 1, fp);
     s += fwrite(&xcsf->S_MUTATION, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->E_MUTATION, sizeof(double), 1, fp);
     s += fwrite(&xcsf->THETA_EA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->THETA_OFFSPRING, sizeof(int), 1, fp);
     s += fwrite(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
@@ -299,8 +300,9 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->ACT_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->P_CROSSOVER, sizeof(double), 1, fp);
     s += fread(&xcsf->P_MUTATION, sizeof(double), 1, fp);
-    s += fread(&xcsf->P_FUNC_MUTATION, sizeof(double), 1, fp);
+    s += fread(&xcsf->F_MUTATION, sizeof(double), 1, fp);
     s += fread(&xcsf->S_MUTATION, sizeof(double), 1, fp);
+    s += fread(&xcsf->E_MUTATION, sizeof(double), 1, fp);
     s += fread(&xcsf->THETA_EA, sizeof(double), 1, fp);
     s += fread(&xcsf->THETA_OFFSPRING, sizeof(int), 1, fp);
     s += fread(&xcsf->SAM_TYPE, sizeof(int), 1, fp);

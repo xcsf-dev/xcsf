@@ -46,6 +46,7 @@ void pred_neural_init(XCSF *xcsf, CL *c)
     u_int32_t lopt = 0;
     lopt |= LAYER_EVOLVE_WEIGHTS;
     lopt |= LAYER_EVOLVE_NEURONS;
+    lopt |= LAYER_EVOLVE_ETA;
     lopt |= LAYER_EVOLVE_FUNCTIONS;
     lopt |= LAYER_SGD_WEIGHTS;
 
@@ -139,4 +140,19 @@ size_t pred_neural_load(XCSF *xcsf, CL *c, FILE *fp)
     c->pred = new;
     //printf("pred neural loaded %lu elements\n", (unsigned long)s);
     return s;
+}
+
+double pred_neural_eta(XCSF *xcsf, CL *c, int layer)
+{
+    (void)xcsf;
+    PRED_NEURAL *pred = c->pred;
+    NET *net = &pred->net;
+    int i = 0;
+    for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        if(i == layer) {
+            return iter->layer->eta;
+        }
+        i++;
+    }
+    return 0;
 }

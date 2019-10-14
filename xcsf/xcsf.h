@@ -82,8 +82,9 @@ typedef struct XCSF {
     // evolutionary algorithm parameters
     double P_CROSSOVER; // probability of applying crossover (for hyperrectangles)
     double P_MUTATION; // probability of mutation occuring per allele
-    double P_FUNC_MUTATION; // probability of performing mutating a graph/net function
+    double F_MUTATION; // probability of performing mutating a graph/net function
     double S_MUTATION; // maximum amount to mutate an allele
+    double E_MUTATION; // rate of gradient descent mutation
     double THETA_EA; // average match set time between EA invocations
     int THETA_OFFSPRING; // number of offspring to create each EA invocation
 

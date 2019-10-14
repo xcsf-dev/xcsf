@@ -22,8 +22,9 @@
 
 #define LAYER_EVOLVE_WEIGHTS    (1<<0)
 #define LAYER_EVOLVE_NEURONS    (1<<1)
-#define LAYER_EVOLVE_FUNCTIONS  (1<<2)
-#define LAYER_SGD_WEIGHTS       (1<<3)
+#define LAYER_EVOLVE_ETA        (1<<2)
+#define LAYER_EVOLVE_FUNCTIONS  (1<<3)
+#define LAYER_SGD_WEIGHTS       (1<<4)
 
 typedef struct LAYER {
     int layer_type;
@@ -41,6 +42,7 @@ typedef struct LAYER {
     int num_outputs;
     int num_weights;
     int function;
+    double eta;
     double scale;
     double probability;
     double *rand;

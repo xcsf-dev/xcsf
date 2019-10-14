@@ -205,7 +205,10 @@ _Bool cl_mutate(XCSF *xcsf, CL *c)
         if(xcsf->SAM_NUM > 1) {
             xcsf->P_MUTATION = c->mu[1];
             if(xcsf->SAM_NUM > 2) {
-                xcsf->P_FUNC_MUTATION = c->mu[2];
+                xcsf->E_MUTATION = c->mu[2];
+                if(xcsf->SAM_NUM > 3) {
+                    xcsf->F_MUTATION = c->mu[3];
+                }
             }
         }
     } 

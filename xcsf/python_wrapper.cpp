@@ -179,7 +179,9 @@ struct XCS
     int get_pred_type() { return xcs.PRED_TYPE; }
     double get_p_crossover() { return xcs.P_CROSSOVER; }
     double get_p_mutation() { return xcs.P_MUTATION; }
-    double get_p_func_mutation() { return xcs.P_FUNC_MUTATION; }
+    double get_f_mutation() { return xcs.F_MUTATION; }
+    double get_e_mutation() { return xcs.E_MUTATION; }
+    double get_s_mutation() { return xcs.S_MUTATION; }
     double get_theta_ea() { return xcs.THETA_EA; }
     int get_theta_offspring() { return xcs.THETA_OFFSPRING; }
     double get_sam_min() { return xcs.SAM_MIN; }
@@ -187,7 +189,6 @@ struct XCS
     int get_sam_type() { return xcs.SAM_TYPE; }
     double get_max_con() { return xcs.MAX_CON; }
     double get_min_con() { return xcs.MIN_CON; }
-    double get_s_mutation() { return xcs.S_MUTATION; }
     int get_num_hidden_neurons() { return xcs.NUM_HIDDEN_NEURONS; }
     int get_hidden_neuron_activation() { return xcs.HIDDEN_NEURON_ACTIVATION; }
     double get_momentum() { return xcs.MOMENTUM; }
@@ -214,6 +215,7 @@ struct XCS
     double get_pop_avg_mu(int m) { return set_avg_mut(&xcs, &xcs.pset, m); }
     double get_pop_avg_cond_size() { return set_avg_cond_size(&xcs, &xcs.pset); }
     double get_pop_avg_pred_size() { return set_avg_pred_size(&xcs, &xcs.pset); }
+    double get_pop_avg_pred_eta(int layer) { return set_avg_eta(&xcs, &xcs.pset, layer); }
     double get_msetsize() { return xcs.msetsize; }
 
     /* SETTERS */
@@ -244,7 +246,9 @@ struct XCS
     void set_pred_type(int a) { xcs.PRED_TYPE = a; }
     void set_p_crossover(double a) { xcs.P_CROSSOVER = a; }
     void set_p_mutation(double a) { xcs.P_MUTATION = a; }
-    void set_p_func_mutation(double a) { xcs.P_FUNC_MUTATION = a; }
+    void set_f_mutation(double a) { xcs.F_MUTATION = a; }
+    void set_e_mutation(double a) { xcs.E_MUTATION = a; }
+    void set_s_mutation(double a) { xcs.S_MUTATION = a; }
     void set_theta_ea(double a) { xcs.THETA_EA = a; }
     void set_theta_offspring(int a) { xcs.THETA_OFFSPRING = a; }
     void set_sam_min(double a) { xcs.SAM_MIN = a; }
@@ -252,7 +256,6 @@ struct XCS
     void set_sam_type(int a) { xcs.SAM_TYPE = a; }
     void set_max_con(double a) { xcs.MAX_CON = a; }
     void set_min_con(double a) { xcs.MIN_CON = a; }
-    void set_s_mutation(double a) { xcs.S_MUTATION = a; }
     void set_num_hidden_neurons(int a) { xcs.NUM_HIDDEN_NEURONS = a; }
     void set_hidden_neuron_activation(int a) { xcs.HIDDEN_NEURON_ACTIVATION = a; }
     void set_momentum(double a) { xcs.MOMENTUM = a; }
@@ -310,7 +313,9 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("PRED_TYPE", &XCS::get_pred_type, &XCS::set_pred_type)
         .add_property("P_CROSSOVER", &XCS::get_p_crossover, &XCS::set_p_crossover)
         .add_property("P_MUTATION", &XCS::get_p_mutation, &XCS::set_p_mutation)
-        .add_property("P_FUNC_MUTATION", &XCS::get_p_func_mutation, &XCS::set_p_func_mutation)
+        .add_property("F_MUTATION", &XCS::get_f_mutation, &XCS::set_f_mutation)
+        .add_property("E_MUTATION", &XCS::get_e_mutation, &XCS::set_e_mutation)
+        .add_property("S_MUTATION", &XCS::get_s_mutation, &XCS::set_s_mutation)
         .add_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea)
         .add_property("THETA_OFFSPRING", &XCS::get_theta_offspring, &XCS::set_theta_offspring)
         .add_property("SAM_MIN", &XCS::get_sam_min, &XCS::set_sam_min)
@@ -318,7 +323,6 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("SAM_TYPE", &XCS::get_sam_type, &XCS::set_sam_type)
         .add_property("MAX_CON", &XCS::get_max_con, &XCS::set_max_con)
         .add_property("MIN_CON", &XCS::get_min_con, &XCS::set_min_con)
-        .add_property("S_MUTATION", &XCS::get_s_mutation, &XCS::set_s_mutation)
         .add_property("NUM_HIDDEN_NEURONS", &XCS::get_num_hidden_neurons, &XCS::set_num_hidden_neurons)
         .add_property("HIDDEN_NEURON_ACTIVATION", &XCS::get_hidden_neuron_activation, &XCS::set_hidden_neuron_activation)
         .add_property("DGP_NUM_NODES", &XCS::get_dgp_num_nodes, &XCS::set_dgp_num_nodes)
@@ -345,6 +349,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("pop_avg_mu", &XCS::get_pop_avg_mu)
         .def("pop_avg_cond_size", &XCS::get_pop_avg_cond_size)
         .def("pop_avg_pred_size", &XCS::get_pop_avg_pred_size)
+        .def("pop_avg_pred_eta", &XCS::get_pop_avg_pred_eta)
         .def("print_pop", &XCS::print_pop)
         .def("print_match_set", &XCS::print_match_set)
         .def("msetsize", &XCS::get_msetsize)

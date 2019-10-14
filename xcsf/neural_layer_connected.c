@@ -29,6 +29,9 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
+#define ETA_MAX 0.1
+#define ETA_MIN 0.0001
+
 LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int func, u_int32_t opt)
 {
     (void)xcsf;
@@ -49,16 +52,22 @@ LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int func, u_int3
     for(int i = 0; i < l->num_weights; i++) {
         l->weights[i] = rand_normal(0,0.1);
     }
-    l->active = calloc(l->num_outputs, sizeof(_Bool));
     l->options = opt;
+    l->active = calloc(l->num_outputs, sizeof(_Bool));
     if(l->options & LAYER_EVOLVE_NEURONS) {
-        l->num_active = 1;// + irand_uniform(0,l->num_outputs);
+        l->num_active = 1 + irand_uniform(0,l->num_outputs);
     }
     else {
         l->num_active = l->num_outputs;
     }
     for(int i = 0; i < l->num_active; i++) {
         l->active[i] = true;
+    }
+    if(l->options & LAYER_EVOLVE_ETA) {
+        l->eta = rand_uniform(ETA_MIN,ETA_MAX);
+    }
+    else {
+        l->eta = xcsf->ETA;
     }
     return l;
 }
@@ -74,6 +83,7 @@ LAYER *neural_layer_connected_copy(XCSF *xcsf, LAYER *from)
     l->num_weights = from->num_weights;
     l->options = from->options;
     l->num_active = from->num_active;
+    l->eta = from->eta;
     l->active = malloc(from->num_outputs * sizeof(_Bool));
     l->state = calloc(from->num_outputs, sizeof(double));
     l->output = calloc(from->num_outputs, sizeof(double));
@@ -160,12 +170,12 @@ void neural_layer_connected_update(XCSF *xcsf, LAYER *l)
 {
     if(l->options & LAYER_SGD_WEIGHTS) {
         for(int i = 0; i < l->num_active; i++) {
-            l->biases[i] += xcsf->ETA * l->bias_updates[i];
+            l->biases[i] += l->eta * l->bias_updates[i];
             l->bias_updates[i] *= xcsf->MOMENTUM;
         }
         int w = l->num_inputs * l->num_active;
         for(int i = 0; i < w; i++) {
-            l->weights[i] += xcsf->ETA * l->weight_updates[i];
+            l->weights[i] += l->eta * l->weight_updates[i];
             l->weight_updates[i] *= xcsf->MOMENTUM;
         }
     }
@@ -216,8 +226,22 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
         }
     }
 
+    if(l->options & LAYER_EVOLVE_ETA) {
+        double orig_eta = l->eta;
+        l->eta += rand_normal(0, xcsf->E_MUTATION);
+        if(l->eta > ETA_MAX) {
+            l->eta = ETA_MAX;
+        }
+        else if(l->eta < ETA_MIN) {
+            l->eta = ETA_MIN;
+        }
+        if(l->eta != orig_eta) {
+            mod = true;
+        }
+    }
+
     if(l->options & LAYER_EVOLVE_FUNCTIONS) {
-        if(rand_uniform(0,1) < xcsf->P_FUNC_MUTATION) {
+        if(rand_uniform(0,1) < xcsf->F_MUTATION) {
             l->function = irand_uniform(0, NUM_ACTIVATIONS);
             mod = true;
         } 
@@ -235,8 +259,9 @@ double *neural_layer_connected_output(XCSF *xcsf, LAYER *l)
 void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
 {
     (void)xcsf;
-    printf("connected %s in = %d, out = %d, active = %d, ",
-            activation_string(l->function), l->num_inputs, l->num_outputs, l->num_active);
+    printf("connected %s eta=%.5f, in = %d, out = %d, active = %d, ",
+            activation_string(l->function), l->eta,
+            l->num_inputs, l->num_outputs, l->num_active);
     printf("weights (%d): ", l->num_weights);
     if(print_weights) {
         for(int i = 0; i < l->num_weights; i++) {
@@ -262,6 +287,7 @@ size_t neural_layer_connected_save(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fwrite(&l->options, sizeof(u_int32_t), 1, fp);
     s += fwrite(&l->num_active, sizeof(int), 1, fp);
     s += fwrite(&l->function, sizeof(int), 1, fp);
+    s += fwrite(&l->eta, sizeof(double), 1, fp);
     s += fwrite(l->active, sizeof(_Bool), l->num_outputs, fp);
     s += fwrite(l->weights, sizeof(double), l->num_weights, fp);
     s += fwrite(l->biases, sizeof(double), l->num_outputs, fp);
@@ -281,6 +307,7 @@ size_t neural_layer_connected_load(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->options, sizeof(u_int32_t), 1, fp);
     s += fread(&l->num_active, sizeof(int), 1, fp);
     s += fread(&l->function, sizeof(int), 1, fp);
+    s += fread(&l->eta, sizeof(double), 1, fp);
     l->state = calloc(l->num_outputs, sizeof(double));
     l->output = calloc(l->num_outputs, sizeof(double));
     l->delta = calloc(l->num_outputs, sizeof(double));
