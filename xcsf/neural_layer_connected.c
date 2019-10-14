@@ -227,7 +227,7 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
     }
 
     if(l->options & LAYER_EVOLVE_ETA) {
-        double orig_eta = l->eta;
+        double orig = l->eta;
         l->eta += rand_normal(0, xcsf->E_MUTATION);
         if(l->eta > ETA_MAX) {
             l->eta = ETA_MAX;
@@ -235,16 +235,16 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
         else if(l->eta < ETA_MIN) {
             l->eta = ETA_MIN;
         }
-        if(l->eta != orig_eta) {
+        if(l->eta != orig) {
             mod = true;
         }
     }
 
     if(l->options & LAYER_EVOLVE_FUNCTIONS) {
         if(rand_uniform(0,1) < xcsf->F_MUTATION) {
-            int orig_function = l->function;
+            int orig = l->function;
             l->function = irand_uniform(0, NUM_ACTIVATIONS);
-            if(l->function != orig_function) {
+            if(l->function != orig) {
                 mod = true;
             }
         } 
