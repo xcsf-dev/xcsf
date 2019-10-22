@@ -27,8 +27,8 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 np.set_printoptions(suppress=True)
 
-# Load Boston data from https://www.openml.org/d/531
-data = fetch_openml(data_id=531)
+# Load data from https://www.openml.org/d/189
+data = fetch_openml(data_id=189)
 
 # split into training and test sets
 train_X, test_X, train_Y, test_Y = train_test_split(data.data, data.target, test_size=0.1)
@@ -60,13 +60,28 @@ xcs = xcsf.XCS(xvars, yvars)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
-xcs.POP_SIZE = 200
+xcs.POP_SIZE = 400
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
+xcs.LOSS_FUNC = 1 # MSE
+xcs.EPS_0 = 0.01 # target error
 xcs.COND_TYPE = 2 # evolved neural network conditions
 xcs.PRED_TYPE = 4 # sgd neural network predictors
 xcs.HIDDEN_NEURON_ACTIVATION = 1 # relu
 xcs.NUM_HIDDEN_NEURONS = 10
 xcs.ETA = 0.01
+xcs.SAM_TYPE = 0 # log normal
+xcs.SAM_NUM = 3
+xcs.F_MUTATION=0
+xcs.EA_SUBSUMPTION = False
+xcs.SET_SUBSUMPTION = False
+xcs.COND_EVOLVE_WEIGHTS = True
+xcs.PRED_EVOLVE_WEIGHTS = True
+xcs.COND_EVOLVE_NEURONS = True
+xcs.PRED_EVOLVE_NEURONS = True
+xcs.COND_EVOLVE_FUNCTIONS = False
+xcs.PRED_EVOLVE_FUNCTIONS = False
+xcs.PRED_EVOLVE_ETA = True
+xcs.PRED_SGD_WEIGHTS = True
 
 ##################################
 # Example plotting in matplotlib
