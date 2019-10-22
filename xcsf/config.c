@@ -94,51 +94,51 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->X0 = atof(getvalue("X0"));
     // Bools
     xcsf->POP_INIT = false;
-    if(strcmp(getvalue("POP_INIT"), "true") == 0) {
+    if(strncmp(getvalue("POP_INIT"), "true", 4) == 0) {
         xcsf->POP_INIT = true;
     }
     xcsf->EA_SUBSUMPTION = false;
-    if(strcmp(getvalue("EA_SUBSUMPTION"), "true") == 0) {
+    if(strncmp(getvalue("EA_SUBSUMPTION"), "true", 4) == 0) {
         xcsf->EA_SUBSUMPTION = true;
     }
     xcsf->SET_SUBSUMPTION = false;
-    if(strcmp(getvalue("SET_SUBSUMPTION"), "true") == 0) {
+    if(strncmp(getvalue("SET_SUBSUMPTION"), "true", 4) == 0) {
         xcsf->SET_SUBSUMPTION = true;
     }
     xcsf->RESET_STATES = false;
-    if(strcmp(getvalue("RESET_STATES"), "true") == 0) {
+    if(strncmp(getvalue("RESET_STATES"), "true", 4) == 0) {
         xcsf->RESET_STATES = true;
     }
     xcsf->COND_EVOLVE_WEIGHTS = false;
-    if(strcmp(getvalue("COND_EVOLVE_WEIGHTS"), "true") == 0) {
+    if(strncmp(getvalue("COND_EVOLVE_WEIGHTS"), "true", 4) == 0) {
         xcsf->COND_EVOLVE_WEIGHTS = true;
     }
     xcsf->COND_EVOLVE_NEURONS = false;
-    if(strcmp(getvalue("COND_EVOLVE_NEURONS"), "true") == 0) {
+    if(strncmp(getvalue("COND_EVOLVE_NEURONS"), "true", 4) == 0) {
         xcsf->COND_EVOLVE_NEURONS = true;
     }
     xcsf->COND_EVOLVE_FUNCTIONS = false;
-    if(strcmp(getvalue("COND_EVOLVE_FUNCTIONS"), "true") == 0) {
+    if(strncmp(getvalue("COND_EVOLVE_FUNCTIONS"), "true", 4) == 0) {
         xcsf->COND_EVOLVE_FUNCTIONS = true;
     }
     xcsf->PRED_EVOLVE_WEIGHTS = false;
-    if(strcmp(getvalue("PRED_EVOLVE_WEIGHTS"), "true") == 0) {
+    if(strncmp(getvalue("PRED_EVOLVE_WEIGHTS"), "true", 4) == 0) {
         xcsf->PRED_EVOLVE_WEIGHTS = true;
     }
     xcsf->PRED_EVOLVE_NEURONS = false;
-    if(strcmp(getvalue("PRED_EVOLVE_NEURONS"), "true") == 0) {
+    if(strncmp(getvalue("PRED_EVOLVE_NEURONS"), "true", 4) == 0) {
         xcsf->PRED_EVOLVE_NEURONS = true;
     }
     xcsf->PRED_EVOLVE_FUNCTIONS = false;
-    if(strcmp(getvalue("PRED_EVOLVE_FUNCTIONS"), "true") == 0) {
+    if(strncmp(getvalue("PRED_EVOLVE_FUNCTIONS"), "true", 4) == 0) {
         xcsf->PRED_EVOLVE_FUNCTIONS = true;
     }
     xcsf->PRED_EVOLVE_ETA = false;
-    if(strcmp(getvalue("PRED_EVOLVE_ETA"), "true") == 0) {
+    if(strncmp(getvalue("PRED_EVOLVE_ETA"), "true", 4) == 0) {
         xcsf->PRED_EVOLVE_ETA = true;
     }
     xcsf->PRED_SGD_WEIGHTS = false;
-    if(strcmp(getvalue("PRED_SGD_WEIGHTS"), "true") == 0) {
+    if(strncmp(getvalue("PRED_SGD_WEIGHTS"), "true", 4) == 0) {
         xcsf->PRED_SGD_WEIGHTS = true;
     }
     // initialise (shared) tree-GP constants
@@ -239,7 +239,6 @@ void process(char *configline) {
     // remove anything after #
     char *ptr = strchr(configline, '#');
     if(ptr != NULL) {
-        ptr--; // assume space before #
         *ptr = '\0';
     }
     newnvpair(configline);
