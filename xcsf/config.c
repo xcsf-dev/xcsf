@@ -109,21 +109,54 @@ void constants_init(XCSF *xcsf, const char *filename)
     if(strcmp(getvalue("RESET_STATES"), "true") == 0) {
         xcsf->RESET_STATES = true;
     }
+    xcsf->COND_EVOLVE_WEIGHTS = false;
+    if(strcmp(getvalue("COND_EVOLVE_WEIGHTS"), "true") == 0) {
+        xcsf->COND_EVOLVE_WEIGHTS = true;
+    }
+    xcsf->COND_EVOLVE_NEURONS = false;
+    if(strcmp(getvalue("COND_EVOLVE_NEURONS"), "true") == 0) {
+        xcsf->COND_EVOLVE_NEURONS = true;
+    }
+    xcsf->COND_EVOLVE_FUNCTIONS = false;
+    if(strcmp(getvalue("COND_EVOLVE_FUNCTIONS"), "true") == 0) {
+        xcsf->COND_EVOLVE_FUNCTIONS = true;
+    }
+    xcsf->PRED_EVOLVE_WEIGHTS = false;
+    if(strcmp(getvalue("PRED_EVOLVE_WEIGHTS"), "true") == 0) {
+        xcsf->PRED_EVOLVE_WEIGHTS = true;
+    }
+    xcsf->PRED_EVOLVE_NEURONS = false;
+    if(strcmp(getvalue("PRED_EVOLVE_NEURONS"), "true") == 0) {
+        xcsf->PRED_EVOLVE_NEURONS = true;
+    }
+    xcsf->PRED_EVOLVE_FUNCTIONS = false;
+    if(strcmp(getvalue("PRED_EVOLVE_FUNCTIONS"), "true") == 0) {
+        xcsf->PRED_EVOLVE_FUNCTIONS = true;
+    }
+    xcsf->PRED_EVOLVE_ETA = false;
+    if(strcmp(getvalue("PRED_EVOLVE_ETA"), "true") == 0) {
+        xcsf->PRED_EVOLVE_ETA = true;
+    }
+    xcsf->PRED_SGD_WEIGHTS = false;
+    if(strcmp(getvalue("PRED_SGD_WEIGHTS"), "true") == 0) {
+        xcsf->PRED_SGD_WEIGHTS = true;
+    }
     // initialise (shared) tree-GP constants
     tree_init_cons(xcsf);
     // initialise loss/error function
     loss_set_func(xcsf);
     // clean up
     tidyup();
-} 
+}
 
 void constants_free(XCSF *xcsf) 
 {
     tree_free_cons(xcsf);
 }
 
-void trim(char *s) // Remove tabs/spaces/lf/cr both ends
+void trim(char *s)
 {
+    // remove tabs/spaces/lf/cr both ends
     size_t i = 0;
     while((s[i]==' ' || s[i]=='\t' || s[i] =='\n' || s[i]=='\r')) {
         i++;
@@ -159,15 +192,15 @@ void newnvpair(const char *config) {
     }
     // get length of name
     size_t namelen = 0; // length of name
-    int err = 2;
+    _Bool err = true;
     for(namelen = 0; namelen < strnlen(config, MAXLEN); namelen++) {
         if(config[namelen] == '=') {
-            err = 0;
+            err = false;
             break;
         }
     }
     // no = found
-    if(err == 2) {
+    if(err) {
         printf("error reading config: no '=' found\n");
         exit(EXIT_FAILURE);
     }
@@ -175,8 +208,8 @@ void newnvpair(const char *config) {
     char *name = malloc(namelen+1);
     snprintf(name, namelen+1, "%s", config);
     // get value
-    size_t valuelen = strnlen(config,MAXLEN)-namelen-1; // length of value
-    char *value = malloc(valuelen+1);
+    size_t valuelen = strnlen(config,MAXLEN)-namelen; // length of value
+    char *value = malloc(valuelen);
     snprintf(value, valuelen, "%s", config+namelen+1);
     // add pair
     head->name = name;
@@ -195,28 +228,30 @@ char *getvalue(char *name) {
 }
 
 void process(char *configline) {
-    if(strnlen(configline,MAXLEN) == 0) { // ignore empty lines
+    // ignore empty lines
+    if(strnlen(configline, MAXLEN) == 0) {
         return;
     }
-    if(configline[0] == '#') {  // lines starting with # are comments
+    // lines starting with # are comments
+    if(configline[0] == '#') {
         return; 
     }
     // remove anything after #
     char *ptr = strchr(configline, '#');
-    if (ptr != NULL) {
+    if(ptr != NULL) {
+        ptr--; // assume space before #
         *ptr = '\0';
     }
     newnvpair(configline);
 }
 
 void init_config(const char *filename) {
-    FILE * f;
-    char buff[MAXLEN];
-    f = fopen(filename,"rt");
+    FILE *f = fopen(filename, "rt");
     if(f == NULL) {
         printf("ERROR: cannot open %s\n", filename);
         return;
     }
+    char buff[MAXLEN];
     head = NULL;
     while(!feof(f)) {
         if(fgets(buff, MAXLEN-2, f) == NULL) {

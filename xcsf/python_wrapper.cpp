@@ -192,6 +192,14 @@ struct XCS
     int get_num_hidden_neurons() { return xcs.NUM_HIDDEN_NEURONS; }
     int get_hidden_neuron_activation() { return xcs.HIDDEN_NEURON_ACTIVATION; }
     double get_momentum() { return xcs.MOMENTUM; }
+    _Bool get_cond_evolve_weights() { return xcs.COND_EVOLVE_WEIGHTS; }
+    _Bool get_cond_evolve_neurons() { return xcs.COND_EVOLVE_NEURONS; }
+    _Bool get_cond_evolve_functions() { return xcs.COND_EVOLVE_FUNCTIONS; }
+    _Bool get_pred_evolve_weights() { return xcs.PRED_EVOLVE_WEIGHTS; }
+    _Bool get_pred_evolve_neurons() { return xcs.PRED_EVOLVE_NEURONS; }
+    _Bool get_pred_evolve_functions() { return xcs.PRED_EVOLVE_FUNCTIONS; }
+    _Bool get_pred_evolve_eta() { return xcs.PRED_EVOLVE_ETA; }
+    _Bool get_pred_sgd_weights() { return xcs.PRED_SGD_WEIGHTS; }
     int get_dgp_num_nodes() { return xcs.DGP_NUM_NODES; }
     int get_max_forward() { return xcs.MAX_FORWARD; }
     _Bool get_reset_states() { return xcs.RESET_STATES; }
@@ -259,6 +267,14 @@ struct XCS
     void set_num_hidden_neurons(int a) { xcs.NUM_HIDDEN_NEURONS = a; }
     void set_hidden_neuron_activation(int a) { xcs.HIDDEN_NEURON_ACTIVATION = a; }
     void set_momentum(double a) { xcs.MOMENTUM = a; }
+    void set_cond_evolve_weights(_Bool a) { xcs.COND_EVOLVE_WEIGHTS = a; }
+    void set_cond_evolve_neurons(_Bool a) { xcs.COND_EVOLVE_NEURONS = a; }
+    void set_cond_evolve_functions(_Bool a) { xcs.COND_EVOLVE_FUNCTIONS = a; }
+    void set_pred_evolve_weights(_Bool a) { xcs.PRED_EVOLVE_WEIGHTS = a; }
+    void set_pred_evolve_neurons(_Bool a) { xcs.PRED_EVOLVE_NEURONS = a; }
+    void set_pred_evolve_functions(_Bool a) { xcs.PRED_EVOLVE_FUNCTIONS = a; }
+    void set_pred_evolve_eta(_Bool a) { xcs.PRED_EVOLVE_ETA = a; }
+    void set_pred_sgd_weights(_Bool a) { xcs.PRED_SGD_WEIGHTS = a; }
     void set_dgp_num_nodes(int a) { xcs.DGP_NUM_NODES = a; }
     void set_max_forward(int a) { xcs.MAX_FORWARD = a; }
     void set_reset_states(_Bool a) { xcs.RESET_STATES = a; }
@@ -329,6 +345,14 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("MAX_FORWARD", &XCS::get_max_forward, &XCS::set_max_forward)
         .add_property("RESET_STATES", &XCS::get_reset_states, &XCS::set_reset_states)
         .add_property("MOMENTUM", &XCS::get_momentum, &XCS::set_momentum)
+        .add_property("COND_EVOLVE_WEIGHTS", &XCS::get_cond_evolve_weights, &XCS::set_cond_evolve_weights)
+        .add_property("COND_EVOLVE_NEURONS", &XCS::get_cond_evolve_neurons, &XCS::set_cond_evolve_neurons)
+        .add_property("COND_EVOLVE_FUNCTIONS", &XCS::get_cond_evolve_functions, &XCS::set_cond_evolve_functions)
+        .add_property("PRED_EVOLVE_WEIGHTS", &XCS::get_pred_evolve_weights, &XCS::set_pred_evolve_weights)
+        .add_property("PRED_EVOLVE_NEURONS", &XCS::get_pred_evolve_neurons, &XCS::set_pred_evolve_neurons)
+        .add_property("PRED_EVOLVE_FUNCTIONS", &XCS::get_pred_evolve_functions, &XCS::set_pred_evolve_functions)
+        .add_property("PRED_EVOLVE_ETA", &XCS::get_pred_evolve_eta, &XCS::set_pred_evolve_eta)
+        .add_property("PRED_SGD_WEIGHTS", &XCS::get_pred_sgd_weights, &XCS::set_pred_sgd_weights)
         .add_property("MAX_K", &XCS::get_max_k, &XCS::set_max_k)
         .add_property("MAX_T", &XCS::get_max_t, &XCS::set_max_t)
         .add_property("GP_NUM_CONS", &XCS::get_gp_num_cons, &XCS::set_gp_num_cons)

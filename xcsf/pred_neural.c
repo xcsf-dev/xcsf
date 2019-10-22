@@ -44,11 +44,21 @@ void pred_neural_init(XCSF *xcsf, CL *c)
     neural_init(xcsf, &new->net);
 
     u_int32_t lopt = 0;
-    lopt |= LAYER_EVOLVE_WEIGHTS;
-    lopt |= LAYER_EVOLVE_NEURONS;
-    lopt |= LAYER_EVOLVE_ETA;
-    lopt |= LAYER_EVOLVE_FUNCTIONS;
-    lopt |= LAYER_SGD_WEIGHTS;
+    if(xcsf->PRED_EVOLVE_WEIGHTS) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if(xcsf->PRED_EVOLVE_NEURONS) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if(xcsf->PRED_EVOLVE_ETA) {
+        lopt |= LAYER_EVOLVE_ETA;
+    }
+    if(xcsf->PRED_EVOLVE_FUNCTIONS) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+    if(xcsf->PRED_SGD_WEIGHTS) {
+        lopt |= LAYER_SGD_WEIGHTS;
+    }
 
     // hidden layer
     LAYER *l = neural_layer_connected_init(xcsf, xcsf->num_x_vars,

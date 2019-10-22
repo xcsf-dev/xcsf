@@ -114,6 +114,16 @@ typedef struct XCSF {
     double RLS_SCALE_FACTOR; // initial diagonal values of the RLS gain-matrix
     double RLS_LAMBDA; // forget rate for RLS: small values may be unstable
 
+    // neural classifier parameters
+    _Bool COND_EVOLVE_WEIGHTS;
+    _Bool COND_EVOLVE_NEURONS;
+    _Bool COND_EVOLVE_FUNCTIONS;
+    _Bool PRED_EVOLVE_WEIGHTS;
+    _Bool PRED_EVOLVE_NEURONS;
+    _Bool PRED_EVOLVE_FUNCTIONS;
+    _Bool PRED_EVOLVE_ETA;
+    _Bool PRED_SGD_WEIGHTS;
+
     // subsumption parameters
     _Bool EA_SUBSUMPTION; // whether to try and subsume offspring classifiers
     _Bool SET_SUBSUMPTION; // whether to perform match set subsumption

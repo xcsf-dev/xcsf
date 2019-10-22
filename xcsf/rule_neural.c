@@ -49,12 +49,18 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_COND *new = malloc(sizeof(RULE_NEURAL_COND));
     neural_init(xcsf, &new->net);
-
-    u_int32_t lopt = 0; 
-    lopt |= LAYER_EVOLVE_WEIGHTS;
-    lopt |= LAYER_EVOLVE_NEURONS;
-    lopt |= LAYER_EVOLVE_FUNCTIONS;
-
+ 
+    u_int32_t lopt = 0;
+    if(xcsf->COND_EVOLVE_WEIGHTS) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if(xcsf->COND_EVOLVE_NEURONS) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if(xcsf->COND_EVOLVE_FUNCTIONS) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+ 
     // hidden layer
     LAYER *l = neural_layer_connected_init(xcsf, xcsf->num_x_vars,
             xcsf->NUM_HIDDEN_NEURONS, xcsf->HIDDEN_NEURON_ACTIVATION, lopt);
@@ -148,12 +154,23 @@ void rule_neural_pred_init(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL_PRED *new = malloc(sizeof(RULE_NEURAL_PRED));
     neural_init(xcsf, &new->net);
-
+ 
     u_int32_t lopt = 0;
-    lopt |= LAYER_EVOLVE_WEIGHTS;
-    lopt |= LAYER_EVOLVE_NEURONS;
-    lopt |= LAYER_EVOLVE_FUNCTIONS;
-    lopt |= LAYER_SGD_WEIGHTS;
+    if(xcsf->PRED_EVOLVE_WEIGHTS) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if(xcsf->PRED_EVOLVE_NEURONS) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if(xcsf->PRED_EVOLVE_ETA) {
+        lopt |= LAYER_EVOLVE_ETA;
+    }
+    if(xcsf->PRED_EVOLVE_FUNCTIONS) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+    if(xcsf->PRED_SGD_WEIGHTS) {
+        lopt |= LAYER_SGD_WEIGHTS;
+    }
 
     // hidden layer
     LAYER *l = neural_layer_connected_init(xcsf, xcsf->MAX_FORWARD,
