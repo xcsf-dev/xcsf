@@ -86,7 +86,7 @@ typedef struct XCSF {
     double S_MUTATION; // maximum amount to mutate an allele
     double E_MUTATION; // rate of gradient descent mutation
     double THETA_EA; // average match set time between EA invocations
-    int THETA_OFFSPRING; // number of offspring to create each EA invocation
+    int LAMBDA; // number of offspring to create each EA invocation
 
     // self-adaptive mutation parameters
     int SAM_TYPE; // 0 = log normal, 1 = ten normally distributed rates

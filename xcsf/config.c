@@ -65,7 +65,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->SAM_NUM = atoi(getvalue("SAM_NUM"));
     xcsf->SAM_TYPE = atoi(getvalue("SAM_TYPE"));
     xcsf->THETA_MNA = atoi(getvalue("THETA_MNA"));
-    xcsf->THETA_OFFSPRING = atoi(getvalue("THETA_OFFSPRING"));
+    xcsf->LAMBDA = atoi(getvalue("LAMBDA"));
     // floats
     xcsf->ALPHA = atof(getvalue("ALPHA")); 
     xcsf->BETA = atof(getvalue("BETA"));

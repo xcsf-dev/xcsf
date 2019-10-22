@@ -183,7 +183,7 @@ struct XCS
     double get_e_mutation() { return xcs.E_MUTATION; }
     double get_s_mutation() { return xcs.S_MUTATION; }
     double get_theta_ea() { return xcs.THETA_EA; }
-    int get_theta_offspring() { return xcs.THETA_OFFSPRING; }
+    int get_lambda() { return xcs.LAMBDA; }
     double get_sam_min() { return xcs.SAM_MIN; }
     int get_sam_num() { return xcs.SAM_NUM; }
     int get_sam_type() { return xcs.SAM_TYPE; }
@@ -258,7 +258,7 @@ struct XCS
     void set_e_mutation(double a) { xcs.E_MUTATION = a; }
     void set_s_mutation(double a) { xcs.S_MUTATION = a; }
     void set_theta_ea(double a) { xcs.THETA_EA = a; }
-    void set_theta_offspring(int a) { xcs.THETA_OFFSPRING = a; }
+    void set_lambda(int a) { xcs.LAMBDA = a; }
     void set_sam_min(double a) { xcs.SAM_MIN = a; }
     void set_sam_num(int a) { xcs.SAM_NUM = a; }
     void set_sam_type(int a) { xcs.SAM_TYPE = a; }
@@ -333,7 +333,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("E_MUTATION", &XCS::get_e_mutation, &XCS::set_e_mutation)
         .add_property("S_MUTATION", &XCS::get_s_mutation, &XCS::set_s_mutation)
         .add_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea)
-        .add_property("THETA_OFFSPRING", &XCS::get_theta_offspring, &XCS::set_theta_offspring)
+        .add_property("LAMBDA", &XCS::get_lambda, &XCS::set_lambda)
         .add_property("SAM_MIN", &XCS::get_sam_min, &XCS::set_sam_min)
         .add_property("SAM_NUM", &XCS::get_sam_num, &XCS::set_sam_num)
         .add_property("SAM_TYPE", &XCS::get_sam_type, &XCS::set_sam_type)

@@ -42,7 +42,7 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
     CL *c1p = ea_select_parent(xcsf, set, fit_sum);
     CL *c2p = ea_select_parent(xcsf, set, fit_sum);
 
-    for(int i = 0; i < xcsf->THETA_OFFSPRING/2; i++) {
+    for(int i = 0; i < xcsf->LAMBDA/2; i++) {
         // create copies of parents
         CL *c1 = malloc(sizeof(CL));
         CL *c2 = malloc(sizeof(CL));
