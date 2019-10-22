@@ -82,7 +82,6 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
         double error = xcsf_learn_trial(xcsf, pred, x, y);
         perr += error; 
         err += error;
-        row = irand_uniform(0, test_data->rows);
         if(shuffle) {
             row = irand_uniform(0, test_data->rows);
         }
