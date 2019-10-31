@@ -184,6 +184,8 @@ struct XCS
     double get_s_mutation() { return xcs.S_MUTATION; }
     double get_theta_ea() { return xcs.THETA_EA; }
     int get_lambda() { return xcs.LAMBDA; }
+    int get_ea_select_type() { return xcs.EA_SELECT_TYPE; }
+    double get_ea_select_size() { return xcs.EA_SELECT_SIZE; }
     double get_sam_min() { return xcs.SAM_MIN; }
     int get_sam_num() { return xcs.SAM_NUM; }
     int get_sam_type() { return xcs.SAM_TYPE; }
@@ -259,6 +261,8 @@ struct XCS
     void set_s_mutation(double a) { xcs.S_MUTATION = a; }
     void set_theta_ea(double a) { xcs.THETA_EA = a; }
     void set_lambda(int a) { xcs.LAMBDA = a; }
+    void set_ea_select_type(int a) { xcs.EA_SELECT_TYPE = a; }
+    void set_ea_select_size(double a) { xcs.EA_SELECT_SIZE = a; }
     void set_sam_min(double a) { xcs.SAM_MIN = a; }
     void set_sam_num(int a) { xcs.SAM_NUM = a; }
     void set_sam_type(int a) { xcs.SAM_TYPE = a; }
@@ -334,6 +338,8 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("S_MUTATION", &XCS::get_s_mutation, &XCS::set_s_mutation)
         .add_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea)
         .add_property("LAMBDA", &XCS::get_lambda, &XCS::set_lambda)
+        .add_property("EA_SELECT_TYPE", &XCS::get_ea_select_type, &XCS::set_ea_select_type)
+        .add_property("EA_SELECT_SIZE", &XCS::get_ea_select_size, &XCS::set_ea_select_size)
         .add_property("SAM_MIN", &XCS::get_sam_min, &XCS::set_sam_min)
         .add_property("SAM_NUM", &XCS::get_sam_num, &XCS::set_sam_num)
         .add_property("SAM_TYPE", &XCS::get_sam_type, &XCS::set_sam_type)

@@ -27,7 +27,11 @@
 #include "ea.h"
 #include "sam.h"
 
-CL *ea_select_parent(XCSF *xcsf, SET *set, double fit_sum);
+#define EA_SELECT_ROULETTE 0
+#define EA_SELECT_TOURNAMENT 1
+
+CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum);
+CL *ea_select_tournament(XCSF *xcsf, SET *set);
 void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set);
 
 void ea(XCSF *xcsf, SET *set, SET *kset)
@@ -38,10 +42,17 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
     }
     set_times(xcsf, set);
     // select parents
-    double fit_sum = set_total_fit(xcsf, set);
-    CL *c1p = ea_select_parent(xcsf, set, fit_sum);
-    CL *c2p = ea_select_parent(xcsf, set, fit_sum);
-
+    CL *c1p; CL *c2p;
+    if(xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
+        double fit_sum = set_total_fit(xcsf, set);
+        c1p = ea_select_rw(xcsf, set, fit_sum);
+        c2p = ea_select_rw(xcsf, set, fit_sum);
+    }
+    else {
+        c1p = ea_select_tournament(xcsf, set);
+        c2p = ea_select_tournament(xcsf, set);
+    }
+    // create offspring
     for(int i = 0; i < xcsf->LAMBDA/2; i++) {
         // create copies of parents
         CL *c1 = malloc(sizeof(CL));
@@ -137,11 +148,10 @@ void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set)
     }
 }
 
-CL *ea_select_parent(XCSF *xcsf, SET *set, double fit_sum)
+CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum)
 {
     (void)xcsf;
-    // selects a classifier using roullete wheel selection with the fitness
-    double p = rand_uniform(0,fit_sum);
+    double p = rand_uniform(0, fit_sum);
     CLIST *iter = set->list;
     double sum = iter->cl->fit;
     while(p > sum) {
@@ -149,4 +159,17 @@ CL *ea_select_parent(XCSF *xcsf, SET *set, double fit_sum)
         sum += iter->cl->fit;
     }
     return iter->cl;
+}
+
+CL *ea_select_tournament(XCSF *xcsf, SET *set)
+{
+    CL *winner = set->list->cl;
+    for(CLIST *iter = set->list->next; iter != NULL; iter = iter->next) {
+        if(rand_uniform(0,1) < xcsf->EA_SELECT_SIZE) {
+            if(iter->cl->fit > winner->fit) {
+                winner = iter->cl;
+            }
+        }
+    }
+    return winner;
 }

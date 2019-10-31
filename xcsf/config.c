@@ -66,6 +66,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->SAM_TYPE = atoi(getvalue("SAM_TYPE"));
     xcsf->THETA_MNA = atoi(getvalue("THETA_MNA"));
     xcsf->LAMBDA = atoi(getvalue("LAMBDA"));
+    xcsf->EA_SELECT_TYPE = atoi(getvalue("EA_SELECT_TYPE"));
     // floats
     xcsf->ALPHA = atof(getvalue("ALPHA")); 
     xcsf->BETA = atof(getvalue("BETA"));
@@ -92,6 +93,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->THETA_SUB = atof(getvalue("THETA_SUB"));
     xcsf->ETA = atof(getvalue("ETA"));
     xcsf->X0 = atof(getvalue("X0"));
+    xcsf->EA_SELECT_SIZE = atof(getvalue("EA_SELECT_SIZE"));
     // Bools
     xcsf->POP_INIT = false;
     if(strncmp(getvalue("POP_INIT"), "true", 4) == 0) {

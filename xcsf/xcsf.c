@@ -241,6 +241,8 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->E_MUTATION, sizeof(double), 1, fp);
     s += fwrite(&xcsf->THETA_EA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->LAMBDA, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->EA_SELECT_TYPE, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->EA_SELECT_SIZE, sizeof(double), 1, fp);
     s += fwrite(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->SAM_NUM, sizeof(int), 1, fp);
     s += fwrite(&xcsf->SAM_MIN, sizeof(double), 1, fp);
@@ -312,6 +314,8 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->E_MUTATION, sizeof(double), 1, fp);
     s += fread(&xcsf->THETA_EA, sizeof(double), 1, fp);
     s += fread(&xcsf->LAMBDA, sizeof(int), 1, fp);
+    s += fread(&xcsf->EA_SELECT_TYPE, sizeof(int), 1, fp);
+    s += fread(&xcsf->EA_SELECT_SIZE, sizeof(double), 1, fp);
     s += fread(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->SAM_NUM, sizeof(int), 1, fp);
     s += fread(&xcsf->SAM_MIN, sizeof(double), 1, fp);

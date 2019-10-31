@@ -87,6 +87,8 @@ typedef struct XCSF {
     double E_MUTATION; // rate of gradient descent mutation
     double THETA_EA; // average match set time between EA invocations
     int LAMBDA; // number of offspring to create each EA invocation
+    int EA_SELECT_TYPE; // roulette or tournament for EA parental selection
+    double EA_SELECT_SIZE; // fraction of set size for tournaments
 
     // self-adaptive mutation parameters
     int SAM_TYPE; // 0 = log normal, 1 = ten normally distributed rates
