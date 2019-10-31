@@ -163,11 +163,13 @@ CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum)
 
 CL *ea_select_tournament(XCSF *xcsf, SET *set)
 {
-    CL *winner = set->list->cl;
-    for(CLIST *iter = set->list->next; iter != NULL; iter = iter->next) {
-        if(rand_uniform(0,1) < xcsf->EA_SELECT_SIZE) {
-            if(iter->cl->fit > winner->fit) {
-                winner = iter->cl;
+    CL *winner = NULL; 
+    while(winner == NULL) {
+        for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+            if(rand_uniform(0,1) < xcsf->EA_SELECT_SIZE) {
+                if(winner == NULL || iter->cl->fit > winner->fit) {
+                    winner = iter->cl;
+                }
             }
         }
     }
