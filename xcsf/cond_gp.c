@@ -114,12 +114,6 @@ _Bool cond_gp_crossover(XCSF *xcsf, CL *c1, CL *c2)
     }
 }
 
-_Bool cond_gp_subsumes(XCSF *xcsf, CL *c1, CL *c2)
-{
-    (void)xcsf; (void)c1; (void)c2;
-    return false;
-}
-
 _Bool cond_gp_general(XCSF *xcsf, CL *c1, CL *c2)
 {
     if(c1->exp < xcsf->THETA_SUB || c2->exp < xcsf->THETA_SUB) {
