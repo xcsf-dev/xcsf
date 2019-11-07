@@ -127,13 +127,12 @@ _Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
 
 _Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-    int sub = xcsf->THETA_SUB;
-    if(c1->exp < sub || c2->exp < sub) {
+    if(c1->exp < xcsf->THETA_SUB || c2->exp < xcsf->THETA_SUB) {
         return false;
     }
-    for(int i = 0; i < sub; i++) {
-        int i1 = (c1->exp + i) % sub;
-        int i2 = (c2->exp + i) % sub;
+    for(int i = 0; i < xcsf->THETA_SUB; i++) {
+        int i1 = (c1->exp + i) % xcsf->THETA_SUB;
+        int i2 = (c2->exp + i) % xcsf->THETA_SUB;
         if(c1->mhist[i1] == false && c2->mhist[i2] == true) {
             return false;
         }
