@@ -163,7 +163,7 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa,
 
 double xcsf_version()
 {
-    return 1.00;
+    return 1.01;
 }
 
 size_t xcsf_save(XCSF *xcsf, char *fname)
@@ -230,7 +230,7 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->INIT_ERROR, sizeof(double), 1, fp);
     s += fwrite(&xcsf->INIT_FITNESS, sizeof(double), 1, fp);
     s += fwrite(&xcsf->NU, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->THETA_DEL, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->THETA_DEL, sizeof(int), 1, fp);
     s += fwrite(&xcsf->COND_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->PRED_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->ACT_TYPE, sizeof(int), 1, fp);
@@ -270,7 +270,7 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->RLS_LAMBDA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->THETA_SUB, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->THETA_SUB, sizeof(int), 1, fp);
 //    s += fwrite(&xcsf->stage, sizeof(int), 1, fp);
     s += fwrite(&xcsf->train, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->num_x_vars, sizeof(int), 1, fp);
@@ -303,7 +303,7 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->INIT_ERROR, sizeof(double), 1, fp);
     s += fread(&xcsf->INIT_FITNESS, sizeof(double), 1, fp);
     s += fread(&xcsf->NU, sizeof(double), 1, fp);
-    s += fread(&xcsf->THETA_DEL, sizeof(double), 1, fp);
+    s += fread(&xcsf->THETA_DEL, sizeof(int), 1, fp);
     s += fread(&xcsf->COND_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->PRED_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->ACT_TYPE, sizeof(int), 1, fp);
@@ -343,7 +343,7 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->RLS_LAMBDA, sizeof(double), 1, fp);
     s += fread(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->THETA_SUB, sizeof(double), 1, fp);
+    s += fread(&xcsf->THETA_SUB, sizeof(int), 1, fp);
 //    s += fread(&xcsf->stage, sizeof(int), 1, fp);
     s += fread(&xcsf->train, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->num_x_vars, sizeof(int), 1, fp);

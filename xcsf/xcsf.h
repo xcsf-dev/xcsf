@@ -34,6 +34,7 @@ typedef struct CL {
     _Bool m; // whether the classifier matches current input
     double *prediction; // current classifier prediction
     double *action; // current classifier action
+    _Bool *mhist; // (theta_sub) recent matching decisions
 } CL;
 
 // classifier linked list
@@ -74,7 +75,7 @@ typedef struct XCSF {
     double INIT_ERROR; // initial classifier error value
     double INIT_FITNESS; // initial classifier fitness value
     double NU; // exponent used in calculating classifier accuracy
-    double THETA_DEL; // min experience before fitness used in probability of deletion
+    int THETA_DEL; // min experience before fitness used in probability of deletion
     int COND_TYPE; // classifier condition type: hyperrectangles, GP trees, etc.
     int PRED_TYPE; // classifier prediction type: least squares, neural nets, etc.
     int ACT_TYPE; // classifier action type
@@ -129,7 +130,7 @@ typedef struct XCSF {
     // subsumption parameters
     _Bool EA_SUBSUMPTION; // whether to try and subsume offspring classifiers
     _Bool SET_SUBSUMPTION; // whether to perform match set subsumption
-    double THETA_SUB; // minimum experience of a classifier to become a subsumer
+    int THETA_SUB; // minimum experience of a classifier to become a subsumer
 
     // set by environment
     int stage; // current stage of training

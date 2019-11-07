@@ -173,7 +173,7 @@ struct XCS
     double get_init_error() { return xcs.INIT_ERROR; }
     double get_init_fitness() { return xcs.INIT_FITNESS; }
     double get_nu() { return xcs.NU; }
-    double get_theta_del() { return xcs.THETA_DEL; }
+    int get_theta_del() { return xcs.THETA_DEL; }
     int get_act_type() { return xcs.ACT_TYPE; }
     int get_cond_type() { return xcs.COND_TYPE; }
     int get_pred_type() { return xcs.PRED_TYPE; }
@@ -213,7 +213,7 @@ struct XCS
     double get_x0() { return xcs.X0; }
     double get_rls_scale_factor() { return xcs.RLS_SCALE_FACTOR; }
     double get_rls_lambda() { return xcs.RLS_LAMBDA; }
-    double get_theta_sub() { return xcs.THETA_SUB; }
+    int get_theta_sub() { return xcs.THETA_SUB; }
     _Bool get_ea_subsumption() { return xcs.EA_SUBSUMPTION; }
     _Bool get_set_subsumption() { return xcs.SET_SUBSUMPTION; }
     int get_pop_size() { return xcs.pset.size; }
@@ -250,7 +250,7 @@ struct XCS
     void set_init_error(double a) { xcs.INIT_ERROR = a; }
     void set_init_fitness(double a) { xcs.INIT_FITNESS = a; }
     void set_nu(double a) { xcs.NU = a; }
-    void set_theta_del(double a) { xcs.THETA_DEL = a; }
+    void set_theta_del(int a) { xcs.THETA_DEL = a; }
     void set_act_type(int a) { xcs.ACT_TYPE = a; }
     void set_cond_type(int a) { xcs.COND_TYPE = a; }
     void set_pred_type(int a) { xcs.PRED_TYPE = a; }
@@ -290,7 +290,7 @@ struct XCS
     void set_x0(double a) { xcs.X0 = a; }
     void set_rls_scale_factor(double a) { xcs.RLS_SCALE_FACTOR = a; }
     void set_rls_lambda(double a) { xcs.RLS_LAMBDA = a; }
-    void set_theta_sub(double a) { xcs.THETA_SUB = a; }
+    void set_theta_sub(int a) { xcs.THETA_SUB = a; }
     void set_ea_subsumption(_Bool a) { xcs.EA_SUBSUMPTION = a; }
     void set_set_subsumption(_Bool a) { xcs.SET_SUBSUMPTION = a; }
 };
