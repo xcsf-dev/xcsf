@@ -171,8 +171,7 @@ void cl_print(XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp)
 _Bool cl_match(XCSF *xcsf, CL *c, double *x)
 {
     _Bool m = cond_match(xcsf, c, x);
-    int sub = xcsf->THETA_SUB;
-    c->mhist[c->exp % sub] = m;
+    c->mhist[c->exp % xcsf->THETA_SUB] = m;
     return m;
 }
 
