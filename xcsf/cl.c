@@ -172,7 +172,7 @@ _Bool cl_match(XCSF *xcsf, CL *c, double *x)
 {
     _Bool m = cond_match(xcsf, c, x);
     int sub = xcsf->THETA_SUB;
-    c->mhist[(c->exp % sub + sub) % sub] = m;
+    c->mhist[c->exp % sub] = m;
     return m;
 }
 

@@ -132,8 +132,8 @@ _Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2)
         return false;
     }
     for(int i = 0; i < sub; i++) {
-        int i1 = ((c1->exp + i) % sub + sub) % sub;
-        int i2 = ((c2->exp + i) % sub + sub) % sub;
+        int i1 = (c1->exp + i) % sub;
+        int i2 = (c2->exp + i) % sub;
         if(c1->mhist[i1] == false && c2->mhist[i2] == true) {
             return false;
         }
