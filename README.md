@@ -20,7 +20,6 @@ See `default.ini` for a full list of options.
 * `COND_TYPE = 3`: GP trees
 * `COND_TYPE = 4`: Dynamical GP graphs
 * `COND_TYPE = 11`: Both conditions and predictions in single dynamical GP graphs
-* `COND_TYPE = 12`: Both conditions and predictions in single neural networks
 
 ### Computed Predictions
 
