@@ -254,7 +254,7 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->PRED_NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->PRED_MAX_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->PRED_HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->MOMENTUM, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->PRED_MOMENTUM, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
@@ -267,7 +267,6 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->RESET_STATES, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_T, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->MAX_FORWARD, sizeof(int), 1, fp);
     s += fwrite(&xcsf->ETA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->X0, sizeof(double), 1, fp);
     s += fwrite(&xcsf->RLS_SCALE_FACTOR, sizeof(double), 1, fp);
@@ -331,7 +330,7 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->PRED_NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fread(&xcsf->PRED_MAX_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fread(&xcsf->PRED_HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
-    s += fread(&xcsf->MOMENTUM, sizeof(double), 1, fp);
+    s += fread(&xcsf->PRED_MOMENTUM, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
@@ -344,7 +343,6 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->RESET_STATES, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fread(&xcsf->MAX_T, sizeof(int), 1, fp);
-    s += fread(&xcsf->MAX_FORWARD, sizeof(int), 1, fp);
     s += fread(&xcsf->ETA, sizeof(double), 1, fp);
     s += fread(&xcsf->X0, sizeof(double), 1, fp);
     s += fread(&xcsf->RLS_SCALE_FACTOR, sizeof(double), 1, fp);

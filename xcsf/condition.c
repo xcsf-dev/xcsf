@@ -31,7 +31,6 @@
 #include "cond_neural.h"       
 #include "prediction.h"
 #include "rule_dgp.h"
-#include "rule_neural.h"
 
 void condition_set(XCSF *xcsf, CL *c)
 {
@@ -57,10 +56,6 @@ void condition_set(XCSF *xcsf, CL *c)
         case 11:
             c->cond_vptr = &rule_dgp_cond_vtbl;
             c->pred_vptr = &rule_dgp_pred_vtbl;
-            break;
-        case 12:
-            c->cond_vptr = &rule_neural_cond_vtbl;
-            c->pred_vptr = &rule_neural_pred_vtbl;
             break;
         default:
             printf("Invalid condition type specified: %d\n", xcsf->COND_TYPE);

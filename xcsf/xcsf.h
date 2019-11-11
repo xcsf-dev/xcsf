@@ -103,7 +103,6 @@ typedef struct XCSF {
     _Bool RESET_STATES; // whether to reset the initial states of DGP graphs
     int MAX_K; // maximum number of connections a DGP node may have
     int MAX_T; // maximum number of cycles to update a DGP graph
-    int MAX_FORWARD;
     int GP_NUM_CONS; // number of constants available for GP trees
     int GP_INIT_DEPTH; // initial depth of GP trees
     double *gp_cons; // stores constants available for GP trees
@@ -126,7 +125,7 @@ typedef struct XCSF {
     _Bool PRED_EVOLVE_FUNCTIONS;
     _Bool PRED_EVOLVE_ETA;
     _Bool PRED_SGD_WEIGHTS;
-    double MOMENTUM; // momentum for gradient descent
+    double PRED_MOMENTUM; // momentum for gradient descent
     int PRED_NUM_HIDDEN_NEURONS; // initial number of hidden neurons (random if <= 0)
     int PRED_MAX_HIDDEN_NEURONS; // maximum number of neurons if evolved
     int PRED_HIDDEN_NEURON_ACTIVATION; // activation function for the hidden layer

@@ -52,7 +52,6 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->GP_INIT_DEPTH = atoi(getvalue("GP_INIT_DEPTH"));
     xcsf->GP_NUM_CONS = atoi(getvalue("GP_NUM_CONS"));
     xcsf->LOSS_FUNC = atoi(getvalue("LOSS_FUNC"));
-    xcsf->MAX_FORWARD = atoi(getvalue("MAX_FORWARD"));
     xcsf->MAX_K = atoi(getvalue("MAX_K"));
     xcsf->MAX_T = atoi(getvalue("MAX_T"));
     xcsf->MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
@@ -84,7 +83,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->INIT_FITNESS = atof(getvalue("INIT_FITNESS"));
     xcsf->MAX_CON = atof(getvalue("MAX_CON"));
     xcsf->MIN_CON = atof(getvalue("MIN_CON"));
-    xcsf->MOMENTUM = atof(getvalue("MOMENTUM"));
+    xcsf->PRED_MOMENTUM = atof(getvalue("PRED_MOMENTUM"));
     xcsf->NU = atof(getvalue("NU"));
     xcsf->P_CROSSOVER = atof(getvalue("P_CROSSOVER"));
     xcsf->F_MUTATION = atof(getvalue("F_MUTATION"));

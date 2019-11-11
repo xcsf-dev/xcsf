@@ -165,12 +165,12 @@ void neural_layer_connected_update(XCSF *xcsf, LAYER *l)
     if(l->options & LAYER_SGD_WEIGHTS) {
         for(int i = 0; i < l->num_active; i++) {
             l->biases[i] += l->eta * l->bias_updates[i];
-            l->bias_updates[i] *= xcsf->MOMENTUM;
+            l->bias_updates[i] *= xcsf->PRED_MOMENTUM;
         }
         int w = l->num_inputs * l->num_active;
         for(int i = 0; i < w; i++) {
             l->weights[i] += l->eta * l->weight_updates[i];
-            l->weight_updates[i] *= xcsf->MOMENTUM;
+            l->weight_updates[i] *= xcsf->PRED_MOMENTUM;
         }
     }
 }
