@@ -61,7 +61,7 @@ void pred_rls_init(XCSF *xcsf, CL *c)
         pred->weights[var] = malloc(sizeof(double)*pred->weights_length);
     }
     for(int var = 0; var < xcsf->num_y_vars; var++) {
-        pred->weights[var][0] = xcsf->X0;
+        pred->weights[var][0] = xcsf->PRED_X0;
         for(int i = 1; i < pred->weights_length; i++) {
             pred->weights[var][i] = 0.0;
         }
@@ -85,7 +85,7 @@ void init_matrix(XCSF *xcsf, double *matrix, int n)
                 matrix[row*n+col] = 0.0;
             }
             else {
-                matrix[row*n+col] = xcsf->RLS_SCALE_FACTOR;
+                matrix[row*n+col] = xcsf->PRED_RLS_SCALE_FACTOR;
             }
         }
     }
@@ -121,7 +121,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
     PRED_RLS *pred = c->pred;
     int n = pred->weights_length;
-    pred->tmp_input[0] = xcsf->X0;
+    pred->tmp_input[0] = xcsf->PRED_X0;
     int index = 1;
     // linear terms
     for(int i = 0; i < xcsf->num_x_vars; i++) {
@@ -138,7 +138,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
     // determine gain vector = matrix * tmp_input
     matrix_vector_multiply(pred->matrix, pred->tmp_input, pred->tmp_vec, n);
     // divide gain vector by lambda + tmp_vec
-    double divisor = xcsf->RLS_LAMBDA;
+    double divisor = xcsf->PRED_RLS_LAMBDA;
     for(int i = 0; i < n; i++) {
         divisor += pred->tmp_input[i] * pred->tmp_vec[i];
     }
@@ -170,7 +170,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
     // divide gain matrix entries by lambda
     for(int row = 0; row < n; row++) {
         for(int col = 0; col < n; col++) {
-            pred->matrix[row*n+col] = pred->tmp_matrix2[row*n+col] / xcsf->RLS_LAMBDA;
+            pred->matrix[row*n+col] = pred->tmp_matrix2[row*n+col] / xcsf->PRED_RLS_LAMBDA;
         }
     }
 }
@@ -180,7 +180,7 @@ double *pred_rls_compute(XCSF *xcsf, CL *c, double *x)
     PRED_RLS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         // first coefficient is offset
-        double pre = xcsf->X0 * pred->weights[var][0];
+        double pre = xcsf->PRED_X0 * pred->weights[var][0];
         int index = 1;
         // multiply linear coefficients with the prediction input
         for(int i = 0; i < xcsf->num_x_vars; i++) {

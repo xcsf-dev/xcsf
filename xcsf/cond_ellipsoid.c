@@ -80,7 +80,7 @@ void cond_ellipsoid_update(XCSF *xcsf, CL *c, double *x, double *y)
     (void)y;
     COND_ELLIPSOID *cond = c->cond;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
-        cond->center[i] += xcsf->BETA * (x[i] - cond->center[i]);
+        cond->center[i] += xcsf->COND_ETA * (x[i] - cond->center[i]);
     }
 }
 

@@ -107,6 +107,7 @@ typedef struct XCSF {
     int GP_INIT_DEPTH; // initial depth of GP trees
     double *gp_cons; // stores constants available for GP trees
 
+    double COND_ETA; // gradient descent rate for updating the condition
     _Bool COND_EVOLVE_WEIGHTS;
     _Bool COND_EVOLVE_NEURONS;
     _Bool COND_EVOLVE_FUNCTIONS;
@@ -115,11 +116,10 @@ typedef struct XCSF {
     int COND_HIDDEN_NEURON_ACTIVATION; // activation function for the hidden layer
  
     // prediction parameters
-    double ETA; // learning rate for updating the computed prediction
-    double X0; // prediction weight vector offset value
-    double RLS_SCALE_FACTOR; // initial diagonal values of the RLS gain-matrix
-    double RLS_LAMBDA; // forget rate for RLS: small values may be unstable
-
+    double PRED_ETA; // gradient desecnt rate for updating the prediction
+    double PRED_X0; // prediction weight vector offset value
+    double PRED_RLS_SCALE_FACTOR; // initial diagonal values of the RLS gain-matrix
+    double PRED_RLS_LAMBDA; // forget rate for RLS: small values may be unstable
     _Bool PRED_EVOLVE_WEIGHTS;
     _Bool PRED_EVOLVE_NEURONS;
     _Bool PRED_EVOLVE_FUNCTIONS;

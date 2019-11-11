@@ -61,7 +61,7 @@ LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int n_init, int n_max, in
         l->eta = rand_uniform(ETA_MIN,ETA_MAX);
     }
     else {
-        l->eta = xcsf->ETA;
+        l->eta = xcsf->PRED_ETA;
     }
     return l;
 }

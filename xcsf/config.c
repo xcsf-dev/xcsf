@@ -81,22 +81,23 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->FIT_REDUC = atof(getvalue("FIT_REDUC"));
     xcsf->INIT_ERROR = atof(getvalue("INIT_ERROR"));
     xcsf->INIT_FITNESS = atof(getvalue("INIT_FITNESS"));
-    xcsf->MAX_CON = atof(getvalue("MAX_CON"));
-    xcsf->MIN_CON = atof(getvalue("MIN_CON"));
-    xcsf->PRED_MOMENTUM = atof(getvalue("PRED_MOMENTUM"));
     xcsf->NU = atof(getvalue("NU"));
+    xcsf->THETA_EA = atof(getvalue("THETA_EA"));
+    xcsf->EA_SELECT_SIZE = atof(getvalue("EA_SELECT_SIZE"));
     xcsf->P_CROSSOVER = atof(getvalue("P_CROSSOVER"));
     xcsf->F_MUTATION = atof(getvalue("F_MUTATION"));
     xcsf->P_MUTATION = atof(getvalue("P_MUTATION"));
     xcsf->S_MUTATION = atof(getvalue("S_MUTATION"));
     xcsf->E_MUTATION = atof(getvalue("E_MUTATION"));
-    xcsf->RLS_LAMBDA = atof(getvalue("RLS_LAMBDA"));
-    xcsf->RLS_SCALE_FACTOR = atof(getvalue("RLS_SCALE_FACTOR"));
     xcsf->SAM_MIN = atof(getvalue("SAM_MIN"));
-    xcsf->THETA_EA = atof(getvalue("THETA_EA"));
-    xcsf->ETA = atof(getvalue("ETA"));
-    xcsf->X0 = atof(getvalue("X0"));
-    xcsf->EA_SELECT_SIZE = atof(getvalue("EA_SELECT_SIZE"));
+    xcsf->MAX_CON = atof(getvalue("MAX_CON"));
+    xcsf->MIN_CON = atof(getvalue("MIN_CON"));
+    xcsf->COND_ETA = atof(getvalue("COND_ETA"));
+    xcsf->PRED_RLS_LAMBDA = atof(getvalue("PRED_RLS_LAMBDA"));
+    xcsf->PRED_RLS_SCALE_FACTOR = atof(getvalue("PRED_RLS_SCALE_FACTOR"));
+    xcsf->PRED_X0 = atof(getvalue("PRED_X0"));
+    xcsf->PRED_ETA = atof(getvalue("PRED_ETA"));
+    xcsf->PRED_MOMENTUM = atof(getvalue("PRED_MOMENTUM"));
     // Bools
     xcsf->POP_INIT = false;
     if(strncmp(getvalue("POP_INIT"), "true", 4) == 0) {
