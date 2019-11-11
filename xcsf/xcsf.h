@@ -99,9 +99,6 @@ typedef struct XCSF {
     // classifier condition parameters
     double MAX_CON; // maximum value expected from inputs
     double MIN_CON; // minimum value expected from inputs
-    int NUM_HIDDEN_NEURONS; // number of hidden neurons to perform matching condition
-    int HIDDEN_NEURON_ACTIVATION; // activation function for the hidden layer
-    double MOMENTUM; // momentum for gradient descent
     int DGP_NUM_NODES; // number of nodes in a DGP graph
     _Bool RESET_STATES; // whether to reset the initial states of DGP graphs
     int MAX_K; // maximum number of connections a DGP node may have
@@ -111,21 +108,28 @@ typedef struct XCSF {
     int GP_INIT_DEPTH; // initial depth of GP trees
     double *gp_cons; // stores constants available for GP trees
 
+    _Bool COND_EVOLVE_WEIGHTS;
+    _Bool COND_EVOLVE_NEURONS;
+    _Bool COND_EVOLVE_FUNCTIONS;
+    int COND_NUM_HIDDEN_NEURONS; // initial number of hidden neurons (random if <= 0)
+    int COND_MAX_HIDDEN_NEURONS; // maximum number of neurons if evolved
+    int COND_HIDDEN_NEURON_ACTIVATION; // activation function for the hidden layer
+ 
     // prediction parameters
     double ETA; // learning rate for updating the computed prediction
     double X0; // prediction weight vector offset value
     double RLS_SCALE_FACTOR; // initial diagonal values of the RLS gain-matrix
     double RLS_LAMBDA; // forget rate for RLS: small values may be unstable
 
-    // neural classifier parameters
-    _Bool COND_EVOLVE_WEIGHTS;
-    _Bool COND_EVOLVE_NEURONS;
-    _Bool COND_EVOLVE_FUNCTIONS;
     _Bool PRED_EVOLVE_WEIGHTS;
     _Bool PRED_EVOLVE_NEURONS;
     _Bool PRED_EVOLVE_FUNCTIONS;
     _Bool PRED_EVOLVE_ETA;
     _Bool PRED_SGD_WEIGHTS;
+    double MOMENTUM; // momentum for gradient descent
+    int PRED_NUM_HIDDEN_NEURONS; // initial number of hidden neurons (random if <= 0)
+    int PRED_MAX_HIDDEN_NEURONS; // maximum number of neurons if evolved
+    int PRED_HIDDEN_NEURON_ACTIVATION; // activation function for the hidden layer
 
     // subsumption parameters
     _Bool EA_SUBSUMPTION; // whether to try and subsume offspring classifiers

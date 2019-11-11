@@ -32,16 +32,16 @@
 #define ETA_MAX 0.1
 #define ETA_MIN 0.0001
 
-LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int func, u_int32_t opt)
+LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int n_init, int n_max, int f, u_int32_t o)
 {
-    (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
-    l->function = func;
+    l->function = f;
     l->num_inputs = in;
-    l->num_outputs = out;
-    l->num_weights = in * out;
+    l->num_outputs = n_max;
+    l->num_weights = in * n_max;
+    l->num_active = n_init;
     l->state = calloc(l->num_outputs, sizeof(double));
     l->output = calloc(l->num_outputs, sizeof(double));
     l->biases = calloc(l->num_outputs, sizeof(double));
@@ -52,17 +52,11 @@ LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int out, int func, u_int3
     for(int i = 0; i < l->num_weights; i++) {
         l->weights[i] = rand_normal(0,0.1);
     }
-    l->options = opt;
     l->active = calloc(l->num_outputs, sizeof(_Bool));
-    if(l->options & LAYER_EVOLVE_NEURONS) {
-        l->num_active = 1 + irand_uniform(0,l->num_outputs);
-    }
-    else {
-        l->num_active = l->num_outputs;
-    }
     for(int i = 0; i < l->num_active; i++) {
         l->active[i] = true;
     }
+    l->options = o;
     if(l->options & LAYER_EVOLVE_ETA) {
         l->eta = rand_uniform(ETA_MIN,ETA_MAX);
     }

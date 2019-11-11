@@ -191,8 +191,12 @@ struct XCS
     int get_sam_type() { return xcs.SAM_TYPE; }
     double get_max_con() { return xcs.MAX_CON; }
     double get_min_con() { return xcs.MIN_CON; }
-    int get_num_hidden_neurons() { return xcs.NUM_HIDDEN_NEURONS; }
-    int get_hidden_neuron_activation() { return xcs.HIDDEN_NEURON_ACTIVATION; }
+    int get_cond_num_hidden_neurons() { return xcs.COND_NUM_HIDDEN_NEURONS; }
+    int get_cond_max_hidden_neurons() { return xcs.COND_MAX_HIDDEN_NEURONS; }
+    int get_cond_hidden_neuron_activation() { return xcs.COND_HIDDEN_NEURON_ACTIVATION; }
+    int get_pred_num_hidden_neurons() { return xcs.PRED_NUM_HIDDEN_NEURONS; }
+    int get_pred_max_hidden_neurons() { return xcs.PRED_MAX_HIDDEN_NEURONS; }
+    int get_pred_hidden_neuron_activation() { return xcs.PRED_HIDDEN_NEURON_ACTIVATION; }
     double get_momentum() { return xcs.MOMENTUM; }
     _Bool get_cond_evolve_weights() { return xcs.COND_EVOLVE_WEIGHTS; }
     _Bool get_cond_evolve_neurons() { return xcs.COND_EVOLVE_NEURONS; }
@@ -268,8 +272,12 @@ struct XCS
     void set_sam_type(int a) { xcs.SAM_TYPE = a; }
     void set_max_con(double a) { xcs.MAX_CON = a; }
     void set_min_con(double a) { xcs.MIN_CON = a; }
-    void set_num_hidden_neurons(int a) { xcs.NUM_HIDDEN_NEURONS = a; }
-    void set_hidden_neuron_activation(int a) { xcs.HIDDEN_NEURON_ACTIVATION = a; }
+    void set_cond_num_hidden_neurons(int a) { xcs.COND_NUM_HIDDEN_NEURONS = a; }
+    void set_cond_max_hidden_neurons(int a) { xcs.COND_MAX_HIDDEN_NEURONS = a; }
+    void set_cond_hidden_neuron_activation(int a) { xcs.COND_HIDDEN_NEURON_ACTIVATION = a; }
+    void set_pred_num_hidden_neurons(int a) { xcs.PRED_NUM_HIDDEN_NEURONS = a; }
+    void set_pred_max_hidden_neurons(int a) { xcs.PRED_MAX_HIDDEN_NEURONS = a; }
+    void set_pred_hidden_neuron_activation(int a) { xcs.PRED_HIDDEN_NEURON_ACTIVATION = a; }
     void set_momentum(double a) { xcs.MOMENTUM = a; }
     void set_cond_evolve_weights(_Bool a) { xcs.COND_EVOLVE_WEIGHTS = a; }
     void set_cond_evolve_neurons(_Bool a) { xcs.COND_EVOLVE_NEURONS = a; }
@@ -345,8 +353,12 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("SAM_TYPE", &XCS::get_sam_type, &XCS::set_sam_type)
         .add_property("MAX_CON", &XCS::get_max_con, &XCS::set_max_con)
         .add_property("MIN_CON", &XCS::get_min_con, &XCS::set_min_con)
-        .add_property("NUM_HIDDEN_NEURONS", &XCS::get_num_hidden_neurons, &XCS::set_num_hidden_neurons)
-        .add_property("HIDDEN_NEURON_ACTIVATION", &XCS::get_hidden_neuron_activation, &XCS::set_hidden_neuron_activation)
+        .add_property("COND_NUM_HIDDEN_NEURONS", &XCS::get_cond_num_hidden_neurons, &XCS::set_cond_num_hidden_neurons)
+        .add_property("COND_MAX_HIDDEN_NEURONS", &XCS::get_cond_max_hidden_neurons, &XCS::set_cond_max_hidden_neurons)
+        .add_property("COND_HIDDEN_NEURON_ACTIVATION", &XCS::get_cond_hidden_neuron_activation, &XCS::set_cond_hidden_neuron_activation)
+        .add_property("PRED_NUM_HIDDEN_NEURONS", &XCS::get_pred_num_hidden_neurons, &XCS::set_pred_num_hidden_neurons)
+        .add_property("PRED_MAX_HIDDEN_NEURONS", &XCS::get_pred_max_hidden_neurons, &XCS::set_pred_max_hidden_neurons)
+        .add_property("PRED_HIDDEN_NEURON_ACTIVATION", &XCS::get_pred_hidden_neuron_activation, &XCS::set_pred_hidden_neuron_activation)
         .add_property("DGP_NUM_NODES", &XCS::get_dgp_num_nodes, &XCS::set_dgp_num_nodes)
         .add_property("MAX_FORWARD", &XCS::get_max_forward, &XCS::set_max_forward)
         .add_property("RESET_STATES", &XCS::get_reset_states, &XCS::set_reset_states)

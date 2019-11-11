@@ -163,7 +163,7 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa,
 
 double xcsf_version()
 {
-    return 1.01;
+    return 1.02;
 }
 
 size_t xcsf_save(XCSF *xcsf, char *fname)
@@ -248,8 +248,12 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->SAM_MIN, sizeof(double), 1, fp);
     s += fwrite(&xcsf->MAX_CON, sizeof(double), 1, fp);
     s += fwrite(&xcsf->MIN_CON, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->COND_NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->COND_MAX_HIDDEN_NEURONS, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->COND_HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->PRED_NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->PRED_MAX_HIDDEN_NEURONS, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->PRED_HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MOMENTUM, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
@@ -321,8 +325,12 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->SAM_MIN, sizeof(double), 1, fp);
     s += fread(&xcsf->MAX_CON, sizeof(double), 1, fp);
     s += fread(&xcsf->MIN_CON, sizeof(double), 1, fp);
-    s += fread(&xcsf->NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
-    s += fread(&xcsf->HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
+    s += fread(&xcsf->COND_NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
+    s += fread(&xcsf->COND_MAX_HIDDEN_NEURONS, sizeof(int), 1, fp);
+    s += fread(&xcsf->COND_HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
+    s += fread(&xcsf->PRED_NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
+    s += fread(&xcsf->PRED_MAX_HIDDEN_NEURONS, sizeof(int), 1, fp);
+    s += fread(&xcsf->PRED_HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
     s += fread(&xcsf->MOMENTUM, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);

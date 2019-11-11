@@ -64,26 +64,30 @@ xcs.POP_SIZE = 400
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.LOSS_FUNC = 1 # MSE
 xcs.EPS_0 = 0.01 # target error
-xcs.COND_TYPE = 2 # evolved neural network conditions
-xcs.PRED_TYPE = 4 # sgd neural network predictors
-xcs.HIDDEN_NEURON_ACTIVATION = 1 # relu
-xcs.NUM_HIDDEN_NEURONS = 10
-xcs.ETA = 0.01
-xcs.SAM_TYPE = 0 # log normal
-xcs.SAM_NUM = 3
-xcs.F_MUTATION = 0
-xcs.EA_SUBSUMPTION = False
-xcs.SET_SUBSUMPTION = False
-xcs.THETA_SUB = 5000
+
+xcs.COND_TYPE = 2 # neural network conditions
+xcs.COND_HIDDEN_NEURON_ACTIVATION = 1 # relu
+xcs.COND_NUM_HIDDEN_NEURONS = 10
+xcs.COND_MAX_HIDDEN_NEURONS = 20
 xcs.COND_EVOLVE_WEIGHTS = True
-xcs.PRED_EVOLVE_WEIGHTS = True
 xcs.COND_EVOLVE_NEURONS = True
-xcs.PRED_EVOLVE_NEURONS = True
 xcs.COND_EVOLVE_FUNCTIONS = False
+
+xcs.PRED_TYPE = 4 # neural network predictors
+xcs.PRED_HIDDEN_NEURON_ACTIVATION = 1 # relu
+xcs.PRED_NUM_HIDDEN_NEURONS = 10
+xcs.PRED_MAX_HIDDEN_NEURONS = 20
+xcs.PRED_EVOLVE_WEIGHTS = True
+xcs.PRED_EVOLVE_NEURONS = True
 xcs.PRED_EVOLVE_FUNCTIONS = False
 xcs.PRED_EVOLVE_ETA = True
 xcs.PRED_SGD_WEIGHTS = True
-
+xcs.ETA = 0.01
+ 
+xcs.SAM_TYPE = 0 # log normal
+xcs.SAM_NUM = 3
+xcs.F_MUTATION = 0
+ 
 ##################################
 # Example plotting in matplotlib
 ##################################
