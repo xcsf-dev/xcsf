@@ -60,32 +60,31 @@ xcs = xcsf.XCS(xvars, yvars)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
-xcs.POP_SIZE = 400
+xcs.POP_SIZE = 500
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.LOSS_FUNC = 1 # MSE
-xcs.EPS_0 = 0.01 # target error
+xcs.EPS_0 = 0.005 # target error
 
 xcs.COND_TYPE = 2 # neural network conditions
 xcs.COND_HIDDEN_NEURON_ACTIVATION = 1 # relu
-xcs.COND_NUM_HIDDEN_NEURONS = 5
-xcs.COND_MAX_HIDDEN_NEURONS = 10
+xcs.COND_NUM_HIDDEN_NEURONS = 1
+xcs.COND_MAX_HIDDEN_NEURONS = 20
 xcs.COND_EVOLVE_WEIGHTS = True
 xcs.COND_EVOLVE_NEURONS = True
 xcs.COND_EVOLVE_FUNCTIONS = False
 
 xcs.PRED_TYPE = 4 # neural network predictors
 xcs.PRED_HIDDEN_NEURON_ACTIVATION = 1 # relu
-xcs.PRED_NUM_HIDDEN_NEURONS = 20
-xcs.PRED_MAX_HIDDEN_NEURONS = 50
+xcs.PRED_NUM_HIDDEN_NEURONS = 200
+xcs.PRED_MAX_HIDDEN_NEURONS = 200
 xcs.PRED_EVOLVE_WEIGHTS = True
-xcs.PRED_EVOLVE_NEURONS = True
+xcs.PRED_EVOLVE_NEURONS = False
 xcs.PRED_EVOLVE_FUNCTIONS = False
 xcs.PRED_EVOLVE_ETA = True
 xcs.PRED_SGD_WEIGHTS = True
  
 xcs.SAM_TYPE = 0 # log normal
 xcs.SAM_NUM = 3
-xcs.F_MUTATION = 0
  
 ##################################
 # Example plotting in matplotlib
@@ -127,7 +126,7 @@ lm_mse = mean_squared_error(lm_pred, test_Y)
 print('Linear regression MSE = %.4f' % (lm_mse))
 
 # compare with MLP regressor
-mlp = MLPRegressor(hidden_layer_sizes=(100,), activation='relu', solver='adam', learning_rate='adaptive', max_iter=1000, learning_rate_init=0.01, alpha=0.01)
+mlp = MLPRegressor(hidden_layer_sizes=(200,), activation='relu', solver='adam', learning_rate='adaptive', max_iter=1000, learning_rate_init=0.01, alpha=0.01)
 mlp.fit(train_X, train_Y.ravel())
 mlp_pred = mlp.predict(test_X)
 mlp_mse = mean_squared_error(mlp_pred, test_Y)
