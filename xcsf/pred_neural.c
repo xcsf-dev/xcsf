@@ -110,8 +110,10 @@ void pred_neural_copy(XCSF *xcsf, CL *to, CL *from)
 
 void pred_neural_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
-    PRED_NEURAL *pred = c->pred;
-    neural_learn(xcsf, &pred->net, y, x);
+    if(xcsf->PRED_SGD_WEIGHTS) {
+        PRED_NEURAL *pred = c->pred;
+        neural_learn(xcsf, &pred->net, y, x);
+    }
 }
 
 double *pred_neural_compute(XCSF *xcsf, CL *c, double *x)
