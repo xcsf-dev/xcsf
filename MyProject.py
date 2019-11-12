@@ -82,10 +82,7 @@ xcs.PRED_EVOLVE_NEURONS = False
 xcs.PRED_EVOLVE_FUNCTIONS = False
 xcs.PRED_EVOLVE_ETA = True
 xcs.PRED_SGD_WEIGHTS = True
- 
-xcs.SAM_TYPE = 0 # log normal
-xcs.SAM_NUM = 3
- 
+
 ##################################
 # Example plotting in matplotlib
 ##################################
