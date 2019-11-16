@@ -63,7 +63,7 @@ void pred_rls_init(XCSF *xcsf, CL *c)
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         pred->weights[var][0] = xcsf->PRED_X0;
         for(int i = 1; i < pred->weights_length; i++) {
-            pred->weights[var][i] = 0.0;
+            pred->weights[var][i] = 0;
         }
     }
     // initialise gain matrix
@@ -82,7 +82,7 @@ void init_matrix(XCSF *xcsf, double *matrix, int n)
     for(int row = 0; row < n; row++) {
         for(int col = 0; col < n; col++) {
             if(row != col) {
-                matrix[row*n+col] = 0.0;
+                matrix[row*n+col] = 0;
             }
             else {
                 matrix[row*n+col] = xcsf->PRED_RLS_SCALE_FACTOR;
@@ -158,7 +158,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
         for(int j = 0; j < n; j++) {
             double tmp = pred->tmp_vec[i] * pred->tmp_input[j];
             if(i == j) {
-                pred->tmp_matrix1[i*n+j] = 1.0 - tmp;
+                pred->tmp_matrix1[i*n+j] = 1 - tmp;
             }
             else {
                 pred->tmp_matrix1[i*n+j] = -tmp;
@@ -221,7 +221,7 @@ void pred_rls_print(XCSF *xcsf, CL *c)
     //	printf("\n");
 }
 
-void matrix_matrix_multiply( double *srca, double *srcb, double *dest, int n)
+void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n)
 {
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {
@@ -261,7 +261,7 @@ int pred_rls_size(XCSF *xcsf, CL *c)
     PRED_RLS *pred = c->pred;
     return pred->weights_length;
 }
- 
+
 size_t pred_rls_save(XCSF *xcsf, CL *c, FILE *fp)
 {
     PRED_RLS *pred = c->pred;
@@ -275,7 +275,7 @@ size_t pred_rls_save(XCSF *xcsf, CL *c, FILE *fp)
     //printf("rls saved %lu elements\n", (unsigned long)s);
     return s;
 }
- 
+
 size_t pred_rls_load(XCSF *xcsf, CL *c, FILE *fp)
 {
     pred_rls_init(xcsf, c);
