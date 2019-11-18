@@ -101,8 +101,7 @@ for i in range(n):
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
     # test
-    pred = xcs.predict(test_X)
-    test_mse[i] = mean_squared_error(pred, test_Y)
+    test_mse[i] = xcs.score(test_X, test_Y)
     # update status
     status = ("trials=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f smut=%.4f pmut=%.4f emut=%.4f fmut=%.4f"
         % (trials[i], train_mse[i], test_mse[i], psize[i], msize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2), xcs.pop_avg_mu(3)))
@@ -110,7 +109,11 @@ for i in range(n):
     bar.refresh()
     bar.update(1)
 bar.close()
-print('XCSF MSE = %.4f' % (test_mse[n-1]))
+
+# final XCSF test score
+pred = xcs.predict(test_X)
+xcsf_mse = mean_squared_error(pred, test_Y)
+print('XCSF MSE = %.4f' % (xcsf_mse))
 
 # compare with linear regression
 lm = LinearRegression()
