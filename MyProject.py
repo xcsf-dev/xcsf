@@ -111,8 +111,8 @@ for i in range(n):
 bar.close()
 
 # final XCSF test score
-pred = xcs.predict(test_X)
-xcsf_mse = mean_squared_error(pred, test_Y)
+xcsf_pred = xcs.predict(test_X)
+xcsf_mse = mean_squared_error(xcsf_pred, test_Y)
 print('XCSF MSE = %.4f' % (xcsf_mse))
 
 # compare with linear regression
