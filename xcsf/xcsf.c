@@ -125,7 +125,7 @@ double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, x);
     set_pred(xcsf, &mset, x, pred);
-    xcsf->msetsize += (xcsf->msetsize - mset.size) * xcsf->BETA;
+    xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
     set_kill(xcsf, &kset); // kills deleted classifiers
     set_free(xcsf, &mset); // frees the match set list  
     return (xcsf->loss_ptr)(xcsf, pred, y);
@@ -143,6 +143,20 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
         set_kill(xcsf, &kset); // kills deleted classifiers
         set_free(xcsf, &mset); // frees the match set list
     }
+}
+
+double xcsf_score(XCSF *xcsf, INPUT *test_data)
+{
+    xcsf->train = false;
+    double err = 0;
+    double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
+    for(int row = 0; row < test_data->rows; row++) {
+        double *x = &test_data->x[row * test_data->x_cols];
+        double *y = &test_data->y[row * test_data->y_cols];
+        err += xcsf_test_trial(xcsf, pred, x, y);
+    }
+    free(pred);
+    return err/(double)test_data->rows;
 }
 
 void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)

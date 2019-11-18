@@ -147,6 +147,20 @@ struct XCS
         return result;
     }
 
+    double score(np::ndarray &test_X, np::ndarray &test_Y) {
+        // check inputs are correctly sized
+        if(test_X.shape(0) != test_Y.shape(0)) {
+            printf("error: X and Y rows are not equal\n");
+            return 0;
+        }
+        test_data.rows = test_X.shape(0);
+        test_data.x_cols = test_X.shape(1);
+        test_data.y_cols = test_Y.shape(1);
+        test_data.x = reinterpret_cast<double*>(test_X.get_data());
+        test_data.y = reinterpret_cast<double*>(test_Y.get_data());
+        return xcsf_score(&xcs, &test_data);
+    }
+
     void print_pop(_Bool printc, _Bool printa, _Bool printp) {
         xcsf_print_pop(&xcs, printc, printa, printp);
     }
@@ -316,6 +330,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("fit", fit1)
         .def("fit", fit2)
         .def("predict", &XCS::predict)
+        .def("score", &XCS::score)
         .def("save", &XCS::save)
         .def("load", &XCS::load)
         .def("version", &XCS::version)
