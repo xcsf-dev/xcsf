@@ -96,16 +96,13 @@ test_mse = np.zeros(n)
 bar = tqdm(total=n) # progress bar
 for i in range(n):
     # train
-    xcs.fit(train_X, train_Y, True) # True = shuffle
-    # get training error
-    pred = xcs.predict(train_X)
-    train_mse[i] = mean_squared_error(pred, train_Y)
-    # get testing error
-    pred = xcs.predict(test_X)
-    test_mse[i] = mean_squared_error(pred, test_Y)
+    train_mse[i] = xcs.fit(train_X, train_Y, True) # True = shuffle
     trials[i] = xcs.time() # number of trials so far
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
+    # test
+    pred = xcs.predict(test_X)
+    test_mse[i] = mean_squared_error(pred, test_Y)
     # update status
     status = ("trials=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f smut=%.4f pmut=%.4f emut=%.4f fmut=%.4f"
         % (trials[i], train_mse[i], test_mse[i], psize[i], msize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2), xcs.pop_avg_mu(3)))
