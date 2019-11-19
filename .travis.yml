@@ -16,13 +16,14 @@ matrix:
     # Python library OSX
     - os: osx
       osx_image: xcode10.1
-      compiler: clang
+      compiler: llvm
       env: BADGE=osx BUILD_TYPE="RELEASE" XCSF_PYLIB="ON" 
  
 script:
   - cd "${TRAVIS_BUILD_DIR}/build"
   - |
     if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
+      brew install llvm
       brew install libomp
       brew install cmake || brew upgrade cmake
       if [[ "${XCSF_PYLIB}" == "ON" ]]; then
