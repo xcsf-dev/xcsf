@@ -16,21 +16,19 @@ matrix:
     # Python library OSX
     - os: osx
       osx_image: xcode10.1
-      compiler: gcc
+      compiler: clang
       env: BADGE=osx BUILD_TYPE="RELEASE" XCSF_PYLIB="ON" 
  
 script:
   - cd "${TRAVIS_BUILD_DIR}/build"
   - |
     if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
-      brew install gcc
+      brew install libomp
       brew install cmake || brew upgrade cmake
       if [[ "${XCSF_PYLIB}" == "ON" ]]; then
         brew install python || brew upgrade python
         brew install boost-python3
       fi
-      cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYLIB="$XCSF_PYLIB" ..
-    else
       cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYLIB="$XCSF_PYLIB" ..
     fi
   - make
