@@ -26,8 +26,7 @@ script:
       brew install gcc
       brew install cmake || brew upgrade cmake
       if [[ "${XCSF_PYLIB}" == "ON" ]]; then
-        brew install python
-        brew install boost-python --with-python3
+        brew install python boost-python3
       fi
       cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYLIB="$XCSF_PYLIB" ..
     else
