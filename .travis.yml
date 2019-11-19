@@ -16,7 +16,7 @@ matrix:
     # Python library OSX
     - os: osx
       osx_image: xcode10.1
-      compiler: llvm
+      compiler: clang
       env: BADGE=osx BUILD_TYPE="RELEASE" XCSF_PYLIB="ON" 
  
 script:
