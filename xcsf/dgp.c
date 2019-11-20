@@ -31,22 +31,25 @@ void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
 {
     dgp->t = 0;
     dgp->n = n;
+    dgp->klen = n * xcsf->MAX_K;
     dgp->state = malloc(sizeof(double) * dgp->n);
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
     dgp->function = malloc(sizeof(int) * dgp->n);
-    dgp->connectivity = malloc(sizeof(int) * dgp->n * xcsf->MAX_K);
-    dgp->weights = malloc(sizeof(double) * dgp->n * xcsf->MAX_K);
+    dgp->connectivity = malloc(sizeof(int) * dgp->klen);
+    dgp->weights = malloc(sizeof(double) * dgp->klen);
 }
 
 void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from)
 { 	
+    (void)xcsf;
     to->t = from->t;
     to->n = from->n;
+    to->klen = from->klen;
     memcpy(to->state, from->state, sizeof(double) * from->n);
     memcpy(to->initial_state, from->initial_state, sizeof(double) * from->n);
     memcpy(to->function, from->function, sizeof(int) * from->n);
-    memcpy(to->connectivity, from->connectivity, sizeof(int) * from->n * xcsf->MAX_K);
-    memcpy(to->weights, from->weights, sizeof(double) * from->n * xcsf->MAX_K);
+    memcpy(to->connectivity, from->connectivity, sizeof(int) * from->klen);
+    memcpy(to->weights, from->weights, sizeof(double) * from->klen);
 }
 
 double graph_output(XCSF *xcsf, GRAPH *dgp, int i)
@@ -72,7 +75,7 @@ void graph_rand(XCSF *xcsf, GRAPH *dgp)
         dgp->state[i] = rand_normal(0,0.1);
     }
 
-    for(int i = 0; i < dgp->n * xcsf->MAX_K; i++) {
+    for(int i = 0; i < dgp->klen; i++) {
         dgp->weights[i] = rand_normal(0,0.1);
         // other nodes within the graph
         if(rand_uniform(0,1) < 0.5) {
@@ -208,7 +211,7 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
         } 
     }
 
-    for(int i = 0; i < dgp1->n * xcsf->MAX_K; i++) {
+    for(int i = 0; i < dgp1->klen; i++) {
         if(rand_uniform(0,1) < 0.5) {
             double tmp = dgp1->connectivity[i];
             dgp1->connectivity[i] = dgp2->connectivity[i];
@@ -216,7 +219,7 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
         }
     }  
  
-    for(int i = 0; i < dgp1->n * xcsf->MAX_K; i++) {
+    for(int i = 0; i < dgp1->klen; i++) {
         if(rand_uniform(0,1) < 0.5) {
             double tmp = dgp1->weights[i];
             dgp1->weights[i] = dgp2->weights[i];
@@ -229,33 +232,37 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 
 size_t graph_save(XCSF *xcsf, GRAPH *dgp, FILE *fp)
 {
+    (void)xcsf;
     size_t s = 0;
     s += fwrite(&dgp->n, sizeof(int), 1, fp);
     s += fwrite(&dgp->t, sizeof(int), 1, fp);
+    s += fwrite(&dgp->klen, sizeof(int), 1, fp);
     s += fwrite(dgp->state, sizeof(double), dgp->n, fp);
     s += fwrite(dgp->initial_state, sizeof(double), dgp->n, fp);
     s += fwrite(dgp->function, sizeof(int), dgp->n, fp);
-    s += fwrite(dgp->connectivity, sizeof(int), dgp->n * xcsf->MAX_K, fp);
-    s += fwrite(dgp->weights, sizeof(double), dgp->n * xcsf->MAX_K, fp);
+    s += fwrite(dgp->connectivity, sizeof(int), dgp->klen, fp);
+    s += fwrite(dgp->weights, sizeof(double), dgp->klen, fp);
     //printf("graph saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
 size_t graph_load(XCSF *xcsf, GRAPH *dgp, FILE *fp)
 {
+    (void)xcsf;
     size_t s = 0;
     s += fread(&dgp->n, sizeof(int), 1, fp);
     s += fread(&dgp->t, sizeof(int), 1, fp);
+    s += fread(&dgp->klen, sizeof(int), 1, fp);
     dgp->state = malloc(sizeof(double) * dgp->n);
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
     dgp->function = malloc(sizeof(int) * dgp->n);
-    dgp->connectivity = malloc(sizeof(int) * dgp->n * xcsf->MAX_K);
-    dgp->weights = malloc(sizeof(double) * dgp->n * xcsf->MAX_K);
+    dgp->connectivity = malloc(sizeof(int) * dgp->klen);
+    dgp->weights = malloc(sizeof(double) * dgp->klen);
     s += fread(dgp->state, sizeof(double), dgp->n, fp);
     s += fread(dgp->initial_state, sizeof(double), dgp->n, fp);
     s += fread(dgp->function, sizeof(int), dgp->n, fp);
-    s += fread(dgp->connectivity, sizeof(int), dgp->n * xcsf->MAX_K, fp);
-    s += fread(dgp->weights, sizeof(double), dgp->n * xcsf->MAX_K, fp);
+    s += fread(dgp->connectivity, sizeof(int), dgp->klen, fp);
+    s += fread(dgp->weights, sizeof(double), dgp->klen, fp);
     //printf("graph loaded %lu elements\n", (unsigned long)s);
     return s;
 }

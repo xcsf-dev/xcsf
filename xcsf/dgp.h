@@ -25,6 +25,7 @@ typedef struct GRAPH {
     int *function; // node activation functions
     int n; // number of nodes
     int t; // number of cycles to run
+    int klen; // length of connectivity map
 } GRAPH;
 
 _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
