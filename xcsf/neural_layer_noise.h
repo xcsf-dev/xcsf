@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#pragma once
   
 LAYER *neural_layer_noise_init(XCSF *xcsf, int in, double prob, double std);
 LAYER *neural_layer_noise_copy(XCSF *xcsf, LAYER *from);

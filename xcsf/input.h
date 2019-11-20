@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#pragma once
 
 void input_read_csv(char *infile, INPUT *train_data, INPUT *test_data);
 void input_free(INPUT *data);

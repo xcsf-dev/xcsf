@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#pragma once
 
 LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int n_init, int n_max, int f, u_int32_t o);
 LAYER *neural_layer_connected_copy(XCSF *xcsf, LAYER *from);

@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#pragma once
  
 void constants_init(XCSF *xcsf, const char *filename);
 void constants_free(XCSF *xcsf);

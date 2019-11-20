@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
+#pragma once
 
 double loss_mae(XCSF *xcsf, double *pred, double *y);
 double loss_mse(XCSF *xcsf, double *pred, double *y);

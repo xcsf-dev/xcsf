@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#pragma once
 
 LAYER *neural_layer_softmax_init(XCSF *xcsf, int in, double temp);
 LAYER *neural_layer_softmax_copy(XCSF *xcsf, LAYER *from);

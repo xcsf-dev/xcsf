@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#pragma once
 
 _Bool cond_rectangle_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_rectangle_general(XCSF *xcsf, CL *c1, CL *c2);

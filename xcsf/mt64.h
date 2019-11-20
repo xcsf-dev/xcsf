@@ -53,6 +53,7 @@
    email: m-mat @ math.sci.hiroshima-u.ac.jp (remove spaces)
 */
 
+#pragma once
 
 /* initializes mt[NN] with a seed */
 void init_genrand64(unsigned long long seed);
