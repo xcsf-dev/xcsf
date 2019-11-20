@@ -2,9 +2,11 @@
 
 version: 1.0.{build}
 
-image: Visual Studio 2015
+os:
+  - Visual Studio 2015
 
 environment:
+  CLANG_URL: "https://releases.llvm.org/7.0.1/LLVM-7.0.1-win32.exe"
   BOOST_ROOT: C:\Libraries\boost_1_59_0
   BOOST_LIBRARYDIR: C:\Libraries\boost_1_59_0\lib64-msvc-14.0
 
@@ -12,9 +14,13 @@ environment:
     - COMPILER: "clang"
 
 build:
-  parallel: true
+  verbosity: detailed
 
 build_script:
+  - appveyor DownloadFile %CLANG_URL% -FileName llvm-installer.exe
+  - llvm-installer.exe /S /D=C:\LLVM
+  - set PATH=C:\LLVM\bin;%PATH%
+  - clang-cl -v
   - cd build
   - cmake -G "Visual Studio 14 2015" -DPARALLEL="OFF" ..
   - msbuild xcsf.sln
