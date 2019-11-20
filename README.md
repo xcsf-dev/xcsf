@@ -55,7 +55,7 @@ See `default.ini` for a full list of options.
 
 ## Building
 
-* Ubuntu 18.04:
+### Ubuntu 18.04
 ```
 $ sudo apt install python3 libboost-python-dev libboost-numpy-dev gnuplot
 $ git clone --recurse-submodules git@github.com:rpreen/xcsf.git
@@ -64,7 +64,7 @@ $ cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..
 $ make
 ```
  
-* OSX (XCode 10.1 / Clang):
+### OSX (XCode 10.1 / Clang)
 ```
 $ brew install libomp cmake python boost-python3 gnuplot
 $ git clone --recurse-submodules git@github.com:rpreen/xcsf.git
