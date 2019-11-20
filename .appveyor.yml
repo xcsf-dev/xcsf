@@ -2,7 +2,7 @@
 
 version: 1.0.{build}
 
-image: Visual Studio 2019
+image: Visual Studio 2017
 
 environment:
   BOOST_ROOT: C:\Libraries\boost_1_59_0
@@ -13,5 +13,5 @@ build:
 
 build_script:
   - cd build
-  - cmake -DBoost_USE_STATIC_LIBS="ON" -DBoost_USE_STATIC_RUNTIME="ON" ..
+  - cmake -Ax64 -DBoost_USE_STATIC_LIBS="ON" -DBoost_USE_STATIC_RUNTIME="ON" ..
   - msbuild xcsf.sln
