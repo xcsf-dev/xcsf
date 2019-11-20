@@ -2,9 +2,9 @@
 
 An implementation of XCSF that can be built as either a stand-alone binary or as a Python library.
 
-License|Codacy Review|Linux Build|Fossa
+License|Codacy Review|Linux Build|OSX Build|Fossa
 :--:|:--:|:--:|:--:
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)|[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b)](https://www.codacy.com/app/rpreen/xcsf)|[![Linux Build Status](http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=linux&label=build&branch=master)](https://travis-ci.org/rpreen/xcsf)|[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frpreen%2Fxcsf.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frpreen%2Fxcsf?ref=badge_shield)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)|[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b)](https://www.codacy.com/app/rpreen/xcsf)|[![Linux Build Status](http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=linux&label=build&branch=master)](https://travis-ci.org/rpreen/xcsf)|[![OSX Build Status](http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=osx&label=build&branch=master)](https://travis-ci.org/rpreen/xcsf)|[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frpreen%2Fxcsf.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frpreen%2Fxcsf?ref=badge_shield)
 
 ------------------------
 ## Features
@@ -32,9 +32,9 @@ See `default.ini` for a full list of options.
 ------------------------
 ## Compiler options
 
-* `XCSF_PYLIB = ON`: python library (cmake default = OFF)
-* `PARALLEL = ON`: matching and set prediction functions parallelised with OpenMP (cmake default = ON)
-* `GNUPLOT = ON`: real-time GNUPlot of the system error; data saved in folder: `out` (cmake default = OFF)
+* `XCSF_PYLIB = ON`: Python library (CMake default = OFF)
+* `PARALLEL = ON`: CPU parallelised matching, predicting, and updating with OpenMP (CMake default = ON)
+* `GNUPLOT = ON`: real-time Gnuplot of the system error; data saved in folder: `out` (CMake default = OFF)
   
 ------------------------
 ## Requirements
@@ -43,8 +43,8 @@ See `default.ini` for a full list of options.
  
 * ![C11](https://img.shields.io/badge/C-11-blue.svg?style=flat) compliant compiler.
 * [CMake](https://www.cmake.org "CMake") (>= 3.12)
-* [OpenMP](https://www.openmp.org "OpenMP") (PARALLEL=ON): supported by [GCC](https://gcc.gnu.org "GCC")
-* [Gnuplot](https://www.gnuplot.info "Gnuplot") (GNUPLOT=ON)
+* [OpenMP](https://www.openmp.org "OpenMP") (Optional: PARALLEL=ON): supported by [GCC](https://gcc.gnu.org "GCC") and Clang with libomp.
+* [Gnuplot](https://www.gnuplot.info "Gnuplot") (Optional: GNUPLOT=ON)
 
 ### Python library
  
@@ -63,12 +63,21 @@ $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..
 $ make
 ```
-
+ 
+* OSX (XCode 10.1 / Clang):
+```
+$ brew install libomp cmake python boost-python3 gnuplot
+$ git clone --recurse-submodules git@github.com:rpreen/xcsf.git
+$ cd xcsf/build
+$ cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..
+$ make
+```
+ 
 ## Running
 
 ### Stand-alone
 
-After building with cmake option: `-DXCSF_PYLIB=OFF`
+After building with CMake option: `-DXCSF_PYLIB=OFF`
 
 Arguments: 
 
@@ -83,7 +92,7 @@ $ ./xcsf/xcsf ../data/sine_3var
 
 ### Python library
 
-After building with cmake option: `-DXCSF_PYLIB=ON`
+After building with CMake option: `-DXCSF_PYLIB=ON`
 
 See example MyProject.py
 ```
