@@ -53,6 +53,7 @@ See `default.ini` for a full list of options.
 * [Python](https://www.python.org "Python") (>= 3)
 * [Boost](https://www.boost.org "Boost") (>= 1.56.0 for Python3)
 
+------------------------
 ## Building
 
 ### Ubuntu 18.04
@@ -73,6 +74,7 @@ $ cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..
 $ make
 ```
  
+------------------------
 ## Running
 
 ### Stand-alone
