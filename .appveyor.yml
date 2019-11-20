@@ -13,5 +13,5 @@ build:
 
 build_script:
   - cd build
-  - cmake -G "Visual Studio 14 2015" -DBoost_USE_STATIC_LIBS="ON" -DBoost_USE_STATIC_RUNTIME="ON" ..
+  - cmake -G "Visual Studio 14 2015" -DBoost_USE_STATIC_LIBS="ON" -DBoost_USE_STATIC_RUNTIME="ON" -DPARALLEL="OFF" ..
   - msbuild xcsf.sln
