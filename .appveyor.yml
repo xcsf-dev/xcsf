@@ -2,16 +2,16 @@
 
 version: 1.0.{build}
 
-image: Visual Studio 2019
+image: Visual Studio 2015
 
 environment:
-  BOOST_ROOT: C:\Libraries\boost_1_71_0
-  BOOST_LIBRARYDIR: C:\Libraries\boost_1_71_0\lib
+  BOOST_ROOT: C:\Libraries\boost_1_59_0
+  BOOST_LIBRARYDIR: C:\Libraries\boost_1_59_0\lib64-msvc-14.0
 
 build:
   parallel: true
 
 build_script:
   - cd build
-  - cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_C_COMPILER=clang-cl.exe -DCMAKE_CXX_COMPILER=clang-cl.exe -DBoost_USE_STATIC_LIBS="ON" -DBoost_USE_STATIC_RUNTIME="ON" ..
+  - cmake -G "Visual Studio 14 Win64" -T"LLVM-vs2014" -DBoost_USE_STATIC_LIBS="ON" -DBoost_USE_STATIC_RUNTIME="ON" ..
   - msbuild xcsf.sln
