@@ -8,10 +8,13 @@ environment:
   BOOST_ROOT: C:\Libraries\boost_1_59_0
   BOOST_LIBRARYDIR: C:\Libraries\boost_1_59_0\lib64-msvc-14.0
 
+  matrix:
+    - COMPILER: "clang"
+
 build:
   parallel: true
 
 build_script:
   - cd build
-  - cmake -G "Visual Studio 14 2015" -DBoost_USE_STATIC_LIBS="ON" -DBoost_USE_STATIC_RUNTIME="ON" -DPARALLEL="OFF" ..
+  - cmake -G "Visual Studio 14 2015" -DPARALLEL="OFF" ..
   - msbuild xcsf.sln
