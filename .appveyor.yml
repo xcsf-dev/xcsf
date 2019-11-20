@@ -22,5 +22,5 @@ build_script:
   - set PATH=C:\LLVM\bin;%PATH%
   - clang-cl -v
   - cd build
-  - cmake -G "Visual Studio 14 2015" -DPARALLEL="OFF" ..
+  - cmake -G "Visual Studio 14 2015" -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -DPARALLEL="OFF" ..
   - msbuild xcsf.sln
