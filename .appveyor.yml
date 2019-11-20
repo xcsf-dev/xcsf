@@ -13,5 +13,5 @@ build:
 
 build_script:
   - cd build
-  - cmake -G "Visual Studio 16 2019" -A x64 -DBoost_USE_STATIC_LIBS="ON" -DBoost_USE_STATIC_RUNTIME="ON" ..
+  - cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_C_COMPILER=clang-cl.exe -DCMAKE_CXX_COMPILER=clang-cl.exe -DBoost_USE_STATIC_LIBS="ON" -DBoost_USE_STATIC_RUNTIME="ON" ..
   - msbuild xcsf.sln
