@@ -73,6 +73,11 @@ $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..
 $ make
 ```
+
+### Documentation
+```
+$ make doc
+```
  
 ------------------------
 ## Running
