@@ -93,7 +93,19 @@ endif()
 
 add_subdirectory(xcsf)
 file(COPY default.ini DESTINATION .)             
-
+ 
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+    set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)
+    set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+    add_custom_target(doc # ALL
+        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM)
+endif()
+ 
 set(CMAKE_C_FLAGS_DEBUG "-g3")
 set(CMAKE_C_FLAGS_RELEASE "-Ofast -march=native -flto")
 set(CMAKE_CXX_FLAGS_DEBUG "-g3")
