@@ -74,7 +74,8 @@ $ cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..
 $ make
 ```
 
-### Documentation
+### Documentation (Doxygen)
+After running cmake:
 ```
 $ make doc
 ```
