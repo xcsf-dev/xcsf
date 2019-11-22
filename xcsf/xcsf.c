@@ -40,7 +40,7 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
 size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
 
 /**
- * Executes MAX_TRIALS number of XCSF learning iterations using the training data.
+ * @brief Executes MAX_TRIALS number of XCSF learning iterations using the training data.
  * @param xcsf The XCSF data structure
  * @param train_data The input data to use for training
  * @param shuffle Whether to randomise the instances during training
@@ -76,8 +76,8 @@ double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 }
 
 /**
- * Executes MAX_TRIALS number of XCSF learning iterations using the training
- * data and test iterations using the test data
+ * @brief Executes MAX_TRIALS number of XCSF learning iterations using the training.
+ * data and test iterations using the test data.
  * @param xcsf The XCSF data structure
  * @param train_data The input data to use for training
  * @param test_data The input data to use for testing
@@ -124,7 +124,7 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 }
 
 /**
- * Executes a single XCSF learning trial
+ * @brief Executes a single XCSF learning trial.
  * @param xcsf The XCSF data structure
  * @param pred The calculated XCSF prediction (set by this function)
  * @param x The feature variables
@@ -148,7 +148,7 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 }
 
 /**
- * Executes a single XCSF testing trial
+ * @brief Executes a single XCSF testing trial.
  * @param xcsf The XCSF data structure
  * @param pred The calculated XCSF prediction (set by this function)
  * @param x The feature variables
@@ -169,7 +169,7 @@ double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 }
 
 /**
- * Calculates the XCSF predictions for the provided input
+ * @brief Calculates the XCSF predictions for the provided input.
  * @param xcsf The XCSF data structure
  * @param input The input feature variables
  * @param output The calculated XCSF predictions (set by this function)
@@ -190,7 +190,7 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
 }
 
 /**
- * Calculates the XCSF error for the input data
+ * @brief Calculates the XCSF error for the input data.
  * @param xcsf The XCSF data structure
  * @param test_data The input data to calculate the error
  * @return The average XCSF error using the loss function
@@ -210,7 +210,7 @@ double xcsf_score(XCSF *xcsf, INPUT *test_data)
 }
 
 /**
- * Prints the current XCSF population
+ * @brief Prints the current XCSF population.
  * @param xcsf The XCSF data structure
  * @param printc Whether to print condition structures
  * @param printa Whether to print action structures
@@ -222,7 +222,7 @@ void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
 }
 
 /**
- * Prints the XCSF match set for the supplied input
+ * @brief Prints the XCSF match set for the supplied input.
  * @param xcsf The XCSF data structure
  * @param input The input features to perform matching
  * @param printc Whether to print condition structures
@@ -241,7 +241,7 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa,
 }
 
 /**
- * Returns the current XCSF version
+ * @brief Returns the current XCSF version.
  * @return The version number
  */
 double xcsf_version()
@@ -250,7 +250,7 @@ double xcsf_version()
 }
 
 /**
- * Writes the current state of XCSF to a binary file
+ * @brief Writes the current state of XCSF to a binary file.
  * @param xcsf The XCSF data structure
  * @param fname The name of the output file
  * @return The total number of elements written
@@ -273,7 +273,7 @@ size_t xcsf_save(XCSF *xcsf, char *fname)
 }
 
 /**
- * Reads the state of XCSF from a binary file
+ * @brief Reads the state of XCSF from a binary file.
  * @param xcsf The XCSF data structure
  * @param fname The name of the input file
  * @return The total number of elements read
@@ -305,7 +305,7 @@ size_t xcsf_load(XCSF *xcsf, char *fname)
 }
 
 /**
- * Writes the XCSF data structure to a binary file
+ * @brief Writes the XCSF data structure to a binary file.
  * @param xcsf The XCSF data structure
  * @param fp Pointer to the output file
  * @return The total number of elements written
@@ -388,7 +388,7 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
 }
 
 /**
- * Reads the XCSF data structure from a binary file
+ * @brief Reads the XCSF data structure from a binary file.
  * @param xcsf The XCSF data structure
  * @param fp Pointer to the input file
  * @return The total number of elements read
