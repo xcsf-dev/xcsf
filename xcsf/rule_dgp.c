@@ -17,7 +17,12 @@
  * The DGP classifier rule module.
  * Performs both condition matching and prediction in a single evolved graph.
  */
-
+    
+/**
+ * @file rule_dgp.c
+ * @brief Dynamical GP graph rule (condition + prediction) functions.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,6 +36,9 @@
 #include "prediction.h"
 #include "rule_dgp.h"
 
+/**
+ * @brief Dynamical GP graph rule data structure.
+ */ 
 typedef struct RULE_DGP{
     GRAPH dgp;
 } RULE_DGP;

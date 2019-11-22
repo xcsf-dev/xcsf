@@ -16,6 +16,14 @@
  *
  */
 
+/**
+ * @file gp.c
+ * @brief An implementation of GP trees based upon TinyGP
+ *
+ * For a more detailed description see: Poli, R., Langdon, W. B., and McPhee, N. F. (2008) "A Field Guide to Genetic Programming"
+ * @see https://dces.essex.ac.uk/staff/rpoli/gp-field-guide/A_Field_Guide_to_Genetic_Programming.pdf
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>

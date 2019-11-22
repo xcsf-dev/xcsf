@@ -14,8 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#pragma once
+            
+/**
+ * @file cl_set.h
+ * @brief Functions operating on sets of classifiers.
+ */ 
 
+#pragma once
+ 
 void set_init(XCSF *xcsf, SET *set);
 double set_mean_time(XCSF *xcsf, SET *set);
 double set_total_fit(XCSF *xcsf, SET *set);

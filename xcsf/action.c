@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+      
+/**
+ * @file action.c
+ * @brief Interface for classifier actions.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

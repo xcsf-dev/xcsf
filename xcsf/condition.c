@@ -15,6 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+        
+/**
+ * @file condition.c
+ * @brief Interface for classifier conditions.
+ */ 
  
 #include <stdio.h>
 #include <stdlib.h>

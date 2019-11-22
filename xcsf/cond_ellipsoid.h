@@ -14,6 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+  
+/**
+ * @file cond_ellipsoid.h
+ * @brief Hyperellipsoid condition functions.
+ */ 
+
 #pragma once
 
 _Bool cond_ellipsoid_crossover(XCSF *xcsf, CL *c1, CL *c2);

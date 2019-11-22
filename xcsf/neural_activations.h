@@ -14,8 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#pragma once
+     
+/**
+ * @file neural_activations.h
+ * @brief Neural network activation functions.
+ */ 
 
+#pragma once
+ 
 #include <math.h>
 
 #define LOGISTIC 0 

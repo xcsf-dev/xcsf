@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+ 
+/**
+ * @file cond_rectangle.c
+ * @brief Hyperrectangle condition functions.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,9 +32,12 @@
 #include "condition.h"
 #include "cond_rectangle.h"
 
+/**
+ * @brief Hyperrectangle condition data structure.
+ */ 
 typedef struct COND_RECTANGLE {
-    double *center;
-    double *spread;
+    double *center; //!< centers
+    double *spread; //!< spreads
 } COND_RECTANGLE;
 
 double cond_rectangle_dist(XCSF *xcsf, CL *c, double *x);

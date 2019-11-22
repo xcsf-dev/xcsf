@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+   
+/**
+ * @file cond_dgp.c
+ * @brief Dynamical GP graph condition functions.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,8 +33,11 @@
 #include "condition.h"
 #include "cond_dgp.h"
 
+/**
+ * @brief Dynamical GP graph condition data structure.
+ */ 
 typedef struct COND_DGP {
-    GRAPH dgp;
+    GRAPH dgp; //!< DGP graph
 } COND_DGP;
 
 void cond_dgp_rand(XCSF *xcsf, CL *c);

@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+    
+/**
+ * @file xcsf.c
+ * @brief High level XCSF functions for executing training, predicting, saving and reloading the system from persistent storage, etc.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -35,7 +40,7 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
 size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
 
 /**
- * Executes MAX_TRIALS number of XCSF learning iterations using the training data
+ * Executes MAX_TRIALS number of XCSF learning iterations using the training data.
  * @param xcsf The XCSF data structure
  * @param train_data The input data to use for training
  * @param shuffle Whether to randomise the instances during training

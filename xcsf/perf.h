@@ -14,6 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+         
+/**
+ * @file perf.h
+ * @brief System performance printing and plotting with Gnuplot.
+ */ 
+
 #pragma once
 
 void disp_perf1(XCSF *xcsf, double error, int trial);

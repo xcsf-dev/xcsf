@@ -14,10 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+    
+/**
+ * @file prediction.h
+ * @brief Interface for classifier predictions.
+ */ 
+
 #pragma once
 
 void prediction_set(XCSF *xcsf, CL *c);
-
+ 
+/**
+ * @brief Prediction interface data structure.
+ */ 
 struct PredVtbl {
     _Bool (*pred_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
     _Bool (*pred_impl_mutate)(XCSF *xcsf, CL *c);

@@ -14,6 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+        
+/**
+ * @file sam.h
+ * @brief Self-adaptive mutation functions.
+ */ 
+ 
 #pragma once
 
 void sam_adapt(XCSF *xcsf, double *mu);       

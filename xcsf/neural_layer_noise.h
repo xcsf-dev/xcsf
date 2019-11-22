@@ -15,6 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+        
+/**
+ * @file neural_layer_noise.h
+ * @brief An implementation of a Gaussian noise adding layer.
+ */ 
+
 #pragma once
   
 LAYER *neural_layer_noise_init(XCSF *xcsf, int in, double prob, double std);

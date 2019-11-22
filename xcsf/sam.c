@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+      
+/**
+ * @file sam.c
+ * @brief Self-adaptive mutation functions.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

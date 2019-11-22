@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+                
+/**
+ * @file config.c
+ * @brief Config file handling functions
+ */ 
+ 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -27,10 +32,14 @@
 #include "loss.h"
 
 #define MAXLEN 127
+
+/**
+ * @brief Config file parameter data structure.
+ */ 
 typedef struct nv {
-    char *name;
-    char *value;
-    struct nv *next;
+    char *name; //!< parameter name
+    char *value; //!< parameter value
+    struct nv *next; //!< pointer to the next parameter
 } nv;
 
 nv *head;

@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+ 
+/**
+ * @file pred_neural.c
+ * @brief Multi-layer perceptron neural network prediction functions
+ */ 
+ 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -33,9 +38,12 @@
 #include "neural_layer_softmax.h"
 #include "prediction.h"
 #include "pred_neural.h"
-
+                                          
+/**
+ * @brief Multi-layer perceptron neural network prediction data structure
+ */ 
 typedef struct PRED_NEURAL {
-    NET net;
+    NET net; //!< neural network
 } PRED_NEURAL;
 
 void pred_neural_init(XCSF *xcsf, CL *c)

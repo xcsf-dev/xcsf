@@ -14,6 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+  
+/**
+ * @file cond_dummy.h
+ * @brief Always-matching dummy condition functions.
+ */ 
+
 #pragma once
 
 _Bool cond_dummy_crossover(XCSF *xcsf, CL *c1, CL *c2);

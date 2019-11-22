@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
-
+         
+/**
+ * @file loss.c
+ * @brief Loss functions for calculating prediction error.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h> 

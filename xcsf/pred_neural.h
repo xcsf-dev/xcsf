@@ -14,6 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+/**
+ * @file pred_neural.h
+ * @brief Multi-layer perceptron neural network prediction functions
+ */ 
+ 
 #pragma once
 
 double *pred_neural_compute(XCSF *xcsf, CL *c, double *x);

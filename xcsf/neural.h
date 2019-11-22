@@ -14,23 +14,34 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+    
+/**
+ * @file neural.h
+ * @brief An implementation of a multi-layer perceptron neural network.
+ */ 
+
 #pragma once
-
-// double linked list of layers
+                     
+/**
+ * @brief Double linked list of layers data structure.
+ */ 
 typedef struct LLIST {
-    struct LAYER *layer;
-    struct LLIST *prev;
-    struct LLIST *next;
+    struct LAYER *layer; //!< pointer to the layer data structure
+    struct LLIST *prev; //!< pointer to the previous layer (forward)
+    struct LLIST *next; //!< pointer to the next layer (backward)
 } LLIST;
-
+                      
+/**
+ * @brief Neural network data structure.
+ */  
 typedef struct NET {
-    int num_layers; // hidden + output
-    int num_inputs;
-    int num_outputs;
-    double *delta;
-    double *input;
-    LLIST *head;
-    LLIST *tail;
+    int num_layers; //!< number of layers (hidden + output)
+    int num_inputs; //!< number of network inputs
+    int num_outputs; //!< number of network outputs
+    double *delta; //!< delta for updating networks weights
+    double *input; //!< pointer to the network input
+    LLIST *head; //!< pointer to the head layer (output layer)
+    LLIST *tail; //!< pointer to the tail layer (first layer)
 } NET;
 
 _Bool neural_mutate(XCSF *xcsf, NET *net);

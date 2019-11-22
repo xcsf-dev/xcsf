@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+ 
+/**
+ * @file cond_neural.c
+ * @brief Multi-layer perceptron neural network condition functions.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,8 +37,11 @@
 #include "condition.h"
 #include "cond_neural.h"
 
+/**
+ * @brief Multi-layer perceptron neural network condition data structure.
+ */ 
 typedef struct COND_NEURAL {
-    NET net;
+    NET net; //!< neural network
 } COND_NEURAL;
 
 void cond_neural_rand(XCSF *xcsf, CL *c);

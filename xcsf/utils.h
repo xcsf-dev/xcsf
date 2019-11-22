@@ -14,8 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#pragma once
+                 
+/**
+ * @file utils.h
+ * @brief Utility functions for random number handling, etc.
+ */ 
 
+#pragma once
+ 
 double rand_normal(double mu, double sigma);
 double constrain(double min, double max, double a);
 double rand_uniform(double min, double max);

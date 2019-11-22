@@ -14,7 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+           
+/**
+ * @file python_wrapper.cpp
+ * @brief Python library wrapper functions.
+ */ 
+ 
 #include <string>
 #include <vector>
 #include <boost/python.hpp>
@@ -37,7 +42,9 @@ extern "C" {
 #endif
 }
 
-/* XCSF class */
+/**
+ * @brief Python XCSF data structure.
+ */ 
 struct XCS
 {        
     XCSF xcs;

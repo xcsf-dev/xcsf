@@ -14,6 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+/**
+ * @file cond_neural.h
+ * @brief Multi-layer perceptron neural network condition functions.
+ */ 
+ 
 #pragma once
 
 _Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2);

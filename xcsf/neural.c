@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+     
+/**
+ * @file neural.c
+ * @brief An implementation of a multi-layer perceptron neural network.
+ */ 
+ 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

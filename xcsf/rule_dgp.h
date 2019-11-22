@@ -14,6 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+   
+/**
+ * @file rule_dgp.h
+ * @brief Dynamical GP graph rule (condition + prediction) functions.
+ */ 
+
 #pragma once
 
 _Bool rule_dgp_cond_crossover(XCSF *xcsf, CL *c1, CL *c2);

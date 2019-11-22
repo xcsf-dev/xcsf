@@ -15,6 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+               
+/**
+ * @file config.h
+ * @brief Config file handling functions
+ */ 
+
 #pragma once
  
 void constants_init(XCSF *xcsf, const char *filename);

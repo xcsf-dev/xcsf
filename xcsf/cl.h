@@ -14,8 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#pragma once
+          
+/**
+ * @file cl.h
+ * @brief Functions operating on classifiers.
+ */ 
 
+#pragma once
+ 
 _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cl_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cl_m(XCSF *xcsf, CL *c);

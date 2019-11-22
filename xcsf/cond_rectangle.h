@@ -14,6 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+/**
+ * @file cond_rectangle.h
+ * @brief Hyperrectangle condition functions.
+ */ 
+
 #pragma once
 
 _Bool cond_rectangle_crossover(XCSF *xcsf, CL *c1, CL *c2);

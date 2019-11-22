@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+                      
+/**
+ * @file pred_rls.c
+ * @brief Recursive least mean squares prediction functions.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -30,16 +35,18 @@
 void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n);
 void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n);
 void init_matrix(XCSF *xcsf, double *matrix, int n);
-
+                    
+/**
+ * @brief Recursive least mean squares prediction data structure.
+ */ 
 typedef struct PRED_RLS {
-    int weights_length;
-    double **weights;
-    double *matrix;
-    // temporary storage for updating weights
-    double *tmp_input;
-    double *tmp_vec;
-    double *tmp_matrix1;
-    double *tmp_matrix2;
+    int weights_length; //!< total number of weights
+    double **weights; //!< weights used to compute prediction
+    double *matrix; //!< gain matrix used to update weights
+    double *tmp_input; //!< temporary storage for updating weights
+    double *tmp_vec; //!< temporary storage for updating weights
+    double *tmp_matrix1; //!< temporary storage for updating gain matrix
+    double *tmp_matrix2; //!< temporary storage for updating gain matrix
 } PRED_RLS;
 
 void pred_rls_init(XCSF *xcsf, CL *c)

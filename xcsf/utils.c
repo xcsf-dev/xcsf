@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+                  
+/**
+ * @file utils.c
+ * @brief Utility functions for random number handling, etc.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

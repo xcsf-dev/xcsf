@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+       
+/**
+ * @file neural_layer_connected.c
+ * @brief An implementation of a fully-connected layer of perceptrons.
+ */ 
+ 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

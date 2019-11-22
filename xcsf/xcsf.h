@@ -15,11 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+   
+/**
+ * @file xcsf.h
+ * @brief XCSF data structures.
+ */ 
+ 
 #pragma once
 
 /**
- * Classifier data structure
+ * @brief Classifier data structure.
  */
 typedef struct CL {
     struct CondVtbl const *cond_vptr; //!< functions acting on conditions
@@ -42,7 +47,7 @@ typedef struct CL {
 } CL;
 
 /**
- * Classifier linked list
+ * @brief Classifier linked list
  */
 typedef struct CLIST {
     CL *cl; //!< pointer to classifier data structure
@@ -50,7 +55,7 @@ typedef struct CLIST {
 } CLIST;
 
 /**
- * Classifier set
+ * @brief Classifier set
  */
 typedef struct SET {
     CLIST *list; //!< linked list of classifiers
@@ -59,7 +64,7 @@ typedef struct SET {
 } SET;
 
 /**
- * XCSF data structure
+ * @brief XCSF data structure
  */
 typedef struct XCSF {
     SET pset; //!< population set
@@ -155,7 +160,7 @@ typedef struct XCSF {
 } XCSF;                  
 
 /**
- * Input data structure
+ * @brief Input data structure
  */
 typedef struct INPUT {
     double *x; //!< feature variables

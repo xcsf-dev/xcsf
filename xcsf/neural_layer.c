@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+           
+/**
+ * @file neural_layer.c
+ * @brief Interface for neural network layers.
+ */ 
+      
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

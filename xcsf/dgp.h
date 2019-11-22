@@ -15,17 +15,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#pragma once
+  
+/**
+ * @file dgp.h
+ * @brief An implementation of dynamical GP graphs
+ */ 
 
+#pragma once
+                  
+/**
+ * @brief Dynamical GP graph data structure
+ */ 
 typedef struct GRAPH {
-    int *connectivity; // connectivity map
-    double *weights; // connection weights
-    double *state; // current internal state
-    double *initial_state; // initial states
-    int *function; // node activation functions
-    int n; // number of nodes
-    int t; // number of cycles to run
-    int klen; // length of connectivity map
+    int *connectivity; //!< connectivity map
+    double *weights; //!< connection weights
+    double *state; //!< current internal state
+    double *initial_state; //!< initial states
+    int *function; //!< node activation functions
+    int n; //!< number of nodes
+    int t; //!< number of cycles to run
+    int klen; //!< length of connectivity map
 } GRAPH;
 
 _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);

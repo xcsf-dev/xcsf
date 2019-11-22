@@ -14,10 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+     
+/**
+ * @file action.h
+ * @brief Interface for classifier actions.
+ */ 
+ 
 #pragma once
 
 void action_set(XCSF *xcsf, CL *c);
 
+/**
+ * @brief Action interface data structure.
+ */ 
 struct ActVtbl {
 	_Bool (*act_impl_general)(XCSF *xcsf, CL *c1, CL *c2);
 	_Bool (*act_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);

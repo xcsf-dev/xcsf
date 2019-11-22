@@ -14,6 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+    
+/**
+ * @file ea.h
+ * @brief Evolutionary algorithm functions.
+ */ 
+
 #pragma once
 
 void ea(XCSF *xcsf, SET *set, SET *kset);

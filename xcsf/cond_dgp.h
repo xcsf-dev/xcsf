@@ -15,6 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+  
+/**
+ * @file cond_dgp.h
+ * @brief Dynamical GP graph condition functions.
+ */ 
+
 #pragma once
 
 _Bool cond_dgp_crossover(XCSF *xcsf, CL *c1, CL *c2);

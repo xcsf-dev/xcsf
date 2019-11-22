@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+                    
+/**
+ * @file pred_nlms.c
+ * @brief Normalised least mean squares prediction functions.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,10 +31,13 @@
 #include "cl.h"
 #include "prediction.h"
 #include "pred_nlms.h"
-
+ 
+/**
+ * @brief Normalised least mean squares prediction data structure.
+ */ 
 typedef struct PRED_NLMS {
-    int weights_length;
-    double **weights;
+    int weights_length; //!< total number of weights
+    double **weights; //!< weights used to compute prediction
 } PRED_NLMS;
 
 void pred_nlms_init(XCSF *xcsf, CL *c)

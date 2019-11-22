@@ -15,6 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+         
+/**
+ * @file neural_layer_dropout.h
+ * @brief An implementation of a dropout layer.
+ */ 
+
 #pragma once
   
 LAYER *neural_layer_dropout_init(XCSF *xcsf, int in, double prob);

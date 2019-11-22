@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+          
+/**
+ * @file perf.c
+ * @brief System performance printing and plotting with Gnuplot.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

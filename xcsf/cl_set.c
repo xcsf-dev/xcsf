@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+             
+/**
+ * @file cl_set.c
+ * @brief Functions operating on sets of classifiers.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

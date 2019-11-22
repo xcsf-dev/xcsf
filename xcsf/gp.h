@@ -15,14 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+  
+/**
+ * @file gp.h
+ * @brief An implementation of GP trees based upon TinyGP
+ */ 
+ 
 #pragma once
- 
+
+/**
+ * @brief GP tree data structure
+ */ 
 typedef struct GP_TREE {
-	int *tree;
-	int p;
-        int len;
+    int *tree; //!< flattened tree representation of functions and terminals
+    int len; //!< size of the tree
+    int p; //!< current position in the tree
 } GP_TREE;
- 
+
 void tree_free_cons(XCSF *xcsf);
 void tree_init_cons(XCSF *xcsf);
 void tree_free(XCSF *xcsf, GP_TREE *gp);

@@ -14,10 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+     
+/**
+ * @file condition.h
+ * @brief Interface for classifier conditions.
+ */ 
+ 
 #pragma once
 
 void condition_set(XCSF *xcsf, CL *c);
 
+/**
+ * @brief Condition interface data structure.
+ */ 
 struct CondVtbl {
     _Bool (*cond_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
     _Bool (*cond_impl_general)(XCSF *xcsf, CL *c1, CL *c2);

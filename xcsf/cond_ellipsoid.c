@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+   
+/**
+ * @file cond_ellipsoid.c
+ * @brief Hyperellipsoid condition functions.
+ */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,9 +32,12 @@
 #include "condition.h"
 #include "cond_ellipsoid.h"
 
+/**
+ * @brief Hyperellipsoid condition data structure.
+ */ 
 typedef struct COND_ELLIPSOID {
-    double *center;
-    double *spread;
+    double *center; //!< centers
+    double *spread; //!< spreads
 } COND_ELLIPSOID;
 
 double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x);
