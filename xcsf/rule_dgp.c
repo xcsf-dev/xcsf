@@ -40,7 +40,7 @@
  * @brief Dynamical GP graph rule data structure.
  */ 
 typedef struct RULE_DGP{
-    GRAPH dgp;
+    GRAPH dgp; //!< DGP graph
 } RULE_DGP;
 
 void rule_dgp_cond_rand(XCSF *xcsf, CL *c);
