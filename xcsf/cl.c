@@ -47,7 +47,7 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
     c->size = size;
     c->time = time;
     c->prediction = calloc(xcsf->num_y_vars, sizeof(double));
-    c->action = calloc(xcsf->num_y_vars, sizeof(double));
+    c->action = 0;
     c->m = false;
     c->mhist = calloc(xcsf->THETA_SUB, sizeof(_Bool));
     sam_init(xcsf, &c->mu);
@@ -143,7 +143,6 @@ void cl_free(XCSF *xcsf, CL *c)
 {
     free(c->mhist);
     free(c->prediction);
-    free(c->action);
     sam_free(xcsf, c->mu);
     cond_free(xcsf, c);
     act_free(xcsf, c);
@@ -270,7 +269,7 @@ size_t cl_save(XCSF *xcsf, CL *c, FILE *fp)
     s += fwrite(&c->m, sizeof(_Bool), 1, fp);
     s += fwrite(c->mhist, sizeof(_Bool), xcsf->THETA_SUB, fp);
     s += fwrite(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
-    s += fwrite(c->action, sizeof(double), xcsf->num_y_vars, fp);
+    s += fwrite(&c->action, sizeof(int), 1, fp);
     s += act_save(xcsf, c, fp);
     s += pred_save(xcsf, c, fp);
     s += cond_save(xcsf, c, fp);
@@ -294,8 +293,7 @@ size_t cl_load(XCSF *xcsf, CL *c, FILE *fp)
     s += fread(c->mhist, sizeof(_Bool), xcsf->THETA_SUB, fp);
     c->prediction = malloc(xcsf->num_y_vars * sizeof(double));
     s += fread(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
-    c->action = malloc(xcsf->num_y_vars * sizeof(double));
-    s += fread(c->action, sizeof(double), xcsf->num_y_vars, fp);
+    s += fread(&c->action, sizeof(int), 1, fp);
     action_set(xcsf, c);
     prediction_set(xcsf, c);
     condition_set(xcsf, c);

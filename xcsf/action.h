@@ -32,7 +32,7 @@ struct ActVtbl {
 	_Bool (*act_impl_general)(XCSF *xcsf, CL *c1, CL *c2);
 	_Bool (*act_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
 	_Bool (*act_impl_mutate)(XCSF *xcsf, CL *c);
-	double *(*act_impl_compute)(XCSF *xcsf, CL *c, double *x);
+	int (*act_impl_compute)(XCSF *xcsf, CL *c, double *x);
 	void (*act_impl_copy)(XCSF *xcsf, CL *to,  CL *from);
 	void (*act_impl_free)(XCSF *xcsf, CL *c);
 	void (*act_impl_init)(XCSF *xcsf, CL *c);
@@ -63,7 +63,7 @@ static inline _Bool act_mutate(XCSF *xcsf, CL *c) {
 	return (*c->act_vptr->act_impl_mutate)(xcsf, c);
 }
  
-static inline double *act_compute(XCSF *xcsf, CL *c, double *x) {
+static inline int act_compute(XCSF *xcsf, CL *c, double *x) {
 	return (*c->act_vptr->act_impl_compute)(xcsf, c, x);
 }
 

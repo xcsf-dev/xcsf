@@ -28,13 +28,13 @@
 #include "xcsf.h"       
 #include "utils.h"
 #include "action.h"
-#include "act_constant.h"
+#include "act_integer.h"
 
 void action_set(XCSF *xcsf, CL *c)
 {
     switch(xcsf->ACT_TYPE) {
         case 0:
-            c->act_vptr = &act_constant_vtbl;
+            c->act_vptr = &act_integer_vtbl;
             break;
         default:
             printf("Invalid action type specified: %d\n", xcsf->ACT_TYPE);
