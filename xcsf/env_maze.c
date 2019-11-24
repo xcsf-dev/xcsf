@@ -95,7 +95,7 @@ void env_maze_init(XCSF *xcsf, char *filename)
                 x = 0;
                 break;
             default:
-                env->maze[y][x] = c;
+                env->maze[y][x] = (char)c;
                 x++;
                 break;
         }
