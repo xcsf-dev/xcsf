@@ -16,7 +16,7 @@
  */
 
 /**
- * @file xcs_multi_step.h
+ * @file xcs_multi_step.c
  * @brief Multi-step classification functions.
  */ 
 
