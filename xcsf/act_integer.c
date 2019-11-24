@@ -47,12 +47,12 @@ _Bool act_integer_general(XCSF *xcsf, CL *c1, CL *c2)
 
 _Bool act_integer_mutate(XCSF *xcsf, CL *c)
 {
-    int old = c->action;
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+        int old = c->action;
         c->action = irand_uniform(0, xcsf->num_classes);
-    }
-    if(old != c->action) {
-        return true;
+        if(old != c->action) {
+            return true;
+        }
     }
     return false;
 }
@@ -80,6 +80,12 @@ void act_integer_rand(XCSF *xcsf, CL *c)
     c->action = irand_uniform(0, xcsf->num_classes);
 }
  
+void act_integer_cover(XCSF *xcsf, CL *c, int action)
+{
+    (void)xcsf;
+    c->action = action;
+}
+
 void act_integer_free(XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;

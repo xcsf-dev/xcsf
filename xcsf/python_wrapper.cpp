@@ -64,7 +64,7 @@ struct XCS
         xcs.pset.num = 0;
         xcs.num_x_vars = num_x_vars;
         xcs.num_y_vars = num_y_vars;
-        xcs.num_classes = 0;
+        xcs.num_classes = 1;
         train_data.rows = 0;
         train_data.x_cols = 0;
         train_data.y_cols = 0;
@@ -252,6 +252,8 @@ struct XCS
     double get_pop_avg_pred_size() { return set_avg_pred_size(&xcs, &xcs.pset); }
     double get_pop_avg_pred_eta(int layer) { return set_avg_eta(&xcs, &xcs.pset, layer); }
     double get_msetsize() { return xcs.msetsize; }
+    int get_teletransportation() { return xcs.TELETRANSPORTATION; }
+    double get_gamma() { return xcs.GAMMA; }
 
     /* SETTERS */
     void set_omp_num_threads(int a) {
@@ -322,6 +324,8 @@ struct XCS
     void set_theta_sub(int a) { xcs.THETA_SUB = a; }
     void set_ea_subsumption(_Bool a) { xcs.EA_SUBSUMPTION = a; }
     void set_set_subsumption(_Bool a) { xcs.SET_SUBSUMPTION = a; }
+    void set_teletransportation(int a) { xcs.TELETRANSPORTATION = a; }
+    void set_gamma(double a) { xcs.GAMMA = a; }
 };
 
 BOOST_PYTHON_MODULE(xcsf)
@@ -404,6 +408,8 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub)
         .add_property("EA_SUBSUMPTION", &XCS::get_ea_subsumption, &XCS::set_ea_subsumption)
         .add_property("SET_SUBSUMPTION", &XCS::get_set_subsumption, &XCS::set_set_subsumption)
+        .add_property("TELETRANSPORTATION", &XCS::get_teletransportation, &XCS::set_teletransportation)
+        .add_property("GAMMA", &XCS::get_gamma, &XCS::set_gamma)
         .def("pop_size", &XCS::get_pop_size)
         .def("pop_num", &XCS::get_pop_num)
         .def("time", &XCS::get_time)

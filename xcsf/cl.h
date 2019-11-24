@@ -33,7 +33,7 @@ double cl_acc(XCSF *xcsf, CL *c);
 double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit);
 double cl_mutation_rate(XCSF *xcsf, CL *c, int m);
 void cl_copy(XCSF *xcsf, CL *to, CL *from);
-void cl_cover(XCSF *xcsf, CL *c, double *x);
+void cl_cover(XCSF *xcsf, CL *c, double *x, int action);
 void cl_free(XCSF *xcsf, CL *c);
 void cl_init(XCSF *xcsf, CL *c, int size, int time);
 void cl_print(XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp);

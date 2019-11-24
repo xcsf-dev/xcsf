@@ -128,6 +128,11 @@ void pop_enforce_limit(XCSF *xcsf, SET *kset)
 
 void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
 {
+    _Bool act_covered[xcsf->num_classes];
+    for(int i = 0; i < xcsf->num_classes; i++) {
+        act_covered[i] = false;
+    }
+
     // add classifiers that match the input state to the match set  
 #ifdef PARALLEL_MATCH
     CLIST *blist[xcsf->pset.size];
@@ -145,32 +150,59 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
     for(int i = 0; i < xcsf->pset.size; i++) {
         if(cl_m(xcsf, blist[i]->cl)) {
             set_add(xcsf, mset, blist[i]->cl);
+            act_covered[blist[i]->cl->action] = true;
         }
     }
 #else
     for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         if(cl_match(xcsf, iter->cl, x)) {
             set_add(xcsf, mset, iter->cl);
+            act_covered[iter->cl->action] = true;
         }
     }   
 #endif
-    // perform covering if match set size is < THETA_MNA
-    for(int i = 0; mset->size < xcsf->THETA_MNA; i++) {
-        // new classifier with matching condition
-        CL *new = malloc(sizeof(CL));
-        cl_init(xcsf, new, (mset->num)+1, xcsf->time);
-        cl_cover(xcsf, new, x);
-        set_add(xcsf, &xcsf->pset, new);
-        set_add(xcsf, mset, new); 
-        pop_enforce_limit(xcsf, kset);
-        // remove any deleted classifiers from the match set
-        set_validate(xcsf, mset);
 
-        if(i > MAX_COVER) {
+    // perform covering if all actions are not represented
+    int attempts = 0;
+    _Bool again;
+    do {
+        again = false;
+        for(int i = 0; i < xcsf->num_classes; i++) {
+            if(!act_covered[i]) {
+                // new classifier with matching condition and action
+                CL *new = malloc(sizeof(CL));
+                cl_init(xcsf, new, (mset->num)+1, xcsf->time);
+                cl_cover(xcsf, new, x, i);
+                set_add(xcsf, &xcsf->pset, new);
+                set_add(xcsf, mset, new); 
+                act_covered[i] = true;
+            }
+        }
+        // enforce population size
+        int prev_psize = xcsf->pset.size;
+        pop_enforce_limit(xcsf, kset);
+        // if a macro classifier was deleted, remove any deleted rules from the match set
+        if(prev_psize > xcsf->pset.size) {
+            int prev_msize = mset->size;
+            set_validate(xcsf, mset);
+            // if the deleted classifier was in the match set,
+            // check if an action is now not covered
+            if(prev_msize > mset->size) {
+                for(int i = 0; i < xcsf->num_classes; i++) {
+                    if(!set_action_covered(xcsf, mset, i)) {
+                        act_covered[i] = false;
+                        again = true;
+                    }
+                }
+            }
+        }
+        attempts++;
+        if(attempts > MAX_COVER) {
             printf("Error: maximum covering attempts (%d) exceeded\n", MAX_COVER);
             exit(EXIT_FAILURE);
         }
-    }
+
+    } while(again);
 }
 
 void set_pred(XCSF *xcsf, SET *set, double *x, double *p)
@@ -211,6 +243,26 @@ void set_pred(XCSF *xcsf, SET *set, double *x, double *p)
 #endif
     // clean up
     free(presum);
+}    
+
+void set_action(XCSF *xcsf, SET *mset, SET *aset, int action)
+{
+    for(CLIST *iter = mset->list; iter != NULL; iter = iter->next) {
+        if(iter->cl->action == action) {
+            set_add(xcsf, aset, iter->cl);
+        }
+    }   
+}        
+
+_Bool set_action_covered(XCSF *xcsf, SET *set, int action)
+{
+    (void)xcsf;
+    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        if(iter->cl->action == action) {
+            return true;
+        }
+    }
+    return false;
 }
 
 void set_add(XCSF *xcsf, SET *set, CL *c)

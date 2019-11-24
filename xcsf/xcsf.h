@@ -80,6 +80,10 @@ typedef struct XCSF {
     int POP_SIZE; //!< maximum number of macro-classifiers in the population
     int LOSS_FUNC; //!< which loss/error function to apply
 
+    // multi-step problem parameters
+    double GAMMA; //!< discount factor in calculating the reward for multi-step problems
+    int TELETRANSPORTATION; //!< num steps to reset a multi-step problem if goal not found
+
     // classifier parameters
     double ALPHA; //!< linear coefficient used in calculating classifier accuracy
     double BETA; //!< learning rate for updating error, fitness, and set size
@@ -150,12 +154,16 @@ typedef struct XCSF {
     _Bool SET_SUBSUMPTION; //!< whether to perform match set subsumption
     int THETA_SUB; //!< minimum experience of a classifier to become a subsumer
 
+    // built-in environments
+    struct EnvVtbl const *env_vptr; //!< functions acting on environments
+    void *env; // !< environment structure
+
     // set by environment
     int stage; //!< current stage of training
     _Bool train; //!< training or test mode
     int num_x_vars; //!< number of problem input variables
     int num_y_vars; //!< number of problem output variables
-    int num_classes; //!< number of class labels
+    int num_classes; //!< number of class labels / actions
     double (*loss_ptr)(struct XCSF*, double*, double*); //!< pointer to loss/error function
 } XCSF;                  
 

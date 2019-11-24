@@ -66,10 +66,11 @@ void cl_copy(XCSF *xcsf, CL *to, CL *from)
     pred_copy(xcsf, to, from);
 }
 
-void cl_cover(XCSF *xcsf, CL *c, double *x)
+void cl_cover(XCSF *xcsf, CL *c, double *x, int action)
 {
     cl_rand(xcsf, c);
     cond_cover(xcsf, c, x);
+    act_cover(xcsf, c, action);
 }
 
 void cl_rand(XCSF *xcsf, CL *c)

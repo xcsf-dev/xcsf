@@ -1,0 +1,15 @@
+******************************
+*QQF**QQF**OQF**QQG**OQG**OQF*
+*OOO**QOO**OQO**OOQ**QQO**QQQ*
+*OOQ**OQQ**OQQ**QQO**OOO**QQO*
+******************************
+******************************
+*QOF**QOG**QOF**OOF**OOG**QOG*
+*QQO**QOO**OOO**OQO**QQO**QOO*
+*QQQ**OOO**OQO**QOQ**QOQ**OQO*
+******************************
+******************************
+*QOG**QOF**OOG**OQF**OOG**OOF*
+*OOQ**OQQ**QQO**OQQ**QQO**OQO*
+*QQO**OOO**OQO**OOQ**OQQ**QQQ*
+******************************

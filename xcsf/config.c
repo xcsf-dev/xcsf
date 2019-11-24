@@ -81,6 +81,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->EA_SELECT_TYPE = atoi(getvalue("EA_SELECT_TYPE"));
     xcsf->THETA_SUB = atoi(getvalue("THETA_SUB"));
     xcsf->THETA_DEL = atoi(getvalue("THETA_DEL"));
+    xcsf->TELETRANSPORTATION = atoi(getvalue("TELETRANSPORTATION"));
     // floats
     xcsf->ALPHA = atof(getvalue("ALPHA")); 
     xcsf->BETA = atof(getvalue("BETA"));
@@ -107,6 +108,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->PRED_X0 = atof(getvalue("PRED_X0"));
     xcsf->PRED_ETA = atof(getvalue("PRED_ETA"));
     xcsf->PRED_MOMENTUM = atof(getvalue("PRED_MOMENTUM"));
+    xcsf->GAMMA = atof(getvalue("GAMMA"));
     // Bools
     xcsf->POP_INIT = false;
     if(strncmp(getvalue("POP_INIT"), "true", 4) == 0) {

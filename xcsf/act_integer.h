@@ -27,6 +27,7 @@ _Bool act_integer_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool act_integer_mutate(XCSF *xcsf, CL *c);
 int act_integer_compute(XCSF *xcsf, CL *c, double *x);
 void act_integer_copy(XCSF *xcsf, CL *to, CL *from);
+void act_integer_cover(XCSF *xcsf, CL *c, int action);
 void act_integer_free(XCSF *xcsf, CL *c);
 void act_integer_init(XCSF *xcsf, CL *c);
 void act_integer_print(XCSF *xcsf, CL *c);
@@ -41,6 +42,7 @@ static struct ActVtbl const act_integer_vtbl = {
     &act_integer_mutate,
     &act_integer_compute,
     &act_integer_copy,
+    &act_integer_cover,
     &act_integer_free,
     &act_integer_init,
     &act_integer_rand,

@@ -22,15 +22,23 @@
 
 #pragma once
  
-void set_init(XCSF *xcsf, SET *set);
+_Bool set_action_covered(XCSF *xcsf, SET *set, int action);
+double set_avg_cond_size(XCSF *xcsf, SET *set);
+double set_avg_eta(XCSF *xcsf, SET *set, int layer);
+double set_avg_mut(XCSF *xcsf, SET *set, int m);
+double set_avg_pred_size(XCSF *xcsf, SET *set);
 double set_mean_time(XCSF *xcsf, SET *set);
 double set_total_fit(XCSF *xcsf, SET *set);
 double set_total_time(XCSF *xcsf, SET *set);
+size_t pop_load(XCSF *xcsf, FILE *fp);
+size_t pop_save(XCSF *xcsf, FILE *fp);
 void pop_del(XCSF *xcsf, SET *kset);
 void pop_enforce_limit(XCSF *xcsf, SET *kset);
 void pop_init(XCSF *xcsf);
+void set_action(XCSF *xcsf, SET *mset, SET *aset, int action);
 void set_add(XCSF *xcsf, SET *set, CL *c);
 void set_free(XCSF *xcsf, SET *set);
+void set_init(XCSF *xcsf, SET *set);
 void set_kill(XCSF *xcsf, SET *set);
 void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x);
 void set_pred(XCSF *xcsf, SET *set, double *x, double *p);
@@ -38,9 +46,3 @@ void set_print(XCSF *xcsf, SET *set, _Bool printc, _Bool printa, _Bool printp);
 void set_times(XCSF *xcsf, SET *set);
 void set_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y);
 void set_validate(XCSF *xcsf, SET *set);
-double set_avg_mut(XCSF *xcsf, SET *set, int m);
-double set_avg_cond_size(XCSF *xcsf, SET *set);
-double set_avg_pred_size(XCSF *xcsf, SET *set);
-size_t pop_save(XCSF *xcsf, FILE *fp);
-size_t pop_load(XCSF *xcsf, FILE *fp);
-double set_avg_eta(XCSF *xcsf, SET *set, int layer);
