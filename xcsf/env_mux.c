@@ -54,7 +54,7 @@ void env_mux_init(XCSF *xcsf, int bits)
     }
     (env->pos_bits)--;
     env->state = malloc(sizeof(double) * bits);
-    xcsf->num_classes = 2;
+    xcsf->num_actions = 2;
     xcsf->num_x_vars = bits;
     xcsf->num_y_vars = 1;
     xcsf->env = env;

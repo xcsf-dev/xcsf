@@ -49,7 +49,7 @@ _Bool act_integer_mutate(XCSF *xcsf, CL *c)
 {
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
         int old = c->action;
-        c->action = irand_uniform(0, xcsf->num_classes);
+        c->action = irand_uniform(0, xcsf->num_actions);
         if(old != c->action) {
             return true;
         }
@@ -77,7 +77,7 @@ void act_integer_print(XCSF *xcsf, CL *c)
 
 void act_integer_rand(XCSF *xcsf, CL *c)
 {
-    c->action = irand_uniform(0, xcsf->num_classes);
+    c->action = irand_uniform(0, xcsf->num_actions);
 }
  
 void act_integer_cover(XCSF *xcsf, CL *c, int action)

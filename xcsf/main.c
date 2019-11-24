@@ -83,7 +83,7 @@ void regression(XCSF *xcsf, int argc, char **argv)
     input_read_csv(argv[2], train_data, test_data);
     xcsf->num_x_vars = train_data->x_cols;
     xcsf->num_y_vars = train_data->y_cols;
-    xcsf->num_classes = 1; // regression
+    xcsf->num_actions = 1; // regression
 
     // reload state of a previous experiment
     if(argc == 5) {

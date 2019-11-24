@@ -35,13 +35,13 @@ double *nr;
 
 void pa_init(XCSF *xcsf)
 {
-    pa = malloc(sizeof(double) * xcsf->num_classes);
-    nr = malloc(sizeof(double) * xcsf->num_classes);
+    pa = malloc(sizeof(double) * xcsf->num_actions);
+    nr = malloc(sizeof(double) * xcsf->num_actions);
 }
 
 void pa_build(XCSF *xcsf, SET *set, double *x)
 {
-    for(int i = 0; i < xcsf->num_classes; i++) {
+    for(int i = 0; i < xcsf->num_actions; i++) {
         pa[i] = 0;
         nr[i] = 0;
     }
@@ -50,7 +50,7 @@ void pa_build(XCSF *xcsf, SET *set, double *x)
         pa[iter->cl->action] += predictions[0] * iter->cl->fit;
         nr[iter->cl->action] += iter->cl->fit;
     }
-    for(int i = 0; i < xcsf->num_classes; i++) {
+    for(int i = 0; i < xcsf->num_actions; i++) {
         if(nr[i] != 0) {
             pa[i] /= nr[i];
         }
@@ -63,7 +63,7 @@ void pa_build(XCSF *xcsf, SET *set, double *x)
 int pa_best_action(XCSF *xcsf)
 {
     int action = 0;
-    for(int i = 1; i < xcsf->num_classes; i++) {
+    for(int i = 1; i < xcsf->num_actions; i++) {
         if(pa[action] < pa[i]) {
             action = i;
         }
@@ -75,7 +75,7 @@ int pa_rand_action(XCSF *xcsf)
 {
     int action = 0;
     do {
-        action = irand_uniform(0, xcsf->num_classes);
+        action = irand_uniform(0, xcsf->num_actions);
     } while(nr[action] == 0);
     return action;
 }
@@ -83,7 +83,7 @@ int pa_rand_action(XCSF *xcsf)
 double pa_best_val(XCSF *xcsf)
 {
     double max = pa[0];
-    for(int i = 1; i < xcsf->num_classes; i++) {
+    for(int i = 1; i < xcsf->num_actions; i++) {
         if(max < pa[i]) {
             max = pa[i];
         }
@@ -93,7 +93,7 @@ double pa_best_val(XCSF *xcsf)
 
 double pa_val(XCSF *xcsf, int action)
 {
-    if(action >= 0 && action < xcsf->num_classes) {
+    if(action >= 0 && action < xcsf->num_actions) {
         return pa[action];
     }
     return -1;

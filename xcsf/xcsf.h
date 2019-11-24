@@ -163,7 +163,7 @@ typedef struct XCSF {
     _Bool train; //!< training or test mode
     int num_x_vars; //!< number of problem input variables
     int num_y_vars; //!< number of problem output variables
-    int num_classes; //!< number of class labels / actions
+    int num_actions; //!< number of class labels / actions
     double (*loss_ptr)(struct XCSF*, double*, double*); //!< pointer to loss/error function
 } XCSF;                  
 

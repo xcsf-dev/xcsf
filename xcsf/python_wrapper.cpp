@@ -64,7 +64,7 @@ struct XCS
         xcs.pset.num = 0;
         xcs.num_x_vars = num_x_vars;
         xcs.num_y_vars = num_y_vars;
-        xcs.num_classes = 1;
+        xcs.num_actions = 1;
         train_data.rows = 0;
         train_data.x_cols = 0;
         train_data.y_cols = 0;
@@ -246,7 +246,7 @@ struct XCS
     int get_time() { return xcs.time; }
     double get_num_x_vars() { return xcs.num_x_vars; }
     double get_num_y_vars() { return xcs.num_y_vars; }
-    double get_num_classes() { return xcs.num_classes; }
+    double get_num_actions() { return xcs.num_actions; }
     double get_pop_avg_mu(int m) { return set_avg_mut(&xcs, &xcs.pset, m); }
     double get_pop_avg_cond_size() { return set_avg_cond_size(&xcs, &xcs.pset); }
     double get_pop_avg_pred_size() { return set_avg_pred_size(&xcs, &xcs.pset); }
@@ -415,7 +415,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("time", &XCS::get_time)
         .def("num_x_vars", &XCS::get_num_x_vars)
         .def("num_y_vars", &XCS::get_num_y_vars)
-        .def("num_classes", &XCS::get_num_classes)
+        .def("num_actions", &XCS::get_num_actions)
         .def("pop_avg_mu", &XCS::get_pop_avg_mu)
         .def("pop_avg_cond_size", &XCS::get_pop_avg_cond_size)
         .def("pop_avg_pred_size", &XCS::get_pop_avg_pred_size)

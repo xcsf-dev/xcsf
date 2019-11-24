@@ -128,8 +128,8 @@ void pop_enforce_limit(XCSF *xcsf, SET *kset)
 
 void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
 {
-    _Bool act_covered[xcsf->num_classes];
-    for(int i = 0; i < xcsf->num_classes; i++) {
+    _Bool act_covered[xcsf->num_actions];
+    for(int i = 0; i < xcsf->num_actions; i++) {
         act_covered[i] = false;
     }
 
@@ -167,7 +167,7 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
     _Bool again;
     do {
         again = false;
-        for(int i = 0; i < xcsf->num_classes; i++) {
+        for(int i = 0; i < xcsf->num_actions; i++) {
             if(!act_covered[i]) {
                 // new classifier with matching condition and action
                 CL *new = malloc(sizeof(CL));
@@ -188,7 +188,7 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
             // if the deleted classifier was in the match set,
             // check if an action is now not covered
             if(prev_msize > mset->size) {
-                for(int i = 0; i < xcsf->num_classes; i++) {
+                for(int i = 0; i < xcsf->num_actions; i++) {
                     if(!set_action_covered(xcsf, mset, i)) {
                         act_covered[i] = false;
                         again = true;

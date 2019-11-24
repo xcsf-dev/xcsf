@@ -112,7 +112,7 @@ void env_maze_init(XCSF *xcsf, char *filename)
     }
     env->ysize = y;
     env->state = malloc(sizeof(double) * 8);
-    xcsf->num_classes = 8;
+    xcsf->num_actions = 8;
     xcsf->num_x_vars = 8;
     xcsf->num_y_vars = 1;
     xcsf->env = env;
