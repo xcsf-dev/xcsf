@@ -101,7 +101,7 @@ Example discrete mazes:
 $ ./xcsf/xcsf maze ../env/maze4.txt
 ```
 
-Example csv input: learning on `data/sine_3var_train` and testing on `data/sine_3var_test`
+Example csv input: learning on `data/sine_3var_train.csv` and testing on `data/sine_3var_test.csv`
 
 ```
 $ ./xcsf/xcsf csv ../data/sine_3var
