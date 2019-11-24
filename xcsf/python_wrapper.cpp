@@ -33,7 +33,6 @@ extern "C" {
 #include "xcsf.h"
 #include "config.h"
 #include "utils.h"
-#include "input.h"
 #include "loss.h"
 #include "cl_set.h"
 
