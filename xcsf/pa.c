@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Richard Preen <rpreen@gmail.com>
+ * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,32 +30,29 @@
 #include "cl_set.h"
 #include "pa.h"
 
-double *pa;
-double *nr; 
-
 void pa_init(XCSF *xcsf)
 {
-    pa = malloc(sizeof(double) * xcsf->num_actions);
-    nr = malloc(sizeof(double) * xcsf->num_actions);
+    xcsf->pa = malloc(sizeof(double) * xcsf->num_actions);
+    xcsf->nr = malloc(sizeof(double) * xcsf->num_actions);
 }
 
 void pa_build(XCSF *xcsf, SET *set, double *x)
 {
     for(int i = 0; i < xcsf->num_actions; i++) {
-        pa[i] = 0;
-        nr[i] = 0;
+        xcsf->pa[i] = 0;
+        xcsf->nr[i] = 0;
     }
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         double *predictions = cl_predict(xcsf, iter->cl, x);
-        pa[iter->cl->action] += predictions[0] * iter->cl->fit;
-        nr[iter->cl->action] += iter->cl->fit;
+        xcsf->pa[iter->cl->action] += predictions[0] * iter->cl->fit;
+        xcsf->nr[iter->cl->action] += iter->cl->fit;
     }
     for(int i = 0; i < xcsf->num_actions; i++) {
-        if(nr[i] != 0) {
-            pa[i] /= nr[i];
+        if(xcsf->nr[i] != 0) {
+            xcsf->pa[i] /= xcsf->nr[i];
         }
         else {
-            pa[i] = 0;
+            xcsf->pa[i] = 0;
         }
     }
 }
@@ -64,7 +61,7 @@ int pa_best_action(XCSF *xcsf)
 {
     int action = 0;
     for(int i = 1; i < xcsf->num_actions; i++) {
-        if(pa[action] < pa[i]) {
+        if(xcsf->pa[action] < xcsf->pa[i]) {
             action = i;
         }
     }
@@ -76,16 +73,16 @@ int pa_rand_action(XCSF *xcsf)
     int action = 0;
     do {
         action = irand_uniform(0, xcsf->num_actions);
-    } while(nr[action] == 0);
+    } while(xcsf->nr[action] == 0);
     return action;
 }
 
 double pa_best_val(XCSF *xcsf)
 {
-    double max = pa[0];
+    double max = xcsf->pa[0];
     for(int i = 1; i < xcsf->num_actions; i++) {
-        if(max < pa[i]) {
-            max = pa[i];
+        if(max < xcsf->pa[i]) {
+            max = xcsf->pa[i];
         }
     }
     return max;
@@ -94,14 +91,13 @@ double pa_best_val(XCSF *xcsf)
 double pa_val(XCSF *xcsf, int action)
 {
     if(action >= 0 && action < xcsf->num_actions) {
-        return pa[action];
+        return xcsf->pa[action];
     }
     return -1;
 }
 
 void pa_free(XCSF *xcsf)
 {
-    (void)xcsf;
-    free(pa);
-    free(nr);
+    free(xcsf->pa);
+    free(xcsf->nr);
 }

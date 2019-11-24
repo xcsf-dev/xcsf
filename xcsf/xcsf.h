@@ -156,7 +156,11 @@ typedef struct XCSF {
 
     // built-in environments
     struct EnvVtbl const *env_vptr; //!< functions acting on environments
-    void *env; // !< environment structure
+    void *env; //!< environment structure
+
+    // prediction array
+    double *pa; //!< prediction array (stores fitness weighted predictions)
+    double *nr; //!< prediction array (stores total fitness)
 
     // set by environment
     int stage; //!< current stage of training
