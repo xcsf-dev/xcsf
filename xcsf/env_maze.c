@@ -71,7 +71,7 @@ typedef struct ENV_MAZE {
     int ypos; //!< current y position
     int xsize; //!< maze size in x dimension
     int ysize; //!< maze size in y dimension
-    _Bool reset;
+    _Bool reset; //!< whether the trial needs to be reset (e.g., in goal state)
 } ENV_MAZE;
  
 void env_maze_sensor(XCSF *xcsf, char s, double *dec);
