@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-                
+
 /**
  * @file config.c
  * @brief Config file handling functions
  */ 
- 
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -36,13 +36,13 @@
 /**
  * @brief Config file parameter data structure.
  */ 
-typedef struct nv {
+typedef struct PARAM_LIST {
     char *name; //!< parameter name
     char *value; //!< parameter value
-    struct nv *next; //!< pointer to the next parameter
-} nv;
+    struct PARAM_LIST *next; //!< pointer to the next parameter
+} PARAM_LIST;
 
-nv *head;
+PARAM_LIST *head;
 
 void init_config(const char *filename);
 void process(char *configline);
@@ -198,12 +198,12 @@ void trim(char *s)
 void newnvpair(const char *config) {
     // first pair
     if(head == NULL) {
-        head = malloc(sizeof(nv));
+        head = malloc(sizeof(PARAM_LIST));
         head->next = NULL;
     }
     // other pairs
     else {
-        nv *new = malloc(sizeof(nv));
+        PARAM_LIST *new = malloc(sizeof(PARAM_LIST));
         new->next = head;
         head = new;
     }
@@ -235,7 +235,7 @@ void newnvpair(const char *config) {
 
 char *getvalue(char *name) {
     char *result = NULL;
-    for(nv *iter = head; iter != NULL; iter = iter->next) {
+    for(PARAM_LIST *iter = head; iter != NULL; iter = iter->next) {
         if(strcmp(name, iter->name) == 0) {
             result = iter->value;
             break;
@@ -281,7 +281,7 @@ void init_config(const char *filename) {
 
 void tidyup()
 { 
-    nv *iter = head;
+    PARAM_LIST *iter = head;
     while(iter != NULL) {
         free(head->value);
         free(head->name);
