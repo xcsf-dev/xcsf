@@ -58,8 +58,8 @@
      
 #define MAX_SIZE 50
 #define MAX_PAYOFF 1000.0
-const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; 
-const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1};
+const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; //!< possible maze moves on x-axis
+const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1}; //!< possible maze moves on y-axis
 
 /**
  * @brief Maze environment data structure.

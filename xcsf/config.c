@@ -42,7 +42,7 @@ typedef struct PARAM_LIST {
     struct PARAM_LIST *next; //!< pointer to the next parameter
 } PARAM_LIST;
 
-PARAM_LIST *head;
+PARAM_LIST *head; //!< linked list of config file parameters
 
 void init_config(const char *filename);
 void process(char *configline);
