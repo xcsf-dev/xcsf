@@ -21,6 +21,10 @@ See `default.ini` for a full list of options.
 * `COND_TYPE = 4`: Dynamical GP graphs
 * `COND_TYPE = 11`: Both conditions and predictions in single dynamical GP graphs
 
+### Evolved Actions
+
+* `ACT_TYPE = 0`: Integer actions
+
 ### Computed Predictions
 
 * `PRED_TYPE = 0`: Linear least squares
