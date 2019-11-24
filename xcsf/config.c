@@ -76,7 +76,6 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->PRED_TYPE = atoi(getvalue("PRED_TYPE"));
     xcsf->SAM_NUM = atoi(getvalue("SAM_NUM"));
     xcsf->SAM_TYPE = atoi(getvalue("SAM_TYPE"));
-    xcsf->THETA_MNA = atoi(getvalue("THETA_MNA"));
     xcsf->LAMBDA = atoi(getvalue("LAMBDA"));
     xcsf->EA_SELECT_TYPE = atoi(getvalue("EA_SELECT_TYPE"));
     xcsf->THETA_SUB = atoi(getvalue("THETA_SUB"));

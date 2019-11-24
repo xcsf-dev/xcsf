@@ -248,7 +248,7 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa,
  */
 double xcsf_version()
 {
-    return 1.03;
+    return 1.04;
 }
 
 /**
@@ -319,7 +319,6 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->msetsize, sizeof(double), 1, fp);
     s += fwrite(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->POP_INIT, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->THETA_MNA, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->PERF_AVG_TRIALS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->POP_SIZE, sizeof(int), 1, fp);
@@ -402,7 +401,6 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->msetsize, sizeof(double), 1, fp);
     s += fread(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_INIT, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->THETA_MNA, sizeof(int), 1, fp);
     s += fread(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
     s += fread(&xcsf->PERF_AVG_TRIALS, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_SIZE, sizeof(int), 1, fp);
