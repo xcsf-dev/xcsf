@@ -90,7 +90,7 @@ void regression(XCSF *xcsf, int argc, char **argv)
         printf("LOADING XCSF\n");
         xcsf->pset.size = 0;
         xcsf->pset.num = 0;
-        xcsf_load(xcsf, argv[3]);
+        xcsf_load(xcsf, argv[4]);
     }
     // start a new experiment
     else {
@@ -119,7 +119,7 @@ void classification(XCSF *xcsf, int argc, char **argv)
         printf("LOADING XCSF\n");
         xcsf->pset.size = 0;
         xcsf->pset.num = 0;
-        xcsf_load(xcsf, argv[3]);
+        xcsf_load(xcsf, argv[4]);
     }
     // start a new experiment
     else {
