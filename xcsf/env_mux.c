@@ -53,11 +53,13 @@ void env_mux_init(XCSF *xcsf, int bits)
         (env->pos_bits)++;
     }
     (env->pos_bits)--;
-    env->state = malloc(sizeof(double) * bits);
+    int n = env->pos_bits + pow(2, env->pos_bits);
+    env->state = malloc(sizeof(double) * n);
     xcsf->num_actions = 2;
-    xcsf->num_x_vars = bits;
+    xcsf->num_x_vars = n;
     xcsf->num_y_vars = 1;
     xcsf->env = env;
+    //printf("Initialised rmux problem with %d bits\n", n);
 }
 
 void env_mux_free(XCSF *xcsf)
