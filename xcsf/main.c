@@ -125,13 +125,13 @@ void classification(XCSF *xcsf, int argc, char **argv)
     else {
         pop_init(xcsf);
     }
-    // single step
-    if(strcmp(argv[1], "mp") == 0) {
-        xcs_single_step_exp(xcsf);
-    }
-    // multi-step 
-    else if(strcmp(argv[1], "maze") == 0) {
+    // multi-step problem
+    if(env_multistep(xcsf)) {
         xcs_multi_step_exp(xcsf);
+    }
+    // single step problem
+    else {
+        xcs_single_step_exp(xcsf);
     }
     // clean up
     env_free(xcsf);
