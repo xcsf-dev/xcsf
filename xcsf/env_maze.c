@@ -22,11 +22,10 @@
  * @details Reads in the chosen maze from a file where each entry specifies a
  * distinct position in the maze. The maze is toroidal and if the animat
  * reaches one edge it can reenter the maze from the other side. Obstacles are
- * coded as 'O' and 'Q', empty positions as '*', and food as 'F' or 'G'. A 2
- * bit or 3 bit encoding is automatically chosen depending on the number of
- * perceptions. 8 movements are possible to adjacent cells (if not blocked.)
- * The animat is initially placed at a random empty position. The goal is to
- * find the shortest path to the food. 
+ * coded as 'O' and 'Q', empty positions as '*', and food as 'F' or 'G'. The 8
+ * adjacent cells are percevied (encoded as reals) and 8 movements are possible
+ * to the adjacent cells (if not blocked.) The animat is initially placed at a
+ * random empty position. The goal is to find the shortest path to the food. 
  *
  * Some mazes require a form of memory to be solved optimally.
  * The optimal average number of steps for each maze is:
@@ -57,12 +56,17 @@
 #include "env.h"
 #include "env_maze.h"
      
+#define MAX_SIZE 50
+#define MAX_PAYOFF 1000.0
+const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; 
+const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1};
+
 /**
  * @brief Maze environment data structure.
  */ 
 typedef struct ENV_MAZE {
     double *state; //!< current state
-    char maze[50][50]; //!< maze
+    char maze[MAX_SIZE][MAX_SIZE]; //!< maze
     int xpos; //!< current x position
     int ypos; //!< current y position
     int xsize; //!< maze size in x dimension
@@ -70,10 +74,6 @@ typedef struct ENV_MAZE {
     _Bool reset;
 } ENV_MAZE;
  
-#define MAX_PAYOFF 1000.0
-const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; 
-const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1};
-
 void env_maze_sensor(XCSF *xcsf, char s, double *dec);
 
 void env_maze_init(XCSF *xcsf, char *filename)
@@ -99,6 +99,11 @@ void env_maze_init(XCSF *xcsf, char *filename)
                 x++;
                 break;
         }
+        // check maximum maze size not exceeded
+        if(x > MAX_SIZE || y > MAX_SIZE) {
+            printf("Maze too big to be read. Max size = [%d,%d]\n", MAX_SIZE, MAX_SIZE);
+            exit(EXIT_FAILURE);
+        }
     }
     // check if EOF came from an end-of-file or an error
     if (ferror(fp)) {
@@ -112,7 +117,14 @@ void env_maze_init(XCSF *xcsf, char *filename)
     xcsf->num_y_vars = 1;
     xcsf->env = env;
     fclose(fp);
-    printf("Loaded MAZE = %s\n", filename);
+//    printf("Loaded MAZE = %s\n", filename);
+//    printf("Dimensions: [%d,%d]\n", env->xsize, env->ysize);
+//    for(int i = 0; i < env->ysize; i++) {
+//        for(int j = 0; j < env->xsize; j++) {
+//            printf("%c", env->maze[i][j]);
+//        }
+//        printf("\n");
+//    }
 }
 
 void env_maze_free(XCSF *xcsf)
@@ -153,7 +165,8 @@ double *env_maze_get_state(XCSF *xcsf)
                 [(env->ysize - (env->ypos + y)) % env->ysize]
                 [(env->xsize - (env->xpos + x)) % env->xsize];
             // convert sensor to real number
-            env_maze_sensor(xcsf, s, &env->state[spos++]);
+            env_maze_sensor(xcsf, s, &env->state[spos]);
+            spos++;
         }
     }
     return env->state;
@@ -169,7 +182,7 @@ void env_maze_sensor(XCSF *xcsf, char s, double *dec)
         case 'F': *dec = 0.7; break;
         case 'Q': *dec = 0.9; break;
         default :
-            printf("unsupported maze state\n");
+            printf("unsupported maze state: %c\n", s);
             exit(EXIT_FAILURE);
     }
 }
