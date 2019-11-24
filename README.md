@@ -102,7 +102,7 @@ After building with CMake option: `-DXCSF_PYLIB=OFF`
 
 There are currently 3 built-in problem environments: {csv, mp, maze}.
 
-Example real-multiplexer:
+Example real-multiplexer classification:
 
 ```
 $ ./xcsf/xcsf mp 6
@@ -114,7 +114,7 @@ Example discrete mazes:
 $ ./xcsf/xcsf maze ../env/maze4.txt
 ```
 
-Example csv input: learning on `data/sine_3var_train.csv` and testing on `data/sine_3var_test.csv`
+Example regression with csv input: learning `data/sine_3var_train.csv` and testing `data/sine_3var_test.csv`
 
 ```
 $ ./xcsf/xcsf csv ../data/sine_3var
@@ -124,7 +124,7 @@ $ ./xcsf/xcsf csv ../data/sine_3var
 
 After building with CMake option: `-DXCSF_PYLIB=ON`
 
-See example MyProject.py
+See example MyProject.py. Currently only regression is supported.
 
 ```
 $ python3 MyProject.py
