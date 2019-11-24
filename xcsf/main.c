@@ -28,9 +28,9 @@
 #include "xcsf.h"
 #include "utils.h"
 #include "config.h"
-#include "input.h"
-#include "cl_set.h"
 #include "env.h"
+#include "env_csv.h"
+#include "cl_set.h"
 #include "xcs_single_step.h"
 #include "xcs_multi_step.h"
 
@@ -80,7 +80,7 @@ void regression(XCSF *xcsf, int argc, char **argv)
 {
     INPUT *train_data = malloc(sizeof(INPUT));
     INPUT *test_data = malloc(sizeof(INPUT));
-    input_read_csv(argv[2], train_data, test_data);
+    env_csv_input_read(argv[2], train_data, test_data);
     xcsf->num_x_vars = train_data->x_cols;
     xcsf->num_y_vars = train_data->y_cols;
     xcsf->num_actions = 1; // regression
@@ -104,8 +104,8 @@ void regression(XCSF *xcsf, int argc, char **argv)
     //xcsf_save(xcsf, "test.bin");
 
     // clean up
-    input_free(train_data);
-    input_free(test_data);
+    env_csv_input_free(train_data);
+    env_csv_input_free(test_data);
     free(train_data);
     free(test_data);
 }

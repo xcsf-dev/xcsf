@@ -17,7 +17,7 @@
  */
                
 /**
- * @file input.c
+ * @file env_csv.c
  * @brief CSV input file handling functions
  */ 
  
@@ -29,29 +29,29 @@
 #include <errno.h>
 #include "xcsf.h"
 #include "utils.h"
-#include "input.h"
+#include "env_csv.h"
 
 #define MAX_DATA 100000
 #define MAX_LINE_LENGTH 200
 #define DELIM ","
 
-void csv_read(char *fname, double **data, int *num_prob, int *num_vars);
+void env_csv_read(char *fname, double **data, int *num_prob, int *num_vars);
 
-void input_read_csv(char *infile, INPUT *train_data, INPUT *test_data)
+void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data)
 {
     // expects an identical number of x and y rows
     char name[200];
     sprintf(name, "%s_train_x.csv", infile);
-    csv_read(name, &train_data->x, &train_data->rows, &train_data->x_cols);
+    env_csv_read(name, &train_data->x, &train_data->rows, &train_data->x_cols);
     sprintf(name, "%s_train_y.csv", infile);
-    csv_read(name, &train_data->y, &train_data->rows, &train_data->y_cols);
+    env_csv_read(name, &train_data->y, &train_data->rows, &train_data->y_cols);
     sprintf(name, "%s_test_x.csv", infile);
-    csv_read(name, &test_data->x, &test_data->rows, &test_data->x_cols);
+    env_csv_read(name, &test_data->x, &test_data->rows, &test_data->x_cols);
     sprintf(name, "%s_test_y.csv", infile);
-    csv_read(name, &test_data->y, &test_data->rows, &test_data->y_cols);
+    env_csv_read(name, &test_data->y, &test_data->rows, &test_data->y_cols);
 }
 
-void csv_read(char *fname, double **data, int *num_rows, int *num_cols)
+void env_csv_read(char *fname, double **data, int *num_rows, int *num_cols)
 {
     // Provided a file name: will set the data, num_rows, num_cols 
     FILE *fin = fopen(fname, "rt");
@@ -94,7 +94,7 @@ void csv_read(char *fname, double **data, int *num_rows, int *num_cols)
     printf("Loaded: %s: %d rows, %d cols\n", fname, *num_rows, *num_cols);
 }
 
-void input_free(INPUT *data)
+void env_csv_input_free(INPUT *data)
 {                 
     free(data->x);
     free(data->y);

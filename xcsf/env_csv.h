@@ -16,11 +16,11 @@
  */
               
 /**
- * @file input.h
+ * @file env_csv.h
  * @brief CSV input file handling functions
  */ 
  
 #pragma once
 
-void input_read_csv(char *infile, INPUT *train_data, INPUT *test_data);
-void input_free(INPUT *data);
+void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data);
+void env_csv_input_free(INPUT *data);
