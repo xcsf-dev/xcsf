@@ -112,7 +112,6 @@ void regression(XCSF *xcsf, int argc, char **argv)
 
 void classification(XCSF *xcsf, int argc, char **argv)
 {
-    // initialise environment
     env_init(xcsf, argv);
     // reload state of a previous experiment
     if(argc == 5) {
@@ -125,14 +124,11 @@ void classification(XCSF *xcsf, int argc, char **argv)
     else {
         pop_init(xcsf);
     }
-    // multi-step problem
     if(env_multistep(xcsf)) {
         xcs_multi_step_exp(xcsf);
     }
-    // single step problem
     else {
         xcs_single_step_exp(xcsf);
     }
-    // clean up
     env_free(xcsf);
 }
