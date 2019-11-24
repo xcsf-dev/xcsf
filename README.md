@@ -104,7 +104,7 @@ $ ./xcsf/xcsf maze ../env/maze4.txt
 Example csv input: learning on `data/sine_3var_train` and testing on `data/sine_3var_test`
 
 ```
-$ ./xcsf/xcsf ../data/sine_3var
+$ ./xcsf/xcsf csv ../data/sine_3var
 ```
 
 ### Python library
