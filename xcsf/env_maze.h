@@ -22,11 +22,10 @@
  * @details Reads in the chosen maze from a file where each entry specifies a
  * distinct position in the maze. The maze is toroidal and if the animat
  * reaches one edge it can reenter the maze from the other side. Obstacles are
- * coded as 'O' and 'Q', empty positions as '*', and food as 'F' or 'G'. A 2
- * bit or 3 bit encoding is automatically chosen depending on the number of
- * perceptions. 8 movements are possible to adjacent cells (if not blocked.)
- * The animat is initially placed at a random empty position. The goal is to
- * find the shortest path to the food. 
+ * coded as 'O' and 'Q', empty positions as '*', and food as 'F' or 'G'. The 8
+ * adjacent cells are percevied (encoded as reals) and 8 movements are possible
+ * to the adjacent cells (if not blocked.) The animat is initially placed at a
+ * random empty position. The goal is to find the shortest path to the food.
  *
  * Some mazes require a form of memory to be solved optimally.
  * The optimal average number of steps for each maze is:
