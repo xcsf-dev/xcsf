@@ -74,7 +74,7 @@ typedef struct ENV_MAZE {
     _Bool reset; //!< whether the trial needs to be reset (e.g., in goal state)
 } ENV_MAZE;
  
-void env_maze_sensor(XCSF *xcsf, char s, double *dec);
+double env_maze_sensor(XCSF *xcsf, char s);
 
 void env_maze_init(XCSF *xcsf, char *filename)
 {
@@ -165,22 +165,22 @@ double *env_maze_get_state(XCSF *xcsf)
                 [(env->ysize - (env->ypos + y)) % env->ysize]
                 [(env->xsize - (env->xpos + x)) % env->xsize];
             // convert sensor to real number
-            env_maze_sensor(xcsf, s, &env->state[spos]);
+            env->state[spos] = env_maze_sensor(xcsf, s);
             spos++;
         }
     }
     return env->state;
 }
 
-void env_maze_sensor(XCSF *xcsf, char s, double *dec)
+double env_maze_sensor(XCSF *xcsf, char s)
 {
     (void)xcsf;
     switch(s) {
-        case '*': *dec = 0.1; break;
-        case 'O': *dec = 0.3; break;
-        case 'G': *dec = 0.5; break;
-        case 'F': *dec = 0.7; break;
-        case 'Q': *dec = 0.9; break;
+        case '*': return 0.1;
+        case 'O': return 0.3;
+        case 'G': return 0.5;
+        case 'F': return 0.7;
+        case 'Q': return 0.9;
         default :
             printf("unsupported maze state: %c\n", s);
             exit(EXIT_FAILURE);
