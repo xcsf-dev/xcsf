@@ -35,8 +35,8 @@
 #include "cl_set.h"
 #include "ea.h"
 
-const double XCSF_VERSION = 1.04;
-//#define XCSF_VERSION "@PROJECT_VERSION@"
+const double VERSION = 1.04;
+//#define VERSION "@PROJECT_VERSION@"
 
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
@@ -259,7 +259,7 @@ size_t xcsf_save(XCSF *xcsf, char *fname)
         exit(EXIT_FAILURE);
     }
     size_t s = 0;
-    s += fwrite(&XCSF_VERSION, sizeof(double), 1, fp);
+    s += fwrite(&VERSION, sizeof(double), 1, fp);
     s += xcsf_save_params(xcsf, fp);
     s += pop_save(xcsf, fp);
     fclose(fp);
@@ -283,9 +283,9 @@ size_t xcsf_load(XCSF *xcsf, char *fname)
     size_t s = 0; double version = 0;
     s += fread(&version, sizeof(double), 1, fp);
 
-    if(version != XCSF_VERSION) {
+    if(version != VERSION) {
         printf("Error loading file: %s. Version mismatch. ", fname);
-        printf("This version: %f. ", XCSF_VERSION);
+        printf("This version: %f. ", VERSION);
         printf("Loaded version: %f.\n", version);
         exit(EXIT_FAILURE);
     }
@@ -465,4 +465,9 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
     loss_set_func(xcsf);         
     return s;
+}
+
+double xcsf_version()
+{
+    return VERSION;
 }
