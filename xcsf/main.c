@@ -51,7 +51,7 @@ int main(int argc, char **argv)
     XCSF *xcsf = malloc(sizeof(XCSF));
     random_init();
     if(argc > 3) {
-        constants_init(xcsf, argv[2]);
+        constants_init(xcsf, argv[3]);
     }
     else {
         constants_init(xcsf, "default.ini");
