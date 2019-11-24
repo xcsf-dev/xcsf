@@ -43,7 +43,6 @@ double xcs_single_step_exp(XCSF *xcsf)
     gplot_init(xcsf);
     pa_init(xcsf);
     double perr = 0, err = 0, pterr = 0;
-    double *pred = malloc(sizeof(double));
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         xcs_explore_single(xcsf);
         double error = 0;
@@ -55,7 +54,6 @@ double xcs_single_step_exp(XCSF *xcsf)
             perr = 0; pterr = 0;
         }
     }
-    free(pred);
     gplot_free(xcsf);
     pa_free(xcsf);
     return err/xcsf->MAX_TRIALS;  
