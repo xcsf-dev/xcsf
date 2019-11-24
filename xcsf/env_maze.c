@@ -100,6 +100,11 @@ void env_maze_init(XCSF *xcsf, char *filename)
                 break;
         }
     }
+    // check if EOF came from an end-of-file or an error
+    if (ferror(fp)) {
+        printf("EOF read error: could not open %s. %s.\n", filename, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
     env->ysize = y;
     env->state = malloc(sizeof(double) * 8);
     xcsf->num_classes = 8;
