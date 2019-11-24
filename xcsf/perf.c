@@ -32,32 +32,6 @@
 #include "cl_set.h"
 #include "perf.h"
 
-void disp_perf1(XCSF *xcsf, double error, int trial)
-{
-    printf("%d %.5f %d", trial, error, xcsf->pset.size);
-    for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
-    }
-    printf("\n");    
-    fflush(stdout);
-#ifdef GNUPLOT
-    gplot_perf1(xcsf, error, trial);
-#endif
-}          
-
-void disp_perf2(XCSF *xcsf, double error, double terror, int trial)
-{
-    printf("%d %.5f %.5f %d", trial, error, terror, xcsf->pset.size);
-    for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
-    }
-    printf("\n");    
-    fflush(stdout);
-#ifdef GNUPLOT
-    gplot_perf2(xcsf, error, trial);
-#endif
-}          
- 
 #ifndef GNUPLOT
 
 void gplot_init(XCSF *xcsf)
@@ -225,3 +199,29 @@ void gplot_draw(XCSF *xcsf, _Bool test_error)
     (void)xcsf;
 }
 #endif
+
+void disp_perf1(XCSF *xcsf, double error, int trial)
+{
+    printf("%d %.5f %d", trial, error, xcsf->pset.size);
+    for(int i = 0; i < xcsf->SAM_NUM; i++) {
+        printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
+    }
+    printf("\n");
+    fflush(stdout);
+#ifdef GNUPLOT
+    gplot_perf1(xcsf, error, trial);
+#endif
+}
+
+void disp_perf2(XCSF *xcsf, double error, double terror, int trial)
+{
+    printf("%d %.5f %.5f %d", trial, error, terror, xcsf->pset.size);
+    for(int i = 0; i < xcsf->SAM_NUM; i++) {
+        printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
+    }
+    printf("\n");
+    fflush(stdout);
+#ifdef GNUPLOT
+    gplot_perf2(xcsf, error, terror, trial);
+#endif
+}
