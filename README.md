@@ -87,12 +87,21 @@ $ make doc
 
 After building with CMake option: `-DXCSF_PYLIB=OFF`
 
-Arguments: 
+There are currently 3 built-in problem environments: {csv, mp, maze}.
 
-1. (required) a path to input csv files.
-2. (optional) a configuration file; defaults to using `default.ini`
+Example real-multiplexer:
 
-Example learning on `data/sine_3var_train` and testing on `data/sine_3var_test`
+```
+$ ./xcsf/xcsf mp 6
+```
+
+Example discrete mazes:
+
+```
+$ ./xcsf/xcsf maze ../env/maze4.txt
+```
+
+Example csv input: learning on `data/sine_3var_train` and testing on `data/sine_3var_test`
 
 ```
 $ ./xcsf/xcsf ../data/sine_3var
