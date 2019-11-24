@@ -1,5 +1,5 @@
 PROJECT_NAME           = @PROJECT_NAME@
-PROJECT_NUMBER         = @VERSION@
+PROJECT_NUMBER         = @PROJECT_VERSION@
 PROJECT_BRIEF          = "XCSF learning classifier system"
 OUTPUT_DIRECTORY       = "@CMAKE_BINARY_DIR@/doc/"
 ALWAYS_DETAILED_SEC    = YES

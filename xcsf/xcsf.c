@@ -35,6 +35,9 @@
 #include "cl_set.h"
 #include "ea.h"
 
+const double XCSF_VERSION = 1.04;
+//#define XCSF_VERSION "@PROJECT_VERSION@"
+
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
 size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
@@ -243,15 +246,6 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa,
 }
 
 /**
- * @brief Returns the current XCSF version.
- * @return The version number
- */
-double xcsf_version()
-{
-    return 1.04;
-}
-
-/**
  * @brief Writes the current state of XCSF to a binary file.
  * @param xcsf The XCSF data structure
  * @param fname The name of the output file
@@ -265,8 +259,7 @@ size_t xcsf_save(XCSF *xcsf, char *fname)
         exit(EXIT_FAILURE);
     }
     size_t s = 0;
-    double version = xcsf_version();
-    s += fwrite(&version, sizeof(double), 1, fp);
+    s += fwrite(&XCSF_VERSION, sizeof(double), 1, fp);
     s += xcsf_save_params(xcsf, fp);
     s += pop_save(xcsf, fp);
     fclose(fp);
@@ -289,9 +282,10 @@ size_t xcsf_load(XCSF *xcsf, char *fname)
     }
     size_t s = 0; double version = 0;
     s += fread(&version, sizeof(double), 1, fp);
-    if(version != xcsf_version()) {
+
+    if(version != XCSF_VERSION) {
         printf("Error loading file: %s. Version mismatch. ", fname);
-        printf("This version: %f. ", xcsf_version());
+        printf("This version: %f. ", XCSF_VERSION);
         printf("Loaded version: %f.\n", version);
         exit(EXIT_FAILURE);
     }
