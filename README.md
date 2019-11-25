@@ -129,3 +129,9 @@ See example MyProject.py. Currently only regression is supported.
 ```
 $ python3 MyProject.py
 ```
+
+*******************************************************************************
+
+## License
+
+This project is released under the GNU Public License v3.

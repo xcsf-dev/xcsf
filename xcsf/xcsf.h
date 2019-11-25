@@ -1,6 +1,4 @@
 /*
- * Copyright (C) 2019 Richard Preen <rpreen@gmail.com>
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -13,11 +11,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
    
 /**
  * @file xcsf.h
+ * @author Richard Preen <rpreen@gmail.com>
+ * @copyright The Authors.
+ * @date 2019.
  * @brief XCSF data structures.
  */ 
  
@@ -47,7 +47,7 @@ typedef struct CL {
 } CL;
 
 /**
- * @brief Classifier linked list
+ * @brief Classifier linked list.
  */
 typedef struct CLIST {
     CL *cl; //!< pointer to classifier data structure
@@ -55,7 +55,7 @@ typedef struct CLIST {
 } CLIST;
 
 /**
- * @brief Classifier set
+ * @brief Classifier set.
  */
 typedef struct SET {
     CLIST *list; //!< linked list of classifiers
@@ -64,7 +64,7 @@ typedef struct SET {
 } SET;
 
 /**
- * @brief XCSF data structure
+ * @brief XCSF data structure.
  */
 typedef struct XCSF {
     SET pset; //!< population set
@@ -171,7 +171,7 @@ typedef struct XCSF {
 } XCSF;                  
 
 /**
- * @brief Input data structure
+ * @brief Input data structure.
  */
 typedef struct INPUT {
     double *x; //!< feature variables

@@ -1,6 +1,4 @@
 /*
- * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -17,7 +15,11 @@
     
 /**
  * @file env_mux.h
+ * @author Richard Preen <rpreen@gmail.com>
+ * @copyright The Authors.
+ * @date 2015--2019.
  * @brief The real multiplexer problem environment.
+ *
  * @details Generates random real vectors of length k+pow(2,k) where the
  * first k bits determine the position of the output bit in the last pow(2,k)
  * bits. E.g., for a 3-bit problem, the first rounded bit addresses which of

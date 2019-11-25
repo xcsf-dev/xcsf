@@ -1,6 +1,4 @@
 /*
- * Copyright (C) 2015--2019 Richard Preen <rpreen@gmail.com>
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -17,6 +15,9 @@
     
 /**
  * @file ea.h
+ * @author Richard Preen <rpreen@gmail.com>
+ * @copyright The Authors.
+ * @date 2015--2019.
  * @brief Evolutionary algorithm functions.
  */ 
 

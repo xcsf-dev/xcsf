@@ -1,6 +1,4 @@
 /*
- * Copyright (C) 2019 Richard Preen <rpreen@gmail.com>
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -13,11 +11,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
     
 /**
  * @file xcsf.c
+ * @author Richard Preen <rpreen@gmail.com>
+ * @copyright The Authors.
+ * @date 2015--2019.
  * @brief High level XCSF functions for executing training, predicting, saving
  * and reloading the system from persistent storage, etc.
  */ 
@@ -35,7 +35,7 @@
 #include "cl_set.h"
 #include "ea.h"
 
-const double VERSION = 1.04;
+const double VERSION = 1.04; //!< XCSF version number
 //#define VERSION "@PROJECT_VERSION@"
 
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
@@ -46,10 +46,10 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
 /**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
  * training data.
- * @param xcsf The XCSF data structure
- * @param train_data The input data to use for training
- * @param shuffle Whether to randomise the instances during training
- * @return The average XCSF training error using the loss function
+ * @param xcsf The XCSF data structure.
+ * @param train_data The input data to use for training.
+ * @param shuffle Whether to randomise the instances during training.
+ * @return The average XCSF training error using the loss function.
  */
 double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 {  
@@ -83,11 +83,11 @@ double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 /**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the training.
  * data and test iterations using the test data.
- * @param xcsf The XCSF data structure
- * @param train_data The input data to use for training
- * @param test_data The input data to use for testing
- * @param shuffle Whether to randomise the instances during training
- * @return The average XCSF training error using the loss function
+ * @param xcsf The XCSF data structure.
+ * @param train_data The input data to use for training.
+ * @param test_data The input data to use for testing.
+ * @param shuffle Whether to randomise the instances during training.
+ * @return The average XCSF training error using the loss function.
  */
 double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 {   
@@ -130,11 +130,11 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 
 /**
  * @brief Executes a single XCSF learning trial.
- * @param xcsf The XCSF data structure
- * @param pred The calculated XCSF prediction (set by this function)
- * @param x The feature variables
- * @param y The labelled variables
- * @return The XCSF training error using the loss function
+ * @param xcsf The XCSF data structure.
+ * @param pred The calculated XCSF prediction (set by this function).
+ * @param x The feature variables.
+ * @param y The labelled variables.
+ * @return The XCSF training error using the loss function.
  */
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
@@ -154,11 +154,11 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 
 /**
  * @brief Executes a single XCSF testing trial.
- * @param xcsf The XCSF data structure
- * @param pred The calculated XCSF prediction (set by this function)
- * @param x The feature variables
- * @param y The labelled variables
- * @return The XCSF testing error using the loss function
+ * @param xcsf The XCSF data structure.
+ * @param pred The calculated XCSF prediction (set by this function).
+ * @param x The feature variables.
+ * @param y The labelled variables.
+ * @return The XCSF testing error using the loss function.
  */
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
@@ -175,10 +175,10 @@ double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 
 /**
  * @brief Calculates the XCSF predictions for the provided input.
- * @param xcsf The XCSF data structure
- * @param input The input feature variables
- * @param output The calculated XCSF predictions (set by this function)
- * @param rows The number of instances
+ * @param xcsf The XCSF data structure.
+ * @param input The input feature variables.
+ * @param output The calculated XCSF predictions (set by this function).
+ * @param rows The number of instances.
  */
 void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
 {   
@@ -196,9 +196,9 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
 
 /**
  * @brief Calculates the XCSF error for the input data.
- * @param xcsf The XCSF data structure
- * @param test_data The input data to calculate the error
- * @return The average XCSF error using the loss function
+ * @param xcsf The XCSF data structure.
+ * @param test_data The input data to calculate the error.
+ * @return The average XCSF error using the loss function.
  */
 double xcsf_score(XCSF *xcsf, INPUT *test_data)
 {
@@ -216,10 +216,10 @@ double xcsf_score(XCSF *xcsf, INPUT *test_data)
 
 /**
  * @brief Prints the current XCSF population.
- * @param xcsf The XCSF data structure
- * @param printc Whether to print condition structures
- * @param printa Whether to print action structures
- * @param printp Whether to print prediction structures
+ * @param xcsf The XCSF data structure.
+ * @param printc Whether to print condition structures.
+ * @param printa Whether to print action structures.
+ * @param printp Whether to print prediction structures.
  */
 void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
 {
@@ -228,11 +228,11 @@ void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
 
 /**
  * @brief Prints the XCSF match set for the supplied input.
- * @param xcsf The XCSF data structure
- * @param input The input features to perform matching
- * @param printc Whether to print condition structures
- * @param printa Whether to print action structures
- * @param printp Whether to print prediction structures
+ * @param xcsf The XCSF data structure.
+ * @param input The input features to perform matching.
+ * @param printc Whether to print condition structures.
+ * @param printa Whether to print action structures.
+ * @param printp Whether to print prediction structures.
  */
 void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa, _Bool printp)
 {
@@ -247,9 +247,9 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa,
 
 /**
  * @brief Writes the current state of XCSF to a binary file.
- * @param xcsf The XCSF data structure
- * @param fname The name of the output file
- * @return The total number of elements written
+ * @param xcsf The XCSF data structure.
+ * @param fname The name of the output file.
+ * @return The total number of elements written.
  */
 size_t xcsf_save(XCSF *xcsf, char *fname)
 {
@@ -269,9 +269,9 @@ size_t xcsf_save(XCSF *xcsf, char *fname)
 
 /**
  * @brief Reads the state of XCSF from a binary file.
- * @param xcsf The XCSF data structure
- * @param fname The name of the input file
- * @return The total number of elements read
+ * @param xcsf The XCSF data structure.
+ * @param fname The name of the input file.
+ * @return The total number of elements read.
  */
 size_t xcsf_load(XCSF *xcsf, char *fname)
 {
@@ -302,9 +302,9 @@ size_t xcsf_load(XCSF *xcsf, char *fname)
 
 /**
  * @brief Writes the XCSF data structure to a binary file.
- * @param xcsf The XCSF data structure
- * @param fp Pointer to the output file
- * @return The total number of elements written
+ * @param xcsf The XCSF data structure.
+ * @param fp Pointer to the output file.
+ * @return The total number of elements written.
  */
 size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
 {
@@ -384,9 +384,9 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Reads the XCSF data structure from a binary file.
- * @param xcsf The XCSF data structure
- * @param fp Pointer to the input file
- * @return The total number of elements read
+ * @param xcsf The XCSF data structure.
+ * @param fp Pointer to the input file.
+ * @return The total number of elements read.
  */
 size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
 {
@@ -466,7 +466,11 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     loss_set_func(xcsf);         
     return s;
 }
-
+ 
+/**
+ * @brief Returns the XCSF version number.
+ * @return version number.
+ */  
 double xcsf_version()
 {
     return VERSION;
