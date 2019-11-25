@@ -27,6 +27,7 @@ void env_init(XCSF *xcsf, char **argv);
 
 /**
  * @brief Built-in problem environment interface data structure.
+ * @details Environment implementations must implement these functions.
  */ 
 struct EnvVtbl {
     _Bool (*env_impl_isreset)(XCSF *xcsf);

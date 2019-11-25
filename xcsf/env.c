@@ -32,6 +32,11 @@
 #include "env_mux.h"
 #include "env_maze.h"
 
+/**
+ * @brief Initialises a built-in problem environment.
+ * @param xcsf The XCSF data structure.
+ * @param argv The command line arguments.
+ */
 void env_init(XCSF *xcsf, char **argv)
 {
     if(strcmp(argv[1], "mp") == 0) {
