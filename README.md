@@ -1,6 +1,6 @@
 # XCSF learning classifier system
 
-An implementation of XCSF that can be built as either a stand-alone binary or as a Python library.
+An implementation of the XCSF [learning classifier system](https://en.wikipedia.org/wiki/Learning_classifier_system) that can be built as a stand-alone binary or as a Python library.
 
 License|Linux Build|OSX Build|Fossa|Code Quality
 :--:|:--:|:--:|:--:|:--:
