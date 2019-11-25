@@ -36,7 +36,12 @@
 #include "neural_layer_dropout.h"
 #include "neural_layer_noise.h"
 #include "neural_layer_softmax.h"
- 
+
+/**
+ * @brief Sets a neural network layer's functions to the implementations.
+ * @param xcsf The XCSF data structure.
+ * @param l The neural network layer to set.
+ */
 void neural_layer_set_vptr(LAYER *l)
 {
     switch(l->layer_type) {
