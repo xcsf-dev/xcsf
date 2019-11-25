@@ -27,6 +27,7 @@ void action_set(XCSF *xcsf, CL *c);
 
 /**
  * @brief Action interface data structure.
+ * @details Action implementations must implement these functions.
  */ 
 struct ActVtbl {
 	_Bool (*act_impl_general)(XCSF *xcsf, CL *c1, CL *c2);

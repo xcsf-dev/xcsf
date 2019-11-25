@@ -27,6 +27,7 @@ void prediction_set(XCSF *xcsf, CL *c);
  
 /**
  * @brief Prediction interface data structure.
+ * @details Prediction implementations must implement these functions.
  */ 
 struct PredVtbl {
     _Bool (*pred_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);

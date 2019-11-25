@@ -36,6 +36,7 @@
 
 /**
  * @brief Neural network layer data structure.
+ * @details Neural network layer implementations must implement these functions.
  */ 
 typedef struct LAYER {
     int layer_type; //!< layer type: CONNECTED, DROPOUT, etc.

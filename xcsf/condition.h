@@ -27,6 +27,7 @@ void condition_set(XCSF *xcsf, CL *c);
 
 /**
  * @brief Condition interface data structure.
+ * @details Condition implementations must implement these functions.
  */ 
 struct CondVtbl {
     _Bool (*cond_impl_crossover)(XCSF *xcsf, CL *c1, CL *c2);
