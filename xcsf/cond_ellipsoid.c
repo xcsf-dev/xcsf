@@ -36,8 +36,8 @@
  * @brief Hyperellipsoid condition data structure.
  */ 
 typedef struct COND_ELLIPSOID {
-    double *center; //!< centers
-    double *spread; //!< spreads
+    double *center; //!< Centers
+    double *spread; //!< Spreads
 } COND_ELLIPSOID;
 
 double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x);

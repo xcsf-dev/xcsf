@@ -36,8 +36,8 @@
  * @brief Normalised least mean squares prediction data structure.
  */ 
 typedef struct PRED_NLMS {
-    int weights_length; //!< total number of weights
-    double **weights; //!< weights used to compute prediction
+    int weights_length; //!< Total number of weights
+    double **weights; //!< Weights used to compute prediction
 } PRED_NLMS;
 
 void pred_nlms_init(XCSF *xcsf, CL *c)

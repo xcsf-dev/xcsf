@@ -38,27 +38,27 @@
  * @brief Neural network layer data structure.
  */ 
 typedef struct LAYER {
-    int layer_type; //!< layer type: CONNECTED, DROPOUT, etc.
-    double *state; //!< current neuron states (before activation function)
-    double *output; //!< current neuron outputs (after activation function)
-    _Bool *active; //!< whether a neuron is active
-    int num_active; //!< number of active neurons
-    u_int32_t options; //!< bitwise layer options permitting weight evolution, etc.
-    double *weights; //!< weights for calculating neuron states
-    double *biases; //!< biases for calculating neuron states
-    double *bias_updates; //!< updates to biases
-    double *weight_updates; //!< updates to weights
-    double *delta; //!< delta for updating weights
-    int num_inputs; //!< number of layer inputs
-    int num_outputs; //!< number of layer outputs
-    int num_weights; //!< number of layer weights
-    int function; //!< layer activation function
-    double eta; //!< gradient descent learning rate
-    double scale; //!< usage depends on layer implementation
-    double probability; //!< usage depends on layer implementation
-    double *rand; //!< usage depends on layer implementation
-    double temp; //!< usage depends on layer implementation
-    struct LayerVtbl const *layer_vptr; //!< functions acting on layers
+    int layer_type; //!< Layer type: CONNECTED, DROPOUT, etc.
+    double *state; //!< Current neuron states (before activation function)
+    double *output; //!< Current neuron outputs (after activation function)
+    _Bool *active; //!< Whether a neuron is active
+    int num_active; //!< Number of active neurons
+    u_int32_t options; //!< Bitwise layer options permitting weight evolution, etc.
+    double *weights; //!< Weights for calculating neuron states
+    double *biases; //!< Biases for calculating neuron states
+    double *bias_updates; //!< Updates to biases
+    double *weight_updates; //!< Updates to weights
+    double *delta; //!< Delta for updating weights
+    int num_inputs; //!< Number of layer inputs
+    int num_outputs; //!< Number of layer outputs
+    int num_weights; //!< Number of layer weights
+    int function; //!< Layer activation function
+    double eta; //!< Gradient descent learning rate
+    double scale; //!< Usage depends on layer implementation
+    double probability; //!< Usage depends on layer implementation
+    double *rand; //!< Usage depends on layer implementation
+    double temp; //!< Usage depends on layer implementation
+    struct LayerVtbl const *layer_vptr; //!< Functions acting on layers
 } LAYER;
 
 /**

@@ -27,22 +27,22 @@
  * @brief Double linked list of layers data structure.
  */ 
 typedef struct LLIST {
-    struct LAYER *layer; //!< pointer to the layer data structure
-    struct LLIST *prev; //!< pointer to the previous layer (forward)
-    struct LLIST *next; //!< pointer to the next layer (backward)
+    struct LAYER *layer; //!< Pointer to the layer data structure
+    struct LLIST *prev; //!< Pointer to the previous layer (forward)
+    struct LLIST *next; //!< Pointer to the next layer (backward)
 } LLIST;
                       
 /**
  * @brief Neural network data structure.
  */  
 typedef struct NET {
-    int num_layers; //!< number of layers (hidden + output)
-    int num_inputs; //!< number of network inputs
-    int num_outputs; //!< number of network outputs
-    double *delta; //!< delta for updating networks weights
-    double *input; //!< pointer to the network input
-    LLIST *head; //!< pointer to the head layer (output layer)
-    LLIST *tail; //!< pointer to the tail layer (first layer)
+    int num_layers; //!< Number of layers (hidden + output)
+    int num_inputs; //!< Number of network inputs
+    int num_outputs; //!< Number of network outputs
+    double *delta; //!< Delta for updating networks weights
+    double *input; //!< Pointer to the network input
+    LLIST *head; //!< Pointer to the head layer (output layer)
+    LLIST *tail; //!< Pointer to the tail layer (first layer)
 } NET;
 
 _Bool neural_mutate(XCSF *xcsf, NET *net);

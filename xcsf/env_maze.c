@@ -57,22 +57,22 @@
 #include "env.h"
 #include "env_maze.h"
      
-#define MAX_SIZE 50 //!< the maximum width/height of a maze
-#define MAX_PAYOFF 1000.0 //!< the payoff provided at a food position
-const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; //!< possible maze moves on x-axis
-const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1}; //!< possible maze moves on y-axis
+#define MAX_SIZE 50 //!< The maximum width/height of a maze
+#define MAX_PAYOFF 1000.0 //!< The payoff provided at a food position
+const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; //!< Possible maze moves on x-axis
+const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1}; //!< Possible maze moves on y-axis
 
 /**
  * @brief Maze environment data structure.
  */ 
 typedef struct ENV_MAZE {
-    double *state; //!< current state
-    char maze[MAX_SIZE][MAX_SIZE]; //!< maze
-    int xpos; //!< current x position
-    int ypos; //!< current y position
-    int xsize; //!< maze size in x dimension
-    int ysize; //!< maze size in y dimension
-    _Bool reset; //!< whether the trial needs to be reset (e.g., in goal state)
+    double *state; //!< Current state
+    char maze[MAX_SIZE][MAX_SIZE]; //!< Maze
+    int xpos; //!< Current x position
+    int ypos; //!< Current y position
+    int xsize; //!< Maze size in x dimension
+    int ysize; //!< Maze size in y dimension
+    _Bool reset; //!< Whether the trial needs to be reset (e.g., in goal state)
 } ENV_MAZE;
  
 double env_maze_sensor(XCSF *xcsf, char s);
@@ -258,7 +258,7 @@ double env_maze_execute(XCSF *xcsf, int action)
 /**
  * @brief Returns the maximum payoff value possible in the maze.
  * @param xcsf The XCSF data structure.
- * @return The maximu payoff.
+ * @return The maximum payoff.
  */
 double env_maze_maxpayoff(XCSF *xcsf)
 {

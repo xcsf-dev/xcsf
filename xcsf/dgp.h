@@ -27,14 +27,14 @@
  * @brief Dynamical GP graph data structure.
  */ 
 typedef struct GRAPH {
-    int *connectivity; //!< connectivity map
-    double *weights; //!< connection weights
-    double *state; //!< current internal state
-    double *initial_state; //!< initial states
-    int *function; //!< node activation functions
-    int n; //!< number of nodes
-    int t; //!< number of cycles to run
-    int klen; //!< length of connectivity map
+    int *connectivity; //!< Connectivity map
+    double *weights; //!< Connection weights
+    double *state; //!< Current internal state
+    double *initial_state; //!< Initial states
+    int *function; //!< Node activation functions
+    int n; //!< Number of nodes
+    int t; //!< Number of cycles to run
+    int klen; //!< Length of connectivity map
 } GRAPH;
 
 _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);

@@ -41,7 +41,7 @@
  * @brief Multi-layer perceptron neural network condition data structure.
  */ 
 typedef struct COND_NEURAL {
-    NET net; //!< neural network
+    NET net; //!< Neural network
 } COND_NEURAL;
 
 void cond_neural_rand(XCSF *xcsf, CL *c);

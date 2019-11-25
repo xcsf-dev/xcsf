@@ -40,13 +40,13 @@ void init_matrix(XCSF *xcsf, double *matrix, int n);
  * @brief Recursive least mean squares prediction data structure.
  */ 
 typedef struct PRED_RLS {
-    int weights_length; //!< total number of weights
-    double **weights; //!< weights used to compute prediction
-    double *matrix; //!< gain matrix used to update weights
-    double *tmp_input; //!< temporary storage for updating weights
-    double *tmp_vec; //!< temporary storage for updating weights
-    double *tmp_matrix1; //!< temporary storage for updating gain matrix
-    double *tmp_matrix2; //!< temporary storage for updating gain matrix
+    int weights_length; //!< Total number of weights
+    double **weights; //!< Weights used to compute prediction
+    double *matrix; //!< Gain matrix used to update weights
+    double *tmp_input; //!< Temporary storage for updating weights
+    double *tmp_vec; //!< Temporary storage for updating weights
+    double *tmp_matrix1; //!< Temporary storage for updating gain matrix
+    double *tmp_matrix2; //!< Temporary storage for updating gain matrix
 } PRED_RLS;
 
 void pred_rls_init(XCSF *xcsf, CL *c)

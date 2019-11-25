@@ -36,8 +36,8 @@
  * @brief Hyperrectangle condition data structure.
  */ 
 typedef struct COND_RECTANGLE {
-    double *center; //!< centers
-    double *spread; //!< spreads
+    double *center; //!< Centers
+    double *spread; //!< Spreads
 } COND_RECTANGLE;
 
 double cond_rectangle_dist(XCSF *xcsf, CL *c, double *x);
