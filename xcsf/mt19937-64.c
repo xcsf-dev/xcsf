@@ -52,9 +52,13 @@
    http://www.math.hiroshima-u.ac.jp/~m-mat/MT/emt.html
    email: m-mat @ math.sci.hiroshima-u.ac.jp (remove spaces)
 */
-           
+
 /**
  * @file mt19937-64.c
+ * @author Takuji Nishimura 
+ * @author Makoto Matsumoto
+ * @copyright The Authors.
+ * @date 2004/9/29
  * @brief Mersenne Twister 64-bit pseudorandom number generator.
  */ 
 

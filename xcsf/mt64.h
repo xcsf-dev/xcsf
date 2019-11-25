@@ -55,6 +55,10 @@
           
 /**
  * @file mt64.h
+ * @author Takuji Nishimura 
+ * @author Makoto Matsumoto
+ * @copyright The Authors.
+ * @date 2004/9/29
  * @brief Mersenne Twister 64-bit pseudorandom number generator.
  */ 
  
