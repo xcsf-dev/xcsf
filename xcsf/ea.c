@@ -39,6 +39,12 @@ CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum);
 CL *ea_select_tournament(XCSF *xcsf, SET *set);
 void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set);
 
+/**
+ * @brief Executes the evolutionary algorithm (EA).
+ * @param xcsf The XCSF data structure.
+ * @param set The set in which to run the EA.
+ * @param kset A set to store deleted macro-classifiers for later memory removal.
+ */
 void ea(XCSF *xcsf, SET *set, SET *kset)
 {
     // check if the evolutionary algorithm should be run
@@ -117,6 +123,14 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
     pop_enforce_limit(xcsf, kset);
 }   
 
+/**
+ * @brief Performs evolutionary algorithm subsumption.
+ * @param xcsf The XCSF data structure.
+ * @param c The offspring classifier to attempt to subsume.
+ * @param c1p First parent classifier.
+ * @param c2p Second parent classifier.
+ * @param set The set in which the EA is being run.
+ */
 void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set)
 {
     // check if either parent subsumes the offspring
@@ -153,6 +167,13 @@ void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set)
     }
 }
 
+/**
+ * @brief Selects a classifier from the set via roulete wheel.
+ * @param xcsf The XCSF data structure.
+ * @param set The set to select from.
+ * @param fit_sum The sum of all the fitnesses in the set.
+ * @return A pointer to the selected classifier.
+ */
 CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum)
 {
     (void)xcsf;
@@ -166,6 +187,12 @@ CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum)
     return iter->cl;
 }
 
+/**
+ * @brief Selects a classifier from the set via tournament.
+ * @param xcsf The XCSF data structure.
+ * @param set The set to select from.
+ * @return A pointer to the selected classifier.
+ */
 CL *ea_select_tournament(XCSF *xcsf, SET *set)
 {
     CL *winner = NULL; 
