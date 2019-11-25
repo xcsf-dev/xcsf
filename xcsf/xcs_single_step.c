@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2019.
- * @brief Single-step classification functions.
+ * @brief Single-step reinforcement learning functions.
  */ 
 
 #include <stdio.h>
@@ -40,7 +40,7 @@ void xcs_explore_single(XCSF *xcsf);
 double xcs_exploit_single(XCSF *xcsf, double *error);
 
 /**
- * @brief Executes a single-step classification experiment.
+ * @brief Executes a single-step experiment.
  * @param xcsf The XCSF data structure.
  * @return The mean prediction error.
  */
@@ -66,7 +66,7 @@ double xcs_single_step_exp(XCSF *xcsf)
 }                                
 
 /**
- * @brief Executes a single-step classification explore trial.
+ * @brief Executes a single-step explore trial.
  * @param xcsf The XCSF data structure.
  */
 void xcs_explore_single(XCSF *xcsf)
@@ -92,10 +92,10 @@ void xcs_explore_single(XCSF *xcsf)
 }
 
 /**
- * @brief Executes a single-step classification exploit trial.
+ * @brief Executes a single-step exploit trial.
  * @param xcsf The XCSF data structure.
  * @param double The prediction error (set by this function).
- * @return The classification accuracy.
+ * @return Whether the correct action was selected.
  */
 double xcs_exploit_single(XCSF *xcsf, double *error)
 {

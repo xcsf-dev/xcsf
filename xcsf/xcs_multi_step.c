@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2019.
- * @brief Multi-step classification functions.
+ * @brief Multi-step reinforcement learning functions.
  */ 
 
 #include <stdio.h>
@@ -39,6 +39,10 @@
 int xcs_explore_multi(XCSF *xcsf);
 int xcs_exploit_multi(XCSF *xcsf, double *error);
 
+/**
+ * @brief Executes a multi-step reinforcement learning experiment.
+ * @param xcsf The XCSF data structure.
+ */
 double xcs_multi_step_exp(XCSF *xcsf)
 {
     gplot_init(xcsf);
@@ -56,9 +60,14 @@ double xcs_multi_step_exp(XCSF *xcsf)
     }
     gplot_free(xcsf);
     pa_free(xcsf);
-    return err/xcsf->MAX_TRIALS;  
+    return err / xcsf->MAX_TRIALS;
 }                                
 
+/**
+ * @brief Executes a multi-step explore trial.
+ * @param xcsf The XCSF data structure.
+ * @return The number of steps taken to reach the goal.
+ */
 int xcs_explore_multi(XCSF *xcsf)
 {
     _Bool reset = false; 
@@ -67,7 +76,6 @@ int xcs_explore_multi(XCSF *xcsf)
     SET prev_aset, kset;
     set_init(xcsf, &prev_aset);
     set_init(xcsf, &kset);
-
     env_reset(xcsf);
     int steps = 0;
     for(steps = 0; steps < xcsf->TELETRANSPORTATION && !reset; steps++) {
@@ -113,7 +121,13 @@ int xcs_explore_multi(XCSF *xcsf)
     free(prev_state);
     return steps;
 }
- 
+
+/**
+ * @brief Executes a multi-step exploit trial.
+ * @param xcsf The XCSF data structure.
+ * @param double The prediction error (set by this function).
+ * @return The number of steps taken to reach the goal.
+ */
 int xcs_exploit_multi(XCSF *xcsf, double *error)
 {
     _Bool reset = false; 
@@ -122,7 +136,6 @@ int xcs_exploit_multi(XCSF *xcsf, double *error)
     SET prev_aset, kset;
     set_init(xcsf, &prev_aset);
     set_init(xcsf, &kset);
-
     *error = 0;
     env_reset(xcsf);
     int steps = 0;

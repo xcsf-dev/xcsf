@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2019.
- * @brief Multi-step classification functions.
+ * @brief Multi-step reinforcement learning functions.
  */ 
  
 #pragma once

@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2019.
- * @brief Single-step classification functions.
+ * @brief Single-step reinforcement learning functions.
  */ 
  
 #pragma once
