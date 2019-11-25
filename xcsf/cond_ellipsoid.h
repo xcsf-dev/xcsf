@@ -37,6 +37,9 @@ int cond_ellipsoid_size(XCSF *xcsf, CL *c);
 size_t cond_ellipsoid_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t cond_ellipsoid_load(XCSF *xcsf, CL *c, FILE *fp);
 
+/**
+ * @brief Hyperellipsoid condition implemented functions.
+ */
 static struct CondVtbl const cond_ellipsoid_vtbl = {
     &cond_ellipsoid_crossover,
     &cond_ellipsoid_general,

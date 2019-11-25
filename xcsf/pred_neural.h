@@ -36,6 +36,9 @@ size_t pred_neural_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t pred_neural_load(XCSF *xcsf, CL *c, FILE *fp);
 double pred_neural_eta(XCSF *xcsf, CL *c, int layer);
 
+/**
+ * @brief Multi-layer perceptron neural network prediction implemented functions.
+ */
 static struct PredVtbl const pred_neural_vtbl = {
     &pred_neural_crossover,
     &pred_neural_mutate,

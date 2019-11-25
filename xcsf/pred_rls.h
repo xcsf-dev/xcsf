@@ -35,6 +35,9 @@ int pred_rls_size(XCSF *xcsf, CL *c);
 size_t pred_rls_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t pred_rls_load(XCSF *xcsf, CL *c, FILE *fp);
 
+/**
+ * @brief Recursive least mean squares prediction implemented functions.
+ */
 static struct PredVtbl const pred_rls_vtbl = {
     &pred_rls_crossover,
     &pred_rls_mutate,

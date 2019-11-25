@@ -37,6 +37,9 @@ int cond_gp_size(XCSF *xcsf, CL *c);
 size_t cond_gp_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t cond_gp_load(XCSF *xcsf, CL *c, FILE *fp);
 
+/**
+ * @brief Tree GP condition implemented functions.
+ */
 static struct CondVtbl const cond_gp_vtbl = {
     &cond_gp_crossover,
     &cond_gp_general,

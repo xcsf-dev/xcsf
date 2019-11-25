@@ -37,6 +37,9 @@ int cond_dgp_size(XCSF *xcsf, CL *c);
 size_t cond_dgp_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t cond_dgp_load(XCSF *xcsf, CL *c, FILE *fp);
 
+/**
+ * @brief Dynamical GP graph condition implemented functions.
+ */
 static struct CondVtbl const cond_dgp_vtbl = {
     &cond_dgp_crossover,
     &cond_dgp_general,

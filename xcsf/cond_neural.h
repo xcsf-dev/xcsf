@@ -37,6 +37,9 @@ int cond_neural_size(XCSF *xcsf, CL *c);
 size_t cond_neural_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t cond_neural_load(XCSF *xcsf, CL *c, FILE *fp);
 
+/**
+ * @brief Multi-layer perceptron neural network condition implemented functions.
+ */
 static struct CondVtbl const cond_neural_vtbl = {
     &cond_neural_crossover,
     &cond_neural_general,

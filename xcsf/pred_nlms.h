@@ -35,6 +35,9 @@ int pred_nlms_size(XCSF *xcsf, CL *c);
 size_t pred_nlms_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t pred_nlms_load(XCSF *xcsf, CL *c, FILE *fp);
 
+/**
+ * @brief Normalised least mean squares prediction implemented functions.
+ */
 static struct PredVtbl const pred_nlms_vtbl = {
     &pred_nlms_crossover,
     &pred_nlms_mutate,

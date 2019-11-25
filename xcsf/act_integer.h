@@ -37,6 +37,9 @@ void act_integer_update(XCSF *xcsf, CL *c, double *x, double *y);
 size_t act_integer_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t act_integer_load(XCSF *xcsf, CL *c, FILE *fp);
 
+/**
+ * @brief Integer action implemented functions.
+ */
 static struct ActVtbl const act_integer_vtbl = {
     &act_integer_general,
     &act_integer_crossover,

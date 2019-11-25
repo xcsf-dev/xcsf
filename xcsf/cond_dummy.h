@@ -37,6 +37,9 @@ int cond_dummy_size(XCSF *xcsf, CL *c);
 size_t cond_dummy_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t cond_dummy_load(XCSF *xcsf, CL *c, FILE *fp);
 
+/**
+ * @brief Dummy condition implemented functions.
+ */
 static struct CondVtbl const cond_dummy_vtbl = {
     &cond_dummy_crossover,
     &cond_dummy_general,

@@ -37,6 +37,9 @@ int cond_rectangle_size(XCSF *xcsf, CL *c);
 size_t cond_rectangle_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t cond_rectangle_load(XCSF *xcsf, CL *c, FILE *fp);
 
+/**
+ * @brief Hyperrectangle condition implemented functions.
+ */
 static struct CondVtbl const cond_rectangle_vtbl = {
     &cond_rectangle_crossover,
     &cond_rectangle_general,
