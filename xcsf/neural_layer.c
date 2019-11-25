@@ -39,7 +39,6 @@
 
 /**
  * @brief Sets a neural network layer's functions to the implementations.
- * @param xcsf The XCSF data structure.
  * @param l The neural network layer to set.
  */
 void neural_layer_set_vptr(LAYER *l)

@@ -24,23 +24,23 @@
  * distinct position in the maze. The maze is toroidal and if the animat
  * reaches one edge it can reenter the maze from the other side. Obstacles are
  * coded as 'O' and 'Q', empty positions as '*', and food as 'F' or 'G'. The 8
- * adjacent cells are percevied (encoded as reals) and 8 movements are possible
+ * adjacent cells are perceived (encoded as reals) and 8 movements are possible
  * to the adjacent cells (if not blocked.) The animat is initially placed at a
  * random empty position. The goal is to find the shortest path to the food. 
  *
  * Some mazes require a form of memory to be solved optimally.
  * The optimal average number of steps for each maze is:
  *
- * Woods 1: 1.7
- * Woods 2: 1.7
- * Woods 14: 9.5
- * Maze 4: 3.5
- * Maze 5: 4.61
- * Maze 6: 5.19
- * Maze 7: 4.33
- * Maze 10: 5.11
- * Woods 101: 2.9
- * Woods 101 1/2: 3.1
+ * Woods 1: 1.7 \n
+ * Woods 2: 1.7 \n
+ * Woods 14: 9.5 \n
+ * Maze 4: 3.5 \n
+ * Maze 5: 4.61 \n
+ * Maze 6: 5.19 \n
+ * Maze 7: 4.33 \n
+ * Maze 10: 5.11 \n
+ * Woods 101: 2.9 \n
+ * Woods 101 1/2: 3.1 \n
  * Woods 102: 3.23
  */
 
@@ -57,8 +57,8 @@
 #include "env.h"
 #include "env_maze.h"
      
-#define MAX_SIZE 50
-#define MAX_PAYOFF 1000.0
+#define MAX_SIZE 50 //!< the maximum width/height of a maze
+#define MAX_PAYOFF 1000.0 //!< the payoff provided at a food position
 const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; //!< possible maze moves on x-axis
 const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1}; //!< possible maze moves on y-axis
 
@@ -77,12 +77,17 @@ typedef struct ENV_MAZE {
  
 double env_maze_sensor(XCSF *xcsf, char s);
 
-void env_maze_init(XCSF *xcsf, char *filename)
+/**
+ * @brief Initialises a maze environment from a specified file.
+ * @param xcsf The XCSF data structure.
+ * @param fname The file name of the specified maze environment.
+ */
+void env_maze_init(XCSF *xcsf, char *fname)
 {
     // open maze file
-    FILE *fp = fopen(filename, "rt");
+    FILE *fp = fopen(fname, "rt");
     if(fp == 0) {
-        printf("could not open %s. %s.\n", filename, strerror(errno));
+        printf("could not open %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
     // read maze
@@ -108,7 +113,7 @@ void env_maze_init(XCSF *xcsf, char *filename)
     }
     // check if EOF came from an end-of-file or an error
     if (ferror(fp)) {
-        printf("EOF read error: could not open %s. %s.\n", filename, strerror(errno));
+        printf("EOF read error: could not open %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
     env->ysize = y;
@@ -128,6 +133,10 @@ void env_maze_init(XCSF *xcsf, char *filename)
 //    }
 }
 
+/**
+ * @brief Frees the maze environment.
+ * @param xcsf The XCSF data structure.
+ */
 void env_maze_free(XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
@@ -135,6 +144,10 @@ void env_maze_free(XCSF *xcsf)
     free(env);
 }
 
+/**
+ * @brief Resets the animat to a random empty position in the maze.
+ * @param xcsf The XCSF data structure.
+ */
 void env_maze_reset(XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
@@ -145,12 +158,21 @@ void env_maze_reset(XCSF *xcsf)
     } while(env->maze[env->ypos][env->xpos] != '*');
 }
 
+/**
+ * @brief Returns whether the maze needs to be reset.
+ * @param xcsf The XCSF data structure.
+ */
 _Bool env_maze_isreset(XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     return env->reset;
 }
 
+/**
+ * @brief Returns the current animat perceptions in the maze.
+ * @param xcsf The XCSF data structure.
+ * @return The current animat perceptions.
+ */
 double *env_maze_get_state(XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
@@ -173,6 +195,12 @@ double *env_maze_get_state(XCSF *xcsf)
     return env->state;
 }
 
+/**
+ * @brief Returns a float encoding of a sensor perception.
+ * @param xcsf The XCSF data structure.
+ * @param s The char value of the sensor.
+ * @return A float encoding of the sensor.
+ */
 double env_maze_sensor(XCSF *xcsf, char s)
 {
     (void)xcsf;
@@ -188,6 +216,12 @@ double env_maze_sensor(XCSF *xcsf, char s)
     }
 }
 
+/**
+ * @brief Executes the specified action and returns the payoff.
+ * @param xcsf The XCSF data structure.
+ * @param action The action to perform.
+ * @return The payoff from performing the action.
+ */
 double env_maze_execute(XCSF *xcsf, int action)
 {
     if(action < 0 || action > 7) {
@@ -220,13 +254,23 @@ double env_maze_execute(XCSF *xcsf, int action)
             exit(EXIT_FAILURE);
     }
 }
- 
+
+/**
+ * @brief Returns the maximum payoff value possible in the maze.
+ * @param xcsf The XCSF data structure.
+ * @return The maximu payoff.
+ */
 double env_maze_maxpayoff(XCSF *xcsf)
 {
     (void)xcsf;
     return MAX_PAYOFF;
 }
- 
+
+/**
+ * @brief Returns whether the environment is a multistep problem.
+ * @param xcsf The XCSF data structure.
+ * @return True
+ */
 _Bool env_maze_multistep(XCSF *xcsf)
 {
     (void)xcsf;
