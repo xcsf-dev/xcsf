@@ -36,8 +36,8 @@
 #include "xcs_single_step.h"
 #include "env.h"
 
-void xcs_explore_single(XCSF *xcsf);
-double xcs_exploit_single(XCSF *xcsf, double *error);
+void xcs_single_explore(XCSF *xcsf);
+double xcs_single_exploit(XCSF *xcsf, double *error);
 
 /**
  * @brief Executes a single-step experiment.
@@ -50,9 +50,9 @@ double xcs_single_step_exp(XCSF *xcsf)
     pa_init(xcsf);
     double perr = 0, err = 0, pterr = 0;
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        xcs_explore_single(xcsf);
+        xcs_single_explore(xcsf);
         double error = 0;
-        perr += xcs_exploit_single(xcsf, &error);
+        perr += xcs_single_exploit(xcsf, &error);
         err += error;
         pterr += error;
         if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
@@ -69,7 +69,7 @@ double xcs_single_step_exp(XCSF *xcsf)
  * @brief Executes a single-step explore trial.
  * @param xcsf The XCSF data structure.
  */
-void xcs_explore_single(XCSF *xcsf)
+void xcs_single_explore(XCSF *xcsf)
 {
     xcsf->train = true;
     double *x = env_get_state(xcsf);
@@ -97,7 +97,7 @@ void xcs_explore_single(XCSF *xcsf)
  * @param error The prediction error (set by this function).
  * @return Whether the correct action was selected.
  */
-double xcs_exploit_single(XCSF *xcsf, double *error)
+double xcs_single_exploit(XCSF *xcsf, double *error)
 {
     xcsf->train = false;
     double *x = env_get_state(xcsf);

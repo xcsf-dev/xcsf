@@ -36,8 +36,8 @@
 #include "xcs_multi_step.h"
 #include "env.h"
 
-int xcs_explore_multi(XCSF *xcsf);
-int xcs_exploit_multi(XCSF *xcsf, double *error);
+int xcs_multi_explore(XCSF *xcsf);
+int xcs_multi_exploit(XCSF *xcsf, double *error);
 
 /**
  * @brief Executes a multi-step reinforcement learning experiment.
@@ -50,8 +50,8 @@ double xcs_multi_step_exp(XCSF *xcsf)
     double perr = 0, err = 0, pterr = 0;
     xcsf->train = true;
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        xcs_explore_multi(xcsf);
-        perr += xcs_exploit_multi(xcsf, &pterr);
+        xcs_multi_explore(xcsf);
+        perr += xcs_multi_exploit(xcsf, &pterr);
         err += pterr;
         if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
             disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
@@ -68,7 +68,7 @@ double xcs_multi_step_exp(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return The number of steps taken to reach the goal.
  */
-int xcs_explore_multi(XCSF *xcsf)
+int xcs_multi_explore(XCSF *xcsf)
 {
     _Bool reset = false; 
     double prev_reward = 0;
@@ -128,7 +128,7 @@ int xcs_explore_multi(XCSF *xcsf)
  * @param error The prediction error (set by this function).
  * @return The number of steps taken to reach the goal.
  */
-int xcs_exploit_multi(XCSF *xcsf, double *error)
+int xcs_multi_exploit(XCSF *xcsf, double *error)
 {
     _Bool reset = false; 
     double prev_reward = 0, prev_pred = 0;
