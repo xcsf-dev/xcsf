@@ -31,12 +31,22 @@
 #include "cl_set.h"
 #include "pa.h"
 
+/**
+ * @brief Initialises the prediction array.
+ * @param xcsf The XCSF data structure.
+ */
 void pa_init(XCSF *xcsf)
 {
     xcsf->pa = malloc(sizeof(double) * xcsf->num_actions);
     xcsf->nr = malloc(sizeof(double) * xcsf->num_actions);
 }
 
+/**
+ * @brief Builds the prediction array for the specified input.
+ * @param xcsf The XCSF data structure.
+ * @param set The set used to construct the array (typically the match set).
+ * @param x The input state.
+ */
 void pa_build(XCSF *xcsf, SET *set, double *x)
 {
     for(int i = 0; i < xcsf->num_actions; i++) {
@@ -58,6 +68,11 @@ void pa_build(XCSF *xcsf, SET *set, double *x)
     }
 }
 
+/**
+ * @brief Returns the best action in the prediction array.
+ * @param xcsf The XCSF data structure.
+ * @return The best action.
+ */
 int pa_best_action(XCSF *xcsf)
 {
     int action = 0;
@@ -69,6 +84,11 @@ int pa_best_action(XCSF *xcsf)
     return action;
 }
 
+/**
+ * @brief Returns a random action from the prediction array.
+ * @param xcsf The XCSF data structure.
+ * @return A random action.
+ */
 int pa_rand_action(XCSF *xcsf)
 {
     int action = 0;
@@ -78,6 +98,11 @@ int pa_rand_action(XCSF *xcsf)
     return action;
 }
 
+/**
+ * @brief Returns the highest value in the prediction array.
+ * @param xcsf The XCSF data structure.
+ * @return The highest value in the prediction array.
+ */
 double pa_best_val(XCSF *xcsf)
 {
     double max = xcsf->pa[0];
@@ -89,6 +114,12 @@ double pa_best_val(XCSF *xcsf)
     return max;
 }
 
+/**
+ * @brief Returns the value of a specified action in the prediction array.
+ * @param xcsf The XCSF data structure.
+ * @param action The specified action.
+ * @return The value of the action in the prediction array.
+ */
 double pa_val(XCSF *xcsf, int action)
 {
     if(action >= 0 && action < xcsf->num_actions) {
@@ -97,6 +128,10 @@ double pa_val(XCSF *xcsf, int action)
     return -1;
 }
 
+/**
+ * @brief Frees the prediction array.
+ * @param xcsf The XCSF data structure.
+ */
 void pa_free(XCSF *xcsf)
 {
     free(xcsf->pa);
