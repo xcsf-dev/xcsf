@@ -125,7 +125,7 @@ int xcs_explore_multi(XCSF *xcsf)
 /**
  * @brief Executes a multi-step exploit trial.
  * @param xcsf The XCSF data structure.
- * @param double The prediction error (set by this function).
+ * @param error The prediction error (set by this function).
  * @return The number of steps taken to reach the goal.
  */
 int xcs_exploit_multi(XCSF *xcsf, double *error)

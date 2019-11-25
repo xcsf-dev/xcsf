@@ -62,7 +62,7 @@ double xcs_single_step_exp(XCSF *xcsf)
     }
     gplot_free(xcsf);
     pa_free(xcsf);
-    return err/xcsf->MAX_TRIALS;  
+    return err / xcsf->MAX_TRIALS;
 }                                
 
 /**
@@ -94,7 +94,7 @@ void xcs_explore_single(XCSF *xcsf)
 /**
  * @brief Executes a single-step exploit trial.
  * @param xcsf The XCSF data structure.
- * @param double The prediction error (set by this function).
+ * @param error The prediction error (set by this function).
  * @return Whether the correct action was selected.
  */
 double xcs_exploit_single(XCSF *xcsf, double *error)
