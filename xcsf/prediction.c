@@ -32,6 +32,11 @@
 #include "pred_rls.h"
 #include "pred_neural.h"     
 
+/**
+ * @brief Sets a classifier's prediction functions to the implementations.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier to set.
+ */
 void prediction_set(XCSF *xcsf, CL *c)
 {
     switch(xcsf->PRED_TYPE) {

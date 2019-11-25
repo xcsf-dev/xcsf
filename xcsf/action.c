@@ -30,6 +30,11 @@
 #include "action.h"
 #include "act_integer.h"
 
+/**
+ * @brief Sets a classifier's action functions to the implementations.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier to set.
+ */
 void action_set(XCSF *xcsf, CL *c)
 {
     switch(xcsf->ACT_TYPE) {

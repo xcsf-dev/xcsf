@@ -37,6 +37,11 @@
 #include "prediction.h"
 #include "rule_dgp.h"
 
+/**
+ * @brief Sets a classifier's condition functions to the implementations.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier to set.
+ */
 void condition_set(XCSF *xcsf, CL *c)
 {
     switch(xcsf->COND_TYPE) {
