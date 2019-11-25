@@ -25,6 +25,12 @@
 #include <stdio.h>
 #include "neural_activations.h"
  
+/**
+ * @brief Returns the result from applying a specified activation function.
+ * @param function The activation function to apply.
+ * @param state The input to the activation function.
+ * @return The result from applying the activation function.
+ */
 double neural_activate(int function, double state)
 {
     switch(function) {
@@ -44,6 +50,12 @@ double neural_activate(int function, double state)
     }
 }
   
+/**
+ * @brief Returns the derivative from applying a specified activation function.
+ * @param function The activation function applied.
+ * @param state The input to the activation function.
+ * @return The derivative from applying the activation function.
+ */
 double neural_gradient(int function, double state)
 {
     switch(function) {
@@ -63,6 +75,11 @@ double neural_gradient(int function, double state)
     }
 }
 
+/**
+ * @brief Returns the name of a specified activation function.
+ * @param function The activation function.
+ * @return The name of the activation function.
+ */
 char *activation_string(int function)
 {
      switch(function) {
