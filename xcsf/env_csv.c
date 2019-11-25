@@ -60,7 +60,7 @@ void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data)
 }
 
 /**
- * @brief Parses a specified csv file into training and testing data sets.
+ * @brief Parses a specified csv file.
  * @param fname The name of the csv file to read.
  * @param data The data structure to load the data (set by this function).
  * @param num_rows The number of rows in the dataset (set by this function).
