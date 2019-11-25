@@ -35,8 +35,8 @@
 #include "utils.h"
 #include "gp.h"
 
-#define GP_MAX_LEN 10000 //!< maximum length of a GP tree. 
-#define GP_NUM_FUNC 4 //!< number of selectable GP functions
+#define GP_MAX_LEN 10000 //!< Maximum length of a GP tree. 
+#define GP_NUM_FUNC 4 //!< Number of selectable GP functions
 #define ADD 0
 #define SUB 1
 #define MUL 2
