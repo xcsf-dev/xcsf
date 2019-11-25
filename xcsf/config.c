@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2019.
- * @brief Config file handling functions.
+ * @brief Configuration file handling functions.
  */ 
 
 #include <stdio.h>
@@ -31,10 +31,10 @@
 #include "config.h"
 #include "loss.h"
 
-#define MAXLEN 127
+#define MAXLEN 127 //!< maximum config file line length to read
 
 /**
- * @brief Config file parameter data structure.
+ * @brief Configuration file parameter data structure.
  */ 
 typedef struct PARAM_LIST {
     char *name; //!< parameter name
@@ -51,6 +51,11 @@ void newnvpair(const char *config);
 char *getvalue(char *name);
 void tidyup();
 
+/**
+ * @brief Initialises global constants and reads the specified configuration file.
+ * @param xcsf The XCSF data structure.
+ * @param filename The name of the config file to read.
+ */
 void constants_init(XCSF *xcsf, const char *filename)
 {
     init_config(filename);
@@ -165,14 +170,21 @@ void constants_init(XCSF *xcsf, const char *filename)
     tidyup();
 }
 
+/**
+ * @brief Frees all global constants.
+ * @param xcsf The XCSF data structure.
+ */
 void constants_free(XCSF *xcsf) 
 {
     tree_free_cons(xcsf);
 }
 
+/**
+ * @brief Removes tabs/spaces/lf/cr from both ends of a line.
+ * @param s The line to trim.
+ */
 void trim(char *s)
 {
-    // remove tabs/spaces/lf/cr both ends
     size_t i = 0;
     while((s[i]==' ' || s[i]=='\t' || s[i] =='\n' || s[i]=='\r')) {
         i++;
@@ -194,6 +206,10 @@ void trim(char *s)
     }
 }
 
+/**
+ * @brief Adds a parameter to the list.
+ * @param config The parameter to add.
+ */
 void newnvpair(const char *config) {
     // first pair
     if(head == NULL) {
@@ -232,6 +248,11 @@ void newnvpair(const char *config) {
     head->value = value;
 }
 
+/**
+ * @brief Returns the value of a specified parameter from the list.
+ * @param name The name of the parameter.
+ * @return The value of the parameter.
+ */
 char *getvalue(char *name) {
     char *result = NULL;
     for(PARAM_LIST *iter = head; iter != NULL; iter = iter->next) {
@@ -243,6 +264,10 @@ char *getvalue(char *name) {
     return result;
 }
 
+/**
+ * @brief Parses a line of the config file and adds to the list.
+ * @param configline A single line of the configuration file.
+ */
 void process(char *configline) {
     // ignore empty lines
     if(strnlen(configline, MAXLEN) == 0) {
@@ -260,6 +285,10 @@ void process(char *configline) {
     newnvpair(configline);
 }
 
+/**
+ * @brief Reads the specified configuration file.
+ * @param filename The name of the configuration file.
+ */
 void init_config(const char *filename) {
     FILE *f = fopen(filename, "rt");
     if(f == NULL) {
@@ -278,6 +307,9 @@ void init_config(const char *filename) {
     fclose(f);
 }
 
+/**
+ * @brief Frees the config file parameter list.
+ */
 void tidyup()
 { 
     PARAM_LIST *iter = head;
