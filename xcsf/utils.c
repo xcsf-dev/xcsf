@@ -30,6 +30,9 @@
 #include "mt64.h"
 #include "utils.h"
 
+/**
+ * @brief Initialises the pseudo-random number generator.
+ */
 void random_init()
 {
     time_t now = time(0);
@@ -41,26 +44,45 @@ void random_init()
     init_genrand64(seed);
 }
 
+/**
+ * @brief Returns a uniform random float [0,1]
+ * @return A random float.
+ *
+ * @details Mersenne Twister 64bit version.
+ */
 double drand()
 {
-    // Mersenne Twister 64bit version
     return genrand64_real1();
 }
 
+/**
+ * @brief Returns a uniform random integer [min,max] not inclusive of max.
+ * @return A random integer.
+ */
 int irand_uniform(int min, int max)
 {
-    // not inclusive of max
     return floor(rand_uniform(min, max));
 }
 
+/**
+ * @brief Returns a uniform random float [min,max].
+ * @return A random float.
+ */
 double rand_uniform(double min, double max)
 {
-    return min + (drand() * (max-min));
+    return min + (drand() * (max - min));
 }
 
+/**
+ * @brief Returns a normal random float with specified mean and standard deviation.
+ * @param mu Mean.
+ * @param sigma Standard deviation.
+ * @return A random float.
+ *
+ * @details Box-Muller transform.
+ */
 double rand_normal(double mu, double sigma)
 {
-    // Box-Muller transform
     static const double epsilon = DBL_MIN;
     static const double two_pi = 2*M_PI;
     static double z1;
@@ -79,6 +101,13 @@ double rand_normal(double mu, double sigma)
     return z0 * sigma + mu;
 }
 
+/**
+ * @brief Returns a float constrained within the specified range.
+ * @param min Minimum value.
+ * @param max Maximum value.
+ * @param a The value to be constrained.
+ * @return The constrained number.
+ */
 double constrain(double min, double max, double a)
 {
     if (a < min) {return min;}
@@ -86,6 +115,13 @@ double constrain(double min, double max, double a)
     return a;
 }
 
+/**
+ * @brief Returns an integer constrained within the specified range.
+ * @param min Minimum value.
+ * @param max Maximum value.
+ * @param a The value to be constrained.
+ * @return The constrained number.
+ */
 int iconstrain(int min, int max, int a)
 {
     if (a < min) {return min;}
