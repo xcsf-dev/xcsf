@@ -39,6 +39,11 @@
 void xcs_explore_single(XCSF *xcsf);
 double xcs_exploit_single(XCSF *xcsf, double *error);
 
+/**
+ * @brief Executes a single-step classification experiment.
+ * @param xcsf The XCSF data structure.
+ * @return The mean prediction error.
+ */
 double xcs_single_step_exp(XCSF *xcsf)
 {
     gplot_init(xcsf);
@@ -60,6 +65,10 @@ double xcs_single_step_exp(XCSF *xcsf)
     return err/xcsf->MAX_TRIALS;  
 }                                
 
+/**
+ * @brief Executes a single-step classification explore trial.
+ * @param xcsf The XCSF data structure.
+ */
 void xcs_explore_single(XCSF *xcsf)
 {
     xcsf->train = true;
@@ -77,11 +86,17 @@ void xcs_explore_single(XCSF *xcsf)
     ea(xcsf, &aset, &kset);
     xcsf->time += 1;
     xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
-    set_kill(xcsf, &kset); // kills deleted classifiers
-    set_free(xcsf, &aset); // frees the action set list
-    set_free(xcsf, &mset); // frees the match set list
+    set_kill(xcsf, &kset);
+    set_free(xcsf, &aset);
+    set_free(xcsf, &mset);
 }
- 
+
+/**
+ * @brief Executes a single-step classification exploit trial.
+ * @param xcsf The XCSF data structure.
+ * @param double The prediction error (set by this function).
+ * @return The classification accuracy.
+ */
 double xcs_exploit_single(XCSF *xcsf, double *error)
 {
     xcsf->train = false;
@@ -96,11 +111,10 @@ double xcs_exploit_single(XCSF *xcsf, double *error)
     double reward = env_execute(xcsf, action);
     set_action(xcsf, &mset, &aset, action);
     xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
-    set_kill(xcsf, &kset); // kills deleted classifiers
-    set_free(xcsf, &aset); // frees the action set list
-    set_free(xcsf, &mset); // frees the match set list
+    set_kill(xcsf, &kset);
+    set_free(xcsf, &aset);
+    set_free(xcsf, &mset);
     *error = fabs(reward - pa_best_val(xcsf));
-    // return classification accuracy
     if(reward > 0) {
         return 1;
     }
