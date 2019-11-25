@@ -37,6 +37,11 @@
 #include "neural_layer_noise.h"
 #include "neural_layer_softmax.h"
 
+/**
+ * @brief Initialises an empty neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to initialise.
+ */
 void neural_init(XCSF *xcsf, NET *net)
 {
     (void)xcsf;
@@ -47,6 +52,13 @@ void neural_init(XCSF *xcsf, NET *net)
     net->num_outputs = 0;
 }
 
+/**
+ * @brief Inserts a layer into a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network receiving the layer.
+ * @param l The layer to insert.
+ * @param p The position in the network to insert the layer.
+ */
 void neural_layer_insert(XCSF *xcsf, NET *net, LAYER *l, int p)
 {
     (void)xcsf;
@@ -93,6 +105,12 @@ void neural_layer_insert(XCSF *xcsf, NET *net, LAYER *l, int p)
     net->num_layers++;
 }
 
+/**
+ * @brief Removes a layer from a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network removing the layer.
+ * @param p The position of the layer in the network to be removed.
+ */
 void neural_layer_remove(XCSF *xcsf, NET *net, int p)
 {
     LLIST *iter = net->tail; 
@@ -124,6 +142,12 @@ void neural_layer_remove(XCSF *xcsf, NET *net, int p)
     free(iter);
 }
 
+/**
+ * @brief Copies a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param to The destination neural network.
+ * @param from The source neural network.
+ */
 void neural_copy(XCSF *xcsf, NET *to, NET *from)
 {
     neural_init(xcsf, to);
@@ -136,6 +160,11 @@ void neural_copy(XCSF *xcsf, NET *to, NET *from)
     }
 }
 
+/**
+ * @brief Frees a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to free.
+ */
 void neural_free(XCSF *xcsf, NET *net)
 {
     LLIST *iter = net->tail;
@@ -149,6 +178,11 @@ void neural_free(XCSF *xcsf, NET *net)
     }  
 }
 
+/**
+ * @brief Randomises the layers within a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to randomise.
+ */
 void neural_rand(XCSF *xcsf, NET *net)
 {
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -156,6 +190,12 @@ void neural_rand(XCSF *xcsf, NET *net)
     }
 }    
 
+/**
+ * @brief Mutates a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to mutate.
+ * @return Whether any alterations were made.
+ */
 _Bool neural_mutate(XCSF *xcsf, NET *net)
 {
     _Bool mod = false;
@@ -167,6 +207,12 @@ _Bool neural_mutate(XCSF *xcsf, NET *net)
     return mod;
 }
 
+/**
+ * @brief Forward propagates a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to propagate.
+ * @param input The input state.
+ */
 void neural_propagate(XCSF *xcsf, NET *net, double *input)
 {
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -175,6 +221,13 @@ void neural_propagate(XCSF *xcsf, NET *net, double *input)
     }
 }
 
+/**
+ * @brief Performs a gradient descent update on a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to be updated.
+ * @param truth The desired network output.
+ * @param input The input state.
+ */
 void neural_learn(XCSF *xcsf, NET *net, double *truth, double *input)
 {
     /* reset deltas */
@@ -212,6 +265,13 @@ void neural_learn(XCSF *xcsf, NET *net, double *truth, double *input)
     }
 } 
 
+/**
+ * @brief Returns the output of a specified neuron in the output layer of a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to output.
+ * @param i Which neuron in the output layer to return.
+ * @return The output of the specified neuron.
+ */
 double neural_output(XCSF *xcsf, NET *net, int i)
 {
     if(i < net->num_outputs) {
@@ -223,6 +283,12 @@ double neural_output(XCSF *xcsf, NET *net, int i)
     exit(EXIT_FAILURE);
 }
 
+/**
+ * @brief Prints a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to print.
+ * @param print_weights Whether to print the weights in each layer.
+ */
 void neural_print(XCSF *xcsf, NET *net, _Bool print_weights)
 {
     int i = 0;
@@ -233,6 +299,12 @@ void neural_print(XCSF *xcsf, NET *net, _Bool print_weights)
     }
 }
 
+/**
+ * @brief Returns the total number of active neurons in a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to calculate the number of active neurons.
+ * @return The total number of active neurons.
+ */
 int neural_size(XCSF *xcsf, NET *net)
 {
     (void)xcsf;
@@ -243,6 +315,13 @@ int neural_size(XCSF *xcsf, NET *net)
     return size;
 }
 
+/**
+ * @brief Writes a neural network to a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to save.
+ * @param fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t neural_save(XCSF *xcsf, NET *net, FILE *fp)
 {
     size_t s = 0;
@@ -257,6 +336,13 @@ size_t neural_save(XCSF *xcsf, NET *net, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads a neural network from a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to load.
+ * @param fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t neural_load(XCSF *xcsf, NET *net, FILE *fp)
 {
     size_t s = 0;
