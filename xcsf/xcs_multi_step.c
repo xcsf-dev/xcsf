@@ -42,6 +42,7 @@ int xcs_multi_exploit(XCSF *xcsf, double *error);
 /**
  * @brief Executes a multi-step reinforcement learning experiment.
  * @param xcsf The XCSF data structure.
+ * @return The mean prediction error.
  */
 double xcs_multi_step_exp(XCSF *xcsf)
 {
