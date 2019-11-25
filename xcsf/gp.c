@@ -35,8 +35,8 @@
 #include "utils.h"
 #include "gp.h"
 
-#define GP_MAX_LEN 10000
-#define GP_NUM_FUNC 4
+#define GP_MAX_LEN 10000 //!< maximum length of a GP tree. 
+#define GP_NUM_FUNC 4 //!< number of selectable GP functions
 #define ADD 0
 #define SUB 1
 #define MUL 2
@@ -45,57 +45,79 @@
 int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth);
 int tree_traverse(int *tree, int p);
 
+/**
+ * @brief Initialises the constants shared among all GP trees.
+ * @param xcsf The XCSF data structure.
+ */
 void tree_init_cons(XCSF *xcsf)
 {
-    // initialise the constants shared among all GP trees
     xcsf->gp_cons = malloc(sizeof(double) * xcsf->GP_NUM_CONS);
     for(int i = 0; i < xcsf->GP_NUM_CONS; i++) {
         xcsf->gp_cons[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
     }
 }     
 
+/**
+ * @brief Frees the constants shared among all GP trees.
+ * @param xcsf The XCSF data structure.
+ */
 void tree_free_cons(XCSF *xcsf)
 {
     free(xcsf->gp_cons);
 }
 
+/**
+ * @brief Creates a random GP tree.
+ * @param xcsf The XCSF data structure.
+ * @param gp The GP tree being randomised.
+ */
 void tree_rand(XCSF *xcsf, GP_TREE *gp)
 {
-    // create new random tree
     int buffer[GP_MAX_LEN];
     gp->len = 0;
     do {
         gp->len = tree_grow(xcsf, buffer, 0, GP_MAX_LEN, xcsf->GP_INIT_DEPTH);
     } while(gp->len < 0);
-
-    // copy tree to this individual
     gp->tree = malloc(sizeof(int)*gp->len);
     memcpy(gp->tree, buffer, sizeof(int)*gp->len);
 }
 
+/**
+ * @brief Frees a GP tree.
+ * @param xcsf The XCSF data structure.
+ * @param gp The GP tree to free.
+ */
 void tree_free(XCSF *xcsf, GP_TREE *gp)
 {
     (void)xcsf;
     free(gp->tree);
 }
 
+/**
+ * @brief Grows a random GP tree of specified max length and depth.
+ * @param xcsf The XCSF data structure.
+ * @param buffer Buffer to hold the flattened GP tree generated.
+ * @param p The position from which to traverse (start at 0).
+ * @param max Maximum tree length.
+ * @param depth Maximum tree depth.
+ * @return The position after traversal (i.e., tree length).
+ *
+ * @details Only used to create an initial tree.
+ */
 int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
 {
-    // only used to create an initial tree
     int prim = irand_uniform(0,2);
-
     if(p >= max) {
-        return(-1);
+        return (-1);
     }
     if(p == 0) {
         prim = 1;
     }
-
     // add constant or external input
     if(prim == 0 || depth == 0) {
         prim = irand_uniform(GP_NUM_FUNC, GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->num_x_vars);
         buffer[p] = prim;
-        return(p+1);
+        return (p+1);
     }
     // add new function
     else {
@@ -108,19 +130,25 @@ int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
                 buffer[p] = prim;
                 int one_child = tree_grow(xcsf, buffer, p+1, max, depth-1);
                 if(one_child < 0) {
-                    return(-1);
+                    return (-1);
                 }
-                return(tree_grow(xcsf, buffer, one_child, max, depth-1));
+                return (tree_grow(xcsf, buffer, one_child, max, depth-1));
         }
     }
     printf("tree_grow() shouldn't be here\n");
     exit(EXIT_FAILURE);
 }
 
+/**
+ * @brief Evaluates a GP tree.
+ * @param xcsf The XCSF data structure.
+ * @param gp The GP tree to evaluate.
+ * @param x The input state.
+ * @return The result from evaluating the GP tree.
+ */
 double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x)
 {
     int node = gp->tree[(gp->p)++];
-
     // external input
     if(node >= GP_NUM_FUNC + xcsf->GP_NUM_CONS) {
         return(x[node - GP_NUM_FUNC - xcsf->GP_NUM_CONS]);
@@ -129,7 +157,6 @@ double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x)
     else if(node >= GP_NUM_FUNC) {
         return(xcsf->gp_cons[node-GP_NUM_FUNC]);
     }
-
     // function
     switch(node) {
         case ADD : return(tree_eval(xcsf,gp,x) + tree_eval(xcsf,gp,x));
@@ -150,10 +177,16 @@ double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x)
     return 0;
 }
 
+/**
+ * @brief Prints a GP tree.
+ * @param xcsf The XCSF data structure.
+ * @param gp The GP tree to print.
+ * @param p The position from which to traverse (start at 0).
+ * @return The position after traversal.
+ */
 int tree_print(XCSF *xcsf, GP_TREE *gp, int p) 
 {
     int node = gp->tree[p];
-
     if(node >= GP_NUM_FUNC) {
         // external input
         if(node >= GP_NUM_FUNC + xcsf->GP_NUM_CONS) {
@@ -165,7 +198,6 @@ int tree_print(XCSF *xcsf, GP_TREE *gp, int p)
         }
         return(++p);
     }
-
     // function
     int a1 = 0; 
     int a2 = 0;
@@ -196,37 +228,45 @@ int tree_print(XCSF *xcsf, GP_TREE *gp, int p)
     return a2;
 }
 
+/**
+ * @brief Copies a GP tree.
+ * @param xcsf The XCSF data structure.
+ * @param to The destination GP tree.
+ * @param from The source GP tree.
+ */
 void tree_copy(XCSF *xcsf, GP_TREE *to, GP_TREE *from)
 {
     (void)xcsf;
     to->len = from->len;
-    to->tree = malloc(sizeof(int)*from->len);
-    memcpy(to->tree, from->tree, sizeof(int)*from->len);
+    to->tree = malloc(sizeof(int) * from->len);
+    memcpy(to->tree, from->tree, sizeof(int) * from->len);
     to->p = from->p;               
 }
 
+/**
+ * @brief Performs sub-tree crossover.
+ * @param xcsf The XCSF data structure.
+ * @param p1 The first GP tree to perform crossover.
+ * @param p2 The second GP tree to perform crossover.
+ */
 void tree_crossover(XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
 {
-    // sub-tree crossover
     int len1 = p1->len;
     int len2 = p2->len;
     int start1 = irand_uniform(0,len1);
     int end1 = tree_traverse(p1->tree, start1);
     int start2 = irand_uniform(0,len2);
     int end2 = tree_traverse(p2->tree, start2);
-
     int nlen1 = start1+(end2-start2)+(len1-end1);
     int *new1 = malloc(sizeof(int)*nlen1);
     memcpy(&new1[0], &p1->tree[0], sizeof(int)*start1);
     memcpy(&new1[start1], &p2->tree[start2], sizeof(int)*(end2-start2));
     memcpy(&new1[start1+(end2-start2)], &p1->tree[end1], sizeof(int)*(len1-end1));
-
     int nlen2 = start2+(end1-start1)+(len2-end2);
     int *new2 = malloc(sizeof(int)*nlen2);
     memcpy(&new2[0], &p2->tree[0], sizeof(int)*start2);
     memcpy(&new2[start2], &p1->tree[start1], sizeof(int)*(end1-start1));
     memcpy(&new2[start2+(end1-start1)], &p2->tree[end2], sizeof(int)*(len2-end2));
-
     tree_free(xcsf, p1);
     tree_free(xcsf, p2);
     p1->tree = new1;
@@ -235,9 +275,14 @@ void tree_crossover(XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
     p2->len = tree_traverse(p2->tree, 0);
 }
 
+/**
+ * @brief Performs point mutation on a GP tree.
+ * @param xcsf The XCSF data structure.
+ * @param offspring The GP tree to be mutated.
+ * @param rate The per allele rate of mutation.
+ */
 void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate) 
 {   
-    // point mutation
     for(int i = 0; i < offspring->len; i++) {  
         if(rand_uniform(0,1) < rate) {
             // terminals randomly replaced with other terminals
@@ -259,12 +304,17 @@ void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate)
     }
 }
 
+/**
+ * @brief Traverses a GP tree.
+ * @param tree The tree to traverse.
+ * @param p The position from which to traverse.
+ * @return The position after traversal.
+ */
 int tree_traverse(int *tree, int p)
 {
     if(tree[p] >= GP_NUM_FUNC) {
         return(++p);
     }
-
     switch(tree[p]) {
         case ADD: 
         case SUB: 
@@ -276,6 +326,13 @@ int tree_traverse(int *tree, int p)
     return 0;
 }
 
+/**
+ * @brief Writes the GP tree to a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param gp The GP tree to save.
+ * @param fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t tree_save(XCSF *xcsf, GP_TREE *gp, FILE *fp)
 {
     (void)xcsf;
@@ -286,6 +343,13 @@ size_t tree_save(XCSF *xcsf, GP_TREE *gp, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads a GP tree from a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param gp The GP tree to load.
+ * @param fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t tree_load(XCSF *xcsf, GP_TREE *gp, FILE *fp)
 {
     (void)xcsf;
