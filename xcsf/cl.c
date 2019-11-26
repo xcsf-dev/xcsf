@@ -69,11 +69,9 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
  */
 void cl_copy(XCSF *xcsf, CL *to, CL *from)
 {
-    // copy functions
     to->cond_vptr = from->cond_vptr;
     to->pred_vptr = from->pred_vptr;
     to->act_vptr = from->act_vptr;
-    // copy structures
     sam_copy(xcsf, to->mu, from->mu);
     act_copy(xcsf, to, from);
     cond_copy(xcsf, to, from);
@@ -101,11 +99,9 @@ void cl_cover(XCSF *xcsf, CL *c, double *x, int action)
  */
 void cl_rand(XCSF *xcsf, CL *c)
 {
-    // set functions
     action_set(xcsf, c);
     prediction_set(xcsf, c);
     condition_set(xcsf, c); 
-    // initialise structures
     cond_init(xcsf, c);
     pred_init(xcsf, c);
     act_init(xcsf, c);
@@ -161,6 +157,7 @@ void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num)
 
 /**
  * @brief Updates the error of the classifier using the payoff.
+ * @pre Classifier prediction must have been updated for the current input.
  * @param xcsf The XCSF data structure.
  * @param c The classifier to update.
  * @param y The payoff value.
@@ -168,7 +165,6 @@ void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num)
  */
 double cl_update_err(XCSF *xcsf, CL *c, double *y)
 {
-    // prediction has been updated for the current input during set_pred()
     double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
     if(c->exp < 1 / xcsf->BETA) {
         c->err = (c->err * (c->exp - 1) + error) / c->exp;
