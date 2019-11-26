@@ -345,8 +345,9 @@ void set_add(XCSF *xcsf, SET *set, CL *c)
  * @param kset A set to store deleted macro-classifiers for later memory removal.
  * @param x The input state.
  * @param y The payoff from the environment.
+ * @param current Whether the update is for the current or previous state.
  */ 
-void set_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y)
+void set_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y, _Bool current)
 {
 #ifdef PARALLEL_UPDATE
     CLIST *blist[set->size];
@@ -357,11 +358,11 @@ void set_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y)
     }
 #pragma omp parallel for
     for(int i = 0; i < set->size; i++) {
-        cl_update(xcsf, blist[i]->cl, x, y, set->num);
+        cl_update(xcsf, blist[i]->cl, x, y, set->num, current);
     }
 #else
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        cl_update(xcsf, iter->cl, x, y, set->num);
+        cl_update(xcsf, iter->cl, x, y, set->num, current);
     }
 #endif
     set_update_fit(xcsf, set);

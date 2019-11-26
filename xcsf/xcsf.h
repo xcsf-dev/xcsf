@@ -42,6 +42,7 @@ typedef struct CL {
     int time; //!< Time EA last executed in a participating set
     _Bool m; //!< Whether the classifier matches current input
     double *prediction; //!< Current classifier prediction
+    double *prev_prediction; //!< Previous classifier prediction
     int action; //!< Current classifier action
     _Bool *mhist; //!< (THETA_SUB) recent matching decisions
 } CL;

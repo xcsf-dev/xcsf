@@ -99,13 +99,13 @@ int xcs_multi_explore(XCSF *xcsf)
         if(prev_aset.list != NULL) {
             double payoff = prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
             set_validate(xcsf, &prev_aset);
-            set_update(xcsf, &prev_aset, &kset, prev_state, &payoff);
+            set_update(xcsf, &prev_aset, &kset, prev_state, &payoff, false);
             ea(xcsf, &prev_aset, &kset);
         }
         // in goal state: update current action set and run EA
         if(reset) {
             set_validate(xcsf, &aset);
-            set_update(xcsf, &aset, &kset, state, &reward);
+            set_update(xcsf, &aset, &kset, state, &reward, true);
             ea(xcsf, &aset, &kset);
         }
         // next step
@@ -160,7 +160,7 @@ int xcs_multi_exploit(XCSF *xcsf, double *error)
         if(prev_aset.list != NULL) {
             set_validate(xcsf, &prev_aset);
             double payoff = prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
-            set_update(xcsf, &prev_aset, &kset, prev_state, &payoff);
+            set_update(xcsf, &prev_aset, &kset, prev_state, &payoff, false);
             //ea(xcsf, &prev_aset, &kset);
             *error += fabs(xcsf->GAMMA * pa_val(xcsf, action) 
                     + prev_reward - prev_pred) / env_max_payoff(xcsf);
@@ -168,7 +168,7 @@ int xcs_multi_exploit(XCSF *xcsf, double *error)
         // in goal state: update current action set
         if(reset) {
             set_validate(xcsf, &aset);
-            set_update(xcsf, &aset, &kset, state, &reward);
+            set_update(xcsf, &aset, &kset, state, &reward, true);
             //ea(xcsf, &aset, &kset);
             *error += fabs(reward - pa_val(xcsf, action)) / env_max_payoff(xcsf);
         }

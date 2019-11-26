@@ -82,7 +82,7 @@ void xcs_single_explore(XCSF *xcsf)
     int action = pa_rand_action(xcsf);
     double reward = env_execute(xcsf, action);
     set_action(xcsf, &mset, &aset, action);
-    set_update(xcsf, &aset, &kset, x, &reward);
+    set_update(xcsf, &aset, &kset, x, &reward, true);
     ea(xcsf, &aset, &kset);
     xcsf->time += 1;
     xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;

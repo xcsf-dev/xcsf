@@ -39,7 +39,7 @@ void cl_free(XCSF *xcsf, CL *c);
 void cl_init(XCSF *xcsf, CL *c, int size, int time);
 void cl_print(XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp);
 void cl_rand(XCSF *xcsf, CL *c);
-void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num);
+void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num, _Bool current);
 void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc);
 int cl_cond_size(XCSF *xcsf, CL *c);
 int cl_pred_size(XCSF *xcsf, CL *c);

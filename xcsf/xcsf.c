@@ -143,7 +143,7 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, x);
     set_pred(xcsf, &mset, x, pred);
-    set_update(xcsf, &mset, &kset, x, y);
+    set_update(xcsf, &mset, &kset, x, y, true);
     ea(xcsf, &mset, &kset);
     xcsf->time += 1;
     xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;

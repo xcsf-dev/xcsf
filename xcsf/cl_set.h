@@ -45,5 +45,5 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x);
 void set_pred(XCSF *xcsf, SET *set, double *x, double *p);
 void set_print(XCSF *xcsf, SET *set, _Bool printc, _Bool printa, _Bool printp);
 void set_times(XCSF *xcsf, SET *set);
-void set_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y);
+void set_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y, _Bool current);
 void set_validate(XCSF *xcsf, SET *set);

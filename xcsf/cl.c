@@ -35,7 +35,7 @@
 #include "action.h"
 #include "cl.h"
 
-double cl_update_err(XCSF *xcsf, CL *c, double *y);
+double cl_update_err(XCSF *xcsf, CL *c, double *y, _Bool current);
 double cl_update_size(XCSF *xcsf, CL *c, double num_sum);
 
 /**
@@ -54,6 +54,7 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
     c->size = size;
     c->time = time;
     c->prediction = calloc(xcsf->num_y_vars, sizeof(double));
+    c->prev_prediction = calloc(xcsf->num_y_vars, sizeof(double));
     c->action = 0;
     c->m = false;
     c->mhist = calloc(xcsf->THETA_SUB, sizeof(_Bool));
@@ -143,12 +144,13 @@ double cl_acc(XCSF *xcsf, CL *c)
  * @param c The classifier to update.
  * @param x The input state.
  * @param y The payoff value.
+ * @param current Whether the payoff is for the current or previous state.
  * @param set_num The number of micro-classifiers in the set.
  */
-void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num)
+void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num, _Bool current)
 {
     c->exp++;
-    cl_update_err(xcsf, c, y);
+    cl_update_err(xcsf, c, y, current);
     cl_update_size(xcsf, c, set_num);
     cond_update(xcsf, c, x, y);
     pred_update(xcsf, c, x, y);
@@ -157,15 +159,22 @@ void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num)
 
 /**
  * @brief Updates the error of the classifier using the payoff.
- * @pre Classifier prediction must have been updated for the current input.
+ * @pre Classifier prediction must have been updated for the input state.
  * @param xcsf The XCSF data structure.
  * @param c The classifier to update.
  * @param y The payoff value.
+ * @param current Whether the payoff is for the current or previous state.
  * @return Error multiplied by numerosity.
  */
-double cl_update_err(XCSF *xcsf, CL *c, double *y)
+double cl_update_err(XCSF *xcsf, CL *c, double *y, _Bool current)
 {
-    double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
+    double error = 0;
+    if(current) {
+        error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
+    }
+    else {
+        error = (xcsf->loss_ptr)(xcsf, c->prev_prediction, y);
+    }
     if(c->exp < 1 / xcsf->BETA) {
         c->err = (c->err * (c->exp - 1) + error) / c->exp;
     }
@@ -214,6 +223,7 @@ void cl_free(XCSF *xcsf, CL *c)
 {
     free(c->mhist);
     free(c->prediction);
+    free(c->prev_prediction);
     sam_free(xcsf, c->mu);
     cond_free(xcsf, c);
     act_free(xcsf, c);
@@ -286,6 +296,7 @@ _Bool cl_m(XCSF *xcsf, CL *c)
  */
 double *cl_predict(XCSF *xcsf, CL *c, double *x)
 {
+    memcpy(c->prev_prediction, c->prediction, sizeof(double) * xcsf->num_y_vars);
     return pred_compute(xcsf, c, x);
 }
 
@@ -420,6 +431,7 @@ size_t cl_save(XCSF *xcsf, CL *c, FILE *fp)
     s += fwrite(&c->m, sizeof(_Bool), 1, fp);
     s += fwrite(c->mhist, sizeof(_Bool), xcsf->THETA_SUB, fp);
     s += fwrite(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
+    s += fwrite(c->prev_prediction, sizeof(double), xcsf->num_y_vars, fp);
     s += fwrite(&c->action, sizeof(int), 1, fp);
     s += act_save(xcsf, c, fp);
     s += pred_save(xcsf, c, fp);
@@ -451,6 +463,8 @@ size_t cl_load(XCSF *xcsf, CL *c, FILE *fp)
     s += fread(c->mhist, sizeof(_Bool), xcsf->THETA_SUB, fp);
     c->prediction = malloc(xcsf->num_y_vars * sizeof(double));
     s += fread(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
+    c->prev_prediction = malloc(xcsf->num_y_vars * sizeof(double));
+    s += fread(c->prev_prediction, sizeof(double), xcsf->num_y_vars, fp);
     s += fread(&c->action, sizeof(int), 1, fp);
     action_set(xcsf, c);
     prediction_set(xcsf, c);
