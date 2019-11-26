@@ -88,8 +88,14 @@ int xcs_multi_explore(XCSF *xcsf)
         // generate match set
         set_match(xcsf, &mset, &kset, state);
         pa_build(xcsf, &mset, state);
-        // select a random move
-        int action = pa_rand_action(xcsf);
+        // select an action to perform
+        int action = 0;
+        if(rand_uniform(0,1) < xcsf->P_EXPLORE) {
+            action = pa_rand_action(xcsf);
+        }
+        else {
+            action = pa_best_action(xcsf);
+        }
         // generate action set
         set_action(xcsf, &mset, &aset, action);
         // get environment feedback

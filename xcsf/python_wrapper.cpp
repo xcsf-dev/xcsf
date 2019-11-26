@@ -253,6 +253,7 @@ struct XCS
     double get_msetsize() { return xcs.msetsize; }
     int get_teletransportation() { return xcs.TELETRANSPORTATION; }
     double get_gamma() { return xcs.GAMMA; }
+    double get_p_explore() { return xcs.P_EXPLORE; }
 
     /* SETTERS */
     void set_omp_num_threads(int a) {
@@ -324,6 +325,7 @@ struct XCS
     void set_set_subsumption(_Bool a) { xcs.SET_SUBSUMPTION = a; }
     void set_teletransportation(int a) { xcs.TELETRANSPORTATION = a; }
     void set_gamma(double a) { xcs.GAMMA = a; }
+    void set_p_explore(double a) { xcs.P_EXPLORE = a; }
 };
 
 BOOST_PYTHON_MODULE(xcsf)
@@ -407,6 +409,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("SET_SUBSUMPTION", &XCS::get_set_subsumption, &XCS::set_set_subsumption)
         .add_property("TELETRANSPORTATION", &XCS::get_teletransportation, &XCS::set_teletransportation)
         .add_property("GAMMA", &XCS::get_gamma, &XCS::set_gamma)
+        .add_property("P_EXPLORE", &XCS::get_p_explore, &XCS::set_p_explore)
         .def("pop_size", &XCS::get_pop_size)
         .def("pop_num", &XCS::get_pop_num)
         .def("time", &XCS::get_time)

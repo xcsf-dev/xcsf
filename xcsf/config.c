@@ -113,6 +113,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->PRED_ETA = atof(getvalue("PRED_ETA"));
     xcsf->PRED_MOMENTUM = atof(getvalue("PRED_MOMENTUM"));
     xcsf->GAMMA = atof(getvalue("GAMMA"));
+    xcsf->P_EXPLORE = atof(getvalue("P_EXPLORE"));
     // Bools
     xcsf->POP_INIT = false;
     if(strncmp(getvalue("POP_INIT"), "true", 4) == 0) {
