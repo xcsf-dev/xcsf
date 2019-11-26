@@ -23,7 +23,7 @@
  * @details Generates random real vectors of length k+pow(2,k) where the
  * first k bits determine the position of the output bit in the last pow(2,k)
  * bits. E.g., for a 3-bit problem, the first rounded bit addresses which of
- * the following 2 bits are the output.
+ * the following 2 bits are the (rounded) output.
  */ 
    
 #include <stdio.h>
@@ -36,17 +36,23 @@
 #include "env.h"
 #include "env_mux.h"
 
+#define MAX_PAYOFF 1000.0 //!< Payoff provided for making a correct classification
+
 /**
  * @brief Real multiplexer environment data structure.
  */  
 typedef struct ENV_MUX {
-    double *state; //!< current state
-    int pos_bits; //!< number of position bits
+    double *state; //!< Current state
+    int pos_bits; //!< Number of position bits
 } ENV_MUX;
 
-#define MAX_PAYOFF 1000.0
-char *mux_cstate(XCSF *xcsf);
-
+/**
+ * @brief Initialises a real multiplexer environment of specified length.
+ * @param xcsf The XCSF data structure.
+ * @param bits The problem length.
+ *
+ * @details The biggest multiplexer problem is chosen that fits the specified length.
+ */
 void env_mux_init(XCSF *xcsf, int bits)
 {
     ENV_MUX *env = malloc(sizeof(ENV_MUX));
@@ -64,6 +70,10 @@ void env_mux_init(XCSF *xcsf, int bits)
     //printf("Initialised rmux problem with %d bits\n", n);
 }
 
+/**
+ * @brief Frees the multiplexer environment.
+ * @param xcsf The XCSF data structure.
+ */
 void env_mux_free(XCSF *xcsf)
 {
     ENV_MUX *env = xcsf->env;
@@ -71,6 +81,11 @@ void env_mux_free(XCSF *xcsf)
     free(env);
 }
 
+/**
+ * @brief Returns a random problem instance.
+ * @param xcsf The XCSF data structure.
+ * @return A random multiplexer problem.
+ */
 double *env_mux_get_state(XCSF *xcsf)
 {
     ENV_MUX *env = xcsf->env;
@@ -80,6 +95,12 @@ double *env_mux_get_state(XCSF *xcsf)
     return env->state;
 }
 
+/**
+ * @brief Returns the reward for executing the action.
+ * @param xcsf The XCSF data structure.
+ * @param action The selected class.
+ * @return The payoff from performing the action.
+ */
 double env_mux_execute(XCSF *xcsf, int action)
 {
     ENV_MUX *env = xcsf->env;
@@ -98,23 +119,42 @@ double env_mux_execute(XCSF *xcsf, int action)
     }
 }  
   
+/**
+ * @brief Dummy method since no multiplexer reset is necessary.
+ * @param xcsf The XCSF data structure.
+ */
 void env_mux_reset(XCSF *xcsf)
 {
     (void)xcsf;
 }
  
+/**
+ * @brief Returns whether the multiplexer needs to be reset.
+ * @param xcsf The XCSF data structure.
+ * @return True.
+ */
 _Bool env_mux_isreset(XCSF *xcsf)
 {
     (void)xcsf;
     return true;
 }
  
+/**
+ * @brief Returns the maximum payoff value possible in the multiplexer.
+ * @param xcsf The XCSF data structure.
+ * @return The maximum payoff.
+ */
 double env_mux_maxpayoff(XCSF *xcsf)
 {
     (void)xcsf;
     return MAX_PAYOFF;
 }
 
+/**
+ * @brief Returns whether the environment is a multistep problem.
+ * @param xcsf The XCSF data structure.
+ * @return False.
+ */
 _Bool env_mux_multistep(XCSF *xcsf)
 {
     (void)xcsf;

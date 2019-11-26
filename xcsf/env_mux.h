@@ -19,11 +19,6 @@
  * @copyright The Authors.
  * @date 2015--2019.
  * @brief The real multiplexer problem environment.
- *
- * @details Generates random real vectors of length k+pow(2,k) where the
- * first k bits determine the position of the output bit in the last pow(2,k)
- * bits. E.g., for a 3-bit problem, the first rounded bit addresses which of
- * the following 2 bits are the output.
  */ 
 
 #pragma once
