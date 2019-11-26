@@ -161,6 +161,7 @@ void env_maze_reset(XCSF *xcsf)
 /**
  * @brief Returns whether the maze needs to be reset.
  * @param xcsf The XCSF data structure.
+ * @return Whether the maze needs to be reset.
  */
 _Bool env_maze_isreset(XCSF *xcsf)
 {
