@@ -184,9 +184,9 @@ double *env_maze_get_state(XCSF *xcsf)
                 continue;
             }
             // toroidal maze
-            char s = env->maze
-                [(env->ysize - (env->ypos + y)) % env->ysize]
-                [(env->xsize - (env->xpos + x)) % env->xsize];
+            int xsense = ((env->xpos + x) % env->xsize + env->xsize) % env->xsize;
+            int ysense = ((env->ypos + y) % env->ysize + env->ysize) % env->ysize;
+            char s = env->maze[ysense][xsense];
             // convert sensor to real number
             env->state[spos] = env_maze_sensor(xcsf, s);
             spos++;
