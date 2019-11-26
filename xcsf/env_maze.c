@@ -123,14 +123,14 @@ void env_maze_init(XCSF *xcsf, char *fname)
     xcsf->num_y_vars = 1;
     xcsf->env = env;
     fclose(fp);
-//    printf("Loaded MAZE = %s\n", filename);
-//    printf("Dimensions: [%d,%d]\n", env->xsize, env->ysize);
-//    for(int i = 0; i < env->ysize; i++) {
-//        for(int j = 0; j < env->xsize; j++) {
-//            printf("%c", env->maze[i][j]);
-//        }
-//        printf("\n");
-//    }
+    printf("Loaded MAZE = %s\n", fname);
+    printf("Dimensions: [%d,%d]\n", env->xsize, env->ysize);
+    for(int i = 0; i < env->ysize; i++) {
+        for(int j = 0; j < env->xsize; j++) {
+            printf("%c", env->maze[i][j]);
+        }
+        printf("\n");
+    }
 }
 
 /**
@@ -177,8 +177,8 @@ double *env_maze_get_state(XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     int spos = 0;
-    for(int x = -1; x < 2; x++) {
-        for(int y = -1; y < 2; y++) {
+    for(int y = -1; y < 2; y++) {
+        for(int x = -1; x < 2; x++) {
             // ignore current pos
             if(x == 0 && y == 0) {
                 continue;
@@ -230,8 +230,8 @@ double env_maze_execute(XCSF *xcsf, int action)
     }
     ENV_MAZE *env = xcsf->env;
     // toroidal maze
-    int newx = (env->xsize - (env->xpos + x_moves[action])) % env->xsize;
-    int newy = (env->ysize - (env->ypos + y_moves[action])) % env->ysize;
+    int newx = ((env->xpos + x_moves[action]) % env->xsize + env->xsize) % env->xsize;
+    int newy = ((env->ypos + y_moves[action]) % env->ysize + env->ysize) % env->ysize;
     // make the move and recieve reward
     switch(env->maze[newy][newx]) {
         case '*':
