@@ -32,6 +32,9 @@ void env_mux_free(XCSF *xcsf);
 void env_mux_init(XCSF *xcsf, int bits);
 void env_mux_reset(XCSF *xcsf);
 
+/**
+ * @brief Real multiplexer environment implemented functions.
+ */
 static struct EnvVtbl const env_mux_vtbl = {
     &env_mux_isreset,
     &env_mux_multistep,
@@ -40,4 +43,4 @@ static struct EnvVtbl const env_mux_vtbl = {
     &env_mux_get_state,
     &env_mux_free,
     &env_mux_reset
-};      
+};

@@ -32,6 +32,9 @@ void env_maze_free(XCSF *xcsf);
 void env_maze_init(XCSF *xcsf, char *filename);
 void env_maze_reset(XCSF *xcsf);
 
+/**
+ * @brief Maze environment implemented functions.
+ */
 static struct EnvVtbl const env_maze_vtbl = {
     &env_maze_isreset,
     &env_maze_multistep,
