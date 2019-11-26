@@ -123,14 +123,14 @@ void env_maze_init(XCSF *xcsf, char *fname)
     xcsf->num_y_vars = 1;
     xcsf->env = env;
     fclose(fp);
-    printf("Loaded MAZE = %s\n", fname);
-    printf("Dimensions: [%d,%d]\n", env->xsize, env->ysize);
-    for(int i = 0; i < env->ysize; i++) {
-        for(int j = 0; j < env->xsize; j++) {
-            printf("%c", env->maze[i][j]);
-        }
-        printf("\n");
-    }
+//    printf("Loaded MAZE = %s\n", fname);
+//    printf("Dimensions: [%d,%d]\n", env->xsize, env->ysize);
+//    for(int i = 0; i < env->ysize; i++) {
+//        for(int j = 0; j < env->xsize; j++) {
+//            printf("%c", env->maze[i][j]);
+//        }
+//        printf("\n");
+//    }
 }
 
 /**
