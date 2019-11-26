@@ -41,7 +41,7 @@
  * Maze 10: 5.11 \n
  * Woods 101: 2.9 \n
  * Woods 101 1/2: 3.1 \n
- * Woods 102: 3.23
+ * Woods 102: 3.31
  */
 
 #include <stdio.h>
