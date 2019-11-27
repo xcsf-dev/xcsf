@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2019.
- * @brief An implementation of dynamical GP graphs
+ * @brief An implementation of dynamical GP graphs with fuzzy activation functions.
  */ 
 
 #pragma once
@@ -28,7 +28,6 @@
  */ 
 typedef struct GRAPH {
     int *connectivity; //!< Connectivity map
-    double *weights; //!< Connection weights
     double *state; //!< Current internal state
     double *initial_state; //!< Initial states
     int *function; //!< Node activation functions
