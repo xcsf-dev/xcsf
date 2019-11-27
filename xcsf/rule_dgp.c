@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019.
- * @brief Dynamical GP graph rule (condition + prediction) functions.
+ * @brief Dynamical GP graph rule (condition + action) functions.
  */ 
  
 #include <stdio.h>
@@ -31,7 +31,7 @@
 #include "cl.h"
 #include "dgp.h"
 #include "condition.h"
-#include "prediction.h"
+#include "action.h"
 #include "rule_dgp.h"
 
 /**
@@ -41,12 +41,15 @@ typedef struct RULE_DGP{
     GRAPH dgp; //!< DGP graph
 } RULE_DGP;
 
+/* CONDITION FUNCTIONS */
+
 void rule_dgp_cond_rand(XCSF *xcsf, CL *c);
 
 void rule_dgp_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
-    graph_init(xcsf, &new->dgp, xcsf->DGP_NUM_NODES);
+    int n = fmax(xcsf->DGP_NUM_NODES, xcsf->num_actions + 1);
+    graph_init(xcsf, &new->dgp, n);
     graph_rand(xcsf, &new->dgp);
     c->cond = new;
 }
@@ -75,9 +78,7 @@ void rule_dgp_cond_rand(XCSF *xcsf, CL *c)
 
 void rule_dgp_cond_cover(XCSF *xcsf, CL *c, double *x)
 {
-    do {
-        rule_dgp_cond_rand(xcsf, c);
-    } while(!rule_dgp_cond_match(xcsf, c, x));
+    (void)xcsf; (void)c; (void)x;
 }
 
 void rule_dgp_cond_update(XCSF *xcsf, CL *c, double *x, double *y)
@@ -130,59 +131,6 @@ int rule_dgp_cond_size(XCSF *xcsf, CL *c)
     return cond->dgp.n;
 }
 
-void rule_dgp_pred_init(XCSF *xcsf, CL *c)
-{
-    (void)xcsf; (void)c;
-}
-
-void rule_dgp_pred_free(XCSF *xcsf, CL *c)
-{
-    (void)xcsf; (void)c;
-}
-
-void rule_dgp_pred_copy(XCSF *xcsf, CL *to, CL *from)
-{
-    (void)xcsf; (void)to; (void)from;
-}
-
-void rule_dgp_pred_update(XCSF *xcsf, CL *c, double *x, double *y)
-{
-    (void)xcsf; (void)c; (void)y; (void)x;
-}
-
-double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x)
-{
-    (void)x;
-    RULE_DGP *cond = c->cond;
-    for(int i = 0; i < xcsf->num_y_vars; i++) {
-        c->prediction[i] = graph_output(xcsf, &cond->dgp, 1+i);
-    }
-    return c->prediction;
-}
-
-void rule_dgp_pred_print(XCSF *xcsf, CL *c)
-{
-    (void)xcsf; (void)c;
-}
-
-_Bool rule_dgp_pred_crossover(XCSF *xcsf, CL *c1, CL *c2)
-{
-    (void)xcsf; (void)c1; (void)c2;
-    return false;
-}
-
-_Bool rule_dgp_pred_mutate(XCSF *xcsf, CL *c)
-{
-    (void)xcsf; (void)c;
-    return false;
-}
-
-int rule_dgp_pred_size(XCSF *xcsf, CL *c)
-{
-    (void)xcsf; (void)c;
-    return 0;
-}
-
 size_t rule_dgp_cond_save(XCSF *xcsf, CL *c, FILE *fp)
 {
     RULE_DGP *cond = c->cond;
@@ -200,13 +148,87 @@ size_t rule_dgp_cond_load(XCSF *xcsf, CL *c, FILE *fp)
     return s;
 }
 
-size_t rule_dgp_pred_save(XCSF *xcsf, CL *c, FILE *fp)
+/* ACTION FUNCTIONS */
+
+void rule_dgp_act_init(XCSF *xcsf, CL *c)
+{
+    (void)xcsf; (void)c;
+}
+
+void rule_dgp_act_free(XCSF *xcsf, CL *c)
+{
+    (void)xcsf; (void)c;
+}
+ 
+void rule_dgp_act_copy(XCSF *xcsf, CL *to, CL *from)
+{
+    (void)xcsf; (void)to; (void)from;
+}
+ 
+void rule_dgp_act_print(XCSF *xcsf, CL *c)
+{
+    (void)xcsf; (void)c;
+}
+ 
+void rule_dgp_act_rand(XCSF *xcsf, CL *c)
+{
+    (void)xcsf; (void)c;
+}
+  
+void rule_dgp_act_cover(XCSF *xcsf, CL *c, double *x, int action)
+{
+    do {
+        rule_dgp_cond_rand(xcsf, c);
+    } while(!rule_dgp_cond_match(xcsf, c, x) 
+            && rule_dgp_act_compute(xcsf, c, x) != action);
+}
+ 
+int rule_dgp_act_compute(XCSF *xcsf, CL *c, double *x)
+{
+    (void)x; // graph already updated
+    RULE_DGP *cond = c->cond;
+    c->action = 0;
+    double highest = graph_output(xcsf, &cond->dgp, 1);
+    for(int i = 1; i < xcsf->num_actions; i++) {
+        double tmp = graph_output(xcsf, &cond->dgp, 1+i);
+        if(tmp > highest) {
+            c->action = i;
+            highest = tmp;
+        }
+    }
+    return c->action;
+}                
+
+void rule_dgp_act_update(XCSF *xcsf, CL *c, double *x, double *y)
+{
+    (void)xcsf; (void)c; (void)x; (void)y;
+}
+
+_Bool rule_dgp_act_crossover(XCSF *xcsf, CL *c1, CL *c2)
+{
+    (void)xcsf; (void)c1; (void)c2;
+    return false;
+}
+
+_Bool rule_dgp_act_general(XCSF *xcsf, CL *c1, CL *c2)
+{
+    (void)xcsf; (void)c1; (void)c2;
+    return false;
+}
+
+_Bool rule_dgp_act_mutate(XCSF *xcsf, CL *c)
+{
+    (void)xcsf; (void)c;
+    return false;
+}
+
+size_t rule_dgp_act_save(XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf; (void)c; (void)fp;
     return 0;
 }
 
-size_t rule_dgp_pred_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t rule_dgp_act_load(XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf; (void)c; (void)fp;
     return 0;

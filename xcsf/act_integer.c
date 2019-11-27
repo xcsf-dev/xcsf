@@ -80,9 +80,9 @@ void act_integer_rand(XCSF *xcsf, CL *c)
     c->action = irand_uniform(0, xcsf->num_actions);
 }
  
-void act_integer_cover(XCSF *xcsf, CL *c, int action)
+void act_integer_cover(XCSF *xcsf, CL *c, double *x, int action)
 {
-    (void)xcsf;
+    (void)xcsf; (void)x;
     c->action = action;
 }
 

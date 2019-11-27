@@ -90,7 +90,7 @@ void cl_cover(XCSF *xcsf, CL *c, double *x, int action)
 {
     cl_rand(xcsf, c);
     cond_cover(xcsf, c, x);
-    act_cover(xcsf, c, action);
+    act_cover(xcsf, c, x, action);
 }
 
 /**

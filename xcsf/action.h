@@ -35,7 +35,7 @@ struct ActVtbl {
 	_Bool (*act_impl_mutate)(XCSF *xcsf, CL *c);
 	int (*act_impl_compute)(XCSF *xcsf, CL *c, double *x);
 	void (*act_impl_copy)(XCSF *xcsf, CL *to,  CL *from);
-	void (*act_impl_cover)(XCSF *xcsf, CL *c, int action);
+	void (*act_impl_cover)(XCSF *xcsf, CL *c, double *x, int action);
 	void (*act_impl_free)(XCSF *xcsf, CL *c);
 	void (*act_impl_init)(XCSF *xcsf, CL *c);
 	void (*act_impl_rand)(XCSF *xcsf, CL *c);
@@ -73,8 +73,8 @@ static inline void act_copy(XCSF *xcsf, CL *to, CL *from) {
 	(*from->act_vptr->act_impl_copy)(xcsf, to, from);
 }
  
-static inline void act_cover(XCSF *xcsf, CL *c, int action) {
-	(*c->act_vptr->act_impl_cover)(xcsf, c, action);
+static inline void act_cover(XCSF *xcsf, CL *c, double *x, int action) {
+	(*c->act_vptr->act_impl_cover)(xcsf, c, x, action);
 }
  
 static inline void act_free(XCSF *xcsf, CL *c) {

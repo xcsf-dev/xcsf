@@ -34,7 +34,7 @@
 #include "cond_gp.h"
 #include "cond_dgp.h"
 #include "cond_neural.h"       
-#include "prediction.h"
+#include "action.h"
 #include "rule_dgp.h"
 
 /**
@@ -65,7 +65,7 @@ void condition_set(XCSF *xcsf, CL *c)
             break;
         case 11:
             c->cond_vptr = &rule_dgp_cond_vtbl;
-            c->pred_vptr = &rule_dgp_pred_vtbl;
+            c->act_vptr = &rule_dgp_act_vtbl;
             break;
         default:
             printf("Invalid condition type specified: %d\n", xcsf->COND_TYPE);

@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019.
- * @brief Dynamical GP graph rule (condition + prediction) functions.
+ * @brief Dynamical GP graph rule (condition + action) functions.
  */ 
 
 #pragma once
@@ -37,6 +37,9 @@ int rule_dgp_cond_size(XCSF *xcsf, CL *c);
 size_t rule_dgp_cond_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t rule_dgp_cond_load(XCSF *xcsf, CL *c, FILE *fp);
 
+/**
+ * @brief Dynamical GP rule condition implemented functions.
+ */
 static struct CondVtbl const rule_dgp_cond_vtbl = {
     &rule_dgp_cond_crossover,
     &rule_dgp_cond_general,
@@ -53,28 +56,35 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
     &rule_dgp_cond_load
 };      
 
-double *rule_dgp_pred_compute(XCSF *xcsf, CL *c, double *x);
-_Bool rule_dgp_pred_crossover(XCSF *xcsf, CL *c1, CL *c2);
-_Bool rule_dgp_pred_mutate(XCSF *xcsf, CL *c);
-void rule_dgp_pred_copy(XCSF *xcsf, CL *to,  CL *from);
-void rule_dgp_pred_free(XCSF *xcsf, CL *c);
-void rule_dgp_pred_init(XCSF *xcsf, CL *c);
-void rule_dgp_pred_print(XCSF *xcsf, CL *c);
-void rule_dgp_pred_update(XCSF *xcsf, CL *c, double *x, double *y);
-int rule_dgp_pred_size(XCSF *xcsf, CL *c);
-size_t rule_dgp_pred_save(XCSF *xcsf, CL *c, FILE *fp);
-size_t rule_dgp_pred_load(XCSF *xcsf, CL *c, FILE *fp);
+_Bool rule_dgp_act_crossover(XCSF *xcsf, CL *c1, CL *c2);
+_Bool rule_dgp_act_general(XCSF *xcsf, CL *c1, CL *c2);
+_Bool rule_dgp_act_mutate(XCSF *xcsf, CL *c);
+int rule_dgp_act_compute(XCSF *xcsf, CL *c, double *x);
+void rule_dgp_act_copy(XCSF *xcsf, CL *to, CL *from);
+void rule_dgp_act_cover(XCSF *xcsf, CL *c, double *x, int action);
+void rule_dgp_act_free(XCSF *xcsf, CL *c);
+void rule_dgp_act_init(XCSF *xcsf, CL *c);
+void rule_dgp_act_print(XCSF *xcsf, CL *c);
+void rule_dgp_act_rand(XCSF *xcsf, CL *c);
+void rule_dgp_act_update(XCSF *xcsf, CL *c, double *x, double *y);
+size_t rule_dgp_act_save(XCSF *xcsf, CL *c, FILE *fp);
+size_t rule_dgp_act_load(XCSF *xcsf, CL *c, FILE *fp);
 
-static struct PredVtbl const rule_dgp_pred_vtbl = {
-    &rule_dgp_pred_crossover,
-    &rule_dgp_pred_mutate,
-    &rule_dgp_pred_compute,
-    &rule_dgp_pred_copy,
-    &rule_dgp_pred_free,
-    &rule_dgp_pred_init,
-    &rule_dgp_pred_print,
-    &rule_dgp_pred_update,
-    &rule_dgp_pred_size,
-    &rule_dgp_pred_save,
-    &rule_dgp_pred_load
+/**
+ * @brief Dynamical GP rule action implemented functions.
+ */
+static struct ActVtbl const rule_dgp_act_vtbl = {
+    &rule_dgp_act_general,
+    &rule_dgp_act_crossover,
+    &rule_dgp_act_mutate,
+    &rule_dgp_act_compute,
+    &rule_dgp_act_copy,
+    &rule_dgp_act_cover,
+    &rule_dgp_act_free,
+    &rule_dgp_act_init,
+    &rule_dgp_act_rand,
+    &rule_dgp_act_print,
+    &rule_dgp_act_update,
+    &rule_dgp_act_save,
+    &rule_dgp_act_load
 };
