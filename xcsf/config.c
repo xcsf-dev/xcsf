@@ -163,6 +163,10 @@ void constants_init(XCSF *xcsf, const char *filename)
     if(strncmp(getvalue("PRED_SGD_WEIGHTS"), "true", 4) == 0) {
         xcsf->PRED_SGD_WEIGHTS = true;
     }
+    xcsf->PRED_RESET = false;
+    if(strncmp(getvalue("PRED_RESET"), "true", 4) == 0) {
+        xcsf->PRED_RESET = true;
+    }
     // initialise (shared) tree-GP constants
     tree_init_cons(xcsf);
     // initialise loss/error function

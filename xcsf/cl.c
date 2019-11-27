@@ -76,7 +76,12 @@ void cl_copy(XCSF *xcsf, CL *to, CL *from)
     sam_copy(xcsf, to->mu, from->mu);
     act_copy(xcsf, to, from);
     cond_copy(xcsf, to, from);
-    pred_copy(xcsf, to, from);
+    if(xcsf->PRED_RESET) {
+        pred_init(xcsf, to);
+    }
+    else {
+        pred_copy(xcsf, to, from);
+    }
 }
 
 /**

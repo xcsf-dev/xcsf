@@ -136,6 +136,7 @@ typedef struct XCSF {
     int COND_HIDDEN_NEURON_ACTIVATION; //!< Activation function for the hidden layer
  
     // prediction parameters
+    _Bool PRED_RESET; //!< Whether to reset offspring predictions instead of copying
     double PRED_ETA; //!< Gradient desecnt rate for updating the prediction
     double PRED_X0; //!< Prediction weight vector offset value
     double PRED_RLS_SCALE_FACTOR; //!< Initial diagonal values of the RLS gain-matrix
