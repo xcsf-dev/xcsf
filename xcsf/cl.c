@@ -286,7 +286,20 @@ _Bool cl_m(XCSF *xcsf, CL *c)
     (void)xcsf;
     return c->m;
 }
-
+ 
+/**
+ * @brief Computes the current classifier action using the input.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier calculating the action.
+ * @param x The input state.
+ * @return The classifier's action.
+ */
+int cl_action(XCSF *xcsf, CL *c, double *x)
+{
+    c->action = act_compute(xcsf, c, x);
+    return c->action;
+}
+ 
 /**
  * @brief Computes the current classifier payoff prediction using the input.
  * @param xcsf The XCSF data structure.

@@ -180,14 +180,16 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
     for(int i = 0; i < xcsf->pset.size; i++) {
         if(cl_m(xcsf, blist[i]->cl)) {
             set_add(xcsf, mset, blist[i]->cl);
-            act_covered[blist[i]->cl->action] = true;
+            int action = cl_action(xcsf, blist[i]->cl, x);
+            act_covered[action] = true;
         }
     }
 #else
     for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         if(cl_match(xcsf, iter->cl, x)) {
             set_add(xcsf, mset, iter->cl);
-            act_covered[iter->cl->action] = true;
+            int action = cl_action(xcsf, iter->cl, x);
+            act_covered[action] = true;
         }
     }   
 #endif
