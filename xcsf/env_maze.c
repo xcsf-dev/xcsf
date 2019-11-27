@@ -58,7 +58,7 @@
 #include "env_maze.h"
      
 #define MAX_SIZE 50 //!< The maximum width/height of a maze
-#define MAX_PAYOFF 1000.0 //!< The payoff provided at a food position
+#define MAX_PAYOFF 1.0 //!< The payoff provided at a food position
 const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; //!< Possible maze moves on x-axis
 const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1}; //!< Possible maze moves on y-axis
 
