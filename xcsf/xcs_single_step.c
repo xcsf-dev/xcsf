@@ -79,7 +79,13 @@ void xcs_single_explore(XCSF *xcsf)
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, x);
     pa_build(xcsf, &mset, x);
-    int action = pa_rand_action(xcsf);
+    int action = 0;
+    if(rand_uniform(0,1) < xcsf->P_EXPLORE) {
+        action = pa_rand_action(xcsf);
+    }
+    else {
+        action = pa_best_action(xcsf);
+    }
     double reward = env_execute(xcsf, action);
     set_action(xcsf, &mset, &aset, action);
     set_update(xcsf, &aset, &kset, x, &reward, true);
