@@ -49,7 +49,6 @@ double xcs_multi_step_exp(XCSF *xcsf)
     gplot_init(xcsf);
     pa_init(xcsf);
     double perr = 0, err = 0, pterr = 0;
-    xcsf->train = true;
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         xcs_multi_explore(xcsf);
         perr += xcs_multi_exploit(xcsf, &pterr);
@@ -71,6 +70,7 @@ double xcs_multi_step_exp(XCSF *xcsf)
  */
 int xcs_multi_explore(XCSF *xcsf)
 {
+    xcsf->train = true;
     _Bool reset = false; 
     double prev_reward = 0;
     double *prev_state = malloc(sizeof(double) * xcsf->num_x_vars);
@@ -87,6 +87,7 @@ int xcs_multi_explore(XCSF *xcsf)
         double *state = env_get_state(xcsf);
         // generate match set
         set_match(xcsf, &mset, &kset, state);
+        // calculate the prediction array
         pa_build(xcsf, &mset, state);
         // select an action to perform
         int action = 0;
@@ -137,6 +138,7 @@ int xcs_multi_explore(XCSF *xcsf)
  */
 int xcs_multi_exploit(XCSF *xcsf, double *error)
 {
+    xcsf->train = false;
     _Bool reset = false; 
     double prev_reward = 0, prev_pred = 0;
     double *prev_state = malloc(sizeof(double) * xcsf->num_x_vars);
@@ -154,8 +156,9 @@ int xcs_multi_exploit(XCSF *xcsf, double *error)
         double *state = env_get_state(xcsf);
         // generate match set
         set_match(xcsf, &mset, &kset, state);
-        // select the best move
+        // calculate the prediction array
         pa_build(xcsf, &mset, state);
+        // select the best move
         int action = pa_best_action(xcsf);
         // generate action set
         set_action(xcsf, &mset, &aset, action);
