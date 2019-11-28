@@ -178,7 +178,7 @@ size_t rule_neural_cond_load(XCSF *xcsf, CL *c, FILE *fp)
 {
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
     size_t s = neural_load(xcsf, &new->net, fp);
-    new->num_outputs = log2(xcsf->num_actions);
+    new->num_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
     c->cond = new;
     //printf("rule neural loaded %lu elements\n", (unsigned long)s);
     return s;

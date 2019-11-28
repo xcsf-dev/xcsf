@@ -146,7 +146,7 @@ size_t rule_dgp_cond_load(XCSF *xcsf, CL *c, FILE *fp)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
     size_t s = graph_load(xcsf, &new->dgp, fp);
-    new->num_outputs = log2(xcsf->num_actions);
+    new->num_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
     c->cond = new;
     //printf("rule dgp loaded %lu elements\n", (unsigned long)s);
     return s;
