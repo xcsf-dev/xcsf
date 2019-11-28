@@ -14,8 +14,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-import xcsf.xcsf as xcsf
+
+import xcsf.xcsf as xcsf # Import XCSF
 import numpy as np
 from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
@@ -26,6 +26,10 @@ from sklearn.neural_network import MLPRegressor
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 np.set_printoptions(suppress=True)
+
+###############################
+# Load training and test data
+###############################
 
 # Load data from https://www.openml.org/d/189
 data = fetch_openml(data_id=189)
@@ -54,6 +58,10 @@ print("test_Y shape = "+str(np.shape(test_Y)))
 xvars = np.shape(train_X)[1]
 yvars = np.shape(train_Y)[1]
 print("xvars = "+str(xvars) + " yvars = " + str(yvars))
+
+###################
+# Initialise XCSF
+###################
 
 # initialise XCSF
 xcs = xcsf.XCS(xvars, yvars)
@@ -110,6 +118,27 @@ for i in range(n):
     bar.update(1)
 bar.close()
 
+# plot XCSF learning performance
+plt.figure(figsize=(10,6))
+plt.plot(trials, train_mse, label='Train MSE')
+plt.plot(trials, test_mse, label='Test MSE')
+#psize[:] = [x / xcs.POP_SIZE for x in psize] # scale for plotting
+#msize[:] = [x / xcs.POP_SIZE for x in msize]
+#plt.plot(trials, psize, label='Population macro-classifiers / P')
+#plt.plot(trials, msize, label='Avg. match-set macro-classifiers / P')
+plt.grid(linestyle='dotted', linewidth=1)
+plt.axhline(y=xcs.EPS_0, xmin=0.0, xmax=1.0, linestyle='dashed', color='k')
+plt.title('XCSF Training Performance', fontsize=14)
+plt.xlabel('Trials', fontsize=12)
+plt.ylabel('Mean Squared Error', fontsize=12)
+plt.xlim([0,n*xcs.MAX_TRIALS])
+plt.legend()
+plt.show()
+
+############################
+# Compare with alternatives
+############################
+
 # final XCSF test score
 xcsf_pred = xcs.predict(test_X)
 xcsf_mse = mean_squared_error(xcsf_pred, test_Y)
@@ -129,24 +158,10 @@ mlp_pred = mlp.predict(test_X)
 mlp_mse = mean_squared_error(mlp_pred, test_Y)
 print('MLP Regressor MSE = %.4f' % (mlp_mse))
 
-# plot XCSF learning performance
-plt.figure(figsize=(10,6))
-plt.plot(trials, train_mse, label='Train MSE')
-plt.plot(trials, test_mse, label='Test MSE')
-#psize[:] = [x / xcs.POP_SIZE for x in psize] # scale for plotting
-#msize[:] = [x / xcs.POP_SIZE for x in msize]
-#plt.plot(trials, psize, label='Population macro-classifiers / P')
-#plt.plot(trials, msize, label='Avg. match-set macro-classifiers / P')
-plt.grid(linestyle='dotted', linewidth=1)
-plt.axhline(y=xcs.EPS_0, xmin=0.0, xmax=1.0, linestyle='dashed', color='k')
-plt.title('XCSF Training Performance', fontsize=14)
-plt.xlabel('Trials', fontsize=12)
-plt.ylabel('Mean Squared Error', fontsize=12)
-plt.xlim([0,n*xcs.MAX_TRIALS])
-plt.legend()
-plt.show()
+#####################################
+# Show some predictions vs. answers
+#####################################
 
-# show some predictions vs. answers
 pred = xcs.predict(test_X[:10])
 print("*****************************")
 print("first 10 predictions = ")
