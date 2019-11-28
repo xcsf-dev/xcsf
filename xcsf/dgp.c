@@ -327,7 +327,7 @@ double node_activate(int function, double *inputs, int k)
             break;
         default: // Invalid function
             printf("Error updating node: Invalid function: %d\n", function);
-            exit(0);
+            exit(EXIT_FAILURE);
     }
     state = constrain(0, 1, state);
     return state;
