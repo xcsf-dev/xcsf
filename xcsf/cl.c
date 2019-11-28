@@ -149,8 +149,8 @@ double cl_acc(XCSF *xcsf, CL *c)
  * @param c The classifier to update.
  * @param x The input state.
  * @param y The payoff value.
- * @param current Whether the payoff is for the current or previous state.
  * @param set_num The number of micro-classifiers in the set.
+ * @param current Whether the payoff is for the current or previous state.
  */
 void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num, _Bool current)
 {
