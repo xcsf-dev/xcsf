@@ -229,7 +229,7 @@ int rule_neural_act_compute(XCSF *xcsf, CL *c, double *x)
             c->action += pow(2,i);
         }
     }
-    c->action = iconstrain(0, xcsf->num_actions, c->action);
+    c->action = iconstrain(0, xcsf->num_actions-1, c->action);
     return c->action;
 }                
 
