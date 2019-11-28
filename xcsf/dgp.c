@@ -107,8 +107,8 @@ void graph_rand(XCSF *xcsf, GRAPH *dgp)
     dgp->t = irand_uniform(1,xcsf->MAX_T);
     for(int i = 0; i < dgp->n; i++) {
         dgp->function[i] = irand_uniform(0, NUM_FUNC);
-        dgp->initial_state[i] = rand_normal(0,0.1);
-        dgp->state[i] = rand_normal(0,0.1);
+        dgp->initial_state[i] = rand_uniform(0,1);
+        dgp->state[i] = rand_uniform(0,1);
     }
     for(int i = 0; i < dgp->klen; i++) {
         // other nodes within the graph
@@ -202,8 +202,6 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
         if(rand_uniform(0,1) < xcsf->F_MUTATION) {
             dgp->function[i] = irand_uniform(0, NUM_FUNC);
         }
-        // mutate initial state
-        dgp->initial_state[i] += rand_normal(0, xcsf->S_MUTATION);
         // mutate connectivity map
         for(int j = 0; j < xcsf->MAX_K; j++) {
             int idx = (i*xcsf->MAX_K)+j;
