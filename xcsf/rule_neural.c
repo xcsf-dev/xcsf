@@ -43,6 +43,7 @@
  */ 
 typedef struct RULE_NEURAL {
     NET net; //!< Neural network
+    int num_outputs; //!< Number of action nodes (binarised)
 } RULE_NEURAL;
 
 /* CONDITION FUNCTIONS */
@@ -83,8 +84,9 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
     neural_layer_insert(xcsf, &new->net, l, 0); 
     // output layer
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    int n = xcsf->num_actions + 1; // number of output neurons
-    l = neural_layer_connected_init(xcsf, hmax, n, n, LOGISTIC, lopt);
+    int n = fmax(1, ceil(log2(xcsf->num_actions))); // number of action neurons
+    new->num_outputs = n;
+    l = neural_layer_connected_init(xcsf, hmax, n+1, n+1, LOGISTIC, lopt);
     neural_layer_insert(xcsf, &new->net, l, 1); 
     c->cond = new; 
 }
@@ -100,6 +102,7 @@ void rule_neural_cond_copy(XCSF *xcsf, CL *to, CL *from)
 {
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
     RULE_NEURAL *from_cond = from->cond;
+    new->num_outputs = from_cond->num_outputs;
     neural_copy(xcsf, &new->net, &from_cond->net);
     to->cond = new;
 }
@@ -175,6 +178,7 @@ size_t rule_neural_cond_load(XCSF *xcsf, CL *c, FILE *fp)
 {
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
     size_t s = neural_load(xcsf, &new->net, fp);
+    new->num_outputs = log2(xcsf->num_actions);
     c->cond = new;
     //printf("rule neural loaded %lu elements\n", (unsigned long)s);
     return s;
@@ -220,14 +224,12 @@ int rule_neural_act_compute(XCSF *xcsf, CL *c, double *x)
     (void)x; // network already updated
     RULE_NEURAL *cond = c->cond;
     c->action = 0;
-    double highest = neural_output(xcsf, &cond->net, 1);
-    for(int i = 1; i < xcsf->num_actions; i++) {
-        double tmp = neural_output(xcsf, &cond->net, 1+i);
-        if(tmp > highest) {
-            c->action = i;
-            highest = tmp;
+    for(int i = 0; i < cond->num_outputs; i++) {
+        if(neural_output(xcsf, &cond->net, i+1) > 0.5) {
+            c->action += pow(2,i);
         }
     }
+    c->action = iconstrain(0, xcsf->num_actions, c->action);
     return c->action;
 }                
 

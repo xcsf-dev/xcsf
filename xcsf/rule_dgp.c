@@ -49,7 +49,7 @@ void rule_dgp_cond_rand(XCSF *xcsf, CL *c);
 void rule_dgp_cond_init(XCSF *xcsf, CL *c)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
-    new->num_outputs = log2(xcsf->num_actions);
+    new->num_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
     int n = fmax(xcsf->DGP_NUM_NODES, new->num_outputs + 1);
     graph_init(xcsf, &new->dgp, n);
     graph_rand(xcsf, &new->dgp);
@@ -197,6 +197,7 @@ int rule_dgp_act_compute(XCSF *xcsf, CL *c, double *x)
             c->action += pow(2,i);
         }
     }
+    c->action = iconstrain(0, xcsf->num_actions, c->action);
     return c->action;
 }                
 
