@@ -4,15 +4,14 @@ environment:
   matrix:
     - TOOLCHAIN: "Visual Studio 2017 Clang/LLVM 9.0.0"
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      GENERATOR: Visual Studio 15 2017 Win64
       PATH: C:\Program Files\LLVM\bin;%PATH%
       CMAKE_ARGS: -DCMAKE_C_COMPILER=clang-cl.exe -DCMAKE_CXX_COMPILER=clang-cl.exe
       CLANG_URL: "https://releases.llvm.org/9.0.0/LLVM-9.0.0-win64.exe"
-      PACKAGE_ID: vs2017clang9_x86_64
       BOOST_ROOT: C:\Libraries\boost_1_69_0
+      CMAKE_EXTRA_OPTIONS: -DPARALLEL=OFF
 
-build:
-  verbosity: detailed
+configuration:
+  - Release
 
 install:
   - if defined CLANG_URL appveyor DownloadFile %CLANG_URL% -FileName llvm-installer.exe
@@ -21,5 +20,8 @@ install:
 
 build_script:
   - cd build
-  - cmake %CMAKE_ARGS% -G"%GENERATOR%" -DPARALLEL="OFF" ..
-  - msbuild xcsf.slAT
+  - cmake
+    %CMAKE_ARGS%
+    "-DCMAKE_BUILD_TYPE=%configuration%"
+    %CMAKE_EXTRA_OPTIONS%
+    ..
