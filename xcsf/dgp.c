@@ -193,7 +193,7 @@ void graph_free(XCSF *xcsf, GRAPH *dgp)
  * @brief Mutates a specified DGP graph.
  * @param xcsf The XCSF data structure.
  * @param dgp The DGP graph to be mutated.
- * @return True.
+ * @return Whether any alterations were made.
  */
 _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
 {
@@ -229,7 +229,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
         }   
     }               
     // mutate number of update cycles
-    if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+    if(rand_uniform(0,1) < xcsf->S_MUTATION) {
         orig = dgp->t;
         if(rand_uniform(0,1) < 0.5) {
             if(dgp->t > 1) {
@@ -254,6 +254,9 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
  * @param dgp1 The first DGP graph to perform crossover.
  * @param dgp2 The second DGP graph to perform crossover.
  * @return Whether crossover was performed.
+ *
+ * @details Due to the competing conventions problem this may degrade
+ * performance.
  */
 _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 {
