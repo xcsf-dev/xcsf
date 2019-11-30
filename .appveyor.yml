@@ -7,7 +7,6 @@ environment:
       MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
       MSVC_SETUP_ARG: x64
       PATH: C:\Program Files\LLVM\bin;%PATH%
-      GENERATOR: -T"LLVM-vs2017"
       CMAKE_ARGS: -DCMAKE_C_COMPILER=clang-cl.exe -DCMAKE_CXX_COMPILER=clang-cl.exe
       CLANG_URL: "https://releases.llvm.org/9.0.0/LLVM-9.0.0-win64.exe"
       BOOST_ROOT: C:\Libraries\boost_1_69_0
@@ -27,8 +26,8 @@ before_build:
 build_script:
   - cd build
   - cmake
-    %GENERATOR%
     %CMAKE_ARGS%
     "-DCMAKE_BUILD_TYPE=%configuration%"
     %CMAKE_EXTRA_OPTIONS%
     ..
+  - msbuild xcsf.sln
