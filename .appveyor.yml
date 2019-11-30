@@ -1,25 +1,25 @@
 # Configuration script for use with continuous integration service appveyor.com
 
-version: 1.0.{build}
-
-os:
-  - Visual Studio 2017
-
 environment:
-  CLANG_URL: "https://releases.llvm.org/9.0.0/LLVM-9.0.0-win64.exe"
-  BOOST_ROOT: C:\Libraries\boost_1_69_0
-
   matrix:
-    - BUILD: -G "Visual Studio 15 2017" -A x64
+    - TOOLCHAIN: "Visual Studio 2017 Clang/LLVM 9.0.0"
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      GENERATOR: Visual Studio 15 2017 Win64
+      PATH: C:\Program Files\LLVM\bin;%PATH%
+      CMAKE_ARGS: -DCMAKE_C_COMPILER=clang-cl.exe -DCMAKE_CXX_COMPILER=clang-cl.exe
+      CLANG_URL: "https://releases.llvm.org/9.0.0/LLVM-9.0.0-win64.exe"
+      PACKAGE_ID: vs2017clang9_x86_64
+      BOOST_ROOT: C:\Libraries\boost_1_69_0
 
 build:
   verbosity: detailed
 
+install:
+  - if defined CLANG_URL appveyor DownloadFile %CLANG_URL% -FileName llvm-installer.exe
+    if defined CLANG_URL START /WAIT llvm-installer.exe /S /D=C:\"Program Files\LLVM"
+  - if defined CLANG_URL clang-cl -v
+
 build_script:
-  - appveyor DownloadFile %CLANG_URL% -FileName llvm-installer.exe
-  - llvm-installer.exe /S /D=C:\LLVM
-  - set PATH=C:\LLVM\bin;%PATH%
-  - clang-cl -v
   - cd build
-  - cmake %BUILD% -DCMAKE_C_COMPILER=clang-cl.exe -DCMAKE_CXX_COMPILER=clang-cl.exe -DPARALLEL="OFF" ..
-  - msbuild xcsf.sln
+  - cmake %CMAKE_ARGS% -G"%GENERATOR%" -DPARALLEL="OFF" ..
+  - msbuild xcsf.slAT
