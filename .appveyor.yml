@@ -5,6 +5,7 @@ environment:
     - TOOLCHAIN: "Visual Studio 2017 Clang/LLVM 9.0.0"
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       PATH: C:\Program Files\LLVM\bin;%PATH%
+      GENERATOR: -T"LLVM-vs2017"
       CMAKE_ARGS: -DCMAKE_C_COMPILER=clang-cl.exe -DCMAKE_CXX_COMPILER=clang-cl.exe
       CLANG_URL: "https://releases.llvm.org/9.0.0/LLVM-9.0.0-win64.exe"
       BOOST_ROOT: C:\Libraries\boost_1_69_0
@@ -21,6 +22,7 @@ install:
 build_script:
   - cd build
   - cmake
+    %GENERATOR%
     %CMAKE_ARGS%
     "-DCMAKE_BUILD_TYPE=%configuration%"
     %CMAKE_EXTRA_OPTIONS%
