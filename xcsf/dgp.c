@@ -136,19 +136,17 @@ void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs)
     }
     double in[xcsf->MAX_K];
     for(int t = 0; t < dgp->t; t++) {
-        // synchronously update each node
+        // synchronously update each node in parallel
         for(int i = 0; i < dgp->n; i++) {
+            int shift = i * xcsf->MAX_K;
             // each connection
             for(int k = 0; k < xcsf->MAX_K; k++) {
-                int idx = (i * xcsf->MAX_K) + k;
-                int c = dgp->connectivity[idx];
-                // another node within the graph
-                if(c >= 0) {
-                    in[k] = dgp->state[c];
-                }
-                // external input
-                else {
+                int c = dgp->connectivity[shift + k];
+                if(c < 0) { // external input
                     in[k] = inputs[abs(c)-1];
+                }
+                else { // another node within the graph
+                    in[k] = dgp->state[c];
                 }
             }
             dgp->tmp[i] = node_activate(dgp->function[i], in, xcsf->MAX_K);
@@ -199,15 +197,23 @@ void graph_free(XCSF *xcsf, GRAPH *dgp)
  */
 _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
 {
+    _Bool mod = false;
+    int orig;
     for(int i = 0; i < dgp->n; i++) {
         // mutate function
         if(rand_uniform(0,1) < xcsf->F_MUTATION) {
+            orig = dgp->function[i];
             dgp->function[i] = irand_uniform(0, NUM_FUNC);
+            if(orig != dgp->function[i]) {
+                mod = true;
+            }
         }
         // mutate connectivity map
+        int shift = i * xcsf->MAX_K;
         for(int j = 0; j < xcsf->MAX_K; j++) {
-            int idx = (i*xcsf->MAX_K)+j;
+            int idx = shift + j;
             if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+                orig = dgp->connectivity[idx];
                 // external connection
                 if(rand_uniform(0,1) < 0.5) {
                     dgp->connectivity[idx] = -(irand_uniform(1,xcsf->num_x_vars+1));
@@ -216,11 +222,15 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
                 else {
                     dgp->connectivity[idx] = irand_uniform(0,dgp->n);
                 }
+                if(orig != dgp->connectivity[idx]) {
+                    mod = true;
+                }
             }
         }   
     }               
     // mutate number of update cycles
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+        orig = dgp->t;
         if(rand_uniform(0,1) < 0.5) {
             if(dgp->t > 1) {
                 (dgp->t)--;
@@ -231,8 +241,11 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
                 (dgp->t)++;
             }
         }
+        if(orig != dgp->t) {
+            mod = true;
+        }
     }
-    return true;
+    return mod;
 }
 
 /**
