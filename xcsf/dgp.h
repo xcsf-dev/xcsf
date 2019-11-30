@@ -29,6 +29,7 @@
 typedef struct GRAPH {
     int *connectivity; //!< Connectivity map
     double *state; //!< Current internal state
+    double *tmp; //!< Temporary storage for synchronous update
     double *initial_state; //!< Initial states
     int *function; //!< Node activation functions
     int n; //!< Number of nodes

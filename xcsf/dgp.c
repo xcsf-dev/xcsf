@@ -31,7 +31,7 @@
 #include "utils.h"
 #include "dgp.h"
 
-#define NUM_FUNC 6 //!< number of selectable node functions
+#define NUM_FUNC 6 //!< Number of selectable node functions
 
 char *function_string(int function);
 double node_activate(int function, double *inputs, int k);
@@ -48,6 +48,7 @@ void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
     dgp->n = n;
     dgp->klen = n * xcsf->MAX_K;
     dgp->state = malloc(sizeof(double) * dgp->n);
+    dgp->tmp = malloc(sizeof(double) * dgp->n);
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
     dgp->function = malloc(sizeof(int) * dgp->n);
     dgp->connectivity = malloc(sizeof(int) * dgp->klen);
@@ -150,8 +151,9 @@ void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs)
                     in[k] = inputs[abs(c)-1];
                 }
             }
-            dgp->state[i] = node_activate(dgp->function[i], in, xcsf->MAX_K);
+            dgp->tmp[i] = node_activate(dgp->function[i], in, xcsf->MAX_K);
         }
+        memcpy(dgp->state, dgp->tmp, sizeof(double) * dgp->n);
     }
 }
 
@@ -390,6 +392,7 @@ size_t graph_load(XCSF *xcsf, GRAPH *dgp, FILE *fp)
     s += fread(&dgp->t, sizeof(int), 1, fp);
     s += fread(&dgp->klen, sizeof(int), 1, fp);
     dgp->state = malloc(sizeof(double) * dgp->n);
+    dgp->tmp = malloc(sizeof(double) * dgp->n);
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
     dgp->function = malloc(sizeof(int) * dgp->n);
     dgp->connectivity = malloc(sizeof(int) * dgp->klen);
