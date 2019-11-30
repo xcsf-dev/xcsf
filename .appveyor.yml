@@ -4,6 +4,8 @@ environment:
   matrix:
     - TOOLCHAIN: "Visual Studio 2017 Clang/LLVM 9.0.0"
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+      MSVC_SETUP_ARG: x64
       PATH: C:\Program Files\LLVM\bin;%PATH%
       GENERATOR: -T"LLVM-vs2017"
       CMAKE_ARGS: -DCMAKE_C_COMPILER=clang-cl.exe -DCMAKE_CXX_COMPILER=clang-cl.exe
@@ -18,6 +20,9 @@ install:
   - if defined CLANG_URL appveyor DownloadFile %CLANG_URL% -FileName llvm-installer.exe
     if defined CLANG_URL START /WAIT llvm-installer.exe /S /D=C:\"Program Files\LLVM"
   - if defined CLANG_URL clang-cl -v
+
+before_build:
+  - call "%MSVC_SETUP_PATH%" %MSVC_SETUP_ARG%
 
 build_script:
   - cd build
