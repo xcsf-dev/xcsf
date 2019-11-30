@@ -185,6 +185,7 @@ void graph_free(XCSF *xcsf, GRAPH *dgp)
     (void)xcsf;
     free(dgp->connectivity);
     free(dgp->state);
+    free(dgp->tmp);
     free(dgp->initial_state);
     free(dgp->function);
 }
