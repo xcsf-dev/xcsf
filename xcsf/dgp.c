@@ -137,7 +137,7 @@ void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs)
     double in[xcsf->MAX_K];
     for(int t = 0; t < dgp->t; t++) {
         // synchronously update each node
-        for(int i = dgp->n-1; i >= 0; i--) {
+        for(int i = 0; i < dgp->n; i++) {
             // each connection
             for(int k = 0; k < xcsf->MAX_K; k++) {
                 int idx = (i * xcsf->MAX_K) + k;
