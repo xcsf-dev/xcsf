@@ -20,7 +20,7 @@
  * @date 2016--2019.
  * @brief An implementation of dynamical GP graphs with fuzzy activation functions.
  */ 
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -31,7 +31,7 @@
 #include "utils.h"
 #include "dgp.h"
 
-#define NUM_FUNC 6 //!< Number of selectable node functions
+#define NUM_FUNC 3 //!< Number of selectable node functions
 
 char *function_string(int function);
 double node_activate(int function, double *inputs, int k);
@@ -232,16 +232,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
     // mutate number of update cycles
     if(rand_uniform(0,1) < xcsf->S_MUTATION) {
         orig = dgp->t;
-        if(rand_uniform(0,1) < 0.5) {
-            if(dgp->t > 1) {
-                (dgp->t)--;
-            }
-        }
-        else {
-            if(dgp->t < xcsf->MAX_T) {
-                (dgp->t)++;
-            }
-        }
+        dgp->t = irand_uniform(1,xcsf->MAX_T);
         if(orig != dgp->t) {
             mod = true;
         }
@@ -313,36 +304,20 @@ double node_activate(int function, double *inputs, int k)
     double state = 0;
     switch(function)
     {
-        case 0: // Fuzzy OR (Max/Min)
-            state = inputs[0];
-            for(int i = 1; i < k; i++) {
-                state = fmax(state, inputs[i]);
-            }
+        case 0: // Fuzzy NOT
+            state = 1 - inputs[0];
             break;
-        case 1: // Fuzzy AND (CFMQVS and Probabilistic)
+        case 1: // Fuzzy AND (CFMQVS)
             state = inputs[0];
             for(int i = 1; i < k; i++) {
                 state *= inputs[i];
             }
             break;
-        case 2: // Fuzzy AND (Max/Min)
-            state = inputs[0];
-            for(int i = 1; i < k; i++) {
-                state = fmin(state, inputs[i]);
-            }
-            break;
-        case 3: // Fuzzy OR (CFMQVS and MV)
+        case 2: // Fuzzy OR (CFMQVS)
             state = inputs[0];
             for(int i = 1; i < k; i++) {
                 state += inputs[i];
             }
-            state = fmin(1, state);
-            break;
-        case 4: // Fuzzy NOT
-            state = 1 - inputs[0];
-            break;
-        case 5: // Identity
-            state = inputs[0];
             break;
         default: // Invalid function
             printf("Error updating node: Invalid function: %d\n", function);
@@ -359,16 +334,13 @@ double node_activate(int function, double *inputs, int k)
  */
 char *function_string(int function)
 {
-     switch(function) {
-        case 0: return "Fuzzy OR (Max/Min)";
-        case 1: return "Fuzzy AND (CFMQVS and Probabilistic)";
-        case 2: return "Fuzzy AND (Max/Min)";
-        case 3: return "Fuzzy OR (CFMQVS and MV)";
-        case 4: return "Fuzzy NOT";
-        case 5: return "Identity";
+    switch(function) {
+        case 0: return "Fuzzy NOT";
+        case 1: return "Fuzzy AND (CFMQVS)";
+        case 2: return "Fuzzy OR (CFMQVS)";
         default:
-            printf("function_string(): invalid node function: %d\n", function);
-            exit(EXIT_FAILURE);
+                printf("function_string(): invalid node function: %d\n", function);
+                exit(EXIT_FAILURE);
     }
 }
 
