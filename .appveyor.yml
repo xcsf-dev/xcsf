@@ -5,7 +5,6 @@ environment:
       COMPILER: MinGW-w64
       GENERATOR: MinGW Makefiles
       PLATFORM: x64
-      PATH: %PATH:C:\Program Files (x86)\Git\bin;=%
       CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
       BOOST_ROOT: C:\Libraries\boost_1_69_0
       CMAKE_EXTRA: -DPARALLEL=OFF
@@ -14,6 +13,7 @@ build:
   verbosity: detailed
 
 build_script:
+  - set PATH=%PATH:C:\Program Files (x86)\Git\bin;=%
   - cd build
   - cmake -G"%GENERATOR%" -DCMAKE_BUILD_TYPE=%BUILD_TYPE% %CMAKE_ARGS% %CMAKE_EXTRA% ..
   - cmake --build . --config %BUILD_TYPE% --target install
