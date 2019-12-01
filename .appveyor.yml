@@ -7,9 +7,11 @@ environment:
       BINDIR: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
       BUILD_TYPE: Release
       PYTHON_DIR: C:\Python36-x64
-      BOOST_ROOT: C:\Libraries\boost_1_69_0
+      BOOST_ROOT: C:\msys64\mingw64
+      BOOST_LIBRARYDIR: C:\msys64\mingw64\lib
+      BOOST_INCLUDEDIR: C:\msys64\mingw64\include\boost
       CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-      CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=OFF -DBoost_USE_STATIC_LIBS=ON
+      CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=ON
 
 before_build:
   # Workaround for CMake not wanting sh.exe on PATH for MinGW
