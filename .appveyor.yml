@@ -12,9 +12,6 @@ environment:
 build:
   verbosity: detailed
 
-install:
-  - gcc -v
-
 build_script:
   - cd build
   - cmake -G"%GENERATOR%" -DCMAKE_BUILD_TYPE=%BUILD_TYPE% %CMAKE_ARGS% %CMAKE_EXTRA% ..
