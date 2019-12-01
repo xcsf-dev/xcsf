@@ -1,1 +1,21 @@
 # Configuration script for use with continuous integration service appveyor.com
+environment:
+  matrix:
+    - BUILD_TYPE: Release
+      COMPILER: MinGW-w64
+      GENERATOR: MinGW Makefiles
+      PLATFORM: x64
+      CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+      BOOST_ROOT: C:\Libraries\boost_1_69_0
+      CMAKE_EXTRA: -DPARALLEL=OFF
+
+build:
+  verbosity: detailed
+
+install:
+  - gcc -v
+
+build_script:
+  - cd build
+  - cmake -G"%GENERATOR%" -DCMAKE_BUILD_TYPE=%BUILD_TYPE% %CMAKE_ARGS% %CMAKE_EXTRA% ..
+  - cmake --build . --config %BUILD_TYPE% --target install
