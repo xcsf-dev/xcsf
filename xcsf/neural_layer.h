@@ -22,6 +22,8 @@
  */ 
 
 #pragma once
+
+#include <stdlib.h>
  
 #define CONNECTED 0
 #define DROPOUT 1
