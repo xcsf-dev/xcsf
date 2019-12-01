@@ -7,9 +7,9 @@ environment:
       BINDIR: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
       BUILD_TYPE: Release
       PYTHON_DIR: C:\Python36-x64
-      BOOST_ROOT: C:\Libraries\boost_1_71_0
-      BOOST_INCLUDE_DIR: C:\Libraries\boost_1_71_0
-      BOOST_LIBRARY_DIR: C:\Libraries\boost_1_71_0
+      BOOST_ROOT: C:\Libraries\boost_1_69_0
+      BOOST_INCLUDE_DIR: C:\Libraries\boost_1_69_0
+      BOOST_LIBRARY_DIR: C:\Libraries\boost_1_69_0
       CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
       CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=ON
 
