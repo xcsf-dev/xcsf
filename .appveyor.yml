@@ -1,7 +1,7 @@
 # Configuration script for use with continuous integration service appveyor.com
 environment:
   matrix:
-    - PLATFORM: x64
+    - MINGW_ARCH: x86_64
       GENERATOR: MinGW Makefiles
       Compiler: MinGW64-gcc-7.2.0
       BINDIR: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
