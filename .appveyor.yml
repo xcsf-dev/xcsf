@@ -1,16 +1,20 @@
 # Configuration script for use with continuous integration service appveyor.com
+#GENERATOR: MSYS Makefiles
+#BINDIR: C:\msys64\mingw64
+#BOOST_ROOT: C:\msys64\mingw64
+
 environment:
   matrix:
     - MINGW_ARCH: x86_64
-      BINDIR: C:\msys64\mingw64
-      BOOST_ROOT: C:\msys64\mingw64
       BOOST_LIBRARYDIR: C:\msys64\mingw64\lib
       BOOST_INCLUDEDIR: C:\msys64\mingw64\include\boost
-      GENERATOR: MSYS Makefiles
       BUILD_TYPE: Release
       PYTHON_DIR: C:\Python36-x64
       CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
       CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=ON
+      GENERATOR: MinGW Makefiles
+      Compiler: MinGW64-gcc-7.2.0
+      BINDIR: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
 
 before_build:
   # Workaround for CMake not wanting sh.exe on PATH for MinGW
