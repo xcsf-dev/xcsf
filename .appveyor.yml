@@ -1,20 +1,18 @@
 # Configuration script for use with continuous integration service appveyor.com
-#GENERATOR: MSYS Makefiles
-#BINDIR: C:\msys64\mingw64
-#BOOST_ROOT: C:\msys64\mingw64
-
 environment:
   matrix:
-    - MINGW_ARCH: x86_64
-      BOOST_LIBRARYDIR: C:\msys64\mingw64\lib
-      BOOST_INCLUDEDIR: C:\msys64\mingw64\include\boost
-      BUILD_TYPE: Release
-      PYTHON_DIR: C:\Python36-x64
-      CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-      CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=ON
+    - PLATFORM: x64
       GENERATOR: MinGW Makefiles
       Compiler: MinGW64-gcc-7.2.0
       BINDIR: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
+      BUILD_TYPE: Release
+      PYTHON_DIR: C:\Python36-x64
+      #BOOST_ROOT: C:\Libraries\boost_1_69_0
+      CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+      CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=OON -DBoost_USE_STATIC_LIBS=ON
+      BOOST_ROOT: C:\msys64\mingw64
+      BOOST_LIBRARYDIR: C:\msys64\mingw64\lib
+      BOOST_INCLUDEDIR: C:\msys64\mingw64\include\boost
 
 before_build:
   # Workaround for CMake not wanting sh.exe on PATH for MinGW
@@ -23,6 +21,6 @@ before_build:
   - set "PATH=%PYTHON_DIR%;%PATH%;%BINDIR%;%BOOST_LIBRARYDIR%"
   - cd build
   - cmake --version
-  - cmake -DCMAKE_BUILD_TYPE=%BUILD_TYPE% %CMAKE_ARGS% %CMAKE_EXTRA% -DBOOST_ROOT="%BOOST_ROOT%" -DBOOST_INCLUDE_DIR="%BOOST_INCLUDEDIR%" -DBOOST_LIBRARY_DIR="%BOOST_LIBRARYDIR%" -G "%GENERATOR%" ..
+  - cmake -DCMAKE_BUILD_TYPE=%BUILD_TYPE% %CMAKE_ARGS% %CMAKE_EXTRA% -G "%GENERATOR%" ..
 
 build_script: cmake --build . --config %CONFIGURATION%
