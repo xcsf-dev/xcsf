@@ -8,7 +8,7 @@ environment:
       BUILD_TYPE: Release
       BOOST_ROOT: C:\Libraries\boost_1_69_0
       CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-      CMAKE_EXTRA: -DPARALLEL=ON
+      CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=ON
 
 before_build:
   # Workaround for CMake not wanting sh.exe on PATH for MinGW
