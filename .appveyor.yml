@@ -5,6 +5,7 @@ environment:
       COMPILER: MinGW-w64
       GENERATOR: MinGW Makefiles
       PLATFORM: x64
+      PATH: %PATH:C:\Program Files (x86)\Git\bin;=%
       CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
       BOOST_ROOT: C:\Libraries\boost_1_69_0
       CMAKE_EXTRA: -DPARALLEL=OFF
