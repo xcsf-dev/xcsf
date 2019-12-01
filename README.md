@@ -85,6 +85,15 @@ $ cmake -DCMAKE_BUILD_TYPE=RELEASE -DXCSF_PYLIB=ON ..
 $ make
 ```
 
+### Windows ([MinGW64-gcc-7.2.0](http://mingw-w64.org "MinGW64-gcc-7.2.0"))
+
+```
+$ git clone --recurse-submodules git@github.com:rpreen/xcsf.git
+$ cd xcsf/build
+$ cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -G "MinGW Makefiles" ..
+$ cmake --build . --config RELEASE
+```
+
 ### Documentation (Doxygen + graphviz)
 
 After running cmake:
