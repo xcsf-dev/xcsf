@@ -8,6 +8,8 @@ environment:
       BUILD_TYPE: Release
       PYTHON_DIR: C:\Python36-x64
       BOOST_ROOT: C:\Libraries\boost_1_71_0
+      BOOST_INCLUDE_DIR: C:\Libraries\boost_1_71_0
+      BOOST_LIBRARY_DIR: C:\Libraries\boost_1_71_0
       CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
       CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=ON
 
