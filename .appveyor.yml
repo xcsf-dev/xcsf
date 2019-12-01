@@ -1,7 +1,4 @@
 # Configuration script for use with continuous integration service appveyor.com
-#BOOST_ROOT: C:\Libraries\boost_1_65_1
-#BOOST_INCLUDE_DIR: C:\Libraries\boost_1_65_1
-#BOOST_LIBRARY_DIR: C:\Libraries\boost_1_65_1\stage\lib
 environment:
   matrix:
     - GENERATOR: MinGW Makefiles
@@ -10,9 +7,9 @@ environment:
       BINDIR: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
       BUILD_TYPE: Release
       PYTHON_DIR: C:\Python36-x64
-      BOOST_ROOT: C:\msys64\mingw64
-      BOOST_LIBRARY_DIR: C:\msys64\mingw64\lib
-      BOOST_INCLUDE_DIR: C:\msys64\mingw64\include\boost
+      BOOST_ROOT: C:\Libraries\boost_1_65_1
+      BOOST_INCLUDE_DIR: C:\Libraries\boost_1_65_1
+      BOOST_LIBRARY_DIR: C:\Libraries\boost_1_65_1\stage\lib
       CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
       CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=ON
 
