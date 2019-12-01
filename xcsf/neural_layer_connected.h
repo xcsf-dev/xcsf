@@ -23,7 +23,7 @@
  
 #pragma once
 
-LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int n_init, int n_max, int f, u_int32_t o);
+LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o);
 LAYER *neural_layer_connected_copy(XCSF *xcsf, LAYER *from);
 void neural_layer_connected_rand(XCSF *xcsf, LAYER *l);
 void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input);

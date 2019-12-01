@@ -23,8 +23,8 @@
 
 #pragma once
 
-#include <stdlib.h>
- 
+#include <stdint.h>
+
 #define CONNECTED 0
 #define DROPOUT 1
 #define NOISE 2
@@ -45,7 +45,7 @@ typedef struct LAYER {
     double *output; //!< Current neuron outputs (after activation function)
     _Bool *active; //!< Whether a neuron is active
     int num_active; //!< Number of active neurons
-    u_int32_t options; //!< Bitwise layer options permitting weight evolution, etc.
+    uint32_t options; //!< Bitwise layer options permitting weight evolution, etc.
     double *weights; //!< Weights for calculating neuron states
     double *biases; //!< Biases for calculating neuron states
     double *bias_updates; //!< Updates to biases

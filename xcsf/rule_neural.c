@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <math.h>
 #include "xcsf.h"
 #include "utils.h"
@@ -55,7 +56,7 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
     neural_init(xcsf, &new->net);
     // weights
-    u_int32_t lopt = 0;
+    uint32_t lopt = 0;
     if(xcsf->COND_EVOLVE_WEIGHTS) {
         lopt |= LAYER_EVOLVE_WEIGHTS;
     }

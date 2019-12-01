@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <math.h>
 #include <float.h>
 #include "xcsf.h"
@@ -37,7 +38,7 @@
 #define ETA_MAX 0.1
 #define ETA_MIN 0.0001
 
-LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int n_init, int n_max, int f, u_int32_t o)
+LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
@@ -286,7 +287,7 @@ size_t neural_layer_connected_save(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fwrite(&l->num_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->num_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->num_weights, sizeof(int), 1, fp);
-    s += fwrite(&l->options, sizeof(u_int32_t), 1, fp);
+    s += fwrite(&l->options, sizeof(uint32_t), 1, fp);
     s += fwrite(&l->num_active, sizeof(int), 1, fp);
     s += fwrite(&l->function, sizeof(int), 1, fp);
     s += fwrite(&l->eta, sizeof(double), 1, fp);
@@ -306,7 +307,7 @@ size_t neural_layer_connected_load(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->num_inputs, sizeof(int), 1, fp);
     s += fread(&l->num_outputs, sizeof(int), 1, fp);
     s += fread(&l->num_weights, sizeof(int), 1, fp);
-    s += fread(&l->options, sizeof(u_int32_t), 1, fp);
+    s += fread(&l->options, sizeof(uint32_t), 1, fp);
     s += fread(&l->num_active, sizeof(int), 1, fp);
     s += fread(&l->function, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
