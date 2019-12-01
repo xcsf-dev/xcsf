@@ -9,7 +9,7 @@ environment:
       PYTHON_DIR: C:\Python36-x64
       BOOST_ROOT: C:\Libraries\boost_1_69_0
       CMAKE_ARGS: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-      CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=ON -DBoost_USE_STATIC_LIBS=ON
+      CMAKE_EXTRA: -DPARALLEL=ON -DXCSF_PYLIB=OFF -DBoost_USE_STATIC_LIBS=ON
 
 before_build:
   # Workaround for CMake not wanting sh.exe on PATH for MinGW
