@@ -2,7 +2,7 @@
 environment:
   matrix:
     - MINGW_ARCH: x86_64
-      MINGW_ROOT: C:\msys64\mingw64
+      BINDIR: C:\msys64\mingw64
       BOOST_ROOT: C:\msys64\mingw64
       BOOST_LIBRARYDIR: C:\msys64\mingw64\lib
       BOOST_INCLUDEDIR: C:\msys64\mingw64\include\boost
@@ -16,9 +16,9 @@ before_build:
   # Workaround for CMake not wanting sh.exe on PATH for MinGW
   - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
   # Set MinGW and Python3 path
-  - set "PATH=%PYTHON_DIR%;%PATH%;%MINGW_ROOT%"
+  - set "PATH=%PYTHON_DIR%;%PATH%;%BINDIR%;%BOOST_LIBRARYDIR%"
   - cd build
   - cmake --version
-  - cmake -DCMAKE_BUILD_TYPE=%BUILD_TYPE% %CMAKE_ARGS% %CMAKE_EXTRA% -DBoost_ROOT="%BOOST_ROOT%" -DBoost_INCLUDE_DIR="%BOOST_INCLUDEDIR%" -DBoost_LIBRARY_DIR="%BOOST_LIBRARYDIR%" -G "%GENERATOR%" ..
+  - cmake -DCMAKE_BUILD_TYPE=%BUILD_TYPE% %CMAKE_ARGS% %CMAKE_EXTRA% -G "%GENERATOR%" ..
 
 build_script: cmake --build . --config %CONFIGURATION%
