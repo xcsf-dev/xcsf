@@ -101,7 +101,9 @@ After running cmake:
 ```
 $ make doc
 ```
- 
+
+Alternatively see: [XCSF documentation](https://rpreen.github.io/xcsf/ "XCSF documentation".)
+
 *******************************************************************************
 
 ## Running
