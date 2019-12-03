@@ -68,16 +68,81 @@ typedef struct LAYER {
  * @details Neural network layer implementations must implement these functions.
  */ 
 struct LayerVtbl {
+    /**
+     * @brief Performs layer mutation.
+     * @param xcsf The XCSF data structure.
+     * @param l The layer to mutate.
+     * @return Whether any alterations were made.
+     */
     _Bool (*layer_impl_mutate)(XCSF *xcsf, LAYER *l);
+    /**
+     * @brief Creates and returns a copy of a specified layer.
+     * @param xcsf The XCSF data structure.
+     * @param from The source layer.
+     * @return A new copied layer.
+     */
     LAYER* (*layer_impl_copy)(XCSF *xcsf, LAYER *from);
+    /**
+     * @brief Frees the memory used by the layer.
+     * @param xcsf The XCSF data structure.
+     * @param l The layer to be freed.
+     */
     void (*layer_impl_free)(XCSF *xcsf, LAYER *l);
+    /**
+     * @brief Randomises a layer.
+     * @param xcsf The XCSF data structure.
+     * @param l The layer to be randomised.
+     */
     void (*layer_impl_rand)(XCSF *xcsf, LAYER *l);
+    /**
+     * @brief Prints the layer.
+     * @param xcsf The XCSF data structure.
+     * @param l The layer to be printed.
+     * @param print_weights Whether to print the weights.
+     */
     void (*layer_impl_print)(XCSF *xcsf, LAYER *l, _Bool print_weights);
+    /**
+     * @brief Updates the weights and biases of a layer.
+     * @param xcsf The XCSF data structure.
+     * @param l The layer to be updated.
+     */
     void (*layer_impl_update)(XCSF *xcsf, LAYER *l);
+    /**
+     * @brief Backward propagates the error through a layer.
+     * @param xcsf The XCSF data structure.
+     * @param l The layer to be backward propagated.
+     * @param net The network being backward propagated.
+     */
     void (*layer_impl_backward)(XCSF *xcsf, LAYER *l, NET *net);
+    /**
+     * @brief Forward propagates an input through the layer.
+     * @param xcsf The XCSF data structure.
+     * @param l The layer to be forward propagated.
+     * @param input The input to the layer.
+     */
     void (*layer_impl_forward)(XCSF *xcsf, LAYER *l, double *input);
+    /**
+     * @brief Returns the outputs of a layer.
+     * @param xcsf The XCSF data structure.
+     * @param l The layer whose outputs are to be returned.
+     * @return The layer outputs.
+     */
     double* (*layer_impl_output)(XCSF *xcsf, LAYER *l);
+    /**
+     * @brief Writes the layer to a binary file.
+     * @param xcsf The XCSF data structure.
+     * @param l The layer to be written.
+     * @param fp Pointer to the file to be written.
+     * @return The number of elements written.
+     */
     size_t (*layer_impl_save)(XCSF *xcsf, LAYER *l, FILE *fp);
+    /**
+     * @brief Reads the layer from a binary file.
+     * @param xcsf The XCSF data structure.
+     * @param l The layer to be read.
+     * @param fp Pointer to the file to be read.
+     * @return The number of elements read.
+     */
     size_t (*layer_impl_load)(XCSF *xcsf, LAYER *l, FILE *fp);
 };
 
