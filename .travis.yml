@@ -35,6 +35,7 @@ matrix:
       env: BADGE=osx BUILD_TYPE="Release" XCSF_PYLIB="ON"
 
 before_script:
+  - |
   - if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
       brew install llvm
       brew install libomp
@@ -47,8 +48,9 @@ before_script:
 
 script:
   - cd "${TRAVIS_BUILD_DIR}/build"
-    cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYLIB="$XCSF_PYLIB" ..
+  - cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYLIB="$XCSF_PYLIB" ..
   - make
+  - |
   - if [[ "${SONAR}" == "ON" ]]; then
       build-wrapper-linux-x86-64 --out-dir bw-output
       sonar-scanner
