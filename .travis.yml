@@ -19,8 +19,8 @@ matrix:
     - os: osx
       osx_image: xcode10.1
       compiler: clang
-      env: BADGE=osx BUILD_TYPE="RELEASE" XCSF_PYLIB="ON" 
- 
+      env: BADGE=osx BUILD_TYPE="RELEASE" XCSF_PYLIB="ON"
+
 script:
   - cd "${TRAVIS_BUILD_DIR}/build"
   - |
