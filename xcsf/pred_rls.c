@@ -279,7 +279,6 @@ size_t pred_rls_save(XCSF *xcsf, CL *c, FILE *fp)
     }
     int len_sqrd = pred->weights_length * pred->weights_length;
     s += fwrite(pred->matrix, sizeof(double), len_sqrd, fp);
-    //printf("rls saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -294,6 +293,5 @@ size_t pred_rls_load(XCSF *xcsf, CL *c, FILE *fp)
     }
     int len_sqrd = pred->weights_length * pred->weights_length;
     s += fread(pred->matrix, sizeof(double), len_sqrd, fp);
-    //printf("rls loaded %lu elements\n", (unsigned long)s);
     return s;
 }

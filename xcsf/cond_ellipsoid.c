@@ -205,7 +205,6 @@ size_t cond_ellipsoid_save(XCSF *xcsf, CL *c, FILE *fp)
     COND_ELLIPSOID *cond = c->cond;
     s += fwrite(cond->center, sizeof(double), xcsf->num_x_vars, fp);
     s += fwrite(cond->spread, sizeof(double), xcsf->num_x_vars, fp);
-    //printf("ellipsoid saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -218,6 +217,5 @@ size_t cond_ellipsoid_load(XCSF *xcsf, CL *c, FILE *fp)
     s += fread(new->center, sizeof(double), xcsf->num_x_vars, fp);
     s += fread(new->spread, sizeof(double), xcsf->num_x_vars, fp);
     c->cond = new;
-    //printf("ellipsoid loaded %lu elements\n", (unsigned long)s);
     return s;
 }

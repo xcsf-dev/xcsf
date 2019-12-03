@@ -207,7 +207,6 @@ size_t cond_rectangle_save(XCSF *xcsf, CL *c, FILE *fp)
     COND_RECTANGLE *cond = c->cond;
     s += fwrite(cond->center, sizeof(double), xcsf->num_x_vars, fp);
     s += fwrite(cond->spread, sizeof(double), xcsf->num_x_vars, fp);
-    //printf("rectangle saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -220,6 +219,5 @@ size_t cond_rectangle_load(XCSF *xcsf, CL *c, FILE *fp)
     s += fread(new->center, sizeof(double), xcsf->num_x_vars, fp);
     s += fread(new->spread, sizeof(double), xcsf->num_x_vars, fp);
     c->cond = new;
-    //printf("rectangle loaded %lu elements\n", (unsigned long)s);
     return s;
 }

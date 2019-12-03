@@ -325,7 +325,6 @@ size_t neural_layer_connected_save(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fwrite(l->biases, sizeof(double), l->num_outputs, fp);
     s += fwrite(l->bias_updates, sizeof(double), l->num_outputs, fp);
     s += fwrite(l->weight_updates, sizeof(double), l->num_weights, fp);
-    //printf("neural layer connected saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -353,6 +352,5 @@ size_t neural_layer_connected_load(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(l->biases, sizeof(double), l->num_outputs, fp);
     s += fread(l->bias_updates, sizeof(double), l->num_outputs, fp);
     s += fread(l->weight_updates, sizeof(double), l->num_weights, fp);
-    //printf("neural layer connected loaded %lu elements\n", (unsigned long)s);
     return s;
 }

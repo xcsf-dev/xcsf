@@ -106,7 +106,6 @@ size_t act_integer_save(XCSF *xcsf, CL *c, FILE *fp)
     (void)xcsf;
     size_t s = 0;
     s += fwrite(&c->action, sizeof(int), 1, fp);
-    //printf("integer saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -115,6 +114,5 @@ size_t act_integer_load(XCSF *xcsf, CL *c, FILE *fp)
     (void)xcsf;
     size_t s = 0;
     s += fread(&c->action, sizeof(int), 1, fp);
-    //printf("integer loaded %lu elements\n", (unsigned long)s);
     return s;
 }

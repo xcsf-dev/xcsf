@@ -454,7 +454,6 @@ size_t cl_save(XCSF *xcsf, CL *c, FILE *fp)
     s += act_save(xcsf, c, fp);
     s += pred_save(xcsf, c, fp);
     s += cond_save(xcsf, c, fp);
-    //printf("cl saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -490,6 +489,5 @@ size_t cl_load(XCSF *xcsf, CL *c, FILE *fp)
     s += act_load(xcsf, c, fp);
     s += pred_load(xcsf, c, fp);
     s += cond_load(xcsf, c, fp);
-    //printf("cl loaded %lu elements\n", (unsigned long)s);
     return s;
 }

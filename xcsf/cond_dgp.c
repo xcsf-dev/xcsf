@@ -143,7 +143,6 @@ size_t cond_dgp_save(XCSF *xcsf, CL *c, FILE *fp)
 {
     COND_DGP *cond = c->cond;
     size_t s = graph_save(xcsf, &cond->dgp, fp);
-    //printf("cond dgp saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -152,6 +151,5 @@ size_t cond_dgp_load(XCSF *xcsf, CL *c, FILE *fp)
     COND_DGP *new = malloc(sizeof(COND_DGP));
     size_t s = graph_load(xcsf, &new->dgp, fp);
     c->cond = new;
-    //printf("cond dgp loaded %lu elements\n", (unsigned long)s);
     return s;
 }

@@ -332,7 +332,6 @@ size_t neural_save(XCSF *xcsf, NET *net, FILE *fp)
         s += fwrite(&iter->layer->layer_type, sizeof(int), 1, fp);
         s += layer_save(xcsf, iter->layer, fp);
     }
-    //printf("neural saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -358,6 +357,5 @@ size_t neural_load(XCSF *xcsf, NET *net, FILE *fp)
         s += layer_load(xcsf, l, fp);
         neural_layer_insert(xcsf, net, l, i);
     }
-    //printf("neural loaded %lu elements\n", (unsigned long)s);
     return s;
 }

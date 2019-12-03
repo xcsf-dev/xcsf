@@ -171,7 +171,6 @@ size_t rule_neural_cond_save(XCSF *xcsf, CL *c, FILE *fp)
 {
     RULE_NEURAL *cond = c->cond;
     size_t s = neural_save(xcsf, &cond->net, fp);
-    //printf("rule neural saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -181,7 +180,6 @@ size_t rule_neural_cond_load(XCSF *xcsf, CL *c, FILE *fp)
     size_t s = neural_load(xcsf, &new->net, fp);
     new->num_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
     c->cond = new;
-    //printf("rule neural loaded %lu elements\n", (unsigned long)s);
     return s;
 }
 

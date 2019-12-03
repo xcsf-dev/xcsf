@@ -183,7 +183,6 @@ size_t pred_nlms_save(XCSF *xcsf, CL *c, FILE *fp)
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         s += fwrite(pred->weights[var], sizeof(double), pred->weights_length, fp);
     }
-    //printf("nlms saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -196,6 +195,5 @@ size_t pred_nlms_load(XCSF *xcsf, CL *c, FILE *fp)
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         s += fread(pred->weights[var], sizeof(double), pred->weights_length, fp);
     }
-    //printf("nlms loaded %lu elements\n", (unsigned long)s);
     return s;
 }

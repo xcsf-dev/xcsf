@@ -137,7 +137,6 @@ size_t neural_layer_softmax_save(XCSF *xcsf, LAYER *l, FILE *fp)
     s += fwrite(&l->num_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->num_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->temp, sizeof(double), 1, fp);
-    //printf("neural layer softmax saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -152,6 +151,5 @@ size_t neural_layer_softmax_load(XCSF *xcsf, LAYER *l, FILE *fp)
     l->options = 0;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = calloc(l->num_inputs, sizeof(double));
-    //printf("neural layer softmax loaded %lu elements\n", (unsigned long)s);
     return s;
 }
