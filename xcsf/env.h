@@ -30,12 +30,46 @@ void env_init(XCSF *xcsf, char **argv);
  * @details Environment implementations must implement these functions.
  */ 
 struct EnvVtbl {
+    /**
+     * @brief Returns whether the environment needs to be reset.
+     * @param xcsf The XCSF data structure.
+     * @return Whether the environment needs to be reset.
+     */
     _Bool (*env_impl_isreset)(XCSF *xcsf);
+    /**
+     * @brief Returns whether the environment is a multistep problem.
+     * @param xcsf The XCSF data structure.
+     * @return Whether the environment is multistep.
+     */
     _Bool (*env_impl_multistep)(XCSF *xcsf);
+    /**
+     * @brief Executes the specified action and returns the payoff.
+     * @param xcsf The XCSF data structure.
+     * @param action The action to perform.
+     * @return The payoff from performing the action.
+     */
     double (*env_impl_execute)(XCSF *xcsf, int action);
+    /**
+     * @brief Returns the maximum payoff value possible in the environment.
+     * @param xcsf The XCSF data structure.
+     * @return The maximum payoff.
+     */
     double (*env_impl_max_payoff)(XCSF *xcsf);
+    /**
+     * @brief Returns the current environment perceptions.
+     * @param xcsf The XCSF data structure.
+     * @return The current perceptions.
+     */
     double *(*env_impl_get_state)(XCSF *xcsf);
+    /**
+     * @brief Frees the environment.
+     * @param xcsf The XCSF data structure.
+     */
     void (*env_impl_free)(XCSF *xcsf);
+    /**
+     * @brief Resets the environment.
+     * @param xcsf The XCSF data structure.
+     */
     void (*env_impl_reset)(XCSF *xcsf);
 };
 
