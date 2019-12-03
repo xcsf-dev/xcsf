@@ -2,18 +2,16 @@
 
 language: cpp
 
-sudo: required
-dist: bionic
-edge: true
+dist: eoan
  
 matrix:
   include:
     # Sonar build
     - os: linux
       compiler: gcc
-      addons: &gcc6
+      addons: &gcc7
         apt:
-          packages: ['g++-6']
+          packages: ['g++-7']
         sonarcloud:
           organization: "rpreen"
       env: BUILD_TYPE="Debug" XCSF_PYLIB="OFF" SONAR="ON"
@@ -21,9 +19,9 @@ matrix:
     # Python library Ubuntu 18.04
     - os: linux
       compiler: gcc
-      addons: &gcc6
+      addons: &gcc7
         apt:
-          packages: ['g++-6', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
+          packages: ['g++-7', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
         sonarcloud:
           organization: "rpreen"
       env: BADGE=linux BUILD_TYPE="Release" XCSF_PYLIB="ON"
