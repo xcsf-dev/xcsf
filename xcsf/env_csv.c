@@ -49,13 +49,13 @@ void env_csv_read(char *fname, double **data, int *num_prob, int *num_vars);
 void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data)
 {
     char name[MAX_NAME];
-    sprintf(name, "%s_train_x.csv", infile);
+    snprintf(name, MAX_NAME, "%s_train_x.csv", infile);
     env_csv_read(name, &train_data->x, &train_data->rows, &train_data->x_cols);
-    sprintf(name, "%s_train_y.csv", infile);
+    snprintf(name, MAX_NAME, "%s_train_y.csv", infile);
     env_csv_read(name, &train_data->y, &train_data->rows, &train_data->y_cols);
-    sprintf(name, "%s_test_x.csv", infile);
+    snprintf(name, MAX_NAME, "%s_test_x.csv", infile);
     env_csv_read(name, &test_data->x, &test_data->rows, &test_data->x_cols);
-    sprintf(name, "%s_test_y.csv", infile);
+    snprintf(name, MAX_NAME, "%s_test_y.csv", infile);
     env_csv_read(name, &test_data->y, &test_data->rows, &test_data->y_cols);
 }
 
