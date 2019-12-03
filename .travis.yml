@@ -50,7 +50,7 @@ script:
   - |
     if [[ "${SONAR}" == "ON" ]]; then
       cp ../sonar-project.properties .
-      build-wrapper-linux-x86-64 --out-dir bw-output make;
+      build-wrapper-linux-x86-64 --out-dir bw-output make clean all;
       sonar-scanner;
     else
       make
