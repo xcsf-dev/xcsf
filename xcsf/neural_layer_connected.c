@@ -20,7 +20,7 @@
  * @date 2016--2019.
  * @brief An implementation of a fully-connected layer of perceptrons.
  */ 
- 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -37,6 +37,11 @@
 
 #define ETA_MAX 0.1
 #define ETA_MIN 0.0001
+
+_Bool mutate_neurons(XCSF *xcsf, LAYER *l);
+_Bool mutate_weights(XCSF *xcsf, LAYER *l);
+_Bool mutate_eta(XCSF *xcsf, LAYER *l);
+_Bool mutate_functions(XCSF *xcsf, LAYER *l);
 
 LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o)
 {
@@ -184,72 +189,97 @@ void neural_layer_connected_update(XCSF *xcsf, LAYER *l)
 _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
 {
     _Bool mod = false;
-
     if(l->options & LAYER_EVOLVE_NEURONS) {
-        if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-            int idx = l->num_active - 1;
-            // remove
-            if(l->num_active > 1 && rand_uniform(0,1) < 0.5) {
-                l->active[idx] = false;
-                l->num_active--;
-                mod = true;
-            }
-            // add
-            else if(l->num_active < l->num_outputs) {
-                l->active[idx] = true;
-                l->num_active++;
-                // randomise weights
-                l->biases[idx] = 0;
-                for(int i = 0; i < l->num_inputs; i++) {
-                    l->weights[idx * l->num_inputs + i] = rand_normal(0,0.1);
-                }
-                mod = true;
-            }
-        }
-    } 
-
-    if(l->options & LAYER_EVOLVE_WEIGHTS) {
-        int w = l->num_inputs * l->num_active;
-        for(int i = 0; i < w; i++) {
-            double orig = l->weights[i];
-            l->weights[i] += rand_normal(0, xcsf->S_MUTATION);
-            if(l->weights[i] != orig) {
-                mod = true;
-            }
-        }
-        for(int i = 0; i < l->num_active; i++) {
-            double orig = l->biases[i];
-            l->biases[i] += rand_normal(0, xcsf->S_MUTATION);
-            if(l->biases[i] != orig) {
-                mod = true;
-            }
-        }
-    }
-
-    if(l->options & LAYER_EVOLVE_ETA) {
-        double orig = l->eta;
-        l->eta += rand_normal(0, xcsf->E_MUTATION);
-        if(l->eta > ETA_MAX) {
-            l->eta = ETA_MAX;
-        }
-        else if(l->eta < ETA_MIN) {
-            l->eta = ETA_MIN;
-        }
-        if(l->eta != orig) {
+        if(mutate_neurons(xcsf, l)) {
             mod = true;
         }
     }
-
-    if(l->options & LAYER_EVOLVE_FUNCTIONS) {
-        if(rand_uniform(0,1) < xcsf->F_MUTATION) {
-            int orig = l->function;
-            l->function = irand_uniform(0, NUM_ACTIVATIONS);
-            if(l->function != orig) {
-                mod = true;
-            }
-        } 
+    if(l->options & LAYER_EVOLVE_WEIGHTS) {
+        if(mutate_weights(xcsf, l)) {
+            mod = true;
+        }
     }
+    if(l->options & LAYER_EVOLVE_ETA) {
+        if(mutate_eta(xcsf, l)) {
+            mod = true;
+        }
+    }
+    if(l->options & LAYER_EVOLVE_FUNCTIONS) {
+        if(mutate_functions(xcsf, l)) {
+            mod = true;
+        }
+    }
+    return mod;
+}
 
+_Bool mutate_neurons(XCSF *xcsf, LAYER *l)
+{
+    _Bool mod = false;
+    if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+        int idx = l->num_active - 1;
+        // remove
+        if(l->num_active > 1 && rand_uniform(0,1) < 0.5) {
+            l->active[idx] = false;
+            l->num_active--;
+            mod = true;
+        }
+        // add
+        else if(l->num_active < l->num_outputs) {
+            l->active[idx] = true;
+            l->num_active++;
+            // randomise weights
+            l->biases[idx] = 0;
+            for(int i = 0; i < l->num_inputs; i++) {
+                l->weights[idx * l->num_inputs + i] = rand_normal(0,0.1);
+            }
+            mod = true;
+        }
+    }
+    return mod;
+}
+
+_Bool mutate_weights(XCSF *xcsf, LAYER *l)
+{
+    _Bool mod = false;
+    int w = l->num_inputs * l->num_active;
+    for(int i = 0; i < w; i++) {
+        double orig = l->weights[i];
+        l->weights[i] += rand_normal(0, xcsf->S_MUTATION);
+        if(l->weights[i] != orig) {
+            mod = true;
+        }
+    }
+    for(int i = 0; i < l->num_active; i++) {
+        double orig = l->biases[i];
+        l->biases[i] += rand_normal(0, xcsf->S_MUTATION);
+        if(l->biases[i] != orig) {
+            mod = true;
+        }
+    }
+    return mod;
+}
+
+_Bool mutate_eta(XCSF *xcsf, LAYER *l)
+{
+    double orig = l->eta;
+    l->eta += rand_normal(0, xcsf->E_MUTATION);
+    l->eta = constrain(ETA_MIN, ETA_MAX, l->eta);
+    if(l->eta != orig) {
+        return true;
+    }
+    return false;
+}
+
+_Bool mutate_functions(XCSF *xcsf, LAYER *l)
+{
+    _Bool mod = false;
+    if(rand_uniform(0,1) < xcsf->F_MUTATION) {
+        int orig = l->function;
+        l->function = irand_uniform(0, NUM_ACTIVATIONS);
+        if(l->function != orig) {
+            mod = true;
+        }
+    }
     return mod;
 }
 
