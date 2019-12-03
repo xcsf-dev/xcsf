@@ -2,9 +2,9 @@
 
 An implementation of the XCSF [learning classifier system](https://en.wikipedia.org/wiki/Learning_classifier_system) that can be built as a stand-alone binary or as a Python library.
 
-License|Linux Build|OSX Build|Windows Build|Code Quality
-:--:|:--:|:--:|:--:|:--:
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)|[![Linux Build Status](http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=linux&label=build&branch=master)](https://travis-ci.org/rpreen/xcsf)|[![OSX Build Status](http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=osx&label=build&branch=master)](https://travis-ci.org/rpreen/xcsf)|[![Windows Build status](https://ci.appveyor.com/api/projects/status/s4xge68jmlbam005?svg=true)](https://ci.appveyor.com/project/rpreen/xcsf)|[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b)](https://www.codacy.com/app/rpreen/xcsf)[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/rpreen/xcsf.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/rpreen/xcsf/context:cpp)
+License|Linux|OSX|Windows|Fossa|Code Quality
+:--:|:--:|:--:|:--:|:--:|:--:
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)|[![Linux Build Status](http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=linux&label=build&branch=master)](https://travis-ci.org/rpreen/xcsf)|[![OSX Build Status](http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=osx&label=build&branch=master)](https://travis-ci.org/rpreen/xcsf)|[![Windows Build status](https://ci.appveyor.com/api/projects/status/s4xge68jmlbam005?svg=true)](https://ci.appveyor.com/project/rpreen/xcsf)|[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frpreen%2Fxcsf.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frpreen%2Fxcsf?ref=badge_shield)|[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b)](https://www.codacy.com/app/rpreen/xcsf)[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/rpreen/xcsf.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/rpreen/xcsf/context:cpp)
 
 *******************************************************************************
 
