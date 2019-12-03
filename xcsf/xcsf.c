@@ -36,7 +36,6 @@
 #include "ea.h"
 
 const double VERSION = 1.04; //!< XCSF version number
-//#define VERSION "@PROJECT_VERSION@"
 
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
@@ -55,7 +54,8 @@ double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 {  
     gplot_init(xcsf);
     xcsf->train = true;
-    double perr = 0, err = 0;
+    double perr = 0;
+    double err = 0;
     double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         int row = 0;
@@ -92,7 +92,9 @@ double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
 {   
     gplot_init(xcsf);
-    double perr = 0, err = 0, pterr = 0;
+    double perr = 0;
+    double err = 0;
+    double pterr = 0;
     double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         int row = 0;
@@ -138,7 +140,8 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
  */
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
-    SET mset, kset;
+    SET mset;
+    SET kset;
     set_init(xcsf, &mset);
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, x);
@@ -162,7 +165,8 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
  */
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
-    SET mset, kset;
+    SET mset;
+    SET kset;
     set_init(xcsf, &mset);
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, x);
@@ -184,7 +188,8 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
 {   
     xcsf->train = false;
     for(int row = 0; row < rows; row++) {
-        SET mset, kset;
+        SET mset;
+        SET kset;
         set_init(xcsf, &mset);
         set_init(xcsf, &kset);
         set_match(xcsf, &mset, &kset, &input[row * xcsf->num_x_vars]);
@@ -236,7 +241,8 @@ void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
  */
 void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa, _Bool printp)
 {
-    SET mset, kset;
+    SET mset;
+    SET kset;
     set_init(xcsf, &mset);
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, input);
@@ -263,7 +269,6 @@ size_t xcsf_save(XCSF *xcsf, char *fname)
     s += xcsf_save_params(xcsf, fp);
     s += pop_save(xcsf, fp);
     fclose(fp);
-    //printf("xcsf saved %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -275,28 +280,26 @@ size_t xcsf_save(XCSF *xcsf, char *fname)
  */
 size_t xcsf_load(XCSF *xcsf, char *fname)
 {
+    if(xcsf->pset.size > 0) {
+        set_kill(xcsf, &xcsf->pset);
+        set_init(xcsf, &xcsf->pset);
+    }
     FILE *fp = fopen(fname, "rb");
     if(fp == 0) {
         printf("Error opening load file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
-    size_t s = 0; double version = 0;
+    size_t s = 0;
+    double version = 0;
     s += fread(&version, sizeof(double), 1, fp);
-
     if(version != VERSION) {
         printf("Error loading file: %s. Version mismatch. ", fname);
-        printf("This version: %f. ", VERSION);
-        printf("Loaded version: %f.\n", version);
+        printf("This version: %f.\nLoaded version: %f", VERSION, version);
         exit(EXIT_FAILURE);
-    }
-    if(xcsf->pset.size > 0) {
-        set_kill(xcsf, &xcsf->pset);
-        set_init(xcsf, &xcsf->pset);
     }
     s += xcsf_load_params(xcsf, fp);
     s += pop_load(xcsf, fp);
     fclose(fp);
-    //printf("xcsf loaded %lu elements\n", (unsigned long)s);
     return s;
 }
 
@@ -371,7 +374,6 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->THETA_SUB, sizeof(int), 1, fp);
-//    s += fwrite(&xcsf->stage, sizeof(int), 1, fp);
     s += fwrite(&xcsf->train, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->num_x_vars, sizeof(int), 1, fp);
     s += fwrite(&xcsf->num_y_vars, sizeof(int), 1, fp);
@@ -453,7 +455,6 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->THETA_SUB, sizeof(int), 1, fp);
-//    s += fread(&xcsf->stage, sizeof(int), 1, fp);
     s += fread(&xcsf->train, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->num_x_vars, sizeof(int), 1, fp);
     s += fread(&xcsf->num_y_vars, sizeof(int), 1, fp);
