@@ -2,7 +2,9 @@
 
 language: cpp
 
+sudo: required
 dist: bionic
+edge: true
  
 matrix:
   include:
