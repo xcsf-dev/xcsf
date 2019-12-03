@@ -272,15 +272,14 @@ _Bool mutate_eta(XCSF *xcsf, LAYER *l)
 
 _Bool mutate_functions(XCSF *xcsf, LAYER *l)
 {
-    _Bool mod = false;
     if(rand_uniform(0,1) < xcsf->F_MUTATION) {
         int orig = l->function;
         l->function = irand_uniform(0, NUM_ACTIVATIONS);
         if(l->function != orig) {
-            mod = true;
+            return true;
         }
     }
-    return mod;
+    return false;
 }
 
 double *neural_layer_connected_output(XCSF *xcsf, LAYER *l)
