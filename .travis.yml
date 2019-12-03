@@ -4,12 +4,6 @@ language: cpp
 
 dist: bionic
  
-addons:
-  sonarcloud:
-    organization: "rpreen"
-script:
-  - sonar-scanner
- 
 matrix:
   include:
     # Python library Ubuntu 18.04
@@ -19,6 +13,8 @@ matrix:
         apt:
           sources: ['ubuntu-toolchain-r-test']
           packages: ['g++-6', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
+        sonarcloud:
+          organization: "rpreen"
       env: BADGE=linux BUILD_TYPE="RELEASE" XCSF_PYLIB="ON"
 
     # Python library OSX
@@ -41,4 +37,4 @@ script:
     fi
     cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYLIB="$XCSF_PYLIB" ..
   - make
-
+  - sonar-scanner
