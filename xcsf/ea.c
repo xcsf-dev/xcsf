@@ -96,8 +96,8 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
  * @param xcsf The XCSF data structure.
  * @param c1p First parent classifier.
  * @param c2p Second parent classifier.
- * @param c1 The first offspring classifier initialise.
- * @param c2 The second offspring classifier initialise.
+ * @param c1 The first offspring classifier to initialise.
+ * @param c2 The second offspring classifier to initialise.
  * @param cmod Whether crossover modified the offspring.
  */
 void offspring_init(XCSF *xcsf, CL *c1p, CL *c2p, CL *c1, CL *c2, _Bool cmod)
