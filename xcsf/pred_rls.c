@@ -155,7 +155,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
     // update weights using the error
     // prediction has been updated for the current state during set_pred()
     for(int var = 0; var < xcsf->num_y_vars; var++) {
-        double error = y[var] - c->prediction[var]; // pred_compute();
+        double error = y[var] - c->prediction[var];
         for(int i = 0; i < n; i++) {
             pred->weights[var][i] += error * pred->tmp_vec[i];
         }

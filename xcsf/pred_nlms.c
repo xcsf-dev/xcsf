@@ -97,7 +97,7 @@ void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y)
 
     // prediction has been updated for the current state during set_pred()
     for(int var = 0; var < xcsf->num_y_vars; var++) {
-        double error = y[var] - c->prediction[var]; // pred_nlms_compute(c, x);
+        double error = y[var] - c->prediction[var];
         double correction = (xcsf->PRED_ETA * error) / norm;
         // update first coefficient
         pred->weights[var][0] += xcsf->PRED_X0 * correction;

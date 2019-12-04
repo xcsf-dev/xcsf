@@ -189,25 +189,17 @@ void neural_layer_connected_update(XCSF *xcsf, LAYER *l)
 _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
 {
     _Bool mod = false;
-    if(l->options & LAYER_EVOLVE_NEURONS) {
-        if(mutate_neurons(xcsf, l)) {
-            mod = true;
-        }
+    if((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l)) {
+        mod = true;
     }
-    if(l->options & LAYER_EVOLVE_WEIGHTS) {
-        if(mutate_weights(xcsf, l)) {
-            mod = true;
-        }
+    if((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(xcsf, l)) {
+        mod = true;
     }
-    if(l->options & LAYER_EVOLVE_ETA) {
-        if(mutate_eta(xcsf, l)) {
-            mod = true;
-        }
+    if((l->options & LAYER_EVOLVE_ETA) && mutate_eta(xcsf, l)) {
+        mod = true;
     }
-    if(l->options & LAYER_EVOLVE_FUNCTIONS) {
-        if(mutate_functions(xcsf, l)) {
-            mod = true;
-        }
+    if((l->options & LAYER_EVOLVE_FUNCTIONS) && mutate_functions(xcsf, l)) {
+        mod = true;
     }
     return mod;
 }

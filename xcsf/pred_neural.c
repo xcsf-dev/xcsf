@@ -94,12 +94,6 @@ void pred_neural_init(XCSF *xcsf, CL *c)
     neural_layer_insert(xcsf, &new->net, l, 1); 
 
     c->pred = new;
-
-    //l = neural_layer_noise_init(xcsf, xcsf->num_x_vars, 0.5, 0.5);
-    //l = neural_layer_dropout_init(xcsf, xcsf->num_x_vars, 0.2);
-    //neural_layer_insert(xcsf, &new->net, l, 0); 
-    //l = neural_layer_softmax_init(xcsf, xcsf->num_y_vars, 1);
-    //neural_layer_insert(xcsf, &new->net, l, 4);
 }
 
 void pred_neural_free(XCSF *xcsf, CL *c)
