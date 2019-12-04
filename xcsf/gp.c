@@ -202,37 +202,23 @@ int tree_print(XCSF *xcsf, GP_TREE *gp, int p)
         else {
             printf("%f", xcsf->gp_cons[node-GP_NUM_FUNC]);
         }
-        return(++p);
+        p++;
+        return(p);
     }
     // function
-    int a1 = 0; 
-    int a2 = 0;
+    printf( "(");
+    p++;
+    int a1 = tree_print(xcsf, gp, p);
     switch(node) {
-        case ADD: 
-            printf( "(");
-            a1 = tree_print(xcsf, gp, ++p); 
-            printf( " + "); 
-            break;
-        case SUB: 
-            printf( "(");
-            a1 = tree_print(xcsf, gp, ++p); 
-            printf( " - "); 
-            break;
-        case MUL: 
-            printf( "(");
-            a1 = tree_print(xcsf, gp, ++p); 
-            printf( " * "); 
-            break;
-        case DIV: 
-            printf( "(");
-            a1 = tree_print(xcsf, gp, ++p); 
-            printf( " / "); 
-            break;
+        case ADD: printf( " + "); break;
+        case SUB: printf( " - "); break;
+        case MUL: printf( " * "); break;
+        case DIV: printf( " / "); break;
         default:
             printf("tree_print() invalid function: %d\n", node);
             exit(EXIT_FAILURE);
     }
-    a2 = tree_print(xcsf, gp, a1); 
+    int a2 = tree_print(xcsf, gp, a1);
     printf(")"); 
     return a2;
 }
@@ -316,14 +302,16 @@ void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate)
 int tree_traverse(int *tree, int p)
 {
     if(tree[p] >= GP_NUM_FUNC) {
-        return(++p);
+        p++;
+        return(p);
     }
     switch(tree[p]) {
         case ADD: 
         case SUB: 
         case MUL: 
         case DIV: 
-            return(tree_traverse(tree, tree_traverse(tree, ++p)));
+            p++;
+            return(tree_traverse(tree, tree_traverse(tree, p)));
         default:
             printf("tree_traverse() invalid function: %d\n", tree[p]);
             exit(EXIT_FAILURE);
