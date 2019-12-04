@@ -4,13 +4,36 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
 
 *******************************************************************************
 
-License|Linux Build|OSX Build|Windows Build|Fossa
-:--:|:--:|:--:|:--:|:--:
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)|[![Linux Build Status](http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=linux&label=build&branch=master)](https://travis-ci.org/rpreen/xcsf)|[![OSX Build Status](http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=osx&label=build&branch=master)](https://travis-ci.org/rpreen/xcsf)|[![Windows Build status](https://ci.appveyor.com/api/projects/status/s4xge68jmlbam005?svg=true)](https://ci.appveyor.com/project/rpreen/xcsf)|[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frpreen%2Fxcsf.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frpreen%2Fxcsf?ref=badge_shield)
+<table>
+    <tr>
+        <th>License</th>
+        <th>Linux Build</th>
+        <th>OSX Build</th>
+        <th>Windows Build</th>
+        <th>Fossa</th>
+    </tr>
+    <tr>
+        <td><a href="http://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a></td>
+        <td><a href="https://travis-ci.org/rpreen/xcsf"><img src="http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=linux&label=build&branch=master"></a></td>
+        <td><a href="https://travis-ci.org/rpreen/xcsf"><img src="http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=osx&label=build&branch=master"></a></td>
+        <td><a href="https://ci.appveyor.com/project/rpreen/xcsf"><img src="https://ci.appveyor.com/api/projects/status/s4xge68jmlbam005?svg=true"></a></td>
+        <td><a href="https://app.fossa.com/projects/git%2Bgithub.com%2Frpreen%2Fxcsf?ref=badge_shield"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Frpreen%2Fxcsf.svg?type=shield"></a></td>
+    </tr>
+</table>
 
-Codacy|LGTM|CodeFactor|SonarCloud
-:--:|:--:|:--:|:--:
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b)](https://www.codacy.com/app/rpreen/xcsf)|[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/rpreen/xcsf.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/rpreen/xcsf/context:cpp)|[![CodeFactor](https://www.codefactor.io/repository/github/rpreen/xcsf/badge)](https://www.codefactor.io/repository/github/rpreen/xcsf)|[![Quality Gate](https://sonarcloud.io/api/project_badges/quality_gate?project=rpreen_xcsf)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
+<table>
+    <tr>
+        <th>Codacy</th>
+        <th>LGTM</th>
+        <th>CodeFactor</th>
+        <th rowspan=2><a href="https://sonarcloud.io/dashboard?id=rpreen_xcsf"><img src="https://sonarcloud.io/api/project_badges/quality_gate?project=rpreen_xcsf"></a></th>
+    </tr>
+    <tr>
+        <td><a href="https://www.codacy.com/app/rpreen/xcsf"><img src="https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b"></a></td>
+        <td><a href="https://lgtm.com/projects/g/rpreen/xcsf/context:cpp"><img src="https://img.shields.io/lgtm/grade/cpp/g/rpreen/xcsf.svg?logo=lgtm&logoWidth=18"></a></td>
+        <td><a href="https://www.codefactor.io/repository/github/rpreen/xcsf"><img src="https://www.codefactor.io/repository/github/rpreen/xcsf/badge"></a></td>
+    </tr>
+</table>
 
 *******************************************************************************
 
