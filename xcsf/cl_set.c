@@ -169,7 +169,7 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
         j++;
     }
     // update current matching conditions setting m flags in parallel
-    #pragma omp parallel for
+#pragma omp parallel for
     for(int i = 0; i < xcsf->pset.size; i++) {
         cl_match(xcsf, blist[i]->cl, x);
     }
