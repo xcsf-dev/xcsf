@@ -56,7 +56,7 @@
 #include "cl_set.h"
 #include "env.h"
 #include "env_maze.h"
-     
+
 #define MAZE_DEBUG false //!< Whether to print the state of the maze during exploitation
 #define MAX_SIZE 50 //!< The maximum width/height of a maze
 #define MAX_PAYOFF 1.0 //!< The payoff provided at a food position
@@ -77,7 +77,7 @@ typedef struct ENV_MAZE {
     int ysize; //!< Maze size in y dimension
     _Bool reset; //!< Whether the trial needs to be reset (e.g., in goal state)
 } ENV_MAZE;
- 
+
 double env_maze_sensor(XCSF *xcsf, char s);
 
 /**
@@ -95,18 +95,18 @@ void env_maze_init(XCSF *xcsf, char *fname)
     }
     // read maze
     ENV_MAZE *env = malloc(sizeof(ENV_MAZE));
-    int c; int x = 0; int y = 0;
+    int x = 0;
+    int y = 0;
+    int c;
     while((c = fgetc(fp)) != EOF) {
-        switch(c) {
-            case '\n':
-                y++;
-                env->xsize = x;
-                x = 0;
-                break;
-            default:
-                env->maze[y][x] = (char)c;
-                x++;
-                break;
+        if(c == '\n') {
+            y++;
+            env->xsize = x;
+            x = 0;
+        }
+        else {
+            env->maze[y][x] = (char)c;
+            x++;
         }
         // check maximum maze size not exceeded
         if(x > MAX_SIZE || y > MAX_SIZE) {
@@ -126,14 +126,6 @@ void env_maze_init(XCSF *xcsf, char *fname)
     xcsf->num_y_vars = 1;
     xcsf->env = env;
     fclose(fp);
-//    printf("Loaded MAZE = %s\n", fname);
-//    printf("Dimensions: [%d,%d]\n", env->xsize, env->ysize);
-//    for(int i = 0; i < env->ysize; i++) {
-//        for(int j = 0; j < env->xsize; j++) {
-//            printf("%c", env->maze[i][j]);
-//        }
-//        printf("\n");
-//    }
 }
 
 /**
@@ -220,8 +212,8 @@ double env_maze_sensor(XCSF *xcsf, char s)
         case 'F': return 0.7;
         case 'Q': return 0.9;
         default :
-            printf("unsupported maze state: %c\n", s);
-            exit(EXIT_FAILURE);
+                  printf("unsupported maze state: %c\n", s);
+                  exit(EXIT_FAILURE);
     }
 }
 
