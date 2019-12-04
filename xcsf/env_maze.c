@@ -205,16 +205,18 @@ double *env_maze_get_state(XCSF *xcsf)
 double env_maze_sensor(XCSF *xcsf, char s)
 {
     (void)xcsf;
+    double ret = 0;
     switch(s) {
-        case '*': return 0.1;
-        case 'O': return 0.3;
-        case 'G': return 0.5;
-        case 'F': return 0.7;
-        case 'Q': return 0.9;
-        default :
-                  printf("unsupported maze state: %c\n", s);
-                  exit(EXIT_FAILURE);
+        case '*': ret = 0.1; break;
+        case 'O': ret = 0.3; break;
+        case 'G': ret = 0.5; break;
+        case 'F': ret = 0.7; break;
+        case 'Q': ret = 0.9; break;
+        default:
+            printf("unsupported maze state: %c\n", s);
+            exit(EXIT_FAILURE);
     }
+    return ret;
 }
 
 /**

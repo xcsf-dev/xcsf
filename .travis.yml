@@ -3,7 +3,7 @@
 language: cpp
 
 dist: bionic
- 
+
 matrix:
   include:
     # Sonar build
@@ -15,7 +15,7 @@ matrix:
         sonarcloud:
           organization: "rpreen"
       env: BUILD_TYPE="Debug" XCSF_PYLIB="OFF" SONAR="ON"
- 
+
     # Python library Ubuntu 18.04
     - os: linux
       compiler: gcc
