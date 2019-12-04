@@ -201,7 +201,6 @@ CL *ea_select_tournament(XCSF *xcsf, SET *set)
             if((rand_uniform(0,1) < xcsf->EA_SELECT_SIZE) &&
                 (winner == NULL || iter->cl->fit > winner->fit)) {
                     winner = iter->cl;
-                }
             }
         }
     }
