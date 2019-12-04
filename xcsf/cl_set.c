@@ -202,6 +202,7 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
  * @param mset The match set.
  * @param kset A set to store deleted macro-classifiers for later memory removal.
  * @param x The input state.
+ * @param act_covered Array indicating whether each action is covered by the set.
  */
 void set_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered)
 {
