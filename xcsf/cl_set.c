@@ -410,10 +410,8 @@ void set_subsumption(XCSF *xcsf, SET *set, SET *kset)
     // find the most general subsumer in the set
     for(iter = set->list; iter != NULL; iter = iter->next) {
         CL *c = iter->cl;
-        if(cl_subsumer(xcsf, c)) {
-            if(s == NULL || cl_general(xcsf, c, s)) {
-                s = c;
-            }
+        if(cl_subsumer(xcsf, c) && (s == NULL || cl_general(xcsf, c, s))) {
+            s = c;
         }
     }
     // subsume the more specific classifiers in the set
@@ -589,7 +587,8 @@ double set_avg_mut(XCSF *xcsf, SET *set, int m)
         }
     }
     // return the average classifier mutation rate
-    double sum = 0; int cnt = 0;
+    double sum = 0;
+    int cnt = 0;
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += cl_mutation_rate(xcsf, iter->cl, m);
         cnt++;
@@ -605,7 +604,8 @@ double set_avg_mut(XCSF *xcsf, SET *set, int m)
  */
 double set_avg_cond_size(XCSF *xcsf, SET *set)
 {
-    int sum = 0, cnt = 0;
+    int sum = 0;
+    int cnt = 0;
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += cl_cond_size(xcsf, iter->cl);
         cnt++;
@@ -621,7 +621,8 @@ double set_avg_cond_size(XCSF *xcsf, SET *set)
  */ 
 double set_avg_pred_size(XCSF *xcsf, SET *set)
 {
-    int sum = 0, cnt = 0;
+    int sum = 0;
+    int cnt = 0;
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += cl_pred_size(xcsf, iter->cl);
         cnt++;
@@ -655,7 +656,8 @@ size_t pop_save(XCSF *xcsf, FILE *fp)
 size_t pop_load(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
-    int size = 0, num = 0;
+    int size = 0;
+    int num = 0;
     s += fread(&size, sizeof(int), 1, fp);
     s += fread(&num, sizeof(int), 1, fp);
     set_init(xcsf, &xcsf->pset);
