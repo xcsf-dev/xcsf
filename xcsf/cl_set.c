@@ -45,6 +45,7 @@
 
 void set_subsumption(XCSF *xcsf, SET *set, SET *kset);
 void set_update_fit(XCSF *xcsf, SET *set);
+void set_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered);
 
 /**
  * @brief Initialises a new population set.
@@ -158,25 +159,21 @@ void pop_enforce_limit(XCSF *xcsf, SET *kset)
  */
 void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
 {
-    _Bool act_covered[xcsf->num_actions];
-    for(int i = 0; i < xcsf->num_actions; i++) {
-        act_covered[i] = false;
-    }
-
-    // add classifiers that match the input state to the match set  
+    _Bool *act_covered = calloc(xcsf->num_actions, sizeof(_Bool));
 #ifdef PARALLEL_MATCH
+    // prepare for parallel processing of matching conditions
     CLIST *blist[xcsf->pset.size];
     int j = 0;
     for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         blist[j] = iter;
         j++;
     }
-    // update current matching conditions setting m flags
-#pragma omp parallel for
+    // update current matching conditions setting m flags in parallel
+    #pragma omp parallel for
     for(int i = 0; i < xcsf->pset.size; i++) {
         cl_match(xcsf, blist[i]->cl, x);
     }
-    // build m list
+    // build match set list in series
     for(int i = 0; i < xcsf->pset.size; i++) {
         if(cl_m(xcsf, blist[i]->cl)) {
             set_add(xcsf, mset, blist[i]->cl);
@@ -185,6 +182,7 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
         }
     }
 #else
+    // update matching conditions and build match set list in series
     for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         if(cl_match(xcsf, iter->cl, x)) {
             set_add(xcsf, mset, iter->cl);
@@ -193,8 +191,20 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
         }
     }   
 #endif
-
     // perform covering if all actions are not represented
+    set_cover(xcsf, mset, kset, x, act_covered);
+    free(act_covered);
+}
+
+/**
+ * @brief Ensures all possible actions are covered by the match set.
+ * @param xcsf The XCSF data structure.
+ * @param mset The match set.
+ * @param kset A set to store deleted macro-classifiers for later memory removal.
+ * @param x The input state.
+ */
+void set_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered)
+{
     int attempts = 0;
     _Bool again;
     do {
