@@ -20,7 +20,7 @@
  * @date 2015--2019.
  * @brief Evolutionary algorithm functions.
  */ 
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -38,6 +38,10 @@
 CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum);
 CL *ea_select_tournament(XCSF *xcsf, SET *set);
 void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set);
+void offspring_init(XCSF *xcsf, CL *c1p, CL *c2p, CL *c1, CL *c2, _Bool cmod);
+
+void offspring_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, CL *c2,
+        _Bool cmod, _Bool m1mod, _Bool m2mod);
 
 /**
  * @brief Executes the evolutionary algorithm (EA).
@@ -79,49 +83,79 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
         _Bool cmod = cl_crossover(xcsf, c1, c2);
         _Bool m1mod = cl_mutate(xcsf, c1);
         _Bool m2mod = cl_mutate(xcsf, c2); 
-        // reduce offspring err, fit
-        if(cmod) {
-            c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err)/2.0);
-            c2->err = c1->err;
-            c1->fit = c1p->fit / c1p->num;
-            c2->fit = c2p->fit / c2p->num;
-            c1->fit = xcsf->FIT_REDUC * ((c1->fit + c2->fit)/2.0);
-            c2->fit = c1->fit;
-        }
-        else {
-            c1->err = xcsf->ERR_REDUC * c1p->err;
-            c2->err = xcsf->ERR_REDUC * c2p->err;
-            c1->fit = xcsf->FIT_REDUC * (c1p->fit / c1p->num);
-            c2->fit = xcsf->FIT_REDUC * (c2p->fit / c2p->num);
-        }
-        // add offspring to population
-        if(xcsf->EA_SUBSUMPTION) {
-            // c1 no crossover or mutation changes
-            if(!cmod && !m1mod) {
-                c1p->num++;
-                xcsf->pset.num++;
-                cl_free(xcsf, c1);      
-            }
-            else {
-                ea_subsume(xcsf, c1, c1p, c2p, set);
-            }
-            // c2 no crossover or mutation changes
-            if(!cmod && !m2mod) {
-                c2p->num++;
-                xcsf->pset.num++;
-                cl_free(xcsf, c2);      
-            }
-            else {
-                ea_subsume(xcsf, c2, c1p, c2p, set);
-            }    
-        }
-        else {
-            set_add(xcsf, &xcsf->pset, c1);
-            set_add(xcsf, &xcsf->pset, c2);
-        }
+        // initialise parameters
+        offspring_init(xcsf, c1p, c2p, c1, c2, cmod);
+        // add to population
+        offspring_add(xcsf, set, c1p, c2p, c1, c2, cmod, m1mod, m2mod);
     }
     pop_enforce_limit(xcsf, kset);
 }   
+
+/**
+ * @brief Initialises offspring error and fitness.
+ * @param xcsf The XCSF data structure.
+ * @param c1p First parent classifier.
+ * @param c2p Second parent classifier.
+ * @param c1 The first offspring classifier initialise.
+ * @param c2 The second offspring classifier initialise.
+ * @param cmod Whether crossover modified the offspring.
+ */
+void offspring_init(XCSF *xcsf, CL *c1p, CL *c2p, CL *c1, CL *c2, _Bool cmod)
+{
+    if(cmod) {
+        c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err)/2.0);
+        c2->err = c1->err;
+        c1->fit = c1p->fit / c1p->num;
+        c2->fit = c2p->fit / c2p->num;
+        c1->fit = xcsf->FIT_REDUC * ((c1->fit + c2->fit)/2.0);
+        c2->fit = c1->fit;
+    }
+    else {
+        c1->err = xcsf->ERR_REDUC * c1p->err;
+        c2->err = xcsf->ERR_REDUC * c2p->err;
+        c1->fit = xcsf->FIT_REDUC * (c1p->fit / c1p->num);
+        c2->fit = xcsf->FIT_REDUC * (c2p->fit / c2p->num);
+    }
+}
+
+/**
+ * @brief Adds offspring to the population.
+ * @param xcsf The XCSF data structure.
+ * @param set The set in which the EA is being run.
+ * @param c1p First parent classifier.
+ * @param c2p Second parent classifier.
+ * @param c1 The first offspring classifier initialise.
+ * @param c2 The second offspring classifier initialise.
+ * @param cmod Whether crossover modified the offspring.
+ * @param m1mod Whether mutation modified the first offspring.
+ * @param m2mod Whether mutation modified the second offspring.
+ */
+void offspring_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, CL *c2,
+        _Bool cmod, _Bool m1mod, _Bool m2mod)
+{
+    if(!cmod && !m1mod) {
+        c1p->num++;
+        xcsf->pset.num++;
+        cl_free(xcsf, c1);
+    }
+    else if(xcsf->EA_SUBSUMPTION) {
+        ea_subsume(xcsf, c1, c1p, c2p, set);
+    }
+    else {
+        set_add(xcsf, &xcsf->pset, c1);
+    }
+    if(!cmod && !m2mod) {
+        c2p->num++;
+        xcsf->pset.num++;
+        cl_free(xcsf, c2);
+    }
+    else if(xcsf->EA_SUBSUMPTION) {
+        ea_subsume(xcsf, c2, c1p, c2p, set);
+    }
+    else {
+        set_add(xcsf, &xcsf->pset, c2);
+    }
+}
 
 /**
  * @brief Performs evolutionary algorithm subsumption.
@@ -199,8 +233,8 @@ CL *ea_select_tournament(XCSF *xcsf, SET *set)
     while(winner == NULL) {
         for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             if((rand_uniform(0,1) < xcsf->EA_SELECT_SIZE) &&
-                (winner == NULL || iter->cl->fit > winner->fit)) {
-                    winner = iter->cl;
+                    (winner == NULL || iter->cl->fit > winner->fit)) {
+                winner = iter->cl;
             }
         }
     }
