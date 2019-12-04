@@ -91,8 +91,8 @@ void init_genrand64(unsigned long long seed)
 void init_by_array64(unsigned long long init_key[],
         unsigned long long key_length)
 {
-    unsigned long long i = 0;
-    unsigned long long j = 1;
+    unsigned long long i = 1;
+    unsigned long long j = 0;
     unsigned long long k;
     init_genrand64(19650218ULL);
     k = (NN>key_length ? NN : key_length);
