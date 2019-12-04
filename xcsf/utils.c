@@ -91,7 +91,8 @@ double rand_normal(double mu, double sigma)
     if(!generate) {
         return z1 * sigma + mu;
     }
-    double u1, u2;
+    double u1;
+    double u2;
     do {
         u1 = drand();
         u2 = drand();

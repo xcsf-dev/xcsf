@@ -48,7 +48,9 @@ double xcs_single_step_exp(XCSF *xcsf)
 {
     gplot_init(xcsf);
     pa_init(xcsf);
-    double perr = 0, err = 0, pterr = 0;
+    double perr = 0;
+    double err = 0;
+    double pterr = 0;
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         xcs_single_explore(xcsf);
         double error = 0;
@@ -57,7 +59,8 @@ double xcs_single_step_exp(XCSF *xcsf)
         pterr += error;
         if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
             disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
-            perr = 0; pterr = 0;
+            perr = 0;
+            pterr = 0;
         }
     }
     gplot_free(xcsf);
@@ -73,7 +76,9 @@ void xcs_single_explore(XCSF *xcsf)
 {
     xcsf->train = true;
     double *x = env_get_state(xcsf);
-    SET mset, aset, kset;
+    SET mset; // match set
+    SET aset; // action set
+    SET kset; // kill set
     set_init(xcsf, &mset);
     set_init(xcsf, &aset);
     set_init(xcsf, &kset);
@@ -107,7 +112,9 @@ double xcs_single_exploit(XCSF *xcsf, double *error)
 {
     xcsf->train = false;
     double *x = env_get_state(xcsf);
-    SET mset, aset, kset;
+    SET mset; // match set
+    SET aset; // action set
+    SET kset; // kill set
     set_init(xcsf, &mset);
     set_init(xcsf, &aset);
     set_init(xcsf, &kset);

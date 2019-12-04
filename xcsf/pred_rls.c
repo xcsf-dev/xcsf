@@ -218,14 +218,6 @@ void pred_rls_print(XCSF *xcsf, CL *c)
         }
         printf("\n");
     }
-    //	printf("RLS matrix: ");
-    //	int n = pred->weights_length;
-    //	for(int i = 0; i < n; i++) {
-    //		for(int j = 0; j < n; j++) {
-    //			printf("%f, ", pred->matrix[i*n+j]);
-    //		}
-    //	}
-    //	printf("\n");
 }
 
 void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n)

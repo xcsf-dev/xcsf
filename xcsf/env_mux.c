@@ -67,7 +67,6 @@ void env_mux_init(XCSF *xcsf, int bits)
     xcsf->num_x_vars = n;
     xcsf->num_y_vars = 1;
     xcsf->env = env;
-    //printf("Initialised rmux problem with %d bits\n", n);
 }
 
 /**

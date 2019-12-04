@@ -79,6 +79,7 @@ void env_csv_read(char *fname, double **data, int *num_rows, int *num_cols)
     *num_rows = 0;
     *num_cols = 0;
     char line[MAX_COLS];
+    char *saveptr;
     while(fgets(line, MAX_COLS, fin) != NULL) {
         if(*num_rows > MAX_ROWS) {
             printf("data file %s is too big; maximum: %d\n", fname, MAX_ROWS);
@@ -86,12 +87,12 @@ void env_csv_read(char *fname, double **data, int *num_rows, int *num_cols)
         }        
         // use the first line to count the number of variables on a line
         if(*num_rows == 0) {
-            char *ptok = strtok(line, DELIM);
+            char *ptok = strtok_r(line, DELIM, &saveptr);
             while(ptok != NULL) {
                 if(strnlen(ptok,MAX_COLS) > 0) {
                     (*num_cols)++;
                 }
-                ptok = strtok(NULL, DELIM);
+                ptok = strtok_r(NULL, DELIM, &saveptr);
             }
         }
         (*num_rows)++; // count the number of lines
@@ -100,9 +101,9 @@ void env_csv_read(char *fname, double **data, int *num_rows, int *num_cols)
     rewind(fin);
     *data = malloc(sizeof(double) * (*num_cols) * (*num_rows));
     for(int i = 0; fgets(line,MAX_COLS,fin) != NULL; i++) {
-        (*data)[i * (*num_cols)] = atof(strtok(line, DELIM));
+        (*data)[i * (*num_cols)] = atof(strtok_r(line, DELIM, &saveptr));
         for(int j = 1; j < *num_cols; j++) {
-            (*data)[i * (*num_cols)+j] = atof(strtok(NULL, DELIM));
+            (*data)[i * (*num_cols)+j] = atof(strtok_r(NULL, DELIM, &saveptr));
         }
     }
     fclose(fin);

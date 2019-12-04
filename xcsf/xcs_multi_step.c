@@ -46,9 +46,11 @@ int xcs_multi_exploit(XCSF *xcsf, double *error);
  */
 double xcs_multi_step_exp(XCSF *xcsf)
 {
+    double perr = 0;
+    double err = 0;
+    double pterr = 0;
     gplot_init(xcsf);
     pa_init(xcsf);
-    double perr = 0, err = 0, pterr = 0;
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         xcs_multi_explore(xcsf);
         perr += xcs_multi_exploit(xcsf, &pterr);
@@ -74,13 +76,15 @@ int xcs_multi_explore(XCSF *xcsf)
     _Bool reset = false; 
     double prev_reward = 0;
     double *prev_state = malloc(sizeof(double) * xcsf->num_x_vars);
-    SET prev_aset, kset;
+    SET prev_aset; // previous action set
+    SET kset; // kill set
     set_init(xcsf, &prev_aset);
     set_init(xcsf, &kset);
     env_reset(xcsf);
     int steps = 0;
     for(steps = 0; steps < xcsf->TELETRANSPORTATION && !reset; steps++) {
-        SET mset, aset;
+        SET mset; // match set
+        SET aset; // action set
         set_init(xcsf, &mset);
         set_init(xcsf, &aset);
         // percieve environment
@@ -140,16 +144,19 @@ int xcs_multi_exploit(XCSF *xcsf, double *error)
 {
     xcsf->train = false;
     _Bool reset = false; 
-    double prev_reward = 0, prev_pred = 0;
+    double prev_reward = 0;
+    double prev_pred = 0;
     double *prev_state = malloc(sizeof(double) * xcsf->num_x_vars);
-    SET prev_aset, kset;
+    SET prev_aset; // previous action set
+    SET kset; // kill set
     set_init(xcsf, &prev_aset);
     set_init(xcsf, &kset);
     *error = 0;
     env_reset(xcsf);
     int steps = 0;
     for(steps = 0; steps < xcsf->TELETRANSPORTATION && !reset; steps++) {
-        SET mset, aset;
+        SET mset; // match set
+        SET aset; // action set
         set_init(xcsf, &mset);
         set_init(xcsf, &aset);
         // percieve environment
@@ -170,7 +177,6 @@ int xcs_multi_exploit(XCSF *xcsf, double *error)
             set_validate(xcsf, &prev_aset);
             double payoff = prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
             set_update(xcsf, &prev_aset, &kset, prev_state, &payoff, false);
-            //ea(xcsf, &prev_aset, &kset);
             *error += fabs(xcsf->GAMMA * pa_val(xcsf, action) 
                     + prev_reward - prev_pred) / env_max_payoff(xcsf);
         }
@@ -178,11 +184,9 @@ int xcs_multi_exploit(XCSF *xcsf, double *error)
         if(reset) {
             set_validate(xcsf, &aset);
             set_update(xcsf, &aset, &kset, state, &reward, true);
-            //ea(xcsf, &aset, &kset);
             *error += fabs(reward - pa_val(xcsf, action)) / env_max_payoff(xcsf);
         }
         // next step
-        //xcsf->time += 1;
         xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
         set_free(xcsf, &prev_aset); // frees the previous action set list
         set_free(xcsf, &mset); // frees the match set list

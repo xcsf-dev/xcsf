@@ -140,8 +140,8 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
  */
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
-    SET mset;
-    SET kset;
+    SET mset; // match set
+    SET kset; // kill set
     set_init(xcsf, &mset);
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, x);
@@ -165,8 +165,8 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
  */
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
-    SET mset;
-    SET kset;
+    SET mset; // match set
+    SET kset; // kill set
     set_init(xcsf, &mset);
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, x);
@@ -188,8 +188,8 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
 {   
     xcsf->train = false;
     for(int row = 0; row < rows; row++) {
-        SET mset;
-        SET kset;
+        SET mset; // match set
+        SET kset; // kill set
         set_init(xcsf, &mset);
         set_init(xcsf, &kset);
         set_match(xcsf, &mset, &kset, &input[row * xcsf->num_x_vars]);
@@ -241,8 +241,8 @@ void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
  */
 void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa, _Bool printp)
 {
-    SET mset;
-    SET kset;
+    SET mset; // match set
+    SET kset; // kill set
     set_init(xcsf, &mset);
     set_init(xcsf, &kset);
     set_match(xcsf, &mset, &kset, input);

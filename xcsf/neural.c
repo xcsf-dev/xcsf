@@ -345,7 +345,9 @@ size_t neural_save(XCSF *xcsf, NET *net, FILE *fp)
 size_t neural_load(XCSF *xcsf, NET *net, FILE *fp)
 {
     size_t s = 0;
-    int nlayers = 0, ninputs = 0, noutputs = 0;
+    int nlayers = 0;
+    int ninputs = 0;
+    int noutputs = 0;
     s += fread(&nlayers, sizeof(int), 1, fp);
     s += fread(&ninputs, sizeof(int), 1, fp);
     s += fread(&noutputs, sizeof(int), 1, fp);

@@ -100,9 +100,6 @@ void regression(XCSF *xcsf, int argc, char **argv)
     // train model
     xcsf_fit2(xcsf, train_data, test_data, true);
 
-    //printf("SAVING XCSF\n");
-    //xcsf_save(xcsf, "test.bin");
-
     // clean up
     env_csv_input_free(train_data);
     env_csv_input_free(test_data);
