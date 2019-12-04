@@ -203,7 +203,7 @@ void trim(char *s)
         s[j] = '\0';
     }
     i = strnlen(s, MAXLEN)-1;
-    while(s[i]==' ' || s[i]=='\t'|| s[i] =='\n' || s[i]=='\r') {
+    while(s[i]==' ' || s[i]=='\t' || s[i] =='\n' || s[i]=='\r') {
         i--;
     }
     if(i < (strnlen(s, MAXLEN)-1)) {
