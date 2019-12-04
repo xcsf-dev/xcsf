@@ -38,10 +38,9 @@
 CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum);
 CL *ea_select_tournament(XCSF *xcsf, SET *set);
 void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set);
-void offspring_init(XCSF *xcsf, CL *c1p, CL *c2p, CL *c1, CL *c2, _Bool cmod);
-
-void offspring_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, CL *c2,
-        _Bool cmod, _Bool m1mod, _Bool m2mod);
+void ea_select_parents(XCSF *xcsf, SET *set, CL **c1p, CL **c2p);
+void ea_init_offspring(XCSF *xcsf, CL *c1p, CL *c2p, CL *c1, CL *c2, _Bool cmod);
+void ea_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod);
 
 /**
  * @brief Executes the evolutionary algorithm (EA).
@@ -58,15 +57,7 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
     set_times(xcsf, set);
     // select parents
     CL *c1p; CL *c2p;
-    if(xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
-        double fit_sum = set_total_fit(xcsf, set);
-        c1p = ea_select_rw(xcsf, set, fit_sum);
-        c2p = ea_select_rw(xcsf, set, fit_sum);
-    }
-    else {
-        c1p = ea_select_tournament(xcsf, set);
-        c2p = ea_select_tournament(xcsf, set);
-    }
+    ea_select_parents(xcsf, set, &c1p, &c2p);
     // create offspring
     for(int i = 0; i < xcsf->LAMBDA/2; i++) {
         // create copies of parents
@@ -84,9 +75,10 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
         _Bool m1mod = cl_mutate(xcsf, c1);
         _Bool m2mod = cl_mutate(xcsf, c2); 
         // initialise parameters
-        offspring_init(xcsf, c1p, c2p, c1, c2, cmod);
+        ea_init_offspring(xcsf, c1p, c2p, c1, c2, cmod);
         // add to population
-        offspring_add(xcsf, set, c1p, c2p, c1, c2, cmod, m1mod, m2mod);
+        ea_add(xcsf, set, c1p, c2p, c1, cmod, m1mod);
+        ea_add(xcsf, set, c2p, c1p, c2, cmod, m2mod);
     }
     pop_enforce_limit(xcsf, kset);
 }   
@@ -100,7 +92,7 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
  * @param c2 The second offspring classifier to initialise.
  * @param cmod Whether crossover modified the offspring.
  */
-void offspring_init(XCSF *xcsf, CL *c1p, CL *c2p, CL *c1, CL *c2, _Bool cmod)
+void ea_init_offspring(XCSF *xcsf, CL *c1p, CL *c2p, CL *c1, CL *c2, _Bool cmod)
 {
     if(cmod) {
         c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err)/2.0);
@@ -124,16 +116,13 @@ void offspring_init(XCSF *xcsf, CL *c1p, CL *c2p, CL *c1, CL *c2, _Bool cmod)
  * @param set The set in which the EA is being run.
  * @param c1p First parent classifier.
  * @param c2p Second parent classifier.
- * @param c1 The first offspring classifier initialise.
- * @param c2 The second offspring classifier initialise.
+ * @param c1 The offspring classifier to add.
  * @param cmod Whether crossover modified the offspring.
- * @param m1mod Whether mutation modified the first offspring.
- * @param m2mod Whether mutation modified the second offspring.
+ * @param mmod Whether mutation modified the offspring.
  */
-void offspring_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, CL *c2,
-        _Bool cmod, _Bool m1mod, _Bool m2mod)
+void ea_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod)
 {
-    if(!cmod && !m1mod) {
+    if(!cmod && !mmod) {
         c1p->num++;
         xcsf->pset.num++;
         cl_free(xcsf, c1);
@@ -143,17 +132,6 @@ void offspring_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, CL *c2,
     }
     else {
         set_add(xcsf, &xcsf->pset, c1);
-    }
-    if(!cmod && !m2mod) {
-        c2p->num++;
-        xcsf->pset.num++;
-        cl_free(xcsf, c2);
-    }
-    else if(xcsf->EA_SUBSUMPTION) {
-        ea_subsume(xcsf, c2, c1p, c2p, set);
-    }
-    else {
-        set_add(xcsf, &xcsf->pset, c2);
     }
 }
 
@@ -198,6 +176,26 @@ void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set)
         else {
             set_add(xcsf, &xcsf->pset, c);   
         }
+    }
+}
+
+/**
+ * @brief Selects two parents.
+ * @param xcsf The XCSF data structure.
+ * @param set The set in which the EA is being run.
+ * @param c1p First parent classifier (set by this function).
+ * @param c2p Second parent classifier (set by this function).
+ */
+void ea_select_parents(XCSF *xcsf, SET *set, CL **c1p, CL **c2p)
+{
+    if(xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
+        double fit_sum = set_total_fit(xcsf, set);
+        *c1p = ea_select_rw(xcsf, set, fit_sum);
+        *c2p = ea_select_rw(xcsf, set, fit_sum);
+    }
+    else {
+        *c1p = ea_select_tournament(xcsf, set);
+        *c2p = ea_select_tournament(xcsf, set);
     }
 }
 
