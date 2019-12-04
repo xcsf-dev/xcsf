@@ -133,6 +133,9 @@ int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
                     return (-1);
                 }
                 return (tree_grow(xcsf, buffer, one_child, max, depth-1));
+            default:
+                printf("tree_grow() invalid function: %d\n", prim);
+                exit(EXIT_FAILURE);
         }
     }
     printf("tree_grow() shouldn't be here\n");
@@ -159,19 +162,22 @@ double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x)
     }
     // function
     switch(node) {
-        case ADD : return(tree_eval(xcsf,gp,x) + tree_eval(xcsf,gp,x));
-        case SUB : return(tree_eval(xcsf,gp,x) - tree_eval(xcsf,gp,x));
-        case MUL : return(tree_eval(xcsf,gp,x) * tree_eval(xcsf,gp,x));
-        case DIV : { 
-                       double num = tree_eval(xcsf,gp,x); 
-                       double den = tree_eval(xcsf,gp,x);
-                       if(den == 0) {
-                           return(num);
-                       }
-                       else {
-                           return(num/den);
-                       }
-                   }
+        case ADD: return(tree_eval(xcsf,gp,x) + tree_eval(xcsf,gp,x));
+        case SUB: return(tree_eval(xcsf,gp,x) - tree_eval(xcsf,gp,x));
+        case MUL: return(tree_eval(xcsf,gp,x) * tree_eval(xcsf,gp,x));
+        case DIV: {
+                      double num = tree_eval(xcsf,gp,x);
+                      double den = tree_eval(xcsf,gp,x);
+                      if(den == 0) {
+                          return(num);
+                      }
+                      else {
+                          return(num/den);
+                      }
+                  }
+        default:
+                  printf("eval() invalid function: %d\n", node);
+                  exit(EXIT_FAILURE);
     }
     printf("eval() shouldn't be here\n");
     return 0;
@@ -222,6 +228,9 @@ int tree_print(XCSF *xcsf, GP_TREE *gp, int p)
             a1 = tree_print(xcsf, gp, ++p); 
             printf( " / "); 
             break;
+        default:
+            printf("tree_print() invalid function: %d\n", node);
+            exit(EXIT_FAILURE);
     }
     a2 = tree_print(xcsf, gp, a1); 
     printf(")"); 
@@ -290,15 +299,9 @@ void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate)
                 offspring->tree[i] = irand_uniform(GP_NUM_FUNC, 
                         GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->num_x_vars);
             }
+            // functions randomly replaced with other functions
             else {
-                // functions randomly replaced with other functions
-                switch(offspring->tree[i]) {
-                    case ADD: 
-                    case SUB: 
-                    case MUL: 
-                    case DIV:
-                        offspring->tree[i] = irand_uniform(0, GP_NUM_FUNC);
-                }
+                offspring->tree[i] = irand_uniform(0, GP_NUM_FUNC);
             }
         }
     }
@@ -321,9 +324,10 @@ int tree_traverse(int *tree, int p)
         case MUL: 
         case DIV: 
             return(tree_traverse(tree, tree_traverse(tree, ++p)));
+        default:
+            printf("tree_traverse() invalid function: %d\n", tree[p]);
+            exit(EXIT_FAILURE);
     }
-    printf("traverse() shouldn't be here\n");
-    return 0;
 }
 
 /**
