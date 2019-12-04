@@ -122,10 +122,6 @@ bar.close()
 plt.figure(figsize=(10,6))
 plt.plot(trials, train_mse, label='Train MSE')
 plt.plot(trials, test_mse, label='Test MSE')
-#psize[:] = [x / xcs.POP_SIZE for x in psize] # scale for plotting
-#msize[:] = [x / xcs.POP_SIZE for x in msize]
-#plt.plot(trials, psize, label='Population macro-classifiers / P')
-#plt.plot(trials, msize, label='Avg. match-set macro-classifiers / P')
 plt.grid(linestyle='dotted', linewidth=1)
 plt.axhline(y=xcs.EPS_0, xmin=0.0, xmax=1.0, linestyle='dashed', color='k')
 plt.title('XCSF Training Performance', fontsize=14)
