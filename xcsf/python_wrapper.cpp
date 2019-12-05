@@ -211,6 +211,7 @@ struct XCS
     int get_sam_type() { return xcs.SAM_TYPE; }
     double get_max_con() { return xcs.MAX_CON; }
     double get_min_con() { return xcs.MIN_CON; }
+    double get_cond_smin() { return xcs.COND_SMIN; }
     _Bool get_cond_evolve_weights() { return xcs.COND_EVOLVE_WEIGHTS; }
     _Bool get_cond_evolve_neurons() { return xcs.COND_EVOLVE_NEURONS; }
     _Bool get_cond_evolve_functions() { return xcs.COND_EVOLVE_FUNCTIONS; }
@@ -295,6 +296,7 @@ struct XCS
     void set_sam_type(int a) { xcs.SAM_TYPE = a; }
     void set_max_con(double a) { xcs.MAX_CON = a; }
     void set_min_con(double a) { xcs.MIN_CON = a; }
+    void set_cond_smin(double a) { xcs.COND_SMIN = a; }
     void set_cond_evolve_weights(_Bool a) { xcs.COND_EVOLVE_WEIGHTS = a; }
     void set_cond_evolve_neurons(_Bool a) { xcs.COND_EVOLVE_NEURONS = a; }
     void set_cond_evolve_functions(_Bool a) { xcs.COND_EVOLVE_FUNCTIONS = a; }
@@ -380,6 +382,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("SAM_TYPE", &XCS::get_sam_type, &XCS::set_sam_type)
         .add_property("MAX_CON", &XCS::get_max_con, &XCS::set_max_con)
         .add_property("MIN_CON", &XCS::get_min_con, &XCS::set_min_con)
+        .add_property("COND_SMIN", &XCS::get_cond_smin, &XCS::set_cond_smin)
         .add_property("COND_EVOLVE_WEIGHTS", &XCS::get_cond_evolve_weights, &XCS::set_cond_evolve_weights)
         .add_property("COND_EVOLVE_NEURONS", &XCS::get_cond_evolve_neurons, &XCS::set_cond_evolve_neurons)
         .add_property("COND_EVOLVE_FUNCTIONS", &XCS::get_cond_evolve_functions, &XCS::set_cond_evolve_functions)
