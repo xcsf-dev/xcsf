@@ -133,13 +133,15 @@ void gplot_init(XCSF *xcsf)
         fprintf(gp, "set border linewidth 1\n");
         fprintf(gp, "set title \"%s\"\n", title);
         //fprintf(gp, "set nokey\n");
-        fprintf(gp, "set xlabel 'trials'\n");
-        fprintf(gp, "set ylabel 'system error'\n");
+        fprintf(gp, "set xlabel 'Trials'\n");
+        if(xcsf->num_actions == 0) {
+            fprintf(gp, "set ylabel 'System Error'\n");
+        }
         fprintf(gp, "set style line 1 lt -1 lw 1 ps 1 lc rgb 'red'\n");
         fprintf(gp, "set style line 2 lt -1 lw 1 ps 1 lc rgb 'blue'\n");
     }
     else {
-        printf("error starting gnuplot\n");
+        printf("Error starting gnuplot\n");
     }
 }
 
@@ -151,7 +153,7 @@ void gplot_free(XCSF *xcsf)
         pclose(gp);
     }
     else {
-        printf("error closing gnuplot\n");
+        printf("Error closing gnuplot\n");
     }
     // close data file
     fclose(fout);
@@ -160,15 +162,25 @@ void gplot_free(XCSF *xcsf)
 void gplot_draw(XCSF *xcsf, _Bool test_error)
 {
     if(gp != NULL) {
-        fprintf(gp, "plot '%s' using 1:2 title 'train error' w lp ls 1 pt 4 pi 50, ", fname);
-        if(test_error) {
-            fprintf(gp, "'%s' using 1:3 title 'test error' w lp ls 2 pt 8 pi 50", fname);
+        if(xcsf->num_actions == 0) {
+            // regression
+            fprintf(gp, "plot '%s' using 1:2 title 'Train Error' w lp ls 1 pt 4 pi 50, ", fname);
+            if(test_error) {
+                fprintf(gp, "'%s' using 1:3 title 'Test Error' w lp ls 2 pt 8 pi 50", fname);
+            }
+        }
+        else {
+            // reinforcement learning
+            fprintf(gp, "plot '%s' using 1:2 title 'Performance' w lp ls 1 pt 4 pi 50, ", fname);
+            if(test_error) {
+                fprintf(gp, "'%s' using 1:3 title 'Error' w lp ls 2 pt 8 pi 50", fname);
+            }
         }
         fprintf(gp,"\nreplot\n");
         fflush(gp);
     }
     else {
-        printf("error writing to gnuplot\n");
+        printf("Error writing to gnuplot\n");
     }
     (void)xcsf;
 }
