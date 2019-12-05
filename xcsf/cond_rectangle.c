@@ -86,9 +86,11 @@ void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x)
 void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y)
 {
     (void)y;
-    COND_RECTANGLE *cond = c->cond;
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
-        cond->center[i] += xcsf->COND_ETA * (x[i] - cond->center[i]);
+    if(xcsf->COND_ETA > 0) {
+        COND_RECTANGLE *cond = c->cond;
+        for(int i = 0; i < xcsf->num_x_vars; i++) {
+            cond->center[i] += xcsf->COND_ETA * (x[i] - cond->center[i]);
+        }
     }
 }
 
@@ -145,20 +147,15 @@ _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
     COND_RECTANGLE *cond = c->cond;
     _Bool changed = false;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
+        // centers
         double orig = cond->center[i];
         cond->center[i] += rand_normal(0, xcsf->S_MUTATION);
-        if(cond->center[i] < xcsf->MIN_CON) {
-            cond->center[i] = xcsf->MIN_CON;
-        }
-        else if(cond->center[i] > xcsf->MAX_CON) {
-            cond->center[i] = xcsf->MAX_CON;
-        }
+        cond->center[i] = constrain(xcsf->MIN_CON, xcsf->MAX_CON, cond->center[i]);
         if(orig != cond->center[i]) {
             changed = true;
         }
-    }
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
-        double orig = cond->spread[i];
+        // spreads
+        orig = cond->spread[i];
         cond->spread[i] += rand_normal(0, xcsf->S_MUTATION);
         if(orig != cond->spread[i]) {
             changed = true;
@@ -198,7 +195,7 @@ void cond_rectangle_print(XCSF *xcsf, CL *c)
 int cond_rectangle_size(XCSF *xcsf, CL *c)
 {
     (void)c;
-    return xcsf->num_x_vars * 2;
+    return xcsf->num_x_vars;
 }
 
 size_t cond_rectangle_save(XCSF *xcsf, CL *c, FILE *fp)
