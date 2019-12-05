@@ -26,12 +26,14 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
         <th>Codacy</th>
         <th>LGTM</th>
         <th>CodeFactor</th>
+        <th>Code Inspector</th>
         <th rowspan=2><a href="https://sonarcloud.io/dashboard?id=rpreen_xcsf"><img src="https://sonarcloud.io/api/project_badges/quality_gate?project=rpreen_xcsf"></a></th>
     </tr>
     <tr>
         <td><a href="https://www.codacy.com/app/rpreen/xcsf"><img src="https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b"></a></td>
         <td><a href="https://lgtm.com/projects/g/rpreen/xcsf/context:cpp"><img src="https://img.shields.io/lgtm/grade/cpp/g/rpreen/xcsf.svg?logo=lgtm&logoWidth=18"></a></td>
         <td><a href="https://www.codefactor.io/repository/github/rpreen/xcsf"><img src="https://www.codefactor.io/repository/github/rpreen/xcsf/badge"></a></td>
+        <td><a href="https://www.code-inspector.com/public/project/2064/xcsf/dashboard"><img src="https://www.code-inspector.com/project/2064/status/svg"></a></td>
     </tr>
 </table>
 
