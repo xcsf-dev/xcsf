@@ -107,8 +107,8 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->S_MUTATION = atof(getvalue("S_MUTATION"));
     xcsf->E_MUTATION = atof(getvalue("E_MUTATION"));
     xcsf->SAM_MIN = atof(getvalue("SAM_MIN"));
-    xcsf->MAX_CON = atof(getvalue("MAX_CON"));
-    xcsf->MIN_CON = atof(getvalue("MIN_CON"));
+    xcsf->COND_MAX = atof(getvalue("COND_MAX"));
+    xcsf->COND_MIN = atof(getvalue("COND_MIN"));
     xcsf->COND_SMIN = atof(getvalue("COND_SMIN"));
     xcsf->COND_ETA = atof(getvalue("COND_ETA"));
     xcsf->PRED_RLS_LAMBDA = atof(getvalue("PRED_RLS_LAMBDA"));

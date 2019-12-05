@@ -117,8 +117,8 @@ typedef struct XCSF {
     double SAM_MIN; //!< Minimum value of a log normal adaptive mutation rate
 
     // classifier condition parameters
-    double MAX_CON; //!< Maximum value expected from inputs
-    double MIN_CON; //!< Minimum value expected from inputs
+    double COND_MAX; //!< Maximum value expected from inputs
+    double COND_MIN; //!< Minimum value expected from inputs
     double COND_SMIN; //!< Minimum initial spread for hyperectangles and hyperellipsoids
     int DGP_NUM_NODES; //!< Number of nodes in a DGP graph
     _Bool RESET_STATES; //!< Whether to reset the initial states of DGP graphs

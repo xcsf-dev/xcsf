@@ -48,8 +48,8 @@ void cond_rectangle_init(XCSF *xcsf, CL *c)
     new->center = malloc(sizeof(double)*xcsf->num_x_vars);
     new->spread = malloc(sizeof(double)*xcsf->num_x_vars);
     for(int i = 0; i < xcsf->num_x_vars; i++) {
-        new->center[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
-        new->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->MAX_CON - xcsf->MIN_CON));
+        new->center[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
+        new->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
     }  
     c->cond = new;     
 }
@@ -79,7 +79,7 @@ void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x)
     COND_RECTANGLE *cond = c->cond;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         cond->center[i] = x[i];
-        cond->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->MAX_CON - xcsf->MIN_CON));
+        cond->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
     }
 }
 
@@ -150,7 +150,7 @@ _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c)
         // centers
         double orig = cond->center[i];
         cond->center[i] += rand_normal(0, xcsf->S_MUTATION);
-        cond->center[i] = constrain(xcsf->MIN_CON, xcsf->MAX_CON, cond->center[i]);
+        cond->center[i] = constrain(xcsf->COND_MIN, xcsf->COND_MAX, cond->center[i]);
         if(orig != cond->center[i]) {
             changed = true;
         }

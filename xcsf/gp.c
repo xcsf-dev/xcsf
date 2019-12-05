@@ -53,7 +53,7 @@ void tree_init_cons(XCSF *xcsf)
 {
     xcsf->gp_cons = malloc(sizeof(double) * xcsf->GP_NUM_CONS);
     for(int i = 0; i < xcsf->GP_NUM_CONS; i++) {
-        xcsf->gp_cons[i] = rand_uniform(xcsf->MIN_CON, xcsf->MAX_CON);
+        xcsf->gp_cons[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
     }
 }     
 

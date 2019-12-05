@@ -276,7 +276,7 @@ double neural_output(XCSF *xcsf, NET *net, int i)
 {
     if(i < net->num_outputs) {
         double *output = layer_output(xcsf, net->head->layer);
-        return constrain(xcsf->MIN_CON, xcsf->MAX_CON, output[i]);
+        return constrain(xcsf->COND_MIN, xcsf->COND_MAX, output[i]);
     }
     printf("neural_output(): requested (%d) in output layer of size (%d)\n",
             i, net->num_outputs);
