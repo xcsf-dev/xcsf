@@ -134,7 +134,7 @@ void gplot_init(XCSF *xcsf)
         fprintf(gp, "set title \"%s\"\n", title);
         //fprintf(gp, "set nokey\n");
         fprintf(gp, "set xlabel 'Trials'\n");
-        if(xcsf->num_actions == 0) {
+        if(xcsf->num_actions < 2) {
             fprintf(gp, "set ylabel 'System Error'\n");
         }
         fprintf(gp, "set style line 1 lt -1 lw 1 ps 1 lc rgb 'red'\n");
@@ -162,7 +162,7 @@ void gplot_free(XCSF *xcsf)
 void gplot_draw(XCSF *xcsf, _Bool test_error)
 {
     if(gp != NULL) {
-        if(xcsf->num_actions == 0) {
+        if(xcsf->num_actions < 2) {
             // regression
             fprintf(gp, "plot '%s' using 1:2 title 'Train Error' w lp ls 1 pt 4 pi 50, ", fname);
             if(test_error) {
