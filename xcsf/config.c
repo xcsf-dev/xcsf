@@ -25,24 +25,26 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <inttypes.h>
 #include <errno.h>
 #include "xcsf.h"
 #include "gp.h"
 #include "config.h"
 #include "loss.h"
 
-#define MAXLEN 127 //!< maximum config file line length to read
+#define MAXLEN 127 //!< Maximum config file line length to read
+#define BASE 10 //!< Decimal numbers
 
 /**
  * @brief Configuration file parameter data structure.
  */ 
 typedef struct PARAM_LIST {
-    char *name; //!< parameter name
-    char *value; //!< parameter value
-    struct PARAM_LIST *next; //!< pointer to the next parameter
+    char *name; //!< Parameter name
+    char *value; //!< Parameter value
+    struct PARAM_LIST *next; //!< Pointer to the next parameter
 } PARAM_LIST;
 
-PARAM_LIST *head; //!< linked list of config file parameters
+PARAM_LIST *head; //!< Linked list of config file parameters
 
 void init_config(const char *filename);
 void process(char *configline);
@@ -59,33 +61,34 @@ void tidyup();
 void constants_init(XCSF *xcsf, const char *filename)
 {
     init_config(filename);
+    char *end;
     // integers
-    xcsf->ACT_TYPE = atoi(getvalue("ACT_TYPE"));
-    xcsf->COND_TYPE = atoi(getvalue("COND_TYPE"));
-    xcsf->DGP_NUM_NODES = atoi(getvalue("DGP_NUM_NODES"));
-    xcsf->GP_INIT_DEPTH = atoi(getvalue("GP_INIT_DEPTH"));
-    xcsf->GP_NUM_CONS = atoi(getvalue("GP_NUM_CONS"));
-    xcsf->LOSS_FUNC = atoi(getvalue("LOSS_FUNC"));
-    xcsf->MAX_K = atoi(getvalue("MAX_K"));
-    xcsf->MAX_T = atoi(getvalue("MAX_T"));
-    xcsf->MAX_TRIALS = atoi(getvalue("MAX_TRIALS"));
-    xcsf->COND_NUM_HIDDEN_NEURONS = atoi(getvalue("COND_NUM_HIDDEN_NEURONS"));
-    xcsf->COND_MAX_HIDDEN_NEURONS = atoi(getvalue("COND_MAX_HIDDEN_NEURONS"));
-    xcsf->COND_HIDDEN_NEURON_ACTIVATION = atoi(getvalue("COND_HIDDEN_NEURON_ACTIVATION"));
-    xcsf->PRED_NUM_HIDDEN_NEURONS = atoi(getvalue("PRED_NUM_HIDDEN_NEURONS"));
-    xcsf->PRED_MAX_HIDDEN_NEURONS = atoi(getvalue("PRED_MAX_HIDDEN_NEURONS"));
-    xcsf->PRED_HIDDEN_NEURON_ACTIVATION = atoi(getvalue("PRED_HIDDEN_NEURON_ACTIVATION"));
-    xcsf->OMP_NUM_THREADS = atoi(getvalue("OMP_NUM_THREADS"));
-    xcsf->PERF_AVG_TRIALS = atoi(getvalue("PERF_AVG_TRIALS"));
-    xcsf->POP_SIZE = atoi(getvalue("POP_SIZE"));
-    xcsf->PRED_TYPE = atoi(getvalue("PRED_TYPE"));
-    xcsf->SAM_NUM = atoi(getvalue("SAM_NUM"));
-    xcsf->SAM_TYPE = atoi(getvalue("SAM_TYPE"));
-    xcsf->LAMBDA = atoi(getvalue("LAMBDA"));
-    xcsf->EA_SELECT_TYPE = atoi(getvalue("EA_SELECT_TYPE"));
-    xcsf->THETA_SUB = atoi(getvalue("THETA_SUB"));
-    xcsf->THETA_DEL = atoi(getvalue("THETA_DEL"));
-    xcsf->TELETRANSPORTATION = atoi(getvalue("TELETRANSPORTATION"));
+    xcsf->ACT_TYPE = strtoimax(getvalue("ACT_TYPE"), &end, BASE);
+    xcsf->COND_TYPE = strtoimax(getvalue("COND_TYPE"), &end, BASE);
+    xcsf->DGP_NUM_NODES = strtoimax(getvalue("DGP_NUM_NODES"), &end, BASE);
+    xcsf->GP_INIT_DEPTH = strtoimax(getvalue("GP_INIT_DEPTH"), &end, BASE);
+    xcsf->GP_NUM_CONS = strtoimax(getvalue("GP_NUM_CONS"), &end, BASE);
+    xcsf->LOSS_FUNC = strtoimax(getvalue("LOSS_FUNC"), &end, BASE);
+    xcsf->MAX_K = strtoimax(getvalue("MAX_K"), &end, BASE);
+    xcsf->MAX_T = strtoimax(getvalue("MAX_T"), &end, BASE);
+    xcsf->MAX_TRIALS = strtoimax(getvalue("MAX_TRIALS"), &end, BASE);
+    xcsf->COND_NUM_HIDDEN_NEURONS = strtoimax(getvalue("COND_NUM_HIDDEN_NEURONS"), &end, BASE);
+    xcsf->COND_MAX_HIDDEN_NEURONS = strtoimax(getvalue("COND_MAX_HIDDEN_NEURONS"), &end, BASE);
+    xcsf->COND_HIDDEN_NEURON_ACTIVATION = strtoimax(getvalue("COND_HIDDEN_NEURON_ACTIVATION"), &end, BASE);
+    xcsf->PRED_NUM_HIDDEN_NEURONS = strtoimax(getvalue("PRED_NUM_HIDDEN_NEURONS"), &end, BASE);
+    xcsf->PRED_MAX_HIDDEN_NEURONS = strtoimax(getvalue("PRED_MAX_HIDDEN_NEURONS"), &end, BASE);
+    xcsf->PRED_HIDDEN_NEURON_ACTIVATION = strtoimax(getvalue("PRED_HIDDEN_NEURON_ACTIVATION"), &end, BASE);
+    xcsf->OMP_NUM_THREADS = strtoimax(getvalue("OMP_NUM_THREADS"), &end, BASE);
+    xcsf->PERF_AVG_TRIALS = strtoimax(getvalue("PERF_AVG_TRIALS"), &end, BASE);
+    xcsf->POP_SIZE = strtoimax(getvalue("POP_SIZE"), &end, BASE);
+    xcsf->PRED_TYPE = strtoimax(getvalue("PRED_TYPE"), &end, BASE);
+    xcsf->SAM_NUM = strtoimax(getvalue("SAM_NUM"), &end, BASE);
+    xcsf->SAM_TYPE = strtoimax(getvalue("SAM_TYPE"), &end, BASE);
+    xcsf->LAMBDA = strtoimax(getvalue("LAMBDA"), &end, BASE);
+    xcsf->EA_SELECT_TYPE = strtoimax(getvalue("EA_SELECT_TYPE"), &end, BASE);
+    xcsf->THETA_SUB = strtoimax(getvalue("THETA_SUB"), &end, BASE);
+    xcsf->THETA_DEL = strtoimax(getvalue("THETA_DEL"), &end, BASE);
+    xcsf->TELETRANSPORTATION = strtoimax(getvalue("TELETRANSPORTATION"), &end, BASE);
     // floats
     xcsf->ALPHA = atof(getvalue("ALPHA")); 
     xcsf->BETA = atof(getvalue("BETA"));
