@@ -262,8 +262,10 @@ void cl_print(XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp)
         }
         printf("\n");
     }
-    printf("err=%f, fit=%f, num=%d, exp=%d, size=%f, time=%d\n", 
+    printf("err=%f, fit=%f, num=%d, exp=%d, size=%f, time=%d", 
             c->err, c->fit, c->num, c->exp, c->size, c->time);
+    sam_print(xcsf, c->mu);
+    printf("\n");
 }  
 
 /**

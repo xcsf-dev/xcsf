@@ -103,11 +103,11 @@ void sam_free(XCSF *xcsf, double *mu)
  */
 void sam_print(XCSF *xcsf, double *mu)
 {
-    printf("mu: \n");
-    for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        printf("%f, ", mu[i]);
+    if(xcsf->SAM_NUM > 0) {
+        for(int i = 0; i < xcsf->SAM_NUM; i++) {
+            printf(", mu%d=%f", i, mu[i]);
+        }
     }
-    printf("\n");
 }
 
 /**
