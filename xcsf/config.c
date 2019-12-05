@@ -109,6 +109,7 @@ void constants_init(XCSF *xcsf, const char *filename)
     xcsf->SAM_MIN = atof(getvalue("SAM_MIN"));
     xcsf->MAX_CON = atof(getvalue("MAX_CON"));
     xcsf->MIN_CON = atof(getvalue("MIN_CON"));
+    xcsf->COND_SMIN = atof(getvalue("COND_SMIN"));
     xcsf->COND_ETA = atof(getvalue("COND_ETA"));
     xcsf->PRED_RLS_LAMBDA = atof(getvalue("PRED_RLS_LAMBDA"));
     xcsf->PRED_RLS_SCALE_FACTOR = atof(getvalue("PRED_RLS_SCALE_FACTOR"));

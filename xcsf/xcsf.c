@@ -35,7 +35,7 @@
 #include "cl_set.h"
 #include "ea.h"
 
-const double VERSION = 1.04; //!< XCSF version number
+const double VERSION = 1.05; //!< XCSF version number
 
 double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
 double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
@@ -347,6 +347,7 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->SAM_MIN, sizeof(double), 1, fp);
     s += fwrite(&xcsf->MAX_CON, sizeof(double), 1, fp);
     s += fwrite(&xcsf->MIN_CON, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->COND_SMIN, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->COND_MAX_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->COND_HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
@@ -428,6 +429,7 @@ size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->SAM_MIN, sizeof(double), 1, fp);
     s += fread(&xcsf->MAX_CON, sizeof(double), 1, fp);
     s += fread(&xcsf->MIN_CON, sizeof(double), 1, fp);
+    s += fread(&xcsf->COND_SMIN, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fread(&xcsf->COND_MAX_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fread(&xcsf->COND_HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
