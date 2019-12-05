@@ -90,62 +90,36 @@ void gplot_init(XCSF *xcsf)
 
     // set gnuplot title
     char buffer[20];
-    char title[200];
+    char title[100];
     title[0] = '\0';
 
     switch(xcsf->COND_TYPE) {
-        case -1:
-            strcat(title, " dummy cond");
-            break;
-        case 0:
-            strcat(title, " hyperrectangle cond");
-            break;
-        case 1:
-            strcat(title, " hyperellipsoid cond");
-            break;
-        case 2:
-            strcat(title, " neural cond");
-            break;
-        case 3:
-            strcat(title, " tree-GP cond");
-            break;
-        case 4:
-            strcat(title, " graph-DGP cond");
-            break;
-        case 11:
-            strcat(title, " graph-DGP rules");
-            break;
-        case 12:
-            strcat(title, " neural rules");
-            break;
+        case -1: strncat(title, " dummy cond", 12); break;
+        case 0: strncat(title, " hyperrectangle cond", 21); break;
+        case 1: strncat(title, " hyperellipsoid cond", 21); break;
+        case 2: strncat(title, " neural cond", 13); break;
+        case 3: strncat(title, " tree-GP cond", 14); break;
+        case 4: strncat(title, " graph-DGP cond", 16); break;
+        case 11: strncat(title, " graph-DGP rules", 17); break;
+        case 12: strncat(title, " neural rules", 14); break;
     }
 
     if(xcsf->COND_TYPE < 10) {
         switch(xcsf->PRED_TYPE) {
-            case 0:
-                strcat(title, ", linear nlms");
-                break;
-            case 1:
-                strcat(title, ", quadratic nlms");
-                break;
-            case 2:
-                strcat(title, ", linear rls");
-                break;
-            case 3:
-                strcat(title, ", quadratic rls");
-                break;
-            case 4:
-                strcat(title, ", neural pred");
-                break;
+            case 0: strncat(title, ", linear nlms", 14); break;
+            case 1: strncat(title, ", quadratic nlms", 17); break;
+            case 2: strncat(title, ", linear rls", 13); break;
+            case 3: strncat(title, ", quadratic rls", 16); break;
+            case 4: strncat(title, ", neural pred", 14); break;
         }
     }
 
     if(xcsf->SAM_NUM > 0) {
-        strcat(title, ", SAM");
+        strncat(title, ", SAM", 6);
     }
 
     sprintf(buffer, ", P=%d", xcsf->POP_SIZE);
-    strcat(title, buffer);
+    strncat(title, buffer, 15);
 
     // execute gnuplot
 #ifdef _WIN32
