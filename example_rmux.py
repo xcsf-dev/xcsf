@@ -17,7 +17,7 @@
 
 import xcsf.xcsf as xcsf # Import XCSF
 import numpy as np
-from random import randint, random
+from random import random
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 np.set_printoptions(suppress=True)
@@ -59,7 +59,7 @@ def rmux_answer(state):
 # Initialise XCSF
 ###################
 
-# initialise XCSF for single-step reinforcement learning 
+# initialise XCSF for single-step reinforcement learning
 xcs = xcsf.XCS(mux, 2, False)
 
 # override default.ini
