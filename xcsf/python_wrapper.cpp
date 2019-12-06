@@ -108,6 +108,7 @@ struct XCS
         test_data.y_cols = 0;
         test_data.x = NULL;
         test_data.y = NULL;
+        action = 0;
     }
 
     double version() { return xcsf_version(); }
