@@ -170,13 +170,13 @@ After building with CMake option: `-DXCSF_PYLIB=ON`
 Supervised learning: see example_supervised.py.
 
 ```
-$ python3 supervised.py
+$ python3 example_supervised.py
 ```
 
 Single-step reinforcement learning: see example_rmux.py.
 
 ```
-$ python3 rmux.py
+$ python3 example_rmux.py
 ```
 
 *******************************************************************************
