@@ -125,7 +125,8 @@ double pa_val(XCSF *xcsf, int action)
     if(action >= 0 && action < xcsf->num_actions) {
         return xcsf->pa[action];
     }
-    return -1;
+    printf("pa_val() error: invalid action specified: %d\n", action);
+    exit(EXIT_FAILURE);
 }
 
 /**
