@@ -33,8 +33,8 @@
 
 #define NUM_FUNC 3 //!< Number of selectable node functions
 
-char *function_string(int function);
-double node_activate(int function, double *inputs, int k);
+static char *function_string(int function);
+static double node_activate(int function, double *inputs, int k);
 
 /**
  * @brief Initialises a new DGP graph.
@@ -299,7 +299,7 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
  * @param k The number of inputs to the activation function.
  * @return The result from applying the activation function.
  */
-double node_activate(int function, double *inputs, int k)
+static double node_activate(int function, double *inputs, int k)
 {
     double state = 0;
     switch(function)
@@ -332,7 +332,7 @@ double node_activate(int function, double *inputs, int k)
  * @param function The node function.
  * @return The name of the node function.
  */
-char *function_string(int function)
+static char *function_string(int function)
 {
     switch(function) {
         case 0: return "Fuzzy NOT";

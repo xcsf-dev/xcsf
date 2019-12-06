@@ -46,12 +46,12 @@ typedef struct PARAM_LIST {
 
 PARAM_LIST *head; //!< Linked list of config file parameters
 
-void init_config(const char *filename);
-void process(char *configline);
-void trim(char *s);
-void newnvpair(const char *config);
-char *getvalue(char *name);
-void tidyup();
+static void init_config(const char *filename);
+static void process(char *configline);
+static void trim(char *s);
+static void newnvpair(const char *config);
+static char *getvalue(char *name);
+static void tidyup();
 
 /**
  * @brief Initialises global constants and reads the specified configuration file.
@@ -192,7 +192,7 @@ void constants_free(XCSF *xcsf)
  * @brief Removes tabs/spaces/lf/cr from both ends of a line.
  * @param s The line to trim.
  */
-void trim(char *s)
+static void trim(char *s)
 {
     size_t i = 0;
     while(s[i]==' ' || s[i]=='\t' || s[i] =='\n' || s[i]=='\r') {
@@ -219,7 +219,7 @@ void trim(char *s)
  * @brief Adds a parameter to the list.
  * @param config The parameter to add.
  */
-void newnvpair(const char *config) {
+static void newnvpair(const char *config) {
     // first pair
     if(head == NULL) {
         head = malloc(sizeof(PARAM_LIST));
@@ -262,7 +262,7 @@ void newnvpair(const char *config) {
  * @param name The name of the parameter.
  * @return The value of the parameter.
  */
-char *getvalue(char *name) {
+static char *getvalue(char *name) {
     char *result = NULL;
     for(PARAM_LIST *iter = head; iter != NULL; iter = iter->next) {
         if(strcmp(name, iter->name) == 0) {
@@ -277,7 +277,7 @@ char *getvalue(char *name) {
  * @brief Parses a line of the config file and adds to the list.
  * @param configline A single line of the configuration file.
  */
-void process(char *configline) {
+static void process(char *configline) {
     // ignore empty lines
     if(strnlen(configline, MAXLEN) == 0) {
         return;
@@ -298,7 +298,7 @@ void process(char *configline) {
  * @brief Reads the specified configuration file.
  * @param filename The name of the configuration file.
  */
-void init_config(const char *filename) {
+static void init_config(const char *filename) {
     FILE *f = fopen(filename, "rt");
     if(f == NULL) {
         printf("ERROR: cannot open %s\n", filename);
@@ -319,7 +319,7 @@ void init_config(const char *filename) {
 /**
  * @brief Frees the config file parameter list.
  */
-void tidyup()
+static void tidyup()
 { 
     PARAM_LIST *iter = head;
     while(iter != NULL) {

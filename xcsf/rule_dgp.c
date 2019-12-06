@@ -44,7 +44,7 @@ typedef struct RULE_DGP{
 
 /* CONDITION FUNCTIONS */
 
-void rule_dgp_cond_rand(XCSF *xcsf, CL *c);
+static void rule_dgp_cond_rand(XCSF *xcsf, CL *c);
 
 void rule_dgp_cond_init(XCSF *xcsf, CL *c)
 {
@@ -73,7 +73,7 @@ void rule_dgp_cond_copy(XCSF *xcsf, CL *to, CL *from)
     to->cond = new;
 }
 
-void rule_dgp_cond_rand(XCSF *xcsf, CL *c)
+static void rule_dgp_cond_rand(XCSF *xcsf, CL *c)
 {
     RULE_DGP *cond = c->cond;
     graph_rand(xcsf, &cond->dgp);

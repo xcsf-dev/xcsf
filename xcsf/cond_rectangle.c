@@ -40,7 +40,7 @@ typedef struct COND_RECTANGLE {
     double *spread; //!< Spreads
 } COND_RECTANGLE;
 
-double cond_rectangle_dist(XCSF *xcsf, CL *c, double *x);
+static double cond_rectangle_dist(XCSF *xcsf, CL *c, double *x);
 
 void cond_rectangle_init(XCSF *xcsf, CL *c)
 {
@@ -105,7 +105,7 @@ _Bool cond_rectangle_match(XCSF *xcsf, CL *c, double *x)
     return c->m;
 }
 
-double cond_rectangle_dist(XCSF *xcsf, CL *c, double *x)
+static double cond_rectangle_dist(XCSF *xcsf, CL *c, double *x)
 {
     COND_RECTANGLE *cond = c->cond;
     double dist = 0;

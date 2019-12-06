@@ -46,10 +46,10 @@ void gplot_free(XCSF *xcsf)
 
 #else
 
-FILE *gp; // file containing gnuplot script
-FILE *fout; // file containing performance data
-char fname[50]; // file name for performance data
-void gplot_draw(XCSF *xcsf, _Bool test_error);
+static FILE *gp; //!< file containing gnuplot script
+static FILE *fout; //!< file containing performance data
+static char fname[50]; //!< file name for performance data
+static void gplot_draw(XCSF *xcsf, _Bool test_error);
  
 void gplot_perf1(XCSF *xcsf, double error, int trial)
 {
@@ -159,7 +159,7 @@ void gplot_free(XCSF *xcsf)
     fclose(fout);
 }
 
-void gplot_draw(XCSF *xcsf, _Bool test_error)
+static void gplot_draw(XCSF *xcsf, _Bool test_error)
 {
     if(gp != NULL) {
         if(xcsf->num_actions < 2) {

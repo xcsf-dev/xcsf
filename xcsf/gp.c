@@ -42,8 +42,8 @@
 #define MUL 2
 #define DIV 3
 
-int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth);
-int tree_traverse(int *tree, int p);
+static int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth);
+static int tree_traverse(int *tree, int p);
 
 /**
  * @brief Initialises the constants shared among all GP trees.
@@ -104,7 +104,7 @@ void tree_free(XCSF *xcsf, GP_TREE *gp)
  *
  * @details Only used to create an initial tree.
  */
-int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
+static int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
 {
     int prim = irand_uniform(0,2);
     if(p >= max) {
@@ -299,7 +299,7 @@ void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate)
  * @param p The position from which to traverse.
  * @return The position after traversal.
  */
-int tree_traverse(int *tree, int p)
+static int tree_traverse(int *tree, int p)
 {
     if(tree[p] >= GP_NUM_FUNC) {
         p++;

@@ -49,7 +49,7 @@ typedef struct RULE_NEURAL {
 
 /* CONDITION FUNCTIONS */
 
-void rule_neural_cond_rand(XCSF *xcsf, CL *c);
+static void rule_neural_cond_rand(XCSF *xcsf, CL *c);
 
 void rule_neural_cond_init(XCSF *xcsf, CL *c)
 {
@@ -108,7 +108,7 @@ void rule_neural_cond_copy(XCSF *xcsf, CL *to, CL *from)
     to->cond = new;
 }
 
-void rule_neural_cond_rand(XCSF *xcsf, CL *c)
+static void rule_neural_cond_rand(XCSF *xcsf, CL *c)
 {
     RULE_NEURAL *cond = c->cond;
     neural_rand(xcsf, &cond->net);

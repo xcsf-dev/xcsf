@@ -30,13 +30,13 @@
 #include "utils.h"
 #include "sam.h"
 
-void sam_log_normal_init(XCSF *xcsf, double **mu);
-void sam_log_normal_adapt(XCSF *xcsf, double *mu);
+static void sam_log_normal_init(XCSF *xcsf, double **mu);
+static void sam_log_normal_adapt(XCSF *xcsf, double *mu);
 
 #define NUM_RATES 10 //!< number of selectable mutation rates for rate selection adaptation
 static const double mrates[NUM_RATES] = {0.0001,0.001,0.002,0.005,0.01,0.01,0.02,0.05,0.1,1.0}; 
-void sam_rate_selection_init(XCSF *xcsf, double **mu);
-void sam_rate_selection_adapt(XCSF *xcsf, double *mu);
+static void sam_rate_selection_init(XCSF *xcsf, double **mu);
+static void sam_rate_selection_adapt(XCSF *xcsf, double *mu);
 
 /**
  * @brief Initialises a classifier's self-adaptive mutation rates.
@@ -115,7 +115,7 @@ void sam_print(XCSF *xcsf, double *mu)
  * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to initialise.
  */
-void sam_log_normal_init(XCSF *xcsf, double **mu)
+static void sam_log_normal_init(XCSF *xcsf, double **mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         (*mu)[i] = rand_uniform(0,1);
@@ -127,7 +127,7 @@ void sam_log_normal_init(XCSF *xcsf, double **mu)
  * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to adapt.
  */
-void sam_log_normal_adapt(XCSF *xcsf, double *mu)
+static void sam_log_normal_adapt(XCSF *xcsf, double *mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         mu[i] *= exp(rand_normal(0,1));
@@ -145,7 +145,7 @@ void sam_log_normal_adapt(XCSF *xcsf, double *mu)
  * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to initialise.
  */
-void sam_rate_selection_init(XCSF *xcsf, double **mu)
+static void sam_rate_selection_init(XCSF *xcsf, double **mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         (*mu)[i] = mrates[irand_uniform(0,NUM_RATES)];
@@ -159,7 +159,7 @@ void sam_rate_selection_init(XCSF *xcsf, double **mu)
  *
  * @details With 10% probability, randomly selects one of the possible rates.
  */
-void sam_rate_selection_adapt(XCSF *xcsf, double *mu)
+static void sam_rate_selection_adapt(XCSF *xcsf, double *mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         if(rand_uniform(0,1) < 0.1) {

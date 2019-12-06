@@ -35,12 +35,12 @@
 #include "cl_set.h"
 #include "ea.h"
 
-const double VERSION = 1.05; //!< XCSF version number
+static const double VERSION = 1.05; //!< XCSF version number
 
-double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
-double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
-size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
-size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
+static double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
+static double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
+static size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
+static size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
 
 /**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
@@ -138,7 +138,7 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
  * @param y The labelled variables.
  * @return The XCSF training error using the loss function.
  */
-double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
+static double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
     SET mset; // match set
     SET kset; // kill set
@@ -163,7 +163,7 @@ double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
  * @param y The labelled variables.
  * @return The XCSF testing error using the loss function.
  */
-double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
+static double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
     SET mset; // match set
     SET kset; // kill set
@@ -309,7 +309,7 @@ size_t xcsf_load(XCSF *xcsf, char *fname)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
+static size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
@@ -391,7 +391,7 @@ size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the input file.
  * @return The total number of elements read.
  */
-size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
+static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->time, sizeof(int), 1, fp);

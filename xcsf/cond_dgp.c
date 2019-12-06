@@ -40,7 +40,7 @@ typedef struct COND_DGP {
     GRAPH dgp; //!< DGP graph
 } COND_DGP;
 
-void cond_dgp_rand(XCSF *xcsf, CL *c);
+static void cond_dgp_rand(XCSF *xcsf, CL *c);
 
 void cond_dgp_init(XCSF *xcsf, CL *c)
 {
@@ -66,7 +66,7 @@ void cond_dgp_copy(XCSF *xcsf, CL *to, CL *from)
     to->cond = new;
 }
 
-void cond_dgp_rand(XCSF *xcsf, CL *c)
+static void cond_dgp_rand(XCSF *xcsf, CL *c)
 {
     COND_DGP *cond = c->cond;
     graph_rand(xcsf, &cond->dgp);

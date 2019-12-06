@@ -43,9 +43,9 @@
 
 #define MAX_COVER 1000000 //!< maximum number of covering attempts
 
-void set_subsumption(XCSF *xcsf, SET *set, SET *kset);
-void set_update_fit(XCSF *xcsf, SET *set);
-void set_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered);
+static void set_subsumption(XCSF *xcsf, SET *set, SET *kset);
+static void set_update_fit(XCSF *xcsf, SET *set);
+static void set_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered);
 
 /**
  * @brief Initialises a new population set.
@@ -204,7 +204,7 @@ void set_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
  * @param x The input state.
  * @param act_covered Array indicating whether each action is covered by the set.
  */
-void set_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered)
+static void set_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered)
 {
     int attempts = 0;
     _Bool again;
@@ -389,7 +389,7 @@ void set_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y, _Bool cur
  * @param xcsf The XCSF data structure.
  * @param set The set to update.
  */ 
-void set_update_fit(XCSF *xcsf, SET *set)
+static void set_update_fit(XCSF *xcsf, SET *set)
 {
     double acc_sum = 0;
     double accs[set->size];
@@ -414,7 +414,7 @@ void set_update_fit(XCSF *xcsf, SET *set)
  * @param set The set to perform subsumption.
  * @param kset A set to store deleted macro-classifiers for later memory removal.
  */ 
-void set_subsumption(XCSF *xcsf, SET *set, SET *kset)
+static void set_subsumption(XCSF *xcsf, SET *set, SET *kset)
 {
     CL *s = NULL;
     CLIST *iter;

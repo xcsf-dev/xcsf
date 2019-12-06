@@ -40,7 +40,7 @@ typedef struct COND_ELLIPSOID {
     double *spread; //!< Spreads
 } COND_ELLIPSOID;
 
-double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x);
+static double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x);
 
 void cond_ellipsoid_init(XCSF *xcsf, CL *c)
 {
@@ -105,7 +105,7 @@ _Bool cond_ellipsoid_match(XCSF *xcsf, CL *c, double *x)
     return c->m;
 }
 
-double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x)
+static double cond_ellipsoid_dist(XCSF *xcsf, CL *c, double *x)
 {
     COND_ELLIPSOID *cond = c->cond;
     double dist = 0;

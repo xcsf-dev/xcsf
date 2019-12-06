@@ -35,8 +35,8 @@
 #include "action.h"
 #include "cl.h"
 
-double cl_update_err(XCSF *xcsf, CL *c, double *y, _Bool current);
-double cl_update_size(XCSF *xcsf, CL *c, double num_sum);
+static double cl_update_err(XCSF *xcsf, CL *c, double *y, _Bool current);
+static double cl_update_size(XCSF *xcsf, CL *c, double num_sum);
 
 /**
  * @brief Initialises a new classifier.
@@ -171,7 +171,7 @@ void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num, _Bool curre
  * @param current Whether the payoff is for the current or previous state.
  * @return Error multiplied by numerosity.
  */
-double cl_update_err(XCSF *xcsf, CL *c, double *y, _Bool current)
+static double cl_update_err(XCSF *xcsf, CL *c, double *y, _Bool current)
 {
     double error = 0;
     if(current) {
@@ -208,7 +208,7 @@ void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc)
  * @param num_sum The number of micro-classifiers in the set.
  * @return Set size multiplied by numerosity.
  */
-double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
+static double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
 {
     if(c->exp < 1 / xcsf->BETA) {
         c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;

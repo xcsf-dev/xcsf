@@ -60,10 +60,10 @@
 #define MAZE_DEBUG false //!< Whether to print the state of the maze during exploitation
 #define MAX_SIZE 50 //!< The maximum width/height of a maze
 #define MAX_PAYOFF 1.0 //!< The payoff provided at a food position
-const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; //!< Possible maze moves on x-axis
-const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1}; //!< Possible maze moves on y-axis
+static const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; //!< Possible maze moves on x-axis
+static const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1}; //!< Possible maze moves on y-axis
 
-void env_maze_print(XCSF *xcsf);
+static void env_maze_print(XCSF *xcsf);
 
 /**
  * @brief Maze environment data structure.
@@ -288,7 +288,7 @@ _Bool env_maze_multistep(XCSF *xcsf)
  * @brief Prints the current state of the maze environment.
  * @param xcsf The XCSF data structure.
  */
-void env_maze_print(XCSF *xcsf)
+static void env_maze_print(XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     for(int y = 0; y < env->ysize; y++) {

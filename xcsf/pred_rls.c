@@ -32,9 +32,9 @@
 #include "prediction.h"
 #include "pred_rls.h"
 
-void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n);
-void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n);
-void init_matrix(XCSF *xcsf, double *matrix, int n);
+static void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n);
+static void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n);
+static void init_matrix(XCSF *xcsf, double *matrix, int n);
                     
 /**
  * @brief Recursive least mean squares prediction data structure.
@@ -84,7 +84,7 @@ void pred_rls_init(XCSF *xcsf, CL *c)
     pred->tmp_matrix2 = malloc(sizeof(double) * len_sqrd);
 }
 
-void init_matrix(XCSF *xcsf, double *matrix, int n)
+static void init_matrix(XCSF *xcsf, double *matrix, int n)
 {
     for(int row = 0; row < n; row++) {
         for(int col = 0; col < n; col++) {
@@ -220,7 +220,7 @@ void pred_rls_print(XCSF *xcsf, CL *c)
     }
 }
 
-void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n)
+static void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n)
 {
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {
@@ -232,7 +232,7 @@ void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n)
     }
 }
 
-void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n)
+static void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n)
 {
     for(int i = 0; i < n; i++) {
         dest[i] = srcm[i*n] * srcv[0];
