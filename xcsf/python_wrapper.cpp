@@ -76,6 +76,7 @@ struct XCS
         aset.list = NULL;
         kset.list = NULL;
         pa_init(&xcs);
+        action = 0;
     }
 
     /**
