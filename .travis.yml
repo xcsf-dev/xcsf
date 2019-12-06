@@ -2,6 +2,9 @@
 
 language: cpp
 
+git:
+  depth: false
+
 dist: bionic
 
 matrix:
