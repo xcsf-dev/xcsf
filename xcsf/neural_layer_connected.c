@@ -35,13 +35,13 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-#define ETA_MAX 0.1
-#define ETA_MIN 0.0001
+#define ETA_MAX 0.1 //!< maximum gradient descent rate
+#define ETA_MIN 0.0001 //!< minimum gradient descent rate 
 
-_Bool mutate_neurons(XCSF *xcsf, LAYER *l);
-_Bool mutate_weights(XCSF *xcsf, LAYER *l);
-_Bool mutate_eta(XCSF *xcsf, LAYER *l);
-_Bool mutate_functions(XCSF *xcsf, LAYER *l);
+static _Bool mutate_neurons(XCSF *xcsf, LAYER *l);
+static _Bool mutate_weights(XCSF *xcsf, LAYER *l);
+static _Bool mutate_eta(XCSF *xcsf, LAYER *l);
+static _Bool mutate_functions(XCSF *xcsf, LAYER *l);
 
 LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o)
 {
@@ -204,7 +204,7 @@ _Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
     return mod;
 }
 
-_Bool mutate_neurons(XCSF *xcsf, LAYER *l)
+static _Bool mutate_neurons(XCSF *xcsf, LAYER *l)
 {
     _Bool mod = false;
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
@@ -230,7 +230,7 @@ _Bool mutate_neurons(XCSF *xcsf, LAYER *l)
     return mod;
 }
 
-_Bool mutate_weights(XCSF *xcsf, LAYER *l)
+static _Bool mutate_weights(XCSF *xcsf, LAYER *l)
 {
     _Bool mod = false;
     int w = l->num_inputs * l->num_active;
@@ -251,7 +251,7 @@ _Bool mutate_weights(XCSF *xcsf, LAYER *l)
     return mod;
 }
 
-_Bool mutate_eta(XCSF *xcsf, LAYER *l)
+static _Bool mutate_eta(XCSF *xcsf, LAYER *l)
 {
     double orig = l->eta;
     l->eta += rand_normal(0, xcsf->E_MUTATION);
@@ -262,7 +262,7 @@ _Bool mutate_eta(XCSF *xcsf, LAYER *l)
     return false;
 }
 
-_Bool mutate_functions(XCSF *xcsf, LAYER *l)
+static _Bool mutate_functions(XCSF *xcsf, LAYER *l)
 {
     if(rand_uniform(0,1) < xcsf->F_MUTATION) {
         int orig = l->function;
