@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <inttypes.h>
 #include <math.h>
 #include "xcsf.h"
 #include "utils.h"
@@ -39,9 +40,10 @@
  */
 void env_init(XCSF *xcsf, char **argv)
 {
+    char *end;
     if(strcmp(argv[1], "mp") == 0) {
         xcsf->env_vptr = &env_mux_vtbl;
-        env_mux_init(xcsf, atoi(argv[2]));
+        env_mux_init(xcsf, strtoimax(argv[2], &end, 10));
     }
     else if(strcmp(argv[1], "maze") == 0) {
         xcsf->env_vptr = &env_maze_vtbl;
