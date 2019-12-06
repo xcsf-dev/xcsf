@@ -36,7 +36,7 @@
 #define MAX_NAME 200 //!< Maximum file name length
 #define DELIM "," //!< File delimiter
 
-void env_csv_read(char *fname, double **data, int *num_prob, int *num_vars);
+static void env_csv_read(char *fname, double **data, int *num_prob, int *num_vars);
 
 /**
  * @brief Parses specified csv files into training and testing data sets.
@@ -68,7 +68,7 @@ void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data)
  *
  * @details Provided a file name will set the data, num_rows, and num_cols.
  */
-void env_csv_read(char *fname, double **data, int *num_rows, int *num_cols)
+static void env_csv_read(char *fname, double **data, int *num_rows, int *num_cols)
 {
     FILE *fin = fopen(fname, "rt");
     if(fin == 0) {
