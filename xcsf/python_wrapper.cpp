@@ -20,7 +20,7 @@
  * @date 2019.
  * @brief Python library wrapper functions.
  */ 
- 
+
 #include <string>
 #include <vector>
 #include <boost/python.hpp>
@@ -32,6 +32,8 @@ namespace np = boost::python::numpy;
 extern "C" {   
 #include <stdbool.h>
 #include "xcsf.h"
+#include "xcs_single_step.h"
+#include "pa.h"
 #include "config.h"
 #include "utils.h"
 #include "loss.h"
@@ -47,13 +49,44 @@ extern "C" {
  */ 
 struct XCS
 {        
-    XCSF xcs;
-    INPUT train_data;
-    INPUT test_data;
+    XCSF xcs; //!< XCSF data structure
+    SET mset; //!< Match set for RL
+    SET aset; //!< Action set for RL
+    SET kset; //!< Kill set for RL
+    double *state; //!< Current input state for RL
+    int action; //!< Current action for RL
+    INPUT train_data; //!< Current training data for supervised learning
+    INPUT test_data; //!< Currrent test data for supervised learning
 
+    /**
+     * @brief Constructor for single-step reinforcement learning.
+     */
+    XCS(int num_x_vars, int num_actions, _Bool multistep) {
+        (void)multistep; // not yet implemented for python
+        constants_init(&xcs, "default.ini");
+#ifdef PARALLEL
+        omp_set_num_threads(xcs.OMP_NUM_THREADS);
+#endif
+        xcs.num_x_vars = num_x_vars;
+        xcs.num_y_vars = 1;
+        xcs.num_actions = num_actions;
+        xcs.time = 0;
+        xcs.pset.list = NULL;
+        mset.list = NULL;
+        aset.list = NULL;
+        kset.list = NULL;
+        pa_init(&xcs);
+    }
+
+    /**
+     * @brief Constructor for supervised learning with default config.
+     */
     XCS(int num_x_vars, int num_y_vars) :
         XCS(num_x_vars, num_y_vars, "default.ini") {}
 
+    /**
+     * @brief Constructor for supervised learning with a specified config.
+     */
     XCS(int num_x_vars, int num_y_vars, const char *filename) {
         constants_init(&xcs, filename);
 #ifdef PARALLEL
@@ -80,6 +113,46 @@ struct XCS
     double version() { return xcsf_version(); }
     size_t save(char *fname) { return xcsf_save(&xcs, fname); }
     size_t load(char *fname) { return xcsf_load(&xcs, fname); }
+
+    /* Reinforcement learning */
+
+    void single_reset() {
+        // initialise population if first execution
+        if(xcs.pset.list == NULL) {
+            pop_init(&xcs);
+        }
+        // clear any previous sets
+        if(mset.list != NULL) {
+            set_free(&xcs, &mset);
+        }
+        if(aset.list != NULL) {
+            set_free(&xcs, &aset);
+        }
+        if(kset.list != NULL) {
+            set_kill(&xcs, &kset);
+        }
+        // initialise current sets
+        set_init(&xcs, &mset);
+        set_init(&xcs, &aset);
+        set_init(&xcs, &kset);
+    }
+
+    int single_decision(np::ndarray &input, _Bool explore) {
+        xcs.train = explore;
+        state = reinterpret_cast<double*>(input.get_data());
+        action = xcs_single_decision(&xcs, &mset, &kset, state);
+        return action;
+    }
+
+    void single_update(double reward) {
+        xcs_single_update(&xcs, &mset, &aset, &kset, state, action, reward);
+    }
+
+    double single_error(double reward) {
+        return xcs_single_error(&xcs, reward);
+    }
+
+    /* Supervised learning */
 
     double fit(np::ndarray &train_X, np::ndarray &train_Y, _Bool shuffle) {
         // check inputs are correctly sized
@@ -342,6 +415,7 @@ BOOST_PYTHON_MODULE(xcsf)
 
     p::class_<XCS>("XCS", p::init<int, int>())
         .def(p::init<int, int, const char *>())
+        .def(p::init<int, int, _Bool>())
         .def("fit", fit1)
         .def("fit", fit2)
         .def("predict", &XCS::predict)
@@ -349,6 +423,10 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("save", &XCS::save)
         .def("load", &XCS::load)
         .def("version", &XCS::version)
+        .def("single_update", &XCS::single_update)
+        .def("single_error", &XCS::single_error)
+        .def("single_decision", &XCS::single_decision)
+        .def("single_reset", &XCS::single_reset)
         .add_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads, &XCS::set_omp_num_threads)
         .add_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
         .add_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials)
