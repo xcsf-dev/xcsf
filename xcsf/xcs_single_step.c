@@ -36,8 +36,7 @@
 #include "xcs_single_step.h"
 #include "env.h"
 
-static void xcs_single_explore(XCSF *xcsf);
-static double xcs_single_exploit(XCSF *xcsf, double *error);
+static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore);
 
 /**
  * @brief Executes a single-step experiment.
@@ -48,13 +47,14 @@ double xcs_single_step_exp(XCSF *xcsf)
 {
     gplot_init(xcsf);
     pa_init(xcsf);
-    double perr = 0;
-    double err = 0;
-    double pterr = 0;
+    double err = 0; // total error over all trials
+    double perr = 0; // windowed accuracy for averaging
+    double pterr = 0; // windowed prediction error for averaging
+    double perf = 0; // individual trial accuracy
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        xcs_single_explore(xcsf);
-        double error = 0;
-        perr += xcs_single_exploit(xcsf, &error);
+        xcs_single_trial(xcsf, &perf, true); // explore
+        double error = xcs_single_trial(xcsf, &perf, false); // exploit
+        perr += perf;
         err += error;
         pterr += error;
         if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
@@ -69,67 +69,83 @@ double xcs_single_step_exp(XCSF *xcsf)
 }                                
 
 /**
- * @brief Executes a single-step explore trial.
+ * @brief Executes a single-step trial using a built-in environment.
  * @param xcsf The XCSF data structure.
+ * @param perf The classification accuracy (set by this function).
+ * @param explore Whether this is an exploration or exploitation trial.
+ * @return The system prediction error.
  */
-static void xcs_single_explore(XCSF *xcsf)
+static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore)
 {
-    xcsf->train = true;
-    double *x = env_get_state(xcsf);
     SET mset; // match set
     SET aset; // action set
     SET kset; // kill set
     set_init(xcsf, &mset);
     set_init(xcsf, &aset);
     set_init(xcsf, &kset);
-    set_match(xcsf, &mset, &kset, x);
-    pa_build(xcsf, &mset, x);
-    int action = 0;
-    if(rand_uniform(0,1) < xcsf->P_EXPLORE) {
-        action = pa_rand_action(xcsf);
+    xcsf->train = explore;
+    double *x = env_get_state(xcsf);
+    int action = xcs_single_decision(xcsf, &mset, &kset, x);
+    double reward = env_execute(xcsf, action);
+    if(reward > 0) {
+        *perf = 1;
     }
     else {
-        action = pa_best_action(xcsf);
+        *perf = 0;
     }
-    double reward = env_execute(xcsf, action);
-    set_action(xcsf, &mset, &aset, action);
-    set_update(xcsf, &aset, &kset, x, &reward, true);
-    ea(xcsf, &aset, &kset);
-    xcsf->time += 1;
-    xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
+    if(explore) {
+        xcs_single_update(xcsf, &mset, &aset, &kset, x, action, reward);
+    }
     set_kill(xcsf, &kset);
     set_free(xcsf, &aset);
     set_free(xcsf, &mset);
+    return xcs_single_error(xcsf, reward);
 }
 
 /**
- * @brief Executes a single-step exploit trial.
+ * @brief Constructs the match set and selects an action to perform.
  * @param xcsf The XCSF data structure.
- * @param error The prediction error (set by this function).
- * @return Whether the correct action was selected.
+ * @param mset The match set.
+ * @param kset A set to store deleted macro-classifiers for later memory removal.
+ * @param x The input state.
+ * @return The selected action.
  */
-static double xcs_single_exploit(XCSF *xcsf, double *error)
+int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, double *x)
 {
-    xcsf->train = false;
-    double *x = env_get_state(xcsf);
-    SET mset; // match set
-    SET aset; // action set
-    SET kset; // kill set
-    set_init(xcsf, &mset);
-    set_init(xcsf, &aset);
-    set_init(xcsf, &kset);
-    set_match(xcsf, &mset, &kset, x);
-    pa_build(xcsf, &mset, x);
-    int action = pa_best_action(xcsf);
-    double reward = env_execute(xcsf, action);
-    set_action(xcsf, &mset, &aset, action);
-    xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
-    set_kill(xcsf, &kset);
-    set_free(xcsf, &aset);
-    set_free(xcsf, &mset);
-    *error = fabs(reward - pa_best_val(xcsf));
-    if(reward > 0) {
-        return 1;
+    set_match(xcsf, mset, kset, x);
+    xcsf->msetsize += (mset->size - xcsf->msetsize) * xcsf->BETA;
+    pa_build(xcsf, mset, x);
+    if(xcsf->train && rand_uniform(0,1) < xcsf->P_EXPLORE) {
+        return pa_rand_action(xcsf);
     }
-    return 0;
+    return pa_best_action(xcsf);
+}
+
+/**
+ * @brief Creates the action set, updates the classifiers and runs the EA.
+ * @param xcsf The XCSF data structure.
+ * @param mset The match set.
+ * @param aset The action set.
+ * @param kset A set to store deleted macro-classifiers for later memory removal.
+ * @param x The input state.
+ * @param a The action selected.
+ * @param r The reward from performing the action.
+ */
+void xcs_single_update(XCSF *xcsf, SET *mset, SET *aset, SET *kset, double *x, int a, double r)
+{
+    set_action(xcsf, mset, aset, a);
+    set_update(xcsf, aset, kset, x, &r, true);
+    ea(xcsf, aset, kset);
+    xcsf->time += 1;
+}
+
+/**
+ * @brief Returns the system error.
+ * @param xcsf The XCSF data structure.
+ * @param reward The reward from performing the action.
+ * @return The system prediction error.
+ */
+double xcs_single_error(XCSF *xcsf, double reward)
+{
+    return fabs(reward - pa_best_val(xcsf));
 }
