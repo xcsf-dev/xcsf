@@ -52,8 +52,7 @@ def rmux_answer(state):
             pos += pow(2, pos_bits - 1 - i)
     if state[pos] > 0.5:
         return 1
-    else:
-        return 0
+    return 0
 
 ###################
 # Initialise XCSF
