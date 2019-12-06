@@ -167,10 +167,16 @@ $ ./xcsf/xcsf csv ../data/sine_3var
 
 After building with CMake option: `-DXCSF_PYLIB=ON`
 
-See example MyProject.py. Currently only regression is supported.
+Supervised learning: see example supervised.py.
 
 ```
-$ python3 MyProject.py
+$ python3 supervised.py
+```
+
+Single-step reinforcement learning: see example rmux.py.
+
+```
+$ python3 rmux.py
 ```
 
 *******************************************************************************
