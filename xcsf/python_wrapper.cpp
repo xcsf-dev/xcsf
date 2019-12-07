@@ -55,8 +55,8 @@ struct XCS
     SET kset; //!< Kill set for RL
     double *state; //!< Current input state for RL
     int action; //!< Current action for RL
-    INPUT train_data; //!< Current training data for supervised learning
-    INPUT test_data; //!< Currrent test data for supervised learning
+    INPUT *train_data; //!< Current training data for supervised learning
+    INPUT *test_data; //!< Currrent test data for supervised learning
 
     /**
      * @brief Constructor for single-step reinforcement learning.
@@ -99,16 +99,18 @@ struct XCS
         xcs.num_x_vars = num_x_vars;
         xcs.num_y_vars = num_y_vars;
         xcs.num_actions = 1;
-        train_data.rows = 0;
-        train_data.x_cols = 0;
-        train_data.y_cols = 0;
-        train_data.x = NULL;
-        train_data.y = NULL;
-        test_data.rows = 0;
-        test_data.x_cols = 0;
-        test_data.y_cols = 0;
-        test_data.x = NULL;
-        test_data.y = NULL;
+        train_data = (INPUT*)malloc(sizeof(INPUT));
+        train_data->rows = 0;
+        train_data->x_cols = 0;
+        train_data->y_cols = 0;
+        train_data->x = NULL;
+        train_data->y = NULL;
+        test_data = (INPUT*)malloc(sizeof(INPUT));
+        test_data->rows = 0;
+        test_data->x_cols = 0;
+        test_data->y_cols = 0;
+        test_data->x = NULL;
+        test_data->y = NULL;
         action = 0;
     }
 
@@ -163,17 +165,17 @@ struct XCS
             return 0;
         }
         // load training data
-        train_data.rows = train_X.shape(0);
-        train_data.x_cols = train_X.shape(1);
-        train_data.y_cols = train_Y.shape(1);
-        train_data.x = reinterpret_cast<double*>(train_X.get_data());
-        train_data.y = reinterpret_cast<double*>(train_Y.get_data());
+        train_data->rows = train_X.shape(0);
+        train_data->x_cols = train_X.shape(1);
+        train_data->y_cols = train_Y.shape(1);
+        train_data->x = reinterpret_cast<double*>(train_X.get_data());
+        train_data->y = reinterpret_cast<double*>(train_Y.get_data());
         // first execution
         if(xcs.time == 0) {
             pop_init(&xcs);
         }
         // execute
-        return xcsf_fit1(&xcs, &train_data, shuffle);
+        return xcsf_fit1(&xcs, train_data, shuffle);
     }
 
     double fit(np::ndarray &train_X, np::ndarray &train_Y, 
@@ -196,23 +198,23 @@ struct XCS
             return 0;
         }
         // load training data
-        train_data.rows = train_X.shape(0);
-        train_data.x_cols = train_X.shape(1);
-        train_data.y_cols = train_Y.shape(1);
-        train_data.x = reinterpret_cast<double*>(train_X.get_data());
-        train_data.y = reinterpret_cast<double*>(train_Y.get_data());   
+        train_data->rows = train_X.shape(0);
+        train_data->x_cols = train_X.shape(1);
+        train_data->y_cols = train_Y.shape(1);
+        train_data->x = reinterpret_cast<double*>(train_X.get_data());
+        train_data->y = reinterpret_cast<double*>(train_Y.get_data());
         // load testing data
-        test_data.rows = test_X.shape(0);
-        test_data.x_cols = test_X.shape(1);
-        test_data.y_cols = test_Y.shape(1);
-        test_data.x = reinterpret_cast<double*>(test_X.get_data());
-        test_data.y = reinterpret_cast<double*>(test_Y.get_data());
+        test_data->rows = test_X.shape(0);
+        test_data->x_cols = test_X.shape(1);
+        test_data->y_cols = test_Y.shape(1);
+        test_data->x = reinterpret_cast<double*>(test_X.get_data());
+        test_data->y = reinterpret_cast<double*>(test_Y.get_data());
         // first execution
         if(xcs.time == 0) {
             pop_init(&xcs);
         }
         // execute
-        return xcsf_fit2(&xcs, &train_data, &test_data, shuffle);
+        return xcsf_fit2(&xcs, train_data, test_data, shuffle);
     }
 
     np::ndarray predict(np::ndarray &T) {
@@ -235,12 +237,12 @@ struct XCS
             printf("error: X and Y rows are not equal\n");
             return 0;
         }
-        test_data.rows = test_X.shape(0);
-        test_data.x_cols = test_X.shape(1);
-        test_data.y_cols = test_Y.shape(1);
-        test_data.x = reinterpret_cast<double*>(test_X.get_data());
-        test_data.y = reinterpret_cast<double*>(test_Y.get_data());
-        return xcsf_score(&xcs, &test_data);
+        test_data->rows = test_X.shape(0);
+        test_data->x_cols = test_X.shape(1);
+        test_data->y_cols = test_Y.shape(1);
+        test_data->x = reinterpret_cast<double*>(test_X.get_data());
+        test_data->y = reinterpret_cast<double*>(test_Y.get_data());
+        return xcsf_score(&xcs, test_data);
     }
 
     void print_pop(_Bool printc, _Bool printa, _Bool printp) {
