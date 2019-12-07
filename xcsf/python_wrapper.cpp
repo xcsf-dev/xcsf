@@ -75,8 +75,10 @@ struct XCS
         mset.list = NULL;
         aset.list = NULL;
         kset.list = NULL;
-        pa_init(&xcs);
+        train_data = NULL;
+        test_data = NULL;
         action = 0;
+        pa_init(&xcs);
     }
 
     /**
