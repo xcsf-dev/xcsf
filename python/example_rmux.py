@@ -33,7 +33,6 @@ pos_bits = 1
 while pos_bits + pow(2, pos_bits) <= mux:
     pos_bits += 1
 pos_bits -= 1
-
 print(str(mux)+" bits, "+str(pos_bits)+" position bits")
 
 # current mux state
@@ -70,9 +69,9 @@ xcs.COND_TYPE = 0 # hyperrectangles
 xcs.PRED_TYPE = 0 # linear least squares
 xcs.ACT_TYPE = 0 # integers
 
-##################################
-# Example plotting in matplotlib
-##################################
+#####################
+# Execute experiment
+#####################
 
 n = 100 # 100,000 trials
 trials = np.zeros(n)
@@ -120,7 +119,10 @@ for i in range(n):
     bar.update(1)
 bar.close()
 
-# plot XCSF learning performance
+#################################
+# Plot XCSF learning performance
+#################################
+
 plt.figure(figsize=(10,6))
 plt.plot(trials, performance, label='Performance')
 plt.plot(trials, error, label='System error')
