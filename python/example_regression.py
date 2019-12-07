@@ -35,28 +35,28 @@ np.set_printoptions(suppress=True)
 data = fetch_openml(data_id=189)
 
 # split into training and test sets
-train_X, test_X, train_Y, test_Y = train_test_split(data.data, data.target, test_size=0.1)
+X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.1)
 
 # reshape into 2D numpy arrays
-if(len(np.shape(train_Y)) == 1):
-    train_Y = np.reshape(train_Y, (train_Y.shape[0], 1))
-if(len(np.shape(test_Y)) == 1):
-    test_Y = np.reshape(test_Y, (test_Y.shape[0], 1))
+if(len(np.shape(y_train)) == 1):
+    y_train = np.reshape(y_train, (y_train.shape[0], 1))
+if(len(np.shape(y_test)) == 1):
+    y_test = np.reshape(y_test, (y_test.shape[0], 1))
 
 # scale [0,1]
-train_X = minmax_scale(train_X, feature_range=(0,1))
-train_Y = minmax_scale(train_Y, feature_range=(0,1))
-test_X = minmax_scale(test_X, feature_range=(0,1))
-test_Y = minmax_scale(test_Y, feature_range=(0,1))
+X_train = minmax_scale(X_train, feature_range=(0,1))
+y_train = minmax_scale(y_train, feature_range=(0,1))
+X_test = minmax_scale(X_test, feature_range=(0,1))
+y_test = minmax_scale(y_test, feature_range=(0,1))
 
-print("train_X shape = "+str(np.shape(train_X)))
-print("train_Y shape = "+str(np.shape(train_Y)))
-print("test_X shape = "+str(np.shape(test_X)))
-print("test_Y shape = "+str(np.shape(test_Y)))
+print("X_train shape = "+str(np.shape(X_train)))
+print("y_train shape = "+str(np.shape(y_train)))
+print("X_test shape = "+str(np.shape(X_test)))
+print("y_test shape = "+str(np.shape(y_test)))
 
 # get number of input and output variables
-xvars = np.shape(train_X)[1]
-yvars = np.shape(train_Y)[1]
+xvars = np.shape(X_train)[1]
+yvars = np.shape(y_train)[1]
 print("xvars = "+str(xvars) + " yvars = " + str(yvars))
 
 ###################
@@ -104,12 +104,12 @@ test_mse = np.zeros(n)
 bar = tqdm(total=n) # progress bar
 for i in range(n):
     # train
-    train_mse[i] = xcs.fit(train_X, train_Y, True) # True = shuffle
+    train_mse[i] = xcs.fit(X_train, y_train, True) # True = shuffle
     trials[i] = xcs.time() # number of trials so far
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
     # test
-    test_mse[i] = xcs.score(test_X, test_Y)
+    test_mse[i] = xcs.score(X_test, y_test)
     # update status
     status = ("trials=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f smut=%.4f pmut=%.4f emut=%.4f fmut=%.4f"
         % (trials[i], train_mse[i], test_mse[i], psize[i], msize[i], xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2), xcs.pop_avg_mu(3)))
@@ -136,32 +136,32 @@ plt.show()
 ############################
 
 # final XCSF test score
-xcsf_pred = xcs.predict(test_X)
-xcsf_mse = mean_squared_error(xcsf_pred, test_Y)
+xcsf_pred = xcs.predict(X_test)
+xcsf_mse = mean_squared_error(xcsf_pred, y_test)
 print('XCSF MSE = %.4f' % (xcsf_mse))
 
 # compare with linear regression
 lm = LinearRegression()
-lm.fit(train_X, train_Y)
-lm_pred = lm.predict(test_X)
-lm_mse = mean_squared_error(lm_pred, test_Y)
+lm.fit(X_train, y_train)
+lm_pred = lm.predict(X_test)
+lm_mse = mean_squared_error(lm_pred, y_test)
 print('Linear regression MSE = %.4f' % (lm_mse))
 
 # compare with MLP regressor
 mlp = MLPRegressor(hidden_layer_sizes=(200,), activation='relu', solver='adam', learning_rate='adaptive', max_iter=1000, learning_rate_init=0.01, alpha=0.01)
-mlp.fit(train_X, train_Y.ravel())
-mlp_pred = mlp.predict(test_X)
-mlp_mse = mean_squared_error(mlp_pred, test_Y)
+mlp.fit(X_train, y_train.ravel())
+mlp_pred = mlp.predict(X_test)
+mlp_mse = mean_squared_error(mlp_pred, y_test)
 print('MLP Regressor MSE = %.4f' % (mlp_mse))
 
 #####################################
 # Show some predictions vs. answers
 #####################################
 
-pred = xcs.predict(test_X[:10])
+pred = xcs.predict(X_test[:10])
 print("*****************************")
 print("first 10 predictions = ")
 print(pred[:10])
 print("*****************************")
 print("first 10 answers = ")
-print(test_Y[:10])
+print(y_test[:10])

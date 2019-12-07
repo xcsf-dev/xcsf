@@ -33,13 +33,13 @@ np.set_printoptions(suppress=True)
 
 from sklearn.datasets import load_breast_cancer
 data = load_breast_cancer() # 30 features, 2 classes # 569 instances
-train_X, test_X, train_Y, test_Y = train_test_split(data.data, data.target, test_size=0.2)
-train_X = minmax_scale(train_X, feature_range=(0,1))
-test_X = minmax_scale(test_X, feature_range=(0,1))
+X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.2)
+X_train = minmax_scale(X_train, feature_range=(0,1))
+X_test = minmax_scale(X_test, feature_range=(0,1))
 features = 30
 classes = 2
-train_len = len(train_X)
-test_len = len(test_X)
+train_len = len(X_train)
+test_len = len(X_test)
 print("train len = %d, test len = %d" % (train_len, test_len))
 
 ###################
@@ -74,8 +74,8 @@ for i in range(n):
     for j in range(xcs.PERF_AVG_TRIALS):
         # explore trial
         sample = randint(0, train_len-1)
-        state = train_X[sample]
-        answer = train_Y[sample]
+        state = X_train[sample]
+        answer = y_train[sample]
         xcs.single_reset() # clear sets
         action = xcs.single_decision(state, True) # build mset, aset, pa, and select action
         if action == answer:
@@ -85,8 +85,8 @@ for i in range(n):
         xcs.single_update(reward) # update aset and potentially run EA
         # exploit trial
         sample = randint(0, test_len-1)
-        state = test_X[sample]
-        answer = test_Y[sample]
+        state = X_test[sample]
+        answer = y_test[sample]
         xcs.single_reset() # clear sets
         action = xcs.single_decision(state, False) # false signifies exploit mode
         if action == answer:
@@ -130,8 +130,8 @@ plt.show()
 yActual = []
 yPredicted = []
 for i in range(test_len):
-    state = test_X[i]
-    answer = test_Y[i]
+    state = X_test[i]
+    answer = y_test[i]
     xcs.single_reset()
     action = xcs.single_decision(state, False)
     yActual.append(answer)
@@ -159,14 +159,14 @@ print("XCSF f1: "+str(f1_score(yActual, yPredicted, average=None)))
 
 from sklearn.neural_network import MLPClassifier
 mlp = MLPClassifier(hidden_layer_sizes=(100, ), activation='relu', solver='adam', learning_rate='adaptive', max_iter=1000)
-mlp.fit(train_X, train_Y)
+mlp.fit(X_train, y_train)
 
 yActual = []
 yPredicted = []
 for i in range(test_len):
-    state = test_X[i]
-    answer = test_Y[i]
-    action = mlp.predict(test_X[i].reshape(1,-1))
+    state = X_test[i]
+    answer = y_test[i]
+    action = mlp.predict(X_test[i].reshape(1,-1))
     yActual.append(answer)
     yPredicted.append(action)
 
@@ -175,14 +175,14 @@ print("MLP f1: "+str(f1_score(yActual, yPredicted, average=None)))
 
 from sklearn.tree import DecisionTreeClassifier
 dtc = DecisionTreeClassifier()
-dtc.fit(train_X, train_Y)
+dtc.fit(X_train, y_train)
 
 yActual = []
 yPredicted = []
 for i in range(test_len):
-    state = test_X[i]
-    answer = test_Y[i]
-    action = dtc.predict(test_X[i].reshape(1,-1))
+    state = X_test[i]
+    answer = y_test[i]
+    action = dtc.predict(X_test[i].reshape(1,-1))
     yActual.append(answer)
     yPredicted.append(action)
 
