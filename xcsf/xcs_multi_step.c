@@ -84,7 +84,6 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
     set_init(xcsf, &prev_aset);
     set_init(xcsf, &kset);
     *error = 0;
-    int action = 0;
     int steps = 0;
     for(steps = 0; steps < xcsf->TELETRANSPORTATION && !reset; steps++) {
         SET mset; // match set
@@ -99,6 +98,7 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
         // calculate the prediction array
         pa_build(xcsf, &mset, state);
         // select an action to perform
+        int action = 0;
         if(xcsf->train && rand_uniform(0,1) < xcsf->P_EXPLORE) {
             action = pa_rand_action(xcsf);
         }
