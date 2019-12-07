@@ -95,8 +95,8 @@ for i in range(n):
             reward = 0
         performance[i] += reward
         error[i] += xcs.single_error(reward) # calculate system prediction error
-    performance[i] /= xcs.PERF_AVG_TRIALS
-    error[i] /= xcs.PERF_AVG_TRIALS
+    performance[i] /= float(xcs.PERF_AVG_TRIALS)
+    error[i] /= float(xcs.PERF_AVG_TRIALS)
     trials[i] = xcs.time() # number of trials so far
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size

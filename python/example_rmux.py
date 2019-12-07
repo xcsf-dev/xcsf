@@ -83,8 +83,6 @@ error = np.zeros(n)
 bar = tqdm(total=n) # progress bar
 
 for i in range(n):
-    perf = 0
-    err = 0
     for j in range(xcs.PERF_AVG_TRIALS):
         # new problem
         rmux_reset()
@@ -107,10 +105,10 @@ for i in range(n):
             reward = 1
         else:
             reward = 0
-        perf += reward
-        err += xcs.single_error(reward)
-    performance[i] = perf / xcs.PERF_AVG_TRIALS
-    error[i] = err / xcs.PERF_AVG_TRIALS
+        performance[i] += reward
+        error[i] += xcs.single_error(reward)
+    performance[i] /= float(xcs.PERF_AVG_TRIALS)
+    error[i] /= float(xcs.PERF_AVG_TRIALS)
     trials[i] = xcs.time() # number of trials so far
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
