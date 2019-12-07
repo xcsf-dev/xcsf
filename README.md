@@ -154,13 +154,13 @@ $ ./xcsf/xcsf mp 6
 Example discrete mazes:
 
 ```
-$ ./xcsf/xcsf maze ../env/maze4.txt
+$ ./xcsf/xcsf maze ../env/maze/maze4.txt
 ```
 
-Example regression with csv input: learning `data/sine_3var_train.csv` and testing `data/sine_3var_test.csv`
+Example regression: learning `env/csv/sine_3var_train.csv` and testing `env/csv/sine_3var_test.csv`
 
 ```
-$ ./xcsf/xcsf csv ../data/sine_3var
+$ ./xcsf/xcsf csv ../env/csv/sine_3var
 ```
 
 ### Python library
