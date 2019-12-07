@@ -17,7 +17,7 @@
 
 import xcsf.xcsf as xcsf # Import XCSF
 import numpy as np
-from random import random, randint
+from random import randint
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
