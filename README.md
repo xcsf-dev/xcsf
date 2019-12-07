@@ -167,16 +167,17 @@ $ ./xcsf/xcsf csv ../data/sine_3var
 
 After building with CMake option: `-DXCSF_PYLIB=ON`
 
-Supervised learning example:
+Supervised regression learning example:
 
 ```
 $ python3 example_supervised.py
 ```
 
-Single-step reinforcement learning example:
+Single-step reinforcement learning examples:
 
 ```
 $ python3 example_rmux.py
+$ python3 example_wisconsin.py
 ```
 
 *******************************************************************************
