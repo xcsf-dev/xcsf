@@ -52,32 +52,8 @@ static size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
  */
 double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
 {  
-    gplot_init(xcsf);
-    xcsf->train = true;
-    double perr = 0;
-    double err = 0;
-    double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
-    for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        int row = 0;
-        if(shuffle) {
-            row = irand_uniform(0, train_data->rows);
-        }
-        else {
-            row = (cnt % train_data->rows + train_data->rows) % train_data->rows;
-        }
-        double *x = &train_data->x[row * train_data->x_cols];
-        double *y = &train_data->y[row * train_data->y_cols];
-        double error = xcsf_learn_trial(xcsf, pred, x, y);
-        perr += error;
-        err += error;
-        if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
-            disp_perf1(xcsf, perr/xcsf->PERF_AVG_TRIALS, cnt);
-            perr = 0;
-        }
-    }
-    free(pred);
-    gplot_free(xcsf);
-    return err/xcsf->MAX_TRIALS;
+    INPUT *test_data = NULL;
+    return xcsf_fit2(xcsf, train_data, test_data, shuffle);
 }
 
 /**
@@ -97,6 +73,7 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
     double pterr = 0;
     double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
+        // select training sample
         int row = 0;
         if(shuffle) {
             row = irand_uniform(0, train_data->rows);
@@ -106,25 +83,38 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
         }     	
         double *x = &train_data->x[row * train_data->x_cols];
         double *y = &train_data->y[row * train_data->y_cols];
+        // execute a learning trial
         xcsf->train = true;
         double error = xcsf_learn_trial(xcsf, pred, x, y);
         perr += error; 
         err += error;
-        if(shuffle) {
-            row = irand_uniform(0, test_data->rows);
+        // if some test data has been supplied
+        if(test_data != NULL) {
+            // select test sample
+            if(shuffle) {
+                row = irand_uniform(0, test_data->rows);
+            }
+            else {
+                row = (cnt % test_data->rows + test_data->rows) % test_data->rows;
+            }
+            x = &test_data->x[row * test_data->x_cols];
+            y = &test_data->y[row * test_data->y_cols];
+            // execute a test trial
+            xcsf->train = false;
+            pterr += xcsf_test_trial(xcsf, pred, x, y);
+            // display performance as necessary (training and testing)
+            if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
+                disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
+                perr = 0; pterr = 0;
+            }
         }
-        else {
-            row = (cnt % test_data->rows + test_data->rows) % test_data->rows;
-        }     	
-        x = &test_data->x[row * test_data->x_cols];
-        y = &test_data->y[row * test_data->y_cols];
-        xcsf->train = false;
-        pterr += xcsf_test_trial(xcsf, pred, x, y);
-        if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
-            disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
-            perr = 0; pterr = 0;
+        // display performance as necessary (training only)
+        else if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
+            disp_perf1(xcsf, perr/xcsf->PERF_AVG_TRIALS, cnt);
+            perr = 0;
         }
     }
+    // clean up
     free(pred);
     gplot_free(xcsf);
     return err/xcsf->MAX_TRIALS;
@@ -469,7 +459,7 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     loss_set_func(xcsf);         
     return s;
 }
- 
+
 /**
  * @brief Returns the XCSF version number.
  * @return version number.
