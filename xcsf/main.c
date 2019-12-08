@@ -38,18 +38,15 @@
 #include <omp.h>
 #endif
 
-void regression(XCSF *xcsf, int argc, char **argv);
-void classification(XCSF *xcsf, int argc, char **argv);
-
 int main(int argc, char **argv)
 {    
     if(argc < 3 || argc > 5) {
         printf("Usage: xcsf problemType{csv|mp|maze} problem{.csv|size|maze} [config.ini] [xcs.bin]\n");
         exit(EXIT_FAILURE);
     } 
-
     XCSF *xcsf = malloc(sizeof(XCSF));
     random_init();
+    // load parameter config
     if(argc > 3) {
         constants_init(xcsf, argv[3]);
     }
@@ -59,56 +56,7 @@ int main(int argc, char **argv)
 #ifdef PARALLEL
     omp_set_num_threads(xcsf->OMP_NUM_THREADS);
 #endif
-
-    // input csv file
-    if(strcmp(argv[1], "csv") == 0) {
-        regression(xcsf, argc, argv);
-    }
-    // maze or multiplexer
-    else {
-        classification(xcsf, argc, argv);
-    }
-
-    // clean up
-    set_kill(xcsf, &xcsf->pset);
-    constants_free(xcsf);
-    free(xcsf);
-    return EXIT_SUCCESS;
-}
-
-void regression(XCSF *xcsf, int argc, char **argv)
-{
-    INPUT *train_data = malloc(sizeof(INPUT));
-    INPUT *test_data = malloc(sizeof(INPUT));
-    env_csv_input_read(argv[2], train_data, test_data);
-    xcsf->num_x_vars = train_data->x_cols;
-    xcsf->num_y_vars = train_data->y_cols;
-    xcsf->num_actions = 1; // regression
-
-    // reload state of a previous experiment
-    if(argc == 5) {
-        printf("LOADING XCSF\n");
-        xcsf->pset.size = 0;
-        xcsf->pset.num = 0;
-        xcsf_load(xcsf, argv[4]);
-    }
-    // start a new experiment
-    else {
-        pop_init(xcsf);
-    }
-
-    // train model
-    xcsf_fit2(xcsf, train_data, test_data, true);
-
-    // clean up
-    env_csv_input_free(train_data);
-    env_csv_input_free(test_data);
-    free(train_data);
-    free(test_data);
-}
-
-void classification(XCSF *xcsf, int argc, char **argv)
-{
+    // initialise problem environment
     env_init(xcsf, argv);
     // reload state of a previous experiment
     if(argc == 5) {
@@ -117,15 +65,28 @@ void classification(XCSF *xcsf, int argc, char **argv)
         xcsf->pset.num = 0;
         xcsf_load(xcsf, argv[4]);
     }
-    // start a new experiment
+    // new experiment
     else {
         pop_init(xcsf);
     }
-    if(env_multistep(xcsf)) {
-        xcs_multi_step_exp(xcsf);
+    // supervised regression - input csv file
+    if(strcmp(argv[1], "csv") == 0) {
+        ENV_CSV *env = xcsf->env;
+        xcsf_fit2(xcsf, env->train_data, env->test_data, true);
     }
+    // reinforcement learning - maze or mux
     else {
-        xcs_single_step_exp(xcsf);
+        if(env_multistep(xcsf)) {
+            xcs_multi_step_exp(xcsf);
+        }
+        else {
+            xcs_single_step_exp(xcsf);
+        }
     }
+    // clean up
     env_free(xcsf);
+    set_kill(xcsf, &xcsf->pset);
+    constants_free(xcsf);
+    free(xcsf);
+    return EXIT_SUCCESS;
 }

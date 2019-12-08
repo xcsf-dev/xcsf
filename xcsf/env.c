@@ -32,6 +32,7 @@
 #include "env.h"
 #include "env_mux.h"
 #include "env_maze.h"
+#include "env_csv.h"
 
 /**
  * @brief Initialises a built-in problem environment.
@@ -48,6 +49,10 @@ void env_init(XCSF *xcsf, char **argv)
     else if(strcmp(argv[1], "maze") == 0) {
         xcsf->env_vptr = &env_maze_vtbl;
         env_maze_init(xcsf, argv[2]);
+    }
+    else if(strcmp(argv[1], "csv") == 0) {
+        xcsf->env_vptr = &env_csv_vtbl;
+        env_csv_init(xcsf, argv[2]);
     }
     else {
         printf("Invalid environment specified: %s\n", argv[1]);

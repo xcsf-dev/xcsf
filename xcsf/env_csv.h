@@ -23,5 +23,32 @@
  
 #pragma once
 
-void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data);
-void env_csv_input_free(INPUT *data);
+/**
+ * @brief CSV environment data structure.
+ */
+typedef struct ENV_CSV {
+    INPUT *train_data;
+    INPUT *test_data;
+} ENV_CSV;
+
+_Bool env_csv_isreset(XCSF *xcsf);
+_Bool env_csv_multistep(XCSF *xcsf);
+double env_csv_execute(XCSF *xcsf, int action);
+double env_csv_maxpayoff(XCSF *xcsf);
+double *env_csv_get_state(XCSF *xcsf);
+void env_csv_free(XCSF *xcsf);
+void env_csv_init(XCSF *xcsf, char *filename);
+void env_csv_reset(XCSF *xcsf);
+
+/**
+ * @brief csv input environment implemented functions.
+ */
+static struct EnvVtbl const env_csv_vtbl = {
+    &env_csv_isreset,
+    &env_csv_multistep,
+    &env_csv_execute,
+    &env_csv_maxpayoff,
+    &env_csv_get_state,
+    &env_csv_free,
+    &env_csv_reset
+};

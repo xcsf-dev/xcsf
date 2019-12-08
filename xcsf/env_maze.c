@@ -78,7 +78,7 @@ typedef struct ENV_MAZE {
     _Bool reset; //!< Whether the trial needs to be reset (e.g., in goal state)
 } ENV_MAZE;
 
-double env_maze_sensor(XCSF *xcsf, char s);
+static double env_maze_sensor(XCSF *xcsf, char s);
 
 /**
  * @brief Initialises a maze environment from a specified file.
@@ -202,7 +202,7 @@ double *env_maze_get_state(XCSF *xcsf)
  * @param s The char value of the sensor.
  * @return A float encoding of the sensor.
  */
-double env_maze_sensor(XCSF *xcsf, char s)
+static double env_maze_sensor(XCSF *xcsf, char s)
 {
     (void)xcsf;
     double ret = 0;

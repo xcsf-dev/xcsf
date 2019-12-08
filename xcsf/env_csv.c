@@ -29,6 +29,7 @@
 #include <errno.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "env.h"
 #include "env_csv.h"
 
 #define MAX_ROWS 100000 //!< Maximum number of instances
@@ -37,6 +38,40 @@
 #define DELIM "," //!< File delimiter
 
 static void env_csv_read(char *fname, double **data, int *num_prob, int *num_vars);
+static void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data);
+
+/**
+ * @brief Initialises a CSV input environment from a specified filename.
+ * @param xcsf The XCSF data structure.
+ * @param fname The file name of the csv data.
+ */
+void env_csv_init(XCSF *xcsf, char *fname)
+{
+    ENV_CSV *env = malloc(sizeof(ENV_CSV));
+    env->train_data = malloc(sizeof(INPUT));
+    env->test_data = malloc(sizeof(INPUT));
+    env_csv_input_read(fname, env->train_data, env->test_data);
+    xcsf->env = env;
+    xcsf->num_x_vars = env->train_data->x_cols;
+    xcsf->num_y_vars = env->train_data->y_cols;
+    xcsf->num_actions = 1;
+}
+
+/**
+ * @brief Frees the csv environment.
+ * @param xcsf The XCSF data structure.
+ */
+void env_csv_free(XCSF *xcsf)
+{
+    ENV_CSV *env = xcsf->env;
+    free(env->train_data->x);
+    free(env->train_data->y);
+    free(env->test_data->x);
+    free(env->test_data->y);
+    free(env->train_data);
+    free(env->test_data);
+    free(env);
+}
 
 /**
  * @brief Parses specified csv files into training and testing data sets.
@@ -46,7 +81,7 @@ static void env_csv_read(char *fname, double **data, int *num_prob, int *num_var
  *
  * @details Expects an identical number of x and y rows.
  */
-void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data)
+static void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data)
 {
     char name[MAX_NAME];
     snprintf(name, MAX_NAME, "%s_train_x.csv", infile);
@@ -110,12 +145,38 @@ static void env_csv_read(char *fname, double **data, int *num_rows, int *num_col
     printf("Loaded: %s: %d rows, %d cols\n", fname, *num_rows, *num_cols);
 }
 
-/**
- * @brief Frees an input data structure.
- * @param data The input data structure to free.
- */
-void env_csv_input_free(INPUT *data)
-{                 
-    free(data->x);
-    free(data->y);
+void env_csv_reset(XCSF *xcsf)
+{
+    (void)xcsf;
+}
+
+_Bool env_csv_isreset(XCSF *xcsf)
+{
+    (void)xcsf;
+    return true;
+}
+
+double *env_csv_get_state(XCSF *xcsf)
+{
+    (void)xcsf;
+    return 0;
+}
+
+double env_csv_execute(XCSF *xcsf, int action)
+{
+    (void)xcsf;
+    (void)action;
+    return 0;
+}
+
+_Bool env_csv_multistep(XCSF *xcsf)
+{
+    (void)xcsf;
+    return false;
+}
+
+double env_csv_maxpayoff(XCSF *xcsf)
+{
+    (void)xcsf;
+    return 0;
 }
