@@ -188,30 +188,16 @@ void constants_free(XCSF *xcsf)
 }
 
 /**
- * @brief Removes tabs/spaces/lf/cr from both ends of a line.
+ * @brief Removes tabs/spaces/lf/cr
  * @param s The line to trim.
  */
-static void trim(char *s)
-{
-    size_t i = 0;
-    while(s[i]==' ' || s[i]=='\t' || s[i] =='\n' || s[i]=='\r') {
-        i++;
-    }
-    if(i > 0) {
-        size_t j = 0;
-        while(j < strnlen(s, MAXLEN)) {
-            s[j] = s[j+i];
-            j++;
+static void trim(char *s) {
+    const char *d = s;
+    do {
+        while(*d == ' ' || *d == '\t' || *d == '\n' || *d == '\r') {
+            d++;
         }
-        s[j] = '\0';
-    }
-    i = strnlen(s, MAXLEN)-1;
-    while(s[i]==' ' || s[i]=='\t' || s[i] =='\n' || s[i]=='\r') {
-        i--;
-    }
-    if(i < (strnlen(s, MAXLEN)-1)) {
-        s[i+1] = '\0';
-    }
+    } while((*s++ = *d++));
 }
 
 /**
