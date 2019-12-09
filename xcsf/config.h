@@ -23,5 +23,5 @@
 
 #pragma once
  
-void constants_init(XCSF *xcsf, const char *filename);
-void constants_free(XCSF *xcsf);
+void config_init(XCSF *xcsf, const char *filename);
+void config_free(XCSF *xcsf);

@@ -45,12 +45,13 @@ typedef struct PARAM_LIST {
 } PARAM_LIST;
 
 static PARAM_LIST *head; //!< Linked list of config file parameters
-static void config_init(const char *filename);
+
+static void config_read(const char *filename);
 static void config_process(char *configline);
 static void config_trim(char *s);
+static void config_tidyup();
 static void config_newnvpair(const char *config);
 static char *config_getvalue(char *name);
-static void config_tidyup();
 static void params_general(XCSF *xcsf);
 static void params_multistep(XCSF *xcsf);
 static void params_ea(XCSF *xcsf);
@@ -65,9 +66,9 @@ static void params_cl_prediction(XCSF *xcsf);
  * @param xcsf The XCSF data structure.
  * @param filename The name of the config file to read.
  */
-void constants_init(XCSF *xcsf, const char *filename)
+void config_init(XCSF *xcsf, const char *filename)
 {
-    config_init(filename);
+    config_read(filename);
     // initialise parameters
     params_general(xcsf);
     params_multistep(xcsf);
@@ -89,7 +90,7 @@ void constants_init(XCSF *xcsf, const char *filename)
  * @brief Frees all global constants.
  * @param xcsf The XCSF data structure.
  */
-void constants_free(XCSF *xcsf)
+void config_free(XCSF *xcsf)
 {
     tree_free_cons(xcsf);
 }
@@ -368,7 +369,7 @@ static void config_process(char *configline) {
  * @brief Reads the specified configuration file.
  * @param filename The name of the configuration file.
  */
-static void config_init(const char *filename) {
+static void config_read(const char *filename) {
     FILE *f = fopen(filename, "rt");
     if(f == NULL) {
         printf("ERROR: cannot open %s\n", filename);

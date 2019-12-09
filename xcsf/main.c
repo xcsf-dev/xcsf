@@ -48,10 +48,10 @@ int main(int argc, char **argv)
     random_init();
     // load parameter config
     if(argc > 3) {
-        constants_init(xcsf, argv[3]);
+        config_init(xcsf, argv[3]);
     }
     else {
-        constants_init(xcsf, "default.ini");
+        config_init(xcsf, "default.ini");
     }
 #ifdef PARALLEL
     omp_set_num_threads(xcsf->OMP_NUM_THREADS);
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
     // clean up
     env_free(xcsf);
     set_kill(xcsf, &xcsf->pset);
-    constants_free(xcsf);
+    config_free(xcsf);
     free(xcsf);
     return EXIT_SUCCESS;
 }

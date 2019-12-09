@@ -63,7 +63,7 @@ struct XCS
      */
     XCS(int num_x_vars, int num_actions, _Bool multistep) {
         (void)multistep; // not yet implemented for python
-        constants_init(&xcs, "default.ini");
+        config_init(&xcs, "default.ini");
 #ifdef PARALLEL
         omp_set_num_threads(xcs.OMP_NUM_THREADS);
 #endif
@@ -91,7 +91,7 @@ struct XCS
      * @brief Constructor for supervised learning with a specified config.
      */
     XCS(int num_x_vars, int num_y_vars, const char *filename) {
-        constants_init(&xcs, filename);
+        config_init(&xcs, filename);
 #ifdef PARALLEL
         omp_set_num_threads(xcs.OMP_NUM_THREADS);
 #endif
