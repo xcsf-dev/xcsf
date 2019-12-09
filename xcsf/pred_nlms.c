@@ -50,7 +50,7 @@ void pred_nlms_init(XCSF *xcsf, CL *c)
             xcsf->num_x_vars * (xcsf->num_x_vars - 1) / 2;
     }
     else {
-        pred->weights_length = xcsf->num_x_vars+1;
+        pred->weights_length = xcsf->num_x_vars + 1;
     }
     pred->weights = malloc(sizeof(double*) * xcsf->num_y_vars);
     for(int var = 0; var < xcsf->num_y_vars; var++) {
