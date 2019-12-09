@@ -101,16 +101,15 @@ void constants_free(XCSF *xcsf)
 static void params_general(XCSF *xcsf)
 {
     char *end;
+    xcsf->OMP_NUM_THREADS = strtoimax(config_getvalue("OMP_NUM_THREADS"), &end, BASE);
     xcsf->POP_SIZE = strtoimax(config_getvalue("POP_SIZE"), &end, BASE);
     xcsf->MAX_TRIALS = strtoimax(config_getvalue("MAX_TRIALS"), &end, BASE);
-    xcsf->PERF_AVG_TRIALS = strtoimax(config_getvalue("PERF_AVG_TRIALS"), &end, BASE);
-    xcsf->OMP_NUM_THREADS = strtoimax(config_getvalue("OMP_NUM_THREADS"), &end, BASE);
-    xcsf->LOSS_FUNC = strtoimax(config_getvalue("LOSS_FUNC"), &end, BASE);
     xcsf->POP_INIT = false;
     if(strncmp(config_getvalue("POP_INIT"), "true", 4) == 0) {
         xcsf->POP_INIT = true;
     }
-    xcsf->P_EXPLORE = atof(config_getvalue("P_EXPLORE"));
+    xcsf->PERF_AVG_TRIALS = strtoimax(config_getvalue("PERF_AVG_TRIALS"), &end, BASE);
+    xcsf->LOSS_FUNC = strtoimax(config_getvalue("LOSS_FUNC"), &end, BASE);
 }
 
 /**
@@ -120,8 +119,9 @@ static void params_general(XCSF *xcsf)
 static void params_multistep(XCSF *xcsf)
 {
     char *end;
-    xcsf->GAMMA = atof(config_getvalue("GAMMA"));
     xcsf->TELETRANSPORTATION = strtoimax(config_getvalue("TELETRANSPORTATION"), &end, BASE);
+    xcsf->GAMMA = atof(config_getvalue("GAMMA"));
+    xcsf->P_EXPLORE = atof(config_getvalue("P_EXPLORE"));
 }
 
 /**
@@ -131,18 +131,18 @@ static void params_multistep(XCSF *xcsf)
 static void params_ea(XCSF *xcsf)
 {
     char *end;
-    xcsf->THETA_EA = atof(config_getvalue("THETA_EA"));
-    xcsf->LAMBDA = strtoimax(config_getvalue("LAMBDA"), &end, BASE);
     xcsf->EA_SELECT_TYPE = strtoimax(config_getvalue("EA_SELECT_TYPE"), &end, BASE);
     xcsf->EA_SELECT_SIZE = atof(config_getvalue("EA_SELECT_SIZE"));
+    xcsf->THETA_EA = atof(config_getvalue("THETA_EA"));
+    xcsf->LAMBDA = strtoimax(config_getvalue("LAMBDA"), &end, BASE);
     xcsf->P_CROSSOVER = atof(config_getvalue("P_CROSSOVER"));
-    xcsf->F_MUTATION = atof(config_getvalue("F_MUTATION"));
-    xcsf->P_MUTATION = atof(config_getvalue("P_MUTATION"));
     xcsf->S_MUTATION = atof(config_getvalue("S_MUTATION"));
+    xcsf->P_MUTATION = atof(config_getvalue("P_MUTATION"));
+    xcsf->F_MUTATION = atof(config_getvalue("F_MUTATION"));
     xcsf->E_MUTATION = atof(config_getvalue("E_MUTATION"));
-    xcsf->SAM_MIN = atof(config_getvalue("SAM_MIN"));
-    xcsf->SAM_NUM = strtoimax(config_getvalue("SAM_NUM"), &end, BASE);
     xcsf->SAM_TYPE = strtoimax(config_getvalue("SAM_TYPE"), &end, BASE);
+    xcsf->SAM_NUM = strtoimax(config_getvalue("SAM_NUM"), &end, BASE);
+    xcsf->SAM_MIN = atof(config_getvalue("SAM_MIN"));
 }
 
 /**
@@ -152,7 +152,6 @@ static void params_ea(XCSF *xcsf)
 static void params_subsumption(XCSF *xcsf)
 {
     char *end;
-    xcsf->THETA_SUB = strtoimax(config_getvalue("THETA_SUB"), &end, BASE);
     xcsf->EA_SUBSUMPTION = false;
     if(strncmp(config_getvalue("EA_SUBSUMPTION"), "true", 4) == 0) {
         xcsf->EA_SUBSUMPTION = true;
@@ -161,6 +160,7 @@ static void params_subsumption(XCSF *xcsf)
     if(strncmp(config_getvalue("SET_SUBSUMPTION"), "true", 4) == 0) {
         xcsf->SET_SUBSUMPTION = true;
     }
+    xcsf->THETA_SUB = strtoimax(config_getvalue("THETA_SUB"), &end, BASE);
 }
 
 /**
@@ -173,13 +173,13 @@ static void params_cl_general(XCSF *xcsf)
     xcsf->ALPHA = atof(config_getvalue("ALPHA"));
     xcsf->BETA = atof(config_getvalue("BETA"));
     xcsf->DELTA = atof(config_getvalue("DELTA"));
-    xcsf->EPS_0 = atof(config_getvalue("EPS_0"));
-    xcsf->ERR_REDUC = atof(config_getvalue("ERR_REDUC"));
-    xcsf->FIT_REDUC = atof(config_getvalue("FIT_REDUC"));
-    xcsf->INIT_ERROR = atof(config_getvalue("INIT_ERROR"));
-    xcsf->INIT_FITNESS = atof(config_getvalue("INIT_FITNESS"));
     xcsf->NU = atof(config_getvalue("NU"));
     xcsf->THETA_DEL = strtoimax(config_getvalue("THETA_DEL"), &end, BASE);
+    xcsf->INIT_FITNESS = atof(config_getvalue("INIT_FITNESS"));
+    xcsf->INIT_ERROR = atof(config_getvalue("INIT_ERROR"));
+    xcsf->ERR_REDUC = atof(config_getvalue("ERR_REDUC"));
+    xcsf->FIT_REDUC = atof(config_getvalue("FIT_REDUC"));
+    xcsf->EPS_0 = atof(config_getvalue("EPS_0"));
 }
 
 /**
@@ -189,18 +189,20 @@ static void params_cl_general(XCSF *xcsf)
 static void params_cl_condition(XCSF *xcsf)
 {
     char *end;
-    xcsf->COND_NUM_HIDDEN_NEURONS = strtoimax(config_getvalue("COND_NUM_HIDDEN_NEURONS"), &end, BASE);
-    xcsf->COND_MAX_HIDDEN_NEURONS = strtoimax(config_getvalue("COND_MAX_HIDDEN_NEURONS"), &end, BASE);
-    xcsf->COND_HIDDEN_NEURON_ACTIVATION = strtoimax(config_getvalue("COND_HIDDEN_NEURON_ACTIVATION"), &end, BASE);
-    xcsf->COND_TYPE = strtoimax(config_getvalue("COND_TYPE"), &end, BASE);
-    xcsf->COND_MAX = atof(config_getvalue("COND_MAX"));
     xcsf->COND_MIN = atof(config_getvalue("COND_MIN"));
+    xcsf->COND_MAX = atof(config_getvalue("COND_MAX"));
+    xcsf->COND_TYPE = strtoimax(config_getvalue("COND_TYPE"), &end, BASE);
     xcsf->COND_SMIN = atof(config_getvalue("COND_SMIN"));
     xcsf->COND_ETA = atof(config_getvalue("COND_ETA"));
+    xcsf->GP_NUM_CONS = strtoimax(config_getvalue("GP_NUM_CONS"), &end, BASE);
+    xcsf->GP_INIT_DEPTH = strtoimax(config_getvalue("GP_INIT_DEPTH"), &end, BASE);
+    xcsf->DGP_NUM_NODES = strtoimax(config_getvalue("DGP_NUM_NODES"), &end, BASE);
     xcsf->RESET_STATES = false;
     if(strncmp(config_getvalue("RESET_STATES"), "true", 4) == 0) {
         xcsf->RESET_STATES = true;
     }
+    xcsf->MAX_K = strtoimax(config_getvalue("MAX_K"), &end, BASE);
+    xcsf->MAX_T = strtoimax(config_getvalue("MAX_T"), &end, BASE);
     xcsf->COND_EVOLVE_WEIGHTS = false;
     if(strncmp(config_getvalue("COND_EVOLVE_WEIGHTS"), "true", 4) == 0) {
         xcsf->COND_EVOLVE_WEIGHTS = true;
@@ -213,11 +215,9 @@ static void params_cl_condition(XCSF *xcsf)
     if(strncmp(config_getvalue("COND_EVOLVE_FUNCTIONS"), "true", 4) == 0) {
         xcsf->COND_EVOLVE_FUNCTIONS = true;
     }
-    xcsf->DGP_NUM_NODES = strtoimax(config_getvalue("DGP_NUM_NODES"), &end, BASE);
-    xcsf->MAX_K = strtoimax(config_getvalue("MAX_K"), &end, BASE);
-    xcsf->MAX_T = strtoimax(config_getvalue("MAX_T"), &end, BASE);
-    xcsf->GP_INIT_DEPTH = strtoimax(config_getvalue("GP_INIT_DEPTH"), &end, BASE);
-    xcsf->GP_NUM_CONS = strtoimax(config_getvalue("GP_NUM_CONS"), &end, BASE);
+    xcsf->COND_NUM_HIDDEN_NEURONS = strtoimax(config_getvalue("COND_NUM_HIDDEN_NEURONS"), &end, BASE);
+    xcsf->COND_MAX_HIDDEN_NEURONS = strtoimax(config_getvalue("COND_MAX_HIDDEN_NEURONS"), &end, BASE);
+    xcsf->COND_HIDDEN_NEURON_ACTIVATION = strtoimax(config_getvalue("COND_HIDDEN_NEURON_ACTIVATION"), &end, BASE);
 }
 
 /**
@@ -239,13 +239,13 @@ static void params_cl_prediction(XCSF *xcsf)
     char *end;
     xcsf->PRED_TYPE = strtoimax(config_getvalue("PRED_TYPE"), &end, BASE);
     xcsf->PRED_ETA = atof(config_getvalue("PRED_ETA"));
+    xcsf->PRED_RESET = false;
+    if(strncmp(config_getvalue("PRED_RESET"), "true", 4) == 0) {
+        xcsf->PRED_RESET = true;
+    }
     xcsf->PRED_X0 = atof(config_getvalue("PRED_X0"));
-    xcsf->PRED_RLS_LAMBDA = atof(config_getvalue("PRED_RLS_LAMBDA"));
     xcsf->PRED_RLS_SCALE_FACTOR = atof(config_getvalue("PRED_RLS_SCALE_FACTOR"));
-    xcsf->PRED_NUM_HIDDEN_NEURONS = strtoimax(config_getvalue("PRED_NUM_HIDDEN_NEURONS"), &end, BASE);
-    xcsf->PRED_MAX_HIDDEN_NEURONS = strtoimax(config_getvalue("PRED_MAX_HIDDEN_NEURONS"), &end, BASE);
-    xcsf->PRED_HIDDEN_NEURON_ACTIVATION = strtoimax(config_getvalue("PRED_HIDDEN_NEURON_ACTIVATION"), &end, BASE);
-    xcsf->PRED_MOMENTUM = atof(config_getvalue("PRED_MOMENTUM"));
+    xcsf->PRED_RLS_LAMBDA = atof(config_getvalue("PRED_RLS_LAMBDA"));
     xcsf->PRED_EVOLVE_WEIGHTS = false;
     if(strncmp(config_getvalue("PRED_EVOLVE_WEIGHTS"), "true", 4) == 0) {
         xcsf->PRED_EVOLVE_WEIGHTS = true;
@@ -266,10 +266,10 @@ static void params_cl_prediction(XCSF *xcsf)
     if(strncmp(config_getvalue("PRED_SGD_WEIGHTS"), "true", 4) == 0) {
         xcsf->PRED_SGD_WEIGHTS = true;
     }
-    xcsf->PRED_RESET = false;
-    if(strncmp(config_getvalue("PRED_RESET"), "true", 4) == 0) {
-        xcsf->PRED_RESET = true;
-    }
+    xcsf->PRED_MOMENTUM = atof(config_getvalue("PRED_MOMENTUM"));
+    xcsf->PRED_NUM_HIDDEN_NEURONS = strtoimax(config_getvalue("PRED_NUM_HIDDEN_NEURONS"), &end, BASE);
+    xcsf->PRED_MAX_HIDDEN_NEURONS = strtoimax(config_getvalue("PRED_MAX_HIDDEN_NEURONS"), &end, BASE);
+    xcsf->PRED_HIDDEN_NEURON_ACTIVATION = strtoimax(config_getvalue("PRED_HIDDEN_NEURON_ACTIVATION"), &end, BASE);
 }
 
 /**
