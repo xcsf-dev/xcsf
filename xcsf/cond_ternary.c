@@ -33,8 +33,8 @@
 #include "condition.h"
 #include "cond_ternary.h"
 
-#define P_DONTCARE 0.5
-#define DONT_CARE '#'
+#define P_DONTCARE 0.5 //!< Don't care probability in randomisation and covering
+#define DONT_CARE '#' //!< Don't care symbol
 
 /**
  * @brief Ternary condition data structure.
