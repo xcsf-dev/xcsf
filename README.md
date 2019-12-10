@@ -45,36 +45,36 @@ See `default.ini` for a full list of options.
 
 ### Evolved Conditions
 
-* `COND_TYPE = 0` Always matching dummy condition
-* `COND_TYPE = 1` Hyperrectangles
-* `COND_TYPE = 2` Hyperellipsoids
-* `COND_TYPE = 3` Multilayer perceptron neural networks
-* `COND_TYPE = 4` GP trees
-* `COND_TYPE = 5` Dynamical GP graphs
-* `COND_TYPE = 6` Ternary bitstrings (binarises inputs)
-* `COND_TYPE = 11` Both conditions and actions in single dynamical GP graphs
-* `COND_TYPE = 12` Both conditions and actions in single neural networks
+* `COND_TYPE = 0` : Always matching dummy condition
+* `COND_TYPE = 1` : Hyperrectangles
+* `COND_TYPE = 2` : Hyperellipsoids
+* `COND_TYPE = 3` : Multilayer perceptron neural networks
+* `COND_TYPE = 4` : GP trees
+* `COND_TYPE = 5` : Dynamical GP graphs
+* `COND_TYPE = 6` : Ternary bitstrings (binarises inputs)
+* `COND_TYPE = 11` : Both conditions and actions in single dynamical GP graphs
+* `COND_TYPE = 12` : Both conditions and actions in single neural networks
 
 ### Evolved Actions
 
-* `ACT_TYPE = 0` Integer actions
+* `ACT_TYPE = 0` : Integer actions
 
 ### Computed Predictions
 
-* `PRED_TYPE = 0` Piece-wise constant
-* `PRED_TYPE = 1` Linear least squares
-* `PRED_TYPE = 2` Quadratic least squares
-* `PRED_TYPE = 3` Linear recursive least squares
-* `PRED_TYPE = 4` Quadratic recursive least squares
-* `PRED_TYPE = 5` Stochastic gradient descent multilayer perceptron neural networks
+* `PRED_TYPE = 0` : Piece-wise constant
+* `PRED_TYPE = 1` : Linear least squares
+* `PRED_TYPE = 2` : Quadratic least squares
+* `PRED_TYPE = 3` : Linear recursive least squares
+* `PRED_TYPE = 4` : Quadratic recursive least squares
+* `PRED_TYPE = 5` : Stochastic gradient descent multilayer perceptron neural networks
 
 *******************************************************************************
 
 ## Compiler options
 
-* `XCSF_PYLIB = ON` Python library (CMake default = OFF)
-* `PARALLEL = ON` CPU parallelised matching, predicting, and updating with OpenMP (CMake default = ON)
-* `GNUPLOT = ON` real-time Gnuplot of the system error; data saved in folder: `out` (CMake default = OFF)
+* `XCSF_PYLIB = ON` : Python library (CMake default = OFF)
+* `PARALLEL = ON` : CPU parallelised matching, predicting, and updating with OpenMP (CMake default = ON)
+* `GNUPLOT = ON` : real-time Gnuplot of the system error; data saved in folder: `out` (CMake default = OFF)
   
 *******************************************************************************
 
