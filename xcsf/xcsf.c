@@ -35,7 +35,7 @@
 #include "cl_set.h"
 #include "ea.h"
 
-static const double VERSION = 1.05; //!< XCSF version number
+static const double VERSION = 1.06; //!< XCSF version number
 
 static double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
 static double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);

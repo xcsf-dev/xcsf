@@ -28,6 +28,7 @@
 #include "xcsf.h"       
 #include "utils.h"
 #include "prediction.h"
+#include "pred_constant.h"
 #include "pred_nlms.h"
 #include "pred_rls.h"
 #include "pred_neural.h"     
@@ -40,6 +41,9 @@
 void prediction_set(XCSF *xcsf, CL *c)
 {
     switch(xcsf->PRED_TYPE) {
+        case PRED_TYPE_CONSTANT:
+            c->pred_vptr = &pred_constant_vtbl;
+            break;
         case PRED_TYPE_NLMS_LINEAR:
         case PRED_TYPE_NLMS_QUADRATIC:
             c->pred_vptr = &pred_nlms_vtbl;

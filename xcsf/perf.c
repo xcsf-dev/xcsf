@@ -160,6 +160,7 @@ static void gplot_title(XCSF *xcsf, char *title)
         strcat(title, ", action integer");
     }
     switch(xcsf->PRED_TYPE) {
+        case PRED_TYPE_CONSTANT: strcat(title, ", constant pred"); break;
         case PRED_TYPE_NLMS_LINEAR: strcat(title, ", linear nlms"); break;
         case PRED_TYPE_NLMS_QUADRATIC: strcat(title, ", quadratic nlms"); break;
         case PRED_TYPE_RLS_LINEAR: strcat(title, ", linear rls"); break;
