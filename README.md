@@ -45,13 +45,13 @@ See `default.ini` for a full list of options.
 
 ### Evolved Conditions
 
-* `COND_TYPE =-1`: Always matching dummy condition
-* `COND_TYPE = 0`: Hyperrectangles
-* `COND_TYPE = 1`: Hyperellipsoids
-* `COND_TYPE = 2`: Multilayer perceptron neural networks
-* `COND_TYPE = 3`: GP trees
-* `COND_TYPE = 4`: Dynamical GP graphs
-* `COND_TYPE = 5`: Ternary bitstrings (binarises inputs)
+* `COND_TYPE = 0`: Always matching dummy condition
+* `COND_TYPE = 1`: Hyperrectangles
+* `COND_TYPE = 2`: Hyperellipsoids
+* `COND_TYPE = 3`: Multilayer perceptron neural networks
+* `COND_TYPE = 4`: GP trees
+* `COND_TYPE = 5`: Dynamical GP graphs
+* `COND_TYPE = 6`: Ternary bitstrings (binarises inputs)
 * `COND_TYPE = 11`: Both conditions and actions in single dynamical GP graphs
 * `COND_TYPE = 12`: Both conditions and actions in single neural networks
 
@@ -61,11 +61,12 @@ See `default.ini` for a full list of options.
 
 ### Computed Predictions
 
-* `PRED_TYPE = 0`: Linear least squares
-* `PRED_TYPE = 1`: Quadratic least squares
-* `PRED_TYPE = 2`: Linear recursive least squares
-* `PRED_TYPE = 3`: Quadratic recursive least squares
-* `PRED_TYPE = 4`: Stochastic gradient descent multilayer perceptron neural networks
+* `PRED_TYPE = 0`: Piece-wise constant
+* `PRED_TYPE = 1`: Linear least squares
+* `PRED_TYPE = 2`: Quadratic least squares
+* `PRED_TYPE = 3`: Linear recursive least squares
+* `PRED_TYPE = 4`: Quadratic recursive least squares
+* `PRED_TYPE = 5`: Stochastic gradient descent multilayer perceptron neural networks
 
 *******************************************************************************
 
