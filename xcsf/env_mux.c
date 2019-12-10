@@ -24,7 +24,9 @@
  * first k bits determine the position of the output bit in the last pow(2,k)
  * bits. E.g., for a 3-bit problem, the first rounded bit addresses which of
  * the following 2 bits are the (rounded) output.
- */ 
+ *
+ * Example valid lengths: 3, 6, 11, 20, 37, 70, 135, 264.
+ */
    
 #include <stdio.h>
 #include <stdlib.h>
