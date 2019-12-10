@@ -146,23 +146,24 @@ static void gplot_title(XCSF *xcsf, char *title)
     char buffer[20];
     title[0] = '\0';
     switch(xcsf->COND_TYPE) {
-        case -1: strcat(title, " dummy cond"); break;
-        case 0: strcat(title, " hyperrectangle cond"); break;
-        case 1: strcat(title, " hyperellipsoid cond"); break;
-        case 2: strcat(title, " neural cond"); break;
-        case 3: strcat(title, " tree-GP cond"); break;
-        case 4: strcat(title, " graph-DGP cond"); break;
-        case 11: strcat(title, " graph-DGP rules"); break;
-        case 12: strcat(title, " neural rules"); break;
+        case COND_TYPE_DUMMY: strcat(title, " dummy cond"); break;
+        case COND_TYPE_HYPERRECTANGLE: strcat(title, " hyperrectangle cond"); break;
+        case COND_TYPE_HYPERELLIPSOID: strcat(title, " hyperellipsoid cond"); break;
+        case COND_TYPE_NEURAL: strcat(title, " neural cond"); break;
+        case COND_TYPE_GP: strcat(title, " tree-GP cond"); break;
+        case COND_TYPE_DGP: strcat(title, " graph-DGP cond"); break;
+        case RULE_TYPE_DGP: strcat(title, " graph-DGP rules"); break;
+        case RULE_TYPE_NEURAL: strcat(title, " neural rules"); break;
     }
     if(xcsf->COND_TYPE < 10) {
-        switch(xcsf->PRED_TYPE) {
-            case 0: strcat(title, ", linear nlms"); break;
-            case 1: strcat(title, ", quadratic nlms"); break;
-            case 2: strcat(title, ", linear rls"); break;
-            case 3: strcat(title, ", quadratic rls"); break;
-            case 4: strcat(title, ", neural pred"); break;
-        }
+        strcat(title, ", action integer");
+    }
+    switch(xcsf->PRED_TYPE) {
+        case PRED_TYPE_NLMS_LINEAR: strcat(title, ", linear nlms"); break;
+        case PRED_TYPE_NLMS_QUADRATIC: strcat(title, ", quadratic nlms"); break;
+        case PRED_TYPE_RLS_LINEAR: strcat(title, ", linear rls"); break;
+        case PRED_TYPE_RLS_QUADRATIC: strcat(title, ", quadratic rls"); break;
+        case PRED_TYPE_NEURAL: strcat(title, ", neural pred"); break;
     }
     if(xcsf->SAM_NUM > 0) {
         strcat(title, ", SAM");

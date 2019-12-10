@@ -54,7 +54,7 @@ void pred_rls_init(XCSF *xcsf, CL *c)
     PRED_RLS *pred = malloc(sizeof(PRED_RLS));
     c->pred = pred;
     // set length of weights
-    if(xcsf->PRED_TYPE == 3) {
+    if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
         // offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
         pred->weights_length = 1 + 2 * xcsf->num_x_vars + 
             xcsf->num_x_vars * (xcsf->num_x_vars - 1) / 2;
@@ -135,7 +135,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
         pred->tmp_input[index++] = x[i];
     }
     // quadratic terms
-    if(xcsf->PRED_TYPE == 3) {
+    if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
         for(int i = 0; i < xcsf->num_x_vars; i++) {
             for(int j = i; j < xcsf->num_x_vars; j++) {
                 pred->tmp_input[index++] = x[i] * x[j];
@@ -192,7 +192,7 @@ double *pred_rls_compute(XCSF *xcsf, CL *c, double *x)
         for(int i = 0; i < xcsf->num_x_vars; i++) {
             pre += pred->weights[var][index++] * x[i];
         }
-        if(xcsf->PRED_TYPE == 3) {
+        if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
             // multiply quadratic coefficients with prediction input
             for(int i = 0; i < xcsf->num_x_vars; i++) {
                 for(int j = i; j < xcsf->num_x_vars; j++) {

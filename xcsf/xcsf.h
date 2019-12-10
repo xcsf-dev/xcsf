@@ -23,6 +23,23 @@
  
 #pragma once
 
+#define COND_TYPE_DUMMY -1 //!< Condition type dummy
+#define COND_TYPE_HYPERRECTANGLE 0 //!< Condition type hyperrectangle
+#define COND_TYPE_HYPERELLIPSOID 1  //!< Condition type hyperellipsoid
+#define COND_TYPE_NEURAL 2 //!< Condition type neural network
+#define COND_TYPE_GP 3 //!< Condition type tree GP
+#define COND_TYPE_DGP 4 //!< Condition type DGP
+#define RULE_TYPE_DGP 11 //!< Condition type and action type DGP
+#define RULE_TYPE_NEURAL 12 //!< Condition type and action type neural
+
+#define ACT_TYPE_INTEGER 0 //!< Action type integer
+
+#define PRED_TYPE_NLMS_LINEAR 0 //!< Prediction type linear nlms
+#define PRED_TYPE_NLMS_QUADRATIC 1 //!< Prediction type quadratic nlms
+#define PRED_TYPE_RLS_LINEAR 2 //!< Prediction type linear rls
+#define PRED_TYPE_RLS_QUADRATIC 3 //!< Prediction type quadratic rls
+#define PRED_TYPE_NEURAL 4 //!< Prediction type neural
+
 /**
  * @brief Classifier data structure.
  */

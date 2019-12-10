@@ -40,15 +40,15 @@
 void prediction_set(XCSF *xcsf, CL *c)
 {
     switch(xcsf->PRED_TYPE) {
-        case 0:
-        case 1:
+        case PRED_TYPE_NLMS_LINEAR:
+        case PRED_TYPE_NLMS_QUADRATIC:
             c->pred_vptr = &pred_nlms_vtbl;
             break;
-        case 2:
-        case 3:
+        case PRED_TYPE_RLS_LINEAR:
+        case PRED_TYPE_RLS_QUADRATIC:
             c->pred_vptr = &pred_rls_vtbl;
             break;
-        case 4:
+        case PRED_TYPE_NEURAL:
             c->pred_vptr = &pred_neural_vtbl;
             break;
         default:

@@ -46,29 +46,29 @@
 void condition_set(XCSF *xcsf, CL *c)
 {
     switch(xcsf->COND_TYPE) {
-        case -1:
+        case COND_TYPE_DUMMY:
             c->cond_vptr = &cond_dummy_vtbl;
             break;
-        case 0:
+        case COND_TYPE_HYPERRECTANGLE:
             c->cond_vptr = &cond_rectangle_vtbl;
             break;
-        case 1:
+        case COND_TYPE_HYPERELLIPSOID:
             c->cond_vptr = &cond_ellipsoid_vtbl;
             break;
-        case 2:
+        case COND_TYPE_NEURAL:
             c->cond_vptr = &cond_neural_vtbl;
             break;
-        case 3:
+        case COND_TYPE_GP:
             c->cond_vptr = &cond_gp_vtbl;
             break;
-        case 4:
+        case COND_TYPE_DGP:
             c->cond_vptr = &cond_dgp_vtbl;
             break;
-        case 11:
+        case RULE_TYPE_DGP:
             c->cond_vptr = &rule_dgp_cond_vtbl;
             c->act_vptr = &rule_dgp_act_vtbl;
             break;
-        case 12:
+        case RULE_TYPE_NEURAL:
             c->cond_vptr = &rule_neural_cond_vtbl;
             c->act_vptr = &rule_neural_act_vtbl;
             break;
