@@ -57,6 +57,8 @@ void gplot_free(XCSF *xcsf)
 static FILE *gp; //!< File containing gnuplot script
 static FILE *fout; //!< File containing performance data
 static char fname[50]; //!< File name for performance data
+static void gplot_perf1(XCSF *xcsf, double error, int trial);
+static void gplot_perf2(XCSF *xcsf, double error, double terror, int trial);
 static void gplot_draw(XCSF *xcsf, _Bool test_error);
 static void gplot_title(XCSF *xcsf, char *title);
 
@@ -66,7 +68,7 @@ static void gplot_title(XCSF *xcsf, char *title);
  * @param error The current training error.
  * @param trial The number of learning trials executed.
  */
-void gplot_perf1(XCSF *xcsf, double error, int trial)
+static void gplot_perf1(XCSF *xcsf, double error, int trial)
 {
     fprintf(fout, "%d %.5f %d", trial, error, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
@@ -84,7 +86,7 @@ void gplot_perf1(XCSF *xcsf, double error, int trial)
  * @param error The current testing error.
  * @param trial The number of learning trials executed.
  */
-void gplot_perf2(XCSF *xcsf, double error, double terror, int trial)
+static void gplot_perf2(XCSF *xcsf, double error, double terror, int trial)
 {
     fprintf(fout, "%d %.5f %.5f %d", trial, error, terror, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
