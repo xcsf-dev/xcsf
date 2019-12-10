@@ -194,6 +194,7 @@ static void params_cl_condition(XCSF *xcsf)
     xcsf->COND_MAX = atof(config_getvalue("COND_MAX"));
     xcsf->COND_TYPE = strtoimax(config_getvalue("COND_TYPE"), &end, BASE);
     xcsf->COND_SMIN = atof(config_getvalue("COND_SMIN"));
+    xcsf->COND_BITS = strtoimax(config_getvalue("COND_BITS"), &end, BASE);
     xcsf->COND_ETA = atof(config_getvalue("COND_ETA"));
     xcsf->GP_NUM_CONS = strtoimax(config_getvalue("GP_NUM_CONS"), &end, BASE);
     xcsf->GP_INIT_DEPTH = strtoimax(config_getvalue("GP_INIT_DEPTH"), &end, BASE);

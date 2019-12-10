@@ -338,6 +338,7 @@ static size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->COND_MAX, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_MIN, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_SMIN, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->COND_BITS, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->COND_MAX_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->COND_HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);
@@ -420,6 +421,7 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->COND_MAX, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_MIN, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_SMIN, sizeof(double), 1, fp);
+    s += fread(&xcsf->COND_BITS, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_NUM_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fread(&xcsf->COND_MAX_HIDDEN_NEURONS, sizeof(int), 1, fp);
     s += fread(&xcsf->COND_HIDDEN_NEURON_ACTIVATION, sizeof(int), 1, fp);

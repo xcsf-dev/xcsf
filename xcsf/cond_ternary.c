@@ -44,11 +44,12 @@ typedef struct COND_TERNARY {
 } COND_TERNARY;
 
 static void cond_ternary_rand(XCSF *xcsf, CL *c);
+static void float_to_binary(double f, char *binary, int bits);
 
 void cond_ternary_init(XCSF *xcsf, CL *c)
 {
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
-    new->string = malloc(sizeof(char) * xcsf->num_x_vars);
+    new->string = malloc(sizeof(char) * xcsf->num_x_vars * xcsf->COND_BITS);
     c->cond = new;     
     cond_ternary_rand(xcsf, c);
 }
@@ -56,7 +57,7 @@ void cond_ternary_init(XCSF *xcsf, CL *c)
 static void cond_ternary_rand(XCSF *xcsf, CL *c)
 {
     COND_TERNARY *cond = c->cond;
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->num_x_vars * xcsf->COND_BITS; i++) {
         if(rand_uniform(0,1) < P_DONTCARE) {
             cond->string[i] = DONT_CARE;
         }
@@ -83,24 +84,23 @@ void cond_ternary_copy(XCSF *xcsf, CL *to, CL *from)
 {
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
     COND_TERNARY *from_cond = from->cond;
-    new->string = malloc(sizeof(char) * xcsf->num_x_vars);
-    memcpy(new->string, from_cond->string, sizeof(char) * xcsf->num_x_vars);
+    new->string = malloc(sizeof(char) * xcsf->num_x_vars * xcsf->COND_BITS);
+    memcpy(new->string, from_cond->string, sizeof(char) * xcsf->num_x_vars * xcsf->COND_BITS);
     to->cond = new;
 }                             
 
 void cond_ternary_cover(XCSF *xcsf, CL *c, double *x)
 {
     COND_TERNARY *cond = c->cond;
+    char state[xcsf->COND_BITS];
     for(int i = 0; i < xcsf->num_x_vars; i++) {
-        if(rand_uniform(0,1) < P_DONTCARE) {
-            cond->string[i] = DONT_CARE;
-        }
-        else {
-            if(x[i] > 0.5) {
-                cond->string[i] = '1';
+        float_to_binary(x[i], state, xcsf->COND_BITS);
+        for(int b = 0; b < xcsf->COND_BITS; b++) {
+            if(rand_uniform(0,1) < P_DONTCARE) {
+                cond->string[i*xcsf->COND_BITS+b] = DONT_CARE;
             }
             else {
-                cond->string[i] = '0';
+                cond->string[i*xcsf->COND_BITS+b] = state[b];
             }
         }
     }
@@ -114,18 +114,28 @@ void cond_ternary_update(XCSF *xcsf, CL *c, double *x, double *y)
 _Bool cond_ternary_match(XCSF *xcsf, CL *c, double *x)
 {
     COND_TERNARY *cond = c->cond;
+    char state[xcsf->COND_BITS];
     for(int i = 0; i < xcsf->num_x_vars; i++) {
-        char state = '0';
-        if(x[i] > 0.5) {
-            state = '1';
-        }
-        if(cond->string[i] != DONT_CARE && cond->string[i] != state) {
-            c->m = false;
-            return false;
+        float_to_binary(x[i], state, xcsf->COND_BITS);
+        for(int b = 0; b < xcsf->COND_BITS; b++) {
+            char s = cond->string[i*xcsf->COND_BITS+b];
+            if(s != DONT_CARE && s != state[b]) {
+                c->m = false;
+                return false;
+            }
         }
     }
     c->m = true;
     return true;
+}
+
+static void float_to_binary(double f, char *binary, int bits)
+{
+    int a = (int)(f * pow(2, bits));
+    for(int i = 0; i < bits; i++) {
+        binary[i] = (a % 2) + '0';
+        a /= 2;
+    }
 }
 
 _Bool cond_ternary_crossover(XCSF *xcsf, CL *c1, CL *c2) 
@@ -134,7 +144,7 @@ _Bool cond_ternary_crossover(XCSF *xcsf, CL *c1, CL *c2)
     COND_TERNARY *cond2 = c2->cond;
     _Bool changed = false;
     if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
-        for(int i = 0; i < xcsf->num_x_vars; i++) {
+        for(int i = 0; i < xcsf->num_x_vars * xcsf->COND_BITS; i++) {
             if(rand_uniform(0,1) < 0.5) {
                 double tmp = cond1->string[i];
                 cond1->string[i] = cond2->string[i];
@@ -150,7 +160,7 @@ _Bool cond_ternary_mutate(XCSF *xcsf, CL *c)
 {
     COND_TERNARY *cond = c->cond;
     _Bool changed = false;
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->num_x_vars * xcsf->COND_BITS; i++) {
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
             if(cond->string[i] == DONT_CARE) {
                 if(rand_uniform(0,1) < 0.5) {
@@ -175,7 +185,7 @@ _Bool cond_ternary_general(XCSF *xcsf, CL *c1, CL *c2)
     COND_TERNARY *cond1 = c1->cond;
     COND_TERNARY *cond2 = c2->cond;
     _Bool general = false;
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->num_x_vars * xcsf->COND_BITS; i++) {
         if(cond1->string[i] != DONT_CARE && cond1->string[i] != cond2->string[i]) {
             return false;
         }
@@ -190,7 +200,7 @@ void cond_ternary_print(XCSF *xcsf, CL *c)
 {
     COND_TERNARY *cond = c->cond;
     printf("ternary:");
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->num_x_vars * xcsf->COND_BITS; i++) {
         printf("%c", cond->string[i]);
     }
     printf("\n");
