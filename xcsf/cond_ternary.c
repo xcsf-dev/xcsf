@@ -216,7 +216,7 @@ size_t cond_ternary_save(XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_TERNARY *cond = c->cond;
-    s += fwrite(cond->string, sizeof(char), xcsf->num_x_vars, fp);
+    s += fwrite(cond->string, sizeof(char), xcsf->num_x_vars * xcsf->COND_BITS, fp);
     return s;
 }
 
@@ -224,8 +224,8 @@ size_t cond_ternary_load(XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
-    new->string = malloc(sizeof(char) * xcsf->num_x_vars);
-    s += fread(new->string, sizeof(char), xcsf->num_x_vars, fp);
+    new->string = malloc(sizeof(char) * xcsf->num_x_vars * xcsf->COND_BITS);
+    s += fread(new->string, sizeof(char), xcsf->num_x_vars * xcsf->COND_BITS, fp);
     c->cond = new;
     return s;
 }
