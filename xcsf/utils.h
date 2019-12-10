@@ -29,3 +29,4 @@ double rand_uniform(double min, double max);
 int iconstrain(int min, int max, int a);
 int irand_uniform(int min, int max);
 void random_init();
+void float_to_binary(double f, char *binary, int bits);

@@ -129,3 +129,18 @@ int iconstrain(int min, int max, int a)
     if (a > max) {return max;}
     return a;
 }
+
+/**
+ * @brief Generates a binary string from a float.
+ * @param f The float to binarise.
+ * @param binary The converted binary string (set by this function).
+ * @param bits The number of bits to use for binarising.
+ */
+void float_to_binary(double f, char *binary, int bits)
+{
+    int a = (int)(f * pow(2, bits));
+    for(int i = 0; i < bits; i++) {
+        binary[i] = (a % 2) + '0';
+        a /= 2;
+    }
+}

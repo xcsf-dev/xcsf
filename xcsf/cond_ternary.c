@@ -44,7 +44,6 @@ typedef struct COND_TERNARY {
 } COND_TERNARY;
 
 static void cond_ternary_rand(XCSF *xcsf, CL *c);
-static void float_to_binary(double f, char *binary, int bits);
 
 void cond_ternary_init(XCSF *xcsf, CL *c)
 {
@@ -127,15 +126,6 @@ _Bool cond_ternary_match(XCSF *xcsf, CL *c, double *x)
     }
     c->m = true;
     return true;
-}
-
-static void float_to_binary(double f, char *binary, int bits)
-{
-    int a = (int)(f * pow(2, bits));
-    for(int i = 0; i < bits; i++) {
-        binary[i] = (a % 2) + '0';
-        a /= 2;
-    }
 }
 
 _Bool cond_ternary_crossover(XCSF *xcsf, CL *c1, CL *c2) 
