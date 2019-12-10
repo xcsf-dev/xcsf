@@ -51,6 +51,7 @@ See `default.ini` for a full list of options.
 * `COND_TYPE = 2`: Multilayer perceptron neural networks
 * `COND_TYPE = 3`: GP trees
 * `COND_TYPE = 4`: Dynamical GP graphs
+* `COND_TYPE = 5`: Ternary bitstrings (binarises inputs)
 * `COND_TYPE = 11`: Both conditions and actions in single dynamical GP graphs
 * `COND_TYPE = 12`: Both conditions and actions in single neural networks
 
