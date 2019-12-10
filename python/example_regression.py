@@ -73,7 +73,7 @@ xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.LOSS_FUNC = 1 # MSE
 xcs.EPS_0 = 0.005 # target error
 
-xcs.COND_TYPE = 2 # neural network conditions
+xcs.COND_TYPE = 3 # neural network conditions
 xcs.COND_HIDDEN_NEURON_ACTIVATION = 1 # relu
 xcs.COND_NUM_HIDDEN_NEURONS = 1
 xcs.COND_MAX_HIDDEN_NEURONS = 20
@@ -81,7 +81,7 @@ xcs.COND_EVOLVE_WEIGHTS = True
 xcs.COND_EVOLVE_NEURONS = True
 xcs.COND_EVOLVE_FUNCTIONS = False
 
-xcs.PRED_TYPE = 4 # neural network predictors
+xcs.PRED_TYPE = 5 # neural network predictors
 xcs.PRED_HIDDEN_NEURON_ACTIVATION = 1 # relu
 xcs.PRED_NUM_HIDDEN_NEURONS = 200
 xcs.PRED_MAX_HIDDEN_NEURONS = 200

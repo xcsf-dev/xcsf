@@ -54,8 +54,8 @@ xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 500
 xcs.PERF_AVG_TRIALS = 1000
 xcs.EPS_0 = 0.01 # target error
-xcs.COND_TYPE = 0 # hyperrectangles
-xcs.PRED_TYPE = 0 # linear least squares
+xcs.COND_TYPE = 1 # hyperrectangles
+xcs.PRED_TYPE = 1 # linear least squares
 xcs.ACT_TYPE = 0 # integers
 
 #####################
