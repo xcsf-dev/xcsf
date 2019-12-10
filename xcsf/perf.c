@@ -245,7 +245,7 @@ void disp_perf1(XCSF *xcsf, double error, int trial)
  * (additionally redraws Gnuplot if defined.)
  * @param xcsf The XCSF data structure.
  * @param error The current training error.
- * @param error The current testing error.
+ * @param terror The current testing error.
  * @param trial The number of learning trials executed.
  */
 void disp_perf2(XCSF *xcsf, double error, double terror, int trial)
