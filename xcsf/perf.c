@@ -20,7 +20,7 @@
  * @date 2015--2019.
  * @brief System performance printing and plotting with Gnuplot.
  */ 
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,11 +34,19 @@
 
 #ifndef GNUPLOT
 
+/**
+ * @brief Dummy init function if Gnuplot not defined.
+ * @param xcsf The XCSF data structure.
+ */
 void gplot_init(XCSF *xcsf)
 {
     (void)xcsf;
 }
 
+/**
+ * @brief Dummy free function if Gnuplot not defined.
+ * @param xcsf The XCSF data structure.
+ */
 void gplot_free(XCSF *xcsf)
 {
     (void)xcsf;
@@ -46,11 +54,18 @@ void gplot_free(XCSF *xcsf)
 
 #else
 
-static FILE *gp; //!< file containing gnuplot script
-static FILE *fout; //!< file containing performance data
-static char fname[50]; //!< file name for performance data
+static FILE *gp; //!< File containing gnuplot script
+static FILE *fout; //!< File containing performance data
+static char fname[50]; //!< File name for performance data
 static void gplot_draw(XCSF *xcsf, _Bool test_error);
- 
+static void gplot_title(XCSF *xcsf, char *title);
+
+/**
+ * @brief Writes training performance to a file and redraws Gnuplot.
+ * @param xcsf The XCSF data structure.
+ * @param error The current training error.
+ * @param trial The number of learning trials executed.
+ */
 void gplot_perf1(XCSF *xcsf, double error, int trial)
 {
     fprintf(fout, "%d %.5f %d", trial, error, xcsf->pset.size);
@@ -61,7 +76,14 @@ void gplot_perf1(XCSF *xcsf, double error, int trial)
     fflush(fout);
     gplot_draw(xcsf, false); 
 }
- 
+
+/**
+ * @brief Writes training and test performance to a file and redraws Gnuplot.
+ * @param xcsf The XCSF data structure.
+ * @param error The current training error.
+ * @param error The current testing error.
+ * @param trial The number of learning trials executed.
+ */
 void gplot_perf2(XCSF *xcsf, double error, double terror, int trial)
 {
     fprintf(fout, "%d %.5f %.5f %d", trial, error, terror, xcsf->pset.size);
@@ -73,66 +95,33 @@ void gplot_perf2(XCSF *xcsf, double error, double terror, int trial)
     gplot_draw(xcsf, true); 
 }
 
+/**
+ * @brief Initialises Gnuplot and file for writing performance.
+ * @param xcsf The XCSF data structure.
+ */
 void gplot_init(XCSF *xcsf)
 { 	
-    // file name for writing performance uses the current date-time
+    // generate file name for writing performance based on the current date-time
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
     sprintf(fname, "out/%04d-%02d-%02d-%02d%02d%02d.dat", tm.tm_year + 1900, 
             tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
-
-    // create file for writing performance
+    // generate Gnuplot title
+    char title[100];
+    gplot_title(xcsf, title);
+    // open file for writing performance
     fout = fopen(fname, "wt");
     if(fout == 0) {
         printf("Error opening file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }       
-
-    // set gnuplot title
-    char buffer[20];
-    char title[100];
-    title[0] = '\0';
-
-    switch(xcsf->COND_TYPE) {
-        case -1: strcat(title, " dummy cond"); break;
-        case 0: strcat(title, " hyperrectangle cond"); break;
-        case 1: strcat(title, " hyperellipsoid cond"); break;
-        case 2: strcat(title, " neural cond"); break;
-        case 3: strcat(title, " tree-GP cond"); break;
-        case 4: strcat(title, " graph-DGP cond"); break;
-        case 11: strcat(title, " graph-DGP rules"); break;
-        case 12: strcat(title, " neural rules"); break;
-    }
-
-    if(xcsf->COND_TYPE < 10) {
-        switch(xcsf->PRED_TYPE) {
-            case 0: strcat(title, ", linear nlms"); break;
-            case 1: strcat(title, ", quadratic nlms"); break;
-            case 2: strcat(title, ", linear rls"); break;
-            case 3: strcat(title, ", quadratic rls"); break;
-            case 4: strcat(title, ", neural pred"); break;
-        }
-    }
-
-    if(xcsf->SAM_NUM > 0) {
-        strcat(title, ", SAM");
-    }
-
-    sprintf(buffer, ", P=%d", xcsf->POP_SIZE);
-    strcat(title, buffer);
-
-    // execute gnuplot
-#ifdef _WIN32
-    gp = _popen("C:\Program Files (x86)\gnuplot\bin\pgnuplot.exe -persistent", "w");
-#else
+    // execute Gnuplot
     gp = popen("gnuplot -persistent", "w");
-#endif
     if(gp != NULL) {
         fprintf(gp, "set terminal wxt noraise enhanced font 'Arial,12'\n");
         fprintf(gp, "set grid\n");
         fprintf(gp, "set border linewidth 1\n");
         fprintf(gp, "set title \"%s\"\n", title);
-        //fprintf(gp, "set nokey\n");
         fprintf(gp, "set xlabel 'Trials'\n");
         if(xcsf->num_actions < 2) {
             fprintf(gp, "set ylabel 'System Error'\n");
@@ -145,22 +134,65 @@ void gplot_init(XCSF *xcsf)
     }
 }
 
+/**
+ * @brief Generates the title for Gnuplot based on the knowledge representation.
+ * @param xcsf The XCSF data structure.
+ * @param title The Gnuplot title (set by this function).
+ */
+static void gplot_title(XCSF *xcsf, char *title)
+{
+    char buffer[20];
+    title[0] = '\0';
+    switch(xcsf->COND_TYPE) {
+        case -1: strcat(title, " dummy cond"); break;
+        case 0: strcat(title, " hyperrectangle cond"); break;
+        case 1: strcat(title, " hyperellipsoid cond"); break;
+        case 2: strcat(title, " neural cond"); break;
+        case 3: strcat(title, " tree-GP cond"); break;
+        case 4: strcat(title, " graph-DGP cond"); break;
+        case 11: strcat(title, " graph-DGP rules"); break;
+        case 12: strcat(title, " neural rules"); break;
+    }
+    if(xcsf->COND_TYPE < 10) {
+        switch(xcsf->PRED_TYPE) {
+            case 0: strcat(title, ", linear nlms"); break;
+            case 1: strcat(title, ", quadratic nlms"); break;
+            case 2: strcat(title, ", linear rls"); break;
+            case 3: strcat(title, ", quadratic rls"); break;
+            case 4: strcat(title, ", neural pred"); break;
+        }
+    }
+    if(xcsf->SAM_NUM > 0) {
+        strcat(title, ", SAM");
+    }
+    sprintf(buffer, ", P=%d", xcsf->POP_SIZE);
+    strcat(title, buffer);
+}
+
+/**
+ * @brief Closes any files and frees any memory used for Gnuplot.
+ * @param xcsf The XCSF data structure.
+ */
 void gplot_free(XCSF *xcsf)
 {
     (void)xcsf;
-    // close gnuplot
     if(gp != NULL) {
         pclose(gp);
     }
     else {
         printf("Error closing gnuplot\n");
     }
-    // close data file
     fclose(fout);
 }
 
+/**
+ * @brief Draws current performance with Gnuplot.
+ * @param xcsf The XCSF data structure.
+ * @param test_error Whether to plot a second line.
+ */
 static void gplot_draw(XCSF *xcsf, _Bool test_error)
 {
+    (void)xcsf;
     if(gp != NULL) {
         if(xcsf->num_actions < 2) {
             // regression
@@ -182,10 +214,16 @@ static void gplot_draw(XCSF *xcsf, _Bool test_error)
     else {
         printf("Error writing to gnuplot\n");
     }
-    (void)xcsf;
 }
 #endif
 
+/**
+ * @brief Displays the current training performance
+ * (additionally redraws Gnuplot if defined.)
+ * @param xcsf The XCSF data structure.
+ * @param error The current training error.
+ * @param trial The number of learning trials executed.
+ */
 void disp_perf1(XCSF *xcsf, double error, int trial)
 {
     printf("%d %.5f %d", trial, error, xcsf->pset.size);
@@ -199,6 +237,14 @@ void disp_perf1(XCSF *xcsf, double error, int trial)
 #endif
 }
 
+/**
+ * @brief Displays the current training and test performance
+ * (additionally redraws Gnuplot if defined.)
+ * @param xcsf The XCSF data structure.
+ * @param error The current training error.
+ * @param error The current testing error.
+ * @param trial The number of learning trials executed.
+ */
 void disp_perf2(XCSF *xcsf, double error, double terror, int trial)
 {
     printf("%d %.5f %.5f %d", trial, error, terror, xcsf->pset.size);
