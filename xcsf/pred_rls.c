@@ -153,7 +153,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
         pred->tmp_vec[i] /= divisor;
     }
     // update weights using the error
-    // prediction has been updated for the current state during set_pred()
+    // prediction must have been computed for the current state
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         double error = y[var] - c->prediction[var];
         for(int i = 0; i < n; i++) {
@@ -173,7 +173,6 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
         }
     }
     matrix_matrix_multiply(pred->tmp_matrix1, pred->matrix, pred->tmp_matrix2, n);
-
     // divide gain matrix entries by lambda
     for(int row = 0; row < n; row++) {
         for(int col = 0; col < n; col++) {
@@ -193,7 +192,6 @@ double *pred_rls_compute(XCSF *xcsf, CL *c, double *x)
         for(int i = 0; i < xcsf->num_x_vars; i++) {
             pre += pred->weights[var][index++] * x[i];
         }
-
         if(xcsf->PRED_TYPE == 3) {
             // multiply quadratic coefficients with prediction input
             for(int i = 0; i < xcsf->num_x_vars; i++) {
@@ -202,7 +200,6 @@ double *pred_rls_compute(XCSF *xcsf, CL *c, double *x)
                 }
             }
         }
-
         c->prediction[var] = pre;
     }
     return c->prediction;
