@@ -70,8 +70,7 @@ double *pred_constant_compute(XCSF *xcsf, CL *c, double *x)
 
 void pred_constant_print(XCSF *xcsf, CL *c)
 {
-    printf("predictions: ");
-    printf("%f", c->prediction[0]);
+    printf("constant prediction: %f", c->prediction[0]);
     for(int var = 1; var < xcsf->num_y_vars; var++) {
         printf(", %f", c->prediction[var]);
     }
