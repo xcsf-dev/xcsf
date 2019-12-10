@@ -152,10 +152,11 @@ static void gplot_title(XCSF *xcsf, char *title)
         case COND_TYPE_NEURAL: strcat(title, " neural cond"); break;
         case COND_TYPE_GP: strcat(title, " tree-GP cond"); break;
         case COND_TYPE_DGP: strcat(title, " graph-DGP cond"); break;
+        case COND_TYPE_TERNARY: strcat(title, " ternary cond"); break;
         case RULE_TYPE_DGP: strcat(title, " graph-DGP rules"); break;
         case RULE_TYPE_NEURAL: strcat(title, " neural rules"); break;
     }
-    if(xcsf->COND_TYPE < 10) {
+    if(xcsf->COND_TYPE < RULE_TYPE_DGP) {
         strcat(title, ", action integer");
     }
     switch(xcsf->PRED_TYPE) {

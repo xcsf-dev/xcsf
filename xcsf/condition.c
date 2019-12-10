@@ -34,6 +34,7 @@
 #include "cond_gp.h"
 #include "cond_dgp.h"
 #include "cond_neural.h"       
+#include "cond_ternary.h"       
 #include "action.h"
 #include "rule_dgp.h"
 #include "rule_neural.h"
@@ -63,6 +64,9 @@ void condition_set(XCSF *xcsf, CL *c)
             break;
         case COND_TYPE_DGP:
             c->cond_vptr = &cond_dgp_vtbl;
+            break;
+        case COND_TYPE_TERNARY:
+            c->cond_vptr = &cond_ternary_vtbl;
             break;
         case RULE_TYPE_DGP:
             c->cond_vptr = &rule_dgp_cond_vtbl;

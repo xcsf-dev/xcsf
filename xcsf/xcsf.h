@@ -29,6 +29,7 @@
 #define COND_TYPE_NEURAL 2 //!< Condition type neural network
 #define COND_TYPE_GP 3 //!< Condition type tree GP
 #define COND_TYPE_DGP 4 //!< Condition type DGP
+#define COND_TYPE_TERNARY 5 //!< Condition type ternary
 #define RULE_TYPE_DGP 11 //!< Condition type and action type DGP
 #define RULE_TYPE_NEURAL 12 //!< Condition type and action type neural
 
