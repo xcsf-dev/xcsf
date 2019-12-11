@@ -166,7 +166,7 @@ struct XCS
         // check inputs are correctly sized
         if(train_X.shape(0) != train_Y.shape(0)) {
             printf("error: training X and Y rows are not equal\n");
-            return 0;
+            exit(EXIT_FAILURE);
         }
         // load training data
         train_data->rows = train_X.shape(0);
@@ -187,19 +187,19 @@ struct XCS
         // check inputs are correctly sized
         if(train_X.shape(0) != train_Y.shape(0)) {
             printf("error: training X and Y rows are not equal\n");
-            return 0;
+            exit(EXIT_FAILURE);
         }
         if(test_X.shape(0) != test_Y.shape(0)) {
             printf("error: testing X and Y rows are not equal\n");
-            return 0;
+            exit(EXIT_FAILURE);
         }
         if(train_X.shape(1) != test_X.shape(1)) {
             printf("error: number of training and testing X cols are not equal\n");
-            return 0;
+            exit(EXIT_FAILURE);
         }
         if(train_Y.shape(1) != test_Y.shape(1)) {
             printf("error: number of training and testing Y cols are not equal\n");
-            return 0;
+            exit(EXIT_FAILURE);
         }
         // load training data
         train_data->rows = train_X.shape(0);
@@ -239,7 +239,7 @@ struct XCS
         // check inputs are correctly sized
         if(test_X.shape(0) != test_Y.shape(0)) {
             printf("error: X and Y rows are not equal\n");
-            return 0;
+            exit(EXIT_FAILURE);
         }
         test_data->rows = test_X.shape(0);
         test_data->x_cols = test_X.shape(1);
