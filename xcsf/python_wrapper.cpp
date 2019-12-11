@@ -44,6 +44,8 @@ extern "C" {
 #endif
 }
 
+void xcs_init(const char *filename);
+
 /**
  * @brief Python XCSF data structure.
  */ 
@@ -63,21 +65,10 @@ struct XCS
      */
     XCS(int num_x_vars, int num_actions, _Bool multistep) {
         (void)multistep; // not yet implemented for python
-        config_init(&xcs, "default.ini");
-#ifdef PARALLEL
-        omp_set_num_threads(xcs.OMP_NUM_THREADS);
-#endif
         xcs.num_x_vars = num_x_vars;
         xcs.num_y_vars = 1;
         xcs.num_actions = num_actions;
-        xcs.time = 0;
-        xcs.pset.list = NULL;
-        mset.list = NULL;
-        aset.list = NULL;
-        kset.list = NULL;
-        train_data = NULL;
-        test_data = NULL;
-        action = 0;
+        xcs_init("default.ini");
         pa_init(&xcs);
     }
 
@@ -91,16 +82,28 @@ struct XCS
      * @brief Constructor for supervised learning with a specified config.
      */
     XCS(int num_x_vars, int num_y_vars, const char *filename) {
+        xcs.num_x_vars = num_x_vars;
+        xcs.num_y_vars = num_y_vars;
+        xcs.num_actions = 1;
+        xcs_init(filename);
+    }
+
+    /**
+     * @brief Initialises python XCS structure.
+     */
+    void xcs_init(const char *filename)
+    {
         config_init(&xcs, filename);
 #ifdef PARALLEL
         omp_set_num_threads(xcs.OMP_NUM_THREADS);
 #endif
         xcs.time = 0;
-        xcs.pset.size = 0;
-        xcs.pset.num = 0;
-        xcs.num_x_vars = num_x_vars;
-        xcs.num_y_vars = num_y_vars;
-        xcs.num_actions = 1;
+        set_init(&xcs, &xcs.pset);
+        set_init(&xcs, &mset);
+        set_init(&xcs, &aset);
+        set_init(&xcs, &kset);
+        state = NULL;
+        action = 0;
         train_data = (INPUT*)malloc(sizeof(INPUT));
         train_data->rows = 0;
         train_data->x_cols = 0;
@@ -113,7 +116,6 @@ struct XCS
         test_data->y_cols = 0;
         test_data->x = NULL;
         test_data->y = NULL;
-        action = 0;
     }
 
     double version() { return xcsf_version(); }
