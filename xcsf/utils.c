@@ -30,6 +30,8 @@
 #include "mt64.h"
 #include "utils.h"
 
+static double drand();
+
 /**
  * @brief Initialises the pseudo-random number generator.
  */
@@ -50,7 +52,7 @@ void random_init()
  *
  * @details Mersenne Twister 64bit version.
  */
-double drand()
+static double drand()
 {
     return genrand64_real1();
 }
