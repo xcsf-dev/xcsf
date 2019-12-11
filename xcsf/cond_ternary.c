@@ -41,6 +41,7 @@
  */ 
 typedef struct COND_TERNARY {
     char *string; //!< Ternary bitstring
+    int len; //!< Length of the bitstring
 } COND_TERNARY;
 
 static void cond_ternary_rand(XCSF *xcsf, CL *c);
@@ -48,15 +49,17 @@ static void cond_ternary_rand(XCSF *xcsf, CL *c);
 void cond_ternary_init(XCSF *xcsf, CL *c)
 {
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
-    new->string = malloc(sizeof(char) * xcsf->num_x_vars * xcsf->COND_BITS);
+    new->len = xcsf->num_x_vars * xcsf->COND_BITS;
+    new->string = malloc(sizeof(char) * new->len);
     c->cond = new;     
     cond_ternary_rand(xcsf, c);
 }
 
 static void cond_ternary_rand(XCSF *xcsf, CL *c)
 {
+    (void)xcsf;
     COND_TERNARY *cond = c->cond;
-    for(int i = 0; i < xcsf->num_x_vars * xcsf->COND_BITS; i++) {
+    for(int i = 0; i < cond->len; i++) {
         if(rand_uniform(0,1) < P_DONTCARE) {
             cond->string[i] = DONT_CARE;
         }
@@ -81,10 +84,12 @@ void cond_ternary_free(XCSF *xcsf, CL *c)
 
 void cond_ternary_copy(XCSF *xcsf, CL *to, CL *from)
 {
+    (void)xcsf;
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
     COND_TERNARY *from_cond = from->cond;
-    new->string = malloc(sizeof(char) * xcsf->num_x_vars * xcsf->COND_BITS);
-    memcpy(new->string, from_cond->string, sizeof(char) * xcsf->num_x_vars * xcsf->COND_BITS);
+    new->len = from_cond->len;
+    new->string = malloc(sizeof(char) * from_cond->len);
+    memcpy(new->string, from_cond->string, sizeof(char) * from_cond->len);
     to->cond = new;
 }                             
 
@@ -134,7 +139,7 @@ _Bool cond_ternary_crossover(XCSF *xcsf, CL *c1, CL *c2)
     COND_TERNARY *cond2 = c2->cond;
     _Bool changed = false;
     if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
-        for(int i = 0; i < xcsf->num_x_vars * xcsf->COND_BITS; i++) {
+        for(int i = 0; i < cond1->len; i++) {
             if(rand_uniform(0,1) < 0.5) {
                 double tmp = cond1->string[i];
                 cond1->string[i] = cond2->string[i];
@@ -150,7 +155,7 @@ _Bool cond_ternary_mutate(XCSF *xcsf, CL *c)
 {
     COND_TERNARY *cond = c->cond;
     _Bool changed = false;
-    for(int i = 0; i < xcsf->num_x_vars * xcsf->COND_BITS; i++) {
+    for(int i = 0; i < cond->len; i++) {
         if(rand_uniform(0,1) < xcsf->P_MUTATION) {
             if(cond->string[i] == DONT_CARE) {
                 if(rand_uniform(0,1) < 0.5) {
@@ -172,10 +177,11 @@ _Bool cond_ternary_mutate(XCSF *xcsf, CL *c)
 _Bool cond_ternary_general(XCSF *xcsf, CL *c1, CL *c2)
 {
     // returns whether cond1 is more general than cond2
+    (void)xcsf;
     COND_TERNARY *cond1 = c1->cond;
     COND_TERNARY *cond2 = c2->cond;
     _Bool general = false;
-    for(int i = 0; i < xcsf->num_x_vars * xcsf->COND_BITS; i++) {
+    for(int i = 0; i < cond1->len; i++) {
         if(cond1->string[i] != DONT_CARE && cond1->string[i] != cond2->string[i]) {
             return false;
         }
@@ -188,9 +194,10 @@ _Bool cond_ternary_general(XCSF *xcsf, CL *c1, CL *c2)
 
 void cond_ternary_print(XCSF *xcsf, CL *c)
 {
+    (void)xcsf;
     COND_TERNARY *cond = c->cond;
     printf("ternary:");
-    for(int i = 0; i < xcsf->num_x_vars * xcsf->COND_BITS; i++) {
+    for(int i = 0; i < cond->len; i++) {
         printf("%c", cond->string[i]);
     }
     printf("\n");
@@ -198,24 +205,29 @@ void cond_ternary_print(XCSF *xcsf, CL *c)
 
 int cond_ternary_size(XCSF *xcsf, CL *c)
 {
-    (void)c;
-    return xcsf->num_x_vars;
+    (void)xcsf;
+    COND_TERNARY *cond = c->cond;
+    return cond->len;
 }
 
 size_t cond_ternary_save(XCSF *xcsf, CL *c, FILE *fp)
 {
+    (void)xcsf;
     size_t s = 0;
     COND_TERNARY *cond = c->cond;
-    s += fwrite(cond->string, sizeof(char), xcsf->num_x_vars * xcsf->COND_BITS, fp);
+    s += fwrite(&cond->len, sizeof(int), 1, fp);
+    s += fwrite(cond->string, sizeof(char), cond->len, fp);
     return s;
 }
 
 size_t cond_ternary_load(XCSF *xcsf, CL *c, FILE *fp)
 {
+    (void)xcsf;
     size_t s = 0;
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
-    new->string = malloc(sizeof(char) * xcsf->num_x_vars * xcsf->COND_BITS);
-    s += fread(new->string, sizeof(char), xcsf->num_x_vars * xcsf->COND_BITS, fp);
+    s += fread(&new->len, sizeof(int), 1, fp);
+    new->string = malloc(sizeof(char) * new->len);
+    s += fread(new->string, sizeof(char), new->len, fp);
     c->cond = new;
     return s;
 }
