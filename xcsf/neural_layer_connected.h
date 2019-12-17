@@ -30,7 +30,7 @@ void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input);
 void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net);
 void neural_layer_connected_update(XCSF *xcsf, LAYER *l);
 void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
-_Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l);
+_Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l, LAYER *prev);
 void neural_layer_connected_free(XCSF *xcsf, LAYER *l);
 double* neural_layer_connected_output(XCSF *xcsf, LAYER *l);
 size_t neural_layer_connected_save(XCSF *xcsf, LAYER *l, FILE *fp);

@@ -199,10 +199,12 @@ void neural_rand(XCSF *xcsf, NET *net)
 _Bool neural_mutate(XCSF *xcsf, NET *net)
 {
     _Bool mod = false;
+    LAYER *prev = NULL;
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        if(layer_mutate(xcsf, iter->layer)) {
+        if(layer_mutate(xcsf, iter->layer, prev)) {
             mod = true;
         }
+        prev = iter->layer;
     }
     return mod;
 }
@@ -300,17 +302,17 @@ void neural_print(XCSF *xcsf, NET *net, _Bool print_weights)
 }
 
 /**
- * @brief Returns the total number of active neurons in a neural network.
+ * @brief Returns the total number of neurons in a neural network.
  * @param xcsf The XCSF data structure.
- * @param net The neural network to calculate the number of active neurons.
- * @return The total number of active neurons.
+ * @param net The neural network to calculate the number of neurons.
+ * @return The total number of neurons.
  */
 int neural_size(XCSF *xcsf, NET *net)
 {
     (void)xcsf;
     int size = 0;
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        size += iter->layer->num_active;
+        size += iter->layer->num_outputs;
     }
     return size;
 }

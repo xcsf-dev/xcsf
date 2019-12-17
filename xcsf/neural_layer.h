@@ -43,8 +43,6 @@ typedef struct LAYER {
     int layer_type; //!< Layer type: CONNECTED, DROPOUT, etc.
     double *state; //!< Current neuron states (before activation function)
     double *output; //!< Current neuron outputs (after activation function)
-    _Bool *active; //!< Whether a neuron is active
-    int num_active; //!< Number of active neurons
     uint32_t options; //!< Bitwise layer options permitting weight evolution, etc.
     double *weights; //!< Weights for calculating neuron states
     double *biases; //!< Biases for calculating neuron states
@@ -53,6 +51,7 @@ typedef struct LAYER {
     double *delta; //!< Delta for updating weights
     int num_inputs; //!< Number of layer inputs
     int num_outputs; //!< Number of layer outputs
+    int max_outputs; //!< Maximum number of neurons in the layer
     int num_weights; //!< Number of layer weights
     int function; //!< Layer activation function
     double eta; //!< Gradient descent learning rate
@@ -72,9 +71,10 @@ struct LayerVtbl {
      * @brief Performs layer mutation.
      * @param xcsf The XCSF data structure.
      * @param l The layer to mutate.
+     * @param prev The layer prior to the one being mutated.
      * @return Whether any alterations were made.
      */
-    _Bool (*layer_impl_mutate)(XCSF *xcsf, LAYER *l);
+    _Bool (*layer_impl_mutate)(XCSF *xcsf, LAYER *l, LAYER *prev);
     /**
      * @brief Creates and returns a copy of a specified layer.
      * @param xcsf The XCSF data structure.
@@ -170,8 +170,8 @@ static inline void layer_update(XCSF *xcsf, LAYER *l) {
     (*l->layer_vptr->layer_impl_update)(xcsf, l);
 }
 
-static inline _Bool layer_mutate(XCSF *xcsf, LAYER *l) {
-    return (*l->layer_vptr->layer_impl_mutate)(xcsf, l);
+static inline _Bool layer_mutate(XCSF *xcsf, LAYER *l, LAYER *prev) {
+    return (*l->layer_vptr->layer_impl_mutate)(xcsf, l, prev);
 }
 
 static inline LAYER* layer_copy(XCSF *xcsf, LAYER *from) {

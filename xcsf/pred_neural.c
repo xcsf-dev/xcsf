@@ -90,7 +90,7 @@ void pred_neural_init(XCSF *xcsf, CL *c)
 
     // output layer
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    l = neural_layer_connected_init(xcsf, hmax, xcsf->num_y_vars, xcsf->num_y_vars, LOGISTIC, lopt);
+    l = neural_layer_connected_init(xcsf, hinit, xcsf->num_y_vars, xcsf->num_y_vars, LOGISTIC, lopt);
     neural_layer_insert(xcsf, &new->net, l, 1); 
 
     c->pred = new;

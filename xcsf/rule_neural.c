@@ -87,7 +87,7 @@ void rule_neural_cond_init(XCSF *xcsf, CL *c)
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
     int n = fmax(1, ceil(log2(xcsf->num_actions))); // number of action neurons
     new->num_outputs = n;
-    l = neural_layer_connected_init(xcsf, hmax, n+1, n+1, LOGISTIC, lopt);
+    l = neural_layer_connected_init(xcsf, hinit, n+1, n+1, LOGISTIC, lopt);
     neural_layer_insert(xcsf, &new->net, l, 1); 
     c->cond = new; 
 }

@@ -84,7 +84,7 @@ void cond_neural_init(XCSF *xcsf, CL *c)
 
     // output layer
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    l = neural_layer_connected_init(xcsf, hmax, 1, 1, LOGISTIC, lopt);
+    l = neural_layer_connected_init(xcsf, hinit, 1, 1, LOGISTIC, lopt);
     neural_layer_insert(xcsf, &new->net, l, 1); 
 
     c->cond = new;

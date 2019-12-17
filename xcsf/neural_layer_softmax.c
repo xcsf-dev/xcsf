@@ -43,7 +43,7 @@ LAYER* neural_layer_softmax_init(XCSF *xcsf, int in, double temp)
     l->temp = temp;
     l->num_inputs = in;
     l->num_outputs = in;
-    l->num_active = 0;
+    l->max_outputs = in;
     l->options = 0;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = calloc(l->num_inputs, sizeof(double));
@@ -59,7 +59,7 @@ LAYER* neural_layer_softmax_copy(XCSF *xcsf, LAYER *from)
     l->temp = from->temp;
     l->num_inputs = from->num_inputs;
     l->num_outputs = from->num_outputs;
-    l->num_active = from->num_active;
+    l->max_outputs = from->max_outputs;
     l->options = from->options;
     l->output = calloc(from->num_inputs, sizeof(double));
     l->delta = calloc(from->num_inputs, sizeof(double));
@@ -111,9 +111,9 @@ void neural_layer_softmax_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
             l->num_inputs, l->num_outputs, l->temp);
 }
 
-_Bool neural_layer_softmax_mutate(XCSF *xcsf, LAYER *l)
+_Bool neural_layer_softmax_mutate(XCSF *xcsf, LAYER *l, LAYER *prev)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf; (void)l; (void)prev;
     return false;
 }
 
@@ -136,6 +136,7 @@ size_t neural_layer_softmax_save(XCSF *xcsf, LAYER *l, FILE *fp)
     size_t s = 0;
     s += fwrite(&l->num_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->num_outputs, sizeof(int), 1, fp);
+    s += fwrite(&l->max_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->temp, sizeof(double), 1, fp);
     return s;
 }
@@ -146,8 +147,8 @@ size_t neural_layer_softmax_load(XCSF *xcsf, LAYER *l, FILE *fp)
     size_t s = 0;
     s += fread(&l->num_inputs, sizeof(int), 1, fp);
     s += fread(&l->num_outputs, sizeof(int), 1, fp);
+    s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->temp, sizeof(double), 1, fp);
-    l->num_active = 0;
     l->options = 0;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = calloc(l->num_inputs, sizeof(double));

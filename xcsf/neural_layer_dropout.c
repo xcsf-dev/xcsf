@@ -42,7 +42,7 @@ LAYER *neural_layer_dropout_init(XCSF *xcsf, int in, double prob)
     l->layer_vptr = &layer_dropout_vtbl;
     l->num_inputs = in;
     l->num_outputs = in;
-    l->num_active = 0;
+    l->max_outputs = in;
     l->options = 0;
     l->probability = prob;
     l->scale = 1./(1.-prob);
@@ -60,7 +60,7 @@ LAYER *neural_layer_dropout_copy(XCSF *xcsf, LAYER *from)
     l->layer_vptr = from->layer_vptr;
     l->num_inputs = from->num_inputs;
     l->num_outputs = from->num_inputs;
-    l->num_active = from->num_active;
+    l->max_outputs = from->max_outputs;
     l->options = from->options;
     l->probability = from->probability;
     l->scale = from->scale;
@@ -124,9 +124,9 @@ void neural_layer_dropout_update(XCSF *xcsf, LAYER *l)
     (void)xcsf; (void)l;
 }
 
-_Bool neural_layer_dropout_mutate(XCSF *xcsf, LAYER *l)
+_Bool neural_layer_dropout_mutate(XCSF *xcsf, LAYER *l, LAYER *prev)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf; (void)l; (void)prev;
     return false;
 }
 
@@ -149,6 +149,7 @@ size_t neural_layer_dropout_save(XCSF *xcsf, LAYER *l, FILE *fp)
     size_t s = 0;
     s += fwrite(&l->num_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->num_outputs, sizeof(int), 1, fp);
+    s += fwrite(&l->max_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->probability, sizeof(double), 1, fp);
     s += fwrite(&l->scale, sizeof(double), 1, fp);
     return s;
@@ -160,9 +161,9 @@ size_t neural_layer_dropout_load(XCSF *xcsf, LAYER *l, FILE *fp)
     size_t s = 0;
     s += fread(&l->num_inputs, sizeof(int), 1, fp);
     s += fread(&l->num_outputs, sizeof(int), 1, fp);
+    s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->probability, sizeof(double), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
-    l->num_active = 0;
     l->options = 0;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = malloc(l->num_inputs * sizeof(double));
