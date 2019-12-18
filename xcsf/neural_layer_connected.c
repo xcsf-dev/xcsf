@@ -128,8 +128,9 @@ void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
     (void)xcsf;
     for(int i = 0; i < l->num_outputs; i++) {
         l->state[i] = 0;
+        int offset = i * l->num_inputs;
         for(int j = 0; j < l->num_inputs; j++) {
-            l->state[i] += input[j] * l->weights[i * l->num_inputs + j];
+            l->state[i] += input[j] * l->weights[offset + j];
         }
         l->state[i] += l->biases[i];
         l->state[i] = constrain(-100, 100, l->state[i]);
@@ -146,15 +147,17 @@ void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net)
         l->delta[i] *= neural_gradient(l->function, l->state[i]);
         if(l->options & LAYER_SGD_WEIGHTS) {
             l->bias_updates[i] += l->delta[i];
+            int offset = i * l->num_inputs;
             for(int j = 0; j < l->num_inputs; j++) {
-                l->weight_updates[i * l->num_inputs + j] += l->delta[i] * net->input[j];
+                l->weight_updates[offset + j] += l->delta[i] * net->input[j];
             }
         }
     }
     if(net->delta) { // input layer has no delta or weights
         for(int i = 0; i < l->num_outputs; i++) {
+            int offset = i * l->num_inputs;
             for(int j = 0; j < l->num_inputs; j++) {
-                net->delta[j] += l->delta[i] * l->weights[i * l->num_inputs + j];
+                net->delta[j] += l->delta[i] * l->weights[offset + j];
             }
         }
     }
