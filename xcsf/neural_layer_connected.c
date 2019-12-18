@@ -174,35 +174,36 @@ void neural_layer_connected_update(XCSF *xcsf, LAYER *l)
     }
 }
 
-_Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l, LAYER *prev)
+void neural_layer_connected_resize(XCSF *xcsf, LAYER *l, LAYER *prev)
 {
-    // previous layer has grown or shrunk: weight vector must be resized
-    if(prev != NULL && l->num_inputs != prev->num_outputs) {
-        int num_weights = prev->num_outputs * l->num_outputs;
-        double *weights = malloc(num_weights * sizeof(double));
-        double *weight_updates = malloc(num_weights * sizeof(double));
-        for(int i = 0; i < l->num_outputs; i++) {
-            int orig_offset = i * l->num_inputs;
-            int offset = i * prev->num_outputs;
-            for(int j = 0; j < prev->num_outputs; j++) {
-                if(j < l->num_inputs) {
-                    weights[offset + j] = l->weights[orig_offset + j];
-                    weight_updates[offset + j] = l->weight_updates[orig_offset + j];
-                }
-                else {
-                    weights[offset + j] = rand_normal(0,0.1);
-                    weight_updates[offset + j] = 0;
-                }
+    (void)xcsf;
+    int num_weights = prev->num_outputs * l->num_outputs;
+    double *weights = malloc(num_weights * sizeof(double));
+    double *weight_updates = malloc(num_weights * sizeof(double));
+    for(int i = 0; i < l->num_outputs; i++) {
+        int orig_offset = i * l->num_inputs;
+        int offset = i * prev->num_outputs;
+        for(int j = 0; j < prev->num_outputs; j++) {
+            if(j < l->num_inputs) {
+                weights[offset + j] = l->weights[orig_offset + j];
+                weight_updates[offset + j] = l->weight_updates[orig_offset + j];
+            }
+            else {
+                weights[offset + j] = rand_normal(0,0.1);
+                weight_updates[offset + j] = 0;
             }
         }
-        free(l->weights);
-        free(l->weight_updates);
-        l->weights = weights;
-        l->weight_updates = weight_updates;
-        l->num_weights = num_weights;
-        l->num_inputs = prev->num_outputs;
     }
-    // mutate this layer
+    free(l->weights);
+    free(l->weight_updates);
+    l->weights = weights;
+    l->weight_updates = weight_updates;
+    l->num_weights = num_weights;
+    l->num_inputs = prev->num_outputs;
+}
+
+_Bool neural_layer_connected_mutate(XCSF *xcsf, LAYER *l)
+{
     _Bool mod = false;
     if((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l)) {
         mod = true;

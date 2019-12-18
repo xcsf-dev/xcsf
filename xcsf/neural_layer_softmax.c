@@ -111,10 +111,22 @@ void neural_layer_softmax_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
             l->num_inputs, l->num_outputs, l->temp);
 }
 
-_Bool neural_layer_softmax_mutate(XCSF *xcsf, LAYER *l, LAYER *prev)
+_Bool neural_layer_softmax_mutate(XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf; (void)l; (void)prev;
+    (void)xcsf; (void)l;
     return false;
+}
+
+void neural_layer_softmax_resize(XCSF *xcsf, LAYER *l, LAYER *prev)
+{
+    (void)xcsf;
+    l->num_inputs = prev->num_outputs;
+    l->num_outputs = prev->num_outputs;
+    l->max_outputs = prev->num_outputs;
+    free(l->output);
+    free(l->delta);
+    l->output = calloc(l->num_inputs, sizeof(double));
+    l->delta = calloc(l->num_inputs, sizeof(double));
 }
 
 void neural_layer_softmax_free(XCSF *xcsf, LAYER *l)

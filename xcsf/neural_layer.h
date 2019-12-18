@@ -71,10 +71,17 @@ struct LayerVtbl {
      * @brief Performs layer mutation.
      * @param xcsf The XCSF data structure.
      * @param l The layer to mutate.
+     * @return Whether any alterations were made.
+     */
+    _Bool (*layer_impl_mutate)(XCSF *xcsf, LAYER *l);
+    /**
+     * @brief Resizes a layer using the previous layer's inputs
+     * @param xcsf The XCSF data structure.
+     * @param l The layer to mutate.
      * @param prev The layer prior to the one being mutated.
      * @return Whether any alterations were made.
      */
-    _Bool (*layer_impl_mutate)(XCSF *xcsf, LAYER *l, LAYER *prev);
+    void (*layer_impl_resize)(XCSF *xcsf, LAYER *l, LAYER *prev);
     /**
      * @brief Creates and returns a copy of a specified layer.
      * @param xcsf The XCSF data structure.
@@ -170,8 +177,12 @@ static inline void layer_update(XCSF *xcsf, LAYER *l) {
     (*l->layer_vptr->layer_impl_update)(xcsf, l);
 }
 
-static inline _Bool layer_mutate(XCSF *xcsf, LAYER *l, LAYER *prev) {
-    return (*l->layer_vptr->layer_impl_mutate)(xcsf, l, prev);
+static inline _Bool layer_mutate(XCSF *xcsf, LAYER *l) {
+    return (*l->layer_vptr->layer_impl_mutate)(xcsf, l);
+}
+
+static inline void layer_resize(XCSF *xcsf, LAYER *l, LAYER *prev) {
+    (*l->layer_vptr->layer_impl_resize)(xcsf, l, prev);
 }
 
 static inline LAYER* layer_copy(XCSF *xcsf, LAYER *from) {

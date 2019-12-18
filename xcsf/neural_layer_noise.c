@@ -119,10 +119,24 @@ void neural_layer_noise_update(XCSF *xcsf, LAYER *l)
     (void)xcsf; (void)l;
 }
 
-_Bool neural_layer_noise_mutate(XCSF *xcsf, LAYER *l, LAYER *prev)
+_Bool neural_layer_noise_mutate(XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf; (void)l; (void)prev;
+    (void)xcsf; (void)l;
     return false;
+}
+
+void neural_layer_noise_resize(XCSF *xcsf, LAYER *l, LAYER *prev)
+{
+    (void)xcsf;
+    l->num_inputs = prev->num_outputs;
+    l->num_outputs = prev->num_outputs;
+    l->max_outputs = prev->num_outputs;
+    free(l->output);
+    free(l->delta);
+    free(l->rand);
+    l->output = calloc(l->num_inputs, sizeof(double));
+    l->delta = calloc(l->num_inputs, sizeof(double));
+    l->rand = calloc(l->num_inputs, sizeof(double));
 }
 
 double *neural_layer_noise_output(XCSF *xcsf, LAYER *l)
