@@ -42,7 +42,6 @@ before_script:
       brew install libomp
       brew install cmake || brew upgrade cmake
       if [[ "${XCSF_PYLIB}" == "ON" ]]; then
-        brew install python
         brew install boost-python3
       fi
     fi
