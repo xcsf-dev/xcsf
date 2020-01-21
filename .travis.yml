@@ -38,6 +38,7 @@ matrix:
 before_script:
   - |
     if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
+      brew unlink python@2
       brew install llvm
       brew install libomp
       brew install cmake || brew upgrade cmake
