@@ -102,7 +102,7 @@ See `default.ini` for a full list of options.
 
 ```
 $ sudo apt install python3 libboost-python-dev libboost-numpy-dev gnuplot
-$ git clone --recurse-submodules git@github.com:rpreen/xcsf.git
+$ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON ..
 $ make
@@ -112,7 +112,7 @@ $ make
 
 ```
 $ brew install libomp cmake python boost-python3 gnuplot
-$ git clone --recurse-submodules git@github.com:rpreen/xcsf.git
+$ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON ..
 $ make
@@ -121,7 +121,7 @@ $ make
 ### Windows ([MinGW64-gcc-7.2.0](http://mingw-w64.org "MinGW64-gcc-7.2.0"))
 
 ```
-$ git clone --recurse-submodules git@github.com:rpreen/xcsf.git
+$ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -G "MinGW Makefiles" ..
 $ cmake --build . --config Release
