@@ -17,7 +17,7 @@
  * @file config.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Configuration file handling functions.
  */ 
 
@@ -319,11 +319,17 @@ static void config_newnvpair(const char *config) {
     }
     // get name
     char *name = malloc(namelen+1);
-    snprintf(name, namelen+1, "%s", config);
+    for(size_t i = 0; i < namelen; i++) {
+        name[i] = config[i];
+    }
+    name[namelen] = '\0';
     // get value
     size_t valuelen = strnlen(config,MAXLEN)-namelen; // length of value
-    char *value = malloc(valuelen);
-    snprintf(value, valuelen, "%s", config+namelen+1);
+    char *value = malloc(valuelen+1);
+    for(size_t i = 0; i < valuelen; i++) {
+        value[i] = config[namelen+1+i];
+    }
+    value[valuelen] = '\0';
     // add pair
     head->name = name;
     head->value = value;
