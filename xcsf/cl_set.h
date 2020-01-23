@@ -17,13 +17,12 @@
  * @file cl_set.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Functions operating on sets of classifiers.
  */ 
 
 #pragma once
  
-_Bool set_action_covered(XCSF *xcsf, SET *set, int action);
 double set_avg_cond_size(XCSF *xcsf, SET *set);
 double set_avg_eta(XCSF *xcsf, SET *set, int layer);
 double set_avg_mut(XCSF *xcsf, SET *set, int m);

@@ -36,6 +36,7 @@
 
 #define MAX_COVER 1000000 //!< maximum number of covering attempts
 
+static _Bool set_action_covered(XCSF *xcsf, SET *set, int action);
 static void set_subsumption(XCSF *xcsf, SET *set, SET *kset);
 static void set_update_fit(XCSF *xcsf, SET *set);
 static void set_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered);
@@ -309,7 +310,7 @@ void set_action(XCSF *xcsf, SET *mset, SET *aset, int action)
  * @param action The action to check.
  * @return Whether the action is covered.
  */
-_Bool set_action_covered(XCSF *xcsf, SET *set, int action)
+static _Bool set_action_covered(XCSF *xcsf, SET *set, int action)
 {
     (void)xcsf;
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
