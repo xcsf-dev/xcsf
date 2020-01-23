@@ -17,7 +17,7 @@
  * @file cond_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief Multi-layer perceptron neural network condition functions.
  */ 
  
@@ -150,17 +150,8 @@ _Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
 
 _Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2)
 {
-    if(c1->exp < xcsf->THETA_SUB || c2->exp < xcsf->THETA_SUB) {
-        return false;
-    }
-    for(int i = 0; i < xcsf->THETA_SUB; i++) {
-        int i1 = (c1->exp + i) % xcsf->THETA_SUB;
-        int i2 = (c2->exp + i) % xcsf->THETA_SUB;
-        if(c1->mhist[i1] == false && c2->mhist[i2] == true) {
-            return false;
-        }
-    }
-    return true;
+    (void)xcsf; (void)c1; (void)c2;
+    return false;
 }   
 
 void cond_neural_print(XCSF *xcsf, CL *c)
