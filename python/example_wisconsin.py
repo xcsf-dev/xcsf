@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2020 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -103,7 +103,7 @@ for i in range(n):
     # update status
     status = ("trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f smut=%.4f pmut=%.4f emut=%.4f fmut=%.4f"
             % (trials[i], performance[i], error[i], psize[i], msize[i],
-                xcs.pop_avg_mu(0), xcs.pop_avg_mu(1), xcs.pop_avg_mu(2), xcs.pop_avg_mu(3)))
+                xcs.pop_mean_mu(0), xcs.pop_mean_mu(1), xcs.pop_mean_mu(2), xcs.pop_mean_mu(3)))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)

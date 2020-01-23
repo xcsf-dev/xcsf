@@ -17,7 +17,7 @@
  * @file perf.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief System performance printing and plotting with Gnuplot.
  */ 
 
@@ -72,7 +72,7 @@ static void gplot_perf1(XCSF *xcsf, double error, int trial)
 {
     fprintf(fout, "%d %.5f %d", trial, error, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        fprintf(fout, " %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
+        fprintf(fout, " %.5f", set_mean_mut(xcsf, &xcsf->pset, i));
     }
     fprintf(fout, "\n");
     fflush(fout);
@@ -90,7 +90,7 @@ static void gplot_perf2(XCSF *xcsf, double error, double terror, int trial)
 {
     fprintf(fout, "%d %.5f %.5f %d", trial, error, terror, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        fprintf(fout, " %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
+        fprintf(fout, " %.5f", set_mean_mut(xcsf, &xcsf->pset, i));
     }
     fprintf(fout, "\n");
     fflush(fout);
@@ -233,7 +233,7 @@ void disp_perf1(XCSF *xcsf, double error, int trial)
 {
     printf("%d %.5f %d", trial, error, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
+        printf(" %.5f", set_mean_mut(xcsf, &xcsf->pset, i));
     }
     printf("\n");
     fflush(stdout);
@@ -254,7 +254,7 @@ void disp_perf2(XCSF *xcsf, double error, double terror, int trial)
 {
     printf("%d %.5f %.5f %d", trial, error, terror, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        printf(" %.5f", set_avg_mut(xcsf, &xcsf->pset, i));
+        printf(" %.5f", set_mean_mut(xcsf, &xcsf->pset, i));
     }
     printf("\n");
     fflush(stdout);

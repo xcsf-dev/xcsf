@@ -575,74 +575,11 @@ void set_kill(XCSF *xcsf, SET *set)
 }
 
 /**
- * @brief Calculates the mean mutation rate of classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean mutation rate.
- * @param m Which mutation rate to average.
- * @return The mean mutation rate of classifiers in the set.
- */ 
-double set_avg_mut(XCSF *xcsf, SET *set, int m)
-{
-    // return the fixed value if not adapted
-    if(m >= xcsf->SAM_NUM) {
-        switch(m) {
-            case 0: return xcsf->S_MUTATION;
-            case 1: return xcsf->P_MUTATION;
-            case 2: return xcsf->E_MUTATION;
-            case 3: return xcsf->F_MUTATION;
-            default: return -1;
-        }
-    }
-    // return the average classifier mutation rate
-    double sum = 0;
-    int cnt = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        sum += cl_mutation_rate(xcsf, iter->cl, m);
-        cnt++;
-    }
-    return sum / cnt;
-}
-
-/**
- * @brief Calculates the mean condition size of classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean condition size.
- * @return The mean condition size of classifiers in the set.
- */
-double set_avg_cond_size(XCSF *xcsf, SET *set)
-{
-    int sum = 0;
-    int cnt = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        sum += cl_cond_size(xcsf, iter->cl);
-        cnt++;
-    }
-    return (double) sum / cnt;
-}
-
-/**
- * @brief Calculates the mean prediction size of classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean prediction size.
- * @return The mean prediction size of classifiers in the set.
- */ 
-double set_avg_pred_size(XCSF *xcsf, SET *set)
-{
-    int sum = 0;
-    int cnt = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        sum += cl_pred_size(xcsf, iter->cl);
-        cnt++;
-    }
-    return (double) sum / cnt;
-}
-
-/**
  * @brief Writes the population set to a binary file.
  * @param xcsf The XCSF data structure.
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
- */ 
+ */
 size_t pop_save(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
@@ -677,13 +614,96 @@ size_t pop_load(XCSF *xcsf, FILE *fp)
 }
 
 /**
+ * @brief Calculates the mean mutation rate of classifiers in the set.
+ * @param xcsf The XCSF data structure.
+ * @param set The set to calculate the mean mutation rate.
+ * @param m Which mutation rate to average.
+ * @return The mean mutation rate of classifiers in the set.
+ */ 
+double set_mean_mut(XCSF *xcsf, SET *set, int m)
+{
+    // return the fixed value if not adapted
+    if(m >= xcsf->SAM_NUM) {
+        switch(m) {
+            case 0: return xcsf->S_MUTATION;
+            case 1: return xcsf->P_MUTATION;
+            case 2: return xcsf->E_MUTATION;
+            case 3: return xcsf->F_MUTATION;
+            default: return -1;
+        }
+    }
+    // return the average classifier mutation rate
+    double sum = 0;
+    int cnt = 0;
+    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        sum += cl_mutation_rate(xcsf, iter->cl, m);
+        cnt++;
+    }
+    return sum / cnt;
+}
+
+/**
+ * @brief Calculates the mean condition size of classifiers in the set.
+ * @param xcsf The XCSF data structure.
+ * @param set The set to calculate the mean condition size.
+ * @return The mean condition size of classifiers in the set.
+ */
+double set_mean_cond_size(XCSF *xcsf, SET *set)
+{
+    int sum = 0;
+    int cnt = 0;
+    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        sum += cl_cond_size(xcsf, iter->cl);
+        cnt++;
+    }
+    return (double) sum / cnt;
+}
+
+/**
+ * @brief Calculates the mean prediction size of classifiers in the set.
+ * @param xcsf The XCSF data structure.
+ * @param set The set to calculate the mean prediction size.
+ * @return The mean prediction size of classifiers in the set.
+ */ 
+double set_mean_pred_size(XCSF *xcsf, SET *set)
+{
+    int sum = 0;
+    int cnt = 0;
+    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        sum += cl_pred_size(xcsf, iter->cl);
+        cnt++;
+    }
+    return (double) sum / cnt;
+}
+
+/**
+ * @brief Calculates the mean fraction of inputs matched by classifiers.
+ * @param xcsf The XCSF data structure.
+ * @param set The set to calculate the mean prediction size.
+ * @return The mean fraction of inputs matched.
+ */ 
+double set_mean_inputs_matched(XCSF *xcsf, SET *set)
+{
+    (void)xcsf;
+    double sum = 0;
+    int cnt = 0;
+    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        if(iter->cl->exp > 0) {
+            sum += iter->cl->mfrac;
+            cnt++;
+        }
+    }
+    return sum / cnt;
+}
+
+/**
  * @brief Calculates the mean prediction layer ETA of classifiers in the set.
  * @param xcsf The XCSF data structure.
  * @param set The set to calculate the mean prediction layer ETA.
  * @param layer The neural network layer to calculate the mean ETA.
  * @return The mean prediction layer ETA of classifiers in the set.
  */ 
-double set_avg_eta(XCSF *xcsf, SET *set, int layer)
+double set_mean_eta(XCSF *xcsf, SET *set, int layer)
 {
     double sum = 0;
     int cnt = 0;
@@ -691,5 +711,5 @@ double set_avg_eta(XCSF *xcsf, SET *set, int layer)
         sum += pred_neural_eta(xcsf, iter->cl, layer);
         cnt++;
     }
-    return sum/cnt;
+    return sum / cnt;
 }

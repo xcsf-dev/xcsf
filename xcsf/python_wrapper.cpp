@@ -17,7 +17,7 @@
  * @file python_wrapper.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019--2020.
  * @brief Python library wrapper functions.
  */ 
 
@@ -330,11 +330,12 @@ struct XCS
     double get_num_x_vars() { return xcs.num_x_vars; }
     double get_num_y_vars() { return xcs.num_y_vars; }
     double get_num_actions() { return xcs.num_actions; }
-    double get_pop_avg_mu(int m) { return set_avg_mut(&xcs, &xcs.pset, m); }
-    double get_pop_avg_cond_size() { return set_avg_cond_size(&xcs, &xcs.pset); }
-    double get_pop_avg_pred_size() { return set_avg_pred_size(&xcs, &xcs.pset); }
-    double get_pop_avg_pred_eta(int layer) { return set_avg_eta(&xcs, &xcs.pset, layer); }
+    double get_pop_mean_mu(int m) { return set_mean_mut(&xcs, &xcs.pset, m); }
+    double get_pop_mean_cond_size() { return set_mean_cond_size(&xcs, &xcs.pset); }
+    double get_pop_mean_pred_size() { return set_mean_pred_size(&xcs, &xcs.pset); }
+    double get_pop_mean_pred_eta(int layer) { return set_mean_eta(&xcs, &xcs.pset, layer); }
     double get_msetsize() { return xcs.msetsize; }
+    double get_mfrac() { return set_mean_inputs_matched(&xcs, &xcs.pset); }
     int get_teletransportation() { return xcs.TELETRANSPORTATION; }
     double get_gamma() { return xcs.GAMMA; }
     double get_p_explore() { return xcs.P_EXPLORE; }
@@ -511,12 +512,13 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("num_x_vars", &XCS::get_num_x_vars)
         .def("num_y_vars", &XCS::get_num_y_vars)
         .def("num_actions", &XCS::get_num_actions)
-        .def("pop_avg_mu", &XCS::get_pop_avg_mu)
-        .def("pop_avg_cond_size", &XCS::get_pop_avg_cond_size)
-        .def("pop_avg_pred_size", &XCS::get_pop_avg_pred_size)
-        .def("pop_avg_pred_eta", &XCS::get_pop_avg_pred_eta)
+        .def("pop_mean_mu", &XCS::get_pop_mean_mu)
+        .def("pop_mean_cond_size", &XCS::get_pop_mean_cond_size)
+        .def("pop_mean_pred_size", &XCS::get_pop_mean_pred_size)
+        .def("pop_mean_pred_eta", &XCS::get_pop_mean_pred_eta)
         .def("print_pop", &XCS::print_pop)
         .def("print_match_set", &XCS::print_match_set)
         .def("msetsize", &XCS::get_msetsize)
+        .def("mfrac", &XCS::get_mfrac)
         ;
 }

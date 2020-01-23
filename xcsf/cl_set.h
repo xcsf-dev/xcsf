@@ -23,10 +23,11 @@
 
 #pragma once
  
-double set_avg_cond_size(XCSF *xcsf, SET *set);
-double set_avg_eta(XCSF *xcsf, SET *set, int layer);
-double set_avg_mut(XCSF *xcsf, SET *set, int m);
-double set_avg_pred_size(XCSF *xcsf, SET *set);
+double set_mean_inputs_matched(XCSF *xcsf, SET *set);
+double set_mean_cond_size(XCSF *xcsf, SET *set);
+double set_mean_eta(XCSF *xcsf, SET *set, int layer);
+double set_mean_mut(XCSF *xcsf, SET *set, int m);
+double set_mean_pred_size(XCSF *xcsf, SET *set);
 double set_mean_time(XCSF *xcsf, SET *set);
 double set_total_fit(XCSF *xcsf, SET *set);
 size_t pop_load(XCSF *xcsf, FILE *fp);

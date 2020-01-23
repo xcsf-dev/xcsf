@@ -17,7 +17,7 @@
  * @file xcsf.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019--2020.
  * @brief XCSF data structures.
  */ 
  
@@ -63,7 +63,7 @@ typedef struct CL {
     double *prediction; //!< Current classifier prediction
     double *prev_prediction; //!< Previous classifier prediction
     int action; //!< Current classifier action
-    _Bool *mhist; //!< (THETA_SUB) recent matching decisions
+    double mfrac; //!< Fraction of inputs matched
 } CL;
 
 /**

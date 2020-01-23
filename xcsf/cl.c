@@ -57,7 +57,7 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
     c->prev_prediction = calloc(xcsf->num_y_vars, sizeof(double));
     c->action = 0;
     c->m = false;
-    c->mhist = calloc(xcsf->THETA_SUB, sizeof(_Bool));
+    c->mfrac = 0;
     sam_init(xcsf, &c->mu);
 }
 
@@ -226,7 +226,6 @@ static double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
  */
 void cl_free(XCSF *xcsf, CL *c)
 {
-    free(c->mhist);
     free(c->prediction);
     free(c->prev_prediction);
     sam_free(xcsf, c->mu);
@@ -278,7 +277,7 @@ void cl_print(XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp)
 _Bool cl_match(XCSF *xcsf, CL *c, double *x)
 {
     _Bool m = cond_match(xcsf, c, x);
-    c->mhist[c->exp % xcsf->THETA_SUB] = m;
+    c->mfrac += xcsf->BETA * ((double) m - c->mfrac);
     return m;
 }
 
@@ -449,7 +448,7 @@ size_t cl_save(XCSF *xcsf, CL *c, FILE *fp)
     s += fwrite(&c->size, sizeof(double), 1, fp);
     s += fwrite(&c->time, sizeof(int), 1, fp);
     s += fwrite(&c->m, sizeof(_Bool), 1, fp);
-    s += fwrite(c->mhist, sizeof(_Bool), xcsf->THETA_SUB, fp);
+    s += fwrite(&c->mfrac, sizeof(double), 1, fp);
     s += fwrite(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
     s += fwrite(c->prev_prediction, sizeof(double), xcsf->num_y_vars, fp);
     s += fwrite(&c->action, sizeof(int), 1, fp);
@@ -478,8 +477,7 @@ size_t cl_load(XCSF *xcsf, CL *c, FILE *fp)
     s += fread(&c->size, sizeof(double), 1, fp);
     s += fread(&c->time, sizeof(int), 1, fp);
     s += fread(&c->m, sizeof(_Bool), 1, fp);
-    c->mhist = malloc(xcsf->THETA_SUB * sizeof(_Bool));
-    s += fread(c->mhist, sizeof(_Bool), xcsf->THETA_SUB, fp);
+    s += fread(&c->mfrac, sizeof(double), 1, fp);
     c->prediction = malloc(xcsf->num_y_vars * sizeof(double));
     s += fread(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
     c->prev_prediction = malloc(xcsf->num_y_vars * sizeof(double));
