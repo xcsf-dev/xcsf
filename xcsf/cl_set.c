@@ -390,7 +390,7 @@ static void set_update_fit(XCSF *xcsf, SET *set)
     int i = 0;
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         accs[i] = cl_acc(xcsf, iter->cl);
-        acc_sum += accs[i] * set->num;
+        acc_sum += accs[i] * iter->cl->num;
         i++;
     }
     // update fitnesses
