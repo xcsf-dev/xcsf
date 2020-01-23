@@ -37,9 +37,11 @@
 #define MAX_COVER 1000000 //!< maximum number of covering attempts
 
 static _Bool set_action_covered(XCSF *xcsf, SET *set, int action);
+static void pop_del(XCSF *xcsf, SET *kset);
 static void set_subsumption(XCSF *xcsf, SET *set, SET *kset);
 static void set_update_fit(XCSF *xcsf, SET *set);
 static void set_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered);
+static double set_total_time(XCSF *xcsf, SET *set);
 
 /**
  * @brief Initialises a new population set.
@@ -83,7 +85,7 @@ void set_init(XCSF *xcsf, SET *set)
  * deletion vote and deletes the one with the largest condition + prediction
  * length. For fixed-length representations this is the same as one roulete spin.
  */
-void pop_del(XCSF *xcsf, SET *kset)
+static void pop_del(XCSF *xcsf, SET *kset)
 {
     double avg_fit = set_total_fit(xcsf, &xcsf->pset) / xcsf->pset.num;
     double total = 0;
@@ -519,7 +521,7 @@ double set_total_fit(XCSF *xcsf, SET *set)
  * @param set The set to calculate the total time.
  * @return The total time of classifiers in the set.
  */ 
-double set_total_time(XCSF *xcsf, SET *set)
+static double set_total_time(XCSF *xcsf, SET *set)
 {
     (void)xcsf;
     double sum = 0;
