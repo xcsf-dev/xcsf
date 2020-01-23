@@ -257,7 +257,7 @@ size_t xcsf_save(XCSF *xcsf, char *fname)
     size_t s = 0;
     s += fwrite(&VERSION, sizeof(double), 1, fp);
     s += xcsf_save_params(xcsf, fp);
-    s += pop_save(xcsf, fp);
+    s += clset_pop_save(xcsf, fp);
     fclose(fp);
     return s;
 }
@@ -288,7 +288,7 @@ size_t xcsf_load(XCSF *xcsf, char *fname)
         exit(EXIT_FAILURE);
     }
     s += xcsf_load_params(xcsf, fp);
-    s += pop_load(xcsf, fp);
+    s += clset_pop_load(xcsf, fp);
     fclose(fp);
     return s;
 }

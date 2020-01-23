@@ -80,7 +80,7 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
         ea_add(xcsf, set, c1p, c2p, c1, cmod, m1mod);
         ea_add(xcsf, set, c2p, c1p, c2, cmod, m2mod);
     }
-    pop_enforce_limit(xcsf, kset);
+    clset_pop_enforce_limit(xcsf, kset);
 }   
 
 /**

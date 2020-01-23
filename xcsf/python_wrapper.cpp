@@ -127,7 +127,7 @@ struct XCS
     void single_reset() {
         // initialise population if first execution
         if(xcs.pset.list == NULL) {
-            pop_init(&xcs);
+            clset_pop_init(&xcs);
         }
         // clear any previous sets
         if(mset.list != NULL) {
@@ -176,7 +176,7 @@ struct XCS
         train_data->y = reinterpret_cast<double*>(train_Y.get_data());
         // first execution
         if(xcs.time == 0) {
-            pop_init(&xcs);
+            clset_pop_init(&xcs);
         }
         // execute
         return xcsf_fit1(&xcs, train_data, shuffle);
@@ -215,7 +215,7 @@ struct XCS
         test_data->y = reinterpret_cast<double*>(test_Y.get_data());
         // first execution
         if(xcs.time == 0) {
-            pop_init(&xcs);
+            clset_pop_init(&xcs);
         }
         // execute
         return xcsf_fit2(&xcs, train_data, test_data, shuffle);

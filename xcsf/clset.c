@@ -37,17 +37,17 @@
 #define MAX_COVER 1000000 //!< maximum number of covering attempts
 
 static _Bool clset_action_covered(XCSF *xcsf, SET *set, int action);
-static void pop_del(XCSF *xcsf, SET *kset);
+static double clset_total_time(XCSF *xcsf, SET *set);
+static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered);
+static void clset_pop_del(XCSF *xcsf, SET *kset);
 static void clset_subsumption(XCSF *xcsf, SET *set, SET *kset);
 static void clset_update_fit(XCSF *xcsf, SET *set);
-static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered);
-static double clset_total_time(XCSF *xcsf, SET *set);
 
 /**
  * @brief Initialises a new population set.
  * @param xcsf The XCSF data structure.
  */
-void pop_init(XCSF *xcsf)
+void clset_pop_init(XCSF *xcsf)
 {
     xcsf->time = 0; // number of learning trials performed
     xcsf->msetsize = 0; // average match set size
@@ -85,7 +85,7 @@ void clset_init(XCSF *xcsf, SET *set)
  * deletion vote and deletes the one with the largest condition + prediction
  * length. For fixed-length representations this is the same as one roulete spin.
  */
-static void pop_del(XCSF *xcsf, SET *kset)
+static void clset_pop_del(XCSF *xcsf, SET *kset)
 {
     double avg_fit = clset_total_fit(xcsf, &xcsf->pset) / xcsf->pset.num;
     double total = 0;
@@ -135,10 +135,10 @@ static void pop_del(XCSF *xcsf, SET *kset)
  * @param xcsf The XCSF data structure.
  * @param kset A set to store deleted macro-classifiers for later memory removal.
  */ 
-void pop_enforce_limit(XCSF *xcsf, SET *kset)
+void clset_pop_enforce_limit(XCSF *xcsf, SET *kset)
 {
     while(xcsf->pset.num > xcsf->POP_SIZE) {
-        pop_del(xcsf, kset);
+        clset_pop_del(xcsf, kset);
     }
 }
 
@@ -219,7 +219,7 @@ static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_
         }
         // enforce population size
         int prev_psize = xcsf->pset.size;
-        pop_enforce_limit(xcsf, kset);
+        clset_pop_enforce_limit(xcsf, kset);
         // if a macro classifier was deleted, remove any deleted rules from the match set
         if(prev_psize > xcsf->pset.size) {
             int prev_msize = mset->size;
@@ -580,7 +580,7 @@ void clset_kill(XCSF *xcsf, SET *set)
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-size_t pop_save(XCSF *xcsf, FILE *fp)
+size_t clset_pop_save(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->pset.size, sizeof(int), 1, fp);
@@ -597,7 +597,7 @@ size_t pop_save(XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the file to be read.
  * @return The number of elements read.
  */
-size_t pop_load(XCSF *xcsf, FILE *fp)
+size_t clset_pop_load(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     int size = 0;

@@ -67,7 +67,7 @@ int main(int argc, char **argv)
     }
     // new experiment
     else {
-        pop_init(xcsf);
+        clset_pop_init(xcsf);
     }
     // supervised regression - input csv file
     if(strcmp(argv[1], "csv") == 0) {

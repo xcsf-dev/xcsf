@@ -23,23 +23,23 @@
 
 #pragma once
  
-double clset_mean_inputs_matched(XCSF *xcsf, SET *set);
 double clset_mean_cond_size(XCSF *xcsf, SET *set);
 double clset_mean_eta(XCSF *xcsf, SET *set, int layer);
+double clset_mean_inputs_matched(XCSF *xcsf, SET *set);
 double clset_mean_mut(XCSF *xcsf, SET *set, int m);
 double clset_mean_pred_size(XCSF *xcsf, SET *set);
 double clset_mean_time(XCSF *xcsf, SET *set);
 double clset_total_fit(XCSF *xcsf, SET *set);
-size_t pop_load(XCSF *xcsf, FILE *fp);
-size_t pop_save(XCSF *xcsf, FILE *fp);
-void pop_enforce_limit(XCSF *xcsf, SET *kset);
-void pop_init(XCSF *xcsf);
+size_t clset_pop_load(XCSF *xcsf, FILE *fp);
+size_t clset_pop_save(XCSF *xcsf, FILE *fp);
 void clset_action(XCSF *xcsf, SET *mset, SET *aset, int action);
 void clset_add(XCSF *xcsf, SET *set, CL *c);
 void clset_free(XCSF *xcsf, SET *set);
 void clset_init(XCSF *xcsf, SET *set);
 void clset_kill(XCSF *xcsf, SET *set);
 void clset_match(XCSF *xcsf, SET *mset, SET *kset, double *x);
+void clset_pop_enforce_limit(XCSF *xcsf, SET *kset);
+void clset_pop_init(XCSF *xcsf);
 void clset_pred(XCSF *xcsf, SET *set, double *x, double *p);
 void clset_print(XCSF *xcsf, SET *set, _Bool printc, _Bool printa, _Bool printp);
 void clset_set_times(XCSF *xcsf, SET *set);
