@@ -17,7 +17,7 @@
  * @file cl_set.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Functions operating on sets of classifiers.
  */ 
 
