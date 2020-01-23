@@ -17,7 +17,7 @@
  * @file env_maze.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief The discrete maze problem environment module.
  *
  * @details Reads in the chosen maze from a file where each entry specifies a
@@ -52,8 +52,6 @@
 #include <errno.h>
 #include "xcsf.h"
 #include "utils.h"
-#include "cl.h"
-#include "cl_set.h"
 #include "env.h"
 #include "env_maze.h"
 

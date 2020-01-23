@@ -17,7 +17,7 @@
  * @file xcs_multi_step.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Multi-step reinforcement learning functions.
  */ 
 
@@ -29,7 +29,7 @@
 #include "xcsf.h"
 #include "utils.h"
 #include "cl.h"
-#include "cl_set.h"
+#include "clset.h"
 #include "pa.h"
 #include "ea.h"
 #include "perf.h"
@@ -81,19 +81,19 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
     double *prev_state = malloc(sizeof(double) * xcsf->num_x_vars);
     SET prev_aset; // previous action set
     SET kset; // kill set
-    set_init(xcsf, &prev_aset);
-    set_init(xcsf, &kset);
+    clset_init(xcsf, &prev_aset);
+    clset_init(xcsf, &kset);
     *error = 0;
     int steps = 0;
     for(steps = 0; steps < xcsf->TELETRANSPORTATION && !reset; steps++) {
         SET mset; // match set
         SET aset; // action set
-        set_init(xcsf, &mset);
-        set_init(xcsf, &aset);
+        clset_init(xcsf, &mset);
+        clset_init(xcsf, &aset);
         // percieve environment
         double *state = env_get_state(xcsf);
         // generate match set
-        set_match(xcsf, &mset, &kset, state);
+        clset_match(xcsf, &mset, &kset, state);
         xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
         // calculate the prediction array
         pa_build(xcsf, &mset, state);
@@ -106,15 +106,15 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
             action = pa_best_action(xcsf);
         }
         // generate action set
-        set_action(xcsf, &mset, &aset, action);
+        clset_action(xcsf, &mset, &aset, action);
         // get environment feedback
         double reward = env_execute(xcsf, action);
         reset = env_is_reset(xcsf);
         // update previous action set and run EA
         if(prev_aset.list != NULL) {
             double payoff = prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
-            set_validate(xcsf, &prev_aset);
-            set_update(xcsf, &prev_aset, &kset, prev_state, &payoff, false);
+            clset_validate(xcsf, &prev_aset);
+            clset_update(xcsf, &prev_aset, &kset, prev_state, &payoff, false);
             if(xcsf->train) {
                 ea(xcsf, &prev_aset, &kset);
             }
@@ -123,8 +123,8 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
         }
         // in goal state: update current action set and run EA
         if(reset) {
-            set_validate(xcsf, &aset);
-            set_update(xcsf, &aset, &kset, state, &reward, true);
+            clset_validate(xcsf, &aset);
+            clset_update(xcsf, &aset, &kset, state, &reward, true);
             if(xcsf->train) {
                 ea(xcsf, &aset, &kset);
             }
@@ -134,15 +134,15 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
         if(xcsf->train) {
             xcsf->time += 1;
         }
-        set_free(xcsf, &mset); // frees the match set list
-        set_free(xcsf, &prev_aset); // frees the previous action set list
+        clset_free(xcsf, &mset); // frees the match set list
+        clset_free(xcsf, &prev_aset); // frees the previous action set list
         prev_aset = aset;
         prev_reward = reward;
         prev_pred = pa_val(xcsf, action);
         memcpy(prev_state, state, sizeof(double) * xcsf->num_x_vars);
     }
-    set_free(xcsf, &prev_aset); // frees the previous action set list
-    set_kill(xcsf, &kset); // kills deleted classifiers
+    clset_free(xcsf, &prev_aset); // frees the previous action set list
+    clset_kill(xcsf, &kset); // kills deleted classifiers
     free(prev_state);
     return steps;
 }

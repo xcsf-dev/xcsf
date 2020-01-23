@@ -17,7 +17,7 @@
  * @file main.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Main function for stand-alone binary execution.
  */ 
  
@@ -30,7 +30,7 @@
 #include "config.h"
 #include "env.h"
 #include "env_csv.h"
-#include "cl_set.h"
+#include "clset.h"
 #include "xcs_single_step.h"
 #include "xcs_multi_step.h"
 
@@ -85,7 +85,7 @@ int main(int argc, char **argv)
     }
     // clean up
     env_free(xcsf);
-    set_kill(xcsf, &xcsf->pset);
+    clset_kill(xcsf, &xcsf->pset);
     config_free(xcsf);
     free(xcsf);
     return EXIT_SUCCESS;

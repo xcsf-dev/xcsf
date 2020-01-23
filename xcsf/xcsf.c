@@ -17,7 +17,7 @@
  * @file xcsf.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief High level XCSF functions for executing training, predicting, saving
  * and reloading the system from persistent storage, etc.
  */ 
@@ -32,7 +32,7 @@
 #include "loss.h"
 #include "perf.h"
 #include "cl.h"
-#include "cl_set.h"
+#include "clset.h"
 #include "ea.h"
 
 static const double VERSION = 1.06; //!< XCSF version number
@@ -132,16 +132,16 @@ static double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
     SET mset; // match set
     SET kset; // kill set
-    set_init(xcsf, &mset);
-    set_init(xcsf, &kset);
-    set_match(xcsf, &mset, &kset, x);
-    set_pred(xcsf, &mset, x, pred);
-    set_update(xcsf, &mset, &kset, x, y, true);
+    clset_init(xcsf, &mset);
+    clset_init(xcsf, &kset);
+    clset_match(xcsf, &mset, &kset, x);
+    clset_pred(xcsf, &mset, x, pred);
+    clset_update(xcsf, &mset, &kset, x, y, true);
     ea(xcsf, &mset, &kset);
     xcsf->time += 1;
     xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
-    set_kill(xcsf, &kset); // kills deleted classifiers
-    set_free(xcsf, &mset); // frees the match set list
+    clset_kill(xcsf, &kset); // kills deleted classifiers
+    clset_free(xcsf, &mset); // frees the match set list
     return (xcsf->loss_ptr)(xcsf, pred, y);
 }
 
@@ -157,13 +157,13 @@ static double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 {
     SET mset; // match set
     SET kset; // kill set
-    set_init(xcsf, &mset);
-    set_init(xcsf, &kset);
-    set_match(xcsf, &mset, &kset, x);
-    set_pred(xcsf, &mset, x, pred);
+    clset_init(xcsf, &mset);
+    clset_init(xcsf, &kset);
+    clset_match(xcsf, &mset, &kset, x);
+    clset_pred(xcsf, &mset, x, pred);
     xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
-    set_kill(xcsf, &kset); // kills deleted classifiers
-    set_free(xcsf, &mset); // frees the match set list  
+    clset_kill(xcsf, &kset); // kills deleted classifiers
+    clset_free(xcsf, &mset); // frees the match set list  
     return (xcsf->loss_ptr)(xcsf, pred, y);
 }
 
@@ -180,12 +180,12 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
     for(int row = 0; row < rows; row++) {
         SET mset; // match set
         SET kset; // kill set
-        set_init(xcsf, &mset);
-        set_init(xcsf, &kset);
-        set_match(xcsf, &mset, &kset, &input[row * xcsf->num_x_vars]);
-        set_pred(xcsf, &mset, &input[row * xcsf->num_x_vars], &output[row * xcsf->num_y_vars]);
-        set_kill(xcsf, &kset); // kills deleted classifiers
-        set_free(xcsf, &mset); // frees the match set list
+        clset_init(xcsf, &mset);
+        clset_init(xcsf, &kset);
+        clset_match(xcsf, &mset, &kset, &input[row * xcsf->num_x_vars]);
+        clset_pred(xcsf, &mset, &input[row * xcsf->num_x_vars], &output[row * xcsf->num_y_vars]);
+        clset_kill(xcsf, &kset); // kills deleted classifiers
+        clset_free(xcsf, &mset); // frees the match set list
     }
 }
 
@@ -218,7 +218,7 @@ double xcsf_score(XCSF *xcsf, INPUT *test_data)
  */
 void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
 {
-    set_print(xcsf, &xcsf->pset, printc, printa, printp);
+    clset_print(xcsf, &xcsf->pset, printc, printa, printp);
 }
 
 /**
@@ -233,12 +233,12 @@ void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa,
 {
     SET mset; // match set
     SET kset; // kill set
-    set_init(xcsf, &mset);
-    set_init(xcsf, &kset);
-    set_match(xcsf, &mset, &kset, input);
-    set_print(xcsf, &mset, printc, printa, printp);
-    set_kill(xcsf, &kset); // kills deleted classifiers
-    set_free(xcsf, &mset); // frees the match set list
+    clset_init(xcsf, &mset);
+    clset_init(xcsf, &kset);
+    clset_match(xcsf, &mset, &kset, input);
+    clset_print(xcsf, &mset, printc, printa, printp);
+    clset_kill(xcsf, &kset); // kills deleted classifiers
+    clset_free(xcsf, &mset); // frees the match set list
 }
 
 /**
@@ -271,8 +271,8 @@ size_t xcsf_save(XCSF *xcsf, char *fname)
 size_t xcsf_load(XCSF *xcsf, char *fname)
 {
     if(xcsf->pset.size > 0) {
-        set_kill(xcsf, &xcsf->pset);
-        set_init(xcsf, &xcsf->pset);
+        clset_kill(xcsf, &xcsf->pset);
+        clset_init(xcsf, &xcsf->pset);
     }
     FILE *fp = fopen(fname, "rb");
     if(fp == 0) {

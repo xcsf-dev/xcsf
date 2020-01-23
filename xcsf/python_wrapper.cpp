@@ -37,7 +37,7 @@ extern "C" {
 #include "config.h"
 #include "utils.h"
 #include "loss.h"
-#include "cl_set.h"
+#include "clset.h"
 
 #ifdef PARALLEL
 #include <omp.h>
@@ -98,10 +98,10 @@ struct XCS
         omp_set_num_threads(xcs.OMP_NUM_THREADS);
 #endif
         xcs.time = 0;
-        set_init(&xcs, &xcs.pset);
-        set_init(&xcs, &mset);
-        set_init(&xcs, &aset);
-        set_init(&xcs, &kset);
+        clset_init(&xcs, &xcs.pset);
+        clset_init(&xcs, &mset);
+        clset_init(&xcs, &aset);
+        clset_init(&xcs, &kset);
         state = NULL;
         action = 0;
         train_data = (INPUT*)malloc(sizeof(INPUT));
@@ -131,18 +131,18 @@ struct XCS
         }
         // clear any previous sets
         if(mset.list != NULL) {
-            set_free(&xcs, &mset);
+            clset_free(&xcs, &mset);
         }
         if(aset.list != NULL) {
-            set_free(&xcs, &aset);
+            clset_free(&xcs, &aset);
         }
         if(kset.list != NULL) {
-            set_kill(&xcs, &kset);
+            clset_kill(&xcs, &kset);
         }
         // initialise current sets
-        set_init(&xcs, &mset);
-        set_init(&xcs, &aset);
-        set_init(&xcs, &kset);
+        clset_init(&xcs, &mset);
+        clset_init(&xcs, &aset);
+        clset_init(&xcs, &kset);
     }
 
     int single_decision(np::ndarray &input, _Bool explore) {
@@ -330,12 +330,12 @@ struct XCS
     double get_num_x_vars() { return xcs.num_x_vars; }
     double get_num_y_vars() { return xcs.num_y_vars; }
     double get_num_actions() { return xcs.num_actions; }
-    double get_pop_mean_mu(int m) { return set_mean_mut(&xcs, &xcs.pset, m); }
-    double get_pop_mean_cond_size() { return set_mean_cond_size(&xcs, &xcs.pset); }
-    double get_pop_mean_pred_size() { return set_mean_pred_size(&xcs, &xcs.pset); }
-    double get_pop_mean_pred_eta(int layer) { return set_mean_eta(&xcs, &xcs.pset, layer); }
+    double get_pop_mean_mu(int m) { return clset_mean_mut(&xcs, &xcs.pset, m); }
+    double get_pop_mean_cond_size() { return clset_mean_cond_size(&xcs, &xcs.pset); }
+    double get_pop_mean_pred_size() { return clset_mean_pred_size(&xcs, &xcs.pset); }
+    double get_pop_mean_pred_eta(int layer) { return clset_mean_eta(&xcs, &xcs.pset, layer); }
     double get_msetsize() { return xcs.msetsize; }
-    double get_mfrac() { return set_mean_inputs_matched(&xcs, &xcs.pset); }
+    double get_mfrac() { return clset_mean_inputs_matched(&xcs, &xcs.pset); }
     int get_teletransportation() { return xcs.TELETRANSPORTATION; }
     double get_gamma() { return xcs.GAMMA; }
     double get_p_explore() { return xcs.P_EXPLORE; }

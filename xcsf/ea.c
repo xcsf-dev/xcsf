@@ -17,7 +17,7 @@
  * @file ea.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Evolutionary algorithm functions.
  */ 
 
@@ -28,7 +28,7 @@
 #include "xcsf.h"
 #include "utils.h"
 #include "cl.h"
-#include "cl_set.h"    
+#include "clset.h"    
 #include "ea.h"
 #include "sam.h"
 
@@ -51,10 +51,10 @@ static void ea_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _
 void ea(XCSF *xcsf, SET *set, SET *kset)
 {
     // check if the evolutionary algorithm should be run
-    if(set->size == 0 || xcsf->time - set_mean_time(xcsf, set) < xcsf->THETA_EA) {
+    if(set->size == 0 || xcsf->time - clset_mean_time(xcsf, set) < xcsf->THETA_EA) {
         return;
     }
-    set_times(xcsf, set);
+    clset_set_times(xcsf, set);
     // select parents
     CL *c1p; CL *c2p;
     ea_select_parents(xcsf, set, &c1p, &c2p);
@@ -131,7 +131,7 @@ static void ea_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _
         ea_subsume(xcsf, c1, c1p, c2p, set);
     }
     else {
-        set_add(xcsf, &xcsf->pset, c1);
+        clset_add(xcsf, &xcsf->pset, c1);
     }
 }
 
@@ -174,7 +174,7 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set)
         }
         // if no subsumers are found the offspring is added to the population
         else {
-            set_add(xcsf, &xcsf->pset, c);   
+            clset_add(xcsf, &xcsf->pset, c);   
         }
     }
 }
@@ -189,7 +189,7 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set)
 static void ea_select_parents(XCSF *xcsf, SET *set, CL **c1p, CL **c2p)
 {
     if(xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
-        double fit_sum = set_total_fit(xcsf, set);
+        double fit_sum = clset_total_fit(xcsf, set);
         *c1p = ea_select_rw(xcsf, set, fit_sum);
         *c2p = ea_select_rw(xcsf, set, fit_sum);
     }

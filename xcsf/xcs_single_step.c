@@ -17,7 +17,7 @@
  * @file xcs_single_step.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Single-step reinforcement learning functions.
  */ 
 
@@ -29,7 +29,7 @@
 #include "xcsf.h"
 #include "utils.h"
 #include "cl.h"
-#include "cl_set.h"
+#include "clset.h"
 #include "pa.h"
 #include "ea.h"
 #include "perf.h"
@@ -80,9 +80,9 @@ static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore)
     SET mset; // match set
     SET aset; // action set
     SET kset; // kill set
-    set_init(xcsf, &mset);
-    set_init(xcsf, &aset);
-    set_init(xcsf, &kset);
+    clset_init(xcsf, &mset);
+    clset_init(xcsf, &aset);
+    clset_init(xcsf, &kset);
     xcsf->train = explore;
     double *x = env_get_state(xcsf);
     int action = xcs_single_decision(xcsf, &mset, &kset, x);
@@ -96,9 +96,9 @@ static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore)
     if(explore) {
         xcs_single_update(xcsf, &mset, &aset, &kset, x, action, reward);
     }
-    set_kill(xcsf, &kset);
-    set_free(xcsf, &aset);
-    set_free(xcsf, &mset);
+    clset_kill(xcsf, &kset);
+    clset_free(xcsf, &aset);
+    clset_free(xcsf, &mset);
     return xcs_single_error(xcsf, reward);
 }
 
@@ -112,7 +112,7 @@ static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore)
  */
 int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, double *x)
 {
-    set_match(xcsf, mset, kset, x);
+    clset_match(xcsf, mset, kset, x);
     xcsf->msetsize += (mset->size - xcsf->msetsize) * xcsf->BETA;
     pa_build(xcsf, mset, x);
     if(xcsf->train && rand_uniform(0,1) < xcsf->P_EXPLORE) {
@@ -133,8 +133,8 @@ int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, double *x)
  */
 void xcs_single_update(XCSF *xcsf, SET *mset, SET *aset, SET *kset, double *x, int a, double r)
 {
-    set_action(xcsf, mset, aset, a);
-    set_update(xcsf, aset, kset, x, &r, true);
+    clset_action(xcsf, mset, aset, a);
+    clset_update(xcsf, aset, kset, x, &r, true);
     ea(xcsf, aset, kset);
     xcsf->time += 1;
 }
