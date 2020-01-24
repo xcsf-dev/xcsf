@@ -342,7 +342,7 @@ static void config_newnvpair(const char *config) {
  */
 static char *config_getvalue(const char *name) {
     char *result = NULL;
-    for(PARAM_LIST *iter = head; iter != NULL; iter = iter->next) {
+    for(const PARAM_LIST *iter = head; iter != NULL; iter = iter->next) {
         if(strcmp(name, iter->name) == 0) {
             result = iter->value;
             break;
