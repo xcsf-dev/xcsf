@@ -46,13 +46,13 @@ void pa_init(XCSF *xcsf)
  * @param set The set used to construct the array (typically the match set).
  * @param x The input state.
  */
-void pa_build(XCSF *xcsf, SET *set, const double *x)
+void pa_build(const XCSF *xcsf, const SET *set, const double *x)
 {
     for(int i = 0; i < xcsf->num_actions; i++) {
         xcsf->pa[i] = 0;
         xcsf->nr[i] = 0;
     }
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
         xcsf->pa[iter->cl->action] += predictions[0] * iter->cl->fit;
         xcsf->nr[iter->cl->action] += iter->cl->fit;
@@ -72,7 +72,7 @@ void pa_build(XCSF *xcsf, SET *set, const double *x)
  * @param xcsf The XCSF data structure.
  * @return The best action.
  */
-int pa_best_action(XCSF *xcsf)
+int pa_best_action(const XCSF *xcsf)
 {
     int action = 0;
     for(int i = 1; i < xcsf->num_actions; i++) {
@@ -88,7 +88,7 @@ int pa_best_action(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return A random action.
  */
-int pa_rand_action(XCSF *xcsf)
+int pa_rand_action(const XCSF *xcsf)
 {
     int action = 0;
     do {
@@ -102,7 +102,7 @@ int pa_rand_action(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return The highest value in the prediction array.
  */
-double pa_best_val(XCSF *xcsf)
+double pa_best_val(const XCSF *xcsf)
 {
     double max = xcsf->pa[0];
     for(int i = 1; i < xcsf->num_actions; i++) {
@@ -119,7 +119,7 @@ double pa_best_val(XCSF *xcsf)
  * @param action The specified action.
  * @return The value of the action in the prediction array.
  */
-double pa_val(XCSF *xcsf, int action)
+double pa_val(const XCSF *xcsf, int action)
 {
     if(action >= 0 && action < xcsf->num_actions) {
         return xcsf->pa[action];
@@ -132,7 +132,7 @@ double pa_val(XCSF *xcsf, int action)
  * @brief Frees the prediction array.
  * @param xcsf The XCSF data structure.
  */
-void pa_free(XCSF *xcsf)
+void pa_free(const XCSF *xcsf)
 {
     free(xcsf->pa);
     free(xcsf->nr);

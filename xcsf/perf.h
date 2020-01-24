@@ -23,7 +23,7 @@
 
 #pragma once
 
-void disp_perf1(XCSF *xcsf, double error, int trial);
-void disp_perf2(XCSF *xcsf, double error, double terror, int trial);
-void gplot_init(XCSF *xcsf);
-void gplot_free(XCSF *xcsf);
+void disp_perf1(const XCSF *xcsf, double error, int trial);
+void disp_perf2(const XCSF *xcsf, double error, double terror, int trial);
+void gplot_init(const XCSF *xcsf);
+void gplot_free(const XCSF *xcsf);

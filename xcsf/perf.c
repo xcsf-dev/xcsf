@@ -38,7 +38,7 @@
  * @brief Dummy init function if Gnuplot not defined.
  * @param xcsf The XCSF data structure.
  */
-void gplot_init(XCSF *xcsf)
+void gplot_init(const XCSF *xcsf)
 {
     (void)xcsf;
 }
@@ -47,7 +47,7 @@ void gplot_init(XCSF *xcsf)
  * @brief Dummy free function if Gnuplot not defined.
  * @param xcsf The XCSF data structure.
  */
-void gplot_free(XCSF *xcsf)
+void gplot_free(const XCSF *xcsf)
 {
     (void)xcsf;
 }
@@ -57,10 +57,10 @@ void gplot_free(XCSF *xcsf)
 static FILE *gp; //!< File containing gnuplot script
 static FILE *fout; //!< File containing performance data
 static char fname[50]; //!< File name for performance data
-static void gplot_perf1(XCSF *xcsf, double error, int trial);
-static void gplot_perf2(XCSF *xcsf, double error, double terror, int trial);
-static void gplot_draw(XCSF *xcsf, _Bool test_error);
-static void gplot_title(XCSF *xcsf, char *title);
+static void gplot_perf1(const XCSF *xcsf, double error, int trial);
+static void gplot_perf2(const XCSF *xcsf, double error, double terror, int trial);
+static void gplot_draw(const XCSF *xcsf, _Bool test_error);
+static void gplot_title(const XCSF *xcsf, char *title);
 
 /**
  * @brief Writes training performance to a file and redraws Gnuplot.
@@ -68,7 +68,7 @@ static void gplot_title(XCSF *xcsf, char *title);
  * @param error The current training error.
  * @param trial The number of learning trials executed.
  */
-static void gplot_perf1(XCSF *xcsf, double error, int trial)
+static void gplot_perf1(const XCSF *xcsf, double error, int trial)
 {
     fprintf(fout, "%d %.5f %d", trial, error, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
@@ -86,7 +86,7 @@ static void gplot_perf1(XCSF *xcsf, double error, int trial)
  * @param error The current testing error.
  * @param trial The number of learning trials executed.
  */
-static void gplot_perf2(XCSF *xcsf, double error, double terror, int trial)
+static void gplot_perf2(const XCSF *xcsf, double error, double terror, int trial)
 {
     fprintf(fout, "%d %.5f %.5f %d", trial, error, terror, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
@@ -101,7 +101,7 @@ static void gplot_perf2(XCSF *xcsf, double error, double terror, int trial)
  * @brief Initialises Gnuplot and file for writing performance.
  * @param xcsf The XCSF data structure.
  */
-void gplot_init(XCSF *xcsf)
+void gplot_init(const XCSF *xcsf)
 { 	
     // generate file name for writing performance based on the current date-time
     time_t t = time(NULL);
@@ -141,7 +141,7 @@ void gplot_init(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @param title The Gnuplot title (set by this function).
  */
-static void gplot_title(XCSF *xcsf, char *title)
+static void gplot_title(const XCSF *xcsf, char *title)
 {
     char buffer[20];
     title[0] = '\0';
@@ -178,7 +178,7 @@ static void gplot_title(XCSF *xcsf, char *title)
  * @brief Closes any files and frees any memory used for Gnuplot.
  * @param xcsf The XCSF data structure.
  */
-void gplot_free(XCSF *xcsf)
+void gplot_free(const XCSF *xcsf)
 {
     (void)xcsf;
     if(gp != NULL) {
@@ -195,7 +195,7 @@ void gplot_free(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @param test_error Whether to plot a second line.
  */
-static void gplot_draw(XCSF *xcsf, _Bool test_error)
+static void gplot_draw(const XCSF *xcsf, _Bool test_error)
 {
     (void)xcsf;
     if(gp != NULL) {
@@ -229,7 +229,7 @@ static void gplot_draw(XCSF *xcsf, _Bool test_error)
  * @param error The current training error.
  * @param trial The number of learning trials executed.
  */
-void disp_perf1(XCSF *xcsf, double error, int trial)
+void disp_perf1(const XCSF *xcsf, double error, int trial)
 {
     printf("%d %.5f %d", trial, error, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
@@ -250,7 +250,7 @@ void disp_perf1(XCSF *xcsf, double error, int trial)
  * @param terror The current testing error.
  * @param trial The number of learning trials executed.
  */
-void disp_perf2(XCSF *xcsf, double error, double terror, int trial)
+void disp_perf2(const XCSF *xcsf, double error, double terror, int trial)
 {
     printf("%d %.5f %.5f %d", trial, error, terror, xcsf->pset.size);
     for(int i = 0; i < xcsf->SAM_NUM; i++) {

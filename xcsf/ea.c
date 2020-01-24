@@ -40,7 +40,7 @@ static CL *ea_select_tournament(const XCSF *xcsf, const SET *set);
 static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set);
 static void ea_select_parents(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p);
 static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2, _Bool cmod);
-static void ea_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod);
+static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod);
 
 /**
  * @brief Executes the evolutionary algorithm (EA).
@@ -120,7 +120,7 @@ static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL
  * @param cmod Whether crossover modified the offspring.
  * @param mmod Whether mutation modified the offspring.
  */
-static void ea_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod)
+static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod)
 {
     if(!cmod && !mmod) {
         c1p->num++;
@@ -210,7 +210,7 @@ static CL *ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum)
 {
     (void)xcsf;
     double p = rand_uniform(0, fit_sum);
-    CLIST *iter = set->list;
+    const CLIST *iter = set->list;
     double sum = iter->cl->fit;
     while(p > sum) {
         iter = iter->next;
@@ -229,7 +229,7 @@ static CL *ea_select_tournament(const XCSF *xcsf, const SET *set)
 {
     CL *winner = NULL; 
     while(winner == NULL) {
-        for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             if((rand_uniform(0,1) < xcsf->EA_SELECT_SIZE) &&
                     (winner == NULL || iter->cl->fit > winner->fit)) {
                 winner = iter->cl;

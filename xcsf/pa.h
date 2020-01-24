@@ -23,10 +23,10 @@
  
 #pragma once
 
-void pa_build(XCSF *xcsf, SET *set, const double *x);
-double pa_best_val(XCSF *xcsf);
-double pa_val(XCSF *xcsf, int act);   
-int pa_best_action(XCSF *xcsf);
-int pa_rand_action(XCSF *xcsf);
+void pa_build(const XCSF *xcsf, const SET *set, const double *x);
+double pa_best_val(const XCSF *xcsf);
+double pa_val(const XCSF *xcsf, int act);   
+int pa_best_action(const XCSF *xcsf);
+int pa_rand_action(const XCSF *xcsf);
 void pa_init(XCSF *xcsf);
-void pa_free(XCSF *xcsf);
+void pa_free(const XCSF *xcsf);

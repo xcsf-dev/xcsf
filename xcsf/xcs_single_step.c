@@ -131,7 +131,7 @@ int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, const double *x)
  * @param a The action selected.
  * @param r The reward from performing the action.
  */
-void xcs_single_update(XCSF *xcsf, SET *mset, SET *aset, SET *kset, const double *x, int a, double r)
+void xcs_single_update(XCSF *xcsf, const SET *mset, SET *aset, SET *kset, const double *x, int a, double r)
 {
     clset_action(xcsf, mset, aset, a);
     clset_update(xcsf, aset, kset, x, &r, true);
