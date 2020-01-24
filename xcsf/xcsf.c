@@ -40,7 +40,7 @@ static const double VERSION = 1.06; //!< XCSF version number
 static double xcsf_learn_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
 static double xcsf_test_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
 static size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
-static size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
+static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp);
 
 /**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
@@ -50,7 +50,7 @@ static size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
  * @param shuffle Whether to randomise the instances during training.
  * @return The average XCSF training error using the loss function.
  */
-double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
+double xcsf_fit1(XCSF *xcsf, const INPUT *train_data, _Bool shuffle)
 {  
     INPUT *test_data = NULL;
     return xcsf_fit2(xcsf, train_data, test_data, shuffle);
@@ -65,7 +65,7 @@ double xcsf_fit1(XCSF *xcsf, INPUT *train_data, _Bool shuffle)
  * @param shuffle Whether to randomise the instances during training.
  * @return The average XCSF training error using the loss function.
  */
-double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
+double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle)
 {   
     gplot_init(xcsf);
     double perr = 0;
@@ -81,8 +81,8 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
         else {
             row = (cnt % train_data->rows + train_data->rows) % train_data->rows;
         }     	
-        double *x = &train_data->x[row * train_data->x_cols];
-        double *y = &train_data->y[row * train_data->y_cols];
+        const double *x = &train_data->x[row * train_data->x_cols];
+        const double *y = &train_data->y[row * train_data->y_cols];
         // execute a learning trial
         xcsf->train = true;
         double error = xcsf_learn_trial(xcsf, pred, x, y);
@@ -195,14 +195,14 @@ void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int rows)
  * @param test_data The input data to calculate the error.
  * @return The average XCSF error using the loss function.
  */
-double xcsf_score(XCSF *xcsf, INPUT *test_data)
+double xcsf_score(XCSF *xcsf, const INPUT *test_data)
 {
     xcsf->train = false;
     double err = 0;
     double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
     for(int row = 0; row < test_data->rows; row++) {
-        double *x = &test_data->x[row * test_data->x_cols];
-        double *y = &test_data->y[row * test_data->y_cols];
+        const double *x = &test_data->x[row * test_data->x_cols];
+        const double *y = &test_data->y[row * test_data->y_cols];
         err += xcsf_test_trial(xcsf, pred, x, y);
     }
     free(pred);
@@ -216,7 +216,7 @@ double xcsf_score(XCSF *xcsf, INPUT *test_data)
  * @param printa Whether to print action structures.
  * @param printp Whether to print prediction structures.
  */
-void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
+void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
 {
     clset_print(xcsf, &xcsf->pset, printc, printa, printp);
 }
@@ -247,7 +247,7 @@ void xcsf_print_match_set(XCSF *xcsf, const double *x, _Bool printc, _Bool print
  * @param fname The name of the output file.
  * @return The total number of elements written.
  */
-size_t xcsf_save(XCSF *xcsf, char *fname)
+size_t xcsf_save(const XCSF *xcsf, const char *fname)
 {
     FILE *fp = fopen(fname, "wb");
     if(fp == 0) {
@@ -268,7 +268,7 @@ size_t xcsf_save(XCSF *xcsf, char *fname)
  * @param fname The name of the input file.
  * @return The total number of elements read.
  */
-size_t xcsf_load(XCSF *xcsf, char *fname)
+size_t xcsf_load(XCSF *xcsf, const char *fname)
 {
     if(xcsf->pset.size > 0) {
         clset_kill(xcsf, &xcsf->pset);
@@ -299,7 +299,7 @@ size_t xcsf_load(XCSF *xcsf, char *fname)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t xcsf_save_params(XCSF *xcsf, FILE *fp)
+static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
