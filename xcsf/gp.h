@@ -17,7 +17,7 @@
  * @file gp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief An implementation of GP trees based upon TinyGP.
  */ 
  
@@ -38,7 +38,7 @@ void tree_free(XCSF *xcsf, GP_TREE *gp);
 void tree_rand(XCSF *xcsf, GP_TREE *gp);
 void tree_copy(XCSF *xcsf, GP_TREE *to, GP_TREE *from);
 int tree_print(XCSF *xcsf, GP_TREE *gp, int p);
-double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x);
+double tree_eval(XCSF *xcsf, GP_TREE *gp, const double *x);
 void tree_crossover(XCSF *xcsf, GP_TREE *p1, GP_TREE *p2);
 void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate);
 size_t tree_save(XCSF *xcsf, GP_TREE *gp, FILE *fp);

@@ -17,7 +17,7 @@
  * @file rule_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019--2020.
  * @brief Neural network rule (condition + action) functions.
  */ 
  
@@ -114,17 +114,17 @@ static void rule_neural_cond_rand(XCSF *xcsf, CL *c)
     neural_rand(xcsf, &cond->net);
 }
 
-void rule_neural_cond_cover(XCSF *xcsf, CL *c, double *x)
+void rule_neural_cond_cover(XCSF *xcsf, CL *c, const double *x)
 {
     (void)xcsf; (void)c; (void)x;
 }
 
-void rule_neural_cond_update(XCSF *xcsf, CL *c, double *x, double *y)
+void rule_neural_cond_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool rule_neural_cond_match(XCSF *xcsf, CL *c, double *x)
+_Bool rule_neural_cond_match(XCSF *xcsf, CL *c, const double *x)
 {
     RULE_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
@@ -210,7 +210,7 @@ void rule_neural_act_rand(XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
 }
   
-void rule_neural_act_cover(XCSF *xcsf, CL *c, double *x, int action)
+void rule_neural_act_cover(XCSF *xcsf, CL *c, const double *x, int action)
 {
     do {
         rule_neural_cond_rand(xcsf, c);
@@ -218,7 +218,7 @@ void rule_neural_act_cover(XCSF *xcsf, CL *c, double *x, int action)
             && rule_neural_act_compute(xcsf, c, x) != action);
 }
  
-int rule_neural_act_compute(XCSF *xcsf, CL *c, double *x)
+int rule_neural_act_compute(XCSF *xcsf, CL *c, const double *x)
 {
     (void)x; // network already updated
     RULE_NEURAL *cond = c->cond;
@@ -232,7 +232,7 @@ int rule_neural_act_compute(XCSF *xcsf, CL *c, double *x)
     return c->action;
 }                
 
-void rule_neural_act_update(XCSF *xcsf, CL *c, double *x, double *y)
+void rule_neural_act_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }

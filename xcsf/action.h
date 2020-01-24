@@ -17,7 +17,7 @@
  * @file action.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Interface for classifier actions.
  */ 
 
@@ -60,7 +60,7 @@ struct ActVtbl {
      * @param x The input state.
      * @return The classifier's action.
      */
-    int (*act_impl_compute)(XCSF *xcsf, CL *c, double *x);
+    int (*act_impl_compute)(XCSF *xcsf, CL *c, const double *x);
     /**
      * @brief Copies the action from one classifier to another.
      * @param xcsf The XCSF data structure.
@@ -75,7 +75,7 @@ struct ActVtbl {
      * @param x The input state to cover.
      * @param action The action to cover.
      */
-    void (*act_impl_cover)(XCSF *xcsf, CL *c, double *x, int action);
+    void (*act_impl_cover)(XCSF *xcsf, CL *c, const double *x, int action);
     /**
      * @brief Frees the memory used by the classifier action.
      * @param xcsf The XCSF data structure.
@@ -107,7 +107,7 @@ struct ActVtbl {
      * @param x The input state.
      * @param y The payoff value.
      */
-    void (*act_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
+    void (*act_impl_update)(XCSF *xcsf, CL *c, const double *x, const double *y);
     /**
      * @brief Writes the action to a binary file.
      * @param xcsf The XCSF data structure.
@@ -146,7 +146,7 @@ static inline _Bool act_mutate(XCSF *xcsf, CL *c) {
     return (*c->act_vptr->act_impl_mutate)(xcsf, c);
 }
 
-static inline int act_compute(XCSF *xcsf, CL *c, double *x) {
+static inline int act_compute(XCSF *xcsf, CL *c, const double *x) {
     return (*c->act_vptr->act_impl_compute)(xcsf, c, x);
 }
 
@@ -154,7 +154,7 @@ static inline void act_copy(XCSF *xcsf, CL *to, CL *from) {
     (*from->act_vptr->act_impl_copy)(xcsf, to, from);
 }
 
-static inline void act_cover(XCSF *xcsf, CL *c, double *x, int action) {
+static inline void act_cover(XCSF *xcsf, CL *c, const double *x, int action) {
     (*c->act_vptr->act_impl_cover)(xcsf, c, x, action);
 }
 
@@ -174,6 +174,6 @@ static inline void act_print(XCSF *xcsf, CL *c) {
     (*c->act_vptr->act_impl_print)(xcsf, c);
 }
 
-static inline void act_update(XCSF *xcsf, CL *c, double *x, double *y) {
+static inline void act_update(XCSF *xcsf, CL *c, const double *x, const double *y) {
     (*c->act_vptr->act_impl_update)(xcsf, c, x, y);
 }

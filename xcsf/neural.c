@@ -17,7 +17,7 @@
  * @file neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2012--2019.
+ * @date 2012--2020.
  * @brief An implementation of a multi-layer perceptron neural network.
  */ 
  
@@ -220,7 +220,7 @@ _Bool neural_mutate(XCSF *xcsf, NET *net)
  * @param net The neural network to propagate.
  * @param input The input state.
  */
-void neural_propagate(XCSF *xcsf, NET *net, double *input)
+void neural_propagate(XCSF *xcsf, NET *net, const double *input)
 {
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_forward(xcsf, iter->layer, input);
@@ -235,7 +235,7 @@ void neural_propagate(XCSF *xcsf, NET *net, double *input)
  * @param truth The desired network output.
  * @param input The input state.
  */
-void neural_learn(XCSF *xcsf, NET *net, double *truth, double *input)
+void neural_learn(XCSF *xcsf, NET *net, const double *truth, const double *input)
 {
     /* reset deltas */
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {

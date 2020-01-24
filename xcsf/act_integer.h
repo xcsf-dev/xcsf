@@ -17,7 +17,7 @@
  * @file act_integer.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019--2020.
  * @brief integer action functions.
  */ 
 
@@ -26,14 +26,14 @@
 _Bool act_integer_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool act_integer_general(XCSF *xcsf, CL *c1, CL *c2);
 _Bool act_integer_mutate(XCSF *xcsf, CL *c);
-int act_integer_compute(XCSF *xcsf, CL *c, double *x);
+int act_integer_compute(XCSF *xcsf, CL *c, const double *x);
 void act_integer_copy(XCSF *xcsf, CL *to, CL *from);
-void act_integer_cover(XCSF *xcsf, CL *c, double *x, int action);
+void act_integer_cover(XCSF *xcsf, CL *c, const double *x, int action);
 void act_integer_free(XCSF *xcsf, CL *c);
 void act_integer_init(XCSF *xcsf, CL *c);
 void act_integer_print(XCSF *xcsf, CL *c);
 void act_integer_rand(XCSF *xcsf, CL *c);
-void act_integer_update(XCSF *xcsf, CL *c, double *x, double *y);
+void act_integer_update(XCSF *xcsf, CL *c, const double *x, const double *y);
 size_t act_integer_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t act_integer_load(XCSF *xcsf, CL *c, FILE *fp);
 

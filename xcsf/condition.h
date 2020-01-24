@@ -17,7 +17,7 @@
  * @file condition.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Interface for classifier conditions.
  */ 
 
@@ -53,7 +53,7 @@ struct CondVtbl {
      * @param x The input state.
      * @return Whether the condition matches the input.
      */
-    _Bool (*cond_impl_match)(XCSF *xcsf, CL *c, double *x);
+    _Bool (*cond_impl_match)(XCSF *xcsf, CL *c, const double *x);
     /**
      * @brief Performs classifier condition mutation.
      * @param xcsf The XCSF data structure.
@@ -74,7 +74,7 @@ struct CondVtbl {
      * @param c The classifier whose condition is being covered.
      * @param x The input state to cover.
      */
-    void (*cond_impl_cover)(XCSF *xcsf, CL *c, double *x);
+    void (*cond_impl_cover)(XCSF *xcsf, CL *c, const double *x);
     /**
      * @brief Frees the memory used by the classifier condition.
      * @param xcsf The XCSF data structure.
@@ -100,7 +100,7 @@ struct CondVtbl {
      * @param x The input state.
      * @param y The payoff value.
      */
-    void (*cond_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
+    void (*cond_impl_update)(XCSF *xcsf, CL *c, const double *x, const double *y);
     /**
      * @brief Returns the size of the classifier condition.
      * @param xcsf The XCSF data structure.
@@ -138,7 +138,7 @@ static inline int cond_size(XCSF *xcsf, CL *c) {
     return (*c->cond_vptr->cond_impl_size)(xcsf, c);
 }
 
-static inline void cond_update(XCSF *xcsf, CL *c, double *x, double *y) {
+static inline void cond_update(XCSF *xcsf, CL *c, const double *x, const double *y) {
     (*c->cond_vptr->cond_impl_update)(xcsf, c, x, y);
 }
 
@@ -150,7 +150,7 @@ static inline _Bool cond_general(XCSF *xcsf, CL *c1, CL *c2) {
     return (*c1->cond_vptr->cond_impl_general)(xcsf, c1, c2);
 }
 
-static inline _Bool cond_match(XCSF *xcsf, CL *c, double *x) {
+static inline _Bool cond_match(XCSF *xcsf, CL *c, const double *x) {
     return (*c->cond_vptr->cond_impl_match)(xcsf, c, x);
 }
 
@@ -162,7 +162,7 @@ static inline void cond_copy(XCSF *xcsf, CL *to, CL *from) {
     (*from->cond_vptr->cond_impl_copy)(xcsf, to, from);
 }
 
-static inline void cond_cover(XCSF *xcsf, CL *c, double *x) {
+static inline void cond_cover(XCSF *xcsf, CL *c, const double *x) {
     (*c->cond_vptr->cond_impl_cover)(xcsf, c, x);
 }
 

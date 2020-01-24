@@ -17,7 +17,7 @@
  * @file cl.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Functions operating on classifiers.
  */ 
  
@@ -35,7 +35,7 @@
 #include "action.h"
 #include "cl.h"
 
-static double cl_update_err(XCSF *xcsf, CL *c, double *y, _Bool current);
+static double cl_update_err(XCSF *xcsf, CL *c, const double *y, _Bool current);
 static double cl_update_size(XCSF *xcsf, CL *c, double num_sum);
 
 /**
@@ -91,7 +91,7 @@ void cl_copy(XCSF *xcsf, CL *to, CL *from)
  * @param x The input state to cover.
  * @param action The action to cover.
  */
-void cl_cover(XCSF *xcsf, CL *c, double *x, int action)
+void cl_cover(XCSF *xcsf, CL *c, const double *x, int action)
 {
     cl_rand(xcsf, c);
     cond_cover(xcsf, c, x);
@@ -152,7 +152,7 @@ double cl_acc(XCSF *xcsf, CL *c)
  * @param set_num The number of micro-classifiers in the set.
  * @param current Whether the payoff is for the current or previous state.
  */
-void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num, _Bool current)
+void cl_update(XCSF *xcsf, CL *c, const double *x, const double *y, int set_num, _Bool current)
 {
     c->exp++;
     cl_update_err(xcsf, c, y, current);
@@ -171,7 +171,7 @@ void cl_update(XCSF *xcsf, CL *c, double *x, double *y, int set_num, _Bool curre
  * @param current Whether the payoff is for the current or previous state.
  * @return Error multiplied by numerosity.
  */
-static double cl_update_err(XCSF *xcsf, CL *c, double *y, _Bool current)
+static double cl_update_err(XCSF *xcsf, CL *c, const double *y, _Bool current)
 {
     double error = 0;
     if(current) {
@@ -274,7 +274,7 @@ void cl_print(XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp)
  * @param x The input state.
  * @return Whether the classifier matches the input.
  */
-_Bool cl_match(XCSF *xcsf, CL *c, double *x)
+_Bool cl_match(XCSF *xcsf, CL *c, const double *x)
 {
     _Bool m = cond_match(xcsf, c, x);
     c->mfrac += xcsf->BETA * ((double) m - c->mfrac);
@@ -300,7 +300,7 @@ _Bool cl_m(XCSF *xcsf, CL *c)
  * @param x The input state.
  * @return The classifier's action.
  */
-int cl_action(XCSF *xcsf, CL *c, double *x)
+int cl_action(XCSF *xcsf, CL *c, const double *x)
 {
     c->action = act_compute(xcsf, c, x);
     return c->action;
@@ -313,7 +313,7 @@ int cl_action(XCSF *xcsf, CL *c, double *x)
  * @param x The input state.
  * @return The classifier's payoff predictions.
  */
-double *cl_predict(XCSF *xcsf, CL *c, double *x)
+double *cl_predict(XCSF *xcsf, CL *c, const double *x)
 {
     memcpy(c->prev_prediction, c->prediction, sizeof(double) * xcsf->num_y_vars);
     return pred_compute(xcsf, c, x);

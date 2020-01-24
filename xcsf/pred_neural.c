@@ -17,7 +17,7 @@
  * @file pred_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief Multi-layer perceptron neural network prediction functions.
  */ 
  
@@ -111,7 +111,7 @@ void pred_neural_copy(XCSF *xcsf, CL *to, CL *from)
     to->pred = new;
 }
 
-void pred_neural_update(XCSF *xcsf, CL *c, double *x, double *y)
+void pred_neural_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     if(xcsf->PRED_SGD_WEIGHTS) {
         PRED_NEURAL *pred = c->pred;
@@ -119,7 +119,7 @@ void pred_neural_update(XCSF *xcsf, CL *c, double *x, double *y)
     }
 }
 
-double *pred_neural_compute(XCSF *xcsf, CL *c, double *x)
+double *pred_neural_compute(XCSF *xcsf, CL *c, const double *x)
 {
     PRED_NEURAL *pred = c->pred;
     neural_propagate(xcsf, &pred->net, x);

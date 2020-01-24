@@ -17,7 +17,7 @@
  * @file neural_layer_noise.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief An implementation of a Gaussian noise adding layer.
  */ 
 
@@ -26,7 +26,7 @@
 LAYER *neural_layer_noise_init(XCSF *xcsf, int in, double prob, double std);
 LAYER *neural_layer_noise_copy(XCSF *xcsf, LAYER *from);
 void neural_layer_noise_rand(XCSF *xcsf, LAYER *l);
-void neural_layer_noise_forward(XCSF *xcsf, LAYER *l, double *input);
+void neural_layer_noise_forward(XCSF *xcsf, LAYER *l, const double *input);
 void neural_layer_noise_backward(XCSF *xcsf, LAYER *l, NET *net);
 void neural_layer_noise_update(XCSF *xcsf, LAYER *l);
 void neural_layer_noise_print(XCSF *xcsf, LAYER *l, _Bool print_weights);

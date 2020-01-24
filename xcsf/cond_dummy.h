@@ -17,7 +17,7 @@
  * @file cond_dummy.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019-2020.
  * @brief Always-matching dummy condition functions.
  */ 
 
@@ -25,14 +25,14 @@
 
 _Bool cond_dummy_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_dummy_general(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_dummy_match(XCSF *xcsf, CL *c, double *x);
+_Bool cond_dummy_match(XCSF *xcsf, CL *c, const double *x);
 _Bool cond_dummy_mutate(XCSF *xcsf, CL *c);
 void cond_dummy_copy(XCSF *xcsf, CL *to, CL *from);
-void cond_dummy_cover(XCSF *xcsf, CL *c, double *x);
+void cond_dummy_cover(XCSF *xcsf, CL *c, const double *x);
 void cond_dummy_free(XCSF *xcsf, CL *c);
 void cond_dummy_init(XCSF *xcsf, CL *c);
 void cond_dummy_print(XCSF *xcsf, CL *c);
-void cond_dummy_update(XCSF *xcsf, CL *c, double *x, double *y);
+void cond_dummy_update(XCSF *xcsf, CL *c, const double *x, const double *y);
 int cond_dummy_size(XCSF *xcsf, CL *c);
 size_t cond_dummy_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t cond_dummy_load(XCSF *xcsf, CL *c, FILE *fp);

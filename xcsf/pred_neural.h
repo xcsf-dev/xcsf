@@ -17,20 +17,20 @@
  * @file pred_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief Multi-layer perceptron neural network prediction functions.
  */ 
  
 #pragma once
 
-double *pred_neural_compute(XCSF *xcsf, CL *c, double *x);
+double *pred_neural_compute(XCSF *xcsf, CL *c, const double *x);
 _Bool pred_neural_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_neural_mutate(XCSF *xcsf, CL *c);
 void pred_neural_copy(XCSF *xcsf, CL *to,  CL *from);
 void pred_neural_free(XCSF *xcsf, CL *c);
 void pred_neural_init(XCSF *xcsf, CL *c);
 void pred_neural_print(XCSF *xcsf, CL *c);
-void pred_neural_update(XCSF *xcsf, CL *c, double *x, double *y);
+void pred_neural_update(XCSF *xcsf, CL *c, const double *x, const double *y);
 int pred_neural_size(XCSF *xcsf, CL *c);
 size_t pred_neural_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t pred_neural_load(XCSF *xcsf, CL *c, FILE *fp);

@@ -17,7 +17,7 @@
  * @file pred_rls.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Recursive least mean squares prediction functions.
  */ 
  
@@ -124,7 +124,7 @@ void pred_rls_free(XCSF *xcsf, CL *c)
     free(pred);
 }
 
-void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
+void pred_rls_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     PRED_RLS *pred = c->pred;
     int n = pred->weights_length;
@@ -181,7 +181,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, double *x, double *y)
     }
 }
 
-double *pred_rls_compute(XCSF *xcsf, CL *c, double *x)
+double *pred_rls_compute(XCSF *xcsf, CL *c, const double *x)
 {
     PRED_RLS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {

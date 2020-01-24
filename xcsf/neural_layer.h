@@ -17,7 +17,7 @@
  * @file neural_layer.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief Interface for neural network layers.
  */ 
 
@@ -127,7 +127,7 @@ struct LayerVtbl {
      * @param l The layer to be forward propagated.
      * @param input The input to the layer.
      */
-    void (*layer_impl_forward)(XCSF *xcsf, LAYER *l, double *input);
+    void (*layer_impl_forward)(XCSF *xcsf, LAYER *l, const double *input);
     /**
      * @brief Returns the outputs of a layer.
      * @param xcsf The XCSF data structure.
@@ -165,7 +165,7 @@ static inline double* layer_output(XCSF *xcsf, LAYER *l) {
     return (*l->layer_vptr->layer_impl_output)(xcsf, l);
 }
 
-static inline void layer_forward(XCSF *xcsf, LAYER *l, double *input) {
+static inline void layer_forward(XCSF *xcsf, LAYER *l, const double *input) {
     (*l->layer_vptr->layer_impl_forward)(xcsf, l, input);
 }
 

@@ -17,7 +17,7 @@
  * @file cond_rectangle.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019--2020.
  * @brief Hyperrectangle condition functions.
  */ 
 
@@ -25,14 +25,14 @@
 
 _Bool cond_rectangle_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_rectangle_general(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_rectangle_match(XCSF *xcsf, CL *c, double *x);
+_Bool cond_rectangle_match(XCSF *xcsf, CL *c, const double *x);
 _Bool cond_rectangle_mutate(XCSF *xcsf, CL *c);
 void cond_rectangle_copy(XCSF *xcsf, CL *to, CL *from);
-void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x);
+void cond_rectangle_cover(XCSF *xcsf, CL *c, const double *x);
 void cond_rectangle_free(XCSF *xcsf, CL *c);
 void cond_rectangle_init(XCSF *xcsf, CL *c);
 void cond_rectangle_print(XCSF *xcsf, CL *c);
-void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y);
+void cond_rectangle_update(XCSF *xcsf, CL *c, const double *x, const double *y);
 int cond_rectangle_size(XCSF *xcsf, CL *c);
 size_t cond_rectangle_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t cond_rectangle_load(XCSF *xcsf, CL *c, FILE *fp);

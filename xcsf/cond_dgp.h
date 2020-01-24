@@ -17,7 +17,7 @@
  * @file cond_dgp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief Dynamical GP graph condition functions.
  */ 
 
@@ -25,14 +25,14 @@
 
 _Bool cond_dgp_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_dgp_general(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_dgp_match(XCSF *xcsf, CL *c, double *x);
+_Bool cond_dgp_match(XCSF *xcsf, CL *c, const double *x);
 _Bool cond_dgp_mutate(XCSF *xcsf, CL *c);
 void cond_dgp_copy(XCSF *xcsf, CL *to, CL *from);
-void cond_dgp_cover(XCSF *xcsf, CL *c, double *x);
+void cond_dgp_cover(XCSF *xcsf, CL *c, const double *x);
 void cond_dgp_free(XCSF *xcsf, CL *c);
 void cond_dgp_init(XCSF *xcsf, CL *c);
 void cond_dgp_print(XCSF *xcsf, CL *c);
-void cond_dgp_update(XCSF *xcsf, CL *c, double *x, double *y);
+void cond_dgp_update(XCSF *xcsf, CL *c, const double *x, const double *y);
 int cond_dgp_size(XCSF *xcsf, CL *c);
 size_t cond_dgp_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t cond_dgp_load(XCSF *xcsf, CL *c, FILE *fp);

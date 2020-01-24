@@ -37,8 +37,8 @@
 
 static const double VERSION = 1.06; //!< XCSF version number
 
-static double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y);
-static double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y);
+static double xcsf_learn_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
+static double xcsf_test_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
 static size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
 static size_t xcsf_save_params(XCSF *xcsf, FILE *fp);
 
@@ -128,7 +128,7 @@ double xcsf_fit2(XCSF *xcsf, INPUT *train_data, INPUT *test_data, _Bool shuffle)
  * @param y The labelled variables.
  * @return The XCSF training error using the loss function.
  */
-static double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
+static double xcsf_learn_trial(XCSF *xcsf, double *pred, const double *x, const double *y)
 {
     SET mset; // match set
     SET kset; // kill set
@@ -153,7 +153,7 @@ static double xcsf_learn_trial(XCSF *xcsf, double *pred, double *x, double *y)
  * @param y The labelled variables.
  * @return The XCSF testing error using the loss function.
  */
-static double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
+static double xcsf_test_trial(XCSF *xcsf, double *pred, const double *x, const double *y)
 {
     SET mset; // match set
     SET kset; // kill set
@@ -170,11 +170,11 @@ static double xcsf_test_trial(XCSF *xcsf, double *pred, double *x, double *y)
 /**
  * @brief Calculates the XCSF predictions for the provided input.
  * @param xcsf The XCSF data structure.
- * @param input The input feature variables.
- * @param output The calculated XCSF predictions (set by this function).
+ * @param x The input feature variables.
+ * @param pred The calculated XCSF predictions (set by this function).
  * @param rows The number of instances.
  */
-void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
+void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int rows)
 {   
     xcsf->train = false;
     for(int row = 0; row < rows; row++) {
@@ -182,8 +182,8 @@ void xcsf_predict(XCSF *xcsf, double *input, double *output, int rows)
         SET kset; // kill set
         clset_init(xcsf, &mset);
         clset_init(xcsf, &kset);
-        clset_match(xcsf, &mset, &kset, &input[row * xcsf->num_x_vars]);
-        clset_pred(xcsf, &mset, &input[row * xcsf->num_x_vars], &output[row * xcsf->num_y_vars]);
+        clset_match(xcsf, &mset, &kset, &x[row * xcsf->num_x_vars]);
+        clset_pred(xcsf, &mset, &x[row * xcsf->num_x_vars], &pred[row * xcsf->num_y_vars]);
         clset_kill(xcsf, &kset); // kills deleted classifiers
         clset_free(xcsf, &mset); // frees the match set list
     }
@@ -224,18 +224,18 @@ void xcsf_print_pop(XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
 /**
  * @brief Prints the XCSF match set for the supplied input.
  * @param xcsf The XCSF data structure.
- * @param input The input features to perform matching.
+ * @param x The input features to perform matching.
  * @param printc Whether to print condition structures.
  * @param printa Whether to print action structures.
  * @param printp Whether to print prediction structures.
  */
-void xcsf_print_match_set(XCSF *xcsf, double *input, _Bool printc, _Bool printa, _Bool printp)
+void xcsf_print_match_set(XCSF *xcsf, const double *x, _Bool printc, _Bool printa, _Bool printp)
 {
     SET mset; // match set
     SET kset; // kill set
     clset_init(xcsf, &mset);
     clset_init(xcsf, &kset);
-    clset_match(xcsf, &mset, &kset, input);
+    clset_match(xcsf, &mset, &kset, x);
     clset_print(xcsf, &mset, printc, printa, printp);
     clset_kill(xcsf, &kset); // kills deleted classifiers
     clset_free(xcsf, &mset); // frees the match set list

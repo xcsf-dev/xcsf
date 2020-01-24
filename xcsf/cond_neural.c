@@ -111,19 +111,19 @@ static void cond_neural_rand(XCSF *xcsf, CL *c)
     neural_rand(xcsf, &cond->net);
 }
 
-void cond_neural_cover(XCSF *xcsf, CL *c, double *x)
+void cond_neural_cover(XCSF *xcsf, CL *c, const double *x)
 {
     do {
         cond_neural_rand(xcsf, c);
     } while(!cond_neural_match(xcsf, c, x));
 }
 
-void cond_neural_update(XCSF *xcsf, CL *c, double *x, double *y)
+void cond_neural_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool cond_neural_match(XCSF *xcsf, CL *c, double *x)
+_Bool cond_neural_match(XCSF *xcsf, CL *c, const double *x)
 {
     COND_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);

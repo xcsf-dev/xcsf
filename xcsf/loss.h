@@ -17,15 +17,16 @@
  * @file loss.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
+ * @date 2019--2020.
  * @brief Loss functions for calculating prediction error.
  */ 
 
 #pragma once
  
-double loss_mae(XCSF *xcsf, double *pred, double *y);
-double loss_mse(XCSF *xcsf, double *pred, double *y);
-double loss_rmse(XCSF *xcsf, double *pred, double *y);
-double loss_log(XCSF *xcsf, double *pred, double *y);
-double loss_binary_log(XCSF *xcsf, double *pred, double *y);
-double loss_onehot_acc(XCSF *xcsf, double *pred, double *y);
+double loss_mae(XCSF *xcsf, const double *pred, const double *y);
+double loss_mse(XCSF *xcsf, const double *pred, const double *y);
+double loss_rmse(XCSF *xcsf, const double *pred, const double *y);
+double loss_log(XCSF *xcsf, const double *pred, const double *y);
+double loss_binary_log(XCSF *xcsf, const double *pred, const double *y);
+double loss_onehot_acc(XCSF *xcsf, const double *pred, const double *y);
 void loss_set_func(XCSF *xcsf);

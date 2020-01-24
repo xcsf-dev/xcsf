@@ -17,20 +17,20 @@
  * @file pred_nlms.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Normalised least mean squares prediction functions.
  */ 
  
 #pragma once
 
-double *pred_nlms_compute(XCSF *xcsf, CL *c, double *x);
+double *pred_nlms_compute(XCSF *xcsf, CL *c, const double *x);
 _Bool pred_nlms_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_nlms_mutate(XCSF *xcsf, CL *c);
 void pred_nlms_copy(XCSF *xcsf, CL *to, CL *from);
 void pred_nlms_free(XCSF *xcsf, CL *c);
 void pred_nlms_init(XCSF *xcsf, CL *c);
 void pred_nlms_print(XCSF *xcsf, CL *c);
-void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y);
+void pred_nlms_update(XCSF *xcsf, CL *c, const double *x, const double *y);
 int pred_nlms_size(XCSF *xcsf, CL *c);
 size_t pred_nlms_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t pred_nlms_load(XCSF *xcsf, CL *c, FILE *fp);

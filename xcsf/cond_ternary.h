@@ -17,7 +17,7 @@
  * @file cond_ternary.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019--2020.
  * @brief Ternary condition functions.
  */ 
 
@@ -25,14 +25,14 @@
 
 _Bool cond_ternary_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_ternary_general(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_ternary_match(XCSF *xcsf, CL *c, double *x);
+_Bool cond_ternary_match(XCSF *xcsf, CL *c, const double *x);
 _Bool cond_ternary_mutate(XCSF *xcsf, CL *c);
 void cond_ternary_copy(XCSF *xcsf, CL *to, CL *from);
-void cond_ternary_cover(XCSF *xcsf, CL *c, double *x);
+void cond_ternary_cover(XCSF *xcsf, CL *c, const double *x);
 void cond_ternary_free(XCSF *xcsf, CL *c);
 void cond_ternary_init(XCSF *xcsf, CL *c);
 void cond_ternary_print(XCSF *xcsf, CL *c);
-void cond_ternary_update(XCSF *xcsf, CL *c, double *x, double *y);
+void cond_ternary_update(XCSF *xcsf, CL *c, const double *x, const double *y);
 int cond_ternary_size(XCSF *xcsf, CL *c);
 size_t cond_ternary_save(XCSF *xcsf, CL *c, FILE *fp);
 size_t cond_ternary_load(XCSF *xcsf, CL *c, FILE *fp);

@@ -71,19 +71,19 @@ static void cond_gp_rand(XCSF *xcsf, CL *c)
     tree_rand(xcsf, &cond->gp);
 }
  
-void cond_gp_cover(XCSF *xcsf, CL *c, double *x)
+void cond_gp_cover(XCSF *xcsf, CL *c, const double *x)
 {
     do {
         cond_gp_rand(xcsf, c);
     } while(!cond_gp_match(xcsf, c, x));
 }
  
-void cond_gp_update(XCSF *xcsf, CL *c, double *x, double *y)
+void cond_gp_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool cond_gp_match(XCSF *xcsf, CL *c, double *x)
+_Bool cond_gp_match(XCSF *xcsf, CL *c, const double *x)
 {
     COND_GP *cond = c->cond;
     cond->gp.p = 0;

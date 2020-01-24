@@ -72,19 +72,19 @@ static void cond_dgp_rand(XCSF *xcsf, CL *c)
     graph_rand(xcsf, &cond->dgp);
 }
 
-void cond_dgp_cover(XCSF *xcsf, CL *c, double *x)
+void cond_dgp_cover(XCSF *xcsf, CL *c, const double *x)
 {
     do {
         cond_dgp_rand(xcsf, c);
     } while(!cond_dgp_match(xcsf, c, x));
 }
  
-void cond_dgp_update(XCSF *xcsf, CL *c, double *x, double *y)
+void cond_dgp_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }
  
-_Bool cond_dgp_match(XCSF *xcsf, CL *c, double *x)
+_Bool cond_dgp_match(XCSF *xcsf, CL *c, const double *x)
 {
     COND_DGP *cond = c->cond;
     graph_update(xcsf, &cond->dgp, x);

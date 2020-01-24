@@ -17,7 +17,7 @@
  * @file neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2012--2019.
+ * @date 2012--2020.
  * @brief An implementation of a multi-layer perceptron neural network.
  */ 
 
@@ -40,7 +40,7 @@ typedef struct NET {
     int num_inputs; //!< Number of network inputs
     int num_outputs; //!< Number of network outputs
     double *delta; //!< Delta for updating networks weights
-    double *input; //!< Pointer to the network input
+    const double *input; //!< Pointer to the network input
     LLIST *head; //!< Pointer to the head layer (output layer)
     LLIST *tail; //!< Pointer to the tail layer (first layer)
 } NET;
@@ -55,7 +55,7 @@ void neural_free(XCSF *xcsf, NET *net);
 void neural_init(XCSF *xcsf, NET *net);
 void neural_layer_insert(XCSF *xcsf, NET *net, struct LAYER *l, int p);
 void neural_layer_remove(XCSF *xcsf, NET *net, int p);
-void neural_learn(XCSF *xcsf, NET *net, double *output, double *input);
+void neural_learn(XCSF *xcsf, NET *net, const double *output, const double *input);
 void neural_print(XCSF *xcsf, NET *net, _Bool print_weights);
-void neural_propagate(XCSF *xcsf, NET *net, double *input);
+void neural_propagate(XCSF *xcsf, NET *net, const double *input);
 void neural_rand(XCSF *xcsf, NET *net);

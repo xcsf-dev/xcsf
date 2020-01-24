@@ -17,7 +17,7 @@
  * @file pred_constant.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Piece-wise constant prediction functions.
  */ 
  
@@ -47,7 +47,7 @@ void pred_constant_free(XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
 }
 
-void pred_constant_update(XCSF *xcsf, CL *c, double *x, double *y)
+void pred_constant_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)x;
     if(c->exp < 1.0 / xcsf->PRED_ETA) {
@@ -62,7 +62,7 @@ void pred_constant_update(XCSF *xcsf, CL *c, double *x, double *y)
     }
 }
 
-double *pred_constant_compute(XCSF *xcsf, CL *c, double *x)
+double *pred_constant_compute(XCSF *xcsf, CL *c, const double *x)
 {
     (void)xcsf; (void)c; (void)x;
     return c->prediction;

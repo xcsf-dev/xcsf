@@ -17,7 +17,7 @@
  * @file act_integer.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief integer action functions.
  */ 
  
@@ -57,7 +57,7 @@ _Bool act_integer_mutate(XCSF *xcsf, CL *c)
     return false;
 }
 
-int act_integer_compute(XCSF *xcsf, CL *c, double *x)
+int act_integer_compute(XCSF *xcsf, CL *c, const double *x)
 {
     (void)xcsf; (void)x;
     return c->action;
@@ -80,7 +80,7 @@ void act_integer_rand(XCSF *xcsf, CL *c)
     c->action = irand_uniform(0, xcsf->num_actions);
 }
  
-void act_integer_cover(XCSF *xcsf, CL *c, double *x, int action)
+void act_integer_cover(XCSF *xcsf, CL *c, const double *x, int action)
 {
     (void)xcsf; (void)x;
     c->action = action;
@@ -96,7 +96,7 @@ void act_integer_init(XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
 }
  
-void act_integer_update(XCSF *xcsf, CL *c, double *x, double *y)
+void act_integer_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }

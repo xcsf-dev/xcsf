@@ -17,7 +17,7 @@
  * @file cond_dummy.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019--2020.
  * @brief Always-matching dummy condition functions.
  */ 
  
@@ -47,17 +47,17 @@ void cond_dummy_copy(XCSF *xcsf, CL *to, CL *from)
 	(void)xcsf; (void)to; (void)from;
 }                             
 
-void cond_dummy_cover(XCSF *xcsf, CL *c, double *x)
+void cond_dummy_cover(XCSF *xcsf, CL *c, const double *x)
 {
 	(void)xcsf; (void)c; (void)x;
 }
  
-void cond_dummy_update(XCSF *xcsf, CL *c, double *x, double *y)
+void cond_dummy_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
 	(void)xcsf; (void)c; (void)x; (void)y;
 }
  
-_Bool cond_dummy_match(XCSF *xcsf, CL *c, double *x)
+_Bool cond_dummy_match(XCSF *xcsf, CL *c, const double *x)
 {
 	(void)xcsf; (void)x;
 	c->m = true;

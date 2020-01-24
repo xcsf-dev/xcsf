@@ -17,7 +17,7 @@
  * @file pred_nlms.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Normalised least mean squares prediction functions.
  */ 
  
@@ -85,7 +85,7 @@ void pred_nlms_free(XCSF *xcsf, CL *c)
     free(pred);
 }
 
-void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y)
+void pred_nlms_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     PRED_NLMS *pred = c->pred;
     double norm = xcsf->PRED_X0 * xcsf->PRED_X0;
@@ -114,7 +114,7 @@ void pred_nlms_update(XCSF *xcsf, CL *c, double *x, double *y)
     }
 }
 
-double *pred_nlms_compute(XCSF *xcsf, CL *c, double *x)
+double *pred_nlms_compute(XCSF *xcsf, CL *c, const double *x)
 {
     PRED_NLMS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {

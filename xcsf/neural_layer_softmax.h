@@ -17,7 +17,7 @@
  * @file neural_layer_softmax.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief An implementation of a softmax layer.
  */ 
 
@@ -26,7 +26,7 @@
 LAYER *neural_layer_softmax_init(XCSF *xcsf, int in, double temp);
 LAYER *neural_layer_softmax_copy(XCSF *xcsf, LAYER *from);
 void neural_layer_softmax_rand(XCSF *xcsf, LAYER *l);
-void neural_layer_softmax_forward(XCSF *xcsf, LAYER *l, double *input);
+void neural_layer_softmax_forward(XCSF *xcsf, LAYER *l, const double *input);
 void neural_layer_softmax_backward(XCSF *xcsf, LAYER *l, NET *net);
 void neural_layer_softmax_update(XCSF *xcsf, LAYER *l);
 void neural_layer_softmax_print(XCSF *xcsf, LAYER *l, _Bool print_weights);

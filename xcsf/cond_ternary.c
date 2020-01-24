@@ -17,7 +17,7 @@
  * @file cond_ternary.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019--2020.
  * @brief Ternary condition functions.
  * @details Binarises inputs.
  */ 
@@ -93,7 +93,7 @@ void cond_ternary_copy(XCSF *xcsf, CL *to, CL *from)
     to->cond = new;
 }                             
 
-void cond_ternary_cover(XCSF *xcsf, CL *c, double *x)
+void cond_ternary_cover(XCSF *xcsf, CL *c, const double *x)
 {
     COND_TERNARY *cond = c->cond;
     char state[xcsf->COND_BITS];
@@ -110,12 +110,12 @@ void cond_ternary_cover(XCSF *xcsf, CL *c, double *x)
     }
 }
 
-void cond_ternary_update(XCSF *xcsf, CL *c, double *x, double *y)
+void cond_ternary_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool cond_ternary_match(XCSF *xcsf, CL *c, double *x)
+_Bool cond_ternary_match(XCSF *xcsf, CL *c, const double *x)
 {
     COND_TERNARY *cond = c->cond;
     char state[xcsf->COND_BITS];

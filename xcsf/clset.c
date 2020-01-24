@@ -38,7 +38,7 @@
 
 static _Bool clset_action_covered(XCSF *xcsf, SET *set, int action);
 static double clset_total_time(XCSF *xcsf, SET *set);
-static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered);
+static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, const double *x, _Bool *act_covered);
 static void clset_pop_del(XCSF *xcsf, SET *kset);
 static void clset_subsumption(XCSF *xcsf, SET *set, SET *kset);
 static void clset_update_fit(XCSF *xcsf, SET *set);
@@ -153,7 +153,7 @@ void clset_pop_enforce_limit(XCSF *xcsf, SET *kset)
  * population. Adds each matching classifier to the match set. Performs
  * covering if any actions are not covered.
  */
-void clset_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
+void clset_match(XCSF *xcsf, SET *mset, SET *kset, const double *x)
 {
     _Bool *act_covered = calloc(xcsf->num_actions, sizeof(_Bool));
 #ifdef PARALLEL_MATCH
@@ -200,7 +200,7 @@ void clset_match(XCSF *xcsf, SET *mset, SET *kset, double *x)
  * @param x The input state.
  * @param act_covered Array indicating whether each action is covered by the set.
  */
-static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_covered)
+static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, const double *x, _Bool *act_covered)
 {
     int attempts = 0;
     _Bool again;
@@ -251,7 +251,7 @@ static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, double *x, _Bool *act_
  * @param x The input state.
  * @param p The predictions (set by this function).
  */
-void clset_pred(XCSF *xcsf, SET *set, double *x, double *p)
+void clset_pred(XCSF *xcsf, SET *set, const double *x, double *p)
 {
     double *presum = calloc(xcsf->num_y_vars, sizeof(double));
     double fitsum = 0;
@@ -354,9 +354,9 @@ void clset_add(XCSF *xcsf, SET *set, CL *c)
  * @param kset A set to store deleted macro-classifiers for later memory removal.
  * @param x The input state.
  * @param y The payoff from the environment.
- * @param current Whether the update is for the current or previous state.
+ * @param curr Whether the update is for the current or previous state.
  */ 
-void clset_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y, _Bool current)
+void clset_update(XCSF *xcsf, SET *set, SET *kset, const double *x, const double *y, _Bool curr)
 {
 #ifdef PARALLEL_UPDATE
     CLIST *blist[set->size];
@@ -367,11 +367,11 @@ void clset_update(XCSF *xcsf, SET *set, SET *kset, double *x, double *y, _Bool c
     }
 #pragma omp parallel for
     for(int i = 0; i < set->size; i++) {
-        cl_update(xcsf, blist[i]->cl, x, y, set->num, current);
+        cl_update(xcsf, blist[i]->cl, x, y, set->num, curr);
     }
 #else
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        cl_update(xcsf, iter->cl, x, y, set->num, current);
+        cl_update(xcsf, iter->cl, x, y, set->num, curr);
     }
 #endif
     clset_update_fit(xcsf, set);

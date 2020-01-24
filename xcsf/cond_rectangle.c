@@ -17,7 +17,7 @@
  * @file cond_rectangle.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019--2020.
  * @brief Hyperrectangle condition functions.
  */ 
  
@@ -40,13 +40,13 @@ typedef struct COND_RECTANGLE {
     double *spread; //!< Spreads
 } COND_RECTANGLE;
 
-static double cond_rectangle_dist(XCSF *xcsf, CL *c, double *x);
+static double cond_rectangle_dist(XCSF *xcsf, CL *c, const double *x);
 
 void cond_rectangle_init(XCSF *xcsf, CL *c)
 {
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
-    new->center = malloc(sizeof(double)*xcsf->num_x_vars);
-    new->spread = malloc(sizeof(double)*xcsf->num_x_vars);
+    new->center = malloc(sizeof(double) * xcsf->num_x_vars);
+    new->spread = malloc(sizeof(double) * xcsf->num_x_vars);
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         new->center[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
         new->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
@@ -67,14 +67,14 @@ void cond_rectangle_copy(XCSF *xcsf, CL *to, CL *from)
 {
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
     COND_RECTANGLE *from_cond = from->cond;
-    new->center = malloc(sizeof(double)*xcsf->num_x_vars);
-    new->spread = malloc(sizeof(double)*xcsf->num_x_vars);
-    memcpy(new->center, from_cond->center, sizeof(double)*xcsf->num_x_vars);
-    memcpy(new->spread, from_cond->spread, sizeof(double)*xcsf->num_x_vars);
+    new->center = malloc(sizeof(double) * xcsf->num_x_vars);
+    new->spread = malloc(sizeof(double) * xcsf->num_x_vars);
+    memcpy(new->center, from_cond->center, sizeof(double) * xcsf->num_x_vars);
+    memcpy(new->spread, from_cond->spread, sizeof(double) * xcsf->num_x_vars);
     to->cond = new;
 }                             
 
-void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x)
+void cond_rectangle_cover(XCSF *xcsf, CL *c, const double *x)
 {
     COND_RECTANGLE *cond = c->cond;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
@@ -83,7 +83,7 @@ void cond_rectangle_cover(XCSF *xcsf, CL *c, double *x)
     }
 }
 
-void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y)
+void cond_rectangle_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)y;
     if(xcsf->COND_ETA > 0) {
@@ -94,7 +94,7 @@ void cond_rectangle_update(XCSF *xcsf, CL *c, double *x, double *y)
     }
 }
 
-_Bool cond_rectangle_match(XCSF *xcsf, CL *c, double *x)
+_Bool cond_rectangle_match(XCSF *xcsf, CL *c, const double *x)
 {
     if(cond_rectangle_dist(xcsf, c, x) < 1) {
         c->m = true;
@@ -105,7 +105,7 @@ _Bool cond_rectangle_match(XCSF *xcsf, CL *c, double *x)
     return c->m;
 }
 
-static double cond_rectangle_dist(XCSF *xcsf, CL *c, double *x)
+static double cond_rectangle_dist(XCSF *xcsf, CL *c, const double *x)
 {
     COND_RECTANGLE *cond = c->cond;
     double dist = 0;
@@ -211,8 +211,8 @@ size_t cond_rectangle_load(XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
-    new->center = malloc(sizeof(double)*xcsf->num_x_vars);
-    new->spread = malloc(sizeof(double)*xcsf->num_x_vars);
+    new->center = malloc(sizeof(double) * xcsf->num_x_vars);
+    new->spread = malloc(sizeof(double) * xcsf->num_x_vars);
     s += fread(new->center, sizeof(double), xcsf->num_x_vars, fp);
     s += fread(new->spread, sizeof(double), xcsf->num_x_vars, fp);
     c->cond = new;

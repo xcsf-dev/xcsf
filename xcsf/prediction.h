@@ -17,7 +17,7 @@
  * @file prediction.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Interface for classifier predictions.
  */ 
 
@@ -52,7 +52,7 @@ struct PredVtbl {
      * @param x The input state.
      * @return The classifier's prediction.
      */
-    double *(*pred_impl_compute)(XCSF *xcsf, CL *c, double *x);
+    double *(*pred_impl_compute)(XCSF *xcsf, CL *c, const double *x);
     /**
      * @brief Copies the prediction from one classifier to another.
      * @param xcsf The XCSF data structure.
@@ -85,7 +85,7 @@ struct PredVtbl {
      * @param x The input state.
      * @param y The payoff value.
      */
-    void (*pred_impl_update)(XCSF *xcsf, CL *c, double *x, double *y);
+    void (*pred_impl_update)(XCSF *xcsf, CL *c, const double *x, const double *y);
     /**
      * @brief Returns the size of the classifier prediction.
      * @param xcsf The XCSF data structure.
@@ -131,7 +131,7 @@ static inline _Bool pred_mutate(XCSF *xcsf, CL *c) {
     return (*c->pred_vptr->pred_impl_mutate)(xcsf, c);
 }
 
-static inline double *pred_compute(XCSF *xcsf, CL *c, double *x) {
+static inline double *pred_compute(XCSF *xcsf, CL *c, const double *x) {
     return (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
 }
 
@@ -151,6 +151,6 @@ static inline void pred_print(XCSF *xcsf, CL *c) {
     (*c->pred_vptr->pred_impl_print)(xcsf, c);
 }
 
-static inline void pred_update(XCSF *xcsf, CL *c, double *x, double *y) {
+static inline void pred_update(XCSF *xcsf, CL *c, const double *x, const double *y) {
     (*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
 }

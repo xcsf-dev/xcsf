@@ -17,7 +17,7 @@
  * @file neural_layer_noise.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief An implementation of a Gaussian noise adding layer.
  */ 
  
@@ -83,7 +83,7 @@ void neural_layer_noise_rand(XCSF *xcsf, LAYER *l)
     (void)xcsf; (void)l;
 }
  
-void neural_layer_noise_forward(XCSF *xcsf, LAYER *l, double *input)
+void neural_layer_noise_forward(XCSF *xcsf, LAYER *l, const double *input)
 {
     if(!xcsf->train) {
         for(int i = 0; i < l->num_inputs; i++) {

@@ -17,7 +17,7 @@
  * @file dgp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief An implementation of dynamical GP graphs with fuzzy activation functions.
  */ 
 
@@ -48,4 +48,4 @@ void graph_init(XCSF *xcsf, GRAPH *dgp, int n);
 void graph_print(XCSF *xcsf, GRAPH *dgp);
 void graph_rand(XCSF *xcsf, GRAPH *dgp);
 void graph_reset(XCSF *xcsf, GRAPH *dgp);
-void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs);
+void graph_update(XCSF *xcsf, GRAPH *dgp, const double *inputs);

@@ -17,7 +17,7 @@
  * @file neural_layer_connected.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief An implementation of a fully-connected layer of perceptrons.
  */ 
  
@@ -26,7 +26,7 @@
 LAYER *neural_layer_connected_init(XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o);
 LAYER *neural_layer_connected_copy(XCSF *xcsf, LAYER *from);
 void neural_layer_connected_rand(XCSF *xcsf, LAYER *l);
-void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input);
+void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, const double *input);
 void neural_layer_connected_backward(XCSF *xcsf, LAYER *l, NET *net);
 void neural_layer_connected_update(XCSF *xcsf, LAYER *l);
 void neural_layer_connected_print(XCSF *xcsf, LAYER *l, _Bool print_weights);

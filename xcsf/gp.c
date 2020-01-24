@@ -17,7 +17,7 @@
  * @file gp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief An implementation of GP trees based upon TinyGP.
  *
  * @details For a more detailed description see: Poli, R., Langdon, W. B., and
@@ -149,7 +149,7 @@ static int tree_grow(XCSF *xcsf, int *buffer, int p, int max, int depth)
  * @param x The input state.
  * @return The result from evaluating the GP tree.
  */
-double tree_eval(XCSF *xcsf, GP_TREE *gp, double *x)
+double tree_eval(XCSF *xcsf, GP_TREE *gp, const double *x)
 {
     int node = gp->tree[(gp->p)++];
     // external input

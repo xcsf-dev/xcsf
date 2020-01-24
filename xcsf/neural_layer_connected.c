@@ -17,7 +17,7 @@
  * @file neural_layer_connected.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief An implementation of a fully-connected layer of perceptrons.
  */ 
 
@@ -123,7 +123,7 @@ void neural_layer_connected_rand(XCSF *xcsf, LAYER *l)
     }
 }
 
-void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, double *input)
+void neural_layer_connected_forward(XCSF *xcsf, LAYER *l, const double *input)
 {
     (void)xcsf;
     for(int i = 0; i < l->num_outputs; i++) {

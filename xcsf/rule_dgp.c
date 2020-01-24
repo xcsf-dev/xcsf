@@ -17,7 +17,7 @@
  * @file rule_dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019.
+ * @date 2019--2020.
  * @brief Dynamical GP graph rule (condition + action) functions.
  */ 
  
@@ -79,17 +79,17 @@ static void rule_dgp_cond_rand(XCSF *xcsf, CL *c)
     graph_rand(xcsf, &cond->dgp);
 }
 
-void rule_dgp_cond_cover(XCSF *xcsf, CL *c, double *x)
+void rule_dgp_cond_cover(XCSF *xcsf, CL *c, const double *x)
 {
     (void)xcsf; (void)c; (void)x;
 }
 
-void rule_dgp_cond_update(XCSF *xcsf, CL *c, double *x, double *y)
+void rule_dgp_cond_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool rule_dgp_cond_match(XCSF *xcsf, CL *c, double *x)
+_Bool rule_dgp_cond_match(XCSF *xcsf, CL *c, const double *x)
 {
     RULE_DGP *cond = c->cond;
     graph_update(xcsf, &cond->dgp, x);
@@ -177,7 +177,7 @@ void rule_dgp_act_rand(XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
 }
   
-void rule_dgp_act_cover(XCSF *xcsf, CL *c, double *x, int action)
+void rule_dgp_act_cover(XCSF *xcsf, CL *c, const double *x, int action)
 {
     do {
         rule_dgp_cond_rand(xcsf, c);
@@ -185,7 +185,7 @@ void rule_dgp_act_cover(XCSF *xcsf, CL *c, double *x, int action)
             && rule_dgp_act_compute(xcsf, c, x) != action);
 }
  
-int rule_dgp_act_compute(XCSF *xcsf, CL *c, double *x)
+int rule_dgp_act_compute(XCSF *xcsf, CL *c, const double *x)
 {
     (void)x; // graph already updated
     RULE_DGP *cond = c->cond;
@@ -199,7 +199,7 @@ int rule_dgp_act_compute(XCSF *xcsf, CL *c, double *x)
     return c->action;
 }                
 
-void rule_dgp_act_update(XCSF *xcsf, CL *c, double *x, double *y)
+void rule_dgp_act_update(XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }

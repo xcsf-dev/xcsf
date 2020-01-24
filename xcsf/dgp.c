@@ -17,7 +17,7 @@
  * @file dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2019.
+ * @date 2016--2020.
  * @brief An implementation of dynamical GP graphs with fuzzy activation functions.
  */ 
 
@@ -34,7 +34,7 @@
 #define NUM_FUNC 3 //!< Number of selectable node functions
 
 static char *function_string(int function);
-static double node_activate(int function, double *inputs, int k);
+static double node_activate(int function, const double *inputs, int k);
 
 /**
  * @brief Initialises a new DGP graph.
@@ -129,7 +129,7 @@ void graph_rand(XCSF *xcsf, GRAPH *dgp)
  * @param dgp The DGP graph to update.
  * @param inputs The inputs to the graph.
  */
-void graph_update(XCSF *xcsf, GRAPH *dgp, double *inputs)
+void graph_update(XCSF *xcsf, GRAPH *dgp, const double *inputs)
 {
     if(xcsf->RESET_STATES) {
         graph_reset(xcsf, dgp);
@@ -299,7 +299,7 @@ _Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
  * @param k The number of inputs to the activation function.
  * @return The result from applying the activation function.
  */
-static double node_activate(int function, double *inputs, int k)
+static double node_activate(int function, const double *inputs, int k)
 {
     double state = 0;
     switch(function)
