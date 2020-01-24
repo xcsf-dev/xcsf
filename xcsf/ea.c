@@ -35,11 +35,11 @@
 #define EA_SELECT_ROULETTE 0
 #define EA_SELECT_TOURNAMENT 1
 
-static CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum);
-static CL *ea_select_tournament(XCSF *xcsf, SET *set);
-static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set);
-static void ea_select_parents(XCSF *xcsf, SET *set, CL **c1p, CL **c2p);
-static void ea_init_offspring(XCSF *xcsf, CL *c1p, CL *c2p, CL *c1, CL *c2, _Bool cmod);
+static CL *ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum);
+static CL *ea_select_tournament(const XCSF *xcsf, const SET *set);
+static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set);
+static void ea_select_parents(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p);
+static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2, _Bool cmod);
 static void ea_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod);
 
 /**
@@ -92,7 +92,7 @@ void ea(XCSF *xcsf, SET *set, SET *kset)
  * @param c2 The second offspring classifier to initialise.
  * @param cmod Whether crossover modified the offspring.
  */
-static void ea_init_offspring(XCSF *xcsf, CL *c1p, CL *c2p, CL *c1, CL *c2, _Bool cmod)
+static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2, _Bool cmod)
 {
     if(cmod) {
         c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err)/2.0);
@@ -143,7 +143,7 @@ static void ea_add(XCSF *xcsf, SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _
  * @param c2p Second parent classifier.
  * @param set The set in which the EA is being run.
  */
-static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set)
+static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
 {
     // check if either parent subsumes the offspring
     if(cl_subsumer(xcsf, c1p) && cl_general(xcsf, c1p, c)) {
@@ -186,7 +186,7 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, SET *set)
  * @param c1p First parent classifier (set by this function).
  * @param c2p Second parent classifier (set by this function).
  */
-static void ea_select_parents(XCSF *xcsf, SET *set, CL **c1p, CL **c2p)
+static void ea_select_parents(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p)
 {
     if(xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
         double fit_sum = clset_total_fit(xcsf, set);
@@ -206,7 +206,7 @@ static void ea_select_parents(XCSF *xcsf, SET *set, CL **c1p, CL **c2p)
  * @param fit_sum The sum of all the fitnesses in the set.
  * @return A pointer to the selected classifier.
  */
-static CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum)
+static CL *ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum)
 {
     (void)xcsf;
     double p = rand_uniform(0, fit_sum);
@@ -225,7 +225,7 @@ static CL *ea_select_rw(XCSF *xcsf, SET *set, double fit_sum)
  * @param set The set to select from.
  * @return A pointer to the selected classifier.
  */
-static CL *ea_select_tournament(XCSF *xcsf, SET *set)
+static CL *ea_select_tournament(const XCSF *xcsf, const SET *set)
 {
     CL *winner = NULL; 
     while(winner == NULL) {

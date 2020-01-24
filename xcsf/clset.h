@@ -36,7 +36,7 @@ void clset_action(const XCSF *xcsf, const SET *mset, SET *aset, int action);
 void clset_add(const XCSF *xcsf, SET *set, CL *c);
 void clset_free(const XCSF *xcsf, SET *set);
 void clset_init(const XCSF *xcsf, SET *set);
-void clset_kill(XCSF *xcsf, SET *set);
+void clset_kill(const XCSF *xcsf, SET *set);
 void clset_match(XCSF *xcsf, SET *mset, SET *kset, const double *x);
 void clset_pop_enforce_limit(XCSF *xcsf, SET *kset);
 void clset_pop_init(XCSF *xcsf);

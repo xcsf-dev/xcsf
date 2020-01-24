@@ -563,7 +563,7 @@ void clset_free(const XCSF *xcsf, SET *set)
  * @param xcsf The XCSF data structure.
  * @param set The set to free.
  */ 
-void clset_kill(XCSF *xcsf, SET *set)
+void clset_kill(const XCSF *xcsf, SET *set)
 {
     CLIST *iter = set->list;
     while(iter != NULL) {
