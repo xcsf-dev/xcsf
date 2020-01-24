@@ -17,7 +17,7 @@
  * @file utils.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Utility functions for random number handling, etc.
  */ 
  
@@ -38,7 +38,7 @@ static double drand();
 void random_init()
 {
     time_t now = time(0);
-    unsigned char *p = (unsigned char *)&now;
+    const unsigned char *p = (unsigned char *)&now;
     unsigned seed = 0;
     for(size_t i = 0; i < sizeof(now); i++) {
         seed = (seed * (UCHAR_MAX + 2U)) + p[i];
