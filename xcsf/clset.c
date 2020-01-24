@@ -509,7 +509,7 @@ double clset_total_fit(const XCSF *xcsf, const SET *set)
 {
     (void)xcsf;
     double sum = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += iter->cl->fit;
     }
     return sum;
@@ -525,7 +525,7 @@ static double clset_total_time(const XCSF *xcsf, const SET *set)
 {
     (void)xcsf;
     double sum = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += iter->cl->time * iter->cl->num;
     }
     return sum;
@@ -585,7 +585,7 @@ size_t clset_pop_save(const XCSF *xcsf, FILE *fp)
     size_t s = 0;
     s += fwrite(&xcsf->pset.size, sizeof(int), 1, fp);
     s += fwrite(&xcsf->pset.num, sizeof(int), 1, fp);
-    for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         s += cl_save(xcsf, iter->cl, fp);
     }
     return s;
@@ -635,7 +635,7 @@ double clset_mean_mut(const XCSF *xcsf, const SET *set, int m)
     // return the average classifier mutation rate
     double sum = 0;
     int cnt = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += cl_mutation_rate(xcsf, iter->cl, m);
         cnt++;
     }
@@ -652,7 +652,7 @@ double clset_mean_cond_size(const XCSF *xcsf, const SET *set)
 {
     int sum = 0;
     int cnt = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += cl_cond_size(xcsf, iter->cl);
         cnt++;
     }
@@ -669,7 +669,7 @@ double clset_mean_pred_size(const XCSF *xcsf, const SET *set)
 {
     int sum = 0;
     int cnt = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += cl_pred_size(xcsf, iter->cl);
         cnt++;
     }
@@ -687,7 +687,7 @@ double clset_mean_inputs_matched(const XCSF *xcsf, const SET *set)
     (void)xcsf;
     double sum = 0;
     int cnt = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         if(iter->cl->exp > 0) {
             sum += iter->cl->mfrac;
             cnt++;
@@ -707,7 +707,7 @@ double clset_mean_eta(const XCSF *xcsf, const SET *set, int layer)
 {
     double sum = 0;
     int cnt = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += pred_neural_eta(xcsf, iter->cl, layer);
         cnt++;
     }
