@@ -39,7 +39,7 @@
 
 /**
  * @brief Initialises an empty neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to initialise.
  */
 void neural_init(const XCSF *xcsf, NET *net)
@@ -54,7 +54,7 @@ void neural_init(const XCSF *xcsf, NET *net)
 
 /**
  * @brief Inserts a layer into a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network receiving the layer.
  * @param l The layer to insert.
  * @param p The position in the network to insert the layer.
@@ -107,7 +107,7 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
 
 /**
  * @brief Removes a layer from a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network removing the layer.
  * @param p The position of the layer in the network to be removed.
  */
@@ -144,7 +144,7 @@ void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
 
 /**
  * @brief Copies a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param to The destination neural network.
  * @param from The source neural network.
  */
@@ -162,7 +162,7 @@ void neural_copy(const XCSF *xcsf, NET *to, const NET *from)
 
 /**
  * @brief Frees a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to free.
  */
 void neural_free(const XCSF *xcsf, NET *net)
@@ -180,7 +180,7 @@ void neural_free(const XCSF *xcsf, NET *net)
 
 /**
  * @brief Randomises the layers within a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to randomise.
  */
 void neural_rand(const XCSF *xcsf, NET *net)
@@ -192,7 +192,7 @@ void neural_rand(const XCSF *xcsf, NET *net)
 
 /**
  * @brief Mutates a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to mutate.
  * @return Whether any alterations were made.
  */
@@ -216,7 +216,7 @@ _Bool neural_mutate(const XCSF *xcsf, NET *net)
 
 /**
  * @brief Forward propagates a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to propagate.
  * @param input The input state.
  */
@@ -230,7 +230,7 @@ void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
 
 /**
  * @brief Performs a gradient descent update on a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to be updated.
  * @param truth The desired network output.
  * @param input The input state.
@@ -274,7 +274,7 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
 
 /**
  * @brief Returns the output of a specified neuron in the output layer of a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to output.
  * @param i Which neuron in the output layer to return.
  * @return The output of the specified neuron.
@@ -292,7 +292,7 @@ double neural_output(const XCSF *xcsf, const NET *net, int i)
 
 /**
  * @brief Prints a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to print.
  * @param print_weights Whether to print the weights in each layer.
  */
@@ -308,7 +308,7 @@ void neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
 
 /**
  * @brief Returns the total number of neurons in a neural network.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to calculate the number of neurons.
  * @return The total number of neurons.
  */
@@ -324,7 +324,7 @@ int neural_size(const XCSF *xcsf, const NET *net)
 
 /**
  * @brief Writes a neural network to a binary file.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to save.
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
@@ -344,7 +344,7 @@ size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
 
 /**
  * @brief Reads a neural network from a binary file.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param net The neural network to load.
  * @param fp Pointer to the file to be read.
  * @return The number of elements read.

@@ -190,7 +190,7 @@ void rule_neural_act_init(const XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
 }
 
-void rule_neural_act_free(const XCSF *xcsf, CL *c)
+void rule_neural_act_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf; (void)c;
 }

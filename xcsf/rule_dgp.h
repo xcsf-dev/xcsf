@@ -62,7 +62,7 @@ _Bool rule_dgp_act_mutate(const XCSF *xcsf, CL *c);
 int rule_dgp_act_compute(const XCSF *xcsf, CL *c, const double *x);
 void rule_dgp_act_copy(const XCSF *xcsf, CL *to, const CL *from);
 void rule_dgp_act_cover(const XCSF *xcsf, CL *c, const double *x, int action);
-void rule_dgp_act_free(const XCSF *xcsf, CL *c);
+void rule_dgp_act_free(const XCSF *xcsf, const CL *c);
 void rule_dgp_act_init(const XCSF *xcsf, CL *c);
 void rule_dgp_act_print(const XCSF *xcsf, const CL *c);
 void rule_dgp_act_rand(const XCSF *xcsf, CL *c);

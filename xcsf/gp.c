@@ -47,7 +47,7 @@ static int tree_traverse(int *tree, int p);
 
 /**
  * @brief Initialises the constants shared among all GP trees.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  */
 void tree_init_cons(XCSF *xcsf)
 {
@@ -59,7 +59,7 @@ void tree_init_cons(XCSF *xcsf)
 
 /**
  * @brief Frees the constants shared among all GP trees.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  */
 void tree_free_cons(XCSF *xcsf)
 {
@@ -68,7 +68,7 @@ void tree_free_cons(XCSF *xcsf)
 
 /**
  * @brief Creates a random GP tree.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param gp The GP tree being randomised.
  */
 void tree_rand(const XCSF *xcsf, GP_TREE *gp)
@@ -84,7 +84,7 @@ void tree_rand(const XCSF *xcsf, GP_TREE *gp)
 
 /**
  * @brief Frees a GP tree.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param gp The GP tree to free.
  */
 void tree_free(const XCSF *xcsf, GP_TREE *gp)
@@ -95,7 +95,7 @@ void tree_free(const XCSF *xcsf, GP_TREE *gp)
 
 /**
  * @brief Grows a random GP tree of specified max length and depth.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param buffer Buffer to hold the flattened GP tree generated.
  * @param p The position from which to traverse (start at 0).
  * @param max Maximum tree length.
@@ -144,7 +144,7 @@ static int tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth)
 
 /**
  * @brief Evaluates a GP tree.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param gp The GP tree to evaluate.
  * @param x The input state.
  * @return The result from evaluating the GP tree.
@@ -185,7 +185,7 @@ double tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x)
 
 /**
  * @brief Prints a GP tree.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param gp The GP tree to print.
  * @param p The position from which to traverse (start at 0).
  * @return The position after traversal.
@@ -225,7 +225,7 @@ int tree_print(const XCSF *xcsf, const GP_TREE *gp, int p)
 
 /**
  * @brief Copies a GP tree.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param to The destination GP tree.
  * @param from The source GP tree.
  */
@@ -240,7 +240,7 @@ void tree_copy(const XCSF *xcsf, GP_TREE *to, const GP_TREE *from)
 
 /**
  * @brief Performs sub-tree crossover.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param p1 The first GP tree to perform crossover.
  * @param p2 The second GP tree to perform crossover.
  */
@@ -272,7 +272,7 @@ void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
 
 /**
  * @brief Performs point mutation on a GP tree.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param offspring The GP tree to be mutated.
  * @param rate The per allele rate of mutation.
  */
@@ -320,7 +320,7 @@ static int tree_traverse(int *tree, int p)
 
 /**
  * @brief Writes the GP tree to a binary file.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param gp The GP tree to save.
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
@@ -337,7 +337,7 @@ size_t tree_save(const XCSF *xcsf, const GP_TREE *gp, FILE *fp)
 
 /**
  * @brief Reads a GP tree from a binary file.
- * @param xcsf The const XCSF data structure.
+ * @param xcsf The XCSF data structure.
  * @param gp The GP tree to load.
  * @param fp Pointer to the file to be read.
  * @return The number of elements read.

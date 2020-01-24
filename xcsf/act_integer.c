@@ -86,7 +86,7 @@ void act_integer_cover(const XCSF *xcsf, CL *c, const double *x, int action)
     c->action = action;
 }
 
-void act_integer_free(const XCSF *xcsf, CL *c)
+void act_integer_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf; (void)c;
 }

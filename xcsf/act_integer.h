@@ -29,7 +29,7 @@ _Bool act_integer_mutate(const XCSF *xcsf, CL *c);
 int act_integer_compute(const XCSF *xcsf, CL *c, const double *x);
 void act_integer_copy(const XCSF *xcsf, CL *to, const CL *from);
 void act_integer_cover(const XCSF *xcsf, CL *c, const double *x, int action);
-void act_integer_free(const XCSF *xcsf, CL *c);
+void act_integer_free(const XCSF *xcsf, const CL *c);
 void act_integer_init(const XCSF *xcsf, CL *c);
 void act_integer_print(const XCSF *xcsf, const CL *c);
 void act_integer_rand(const XCSF *xcsf, CL *c);

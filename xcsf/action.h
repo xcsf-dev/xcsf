@@ -81,7 +81,7 @@ struct ActVtbl {
      * @param xcsf The XCSF data structure.
      * @param c The classifier whose action is to be freed.
      */
-    void (*act_impl_free)(const XCSF *xcsf, CL *c);
+    void (*act_impl_free)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Initialises a classifier's action.
      * @param xcsf The XCSF data structure.
@@ -158,7 +158,7 @@ static inline void act_cover(const XCSF *xcsf, CL *c, const double *x, int actio
     (*c->act_vptr->act_impl_cover)(xcsf, c, x, action);
 }
 
-static inline void act_free(const XCSF *xcsf, CL *c) {
+static inline void act_free(const XCSF *xcsf, const CL *c) {
     (*c->act_vptr->act_impl_free)(xcsf, c);
 }
 

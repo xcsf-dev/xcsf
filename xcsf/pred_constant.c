@@ -42,7 +42,7 @@ void pred_constant_copy(const XCSF *xcsf, CL *to, const CL *from)
     (void)xcsf; (void)to; (void)from;
 }
 
-void pred_constant_free(const XCSF *xcsf, CL *c)
+void pred_constant_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf; (void)c;
 }

@@ -109,7 +109,7 @@ void pred_rls_copy(const XCSF *xcsf, CL *to, const CL *from)
     }
 }
 
-void pred_rls_free(const XCSF *xcsf, CL *c)
+void pred_rls_free(const XCSF *xcsf, const CL *c)
 {
     PRED_RLS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {

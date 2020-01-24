@@ -96,7 +96,7 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     c->pred = new;
 }
 
-void pred_neural_free(const XCSF *xcsf, CL *c)
+void pred_neural_free(const XCSF *xcsf, const CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     neural_free(xcsf, &pred->net);

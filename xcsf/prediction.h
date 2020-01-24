@@ -65,7 +65,7 @@ struct PredVtbl {
      * @param xcsf The XCSF data structure.
      * @param c The classifier whose prediction is to be freed.
      */
-    void (*pred_impl_free)(const XCSF *xcsf, CL *c);
+    void (*pred_impl_free)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Initialises a classifier's prediction.
      * @param xcsf The XCSF data structure.
@@ -139,7 +139,7 @@ static inline void pred_copy(const XCSF *xcsf, CL *to, const CL *from) {
     (*from->pred_vptr->pred_impl_copy)(xcsf, to, from);
 }
 
-static inline void pred_free(const XCSF *xcsf, CL *c) {
+static inline void pred_free(const XCSF *xcsf, const CL *c) {
     (*c->pred_vptr->pred_impl_free)(xcsf, c);
 }
 

@@ -69,14 +69,14 @@ typedef struct LAYER {
 struct LayerVtbl {
     /**
      * @brief Performs layer mutation.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer to mutate.
      * @return Whether any alterations were made.
      */
     _Bool (*layer_impl_mutate)(const XCSF *xcsf, LAYER *l);
     /**
      * @brief Resizes a layer using the previous layer's inputs
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer to mutate.
      * @param prev The layer prior to the one being mutated.
      * @return Whether any alterations were made.
@@ -84,60 +84,60 @@ struct LayerVtbl {
     void (*layer_impl_resize)(const XCSF *xcsf, LAYER *l, LAYER *prev);
     /**
      * @brief Creates and returns a copy of a specified layer.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param from The source layer.
      * @return A new copied layer.
      */
     LAYER* (*layer_impl_copy)(const XCSF *xcsf, const LAYER *from);
     /**
      * @brief Frees the memory used by the layer.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer to be freed.
      */
     void (*layer_impl_free)(const XCSF *xcsf, LAYER *l);
     /**
      * @brief Randomises a layer.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer to be randomised.
      */
     void (*layer_impl_rand)(const XCSF *xcsf, LAYER *l);
     /**
      * @brief Prints the layer.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer to be printed.
      * @param print_weights Whether to print the weights.
      */
     void (*layer_impl_print)(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
     /**
      * @brief Updates the weights and biases of a layer.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer to be updated.
      */
     void (*layer_impl_update)(const XCSF *xcsf, LAYER *l);
     /**
      * @brief Backward propagates the error through a layer.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer to be backward propagated.
      * @param net The network being backward propagated.
      */
     void (*layer_impl_backward)(const XCSF *xcsf, LAYER *l, NET *net);
     /**
      * @brief Forward propagates an input through the layer.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer to be forward propagated.
      * @param input The input to the layer.
      */
     void (*layer_impl_forward)(const XCSF *xcsf, LAYER *l, const double *input);
     /**
      * @brief Returns the outputs of a layer.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer whose outputs are to be returned.
      * @return The layer outputs.
      */
     double* (*layer_impl_output)(const XCSF *xcsf, const LAYER *l);
     /**
      * @brief Writes the layer to a binary file.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer to be written.
      * @param fp Pointer to the file to be written.
      * @return The number of elements written.
@@ -145,7 +145,7 @@ struct LayerVtbl {
     size_t (*layer_impl_save)(const XCSF *xcsf, const LAYER *l, FILE *fp);
     /**
      * @brief Reads the layer from a binary file.
-     * @param xcsf The const XCSF data structure.
+     * @param xcsf The XCSF data structure.
      * @param l The layer to be read.
      * @param fp Pointer to the file to be read.
      * @return The number of elements read.

@@ -75,7 +75,7 @@ void pred_nlms_copy(const XCSF *xcsf, CL *to, const CL *from)
     }
 }
 
-void pred_nlms_free(const XCSF *xcsf, CL *c)
+void pred_nlms_free(const XCSF *xcsf, const CL *c)
 {
     PRED_NLMS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {
