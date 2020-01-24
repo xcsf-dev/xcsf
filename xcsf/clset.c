@@ -41,7 +41,7 @@ static double clset_total_time(const XCSF *xcsf, const SET *set);
 static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, const double *x, _Bool *act_covered);
 static void clset_pop_del(XCSF *xcsf, SET *kset);
 static void clset_subsumption(XCSF *xcsf, SET *set, SET *kset);
-static void clset_update_fit(const XCSF *xcsf, SET *set);
+static void clset_update_fit(const XCSF *xcsf, const SET *set);
 
 /**
  * @brief Initialises a new population set.
@@ -89,7 +89,7 @@ static void clset_pop_del(XCSF *xcsf, SET *kset)
 {
     double avg_fit = clset_total_fit(xcsf, &xcsf->pset) / xcsf->pset.num;
     double total = 0;
-    for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         total += cl_del_vote(xcsf, iter->cl, avg_fit);
     }
     CLIST *del = NULL;
@@ -251,7 +251,7 @@ static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, const double *x, _Bool
  * @param x The input state.
  * @param p The predictions (set by this function).
  */
-void clset_pred(const XCSF *xcsf, SET *set, const double *x, double *p)
+void clset_pred(const XCSF *xcsf, const SET *set, const double *x, double *p)
 {
     double *presum = calloc(xcsf->num_y_vars, sizeof(double));
     double fitsum = 0;
@@ -298,7 +298,7 @@ void clset_pred(const XCSF *xcsf, SET *set, const double *x, double *p)
  */
 void clset_action(const XCSF *xcsf, const SET *mset, SET *aset, int action)
 {
-    for(CLIST *iter = mset->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = mset->list; iter != NULL; iter = iter->next) {
         if(iter->cl->action == action) {
             clset_add(xcsf, aset, iter->cl);
         }
@@ -315,7 +315,7 @@ void clset_action(const XCSF *xcsf, const SET *mset, SET *aset, int action)
 static _Bool clset_action_covered(const XCSF *xcsf, const SET *set, int action)
 {
     (void)xcsf;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         if(iter->cl->action == action) {
             return true;
         }
@@ -385,20 +385,20 @@ void clset_update(XCSF *xcsf, SET *set, SET *kset, const double *x, const double
  * @param xcsf The XCSF data structure.
  * @param set The set to update.
  */ 
-static void clset_update_fit(const XCSF *xcsf, SET *set)
+static void clset_update_fit(const XCSF *xcsf, const SET *set)
 {
     double acc_sum = 0;
     double accs[set->size];
     // calculate accuracies
     int i = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         accs[i] = cl_acc(xcsf, iter->cl);
         acc_sum += accs[i] * iter->cl->num;
         i++;
     }
     // update fitnesses
     i = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         cl_update_fit(xcsf, iter->cl, acc_sum, accs[i]);
         i++;
     }
@@ -413,7 +413,7 @@ static void clset_update_fit(const XCSF *xcsf, SET *set)
 static void clset_subsumption(XCSF *xcsf, SET *set, SET *kset)
 {
     CL *s = NULL;
-    CLIST *iter;
+    const CLIST *iter;
     // find the most general subsumer in the set
     for(iter = set->list; iter != NULL; iter = iter->next) {
         CL *c = iter->cl;
@@ -482,7 +482,7 @@ void clset_validate(const XCSF *xcsf, SET *set)
  */
 void clset_print(const XCSF *xcsf, const SET *set, _Bool printc, _Bool printa, _Bool printp)
 {
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         cl_print(xcsf, iter->cl, printc, printa, printp);
     }
 }
@@ -492,9 +492,9 @@ void clset_print(const XCSF *xcsf, const SET *set, _Bool printc, _Bool printa, _
  * @param xcsf The XCSF data structure.
  * @param set The set to update the time stamps.
  */
-void clset_set_times(const XCSF *xcsf, SET *set)
+void clset_set_times(const XCSF *xcsf, const SET *set)
 {
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         iter->cl->time = xcsf->time;
     }
 }
