@@ -17,7 +17,7 @@
  * @file env_maze.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief The discrete maze problem environment module.
  */
     
@@ -27,7 +27,7 @@ _Bool env_maze_isreset(XCSF *xcsf);
 _Bool env_maze_multistep(XCSF *xcsf);
 double env_maze_execute(XCSF *xcsf, int action);
 double env_maze_maxpayoff(XCSF *xcsf);
-double *env_maze_get_state(XCSF *xcsf);
+const double *env_maze_get_state(XCSF *xcsf);
 void env_maze_free(XCSF *xcsf);
 void env_maze_init(XCSF *xcsf, char *filename);
 void env_maze_reset(XCSF *xcsf);

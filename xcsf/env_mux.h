@@ -17,7 +17,7 @@
  * @file env_mux.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief The real multiplexer problem environment.
  */ 
 
@@ -27,7 +27,7 @@ _Bool env_mux_isreset(XCSF *xcsf);
 _Bool env_mux_multistep(XCSF *xcsf);
 double env_mux_execute(XCSF *xcsf, int action);
 double env_mux_maxpayoff(XCSF *xcsf);
-double *env_mux_get_state(XCSF *xcsf);
+const double *env_mux_get_state(XCSF *xcsf);
 void env_mux_free(XCSF *xcsf);
 void env_mux_init(XCSF *xcsf, int bits);
 void env_mux_reset(XCSF *xcsf);

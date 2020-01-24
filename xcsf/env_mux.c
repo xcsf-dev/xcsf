@@ -17,7 +17,7 @@
  * @file env_mux.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief The real multiplexer problem environment.
  *
  * @details Generates random real vectors of length k+pow(2,k) where the
@@ -87,7 +87,7 @@ void env_mux_free(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return A random multiplexer problem.
  */
-double *env_mux_get_state(XCSF *xcsf)
+const double *env_mux_get_state(XCSF *xcsf)
 {
     ENV_MUX *env = xcsf->env;
     for(int i = 0; i < xcsf->num_x_vars; i++) {

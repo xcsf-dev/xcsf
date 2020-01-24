@@ -17,7 +17,7 @@
  * @file env_csv.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief CSV input file handling functions.
  */ 
  
@@ -35,7 +35,7 @@ _Bool env_csv_isreset(XCSF *xcsf);
 _Bool env_csv_multistep(XCSF *xcsf);
 double env_csv_execute(XCSF *xcsf, int action);
 double env_csv_maxpayoff(XCSF *xcsf);
-double *env_csv_get_state(XCSF *xcsf);
+const double *env_csv_get_state(XCSF *xcsf);
 void env_csv_free(XCSF *xcsf);
 void env_csv_init(XCSF *xcsf, char *filename);
 void env_csv_reset(XCSF *xcsf);

@@ -84,7 +84,7 @@ static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore)
     clset_init(xcsf, &aset);
     clset_init(xcsf, &kset);
     xcsf->train = explore;
-    double *x = env_get_state(xcsf);
+    const double *x = env_get_state(xcsf);
     int action = xcs_single_decision(xcsf, &mset, &kset, x);
     double reward = env_execute(xcsf, action);
     if(reward > 0) {

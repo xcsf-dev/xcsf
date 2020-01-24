@@ -17,7 +17,7 @@
  * @file env.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Built-in problem environment interface.
  */ 
 
@@ -60,7 +60,7 @@ struct EnvVtbl {
      * @param xcsf The XCSF data structure.
      * @return The current perceptions.
      */
-    double *(*env_impl_get_state)(XCSF *xcsf);
+    const double *(*env_impl_get_state)(XCSF *xcsf);
     /**
      * @brief Frees the environment.
      * @param xcsf The XCSF data structure.
@@ -89,7 +89,7 @@ static inline double env_max_payoff(XCSF *xcsf) {
     return (*xcsf->env_vptr->env_impl_max_payoff)(xcsf);
 }
 
-static inline double *env_get_state(XCSF *xcsf) {
+static inline const double *env_get_state(XCSF *xcsf) {
     return (*xcsf->env_vptr->env_impl_get_state)(xcsf);
 }
 

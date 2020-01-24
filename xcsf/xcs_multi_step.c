@@ -91,7 +91,7 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
         clset_init(xcsf, &mset);
         clset_init(xcsf, &aset);
         // percieve environment
-        double *state = env_get_state(xcsf);
+        const double *state = env_get_state(xcsf);
         // generate match set
         clset_match(xcsf, &mset, &kset, state);
         xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;

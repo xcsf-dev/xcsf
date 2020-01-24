@@ -172,7 +172,7 @@ _Bool env_maze_isreset(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return The current animat perceptions.
  */
-double *env_maze_get_state(XCSF *xcsf)
+const double *env_maze_get_state(XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     int spos = 0;
