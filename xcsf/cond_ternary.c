@@ -74,7 +74,7 @@ static void cond_ternary_rand(const XCSF *xcsf, CL *c)
     }
 }
 
-void cond_ternary_free(const XCSF *xcsf, CL *c)
+void cond_ternary_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     COND_TERNARY *cond = c->cond;

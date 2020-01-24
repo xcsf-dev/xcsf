@@ -56,7 +56,7 @@ void rule_dgp_cond_init(const XCSF *xcsf, CL *c)
     c->cond = new;
 }
 
-void rule_dgp_cond_free(const XCSF *xcsf, CL *c)
+void rule_dgp_cond_free(const XCSF *xcsf, const CL *c)
 {
     RULE_DGP *cond = c->cond;
     graph_free(xcsf, &cond->dgp);

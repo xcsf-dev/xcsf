@@ -80,7 +80,7 @@ struct CondVtbl {
      * @param xcsf The XCSF data structure.
      * @param c The classifier whose condition is to be freed.
      */
-    void (*cond_impl_free)(const XCSF *xcsf, CL *c);
+    void (*cond_impl_free)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Initialises a classifier's condition.
      * @param xcsf The XCSF data structure.
@@ -166,7 +166,7 @@ static inline void cond_cover(const XCSF *xcsf, CL *c, const double *x) {
     (*c->cond_vptr->cond_impl_cover)(xcsf, c, x);
 }
 
-static inline void cond_free(const XCSF *xcsf, CL *c) {
+static inline void cond_free(const XCSF *xcsf, const CL *c) {
     (*c->cond_vptr->cond_impl_free)(xcsf, c);
 }
 

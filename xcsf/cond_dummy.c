@@ -37,7 +37,7 @@ void cond_dummy_init(const XCSF *xcsf, CL *c)
 	(void)xcsf; (void)c;
 }
 
-void cond_dummy_free(const XCSF *xcsf, CL *c)
+void cond_dummy_free(const XCSF *xcsf, const CL *c)
 {
 	(void)xcsf; (void)c;
 }

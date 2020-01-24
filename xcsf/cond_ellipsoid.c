@@ -54,7 +54,7 @@ void cond_ellipsoid_init(const XCSF *xcsf, CL *c)
     c->cond = new;
 }
 
-void cond_ellipsoid_free(const XCSF *xcsf, CL *c)
+void cond_ellipsoid_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     COND_ELLIPSOID *cond = c->cond;

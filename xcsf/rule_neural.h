@@ -29,7 +29,7 @@ _Bool rule_neural_cond_match(const XCSF *xcsf, CL *c, const double *x);
 _Bool rule_neural_cond_mutate(const XCSF *xcsf, CL *c);
 void rule_neural_cond_copy(const XCSF *xcsf, CL *to, const CL *from);
 void rule_neural_cond_cover(const XCSF *xcsf, CL *c, const double *x);
-void rule_neural_cond_free(const XCSF *xcsf, CL *c);
+void rule_neural_cond_free(const XCSF *xcsf, const CL *c);
 void rule_neural_cond_init(const XCSF *xcsf, CL *c);
 void rule_neural_cond_print(const XCSF *xcsf, const CL *c);
 void rule_neural_cond_update(const XCSF *xcsf, CL *c, const double *x, const double *y);

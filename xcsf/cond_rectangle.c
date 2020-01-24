@@ -54,7 +54,7 @@ void cond_rectangle_init(const XCSF *xcsf, CL *c)
     c->cond = new;     
 }
 
-void cond_rectangle_free(const XCSF *xcsf, CL *c)
+void cond_rectangle_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     COND_RECTANGLE *cond = c->cond;

@@ -49,7 +49,7 @@ void cond_gp_init(const XCSF *xcsf, CL *c)
     c->cond = new;
 }
 
-void cond_gp_free(const XCSF *xcsf, CL *c)
+void cond_gp_free(const XCSF *xcsf, const CL *c)
 {
     COND_GP *cond = c->cond;
     tree_free(xcsf, &cond->gp);

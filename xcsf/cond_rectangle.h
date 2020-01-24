@@ -29,7 +29,7 @@ _Bool cond_rectangle_match(const XCSF *xcsf, CL *c, const double *x);
 _Bool cond_rectangle_mutate(const XCSF *xcsf, CL *c);
 void cond_rectangle_copy(const XCSF *xcsf, CL *to, const CL *from);
 void cond_rectangle_cover(const XCSF *xcsf, CL *c, const double *x);
-void cond_rectangle_free(const XCSF *xcsf, CL *c);
+void cond_rectangle_free(const XCSF *xcsf, const CL *c);
 void cond_rectangle_init(const XCSF *xcsf, CL *c);
 void cond_rectangle_print(const XCSF *xcsf, const CL *c);
 void cond_rectangle_update(const XCSF *xcsf, CL *c, const double *x, const double *y);

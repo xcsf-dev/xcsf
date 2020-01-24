@@ -29,7 +29,7 @@ _Bool cond_ternary_match(const XCSF *xcsf, CL *c, const double *x);
 _Bool cond_ternary_mutate(const XCSF *xcsf, CL *c);
 void cond_ternary_copy(const XCSF *xcsf, CL *to, const CL *from);
 void cond_ternary_cover(const XCSF *xcsf, CL *c, const double *x);
-void cond_ternary_free(const XCSF *xcsf, CL *c);
+void cond_ternary_free(const XCSF *xcsf, const CL *c);
 void cond_ternary_init(const XCSF *xcsf, CL *c);
 void cond_ternary_print(const XCSF *xcsf, const CL *c);
 void cond_ternary_update(const XCSF *xcsf, CL *c, const double *x, const double *y);

@@ -90,7 +90,7 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
     c->cond = new;
 }
 
-void cond_neural_free(const XCSF *xcsf, CL *c)
+void cond_neural_free(const XCSF *xcsf, const CL *c)
 {
     COND_NEURAL *cond = c->cond;
     neural_free(xcsf, &cond->net);
