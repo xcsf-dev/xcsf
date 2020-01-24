@@ -68,7 +68,7 @@ void cl_init(const XCSF *xcsf, CL *c, int size, int time)
  * @param to The destination classifier.
  * @param from The source classifier.
  */
-void cl_copy(const XCSF *xcsf, CL *to, CL *from)
+void cl_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     to->cond_vptr = from->cond_vptr;
     to->pred_vptr = from->pred_vptr;
@@ -120,7 +120,7 @@ void cl_rand(const XCSF *xcsf, CL *c)
  * @param avg_fit The population mean fitness.
  * @return The classifier's deletion vote. 
  */
-double cl_del_vote(const XCSF *xcsf, CL *c, double avg_fit)
+double cl_del_vote(const XCSF *xcsf, const CL *c, double avg_fit)
 {
     if(c->exp > xcsf->THETA_DEL && c->fit / c->num < xcsf->DELTA * avg_fit) {
         return c->size * c->num * avg_fit / (c->fit / c->num);
@@ -134,7 +134,7 @@ double cl_del_vote(const XCSF *xcsf, CL *c, double avg_fit)
  * @param c The classifier.
  * @return The classifier's accuracy. 
  */
-double cl_acc(const XCSF *xcsf, CL *c)
+double cl_acc(const XCSF *xcsf, const CL *c)
 {
     if(c->err > xcsf->EPS_0) {
         return xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
@@ -243,7 +243,7 @@ void cl_free(const XCSF *xcsf, CL *c)
  * @param printa Whether to print the action.
  * @param printp Whether to print the prediction.
  */
-void cl_print(const XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp)
+void cl_print(const XCSF *xcsf, const CL *c, _Bool printc, _Bool printa, _Bool printp)
 {
     if(printc || printa || printp) {
         printf("***********************************************\n");
@@ -287,7 +287,7 @@ _Bool cl_match(const XCSF *xcsf, CL *c, const double *x)
  * @param c The classifier to match.
  * @return Whether the classifier matched the most recent input.
  */  
-_Bool cl_m(const XCSF *xcsf, CL *c)
+_Bool cl_m(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     return c->m;
@@ -325,7 +325,7 @@ const double *cl_predict(const XCSF *xcsf, CL *c, const double *x)
  * @param c The classifier to print.
  * @return Whether the classifier is an eligible subsumer.
  */
-_Bool cl_subsumer(const XCSF *xcsf, CL *c)
+_Bool cl_subsumer(const XCSF *xcsf, const CL *c)
 {
     if(c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
         return true;
@@ -340,7 +340,7 @@ _Bool cl_subsumer(const XCSF *xcsf, CL *c)
  * @param c2 The classifier tested to be more specific.
  * @return Whether c1 is more general than c2.
  */
-_Bool cl_general(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cl_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     if(cond_general(xcsf, c1, c2)) {
         return act_general(xcsf, c1, c2);
@@ -402,7 +402,7 @@ _Bool cl_crossover(const XCSF *xcsf, CL *c1, CL *c2)
  * @param m Which mutation rate to return.
  * @return The current mutation rate.
  */
-double cl_mutation_rate(const XCSF *xcsf, CL *c, int m)
+double cl_mutation_rate(const XCSF *xcsf, const CL *c, int m)
 {
     (void)xcsf;
     return c->mu[m];
@@ -414,7 +414,7 @@ double cl_mutation_rate(const XCSF *xcsf, CL *c, int m)
  * @param c The classifier whose condition size to return.
  * @return The size of the condition.
  */
-int cl_cond_size(const XCSF *xcsf, CL *c)
+int cl_cond_size(const XCSF *xcsf, const CL *c)
 {
     return cond_size(xcsf, c);
 }
@@ -425,7 +425,7 @@ int cl_cond_size(const XCSF *xcsf, CL *c)
  * @param c The classifier whose prediction size to return.
  * @return The size of the prediction.
  */
-int cl_pred_size(const XCSF *xcsf, CL *c)
+int cl_pred_size(const XCSF *xcsf, const CL *c)
 {
     return pred_size(xcsf, c);
 }
@@ -437,7 +437,7 @@ int cl_pred_size(const XCSF *xcsf, CL *c)
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-size_t cl_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t cl_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(c->mu, sizeof(double), xcsf->SAM_NUM, fp);
