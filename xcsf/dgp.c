@@ -60,7 +60,7 @@ void graph_init(const XCSF *xcsf, GRAPH *dgp, int n)
  * @param to The destination DGP graph.
  * @param from The source DGP graph.
  */
-void graph_copy(const XCSF *xcsf, GRAPH *to, GRAPH *from)
+void graph_copy(const XCSF *xcsf, GRAPH *to, const GRAPH *from)
 { 	
     (void)xcsf;
     to->t = from->t;
@@ -79,7 +79,7 @@ void graph_copy(const XCSF *xcsf, GRAPH *to, GRAPH *from)
  * @param i Which node within the graph to output.
  * @return The current state of the specified node.
  */
-double graph_output(const XCSF *xcsf, GRAPH *dgp, int i)
+double graph_output(const XCSF *xcsf, const GRAPH *dgp, int i)
 {
     (void)xcsf;
     return dgp->state[i];
@@ -160,7 +160,7 @@ void graph_update(const XCSF *xcsf, GRAPH *dgp, const double *inputs)
  * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to print.
  */
-void graph_print(const XCSF *xcsf, GRAPH *dgp)
+void graph_print(const XCSF *xcsf, const GRAPH *dgp)
 {
     printf("Graph: N=%d; T=%d\n", dgp->n, dgp->t);
     for(int i = 0; i < dgp->n; i++) {
@@ -351,7 +351,7 @@ static char *function_string(int function)
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-size_t graph_save(const XCSF *xcsf, GRAPH *dgp, FILE *fp)
+size_t graph_save(const XCSF *xcsf, const GRAPH *dgp, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;

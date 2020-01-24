@@ -39,13 +39,13 @@ typedef struct GRAPH {
 
 _Bool graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
 _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp);
-double graph_output(const XCSF *xcsf, GRAPH *dgp, int i);
+double graph_output(const XCSF *xcsf, const GRAPH *dgp, int i);
 size_t graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp);
-size_t graph_save(const XCSF *xcsf, GRAPH *dgp, FILE *fp);
-void graph_copy(const XCSF *xcsf, GRAPH *to, GRAPH *from);
+size_t graph_save(const XCSF *xcsf, const GRAPH *dgp, FILE *fp);
+void graph_copy(const XCSF *xcsf, GRAPH *to, const GRAPH *from);
 void graph_free(const XCSF *xcsf, GRAPH *dgp);
 void graph_init(const XCSF *xcsf, GRAPH *dgp, int n);
-void graph_print(const XCSF *xcsf, GRAPH *dgp);
+void graph_print(const XCSF *xcsf, const GRAPH *dgp);
 void graph_rand(const XCSF *xcsf, GRAPH *dgp);
 void graph_reset(const XCSF *xcsf, GRAPH *dgp);
 void graph_update(const XCSF *xcsf, GRAPH *dgp, const double *inputs);

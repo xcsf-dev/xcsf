@@ -148,7 +148,7 @@ void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
  * @param to The destination neural network.
  * @param from The source neural network.
  */
-void neural_copy(const XCSF *xcsf, NET *to, NET *from)
+void neural_copy(const XCSF *xcsf, NET *to, const NET *from)
 {
     neural_init(xcsf, to);
     int p = 0;
@@ -279,7 +279,7 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
  * @param i Which neuron in the output layer to return.
  * @return The output of the specified neuron.
  */
-double neural_output(const XCSF *xcsf, NET *net, int i)
+double neural_output(const XCSF *xcsf, const NET *net, int i)
 {
     if(i < net->num_outputs) {
         double *output = layer_output(xcsf, net->head->layer);
@@ -296,7 +296,7 @@ double neural_output(const XCSF *xcsf, NET *net, int i)
  * @param net The neural network to print.
  * @param print_weights Whether to print the weights in each layer.
  */
-void neural_print(const XCSF *xcsf, NET *net, _Bool print_weights)
+void neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
 {
     int i = 0;
     for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -312,7 +312,7 @@ void neural_print(const XCSF *xcsf, NET *net, _Bool print_weights)
  * @param net The neural network to calculate the number of neurons.
  * @return The total number of neurons.
  */
-int neural_size(const XCSF *xcsf, NET *net)
+int neural_size(const XCSF *xcsf, const NET *net)
 {
     (void)xcsf;
     int size = 0;
@@ -329,7 +329,7 @@ int neural_size(const XCSF *xcsf, NET *net)
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-size_t neural_save(const XCSF *xcsf, NET *net, FILE *fp)
+size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&net->num_layers, sizeof(int), 1, fp);

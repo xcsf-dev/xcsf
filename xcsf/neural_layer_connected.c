@@ -75,7 +75,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     return l;
 }
 
-LAYER *neural_layer_connected_copy(const XCSF *xcsf, LAYER *from)
+LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *from)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
@@ -351,13 +351,13 @@ static _Bool mutate_functions(const XCSF *xcsf, LAYER *l)
     return false;
 }
 
-double *neural_layer_connected_output(const XCSF *xcsf, LAYER *l)
+double *neural_layer_connected_output(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
     return l->output;
 }
 
-void neural_layer_connected_print(const XCSF *xcsf, LAYER *l, _Bool print_weights)
+void neural_layer_connected_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
 {
     (void)xcsf;
     printf("connected %s eta=%.5f, in = %d, out = %d, ",
@@ -377,7 +377,7 @@ void neural_layer_connected_print(const XCSF *xcsf, LAYER *l, _Bool print_weight
     printf("\n");
 }
 
-size_t neural_layer_connected_save(const XCSF *xcsf, LAYER *l, FILE *fp)
+size_t neural_layer_connected_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;

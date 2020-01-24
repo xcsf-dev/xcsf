@@ -88,7 +88,7 @@ struct LayerVtbl {
      * @param from The source layer.
      * @return A new copied layer.
      */
-    LAYER* (*layer_impl_copy)(const XCSF *xcsf, LAYER *from);
+    LAYER* (*layer_impl_copy)(const XCSF *xcsf, const LAYER *from);
     /**
      * @brief Frees the memory used by the layer.
      * @param xcsf The const XCSF data structure.
@@ -107,7 +107,7 @@ struct LayerVtbl {
      * @param l The layer to be printed.
      * @param print_weights Whether to print the weights.
      */
-    void (*layer_impl_print)(const XCSF *xcsf, LAYER *l, _Bool print_weights);
+    void (*layer_impl_print)(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
     /**
      * @brief Updates the weights and biases of a layer.
      * @param xcsf The const XCSF data structure.
@@ -134,7 +134,7 @@ struct LayerVtbl {
      * @param l The layer whose outputs are to be returned.
      * @return The layer outputs.
      */
-    double* (*layer_impl_output)(const XCSF *xcsf, LAYER *l);
+    double* (*layer_impl_output)(const XCSF *xcsf, const LAYER *l);
     /**
      * @brief Writes the layer to a binary file.
      * @param xcsf The const XCSF data structure.
@@ -142,7 +142,7 @@ struct LayerVtbl {
      * @param fp Pointer to the file to be written.
      * @return The number of elements written.
      */
-    size_t (*layer_impl_save)(const XCSF *xcsf, LAYER *l, FILE *fp);
+    size_t (*layer_impl_save)(const XCSF *xcsf, const LAYER *l, FILE *fp);
     /**
      * @brief Reads the layer from a binary file.
      * @param xcsf The const XCSF data structure.
@@ -153,7 +153,7 @@ struct LayerVtbl {
     size_t (*layer_impl_load)(const XCSF *xcsf, LAYER *l, FILE *fp);
 };
 
-static inline size_t layer_save(const XCSF *xcsf, LAYER *l, FILE *fp) {
+static inline size_t layer_save(const XCSF *xcsf, const LAYER *l, FILE *fp) {
     return (*l->layer_vptr->layer_impl_save)(xcsf, l, fp);
 }
 
@@ -161,7 +161,7 @@ static inline size_t layer_load(const XCSF *xcsf, LAYER *l, FILE *fp) {
     return (*l->layer_vptr->layer_impl_load)(xcsf, l, fp);
 }
 
-static inline double* layer_output(const XCSF *xcsf, LAYER *l) {
+static inline double* layer_output(const XCSF *xcsf, const LAYER *l) {
     return (*l->layer_vptr->layer_impl_output)(xcsf, l);
 }
 
@@ -185,7 +185,7 @@ static inline void layer_resize(const XCSF *xcsf, LAYER *l, LAYER *prev) {
     (*l->layer_vptr->layer_impl_resize)(xcsf, l, prev);
 }
 
-static inline LAYER* layer_copy(const XCSF *xcsf, LAYER *from) {
+static inline LAYER* layer_copy(const XCSF *xcsf, const LAYER *from) {
     return (*from->layer_vptr->layer_impl_copy)(xcsf, from);
 }
 
@@ -197,7 +197,7 @@ static inline void layer_rand(const XCSF *xcsf, LAYER *l) {
     (*l->layer_vptr->layer_impl_rand)(xcsf, l);
 }
 
-static inline void layer_print(const XCSF *xcsf, LAYER *l, _Bool print_weights) {
+static inline void layer_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights) {
     (*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
 

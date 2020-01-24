@@ -190,7 +190,7 @@ double tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x)
  * @param p The position from which to traverse (start at 0).
  * @return The position after traversal.
  */
-int tree_print(const XCSF *xcsf, GP_TREE *gp, int p) 
+int tree_print(const XCSF *xcsf, const GP_TREE *gp, int p) 
 {
     int node = gp->tree[p];
     if(node >= GP_NUM_FUNC) {
@@ -229,7 +229,7 @@ int tree_print(const XCSF *xcsf, GP_TREE *gp, int p)
  * @param to The destination GP tree.
  * @param from The source GP tree.
  */
-void tree_copy(const XCSF *xcsf, GP_TREE *to, GP_TREE *from)
+void tree_copy(const XCSF *xcsf, GP_TREE *to, const GP_TREE *from)
 {
     (void)xcsf;
     to->len = from->len;
@@ -325,7 +325,7 @@ static int tree_traverse(int *tree, int p)
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-size_t tree_save(const XCSF *xcsf, GP_TREE *gp, FILE *fp)
+size_t tree_save(const XCSF *xcsf, const GP_TREE *gp, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
