@@ -47,11 +47,11 @@ typedef struct PARAM_LIST {
 static PARAM_LIST *head; //!< Linked list of config file parameters
 
 static void config_read(const char *filename);
-static void config_process(char *configline);
+static void config_process(const char *configline);
 static void config_trim(char *s);
 static void config_tidyup();
 static void config_newnvpair(const char *config);
-static char *config_getvalue(char *name);
+static char *config_getvalue(const char *name);
 static void params_general(XCSF *xcsf);
 static void params_multistep(XCSF *xcsf);
 static void params_ea(XCSF *xcsf);
@@ -340,7 +340,7 @@ static void config_newnvpair(const char *config) {
  * @param name The name of the parameter.
  * @return The value of the parameter.
  */
-static char *config_getvalue(char *name) {
+static char *config_getvalue(const char *name) {
     char *result = NULL;
     for(PARAM_LIST *iter = head; iter != NULL; iter = iter->next) {
         if(strcmp(name, iter->name) == 0) {
@@ -355,7 +355,7 @@ static char *config_getvalue(char *name) {
  * @brief Parses a line of the config file and adds to the list.
  * @param configline A single line of the configuration file.
  */
-static void config_process(char *configline) {
+static void config_process(const char *configline) {
     // ignore empty lines
     if(strnlen(configline, MAXLEN) == 0) {
         return;
