@@ -23,26 +23,26 @@
 
 #pragma once
  
-_Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cl_general(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cl_m(XCSF *xcsf, CL *c);
-_Bool cl_match(XCSF *xcsf, CL *c, const double *x);
+_Bool cl_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cl_general(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cl_m(const XCSF *xcsf, CL *c);
+_Bool cl_match(const XCSF *xcsf, CL *c, const double *x);
 _Bool cl_mutate(XCSF *xcsf, CL *c);
-_Bool cl_subsumer(XCSF *xcsf, CL *c);
-const double *cl_predict(XCSF *xcsf, CL *c, const double *x);
-double cl_acc(XCSF *xcsf, CL *c);
-double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit);
+_Bool cl_subsumer(const XCSF *xcsf, CL *c);
+const double *cl_predict(const XCSF *xcsf, CL *c, const double *x);
+double cl_acc(const XCSF *xcsf, CL *c);
+double cl_del_vote(const XCSF *xcsf, CL *c, double avg_fit);
 double cl_mutation_rate(const XCSF *xcsf, CL *c, int m);
 void cl_copy(const XCSF *xcsf, CL *to, CL *from);
-void cl_cover(XCSF *xcsf, CL *c, const double *x, int action);
-void cl_free(XCSF *xcsf, CL *c);
+void cl_cover(const XCSF *xcsf, CL *c, const double *x, int action);
+void cl_free(const XCSF *xcsf, CL *c);
 void cl_init(const XCSF *xcsf, CL *c, int size, int time);
-void cl_print(XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp);
-void cl_rand(XCSF *xcsf, CL *c);
-void cl_update(XCSF *xcsf, CL *c, const double *x, const double *y, int set_num, _Bool current);
-void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc);
-int cl_action(XCSF *xcsf, CL *c, const double *x);
-int cl_cond_size(XCSF *xcsf, CL *c);
-int cl_pred_size(XCSF *xcsf, CL *c);
-size_t cl_save(XCSF *xcsf, CL *c, FILE *fp);
-size_t cl_load(XCSF *xcsf, CL *c, FILE *fp);
+void cl_print(const XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp);
+void cl_rand(const XCSF *xcsf, CL *c);
+void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int set_num, _Bool cur);
+void cl_update_fit(const XCSF *xcsf, CL *c, double acc_sum, double acc);
+int cl_action(const XCSF *xcsf, CL *c, const double *x);
+int cl_cond_size(const XCSF *xcsf, CL *c);
+int cl_pred_size(const XCSF *xcsf, CL *c);
+size_t cl_save(const XCSF *xcsf, CL *c, FILE *fp);
+size_t cl_load(const XCSF *xcsf, CL *c, FILE *fp);

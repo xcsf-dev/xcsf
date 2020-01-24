@@ -35,7 +35,7 @@
 #include "action.h"
 #include "cl.h"
 
-static double cl_update_err(const XCSF *xcsf, CL *c, const double *y, _Bool current);
+static double cl_update_err(const XCSF *xcsf, CL *c, const double *y, _Bool cur);
 static double cl_update_size(const XCSF *xcsf, CL *c, double num_sum);
 
 /**
@@ -91,7 +91,7 @@ void cl_copy(const XCSF *xcsf, CL *to, CL *from)
  * @param x The input state to cover.
  * @param action The action to cover.
  */
-void cl_cover(XCSF *xcsf, CL *c, const double *x, int action)
+void cl_cover(const XCSF *xcsf, CL *c, const double *x, int action)
 {
     cl_rand(xcsf, c);
     cond_cover(xcsf, c, x);
@@ -103,7 +103,7 @@ void cl_cover(XCSF *xcsf, CL *c, const double *x, int action)
  * @param xcsf The XCSF data structure.
  * @param c The classifier being randomly initialised.
  */
-void cl_rand(XCSF *xcsf, CL *c)
+void cl_rand(const XCSF *xcsf, CL *c)
 {
     action_set(xcsf, c);
     prediction_set(xcsf, c);
@@ -120,7 +120,7 @@ void cl_rand(XCSF *xcsf, CL *c)
  * @param avg_fit The population mean fitness.
  * @return The classifier's deletion vote. 
  */
-double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit)
+double cl_del_vote(const XCSF *xcsf, CL *c, double avg_fit)
 {
     if(c->exp > xcsf->THETA_DEL && c->fit / c->num < xcsf->DELTA * avg_fit) {
         return c->size * c->num * avg_fit / (c->fit / c->num);
@@ -134,7 +134,7 @@ double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit)
  * @param c The classifier.
  * @return The classifier's accuracy. 
  */
-double cl_acc(XCSF *xcsf, CL *c)
+double cl_acc(const XCSF *xcsf, CL *c)
 {
     if(c->err > xcsf->EPS_0) {
         return xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
@@ -150,12 +150,12 @@ double cl_acc(XCSF *xcsf, CL *c)
  * @param x The input state.
  * @param y The payoff value.
  * @param set_num The number of micro-classifiers in the set.
- * @param current Whether the payoff is for the current or previous state.
+ * @param cur Whether the payoff is for the current or previous state.
  */
-void cl_update(XCSF *xcsf, CL *c, const double *x, const double *y, int set_num, _Bool current)
+void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int set_num, _Bool cur)
 {
     c->exp++;
-    cl_update_err(xcsf, c, y, current);
+    cl_update_err(xcsf, c, y, cur);
     cl_update_size(xcsf, c, set_num);
     cond_update(xcsf, c, x, y);
     pred_update(xcsf, c, x, y);
@@ -168,13 +168,13 @@ void cl_update(XCSF *xcsf, CL *c, const double *x, const double *y, int set_num,
  * @param xcsf The XCSF data structure.
  * @param c The classifier to update.
  * @param y The payoff value.
- * @param current Whether the payoff is for the current or previous state.
+ * @param cur Whether the payoff is for the current or previous state.
  * @return Error multiplied by numerosity.
  */
-static double cl_update_err(const XCSF *xcsf, CL *c, const double *y, _Bool current)
+static double cl_update_err(const XCSF *xcsf, CL *c, const double *y, _Bool cur)
 {
     double error = 0;
-    if(current) {
+    if(cur) {
         error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
     }
     else {
@@ -196,7 +196,7 @@ static double cl_update_err(const XCSF *xcsf, CL *c, const double *y, _Bool curr
  * @param acc_sum The sum of all the accuracies in the set.
  * @param acc The accuracy of the classifier.
  */
-void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc)
+void cl_update_fit(const XCSF *xcsf, CL *c, double acc_sum, double acc)
 {
     c->fit += xcsf->BETA * ((acc * c->num) / acc_sum - c->fit);
 }
@@ -224,7 +224,7 @@ static double cl_update_size(const XCSF *xcsf, CL *c, double num_sum)
  * @param xcsf The XCSF data structure.
  * @param c The classifier to free.
  */
-void cl_free(XCSF *xcsf, CL *c)
+void cl_free(const XCSF *xcsf, CL *c)
 {
     free(c->prediction);
     free(c->prev_prediction);
@@ -243,7 +243,7 @@ void cl_free(XCSF *xcsf, CL *c)
  * @param printa Whether to print the action.
  * @param printp Whether to print the prediction.
  */
-void cl_print(XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp)
+void cl_print(const XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp)
 {
     if(printc || printa || printp) {
         printf("***********************************************\n");
@@ -274,7 +274,7 @@ void cl_print(XCSF *xcsf, CL *c, _Bool printc, _Bool printa, _Bool printp)
  * @param x The input state.
  * @return Whether the classifier matches the input.
  */
-_Bool cl_match(XCSF *xcsf, CL *c, const double *x)
+_Bool cl_match(const XCSF *xcsf, CL *c, const double *x)
 {
     _Bool m = cond_match(xcsf, c, x);
     c->mfrac += xcsf->BETA * ((double) m - c->mfrac);
@@ -287,7 +287,7 @@ _Bool cl_match(XCSF *xcsf, CL *c, const double *x)
  * @param c The classifier to match.
  * @return Whether the classifier matched the most recent input.
  */  
-_Bool cl_m(XCSF *xcsf, CL *c)
+_Bool cl_m(const XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     return c->m;
@@ -300,7 +300,7 @@ _Bool cl_m(XCSF *xcsf, CL *c)
  * @param x The input state.
  * @return The classifier's action.
  */
-int cl_action(XCSF *xcsf, CL *c, const double *x)
+int cl_action(const XCSF *xcsf, CL *c, const double *x)
 {
     c->action = act_compute(xcsf, c, x);
     return c->action;
@@ -313,7 +313,7 @@ int cl_action(XCSF *xcsf, CL *c, const double *x)
  * @param x The input state.
  * @return The classifier's payoff predictions.
  */
-const double *cl_predict(XCSF *xcsf, CL *c, const double *x)
+const double *cl_predict(const XCSF *xcsf, CL *c, const double *x)
 {
     memcpy(c->prev_prediction, c->prediction, sizeof(double) * xcsf->num_y_vars);
     return pred_compute(xcsf, c, x);
@@ -325,7 +325,7 @@ const double *cl_predict(XCSF *xcsf, CL *c, const double *x)
  * @param c The classifier to print.
  * @return Whether the classifier is an eligible subsumer.
  */
-_Bool cl_subsumer(XCSF *xcsf, CL *c)
+_Bool cl_subsumer(const XCSF *xcsf, CL *c)
 {
     if(c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
         return true;
@@ -340,7 +340,7 @@ _Bool cl_subsumer(XCSF *xcsf, CL *c)
  * @param c2 The classifier tested to be more specific.
  * @return Whether c1 is more general than c2.
  */
-_Bool cl_general(XCSF *xcsf, CL *c1, CL *c2)
+_Bool cl_general(const XCSF *xcsf, CL *c1, CL *c2)
 {
     if(cond_general(xcsf, c1, c2)) {
         return act_general(xcsf, c1, c2);
@@ -384,7 +384,7 @@ _Bool cl_mutate(XCSF *xcsf, CL *c)
  * @param c2 The second classifier being crossed.
  * @return Whether any alterations were made.
  */
-_Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2)
+_Bool cl_crossover(const XCSF *xcsf, CL *c1, CL *c2)
 {
     _Bool cc = cond_crossover(xcsf, c1, c2);
     _Bool pc = pred_crossover(xcsf, c1, c2);
@@ -414,7 +414,7 @@ double cl_mutation_rate(const XCSF *xcsf, CL *c, int m)
  * @param c The classifier whose condition size to return.
  * @return The size of the condition.
  */
-int cl_cond_size(XCSF *xcsf, CL *c)
+int cl_cond_size(const XCSF *xcsf, CL *c)
 {
     return cond_size(xcsf, c);
 }
@@ -425,7 +425,7 @@ int cl_cond_size(XCSF *xcsf, CL *c)
  * @param c The classifier whose prediction size to return.
  * @return The size of the prediction.
  */
-int cl_pred_size(XCSF *xcsf, CL *c)
+int cl_pred_size(const XCSF *xcsf, CL *c)
 {
     return pred_size(xcsf, c);
 }
@@ -437,7 +437,7 @@ int cl_pred_size(XCSF *xcsf, CL *c)
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-size_t cl_save(XCSF *xcsf, CL *c, FILE *fp)
+size_t cl_save(const XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(c->mu, sizeof(double), xcsf->SAM_NUM, fp);
@@ -465,7 +465,7 @@ size_t cl_save(XCSF *xcsf, CL *c, FILE *fp)
  * @param fp Pointer to the file to be read.
  * @return The number of elements read.
  */
-size_t cl_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t cl_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     c->mu = malloc(xcsf->SAM_NUM * sizeof(double));
