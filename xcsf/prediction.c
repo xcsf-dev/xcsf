@@ -17,7 +17,7 @@
  * @file prediction.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Interface for classifier predictions.
  */ 
   
@@ -38,7 +38,7 @@
  * @param xcsf The XCSF data structure.
  * @param c The classifier to set.
  */
-void prediction_set(XCSF *xcsf, CL *c)
+void prediction_set(const XCSF *xcsf, CL *c)
 {
     switch(xcsf->PRED_TYPE) {
         case PRED_TYPE_CONSTANT:

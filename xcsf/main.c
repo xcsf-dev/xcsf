@@ -71,7 +71,7 @@ int main(int argc, char **argv)
     }
     // supervised regression - input csv file
     if(strcmp(argv[1], "csv") == 0) {
-        ENV_CSV *env = xcsf->env;
+        const ENV_CSV *env = xcsf->env;
         xcsf_fit2(xcsf, env->train_data, env->test_data, true);
     }
     // reinforcement learning - maze or mux

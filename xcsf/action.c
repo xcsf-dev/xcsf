@@ -17,7 +17,7 @@
  * @file action.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Interface for classifier actions.
  */ 
  
@@ -35,7 +35,7 @@
  * @param xcsf The XCSF data structure.
  * @param c The classifier to set.
  */
-void action_set(XCSF *xcsf, CL *c)
+void action_set(const XCSF *xcsf, CL *c)
 {
     switch(xcsf->ACT_TYPE) {
         case ACT_TYPE_INTEGER:

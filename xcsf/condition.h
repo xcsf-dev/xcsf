@@ -23,7 +23,7 @@
 
 #pragma once
 
-void condition_set(XCSF *xcsf, CL *c);
+void condition_set(const XCSF *xcsf, CL *c);
 
 /**
  * @brief Condition interface data structure.

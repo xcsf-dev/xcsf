@@ -23,7 +23,7 @@
 
 #pragma once
 
-void prediction_set(XCSF *xcsf, CL *c);
+void prediction_set(const XCSF *xcsf, CL *c);
 
 /**
  * @brief Prediction interface data structure.

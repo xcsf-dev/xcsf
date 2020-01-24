@@ -17,7 +17,7 @@
  * @file condition.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Interface for classifier conditions.
  */ 
  
@@ -44,7 +44,7 @@
  * @param xcsf The XCSF data structure.
  * @param c The classifier to set.
  */
-void condition_set(XCSF *xcsf, CL *c)
+void condition_set(const XCSF *xcsf, CL *c)
 {
     switch(xcsf->COND_TYPE) {
         case COND_TYPE_DUMMY:

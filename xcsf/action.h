@@ -23,7 +23,7 @@
 
 #pragma once
 
-void action_set(XCSF *xcsf, CL *c);
+void action_set(const XCSF *xcsf, CL *c);
 
 /**
  * @brief Action interface data structure.
