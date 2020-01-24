@@ -36,12 +36,12 @@
 
 #define MAX_COVER 1000000 //!< maximum number of covering attempts
 
-static _Bool clset_action_covered(XCSF *xcsf, SET *set, int action);
-static double clset_total_time(XCSF *xcsf, SET *set);
+static _Bool clset_action_covered(const XCSF *xcsf, const SET *set, int action);
+static double clset_total_time(const XCSF *xcsf, const SET *set);
 static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, const double *x, _Bool *act_covered);
 static void clset_pop_del(XCSF *xcsf, SET *kset);
 static void clset_subsumption(XCSF *xcsf, SET *set, SET *kset);
-static void clset_update_fit(XCSF *xcsf, SET *set);
+static void clset_update_fit(const XCSF *xcsf, SET *set);
 
 /**
  * @brief Initialises a new population set.
@@ -68,7 +68,7 @@ void clset_pop_init(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @param set The set to be initialised.
  */
-void clset_init(XCSF *xcsf, SET *set)
+void clset_init(const XCSF *xcsf, SET *set)
 {
     (void)xcsf;
     set->list = NULL;
@@ -251,7 +251,7 @@ static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, const double *x, _Bool
  * @param x The input state.
  * @param p The predictions (set by this function).
  */
-void clset_pred(XCSF *xcsf, SET *set, const double *x, double *p)
+void clset_pred(const XCSF *xcsf, SET *set, const double *x, double *p)
 {
     double *presum = calloc(xcsf->num_y_vars, sizeof(double));
     double fitsum = 0;
@@ -296,7 +296,7 @@ void clset_pred(XCSF *xcsf, SET *set, const double *x, double *p)
  * @param aset The action set.
  * @param action The action used to build the set.
  */
-void clset_action(XCSF *xcsf, SET *mset, SET *aset, int action)
+void clset_action(const XCSF *xcsf, const SET *mset, SET *aset, int action)
 {
     for(CLIST *iter = mset->list; iter != NULL; iter = iter->next) {
         if(iter->cl->action == action) {
@@ -312,7 +312,7 @@ void clset_action(XCSF *xcsf, SET *mset, SET *aset, int action)
  * @param action The action to check.
  * @return Whether the action is covered.
  */
-static _Bool clset_action_covered(XCSF *xcsf, SET *set, int action)
+static _Bool clset_action_covered(const XCSF *xcsf, const SET *set, int action)
 {
     (void)xcsf;
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
@@ -329,7 +329,7 @@ static _Bool clset_action_covered(XCSF *xcsf, SET *set, int action)
  * @param set The set to add the classifier.
  * @param c The classifier to add.
  */
-void clset_add(XCSF *xcsf, SET *set, CL *c)
+void clset_add(const XCSF *xcsf, SET *set, CL *c)
 {
     (void)xcsf;
     if(set->list == NULL) {
@@ -385,7 +385,7 @@ void clset_update(XCSF *xcsf, SET *set, SET *kset, const double *x, const double
  * @param xcsf The XCSF data structure.
  * @param set The set to update.
  */ 
-static void clset_update_fit(XCSF *xcsf, SET *set)
+static void clset_update_fit(const XCSF *xcsf, SET *set)
 {
     double acc_sum = 0;
     double accs[set->size];
@@ -443,7 +443,7 @@ static void clset_subsumption(XCSF *xcsf, SET *set, SET *kset)
  * @param xcsf The XCSF data structure.
  * @param set The set to validate.
  */ 
-void clset_validate(XCSF *xcsf, SET *set)
+void clset_validate(const XCSF *xcsf, SET *set)
 {
     (void)xcsf;
     set->size = 0;
@@ -480,7 +480,7 @@ void clset_validate(XCSF *xcsf, SET *set)
  * @param printa Whether to print the actions.
  * @param printp Whether to print the predictions.
  */
-void clset_print(XCSF *xcsf, SET *set, _Bool printc, _Bool printa, _Bool printp)
+void clset_print(const XCSF *xcsf, const SET *set, _Bool printc, _Bool printa, _Bool printp)
 {
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         cl_print(xcsf, iter->cl, printc, printa, printp);
@@ -492,7 +492,7 @@ void clset_print(XCSF *xcsf, SET *set, _Bool printc, _Bool printa, _Bool printp)
  * @param xcsf The XCSF data structure.
  * @param set The set to update the time stamps.
  */
-void clset_set_times(XCSF *xcsf, SET *set)
+void clset_set_times(const XCSF *xcsf, SET *set)
 {
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         iter->cl->time = xcsf->time;
@@ -505,7 +505,7 @@ void clset_set_times(XCSF *xcsf, SET *set)
  * @param set The set to calculate the total fitness.
  * @return The total fitness of classifiers in the set.
  */ 
-double clset_total_fit(XCSF *xcsf, SET *set)
+double clset_total_fit(const XCSF *xcsf, const SET *set)
 {
     (void)xcsf;
     double sum = 0;
@@ -521,7 +521,7 @@ double clset_total_fit(XCSF *xcsf, SET *set)
  * @param set The set to calculate the total time.
  * @return The total time of classifiers in the set.
  */ 
-static double clset_total_time(XCSF *xcsf, SET *set)
+static double clset_total_time(const XCSF *xcsf, const SET *set)
 {
     (void)xcsf;
     double sum = 0;
@@ -537,7 +537,7 @@ static double clset_total_time(XCSF *xcsf, SET *set)
  * @param set The set to calculate the mean time.
  * @return The mean time of classifiers in the set.
  */ 
-double clset_mean_time(XCSF *xcsf, SET *set)
+double clset_mean_time(const XCSF *xcsf, const SET *set)
 {
     return clset_total_time(xcsf, set) / set->num;
 }
@@ -547,7 +547,7 @@ double clset_mean_time(XCSF *xcsf, SET *set)
  * @param xcsf The XCSF data structure.
  * @param set The set to free.
  */ 
-void clset_free(XCSF *xcsf, SET *set)
+void clset_free(const XCSF *xcsf, SET *set)
 {
     (void)xcsf;
     CLIST *iter = set->list;
@@ -580,7 +580,7 @@ void clset_kill(XCSF *xcsf, SET *set)
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-size_t clset_pop_save(XCSF *xcsf, FILE *fp)
+size_t clset_pop_save(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->pset.size, sizeof(int), 1, fp);
@@ -620,7 +620,7 @@ size_t clset_pop_load(XCSF *xcsf, FILE *fp)
  * @param m Which mutation rate to average.
  * @return The mean mutation rate of classifiers in the set.
  */ 
-double clset_mean_mut(XCSF *xcsf, SET *set, int m)
+double clset_mean_mut(const XCSF *xcsf, const SET *set, int m)
 {
     // return the fixed value if not adapted
     if(m >= xcsf->SAM_NUM) {
@@ -648,7 +648,7 @@ double clset_mean_mut(XCSF *xcsf, SET *set, int m)
  * @param set The set to calculate the mean condition size.
  * @return The mean condition size of classifiers in the set.
  */
-double clset_mean_cond_size(XCSF *xcsf, SET *set)
+double clset_mean_cond_size(const XCSF *xcsf, const SET *set)
 {
     int sum = 0;
     int cnt = 0;
@@ -665,7 +665,7 @@ double clset_mean_cond_size(XCSF *xcsf, SET *set)
  * @param set The set to calculate the mean prediction size.
  * @return The mean prediction size of classifiers in the set.
  */ 
-double clset_mean_pred_size(XCSF *xcsf, SET *set)
+double clset_mean_pred_size(const XCSF *xcsf, const SET *set)
 {
     int sum = 0;
     int cnt = 0;
@@ -682,7 +682,7 @@ double clset_mean_pred_size(XCSF *xcsf, SET *set)
  * @param set The set to calculate the mean prediction size.
  * @return The mean fraction of inputs matched.
  */ 
-double clset_mean_inputs_matched(XCSF *xcsf, SET *set)
+double clset_mean_inputs_matched(const XCSF *xcsf, const SET *set)
 {
     (void)xcsf;
     double sum = 0;
@@ -703,7 +703,7 @@ double clset_mean_inputs_matched(XCSF *xcsf, SET *set)
  * @param layer The neural network layer to calculate the mean ETA.
  * @return The mean prediction layer ETA of classifiers in the set.
  */ 
-double clset_mean_eta(XCSF *xcsf, SET *set, int layer)
+double clset_mean_eta(const XCSF *xcsf, const SET *set, int layer)
 {
     double sum = 0;
     int cnt = 0;
