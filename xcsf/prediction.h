@@ -59,7 +59,7 @@ struct PredVtbl {
      * @param to The destination classifier.
      * @param from The source classifier.
      */
-    void (*pred_impl_copy)(const XCSF *xcsf, CL *to,  CL *from);
+    void (*pred_impl_copy)(const XCSF *xcsf, CL *to, const CL *from);
     /**
      * @brief Frees the memory used by the classifier prediction.
      * @param xcsf The XCSF data structure.
@@ -77,7 +77,7 @@ struct PredVtbl {
      * @param xcsf The XCSF data structure.
      * @param c The classifier whose prediction is to be printed.
      */
-    void (*pred_impl_print)(const XCSF *xcsf, CL *c);
+    void (*pred_impl_print)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Updates the classifier's prediction.
      * @param xcsf The XCSF data structure.
@@ -92,7 +92,7 @@ struct PredVtbl {
      * @param c The classifier whose prediction size to return.
      * @return The size of the prediction.
      */
-    int (*pred_impl_size)(const XCSF *xcsf, CL *c);
+    int (*pred_impl_size)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Writes the prediction to a binary file.
      * @param xcsf The XCSF data structure.
@@ -100,7 +100,7 @@ struct PredVtbl {
      * @param fp Pointer to the file to be written.
      * @return The number of elements written.
      */
-    size_t (*pred_impl_save)(const XCSF *xcsf, CL *c, FILE *fp);
+    size_t (*pred_impl_save)(const XCSF *xcsf, const CL *c, FILE *fp);
     /**
      * @brief Reads the prediction from a binary file.
      * @param xcsf The XCSF data structure.
@@ -111,7 +111,7 @@ struct PredVtbl {
     size_t (*pred_impl_load)(const XCSF *xcsf, CL *c, FILE *fp);
 };
 
-static inline size_t pred_save(const XCSF *xcsf, CL *c, FILE *fp) {
+static inline size_t pred_save(const XCSF *xcsf, const CL *c, FILE *fp) {
     return (*c->pred_vptr->pred_impl_save)(xcsf, c, fp);
 }
 
@@ -119,7 +119,7 @@ static inline size_t pred_load(const XCSF *xcsf, CL *c, FILE *fp) {
     return (*c->pred_vptr->pred_impl_load)(xcsf, c, fp);
 }
 
-static inline int pred_size(const XCSF *xcsf, CL *c) {
+static inline int pred_size(const XCSF *xcsf, const CL *c) {
     return (*c->pred_vptr->pred_impl_size)(xcsf, c);
 }
 
@@ -135,7 +135,7 @@ static inline const double *pred_compute(const XCSF *xcsf, CL *c, const double *
     return (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
 }
 
-static inline void pred_copy(const XCSF *xcsf, CL *to, CL *from) {
+static inline void pred_copy(const XCSF *xcsf, CL *to, const CL *from) {
     (*from->pred_vptr->pred_impl_copy)(xcsf, to, from);
 }
 
@@ -147,7 +147,7 @@ static inline void pred_init(const XCSF *xcsf, CL *c) {
     (*c->pred_vptr->pred_impl_init)(xcsf, c);
 }
 
-static inline void pred_print(const XCSF *xcsf, CL *c) {
+static inline void pred_print(const XCSF *xcsf, const CL *c) {
     (*c->pred_vptr->pred_impl_print)(xcsf, c);
 }
 

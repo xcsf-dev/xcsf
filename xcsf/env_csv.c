@@ -37,8 +37,8 @@
 #define MAX_NAME 200 //!< Maximum file name length
 #define DELIM "," //!< File delimiter
 
-static void env_csv_read(char *fname, double **data, int *num_prob, int *num_vars);
-static void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data);
+static void env_csv_read(const char *fname, double **data, int *num_prob, int *num_vars);
+static void env_csv_input_read(const char *infile, INPUT *train_data, INPUT *test_data);
 
 /**
  * @brief Initialises a CSV input environment from a specified filename.
@@ -81,7 +81,7 @@ void env_csv_free(XCSF *xcsf)
  *
  * @details Expects an identical number of x and y rows.
  */
-static void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data)
+static void env_csv_input_read(const char *infile, INPUT *train_data, INPUT *test_data)
 {
     char name[MAX_NAME];
     snprintf(name, MAX_NAME, "%s_train_x.csv", infile);
@@ -103,7 +103,7 @@ static void env_csv_input_read(char *infile, INPUT *train_data, INPUT *test_data
  *
  * @details Provided a file name will set the data, num_rows, and num_cols.
  */
-static void env_csv_read(char *fname, double **data, int *num_rows, int *num_cols)
+static void env_csv_read(const char *fname, double **data, int *num_rows, int *num_cols)
 {
     FILE *fin = fopen(fname, "rt");
     if(fin == 0) {
@@ -150,7 +150,7 @@ void env_csv_reset(XCSF *xcsf)
     (void)xcsf;
 }
 
-_Bool env_csv_isreset(XCSF *xcsf)
+_Bool env_csv_isreset(const XCSF *xcsf)
 {
     (void)xcsf;
     return true;
@@ -169,13 +169,13 @@ double env_csv_execute(XCSF *xcsf, int action)
     return 0;
 }
 
-_Bool env_csv_multistep(XCSF *xcsf)
+_Bool env_csv_multistep(const XCSF *xcsf)
 {
     (void)xcsf;
     return false;
 }
 
-double env_csv_maxpayoff(XCSF *xcsf)
+double env_csv_maxpayoff(const XCSF *xcsf)
 {
     (void)xcsf;
     return 0;

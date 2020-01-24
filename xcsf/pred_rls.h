@@ -26,13 +26,13 @@
 const double *pred_rls_compute(const XCSF *xcsf, CL *c, const double *x);
 _Bool pred_rls_crossover(const XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_rls_mutate(const XCSF *xcsf, CL *c);
-void pred_rls_copy(const XCSF *xcsf, CL *to,  CL *from);
+void pred_rls_copy(const XCSF *xcsf, CL *to, const CL *from);
 void pred_rls_free(const XCSF *xcsf, CL *c);
 void pred_rls_init(const XCSF *xcsf, CL *c);
-void pred_rls_print(const XCSF *xcsf, CL *c);
+void pred_rls_print(const XCSF *xcsf, const CL *c);
 void pred_rls_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
-int pred_rls_size(const XCSF *xcsf, CL *c);
-size_t pred_rls_save(const XCSF *xcsf, CL *c, FILE *fp);
+int pred_rls_size(const XCSF *xcsf, const CL *c);
+size_t pred_rls_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t pred_rls_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**

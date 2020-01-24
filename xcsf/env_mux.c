@@ -134,7 +134,7 @@ void env_mux_reset(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return True.
  */
-_Bool env_mux_isreset(XCSF *xcsf)
+_Bool env_mux_isreset(const XCSF *xcsf)
 {
     (void)xcsf;
     return true;
@@ -145,7 +145,7 @@ _Bool env_mux_isreset(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return The maximum payoff.
  */
-double env_mux_maxpayoff(XCSF *xcsf)
+double env_mux_maxpayoff(const XCSF *xcsf)
 {
     (void)xcsf;
     return MAX_PAYOFF;
@@ -156,7 +156,7 @@ double env_mux_maxpayoff(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return False.
  */
-_Bool env_mux_multistep(XCSF *xcsf)
+_Bool env_mux_multistep(const XCSF *xcsf)
 {
     (void)xcsf;
     return false;

@@ -61,7 +61,7 @@
 static const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; //!< Possible maze moves on x-axis
 static const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1}; //!< Possible maze moves on y-axis
 
-static void env_maze_print(XCSF *xcsf);
+static void env_maze_print(const XCSF *xcsf);
 
 /**
  * @brief Maze environment data structure.
@@ -76,14 +76,14 @@ typedef struct ENV_MAZE {
     _Bool reset; //!< Whether the trial needs to be reset (e.g., in goal state)
 } ENV_MAZE;
 
-static double env_maze_sensor(XCSF *xcsf, char s);
+static double env_maze_sensor(const XCSF *xcsf, char s);
 
 /**
  * @brief Initialises a maze environment from a specified file.
  * @param xcsf The XCSF data structure.
  * @param fname The file name of the specified maze environment.
  */
-void env_maze_init(XCSF *xcsf, char *fname)
+void env_maze_init(XCSF *xcsf, const char *fname)
 {
     // open maze file
     FILE *fp = fopen(fname, "rt");
@@ -161,7 +161,7 @@ void env_maze_reset(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return Whether the maze needs to be reset.
  */
-_Bool env_maze_isreset(XCSF *xcsf)
+_Bool env_maze_isreset(const XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     return env->reset;
@@ -200,7 +200,7 @@ const double *env_maze_get_state(XCSF *xcsf)
  * @param s The char value of the sensor.
  * @return A float encoding of the sensor.
  */
-static double env_maze_sensor(XCSF *xcsf, char s)
+static double env_maze_sensor(const XCSF *xcsf, char s)
 {
     (void)xcsf;
     double ret = 0;
@@ -265,7 +265,7 @@ double env_maze_execute(XCSF *xcsf, int action)
  * @param xcsf The XCSF data structure.
  * @return The maximum payoff.
  */
-double env_maze_maxpayoff(XCSF *xcsf)
+double env_maze_maxpayoff(const XCSF *xcsf)
 {
     (void)xcsf;
     return MAX_PAYOFF;
@@ -276,7 +276,7 @@ double env_maze_maxpayoff(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return True
  */
-_Bool env_maze_multistep(XCSF *xcsf)
+_Bool env_maze_multistep(const XCSF *xcsf)
 {
     (void)xcsf;
     return true;
@@ -286,7 +286,7 @@ _Bool env_maze_multistep(XCSF *xcsf)
  * @brief Prints the current state of the maze environment.
  * @param xcsf The XCSF data structure.
  */
-static void env_maze_print(XCSF *xcsf)
+static void env_maze_print(const XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     for(int y = 0; y < env->ysize; y++) {

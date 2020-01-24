@@ -64,7 +64,7 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
     }
 }
 
-void pred_nlms_copy(const XCSF *xcsf, CL *to, CL *from)
+void pred_nlms_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     pred_nlms_init(xcsf, to);
     PRED_NLMS *to_pred = to->pred;
@@ -138,7 +138,7 @@ const double *pred_nlms_compute(const XCSF *xcsf, CL *c, const double *x)
     return c->prediction;
 } 
 
-void pred_nlms_print(const XCSF *xcsf, CL *c)
+void pred_nlms_print(const XCSF *xcsf, const CL *c)
 {
     PRED_NLMS *pred = c->pred;
     printf("weights: ");
@@ -162,14 +162,14 @@ _Bool pred_nlms_mutate(const XCSF *xcsf, CL *c)
     return false;
 }
 
-int pred_nlms_size(const XCSF *xcsf, CL *c)
+int pred_nlms_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     PRED_NLMS *pred = c->pred;
     return pred->weights_length;
 }
 
-size_t pred_nlms_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t pred_nlms_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     PRED_NLMS *pred = c->pred;
     size_t s = 0;

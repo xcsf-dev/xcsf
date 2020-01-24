@@ -26,13 +26,13 @@
 const double *pred_neural_compute(const XCSF *xcsf, CL *c, const double *x);
 _Bool pred_neural_crossover(const XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_neural_mutate(const XCSF *xcsf, CL *c);
-void pred_neural_copy(const XCSF *xcsf, CL *to,  CL *from);
+void pred_neural_copy(const XCSF *xcsf, CL *to, const CL *from);
 void pred_neural_free(const XCSF *xcsf, CL *c);
 void pred_neural_init(const XCSF *xcsf, CL *c);
-void pred_neural_print(const XCSF *xcsf, CL *c);
+void pred_neural_print(const XCSF *xcsf, const CL *c);
 void pred_neural_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
-int pred_neural_size(const XCSF *xcsf, CL *c);
-size_t pred_neural_save(const XCSF *xcsf, CL *c, FILE *fp);
+int pred_neural_size(const XCSF *xcsf, const CL *c);
+size_t pred_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
 double pred_neural_eta(const XCSF *xcsf, CL *c, int layer);
 

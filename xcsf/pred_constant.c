@@ -37,7 +37,7 @@ void pred_constant_init(const XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
 }
 
-void pred_constant_copy(const XCSF *xcsf, CL *to, CL *from)
+void pred_constant_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     (void)xcsf; (void)to; (void)from;
 }
@@ -68,7 +68,7 @@ const double *pred_constant_compute(const XCSF *xcsf, CL *c, const double *x)
     return c->prediction;
 } 
 
-void pred_constant_print(const XCSF *xcsf, CL *c)
+void pred_constant_print(const XCSF *xcsf, const CL *c)
 {
     printf("constant prediction: %f", c->prediction[0]);
     for(int var = 1; var < xcsf->num_y_vars; var++) {
@@ -89,13 +89,13 @@ _Bool pred_constant_mutate(const XCSF *xcsf, CL *c)
     return false;
 }
 
-int pred_constant_size(const XCSF *xcsf, CL *c)
+int pred_constant_size(const XCSF *xcsf, const CL *c)
 {
     (void)c;
     return xcsf->num_y_vars;
 }
 
-size_t pred_constant_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t pred_constant_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf; (void)c; (void)fp;
     return 0;

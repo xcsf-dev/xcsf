@@ -31,10 +31,10 @@ typedef struct ENV_CSV {
     INPUT *test_data;
 } ENV_CSV;
 
-_Bool env_csv_isreset(XCSF *xcsf);
-_Bool env_csv_multistep(XCSF *xcsf);
+_Bool env_csv_isreset(const XCSF *xcsf);
+_Bool env_csv_multistep(const XCSF *xcsf);
 double env_csv_execute(XCSF *xcsf, int action);
-double env_csv_maxpayoff(XCSF *xcsf);
+double env_csv_maxpayoff(const XCSF *xcsf);
 const double *env_csv_get_state(XCSF *xcsf);
 void env_csv_free(XCSF *xcsf);
 void env_csv_init(XCSF *xcsf, char *filename);

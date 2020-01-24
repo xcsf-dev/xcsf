@@ -77,7 +77,7 @@ void sam_adapt(const XCSF *xcsf, double *mu)
  * @param to Destination mutation rates.
  * @param from Source mutation rates.
  */
-void sam_copy(const XCSF *xcsf, double *to, double *from)
+void sam_copy(const XCSF *xcsf, double *to, const double *from)
 {
     if(xcsf->SAM_NUM > 0) {
         memcpy(to, from, sizeof(double) * xcsf->SAM_NUM);
@@ -101,7 +101,7 @@ void sam_free(const XCSF *xcsf, double *mu)
  * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to print.
  */
-void sam_print(const XCSF *xcsf, double *mu)
+void sam_print(const XCSF *xcsf, const double *mu)
 {
     if(xcsf->SAM_NUM > 0) {
         for(int i = 0; i < xcsf->SAM_NUM; i++) {
