@@ -40,23 +40,23 @@ typedef struct COND_GP {
     GP_TREE gp; //!< GP tree
 } COND_GP;
 
-static void cond_gp_rand(XCSF *xcsf, CL *c);
+static void cond_gp_rand(const XCSF *xcsf, CL *c);
 
-void cond_gp_init(XCSF *xcsf, CL *c)
+void cond_gp_init(const XCSF *xcsf, CL *c)
 {
     COND_GP *new = malloc(sizeof(COND_GP));
     tree_rand(xcsf, &new->gp);
     c->cond = new;
 }
 
-void cond_gp_free(XCSF *xcsf, CL *c)
+void cond_gp_free(const XCSF *xcsf, CL *c)
 {
     COND_GP *cond = c->cond;
     tree_free(xcsf, &cond->gp);
     free(c->cond);
 }
 
-void cond_gp_copy(XCSF *xcsf, CL *to, CL *from)
+void cond_gp_copy(const XCSF *xcsf, CL *to, CL *from)
 {
     COND_GP *new = malloc(sizeof(COND_GP));
     COND_GP *from_cond = from->cond;
@@ -64,26 +64,26 @@ void cond_gp_copy(XCSF *xcsf, CL *to, CL *from)
     to->cond = new;
 }
 
-static void cond_gp_rand(XCSF *xcsf, CL *c)
+static void cond_gp_rand(const XCSF *xcsf, CL *c)
 {
     COND_GP *cond = c->cond;
     tree_free(xcsf, &cond->gp);
     tree_rand(xcsf, &cond->gp);
 }
  
-void cond_gp_cover(XCSF *xcsf, CL *c, const double *x)
+void cond_gp_cover(const XCSF *xcsf, CL *c, const double *x)
 {
     do {
         cond_gp_rand(xcsf, c);
     } while(!cond_gp_match(xcsf, c, x));
 }
  
-void cond_gp_update(XCSF *xcsf, CL *c, const double *x, const double *y)
+void cond_gp_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool cond_gp_match(XCSF *xcsf, CL *c, const double *x)
+_Bool cond_gp_match(const XCSF *xcsf, CL *c, const double *x)
 {
     COND_GP *cond = c->cond;
     cond->gp.p = 0;
@@ -97,7 +97,7 @@ _Bool cond_gp_match(XCSF *xcsf, CL *c, const double *x)
     return c->m;
 }    
 
-_Bool cond_gp_mutate(XCSF *xcsf, CL *c)
+_Bool cond_gp_mutate(const XCSF *xcsf, CL *c)
 {
     COND_GP *cond = c->cond;
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
@@ -109,7 +109,7 @@ _Bool cond_gp_mutate(XCSF *xcsf, CL *c)
     }
 }
 
-_Bool cond_gp_crossover(XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_gp_crossover(const XCSF *xcsf, CL *c1, CL *c2)
 {
     COND_GP *cond1 = c1->cond;
     COND_GP *cond2 = c2->cond;
@@ -122,13 +122,13 @@ _Bool cond_gp_crossover(XCSF *xcsf, CL *c1, CL *c2)
     }
 }
 
-_Bool cond_gp_general(XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_gp_general(const XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;
 }
 
-void cond_gp_print(XCSF *xcsf, CL *c)
+void cond_gp_print(const XCSF *xcsf, CL *c)
 {
     COND_GP *cond = c->cond;
     printf("GP tree: ");
@@ -136,21 +136,21 @@ void cond_gp_print(XCSF *xcsf, CL *c)
     printf("\n");
 }  
 
-int cond_gp_size(XCSF *xcsf, CL *c)
+int cond_gp_size(const XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     COND_GP *cond = c->cond;
     return cond->gp.len;
 }
 
-size_t cond_gp_save(XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_gp_save(const XCSF *xcsf, CL *c, FILE *fp)
 {
     COND_GP *cond = c->cond;
     size_t s = tree_save(xcsf, &cond->gp, fp);
     return s;
 }
 
-size_t cond_gp_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_gp_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     COND_GP *new = malloc(sizeof(COND_GP));
     size_t s = tree_load(xcsf, &new->gp, fp);

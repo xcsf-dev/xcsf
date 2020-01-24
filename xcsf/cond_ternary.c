@@ -44,9 +44,9 @@ typedef struct COND_TERNARY {
     int len; //!< Length of the bitstring
 } COND_TERNARY;
 
-static void cond_ternary_rand(XCSF *xcsf, CL *c);
+static void cond_ternary_rand(const XCSF *xcsf, CL *c);
 
-void cond_ternary_init(XCSF *xcsf, CL *c)
+void cond_ternary_init(const XCSF *xcsf, CL *c)
 {
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
     new->len = xcsf->num_x_vars * xcsf->COND_BITS;
@@ -55,7 +55,7 @@ void cond_ternary_init(XCSF *xcsf, CL *c)
     cond_ternary_rand(xcsf, c);
 }
 
-static void cond_ternary_rand(XCSF *xcsf, CL *c)
+static void cond_ternary_rand(const XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     COND_TERNARY *cond = c->cond;
@@ -74,7 +74,7 @@ static void cond_ternary_rand(XCSF *xcsf, CL *c)
     }
 }
 
-void cond_ternary_free(XCSF *xcsf, CL *c)
+void cond_ternary_free(const XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     COND_TERNARY *cond = c->cond;
@@ -82,7 +82,7 @@ void cond_ternary_free(XCSF *xcsf, CL *c)
     free(c->cond);
 }
 
-void cond_ternary_copy(XCSF *xcsf, CL *to, CL *from)
+void cond_ternary_copy(const XCSF *xcsf, CL *to, CL *from)
 {
     (void)xcsf;
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
@@ -93,7 +93,7 @@ void cond_ternary_copy(XCSF *xcsf, CL *to, CL *from)
     to->cond = new;
 }                             
 
-void cond_ternary_cover(XCSF *xcsf, CL *c, const double *x)
+void cond_ternary_cover(const XCSF *xcsf, CL *c, const double *x)
 {
     COND_TERNARY *cond = c->cond;
     char state[xcsf->COND_BITS];
@@ -110,12 +110,12 @@ void cond_ternary_cover(XCSF *xcsf, CL *c, const double *x)
     }
 }
 
-void cond_ternary_update(XCSF *xcsf, CL *c, const double *x, const double *y)
+void cond_ternary_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool cond_ternary_match(XCSF *xcsf, CL *c, const double *x)
+_Bool cond_ternary_match(const XCSF *xcsf, CL *c, const double *x)
 {
     COND_TERNARY *cond = c->cond;
     char state[xcsf->COND_BITS];
@@ -133,7 +133,7 @@ _Bool cond_ternary_match(XCSF *xcsf, CL *c, const double *x)
     return true;
 }
 
-_Bool cond_ternary_crossover(XCSF *xcsf, CL *c1, CL *c2) 
+_Bool cond_ternary_crossover(const XCSF *xcsf, CL *c1, CL *c2) 
 {
     COND_TERNARY *cond1 = c1->cond;
     COND_TERNARY *cond2 = c2->cond;
@@ -151,7 +151,7 @@ _Bool cond_ternary_crossover(XCSF *xcsf, CL *c1, CL *c2)
     return changed;
 }
 
-_Bool cond_ternary_mutate(XCSF *xcsf, CL *c)
+_Bool cond_ternary_mutate(const XCSF *xcsf, CL *c)
 {
     COND_TERNARY *cond = c->cond;
     _Bool changed = false;
@@ -174,7 +174,7 @@ _Bool cond_ternary_mutate(XCSF *xcsf, CL *c)
     return changed;
 }
 
-_Bool cond_ternary_general(XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_ternary_general(const XCSF *xcsf, CL *c1, CL *c2)
 {
     // returns whether cond1 is more general than cond2
     (void)xcsf;
@@ -192,7 +192,7 @@ _Bool cond_ternary_general(XCSF *xcsf, CL *c1, CL *c2)
     return general;
 }  
 
-void cond_ternary_print(XCSF *xcsf, CL *c)
+void cond_ternary_print(const XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     COND_TERNARY *cond = c->cond;
@@ -203,14 +203,14 @@ void cond_ternary_print(XCSF *xcsf, CL *c)
     printf("\n");
 }
 
-int cond_ternary_size(XCSF *xcsf, CL *c)
+int cond_ternary_size(const XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     COND_TERNARY *cond = c->cond;
     return cond->len;
 }
 
-size_t cond_ternary_save(XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_ternary_save(const XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
@@ -220,7 +220,7 @@ size_t cond_ternary_save(XCSF *xcsf, CL *c, FILE *fp)
     return s;
 }
 
-size_t cond_ternary_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;

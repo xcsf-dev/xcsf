@@ -23,19 +23,19 @@
 
 #pragma once
 
-_Bool cond_ellipsoid_crossover(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_ellipsoid_general(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_ellipsoid_match(XCSF *xcsf, CL *c, const double *x);
-_Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c);
-void cond_ellipsoid_copy(XCSF *xcsf, CL *to, CL *from);
-void cond_ellipsoid_cover(XCSF *xcsf, CL *c, const double *x);
-void cond_ellipsoid_free(XCSF *xcsf, CL *c);
-void cond_ellipsoid_init(XCSF *xcsf, CL *c);
-void cond_ellipsoid_print(XCSF *xcsf, CL *c);
-void cond_ellipsoid_update(XCSF *xcsf, CL *c, const double *x, const double *y);
-int cond_ellipsoid_size(XCSF *xcsf, CL *c);
-size_t cond_ellipsoid_save(XCSF *xcsf, CL *c, FILE *fp);
-size_t cond_ellipsoid_load(XCSF *xcsf, CL *c, FILE *fp);
+_Bool cond_ellipsoid_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_ellipsoid_general(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_ellipsoid_match(const XCSF *xcsf, CL *c, const double *x);
+_Bool cond_ellipsoid_mutate(const XCSF *xcsf, CL *c);
+void cond_ellipsoid_copy(const XCSF *xcsf, CL *to, CL *from);
+void cond_ellipsoid_cover(const XCSF *xcsf, CL *c, const double *x);
+void cond_ellipsoid_free(const XCSF *xcsf, CL *c);
+void cond_ellipsoid_init(const XCSF *xcsf, CL *c);
+void cond_ellipsoid_print(const XCSF *xcsf, CL *c);
+void cond_ellipsoid_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+int cond_ellipsoid_size(const XCSF *xcsf, CL *c);
+size_t cond_ellipsoid_save(const XCSF *xcsf, CL *c, FILE *fp);
+size_t cond_ellipsoid_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
  * @brief Hyperellipsoid condition implemented functions.

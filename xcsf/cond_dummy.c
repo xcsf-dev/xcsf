@@ -32,74 +32,74 @@
 #include "condition.h"
 #include "cond_dummy.h"
 
-void cond_dummy_init(XCSF *xcsf, CL *c)
+void cond_dummy_init(const XCSF *xcsf, CL *c)
 {
 	(void)xcsf; (void)c;
 }
 
-void cond_dummy_free(XCSF *xcsf, CL *c)
+void cond_dummy_free(const XCSF *xcsf, CL *c)
 {
 	(void)xcsf; (void)c;
 }
 
-void cond_dummy_copy(XCSF *xcsf, CL *to, CL *from)
+void cond_dummy_copy(const XCSF *xcsf, CL *to, CL *from)
 {
 	(void)xcsf; (void)to; (void)from;
 }                             
 
-void cond_dummy_cover(XCSF *xcsf, CL *c, const double *x)
+void cond_dummy_cover(const XCSF *xcsf, CL *c, const double *x)
 {
 	(void)xcsf; (void)c; (void)x;
 }
  
-void cond_dummy_update(XCSF *xcsf, CL *c, const double *x, const double *y)
+void cond_dummy_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
 	(void)xcsf; (void)c; (void)x; (void)y;
 }
  
-_Bool cond_dummy_match(XCSF *xcsf, CL *c, const double *x)
+_Bool cond_dummy_match(const XCSF *xcsf, CL *c, const double *x)
 {
 	(void)xcsf; (void)x;
 	c->m = true;
 	return c->m;
 }
 
-_Bool cond_dummy_crossover(XCSF *xcsf, CL *c1, CL *c2) 
+_Bool cond_dummy_crossover(const XCSF *xcsf, CL *c1, CL *c2) 
 {
 	(void)xcsf; (void)c1; (void)c2;
 	return false;
 }
 
-_Bool cond_dummy_mutate(XCSF *xcsf, CL *c)
+_Bool cond_dummy_mutate(const XCSF *xcsf, CL *c)
 {
 	(void)xcsf; (void)c;
 	return false;
 }
 
-_Bool cond_dummy_general(XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_dummy_general(const XCSF *xcsf, CL *c1, CL *c2)
 {
 	(void)xcsf; (void)c1; (void)c2;
 	return false;
 }  
 
-void cond_dummy_print(XCSF *xcsf, CL *c)
+void cond_dummy_print(const XCSF *xcsf, CL *c)
 {
 	(void)xcsf; (void)c;
 }
 
-int cond_dummy_size(XCSF *xcsf, CL *c)
+int cond_dummy_size(const XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
     return 0;
 }
 
-size_t cond_dummy_save(XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_dummy_save(const XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf; (void)c; (void)fp;
     return 0;
 }
 
-size_t cond_dummy_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_dummy_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf; (void)c; (void)fp;
     return 0;

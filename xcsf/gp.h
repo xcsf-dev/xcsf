@@ -34,12 +34,12 @@ typedef struct GP_TREE {
 
 void tree_free_cons(XCSF *xcsf);
 void tree_init_cons(XCSF *xcsf);
-void tree_free(XCSF *xcsf, GP_TREE *gp);
-void tree_rand(XCSF *xcsf, GP_TREE *gp);
-void tree_copy(XCSF *xcsf, GP_TREE *to, GP_TREE *from);
-int tree_print(XCSF *xcsf, GP_TREE *gp, int p);
-double tree_eval(XCSF *xcsf, GP_TREE *gp, const double *x);
-void tree_crossover(XCSF *xcsf, GP_TREE *p1, GP_TREE *p2);
-void tree_mutation(XCSF *xcsf, GP_TREE *offspring, double rate);
-size_t tree_save(XCSF *xcsf, GP_TREE *gp, FILE *fp);
-size_t tree_load(XCSF *xcsf, GP_TREE *gp, FILE *fp);
+void tree_free(const XCSF *xcsf, GP_TREE *gp);
+void tree_rand(const XCSF *xcsf, GP_TREE *gp);
+void tree_copy(const XCSF *xcsf, GP_TREE *to, GP_TREE *from);
+int tree_print(const XCSF *xcsf, GP_TREE *gp, int p);
+double tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x);
+void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2);
+void tree_mutation(const XCSF *xcsf, GP_TREE *offspring, double rate);
+size_t tree_save(const XCSF *xcsf, GP_TREE *gp, FILE *fp);
+size_t tree_load(const XCSF *xcsf, GP_TREE *gp, FILE *fp);

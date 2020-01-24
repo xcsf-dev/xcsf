@@ -38,11 +38,11 @@ static double node_activate(int function, const double *inputs, int k);
 
 /**
  * @brief Initialises a new DGP graph.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to initialise.
  * @param n The the number of nodes in the graph.
  */
-void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
+void graph_init(const XCSF *xcsf, GRAPH *dgp, int n)
 {
     dgp->t = 0;
     dgp->n = n;
@@ -56,11 +56,11 @@ void graph_init(XCSF *xcsf, GRAPH *dgp, int n)
 
 /**
  * @brief Copies a DGP graph.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param to The destination DGP graph.
  * @param from The source DGP graph.
  */
-void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from)
+void graph_copy(const XCSF *xcsf, GRAPH *to, GRAPH *from)
 { 	
     (void)xcsf;
     to->t = from->t;
@@ -74,12 +74,12 @@ void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from)
 
 /**
  * @brief Returns the current state of a specified node in the graph.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to output.
  * @param i Which node within the graph to output.
  * @return The current state of the specified node.
  */
-double graph_output(XCSF *xcsf, GRAPH *dgp, int i)
+double graph_output(const XCSF *xcsf, GRAPH *dgp, int i)
 {
     (void)xcsf;
     return dgp->state[i];
@@ -87,10 +87,10 @@ double graph_output(XCSF *xcsf, GRAPH *dgp, int i)
 
 /**
  * @brief Resets the states to their initial state.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to reset.
  */
-void graph_reset(XCSF *xcsf, GRAPH *dgp)
+void graph_reset(const XCSF *xcsf, GRAPH *dgp)
 {
     (void)xcsf;
     for(int i = 0; i < dgp->n; i++) {
@@ -100,10 +100,10 @@ void graph_reset(XCSF *xcsf, GRAPH *dgp)
 
 /**
  * @brief Randomises a specified DGP graph.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to randomise.
  */
-void graph_rand(XCSF *xcsf, GRAPH *dgp)
+void graph_rand(const XCSF *xcsf, GRAPH *dgp)
 {
     dgp->t = irand_uniform(1,xcsf->MAX_T);
     for(int i = 0; i < dgp->n; i++) {
@@ -125,11 +125,11 @@ void graph_rand(XCSF *xcsf, GRAPH *dgp)
 
 /**
  * @brief Synchronously updates a DGP graph T cycles.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to update.
  * @param inputs The inputs to the graph.
  */
-void graph_update(XCSF *xcsf, GRAPH *dgp, const double *inputs)
+void graph_update(const XCSF *xcsf, GRAPH *dgp, const double *inputs)
 {
     if(xcsf->RESET_STATES) {
         graph_reset(xcsf, dgp);
@@ -157,10 +157,10 @@ void graph_update(XCSF *xcsf, GRAPH *dgp, const double *inputs)
 
 /**
  * @brief Prints a DGP graph.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to print.
  */
-void graph_print(XCSF *xcsf, GRAPH *dgp)
+void graph_print(const XCSF *xcsf, GRAPH *dgp)
 {
     printf("Graph: N=%d; T=%d\n", dgp->n, dgp->t);
     for(int i = 0; i < dgp->n; i++) {
@@ -177,10 +177,10 @@ void graph_print(XCSF *xcsf, GRAPH *dgp)
 
 /**
  * @brief Frees a DGP graph.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to be freed.
  */
-void graph_free(XCSF *xcsf, GRAPH *dgp)
+void graph_free(const XCSF *xcsf, GRAPH *dgp)
 {
     (void)xcsf;
     free(dgp->connectivity);
@@ -192,11 +192,11 @@ void graph_free(XCSF *xcsf, GRAPH *dgp)
 
 /**
  * @brief Mutates a specified DGP graph.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
-_Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
+_Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
 {
     _Bool mod = false;
     int orig;
@@ -242,7 +242,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
 
 /**
  * @brief Performs uniform crossover with two DGP graphs.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp1 The first DGP graph to perform crossover.
  * @param dgp2 The second DGP graph to perform crossover.
  * @return Whether crossover was performed.
@@ -250,7 +250,7 @@ _Bool graph_mutate(XCSF *xcsf, GRAPH *dgp)
  * @details Due to the competing conventions problem this may degrade
  * performance.
  */
-_Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
+_Bool graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 {
     if(rand_uniform(0,1) > xcsf->P_CROSSOVER) {
         return false;
@@ -346,12 +346,12 @@ static char *function_string(int function)
 
 /**
  * @brief Writes DGP graph to a binary file.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to save.
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-size_t graph_save(XCSF *xcsf, GRAPH *dgp, FILE *fp)
+size_t graph_save(const XCSF *xcsf, GRAPH *dgp, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
@@ -367,12 +367,12 @@ size_t graph_save(XCSF *xcsf, GRAPH *dgp, FILE *fp)
 
 /**
  * @brief Reads DGP graph from a binary file.
- * @param xcsf The XCSF data structure.
+ * @param xcsf The const XCSF data structure.
  * @param dgp The DGP graph to load.
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-size_t graph_load(XCSF *xcsf, GRAPH *dgp, FILE *fp)
+size_t graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;

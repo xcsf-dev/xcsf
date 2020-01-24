@@ -17,14 +17,14 @@
  * @file sam.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Self-adaptive mutation functions.
  */ 
  
 #pragma once
 
-void sam_adapt(XCSF *xcsf, double *mu);       
-void sam_copy(XCSF *xcsf, double *to, double *from);
-void sam_free(XCSF *xcsf, double *mu);
-void sam_init(XCSF *xcsf, double **mu);
-void sam_print(XCSF *xcsf, double *mu);
+void sam_adapt(const XCSF *xcsf, double *mu);       
+void sam_copy(const XCSF *xcsf, double *to, double *from);
+void sam_free(const XCSF *xcsf, double *mu);
+void sam_init(const XCSF *xcsf, double **mu);
+void sam_print(const XCSF *xcsf, double *mu);

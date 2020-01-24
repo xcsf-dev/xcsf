@@ -32,22 +32,22 @@
 #include "prediction.h"
 #include "pred_constant.h"
 
-void pred_constant_init(XCSF *xcsf, CL *c)
+void pred_constant_init(const XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
 }
 
-void pred_constant_copy(XCSF *xcsf, CL *to, CL *from)
+void pred_constant_copy(const XCSF *xcsf, CL *to, CL *from)
 {
     (void)xcsf; (void)to; (void)from;
 }
 
-void pred_constant_free(XCSF *xcsf, CL *c)
+void pred_constant_free(const XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
 }
 
-void pred_constant_update(XCSF *xcsf, CL *c, const double *x, const double *y)
+void pred_constant_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)x;
     if(c->exp < 1.0 / xcsf->PRED_ETA) {
@@ -62,13 +62,13 @@ void pred_constant_update(XCSF *xcsf, CL *c, const double *x, const double *y)
     }
 }
 
-const double *pred_constant_compute(XCSF *xcsf, CL *c, const double *x)
+const double *pred_constant_compute(const XCSF *xcsf, CL *c, const double *x)
 {
     (void)xcsf; (void)c; (void)x;
     return c->prediction;
 } 
 
-void pred_constant_print(XCSF *xcsf, CL *c)
+void pred_constant_print(const XCSF *xcsf, CL *c)
 {
     printf("constant prediction: %f", c->prediction[0]);
     for(int var = 1; var < xcsf->num_y_vars; var++) {
@@ -77,31 +77,31 @@ void pred_constant_print(XCSF *xcsf, CL *c)
     printf("\n");
 }
 
-_Bool pred_constant_crossover(XCSF *xcsf, CL *c1, CL *c2)
+_Bool pred_constant_crossover(const XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;
 }
 
-_Bool pred_constant_mutate(XCSF *xcsf, CL *c)
+_Bool pred_constant_mutate(const XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
     return false;
 }
 
-int pred_constant_size(XCSF *xcsf, CL *c)
+int pred_constant_size(const XCSF *xcsf, CL *c)
 {
     (void)c;
     return xcsf->num_y_vars;
 }
 
-size_t pred_constant_save(XCSF *xcsf, CL *c, FILE *fp)
+size_t pred_constant_save(const XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf; (void)c; (void)fp;
     return 0;
 }
 
-size_t pred_constant_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t pred_constant_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf; (void)c; (void)fp;
     return 0;

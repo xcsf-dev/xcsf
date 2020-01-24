@@ -23,19 +23,19 @@
 
 #pragma once
 
-_Bool cond_dummy_crossover(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_dummy_general(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_dummy_match(XCSF *xcsf, CL *c, const double *x);
-_Bool cond_dummy_mutate(XCSF *xcsf, CL *c);
-void cond_dummy_copy(XCSF *xcsf, CL *to, CL *from);
-void cond_dummy_cover(XCSF *xcsf, CL *c, const double *x);
-void cond_dummy_free(XCSF *xcsf, CL *c);
-void cond_dummy_init(XCSF *xcsf, CL *c);
-void cond_dummy_print(XCSF *xcsf, CL *c);
-void cond_dummy_update(XCSF *xcsf, CL *c, const double *x, const double *y);
-int cond_dummy_size(XCSF *xcsf, CL *c);
-size_t cond_dummy_save(XCSF *xcsf, CL *c, FILE *fp);
-size_t cond_dummy_load(XCSF *xcsf, CL *c, FILE *fp);
+_Bool cond_dummy_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_dummy_general(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_dummy_match(const XCSF *xcsf, CL *c, const double *x);
+_Bool cond_dummy_mutate(const XCSF *xcsf, CL *c);
+void cond_dummy_copy(const XCSF *xcsf, CL *to, CL *from);
+void cond_dummy_cover(const XCSF *xcsf, CL *c, const double *x);
+void cond_dummy_free(const XCSF *xcsf, CL *c);
+void cond_dummy_init(const XCSF *xcsf, CL *c);
+void cond_dummy_print(const XCSF *xcsf, CL *c);
+void cond_dummy_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+int cond_dummy_size(const XCSF *xcsf, CL *c);
+size_t cond_dummy_save(const XCSF *xcsf, CL *c, FILE *fp);
+size_t cond_dummy_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
  * @brief Dummy condition implemented functions.

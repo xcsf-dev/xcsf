@@ -23,17 +23,17 @@
  
 #pragma once
 
-const double *pred_nlms_compute(XCSF *xcsf, CL *c, const double *x);
-_Bool pred_nlms_crossover(XCSF *xcsf, CL *c1, CL *c2);
-_Bool pred_nlms_mutate(XCSF *xcsf, CL *c);
-void pred_nlms_copy(XCSF *xcsf, CL *to, CL *from);
-void pred_nlms_free(XCSF *xcsf, CL *c);
-void pred_nlms_init(XCSF *xcsf, CL *c);
-void pred_nlms_print(XCSF *xcsf, CL *c);
-void pred_nlms_update(XCSF *xcsf, CL *c, const double *x, const double *y);
-int pred_nlms_size(XCSF *xcsf, CL *c);
-size_t pred_nlms_save(XCSF *xcsf, CL *c, FILE *fp);
-size_t pred_nlms_load(XCSF *xcsf, CL *c, FILE *fp);
+const double *pred_nlms_compute(const XCSF *xcsf, CL *c, const double *x);
+_Bool pred_nlms_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool pred_nlms_mutate(const XCSF *xcsf, CL *c);
+void pred_nlms_copy(const XCSF *xcsf, CL *to, CL *from);
+void pred_nlms_free(const XCSF *xcsf, CL *c);
+void pred_nlms_init(const XCSF *xcsf, CL *c);
+void pred_nlms_print(const XCSF *xcsf, CL *c);
+void pred_nlms_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+int pred_nlms_size(const XCSF *xcsf, CL *c);
+size_t pred_nlms_save(const XCSF *xcsf, CL *c, FILE *fp);
+size_t pred_nlms_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
  * @brief Normalised least mean squares prediction implemented functions.

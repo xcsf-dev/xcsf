@@ -23,19 +23,19 @@
 
 #pragma once
   
-LAYER *neural_layer_dropout_init(XCSF *xcsf, int in, double prob);
-LAYER *neural_layer_dropout_copy(XCSF *xcsf, LAYER *from);
-void neural_layer_dropout_rand(XCSF *xcsf, LAYER *l);
-void neural_layer_dropout_forward(XCSF *xcsf, LAYER *l, const double *input);
-void neural_layer_dropout_backward(XCSF *xcsf, LAYER *l, NET *net);
-void neural_layer_dropout_update(XCSF *xcsf, LAYER *l);
-void neural_layer_dropout_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
-_Bool neural_layer_dropout_mutate(XCSF *xcsf, LAYER *l);
-void neural_layer_dropout_free(XCSF *xcsf, LAYER *l);
-double* neural_layer_dropout_output(XCSF *xcsf, LAYER *l);
-size_t neural_layer_dropout_save(XCSF *xcsf, LAYER *l, FILE *fp);
-size_t neural_layer_dropout_load(XCSF *xcsf, LAYER *l, FILE *fp);
-void neural_layer_dropout_resize(XCSF *xcsf, LAYER *l, LAYER *prev);
+LAYER *neural_layer_dropout_init(const XCSF *xcsf, int in, double prob);
+LAYER *neural_layer_dropout_copy(const XCSF *xcsf, LAYER *from);
+void neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l);
+void neural_layer_dropout_forward(const XCSF *xcsf, LAYER *l, const double *input);
+void neural_layer_dropout_backward(const XCSF *xcsf, LAYER *l, NET *net);
+void neural_layer_dropout_update(const XCSF *xcsf, LAYER *l);
+void neural_layer_dropout_print(const XCSF *xcsf, LAYER *l, _Bool print_weights);
+_Bool neural_layer_dropout_mutate(const XCSF *xcsf, LAYER *l);
+void neural_layer_dropout_free(const XCSF *xcsf, LAYER *l);
+double* neural_layer_dropout_output(const XCSF *xcsf, LAYER *l);
+size_t neural_layer_dropout_save(const XCSF *xcsf, LAYER *l, FILE *fp);
+size_t neural_layer_dropout_load(const XCSF *xcsf, LAYER *l, FILE *fp);
+void neural_layer_dropout_resize(const XCSF *xcsf, LAYER *l, LAYER *prev);
 
 static struct LayerVtbl const layer_dropout_vtbl = {
     &neural_layer_dropout_mutate,

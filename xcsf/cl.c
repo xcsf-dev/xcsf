@@ -35,8 +35,8 @@
 #include "action.h"
 #include "cl.h"
 
-static double cl_update_err(XCSF *xcsf, CL *c, const double *y, _Bool current);
-static double cl_update_size(XCSF *xcsf, CL *c, double num_sum);
+static double cl_update_err(const XCSF *xcsf, CL *c, const double *y, _Bool current);
+static double cl_update_size(const XCSF *xcsf, CL *c, double num_sum);
 
 /**
  * @brief Initialises a new classifier.
@@ -45,7 +45,7 @@ static double cl_update_size(XCSF *xcsf, CL *c, double num_sum);
  * @param size The initial set size value.
  * @param time The current number of XCSF learning trials.
  */
-void cl_init(XCSF *xcsf, CL *c, int size, int time)
+void cl_init(const XCSF *xcsf, CL *c, int size, int time)
 {
     c->fit = xcsf->INIT_FITNESS;
     c->err = xcsf->INIT_ERROR;
@@ -68,7 +68,7 @@ void cl_init(XCSF *xcsf, CL *c, int size, int time)
  * @param to The destination classifier.
  * @param from The source classifier.
  */
-void cl_copy(XCSF *xcsf, CL *to, CL *from)
+void cl_copy(const XCSF *xcsf, CL *to, CL *from)
 {
     to->cond_vptr = from->cond_vptr;
     to->pred_vptr = from->pred_vptr;
@@ -171,7 +171,7 @@ void cl_update(XCSF *xcsf, CL *c, const double *x, const double *y, int set_num,
  * @param current Whether the payoff is for the current or previous state.
  * @return Error multiplied by numerosity.
  */
-static double cl_update_err(XCSF *xcsf, CL *c, const double *y, _Bool current)
+static double cl_update_err(const XCSF *xcsf, CL *c, const double *y, _Bool current)
 {
     double error = 0;
     if(current) {
@@ -208,7 +208,7 @@ void cl_update_fit(XCSF *xcsf, CL *c, double acc_sum, double acc)
  * @param num_sum The number of micro-classifiers in the set.
  * @return Set size multiplied by numerosity.
  */
-static double cl_update_size(XCSF *xcsf, CL *c, double num_sum)
+static double cl_update_size(const XCSF *xcsf, CL *c, double num_sum)
 {
     if(c->exp < 1 / xcsf->BETA) {
         c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;
@@ -402,7 +402,7 @@ _Bool cl_crossover(XCSF *xcsf, CL *c1, CL *c2)
  * @param m Which mutation rate to return.
  * @return The current mutation rate.
  */
-double cl_mutation_rate(XCSF *xcsf, CL *c, int m)
+double cl_mutation_rate(const XCSF *xcsf, CL *c, int m)
 {
     (void)xcsf;
     return c->mu[m];

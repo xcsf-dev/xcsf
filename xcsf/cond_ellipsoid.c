@@ -40,9 +40,9 @@ typedef struct COND_ELLIPSOID {
     double *spread; //!< Spreads
 } COND_ELLIPSOID;
 
-static double cond_ellipsoid_dist(XCSF *xcsf, CL *c, const double *x);
+static double cond_ellipsoid_dist(const XCSF *xcsf, CL *c, const double *x);
 
-void cond_ellipsoid_init(XCSF *xcsf, CL *c)
+void cond_ellipsoid_init(const XCSF *xcsf, CL *c)
 {
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
     new->center = malloc(sizeof(double) * xcsf->num_x_vars);
@@ -54,7 +54,7 @@ void cond_ellipsoid_init(XCSF *xcsf, CL *c)
     c->cond = new;
 }
 
-void cond_ellipsoid_free(XCSF *xcsf, CL *c)
+void cond_ellipsoid_free(const XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     COND_ELLIPSOID *cond = c->cond;
@@ -63,7 +63,7 @@ void cond_ellipsoid_free(XCSF *xcsf, CL *c)
     free(c->cond);
 }
 
-void cond_ellipsoid_copy(XCSF *xcsf, CL *to, CL *from)
+void cond_ellipsoid_copy(const XCSF *xcsf, CL *to, CL *from)
 {
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
     COND_ELLIPSOID *from_cond = from->cond;
@@ -74,7 +74,7 @@ void cond_ellipsoid_copy(XCSF *xcsf, CL *to, CL *from)
     to->cond = new;
 }                             
 
-void cond_ellipsoid_cover(XCSF *xcsf, CL *c, const double *x)
+void cond_ellipsoid_cover(const XCSF *xcsf, CL *c, const double *x)
 {
     COND_ELLIPSOID *cond = c->cond;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
@@ -83,7 +83,7 @@ void cond_ellipsoid_cover(XCSF *xcsf, CL *c, const double *x)
     }
 }
 
-void cond_ellipsoid_update(XCSF *xcsf, CL *c, const double *x, const double *y)
+void cond_ellipsoid_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)y;
     if(xcsf->COND_ETA > 0) {
@@ -94,7 +94,7 @@ void cond_ellipsoid_update(XCSF *xcsf, CL *c, const double *x, const double *y)
     }
 }
 
-_Bool cond_ellipsoid_match(XCSF *xcsf, CL *c, const double *x)
+_Bool cond_ellipsoid_match(const XCSF *xcsf, CL *c, const double *x)
 {
     if(cond_ellipsoid_dist(xcsf, c, x) < 1) {
         c->m = true;
@@ -105,7 +105,7 @@ _Bool cond_ellipsoid_match(XCSF *xcsf, CL *c, const double *x)
     return c->m;
 }
 
-static double cond_ellipsoid_dist(XCSF *xcsf, CL *c, const double *x)
+static double cond_ellipsoid_dist(const XCSF *xcsf, CL *c, const double *x)
 {
     COND_ELLIPSOID *cond = c->cond;
     double dist = 0;
@@ -116,7 +116,7 @@ static double cond_ellipsoid_dist(XCSF *xcsf, CL *c, const double *x)
     return dist;
 }
 
-_Bool cond_ellipsoid_crossover(XCSF *xcsf, CL *c1, CL *c2) 
+_Bool cond_ellipsoid_crossover(const XCSF *xcsf, CL *c1, CL *c2) 
 {
     COND_ELLIPSOID *cond1 = c1->cond;
     COND_ELLIPSOID *cond2 = c2->cond;
@@ -140,7 +140,7 @@ _Bool cond_ellipsoid_crossover(XCSF *xcsf, CL *c1, CL *c2)
     return changed;
 }
 
-_Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c)
+_Bool cond_ellipsoid_mutate(const XCSF *xcsf, CL *c)
 {
     COND_ELLIPSOID *cond = c->cond;
     _Bool changed = false;
@@ -162,7 +162,7 @@ _Bool cond_ellipsoid_mutate(XCSF *xcsf, CL *c)
     return changed;   
 }
 
-_Bool cond_ellipsoid_general(XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_ellipsoid_general(const XCSF *xcsf, CL *c1, CL *c2)
 {
     // returns whether cond1 is more general than cond2
     COND_ELLIPSOID *cond1 = c1->cond;
@@ -179,7 +179,7 @@ _Bool cond_ellipsoid_general(XCSF *xcsf, CL *c1, CL *c2)
     return true;
 }  
 
-void cond_ellipsoid_print(XCSF *xcsf, CL *c)
+void cond_ellipsoid_print(const XCSF *xcsf, CL *c)
 {
     COND_ELLIPSOID *cond = c->cond;
     printf("ellipsoid:");
@@ -190,13 +190,13 @@ void cond_ellipsoid_print(XCSF *xcsf, CL *c)
     printf("\n");
 }
 
-int cond_ellipsoid_size(XCSF *xcsf, CL *c)
+int cond_ellipsoid_size(const XCSF *xcsf, CL *c)
 {
     (void)c;
     return xcsf->num_x_vars;
 }
 
-size_t cond_ellipsoid_save(XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_ellipsoid_save(const XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_ELLIPSOID *cond = c->cond;
@@ -205,7 +205,7 @@ size_t cond_ellipsoid_save(XCSF *xcsf, CL *c, FILE *fp)
     return s;
 }
 
-size_t cond_ellipsoid_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_ellipsoid_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));

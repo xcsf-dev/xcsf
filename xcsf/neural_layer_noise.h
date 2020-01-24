@@ -23,19 +23,19 @@
 
 #pragma once
   
-LAYER *neural_layer_noise_init(XCSF *xcsf, int in, double prob, double std);
-LAYER *neural_layer_noise_copy(XCSF *xcsf, LAYER *from);
-void neural_layer_noise_rand(XCSF *xcsf, LAYER *l);
-void neural_layer_noise_forward(XCSF *xcsf, LAYER *l, const double *input);
-void neural_layer_noise_backward(XCSF *xcsf, LAYER *l, NET *net);
-void neural_layer_noise_update(XCSF *xcsf, LAYER *l);
-void neural_layer_noise_print(XCSF *xcsf, LAYER *l, _Bool print_weights);
-_Bool neural_layer_noise_mutate(XCSF *xcsf, LAYER *l);
-void neural_layer_noise_free(XCSF *xcsf, LAYER *l);
-double* neural_layer_noise_output(XCSF *xcsf, LAYER *l);
-size_t neural_layer_noise_save(XCSF *xcsf, LAYER *l, FILE *fp);
-size_t neural_layer_noise_load(XCSF *xcsf, LAYER *l, FILE *fp);
-void neural_layer_noise_resize(XCSF *xcsf, LAYER *l, LAYER *prev);
+LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std);
+LAYER *neural_layer_noise_copy(const XCSF *xcsf, LAYER *from);
+void neural_layer_noise_rand(const XCSF *xcsf, LAYER *l);
+void neural_layer_noise_forward(const XCSF *xcsf, LAYER *l, const double *input);
+void neural_layer_noise_backward(const XCSF *xcsf, LAYER *l, NET *net);
+void neural_layer_noise_update(const XCSF *xcsf, LAYER *l);
+void neural_layer_noise_print(const XCSF *xcsf, LAYER *l, _Bool print_weights);
+_Bool neural_layer_noise_mutate(const XCSF *xcsf, LAYER *l);
+void neural_layer_noise_free(const XCSF *xcsf, LAYER *l);
+double* neural_layer_noise_output(const XCSF *xcsf, LAYER *l);
+size_t neural_layer_noise_save(const XCSF *xcsf, LAYER *l, FILE *fp);
+size_t neural_layer_noise_load(const XCSF *xcsf, LAYER *l, FILE *fp);
+void neural_layer_noise_resize(const XCSF *xcsf, LAYER *l, LAYER *prev);
 
 static struct LayerVtbl const layer_noise_vtbl = {
     &neural_layer_noise_mutate,

@@ -34,7 +34,7 @@
 #include "neural_layer.h"
 #include "neural_layer_softmax.h"
  
-LAYER* neural_layer_softmax_init(XCSF *xcsf, int in, double temp)
+LAYER* neural_layer_softmax_init(const XCSF *xcsf, int in, double temp)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
@@ -50,7 +50,7 @@ LAYER* neural_layer_softmax_init(XCSF *xcsf, int in, double temp)
     return l;
 }
 
-LAYER* neural_layer_softmax_copy(XCSF *xcsf, LAYER *from)
+LAYER* neural_layer_softmax_copy(const XCSF *xcsf, LAYER *from)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
@@ -66,12 +66,12 @@ LAYER* neural_layer_softmax_copy(XCSF *xcsf, LAYER *from)
     return l;
 }
 
-void neural_layer_softmax_rand(XCSF *xcsf, LAYER *l)
+void neural_layer_softmax_rand(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf; (void)l;
 }
 
-void neural_layer_softmax_forward(XCSF *xcsf, LAYER *l, const double *input)
+void neural_layer_softmax_forward(const XCSF *xcsf, LAYER *l, const double *input)
 {
     (void)xcsf;
     double largest = input[0];
@@ -91,7 +91,7 @@ void neural_layer_softmax_forward(XCSF *xcsf, LAYER *l, const double *input)
     }                                     
 }
 
-void neural_layer_softmax_backward(XCSF *xcsf, LAYER *l, NET *net)
+void neural_layer_softmax_backward(const XCSF *xcsf, LAYER *l, NET *net)
 {
     (void)xcsf;
     for(int i = 0; i < l->num_inputs; i++) {
@@ -99,25 +99,25 @@ void neural_layer_softmax_backward(XCSF *xcsf, LAYER *l, NET *net)
     }
 }
 
-void neural_layer_softmax_update(XCSF *xcsf, LAYER *l)
+void neural_layer_softmax_update(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf; (void)l;
 }
 
-void neural_layer_softmax_print(XCSF *xcsf, LAYER *l, _Bool print_weights)
+void neural_layer_softmax_print(const XCSF *xcsf, LAYER *l, _Bool print_weights)
 {
     (void)xcsf; (void)print_weights;
     printf("softmax in = %d, out = %d, temp = %f\n", 
             l->num_inputs, l->num_outputs, l->temp);
 }
 
-_Bool neural_layer_softmax_mutate(XCSF *xcsf, LAYER *l)
+_Bool neural_layer_softmax_mutate(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf; (void)l;
     return false;
 }
 
-void neural_layer_softmax_resize(XCSF *xcsf, LAYER *l, LAYER *prev)
+void neural_layer_softmax_resize(const XCSF *xcsf, LAYER *l, LAYER *prev)
 {
     (void)xcsf;
     l->num_inputs = prev->num_outputs;
@@ -129,20 +129,20 @@ void neural_layer_softmax_resize(XCSF *xcsf, LAYER *l, LAYER *prev)
     l->delta = calloc(l->num_inputs, sizeof(double));
 }
 
-void neural_layer_softmax_free(XCSF *xcsf, LAYER *l)
+void neural_layer_softmax_free(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
     free(l->output);
     free(l->delta);
 }
 
-double* neural_layer_softmax_output(XCSF *xcsf, LAYER *l)
+double* neural_layer_softmax_output(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
     return l->output;
 }
  
-size_t neural_layer_softmax_save(XCSF *xcsf, LAYER *l, FILE *fp)
+size_t neural_layer_softmax_save(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
@@ -153,7 +153,7 @@ size_t neural_layer_softmax_save(XCSF *xcsf, LAYER *l, FILE *fp)
     return s;
 }
 
-size_t neural_layer_softmax_load(XCSF *xcsf, LAYER *l, FILE *fp)
+size_t neural_layer_softmax_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;

@@ -45,9 +45,9 @@ typedef struct COND_NEURAL {
     NET net; //!< Neural network
 } COND_NEURAL;
 
-static void cond_neural_rand(XCSF *xcsf, CL *c);
+static void cond_neural_rand(const XCSF *xcsf, CL *c);
 
-void cond_neural_init(XCSF *xcsf, CL *c)
+void cond_neural_init(const XCSF *xcsf, CL *c)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     neural_init(xcsf, &new->net);
@@ -90,14 +90,14 @@ void cond_neural_init(XCSF *xcsf, CL *c)
     c->cond = new;
 }
 
-void cond_neural_free(XCSF *xcsf, CL *c)
+void cond_neural_free(const XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
     neural_free(xcsf, &cond->net);
     free(c->cond);
 }                  
 
-void cond_neural_copy(XCSF *xcsf, CL *to, CL *from)
+void cond_neural_copy(const XCSF *xcsf, CL *to, CL *from)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     COND_NEURAL *from_cond = from->cond;
@@ -105,25 +105,25 @@ void cond_neural_copy(XCSF *xcsf, CL *to, CL *from)
     to->cond = new;
 }
 
-static void cond_neural_rand(XCSF *xcsf, CL *c)
+static void cond_neural_rand(const XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
     neural_rand(xcsf, &cond->net);
 }
 
-void cond_neural_cover(XCSF *xcsf, CL *c, const double *x)
+void cond_neural_cover(const XCSF *xcsf, CL *c, const double *x)
 {
     do {
         cond_neural_rand(xcsf, c);
     } while(!cond_neural_match(xcsf, c, x));
 }
 
-void cond_neural_update(XCSF *xcsf, CL *c, const double *x, const double *y)
+void cond_neural_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool cond_neural_match(XCSF *xcsf, CL *c, const double *x)
+_Bool cond_neural_match(const XCSF *xcsf, CL *c, const double *x)
 {
     COND_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
@@ -136,44 +136,44 @@ _Bool cond_neural_match(XCSF *xcsf, CL *c, const double *x)
     return c->m;
 }                
 
-_Bool cond_neural_mutate(XCSF *xcsf, CL *c)
+_Bool cond_neural_mutate(const XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
     return neural_mutate(xcsf, &cond->net);
 }
 
-_Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_neural_crossover(const XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void) c1; (void)c2;
     return false;
 }
 
-_Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_neural_general(const XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;
 }   
 
-void cond_neural_print(XCSF *xcsf, CL *c)
+void cond_neural_print(const XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
     neural_print(xcsf, &cond->net, false);
 }
 
-int cond_neural_size(XCSF *xcsf, CL *c)
+int cond_neural_size(const XCSF *xcsf, CL *c)
 {
     COND_NEURAL *cond = c->cond;
     return neural_size(xcsf, &cond->net);
 }
 
-size_t cond_neural_save(XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_neural_save(const XCSF *xcsf, CL *c, FILE *fp)
 {
     COND_NEURAL *cond = c->cond;
     size_t s = neural_save(xcsf, &cond->net, fp);
     return s;
 }
 
-size_t cond_neural_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_neural_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     size_t s = neural_load(xcsf, &new->net, fp);

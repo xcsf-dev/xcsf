@@ -23,17 +23,17 @@
 
 #pragma once
 
-const double *pred_rls_compute(XCSF *xcsf, CL *c, const double *x);
-_Bool pred_rls_crossover(XCSF *xcsf, CL *c1, CL *c2);
-_Bool pred_rls_mutate(XCSF *xcsf, CL *c);
-void pred_rls_copy(XCSF *xcsf, CL *to,  CL *from);
-void pred_rls_free(XCSF *xcsf, CL *c);
-void pred_rls_init(XCSF *xcsf, CL *c);
-void pred_rls_print(XCSF *xcsf, CL *c);
-void pred_rls_update(XCSF *xcsf, CL *c, const double *x, const double *y);
-int pred_rls_size(XCSF *xcsf, CL *c);
-size_t pred_rls_save(XCSF *xcsf, CL *c, FILE *fp);
-size_t pred_rls_load(XCSF *xcsf, CL *c, FILE *fp);
+const double *pred_rls_compute(const XCSF *xcsf, CL *c, const double *x);
+_Bool pred_rls_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool pred_rls_mutate(const XCSF *xcsf, CL *c);
+void pred_rls_copy(const XCSF *xcsf, CL *to,  CL *from);
+void pred_rls_free(const XCSF *xcsf, CL *c);
+void pred_rls_init(const XCSF *xcsf, CL *c);
+void pred_rls_print(const XCSF *xcsf, CL *c);
+void pred_rls_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+int pred_rls_size(const XCSF *xcsf, CL *c);
+size_t pred_rls_save(const XCSF *xcsf, CL *c, FILE *fp);
+size_t pred_rls_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
  * @brief Recursive least mean squares prediction implemented functions.

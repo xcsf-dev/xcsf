@@ -23,19 +23,19 @@
  
 #pragma once
 
-_Bool cond_neural_crossover(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_neural_general(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_neural_match(XCSF *xcsf, CL *c, const double *x);
-_Bool cond_neural_mutate(XCSF *xcsf, CL *c);
-void cond_neural_copy(XCSF *xcsf, CL *to, CL *from);
-void cond_neural_cover(XCSF *xcsf, CL *c, const double *x);
-void cond_neural_free(XCSF *xcsf, CL *c);
-void cond_neural_init(XCSF *xcsf, CL *c);
-void cond_neural_print(XCSF *xcsf, CL *c);
-void cond_neural_update(XCSF *xcsf, CL *c, const double *x, const double *y);
-int cond_neural_size(XCSF *xcsf, CL *c);
-size_t cond_neural_save(XCSF *xcsf, CL *c, FILE *fp);
-size_t cond_neural_load(XCSF *xcsf, CL *c, FILE *fp);
+_Bool cond_neural_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_neural_general(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_neural_match(const XCSF *xcsf, CL *c, const double *x);
+_Bool cond_neural_mutate(const XCSF *xcsf, CL *c);
+void cond_neural_copy(const XCSF *xcsf, CL *to, CL *from);
+void cond_neural_cover(const XCSF *xcsf, CL *c, const double *x);
+void cond_neural_free(const XCSF *xcsf, CL *c);
+void cond_neural_init(const XCSF *xcsf, CL *c);
+void cond_neural_print(const XCSF *xcsf, CL *c);
+void cond_neural_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+int cond_neural_size(const XCSF *xcsf, CL *c);
+size_t cond_neural_save(const XCSF *xcsf, CL *c, FILE *fp);
+size_t cond_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
  * @brief Multi-layer perceptron neural network condition implemented functions.

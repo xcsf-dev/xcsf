@@ -17,7 +17,7 @@
  * @file sam.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Self-adaptive mutation functions.
  */ 
  
@@ -30,20 +30,20 @@
 #include "utils.h"
 #include "sam.h"
 
-static void sam_log_normal_init(XCSF *xcsf, double **mu);
-static void sam_log_normal_adapt(XCSF *xcsf, double *mu);
+static void sam_log_normal_init(const XCSF *xcsf, double **mu);
+static void sam_log_normal_adapt(const XCSF *xcsf, double *mu);
 
 #define NUM_RATES 10 //!< number of selectable mutation rates for rate selection adaptation
 static const double mrates[NUM_RATES] = {0.0001,0.001,0.002,0.005,0.01,0.01,0.02,0.05,0.1,1.0}; 
-static void sam_rate_selection_init(XCSF *xcsf, double **mu);
-static void sam_rate_selection_adapt(XCSF *xcsf, double *mu);
+static void sam_rate_selection_init(const XCSF *xcsf, double **mu);
+static void sam_rate_selection_adapt(const XCSF *xcsf, double *mu);
 
 /**
  * @brief Initialises a classifier's self-adaptive mutation rates.
  * @param xcsf The XCSF data structure.
  * @param mu The classifier's mutation rates.
  */
-void sam_init(XCSF *xcsf, double **mu)
+void sam_init(const XCSF *xcsf, double **mu)
 {
     if(xcsf->SAM_NUM > 0) {
         *mu = malloc(sizeof(double) * xcsf->SAM_NUM);
@@ -61,7 +61,7 @@ void sam_init(XCSF *xcsf, double **mu)
  * @param xcsf The XCSF data structure.
  * @param mu The classifier's mutation rates.
  */
-void sam_adapt(XCSF *xcsf, double *mu)
+void sam_adapt(const XCSF *xcsf, double *mu)
 {
     if(xcsf->SAM_TYPE == 0) {
         sam_log_normal_adapt(xcsf, mu);
@@ -77,7 +77,7 @@ void sam_adapt(XCSF *xcsf, double *mu)
  * @param to Destination mutation rates.
  * @param from Source mutation rates.
  */
-void sam_copy(XCSF *xcsf, double *to, double *from)
+void sam_copy(const XCSF *xcsf, double *to, double *from)
 {
     if(xcsf->SAM_NUM > 0) {
         memcpy(to, from, sizeof(double) * xcsf->SAM_NUM);
@@ -89,7 +89,7 @@ void sam_copy(XCSF *xcsf, double *to, double *from)
  * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to free.
  */
-void sam_free(XCSF *xcsf, double *mu)
+void sam_free(const XCSF *xcsf, double *mu)
 {
     if(xcsf->SAM_NUM > 0) {
         free(mu);
@@ -101,7 +101,7 @@ void sam_free(XCSF *xcsf, double *mu)
  * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to print.
  */
-void sam_print(XCSF *xcsf, double *mu)
+void sam_print(const XCSF *xcsf, double *mu)
 {
     if(xcsf->SAM_NUM > 0) {
         for(int i = 0; i < xcsf->SAM_NUM; i++) {
@@ -115,7 +115,7 @@ void sam_print(XCSF *xcsf, double *mu)
  * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to initialise.
  */
-static void sam_log_normal_init(XCSF *xcsf, double **mu)
+static void sam_log_normal_init(const XCSF *xcsf, double **mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         (*mu)[i] = rand_uniform(0,1);
@@ -127,7 +127,7 @@ static void sam_log_normal_init(XCSF *xcsf, double **mu)
  * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to adapt.
  */
-static void sam_log_normal_adapt(XCSF *xcsf, double *mu)
+static void sam_log_normal_adapt(const XCSF *xcsf, double *mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         mu[i] *= exp(rand_normal(0,1));
@@ -145,7 +145,7 @@ static void sam_log_normal_adapt(XCSF *xcsf, double *mu)
  * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to initialise.
  */
-static void sam_rate_selection_init(XCSF *xcsf, double **mu)
+static void sam_rate_selection_init(const XCSF *xcsf, double **mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         (*mu)[i] = mrates[irand_uniform(0,NUM_RATES)];
@@ -159,7 +159,7 @@ static void sam_rate_selection_init(XCSF *xcsf, double **mu)
  *
  * @details With 10% probability, randomly selects one of the possible rates.
  */
-static void sam_rate_selection_adapt(XCSF *xcsf, double *mu)
+static void sam_rate_selection_adapt(const XCSF *xcsf, double *mu)
 {
     for(int i = 0; i < xcsf->SAM_NUM; i++) {
         if(rand_uniform(0,1) < 0.1) {

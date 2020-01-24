@@ -40,7 +40,7 @@ typedef struct PRED_NLMS {
     double **weights; //!< Weights used to compute prediction
 } PRED_NLMS;
 
-void pred_nlms_init(XCSF *xcsf, CL *c)
+void pred_nlms_init(const XCSF *xcsf, CL *c)
 {
     PRED_NLMS *pred = malloc(sizeof(PRED_NLMS));
     c->pred = pred;
@@ -64,7 +64,7 @@ void pred_nlms_init(XCSF *xcsf, CL *c)
     }
 }
 
-void pred_nlms_copy(XCSF *xcsf, CL *to, CL *from)
+void pred_nlms_copy(const XCSF *xcsf, CL *to, CL *from)
 {
     pred_nlms_init(xcsf, to);
     PRED_NLMS *to_pred = to->pred;
@@ -75,7 +75,7 @@ void pred_nlms_copy(XCSF *xcsf, CL *to, CL *from)
     }
 }
 
-void pred_nlms_free(XCSF *xcsf, CL *c)
+void pred_nlms_free(const XCSF *xcsf, CL *c)
 {
     PRED_NLMS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {
@@ -85,7 +85,7 @@ void pred_nlms_free(XCSF *xcsf, CL *c)
     free(pred);
 }
 
-void pred_nlms_update(XCSF *xcsf, CL *c, const double *x, const double *y)
+void pred_nlms_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     PRED_NLMS *pred = c->pred;
     double norm = xcsf->PRED_X0 * xcsf->PRED_X0;
@@ -114,7 +114,7 @@ void pred_nlms_update(XCSF *xcsf, CL *c, const double *x, const double *y)
     }
 }
 
-const double *pred_nlms_compute(XCSF *xcsf, CL *c, const double *x)
+const double *pred_nlms_compute(const XCSF *xcsf, CL *c, const double *x)
 {
     PRED_NLMS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {
@@ -138,7 +138,7 @@ const double *pred_nlms_compute(XCSF *xcsf, CL *c, const double *x)
     return c->prediction;
 } 
 
-void pred_nlms_print(XCSF *xcsf, CL *c)
+void pred_nlms_print(const XCSF *xcsf, CL *c)
 {
     PRED_NLMS *pred = c->pred;
     printf("weights: ");
@@ -150,26 +150,26 @@ void pred_nlms_print(XCSF *xcsf, CL *c)
     }
 }
 
-_Bool pred_nlms_crossover(XCSF *xcsf, CL *c1, CL *c2)
+_Bool pred_nlms_crossover(const XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;
 }
 
-_Bool pred_nlms_mutate(XCSF *xcsf, CL *c)
+_Bool pred_nlms_mutate(const XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
     return false;
 }
 
-int pred_nlms_size(XCSF *xcsf, CL *c)
+int pred_nlms_size(const XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     PRED_NLMS *pred = c->pred;
     return pred->weights_length;
 }
 
-size_t pred_nlms_save(XCSF *xcsf, CL *c, FILE *fp)
+size_t pred_nlms_save(const XCSF *xcsf, CL *c, FILE *fp)
 {
     PRED_NLMS *pred = c->pred;
     size_t s = 0;
@@ -180,7 +180,7 @@ size_t pred_nlms_save(XCSF *xcsf, CL *c, FILE *fp)
     return s;
 }
 
-size_t pred_nlms_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t pred_nlms_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     pred_nlms_init(xcsf, c);
     PRED_NLMS *pred = c->pred;

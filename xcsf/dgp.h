@@ -37,15 +37,15 @@ typedef struct GRAPH {
     int klen; //!< Length of connectivity map
 } GRAPH;
 
-_Bool graph_crossover(XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
-_Bool graph_mutate(XCSF *xcsf, GRAPH *dgp);
-double graph_output(XCSF *xcsf, GRAPH *dgp, int i);
-size_t graph_load(XCSF *xcsf, GRAPH *dgp, FILE *fp);
-size_t graph_save(XCSF *xcsf, GRAPH *dgp, FILE *fp);
-void graph_copy(XCSF *xcsf, GRAPH *to, GRAPH *from);
-void graph_free(XCSF *xcsf, GRAPH *dgp);
-void graph_init(XCSF *xcsf, GRAPH *dgp, int n);
-void graph_print(XCSF *xcsf, GRAPH *dgp);
-void graph_rand(XCSF *xcsf, GRAPH *dgp);
-void graph_reset(XCSF *xcsf, GRAPH *dgp);
-void graph_update(XCSF *xcsf, GRAPH *dgp, const double *inputs);
+_Bool graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
+_Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp);
+double graph_output(const XCSF *xcsf, GRAPH *dgp, int i);
+size_t graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp);
+size_t graph_save(const XCSF *xcsf, GRAPH *dgp, FILE *fp);
+void graph_copy(const XCSF *xcsf, GRAPH *to, GRAPH *from);
+void graph_free(const XCSF *xcsf, GRAPH *dgp);
+void graph_init(const XCSF *xcsf, GRAPH *dgp, int n);
+void graph_print(const XCSF *xcsf, GRAPH *dgp);
+void graph_rand(const XCSF *xcsf, GRAPH *dgp);
+void graph_reset(const XCSF *xcsf, GRAPH *dgp);
+void graph_update(const XCSF *xcsf, GRAPH *dgp, const double *inputs);

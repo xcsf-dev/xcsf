@@ -23,19 +23,19 @@
 
 #pragma once
 
-_Bool cond_dgp_crossover(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_dgp_general(XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_dgp_match(XCSF *xcsf, CL *c, const double *x);
-_Bool cond_dgp_mutate(XCSF *xcsf, CL *c);
-void cond_dgp_copy(XCSF *xcsf, CL *to, CL *from);
-void cond_dgp_cover(XCSF *xcsf, CL *c, const double *x);
-void cond_dgp_free(XCSF *xcsf, CL *c);
-void cond_dgp_init(XCSF *xcsf, CL *c);
-void cond_dgp_print(XCSF *xcsf, CL *c);
-void cond_dgp_update(XCSF *xcsf, CL *c, const double *x, const double *y);
-int cond_dgp_size(XCSF *xcsf, CL *c);
-size_t cond_dgp_save(XCSF *xcsf, CL *c, FILE *fp);
-size_t cond_dgp_load(XCSF *xcsf, CL *c, FILE *fp);
+_Bool cond_dgp_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_dgp_general(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_dgp_match(const XCSF *xcsf, CL *c, const double *x);
+_Bool cond_dgp_mutate(const XCSF *xcsf, CL *c);
+void cond_dgp_copy(const XCSF *xcsf, CL *to, CL *from);
+void cond_dgp_cover(const XCSF *xcsf, CL *c, const double *x);
+void cond_dgp_free(const XCSF *xcsf, CL *c);
+void cond_dgp_init(const XCSF *xcsf, CL *c);
+void cond_dgp_print(const XCSF *xcsf, CL *c);
+void cond_dgp_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+int cond_dgp_size(const XCSF *xcsf, CL *c);
+size_t cond_dgp_save(const XCSF *xcsf, CL *c, FILE *fp);
+size_t cond_dgp_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
  * @brief Dynamical GP graph condition implemented functions.

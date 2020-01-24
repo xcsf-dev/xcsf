@@ -34,7 +34,7 @@
 
 static void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n);
 static void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n);
-static void init_matrix(XCSF *xcsf, double *matrix, int n);
+static void init_matrix(const XCSF *xcsf, double *matrix, int n);
                     
 /**
  * @brief Recursive least mean squares prediction data structure.
@@ -49,7 +49,7 @@ typedef struct PRED_RLS {
     double *tmp_matrix2; //!< Temporary storage for updating gain matrix
 } PRED_RLS;
 
-void pred_rls_init(XCSF *xcsf, CL *c)
+void pred_rls_init(const XCSF *xcsf, CL *c)
 {
     PRED_RLS *pred = malloc(sizeof(PRED_RLS));
     c->pred = pred;
@@ -84,7 +84,7 @@ void pred_rls_init(XCSF *xcsf, CL *c)
     pred->tmp_matrix2 = malloc(sizeof(double) * len_sqrd);
 }
 
-static void init_matrix(XCSF *xcsf, double *matrix, int n)
+static void init_matrix(const XCSF *xcsf, double *matrix, int n)
 {
     for(int row = 0; row < n; row++) {
         for(int col = 0; col < n; col++) {
@@ -98,7 +98,7 @@ static void init_matrix(XCSF *xcsf, double *matrix, int n)
     }
 }
 
-void pred_rls_copy(XCSF *xcsf, CL *to, CL *from)
+void pred_rls_copy(const XCSF *xcsf, CL *to, CL *from)
 {
     pred_rls_init(xcsf, to);
     PRED_RLS *to_pred = to->pred;
@@ -109,7 +109,7 @@ void pred_rls_copy(XCSF *xcsf, CL *to, CL *from)
     }
 }
 
-void pred_rls_free(XCSF *xcsf, CL *c)
+void pred_rls_free(const XCSF *xcsf, CL *c)
 {
     PRED_RLS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {
@@ -124,7 +124,7 @@ void pred_rls_free(XCSF *xcsf, CL *c)
     free(pred);
 }
 
-void pred_rls_update(XCSF *xcsf, CL *c, const double *x, const double *y)
+void pred_rls_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     PRED_RLS *pred = c->pred;
     int n = pred->weights_length;
@@ -181,7 +181,7 @@ void pred_rls_update(XCSF *xcsf, CL *c, const double *x, const double *y)
     }
 }
 
-const double *pred_rls_compute(XCSF *xcsf, CL *c, const double *x)
+const double *pred_rls_compute(const XCSF *xcsf, CL *c, const double *x)
 {
     PRED_RLS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {
@@ -205,7 +205,7 @@ const double *pred_rls_compute(XCSF *xcsf, CL *c, const double *x)
     return c->prediction;
 } 
 
-void pred_rls_print(XCSF *xcsf, CL *c)
+void pred_rls_print(const XCSF *xcsf, CL *c)
 {
     PRED_RLS *pred = c->pred;
     printf("RLS weights: ");
@@ -239,26 +239,26 @@ static void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int
     }
 }
 
-_Bool pred_rls_crossover(XCSF *xcsf, CL *c1, CL *c2)
+_Bool pred_rls_crossover(const XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;
 }
 
-_Bool pred_rls_mutate(XCSF *xcsf, CL *c)
+_Bool pred_rls_mutate(const XCSF *xcsf, CL *c)
 {
     (void)xcsf; (void)c;
     return false;
 }
 
-int pred_rls_size(XCSF *xcsf, CL *c)
+int pred_rls_size(const XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     PRED_RLS *pred = c->pred;
     return pred->weights_length;
 }
 
-size_t pred_rls_save(XCSF *xcsf, CL *c, FILE *fp)
+size_t pred_rls_save(const XCSF *xcsf, CL *c, FILE *fp)
 {
     PRED_RLS *pred = c->pred;
     size_t s = 0;
@@ -271,7 +271,7 @@ size_t pred_rls_save(XCSF *xcsf, CL *c, FILE *fp)
     return s;
 }
 
-size_t pred_rls_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t pred_rls_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     pred_rls_init(xcsf, c);
     PRED_RLS *pred = c->pred;

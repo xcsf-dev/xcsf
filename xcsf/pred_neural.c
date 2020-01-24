@@ -47,7 +47,7 @@ typedef struct PRED_NEURAL {
     NET net; //!< Neural network
 } PRED_NEURAL;
 
-void pred_neural_init(XCSF *xcsf, CL *c)
+void pred_neural_init(const XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     neural_init(xcsf, &new->net);
@@ -96,14 +96,14 @@ void pred_neural_init(XCSF *xcsf, CL *c)
     c->pred = new;
 }
 
-void pred_neural_free(XCSF *xcsf, CL *c)
+void pred_neural_free(const XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     neural_free(xcsf, &pred->net);
     free(pred);
 }
 
-void pred_neural_copy(XCSF *xcsf, CL *to, CL *from)
+void pred_neural_copy(const XCSF *xcsf, CL *to, CL *from)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     PRED_NEURAL *from_pred = from->pred;
@@ -111,7 +111,7 @@ void pred_neural_copy(XCSF *xcsf, CL *to, CL *from)
     to->pred = new;
 }
 
-void pred_neural_update(XCSF *xcsf, CL *c, const double *x, const double *y)
+void pred_neural_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
     if(xcsf->PRED_SGD_WEIGHTS) {
         PRED_NEURAL *pred = c->pred;
@@ -119,7 +119,7 @@ void pred_neural_update(XCSF *xcsf, CL *c, const double *x, const double *y)
     }
 }
 
-const double *pred_neural_compute(XCSF *xcsf, CL *c, const double *x)
+const double *pred_neural_compute(const XCSF *xcsf, CL *c, const double *x)
 {
     PRED_NEURAL *pred = c->pred;
     neural_propagate(xcsf, &pred->net, x);
@@ -129,38 +129,38 @@ const double *pred_neural_compute(XCSF *xcsf, CL *c, const double *x)
     return c->prediction;
 }
 
-void pred_neural_print(XCSF *xcsf, CL *c)
+void pred_neural_print(const XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     neural_print(xcsf, &pred->net, false);
 }  
 
-_Bool pred_neural_crossover(XCSF *xcsf, CL *c1, CL *c2)
+_Bool pred_neural_crossover(const XCSF *xcsf, CL *c1, CL *c2)
 {
     (void)xcsf; (void) c1; (void)c2;
     return false;
 }
 
-_Bool pred_neural_mutate(XCSF *xcsf, CL *c)
+_Bool pred_neural_mutate(const XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     return neural_mutate(xcsf, &pred->net);
 }
 
-int pred_neural_size(XCSF *xcsf, CL *c)
+int pred_neural_size(const XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     return neural_size(xcsf, &pred->net);
 }
 
-size_t pred_neural_save(XCSF *xcsf, CL *c, FILE *fp)
+size_t pred_neural_save(const XCSF *xcsf, CL *c, FILE *fp)
 {
     PRED_NEURAL *pred = c->pred;
     size_t s = neural_save(xcsf, &pred->net, fp);
     return s;
 }
 
-size_t pred_neural_load(XCSF *xcsf, CL *c, FILE *fp)
+size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     size_t s = neural_load(xcsf, &new->net, fp);
@@ -168,7 +168,7 @@ size_t pred_neural_load(XCSF *xcsf, CL *c, FILE *fp)
     return s;
 }
 
-double pred_neural_eta(XCSF *xcsf, CL *c, int layer)
+double pred_neural_eta(const XCSF *xcsf, CL *c, int layer)
 {
     (void)xcsf;
     PRED_NEURAL *pred = c->pred;
