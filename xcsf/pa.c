@@ -46,7 +46,7 @@ void pa_init(XCSF *xcsf)
  * @param set The set used to construct the array (typically the match set).
  * @param x The input state.
  */
-void pa_build(XCSF *xcsf, SET *set, double *x)
+void pa_build(XCSF *xcsf, SET *set, const double *x)
 {
     for(int i = 0; i < xcsf->num_actions; i++) {
         xcsf->pa[i] = 0;

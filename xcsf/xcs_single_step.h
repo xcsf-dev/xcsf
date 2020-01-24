@@ -17,7 +17,7 @@
  * @file xcs_single_step.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Single-step reinforcement learning functions.
  */ 
  
@@ -25,5 +25,5 @@
 
 double xcs_single_error(XCSF *xcsf, double reward);
 double xcs_single_step_exp(XCSF *xcsf);
-int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, double *x);
-void xcs_single_update(XCSF *xcsf, SET *mset, SET *aset, SET *kset, double *x, int a, double r);
+int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, const double *x);
+void xcs_single_update(XCSF *xcsf, SET *mset, SET *aset, SET *kset, const double *x, int a, double r);

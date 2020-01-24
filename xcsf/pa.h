@@ -17,13 +17,13 @@
  * @file pa.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Prediction array functions.
  */ 
  
 #pragma once
 
-void pa_build(XCSF *xcsf, SET *set, double *x);
+void pa_build(XCSF *xcsf, SET *set, const double *x);
 double pa_best_val(XCSF *xcsf);
 double pa_val(XCSF *xcsf, int act);   
 int pa_best_action(XCSF *xcsf);

@@ -110,7 +110,7 @@ static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore)
  * @param x The input state.
  * @return The selected action.
  */
-int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, double *x)
+int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, const double *x)
 {
     clset_match(xcsf, mset, kset, x);
     xcsf->msetsize += (mset->size - xcsf->msetsize) * xcsf->BETA;
@@ -131,7 +131,7 @@ int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, double *x)
  * @param a The action selected.
  * @param r The reward from performing the action.
  */
-void xcs_single_update(XCSF *xcsf, SET *mset, SET *aset, SET *kset, double *x, int a, double r)
+void xcs_single_update(XCSF *xcsf, SET *mset, SET *aset, SET *kset, const double *x, int a, double r)
 {
     clset_action(xcsf, mset, aset, a);
     clset_update(xcsf, aset, kset, x, &r, true);
