@@ -53,7 +53,7 @@ void pa_build(XCSF *xcsf, SET *set, double *x)
         xcsf->nr[i] = 0;
     }
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        double *predictions = cl_predict(xcsf, iter->cl, x);
+        const double *predictions = cl_predict(xcsf, iter->cl, x);
         xcsf->pa[iter->cl->action] += predictions[0] * iter->cl->fit;
         xcsf->nr[iter->cl->action] += iter->cl->fit;
     }

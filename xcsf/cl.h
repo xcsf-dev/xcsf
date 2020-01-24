@@ -29,7 +29,7 @@ _Bool cl_m(XCSF *xcsf, CL *c);
 _Bool cl_match(XCSF *xcsf, CL *c, const double *x);
 _Bool cl_mutate(XCSF *xcsf, CL *c);
 _Bool cl_subsumer(XCSF *xcsf, CL *c);
-double *cl_predict(XCSF *xcsf, CL *c, const double *x);
+const double *cl_predict(XCSF *xcsf, CL *c, const double *x);
 double cl_acc(XCSF *xcsf, CL *c);
 double cl_del_vote(XCSF *xcsf, CL *c, double avg_fit);
 double cl_mutation_rate(XCSF *xcsf, CL *c, int m);

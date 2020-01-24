@@ -23,7 +23,7 @@
  
 #pragma once
 
-double *pred_nlms_compute(XCSF *xcsf, CL *c, const double *x);
+const double *pred_nlms_compute(XCSF *xcsf, CL *c, const double *x);
 _Bool pred_nlms_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_nlms_mutate(XCSF *xcsf, CL *c);
 void pred_nlms_copy(XCSF *xcsf, CL *to, CL *from);

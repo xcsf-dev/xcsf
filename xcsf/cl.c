@@ -313,7 +313,7 @@ int cl_action(XCSF *xcsf, CL *c, const double *x)
  * @param x The input state.
  * @return The classifier's payoff predictions.
  */
-double *cl_predict(XCSF *xcsf, CL *c, const double *x)
+const double *cl_predict(XCSF *xcsf, CL *c, const double *x)
 {
     memcpy(c->prev_prediction, c->prediction, sizeof(double) * xcsf->num_y_vars);
     return pred_compute(xcsf, c, x);

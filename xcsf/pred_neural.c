@@ -119,7 +119,7 @@ void pred_neural_update(XCSF *xcsf, CL *c, const double *x, const double *y)
     }
 }
 
-double *pred_neural_compute(XCSF *xcsf, CL *c, const double *x)
+const double *pred_neural_compute(XCSF *xcsf, CL *c, const double *x)
 {
     PRED_NEURAL *pred = c->pred;
     neural_propagate(xcsf, &pred->net, x);

@@ -23,7 +23,7 @@
 
 #pragma once
 
-double *pred_rls_compute(XCSF *xcsf, CL *c, const double *x);
+const double *pred_rls_compute(XCSF *xcsf, CL *c, const double *x);
 _Bool pred_rls_crossover(XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_rls_mutate(XCSF *xcsf, CL *c);
 void pred_rls_copy(XCSF *xcsf, CL *to,  CL *from);

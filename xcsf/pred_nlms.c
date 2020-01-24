@@ -114,7 +114,7 @@ void pred_nlms_update(XCSF *xcsf, CL *c, const double *x, const double *y)
     }
 }
 
-double *pred_nlms_compute(XCSF *xcsf, CL *c, const double *x)
+const double *pred_nlms_compute(XCSF *xcsf, CL *c, const double *x)
 {
     PRED_NLMS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {

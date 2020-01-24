@@ -264,7 +264,7 @@ void clset_pred(XCSF *xcsf, SET *set, const double *x, double *p)
     }
 #pragma omp parallel for reduction(+:presum[:xcsf->num_y_vars],fitsum)
     for(int i = 0; i < set->size; i++) {
-        double *predictions = cl_predict(xcsf, blist[i]->cl, x);
+        const double *predictions = cl_predict(xcsf, blist[i]->cl, x);
         for(int var = 0; var < xcsf->num_y_vars; var++) {
             presum[var] += predictions[var] * blist[i]->cl->fit;
         }
@@ -276,7 +276,7 @@ void clset_pred(XCSF *xcsf, SET *set, const double *x, double *p)
     }
 #else
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        double *predictions = cl_predict(xcsf, iter->cl, x);
+        const double *predictions = cl_predict(xcsf, iter->cl, x);
         for(int var = 0; var < xcsf->num_y_vars; var++) {
             presum[var] += predictions[var] * iter->cl->fit;
         }
