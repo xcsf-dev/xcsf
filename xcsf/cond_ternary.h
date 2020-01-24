@@ -24,17 +24,17 @@
 #pragma once
 
 _Bool cond_ternary_crossover(const XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_ternary_general(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_ternary_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_ternary_match(const XCSF *xcsf, CL *c, const double *x);
 _Bool cond_ternary_mutate(const XCSF *xcsf, CL *c);
-void cond_ternary_copy(const XCSF *xcsf, CL *to, CL *from);
+void cond_ternary_copy(const XCSF *xcsf, CL *to, const CL *from);
 void cond_ternary_cover(const XCSF *xcsf, CL *c, const double *x);
 void cond_ternary_free(const XCSF *xcsf, CL *c);
 void cond_ternary_init(const XCSF *xcsf, CL *c);
-void cond_ternary_print(const XCSF *xcsf, CL *c);
+void cond_ternary_print(const XCSF *xcsf, const CL *c);
 void cond_ternary_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
-int cond_ternary_size(const XCSF *xcsf, CL *c);
-size_t cond_ternary_save(const XCSF *xcsf, CL *c, FILE *fp);
+int cond_ternary_size(const XCSF *xcsf, const CL *c);
+size_t cond_ternary_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**

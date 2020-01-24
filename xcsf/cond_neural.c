@@ -97,7 +97,7 @@ void cond_neural_free(const XCSF *xcsf, CL *c)
     free(c->cond);
 }                  
 
-void cond_neural_copy(const XCSF *xcsf, CL *to, CL *from)
+void cond_neural_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     COND_NEURAL *from_cond = from->cond;
@@ -148,25 +148,25 @@ _Bool cond_neural_crossover(const XCSF *xcsf, CL *c1, CL *c2)
     return false;
 }
 
-_Bool cond_neural_general(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_neural_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;
 }   
 
-void cond_neural_print(const XCSF *xcsf, CL *c)
+void cond_neural_print(const XCSF *xcsf, const CL *c)
 {
     COND_NEURAL *cond = c->cond;
     neural_print(xcsf, &cond->net, false);
 }
 
-int cond_neural_size(const XCSF *xcsf, CL *c)
+int cond_neural_size(const XCSF *xcsf, const CL *c)
 {
     COND_NEURAL *cond = c->cond;
     return neural_size(xcsf, &cond->net);
 }
 
-size_t cond_neural_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_neural_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     COND_NEURAL *cond = c->cond;
     size_t s = neural_save(xcsf, &cond->net, fp);

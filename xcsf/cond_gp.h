@@ -24,17 +24,17 @@
 #pragma once
 
 _Bool cond_gp_crossover(const XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_gp_general(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_gp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_gp_match(const XCSF *xcsf, CL *c, const double *x);
 _Bool cond_gp_mutate(const XCSF *xcsf, CL *c);
-void cond_gp_copy(const XCSF *xcsf, CL *to, CL *from);
+void cond_gp_copy(const XCSF *xcsf, CL *to, const CL *from);
 void cond_gp_cover(const XCSF *xcsf, CL *c, const double *x);
 void cond_gp_free(const XCSF *xcsf, CL *c);
 void cond_gp_init(const XCSF *xcsf, CL *c);
-void cond_gp_print(const XCSF *xcsf, CL *c);
+void cond_gp_print(const XCSF *xcsf, const CL *c);
 void cond_gp_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
-int cond_gp_size(const XCSF *xcsf, CL *c);
-size_t cond_gp_save(const XCSF *xcsf, CL *c, FILE *fp);
+int cond_gp_size(const XCSF *xcsf, const CL *c);
+size_t cond_gp_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t cond_gp_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**

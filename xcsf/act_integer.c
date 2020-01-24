@@ -36,7 +36,7 @@ _Bool act_integer_crossover(const XCSF *xcsf, CL *c1, CL *c2)
     return false;
 }
 
-_Bool act_integer_general(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf;
     if(c1->action != c2->action) {
@@ -63,13 +63,13 @@ int act_integer_compute(const XCSF *xcsf, CL *c, const double *x)
     return c->action;
 }
 
-void act_integer_copy(const XCSF *xcsf, CL *to, CL *from)
+void act_integer_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     (void)xcsf;
     to->action = from->action;
 }
 
-void act_integer_print(const XCSF *xcsf, CL *c)
+void act_integer_print(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     printf("%d\n", c->action);
@@ -101,7 +101,7 @@ void act_integer_update(const XCSF *xcsf, CL *c, const double *x, const double *
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-size_t act_integer_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;

@@ -24,17 +24,17 @@
 #pragma once
 
 _Bool cond_neural_crossover(const XCSF *xcsf, CL *c1, CL *c2);
-_Bool cond_neural_general(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_neural_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_neural_match(const XCSF *xcsf, CL *c, const double *x);
 _Bool cond_neural_mutate(const XCSF *xcsf, CL *c);
-void cond_neural_copy(const XCSF *xcsf, CL *to, CL *from);
+void cond_neural_copy(const XCSF *xcsf, CL *to, const CL *from);
 void cond_neural_cover(const XCSF *xcsf, CL *c, const double *x);
 void cond_neural_free(const XCSF *xcsf, CL *c);
 void cond_neural_init(const XCSF *xcsf, CL *c);
-void cond_neural_print(const XCSF *xcsf, CL *c);
+void cond_neural_print(const XCSF *xcsf, const CL *c);
 void cond_neural_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
-int cond_neural_size(const XCSF *xcsf, CL *c);
-size_t cond_neural_save(const XCSF *xcsf, CL *c, FILE *fp);
+int cond_neural_size(const XCSF *xcsf, const CL *c);
+size_t cond_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t cond_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**

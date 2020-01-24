@@ -40,7 +40,7 @@ typedef struct COND_RECTANGLE {
     double *spread; //!< Spreads
 } COND_RECTANGLE;
 
-static double cond_rectangle_dist(const XCSF *xcsf, CL *c, const double *x);
+static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x);
 
 void cond_rectangle_init(const XCSF *xcsf, CL *c)
 {
@@ -63,7 +63,7 @@ void cond_rectangle_free(const XCSF *xcsf, CL *c)
     free(c->cond);
 }
 
-void cond_rectangle_copy(const XCSF *xcsf, CL *to, CL *from)
+void cond_rectangle_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
     COND_RECTANGLE *from_cond = from->cond;
@@ -105,7 +105,7 @@ _Bool cond_rectangle_match(const XCSF *xcsf, CL *c, const double *x)
     return c->m;
 }
 
-static double cond_rectangle_dist(const XCSF *xcsf, CL *c, const double *x)
+static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x)
 {
     COND_RECTANGLE *cond = c->cond;
     double dist = 0;
@@ -164,7 +164,7 @@ _Bool cond_rectangle_mutate(const XCSF *xcsf, CL *c)
     return changed;
 }
 
-_Bool cond_rectangle_general(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     // returns whether cond1 is more general than cond2
     COND_RECTANGLE *cond1 = c1->cond;
@@ -181,7 +181,7 @@ _Bool cond_rectangle_general(const XCSF *xcsf, CL *c1, CL *c2)
     return true;
 }  
 
-void cond_rectangle_print(const XCSF *xcsf, CL *c)
+void cond_rectangle_print(const XCSF *xcsf, const CL *c)
 {
     COND_RECTANGLE *cond = c->cond;
     printf("rectangle:");
@@ -192,13 +192,13 @@ void cond_rectangle_print(const XCSF *xcsf, CL *c)
     printf("\n");
 }
 
-int cond_rectangle_size(const XCSF *xcsf, CL *c)
+int cond_rectangle_size(const XCSF *xcsf, const CL *c)
 {
     (void)c;
     return xcsf->num_x_vars;
 }
 
-size_t cond_rectangle_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_rectangle_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_RECTANGLE *cond = c->cond;

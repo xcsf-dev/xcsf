@@ -99,7 +99,7 @@ void rule_neural_cond_free(const XCSF *xcsf, CL *c)
     free(c->cond);
 }
 
-void rule_neural_cond_copy(const XCSF *xcsf, CL *to, CL *from)
+void rule_neural_cond_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
     RULE_NEURAL *from_cond = from->cond;
@@ -149,25 +149,25 @@ _Bool rule_neural_cond_crossover(const XCSF *xcsf, CL *c1, CL *c2)
     return false;
 }
 
-_Bool rule_neural_cond_general(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool rule_neural_cond_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;
 }   
 
-void rule_neural_cond_print(const XCSF *xcsf, CL *c)
+void rule_neural_cond_print(const XCSF *xcsf, const CL *c)
 {
     RULE_NEURAL *cond = c->cond;
     neural_print(xcsf, &cond->net, false);
 }  
  
-int rule_neural_cond_size(const XCSF *xcsf, CL *c)
+int rule_neural_cond_size(const XCSF *xcsf, const CL *c)
 {
     RULE_NEURAL *cond = c->cond;
     return neural_size(xcsf, &cond->net);
 }
 
-size_t rule_neural_cond_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t rule_neural_cond_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     RULE_NEURAL *cond = c->cond;
     size_t s = neural_save(xcsf, &cond->net, fp);
@@ -195,12 +195,12 @@ void rule_neural_act_free(const XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
 }
  
-void rule_neural_act_copy(const XCSF *xcsf, CL *to, CL *from)
+void rule_neural_act_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     (void)xcsf; (void)to; (void)from;
 }
  
-void rule_neural_act_print(const XCSF *xcsf, CL *c)
+void rule_neural_act_print(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf; (void)c;
 }
@@ -243,7 +243,7 @@ _Bool rule_neural_act_crossover(const XCSF *xcsf, CL *c1, CL *c2)
     return false;
 }
 
-_Bool rule_neural_act_general(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool rule_neural_act_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;
@@ -255,7 +255,7 @@ _Bool rule_neural_act_mutate(const XCSF *xcsf, CL *c)
     return false;
 }
 
-size_t rule_neural_act_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t rule_neural_act_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf; (void)c; (void)fp;
     return 0;

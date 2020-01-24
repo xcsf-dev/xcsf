@@ -24,17 +24,17 @@
 #pragma once
 
 _Bool rule_dgp_cond_crossover(const XCSF *xcsf, CL *c1, CL *c2);
-_Bool rule_dgp_cond_general(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool rule_dgp_cond_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_dgp_cond_match(const XCSF *xcsf, CL *c, const double *x);
 _Bool rule_dgp_cond_mutate(const XCSF *xcsf, CL *c);
-void rule_dgp_cond_copy(const XCSF *xcsf, CL *to, CL *from);
+void rule_dgp_cond_copy(const XCSF *xcsf, CL *to, const CL *from);
 void rule_dgp_cond_cover(const XCSF *xcsf, CL *c, const double *x);
 void rule_dgp_cond_free(const XCSF *xcsf, CL *c);
 void rule_dgp_cond_init(const XCSF *xcsf, CL *c);
-void rule_dgp_cond_print(const XCSF *xcsf, CL *c);
+void rule_dgp_cond_print(const XCSF *xcsf, const CL *c);
 void rule_dgp_cond_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
-int rule_dgp_cond_size(const XCSF *xcsf, CL *c);
-size_t rule_dgp_cond_save(const XCSF *xcsf, CL *c, FILE *fp);
+int rule_dgp_cond_size(const XCSF *xcsf, const CL *c);
+size_t rule_dgp_cond_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t rule_dgp_cond_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
@@ -57,17 +57,17 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
 };      
 
 _Bool rule_dgp_act_crossover(const XCSF *xcsf, CL *c1, CL *c2);
-_Bool rule_dgp_act_general(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool rule_dgp_act_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_dgp_act_mutate(const XCSF *xcsf, CL *c);
 int rule_dgp_act_compute(const XCSF *xcsf, CL *c, const double *x);
-void rule_dgp_act_copy(const XCSF *xcsf, CL *to, CL *from);
+void rule_dgp_act_copy(const XCSF *xcsf, CL *to, const CL *from);
 void rule_dgp_act_cover(const XCSF *xcsf, CL *c, const double *x, int action);
 void rule_dgp_act_free(const XCSF *xcsf, CL *c);
 void rule_dgp_act_init(const XCSF *xcsf, CL *c);
-void rule_dgp_act_print(const XCSF *xcsf, CL *c);
+void rule_dgp_act_print(const XCSF *xcsf, const CL *c);
 void rule_dgp_act_rand(const XCSF *xcsf, CL *c);
 void rule_dgp_act_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
-size_t rule_dgp_act_save(const XCSF *xcsf, CL *c, FILE *fp);
+size_t rule_dgp_act_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t rule_dgp_act_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**

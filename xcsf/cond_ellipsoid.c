@@ -40,7 +40,7 @@ typedef struct COND_ELLIPSOID {
     double *spread; //!< Spreads
 } COND_ELLIPSOID;
 
-static double cond_ellipsoid_dist(const XCSF *xcsf, CL *c, const double *x);
+static double cond_ellipsoid_dist(const XCSF *xcsf, const CL *c, const double *x);
 
 void cond_ellipsoid_init(const XCSF *xcsf, CL *c)
 {
@@ -63,7 +63,7 @@ void cond_ellipsoid_free(const XCSF *xcsf, CL *c)
     free(c->cond);
 }
 
-void cond_ellipsoid_copy(const XCSF *xcsf, CL *to, CL *from)
+void cond_ellipsoid_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
     COND_ELLIPSOID *from_cond = from->cond;
@@ -105,7 +105,7 @@ _Bool cond_ellipsoid_match(const XCSF *xcsf, CL *c, const double *x)
     return c->m;
 }
 
-static double cond_ellipsoid_dist(const XCSF *xcsf, CL *c, const double *x)
+static double cond_ellipsoid_dist(const XCSF *xcsf, const CL *c, const double *x)
 {
     COND_ELLIPSOID *cond = c->cond;
     double dist = 0;
@@ -162,7 +162,7 @@ _Bool cond_ellipsoid_mutate(const XCSF *xcsf, CL *c)
     return changed;   
 }
 
-_Bool cond_ellipsoid_general(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_ellipsoid_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     // returns whether cond1 is more general than cond2
     COND_ELLIPSOID *cond1 = c1->cond;
@@ -179,7 +179,7 @@ _Bool cond_ellipsoid_general(const XCSF *xcsf, CL *c1, CL *c2)
     return true;
 }  
 
-void cond_ellipsoid_print(const XCSF *xcsf, CL *c)
+void cond_ellipsoid_print(const XCSF *xcsf, const CL *c)
 {
     COND_ELLIPSOID *cond = c->cond;
     printf("ellipsoid:");
@@ -190,13 +190,13 @@ void cond_ellipsoid_print(const XCSF *xcsf, CL *c)
     printf("\n");
 }
 
-int cond_ellipsoid_size(const XCSF *xcsf, CL *c)
+int cond_ellipsoid_size(const XCSF *xcsf, const CL *c)
 {
     (void)c;
     return xcsf->num_x_vars;
 }
 
-size_t cond_ellipsoid_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_ellipsoid_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_ELLIPSOID *cond = c->cond;

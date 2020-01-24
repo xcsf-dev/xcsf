@@ -82,7 +82,7 @@ void cond_ternary_free(const XCSF *xcsf, CL *c)
     free(c->cond);
 }
 
-void cond_ternary_copy(const XCSF *xcsf, CL *to, CL *from)
+void cond_ternary_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     (void)xcsf;
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
@@ -174,7 +174,7 @@ _Bool cond_ternary_mutate(const XCSF *xcsf, CL *c)
     return changed;
 }
 
-_Bool cond_ternary_general(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_ternary_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     // returns whether cond1 is more general than cond2
     (void)xcsf;
@@ -192,7 +192,7 @@ _Bool cond_ternary_general(const XCSF *xcsf, CL *c1, CL *c2)
     return general;
 }  
 
-void cond_ternary_print(const XCSF *xcsf, CL *c)
+void cond_ternary_print(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     COND_TERNARY *cond = c->cond;
@@ -203,14 +203,14 @@ void cond_ternary_print(const XCSF *xcsf, CL *c)
     printf("\n");
 }
 
-int cond_ternary_size(const XCSF *xcsf, CL *c)
+int cond_ternary_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     COND_TERNARY *cond = c->cond;
     return cond->len;
 }
 
-size_t cond_ternary_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_ternary_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;

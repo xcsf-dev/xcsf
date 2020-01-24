@@ -42,7 +42,7 @@ void cond_dummy_free(const XCSF *xcsf, CL *c)
 	(void)xcsf; (void)c;
 }
 
-void cond_dummy_copy(const XCSF *xcsf, CL *to, CL *from)
+void cond_dummy_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
 	(void)xcsf; (void)to; (void)from;
 }                             
@@ -76,24 +76,24 @@ _Bool cond_dummy_mutate(const XCSF *xcsf, CL *c)
 	return false;
 }
 
-_Bool cond_dummy_general(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_dummy_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
 	(void)xcsf; (void)c1; (void)c2;
 	return false;
 }  
 
-void cond_dummy_print(const XCSF *xcsf, CL *c)
+void cond_dummy_print(const XCSF *xcsf, const CL *c)
 {
 	(void)xcsf; (void)c;
 }
 
-int cond_dummy_size(const XCSF *xcsf, CL *c)
+int cond_dummy_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf; (void)c;
     return 0;
 }
 
-size_t cond_dummy_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_dummy_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf; (void)c; (void)fp;
     return 0;

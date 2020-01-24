@@ -57,7 +57,7 @@ void cond_dgp_free(const XCSF *xcsf, CL *c)
     free(c->cond);
 }                  
 
-void cond_dgp_copy(const XCSF *xcsf, CL *to, CL *from)
+void cond_dgp_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     COND_DGP *new = malloc(sizeof(COND_DGP));
     COND_DGP *from_cond = from->cond;
@@ -110,27 +110,27 @@ _Bool cond_dgp_crossover(const XCSF *xcsf, CL *c1, CL *c2)
     return graph_crossover(xcsf, &cond1->dgp, &cond2->dgp);
 }
 
-_Bool cond_dgp_general(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_dgp_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;
 }
 
-void cond_dgp_print(const XCSF *xcsf, CL *c)
+void cond_dgp_print(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     COND_DGP *cond = c->cond;
     graph_print(xcsf, &cond->dgp);
 }  
 
-int cond_dgp_size(const XCSF *xcsf, CL *c)
+int cond_dgp_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     COND_DGP *cond = c->cond;
     return cond->dgp.n;
 }
 
-size_t cond_dgp_save(const XCSF *xcsf, CL *c, FILE *fp)
+size_t cond_dgp_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     COND_DGP *cond = c->cond;
     size_t s = graph_save(xcsf, &cond->dgp, fp);

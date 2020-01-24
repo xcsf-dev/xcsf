@@ -45,7 +45,7 @@ struct CondVtbl {
      * @param c2 The classifier whose condition is tested to be more specific.
      * @return Whether the condition of c1 is more general than c2.
      */
-    _Bool (*cond_impl_general)(const XCSF *xcsf, CL *c1, CL *c2);
+    _Bool (*cond_impl_general)(const XCSF *xcsf, const CL *c1, const CL *c2);
     /**
      * @brief Calculates whether the condition matches the input. 
      * @param xcsf The XCSF data structure.
@@ -67,7 +67,7 @@ struct CondVtbl {
      * @param to The destination classifier.
      * @param from The source classifier.
      */
-    void (*cond_impl_copy)(const XCSF *xcsf, CL *to, CL *from);
+    void (*cond_impl_copy)(const XCSF *xcsf, CL *to, const CL *from);
     /**
      * @brief Generates a condition that matches the current input.
      * @param xcsf The XCSF data structure.
@@ -92,7 +92,7 @@ struct CondVtbl {
      * @param xcsf The XCSF data structure.
      * @param c The classifier whose condition is to be printed.
      */
-    void (*cond_impl_print)(const XCSF *xcsf, CL *c);
+    void (*cond_impl_print)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Updates the classifier's condition.
      * @param xcsf The XCSF data structure.
@@ -107,7 +107,7 @@ struct CondVtbl {
      * @param c The classifier whose condition size to return.
      * @return The size of the condition.
      */
-    int (*cond_impl_size)(const XCSF *xcsf, CL *c);
+    int (*cond_impl_size)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Writes the condition to a binary file.
      * @param xcsf The XCSF data structure.
@@ -115,7 +115,7 @@ struct CondVtbl {
      * @param fp Pointer to the file to be written.
      * @return The number of elements written.
      */
-    size_t (*cond_impl_save)(const XCSF *xcsf, CL *c, FILE *fp);
+    size_t (*cond_impl_save)(const XCSF *xcsf, const CL *c, FILE *fp);
     /**
      * @brief Reads the condition from a binary file.
      * @param xcsf The XCSF data structure.
@@ -126,7 +126,7 @@ struct CondVtbl {
     size_t (*cond_impl_load)(const XCSF *xcsf, CL *c, FILE *fp);
 };
 
-static inline size_t cond_save(const XCSF *xcsf, CL *c, FILE *fp) {
+static inline size_t cond_save(const XCSF *xcsf, const CL *c, FILE *fp) {
     return (*c->cond_vptr->cond_impl_save)(xcsf, c, fp);
 }
 
@@ -134,7 +134,7 @@ static inline size_t cond_load(const XCSF *xcsf, CL *c, FILE *fp) {
     return (*c->cond_vptr->cond_impl_load)(xcsf, c, fp);
 }
 
-static inline int cond_size(const XCSF *xcsf, CL *c) {
+static inline int cond_size(const XCSF *xcsf, const CL *c) {
     return (*c->cond_vptr->cond_impl_size)(xcsf, c);
 }
 
@@ -146,7 +146,7 @@ static inline _Bool cond_crossover(const XCSF *xcsf, CL *c1, CL *c2) {
     return (*c1->cond_vptr->cond_impl_crossover)(xcsf, c1, c2);
 }
 
-static inline _Bool cond_general(const XCSF *xcsf, CL *c1, CL *c2) {
+static inline _Bool cond_general(const XCSF *xcsf, const CL *c1, const CL *c2) {
     return (*c1->cond_vptr->cond_impl_general)(xcsf, c1, c2);
 }
 
@@ -158,7 +158,7 @@ static inline _Bool cond_mutate(const XCSF *xcsf, CL *c) {
     return (*c->cond_vptr->cond_impl_mutate)(xcsf, c);
 }
 
-static inline void cond_copy(const XCSF *xcsf, CL *to, CL *from) {
+static inline void cond_copy(const XCSF *xcsf, CL *to, const CL *from) {
     (*from->cond_vptr->cond_impl_copy)(xcsf, to, from);
 }
 
@@ -174,6 +174,6 @@ static inline void cond_init(const XCSF *xcsf, CL *c) {
     (*c->cond_vptr->cond_impl_init)(xcsf, c);
 }
 
-static inline void cond_print(const XCSF *xcsf, CL *c) {
+static inline void cond_print(const XCSF *xcsf, const CL *c) {
     (*c->cond_vptr->cond_impl_print)(xcsf, c);
 }
