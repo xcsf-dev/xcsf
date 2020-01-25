@@ -33,12 +33,12 @@ typedef struct ENV_CSV {
 
 _Bool env_csv_isreset(const XCSF *xcsf);
 _Bool env_csv_multistep(const XCSF *xcsf);
-double env_csv_execute(XCSF *xcsf, int action);
+double env_csv_execute(const XCSF *xcsf, int action);
 double env_csv_maxpayoff(const XCSF *xcsf);
 const double *env_csv_get_state(const XCSF *xcsf);
 void env_csv_free(const XCSF *xcsf);
 void env_csv_init(XCSF *xcsf, const char *filename);
-void env_csv_reset(XCSF *xcsf);
+void env_csv_reset(const XCSF *xcsf);
 
 /**
  * @brief csv input environment implemented functions.

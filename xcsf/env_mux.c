@@ -89,7 +89,7 @@ void env_mux_free(const XCSF *xcsf)
  */
 const double *env_mux_get_state(const XCSF *xcsf)
 {
-    ENV_MUX *env = xcsf->env;
+    const ENV_MUX *env = xcsf->env;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         env->state[i] = rand_uniform(0,1);
     }
@@ -102,9 +102,9 @@ const double *env_mux_get_state(const XCSF *xcsf)
  * @param action The selected class.
  * @return The payoff from performing the action.
  */
-double env_mux_execute(XCSF *xcsf, int action)
+double env_mux_execute(const XCSF *xcsf, int action)
 {
-    ENV_MUX *env = xcsf->env;
+    const ENV_MUX *env = xcsf->env;
     int pos = env->pos_bits;
     for(int i = 0; i < env->pos_bits; i++) {
         if(env->state[i] > 0.5) {
@@ -124,7 +124,7 @@ double env_mux_execute(XCSF *xcsf, int action)
  * @brief Dummy method since no multiplexer reset is necessary.
  * @param xcsf The XCSF data structure.
  */
-void env_mux_reset(XCSF *xcsf)
+void env_mux_reset(const XCSF *xcsf)
 {
     (void)xcsf;
 }

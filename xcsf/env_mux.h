@@ -25,12 +25,12 @@
 
 _Bool env_mux_isreset(const XCSF *xcsf);
 _Bool env_mux_multistep(const XCSF *xcsf);
-double env_mux_execute(XCSF *xcsf, int action);
+double env_mux_execute(const XCSF *xcsf, int action);
 double env_mux_maxpayoff(const XCSF *xcsf);
 const double *env_mux_get_state(const XCSF *xcsf);
 void env_mux_free(const XCSF *xcsf);
 void env_mux_init(XCSF *xcsf, int bits);
-void env_mux_reset(XCSF *xcsf);
+void env_mux_reset(const XCSF *xcsf);
 
 /**
  * @brief Real multiplexer environment implemented functions.

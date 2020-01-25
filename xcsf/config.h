@@ -17,11 +17,11 @@
  * @file config.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Config file handling functions
  */ 
 
 #pragma once
  
 void config_init(XCSF *xcsf, const char *filename);
-void config_free(XCSF *xcsf);
+void config_free(const XCSF *xcsf);

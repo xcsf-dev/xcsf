@@ -25,12 +25,12 @@
 
 _Bool env_maze_isreset(const XCSF *xcsf);
 _Bool env_maze_multistep(const XCSF *xcsf);
-double env_maze_execute(XCSF *xcsf, int action);
+double env_maze_execute(const XCSF *xcsf, int action);
 double env_maze_maxpayoff(const XCSF *xcsf);
 const double *env_maze_get_state(const XCSF *xcsf);
 void env_maze_free(const XCSF *xcsf);
 void env_maze_init(XCSF *xcsf, const char *filename);
-void env_maze_reset(XCSF *xcsf);
+void env_maze_reset(const XCSF *xcsf);
 
 /**
  * @brief Maze environment implemented functions.

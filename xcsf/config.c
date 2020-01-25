@@ -90,7 +90,7 @@ void config_init(XCSF *xcsf, const char *filename)
  * @brief Frees all global constants.
  * @param xcsf The XCSF data structure.
  */
-void config_free(XCSF *xcsf)
+void config_free(const XCSF *xcsf)
 {
     tree_free_cons(xcsf);
 }

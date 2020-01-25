@@ -145,7 +145,7 @@ static void env_csv_read(const char *fname, double **data, int *num_rows, int *n
     printf("Loaded: %s: %d rows, %d cols\n", fname, *num_rows, *num_cols);
 }
 
-void env_csv_reset(XCSF *xcsf)
+void env_csv_reset(const XCSF *xcsf)
 {
     (void)xcsf;
 }
@@ -162,7 +162,7 @@ const double *env_csv_get_state(const XCSF *xcsf)
     return 0;
 }
 
-double env_csv_execute(XCSF *xcsf, int action)
+double env_csv_execute(const XCSF *xcsf, int action)
 {
     (void)xcsf;
     (void)action;

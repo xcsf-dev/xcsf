@@ -141,7 +141,7 @@ void env_maze_free(const XCSF *xcsf)
  * @brief Resets the animat to a random empty position in the maze.
  * @param xcsf The XCSF data structure.
  */
-void env_maze_reset(XCSF *xcsf)
+void env_maze_reset(const XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     env->reset = false;
@@ -163,7 +163,7 @@ void env_maze_reset(XCSF *xcsf)
  */
 _Bool env_maze_isreset(const XCSF *xcsf)
 {
-    ENV_MAZE *env = xcsf->env;
+    const ENV_MAZE *env = xcsf->env;
     return env->reset;
 }
 
@@ -223,7 +223,7 @@ static double env_maze_sensor(const XCSF *xcsf, char s)
  * @param action The action to perform.
  * @return The payoff from performing the action.
  */
-double env_maze_execute(XCSF *xcsf, int action)
+double env_maze_execute(const XCSF *xcsf, int action)
 {
     if(action < 0 || action > 7) {
         printf("invalid maze action\n");
@@ -288,7 +288,7 @@ _Bool env_maze_multistep(const XCSF *xcsf)
  */
 static void env_maze_print(const XCSF *xcsf)
 {
-    ENV_MAZE *env = xcsf->env;
+    const ENV_MAZE *env = xcsf->env;
     for(int y = 0; y < env->ysize; y++) {
         for(int x = 0; x < env->xsize; x++) {
             if(x == env->xpos && y == env->ypos) {

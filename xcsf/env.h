@@ -48,7 +48,7 @@ struct EnvVtbl {
      * @param action The action to perform.
      * @return The payoff from performing the action.
      */
-    double (*env_impl_execute)(XCSF *xcsf, int action);
+    double (*env_impl_execute)(const XCSF *xcsf, int action);
     /**
      * @brief Returns the maximum payoff value possible in the environment.
      * @param xcsf The XCSF data structure.
@@ -70,7 +70,7 @@ struct EnvVtbl {
      * @brief Resets the environment.
      * @param xcsf The XCSF data structure.
      */
-    void (*env_impl_reset)(XCSF *xcsf);
+    void (*env_impl_reset)(const XCSF *xcsf);
 };
 
 static inline _Bool env_is_reset(const XCSF *xcsf) {
@@ -81,7 +81,7 @@ static inline _Bool env_multistep(const XCSF *xcsf) {
     return (*xcsf->env_vptr->env_impl_multistep)(xcsf);
 }
 
-static inline double env_execute(XCSF *xcsf, int action) {
+static inline double env_execute(const XCSF *xcsf, int action) {
     return (*xcsf->env_vptr->env_impl_execute)(xcsf, action);
 }
 
@@ -97,6 +97,6 @@ static inline void env_free(const XCSF *xcsf) {
     (*xcsf->env_vptr->env_impl_free)(xcsf);
 }
 
-static inline void env_reset(XCSF *xcsf) {
+static inline void env_reset(const XCSF *xcsf) {
     (*xcsf->env_vptr->env_impl_reset)(xcsf);
 }
