@@ -30,7 +30,7 @@ void pred_constant_copy(const XCSF *xcsf, CL *to, const CL *from);
 void pred_constant_free(const XCSF *xcsf, const CL *c);
 void pred_constant_init(const XCSF *xcsf, CL *c);
 void pred_constant_print(const XCSF *xcsf, const CL *c);
-void pred_constant_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
 int pred_constant_size(const XCSF *xcsf, const CL *c);
 size_t pred_constant_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t pred_constant_load(const XCSF *xcsf, CL *c, FILE *fp);

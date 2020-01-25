@@ -111,7 +111,7 @@ void pred_neural_copy(const XCSF *xcsf, CL *to, const CL *from)
     to->pred = new;
 }
 
-void pred_neural_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
+void pred_neural_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     if(xcsf->PRED_SGD_WEIGHTS) {
         PRED_NEURAL *pred = c->pred;

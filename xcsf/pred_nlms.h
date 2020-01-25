@@ -30,7 +30,7 @@ void pred_nlms_copy(const XCSF *xcsf, CL *to, const CL *from);
 void pred_nlms_free(const XCSF *xcsf, const CL *c);
 void pred_nlms_init(const XCSF *xcsf, CL *c);
 void pred_nlms_print(const XCSF *xcsf, const CL *c);
-void pred_nlms_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
 int pred_nlms_size(const XCSF *xcsf, const CL *c);
 size_t pred_nlms_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t pred_nlms_load(const XCSF *xcsf, CL *c, FILE *fp);

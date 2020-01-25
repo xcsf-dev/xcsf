@@ -85,7 +85,7 @@ struct PredVtbl {
      * @param x The input state.
      * @param y The payoff value.
      */
-    void (*pred_impl_update)(const XCSF *xcsf, CL *c, const double *x, const double *y);
+    void (*pred_impl_update)(const XCSF *xcsf, const CL *c, const double *x, const double *y);
     /**
      * @brief Returns the size of the classifier prediction.
      * @param xcsf The XCSF data structure.
@@ -151,6 +151,6 @@ static inline void pred_print(const XCSF *xcsf, const CL *c) {
     (*c->pred_vptr->pred_impl_print)(xcsf, c);
 }
 
-static inline void pred_update(const XCSF *xcsf, CL *c, const double *x, const double *y) {
+static inline void pred_update(const XCSF *xcsf, const CL *c, const double *x, const double *y) {
     (*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
 }

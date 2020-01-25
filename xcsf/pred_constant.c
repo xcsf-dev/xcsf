@@ -47,7 +47,7 @@ void pred_constant_free(const XCSF *xcsf, const CL *c)
     (void)xcsf; (void)c;
 }
 
-void pred_constant_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
+void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (void)x;
     if(c->exp < 1.0 / xcsf->PRED_ETA) {

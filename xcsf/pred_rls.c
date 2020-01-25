@@ -124,7 +124,7 @@ void pred_rls_free(const XCSF *xcsf, const CL *c)
     free(pred);
 }
 
-void pred_rls_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
+void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     const PRED_RLS *pred = c->pred;
     int n = pred->weights_length;

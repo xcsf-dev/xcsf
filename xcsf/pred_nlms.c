@@ -85,7 +85,7 @@ void pred_nlms_free(const XCSF *xcsf, const CL *c)
     free(pred);
 }
 
-void pred_nlms_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
+void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     const PRED_NLMS *pred = c->pred;
     double norm = xcsf->PRED_X0 * xcsf->PRED_X0;
