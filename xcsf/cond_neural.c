@@ -46,7 +46,7 @@ typedef struct COND_NEURAL {
 } COND_NEURAL;
 
 static void cond_neural_rand(const XCSF *xcsf, const CL *c);
-static u_int32_t cond_neural_lopt(const XCSF *xcsf);
+static uint32_t cond_neural_lopt(const XCSF *xcsf);
 
 void cond_neural_init(const XCSF *xcsf, CL *c)
 {
@@ -79,9 +79,9 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
     c->cond = new;
 }
 
-static u_int32_t cond_neural_lopt(const XCSF *xcsf)
+static uint32_t cond_neural_lopt(const XCSF *xcsf)
 {
-    u_int32_t lopt = 0;
+    uint32_t lopt = 0;
     if(xcsf->COND_EVOLVE_WEIGHTS) {
         lopt |= LAYER_EVOLVE_WEIGHTS;
     }

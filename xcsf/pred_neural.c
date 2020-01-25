@@ -47,7 +47,7 @@ typedef struct PRED_NEURAL {
     NET net; //!< Neural network
 } PRED_NEURAL;
 
-static u_int32_t pred_neural_lopt(const XCSF *xcsf);
+static uint32_t pred_neural_lopt(const XCSF *xcsf);
 
 void pred_neural_init(const XCSF *xcsf, CL *c)
 {
@@ -80,9 +80,9 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     c->pred = new;
 }
 
-static u_int32_t pred_neural_lopt(const XCSF *xcsf)
+static uint32_t pred_neural_lopt(const XCSF *xcsf)
 {
-    u_int32_t lopt = 0;
+    uint32_t lopt = 0;
     if(xcsf->PRED_SGD_WEIGHTS) {
         lopt |= LAYER_SGD_WEIGHTS;
     }
