@@ -52,7 +52,7 @@ struct ActVtbl {
      * @param c The classifier whose action is being mutated.
      * @return Whether any alterations were made.
      */
-    _Bool (*act_impl_mutate)(const XCSF *xcsf, CL *c);
+    _Bool (*act_impl_mutate)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Computes the current classifier action using the input.
      * @param xcsf The XCSF data structure.
@@ -107,7 +107,7 @@ struct ActVtbl {
      * @param x The input state.
      * @param y The payoff value.
      */
-    void (*act_impl_update)(const XCSF *xcsf, CL *c, const double *x, const double *y);
+    void (*act_impl_update)(const XCSF *xcsf, const CL *c, const double *x, const double *y);
     /**
      * @brief Writes the action to a binary file.
      * @param xcsf The XCSF data structure.
@@ -142,7 +142,7 @@ static inline _Bool act_crossover(const XCSF *xcsf, const CL *c1, const CL *c2) 
     return (*c1->act_vptr->act_impl_crossover)(xcsf, c1, c2);
 }
 
-static inline _Bool act_mutate(const XCSF *xcsf, CL *c) {
+static inline _Bool act_mutate(const XCSF *xcsf, const CL *c) {
     return (*c->act_vptr->act_impl_mutate)(xcsf, c);
 }
 
@@ -174,6 +174,6 @@ static inline void act_print(const XCSF *xcsf, const CL *c) {
     (*c->act_vptr->act_impl_print)(xcsf, c);
 }
 
-static inline void act_update(const XCSF *xcsf, CL *c, const double *x, const double *y) {
+static inline void act_update(const XCSF *xcsf, const CL *c, const double *x, const double *y) {
     (*c->act_vptr->act_impl_update)(xcsf, c, x, y);
 }

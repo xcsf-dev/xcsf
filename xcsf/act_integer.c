@@ -47,7 +47,7 @@ _Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
     return true;
 }
 
-_Bool act_integer_mutate(const XCSF *xcsf, CL *c)
+_Bool act_integer_mutate(const XCSF *xcsf, const CL *c)
 {
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
         int *act = c->act;
@@ -108,7 +108,7 @@ void act_integer_init(const XCSF *xcsf, CL *c)
     act_integer_rand(xcsf, c);
 }
  
-void act_integer_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
+void act_integer_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }
