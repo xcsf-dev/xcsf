@@ -74,7 +74,7 @@ void cond_rectangle_copy(const XCSF *xcsf, CL *to, const CL *from)
     to->cond = new;
 }                             
 
-void cond_rectangle_cover(const XCSF *xcsf, CL *c, const double *x)
+void cond_rectangle_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_RECTANGLE *cond = c->cond;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
@@ -94,15 +94,14 @@ void cond_rectangle_update(const XCSF *xcsf, const CL *c, const double *x, const
     }
 }
 
-_Bool cond_rectangle_match(const XCSF *xcsf, CL *c, const double *x)
+_Bool cond_rectangle_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     if(cond_rectangle_dist(xcsf, c, x) < 1) {
-        c->m = true;
+        return true;
     }
     else {
-        c->m = false;
+        return false;
     }
-    return c->m;
 }
 
 static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x)

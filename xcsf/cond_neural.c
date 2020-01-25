@@ -111,7 +111,7 @@ static void cond_neural_rand(const XCSF *xcsf, const CL *c)
     neural_rand(xcsf, &cond->net);
 }
 
-void cond_neural_cover(const XCSF *xcsf, CL *c, const double *x)
+void cond_neural_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     do {
         cond_neural_rand(xcsf, c);
@@ -123,17 +123,16 @@ void cond_neural_update(const XCSF *xcsf, const CL *c, const double *x, const do
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool cond_neural_match(const XCSF *xcsf, CL *c, const double *x)
+_Bool cond_neural_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
     if(neural_output(xcsf, &cond->net, 0) > 0.5) {
-        c->m = true;
+        return true;
     }
     else {
-        c->m = false;
+        return false;
     }
-    return c->m;
 }                
 
 _Bool cond_neural_mutate(const XCSF *xcsf, const CL *c)

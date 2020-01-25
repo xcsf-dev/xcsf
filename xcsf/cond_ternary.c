@@ -93,7 +93,7 @@ void cond_ternary_copy(const XCSF *xcsf, CL *to, const CL *from)
     to->cond = new;
 }                             
 
-void cond_ternary_cover(const XCSF *xcsf, CL *c, const double *x)
+void cond_ternary_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_TERNARY *cond = c->cond;
     char state[xcsf->COND_BITS];
@@ -115,7 +115,7 @@ void cond_ternary_update(const XCSF *xcsf, const CL *c, const double *x, const d
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool cond_ternary_match(const XCSF *xcsf, CL *c, const double *x)
+_Bool cond_ternary_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_TERNARY *cond = c->cond;
     char state[xcsf->COND_BITS];
@@ -124,12 +124,10 @@ _Bool cond_ternary_match(const XCSF *xcsf, CL *c, const double *x)
         for(int b = 0; b < xcsf->COND_BITS; b++) {
             char s = cond->string[i*xcsf->COND_BITS+b];
             if(s != DONT_CARE && s != state[b]) {
-                c->m = false;
                 return false;
             }
         }
     }
-    c->m = true;
     return true;
 }
 

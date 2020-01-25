@@ -276,9 +276,9 @@ void cl_print(const XCSF *xcsf, const CL *c, _Bool printc, _Bool printa, _Bool p
  */
 _Bool cl_match(const XCSF *xcsf, CL *c, const double *x)
 {
-    _Bool m = cond_match(xcsf, c, x);
-    c->mfrac += xcsf->BETA * ((double) m - c->mfrac);
-    return m;
+    c->m = cond_match(xcsf, c, x);
+    c->mfrac += xcsf->BETA * ((double) c->m - c->mfrac);
+    return c->m;
 }
 
 /**

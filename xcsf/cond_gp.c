@@ -71,7 +71,7 @@ static void cond_gp_rand(const XCSF *xcsf, const CL *c)
     tree_rand(xcsf, &cond->gp);
 }
  
-void cond_gp_cover(const XCSF *xcsf, CL *c, const double *x)
+void cond_gp_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     do {
         cond_gp_rand(xcsf, c);
@@ -83,18 +83,17 @@ void cond_gp_update(const XCSF *xcsf, const CL *c, const double *x, const double
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool cond_gp_match(const XCSF *xcsf, CL *c, const double *x)
+_Bool cond_gp_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     COND_GP *cond = c->cond;
     cond->gp.p = 0;
     double result = tree_eval(xcsf, &cond->gp, x);
     if(result > 0.5) {
-        c->m = true;
+        return true;
     }
     else {
-        c->m = false;
+        return false;
     }
-    return c->m;
 }    
 
 _Bool cond_gp_mutate(const XCSF *xcsf, const CL *c)

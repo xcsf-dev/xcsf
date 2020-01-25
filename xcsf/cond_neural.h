@@ -25,10 +25,10 @@
 
 _Bool cond_neural_crossover(const XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_neural_general(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_neural_match(const XCSF *xcsf, CL *c, const double *x);
+_Bool cond_neural_match(const XCSF *xcsf, const CL *c, const double *x);
 _Bool cond_neural_mutate(const XCSF *xcsf, const CL *c);
 void cond_neural_copy(const XCSF *xcsf, CL *to, const CL *from);
-void cond_neural_cover(const XCSF *xcsf, CL *c, const double *x);
+void cond_neural_cover(const XCSF *xcsf, const CL *c, const double *x);
 void cond_neural_free(const XCSF *xcsf, const CL *c);
 void cond_neural_init(const XCSF *xcsf, CL *c);
 void cond_neural_print(const XCSF *xcsf, const CL *c);

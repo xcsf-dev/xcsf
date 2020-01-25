@@ -72,7 +72,7 @@ static void cond_dgp_rand(const XCSF *xcsf, const CL *c)
     graph_rand(xcsf, &cond->dgp);
 }
 
-void cond_dgp_cover(const XCSF *xcsf, CL *c, const double *x)
+void cond_dgp_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     do {
         cond_dgp_rand(xcsf, c);
@@ -84,17 +84,16 @@ void cond_dgp_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     (void)xcsf; (void)c; (void)x; (void)y;
 }
  
-_Bool cond_dgp_match(const XCSF *xcsf, CL *c, const double *x)
+_Bool cond_dgp_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_DGP *cond = c->cond;
     graph_update(xcsf, &cond->dgp, x);
     if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
-        c->m = true;
+        return true;
     }
     else {
-        c->m = false;
+        return false;
     }
-    return c->m;
 }            
 
 _Bool cond_dgp_mutate(const XCSF *xcsf, const CL *c)

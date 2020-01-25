@@ -25,10 +25,10 @@
 
 _Bool cond_dgp_crossover(const XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_dgp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_dgp_match(const XCSF *xcsf, CL *c, const double *x);
+_Bool cond_dgp_match(const XCSF *xcsf, const CL *c, const double *x);
 _Bool cond_dgp_mutate(const XCSF *xcsf, const CL *c);
 void cond_dgp_copy(const XCSF *xcsf, CL *to, const CL *from);
-void cond_dgp_cover(const XCSF *xcsf, CL *c, const double *x);
+void cond_dgp_cover(const XCSF *xcsf, const CL *c, const double *x);
 void cond_dgp_free(const XCSF *xcsf, const CL *c);
 void cond_dgp_init(const XCSF *xcsf, CL *c);
 void cond_dgp_print(const XCSF *xcsf, const CL *c);

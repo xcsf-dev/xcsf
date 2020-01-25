@@ -47,7 +47,7 @@ void cond_dummy_copy(const XCSF *xcsf, CL *to, const CL *from)
 	(void)xcsf; (void)to; (void)from;
 }                             
 
-void cond_dummy_cover(const XCSF *xcsf, CL *c, const double *x)
+void cond_dummy_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
 	(void)xcsf; (void)c; (void)x;
 }
@@ -57,11 +57,10 @@ void cond_dummy_update(const XCSF *xcsf, const CL *c, const double *x, const dou
 	(void)xcsf; (void)c; (void)x; (void)y;
 }
  
-_Bool cond_dummy_match(const XCSF *xcsf, CL *c, const double *x)
+_Bool cond_dummy_match(const XCSF *xcsf, const CL *c, const double *x)
 {
-	(void)xcsf; (void)x;
-	c->m = true;
-	return c->m;
+	(void)xcsf; (void)c; (void)x;
+    return true;
 }
 
 _Bool cond_dummy_crossover(const XCSF *xcsf, CL *c1, CL *c2) 
