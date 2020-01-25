@@ -45,7 +45,7 @@ static void env_csv_input_read(const char *infile, INPUT *train_data, INPUT *tes
  * @param xcsf The XCSF data structure.
  * @param fname The file name of the csv data.
  */
-void env_csv_init(XCSF *xcsf, char *fname)
+void env_csv_init(XCSF *xcsf, const char *fname)
 {
     ENV_CSV *env = malloc(sizeof(ENV_CSV));
     env->train_data = malloc(sizeof(INPUT));

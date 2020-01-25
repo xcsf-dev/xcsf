@@ -37,7 +37,7 @@ double env_csv_execute(XCSF *xcsf, int action);
 double env_csv_maxpayoff(const XCSF *xcsf);
 const double *env_csv_get_state(XCSF *xcsf);
 void env_csv_free(XCSF *xcsf);
-void env_csv_init(XCSF *xcsf, char *filename);
+void env_csv_init(XCSF *xcsf, const char *filename);
 void env_csv_reset(XCSF *xcsf);
 
 /**
