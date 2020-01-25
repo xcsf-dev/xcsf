@@ -24,7 +24,7 @@
 #pragma once
 
 const double *pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x);
-_Bool pred_neural_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool pred_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool pred_neural_mutate(const XCSF *xcsf, const CL *c);
 void pred_neural_copy(const XCSF *xcsf, CL *to, const CL *from);
 void pred_neural_free(const XCSF *xcsf, const CL *c);

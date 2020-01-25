@@ -354,7 +354,7 @@ _Bool cl_general(const XCSF *xcsf, const CL *c1, const CL *c2)
  * @param c The classifier being mutated.
  * @return Whether any alterations were made.
  */
-_Bool cl_mutate(XCSF *xcsf, CL *c)
+_Bool cl_mutate(XCSF *xcsf, const CL *c)
 {
     if(xcsf->SAM_NUM > 0) {
         xcsf->S_MUTATION = c->mu[0];
@@ -384,7 +384,7 @@ _Bool cl_mutate(XCSF *xcsf, CL *c)
  * @param c2 The second classifier being crossed.
  * @return Whether any alterations were made.
  */
-_Bool cl_crossover(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cl_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     _Bool cc = cond_crossover(xcsf, c1, c2);
     _Bool pc = pred_crossover(xcsf, c1, c2);

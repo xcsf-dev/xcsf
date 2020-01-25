@@ -23,11 +23,11 @@
 
 #pragma once
  
-_Bool cl_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cl_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cl_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cl_m(const XCSF *xcsf, const CL *c);
 _Bool cl_match(const XCSF *xcsf, CL *c, const double *x);
-_Bool cl_mutate(XCSF *xcsf, CL *c);
+_Bool cl_mutate(XCSF *xcsf, const CL *c);
 _Bool cl_subsumer(const XCSF *xcsf, const CL *c);
 const double *cl_predict(const XCSF *xcsf, const CL *c, const double *x);
 double cl_acc(const XCSF *xcsf, const CL *c);

@@ -37,7 +37,7 @@ struct PredVtbl {
      * @param c2 The second classifier whose prediction is being crossed.
      * @return Whether any alterations were made.
      */
-    _Bool (*pred_impl_crossover)(const XCSF *xcsf, CL *c1, CL *c2);
+    _Bool (*pred_impl_crossover)(const XCSF *xcsf, const CL *c1, const CL *c2);
     /**
      * @brief Performs classifier prediction mutation.
      * @param xcsf The XCSF data structure.
@@ -123,7 +123,7 @@ static inline int pred_size(const XCSF *xcsf, const CL *c) {
     return (*c->pred_vptr->pred_impl_size)(xcsf, c);
 }
 
-static inline _Bool pred_crossover(const XCSF *xcsf, CL *c1, CL *c2) {
+static inline _Bool pred_crossover(const XCSF *xcsf, const CL *c1, const CL *c2) {
     return (*c1->pred_vptr->pred_impl_crossover)(xcsf, c1, c2);
 }
 
