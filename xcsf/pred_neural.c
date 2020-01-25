@@ -47,23 +47,14 @@ typedef struct PRED_NEURAL {
     NET net; //!< Neural network
 } PRED_NEURAL;
 
+static u_int32_t pred_neural_lopt(const XCSF *xcsf);
+
 void pred_neural_init(const XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     neural_init(xcsf, &new->net);
  
-    // weights
-    uint32_t lopt = 0;
-    if(xcsf->PRED_EVOLVE_WEIGHTS) {
-        lopt |= LAYER_EVOLVE_WEIGHTS;
-    }
-    if(xcsf->PRED_EVOLVE_ETA) {
-        lopt |= LAYER_EVOLVE_ETA;
-    }
-    if(xcsf->PRED_SGD_WEIGHTS) {
-        lopt |= LAYER_SGD_WEIGHTS;
-    }
-    // neurons
+    uint32_t lopt = pred_neural_lopt(xcsf);
     int hmax = fmax(xcsf->PRED_MAX_HIDDEN_NEURONS, 1);
     int hinit = xcsf->PRED_NUM_HIDDEN_NEURONS;
     if(hinit < 1) {
@@ -72,15 +63,8 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     if(hmax < hinit) {
         hmax = hinit;
     }
-    if(xcsf->PRED_EVOLVE_NEURONS) {
-        lopt |= LAYER_EVOLVE_NEURONS;
-    }
-    else {
+    if(!xcsf->PRED_EVOLVE_NEURONS) {
         hmax = hinit;
-    }
-    // functions
-    if(xcsf->PRED_EVOLVE_FUNCTIONS) {
-        lopt |= LAYER_EVOLVE_FUNCTIONS;
     }
 
     // hidden layer
@@ -94,6 +78,27 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     neural_layer_insert(xcsf, &new->net, l, 1); 
 
     c->pred = new;
+}
+
+static u_int32_t pred_neural_lopt(const XCSF *xcsf)
+{
+    u_int32_t lopt = 0;
+    if(xcsf->PRED_SGD_WEIGHTS) {
+        lopt |= LAYER_SGD_WEIGHTS;
+    }
+    if(xcsf->PRED_EVOLVE_WEIGHTS) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if(xcsf->PRED_EVOLVE_ETA) {
+        lopt |= LAYER_EVOLVE_ETA;
+    }
+    if(xcsf->PRED_EVOLVE_NEURONS) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if(xcsf->PRED_EVOLVE_FUNCTIONS) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+    return lopt;
 }
 
 void pred_neural_free(const XCSF *xcsf, const CL *c)

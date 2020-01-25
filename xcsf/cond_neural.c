@@ -46,18 +46,14 @@ typedef struct COND_NEURAL {
 } COND_NEURAL;
 
 static void cond_neural_rand(const XCSF *xcsf, const CL *c);
+static u_int32_t cond_neural_lopt(const XCSF *xcsf);
 
 void cond_neural_init(const XCSF *xcsf, CL *c)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
     neural_init(xcsf, &new->net);
 
-    // weights
-    uint32_t lopt = 0;
-    if(xcsf->COND_EVOLVE_WEIGHTS) {
-        lopt |= LAYER_EVOLVE_WEIGHTS;
-    }
-    // neurons
+    uint32_t lopt = cond_neural_lopt(xcsf);
     int hmax = fmax(xcsf->COND_MAX_HIDDEN_NEURONS, 1);
     int hinit = xcsf->COND_NUM_HIDDEN_NEURONS;
     if(hinit < 1) {
@@ -66,19 +62,12 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
     if(hmax < hinit) {
         hmax = hinit;
     }
-    if(xcsf->COND_EVOLVE_NEURONS) {
-        lopt |= LAYER_EVOLVE_NEURONS;
-    }
-    else {
+    if(!xcsf->COND_EVOLVE_NEURONS) {
         hmax = hinit;
-    }
-    // functions
-    int f = xcsf->COND_HIDDEN_NEURON_ACTIVATION;
-    if(xcsf->COND_EVOLVE_FUNCTIONS) {
-        lopt |= LAYER_EVOLVE_FUNCTIONS;
     }
 
     // hidden layer
+    int f = xcsf->COND_HIDDEN_NEURON_ACTIVATION;
     LAYER *l = neural_layer_connected_init(xcsf, xcsf->num_x_vars, hinit, hmax, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, 0); 
 
@@ -88,6 +77,21 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
     neural_layer_insert(xcsf, &new->net, l, 1); 
 
     c->cond = new;
+}
+
+static u_int32_t cond_neural_lopt(const XCSF *xcsf)
+{
+    u_int32_t lopt = 0;
+    if(xcsf->COND_EVOLVE_WEIGHTS) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if(xcsf->COND_EVOLVE_NEURONS) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if(xcsf->COND_EVOLVE_FUNCTIONS) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+    return lopt;
 }
 
 void cond_neural_free(const XCSF *xcsf, const CL *c)
