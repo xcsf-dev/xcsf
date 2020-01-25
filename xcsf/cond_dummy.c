@@ -52,7 +52,7 @@ void cond_dummy_cover(const XCSF *xcsf, CL *c, const double *x)
 	(void)xcsf; (void)c; (void)x;
 }
  
-void cond_dummy_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
+void cond_dummy_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
 	(void)xcsf; (void)c; (void)x; (void)y;
 }

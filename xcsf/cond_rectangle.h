@@ -32,7 +32,7 @@ void cond_rectangle_cover(const XCSF *xcsf, CL *c, const double *x);
 void cond_rectangle_free(const XCSF *xcsf, const CL *c);
 void cond_rectangle_init(const XCSF *xcsf, CL *c);
 void cond_rectangle_print(const XCSF *xcsf, const CL *c);
-void cond_rectangle_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+void cond_rectangle_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
 int cond_rectangle_size(const XCSF *xcsf, const CL *c);
 size_t cond_rectangle_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t cond_rectangle_load(const XCSF *xcsf, CL *c, FILE *fp);

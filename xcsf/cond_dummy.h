@@ -32,7 +32,7 @@ void cond_dummy_cover(const XCSF *xcsf, CL *c, const double *x);
 void cond_dummy_free(const XCSF *xcsf, const CL *c);
 void cond_dummy_init(const XCSF *xcsf, CL *c);
 void cond_dummy_print(const XCSF *xcsf, const CL *c);
-void cond_dummy_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+void cond_dummy_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
 int cond_dummy_size(const XCSF *xcsf, const CL *c);
 size_t cond_dummy_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t cond_dummy_load(const XCSF *xcsf, CL *c, FILE *fp);

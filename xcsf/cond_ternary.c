@@ -110,7 +110,7 @@ void cond_ternary_cover(const XCSF *xcsf, CL *c, const double *x)
     }
 }
 
-void cond_ternary_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
+void cond_ternary_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }

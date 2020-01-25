@@ -79,7 +79,7 @@ void cond_dgp_cover(const XCSF *xcsf, CL *c, const double *x)
     } while(!cond_dgp_match(xcsf, c, x));
 }
  
-void cond_dgp_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
+void cond_dgp_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }

@@ -100,7 +100,7 @@ struct CondVtbl {
      * @param x The input state.
      * @param y The payoff value.
      */
-    void (*cond_impl_update)(const XCSF *xcsf, CL *c, const double *x, const double *y);
+    void (*cond_impl_update)(const XCSF *xcsf, const CL *c, const double *x, const double *y);
     /**
      * @brief Returns the size of the classifier condition.
      * @param xcsf The XCSF data structure.
@@ -138,7 +138,7 @@ static inline int cond_size(const XCSF *xcsf, const CL *c) {
     return (*c->cond_vptr->cond_impl_size)(xcsf, c);
 }
 
-static inline void cond_update(const XCSF *xcsf, CL *c, const double *x, const double *y) {
+static inline void cond_update(const XCSF *xcsf, const CL *c, const double *x, const double *y) {
     (*c->cond_vptr->cond_impl_update)(xcsf, c, x, y);
 }
 

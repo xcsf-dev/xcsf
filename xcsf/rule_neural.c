@@ -119,7 +119,7 @@ void rule_neural_cond_cover(const XCSF *xcsf, CL *c, const double *x)
     (void)xcsf; (void)c; (void)x;
 }
 
-void rule_neural_cond_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
+void rule_neural_cond_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
 }

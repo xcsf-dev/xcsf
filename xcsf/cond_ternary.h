@@ -32,7 +32,7 @@ void cond_ternary_cover(const XCSF *xcsf, CL *c, const double *x);
 void cond_ternary_free(const XCSF *xcsf, const CL *c);
 void cond_ternary_init(const XCSF *xcsf, CL *c);
 void cond_ternary_print(const XCSF *xcsf, const CL *c);
-void cond_ternary_update(const XCSF *xcsf, CL *c, const double *x, const double *y);
+void cond_ternary_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
 int cond_ternary_size(const XCSF *xcsf, const CL *c);
 size_t cond_ternary_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp);

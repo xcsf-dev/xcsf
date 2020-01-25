@@ -83,7 +83,7 @@ void cond_rectangle_cover(const XCSF *xcsf, CL *c, const double *x)
     }
 }
 
-void cond_rectangle_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
+void cond_rectangle_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (void)y;
     if(xcsf->COND_ETA > 0) {
