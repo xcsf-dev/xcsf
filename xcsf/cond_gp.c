@@ -108,7 +108,7 @@ _Bool cond_gp_mutate(const XCSF *xcsf, const CL *c)
     }
 }
 
-_Bool cond_gp_crossover(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     COND_GP *cond1 = c1->cond;
     COND_GP *cond2 = c2->cond;

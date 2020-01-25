@@ -23,7 +23,7 @@
 
 #pragma once
 
-_Bool act_integer_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool act_integer_mutate(const XCSF *xcsf, CL *c);
 int act_integer_compute(const XCSF *xcsf, CL *c, const double *x);

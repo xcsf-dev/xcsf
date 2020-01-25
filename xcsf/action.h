@@ -45,7 +45,7 @@ struct ActVtbl {
      * @param c2 The second classifier whose action is being crossed.
      * @return Whether any alterations were made.
      */
-    _Bool (*act_impl_crossover)(const XCSF *xcsf, CL *c1, CL *c2);
+    _Bool (*act_impl_crossover)(const XCSF *xcsf, const CL *c1, const CL *c2);
     /**
      * @brief Performs classifier action mutation.
      * @param xcsf The XCSF data structure.
@@ -138,7 +138,7 @@ static inline _Bool act_general(const XCSF *xcsf, const CL *c1, const CL *c2) {
     return (*c1->act_vptr->act_impl_general)(xcsf, c1, c2);
 }
 
-static inline _Bool act_crossover(const XCSF *xcsf, CL *c1, CL *c2) {
+static inline _Bool act_crossover(const XCSF *xcsf, const CL *c1, const CL *c2) {
     return (*c1->act_vptr->act_impl_crossover)(xcsf, c1, c2);
 }
 

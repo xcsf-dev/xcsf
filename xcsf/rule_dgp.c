@@ -107,7 +107,7 @@ _Bool rule_dgp_cond_mutate(const XCSF *xcsf, const CL *c)
     return graph_mutate(xcsf, &cond->dgp);
 }
 
-_Bool rule_dgp_cond_crossover(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool rule_dgp_cond_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     RULE_DGP *cond1 = c1->cond;
     RULE_DGP *cond2 = c2->cond;
@@ -203,7 +203,7 @@ void rule_dgp_act_update(const XCSF *xcsf, CL *c, const double *x, const double 
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool rule_dgp_act_crossover(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool rule_dgp_act_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;

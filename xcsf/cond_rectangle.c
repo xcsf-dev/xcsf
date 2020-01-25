@@ -117,7 +117,7 @@ static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x
     return dist;
 }
 
-_Bool cond_rectangle_crossover(const XCSF *xcsf, CL *c1, CL *c2) 
+_Bool cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2) 
 {
     const COND_RECTANGLE *cond1 = c1->cond;
     const COND_RECTANGLE *cond2 = c2->cond;

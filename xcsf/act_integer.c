@@ -30,7 +30,7 @@
 #include "action.h"
 #include "act_integer.h"
  
-_Bool act_integer_crossover(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;

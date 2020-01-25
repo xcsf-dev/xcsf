@@ -23,7 +23,7 @@
 
 #pragma once
 
-_Bool cond_ternary_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_ternary_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_ternary_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_ternary_match(const XCSF *xcsf, const CL *c, const double *x);
 _Bool cond_ternary_mutate(const XCSF *xcsf, const CL *c);

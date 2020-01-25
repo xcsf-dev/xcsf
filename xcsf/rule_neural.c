@@ -142,7 +142,7 @@ _Bool rule_neural_cond_mutate(const XCSF *xcsf, const CL *c)
     return neural_mutate(xcsf, &cond->net);
 }
 
-_Bool rule_neural_cond_crossover(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool rule_neural_cond_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void) c1; (void)c2;
     return false;
@@ -236,7 +236,7 @@ void rule_neural_act_update(const XCSF *xcsf, CL *c, const double *x, const doub
     (void)xcsf; (void)c; (void)x; (void)y;
 }
 
-_Bool rule_neural_act_crossover(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool rule_neural_act_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
     return false;

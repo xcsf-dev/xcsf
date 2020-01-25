@@ -131,7 +131,7 @@ _Bool cond_ternary_match(const XCSF *xcsf, const CL *c, const double *x)
     return true;
 }
 
-_Bool cond_ternary_crossover(const XCSF *xcsf, CL *c1, CL *c2) 
+_Bool cond_ternary_crossover(const XCSF *xcsf, const CL *c1, const CL *c2) 
 {
     const COND_TERNARY *cond1 = c1->cond;
     const COND_TERNARY *cond2 = c2->cond;

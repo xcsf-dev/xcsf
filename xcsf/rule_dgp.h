@@ -23,7 +23,7 @@
 
 #pragma once
 
-_Bool rule_dgp_cond_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool rule_dgp_cond_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_dgp_cond_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_dgp_cond_match(const XCSF *xcsf, const CL *c, const double *x);
 _Bool rule_dgp_cond_mutate(const XCSF *xcsf, const CL *c);
@@ -56,7 +56,7 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
     &rule_dgp_cond_load
 };      
 
-_Bool rule_dgp_act_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool rule_dgp_act_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_dgp_act_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_dgp_act_mutate(const XCSF *xcsf, CL *c);
 int rule_dgp_act_compute(const XCSF *xcsf, CL *c, const double *x);

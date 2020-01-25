@@ -102,7 +102,7 @@ _Bool cond_dgp_mutate(const XCSF *xcsf, const CL *c)
     return graph_mutate(xcsf, &cond->dgp);
 }
 
-_Bool cond_dgp_crossover(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_dgp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     COND_DGP *cond1 = c1->cond;
     COND_DGP *cond2 = c2->cond;

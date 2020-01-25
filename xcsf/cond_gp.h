@@ -23,7 +23,7 @@
 
 #pragma once
 
-_Bool cond_gp_crossover(const XCSF *xcsf, CL *c1, CL *c2);
+_Bool cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_gp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_gp_match(const XCSF *xcsf, const CL *c, const double *x);
 _Bool cond_gp_mutate(const XCSF *xcsf, const CL *c);

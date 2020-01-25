@@ -141,7 +141,7 @@ _Bool cond_neural_mutate(const XCSF *xcsf, const CL *c)
     return neural_mutate(xcsf, &cond->net);
 }
 
-_Bool cond_neural_crossover(const XCSF *xcsf, CL *c1, CL *c2)
+_Bool cond_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void) c1; (void)c2;
     return false;

@@ -37,7 +37,7 @@ struct CondVtbl {
      * @param c2 The second classifier whose condition is being crossed.
      * @return Whether any alterations were made.
      */
-    _Bool (*cond_impl_crossover)(const XCSF *xcsf, CL *c1, CL *c2);
+    _Bool (*cond_impl_crossover)(const XCSF *xcsf, const CL *c1, const CL *c2);
     /**
      * @brief Returns whether the condition of classifier c1 is more general than c2.
      * @param xcsf The XCSF data structure.
@@ -142,7 +142,7 @@ static inline void cond_update(const XCSF *xcsf, const CL *c, const double *x, c
     (*c->cond_vptr->cond_impl_update)(xcsf, c, x, y);
 }
 
-static inline _Bool cond_crossover(const XCSF *xcsf, CL *c1, CL *c2) {
+static inline _Bool cond_crossover(const XCSF *xcsf, const CL *c1, const CL *c2) {
     return (*c1->cond_vptr->cond_impl_crossover)(xcsf, c1, c2);
 }
 

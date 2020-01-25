@@ -115,7 +115,7 @@ static double cond_ellipsoid_dist(const XCSF *xcsf, const CL *c, const double *x
     return dist;
 }
 
-_Bool cond_ellipsoid_crossover(const XCSF *xcsf, CL *c1, CL *c2) 
+_Bool cond_ellipsoid_crossover(const XCSF *xcsf, const CL *c1, const CL *c2) 
 {
     const COND_ELLIPSOID *cond1 = c1->cond;
     const COND_ELLIPSOID *cond2 = c2->cond;
