@@ -124,7 +124,8 @@ size_t act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp)
 size_t act_integer_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf;
-    int *act = c->act;
-    size_t s = fread(act, sizeof(int), 1, fp);
+    int *new = malloc(sizeof(int));
+    size_t s = fread(new, sizeof(int), 1, fp);
+    c->act = new;
     return s;
 }
