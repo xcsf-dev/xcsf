@@ -26,7 +26,7 @@
 _Bool cond_ellipsoid_crossover(const XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_ellipsoid_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_ellipsoid_match(const XCSF *xcsf, CL *c, const double *x);
-_Bool cond_ellipsoid_mutate(const XCSF *xcsf, CL *c);
+_Bool cond_ellipsoid_mutate(const XCSF *xcsf, const CL *c);
 void cond_ellipsoid_copy(const XCSF *xcsf, CL *to, const CL *from);
 void cond_ellipsoid_cover(const XCSF *xcsf, CL *c, const double *x);
 void cond_ellipsoid_free(const XCSF *xcsf, const CL *c);

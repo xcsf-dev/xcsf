@@ -26,7 +26,7 @@
 _Bool cond_ternary_crossover(const XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_ternary_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_ternary_match(const XCSF *xcsf, CL *c, const double *x);
-_Bool cond_ternary_mutate(const XCSF *xcsf, CL *c);
+_Bool cond_ternary_mutate(const XCSF *xcsf, const CL *c);
 void cond_ternary_copy(const XCSF *xcsf, CL *to, const CL *from);
 void cond_ternary_cover(const XCSF *xcsf, CL *c, const double *x);
 void cond_ternary_free(const XCSF *xcsf, const CL *c);

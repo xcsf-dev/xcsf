@@ -136,7 +136,7 @@ _Bool cond_neural_match(const XCSF *xcsf, CL *c, const double *x)
     return c->m;
 }                
 
-_Bool cond_neural_mutate(const XCSF *xcsf, CL *c)
+_Bool cond_neural_mutate(const XCSF *xcsf, const CL *c)
 {
     const COND_NEURAL *cond = c->cond;
     return neural_mutate(xcsf, &cond->net);

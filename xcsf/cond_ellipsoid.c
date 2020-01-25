@@ -140,7 +140,7 @@ _Bool cond_ellipsoid_crossover(const XCSF *xcsf, CL *c1, CL *c2)
     return changed;
 }
 
-_Bool cond_ellipsoid_mutate(const XCSF *xcsf, CL *c)
+_Bool cond_ellipsoid_mutate(const XCSF *xcsf, const CL *c)
 {
     const COND_ELLIPSOID *cond = c->cond;
     _Bool changed = false;

@@ -70,7 +70,7 @@ _Bool cond_dummy_crossover(const XCSF *xcsf, CL *c1, CL *c2)
 	return false;
 }
 
-_Bool cond_dummy_mutate(const XCSF *xcsf, CL *c)
+_Bool cond_dummy_mutate(const XCSF *xcsf, const CL *c)
 {
 	(void)xcsf; (void)c;
 	return false;

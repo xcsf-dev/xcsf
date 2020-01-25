@@ -26,7 +26,7 @@
 _Bool cond_dummy_crossover(const XCSF *xcsf, CL *c1, CL *c2);
 _Bool cond_dummy_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_dummy_match(const XCSF *xcsf, CL *c, const double *x);
-_Bool cond_dummy_mutate(const XCSF *xcsf, CL *c);
+_Bool cond_dummy_mutate(const XCSF *xcsf, const CL *c);
 void cond_dummy_copy(const XCSF *xcsf, CL *to, const CL *from);
 void cond_dummy_cover(const XCSF *xcsf, CL *c, const double *x);
 void cond_dummy_free(const XCSF *xcsf, const CL *c);

@@ -60,7 +60,7 @@ struct CondVtbl {
      * @param c The classifier whose condition is being mutated.
      * @return Whether any alterations were made.
      */
-    _Bool (*cond_impl_mutate)(const XCSF *xcsf, CL *c);
+    _Bool (*cond_impl_mutate)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Copies the condition from one classifier to another.
      * @param xcsf The XCSF data structure.
@@ -154,7 +154,7 @@ static inline _Bool cond_match(const XCSF *xcsf, CL *c, const double *x) {
     return (*c->cond_vptr->cond_impl_match)(xcsf, c, x);
 }
 
-static inline _Bool cond_mutate(const XCSF *xcsf, CL *c) {
+static inline _Bool cond_mutate(const XCSF *xcsf, const CL *c) {
     return (*c->cond_vptr->cond_impl_mutate)(xcsf, c);
 }
 

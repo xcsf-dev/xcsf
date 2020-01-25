@@ -26,7 +26,7 @@
 _Bool rule_dgp_cond_crossover(const XCSF *xcsf, CL *c1, CL *c2);
 _Bool rule_dgp_cond_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_dgp_cond_match(const XCSF *xcsf, CL *c, const double *x);
-_Bool rule_dgp_cond_mutate(const XCSF *xcsf, CL *c);
+_Bool rule_dgp_cond_mutate(const XCSF *xcsf, const CL *c);
 void rule_dgp_cond_copy(const XCSF *xcsf, CL *to, const CL *from);
 void rule_dgp_cond_cover(const XCSF *xcsf, CL *c, const double *x);
 void rule_dgp_cond_free(const XCSF *xcsf, const CL *c);

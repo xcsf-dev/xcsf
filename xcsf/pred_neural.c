@@ -168,7 +168,7 @@ size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp)
     return s;
 }
 
-double pred_neural_eta(const XCSF *xcsf, CL *c, int layer)
+double pred_neural_eta(const XCSF *xcsf, const CL *c, int layer)
 {
     (void)xcsf;
     const PRED_NEURAL *pred = c->pred;

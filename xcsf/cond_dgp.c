@@ -97,7 +97,7 @@ _Bool cond_dgp_match(const XCSF *xcsf, CL *c, const double *x)
     return c->m;
 }            
 
-_Bool cond_dgp_mutate(const XCSF *xcsf, CL *c)
+_Bool cond_dgp_mutate(const XCSF *xcsf, const CL *c)
 {
     COND_DGP *cond = c->cond;
     return graph_mutate(xcsf, &cond->dgp);

@@ -97,7 +97,7 @@ _Bool cond_gp_match(const XCSF *xcsf, CL *c, const double *x)
     return c->m;
 }    
 
-_Bool cond_gp_mutate(const XCSF *xcsf, CL *c)
+_Bool cond_gp_mutate(const XCSF *xcsf, const CL *c)
 {
     const COND_GP *cond = c->cond;
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
