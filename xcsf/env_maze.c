@@ -130,7 +130,7 @@ void env_maze_init(XCSF *xcsf, const char *fname)
  * @brief Frees the maze environment.
  * @param xcsf The XCSF data structure.
  */
-void env_maze_free(XCSF *xcsf)
+void env_maze_free(const XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     free(env->state);
@@ -172,7 +172,7 @@ _Bool env_maze_isreset(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return The current animat perceptions.
  */
-const double *env_maze_get_state(XCSF *xcsf)
+const double *env_maze_get_state(const XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     int spos = 0;

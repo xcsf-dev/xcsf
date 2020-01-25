@@ -32,7 +32,7 @@ typedef struct GP_TREE {
     int p; //!< Current position in the tree
 } GP_TREE;
 
-void tree_free_cons(XCSF *xcsf);
+void tree_free_cons(const XCSF *xcsf);
 void tree_init_cons(XCSF *xcsf);
 void tree_free(const XCSF *xcsf, const GP_TREE *gp);
 void tree_rand(const XCSF *xcsf, GP_TREE *gp);

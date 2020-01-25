@@ -60,12 +60,12 @@ struct EnvVtbl {
      * @param xcsf The XCSF data structure.
      * @return The current perceptions.
      */
-    const double *(*env_impl_get_state)(XCSF *xcsf);
+    const double *(*env_impl_get_state)(const XCSF *xcsf);
     /**
      * @brief Frees the environment.
      * @param xcsf The XCSF data structure.
      */
-    void (*env_impl_free)(XCSF *xcsf);
+    void (*env_impl_free)(const XCSF *xcsf);
     /**
      * @brief Resets the environment.
      * @param xcsf The XCSF data structure.
@@ -89,11 +89,11 @@ static inline double env_max_payoff(const XCSF *xcsf) {
     return (*xcsf->env_vptr->env_impl_max_payoff)(xcsf);
 }
 
-static inline const double *env_get_state(XCSF *xcsf) {
+static inline const double *env_get_state(const XCSF *xcsf) {
     return (*xcsf->env_vptr->env_impl_get_state)(xcsf);
 }
 
-static inline void env_free(XCSF *xcsf) {
+static inline void env_free(const XCSF *xcsf) {
     (*xcsf->env_vptr->env_impl_free)(xcsf);
 }
 

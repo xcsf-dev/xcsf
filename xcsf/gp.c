@@ -61,7 +61,7 @@ void tree_init_cons(XCSF *xcsf)
  * @brief Frees the constants shared among all GP trees.
  * @param xcsf The XCSF data structure.
  */
-void tree_free_cons(XCSF *xcsf)
+void tree_free_cons(const XCSF *xcsf)
 {
     free(xcsf->gp_cons);
 }

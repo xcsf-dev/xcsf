@@ -75,7 +75,7 @@ void env_mux_init(XCSF *xcsf, int bits)
  * @brief Frees the multiplexer environment.
  * @param xcsf The XCSF data structure.
  */
-void env_mux_free(XCSF *xcsf)
+void env_mux_free(const XCSF *xcsf)
 {
     ENV_MUX *env = xcsf->env;
     free(env->state);
@@ -87,7 +87,7 @@ void env_mux_free(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return A random multiplexer problem.
  */
-const double *env_mux_get_state(XCSF *xcsf)
+const double *env_mux_get_state(const XCSF *xcsf)
 {
     ENV_MUX *env = xcsf->env;
     for(int i = 0; i < xcsf->num_x_vars; i++) {

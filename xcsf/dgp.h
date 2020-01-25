@@ -48,4 +48,4 @@ void graph_init(const XCSF *xcsf, GRAPH *dgp, int n);
 void graph_print(const XCSF *xcsf, const GRAPH *dgp);
 void graph_rand(const XCSF *xcsf, GRAPH *dgp);
 void graph_reset(const XCSF *xcsf, const GRAPH *dgp);
-void graph_update(const XCSF *xcsf, GRAPH *dgp, const double *inputs);
+void graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs);

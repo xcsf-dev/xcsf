@@ -23,7 +23,7 @@
  
 #pragma once
 
-double xcs_single_error(XCSF *xcsf, double reward);
+double xcs_single_error(const XCSF *xcsf, double reward);
 double xcs_single_step_exp(XCSF *xcsf);
 int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, const double *x);
 void xcs_single_update(XCSF *xcsf, const SET *mset, SET *aset, SET *kset, const double *x, int a, double r);

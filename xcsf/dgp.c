@@ -129,7 +129,7 @@ void graph_rand(const XCSF *xcsf, GRAPH *dgp)
  * @param dgp The DGP graph to update.
  * @param inputs The inputs to the graph.
  */
-void graph_update(const XCSF *xcsf, GRAPH *dgp, const double *inputs)
+void graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
 {
     if(xcsf->RESET_STATES) {
         graph_reset(xcsf, dgp);

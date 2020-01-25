@@ -145,7 +145,7 @@ void xcs_single_update(XCSF *xcsf, const SET *mset, SET *aset, SET *kset, const 
  * @param reward The reward from performing the action.
  * @return The system prediction error.
  */
-double xcs_single_error(XCSF *xcsf, double reward)
+double xcs_single_error(const XCSF *xcsf, double reward)
 {
     return fabs(reward - pa_best_val(xcsf));
 }

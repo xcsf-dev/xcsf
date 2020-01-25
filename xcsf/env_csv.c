@@ -61,7 +61,7 @@ void env_csv_init(XCSF *xcsf, const char *fname)
  * @brief Frees the csv environment.
  * @param xcsf The XCSF data structure.
  */
-void env_csv_free(XCSF *xcsf)
+void env_csv_free(const XCSF *xcsf)
 {
     ENV_CSV *env = xcsf->env;
     free(env->train_data->x);
@@ -122,7 +122,7 @@ static void env_csv_read(const char *fname, double **data, int *num_rows, int *n
         }        
         // use the first line to count the number of variables on a line
         if(*num_rows == 0) {
-            char *ptok = strtok_r(line, DELIM, &saveptr);
+            const char *ptok = strtok_r(line, DELIM, &saveptr);
             while(ptok != NULL) {
                 if(strnlen(ptok,MAX_COLS) > 0) {
                     (*num_cols)++;
@@ -156,7 +156,7 @@ _Bool env_csv_isreset(const XCSF *xcsf)
     return true;
 }
 
-const double *env_csv_get_state(XCSF *xcsf)
+const double *env_csv_get_state(const XCSF *xcsf)
 {
     (void)xcsf;
     return 0;
