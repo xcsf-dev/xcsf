@@ -49,7 +49,7 @@ typedef struct RULE_NEURAL {
 
 /* CONDITION FUNCTIONS */
 
-static void rule_neural_cond_rand(const XCSF *xcsf, CL *c);
+static void rule_neural_cond_rand(const XCSF *xcsf, const CL *c);
 
 void rule_neural_cond_init(const XCSF *xcsf, CL *c)
 {
@@ -102,15 +102,15 @@ void rule_neural_cond_free(const XCSF *xcsf, const CL *c)
 void rule_neural_cond_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
-    RULE_NEURAL *from_cond = from->cond;
+    const RULE_NEURAL *from_cond = from->cond;
     new->num_outputs = from_cond->num_outputs;
     neural_copy(xcsf, &new->net, &from_cond->net);
     to->cond = new;
 }
 
-static void rule_neural_cond_rand(const XCSF *xcsf, CL *c)
+static void rule_neural_cond_rand(const XCSF *xcsf, const CL *c)
 {
-    RULE_NEURAL *cond = c->cond;
+    const RULE_NEURAL *cond = c->cond;
     neural_rand(xcsf, &cond->net);
 }
 
@@ -126,7 +126,7 @@ void rule_neural_cond_update(const XCSF *xcsf, CL *c, const double *x, const dou
 
 _Bool rule_neural_cond_match(const XCSF *xcsf, CL *c, const double *x)
 {
-    RULE_NEURAL *cond = c->cond;
+    const RULE_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
     if(neural_output(xcsf, &cond->net, 0) > 0.5) {
         c->m = true;
@@ -139,7 +139,7 @@ _Bool rule_neural_cond_match(const XCSF *xcsf, CL *c, const double *x)
 
 _Bool rule_neural_cond_mutate(const XCSF *xcsf, CL *c)
 {
-    RULE_NEURAL *cond = c->cond;
+    const RULE_NEURAL *cond = c->cond;
     return neural_mutate(xcsf, &cond->net);
 }
 
@@ -157,7 +157,7 @@ _Bool rule_neural_cond_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 void rule_neural_cond_print(const XCSF *xcsf, const CL *c)
 {
-    RULE_NEURAL *cond = c->cond;
+    const RULE_NEURAL *cond = c->cond;
     neural_print(xcsf, &cond->net, false);
 }  
  
@@ -169,7 +169,7 @@ int rule_neural_cond_size(const XCSF *xcsf, const CL *c)
 
 size_t rule_neural_cond_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
-    RULE_NEURAL *cond = c->cond;
+    const RULE_NEURAL *cond = c->cond;
     size_t s = neural_save(xcsf, &cond->net, fp);
     return s;
 }
@@ -221,7 +221,7 @@ void rule_neural_act_cover(const XCSF *xcsf, CL *c, const double *x, int action)
 int rule_neural_act_compute(const XCSF *xcsf, CL *c, const double *x)
 {
     (void)x; // network already updated
-    RULE_NEURAL *cond = c->cond;
+    const RULE_NEURAL *cond = c->cond;
     c->action = 0;
     for(int i = 0; i < cond->num_outputs; i++) {
         if(neural_output(xcsf, &cond->net, i+1) > 0.5) {

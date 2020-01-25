@@ -100,14 +100,14 @@ void cond_neural_free(const XCSF *xcsf, const CL *c)
 void cond_neural_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
-    COND_NEURAL *from_cond = from->cond;
+    const COND_NEURAL *from_cond = from->cond;
     neural_copy(xcsf, &new->net, &from_cond->net);
     to->cond = new;
 }
 
 static void cond_neural_rand(const XCSF *xcsf, CL *c)
 {
-    COND_NEURAL *cond = c->cond;
+    const COND_NEURAL *cond = c->cond;
     neural_rand(xcsf, &cond->net);
 }
 
@@ -125,7 +125,7 @@ void cond_neural_update(const XCSF *xcsf, CL *c, const double *x, const double *
 
 _Bool cond_neural_match(const XCSF *xcsf, CL *c, const double *x)
 {
-    COND_NEURAL *cond = c->cond;
+    const COND_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
     if(neural_output(xcsf, &cond->net, 0) > 0.5) {
         c->m = true;
@@ -138,7 +138,7 @@ _Bool cond_neural_match(const XCSF *xcsf, CL *c, const double *x)
 
 _Bool cond_neural_mutate(const XCSF *xcsf, CL *c)
 {
-    COND_NEURAL *cond = c->cond;
+    const COND_NEURAL *cond = c->cond;
     return neural_mutate(xcsf, &cond->net);
 }
 
@@ -156,19 +156,19 @@ _Bool cond_neural_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 void cond_neural_print(const XCSF *xcsf, const CL *c)
 {
-    COND_NEURAL *cond = c->cond;
+    const COND_NEURAL *cond = c->cond;
     neural_print(xcsf, &cond->net, false);
 }
 
 int cond_neural_size(const XCSF *xcsf, const CL *c)
 {
-    COND_NEURAL *cond = c->cond;
+    const COND_NEURAL *cond = c->cond;
     return neural_size(xcsf, &cond->net);
 }
 
 size_t cond_neural_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
-    COND_NEURAL *cond = c->cond;
+    const COND_NEURAL *cond = c->cond;
     size_t s = neural_save(xcsf, &cond->net, fp);
     return s;
 }

@@ -52,7 +52,7 @@ void cond_dgp_init(const XCSF *xcsf, CL *c)
 
 void cond_dgp_free(const XCSF *xcsf, const CL *c)
 {
-    COND_DGP *cond = c->cond;
+    const COND_DGP *cond = c->cond;
     graph_free(xcsf, &cond->dgp);
     free(c->cond);
 }                  
@@ -60,7 +60,7 @@ void cond_dgp_free(const XCSF *xcsf, const CL *c)
 void cond_dgp_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     COND_DGP *new = malloc(sizeof(COND_DGP));
-    COND_DGP *from_cond = from->cond;
+    const COND_DGP *from_cond = from->cond;
     graph_init(xcsf, &new->dgp, from_cond->dgp.n);
     graph_copy(xcsf, &new->dgp, &from_cond->dgp);
     to->cond = new;
@@ -86,7 +86,7 @@ void cond_dgp_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
  
 _Bool cond_dgp_match(const XCSF *xcsf, CL *c, const double *x)
 {
-    COND_DGP *cond = c->cond;
+    const COND_DGP *cond = c->cond;
     graph_update(xcsf, &cond->dgp, x);
     if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
         c->m = true;
@@ -119,20 +119,20 @@ _Bool cond_dgp_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 void cond_dgp_print(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
-    COND_DGP *cond = c->cond;
+    const COND_DGP *cond = c->cond;
     graph_print(xcsf, &cond->dgp);
 }  
 
 int cond_dgp_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
-    COND_DGP *cond = c->cond;
+    const COND_DGP *cond = c->cond;
     return cond->dgp.n;
 }
 
 size_t cond_dgp_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
-    COND_DGP *cond = c->cond;
+    const COND_DGP *cond = c->cond;
     size_t s = graph_save(xcsf, &cond->dgp, fp);
     return s;
 }

@@ -57,7 +57,7 @@ void cond_rectangle_init(const XCSF *xcsf, CL *c)
 void cond_rectangle_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
-    COND_RECTANGLE *cond = c->cond;
+    const COND_RECTANGLE *cond = c->cond;
     free(cond->center);
     free(cond->spread);
     free(c->cond);
@@ -66,7 +66,7 @@ void cond_rectangle_free(const XCSF *xcsf, const CL *c)
 void cond_rectangle_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
-    COND_RECTANGLE *from_cond = from->cond;
+    const COND_RECTANGLE *from_cond = from->cond;
     new->center = malloc(sizeof(double) * xcsf->num_x_vars);
     new->spread = malloc(sizeof(double) * xcsf->num_x_vars);
     memcpy(new->center, from_cond->center, sizeof(double) * xcsf->num_x_vars);
@@ -76,7 +76,7 @@ void cond_rectangle_copy(const XCSF *xcsf, CL *to, const CL *from)
 
 void cond_rectangle_cover(const XCSF *xcsf, CL *c, const double *x)
 {
-    COND_RECTANGLE *cond = c->cond;
+    const COND_RECTANGLE *cond = c->cond;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         cond->center[i] = x[i];
         cond->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
@@ -87,7 +87,7 @@ void cond_rectangle_update(const XCSF *xcsf, CL *c, const double *x, const doubl
 {
     (void)y;
     if(xcsf->COND_ETA > 0) {
-        COND_RECTANGLE *cond = c->cond;
+        const COND_RECTANGLE *cond = c->cond;
         for(int i = 0; i < xcsf->num_x_vars; i++) {
             cond->center[i] += xcsf->COND_ETA * (x[i] - cond->center[i]);
         }
@@ -107,7 +107,7 @@ _Bool cond_rectangle_match(const XCSF *xcsf, CL *c, const double *x)
 
 static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x)
 {
-    COND_RECTANGLE *cond = c->cond;
+    const COND_RECTANGLE *cond = c->cond;
     double dist = 0;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         double d = fabs((x[i] - cond->center[i]) / cond->spread[i]);
@@ -120,8 +120,8 @@ static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x
 
 _Bool cond_rectangle_crossover(const XCSF *xcsf, CL *c1, CL *c2) 
 {
-    COND_RECTANGLE *cond1 = c1->cond;
-    COND_RECTANGLE *cond2 = c2->cond;
+    const COND_RECTANGLE *cond1 = c1->cond;
+    const COND_RECTANGLE *cond2 = c2->cond;
     _Bool changed = false;
     if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
         for(int i = 0; i < xcsf->num_x_vars; i++) {
@@ -144,7 +144,7 @@ _Bool cond_rectangle_crossover(const XCSF *xcsf, CL *c1, CL *c2)
 
 _Bool cond_rectangle_mutate(const XCSF *xcsf, CL *c)
 {
-    COND_RECTANGLE *cond = c->cond;
+    const COND_RECTANGLE *cond = c->cond;
     _Bool changed = false;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         // centers
@@ -167,8 +167,8 @@ _Bool cond_rectangle_mutate(const XCSF *xcsf, CL *c)
 _Bool cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     // returns whether cond1 is more general than cond2
-    COND_RECTANGLE *cond1 = c1->cond;
-    COND_RECTANGLE *cond2 = c2->cond;
+    const COND_RECTANGLE *cond1 = c1->cond;
+    const COND_RECTANGLE *cond2 = c2->cond;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         double l1 = cond1->center[i] - cond1->spread[i];
         double l2 = cond2->center[i] - cond2->spread[i];
@@ -183,7 +183,7 @@ _Bool cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 void cond_rectangle_print(const XCSF *xcsf, const CL *c)
 {
-    COND_RECTANGLE *cond = c->cond;
+    const COND_RECTANGLE *cond = c->cond;
     printf("rectangle:");
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         printf(" (c=%5f, ", cond->center[i]);
@@ -201,7 +201,7 @@ int cond_rectangle_size(const XCSF *xcsf, const CL *c)
 size_t cond_rectangle_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     size_t s = 0;
-    COND_RECTANGLE *cond = c->cond;
+    const COND_RECTANGLE *cond = c->cond;
     s += fwrite(cond->center, sizeof(double), xcsf->num_x_vars, fp);
     s += fwrite(cond->spread, sizeof(double), xcsf->num_x_vars, fp);
     return s;

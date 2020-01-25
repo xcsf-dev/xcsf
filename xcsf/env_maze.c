@@ -174,7 +174,7 @@ _Bool env_maze_isreset(const XCSF *xcsf)
  */
 const double *env_maze_get_state(const XCSF *xcsf)
 {
-    ENV_MAZE *env = xcsf->env;
+    const ENV_MAZE *env = xcsf->env;
     int spos = 0;
     for(int y = -1; y < 2; y++) {
         for(int x = -1; x < 2; x++) {

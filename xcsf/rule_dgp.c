@@ -58,7 +58,7 @@ void rule_dgp_cond_init(const XCSF *xcsf, CL *c)
 
 void rule_dgp_cond_free(const XCSF *xcsf, const CL *c)
 {
-    RULE_DGP *cond = c->cond;
+    const RULE_DGP *cond = c->cond;
     graph_free(xcsf, &cond->dgp);
     free(c->cond);
 }
@@ -66,7 +66,7 @@ void rule_dgp_cond_free(const XCSF *xcsf, const CL *c)
 void rule_dgp_cond_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
-    RULE_DGP *from_cond = from->cond;
+    const RULE_DGP *from_cond = from->cond;
     graph_init(xcsf, &new->dgp, from_cond->dgp.n);
     graph_copy(xcsf, &new->dgp, &from_cond->dgp);
     new->num_outputs = from_cond->num_outputs;
@@ -91,7 +91,7 @@ void rule_dgp_cond_update(const XCSF *xcsf, CL *c, const double *x, const double
 
 _Bool rule_dgp_cond_match(const XCSF *xcsf, CL *c, const double *x)
 {
-    RULE_DGP *cond = c->cond;
+    const RULE_DGP *cond = c->cond;
     graph_update(xcsf, &cond->dgp, x);
     if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
         c->m = true;
@@ -123,20 +123,20 @@ _Bool rule_dgp_cond_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 void rule_dgp_cond_print(const XCSF *xcsf, const CL *c)
 {
-    RULE_DGP *cond = c->cond;
+    const RULE_DGP *cond = c->cond;
     graph_print(xcsf, &cond->dgp);
 }  
  
 int rule_dgp_cond_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
-    RULE_DGP *cond = c->cond;
+    const RULE_DGP *cond = c->cond;
     return cond->dgp.n;
 }
 
 size_t rule_dgp_cond_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
-    RULE_DGP *cond = c->cond;
+    const RULE_DGP *cond = c->cond;
     size_t s = graph_save(xcsf, &cond->dgp, fp);
     return s;
 }
@@ -188,7 +188,7 @@ void rule_dgp_act_cover(const XCSF *xcsf, CL *c, const double *x, int action)
 int rule_dgp_act_compute(const XCSF *xcsf, CL *c, const double *x)
 {
     (void)x; // graph already updated
-    RULE_DGP *cond = c->cond;
+    const RULE_DGP *cond = c->cond;
     c->action = 0;
     for(int i = 0; i < cond->num_outputs; i++) {
         if(graph_output(xcsf, &cond->dgp, i+1) > 0.5) {

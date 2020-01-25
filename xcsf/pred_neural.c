@@ -106,7 +106,7 @@ void pred_neural_free(const XCSF *xcsf, const CL *c)
 void pred_neural_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
-    PRED_NEURAL *from_pred = from->pred;
+    const PRED_NEURAL *from_pred = from->pred;
     neural_copy(xcsf, &new->net, &from_pred->net);
     to->pred = new;
 }
@@ -121,7 +121,7 @@ void pred_neural_update(const XCSF *xcsf, CL *c, const double *x, const double *
 
 const double *pred_neural_compute(const XCSF *xcsf, CL *c, const double *x)
 {
-    PRED_NEURAL *pred = c->pred;
+    const PRED_NEURAL *pred = c->pred;
     neural_propagate(xcsf, &pred->net, x);
     for(int i = 0; i < xcsf->num_y_vars; i++) {
         c->prediction[i] = neural_output(xcsf, &pred->net, i);
@@ -131,7 +131,7 @@ const double *pred_neural_compute(const XCSF *xcsf, CL *c, const double *x)
 
 void pred_neural_print(const XCSF *xcsf, const CL *c)
 {
-    PRED_NEURAL *pred = c->pred;
+    const PRED_NEURAL *pred = c->pred;
     neural_print(xcsf, &pred->net, false);
 }  
 
@@ -143,19 +143,19 @@ _Bool pred_neural_crossover(const XCSF *xcsf, CL *c1, CL *c2)
 
 _Bool pred_neural_mutate(const XCSF *xcsf, CL *c)
 {
-    PRED_NEURAL *pred = c->pred;
+    const PRED_NEURAL *pred = c->pred;
     return neural_mutate(xcsf, &pred->net);
 }
 
 int pred_neural_size(const XCSF *xcsf, const CL *c)
 {
-    PRED_NEURAL *pred = c->pred;
+    const PRED_NEURAL *pred = c->pred;
     return neural_size(xcsf, &pred->net);
 }
 
 size_t pred_neural_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
-    PRED_NEURAL *pred = c->pred;
+    const PRED_NEURAL *pred = c->pred;
     size_t s = neural_save(xcsf, &pred->net, fp);
     return s;
 }
@@ -171,10 +171,10 @@ size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp)
 double pred_neural_eta(const XCSF *xcsf, CL *c, int layer)
 {
     (void)xcsf;
-    PRED_NEURAL *pred = c->pred;
-    NET *net = &pred->net;
+    const PRED_NEURAL *pred = c->pred;
+    const NET *net = &pred->net;
     int i = 0;
-    for(LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         if(i == layer) {
             return iter->layer->eta;
         }

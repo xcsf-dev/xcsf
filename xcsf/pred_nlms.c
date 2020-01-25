@@ -67,8 +67,8 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
 void pred_nlms_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     pred_nlms_init(xcsf, to);
-    PRED_NLMS *to_pred = to->pred;
-    PRED_NLMS *from_pred = from->pred;
+    const PRED_NLMS *to_pred = to->pred;
+    const PRED_NLMS *from_pred = from->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         memcpy(to_pred->weights[var], from_pred->weights[var], 
                 sizeof(double) * from_pred->weights_length);
@@ -87,7 +87,7 @@ void pred_nlms_free(const XCSF *xcsf, const CL *c)
 
 void pred_nlms_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
-    PRED_NLMS *pred = c->pred;
+    const PRED_NLMS *pred = c->pred;
     double norm = xcsf->PRED_X0 * xcsf->PRED_X0;
     for(int i = 0; i < xcsf->num_x_vars; i++) {
         norm += x[i] * x[i];
@@ -116,7 +116,7 @@ void pred_nlms_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 
 const double *pred_nlms_compute(const XCSF *xcsf, CL *c, const double *x)
 {
-    PRED_NLMS *pred = c->pred;
+    const PRED_NLMS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         // first coefficient is offset
         double pre = xcsf->PRED_X0 * pred->weights[var][0];
@@ -140,7 +140,7 @@ const double *pred_nlms_compute(const XCSF *xcsf, CL *c, const double *x)
 
 void pred_nlms_print(const XCSF *xcsf, const CL *c)
 {
-    PRED_NLMS *pred = c->pred;
+    const PRED_NLMS *pred = c->pred;
     printf("weights: ");
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         for(int i = 0; i < pred->weights_length; i++) {
@@ -165,13 +165,13 @@ _Bool pred_nlms_mutate(const XCSF *xcsf, CL *c)
 int pred_nlms_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
-    PRED_NLMS *pred = c->pred;
+    const PRED_NLMS *pred = c->pred;
     return pred->weights_length;
 }
 
 size_t pred_nlms_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
-    PRED_NLMS *pred = c->pred;
+    const PRED_NLMS *pred = c->pred;
     size_t s = 0;
     s += fwrite(&pred->weights_length, sizeof(int), 1, fp);
     for(int var = 0; var < xcsf->num_y_vars; var++) {

@@ -32,8 +32,8 @@
 #include "prediction.h"
 #include "pred_rls.h"
 
-static void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n);
-static void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n);
+static void matrix_matrix_multiply(const double *srca, const double *srcb, double *dest, int n);
+static void matrix_vector_multiply(const double *srcm, const double *srcv, double *dest, int n);
 static void init_matrix(const XCSF *xcsf, double *matrix, int n);
                     
 /**
@@ -101,8 +101,8 @@ static void init_matrix(const XCSF *xcsf, double *matrix, int n)
 void pred_rls_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     pred_rls_init(xcsf, to);
-    PRED_RLS *to_pred = to->pred;
-    PRED_RLS *from_pred = from->pred;
+    const PRED_RLS *to_pred = to->pred;
+    const PRED_RLS *from_pred = from->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         memcpy(to_pred->weights[var], from_pred->weights[var], 
                 sizeof(double)*from_pred->weights_length);
@@ -126,7 +126,7 @@ void pred_rls_free(const XCSF *xcsf, const CL *c)
 
 void pred_rls_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 {
-    PRED_RLS *pred = c->pred;
+    const PRED_RLS *pred = c->pred;
     int n = pred->weights_length;
     pred->tmp_input[0] = xcsf->PRED_X0;
     int index = 1;
@@ -183,7 +183,7 @@ void pred_rls_update(const XCSF *xcsf, CL *c, const double *x, const double *y)
 
 const double *pred_rls_compute(const XCSF *xcsf, CL *c, const double *x)
 {
-    PRED_RLS *pred = c->pred;
+    const PRED_RLS *pred = c->pred;
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         // first coefficient is offset
         double pre = xcsf->PRED_X0 * pred->weights[var][0];
@@ -207,7 +207,7 @@ const double *pred_rls_compute(const XCSF *xcsf, CL *c, const double *x)
 
 void pred_rls_print(const XCSF *xcsf, const CL *c)
 {
-    PRED_RLS *pred = c->pred;
+    const PRED_RLS *pred = c->pred;
     printf("RLS weights: ");
     for(int var = 0; var < xcsf->num_y_vars; var++) {
         for(int i = 0; i < pred->weights_length; i++) {
@@ -217,7 +217,7 @@ void pred_rls_print(const XCSF *xcsf, const CL *c)
     }
 }
 
-static void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int n)
+static void matrix_matrix_multiply(const double *srca, const double *srcb, double *dest, int n)
 {
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {
@@ -229,7 +229,7 @@ static void matrix_matrix_multiply(double *srca, double *srcb, double *dest, int
     }
 }
 
-static void matrix_vector_multiply(double *srcm, double *srcv, double *dest, int n)
+static void matrix_vector_multiply(const double *srcm, const double *srcv, double *dest, int n)
 {
     for(int i = 0; i < n; i++) {
         dest[i] = srcm[i*n] * srcv[0];
@@ -254,7 +254,7 @@ _Bool pred_rls_mutate(const XCSF *xcsf, CL *c)
 int pred_rls_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
-    PRED_RLS *pred = c->pred;
+    const PRED_RLS *pred = c->pred;
     return pred->weights_length;
 }
 
