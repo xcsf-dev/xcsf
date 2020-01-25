@@ -23,7 +23,7 @@
 
 #pragma once
 
-const double *pred_constant_compute(const XCSF *xcsf, CL *c, const double *x);
+const double *pred_constant_compute(const XCSF *xcsf, const CL *c, const double *x);
 _Bool pred_constant_crossover(const XCSF *xcsf, CL *c1, CL *c2);
 _Bool pred_constant_mutate(const XCSF *xcsf, CL *c);
 void pred_constant_copy(const XCSF *xcsf, CL *to, const CL *from);

@@ -62,7 +62,7 @@ void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x, const 
     }
 }
 
-const double *pred_constant_compute(const XCSF *xcsf, CL *c, const double *x)
+const double *pred_constant_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     (void)xcsf; (void)c; (void)x;
     return c->prediction;
