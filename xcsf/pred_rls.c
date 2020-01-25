@@ -260,7 +260,7 @@ int pred_rls_size(const XCSF *xcsf, const CL *c)
 
 size_t pred_rls_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
-    PRED_RLS *pred = c->pred;
+    const PRED_RLS *pred = c->pred;
     size_t s = 0;
     s += fwrite(&pred->weights_length, sizeof(int), 1, fp);
     for(int var = 0; var < xcsf->num_y_vars; var++) {

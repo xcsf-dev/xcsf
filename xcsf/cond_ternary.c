@@ -206,7 +206,7 @@ void cond_ternary_print(const XCSF *xcsf, const CL *c)
 int cond_ternary_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
-    COND_TERNARY *cond = c->cond;
+    const COND_TERNARY *cond = c->cond;
     return cond->len;
 }
 
@@ -214,7 +214,7 @@ size_t cond_ternary_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
-    COND_TERNARY *cond = c->cond;
+    const COND_TERNARY *cond = c->cond;
     s += fwrite(&cond->len, sizeof(int), 1, fp);
     s += fwrite(cond->string, sizeof(char), cond->len, fp);
     return s;
