@@ -44,7 +44,7 @@ typedef struct RULE_DGP{
 
 /* CONDITION FUNCTIONS */
 
-static void rule_dgp_cond_rand(const XCSF *xcsf, CL *c);
+static void rule_dgp_cond_rand(const XCSF *xcsf, const CL *c);
 
 void rule_dgp_cond_init(const XCSF *xcsf, CL *c)
 {
@@ -73,7 +73,7 @@ void rule_dgp_cond_copy(const XCSF *xcsf, CL *to, const CL *from)
     to->cond = new;
 }
 
-static void rule_dgp_cond_rand(const XCSF *xcsf, CL *c)
+static void rule_dgp_cond_rand(const XCSF *xcsf, const CL *c)
 {
     RULE_DGP *cond = c->cond;
     graph_rand(xcsf, &cond->dgp);
@@ -171,12 +171,12 @@ void rule_dgp_act_print(const XCSF *xcsf, const CL *c)
     (void)xcsf; (void)c;
 }
  
-void rule_dgp_act_rand(const XCSF *xcsf, CL *c)
+void rule_dgp_act_rand(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf; (void)c;
 }
   
-void rule_dgp_act_cover(const XCSF *xcsf, CL *c, const double *x, int action)
+void rule_dgp_act_cover(const XCSF *xcsf, const CL *c, const double *x, int action)
 {
     do {
         rule_dgp_cond_rand(xcsf, c);
@@ -184,18 +184,18 @@ void rule_dgp_act_cover(const XCSF *xcsf, CL *c, const double *x, int action)
             && rule_dgp_act_compute(xcsf, c, x) != action);
 }
  
-int rule_dgp_act_compute(const XCSF *xcsf, CL *c, const double *x)
+int rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     (void)x; // graph already updated
     const RULE_DGP *cond = c->cond;
-    c->action = 0;
+    int action = 0;
     for(int i = 0; i < cond->num_outputs; i++) {
         if(graph_output(xcsf, &cond->dgp, i+1) > 0.5) {
-            c->action += pow(2,i);
+            action += pow(2,i);
         }
     }
-    c->action = iconstrain(0, xcsf->num_actions-1, c->action);
-    return c->action;
+    action = iconstrain(0, xcsf->num_actions-1, action);
+    return action;
 }                
 
 void rule_dgp_act_update(const XCSF *xcsf, CL *c, const double *x, const double *y)

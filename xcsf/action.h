@@ -60,7 +60,7 @@ struct ActVtbl {
      * @param x The input state.
      * @return The classifier's action.
      */
-    int (*act_impl_compute)(const XCSF *xcsf, CL *c, const double *x);
+    int (*act_impl_compute)(const XCSF *xcsf, const CL *c, const double *x);
     /**
      * @brief Copies the action from one classifier to another.
      * @param xcsf The XCSF data structure.
@@ -75,7 +75,7 @@ struct ActVtbl {
      * @param x The input state to cover.
      * @param action The action to cover.
      */
-    void (*act_impl_cover)(const XCSF *xcsf, CL *c, const double *x, int action);
+    void (*act_impl_cover)(const XCSF *xcsf, const CL *c, const double *x, int action);
     /**
      * @brief Frees the memory used by the classifier action.
      * @param xcsf The XCSF data structure.
@@ -93,7 +93,7 @@ struct ActVtbl {
      * @param xcsf The XCSF data structure.
      * @param c The classifier whose action is to be randomised.
      */
-    void (*act_impl_rand)(const XCSF *xcsf, CL *c);
+    void (*act_impl_rand)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Prints the classifier action.
      * @param xcsf The XCSF data structure.
@@ -146,7 +146,7 @@ static inline _Bool act_mutate(const XCSF *xcsf, CL *c) {
     return (*c->act_vptr->act_impl_mutate)(xcsf, c);
 }
 
-static inline int act_compute(const XCSF *xcsf, CL *c, const double *x) {
+static inline int act_compute(const XCSF *xcsf, const CL *c, const double *x) {
     return (*c->act_vptr->act_impl_compute)(xcsf, c, x);
 }
 
@@ -154,7 +154,7 @@ static inline void act_copy(const XCSF *xcsf, CL *to, const CL *from) {
     (*from->act_vptr->act_impl_copy)(xcsf, to, from);
 }
 
-static inline void act_cover(const XCSF *xcsf, CL *c, const double *x, int action) {
+static inline void act_cover(const XCSF *xcsf, const CL *c, const double *x, int action) {
     (*c->act_vptr->act_impl_cover)(xcsf, c, x, action);
 }
 
@@ -166,7 +166,7 @@ static inline void act_init(const XCSF *xcsf, CL *c) {
     (*c->act_vptr->act_impl_init)(xcsf, c);
 }
 
-static inline void act_rand(const XCSF *xcsf, CL *c) {
+static inline void act_rand(const XCSF *xcsf, const CL *c) {
     (*c->act_vptr->act_impl_rand)(xcsf, c);
 }
 
