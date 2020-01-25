@@ -70,7 +70,7 @@ LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *from)
     return l;
 }
  
-void neural_layer_dropout_free(const XCSF *xcsf, LAYER *l)
+void neural_layer_dropout_free(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
     free(l->output);
@@ -78,12 +78,12 @@ void neural_layer_dropout_free(const XCSF *xcsf, LAYER *l)
     free(l->rand);
 }
 
-void neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l)
+void neural_layer_dropout_rand(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf; (void)l;
 }
  
-void neural_layer_dropout_forward(const XCSF *xcsf, LAYER *l, const double *input)
+void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
     if(!xcsf->train) {
         for(int i = 0; i < l->num_inputs; i++) {
@@ -103,7 +103,7 @@ void neural_layer_dropout_forward(const XCSF *xcsf, LAYER *l, const double *inpu
     }
 }
 
-void neural_layer_dropout_backward(const XCSF *xcsf, LAYER *l, NET *net)
+void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const NET *net)
 {
     (void)xcsf;
     if(!net->delta) {
@@ -119,7 +119,7 @@ void neural_layer_dropout_backward(const XCSF *xcsf, LAYER *l, NET *net)
     }
 }
 
-void neural_layer_dropout_update(const XCSF *xcsf, LAYER *l)
+void neural_layer_dropout_update(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf; (void)l;
 }
@@ -130,7 +130,7 @@ _Bool neural_layer_dropout_mutate(const XCSF *xcsf, LAYER *l)
     return false;
 }
 
-void neural_layer_dropout_resize(const XCSF *xcsf, LAYER *l, LAYER *prev)
+void neural_layer_dropout_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     (void)xcsf;
     l->num_inputs = prev->num_outputs;

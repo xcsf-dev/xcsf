@@ -81,7 +81,7 @@ struct LayerVtbl {
      * @param prev The layer prior to the one being mutated.
      * @return Whether any alterations were made.
      */
-    void (*layer_impl_resize)(const XCSF *xcsf, LAYER *l, LAYER *prev);
+    void (*layer_impl_resize)(const XCSF *xcsf, LAYER *l, const LAYER *prev);
     /**
      * @brief Creates and returns a copy of a specified layer.
      * @param xcsf The XCSF data structure.
@@ -94,13 +94,13 @@ struct LayerVtbl {
      * @param xcsf The XCSF data structure.
      * @param l The layer to be freed.
      */
-    void (*layer_impl_free)(const XCSF *xcsf, LAYER *l);
+    void (*layer_impl_free)(const XCSF *xcsf, const LAYER *l);
     /**
      * @brief Randomises a layer.
      * @param xcsf The XCSF data structure.
      * @param l The layer to be randomised.
      */
-    void (*layer_impl_rand)(const XCSF *xcsf, LAYER *l);
+    void (*layer_impl_rand)(const XCSF *xcsf, const LAYER *l);
     /**
      * @brief Prints the layer.
      * @param xcsf The XCSF data structure.
@@ -113,21 +113,21 @@ struct LayerVtbl {
      * @param xcsf The XCSF data structure.
      * @param l The layer to be updated.
      */
-    void (*layer_impl_update)(const XCSF *xcsf, LAYER *l);
+    void (*layer_impl_update)(const XCSF *xcsf, const LAYER *l);
     /**
      * @brief Backward propagates the error through a layer.
      * @param xcsf The XCSF data structure.
      * @param l The layer to be backward propagated.
      * @param net The network being backward propagated.
      */
-    void (*layer_impl_backward)(const XCSF *xcsf, LAYER *l, NET *net);
+    void (*layer_impl_backward)(const XCSF *xcsf, const LAYER *l, const NET *net);
     /**
      * @brief Forward propagates an input through the layer.
      * @param xcsf The XCSF data structure.
      * @param l The layer to be forward propagated.
      * @param input The input to the layer.
      */
-    void (*layer_impl_forward)(const XCSF *xcsf, LAYER *l, const double *input);
+    void (*layer_impl_forward)(const XCSF *xcsf, const LAYER *l, const double *input);
     /**
      * @brief Returns the outputs of a layer.
      * @param xcsf The XCSF data structure.
@@ -165,15 +165,15 @@ static inline double* layer_output(const XCSF *xcsf, const LAYER *l) {
     return (*l->layer_vptr->layer_impl_output)(xcsf, l);
 }
 
-static inline void layer_forward(const XCSF *xcsf, LAYER *l, const double *input) {
+static inline void layer_forward(const XCSF *xcsf, const LAYER *l, const double *input) {
     (*l->layer_vptr->layer_impl_forward)(xcsf, l, input);
 }
 
-static inline void layer_backward(const XCSF *xcsf, LAYER *l, NET *net) {
+static inline void layer_backward(const XCSF *xcsf, const LAYER *l, const NET *net) {
     (*l->layer_vptr->layer_impl_backward)(xcsf, l, net);
 }
 
-static inline void layer_update(const XCSF *xcsf, LAYER *l) {
+static inline void layer_update(const XCSF *xcsf, const LAYER *l) {
     (*l->layer_vptr->layer_impl_update)(xcsf, l);
 }
 
@@ -181,7 +181,7 @@ static inline _Bool layer_mutate(const XCSF *xcsf, LAYER *l) {
     return (*l->layer_vptr->layer_impl_mutate)(xcsf, l);
 }
 
-static inline void layer_resize(const XCSF *xcsf, LAYER *l, LAYER *prev) {
+static inline void layer_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev) {
     (*l->layer_vptr->layer_impl_resize)(xcsf, l, prev);
 }
 
@@ -189,11 +189,11 @@ static inline LAYER* layer_copy(const XCSF *xcsf, const LAYER *from) {
     return (*from->layer_vptr->layer_impl_copy)(xcsf, from);
 }
 
-static inline void layer_free(const XCSF *xcsf, LAYER *l) {
+static inline void layer_free(const XCSF *xcsf, const LAYER *l) {
     (*l->layer_vptr->layer_impl_free)(xcsf, l);
 }
 
-static inline void layer_rand(const XCSF *xcsf, LAYER *l) {
+static inline void layer_rand(const XCSF *xcsf, const LAYER *l) {
     (*l->layer_vptr->layer_impl_rand)(xcsf, l);
 }
 
