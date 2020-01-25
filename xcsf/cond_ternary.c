@@ -44,7 +44,7 @@ typedef struct COND_TERNARY {
     int len; //!< Length of the bitstring
 } COND_TERNARY;
 
-static void cond_ternary_rand(const XCSF *xcsf, CL *c);
+static void cond_ternary_rand(const XCSF *xcsf, const CL *c);
 
 void cond_ternary_init(const XCSF *xcsf, CL *c)
 {
@@ -55,7 +55,7 @@ void cond_ternary_init(const XCSF *xcsf, CL *c)
     cond_ternary_rand(xcsf, c);
 }
 
-static void cond_ternary_rand(const XCSF *xcsf, CL *c)
+static void cond_ternary_rand(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     const COND_TERNARY *cond = c->cond;

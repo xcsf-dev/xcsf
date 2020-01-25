@@ -40,7 +40,7 @@ typedef struct COND_GP {
     GP_TREE gp; //!< GP tree
 } COND_GP;
 
-static void cond_gp_rand(const XCSF *xcsf, CL *c);
+static void cond_gp_rand(const XCSF *xcsf, const CL *c);
 
 void cond_gp_init(const XCSF *xcsf, CL *c)
 {
@@ -64,7 +64,7 @@ void cond_gp_copy(const XCSF *xcsf, CL *to, const CL *from)
     to->cond = new;
 }
 
-static void cond_gp_rand(const XCSF *xcsf, CL *c)
+static void cond_gp_rand(const XCSF *xcsf, const CL *c)
 {
     COND_GP *cond = c->cond;
     tree_free(xcsf, &cond->gp);

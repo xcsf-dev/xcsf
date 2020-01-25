@@ -45,7 +45,7 @@ typedef struct COND_NEURAL {
     NET net; //!< Neural network
 } COND_NEURAL;
 
-static void cond_neural_rand(const XCSF *xcsf, CL *c);
+static void cond_neural_rand(const XCSF *xcsf, const CL *c);
 
 void cond_neural_init(const XCSF *xcsf, CL *c)
 {
@@ -105,7 +105,7 @@ void cond_neural_copy(const XCSF *xcsf, CL *to, const CL *from)
     to->cond = new;
 }
 
-static void cond_neural_rand(const XCSF *xcsf, CL *c)
+static void cond_neural_rand(const XCSF *xcsf, const CL *c)
 {
     const COND_NEURAL *cond = c->cond;
     neural_rand(xcsf, &cond->net);
