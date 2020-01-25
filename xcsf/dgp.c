@@ -90,7 +90,7 @@ double graph_output(const XCSF *xcsf, const GRAPH *dgp, int i)
  * @param xcsf The XCSF data structure.
  * @param dgp The DGP graph to reset.
  */
-void graph_reset(const XCSF *xcsf, GRAPH *dgp)
+void graph_reset(const XCSF *xcsf, const GRAPH *dgp)
 {
     (void)xcsf;
     for(int i = 0; i < dgp->n; i++) {
@@ -180,7 +180,7 @@ void graph_print(const XCSF *xcsf, const GRAPH *dgp)
  * @param xcsf The XCSF data structure.
  * @param dgp The DGP graph to be freed.
  */
-void graph_free(const XCSF *xcsf, GRAPH *dgp)
+void graph_free(const XCSF *xcsf, const GRAPH *dgp)
 {
     (void)xcsf;
     free(dgp->connectivity);

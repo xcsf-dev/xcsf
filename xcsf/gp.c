@@ -87,7 +87,7 @@ void tree_rand(const XCSF *xcsf, GP_TREE *gp)
  * @param xcsf The XCSF data structure.
  * @param gp The GP tree to free.
  */
-void tree_free(const XCSF *xcsf, GP_TREE *gp)
+void tree_free(const XCSF *xcsf, const GP_TREE *gp)
 {
     (void)xcsf;
     free(gp->tree);
@@ -273,21 +273,21 @@ void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
 /**
  * @brief Performs point mutation on a GP tree.
  * @param xcsf The XCSF data structure.
- * @param offspring The GP tree to be mutated.
+ * @param gp The GP tree to be mutated.
  * @param rate The per allele rate of mutation.
  */
-void tree_mutation(const XCSF *xcsf, GP_TREE *offspring, double rate) 
+void tree_mutate(const XCSF *xcsf, const GP_TREE *gp, double rate) 
 {   
-    for(int i = 0; i < offspring->len; i++) {  
+    for(int i = 0; i < gp->len; i++) {  
         if(rand_uniform(0,1) < rate) {
             // terminals randomly replaced with other terminals
-            if(offspring->tree[i] >= GP_NUM_FUNC) {
-                offspring->tree[i] = irand_uniform(GP_NUM_FUNC, 
+            if(gp->tree[i] >= GP_NUM_FUNC) {
+                gp->tree[i] = irand_uniform(GP_NUM_FUNC, 
                         GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->num_x_vars);
             }
             // functions randomly replaced with other functions
             else {
-                offspring->tree[i] = irand_uniform(0, GP_NUM_FUNC);
+                gp->tree[i] = irand_uniform(0, GP_NUM_FUNC);
             }
         }
     }

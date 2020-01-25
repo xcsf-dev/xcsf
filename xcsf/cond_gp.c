@@ -101,7 +101,7 @@ _Bool cond_gp_mutate(const XCSF *xcsf, CL *c)
 {
     COND_GP *cond = c->cond;
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-        tree_mutation(xcsf, &cond->gp, xcsf->P_MUTATION);
+        tree_mutate(xcsf, &cond->gp, xcsf->P_MUTATION);
         return true;
     }
     else {

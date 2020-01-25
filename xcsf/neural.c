@@ -199,7 +199,7 @@ void neural_rand(const XCSF *xcsf, const NET *net)
 _Bool neural_mutate(const XCSF *xcsf, const NET *net)
 {
     _Bool mod = false;
-    LAYER *prev = NULL;
+    const LAYER *prev = NULL;
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         // previous layer has grown or shrunk: weight vector must be resized
         if(prev != NULL && iter->layer->num_inputs != prev->num_outputs) {
@@ -253,7 +253,7 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
 
     /* backward phase */
     for(const LLIST *iter = net->head; iter != NULL; iter = iter->next) {
-        LAYER *l = iter->layer;
+        const LAYER *l = iter->layer;
         if(iter->next == NULL) {
             net->input = input;
             net->delta = 0;

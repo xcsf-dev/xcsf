@@ -34,12 +34,12 @@ typedef struct GP_TREE {
 
 void tree_free_cons(XCSF *xcsf);
 void tree_init_cons(XCSF *xcsf);
-void tree_free(const XCSF *xcsf, GP_TREE *gp);
+void tree_free(const XCSF *xcsf, const GP_TREE *gp);
 void tree_rand(const XCSF *xcsf, GP_TREE *gp);
 void tree_copy(const XCSF *xcsf, GP_TREE *to, const GP_TREE *from);
 int tree_print(const XCSF *xcsf, const GP_TREE *gp, int p);
 double tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x);
 void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2);
-void tree_mutation(const XCSF *xcsf, GP_TREE *offspring, double rate);
+void tree_mutate(const XCSF *xcsf, const GP_TREE *gp, double rate);
 size_t tree_save(const XCSF *xcsf, const GP_TREE *gp, FILE *fp);
 size_t tree_load(const XCSF *xcsf, GP_TREE *gp, FILE *fp);

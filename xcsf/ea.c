@@ -48,7 +48,7 @@ static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool c
  * @param set The set in which to run the EA.
  * @param kset A set to store deleted macro-classifiers for later memory removal.
  */
-void ea(XCSF *xcsf, SET *set, SET *kset)
+void ea(XCSF *xcsf, const SET *set, SET *kset)
 {
     // check if the evolutionary algorithm should be run
     if(set->size == 0 || xcsf->time - clset_mean_time(xcsf, set) < xcsf->THETA_EA) {
