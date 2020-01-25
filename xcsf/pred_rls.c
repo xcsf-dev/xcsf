@@ -245,7 +245,7 @@ _Bool pred_rls_crossover(const XCSF *xcsf, CL *c1, CL *c2)
     return false;
 }
 
-_Bool pred_rls_mutate(const XCSF *xcsf, CL *c)
+_Bool pred_rls_mutate(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf; (void)c;
     return false;

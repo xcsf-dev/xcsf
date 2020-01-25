@@ -44,7 +44,7 @@ struct PredVtbl {
      * @param c The classifier whose prediction is being mutated.
      * @return Whether any alterations were made.
      */
-    _Bool (*pred_impl_mutate)(const XCSF *xcsf, CL *c);
+    _Bool (*pred_impl_mutate)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Computes the current classifier prediction using the input.
      * @param xcsf The XCSF data structure.
@@ -127,7 +127,7 @@ static inline _Bool pred_crossover(const XCSF *xcsf, CL *c1, CL *c2) {
     return (*c1->pred_vptr->pred_impl_crossover)(xcsf, c1, c2);
 }
 
-static inline _Bool pred_mutate(const XCSF *xcsf, CL *c) {
+static inline _Bool pred_mutate(const XCSF *xcsf, const CL *c) {
     return (*c->pred_vptr->pred_impl_mutate)(xcsf, c);
 }
 

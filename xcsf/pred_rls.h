@@ -25,7 +25,7 @@
 
 const double *pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x);
 _Bool pred_rls_crossover(const XCSF *xcsf, CL *c1, CL *c2);
-_Bool pred_rls_mutate(const XCSF *xcsf, CL *c);
+_Bool pred_rls_mutate(const XCSF *xcsf, const CL *c);
 void pred_rls_copy(const XCSF *xcsf, CL *to, const CL *from);
 void pred_rls_free(const XCSF *xcsf, const CL *c);
 void pred_rls_init(const XCSF *xcsf, CL *c);
