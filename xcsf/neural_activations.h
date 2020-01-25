@@ -17,7 +17,7 @@
  * @file neural_activations.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2012--2019.
+ * @date 2012--2020.
  * @brief Neural network activation functions.
  */ 
 
@@ -39,7 +39,7 @@
  
 double neural_activate(int function, double state);
 double neural_gradient(int function, double state);
-char *activation_string(int function);
+const char *activation_string(int function);
 
 static inline double logistic_activate(double x){return 1./(1.+exp(-x));}
 static inline double logistic_gradient(double x){double fx=1./(1.+exp(-x)); return (1-fx)*fx;}

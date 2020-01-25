@@ -33,7 +33,7 @@
 
 #define NUM_FUNC 3 //!< Number of selectable node functions
 
-static char *function_string(int function);
+static const char *function_string(int function);
 static double node_activate(int function, const double *inputs, int k);
 
 /**
@@ -332,7 +332,7 @@ static double node_activate(int function, const double *inputs, int k)
  * @param function The node function.
  * @return The name of the node function.
  */
-static char *function_string(int function)
+static const char *function_string(int function)
 {
     switch(function) {
         case 0: return "Fuzzy NOT";

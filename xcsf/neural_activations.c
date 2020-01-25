@@ -17,7 +17,7 @@
  * @file neural_activations.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2012--2019.
+ * @date 2012--2020.
  * @brief Neural network activation functions.
  */ 
  
@@ -80,7 +80,7 @@ double neural_gradient(int function, double state)
  * @param function The activation function.
  * @return The name of the activation function.
  */
-char *activation_string(int function)
+const char *activation_string(int function)
 {
      switch(function) {
         case LOGISTIC: return "logistic";
