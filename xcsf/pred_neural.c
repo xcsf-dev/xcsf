@@ -187,3 +187,26 @@ double pred_neural_eta(const XCSF *xcsf, const CL *c, int layer)
     }
     return 0;
 }
+
+int pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer)
+{
+    (void)xcsf;
+    const PRED_NEURAL *pred = c->pred;
+    const NET *net = &pred->net;
+    int i = 0;
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        if(i == layer) {
+            return iter->layer->num_outputs;
+        }
+        i++;
+    }
+    return 0;
+}
+
+int pred_neural_layers(const XCSF *xcsf, const CL *c)
+{
+    (void)xcsf;
+    const PRED_NEURAL *pred = c->pred;
+    const NET *net = &pred->net;
+    return net->num_layers;
+}

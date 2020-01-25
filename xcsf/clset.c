@@ -696,11 +696,13 @@ double clset_mean_inputs_matched(const XCSF *xcsf, const SET *set)
     return sum / cnt;
 }
 
+/* Neural network prediction functions */
+
 /**
  * @brief Calculates the mean prediction layer ETA of classifiers in the set.
  * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean prediction layer ETA.
- * @param layer The neural network layer to calculate the mean ETA.
+ * @param set The set to calculate the mean.
+ * @param layer The neural network layer position.
  * @return The mean prediction layer ETA of classifiers in the set.
  */ 
 double clset_mean_eta(const XCSF *xcsf, const SET *set, int layer)
@@ -712,4 +714,39 @@ double clset_mean_eta(const XCSF *xcsf, const SET *set, int layer)
         cnt++;
     }
     return sum / cnt;
+}
+
+/**
+ * @brief Calculates the mean number of prediction neurons for a given layer.
+ * @param xcsf The XCSF data structure.
+ * @param set The set to calculate the mean.
+ * @param layer The neural network layer position.
+ * @return The mean number of neurons in the layer.
+ */
+double clset_mean_neurons(const XCSF *xcsf, const SET *set, int layer)
+{
+    int sum = 0;
+    int cnt = 0;
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        sum += pred_neural_neurons(xcsf, iter->cl, layer);
+        cnt++;
+    }
+    return (double) sum / cnt;
+}
+
+/**
+ * @brief Calculates the mean number of prediction layers in the set.
+ * @param xcsf The XCSF data structure.
+ * @param set The set to calculate the mean.
+ * @return The mean number of layers.
+ */
+double clset_mean_layers(const XCSF *xcsf, const SET *set)
+{
+    int sum = 0;
+    int cnt = 0;
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        sum += pred_neural_layers(xcsf, iter->cl);
+        cnt++;
+    }
+    return (double) sum / cnt;
 }

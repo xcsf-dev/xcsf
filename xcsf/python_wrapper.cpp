@@ -334,6 +334,8 @@ struct XCS
     double get_pop_mean_cond_size() { return clset_mean_cond_size(&xcs, &xcs.pset); }
     double get_pop_mean_pred_size() { return clset_mean_pred_size(&xcs, &xcs.pset); }
     double get_pop_mean_pred_eta(int layer) { return clset_mean_eta(&xcs, &xcs.pset, layer); }
+    double get_pop_mean_pred_neurons(int layer) { return clset_mean_neurons(&xcs, &xcs.pset, layer); }
+    double get_pop_mean_pred_layers() { return clset_mean_layers(&xcs, &xcs.pset); }
     double get_msetsize() { return xcs.msetsize; }
     double get_mfrac() { return clset_mean_inputs_matched(&xcs, &xcs.pset); }
     int get_teletransportation() { return xcs.TELETRANSPORTATION; }
@@ -516,6 +518,8 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("pop_mean_cond_size", &XCS::get_pop_mean_cond_size)
         .def("pop_mean_pred_size", &XCS::get_pop_mean_pred_size)
         .def("pop_mean_pred_eta", &XCS::get_pop_mean_pred_eta)
+        .def("pop_mean_pred_neurons", &XCS::get_pop_mean_pred_neurons)
+        .def("pop_mean_pred_layers", &XCS::get_pop_mean_pred_layers)
         .def("print_pop", &XCS::print_pop)
         .def("print_match_set", &XCS::print_match_set)
         .def("msetsize", &XCS::get_msetsize)

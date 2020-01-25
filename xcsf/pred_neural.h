@@ -35,6 +35,8 @@ int pred_neural_size(const XCSF *xcsf, const CL *c);
 size_t pred_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
 double pred_neural_eta(const XCSF *xcsf, const CL *c, int layer);
+int pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer);
+int pred_neural_layers(const XCSF *xcsf, const CL *c);
 
 /**
  * @brief Multi-layer perceptron neural network prediction implemented functions.
