@@ -412,10 +412,9 @@ static void clset_update_fit(const XCSF *xcsf, const SET *set)
  */ 
 static void clset_subsumption(XCSF *xcsf, SET *set, SET *kset)
 {
-    CL *s = NULL;
-    const CLIST *iter;
     // find the most general subsumer in the set
-    for(iter = set->list; iter != NULL; iter = iter->next) {
+    CL *s = NULL;
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         CL *c = iter->cl;
         if(cl_subsumer(xcsf, c) && (s == NULL || cl_general(xcsf, c, s))) {
             s = c;
@@ -423,7 +422,7 @@ static void clset_subsumption(XCSF *xcsf, SET *set, SET *kset)
     }
     // subsume the more specific classifiers in the set
     if(s != NULL) {
-        iter = set->list; 
+        const CLIST *iter = set->list;
         while(iter != NULL) {
             CL *c = iter->cl;
             iter = iter->next;
@@ -684,16 +683,18 @@ double clset_mean_pred_size(const XCSF *xcsf, const SET *set)
  */ 
 double clset_mean_inputs_matched(const XCSF *xcsf, const SET *set)
 {
-    (void)xcsf;
     double sum = 0;
     int cnt = 0;
     for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        if(iter->cl->exp > 0) {
+        if(iter->cl->exp > 1 / xcsf->BETA) {
             sum += iter->cl->mfrac;
             cnt++;
         }
     }
-    return sum / cnt;
+    if(cnt > 0) {
+        return sum / cnt;
+    }
+    return 0;
 }
 
 /* Neural network prediction functions */
