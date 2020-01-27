@@ -269,10 +269,12 @@ static void neuron_add(LAYER *l, int n)
         weights[i] = rand_normal(0,0.1);
         weight_updates[i] = 0;
     }
-    memcpy(biases, l->biases, (l->num_outputs - 1) * sizeof(double));
-    memcpy(bias_updates, l->bias_updates, (l->num_outputs - 1) * sizeof(double));
-    biases[l->num_outputs-1] = 0;
-    bias_updates[l->num_outputs-1] = 0;
+    memcpy(biases, l->biases, (l->num_outputs - n) * sizeof(double));
+    memcpy(bias_updates, l->bias_updates, (l->num_outputs - n) * sizeof(double));
+    for(int i = l->num_outputs - n; i < l->num_outputs; i++) {
+        biases[i] = 0;
+        bias_updates[i] = 0;
+    }
     free(l->weights);
     free(l->weight_updates);
     free(l->state);
