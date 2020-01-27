@@ -57,7 +57,8 @@ void cl_init(const XCSF *xcsf, CL *c, int size, int time)
     c->prev_prediction = calloc(xcsf->num_y_vars, sizeof(double));
     c->action = 0;
     c->m = false;
-    c->mfrac = 0;
+    c->age = 0;
+    c->mtotal = 0;
     sam_init(xcsf, &c->mu);
 }
 
@@ -261,8 +262,8 @@ void cl_print(const XCSF *xcsf, const CL *c, _Bool printc, _Bool printa, _Bool p
         }
         printf("\n");
     }
-    printf("err=%f, fit=%f, num=%d, exp=%d, size=%f, time=%d", 
-            c->err, c->fit, c->num, c->exp, c->size, c->time);
+    printf("err=%f fit=%f num=%d exp=%d size=%f time=%d age=%d mfrac=%f",
+            c->err, c->fit, c->num, c->exp, c->size, c->time, c->age, cl_mfrac(xcsf, c));
     sam_print(xcsf, c->mu);
     printf("\n");
 }  
@@ -277,8 +278,26 @@ void cl_print(const XCSF *xcsf, const CL *c, _Bool printc, _Bool printa, _Bool p
 _Bool cl_match(const XCSF *xcsf, CL *c, const double *x)
 {
     c->m = cond_match(xcsf, c, x);
-    c->mfrac += xcsf->BETA * ((double) c->m - c->mfrac);
+    if(c->m) {
+        c->mtotal++;
+    }
+    c->age++;
     return c->m;
+}
+
+/**
+ * @brief Returns the fraction of observed inputs matched by the classifier.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier to match.
+ * @return The fraction of matching inputs.
+ */
+double cl_mfrac(const XCSF *xcsf, const CL *c)
+{
+    (void)xcsf;
+    if(c->age > 0) {
+        return (double) c->mtotal / c->age;
+    }
+    return 0;
 }
 
 /**
@@ -448,7 +467,8 @@ size_t cl_save(const XCSF *xcsf, const CL *c, FILE *fp)
     s += fwrite(&c->size, sizeof(double), 1, fp);
     s += fwrite(&c->time, sizeof(int), 1, fp);
     s += fwrite(&c->m, sizeof(_Bool), 1, fp);
-    s += fwrite(&c->mfrac, sizeof(double), 1, fp);
+    s += fwrite(&c->age, sizeof(int), 1, fp);
+    s += fwrite(&c->mtotal, sizeof(int), 1, fp);
     s += fwrite(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
     s += fwrite(c->prev_prediction, sizeof(double), xcsf->num_y_vars, fp);
     s += fwrite(&c->action, sizeof(int), 1, fp);
@@ -477,7 +497,8 @@ size_t cl_load(const XCSF *xcsf, CL *c, FILE *fp)
     s += fread(&c->size, sizeof(double), 1, fp);
     s += fread(&c->time, sizeof(int), 1, fp);
     s += fread(&c->m, sizeof(_Bool), 1, fp);
-    s += fread(&c->mfrac, sizeof(double), 1, fp);
+    s += fread(&c->age, sizeof(int), 1, fp);
+    s += fread(&c->mtotal, sizeof(int), 1, fp);
     c->prediction = malloc(xcsf->num_y_vars * sizeof(double));
     s += fread(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
     c->prev_prediction = malloc(xcsf->num_y_vars * sizeof(double));

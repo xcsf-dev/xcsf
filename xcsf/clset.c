@@ -687,7 +687,7 @@ double clset_mean_inputs_matched(const XCSF *xcsf, const SET *set)
     int cnt = 0;
     for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         if(iter->cl->exp > 1 / xcsf->BETA) {
-            sum += iter->cl->mfrac;
+            sum += cl_mfrac(xcsf, iter->cl);
             cnt++;
         }
     }

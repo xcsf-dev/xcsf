@@ -63,7 +63,8 @@ typedef struct CL {
     double *prediction; //!< Current classifier prediction
     double *prev_prediction; //!< Previous classifier prediction
     int action; //!< Current classifier action
-    double mfrac; //!< Fraction of inputs matched
+    int age; // !< Total number of times match testing been performed
+    int mtotal; // !< Total number of times actually matched an input
 } CL;
 
 /**
