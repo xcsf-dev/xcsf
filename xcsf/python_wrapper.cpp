@@ -310,6 +310,7 @@ struct XCS
     _Bool get_pred_evolve_eta() { return xcs.PRED_EVOLVE_ETA; }
     _Bool get_pred_sgd_weights() { return xcs.PRED_SGD_WEIGHTS; }
     _Bool get_pred_reset() { return xcs.PRED_RESET; }
+    int get_max_neuron_mod() { return xcs.MAX_NEURON_MOD; }
     int get_dgp_num_nodes() { return xcs.DGP_NUM_NODES; }
     _Bool get_reset_states() { return xcs.RESET_STATES; }
     int get_max_k() { return xcs.MAX_K; }
@@ -399,6 +400,7 @@ struct XCS
     void set_pred_evolve_eta(_Bool a) { xcs.PRED_EVOLVE_ETA = a; }
     void set_pred_sgd_weights(_Bool a) { xcs.PRED_SGD_WEIGHTS = a; }
     void set_pred_reset(_Bool a) { xcs.PRED_RESET = a; }
+    void set_max_neuron_mod(int a) { xcs.MAX_NEURON_MOD = a; }
     void set_dgp_num_nodes(int a) { xcs.DGP_NUM_NODES = a; }
     void set_reset_states(_Bool a) { xcs.RESET_STATES = a; }
     void set_max_k(int a) { xcs.MAX_K = a; }
@@ -491,6 +493,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("PRED_EVOLVE_ETA", &XCS::get_pred_evolve_eta, &XCS::set_pred_evolve_eta)
         .add_property("PRED_SGD_WEIGHTS", &XCS::get_pred_sgd_weights, &XCS::set_pred_sgd_weights)
         .add_property("PRED_RESET", &XCS::get_pred_reset, &XCS::set_pred_reset)
+        .add_property("MAX_NEURON_MOD", &XCS::get_max_neuron_mod, &XCS::set_max_neuron_mod)
         .add_property("DGP_NUM_NODES", &XCS::get_dgp_num_nodes, &XCS::set_dgp_num_nodes)
         .add_property("RESET_STATES", &XCS::get_reset_states, &XCS::set_reset_states)
         .add_property("MAX_K", &XCS::get_max_k, &XCS::set_max_k)

@@ -148,6 +148,7 @@ typedef struct XCSF {
     int GP_NUM_CONS; //!< Number of constants available for GP trees
     int GP_INIT_DEPTH; //!< Initial depth of GP trees
     double *gp_cons; //!< Stores constants available for GP trees
+    int MAX_NEURON_MOD; //!< Maximum number of neurons to add or remove during mutation
 
     double COND_ETA; //!< Gradient descent rate for updating the condition
     _Bool COND_EVOLVE_WEIGHTS; //!< Whether to evolve condition network weights

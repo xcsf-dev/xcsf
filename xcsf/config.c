@@ -205,6 +205,7 @@ static void params_cl_condition(XCSF *xcsf)
     }
     xcsf->MAX_K = strtoimax(config_getvalue("MAX_K"), &end, BASE);
     xcsf->MAX_T = strtoimax(config_getvalue("MAX_T"), &end, BASE);
+    xcsf->MAX_NEURON_MOD = strtoimax(config_getvalue("MAX_NEURON_MOD"), &end, BASE);
     xcsf->COND_EVOLVE_WEIGHTS = false;
     if(strncmp(config_getvalue("COND_EVOLVE_WEIGHTS"), "true", 4) == 0) {
         xcsf->COND_EVOLVE_WEIGHTS = true;

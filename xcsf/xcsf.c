@@ -354,6 +354,7 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->PRED_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->PRED_EVOLVE_ETA, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->PRED_SGD_WEIGHTS, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->MAX_NEURON_MOD, sizeof(int), 1, fp);
     s += fwrite(&xcsf->DGP_NUM_NODES, sizeof(int), 1, fp);
     s += fwrite(&xcsf->RESET_STATES, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->MAX_K, sizeof(int), 1, fp);
@@ -437,6 +438,7 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->PRED_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->PRED_EVOLVE_ETA, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->PRED_SGD_WEIGHTS, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->MAX_NEURON_MOD, sizeof(int), 1, fp);
     s += fread(&xcsf->DGP_NUM_NODES, sizeof(int), 1, fp);
     s += fread(&xcsf->RESET_STATES, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->MAX_K, sizeof(int), 1, fp);

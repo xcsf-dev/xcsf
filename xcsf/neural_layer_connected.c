@@ -42,8 +42,8 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l);
 static _Bool mutate_weights(const XCSF *xcsf, const LAYER *l);
 static _Bool mutate_eta(const XCSF *xcsf, LAYER *l);
 static _Bool mutate_functions(const XCSF *xcsf, LAYER *l);
-static void neuron_add(LAYER *l);
-static void neuron_remove(LAYER *l);
+static void neuron_add(LAYER *l, int n);
+static void neuron_remove(LAYER *l, int n);
 
 LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o)
 {
@@ -226,21 +226,35 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
 {
     _Bool mod = false;
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-        if(l->num_outputs > 1 && rand_uniform(0,1) < 0.5) {
-            neuron_remove(l);
-            mod = true;
+        // number of neurons to add or remove
+        int n = irand_uniform(1, xcsf->MAX_NEURON_MOD);
+        // remove neurons
+        if(rand_uniform(0,1) < 0.5) {
+            if(l->num_outputs - n < 1) {
+                n = l->num_outputs - 1;
+            }
+            if(n > 0) {
+                neuron_remove(l, n);
+                mod = true;
+            }
         }
-        else if(l->num_outputs < l->max_outputs) {
-            neuron_add(l);
-            mod = true;
+        // add neurons
+        else {
+            if(l->num_outputs + n > l->max_outputs) {
+                n = l->max_outputs - l->num_outputs;
+            }
+            if(n > 0) {
+                neuron_add(l, n);
+                mod = true;
+            }
         }
     }
     return mod;
 }
 
-static void neuron_add(LAYER *l)
+static void neuron_add(LAYER *l, int n)
 {
-    l->num_outputs++;
+    l->num_outputs += n;
     int num_weights = l->num_outputs * l->num_inputs;
     double *weights = malloc(num_weights * sizeof(double));
     double *weight_updates = malloc(num_weights * sizeof(double));
@@ -276,9 +290,9 @@ static void neuron_add(LAYER *l)
     l->num_weights = num_weights;
 }
 
-static void neuron_remove(LAYER *l)
+static void neuron_remove(LAYER *l, int n)
 {
-    l->num_outputs--;
+    l->num_outputs -= n;
     int num_weights = l->num_outputs * l->num_inputs;
     double *weights = malloc(num_weights * sizeof(double));
     double *weight_updates = malloc(num_weights * sizeof(double));
