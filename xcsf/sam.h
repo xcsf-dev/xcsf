@@ -28,3 +28,4 @@ void sam_copy(const XCSF *xcsf, double *to, const double *from);
 void sam_free(const XCSF *xcsf, double *mu);
 void sam_init(const XCSF *xcsf, double **mu);
 void sam_print(const XCSF *xcsf, const double *mu);
+void sam_reset(const XCSF *xcsf, double **mu);

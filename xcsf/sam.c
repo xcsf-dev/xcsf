@@ -47,6 +47,18 @@ void sam_init(const XCSF *xcsf, double **mu)
 {
     if(xcsf->SAM_NUM > 0) {
         *mu = malloc(sizeof(double) * xcsf->SAM_NUM);
+        sam_reset(xcsf, mu);
+    }
+}
+
+/**
+ * @brief Resets a classifier's self-adaptive mutation rates.
+ * @param xcsf The XCSF data structure.
+ * @param mu The classifier's mutation rates.
+ */
+void sam_reset(const XCSF *xcsf, double **mu)
+{
+    if(xcsf->SAM_NUM > 0) {
         if(xcsf->SAM_TYPE == 0) {
             sam_log_normal_init(xcsf, mu);
         }
