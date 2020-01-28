@@ -43,10 +43,10 @@ if(len(np.shape(y_train)) == 1):
 if(len(np.shape(y_test)) == 1):
     y_test = np.reshape(y_test, (y_test.shape[0], 1))
 
-# scale [0,1]
-X_train = minmax_scale(X_train, feature_range=(0,1))
+# scale inputs [-1,1] and outputs [0,1]
+X_train = minmax_scale(X_train, feature_range=(-1,1))
 y_train = minmax_scale(y_train, feature_range=(0,1))
-X_test = minmax_scale(X_test, feature_range=(0,1))
+X_test = minmax_scale(X_test, feature_range=(-1,1))
 y_test = minmax_scale(y_test, feature_range=(0,1))
 
 print("X_train shape = "+str(np.shape(X_train)))
@@ -72,6 +72,8 @@ xcs.POP_SIZE = 500
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.LOSS_FUNC = 1 # MSE
 xcs.EPS_0 = 0.005 # target error
+xcs.COND_MIN = -1 # input range [-1,1]
+xcs.COND_MAX = 1
 
 xcs.COND_TYPE = 3 # neural network conditions
 xcs.COND_HIDDEN_NEURON_ACTIVATION = 1 # relu
@@ -83,8 +85,8 @@ xcs.COND_EVOLVE_FUNCTIONS = False
 
 xcs.PRED_TYPE = 5 # neural network predictors
 xcs.PRED_HIDDEN_NEURON_ACTIVATION = 1 # relu
-xcs.PRED_NUM_HIDDEN_NEURONS = 200
-xcs.PRED_MAX_HIDDEN_NEURONS = 200
+xcs.PRED_NUM_HIDDEN_NEURONS = 50
+xcs.PRED_MAX_HIDDEN_NEURONS = 50
 xcs.PRED_EVOLVE_WEIGHTS = True
 xcs.PRED_EVOLVE_NEURONS = False
 xcs.PRED_EVOLVE_FUNCTIONS = False
@@ -148,7 +150,7 @@ lm_mse = mean_squared_error(lm_pred, y_test)
 print('Linear regression MSE = %.4f' % (lm_mse))
 
 # compare with MLP regressor
-mlp = MLPRegressor(hidden_layer_sizes=(200,), activation='relu', solver='adam', learning_rate='adaptive', max_iter=1000, learning_rate_init=0.01, alpha=0.01)
+mlp = MLPRegressor(hidden_layer_sizes=(50,), activation='relu', solver='adam', learning_rate='adaptive', max_iter=1000, learning_rate_init=0.01, alpha=0.01)
 mlp.fit(X_train, y_train.ravel())
 mlp_pred = mlp.predict(X_test)
 mlp_mse = mean_squared_error(mlp_pred, y_test)
