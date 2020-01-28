@@ -67,13 +67,14 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
     }
 
     // hidden layer
-    int f = xcsf->COND_HIDDEN_NEURON_ACTIVATION;
+    int f = xcsf->COND_HIDDEN_ACTIVATION;
     LAYER *l = neural_layer_connected_init(xcsf, xcsf->num_x_vars, hinit, hmax, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, 0); 
 
     // output layer
+    f = xcsf->COND_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    l = neural_layer_connected_init(xcsf, hinit, 1, 1, LOGISTIC, lopt);
+    l = neural_layer_connected_init(xcsf, hinit, 1, 1, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, 1); 
 
     c->cond = new;

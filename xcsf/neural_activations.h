@@ -25,17 +25,18 @@
  
 #include <math.h>
 
-#define LOGISTIC 0 
-#define RELU 1 
-#define TANH 2 
-#define IDENTITY 3 
-#define GAUSSIAN 4 
-#define SIN 5 
-#define COS 6
-#define SOFT_PLUS 7 
-#define LEAKY 8
-#define SELU 9
-#define NUM_ACTIVATIONS 10
+#define LOGISTIC 0 //!< Logistic [0,1]
+#define RELU 1 //!< Rectified linear unit [0,inf]
+#define TANH 2 //!< Tanh [-1,1]
+#define LINEAR 3 //!< Linear [-inf,inf]
+#define GAUSSIAN 4 //!< Gaussian (0,1]
+#define SIN 5 //!< Sine [-1,1]
+#define COS 6 //!< Cos [-1,1]
+#define SOFT_PLUS 7 //!< Soft plus [0,inf]
+#define LEAKY 8 //!< Leaky rectified linear unit [-inf,inf]
+#define SELU 9 //!< Scaled-exponential linear unit [-1.7581,inf]
+#define LOGGY 10 //!< Logistic [-1,1]
+#define NUM_ACTIVATIONS 11
  
 double neural_activate(int function, double state);
 double neural_gradient(int function, double state);
@@ -43,14 +44,16 @@ const char *activation_string(int function);
 
 static inline double logistic_activate(double x){return 1./(1.+exp(-x));}
 static inline double logistic_gradient(double x){double fx=1./(1.+exp(-x)); return (1-fx)*fx;}
+static inline double loggy_activate(double x){return 2./(1.+exp(-x))-1;}
+static inline double loggy_gradient(double x){double fx=exp(x); return (2.*fx)/pow(fx+1.,2);}
 static inline double gaussian_activate(double x){return exp(-x*x);}
 static inline double gaussian_gradient(double x){return -2*x*exp(-x*x);}
 static inline double relu_activate(double x){return x*(x>0);}
 static inline double relu_gradient(double x){return (x>0);}
 static inline double selu_activate(double x){return (x>=0)*1.0507*x+(x<0)*1.0507*1.6732*expm1(x);}
 static inline double selu_gradient(double x){return (x>=0)*1.0507+(x<0)*(1.6732*exp(x));}
-static inline double identity_activate(double x){return x;}
-static inline double identity_gradient(double x){(void)x; return 1;}
+static inline double linear_activate(double x){return x;}
+static inline double linear_gradient(double x){(void)x; return 1;}
 static inline double soft_plus_activate(double x){return log1p(exp(x));}
 static inline double soft_plus_gradient(double x){return 1./(1.+exp(-x));}
 static inline double tanh_activate(double x){return tanh(x);}

@@ -156,7 +156,8 @@ typedef struct XCSF {
     _Bool COND_EVOLVE_FUNCTIONS; //!< Whether to evolve condition network activation functions
     int COND_NUM_HIDDEN_NEURONS; //!< Initial number of hidden neurons (random if <= 0)
     int COND_MAX_HIDDEN_NEURONS; //!< Maximum number of neurons if evolved
-    int COND_HIDDEN_NEURON_ACTIVATION; //!< Activation function for the hidden layer
+    int COND_OUTPUT_ACTIVATION; //!< Activation function for the output layer
+    int COND_HIDDEN_ACTIVATION; //!< Activation function for the hidden layer
  
     // prediction parameters
     _Bool PRED_RESET; //!< Whether to reset offspring predictions instead of copying
@@ -172,7 +173,8 @@ typedef struct XCSF {
     double PRED_MOMENTUM; //!< Momentum for gradient descent
     int PRED_NUM_HIDDEN_NEURONS; //!< Initial number of hidden neurons (random if <= 0)
     int PRED_MAX_HIDDEN_NEURONS; //!< Maximum number of neurons if evolved
-    int PRED_HIDDEN_NEURON_ACTIVATION; //!< Activation function for the hidden layer
+    int PRED_OUTPUT_ACTIVATION; //!< Activation function for the output layer
+    int PRED_HIDDEN_ACTIVATION; //!< Activation function for the hidden layer
 
     // subsumption parameters
     _Bool EA_SUBSUMPTION; //!< Whether to try and subsume offspring classifiers

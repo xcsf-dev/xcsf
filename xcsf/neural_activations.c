@@ -41,9 +41,10 @@ double neural_activate(int function, double state)
         case SIN: return sin_activate(state);
         case COS: return cos_activate(state);
         case SOFT_PLUS: return soft_plus_activate(state);
-        case IDENTITY: return identity_activate(state);
+        case LINEAR: return linear_activate(state);
         case LEAKY: return leaky_activate(state);
         case SELU: return selu_activate(state);
+        case LOGGY: return loggy_activate(state);
         default:
             printf("neural_activate(): invalid activation function: %d\n", function);
             exit(EXIT_FAILURE);
@@ -66,9 +67,10 @@ double neural_gradient(int function, double state)
         case SIN: return sin_gradient(state);
         case COS: return cos_gradient(state);
         case SOFT_PLUS: return soft_plus_gradient(state);
-        case IDENTITY: return identity_gradient(state);
+        case LINEAR: return linear_gradient(state);
         case LEAKY: return leaky_gradient(state);
         case SELU: return selu_gradient(state);
+        case LOGGY: return loggy_gradient(state);
         default:
             printf("neural_gradient(): invalid activation function: %d\n", function);
             exit(EXIT_FAILURE);
@@ -90,9 +92,10 @@ const char *activation_string(int function)
         case SIN: return "sin";
         case COS: return "cos";
         case SOFT_PLUS: return "soft_plus";
-        case IDENTITY: return "identity";
+        case LINEAR: return "linear";
         case LEAKY: return "leaky";
         case SELU: return "selu";
+        case LOGGY: return "loggy";
         default:
             printf("activation_string(): invalid activation function: %d\n", function);
             exit(EXIT_FAILURE);

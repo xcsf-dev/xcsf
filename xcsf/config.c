@@ -220,7 +220,8 @@ static void params_cl_condition(XCSF *xcsf)
     }
     xcsf->COND_NUM_HIDDEN_NEURONS = strtoimax(config_getvalue("COND_NUM_HIDDEN_NEURONS"), &end, BASE);
     xcsf->COND_MAX_HIDDEN_NEURONS = strtoimax(config_getvalue("COND_MAX_HIDDEN_NEURONS"), &end, BASE);
-    xcsf->COND_HIDDEN_NEURON_ACTIVATION = strtoimax(config_getvalue("COND_HIDDEN_NEURON_ACTIVATION"), &end, BASE);
+    xcsf->COND_OUTPUT_ACTIVATION = strtoimax(config_getvalue("COND_OUTPUT_ACTIVATION"), &end, BASE);
+    xcsf->COND_HIDDEN_ACTIVATION = strtoimax(config_getvalue("COND_HIDDEN_ACTIVATION"), &end, BASE);
 }
 
 /**
@@ -272,7 +273,8 @@ static void params_cl_prediction(XCSF *xcsf)
     xcsf->PRED_MOMENTUM = atof(config_getvalue("PRED_MOMENTUM"));
     xcsf->PRED_NUM_HIDDEN_NEURONS = strtoimax(config_getvalue("PRED_NUM_HIDDEN_NEURONS"), &end, BASE);
     xcsf->PRED_MAX_HIDDEN_NEURONS = strtoimax(config_getvalue("PRED_MAX_HIDDEN_NEURONS"), &end, BASE);
-    xcsf->PRED_HIDDEN_NEURON_ACTIVATION = strtoimax(config_getvalue("PRED_HIDDEN_NEURON_ACTIVATION"), &end, BASE);
+    xcsf->PRED_OUTPUT_ACTIVATION = strtoimax(config_getvalue("PRED_OUTPUT_ACTIVATION"), &end, BASE);
+    xcsf->PRED_HIDDEN_ACTIVATION = strtoimax(config_getvalue("PRED_HIDDEN_ACTIVATION"), &end, BASE);
 }
 
 /**
