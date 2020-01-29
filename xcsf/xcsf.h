@@ -61,7 +61,6 @@ typedef struct CL {
     int time; //!< Time EA last executed in a participating set
     _Bool m; //!< Whether the classifier matches current input
     double *prediction; //!< Current classifier prediction
-    double *prev_prediction; //!< Previous classifier prediction
     int action; //!< Current classifier action
     int age; // !< Total number of times match testing been performed
     int mtotal; // !< Total number of times actually matched an input

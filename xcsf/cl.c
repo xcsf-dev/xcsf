@@ -35,7 +35,7 @@
 #include "action.h"
 #include "cl.h"
 
-static double cl_update_err(const XCSF *xcsf, CL *c, const double *y, _Bool cur);
+static double cl_update_err(const XCSF *xcsf, CL *c, const double *y);
 static double cl_update_size(const XCSF *xcsf, CL *c, double num_sum);
 
 /**
@@ -54,7 +54,6 @@ void cl_init(const XCSF *xcsf, CL *c, int size, int time)
     c->size = size;
     c->time = time;
     c->prediction = calloc(xcsf->num_y_vars, sizeof(double));
-    c->prev_prediction = calloc(xcsf->num_y_vars, sizeof(double));
     c->action = 0;
     c->m = false;
     c->age = 0;
@@ -156,7 +155,11 @@ double cl_acc(const XCSF *xcsf, const CL *c)
 void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int set_num, _Bool cur)
 {
     c->exp++;
-    cl_update_err(xcsf, c, y, cur);
+    // propagate inputs for the previous state update
+    if(cur == false) {
+        cl_predict(xcsf, c, x);
+    }
+    cl_update_err(xcsf, c, y);
     cl_update_size(xcsf, c, set_num);
     cond_update(xcsf, c, x, y);
     pred_update(xcsf, c, x, y);
@@ -169,18 +172,11 @@ void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int se
  * @param xcsf The XCSF data structure.
  * @param c The classifier to update.
  * @param y The payoff value.
- * @param cur Whether the payoff is for the current or previous state.
  * @return Error multiplied by numerosity.
  */
-static double cl_update_err(const XCSF *xcsf, CL *c, const double *y, _Bool cur)
+static double cl_update_err(const XCSF *xcsf, CL *c, const double *y)
 {
-    double error = 0;
-    if(cur) {
-        error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
-    }
-    else {
-        error = (xcsf->loss_ptr)(xcsf, c->prev_prediction, y);
-    }
+    double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
     if(c->exp < 1 / xcsf->BETA) {
         c->err = (c->err * (c->exp - 1) + error) / c->exp;
     }
@@ -228,7 +224,6 @@ static double cl_update_size(const XCSF *xcsf, CL *c, double num_sum)
 void cl_free(const XCSF *xcsf, CL *c)
 {
     free(c->prediction);
-    free(c->prev_prediction);
     sam_free(xcsf, c->mu);
     cond_free(xcsf, c);
     act_free(xcsf, c);
@@ -334,7 +329,6 @@ int cl_action(const XCSF *xcsf, CL *c, const double *x)
  */
 const double *cl_predict(const XCSF *xcsf, const CL *c, const double *x)
 {
-    memcpy(c->prev_prediction, c->prediction, sizeof(double) * xcsf->num_y_vars);
     return pred_compute(xcsf, c, x);
 }
 
@@ -470,7 +464,6 @@ size_t cl_save(const XCSF *xcsf, const CL *c, FILE *fp)
     s += fwrite(&c->age, sizeof(int), 1, fp);
     s += fwrite(&c->mtotal, sizeof(int), 1, fp);
     s += fwrite(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
-    s += fwrite(c->prev_prediction, sizeof(double), xcsf->num_y_vars, fp);
     s += fwrite(&c->action, sizeof(int), 1, fp);
     s += act_save(xcsf, c, fp);
     s += pred_save(xcsf, c, fp);
@@ -501,8 +494,6 @@ size_t cl_load(const XCSF *xcsf, CL *c, FILE *fp)
     s += fread(&c->mtotal, sizeof(int), 1, fp);
     c->prediction = malloc(xcsf->num_y_vars * sizeof(double));
     s += fread(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
-    c->prev_prediction = malloc(xcsf->num_y_vars * sizeof(double));
-    s += fread(c->prev_prediction, sizeof(double), xcsf->num_y_vars, fp);
     s += fread(&c->action, sizeof(int), 1, fp);
     action_set(xcsf, c);
     prediction_set(xcsf, c);
