@@ -63,7 +63,7 @@ LAYER *neural_layer_noise_copy(const XCSF *xcsf, const LAYER *from)
     l->num_outputs = from->num_outputs;
     l->max_outputs = from->max_outputs;
     l->options = from->options;
-    l->eta = 0;
+    l->eta = from->eta;
     l->probability = from->probability;
     l->scale = from->scale;
     l->output = calloc(from->num_inputs, sizeof(double));

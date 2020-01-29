@@ -62,7 +62,7 @@ LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *from)
     l->num_inputs = from->num_inputs;
     l->num_outputs = from->num_inputs;
     l->max_outputs = from->max_outputs;
-    l->eta = 0;
+    l->eta = from->eta;
     l->options = from->options;
     l->probability = from->probability;
     l->scale = from->scale;
