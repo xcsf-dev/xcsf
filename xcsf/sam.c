@@ -59,11 +59,12 @@ void sam_init(const XCSF *xcsf, double **mu)
 void sam_reset(const XCSF *xcsf, double **mu)
 {
     if(xcsf->SAM_NUM > 0) {
-        if(xcsf->SAM_TYPE == 0) {
-            sam_log_normal_init(xcsf, mu);
-        }
-        else {
-            sam_rate_selection_init(xcsf, mu);
+        switch(xcsf->SAM_TYPE) {
+            case SAM_LOG_NORMAL: sam_log_normal_init(xcsf, mu); break;
+            case SAM_RATE_SELECT: sam_rate_selection_init(xcsf, mu); break;
+            default:
+                printf("sam_reset(): invalid sam function: %d\n", xcsf->SAM_TYPE);
+                exit(EXIT_FAILURE);
         }
     }
 }
@@ -75,11 +76,12 @@ void sam_reset(const XCSF *xcsf, double **mu)
  */
 void sam_adapt(const XCSF *xcsf, double *mu)
 {
-    if(xcsf->SAM_TYPE == 0) {
-        sam_log_normal_adapt(xcsf, mu);
-    }
-    else {
-        sam_rate_selection_adapt(xcsf, mu);
+    switch(xcsf->SAM_TYPE) {
+        case SAM_LOG_NORMAL: sam_log_normal_adapt(xcsf, mu); break;
+        case SAM_RATE_SELECT: sam_rate_selection_adapt(xcsf, mu); break;
+        default:
+            printf("sam_adapt(): invalid sam function: %d\n", xcsf->SAM_TYPE);
+            exit(EXIT_FAILURE);
     }
 }
 
