@@ -44,6 +44,7 @@ LAYER *neural_layer_dropout_init(const XCSF *xcsf, int in, double prob)
     l->num_outputs = in;
     l->max_outputs = in;
     l->options = 0;
+    l->eta = 0;
     l->probability = prob;
     l->scale = 1./(1.-prob);
     l->output = calloc(l->num_inputs, sizeof(double));
@@ -61,6 +62,7 @@ LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *from)
     l->num_inputs = from->num_inputs;
     l->num_outputs = from->num_inputs;
     l->max_outputs = from->max_outputs;
+    l->eta = 0;
     l->options = from->options;
     l->probability = from->probability;
     l->scale = from->scale;
@@ -179,6 +181,7 @@ size_t neural_layer_dropout_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->probability, sizeof(double), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
     l->options = 0;
+    l->eta = 0;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = malloc(l->num_inputs * sizeof(double));
     l->rand = malloc(l->num_inputs * sizeof(double));

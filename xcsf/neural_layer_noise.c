@@ -44,6 +44,7 @@ LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std
     l->num_outputs = in;
     l->max_outputs = in;
     l->options = 0;
+    l->eta = 0;
     l->probability = prob;
     l->scale = std;
     l->output = calloc(l->num_inputs, sizeof(double));
@@ -62,6 +63,7 @@ LAYER *neural_layer_noise_copy(const XCSF *xcsf, const LAYER *from)
     l->num_outputs = from->num_outputs;
     l->max_outputs = from->max_outputs;
     l->options = from->options;
+    l->eta = 0;
     l->probability = from->probability;
     l->scale = from->scale;
     l->output = calloc(from->num_inputs, sizeof(double));
@@ -174,6 +176,7 @@ size_t neural_layer_noise_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->probability, sizeof(double), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
     l->options = 0;
+    l->eta = 0;
     l->output = calloc(l->num_inputs, sizeof(double));
     l->delta = malloc(l->num_inputs * sizeof(double));
     l->rand = malloc(l->num_inputs * sizeof(double));
