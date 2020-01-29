@@ -80,6 +80,7 @@ struct PredVtbl {
     void (*pred_impl_print)(const XCSF *xcsf, const CL *c);
     /**
      * @brief Updates the classifier's prediction.
+     * @details Assumes the prediction has been computed for the current state.
      * @param xcsf The XCSF data structure.
      * @param c The classifier whose prediction is to be updated.
      * @param x The input state.
