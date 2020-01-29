@@ -138,12 +138,12 @@ double loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
 void loss_set_func(XCSF *xcsf)
 {
     switch(xcsf->LOSS_FUNC) {
-        case 0: xcsf->loss_ptr = &loss_mae; break;
-        case 1: xcsf->loss_ptr = &loss_mse; break;
-        case 2: xcsf->loss_ptr = &loss_rmse; break;
-        case 3: xcsf->loss_ptr = &loss_log; break;
-        case 4: xcsf->loss_ptr = &loss_binary_log; break;
-        case 5: xcsf->loss_ptr = &loss_onehot_acc; break;
+        case LOSS_MAE: xcsf->loss_ptr = &loss_mae; break;
+        case LOSS_MSE: xcsf->loss_ptr = &loss_mse; break;
+        case LOSS_RMSE: xcsf->loss_ptr = &loss_rmse; break;
+        case LOSS_LOG: xcsf->loss_ptr = &loss_log; break;
+        case LOSS_BINARY_LOG: xcsf->loss_ptr = &loss_binary_log; break;
+        case LOSS_ONEHOT_ACC: xcsf->loss_ptr = &loss_onehot_acc; break;
         default:
             printf("invalid loss function: %d\n", xcsf->LOSS_FUNC);
             exit(EXIT_FAILURE);
