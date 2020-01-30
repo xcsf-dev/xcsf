@@ -156,7 +156,7 @@ static void clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev)
             sum += cl_del_vote(xcsf, iter->cl, avg_fit);
             if(sum > p) {
                 int size = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
-                if(del == NULL || size > delsize) {
+                if(*del == NULL || size > delsize) {
                     *del = iter;
                     *delprev = prev;
                     delsize = size;
