@@ -40,6 +40,8 @@ static _Bool clset_action_covered(const XCSF *xcsf, const SET *set, int action);
 static double clset_total_time(const XCSF *xcsf, const SET *set);
 static void clset_cover(XCSF *xcsf, SET *mset, SET *kset, const double *x, _Bool *act_covered);
 static void clset_pop_del(XCSF *xcsf, SET *kset);
+static void clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev);
+static void clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev);
 static void clset_subsumption(XCSF *xcsf, SET *set, SET *kset);
 static void clset_update_fit(const XCSF *xcsf, const SET *set);
 
@@ -80,53 +82,16 @@ void clset_init(const XCSF *xcsf, SET *set)
  * @brief Deletes a single classifier from the population set.
  * @param xcsf The XCSF data structure.
  * @param kset A set to store deleted macro-classifiers for later memory removal.
- *
- * @details Deletes a rule that has never matched within M_PROBATION number of
- * trials since its creation. If none exist, two classifiers are selected using
- * roulete wheel selection with the deletion vote and the one with the largest
- * condition + prediction size is deleted. For fixed-length representations
- * the effect is the same as one roulete spin.
  */
 static void clset_pop_del(XCSF *xcsf, SET *kset)
 {
     CLIST *del = NULL;
     CLIST *delprev = NULL;
-    CLIST *prev = NULL;
-    // find rules that never match
-    for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
-        if(iter->cl->mtotal == 0 && iter->cl->age > xcsf->M_PROBATION) {
-            del = iter;
-            delprev = prev;
-            break;
-        }
-        prev = iter;
-    }
-    // perform roulette wheel selection
+    // select any rules that never match
+    clset_pop_never_match(xcsf, &del, &delprev);
+    // if none found, select a rule using roulette wheel
     if(del == NULL) {
-        double avg_fit = clset_total_fit(xcsf, &xcsf->pset) / xcsf->pset.num;
-        double total = 0;
-        for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
-            total += cl_del_vote(xcsf, iter->cl, avg_fit);
-        }
-        int delsize = 0;
-        for(int i = 0; i < 2; i++) {
-            double p = rand_uniform(0,total);
-            double sum = 0;
-            prev = NULL;
-            for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
-                sum += cl_del_vote(xcsf, iter->cl, avg_fit);
-                if(sum > p) {
-                    int size = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
-                    if(del == NULL || size > delsize) {
-                        del = iter;
-                        delprev = prev;
-                        delsize = size;
-                    }
-                    break;
-                }
-                prev = iter;
-            }
-        }
+        clset_pop_roulette(xcsf, &del, &delprev);
     }
     // decrement numerosity
     (del->cl->num)--;
@@ -142,6 +107,64 @@ static void clset_pop_del(XCSF *xcsf, SET *kset)
             delprev->next = del->next;
         }
         free(del);
+    }
+}
+
+/**
+ * @brief Finds a rule in the population that never matches an input.
+ * @param xcsf The XCSF data structure.
+ * @param del A pointer to the classifier to be deleted (set by this function).
+ * @param delprev A pointer to the classifier previous to be deleted (set by this function).
+ */
+static void clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev)
+{
+    CLIST *prev = NULL;
+    for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+        if(iter->cl->mtotal == 0 && iter->cl->age > xcsf->M_PROBATION) {
+            *del = iter;
+            *delprev = prev;
+            break;
+        }
+        prev = iter;
+    }
+}
+
+/*
+ * @brief Selects a classifier from the population for deletion via roulette wheel.
+ * @param xcsf The XCSF data structure.
+ * @param del A pointer to the rule to be deleted (set by this function).
+ * @param delprev A pointer to the rule previous to the one being deleted (set by this function).
+ *
+ * @details Two classifiers are selected using roulete wheel selection with the
+ * deletion vote and the one with the largest condition + prediction size is
+ * chosen. For fixed-length representations the effect is the same as one
+ * roulete spin.
+ */
+static void clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev)
+{
+    double avg_fit = clset_total_fit(xcsf, &xcsf->pset) / xcsf->pset.num;
+    double total = 0;
+    for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+        total += cl_del_vote(xcsf, iter->cl, avg_fit);
+    }
+    int delsize = 0;
+    for(int i = 0; i < 2; i++) {
+        double p = rand_uniform(0,total);
+        double sum = 0;
+        CLIST *prev = NULL;
+        for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+            sum += cl_del_vote(xcsf, iter->cl, avg_fit);
+            if(sum > p) {
+                int size = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
+                if(del == NULL || size > delsize) {
+                    *del = iter;
+                    *delprev = prev;
+                    delsize = size;
+                }
+                break;
+            }
+            prev = iter;
+        }
     }
 }
 
