@@ -26,6 +26,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include <float.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "cl.h"
@@ -53,6 +54,7 @@ void clset_pop_init(XCSF *xcsf)
 {
     xcsf->time = 0; // number of learning trials performed
     xcsf->msetsize = 0; // average match set size
+    xcsf->mfrac = 0; // generalisation measure
     clset_init(xcsf, &xcsf->pset);
     // initialise population with random classifiers
     if(xcsf->POP_INIT) {
@@ -714,25 +716,36 @@ double clset_mean_pred_size(const XCSF *xcsf, const SET *set)
 }
 
 /**
- * @brief Calculates the mean fraction of inputs matched by classifiers.
+ * @brief Returns the fraction of inputs matched by the most general rule with
+ * error below EPS_0. If no rules below EPS_0, the lowest error rule is used.
  * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean prediction size.
- * @return The mean fraction of inputs matched.
+ * @return The fraction of inputs matched.
  */ 
-double clset_mean_inputs_matched(const XCSF *xcsf, const SET *set)
+double clset_mfrac(const XCSF *xcsf)
 {
-    double sum = 0;
-    int cnt = 0;
-    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        if(iter->cl->exp > 1 / xcsf->BETA) {
-            sum += cl_mfrac(xcsf, iter->cl);
-            cnt++;
+    double mfrac = 0;
+    // most general rule below EPS_0
+    for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+        double e = iter->cl->err;
+        if(e < xcsf->EPS_0 && iter->cl->exp > 1 / xcsf->BETA) {
+            double m = cl_mfrac(xcsf, iter->cl);
+            if(m > mfrac) {
+                mfrac = m;
+            }
         }
     }
-    if(cnt > 0) {
-        return sum / cnt;
+    // lowest error rule
+    if(mfrac == 0) {
+        double error = DBL_MAX;
+        for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+            double e = iter->cl->err;
+            if(e < error && iter->cl->exp > 1 / xcsf->BETA) {
+                mfrac = cl_mfrac(xcsf, iter->cl);
+                error = e;
+            }
+        }
     }
-    return 0;
+    return mfrac;
 }
 
 /* Neural network prediction functions */

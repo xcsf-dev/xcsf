@@ -94,7 +94,8 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
         const double *state = env_get_state(xcsf);
         // generate match set
         clset_match(xcsf, &mset, &kset, state);
-        xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
+        xcsf->msetsize += (mset.size - xcsf->msetsize) * (1 / (double) xcsf->PERF_AVG_TRIALS);
+        xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * (1 / (double) xcsf->PERF_AVG_TRIALS);
         // calculate the prediction array
         pa_build(xcsf, &mset, state);
         // select an action to perform

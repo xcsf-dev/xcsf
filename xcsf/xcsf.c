@@ -139,7 +139,8 @@ static double xcsf_learn_trial(XCSF *xcsf, double *pred, const double *x, const 
     clset_update(xcsf, &mset, &kset, x, y, true);
     ea(xcsf, &mset, &kset);
     xcsf->time += 1;
-    xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
+    xcsf->msetsize += (mset.size - xcsf->msetsize) * (1 / (double) xcsf->PERF_AVG_TRIALS);
+    xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * (1 / (double) xcsf->PERF_AVG_TRIALS);
     clset_kill(xcsf, &kset); // kills deleted classifiers
     clset_free(xcsf, &mset); // frees the match set list
     return (xcsf->loss_ptr)(xcsf, pred, y);
@@ -161,7 +162,8 @@ static double xcsf_test_trial(XCSF *xcsf, double *pred, const double *x, const d
     clset_init(xcsf, &kset);
     clset_match(xcsf, &mset, &kset, x);
     clset_pred(xcsf, &mset, x, pred);
-    xcsf->msetsize += (mset.size - xcsf->msetsize) * xcsf->BETA;
+    xcsf->msetsize += (mset.size - xcsf->msetsize) * (1 / (double) xcsf->PERF_AVG_TRIALS);
+    xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * (1 / (double) xcsf->PERF_AVG_TRIALS);
     clset_kill(xcsf, &kset); // kills deleted classifiers
     clset_free(xcsf, &mset); // frees the match set list  
     return (xcsf->loss_ptr)(xcsf, pred, y);
@@ -304,6 +306,7 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     size_t s = 0;
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
     s += fwrite(&xcsf->msetsize, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->mfrac, sizeof(double), 1, fp);
     s += fwrite(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->POP_INIT, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
@@ -391,6 +394,7 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     size_t s = 0;
     s += fread(&xcsf->time, sizeof(int), 1, fp);
     s += fread(&xcsf->msetsize, sizeof(double), 1, fp);
+    s += fread(&xcsf->mfrac, sizeof(double), 1, fp);
     s += fread(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_INIT, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);

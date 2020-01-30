@@ -90,6 +90,7 @@ typedef struct XCSF {
     SET pset; //!< Population set
     int time; //!< Current number of executed trials
     double msetsize; //!< Average match set size
+    double mfrac; //!< Generalisation measure
 
     // experiment parameters
     int OMP_NUM_THREADS; //!< Number of threads for parallel processing

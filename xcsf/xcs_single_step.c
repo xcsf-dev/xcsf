@@ -113,7 +113,8 @@ static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore)
 int xcs_single_decision(XCSF *xcsf, SET *mset, SET *kset, const double *x)
 {
     clset_match(xcsf, mset, kset, x);
-    xcsf->msetsize += (mset->size - xcsf->msetsize) * xcsf->BETA;
+    xcsf->msetsize += (mset->size - xcsf->msetsize) * (1 / (double) xcsf->PERF_AVG_TRIALS);
+    xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * (1 / (double) xcsf->PERF_AVG_TRIALS);
     pa_build(xcsf, mset, x);
     if(xcsf->train && rand_uniform(0,1) < xcsf->P_EXPLORE) {
         return pa_rand_action(xcsf);

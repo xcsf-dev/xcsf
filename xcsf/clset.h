@@ -23,14 +23,14 @@
 
 #pragma once
  
+double clset_mean_cond_size(const XCSF *xcsf, const SET *set);
 double clset_mean_eta(const XCSF *xcsf, const SET *set, int layer);
 double clset_mean_layers(const XCSF *xcsf, const SET *set);
-double clset_mean_neurons(const XCSF *xcsf, const SET *set, int layer);
-double clset_mean_cond_size(const XCSF *xcsf, const SET *set);
-double clset_mean_inputs_matched(const XCSF *xcsf, const SET *set);
 double clset_mean_mut(const XCSF *xcsf, const SET *set, int m);
+double clset_mean_neurons(const XCSF *xcsf, const SET *set, int layer);
 double clset_mean_pred_size(const XCSF *xcsf, const SET *set);
 double clset_mean_time(const XCSF *xcsf, const SET *set);
+double clset_mfrac(const XCSF *xcsf);
 double clset_total_fit(const XCSF *xcsf, const SET *set);
 size_t clset_pop_load(XCSF *xcsf, FILE *fp);
 size_t clset_pop_save(const XCSF *xcsf, FILE *fp);

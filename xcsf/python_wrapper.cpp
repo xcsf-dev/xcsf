@@ -341,7 +341,7 @@ struct XCS
     double get_pop_mean_pred_neurons(int layer) { return clset_mean_neurons(&xcs, &xcs.pset, layer); }
     double get_pop_mean_pred_layers() { return clset_mean_layers(&xcs, &xcs.pset); }
     double get_msetsize() { return xcs.msetsize; }
-    double get_mfrac() { return clset_mean_inputs_matched(&xcs, &xcs.pset); }
+    double get_mfrac() { return xcs.mfrac; }
     int get_teletransportation() { return xcs.TELETRANSPORTATION; }
     double get_gamma() { return xcs.GAMMA; }
     double get_p_explore() { return xcs.P_EXPLORE; }
