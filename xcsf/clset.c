@@ -114,7 +114,7 @@ static void clset_pop_del(XCSF *xcsf, SET *kset)
  * @brief Finds a rule in the population that never matches an input.
  * @param xcsf The XCSF data structure.
  * @param del A pointer to the classifier to be deleted (set by this function).
- * @param delprev A pointer to the classifier previous to be deleted (set by this function).
+ * @param delprev A pointer to the rule previous to the one being deleted (set by this function).
  */
 static void clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev)
 {
