@@ -274,6 +274,7 @@ struct XCS
     double get_init_error() { return xcs.INIT_ERROR; }
     double get_init_fitness() { return xcs.INIT_FITNESS; }
     double get_nu() { return xcs.NU; }
+    int get_m_probation() { return xcs.M_PROBATION; }
     int get_theta_del() { return xcs.THETA_DEL; }
     int get_act_type() { return xcs.ACT_TYPE; }
     int get_cond_type() { return xcs.COND_TYPE; }
@@ -366,6 +367,7 @@ struct XCS
     void set_init_error(double a) { xcs.INIT_ERROR = a; }
     void set_init_fitness(double a) { xcs.INIT_FITNESS = a; }
     void set_nu(double a) { xcs.NU = a; }
+    void set_m_probation(int a) { xcs.M_PROBATION = a; }
     void set_theta_del(int a) { xcs.THETA_DEL = a; }
     void set_act_type(int a) { xcs.ACT_TYPE = a; }
     void set_cond_type(int a) { xcs.COND_TYPE = a; }
@@ -461,6 +463,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("INIT_ERROR", &XCS::get_init_error, &XCS::set_init_error)
         .add_property("INIT_FITNESS", &XCS::get_init_fitness, &XCS::set_init_fitness)
         .add_property("NU", &XCS::get_nu, &XCS::set_nu)
+        .add_property("M_PROBATION", &XCS::get_m_probation, &XCS::set_m_probation)
         .add_property("THETA_DEL", &XCS::get_theta_del, &XCS::set_theta_del)
         .add_property("ACT_TYPE", &XCS::get_act_type, &XCS::set_act_type)
         .add_property("COND_TYPE", &XCS::get_cond_type, &XCS::set_cond_type)

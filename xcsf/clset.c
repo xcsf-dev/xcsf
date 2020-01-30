@@ -81,36 +81,51 @@ void clset_init(const XCSF *xcsf, SET *set)
  * @param xcsf The XCSF data structure.
  * @param kset A set to store deleted macro-classifiers for later memory removal.
  *
- * @details Selects two classifiers using roulete wheel selection with the
- * deletion vote and deletes the one with the largest condition + prediction
- * length. For fixed-length representations this is the same as one roulete spin.
+ * @details Deletes a rule that has never matched within M_PROBATION number of
+ * trials since its creation. If none exist, two classifiers are selected using
+ * roulete wheel selection with the deletion vote and the one with the largest
+ * condition + prediction size is deleted. For fixed-length representations
+ * the effect is the same as one roulete spin.
  */
 static void clset_pop_del(XCSF *xcsf, SET *kset)
 {
-    double avg_fit = clset_total_fit(xcsf, &xcsf->pset) / xcsf->pset.num;
-    double total = 0;
-    for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
-        total += cl_del_vote(xcsf, iter->cl, avg_fit);
-    }
     CLIST *del = NULL;
     CLIST *delprev = NULL;
-    int delsize = 0;
-    for(int i = 0; i < 2; i++) {
-        double p = rand_uniform(0,total);
-        double sum = 0;
-        CLIST *prev = NULL;
-        for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
-            sum += cl_del_vote(xcsf, iter->cl, avg_fit);
-            if(sum > p) {
-                int size = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
-                if(del == NULL || size > delsize) {
-                    del = iter;
-                    delprev = prev;
-                    delsize = size;
+    CLIST *prev = NULL;
+    // find rules that never match
+    for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+        if(iter->cl->mtotal == 0 && iter->cl->age > xcsf->M_PROBATION) {
+            del = iter;
+            delprev = prev;
+            break;
+        }
+        prev = iter;
+    }
+    // perform roulette wheel selection
+    if(del == NULL) {
+        double avg_fit = clset_total_fit(xcsf, &xcsf->pset) / xcsf->pset.num;
+        double total = 0;
+        for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+            total += cl_del_vote(xcsf, iter->cl, avg_fit);
+        }
+        int delsize = 0;
+        for(int i = 0; i < 2; i++) {
+            double p = rand_uniform(0,total);
+            double sum = 0;
+            prev = NULL;
+            for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+                sum += cl_del_vote(xcsf, iter->cl, avg_fit);
+                if(sum > p) {
+                    int size = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
+                    if(del == NULL || size > delsize) {
+                        del = iter;
+                        delprev = prev;
+                        delsize = size;
+                    }
+                    break;
                 }
-                break;
+                prev = iter;
             }
-            prev = iter;
         }
     }
     // decrement numerosity

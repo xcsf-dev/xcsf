@@ -323,6 +323,7 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->COND_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->PRED_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->ACT_TYPE, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->M_PROBATION, sizeof(int), 1, fp);
     s += fwrite(&xcsf->P_CROSSOVER, sizeof(double), 1, fp);
     s += fwrite(&xcsf->P_MUTATION, sizeof(double), 1, fp);
     s += fwrite(&xcsf->F_MUTATION, sizeof(double), 1, fp);
@@ -409,6 +410,7 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->COND_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->PRED_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->ACT_TYPE, sizeof(int), 1, fp);
+    s += fread(&xcsf->M_PROBATION, sizeof(int), 1, fp);
     s += fread(&xcsf->P_CROSSOVER, sizeof(double), 1, fp);
     s += fread(&xcsf->P_MUTATION, sizeof(double), 1, fp);
     s += fread(&xcsf->F_MUTATION, sizeof(double), 1, fp);

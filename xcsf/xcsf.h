@@ -118,6 +118,7 @@ typedef struct XCSF {
     int COND_TYPE; //!< Classifier condition type: hyperrectangles, GP trees, etc.
     int PRED_TYPE; //!< Classifier prediction type: least squares, neural nets, etc.
     int ACT_TYPE; //!< Classifier action type
+    int M_PROBATION; //!< Trials since rule creation it must match at least 1 input or be deleted
 
     // evolutionary algorithm parameters
     double P_CROSSOVER; //!< Probability of applying crossover (for hyperrectangles)

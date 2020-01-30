@@ -181,6 +181,7 @@ static void params_cl_general(XCSF *xcsf)
     xcsf->ERR_REDUC = atof(config_getvalue("ERR_REDUC"));
     xcsf->FIT_REDUC = atof(config_getvalue("FIT_REDUC"));
     xcsf->EPS_0 = atof(config_getvalue("EPS_0"));
+    xcsf->M_PROBATION = strtoimax(config_getvalue("M_PROBATION"), &end, BASE);
 }
 
 /**
