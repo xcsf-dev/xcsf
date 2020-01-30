@@ -317,7 +317,9 @@ int neural_size(const XCSF *xcsf, const NET *net)
     (void)xcsf;
     int size = 0;
     for(const LLIST *iter = net->tail; iter->prev != NULL; iter = iter->prev) {
-        size += iter->layer->num_outputs;
+        if(iter->layer->layer_type == CONNECTED) {
+            size += iter->layer->num_outputs;
+        }
     }
     return size;
 }
