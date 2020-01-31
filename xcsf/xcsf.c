@@ -37,8 +37,7 @@
 
 static const double VERSION = 1.06; //!< XCSF version number
 
-static double xcsf_learn_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
-static double xcsf_test_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
+static double xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
 static size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
 static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp);
 
@@ -85,7 +84,7 @@ double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _B
         const double *y = &train_data->y[row * train_data->y_cols];
         // execute a learning trial
         xcsf->train = true;
-        double error = xcsf_learn_trial(xcsf, pred, x, y);
+        double error = xcsf_trial(xcsf, pred, x, y);
         perr += error; 
         err += error;
         // if some test data has been supplied
@@ -101,7 +100,7 @@ double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _B
             y = &test_data->y[row * test_data->y_cols];
             // execute a test trial
             xcsf->train = false;
-            pterr += xcsf_test_trial(xcsf, pred, x, y);
+            pterr += xcsf_trial(xcsf, pred, x, y);
             // display performance as necessary (training and testing)
             if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
                 disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
@@ -121,14 +120,14 @@ double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _B
 }
 
 /**
- * @brief Executes a single XCSF learning trial.
+ * @brief Executes a single XCSF trial.
  * @param xcsf The XCSF data structure.
  * @param pred The calculated XCSF prediction (set by this function).
  * @param x The feature variables.
  * @param y The labelled variables.
  * @return The XCSF training error using the loss function.
  */
-static double xcsf_learn_trial(XCSF *xcsf, double *pred, const double *x, const double *y)
+static double xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double *y)
 {
     SET mset; // match set
     SET kset; // kill set
@@ -136,31 +135,12 @@ static double xcsf_learn_trial(XCSF *xcsf, double *pred, const double *x, const 
     clset_init(xcsf, &kset);
     clset_match(xcsf, &mset, &kset, x);
     clset_pred(xcsf, &mset, x, pred);
-    clset_update(xcsf, &mset, &kset, x, y, true);
-    ea(xcsf, &mset, &kset);
+    if(xcsf->train) {
+        clset_update(xcsf, &mset, &kset, x, y, true);
+        ea(xcsf, &mset, &kset);
+    }
     clset_kill(xcsf, &kset); // kills deleted classifiers
     clset_free(xcsf, &mset); // frees the match set list
-    return (xcsf->loss_ptr)(xcsf, pred, y);
-}
-
-/**
- * @brief Executes a single XCSF testing trial.
- * @param xcsf The XCSF data structure.
- * @param pred The calculated XCSF prediction (set by this function).
- * @param x The feature variables.
- * @param y The labelled variables.
- * @return The XCSF testing error using the loss function.
- */
-static double xcsf_test_trial(XCSF *xcsf, double *pred, const double *x, const double *y)
-{
-    SET mset; // match set
-    SET kset; // kill set
-    clset_init(xcsf, &mset);
-    clset_init(xcsf, &kset);
-    clset_match(xcsf, &mset, &kset, x);
-    clset_pred(xcsf, &mset, x, pred);
-    clset_kill(xcsf, &kset); // kills deleted classifiers
-    clset_free(xcsf, &mset); // frees the match set list  
     return (xcsf->loss_ptr)(xcsf, pred, y);
 }
 
@@ -200,7 +180,7 @@ double xcsf_score(XCSF *xcsf, const INPUT *test_data)
     for(int row = 0; row < test_data->rows; row++) {
         const double *x = &test_data->x[row * test_data->x_cols];
         const double *y = &test_data->y[row * test_data->y_cols];
-        err += xcsf_test_trial(xcsf, pred, x, y);
+        err += xcsf_trial(xcsf, pred, x, y);
     }
     free(pred);
     return err/(double)test_data->rows;
