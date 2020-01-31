@@ -32,6 +32,7 @@
 #include "config.h"
 #include "loss.h"
 
+#define ARRAY_DELIM "," //!< Delimeter for config arrays
 #define MAXLEN 127 //!< Maximum config file line length to read
 #define BASE 10 //!< Decimal numbers
 
@@ -46,20 +47,21 @@ typedef struct PARAM_LIST {
 
 static PARAM_LIST *head; //!< Linked list of config file parameters
 
-static void config_read(const char *filename);
-static void config_process(const char *configline);
-static void config_trim(char *s);
-static void config_tidyup();
-static void config_newnvpair(const char *config);
 static char *config_getvalue(const char *name);
+static int config_get_ints(const char *name, int *value);
+static void config_newnvpair(const char *config);
+static void config_process(const char *configline);
+static void config_read(const char *filename);
+static void config_tidyup();
+static void config_trim(char *s);
+static void params_cl_action(XCSF *xcsf);
+static void params_cl_condition(XCSF *xcsf);
+static void params_cl_general(XCSF *xcsf);
+static void params_cl_prediction(XCSF *xcsf);
+static void params_ea(XCSF *xcsf);
 static void params_general(XCSF *xcsf);
 static void params_multistep(XCSF *xcsf);
-static void params_ea(XCSF *xcsf);
 static void params_subsumption(XCSF *xcsf);
-static void params_cl_general(XCSF *xcsf);
-static void params_cl_condition(XCSF *xcsf);
-static void params_cl_action(XCSF *xcsf);
-static void params_cl_prediction(XCSF *xcsf);
 
 /**
  * @brief Initialises global constants and reads the specified configuration file.
@@ -219,8 +221,10 @@ static void params_cl_condition(XCSF *xcsf)
     if(strncmp(config_getvalue("COND_EVOLVE_FUNCTIONS"), "true", 4) == 0) {
         xcsf->COND_EVOLVE_FUNCTIONS = true;
     }
-    xcsf->COND_NUM_HIDDEN_NEURONS = strtoimax(config_getvalue("COND_NUM_HIDDEN_NEURONS"), &end, BASE);
-    xcsf->COND_MAX_HIDDEN_NEURONS = strtoimax(config_getvalue("COND_MAX_HIDDEN_NEURONS"), &end, BASE);
+    memset(xcsf->COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
+    config_get_ints("COND_NUM_NEURONS", xcsf->COND_NUM_NEURONS);
+    memset(xcsf->COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
+    config_get_ints("COND_MAX_NEURONS", xcsf->COND_MAX_NEURONS);
     xcsf->COND_OUTPUT_ACTIVATION = strtoimax(config_getvalue("COND_OUTPUT_ACTIVATION"), &end, BASE);
     xcsf->COND_HIDDEN_ACTIVATION = strtoimax(config_getvalue("COND_HIDDEN_ACTIVATION"), &end, BASE);
 }
@@ -272,10 +276,33 @@ static void params_cl_prediction(XCSF *xcsf)
         xcsf->PRED_SGD_WEIGHTS = true;
     }
     xcsf->PRED_MOMENTUM = atof(config_getvalue("PRED_MOMENTUM"));
-    xcsf->PRED_NUM_HIDDEN_NEURONS = strtoimax(config_getvalue("PRED_NUM_HIDDEN_NEURONS"), &end, BASE);
-    xcsf->PRED_MAX_HIDDEN_NEURONS = strtoimax(config_getvalue("PRED_MAX_HIDDEN_NEURONS"), &end, BASE);
+    memset(xcsf->PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
+    config_get_ints("PRED_NUM_NEURONS", xcsf->PRED_NUM_NEURONS);
+    memset(xcsf->PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
+    config_get_ints("PRED_MAX_NEURONS", xcsf->PRED_MAX_NEURONS);
     xcsf->PRED_OUTPUT_ACTIVATION = strtoimax(config_getvalue("PRED_OUTPUT_ACTIVATION"), &end, BASE);
     xcsf->PRED_HIDDEN_ACTIVATION = strtoimax(config_getvalue("PRED_HIDDEN_ACTIVATION"), &end, BASE);
+}
+
+/**
+ * @brief Reads a csv list of ints into an array.
+ * @param name The name of the parameter.
+ * @param value An integer array (set by this function).
+ * @return The number of values read into the array.
+ */
+static int config_get_ints(const char *name, int *value)
+{
+    int num = 0;
+    char *end;
+    char *saveptr;
+    char *val = config_getvalue(name);
+    const char *ptok = strtok_r(val, ARRAY_DELIM, &saveptr);
+    while(ptok != NULL) {
+        value[num] = strtoimax(ptok, &end, BASE);
+        ptok = strtok_r(NULL, ARRAY_DELIM, &saveptr);
+        num++;
+    }
+    return num;
 }
 
 /**

@@ -53,31 +53,30 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     neural_init(xcsf, &new->net);
- 
+    // hidden layers
     uint32_t lopt = pred_neural_lopt(xcsf);
-    int hmax = fmax(xcsf->PRED_MAX_HIDDEN_NEURONS, 1);
-    int hinit = xcsf->PRED_NUM_HIDDEN_NEURONS;
-    if(hinit < 1) {
-        hinit = irand_uniform(1, hmax);
+    LAYER *l;
+    int i = 0;
+    int n_inputs = xcsf->num_x_vars;
+    while(xcsf->PRED_NUM_NEURONS[i] > 0 && i < MAX_LAYERS)  {
+        int hinit = xcsf->PRED_NUM_NEURONS[i];
+        int hmax = xcsf->PRED_MAX_NEURONS[i];
+        if(hmax < hinit || !xcsf->PRED_EVOLVE_NEURONS) {
+            hmax = hinit;
+        }
+        int f = xcsf->PRED_HIDDEN_ACTIVATION;
+        printf("ADDING (%d) %d inputs, %d hinit, %d hmax\n", i, n_inputs, hinit, hmax);
+        l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
+        neural_layer_insert(xcsf, &new->net, l, i);
+        n_inputs = hinit;
+        i++;
     }
-    if(hmax < hinit) {
-        hmax = hinit;
-    }
-    if(!xcsf->PRED_EVOLVE_NEURONS) {
-        hmax = hinit;
-    }
-
-    // hidden layer
-    int f = xcsf->PRED_HIDDEN_ACTIVATION;
-    LAYER *l = neural_layer_connected_init(xcsf, xcsf->num_x_vars, hinit, hmax, f, lopt);
-    neural_layer_insert(xcsf, &new->net, l, 0); 
-
     // output layer
-    f = xcsf->PRED_OUTPUT_ACTIVATION;
+    int f = xcsf->PRED_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    l = neural_layer_connected_init(xcsf, hinit, xcsf->num_y_vars, xcsf->num_y_vars, f, lopt);
-    neural_layer_insert(xcsf, &new->net, l, 1); 
-
+    l = neural_layer_connected_init(xcsf, n_inputs, xcsf->num_y_vars, xcsf->num_y_vars, f, lopt);
+    printf("ADDING (%d) %d inputs, %d hinit, %d hmax\n", i, n_inputs, xcsf->num_y_vars, xcsf->num_y_vars);
+    neural_layer_insert(xcsf, &new->net, l, i);
     c->pred = new;
 }
 

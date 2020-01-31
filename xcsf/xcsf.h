@@ -42,6 +42,8 @@
 #define PRED_TYPE_RLS_QUADRATIC 4 //!< Prediction type quadratic rls
 #define PRED_TYPE_NEURAL 5 //!< Prediction type neural
 
+#define MAX_LAYERS 100 //!< Maximum number of neural network layers
+
 /**
  * @brief Classifier data structure.
  */
@@ -155,10 +157,10 @@ typedef struct XCSF {
     _Bool COND_EVOLVE_WEIGHTS; //!< Whether to evolve condition network weights
     _Bool COND_EVOLVE_NEURONS; //!< Whether to evolve number of condition network neurons
     _Bool COND_EVOLVE_FUNCTIONS; //!< Whether to evolve condition network activation functions
-    int COND_NUM_HIDDEN_NEURONS; //!< Initial number of hidden neurons (random if <= 0)
-    int COND_MAX_HIDDEN_NEURONS; //!< Maximum number of neurons if evolved
-    int COND_OUTPUT_ACTIVATION; //!< Activation function for the output layer
-    int COND_HIDDEN_ACTIVATION; //!< Activation function for the hidden layer
+    int COND_NUM_NEURONS[MAX_LAYERS]; //!< Initial num neurons in each condition hidden layer
+    int COND_MAX_NEURONS[MAX_LAYERS]; //!< Max num of neurons in each condition hidden layer
+    int COND_OUTPUT_ACTIVATION; //!< Activation function for the condition output layer
+    int COND_HIDDEN_ACTIVATION; //!< Activation function for the condition hidden layer
  
     // prediction parameters
     _Bool PRED_RESET; //!< Whether to reset offspring predictions instead of copying
@@ -172,10 +174,10 @@ typedef struct XCSF {
     _Bool PRED_EVOLVE_ETA; //!< Whether to evolve prediction gradient descent rates
     _Bool PRED_SGD_WEIGHTS; //!< Whether to use gradient descent for predictions
     double PRED_MOMENTUM; //!< Momentum for gradient descent
-    int PRED_NUM_HIDDEN_NEURONS; //!< Initial number of hidden neurons (random if <= 0)
-    int PRED_MAX_HIDDEN_NEURONS; //!< Maximum number of neurons if evolved
-    int PRED_OUTPUT_ACTIVATION; //!< Activation function for the output layer
-    int PRED_HIDDEN_ACTIVATION; //!< Activation function for the hidden layer
+    int PRED_NUM_NEURONS[MAX_LAYERS]; //!< Initial num neurons in each prediction hidden layer
+    int PRED_MAX_NEURONS[MAX_LAYERS]; //!< Max num of neurons in each prediction hidden layer
+    int PRED_OUTPUT_ACTIVATION; //!< Activation function for the prediction output layer
+    int PRED_HIDDEN_ACTIVATION; //!< Activation function for the prediction hidden layer
 
     // subsumption parameters
     _Bool EA_SUBSUMPTION; //!< Whether to try and subsume offspring classifiers

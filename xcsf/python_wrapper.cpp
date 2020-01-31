@@ -254,6 +254,39 @@ struct XCS
     }
 
     /* GETTERS */
+
+    p::list get_cond_num_neurons() {
+        p::list list;
+        for(int i = 0; xcs.COND_NUM_NEURONS[i] > 0 && i < MAX_LAYERS; i++) {
+            list.append(xcs.COND_NUM_NEURONS[i]);
+        }
+        return list;
+    }
+
+    p::list get_cond_max_neurons() {
+        p::list list;
+        for(int i = 0; xcs.COND_MAX_NEURONS[i] > 0 && i < MAX_LAYERS; i++) {
+            list.append(xcs.COND_MAX_NEURONS[i]);
+        }
+        return list;
+    }
+
+    p::list get_pred_num_neurons() {
+        p::list list;
+        for(int i = 0; xcs.PRED_NUM_NEURONS[i] > 0 && i < MAX_LAYERS; i++) {
+            list.append(xcs.PRED_NUM_NEURONS[i]);
+        }
+        return list;
+    }
+
+    p::list get_pred_max_neurons() {
+        p::list list;
+        for(int i = 0; xcs.PRED_MAX_NEURONS[i] > 0 && i < MAX_LAYERS; i++) {
+            list.append(xcs.PRED_MAX_NEURONS[i]);
+        }
+        return list;
+    }
+
     int get_omp_num_threads() { return xcs.OMP_NUM_THREADS; }
     _Bool get_pop_init() { return xcs.POP_INIT; }
     int get_max_trials() { return xcs.MAX_TRIALS; }
@@ -293,12 +326,8 @@ struct XCS
     _Bool get_cond_evolve_weights() { return xcs.COND_EVOLVE_WEIGHTS; }
     _Bool get_cond_evolve_neurons() { return xcs.COND_EVOLVE_NEURONS; }
     _Bool get_cond_evolve_functions() { return xcs.COND_EVOLVE_FUNCTIONS; }
-    int get_cond_num_hidden_neurons() { return xcs.COND_NUM_HIDDEN_NEURONS; }
-    int get_cond_max_hidden_neurons() { return xcs.COND_MAX_HIDDEN_NEURONS; }
     int get_cond_output_activation() { return xcs.COND_OUTPUT_ACTIVATION; }
     int get_cond_hidden_activation() { return xcs.COND_HIDDEN_ACTIVATION; }
-    int get_pred_num_hidden_neurons() { return xcs.PRED_NUM_HIDDEN_NEURONS; }
-    int get_pred_max_hidden_neurons() { return xcs.PRED_MAX_HIDDEN_NEURONS; }
     int get_pred_output_activation() { return xcs.PRED_OUTPUT_ACTIVATION; }
     int get_pred_hidden_activation() { return xcs.PRED_HIDDEN_ACTIVATION; }
     double get_pred_momentum() { return xcs.PRED_MOMENTUM; }
@@ -342,12 +371,42 @@ struct XCS
     double get_p_explore() { return xcs.P_EXPLORE; }
 
     /* SETTERS */
+
     void set_omp_num_threads(int a) {
         xcs.OMP_NUM_THREADS = a; 
 #ifdef PARALLEL
         omp_set_num_threads(xcs.OMP_NUM_THREADS);
 #endif
     }
+
+    void set_cond_num_neurons(p::list &a) {
+        memset(xcs.COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
+        for(int i = 0; i < len(a); i++) {
+            xcs.COND_NUM_NEURONS[i] = p::extract<int>(a[i]);
+        }
+    }
+
+    void set_cond_max_neurons(p::list &a) {
+        memset(xcs.COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
+        for(int i = 0; i < len(a); i++) {
+            xcs.COND_MAX_NEURONS[i] = p::extract<int>(a[i]);
+        }
+    }
+
+    void set_pred_num_neurons(p::list &a) {
+        memset(xcs.PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
+        for(int i = 0; i < len(a); i++) {
+            xcs.PRED_NUM_NEURONS[i] = p::extract<int>(a[i]);
+        }
+    }
+
+    void set_pred_max_neurons(p::list &a) {
+        memset(xcs.PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
+        for(int i = 0; i < len(a); i++) {
+            xcs.PRED_MAX_NEURONS[i] = p::extract<int>(a[i]);
+        }
+    }
+
     void set_pop_init(_Bool a) { xcs.POP_INIT = a; }
     void set_max_trials(int a) { xcs.MAX_TRIALS = a; }
     void set_perf_avg_trials(int a) { xcs.PERF_AVG_TRIALS = a; }
@@ -386,12 +445,8 @@ struct XCS
     void set_cond_evolve_weights(_Bool a) { xcs.COND_EVOLVE_WEIGHTS = a; }
     void set_cond_evolve_neurons(_Bool a) { xcs.COND_EVOLVE_NEURONS = a; }
     void set_cond_evolve_functions(_Bool a) { xcs.COND_EVOLVE_FUNCTIONS = a; }
-    void set_cond_num_hidden_neurons(int a) { xcs.COND_NUM_HIDDEN_NEURONS = a; }
-    void set_cond_max_hidden_neurons(int a) { xcs.COND_MAX_HIDDEN_NEURONS = a; }
     void set_cond_output_activation(int a) { xcs.COND_OUTPUT_ACTIVATION = a; }
     void set_cond_hidden_activation(int a) { xcs.COND_HIDDEN_ACTIVATION = a; }
-    void set_pred_num_hidden_neurons(int a) { xcs.PRED_NUM_HIDDEN_NEURONS = a; }
-    void set_pred_max_hidden_neurons(int a) { xcs.PRED_MAX_HIDDEN_NEURONS = a; }
     void set_pred_output_activation(int a) { xcs.PRED_OUTPUT_ACTIVATION = a; }
     void set_pred_hidden_activation(int a) { xcs.PRED_HIDDEN_ACTIVATION = a; }
     void set_pred_momentum(double a) { xcs.PRED_MOMENTUM = a; }
@@ -482,12 +537,12 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("COND_EVOLVE_WEIGHTS", &XCS::get_cond_evolve_weights, &XCS::set_cond_evolve_weights)
         .add_property("COND_EVOLVE_NEURONS", &XCS::get_cond_evolve_neurons, &XCS::set_cond_evolve_neurons)
         .add_property("COND_EVOLVE_FUNCTIONS", &XCS::get_cond_evolve_functions, &XCS::set_cond_evolve_functions)
-        .add_property("COND_NUM_HIDDEN_NEURONS", &XCS::get_cond_num_hidden_neurons, &XCS::set_cond_num_hidden_neurons)
-        .add_property("COND_MAX_HIDDEN_NEURONS", &XCS::get_cond_max_hidden_neurons, &XCS::set_cond_max_hidden_neurons)
+        .add_property("COND_NUM_NEURONS", &XCS::get_cond_num_neurons, &XCS::set_cond_num_neurons)
+        .add_property("COND_MAX_NEURONS", &XCS::get_cond_max_neurons, &XCS::set_cond_max_neurons)
         .add_property("COND_OUTPUT_ACTIVATION", &XCS::get_cond_output_activation, &XCS::set_cond_output_activation)
         .add_property("COND_HIDDEN_ACTIVATION", &XCS::get_cond_hidden_activation, &XCS::set_cond_hidden_activation)
-        .add_property("PRED_NUM_HIDDEN_NEURONS", &XCS::get_pred_num_hidden_neurons, &XCS::set_pred_num_hidden_neurons)
-        .add_property("PRED_MAX_HIDDEN_NEURONS", &XCS::get_pred_max_hidden_neurons, &XCS::set_pred_max_hidden_neurons)
+        .add_property("PRED_NUM_NEURONS", &XCS::get_pred_num_neurons, &XCS::set_pred_num_neurons)
+        .add_property("PRED_MAX_NEURONS", &XCS::get_pred_max_neurons, &XCS::set_pred_max_neurons)
         .add_property("PRED_OUTPUT_ACTIVATION", &XCS::get_pred_output_activation, &XCS::set_pred_output_activation)
         .add_property("PRED_HIDDEN_ACTIVATION", &XCS::get_pred_hidden_activation, &XCS::set_pred_hidden_activation)
         .add_property("PRED_MOMENTUM", &XCS::get_pred_momentum, &XCS::set_pred_momentum)
