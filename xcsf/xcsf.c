@@ -139,8 +139,6 @@ static double xcsf_learn_trial(XCSF *xcsf, double *pred, const double *x, const 
     clset_update(xcsf, &mset, &kset, x, y, true);
     ea(xcsf, &mset, &kset);
     xcsf->time += 1;
-    xcsf->msetsize += (mset.size - xcsf->msetsize) * (1 / (double) xcsf->PERF_AVG_TRIALS);
-    xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * (1 / (double) xcsf->PERF_AVG_TRIALS);
     clset_kill(xcsf, &kset); // kills deleted classifiers
     clset_free(xcsf, &mset); // frees the match set list
     return (xcsf->loss_ptr)(xcsf, pred, y);
@@ -162,8 +160,6 @@ static double xcsf_test_trial(XCSF *xcsf, double *pred, const double *x, const d
     clset_init(xcsf, &kset);
     clset_match(xcsf, &mset, &kset, x);
     clset_pred(xcsf, &mset, x, pred);
-    xcsf->msetsize += (mset.size - xcsf->msetsize) * (1 / (double) xcsf->PERF_AVG_TRIALS);
-    xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * (1 / (double) xcsf->PERF_AVG_TRIALS);
     clset_kill(xcsf, &kset); // kills deleted classifiers
     clset_free(xcsf, &mset); // frees the match set list  
     return (xcsf->loss_ptr)(xcsf, pred, y);

@@ -230,6 +230,9 @@ void clset_match(XCSF *xcsf, SET *mset, SET *kset, const double *x)
     // perform covering if all actions are not represented
     clset_cover(xcsf, mset, kset, x, act_covered);
     free(act_covered);
+    // update statistics
+    xcsf->msetsize += (mset->size - xcsf->msetsize) * (10 / (double) xcsf->PERF_AVG_TRIALS);
+    xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * (10 / (double) xcsf->PERF_AVG_TRIALS);
 }
 
 /**
