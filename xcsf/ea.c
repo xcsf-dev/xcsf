@@ -50,7 +50,9 @@ static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool c
  */
 void ea(XCSF *xcsf, const SET *set, SET *kset)
 {
-    // check if the evolutionary algorithm should be run
+    // increase EA time
+    xcsf->time += 1;
+    // check if the EA should be run
     if(set->size == 0 || xcsf->time - clset_mean_time(xcsf, set) < xcsf->THETA_EA) {
         return;
     }

@@ -138,7 +138,6 @@ static double xcsf_learn_trial(XCSF *xcsf, double *pred, const double *x, const 
     clset_pred(xcsf, &mset, x, pred);
     clset_update(xcsf, &mset, &kset, x, y, true);
     ea(xcsf, &mset, &kset);
-    xcsf->time += 1;
     clset_kill(xcsf, &kset); // kills deleted classifiers
     clset_free(xcsf, &mset); // frees the match set list
     return (xcsf->loss_ptr)(xcsf, pred, y);

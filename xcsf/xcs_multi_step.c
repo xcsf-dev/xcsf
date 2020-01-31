@@ -130,9 +130,6 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
             *error += fabs(reward - pa_val(xcsf, action)) / env_max_payoff(xcsf);
         }
         // next step
-        if(xcsf->train) {
-            xcsf->time += 1;
-        }
         clset_free(xcsf, &mset); // frees the match set list
         clset_free(xcsf, &prev_aset); // frees the previous action set list
         prev_aset = aset;

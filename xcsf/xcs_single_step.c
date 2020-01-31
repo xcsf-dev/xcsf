@@ -135,7 +135,6 @@ void xcs_single_update(XCSF *xcsf, const SET *mset, SET *aset, SET *kset, const 
     clset_action(xcsf, mset, aset, a);
     clset_update(xcsf, aset, kset, x, &r, true);
     ea(xcsf, aset, kset);
-    xcsf->time += 1;
 }
 
 /**
