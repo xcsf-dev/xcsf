@@ -214,7 +214,6 @@ double xcsf_fit1(XCSF *xcsf, const INPUT *train_data, _Bool shuffle);
 double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle);
 double xcsf_score(XCSF *xcsf, const INPUT *test_data);
 void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int rows);
-void xcsf_print_match_set(XCSF *xcsf, const double *x, _Bool printc, _Bool printa, _Bool printp);
 void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);
 size_t xcsf_load(XCSF *xcsf, const char *fname);
 size_t xcsf_save(const XCSF *xcsf, const char *fname);

@@ -253,11 +253,6 @@ struct XCS
         xcsf_print_pop(&xcs, printc, printa, printp);
     }
 
-    void print_match_set(np::ndarray &X, _Bool printc, _Bool printa, _Bool printp) {
-        double *input = reinterpret_cast<double*>(X.get_data());
-        xcsf_print_match_set(&xcs, input, printc, printa, printp);
-    }
-
     /* GETTERS */
     int get_omp_num_threads() { return xcs.OMP_NUM_THREADS; }
     _Bool get_pop_init() { return xcs.POP_INIT; }
@@ -533,7 +528,6 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("pop_mean_pred_neurons", &XCS::get_pop_mean_pred_neurons)
         .def("pop_mean_pred_layers", &XCS::get_pop_mean_pred_layers)
         .def("print_pop", &XCS::print_pop)
-        .def("print_match_set", &XCS::print_match_set)
         .def("msetsize", &XCS::get_msetsize)
         .def("mfrac", &XCS::get_mfrac)
         ;

@@ -37,7 +37,8 @@
 
 static const double VERSION = 1.06; //!< XCSF version number
 
-static double xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
+static int xcsf_select_sample(const INPUT *data, int cnt, _Bool shuffle);
+static void xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
 static size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
 static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp);
 
@@ -72,35 +73,23 @@ double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _B
     double pterr = 0;
     double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        // select training sample
-        int row = 0;
-        if(shuffle) {
-            row = irand_uniform(0, train_data->rows);
-        }
-        else {
-            row = (cnt % train_data->rows + train_data->rows) % train_data->rows;
-        }     	
+        // training sample
+        int row = xcsf_select_sample(train_data, cnt, shuffle);
         const double *x = &train_data->x[row * train_data->x_cols];
         const double *y = &train_data->y[row * train_data->y_cols];
-        // execute a learning trial
         xcsf->train = true;
-        double error = xcsf_trial(xcsf, pred, x, y);
+        xcsf_trial(xcsf, pred, x, y);
+        double error = (xcsf->loss_ptr)(xcsf, pred, y);
         perr += error; 
         err += error;
-        // if some test data has been supplied
+        // test sample
         if(test_data != NULL) {
-            // select test sample
-            if(shuffle) {
-                row = irand_uniform(0, test_data->rows);
-            }
-            else {
-                row = (cnt % test_data->rows + test_data->rows) % test_data->rows;
-            }
+            row = xcsf_select_sample(test_data, cnt, shuffle);
             x = &test_data->x[row * test_data->x_cols];
             y = &test_data->y[row * test_data->y_cols];
-            // execute a test trial
             xcsf->train = false;
-            pterr += xcsf_trial(xcsf, pred, x, y);
+            xcsf_trial(xcsf, pred, x, y);
+            pterr += (xcsf->loss_ptr)(xcsf, pred, y);
             // display performance as necessary (training and testing)
             if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
                 disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
@@ -113,10 +102,26 @@ double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _B
             perr = 0;
         }
     }
-    // clean up
     free(pred);
     gplot_free(xcsf);
     return err/xcsf->MAX_TRIALS;
+}
+
+/**
+ * @brief Selects a data sample for training or testing.
+ * @param data The input data.
+ * @param cnt The current sequence counter.
+ * @param shuffle Whether to select the sample randomly.
+ * @return The row of the data sample selected.
+ */
+static int xcsf_select_sample(const INPUT *data, int cnt, _Bool shuffle)
+{
+    if(shuffle) {
+        return irand_uniform(0, data->rows);
+    }
+    else {
+        return (cnt % data->rows + data->rows) % data->rows;
+    }
 }
 
 /**
@@ -125,9 +130,8 @@ double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _B
  * @param pred The calculated XCSF prediction (set by this function).
  * @param x The feature variables.
  * @param y The labelled variables.
- * @return The XCSF training error using the loss function.
  */
-static double xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double *y)
+static void xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double *y)
 {
     SET mset; // match set
     SET kset; // kill set
@@ -141,7 +145,6 @@ static double xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double
     }
     clset_kill(xcsf, &kset); // kills deleted classifiers
     clset_free(xcsf, &mset); // frees the match set list
-    return (xcsf->loss_ptr)(xcsf, pred, y);
 }
 
 /**
@@ -155,14 +158,7 @@ void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int rows)
 {   
     xcsf->train = false;
     for(int row = 0; row < rows; row++) {
-        SET mset; // match set
-        SET kset; // kill set
-        clset_init(xcsf, &mset);
-        clset_init(xcsf, &kset);
-        clset_match(xcsf, &mset, &kset, &x[row * xcsf->num_x_vars]);
-        clset_pred(xcsf, &mset, &x[row * xcsf->num_x_vars], &pred[row * xcsf->num_y_vars]);
-        clset_kill(xcsf, &kset); // kills deleted classifiers
-        clset_free(xcsf, &mset); // frees the match set list
+        xcsf_trial(xcsf, &pred[row * xcsf->num_y_vars], &x[row * xcsf->num_x_vars], NULL);
     }
 }
 
@@ -180,7 +176,8 @@ double xcsf_score(XCSF *xcsf, const INPUT *test_data)
     for(int row = 0; row < test_data->rows; row++) {
         const double *x = &test_data->x[row * test_data->x_cols];
         const double *y = &test_data->y[row * test_data->y_cols];
-        err += xcsf_trial(xcsf, pred, x, y);
+        xcsf_trial(xcsf, pred, x, y);
+        err += (xcsf->loss_ptr)(xcsf, pred, y);
     }
     free(pred);
     return err/(double)test_data->rows;
@@ -196,26 +193,6 @@ double xcsf_score(XCSF *xcsf, const INPUT *test_data)
 void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
 {
     clset_print(xcsf, &xcsf->pset, printc, printa, printp);
-}
-
-/**
- * @brief Prints the XCSF match set for the supplied input.
- * @param xcsf The XCSF data structure.
- * @param x The input features to perform matching.
- * @param printc Whether to print condition structures.
- * @param printa Whether to print action structures.
- * @param printp Whether to print prediction structures.
- */
-void xcsf_print_match_set(XCSF *xcsf, const double *x, _Bool printc, _Bool printa, _Bool printp)
-{
-    SET mset; // match set
-    SET kset; // kill set
-    clset_init(xcsf, &mset);
-    clset_init(xcsf, &kset);
-    clset_match(xcsf, &mset, &kset, x);
-    clset_print(xcsf, &mset, printc, printa, printp);
-    clset_kill(xcsf, &kset); // kills deleted classifiers
-    clset_free(xcsf, &mset); // frees the match set list
 }
 
 /**
