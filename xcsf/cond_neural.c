@@ -57,7 +57,7 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
     LAYER *l;
     int i = 0;
     int n_inputs = xcsf->num_x_vars;
-    while(xcsf->COND_NUM_NEURONS[i] > 0 && i < MAX_LAYERS)  {
+    while(i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0) {
         int hinit = xcsf->COND_NUM_NEURONS[i];
         int hmax = xcsf->COND_MAX_NEURONS[i];
         if(hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {

@@ -257,7 +257,7 @@ struct XCS
 
     p::list get_cond_num_neurons() {
         p::list list;
-        for(int i = 0; xcs.COND_NUM_NEURONS[i] > 0 && i < MAX_LAYERS; i++) {
+        for(int i = 0; i < MAX_LAYERS && xcs.COND_NUM_NEURONS[i] > 0; i++) {
             list.append(xcs.COND_NUM_NEURONS[i]);
         }
         return list;
@@ -265,7 +265,7 @@ struct XCS
 
     p::list get_cond_max_neurons() {
         p::list list;
-        for(int i = 0; xcs.COND_MAX_NEURONS[i] > 0 && i < MAX_LAYERS; i++) {
+        for(int i = 0; i < MAX_LAYERS && xcs.COND_MAX_NEURONS[i] > 0; i++) {
             list.append(xcs.COND_MAX_NEURONS[i]);
         }
         return list;
@@ -273,7 +273,7 @@ struct XCS
 
     p::list get_pred_num_neurons() {
         p::list list;
-        for(int i = 0; xcs.PRED_NUM_NEURONS[i] > 0 && i < MAX_LAYERS; i++) {
+        for(int i = 0; i < MAX_LAYERS && xcs.PRED_NUM_NEURONS[i] > 0; i++) {
             list.append(xcs.PRED_NUM_NEURONS[i]);
         }
         return list;
@@ -281,7 +281,7 @@ struct XCS
 
     p::list get_pred_max_neurons() {
         p::list list;
-        for(int i = 0; xcs.PRED_MAX_NEURONS[i] > 0 && i < MAX_LAYERS; i++) {
+        for(int i = 0; i < MAX_LAYERS && xcs.PRED_MAX_NEURONS[i] > 0; i++) {
             list.append(xcs.PRED_MAX_NEURONS[i]);
         }
         return list;

@@ -58,7 +58,7 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     LAYER *l;
     int i = 0;
     int n_inputs = xcsf->num_x_vars;
-    while(xcsf->PRED_NUM_NEURONS[i] > 0 && i < MAX_LAYERS)  {
+    while(i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0) {
         int hinit = xcsf->PRED_NUM_NEURONS[i];
         int hmax = xcsf->PRED_MAX_NEURONS[i];
         if(hmax < hinit || !xcsf->PRED_EVOLVE_NEURONS) {
