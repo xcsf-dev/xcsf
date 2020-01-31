@@ -52,8 +52,7 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp);
  */
 double xcsf_fit1(XCSF *xcsf, const INPUT *train_data, _Bool shuffle)
 {  
-    const INPUT *test_data = NULL;
-    return xcsf_fit2(xcsf, train_data, test_data, shuffle);
+    return xcsf_fit2(xcsf, train_data, NULL, shuffle);
 }
 
 /**
