@@ -98,7 +98,8 @@ void act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int actio
 
 void act_integer_free(const XCSF *xcsf, const CL *c)
 {
-    (void)xcsf; (void)c;
+    (void)xcsf;
+    free(c->act);
 }
 
 void act_integer_init(const XCSF *xcsf, CL *c)
