@@ -71,7 +71,7 @@ double xcs_multi_step_exp(XCSF *xcsf)
 /**
  * @brief Executes a multi-step trial using a built-in environment.
  * @param xcsf The XCSF data structure.
- * @param error The system prediction error (set by this function).
+ * @param error The mean system prediction error (set by this function).
  * @param explore Whether this is an exploration or exploitation trial.
  * @return The number of steps taken to reach the goal.
  */
@@ -144,5 +144,6 @@ static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
     clset_free(xcsf, &prev_aset); // frees the previous action set list
     clset_kill(xcsf, &kset); // kills deleted classifiers
     free(prev_state);
+    *error /= steps; // mean prediction error
     return steps;
 }
