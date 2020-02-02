@@ -45,18 +45,18 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore);
  */
 double xcs_multi_step_exp(XCSF *xcsf)
 {
-    double perr = 0;
-    double err = 0;
-    double pterr = 0;
     gplot_init(xcsf);
     pa_init(xcsf);
+    double err = 0; // total prediction error over all trials
+    double perr = 0; // windowed total prediction error
+    int steps = 0; // windowed total number of steps to goal
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        xcs_multi_trial(xcsf, &pterr, true); // explore
-        perr += xcs_multi_trial(xcsf, &pterr, false); // exploit
-        err += pterr;
-        if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
-            disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
-            perr = 0; pterr = 0;
+        xcs_multi_trial(xcsf, &perr, true); // explore
+        steps += xcs_multi_trial(xcsf, &perr, false); // exploit
+        err += perr;
+        if(cnt % xcsf->PERF_TRIALS == 0 && cnt > 0) {
+            disp_perf2(xcsf, (double) steps / xcsf->PERF_TRIALS, perr / xcsf->PERF_TRIALS, cnt);
+            steps = 0; perr = 0;
         }
     }
     gplot_free(xcsf);

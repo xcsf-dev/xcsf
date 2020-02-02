@@ -47,9 +47,9 @@ double xcs_single_step_exp(XCSF *xcsf)
 {
     gplot_init(xcsf);
     pa_init(xcsf);
-    double err = 0; // total error over all trials
-    double perr = 0; // windowed accuracy for averaging
-    double pterr = 0; // windowed prediction error for averaging
+    double err = 0; // total prediction error over all trials
+    double perr = 0; // windowed total accuracy
+    double pterr = 0; // windowed total prediction error
     double perf = 0; // individual trial accuracy
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         xcs_single_trial(xcsf, &perf, true); // explore
@@ -57,8 +57,8 @@ double xcs_single_step_exp(XCSF *xcsf)
         perr += perf;
         err += error;
         pterr += error;
-        if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
-            disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
+        if(cnt % xcsf->PERF_TRIALS == 0 && cnt > 0) {
+            disp_perf2(xcsf, perr / xcsf->PERF_TRIALS, pterr / xcsf->PERF_TRIALS, cnt);
             perr = 0;
             pterr = 0;
         }

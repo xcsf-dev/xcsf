@@ -90,14 +90,14 @@ double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _B
             xcsf_trial(xcsf, pred, x, y);
             pterr += (xcsf->loss_ptr)(xcsf, pred, y);
             // display performance as necessary (training and testing)
-            if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
-                disp_perf2(xcsf, perr/xcsf->PERF_AVG_TRIALS, pterr/xcsf->PERF_AVG_TRIALS, cnt);
+            if(cnt % xcsf->PERF_TRIALS == 0 && cnt > 0) {
+                disp_perf2(xcsf, perr / xcsf->PERF_TRIALS, pterr / xcsf->PERF_TRIALS, cnt);
                 perr = 0; pterr = 0;
             }
         }
         // display performance as necessary (training only)
-        else if(cnt % xcsf->PERF_AVG_TRIALS == 0 && cnt > 0) {
-            disp_perf1(xcsf, perr/xcsf->PERF_AVG_TRIALS, cnt);
+        else if(cnt % xcsf->PERF_TRIALS == 0 && cnt > 0) {
+            disp_perf1(xcsf, perr / xcsf->PERF_TRIALS, cnt);
             perr = 0;
         }
     }
@@ -261,7 +261,7 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->POP_INIT, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->PERF_AVG_TRIALS, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->POP_SIZE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
     s += fwrite(&xcsf->ALPHA, sizeof(double), 1, fp);
@@ -349,7 +349,7 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_INIT, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
-    s += fread(&xcsf->PERF_AVG_TRIALS, sizeof(int), 1, fp);
+    s += fread(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_SIZE, sizeof(int), 1, fp);
     s += fread(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
     s += fread(&xcsf->ALPHA, sizeof(double), 1, fp);

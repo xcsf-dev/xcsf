@@ -111,7 +111,7 @@ static void params_general(XCSF *xcsf)
     if(strncmp(config_getvalue("POP_INIT"), "true", 4) == 0) {
         xcsf->POP_INIT = true;
     }
-    xcsf->PERF_AVG_TRIALS = strtoimax(config_getvalue("PERF_AVG_TRIALS"), &end, BASE);
+    xcsf->PERF_TRIALS = strtoimax(config_getvalue("PERF_TRIALS"), &end, BASE);
     xcsf->LOSS_FUNC = strtoimax(config_getvalue("LOSS_FUNC"), &end, BASE);
 }
 

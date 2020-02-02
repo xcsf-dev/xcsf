@@ -63,7 +63,7 @@ xcs = xcsf.XCS(mux, 2, False)
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000
-xcs.PERF_AVG_TRIALS = 1000
+xcs.PERF_TRIALS = 1000
 xcs.EPS_0 = 0.01 # target error
 xcs.COND_TYPE = 1 # hyperrectangles
 xcs.PRED_TYPE = 1 # linear least squares
@@ -82,7 +82,7 @@ error = np.zeros(n)
 bar = tqdm(total=n) # progress bar
 
 for i in range(n):
-    for j in range(xcs.PERF_AVG_TRIALS):
+    for j in range(xcs.PERF_TRIALS):
         # new problem
         rmux_reset()
         answer = rmux_answer(state)
@@ -106,8 +106,8 @@ for i in range(n):
             reward = 0
         performance[i] += reward
         error[i] += xcs.single_error(reward)
-    performance[i] /= float(xcs.PERF_AVG_TRIALS)
-    error[i] /= float(xcs.PERF_AVG_TRIALS)
+    performance[i] /= float(xcs.PERF_TRIALS)
+    error[i] /= float(xcs.PERF_TRIALS)
     trials[i] = xcs.time() # number of trials so far
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
@@ -129,6 +129,6 @@ plt.plot(trials, error, label='System error')
 plt.grid(linestyle='dotted', linewidth=1)
 plt.title('XCSF Training Performance', fontsize=14)
 plt.xlabel('Trials', fontsize=12)
-plt.xlim([0,n*xcs.PERF_AVG_TRIALS])
+plt.xlim([0,n*xcs.PERF_TRIALS])
 plt.legend()
 plt.show()

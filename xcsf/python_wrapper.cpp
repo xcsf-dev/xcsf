@@ -290,7 +290,7 @@ struct XCS
     int get_omp_num_threads() { return xcs.OMP_NUM_THREADS; }
     _Bool get_pop_init() { return xcs.POP_INIT; }
     int get_max_trials() { return xcs.MAX_TRIALS; }
-    int get_perf_avg_trials() { return xcs.PERF_AVG_TRIALS; }
+    int get_perf_trials() { return xcs.PERF_TRIALS; }
     int get_pop_max_size() { return xcs.POP_SIZE; }
     int get_loss_func() { return xcs.LOSS_FUNC; }
     double get_alpha() { return xcs.ALPHA; }
@@ -409,7 +409,7 @@ struct XCS
 
     void set_pop_init(_Bool a) { xcs.POP_INIT = a; }
     void set_max_trials(int a) { xcs.MAX_TRIALS = a; }
-    void set_perf_avg_trials(int a) { xcs.PERF_AVG_TRIALS = a; }
+    void set_perf_trials(int a) { xcs.PERF_TRIALS = a; }
     void set_pop_max_size(int a) { xcs.POP_SIZE = a; }
     void set_loss_func(int a) { xcs.LOSS_FUNC = a; loss_set_func(&xcs); }
     void set_alpha(double a) { xcs.ALPHA = a; }
@@ -501,7 +501,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads, &XCS::set_omp_num_threads)
         .add_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
         .add_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials)
-        .add_property("PERF_AVG_TRIALS", &XCS::get_perf_avg_trials, &XCS::set_perf_avg_trials)
+        .add_property("PERF_TRIALS", &XCS::get_perf_trials, &XCS::set_perf_trials)
         .add_property("POP_SIZE", &XCS::get_pop_max_size, &XCS::set_pop_max_size)
         .add_property("LOSS_FUNC", &XCS::get_loss_func, &XCS::set_loss_func)
         .add_property("ALPHA", &XCS::get_alpha, &XCS::set_alpha)
