@@ -36,46 +36,46 @@
 #include "xcs_single_step.h"
 #include "env.h"
 
-static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore);
+static double xcs_single_trial(XCSF *xcsf, double *error, _Bool explore);
 
 /**
- * @brief Executes a single-step experiment.
+ * @brief Executes a single-step reinforcement learning experiment.
  * @param xcsf The XCSF data structure.
- * @return The mean prediction error.
+ * @return The mean accuracy.
  */
 double xcs_single_step_exp(XCSF *xcsf)
 {
     gplot_init(xcsf);
     pa_init(xcsf);
-    double err = 0; // total prediction error over all trials
-    double perr = 0; // windowed total accuracy
-    double pterr = 0; // windowed total prediction error
-    double perf = 0; // individual trial accuracy
+    double error = 0; // prediction error: individual trial
+    double werr = 0; // prediction error: windowed total
+    double tperf = 0; // accuracy: total over all trials
+    double wperf = 0; // accuracy: windowed total
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        xcs_single_trial(xcsf, &perf, true); // explore
-        double error = xcs_single_trial(xcsf, &perf, false); // exploit
-        perr += perf;
-        err += error;
-        pterr += error;
+        xcs_single_trial(xcsf, &error, true); // explore
+        double perf = xcs_single_trial(xcsf, &error, false); // exploit
+        wperf += perf;
+        tperf += perf;
+        werr += error;
         if(cnt % xcsf->PERF_TRIALS == 0 && cnt > 0) {
-            disp_perf2(xcsf, perr / xcsf->PERF_TRIALS, pterr / xcsf->PERF_TRIALS, cnt);
-            perr = 0;
-            pterr = 0;
+            disp_perf2(xcsf, wperf / xcsf->PERF_TRIALS, werr / xcsf->PERF_TRIALS, cnt);
+            wperf = 0;
+            werr = 0;
         }
     }
     gplot_free(xcsf);
     pa_free(xcsf);
-    return err / xcsf->MAX_TRIALS;
+    return tperf / xcsf->MAX_TRIALS;
 }                                
 
 /**
  * @brief Executes a single-step trial using a built-in environment.
  * @param xcsf The XCSF data structure.
- * @param perf The classification accuracy (set by this function).
+ * @param error The system prediction error (set by this function).
  * @param explore Whether this is an exploration or exploitation trial.
- * @return The system prediction error.
+ * @return The classification accuracy.
  */
-static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore)
+static double xcs_single_trial(XCSF *xcsf, double *error, _Bool explore)
 {
     SET mset; // match set
     SET aset; // action set
@@ -87,19 +87,14 @@ static double xcs_single_trial(XCSF *xcsf, double *perf, _Bool explore)
     const double *x = env_get_state(xcsf);
     int action = xcs_single_decision(xcsf, &mset, &kset, x);
     double reward = env_execute(xcsf, action);
-    if(reward > 0) {
-        *perf = 1;
-    }
-    else {
-        *perf = 0;
-    }
+    *error = xcs_single_error(xcsf, reward);
     if(explore) {
         xcs_single_update(xcsf, &mset, &aset, &kset, x, action, reward);
     }
     clset_kill(xcsf, &kset);
     clset_free(xcsf, &aset);
     clset_free(xcsf, &mset);
-    return xcs_single_error(xcsf, reward);
+    return (reward > 0) ? 1 : 0;
 }
 
 /**

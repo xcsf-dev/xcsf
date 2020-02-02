@@ -41,27 +41,31 @@ static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore);
 /**
  * @brief Executes a multi-step reinforcement learning experiment.
  * @param xcsf The XCSF data structure.
- * @return The mean prediction error.
+ * @return The mean number of steps to goal.
  */
 double xcs_multi_step_exp(XCSF *xcsf)
 {
     gplot_init(xcsf);
     pa_init(xcsf);
-    double err = 0; // total prediction error over all trials
-    double perr = 0; // windowed total prediction error
-    int steps = 0; // windowed total number of steps to goal
+    double error = 0; // prediction error: individual trial
+    double werr = 0; // prediction error: windowed total
+    int tperf = 0; // steps to goal: total over all trials
+    int wperf = 0; // steps to goal: windowed total
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        xcs_multi_trial(xcsf, &perr, true); // explore
-        steps += xcs_multi_trial(xcsf, &perr, false); // exploit
-        err += perr;
+        xcs_multi_trial(xcsf, &error, true); // explore
+        int perf = xcs_multi_trial(xcsf, &error, false); // exploit
+        wperf += perf;
+        tperf += perf;
+        werr += error;
         if(cnt % xcsf->PERF_TRIALS == 0 && cnt > 0) {
-            disp_perf2(xcsf, (double) steps / xcsf->PERF_TRIALS, perr / xcsf->PERF_TRIALS, cnt);
-            steps = 0; perr = 0;
+            disp_perf2(xcsf, (double) wperf / xcsf->PERF_TRIALS, werr / xcsf->PERF_TRIALS, cnt);
+            wperf = 0;
+            werr = 0;
         }
     }
     gplot_free(xcsf);
     pa_free(xcsf);
-    return err / xcsf->MAX_TRIALS;
+    return tperf / xcsf->MAX_TRIALS;
 }                                
 
 /**
