@@ -36,7 +36,7 @@
 #include "xcs_multi_step.h"
 #include "env.h"
 
-static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore);
+static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore);
 
 /**
  * @brief Executes a multi-step reinforcement learning experiment.
@@ -49,23 +49,23 @@ double xcs_multi_step_exp(XCSF *xcsf)
     pa_init(xcsf);
     double error = 0; // prediction error: individual trial
     double werr = 0; // prediction error: windowed total
-    int tperf = 0; // steps to goal: total over all trials
-    int wperf = 0; // steps to goal: windowed total
+    double tperf = 0; // steps to goal: total over all trials
+    double wperf = 0; // steps to goal: windowed total
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         xcs_multi_trial(xcsf, &error, true); // explore
-        int perf = xcs_multi_trial(xcsf, &error, false); // exploit
+        double perf = xcs_multi_trial(xcsf, &error, false); // exploit
         wperf += perf;
         tperf += perf;
         werr += error;
         if(cnt % xcsf->PERF_TRIALS == 0 && cnt > 0) {
-            disp_perf2(xcsf, (double) wperf / xcsf->PERF_TRIALS, werr / xcsf->PERF_TRIALS, cnt);
+            disp_perf2(xcsf, wperf / xcsf->PERF_TRIALS, werr / xcsf->PERF_TRIALS, cnt);
             wperf = 0;
             werr = 0;
         }
     }
     gplot_free(xcsf);
     pa_free(xcsf);
-    return (double) tperf / xcsf->MAX_TRIALS;
+    return tperf / xcsf->MAX_TRIALS;
 }                                
 
 /**
@@ -75,7 +75,7 @@ double xcs_multi_step_exp(XCSF *xcsf)
  * @param explore Whether this is an exploration or exploitation trial.
  * @return The number of steps taken to reach the goal.
  */
-static int xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
+static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
 {
     env_reset(xcsf);
     xcsf->train = explore;
