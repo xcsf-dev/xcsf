@@ -326,9 +326,9 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->RESET_STATES, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_T, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->PRED_X0, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_ETA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->PRED_ETA, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->PRED_X0, sizeof(double), 1, fp);
     s += fwrite(&xcsf->PRED_RLS_SCALE_FACTOR, sizeof(double), 1, fp);
     s += fwrite(&xcsf->PRED_RLS_LAMBDA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);

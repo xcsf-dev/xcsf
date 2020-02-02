@@ -55,8 +55,8 @@ int main(int argc, char **argv)
     xcsf_init(xcsf);
     // reload state of a previous experiment
     if(argc == 5) {
-        printf("LOADING XCSF\n");
-        xcsf_load(xcsf, argv[4]);
+        size_t s = xcsf_load(xcsf, argv[4]);
+        printf("XCSF loaded: %d elements\n", (int) s);
     }
     // new experiment
     else {
