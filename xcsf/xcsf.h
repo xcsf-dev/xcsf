@@ -95,7 +95,7 @@ typedef struct XCSF {
     SET kset; //!< Kill set
     SET prev_aset; //!< Previous action set
 
-    int time; //!< Current number of executed trials
+    int time; //!< Current number of EA executions
     double msetsize; //!< Average match set size
     double mfrac; //!< Generalisation measure
 
