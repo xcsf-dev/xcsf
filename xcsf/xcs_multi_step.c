@@ -65,7 +65,7 @@ double xcs_multi_step_exp(XCSF *xcsf)
     }
     gplot_free(xcsf);
     pa_free(xcsf);
-    return tperf / xcsf->MAX_TRIALS;
+    return (double) tperf / xcsf->MAX_TRIALS;
 }                                
 
 /**
