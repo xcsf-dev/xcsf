@@ -24,3 +24,4 @@
 #pragma once
 
 double xcs_multi_step_exp(XCSF *xcsf);
+int xcs_multi_decision(XCSF *xcsf, const double *x);

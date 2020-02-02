@@ -90,23 +90,9 @@ static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
     for(steps = 0; steps < xcsf->TELETRANSPORTATION && !reset; steps++) {
         clset_init(&xcsf->mset);
         clset_init(&xcsf->aset);
-        // percieve environment
         const double *state = env_get_state(xcsf);
-        // generate match set
-        clset_match(xcsf, state);
-        // calculate the prediction array
-        pa_build(xcsf, state);
-        // select an action to perform
-        int action = 0;
-        if(xcsf->train && rand_uniform(0,1) < xcsf->P_EXPLORE) {
-            action = pa_rand_action(xcsf);
-        }
-        else {
-            action = pa_best_action(xcsf);
-        }
-        // generate action set
+        int action = xcs_multi_decision(xcsf, state);
         clset_action(xcsf, action);
-        // get environment feedback
         double reward = env_execute(xcsf, action);
         reset = env_is_reset(xcsf);
         // update previous action set and run EA
@@ -130,16 +116,32 @@ static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
             *error += fabs(reward - pa_val(xcsf, action)) / env_max_payoff(xcsf);
         }
         // next step
-        clset_free(&xcsf->mset); // frees the match set list
-        clset_free(&xcsf->prev_aset); // frees the previous action set list
+        clset_free(&xcsf->mset);
+        clset_free(&xcsf->prev_aset);
         xcsf->prev_aset = xcsf->aset;
         prev_reward = reward;
         prev_pred = pa_val(xcsf, action);
         memcpy(prev_state, state, sizeof(double) * xcsf->num_x_vars);
     }
-    clset_free(&xcsf->prev_aset); // frees the previous action set list
-    clset_kill(xcsf, &xcsf->kset); // kills deleted classifiers
+    clset_free(&xcsf->prev_aset);
+    clset_kill(xcsf, &xcsf->kset);
     free(prev_state);
-    *error /= steps; // mean prediction error
+    *error /= steps;
     return steps;
+}
+
+/**
+ * @brief Constructs the match set and selects an action to perform.
+ * @param xcsf The XCSF data structure.
+ * @param x The input state.
+ * @return The selected action.
+ */
+int xcs_multi_decision(XCSF *xcsf, const double *x)
+{
+    clset_match(xcsf, x);
+    pa_build(xcsf, x);
+    if(xcsf->train && rand_uniform(0,1) < xcsf->P_EXPLORE) {
+        return pa_rand_action(xcsf);
+    }
+    return pa_best_action(xcsf);
 }
