@@ -46,14 +46,13 @@ static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool c
  * @brief Executes the evolutionary algorithm (EA).
  * @param xcsf The XCSF data structure.
  * @param set The set in which to run the EA.
- * @param kset A set to store deleted macro-classifiers for later memory removal.
  */
-void ea(XCSF *xcsf, const SET *set, SET *kset)
+void ea(XCSF *xcsf, const SET *set)
 {
     // increase EA time
     xcsf->time += 1;
     // check if the EA should be run
-    if(set->size == 0 || xcsf->time - clset_mean_time(xcsf, set) < xcsf->THETA_EA) {
+    if(set->size == 0 || xcsf->time - clset_mean_time(set) < xcsf->THETA_EA) {
         return;
     }
     clset_set_times(xcsf, set);
@@ -82,7 +81,7 @@ void ea(XCSF *xcsf, const SET *set, SET *kset)
         ea_add(xcsf, set, c1p, c2p, c1, cmod, m1mod);
         ea_add(xcsf, set, c2p, c1p, c2, cmod, m2mod);
     }
-    clset_pop_enforce_limit(xcsf, kset);
+    clset_pop_enforce_limit(xcsf);
 }   
 
 /**
@@ -133,7 +132,7 @@ static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool c
         ea_subsume(xcsf, c1, c1p, c2p, set);
     }
     else {
-        clset_add(xcsf, &xcsf->pset, c1);
+        clset_add(&xcsf->pset, c1);
     }
 }
 
@@ -176,7 +175,7 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
         }
         // if no subsumers are found the offspring is added to the population
         else {
-            clset_add(xcsf, &xcsf->pset, c);   
+            clset_add(&xcsf->pset, c);   
         }
     }
 }
@@ -191,7 +190,7 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
 static void ea_select_parents(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p)
 {
     if(xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
-        double fit_sum = clset_total_fit(xcsf, set);
+        double fit_sum = clset_total_fit(set);
         *c1p = ea_select_rw(xcsf, set, fit_sum);
         *c2p = ea_select_rw(xcsf, set, fit_sum);
     }

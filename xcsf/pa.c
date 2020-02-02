@@ -43,16 +43,15 @@ void pa_init(XCSF *xcsf)
 /**
  * @brief Builds the prediction array for the specified input.
  * @param xcsf The XCSF data structure.
- * @param set The set used to construct the array (typically the match set).
  * @param x The input state.
  */
-void pa_build(const XCSF *xcsf, const SET *set, const double *x)
+void pa_build(const XCSF *xcsf, const double *x)
 {
     for(int i = 0; i < xcsf->num_actions; i++) {
         xcsf->pa[i] = 0;
         xcsf->nr[i] = 0;
     }
-    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = xcsf->mset.list; iter != NULL; iter = iter->next) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
         xcsf->pa[iter->cl->action] += predictions[0] * iter->cl->fit;
         xcsf->nr[iter->cl->action] += iter->cl->fit;

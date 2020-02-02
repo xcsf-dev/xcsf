@@ -90,6 +90,11 @@ typedef struct SET {
  */
 typedef struct XCSF {
     SET pset; //!< Population set
+    SET mset; //!< Match set
+    SET aset; //!< Action set
+    SET kset; //!< Kill set
+    SET prev_aset; //!< Previous action set
+
     int time; //!< Current number of executed trials
     double msetsize; //!< Average match set size
     double mfrac; //!< Generalisation measure
@@ -215,8 +220,9 @@ typedef struct INPUT {
 double xcsf_fit1(XCSF *xcsf, const INPUT *train_data, _Bool shuffle);
 double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle);
 double xcsf_score(XCSF *xcsf, const INPUT *test_data);
-void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int rows);
-void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);
+double xcsf_version();
 size_t xcsf_load(XCSF *xcsf, const char *fname);
 size_t xcsf_save(const XCSF *xcsf, const char *fname);
-double xcsf_version();
+void xcsf_init(XCSF *xcsf);
+void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int rows);
+void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);

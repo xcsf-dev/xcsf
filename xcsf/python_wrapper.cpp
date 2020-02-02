@@ -52,9 +52,6 @@ void xcs_init(const char *filename);
 struct XCS
 {        
     XCSF xcs; //!< XCSF data structure
-    SET mset; //!< Match set for RL
-    SET aset; //!< Action set for RL
-    SET kset; //!< Kill set for RL
     double *state; //!< Current input state for RL
     int action; //!< Current action for RL
     INPUT *train_data; //!< Current training data for supervised learning
@@ -70,6 +67,7 @@ struct XCS
         xcs.num_actions = num_actions;
         xcs_init("default.ini");
         pa_init(&xcs);
+        xcs_single_init(&xcs);
     }
 
     /**
@@ -94,14 +92,7 @@ struct XCS
     void xcs_init(const char *filename)
     {
         config_init(&xcs, filename);
-#ifdef PARALLEL
-        omp_set_num_threads(xcs.OMP_NUM_THREADS);
-#endif
-        xcs.time = 0;
-        clset_init(&xcs, &xcs.pset);
-        clset_init(&xcs, &mset);
-        clset_init(&xcs, &aset);
-        clset_init(&xcs, &kset);
+        xcsf_init(&xcs);
         state = NULL;
         action = 0;
         train_data = (INPUT*)malloc(sizeof(INPUT));
@@ -125,35 +116,21 @@ struct XCS
     /* Reinforcement learning */
 
     void single_reset() {
-        // initialise population if first execution
-        if(xcs.pset.list == NULL) {
+        if(xcs.time == 0) {
             clset_pop_init(&xcs);
         }
-        // clear any previous sets
-        if(mset.list != NULL) {
-            clset_free(&xcs, &mset);
-        }
-        if(aset.list != NULL) {
-            clset_free(&xcs, &aset);
-        }
-        if(kset.list != NULL) {
-            clset_kill(&xcs, &kset);
-        }
-        // initialise current sets
-        clset_init(&xcs, &mset);
-        clset_init(&xcs, &aset);
-        clset_init(&xcs, &kset);
+        xcs_single_free(&xcs);
     }
 
     int single_decision(np::ndarray &input, _Bool explore) {
         xcs.train = explore;
         state = reinterpret_cast<double*>(input.get_data());
-        action = xcs_single_decision(&xcs, &mset, &kset, state);
+        action = xcs_single_decision(&xcs, state);
         return action;
     }
 
     void single_update(double reward) {
-        xcs_single_update(&xcs, &mset, &aset, &kset, state, action, reward);
+        xcs_single_update(&xcs, state, action, reward);
     }
 
     double single_error(double reward) {

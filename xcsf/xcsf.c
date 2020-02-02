@@ -43,6 +43,18 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
 static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp);
 
 /**
+ * @brief Initialises XCSF with an empty population.
+ * @param xcsf The XCSF data structure.
+ */
+void xcsf_init(XCSF *xcsf)
+{
+    xcsf->time = 0; // number of learning trials performed
+    xcsf->msetsize = 0; // average match set size
+    xcsf->mfrac = 0; // generalisation measure
+    clset_init(&xcsf->pset); // empty population
+}
+
+/**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
  * training data.
  * @param xcsf The XCSF data structure.
@@ -103,7 +115,7 @@ double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _B
     }
     free(pred);
     gplot_free(xcsf);
-    return err/xcsf->MAX_TRIALS;
+    return err / xcsf->MAX_TRIALS;
 }
 
 /**
@@ -132,18 +144,16 @@ static int xcsf_select_sample(const INPUT *data, int cnt, _Bool shuffle)
  */
 static void xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double *y)
 {
-    SET mset; // match set
-    SET kset; // kill set
-    clset_init(xcsf, &mset);
-    clset_init(xcsf, &kset);
-    clset_match(xcsf, &mset, &kset, x);
-    clset_pred(xcsf, &mset, x, pred);
+    clset_init(&xcsf->mset);
+    clset_init(&xcsf->kset);
+    clset_match(xcsf, x);
+    clset_pred(xcsf, &xcsf->mset, x, pred);
     if(xcsf->train) {
-        clset_update(xcsf, &mset, &kset, x, y, true);
-        ea(xcsf, &mset, &kset);
+        clset_update(xcsf, &xcsf->mset, x, y, true);
+        ea(xcsf, &xcsf->mset);
     }
-    clset_kill(xcsf, &kset); // kills deleted classifiers
-    clset_free(xcsf, &mset); // frees the match set list
+    clset_kill(xcsf, &xcsf->kset);
+    clset_free(&xcsf->mset);
 }
 
 /**
@@ -225,7 +235,7 @@ size_t xcsf_load(XCSF *xcsf, const char *fname)
 {
     if(xcsf->pset.size > 0) {
         clset_kill(xcsf, &xcsf->pset);
-        clset_init(xcsf, &xcsf->pset);
+        clset_init(&xcsf->pset);
     }
     FILE *fp = fopen(fname, "rb");
     if(fp == 0) {

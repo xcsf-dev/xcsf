@@ -32,6 +32,10 @@
 #include "config.h"
 #include "loss.h"
 
+#ifdef PARALLEL
+#include <omp.h>
+#endif
+
 #define ARRAY_DELIM "," //!< Delimeter for config arrays
 #define MAXLEN 127 //!< Maximum config file line length to read
 #define BASE 10 //!< Decimal numbers
@@ -105,6 +109,9 @@ static void params_general(XCSF *xcsf)
 {
     char *end;
     xcsf->OMP_NUM_THREADS = strtoimax(config_getvalue("OMP_NUM_THREADS"), &end, BASE);
+#ifdef PARALLEL
+    omp_set_num_threads(xcsf->OMP_NUM_THREADS);
+#endif
     xcsf->POP_SIZE = strtoimax(config_getvalue("POP_SIZE"), &end, BASE);
     xcsf->MAX_TRIALS = strtoimax(config_getvalue("MAX_TRIALS"), &end, BASE);
     xcsf->POP_INIT = false;

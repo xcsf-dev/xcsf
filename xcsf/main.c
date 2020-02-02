@@ -34,10 +34,6 @@
 #include "xcs_single_step.h"
 #include "xcs_multi_step.h"
 
-#ifdef PARALLEL
-#include <omp.h>
-#endif
-
 int main(int argc, char **argv)
 {    
     if(argc < 3 || argc > 5) {
@@ -53,16 +49,13 @@ int main(int argc, char **argv)
     else {
         config_init(xcsf, "default.ini");
     }
-#ifdef PARALLEL
-    omp_set_num_threads(xcsf->OMP_NUM_THREADS);
-#endif
     // initialise problem environment
     env_init(xcsf, argv);
+    // initialise empty sets
+    xcsf_init(xcsf);
     // reload state of a previous experiment
     if(argc == 5) {
         printf("LOADING XCSF\n");
-        xcsf->pset.size = 0;
-        xcsf->pset.num = 0;
         xcsf_load(xcsf, argv[4]);
     }
     // new experiment
