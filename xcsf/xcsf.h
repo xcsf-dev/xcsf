@@ -116,7 +116,7 @@ typedef struct XCSF {
     double ALPHA; //!< Linear coefficient used in calculating classifier accuracy
     double BETA; //!< Learning rate for updating error, fitness, and set size
     double DELTA; //!< Fit used in prob of deletion if fit less than this frac of avg pop fit 
-    double EPS_0; //!< Classifier target error, under which the fitness is set to 1
+    double EPS_0; //!< Classifier target error, under which the accuracy is set to 1
     double ERR_REDUC; //!< Amount to reduce an offspring's error
     double FIT_REDUC; //!< Amount to reduce an offspring's fitness
     double INIT_ERROR; //!< Initial classifier error value
