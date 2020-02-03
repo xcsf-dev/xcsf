@@ -23,4 +23,4 @@
 
 #pragma once
 
-void disp_perf(const XCSF *xcsf, double *error, double *terror, int trial);
+void perf_print(const XCSF *xcsf, double *error, double *terror, int trial);

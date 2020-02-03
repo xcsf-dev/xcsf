@@ -39,7 +39,7 @@
  * @param terror The current testing error.
  * @param trial The number of learning trials executed.
  */
-void disp_perf(const XCSF *xcsf, double *error, double *terror, int trial)
+void perf_print(const XCSF *xcsf, double *error, double *terror, int trial)
 {
     if(trial % xcsf->PERF_TRIALS == 0 && trial > 0) {
         *error /= xcsf->PERF_TRIALS;
