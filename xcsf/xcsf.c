@@ -100,10 +100,10 @@ double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _B
             xcsf->train = false;
             xcsf_trial(xcsf, pred, x, y);
             pterr += (xcsf->loss_ptr)(xcsf, pred, y);
-            disp_perf2(xcsf, &perr, &pterr, cnt);
+            disp_perf(xcsf, &perr, &pterr, cnt);
         }
         else {
-            disp_perf1(xcsf, &perr, cnt);
+            disp_perf(xcsf, &perr, NULL, cnt);
         }
     }
     free(pred);

@@ -56,7 +56,7 @@ double xcs_multi_step_exp(XCSF *xcsf)
         wperf += perf;
         tperf += perf;
         werr += error;
-        disp_perf2(xcsf, &wperf, &werr, cnt);
+        disp_perf(xcsf, &wperf, &werr, cnt);
     }
     pa_free(xcsf);
     return tperf / xcsf->MAX_TRIALS;

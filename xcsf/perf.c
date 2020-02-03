@@ -33,24 +33,13 @@
 #include "perf.h"
 
 /**
- * @brief Displays the current training performance.
- * @param xcsf The XCSF data structure.
- * @param error The current training error.
- * @param trial The number of learning trials executed.
- */
-void disp_perf1(const XCSF *xcsf, double *error, int trial)
-{
-    disp_perf2(xcsf, error, NULL, trial);
-}
-
-/**
  * @brief Displays the current training and test performance.
  * @param xcsf The XCSF data structure.
  * @param error The current training error.
  * @param terror The current testing error.
  * @param trial The number of learning trials executed.
  */
-void disp_perf2(const XCSF *xcsf, double *error, double *terror, int trial)
+void disp_perf(const XCSF *xcsf, double *error, double *terror, int trial)
 {
     if(trial % xcsf->PERF_TRIALS == 0 && trial > 0) {
         printf("%d %.5f ", trial, *error / xcsf->PERF_TRIALS);
