@@ -1,5 +1,5 @@
 # 
-#  Copyright (C) 2019 Richard Preen <rpreen@gmail.com>
+#  Copyright (C) 2019--2020 Richard Preen <rpreen@gmail.com>
 # 
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -59,15 +59,6 @@ if(NOT MSVC)
 else()
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W4")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
-endif()
-
-option(GNUPLOT "Plot performance with GNUPLOT" OFF)
-if(GNUPLOT)
-    find_package(Gnuplot REQUIRED)
-    if(GNUPLOT_FOUND)
-        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT")
-        file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/out)
-    endif()
 endif()
 
 option(PARALLEL "Parallel match set and prediction" ON)

@@ -45,7 +45,6 @@ static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore);
  */
 double xcs_multi_step_exp(XCSF *xcsf)
 {
-    gplot_init(xcsf);
     pa_init(xcsf);
     double error = 0; // prediction error: individual trial
     double werr = 0; // prediction error: windowed total
@@ -57,13 +56,8 @@ double xcs_multi_step_exp(XCSF *xcsf)
         wperf += perf;
         tperf += perf;
         werr += error;
-        if(cnt % xcsf->PERF_TRIALS == 0 && cnt > 0) {
-            disp_perf2(xcsf, wperf / xcsf->PERF_TRIALS, werr / xcsf->PERF_TRIALS, cnt);
-            wperf = 0;
-            werr = 0;
-        }
+        disp_perf2(xcsf, &wperf, &werr, cnt);
     }
-    gplot_free(xcsf);
     pa_free(xcsf);
     return tperf / xcsf->MAX_TRIALS;
 }                                

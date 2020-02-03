@@ -17,13 +17,11 @@
  * @file perf.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
- * @brief System performance printing and plotting with Gnuplot.
+ * @date 2015--2020.
+ * @brief System performance printing.
  */ 
 
 #pragma once
 
-void disp_perf1(const XCSF *xcsf, double error, int trial);
-void disp_perf2(const XCSF *xcsf, double error, double terror, int trial);
-void gplot_init(const XCSF *xcsf);
-void gplot_free(const XCSF *xcsf);
+void disp_perf1(const XCSF *xcsf, double *error, int trial);
+void disp_perf2(const XCSF *xcsf, double *error, double *terror, int trial);

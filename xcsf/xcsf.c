@@ -78,7 +78,6 @@ double xcsf_fit1(XCSF *xcsf, const INPUT *train_data, _Bool shuffle)
  */
 double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle)
 {   
-    gplot_init(xcsf);
     double perr = 0;
     double err = 0;
     double pterr = 0;
@@ -101,20 +100,13 @@ double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _B
             xcsf->train = false;
             xcsf_trial(xcsf, pred, x, y);
             pterr += (xcsf->loss_ptr)(xcsf, pred, y);
-            // display performance as necessary (training and testing)
-            if(cnt % xcsf->PERF_TRIALS == 0 && cnt > 0) {
-                disp_perf2(xcsf, perr / xcsf->PERF_TRIALS, pterr / xcsf->PERF_TRIALS, cnt);
-                perr = 0; pterr = 0;
-            }
+            disp_perf2(xcsf, &perr, &pterr, cnt);
         }
-        // display performance as necessary (training only)
-        else if(cnt % xcsf->PERF_TRIALS == 0 && cnt > 0) {
-            disp_perf1(xcsf, perr / xcsf->PERF_TRIALS, cnt);
-            perr = 0;
+        else {
+            disp_perf1(xcsf, &perr, cnt);
         }
     }
     free(pred);
-    gplot_free(xcsf);
     return err / xcsf->MAX_TRIALS;
 }
 

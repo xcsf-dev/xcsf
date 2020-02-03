@@ -74,7 +74,6 @@ See `default.ini` for a full list of options.
 
 * `XCSF_PYLIB = ON` : Python library (CMake default = OFF)
 * `PARALLEL = ON` : CPU parallelised matching, predicting, and updating with OpenMP (CMake default = ON)
-* `GNUPLOT = ON` : real-time Gnuplot of the system error; data saved in folder: `out` (CMake default = OFF)
   
 *******************************************************************************
 
@@ -85,7 +84,6 @@ See `default.ini` for a full list of options.
 * C11 compliant compiler.
 * [CMake](https://www.cmake.org "CMake") (>= 3.12)
 * [OpenMP](https://www.openmp.org "OpenMP") (Optional: PARALLEL=ON): supported by [GCC](https://gcc.gnu.org "GCC") and Clang with libomp.
-* [Gnuplot](https://www.gnuplot.info "Gnuplot") (Optional: GNUPLOT=ON)
 
 ### Python library
  
@@ -101,7 +99,7 @@ See `default.ini` for a full list of options.
 ### Ubuntu 18.04
 
 ```
-$ sudo apt install python3 libboost-python-dev libboost-numpy-dev gnuplot
+$ sudo apt install python3 libboost-python-dev libboost-numpy-dev
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON ..
@@ -111,7 +109,7 @@ $ make
 ### OSX (XCode 10.1 / Clang)
 
 ```
-$ brew install libomp cmake python boost-python3 gnuplot
+$ brew install libomp cmake python boost-python3
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON ..
