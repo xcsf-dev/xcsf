@@ -282,11 +282,9 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
 double neural_output(const XCSF *xcsf, const NET *net, int i)
 {
     if(i < net->num_outputs) {
-        const double *output = layer_output(xcsf, net->head->layer);
-        return constrain(xcsf->COND_MIN, xcsf->COND_MAX, output[i]);
+        return layer_output(xcsf, net->head->layer)[i];
     }
-    printf("neural_output(): requested (%d) in output layer of size (%d)\n",
-            i, net->num_outputs);
+    printf("neural_output(): requested (%d) in output layer of size (%d)\n", i, net->num_outputs);
     exit(EXIT_FAILURE);
 }
 
