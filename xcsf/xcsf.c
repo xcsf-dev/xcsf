@@ -48,10 +48,10 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp);
  */
 void xcsf_init(XCSF *xcsf)
 {
-    xcsf->time = 0; // number of learning trials performed
-    xcsf->msetsize = 0; // average match set size
-    xcsf->mfrac = 0; // generalisation measure
-    clset_init(&xcsf->pset); // empty population
+    xcsf->time = 0;
+    xcsf->msetsize = 0;
+    xcsf->mfrac = 0;
+    clset_init(&xcsf->pset);
 }
 
 /**

@@ -88,6 +88,7 @@ if(XCSF_PYLIB)
     message(STATUS "PYTHON_EXECUTABLE = ${PYTHON_EXECUTABLE}")
     message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
     message(STATUS "Boost_LIBRARIES = ${Boost_LIBRARIES}")
+    message(STATUS "Boost_INCLUDE_DIRS = ${Boost_INCLUDE_DIRS}")
 endif()
 
 add_subdirectory(xcsf)
