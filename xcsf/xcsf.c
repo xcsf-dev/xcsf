@@ -87,11 +87,8 @@ double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bo
             xcsf->train = false;
             xcsf_trial(xcsf, pred, x, y);
             wterr += (xcsf->loss_ptr)(xcsf, pred, y);
-            disp_perf(xcsf, &werr, &wterr, cnt);
         }
-        else {
-            disp_perf(xcsf, &werr, NULL, cnt);
-        }
+        disp_perf(xcsf, &werr, &wterr, cnt);
     }
     free(pred);
     return err / xcsf->MAX_TRIALS;
