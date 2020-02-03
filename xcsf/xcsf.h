@@ -104,7 +104,7 @@ typedef struct XCSF {
     _Bool POP_INIT; //!< Population initially empty or filled with random conditions
     int MAX_TRIALS; //!< Number of problem instances to run in one experiment
     int PERF_TRIALS; //!< Number of problem instances to average performance output
-    int POP_SIZE; //!< Maximum number of macro-classifiers in the population
+    int POP_SIZE; //!< Maximum number of micro-classifiers in the population
     int LOSS_FUNC; //!< Which loss/error function to apply
 
     // multi-step problem parameters
