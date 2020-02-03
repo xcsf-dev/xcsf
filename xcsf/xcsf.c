@@ -65,9 +65,9 @@ void xcsf_init(XCSF *xcsf)
  */
 double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle)
 {   
-    double perr = 0;
-    double err = 0;
-    double pterr = 0;
+    double err = 0; // training error: total over all trials
+    double werr = 0; // training error: windowed total
+    double wterr = 0; // testing error: windowed total
     double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         // training sample
@@ -77,7 +77,7 @@ double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bo
         xcsf->train = true;
         xcsf_trial(xcsf, pred, x, y);
         double error = (xcsf->loss_ptr)(xcsf, pred, y);
-        perr += error; 
+        werr += error;
         err += error;
         // test sample
         if(test_data != NULL) {
@@ -86,11 +86,11 @@ double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bo
             y = &test_data->y[row * test_data->y_cols];
             xcsf->train = false;
             xcsf_trial(xcsf, pred, x, y);
-            pterr += (xcsf->loss_ptr)(xcsf, pred, y);
-            disp_perf(xcsf, &perr, &pterr, cnt);
+            wterr += (xcsf->loss_ptr)(xcsf, pred, y);
+            disp_perf(xcsf, &werr, &wterr, cnt);
         }
         else {
-            disp_perf(xcsf, &perr, NULL, cnt);
+            disp_perf(xcsf, &werr, NULL, cnt);
         }
     }
     free(pred);
