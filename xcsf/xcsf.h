@@ -217,8 +217,7 @@ typedef struct INPUT {
     int rows; //!< Number of instances
 } INPUT;
 
-double xcsf_fit1(XCSF *xcsf, const INPUT *train_data, _Bool shuffle);
-double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle);
+double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle);
 double xcsf_score(XCSF *xcsf, const INPUT *test_data);
 double xcsf_version();
 size_t xcsf_load(XCSF *xcsf, const char *fname);

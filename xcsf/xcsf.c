@@ -55,19 +55,6 @@ void xcsf_init(XCSF *xcsf)
 }
 
 /**
- * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
- * training data.
- * @param xcsf The XCSF data structure.
- * @param train_data The input data to use for training.
- * @param shuffle Whether to randomise the instances during training.
- * @return The average XCSF training error using the loss function.
- */
-double xcsf_fit1(XCSF *xcsf, const INPUT *train_data, _Bool shuffle)
-{  
-    return xcsf_fit2(xcsf, train_data, NULL, shuffle);
-}
-
-/**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the training.
  * data and test iterations using the test data.
  * @param xcsf The XCSF data structure.
@@ -76,7 +63,7 @@ double xcsf_fit1(XCSF *xcsf, const INPUT *train_data, _Bool shuffle)
  * @param shuffle Whether to randomise the instances during training.
  * @return The average XCSF training error using the loss function.
  */
-double xcsf_fit2(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle)
+double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle)
 {   
     double perr = 0;
     double err = 0;

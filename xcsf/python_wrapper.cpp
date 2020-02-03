@@ -156,7 +156,7 @@ struct XCS
             clset_pop_init(&xcs);
         }
         // execute
-        return xcsf_fit1(&xcs, train_data, shuffle);
+        return xcsf_fit(&xcs, train_data, NULL, shuffle);
     }
 
     double fit(np::ndarray &train_X, np::ndarray &train_Y, 
@@ -195,7 +195,7 @@ struct XCS
             clset_pop_init(&xcs);
         }
         // execute
-        return xcsf_fit2(&xcs, train_data, test_data, shuffle);
+        return xcsf_fit(&xcs, train_data, test_data, shuffle);
     }
 
     np::ndarray predict(np::ndarray &T) {
