@@ -227,7 +227,7 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
     _Bool mod = false;
     if(rand_uniform(0,1) < xcsf->P_MUTATION) {
         // number of neurons to add or remove
-        int n = irand_uniform(1, xcsf->MAX_NEURON_MOD);
+        int n = irand_uniform(0, xcsf->MAX_NEURON_MOD + 1);
         // remove neurons
         if(rand_uniform(0,1) < 0.5) {
             if(l->num_outputs - n < 1) {
