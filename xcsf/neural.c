@@ -239,10 +239,7 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
 {
     /* reset deltas */
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        const LAYER *l = iter->layer;
-        for(int j = 0; j < l->num_outputs; j++) {
-            l->delta[j] = 0;
-        }
+        memset(iter->layer->delta, 0, iter->layer->num_outputs * sizeof(double));
     }
 
     // calculate output layer error
