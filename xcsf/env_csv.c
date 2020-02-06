@@ -52,8 +52,8 @@ void env_csv_init(XCSF *xcsf, const char *fname)
     env->test_data = malloc(sizeof(INPUT));
     env_csv_input_read(fname, env->train_data, env->test_data);
     xcsf->env = env;
-    xcsf->x_dim = env->train_data->x_cols;
-    xcsf->y_dim = env->train_data->y_cols;
+    xcsf->x_dim = env->train_data->x_dim;
+    xcsf->y_dim = env->train_data->y_dim;
     xcsf->n_actions = 1;
 }
 
@@ -85,13 +85,13 @@ static void env_csv_input_read(const char *infile, INPUT *train_data, INPUT *tes
 {
     char name[MAX_NAME];
     snprintf(name, MAX_NAME, "%s_train_x.csv", infile);
-    env_csv_read(name, &train_data->x, &train_data->rows, &train_data->x_cols);
+    env_csv_read(name, &train_data->x, &train_data->rows, &train_data->x_dim);
     snprintf(name, MAX_NAME, "%s_train_y.csv", infile);
-    env_csv_read(name, &train_data->y, &train_data->rows, &train_data->y_cols);
+    env_csv_read(name, &train_data->y, &train_data->rows, &train_data->y_dim);
     snprintf(name, MAX_NAME, "%s_test_x.csv", infile);
-    env_csv_read(name, &test_data->x, &test_data->rows, &test_data->x_cols);
+    env_csv_read(name, &test_data->x, &test_data->rows, &test_data->x_dim);
     snprintf(name, MAX_NAME, "%s_test_y.csv", infile);
-    env_csv_read(name, &test_data->y, &test_data->rows, &test_data->y_cols);
+    env_csv_read(name, &test_data->y, &test_data->rows, &test_data->y_dim);
 }
 
 /**

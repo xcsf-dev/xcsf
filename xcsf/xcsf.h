@@ -212,8 +212,8 @@ typedef struct XCSF {
 typedef struct INPUT {
     double *x; //!< Feature variables
     double *y; //!< Target variables
-    int x_cols; //!< Number of feature variables
-    int y_cols; //!< Number of target variables
+    int x_dim; //!< Number of feature variables
+    int y_dim; //!< Number of target variables
     int rows; //!< Number of instances
 } INPUT;
 

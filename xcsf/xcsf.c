@@ -72,8 +72,8 @@ double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bo
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         // training sample
         int row = xcsf_select_sample(train_data, cnt, shuffle);
-        const double *x = &train_data->x[row * train_data->x_cols];
-        const double *y = &train_data->y[row * train_data->y_cols];
+        const double *x = &train_data->x[row * train_data->x_dim];
+        const double *y = &train_data->y[row * train_data->y_dim];
         xcsf->train = true;
         xcsf_trial(xcsf, pred, x, y);
         double error = (xcsf->loss_ptr)(xcsf, pred, y);
@@ -82,8 +82,8 @@ double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bo
         // test sample
         if(test_data != NULL) {
             row = xcsf_select_sample(test_data, cnt, shuffle);
-            x = &test_data->x[row * test_data->x_cols];
-            y = &test_data->y[row * test_data->y_cols];
+            x = &test_data->x[row * test_data->x_dim];
+            y = &test_data->y[row * test_data->y_dim];
             xcsf->train = false;
             xcsf_trial(xcsf, pred, x, y);
             wterr += (xcsf->loss_ptr)(xcsf, pred, y);
@@ -159,8 +159,8 @@ double xcsf_score(XCSF *xcsf, const INPUT *test_data)
     double err = 0;
     double *pred = malloc(sizeof(double) * xcsf->y_dim);
     for(int row = 0; row < test_data->rows; row++) {
-        const double *x = &test_data->x[row * test_data->x_cols];
-        const double *y = &test_data->y[row * test_data->y_cols];
+        const double *x = &test_data->x[row * test_data->x_dim];
+        const double *y = &test_data->y[row * test_data->y_dim];
         xcsf_trial(xcsf, pred, x, y);
         err += (xcsf->loss_ptr)(xcsf, pred, y);
     }

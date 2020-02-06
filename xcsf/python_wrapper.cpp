@@ -97,14 +97,14 @@ struct XCS
         action = 0;
         train_data = (INPUT*)malloc(sizeof(INPUT));
         train_data->rows = 0;
-        train_data->x_cols = 0;
-        train_data->y_cols = 0;
+        train_data->x_dim = 0;
+        train_data->y_dim = 0;
         train_data->x = NULL;
         train_data->y = NULL;
         test_data = (INPUT*)malloc(sizeof(INPUT));
         test_data->rows = 0;
-        test_data->x_cols = 0;
-        test_data->y_cols = 0;
+        test_data->x_dim = 0;
+        test_data->y_dim = 0;
         test_data->x = NULL;
         test_data->y = NULL;
     }
@@ -147,8 +147,8 @@ struct XCS
         }
         // load training data
         train_data->rows = train_X.shape(0);
-        train_data->x_cols = train_X.shape(1);
-        train_data->y_cols = train_Y.shape(1);
+        train_data->x_dim = train_X.shape(1);
+        train_data->y_dim = train_Y.shape(1);
         train_data->x = reinterpret_cast<double*>(train_X.get_data());
         train_data->y = reinterpret_cast<double*>(train_Y.get_data());
         // first execution
@@ -180,14 +180,14 @@ struct XCS
         }
         // load training data
         train_data->rows = train_X.shape(0);
-        train_data->x_cols = train_X.shape(1);
-        train_data->y_cols = train_Y.shape(1);
+        train_data->x_dim = train_X.shape(1);
+        train_data->y_dim = train_Y.shape(1);
         train_data->x = reinterpret_cast<double*>(train_X.get_data());
         train_data->y = reinterpret_cast<double*>(train_Y.get_data());
         // load testing data
         test_data->rows = test_X.shape(0);
-        test_data->x_cols = test_X.shape(1);
-        test_data->y_cols = test_Y.shape(1);
+        test_data->x_dim = test_X.shape(1);
+        test_data->y_dim = test_Y.shape(1);
         test_data->x = reinterpret_cast<double*>(test_X.get_data());
         test_data->y = reinterpret_cast<double*>(test_Y.get_data());
         // first execution
@@ -219,8 +219,8 @@ struct XCS
             exit(EXIT_FAILURE);
         }
         test_data->rows = test_X.shape(0);
-        test_data->x_cols = test_X.shape(1);
-        test_data->y_cols = test_Y.shape(1);
+        test_data->x_dim = test_X.shape(1);
+        test_data->y_dim = test_Y.shape(1);
         test_data->x = reinterpret_cast<double*>(test_X.get_data());
         test_data->y = reinterpret_cast<double*>(test_Y.get_data());
         return xcsf_score(&xcs, test_data);
