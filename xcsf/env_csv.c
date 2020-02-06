@@ -54,7 +54,7 @@ void env_csv_init(XCSF *xcsf, const char *fname)
     xcsf->env = env;
     xcsf->x_dim = env->train_data->x_cols;
     xcsf->y_dim = env->train_data->y_cols;
-    xcsf->num_actions = 1;
+    xcsf->n_actions = 1;
 }
 
 /**

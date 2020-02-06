@@ -60,11 +60,11 @@ struct XCS
     /**
      * @brief Constructor for single-step reinforcement learning.
      */
-    XCS(int x_dim, int num_actions, _Bool multistep) {
+    XCS(int x_dim, int n_actions, _Bool multistep) {
         (void)multistep; // not yet implemented for python
         xcs.x_dim = x_dim;
         xcs.y_dim = 1;
-        xcs.num_actions = num_actions;
+        xcs.n_actions = n_actions;
         xcs_init("default.ini");
         pa_init(&xcs);
         xcs_single_init(&xcs);
@@ -82,7 +82,7 @@ struct XCS
     XCS(int x_dim, int y_dim, const char *filename) {
         xcs.x_dim = x_dim;
         xcs.y_dim = y_dim;
-        xcs.num_actions = 1;
+        xcs.n_actions = 1;
         xcs_init(filename);
     }
 
@@ -334,7 +334,7 @@ struct XCS
     int get_time() { return xcs.time; }
     double get_x_dim() { return xcs.x_dim; }
     double get_y_dim() { return xcs.y_dim; }
-    double get_num_actions() { return xcs.num_actions; }
+    double get_n_actions() { return xcs.n_actions; }
     double get_pop_mean_mu(int m) { return clset_mean_mut(&xcs, &xcs.pset, m); }
     double get_pop_mean_cond_size() { return clset_mean_cond_size(&xcs, &xcs.pset); }
     double get_pop_mean_pred_size() { return clset_mean_pred_size(&xcs, &xcs.pset); }
@@ -552,7 +552,7 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("time", &XCS::get_time)
         .def("x_dim", &XCS::get_x_dim)
         .def("y_dim", &XCS::get_y_dim)
-        .def("num_actions", &XCS::get_num_actions)
+        .def("n_actions", &XCS::get_n_actions)
         .def("pop_mean_mu", &XCS::get_pop_mean_mu)
         .def("pop_mean_cond_size", &XCS::get_pop_mean_cond_size)
         .def("pop_mean_pred_size", &XCS::get_pop_mean_pred_size)

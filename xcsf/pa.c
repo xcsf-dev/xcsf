@@ -36,8 +36,8 @@
  */
 void pa_init(XCSF *xcsf)
 {
-    xcsf->pa = malloc(sizeof(double) * xcsf->num_actions);
-    xcsf->nr = malloc(sizeof(double) * xcsf->num_actions);
+    xcsf->pa = malloc(sizeof(double) * xcsf->n_actions);
+    xcsf->nr = malloc(sizeof(double) * xcsf->n_actions);
 }
 
 /**
@@ -47,7 +47,7 @@ void pa_init(XCSF *xcsf)
  */
 void pa_build(const XCSF *xcsf, const double *x)
 {
-    for(int i = 0; i < xcsf->num_actions; i++) {
+    for(int i = 0; i < xcsf->n_actions; i++) {
         xcsf->pa[i] = 0;
         xcsf->nr[i] = 0;
     }
@@ -56,7 +56,7 @@ void pa_build(const XCSF *xcsf, const double *x)
         xcsf->pa[iter->cl->action] += predictions[0] * iter->cl->fit;
         xcsf->nr[iter->cl->action] += iter->cl->fit;
     }
-    for(int i = 0; i < xcsf->num_actions; i++) {
+    for(int i = 0; i < xcsf->n_actions; i++) {
         if(xcsf->nr[i] != 0) {
             xcsf->pa[i] /= xcsf->nr[i];
         }
@@ -74,7 +74,7 @@ void pa_build(const XCSF *xcsf, const double *x)
 int pa_best_action(const XCSF *xcsf)
 {
     int action = 0;
-    for(int i = 1; i < xcsf->num_actions; i++) {
+    for(int i = 1; i < xcsf->n_actions; i++) {
         if(xcsf->pa[action] < xcsf->pa[i]) {
             action = i;
         }
@@ -91,7 +91,7 @@ int pa_rand_action(const XCSF *xcsf)
 {
     int action = 0;
     do {
-        action = irand_uniform(0, xcsf->num_actions);
+        action = irand_uniform(0, xcsf->n_actions);
     } while(xcsf->nr[action] == 0);
     return action;
 }
@@ -104,7 +104,7 @@ int pa_rand_action(const XCSF *xcsf)
 double pa_best_val(const XCSF *xcsf)
 {
     double max = xcsf->pa[0];
-    for(int i = 1; i < xcsf->num_actions; i++) {
+    for(int i = 1; i < xcsf->n_actions; i++) {
         if(max < xcsf->pa[i]) {
             max = xcsf->pa[i];
         }
@@ -120,7 +120,7 @@ double pa_best_val(const XCSF *xcsf)
  */
 double pa_val(const XCSF *xcsf, int action)
 {
-    if(action >= 0 && action < xcsf->num_actions) {
+    if(action >= 0 && action < xcsf->n_actions) {
         return xcsf->pa[action];
     }
     printf("pa_val() error: invalid action specified: %d\n", action);

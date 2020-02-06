@@ -76,7 +76,7 @@ void rule_neural_cond_init(const XCSF *xcsf, CL *c)
     // output layer
     int f = xcsf->COND_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    int n = fmax(1, ceil(log2(xcsf->num_actions))); // number of action neurons
+    int n = fmax(1, ceil(log2(xcsf->n_actions))); // number of action neurons
     new->n_outputs = n;
     l = neural_layer_connected_init(xcsf, n_inputs, n+1, n+1, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, i);
@@ -183,7 +183,7 @@ size_t rule_neural_cond_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
     size_t s = neural_load(xcsf, &new->net, fp);
-    new->n_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
+    new->n_outputs = fmax(1, ceil(log2(xcsf->n_actions)));
     c->cond = new;
     return s;
 }
@@ -233,7 +233,7 @@ int rule_neural_act_compute(const XCSF *xcsf, const CL *c, const double *x)
             action += pow(2,i);
         }
     }
-    action = iconstrain(0, xcsf->num_actions-1, action);
+    action = iconstrain(0, xcsf->n_actions-1, action);
     return action;
 }                
 

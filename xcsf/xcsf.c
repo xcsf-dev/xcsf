@@ -313,7 +313,7 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->train, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->y_dim, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->num_actions, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->n_actions, sizeof(int), 1, fp);
     s += fwrite(&xcsf->GP_NUM_CONS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->GP_INIT_DEPTH, sizeof(int), 1, fp);
     s += fwrite(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
@@ -401,7 +401,7 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->train, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->y_dim, sizeof(int), 1, fp);
-    s += fread(&xcsf->num_actions, sizeof(int), 1, fp);
+    s += fread(&xcsf->n_actions, sizeof(int), 1, fp);
     s += fread(&xcsf->GP_NUM_CONS, sizeof(int), 1, fp);
     s += fread(&xcsf->GP_INIT_DEPTH, sizeof(int), 1, fp);
     free(xcsf->gp_cons); // always malloced on start

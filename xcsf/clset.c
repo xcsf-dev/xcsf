@@ -183,7 +183,7 @@ void clset_pop_enforce_limit(XCSF *xcsf)
  */
 void clset_match(XCSF *xcsf, const double *x)
 {
-    _Bool *act_covered = calloc(xcsf->num_actions, sizeof(_Bool));
+    _Bool *act_covered = calloc(xcsf->n_actions, sizeof(_Bool));
 #ifdef PARALLEL_MATCH
     // prepare for parallel processing of matching conditions
     CLIST *blist[xcsf->pset.size];
@@ -235,7 +235,7 @@ static void clset_cover(XCSF *xcsf, const double *x, _Bool *act_covered)
     _Bool again;
     do {
         again = false;
-        for(int i = 0; i < xcsf->num_actions; i++) {
+        for(int i = 0; i < xcsf->n_actions; i++) {
             if(!act_covered[i]) {
                 // new classifier with matching condition and action
                 CL *new = malloc(sizeof(CL));
@@ -256,7 +256,7 @@ static void clset_cover(XCSF *xcsf, const double *x, _Bool *act_covered)
             // if the deleted classifier was in the match set,
             // check if an action is now not covered
             if(prev_msize > xcsf->mset.size) {
-                for(int i = 0; i < xcsf->num_actions; i++) {
+                for(int i = 0; i < xcsf->n_actions; i++) {
                     if(!clset_action_covered(xcsf, i)) {
                         act_covered[i] = false;
                         again = true;
