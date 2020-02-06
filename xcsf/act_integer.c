@@ -131,7 +131,7 @@ size_t act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
-    ACT_INTEGER *act = c->act;
+    const ACT_INTEGER *act = c->act;
     s += fwrite(&act->action, sizeof(int), 1, fp);
     s += fwrite(act->mu, sizeof(double), N_MU, fp);
     return s;

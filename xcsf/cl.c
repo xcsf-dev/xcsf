@@ -361,7 +361,7 @@ _Bool cl_general(const XCSF *xcsf, const CL *c1, const CL *c2)
  * @param c The classifier being mutated.
  * @return Whether any alterations were made.
  */
-_Bool cl_mutate(XCSF *xcsf, const CL *c)
+_Bool cl_mutate(const XCSF *xcsf, const CL *c)
 {
     _Bool cm = cond_mutate(xcsf, c);
     _Bool pm = pred_mutate(xcsf, c);
