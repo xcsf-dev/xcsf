@@ -79,31 +79,31 @@ void env_csv_free(const XCSF *xcsf)
  * @param train_data The data structure to load the training data.
  * @param test_data The data structure to load the testing data.
  *
- * @details Expects an identical number of x and y rows.
+ * @details Expects an identical number of x and y samples.
  */
 static void env_csv_input_read(const char *infile, INPUT *train_data, INPUT *test_data)
 {
     char name[MAX_NAME];
     snprintf(name, MAX_NAME, "%s_train_x.csv", infile);
-    env_csv_read(name, &train_data->x, &train_data->rows, &train_data->x_dim);
+    env_csv_read(name, &train_data->x, &train_data->n_samples, &train_data->x_dim);
     snprintf(name, MAX_NAME, "%s_train_y.csv", infile);
-    env_csv_read(name, &train_data->y, &train_data->rows, &train_data->y_dim);
+    env_csv_read(name, &train_data->y, &train_data->n_samples, &train_data->y_dim);
     snprintf(name, MAX_NAME, "%s_test_x.csv", infile);
-    env_csv_read(name, &test_data->x, &test_data->rows, &test_data->x_dim);
+    env_csv_read(name, &test_data->x, &test_data->n_samples, &test_data->x_dim);
     snprintf(name, MAX_NAME, "%s_test_y.csv", infile);
-    env_csv_read(name, &test_data->y, &test_data->rows, &test_data->y_dim);
+    env_csv_read(name, &test_data->y, &test_data->n_samples, &test_data->y_dim);
 }
 
 /**
  * @brief Parses a specified csv file.
  * @param fname The name of the csv file to read.
  * @param data The data structure to load the data (set by this function).
- * @param num_rows The number of rows in the dataset (set by this function).
- * @param num_cols The number of columns in the dataset (set by this function).
+ * @param n_samples The number of samples in the dataset (set by this function).
+ * @param dim The number of dimensions in the dataset (set by this function).
  *
- * @details Provided a file name will set the data, num_rows, and num_cols.
+ * @details Provided a file name will set the data, n_samples, and dim.
  */
-static void env_csv_read(const char *fname, double **data, int *num_rows, int *num_cols)
+static void env_csv_read(const char *fname, double **data, int *n_samples, int *dim)
 {
     FILE *fin = fopen(fname, "rt");
     if(fin == 0) {
@@ -111,38 +111,38 @@ static void env_csv_read(const char *fname, double **data, int *num_rows, int *n
         exit(EXIT_FAILURE);
     }    
     // ascertain the file length and number of variables per line
-    *num_rows = 0;
-    *num_cols = 0;
+    *n_samples = 0;
+    *dim = 0;
     char line[MAX_COLS];
     char *saveptr;
     while(fgets(line, MAX_COLS, fin) != NULL) {
-        if(*num_rows > MAX_ROWS) {
+        if(*n_samples > MAX_ROWS) {
             printf("data file %s is too big; maximum: %d\n", fname, MAX_ROWS);
             exit(EXIT_FAILURE);
         }        
         // use the first line to count the number of variables on a line
-        if(*num_rows == 0) {
+        if(*n_samples == 0) {
             const char *ptok = strtok_r(line, DELIM, &saveptr);
             while(ptok != NULL) {
                 if(strnlen(ptok,MAX_COLS) > 0) {
-                    (*num_cols)++;
+                    (*dim)++;
                 }
                 ptok = strtok_r(NULL, DELIM, &saveptr);
             }
         }
-        (*num_rows)++; // count the number of lines
+        (*n_samples)++; // count the number of lines
     }
     // read data file to memory
     rewind(fin);
-    *data = malloc(sizeof(double) * (*num_cols) * (*num_rows));
+    *data = malloc(sizeof(double) * (*dim) * (*n_samples));
     for(int i = 0; fgets(line,MAX_COLS,fin) != NULL; i++) {
-        (*data)[i * (*num_cols)] = atof(strtok_r(line, DELIM, &saveptr));
-        for(int j = 1; j < *num_cols; j++) {
-            (*data)[i * (*num_cols)+j] = atof(strtok_r(NULL, DELIM, &saveptr));
+        (*data)[i * (*dim)] = atof(strtok_r(line, DELIM, &saveptr));
+        for(int j = 1; j < *dim; j++) {
+            (*data)[i * (*dim)+j] = atof(strtok_r(NULL, DELIM, &saveptr));
         }
     }
     fclose(fin);
-    printf("Loaded: %s: %d rows, %d cols\n", fname, *num_rows, *num_cols);
+    printf("Loaded: %s: %d samples, %d dimensions\n", fname, *n_samples, *dim);
 }
 
 void env_csv_reset(const XCSF *xcsf)

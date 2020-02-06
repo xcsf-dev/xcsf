@@ -104,10 +104,10 @@ double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bo
 static int xcsf_select_sample(const INPUT *data, int cnt, _Bool shuffle)
 {
     if(shuffle) {
-        return irand_uniform(0, data->rows);
+        return irand_uniform(0, data->n_samples);
     }
     else {
-        return (cnt % data->rows + data->rows) % data->rows;
+        return (cnt % data->n_samples + data->n_samples) % data->n_samples;
     }
 }
 
@@ -137,12 +137,12 @@ static void xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double *
  * @param xcsf The XCSF data structure.
  * @param x The input feature variables.
  * @param pred The calculated XCSF predictions (set by this function).
- * @param rows The number of instances.
+ * @param n_samples The number of instances.
  */
-void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int rows)
+void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int n_samples)
 {   
     xcsf->train = false;
-    for(int row = 0; row < rows; row++) {
+    for(int row = 0; row < n_samples; row++) {
         xcsf_trial(xcsf, &pred[row * xcsf->y_dim], &x[row * xcsf->x_dim], NULL);
     }
 }
@@ -158,14 +158,14 @@ double xcsf_score(XCSF *xcsf, const INPUT *test_data)
     xcsf->train = false;
     double err = 0;
     double *pred = malloc(sizeof(double) * xcsf->y_dim);
-    for(int row = 0; row < test_data->rows; row++) {
+    for(int row = 0; row < test_data->n_samples; row++) {
         const double *x = &test_data->x[row * test_data->x_dim];
         const double *y = &test_data->y[row * test_data->y_dim];
         xcsf_trial(xcsf, pred, x, y);
         err += (xcsf->loss_ptr)(xcsf, pred, y);
     }
     free(pred);
-    return err/(double)test_data->rows;
+    return err / test_data->n_samples;
 }
 
 /**

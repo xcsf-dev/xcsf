@@ -96,13 +96,13 @@ struct XCS
         state = NULL;
         action = 0;
         train_data = (INPUT*)malloc(sizeof(INPUT));
-        train_data->rows = 0;
+        train_data->n_samples = 0;
         train_data->x_dim = 0;
         train_data->y_dim = 0;
         train_data->x = NULL;
         train_data->y = NULL;
         test_data = (INPUT*)malloc(sizeof(INPUT));
-        test_data->rows = 0;
+        test_data->n_samples = 0;
         test_data->x_dim = 0;
         test_data->y_dim = 0;
         test_data->x = NULL;
@@ -142,11 +142,11 @@ struct XCS
     double fit(np::ndarray &train_X, np::ndarray &train_Y, _Bool shuffle) {
         // check inputs are correctly sized
         if(train_X.shape(0) != train_Y.shape(0)) {
-            printf("error: training X and Y rows are not equal\n");
+            printf("error: training X and Y n_samples are not equal\n");
             exit(EXIT_FAILURE);
         }
         // load training data
-        train_data->rows = train_X.shape(0);
+        train_data->n_samples = train_X.shape(0);
         train_data->x_dim = train_X.shape(1);
         train_data->y_dim = train_Y.shape(1);
         train_data->x = reinterpret_cast<double*>(train_X.get_data());
@@ -163,11 +163,11 @@ struct XCS
             np::ndarray &test_X, np::ndarray &test_Y, _Bool shuffle) {
         // check inputs are correctly sized
         if(train_X.shape(0) != train_Y.shape(0)) {
-            printf("error: training X and Y rows are not equal\n");
+            printf("error: training X and Y n_samples are not equal\n");
             exit(EXIT_FAILURE);
         }
         if(test_X.shape(0) != test_Y.shape(0)) {
-            printf("error: testing X and Y rows are not equal\n");
+            printf("error: testing X and Y n_samples are not equal\n");
             exit(EXIT_FAILURE);
         }
         if(train_X.shape(1) != test_X.shape(1)) {
@@ -179,13 +179,13 @@ struct XCS
             exit(EXIT_FAILURE);
         }
         // load training data
-        train_data->rows = train_X.shape(0);
+        train_data->n_samples = train_X.shape(0);
         train_data->x_dim = train_X.shape(1);
         train_data->y_dim = train_Y.shape(1);
         train_data->x = reinterpret_cast<double*>(train_X.get_data());
         train_data->y = reinterpret_cast<double*>(train_Y.get_data());
         // load testing data
-        test_data->rows = test_X.shape(0);
+        test_data->n_samples = test_X.shape(0);
         test_data->x_dim = test_X.shape(1);
         test_data->y_dim = test_Y.shape(1);
         test_data->x = reinterpret_cast<double*>(test_X.get_data());
@@ -201,13 +201,13 @@ struct XCS
     np::ndarray predict(np::ndarray &T) {
         // inputs to predict
         double *input = reinterpret_cast<double*>(T.get_data());
-        int rows = T.shape(0);
+        int n_samples = T.shape(0);
         // predicted outputs
-        double *output = (double *) malloc(sizeof(double) * rows * xcs.y_dim);
-        xcsf_predict(&xcs, input, output, rows);
+        double *output = (double *) malloc(sizeof(double) * n_samples * xcs.y_dim);
+        xcsf_predict(&xcs, input, output, n_samples);
         // return numpy array
         np::ndarray result = np::from_data(output, np::dtype::get_builtin<double>(),
-                p::make_tuple(rows, xcs.y_dim), 
+                p::make_tuple(n_samples, xcs.y_dim), 
                 p::make_tuple(sizeof(double)*xcs.y_dim, sizeof(double)), p::object());
         return result;
     }
@@ -215,10 +215,10 @@ struct XCS
     double score(np::ndarray &test_X, np::ndarray &test_Y) {
         // check inputs are correctly sized
         if(test_X.shape(0) != test_Y.shape(0)) {
-            printf("error: X and Y rows are not equal\n");
+            printf("error: X and Y n_samples are not equal\n");
             exit(EXIT_FAILURE);
         }
-        test_data->rows = test_X.shape(0);
+        test_data->n_samples = test_X.shape(0);
         test_data->x_dim = test_X.shape(1);
         test_data->y_dim = test_Y.shape(1);
         test_data->x = reinterpret_cast<double*>(test_X.get_data());

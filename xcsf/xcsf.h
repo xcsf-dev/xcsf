@@ -214,7 +214,7 @@ typedef struct INPUT {
     double *y; //!< Target variables
     int x_dim; //!< Number of feature variables
     int y_dim; //!< Number of target variables
-    int rows; //!< Number of instances
+    int n_samples; //!< Number of instances
 } INPUT;
 
 double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle);
@@ -223,5 +223,5 @@ double xcsf_version();
 size_t xcsf_load(XCSF *xcsf, const char *fname);
 size_t xcsf_save(const XCSF *xcsf, const char *fname);
 void xcsf_init(XCSF *xcsf);
-void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int rows);
+void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int n_samples);
 void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);
