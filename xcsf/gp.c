@@ -277,7 +277,6 @@ void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
  * @brief Performs point mutation on a GP tree.
  * @param xcsf The XCSF data structure.
  * @param gp The GP tree to be mutated.
- * @param rate The per allele rate of mutation.
  */
 _Bool tree_mutate(const XCSF *xcsf, GP_TREE *gp)
 {   
