@@ -38,10 +38,10 @@
 double loss_mae(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
-    for(int i = 0; i < xcsf->num_y_vars; i++) {
+    for(int i = 0; i < xcsf->y_dim; i++) {
         error += fabs(y[i] - pred[i]);
     }
-    error /= (double)xcsf->num_y_vars;
+    error /= (double)xcsf->y_dim;
     return error;
 }
  
@@ -55,10 +55,10 @@ double loss_mae(const XCSF *xcsf, const double *pred, const double *y)
 double loss_mse(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
-    for(int i = 0; i < xcsf->num_y_vars; i++) {
+    for(int i = 0; i < xcsf->y_dim; i++) {
         error += (y[i] - pred[i]) * (y[i] - pred[i]);
     }
-    error /= (double)xcsf->num_y_vars;
+    error /= (double)xcsf->y_dim;
     return error;
 }
 
@@ -87,7 +87,7 @@ double loss_rmse(const XCSF *xcsf, const double *pred, const double *y)
 double loss_log(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
-    for(int i = 0; i < xcsf->num_y_vars; i++) {
+    for(int i = 0; i < xcsf->y_dim; i++) {
         error += y[i] * log(fmax(pred[i], 1e-15));
     }
     return -error;
@@ -103,7 +103,7 @@ double loss_log(const XCSF *xcsf, const double *pred, const double *y)
 double loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
-    for(int i = 0; i < xcsf->num_y_vars; i++) {
+    for(int i = 0; i < xcsf->y_dim; i++) {
         error += y[i] * log(fmax(pred[i], 1e-15)) +
             (1-y[i]) * log(fmax((1-pred[i]), 1e-15));
     }
@@ -120,7 +120,7 @@ double loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
 double loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
 {
     int p = 0;
-    for(int i = 1; i < xcsf->num_y_vars; i++) {
+    for(int i = 1; i < xcsf->y_dim; i++) {
         if(pred[i] > pred[p]) {
             p = i;
         }

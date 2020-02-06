@@ -60,10 +60,10 @@ struct XCS
     /**
      * @brief Constructor for single-step reinforcement learning.
      */
-    XCS(int num_x_vars, int num_actions, _Bool multistep) {
+    XCS(int x_dim, int num_actions, _Bool multistep) {
         (void)multistep; // not yet implemented for python
-        xcs.num_x_vars = num_x_vars;
-        xcs.num_y_vars = 1;
+        xcs.x_dim = x_dim;
+        xcs.y_dim = 1;
         xcs.num_actions = num_actions;
         xcs_init("default.ini");
         pa_init(&xcs);
@@ -73,15 +73,15 @@ struct XCS
     /**
      * @brief Constructor for supervised learning with default config.
      */
-    XCS(int num_x_vars, int num_y_vars) :
-        XCS(num_x_vars, num_y_vars, "default.ini") {}
+    XCS(int x_dim, int y_dim) :
+        XCS(x_dim, y_dim, "default.ini") {}
 
     /**
      * @brief Constructor for supervised learning with a specified config.
      */
-    XCS(int num_x_vars, int num_y_vars, const char *filename) {
-        xcs.num_x_vars = num_x_vars;
-        xcs.num_y_vars = num_y_vars;
+    XCS(int x_dim, int y_dim, const char *filename) {
+        xcs.x_dim = x_dim;
+        xcs.y_dim = y_dim;
         xcs.num_actions = 1;
         xcs_init(filename);
     }
@@ -203,12 +203,12 @@ struct XCS
         double *input = reinterpret_cast<double*>(T.get_data());
         int rows = T.shape(0);
         // predicted outputs
-        double *output = (double *) malloc(sizeof(double) * rows * xcs.num_y_vars);
+        double *output = (double *) malloc(sizeof(double) * rows * xcs.y_dim);
         xcsf_predict(&xcs, input, output, rows);
         // return numpy array
         np::ndarray result = np::from_data(output, np::dtype::get_builtin<double>(),
-                p::make_tuple(rows, xcs.num_y_vars), 
-                p::make_tuple(sizeof(double)*xcs.num_y_vars, sizeof(double)), p::object());
+                p::make_tuple(rows, xcs.y_dim), 
+                p::make_tuple(sizeof(double)*xcs.y_dim, sizeof(double)), p::object());
         return result;
     }
 
@@ -332,8 +332,8 @@ struct XCS
     int get_pop_size() { return xcs.pset.size; }
     int get_pop_num() { return xcs.pset.num; }
     int get_time() { return xcs.time; }
-    double get_num_x_vars() { return xcs.num_x_vars; }
-    double get_num_y_vars() { return xcs.num_y_vars; }
+    double get_x_dim() { return xcs.x_dim; }
+    double get_y_dim() { return xcs.y_dim; }
     double get_num_actions() { return xcs.num_actions; }
     double get_pop_mean_mu(int m) { return clset_mean_mut(&xcs, &xcs.pset, m); }
     double get_pop_mean_cond_size() { return clset_mean_cond_size(&xcs, &xcs.pset); }
@@ -550,8 +550,8 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("pop_size", &XCS::get_pop_size)
         .def("pop_num", &XCS::get_pop_num)
         .def("time", &XCS::get_time)
-        .def("num_x_vars", &XCS::get_num_x_vars)
-        .def("num_y_vars", &XCS::get_num_y_vars)
+        .def("x_dim", &XCS::get_x_dim)
+        .def("y_dim", &XCS::get_y_dim)
         .def("num_actions", &XCS::get_num_actions)
         .def("pop_mean_mu", &XCS::get_pop_mean_mu)
         .def("pop_mean_cond_size", &XCS::get_pop_mean_cond_size)

@@ -53,7 +53,7 @@ void cl_init(const XCSF *xcsf, CL *c, int size, int time)
     c->exp = 0;
     c->size = size;
     c->time = time;
-    c->prediction = calloc(xcsf->num_y_vars, sizeof(double));
+    c->prediction = calloc(xcsf->y_dim, sizeof(double));
     c->action = 0;
     c->m = false;
     c->age = 0;
@@ -463,7 +463,7 @@ size_t cl_save(const XCSF *xcsf, const CL *c, FILE *fp)
     s += fwrite(&c->m, sizeof(_Bool), 1, fp);
     s += fwrite(&c->age, sizeof(int), 1, fp);
     s += fwrite(&c->mtotal, sizeof(int), 1, fp);
-    s += fwrite(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
+    s += fwrite(c->prediction, sizeof(double), xcsf->y_dim, fp);
     s += fwrite(&c->action, sizeof(int), 1, fp);
     s += act_save(xcsf, c, fp);
     s += pred_save(xcsf, c, fp);
@@ -492,8 +492,8 @@ size_t cl_load(const XCSF *xcsf, CL *c, FILE *fp)
     s += fread(&c->m, sizeof(_Bool), 1, fp);
     s += fread(&c->age, sizeof(int), 1, fp);
     s += fread(&c->mtotal, sizeof(int), 1, fp);
-    c->prediction = malloc(xcsf->num_y_vars * sizeof(double));
-    s += fread(c->prediction, sizeof(double), xcsf->num_y_vars, fp);
+    c->prediction = malloc(xcsf->y_dim * sizeof(double));
+    s += fread(c->prediction, sizeof(double), xcsf->y_dim, fp);
     s += fread(&c->action, sizeof(int), 1, fp);
     action_set(xcsf, c);
     prediction_set(xcsf, c);

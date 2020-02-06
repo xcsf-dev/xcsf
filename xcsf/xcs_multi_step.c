@@ -76,7 +76,7 @@ static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
     _Bool reset = false; 
     double prev_reward = 0;
     double prev_pred = 0;
-    double *prev_state = malloc(sizeof(double) * xcsf->num_x_vars);
+    double *prev_state = malloc(sizeof(double) * xcsf->x_dim);
     clset_init(&xcsf->prev_aset);
     clset_init(&xcsf->kset);
     *error = 0;
@@ -115,7 +115,7 @@ static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
         xcsf->prev_aset = xcsf->aset;
         prev_reward = reward;
         prev_pred = pa_val(xcsf, action);
-        memcpy(prev_state, state, sizeof(double) * xcsf->num_x_vars);
+        memcpy(prev_state, state, sizeof(double) * xcsf->x_dim);
     }
     clset_free(&xcsf->prev_aset);
     clset_kill(xcsf, &xcsf->kset);

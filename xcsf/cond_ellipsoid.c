@@ -45,9 +45,9 @@ static double cond_ellipsoid_dist(const XCSF *xcsf, const CL *c, const double *x
 void cond_ellipsoid_init(const XCSF *xcsf, CL *c)
 {
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
-    new->center = malloc(sizeof(double) * xcsf->num_x_vars);
-    new->spread = malloc(sizeof(double) * xcsf->num_x_vars);
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    new->center = malloc(sizeof(double) * xcsf->x_dim);
+    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    for(int i = 0; i < xcsf->x_dim; i++) {
         new->center[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
         new->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
     }
@@ -67,17 +67,17 @@ void cond_ellipsoid_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
     const COND_ELLIPSOID *from_cond = from->cond;
-    new->center = malloc(sizeof(double) * xcsf->num_x_vars);
-    new->spread = malloc(sizeof(double) * xcsf->num_x_vars);
-    memcpy(new->center, from_cond->center, sizeof(double) * xcsf->num_x_vars);
-    memcpy(new->spread, from_cond->spread, sizeof(double) * xcsf->num_x_vars);
+    new->center = malloc(sizeof(double) * xcsf->x_dim);
+    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    memcpy(new->center, from_cond->center, sizeof(double) * xcsf->x_dim);
+    memcpy(new->spread, from_cond->spread, sizeof(double) * xcsf->x_dim);
     to->cond = new;
 }                             
 
 void cond_ellipsoid_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_ELLIPSOID *cond = c->cond;
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->x_dim; i++) {
         cond->center[i] = x[i];
         cond->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
     }
@@ -88,7 +88,7 @@ void cond_ellipsoid_update(const XCSF *xcsf, const CL *c, const double *x, const
     (void)y;
     if(xcsf->COND_ETA > 0) {
         const COND_ELLIPSOID *cond = c->cond;
-        for(int i = 0; i < xcsf->num_x_vars; i++) {
+        for(int i = 0; i < xcsf->x_dim; i++) {
             cond->center[i] += xcsf->COND_ETA * (x[i] - cond->center[i]);
         }
     }
@@ -108,7 +108,7 @@ static double cond_ellipsoid_dist(const XCSF *xcsf, const CL *c, const double *x
 {
     const COND_ELLIPSOID *cond = c->cond;
     double dist = 0;
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->x_dim; i++) {
         double d = (x[i] - cond->center[i]) / cond->spread[i];
         dist += d*d; // squared distance
     }
@@ -121,7 +121,7 @@ _Bool cond_ellipsoid_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
     const COND_ELLIPSOID *cond2 = c2->cond;
     _Bool changed = false;
     if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
-        for(int i = 0; i < xcsf->num_x_vars; i++) {
+        for(int i = 0; i < xcsf->x_dim; i++) {
             if(rand_uniform(0,1) < 0.5) {
                 double tmp = cond1->center[i];
                 cond1->center[i] = cond2->center[i];
@@ -143,7 +143,7 @@ _Bool cond_ellipsoid_mutate(const XCSF *xcsf, const CL *c)
 {
     const COND_ELLIPSOID *cond = c->cond;
     _Bool changed = false;
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->x_dim; i++) {
         // centers
         double orig = cond->center[i];
         cond->center[i] += rand_normal(0, xcsf->S_MUTATION);
@@ -166,7 +166,7 @@ _Bool cond_ellipsoid_general(const XCSF *xcsf, const CL *c1, const CL *c2)
     // returns whether cond1 is more general than cond2
     const COND_ELLIPSOID *cond1 = c1->cond;
     const COND_ELLIPSOID *cond2 = c2->cond;
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->x_dim; i++) {
         double l1 = cond1->center[i] - cond1->spread[i];
         double l2 = cond2->center[i] - cond2->spread[i];
         double u1 = cond1->center[i] + cond1->spread[i];
@@ -182,7 +182,7 @@ void cond_ellipsoid_print(const XCSF *xcsf, const CL *c)
 {
     const COND_ELLIPSOID *cond = c->cond;
     printf("ellipsoid:");
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->x_dim; i++) {
         printf(" (%5f, ", cond->center[i]);
         printf("%5f)", cond->spread[i]);
     }
@@ -192,15 +192,15 @@ void cond_ellipsoid_print(const XCSF *xcsf, const CL *c)
 int cond_ellipsoid_size(const XCSF *xcsf, const CL *c)
 {
     (void)c;
-    return xcsf->num_x_vars;
+    return xcsf->x_dim;
 }
 
 size_t cond_ellipsoid_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     size_t s = 0;
     const COND_ELLIPSOID *cond = c->cond;
-    s += fwrite(cond->center, sizeof(double), xcsf->num_x_vars, fp);
-    s += fwrite(cond->spread, sizeof(double), xcsf->num_x_vars, fp);
+    s += fwrite(cond->center, sizeof(double), xcsf->x_dim, fp);
+    s += fwrite(cond->spread, sizeof(double), xcsf->x_dim, fp);
     return s;
 }
 
@@ -208,10 +208,10 @@ size_t cond_ellipsoid_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
-    new->center = malloc(sizeof(double) * xcsf->num_x_vars);
-    new->spread = malloc(sizeof(double) * xcsf->num_x_vars);
-    s += fread(new->center, sizeof(double), xcsf->num_x_vars, fp);
-    s += fread(new->spread, sizeof(double), xcsf->num_x_vars, fp);
+    new->center = malloc(sizeof(double) * xcsf->x_dim);
+    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    s += fread(new->center, sizeof(double), xcsf->x_dim, fp);
+    s += fread(new->spread, sizeof(double), xcsf->x_dim, fp);
     c->cond = new;
     return s;
 }

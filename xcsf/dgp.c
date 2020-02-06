@@ -118,7 +118,7 @@ void graph_rand(const XCSF *xcsf, GRAPH *dgp)
         }
         // external inputs
         else {
-            dgp->connectivity[i] = -(irand_uniform(1,xcsf->num_x_vars+1));
+            dgp->connectivity[i] = -(irand_uniform(1,xcsf->x_dim+1));
         }
     }
 }
@@ -217,7 +217,7 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
                 orig = dgp->connectivity[idx];
                 // external connection
                 if(rand_uniform(0,1) < 0.5) {
-                    dgp->connectivity[idx] = -(irand_uniform(1,xcsf->num_x_vars+1));
+                    dgp->connectivity[idx] = -(irand_uniform(1,xcsf->x_dim+1));
                 }
                 // another node
                 else {

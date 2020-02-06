@@ -57,7 +57,7 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     uint32_t lopt = pred_neural_lopt(xcsf);
     LAYER *l;
     int i = 0;
-    int n_inputs = xcsf->num_x_vars;
+    int n_inputs = xcsf->x_dim;
     while(i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0) {
         int hinit = xcsf->PRED_NUM_NEURONS[i];
         int hmax = xcsf->PRED_MAX_NEURONS[i];
@@ -73,7 +73,7 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     // output layer
     int f = xcsf->PRED_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    l = neural_layer_connected_init(xcsf, n_inputs, xcsf->num_y_vars, xcsf->num_y_vars, f, lopt);
+    l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, i);
     c->pred = new;
 }
@@ -126,7 +126,7 @@ const double *pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x
 {
     const PRED_NEURAL *pred = c->pred;
     neural_propagate(xcsf, &pred->net, x);
-    for(int i = 0; i < xcsf->num_y_vars; i++) {
+    for(int i = 0; i < xcsf->y_dim; i++) {
         c->prediction[i] = neural_output(xcsf, &pred->net, i);
     }
     return c->prediction;

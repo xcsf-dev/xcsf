@@ -68,7 +68,7 @@ double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bo
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
     double wterr = 0; // testing error: windowed total
-    double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
+    double *pred = malloc(sizeof(double) * xcsf->y_dim);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         // training sample
         int row = xcsf_select_sample(train_data, cnt, shuffle);
@@ -143,7 +143,7 @@ void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int rows)
 {   
     xcsf->train = false;
     for(int row = 0; row < rows; row++) {
-        xcsf_trial(xcsf, &pred[row * xcsf->num_y_vars], &x[row * xcsf->num_x_vars], NULL);
+        xcsf_trial(xcsf, &pred[row * xcsf->y_dim], &x[row * xcsf->x_dim], NULL);
     }
 }
 
@@ -157,7 +157,7 @@ double xcsf_score(XCSF *xcsf, const INPUT *test_data)
 {
     xcsf->train = false;
     double err = 0;
-    double *pred = malloc(sizeof(double) * xcsf->num_y_vars);
+    double *pred = malloc(sizeof(double) * xcsf->y_dim);
     for(int row = 0; row < test_data->rows; row++) {
         const double *x = &test_data->x[row * test_data->x_cols];
         const double *y = &test_data->y[row * test_data->y_cols];
@@ -311,8 +311,8 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->THETA_SUB, sizeof(int), 1, fp);
     s += fwrite(&xcsf->train, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->num_x_vars, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->num_y_vars, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->x_dim, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->num_actions, sizeof(int), 1, fp);
     s += fwrite(&xcsf->GP_NUM_CONS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->GP_INIT_DEPTH, sizeof(int), 1, fp);
@@ -399,8 +399,8 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->THETA_SUB, sizeof(int), 1, fp);
     s += fread(&xcsf->train, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->num_x_vars, sizeof(int), 1, fp);
-    s += fread(&xcsf->num_y_vars, sizeof(int), 1, fp);
+    s += fread(&xcsf->x_dim, sizeof(int), 1, fp);
+    s += fread(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->num_actions, sizeof(int), 1, fp);
     s += fread(&xcsf->GP_NUM_CONS, sizeof(int), 1, fp);
     s += fread(&xcsf->GP_INIT_DEPTH, sizeof(int), 1, fp);

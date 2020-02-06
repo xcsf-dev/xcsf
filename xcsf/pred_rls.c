@@ -56,18 +56,18 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
     // set length of weights
     if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
         // offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
-        pred->weights_length = 1 + 2 * xcsf->num_x_vars + 
-            xcsf->num_x_vars * (xcsf->num_x_vars - 1) / 2;
+        pred->weights_length = 1 + 2 * xcsf->x_dim + 
+            xcsf->x_dim * (xcsf->x_dim - 1) / 2;
     }
     else {
-        pred->weights_length = xcsf->num_x_vars + 1;
+        pred->weights_length = xcsf->x_dim + 1;
     }
     // initialise weights
-    pred->weights = malloc(sizeof(double*) * xcsf->num_y_vars);
-    for(int var = 0; var < xcsf->num_y_vars; var++) {
+    pred->weights = malloc(sizeof(double*) * xcsf->y_dim);
+    for(int var = 0; var < xcsf->y_dim; var++) {
         pred->weights[var] = malloc(sizeof(double)*pred->weights_length);
     }
-    for(int var = 0; var < xcsf->num_y_vars; var++) {
+    for(int var = 0; var < xcsf->y_dim; var++) {
         pred->weights[var][0] = xcsf->PRED_X0;
         for(int i = 1; i < pred->weights_length; i++) {
             pred->weights[var][i] = 0;
@@ -103,7 +103,7 @@ void pred_rls_copy(const XCSF *xcsf, CL *to, const CL *from)
     pred_rls_init(xcsf, to);
     const PRED_RLS *to_pred = to->pred;
     const PRED_RLS *from_pred = from->pred;
-    for(int var = 0; var < xcsf->num_y_vars; var++) {
+    for(int var = 0; var < xcsf->y_dim; var++) {
         memcpy(to_pred->weights[var], from_pred->weights[var], 
                 sizeof(double)*from_pred->weights_length);
     }
@@ -112,7 +112,7 @@ void pred_rls_copy(const XCSF *xcsf, CL *to, const CL *from)
 void pred_rls_free(const XCSF *xcsf, const CL *c)
 {
     PRED_RLS *pred = c->pred;
-    for(int var = 0; var < xcsf->num_y_vars; var++) {
+    for(int var = 0; var < xcsf->y_dim; var++) {
         free(pred->weights[var]);
     }
     free(pred->weights);
@@ -131,13 +131,13 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     pred->tmp_input[0] = xcsf->PRED_X0;
     int index = 1;
     // linear terms
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->x_dim; i++) {
         pred->tmp_input[index++] = x[i];
     }
     // quadratic terms
     if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
-        for(int i = 0; i < xcsf->num_x_vars; i++) {
-            for(int j = i; j < xcsf->num_x_vars; j++) {
+        for(int i = 0; i < xcsf->x_dim; i++) {
+            for(int j = i; j < xcsf->x_dim; j++) {
                 pred->tmp_input[index++] = x[i] * x[j];
             }
         }
@@ -154,7 +154,7 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     }
     // update weights using the error
     // prediction must have been computed for the current state
-    for(int var = 0; var < xcsf->num_y_vars; var++) {
+    for(int var = 0; var < xcsf->y_dim; var++) {
         double error = y[var] - c->prediction[var];
         for(int i = 0; i < n; i++) {
             pred->weights[var][i] += error * pred->tmp_vec[i];
@@ -184,18 +184,18 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
 const double *pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     const PRED_RLS *pred = c->pred;
-    for(int var = 0; var < xcsf->num_y_vars; var++) {
+    for(int var = 0; var < xcsf->y_dim; var++) {
         // first coefficient is offset
         double pre = xcsf->PRED_X0 * pred->weights[var][0];
         int index = 1;
         // multiply linear coefficients with the prediction input
-        for(int i = 0; i < xcsf->num_x_vars; i++) {
+        for(int i = 0; i < xcsf->x_dim; i++) {
             pre += pred->weights[var][index++] * x[i];
         }
         if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
             // multiply quadratic coefficients with prediction input
-            for(int i = 0; i < xcsf->num_x_vars; i++) {
-                for(int j = i; j < xcsf->num_x_vars; j++) {
+            for(int i = 0; i < xcsf->x_dim; i++) {
+                for(int j = i; j < xcsf->x_dim; j++) {
                     pre += pred->weights[var][index++] * x[i] * x[j];
                 }
             }
@@ -209,7 +209,7 @@ void pred_rls_print(const XCSF *xcsf, const CL *c)
 {
     const PRED_RLS *pred = c->pred;
     printf("RLS weights: ");
-    for(int var = 0; var < xcsf->num_y_vars; var++) {
+    for(int var = 0; var < xcsf->y_dim; var++) {
         for(int i = 0; i < pred->weights_length; i++) {
             printf("%f, ", pred->weights[var][i]);
         }
@@ -263,7 +263,7 @@ size_t pred_rls_save(const XCSF *xcsf, const CL *c, FILE *fp)
     const PRED_RLS *pred = c->pred;
     size_t s = 0;
     s += fwrite(&pred->weights_length, sizeof(int), 1, fp);
-    for(int var = 0; var < xcsf->num_y_vars; var++) {
+    for(int var = 0; var < xcsf->y_dim; var++) {
         s += fwrite(pred->weights[var], sizeof(double), pred->weights_length, fp);
     }
     int len_sqrd = pred->weights_length * pred->weights_length;
@@ -277,7 +277,7 @@ size_t pred_rls_load(const XCSF *xcsf, CL *c, FILE *fp)
     PRED_RLS *pred = c->pred;
     size_t s = 0;
     s += fread(&pred->weights_length, sizeof(int), 1, fp);
-    for(int var = 0; var < xcsf->num_y_vars; var++) {
+    for(int var = 0; var < xcsf->y_dim; var++) {
         s += fread(pred->weights[var], sizeof(double), pred->weights_length, fp);
     }
     int len_sqrd = pred->weights_length * pred->weights_length;

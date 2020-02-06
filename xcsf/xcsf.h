@@ -200,8 +200,8 @@ typedef struct XCSF {
     // set by environment
     int stage; //!< Current stage of training
     _Bool train; //!< Training or test mode
-    int num_x_vars; //!< Number of problem input variables
-    int num_y_vars; //!< Number of problem output variables
+    int x_dim; //!< Number of problem input variables
+    int y_dim; //!< Number of problem output variables
     int num_actions; //!< Number of class labels / actions
     double (*loss_ptr)(const struct XCSF*, const double*, const double*); //!< Error function
 } XCSF;                  

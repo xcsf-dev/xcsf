@@ -115,7 +115,7 @@ static int tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth)
     }
     // add constant or external input
     if(prim == 0 || depth == 0) {
-        prim = irand_uniform(GP_NUM_FUNC, GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->num_x_vars);
+        prim = irand_uniform(GP_NUM_FUNC, GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
         buffer[p] = prim;
         return (p+1);
     }
@@ -283,7 +283,7 @@ void tree_mutate(const XCSF *xcsf, const GP_TREE *gp, double rate)
             // terminals randomly replaced with other terminals
             if(gp->tree[i] >= GP_NUM_FUNC) {
                 gp->tree[i] = irand_uniform(GP_NUM_FUNC, 
-                        GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->num_x_vars);
+                        GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
             }
             // functions randomly replaced with other functions
             else {

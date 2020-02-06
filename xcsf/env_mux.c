@@ -66,8 +66,8 @@ void env_mux_init(XCSF *xcsf, int bits)
     int n = env->pos_bits + pow(2, env->pos_bits);
     env->state = malloc(sizeof(double) * n);
     xcsf->num_actions = 2;
-    xcsf->num_x_vars = n;
-    xcsf->num_y_vars = 1;
+    xcsf->x_dim = n;
+    xcsf->y_dim = 1;
     xcsf->env = env;
 }
 
@@ -90,7 +90,7 @@ void env_mux_free(const XCSF *xcsf)
 const double *env_mux_get_state(const XCSF *xcsf)
 {
     const ENV_MUX *env = xcsf->env;
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->x_dim; i++) {
         env->state[i] = rand_uniform(0,1);
     }
     return env->state;

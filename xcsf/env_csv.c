@@ -52,8 +52,8 @@ void env_csv_init(XCSF *xcsf, const char *fname)
     env->test_data = malloc(sizeof(INPUT));
     env_csv_input_read(fname, env->train_data, env->test_data);
     xcsf->env = env;
-    xcsf->num_x_vars = env->train_data->x_cols;
-    xcsf->num_y_vars = env->train_data->y_cols;
+    xcsf->x_dim = env->train_data->x_cols;
+    xcsf->y_dim = env->train_data->y_cols;
     xcsf->num_actions = 1;
 }
 

@@ -49,7 +49,7 @@ static void cond_ternary_rand(const XCSF *xcsf, const CL *c);
 void cond_ternary_init(const XCSF *xcsf, CL *c)
 {
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
-    new->len = xcsf->num_x_vars * xcsf->COND_BITS;
+    new->len = xcsf->x_dim * xcsf->COND_BITS;
     new->string = malloc(sizeof(char) * new->len);
     c->cond = new;     
     cond_ternary_rand(xcsf, c);
@@ -97,7 +97,7 @@ void cond_ternary_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_TERNARY *cond = c->cond;
     char state[xcsf->COND_BITS];
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->x_dim; i++) {
         float_to_binary(x[i], state, xcsf->COND_BITS);
         for(int b = 0; b < xcsf->COND_BITS; b++) {
             if(rand_uniform(0,1) < P_DONTCARE) {
@@ -119,7 +119,7 @@ _Bool cond_ternary_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_TERNARY *cond = c->cond;
     char state[xcsf->COND_BITS];
-    for(int i = 0; i < xcsf->num_x_vars; i++) {
+    for(int i = 0; i < xcsf->x_dim; i++) {
         float_to_binary(x[i], state, xcsf->COND_BITS);
         for(int b = 0; b < xcsf->COND_BITS; b++) {
             char s = cond->string[i*xcsf->COND_BITS+b];
