@@ -30,55 +30,41 @@
 #include "utils.h"
 #include "sam.h"
 
-static void sam_log_normal_init(const XCSF *xcsf, double **mu);
-static void sam_log_normal_adapt(const XCSF *xcsf, double *mu);
-
-#define NUM_RATES 10 //!< number of selectable mutation rates for rate selection adaptation
-static const double mrates[NUM_RATES] = {0.0001,0.001,0.002,0.005,0.01,0.01,0.02,0.05,0.1,1.0}; 
-static void sam_rate_selection_init(const XCSF *xcsf, double **mu);
-static void sam_rate_selection_adapt(const XCSF *xcsf, double *mu);
-
-/**
- * @brief Initialises a classifier's self-adaptive mutation rates.
- * @param xcsf The XCSF data structure.
- * @param mu The classifier's mutation rates.
- */
-void sam_init(const XCSF *xcsf, double **mu)
-{
-    if(xcsf->SAM_NUM > 0) {
-        *mu = malloc(sizeof(double) * xcsf->SAM_NUM);
-        sam_reset(xcsf, mu);
-    }
-}
+#define N_RATES 10 //!< number of selectable mutation rates for rate selection adaptation
+static const double mrates[N_RATES] = {0.0001,0.001,0.002,0.005,0.01,0.01,0.02,0.05,0.1,1.0};
+static void sam_rate_selection_init(double *mu, int n);
+static void sam_rate_selection_adapt(double *mu, int n);
+static void sam_log_normal_init(double *mu, int n);
+static void sam_log_normal_adapt(double *mu, int n);
 
 /**
- * @brief Resets a classifier's self-adaptive mutation rates.
+ * @brief Initialises self-adaptive mutation rates.
  * @param xcsf The XCSF data structure.
  * @param mu The classifier's mutation rates.
+ * @param n The number of mutation rates.
  */
-void sam_reset(const XCSF *xcsf, double **mu)
-{
-    if(xcsf->SAM_NUM > 0) {
-        switch(xcsf->SAM_TYPE) {
-            case SAM_LOG_NORMAL: sam_log_normal_init(xcsf, mu); break;
-            case SAM_RATE_SELECT: sam_rate_selection_init(xcsf, mu); break;
-            default:
-                printf("sam_reset(): invalid sam function: %d\n", xcsf->SAM_TYPE);
-                exit(EXIT_FAILURE);
-        }
-    }
-}
-
-/**
- * @brief Self-adapts a classifier's mutation rates.
- * @param xcsf The XCSF data structure.
- * @param mu The classifier's mutation rates.
- */
-void sam_adapt(const XCSF *xcsf, double *mu)
+void sam_init(const XCSF *xcsf, double *mu, int n)
 {
     switch(xcsf->SAM_TYPE) {
-        case SAM_LOG_NORMAL: sam_log_normal_adapt(xcsf, mu); break;
-        case SAM_RATE_SELECT: sam_rate_selection_adapt(xcsf, mu); break;
+        case SAM_LOG_NORMAL: sam_log_normal_init(mu, n); break;
+        case SAM_RATE_SELECT: sam_rate_selection_init(mu, n); break;
+        default:
+            printf("sam_reset(): invalid sam function: %d\n", xcsf->SAM_TYPE);
+            exit(EXIT_FAILURE);
+    }
+}
+
+/**
+ * @brief Self-adapts mutation rates.
+ * @param xcsf The XCSF data structure.
+ * @param mu The classifier's mutation rates.
+ * @param n The number of mutation rates.
+ */
+void sam_adapt(const XCSF *xcsf, double *mu, int n)
+{
+    switch(xcsf->SAM_TYPE) {
+        case SAM_LOG_NORMAL: sam_log_normal_adapt(mu, n); break;
+        case SAM_RATE_SELECT: sam_rate_selection_adapt(mu, n); break;
         default:
             printf("sam_adapt(): invalid sam function: %d\n", xcsf->SAM_TYPE);
             exit(EXIT_FAILURE);
@@ -86,98 +72,53 @@ void sam_adapt(const XCSF *xcsf, double *mu)
 }
 
 /**
- * @brief Copies self-adaptive mutation rates.
- * @param xcsf The XCSF data structure.
- * @param to Destination mutation rates.
- * @param from Source mutation rates.
- */
-void sam_copy(const XCSF *xcsf, double *to, const double *from)
-{
-    if(xcsf->SAM_NUM > 0) {
-        memcpy(to, from, sizeof(double) * xcsf->SAM_NUM);
-    }
-}
-
-/**
- * @brief Frees the self-adaptive mutation rates.
- * @param xcsf The XCSF data structure.
- * @param mu The mutation rates to free.
- */
-void sam_free(const XCSF *xcsf, double *mu)
-{
-    if(xcsf->SAM_NUM > 0) {
-        free(mu);
-    }
-}
-
-/**
- * @brief Prints the self-adaptive mutation rates.
- * @param xcsf The XCSF data structure.
- * @param mu The mutation rates to print.
- */
-void sam_print(const XCSF *xcsf, const double *mu)
-{
-    if(xcsf->SAM_NUM > 0) {
-        for(int i = 0; i < xcsf->SAM_NUM; i++) {
-            printf(", mu%d=%f", i, mu[i]);
-        }
-    }
-}
-
-/**
  * @brief Initialises log normal self-adaptive mutation rates.
- * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to initialise.
+ * @param n The number of mutation rates.
  */
-static void sam_log_normal_init(const XCSF *xcsf, double **mu)
+static void sam_log_normal_init(double *mu, int n)
 {
-    for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        (*mu)[i] = rand_uniform(0,1);
+    for(int i = 0; i < n; i++) {
+        mu[i] = rand_uniform(0,1);
     }
 }
 
 /**
  * @brief Performs log normal self-adaptation.
- * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to adapt.
+ * @param n The number of mutation rates.
  */
-static void sam_log_normal_adapt(const XCSF *xcsf, double *mu)
+static void sam_log_normal_adapt(double *mu, int n)
 {
-    for(int i = 0; i < xcsf->SAM_NUM; i++) {
+    for(int i = 0; i < n; i++) {
         mu[i] *= exp(rand_normal(0,1));
-        if(mu[i] < xcsf->SAM_MIN) {
-            mu[i] = xcsf->SAM_MIN;
-        }
-        else if(mu[i] > 1) {
-            mu[i] = 1;
-        }
+        mu[i] = constrain(0.0001, 1, mu[i]);
     }
 }
 
 /**
  * @brief Initialises rate selection self-adaptive mutation.
- * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to initialise.
+ * @param n The number of mutation rates.
  */
-static void sam_rate_selection_init(const XCSF *xcsf, double **mu)
+static void sam_rate_selection_init(double *mu, int n)
 {
-    for(int i = 0; i < xcsf->SAM_NUM; i++) {
-        (*mu)[i] = mrates[irand_uniform(0,NUM_RATES)];
+    for(int i = 0; i < n; i++) {
+        mu[i] = mrates[irand_uniform(0,N_RATES)];
     }
 }
 
 /**
  * @brief Performs self-adaptation via a rate selection mechanism.
- * @param xcsf The XCSF data structure.
  * @param mu The mutation rates to adapt.
- *
+ * @param n The number of mutation rates.
  * @details With 10% probability, randomly selects one of the possible rates.
  */
-static void sam_rate_selection_adapt(const XCSF *xcsf, double *mu)
+static void sam_rate_selection_adapt(double *mu, int n)
 {
-    for(int i = 0; i < xcsf->SAM_NUM; i++) {
+    for(int i = 0; i < n; i++) {
         if(rand_uniform(0,1) < 0.1) {
-            mu[i] = mrates[irand_uniform(0,NUM_RATES)];
+            mu[i] = mrates[irand_uniform(0,N_RATES)];
         }
     }
 }

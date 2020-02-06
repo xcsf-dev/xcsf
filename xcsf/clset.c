@@ -629,35 +629,6 @@ size_t clset_pop_load(XCSF *xcsf, FILE *fp)
 }
 
 /**
- * @brief Calculates the mean mutation rate of classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean mutation rate.
- * @param m Which mutation rate to average.
- * @return The mean mutation rate of classifiers in the set.
- */ 
-double clset_mean_mut(const XCSF *xcsf, const SET *set, int m)
-{
-    // return the fixed value if not adapted
-    if(m >= xcsf->SAM_NUM) {
-        switch(m) {
-            case 0: return xcsf->S_MUTATION;
-            case 1: return xcsf->P_MUTATION;
-            case 2: return xcsf->E_MUTATION;
-            case 3: return xcsf->F_MUTATION;
-            default: return -1;
-        }
-    }
-    // return the average classifier mutation rate
-    double sum = 0;
-    int cnt = 0;
-    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        sum += cl_mutation_rate(xcsf, iter->cl, m);
-        cnt++;
-    }
-    return sum / cnt;
-}
-
-/**
  * @brief Calculates the mean condition size of classifiers in the set.
  * @param xcsf The XCSF data structure.
  * @param set The set to calculate the mean condition size.

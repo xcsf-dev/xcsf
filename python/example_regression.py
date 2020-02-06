@@ -115,8 +115,8 @@ for i in range(n):
     # test
     test_mse[i] = xcs.score(X_test, y_test)
     # update status
-    status = ("trials=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f smut=%.4f pmut=%.4f emut=%.4f fmut=%.4f"
-        % (trials[i], train_mse[i], test_mse[i], psize[i], msize[i], xcs.pop_mean_mu(0), xcs.pop_mean_mu(1), xcs.pop_mean_mu(2), xcs.pop_mean_mu(3)))
+    status = ("trials=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f"
+        % (trials[i], train_mse[i], test_mse[i], psize[i], msize[i]))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)

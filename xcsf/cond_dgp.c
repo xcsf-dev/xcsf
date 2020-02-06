@@ -28,6 +28,7 @@
 #include <math.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "sam.h"
 #include "dgp.h"
 #include "cl.h"
 #include "condition.h"
@@ -91,9 +92,7 @@ _Bool cond_dgp_match(const XCSF *xcsf, const CL *c, const double *x)
     if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }            
 
 _Bool cond_dgp_mutate(const XCSF *xcsf, const CL *c)

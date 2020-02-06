@@ -51,7 +51,7 @@ xcs = xcsf.XCS(features, classes, False)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
-xcs.POP_SIZE = 500
+xcs.POP_SIZE = 1000
 xcs.PERF_TRIALS = 1000
 xcs.EPS_0 = 0.01 # target error
 xcs.COND_TYPE = 1 # hyperrectangles
@@ -101,9 +101,8 @@ for i in range(n):
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
     # update status
-    status = ("trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f smut=%.4f pmut=%.4f emut=%.4f fmut=%.4f"
-            % (trials[i], performance[i], error[i], psize[i], msize[i],
-                xcs.pop_mean_mu(0), xcs.pop_mean_mu(1), xcs.pop_mean_mu(2), xcs.pop_mean_mu(3)))
+    status = ("trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f"
+            % (trials[i], performance[i], error[i], psize[i], msize[i]))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)

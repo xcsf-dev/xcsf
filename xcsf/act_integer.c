@@ -27,9 +27,20 @@
 #include <stdbool.h>
 #include "xcsf.h"       
 #include "utils.h"
+#include "sam.h"
 #include "action.h"
 #include "act_integer.h"
  
+#define N_MU 1 //!< Number of integer action mutation rates
+
+/**
+ * @brief Integer action data structure.
+ */
+typedef struct ACT_INTEGER {
+    int action; //!< Integer action
+    double mu[N_MU]; //!< Mutation rates
+} ACT_INTEGER;
+
 _Bool act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
@@ -39,9 +50,9 @@ _Bool act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 _Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf;
-    const int *act1 = c1->act;
-    const int *act2 = c2->act;
-    if(*act1 != *act2) {
+    const ACT_INTEGER *act1 = c1->act;
+    const ACT_INTEGER *act2 = c2->act;
+    if(act1->action != act2->action) {
         return false;
     }
     return true;
@@ -49,11 +60,11 @@ _Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 _Bool act_integer_mutate(const XCSF *xcsf, const CL *c)
 {
-    if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-        int *act = c->act;
-        int old = *act;
-        *act = irand_uniform(0, xcsf->n_actions);
-        if(old != *act) {
+    ACT_INTEGER *act = c->act;
+    if(rand_uniform(0,1) < act->mu[0]) {
+        int old = act->action;
+        act->action = irand_uniform(0, xcsf->n_actions);
+        if(old != act->action) {
             return true;
         }
     }
@@ -63,37 +74,38 @@ _Bool act_integer_mutate(const XCSF *xcsf, const CL *c)
 int act_integer_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     (void)xcsf; (void)x;
-    const int *act = c->act;
-    return *act;
+    const ACT_INTEGER *act = c->act;
+    return act->action;
 }
 
 void act_integer_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     (void)xcsf;
-    int *new = malloc(sizeof(int));
-    const int *from_act = from->act;
-    *new = *from_act;
+    ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
+    const ACT_INTEGER *from_act = from->act;
+    new->action = from_act->action;
+    memcpy(new->mu, from_act->mu, N_MU * sizeof(double));
     to->act = new;
 }
 
 void act_integer_print(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
-    const int *act = c->act;
-    printf("%d\n", *act);
+    const ACT_INTEGER *act = c->act;
+    printf("%d\n", act->action);
 }
 
 void act_integer_rand(const XCSF *xcsf, const CL *c)
 {
-    int *act = c->act;
-    *act = irand_uniform(0, xcsf->n_actions);
+    ACT_INTEGER *act = c->act;
+    act->action = irand_uniform(0, xcsf->n_actions);
 }
  
 void act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int action)
 {
     (void)xcsf; (void)x;
-    int *act = c->act;
-    *act = action;
+    ACT_INTEGER *act = c->act;
+    act->action = action;
 }
 
 void act_integer_free(const XCSF *xcsf, const CL *c)
@@ -104,7 +116,8 @@ void act_integer_free(const XCSF *xcsf, const CL *c)
 
 void act_integer_init(const XCSF *xcsf, CL *c)
 {
-    int *new = malloc(sizeof(int));
+    ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
+    sam_init(xcsf, new->mu, N_MU);
     c->act = new;
     act_integer_rand(xcsf, c);
 }
@@ -117,16 +130,20 @@ void act_integer_update(const XCSF *xcsf, const CL *c, const double *x, const do
 size_t act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf;
-    const int *act = c->act;
-    size_t s = fwrite(act, sizeof(int), 1, fp);
+    size_t s = 0;
+    ACT_INTEGER *act = c->act;
+    s += fwrite(&act->action, sizeof(int), 1, fp);
+    s += fwrite(act->mu, sizeof(double), N_MU, fp);
     return s;
 }
 
 size_t act_integer_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf;
-    int *new = malloc(sizeof(int));
-    size_t s = fread(new, sizeof(int), 1, fp);
+    size_t s = 0;
+    ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
+    s += fread(&new->action, sizeof(int), 1, fp);
+    s += fread(new->mu, sizeof(double), N_MU, fp);
     c->act = new;
     return s;
 }

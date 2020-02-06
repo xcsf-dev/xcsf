@@ -285,16 +285,10 @@ struct XCS
     int get_cond_type() { return xcs.COND_TYPE; }
     int get_pred_type() { return xcs.PRED_TYPE; }
     double get_p_crossover() { return xcs.P_CROSSOVER; }
-    double get_p_mutation() { return xcs.P_MUTATION; }
-    double get_f_mutation() { return xcs.F_MUTATION; }
-    double get_e_mutation() { return xcs.E_MUTATION; }
-    double get_s_mutation() { return xcs.S_MUTATION; }
     double get_theta_ea() { return xcs.THETA_EA; }
     int get_lambda() { return xcs.LAMBDA; }
     int get_ea_select_type() { return xcs.EA_SELECT_TYPE; }
     double get_ea_select_size() { return xcs.EA_SELECT_SIZE; }
-    double get_sam_min() { return xcs.SAM_MIN; }
-    int get_sam_num() { return xcs.SAM_NUM; }
     int get_sam_type() { return xcs.SAM_TYPE; }
     double get_max_con() { return xcs.COND_MAX; }
     double get_min_con() { return xcs.COND_MIN; }
@@ -335,7 +329,6 @@ struct XCS
     double get_x_dim() { return xcs.x_dim; }
     double get_y_dim() { return xcs.y_dim; }
     double get_n_actions() { return xcs.n_actions; }
-    double get_pop_mean_mu(int m) { return clset_mean_mut(&xcs, &xcs.pset, m); }
     double get_pop_mean_cond_size() { return clset_mean_cond_size(&xcs, &xcs.pset); }
     double get_pop_mean_pred_size() { return clset_mean_pred_size(&xcs, &xcs.pset); }
     double get_pop_mean_pred_eta(int layer) { return clset_mean_eta(&xcs, &xcs.pset, layer); }
@@ -404,16 +397,10 @@ struct XCS
     void set_cond_type(int a) { xcs.COND_TYPE = a; }
     void set_pred_type(int a) { xcs.PRED_TYPE = a; }
     void set_p_crossover(double a) { xcs.P_CROSSOVER = a; }
-    void set_p_mutation(double a) { xcs.P_MUTATION = a; }
-    void set_f_mutation(double a) { xcs.F_MUTATION = a; }
-    void set_e_mutation(double a) { xcs.E_MUTATION = a; }
-    void set_s_mutation(double a) { xcs.S_MUTATION = a; }
     void set_theta_ea(double a) { xcs.THETA_EA = a; }
     void set_lambda(int a) { xcs.LAMBDA = a; }
     void set_ea_select_type(int a) { xcs.EA_SELECT_TYPE = a; }
     void set_ea_select_size(double a) { xcs.EA_SELECT_SIZE = a; }
-    void set_sam_min(double a) { xcs.SAM_MIN = a; }
-    void set_sam_num(int a) { xcs.SAM_NUM = a; }
     void set_sam_type(int a) { xcs.SAM_TYPE = a; }
     void set_max_con(double a) { xcs.COND_MAX = a; }
     void set_min_con(double a) { xcs.COND_MIN = a; }
@@ -496,16 +483,10 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("COND_TYPE", &XCS::get_cond_type, &XCS::set_cond_type)
         .add_property("PRED_TYPE", &XCS::get_pred_type, &XCS::set_pred_type)
         .add_property("P_CROSSOVER", &XCS::get_p_crossover, &XCS::set_p_crossover)
-        .add_property("P_MUTATION", &XCS::get_p_mutation, &XCS::set_p_mutation)
-        .add_property("F_MUTATION", &XCS::get_f_mutation, &XCS::set_f_mutation)
-        .add_property("E_MUTATION", &XCS::get_e_mutation, &XCS::set_e_mutation)
-        .add_property("S_MUTATION", &XCS::get_s_mutation, &XCS::set_s_mutation)
         .add_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea)
         .add_property("LAMBDA", &XCS::get_lambda, &XCS::set_lambda)
         .add_property("EA_SELECT_TYPE", &XCS::get_ea_select_type, &XCS::set_ea_select_type)
         .add_property("EA_SELECT_SIZE", &XCS::get_ea_select_size, &XCS::set_ea_select_size)
-        .add_property("SAM_MIN", &XCS::get_sam_min, &XCS::set_sam_min)
-        .add_property("SAM_NUM", &XCS::get_sam_num, &XCS::set_sam_num)
         .add_property("SAM_TYPE", &XCS::get_sam_type, &XCS::set_sam_type)
         .add_property("COND_MAX", &XCS::get_max_con, &XCS::set_max_con)
         .add_property("COND_MIN", &XCS::get_min_con, &XCS::set_min_con)
@@ -553,7 +534,6 @@ BOOST_PYTHON_MODULE(xcsf)
         .def("x_dim", &XCS::get_x_dim)
         .def("y_dim", &XCS::get_y_dim)
         .def("n_actions", &XCS::get_n_actions)
-        .def("pop_mean_mu", &XCS::get_pop_mean_mu)
         .def("pop_mean_cond_size", &XCS::get_pop_mean_cond_size)
         .def("pop_mean_pred_size", &XCS::get_pop_mean_pred_size)
         .def("pop_mean_pred_eta", &XCS::get_pop_mean_pred_eta)

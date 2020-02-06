@@ -26,9 +26,5 @@
 #define SAM_LOG_NORMAL 0 //!< Log normal self-adaptation
 #define SAM_RATE_SELECT 1 //!< Ten normally distributed rates
 
-void sam_adapt(const XCSF *xcsf, double *mu);       
-void sam_copy(const XCSF *xcsf, double *to, const double *from);
-void sam_free(const XCSF *xcsf, double *mu);
-void sam_init(const XCSF *xcsf, double **mu);
-void sam_print(const XCSF *xcsf, const double *mu);
-void sam_reset(const XCSF *xcsf, double **mu);
+void sam_adapt(const XCSF *xcsf, double *mu, int n);
+void sam_init(const XCSF *xcsf, double *mu, int n);

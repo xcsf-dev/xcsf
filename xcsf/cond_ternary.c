@@ -29,10 +29,12 @@
 #include <math.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "sam.h"
 #include "cl.h"
 #include "condition.h"
 #include "cond_ternary.h"
 
+#define N_MU 1 //!< Number of ternary mutation rates
 #define P_DONTCARE 0.5 //!< Don't care probability in randomisation and covering
 #define DONT_CARE '#' //!< Don't care symbol
 
@@ -42,6 +44,7 @@
 typedef struct COND_TERNARY {
     char *string; //!< Ternary bitstring
     int len; //!< Length of the bitstring
+    double mu[N_MU]; //!< Mutation rates
 } COND_TERNARY;
 
 static void cond_ternary_rand(const XCSF *xcsf, const CL *c);
@@ -51,6 +54,7 @@ void cond_ternary_init(const XCSF *xcsf, CL *c)
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
     new->len = xcsf->x_dim * xcsf->COND_BITS;
     new->string = malloc(sizeof(char) * new->len);
+    sam_init(xcsf, new->mu, N_MU);
     c->cond = new;     
     cond_ternary_rand(xcsf, c);
 }
@@ -90,6 +94,7 @@ void cond_ternary_copy(const XCSF *xcsf, CL *to, const CL *from)
     new->len = from_cond->len;
     new->string = malloc(sizeof(char) * from_cond->len);
     memcpy(new->string, from_cond->string, sizeof(char) * from_cond->len);
+    memcpy(new->mu, from_cond->mu, sizeof(double) * N_MU);
     to->cond = new;
 }                             
 
@@ -151,10 +156,11 @@ _Bool cond_ternary_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 _Bool cond_ternary_mutate(const XCSF *xcsf, const CL *c)
 {
-    const COND_TERNARY *cond = c->cond;
+    COND_TERNARY *cond = c->cond;
+    sam_adapt(xcsf, cond->mu, N_MU);
     _Bool changed = false;
     for(int i = 0; i < cond->len; i++) {
-        if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+        if(rand_uniform(0,1) < cond->mu[0]) {
             if(cond->string[i] == DONT_CARE) {
                 if(rand_uniform(0,1) < 0.5) {
                     cond->string[i] = '1';
@@ -174,7 +180,6 @@ _Bool cond_ternary_mutate(const XCSF *xcsf, const CL *c)
 
 _Bool cond_ternary_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    // returns whether cond1 is more general than cond2
     (void)xcsf;
     const COND_TERNARY *cond1 = c1->cond;
     const COND_TERNARY *cond2 = c2->cond;
@@ -215,6 +220,7 @@ size_t cond_ternary_save(const XCSF *xcsf, const CL *c, FILE *fp)
     const COND_TERNARY *cond = c->cond;
     s += fwrite(&cond->len, sizeof(int), 1, fp);
     s += fwrite(cond->string, sizeof(char), cond->len, fp);
+    s += fwrite(cond->mu, sizeof(double), N_MU, fp);
     return s;
 }
 
@@ -226,6 +232,7 @@ size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp)
     s += fread(&new->len, sizeof(int), 1, fp);
     new->string = malloc(sizeof(char) * new->len);
     s += fread(new->string, sizeof(char), new->len, fp);
+    s += fread(new->mu, sizeof(double), N_MU, fp);
     c->cond = new;
     return s;
 }

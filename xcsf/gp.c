@@ -33,6 +33,7 @@
 #include <float.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "sam.h"
 #include "gp.h"
 
 #define GP_MAX_LEN 10000 //!< Maximum length of a GP tree. 
@@ -80,6 +81,7 @@ void tree_rand(const XCSF *xcsf, GP_TREE *gp)
     } while(gp->len < 0);
     gp->tree = malloc(sizeof(int)*gp->len);
     memcpy(gp->tree, buffer, sizeof(int)*gp->len);
+    sam_init(xcsf, gp->mu, GP_N_MU);
 }
 
 /**
@@ -236,6 +238,7 @@ void tree_copy(const XCSF *xcsf, GP_TREE *to, const GP_TREE *from)
     to->tree = malloc(sizeof(int) * from->len);
     memcpy(to->tree, from->tree, sizeof(int) * from->len);
     to->p = from->p;               
+    memcpy(to->mu, from->mu, sizeof(double) * GP_N_MU);
 }
 
 /**
@@ -276,10 +279,13 @@ void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
  * @param gp The GP tree to be mutated.
  * @param rate The per allele rate of mutation.
  */
-void tree_mutate(const XCSF *xcsf, const GP_TREE *gp, double rate) 
+_Bool tree_mutate(const XCSF *xcsf, GP_TREE *gp)
 {   
+    sam_adapt(xcsf, gp->mu, GP_N_MU);
+    _Bool changed = false;
     for(int i = 0; i < gp->len; i++) {  
-        if(rand_uniform(0,1) < rate) {
+        if(rand_uniform(0,1) < gp->mu[0]) {
+            changed = true;
             // terminals randomly replaced with other terminals
             if(gp->tree[i] >= GP_NUM_FUNC) {
                 gp->tree[i] = irand_uniform(GP_NUM_FUNC, 
@@ -291,6 +297,7 @@ void tree_mutate(const XCSF *xcsf, const GP_TREE *gp, double rate)
             }
         }
     }
+    return changed;
 }
 
 /**
@@ -332,6 +339,7 @@ size_t tree_save(const XCSF *xcsf, const GP_TREE *gp, FILE *fp)
     s += fwrite(&gp->p, sizeof(int), 1, fp);
     s += fwrite(&gp->len, sizeof(int), 1, fp);
     s += fwrite(gp->tree, sizeof(int), gp->len, fp);
+    s += fwrite(gp->mu, sizeof(double), GP_N_MU, fp);
     return s;
 }
 
@@ -350,5 +358,6 @@ size_t tree_load(const XCSF *xcsf, GP_TREE *gp, FILE *fp)
     s += fread(&gp->len, sizeof(int), 1, fp);
     gp->tree = malloc(sizeof(int)*gp->len);
     s += fread(gp->tree, sizeof(int), gp->len, fp);
+    s += fread(gp->mu, sizeof(double), GP_N_MU, fp);
     return s;
 }

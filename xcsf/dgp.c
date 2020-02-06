@@ -29,6 +29,7 @@
 #include <float.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "sam.h"
 #include "dgp.h"
 
 #define NUM_FUNC 3 //!< Number of selectable node functions
@@ -52,6 +53,7 @@ void graph_init(const XCSF *xcsf, GRAPH *dgp, int n)
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
     dgp->function = malloc(sizeof(int) * dgp->n);
     dgp->connectivity = malloc(sizeof(int) * dgp->klen);
+    sam_init(xcsf, dgp->mu, DGP_N_MU);
 }
 
 /**
@@ -70,6 +72,7 @@ void graph_copy(const XCSF *xcsf, GRAPH *to, const GRAPH *from)
     memcpy(to->initial_state, from->initial_state, sizeof(double) * from->n);
     memcpy(to->function, from->function, sizeof(int) * from->n);
     memcpy(to->connectivity, from->connectivity, sizeof(int) * from->klen);
+    memcpy(to->mu, from->mu, sizeof(double) * DGP_N_MU);
 }
 
 /**
@@ -198,11 +201,12 @@ void graph_free(const XCSF *xcsf, const GRAPH *dgp)
  */
 _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
 {
+    sam_adapt(xcsf, dgp->mu, DGP_N_MU);
     _Bool mod = false;
     int orig;
     for(int i = 0; i < dgp->n; i++) {
-        // mutate function
-        if(rand_uniform(0,1) < xcsf->F_MUTATION) {
+        // mutate functions
+        if(rand_uniform(0,1) < dgp->mu[0]) {
             orig = dgp->function[i];
             dgp->function[i] = irand_uniform(0, NUM_FUNC);
             if(orig != dgp->function[i]) {
@@ -213,7 +217,7 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
         int shift = i * xcsf->MAX_K;
         for(int j = 0; j < xcsf->MAX_K; j++) {
             int idx = shift + j;
-            if(rand_uniform(0,1) < xcsf->P_MUTATION) {
+            if(rand_uniform(0,1) < dgp->mu[1]) {
                 orig = dgp->connectivity[idx];
                 // external connection
                 if(rand_uniform(0,1) < 0.5) {
@@ -230,7 +234,7 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
         }   
     }               
     // mutate number of update cycles
-    if(rand_uniform(0,1) < xcsf->S_MUTATION) {
+    if(rand_uniform(0,1) < dgp->mu[2]) {
         orig = dgp->t;
         dgp->t = irand_uniform(1,xcsf->MAX_T);
         if(orig != dgp->t) {
@@ -362,6 +366,7 @@ size_t graph_save(const XCSF *xcsf, const GRAPH *dgp, FILE *fp)
     s += fwrite(dgp->initial_state, sizeof(double), dgp->n, fp);
     s += fwrite(dgp->function, sizeof(int), dgp->n, fp);
     s += fwrite(dgp->connectivity, sizeof(int), dgp->klen, fp);
+    s += fwrite(dgp->mu, sizeof(double), DGP_N_MU, fp);
     return s;
 }
 
@@ -388,5 +393,6 @@ size_t graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp)
     s += fread(dgp->initial_state, sizeof(double), dgp->n, fp);
     s += fread(dgp->function, sizeof(int), dgp->n, fp);
     s += fread(dgp->connectivity, sizeof(int), dgp->klen, fp);
+    s += fread(dgp->mu, sizeof(double), DGP_N_MU, fp);
     return s;
 }

@@ -29,7 +29,6 @@
 #include "xcsf.h"
 #include "utils.h"
 #include "loss.h"
-#include "sam.h"
 #include "condition.h"
 #include "prediction.h"
 #include "action.h"
@@ -58,7 +57,6 @@ void cl_init(const XCSF *xcsf, CL *c, int size, int time)
     c->m = false;
     c->age = 0;
     c->mtotal = 0;
-    sam_init(xcsf, &c->mu);
 }
 
 /**
@@ -73,7 +71,6 @@ void cl_copy(const XCSF *xcsf, CL *to, const CL *from)
     to->cond_vptr = from->cond_vptr;
     to->pred_vptr = from->pred_vptr;
     to->act_vptr = from->act_vptr;
-    sam_copy(xcsf, to->mu, from->mu);
     act_copy(xcsf, to, from);
     cond_copy(xcsf, to, from);
     if(xcsf->PRED_RESET) {
@@ -224,7 +221,6 @@ static double cl_update_size(const XCSF *xcsf, CL *c, double num_sum)
 void cl_free(const XCSF *xcsf, CL *c)
 {
     free(c->prediction);
-    sam_free(xcsf, c->mu);
     cond_free(xcsf, c);
     act_free(xcsf, c);
     pred_free(xcsf, c);
@@ -257,10 +253,8 @@ void cl_print(const XCSF *xcsf, const CL *c, _Bool printc, _Bool printa, _Bool p
         }
         printf("\n");
     }
-    printf("err=%f fit=%f num=%d exp=%d size=%f time=%d age=%d mfrac=%f",
+    printf("err=%f fit=%f num=%d exp=%d size=%f time=%d age=%d mfrac=%f\n",
             c->err, c->fit, c->num, c->exp, c->size, c->time, c->age, cl_mfrac(xcsf, c));
-    sam_print(xcsf, c->mu);
-    printf("\n");
 }  
 
 /**
@@ -369,21 +363,13 @@ _Bool cl_general(const XCSF *xcsf, const CL *c1, const CL *c2)
  */
 _Bool cl_mutate(XCSF *xcsf, const CL *c)
 {
-    if(xcsf->SAM_NUM > 0) {
-        xcsf->S_MUTATION = c->mu[0];
-        if(xcsf->SAM_NUM > 1) {
-            xcsf->P_MUTATION = c->mu[1];
-            if(xcsf->SAM_NUM > 2) {
-                xcsf->E_MUTATION = c->mu[2];
-                if(xcsf->SAM_NUM > 3) {
-                    xcsf->F_MUTATION = c->mu[3];
-                }
-            }
-        }
-    } 
     _Bool cm = cond_mutate(xcsf, c);
     _Bool pm = pred_mutate(xcsf, c);
-    _Bool am = act_mutate(xcsf, c);
+    _Bool am = false;
+    // skip action mutation for regression
+    if(xcsf->n_actions > 1) {
+        am = act_mutate(xcsf, c);
+    }
     if(cm || pm || am) {
         return true;
     }
@@ -453,7 +439,6 @@ int cl_pred_size(const XCSF *xcsf, const CL *c)
 size_t cl_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     size_t s = 0;
-    s += fwrite(c->mu, sizeof(double), xcsf->SAM_NUM, fp);
     s += fwrite(&c->err, sizeof(double), 1, fp);
     s += fwrite(&c->fit, sizeof(double), 1, fp);
     s += fwrite(&c->num, sizeof(int), 1, fp);
@@ -481,8 +466,6 @@ size_t cl_save(const XCSF *xcsf, const CL *c, FILE *fp)
 size_t cl_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
-    c->mu = malloc(xcsf->SAM_NUM * sizeof(double));
-    s += fread(c->mu, sizeof(double), xcsf->SAM_NUM, fp);
     s += fread(&c->err, sizeof(double), 1, fp);
     s += fread(&c->fit, sizeof(double), 1, fp);
     s += fread(&c->num, sizeof(int), 1, fp);

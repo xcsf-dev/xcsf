@@ -68,9 +68,6 @@ void ea(XCSF *xcsf, const SET *set)
         cl_init(xcsf, c2, c2p->size, c2p->time);
         cl_copy(xcsf, c1, c1p);
         cl_copy(xcsf, c2, c2p);
-        // adapt mutation rates
-        sam_adapt(xcsf, c1->mu);
-        sam_adapt(xcsf, c2->mu);
         // apply evolutionary operators to offspring
         _Bool cmod = cl_crossover(xcsf, c1, c2);
         _Bool m1mod = cl_mutate(xcsf, c1);

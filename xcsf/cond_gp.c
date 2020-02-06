@@ -28,6 +28,7 @@
 #include <math.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "sam.h"
 #include "cl.h"
 #include "condition.h"
 #include "cond_gp.h"
@@ -91,21 +92,13 @@ _Bool cond_gp_match(const XCSF *xcsf, const CL *c, const double *x)
     if(result > 0.5) {
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }    
 
 _Bool cond_gp_mutate(const XCSF *xcsf, const CL *c)
 {
-    const COND_GP *cond = c->cond;
-    if(rand_uniform(0,1) < xcsf->P_MUTATION) {
-        tree_mutate(xcsf, &cond->gp, xcsf->P_MUTATION);
-        return true;
-    }
-    else {
-        return false;
-    }
+    COND_GP *cond = c->cond;
+    return tree_mutate(xcsf, &cond->gp);
 }
 
 _Bool cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
@@ -116,9 +109,7 @@ _Bool cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
         tree_crossover(xcsf, &cond1->gp, &cond2->gp);
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 
 _Bool cond_gp_general(const XCSF *xcsf, const CL *c1, const CL *c2)

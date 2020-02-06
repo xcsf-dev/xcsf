@@ -132,9 +132,7 @@ _Bool cond_neural_match(const XCSF *xcsf, const CL *c, const double *x)
     if(neural_output(xcsf, &cond->net, 0) > 0.5) {
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }                
 
 _Bool cond_neural_mutate(const XCSF *xcsf, const CL *c)

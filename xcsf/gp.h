@@ -23,6 +23,8 @@
  
 #pragma once
 
+#define GP_N_MU 1 //!< Number of GP mutation rates
+
 /**
  * @brief GP tree data structure.
  */ 
@@ -30,6 +32,7 @@ typedef struct GP_TREE {
     int *tree; //!< Flattened tree representation of functions and terminals
     int len; //!< Size of the tree
     int p; //!< Current position in the tree
+    double mu[GP_N_MU]; //!< Mutation rates
 } GP_TREE;
 
 void tree_free_cons(const XCSF *xcsf);
@@ -40,6 +43,6 @@ void tree_copy(const XCSF *xcsf, GP_TREE *to, const GP_TREE *from);
 int tree_print(const XCSF *xcsf, const GP_TREE *gp, int p);
 double tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x);
 void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2);
-void tree_mutate(const XCSF *xcsf, const GP_TREE *gp, double rate);
+_Bool tree_mutate(const XCSF *xcsf, GP_TREE *gp);
 size_t tree_save(const XCSF *xcsf, const GP_TREE *gp, FILE *fp);
 size_t tree_load(const XCSF *xcsf, GP_TREE *gp, FILE *fp);

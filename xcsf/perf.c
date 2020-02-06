@@ -44,11 +44,7 @@ void perf_print(const XCSF *xcsf, double *error, double *terror, int trial)
     if(trial % xcsf->PERF_TRIALS == 0 && trial > 0) {
         *error /= xcsf->PERF_TRIALS;
         *terror /= xcsf->PERF_TRIALS;
-        printf("%d %.5f %.5f %d", trial, *error, *terror, xcsf->pset.size);
-        for(int i = 0; i < xcsf->SAM_NUM; i++) {
-            printf(" %.5f", clset_mean_mut(xcsf, &xcsf->pset, i));
-        }
-        printf("\n");
+        printf("%d %.5f %.5f %d\n", trial, *error, *terror, xcsf->pset.size);
         fflush(stdout);
         *error = 0;
         *terror = 0;

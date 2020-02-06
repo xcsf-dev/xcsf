@@ -26,7 +26,6 @@
 double clset_mean_cond_size(const XCSF *xcsf, const SET *set);
 double clset_mean_eta(const XCSF *xcsf, const SET *set, int layer);
 double clset_mean_layers(const XCSF *xcsf, const SET *set);
-double clset_mean_mut(const XCSF *xcsf, const SET *set, int m);
 double clset_mean_neurons(const XCSF *xcsf, const SET *set, int layer);
 double clset_mean_pred_size(const XCSF *xcsf, const SET *set);
 double clset_mean_time(const SET *set);

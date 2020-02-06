@@ -146,13 +146,7 @@ static void params_ea(XCSF *xcsf)
     xcsf->THETA_EA = atof(config_getvalue("THETA_EA"));
     xcsf->LAMBDA = strtoimax(config_getvalue("LAMBDA"), &end, BASE);
     xcsf->P_CROSSOVER = atof(config_getvalue("P_CROSSOVER"));
-    xcsf->S_MUTATION = atof(config_getvalue("S_MUTATION"));
-    xcsf->P_MUTATION = atof(config_getvalue("P_MUTATION"));
-    xcsf->F_MUTATION = atof(config_getvalue("F_MUTATION"));
-    xcsf->E_MUTATION = atof(config_getvalue("E_MUTATION"));
     xcsf->SAM_TYPE = strtoimax(config_getvalue("SAM_TYPE"), &end, BASE);
-    xcsf->SAM_NUM = strtoimax(config_getvalue("SAM_NUM"), &end, BASE);
-    xcsf->SAM_MIN = atof(config_getvalue("SAM_MIN"));
 }
 
 /**

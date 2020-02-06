@@ -127,22 +127,14 @@ typedef struct XCSF {
     int PRED_TYPE; //!< Classifier prediction type: least squares, neural nets, etc.
     int ACT_TYPE; //!< Classifier action type
     int M_PROBATION; //!< Trials since rule creation it must match at least 1 input or be deleted
+    int SAM_TYPE; //!< Self-adaptive mutation algorithm
 
     // evolutionary algorithm parameters
     double P_CROSSOVER; //!< Probability of applying crossover (for hyperrectangles)
-    double P_MUTATION; //!< Probability of mutation occuring per allele
-    double F_MUTATION; //!< Probability of performing mutating a graph/net function
-    double S_MUTATION; //!< Maximum amount to mutate an allele
-    double E_MUTATION; //!< Rate of gradient descent mutation
     double THETA_EA; //!< Average match set time between EA invocations
     int LAMBDA; //!< Number of offspring to create each EA invocation
     int EA_SELECT_TYPE; //!< Roulette or tournament for EA parental selection
     double EA_SELECT_SIZE; //!< Fraction of set size for tournaments
-
-    // self-adaptive mutation parameters
-    int SAM_TYPE; //!< 0 = log normal, 1 = ten normally distributed rates
-    int SAM_NUM; //!< Number of self-adaptive mutation rates
-    double SAM_MIN; //!< Minimum value of a log normal adaptive mutation rate
 
     // classifier condition parameters
     double COND_MAX; //!< Maximum value expected from inputs
