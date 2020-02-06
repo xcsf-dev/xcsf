@@ -36,9 +36,9 @@ typedef struct LLIST {
  * @brief Neural network data structure.
  */  
 typedef struct NET {
-    int num_layers; //!< Number of layers (hidden + output)
-    int num_inputs; //!< Number of network inputs
-    int num_outputs; //!< Number of network outputs
+    int n_layers; //!< Number of layers (hidden + output)
+    int n_inputs; //!< Number of network inputs
+    int n_outputs; //!< Number of network outputs
     double *delta; //!< Delta for updating networks weights
     const double *input; //!< Pointer to the network input
     LLIST *head; //!< Pointer to the head layer (output layer)

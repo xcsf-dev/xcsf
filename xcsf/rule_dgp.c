@@ -39,7 +39,7 @@
  */ 
 typedef struct RULE_DGP{
     GRAPH dgp; //!< DGP graph
-    int num_outputs; //!< Number of action nodes (binarised)
+    int n_outputs; //!< Number of action nodes (binarised)
 } RULE_DGP;
 
 /* CONDITION FUNCTIONS */
@@ -49,8 +49,8 @@ static void rule_dgp_cond_rand(const XCSF *xcsf, const CL *c);
 void rule_dgp_cond_init(const XCSF *xcsf, CL *c)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
-    new->num_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
-    int n = fmax(xcsf->DGP_NUM_NODES, new->num_outputs + 1);
+    new->n_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
+    int n = fmax(xcsf->DGP_NUM_NODES, new->n_outputs + 1);
     graph_init(xcsf, &new->dgp, n);
     graph_rand(xcsf, &new->dgp);
     c->cond = new;
@@ -69,7 +69,7 @@ void rule_dgp_cond_copy(const XCSF *xcsf, CL *to, const CL *from)
     const RULE_DGP *from_cond = from->cond;
     graph_init(xcsf, &new->dgp, from_cond->dgp.n);
     graph_copy(xcsf, &new->dgp, &from_cond->dgp);
-    new->num_outputs = from_cond->num_outputs;
+    new->n_outputs = from_cond->n_outputs;
     to->cond = new;
 }
 
@@ -144,7 +144,7 @@ size_t rule_dgp_cond_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
     size_t s = graph_load(xcsf, &new->dgp, fp);
-    new->num_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
+    new->n_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
     c->cond = new;
     return s;
 }
@@ -189,7 +189,7 @@ int rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x)
     (void)x; // graph already updated
     const RULE_DGP *cond = c->cond;
     int action = 0;
-    for(int i = 0; i < cond->num_outputs; i++) {
+    for(int i = 0; i < cond->n_outputs; i++) {
         if(graph_output(xcsf, &cond->dgp, i+1) > 0.5) {
             action += pow(2,i);
         }

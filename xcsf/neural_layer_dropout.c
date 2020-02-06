@@ -40,16 +40,16 @@ LAYER *neural_layer_dropout_init(const XCSF *xcsf, int in, double prob)
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = DROPOUT;
     l->layer_vptr = &layer_dropout_vtbl;
-    l->num_inputs = in;
-    l->num_outputs = in;
+    l->n_inputs = in;
+    l->n_outputs = in;
     l->max_outputs = in;
     l->options = 0;
     l->eta = 0;
     l->probability = prob;
     l->scale = 1./(1.-prob);
-    l->output = calloc(l->num_inputs, sizeof(double));
-    l->delta = malloc(l->num_inputs * sizeof(double));
-    l->rand = malloc(l->num_inputs * sizeof(double));
+    l->output = calloc(l->n_inputs, sizeof(double));
+    l->delta = malloc(l->n_inputs * sizeof(double));
+    l->rand = malloc(l->n_inputs * sizeof(double));
     return l;
 }
 
@@ -59,16 +59,16 @@ LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *from)
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = from->layer_type;
     l->layer_vptr = from->layer_vptr;
-    l->num_inputs = from->num_inputs;
-    l->num_outputs = from->num_inputs;
+    l->n_inputs = from->n_inputs;
+    l->n_outputs = from->n_inputs;
     l->max_outputs = from->max_outputs;
     l->eta = from->eta;
     l->options = from->options;
     l->probability = from->probability;
     l->scale = from->scale;
-    l->output = calloc(from->num_inputs, sizeof(double));
-    l->delta = malloc(from->num_inputs * sizeof(double));
-    l->rand = malloc(from->num_inputs * sizeof(double));
+    l->output = calloc(from->n_inputs, sizeof(double));
+    l->delta = malloc(from->n_inputs * sizeof(double));
+    l->rand = malloc(from->n_inputs * sizeof(double));
     return l;
 }
  
@@ -88,12 +88,12 @@ void neural_layer_dropout_rand(const XCSF *xcsf, const LAYER *l)
 void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
     if(!xcsf->train) {
-        for(int i = 0; i < l->num_inputs; i++) {
+        for(int i = 0; i < l->n_inputs; i++) {
             l->output[i] = input[i];
         }
     }
     else {
-        for(int i = 0; i < l->num_inputs; i++) {
+        for(int i = 0; i < l->n_inputs; i++) {
             l->rand[i] = rand_uniform(0,1);
             if(l->rand[i] < l->probability) {
                 l->output[i] = 0;
@@ -111,7 +111,7 @@ void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const NET *
     if(!net->delta) {
         return;
     }
-    for(int i = 0; i < l->num_inputs; i++) {
+    for(int i = 0; i < l->n_inputs; i++) {
         if(l->rand[i] < l->probability) {
             net->delta[i] = 0;
         }
@@ -135,15 +135,15 @@ _Bool neural_layer_dropout_mutate(const XCSF *xcsf, LAYER *l)
 void neural_layer_dropout_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     (void)xcsf;
-    l->num_inputs = prev->num_outputs;
-    l->num_outputs = prev->num_outputs;
-    l->max_outputs = prev->num_outputs;
+    l->n_inputs = prev->n_outputs;
+    l->n_outputs = prev->n_outputs;
+    l->max_outputs = prev->n_outputs;
     free(l->output);
     free(l->delta);
     free(l->rand);
-    l->output = calloc(l->num_inputs, sizeof(double));
-    l->delta = calloc(l->num_inputs, sizeof(double));
-    l->rand = calloc(l->num_inputs, sizeof(double));
+    l->output = calloc(l->n_inputs, sizeof(double));
+    l->delta = calloc(l->n_inputs, sizeof(double));
+    l->rand = calloc(l->n_inputs, sizeof(double));
 }
 
 double *neural_layer_dropout_output(const XCSF *xcsf, const LAYER *l)
@@ -156,15 +156,15 @@ void neural_layer_dropout_print(const XCSF *xcsf, const LAYER *l, _Bool print_we
 {
     (void)xcsf; (void)print_weights;
     printf("dropout in = %d, out = %d prob = %f\n",
-            l->num_inputs, l->num_outputs, l->probability);
+            l->n_inputs, l->n_outputs, l->probability);
 }
  
 size_t neural_layer_dropout_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
-    s += fwrite(&l->num_inputs, sizeof(int), 1, fp);
-    s += fwrite(&l->num_outputs, sizeof(int), 1, fp);
+    s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
+    s += fwrite(&l->n_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->max_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->probability, sizeof(double), 1, fp);
     s += fwrite(&l->scale, sizeof(double), 1, fp);
@@ -175,15 +175,15 @@ size_t neural_layer_dropout_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
-    s += fread(&l->num_inputs, sizeof(int), 1, fp);
-    s += fread(&l->num_outputs, sizeof(int), 1, fp);
+    s += fread(&l->n_inputs, sizeof(int), 1, fp);
+    s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->probability, sizeof(double), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
     l->options = 0;
     l->eta = 0;
-    l->output = calloc(l->num_inputs, sizeof(double));
-    l->delta = malloc(l->num_inputs * sizeof(double));
-    l->rand = malloc(l->num_inputs * sizeof(double));
+    l->output = calloc(l->n_inputs, sizeof(double));
+    l->delta = malloc(l->n_inputs * sizeof(double));
+    l->rand = malloc(l->n_inputs * sizeof(double));
     return s;
 }

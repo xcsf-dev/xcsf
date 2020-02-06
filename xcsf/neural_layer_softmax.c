@@ -41,13 +41,13 @@ LAYER* neural_layer_softmax_init(const XCSF *xcsf, int in, double temp)
     l->layer_type = SOFTMAX;
     l->layer_vptr = &layer_softmax_vtbl;
     l->temp = temp;
-    l->num_inputs = in;
-    l->num_outputs = in;
+    l->n_inputs = in;
+    l->n_outputs = in;
     l->max_outputs = in;
     l->options = 0;
     l->eta = 0;
-    l->output = calloc(l->num_inputs, sizeof(double));
-    l->delta = calloc(l->num_inputs, sizeof(double));
+    l->output = calloc(l->n_inputs, sizeof(double));
+    l->delta = calloc(l->n_inputs, sizeof(double));
     return l;
 }
 
@@ -58,13 +58,13 @@ LAYER* neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *from)
     l->layer_type = from->layer_type;
     l->layer_vptr = from->layer_vptr;
     l->temp = from->temp;
-    l->num_inputs = from->num_inputs;
-    l->num_outputs = from->num_outputs;
+    l->n_inputs = from->n_inputs;
+    l->n_outputs = from->n_outputs;
     l->max_outputs = from->max_outputs;
     l->options = from->options;
     l->eta = from->eta;
-    l->output = calloc(from->num_inputs, sizeof(double));
-    l->delta = calloc(from->num_inputs, sizeof(double));
+    l->output = calloc(from->n_inputs, sizeof(double));
+    l->delta = calloc(from->n_inputs, sizeof(double));
     return l;
 }
 
@@ -77,18 +77,18 @@ void neural_layer_softmax_forward(const XCSF *xcsf, const LAYER *l, const double
 {
     (void)xcsf;
     double largest = input[0];
-    for(int i = 1; i < l->num_inputs; i++) {
+    for(int i = 1; i < l->n_inputs; i++) {
         if(input[i] > largest) {
             largest = input[i];
         }
     }
     double sum = 0;
-    for(int i = 0; i < l->num_inputs; i++) {
+    for(int i = 0; i < l->n_inputs; i++) {
         double e = exp(input[i]/l->temp - largest/l->temp);
         sum += e;
         l->output[i] = e;
     }
-    for(int i = 0; i < l->num_inputs; i++) {
+    for(int i = 0; i < l->n_inputs; i++) {
         l->output[i] /= sum;
     }                                     
 }
@@ -96,7 +96,7 @@ void neural_layer_softmax_forward(const XCSF *xcsf, const LAYER *l, const double
 void neural_layer_softmax_backward(const XCSF *xcsf, const LAYER *l, const NET *net)
 {
     (void)xcsf;
-    for(int i = 0; i < l->num_inputs; i++) {
+    for(int i = 0; i < l->n_inputs; i++) {
         net->delta[i] += l->delta[i];
     }
 }
@@ -110,7 +110,7 @@ void neural_layer_softmax_print(const XCSF *xcsf, const LAYER *l, _Bool print_we
 {
     (void)xcsf; (void)print_weights;
     printf("softmax in = %d, out = %d, temp = %f\n", 
-            l->num_inputs, l->num_outputs, l->temp);
+            l->n_inputs, l->n_outputs, l->temp);
 }
 
 _Bool neural_layer_softmax_mutate(const XCSF *xcsf, LAYER *l)
@@ -122,13 +122,13 @@ _Bool neural_layer_softmax_mutate(const XCSF *xcsf, LAYER *l)
 void neural_layer_softmax_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     (void)xcsf;
-    l->num_inputs = prev->num_outputs;
-    l->num_outputs = prev->num_outputs;
-    l->max_outputs = prev->num_outputs;
+    l->n_inputs = prev->n_outputs;
+    l->n_outputs = prev->n_outputs;
+    l->max_outputs = prev->n_outputs;
     free(l->output);
     free(l->delta);
-    l->output = calloc(l->num_inputs, sizeof(double));
-    l->delta = calloc(l->num_inputs, sizeof(double));
+    l->output = calloc(l->n_inputs, sizeof(double));
+    l->delta = calloc(l->n_inputs, sizeof(double));
 }
 
 void neural_layer_softmax_free(const XCSF *xcsf, const LAYER *l)
@@ -148,8 +148,8 @@ size_t neural_layer_softmax_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
-    s += fwrite(&l->num_inputs, sizeof(int), 1, fp);
-    s += fwrite(&l->num_outputs, sizeof(int), 1, fp);
+    s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
+    s += fwrite(&l->n_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->max_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->temp, sizeof(double), 1, fp);
     return s;
@@ -159,13 +159,13 @@ size_t neural_layer_softmax_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
-    s += fread(&l->num_inputs, sizeof(int), 1, fp);
-    s += fread(&l->num_outputs, sizeof(int), 1, fp);
+    s += fread(&l->n_inputs, sizeof(int), 1, fp);
+    s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->temp, sizeof(double), 1, fp);
     l->options = 0;
     l->eta = 0;
-    l->output = calloc(l->num_inputs, sizeof(double));
-    l->delta = calloc(l->num_inputs, sizeof(double));
+    l->output = calloc(l->n_inputs, sizeof(double));
+    l->delta = calloc(l->n_inputs, sizeof(double));
     return s;
 }

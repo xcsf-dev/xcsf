@@ -44,7 +44,7 @@
  */ 
 typedef struct RULE_NEURAL {
     NET net; //!< Neural network
-    int num_outputs; //!< Number of action nodes (binarised)
+    int n_outputs; //!< Number of action nodes (binarised)
 } RULE_NEURAL;
 
 /* CONDITION FUNCTIONS */
@@ -77,7 +77,7 @@ void rule_neural_cond_init(const XCSF *xcsf, CL *c)
     int f = xcsf->COND_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
     int n = fmax(1, ceil(log2(xcsf->num_actions))); // number of action neurons
-    new->num_outputs = n;
+    new->n_outputs = n;
     l = neural_layer_connected_init(xcsf, n_inputs, n+1, n+1, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, i);
     c->cond = new;
@@ -109,7 +109,7 @@ void rule_neural_cond_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
     const RULE_NEURAL *from_cond = from->cond;
-    new->num_outputs = from_cond->num_outputs;
+    new->n_outputs = from_cond->n_outputs;
     neural_copy(xcsf, &new->net, &from_cond->net);
     to->cond = new;
 }
@@ -183,7 +183,7 @@ size_t rule_neural_cond_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
     size_t s = neural_load(xcsf, &new->net, fp);
-    new->num_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
+    new->n_outputs = fmax(1, ceil(log2(xcsf->num_actions)));
     c->cond = new;
     return s;
 }
@@ -228,7 +228,7 @@ int rule_neural_act_compute(const XCSF *xcsf, const CL *c, const double *x)
     (void)x; // network already updated
     const RULE_NEURAL *cond = c->cond;
     int action = 0;
-    for(int i = 0; i < cond->num_outputs; i++) {
+    for(int i = 0; i < cond->n_outputs; i++) {
         if(neural_output(xcsf, &cond->net, i+1) > 0.5) {
             action += pow(2,i);
         }

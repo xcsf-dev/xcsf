@@ -49,8 +49,8 @@ typedef struct LAYER {
     double *bias_updates; //!< Updates to biases
     double *weight_updates; //!< Updates to weights
     double *delta; //!< Delta for updating weights
-    int num_inputs; //!< Number of layer inputs
-    int num_outputs; //!< Number of layer outputs
+    int n_inputs; //!< Number of layer inputs
+    int n_outputs; //!< Number of layer outputs
     int max_outputs; //!< Maximum number of neurons in the layer
     int num_weights; //!< Number of layer weights
     int function; //!< Layer activation function
