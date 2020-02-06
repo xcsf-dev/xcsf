@@ -52,7 +52,7 @@ typedef struct LAYER {
     int n_inputs; //!< Number of layer inputs
     int n_outputs; //!< Number of layer outputs
     int max_outputs; //!< Maximum number of neurons in the layer
-    int num_weights; //!< Number of layer weights
+    int n_weights; //!< Number of layer weights
     int function; //!< Layer activation function
     double eta; //!< Gradient descent learning rate
     double scale; //!< Usage depends on layer implementation
