@@ -40,7 +40,7 @@ LAYER* neural_layer_softmax_init(const XCSF *xcsf, int in, double temp)
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = SOFTMAX;
     l->layer_vptr = &layer_softmax_vtbl;
-    l->temp = temp;
+    l->scale = temp;
     l->n_inputs = in;
     l->n_outputs = in;
     l->max_outputs = in;
@@ -57,7 +57,7 @@ LAYER* neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *from)
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = from->layer_type;
     l->layer_vptr = from->layer_vptr;
-    l->temp = from->temp;
+    l->scale = from->scale;
     l->n_inputs = from->n_inputs;
     l->n_outputs = from->n_outputs;
     l->max_outputs = from->max_outputs;
@@ -84,7 +84,7 @@ void neural_layer_softmax_forward(const XCSF *xcsf, const LAYER *l, const double
     }
     double sum = 0;
     for(int i = 0; i < l->n_inputs; i++) {
-        double e = exp(input[i]/l->temp - largest/l->temp);
+        double e = exp((input[i] / l->scale) - (largest / l->scale));
         sum += e;
         l->output[i] = e;
     }
@@ -110,7 +110,7 @@ void neural_layer_softmax_print(const XCSF *xcsf, const LAYER *l, _Bool print_we
 {
     (void)xcsf; (void)print_weights;
     printf("softmax in = %d, out = %d, temp = %f\n", 
-            l->n_inputs, l->n_outputs, l->temp);
+            l->n_inputs, l->n_outputs, l->scale);
 }
 
 _Bool neural_layer_softmax_mutate(const XCSF *xcsf, LAYER *l)
@@ -151,7 +151,7 @@ size_t neural_layer_softmax_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
     s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->n_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->max_outputs, sizeof(int), 1, fp);
-    s += fwrite(&l->temp, sizeof(double), 1, fp);
+    s += fwrite(&l->scale, sizeof(double), 1, fp);
     return s;
 }
 
@@ -162,7 +162,7 @@ size_t neural_layer_softmax_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
-    s += fread(&l->temp, sizeof(double), 1, fp);
+    s += fread(&l->scale, sizeof(double), 1, fp);
     l->options = 0;
     l->eta = 0;
     l->output = calloc(l->n_inputs, sizeof(double));

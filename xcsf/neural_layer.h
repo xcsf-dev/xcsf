@@ -59,7 +59,6 @@ typedef struct LAYER {
     double scale; //!< Usage depends on layer implementation
     double probability; //!< Usage depends on layer implementation
     double *rand; //!< Usage depends on layer implementation
-    double temp; //!< Usage depends on layer implementation
     struct LayerVtbl const *layer_vptr; //!< Functions acting on layers
 } LAYER;
 
