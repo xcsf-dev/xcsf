@@ -295,7 +295,8 @@ void clset_pred(const XCSF *xcsf, const SET *set, const double *x, double *p)
     for(int i = 0; i < set->size; i++) {
         const double *predictions = cl_predict(xcsf, blist[i]->cl, x);
         for(int var = 0; var < xcsf->y_dim; var++) {
-            presum[var] += predictions[var] * blist[i]->cl->fit;
+            presum[var] += constrain(xcsf->PRED_MIN,xcsf->PRED_MAX,predictions[var])
+                * blist[i]->cl->fit;
         }
         fitsum += blist[i]->cl->fit;
     }
@@ -307,7 +308,8 @@ void clset_pred(const XCSF *xcsf, const SET *set, const double *x, double *p)
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
         for(int var = 0; var < xcsf->y_dim; var++) {
-            presum[var] += predictions[var] * iter->cl->fit;
+            presum[var] += constrain(xcsf->PRED_MIN,xcsf->PRED_MAX,predictions[var])
+                * iter->cl->fit;
         }
         fitsum += iter->cl->fit;
     }    
