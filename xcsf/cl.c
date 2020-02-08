@@ -34,8 +34,8 @@
 #include "action.h"
 #include "cl.h"
 
-static double cl_update_err(const XCSF *xcsf, CL *c, const double *y);
-static double cl_update_size(const XCSF *xcsf, CL *c, double num_sum);
+static void cl_update_err(const XCSF *xcsf, CL *c, const double *y);
+static void cl_update_size(const XCSF *xcsf, CL *c, double num_sum);
 
 /**
  * @brief Initialises a new classifier.
@@ -169,9 +169,8 @@ void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int se
  * @param xcsf The XCSF data structure.
  * @param c The classifier to update.
  * @param y The payoff value.
- * @return Error multiplied by numerosity.
  */
-static double cl_update_err(const XCSF *xcsf, CL *c, const double *y)
+static void cl_update_err(const XCSF *xcsf, CL *c, const double *y)
 {
     double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
     if(c->exp < 1 / xcsf->BETA) {
@@ -180,7 +179,6 @@ static double cl_update_err(const XCSF *xcsf, CL *c, const double *y)
     else {
         c->err += xcsf->BETA * (error - c->err);
     }
-    return c->err * c->num;
 }
 
 /**
@@ -200,9 +198,8 @@ void cl_update_fit(const XCSF *xcsf, CL *c, double acc_sum, double acc)
  * @param xcsf The XCSF data structure.
  * @param c The classifier to update.
  * @param num_sum The number of micro-classifiers in the set.
- * @return Set size multiplied by numerosity.
  */
-static double cl_update_size(const XCSF *xcsf, CL *c, double num_sum)
+static void cl_update_size(const XCSF *xcsf, CL *c, double num_sum)
 {
     if(c->exp < 1 / xcsf->BETA) {
         c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;
@@ -210,7 +207,6 @@ static double cl_update_size(const XCSF *xcsf, CL *c, double num_sum)
     else {
         c->size += xcsf->BETA * (num_sum - c->size);
     }
-    return c->size * c->num;
 }
 
 /**
