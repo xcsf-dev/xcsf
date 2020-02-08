@@ -323,7 +323,11 @@ int cl_action(const XCSF *xcsf, CL *c, const double *x)
  */
 const double *cl_predict(const XCSF *xcsf, const CL *c, const double *x)
 {
-    return pred_compute(xcsf, c, x);
+    pred_compute(xcsf, c, x);
+    for(int i = 0; i < xcsf->y_dim; i++) {
+        c->prediction[i] = constrain(xcsf->PRED_MIN, xcsf->PRED_MAX, c->prediction[i]);
+    }
+    return c->prediction;
 }
 
 /**

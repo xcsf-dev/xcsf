@@ -23,20 +23,20 @@
 
 #pragma once
 
-const double *pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x);
 _Bool pred_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool pred_neural_mutate(const XCSF *xcsf, const CL *c);
+double pred_neural_eta(const XCSF *xcsf, const CL *c);
+int pred_neural_layers(const XCSF *xcsf, const CL *c);
+int pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer);
+int pred_neural_size(const XCSF *xcsf, const CL *c);
+size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
+size_t pred_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
+void pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x);
 void pred_neural_copy(const XCSF *xcsf, CL *to, const CL *from);
 void pred_neural_free(const XCSF *xcsf, const CL *c);
 void pred_neural_init(const XCSF *xcsf, CL *c);
 void pred_neural_print(const XCSF *xcsf, const CL *c);
 void pred_neural_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
-int pred_neural_size(const XCSF *xcsf, const CL *c);
-size_t pred_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
-size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
-double pred_neural_eta(const XCSF *xcsf, const CL *c);
-int pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer);
-int pred_neural_layers(const XCSF *xcsf, const CL *c);
 
 /**
  * @brief Multi-layer perceptron neural network prediction implemented functions.

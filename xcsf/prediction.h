@@ -50,9 +50,8 @@ struct PredVtbl {
      * @param xcsf The XCSF data structure.
      * @param c The classifier calculating the prediction.
      * @param x The input state.
-     * @return The classifier's prediction.
      */
-    const double *(*pred_impl_compute)(const XCSF *xcsf, const CL *c, const double *x);
+    void (*pred_impl_compute)(const XCSF *xcsf, const CL *c, const double *x);
     /**
      * @brief Copies the prediction from one classifier to another.
      * @param xcsf The XCSF data structure.
@@ -132,8 +131,8 @@ static inline _Bool pred_mutate(const XCSF *xcsf, const CL *c) {
     return (*c->pred_vptr->pred_impl_mutate)(xcsf, c);
 }
 
-static inline const double *pred_compute(const XCSF *xcsf, const CL *c, const double *x) {
-    return (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
+static inline void pred_compute(const XCSF *xcsf, const CL *c, const double *x) {
+    (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
 }
 
 static inline void pred_copy(const XCSF *xcsf, CL *to, const CL *from) {

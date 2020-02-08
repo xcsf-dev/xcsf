@@ -247,6 +247,8 @@ static void params_cl_action(XCSF *xcsf)
 static void params_cl_prediction(XCSF *xcsf)
 {
     char *end;
+    xcsf->PRED_MIN = atof(config_getvalue("PRED_MIN"));
+    xcsf->PRED_MAX = atof(config_getvalue("PRED_MAX"));
     xcsf->PRED_TYPE = strtoimax(config_getvalue("PRED_TYPE"), &end, BASE);
     xcsf->PRED_ETA = atof(config_getvalue("PRED_ETA"));
     xcsf->PRED_RESET = false;

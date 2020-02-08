@@ -292,6 +292,8 @@ struct XCS
     int get_sam_type() { return xcs.SAM_TYPE; }
     double get_max_con() { return xcs.COND_MAX; }
     double get_min_con() { return xcs.COND_MIN; }
+    double get_max_pred() { return xcs.PRED_MAX; }
+    double get_min_pred() { return xcs.PRED_MIN; }
     double get_cond_smin() { return xcs.COND_SMIN; }
     double get_cond_bits() { return xcs.COND_BITS; }
     _Bool get_cond_evolve_weights() { return xcs.COND_EVOLVE_WEIGHTS; }
@@ -404,6 +406,8 @@ struct XCS
     void set_sam_type(int a) { xcs.SAM_TYPE = a; }
     void set_max_con(double a) { xcs.COND_MAX = a; }
     void set_min_con(double a) { xcs.COND_MIN = a; }
+    void set_max_pred(double a) { xcs.PRED_MAX = a; }
+    void set_min_pred(double a) { xcs.PRED_MIN = a; }
     void set_cond_smin(double a) { xcs.COND_SMIN = a; }
     void set_cond_bits(double a) { xcs.COND_BITS = a; }
     void set_cond_evolve_weights(_Bool a) { xcs.COND_EVOLVE_WEIGHTS = a; }
@@ -490,6 +494,8 @@ BOOST_PYTHON_MODULE(xcsf)
         .add_property("SAM_TYPE", &XCS::get_sam_type, &XCS::set_sam_type)
         .add_property("COND_MAX", &XCS::get_max_con, &XCS::set_max_con)
         .add_property("COND_MIN", &XCS::get_min_con, &XCS::set_min_con)
+        .add_property("PRED_MAX", &XCS::get_max_pred, &XCS::set_max_pred)
+        .add_property("PRED_MIN", &XCS::get_min_pred, &XCS::set_min_pred)
         .add_property("COND_SMIN", &XCS::get_cond_smin, &XCS::set_cond_smin)
         .add_property("COND_BITS", &XCS::get_cond_bits, &XCS::set_cond_bits)
         .add_property("COND_EVOLVE_WEIGHTS", &XCS::get_cond_evolve_weights, &XCS::set_cond_evolve_weights)

@@ -160,6 +160,8 @@ typedef struct XCSF {
     int COND_HIDDEN_ACTIVATION; //!< Activation function for the condition hidden layer
  
     // prediction parameters
+    double PRED_MAX; //!< Maximum classifier prediction value
+    double PRED_MIN; //!< Minimum classifier prediction value
     _Bool PRED_RESET; //!< Whether to reset offspring predictions instead of copying
     double PRED_ETA; //!< Gradient desecnt rate for updating the prediction
     double PRED_X0; //!< Prediction weight vector offset value
