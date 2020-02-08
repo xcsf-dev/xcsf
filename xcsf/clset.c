@@ -701,7 +701,6 @@ double clset_mfrac(const XCSF *xcsf)
  * @brief Calculates the mean prediction ETA of classifiers in the set.
  * @param xcsf The XCSF data structure.
  * @param set The set to calculate the mean.
- * @param layer The neural network layer position.
  * @return The mean prediction ETA of classifiers in the set.
  */ 
 double clset_mean_eta(const XCSF *xcsf, const SET *set)

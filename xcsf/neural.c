@@ -48,6 +48,7 @@ static _Bool mutate_eta(NET *net);
  * @brief Initialises an empty neural network.
  * @param xcsf The XCSF data structure.
  * @param net The neural network to initialise.
+ * @param nopt Bitwise network options.
  */
 void neural_init(const XCSF *xcsf, NET *net, uint32_t nopt)
 {
