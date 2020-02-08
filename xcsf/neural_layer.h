@@ -109,6 +109,7 @@ struct LayerVtbl {
      * @brief Updates the weights and biases of a layer.
      * @param xcsf The XCSF data structure.
      * @param l The layer to be updated.
+     * @param eta The gradient descent rate to apply.
      */
     void (*layer_impl_update)(const XCSF *xcsf, const LAYER *l, double eta);
     /**
