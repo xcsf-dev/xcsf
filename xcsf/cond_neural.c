@@ -20,7 +20,7 @@
  * @date 2016--2020.
  * @brief Multi-layer perceptron neural network condition functions.
  */ 
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,7 +51,7 @@ static uint32_t cond_neural_lopt(const XCSF *xcsf);
 void cond_neural_init(const XCSF *xcsf, CL *c)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
-    neural_init(xcsf, &new->net);
+    neural_init(xcsf, &new->net, 0);
     // hidden layers
     uint32_t lopt = cond_neural_lopt(xcsf);
     LAYER *l;
@@ -137,7 +137,7 @@ _Bool cond_neural_match(const XCSF *xcsf, const CL *c, const double *x)
 
 _Bool cond_neural_mutate(const XCSF *xcsf, const CL *c)
 {
-    const COND_NEURAL *cond = c->cond;
+    COND_NEURAL *cond = c->cond;
     return neural_mutate(xcsf, &cond->net);
 }
 

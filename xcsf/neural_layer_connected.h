@@ -20,7 +20,7 @@
  * @date 2016--2020.
  * @brief An implementation of a fully-connected layer of perceptrons.
  */ 
- 
+
 #pragma once
 
 LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o);
@@ -28,9 +28,9 @@ LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *from);
 void neural_layer_connected_rand(const XCSF *xcsf, const LAYER *l);
 void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const double *input);
 void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET *net);
-void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l);
+void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l, double eta);
 void neural_layer_connected_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
-_Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l);
+_Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l, const double *mu);
 void neural_layer_connected_free(const XCSF *xcsf, const LAYER *l);
 double* neural_layer_connected_output(const XCSF *xcsf, const LAYER *l);
 size_t neural_layer_connected_save(const XCSF *xcsf, const LAYER *l, FILE *fp);

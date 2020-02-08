@@ -20,7 +20,7 @@
  * @date 2016--2020.
  * @brief An implementation of a dropout layer.
  */ 
- 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -44,7 +44,6 @@ LAYER *neural_layer_dropout_init(const XCSF *xcsf, int in, double prob)
     l->n_outputs = in;
     l->max_outputs = in;
     l->options = 0;
-    l->eta = 0;
     l->probability = prob;
     l->scale = 1./(1.-prob);
     l->output = calloc(l->n_inputs, sizeof(double));
@@ -62,7 +61,6 @@ LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *from)
     l->n_inputs = from->n_inputs;
     l->n_outputs = from->n_inputs;
     l->max_outputs = from->max_outputs;
-    l->eta = from->eta;
     l->options = from->options;
     l->probability = from->probability;
     l->scale = from->scale;
@@ -71,7 +69,7 @@ LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *from)
     l->rand = malloc(from->n_inputs * sizeof(double));
     return l;
 }
- 
+
 void neural_layer_dropout_free(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
@@ -84,7 +82,7 @@ void neural_layer_dropout_rand(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf; (void)l;
 }
- 
+
 void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
     if(!xcsf->train) {
@@ -121,14 +119,14 @@ void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const NET *
     }
 }
 
-void neural_layer_dropout_update(const XCSF *xcsf, const LAYER *l)
+void neural_layer_dropout_update(const XCSF *xcsf, const LAYER *l, double eta)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf; (void)l; (void)eta;
 }
 
-_Bool neural_layer_dropout_mutate(const XCSF *xcsf, LAYER *l)
+_Bool neural_layer_dropout_mutate(const XCSF *xcsf, LAYER *l, const double *mu)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf; (void)l; (void)mu;
     return false;
 }
 
@@ -158,7 +156,7 @@ void neural_layer_dropout_print(const XCSF *xcsf, const LAYER *l, _Bool print_we
     printf("dropout in = %d, out = %d prob = %f\n",
             l->n_inputs, l->n_outputs, l->probability);
 }
- 
+
 size_t neural_layer_dropout_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 {
     (void)xcsf;
@@ -181,7 +179,6 @@ size_t neural_layer_dropout_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->probability, sizeof(double), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
     l->options = 0;
-    l->eta = 0;
     l->output = calloc(l->n_inputs, sizeof(double));
     l->delta = malloc(l->n_inputs * sizeof(double));
     l->rand = malloc(l->n_inputs * sizeof(double));

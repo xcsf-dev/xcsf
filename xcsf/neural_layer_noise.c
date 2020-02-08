@@ -20,7 +20,7 @@
  * @date 2016--2020.
  * @brief An implementation of a Gaussian noise adding layer.
  */ 
- 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -44,7 +44,6 @@ LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std
     l->n_outputs = in;
     l->max_outputs = in;
     l->options = 0;
-    l->eta = 0;
     l->probability = prob;
     l->scale = std;
     l->output = calloc(l->n_inputs, sizeof(double));
@@ -63,7 +62,6 @@ LAYER *neural_layer_noise_copy(const XCSF *xcsf, const LAYER *from)
     l->n_outputs = from->n_outputs;
     l->max_outputs = from->max_outputs;
     l->options = from->options;
-    l->eta = from->eta;
     l->probability = from->probability;
     l->scale = from->scale;
     l->output = calloc(from->n_inputs, sizeof(double));
@@ -71,7 +69,7 @@ LAYER *neural_layer_noise_copy(const XCSF *xcsf, const LAYER *from)
     l->rand = malloc(from->n_inputs * sizeof(double));
     return l;
 }
- 
+
 void neural_layer_noise_free(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
@@ -84,7 +82,7 @@ void neural_layer_noise_rand(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf; (void)l;
 }
- 
+
 void neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
     if(!xcsf->train) {
@@ -116,14 +114,14 @@ void neural_layer_noise_backward(const XCSF *xcsf, const LAYER *l, const NET *ne
     }
 }
 
-void neural_layer_noise_update(const XCSF *xcsf, const LAYER *l)
+void neural_layer_noise_update(const XCSF *xcsf, const LAYER *l, double eta)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf; (void)l; (void)eta;
 }
 
-_Bool neural_layer_noise_mutate(const XCSF *xcsf, LAYER *l)
+_Bool neural_layer_noise_mutate(const XCSF *xcsf, LAYER *l, const double *mu)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf; (void)l; (void)mu;
     return false;
 }
 
@@ -176,7 +174,6 @@ size_t neural_layer_noise_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->probability, sizeof(double), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
     l->options = 0;
-    l->eta = 0;
     l->output = calloc(l->n_inputs, sizeof(double));
     l->delta = malloc(l->n_inputs * sizeof(double));
     l->rand = malloc(l->n_inputs * sizeof(double));

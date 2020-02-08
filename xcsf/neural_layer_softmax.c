@@ -20,7 +20,7 @@
  * @date 2016--2020.
  * @brief An implementation of a softmax layer.
  */ 
- 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -33,7 +33,7 @@
 #include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_softmax.h"
- 
+
 LAYER* neural_layer_softmax_init(const XCSF *xcsf, int in, double temp)
 {
     (void)xcsf;
@@ -45,7 +45,6 @@ LAYER* neural_layer_softmax_init(const XCSF *xcsf, int in, double temp)
     l->n_outputs = in;
     l->max_outputs = in;
     l->options = 0;
-    l->eta = 0;
     l->output = calloc(l->n_inputs, sizeof(double));
     l->delta = calloc(l->n_inputs, sizeof(double));
     return l;
@@ -62,7 +61,6 @@ LAYER* neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *from)
     l->n_outputs = from->n_outputs;
     l->max_outputs = from->max_outputs;
     l->options = from->options;
-    l->eta = from->eta;
     l->output = calloc(from->n_inputs, sizeof(double));
     l->delta = calloc(from->n_inputs, sizeof(double));
     return l;
@@ -101,9 +99,9 @@ void neural_layer_softmax_backward(const XCSF *xcsf, const LAYER *l, const NET *
     }
 }
 
-void neural_layer_softmax_update(const XCSF *xcsf, const LAYER *l)
+void neural_layer_softmax_update(const XCSF *xcsf, const LAYER *l, double eta)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf; (void)l; (void)eta;
 }
 
 void neural_layer_softmax_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
@@ -113,9 +111,9 @@ void neural_layer_softmax_print(const XCSF *xcsf, const LAYER *l, _Bool print_we
             l->n_inputs, l->n_outputs, l->scale);
 }
 
-_Bool neural_layer_softmax_mutate(const XCSF *xcsf, LAYER *l)
+_Bool neural_layer_softmax_mutate(const XCSF *xcsf, LAYER *l, const double *mu)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf; (void)l; (void)mu;
     return false;
 }
 
@@ -143,7 +141,7 @@ double* neural_layer_softmax_output(const XCSF *xcsf, const LAYER *l)
     (void)xcsf;
     return l->output;
 }
- 
+
 size_t neural_layer_softmax_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 {
     (void)xcsf;
@@ -164,7 +162,6 @@ size_t neural_layer_softmax_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
     l->options = 0;
-    l->eta = 0;
     l->output = calloc(l->n_inputs, sizeof(double));
     l->delta = calloc(l->n_inputs, sizeof(double));
     return s;

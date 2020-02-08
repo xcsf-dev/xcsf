@@ -20,7 +20,7 @@
  * @date 2019--2020.
  * @brief Neural network rule (condition + action) functions.
  */ 
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -38,7 +38,7 @@
 #include "condition.h"
 #include "action.h"
 #include "rule_neural.h"
- 
+
 /**
  * @brief Neural network rule data structure.
  */ 
@@ -55,7 +55,7 @@ static uint32_t rule_neural_lopt(const XCSF *xcsf);
 void rule_neural_cond_init(const XCSF *xcsf, CL *c)
 {
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
-    neural_init(xcsf, &new->net);
+    neural_init(xcsf, &new->net, 0);
     // hidden layers
     uint32_t lopt = rule_neural_lopt(xcsf);
     LAYER *l;
@@ -144,7 +144,7 @@ _Bool rule_neural_cond_match(const XCSF *xcsf, const CL *c, const double *x)
 
 _Bool rule_neural_cond_mutate(const XCSF *xcsf, const CL *c)
 {
-    const RULE_NEURAL *cond = c->cond;
+    RULE_NEURAL *cond = c->cond;
     return neural_mutate(xcsf, &cond->net);
 }
 
@@ -165,7 +165,7 @@ void rule_neural_cond_print(const XCSF *xcsf, const CL *c)
     const RULE_NEURAL *cond = c->cond;
     neural_print(xcsf, &cond->net, false);
 }  
- 
+
 int rule_neural_cond_size(const XCSF *xcsf, const CL *c)
 {
     const RULE_NEURAL *cond = c->cond;
@@ -199,22 +199,22 @@ void rule_neural_act_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf; (void)c;
 }
- 
+
 void rule_neural_act_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     (void)xcsf; (void)to; (void)from;
 }
- 
+
 void rule_neural_act_print(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf; (void)c;
 }
- 
+
 void rule_neural_act_rand(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf; (void)c;
 }
-  
+
 void rule_neural_act_cover(const XCSF *xcsf, const CL *c, const double *x, int action)
 {
     do {
@@ -222,7 +222,7 @@ void rule_neural_act_cover(const XCSF *xcsf, const CL *c, const double *x, int a
     } while(!rule_neural_cond_match(xcsf, c, x) 
             && rule_neural_act_compute(xcsf, c, x) != action);
 }
- 
+
 int rule_neural_act_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     (void)x; // network already updated

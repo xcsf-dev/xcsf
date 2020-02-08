@@ -20,7 +20,7 @@
  * @date 2016--2020.
  * @brief Multi-layer perceptron neural network prediction functions.
  */ 
- 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -39,7 +39,7 @@
 #include "neural_layer_softmax.h"
 #include "prediction.h"
 #include "pred_neural.h"
-                                          
+
 /**
  * @brief Multi-layer perceptron neural network prediction data structure.
  */ 
@@ -47,12 +47,14 @@ typedef struct PRED_NEURAL {
     NET net; //!< Neural network
 } PRED_NEURAL;
 
+static uint32_t pred_neural_nopt(const XCSF *xcsf);
 static uint32_t pred_neural_lopt(const XCSF *xcsf);
 
 void pred_neural_init(const XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
-    neural_init(xcsf, &new->net);
+	uint32_t nopt = pred_neural_nopt(xcsf);
+    neural_init(xcsf, &new->net, nopt);
     // hidden layers
     uint32_t lopt = pred_neural_lopt(xcsf);
     LAYER *l;
@@ -78,6 +80,15 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     c->pred = new;
 }
 
+static uint32_t pred_neural_nopt(const XCSF *xcsf)
+{
+    uint32_t nopt = 0;
+    if(xcsf->PRED_EVOLVE_ETA) {
+        nopt |= NETWORK_EVOLVE_ETA;
+    }
+    return nopt;
+}
+
 static uint32_t pred_neural_lopt(const XCSF *xcsf)
 {
     uint32_t lopt = 0;
@@ -86,9 +97,6 @@ static uint32_t pred_neural_lopt(const XCSF *xcsf)
     }
     if(xcsf->PRED_EVOLVE_WEIGHTS) {
         lopt |= LAYER_EVOLVE_WEIGHTS;
-    }
-    if(xcsf->PRED_EVOLVE_ETA) {
-        lopt |= LAYER_EVOLVE_ETA;
     }
     if(xcsf->PRED_EVOLVE_NEURONS) {
         lopt |= LAYER_EVOLVE_NEURONS;
@@ -146,7 +154,7 @@ _Bool pred_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 _Bool pred_neural_mutate(const XCSF *xcsf, const CL *c)
 {
-    const PRED_NEURAL *pred = c->pred;
+    PRED_NEURAL *pred = c->pred;
     return neural_mutate(xcsf, &pred->net);
 }
 
@@ -171,19 +179,11 @@ size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp)
     return s;
 }
 
-double pred_neural_eta(const XCSF *xcsf, const CL *c, int layer)
+double pred_neural_eta(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     const PRED_NEURAL *pred = c->pred;
-    const NET *net = &pred->net;
-    int i = 0;
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        if(i == layer) {
-            return iter->layer->eta;
-        }
-        i++;
-    }
-    return 0;
+	return pred->net.eta;
 }
 
 int pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer)

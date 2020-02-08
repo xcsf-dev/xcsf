@@ -22,7 +22,13 @@
  */ 
 
 #pragma once
-                     
+
+#include <stdint.h>
+
+#define N_MU 4 //!< Number of mutation rates applied
+
+#define NETWORK_EVOLVE_ETA (1<<0)
+
 /**
  * @brief Double linked list of layers data structure.
  */ 
@@ -31,11 +37,12 @@ typedef struct LLIST {
     struct LLIST *prev; //!< Pointer to the previous layer (forward)
     struct LLIST *next; //!< Pointer to the next layer (backward)
 } LLIST;
-                      
+
 /**
  * @brief Neural network data structure.
  */  
 typedef struct NET {
+    uint32_t nopt; //!< Bitwise network options permitting functionality.
     int n_layers; //!< Number of layers (hidden + output)
     int n_inputs; //!< Number of network inputs
     int n_outputs; //!< Number of network outputs
@@ -43,16 +50,18 @@ typedef struct NET {
     const double *input; //!< Pointer to the network input
     LLIST *head; //!< Pointer to the head layer (output layer)
     LLIST *tail; //!< Pointer to the tail layer (first layer)
+    double mu[N_MU]; //!< Mutation rates
+    double eta; //!< Gradient descent rate
 } NET;
 
-_Bool neural_mutate(const XCSF *xcsf, const NET *net);
+_Bool neural_mutate(const XCSF *xcsf, NET *net);
 double neural_output(const XCSF *xcsf, const NET *net, int i);
 int neural_size(const XCSF *xcsf, const NET *net);
 size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp);
 size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp);
 void neural_copy(const XCSF *xcsf, NET *to, const NET *from);
 void neural_free(const XCSF *xcsf, NET *net);
-void neural_init(const XCSF *xcsf, NET *net);
+void neural_init(const XCSF *xcsf, NET *net, uint32_t nopt);
 void neural_layer_insert(const XCSF *xcsf, NET *net, struct LAYER *l, int p);
 void neural_layer_remove(const XCSF *xcsf, NET *net, int p);
 void neural_learn(const XCSF *xcsf, NET *net, const double *output, const double *input);

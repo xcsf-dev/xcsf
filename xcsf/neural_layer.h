@@ -32,9 +32,8 @@
 
 #define LAYER_EVOLVE_WEIGHTS    (1<<0)
 #define LAYER_EVOLVE_NEURONS    (1<<1)
-#define LAYER_EVOLVE_ETA        (1<<2)
-#define LAYER_EVOLVE_FUNCTIONS  (1<<3)
-#define LAYER_SGD_WEIGHTS       (1<<4)
+#define LAYER_EVOLVE_FUNCTIONS  (1<<2)
+#define LAYER_SGD_WEIGHTS       (1<<3)
 
 /**
  * @brief Neural network layer data structure.
@@ -49,13 +48,11 @@ typedef struct LAYER {
     double *bias_updates; //!< Updates to biases
     double *weight_updates; //!< Updates to weights
     double *delta; //!< Delta for updating weights
-    double *mu; //!< Mutation rates
     int n_inputs; //!< Number of layer inputs
     int n_outputs; //!< Number of layer outputs
     int max_outputs; //!< Maximum number of neurons in the layer
     int n_weights; //!< Number of layer weights
     int function; //!< Layer activation function
-    double eta; //!< Gradient descent learning rate
     double scale; //!< Usage depends on layer implementation
     double probability; //!< Usage depends on layer implementation
     double *rand; //!< Usage depends on layer implementation
@@ -73,7 +70,7 @@ struct LayerVtbl {
      * @param l The layer to mutate.
      * @return Whether any alterations were made.
      */
-    _Bool (*layer_impl_mutate)(const XCSF *xcsf, LAYER *l);
+    _Bool (*layer_impl_mutate)(const XCSF *xcsf, LAYER *l, const double *mu);
     /**
      * @brief Resizes a layer using the previous layer's inputs
      * @param xcsf The XCSF data structure.
@@ -113,7 +110,7 @@ struct LayerVtbl {
      * @param xcsf The XCSF data structure.
      * @param l The layer to be updated.
      */
-    void (*layer_impl_update)(const XCSF *xcsf, const LAYER *l);
+    void (*layer_impl_update)(const XCSF *xcsf, const LAYER *l, double eta);
     /**
      * @brief Backward propagates the error through a layer.
      * @param xcsf The XCSF data structure.
@@ -173,12 +170,12 @@ static inline void layer_backward(const XCSF *xcsf, const LAYER *l, const NET *n
     (*l->layer_vptr->layer_impl_backward)(xcsf, l, net);
 }
 
-static inline void layer_update(const XCSF *xcsf, const LAYER *l) {
-    (*l->layer_vptr->layer_impl_update)(xcsf, l);
+static inline void layer_update(const XCSF *xcsf, const LAYER *l, double eta) {
+    (*l->layer_vptr->layer_impl_update)(xcsf, l, eta);
 }
 
-static inline _Bool layer_mutate(const XCSF *xcsf, LAYER *l) {
-    return (*l->layer_vptr->layer_impl_mutate)(xcsf, l);
+static inline _Bool layer_mutate(const XCSF *xcsf, LAYER *l, const double *mu) {
+    return (*l->layer_vptr->layer_impl_mutate)(xcsf, l, mu);
 }
 
 static inline void layer_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev) {
