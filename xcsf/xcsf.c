@@ -272,8 +272,6 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->COND_MAX, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_MIN, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->PRED_MAX, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->PRED_MIN, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_SMIN, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_BITS, sizeof(double), 1, fp);
     s += fwrite(xcsf->COND_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
@@ -356,8 +354,6 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->COND_MAX, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_MIN, sizeof(double), 1, fp);
-    s += fread(&xcsf->PRED_MAX, sizeof(double), 1, fp);
-    s += fread(&xcsf->PRED_MIN, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_SMIN, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_BITS, sizeof(double), 1, fp);
     s += fread(xcsf->COND_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
