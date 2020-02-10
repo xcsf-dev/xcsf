@@ -215,7 +215,7 @@ void neural_rand(const XCSF *xcsf, const NET *net)
  */
 _Bool neural_mutate(const XCSF *xcsf, NET *net)
 {
-    sam_init(xcsf, net->mu, N_MU);
+    sam_adapt(xcsf, net->mu, N_MU);
     _Bool mod = false;
     const LAYER *prev = NULL;
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
