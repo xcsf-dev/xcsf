@@ -51,7 +51,7 @@ static inline double gaussian_gradient(double x){return -2*x*exp(-x*x);}
 static inline double relu_activate(double x){return x*(x>0);}
 static inline double relu_gradient(double x){return (x>0);}
 static inline double selu_activate(double x){return (x>=0)*1.0507*x+(x<0)*1.0507*1.6732*expm1(x);}
-static inline double selu_gradient(double x){return (x>=0)*1.0507+(x<0)*(1.6732*exp(x));}
+static inline double selu_gradient(double x){return (x>=0)*1.0507+(x<0)*(1.0507*1.6732*exp(x));}
 static inline double linear_activate(double x){return x;}
 static inline double linear_gradient(double x){(void)x; return 1;}
 static inline double soft_plus_activate(double x){return log1p(exp(x));}
