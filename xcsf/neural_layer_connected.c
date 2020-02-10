@@ -47,7 +47,6 @@ static void neuron_remove(LAYER *l, int n);
 
 LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o)
 {
-    (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
