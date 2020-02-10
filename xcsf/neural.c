@@ -25,7 +25,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include <stdint.h>
 #include <math.h>
 #include <float.h>
 #include "xcsf.h"
@@ -48,18 +47,16 @@ static _Bool mutate_eta(NET *net);
  * @brief Initialises an empty neural network.
  * @param xcsf The XCSF data structure.
  * @param net The neural network to initialise.
- * @param nopt Bitwise network options.
  */
-void neural_init(const XCSF *xcsf, NET *net, uint32_t nopt)
+void neural_init(const XCSF *xcsf, NET *net)
 {
     net->head = NULL;
     net->tail = NULL;
     net->n_layers = 0;
     net->n_inputs = 0;
     net->n_outputs = 0;
-    net->nopt = nopt;
     sam_init(xcsf, net->mu, N_MU);
-    if(net->nopt & NETWORK_EVOLVE_ETA) {
+    if(xcsf->PRED_EVOLVE_ETA) {
         net->eta = rand_uniform(ETA_MIN,ETA_MAX);
     }
     else {
@@ -165,7 +162,7 @@ void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
  */
 void neural_copy(const XCSF *xcsf, NET *to, const NET *from)
 {
-    neural_init(xcsf, to, from->nopt);
+    neural_init(xcsf, to);
     int p = 0;
     for(const LLIST *iter = from->tail; iter != NULL; iter = iter->prev) {
         const LAYER *f = iter->layer;
@@ -229,7 +226,7 @@ _Bool neural_mutate(const XCSF *xcsf, NET *net)
         }
         prev = iter->layer;
     }
-    if((net->nopt & NETWORK_EVOLVE_ETA) && mutate_eta(net)) {
+    if(xcsf->PRED_EVOLVE_ETA && mutate_eta(net)) {
         mod = true;
     }
     return mod;
@@ -364,7 +361,6 @@ size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
     s += fwrite(&net->n_layers, sizeof(int), 1, fp);
     s += fwrite(&net->n_inputs, sizeof(int), 1, fp);
     s += fwrite(&net->n_outputs, sizeof(int), 1, fp);
-    s += fwrite(&net->nopt, sizeof(uint32_t), 1, fp);
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         s += fwrite(&iter->layer->layer_type, sizeof(int), 1, fp);
         s += layer_save(xcsf, iter->layer, fp);
@@ -387,12 +383,10 @@ size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp)
     int nlayers = 0;
     int ninputs = 0;
     int noutputs = 0;
-    uint32_t nopt = 0;
     s += fread(&nlayers, sizeof(int), 1, fp);
     s += fread(&ninputs, sizeof(int), 1, fp);
     s += fread(&noutputs, sizeof(int), 1, fp);
-    s += fread(&nopt, sizeof(uint32_t), 1, fp);
-    neural_init(xcsf, net, nopt);
+    neural_init(xcsf, net);
     for(int i = 0; i < nlayers; i++) {
         LAYER *l = malloc(sizeof(LAYER));
         s += fread(&l->layer_type, sizeof(int), 1, fp);

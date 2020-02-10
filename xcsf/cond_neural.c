@@ -51,7 +51,7 @@ static uint32_t cond_neural_lopt(const XCSF *xcsf);
 void cond_neural_init(const XCSF *xcsf, CL *c)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
-    neural_init(xcsf, &new->net, 0);
+    neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = cond_neural_lopt(xcsf);
     LAYER *l;

@@ -47,14 +47,12 @@ typedef struct PRED_NEURAL {
     NET net; //!< Neural network
 } PRED_NEURAL;
 
-static uint32_t pred_neural_nopt(const XCSF *xcsf);
 static uint32_t pred_neural_lopt(const XCSF *xcsf);
 
 void pred_neural_init(const XCSF *xcsf, CL *c)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
-	uint32_t nopt = pred_neural_nopt(xcsf);
-    neural_init(xcsf, &new->net, nopt);
+    neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = pred_neural_lopt(xcsf);
     LAYER *l;
@@ -78,15 +76,6 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, i);
     c->pred = new;
-}
-
-static uint32_t pred_neural_nopt(const XCSF *xcsf)
-{
-    uint32_t nopt = 0;
-    if(xcsf->PRED_EVOLVE_ETA) {
-        nopt |= NETWORK_EVOLVE_ETA;
-    }
-    return nopt;
 }
 
 static uint32_t pred_neural_lopt(const XCSF *xcsf)
