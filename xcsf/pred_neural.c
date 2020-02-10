@@ -216,8 +216,8 @@ void pred_neural_expand(const XCSF *xcsf, const CL *c)
     int pos = net->n_layers - 1;
     int f = xcsf->PRED_HIDDEN_ACTIVATION;
     uint32_t lopt = pred_neural_lopt(xcsf);
-    int n = irand_uniform(1, size); // random number of hidden neurons
-    LAYER *l = neural_layer_connected_init(xcsf, size, n, n, f, lopt);
+    // initially same size as last hidden layer; and cannot be bigger
+    LAYER *l = neural_layer_connected_init(xcsf, size, size, size, f, lopt);
     neural_layer_insert(xcsf, net, l, pos);
     // resize layers as necessary
     const LAYER *prev = NULL;
