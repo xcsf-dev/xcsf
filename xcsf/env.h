@@ -30,73 +30,73 @@ void env_init(XCSF *xcsf, char **argv);
  * @details Environment implementations must implement these functions.
  */ 
 struct EnvVtbl {
-    /**
-     * @brief Returns whether the environment needs to be reset.
-     * @param xcsf The XCSF data structure.
-     * @return Whether the environment needs to be reset.
-     */
     _Bool (*env_impl_isreset)(const XCSF *xcsf);
-    /**
-     * @brief Returns whether the environment is a multistep problem.
-     * @param xcsf The XCSF data structure.
-     * @return Whether the environment is multistep.
-     */
     _Bool (*env_impl_multistep)(const XCSF *xcsf);
-    /**
-     * @brief Executes the specified action and returns the payoff.
-     * @param xcsf The XCSF data structure.
-     * @param action The action to perform.
-     * @return The payoff from performing the action.
-     */
     double (*env_impl_execute)(const XCSF *xcsf, int action);
-    /**
-     * @brief Returns the maximum payoff value possible in the environment.
-     * @param xcsf The XCSF data structure.
-     * @return The maximum payoff.
-     */
     double (*env_impl_max_payoff)(const XCSF *xcsf);
-    /**
-     * @brief Returns the current environment perceptions.
-     * @param xcsf The XCSF data structure.
-     * @return The current perceptions.
-     */
     const double *(*env_impl_get_state)(const XCSF *xcsf);
-    /**
-     * @brief Frees the environment.
-     * @param xcsf The XCSF data structure.
-     */
     void (*env_impl_free)(const XCSF *xcsf);
-    /**
-     * @brief Resets the environment.
-     * @param xcsf The XCSF data structure.
-     */
     void (*env_impl_reset)(const XCSF *xcsf);
 };
 
+/**
+ * @brief Returns whether the environment needs to be reset.
+ * @param xcsf The XCSF data structure.
+ * @return Whether the environment needs to be reset.
+ */
 static inline _Bool env_is_reset(const XCSF *xcsf) {
     return (*xcsf->env_vptr->env_impl_isreset)(xcsf);
 }
 
+/**
+ * @brief Returns whether the environment is a multistep problem.
+ * @param xcsf The XCSF data structure.
+ * @return Whether the environment is multistep.
+ */
 static inline _Bool env_multistep(const XCSF *xcsf) {
     return (*xcsf->env_vptr->env_impl_multistep)(xcsf);
 }
 
+/**
+ * @brief Executes the specified action and returns the payoff.
+ * @param xcsf The XCSF data structure.
+ * @param action The action to perform.
+ * @return The payoff from performing the action.
+ */
 static inline double env_execute(const XCSF *xcsf, int action) {
     return (*xcsf->env_vptr->env_impl_execute)(xcsf, action);
 }
 
+/**
+ * @brief Returns the maximum payoff value possible in the environment.
+ * @param xcsf The XCSF data structure.
+ * @return The maximum payoff.
+ */
 static inline double env_max_payoff(const XCSF *xcsf) {
     return (*xcsf->env_vptr->env_impl_max_payoff)(xcsf);
 }
 
+/**
+ * @brief Returns the current environment perceptions.
+ * @param xcsf The XCSF data structure.
+ * @return The current perceptions.
+ */
 static inline const double *env_get_state(const XCSF *xcsf) {
     return (*xcsf->env_vptr->env_impl_get_state)(xcsf);
 }
 
+/**
+ * @brief Frees the environment.
+ * @param xcsf The XCSF data structure.
+ */
 static inline void env_free(const XCSF *xcsf) {
     (*xcsf->env_vptr->env_impl_free)(xcsf);
 }
 
+/**
+ * @brief Resets the environment.
+ * @param xcsf The XCSF data structure.
+ */
 static inline void env_reset(const XCSF *xcsf) {
     (*xcsf->env_vptr->env_impl_reset)(xcsf);
 }
