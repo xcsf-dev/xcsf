@@ -46,7 +46,6 @@ typedef struct NET {
     LLIST *head; //!< Pointer to the head layer (output layer)
     LLIST *tail; //!< Pointer to the tail layer (first layer)
     double mu[N_MU]; //!< Mutation rates
-    double eta; //!< Gradient descent rate
 } NET;
 
 _Bool neural_mutate(const XCSF *xcsf, NET *net);

@@ -81,6 +81,9 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
 static uint32_t pred_neural_lopt(const XCSF *xcsf)
 {
     uint32_t lopt = 0;
+    if(xcsf->PRED_EVOLVE_ETA) {
+        lopt |= LAYER_EVOLVE_ETA;
+    }
     if(xcsf->PRED_SGD_WEIGHTS) {
         lopt |= LAYER_SGD_WEIGHTS;
     }
@@ -167,11 +170,18 @@ size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp)
     return s;
 }
 
-double pred_neural_eta(const XCSF *xcsf, const CL *c)
+double pred_neural_eta(const XCSF *xcsf, const CL *c, int layer)
 {
     (void)xcsf;
     const PRED_NEURAL *pred = c->pred;
-	return pred->net.eta;
+    int i = 0;
+    for(const LLIST *iter = pred->net.tail; iter != NULL; iter = iter->prev) {
+        if(i == layer) {
+            return iter->layer->eta;
+        }
+        i++;
+    }
+    return 0;
 }
 
 int pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer)
@@ -195,4 +205,26 @@ int pred_neural_layers(const XCSF *xcsf, const CL *c)
     const PRED_NEURAL *pred = c->pred;
     const NET *net = &pred->net;
     return net->n_layers;
+}
+
+void pred_neural_expand(const XCSF *xcsf, const CL *c)
+{
+    PRED_NEURAL *pred = c->pred;
+    NET *net = &pred->net;
+    // insert a new layer
+    int size = net->head->layer->n_inputs;
+    int pos = net->n_layers - 1;
+    int f = xcsf->PRED_HIDDEN_ACTIVATION;
+    uint32_t lopt = pred_neural_lopt(xcsf);
+    int n = irand_uniform(1, size); // random number of hidden neurons
+    LAYER *l = neural_layer_connected_init(xcsf, size, n, n, f, lopt);
+    neural_layer_insert(xcsf, net, l, pos);
+    // resize layers as necessary
+    const LAYER *prev = NULL;
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        if(prev != NULL && iter->layer->n_inputs != prev->n_outputs) {
+            layer_resize(xcsf, iter->layer, prev);
+        }
+        prev = iter->layer;
+    }
 }

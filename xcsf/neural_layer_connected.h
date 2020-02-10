@@ -28,7 +28,7 @@ LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *from);
 void neural_layer_connected_rand(const XCSF *xcsf, const LAYER *l);
 void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const double *input);
 void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET *net);
-void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l, double eta);
+void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l);
 void neural_layer_connected_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
 _Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l, const double *mu);
 void neural_layer_connected_free(const XCSF *xcsf, const LAYER *l);

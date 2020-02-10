@@ -698,17 +698,18 @@ double clset_mfrac(const XCSF *xcsf)
 /* Neural network prediction functions */
 
 /**
- * @brief Calculates the mean prediction ETA of classifiers in the set.
+ * @brief Calculates the mean prediction layer ETA of classifiers in the set.
  * @param xcsf The XCSF data structure.
  * @param set The set to calculate the mean.
- * @return The mean prediction ETA of classifiers in the set.
+ * @param layer The position of layer to calculate.
+ * @return The mean prediction layer ETA of classifiers in the set.
  */ 
-double clset_mean_eta(const XCSF *xcsf, const SET *set)
+double clset_mean_eta(const XCSF *xcsf, const SET *set, int layer)
 {
     double sum = 0;
     int cnt = 0;
     for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        sum += pred_neural_eta(xcsf, iter->cl);
+        sum += pred_neural_eta(xcsf, iter->cl, layer);
         cnt++;
     }
     return sum / cnt;

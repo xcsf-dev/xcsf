@@ -38,11 +38,6 @@
 #include "neural_layer_noise.h"
 #include "neural_layer_softmax.h"
 
-#define ETA_MAX 0.1 //!< Maximum gradient descent rate
-#define ETA_MIN 0.0001 //!< Minimum gradient descent rate
-
-static _Bool mutate_eta(NET *net);
-
 /**
  * @brief Initialises an empty neural network.
  * @param xcsf The XCSF data structure.
@@ -56,12 +51,6 @@ void neural_init(const XCSF *xcsf, NET *net)
     net->n_inputs = 0;
     net->n_outputs = 0;
     sam_init(xcsf, net->mu, N_MU);
-    if(xcsf->PRED_EVOLVE_ETA) {
-        net->eta = rand_uniform(ETA_MIN,ETA_MAX);
-    }
-    else {
-        net->eta = xcsf->PRED_ETA;
-    }
 }
 
 /**
@@ -171,7 +160,6 @@ void neural_copy(const XCSF *xcsf, NET *to, const NET *from)
         p++;
     }
     memcpy(to->mu, from->mu, N_MU * sizeof(double));
-    to->eta = from->eta;
 }
 
 /**
@@ -226,21 +214,7 @@ _Bool neural_mutate(const XCSF *xcsf, NET *net)
         }
         prev = iter->layer;
     }
-    if(xcsf->PRED_EVOLVE_ETA && mutate_eta(net)) {
-        mod = true;
-    }
     return mod;
-}
-
-static _Bool mutate_eta(NET *net)
-{
-    double orig = net->eta;
-    net->eta += rand_normal(0, net->mu[0]);
-    net->eta = constrain(ETA_MIN, ETA_MAX, net->eta);
-    if(net->eta != orig) {
-        return true;
-    }
-    return false;
 }
 
 /**
@@ -294,7 +268,7 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
 
     /* update phase */
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        layer_update(xcsf, iter->layer, net->eta);
+        layer_update(xcsf, iter->layer);
     }
 } 
 
@@ -366,7 +340,6 @@ size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
         s += layer_save(xcsf, iter->layer, fp);
     }
     s += fwrite(net->mu, sizeof(double), N_MU, fp);
-    s += fwrite(&net->eta, sizeof(double), 1, fp);
     return s;
 }
 
@@ -395,6 +368,5 @@ size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp)
         neural_layer_insert(xcsf, net, l, i);
     }
     s += fread(net->mu, sizeof(double), N_MU, fp);
-    s += fread(&net->eta, sizeof(double), 1, fp);
     return s;
 }
