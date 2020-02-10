@@ -28,9 +28,14 @@
 #include <math.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "sam.h"
 #include "cl.h"
 #include "prediction.h"
 #include "pred_nlms.h"
+
+#define N_MU 1 //!< Number of self-adaptive mutation rates
+#define ETA_MAX 0.1 //!< Maximum gradient descent rate
+#define ETA_MIN 0.0001 //!< Minimum gradient descent rate
 
 /**
  * @brief Normalised least mean squares prediction data structure.
@@ -38,6 +43,8 @@
 typedef struct PRED_NLMS {
     int weights_length; //!< Total number of weights
     double **weights; //!< Weights used to compute prediction
+    double mu[N_MU]; //!< Mutation rates
+    double eta; //!< Gradient descent rate
 } PRED_NLMS;
 
 void pred_nlms_init(const XCSF *xcsf, CL *c)
@@ -62,17 +69,26 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
             pred->weights[var][i] = 0;
         }
     }
+    if(xcsf->PRED_EVOLVE_ETA) {
+        sam_init(xcsf, pred->mu, N_MU);
+        pred->eta = rand_uniform(ETA_MIN, ETA_MAX);
+    }
+    else {
+        pred->eta = xcsf->PRED_ETA;
+    }
 }
 
 void pred_nlms_copy(const XCSF *xcsf, CL *to, const CL *from)
 {
     pred_nlms_init(xcsf, to);
-    const PRED_NLMS *to_pred = to->pred;
+    PRED_NLMS *to_pred = to->pred;
     const PRED_NLMS *from_pred = from->pred;
     for(int var = 0; var < xcsf->y_dim; var++) {
         memcpy(to_pred->weights[var], from_pred->weights[var], 
                 sizeof(double) * from_pred->weights_length);
     }
+    memcpy(to_pred->mu, from_pred->mu, N_MU);
+    to_pred->eta = from_pred->eta;
 }
 
 void pred_nlms_free(const XCSF *xcsf, const CL *c)
@@ -95,7 +111,7 @@ void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x, const doub
     // prediction must have been computed for the current state
     for(int var = 0; var < xcsf->y_dim; var++) {
         double error = y[var] - c->prediction[var];
-        double correction = (xcsf->PRED_ETA * error) / norm;
+        double correction = (pred->eta * error) / norm;
         // update first coefficient
         pred->weights[var][0] += xcsf->PRED_X0 * correction;
         int index = 1;
@@ -157,7 +173,16 @@ _Bool pred_nlms_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 _Bool pred_nlms_mutate(const XCSF *xcsf, const CL *c)
 {
-    (void)xcsf; (void)c;
+    if(xcsf->PRED_EVOLVE_ETA) {
+        PRED_NLMS *pred = c->pred;
+        sam_adapt(xcsf, pred->mu, N_MU);
+        double orig = pred->eta;
+        pred->eta += rand_normal(0, pred->mu[0]);
+        pred->eta = constrain(ETA_MIN, ETA_MAX, pred->eta);
+        if(orig != pred->eta) {
+            return true;
+        }
+    }
     return false;
 }
 
@@ -176,6 +201,8 @@ size_t pred_nlms_save(const XCSF *xcsf, const CL *c, FILE *fp)
     for(int var = 0; var < xcsf->y_dim; var++) {
         s += fwrite(pred->weights[var], sizeof(double), pred->weights_length, fp);
     }
+    s += fwrite(pred->mu, sizeof(double), N_MU, fp);
+    s += fwrite(&pred->eta, sizeof(double), 1, fp);
     return s;
 }
 
@@ -188,5 +215,7 @@ size_t pred_nlms_load(const XCSF *xcsf, CL *c, FILE *fp)
     for(int var = 0; var < xcsf->y_dim; var++) {
         s += fread(pred->weights[var], sizeof(double), pred->weights_length, fp);
     }
+    s += fread(pred->mu, sizeof(double), N_MU, fp);
+    s += fread(&pred->eta, sizeof(double), 1, fp);
     return s;
 }
