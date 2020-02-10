@@ -20,7 +20,7 @@ import numpy as np
 from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import minmax_scale
+from sklearn.preprocessing import minmax_scale, StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
 import matplotlib.pyplot as plt
@@ -43,10 +43,13 @@ if(len(np.shape(y_train)) == 1):
 if(len(np.shape(y_test)) == 1):
     y_test = np.reshape(y_test, (y_test.shape[0], 1))
 
-# scale inputs [-1,1] and outputs [0,1]
-X_train = minmax_scale(X_train, feature_range=(-1,1))
+# normalise inputs (zero mean and unit variance)
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.fit_transform(X_test)
+
+# scale outputs [0,1]
 y_train = minmax_scale(y_train, feature_range=(0,1))
-X_test = minmax_scale(X_test, feature_range=(-1,1))
 y_test = minmax_scale(y_test, feature_range=(0,1))
 
 print("X_train shape = "+str(np.shape(X_train)))
@@ -71,12 +74,12 @@ xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 500
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.LOSS_FUNC = 1 # MSE
-xcs.EPS_0 = 0.005 # target error
-xcs.COND_MIN = -1 # input range [-1,1]
-xcs.COND_MAX = 1
+xcs.EPS_0 = 0.004 # target error
+xcs.ALPHA = 0.1 # accuracy offset
+xcs.NU = 50 # accuracy slope
 
 xcs.COND_TYPE = 3 # neural network conditions
-xcs.COND_OUTPUT_ACTIVATION = 0 # logistic [0,1]
+xcs.COND_OUTPUT_ACTIVATION = 1 # relu
 xcs.COND_HIDDEN_ACTIVATION = 1 # relu
 xcs.COND_NUM_NEURONS = [1]
 xcs.COND_MAX_NEURONS = [20]
@@ -85,7 +88,7 @@ xcs.COND_EVOLVE_NEURONS = True
 xcs.COND_EVOLVE_FUNCTIONS = False
 
 xcs.PRED_TYPE = 5 # neural network predictors
-xcs.PRED_OUTPUT_ACTIVATION = 0 # logistic [0,1]
+xcs.PRED_OUTPUT_ACTIVATION = 7 # softplus
 xcs.PRED_HIDDEN_ACTIVATION = 1 # relu
 xcs.PRED_NUM_NEURONS = [50]
 xcs.PRED_MAX_NEURONS = [50]
