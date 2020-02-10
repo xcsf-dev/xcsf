@@ -79,8 +79,8 @@ xcs.ALPHA = 0.1 # accuracy offset
 xcs.NU = 50 # accuracy slope
 
 xcs.COND_TYPE = 3 # neural network conditions
-xcs.COND_OUTPUT_ACTIVATION = 1 # relu
-xcs.COND_HIDDEN_ACTIVATION = 1 # relu
+xcs.COND_OUTPUT_ACTIVATION = 3 # linear
+xcs.COND_HIDDEN_ACTIVATION = 3 # linear
 xcs.COND_NUM_NEURONS = [1]
 xcs.COND_MAX_NEURONS = [20]
 xcs.COND_EVOLVE_WEIGHTS = True
