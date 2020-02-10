@@ -69,11 +69,13 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
             pred->weights[var][i] = 0;
         }
     }
+    // initialise learning rate
     if(xcsf->PRED_EVOLVE_ETA) {
         sam_init(xcsf, pred->mu, N_MU);
         pred->eta = rand_uniform(ETA_MIN, ETA_MAX);
     }
     else {
+        memset(pred->mu, 0, sizeof(double) * N_MU);
         pred->eta = xcsf->PRED_ETA;
     }
 }
@@ -156,7 +158,7 @@ void pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x)
 void pred_nlms_print(const XCSF *xcsf, const CL *c)
 {
     const PRED_NLMS *pred = c->pred;
-    printf("weights: ");
+    printf("eta: %.5f, weights: ", pred->eta);
     for(int var = 0; var < xcsf->y_dim; var++) {
         for(int i = 0; i < pred->weights_length; i++) {
             printf("%f, ", pred->weights[var][i]);
