@@ -61,6 +61,7 @@ _Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 _Bool act_integer_mutate(const XCSF *xcsf, const CL *c)
 {
     ACT_INTEGER *act = c->act;
+    sam_adapt(xcsf, act->mu, N_MU);
     if(rand_uniform(0,1) < act->mu[0]) {
         int old = act->action;
         act->action = irand_uniform(0, xcsf->n_actions);
