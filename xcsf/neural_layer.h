@@ -49,6 +49,7 @@ typedef struct LAYER {
     double *bias_updates; //!< Updates to biases
     double *weight_updates; //!< Updates to weights
     double *delta; //!< Delta for updating weights
+    double *mu; //!< Mutation rates
     double eta; //!< Gradient descent rate
     int n_inputs; //!< Number of layer inputs
     int n_outputs; //!< Number of layer outputs
@@ -66,7 +67,7 @@ typedef struct LAYER {
  * @details Neural network layer implementations must implement these functions.
  */ 
 struct LayerVtbl {
-    _Bool (*layer_impl_mutate)(const XCSF *xcsf, LAYER *l, const double *mu);
+    _Bool (*layer_impl_mutate)(const XCSF *xcsf, LAYER *l);
     void (*layer_impl_resize)(const XCSF *xcsf, LAYER *l, const LAYER *prev);
     LAYER* (*layer_impl_copy)(const XCSF *xcsf, const LAYER *from);
     void (*layer_impl_free)(const XCSF *xcsf, const LAYER *l);
@@ -145,11 +146,10 @@ static inline void layer_update(const XCSF *xcsf, const LAYER *l) {
  * @brief Performs layer mutation.
  * @param xcsf The XCSF data structure.
  * @param l The layer to mutate.
- * @param mu The mutation rates.
  * @return Whether any alterations were made.
  */
-static inline _Bool layer_mutate(const XCSF *xcsf, LAYER *l, const double *mu) {
-    return (*l->layer_vptr->layer_impl_mutate)(xcsf, l, mu);
+static inline _Bool layer_mutate(const XCSF *xcsf, LAYER *l) {
+    return (*l->layer_vptr->layer_impl_mutate)(xcsf, l);
 }
 
 /**

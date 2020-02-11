@@ -113,9 +113,9 @@ void neural_layer_softmax_print(const XCSF *xcsf, const LAYER *l, _Bool print_we
             l->n_inputs, l->n_outputs, l->scale);
 }
 
-_Bool neural_layer_softmax_mutate(const XCSF *xcsf, LAYER *l, const double *mu)
+_Bool neural_layer_softmax_mutate(const XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf; (void)l; (void)mu;
+    (void)xcsf; (void)l;
     return false;
 }
 

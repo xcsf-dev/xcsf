@@ -30,11 +30,13 @@
 #include <float.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "sam.h"
 #include "neural_activations.h"
 #include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
+#define N_MU 4 //!< Number of mutation rates applied
 #define ETA_MAX 0.1 //!< Maximum gradient descent rate
 #define ETA_MIN 0.0001 //!< Minimum gradient descent rate
 
@@ -72,6 +74,8 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     else {
         l->eta = xcsf->PRED_ETA;
     }
+    l->mu = malloc(N_MU * sizeof(double));
+    sam_init(xcsf, l->mu, N_MU);
     return l;
 }
 
@@ -97,6 +101,8 @@ LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *from)
     memcpy(l->biases, from->biases, from->n_outputs * sizeof(double));
     l->options = from->options;
     l->eta = from->eta;
+    l->mu = malloc(N_MU * sizeof(double));
+    memcpy(l->mu, from->mu, N_MU * sizeof(double));
     return l;
 }
 
@@ -110,6 +116,7 @@ void neural_layer_connected_free(const XCSF *xcsf, const LAYER *l)
     free(l->bias_updates);
     free(l->weight_updates);
     free(l->delta);
+    free(l->mu);
 }
 
 void neural_layer_connected_rand(const XCSF *xcsf, const LAYER *l)
@@ -204,19 +211,20 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
     l->n_inputs = prev->n_outputs;
 }
 
-_Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l, const double *mu)
+_Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
 {
+    sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
-    if((l->options & LAYER_EVOLVE_ETA) && mutate_eta(l, mu[0])) {
+    if((l->options & LAYER_EVOLVE_ETA) && mutate_eta(l, l->mu[0])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l, mu[1])) {
+    if((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l, l->mu[1])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(l, mu[2])) {
+    if((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(l, l->mu[2])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_FUNCTIONS) && mutate_functions(l, mu[3])) {
+    if((l->options & LAYER_EVOLVE_FUNCTIONS) && mutate_functions(l, l->mu[3])) {
         mod = true;
     }
     return mod;
@@ -408,6 +416,7 @@ size_t neural_layer_connected_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
     s += fwrite(l->biases, sizeof(double), l->n_outputs, fp);
     s += fwrite(l->bias_updates, sizeof(double), l->n_outputs, fp);
     s += fwrite(l->weight_updates, sizeof(double), l->n_weights, fp);
+    s += fwrite(l->mu, sizeof(double), N_MU, fp);
     return s;
 }
 
@@ -433,5 +442,6 @@ size_t neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(l->biases, sizeof(double), l->n_outputs, fp);
     s += fread(l->bias_updates, sizeof(double), l->n_outputs, fp);
     s += fread(l->weight_updates, sizeof(double), l->n_weights, fp);
+    s += fread(l->mu, sizeof(double), N_MU, fp);
     return s;
 }

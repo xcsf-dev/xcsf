@@ -30,7 +30,7 @@ void neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l, const double *
 void neural_layer_noise_backward(const XCSF *xcsf, const LAYER *l, const NET *net);
 void neural_layer_noise_update(const XCSF *xcsf, const LAYER *l);
 void neural_layer_noise_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
-_Bool neural_layer_noise_mutate(const XCSF *xcsf, LAYER *l, const double *mu);
+_Bool neural_layer_noise_mutate(const XCSF *xcsf, LAYER *l);
 void neural_layer_noise_free(const XCSF *xcsf, const LAYER *l);
 double* neural_layer_noise_output(const XCSF *xcsf, const LAYER *l);
 size_t neural_layer_noise_save(const XCSF *xcsf, const LAYER *l, FILE *fp);

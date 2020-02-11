@@ -23,8 +23,6 @@
 
 #pragma once
 
-#define N_MU 4 //!< Number of mutation rates applied
-
 /**
  * @brief Double linked list of layers data structure.
  */ 
@@ -45,7 +43,6 @@ typedef struct NET {
     const double *input; //!< Pointer to the network input
     LLIST *head; //!< Pointer to the head layer (output layer)
     LLIST *tail; //!< Pointer to the tail layer (first layer)
-    double mu[N_MU]; //!< Mutation rates
 } NET;
 
 _Bool neural_mutate(const XCSF *xcsf, NET *net);

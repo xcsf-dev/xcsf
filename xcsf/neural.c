@@ -29,7 +29,6 @@
 #include <float.h>
 #include "xcsf.h"
 #include "utils.h"
-#include "sam.h"
 #include "neural_activations.h"
 #include "neural.h"
 #include "neural_layer.h"
@@ -45,12 +44,12 @@
  */
 void neural_init(const XCSF *xcsf, NET *net)
 {
+    (void)xcsf;
     net->head = NULL;
     net->tail = NULL;
     net->n_layers = 0;
     net->n_inputs = 0;
     net->n_outputs = 0;
-    sam_init(xcsf, net->mu, N_MU);
 }
 
 /**
@@ -159,7 +158,6 @@ void neural_copy(const XCSF *xcsf, NET *to, const NET *from)
         neural_layer_insert(xcsf, to, l, p); 
         p++;
     }
-    memcpy(to->mu, from->mu, N_MU * sizeof(double));
 }
 
 /**
@@ -200,7 +198,6 @@ void neural_rand(const XCSF *xcsf, const NET *net)
  */
 _Bool neural_mutate(const XCSF *xcsf, NET *net)
 {
-    sam_adapt(xcsf, net->mu, N_MU);
     _Bool mod = false;
     const LAYER *prev = NULL;
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -209,7 +206,7 @@ _Bool neural_mutate(const XCSF *xcsf, NET *net)
             layer_resize(xcsf, iter->layer, prev);
         }
         // mutate this layer
-        if(layer_mutate(xcsf, iter->layer, net->mu)) {
+        if(layer_mutate(xcsf, iter->layer)) {
             mod = true;
         }
         prev = iter->layer;
@@ -339,7 +336,6 @@ size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
         s += fwrite(&iter->layer->layer_type, sizeof(int), 1, fp);
         s += layer_save(xcsf, iter->layer, fp);
     }
-    s += fwrite(net->mu, sizeof(double), N_MU, fp);
     return s;
 }
 
@@ -367,6 +363,5 @@ size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp)
         s += layer_load(xcsf, l, fp);
         neural_layer_insert(xcsf, net, l, i);
     }
-    s += fread(net->mu, sizeof(double), N_MU, fp);
     return s;
 }

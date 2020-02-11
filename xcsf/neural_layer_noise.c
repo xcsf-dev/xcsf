@@ -121,9 +121,9 @@ void neural_layer_noise_update(const XCSF *xcsf, const LAYER *l)
     (void)xcsf; (void)l;
 }
 
-_Bool neural_layer_noise_mutate(const XCSF *xcsf, LAYER *l, const double *mu)
+_Bool neural_layer_noise_mutate(const XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf; (void)l; (void)mu;
+    (void)xcsf; (void)l;
     return false;
 }
 
