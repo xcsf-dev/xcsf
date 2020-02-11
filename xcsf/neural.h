@@ -45,7 +45,7 @@ typedef struct NET {
     LLIST *tail; //!< Pointer to the tail layer (first layer)
 } NET;
 
-_Bool neural_mutate(const XCSF *xcsf, NET *net);
+_Bool neural_mutate(const XCSF *xcsf, const NET *net);
 double neural_output(const XCSF *xcsf, const NET *net, int i);
 int neural_size(const XCSF *xcsf, const NET *net);
 size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp);

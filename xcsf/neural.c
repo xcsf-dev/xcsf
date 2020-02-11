@@ -196,7 +196,7 @@ void neural_rand(const XCSF *xcsf, const NET *net)
  * @param net The neural network to mutate.
  * @return Whether any alterations were made.
  */
-_Bool neural_mutate(const XCSF *xcsf, NET *net)
+_Bool neural_mutate(const XCSF *xcsf, const NET *net)
 {
     _Bool mod = false;
     const LAYER *prev = NULL;
