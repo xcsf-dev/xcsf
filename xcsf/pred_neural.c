@@ -145,7 +145,7 @@ _Bool pred_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 _Bool pred_neural_mutate(const XCSF *xcsf, const CL *c)
 {
-    PRED_NEURAL *pred = c->pred;
+    const PRED_NEURAL *pred = c->pred;
     return neural_mutate(xcsf, &pred->net);
 }
 
