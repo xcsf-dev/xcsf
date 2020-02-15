@@ -61,6 +61,13 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 endif()
 
+option(GPU "CUDA GPU acceleration" OFF)
+if(GPU)
+    enable_language(CUDA)
+    set(CMAKE_CUDA_STANDARD 11)
+    set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+endif()
+
 option(PARALLEL "Parallel match set and prediction" ON)
 if(PARALLEL)
     find_package(OpenMP REQUIRED)
