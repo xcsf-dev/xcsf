@@ -28,12 +28,11 @@
 #include <math.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "gemm.h"
 #include "cl.h"
 #include "prediction.h"
 #include "pred_rls.h"
 
-static void matrix_matrix_multiply(const double *srca, const double *srcb, double *dest, int n);
-static void matrix_vector_multiply(const double *srcm, const double *srcv, double *dest, int n);
 static void init_matrix(const XCSF *xcsf, double *matrix, int n);
                     
 /**
@@ -65,7 +64,7 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
     // initialise weights
     pred->weights = malloc(sizeof(double*) * xcsf->y_dim);
     for(int var = 0; var < xcsf->y_dim; var++) {
-        pred->weights[var] = malloc(sizeof(double)*pred->weights_length);
+        pred->weights[var] = malloc(sizeof(double) * pred->weights_length);
     }
     for(int var = 0; var < xcsf->y_dim; var++) {
         pred->weights[var][0] = xcsf->PRED_X0;
@@ -89,10 +88,10 @@ static void init_matrix(const XCSF *xcsf, double *matrix, int n)
     for(int row = 0; row < n; row++) {
         for(int col = 0; col < n; col++) {
             if(row != col) {
-                matrix[row*n+col] = 0;
+                matrix[row * n + col] = 0;
             }
             else {
-                matrix[row*n+col] = xcsf->PRED_RLS_SCALE_FACTOR;
+                matrix[row * n + col] = xcsf->PRED_RLS_SCALE_FACTOR;
             }
         }
     }
@@ -213,28 +212,6 @@ void pred_rls_print(const XCSF *xcsf, const CL *c)
             printf("%f, ", pred->weights[var][i]);
         }
         printf("\n");
-    }
-}
-
-static void matrix_matrix_multiply(const double *srca, const double *srcb, double *dest, int n)
-{
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            dest[i*n+j] = srca[i*n] * srcb[j];
-            for(int k = 1; k < n; k++) {
-                dest[i*n+j] += srca[i*n+k] * srcb[k*n+j];
-            }
-        }
-    }
-}
-
-static void matrix_vector_multiply(const double *srcm, const double *srcv, double *dest, int n)
-{
-    for(int i = 0; i < n; i++) {
-        dest[i] = srcm[i*n] * srcv[0];
-        for(int j = 1; j < n; j++) {
-            dest[i] += srcm[i*n+j] * srcv[j];
-        }
     }
 }
 
