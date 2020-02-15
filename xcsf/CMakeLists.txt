@@ -14,7 +14,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
- 
+
 set(SOURCE
     act_integer.c
     act_integer.h
@@ -32,14 +32,14 @@ set(SOURCE
     cond_ellipsoid.h
     cond_gp.c
     cond_gp.h
-    condition.c
-    condition.h
     cond_neural.c
     cond_neural.h
     cond_rectangle.c
     cond_rectangle.h
     cond_ternary.c
     cond_ternary.h
+    condition.c
+    condition.h
     config.c
     config.h
     dgp.c
@@ -47,9 +47,9 @@ set(SOURCE
     ea.c
     ea.h
     env.c
+    env.h
     env_csv.c
     env_csv.h
-    env.h
     env_maze.c
     env_maze.h
     env_mux.c
@@ -64,16 +64,16 @@ set(SOURCE
     main.c
     mt19937-64.c
     mt64.h
-    neural_activations.c
-    neural_activations.h
     neural.c
     neural.h
+    neural_activations.c
+    neural_activations.h
     neural_layer.c
+    neural_layer.h
     neural_layer_connected.c
     neural_layer_connected.h
     neural_layer_dropout.c
     neural_layer_dropout.h
-    neural_layer.h
     neural_layer_noise.c
     neural_layer_noise.h
     neural_layer_softmax.c
@@ -84,14 +84,14 @@ set(SOURCE
     perf.h
     pred_constant.c
     pred_constant.h
-    prediction.c
-    prediction.h
     pred_neural.c
     pred_neural.h
     pred_nlms.c
     pred_nlms.h
     pred_rls.c
     pred_rls.h
+    prediction.c
+    prediction.h
     rule_dgp.c
     rule_dgp.h
     rule_neural.c
@@ -100,12 +100,12 @@ set(SOURCE
     sam.h
     utils.c
     utils.h
-    xcsf.c
-    xcsf.h
     xcs_multi_step.c
     xcs_multi_step.h
     xcs_single_step.c
     xcs_single_step.h
+    xcsf.c
+    xcsf.h
 )
 
 ##########################
@@ -127,21 +127,21 @@ endif()
 
 if(NOT XCSF_PYLIB)
 
-	add_executable(xcsf ${SOURCE})
-	target_link_libraries(xcsf m)
+    add_executable(xcsf ${SOURCE})
+    target_link_libraries(xcsf m)
 
 ##########################
 # Python library
 ##########################
 
 else()
-     
+
     set(SOURCE
         ${SOURCE}
         python_wrapper.cpp
-	)
-     
-	PYTHON_ADD_MODULE(xcsf ${SOURCE})
-	file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
+    )
+
+    PYTHON_ADD_MODULE(xcsf ${SOURCE})
+    file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
 
 endif()
