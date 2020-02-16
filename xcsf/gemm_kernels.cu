@@ -24,17 +24,7 @@
 #ifdef GPU
 
 #include <iostream>
-
-#define BLOCK_SIZE 1024
-
-#define CUDA_CALL(x) {
-    cudaError_t cuda_error__ = (x);
-    if(cuda_error__) {
-        printf("CUDA error: " #x " returned \"%s\"\n", cudaGetErrorString(cuda_error__));
-    }
-}
-
-static void printDeviceInfo(cudaDeviceProp devProp);
+#include "cuda.h"
 
 __global__ void kernel_mm_multiply(const double *A, const double *B, double *C, int n)
 {
@@ -129,41 +119,6 @@ extern "C" void gpu_mv_multiply(const double *A, const double *B, double *C, int
     CUDA_CALL( cudaFree(d_a) );
     CUDA_CALL( cudaFree(d_b) );
     CUDA_CALL( cudaFree(d_c) );
-}
-
-extern "C" void gpu_info()
-{
-   int devCount;
-   cudaGetDeviceCount(&devCount);
-   printf("CUDA Device Query...\n");
-   printf("There are %d CUDA devices.\n", devCount);
-   for (int i = 0; i < devCount; i++) {
-       printf("\nCUDA Device #%d\n", i);
-       cudaDeviceProp devProp;
-       cudaGetDeviceProperties(&devProp, i);
-       printDeviceInfo(devProp);
-   }
-}
-
-static void printDeviceInfo(cudaDeviceProp devProp)
-{
-    printf("Revision number:               %d.%d\n", devProp.major, devProp.minor);
-    printf("Name:                          %s\n",  devProp.name);
-    printf("Total global memory:           %lu MB\n",  devProp.totalGlobalMem / (1024 * 1024));
-    printf("Total shared memory per block: %lu kB\n",  devProp.sharedMemPerBlock / 1024);
-    printf("Total registers per block:     %d\n",  devProp.regsPerBlock);
-    printf("Warp size:                     %d\n",  devProp.warpSize);
-    printf("Maximum memory pitch:          %lu MB\n",  devProp.memPitch / (1024 * 1024));
-    printf("Maximum threads per block:     %d\n",  devProp.maxThreadsPerBlock);
-    printf("Maximum dimensions of block:   %d %d %d\n", devProp.maxThreadsDim[0], devProp.maxThreadsDim[1], devProp.maxThreadsDim[2]);
-    printf("Maximum dimensions of grid:    %d %d %d\n", devProp.maxGridSize[0], devProp.maxGridSize[1], devProp.maxGridSize[2]);
-    printf("Clock rate:                    %d MHz\n",  devProp.clockRate / 1000);
-    printf("Total constant memory:         %lu kB\n",  devProp.totalConstMem / 1024);
-    printf("Texture alignment:             %lu B\n",  devProp.textureAlignment);
-    printf("Concurrent copy and execution: %s\n",  (devProp.deviceOverlap ? "Yes" : "No"));
-    printf("Number of multiprocessors:     %d\n",  devProp.multiProcessorCount);
-    printf("Kernel execution timeout:      %s\n",  (devProp.kernelExecTimeoutEnabled ? "Yes" : "No"));
-    printf("\n");
 }
 
 #endif

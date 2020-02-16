@@ -14,14 +14,24 @@
  */
                       
 /**
- * @file gemm_kernels.h
+ * @file cuda.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
- * @brief CUDA general matrix multiplication.
+ * @brief General CUDA functions.
  */ 
  
 #pragma once
 
-void gpu_mm_multiply(const double *A, const double *B, double *C, int n);
-void gpu_mv_multiply(const double *A, const double *B, double *C, int n);
+#define BLOCK_SIZE 1024
+
+#define CUDA_CALL(x) {
+    cudaError_t cuda_error__ = (x);
+    if(cuda_error__) {
+        printf("CUDA error: " #x " returned \"%s\"\n", cudaGetErrorString(cuda_error__));
+    }
+}
+
+void cuda_info();
+void cuda_set_device(int n);
+int cuda_get_device();

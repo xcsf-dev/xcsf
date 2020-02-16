@@ -116,6 +116,8 @@ if(GPU)
 
     set(SOURCE
         ${SOURCE}
+        cuda.c
+        cuda.h
         gemm_kernels.cu
     )
 
