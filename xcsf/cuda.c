@@ -25,7 +25,7 @@ int gpu_index = 0;
 
 #ifdef GPU
 
-#include "gpu.h"
+#include "cuda.h"
 
 static void cuda_printDeviceInfo(cudaDeviceProp devProp);
 
