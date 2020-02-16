@@ -25,7 +25,7 @@
 
 #include <iostream>
 
-#define BLOCK_SIZE 8
+#define BLOCK_SIZE 1024
 
 #define CUDA_CALL(x) {
     cudaError_t cuda_error__ = (x);
@@ -34,10 +34,8 @@
     }
 }
 
-/* grid and block should be configured as:
- * dim3 dimGrid((k + BLOCK_SIZE - 1) / BLOCK_SIZE, (m + BLOCK_SIZE - 1) / BLOCK_SIZE);
- * dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE);
- */
+static void printDeviceInfo(cudaDeviceProp devProp);
+
 __global__ void kernel_mm_multiply(const double *A, const double *B, double *C, int n)
 {
     int row = blockIdx.y * blockDim.y + threadIdx.y;
@@ -77,11 +75,14 @@ extern "C" void gpu_mm_multiply(const double *A, const double *B, double *C, int
     CUDA_CALL( cudaMemcpy(d_b, B, sizeof(double) * size, cudaMemcpyHostToDevice) );
 
     // run kernel on the GPU
-    unsigned int grid_rows = (n + BLOCK_SIZE - 1) / BLOCK_SIZE;
-    unsigned int grid_cols = (n + BLOCK_SIZE - 1) / BLOCK_SIZE;
-    dim3 blocksPerGrid(grid_cols, grid_rows);
-    dim3 threadsPerBlock(BLOCK_SIZE, BLOCK_SIZE);
-    kernel_mm_multiply<<<blocksPerGrid,threadsPerBlock>>>(d_a, d_b, d_c, n);
+    dim3 dimGrid(n,n);
+    dim3 dimBlock(1,1);
+    if(n > 65535) {
+        dimBlock.x = sqrt(BLOCK_SIZE);
+        dimBlock.y = dimBlock.x;
+        dimGrid.x = (n % dimBlock.x == 0) ? n / dimBlock.x : (n / dimBlock.x) + 1;
+    }
+    kernel_mm_multiply<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, n);
 
     // wait for GPU to finish
     CUDA_CALL( cudaDeviceSynchronize() );
@@ -109,11 +110,14 @@ extern "C" void gpu_mv_multiply(const double *A, const double *B, double *C, int
     CUDA_CALL( cudaMemcpy(d_b, B, sizeof(double) * n, cudaMemcpyHostToDevice) );
 
     // run kernel on the GPU
-    unsigned int grid_rows = (n + BLOCK_SIZE - 1) / BLOCK_SIZE;
-    unsigned int grid_cols = (n + BLOCK_SIZE - 1) / BLOCK_SIZE;
-    dim3 blocksPerGrid(grid_cols, grid_rows);
-    dim3 threadsPerBlock(BLOCK_SIZE, BLOCK_SIZE);
-    kernel_mv_multiply<<<blocksPerGrid,threadsPerBlock>>>(d_a, d_b, d_c, n);
+    dim3 dimGrid(n,n);
+    dim3 dimBlock(1,1);
+    if(n > 65535) {
+        dimBlock.x = sqrt(BLOCK_SIZE);
+        dimBlock.y = dimBlock.x;
+        dimGrid.x = (n % dimBlock.x == 0) ? n / dimBlock.x : (n / dimBlock.x) + 1;
+    }
+    kernel_mv_multiply<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, n);
 
     // wait for GPU to finish
     CUDA_CALL( cudaDeviceSynchronize() );
@@ -125,6 +129,41 @@ extern "C" void gpu_mv_multiply(const double *A, const double *B, double *C, int
     CUDA_CALL( cudaFree(d_a) );
     CUDA_CALL( cudaFree(d_b) );
     CUDA_CALL( cudaFree(d_c) );
+}
+
+extern "C" void gpu_info()
+{
+   int devCount;
+   cudaGetDeviceCount(&devCount);
+   printf("CUDA Device Query...\n");
+   printf("There are %d CUDA devices.\n", devCount);
+   for (int i = 0; i < devCount; i++) {
+       printf("\nCUDA Device #%d\n", i);
+       cudaDeviceProp devProp;
+       cudaGetDeviceProperties(&devProp, i);
+       printDeviceInfo(devProp);
+   }
+}
+
+static void printDeviceInfo(cudaDeviceProp devProp)
+{
+    printf("Revision number:               %d.%d\n", devProp.major, devProp.minor);
+    printf("Name:                          %s\n",  devProp.name);
+    printf("Total global memory:           %lu MB\n",  devProp.totalGlobalMem / (1024 * 1024));
+    printf("Total shared memory per block: %lu kB\n",  devProp.sharedMemPerBlock / 1024);
+    printf("Total registers per block:     %d\n",  devProp.regsPerBlock);
+    printf("Warp size:                     %d\n",  devProp.warpSize);
+    printf("Maximum memory pitch:          %lu MB\n",  devProp.memPitch / (1024 * 1024));
+    printf("Maximum threads per block:     %d\n",  devProp.maxThreadsPerBlock);
+    printf("Maximum dimensions of block:   %d %d %d\n", devProp.maxThreadsDim[0], devProp.maxThreadsDim[1], devProp.maxThreadsDim[2]);
+    printf("Maximum dimensions of grid:    %d %d %d\n", devProp.maxGridSize[0], devProp.maxGridSize[1], devProp.maxGridSize[2]);
+    printf("Clock rate:                    %d MHz\n",  devProp.clockRate / 1000);
+    printf("Total constant memory:         %lu kB\n",  devProp.totalConstMem / 1024);
+    printf("Texture alignment:             %lu B\n",  devProp.textureAlignment);
+    printf("Concurrent copy and execution: %s\n",  (devProp.deviceOverlap ? "Yes" : "No"));
+    printf("Number of multiprocessors:     %d\n",  devProp.multiProcessorCount);
+    printf("Kernel execution timeout:      %s\n",  (devProp.kernelExecTimeoutEnabled ? "Yes" : "No"));
+    printf("\n");
 }
 
 #endif

@@ -25,3 +25,4 @@
 
 void gpu_mm_multiply(const double *A, const double *B, double *C, int n);
 void gpu_mv_multiply(const double *A, const double *B, double *C, int n);
+void gpu_info();
