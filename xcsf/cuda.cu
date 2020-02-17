@@ -14,20 +14,19 @@
  */
                       
 /**
- * @file cuda.c
+ * @file cuda.cu
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
  * @brief General CUDA functions.
  */ 
 
-int gpu_index = 0;
-
-#ifdef GPU
-
+#include <stdio.h>
 #include "cuda.h"
 
 static void cuda_printDeviceInfo(cudaDeviceProp devProp);
+
+int gpu_index = 0;
 
 void cuda_set_device(int n)
 {
@@ -52,7 +51,7 @@ void cuda_info()
         printf("\nCUDA Device #%d\n", i);
         cudaDeviceProp devProp;
         cudaGetDeviceProperties(&devProp, i);
-        printDeviceInfo(devProp);
+        cuda_printDeviceInfo(devProp);
     }
 }
 
@@ -76,5 +75,3 @@ static void cuda_printDeviceInfo(cudaDeviceProp devProp)
     printf("Kernel execution timeout:      %s\n",  (devProp.kernelExecTimeoutEnabled ? "Yes" : "No"));
     printf("\n");
 }
-
-#endif
