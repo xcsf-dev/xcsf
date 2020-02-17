@@ -26,7 +26,6 @@
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
-#include <float.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "sam.h"

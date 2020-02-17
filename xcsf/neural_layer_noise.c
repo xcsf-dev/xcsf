@@ -26,7 +26,6 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
-#include <float.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "neural_activations.h"
