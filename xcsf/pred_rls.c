@@ -145,9 +145,7 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     blas_gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
     // divide gain vector by lambda + tmp_vec
     double divisor = xcsf->PRED_RLS_LAMBDA;
-    for(int i = 0; i < n; i++) {
-        divisor += pred->tmp_input[i] * pred->tmp_vec[i];
-    }
+    divisor += blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
     for(int i = 0; i < n; i++) {
         pred->tmp_vec[i] /= divisor;
     }
