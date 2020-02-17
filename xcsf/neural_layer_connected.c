@@ -136,7 +136,7 @@ void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const doub
     int k = l->n_inputs;
     int n = l->n_outputs;
     const double *a = input;
-    double *b = l->weights;
+    const double *b = l->weights;
     double *c = l->state;
     // states = biases
     memcpy(l->state, l->biases, sizeof(double) * l->n_outputs);
