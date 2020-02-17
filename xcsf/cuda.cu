@@ -23,6 +23,7 @@
 
 #include <stdio.h>
 #include "cuda.h"
+#include "blas_kernels.h"
 
 static void cuda_printDeviceInfo(cudaDeviceProp devProp);
 
@@ -39,6 +40,21 @@ int cuda_get_device()
     int n = 0;
     CUDA_CALL( cudaGetDevice(&n) );
     return n;
+}
+
+void cuda_free(double *x_gpu)
+{
+    CUDA_CALL( cudaFree(x_gpu) );
+}
+
+void cuda_push_array(double *x_gpu, double *x, size_t n)
+{
+    CUDA_CALL( cudaMemcpy(x_gpu, x, sizeof(double) * n, cudaMemcpyHostToDevice) );
+}
+
+void cuda_pull_array(double *x_gpu, double *x, size_t n)
+{
+    CUDA_CALL( cudaMemcpy(x, x_gpu, sizeof(double) * n, cudaMemcpyDeviceToHost) );
 }
 
 void cuda_info()

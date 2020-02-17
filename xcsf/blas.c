@@ -22,6 +22,7 @@
  */ 
  
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifdef GPU
 #include "blas_kernels.h"
@@ -51,7 +52,7 @@ static void gemm_nt(int M, int N, int K, double ALPHA,
         for(int j = 0; j < N; j++) {
             double sum = 0;
             for(int k = 0; k < K; k++) {
-                sum += ALPHA * A[i*lda+k] * B[j*ldb + k];
+                sum += ALPHA * A[i*lda+k] * B[j*ldb+k];
             }
             C[i*ldc+j] += sum;
         }

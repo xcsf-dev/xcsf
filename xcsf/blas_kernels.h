@@ -28,3 +28,5 @@ void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
         const double *B, int ldb,
         double BETA,
         double *C, int ldc);
+
+void fill_gpu(int N, double ALPHA, double *X, int INCX);

@@ -24,8 +24,34 @@
 #include <iostream>
 #include <stdio.h>
 #include "cuda.h"
- 
-__global__ void gpu_gemm_nn(int M, int N, int K, double ALPHA,
+
+__global__ void kernel_axpy(int N, double ALPHA,
+        const double *X, int OFFX, int INCX,
+        double *Y, int OFFY, int INCY)
+{
+    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
+    if(i < N) {
+        Y[OFFY+i*INCY] += ALPHA * X[OFFX+i*INCX];
+    }
+}
+
+__global__ void kernel_scal(int N, double ALPHA, double *X, int INCX)
+{
+    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
+    if(i < N) {
+        X[i*INCX] *= ALPHA;
+    }
+}
+
+__global__ void kernel_fill(int N, double ALPHA, double *X, int INCX)
+{
+    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
+    if(i < N) {
+        X[i*INCX] = ALPHA;
+    }
+}
+
+__global__ void kernel_gemm_nn(int M, int N, int K, double ALPHA,
         const double *A, int lda,
         const double *B, int ldb,
         double *C, int ldc)
@@ -35,6 +61,48 @@ __global__ void gpu_gemm_nn(int M, int N, int K, double ALPHA,
     if(i < M && j < N) {
         for(int k = 0; k < K; k++) {
             C[i*ldc+j] += ALPHA * A[i*lda+k] * B[k*ldb+j];
+        }
+    }
+}
+
+__global__ void kernel_gemm_nt(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
+{
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    int j = blockIdx.y * blockDim.y + threadIdx.y;
+    if(i < M && j < N) {
+        for(int k = 0; k < K; k++) {
+            C[i*ldc+j] += ALPHA * A[i*lda+k] * B[j*ldb+k];
+        }
+    }
+}
+
+__global__ void kernel_gemm_tn(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
+{
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    int j = blockIdx.y * blockDim.y + threadIdx.y;
+    if(i < M && j < N) {
+        for(int k = 0; k < K; k++) {
+            C[i*ldc+j] += ALPHA * A[k*lda+i] * B[k*ldb+j];
+        }
+    }
+}
+
+__global__ void kernel_gemm_tt(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
+{
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    int j = blockIdx.y * blockDim.y + threadIdx.y;
+    if(i < M && j < N) {
+        for(int k = 0; k < K; k++) {
+            C[i*ldc+j] += ALPHA * A[i+k*lda] * B[k+j*ldb];
         }
     }
 }
@@ -50,18 +118,19 @@ extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
             C[i*ldc+j] *= BETA;
         }
     }
+
     // allocate memory on the device
     double *d_a, *d_b, *d_c;
-    CUDA_CALL( cudaMalloc((void **) &d_a, sizeof(double) * M * K) );
-    CUDA_CALL( cudaMalloc((void **) &d_b, sizeof(double) * N * K) );
-    CUDA_CALL( cudaMalloc((void **) &d_c, sizeof(double) * N * K) );
+    CUDA_CALL( cudaMalloc((void **) &d_a, sizeof(A)) );
+    CUDA_CALL( cudaMalloc((void **) &d_b, sizeof(B)) );
+    CUDA_CALL( cudaMalloc((void **) &d_c, sizeof(C)) );
 
     // copy from host to device
-    CUDA_CALL( cudaMemcpy(d_a, A, sizeof(double) * M * K, cudaMemcpyHostToDevice) );
-    CUDA_CALL( cudaMemcpy(d_b, B, sizeof(double) * N * K, cudaMemcpyHostToDevice) );
+    CUDA_CALL( cudaMemcpy(d_a, A, sizeof(A), cudaMemcpyHostToDevice) );
+    CUDA_CALL( cudaMemcpy(d_b, B, sizeof(B), cudaMemcpyHostToDevice) );
 
     // run kernel on the GPU
-    dim3 dimGrid(M,N);
+    dim3 dimGrid(M,K);
     dim3 dimBlock(1,1);
     if(M > 65535) {
         dimBlock.x = sqrt(BLOCK_SIZE);
@@ -70,18 +139,23 @@ extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
     }
 
     if(!TA && !TB) {
-        gpu_gemm_nn<<<dimGrid, dimBlock>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
+        kernel_gemm_nn<<<dimGrid, dimBlock>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
+    }
+    else if(TA && !TB) {
+        kernel_gemm_tn<<<dimGrid, dimBlock>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
+    }
+    else if(!TA && TB) {
+        kernel_gemm_nt<<<dimGrid, dimBlock>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
     }
     else {
-        printf("TODO\n");
-        exit(0);
+        kernel_gemm_tt<<<dimGrid, dimBlock>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
     }
 
     // wait for GPU to finish
     CUDA_CALL( cudaDeviceSynchronize() );
 
     // copy result from device to host
-    CUDA_CALL( cudaMemcpy(C, d_c, sizeof(double) * N*K, cudaMemcpyDeviceToHost) );
+    CUDA_CALL( cudaMemcpy(C, d_c, sizeof(C), cudaMemcpyDeviceToHost) );
 
     // free memory
     CUDA_CALL( cudaFree(d_a) );

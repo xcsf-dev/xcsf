@@ -27,6 +27,9 @@
 
 #define CUDA_CALL(x) { cudaError_t cuda_error__ = (x); if(cuda_error__) { printf("CUDA error: " #x " returned \"%s\"\n", cudaGetErrorString(cuda_error__)); } }
  
-void cuda_info();
-void cuda_set_device(int n);
 int cuda_get_device();
+void cuda_free(double *x_gpu);
+void cuda_info();
+void cuda_pull_array(double *x_gpu, double *x, size_t n);
+void cuda_push_array(double *x_gpu, double *x, size_t n);
+void cuda_set_device(int n);
