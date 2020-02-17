@@ -114,7 +114,7 @@ static void gemm_cpu(int TA, int TB, int M, int N, int K, double ALPHA,
     }
 }
 
-static void axpy_cpu(int N, double ALPHA, double *X, int INCX, double *Y, int INCY)
+static void axpy_cpu(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
 {
     for(int i = 0; i < N; i++) {
         Y[i*INCY] += ALPHA * X[i*INCX];
@@ -135,7 +135,7 @@ static void fill_cpu(int N, double ALPHA, double *X, int INCX)
     }
 }
 
-static double dot_cpu(int N, double *X, int INCX, double *Y, int INCY)
+static double dot_cpu(int N, const double *X, int INCX, const double *Y, int INCY)
 {
     double dot = 0;
     for(int i = 0; i < N; i++) {
@@ -157,7 +157,7 @@ void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
 #endif
 }
 
-void blas_axpy(int N, double ALPHA, double *X, int INCX, double *Y, int INCY)
+void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
 {
     axpy_cpu(N,ALPHA,X,INCX,Y,INCY);
 }
@@ -172,7 +172,7 @@ void blas_fill(int N, double ALPHA, double *X, int INCX)
     fill_cpu(N,ALPHA,X,INCX);
 }
 
-double blas_dot(int N, double *X, int INCX, double *Y, int INCY)
+double blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
 {
     return dot_cpu(N,X,INCX,Y,INCY);
 }
