@@ -35,7 +35,7 @@
 #include "cl.h"
 
 static void cl_update_err(const XCSF *xcsf, CL *c, const double *y);
-static void cl_update_size(const XCSF *xcsf, CL *c, double num_sum);
+static void cl_update_size(const XCSF *xcsf, CL *c, int num_sum);
 
 /**
  * @brief Initialises a new classifier.
@@ -199,7 +199,7 @@ void cl_update_fit(const XCSF *xcsf, CL *c, double acc_sum, double acc)
  * @param c The classifier to update.
  * @param num_sum The number of micro-classifiers in the set.
  */
-static void cl_update_size(const XCSF *xcsf, CL *c, double num_sum)
+static void cl_update_size(const XCSF *xcsf, CL *c, int num_sum)
 {
     if(c->exp < 1 / xcsf->BETA) {
         c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;
