@@ -30,6 +30,7 @@
 #include <float.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "blas.h"
 #include "sam.h"
 #include "neural_activations.h"
 #include "neural.h"
@@ -133,12 +134,17 @@ void neural_layer_connected_rand(const XCSF *xcsf, const LAYER *l)
 void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
     (void)xcsf;
+    int k = l->n_inputs;
+    int n = l->n_outputs;
+    const double *a = input;
+    double *b = l->weights;
+    double *c = l->state;
+    // states = biases
+    memcpy(l->state, l->biases, sizeof(double) * l->n_outputs);
+    // states += weights * inputs
+    blas_gemm(0,1,1,n,k,1,a,k,b,k,1,c,n);
+    // apply activations
     for(int i = 0; i < l->n_outputs; i++) {
-        l->state[i] = l->biases[i];
-        int offset = i * l->n_inputs;
-        for(int j = 0; j < l->n_inputs; j++) {
-            l->state[i] += input[j] * l->weights[offset + j];
-        }
         l->state[i] = constrain(-100, 100, l->state[i]);
         l->output[i] = neural_activate(l->function, l->state[i]);
     }
@@ -149,37 +155,38 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET
     // net->input[] = this layer's input
     // net->delta[] = previous layer's delta
     (void)xcsf;
+    // apply gradients
     for(int i = 0; i < l->n_outputs; i++) {
         l->delta[i] *= neural_gradient(l->function, l->state[i]);
-        if(l->options & LAYER_SGD_WEIGHTS) {
-            l->bias_updates[i] += l->delta[i];
-            int offset = i * l->n_inputs;
-            for(int j = 0; j < l->n_inputs; j++) {
-                l->weight_updates[offset + j] += l->delta[i] * net->input[j];
-            }
-        }
     }
-    if(net->delta) { // input layer has no delta or weights
-        for(int i = 0; i < l->n_outputs; i++) {
-            int offset = i * l->n_inputs;
-            for(int j = 0; j < l->n_inputs; j++) {
-                net->delta[j] += l->delta[i] * l->weights[offset + j];
-            }
-        }
+    // calculate updates
+    if(l->options & LAYER_SGD_WEIGHTS) {
+        int m = l->n_outputs;
+        int n = l->n_inputs;
+        const double *a = l->delta;
+        const double *b = net->input;
+        double *c = l->weight_updates;
+        blas_axpy(l->n_outputs, 1, l->delta, 1, l->bias_updates, 1);
+        blas_gemm(1,0,m,n,1,1,a,m,b,n,1,c,n);
+    }
+    // set the error for the previous layer (if there is one)
+    if(net->delta) {
+        int k = l->n_outputs;
+        int n = l->n_inputs;
+        const double *a = l->delta;
+        const double *b = l->weights;
+        double *c = net->delta;
+        blas_gemm(0,0,1,n,k,1,a,k,b,n,1,c,n);
     }
 }
 
 void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
 {
     if(l->options & LAYER_SGD_WEIGHTS) {
-        for(int i = 0; i < l->n_outputs; i++) {
-            l->biases[i] += l->eta * l->bias_updates[i];
-            l->bias_updates[i] *= xcsf->PRED_MOMENTUM;
-        }
-        for(int i = 0; i < l->n_weights; i++) {
-            l->weights[i] += l->eta * l->weight_updates[i];
-            l->weight_updates[i] *= xcsf->PRED_MOMENTUM;
-        }
+        blas_axpy(l->n_outputs, l->eta, l->bias_updates, 1, l->biases, 1);
+        blas_scal(l->n_outputs, xcsf->PRED_MOMENTUM, l->bias_updates, 1);
+        blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
+        blas_scal(l->n_weights, xcsf->PRED_MOMENTUM, l->weight_updates, 1);
     }
 }
 
