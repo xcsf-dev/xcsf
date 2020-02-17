@@ -54,9 +54,8 @@ set(SOURCE
     env_maze.h
     env_mux.c
     env_mux.h
-    gemm.c
-    gemm.h
-    gemm_kernels.h
+    blas.c
+    blas.h
     gp.c
     gp.h
     loss.c
@@ -119,6 +118,7 @@ if(GPU)
         cuda.cu
         cuda.h
         gemm_kernels.cu
+        gemm_kernels.h
     )
 
 endif()

@@ -14,16 +14,16 @@
  */
                       
 /**
- * @file gemm.h
+ * @file blas.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
- * @brief General matrix multiplication.
+ * @brief Basic linear algebra functions.
  */ 
 
 #pragma once
 
-void gemm(int TA, int TB, int M, int N, int K, double ALPHA,
+void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
         const double *A, int lda,
         const double *B, int ldb,
         double BETA,
