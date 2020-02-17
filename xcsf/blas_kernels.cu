@@ -14,11 +14,11 @@
  */
                       
 /**
- * @file gemm_kernels.cu
+ * @file blas_kernels.cu
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
- * @brief CUDA general matrix multiplication.
+ * @brief CUDA basic linear algebra functions.
  */ 
  
 #include <iostream>

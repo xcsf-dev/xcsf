@@ -117,8 +117,8 @@ if(GPU)
         ${SOURCE}
         cuda.cu
         cuda.h
-        gemm_kernels.cu
-        gemm_kernels.h
+        blas_kernels.cu
+        blas_kernels.h
     )
 
 endif()
