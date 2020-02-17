@@ -114,6 +114,36 @@ static void gemm_cpu(int TA, int TB, int M, int N, int K, double ALPHA,
     }
 }
 
+static void axpy_cpu(int N, double ALPHA, double *X, int INCX, double *Y, int INCY)
+{
+    for(int i = 0; i < N; i++) {
+        Y[i*INCY] += ALPHA * X[i*INCX];
+    }
+}
+
+static void scal_cpu(int N, double ALPHA, double *X, int INCX)
+{
+    for(int i = 0; i < N; i++) {
+        X[i*INCX] *= ALPHA;
+    }
+}
+
+static void fill_cpu(int N, double ALPHA, double *X, int INCX)
+{
+    for(int i = 0; i < N; i++) {
+        X[i*INCX] = ALPHA;
+    }
+}
+
+static double dot_cpu(int N, double *X, int INCX, double *Y, int INCY)
+{
+    double dot = 0;
+    for(int i = 0; i < N; i++) {
+        dot += X[i*INCX] * Y[i*INCY];
+    }
+    return dot;
+}
+
 void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
         const double *A, int lda,
         const double *B, int ldb,
@@ -125,4 +155,24 @@ void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
 #else
     gemm_cpu(TA,TB,M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
 #endif
+}
+
+void blas_axpy(int N, double ALPHA, double *X, int INCX, double *Y, int INCY)
+{
+    axpy_cpu(N,ALPHA,X,INCX,Y,INCY);
+}
+
+void blas_scal(int N, double ALPHA, double *X, int INCX)
+{
+    scal_cpu(N,ALPHA,X,INCX);
+}
+
+void blas_fill(int N, double ALPHA, double *X, int INCX)
+{
+    fill_cpu(N,ALPHA,X,INCX);
+}
+
+double blas_dot(int N, double *X, int INCX, double *Y, int INCY)
+{
+    return dot_cpu(N,X,INCX,Y,INCY);
 }
