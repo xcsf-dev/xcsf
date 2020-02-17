@@ -66,6 +66,8 @@ if(GPU)
     enable_language(CUDA)
     set(CMAKE_CUDA_STANDARD 11)
     set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGPU")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGPU")
 endif()
 
 option(PARALLEL "Parallel match set and prediction" ON)

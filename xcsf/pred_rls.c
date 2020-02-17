@@ -142,7 +142,7 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
         }
     }
     // determine gain vector = matrix * tmp_input
-    matrix_vector_multiply(pred->matrix, pred->tmp_input, pred->tmp_vec, n);
+    gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
     // divide gain vector by lambda + tmp_vec
     double divisor = xcsf->PRED_RLS_LAMBDA;
     for(int i = 0; i < n; i++) {
@@ -171,7 +171,8 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
             }
         }
     }
-    matrix_matrix_multiply(pred->tmp_matrix1, pred->matrix, pred->tmp_matrix2, n);
+    // tmp_matrix2 = tmp_matrix1 * pred_matrix
+    gemm(0, 0, n, n, n, 1, pred->tmp_matrix1, n, pred->matrix, n, 0, pred->tmp_matrix2, n);
     // divide gain matrix entries by lambda
     for(int row = 0; row < n; row++) {
         for(int col = 0; col < n; col++) {

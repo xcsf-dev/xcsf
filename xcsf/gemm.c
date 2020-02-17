@@ -21,47 +21,108 @@
  * @brief General matrix multiplication.
  */ 
  
+#include <stdio.h>
+
+#ifdef GPU
 #include "gemm_kernels.h"
-
-static void cpu_mm_multiply(const double *A, const double *B, double *C, int n);
-static void cpu_mv_multiply(const double *A, const double *B, double *C, int n);
-
-void matrix_matrix_multiply(const double *A, const double *B, double *C, int n)
-{
-#ifdef GPU
-    gpu_mm_multiply(A, B, C, n);
-#else
-    cpu_mm_multiply(A, B, C, n);
 #endif
-}
 
-void matrix_vector_multiply(const double *A, const double *B, double *C, int n)
+static void gemm_nn(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
 {
-#ifdef GPU
-    gpu_mv_multiply(A, B, C, n);
-#else
-    cpu_mv_multiply(A, B, C, n);
-#endif
-}
-
-static void cpu_mm_multiply(const double *A, const double *B, double *C, int n)
-{
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            C[i*n+j] = A[i*n] * B[j];
-            for(int k = 1; k < n; k++) {
-                C[i*n+j] += A[i*n+k] * B[k*n+j];
+    for(int i = 0; i < M; i++) {
+        for(int k = 0; k < K; k++) {
+            double A_PART = ALPHA * A[i*lda+k];
+            for(int j = 0; j < N; j++) {
+                C[i*ldc+j] += A_PART * B[k*ldb+j];
             }
         }
     }
 }
 
-static void cpu_mv_multiply(const double *A, const double *B, double *C, int n)
+static void gemm_nt(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
 {
-    for(int i = 0; i < n; i++) {
-        C[i] = A[i*n] * B[0];
-        for(int j = 1; j < n; j++) {
-            C[i] += A[i*n+j] * B[j];
+    for(int i = 0; i < M; i++) {
+        for(int j = 0; j < N; j++) {
+            double sum = 0;
+            for(int k = 0; k < K; k++) {
+                sum += ALPHA * A[i*lda+k] * B[j*ldb + k];
+            }
+            C[i*ldc+j] += sum;
         }
     }
+}
+
+static void gemm_tn(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
+{
+    for(int i = 0; i < M; i++) {
+        for(int k = 0; k < K; k++) {
+            double A_PART = ALPHA * A[k*lda+i];
+            for(int j = 0; j < N; j++) {
+                C[i*ldc+j] += A_PART * B[k*ldb+j];
+            }
+        }
+    }
+}
+
+static void gemm_tt(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
+{
+    for(int i = 0; i < M; i++) {
+        for(int j = 0; j < N; j++) {
+            double sum = 0;
+            for(int k = 0; k < K; k++) {
+                sum += ALPHA * A[i+k*lda] * B[k+j*ldb];
+            }
+            C[i*ldc+j] += sum;
+        }
+    }
+}
+
+static void gemm_cpu(int TA, int TB, int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double BETA,
+        double *C, int ldc)
+{
+    for(int i = 0; i < M; i++) {
+        for(int j = 0; j < N; j++) {
+            C[i*ldc+j] *= BETA;
+        }
+    }
+    if(!TA && !TB) {
+        gemm_nn(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
+    }
+    else if(TA && !TB) {
+        gemm_tn(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
+    }
+    else if(!TA && TB) {
+        gemm_nt(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
+    }
+    else {
+        gemm_tt(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
+    }
+}
+
+void gemm(int TA, int TB, int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double BETA,
+        double *C, int ldc)
+{
+#ifdef GPU
+    gemm_gpu(TA,TB,M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
+#else
+    gemm_cpu(TA,TB,M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
+#endif
 }

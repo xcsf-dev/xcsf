@@ -25,13 +25,8 @@
 
 #define BLOCK_SIZE 1024
 
-#define CUDA_CALL(x) {
-    cudaError_t cuda_error__ = (x);
-    if(cuda_error__) {
-        printf("CUDA error: " #x " returned \"%s\"\n", cudaGetErrorString(cuda_error__));
-    }
-}
-
+#define CUDA_CALL(x) { cudaError_t cuda_error__ = (x); if(cuda_error__) { printf("CUDA error: " #x " returned \"%s\"\n", cudaGetErrorString(cuda_error__)); } }
+ 
 void cuda_info();
 void cuda_set_device(int n);
 int cuda_get_device();

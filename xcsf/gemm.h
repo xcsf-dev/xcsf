@@ -23,5 +23,8 @@
 
 #pragma once
 
-void matrix_matrix_multiply(const double *A, const double *B, double *C, int n);
-void matrix_vector_multiply(const double *A, const double *B, double *C, int n);
+void gemm(int TA, int TB, int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double BETA,
+        double *C, int ldc);

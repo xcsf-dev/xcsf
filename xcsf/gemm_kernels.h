@@ -23,5 +23,8 @@
  
 #pragma once
 
-void gpu_mm_multiply(const double *A, const double *B, double *C, int n);
-void gpu_mv_multiply(const double *A, const double *B, double *C, int n);
+void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double BETA,
+        double *C, int ldc);

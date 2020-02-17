@@ -21,104 +21,70 @@
  * @brief CUDA general matrix multiplication.
  */ 
  
-#ifdef GPU
-
 #include <iostream>
+#include <stdio.h>
 #include "cuda.h"
-
-__global__ void kernel_mm_multiply(const double *A, const double *B, double *C, int n)
+ 
+__global__ void gpu_gemm_nn(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
 {
-    int row = blockIdx.y * blockDim.y + threadIdx.y;
-    int col = blockIdx.x * blockDim.x + threadIdx.x;
-    double sum = 0;
-    if(row < n && col < n) {
-        for(int i = 0; i < n; i++) {
-            sum += A[row * n + i] * B[i * n + col];
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    int j = blockIdx.y * blockDim.y + threadIdx.y;
+    if(i < M && j < N) {
+        for(int k = 0; k < K; k++) {
+            C[i*ldc+j] += ALPHA * A[i*lda+k] * B[k*ldb+j];
         }
     }
-    C[row * n + col] = sum;
 }
 
-__global__ void kernel_mv_multiply(const double *A, const double *B, double *C, int n)
+extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double BETA,
+        double *C, int ldc)
 {
-    int row = blockIdx.x * blockDim.x + threadIdx.x;
-    double sum = 0;
-    if(row < n) {
-        for(int i = 0; i < n; i++) {
-            sum += A[row * n + i] * B[i];
+    for(int i = 0; i < M; i++) {
+        for(int j = 0; j < N; j++) {
+            C[i*ldc+j] *= BETA;
         }
     }
-    C[row] = sum;
-}
-
-extern "C" void gpu_mm_multiply(const double *A, const double *B, double *C, int n)
-{
-    int size = n*n;
     // allocate memory on the device
     double *d_a, *d_b, *d_c;
-    CUDA_CALL( cudaMalloc((void **) &d_a, sizeof(double) * size) );
-    CUDA_CALL( cudaMalloc((void **) &d_b, sizeof(double) * size) );
-    CUDA_CALL( cudaMalloc((void **) &d_c, sizeof(double) * size) );
+    CUDA_CALL( cudaMalloc((void **) &d_a, sizeof(double) * M * K) );
+    CUDA_CALL( cudaMalloc((void **) &d_b, sizeof(double) * N * K) );
+    CUDA_CALL( cudaMalloc((void **) &d_c, sizeof(double) * N * K) );
 
     // copy from host to device
-    CUDA_CALL( cudaMemcpy(d_a, A, sizeof(double) * size, cudaMemcpyHostToDevice) );
-    CUDA_CALL( cudaMemcpy(d_b, B, sizeof(double) * size, cudaMemcpyHostToDevice) );
+    CUDA_CALL( cudaMemcpy(d_a, A, sizeof(double) * M * K, cudaMemcpyHostToDevice) );
+    CUDA_CALL( cudaMemcpy(d_b, B, sizeof(double) * N * K, cudaMemcpyHostToDevice) );
 
     // run kernel on the GPU
-    dim3 dimGrid(n,n);
+    dim3 dimGrid(M,N);
     dim3 dimBlock(1,1);
-    if(n > 65535) {
+    if(M > 65535) {
         dimBlock.x = sqrt(BLOCK_SIZE);
         dimBlock.y = dimBlock.x;
-        dimGrid.x = (n % dimBlock.x == 0) ? n / dimBlock.x : (n / dimBlock.x) + 1;
+        dimGrid.x = (M % dimBlock.x == 0) ? M / dimBlock.x : (M / dimBlock.x) + 1;
     }
-    kernel_mm_multiply<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, n);
+
+    if(!TA && !TB) {
+        gpu_gemm_nn<<<dimGrid, dimBlock>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
+    }
+    else {
+        printf("TODO\n");
+        exit(0);
+    }
 
     // wait for GPU to finish
     CUDA_CALL( cudaDeviceSynchronize() );
 
     // copy result from device to host
-    CUDA_CALL( cudaMemcpy(C, d_c, sizeof(double) * size, cudaMemcpyDeviceToHost) );
+    CUDA_CALL( cudaMemcpy(C, d_c, sizeof(double) * N*K, cudaMemcpyDeviceToHost) );
 
     // free memory
     CUDA_CALL( cudaFree(d_a) );
     CUDA_CALL( cudaFree(d_b) );
     CUDA_CALL( cudaFree(d_c) );
 }
-
-extern "C" void gpu_mv_multiply(const double *A, const double *B, double *C, int n)
-{
-    int size = n*n;
-    // allocate memory on the device
-    double *d_a, *d_b, *d_c;
-    CUDA_CALL( cudaMalloc((void **) &d_a, sizeof(double) * size) );
-    CUDA_CALL( cudaMalloc((void **) &d_b, sizeof(double) * n) );
-    CUDA_CALL( cudaMalloc((void **) &d_c, sizeof(double) * n) );
-
-    // copy from host to device
-    CUDA_CALL( cudaMemcpy(d_a, A, sizeof(double) * size, cudaMemcpyHostToDevice) );
-    CUDA_CALL( cudaMemcpy(d_b, B, sizeof(double) * n, cudaMemcpyHostToDevice) );
-
-    // run kernel on the GPU
-    dim3 dimGrid(n,n);
-    dim3 dimBlock(1,1);
-    if(n > 65535) {
-        dimBlock.x = sqrt(BLOCK_SIZE);
-        dimBlock.y = dimBlock.x;
-        dimGrid.x = (n % dimBlock.x == 0) ? n / dimBlock.x : (n / dimBlock.x) + 1;
-    }
-    kernel_mv_multiply<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, n);
-
-    // wait for GPU to finish
-    CUDA_CALL( cudaDeviceSynchronize() );
-
-    // copy result from device to host
-    CUDA_CALL( cudaMemcpy(C, d_c, sizeof(double) * n, cudaMemcpyDeviceToHost) );
-
-    // free memory
-    CUDA_CALL( cudaFree(d_a) );
-    CUDA_CALL( cudaFree(d_b) );
-    CUDA_CALL( cudaFree(d_c) );
-}
-
-#endif
