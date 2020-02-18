@@ -22,6 +22,7 @@
  */ 
 
 #include <stdio.h>
+#include <stdint.h>
 #include "cuda.h"
 #include "blas_kernels.h"
 
@@ -55,6 +56,33 @@ void cuda_push_array(double *x_gpu, double *x, size_t n)
 void cuda_pull_array(double *x_gpu, double *x, size_t n)
 {
     CUDA_CALL( cudaMemcpy(x, x_gpu, sizeof(double) * n, cudaMemcpyDeviceToHost) );
+}
+
+dim3 cuda_gridsize(size_t n)
+{
+    uint32_t k = (n-1) / BLOCK_SIZE + 1;
+    uint32_t x = k;
+    uint32_t y = 1;
+    if(x > 65535) {
+        x = ceil(sqrt(k));
+        y = (n-1) / (x*BLOCK_SIZE) + 1;
+    }
+    dim3 d = {x, y, 1};
+    return d;
+}
+
+double *cuda_make_array(double *x, size_t n)
+{
+    double *x_gpu;
+    size_t size = sizeof(double) * n;
+    CUDA_CALL( cudaMalloc((void **)&x_gpu, size) );
+    if(x) {
+        CUDA_CALL( cudaMemcpy(x_gpu, x, size, cudaMemcpyHostToDevice) );
+    }
+    else {
+        fill_gpu(n, 0, x_gpu, 1);
+    }
+    return x_gpu;
 }
 
 void cuda_info()

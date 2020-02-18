@@ -168,3 +168,8 @@ extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
 
     CUDA_CALL( cudaStreamDestroy(stream) );
 }
+
+extern void fill_gpu(int N, double ALPHA, double *X, int INCX)
+{
+    kernel_fill<<<cuda_gridsize(N), BLOCK_SIZE>>>(N, ALPHA, X, INCX);
+}

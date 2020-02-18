@@ -27,6 +27,8 @@
 
 #define CUDA_CALL(x) { cudaError_t cuda_error__ = (x); if(cuda_error__) { printf("CUDA error: " #x " returned \"%s\"\n", cudaGetErrorString(cuda_error__)); } }
  
+dim3 cuda_gridsize(size_t n);
+double *cuda_make_array(double *x, size_t n);
 int cuda_get_device();
 void cuda_free(double *x_gpu);
 void cuda_info();
