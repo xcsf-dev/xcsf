@@ -138,8 +138,6 @@ static int tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth)
                 exit(EXIT_FAILURE);
         }
     }
-    printf("tree_grow() shouldn't be here\n");
-    exit(EXIT_FAILURE);
 }
 
 /**
@@ -179,8 +177,6 @@ double tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x)
                   printf("eval() invalid function: %d\n", node);
                   exit(EXIT_FAILURE);
     }
-    printf("eval() shouldn't be here\n");
-    return 0;
 }
 
 /**
