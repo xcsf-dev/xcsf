@@ -25,7 +25,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include <math.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "sam.h"

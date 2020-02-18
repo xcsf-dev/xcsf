@@ -26,7 +26,6 @@
 #include <string.h>
 #include <stdbool.h>
 #include <inttypes.h>
-#include <math.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "env.h"

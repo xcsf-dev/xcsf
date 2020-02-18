@@ -23,9 +23,6 @@
       
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include <math.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "neural_activations.h"
