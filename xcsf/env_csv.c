@@ -132,12 +132,14 @@ static void env_csv_read(const char *fname, double **data, int *n_samples, int *
         (*n_samples)++; // count the number of lines
     }
     // read data file to memory
-    rewind(fin);
-    *data = malloc(sizeof(double) * (*dim) * (*n_samples));
-    for(int i = 0; fgets(line,MAX_COLS,fin) != NULL; i++) {
-        (*data)[i * (*dim)] = atof(strtok_r(line, DELIM, &saveptr));
-        for(int j = 1; j < *dim; j++) {
-            (*data)[i * (*dim)+j] = atof(strtok_r(NULL, DELIM, &saveptr));
+    if(*dim > 0 && *n_samples > 0) {
+        rewind(fin);
+        *data = malloc(sizeof(double) * (*dim) * (*n_samples));
+        for(int i = 0; fgets(line,MAX_COLS,fin) != NULL; i++) {
+            (*data)[i * (*dim)] = atof(strtok_r(line, DELIM, &saveptr));
+            for(int j = 1; j < *dim; j++) {
+                (*data)[i * (*dim)+j] = atof(strtok_r(NULL, DELIM, &saveptr));
+            }
         }
     }
     fclose(fin);
