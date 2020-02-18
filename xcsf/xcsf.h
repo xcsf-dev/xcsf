@@ -54,7 +54,6 @@ typedef struct CL {
     void *cond; //!< Condition structure
     void *pred; //!< Prediction structure
     void *act; //!< Action structure
-    double *mu; //!< Self-adaptive mutation rates
     double err; //!< Error
     double fit; //!< Fitness
     int num; //!< Numerosity

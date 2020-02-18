@@ -41,7 +41,7 @@ double loss_mae(const XCSF *xcsf, const double *pred, const double *y)
     for(int i = 0; i < xcsf->y_dim; i++) {
         error += fabs(y[i] - pred[i]);
     }
-    error /= (double)xcsf->y_dim;
+    error /= xcsf->y_dim;
     return error;
 }
  
@@ -58,7 +58,7 @@ double loss_mse(const XCSF *xcsf, const double *pred, const double *y)
     for(int i = 0; i < xcsf->y_dim; i++) {
         error += (y[i] - pred[i]) * (y[i] - pred[i]);
     }
-    error /= (double)xcsf->y_dim;
+    error /= xcsf->y_dim;
     return error;
 }
 

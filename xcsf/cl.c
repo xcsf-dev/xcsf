@@ -391,19 +391,6 @@ _Bool cl_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 }
 
 /**
- * @brief Returns the classifier self-adaptive mutation rate.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose rate to return.
- * @param m Which mutation rate to return.
- * @return The current mutation rate.
- */
-double cl_mutation_rate(const XCSF *xcsf, const CL *c, int m)
-{
-    (void)xcsf;
-    return c->mu[m];
-}  
-
-/**
  * @brief Returns the size of the classifier condition.
  * @param xcsf The XCSF data structure.
  * @param c The classifier whose condition size to return.

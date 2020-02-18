@@ -299,7 +299,7 @@ void clset_pred(const XCSF *xcsf, const SET *set, const double *x, double *p)
     }
 #pragma omp parallel for
     for(int var = 0; var < xcsf->y_dim; var++) {
-        p[var] = presum[var]/fitsum;
+        p[var] = presum[var] / fitsum;
     }
 #else
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
@@ -310,7 +310,7 @@ void clset_pred(const XCSF *xcsf, const SET *set, const double *x, double *p)
         fitsum += iter->cl->fit;
     }    
     for(int var = 0; var < xcsf->y_dim; var++) {
-        p[var] = presum[var]/fitsum;
+        p[var] = presum[var] / fitsum;
     }
 #endif
     free(presum);

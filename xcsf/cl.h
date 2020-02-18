@@ -33,7 +33,6 @@ const double *cl_predict(const XCSF *xcsf, const CL *c, const double *x);
 double cl_acc(const XCSF *xcsf, const CL *c);
 double cl_del_vote(const XCSF *xcsf, const CL *c, double avg_fit);
 double cl_mfrac(const XCSF *xcsf, const CL *c);
-double cl_mutation_rate(const XCSF *xcsf, const CL *c, int m);
 int cl_action(const XCSF *xcsf, CL *c, const double *x);
 int cl_cond_size(const XCSF *xcsf, const CL *c);
 int cl_pred_size(const XCSF *xcsf, const CL *c);
