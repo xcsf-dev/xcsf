@@ -119,15 +119,19 @@ extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
         }
     }
 
+    // create stream
+    cudaStream_t stream;
+    CUDA_CALL( cudaStreamCreate(&stream) );
+
     // allocate memory on the device
     double *d_a, *d_b, *d_c;
-    CUDA_CALL( cudaMalloc((void **) &d_a, sizeof(A)) );
-    CUDA_CALL( cudaMalloc((void **) &d_b, sizeof(B)) );
-    CUDA_CALL( cudaMalloc((void **) &d_c, sizeof(C)) );
+    CUDA_CALL( cudaMalloc((void **) &d_a, sizeof(double)*M*K) );
+    CUDA_CALL( cudaMalloc((void **) &d_b, sizeof(double)*N*K) );
+    CUDA_CALL( cudaMalloc((void **) &d_c, sizeof(double)*N*K) );
 
     // copy from host to device
-    CUDA_CALL( cudaMemcpy(d_a, A, sizeof(A), cudaMemcpyHostToDevice) );
-    CUDA_CALL( cudaMemcpy(d_b, B, sizeof(B), cudaMemcpyHostToDevice) );
+    CUDA_CALL( cudaMemcpyAsync(d_a, A, sizeof(double)*M*K, cudaMemcpyHostToDevice, stream) );
+    CUDA_CALL( cudaMemcpyAsync(d_b, B, sizeof(double)*N*K, cudaMemcpyHostToDevice, stream) );
 
     // run kernel on the GPU
     dim3 dimGrid(M,K);
@@ -139,26 +143,28 @@ extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
     }
 
     if(!TA && !TB) {
-        kernel_gemm_nn<<<dimGrid, dimBlock>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
+        kernel_gemm_nn<<<dimGrid, dimBlock, 0, stream>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
     }
     else if(TA && !TB) {
-        kernel_gemm_tn<<<dimGrid, dimBlock>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
+        kernel_gemm_tn<<<dimGrid, dimBlock, 0, stream>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
     }
     else if(!TA && TB) {
-        kernel_gemm_nt<<<dimGrid, dimBlock>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
+        kernel_gemm_nt<<<dimGrid, dimBlock, 0, stream>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
     }
     else {
-        kernel_gemm_tt<<<dimGrid, dimBlock>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
+        kernel_gemm_tt<<<dimGrid, dimBlock, 0, stream>>>(M,N,K,ALPHA,d_a,lda,d_b,ldb,d_c,ldc);
     }
 
     // wait for GPU to finish
-    CUDA_CALL( cudaDeviceSynchronize() );
+//    CUDA_CALL( cudaDeviceSynchronize() );
 
     // copy result from device to host
-    CUDA_CALL( cudaMemcpy(C, d_c, sizeof(C), cudaMemcpyDeviceToHost) );
+    CUDA_CALL( cudaMemcpyAsync(C, d_c, sizeof(double)*N*K, cudaMemcpyDeviceToHost, stream) );
 
     // free memory
     CUDA_CALL( cudaFree(d_a) );
     CUDA_CALL( cudaFree(d_b) );
     CUDA_CALL( cudaFree(d_c) );
+
+    CUDA_CALL( cudaStreamDestroy(stream) );
 }
