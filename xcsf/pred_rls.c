@@ -139,7 +139,7 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     // update weights using the error
     for(int var = 0; var < xcsf->y_dim; var++) {
         double error = y[var] - c->prediction[var];
-        blas_axpy(n, error, pred->tmp_vec, 1, &pred->weights[var], 1);
+        blas_axpy(n, error, pred->tmp_vec, 1, &pred->weights[var*n], 1);
     }
     // update gain matrix
     for(int i = 0; i < n; i++) {

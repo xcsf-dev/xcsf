@@ -27,6 +27,7 @@
 #include <stdbool.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "blas.h"
 #include "sam.h"
 #include "cl.h"
 #include "prediction.h"
@@ -40,8 +41,9 @@
  * @brief Normalised least mean squares prediction data structure.
  */ 
 typedef struct PRED_NLMS {
-    int weights_length; //!< Total number of weights
-    double **weights; //!< Weights used to compute prediction
+    int n; //!< Number of weights for each predicted variable
+    int n_weights; //!< Total number of weights
+    double *weights; //!< Weights used to compute prediction
     double mu[N_MU]; //!< Mutation rates
     double eta; //!< Gradient descent rate
 } PRED_NLMS;
@@ -50,24 +52,18 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
 {
     PRED_NLMS *pred = malloc(sizeof(PRED_NLMS));
     c->pred = pred;
+    // set the length of weights per predicted variable
     if(xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
         // offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
-        pred->weights_length = 1 + 2 * xcsf->x_dim + 
-            xcsf->x_dim * (xcsf->x_dim - 1) / 2;
+        pred->n = 1 + 2 * xcsf->x_dim + xcsf->x_dim * (xcsf->x_dim - 1) / 2;
     }
     else {
-        pred->weights_length = xcsf->x_dim + 1;
+        pred->n = xcsf->x_dim + 1;
     }
-    pred->weights = malloc(sizeof(double*) * xcsf->y_dim);
-    for(int var = 0; var < xcsf->y_dim; var++) {
-        pred->weights[var] = malloc(sizeof(double) * pred->weights_length);
-    }
-    for(int var = 0; var < xcsf->y_dim; var++) {
-        pred->weights[var][0] = xcsf->PRED_X0;
-        for(int i = 1; i < pred->weights_length; i++) {
-            pred->weights[var][i] = 0;
-        }
-    }
+    // initialise weights
+    pred->n_weights = pred->n * xcsf->y_dim;
+    pred->weights = calloc(pred->n_weights, sizeof(double));
+    blas_fill(xcsf->y_dim, xcsf->PRED_X0, pred->weights, pred->n);
     // initialise learning rate
     if(xcsf->PRED_EVOLVE_ETA) {
         sam_init(xcsf, pred->mu, N_MU);
@@ -84,20 +80,15 @@ void pred_nlms_copy(const XCSF *xcsf, CL *to, const CL *from)
     pred_nlms_init(xcsf, to);
     PRED_NLMS *to_pred = to->pred;
     const PRED_NLMS *from_pred = from->pred;
-    for(int var = 0; var < xcsf->y_dim; var++) {
-        memcpy(to_pred->weights[var], from_pred->weights[var], 
-                sizeof(double) * from_pred->weights_length);
-    }
+    memcpy(to_pred->weights, from_pred->weights, from_pred->n_weights * sizeof(double));
     memcpy(to_pred->mu, from_pred->mu, N_MU);
     to_pred->eta = from_pred->eta;
 }
 
 void pred_nlms_free(const XCSF *xcsf, const CL *c)
 {
+    (void)xcsf;
     PRED_NLMS *pred = c->pred;
-    for(int var = 0; var < xcsf->y_dim; var++) {
-        free(pred->weights[var]);
-    }
     free(pred->weights);
     free(pred);
 }
@@ -105,26 +96,27 @@ void pred_nlms_free(const XCSF *xcsf, const CL *c)
 void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     const PRED_NLMS *pred = c->pred;
+    int n = pred->n;
     double norm = xcsf->PRED_X0 * xcsf->PRED_X0;
     for(int i = 0; i < xcsf->x_dim; i++) {
         norm += x[i] * x[i];
     }      
-    // prediction must have been computed for the current state
+    // update weights using the error
     for(int var = 0; var < xcsf->y_dim; var++) {
         double error = y[var] - c->prediction[var];
         double correction = (pred->eta * error) / norm;
         // update first coefficient
-        pred->weights[var][0] += xcsf->PRED_X0 * correction;
-        int index = 1;
+        pred->weights[var*n] += xcsf->PRED_X0 * correction;
+        int idx = 1;
         // update linear coefficients
-        for(int i = 0; i < xcsf->x_dim; i++) {
-            pred->weights[var][index++] += correction * x[i];
+        for(int i = 0; i < xcsf->x_dim; i++, idx++) {
+            pred->weights[var*n+idx] += correction * x[i];
         }
         if(xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
             // update quadratic coefficients
             for(int i = 0; i < xcsf->x_dim; i++) {
-                for(int j = i; j < xcsf->x_dim; j++) {
-                    pred->weights[var][index++] += correction * x[i] * x[j];
+                for(int j = i; j < xcsf->x_dim; j++, idx++) {
+                    pred->weights[var*n+idx] += correction * x[i] * x[j];
                 }
             }
         }
@@ -134,19 +126,20 @@ void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x, const doub
 void pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     const PRED_NLMS *pred = c->pred;
+    int n = pred->n;
     for(int var = 0; var < xcsf->y_dim; var++) {
         // first coefficient is offset
-        double pre = xcsf->PRED_X0 * pred->weights[var][0];
-        int index = 1;
+        double pre = xcsf->PRED_X0 * pred->weights[var*n];
+        int idx = 1;
         // multiply linear coefficients with the prediction input
-        for(int i = 0; i < xcsf->x_dim; i++) {
-            pre += pred->weights[var][index++] * x[i];
+        for(int i = 0; i < xcsf->x_dim; i++, idx++) {
+            pre += pred->weights[var*n+idx] * x[i];
         }
         if(xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
             // multiply quadratic coefficients with prediction input
             for(int i = 0; i < xcsf->x_dim; i++) {
-                for(int j = i; j < xcsf->x_dim; j++) {
-                    pre += pred->weights[var][index++] * x[i] * x[j];
+                for(int j = i; j < xcsf->x_dim; j++, idx++) {
+                    pre += pred->weights[var*n+idx] * x[i] * x[j];
                 }
             }
         }
@@ -157,10 +150,11 @@ void pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x)
 void pred_nlms_print(const XCSF *xcsf, const CL *c)
 {
     const PRED_NLMS *pred = c->pred;
+    int n = pred->n;
     printf("eta: %.5f, weights: ", pred->eta);
     for(int var = 0; var < xcsf->y_dim; var++) {
-        for(int i = 0; i < pred->weights_length; i++) {
-            printf("%f, ", pred->weights[var][i]);
+        for(int i = 0; i < n; i++) {
+            printf("%f, ", pred->weights[var*n+i]);
         }
         printf("\n");
     }
@@ -191,17 +185,17 @@ int pred_nlms_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     const PRED_NLMS *pred = c->pred;
-    return pred->weights_length;
+    return pred->n_weights;
 }
 
 size_t pred_nlms_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
+    (void)xcsf;
     const PRED_NLMS *pred = c->pred;
     size_t s = 0;
-    s += fwrite(&pred->weights_length, sizeof(int), 1, fp);
-    for(int var = 0; var < xcsf->y_dim; var++) {
-        s += fwrite(pred->weights[var], sizeof(double), pred->weights_length, fp);
-    }
+    s += fwrite(&pred->n, sizeof(int), 1, fp);
+    s += fwrite(&pred->n_weights, sizeof(int), 1, fp);
+    s += fwrite(pred->weights, sizeof(double), pred->n_weights, fp);
     s += fwrite(pred->mu, sizeof(double), N_MU, fp);
     s += fwrite(&pred->eta, sizeof(double), 1, fp);
     return s;
@@ -212,10 +206,9 @@ size_t pred_nlms_load(const XCSF *xcsf, CL *c, FILE *fp)
     pred_nlms_init(xcsf, c);
     PRED_NLMS *pred = c->pred;
     size_t s = 0;
-    s += fread(&pred->weights_length, sizeof(int), 1, fp);
-    for(int var = 0; var < xcsf->y_dim; var++) {
-        s += fread(pred->weights[var], sizeof(double), pred->weights_length, fp);
-    }
+    s += fread(&pred->n, sizeof(int), 1, fp);
+    s += fread(&pred->n_weights, sizeof(int), 1, fp);
+    s += fread(pred->weights, sizeof(double), pred->n_weights, fp);
     s += fread(pred->mu, sizeof(double), N_MU, fp);
     s += fread(&pred->eta, sizeof(double), 1, fp);
     return s;
