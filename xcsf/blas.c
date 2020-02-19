@@ -24,10 +24,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifdef GPU
-#include "blas_kernels.h"
-#endif
-
 static void gemm_nn(int M, int N, int K, double ALPHA,
         const double *A, int lda,
         const double *B, int ldb,
