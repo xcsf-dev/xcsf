@@ -25,6 +25,18 @@
 #include <stdio.h>
 #include "cuda.h"
 
+__device__ double atomic_Add(double *address, double val)
+{
+    unsigned long long int *address_as_ull = (unsigned long long int*) address;
+    unsigned long long int old = *address_as_ull, assumed;
+    do {
+        assumed = old;
+        old = atomicCAS(address_as_ull, assumed,
+                __double_as_longlong(val + __longlong_as_double(assumed)));
+    } while (assumed != old);
+    return __longlong_as_double(old);
+}
+
 __global__ void kernel_axpy(int N, double ALPHA,
         const double *X, int OFFX, int INCX,
         double *Y, int OFFY, int INCY)
@@ -40,6 +52,25 @@ __global__ void kernel_scal(int N, double ALPHA, double *X, int INCX)
     int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
     if(i < N) {
         X[i*INCX] *= ALPHA;
+    }
+}
+
+__global__ void kernel_dot(const double *A, const double *B, double *C, int N)
+{
+    __shared__ double cache;
+    int tid = threadIdx.x + blockIdx.x * blockDim.x;
+    int cacheIndex = threadIdx.x;
+    double temp = 0;
+    cache = 0;
+    __syncthreads();
+    while (tid < N) {
+        temp += A[tid] * B[tid];
+        tid += blockDim.x * gridDim.x;
+    }
+    atomic_Add(&cache, temp);
+    __syncthreads();
+    if (cacheIndex == 0) {
+        C[blockIdx.x] = cache;
     }
 }
 
@@ -105,6 +136,12 @@ __global__ void kernel_gemm_tt(int M, int N, int K, double ALPHA,
             C[i*ldc+j] += ALPHA * A[i+k*lda] * B[k+j*ldb];
         }
     }
+}
+
+extern "C" void dot_gpu(int N, const double *A, const double *B, double *C,
+        const cudaStream_t * stream)
+{
+    kernel_dot<<<1, N, 0, *stream>>>(A, B, C, N);
 }
 
 extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,

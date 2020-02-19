@@ -32,4 +32,4 @@ void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
         double *C, int ldc,
         const cudaStream_t *stream);
 
-void fill_gpu(int N, double ALPHA, double *X, int INCX);
+void dot_gpu(int N, const double *A, const double *B, double *C, const cudaStream_t * stream);

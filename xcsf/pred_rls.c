@@ -58,6 +58,7 @@ typedef struct PRED_RLS {
     double *tmp_vec_gpu;
     double *tmp_matrix1_gpu;
     double *tmp_matrix2_gpu;
+    double *tmp_gpu;
 #endif
 } PRED_RLS;
 
@@ -93,6 +94,7 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
     pred->tmp_matrix2_gpu = cuda_make_array(pred->tmp_matrix2, n_sqrd, &pred->stream);
     pred->tmp_input_gpu = cuda_make_array(pred->tmp_input, pred->n, &pred->stream);
     pred->tmp_vec_gpu = cuda_make_array(pred->tmp_vec, pred->n, &pred->stream);
+    pred->tmp_gpu = cuda_make_array(NULL, 1, &pred->stream);
 #endif
 }
 
@@ -134,6 +136,7 @@ void pred_rls_free(const XCSF *xcsf, const CL *c)
     cuda_free(pred->tmp_matrix2_gpu);
     cuda_free(pred->tmp_input_gpu);
     cuda_free(pred->tmp_vec_gpu);
+    cuda_free(pred->tmp_gpu);
     cuda_destroy_stream(&pred->stream);
 #endif
     free(pred);
@@ -160,16 +163,20 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     // gain vector = matrix * tmp_input
 #ifdef GPU
     int n_sqrd = n * n;
+    double divisor;
     cuda_push_array(pred->matrix_gpu, pred->matrix, n_sqrd, &pred->stream);
     cuda_push_array(pred->tmp_input_gpu, pred->tmp_input, n, &pred->stream);
     gemm_gpu(0,0,n,1,n,1,pred->matrix_gpu,n,pred->tmp_input_gpu,1,0,pred->tmp_vec_gpu,1,&pred->stream);
     cuda_pull_array(pred->tmp_vec_gpu, pred->tmp_vec, n, &pred->stream);
+    dot_gpu(n, pred->tmp_input_gpu, pred->tmp_vec_gpu, pred->tmp_gpu, &pred->stream);
+    cuda_pull_array(pred->tmp_gpu, &divisor, 1, &pred->stream);
+    divisor += xcsf->PRED_RLS_LAMBDA;
 #else
     blas_gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
-#endif
     // divide gain vector by lambda + tmp_vec
     double divisor = xcsf->PRED_RLS_LAMBDA;
     divisor += blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
+#endif
     for(int i = 0; i < n; i++) {
         pred->tmp_vec[i] /= divisor;
     }
