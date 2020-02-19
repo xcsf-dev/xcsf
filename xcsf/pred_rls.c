@@ -115,16 +115,16 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     const PRED_RLS *pred = c->pred;
     int n = pred->n;
     pred->tmp_input[0] = xcsf->PRED_X0;
-    int index = 1;
+    int idx = 1;
     // linear terms
     for(int i = 0; i < xcsf->x_dim; i++) {
-        pred->tmp_input[index++] = x[i];
+        pred->tmp_input[idx++] = x[i];
     }
     // quadratic terms
     if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
         for(int i = 0; i < xcsf->x_dim; i++) {
             for(int j = i; j < xcsf->x_dim; j++) {
-                pred->tmp_input[index++] = x[i] * x[j];
+                pred->tmp_input[idx++] = x[i] * x[j];
             }
         }
     }
@@ -170,17 +170,16 @@ void pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x)
     for(int var = 0; var < xcsf->y_dim; var++) {
         // first coefficient is offset
         double pre = xcsf->PRED_X0 * pred->weights[var*n];
-        int index = 1;
+        int idx = 1;
         // multiply linear coefficients with the prediction input
-        for(int i = 0; i < xcsf->x_dim; i++, index++) {
-            pre += pred->weights[var*n+index] * x[i];
+        for(int i = 0; i < xcsf->x_dim; i++, idx++) {
+            pre += pred->weights[var*n+idx] * x[i];
         }
         if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
             // multiply quadratic coefficients with prediction input
             for(int i = 0; i < xcsf->x_dim; i++) {
-                for(int j = i; j < xcsf->x_dim; j++, index++) {
-                    //pre += pred->weights[var][index++] * x[i] * x[j];
-                    pre += pred->weights[var*n+index] * x[i] * x[j];
+                for(int j = i; j < xcsf->x_dim; j++, idx++) {
+                    pre += pred->weights[var*n+idx] * x[i] * x[j];
                 }
             }
         }
