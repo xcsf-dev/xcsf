@@ -32,6 +32,11 @@
 #include "prediction.h"
 #include "pred_rls.h"
 
+#ifdef GPU
+#include "cuda.h"
+#include "blas_kernels.h"
+#endif
+
 static void init_matrix(const XCSF *xcsf, double *matrix, int n);
                     
 /**
@@ -46,6 +51,14 @@ typedef struct PRED_RLS {
     double *tmp_vec; //!< Temporary storage for updating weights
     double *tmp_matrix1; //!< Temporary storage for updating gain matrix
     double *tmp_matrix2; //!< Temporary storage for updating gain matrix
+#ifdef GPU
+    cudaStream_t stream;
+    double *matrix_gpu;
+    double *tmp_input_gpu;
+    double *tmp_vec_gpu;
+    double *tmp_matrix1_gpu;
+    double *tmp_matrix2_gpu;
+#endif
 } PRED_RLS;
 
 void pred_rls_init(const XCSF *xcsf, CL *c)
@@ -69,10 +82,18 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
     pred->matrix = malloc(n_sqrd * sizeof(double));
     init_matrix(xcsf, pred->matrix, pred->n);
     // initialise temporary storage for weight updating
-    pred->tmp_input = malloc(pred->n * sizeof(double));
-    pred->tmp_vec = malloc(pred->n * sizeof(double));
-    pred->tmp_matrix1 = malloc(n_sqrd * sizeof(double));
-    pred->tmp_matrix2 = malloc(n_sqrd * sizeof(double));
+    pred->tmp_input = calloc(pred->n, sizeof(double));
+    pred->tmp_vec = calloc(pred->n, sizeof(double));
+    pred->tmp_matrix1 = calloc(n_sqrd, sizeof(double));
+    pred->tmp_matrix2 = calloc(n_sqrd, sizeof(double));
+#ifdef GPU
+    cuda_create_stream(&pred->stream);
+    pred->matrix_gpu = cuda_make_array(pred->matrix, n_sqrd, &pred->stream);
+    pred->tmp_matrix1_gpu = cuda_make_array(pred->tmp_matrix1, n_sqrd, &pred->stream);
+    pred->tmp_matrix2_gpu = cuda_make_array(pred->tmp_matrix2, n_sqrd, &pred->stream);
+    pred->tmp_input_gpu = cuda_make_array(pred->tmp_input, pred->n, &pred->stream);
+    pred->tmp_vec_gpu = cuda_make_array(pred->tmp_vec, pred->n, &pred->stream);
+#endif
 }
 
 static void init_matrix(const XCSF *xcsf, double *matrix, int n)
@@ -108,59 +129,14 @@ void pred_rls_free(const XCSF *xcsf, const CL *c)
     free(pred->tmp_matrix1);
     free(pred->tmp_matrix2);
     free(pred);
-}
-
-void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
-{
-    const PRED_RLS *pred = c->pred;
-    int n = pred->n;
-    pred->tmp_input[0] = xcsf->PRED_X0;
-    int idx = 1;
-    // linear terms
-    for(int i = 0; i < xcsf->x_dim; i++) {
-        pred->tmp_input[idx++] = x[i];
-    }
-    // quadratic terms
-    if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
-        for(int i = 0; i < xcsf->x_dim; i++) {
-            for(int j = i; j < xcsf->x_dim; j++) {
-                pred->tmp_input[idx++] = x[i] * x[j];
-            }
-        }
-    }
-    // gain vector = matrix * tmp_input
-    blas_gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
-    // divide gain vector by lambda + tmp_vec
-    double divisor = xcsf->PRED_RLS_LAMBDA;
-    divisor += blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
-    for(int i = 0; i < n; i++) {
-        pred->tmp_vec[i] /= divisor;
-    }
-    // update weights using the error
-    for(int var = 0; var < xcsf->y_dim; var++) {
-        double error = y[var] - c->prediction[var];
-        blas_axpy(n, error, pred->tmp_vec, 1, &pred->weights[var*n], 1);
-    }
-    // update gain matrix
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            double tmp = pred->tmp_vec[i] * pred->tmp_input[j];
-            if(i == j) {
-                pred->tmp_matrix1[i*n+j] = 1 - tmp;
-            }
-            else {
-                pred->tmp_matrix1[i*n+j] = -tmp;
-            }
-        }
-    }
-    // tmp_matrix2 = tmp_matrix1 * pred_matrix
-    blas_gemm(0, 0, n, n, n, 1, pred->tmp_matrix1, n, pred->matrix, n, 0, pred->tmp_matrix2, n);
-    // divide gain matrix entries by lambda
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            pred->matrix[i*n+j] = pred->tmp_matrix2[i*n+j] / xcsf->PRED_RLS_LAMBDA;
-        }
-    }
+#ifdef GPU
+    cuda_free(pred->matrix_gpu);
+    cuda_free(pred->tmp_matrix1_gpu);
+    cuda_free(pred->tmp_matrix2_gpu);
+    cuda_free(pred->tmp_input_gpu);
+    cuda_free(pred->tmp_vec_gpu);
+    cuda_destroy_stream(&pred->stream);
+#endif
 }
 
 void pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x)
@@ -242,3 +218,128 @@ size_t pred_rls_load(const XCSF *xcsf, CL *c, FILE *fp)
     s += fread(pred->matrix, sizeof(double), pred->n * pred->n, fp);
     return s;
 }
+
+#ifndef GPU
+
+/*
+ * CPU update
+ */
+void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+{
+    const PRED_RLS *pred = c->pred;
+    int n = pred->n;
+    pred->tmp_input[0] = xcsf->PRED_X0;
+    int idx = 1;
+    // linear terms
+    for(int i = 0; i < xcsf->x_dim; i++) {
+        pred->tmp_input[idx++] = x[i];
+    }
+    // quadratic terms
+    if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
+        for(int i = 0; i < xcsf->x_dim; i++) {
+            for(int j = i; j < xcsf->x_dim; j++) {
+                pred->tmp_input[idx++] = x[i] * x[j];
+            }
+        }
+    }
+    // gain vector = matrix * tmp_input
+    blas_gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
+    // divide gain vector by lambda + tmp_vec
+    double divisor = xcsf->PRED_RLS_LAMBDA;
+    divisor += blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
+    for(int i = 0; i < n; i++) {
+        pred->tmp_vec[i] /= divisor;
+    }
+    // update weights using the error
+    for(int var = 0; var < xcsf->y_dim; var++) {
+        double error = y[var] - c->prediction[var];
+        blas_axpy(n, error, pred->tmp_vec, 1, &pred->weights[var*n], 1);
+    }
+    // update gain matrix
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            double tmp = pred->tmp_vec[i] * pred->tmp_input[j];
+            if(i == j) {
+                pred->tmp_matrix1[i*n+j] = 1 - tmp;
+            }
+            else {
+                pred->tmp_matrix1[i*n+j] = -tmp;
+            }
+        }
+    }
+    // tmp_matrix2 = tmp_matrix1 * pred_matrix
+    blas_gemm(0, 0, n, n, n, 1, pred->tmp_matrix1, n, pred->matrix, n, 0, pred->tmp_matrix2, n);
+    // divide gain matrix entries by lambda
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            pred->matrix[i*n+j] = pred->tmp_matrix2[i*n+j] / xcsf->PRED_RLS_LAMBDA;
+        }
+    }
+}
+
+#else
+
+/*
+ * GPU update
+ * Experimental. Work in progress.
+ */
+void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+{
+    const PRED_RLS *pred = c->pred;
+    int n = pred->n;
+    int n_sqrd = n * n;
+    pred->tmp_input[0] = xcsf->PRED_X0;
+    int idx = 1;
+    // linear terms
+    for(int i = 0; i < xcsf->x_dim; i++) {
+        pred->tmp_input[idx++] = x[i];
+    }
+    // quadratic terms
+    if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
+        for(int i = 0; i < xcsf->x_dim; i++) {
+            for(int j = i; j < xcsf->x_dim; j++) {
+                pred->tmp_input[idx++] = x[i] * x[j];
+            }
+        }
+    }
+    // gain vector = matrix * tmp_input
+    cuda_push_array(pred->matrix_gpu, pred->matrix, n_sqrd, &pred->stream);
+    cuda_push_array(pred->tmp_input_gpu, pred->tmp_input, n, &pred->stream);
+    gemm_gpu(0,0,n,1,n,1,pred->matrix_gpu,n,pred->tmp_input_gpu,1,0,pred->tmp_vec_gpu,1,&pred->stream);
+    cuda_pull_array(pred->tmp_vec_gpu, pred->tmp_vec, n, &pred->stream);
+    // divide gain vector by lambda + tmp_vec
+    double divisor = xcsf->PRED_RLS_LAMBDA;
+    divisor += blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
+    for(int i = 0; i < n; i++) {
+        pred->tmp_vec[i] /= divisor;
+    }
+    // update weights using the error
+    for(int var = 0; var < xcsf->y_dim; var++) {
+        double error = y[var] - c->prediction[var];
+        blas_axpy(n, error, pred->tmp_vec, 1, &pred->weights[var*n], 1);
+    }
+    // update gain matrix
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            double tmp = pred->tmp_vec[i] * pred->tmp_input[j];
+            if(i == j) {
+                pred->tmp_matrix1[i*n+j] = 1 - tmp;
+            }
+            else {
+                pred->tmp_matrix1[i*n+j] = -tmp;
+            }
+        }
+    }
+    // tmp_matrix2 = tmp_matrix1 * pred_matrix
+    cuda_push_array(pred->tmp_matrix1_gpu, pred->tmp_matrix1, n_sqrd, &pred->stream);
+    gemm_gpu(0,0,n,n,n,1,pred->tmp_matrix1_gpu,n,pred->matrix_gpu,n,0,pred->tmp_matrix2_gpu,n,&pred->stream);
+    cuda_pull_array(pred->tmp_matrix2_gpu, pred->tmp_matrix2, n_sqrd, &pred->stream);
+    // divide gain matrix entries by lambda
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            pred->matrix[i*n+j] = pred->tmp_matrix2[i*n+j] / xcsf->PRED_RLS_LAMBDA;
+        }
+    }
+}
+
+#endif

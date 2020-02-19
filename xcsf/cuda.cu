@@ -23,69 +23,74 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include "cuda.h"
 #include "blas_kernels.h"
+
+extern "C" {
+#include "cuda.h"
+}
 
 static void cuda_printDeviceInfo(cudaDeviceProp devProp);
 
 int gpu_index = 0;
 
-void cuda_set_device(int n)
+extern "C" void cuda_set_device(int n)
 {
     gpu_index = n;
     CUDA_CALL( cudaSetDevice(n) );
 }
 
-int cuda_get_device()
+extern "C" int cuda_get_device()
 {
     int n = 0;
     CUDA_CALL( cudaGetDevice(&n) );
     return n;
 }
 
-void cuda_free(double *x_gpu)
+extern "C" void cuda_free(double *x_gpu)
 {
     CUDA_CALL( cudaFree(x_gpu) );
 }
 
-void cuda_push_array(double *x_gpu, double *x, size_t n)
+extern "C" void cuda_push_array(double *x_gpu, double *x, size_t n, const cudaStream_t *stream)
 {
-    CUDA_CALL( cudaMemcpy(x_gpu, x, sizeof(double) * n, cudaMemcpyHostToDevice) );
+    CUDA_CALL( cudaMemcpyAsync(x_gpu, x, sizeof(double) * n, cudaMemcpyHostToDevice, *stream) );
 }
 
-void cuda_pull_array(double *x_gpu, double *x, size_t n)
+extern "C" void cuda_pull_array(double *x_gpu, double *x, size_t n, const cudaStream_t *stream)
 {
-    CUDA_CALL( cudaMemcpy(x, x_gpu, sizeof(double) * n, cudaMemcpyDeviceToHost) );
+    CUDA_CALL( cudaMemcpyAsync(x, x_gpu, sizeof(double) * n, cudaMemcpyDeviceToHost, *stream) );
 }
 
-dim3 cuda_gridsize(size_t n)
-{
-    uint32_t k = (n-1) / BLOCK_SIZE + 1;
-    uint32_t x = k;
-    uint32_t y = 1;
-    if(x > 65535) {
-        x = ceil(sqrt(k));
-        y = (n-1) / (x*BLOCK_SIZE) + 1;
-    }
-    dim3 d = {x, y, 1};
-    return d;
-}
-
-double *cuda_make_array(double *x, size_t n)
+extern "C" double *cuda_make_array(double *x, size_t n, const cudaStream_t *stream)
 {
     double *x_gpu;
     size_t size = sizeof(double) * n;
-    CUDA_CALL( cudaMalloc((void **)&x_gpu, size) );
+    CUDA_CALL( cudaMalloc((void **) &x_gpu, size) );
     if(x) {
-        CUDA_CALL( cudaMemcpy(x_gpu, x, size, cudaMemcpyHostToDevice) );
+        CUDA_CALL( cudaMemcpyAsync(x_gpu, x, size, cudaMemcpyHostToDevice, *stream) );
     }
     else {
-        fill_gpu(n, 0, x_gpu, 1);
+        CUDA_CALL( cudaMemsetAsync(x_gpu, 0, size, *stream) );
     }
     return x_gpu;
 }
 
-void cuda_info()
+extern "C" void cuda_create_stream(cudaStream_t *stream)
+{
+    CUDA_CALL( cudaStreamCreate(stream) );
+}
+
+extern "C" void cuda_destroy_stream(cudaStream_t *stream)
+{
+    CUDA_CALL( cudaStreamDestroy(*stream) );
+}
+
+extern "C" void cuda_memset(double *x_gpu, int value, size_t n, const cudaStream_t *stream)
+{
+    CUDA_CALL( cudaMemsetAsync(x_gpu, value, n, *stream) );
+}
+
+extern "C" void cuda_info()
 {
     int devCount;
     cudaGetDeviceCount(&devCount);

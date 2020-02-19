@@ -23,10 +23,13 @@
  
 #pragma once
 
+#include <cuda_runtime.h>
+
 void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
         const double *A, int lda,
         const double *B, int ldb,
         double BETA,
-        double *C, int ldc);
+        double *C, int ldc,
+        const cudaStream_t *stream);
 
 void fill_gpu(int N, double ALPHA, double *X, int INCX);

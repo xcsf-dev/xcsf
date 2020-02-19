@@ -23,15 +23,19 @@
  
 #pragma once
 
+#include <cuda_runtime.h>
+
 #define BLOCK_SIZE 1024
 
 #define CUDA_CALL(x) { cudaError_t cuda_error__ = (x); if(cuda_error__) { printf("CUDA error: " #x " returned \"%s\"\n", cudaGetErrorString(cuda_error__)); } }
- 
-dim3 cuda_gridsize(size_t n);
-double *cuda_make_array(double *x, size_t n);
+
+double *cuda_make_array(double *x, size_t n, const cudaStream_t *stream);
 int cuda_get_device();
 void cuda_free(double *x_gpu);
 void cuda_info();
-void cuda_pull_array(double *x_gpu, double *x, size_t n);
-void cuda_push_array(double *x_gpu, double *x, size_t n);
+void cuda_destroy_stream(cudaStream_t *stream);
+void cuda_create_stream(cudaStream_t *stream);
+void cuda_memset(double *x_gpu, int value, size_t n, const cudaStream_t *stream);
+void cuda_pull_array(double *x_gpu, double *x, size_t n, const cudaStream_t *stream);
+void cuda_push_array(double *x_gpu, double *x, size_t n, const cudaStream_t *stream);
 void cuda_set_device(int n);

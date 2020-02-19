@@ -151,12 +151,7 @@ void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
         double BETA,
         double *C, int ldc)
 {
-#ifdef GPU
-#pragma omp critical
-    gemm_gpu(TA,TB,M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
-#else
     gemm_cpu(TA,TB,M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
-#endif
 }
 
 void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
