@@ -128,7 +128,6 @@ void pred_rls_free(const XCSF *xcsf, const CL *c)
     free(pred->tmp_vec);
     free(pred->tmp_matrix1);
     free(pred->tmp_matrix2);
-    free(pred);
 #ifdef GPU
     cuda_free(pred->matrix_gpu);
     cuda_free(pred->tmp_matrix1_gpu);
@@ -137,6 +136,7 @@ void pred_rls_free(const XCSF *xcsf, const CL *c)
     cuda_free(pred->tmp_vec_gpu);
     cuda_destroy_stream(&pred->stream);
 #endif
+    free(pred);
 }
 
 void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
