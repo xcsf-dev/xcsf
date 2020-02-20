@@ -27,64 +27,64 @@
  
 /**
  * @brief Returns the result from applying a specified activation function.
- * @param function The activation function to apply.
- * @param state The input to the activation function.
+ * @param a The activation function to apply.
+ * @param x The input to the activation function.
  * @return The result from applying the activation function.
  */
-double neural_activate(int function, double state)
+double neural_activate(int a, double x)
 {
-    switch(function) {
-        case LOGISTIC: return logistic_activate(state);
-        case RELU: return relu_activate(state);
-        case GAUSSIAN: return gaussian_activate(state);
-        case TANH: return tanh_activate(state);
-        case SIN: return sin_activate(state);
-        case COS: return cos_activate(state);
-        case SOFT_PLUS: return soft_plus_activate(state);
-        case LINEAR: return linear_activate(state);
-        case LEAKY: return leaky_activate(state);
-        case SELU: return selu_activate(state);
-        case LOGGY: return loggy_activate(state);
+    switch(a) {
+        case LOGISTIC: return logistic_activate(x);
+        case RELU: return relu_activate(x);
+        case GAUSSIAN: return gaussian_activate(x);
+        case TANH: return tanh_activate(x);
+        case SIN: return sin_activate(x);
+        case COS: return cos_activate(x);
+        case SOFT_PLUS: return soft_plus_activate(x);
+        case LINEAR: return linear_activate(x);
+        case LEAKY: return leaky_activate(x);
+        case SELU: return selu_activate(x);
+        case LOGGY: return loggy_activate(x);
         default:
-            printf("neural_activate(): invalid activation function: %d\n", function);
+            printf("neural_activate(): invalid activation function: %d\n", a);
             exit(EXIT_FAILURE);
     }
 }
   
 /**
  * @brief Returns the derivative from applying a specified activation function.
- * @param function The activation function applied.
- * @param state The input to the activation function.
+ * @param a The activation function applied.
+ * @param x The input to the activation function.
  * @return The derivative from applying the activation function.
  */
-double neural_gradient(int function, double state)
+double neural_gradient(int a, double x)
 {
-    switch(function) {
-        case LOGISTIC: return logistic_gradient(state);
-        case RELU: return relu_gradient(state);
-        case GAUSSIAN: return gaussian_gradient(state);
-        case TANH: return tanh_gradient(state);
-        case SIN: return sin_gradient(state);
-        case COS: return cos_gradient(state);
-        case SOFT_PLUS: return soft_plus_gradient(state);
-        case LINEAR: return linear_gradient(state);
-        case LEAKY: return leaky_gradient(state);
-        case SELU: return selu_gradient(state);
-        case LOGGY: return loggy_gradient(state);
+    switch(a) {
+        case LOGISTIC: return logistic_gradient(x);
+        case RELU: return relu_gradient(x);
+        case GAUSSIAN: return gaussian_gradient(x);
+        case TANH: return tanh_gradient(x);
+        case SIN: return sin_gradient(x);
+        case COS: return cos_gradient(x);
+        case SOFT_PLUS: return soft_plus_gradient(x);
+        case LINEAR: return linear_gradient(x);
+        case LEAKY: return leaky_gradient(x);
+        case SELU: return selu_gradient(x);
+        case LOGGY: return loggy_gradient(x);
         default:
-            printf("neural_gradient(): invalid activation function: %d\n", function);
+            printf("neural_gradient(): invalid activation function: %d\n", a);
             exit(EXIT_FAILURE);
     }
 }
 
 /**
  * @brief Returns the name of a specified activation function.
- * @param function The activation function.
+ * @param a The activation function.
  * @return The name of the activation function.
  */
-const char *activation_string(int function)
+const char *activation_string(int a)
 {
-     switch(function) {
+     switch(a) {
         case LOGISTIC: return "logistic";
         case RELU: return "relu";
         case GAUSSIAN: return "gaussian";
@@ -97,7 +97,7 @@ const char *activation_string(int function)
         case SELU: return "selu";
         case LOGGY: return "loggy";
         default:
-            printf("activation_string(): invalid activation function: %d\n", function);
+            printf("activation_string(): invalid activation function: %d\n", a);
             exit(EXIT_FAILURE);
     }
 }

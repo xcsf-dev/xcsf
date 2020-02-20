@@ -38,9 +38,9 @@
 #define LOGGY 10 //!< Logistic [-1,1]
 #define NUM_ACTIVATIONS 11
  
-double neural_activate(int function, double state);
-double neural_gradient(int function, double state);
-const char *activation_string(int function);
+double neural_activate(int a, double x);
+double neural_gradient(int a, double x);
+const char *activation_string(int a);
 
 static inline double logistic_activate(double x){return 1./(1.+exp(-x));}
 static inline double logistic_gradient(double x){double fx=1./(1.+exp(-x)); return (1-fx)*fx;}
