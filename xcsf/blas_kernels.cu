@@ -138,8 +138,14 @@ __global__ void kernel_gemm_tt(int M, int N, int K, double ALPHA,
     }
 }
 
+extern "C" void scal_gpu(int N, double ALPHA, double *X, int INCX, const cudaStream_t *stream)
+{
+    kernel_scal<<<1, N, 0, *stream>>>(N, ALPHA, X, INCX);
+}
+
+
 extern "C" void dot_gpu(int N, const double *A, const double *B, double *C,
-        const cudaStream_t * stream)
+        const cudaStream_t *stream)
 {
     kernel_dot<<<1, N, 0, *stream>>>(A, B, C, N);
 }

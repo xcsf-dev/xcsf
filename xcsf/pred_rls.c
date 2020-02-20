@@ -167,19 +167,18 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     cuda_push_array(pred->matrix_gpu, pred->matrix, n_sqrd, &pred->stream);
     cuda_push_array(pred->tmp_input_gpu, pred->tmp_input, n, &pred->stream);
     gemm_gpu(0,0,n,1,n,1,pred->matrix_gpu,n,pred->tmp_input_gpu,1,0,pred->tmp_vec_gpu,1,&pred->stream);
-    cuda_pull_array(pred->tmp_vec_gpu, pred->tmp_vec, n, &pred->stream);
     dot_gpu(n, pred->tmp_input_gpu, pred->tmp_vec_gpu, pred->tmp_gpu, &pred->stream);
     cuda_pull_array(pred->tmp_gpu, &divisor, 1, &pred->stream);
-    divisor += xcsf->PRED_RLS_LAMBDA;
+    divisor = 1 / (divisor + xcsf->PRED_RLS_LAMBDA);
+    scal_gpu(n, divisor, pred->tmp_vec_gpu, 1, &pred->stream);
+    cuda_pull_array(pred->tmp_vec_gpu, pred->tmp_vec, n, &pred->stream);
 #else
     blas_gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
     // divide gain vector by lambda + tmp_vec
-    double divisor = xcsf->PRED_RLS_LAMBDA;
-    divisor += blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
+    double divisor = blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
+    divisor = 1 / (divisor + xcsf->PRED_RLS_LAMBDA);
+    blas_scal(n, divisor, pred->tmp_vec, 1);
 #endif
-    for(int i = 0; i < n; i++) {
-        pred->tmp_vec[i] /= divisor;
-    }
     // update weights using the error
     for(int var = 0; var < xcsf->y_dim; var++) {
         double error = y[var] - c->prediction[var];
