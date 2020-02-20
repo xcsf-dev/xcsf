@@ -276,7 +276,8 @@ size_t pred_rls_save(const XCSF *xcsf, const CL *c, FILE *fp)
     s += fwrite(&pred->n, sizeof(int), 1, fp);
     s += fwrite(&pred->n_weights, sizeof(int), 1, fp);
     s += fwrite(pred->weights, sizeof(double), pred->n_weights, fp);
-    s += fwrite(pred->matrix, sizeof(double), pred->n * pred->n, fp);
+    int n_sqrd = pred->n * pred->n;
+    s += fwrite(pred->matrix, sizeof(double), n_sqrd, fp);
     return s;
 }
 
@@ -288,6 +289,7 @@ size_t pred_rls_load(const XCSF *xcsf, CL *c, FILE *fp)
     s += fread(&pred->n, sizeof(int), 1, fp);
     s += fread(&pred->n_weights, sizeof(int), 1, fp);
     s += fread(pred->weights, sizeof(double), pred->n_weights, fp);
-    s += fread(pred->matrix, sizeof(double), pred->n * pred->n, fp);
+    int n_sqrd = pred->n * pred->n;
+    s += fread(pred->matrix, sizeof(double), n_sqrd, fp);
     return s;
 }
