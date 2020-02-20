@@ -138,14 +138,11 @@ void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const doub
     const double *b = l->weights;
     double *c = l->state;
     // states = biases
-    memcpy(l->state, l->biases, sizeof(double) * l->n_outputs);
+    memcpy(l->state, l->biases, l->n_outputs * sizeof(double));
     // states += weights * inputs
     blas_gemm(0,1,1,n,k,1,a,k,b,k,1,c,n);
     // apply activations
-    for(int i = 0; i < l->n_outputs; i++) {
-        l->state[i] = constrain(-100, 100, l->state[i]);
-        l->output[i] = neural_activate(l->function, l->state[i]);
-    }
+    neural_activate_array(l->state, l->output, l->n_outputs, l->function);
 }
 
 void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET *net)
@@ -154,9 +151,7 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET
     // net->delta[] = previous layer's delta
     (void)xcsf;
     // apply gradients
-    for(int i = 0; i < l->n_outputs; i++) {
-        l->delta[i] *= neural_gradient(l->function, l->state[i]);
-    }
+    neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
     // calculate updates
     if(l->options & LAYER_SGD_WEIGHTS) {
         int m = l->n_outputs;
@@ -390,7 +385,7 @@ void neural_layer_connected_print(const XCSF *xcsf, const LAYER *l, _Bool print_
 {
     (void)xcsf;
     printf("connected %s, in = %d, out = %d, ",
-            activation_string(l->function), l->n_inputs, l->n_outputs);
+            neural_activation_string(l->function), l->n_inputs, l->n_outputs);
     printf("weights (%d): ", l->n_weights);
     if(print_weights) {
         for(int i = 0; i < l->n_weights; i++) {

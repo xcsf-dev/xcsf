@@ -85,15 +85,17 @@ __device__ double gradient_kernel(int a, double x)
     return 0;
 }
 
-__global__ void activate_array_kernel(double *x, int n, int a)
+__global__ void activate_array_kernel(double *state, double *output, int n, int a)
 {
     int i = (blockIdx.x + blockIdx.y*gridDim.x) * blockDim.x + threadIdx.x;
     if(i < n) {
-        x[i] = activate_kernel(a, x[i]);
+        if(state[i] < NEURON_MIN_STATE) { state[i] = NEURON_MIN_STATE; }
+        else if (state[i] > NEURON_MAX_STATE) { state[i] = NEURON_MAX_STATE; }
+        output[i] = activate_kernel(a, state[i]);
     }
 }
 
-__global__ void gradient_array_kernel(double *x, int n, int a, double *delta)
+__global__ void gradient_array_kernel(const double *x, int n, int a, double *delta)
 {
     int i = (blockIdx.x + blockIdx.y*gridDim.x) * blockDim.x + threadIdx.x;
     if(i < n) {
@@ -101,12 +103,13 @@ __global__ void gradient_array_kernel(double *x, int n, int a, double *delta)
     }
 }
 
-extern "C" void activate_array_gpu(double *x, int n, int a, const cudaStream_t *stream)
+extern "C" void activate_array_gpu(double *state, double *output, int n, int a,
+        const cudaStream_t *stream)
 {
-    activate_array_kernel<<<1, n, 0, *stream>>>(x, n, a);
+    activate_array_kernel<<<1, n, 0, *stream>>>(state, output, n, a);
 }
 
-extern "C" void gradient_array_gpu(double *x, int n, int a, double *delta,
+extern "C" void gradient_array_gpu(const double *x, double *delta, int n, int a,
         const cudaStream_t *stream)
 {
     gradient_array_kernel<<<1, n, 0, *stream>>>(x, n, a, delta);

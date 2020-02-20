@@ -23,6 +23,7 @@
  
 #include <stdlib.h>
 #include <stdio.h>
+#include "utils.h"
 #include "neural_activations.h"
  
 /**
@@ -82,7 +83,7 @@ double neural_gradient(int a, double x)
  * @param a The activation function.
  * @return The name of the activation function.
  */
-const char *activation_string(int a)
+const char *neural_activation_string(int a)
 {
      switch(a) {
         case LOGISTIC: return "logistic";
@@ -97,7 +98,36 @@ const char *activation_string(int a)
         case SELU: return "selu";
         case LOGGY: return "loggy";
         default:
-            printf("activation_string(): invalid activation function: %d\n", a);
+            printf("neural_activation_string(): invalid activation function: %d\n", a);
             exit(EXIT_FAILURE);
+    }
+}
+
+/**
+ * @brief Applies a specified activation function to an array.
+ * @param state The neuron states.
+ * @param output The neuron outputs (set by this function).
+ * @param n The length of the input array.
+ * @param a The activation function.
+ */
+void neural_activate_array(double *state, double *output, int n, int a)
+{
+    for(int i = 0; i < n; i++) {
+        state[i] = constrain(NEURON_MIN_STATE, NEURON_MAX_STATE, state[i]);
+        output[i] = neural_activate(a, state[i]);
+    }
+}
+
+/**
+ * @brief Applies a specified gradient function to an array.
+ * @param state The neuron states.
+ * @param delta The neuron gradients (set by this function).
+ * @param n The length of the input array.
+ * @param a The activation function.
+ */
+void neural_gradient_array(const double *state, double *delta, int n, int a)
+{
+    for(int i = 0; i < n; i++) {
+        delta[i] *= neural_gradient(a, state[i]);
     }
 }

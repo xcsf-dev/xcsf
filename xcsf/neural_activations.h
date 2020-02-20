@@ -37,10 +37,15 @@
 #define SELU 9 //!< Scaled-exponential linear unit [-1.7581,inf]
 #define LOGGY 10 //!< Logistic [-1,1]
 #define NUM_ACTIVATIONS 11
+
+#define NEURON_MIN_STATE -100
+#define NEURON_MAX_STATE 100
  
 double neural_activate(int a, double x);
 double neural_gradient(int a, double x);
-const char *activation_string(int a);
+const char *neural_activation_string(int a);
+void neural_activate_array(double *state, double *output, int n, int a);
+void neural_gradient_array(const double *state, double *delta, int n, int a);
 
 static inline double logistic_activate(double x){return 1./(1.+exp(-x));}
 static inline double logistic_gradient(double x){double fx=1./(1.+exp(-x)); return (1-fx)*fx;}
