@@ -14,7 +14,7 @@
  */
                       
 /**
- * @file neural_activation_kernels.cu
+ * @file neural_activation_kernels.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
