@@ -160,7 +160,6 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
             }
         }
     }
-    // gain vector = matrix * tmp_input
 #ifdef GPU
     int n_sqrd = n * n;
     double divisor;
@@ -173,6 +172,7 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     scal_gpu(n, divisor, pred->tmp_vec_gpu, 1, &pred->stream);
     cuda_pull_array(pred->tmp_vec_gpu, pred->tmp_vec, n, &pred->stream);
 #else
+    // gain vector = matrix * tmp_input
     blas_gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
     // divide gain vector by lambda + tmp_vec
     double divisor = blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
