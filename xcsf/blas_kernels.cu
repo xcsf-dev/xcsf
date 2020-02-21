@@ -53,6 +53,14 @@ __global__ void kernel_scal(int N, double ALPHA, double *X, int INCX)
     }
 }
 
+__global__ void kernel_sub(int N, double *A, double *B, double *C)
+{
+    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
+    if(i < N) {
+        C[i] = A[i] - B[i];
+    }
+}
+
 __global__ void kernel_dot(const double *A, const double *B, double *C, int N)
 {
     __shared__ double cache;
@@ -134,6 +142,11 @@ __global__ void kernel_gemm_tt(int M, int N, int K, double ALPHA,
             C[i*ldc+j] += ALPHA * A[i+k*lda] * B[k+j*ldb];
         }
     }
+}
+
+extern "C" void sub_gpu(int N, double *A, double *B, double *C, const cudaStream_t *stream)
+{
+    kernel_sub<<<1, N, 0, *stream>>>(N, A, B, C);
 }
 
 extern "C" void scal_gpu(int N, double ALPHA, double *X, int INCX, const cudaStream_t *stream)

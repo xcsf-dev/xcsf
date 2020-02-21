@@ -249,7 +249,7 @@ void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
  */
 void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double *input)
 {
-    (void)input;
+    (void)input; (void)truth;
     net->input_gpu = xcsf->x_gpu;
 
     /* reset deltas */
@@ -259,12 +259,7 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
 
     // calculate output layer error
     const LAYER *p = net->head->layer;
-    for(int i = 0; i < p->n_outputs; i++) {
-        p->delta[i] = (truth[i] - p->output[i]);
-    }
-
-    CUDA_CALL( cudaMemcpyAsync(p->delta_gpu, p->delta, sizeof(double) * p->n_outputs,
-                cudaMemcpyHostToDevice, net->stream) );
+    sub_gpu(p->n_outputs, xcsf->y_gpu, p->output_gpu, p->delta_gpu, &net->stream);
 
     /* backward phase */
     for(const LLIST *iter = net->head; iter != NULL; iter = iter->next) {
