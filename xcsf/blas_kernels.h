@@ -34,3 +34,5 @@ void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
 
 void dot_gpu(int N, const double *A, const double *B, double *C, const cudaStream_t *stream);
 void scal_gpu(int N, double ALPHA, double *X, int INCX, const cudaStream_t *stream);
+void axpy_gpu(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY,
+        const cudaStream_t *stream);

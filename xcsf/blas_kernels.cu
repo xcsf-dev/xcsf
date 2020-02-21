@@ -37,13 +37,11 @@ __device__ double atomic_Add(double *address, double val)
     return __longlong_as_double(old);
 }
 
-__global__ void kernel_axpy(int N, double ALPHA,
-        const double *X, int OFFX, int INCX,
-        double *Y, int OFFY, int INCY)
+__global__ void kernel_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
 {
     int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
     if(i < N) {
-        Y[OFFY+i*INCY] += ALPHA * X[OFFX+i*INCX];
+        Y[i*INCY] += ALPHA * X[i*INCX];
     }
 }
 
@@ -143,6 +141,11 @@ extern "C" void scal_gpu(int N, double ALPHA, double *X, int INCX, const cudaStr
     kernel_scal<<<1, N, 0, *stream>>>(N, ALPHA, X, INCX);
 }
 
+extern "C" void axpy_gpu(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY,
+        const cudaStream_t *stream)
+{
+    kernel_axpy<<<1, N, 0, *stream>>>(N, ALPHA, X, INCX, Y, INCY);
+}
 
 extern "C" void dot_gpu(int N, const double *A, const double *B, double *C,
         const cudaStream_t *stream)
@@ -157,23 +160,18 @@ extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
         double *C, int ldc,
         const cudaStream_t *stream)
 {
-    dim3 dimGrid(M,K);
-    dim3 dimBlock(1,1);
-    if(M > 65535) {
-        dimBlock.x = sqrt(BLOCK_SIZE);
-        dimBlock.y = dimBlock.x;
-        dimGrid.x = (M % dimBlock.x == 0) ? M / dimBlock.x : (M / dimBlock.x) + 1;
-    }
+
+    dim3 dimGrid(M,N);
     if(!TA && !TB) {
-        kernel_gemm_nn<<<dimGrid, dimBlock, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
+        kernel_gemm_nn<<<dimGrid, BLOCK_SIZE, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
     }
     else if(TA && !TB) {
-        kernel_gemm_tn<<<dimGrid, dimBlock, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
+        kernel_gemm_tn<<<dimGrid, BLOCK_SIZE, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
     }
     else if(!TA && TB) {
-        kernel_gemm_nt<<<dimGrid, dimBlock, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
+        kernel_gemm_nt<<<dimGrid, BLOCK_SIZE, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
     }
     else {
-        kernel_gemm_tt<<<dimGrid, dimBlock, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
+        kernel_gemm_tt<<<dimGrid, BLOCK_SIZE, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
     }
 }
