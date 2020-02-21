@@ -52,6 +52,18 @@ void xcsf_init(XCSF *xcsf)
     xcsf->msetsize = 0;
     xcsf->mfrac = 0;
     clset_init(&xcsf->pset);
+#ifdef GPU
+    CUDA_CALL( cudaMalloc((void **) &xcsf->x_gpu, xcsf->x_dim * sizeof(double)) );
+    CUDA_CALL( cudaMalloc((void **) &xcsf->y_gpu, xcsf->y_dim * sizeof(double)) );
+#endif
+}
+
+void xcsf_free(XCSF *xcsf)
+{
+#ifdef GPU
+    CUDA_CALL( cudaFree(xcsf->x_gpu) );
+    CUDA_CALL( cudaFree(xcsf->y_gpu) );
+#endif
 }
 
 /**
@@ -74,6 +86,10 @@ double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bo
         int row = xcsf_select_sample(train_data, cnt, shuffle);
         const double *x = &train_data->x[row * train_data->x_dim];
         const double *y = &train_data->y[row * train_data->y_dim];
+#ifdef GPU
+        CUDA_CALL(cudaMemcpy(xcsf->x_gpu, x, xcsf->x_dim*sizeof(double), cudaMemcpyHostToDevice));
+        CUDA_CALL(cudaMemcpy(xcsf->y_gpu, y, xcsf->y_dim*sizeof(double), cudaMemcpyHostToDevice));
+#endif
         xcsf->train = true;
         xcsf_trial(xcsf, pred, x, y);
         double error = (xcsf->loss_ptr)(xcsf, pred, y);
@@ -84,6 +100,10 @@ double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bo
             row = xcsf_select_sample(test_data, cnt, shuffle);
             x = &test_data->x[row * test_data->x_dim];
             y = &test_data->y[row * test_data->y_dim];
+#ifdef GPU
+        CUDA_CALL(cudaMemcpy(xcsf->x_gpu, x, xcsf->x_dim*sizeof(double), cudaMemcpyHostToDevice));
+        CUDA_CALL(cudaMemcpy(xcsf->y_gpu, y, xcsf->y_dim*sizeof(double), cudaMemcpyHostToDevice));
+#endif
             xcsf->train = false;
             xcsf_trial(xcsf, pred, x, y);
             wterr += (xcsf->loss_ptr)(xcsf, pred, y);
@@ -143,7 +163,12 @@ void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int n_samples)
 {   
     xcsf->train = false;
     for(int row = 0; row < n_samples; row++) {
-        xcsf_trial(xcsf, &pred[row * xcsf->y_dim], &x[row * xcsf->x_dim], NULL);
+        const double *a = &x[row * xcsf->x_dim];
+        double *b = &pred[row * xcsf->y_dim];
+#ifdef GPU
+        CUDA_CALL(cudaMemcpy(xcsf->x_gpu, a, xcsf->x_dim*sizeof(double), cudaMemcpyHostToDevice));
+#endif
+        xcsf_trial(xcsf, b, a, NULL);
     }
 }
 
@@ -161,6 +186,10 @@ double xcsf_score(XCSF *xcsf, const INPUT *test_data)
     for(int row = 0; row < test_data->n_samples; row++) {
         const double *x = &test_data->x[row * test_data->x_dim];
         const double *y = &test_data->y[row * test_data->y_dim];
+#ifdef GPU
+        CUDA_CALL(cudaMemcpy(xcsf->x_gpu, x, xcsf->x_dim*sizeof(double), cudaMemcpyHostToDevice));
+        CUDA_CALL(cudaMemcpy(xcsf->y_gpu, y, xcsf->y_dim*sizeof(double), cudaMemcpyHostToDevice));
+#endif
         xcsf_trial(xcsf, pred, x, y);
         err += (xcsf->loss_ptr)(xcsf, pred, y);
     }

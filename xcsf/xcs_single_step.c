@@ -112,6 +112,9 @@ void xcs_single_free(XCSF *xcsf)
  */
 int xcs_single_decision(XCSF *xcsf, const double *x)
 {
+#ifdef GPU
+    CUDA_CALL(cudaMemcpy(xcsf->x_gpu, x, xcsf->x_dim * sizeof(double), cudaMemcpyHostToDevice));
+#endif
     clset_match(xcsf, x);
     pa_build(xcsf, x);
     if(xcsf->train && rand_uniform(0,1) < xcsf->P_EXPLORE) {
@@ -129,6 +132,9 @@ int xcs_single_decision(XCSF *xcsf, const double *x)
  */
 void xcs_single_update(XCSF *xcsf, const double *x, int action, double reward)
 {
+#ifdef GPU
+    CUDA_CALL(cudaMemcpy(xcsf->y_gpu, &reward, sizeof(double), cudaMemcpyHostToDevice));
+#endif
     clset_action(xcsf, action);
     clset_update(xcsf, &xcsf->aset, x, &reward, true);
     ea(xcsf, &xcsf->aset);

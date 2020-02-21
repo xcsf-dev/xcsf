@@ -23,6 +23,10 @@
  
 #pragma once
 
+#ifdef GPU
+#include "cuda.h"
+#endif
+
 #define COND_TYPE_DUMMY 0 //!< Condition type dummy
 #define COND_TYPE_HYPERRECTANGLE 1 //!< Condition type hyperrectangle
 #define COND_TYPE_HYPERELLIPSOID 2  //!< Condition type hyperellipsoid
@@ -195,6 +199,11 @@ typedef struct XCSF {
     int y_dim; //!< Number of problem output variables
     int n_actions; //!< Number of class labels / actions
     double (*loss_ptr)(const struct XCSF*, const double*, const double*); //!< Error function
+
+#ifdef GPU
+    double *x_gpu;
+    double *y_gpu;
+#endif
 } XCSF;                  
 
 /**
@@ -214,5 +223,6 @@ double xcsf_version();
 size_t xcsf_load(XCSF *xcsf, const char *fname);
 size_t xcsf_save(const XCSF *xcsf, const char *fname);
 void xcsf_init(XCSF *xcsf);
+void xcsf_free(XCSF *xcsf);
 void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int n_samples);
 void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);

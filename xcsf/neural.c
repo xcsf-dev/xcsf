@@ -228,8 +228,9 @@ _Bool neural_mutate(const XCSF *xcsf, const NET *net)
  */
 void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
 {
+    (void)input;
     LAYER *l = net->tail->layer;
-    net->input_gpu = cuda_make_array(input, xcsf->x_dim, &net->stream);
+    net->input_gpu = xcsf->x_gpu;
 
     double *in = net->input_gpu;
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -237,8 +238,6 @@ void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
         layer_forward(xcsf, l, in);
         in = l->output_gpu;
     }
-
-    CUDA_CALL( cudaFree(net->input_gpu) );
 }
 
 /**
@@ -250,7 +249,8 @@ void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
  */
 void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double *input)
 {
-    net->input_gpu = cuda_make_array(input, xcsf->x_dim, &net->stream);
+    (void)input;
+    net->input_gpu = xcsf->x_gpu;
 
     /* reset deltas */
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -286,7 +286,6 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
         layer_update(xcsf, iter->layer);
     }
 
-    CUDA_CALL( cudaFree(net->input_gpu) );
 } 
 
 /**
