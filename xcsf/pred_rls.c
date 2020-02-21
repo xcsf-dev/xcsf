@@ -32,11 +32,6 @@
 #include "prediction.h"
 #include "pred_rls.h"
 
-#ifdef GPU
-#include "cuda.h"
-#include "blas_kernels.h"
-#endif
-
 static void init_matrix(const XCSF *xcsf, double *matrix, int n);
                     
 /**
@@ -51,15 +46,6 @@ typedef struct PRED_RLS {
     double *tmp_vec; //!< Temporary storage for updating weights
     double *tmp_matrix1; //!< Temporary storage for updating gain matrix
     double *tmp_matrix2; //!< Temporary storage for updating gain matrix
-#ifdef GPU
-    cudaStream_t stream;
-    double *matrix_gpu;
-    double *tmp_input_gpu;
-    double *tmp_vec_gpu;
-    double *tmp_matrix1_gpu;
-    double *tmp_matrix2_gpu;
-    double *tmp_gpu;
-#endif
 } PRED_RLS;
 
 void pred_rls_init(const XCSF *xcsf, CL *c)
@@ -87,15 +73,6 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
     pred->tmp_vec = calloc(pred->n, sizeof(double));
     pred->tmp_matrix1 = calloc(n_sqrd, sizeof(double));
     pred->tmp_matrix2 = calloc(n_sqrd, sizeof(double));
-#ifdef GPU
-    cuda_create_stream(&pred->stream);
-    pred->matrix_gpu = cuda_make_array(pred->matrix, n_sqrd, &pred->stream);
-    pred->tmp_matrix1_gpu = cuda_make_array(pred->tmp_matrix1, n_sqrd, &pred->stream);
-    pred->tmp_matrix2_gpu = cuda_make_array(pred->tmp_matrix2, n_sqrd, &pred->stream);
-    pred->tmp_input_gpu = cuda_make_array(pred->tmp_input, pred->n, &pred->stream);
-    pred->tmp_vec_gpu = cuda_make_array(pred->tmp_vec, pred->n, &pred->stream);
-    pred->tmp_gpu = cuda_make_array(NULL, 1, &pred->stream);
-#endif
 }
 
 static void init_matrix(const XCSF *xcsf, double *matrix, int n)
@@ -130,15 +107,6 @@ void pred_rls_free(const XCSF *xcsf, const CL *c)
     free(pred->tmp_vec);
     free(pred->tmp_matrix1);
     free(pred->tmp_matrix2);
-#ifdef GPU
-    cuda_free(pred->matrix_gpu);
-    cuda_free(pred->tmp_matrix1_gpu);
-    cuda_free(pred->tmp_matrix2_gpu);
-    cuda_free(pred->tmp_input_gpu);
-    cuda_free(pred->tmp_vec_gpu);
-    cuda_free(pred->tmp_gpu);
-    cuda_destroy_stream(&pred->stream);
-#endif
     free(pred);
 }
 
@@ -160,25 +128,12 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
             }
         }
     }
-#ifdef GPU
-    int n_sqrd = n * n;
-    double divisor;
-    cuda_push_array(pred->matrix_gpu, pred->matrix, n_sqrd, &pred->stream);
-    cuda_push_array(pred->tmp_input_gpu, pred->tmp_input, n, &pred->stream);
-    gemm_gpu(0,0,n,1,n,1,pred->matrix_gpu,n,pred->tmp_input_gpu,1,0,pred->tmp_vec_gpu,1,&pred->stream);
-    dot_gpu(n, pred->tmp_input_gpu, pred->tmp_vec_gpu, pred->tmp_gpu, &pred->stream);
-    cuda_pull_array(pred->tmp_gpu, &divisor, 1, &pred->stream);
-    divisor = 1 / (divisor + xcsf->PRED_RLS_LAMBDA);
-    scal_gpu(n, divisor, pred->tmp_vec_gpu, 1, &pred->stream);
-    cuda_pull_array(pred->tmp_vec_gpu, pred->tmp_vec, n, &pred->stream);
-#else
     // gain vector = matrix * tmp_input
     blas_gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
     // divide gain vector by lambda + tmp_vec
     double divisor = blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
     divisor = 1 / (divisor + xcsf->PRED_RLS_LAMBDA);
     blas_scal(n, divisor, pred->tmp_vec, 1);
-#endif
     // update weights using the error
     for(int var = 0; var < xcsf->y_dim; var++) {
         double error = y[var] - c->prediction[var];
@@ -197,13 +152,7 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
         }
     }
     // tmp_matrix2 = tmp_matrix1 * pred_matrix
-#ifdef GPU
-    cuda_push_array(pred->tmp_matrix1_gpu, pred->tmp_matrix1, n_sqrd, &pred->stream);
-    gemm_gpu(0,0,n,n,n,1,pred->tmp_matrix1_gpu,n,pred->matrix_gpu,n,0,pred->tmp_matrix2_gpu,n,&pred->stream);
-    cuda_pull_array(pred->tmp_matrix2_gpu, pred->tmp_matrix2, n_sqrd, &pred->stream);
-#else
     blas_gemm(0, 0, n, n, n, 1, pred->tmp_matrix1, n, pred->matrix, n, 0, pred->tmp_matrix2, n);
-#endif
     // divide gain matrix entries by lambda
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {

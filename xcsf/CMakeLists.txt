@@ -108,24 +108,6 @@ set(SOURCE
 )
 
 ##########################
-# GPU files
-##########################
-
-if(GPU)
-
-    set(SOURCE
-        ${SOURCE}
-        cuda.cu
-        cuda.h
-        blas_kernels.cu
-        blas_kernels.h
-        neural_activation_kernels.cu
-        neural_activation_kernels.h
-    )
-
-endif()
-
-##########################
 # Stand-alone binary
 ##########################
 
