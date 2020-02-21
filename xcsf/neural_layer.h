@@ -25,6 +25,12 @@
 
 #include <stdint.h>
 
+#ifdef GPU
+#include "cuda.h"
+#include "blas_kernels.h"
+#include "neural_activation_kernels.h"
+#endif
+
 #define CONNECTED 0
 #define DROPOUT 1
 #define NOISE 2
@@ -60,6 +66,16 @@ typedef struct LAYER {
     double probability; //!< Usage depends on layer implementation
     double *rand; //!< Usage depends on layer implementation
     struct LayerVtbl const *layer_vptr; //!< Functions acting on layers
+#ifdef GPU
+    cudaStream_t *stream;
+    double *state_gpu;
+    double *output_gpu;
+    double *weights_gpu;
+    double *biases_gpu;
+    double *bias_updates_gpu;
+    double *weight_updates_gpu;
+    double *delta_gpu;
+#endif
 } LAYER;
 
 /**
@@ -69,7 +85,7 @@ typedef struct LAYER {
 struct LayerVtbl {
     _Bool (*layer_impl_mutate)(const XCSF *xcsf, LAYER *l);
     void (*layer_impl_resize)(const XCSF *xcsf, LAYER *l, const LAYER *prev);
-    LAYER* (*layer_impl_copy)(const XCSF *xcsf, const LAYER *from);
+    LAYER* (*layer_impl_copy)(const XCSF *xcsf, NET *net, const LAYER *from);
     void (*layer_impl_free)(const XCSF *xcsf, const LAYER *l);
     void (*layer_impl_rand)(const XCSF *xcsf, const LAYER *l);
     void (*layer_impl_print)(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
@@ -166,11 +182,12 @@ static inline void layer_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev) {
 /**
  * @brief Creates and returns a copy of a specified layer.
  * @param xcsf The XCSF data structure.
+ * @param net The network owning the layer.
  * @param from The source layer.
  * @return A new copied layer.
  */
-static inline LAYER* layer_copy(const XCSF *xcsf, const LAYER *from) {
-    return (*from->layer_vptr->layer_impl_copy)(xcsf, from);
+static inline LAYER* layer_copy(const XCSF *xcsf, NET *net, const LAYER *from) {
+    return (*from->layer_vptr->layer_impl_copy)(xcsf, net, from);
 }
 
 /**

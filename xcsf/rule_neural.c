@@ -67,7 +67,7 @@ void rule_neural_cond_init(const XCSF *xcsf, CL *c)
             hmax = hinit;
         }
         int f = xcsf->COND_HIDDEN_ACTIVATION;
-        l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
+        l = neural_layer_connected_init(xcsf, &new->net, n_inputs, hinit, hmax, f, lopt);
         neural_layer_insert(xcsf, &new->net, l, i);
         n_inputs = hinit;
         i++;
@@ -77,7 +77,7 @@ void rule_neural_cond_init(const XCSF *xcsf, CL *c)
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
     int n = fmax(1, ceil(log2(xcsf->n_actions))); // number of action neurons
     new->n_outputs = n;
-    l = neural_layer_connected_init(xcsf, n_inputs, n+1, n+1, f, lopt);
+    l = neural_layer_connected_init(xcsf, &new->net, n_inputs, n+1, n+1, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, i);
     c->cond = new;
 }
@@ -131,9 +131,10 @@ void rule_neural_cond_update(const XCSF *xcsf, const CL *c, const double *x, con
 
 _Bool rule_neural_cond_match(const XCSF *xcsf, const CL *c, const double *x)
 {
-    const RULE_NEURAL *cond = c->cond;
+    RULE_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
-    if(neural_output(xcsf, &cond->net, 0) > 0.5) {
+    const double *out = neural_output(xcsf, &cond->net);
+    if(out[0] > 0.5) {
         return true;
     }
     else {
@@ -227,8 +228,9 @@ int rule_neural_act_compute(const XCSF *xcsf, const CL *c, const double *x)
     (void)x; // network already updated
     const RULE_NEURAL *cond = c->cond;
     int action = 0;
+    const double *out = neural_output(xcsf, &cond->net);
     for(int i = 0; i < cond->n_outputs; i++) {
-        if(neural_output(xcsf, &cond->net, i+1) > 0.5) {
+        if(out[i+1] > 0.5) {
             action += pow(2,i);
         }
     }

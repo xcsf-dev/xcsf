@@ -46,7 +46,7 @@ static _Bool mutate_functions(LAYER *l, double mu);
 static void neuron_add(LAYER *l, int n);
 static void neuron_remove(LAYER *l, int n);
 
-LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o)
+LAYER *neural_layer_connected_init(const XCSF *xcsf, NET *net, int in, int n_init, int n_max, int f, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
@@ -75,10 +75,20 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     }
     l->mu = malloc(N_MU * sizeof(double));
     sam_init(xcsf, l->mu, N_MU);
+#ifdef GPU
+    l->stream = &net->stream;
+    l->state_gpu = cuda_make_array(l->state, l->n_outputs, &net->stream);
+    l->output_gpu = cuda_make_array(l->output, l->n_outputs, &net->stream);
+    l->weights_gpu = cuda_make_array(l->weights, l->n_weights, &net->stream);
+    l->biases_gpu = cuda_make_array(l->biases, l->n_outputs, &net->stream);
+    l->bias_updates_gpu = cuda_make_array(l->bias_updates, l->n_outputs, &net->stream);
+    l->weight_updates_gpu = cuda_make_array(l->weight_updates, l->n_weights, &net->stream);
+    l->delta_gpu = cuda_make_array(l->delta, l->n_outputs, &net->stream);
+#endif
     return l;
 }
 
-LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *from)
+LAYER *neural_layer_connected_copy(const XCSF *xcsf, NET *net, const LAYER *from)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
@@ -102,6 +112,16 @@ LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *from)
     l->eta = from->eta;
     l->mu = malloc(N_MU * sizeof(double));
     memcpy(l->mu, from->mu, N_MU * sizeof(double));
+#ifdef GPU
+    l->stream = &net->stream;
+    l->state_gpu = cuda_make_array(l->state, l->n_outputs, &net->stream);
+    l->output_gpu = cuda_make_array(l->output, l->n_outputs, &net->stream);
+    l->weights_gpu = cuda_make_array(l->weights, l->n_weights, &net->stream);
+    l->biases_gpu = cuda_make_array(l->biases, l->n_outputs, &net->stream);
+    l->bias_updates_gpu = cuda_make_array(l->bias_updates, l->n_outputs, &net->stream);
+    l->weight_updates_gpu = cuda_make_array(l->weight_updates, l->n_weights, &net->stream);
+    l->delta_gpu = cuda_make_array(l->delta, l->n_outputs, &net->stream);
+#endif
     return l;
 }
 
@@ -116,6 +136,15 @@ void neural_layer_connected_free(const XCSF *xcsf, const LAYER *l)
     free(l->weight_updates);
     free(l->delta);
     free(l->mu);
+#ifdef GPU
+    CUDA_CALL( cudaFree(l->state_gpu) );
+    CUDA_CALL( cudaFree(l->output_gpu) );
+    CUDA_CALL( cudaFree(l->weights_gpu) );
+    CUDA_CALL( cudaFree(l->biases_gpu) );
+    CUDA_CALL( cudaFree(l->bias_updates_gpu) );
+    CUDA_CALL( cudaFree(l->weight_updates_gpu) );
+    CUDA_CALL( cudaFree(l->delta_gpu) );
+#endif
 }
 
 void neural_layer_connected_rand(const XCSF *xcsf, const LAYER *l)
@@ -128,6 +157,70 @@ void neural_layer_connected_rand(const XCSF *xcsf, const LAYER *l)
         l->biases[i] = rand_normal(0,1);
     }
 }
+
+#ifdef GPU
+
+void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const double *input)
+{
+    (void)xcsf;
+    int k = l->n_inputs;
+    int n = l->n_outputs;
+    const double *a = input;
+    const double *b = l->weights_gpu;
+    double *c = l->state_gpu;
+    // states = biases
+    cuda_copy(l->n_outputs, l->biases_gpu, l->state_gpu, l->stream);
+    // states += weights * inputs
+    gemm_gpu(0, 1, 1, n, k, 1, a, k, b, k, 1, c, n, l->stream);
+    // apply activations
+    activate_array_gpu(l->state_gpu, l->output_gpu, l->n_outputs, l->function, l->stream);
+}
+
+void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET *net)
+{
+    // net->input[] = this layer's input
+    // net->delta[] = previous layer's delta
+    (void)xcsf;
+    // apply gradients
+    gradient_array_gpu(l->state_gpu, l->delta_gpu,  l->n_outputs, l->function, l->stream);
+    // calculate updates
+    if(l->options & LAYER_SGD_WEIGHTS) {
+        int m = l->n_outputs;
+        int n = l->n_inputs;
+        const double *a = l->delta_gpu;
+        const double *b = net->input;
+        double *c = l->weight_updates_gpu;
+        axpy_gpu(l->n_outputs, 1, l->delta_gpu, 1, l->bias_updates_gpu, 1, l->stream);
+        gemm_gpu(1,0,m,n,1,1,a,m,b,n,1,c,n, l->stream);
+    }
+    // set the error for the previous layer (if there is one)
+    if(net->delta) {
+        int k = l->n_outputs;
+        int n = l->n_inputs;
+        const double *a = l->delta_gpu;
+        const double *b = l->weights_gpu;
+        double *c = net->delta;
+        gemm_gpu(0,0,1,n,k,1,a,k,b,n,1,c,n, l->stream);
+    }
+}
+
+void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
+{
+    if(l->options & LAYER_SGD_WEIGHTS) {
+        axpy_gpu(l->n_outputs, l->eta, l->bias_updates_gpu, 1, l->biases_gpu, 1, l->stream);
+        scal_gpu(l->n_outputs, xcsf->PRED_MOMENTUM, l->bias_updates_gpu, 1, l->stream);
+        axpy_gpu(l->n_weights, l->eta, l->weight_updates_gpu, 1, l->weights_gpu, 1, l->stream);
+        scal_gpu(l->n_weights, xcsf->PRED_MOMENTUM, l->weight_updates_gpu, 1, l->stream);
+    }
+}
+
+double *neural_layer_connected_output(const XCSF *xcsf, const LAYER *l)
+{
+    (void)xcsf;
+    return l->output_gpu;
+}
+
+#else
 
 void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
@@ -183,6 +276,14 @@ void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
     }
 }
 
+double *neural_layer_connected_output(const XCSF *xcsf, const LAYER *l)
+{
+    (void)xcsf;
+    return l->output;
+}
+
+#endif
+
 void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     (void)xcsf;
@@ -218,15 +319,19 @@ _Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
     if((l->options & LAYER_EVOLVE_ETA) && mutate_eta(l, l->mu[0])) {
         mod = true;
     }
+    if((l->options & LAYER_EVOLVE_FUNCTIONS) && mutate_functions(l, l->mu[3])) {
+        mod = true;
+    }
+#ifndef GPU
     if((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l, l->mu[1])) {
         mod = true;
     }
     if((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(l, l->mu[2])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_FUNCTIONS) && mutate_functions(l, l->mu[3])) {
-        mod = true;
-    }
+#else
+    // TODO: GPU
+#endif
     return mod;
 }
 
@@ -373,12 +478,6 @@ static _Bool mutate_functions(LAYER *l, double mu)
         }
     }
     return false;
-}
-
-double *neural_layer_connected_output(const XCSF *xcsf, const LAYER *l)
-{
-    (void)xcsf;
-    return l->output;
 }
 
 void neural_layer_connected_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)

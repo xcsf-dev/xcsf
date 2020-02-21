@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 #include <stdint.h>
 #include "xcsf.h"
 #include "utils.h"
@@ -63,7 +64,7 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
             hmax = hinit;
         }
         int f = xcsf->PRED_HIDDEN_ACTIVATION;
-        l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
+        l = neural_layer_connected_init(xcsf, &new->net, n_inputs, hinit, hmax, f, lopt);
         neural_layer_insert(xcsf, &new->net, l, i);
         n_inputs = hinit;
         i++;
@@ -71,7 +72,7 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     // output layer
     int f = xcsf->PRED_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim, f, lopt);
+    l = neural_layer_connected_init(xcsf, &new->net, n_inputs, xcsf->y_dim, xcsf->y_dim, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, i);
     c->pred = new;
 }
@@ -122,11 +123,10 @@ void pred_neural_update(const XCSF *xcsf, const CL *c, const double *x, const do
 
 void pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
-    const PRED_NEURAL *pred = c->pred;
+    PRED_NEURAL *pred = c->pred;
     neural_propagate(xcsf, &pred->net, x);
-    for(int i = 0; i < xcsf->y_dim; i++) {
-        c->prediction[i] = neural_output(xcsf, &pred->net, i);
-    }
+    const double *out = neural_output(xcsf, &pred->net);
+    memcpy(c->prediction, out, sizeof(double) * xcsf->y_dim);
 }
 
 void pred_neural_print(const XCSF *xcsf, const CL *c)
@@ -216,7 +216,7 @@ void pred_neural_expand(const XCSF *xcsf, const CL *c)
     int f = xcsf->PRED_HIDDEN_ACTIVATION;
     uint32_t lopt = pred_neural_lopt(xcsf);
     // initially same size as last hidden layer
-    LAYER *l = neural_layer_connected_init(xcsf, size, size, max, f, lopt);
+    LAYER *l = neural_layer_connected_init(xcsf, net, size, size, max, f, lopt);
     neural_layer_insert(xcsf, net, l, pos);
     // resize layers as necessary
     const LAYER *prev = NULL;

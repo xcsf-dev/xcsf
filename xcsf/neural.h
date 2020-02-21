@@ -23,6 +23,10 @@
 
 #pragma once
 
+#ifdef GPU
+#include "cuda.h"
+#endif
+
 /**
  * @brief Double linked list of layers data structure.
  */ 
@@ -43,10 +47,14 @@ typedef struct NET {
     const double *input; //!< Pointer to the network input
     LLIST *head; //!< Pointer to the head layer (output layer)
     LLIST *tail; //!< Pointer to the tail layer (first layer)
+#ifdef GPU
+    cudaStream_t stream;
+    double *input_gpu;
+#endif
 } NET;
 
 _Bool neural_mutate(const XCSF *xcsf, const NET *net);
-double neural_output(const XCSF *xcsf, const NET *net, int i);
+const double *neural_output(const XCSF *xcsf, const NET *net);
 int neural_size(const XCSF *xcsf, const NET *net);
 size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp);
 size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp);
@@ -57,5 +65,5 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, struct LAYER *l, int p);
 void neural_layer_remove(const XCSF *xcsf, NET *net, int p);
 void neural_learn(const XCSF *xcsf, NET *net, const double *output, const double *input);
 void neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights);
-void neural_propagate(const XCSF *xcsf, const NET *net, const double *input);
+void neural_propagate(const XCSF *xcsf, NET *net, const double *input);
 void neural_rand(const XCSF *xcsf, const NET *net);

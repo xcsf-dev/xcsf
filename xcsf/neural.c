@@ -48,6 +48,9 @@ void neural_init(const XCSF *xcsf, NET *net)
     net->n_layers = 0;
     net->n_inputs = 0;
     net->n_outputs = 0;
+#ifdef GPU
+    CUDA_CALL( cudaStreamCreate(&net->stream) );
+#endif
 }
 
 /**
@@ -152,7 +155,7 @@ void neural_copy(const XCSF *xcsf, NET *to, const NET *from)
     int p = 0;
     for(const LLIST *iter = from->tail; iter != NULL; iter = iter->prev) {
         const LAYER *f = iter->layer;
-        LAYER *l = layer_copy(xcsf, f);
+        LAYER *l = layer_copy(xcsf, to, f);
         neural_layer_insert(xcsf, to, l, p); 
         p++;
     }
@@ -169,11 +172,14 @@ void neural_free(const XCSF *xcsf, NET *net)
     while(iter != NULL) {
         layer_free(xcsf, iter->layer);
         free(iter->layer);
-        net->tail = iter->prev;
+       net->tail = iter->prev;
         free(iter);
         iter = net->tail;
         net->n_layers--;
     }  
+#ifdef GPU
+    CUDA_CALL( cudaStreamDestroy(net->stream) );
+#endif
 }
 
 /**
@@ -212,13 +218,101 @@ _Bool neural_mutate(const XCSF *xcsf, const NET *net)
     return mod;
 }
 
+#ifdef GPU
+
 /**
  * @brief Forward propagates a neural network.
  * @param xcsf The XCSF data structure.
  * @param net The neural network to propagate.
  * @param input The input state.
  */
-void neural_propagate(const XCSF *xcsf, const NET *net, const double *input)
+void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
+{
+    LAYER *l = net->tail->layer;
+    net->input_gpu = cuda_make_array(input, xcsf->x_dim, &net->stream);
+
+    double *in = net->input_gpu;
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        l = iter->layer;
+        layer_forward(xcsf, l, in);
+        in = l->output_gpu;
+    }
+
+    CUDA_CALL( cudaFree(net->input_gpu) );
+}
+
+/**
+ * @brief Performs a gradient descent update on a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to be updated.
+ * @param truth The desired network output.
+ * @param input The input state.
+ */
+void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double *input)
+{
+    net->input_gpu = cuda_make_array(input, xcsf->x_dim, &net->stream);
+
+    /* reset deltas */
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        cuda_fill(iter->layer->n_outputs, iter->layer->delta_gpu, 0, &net->stream);
+    }
+
+    // calculate output layer error
+    const LAYER *p = net->head->layer;
+    for(int i = 0; i < p->n_outputs; i++) {
+        p->delta[i] = (truth[i] - p->output[i]);
+    }
+
+    CUDA_CALL( cudaMemcpyAsync(p->delta_gpu, p->delta, sizeof(double) * p->n_outputs,
+                cudaMemcpyHostToDevice, net->stream) );
+
+    /* backward phase */
+    for(const LLIST *iter = net->head; iter != NULL; iter = iter->next) {
+        const LAYER *l = iter->layer;
+        if(iter->next == NULL) {
+            net->input = net->input_gpu;
+            net->delta = 0;
+        }
+        else {
+            const LAYER *prev = iter->next->layer;
+            net->input = prev->output_gpu;
+            net->delta = prev->delta_gpu;
+        }
+        layer_backward(xcsf, l, net);
+    }
+
+    /* update phase */
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        layer_update(xcsf, iter->layer);
+    }
+
+    CUDA_CALL( cudaFree(net->input_gpu) );
+} 
+
+/**
+ * @brief Returns the outputs of a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to output.
+ * @return The outputs.
+ */
+const double *neural_output(const XCSF *xcsf, const NET *net)
+{
+    (void)xcsf;
+    LAYER *l = net->head->layer;
+    CUDA_CALL( cudaMemcpyAsync(l->output, l->output_gpu,
+                sizeof(double) * l->n_outputs, cudaMemcpyDeviceToHost, net->stream) );
+    return l->output;
+}
+
+#else
+
+/**
+ * @brief Forward propagates a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to propagate.
+ * @param input The input state.
+ */
+void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
 {
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_forward(xcsf, iter->layer, input);
@@ -265,6 +359,21 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_update(xcsf, iter->layer);
     }
+
+//    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+//        LAYER *l = iter->layer;
+//
+//        printf("FINAL CPU WEIGHTS :\n");
+//        for(int i = 0; i < l->n_weights; i++) {
+//            printf("%f, ", l->weights[i]);
+//        }
+//        printf("\n");
+//    }
+//
+//    count++;
+//    if(count > 20) {
+//        exit(0);
+//    }
 } 
 
 /**
@@ -274,14 +383,13 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
  * @param i Which neuron in the output layer to return.
  * @return The output of the specified neuron.
  */
-double neural_output(const XCSF *xcsf, const NET *net, int i)
+const double *neural_output(const XCSF *xcsf, const NET *net)
 {
-    if(i < net->n_outputs) {
-        return layer_output(xcsf, net->head->layer)[i];
-    }
-    printf("neural_output(): requested (%d) in output layer of size (%d)\n", i, net->n_outputs);
-    exit(EXIT_FAILURE);
+    LAYER *l = net->head->layer;
+    return l->output;
 }
+
+#endif
 
 /**
  * @brief Prints a neural network.
