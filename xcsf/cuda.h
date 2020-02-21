@@ -29,13 +29,10 @@
 
 #define CUDA_CALL(x) { cudaError_t cuda_error__ = (x); if(cuda_error__) { printf("CUDA error: " #x " returned \"%s\"\n", cudaGetErrorString(cuda_error__)); } }
 
-double *cuda_make_array(double *x, size_t n, const cudaStream_t *stream);
+void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream);
+double *cuda_make_array(const double *x, size_t n, const cudaStream_t *stream);
 int cuda_get_device();
-void cuda_free(double *x_gpu);
 void cuda_info();
-void cuda_destroy_stream(cudaStream_t *stream);
-void cuda_create_stream(cudaStream_t *stream);
-void cuda_memset(double *x_gpu, int value, size_t n, const cudaStream_t *stream);
-void cuda_pull_array(double *x_gpu, double *x, size_t n, const cudaStream_t *stream);
-void cuda_push_array(double *x_gpu, double *x, size_t n, const cudaStream_t *stream);
 void cuda_set_device(int n);
+void cuda_copy(int N, const double *X, double *Y, const cudaStream_t *stream);
+int cuda_number_of_blocks(int array_size, int block_size);
