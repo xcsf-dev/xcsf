@@ -35,6 +35,10 @@
 #include "clset.h"
 #include "ea.h"
 
+#ifdef GPU
+#include "cuda.h"
+#endif
+
 static const double VERSION = 1.06; //!< XCSF version number
 
 static int xcsf_select_sample(const INPUT *data, int cnt, _Bool shuffle);

@@ -23,10 +23,6 @@
  
 #pragma once
 
-#ifdef GPU
-#include "cuda.h"
-#endif
-
 #define COND_TYPE_DUMMY 0 //!< Condition type dummy
 #define COND_TYPE_HYPERRECTANGLE 1 //!< Condition type hyperrectangle
 #define COND_TYPE_HYPERELLIPSOID 2  //!< Condition type hyperellipsoid

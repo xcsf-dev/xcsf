@@ -35,6 +35,10 @@
 #include "xcs_single_step.h"
 #include "env.h"
 
+#ifdef GPU
+#include "cuda.h"
+#endif
+
 static double xcs_single_trial(XCSF *xcsf, double *error, _Bool explore);
 
 /**
