@@ -33,6 +33,31 @@ static void cuda_printDeviceInfo(cudaDeviceProp devProp);
 
 int gpu_index = 0;
 
+__global__ void kernel_copy(int N, const double *X, double *Y)
+{
+    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
+    if(i < N) {
+        Y[i] = X[i];
+    }
+}
+
+__global__ void kernel_fill(int N, double *X, double ALPHA)
+{
+    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
+    if(i < N) {
+        X[i] = ALPHA;
+    }
+}
+
+extern "C" void cuda_copy(int N, const double *X, double *Y, const cudaStream_t *stream)
+{
+    kernel_copy<<<1, N, 0, *stream>>>(N, X, Y);
+}
+
+extern "C" void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream)
+{
+    kernel_fill<<<1, N, 0, *stream>>>(N, X, ALPHA);
+}
 extern "C" void cuda_set_device(int n)
 {
     gpu_index = n;
@@ -46,22 +71,7 @@ extern "C" int cuda_get_device()
     return n;
 }
 
-extern "C" void cuda_free(double *x_gpu)
-{
-    CUDA_CALL( cudaFree(x_gpu) );
-}
-
-extern "C" void cuda_push_array(double *x_gpu, double *x, size_t n, const cudaStream_t *stream)
-{
-    CUDA_CALL( cudaMemcpyAsync(x_gpu, x, sizeof(double) * n, cudaMemcpyHostToDevice, *stream) );
-}
-
-extern "C" void cuda_pull_array(double *x_gpu, double *x, size_t n, const cudaStream_t *stream)
-{
-    CUDA_CALL( cudaMemcpyAsync(x, x_gpu, sizeof(double) * n, cudaMemcpyDeviceToHost, *stream) );
-}
-
-extern "C" double *cuda_make_array(double *x, size_t n, const cudaStream_t *stream)
+extern "C" double *cuda_make_array(const double *x, size_t n, const cudaStream_t *stream)
 {
     double *x_gpu;
     size_t size = sizeof(double) * n;
@@ -88,6 +98,11 @@ extern "C" void cuda_destroy_stream(cudaStream_t *stream)
 extern "C" void cuda_memset(double *x_gpu, int value, size_t n, const cudaStream_t *stream)
 {
     CUDA_CALL( cudaMemsetAsync(x_gpu, value, n, *stream) );
+}
+
+int cuda_number_of_blocks(int array_size, int block_size)
+{
+    return array_size / block_size + ((array_size % block_size > 0) ? 1 : 0);
 }
 
 extern "C" void cuda_info()
