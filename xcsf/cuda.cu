@@ -58,6 +58,7 @@ extern "C" void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *st
 {
     kernel_fill<<<1, N, 0, *stream>>>(N, X, ALPHA);
 }
+
 extern "C" void cuda_set_device(int n)
 {
     gpu_index = n;
