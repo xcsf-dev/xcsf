@@ -359,21 +359,6 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_update(xcsf, iter->layer);
     }
-
-//    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-//        LAYER *l = iter->layer;
-//
-//        printf("FINAL CPU WEIGHTS :\n");
-//        for(int i = 0; i < l->n_weights; i++) {
-//            printf("%f, ", l->weights[i]);
-//        }
-//        printf("\n");
-//    }
-//
-//    count++;
-//    if(count > 20) {
-//        exit(0);
-//    }
 } 
 
 /**
