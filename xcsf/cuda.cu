@@ -55,8 +55,7 @@ extern "C" void cuda_copy(int N, const double *src, double *dest, const cudaStre
     kernel_simple_copy<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(N, src, dest);
 }
 
-extern "C" void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream)
-{
+extern "C" void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream) {
     kernel_fill<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, X, ALPHA);
 }
 

@@ -23,8 +23,21 @@
  
 #include <iostream>
 #include <stdio.h>
+#include "cublas_v2.h"
 extern "C" {
 #include "cuda.h"
+}
+
+cublasHandle_t blas_handle()
+{
+    static int init[16] = {0};
+    static cublasHandle_t handle[16];
+    int i = cuda_get_device();
+    if(!init[i]) {
+        cublasCreate(&handle[i]);
+        init[i] = 1;
+    }
+    return handle[i];
 }
 
 __device__ double atomic_Add(double *address, double val)
@@ -82,70 +95,6 @@ __global__ void kernel_dot(const double *A, const double *B, double *C, int N)
     }
 }
 
-__global__ void kernel_gemm_nn(int M, int N, int K, double ALPHA,
-        const double *A, int lda,
-        const double *B, int ldb,
-        double BETA,
-        double *C, int ldc)
-{
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    int j = blockIdx.y * blockDim.y + threadIdx.y;
-    if(i < M && j < N) {
-        C[i*ldc+j] *= BETA;
-        for(int k = 0; k < K; k++) {
-            C[i*ldc+j] += ALPHA * A[i*lda+k] * B[k*ldb+j];
-        }
-    }
-}
-
-__global__ void kernel_gemm_nt(int M, int N, int K, double ALPHA,
-        const double *A, int lda,
-        const double *B, int ldb,
-        double BETA,
-        double *C, int ldc)
-{
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    int j = blockIdx.y * blockDim.y + threadIdx.y;
-    if(i < M && j < N) {
-        C[i*ldc+j] *= BETA;
-        for(int k = 0; k < K; k++) {
-            C[i*ldc+j] += ALPHA * A[i*lda+k] * B[j*ldb+k];
-        }
-    }
-}
-
-__global__ void kernel_gemm_tn(int M, int N, int K, double ALPHA,
-        const double *A, int lda,
-        const double *B, int ldb,
-        double BETA,
-        double *C, int ldc)
-{
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    int j = blockIdx.y * blockDim.y + threadIdx.y;
-    if(i < M && j < N) {
-        C[i*ldc+j] *= BETA;
-        for(int k = 0; k < K; k++) {
-            C[i*ldc+j] += ALPHA * A[k*lda+i] * B[k*ldb+j];
-        }
-    }
-}
-
-__global__ void kernel_gemm_tt(int M, int N, int K, double ALPHA,
-        const double *A, int lda,
-        const double *B, int ldb,
-        double BETA,
-        double *C, int ldc)
-{
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    int j = blockIdx.y * blockDim.y + threadIdx.y;
-    if(i < M && j < N) {
-        C[i*ldc+j] *= BETA;
-        for(int k = 0; k < K; k++) {
-            C[i*ldc+j] += ALPHA * A[i+k*lda] * B[k+j*ldb];
-        }
-    }
-}
-
 extern "C" void sub_gpu(int N, double *A, double *B, double *C, const cudaStream_t *stream)
 {
     kernel_sub<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, A, B, C);
@@ -175,18 +124,7 @@ extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
         double *C, int ldc,
         const cudaStream_t *stream)
 {
-    dim3 dimGrid(M,N);
-    dim3 dimBlock(1,1);
-    if(!TA && !TB) {
-        kernel_gemm_nn<<<dimGrid,dimBlock,0,*stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
-    }
-    else if(TA && !TB) {
-        kernel_gemm_tn<<<dimGrid,dimBlock,0,*stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
-    }
-    else if(!TA && TB) {
-        kernel_gemm_nt<<<dimGrid,dimBlock,0,*stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
-    }
-    else {
-        kernel_gemm_tt<<<dimGrid,dimBlock,0,*stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
-    }
+    cublasHandle_t handle = blas_handle();
+    cublasDgemm(handle, (TB ? CUBLAS_OP_T : CUBLAS_OP_N),
+            (TA ? CUBLAS_OP_T : CUBLAS_OP_N), N, M, K, &ALPHA, B, ldb, A, lda, &BETA, C, ldc);
 }
