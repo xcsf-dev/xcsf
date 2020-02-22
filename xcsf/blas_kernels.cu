@@ -179,18 +179,18 @@ extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
         double *C, int ldc,
         const cudaStream_t *stream)
 {
-
     dim3 dimGrid(M,N);
+    dim3 dimBlock(1,1);
     if(!TA && !TB) {
-        kernel_gemm_nn<<<dimGrid, BLOCK_SIZE, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
+        kernel_gemm_nn<<<dimGrid,dimBlock,0,*stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
     }
     else if(TA && !TB) {
-        kernel_gemm_tn<<<dimGrid, BLOCK_SIZE, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
+        kernel_gemm_tn<<<dimGrid,dimBlock,0,*stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
     }
     else if(!TA && TB) {
-        kernel_gemm_nt<<<dimGrid, BLOCK_SIZE, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
+        kernel_gemm_nt<<<dimGrid,dimBlock,0,*stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
     }
     else {
-        kernel_gemm_tt<<<dimGrid, BLOCK_SIZE, 0, *stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
+        kernel_gemm_tt<<<dimGrid,dimBlock,0,*stream>>>(M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
     }
 }
