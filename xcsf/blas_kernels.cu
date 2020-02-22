@@ -146,24 +146,24 @@ __global__ void kernel_gemm_tt(int M, int N, int K, double ALPHA,
 
 extern "C" void sub_gpu(int N, double *A, double *B, double *C, const cudaStream_t *stream)
 {
-    kernel_sub<<<1, N, 0, *stream>>>(N, A, B, C);
+    kernel_sub<<<N, BLOCK_SIZE, 0, *stream>>>(N, A, B, C);
 }
 
 extern "C" void scal_gpu(int N, double ALPHA, double *X, int INCX, const cudaStream_t *stream)
 {
-    kernel_scal<<<1, N, 0, *stream>>>(N, ALPHA, X, INCX);
+    kernel_scal<<<N, BLOCK_SIZE, 0, *stream>>>(N, ALPHA, X, INCX);
 }
 
 extern "C" void axpy_gpu(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY,
         const cudaStream_t *stream)
 {
-    kernel_axpy<<<1, N, 0, *stream>>>(N, ALPHA, X, INCX, Y, INCY);
+    kernel_axpy<<<N, BLOCK_SIZE, 0, *stream>>>(N, ALPHA, X, INCX, Y, INCY);
 }
 
 extern "C" void dot_gpu(int N, const double *A, const double *B, double *C,
         const cudaStream_t *stream)
 {
-    kernel_dot<<<1, N, 0, *stream>>>(A, B, C, N);
+    kernel_dot<<<N, BLOCK_SIZE, 0, *stream>>>(A, B, C, N);
 }
 
 extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,

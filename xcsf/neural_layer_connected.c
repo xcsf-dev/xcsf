@@ -35,6 +35,8 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
+//#define DEBUG
+
 #define N_MU 4 //!< Number of mutation rates applied
 #define ETA_MAX 0.1 //!< Maximum gradient descent rate
 #define ETA_MIN 0.0001 //!< Minimum gradient descent rate
@@ -202,16 +204,55 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET
         double *c = net->delta;
         gemm_gpu(0,0,1,n,k,1,a,k,b,n,1,c,n, l->stream);
     }
+
+#ifdef DEBUG
+    CUDA_CALL( cudaMemcpyAsync(l->weight_updates, l->weight_updates_gpu,
+                sizeof(double) * l->n_weights, cudaMemcpyDeviceToHost, net->stream) );
+    double sum = 0;
+    for(int i = 0; i < l->n_weights; i++) {
+        sum += l->weight_updates[i];
+    }
+    printf("GPU BACKWARD WEIGHTUPDATE SUM: %f\n", sum);
+#endif
+
 }
 
 void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
 {
+#ifdef DEBUG
+    CUDA_CALL( cudaMemcpyAsync(l->weights, l->weights_gpu,
+                sizeof(double) * l->n_weights, cudaMemcpyDeviceToHost, *(l->stream)) );
+    CUDA_CALL( cudaMemcpyAsync(l->weight_updates, l->weight_updates_gpu,
+                sizeof(double) * l->n_weights, cudaMemcpyDeviceToHost, *(l->stream)) );
+    double suma = 0;
+    double sumb = 0;
+    for(int i = 0; i < l->n_weights; i++) {
+        suma += l->weights[i];
+        sumb += l->weight_updates[i];
+    }
+    printf("GPU PRIOR UPDATE WEIGHT SUM: %f\n", suma);
+    printf("GPU PRIOR UPDATE WEIGHTUPDATE SUM: %f\n", sumb);
+#endif
+
+
+
     if(l->options & LAYER_SGD_WEIGHTS) {
         axpy_gpu(l->n_outputs, l->eta, l->bias_updates_gpu, 1, l->biases_gpu, 1, l->stream);
         scal_gpu(l->n_outputs, xcsf->PRED_MOMENTUM, l->bias_updates_gpu, 1, l->stream);
         axpy_gpu(l->n_weights, l->eta, l->weight_updates_gpu, 1, l->weights_gpu, 1, l->stream);
         scal_gpu(l->n_weights, xcsf->PRED_MOMENTUM, l->weight_updates_gpu, 1, l->stream);
     }
+
+#ifdef DEBUG
+    CUDA_CALL( cudaMemcpyAsync(l->weights, l->weights_gpu,
+                sizeof(double) * l->n_weights, cudaMemcpyDeviceToHost, *(l->stream)) );
+    double sum = 0;
+    for(int i = 0; i < l->n_weights; i++) {
+        sum += l->weights[i];
+    }
+    printf("GPU UPDATED WEIGHT SUM: %f\n", sum);
+#endif
+
 }
 
 double *neural_layer_connected_output(const XCSF *xcsf, const LAYER *l)
@@ -264,16 +305,45 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET
         double *c = net->delta;
         blas_gemm(0,0,1,n,k,1,a,k,b,n,1,c,n);
     }
+
+#ifdef DEBUG
+    double sum = 0;
+    for(int i = 0; i < l->n_weights; i++) {
+        sum += l->weight_updates[i];
+    }
+    printf("CPU BACKWARD WEIGHTUPDATE SUM: %f\n", sum);
+#endif
+
 }
 
 void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
 {
+#ifdef DEBUG
+    double suma = 0;
+    double sumb = 0;
+    for(int i = 0; i < l->n_weights; i++) {
+        suma += l->weights[i];
+        sumb += l->weight_updates[i];
+    }
+    printf("CPU PRIOR UPDATE WEIGHT SUM: %f\n", suma);
+    printf("CPU PRIOR UPDATE WEIGHTUPDATE SUM: %f\n", sumb);
+#endif
+
     if(l->options & LAYER_SGD_WEIGHTS) {
         blas_axpy(l->n_outputs, l->eta, l->bias_updates, 1, l->biases, 1);
         blas_scal(l->n_outputs, xcsf->PRED_MOMENTUM, l->bias_updates, 1);
         blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
         blas_scal(l->n_weights, xcsf->PRED_MOMENTUM, l->weight_updates, 1);
     }
+
+#ifdef DEBUG
+    double sum = 0;
+    for(int i = 0; i < l->n_weights; i++) {
+        sum += l->weights[i];
+    }
+    printf("CPU UPDATED WEIGHT SUM: %f\n", sum);
+#endif
+
 }
 
 double *neural_layer_connected_output(const XCSF *xcsf, const LAYER *l)

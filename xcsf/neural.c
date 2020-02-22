@@ -35,6 +35,12 @@
 #include "neural_layer_noise.h"
 #include "neural_layer_softmax.h"
 
+//#define DEBUG
+
+#ifdef DEBUG
+static int count = 0;
+#endif
+
 /**
  * @brief Initialises an empty neural network.
  * @param xcsf The XCSF data structure.
@@ -232,6 +238,17 @@ void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
     LAYER *l = net->tail->layer;
     net->input_gpu = xcsf->x_gpu;
 
+#ifdef DEBUG
+    double test[xcsf->x_dim];
+    CUDA_CALL( cudaMemcpyAsync(test, xcsf->x_gpu,
+                sizeof(double) * xcsf->x_dim, cudaMemcpyDeviceToHost, net->stream) );
+    double sum = 0;
+    for(int i = 0; i < xcsf->x_dim; i++) {
+        sum += test[i];
+    }
+    printf("GPU PROP IN SUM: %f\n", sum);
+#endif
+
     double *in = net->input_gpu;
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         l = iter->layer;
@@ -251,6 +268,18 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
 {
     (void)input; (void)truth;
     net->input_gpu = xcsf->x_gpu;
+
+#ifdef DEBUG
+    double test[xcsf->x_dim];
+    CUDA_CALL( cudaMemcpyAsync(test, xcsf->x_gpu,
+                sizeof(double) * xcsf->x_dim, cudaMemcpyDeviceToHost, net->stream) );
+    double sum = 0;
+    for(int i = 0; i < xcsf->x_dim; i++) {
+        sum += test[i];
+    }
+    printf("GPU LEARN IN SUM: %f\n", sum);
+#endif
+
 
     /* reset deltas */
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -295,6 +324,20 @@ const double *neural_output(const XCSF *xcsf, const NET *net)
     LAYER *l = net->head->layer;
     CUDA_CALL( cudaMemcpyAsync(l->output, l->output_gpu,
                 sizeof(double) * l->n_outputs, cudaMemcpyDeviceToHost, net->stream) );
+
+#ifdef DEBUG
+    printf("GPU OUT\n");
+    for(int i = 0; i < 20; i++) {
+        printf("%f, ", l->output[i]);
+    }
+    printf("\n");
+
+    count++;
+    if(count > 2) {
+        exit(0);
+    }
+#endif
+
     return l->output;
 }
 
@@ -308,6 +351,14 @@ const double *neural_output(const XCSF *xcsf, const NET *net)
  */
 void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
 {
+#ifdef DEBUG
+    double sum = 0;
+    for(int i = 0; i < xcsf->x_dim; i++) {
+        sum += input[i];
+    }
+    printf("CPU PROP IN SUM: %f\n", sum);
+#endif
+
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_forward(xcsf, iter->layer, input);
         input = layer_output(xcsf, iter->layer);
@@ -323,6 +374,14 @@ void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
  */
 void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double *input)
 {
+#ifdef DEBUG
+    double sum = 0;
+    for(int i = 0; i < xcsf->x_dim; i++) {
+        sum += input[i];
+    }
+    printf("CPU LEARN IN SUM: %f\n", sum);
+#endif
+
     /* reset deltas */
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         memset(iter->layer->delta, 0, iter->layer->n_outputs * sizeof(double));
@@ -365,6 +424,20 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
 const double *neural_output(const XCSF *xcsf, const NET *net)
 {
     LAYER *l = net->head->layer;
+
+#ifdef DEBUG
+    printf("CPU OUT\n");
+    for(int i = 0; i < 20; i++) {
+        printf("%f, ", l->output[i]);
+    }
+    printf("\n");
+
+    count++;
+    if(count > 2) {
+        exit(0);
+    }
+#endif
+
     return l->output;
 }
 
