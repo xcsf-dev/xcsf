@@ -48,6 +48,10 @@ static double xcs_single_trial(XCSF *xcsf, double *error, _Bool explore);
  */
 double xcs_single_step_exp(XCSF *xcsf)
 {
+#ifdef GPU
+    CUDA_CALL( cudaMalloc((void **) &xcsf->x_gpu, xcsf->x_dim * sizeof(double)) );
+    CUDA_CALL( cudaMalloc((void **) &xcsf->y_gpu, xcsf->y_dim * sizeof(double)) );
+#endif
     pa_init(xcsf);
     double error = 0; // prediction error: individual trial
     double werr = 0; // prediction error: windowed total
@@ -62,6 +66,10 @@ double xcs_single_step_exp(XCSF *xcsf)
         perf_print(xcsf, &wperf, &werr, cnt);
     }
     pa_free(xcsf);
+#ifdef GPU
+    CUDA_CALL( cudaFree(xcsf->x_gpu) );
+    CUDA_CALL( cudaFree(xcsf->y_gpu) );
+#endif
     return tperf / xcsf->MAX_TRIALS;
 }                                
 

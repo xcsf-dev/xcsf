@@ -80,7 +80,6 @@ int main(int argc, char **argv)
     env_free(xcsf);
     clset_kill(xcsf, &xcsf->pset);
     config_free(xcsf);
-    xcsf_free(xcsf);
     free(xcsf);
     return EXIT_SUCCESS;
 }

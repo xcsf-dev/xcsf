@@ -44,6 +44,10 @@ extern "C" {
 #endif
 }
 
+#ifdef GPU
+#include "cuda.h"
+#endif
+
 void xcs_init(const char *filename);
 
 /**
@@ -67,6 +71,10 @@ struct XCS
         xcs.n_actions = n_actions;
         xcs_init("default.ini");
         pa_init(&xcs);
+#ifdef GPU
+        CUDA_CALL( cudaMalloc((void **) &xcs.x_gpu, xcs.x_dim * sizeof(double)) );
+        CUDA_CALL( cudaMalloc((void **) &xcs.y_gpu, xcs.y_dim * sizeof(double)) );
+#endif
         xcs_single_init(&xcs);
     }
 

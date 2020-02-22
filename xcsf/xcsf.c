@@ -56,18 +56,6 @@ void xcsf_init(XCSF *xcsf)
     xcsf->msetsize = 0;
     xcsf->mfrac = 0;
     clset_init(&xcsf->pset);
-#ifdef GPU
-    CUDA_CALL( cudaMalloc((void **) &xcsf->x_gpu, xcsf->x_dim * sizeof(double)) );
-    CUDA_CALL( cudaMalloc((void **) &xcsf->y_gpu, xcsf->y_dim * sizeof(double)) );
-#endif
-}
-
-void xcsf_free(XCSF *xcsf)
-{
-#ifdef GPU
-    CUDA_CALL( cudaFree(xcsf->x_gpu) );
-    CUDA_CALL( cudaFree(xcsf->y_gpu) );
-#endif
 }
 
 /**
@@ -81,6 +69,10 @@ void xcsf_free(XCSF *xcsf)
  */
 double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle)
 {   
+#ifdef GPU
+    CUDA_CALL( cudaMalloc((void **) &xcsf->x_gpu, xcsf->x_dim * sizeof(double)) );
+    CUDA_CALL( cudaMalloc((void **) &xcsf->y_gpu, xcsf->y_dim * sizeof(double)) );
+#endif
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
     double wterr = 0; // testing error: windowed total
@@ -115,6 +107,10 @@ double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bo
         perf_print(xcsf, &werr, &wterr, cnt);
     }
     free(pred);
+#ifdef GPU
+    CUDA_CALL( cudaFree(xcsf->x_gpu) );
+    CUDA_CALL( cudaFree(xcsf->y_gpu) );
+#endif
     return err / xcsf->MAX_TRIALS;
 }
 

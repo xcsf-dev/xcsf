@@ -219,6 +219,5 @@ double xcsf_version();
 size_t xcsf_load(XCSF *xcsf, const char *fname);
 size_t xcsf_save(const XCSF *xcsf, const char *fname);
 void xcsf_init(XCSF *xcsf);
-void xcsf_free(XCSF *xcsf);
 void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int n_samples);
 void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);
