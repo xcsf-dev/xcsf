@@ -51,12 +51,14 @@ __global__ void kernel_fill(int N, double *X, double ALPHA)
 
 extern "C" void cuda_copy(int N, const double *X, double *Y, const cudaStream_t *stream)
 {
-    kernel_copy<<<1, N, 0, *stream>>>(N, X, Y);
+    const int num_blocks = cuda_number_of_blocks(N, BLOCK_SIZE);
+    kernel_copy<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(N, X, Y);
 }
 
 extern "C" void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream)
 {
-    kernel_fill<<<1, N, 0, *stream>>>(N, X, ALPHA);
+    const int num_blocks = cuda_number_of_blocks(N, BLOCK_SIZE);
+    kernel_fill<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(N, X, ALPHA);
 }
 
 extern "C" void cuda_set_device(int n)
