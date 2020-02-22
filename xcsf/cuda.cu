@@ -33,11 +33,11 @@ static void cuda_printDeviceInfo(cudaDeviceProp devProp);
 
 int gpu_index = 0;
 
-__global__ void kernel_copy(int N, const double *X, double *Y)
+__global__ void kernel_simple_copy(int N, const double *src, double *dest)
 {
-    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
     if(i < N) {
-        Y[i] = X[i];
+        dest[i] = src[i];
     }
 }
 
@@ -49,16 +49,15 @@ __global__ void kernel_fill(int N, double *X, double ALPHA)
     }
 }
 
-extern "C" void cuda_copy(int N, const double *X, double *Y, const cudaStream_t *stream)
+extern "C" void cuda_copy(int N, const double *src, double *dest, const cudaStream_t *stream)
 {
-    const int num_blocks = cuda_number_of_blocks(N, BLOCK_SIZE);
-    kernel_copy<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(N, X, Y);
+    const int num_blocks = N / BLOCK_SIZE + 1;
+    kernel_simple_copy<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(N, src, dest);
 }
 
 extern "C" void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream)
 {
-    const int num_blocks = cuda_number_of_blocks(N, BLOCK_SIZE);
-    kernel_fill<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(N, X, ALPHA);
+    kernel_fill<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, X, ALPHA);
 }
 
 extern "C" void cuda_set_device(int n)
@@ -88,9 +87,20 @@ extern "C" double *cuda_make_array(const double *x, size_t n, const cudaStream_t
     return x_gpu;
 }
 
-int cuda_number_of_blocks(int array_size, int block_size)
+dim3 cuda_gridsize(size_t n)
 {
-    return array_size / block_size + ((array_size % block_size > 0) ? 1 : 0);
+    size_t k = (n-1) / BLOCK_SIZE + 1;
+    size_t x = k;
+    size_t y = 1;
+    if(x > 65535) {
+        x = ceil(sqrt(k));
+        y = (n-1) / (x*BLOCK_SIZE) + 1;
+    }
+    dim3 d;
+    d.x = x;
+    d.y = y;
+    d.z = 1;
+    return d;
 }
 
 extern "C" void cuda_info()

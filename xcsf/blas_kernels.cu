@@ -148,28 +148,24 @@ __global__ void kernel_gemm_tt(int M, int N, int K, double ALPHA,
 
 extern "C" void sub_gpu(int N, double *A, double *B, double *C, const cudaStream_t *stream)
 {
-    const int num_blocks = cuda_number_of_blocks(N, BLOCK_SIZE);
-    kernel_sub<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(N, A, B, C);
+    kernel_sub<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, A, B, C);
 }
 
 extern "C" void scal_gpu(int N, double ALPHA, double *X, int INCX, const cudaStream_t *stream)
 {
-    const int num_blocks = cuda_number_of_blocks(N, BLOCK_SIZE);
-    kernel_scal<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(N, ALPHA, X, INCX);
+    kernel_scal<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, ALPHA, X, INCX);
 }
 
 extern "C" void axpy_gpu(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY,
         const cudaStream_t *stream)
 {
-    const int num_blocks = cuda_number_of_blocks(N, BLOCK_SIZE);
-    kernel_axpy<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(N, ALPHA, X, INCX, Y, INCY);
+    kernel_axpy<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, ALPHA, X, INCX, Y, INCY);
 }
 
 extern "C" void dot_gpu(int N, const double *A, const double *B, double *C,
         const cudaStream_t *stream)
 {
-    const int num_blocks = cuda_number_of_blocks(N, BLOCK_SIZE);
-    kernel_dot<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(A, B, C, N);
+    kernel_dot<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(A, B, C, N);
 }
 
 extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,

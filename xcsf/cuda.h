@@ -34,5 +34,5 @@ double *cuda_make_array(const double *x, size_t n, const cudaStream_t *stream);
 int cuda_get_device();
 void cuda_info();
 void cuda_set_device(int n);
-void cuda_copy(int N, const double *X, double *Y, const cudaStream_t *stream);
-int cuda_number_of_blocks(int array_size, int block_size);
+void cuda_copy(int N, const double *src, double *dest, const cudaStream_t *stream);
+dim3 cuda_gridsize(size_t n);
