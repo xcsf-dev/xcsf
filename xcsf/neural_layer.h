@@ -67,7 +67,6 @@ typedef struct LAYER {
     double *rand; //!< Usage depends on layer implementation
     struct LayerVtbl const *layer_vptr; //!< Functions acting on layers
 #ifdef GPU
-    cudaStream_t *stream;
     double *state_gpu;
     double *output_gpu;
     double *weights_gpu;

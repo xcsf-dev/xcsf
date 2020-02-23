@@ -38,7 +38,7 @@ extern "C" void sub_gpu(int N, double *A, double *B, double *C)
     kernel_sub<<<cuda_gridsize(N), BLOCK_SIZE>>>(N, A, B, C);
 }
 
-extern "C" void scal_gpu(int N, double ALPHA, double *X, int INCX, const cudaStream_t *stream)
+extern "C" void scal_gpu(int N, double ALPHA, double *X, int INCX)
 {
     cublasHandle_t handle = blas_handle();
     cublasDscal(handle, N, &ALPHA, X, INCX);

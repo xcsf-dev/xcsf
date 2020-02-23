@@ -48,7 +48,6 @@ typedef struct NET {
     LLIST *head; //!< Pointer to the head layer (output layer)
     LLIST *tail; //!< Pointer to the tail layer (first layer)
 #ifdef GPU
-    cudaStream_t stream;
     double *input_gpu;
 #endif
 } NET;
