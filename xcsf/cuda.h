@@ -36,12 +36,12 @@ cublasHandle_t blas_handle();
 #ifdef __cplusplus
 extern "C" {
 #endif
-void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream);
-double *cuda_make_array(const double *x, size_t n, const cudaStream_t *stream);
+void cuda_fill(int N, double *X, double ALPHA);
+double *cuda_make_array(const double *x, size_t n);
 int cuda_get_device();
 void cuda_info();
 void cuda_set_device(int n);
-void cuda_copy(int N, const double *src, double *dest, const cudaStream_t *stream);
+void cuda_copy(int N, const double *src, double *dest);
 #ifdef __cplusplus
 }
 #endif

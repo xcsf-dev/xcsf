@@ -90,14 +90,14 @@ static void cuda_printDeviceInfo(cudaDeviceProp devProp)
 extern "C" {
 #endif
 
-void cuda_copy(int N, const double *src, double *dest, const cudaStream_t *stream)
+void cuda_copy(int N, const double *src, double *dest)
 {
     cublasHandle_t handle = blas_handle();
     cublasDcopy(handle, N, src, 1, dest, 1);
 }
 
-void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream) {
-    kernel_fill<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, X, ALPHA);
+void cuda_fill(int N, double *X, double ALPHA) {
+    kernel_fill<<<cuda_gridsize(N), BLOCK_SIZE>>>(N, X, ALPHA);
 }
 
 void cuda_set_device(int n)
@@ -113,16 +113,16 @@ int cuda_get_device()
     return n;
 }
 
-double *cuda_make_array(const double *x, size_t n, const cudaStream_t *stream)
+double *cuda_make_array(const double *x, size_t n)
 {
     double *x_gpu;
     size_t size = sizeof(double) * n;
     CUDA_CALL( cudaMalloc((void **) &x_gpu, size) );
     if(x) {
-        CUDA_CALL( cudaMemcpyAsync(x_gpu, x, size, cudaMemcpyHostToDevice, *stream) );
+        CUDA_CALL( cudaMemcpy(x_gpu, x, size, cudaMemcpyHostToDevice) );
     }
     else {
-        CUDA_CALL( cudaMemsetAsync(x_gpu, 0, size, *stream) );
+        CUDA_CALL( cudaMemset(x_gpu, 0, size) );
     }
     return x_gpu;
 }

@@ -103,14 +103,12 @@ __global__ void gradient_array_kernel(const double *x, int n, int a, double *del
     }
 }
 
-extern "C" void activate_array_gpu(double *state, double *output, int n, int a,
-        const cudaStream_t *stream)
+extern "C" void activate_array_gpu(double *state, double *output, int n, int a)
 {
-    activate_array_kernel<<<1, n, 0, *stream>>>(state, output, n, a);
+    activate_array_kernel<<<cuda_gridsize(n), BLOCK_SIZE>>>(state, output, n, a);
 }
 
-extern "C" void gradient_array_gpu(const double *x, double *delta, int n, int a,
-        const cudaStream_t *stream)
+extern "C" void gradient_array_gpu(const double *x, double *delta, int n, int a)
 {
-    gradient_array_kernel<<<1, n, 0, *stream>>>(x, n, a, delta);
+    gradient_array_kernel<<<cuda_gridsize(n), BLOCK_SIZE>>>(x, n, a, delta);
 }

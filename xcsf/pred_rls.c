@@ -52,7 +52,6 @@ typedef struct PRED_RLS {
     double *tmp_matrix1; //!< Temporary storage for updating gain matrix
     double *tmp_matrix2; //!< Temporary storage for updating gain matrix
 #ifdef GPU
-    cudaStream_t stream;
     double *matrix_gpu;
     double *tmp_input_gpu;
     double *tmp_vec_gpu;
@@ -88,13 +87,12 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
     pred->tmp_matrix1 = calloc(n_sqrd, sizeof(double));
     pred->tmp_matrix2 = calloc(n_sqrd, sizeof(double));
 #ifdef GPU
-    CUDA_CALL( cudaStreamCreate(&pred->stream) );
-    pred->matrix_gpu = cuda_make_array(pred->matrix, n_sqrd, &pred->stream);
-    pred->tmp_matrix1_gpu = cuda_make_array(pred->tmp_matrix1, n_sqrd, &pred->stream);
-    pred->tmp_matrix2_gpu = cuda_make_array(pred->tmp_matrix2, n_sqrd, &pred->stream);
-    pred->tmp_input_gpu = cuda_make_array(pred->tmp_input, pred->n, &pred->stream);
-    pred->tmp_vec_gpu = cuda_make_array(pred->tmp_vec, pred->n, &pred->stream);
-    pred->tmp_gpu = cuda_make_array(NULL, 1, &pred->stream);
+    pred->matrix_gpu = cuda_make_array(pred->matrix, n_sqrd);
+    pred->tmp_matrix1_gpu = cuda_make_array(pred->tmp_matrix1, n_sqrd);
+    pred->tmp_matrix2_gpu = cuda_make_array(pred->tmp_matrix2, n_sqrd);
+    pred->tmp_input_gpu = cuda_make_array(pred->tmp_input, pred->n);
+    pred->tmp_vec_gpu = cuda_make_array(pred->tmp_vec, pred->n);
+    pred->tmp_gpu = cuda_make_array(NULL, 1);
 #endif
 }
 
@@ -137,7 +135,6 @@ void pred_rls_free(const XCSF *xcsf, const CL *c)
     CUDA_CALL( cudaFree(pred->tmp_input_gpu) );
     CUDA_CALL( cudaFree(pred->tmp_vec_gpu) );
     CUDA_CALL( cudaFree(pred->tmp_gpu) );
-    CUDA_CALL( cudaStreamDestroy(pred->stream) );
 #endif
     free(pred);
 }
@@ -163,19 +160,17 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
 #ifdef GPU
     int n_sqrd = n * n;
     double divisor;
-    CUDA_CALL( cudaMemcpyAsync(pred->matrix_gpu, pred->matrix, sizeof(double)*n_sqrd,
-                cudaMemcpyHostToDevice, pred->stream) );
-    CUDA_CALL( cudaMemcpyAsync(pred->tmp_input_gpu, pred->tmp_input, sizeof(double)*n,
-                cudaMemcpyHostToDevice, pred->stream) );
-
-    gemm_gpu(0,0,n,1,n,1,pred->matrix_gpu,n,pred->tmp_input_gpu,1,0,pred->tmp_vec_gpu,1,&pred->stream);
-    dot_gpu(n, pred->tmp_input_gpu, 1, pred->tmp_vec_gpu, 1, pred->tmp_gpu, &pred->stream);
-    CUDA_CALL( cudaMemcpyAsync(&divisor, pred->tmp_gpu, sizeof(double),
-                cudaMemcpyDeviceToHost, pred->stream) );
+    CUDA_CALL( cudaMemcpy(pred->matrix_gpu, pred->matrix, sizeof(double)*n_sqrd,
+                cudaMemcpyHostToDevice) );
+    CUDA_CALL( cudaMemcpy(pred->tmp_input_gpu, pred->tmp_input, sizeof(double)*n,
+                cudaMemcpyHostToDevice) );
+    gemm_gpu(0,0,n,1,n,1,pred->matrix_gpu,n,pred->tmp_input_gpu,1,0,pred->tmp_vec_gpu,1);
+    dot_gpu(n, pred->tmp_input_gpu, 1, pred->tmp_vec_gpu, 1, pred->tmp_gpu);
+    CUDA_CALL( cudaMemcpy(&divisor, pred->tmp_gpu, sizeof(double), cudaMemcpyDeviceToHost) );
     divisor = 1 / (divisor + xcsf->PRED_RLS_LAMBDA);
-    scal_gpu(n, divisor, pred->tmp_vec_gpu, 1, &pred->stream);
-    CUDA_CALL( cudaMemcpyAsync(pred->tmp_vec, pred->tmp_vec_gpu, sizeof(double)*n,
-                cudaMemcpyDeviceToHost, pred->stream) );
+    scal_gpu(n, divisor, pred->tmp_vec_gpu, 1);
+    CUDA_CALL( cudaMemcpy(pred->tmp_vec, pred->tmp_vec_gpu, sizeof(double)*n,
+                cudaMemcpyDeviceToHost) );
 #else
     // gain vector = matrix * tmp_input
     blas_gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
@@ -203,11 +198,11 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     }
     // tmp_matrix2 = tmp_matrix1 * pred_matrix
 #ifdef GPU
-    CUDA_CALL( cudaMemcpyAsync(pred->tmp_matrix1_gpu, pred->tmp_matrix1, sizeof(double)*n_sqrd,
-                cudaMemcpyHostToDevice, pred->stream) );
-    gemm_gpu(0,0,n,n,n,1,pred->tmp_matrix1_gpu,n,pred->matrix_gpu,n,0,pred->tmp_matrix2_gpu,n,&pred->stream);
-    CUDA_CALL( cudaMemcpyAsync(pred->tmp_matrix2, pred->tmp_matrix2_gpu, sizeof(double)*n_sqrd,
-                cudaMemcpyDeviceToHost, pred->stream) );
+    CUDA_CALL( cudaMemcpy(pred->tmp_matrix1_gpu, pred->tmp_matrix1, sizeof(double)*n_sqrd,
+                cudaMemcpyHostToDevice) );
+    gemm_gpu(0,0,n,n,n,1,pred->tmp_matrix1_gpu,n,pred->matrix_gpu,n,0,pred->tmp_matrix2_gpu,n);
+    CUDA_CALL( cudaMemcpy(pred->tmp_matrix2, pred->tmp_matrix2_gpu, sizeof(double)*n_sqrd,
+                cudaMemcpyDeviceToHost) );
 #else
     blas_gemm(0, 0, n, n, n, 1, pred->tmp_matrix1, n, pred->matrix, n, 0, pred->tmp_matrix2, n);
 #endif

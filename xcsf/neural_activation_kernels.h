@@ -23,7 +23,5 @@
  
 #pragma once
 
-#include <cuda_runtime.h>
-
-void activate_array_gpu(double *state, double *output, int n, int a, const cudaStream_t *stream);
-void gradient_array_gpu(const double *x, double *delta, int n, int a, const cudaStream_t *stream);
+void activate_array_gpu(double *state, double *output, int n, int a);
+void gradient_array_gpu(const double *x, double *delta, int n, int a);

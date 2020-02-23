@@ -33,9 +33,9 @@ __global__ void kernel_sub(int N, double *A, double *B, double *C)
     }
 }
 
-extern "C" void sub_gpu(int N, double *A, double *B, double *C, const cudaStream_t *stream)
+extern "C" void sub_gpu(int N, double *A, double *B, double *C)
 {
-    kernel_sub<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, A, B, C);
+    kernel_sub<<<cuda_gridsize(N), BLOCK_SIZE>>>(N, A, B, C);
 }
 
 extern "C" void scal_gpu(int N, double ALPHA, double *X, int INCX, const cudaStream_t *stream)
@@ -44,15 +44,13 @@ extern "C" void scal_gpu(int N, double ALPHA, double *X, int INCX, const cudaStr
     cublasDscal(handle, N, &ALPHA, X, INCX);
 }
 
-extern "C" void axpy_gpu(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY,
-        const cudaStream_t *stream)
+extern "C" void axpy_gpu(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
 {
     cublasHandle_t handle = blas_handle();
     cublasDaxpy(handle, N, &ALPHA, X, INCX, Y, INCY);
 }
 
-extern "C" void dot_gpu(int N, const double *X, int INCX, const double *Y, int INCY, double *res,
-        const cudaStream_t *stream)
+extern "C" void dot_gpu(int N, const double *X, int INCX, const double *Y, int INCY, double *res)
 {
     cublasHandle_t handle = blas_handle();
     cublasDdot(handle, N, X, INCX, Y, INCY, res);
@@ -62,11 +60,9 @@ extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
         const double *A, int lda,
         const double *B, int ldb,
         double BETA,
-        double *C, int ldc,
-        const cudaStream_t *stream)
+        double *C, int ldc)
 {
     cublasHandle_t handle = blas_handle();
-    //cublasSetStream(handle, *stream);
     cublasDgemm(handle, (TB ? CUBLAS_OP_T : CUBLAS_OP_N),
             (TA ? CUBLAS_OP_T : CUBLAS_OP_N), N, M, K, &ALPHA, B, ldb, A, lda, &BETA, C, ldc);
 }
