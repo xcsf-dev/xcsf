@@ -24,15 +24,24 @@
 #pragma once
 
 #include <cuda_runtime.h>
+#include "cublas_v2.h"
 
 #define BLOCK_SIZE 1024
 
-#define CUDA_CALL(x) { cudaError_t cuda_error__ = (x); if(cuda_error__) { printf("CUDA error: " #x " returned \"%s\"\n", cudaGetErrorString(cuda_error__)); } }
+#define CUDA_CALL(x) { cudaError_t cuda_error__ = (x); if(cuda_error__) { printf("CUDA error: " #x " returned \"%s\"\n", cudaGetErrorString(cuda_error__)); exit(0); } }
 
+dim3 cuda_gridsize(size_t n);
+cublasHandle_t blas_handle();
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream);
 double *cuda_make_array(const double *x, size_t n, const cudaStream_t *stream);
 int cuda_get_device();
 void cuda_info();
 void cuda_set_device(int n);
 void cuda_copy(int N, const double *src, double *dest, const cudaStream_t *stream);
-dim3 cuda_gridsize(size_t n);
+#ifdef __cplusplus
+}
+#endif

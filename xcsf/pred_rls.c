@@ -169,7 +169,7 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
                 cudaMemcpyHostToDevice, pred->stream) );
 
     gemm_gpu(0,0,n,1,n,1,pred->matrix_gpu,n,pred->tmp_input_gpu,1,0,pred->tmp_vec_gpu,1,&pred->stream);
-    dot_gpu(n, pred->tmp_input_gpu, pred->tmp_vec_gpu, pred->tmp_gpu, &pred->stream);
+    dot_gpu(n, pred->tmp_input_gpu, 1, pred->tmp_vec_gpu, 1, pred->tmp_gpu, &pred->stream);
     CUDA_CALL( cudaMemcpyAsync(&divisor, pred->tmp_gpu, sizeof(double),
                 cudaMemcpyDeviceToHost, pred->stream) );
     divisor = 1 / (divisor + xcsf->PRED_RLS_LAMBDA);

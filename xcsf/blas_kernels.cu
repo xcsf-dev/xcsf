@@ -23,75 +23,13 @@
  
 #include <iostream>
 #include <stdio.h>
-#include "cublas_v2.h"
-extern "C" {
 #include "cuda.h"
-}
-
-cublasHandle_t blas_handle()
-{
-    static int init[16] = {0};
-    static cublasHandle_t handle[16];
-    int i = cuda_get_device();
-    if(!init[i]) {
-        cublasCreate(&handle[i]);
-        init[i] = 1;
-    }
-    return handle[i];
-}
-
-__device__ double atomic_Add(double *address, double val)
-{
-    unsigned long long int *address_as_ull = (unsigned long long int*) address;
-    unsigned long long int old = *address_as_ull, assumed;
-    do {
-        assumed = old;
-        old = atomicCAS(address_as_ull, assumed,
-                __double_as_longlong(val + __longlong_as_double(assumed)));
-    } while (assumed != old);
-    return __longlong_as_double(old);
-}
-
-__global__ void kernel_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
-{
-    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
-    if(i < N) {
-        Y[i*INCY] += ALPHA * X[i*INCX];
-    }
-}
-
-__global__ void kernel_scal(int N, double ALPHA, double *X, int INCX)
-{
-    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
-    if(i < N) {
-        X[i*INCX] *= ALPHA;
-    }
-}
 
 __global__ void kernel_sub(int N, double *A, double *B, double *C)
 {
     int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
     if(i < N) {
         C[i] = A[i] - B[i];
-    }
-}
-
-__global__ void kernel_dot(const double *A, const double *B, double *C, int N)
-{
-    __shared__ double cache;
-    int tid = threadIdx.x + blockIdx.x * blockDim.x;
-    int cacheIndex = threadIdx.x;
-    double temp = 0;
-    cache = 0;
-    __syncthreads();
-    while (tid < N) {
-        temp += A[tid] * B[tid];
-        tid += blockDim.x * gridDim.x;
-    }
-    atomic_Add(&cache, temp);
-    __syncthreads();
-    if (cacheIndex == 0) {
-        C[blockIdx.x] = cache;
     }
 }
 
@@ -102,19 +40,22 @@ extern "C" void sub_gpu(int N, double *A, double *B, double *C, const cudaStream
 
 extern "C" void scal_gpu(int N, double ALPHA, double *X, int INCX, const cudaStream_t *stream)
 {
-    kernel_scal<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, ALPHA, X, INCX);
+    cublasHandle_t handle = blas_handle();
+    cublasDscal(handle, N, &ALPHA, X, INCX);
 }
 
 extern "C" void axpy_gpu(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY,
         const cudaStream_t *stream)
 {
-    kernel_axpy<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, ALPHA, X, INCX, Y, INCY);
+    cublasHandle_t handle = blas_handle();
+    cublasDaxpy(handle, N, &ALPHA, X, INCX, Y, INCY);
 }
 
-extern "C" void dot_gpu(int N, const double *A, const double *B, double *C,
+extern "C" void dot_gpu(int N, const double *X, int INCX, const double *Y, int INCY, double *res,
         const cudaStream_t *stream)
 {
-    kernel_dot<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(A, B, C, N);
+    cublasHandle_t handle = blas_handle();
+    cublasDdot(handle, N, X, INCX, Y, INCY, res);
 }
 
 extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
@@ -125,6 +66,7 @@ extern "C" void gemm_gpu(int TA, int TB, int M, int N, int K, double ALPHA,
         const cudaStream_t *stream)
 {
     cublasHandle_t handle = blas_handle();
+    //cublasSetStream(handle, *stream);
     cublasDgemm(handle, (TB ? CUBLAS_OP_T : CUBLAS_OP_N),
             (TA ? CUBLAS_OP_T : CUBLAS_OP_N), N, M, K, &ALPHA, B, ldb, A, lda, &BETA, C, ldc);
 }

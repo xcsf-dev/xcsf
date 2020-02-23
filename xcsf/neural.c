@@ -55,6 +55,7 @@ void neural_init(const XCSF *xcsf, NET *net)
     net->n_inputs = 0;
     net->n_outputs = 0;
 #ifdef GPU
+    //CUDA_CALL( cudaStreamCreateWithFlags(&net->stream, cudaStreamNonBlocking) );
     CUDA_CALL( cudaStreamCreate(&net->stream) );
 #endif
 }

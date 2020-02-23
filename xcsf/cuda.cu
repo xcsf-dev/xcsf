@@ -23,67 +23,22 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include "blas_kernels.h"
-
-extern "C" {
 #include "cuda.h"
-}
 
 static void cuda_printDeviceInfo(cudaDeviceProp devProp);
 
 int gpu_index = 0;
 
-__global__ void kernel_simple_copy(int N, const double *src, double *dest)
+cublasHandle_t blas_handle()
 {
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    if(i < N) {
-        dest[i] = src[i];
+    static int init[16] = {0};
+    static cublasHandle_t handle[16];
+    int i = cuda_get_device();
+    if(!init[i]) {
+        cublasCreate(&handle[i]);
+        init[i] = 1;
     }
-}
-
-__global__ void kernel_fill(int N, double *X, double ALPHA)
-{
-    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
-    if(i < N) {
-        X[i] = ALPHA;
-    }
-}
-
-extern "C" void cuda_copy(int N, const double *src, double *dest, const cudaStream_t *stream)
-{
-    const int num_blocks = N / BLOCK_SIZE + 1;
-    kernel_simple_copy<<<num_blocks, BLOCK_SIZE, 0, *stream>>>(N, src, dest);
-}
-
-extern "C" void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream) {
-    kernel_fill<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, X, ALPHA);
-}
-
-extern "C" void cuda_set_device(int n)
-{
-    gpu_index = n;
-    CUDA_CALL( cudaSetDevice(n) );
-}
-
-extern "C" int cuda_get_device()
-{
-    int n = 0;
-    CUDA_CALL( cudaGetDevice(&n) );
-    return n;
-}
-
-extern "C" double *cuda_make_array(const double *x, size_t n, const cudaStream_t *stream)
-{
-    double *x_gpu;
-    size_t size = sizeof(double) * n;
-    CUDA_CALL( cudaMalloc((void **) &x_gpu, size) );
-    if(x) {
-        CUDA_CALL( cudaMemcpyAsync(x_gpu, x, size, cudaMemcpyHostToDevice, *stream) );
-    }
-    else {
-        CUDA_CALL( cudaMemsetAsync(x_gpu, 0, size, *stream) );
-    }
-    return x_gpu;
+    return handle[i];
 }
 
 dim3 cuda_gridsize(size_t n)
@@ -102,17 +57,11 @@ dim3 cuda_gridsize(size_t n)
     return d;
 }
 
-extern "C" void cuda_info()
+__global__ void kernel_fill(int N, double *X, double ALPHA)
 {
-    int devCount;
-    cudaGetDeviceCount(&devCount);
-    printf("CUDA Device Query...\n");
-    printf("There are %d CUDA devices.\n", devCount);
-    for (int i = 0; i < devCount; i++) {
-        printf("\nCUDA Device #%d\n", i);
-        cudaDeviceProp devProp;
-        cudaGetDeviceProperties(&devProp, i);
-        cuda_printDeviceInfo(devProp);
+    int i = (blockIdx.x + blockIdx.y * gridDim.x) * blockDim.x + threadIdx.x;
+    if(i < N) {
+        X[i] = ALPHA;
     }
 }
 
@@ -136,3 +85,62 @@ static void cuda_printDeviceInfo(cudaDeviceProp devProp)
     printf("Kernel execution timeout:      %s\n",  (devProp.kernelExecTimeoutEnabled ? "Yes" : "No"));
     printf("\n");
 }
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void cuda_copy(int N, const double *src, double *dest, const cudaStream_t *stream)
+{
+    cublasHandle_t handle = blas_handle();
+    cublasDcopy(handle, N, src, 1, dest, 1);
+}
+
+void cuda_fill(int N, double *X, double ALPHA, const cudaStream_t *stream) {
+    kernel_fill<<<cuda_gridsize(N), BLOCK_SIZE, 0, *stream>>>(N, X, ALPHA);
+}
+
+void cuda_set_device(int n)
+{
+    gpu_index = n;
+    CUDA_CALL( cudaSetDevice(n) );
+}
+
+int cuda_get_device()
+{
+    int n = 0;
+    CUDA_CALL( cudaGetDevice(&n) );
+    return n;
+}
+
+double *cuda_make_array(const double *x, size_t n, const cudaStream_t *stream)
+{
+    double *x_gpu;
+    size_t size = sizeof(double) * n;
+    CUDA_CALL( cudaMalloc((void **) &x_gpu, size) );
+    if(x) {
+        CUDA_CALL( cudaMemcpyAsync(x_gpu, x, size, cudaMemcpyHostToDevice, *stream) );
+    }
+    else {
+        CUDA_CALL( cudaMemsetAsync(x_gpu, 0, size, *stream) );
+    }
+    return x_gpu;
+}
+
+void cuda_info()
+{
+    int devCount;
+    cudaGetDeviceCount(&devCount);
+    printf("CUDA Device Query...\n");
+    printf("There are %d CUDA devices.\n", devCount);
+    for (int i = 0; i < devCount; i++) {
+        printf("\nCUDA Device #%d\n", i);
+        cudaDeviceProp devProp;
+        cudaGetDeviceProperties(&devProp, i);
+        cuda_printDeviceInfo(devProp);
+    }
+}
+
+#ifdef __cplusplus
+}
+#endif
