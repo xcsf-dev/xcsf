@@ -23,8 +23,8 @@
 
 #pragma once
 
-LAYER *neural_layer_noise_init(const XCSF *xcsf, NET *net, int in, double prob, double std);
-LAYER *neural_layer_noise_copy(const XCSF *xcsf, NET *net, const LAYER *from);
+LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std);
+LAYER *neural_layer_noise_copy(const XCSF *xcsf, const LAYER *from);
 void neural_layer_noise_rand(const XCSF *xcsf, const LAYER *l);
 void neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l, const double *input);
 void neural_layer_noise_backward(const XCSF *xcsf, const LAYER *l, const NET *net);

@@ -152,7 +152,7 @@ void neural_copy(const XCSF *xcsf, NET *to, const NET *from)
     int p = 0;
     for(const LLIST *iter = from->tail; iter != NULL; iter = iter->prev) {
         const LAYER *f = iter->layer;
-        LAYER *l = layer_copy(xcsf, to, f);
+        LAYER *l = layer_copy(xcsf, f);
         neural_layer_insert(xcsf, to, l, p); 
         p++;
     }
@@ -169,7 +169,7 @@ void neural_free(const XCSF *xcsf, NET *net)
     while(iter != NULL) {
         layer_free(xcsf, iter->layer);
         free(iter->layer);
-       net->tail = iter->prev;
+        net->tail = iter->prev;
         free(iter);
         iter = net->tail;
         net->n_layers--;
@@ -288,7 +288,6 @@ const double *neural_output(const XCSF *xcsf, const NET *net)
     LAYER *l = net->head->layer;
     CUDA_CALL( cudaMemcpy(l->output, l->output_gpu, sizeof(double) * l->n_outputs,
                 cudaMemcpyDeviceToHost) );
-
     return l->output;
 }
 

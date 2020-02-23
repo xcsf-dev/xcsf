@@ -31,7 +31,7 @@
 #include "neural_layer.h"
 #include "neural_layer_dropout.h"
 
-LAYER *neural_layer_dropout_init(const XCSF *xcsf, NET *net, int in, double prob)
+LAYER *neural_layer_dropout_init(const XCSF *xcsf, int in, double prob)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
@@ -50,7 +50,7 @@ LAYER *neural_layer_dropout_init(const XCSF *xcsf, NET *net, int in, double prob
     return l;
 }
 
-LAYER *neural_layer_dropout_copy(const XCSF *xcsf, NET *net, const LAYER *from)
+LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *from)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));

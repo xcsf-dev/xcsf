@@ -46,7 +46,7 @@ static _Bool mutate_functions(LAYER *l, double mu);
 static void neuron_add(LAYER *l, int n);
 static void neuron_remove(LAYER *l, int n);
 
-LAYER *neural_layer_connected_init(const XCSF *xcsf, NET *net, int in, int n_init, int n_max, int f, uint32_t o)
+LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
@@ -87,7 +87,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, NET *net, int in, int n_ini
     return l;
 }
 
-LAYER *neural_layer_connected_copy(const XCSF *xcsf, NET *net, const LAYER *from)
+LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *from)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
