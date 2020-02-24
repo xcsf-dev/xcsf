@@ -120,9 +120,9 @@ if(DOXYGEN_FOUND)
 endif()
  
 set(CMAKE_C_FLAGS_DEBUG "-g3")
-set(CMAKE_C_FLAGS_RELEASE "-Ofast -march=native -flto")
+set(CMAKE_C_FLAGS_RELEASE "-Ofast -march=native -flto -funroll-loops")
 set(CMAKE_CXX_FLAGS_DEBUG "-g3")
-set(CMAKE_CXX_FLAGS_RELEASE "-Ofast -march=native -flto")
+set(CMAKE_CXX_FLAGS_RELEASE "-Ofast -march=native -flto -funroll-loops")
 
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS_DEBUG: ${CMAKE_C_FLAGS_DEBUG}")

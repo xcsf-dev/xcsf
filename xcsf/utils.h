@@ -24,9 +24,30 @@
 #pragma once
  
 double rand_normal(double mu, double sigma);
-double constrain(double min, double max, double a);
 double rand_uniform(double min, double max);
-int iconstrain(int min, int max, int a);
 int irand_uniform(int min, int max);
 void random_init();
-void float_to_binary(double f, char *binary, int bits);
+
+/**
+ * @brief Returns a float constrained within the specified range.
+ * @param min Minimum value.
+ * @param max Maximum value.
+ * @param a The value to be constrained.
+ * @return The constrained number.
+ */
+static inline double constrain(double min, double max, double a)
+{
+    return (a < min) ? min : (a > max) ? max : a;
+}
+
+/**
+ * @brief Returns an integer constrained within the specified range.
+ * @param min Minimum value.
+ * @param max Maximum value.
+ * @param a The value to be constrained.
+ * @return The constrained number.
+ */
+static inline int iconstrain(int min, int max, int a)
+{
+    return (a < min) ? min : (a > max) ? max : a;
+}

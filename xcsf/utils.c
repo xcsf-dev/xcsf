@@ -85,7 +85,6 @@ double rand_uniform(double min, double max)
  */
 double rand_normal(double mu, double sigma)
 {
-    static const double epsilon = DBL_MIN;
     static const double two_pi = 2*M_PI;
     static double z1;
     static _Bool generate;
@@ -93,56 +92,9 @@ double rand_normal(double mu, double sigma)
     if(!generate) {
         return z1 * sigma + mu;
     }
-    double u1;
-    double u2;
-    do {
-        u1 = drand();
-        u2 = drand();
-    } while(u1 <= epsilon);
-    double z0 = sqrt(-2.0 * log(u1)) * cos(two_pi * u2);
-    z1 = sqrt(-2.0 * log(u1)) * sin(two_pi * u2);
+    double u1 = drand();
+    double u2 = drand();
+    double z0 = sqrt(-2 * log(u1)) * cos(two_pi * u2);
+    z1 = sqrt(-2 * log(u1)) * sin(two_pi * u2);
     return z0 * sigma + mu;
-}
-
-/**
- * @brief Returns a float constrained within the specified range.
- * @param min Minimum value.
- * @param max Maximum value.
- * @param a The value to be constrained.
- * @return The constrained number.
- */
-double constrain(double min, double max, double a)
-{
-    if (a < min) {return min;}
-    if (a > max) {return max;}
-    return a;
-}
-
-/**
- * @brief Returns an integer constrained within the specified range.
- * @param min Minimum value.
- * @param max Maximum value.
- * @param a The value to be constrained.
- * @return The constrained number.
- */
-int iconstrain(int min, int max, int a)
-{
-    if (a < min) {return min;}
-    if (a > max) {return max;}
-    return a;
-}
-
-/**
- * @brief Generates a binary string from a float.
- * @param f The float to binarise.
- * @param binary The converted binary string (set by this function).
- * @param bits The number of bits to use for binarising.
- */
-void float_to_binary(double f, char *binary, int bits)
-{
-    int a = (int)(f * pow(2, bits));
-    for(int i = 0; i < bits; i++) {
-        binary[i] = (a % 2) + '0';
-        a /= 2;
-    }
 }

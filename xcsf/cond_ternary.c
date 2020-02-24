@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include <stdbool.h>
 #include "xcsf.h"
 #include "utils.h"
@@ -47,6 +48,7 @@ typedef struct COND_TERNARY {
 } COND_TERNARY;
 
 static void cond_ternary_rand(const XCSF *xcsf, const CL *c);
+static void float_to_binary(double f, char *binary, int bits);
 
 void cond_ternary_init(const XCSF *xcsf, CL *c)
 {
@@ -234,4 +236,19 @@ size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp)
     s += fread(new->mu, sizeof(double), N_MU, fp);
     c->cond = new;
     return s;
+}
+
+/**
+ * @brief Generates a binary string from a float.
+ * @param f The float to binarise.
+ * @param binary The converted binary string (set by this function).
+ * @param bits The number of bits to use for binarising.
+ */
+static void float_to_binary(double f, char *binary, int bits)
+{
+    int a = (int)(f * pow(2, bits));
+    for(int i = 0; i < bits; i++) {
+        binary[i] = (a % 2) + '0';
+        a /= 2;
+    }
 }
