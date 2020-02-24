@@ -23,11 +23,12 @@
  
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <time.h>
 #include <limits.h>
 #include <float.h>
 #include <math.h>
-#include "mt64.h"
+#include "dSFMT.h"
 #include "utils.h"
 
 static double drand();
@@ -39,22 +40,22 @@ void random_init()
 {
     time_t now = time(0);
     const unsigned char *p = (unsigned char *)&now;
-    unsigned seed = 0;
+    uint32_t seed = 0;
     for(size_t i = 0; i < sizeof(now); i++) {
         seed = (seed * (UCHAR_MAX + 2U)) + p[i];
     }
-    init_genrand64(seed);
+    dsfmt_gv_init_gen_rand(seed);
 }
 
 /**
- * @brief Returns a uniform random float [0,1]
+ * @brief Returns a uniform random float (0,1)
  * @return A random float.
  *
- * @details Mersenne Twister 64bit version.
+ * @details double precision SIMD oriented Fast Mersenne Twister (dSFMT).
  */
 static double drand()
 {
-    return genrand64_real1();
+    return dsfmt_gv_genrand_open_open();
 }
 
 /**

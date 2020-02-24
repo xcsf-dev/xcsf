@@ -20,6 +20,8 @@ set(SOURCE
     act_integer.h
     action.c
     action.h
+    blas.c
+    blas.h
     cl.c
     cl.h
     clset.c
@@ -44,6 +46,11 @@ set(SOURCE
     config.h
     dgp.c
     dgp.h
+    dSFMT.c
+    dSFMT.h
+    dSFMT-common.h
+    dSFMT-params.h
+    dSFMT-params19937.h
     ea.c
     ea.h
     env.c
@@ -54,15 +61,11 @@ set(SOURCE
     env_maze.h
     env_mux.c
     env_mux.h
-    blas.c
-    blas.h
     gp.c
     gp.h
     loss.c
     loss.h
     main.c
-    mt19937-64.c
-    mt64.h
     neural.c
     neural.h
     neural_activations.c
