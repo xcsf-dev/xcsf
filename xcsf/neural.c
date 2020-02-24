@@ -357,6 +357,7 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
  */
 const double *neural_output(const XCSF *xcsf, const NET *net)
 {
+    (void)xcsf;
     LAYER *l = net->head->layer;
     return l->output;
 }
