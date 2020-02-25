@@ -16,6 +16,7 @@ before_build:
   # Set MinGW and Python3 path
   - set "PATH=%PYTHON_DIR%;%PATH%;%BINDIR%;"
   - cd build
+  - git submodule update --init --recursive
   - cmake --version
   - cmake -DCMAKE_BUILD_TYPE=%BUILD_TYPE% %CMAKE_ARGS% %CMAKE_EXTRA% -G "%GENERATOR%" ..
 
