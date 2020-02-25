@@ -111,9 +111,14 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
  */
 void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
 {
+    // find the layer
     LLIST *iter = net->tail; 
     for(int i = 0; i < p && iter != NULL; i++) {
         iter = iter->prev;
+    }
+    if(iter == NULL) {
+        printf("neural_layer_remove(): error finding layer to remove\n");
+        exit(EXIT_FAILURE);
     }
     // head
     if(iter->prev == NULL) {
