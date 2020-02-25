@@ -21,10 +21,14 @@
  * @brief Python library wrapper functions.
  */ 
 
-#include <string>
-#include <vector>
+#ifdef _WIN32 // Try to work around https://bugs.python.org/issue11566
+#define _hypot hypot
+#endif
+
 #include "../pybind11/include/pybind11/pybind11.h"
 #include "../pybind11/include/pybind11/numpy.h"
+#include <string>
+#include <vector>
 
 namespace py = pybind11;
 
