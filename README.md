@@ -120,7 +120,7 @@ $ make
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=Release -G "MinGW Makefiles" ..
-$ make
+$ cmake --build . --config Release
 ```
 
 ### Documentation (Doxygen + graphviz)
