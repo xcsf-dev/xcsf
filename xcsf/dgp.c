@@ -248,50 +248,11 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
  * @param dgp1 The first DGP graph to perform crossover.
  * @param dgp2 The second DGP graph to perform crossover.
  * @return Whether crossover was performed.
- *
- * @details Due to the competing conventions problem this may degrade
- * performance.
  */
 _Bool graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 {
-    if(rand_uniform(0,1) > xcsf->P_CROSSOVER) {
-        return false;
-    }
-    // number of update cycles
-    if(rand_uniform(0,1) < 0.5) {
-        int tmp = dgp1->t;
-        dgp1->t = dgp2->t;
-        dgp2->t = tmp;
-    }
-    for(int i = 0; i < dgp1->n; i++) {
-        // functions
-        if(rand_uniform(0,1) < 0.5) {
-            int tmp = dgp1->function[i];
-            dgp1->function[i] = dgp2->function[i];
-            dgp2->function[i] = tmp;
-        }
-        // initial states
-        if(rand_uniform(0,1) < 0.5) {
-            double tmp = dgp1->initial_state[i];
-            dgp1->initial_state[i] = dgp2->initial_state[i];
-            dgp2->initial_state[i] = tmp;
-        }     
-        // states
-        if(rand_uniform(0,1) < 0.5) {
-            double tmp = dgp1->state[i];
-            dgp1->state[i] = dgp2->state[i];
-            dgp2->state[i] = tmp;
-        } 
-    }
-    // connectivity map
-    for(int i = 0; i < dgp1->klen; i++) {
-        if(rand_uniform(0,1) < 0.5) {
-            double tmp = dgp1->connectivity[i];
-            dgp1->connectivity[i] = dgp2->connectivity[i];
-            dgp2->connectivity[i] = tmp;
-        }
-    }  
-    return true;
+    (void)xcsf; (void)dgp1; (void)dgp2;
+    return false;
 }
 
 /**
