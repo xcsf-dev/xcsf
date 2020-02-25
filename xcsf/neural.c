@@ -70,17 +70,7 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
         net->n_inputs = l->n_inputs;
         net->n_outputs = l->n_outputs;
     } 
-    // insert at head
-    else if(p >= net->n_layers) {
-        LLIST *new = malloc(sizeof(LLIST));
-        new->layer = l;
-        new->next = net->head;
-        new->prev = NULL;
-        net->head->prev = new;
-        net->head = new;
-        net->n_outputs = l->n_outputs;
-    }
-    // insert before head
+    // insert
     else {
         LLIST *iter = net->tail; 
         for(int i = 0; i < p && iter != NULL; i++) {
@@ -89,15 +79,25 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
         LLIST *new = malloc(sizeof(LLIST));
         new->layer = l;
         new->prev = iter;
-        new->next = iter->next;
-        iter->next = new;
-        // new tail
-        if(new->next == NULL) {
-            net->tail = new;
-            net->n_inputs = l->n_inputs;
+        // new head
+        if(iter == NULL) {
+            new->next = net->head;
+            net->head->prev = new;
+            net->head = new;
+            net->n_outputs = l->n_outputs;
         }
         else {
-            new->next->prev = new;
+            new->next = iter->next;
+            iter->next = new;
+            // new tail
+            if(iter->next == NULL) {
+                net->tail = new;
+                net->n_inputs = l->n_inputs;
+            }
+            // middle
+            else {
+                new->next->prev = new;
+            }
         }
     }
     net->n_layers++;
