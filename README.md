@@ -119,8 +119,8 @@ $ make
 ```
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
-$ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -G "MinGW Makefiles" ..
-$ cmake --build . --config Release
+$ cmake -DCMAKE_BUILD_TYPE=Release -G "MinGW Makefiles" ..
+$ make
 ```
 
 ### Documentation (Doxygen + graphviz)
