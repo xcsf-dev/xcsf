@@ -109,14 +109,16 @@ void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x, const doub
         pred->weights[var*n] += xcsf->PRED_X0 * correction;
         int idx = 1;
         // update linear coefficients
-        for(int i = 0; i < xcsf->x_dim; i++, idx++) {
+        for(int i = 0; i < xcsf->x_dim; i++) {
             pred->weights[var*n+idx] += correction * x[i];
+            idx++;
         }
         if(xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
             // update quadratic coefficients
             for(int i = 0; i < xcsf->x_dim; i++) {
-                for(int j = i; j < xcsf->x_dim; j++, idx++) {
+                for(int j = i; j < xcsf->x_dim; j++) {
                     pred->weights[var*n+idx] += correction * x[i] * x[j];
+                    idx++;
                 }
             }
         }
@@ -132,14 +134,16 @@ void pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x)
         double pre = xcsf->PRED_X0 * pred->weights[var*n];
         int idx = 1;
         // multiply linear coefficients with the prediction input
-        for(int i = 0; i < xcsf->x_dim; i++, idx++) {
+        for(int i = 0; i < xcsf->x_dim; i++) {
             pre += pred->weights[var*n+idx] * x[i];
+            idx++;
         }
         if(xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
             // multiply quadratic coefficients with prediction input
             for(int i = 0; i < xcsf->x_dim; i++) {
-                for(int j = i; j < xcsf->x_dim; j++, idx++) {
+                for(int j = i; j < xcsf->x_dim; j++) {
                     pre += pred->weights[var*n+idx] * x[i] * x[j];
+                    idx++;
                 }
             }
         }
