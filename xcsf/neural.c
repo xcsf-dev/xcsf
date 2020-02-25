@@ -61,7 +61,7 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
 {
     (void)xcsf;
     // empty list
-    if(net->head == NULL) {
+    if(net->head == NULL || net->tail == NULL) {
         net->head = malloc(sizeof(LLIST));
         net->head->layer = l;
         net->head->prev = NULL;
