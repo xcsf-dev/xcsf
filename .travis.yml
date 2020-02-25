@@ -24,7 +24,7 @@ matrix:
       compiler: gcc
       addons: &gcc6
         apt:
-          packages: ['g++-6', 'python3', 'libboost-python-dev', 'libboost-numpy-dev']
+          packages: ['g++-6', 'python3']
         sonarcloud:
           organization: "rpreen"
       env: BADGE=linux BUILD_TYPE="Release" XCSF_PYLIB="ON"
@@ -42,9 +42,6 @@ before_script:
       brew install llvm
       brew install libomp
       brew install cmake || brew upgrade cmake
-      if [[ "${XCSF_PYLIB}" == "ON" ]]; then
-        brew install boost-python3
-      fi
     fi
 
 script:

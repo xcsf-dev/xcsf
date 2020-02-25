@@ -127,7 +127,7 @@ else()
 
     set(SOURCE
         ${SOURCE}
-        python_wrapper.cpp
+        pybind_wrapper.cpp
     )
 
     PYTHON_ADD_MODULE(xcsf ${SOURCE})
