@@ -131,23 +131,22 @@ void pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x)
     int n = pred->n;
     for(int var = 0; var < xcsf->y_dim; var++) {
         // first coefficient is offset
-        double pre = xcsf->PRED_X0 * pred->weights[var*n];
+        c->prediction[var] = xcsf->PRED_X0 * pred->weights[var*n];
         int idx = 1;
         // multiply linear coefficients with the prediction input
         for(int i = 0; i < xcsf->x_dim; i++) {
-            pre += pred->weights[var*n+idx] * x[i];
+            c->prediction[var] += pred->weights[var*n+idx] * x[i];
             idx++;
         }
         if(xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
             // multiply quadratic coefficients with prediction input
             for(int i = 0; i < xcsf->x_dim; i++) {
                 for(int j = i; j < xcsf->x_dim; j++) {
-                    pre += pred->weights[var*n+idx] * x[i] * x[j];
+                    c->prediction[var] += pred->weights[var*n+idx] * x[i] * x[j];
                     idx++;
                 }
             }
         }
-        c->prediction[var] = pre;
     }
 } 
 
