@@ -163,12 +163,7 @@ _Bool cond_ternary_mutate(const XCSF *xcsf, const CL *c)
     for(int i = 0; i < cond->len; i++) {
         if(rand_uniform(0,1) < cond->mu[0]) {
             if(cond->string[i] == DONT_CARE) {
-                if(rand_uniform(0,1) < 0.5) {
-                    cond->string[i] = '1';
-                }
-                else {
-                    cond->string[i] = '0';
-                }
+                cond->string[i] = irand_uniform(0,2) + '0';
             }
             else {
                 cond->string[i] = DONT_CARE;
