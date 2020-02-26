@@ -181,7 +181,6 @@ static inline void layer_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev) {
 /**
  * @brief Creates and returns a copy of a specified layer.
  * @param xcsf The XCSF data structure.
- * @param net The network owning the layer.
  * @param from The source layer.
  * @return A new copied layer.
  */
