@@ -223,14 +223,16 @@ void pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x)
         double pre = xcsf->PRED_X0 * pred->weights[var*n];
         int idx = 1;
         // multiply linear coefficients with the prediction input
-        for(int i = 0; i < xcsf->x_dim; i++, idx++) {
+        for(int i = 0; i < xcsf->x_dim; i++) {
             pre += pred->weights[var*n+idx] * x[i];
+            idx++;
         }
         if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
             // multiply quadratic coefficients with prediction input
             for(int i = 0; i < xcsf->x_dim; i++) {
-                for(int j = i; j < xcsf->x_dim; j++, idx++) {
+                for(int j = i; j < xcsf->x_dim; j++) {
                     pre += pred->weights[var*n+idx] * x[i] * x[j];
+                    idx++;
                 }
             }
         }
