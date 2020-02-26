@@ -90,7 +90,6 @@ See `default.ini` for a full list of options.
 * All of the above for building the stand-alone executable.
 * C++11 compliant compiler.
 * [Python](https://www.python.org "Python") (>= 3)
-* [Boost](https://www.boost.org "Boost") (>= 1.56.0 for Python3)
 
 *******************************************************************************
 
@@ -99,7 +98,6 @@ See `default.ini` for a full list of options.
 ### Ubuntu 18.04
 
 ```
-$ sudo apt install python3 libboost-python-dev libboost-numpy-dev
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON ..
@@ -109,7 +107,7 @@ $ make
 ### OSX (XCode 10.1 / Clang)
 
 ```
-$ brew install libomp cmake python boost-python3
+$ brew install libomp cmake python
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON ..
@@ -121,7 +119,7 @@ $ make
 ```
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
-$ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -G "MinGW Makefiles" ..
+$ cmake -DCMAKE_BUILD_TYPE=Release -G "MinGW Makefiles" ..
 $ cmake --build . --config Release
 ```
 
