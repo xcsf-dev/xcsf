@@ -116,12 +116,13 @@ static void env_csv_read(const char *fname, double **data, int *n_samples, int *
     *n_dim = env_csv_dim(fin);
     if(*n_samples > 0 && *n_dim > 0) {
         env_csv_read_data(fin, data, *n_samples, *n_dim);
+        fclose(fin);
     }
     else {
         printf("Error reading file: %s. No samples found\n", fname);
+        fclose(fin);
         exit(EXIT_FAILURE);
     }
-    fclose(fin);
     printf("Loaded: %s: %d samples, %d dimensions\n", fname, *n_samples, *n_dim);
 }
 
