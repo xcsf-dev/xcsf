@@ -34,6 +34,8 @@
 
 static const char *function_string(int function);
 static double node_activate(int function, const double *inputs, int k);
+static void synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs);
+static int random_connection(int n_nodes, int n_inputs);
 
 /**
  * @brief Initialises a new DGP graph.
@@ -47,8 +49,9 @@ void graph_init(const XCSF *xcsf, GRAPH *dgp, int n)
     dgp->n = n;
     dgp->klen = n * xcsf->MAX_K;
     dgp->state = malloc(sizeof(double) * dgp->n);
-    dgp->tmp = malloc(sizeof(double) * dgp->n);
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
+    dgp->tmp_state = malloc(sizeof(double) * dgp->n);
+    dgp->tmp_input = malloc(sizeof(double) * xcsf->MAX_K);
     dgp->function = malloc(sizeof(int) * dgp->n);
     dgp->connectivity = malloc(sizeof(int) * dgp->klen);
     sam_init(xcsf, dgp->mu, DGP_N_MU);
@@ -113,19 +116,27 @@ void graph_rand(const XCSF *xcsf, GRAPH *dgp)
         dgp->state[i] = rand_uniform(0,1);
     }
     for(int i = 0; i < dgp->klen; i++) {
-        // other nodes within the graph
-        if(rand_uniform(0,1) < 0.5) {
-            dgp->connectivity[i] = irand_uniform(0,dgp->n);
-        }
-        // external inputs
-        else {
-            dgp->connectivity[i] = -(irand_uniform(1,xcsf->x_dim+1));
-        }
+        dgp->connectivity[i] = random_connection(dgp->n, xcsf->x_dim);
     }
 }
 
 /**
- * @brief Synchronously updates a DGP graph T cycles.
+ * @brief Returns a random connection.
+ * @param n_nodes The number of nodes in the graph.
+ * @param n_inputs The number of external inputs to the graph.
+ */
+static int random_connection(int n_nodes, int n_inputs)
+{
+    // another node within the graph
+    if(rand_uniform(0,1) < 0.5) {
+        return irand_uniform(0, n_nodes) + n_inputs;
+    }
+    // external input
+    return irand_uniform(0, n_inputs);
+}
+
+/**
+ * @brief Updates a DGP graph T cycles.
  * @param xcsf The XCSF data structure.
  * @param dgp The DGP graph to update.
  * @param inputs The inputs to the graph.
@@ -135,25 +146,32 @@ void graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
     if(xcsf->RESET_STATES) {
         graph_reset(xcsf, dgp);
     }
-    double in[xcsf->MAX_K];
     for(int t = 0; t < dgp->t; t++) {
-        // synchronously update each node in parallel
-        for(int i = 0; i < dgp->n; i++) {
-            int shift = i * xcsf->MAX_K;
-            // each connection
-            for(int k = 0; k < xcsf->MAX_K; k++) {
-                int c = dgp->connectivity[shift + k];
-                if(c < 0) { // external input
-                    in[k] = inputs[abs(c)-1];
-                }
-                else { // another node within the graph
-                    in[k] = dgp->state[c];
-                }
-            }
-            dgp->tmp[i] = node_activate(dgp->function[i], in, xcsf->MAX_K);
-        }
-        memcpy(dgp->state, dgp->tmp, sizeof(double) * dgp->n);
+        synchronous_update(xcsf, dgp, inputs);
     }
+}
+
+/**
+ * @brief Performs a synchronous update.
+ * @param xcsf The XCSF data structure.
+ * @param dgp The DGP graph to update.
+ * @param inputs The inputs to the graph.
+ */
+static void synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
+{
+    for(int i = 0; i < dgp->n; i++) {
+        for(int k = 0; k < xcsf->MAX_K; k++) {
+            int c = dgp->connectivity[i * xcsf->MAX_K + k];
+            if(c < xcsf->x_dim) { // external input
+                dgp->tmp_input[k] = inputs[c];
+            }
+            else { // another node within the graph
+                dgp->tmp_input[k] = dgp->state[c - xcsf->x_dim];
+            }
+        }
+        dgp->tmp_state[i] = node_activate(dgp->function[i], dgp->tmp_input, xcsf->MAX_K);
+    }
+    memcpy(dgp->state, dgp->tmp_state, sizeof(double) * dgp->n);
 }
 
 /**
@@ -186,8 +204,9 @@ void graph_free(const XCSF *xcsf, const GRAPH *dgp)
     (void)xcsf;
     free(dgp->connectivity);
     free(dgp->state);
-    free(dgp->tmp);
     free(dgp->initial_state);
+    free(dgp->tmp_state);
+    free(dgp->tmp_input);
     free(dgp->function);
 }
 
@@ -201,39 +220,29 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
 {
     sam_adapt(xcsf, dgp->mu, DGP_N_MU);
     _Bool mod = false;
-    int orig;
+    // mutate functions
     for(int i = 0; i < dgp->n; i++) {
-        // mutate functions
         if(rand_uniform(0,1) < dgp->mu[0]) {
-            orig = dgp->function[i];
+            int orig = dgp->function[i];
             dgp->function[i] = irand_uniform(0, NUM_FUNC);
             if(orig != dgp->function[i]) {
                 mod = true;
             }
         }
-        // mutate connectivity map
-        int shift = i * xcsf->MAX_K;
-        for(int j = 0; j < xcsf->MAX_K; j++) {
-            int idx = shift + j;
-            if(rand_uniform(0,1) < dgp->mu[1]) {
-                orig = dgp->connectivity[idx];
-                // external connection
-                if(rand_uniform(0,1) < 0.5) {
-                    dgp->connectivity[idx] = -(irand_uniform(1,xcsf->x_dim+1));
-                }
-                // another node
-                else {
-                    dgp->connectivity[idx] = irand_uniform(0,dgp->n);
-                }
-                if(orig != dgp->connectivity[idx]) {
-                    mod = true;
-                }
+    }
+    // mutate connectivity map
+    for(int i = 0; i < dgp->klen; i++) {
+        if(rand_uniform(0,1) < dgp->mu[1]) {
+            int orig = dgp->connectivity[i];
+            dgp->connectivity[i] = random_connection(dgp->n, xcsf->x_dim);
+            if(orig != dgp->connectivity[i]) {
+                mod = true;
             }
-        }   
+        }
     }               
     // mutate number of update cycles
     if(rand_uniform(0,1) < dgp->mu[2]) {
-        orig = dgp->t;
+        int orig = dgp->t;
         dgp->t = irand_uniform(1,xcsf->MAX_T);
         if(orig != dgp->t) {
             mod = true;
@@ -344,8 +353,9 @@ size_t graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp)
     s += fread(&dgp->t, sizeof(int), 1, fp);
     s += fread(&dgp->klen, sizeof(int), 1, fp);
     dgp->state = malloc(sizeof(double) * dgp->n);
-    dgp->tmp = malloc(sizeof(double) * dgp->n);
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
+    dgp->tmp_state = malloc(sizeof(double) * dgp->n);
+    dgp->tmp_input = malloc(sizeof(double) * xcsf->MAX_K);
     dgp->function = malloc(sizeof(int) * dgp->n);
     dgp->connectivity = malloc(sizeof(int) * dgp->klen);
     s += fread(dgp->state, sizeof(double), dgp->n, fp);
