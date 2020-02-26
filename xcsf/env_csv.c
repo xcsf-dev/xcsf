@@ -178,7 +178,7 @@ static void env_csv_read_data(FILE *fin, double **data, int n_samples, int dim)
     char line[MAX_COLS];
     char *saveptr;
     int i = 0;
-    while(fgets(line, MAX_COLS, fin) != NULL) {
+    while(fgets(line, MAX_COLS, fin) != NULL && i < n_samples) {
         (*data)[i * dim] = atof(strtok_r(line, DELIM, &saveptr));
         for(int j = 1; j < dim; j++) {
             (*data)[i * dim + j] = atof(strtok_r(NULL, DELIM, &saveptr));
