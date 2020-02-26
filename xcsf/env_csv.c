@@ -38,6 +38,9 @@
 
 static void env_csv_read(const char *fname, double **data, int *num_prob, int *num_vars);
 static void env_csv_input_read(const char *infile, INPUT *train_data, INPUT *test_data);
+static void env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim);
+static int env_csv_samples(FILE *fin);
+static int env_csv_dim(FILE *fin);
 
 /**
  * @brief Initialises a CSV input environment from a specified filename.
@@ -98,54 +101,89 @@ static void env_csv_input_read(const char *infile, INPUT *train_data, INPUT *tes
  * @param fname The name of the csv file to read.
  * @param data The data structure to load the data (set by this function).
  * @param n_samples The number of samples in the dataset (set by this function).
- * @param dim The number of dimensions in the dataset (set by this function).
+ * @param n_dim The number of dimensions in the dataset (set by this function).
  *
- * @details Provided a file name will set the data, n_samples, and dim.
+ * @details Provided a file name will set the data, n_samples, and n_dim.
  */
-static void env_csv_read(const char *fname, double **data, int *n_samples, int *dim)
+static void env_csv_read(const char *fname, double **data, int *n_samples, int *n_dim)
 {
     FILE *fin = fopen(fname, "rt");
     if(fin == 0) {
         printf("Error opening file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }    
-    // ascertain the file length and number of variables per line
-    *n_samples = 0;
-    *dim = 0;
-    char line[MAX_COLS];
-    char *saveptr;
-    while(fgets(line, MAX_COLS, fin) != NULL) {
-        if(*n_samples > MAX_ROWS) {
-            printf("data file %s is too big; maximum: %d\n", fname, MAX_ROWS);
-            exit(EXIT_FAILURE);
-        }        
-        // use the first line to count the number of variables on a line
-        if(*n_samples == 0) {
-            const char *ptok = strtok_r(line, DELIM, &saveptr);
-            while(ptok != NULL) {
-                if(strnlen(ptok,MAX_COLS) > 0) {
-                    (*dim)++;
-                }
-                ptok = strtok_r(NULL, DELIM, &saveptr);
-            }
-        }
-        (*n_samples)++; // count the number of lines
+    *n_samples = env_csv_samples(fin);
+    *n_dim = env_csv_dim(fin);
+    if(*n_samples > 0 && *n_dim > 0) {
+        env_csv_read_data(fin, data, *n_samples, *n_dim);
     }
-    // read data file to memory
-    if(*dim > 0 && *n_samples > 0) {
-        rewind(fin);
-        *data = malloc(sizeof(double) * (*dim) * (*n_samples));
-        int i = 0;
-        while(fgets(line,MAX_COLS,fin) != NULL) {
-            (*data)[i * (*dim)] = atof(strtok_r(line, DELIM, &saveptr));
-            for(int j = 1; j < *dim; j++) {
-                (*data)[i * (*dim)+j] = atof(strtok_r(NULL, DELIM, &saveptr));
-            }
-            i++;
-        }
+    else {
+        printf("Error reading file: %s. No samples found\n", fname);
+        exit(EXIT_FAILURE);
     }
     fclose(fin);
-    printf("Loaded: %s: %d samples, %d dimensions\n", fname, *n_samples, *dim);
+    printf("Loaded: %s: %d samples, %d dimensions\n", fname, *n_samples, *n_dim);
+}
+
+/**
+ * @brief Returns the number of samples in a csv file.
+ * @param fin The csv file.
+ * @return The number of samples.
+ */
+static int env_csv_samples(FILE *fin)
+{
+    int n_samples = 0;
+    char line[MAX_COLS];
+    while(fgets(line, MAX_COLS, fin) != NULL) {
+        n_samples++;
+    }
+    return n_samples;
+}
+
+/**
+ * @brief Returns the number of dimensions in a csv file.
+ * @param fin The csv file.
+ * @return The number of dimensions.
+ */
+static int env_csv_dim(FILE *fin)
+{
+    rewind(fin);
+    int n_dim = 0;
+    char line[MAX_COLS];
+    char *saveptr;
+    if(fgets(line, MAX_COLS, fin) != NULL) {
+        const char *ptok = strtok_r(line, DELIM, &saveptr);
+        while(ptok != NULL) {
+            if(strnlen(ptok,MAX_COLS) > 0) {
+                n_dim++;
+            }
+            ptok = strtok_r(NULL, DELIM, &saveptr);
+        }
+    }
+    return n_dim;
+}
+
+/**
+ * @brief Reads the data from a csv file.
+ * @param fin The csv file.
+ * @param data The data (set by this function).
+ * @param n_samples The number of samples.
+ * @param n_dim The number of dimensions.
+ */
+static void env_csv_read_data(FILE *fin, double **data, int n_samples, int dim)
+{
+    rewind(fin);
+    *data = malloc(sizeof(double) * dim * n_samples);
+    char line[MAX_COLS];
+    char *saveptr;
+    int i = 0;
+    while(fgets(line, MAX_COLS, fin) != NULL) {
+        (*data)[i * dim] = atof(strtok_r(line, DELIM, &saveptr));
+        for(int j = 1; j < dim; j++) {
+            (*data)[i * dim + j] = atof(strtok_r(NULL, DELIM, &saveptr));
+        }
+        i++;
+    }
 }
 
 void env_csv_reset(const XCSF *xcsf)
