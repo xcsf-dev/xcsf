@@ -127,7 +127,7 @@ static void clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev
  * @param del A pointer to the rule to be deleted (set by this function).
  * @param delprev A pointer to the rule previous to the one being deleted (set by this function).
  *
- * @details Two classifiers are selected using roulete wheel selection with the
+ * @details Two classifiers are selected using roulette wheel selection with the
  * deletion vote and the one with the largest condition + prediction size is
  * chosen. For fixed-length representations the effect is the same as one
  * roulete spin.
@@ -135,27 +135,28 @@ static void clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev
 static void clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev)
 {
     double avg_fit = clset_total_fit(&xcsf->pset) / xcsf->pset.num;
-    double total = 0;
+    double total_vote = 0;
     for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
-        total += cl_del_vote(xcsf, iter->cl, avg_fit);
+        total_vote += cl_del_vote(xcsf, iter->cl, avg_fit);
     }
     int delsize = 0;
     for(int i = 0; i < 2; i++) {
-        double p = rand_uniform(0,total);
-        double sum = 0;
+        // perform a single roulette spin with the deletion vote
+        CLIST *iter = xcsf->pset.list;
         CLIST *prev = NULL;
-        for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
-            sum += cl_del_vote(xcsf, iter->cl, avg_fit);
-            if(sum > p) {
-                int size = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
-                if(*del == NULL || size > delsize) {
-                    *del = iter;
-                    *delprev = prev;
-                    delsize = size;
-                }
-                break;
-            }
+        double p = rand_uniform(0, total_vote);
+        double sum = cl_del_vote(xcsf, iter->cl, avg_fit);
+        while(p > sum) {
             prev = iter;
+            iter = iter->next;
+            sum += cl_del_vote(xcsf, iter->cl, avg_fit);
+        }
+        // select the rule for deletion if it is the largest sized winner
+        int size = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
+        if(*del == NULL || size > delsize) {
+            *del = iter;
+            *delprev = prev;
+            delsize = size;
         }
     }
 }
