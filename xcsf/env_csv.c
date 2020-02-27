@@ -171,17 +171,17 @@ static int env_csv_dim(FILE *fin)
  * @param n_samples The number of samples.
  * @param n_dim The number of dimensions.
  */
-static void env_csv_read_data(FILE *fin, double **data, int n_samples, int dim)
+static void env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim)
 {
     rewind(fin);
-    *data = malloc(sizeof(double) * dim * n_samples);
+    *data = malloc(sizeof(double) * n_dim * n_samples);
     char line[MAX_COLS];
     char *saveptr;
     int i = 0;
     while(fgets(line, MAX_COLS, fin) != NULL && i < n_samples) {
-        (*data)[i * dim] = atof(strtok_r(line, DELIM, &saveptr));
-        for(int j = 1; j < dim; j++) {
-            (*data)[i * dim + j] = atof(strtok_r(NULL, DELIM, &saveptr));
+        (*data)[i * n_dim] = atof(strtok_r(line, DELIM, &saveptr));
+        for(int j = 1; j < n_dim; j++) {
+            (*data)[i * n_dim + j] = atof(strtok_r(NULL, DELIM, &saveptr));
         }
         i++;
     }

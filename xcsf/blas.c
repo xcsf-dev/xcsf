@@ -86,7 +86,24 @@ static void gemm_tt(int M, int N, int K, double ALPHA,
     }
 }
 
-static void gemm_cpu(int TA, int TB, int M, int N, int K, double ALPHA,
+/**
+ * @brief Performs the matrix-matrix multiplication:
+ * \f$ C = \alpha \mbox{op}(A) \mbox{op}(B) + \beta C \f$.
+ * @param TA Operation op(A) that is non- or (conj.) transpose.
+ * @param TB Operation op(B) that is non- or (conj.) transpose.
+ * @param M Number of rows of matrix op(A) and C.
+ * @param N Number of columns of matrix op(B) and C.
+ * @param K Number of columns of op(A) and rows of op(B).
+ * @param ALPHA Scalar used for multiplication.
+ * @param A Array of dimension lda × K with lda >= max(1,M) if TA=0 and lda × M with lda >= max(1,K) otherwise.
+ * @param lda Leading dimension of two-dimensional array used to store the matrix A.
+ * @param B Array of dimension ldb × N with ldb >= max(1,K) if TB=0 and ldb × K with ldb >= max(1,N) otherwise.
+ * @param ldb Leading dimension of two-dimensional array used to store matrix B.
+ * @param BETA Scalar used for multiplication. If BETA=0, C does not have to be a valid input.
+ * @param C Array of dimension ldc × N with ldc >= max(1,M).
+ * @param ldc Leading dimension of a two-dimensional array used to store the matrix C.
+ */
+void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
         const double *A, int lda,
         const double *B, int ldb,
         double BETA,
@@ -111,61 +128,64 @@ static void gemm_cpu(int TA, int TB, int M, int N, int K, double ALPHA,
     }
 }
 
-static void axpy_cpu(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
+/**
+ * @brief Multiplies the vector X by the scalar ALPHA and adds it to the vector Y.
+ * @param N The number of elements in vectors X and Y.
+ * @param ALPHA Scalar used for multiplication.
+ * @param X Vector with N elements.
+ * @param INCX Stride between consecutive elements of X.
+ * @param Y Vector with N elements.
+ * @param INCY Stride between consecutive elements of Y.
+ */
+void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
 {
     for(int i = 0; i < N; i++) {
         Y[i*INCY] += ALPHA * X[i*INCX];
     }
 }
 
-static void scal_cpu(int N, double ALPHA, double *X, int INCX)
+/**
+ * @brief Scales the vector X by the scalar ALPHA and overwrites it with the result.
+ * @param N The number of elements in vector X.
+ * @param ALPHA Scalar used for multiplication.
+ * @param X Vector with N elements.
+ * @param INCX Stride between consecutive elements of X.
+ */
+void blas_scal(int N, double ALPHA, double *X, int INCX)
 {
     for(int i = 0; i < N; i++) {
         X[i*INCX] *= ALPHA;
     }
 }
 
-static void fill_cpu(int N, double ALPHA, double *X, int INCX)
+/**
+ * @brief Fills the vector X with the value ALPHA.
+ * @param N The number of elements in vector X.
+ * @param ALPHA The value to fill the vector.
+ * @param X Vector with N elements.
+ * @param INCX Stride between consecutive elements of X.
+ */
+void blas_fill(int N, double ALPHA, double *X, int INCX)
 {
     for(int i = 0; i < N; i++) {
         X[i*INCX] = ALPHA;
     }
 }
 
-static double dot_cpu(int N, const double *X, int INCX, const double *Y, int INCY)
+/**
+ * @brief Computes the dot product of two vectors.
+ * @param N The number of elements in vectors X and Y.
+ * @param X Vector with N elements.
+ * @param INCX Stride between consecutive elements of X.
+ * @param Y Vector with N elements.
+ * @param INCY Stride between consecutive elements of Y.
+ * @return The resulting dot product.
+ */
+double blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
 {
     double dot = 0;
     for(int i = 0; i < N; i++) {
         dot += X[i*INCX] * Y[i*INCY];
     }
     return dot;
-}
-
-void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
-        const double *A, int lda,
-        const double *B, int ldb,
-        double BETA,
-        double *C, int ldc)
-{
-    gemm_cpu(TA,TB,M,N,K,ALPHA,A,lda,B,ldb,BETA,C,ldc);
-}
-
-void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
-{
-    axpy_cpu(N,ALPHA,X,INCX,Y,INCY);
-}
-
-void blas_scal(int N, double ALPHA, double *X, int INCX)
-{
-    scal_cpu(N,ALPHA,X,INCX);
-}
-
-void blas_fill(int N, double ALPHA, double *X, int INCX)
-{
-    fill_cpu(N,ALPHA,X,INCX);
-}
-
-double blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
-{
-    return dot_cpu(N,X,INCX,Y,INCY);
 }
