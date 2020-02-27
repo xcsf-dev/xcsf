@@ -99,7 +99,7 @@ static void gemm_tt(int M, int N, int K, double ALPHA,
  * @param lda Leading dimension of two-dimensional array used to store the matrix A.
  * @param B Array of dimension ldb × N with ldb >= max(1,K) if TB=0 and ldb × K with ldb >= max(1,N) otherwise.
  * @param ldb Leading dimension of two-dimensional array used to store matrix B.
- * @param BETA Scalar used for multiplication. If BETA=0, C does not have to be a valid input.
+ * @param BETA Scalar used for multiplication.
  * @param C Array of dimension ldc × N with ldc >= max(1,M).
  * @param ldc Leading dimension of a two-dimensional array used to store the matrix C.
  */
