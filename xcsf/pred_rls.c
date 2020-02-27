@@ -69,7 +69,7 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
     pred->matrix = malloc(n_sqrd * sizeof(double));
     init_matrix(xcsf, pred->matrix, pred->n);
     // initialise temporary storage for weight updating
-    pred->tmp_input = calloc(pred->n, sizeof(double));
+    pred->tmp_input = malloc(pred->n * sizeof(double));
     pred->tmp_vec = calloc(pred->n, sizeof(double));
     pred->tmp_matrix1 = calloc(n_sqrd, sizeof(double));
     pred->tmp_matrix2 = calloc(n_sqrd, sizeof(double));
@@ -112,22 +112,9 @@ void pred_rls_free(const XCSF *xcsf, const CL *c)
 
 void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
+    (void)x;
     const PRED_RLS *pred = c->pred;
     int n = pred->n;
-    pred->tmp_input[0] = xcsf->PRED_X0;
-    int idx = 1;
-    // linear terms
-    for(int i = 0; i < xcsf->x_dim; i++) {
-        pred->tmp_input[idx++] = x[i];
-    }
-    // quadratic terms
-    if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
-        for(int i = 0; i < xcsf->x_dim; i++) {
-            for(int j = i; j < xcsf->x_dim; j++) {
-                pred->tmp_input[idx++] = x[i] * x[j];
-            }
-        }
-    }
     // gain vector = matrix * tmp_input
     blas_gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
     // divide gain vector by lambda + tmp_vec
@@ -165,24 +152,9 @@ void pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     const PRED_RLS *pred = c->pred;
     int n = pred->n;
+    pred_transform_input(xcsf, x, pred->tmp_input);
     for(int var = 0; var < xcsf->y_dim; var++) {
-        // first coefficient is offset
-        c->prediction[var] = xcsf->PRED_X0 * pred->weights[var*n];
-        int idx = 1;
-        // multiply linear coefficients with the prediction input
-        for(int i = 0; i < xcsf->x_dim; i++) {
-            c->prediction[var] += pred->weights[var*n+idx] * x[i];
-            idx++;
-        }
-        if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
-            // multiply quadratic coefficients with prediction input
-            for(int i = 0; i < xcsf->x_dim; i++) {
-                for(int j = i; j < xcsf->x_dim; j++) {
-                    c->prediction[var] += pred->weights[var*n+idx] * x[i] * x[j];
-                    idx++;
-                }
-            }
-        }
+        c->prediction[var] = blas_dot(n, &pred->weights[var*n], 1, pred->tmp_input, 1);
     }
 } 
 

@@ -154,3 +154,29 @@ static inline void pred_print(const XCSF *xcsf, const CL *c) {
 static inline void pred_update(const XCSF *xcsf, const CL *c, const double *x, const double *y) {
     (*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
 }
+
+/**
+ * @brief Prepares the input state for least squares computation.
+ * @param xcsf The XCSF data structure.
+ * @param x The input state.
+ * @param tmp_input The transformed input (set by this function).
+ */
+static inline void pred_transform_input(const XCSF *xcsf, const double *x, double *tmp_input)
+{
+    // bias term
+    tmp_input[0] = xcsf->PRED_X0;
+    int idx = 1;
+    // linear terms
+    for(int i = 0; i < xcsf->x_dim; i++) {
+        tmp_input[idx++] = x[i];
+    }
+    // quadratic terms
+    if(xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC
+        || xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
+        for(int i = 0; i < xcsf->x_dim; i++) {
+            for(int j = i; j < xcsf->x_dim; j++) {
+                tmp_input[idx++] = x[i] * x[j];
+            }
+        }
+    }
+}
