@@ -107,7 +107,7 @@ static int xcsf_select_sample(const INPUT *data, int cnt, _Bool shuffle)
         return irand_uniform(0, data->n_samples);
     }
     else {
-        return (cnt % data->n_samples + data->n_samples) % data->n_samples;
+        return cnt % data->n_samples;
     }
 }
 
