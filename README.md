@@ -118,7 +118,7 @@ $ make
 
 ```
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
-$ cd xcsf/build
+$ cd xcsf\build
 $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON -G "MinGW Makefiles" ..
 $ cmake --build . --config Release
 ```
