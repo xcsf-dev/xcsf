@@ -182,8 +182,8 @@ const double *env_maze_get_state(const XCSF *xcsf)
                 continue;
             }
             // toroidal maze
-            int xsense = (env->xpos + x) % env->xsize;
-            int ysense = (env->ypos + y) % env->ysize;
+            int xsense = ((env->xpos + x) % env->xsize + env->xsize) % env->xsize;
+            int ysense = ((env->ypos + y) % env->ysize + env->ysize) % env->ysize;
             char s = env->maze[ysense][xsense];
             // convert sensor to real number
             env->state[spos] = env_maze_sensor(xcsf, s);
@@ -230,8 +230,8 @@ double env_maze_execute(const XCSF *xcsf, int action)
     }
     ENV_MAZE *env = xcsf->env;
     // toroidal maze
-    int newx = (env->xpos + x_moves[action]) % env->xsize;
-    int newy = (env->ypos + y_moves[action]) % env->ysize;
+    int newx = ((env->xpos + x_moves[action]) % env->xsize + env->xsize) % env->xsize;
+    int newy = ((env->ypos + y_moves[action]) % env->ysize + env->ysize) % env->ysize;
     // make the move and recieve reward
     double reward = 0;
     switch(env->maze[newy][newx]) {
