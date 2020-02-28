@@ -114,7 +114,7 @@ $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON ..
 $ make
 ```
 
-### Windows ([MinGW64-gcc-7.2.0](http://mingw-w64.org "MinGW64-gcc-7.2.0"))
+### Windows ([MinGW64-gcc-8.1.0](http://mingw-w64.org "MinGW64-gcc-8.1.0") / [Python 3.6.6 x86-64](https://python.org/downloads/windows/ "Python 3.6.6 x86-64"))
 
 ```
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
