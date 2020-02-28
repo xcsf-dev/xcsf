@@ -59,24 +59,23 @@ void cl_init(const XCSF *xcsf, CL *c, int size, int time)
 }
 
 /**
- * @brief Copies the condition, action, and prediction from
- * one classifier to another.
+ * @brief Copies the condition, action, and prediction from one classifier to another.
  * @param xcsf The XCSF data structure.
- * @param to The destination classifier.
- * @param from The source classifier.
+ * @param dest The destination classifier.
+ * @param src The source classifier.
  */
-void cl_copy(const XCSF *xcsf, CL *to, const CL *from)
+void cl_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
-    to->cond_vptr = from->cond_vptr;
-    to->pred_vptr = from->pred_vptr;
-    to->act_vptr = from->act_vptr;
-    act_copy(xcsf, to, from);
-    cond_copy(xcsf, to, from);
+    dest->cond_vptr = src->cond_vptr;
+    dest->pred_vptr = src->pred_vptr;
+    dest->act_vptr = src->act_vptr;
+    act_copy(xcsf, dest, src);
+    cond_copy(xcsf, dest, src);
     if(xcsf->PRED_RESET) {
-        pred_init(xcsf, to);
+        pred_init(xcsf, dest);
     }
     else {
-        pred_copy(xcsf, to, from);
+        pred_copy(xcsf, dest, src);
     }
 }
 

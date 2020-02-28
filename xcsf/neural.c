@@ -148,17 +148,17 @@ void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
 /**
  * @brief Copies a neural network.
  * @param xcsf The XCSF data structure.
- * @param to The destination neural network.
- * @param from The source neural network.
+ * @param dest The destination neural network.
+ * @param src The source neural network.
  */
-void neural_copy(const XCSF *xcsf, NET *to, const NET *from)
+void neural_copy(const XCSF *xcsf, NET *dest, const NET *src)
 {
-    neural_init(xcsf, to);
+    neural_init(xcsf, dest);
     int p = 0;
-    for(const LLIST *iter = from->tail; iter != NULL; iter = iter->prev) {
+    for(const LLIST *iter = src->tail; iter != NULL; iter = iter->prev) {
         const LAYER *f = iter->layer;
         LAYER *l = layer_copy(xcsf, f);
-        neural_layer_insert(xcsf, to, l, p); 
+        neural_layer_insert(xcsf, dest, l, p); 
         p++;
     }
 }

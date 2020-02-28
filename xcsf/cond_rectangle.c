@@ -68,16 +68,16 @@ void cond_rectangle_free(const XCSF *xcsf, const CL *c)
     free(c->cond);
 }
 
-void cond_rectangle_copy(const XCSF *xcsf, CL *to, const CL *from)
+void cond_rectangle_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
-    const COND_RECTANGLE *from_cond = from->cond;
+    const COND_RECTANGLE *src_cond = src->cond;
     new->center = malloc(sizeof(double) * xcsf->x_dim);
     new->spread = malloc(sizeof(double) * xcsf->x_dim);
-    memcpy(new->center, from_cond->center, sizeof(double) * xcsf->x_dim);
-    memcpy(new->spread, from_cond->spread, sizeof(double) * xcsf->x_dim);
-    memcpy(new->mu, from_cond->mu, sizeof(double) * N_MU);
-    to->cond = new;
+    memcpy(new->center, src_cond->center, sizeof(double) * xcsf->x_dim);
+    memcpy(new->spread, src_cond->spread, sizeof(double) * xcsf->x_dim);
+    memcpy(new->mu, src_cond->mu, sizeof(double) * N_MU);
+    dest->cond = new;
 }                             
 
 void cond_rectangle_cover(const XCSF *xcsf, const CL *c, const double *x)

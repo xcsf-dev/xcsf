@@ -78,30 +78,30 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     return l;
 }
 
-LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *from)
+LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *src)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
-    l->layer_type = from->layer_type;
-    l->layer_vptr = from->layer_vptr;
-    l->function = from->function;
-    l->n_inputs = from->n_inputs;
-    l->n_outputs = from->n_outputs;
-    l->max_outputs = from->max_outputs;
-    l->n_weights = from->n_weights;
-    l->state = calloc(from->n_outputs, sizeof(double));
-    l->output = calloc(from->n_outputs, sizeof(double));
-    l->biases = malloc(from->n_outputs * sizeof(double));
-    l->bias_updates = calloc(from->n_outputs, sizeof(double));
-    l->weight_updates = calloc(from->n_weights, sizeof(double));
-    l->delta = calloc(from->n_outputs, sizeof(double));
-    l->weights = malloc(from->n_weights * sizeof(double));
-    memcpy(l->weights, from->weights, from->n_weights * sizeof(double));
-    memcpy(l->biases, from->biases, from->n_outputs * sizeof(double));
-    l->options = from->options;
-    l->eta = from->eta;
+    l->layer_type = src->layer_type;
+    l->layer_vptr = src->layer_vptr;
+    l->function = src->function;
+    l->n_inputs = src->n_inputs;
+    l->n_outputs = src->n_outputs;
+    l->max_outputs = src->max_outputs;
+    l->n_weights = src->n_weights;
+    l->state = calloc(src->n_outputs, sizeof(double));
+    l->output = calloc(src->n_outputs, sizeof(double));
+    l->biases = malloc(src->n_outputs * sizeof(double));
+    l->bias_updates = calloc(src->n_outputs, sizeof(double));
+    l->weight_updates = calloc(src->n_weights, sizeof(double));
+    l->delta = calloc(src->n_outputs, sizeof(double));
+    l->weights = malloc(src->n_weights * sizeof(double));
+    memcpy(l->weights, src->weights, src->n_weights * sizeof(double));
+    memcpy(l->biases, src->biases, src->n_outputs * sizeof(double));
+    l->options = src->options;
+    l->eta = src->eta;
     l->mu = malloc(N_MU * sizeof(double));
-    memcpy(l->mu, from->mu, N_MU * sizeof(double));
+    memcpy(l->mu, src->mu, N_MU * sizeof(double));
     return l;
 }
 

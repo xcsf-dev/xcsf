@@ -55,12 +55,12 @@ void cond_gp_free(const XCSF *xcsf, const CL *c)
     free(c->cond);
 }
 
-void cond_gp_copy(const XCSF *xcsf, CL *to, const CL *from)
+void cond_gp_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     COND_GP *new = malloc(sizeof(COND_GP));
-    const COND_GP *from_cond = from->cond;
-    tree_copy(xcsf, &new->gp, &from_cond->gp);
-    to->cond = new;
+    const COND_GP *src_cond = src->cond;
+    tree_copy(xcsf, &new->gp, &src_cond->gp);
+    dest->cond = new;
 }
 
 static void cond_gp_rand(const XCSF *xcsf, const CL *c)

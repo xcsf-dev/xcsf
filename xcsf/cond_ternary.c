@@ -87,16 +87,16 @@ void cond_ternary_free(const XCSF *xcsf, const CL *c)
     free(c->cond);
 }
 
-void cond_ternary_copy(const XCSF *xcsf, CL *to, const CL *from)
+void cond_ternary_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     (void)xcsf;
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
-    const COND_TERNARY *from_cond = from->cond;
-    new->len = from_cond->len;
-    new->string = malloc(sizeof(char) * from_cond->len);
-    memcpy(new->string, from_cond->string, sizeof(char) * from_cond->len);
-    memcpy(new->mu, from_cond->mu, sizeof(double) * N_MU);
-    to->cond = new;
+    const COND_TERNARY *src_cond = src->cond;
+    new->len = src_cond->len;
+    new->string = malloc(sizeof(char) * src_cond->len);
+    memcpy(new->string, src_cond->string, sizeof(char) * src_cond->len);
+    memcpy(new->mu, src_cond->mu, sizeof(double) * N_MU);
+    dest->cond = new;
 }                             
 
 void cond_ternary_cover(const XCSF *xcsf, const CL *c, const double *x)

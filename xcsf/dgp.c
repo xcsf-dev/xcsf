@@ -60,20 +60,20 @@ void graph_init(const XCSF *xcsf, GRAPH *dgp, int n)
 /**
  * @brief Copies a DGP graph.
  * @param xcsf The XCSF data structure.
- * @param to The destination DGP graph.
- * @param from The source DGP graph.
+ * @param dest The destination DGP graph.
+ * @param src The source DGP graph.
  */
-void graph_copy(const XCSF *xcsf, GRAPH *to, const GRAPH *from)
+void graph_copy(const XCSF *xcsf, GRAPH *dest, const GRAPH *src)
 { 	
     (void)xcsf;
-    to->t = from->t;
-    to->n = from->n;
-    to->klen = from->klen;
-    memcpy(to->state, from->state, sizeof(double) * from->n);
-    memcpy(to->initial_state, from->initial_state, sizeof(double) * from->n);
-    memcpy(to->function, from->function, sizeof(int) * from->n);
-    memcpy(to->connectivity, from->connectivity, sizeof(int) * from->klen);
-    memcpy(to->mu, from->mu, sizeof(double) * DGP_N_MU);
+    dest->t = src->t;
+    dest->n = src->n;
+    dest->klen = src->klen;
+    memcpy(dest->state, src->state, sizeof(double) * src->n);
+    memcpy(dest->initial_state, src->initial_state, sizeof(double) * src->n);
+    memcpy(dest->function, src->function, sizeof(int) * src->n);
+    memcpy(dest->connectivity, src->connectivity, sizeof(int) * src->klen);
+    memcpy(dest->mu, src->mu, sizeof(double) * DGP_N_MU);
 }
 
 /**

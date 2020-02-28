@@ -29,7 +29,7 @@ int pred_rls_size(const XCSF *xcsf, const CL *c);
 size_t pred_rls_load(const XCSF *xcsf, CL *c, FILE *fp);
 size_t pred_rls_save(const XCSF *xcsf, const CL *c, FILE *fp);
 void pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x);
-void pred_rls_copy(const XCSF *xcsf, CL *to, const CL *from);
+void pred_rls_copy(const XCSF *xcsf, CL *dest, const CL *src);
 void pred_rls_free(const XCSF *xcsf, const CL *c);
 void pred_rls_init(const XCSF *xcsf, CL *c);
 void pred_rls_print(const XCSF *xcsf, const CL *c);

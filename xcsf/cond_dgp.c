@@ -56,13 +56,13 @@ void cond_dgp_free(const XCSF *xcsf, const CL *c)
     free(c->cond);
 }                  
 
-void cond_dgp_copy(const XCSF *xcsf, CL *to, const CL *from)
+void cond_dgp_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     COND_DGP *new = malloc(sizeof(COND_DGP));
-    const COND_DGP *from_cond = from->cond;
-    graph_init(xcsf, &new->dgp, from_cond->dgp.n);
-    graph_copy(xcsf, &new->dgp, &from_cond->dgp);
-    to->cond = new;
+    const COND_DGP *src_cond = src->cond;
+    graph_init(xcsf, &new->dgp, src_cond->dgp.n);
+    graph_copy(xcsf, &new->dgp, &src_cond->dgp);
+    dest->cond = new;
 }
 
 static void cond_dgp_rand(const XCSF *xcsf, const CL *c)

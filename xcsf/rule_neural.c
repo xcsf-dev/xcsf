@@ -104,13 +104,13 @@ void rule_neural_cond_free(const XCSF *xcsf, const CL *c)
     free(c->cond);
 }
 
-void rule_neural_cond_copy(const XCSF *xcsf, CL *to, const CL *from)
+void rule_neural_cond_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
-    const RULE_NEURAL *from_cond = from->cond;
-    new->n_outputs = from_cond->n_outputs;
-    neural_copy(xcsf, &new->net, &from_cond->net);
-    to->cond = new;
+    const RULE_NEURAL *src_cond = src->cond;
+    new->n_outputs = src_cond->n_outputs;
+    neural_copy(xcsf, &new->net, &src_cond->net);
+    dest->cond = new;
 }
 
 static void rule_neural_cond_rand(const XCSF *xcsf, const CL *c)
@@ -199,9 +199,9 @@ void rule_neural_act_free(const XCSF *xcsf, const CL *c)
     (void)xcsf; (void)c;
 }
 
-void rule_neural_act_copy(const XCSF *xcsf, CL *to, const CL *from)
+void rule_neural_act_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
-    (void)xcsf; (void)to; (void)from;
+    (void)xcsf; (void)dest; (void)src;
 }
 
 void rule_neural_act_print(const XCSF *xcsf, const CL *c)

@@ -35,9 +35,9 @@ void pred_constant_init(const XCSF *xcsf, CL *c)
     (void)xcsf; (void)c;
 }
 
-void pred_constant_copy(const XCSF *xcsf, CL *to, const CL *from)
+void pred_constant_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
-    (void)xcsf; (void)to; (void)from;
+    (void)xcsf; (void)dest; (void)src;
 }
 
 void pred_constant_free(const XCSF *xcsf, const CL *c)

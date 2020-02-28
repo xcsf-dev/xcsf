@@ -97,12 +97,12 @@ void cond_neural_free(const XCSF *xcsf, const CL *c)
     free(c->cond);
 }                  
 
-void cond_neural_copy(const XCSF *xcsf, CL *to, const CL *from)
+void cond_neural_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     COND_NEURAL *new = malloc(sizeof(COND_NEURAL));
-    const COND_NEURAL *from_cond = from->cond;
-    neural_copy(xcsf, &new->net, &from_cond->net);
-    to->cond = new;
+    const COND_NEURAL *src_cond = src->cond;
+    neural_copy(xcsf, &new->net, &src_cond->net);
+    dest->cond = new;
 }
 
 static void cond_neural_rand(const XCSF *xcsf, const CL *c)

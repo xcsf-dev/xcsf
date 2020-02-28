@@ -39,7 +39,7 @@ void tree_free_cons(const XCSF *xcsf);
 void tree_init_cons(XCSF *xcsf);
 void tree_free(const XCSF *xcsf, const GP_TREE *gp);
 void tree_rand(const XCSF *xcsf, GP_TREE *gp);
-void tree_copy(const XCSF *xcsf, GP_TREE *to, const GP_TREE *from);
+void tree_copy(const XCSF *xcsf, GP_TREE *dest, const GP_TREE *src);
 int tree_print(const XCSF *xcsf, const GP_TREE *gp, int p);
 double tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x);
 void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2);

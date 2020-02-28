@@ -222,17 +222,17 @@ int tree_print(const XCSF *xcsf, const GP_TREE *gp, int p)
 /**
  * @brief Copies a GP tree.
  * @param xcsf The XCSF data structure.
- * @param to The destination GP tree.
- * @param from The source GP tree.
+ * @param dest The destination GP tree.
+ * @param src The source GP tree.
  */
-void tree_copy(const XCSF *xcsf, GP_TREE *to, const GP_TREE *from)
+void tree_copy(const XCSF *xcsf, GP_TREE *dest, const GP_TREE *src)
 {
     (void)xcsf;
-    to->len = from->len;
-    to->tree = malloc(sizeof(int) * from->len);
-    memcpy(to->tree, from->tree, sizeof(int) * from->len);
-    to->p = from->p;               
-    memcpy(to->mu, from->mu, sizeof(double) * GP_N_MU);
+    dest->len = src->len;
+    dest->tree = malloc(sizeof(int) * src->len);
+    memcpy(dest->tree, src->tree, sizeof(int) * src->len);
+    dest->p = src->p;               
+    memcpy(dest->mu, src->mu, sizeof(double) * GP_N_MU);
 }
 
 /**

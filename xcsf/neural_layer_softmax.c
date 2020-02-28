@@ -48,20 +48,20 @@ LAYER* neural_layer_softmax_init(const XCSF *xcsf, int in, double temp)
     return l;
 }
 
-LAYER* neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *from)
+LAYER* neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *src)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
-    l->layer_type = from->layer_type;
-    l->layer_vptr = from->layer_vptr;
-    l->scale = from->scale;
-    l->n_inputs = from->n_inputs;
-    l->n_outputs = from->n_outputs;
-    l->max_outputs = from->max_outputs;
-    l->options = from->options;
+    l->layer_type = src->layer_type;
+    l->layer_vptr = src->layer_vptr;
+    l->scale = src->scale;
+    l->n_inputs = src->n_inputs;
+    l->n_outputs = src->n_outputs;
+    l->max_outputs = src->max_outputs;
+    l->options = src->options;
     l->eta = 0;
-    l->output = calloc(from->n_inputs, sizeof(double));
-    l->delta = calloc(from->n_inputs, sizeof(double));
+    l->output = calloc(src->n_inputs, sizeof(double));
+    l->delta = calloc(src->n_inputs, sizeof(double));
     return l;
 }
 

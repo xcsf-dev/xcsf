@@ -40,9 +40,9 @@ void cond_dummy_free(const XCSF *xcsf, const CL *c)
 	(void)xcsf; (void)c;
 }
 
-void cond_dummy_copy(const XCSF *xcsf, CL *to, const CL *from)
+void cond_dummy_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
-	(void)xcsf; (void)to; (void)from;
+	(void)xcsf; (void)dest; (void)src;
 }                             
 
 void cond_dummy_cover(const XCSF *xcsf, const CL *c, const double *x)

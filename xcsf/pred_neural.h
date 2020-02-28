@@ -32,7 +32,7 @@ int pred_neural_size(const XCSF *xcsf, const CL *c);
 size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
 size_t pred_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
 void pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x);
-void pred_neural_copy(const XCSF *xcsf, CL *to, const CL *from);
+void pred_neural_copy(const XCSF *xcsf, CL *dest, const CL *src);
 void pred_neural_free(const XCSF *xcsf, const CL *c);
 void pred_neural_init(const XCSF *xcsf, CL *c);
 void pred_neural_print(const XCSF *xcsf, const CL *c);

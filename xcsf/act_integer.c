@@ -79,14 +79,14 @@ int act_integer_compute(const XCSF *xcsf, const CL *c, const double *x)
     return act->action;
 }
 
-void act_integer_copy(const XCSF *xcsf, CL *to, const CL *from)
+void act_integer_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     (void)xcsf;
     ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
-    const ACT_INTEGER *from_act = from->act;
-    new->action = from_act->action;
-    memcpy(new->mu, from_act->mu, N_MU * sizeof(double));
-    to->act = new;
+    const ACT_INTEGER *src_act = src->act;
+    new->action = src_act->action;
+    memcpy(new->mu, src_act->mu, N_MU * sizeof(double));
+    dest->act = new;
 }
 
 void act_integer_print(const XCSF *xcsf, const CL *c)

@@ -62,14 +62,14 @@ void rule_dgp_cond_free(const XCSF *xcsf, const CL *c)
     free(c->cond);
 }
 
-void rule_dgp_cond_copy(const XCSF *xcsf, CL *to, const CL *from)
+void rule_dgp_cond_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
-    const RULE_DGP *from_cond = from->cond;
-    graph_init(xcsf, &new->dgp, from_cond->dgp.n);
-    graph_copy(xcsf, &new->dgp, &from_cond->dgp);
-    new->n_outputs = from_cond->n_outputs;
-    to->cond = new;
+    const RULE_DGP *src_cond = src->cond;
+    graph_init(xcsf, &new->dgp, src_cond->dgp.n);
+    graph_copy(xcsf, &new->dgp, &src_cond->dgp);
+    new->n_outputs = src_cond->n_outputs;
+    dest->cond = new;
 }
 
 static void rule_dgp_cond_rand(const XCSF *xcsf, const CL *c)
@@ -160,9 +160,9 @@ void rule_dgp_act_free(const XCSF *xcsf, const CL *c)
     (void)xcsf; (void)c;
 }
  
-void rule_dgp_act_copy(const XCSF *xcsf, CL *to, const CL *from)
+void rule_dgp_act_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
-    (void)xcsf; (void)to; (void)from;
+    (void)xcsf; (void)dest; (void)src;
 }
  
 void rule_dgp_act_print(const XCSF *xcsf, const CL *c)

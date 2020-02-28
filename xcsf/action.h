@@ -34,7 +34,7 @@ struct ActVtbl {
     _Bool (*act_impl_crossover)(const XCSF *xcsf, const CL *c1, const CL *c2);
     _Bool (*act_impl_mutate)(const XCSF *xcsf, const CL *c);
     int (*act_impl_compute)(const XCSF *xcsf, const CL *c, const double *x);
-    void (*act_impl_copy)(const XCSF *xcsf, CL *to, const CL *from);
+    void (*act_impl_copy)(const XCSF *xcsf, CL *dest, const CL *src);
     void (*act_impl_cover)(const XCSF *xcsf, const CL *c, const double *x, int action);
     void (*act_impl_free)(const XCSF *xcsf, const CL *c);
     void (*act_impl_init)(const XCSF *xcsf, CL *c);
@@ -113,11 +113,11 @@ static inline int act_compute(const XCSF *xcsf, const CL *c, const double *x) {
 /**
  * @brief Copies the action from one classifier to another.
  * @param xcsf The XCSF data structure.
- * @param to The destination classifier.
- * @param from The source classifier.
+ * @param dest The destination classifier.
+ * @param src The source classifier.
  */
-static inline void act_copy(const XCSF *xcsf, CL *to, const CL *from) {
-    (*from->act_vptr->act_impl_copy)(xcsf, to, from);
+static inline void act_copy(const XCSF *xcsf, CL *dest, const CL *src) {
+    (*src->act_vptr->act_impl_copy)(xcsf, dest, src);
 }
 
 /**

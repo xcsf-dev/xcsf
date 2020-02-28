@@ -89,12 +89,12 @@ static void init_matrix(const XCSF *xcsf, double *matrix, int n)
     }
 }
 
-void pred_rls_copy(const XCSF *xcsf, CL *to, const CL *from)
+void pred_rls_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
-    pred_rls_init(xcsf, to);
-    const PRED_RLS *to_pred = to->pred;
-    const PRED_RLS *from_pred = from->pred;
-    memcpy(to_pred->weights, from_pred->weights, from_pred->n_weights * sizeof(double));
+    pred_rls_init(xcsf, dest);
+    const PRED_RLS *dest_pred = dest->pred;
+    const PRED_RLS *src_pred = src->pred;
+    memcpy(dest_pred->weights, src_pred->weights, src_pred->n_weights * sizeof(double));
 }
 
 void pred_rls_free(const XCSF *xcsf, const CL *c)

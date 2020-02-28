@@ -34,7 +34,7 @@ struct CondVtbl {
     _Bool (*cond_impl_general)(const XCSF *xcsf, const CL *c1, const CL *c2);
     _Bool (*cond_impl_match)(const XCSF *xcsf, const CL *c, const double *x);
     _Bool (*cond_impl_mutate)(const XCSF *xcsf, const CL *c);
-    void (*cond_impl_copy)(const XCSF *xcsf, CL *to, const CL *from);
+    void (*cond_impl_copy)(const XCSF *xcsf, CL *dest, const CL *src);
     void (*cond_impl_cover)(const XCSF *xcsf, const CL *c, const double *x);
     void (*cond_impl_free)(const XCSF *xcsf, const CL *c);
     void (*cond_impl_init)(const XCSF *xcsf, CL *c);
@@ -134,11 +134,11 @@ static inline _Bool cond_mutate(const XCSF *xcsf, const CL *c) {
 /**
  * @brief Copies the condition from one classifier to another.
  * @param xcsf The XCSF data structure.
- * @param to The destination classifier.
- * @param from The source classifier.
+ * @param dest The destination classifier.
+ * @param src The source classifier.
  */
-static inline void cond_copy(const XCSF *xcsf, CL *to, const CL *from) {
-    (*from->cond_vptr->cond_impl_copy)(xcsf, to, from);
+static inline void cond_copy(const XCSF *xcsf, CL *dest, const CL *src) {
+    (*src->cond_vptr->cond_impl_copy)(xcsf, dest, src);
 }
 
 /**

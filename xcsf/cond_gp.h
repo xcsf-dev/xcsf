@@ -27,7 +27,7 @@ _Bool cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_gp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_gp_match(const XCSF *xcsf, const CL *c, const double *x);
 _Bool cond_gp_mutate(const XCSF *xcsf, const CL *c);
-void cond_gp_copy(const XCSF *xcsf, CL *to, const CL *from);
+void cond_gp_copy(const XCSF *xcsf, CL *dest, const CL *src);
 void cond_gp_cover(const XCSF *xcsf, const CL *c, const double *x);
 void cond_gp_free(const XCSF *xcsf, const CL *c);
 void cond_gp_init(const XCSF *xcsf, CL *c);

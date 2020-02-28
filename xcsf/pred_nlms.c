@@ -78,14 +78,14 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
     pred->tmp_input = malloc(pred->n * sizeof(double));
 }
 
-void pred_nlms_copy(const XCSF *xcsf, CL *to, const CL *from)
+void pred_nlms_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
-    pred_nlms_init(xcsf, to);
-    PRED_NLMS *to_pred = to->pred;
-    const PRED_NLMS *from_pred = from->pred;
-    memcpy(to_pred->weights, from_pred->weights, from_pred->n_weights * sizeof(double));
-    memcpy(to_pred->mu, from_pred->mu, N_MU);
-    to_pred->eta = from_pred->eta;
+    pred_nlms_init(xcsf, dest);
+    PRED_NLMS *dest_pred = dest->pred;
+    const PRED_NLMS *src_pred = src->pred;
+    memcpy(dest_pred->weights, src_pred->weights, src_pred->n_weights * sizeof(double));
+    memcpy(dest_pred->mu, src_pred->mu, N_MU);
+    dest_pred->eta = src_pred->eta;
 }
 
 void pred_nlms_free(const XCSF *xcsf, const CL *c)

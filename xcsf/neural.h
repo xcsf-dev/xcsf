@@ -50,7 +50,7 @@ double neural_output(const XCSF *xcsf, const NET *net, int i);
 int neural_size(const XCSF *xcsf, const NET *net);
 size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp);
 size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp);
-void neural_copy(const XCSF *xcsf, NET *to, const NET *from);
+void neural_copy(const XCSF *xcsf, NET *dest, const NET *src);
 void neural_free(const XCSF *xcsf, NET *net);
 void neural_init(const XCSF *xcsf, NET *net);
 void neural_layer_insert(const XCSF *xcsf, NET *net, struct LAYER *l, int p);

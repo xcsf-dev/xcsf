@@ -104,12 +104,12 @@ void pred_neural_free(const XCSF *xcsf, const CL *c)
     free(pred);
 }
 
-void pred_neural_copy(const XCSF *xcsf, CL *to, const CL *from)
+void pred_neural_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
-    const PRED_NEURAL *from_pred = from->pred;
-    neural_copy(xcsf, &new->net, &from_pred->net);
-    to->pred = new;
+    const PRED_NEURAL *src_pred = src->pred;
+    neural_copy(xcsf, &new->net, &src_pred->net);
+    dest->pred = new;
 }
 
 void pred_neural_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)

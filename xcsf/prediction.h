@@ -33,7 +33,7 @@ struct PredVtbl {
     _Bool (*pred_impl_crossover)(const XCSF *xcsf, const CL *c1, const CL *c2);
     _Bool (*pred_impl_mutate)(const XCSF *xcsf, const CL *c);
     void (*pred_impl_compute)(const XCSF *xcsf, const CL *c, const double *x);
-    void (*pred_impl_copy)(const XCSF *xcsf, CL *to, const CL *from);
+    void (*pred_impl_copy)(const XCSF *xcsf, CL *dest, const CL *src);
     void (*pred_impl_free)(const XCSF *xcsf, const CL *c);
     void (*pred_impl_init)(const XCSF *xcsf, CL *c);
     void (*pred_impl_print)(const XCSF *xcsf, const CL *c);
@@ -109,11 +109,11 @@ static inline void pred_compute(const XCSF *xcsf, const CL *c, const double *x) 
 /**
  * @brief Copies the prediction from one classifier to another.
  * @param xcsf The XCSF data structure.
- * @param to The destination classifier.
- * @param from The source classifier.
+ * @param dest The destination classifier.
+ * @param src The source classifier.
  */
-static inline void pred_copy(const XCSF *xcsf, CL *to, const CL *from) {
-    (*from->pred_vptr->pred_impl_copy)(xcsf, to, from);
+static inline void pred_copy(const XCSF *xcsf, CL *dest, const CL *src) {
+    (*src->pred_vptr->pred_impl_copy)(xcsf, dest, src);
 }
 
 /**

@@ -50,22 +50,22 @@ LAYER *neural_layer_dropout_init(const XCSF *xcsf, int in, double prob)
     return l;
 }
 
-LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *from)
+LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *src)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
-    l->layer_type = from->layer_type;
-    l->layer_vptr = from->layer_vptr;
-    l->n_inputs = from->n_inputs;
-    l->n_outputs = from->n_inputs;
-    l->max_outputs = from->max_outputs;
-    l->options = from->options;
+    l->layer_type = src->layer_type;
+    l->layer_vptr = src->layer_vptr;
+    l->n_inputs = src->n_inputs;
+    l->n_outputs = src->n_inputs;
+    l->max_outputs = src->max_outputs;
+    l->options = src->options;
     l->eta = 0;
-    l->probability = from->probability;
-    l->scale = from->scale;
-    l->output = calloc(from->n_inputs, sizeof(double));
-    l->delta = malloc(from->n_inputs * sizeof(double));
-    l->rand = malloc(from->n_inputs * sizeof(double));
+    l->probability = src->probability;
+    l->scale = src->scale;
+    l->output = calloc(src->n_inputs, sizeof(double));
+    l->delta = malloc(src->n_inputs * sizeof(double));
+    l->rand = malloc(src->n_inputs * sizeof(double));
     return l;
 }
 

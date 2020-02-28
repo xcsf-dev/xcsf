@@ -69,7 +69,7 @@ typedef struct LAYER {
 struct LayerVtbl {
     _Bool (*layer_impl_mutate)(const XCSF *xcsf, LAYER *l);
     void (*layer_impl_resize)(const XCSF *xcsf, LAYER *l, const LAYER *prev);
-    LAYER* (*layer_impl_copy)(const XCSF *xcsf, const LAYER *from);
+    LAYER* (*layer_impl_copy)(const XCSF *xcsf, const LAYER *src);
     void (*layer_impl_free)(const XCSF *xcsf, const LAYER *l);
     void (*layer_impl_rand)(const XCSF *xcsf, const LAYER *l);
     void (*layer_impl_print)(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
@@ -166,11 +166,11 @@ static inline void layer_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev) {
 /**
  * @brief Creates and returns a copy of a specified layer.
  * @param xcsf The XCSF data structure.
- * @param from The source layer.
+ * @param src The source layer.
  * @return A new copied layer.
  */
-static inline LAYER* layer_copy(const XCSF *xcsf, const LAYER *from) {
-    return (*from->layer_vptr->layer_impl_copy)(xcsf, from);
+static inline LAYER* layer_copy(const XCSF *xcsf, const LAYER *src) {
+    return (*src->layer_vptr->layer_impl_copy)(xcsf, src);
 }
 
 /**

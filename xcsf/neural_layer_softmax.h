@@ -24,7 +24,7 @@
 #pragma once
 
 LAYER *neural_layer_softmax_init(const XCSF *xcsf, int in, double temp);
-LAYER *neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *from);
+LAYER *neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *src);
 void neural_layer_softmax_rand(const XCSF *xcsf, const LAYER *l);
 void neural_layer_softmax_forward(const XCSF *xcsf, const LAYER *l, const double *input);
 void neural_layer_softmax_backward(const XCSF *xcsf, const LAYER *l, const NET *net);

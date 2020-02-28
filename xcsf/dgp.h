@@ -46,7 +46,7 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp);
 double graph_output(const XCSF *xcsf, const GRAPH *dgp, int i);
 size_t graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp);
 size_t graph_save(const XCSF *xcsf, const GRAPH *dgp, FILE *fp);
-void graph_copy(const XCSF *xcsf, GRAPH *to, const GRAPH *from);
+void graph_copy(const XCSF *xcsf, GRAPH *dest, const GRAPH *src);
 void graph_free(const XCSF *xcsf, const GRAPH *dgp);
 void graph_init(const XCSF *xcsf, GRAPH *dgp, int n);
 void graph_print(const XCSF *xcsf, const GRAPH *dgp);
