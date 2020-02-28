@@ -168,14 +168,14 @@ After building with CMake option: `-DXCSF_PYLIB=ON`
 Supervised regression learning example:
 
 ```
-$ python3 example_regression.py
+$ python example_regression.py
 ```
 
 Single-step reinforcement learning examples:
 
 ```
-$ python3 example_rmux.py
-$ python3 example_wisconsin.py
+$ python example_rmux.py
+$ python example_wisconsin.py
 ```
 
 *******************************************************************************
