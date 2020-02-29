@@ -569,6 +569,6 @@ PYBIND11_MODULE(xcsf, m)
         .def("print_pop", &XCS::print_pop)
         .def("msetsize", &XCS::get_msetsize)
         .def("mfrac", &XCS::get_mfrac)
-        .def("print_params", &XCS::print_params);
+        .def("print_params", &XCS::print_params)
         ;
 }
