@@ -729,12 +729,8 @@ static void print_params_general(const XCSF *xcsf)
     printf("OMP_NUM_THREADS=%d", xcsf->OMP_NUM_THREADS);
     printf(", POP_SIZE=%d", xcsf->POP_SIZE);
     printf(", MAX_TRIALS=%d", xcsf->MAX_TRIALS);
-    if(xcsf->POP_INIT) {
-        printf(", POP_INIT=true");
-    }
-    else {
-        printf(", POP_INIT=false");
-    }
+    printf(", POP_INIT=");
+    xcsf->POP_INIT == true ? printf("true") : printf("false");
     printf(", PERF_TRIALS=%d", xcsf->PERF_TRIALS);
     printf(", LOSS_FUNC=%d", xcsf->LOSS_FUNC);
 }
@@ -775,18 +771,10 @@ static void print_params_cl_general(const XCSF *xcsf)
  */
 static void print_params_subsumption(const XCSF *xcsf)
 {
-    if(xcsf->EA_SUBSUMPTION) {
-        printf(", EA_SUBSUMPTION=true");
-    }
-    else {
-        printf(", EA_SUBSUMPTION=false");
-    }
-    if(xcsf->SET_SUBSUMPTION) {
-        printf(", SET_SUBSUMPTION=true");
-    }
-    else {
-        printf(", SET_SUBSUMPTION=false");
-    }
+    printf(", EA_SUBSUMPTION=");
+    xcsf->EA_SUBSUMPTION == true ? printf("true") : printf("false");
+    printf(", SET_SUBSUMPTION=");
+    xcsf->SET_SUBSUMPTION == true ? printf("true") : printf("false");
     printf(", THETA_SUB=%d", xcsf->THETA_SUB);
 }
 
@@ -810,7 +798,6 @@ static void print_params_ea(const XCSF *xcsf)
  */
 static void print_params_cl_condition(const XCSF *xcsf)
 {
-    int i;
     printf(", COND_ETA=%f", xcsf->COND_ETA);
     printf(", COND_TYPE=%d", xcsf->COND_TYPE);
     printf(", COND_MIN=%f", xcsf->COND_MIN);
@@ -820,35 +807,19 @@ static void print_params_cl_condition(const XCSF *xcsf)
     printf(", GP_NUM_CONS=%d", xcsf->GP_NUM_CONS);
     printf(", GP_INIT_DEPTH=%d", xcsf->GP_INIT_DEPTH);
     printf(", DGP_NUM_NODES=%d", xcsf->DGP_NUM_NODES);
-    if(xcsf->RESET_STATES) {
-        printf(", RESET_STATES=true");
-    }
-    else {
-        printf(", RESET_STATES=false");
-    }
+    printf(", RESET_STATES=");
+    xcsf->RESET_STATES == true ? printf("true") : printf("false");
     printf(", MAX_K=%d", xcsf->MAX_K);
     printf(", MAX_T=%d", xcsf->MAX_T);
     printf(", MAX_NEURON_MOD=%d", xcsf->MAX_NEURON_MOD);
-    if(xcsf->COND_EVOLVE_WEIGHTS) {
-        printf(", COND_EVOLVE_WEIGHTS=true");
-    }
-    else {
-        printf(", COND_EVOLVE_WEIGHTS=false");
-    }
-    if(xcsf->COND_EVOLVE_NEURONS) {
-        printf(", COND_EVOLVE_NEURONS=true");
-    }
-    else {
-        printf(", COND_EVOLVE_NEURONS=false");
-    }
-    if(xcsf->COND_EVOLVE_FUNCTIONS) {
-        printf(", COND_EVOLVE_FUNCTIONS=true");
-    }
-    else {
-        printf(", COND_EVOLVE_FUNCTIONS=false");
-    }
+    printf(", COND_EVOLVE_WEIGHTS=");
+    xcsf->COND_EVOLVE_WEIGHTS == true ? printf("true") : printf("false");
+    printf(", COND_EVOLVE_NEURONS=");
+    xcsf->COND_EVOLVE_NEURONS == true ? printf("true") : printf("false");
+    printf(", COND_EVOLVE_FUNCTIONS=");
+    xcsf->COND_EVOLVE_FUNCTIONS == true ? printf("true") : printf("false");
     printf(", COND_NUM_NEURONS=[");
-    i = 0;
+    int i = 0;
     while(xcsf->COND_NUM_NEURONS[i] > 0) {
         printf("%d;", xcsf->COND_NUM_NEURONS[i]);
         i++;
@@ -871,51 +842,26 @@ static void print_params_cl_condition(const XCSF *xcsf)
  */
 static void print_params_cl_prediction(const XCSF *xcsf)
 {
-    int i;
     printf(", PRED_TYPE=%d", xcsf->PRED_TYPE);
-    if(xcsf->PRED_EVOLVE_ETA) {
-        printf(", PRED_EVOLVE_ETA=true");
-    }
-    else {
-        printf(", PRED_EVOLVE_ETA=false");
-    }
+    printf(", PRED_EVOLVE_ETA=");
+    xcsf->PRED_EVOLVE_ETA == true ? printf("true") : printf("false");
     printf(", PRED_ETA=%f", xcsf->PRED_ETA);
-    if(xcsf->PRED_RESET) {
-        printf(", PRED_RESET=true");
-    }
-    else {
-        printf(", PRED_RESET=false");
-    }
+    printf(", PRED_RESET=");
+    xcsf->PRED_RESET == true ? printf("true") : printf("false");
     printf(", PRED_X0=%f", xcsf->PRED_X0);
     printf(", PRED_RLS_SCALE_FACTOR=%f", xcsf->PRED_RLS_SCALE_FACTOR);
     printf(", PRED_RLS_SCALE_LAMBDA=%f", xcsf->PRED_RLS_LAMBDA);
-    if(xcsf->PRED_EVOLVE_WEIGHTS) {
-        printf(", PRED_EVOLVE_WEIGHTS=true");
-    }
-    else {
-        printf(", PRED_EVOLVE_WEIGHTS=false");
-    }
-    if(xcsf->PRED_EVOLVE_NEURONS) {
-        printf(", PRED_EVOLVE_NEURONS=true");
-    }
-    else {
-        printf(", PRED_EVOLVE_NEURONS=false");
-    }
-    if(xcsf->PRED_EVOLVE_FUNCTIONS) {
-        printf(", PRED_EVOLVE_FUNCTIONS=true");
-    }
-    else {
-        printf(", PRED_EVOLVE_FUNCTIONS=false");
-    }
-    if(xcsf->PRED_SGD_WEIGHTS) {
-        printf(", PRED_SGD_WEIGHTS=true");
-    }
-    else {
-        printf(", PRED_SGD_WEIGHTS=false");
-    }
+    printf(", PRED_EVOLVE_WEIGHTS=");
+    xcsf->PRED_EVOLVE_WEIGHTS == true ? printf("true") : printf("false");
+    printf(", PRED_EVOLVE_NEURONS=");
+    xcsf->PRED_EVOLVE_NEURONS == true ? printf("true") : printf("false");
+    printf(", PRED_EVOLVE_FUNCTIONS=");
+    xcsf->PRED_EVOLVE_FUNCTIONS == true ? printf("true") : printf("false");
+    printf(", PRED_SGD_WEIGHTS=");
+    xcsf->PRED_SGD_WEIGHTS == true ? printf("true") : printf("false");
     printf(", PRED_MOMENTUM=%f", xcsf->PRED_MOMENTUM);
     printf(", PRED_NUM_NEURONS=[");
-    i = 0;
+    int i = 0;
     while(xcsf->PRED_NUM_NEURONS[i] > 0) {
         printf("%d;", xcsf->PRED_NUM_NEURONS[i]);
         i++;
