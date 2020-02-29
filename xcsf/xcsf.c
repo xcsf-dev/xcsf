@@ -55,8 +55,8 @@ void xcsf_init(XCSF *xcsf)
 }
 
 /**
- * @brief Executes MAX_TRIALS number of XCSF learning iterations using the training.
- * data and test iterations using the test data.
+ * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
+ * training data and test iterations using the test data.
  * @param xcsf The XCSF data structure.
  * @param train_data The input data to use for training.
  * @param test_data The input data to use for testing.
