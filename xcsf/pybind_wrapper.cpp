@@ -115,6 +115,7 @@ class XCS
         double version(){ return xcsf_version(); }
         size_t save(char *fname) { return xcsf_save(&xcs, fname); }
         size_t load(char *fname) { return xcsf_load(&xcs, fname); }
+        void print_params() { config_print(&xcs); }
 
         void print_pop(_Bool printc, _Bool printa, _Bool printp)
         {
@@ -568,5 +569,6 @@ PYBIND11_MODULE(xcsf, m)
         .def("print_pop", &XCS::print_pop)
         .def("msetsize", &XCS::get_msetsize)
         .def("mfrac", &XCS::get_mfrac)
+        .def("print_params", &XCS::print_params);
         ;
 }

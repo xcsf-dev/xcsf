@@ -25,3 +25,4 @@
  
 void config_init(XCSF *xcsf, const char *filename);
 void config_free(const XCSF *xcsf);
+void config_print(XCSF *xcsf);
