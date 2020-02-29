@@ -46,14 +46,14 @@ static void config_newnvpair(XCSF *xcsf, const char *param);
 static void config_process(XCSF *xcsf, const char *configline);
 static void config_read(XCSF *xcsf, const char *filename);
 static void config_trim(char *s);
-static void params_cl_action(XCSF *xcsf, const char *name, char *value);
+static void params_cl_action(XCSF *xcsf, const char *name, const char *value);
 static void params_cl_condition(XCSF *xcsf, const char *name, char *value);
-static void params_cl_general(XCSF *xcsf, const char *name, char *value);
+static void params_cl_general(XCSF *xcsf, const char *name, const char *value);
 static void params_cl_prediction(XCSF *xcsf, const char *name, char *value);
-static void params_ea(XCSF *xcsf, const char *name, char *value);
-static void params_general(XCSF *xcsf, const char *name, char *value);
-static void params_multistep(XCSF *xcsf, const char *name, char *value);
-static void params_subsumption(XCSF *xcsf, const char *name, char *value);
+static void params_ea(XCSF *xcsf, const char *name, const char *value);
+static void params_general(XCSF *xcsf, const char *name, const char *value);
+static void params_multistep(XCSF *xcsf, const char *name, const char *value);
+static void params_subsumption(XCSF *xcsf, const char *name, const char *value);
 // initialising preset parameters
 static void config_defaults(XCSF *xcsf);
 static void defaults_cl_action(XCSF *xcsf);
@@ -65,14 +65,14 @@ static void defaults_general(XCSF *xcsf);
 static void defaults_multistep(XCSF *xcsf);
 static void defaults_subsumption(XCSF *xcsf);
 // printing parameters
-static void print_params_cl_action(XCSF *xcsf);
-static void print_params_cl_condition(XCSF *xcsf);
-static void print_params_cl_general(XCSF *xcsf);
-static void print_params_cl_prediction(XCSF *xcsf);
-static void print_params_ea(XCSF *xcsf);
-static void print_params_general(XCSF *xcsf);
-static void print_params_multistep(XCSF *xcsf);
-static void print_params_subsumption(XCSF *xcsf);
+static void print_params_cl_action(const XCSF *xcsf);
+static void print_params_cl_condition(const XCSF *xcsf);
+static void print_params_cl_general(const XCSF *xcsf);
+static void print_params_cl_prediction(const XCSF *xcsf);
+static void print_params_ea(const XCSF *xcsf);
+static void print_params_general(const XCSF *xcsf);
+static void print_params_multistep(const XCSF *xcsf);
+static void print_params_subsumption(const XCSF *xcsf);
 
 /**
  * @brief Initialises global constants and reads the specified configuration file.
@@ -126,7 +126,7 @@ static void param_add(XCSF *xcsf, const char *name, char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_general(XCSF *xcsf, const char *name, char *value)
+static void params_general(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "OMP_NUM_THREADS", 16) == 0) {
@@ -158,7 +158,7 @@ static void params_general(XCSF *xcsf, const char *name, char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_multistep(XCSF *xcsf, const char *name, char *value)
+static void params_multistep(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "TELETRANSPORTATION", 19) == 0) {
@@ -178,7 +178,7 @@ static void params_multistep(XCSF *xcsf, const char *name, char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_subsumption(XCSF *xcsf, const char *name, char *value)
+static void params_subsumption(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "EA_SUBSUMPTION", 15) == 0) {
@@ -204,7 +204,7 @@ static void params_subsumption(XCSF *xcsf, const char *name, char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_ea(XCSF *xcsf, const char *name, char *value)
+static void params_ea(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "EA_SELECT_TYPE", 15) == 0) {
@@ -233,7 +233,7 @@ static void params_ea(XCSF *xcsf, const char *name, char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_cl_general(XCSF *xcsf, const char *name, char *value)
+static void params_cl_general(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "ALPHA", 6) == 0) {
@@ -441,7 +441,7 @@ static void params_cl_prediction(XCSF *xcsf, const char *name, char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_cl_action(XCSF *xcsf, const char *name, char *value)
+static void params_cl_action(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "ACT_TYPE", 9) == 0) {
@@ -707,7 +707,7 @@ static void defaults_cl_action(XCSF *xcsf)
  * @brief Prints all XCSF parameters.
  * @param xcsf The XCSF data structure.
  */
-void config_print(XCSF *xcsf)
+void config_print(const XCSF *xcsf)
 {
     print_params_general(xcsf);
     print_params_multistep(xcsf);
@@ -724,7 +724,7 @@ void config_print(XCSF *xcsf)
  * @brief Prints XCSF general parameters.
  * @param xcsf The XCSF data structure.
  */
-static void print_params_general(XCSF *xcsf)
+static void print_params_general(const XCSF *xcsf)
 {
     printf("OMP_NUM_THREADS=%d", xcsf->OMP_NUM_THREADS);
     printf(", POP_SIZE=%d", xcsf->POP_SIZE);
@@ -743,7 +743,7 @@ static void print_params_general(XCSF *xcsf)
  * @brief Prints XCSF multistep parameters.
  * @param xcsf The XCSF data structure.
  */
-static void print_params_multistep(XCSF *xcsf)
+static void print_params_multistep(const XCSF *xcsf)
 {
     printf(", TELETRANSPORTATION=%d", xcsf->TELETRANSPORTATION);
     printf(", GAMMA=%f", xcsf->GAMMA);
@@ -754,7 +754,7 @@ static void print_params_multistep(XCSF *xcsf)
  * @brief Prints XCSF general classifier parameters.
  * @param xcsf The XCSF data structure.
  */
-static void print_params_cl_general(XCSF *xcsf)
+static void print_params_cl_general(const XCSF *xcsf)
 {
     printf(", EPS_0=%f", xcsf->EPS_0);
     printf(", ALPHA=%f", xcsf->ALPHA);
@@ -773,7 +773,7 @@ static void print_params_cl_general(XCSF *xcsf)
  * @brief Prints XCSF subsumption parameters.
  * @param xcsf The XCSF data structure.
  */
-static void print_params_subsumption(XCSF *xcsf)
+static void print_params_subsumption(const XCSF *xcsf)
 {
     if(xcsf->EA_SUBSUMPTION) {
         printf(", EA_SUBSUMPTION=true");
@@ -794,7 +794,7 @@ static void print_params_subsumption(XCSF *xcsf)
  * @brief Prints XCSF evolutionary algorithm parameters.
  * @param xcsf The XCSF data structure.
  */
-static void print_params_ea(XCSF *xcsf)
+static void print_params_ea(const XCSF *xcsf)
 {
     printf(", EA_SELECT_TYPE=%d", xcsf->EA_SELECT_TYPE);
     printf(", EA_SELECT_SIZE=%f", xcsf->EA_SELECT_SIZE);
@@ -808,7 +808,7 @@ static void print_params_ea(XCSF *xcsf)
  * @brief Prints XCSF condtion parameters.
  * @param xcsf The XCSF data structure.
  */
-static void print_params_cl_condition(XCSF *xcsf)
+static void print_params_cl_condition(const XCSF *xcsf)
 {
     int i;
     printf(", COND_ETA=%f", xcsf->COND_ETA);
@@ -869,7 +869,7 @@ static void print_params_cl_condition(XCSF *xcsf)
  * @brief Prints XCSF prediction parameters.
  * @param xcsf The XCSF data structure.
  */
-static void print_params_cl_prediction(XCSF *xcsf)
+static void print_params_cl_prediction(const XCSF *xcsf)
 {
     int i;
     printf(", PRED_TYPE=%d", xcsf->PRED_TYPE);
@@ -936,7 +936,7 @@ static void print_params_cl_prediction(XCSF *xcsf)
  * @brief Prints XCSF action parameters.
  * @param xcsf The XCSF data structure.
  */
-static void print_params_cl_action(XCSF *xcsf)
+static void print_params_cl_action(const XCSF *xcsf)
 {
     printf(", ACT_TYPE=%d", xcsf->ACT_TYPE);
 }
