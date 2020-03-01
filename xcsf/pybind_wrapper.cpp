@@ -49,6 +49,9 @@ extern "C" {
 
 void xcs_init(const char *filename);
 
+/**
+ * @brief Python XCSF class data structure.
+ */
 class XCS
 {
     private:
