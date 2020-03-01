@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+#include <float.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "loss.h"
@@ -132,7 +133,8 @@ double cl_del_vote(const XCSF *xcsf, const CL *c, double avg_fit)
 double cl_acc(const XCSF *xcsf, const CL *c)
 {
     if(c->err > xcsf->EPS_0) {
-        return xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
+        double acc = xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
+        return fmax(acc, DBL_EPSILON);
     }
     return 1;
 }
