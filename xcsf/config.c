@@ -419,6 +419,9 @@ static void params_cl_prediction(XCSF *xcsf, const char *name, char *value)
     else if(strncmp(name, "PRED_MOMENTUM", 14) == 0) {
         xcsf->PRED_MOMENTUM = atof(value);
     }
+    else if(strncmp(name, "PRED_WEIGHT_PENALTY", 20) == 0) {
+        xcsf->PRED_WEIGHT_PENALTY = atof(value);
+    }
     else if(strncmp(name, "PRED_NUM_NEURONS", 17) == 0) {
         memset(xcsf->PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
         config_get_ints(value, xcsf->PRED_NUM_NEURONS);
@@ -687,6 +690,7 @@ static void defaults_cl_prediction(XCSF *xcsf)
     xcsf->PRED_EVOLVE_FUNCTIONS = false;
     xcsf->PRED_SGD_WEIGHTS = true;
     xcsf->PRED_MOMENTUM = 0.9;
+    xcsf->PRED_WEIGHT_PENALTY = 0;
     memset(xcsf->PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
     memset(xcsf->PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
     xcsf->PRED_NUM_NEURONS[0] = 1;
@@ -856,6 +860,7 @@ static void print_params_cl_prediction(const XCSF *xcsf)
     printf(", PRED_SGD_WEIGHTS=");
     xcsf->PRED_SGD_WEIGHTS == true ? printf("true") : printf("false");
     printf(", PRED_MOMENTUM=%f", xcsf->PRED_MOMENTUM);
+    printf(", PRED_WEIGHT_PENALTY=%f", xcsf->PRED_WEIGHT_PENALTY);
     printf(", PRED_NUM_NEURONS=[");
     for(int i = 0;  i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; i++) {
         printf("%d;", xcsf->PRED_NUM_NEURONS[i]);

@@ -326,6 +326,7 @@ class XCS
         int get_pred_output_activation() { return xcs.PRED_OUTPUT_ACTIVATION; }
         int get_pred_hidden_activation() { return xcs.PRED_HIDDEN_ACTIVATION; }
         double get_pred_momentum() { return xcs.PRED_MOMENTUM; }
+        double get_pred_weight_penalty() { return xcs.PRED_WEIGHT_PENALTY; }
         _Bool get_pred_evolve_weights() { return xcs.PRED_EVOLVE_WEIGHTS; }
         _Bool get_pred_evolve_neurons() { return xcs.PRED_EVOLVE_NEURONS; }
         _Bool get_pred_evolve_functions() { return xcs.PRED_EVOLVE_FUNCTIONS; }
@@ -443,6 +444,7 @@ class XCS
         void set_pred_output_activation(int a) { xcs.PRED_OUTPUT_ACTIVATION = a; }
         void set_pred_hidden_activation(int a) { xcs.PRED_HIDDEN_ACTIVATION = a; }
         void set_pred_momentum(double a) { xcs.PRED_MOMENTUM = a; }
+        void set_pred_weight_penalty(double a) { xcs.PRED_WEIGHT_PENALTY = a; }
         void set_pred_evolve_weights(_Bool a) { xcs.PRED_EVOLVE_WEIGHTS = a; }
         void set_pred_evolve_neurons(_Bool a) { xcs.PRED_EVOLVE_NEURONS = a; }
         void set_pred_evolve_functions(_Bool a) { xcs.PRED_EVOLVE_FUNCTIONS = a; }
@@ -534,6 +536,7 @@ PYBIND11_MODULE(xcsf, m)
         .def_property("PRED_OUTPUT_ACTIVATION", &XCS::get_pred_output_activation, &XCS::set_pred_output_activation)
         .def_property("PRED_HIDDEN_ACTIVATION", &XCS::get_pred_hidden_activation, &XCS::set_pred_hidden_activation)
         .def_property("PRED_MOMENTUM", &XCS::get_pred_momentum, &XCS::set_pred_momentum)
+        .def_property("PRED_WEIGHT_PENALTY", &XCS::get_pred_weight_penalty, &XCS::set_pred_weight_penalty)
         .def_property("PRED_EVOLVE_WEIGHTS", &XCS::get_pred_evolve_weights, &XCS::set_pred_evolve_weights)
         .def_property("PRED_EVOLVE_NEURONS", &XCS::get_pred_evolve_neurons, &XCS::set_pred_evolve_neurons)
         .def_property("PRED_EVOLVE_FUNCTIONS", &XCS::get_pred_evolve_functions, &XCS::set_pred_evolve_functions)
