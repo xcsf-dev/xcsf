@@ -170,7 +170,6 @@ typedef struct XCSF {
     _Bool PRED_EVOLVE_ETA; //!< Whether to evolve prediction gradient descent rates
     _Bool PRED_SGD_WEIGHTS; //!< Whether to use gradient descent for predictions
     double PRED_MOMENTUM; //!< Momentum for gradient descent
-    double PRED_WEIGHT_PENALTY; //!< Fraction of each weight to subtract during updates
     int PRED_NUM_NEURONS[MAX_LAYERS]; //!< Initial num neurons in each prediction hidden layer
     int PRED_MAX_NEURONS[MAX_LAYERS]; //!< Max num of neurons in each prediction hidden layer
     int PRED_OUTPUT_ACTIVATION; //!< Activation function for the prediction output layer

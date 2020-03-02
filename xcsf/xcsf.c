@@ -283,7 +283,6 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->PRED_OUTPUT_ACTIVATION, sizeof(int), 1, fp);
     s += fwrite(&xcsf->PRED_HIDDEN_ACTIVATION, sizeof(int), 1, fp);
     s += fwrite(&xcsf->PRED_MOMENTUM, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->PRED_WEIGHT_PENALTY, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
@@ -366,7 +365,6 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->PRED_OUTPUT_ACTIVATION, sizeof(int), 1, fp);
     s += fread(&xcsf->PRED_HIDDEN_ACTIVATION, sizeof(int), 1, fp);
     s += fread(&xcsf->PRED_MOMENTUM, sizeof(double), 1, fp);
-    s += fread(&xcsf->PRED_WEIGHT_PENALTY, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
