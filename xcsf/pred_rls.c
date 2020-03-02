@@ -32,8 +32,6 @@
 #include "prediction.h"
 #include "pred_rls.h"
 
-static void init_matrix(const XCSF *xcsf, double *matrix, int n);
-                    
 /**
  * @brief Recursive least mean squares prediction data structure.
  */ 
@@ -66,27 +64,15 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
     blas_fill(xcsf->y_dim, xcsf->PRED_X0, pred->weights, pred->n);
     // initialise gain matrix
     int n_sqrd = pred->n * pred->n;
-    pred->matrix = malloc(n_sqrd * sizeof(double));
-    init_matrix(xcsf, pred->matrix, pred->n);
+    pred->matrix = calloc(n_sqrd, sizeof(double));
+    for(int i = 0; i < pred->n; i++) {
+        pred->matrix[i * pred->n + i] = xcsf->PRED_RLS_SCALE_FACTOR;
+    }
     // initialise temporary storage for weight updating
     pred->tmp_input = malloc(pred->n * sizeof(double));
     pred->tmp_vec = calloc(pred->n, sizeof(double));
     pred->tmp_matrix1 = calloc(n_sqrd, sizeof(double));
     pred->tmp_matrix2 = calloc(n_sqrd, sizeof(double));
-}
-
-static void init_matrix(const XCSF *xcsf, double *matrix, int n)
-{
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            if(i != j) {
-                matrix[i*n+j] = 0;
-            }
-            else {
-                matrix[i*n+j] = xcsf->PRED_RLS_SCALE_FACTOR;
-            }
-        }
-    }
 }
 
 void pred_rls_copy(const XCSF *xcsf, CL *dest, const CL *src)
