@@ -113,7 +113,7 @@ const char *neural_activation_string(int a)
 void neural_activate_array(double *state, double *output, int n, int a)
 {
     for(int i = 0; i < n; i++) {
-        state[i] = constrain(NEURON_MIN_STATE, NEURON_MAX_STATE, state[i]);
+        state[i] = clamp(NEURON_MIN_STATE, NEURON_MAX_STATE, state[i]);
         output[i] = neural_activate(a, state[i]);
     }
 }

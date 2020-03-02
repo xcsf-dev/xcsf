@@ -295,7 +295,7 @@ static double node_activate(int function, const double *inputs, int k)
             printf("Error updating node: Invalid function: %d\n", function);
             exit(EXIT_FAILURE);
     }
-    state = constrain(0, 1, state);
+    state = clamp(0, 1, state);
     return state;
 }
 

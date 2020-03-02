@@ -151,7 +151,7 @@ _Bool cond_ellipsoid_mutate(const XCSF *xcsf, const CL *c)
     for(int i = 0; i < xcsf->x_dim; i++) {
         double orig = cond->center[i];
         cond->center[i] += rand_normal(0, cond->mu[0]);
-        cond->center[i] = constrain(xcsf->COND_MIN, xcsf->COND_MAX, cond->center[i]);
+        cond->center[i] = clamp(xcsf->COND_MIN, xcsf->COND_MAX, cond->center[i]);
         if(orig != cond->center[i]) {
             changed = true;
         }

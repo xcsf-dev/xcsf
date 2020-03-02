@@ -190,10 +190,10 @@ void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
 static void weight_clamp(const LAYER *l)
 {
     for(int i = 0; i < l->n_weights; i++) {
-        l->weights[i] = constrain(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
+        l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
     }
     for(int i = 0; i < l->n_outputs; i++) {
-        l->biases[i] = constrain(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
+        l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
     }
 }
 
@@ -248,7 +248,7 @@ static _Bool mutate_eta(LAYER *l, double mu)
 {
     double orig = l->eta;
     l->eta += rand_normal(0, mu);
-    l->eta = constrain(ETA_MIN, ETA_MAX, l->eta);
+    l->eta = clamp(ETA_MIN, ETA_MAX, l->eta);
     if(l->eta != orig) {
         return true;
     }

@@ -148,7 +148,7 @@ _Bool pred_nlms_mutate(const XCSF *xcsf, const CL *c)
         sam_adapt(xcsf, pred->mu, N_MU);
         double orig = pred->eta;
         pred->eta += rand_normal(0, pred->mu[0]);
-        pred->eta = constrain(ETA_MIN, ETA_MAX, pred->eta);
+        pred->eta = clamp(ETA_MIN, ETA_MAX, pred->eta);
         if(orig != pred->eta) {
             return true;
         }
