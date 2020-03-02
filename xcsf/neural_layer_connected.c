@@ -176,14 +176,14 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET
 void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
 {
     if(l->options & LAYER_SGD_WEIGHTS) {
-        blas_axpy(l->n_outputs, l->eta, l->bias_updates, 1, l->biases, 1);
-        blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
-        blas_scal(l->n_outputs, xcsf->PRED_MOMENTUM, l->bias_updates, 1);
-        blas_scal(l->n_weights, xcsf->PRED_MOMENTUM, l->weight_updates, 1);
         if(xcsf->PRED_WEIGHT_PENALTY > 0) {
             blas_axpy(l->n_outputs, -(xcsf->PRED_WEIGHT_PENALTY), l->biases, 1, l->biases, 1);
             blas_axpy(l->n_weights, -(xcsf->PRED_WEIGHT_PENALTY), l->weights, 1, l->weights, 1);
         }
+        blas_axpy(l->n_outputs, l->eta, l->bias_updates, 1, l->biases, 1);
+        blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
+        blas_scal(l->n_outputs, xcsf->PRED_MOMENTUM, l->bias_updates, 1);
+        blas_scal(l->n_weights, xcsf->PRED_MOMENTUM, l->weight_updates, 1);
     }
 }
 
