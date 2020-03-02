@@ -38,6 +38,8 @@
 #define N_MU 4 //!< Number of mutation rates applied
 #define ETA_MAX 0.1 //!< Maximum gradient descent rate
 #define ETA_MIN 0.0001 //!< Minimum gradient descent rate
+#define WEIGHT_MIN -10 //!< Minimum value of a weight or bias
+#define WEIGHT_MAX  10 //!< Maximum value of a weight or bias
 
 static _Bool mutate_eta(LAYER *l, double mu);
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu);
@@ -45,6 +47,7 @@ static _Bool mutate_weights(const LAYER *l, double mu);
 static _Bool mutate_functions(LAYER *l, double mu);
 static void neuron_add(LAYER *l, int n);
 static void neuron_remove(LAYER *l, int n);
+static void weight_clamp(const LAYER *l);
 
 LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o)
 {
@@ -180,6 +183,17 @@ void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
         blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
         blas_scal(l->n_outputs, xcsf->PRED_MOMENTUM, l->bias_updates, 1);
         blas_scal(l->n_weights, xcsf->PRED_MOMENTUM, l->weight_updates, 1);
+        weight_clamp(l);
+    }
+}
+
+static void weight_clamp(const LAYER *l)
+{
+    for(int i = 0; i < l->n_weights; i++) {
+        l->weights[i] = constrain(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
+    }
+    for(int i = 0; i < l->n_outputs; i++) {
+        l->biases[i] = constrain(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
     }
 }
 
@@ -359,6 +373,9 @@ static _Bool mutate_weights(const LAYER *l, double mu)
         if(l->biases[i] != orig) {
             mod = true;
         }
+    }
+    if(mod) {
+        weight_clamp(l);
     }
     return mod;
 }
