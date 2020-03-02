@@ -363,6 +363,7 @@ static _Bool mutate_weights(const LAYER *l, double mu)
     for(int i = 0; i < l->n_weights; i++) {
         double orig = l->weights[i];
         l->weights[i] += rand_normal(0, mu);
+        l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
         if(l->weights[i] != orig) {
             mod = true;
         }
@@ -370,12 +371,10 @@ static _Bool mutate_weights(const LAYER *l, double mu)
     for(int i = 0; i < l->n_outputs; i++) {
         double orig = l->biases[i];
         l->biases[i] += rand_normal(0, mu);
+        l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
         if(l->biases[i] != orig) {
             mod = true;
         }
-    }
-    if(mod) {
-        weight_clamp(l);
     }
     return mod;
 }
