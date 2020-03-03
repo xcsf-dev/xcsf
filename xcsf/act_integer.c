@@ -96,12 +96,6 @@ void act_integer_print(const XCSF *xcsf, const CL *c)
     printf("%d\n", act->action);
 }
 
-void act_integer_rand(const XCSF *xcsf, const CL *c)
-{
-    ACT_INTEGER *act = c->act;
-    act->action = irand_uniform(0, xcsf->n_actions);
-}
- 
 void act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int action)
 {
     (void)xcsf; (void)x;
@@ -119,8 +113,8 @@ void act_integer_init(const XCSF *xcsf, CL *c)
 {
     ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
     sam_init(xcsf, new->mu, N_MU);
+    new->action = irand_uniform(0, xcsf->n_actions);
     c->act = new;
-    act_integer_rand(xcsf, c);
 }
  
 void act_integer_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)

@@ -32,7 +32,6 @@ void act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int actio
 void act_integer_free(const XCSF *xcsf, const CL *c);
 void act_integer_init(const XCSF *xcsf, CL *c);
 void act_integer_print(const XCSF *xcsf, const CL *c);
-void act_integer_rand(const XCSF *xcsf, const CL *c);
 void act_integer_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
 size_t act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t act_integer_load(const XCSF *xcsf, CL *c, FILE *fp);
@@ -49,7 +48,6 @@ static struct ActVtbl const act_integer_vtbl = {
     &act_integer_cover,
     &act_integer_free,
     &act_integer_init,
-    &act_integer_rand,
     &act_integer_print,
     &act_integer_update,
     &act_integer_save,

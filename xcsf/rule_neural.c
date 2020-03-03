@@ -48,7 +48,6 @@ typedef struct RULE_NEURAL {
 
 /* CONDITION FUNCTIONS */
 
-static void rule_neural_cond_rand(const XCSF *xcsf, const CL *c);
 static uint32_t rule_neural_lopt(const XCSF *xcsf);
 
 void rule_neural_cond_init(const XCSF *xcsf, CL *c)
@@ -113,12 +112,6 @@ void rule_neural_cond_copy(const XCSF *xcsf, CL *dest, const CL *src)
     dest->cond = new;
 }
 
-static void rule_neural_cond_rand(const XCSF *xcsf, const CL *c)
-{
-    const RULE_NEURAL *cond = c->cond;
-    neural_rand(xcsf, &cond->net);
-}
-
 void rule_neural_cond_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     (void)xcsf; (void)c; (void)x;
@@ -136,9 +129,7 @@ _Bool rule_neural_cond_match(const XCSF *xcsf, const CL *c, const double *x)
     if(neural_output(xcsf, &cond->net, 0) > 0.5) {
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }    
 
 _Bool rule_neural_cond_mutate(const XCSF *xcsf, const CL *c)
@@ -209,15 +200,11 @@ void rule_neural_act_print(const XCSF *xcsf, const CL *c)
     (void)xcsf; (void)c;
 }
 
-void rule_neural_act_rand(const XCSF *xcsf, const CL *c)
-{
-    (void)xcsf; (void)c;
-}
-
 void rule_neural_act_cover(const XCSF *xcsf, const CL *c, const double *x, int action)
 {
+    const RULE_NEURAL *cond = c->cond;
     do {
-        rule_neural_cond_rand(xcsf, c);
+        neural_rand(xcsf, &cond->net);
     } while(!rule_neural_cond_match(xcsf, c, x) 
             && rule_neural_act_compute(xcsf, c, x) != action);
 }

@@ -65,7 +65,6 @@ void rule_neural_act_cover(const XCSF *xcsf, const CL *c, const double *x, int a
 void rule_neural_act_free(const XCSF *xcsf, const CL *c);
 void rule_neural_act_init(const XCSF *xcsf, CL *c);
 void rule_neural_act_print(const XCSF *xcsf, const CL *c);
-void rule_neural_act_rand(const XCSF *xcsf, const CL *c);
 void rule_neural_act_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
 size_t rule_neural_act_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t rule_neural_act_load(const XCSF *xcsf, CL *c, FILE *fp);
@@ -82,7 +81,6 @@ static struct ActVtbl const rule_neural_act_vtbl = {
     &rule_neural_act_cover,
     &rule_neural_act_free,
     &rule_neural_act_init,
-    &rule_neural_act_rand,
     &rule_neural_act_print,
     &rule_neural_act_update,
     &rule_neural_act_save,

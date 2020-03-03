@@ -38,7 +38,6 @@ struct ActVtbl {
     void (*act_impl_cover)(const XCSF *xcsf, const CL *c, const double *x, int action);
     void (*act_impl_free)(const XCSF *xcsf, const CL *c);
     void (*act_impl_init)(const XCSF *xcsf, CL *c);
-    void (*act_impl_rand)(const XCSF *xcsf, const CL *c);
     void (*act_impl_print)(const XCSF *xcsf, const CL *c);
     void (*act_impl_update)(const XCSF *xcsf, const CL *c, const double *x, const double *y);
     size_t (*act_impl_save)(const XCSF *xcsf, const CL *c, FILE *fp);
@@ -147,15 +146,6 @@ static inline void act_free(const XCSF *xcsf, const CL *c) {
  */
 static inline void act_init(const XCSF *xcsf, CL *c) {
     (*c->act_vptr->act_impl_init)(xcsf, c);
-}
-
-/**
- * @brief Randomises a classifier's action.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose action is to be randomised.
- */
-static inline void act_rand(const XCSF *xcsf, const CL *c) {
-    (*c->act_vptr->act_impl_rand)(xcsf, c);
 }
 
 /**

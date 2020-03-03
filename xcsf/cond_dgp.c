@@ -39,8 +39,6 @@ typedef struct COND_DGP {
     GRAPH dgp; //!< DGP graph
 } COND_DGP;
 
-static void cond_dgp_rand(const XCSF *xcsf, const CL *c);
-
 void cond_dgp_init(const XCSF *xcsf, CL *c)
 {
     COND_DGP *new = malloc(sizeof(COND_DGP));
@@ -65,16 +63,11 @@ void cond_dgp_copy(const XCSF *xcsf, CL *dest, const CL *src)
     dest->cond = new;
 }
 
-static void cond_dgp_rand(const XCSF *xcsf, const CL *c)
-{
-    COND_DGP *cond = c->cond;
-    graph_rand(xcsf, &cond->dgp);
-}
-
 void cond_dgp_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
+    COND_DGP *cond = c->cond;
     do {
-        cond_dgp_rand(xcsf, c);
+        graph_rand(xcsf, &cond->dgp);
     } while(!cond_dgp_match(xcsf, c, x));
 }
  
