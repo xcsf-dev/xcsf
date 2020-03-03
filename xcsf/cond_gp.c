@@ -39,8 +39,6 @@ typedef struct COND_GP {
     GP_TREE gp; //!< GP tree
 } COND_GP;
 
-static void cond_gp_rand(const XCSF *xcsf, const CL *c);
-
 void cond_gp_init(const XCSF *xcsf, CL *c)
 {
     COND_GP *new = malloc(sizeof(COND_GP));
@@ -63,20 +61,15 @@ void cond_gp_copy(const XCSF *xcsf, CL *dest, const CL *src)
     dest->cond = new;
 }
 
-static void cond_gp_rand(const XCSF *xcsf, const CL *c)
-{
-    COND_GP *cond = c->cond;
-    tree_free(xcsf, &cond->gp);
-    tree_rand(xcsf, &cond->gp);
-}
- 
 void cond_gp_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
+    COND_GP *cond = c->cond;
     do {
-        cond_gp_rand(xcsf, c);
+        tree_free(xcsf, &cond->gp);
+        tree_rand(xcsf, &cond->gp);
     } while(!cond_gp_match(xcsf, c, x));
 }
- 
+
 void cond_gp_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (void)xcsf; (void)c; (void)x; (void)y;
