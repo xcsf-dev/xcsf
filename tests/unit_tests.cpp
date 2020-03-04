@@ -27,6 +27,7 @@
 
 #include "../lib/doctest/doctest/doctest.h"
 
+namespace xcsf {
 extern "C" {   
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,6 +36,7 @@ extern "C" {
 #include "../xcsf/xcsf.h"
 #include "../xcsf/utils.h"
 #include "../xcsf/config.h"
+}
 }
 
 #include "xcsf_test.h"

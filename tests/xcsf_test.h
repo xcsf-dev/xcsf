@@ -23,9 +23,7 @@
 
 namespace xcsf
 { 
-    using doctest::Approx;
-
-    TEST_SUITE_BEGIN("xcsf");
+    TEST_SUITE_BEGIN("XCSF_TEST");
 
     XCSF xcsf;
 

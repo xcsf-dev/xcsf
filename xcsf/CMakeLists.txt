@@ -116,7 +116,7 @@ set(XCSF_HEADERS
 # target: libxcs - main functions
 #################################################
 
-add_library(xcs SHARED ${XCSF_SOURCES} ${XCSF_HEADERS})
+add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS})
 target_link_libraries(xcs m)
 
 #################################################
@@ -127,7 +127,7 @@ add_executable(main main.c)
 target_link_libraries(main xcs)
 
 #################################################
-# target: xcsf.so - Python library
+# target: xcsf.so / pyd - Python library
 #################################################
 
 if(XCSF_PYLIB)
@@ -136,6 +136,8 @@ if(XCSF_PYLIB)
         pybind_wrapper.cpp
     )
 
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC ")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ")
     PYTHON_ADD_MODULE(xcsf SHARED ${XCSF_PY_SOURCES})
     target_link_libraries(xcsf xcs)
     file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
