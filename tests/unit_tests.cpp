@@ -25,7 +25,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT
 #define DOCTEST_CONFIG_SUPER_FAST_ASSERTS
 
-#include "../3rdparty/doctest/doctest/doctest.h"
+#include "../lib/doctest/doctest/doctest.h"
 
 extern "C" {   
 #include <stdio.h>

@@ -25,8 +25,8 @@
 #define _hypot hypot
 #endif
 
-#include "../3rdparty/pybind11/include/pybind11/pybind11.h"
-#include "../3rdparty/pybind11/include/pybind11/numpy.h"
+#include "../lib/pybind11/include/pybind11/pybind11.h"
+#include "../lib/pybind11/include/pybind11/numpy.h"
 #include <string>
 #include <vector>
 
