@@ -21,7 +21,7 @@ set(tests
 )
 
 add_executable(tests ${tests})
-target_link_libraries(tests xcs)
+target_link_libraries(tests xcsf)
 
 add_test(NAME xcsf COMMAND tests)
 

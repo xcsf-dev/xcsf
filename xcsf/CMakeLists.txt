@@ -113,19 +113,6 @@ set(XCSF_HEADERS
 )
 
 #################################################
-# target: libxcs - main functions
-#################################################
-
-add_library(xcs ${XCSF_SOURCES} ${XCSF_HEADERS})
-
-#################################################
-# target: main - standalone binary execution
-#################################################
-
-add_executable(main main.c)
-target_link_libraries(main xcs m)
-
-#################################################
 # target: xcsf.so - Python library
 #################################################
 
@@ -135,7 +122,23 @@ if(XCSF_PYLIB)
         pybind_wrapper.cpp
     )
 
-    PYTHON_ADD_MODULE(xcsf ${XCSF_PY_SOURCES} ${XCSF_SOURCES} ${XCSF_HEADERS})
+    PYTHON_ADD_MODULE(xcsf SHARED ${XCSF_PY_SOURCES} ${XCSF_SOURCES} ${XCSF_HEADERS})
     file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
 
+#################################################
+# target: libxcs - main functions
+#################################################
+
+else()
+
+    add_library(xcsf ${XCSF_SOURCES} ${XCSF_HEADERS})
+    target_link_libraries(xcsf m)
+
 endif()
+
+#################################################
+# target: main - standalone binary execution
+#################################################
+
+add_executable(main main.c)
+target_link_libraries(main xcsf)
