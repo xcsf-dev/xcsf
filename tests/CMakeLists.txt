@@ -15,13 +15,13 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-set(tests
+set(XCSF_TESTS
     unit_tests.cpp
     xcsf_test.h
 )
 
-add_executable(tests ${tests})
-target_link_libraries(tests xcsf)
+add_executable(tests ${XCSF_TESTS})
+target_link_libraries(tests xcs)
 
 add_test(NAME xcsf COMMAND tests)
 

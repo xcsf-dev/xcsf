@@ -125,20 +125,18 @@ if(XCSF_PYLIB)
     PYTHON_ADD_MODULE(xcsf SHARED ${XCSF_PY_SOURCES} ${XCSF_SOURCES} ${XCSF_HEADERS})
     file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
 
+endif()
+
 #################################################
 # target: libxcs - main functions
 #################################################
 
-else()
-
-    add_library(xcsf ${XCSF_SOURCES} ${XCSF_HEADERS})
-    target_link_libraries(xcsf m)
-
-endif()
+add_library(xcs ${XCSF_SOURCES} ${XCSF_HEADERS})
+target_link_libraries(xcs m)
 
 #################################################
 # target: main - standalone binary execution
 #################################################
 
 add_executable(main main.c)
-target_link_libraries(main xcsf)
+target_link_libraries(main xcs)
