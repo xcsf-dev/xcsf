@@ -139,26 +139,24 @@ Alternatively see: [XCSF documentation](https://rpreen.github.io/xcsf/ "XCSF doc
 
 ### Stand-alone
 
-After building with CMake option: `-DXCSF_PYLIB=OFF`
-
 There are currently 3 built-in problem environments: {csv, mp, maze}.
 
 Example real-multiplexer classification:
 
 ```
-$ ./xcsf/xcsf mp 6
+$ ./xcsf/main mp 6
 ```
 
 Example discrete mazes:
 
 ```
-$ ./xcsf/xcsf maze ../env/maze/maze4.txt
+$ ./xcsf/main maze ../env/maze/maze4.txt
 ```
 
 Example regression: learning `env/csv/sine_3var_train.csv` and testing `env/csv/sine_3var_test.csv`
 
 ```
-$ ./xcsf/xcsf csv ../env/csv/sine_3var
+$ ./xcsf/main csv ../env/csv/sine_3var
 ```
 
 ### Python library
