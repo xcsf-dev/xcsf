@@ -27,7 +27,7 @@ namespace xcsf
 
     LAYER *l;
 
-    TEST_CASE("NEURAL_LAYER_CONNECTED INIT")
+    TEST_CASE("NEURAL_LAYER_CONNECTED_INIT")
     {
         xcsf.x_dim = 10;
         xcsf.y_dim = 2;
@@ -42,7 +42,7 @@ namespace xcsf
         CHECK_EQ(l->n_outputs, 2);
     }
 
-    TEST_CASE("NEURAL_LAYER_CONNECTED FORWARD")
+    TEST_CASE("NEURAL_LAYER_CONNECTED_FORWARD")
     {
         const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
             -0.0814486626, 0.0923277094, 0.2779675621, -0.3109822596,

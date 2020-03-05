@@ -25,7 +25,7 @@ namespace xcsf
 { 
     TEST_SUITE_BEGIN("XCSF_TEST");
 
-    TEST_CASE("CONFIG TEST") {
+    TEST_CASE("CONFIG_INIT") {
         config_init(&xcsf, "default.ini");
         CHECK_EQ(xcsf.ALPHA, 0.1);
     }

@@ -25,7 +25,7 @@ namespace xcsf
 { 
     TEST_SUITE_BEGIN("PRED_RLS_TEST");
 
-    TEST_CASE("PRED_RLS LINEAR INIT")
+    TEST_CASE("PRED_RLS_INIT")
     {
         xcsf.x_dim = 10;
         xcsf.y_dim = 1;
@@ -40,7 +40,7 @@ namespace xcsf
         CHECK_EQ(p->n_weights, 11);
     }
 
-    TEST_CASE("PRED_RLS LINEAR COMPUTE")
+    TEST_CASE("PRED_RLS_COMPUTE")
     {
         const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
             -0.0814486626, 0.0923277094, 0.2779675621, -0.3109822596,
@@ -57,7 +57,7 @@ namespace xcsf
         REQUIRE(doctest::Approx(c.prediction[0]) == 0.7343893899);
     }
 
-    TEST_CASE("PRED_RLS LINEAR UPDATE")
+    TEST_CASE("PRED_RLS_UPDATE")
     {
         const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
             -0.0814486626, 0.0923277094, 0.2779675621, -0.3109822596,
