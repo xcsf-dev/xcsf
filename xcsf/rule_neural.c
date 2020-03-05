@@ -38,14 +38,6 @@
 #include "action.h"
 #include "rule_neural.h"
 
-/**
- * @brief Neural network rule data structure.
- */ 
-typedef struct RULE_NEURAL {
-    NET net; //!< Neural network
-    int n_outputs; //!< Number of action nodes (binarised)
-} RULE_NEURAL;
-
 /* CONDITION FUNCTIONS */
 
 static uint32_t rule_neural_lopt(const XCSF *xcsf);

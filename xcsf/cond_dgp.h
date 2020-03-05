@@ -23,6 +23,13 @@
 
 #pragma once
 
+/**
+ * @brief Dynamical GP graph condition data structure.
+ */ 
+typedef struct COND_DGP {
+    GRAPH dgp; //!< DGP graph
+} COND_DGP;
+
 _Bool cond_dgp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_dgp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_dgp_match(const XCSF *xcsf, const CL *c, const double *x);

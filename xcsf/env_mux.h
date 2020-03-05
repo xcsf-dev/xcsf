@@ -23,6 +23,14 @@
 
 #pragma once
 
+/**
+ * @brief Real multiplexer environment data structure.
+ */  
+typedef struct ENV_MUX {
+    double *state; //!< Current state
+    int pos_bits; //!< Number of position bits
+} ENV_MUX;
+
 _Bool env_mux_isreset(const XCSF *xcsf);
 _Bool env_mux_multistep(const XCSF *xcsf);
 double env_mux_execute(const XCSF *xcsf, int action);

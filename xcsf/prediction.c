@@ -27,6 +27,7 @@
 #include <stdbool.h>
 #include "xcsf.h"       
 #include "utils.h"
+#include "neural.h"
 #include "prediction.h"
 #include "pred_constant.h"
 #include "pred_nlms.h"

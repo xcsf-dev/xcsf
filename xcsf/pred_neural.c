@@ -38,13 +38,6 @@
 #include "prediction.h"
 #include "pred_neural.h"
 
-/**
- * @brief Multi-layer perceptron neural network prediction data structure.
- */ 
-typedef struct PRED_NEURAL {
-    NET net; //!< Neural network
-} PRED_NEURAL;
-
 static uint32_t pred_neural_lopt(const XCSF *xcsf);
 
 void pred_neural_init(const XCSF *xcsf, CL *c)

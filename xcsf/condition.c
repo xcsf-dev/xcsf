@@ -27,6 +27,9 @@
 #include <stdbool.h>
 #include "xcsf.h"       
 #include "utils.h"
+#include "gp.h"
+#include "dgp.h"
+#include "neural.h"
 #include "condition.h"
 #include "cond_dummy.h"
 #include "cond_rectangle.h"

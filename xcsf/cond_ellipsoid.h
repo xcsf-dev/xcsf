@@ -23,6 +23,15 @@
 
 #pragma once
 
+/**
+ * @brief Hyperellipsoid condition data structure.
+ */ 
+typedef struct COND_ELLIPSOID {
+    double *center; //!< Centers
+    double *spread; //!< Spreads
+    double *mu; //!< Mutation rates
+} COND_ELLIPSOID;
+
 _Bool cond_ellipsoid_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_ellipsoid_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_ellipsoid_match(const XCSF *xcsf, const CL *c, const double *x);

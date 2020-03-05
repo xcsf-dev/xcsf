@@ -23,6 +23,18 @@
  
 #pragma once
 
+/**
+ * @brief Normalised least mean squares prediction data structure.
+ */ 
+typedef struct PRED_NLMS {
+    int n; //!< Number of weights for each predicted variable
+    int n_weights; //!< Total number of weights
+    double *weights; //!< Weights used to compute prediction
+    double *mu; //!< Mutation rates
+    double eta; //!< Gradient descent rate
+    double *tmp_input; //!< Temporary storage for updating weights
+} PRED_NLMS;
+
 _Bool pred_nlms_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool pred_nlms_mutate(const XCSF *xcsf, const CL *c);
 int pred_nlms_size(const XCSF *xcsf, const CL *c);

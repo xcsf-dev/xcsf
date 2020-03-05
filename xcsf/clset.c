@@ -31,6 +31,7 @@
 #include "clset.h"
 
 #include "prediction.h"
+#include "neural.h"
 #include "pred_neural.h"
 
 #define MAX_COVER 1000000 //!< maximum number of covering attempts

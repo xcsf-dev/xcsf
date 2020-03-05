@@ -40,14 +40,6 @@
 #define MAX_PAYOFF 1.0 //!< Payoff provided for making a correct classification
 
 /**
- * @brief Real multiplexer environment data structure.
- */  
-typedef struct ENV_MUX {
-    double *state; //!< Current state
-    int pos_bits; //!< Number of position bits
-} ENV_MUX;
-
-/**
  * @brief Initialises a real multiplexer environment of specified length.
  * @param xcsf The XCSF data structure.
  * @param bits The problem length.

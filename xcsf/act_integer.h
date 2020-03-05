@@ -23,6 +23,14 @@
 
 #pragma once
 
+/**
+ * @brief Integer action data structure.
+ */
+typedef struct ACT_INTEGER {
+    int action; //!< Integer action
+    double *mu; //!< Mutation rates
+} ACT_INTEGER;
+
 _Bool act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool act_integer_mutate(const XCSF *xcsf, const CL *c);

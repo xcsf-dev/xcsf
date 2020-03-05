@@ -23,6 +23,14 @@
 
 #pragma once
 
+/**
+ * @brief Neural network rule data structure.
+ */ 
+typedef struct RULE_NEURAL {
+    NET net; //!< Neural network
+    int n_outputs; //!< Number of action nodes (binarised)
+} RULE_NEURAL;
+
 _Bool rule_neural_cond_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_neural_cond_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_neural_cond_match(const XCSF *xcsf, const CL *c, const double *x);

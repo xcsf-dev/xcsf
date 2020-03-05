@@ -23,6 +23,13 @@
 
 #pragma once
 
+/**
+ * @brief Tree GP condition data structure.
+ */ 
+typedef struct COND_GP {
+    GP_TREE gp; //!< GP tree
+} COND_GP;
+
 _Bool cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_gp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_gp_match(const XCSF *xcsf, const CL *c, const double *x);

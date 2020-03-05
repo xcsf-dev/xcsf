@@ -23,6 +23,13 @@
  
 #pragma once
 
+/**
+ * @brief Multi-layer perceptron neural network condition data structure.
+ */ 
+typedef struct COND_NEURAL {
+    NET net; //!< Neural network
+} COND_NEURAL;
+
 _Bool cond_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_neural_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_neural_match(const XCSF *xcsf, const CL *c, const double *x);

@@ -23,6 +23,16 @@
 
 #pragma once
 
+/**
+ * @brief Ternary condition data structure.
+ */ 
+typedef struct COND_TERNARY {
+    char *string; //!< Ternary bitstring
+    int length; //!< Length of the bitstring
+    double *mu; //!< Mutation rates
+    char *tmp_input; //!< Temporary storage for float conversion
+} COND_TERNARY;
+
 _Bool cond_ternary_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_ternary_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_ternary_match(const XCSF *xcsf, const CL *c, const double *x);

@@ -35,26 +35,18 @@
 
 #define N_MU 1 //!< Number of hyperrectangle mutation rates
 
-/**
- * @brief Hyperrectangle condition data structure.
- */ 
-typedef struct COND_RECTANGLE {
-    double *center; //!< Centers
-    double *spread; //!< Spreads
-    double mu[N_MU]; //!< Mutation rates
-} COND_RECTANGLE;
-
 static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x);
 
 void cond_rectangle_init(const XCSF *xcsf, CL *c)
 {
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
-    new->center = malloc(sizeof(double) * xcsf->x_dim);
-    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    new->center = malloc(xcsf->x_dim * sizeof(double));
+    new->spread = malloc(xcsf->x_dim * sizeof(double));
     for(int i = 0; i < xcsf->x_dim; i++) {
         new->center[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
         new->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
     }  
+    new->mu = malloc(N_MU * sizeof(double));
     sam_init(xcsf, new->mu, N_MU);
     c->cond = new;     
 }
@@ -65,6 +57,7 @@ void cond_rectangle_free(const XCSF *xcsf, const CL *c)
     const COND_RECTANGLE *cond = c->cond;
     free(cond->center);
     free(cond->spread);
+    free(cond->mu);
     free(c->cond);
 }
 
@@ -72,11 +65,12 @@ void cond_rectangle_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
     const COND_RECTANGLE *src_cond = src->cond;
-    new->center = malloc(sizeof(double) * xcsf->x_dim);
-    new->spread = malloc(sizeof(double) * xcsf->x_dim);
-    memcpy(new->center, src_cond->center, sizeof(double) * xcsf->x_dim);
-    memcpy(new->spread, src_cond->spread, sizeof(double) * xcsf->x_dim);
-    memcpy(new->mu, src_cond->mu, sizeof(double) * N_MU);
+    new->center = malloc(xcsf->x_dim * sizeof(double));
+    new->spread = malloc(xcsf->x_dim * sizeof(double));
+    new->mu = malloc(N_MU * sizeof(double));
+    memcpy(new->center, src_cond->center, xcsf->x_dim * sizeof(double));
+    memcpy(new->spread, src_cond->spread, xcsf->x_dim * sizeof(double));
+    memcpy(new->mu, src_cond->mu, N_MU * sizeof(double));
     dest->cond = new;
 }                             
 
@@ -213,8 +207,9 @@ size_t cond_rectangle_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
-    new->center = malloc(sizeof(double) * xcsf->x_dim);
-    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    new->center = malloc(xcsf->x_dim * sizeof(double));
+    new->spread = malloc(xcsf->x_dim * sizeof(double));
+    new->mu = malloc(N_MU * sizeof(double));
     s += fread(new->center, sizeof(double), xcsf->x_dim, fp);
     s += fread(new->spread, sizeof(double), xcsf->x_dim, fp);
     s += fread(new->mu, sizeof(double), N_MU, fp);

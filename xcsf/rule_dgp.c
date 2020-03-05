@@ -33,14 +33,6 @@
 #include "action.h"
 #include "rule_dgp.h"
 
-/**
- * @brief Dynamical GP graph rule data structure.
- */ 
-typedef struct RULE_DGP{
-    GRAPH dgp; //!< DGP graph
-    int n_outputs; //!< Number of action nodes (binarised)
-} RULE_DGP;
-
 /* CONDITION FUNCTIONS */
 
 void rule_dgp_cond_init(const XCSF *xcsf, CL *c)

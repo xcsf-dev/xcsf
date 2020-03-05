@@ -38,16 +38,6 @@
 #define P_DONTCARE 0.5 //!< Don't care probability in randomisation and covering
 #define DONT_CARE '#' //!< Don't care symbol
 
-/**
- * @brief Ternary condition data structure.
- */ 
-typedef struct COND_TERNARY {
-    char *string; //!< Ternary bitstring
-    int length; //!< Length of the bitstring
-    double mu[N_MU]; //!< Mutation rates
-    char *tmp_input; //!< Temporary storage for float conversion
-} COND_TERNARY;
-
 static void cond_ternary_rand(const XCSF *xcsf, const CL *c);
 static void float_to_binary(double f, char *binary, int bits);
 
@@ -57,6 +47,7 @@ void cond_ternary_init(const XCSF *xcsf, CL *c)
     new->length = xcsf->x_dim * xcsf->COND_BITS;
     new->string = malloc(new->length * sizeof(char));
     new->tmp_input = malloc(xcsf->COND_BITS * sizeof(char));
+    new->mu = malloc(N_MU * sizeof(double));
     sam_init(xcsf, new->mu, N_MU);
     c->cond = new;     
     cond_ternary_rand(xcsf, c);
@@ -85,6 +76,7 @@ void cond_ternary_free(const XCSF *xcsf, const CL *c)
     const COND_TERNARY *cond = c->cond;
     free(cond->string);
     free(cond->tmp_input);
+    free(cond->mu);
     free(c->cond);
 }
 
@@ -96,6 +88,7 @@ void cond_ternary_copy(const XCSF *xcsf, CL *dest, const CL *src)
     new->length = src_cond->length;
     new->string = malloc(src_cond->length * sizeof(char));
     new->tmp_input = malloc(xcsf->COND_BITS * sizeof(char));
+    new->mu = malloc(N_MU * sizeof(double));
     memcpy(new->string, src_cond->string, src_cond->length * sizeof(char));
     memcpy(new->mu, src_cond->mu, N_MU * sizeof(double));
     dest->cond = new;
@@ -228,6 +221,7 @@ size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp)
     s += fread(&new->length, sizeof(int), 1, fp);
     new->string = malloc(new->length * sizeof(char));
     new->tmp_input = malloc(xcsf->COND_BITS * sizeof(char));
+    new->mu = malloc(N_MU * sizeof(double));
     s += fread(new->string, sizeof(char), new->length, fp);
     s += fread(new->mu, sizeof(double), N_MU, fp);
     c->cond = new;

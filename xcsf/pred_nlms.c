@@ -37,18 +37,6 @@
 #define ETA_MAX 0.1 //!< Maximum gradient descent rate
 #define ETA_MIN 0.0001 //!< Minimum gradient descent rate
 
-/**
- * @brief Normalised least mean squares prediction data structure.
- */ 
-typedef struct PRED_NLMS {
-    int n; //!< Number of weights for each predicted variable
-    int n_weights; //!< Total number of weights
-    double *weights; //!< Weights used to compute prediction
-    double mu[N_MU]; //!< Mutation rates
-    double eta; //!< Gradient descent rate
-    double *tmp_input; //!< Temporary storage for updating weights
-} PRED_NLMS;
-
 void pred_nlms_init(const XCSF *xcsf, CL *c)
 {
     PRED_NLMS *pred = malloc(sizeof(PRED_NLMS));
@@ -66,6 +54,7 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
     pred->weights = calloc(pred->n_weights, sizeof(double));
     blas_fill(xcsf->y_dim, xcsf->PRED_X0, pred->weights, pred->n);
     // initialise learning rate
+    pred->mu = malloc(N_MU * sizeof(double));
     if(xcsf->PRED_EVOLVE_ETA) {
         sam_init(xcsf, pred->mu, N_MU);
         pred->eta = rand_uniform(ETA_MIN, ETA_MAX);
@@ -94,6 +83,7 @@ void pred_nlms_free(const XCSF *xcsf, const CL *c)
     PRED_NLMS *pred = c->pred;
     free(pred->weights);
     free(pred->tmp_input);
+    free(pred->mu);
     free(pred);
 }
 

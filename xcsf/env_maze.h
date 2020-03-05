@@ -23,6 +23,21 @@
     
 #pragma once
 
+#define MAX_SIZE 50 //!< The maximum width/height of a maze
+
+/**
+ * @brief Maze environment data structure.
+ */ 
+typedef struct ENV_MAZE {
+    double *state; //!< Current state
+    char maze[MAX_SIZE][MAX_SIZE]; //!< Maze
+    int xpos; //!< Current x position
+    int ypos; //!< Current y position
+    int xsize; //!< Maze size in x dimension
+    int ysize; //!< Maze size in y dimension
+    _Bool reset; //!< Whether the trial needs to be reset (e.g., in goal state)
+} ENV_MAZE;
+
 _Bool env_maze_isreset(const XCSF *xcsf);
 _Bool env_maze_multistep(const XCSF *xcsf);
 double env_maze_execute(const XCSF *xcsf, int action);

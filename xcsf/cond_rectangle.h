@@ -23,6 +23,15 @@
 
 #pragma once
 
+/**
+ * @brief Hyperrectangle condition data structure.
+ */ 
+typedef struct COND_RECTANGLE {
+    double *center; //!< Centers
+    double *spread; //!< Spreads
+    double *mu; //!< Mutation rates
+} COND_RECTANGLE;
+
 _Bool cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cond_rectangle_match(const XCSF *xcsf, const CL *c, const double *x);

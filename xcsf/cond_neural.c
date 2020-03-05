@@ -36,13 +36,6 @@
 #include "condition.h"
 #include "cond_neural.h"
 
-/**
- * @brief Multi-layer perceptron neural network condition data structure.
- */ 
-typedef struct COND_NEURAL {
-    NET net; //!< Neural network
-} COND_NEURAL;
-
 static uint32_t cond_neural_lopt(const XCSF *xcsf);
 
 void cond_neural_init(const XCSF *xcsf, CL *c)

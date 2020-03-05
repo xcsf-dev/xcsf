@@ -23,6 +23,13 @@
 
 #pragma once
 
+/**
+ * @brief Multi-layer perceptron neural network prediction data structure.
+ */ 
+typedef struct PRED_NEURAL {
+    NET net; //!< Neural network
+} PRED_NEURAL;
+
 _Bool pred_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool pred_neural_mutate(const XCSF *xcsf, const CL *c);
 double pred_neural_eta(const XCSF *xcsf, const CL *c, int layer);

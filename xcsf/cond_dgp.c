@@ -32,13 +32,6 @@
 #include "condition.h"
 #include "cond_dgp.h"
 
-/**
- * @brief Dynamical GP graph condition data structure.
- */ 
-typedef struct COND_DGP {
-    GRAPH dgp; //!< DGP graph
-} COND_DGP;
-
 void cond_dgp_init(const XCSF *xcsf, CL *c)
 {
     COND_DGP *new = malloc(sizeof(COND_DGP));

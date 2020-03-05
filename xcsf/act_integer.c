@@ -33,14 +33,6 @@
  
 #define N_MU 1 //!< Number of integer action mutation rates
 
-/**
- * @brief Integer action data structure.
- */
-typedef struct ACT_INTEGER {
-    int action; //!< Integer action
-    double mu[N_MU]; //!< Mutation rates
-} ACT_INTEGER;
-
 _Bool act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf; (void)c1; (void)c2;
@@ -85,6 +77,7 @@ void act_integer_copy(const XCSF *xcsf, CL *dest, const CL *src)
     ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
     const ACT_INTEGER *src_act = src->act;
     new->action = src_act->action;
+    new->mu = malloc(N_MU * sizeof(double));
     memcpy(new->mu, src_act->mu, N_MU * sizeof(double));
     dest->act = new;
 }
@@ -106,12 +99,15 @@ void act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int actio
 void act_integer_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
+    ACT_INTEGER *act = c->act;
+    free(act->mu);
     free(c->act);
 }
 
 void act_integer_init(const XCSF *xcsf, CL *c)
 {
     ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
+    new->mu = malloc(N_MU * sizeof(double));
     sam_init(xcsf, new->mu, N_MU);
     new->action = irand_uniform(0, xcsf->n_actions);
     c->act = new;
@@ -138,6 +134,7 @@ size_t act_integer_load(const XCSF *xcsf, CL *c, FILE *fp)
     size_t s = 0;
     ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
     s += fread(&new->action, sizeof(int), 1, fp);
+    new->mu = malloc(N_MU * sizeof(double));
     s += fread(new->mu, sizeof(double), N_MU, fp);
     c->act = new;
     return s;
