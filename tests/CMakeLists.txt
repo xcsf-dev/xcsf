@@ -17,6 +17,7 @@
 
 set(XCSF_TESTS
     unit_tests.cpp
+    pred_rls_test.h
     xcsf_test.h
 )
 
