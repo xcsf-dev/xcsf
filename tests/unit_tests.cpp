@@ -36,13 +36,21 @@ extern "C" {
 #include "../xcsf/xcsf.h"
 #include "../xcsf/utils.h"
 #include "../xcsf/config.h"
+#include "../xcsf/blas.h"
+#include "../xcsf/cl.h"
+#include "../xcsf/prediction.h"
+#include "../xcsf/pred_rls.h"
 }
+    XCSF xcsf;
+    CL c;
 }
 
 #include "xcsf_test.h"
+#include "pred_rls_test.h"
 
 int main(int argc, char **argv)
 {
+    xcsf::random_init();
     doctest::Context context;
     context.applyCommandLine(argc, argv);
     int res = context.run();
