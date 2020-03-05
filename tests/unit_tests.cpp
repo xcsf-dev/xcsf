@@ -37,6 +37,10 @@ extern "C" {
 #include "../xcsf/utils.h"
 #include "../xcsf/config.h"
 #include "../xcsf/blas.h"
+#include "../xcsf/neural_activations.h"
+#include "../xcsf/neural.h"
+#include "../xcsf/neural_layer.h"
+#include "../xcsf/neural_layer_connected.h"
 #include "../xcsf/cl.h"
 #include "../xcsf/prediction.h"
 #include "../xcsf/pred_nlms.h"
@@ -47,6 +51,7 @@ CL c;
 }
 
 #include "xcsf_test.h"
+#include "neural_layer_connected_test.h"
 #include "pred_nlms_test.h"
 #include "pred_rls_test.h"
 

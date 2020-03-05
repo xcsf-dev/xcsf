@@ -17,6 +17,7 @@
 
 set(XCSF_TESTS
     unit_tests.cpp
+    neural_layer_connected_test.h
     pred_nlms_test.h
     pred_rls_test.h
     xcsf_test.h
