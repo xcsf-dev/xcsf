@@ -141,7 +141,7 @@ _Bool cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 _Bool cond_rectangle_mutate(const XCSF *xcsf, const CL *c)
 {
-    COND_RECTANGLE *cond = c->cond;
+    const COND_RECTANGLE *cond = c->cond;
     sam_adapt(xcsf, cond->mu, N_MU);
     _Bool changed = false;
     for(int i = 0; i < xcsf->x_dim; i++) {
