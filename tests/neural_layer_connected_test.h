@@ -14,11 +14,11 @@
  */
 
 /**
- * @file pred_nlms_test.h
+ * @file neural_layer_connected_test.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
- * @brief Normalised least mean squares unit tests.
+ * @brief Fully-connected neural network layer tests.
  */ 
 
 namespace xcsf
