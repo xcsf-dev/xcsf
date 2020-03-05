@@ -39,13 +39,15 @@ extern "C" {
 #include "../xcsf/blas.h"
 #include "../xcsf/cl.h"
 #include "../xcsf/prediction.h"
+#include "../xcsf/pred_nlms.h"
 #include "../xcsf/pred_rls.h"
 }
-    XCSF xcsf;
-    CL c;
+XCSF xcsf;
+CL c;
 }
 
 #include "xcsf_test.h"
+#include "pred_nlms_test.h"
 #include "pred_rls_test.h"
 
 int main(int argc, char **argv)
