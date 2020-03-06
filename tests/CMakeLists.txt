@@ -16,10 +16,12 @@
 #
 
 set(XCSF_TESTS
-    unit_tests.cpp
+    cond_ellipsoid_test.h
+    cond_rectangle_test.h
     neural_layer_connected_test.h
     pred_nlms_test.h
     pred_rls_test.h
+    unit_tests.cpp
     xcsf_test.h
 )
 

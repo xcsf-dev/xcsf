@@ -42,6 +42,9 @@ extern "C" {
 #include "../xcsf/neural_layer.h"
 #include "../xcsf/neural_layer_connected.h"
 #include "../xcsf/cl.h"
+#include "../xcsf/condition.h"
+#include "../xcsf/cond_rectangle.h"
+#include "../xcsf/cond_ellipsoid.h"
 #include "../xcsf/prediction.h"
 #include "../xcsf/pred_nlms.h"
 #include "../xcsf/pred_rls.h"
@@ -51,6 +54,8 @@ CL c;
 }
 
 #include "xcsf_test.h"
+#include "cond_rectangle_test.h"
+#include "cond_ellipsoid_test.h"
 #include "neural_layer_connected_test.h"
 #include "pred_nlms_test.h"
 #include "pred_rls_test.h"
