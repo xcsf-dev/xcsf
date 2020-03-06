@@ -53,7 +53,10 @@ namespace xcsf
 
         PRED_RLS *p = (PRED_RLS *) c.pred;
         memcpy(p->weights, orig_weights, 11 * sizeof(double));
+
+        /* test one forward pass of input */
         pred_rls_compute(&xcsf, &c, x);
+
         REQUIRE(doctest::Approx(c.prediction[0]) == 0.7343893899);
     }
 
@@ -136,17 +139,29 @@ namespace xcsf
 
         PRED_RLS *p = (PRED_RLS *) c.pred;
         memcpy(p->matrix, orig_matrix, 121 * sizeof(double));
+
+        /* test one backward pass of input */
         pred_rls_update(&xcsf, &c, x, y);
+
         double weight_error = 0;
         for(int i = 0; i < 11; i++) {
             weight_error += fabs(p->weights[i] - new_weights[i]);
         }
         REQUIRE(doctest::Approx(weight_error) == 0);
+
         double matrix_error = 0;
         for(int i = 0; i < 121; i++) {
             matrix_error += fabs(p->matrix[i] - new_matrix[i]);
         }
         REQUIRE(doctest::Approx(matrix_error) == 0);
+
+        /* test convergence on one input */
+        for(int i = 0; i < 200; i++) {
+            pred_rls_compute(&xcsf, &c, x);
+            pred_rls_update(&xcsf, &c, x, y);
+        }
+        pred_rls_compute(&xcsf, &c, x);
+        REQUIRE(doctest::Approx(c.prediction[0]) == y[0]);
     }
 
     TEST_SUITE_END();

@@ -52,7 +52,10 @@ namespace xcsf
 
         PRED_NLMS *p = (PRED_NLMS *) c.pred;
         memcpy(p->weights, orig_weights, 11 * sizeof(double));
+
+        /* test one forward pass of input */
         pred_nlms_compute(&xcsf, &c, x);
+
         REQUIRE(doctest::Approx(c.prediction[0]) == 0.7343893899);
     }
 
@@ -70,12 +73,22 @@ namespace xcsf
             5.4903068165 };
 
         PRED_NLMS *p = (PRED_NLMS *) c.pred;
+
+        /* test one backward pass of input */
         pred_nlms_update(&xcsf, &c, x, y);
         double weight_error = 0;
         for(int i = 0; i < 11; i++) {
             weight_error += fabs(p->weights[i] - new_weights[i]);
         }
         REQUIRE(doctest::Approx(weight_error) == 0);
+
+        /* test convergence on one input */
+        for(int i = 0; i < 200; i++) {
+            pred_nlms_compute(&xcsf, &c, x);
+            pred_nlms_update(&xcsf, &c, x, y);
+        }
+        pred_nlms_compute(&xcsf, &c, x);
+        REQUIRE(doctest::Approx(c.prediction[0]) == y[0]);
     }
 
     TEST_SUITE_END();
