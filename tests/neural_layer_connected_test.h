@@ -67,14 +67,14 @@ namespace xcsf
 
         const double orig_biases[2] = { 0.1033557369, -1.2581317787 };
 
-        memcpy(l->weights, orig_weights, 20 * sizeof(double));
-        memcpy(l->biases, orig_biases, 2 * sizeof(double));
+        memcpy(l->weights, orig_weights, l->n_weights * sizeof(double));
+        memcpy(l->biases, orig_biases, l->n_outputs * sizeof(double));
 
         /* test one forward pass of input */
         neural_layer_connected_forward(&xcsf, l, x);
 
         double output_error = 0;
-        for(int i = 0; i < 2; i++) {
+        for(int i = 0; i < l->n_outputs; i++) {
             output_error += fabs(l->output[i] - y[i]);
         }
         REQUIRE(doctest::Approx(output_error) == 0);
@@ -117,6 +117,24 @@ namespace xcsf
             bias_error += fabs(l->biases[i] - new_biases[i]);
         }
         REQUIRE(doctest::Approx(bias_error) == 0);
+    }
+
+    TEST_CASE("NEURAL_LAYER_CONNECTED_CONVERGENCE")
+    {
+        const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
+            -0.0814486626, 0.0923277094, 0.2779675621, -0.3109822596,
+            -0.6788371120, -0.0714929928, -0.1332985280 };
+
+        const double y[2] = { 0.7343893899, 0.2289711363 };
+
+        const double new_weights[20] = { 0.4127301724, -0.4103118294,
+            0.1330195938, -1.2445235759, 2.7887911379, 0.1771601713,
+            -1.1687384133, -0.0887861801, -1.5370076147, -2.0710056524,
+            5.2313215338, 0.2260593034, -0.5367129900, 0.0611303154,
+            -1.2102663341, 2.9483236736, 0.0623796734, -1.5726258658,
+            -0.2392683912, -1.6180583952 };
+
+        const double new_biases[2] = { -0.0637213195, -0.7397018847 };
 
         /* test convergence on one input */
         for(int i = 0; i < 200; i++) {
@@ -130,8 +148,21 @@ namespace xcsf
             neural_layer_connected_update(&xcsf, l);
         }
         neural_layer_connected_forward(&xcsf, l, x);
+
         REQUIRE(doctest::Approx(l->output[0]) == y[0]);
         REQUIRE(doctest::Approx(l->output[1]) == y[1]);
+
+        double weight_error = 0;
+        for(int i = 0; i < l->n_weights; i++) {
+            weight_error += fabs(l->weights[i] - new_weights[i]);
+        }
+        REQUIRE(doctest::Approx(weight_error) == 0);
+
+        double bias_error = 0;
+        for(int i = 0; i < l->n_outputs; i++) {
+            bias_error += fabs(l->biases[i] - new_biases[i]);
+        }
+        REQUIRE(doctest::Approx(bias_error) == 0);
     }
 
     TEST_SUITE_END();
