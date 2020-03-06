@@ -29,7 +29,7 @@ namespace xcsf
     {
         xcsf.x_dim = 10;
         xcsf.y_dim = 1;
-        xcsf.PRED_TYPE = 3;
+        xcsf.PRED_TYPE = PRED_TYPE_RLS_LINEAR;
         xcsf.PRED_X0 = 1;
         xcsf.PRED_RLS_SCALE_FACTOR = 1000;
         xcsf.PRED_RLS_LAMBDA = 1;

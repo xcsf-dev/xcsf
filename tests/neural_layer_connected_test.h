@@ -32,7 +32,7 @@ namespace xcsf
     {
         xcsf.x_dim = 10;
         xcsf.y_dim = 2;
-        xcsf.PRED_TYPE = 5;
+        xcsf.PRED_TYPE = PRED_TYPE_NEURAL;
         xcsf.PRED_ETA = 0.1;
         xcsf.PRED_MOMENTUM = 0.9;
         neural_init(&xcsf, &net);
