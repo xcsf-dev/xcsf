@@ -109,22 +109,12 @@ set(XCSF_HEADERS
     xcsf.h
 )
 
-set(dSFMT_SOURCES
-    ../lib/dSFMT/dSFMT.c
-)
-
-set(dSFMT_HEADERS
-    ../lib/dSFMT/dSFMT-common.h
-    ../lib/dSFMT/dSFMT-params.h
-    ../lib/dSFMT/dSFMT-params19937.h
-    ../lib/dSFMT/dSFMT.h
-)
 #################################################
 # target: libxcs - main functions
 #################################################
 
-add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${dSFMT_SOURCES} ${dSFMT_HEADERS})
-target_link_libraries(xcs m)
+add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS})
+target_link_libraries(xcs dSFMT m)
 
 #################################################
 # target: main - standalone binary execution
