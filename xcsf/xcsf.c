@@ -27,12 +27,8 @@
 #include <stdbool.h>
 #include <errno.h>
 #include "xcsf.h"
-#include "utils.h"
 #include "loss.h"
-#include "perf.h"
-#include "cl.h"
 #include "clset.h"
-#include "ea.h"
 
 static const double VERSION = 1.06; //!< XCSF version number
 
