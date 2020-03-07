@@ -4,3 +4,6 @@
 [submodule "lib/doctest"]
 	path = lib/doctest
 	url = https://github.com/onqtam/doctest
+[submodule "lib/dSFMT"]
+	path = lib/dSFMT
+	url = https://github.com/MersenneTwister-Lab/dSFMT

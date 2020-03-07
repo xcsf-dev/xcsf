@@ -94,7 +94,6 @@ if(XCSF_PYLIB)
     message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
 endif()
 
-add_subdirectory(lib/dSFMT)
 add_subdirectory(xcsf)
 file(COPY default.ini DESTINATION .)             
  
