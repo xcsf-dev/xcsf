@@ -21,6 +21,8 @@
  * @brief Hyperrectangle condition tests.
  */ 
 
+#pragma once
+
 namespace xcsf
 { 
     TEST_SUITE_BEGIN("COND_RECTANGLE_TEST");

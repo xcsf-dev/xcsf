@@ -21,6 +21,8 @@
  * @brief Recursive least mean squares unit tests.
  */ 
 
+#pragma once
+
 namespace xcsf
 { 
     TEST_SUITE_BEGIN("PRED_RLS_TEST");

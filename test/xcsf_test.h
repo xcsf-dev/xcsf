@@ -21,6 +21,8 @@
  * @brief A unit test.
  */ 
 
+#pragma once
+
 namespace xcsf
 { 
     TEST_SUITE_BEGIN("XCSF_TEST");

@@ -21,6 +21,8 @@
  * @brief Fully-connected neural network layer tests.
  */ 
 
+#pragma once
+
 namespace xcsf
 { 
     TEST_SUITE_BEGIN("NEURAL_LAYER_CONNECTED TEST");

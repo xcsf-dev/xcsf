@@ -21,6 +21,8 @@
  * @brief Hyperellipsoid condition tests.
  */ 
 
+#pragma once
+
 namespace xcsf
 { 
     TEST_SUITE_BEGIN("COND_ELLIPSOID_TEST");
