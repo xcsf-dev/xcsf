@@ -47,7 +47,6 @@ void xcsf_init(XCSF *xcsf)
     clset_init(&xcsf->pset);
 }
 
-
 /**
  * @brief Prints the current XCSF population.
  * @param xcsf The XCSF data structure.
