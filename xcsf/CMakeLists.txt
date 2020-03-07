@@ -133,8 +133,6 @@ if(XCSF_PYLIB)
         pybind_wrapper.cpp
     )
 
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC ")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ")
     PYTHON_ADD_MODULE(xcsf SHARED ${XCSF_PY_SOURCES})
     target_link_libraries(xcsf xcs)
     file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
