@@ -18,8 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
- * @brief High level XCSF functions for executing training, predicting, saving
- * and reloading the system from persistent storage, etc.
+ * @brief System-level functions for initialising, saving, loading, etc.
  */ 
  
 #include <stdio.h>
@@ -37,8 +36,6 @@
 
 static const double VERSION = 1.06; //!< XCSF version number
 
-static int xcsf_select_sample(const INPUT *data, int cnt, _Bool shuffle);
-static void xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
 static size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
 static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp);
 
@@ -54,119 +51,6 @@ void xcsf_init(XCSF *xcsf)
     clset_init(&xcsf->pset);
 }
 
-/**
- * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
- * training data and test iterations using the test data.
- * @param xcsf The XCSF data structure.
- * @param train_data The input data to use for training.
- * @param test_data The input data to use for testing.
- * @param shuffle Whether to randomise the instances during training.
- * @return The average XCSF training error using the loss function.
- */
-double xcsf_fit(XCSF *xcsf, const INPUT *train_data, const INPUT *test_data, _Bool shuffle)
-{   
-    double err = 0; // training error: total over all trials
-    double werr = 0; // training error: windowed total
-    double wterr = 0; // testing error: windowed total
-    double *pred = malloc(sizeof(double) * xcsf->y_dim);
-    for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        // training sample
-        int row = xcsf_select_sample(train_data, cnt, shuffle);
-        const double *x = &train_data->x[row * train_data->x_dim];
-        const double *y = &train_data->y[row * train_data->y_dim];
-        xcsf->train = true;
-        xcsf_trial(xcsf, pred, x, y);
-        double error = (xcsf->loss_ptr)(xcsf, pred, y);
-        werr += error;
-        err += error;
-        // test sample
-        if(test_data != NULL) {
-            row = xcsf_select_sample(test_data, cnt, shuffle);
-            x = &test_data->x[row * test_data->x_dim];
-            y = &test_data->y[row * test_data->y_dim];
-            xcsf->train = false;
-            xcsf_trial(xcsf, pred, x, y);
-            wterr += (xcsf->loss_ptr)(xcsf, pred, y);
-        }
-        perf_print(xcsf, &werr, &wterr, cnt);
-    }
-    free(pred);
-    return err / xcsf->MAX_TRIALS;
-}
-
-/**
- * @brief Selects a data sample for training or testing.
- * @param data The input data.
- * @param cnt The current sequence counter.
- * @param shuffle Whether to select the sample randomly.
- * @return The row of the data sample selected.
- */
-static int xcsf_select_sample(const INPUT *data, int cnt, _Bool shuffle)
-{
-    if(shuffle) {
-        return irand_uniform(0, data->n_samples);
-    }
-    else {
-        return cnt % data->n_samples;
-    }
-}
-
-/**
- * @brief Executes a single XCSF trial.
- * @param xcsf The XCSF data structure.
- * @param pred The calculated XCSF prediction (set by this function).
- * @param x The feature variables.
- * @param y The labelled variables.
- */
-static void xcsf_trial(XCSF *xcsf, double *pred, const double *x, const double *y)
-{
-    clset_init(&xcsf->mset);
-    clset_init(&xcsf->kset);
-    clset_match(xcsf, x);
-    clset_pred(xcsf, &xcsf->mset, x, pred);
-    if(xcsf->train) {
-        clset_update(xcsf, &xcsf->mset, x, y, true);
-        ea(xcsf, &xcsf->mset);
-    }
-    clset_kill(xcsf, &xcsf->kset);
-    clset_free(&xcsf->mset);
-}
-
-/**
- * @brief Calculates the XCSF predictions for the provided input.
- * @param xcsf The XCSF data structure.
- * @param x The input feature variables.
- * @param pred The calculated XCSF predictions (set by this function).
- * @param n_samples The number of instances.
- */
-void xcsf_predict(XCSF *xcsf, const double *x, double *pred, int n_samples)
-{   
-    xcsf->train = false;
-    for(int row = 0; row < n_samples; row++) {
-        xcsf_trial(xcsf, &pred[row * xcsf->y_dim], &x[row * xcsf->x_dim], NULL);
-    }
-}
-
-/**
- * @brief Calculates the XCSF error for the input data.
- * @param xcsf The XCSF data structure.
- * @param test_data The input data to calculate the error.
- * @return The average XCSF error using the loss function.
- */
-double xcsf_score(XCSF *xcsf, const INPUT *test_data)
-{
-    xcsf->train = false;
-    double err = 0;
-    double *pred = malloc(sizeof(double) * xcsf->y_dim);
-    for(int row = 0; row < test_data->n_samples; row++) {
-        const double *x = &test_data->x[row * test_data->x_dim];
-        const double *y = &test_data->y[row * test_data->y_dim];
-        xcsf_trial(xcsf, pred, x, y);
-        err += (xcsf->loss_ptr)(xcsf, pred, y);
-    }
-    free(pred);
-    return err / test_data->n_samples;
-}
 
 /**
  * @brief Prints the current XCSF population.

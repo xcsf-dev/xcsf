@@ -35,6 +35,7 @@ namespace py = pybind11;
 extern "C" {   
 #include <stdbool.h>
 #include "xcsf.h"
+#include "xcs_supervised.h"
 #include "xcs_single_step.h"
 #include "pa.h"
 #include "config.h"
@@ -175,7 +176,7 @@ class XCS
                 clset_pop_init(&xcs);
             }
             // execute
-            return xcsf_fit(&xcs, train_data, NULL, shuffle);
+            return xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
         }
 
         double fit(py::array_t<double> train_X, py::array_t<double> train_Y,
@@ -218,7 +219,7 @@ class XCS
                 clset_pop_init(&xcs);
             }
             // execute
-            return xcsf_fit(&xcs, train_data, test_data, shuffle);
+            return xcs_supervised_fit(&xcs, train_data, test_data, shuffle);
         }
 
         py::array_t<double> predict(py::array_t<double> x)
@@ -229,7 +230,7 @@ class XCS
             double *input = (double *) buf_x.ptr;
             // predicted outputs
             double *output = (double *) malloc(sizeof(double) * n_samples * xcs.y_dim);
-            xcsf_predict(&xcs, input, output, n_samples);
+            xcs_supervised_predict(&xcs, input, output, n_samples);
             // return numpy array
             return py::array_t<double>(std::vector<ptrdiff_t>{n_samples, xcs.y_dim}, output);
         }
@@ -247,7 +248,7 @@ class XCS
             test_data->y_dim = buf_y.shape[1];
             test_data->x = (double *) buf_x.ptr;
             test_data->y = (double *) buf_y.ptr;
-            return xcsf_score(&xcs, test_data);
+            return xcs_supervised_score(&xcs, test_data);
         }
 
         /* GETTERS */

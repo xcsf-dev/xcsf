@@ -59,6 +59,7 @@ set(XCSF_SOURCES
     utils.c
     xcs_multi_step.c
     xcs_single_step.c
+    xcs_supervised.c
     xcsf.c
 )
 
@@ -109,6 +110,7 @@ set(XCSF_HEADERS
     utils.h
     xcs_multi_step.h
     xcs_single_step.h
+    xcs_supervised.h
     xcsf.h
 )
 
