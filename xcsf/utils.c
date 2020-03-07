@@ -28,7 +28,7 @@
 #include <limits.h>
 #include <float.h>
 #include <math.h>
-#include "dSFMT.h"
+#include "../lib/dSFMT/dSFMT.h"
 #include "utils.h"
 
 static double drand();

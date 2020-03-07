@@ -61,6 +61,13 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 endif()
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ")
+set(CMAKE_C_FLAGS_DEBUG "-g3")
+set(CMAKE_C_FLAGS_RELEASE "-Ofast -march=native -flto -funroll-loops")
+set(CMAKE_CXX_FLAGS_DEBUG "-g3")
+set(CMAKE_CXX_FLAGS_RELEASE "-Ofast -march=native -flto -funroll-loops")
+
 option(PARALLEL "Parallel match set and prediction" ON)
 if(PARALLEL)
     find_package(OpenMP REQUIRED)
@@ -87,6 +94,7 @@ if(XCSF_PYLIB)
     message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
 endif()
 
+add_subdirectory(lib/dSFMT)
 add_subdirectory(xcsf)
 file(COPY default.ini DESTINATION .)             
  
@@ -108,11 +116,6 @@ if(DOXYGEN_FOUND)
         VERBATIM)
 endif()
  
-set(CMAKE_C_FLAGS_DEBUG "-g3")
-set(CMAKE_C_FLAGS_RELEASE "-Ofast -march=native -flto -funroll-loops")
-set(CMAKE_CXX_FLAGS_DEBUG "-g3")
-set(CMAKE_CXX_FLAGS_RELEASE "-Ofast -march=native -flto -funroll-loops")
-
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS_DEBUG: ${CMAKE_C_FLAGS_DEBUG}")
 message(STATUS "CMAKE_C_FLAGS_RELEASE: ${CMAKE_C_FLAGS_RELEASE}")

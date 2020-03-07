@@ -30,7 +30,6 @@ set(XCSF_SOURCES
     cond_ternary.c
     condition.c
     config.c
-    dSFMT.c
     dgp.c
     ea.c
     env.c
@@ -78,10 +77,6 @@ set(XCSF_HEADERS
     cond_ternary.h
     condition.h
     config.h
-    dSFMT-common.h
-    dSFMT-params.h
-    dSFMT-params19937.h
-    dSFMT.h
     dgp.h
     ea.h
     env.h
@@ -119,7 +114,7 @@ set(XCSF_HEADERS
 #################################################
 
 add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS})
-target_link_libraries(xcs m)
+target_link_libraries(xcs dSFMT m)
 
 #################################################
 # target: main - standalone binary execution
@@ -138,8 +133,6 @@ if(XCSF_PYLIB)
         pybind_wrapper.cpp
     )
 
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC ")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ")
     PYTHON_ADD_MODULE(xcsf SHARED ${XCSF_PY_SOURCES})
     target_link_libraries(xcsf xcs)
     file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
