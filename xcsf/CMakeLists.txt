@@ -109,12 +109,22 @@ set(XCSF_HEADERS
     xcsf.h
 )
 
+set(dSFMT_SOURCES
+    ../lib/dSFMT/dSFMT.c
+)
+
+set(dSFMT_HEADERS
+    ../lib/dSFMT/dSFMT-common.h
+    ../lib/dSFMT/dSFMT-params.h
+    ../lib/dSFMT/dSFMT-params19937.h
+    ../lib/dSFMT/dSFMT.h
+)
 #################################################
 # target: libxcs - main functions
 #################################################
 
-add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS})
-target_link_libraries(xcs dSFMT m)
+add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${dSFMT_SOURCES} ${dSFMT_HEADERS})
+target_link_libraries(xcs m)
 
 #################################################
 # target: main - standalone binary execution
@@ -133,6 +143,8 @@ if(XCSF_PYLIB)
         pybind_wrapper.cpp
     )
 
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC ")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ")
     PYTHON_ADD_MODULE(xcsf SHARED ${XCSF_PY_SOURCES})
     target_link_libraries(xcsf xcs)
     file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)

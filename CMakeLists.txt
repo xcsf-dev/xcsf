@@ -61,8 +61,6 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 endif()
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC ")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ")
 set(CMAKE_C_FLAGS_DEBUG "-g3")
 set(CMAKE_C_FLAGS_RELEASE "-Ofast -march=native -flto -funroll-loops")
 set(CMAKE_CXX_FLAGS_DEBUG "-g3")
@@ -94,7 +92,6 @@ if(XCSF_PYLIB)
     message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
 endif()
 
-add_subdirectory(lib/dSFMT)
 add_subdirectory(xcsf)
 file(COPY default.ini DESTINATION .)             
  
