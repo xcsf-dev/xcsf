@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <float.h>
+#include <string.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "cl.h"
@@ -36,9 +37,9 @@
 
 #define MAX_COVER 1000000 //!< maximum number of covering attempts
 
-static _Bool clset_action_covered(const XCSF *xcsf, int action);
+static _Bool clset_action_coverage(const XCSF *xcsf, _Bool *act_covered);
 static double clset_total_time(const SET *set);
-static void clset_cover(XCSF *xcsf, const double *x, _Bool *act_covered);
+static void clset_cover(XCSF *xcsf, const double *x);
 static void clset_pop_del(XCSF *xcsf);
 static void clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev);
 static void clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev);
@@ -183,7 +184,6 @@ void clset_pop_enforce_limit(XCSF *xcsf)
  */
 void clset_match(XCSF *xcsf, const double *x)
 {
-    _Bool *act_covered = calloc(xcsf->n_actions, sizeof(_Bool));
 #ifdef PARALLEL_MATCH
     // prepare for parallel processing of matching conditions
     CLIST *blist[xcsf->pset.size];
@@ -201,8 +201,7 @@ void clset_match(XCSF *xcsf, const double *x)
     for(int i = 0; i < xcsf->pset.size; i++) {
         if(cl_m(xcsf, blist[i]->cl)) {
             clset_add(&xcsf->mset, blist[i]->cl);
-            int action = cl_action(xcsf, blist[i]->cl, x);
-            act_covered[action] = true;
+            cl_action(xcsf, blist[i]->cl, x);
         }
     }
 #else
@@ -210,14 +209,14 @@ void clset_match(XCSF *xcsf, const double *x)
     for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         if(cl_match(xcsf, iter->cl, x)) {
             clset_add(&xcsf->mset, iter->cl);
-            int action = cl_action(xcsf, iter->cl, x);
-            act_covered[action] = true;
+            cl_action(xcsf, iter->cl, x);
         }
     }   
 #endif
     // perform covering if all actions are not represented
-    clset_cover(xcsf, x, act_covered);
-    free(act_covered);
+    if(xcsf->n_actions > 1 || xcsf->mset.size < 1) {
+        clset_cover(xcsf, x);
+    }
     // update statistics
     xcsf->msetsize += (xcsf->mset.size - xcsf->msetsize) * (10 / (double) xcsf->PERF_TRIALS);
     xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * (10 / (double) xcsf->PERF_TRIALS);
@@ -227,14 +226,14 @@ void clset_match(XCSF *xcsf, const double *x)
  * @brief Ensures all possible actions are covered by the match set.
  * @param xcsf The XCSF data structure.
  * @param x The input state.
- * @param act_covered Array indicating whether each action is covered by the set.
  */
-static void clset_cover(XCSF *xcsf, const double *x, _Bool *act_covered)
+static void clset_cover(XCSF *xcsf, const double *x)
 {
     int attempts = 0;
-    _Bool again;
-    do {
-        again = false;
+    _Bool *act_covered = malloc(xcsf->n_actions * sizeof(_Bool));
+    _Bool covered = clset_action_coverage(xcsf, act_covered);
+    while(!covered) {
+        covered = true;
         for(int i = 0; i < xcsf->n_actions; i++) {
             if(!act_covered[i]) {
                 // new classifier with matching condition and action
@@ -243,7 +242,6 @@ static void clset_cover(XCSF *xcsf, const double *x, _Bool *act_covered)
                 cl_cover(xcsf, new, x, i);
                 clset_add(&xcsf->pset, new);
                 clset_add(&xcsf->mset, new);
-                act_covered[i] = true;
             }
         }
         // enforce population size
@@ -256,12 +254,7 @@ static void clset_cover(XCSF *xcsf, const double *x, _Bool *act_covered)
             // if the deleted classifier was in the match set,
             // check if an action is now not covered
             if(prev_msize > xcsf->mset.size) {
-                for(int i = 0; i < xcsf->n_actions; i++) {
-                    if(!clset_action_covered(xcsf, i)) {
-                        act_covered[i] = false;
-                        again = true;
-                    }
-                }
+                covered = clset_action_coverage(xcsf, act_covered);
             }
         }
         attempts++;
@@ -269,8 +262,28 @@ static void clset_cover(XCSF *xcsf, const double *x, _Bool *act_covered)
             printf("Error: maximum covering attempts (%d) exceeded\n", MAX_COVER);
             exit(EXIT_FAILURE);
         }
+    }
+    free(act_covered);
+}
 
-    } while(again);
+/**
+ * @brief Checks whether each action is covered by the match set.
+ * @param xcsf The XCSF data structure.
+ * @param act_covered Array of action coverage flags (set by this function).
+ * @return Whether all actions are covered.
+ */
+static _Bool clset_action_coverage(const XCSF *xcsf, _Bool *act_covered)
+{
+    memset(act_covered, 0, xcsf->n_actions * sizeof(_Bool));
+    for(const CLIST *iter = xcsf->mset.list; iter != NULL; iter = iter->next) {
+        act_covered[iter->cl->action] = true;
+    }
+    for(int i = 0; i < xcsf->n_actions; i++) {
+        if(!act_covered[i]) {
+            return false;
+        }
+    }
+    return true;
 }
 
 /**
@@ -331,22 +344,6 @@ void clset_action(XCSF *xcsf, int action)
         }
     }   
 }        
-
-/**
- * @brief Returns whether an action is covered by the match set.
- * @param xcsf The XCSF data structure.
- * @param action The action to check.
- * @return Whether the action is covered.
- */
-static _Bool clset_action_covered(const XCSF *xcsf, int action)
-{
-    for(const CLIST *iter = xcsf->mset.list; iter != NULL; iter = iter->next) {
-        if(iter->cl->action == action) {
-            return true;
-        }
-    }
-    return false;
-}
 
 /**
  * @brief Adds a classifier to the set.
