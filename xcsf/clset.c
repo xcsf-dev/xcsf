@@ -179,8 +179,8 @@ void clset_pop_enforce_limit(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @param x The input state.
  * @details Processes the matching conditions for each classifier in the
- * population. Adds each matching classifier to the match set. Performs
- * covering if any actions are not covered.
+ * population. If a classifier matches, its action is updated and it is added
+ * to the match set. Covering is performed if any actions are unrepresented.
  */
 void clset_match(XCSF *xcsf, const double *x)
 {
