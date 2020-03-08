@@ -74,6 +74,7 @@ See `default.ini` for a full list of options.
 
 * `XCSF_PYLIB = ON` : Python library (CMake default = OFF)
 * `PARALLEL = ON` : CPU parallelised matching, predicting, and updating with OpenMP (CMake default = ON)
+* `ENABLE_TESTS = ON` : Build and execute unit tests (CMake default = OFF)
   
 *******************************************************************************
 
@@ -83,7 +84,7 @@ See `default.ini` for a full list of options.
  
 * C11 compliant compiler.
 * [CMake](https://www.cmake.org "CMake") (>= 3.12)
-* [OpenMP](https://www.openmp.org "OpenMP") (Optional: PARALLEL=ON): supported by [GCC](https://gcc.gnu.org "GCC") and Clang with libomp.
+* [OpenMP](https://www.openmp.org "OpenMP") (Optional: PARALLEL=ON): supported by [GCC](https://gcc.gnu.org "GCC") and [Clang](https://clang.llvm.org "clang") with libomp.
 
 ### Python library
  
@@ -123,7 +124,7 @@ $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON -G "MinGW Makefiles" ..
 $ cmake --build . --config Release
 ```
 
-### Documentation (Doxygen + graphviz)
+### Documentation ([Doxygen](http://www.doxygen.nl/download.html "Doxygen") + [graphviz](https://www.graphviz.org/download/ "graphviz"))
 
 After running cmake:
 
