@@ -27,13 +27,13 @@ matrix:
           packages: ['g++-6', 'python3']
         sonarcloud:
           organization: "rpreen"
-      env: BADGE=linux BUILD_TYPE="Release" XCSF_PYLIB="ON"
+      env: BADGE=linux BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
 
     # Python library OSX
     - os: osx
       osx_image: xcode10.1
       compiler: clang
-      env: BADGE=osx BUILD_TYPE="Release" XCSF_PYLIB="ON"
+      env: BADGE=osx BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
 
 before_script:
   - |
