@@ -18,6 +18,7 @@
 set(XCSF_TESTS
     cond_ellipsoid_test.cpp
     cond_rectangle_test.cpp
+    neural_test.cpp
     neural_layer_connected_test.cpp
     pred_nlms_test.cpp
     pred_rls_test.cpp
