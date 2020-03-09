@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
- * @brief Main unit test loading function.
+ * @brief Main unit test loading.
  */ 
 
 #undef DOCTEST_CONFIG_DISABLE
@@ -27,42 +27,8 @@
 
 #include "../lib/doctest/doctest/doctest.h"
 
-namespace xcsf {
-extern "C" {   
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include "../xcsf/xcsf.h"
-#include "../xcsf/utils.h"
-#include "../xcsf/config.h"
-#include "../xcsf/blas.h"
-#include "../xcsf/neural_activations.h"
-#include "../xcsf/neural.h"
-#include "../xcsf/neural_layer.h"
-#include "../xcsf/neural_layer_connected.h"
-#include "../xcsf/cl.h"
-#include "../xcsf/condition.h"
-#include "../xcsf/cond_rectangle.h"
-#include "../xcsf/cond_ellipsoid.h"
-#include "../xcsf/prediction.h"
-#include "../xcsf/pred_nlms.h"
-#include "../xcsf/pred_rls.h"
-}
-XCSF xcsf;
-CL c;
-}
-
-#include "xcsf_test.h"
-#include "cond_rectangle_test.h"
-#include "cond_ellipsoid_test.h"
-#include "neural_layer_connected_test.h"
-#include "pred_nlms_test.h"
-#include "pred_rls_test.h"
-
 int main(int argc, char **argv)
 {
-    xcsf::random_init();
     doctest::Context context;
     context.applyCommandLine(argc, argv);
     int res = context.run();

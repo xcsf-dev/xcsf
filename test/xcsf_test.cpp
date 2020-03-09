@@ -14,23 +14,29 @@
  */
 
 /**
- * @file xcsf_test.h
+ * @file xcsf_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
  * @brief A unit test.
  */ 
 
-#pragma once
+#include "../lib/doctest/doctest/doctest.h"
 
-namespace xcsf
-{ 
-    TEST_SUITE_BEGIN("XCSF_TEST");
+extern "C" {   
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#include <math.h>
+#include "../xcsf/xcsf.h"
+#include "../xcsf/utils.h"
+#include "../xcsf/config.h"
+}
 
-    TEST_CASE("CONFIG_INIT") {
-        config_init(&xcsf, "default.ini");
-        CHECK_EQ(xcsf.ALPHA, 0.1);
-    }
-
-    TEST_SUITE_END();
+TEST_CASE("XCSF") {
+    XCSF xcsf;
+    random_init();
+    config_init(&xcsf, "../default.ini");
+    CHECK_EQ(xcsf.ALPHA, 0.1);
 }

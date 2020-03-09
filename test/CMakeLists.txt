@@ -16,13 +16,13 @@
 #
 
 set(XCSF_TESTS
-    cond_ellipsoid_test.h
-    cond_rectangle_test.h
-    neural_layer_connected_test.h
-    pred_nlms_test.h
-    pred_rls_test.h
+    cond_ellipsoid_test.cpp
+    cond_rectangle_test.cpp
+    neural_layer_connected_test.cpp
+    pred_nlms_test.cpp
+    pred_rls_test.cpp
     unit_tests.cpp
-    xcsf_test.h
+    xcsf_test.cpp
 )
 
 add_executable(tests ${XCSF_TESTS})
