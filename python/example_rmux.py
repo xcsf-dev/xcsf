@@ -69,6 +69,8 @@ xcs.COND_TYPE = 1 # hyperrectangles
 xcs.PRED_TYPE = 1 # linear least squares
 xcs.ACT_TYPE = 0 # integers
 
+xcs.print_params()
+
 #####################
 # Execute experiment
 #####################

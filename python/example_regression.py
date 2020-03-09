@@ -98,6 +98,8 @@ xcs.PRED_EVOLVE_FUNCTIONS = False
 xcs.PRED_EVOLVE_ETA = True
 xcs.PRED_SGD_WEIGHTS = True
 
+xcs.print_params()
+
 ##################################
 # Example plotting in matplotlib
 ##################################
