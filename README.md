@@ -101,7 +101,7 @@ See `default.ini` for a full list of options.
 ```
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
-$ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON ..
+$ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON -DENABLE_TESTS=ON ..
 $ make
 ```
  
@@ -111,7 +111,7 @@ $ make
 $ brew install libomp cmake python
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
-$ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON ..
+$ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON -DENABLE_TESTS=ON ..
 $ make
 ```
 
@@ -120,7 +120,7 @@ $ make
 ```
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf\build
-$ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON -G "MinGW Makefiles" ..
+$ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON -DENABLE_TESTS=ON -G "MinGW Makefiles" ..
 $ cmake --build . --config Release
 ```
 
