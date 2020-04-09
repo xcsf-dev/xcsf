@@ -212,11 +212,5 @@ void pred_neural_expand(const XCSF *xcsf, const CL *c)
     LAYER *l = neural_layer_connected_init(xcsf, size, size, max, f, lopt);
     neural_layer_insert(xcsf, net, l, pos);
     // resize layers as necessary
-    const LAYER *prev = NULL;
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        if(prev != NULL && iter->layer->n_inputs != prev->n_outputs) {
-            layer_resize(xcsf, iter->layer, prev);
-        }
-        prev = iter->layer;
-    }
+    neural_resize(xcsf, net);
 }

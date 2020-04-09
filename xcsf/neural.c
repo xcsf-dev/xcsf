@@ -218,6 +218,22 @@ _Bool neural_mutate(const XCSF *xcsf, const NET *net)
 }
 
 /**
+ * @brief Resizes neural network layers as necessary.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to resize.
+ */
+void neural_resize(const XCSF *xcsf, NET *net)
+{
+    const LAYER *prev = NULL;
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        if(prev != NULL && iter->layer->n_inputs != prev->n_outputs) {
+            layer_resize(xcsf, iter->layer, prev);
+        }
+        prev = iter->layer;
+    }
+}
+
+/**
  * @brief Forward propagates a neural network.
  * @param xcsf The XCSF data structure.
  * @param net The neural network to propagate.
