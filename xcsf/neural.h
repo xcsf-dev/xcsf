@@ -59,5 +59,5 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *output, const double
 void neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights);
 void neural_propagate(const XCSF *xcsf, const NET *net, const double *input);
 void neural_rand(const XCSF *xcsf, const NET *net);
-void neural_resize(const XCSF *xcsf, NET *net);
+void neural_resize(const XCSF *xcsf, const NET *net);
 void neural_ae(const XCSF *xcsf, NET *net, const double *input);

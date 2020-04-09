@@ -222,7 +222,7 @@ _Bool neural_mutate(const XCSF *xcsf, const NET *net)
  * @param xcsf The XCSF data structure.
  * @param net The neural network to resize.
  */
-void neural_resize(const XCSF *xcsf, NET *net)
+void neural_resize(const XCSF *xcsf, const NET *net)
 {
     const LAYER *prev = NULL;
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
