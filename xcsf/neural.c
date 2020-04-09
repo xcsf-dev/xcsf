@@ -289,6 +289,46 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
 } 
 
 /**
+ * @brief Gradient descent updates a pair of active autoencoder layers.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to be updated.
+ * @param input The input to the network.
+ */
+void neural_ae(const XCSF *xcsf, NET *net, const double *input)
+{
+    // select decoder and encoder layers
+    int layer = 0;
+    const LLIST *iter = net->tail;
+    while(iter != NULL && layer < (net->n_layers / 2)) {
+        iter = iter->prev;
+        layer++;
+    }
+    const LAYER *decoder = iter->layer;
+    const LAYER *encoder = iter->next->layer;
+    // desired output
+    if(iter->next->next != NULL) {
+        input = iter->next->next->layer->output;
+    }
+    // calculate decoder delta
+    for(int i = 0; i < decoder->n_outputs; i++) {
+        decoder->delta[i] = input[i] - decoder->output[i];
+    }
+    // reset encoder delta
+    memset(encoder->delta, 0, encoder->n_outputs * sizeof(double));
+    // backward decoder
+    net->input = encoder->output;
+    net->delta = encoder->delta;
+    layer_backward(xcsf, decoder, net);
+    // backward encoder
+    net->input = input;
+    net->delta = 0;
+    layer_backward(xcsf, encoder, net);
+    // update
+    layer_update(xcsf, decoder);
+    layer_update(xcsf, encoder);
+}
+
+/**
  * @brief Returns the output of a specified neuron in the output layer of a neural network.
  * @param xcsf The XCSF data structure.
  * @param net The neural network to output.
