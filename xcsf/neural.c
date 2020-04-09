@@ -303,6 +303,10 @@ void neural_ae(const XCSF *xcsf, NET *net, const double *input)
         iter = iter->prev;
         layer++;
     }
+    if(iter == NULL) {
+        printf("neural_ae(): error finding decoder\n");
+        exit(EXIT_FAILURE);
+    }
     const LAYER *decoder = iter->layer;
     const LAYER *encoder = iter->next->layer;
     // desired output
