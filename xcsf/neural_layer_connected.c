@@ -40,6 +40,8 @@
 #define ETA_MIN 0.0001 //!< Minimum gradient descent rate
 #define WEIGHT_MIN -10 //!< Minimum value of a weight or bias
 #define WEIGHT_MAX  10 //!< Maximum value of a weight or bias
+#define MAX_NEURONS 5000 //!< Maximum number of neurons
+#define MAX_WEIGHTS 100000000 //!< Maximum number of weights
 
 static _Bool mutate_eta(LAYER *l, double mu);
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu);
@@ -447,6 +449,14 @@ size_t neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
     s += fread(&l->function, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
+    if(l->n_outputs < 1 || l->n_outputs > MAX_NEURONS) {
+        printf("neural_layer_connected_load(): invalid number of neurons: %d\n", l->n_outputs);
+        exit(EXIT_FAILURE);
+    }
+    if(l->n_weights < 1 || l->n_weights > MAX_WEIGHTS) {
+        printf("neural_layer_connected_load(): invalid number of weights: %d\n", l->n_weights);
+        exit(EXIT_FAILURE);
+    }
     l->state = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
     l->delta = calloc(l->n_outputs, sizeof(double));
