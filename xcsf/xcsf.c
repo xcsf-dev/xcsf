@@ -272,6 +272,10 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->GP_NUM_CONS, sizeof(int), 1, fp);
     s += fread(&xcsf->GP_INIT_DEPTH, sizeof(int), 1, fp);
     free(xcsf->gp_cons); // always malloced on start
+    if(xcsf->GP_NUM_CONS < GP_NUM_CONS_MIN || xcsf->GP_NUM_CONS > GP_NUM_CONS_MAX) {
+        printf("xcsf_load_params(): invalid GP_NUM_CONS: %d\n", xcsf->GP_NUM_CONS);
+        exit(EXIT_FAILURE);
+    }
     xcsf->gp_cons = malloc(sizeof(double)*xcsf->GP_NUM_CONS);
     s += fread(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
     loss_set_func(xcsf);         

@@ -40,8 +40,6 @@
 #define ETA_MIN 0.0001 //!< Minimum gradient descent rate
 #define WEIGHT_MIN -10 //!< Minimum value of a weight or bias
 #define WEIGHT_MAX  10 //!< Maximum value of a weight or bias
-#define MAX_NEURONS 5000 //!< Maximum number of neurons
-#define MAX_WEIGHTS 100000000 //!< Maximum number of weights
 
 static _Bool mutate_eta(LAYER *l, double mu);
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu);
