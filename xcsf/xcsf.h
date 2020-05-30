@@ -43,11 +43,6 @@
 #define PRED_TYPE_NEURAL 5 //!< Prediction type neural
 
 #define MAX_LAYERS 100 //!< Maximum number of neural network layers
-#define MAX_NEURONS 5000 //!< Maximum number of neurons
-#define MAX_WEIGHTS 100000000 //!< Maximum number of weights
-
-#define GP_NUM_CONS_MIN 1 //!< Minimum number of GP constants
-#define GP_NUM_CONS_MAX 100000000 //!< Maximum number of GP constants
 
 /**
  * @brief Classifier data structure.
