@@ -464,25 +464,25 @@ void clset_validate(SET *set)
     set->size = 0;
     set->num = 0;
     CLIST *prev = NULL;
-    CLIST *cur = set->list;
-    while(cur != NULL) {
-        if(cur->cl == NULL || cur->cl->num == 0) {
+    CLIST *iter = set->list;
+    while(iter != NULL) {
+        if(iter->cl == NULL || iter->cl->num == 0) {
             if(prev == NULL) {
-                set->list = cur->next;
-                free(cur);
-                cur = set->list;
+                set->list = iter->next;
+                free(iter);
+                iter = set->list;
             }
             else {
-                prev->next = cur->next;
-                free(cur);
-                cur = prev->next;
+                prev->next = iter->next;
+                free(iter);
+                iter = prev->next;
             }
         }
         else {
             set->size++;
-            set->num += cur->cl->num;
-            prev = cur;
-            cur = cur->next;
+            set->num += iter->cl->num;
+            prev = iter;
+            iter = iter->next;
         }
     }
 }
