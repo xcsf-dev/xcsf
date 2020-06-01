@@ -1,0 +1,10 @@
+path_classifiers:
+  docs:
+    - doc
+  test:
+    - test
+  library:
+    - lib
+
+queries:
+  - exclude: cpp/uncontrolled-allocation-size
