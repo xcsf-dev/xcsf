@@ -440,10 +440,8 @@ static void clset_subsumption(XCSF *xcsf, SET *set)
     }
     // subsume the more specific classifiers in the set
     if(s != NULL) {
-        const CLIST *iter = set->list;
-        while(iter != NULL) {
+        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             CL *c = iter->cl;
-            iter = iter->next;
             if(s != c && cl_general(xcsf, s, c)) {
                 s->num += c->num;
                 c->num = 0;
