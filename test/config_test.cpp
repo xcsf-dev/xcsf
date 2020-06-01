@@ -14,11 +14,11 @@
  */
 
 /**
- * @file xcsf_test.cpp
+ * @file config_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
- * @brief A unit test.
+ * @brief Configuration file reading tests.
  */ 
 
 #include "../lib/doctest/doctest/doctest.h"
