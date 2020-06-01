@@ -448,10 +448,10 @@ static void clset_subsumption(XCSF *xcsf, SET *set)
                 s->num += c->num;
                 c->num = 0;
                 clset_add(&xcsf->kset, c);
-                clset_validate(set);
-                clset_validate(&xcsf->pset);
             }
         }
+        clset_validate(set);
+        clset_validate(&xcsf->pset);
     }
 }
 
