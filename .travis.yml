@@ -49,7 +49,7 @@ script:
   - cmake -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DXCSF_PYLIB="$XCSF_PYLIB" -DENABLE_TESTS="$ENABLE_TESTS" ..
   - |
     if [[ "${SONAR}" == "ON" ]]; then
-      cp ../.sonar-project.properties .;
+      cp ../.sonar-project.properties ./sonar-project.properties;
       wget -q https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip;
       unzip -q build-wrapper-linux-x86.zip;
       cp ./build-wrapper-linux-x86/libinterceptor-x86_64.so ./build-wrapper-linux-x86/libinterceptor-haswell.so;
