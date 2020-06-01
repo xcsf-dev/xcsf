@@ -380,7 +380,7 @@ void clset_update(XCSF *xcsf, SET *set, const double *x, const double *y, _Bool 
 #ifdef PARALLEL_UPDATE
     CLIST *blist[set->size];
     int j = 0;
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(CLIST *iter = set->list; iter != NULL && j < set->size; iter = iter->next) {
         blist[j] = iter;
         j++;
     }
@@ -410,14 +410,14 @@ static void clset_update_fit(const XCSF *xcsf, const SET *set)
     double accs[set->size];
     // calculate accuracies
     int i = 0;
-    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL && i < set->size; iter = iter->next) {
         accs[i] = cl_acc(xcsf, iter->cl);
         acc_sum += accs[i] * iter->cl->num;
         i++;
     }
     // update fitnesses
     i = 0;
-    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL && i < set->size; iter = iter->next) {
         cl_update_fit(xcsf, iter->cl, acc_sum, accs[i]);
         i++;
     }
