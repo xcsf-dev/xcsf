@@ -183,7 +183,7 @@ $ python example_wisconsin.py
 
 ## Contributing
 
-Contributions are always welcome, whether modifying source code to add new features or bug fixes, improving documentation, or simply editing grammar.
+Contributions are always welcome.
 
 *******************************************************************************
 
