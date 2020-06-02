@@ -65,17 +65,17 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     int f = xcsf->PRED_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
     lopt &= ~LAYER_EVOLVE_FUNCTIONS; // never evolve the output neurons function
-    if(f != SOFT_MAX) {
-        // regression
-        l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim, f, lopt);
-        neural_layer_insert(xcsf, &new->net, l, i);
-    }
-    else {
+    if(f == SOFT_MAX) {
         // classification
         l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim, LINEAR, lopt);
         neural_layer_insert(xcsf, &new->net, l, i);
         l = neural_layer_softmax_init(xcsf, xcsf->y_dim, 1);
         neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
+    }
+    else {
+        // regression
+        l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim, f, lopt);
+        neural_layer_insert(xcsf, &new->net, l, i);
     }
     c->pred = new;
 }
