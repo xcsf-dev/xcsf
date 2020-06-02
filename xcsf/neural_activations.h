@@ -37,6 +37,7 @@
 #define SELU 9 //!< Scaled-exponential linear unit [-1.7581,inf]
 #define LOGGY 10 //!< Logistic [-1,1]
 #define NUM_ACTIVATIONS 11
+#define SOFT_MAX 100 //!< Softmax
 
 #define NEURON_MIN_STATE -100
 #define NEURON_MAX_STATE 100

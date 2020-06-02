@@ -15,6 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+################################################################################
+# This example uses the reinforcement learning mechanism to construct and update
+# match and action sets with classifiers composed of hyperrectangle conditions,
+# linear least squares predictions, and integer actions to solve UCI Wisconsin.
+################################################################################
+
 import xcsf.xcsf as xcsf # Import XCSF
 import numpy as np
 from random import randint
