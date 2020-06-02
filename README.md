@@ -181,6 +181,12 @@ $ python example_wisconsin.py
 
 *******************************************************************************
 
+## Contributing
+
+Contributions are always welcome, whether modifying source code to add new features or bug fixes, improving documentation, or simply editing grammar.
+
+*******************************************************************************
+
 ## License
 
 This project is released under the GNU Public License v3.
