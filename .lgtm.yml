@@ -5,6 +5,3 @@ path_classifiers:
     - test
   library:
     - lib
-
-queries:
-  - exclude: cpp/uncontrolled-allocation-size
