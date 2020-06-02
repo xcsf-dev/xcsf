@@ -64,6 +64,7 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     // output layer
     int f = xcsf->PRED_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
+    lopt &= ~LAYER_EVOLVE_FUNCTIONS; // never evolve the output neurons function
     if(f != SOFT_MAX) {
         // regression
         l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim, f, lopt);
