@@ -41,6 +41,8 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
 
 ## Features
 
+Implements both [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning) via the updating of match set errors directly and [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) via the updating of action set predictions with an environment reward.
+
 See `default.ini` for a full list of options.
 
 ### Evolved Conditions
