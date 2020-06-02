@@ -129,6 +129,7 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->POP_SIZE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->AUTO_ENCODE, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->ALPHA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->BETA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->DELTA, sizeof(double), 1, fp);
@@ -152,7 +153,7 @@ static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->COND_MAX, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_MIN, sizeof(double), 1, fp);
     s += fwrite(&xcsf->COND_SMIN, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->COND_BITS, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->COND_BITS, sizeof(int), 1, fp);
     s += fwrite(xcsf->COND_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fwrite(xcsf->COND_MAX_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fwrite(&xcsf->COND_OUTPUT_ACTIVATION, sizeof(int), 1, fp);
@@ -211,6 +212,7 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_SIZE, sizeof(int), 1, fp);
     s += fread(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
+    s += fread(&xcsf->AUTO_ENCODE, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->ALPHA, sizeof(double), 1, fp);
     s += fread(&xcsf->BETA, sizeof(double), 1, fp);
     s += fread(&xcsf->DELTA, sizeof(double), 1, fp);
@@ -234,7 +236,7 @@ static size_t xcsf_load_params(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->COND_MAX, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_MIN, sizeof(double), 1, fp);
     s += fread(&xcsf->COND_SMIN, sizeof(double), 1, fp);
-    s += fread(&xcsf->COND_BITS, sizeof(double), 1, fp);
+    s += fread(&xcsf->COND_BITS, sizeof(int), 1, fp);
     s += fread(xcsf->COND_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fread(xcsf->COND_MAX_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fread(&xcsf->COND_OUTPUT_ACTIVATION, sizeof(int), 1, fp);

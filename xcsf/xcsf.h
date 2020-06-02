@@ -105,6 +105,7 @@ typedef struct XCSF {
     int PERF_TRIALS; //!< Number of problem instances to average performance output
     int POP_SIZE; //!< Maximum number of micro-classifiers in the population
     int LOSS_FUNC; //!< Which loss/error function to apply
+    _Bool AUTO_ENCODE; //!< Whether to perform autoencoding
 
     // multi-step problem parameters
     double GAMMA; //!< Discount factor in calculating the reward for multi-step problems

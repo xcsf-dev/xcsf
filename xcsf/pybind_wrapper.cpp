@@ -291,6 +291,7 @@ class XCS
 
         int get_omp_num_threads() { return xcs.OMP_NUM_THREADS; }
         _Bool get_pop_init() { return xcs.POP_INIT; }
+        _Bool get_auto_encode() { return xcs.AUTO_ENCODE; }
         int get_max_trials() { return xcs.MAX_TRIALS; }
         int get_perf_trials() { return xcs.PERF_TRIALS; }
         int get_pop_max_size() { return xcs.POP_SIZE; }
@@ -318,7 +319,7 @@ class XCS
         double get_max_con() { return xcs.COND_MAX; }
         double get_min_con() { return xcs.COND_MIN; }
         double get_cond_smin() { return xcs.COND_SMIN; }
-        double get_cond_bits() { return xcs.COND_BITS; }
+        int get_cond_bits() { return xcs.COND_BITS; }
         _Bool get_cond_evolve_weights() { return xcs.COND_EVOLVE_WEIGHTS; }
         _Bool get_cond_evolve_neurons() { return xcs.COND_EVOLVE_NEURONS; }
         _Bool get_cond_evolve_functions() { return xcs.COND_EVOLVE_FUNCTIONS; }
@@ -408,6 +409,7 @@ class XCS
         }
 
         void set_pop_init(_Bool a) { xcs.POP_INIT = a; }
+        void set_auto_encode(_Bool a) { xcs.AUTO_ENCODE = a; }
         void set_max_trials(int a) { xcs.MAX_TRIALS = a; }
         void set_perf_trials(int a) { xcs.PERF_TRIALS = a; }
         void set_pop_max_size(int a) { xcs.POP_SIZE = a; }
@@ -435,7 +437,7 @@ class XCS
         void set_max_con(double a) { xcs.COND_MAX = a; }
         void set_min_con(double a) { xcs.COND_MIN = a; }
         void set_cond_smin(double a) { xcs.COND_SMIN = a; }
-        void set_cond_bits(double a) { xcs.COND_BITS = a; }
+        void set_cond_bits(int a) { xcs.COND_BITS = a; }
         void set_cond_evolve_weights(_Bool a) { xcs.COND_EVOLVE_WEIGHTS = a; }
         void set_cond_evolve_neurons(_Bool a) { xcs.COND_EVOLVE_NEURONS = a; }
         void set_cond_evolve_functions(_Bool a) { xcs.COND_EVOLVE_FUNCTIONS = a; }
@@ -495,6 +497,7 @@ PYBIND11_MODULE(xcsf, m)
         .def("single_reset", &XCS::single_reset)
         .def_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads, &XCS::set_omp_num_threads)
         .def_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
+        .def_property("AUTO_ENCODE", &XCS::get_auto_encode, &XCS::set_auto_encode)
         .def_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials)
         .def_property("PERF_TRIALS", &XCS::get_perf_trials, &XCS::set_perf_trials)
         .def_property("POP_SIZE", &XCS::get_pop_max_size, &XCS::set_pop_max_size)
