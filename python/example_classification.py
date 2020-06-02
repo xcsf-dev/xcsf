@@ -26,8 +26,8 @@ import xcsf.xcsf as xcsf # Import XCSF
 import numpy as np
 from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, classification_report
-from sklearn.preprocessing import minmax_scale, StandardScaler, OneHotEncoder
+from sklearn.metrics import classification_report
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 np.set_printoptions(suppress=True)
