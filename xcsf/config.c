@@ -740,6 +740,8 @@ static void print_params_general(const XCSF *xcsf)
     xcsf->POP_INIT == true ? printf("true") : printf("false");
     printf(", PERF_TRIALS=%d", xcsf->PERF_TRIALS);
     printf(", LOSS_FUNC=%d", xcsf->LOSS_FUNC);
+    printf(", AUTO_ENCODE=");
+    xcsf->AUTO_ENCODE == true ? printf("true") : printf("false");
 }
 
 /**
