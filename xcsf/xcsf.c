@@ -348,7 +348,7 @@ static void xcsf_store_pop(XCSF *xcsf)
     }
     for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         CL *new = malloc(sizeof(CL));
-        CL *src = iter->cl;
+        const CL *src = iter->cl;
         cl_init_copy(xcsf, new, src);
         clset_add(&xcsf->prev_pset, new);
     }

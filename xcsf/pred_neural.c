@@ -235,7 +235,6 @@ void pred_neural_ae_expand(const XCSF *xcsf, const CL *c)
         printf("pred_neural_ae_expand(): error finding decoder\n");
         exit(EXIT_FAILURE);
     }
-    //const LAYER *decoder = iter->layer;
     const LAYER *encoder = iter->next->layer;
     // insert new encoder
     int n_inputs = encoder->n_outputs; // num inputs to new encoder
@@ -253,7 +252,7 @@ void pred_neural_ae_expand(const XCSF *xcsf, const CL *c)
     neural_resize(xcsf, net);
 }
 
-void pred_neural_ae_to_classifier(const XCSF *xcsf, CL *c)
+void pred_neural_ae_to_classifier(const XCSF *xcsf, const CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     NET *net = &pred->net;
