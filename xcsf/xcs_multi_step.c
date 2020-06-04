@@ -26,6 +26,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include <limits.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "cl.h"
@@ -76,7 +77,11 @@ static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
     _Bool reset = false; 
     double prev_reward = 0;
     double prev_pred = 0;
-    double *prev_state = malloc(sizeof(double) * xcsf->x_dim);
+    if(xcsf->x_dim < 1 || xcsf->x_dim > INT_MAX) {
+        printf("xcs_multi_trial(): invalid x_dim (%d)\n", xcsf->x_dim);
+        exit(EXIT_FAILURE);
+    }
+    double *prev_state = malloc(xcsf->x_dim * sizeof(double));
     clset_init(&xcsf->prev_aset);
     clset_init(&xcsf->kset);
     *error = 0;

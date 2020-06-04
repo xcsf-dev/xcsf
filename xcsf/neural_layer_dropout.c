@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <limits.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "neural_activations.h"
@@ -179,6 +180,10 @@ size_t neural_layer_dropout_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->scale, sizeof(double), 1, fp);
     l->options = 0;
     l->eta = 0;
+    if(l->n_inputs < 1 || l->n_inputs > INT_MAX) {
+        printf("neural_layer_dropout_load(): invalid n_inputs (%d)\n", l->n_inputs);
+        exit(EXIT_FAILURE);
+    }
     l->output = calloc(l->n_inputs, sizeof(double));
     l->delta = malloc(l->n_inputs * sizeof(double));
     l->rand = malloc(l->n_inputs * sizeof(double));

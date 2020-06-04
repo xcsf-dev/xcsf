@@ -29,6 +29,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <limits.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "sam.h"
@@ -349,7 +350,11 @@ size_t tree_load(const XCSF *xcsf, GP_TREE *gp, FILE *fp)
     size_t s = 0;
     s += fread(&gp->p, sizeof(int), 1, fp);
     s += fread(&gp->len, sizeof(int), 1, fp);
-    gp->tree = malloc(sizeof(int)*gp->len);
+    if(gp->len < 1 || gp->len > INT_MAX) {
+        printf("tree_load(): invalid len (%d)\n", gp->len);
+        exit(EXIT_FAILURE);
+    }
+    gp->tree = malloc(sizeof(int) * gp->len);
     s += fread(gp->tree, sizeof(int), gp->len, fp);
     s += fread(gp->mu, sizeof(double), GP_N_MU, fp);
     return s;

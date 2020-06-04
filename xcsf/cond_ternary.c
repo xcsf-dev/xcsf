@@ -27,6 +27,7 @@
 #include <string.h>
 #include <math.h>
 #include <stdbool.h>
+#include <limits.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "sam.h"
@@ -219,10 +220,14 @@ size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp)
     size_t s = 0;
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
     s += fread(&new->length, sizeof(int), 1, fp);
+    if(new->length < 1 || new->length > INT_MAX) {
+        printf("cond_ternary_load(): invalid length (%d)\n", new->length);
+        exit(EXIT_FAILURE);
+    }
     new->string = malloc(new->length * sizeof(char));
+    s += fread(new->string, sizeof(char), new->length, fp);
     new->tmp_input = malloc(xcsf->COND_BITS * sizeof(char));
     new->mu = malloc(N_MU * sizeof(double));
-    s += fread(new->string, sizeof(char), new->length, fp);
     s += fread(new->mu, sizeof(double), N_MU, fp);
     c->cond = new;
     return s;
