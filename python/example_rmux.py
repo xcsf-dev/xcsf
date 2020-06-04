@@ -50,7 +50,7 @@ def rmux_reset():
         state[i] = random()
 
 # calculate mux answer
-def rmux_answer(state):
+def rmux_answer():
     pos = pos_bits
     for i in range(pos_bits):
         if state[i] > 0.5:
@@ -58,6 +58,13 @@ def rmux_answer(state):
     if state[pos] > 0.5:
         return 1
     return 0
+
+# mux reward
+def rmux_reward(action):
+    if action == rmux_answer():
+        return 1
+    else:
+        return 0
 
 ###################
 # Initialise XCSF
@@ -74,6 +81,10 @@ xcs.EPS_0 = 0.01 # target error
 xcs.COND_TYPE = 1 # hyperrectangles
 xcs.PRED_TYPE = 1 # linear least squares
 xcs.ACT_TYPE = 0 # integers
+xcs.BETA = 0.2 # classifier parameter update rate
+xcs.THETA_EA = 25 # EA frequency
+xcs.ALPHA = 0.1 # accuracy offset
+xcs.NU = 5 # accuracy slope
 
 xcs.print_params()
 
@@ -91,27 +102,17 @@ bar = tqdm(total=n) # progress bar
 
 for i in range(n):
     for j in range(xcs.PERF_TRIALS):
-        # new problem
-        rmux_reset()
-        answer = rmux_answer(state)
         # explore trial
+        rmux_reset()
         xcs.single_reset()
         action = xcs.single_decision(state, True)
-        if action == answer:
-            reward = 1
-        else:
-            reward = 0
+        reward = rmux_reward(action)
         xcs.single_update(reward)
-        # new problem
-        rmux_reset()
-        answer = rmux_answer(state)
         # exploit trial
+        rmux_reset()
         xcs.single_reset()
         action = xcs.single_decision(state, False)
-        if action == answer:
-            reward = 1
-        else:
-            reward = 0
+        reward = rmux_reward(action)
         performance[i] += reward
         error[i] += xcs.single_error(reward)
     performance[i] /= float(xcs.PERF_TRIALS)
