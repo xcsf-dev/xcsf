@@ -150,6 +150,12 @@ static void params_general(XCSF *xcsf, const char *name, const char *value)
     else if(strncmp(name, "LOSS_FUNC", 10) == 0) {
         xcsf->LOSS_FUNC = strtoimax(value, &end, BASE);
     }
+    else if(strncmp(name, "AUTO_ENCODE", 9) == 0) {
+        xcsf->AUTO_ENCODE = false;
+        if(strncmp(value, "true", 5) == 0) {
+            xcsf->AUTO_ENCODE = true;
+        }
+    }
 }
 
 /**
@@ -588,6 +594,7 @@ static void defaults_general(XCSF *xcsf)
     xcsf->POP_INIT = true;
     xcsf->PERF_TRIALS = 1000;
     xcsf->LOSS_FUNC = 0;
+    xcsf->AUTO_ENCODE = false;
 }
 
 /**
