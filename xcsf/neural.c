@@ -123,6 +123,10 @@ void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
         printf("neural_layer_remove(): error finding layer to remove\n");
         exit(EXIT_FAILURE);
     }
+    else if(iter->next == NULL && iter->prev == NULL) {
+        printf("neural_layer_remove(): attempted to remove the only layer\n");
+        exit(EXIT_FAILURE);
+    }
     // head
     if(iter->prev == NULL) {
         net->head = iter->next;
