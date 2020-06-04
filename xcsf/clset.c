@@ -39,14 +39,15 @@
 
 static _Bool clset_action_coverage(const XCSF *xcsf, _Bool *act_covered);
 static double clset_total_time(const SET *set);
-static void clset_cover(XCSF *xcsf, const double *x);
 static void clset_pop_del(XCSF *xcsf);
 static void clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev);
 static void clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev);
 static void clset_subsumption(XCSF *xcsf, SET *set);
 static void clset_update_fit(const XCSF *xcsf, const SET *set);
+static void clset_cover(XCSF *xcsf, const double *x);
 static void clset_cover_from_new(XCSF *xcsf, const double *x, int a);
 static void clset_cover_from_old(XCSF *xcsf, const double *x, int a);
+static void clset_cover_execute(XCSF *xcsf, const double *x, int a);
 
 /**
  * @brief Initialises a new population of random classifiers.
@@ -238,14 +239,7 @@ static void clset_cover(XCSF *xcsf, const double *x)
         covered = true;
         for(int i = 0; i < xcsf->n_actions; i++) {
             if(!act_covered[i]) {
-                // cover from a stored population
-                if(xcsf->prev_pset.list != NULL) {
-                    clset_cover_from_old(xcsf, x, i);
-                }
-                // original covering from new
-                else {
-                    clset_cover_from_new(xcsf, x, i);
-                }
+                clset_cover_execute(xcsf, x, i);
             }
         }
         // enforce population size
@@ -271,6 +265,24 @@ static void clset_cover(XCSF *xcsf, const double *x)
 }
 
 /*
+ * @brief Selects and executes a covering mechanism to create a new classifier.
+ * @param xcsf The XCSF data structure.
+ * @param x The input state to cover.
+ * @param a The action to cover.
+ */
+static void clset_cover_execute(XCSF *xcsf, const double *x, int a)
+{
+    // cover from a stored population
+    if(xcsf->prev_pset.list != NULL) {
+        clset_cover_from_old(xcsf, x, a);
+    }
+    // original covering from new
+    else {
+        clset_cover_from_new(xcsf, x, a);
+    }
+}
+
+/*
  * @brief Uses a stored population to create a new classifier to cover the
  * input state and action.
  * @param xcsf The XCSF data structure.
@@ -286,7 +298,7 @@ static void clset_cover_from_old(XCSF *xcsf, const double *x, int a)
     // build match set using previous population
     SET tmp_mset;
     clset_init(&tmp_mset);
-    for(CLIST *iter = xcsf->prev_pset.list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = xcsf->prev_pset.list; iter != NULL; iter = iter->next) {
         if(cl_match(xcsf, iter->cl, x)) {
             clset_add(&tmp_mset, iter->cl);
         }
@@ -296,7 +308,7 @@ static void clset_cover_from_old(XCSF *xcsf, const double *x, int a)
         exit(EXIT_FAILURE);
     }
     // find the fittest rule in the match set
-    CLIST *best = tmp_mset.list;
+    const CLIST *best = tmp_mset.list;
     for(CLIST *iter = best->next; iter != NULL; iter = iter->next) {
         if(best->cl->fit < iter->cl->fit) {
             best = iter;
