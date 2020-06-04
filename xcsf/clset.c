@@ -309,7 +309,7 @@ static void clset_cover_from_old(XCSF *xcsf, const double *x, int a)
     }
     // find the fittest rule in the match set
     const CLIST *best = tmp_mset.list;
-    for(CLIST *iter = best->next; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = best->next; iter != NULL; iter = iter->next) {
         if(best->cl->fit < iter->cl->fit) {
             best = iter;
         }
