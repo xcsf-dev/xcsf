@@ -63,8 +63,7 @@ def rmux_answer():
 def rmux_reward(action):
     if action == rmux_answer():
         return 1
-    else:
-        return 0
+    return 0
 
 ###################
 # Initialise XCSF
