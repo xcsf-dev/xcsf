@@ -632,7 +632,7 @@ static void defaults_subsumption(XCSF *xcsf)
 {
     xcsf->EA_SUBSUMPTION = false;
     xcsf->SET_SUBSUMPTION = false;
-    xcsf->THETA_SUB = 1000;
+    xcsf->THETA_SUB = 20;
 }
 
 /**
