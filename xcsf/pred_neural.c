@@ -120,7 +120,12 @@ void pred_neural_update(const XCSF *xcsf, const CL *c, const double *x, const do
 {
     if(xcsf->PRED_SGD_WEIGHTS) {
         PRED_NEURAL *pred = c->pred;
-        neural_learn(xcsf, &pred->net, y, x);
+        if(xcsf->AUTO_ENCODE) {
+            neural_ae(xcsf, &pred->net, x);
+        }
+        else {
+            neural_learn(xcsf, &pred->net, y, x);
+        }
     }
 }
 
@@ -209,19 +214,66 @@ int pred_neural_layers(const XCSF *xcsf, const CL *c)
     return net->n_layers;
 }
 
-void pred_neural_expand(const XCSF *xcsf, const CL *c)
+void pred_neural_ae_expand(const XCSF *xcsf, const CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     NET *net = &pred->net;
-    // insert a new layer
-    int size = net->head->layer->n_inputs;
-    int max = net->head->next->layer->max_outputs;
-    int pos = net->n_layers - 1;
+    // deactivate updates to existing layers
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        LAYER *l = iter->layer;
+        l->options = 0;
+    }
+    // select decoder and encoder layers
+    int pos = (net->n_layers / 2); // position of the current decode layer
+    int layer = 0;
+    const LLIST *iter = net->tail;
+    while(iter != NULL && layer < pos) {
+        iter = iter->prev;
+        layer++;
+    }
+    if(iter == NULL) {
+        printf("pred_neural_ae_expand(): error finding decoder\n");
+        exit(EXIT_FAILURE);
+    }
+    //const LAYER *decoder = iter->layer;
+    const LAYER *encoder = iter->next->layer;
+    // insert new encoder
+    int n_inputs = encoder->n_outputs; // num inputs to new encoder
+    int n_encoder = encoder->n_outputs; // initial size of new encoder
+    int max_encoder = n_encoder; // maximum size of new encoder
     int f = xcsf->PRED_HIDDEN_ACTIVATION;
     uint32_t lopt = pred_neural_lopt(xcsf);
-    // initially same size as last hidden layer
-    LAYER *l = neural_layer_connected_init(xcsf, size, size, max, f, lopt);
+    LAYER *l = neural_layer_connected_init(xcsf, n_inputs, n_encoder, max_encoder, f, lopt);
     neural_layer_insert(xcsf, net, l, pos);
-    // resize layers as necessary
+    // insert new decoder
+    lopt &= ~LAYER_EVOLVE_NEURONS;
+    l = neural_layer_connected_init(xcsf, n_encoder, n_inputs, n_inputs, f, lopt);
+    neural_layer_insert(xcsf, net, l, pos+1);
+    // resize the network as necessary
     neural_resize(xcsf, net);
+}
+
+void pred_neural_ae_to_classifier(const XCSF *xcsf, CL *c)
+{
+    PRED_NEURAL *pred = c->pred;
+    NET *net = &pred->net;
+    LAYER *l;
+    // remove decoders
+    int n = net->n_layers;
+    for(int i = 0; i < n/2; i++) {
+        neural_layer_remove(xcsf, net, net->n_layers - 1);
+    }
+    // reactivate modifications to initial layers
+    uint32_t lopt = pred_neural_lopt(xcsf);
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        iter->layer->options = lopt;
+    }
+    // add new softmax output
+    int code_size = net->n_outputs;
+    lopt &= ~LAYER_EVOLVE_NEURONS;
+    lopt &= ~LAYER_EVOLVE_FUNCTIONS;
+    l = neural_layer_connected_init(xcsf, code_size, xcsf->y_dim, xcsf->y_dim, LINEAR, lopt);
+    neural_layer_insert(xcsf, net, l, net->n_layers);
+    l = neural_layer_softmax_init(xcsf, xcsf->y_dim, 1);
+    neural_layer_insert(xcsf, net, l, net->n_layers);
 }

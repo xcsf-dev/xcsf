@@ -44,7 +44,8 @@ void pred_neural_free(const XCSF *xcsf, const CL *c);
 void pred_neural_init(const XCSF *xcsf, CL *c);
 void pred_neural_print(const XCSF *xcsf, const CL *c);
 void pred_neural_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
-void pred_neural_expand(const XCSF *xcsf, const CL *c);
+void pred_neural_ae_expand(const XCSF *xcsf, const CL *c);
+void pred_neural_ae_to_classifier(const XCSF *xcsf, CL *c);
 
 /**
  * @brief Multi-layer perceptron neural network prediction implemented functions.

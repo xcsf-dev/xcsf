@@ -120,6 +120,8 @@ class XCS
         size_t save(char *fname) { return xcsf_save(&xcs, fname); }
         size_t load(char *fname) { return xcsf_load(&xcs, fname); }
         void print_params() { config_print(&xcs); }
+        void ae_expand() { xcsf_ae_expand(&xcs); }
+        void ae_to_classifier(int y_dim) { xcsf_ae_to_classifier(&xcs, y_dim); }
 
         void print_pop(_Bool printc, _Bool printa, _Bool printp)
         {
@@ -577,5 +579,7 @@ PYBIND11_MODULE(xcsf, m)
         .def("msetsize", &XCS::get_msetsize)
         .def("mfrac", &XCS::get_mfrac)
         .def("print_params", &XCS::print_params)
+        .def("ae_expand", &XCS::ae_expand)
+        .def("ae_to_classifier", &XCS::ae_to_classifier)
         ;
 }

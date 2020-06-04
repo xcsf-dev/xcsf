@@ -48,6 +48,7 @@ void neural_init(const XCSF *xcsf, NET *net)
     net->n_layers = 0;
     net->n_inputs = 0;
     net->n_outputs = 0;
+    net->output = NULL;
 }
 
 /**
@@ -69,6 +70,7 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
         net->tail = net->head;
         net->n_inputs = l->n_inputs;
         net->n_outputs = l->n_outputs;
+        net->output = l->output;
     } 
     // insert
     else {
@@ -85,6 +87,7 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
             net->head->prev = new;
             net->head = new;
             net->n_outputs = l->n_outputs;
+            net->output = l->output;
         }
         else {
             new->next = iter->next;
@@ -126,6 +129,8 @@ void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
         if(iter->next != NULL) {
             iter->next->prev = NULL;
         }
+        net->output = net->head->layer->output;
+        net->n_outputs = net->head->layer->n_outputs;
     }
     // tail
     if(iter->next == NULL) {
