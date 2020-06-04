@@ -219,6 +219,7 @@ size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp)
     (void)xcsf;
     size_t s = 0;
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
+    new->length = 0;
     s += fread(&new->length, sizeof(int), 1, fp);
     if(new->length < 1 || new->length > INT_MAX) {
         printf("cond_ternary_load(): invalid length (%d)\n", new->length);
