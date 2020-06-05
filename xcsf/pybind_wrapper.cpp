@@ -39,13 +39,9 @@ extern "C" {
 #include "xcs_single_step.h"
 #include "pa.h"
 #include "config.h"
+#include "param.h"
 #include "utils.h"
-#include "loss.h"
 #include "clset.h"
-
-#ifdef PARALLEL
-#include <omp.h>
-#endif
 }
 
 void xcs_init(const char *filename);
@@ -69,9 +65,9 @@ class XCS
         XCS(int x_dim, int n_actions, _Bool multistep)
         {
             (void)multistep; // not yet implemented for python
-            xcs.x_dim = x_dim;
-            xcs.y_dim = 1;
-            xcs.n_actions = n_actions;
+            param_set_x_dim(&xcs, x_dim);
+            param_set_y_dim(&xcs, 1);
+            param_set_n_actions(&xcs, n_actions);
             xcs_init("default.ini");
             pa_init(&xcs);
             xcs_single_init(&xcs);
@@ -87,9 +83,9 @@ class XCS
          */
         XCS(int x_dim, int y_dim, const char *filename)
         {
-            xcs.x_dim = x_dim;
-            xcs.y_dim = y_dim;
-            xcs.n_actions = 1;
+            param_set_x_dim(&xcs, x_dim);
+            param_set_y_dim(&xcs, y_dim);
+            param_set_n_actions(&xcs, 1);
             xcs_init(filename);
         }
 
@@ -98,7 +94,8 @@ class XCS
          */
         void xcs_init(const char *filename)
         {
-            config_init(&xcs, filename);
+            param_init(&xcs);
+            config_read(&xcs, filename);
             xcsf_init(&xcs);
             state = NULL;
             action = 0;
@@ -119,7 +116,7 @@ class XCS
         double version(){ return xcsf_version(); }
         size_t save(char *fname) { return xcsf_save(&xcs, fname); }
         size_t load(char *fname) { return xcsf_load(&xcs, fname); }
-        void print_params() { config_print(&xcs); }
+        void print_params() { param_print(&xcs); }
         void ae_expand() { xcsf_ae_expand(&xcs); }
         void ae_to_classifier(int y_dim) { xcsf_ae_to_classifier(&xcs, y_dim); }
 
@@ -142,7 +139,7 @@ class XCS
         {
             py::buffer_info buf = input.request();
             state = (double *) buf.ptr;
-            xcs.train = explore;
+            param_set_train(&xcs, explore);
             action = xcs_single_decision(&xcs, state);
             return action;
         }
@@ -370,14 +367,6 @@ class XCS
 
         /* SETTERS */
 
-        void set_omp_num_threads(int a)
-        {
-            xcs.OMP_NUM_THREADS = a; 
-#ifdef PARALLEL
-            omp_set_num_threads(xcs.OMP_NUM_THREADS);
-#endif
-        }
-
         void set_cond_num_neurons(py::list &a)
         {
             memset(xcs.COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
@@ -410,68 +399,69 @@ class XCS
             }
         }
 
-        void set_pop_init(_Bool a) { xcs.POP_INIT = a; }
-        void set_auto_encode(_Bool a) { xcs.AUTO_ENCODE = a; }
-        void set_max_trials(int a) { xcs.MAX_TRIALS = a; }
-        void set_perf_trials(int a) { xcs.PERF_TRIALS = a; }
-        void set_pop_max_size(int a) { xcs.POP_SIZE = a; }
-        void set_loss_func(int a) { xcs.LOSS_FUNC = a; loss_set_func(&xcs); }
-        void set_alpha(double a) { xcs.ALPHA = a; }
-        void set_beta(double a) { xcs.BETA = a; }
-        void set_delta(double a) { xcs.DELTA = a; }
-        void set_eps_0(double a) { xcs.EPS_0 = a; } 
-        void set_err_reduc(double a) { xcs.ERR_REDUC = a; }
-        void set_fit_reduc(double a) { xcs.FIT_REDUC = a; }
-        void set_init_error(double a) { xcs.INIT_ERROR = a; }
-        void set_init_fitness(double a) { xcs.INIT_FITNESS = a; }
-        void set_nu(double a) { xcs.NU = a; }
-        void set_m_probation(int a) { xcs.M_PROBATION = a; }
-        void set_theta_del(int a) { xcs.THETA_DEL = a; }
-        void set_act_type(int a) { xcs.ACT_TYPE = a; }
-        void set_cond_type(int a) { xcs.COND_TYPE = a; }
-        void set_pred_type(int a) { xcs.PRED_TYPE = a; }
-        void set_p_crossover(double a) { xcs.P_CROSSOVER = a; }
-        void set_theta_ea(double a) { xcs.THETA_EA = a; }
-        void set_lambda(int a) { xcs.LAMBDA = a; }
-        void set_ea_select_type(int a) { xcs.EA_SELECT_TYPE = a; }
-        void set_ea_select_size(double a) { xcs.EA_SELECT_SIZE = a; }
-        void set_sam_type(int a) { xcs.SAM_TYPE = a; }
-        void set_max_con(double a) { xcs.COND_MAX = a; }
-        void set_min_con(double a) { xcs.COND_MIN = a; }
-        void set_cond_smin(double a) { xcs.COND_SMIN = a; }
-        void set_cond_bits(int a) { xcs.COND_BITS = a; }
-        void set_cond_evolve_weights(_Bool a) { xcs.COND_EVOLVE_WEIGHTS = a; }
-        void set_cond_evolve_neurons(_Bool a) { xcs.COND_EVOLVE_NEURONS = a; }
-        void set_cond_evolve_functions(_Bool a) { xcs.COND_EVOLVE_FUNCTIONS = a; }
-        void set_cond_output_activation(int a) { xcs.COND_OUTPUT_ACTIVATION = a; }
-        void set_cond_hidden_activation(int a) { xcs.COND_HIDDEN_ACTIVATION = a; }
-        void set_pred_output_activation(int a) { xcs.PRED_OUTPUT_ACTIVATION = a; }
-        void set_pred_hidden_activation(int a) { xcs.PRED_HIDDEN_ACTIVATION = a; }
-        void set_pred_momentum(double a) { xcs.PRED_MOMENTUM = a; }
-        void set_pred_evolve_weights(_Bool a) { xcs.PRED_EVOLVE_WEIGHTS = a; }
-        void set_pred_evolve_neurons(_Bool a) { xcs.PRED_EVOLVE_NEURONS = a; }
-        void set_pred_evolve_functions(_Bool a) { xcs.PRED_EVOLVE_FUNCTIONS = a; }
-        void set_pred_evolve_eta(_Bool a) { xcs.PRED_EVOLVE_ETA = a; }
-        void set_pred_sgd_weights(_Bool a) { xcs.PRED_SGD_WEIGHTS = a; }
-        void set_pred_reset(_Bool a) { xcs.PRED_RESET = a; }
-        void set_max_neuron_mod(int a) { xcs.MAX_NEURON_MOD = a; }
-        void set_dgp_num_nodes(int a) { xcs.DGP_NUM_NODES = a; }
-        void set_reset_states(_Bool a) { xcs.RESET_STATES = a; }
-        void set_max_k(int a) { xcs.MAX_K = a; }
-        void set_max_t(int a) { xcs.MAX_T = a; }
-        void set_gp_num_cons(int a) { xcs.GP_NUM_CONS = a; }
-        void set_gp_init_depth(int a) { xcs.GP_INIT_DEPTH = a; }
-        void set_pred_eta(double a) { xcs.PRED_ETA = a; }
-        void set_cond_eta(double a) { xcs.COND_ETA = a; }
-        void set_pred_x0(double a) { xcs.PRED_X0 = a; }
-        void set_pred_rls_scale_factor(double a) { xcs.PRED_RLS_SCALE_FACTOR = a; }
-        void set_pred_rls_lambda(double a) { xcs.PRED_RLS_LAMBDA = a; }
-        void set_theta_sub(int a) { xcs.THETA_SUB = a; }
-        void set_ea_subsumption(_Bool a) { xcs.EA_SUBSUMPTION = a; }
-        void set_set_subsumption(_Bool a) { xcs.SET_SUBSUMPTION = a; }
-        void set_teletransportation(int a) { xcs.TELETRANSPORTATION = a; }
-        void set_gamma(double a) { xcs.GAMMA = a; }
-        void set_p_explore(double a) { xcs.P_EXPLORE = a; }
+        void set_omp_num_threads(int a) { param_set_omp_num_threads(&xcs, a); }
+        void set_pop_init(_Bool a) { param_set_pop_init(&xcs, a); }
+        void set_auto_encode(_Bool a) { param_set_auto_encode(&xcs, a); }
+        void set_max_trials(int a) { param_set_max_trials(&xcs, a); }
+        void set_perf_trials(int a) { param_set_perf_trials(&xcs, a); }
+        void set_pop_max_size(int a) { param_set_pop_size(&xcs, a); }
+        void set_loss_func(int a) { param_set_loss_func(&xcs, a); }
+        void set_alpha(double a) { param_set_alpha(&xcs, a); }
+        void set_beta(double a) { param_set_beta(&xcs, a); }
+        void set_delta(double a) { param_set_delta(&xcs, a); }
+        void set_eps_0(double a) { param_set_eps_0(&xcs, a); }
+        void set_err_reduc(double a) { param_set_err_reduc(&xcs, a); }
+        void set_fit_reduc(double a) { param_set_fit_reduc(&xcs, a); }
+        void set_init_error(double a) { param_set_init_error(&xcs, a); }
+        void set_init_fitness(double a) { param_set_init_fitness(&xcs, a); }
+        void set_nu(double a) { param_set_nu(&xcs, a); }
+        void set_m_probation(int a) { param_set_m_probation(&xcs, a); }
+        void set_theta_del(int a) { param_set_theta_del(&xcs, a); }
+        void set_act_type(int a) { param_set_act_type(&xcs, a); }
+        void set_cond_type(int a) { param_set_cond_type(&xcs, a); }
+        void set_pred_type(int a) { param_set_pred_type(&xcs, a); }
+        void set_p_crossover(double a) { param_set_p_crossover(&xcs, a); }
+        void set_theta_ea(double a) { param_set_theta_ea(&xcs, a); }
+        void set_lambda(int a) { param_set_lambda(&xcs, a); }
+        void set_ea_select_type(int a) { param_set_ea_select_type(&xcs, a); }
+        void set_ea_select_size(double a) { param_set_ea_select_size(&xcs, a); }
+        void set_sam_type(int a) { param_set_sam_type(&xcs, a); }
+        void set_max_con(double a) { param_set_cond_max(&xcs, a); }
+        void set_min_con(double a) { param_set_cond_min(&xcs, a); }
+        void set_cond_smin(double a) { param_set_cond_smin(&xcs, a); }
+        void set_cond_bits(int a) { param_set_cond_bits(&xcs, a); }
+        void set_cond_evolve_weights(_Bool a) { param_set_cond_evolve_weights(&xcs, a); }
+        void set_cond_evolve_neurons(_Bool a) { param_set_cond_evolve_neurons(&xcs, a); }
+        void set_cond_evolve_functions(_Bool a) { param_set_cond_evolve_functions(&xcs, a); }
+        void set_cond_output_activation(int a) { param_set_cond_output_activation(&xcs, a); }
+        void set_cond_hidden_activation(int a) { param_set_cond_hidden_activation(&xcs, a); }
+        void set_pred_output_activation(int a) { param_set_pred_output_activation(&xcs, a); }
+        void set_pred_hidden_activation(int a) { param_set_pred_hidden_activation(&xcs, a); }
+        void set_pred_momentum(double a) { param_set_pred_momentum(&xcs, a); }
+        void set_pred_evolve_weights(_Bool a) { param_set_pred_evolve_weights(&xcs, a); }
+        void set_pred_evolve_neurons(_Bool a) { param_set_pred_evolve_neurons(&xcs, a); }
+        void set_pred_evolve_functions(_Bool a) { param_set_pred_evolve_functions(&xcs, a); }
+        void set_pred_evolve_eta(_Bool a) { param_set_pred_evolve_eta(&xcs, a); }
+        void set_pred_sgd_weights(_Bool a) { param_set_pred_sgd_weights(&xcs, a); }
+        void set_pred_reset(_Bool a) { param_set_pred_reset(&xcs, a); }
+        void set_max_neuron_mod(int a) { param_set_max_neuron_mod(&xcs, a); }
+        void set_dgp_num_nodes(int a) { param_set_dgp_num_nodes(&xcs, a); }
+        void set_reset_states(_Bool a) { param_set_reset_states(&xcs, a); }
+        void set_max_k(int a) { param_set_max_k(&xcs, a); }
+        void set_max_t(int a) { param_set_max_t(&xcs, a); }
+        void set_gp_num_cons(int a) { param_set_gp_num_cons(&xcs, a); }
+        void set_gp_init_depth(int a) { param_set_gp_init_depth(&xcs, a); }
+        void set_pred_eta(double a) { param_set_pred_eta(&xcs, a); }
+        void set_cond_eta(double a) { param_set_cond_eta(&xcs, a); }
+        void set_pred_x0(double a) { param_set_pred_x0(&xcs, a); }
+        void set_pred_rls_scale_factor(double a) { param_set_pred_rls_scale_factor(&xcs, a); }
+        void set_pred_rls_lambda(double a) { param_set_pred_rls_lambda(&xcs, a); }
+        void set_theta_sub(int a) { param_set_theta_sub(&xcs, a); }
+        void set_ea_subsumption(_Bool a) { param_set_ea_subsumption(&xcs, a); }
+        void set_set_subsumption(_Bool a) { param_set_set_subsumption(&xcs, a); }
+        void set_teletransportation(int a) { param_set_teletransportation(&xcs, a); }
+        void set_gamma(double a) { param_set_gamma(&xcs, a); }
+        void set_p_explore(double a) { param_set_p_explore(&xcs, a); } 
 };
 
 PYBIND11_MODULE(xcsf, m)

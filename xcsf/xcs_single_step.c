@@ -27,6 +27,7 @@
 #include <math.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "param.h"
 #include "cl.h"
 #include "clset.h"
 #include "pa.h"
@@ -71,7 +72,7 @@ double xcs_single_step_exp(XCSF *xcsf)
 static double xcs_single_trial(XCSF *xcsf, double *error, _Bool explore)
 {
     xcs_single_init(xcsf);
-    xcsf->train = explore;
+    param_set_train(xcsf, explore);
     const double *x = env_get_state(xcsf);
     int action = xcs_single_decision(xcsf, x);
     double reward = env_execute(xcsf, action);

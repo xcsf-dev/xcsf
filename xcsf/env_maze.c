@@ -51,6 +51,7 @@
 #include <errno.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "param.h"
 #include "env.h"
 #include "env_maze.h"
 
@@ -104,9 +105,9 @@ void env_maze_init(XCSF *xcsf, const char *fname)
     }
     env->ysize = y;
     env->state = malloc(sizeof(double) * 8);
-    xcsf->n_actions = 8;
-    xcsf->x_dim = 8;
-    xcsf->y_dim = 1;
+    param_set_n_actions(xcsf, 8);
+    param_set_x_dim(xcsf, 8);
+    param_set_y_dim(xcsf, 1);
     xcsf->env = env;
     fclose(fp);
 }

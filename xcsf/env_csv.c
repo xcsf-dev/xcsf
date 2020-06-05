@@ -28,6 +28,7 @@
 #include <errno.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "param.h"
 #include "env.h"
 #include "env_csv.h"
 
@@ -54,9 +55,9 @@ void env_csv_init(XCSF *xcsf, const char *fname)
     env->test_data = malloc(sizeof(INPUT));
     env_csv_input_read(fname, env->train_data, env->test_data);
     xcsf->env = env;
-    xcsf->x_dim = env->train_data->x_dim;
-    xcsf->y_dim = env->train_data->y_dim;
-    xcsf->n_actions = 1;
+    param_set_n_actions(xcsf, 1);
+    param_set_x_dim(xcsf, env->train_data->x_dim);
+    param_set_y_dim(xcsf, env->train_data->y_dim);
 }
 
 /**

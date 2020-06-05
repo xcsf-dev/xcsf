@@ -28,78 +28,47 @@
 #include <inttypes.h>
 #include <errno.h>
 #include "xcsf.h"
-#include "gp.h"
+#include "param.h"
 #include "config.h"
-#include "loss.h"
-
-#ifdef PARALLEL
-#include <omp.h>
-#endif
 
 #define ARRAY_DELIM "," //!< Delimeter for config arrays
 #define MAXLEN 127 //!< Maximum config file line length to read
 #define BASE 10 //!< Decimal numbers
 
-// reading parameters from configuration files
+static void config_add_param(XCSF *xcsf, const char *name, char *value);
 static void config_get_ints(char *str, int *val);
 static void config_newnvpair(XCSF *xcsf, const char *param);
 static void config_process(XCSF *xcsf, const char *configline);
-static void config_read(XCSF *xcsf, const char *filename);
 static void config_trim(char *s);
-static void params_cl_action(XCSF *xcsf, const char *name, const char *value);
-static void params_cl_condition(XCSF *xcsf, const char *name, char *value);
-static void params_cl_general(XCSF *xcsf, const char *name, const char *value);
-static void params_cl_prediction(XCSF *xcsf, const char *name, char *value);
-static void params_ea(XCSF *xcsf, const char *name, const char *value);
-static void params_general(XCSF *xcsf, const char *name, const char *value);
-static void params_multistep(XCSF *xcsf, const char *name, const char *value);
-static void params_subsumption(XCSF *xcsf, const char *name, const char *value);
-// initialising preset parameters
-static void config_defaults(XCSF *xcsf);
-static void defaults_cl_action(XCSF *xcsf);
-static void defaults_cl_condition(XCSF *xcsf);
-static void defaults_cl_general(XCSF *xcsf);
-static void defaults_cl_prediction(XCSF *xcsf);
-static void defaults_ea(XCSF *xcsf);
-static void defaults_general(XCSF *xcsf);
-static void defaults_multistep(XCSF *xcsf);
-static void defaults_subsumption(XCSF *xcsf);
-// printing parameters
-static void print_params_cl_action(const XCSF *xcsf);
-static void print_params_cl_condition(const XCSF *xcsf);
-static void print_params_cl_general(const XCSF *xcsf);
-static void print_params_cl_prediction(const XCSF *xcsf);
-static void print_params_ea(const XCSF *xcsf);
-static void print_params_general(const XCSF *xcsf);
-static void print_params_multistep(const XCSF *xcsf);
-static void print_params_subsumption(const XCSF *xcsf);
+static void config_cl_action(XCSF *xcsf, const char *name, const char *value);
+static void config_cl_condition(XCSF *xcsf, const char *name, char *value);
+static void config_cl_general(XCSF *xcsf, const char *name, const char *value);
+static void config_cl_prediction(XCSF *xcsf, const char *name, char *value);
+static void config_ea(XCSF *xcsf, const char *name, const char *value);
+static void config_general(XCSF *xcsf, const char *name, const char *value);
+static void config_multistep(XCSF *xcsf, const char *name, const char *value);
+static void config_subsumption(XCSF *xcsf, const char *name, const char *value);
 
 /**
- * @brief Initialises global constants and reads the specified configuration file.
+ * @brief Reads the specified configuration file.
  * @param xcsf The XCSF data structure.
- * @param filename The name of the config file to read.
+ * @param filename The name of the configuration file.
  */
-void config_init(XCSF *xcsf, const char *filename)
-{
-    // initialise parameters
-    config_defaults(xcsf);
-    config_read(xcsf, filename);
-    // initialise (shared) tree-GP constants
-    tree_init_cons(xcsf);
-    // initialise loss/error function
-    loss_set_func(xcsf);
-#ifdef PARALLEL
-    omp_set_num_threads(xcsf->OMP_NUM_THREADS);
-#endif
-}
-
-/**
- * @brief Frees all global constants.
- * @param xcsf The XCSF data structure.
- */
-void config_free(const XCSF *xcsf)
-{
-    tree_free_cons(xcsf);
+void config_read(XCSF *xcsf, const char *filename) {
+    FILE *f = fopen(filename, "rt");
+    if(f == NULL) {
+        printf("Warning: could not open %s.\n", filename);
+        return;
+    }
+    char buff[MAXLEN];
+    while(!feof(f)) {
+        if(fgets(buff, MAXLEN-2, f) == NULL) {
+            break;
+        }
+        config_trim(buff);
+        config_process(xcsf, buff);
+    }
+    fclose(f);
 }
 
 /**
@@ -108,16 +77,16 @@ void config_free(const XCSF *xcsf)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void param_add(XCSF *xcsf, const char *name, char *value)
+static void config_add_param(XCSF *xcsf, const char *name, char *value)
 {
-    params_general(xcsf, name, value);
-    params_multistep(xcsf, name, value);
-    params_subsumption(xcsf, name, value);
-    params_ea(xcsf, name, value);
-    params_cl_general(xcsf, name, value);
-    params_cl_condition(xcsf, name, value);
-    params_cl_prediction(xcsf, name, value);
-    params_cl_action(xcsf, name, value);
+    config_general(xcsf, name, value);
+    config_multistep(xcsf, name, value);
+    config_subsumption(xcsf, name, value);
+    config_ea(xcsf, name, value);
+    config_cl_general(xcsf, name, value);
+    config_cl_condition(xcsf, name, value);
+    config_cl_prediction(xcsf, name, value);
+    config_cl_action(xcsf, name, value);
 }
 
 /**
@@ -126,34 +95,34 @@ static void param_add(XCSF *xcsf, const char *name, char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_general(XCSF *xcsf, const char *name, const char *value)
+static void config_general(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "OMP_NUM_THREADS", 16) == 0) {
-        xcsf->OMP_NUM_THREADS = strtoimax(value, &end, BASE);
+        param_set_omp_num_threads(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "POP_SIZE", 9) == 0) {
-        xcsf->POP_SIZE = strtoimax(value, &end, BASE);
+        param_set_pop_size(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "MAX_TRIALS", 10) == 0) {
-        xcsf->MAX_TRIALS = strtoimax(value, &end, BASE);
+        param_set_max_trials(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "POP_INIT", 9) == 0) {
-        xcsf->POP_INIT = false;
+        param_set_pop_init(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->POP_INIT = true;
+            param_set_pop_init(xcsf, true);
         }
     }
     else if(strncmp(name, "PERF_TRIALS", 12) == 0) {
-        xcsf->PERF_TRIALS = strtoimax(value, &end, BASE);
+        param_set_perf_trials(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "LOSS_FUNC", 10) == 0) {
-        xcsf->LOSS_FUNC = strtoimax(value, &end, BASE);
+        param_set_loss_func(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "AUTO_ENCODE", 9) == 0) {
-        xcsf->AUTO_ENCODE = false;
+        param_set_auto_encode(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->AUTO_ENCODE = true;
+            param_set_auto_encode(xcsf, true);
         }
     }
 }
@@ -164,17 +133,17 @@ static void params_general(XCSF *xcsf, const char *name, const char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_multistep(XCSF *xcsf, const char *name, const char *value)
+static void config_multistep(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "TELETRANSPORTATION", 19) == 0) {
-        xcsf->TELETRANSPORTATION = strtoimax(value, &end, BASE);
+        param_set_teletransportation(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "GAMMA", 6) == 0) {
-        xcsf->GAMMA = atof(value);
+        param_set_gamma(xcsf, atof(value));
     }
     else if(strncmp(name, "P_EXPLORE", 10) == 0) {
-        xcsf->P_EXPLORE = atof(value);
+        param_set_p_explore(xcsf, atof(value));
     }
 }
 
@@ -184,23 +153,23 @@ static void params_multistep(XCSF *xcsf, const char *name, const char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_subsumption(XCSF *xcsf, const char *name, const char *value)
+static void config_subsumption(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "EA_SUBSUMPTION", 15) == 0) {
-        xcsf->EA_SUBSUMPTION = false;
+        param_set_ea_subsumption(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->EA_SUBSUMPTION = true;
+            param_set_ea_subsumption(xcsf, true);
         }
     }
     else if(strncmp(name, "SET_SUBSUMPTION", 16) == 0) {
-        xcsf->SET_SUBSUMPTION = false;
+        param_set_set_subsumption(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->SET_SUBSUMPTION = true;
+            param_set_set_subsumption(xcsf, true);
         }
     }
     else if(strncmp(name, "THETA_SUB", 10) == 0) {
-        xcsf->THETA_SUB = strtoimax(value, &end, BASE);
+        param_set_theta_sub(xcsf, strtoimax(value, &end, BASE));
     }
 }
 
@@ -210,26 +179,26 @@ static void params_subsumption(XCSF *xcsf, const char *name, const char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_ea(XCSF *xcsf, const char *name, const char *value)
+static void config_ea(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "EA_SELECT_TYPE", 15) == 0) {
-        xcsf->EA_SELECT_TYPE = strtoimax(value, &end, BASE);
+        param_set_ea_select_type(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "EA_SELECT_SIZE", 15) == 0) {
-        xcsf->EA_SELECT_SIZE = atof(value);
+        param_set_ea_select_size(xcsf, atof(value));
     }
     else if(strncmp(name, "THETA_EA", 9) == 0) {
-        xcsf->THETA_EA = atof(value);
+        param_set_theta_ea(xcsf, atof(value));
     }
     else if(strncmp(name, "LAMBDA", 7) == 0) {
-        xcsf->LAMBDA = strtoimax(value, &end, BASE);
+        param_set_lambda(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "P_CROSSOVER", 12) == 0) {
-        xcsf->P_CROSSOVER = atof(value);
+        param_set_p_crossover(xcsf, atof(value));
     }
     else if(strncmp(name, "SAM_TYPE", 9) == 0) {
-        xcsf->SAM_TYPE = strtoimax(value, &end, BASE);
+        param_set_sam_type(xcsf, strtoimax(value, &end, BASE));
     }
 }
 
@@ -239,41 +208,41 @@ static void params_ea(XCSF *xcsf, const char *name, const char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_cl_general(XCSF *xcsf, const char *name, const char *value)
+static void config_cl_general(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "ALPHA", 6) == 0) {
-        xcsf->ALPHA = atof(value);
+        param_set_alpha(xcsf, atof(value));
     }
     else if(strncmp(name, "BETA", 5) == 0) {
-        xcsf->BETA = atof(value);
+        param_set_beta(xcsf, atof(value));
     }
     else if(strncmp(name, "DELTA", 6) == 0) {
-        xcsf->DELTA = atof(value);
+        param_set_delta(xcsf, atof(value));
     }
     else if(strncmp(name, "NU", 3) == 0) {
-        xcsf->NU = atof(value);
+        param_set_nu(xcsf, atof(value));
     }
     else if(strncmp(name, "THETA_DEL", 10) == 0) {
-        xcsf->THETA_DEL = strtoimax(value, &end, BASE);
+        param_set_theta_del(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "INIT_FITNESS", 13) == 0) {
-        xcsf->INIT_FITNESS = atof(value);
+        param_set_init_fitness(xcsf, atof(value));
     }
     else if(strncmp(name, "INIT_ERROR", 11) == 0) {
-        xcsf->INIT_ERROR = atof(value);
+        param_set_init_error(xcsf, atof(value));
     }
     else if(strncmp(name, "ERR_REDUC", 10) == 0) {
-        xcsf->ERR_REDUC = atof(value);
+        param_set_err_reduc(xcsf, atof(value));
     }
     else if(strncmp(name, "FIT_REDUC", 10) == 0) {
-        xcsf->FIT_REDUC = atof(value);
+        param_set_fit_reduc(xcsf, atof(value));
     }
     else if(strncmp(name, "EPS_0", 6) == 0) {
-        xcsf->EPS_0 = atof(value);
+        param_set_eps_0(xcsf, atof(value));
     }
     else if(strncmp(name, "M_PROBATION", 12) == 0) {
-        xcsf->M_PROBATION = strtoimax(value, &end, BASE);
+        param_set_m_probation(xcsf, strtoimax(value, &end, BASE));
     }
 }
 
@@ -283,67 +252,67 @@ static void params_cl_general(XCSF *xcsf, const char *name, const char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_cl_condition(XCSF *xcsf, const char *name, char *value)
+static void config_cl_condition(XCSF *xcsf, const char *name, char *value)
 {
     char *end;
     if(strncmp(name, "COND_MIN", 9) == 0) {
-        xcsf->COND_MIN = atof(value);
+        param_set_cond_min(xcsf, atof(value));
     }
     else if(strncmp(name, "COND_MAX", 9) == 0) {
-        xcsf->COND_MAX = atof(value);
+        param_set_cond_max(xcsf, atof(value));
     }
     else if(strncmp(name, "COND_TYPE", 10) == 0) {
-        xcsf->COND_TYPE = strtoimax(value, &end, BASE);
+        param_set_cond_type(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "COND_SMIN", 10) == 0) {
-        xcsf->COND_SMIN = atof(value);
+        param_set_cond_smin(xcsf, atof(value));
     }
     else if(strncmp(name, "COND_BITS", 10) == 0) {
-        xcsf->COND_BITS = strtoimax(value, &end, BASE);
+        param_set_cond_bits(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "COND_ETA", 9) == 0) {
-        xcsf->COND_ETA = atof(value);
+        param_set_cond_eta(xcsf, atof(value));
     }
     else if(strncmp(name, "GP_NUM_CONS", 12) == 0) {
-        xcsf->GP_NUM_CONS = strtoimax(value, &end, BASE);
+        param_set_gp_num_cons(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "GP_INIT_DEPTH", 14) == 0) {
-        xcsf->GP_INIT_DEPTH = strtoimax(value, &end, BASE);
+        param_set_gp_init_depth(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "DGP_NUM_NODES", 14) == 0) {
-        xcsf->DGP_NUM_NODES = strtoimax(value, &end, BASE);
+        param_set_dgp_num_nodes(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "RESET_STATES", 13) == 0) {
-        xcsf->RESET_STATES = false;
+        param_set_reset_states(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->RESET_STATES = true;
+            param_set_reset_states(xcsf, true);
         }
     }
     else if(strncmp(name, "MAX_K", 6) == 0) {
-        xcsf->MAX_K = strtoimax(value, &end, BASE);
+        param_set_max_k(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "MAX_T", 6) == 0) {
-        xcsf->MAX_T = strtoimax(value, &end, BASE);
+        param_set_max_t(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "MAX_NEURON_MOD", 15) == 0) {
-        xcsf->MAX_NEURON_MOD = strtoimax(value, &end, BASE);
+        param_set_max_neuron_mod(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "COND_EVOLVE_WEIGHTS", 20) == 0) {
-        xcsf->COND_EVOLVE_WEIGHTS = false;
+        param_set_cond_evolve_weights(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->COND_EVOLVE_WEIGHTS = true;
+            param_set_cond_evolve_weights(xcsf, true);
         }
     }
     else if(strncmp(name, "COND_EVOLVE_NEURONS", 20) == 0) {
-        xcsf->COND_EVOLVE_NEURONS = false;
+        param_set_cond_evolve_neurons(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->COND_EVOLVE_NEURONS = true;
+            param_set_cond_evolve_neurons(xcsf, true);
         }
     }
     else if(strncmp(name, "COND_EVOLVE_FUNCTIONS", 22) == 0) {
-        xcsf->COND_EVOLVE_FUNCTIONS = false;
+        param_set_cond_evolve_functions(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->COND_EVOLVE_FUNCTIONS = true;
+            param_set_cond_evolve_functions(xcsf, true);
         }
     }
     else if(strncmp(name, "COND_NUM_NEURONS", 17) == 0) {
@@ -355,10 +324,10 @@ static void params_cl_condition(XCSF *xcsf, const char *name, char *value)
         config_get_ints(value, xcsf->COND_MAX_NEURONS);
     }
     else if(strncmp(name, "COND_OUTPUT_ACTIVATION", 23) == 0) {
-        xcsf->COND_OUTPUT_ACTIVATION = strtoimax(value, &end, BASE);
+        param_set_cond_output_activation(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "COND_HIDDEN_ACTIVATION", 23) == 0) {
-        xcsf->COND_HIDDEN_ACTIVATION = strtoimax(value, &end, BASE);
+        param_set_cond_hidden_activation(xcsf, strtoimax(value, &end, BASE));
     }
 }
 
@@ -368,62 +337,62 @@ static void params_cl_condition(XCSF *xcsf, const char *name, char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_cl_prediction(XCSF *xcsf, const char *name, char *value)
+static void config_cl_prediction(XCSF *xcsf, const char *name, char *value)
 {
     char *end;
     if(strncmp(name, "PRED_TYPE", 10) == 0) {
-        xcsf->PRED_TYPE = strtoimax(value, &end, BASE);
+        param_set_pred_type(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "PRED_ETA", 9) == 0) {
-        xcsf->PRED_ETA = atof(value);
+        param_set_pred_eta(xcsf, atof(value));
     }
     else if(strncmp(name, "PRED_RESET", 11) == 0) {
-        xcsf->PRED_RESET = false;
+        param_set_pred_reset(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->PRED_RESET = true;
+            param_set_pred_reset(xcsf, true);
         }
     }
     else if(strncmp(name, "PRED_X0", 8) == 0) {
-        xcsf->PRED_X0 = atof(value);
+        param_set_pred_x0(xcsf, atof(value));
     }
     else if(strncmp(name, "PRED_RLS_SCALE_FACTOR", 22) == 0) {
-        xcsf->PRED_RLS_SCALE_FACTOR = atof(value);
+        param_set_pred_rls_scale_factor(xcsf, atof(value));
     }
     else if(strncmp(name, "PRED_RLS_LAMBDA", 16) == 0) {
-        xcsf->PRED_RLS_LAMBDA = atof(value);
+        param_set_pred_rls_lambda(xcsf, atof(value));
     }
     else if(strncmp(name, "PRED_EVOLVE_WEIGHTS", 20) == 0) {
-        xcsf->PRED_EVOLVE_WEIGHTS = false;
+        param_set_pred_evolve_weights(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->PRED_EVOLVE_WEIGHTS = true;
+            param_set_pred_evolve_weights(xcsf, true);
         }
     }
     else if(strncmp(name, "PRED_EVOLVE_NEURONS", 20) == 0) {
-        xcsf->PRED_EVOLVE_NEURONS = false;
+        param_set_pred_evolve_neurons(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->PRED_EVOLVE_NEURONS = true;
+            param_set_pred_evolve_neurons(xcsf, true);
         }
     }
     else if(strncmp(name, "PRED_EVOLVE_FUNCTIONS", 22) == 0) {
-        xcsf->PRED_EVOLVE_FUNCTIONS = false;
+        param_set_pred_evolve_functions(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->PRED_EVOLVE_FUNCTIONS = true;
+            param_set_pred_evolve_functions(xcsf, true);
         }
     }
     else if(strncmp(name, "PRED_EVOLVE_ETA", 16) == 0) {
-        xcsf->PRED_EVOLVE_ETA = false;
+        param_set_pred_evolve_eta(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->PRED_EVOLVE_ETA = true;
+            param_set_pred_evolve_eta(xcsf, true);
         }
     }
     else if(strncmp(name, "PRED_SGD_WEIGHTS", 17) == 0) {
-        xcsf->PRED_SGD_WEIGHTS = false;
+        param_set_pred_sgd_weights(xcsf, false);
         if(strncmp(value, "true", 5) == 0) {
-            xcsf->PRED_SGD_WEIGHTS = true;
+            param_set_pred_sgd_weights(xcsf, true);
         }
     }
     else if(strncmp(name, "PRED_MOMENTUM", 14) == 0) {
-        xcsf->PRED_MOMENTUM = atof(value);
+        param_set_pred_momentum(xcsf, atof(value));
     }
     else if(strncmp(name, "PRED_NUM_NEURONS", 17) == 0) {
         memset(xcsf->PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
@@ -434,10 +403,10 @@ static void params_cl_prediction(XCSF *xcsf, const char *name, char *value)
         config_get_ints(value, xcsf->PRED_MAX_NEURONS);
     }
     else if(strncmp(name, "PRED_OUTPUT_ACTIVATION", 23) == 0) {
-        xcsf->PRED_OUTPUT_ACTIVATION = strtoimax(value, &end, BASE);
+        param_set_pred_output_activation(xcsf, strtoimax(value, &end, BASE));
     }
     else if(strncmp(name, "PRED_HIDDEN_ACTIVATION", 23) == 0) {
-        xcsf->PRED_HIDDEN_ACTIVATION = strtoimax(value, &end, BASE);
+        param_set_pred_hidden_activation(xcsf, strtoimax(value, &end, BASE));
     }
 }
 
@@ -447,11 +416,11 @@ static void params_cl_prediction(XCSF *xcsf, const char *name, char *value)
  * @param name Parameter name.
  * @param value Parameter value.
  */
-static void params_cl_action(XCSF *xcsf, const char *name, const char *value)
+static void config_cl_action(XCSF *xcsf, const char *name, const char *value)
 {
     char *end;
     if(strncmp(name, "ACT_TYPE", 9) == 0) {
-        xcsf->ACT_TYPE = strtoimax(value, &end, BASE);
+        param_set_act_type(xcsf, strtoimax(value, &end, BASE));
     }
 }
 
@@ -518,7 +487,7 @@ static void config_newnvpair(XCSF *xcsf, const char *param) {
     }
     value[valuelen] = '\0';
     // add
-    param_add(xcsf, name, value);
+    config_add_param(xcsf, name, value);
     // clean up
     free(name);
     free(value);
@@ -544,346 +513,4 @@ static void config_process(XCSF *xcsf, const char *configline) {
         *ptr = '\0';
     }
     config_newnvpair(xcsf, configline);
-}
-
-/**
- * @brief Reads the specified configuration file.
- * @param xcsf The XCSF data structure.
- * @param filename The name of the configuration file.
- */
-static void config_read(XCSF *xcsf, const char *filename) {
-    FILE *f = fopen(filename, "rt");
-    if(f == NULL) {
-        printf("Warning: could not open %s.\n", filename);
-        return;
-    }
-    char buff[MAXLEN];
-    while(!feof(f)) {
-        if(fgets(buff, MAXLEN-2, f) == NULL) {
-            break;
-        }
-        config_trim(buff);
-        config_process(xcsf, buff);
-    }
-    fclose(f);
-}
-
-/**
- * @brief Initialises default XCSF parameters.
- */
-static void config_defaults(XCSF *xcsf)
-{
-    defaults_cl_action(xcsf);
-    defaults_cl_condition(xcsf);
-    defaults_cl_general(xcsf);
-    defaults_cl_prediction(xcsf);
-    defaults_ea(xcsf);
-    defaults_general(xcsf);
-    defaults_multistep(xcsf);
-    defaults_subsumption(xcsf);
-}
-
-/**
- * @brief Initialises default XCSF general parameters.
- */
-static void defaults_general(XCSF *xcsf)
-{
-    xcsf->OMP_NUM_THREADS = 8;
-    xcsf->POP_SIZE = 2000;
-    xcsf->MAX_TRIALS = 100000;
-    xcsf->POP_INIT = true;
-    xcsf->PERF_TRIALS = 1000;
-    xcsf->LOSS_FUNC = 0;
-    xcsf->AUTO_ENCODE = false;
-}
-
-/**
- * @brief Initialises default multistep parameters.
- */
-static void defaults_multistep(XCSF *xcsf)
-{
-    xcsf->TELETRANSPORTATION = 50;
-    xcsf->GAMMA = 0.95;
-    xcsf->P_EXPLORE = 0.9;
-}
-
-/**
- * @brief Initialises default general classifier parameters.
- */
-static void defaults_cl_general(XCSF *xcsf)
-{
-    xcsf->EPS_0 = 0.01;
-    xcsf->ALPHA = 0.1;
-    xcsf->NU = 5;
-    xcsf->BETA = 0.1;
-    xcsf->DELTA = 0.1;
-    xcsf->THETA_DEL = 20;
-    xcsf->INIT_FITNESS = 0.01;
-    xcsf->INIT_ERROR = 0;
-    xcsf->ERR_REDUC = 1;
-    xcsf->FIT_REDUC = 0.1;
-    xcsf->M_PROBATION = 10000;
-}
-
-/**
- * @brief Initialises default subsumption parameters.
- */
-static void defaults_subsumption(XCSF *xcsf)
-{
-    xcsf->EA_SUBSUMPTION = false;
-    xcsf->SET_SUBSUMPTION = false;
-    xcsf->THETA_SUB = 20;
-}
-
-/**
- * @brief Initialises default evolutionary algorithm parameters.
- */
-static void defaults_ea(XCSF *xcsf)
-{
-    xcsf->EA_SELECT_TYPE = 0;
-    xcsf->EA_SELECT_SIZE = 0.4;
-    xcsf->THETA_EA = 50;
-    xcsf->LAMBDA = 2;
-    xcsf->P_CROSSOVER = 0.8;
-    xcsf->SAM_TYPE = 0;
-}
-
-/**
- * @brief Initialises default classifier condition parameters.
- */
-static void defaults_cl_condition(XCSF *xcsf)
-{
-    xcsf->COND_ETA = 0;
-    xcsf->COND_TYPE = 1;
-    xcsf->COND_MIN = 0;
-    xcsf->COND_MAX = 1;
-    xcsf->COND_SMIN = 0.1;
-    xcsf->COND_BITS = 1;
-    xcsf->GP_NUM_CONS = 100;
-    xcsf->GP_INIT_DEPTH = 5;
-    xcsf->DGP_NUM_NODES = 20;
-    xcsf->RESET_STATES = false;
-    xcsf->MAX_K = 2;
-    xcsf->MAX_T = 10;
-    xcsf->MAX_NEURON_MOD = 1;
-    xcsf->COND_EVOLVE_WEIGHTS = true;
-    xcsf->COND_EVOLVE_NEURONS = true;
-    xcsf->COND_EVOLVE_FUNCTIONS = false;
-    memset(xcsf->COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-    memset(xcsf->COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
-    xcsf->COND_NUM_NEURONS[0] = 1;
-    xcsf->COND_MAX_NEURONS[0] = 10;
-    xcsf->COND_OUTPUT_ACTIVATION = 0;
-    xcsf->COND_HIDDEN_ACTIVATION = 0;
-}
-
-/**
- * @brief Initialises default classifier prediction parameters.
- */
-static void defaults_cl_prediction(XCSF *xcsf)
-{
-    xcsf->PRED_TYPE = 1;
-    xcsf->PRED_EVOLVE_ETA = true;
-    xcsf->PRED_ETA = 0.1;
-    xcsf->PRED_RESET = false;
-    xcsf->PRED_X0 = 1;
-    xcsf->PRED_RLS_SCALE_FACTOR = 1000;
-    xcsf->PRED_RLS_LAMBDA = 1;
-    xcsf->PRED_EVOLVE_WEIGHTS = true;
-    xcsf->PRED_EVOLVE_NEURONS = true;
-    xcsf->PRED_EVOLVE_FUNCTIONS = false;
-    xcsf->PRED_SGD_WEIGHTS = true;
-    xcsf->PRED_MOMENTUM = 0.9;
-    memset(xcsf->PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-    memset(xcsf->PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
-    xcsf->PRED_NUM_NEURONS[0] = 1;
-    xcsf->PRED_MAX_NEURONS[0] = 10;
-    xcsf->PRED_OUTPUT_ACTIVATION = 0;
-    xcsf->PRED_HIDDEN_ACTIVATION = 0;
-}
-
-/**
- * @brief Initialises default classifier action parameters.
- */
-static void defaults_cl_action(XCSF *xcsf)
-{
-    xcsf->ACT_TYPE = 0;
-}
-
-/**
- * @brief Prints all XCSF parameters.
- * @param xcsf The XCSF data structure.
- */
-void config_print(const XCSF *xcsf)
-{
-    print_params_general(xcsf);
-    print_params_multistep(xcsf);
-    print_params_ea(xcsf);
-    print_params_subsumption(xcsf);
-    print_params_cl_general(xcsf);
-    print_params_cl_condition(xcsf);
-    print_params_cl_prediction(xcsf);
-    print_params_cl_action(xcsf);
-    printf("\n");
-}
-
-/**
- * @brief Prints XCSF general parameters.
- * @param xcsf The XCSF data structure.
- */
-static void print_params_general(const XCSF *xcsf)
-{
-    printf("OMP_NUM_THREADS=%d", xcsf->OMP_NUM_THREADS);
-    printf(", POP_SIZE=%d", xcsf->POP_SIZE);
-    printf(", MAX_TRIALS=%d", xcsf->MAX_TRIALS);
-    printf(", POP_INIT=");
-    xcsf->POP_INIT == true ? printf("true") : printf("false");
-    printf(", PERF_TRIALS=%d", xcsf->PERF_TRIALS);
-    printf(", LOSS_FUNC=%d", xcsf->LOSS_FUNC);
-    printf(", AUTO_ENCODE=");
-    xcsf->AUTO_ENCODE == true ? printf("true") : printf("false");
-}
-
-/**
- * @brief Prints XCSF multistep parameters.
- * @param xcsf The XCSF data structure.
- */
-static void print_params_multistep(const XCSF *xcsf)
-{
-    printf(", TELETRANSPORTATION=%d", xcsf->TELETRANSPORTATION);
-    printf(", GAMMA=%f", xcsf->GAMMA);
-    printf(", P_EXPLORE=%f", xcsf->P_EXPLORE);
-}
-
-/**
- * @brief Prints XCSF general classifier parameters.
- * @param xcsf The XCSF data structure.
- */
-static void print_params_cl_general(const XCSF *xcsf)
-{
-    printf(", EPS_0=%f", xcsf->EPS_0);
-    printf(", ALPHA=%f", xcsf->ALPHA);
-    printf(", NU=%f", xcsf->NU);
-    printf(", BETA=%f", xcsf->BETA);
-    printf(", DELTA=%f", xcsf->DELTA);
-    printf(", THETA_DEL=%d", xcsf->THETA_DEL);
-    printf(", INIT_FITNESS=%f", xcsf->INIT_FITNESS);
-    printf(", INIT_ERROR=%f", xcsf->INIT_ERROR);
-    printf(", ERR_REDUC=%f", xcsf->ERR_REDUC);
-    printf(", FIT_REDUC=%f", xcsf->FIT_REDUC);
-    printf(", M_PROBATION=%d", xcsf->M_PROBATION);
-}
-
-/**
- * @brief Prints XCSF subsumption parameters.
- * @param xcsf The XCSF data structure.
- */
-static void print_params_subsumption(const XCSF *xcsf)
-{
-    printf(", EA_SUBSUMPTION=");
-    xcsf->EA_SUBSUMPTION == true ? printf("true") : printf("false");
-    printf(", SET_SUBSUMPTION=");
-    xcsf->SET_SUBSUMPTION == true ? printf("true") : printf("false");
-    printf(", THETA_SUB=%d", xcsf->THETA_SUB);
-}
-
-/**
- * @brief Prints XCSF evolutionary algorithm parameters.
- * @param xcsf The XCSF data structure.
- */
-static void print_params_ea(const XCSF *xcsf)
-{
-    printf(", EA_SELECT_TYPE=%d", xcsf->EA_SELECT_TYPE);
-    printf(", EA_SELECT_SIZE=%f", xcsf->EA_SELECT_SIZE);
-    printf(", THETA_EA=%f", xcsf->THETA_EA);
-    printf(", LAMBDA=%d", xcsf->LAMBDA);
-    printf(", P_CROSSOVER=%f", xcsf->P_CROSSOVER);
-    printf(", SAM_TYPE=%d", xcsf->SAM_TYPE);
-}
-
-/**
- * @brief Prints XCSF condtion parameters.
- * @param xcsf The XCSF data structure.
- */
-static void print_params_cl_condition(const XCSF *xcsf)
-{
-    printf(", COND_ETA=%f", xcsf->COND_ETA);
-    printf(", COND_TYPE=%d", xcsf->COND_TYPE);
-    printf(", COND_MIN=%f", xcsf->COND_MIN);
-    printf(", COND_MAX=%f", xcsf->COND_MAX);
-    printf(", COND_SMIN=%f", xcsf->COND_SMIN);
-    printf(", COND_BITS=%d", xcsf->COND_BITS);
-    printf(", GP_NUM_CONS=%d", xcsf->GP_NUM_CONS);
-    printf(", GP_INIT_DEPTH=%d", xcsf->GP_INIT_DEPTH);
-    printf(", DGP_NUM_NODES=%d", xcsf->DGP_NUM_NODES);
-    printf(", RESET_STATES=");
-    xcsf->RESET_STATES == true ? printf("true") : printf("false");
-    printf(", MAX_K=%d", xcsf->MAX_K);
-    printf(", MAX_T=%d", xcsf->MAX_T);
-    printf(", MAX_NEURON_MOD=%d", xcsf->MAX_NEURON_MOD);
-    printf(", COND_EVOLVE_WEIGHTS=");
-    xcsf->COND_EVOLVE_WEIGHTS == true ? printf("true") : printf("false");
-    printf(", COND_EVOLVE_NEURONS=");
-    xcsf->COND_EVOLVE_NEURONS == true ? printf("true") : printf("false");
-    printf(", COND_EVOLVE_FUNCTIONS=");
-    xcsf->COND_EVOLVE_FUNCTIONS == true ? printf("true") : printf("false");
-    printf(", COND_NUM_NEURONS=[");
-    for(int i = 0;  i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; i++) {
-        printf("%d;", xcsf->COND_NUM_NEURONS[i]);
-    }
-    printf("]");
-    printf(", COND_MAX_NEURONS=[");
-    for(int i = 0;  i < MAX_LAYERS && xcsf->COND_MAX_NEURONS[i] > 0; i++) {
-        printf("%d;", xcsf->COND_MAX_NEURONS[i]);
-    }
-    printf("]");
-    printf(", COND_OUTPUT_ACTIVATION=%d", xcsf->COND_OUTPUT_ACTIVATION);
-    printf(", COND_HIDDEN_ACTIVATION=%d", xcsf->COND_HIDDEN_ACTIVATION);
-}
-
-/**
- * @brief Prints XCSF prediction parameters.
- * @param xcsf The XCSF data structure.
- */
-static void print_params_cl_prediction(const XCSF *xcsf)
-{
-    printf(", PRED_TYPE=%d", xcsf->PRED_TYPE);
-    printf(", PRED_EVOLVE_ETA=");
-    xcsf->PRED_EVOLVE_ETA == true ? printf("true") : printf("false");
-    printf(", PRED_ETA=%f", xcsf->PRED_ETA);
-    printf(", PRED_RESET=");
-    xcsf->PRED_RESET == true ? printf("true") : printf("false");
-    printf(", PRED_X0=%f", xcsf->PRED_X0);
-    printf(", PRED_RLS_SCALE_FACTOR=%f", xcsf->PRED_RLS_SCALE_FACTOR);
-    printf(", PRED_RLS_SCALE_LAMBDA=%f", xcsf->PRED_RLS_LAMBDA);
-    printf(", PRED_EVOLVE_WEIGHTS=");
-    xcsf->PRED_EVOLVE_WEIGHTS == true ? printf("true") : printf("false");
-    printf(", PRED_EVOLVE_NEURONS=");
-    xcsf->PRED_EVOLVE_NEURONS == true ? printf("true") : printf("false");
-    printf(", PRED_EVOLVE_FUNCTIONS=");
-    xcsf->PRED_EVOLVE_FUNCTIONS == true ? printf("true") : printf("false");
-    printf(", PRED_SGD_WEIGHTS=");
-    xcsf->PRED_SGD_WEIGHTS == true ? printf("true") : printf("false");
-    printf(", PRED_MOMENTUM=%f", xcsf->PRED_MOMENTUM);
-    printf(", PRED_NUM_NEURONS=[");
-    for(int i = 0;  i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; i++) {
-        printf("%d;", xcsf->PRED_NUM_NEURONS[i]);
-    }
-    printf("]");
-    printf(", PRED_MAX_NEURONS=[");
-    for(int i = 0;  i < MAX_LAYERS && xcsf->PRED_MAX_NEURONS[i] > 0; i++) {
-        printf("%d;", xcsf->PRED_MAX_NEURONS[i]);
-    }
-    printf("]");
-    printf(", PRED_OUTPUT_ACTIVATION=%d", xcsf->PRED_OUTPUT_ACTIVATION);
-    printf(", PRED_HIDDEN_ACTIVATION=%d", xcsf->PRED_HIDDEN_ACTIVATION);
-}
-
-/**
- * @brief Prints XCSF action parameters.
- * @param xcsf The XCSF data structure.
- */
-static void print_params_cl_action(const XCSF *xcsf)
-{
-    printf(", ACT_TYPE=%d", xcsf->ACT_TYPE);
 }

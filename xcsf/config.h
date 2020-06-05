@@ -23,6 +23,4 @@
 
 #pragma once
  
-void config_init(XCSF *xcsf, const char *filename);
-void config_free(const XCSF *xcsf);
-void config_print(const XCSF *xcsf);
+void config_read(XCSF *xcsf, const char *filename);

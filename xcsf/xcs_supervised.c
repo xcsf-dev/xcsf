@@ -28,6 +28,7 @@
 #include <errno.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "param.h"
 #include "loss.h"
 #include "perf.h"
 #include "cl.h"
@@ -59,7 +60,7 @@ double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
         int row = xcs_supervised_sample(train_data, cnt, shuffle);
         const double *x = &train_data->x[row * train_data->x_dim];
         const double *y = &train_data->y[row * train_data->y_dim];
-        xcsf->train = true;
+        param_set_train(xcsf, true);
         xcs_supervised_trial(xcsf, pred, x, y);
         double error = (xcsf->loss_ptr)(xcsf, pred, y);
         werr += error;
@@ -69,7 +70,7 @@ double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
             row = xcs_supervised_sample(test_data, cnt, shuffle);
             x = &test_data->x[row * test_data->x_dim];
             y = &test_data->y[row * test_data->y_dim];
-            xcsf->train = false;
+            param_set_train(xcsf, false);
             xcs_supervised_trial(xcsf, pred, x, y);
             wterr += (xcsf->loss_ptr)(xcsf, pred, y);
         }
@@ -88,7 +89,7 @@ double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
  */
 void xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_samples)
 {   
-    xcsf->train = false;
+    param_set_train(xcsf, false);
     for(int row = 0; row < n_samples; row++) {
         xcs_supervised_trial(xcsf, &pred[row * xcsf->y_dim], &x[row * xcsf->x_dim], NULL);
     }
@@ -102,7 +103,7 @@ void xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_sam
  */
 double xcs_supervised_score(XCSF *xcsf, const INPUT *test_data)
 {
-    xcsf->train = false;
+    param_set_train(xcsf, false);
     double err = 0;
     double *pred = malloc(sizeof(double) * xcsf->y_dim);
     for(int row = 0; row < test_data->n_samples; row++) {

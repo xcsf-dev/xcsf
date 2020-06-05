@@ -30,7 +30,7 @@ extern "C" {
 #include <string.h>
 #include <math.h>
 #include "../xcsf/xcsf.h"
-#include "../xcsf/config.h"
+#include "../xcsf/param.h"
 #include "../xcsf/utils.h"
 #include "../xcsf/cl.h"
 #include "../xcsf/prediction.h"
@@ -43,15 +43,14 @@ TEST_CASE("PRED_RLS")
     XCSF xcsf;
     CL c;
     random_init();
-    config_init(&xcsf, "../default.ini");
-    xcsf.x_dim = 10;
-    xcsf.y_dim = 1;
-    xcsf.PRED_TYPE = PRED_TYPE_RLS_LINEAR;
-    xcsf.PRED_X0 = 1;
-    xcsf.PRED_RLS_SCALE_FACTOR = 1000;
-    xcsf.PRED_RLS_LAMBDA = 1;
+    param_init(&xcsf);
+    param_set_x_dim(&xcsf, 10);
+    param_set_y_dim(&xcsf, 1);
+    param_set_pred_type(&xcsf, PRED_TYPE_RLS_LINEAR);
+    param_set_pred_x0(&xcsf, 1);
+    param_set_pred_rls_scale_factor(&xcsf, 1000);
+    param_set_pred_rls_lambda(&xcsf, 1);
     cl_init(&xcsf, &c, 1, 1);
-
     pred_rls_init(&xcsf, &c);
     PRED_RLS *p = (PRED_RLS *) c.pred;
     CHECK_EQ(p->n, 11);

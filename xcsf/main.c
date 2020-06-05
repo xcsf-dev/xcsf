@@ -27,6 +27,7 @@
 #include <string.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "param.h"
 #include "config.h"
 #include "env.h"
 #include "env_csv.h"
@@ -43,12 +44,13 @@ int main(int argc, char **argv)
     } 
     XCSF *xcsf = malloc(sizeof(XCSF));
     random_init();
+    param_init(xcsf);
     // load parameter config
     if(argc > 3) {
-        config_init(xcsf, argv[3]);
+        config_read(xcsf, argv[3]);
     }
     else {
-        config_init(xcsf, "default.ini");
+        config_read(xcsf, "default.ini");
     }
     // initialise problem environment
     env_init(xcsf, argv);
@@ -80,7 +82,7 @@ int main(int argc, char **argv)
     // clean up
     env_free(xcsf);
     clset_kill(xcsf, &xcsf->pset);
-    config_free(xcsf);
+    param_free(xcsf);
     free(xcsf);
     return EXIT_SUCCESS;
 }

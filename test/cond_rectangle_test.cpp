@@ -30,7 +30,7 @@ extern "C" {
 #include <string.h>
 #include "../xcsf/xcsf.h"
 #include "../xcsf/utils.h"
-#include "../xcsf/config.h"
+#include "../xcsf/param.h"
 #include "../xcsf/cl.h"
 #include "../xcsf/condition.h"
 #include "../xcsf/cond_rectangle.h"
@@ -41,9 +41,9 @@ TEST_CASE("COND_RECTANGLE")
     XCSF xcsf;
     CL c;
     random_init();
-    config_init(&xcsf, "../default.ini");
-    xcsf.x_dim = 5;
-    xcsf.y_dim = 1;
+    param_init(&xcsf);
+    param_set_x_dim(&xcsf, 5);
+    param_set_y_dim(&xcsf, 1);
     xcsf.COND_MIN = 0;
     xcsf.COND_MAX = 1;
     xcsf.COND_SMIN = 1;

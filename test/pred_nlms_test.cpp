@@ -31,7 +31,7 @@ extern "C" {
 #include <math.h>
 #include "../xcsf/xcsf.h"
 #include "../xcsf/utils.h"
-#include "../xcsf/config.h"
+#include "../xcsf/param.h"
 #include "../xcsf/cl.h"
 #include "../xcsf/prediction.h"
 #include "../xcsf/pred_nlms.h"
@@ -43,13 +43,13 @@ TEST_CASE("PRED_NLMS")
     XCSF xcsf;
     CL c;
     random_init();
-    config_init(&xcsf, "../default.ini");
-    xcsf.x_dim = 10;
-    xcsf.y_dim = 1;
-    xcsf.PRED_TYPE = PRED_TYPE_NLMS_LINEAR;
-    xcsf.PRED_EVOLVE_ETA = false;
-    xcsf.PRED_X0 = 1;
-    xcsf.PRED_ETA = 0.1;
+    param_init(&xcsf);
+    param_set_x_dim(&xcsf, 10);
+    param_set_y_dim(&xcsf, 1);
+    param_set_pred_type(&xcsf, PRED_TYPE_NLMS_LINEAR);
+    param_set_pred_evolve_eta(&xcsf, false);
+    param_set_pred_x0(&xcsf, 1);
+    param_set_pred_eta(&xcsf, 0.1);
     cl_init(&xcsf, &c, 1, 1);
     pred_nlms_init(&xcsf, &c);
     PRED_NLMS *p = (PRED_NLMS *) c.pred;

@@ -34,6 +34,7 @@
 #include <math.h>
 #include "xcsf.h"
 #include "utils.h"
+#include "param.h"
 #include "env.h"
 #include "env_mux.h"
 
@@ -56,9 +57,9 @@ void env_mux_init(XCSF *xcsf, int bits)
     (env->pos_bits)--;
     int n = env->pos_bits + pow(2, env->pos_bits);
     env->state = malloc(sizeof(double) * n);
-    xcsf->n_actions = 2;
-    xcsf->x_dim = n;
-    xcsf->y_dim = 1;
+    param_set_n_actions(xcsf, 2);
+    param_set_x_dim(xcsf, n);
+    param_set_y_dim(xcsf, 1);
     xcsf->env = env;
 }
 

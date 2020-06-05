@@ -31,12 +31,14 @@ extern "C" {
 #include <math.h>
 #include "../xcsf/xcsf.h"
 #include "../xcsf/utils.h"
+#include "../xcsf/param.h"
 #include "../xcsf/config.h"
 }
 
 TEST_CASE("XCSF") {
     XCSF xcsf;
     random_init();
-    config_init(&xcsf, "../default.ini");
+    param_init(&xcsf);
+    config_read(&xcsf, "../default.ini");
     CHECK_EQ(xcsf.ALPHA, 0.1);
 }

@@ -31,7 +31,7 @@ extern "C" {
 #include <math.h>
 #include "../xcsf/xcsf.h"
 #include "../xcsf/utils.h"
-#include "../xcsf/config.h"
+#include "../xcsf/param.h"
 #include "../xcsf/cl.h"
 #include "../xcsf/neural.h"
 #include "../xcsf/neural_activations.h"
@@ -46,12 +46,12 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     NET net;
     LAYER *l;
     random_init();
-    config_init(&xcsf, "../default.ini");
-    xcsf.x_dim = 10;
-    xcsf.y_dim = 2;
-    xcsf.PRED_TYPE = PRED_TYPE_NEURAL;
-    xcsf.PRED_ETA = 0.1;
-    xcsf.PRED_MOMENTUM = 0.9;
+    param_init(&xcsf);
+    param_set_x_dim(&xcsf, 10);
+    param_set_y_dim(&xcsf, 2);
+    param_set_pred_type(&xcsf, PRED_TYPE_NEURAL);
+    param_set_pred_eta(&xcsf, 0.1);
+    param_set_pred_momentum(&xcsf, 0.9);
     neural_init(&xcsf, &net);
     uint32_t o = 0;
     o |= LAYER_SGD_WEIGHTS;
