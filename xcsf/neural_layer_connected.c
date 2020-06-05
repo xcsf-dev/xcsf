@@ -448,7 +448,7 @@ size_t neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
     s += fread(&l->function, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
-    if(l->n_outputs < 1 || l->n_outputs < 1 || l->max_outputs < 1 || l->n_weights < 1) {
+    if(l->n_inputs < 1 || l->n_outputs < 1 || l->max_outputs < 1 || l->n_weights < 1) {
         printf("neural_layer_connected_load(): read error\n");
         exit(EXIT_FAILURE);
     }
