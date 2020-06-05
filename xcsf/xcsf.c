@@ -38,8 +38,6 @@
 
 static const double VERSION = 1.06; //!< XCSF version number
 
-static size_t xcsf_load_params(XCSF *xcsf, FILE *fp);
-static size_t xcsf_save_params(const XCSF *xcsf, FILE *fp);
 static void xcsf_store_pop(XCSF *xcsf);
 
 /**
