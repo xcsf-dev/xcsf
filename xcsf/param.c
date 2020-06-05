@@ -1197,9 +1197,9 @@ void param_set_cond_smin(XCSF *xcsf, double a)
 
 void param_set_cond_bits(XCSF *xcsf, int a)
 {
-    if(a < 0) {
+    if(a < 1) {
         printf("Warning: tried to set COND_BITS too small\n");
-        xcsf->COND_BITS = 0;
+        xcsf->COND_BITS = 1;
     }
     else {
         xcsf->COND_BITS = a;
@@ -1208,9 +1208,9 @@ void param_set_cond_bits(XCSF *xcsf, int a)
 
 void param_set_dgp_num_nodes(XCSF *xcsf, int a)
 {
-    if(a < 0) {
+    if(a < 1) {
         printf("Warning: tried to set DGP_NUM_NODES too small\n");
-        xcsf->DGP_NUM_NODES = 0;
+        xcsf->DGP_NUM_NODES = 1;
     }
     else {
         xcsf->DGP_NUM_NODES = a;
@@ -1224,9 +1224,9 @@ void param_set_reset_states(XCSF *xcsf, _Bool a)
 
 void param_set_max_k(XCSF *xcsf, int a)
 {
-    if(a < 0) {
+    if(a < 1) {
         printf("Warning: tried to set MAX_K too small\n");
-        xcsf->MAX_K = 0;
+        xcsf->MAX_K = 1;
     }
     else {
         xcsf->MAX_K = a;
@@ -1235,9 +1235,9 @@ void param_set_max_k(XCSF *xcsf, int a)
 
 void param_set_max_t(XCSF *xcsf, int a)
 {
-    if(a < 0) {
+    if(a < 1) {
         printf("Warning: tried to set MAX_T too small\n");
-        xcsf->MAX_T = 0;
+        xcsf->MAX_T = 1;
     }
     else {
         xcsf->MAX_T = a;
@@ -1459,9 +1459,9 @@ void param_set_theta_sub(XCSF *xcsf, int a)
 
 void param_set_x_dim(XCSF *xcsf, int a)
 {
-    if(a < 0) {
+    if(a < 1) {
         printf("Warning: tried to set x_dim too small\n");
-        xcsf->x_dim = 0;
+        xcsf->x_dim = 1;
     }
     else {
         xcsf->x_dim = a;
@@ -1475,9 +1475,9 @@ void param_set_train(XCSF *xcsf, _Bool a)
 
 void param_set_y_dim(XCSF *xcsf, int a)
 {
-    if(a < 0) {
+    if(a < 1) {
         printf("Warning: tried to set y_dim too small\n");
-        xcsf->y_dim = 0;
+        xcsf->y_dim = 1;
     }
     else {
         xcsf->y_dim = a;
