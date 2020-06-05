@@ -222,11 +222,13 @@ size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp)
     new->length = 0;
     s += fread(&new->length, sizeof(int), 1, fp);
     if(new->length < 1) {
-        printf("cond_ternary_load(): invalid length (%d)\n", new->length);
+        printf("cond_ternary_load(): read error\n");
         exit(EXIT_FAILURE);
     }
-    new->string = malloc(new->length * sizeof(char));
-    s += fread(new->string, sizeof(char), new->length, fp);
+    else {
+        new->string = malloc(new->length * sizeof(char));
+        s += fread(new->string, sizeof(char), new->length, fp);
+    }
     new->tmp_input = malloc(xcsf->COND_BITS * sizeof(char));
     new->mu = malloc(N_MU * sizeof(double));
     s += fread(new->mu, sizeof(double), N_MU, fp);
