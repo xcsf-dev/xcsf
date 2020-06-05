@@ -23,7 +23,7 @@
 
 #pragma once
  
-void param_free(XCSF *xcsf);
+void param_free(const XCSF *xcsf);
 void param_print(const XCSF *xcsf);
 void param_init(XCSF *xcsf);
 size_t param_load(XCSF *xcsf, FILE *fp);

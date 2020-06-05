@@ -137,14 +137,14 @@ size_t param_save(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->n_actions, sizeof(int), 1, fp);
-    s += param_save_general(xcsf);
-    s += param_save_multistep(xcsf);
-    s += param_save_ea(xcsf);
-    s += param_save_subsumption(xcsf);
-    s += param_save_cl_general(xcsf);
-    s += param_save_cl_condition(xcsf);
-    s += param_save_cl_prediction(xcsf);
-    s += param_save_cl_action(xcsf);
+    s += param_save_general(xcsf, fp);
+    s += param_save_multistep(xcsf, fp);
+    s += param_save_ea(xcsf, fp);
+    s += param_save_subsumption(xcsf, fp);
+    s += param_save_cl_general(xcsf, fp);
+    s += param_save_cl_condition(xcsf, fp);
+    s += param_save_cl_prediction(xcsf, fp);
+    s += param_save_cl_action(xcsf, fp);
     return s;
 }
 
@@ -164,14 +164,14 @@ size_t param_load(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->n_actions, sizeof(int), 1, fp);
-    s += param_load_general(xcsf);
-    s += param_load_multistep(xcsf);
-    s += param_load_ea(xcsf);
-    s += param_load_subsumption(xcsf);
-    s += param_load_cl_general(xcsf);
-    s += param_load_cl_condition(xcsf);
-    s += param_load_cl_prediction(xcsf);
-    s += param_load_cl_action(xcsf);
+    s += param_load_general(xcsf, fp);
+    s += param_load_multistep(xcsf, fp);
+    s += param_load_ea(xcsf, fp);
+    s += param_load_subsumption(xcsf, fp);
+    s += param_load_cl_general(xcsf, fp);
+    s += param_load_cl_condition(xcsf, fp);
+    s += param_load_cl_prediction(xcsf, fp);
+    s += param_load_cl_action(xcsf, fp);
     return s;
 }
 
