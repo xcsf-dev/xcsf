@@ -109,6 +109,7 @@ size_t xcsf_load(XCSF *xcsf, const char *fname)
     if(version != VERSION) {
         printf("Error loading file: %s. Version mismatch. ", fname);
         printf("This version: %f.\nLoaded version: %f", VERSION, version);
+        fclose(fp);
         exit(EXIT_FAILURE);
     }
     s += param_load(xcsf, fp);
