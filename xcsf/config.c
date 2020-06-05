@@ -40,14 +40,14 @@ static void config_get_ints(char *str, int *val);
 static void config_newnvpair(XCSF *xcsf, const char *param);
 static void config_process(XCSF *xcsf, const char *configline);
 static void config_trim(char *s);
-static void config_cl_action(XCSF *xcsf, const char *n, char *v,_Bool b, int i, double f);
-static void config_cl_general(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f);
-static void config_ea(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f);
-static void config_general(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f);
-static void config_multistep(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f);
-static void config_subsumption(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f);
-static void config_cl_condition(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f);
-static void config_cl_prediction(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f);
+static void config_cl_action(XCSF *xcsf, const char *n, char *v, int i, double f);
+static void config_cl_general(XCSF *xcsf, const char *n, char *v, int i, double f);
+static void config_ea(XCSF *xcsf, const char *n, char *v, int i, double f);
+static void config_general(XCSF *xcsf, const char *n, char *v, int i, double f);
+static void config_multistep(XCSF *xcsf, const char *n, char *v, int i, double f);
+static void config_subsumption(XCSF *xcsf, const char *n, char *v, int i, double f);
+static void config_cl_condition(XCSF *xcsf, const char *n, char *v, int i, double f);
+static void config_cl_prediction(XCSF *xcsf, const char *n, char *v, int i, double f);
 
 /**
  * @brief Reads the specified configuration file.
@@ -79,34 +79,38 @@ void config_read(XCSF *xcsf, const char *filename) {
  */
 static void config_add_param(XCSF *xcsf, const char *name, char *value)
 {
-    // boolean value
-    _Bool b = false;
-    if(strncmp(value, "true", 5) == 0) {
-        b = true;
-    }
-    // integer value
+    int i;
     char *end;
-    int i = strtoimax(value, &end, BASE);
-    // float value
+    if(strncmp(value, "true", 5) == 0) {
+        i = 1;
+    }
+    else if(strncmp(value, "false", 6) == 0) {
+        i = 0;
+    }
+    else {
+        i = strtoimax(value, &end, BASE);
+    }
     double f = atof(value);
     // add parameter
-    config_general(xcsf, name, value, b, i, f);
-    config_multistep(xcsf, name, value, b, i, f);
-    config_subsumption(xcsf, name, value, b, i, f);
-    config_ea(xcsf, name, value, b, i, f);
-    config_cl_general(xcsf, name, value, b, i, f);
-    config_cl_condition(xcsf, name, value, b, i, f);
-    config_cl_prediction(xcsf, name, value, b, i, f);
-    config_cl_action(xcsf, name, value, b, i, f);
+    config_general(xcsf, name, value, i, f);
+    config_multistep(xcsf, name, value, i, f);
+    config_subsumption(xcsf, name, value, i, f);
+    config_ea(xcsf, name, value, i, f);
+    config_cl_general(xcsf, name, value, i, f);
+    config_cl_condition(xcsf, name, value, i, f);
+    config_cl_prediction(xcsf, name, value, i, f);
+    config_cl_action(xcsf, name, value, i, f);
 }
 
 /**
  * @brief Sets general XCSF parameters.
  * @param xcsf The XCSF data structure.
- * @param name Parameter name.
- * @param value Parameter value.
+ * @param n String representation of the parameter name.
+ * @param v String representation of the parameter value.
+ * @param i Integer representation of the parameter value.
+ * @param f Float representation of the parameter value.
  */
-static void config_general(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f)
+static void config_general(XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     (void)v; (void)f;
     if(strncmp(n, "OMP_NUM_THREADS", 16) == 0) {
@@ -119,7 +123,7 @@ static void config_general(XCSF *xcsf, const char *n, char *v, _Bool b, int i, d
         param_set_max_trials(xcsf, i);
     }
     else if(strncmp(n, "POP_INIT", 9) == 0) {
-        param_set_pop_init(xcsf, b);
+        param_set_pop_init(xcsf, i);
     }
     else if(strncmp(n, "PERF_TRIALS", 12) == 0) {
         param_set_perf_trials(xcsf, i);
@@ -128,19 +132,21 @@ static void config_general(XCSF *xcsf, const char *n, char *v, _Bool b, int i, d
         param_set_loss_func(xcsf, i);
     }
     else if(strncmp(n, "AUTO_ENCODE", 9) == 0) {
-        param_set_auto_encode(xcsf, b);
+        param_set_auto_encode(xcsf, i);
     }
 }
 
 /**
  * @brief Sets multistep experiment parameters.
  * @param xcsf The XCSF data structure.
- * @param n Parameter n.
- * @param value Parameter value.
+ * @param n String representation of the parameter name.
+ * @param v String representation of the parameter value.
+ * @param i Integer representation of the parameter value.
+ * @param f Float representation of the parameter value.
  */
-static void config_multistep(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f)
+static void config_multistep(XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    (void)v; (void)b;
+    (void)v;
     if(strncmp(n, "TELETRANSPORTATION", 19) == 0) {
         param_set_teletransportation(xcsf, i);
     }
@@ -155,17 +161,19 @@ static void config_multistep(XCSF *xcsf, const char *n, char *v, _Bool b, int i,
 /**
  * @brief Sets subsumption parameters.
  * @param xcsf The XCSF data structure.
- * @param n Parameter n.
- * @param value Parameter value.
+ * @param n String representation of the parameter name.
+ * @param v String representation of the parameter value.
+ * @param i Integer representation of the parameter value.
+ * @param f Float representation of the parameter value.
  */
-static void config_subsumption(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f)
+static void config_subsumption(XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     (void)v; (void)f;
     if(strncmp(n, "EA_SUBSUMPTION", 15) == 0) {
-        param_set_ea_subsumption(xcsf, b);
+        param_set_ea_subsumption(xcsf, i);
     }
     else if(strncmp(n, "SET_SUBSUMPTION", 16) == 0) {
-        param_set_set_subsumption(xcsf, b);
+        param_set_set_subsumption(xcsf, i);
     }
     else if(strncmp(n, "THETA_SUB", 10) == 0) {
         param_set_theta_sub(xcsf, i);
@@ -175,12 +183,14 @@ static void config_subsumption(XCSF *xcsf, const char *n, char *v, _Bool b, int 
 /**
  * @brief Sets evolutionary algorithm parameters.
  * @param xcsf The XCSF data structure.
- * @param n Parameter n.
- * @param value Parameter value.
+ * @param n String representation of the parameter name.
+ * @param v String representation of the parameter value.
+ * @param i Integer representation of the parameter value.
+ * @param f Float representation of the parameter value.
  */
-static void config_ea(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f)
+static void config_ea(XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    (void)v; (void)b;
+    (void)v;
     if(strncmp(n, "EA_SELECT_TYPE", 15) == 0) {
         param_set_ea_select_type(xcsf, i);
     }
@@ -204,12 +214,14 @@ static void config_ea(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double
 /**
  * @brief Sets general classifier parameters.
  * @param xcsf The XCSF data structure.
- * @param n Parameter n.
- * @param value Parameter value.
+ * @param n String representation of the parameter name.
+ * @param v String representation of the parameter value.
+ * @param i Integer representation of the parameter value.
+ * @param f Float representation of the parameter value.
  */
-static void config_cl_general(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f)
+static void config_cl_general(XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    (void)v; (void)b;
+    (void)v;
     if(strncmp(n, "ALPHA", 6) == 0) {
         param_set_alpha(xcsf, f);
     }
@@ -248,10 +260,12 @@ static void config_cl_general(XCSF *xcsf, const char *n, char *v, _Bool b, int i
 /**
  * @brief Sets classifier condition parameters.
  * @param xcsf The XCSF data structure.
- * @param n Parameter n.
- * @param value Parameter value.
+ * @param n String representation of the parameter name.
+ * @param v String representation of the parameter value.
+ * @param i Integer representation of the parameter value.
+ * @param f Float representation of the parameter value.
  */
-static void config_cl_condition(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f)
+static void config_cl_condition(XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     if(strncmp(n, "COND_MIN", 9) == 0) {
         param_set_cond_min(xcsf, f);
@@ -281,7 +295,7 @@ static void config_cl_condition(XCSF *xcsf, const char *n, char *v, _Bool b, int
         param_set_dgp_num_nodes(xcsf, i);
     }
     else if(strncmp(n, "RESET_STATES", 13) == 0) {
-        param_set_reset_states(xcsf, b);
+        param_set_reset_states(xcsf, i);
     }
     else if(strncmp(n, "MAX_K", 6) == 0) {
         param_set_max_k(xcsf, i);
@@ -293,13 +307,13 @@ static void config_cl_condition(XCSF *xcsf, const char *n, char *v, _Bool b, int
         param_set_max_neuron_mod(xcsf, i);
     }
     else if(strncmp(n, "COND_EVOLVE_WEIGHTS", 20) == 0) {
-        param_set_cond_evolve_weights(xcsf, b);
+        param_set_cond_evolve_weights(xcsf, i);
     }
     else if(strncmp(n, "COND_EVOLVE_NEURONS", 20) == 0) {
-        param_set_cond_evolve_neurons(xcsf, b);
+        param_set_cond_evolve_neurons(xcsf, i);
     }
     else if(strncmp(n, "COND_EVOLVE_FUNCTIONS", 22) == 0) {
-        param_set_cond_evolve_functions(xcsf, b);
+        param_set_cond_evolve_functions(xcsf, i);
     }
     else if(strncmp(n, "COND_NUM_NEURONS", 17) == 0) {
         memset(xcsf->COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
@@ -320,10 +334,12 @@ static void config_cl_condition(XCSF *xcsf, const char *n, char *v, _Bool b, int
 /**
  * @brief Sets classifier prediction parameters.
  * @param xcsf The XCSF data structure.
- * @param n Parameter n.
- * @param value Parameter value.
+ * @param n String representation of the parameter name.
+ * @param v String representation of the parameter value.
+ * @param i Integer representation of the parameter value.
+ * @param f Float representation of the parameter value.
  */
-static void config_cl_prediction(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f)
+static void config_cl_prediction(XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     if(strncmp(n, "PRED_TYPE", 10) == 0) {
         param_set_pred_type(xcsf, i);
@@ -332,7 +348,7 @@ static void config_cl_prediction(XCSF *xcsf, const char *n, char *v, _Bool b, in
         param_set_pred_eta(xcsf, f);
     }
     else if(strncmp(n, "PRED_RESET", 11) == 0) {
-        param_set_pred_reset(xcsf, b);
+        param_set_pred_reset(xcsf, i);
     }
     else if(strncmp(n, "PRED_X0", 8) == 0) {
         param_set_pred_x0(xcsf, f);
@@ -344,19 +360,19 @@ static void config_cl_prediction(XCSF *xcsf, const char *n, char *v, _Bool b, in
         param_set_pred_rls_lambda(xcsf, f);
     }
     else if(strncmp(n, "PRED_EVOLVE_WEIGHTS", 20) == 0) {
-        param_set_pred_evolve_weights(xcsf, b);
+        param_set_pred_evolve_weights(xcsf, i);
     }
     else if(strncmp(n, "PRED_EVOLVE_NEURONS", 20) == 0) {
-        param_set_pred_evolve_neurons(xcsf, b);
+        param_set_pred_evolve_neurons(xcsf, i);
     }
     else if(strncmp(n, "PRED_EVOLVE_FUNCTIONS", 22) == 0) {
-        param_set_pred_evolve_functions(xcsf, b);
+        param_set_pred_evolve_functions(xcsf, i);
     }
     else if(strncmp(n, "PRED_EVOLVE_ETA", 16) == 0) {
-        param_set_pred_evolve_eta(xcsf, b);
+        param_set_pred_evolve_eta(xcsf, i);
     }
     else if(strncmp(n, "PRED_SGD_WEIGHTS", 17) == 0) {
-        param_set_pred_sgd_weights(xcsf, b);
+        param_set_pred_sgd_weights(xcsf, i);
     }
     else if(strncmp(n, "PRED_MOMENTUM", 14) == 0) {
         param_set_pred_momentum(xcsf, f);
@@ -380,12 +396,14 @@ static void config_cl_prediction(XCSF *xcsf, const char *n, char *v, _Bool b, in
 /**
  * @brief Sets classifier action parameters.
  * @param xcsf The XCSF data structure.
- * @param n Parameter n.
- * @param value Parameter value.
+ * @param n String representation of the parameter name.
+ * @param v String representation of the parameter value.
+ * @param i Integer representation of the parameter value.
+ * @param f Float representation of the parameter value.
  */
-static void config_cl_action(XCSF *xcsf, const char *n, char *v, _Bool b, int i, double f)
+static void config_cl_action(XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    (void)v; (void)b; (void)f;
+    (void)v; (void)f;
     if(strncmp(n, "ACT_TYPE", 9) == 0) {
         param_set_act_type(xcsf, i);
     }
