@@ -175,7 +175,7 @@ size_t neural_layer_noise_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->scale, sizeof(double), 1, fp);
     l->options = 0;
     l->eta = 0;
-    if(l->n_inputs < 1 || l->n_inputs > INT_MAX) {
+    if(l->n_inputs < 1) {
         printf("neural_layer_noise_load(): invalid n_inputs (%d)\n", l->n_inputs);
         exit(EXIT_FAILURE);
     }

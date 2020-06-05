@@ -353,11 +353,11 @@ size_t graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp)
     s += fread(&dgp->n, sizeof(int), 1, fp);
     s += fread(&dgp->t, sizeof(int), 1, fp);
     s += fread(&dgp->klen, sizeof(int), 1, fp);
-    if(dgp->n < 1 || dgp->n > INT_MAX) {
+    if(dgp->n < 1) {
         printf("graph_load(): invalid n (%d)\n", dgp->n);
         exit(EXIT_FAILURE);
     }
-    if(dgp->klen < 1 || dgp->klen > INT_MAX) {
+    if(dgp->klen < 1) {
         printf("graph_load(): invalid klen (%d)\n", dgp->klen);
         exit(EXIT_FAILURE);
     }

@@ -27,7 +27,6 @@
 #include <stdbool.h>
 #include <inttypes.h>
 #include <errno.h>
-#include <limits.h>
 #include <float.h>
 #include "xcsf.h"
 #include "gp.h"
@@ -617,7 +616,7 @@ static size_t param_load_cl_condition(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->COND_BITS, sizeof(int), 1, fp);
     s += fread(&xcsf->GP_NUM_CONS, sizeof(int), 1, fp);
     s += fread(&xcsf->GP_INIT_DEPTH, sizeof(int), 1, fp);
-    if(xcsf->GP_NUM_CONS < 1 || xcsf->GP_NUM_CONS > INT_MAX) {
+    if(xcsf->GP_NUM_CONS < 1) {
         printf("param_load_cl_condition(): error reading GP_NUM_CONS\n");
         exit(EXIT_FAILURE);
     }
@@ -834,10 +833,6 @@ void param_set_max_trials(XCSF *xcsf, int a)
         printf("Warning: tried to set MAX_TRIALS too small\n");
         xcsf->MAX_TRIALS = 1;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set MAX_TRIALS too large\n");
-        xcsf->MAX_TRIALS = INT_MAX;
-    }
     else {
         xcsf->MAX_TRIALS = a;
     }
@@ -849,10 +844,6 @@ void param_set_perf_trials(XCSF *xcsf, int a)
         printf("Warning: tried to set PERF_TRIALS too small\n");
         xcsf->PERF_TRIALS = 1;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set PERF_TRIALS too large\n");
-        xcsf->PERF_TRIALS = INT_MAX;
-    }
     else {
         xcsf->PERF_TRIALS = a;
     }
@@ -863,10 +854,6 @@ void param_set_pop_size(XCSF *xcsf, int a)
     if(a < 1) {
         printf("Warning: tried to set POP_SIZE too small\n");
         xcsf->POP_SIZE = 1;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set POP_SIZE too large\n");
-        xcsf->POP_SIZE = INT_MAX;
     }
     else {
         xcsf->POP_SIZE = a;
@@ -914,10 +901,6 @@ void param_set_teletransportation(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set TELETRANSPORTATION too small\n");
         xcsf->TELETRANSPORTATION = 0;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set TELETRANSPORTATION too large\n");
-        xcsf->TELETRANSPORTATION = INT_MAX;
     }
     else {
         xcsf->TELETRANSPORTATION = a;
@@ -990,10 +973,6 @@ void param_set_eps_0(XCSF *xcsf, double a)
         printf("Warning: tried to set EPS_0 too small\n");
         xcsf->EPS_0 = 0;
     }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set EPS_0 too large\n");
-        xcsf->EPS_0 = DBL_MAX;
-    }
     else {
         xcsf->EPS_0 = a;
     }
@@ -1035,10 +1014,6 @@ void param_set_init_error(XCSF *xcsf, double a)
         printf("Warning: tried to set INIT_ERROR too small\n");
         xcsf->INIT_ERROR = 0;
     }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set INIT_ERROR too large\n");
-        xcsf->INIT_ERROR = DBL_MAX;
-    }
     else {
         xcsf->INIT_ERROR = a;
     }
@@ -1049,10 +1024,6 @@ void param_set_init_fitness(XCSF *xcsf, double a)
     if(a < 0) {
         printf("Warning: tried to set INIT_FITNESS too small\n");
         xcsf->INIT_FITNESS = 0;
-    }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set INIT_FITNESS too large\n");
-        xcsf->INIT_FITNESS = DBL_MAX;
     }
     else {
         xcsf->INIT_FITNESS = a;
@@ -1065,10 +1036,6 @@ void param_set_nu(XCSF *xcsf, double a)
         printf("Warning: tried to set NU too small\n");
         xcsf->NU = 0;
     }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set NU too large\n");
-        xcsf->NU = DBL_MAX;
-    }
     else {
         xcsf->NU = a;
     }
@@ -1079,10 +1046,6 @@ void param_set_theta_del(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set THETA_DEL too small\n");
         xcsf->THETA_DEL = 0;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set THETA_DEL too large\n");
-        xcsf->THETA_DEL = INT_MAX;
     }
     else {
         xcsf->THETA_DEL = a;
@@ -1095,10 +1058,6 @@ void param_set_cond_type(XCSF *xcsf, int a)
         printf("Warning: tried to set COND_TYPE too small\n");
         xcsf->COND_TYPE = 0;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set COND_TYPE too large\n");
-        xcsf->COND_TYPE = INT_MAX;
-    }
     else {
         xcsf->COND_TYPE = a;
     }
@@ -1109,10 +1068,6 @@ void param_set_pred_type(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set PRED_TYPE too small\n");
         xcsf->PRED_TYPE = 0;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set PRED_TYPE too large\n");
-        xcsf->PRED_TYPE = INT_MAX;
     }
     else {
         xcsf->PRED_TYPE = a;
@@ -1125,10 +1080,6 @@ void param_set_act_type(XCSF *xcsf, int a)
         printf("Warning: tried to set ACT_TYPE too small\n");
         xcsf->ACT_TYPE = 0;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set ACT_TYPE too large\n");
-        xcsf->ACT_TYPE = INT_MAX;
-    }
     else {
         xcsf->ACT_TYPE = a;
     }
@@ -1140,10 +1091,6 @@ void param_set_m_probation(XCSF *xcsf, int a)
         printf("Warning: tried to set M_PROBATION too small\n");
         xcsf->M_PROBATION = 0;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set M_PROBATION too large\n");
-        xcsf->M_PROBATION = INT_MAX;
-    }
     else {
         xcsf->M_PROBATION = a;
     }
@@ -1154,10 +1101,6 @@ void param_set_sam_type(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set SAM_TYPE too small\n");
         xcsf->SAM_TYPE = 0;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set SAM_TYPE too large\n");
-        xcsf->SAM_TYPE = INT_MAX;
     }
     else {
         xcsf->SAM_TYPE = a;
@@ -1185,10 +1128,6 @@ void param_set_theta_ea(XCSF *xcsf, double a)
         printf("Warning: tried to set THETA_EA too small\n");
         xcsf->THETA_EA = 0;
     }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set THETA_EA too large\n");
-        xcsf->THETA_EA = DBL_MAX;
-    }
     else {
         xcsf->THETA_EA = a;
     }
@@ -1200,10 +1139,6 @@ void param_set_lambda(XCSF *xcsf, int a)
         printf("Warning: tried to set LAMBDA too small\n");
         xcsf->LAMBDA = 0;
     }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set LAMBDA too large\n");
-        xcsf->LAMBDA = INT_MAX;
-    }
     else {
         xcsf->LAMBDA = a;
     }
@@ -1214,10 +1149,6 @@ void param_set_ea_select_type(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set EA_SELECT_TYPE too small\n");
         xcsf->EA_SELECT_TYPE = 0;
-    }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set EA_SELECT_TYPE too large\n");
-        xcsf->EA_SELECT_TYPE = INT_MAX;
     }
     else {
         xcsf->EA_SELECT_TYPE = a;
@@ -1241,47 +1172,17 @@ void param_set_ea_select_size(XCSF *xcsf, double a)
 
 void param_set_cond_max(XCSF *xcsf, double a)
 {
-    if(a < -DBL_MAX) {
-        printf("Warning: tried to set COND_MAX too small\n");
-        xcsf->COND_MAX = -DBL_MAX;
-    }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set COND_MAX too large\n");
-        xcsf->COND_MAX = DBL_MAX;
-    }
-    else {
-        xcsf->COND_MAX = a;
-    }
+    xcsf->COND_MAX = a;
 }
 
 void param_set_cond_min(XCSF *xcsf, double a)
 {
-    if(a < -DBL_MAX) {
-        printf("Warning: tried to set COND_MIN too small\n");
-        xcsf->COND_MIN = -DBL_MAX;
-    }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set COND_MIN too large\n");
-        xcsf->COND_MIN = DBL_MAX;
-    }
-    else {
-        xcsf->COND_MIN = a;
-    }
+    xcsf->COND_MIN = a;
 }
 
 void param_set_cond_smin(XCSF *xcsf, double a)
 {
-    if(a < -DBL_MAX) {
-        printf("Warning: tried to set COND_SMIN too small\n");
-        xcsf->COND_SMIN = -DBL_MAX;
-    }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set COND_SMIN too large\n");
-        xcsf->COND_SMIN = DBL_MAX;
-    }
-    else {
-        xcsf->COND_SMIN = a;
-    }
+    xcsf->COND_SMIN = a;
 }
 
 void param_set_cond_bits(XCSF *xcsf, int a)
@@ -1289,10 +1190,6 @@ void param_set_cond_bits(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set COND_BITS too small\n");
         xcsf->COND_BITS = 0;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set COND_BITS too large\n");
-        xcsf->COND_BITS = INT_MAX;
     }
     else {
         xcsf->COND_BITS = a;
@@ -1304,10 +1201,6 @@ void param_set_dgp_num_nodes(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set DGP_NUM_NODES too small\n");
         xcsf->DGP_NUM_NODES = 0;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set DGP_NUM_NODES too large\n");
-        xcsf->DGP_NUM_NODES = INT_MAX;
     }
     else {
         xcsf->DGP_NUM_NODES = a;
@@ -1325,10 +1218,6 @@ void param_set_max_k(XCSF *xcsf, int a)
         printf("Warning: tried to set MAX_K too small\n");
         xcsf->MAX_K = 0;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set MAX_K too large\n");
-        xcsf->MAX_K = INT_MAX;
-    }
     else {
         xcsf->MAX_K = a;
     }
@@ -1340,10 +1229,6 @@ void param_set_max_t(XCSF *xcsf, int a)
         printf("Warning: tried to set MAX_T too small\n");
         xcsf->MAX_T = 0;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set MAX_T too large\n");
-        xcsf->MAX_T = INT_MAX;
-    }
     else {
         xcsf->MAX_T = a;
     }
@@ -1354,10 +1239,6 @@ void param_set_gp_num_cons(XCSF *xcsf, int a)
     if(a < 1) {
         printf("Warning: tried to set GP_NUM_CONS too small\n");
         xcsf->GP_NUM_CONS = 1;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set GP_NUM_CONS too large\n");
-        xcsf->GP_NUM_CONS = INT_MAX;
     }
     else {
         xcsf->GP_NUM_CONS = a;
@@ -1374,10 +1255,6 @@ void param_set_gp_init_depth(XCSF *xcsf, int a)
         printf("Warning: tried to set GP_INIT_DEPTH too small\n");
         xcsf->GP_INIT_DEPTH = 1;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set GP_INIT_DEPTH too large\n");
-        xcsf->GP_INIT_DEPTH = INT_MAX;
-    }
     else {
         xcsf->GP_INIT_DEPTH = a;
     }
@@ -1388,10 +1265,6 @@ void param_set_max_neuron_mod(XCSF *xcsf, int a)
     if(a < 1) {
         printf("Warning: tried to set MAX_NEURON_MOD too small\n");
         xcsf->MAX_NEURON_MOD = 1;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set MAX_NEURON_MOD too large\n");
-        xcsf->MAX_NEURON_MOD = INT_MAX;
     }
     else {
         xcsf->MAX_NEURON_MOD = a;
@@ -1434,10 +1307,6 @@ void param_set_cond_output_activation(XCSF *xcsf, int a)
         printf("Warning: tried to set COND_OUTPUT_ACTIVATION too small\n");
         xcsf->COND_OUTPUT_ACTIVATION = 0;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set COND_OUTPUT_ACTIVATION too large\n");
-        xcsf->COND_OUTPUT_ACTIVATION = INT_MAX;
-    }
     else {
         xcsf->COND_OUTPUT_ACTIVATION = a;
     }
@@ -1448,10 +1317,6 @@ void param_set_cond_hidden_activation(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set COND_HIDDEN_ACTIVATION too small\n");
         xcsf->COND_HIDDEN_ACTIVATION = 0;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set COND_HIDDEN_ACTIVATION too large\n");
-        xcsf->COND_HIDDEN_ACTIVATION = INT_MAX;
     }
     else {
         xcsf->COND_HIDDEN_ACTIVATION = a;
@@ -1480,17 +1345,7 @@ void param_set_pred_eta(XCSF *xcsf, double a)
 
 void param_set_pred_x0(XCSF *xcsf, double a)
 {
-    if(a < -DBL_MAX) {
-        printf("Warning: tried to set PRED_X0 too small\n");
-        xcsf->PRED_X0 = -DBL_MAX;
-    }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set PRED_X0 too large\n");
-        xcsf->PRED_X0 = DBL_MAX;
-    }
-    else {
-        xcsf->PRED_X0 = a;
-    }
+    xcsf->PRED_X0 = a;
 }
 
 void param_set_pred_rls_lambda(XCSF *xcsf, double a)
@@ -1499,10 +1354,6 @@ void param_set_pred_rls_lambda(XCSF *xcsf, double a)
         printf("Warning: tried to set PRED_RLS_LAMBDA too small\n");
         xcsf->PRED_RLS_LAMBDA = DBL_EPSILON;
     }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set PRED_RLS_LAMBDA too large\n");
-        xcsf->PRED_RLS_LAMBDA = DBL_MAX;
-    }
     else {
         xcsf->PRED_RLS_LAMBDA = a;
     }
@@ -1510,17 +1361,7 @@ void param_set_pred_rls_lambda(XCSF *xcsf, double a)
 
 void param_set_pred_rls_scale_factor(XCSF *xcsf, double a)
 {
-    if(a < -DBL_MAX) {
-        printf("Warning: tried to set PRED_RLS_SCALE_FACTOR too small\n");
-        xcsf->PRED_RLS_SCALE_FACTOR = -DBL_MAX;
-    }
-    else if(a > DBL_MAX) {
-        printf("Warning: tried to set PRED_RLS_SCALE_FACTOR too large\n");
-        xcsf->PRED_RLS_SCALE_FACTOR = DBL_MAX;
-    }
-    else {
-        xcsf->PRED_RLS_SCALE_FACTOR = a;
-    }
+    xcsf->PRED_RLS_SCALE_FACTOR = a;
 }
 
 void param_set_pred_evolve_weights(XCSF *xcsf, _Bool a)
@@ -1569,10 +1410,6 @@ void param_set_pred_output_activation(XCSF *xcsf, int a)
         printf("Warning: tried to set PRED_OUTPUT_ACTIVATION too small\n");
         xcsf->PRED_OUTPUT_ACTIVATION = 0;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set PRED_OUTPUT_ACTIVATION too large\n");
-        xcsf->PRED_OUTPUT_ACTIVATION = INT_MAX;
-    }
     else {
         xcsf->PRED_OUTPUT_ACTIVATION = a;
     }
@@ -1583,10 +1420,6 @@ void param_set_pred_hidden_activation(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set PRED_HIDDEN_ACTIVATION too small\n");
         xcsf->PRED_HIDDEN_ACTIVATION = 0;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set PRED_HIDDEN_ACTIVATION too large\n");
-        xcsf->PRED_HIDDEN_ACTIVATION = INT_MAX;
     }
     else {
         xcsf->PRED_HIDDEN_ACTIVATION = a;
@@ -1609,10 +1442,6 @@ void param_set_theta_sub(XCSF *xcsf, int a)
         printf("Warning: tried to set THETA_SUB too small\n");
         xcsf->THETA_SUB = 0;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set THETA_SUB too large\n");
-        xcsf->THETA_SUB = INT_MAX;
-    }
     else {
         xcsf->THETA_SUB = a;
     }
@@ -1623,10 +1452,6 @@ void param_set_x_dim(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set x_dim too small\n");
         xcsf->x_dim = 0;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set x_dim too large\n");
-        xcsf->x_dim = INT_MAX;
     }
     else {
         xcsf->x_dim = a;
@@ -1644,10 +1469,6 @@ void param_set_y_dim(XCSF *xcsf, int a)
         printf("Warning: tried to set y_dim too small\n");
         xcsf->y_dim = 0;
     }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set y_dim too large\n");
-        xcsf->y_dim = INT_MAX;
-    }
     else {
         xcsf->y_dim = a;
     }
@@ -1658,10 +1479,6 @@ void param_set_n_actions(XCSF *xcsf, int a)
     if(a < 0) {
         printf("Warning: tried to set n_actions too small\n");
         xcsf->n_actions = 0;
-    }
-    else if(a > INT_MAX) {
-        printf("Warning: tried to set n_actions too large\n");
-        xcsf->n_actions = INT_MAX;
     }
     else {
         xcsf->n_actions = a;

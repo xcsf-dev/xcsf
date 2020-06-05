@@ -448,11 +448,11 @@ size_t neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
     s += fread(&l->function, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
-    if(l->n_outputs < 1 || l->n_outputs > INT_MAX) {
+    if(l->n_outputs < 1) {
         printf("neural_layer_connected_load(): invalid n_outputs (%d)\n", l->n_outputs);
         exit(EXIT_FAILURE);
     }
-    if(l->n_weights < 1 || l->n_weights > INT_MAX) {
+    if(l->n_weights < 1) {
         printf("neural_layer_connected_load(): invalid n_weights (%d)\n", l->n_weights);
         exit(EXIT_FAILURE);
     }

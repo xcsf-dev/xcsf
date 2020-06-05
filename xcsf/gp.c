@@ -350,7 +350,7 @@ size_t tree_load(const XCSF *xcsf, GP_TREE *gp, FILE *fp)
     size_t s = 0;
     s += fread(&gp->p, sizeof(int), 1, fp);
     s += fread(&gp->len, sizeof(int), 1, fp);
-    if(gp->len < 1 || gp->len > INT_MAX) {
+    if(gp->len < 1) {
         printf("tree_load(): invalid len (%d)\n", gp->len);
         exit(EXIT_FAILURE);
     }
