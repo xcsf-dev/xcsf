@@ -164,6 +164,10 @@ size_t param_load(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->n_actions, sizeof(int), 1, fp);
+    if(xcsf->x_dim < 1 || xcsf->y_dim < 1) {
+        printf("param_load(): read error\n");
+        exit(EXIT_FAILURE);
+    }
     s += param_load_general(xcsf, fp);
     s += param_load_multistep(xcsf, fp);
     s += param_load_ea(xcsf, fp);
