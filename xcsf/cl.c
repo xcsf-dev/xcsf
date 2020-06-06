@@ -390,7 +390,6 @@ _Bool cl_mutate(const XCSF *xcsf, const CL *c)
     _Bool cm = cond_mutate(xcsf, c);
     _Bool pm = pred_mutate(xcsf, c);
     _Bool am = false;
-    // skip action mutation for regression
     if(xcsf->n_actions > 1) {
         am = act_mutate(xcsf, c);
     }

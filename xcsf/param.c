@@ -1486,9 +1486,9 @@ void param_set_y_dim(XCSF *xcsf, int a)
 
 void param_set_n_actions(XCSF *xcsf, int a)
 {
-    if(a < 0) {
+    if(a < 1) {
         printf("Warning: tried to set n_actions too small\n");
-        xcsf->n_actions = 0;
+        xcsf->n_actions = 1;
     }
     else {
         xcsf->n_actions = a;
