@@ -355,20 +355,20 @@ size_t graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp)
     s += fread(&dgp->klen, sizeof(int), 1, fp);
     if(dgp->n < 1 || dgp->klen < 1) {
         printf("graph_load(): read error\n");
+        dgp->n = 1;
+        dgp->klen = 1;
         exit(EXIT_FAILURE);
     }
-    else {
-        dgp->state = malloc(sizeof(double) * dgp->n);
-        dgp->initial_state = malloc(sizeof(double) * dgp->n);
-        dgp->tmp_state = malloc(sizeof(double) * dgp->n);
-        dgp->tmp_input = malloc(sizeof(double) * xcsf->MAX_K);
-        dgp->function = malloc(sizeof(int) * dgp->n);
-        dgp->connectivity = malloc(sizeof(int) * dgp->klen);
-        s += fread(dgp->state, sizeof(double), dgp->n, fp);
-        s += fread(dgp->initial_state, sizeof(double), dgp->n, fp);
-        s += fread(dgp->function, sizeof(int), dgp->n, fp);
-        s += fread(dgp->connectivity, sizeof(int), dgp->klen, fp);
-        s += fread(dgp->mu, sizeof(double), DGP_N_MU, fp);
-    }
+    dgp->state = malloc(sizeof(double) * dgp->n);
+    dgp->initial_state = malloc(sizeof(double) * dgp->n);
+    dgp->tmp_state = malloc(sizeof(double) * dgp->n);
+    dgp->tmp_input = malloc(sizeof(double) * xcsf->MAX_K);
+    dgp->function = malloc(sizeof(int) * dgp->n);
+    dgp->connectivity = malloc(sizeof(int) * dgp->klen);
+    s += fread(dgp->state, sizeof(double), dgp->n, fp);
+    s += fread(dgp->initial_state, sizeof(double), dgp->n, fp);
+    s += fread(dgp->function, sizeof(int), dgp->n, fp);
+    s += fread(dgp->connectivity, sizeof(int), dgp->klen, fp);
+    s += fread(dgp->mu, sizeof(double), DGP_N_MU, fp);
     return s;
 }

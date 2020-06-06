@@ -352,12 +352,11 @@ size_t tree_load(const XCSF *xcsf, GP_TREE *gp, FILE *fp)
     s += fread(&gp->len, sizeof(int), 1, fp);
     if(gp->len < 1) {
         printf("tree_load(): read error\n");
+        gp->len = 1;
         exit(EXIT_FAILURE);
     }
-    else {
-        gp->tree = malloc(sizeof(int) * gp->len);
-        s += fread(gp->tree, sizeof(int), gp->len, fp);
-    }
+    gp->tree = malloc(sizeof(int) * gp->len);
+    s += fread(gp->tree, sizeof(int), gp->len, fp);
     s += fread(gp->mu, sizeof(double), GP_N_MU, fp);
     return s;
 }

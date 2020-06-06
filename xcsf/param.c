@@ -626,14 +626,13 @@ static size_t param_load_cl_condition(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->GP_NUM_CONS, sizeof(int), 1, fp);
     s += fread(&xcsf->GP_INIT_DEPTH, sizeof(int), 1, fp);
     if(xcsf->GP_NUM_CONS < 1) {
-        printf("param_load_cl_condition(): error reading GP_NUM_CONS\n");
+        printf("param_load_cl_condition(): read error\n");
+        xcsf->GP_NUM_CONS = 1;
         exit(EXIT_FAILURE);
     }
-    else {
-        free(xcsf->gp_cons); // always allocated on start
-        xcsf->gp_cons = malloc(sizeof(double)*xcsf->GP_NUM_CONS);
-        s += fread(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
-    }
+    free(xcsf->gp_cons); // always allocated on start
+    xcsf->gp_cons = malloc(sizeof(double) * xcsf->GP_NUM_CONS);
+    s += fread(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
     s += fread(&xcsf->DGP_NUM_NODES, sizeof(int), 1, fp);
     s += fread(&xcsf->RESET_STATES, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->MAX_K, sizeof(int), 1, fp);

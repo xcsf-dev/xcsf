@@ -450,21 +450,21 @@ size_t neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->eta, sizeof(double), 1, fp);
     if(l->n_inputs < 1 || l->n_outputs < 1 || l->max_outputs < 1 || l->n_weights < 1) {
         printf("neural_layer_connected_load(): read error\n");
+        l->n_outputs = 1;
+        l->n_weights = 1;
         exit(EXIT_FAILURE);
     }
-    else {
-        l->state = calloc(l->n_outputs, sizeof(double));
-        l->output = calloc(l->n_outputs, sizeof(double));
-        l->delta = calloc(l->n_outputs, sizeof(double));
-        l->weights = malloc(l->n_weights * sizeof(double));
-        l->biases = malloc(l->n_outputs * sizeof(double));
-        l->bias_updates = malloc(l->n_outputs * sizeof(double));
-        l->weight_updates = malloc(l->n_weights * sizeof(double));
-        s += fread(l->weights, sizeof(double), l->n_weights, fp);
-        s += fread(l->biases, sizeof(double), l->n_outputs, fp);
-        s += fread(l->bias_updates, sizeof(double), l->n_outputs, fp);
-        s += fread(l->weight_updates, sizeof(double), l->n_weights, fp);
-    }
+    l->state = calloc(l->n_outputs, sizeof(double));
+    l->output = calloc(l->n_outputs, sizeof(double));
+    l->delta = calloc(l->n_outputs, sizeof(double));
+    l->weights = malloc(l->n_weights * sizeof(double));
+    l->biases = malloc(l->n_outputs * sizeof(double));
+    l->bias_updates = malloc(l->n_outputs * sizeof(double));
+    l->weight_updates = malloc(l->n_weights * sizeof(double));
+    s += fread(l->weights, sizeof(double), l->n_weights, fp);
+    s += fread(l->biases, sizeof(double), l->n_outputs, fp);
+    s += fread(l->bias_updates, sizeof(double), l->n_outputs, fp);
+    s += fread(l->weight_updates, sizeof(double), l->n_weights, fp);
     s += fread(l->mu, sizeof(double), N_MU, fp);
     return s;
 }

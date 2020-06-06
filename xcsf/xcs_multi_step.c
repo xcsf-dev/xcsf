@@ -73,12 +73,17 @@ double xcs_multi_step_exp(XCSF *xcsf)
  */
 static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
 {
+    if(xcsf->x_dim < 1) { // memory allocation guard
+        printf("xcs_multi_trial(): error x_dim less than 1\n");
+        xcsf->x_dim = 1;
+        exit(EXIT_FAILURE);
+    }
+    double *prev_state = malloc(xcsf->x_dim * sizeof(double));
     env_reset(xcsf);
     param_set_train(xcsf, explore);
     _Bool reset = false; 
     double prev_reward = 0;
     double prev_pred = 0;
-    double *prev_state = malloc(xcsf->x_dim * sizeof(double));
     clset_init(&xcsf->prev_aset);
     clset_init(&xcsf->kset);
     *error = 0;

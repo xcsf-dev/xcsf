@@ -182,12 +182,11 @@ size_t neural_layer_dropout_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     l->eta = 0;
     if(l->n_inputs < 1 || l->n_outputs < 1 || l->max_outputs < 1) {
         printf("neural_layer_dropout_load(): read error\n");
+        l->n_inputs = 1;
         exit(EXIT_FAILURE);
     }
-    else {
-        l->output = calloc(l->n_inputs, sizeof(double));
-        l->delta = malloc(l->n_inputs * sizeof(double));
-        l->rand = malloc(l->n_inputs * sizeof(double));
-    }
+    l->output = calloc(l->n_inputs, sizeof(double));
+    l->delta = malloc(l->n_inputs * sizeof(double));
+    l->rand = malloc(l->n_inputs * sizeof(double));
     return s;
 }
