@@ -113,7 +113,9 @@ class XCS
             test_data->y = NULL;
         }
 
-        double version(){ return xcsf_version(); }
+        int version_major(){ return VERSION_MAJOR; }
+        int version_minor(){ return VERSION_MINOR; }
+        int version_build(){ return VERSION_BUILD; }
         size_t save(char *fname) { return xcsf_save(&xcs, fname); }
         size_t load(char *fname) { return xcsf_load(&xcs, fname); }
         void print_params() { param_print(&xcs); }
@@ -482,7 +484,9 @@ PYBIND11_MODULE(xcsf, m)
         .def("score", &XCS::score)
         .def("save", &XCS::save)
         .def("load", &XCS::load)
-        .def("version", &XCS::version)
+        .def("version_major", &XCS::version_major)
+        .def("version_minor", &XCS::version_minor)
+        .def("version_build", &XCS::version_build)
         .def("single_update", &XCS::single_update)
         .def("single_error", &XCS::single_error)
         .def("single_decision", &XCS::single_decision)

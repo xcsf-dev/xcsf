@@ -36,8 +36,6 @@
 #include "cond_neural.h"
 #include "pred_neural.h"
 
-static const double VERSION = 1.06; //!< XCSF version number
-
 static void xcsf_store_pop(XCSF *xcsf);
 
 /**
@@ -79,7 +77,9 @@ size_t xcsf_save(const XCSF *xcsf, const char *fname)
         exit(EXIT_FAILURE);
     }
     size_t s = 0;
-    s += fwrite(&VERSION, sizeof(double), 1, fp);
+    s += fwrite(&VERSION_MAJOR, sizeof(int), 1, fp);
+    s += fwrite(&VERSION_MINOR, sizeof(int), 1, fp);
+    s += fwrite(&VERSION_BUILD, sizeof(int), 1, fp);
     s += param_save(xcsf, fp);
     s += clset_pop_save(xcsf, fp);
     fclose(fp);
@@ -104,11 +104,16 @@ size_t xcsf_load(XCSF *xcsf, const char *fname)
         exit(EXIT_FAILURE);
     }
     size_t s = 0;
-    double version = 0;
-    s += fread(&version, sizeof(double), 1, fp);
-    if(version != VERSION) {
+    int major = 0;
+    int minor = 0;
+    int build = 0;
+    s += fread(&major, sizeof(int), 1, fp);
+    s += fread(&minor, sizeof(int), 1, fp);
+    s += fread(&build, sizeof(int), 1, fp);
+    if(major != VERSION_MAJOR || minor != VERSION_MINOR || build != VERSION_BUILD) {
         printf("Error loading file: %s. Version mismatch. ", fname);
-        printf("This version: %f.\nLoaded version: %f", VERSION, version);
+        printf("This version: %d.%d.%d.\n", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
+        printf("Loaded version: %d.%d.%d\n", major, minor, build);
         fclose(fp);
         exit(EXIT_FAILURE);
     }
@@ -116,15 +121,6 @@ size_t xcsf_load(XCSF *xcsf, const char *fname)
     s += clset_pop_load(xcsf, fp);
     fclose(fp);
     return s;
-}
-
-/**
- * @brief Returns the XCSF version number.
- * @return version number.
- */  
-double xcsf_version()
-{
-    return VERSION;
 }
 
 /**

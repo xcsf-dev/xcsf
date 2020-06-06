@@ -23,6 +23,10 @@
  
 #pragma once
 
+static const int VERSION_MAJOR = 1; //!< XCSF major version number
+static const int VERSION_MINOR = 0; //!< XCSF minor version number
+static const int VERSION_BUILD = 0; //!< XCSF build version number
+
 #define COND_TYPE_DUMMY 0 //!< Condition type dummy
 #define COND_TYPE_HYPERRECTANGLE 1 //!< Condition type hyperrectangle
 #define COND_TYPE_HYPERELLIPSOID 2  //!< Condition type hyperellipsoid
@@ -210,7 +214,6 @@ typedef struct INPUT {
     int n_samples; //!< Number of instances
 } INPUT;
 
-double xcsf_version();
 size_t xcsf_load(XCSF *xcsf, const char *fname);
 size_t xcsf_save(const XCSF *xcsf, const char *fname);
 void xcsf_init(XCSF *xcsf);
