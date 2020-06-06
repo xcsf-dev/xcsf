@@ -64,16 +64,16 @@ print("X_test shape = "+str(np.shape(X_test)))
 print("y_test shape = "+str(np.shape(y_test)))
 
 # get number of input and output variables
-xvars = np.shape(X_train)[1]
-yvars = np.shape(y_train)[1]
-print("xvars = "+str(xvars) + " yvars = " + str(yvars))
+x_dim = np.shape(X_train)[1]
+y_dim = np.shape(y_train)[1]
+print("x_dim = "+str(x_dim) + ", y_dim = " + str(y_dim))
 
 ###################
 # Initialise XCSF
 ###################
 
 # initialise XCSF
-xcs = xcsf.XCS(xvars, yvars)
+xcs = xcsf.XCS(x_dim, y_dim)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8

@@ -42,8 +42,8 @@ data = load_breast_cancer() # 30 features, 2 classes # 569 instances
 X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.2)
 X_train = minmax_scale(X_train, feature_range=(0,1))
 X_test = minmax_scale(X_test, feature_range=(0,1))
-features = 30
-classes = 2
+x_dim = 30
+n_actions = 2
 train_len = len(X_train)
 test_len = len(X_test)
 print("train len = %d, test len = %d" % (train_len, test_len))
@@ -53,7 +53,7 @@ print("train len = %d, test len = %d" % (train_len, test_len))
 ###################
 
 # initialise XCSF for single-step reinforcement learning
-xcs = xcsf.XCS(features, classes, False)
+xcs = xcsf.XCS(x_dim, n_actions, False)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
