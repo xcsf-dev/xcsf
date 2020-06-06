@@ -10,14 +10,12 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
         <th>Linux Build</th>
         <th>OSX Build</th>
         <th>Windows Build</th>
-        <th>Fossa</th>
     </tr>
     <tr>
         <td><a href="http://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a></td>
         <td><a href="https://travis-ci.org/rpreen/xcsf"><img src="http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=linux&label=build&branch=master"></a></td>
         <td><a href="https://travis-ci.org/rpreen/xcsf"><img src="http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=osx&label=build&branch=master"></a></td>
         <td><a href="https://ci.appveyor.com/project/rpreen/xcsf"><img src="https://ci.appveyor.com/api/projects/status/s4xge68jmlbam005?svg=true"></a></td>
-        <td><a href="https://app.fossa.com/projects/git%2Bgithub.com%2Frpreen%2Fxcsf?ref=badge_shield"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Frpreen%2Fxcsf.svg?type=shield"></a></td>
     </tr>
 </table>
 
@@ -98,16 +96,21 @@ See `default.ini` for a full list of options.
 
 ## Building
 
-### Ubuntu 18.04
+### Ubuntu
+
+18.04 / 20.04
 
 ```
+$ sudo apt install python3 python3-dev cmake
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
 $ cd xcsf/build
 $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON -DENABLE_TESTS=ON ..
 $ make
 ```
- 
-### OSX (XCode 10.1 / Clang)
+
+### OSX
+
+XCode 10.1 + Clang
 
 ```
 $ brew install libomp cmake python
@@ -117,7 +120,9 @@ $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON -DENABLE_TESTS=ON ..
 $ make
 ```
 
-### Windows ([MinGW64-gcc-8.1.0](http://mingw-w64.org "MinGW64-gcc-8.1.0") / [Python 3.6.6 x86-64](https://python.org/downloads/windows/ "Python 3.6.6 x86-64"))
+### Windows
+
+[MinGW64-gcc-8.1.0](http://mingw-w64.org) + [Python 3.6.6 x86-64](https://python.org/downloads/windows/)
 
 ```
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
@@ -126,7 +131,9 @@ $ cmake -DCMAKE_BUILD_TYPE=Release -DXCSF_PYLIB=ON -DENABLE_TESTS=ON -G "MinGW M
 $ cmake --build . --config Release
 ```
 
-### Documentation ([Doxygen](http://www.doxygen.nl/download.html "Doxygen") + [graphviz](https://www.graphviz.org/download/ "graphviz"))
+### Documentation
+
+[Doxygen](http://www.doxygen.nl/download.html) + [graphviz](https://www.graphviz.org/download/)
 
 After running cmake:
 
@@ -134,7 +141,7 @@ After running cmake:
 $ make doc
 ```
 
-Alternatively see: [XCSF documentation](https://rpreen.github.io/xcsf/ "XCSF documentation").
+Alternatively see: [XCSF documentation](https://rpreen.github.io/xcsf/).
 
 *******************************************************************************
 
@@ -172,11 +179,10 @@ Supervised regression learning example:
 $ python example_regression.py
 ```
 
-Single-step reinforcement learning examples:
+Single-step reinforcement learning example:
 
 ```
 $ python example_rmux.py
-$ python example_wisconsin.py
 ```
 
 *******************************************************************************
