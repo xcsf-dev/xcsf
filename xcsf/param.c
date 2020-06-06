@@ -110,6 +110,7 @@ void param_free(const XCSF *xcsf)
  */
 void param_print(const XCSF *xcsf)
 {
+    printf("VERSION=%d.%d.%d, ", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
     param_print_general(xcsf);
     param_print_multistep(xcsf);
     param_print_ea(xcsf);
