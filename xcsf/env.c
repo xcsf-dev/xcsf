@@ -55,6 +55,7 @@ void env_init(XCSF *xcsf, char **argv)
     }
     else {
         printf("Invalid environment specified: %s\n", argv[1]);
+        printf("Available environments: {mp, maze, csv}\n");
         exit(EXIT_FAILURE);
     }
 }
