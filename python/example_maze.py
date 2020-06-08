@@ -22,7 +22,8 @@
 
 import xcsf.xcsf as xcsf
 import numpy as np
-import os, random
+import os
+import random
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 
@@ -65,17 +66,16 @@ class Maze:
     def sensor(self, s):
         if s == '*':
             return 0.1
-        elif s == 'O':
+        if s == 'O':
             return 0.3
-        elif s == 'G':
+        if s == 'G':
             return 0.5
-        elif s == 'F':
+        if s == 'F':
             return 0.7
-        elif s == 'Q':
+        if s == 'Q':
             return 0.9
-        else:
-            print("unsupported maze state: "+str(s))
-            exit()
+        print("unsupported maze state: "+str(s))
+        exit()
         
     def update_state(self):
         spos = 0
@@ -100,18 +100,17 @@ class Maze:
         s = self.maze[y_new][x_new]
         if s == 'O' or s == 'Q':
             return 0
-        elif s == '*':
+        if s == '*':
             self.x_pos = x_new
             self.y_pos = y_new
             return 0
-        elif s == 'F' or s == 'G':
+        if s == 'F' or s == 'G':
             self.x_pos = x_new
             self.y_pos = y_new
             self.is_reset = True
             return self.max_payoff
-        else:
-            print("invalid maze type")
-            exit()
+        print("invalid maze type")
+        exit()
 
 ###################
 # Initialise XCSF
