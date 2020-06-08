@@ -194,6 +194,11 @@ typedef struct XCSF {
     double *pa; //!< Prediction array (stores fitness weighted predictions)
     double *nr; //!< Prediction array (stores total fitness)
 
+    // multi-step
+    double prev_reward; //!< Reward from the previous step in a multi-step trial.
+    double prev_pred; //!< Payoff prediction made on the previous step in a multi-step trial.
+    double *prev_state; //!< Environment state on the previous step in a multi-step trial.
+
     // set by environment
     int stage; //!< Current stage of training
     _Bool train; //!< Training or test mode

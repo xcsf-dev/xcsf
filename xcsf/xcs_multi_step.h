@@ -23,5 +23,11 @@
  
 #pragma once
 
+double xcs_multi_error(const XCSF *xcsf, int action, double reward, _Bool reset, double max_p);
 double xcs_multi_step_exp(XCSF *xcsf);
-int xcs_multi_decision(XCSF *xcsf, const double *x);
+int xcs_multi_decision(XCSF *xcsf, const double *state);
+void xcs_multi_end_step(XCSF *xcsf, const double *state, int action, double reward);
+void xcs_multi_end_trial(XCSF *xcsf);
+void xcs_multi_init_step(XCSF *xcsf);
+void xcs_multi_init_trial(XCSF *xcsf);
+void xcs_multi_update(XCSF *xcsf, const double *state, int action, double reward, _Bool reset);

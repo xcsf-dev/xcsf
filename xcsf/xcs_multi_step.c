@@ -19,6 +19,7 @@
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Multi-step reinforcement learning functions.
+ * @details A single trial is composed of multiple decision steps.
  */ 
 
 #include <stdio.h>
@@ -73,74 +74,144 @@ double xcs_multi_step_exp(XCSF *xcsf)
  */
 static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
 {
-    if(xcsf->x_dim < 1) { // memory allocation guard
-        printf("xcs_multi_trial(): error x_dim less than 1\n");
-        xcsf->x_dim = 1;
-        exit(EXIT_FAILURE);
-    }
-    double *prev_state = malloc(xcsf->x_dim * sizeof(double));
     env_reset(xcsf);
     param_set_train(xcsf, explore);
-    _Bool reset = false; 
-    double prev_reward = 0;
-    double prev_pred = 0;
-    clset_init(&xcsf->prev_aset);
-    clset_init(&xcsf->kset);
-    *error = 0;
+    xcs_multi_init_trial(xcsf);
+    *error = 0; // mean prediction error over all steps taken
+    _Bool reset = false;
     int steps = 0;
-    for(steps = 0; steps < xcsf->TELETRANSPORTATION && !reset; steps++) {
-        clset_init(&xcsf->mset);
-        clset_init(&xcsf->aset);
+    while(steps < xcsf->TELETRANSPORTATION && !reset) {
+        xcs_multi_init_step(xcsf);
         const double *state = env_get_state(xcsf);
         int action = xcs_multi_decision(xcsf, state);
-        clset_action(xcsf, action);
         double reward = env_execute(xcsf, action);
         reset = env_is_reset(xcsf);
-        // update previous action set and run EA
-        if(xcsf->prev_aset.list != NULL) {
-            double payoff = prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
-            clset_validate(&xcsf->prev_aset);
-            clset_update(xcsf, &xcsf->prev_aset, prev_state, &payoff, false);
-            if(xcsf->train) {
-                ea(xcsf, &xcsf->prev_aset);
-            }
-            *error += fabs(xcsf->GAMMA * pa_val(xcsf, action) 
-                    + prev_reward - prev_pred) / env_max_payoff(xcsf);
-        }
-        // in goal state: update current action set and run EA
-        if(reset) {
-            clset_validate(&xcsf->aset);
-            clset_update(xcsf, &xcsf->aset, state, &reward, true);
-            if(xcsf->train) {
-                ea(xcsf, &xcsf->aset);
-            }
-            *error += fabs(reward - pa_val(xcsf, action)) / env_max_payoff(xcsf);
-        }
-        // next step
-        clset_free(&xcsf->mset);
-        clset_free(&xcsf->prev_aset);
-        xcsf->prev_aset = xcsf->aset;
-        prev_reward = reward;
-        prev_pred = pa_val(xcsf, action);
-        memcpy(prev_state, state, sizeof(double) * xcsf->x_dim);
+        xcs_multi_update(xcsf, state, action, reward, reset);
+        *error += xcs_multi_error(xcsf, action, reward, reset, env_max_payoff(xcsf));
+        xcs_multi_end_step(xcsf, state, action, reward);
+        steps++;
     }
-    clset_free(&xcsf->prev_aset);
-    clset_kill(xcsf, &xcsf->kset);
-    free(prev_state);
+    xcs_multi_end_trial(xcsf);
     *error /= steps;
     return steps;
 }
 
 /**
+ * @brief Initialises a multi-step trial.
+ * @param xcsf The XCSF data structure.
+ */
+void xcs_multi_init_trial(XCSF *xcsf)
+{
+    xcsf->prev_reward = 0;
+    xcsf->prev_pred = 0;
+    if(xcsf->x_dim < 1) { // memory allocation guard
+        printf("xcs_multi_init_trial(): error x_dim less than 1\n");
+        xcsf->x_dim = 1;
+        exit(EXIT_FAILURE);
+    }
+    xcsf->prev_state = malloc(xcsf->x_dim * sizeof(double));
+    clset_init(&xcsf->prev_aset);
+    clset_init(&xcsf->kset);
+}
+
+/**
+ * @brief Frees memory used by a multi-step trial.
+ * @param xcsf The XCSF data structure.
+ */
+void xcs_multi_end_trial(XCSF *xcsf)
+{
+    clset_free(&xcsf->prev_aset);
+    clset_kill(xcsf, &xcsf->kset);
+    free(xcsf->prev_state);
+}
+
+/**
+ * @brief Initialises a step in a multi-step trial.
+ * @param xcsf The XCSF data structure.
+ */
+void xcs_multi_init_step(XCSF *xcsf)
+{
+    clset_init(&xcsf->mset);
+    clset_init(&xcsf->aset);
+}
+
+/**
+ * @brief Ends a step in a multi-step trial.
+ * @param xcsf The XCSF data structure.
+ */
+void xcs_multi_end_step(XCSF *xcsf, const double *state, int action, double reward)
+{
+    clset_free(&xcsf->mset);
+    clset_free(&xcsf->prev_aset);
+    xcsf->prev_aset = xcsf->aset;
+    xcsf->prev_reward = reward;
+    xcsf->prev_pred = pa_val(xcsf, action);
+    memcpy(xcsf->prev_state, state, sizeof(double) * xcsf->x_dim);
+}
+
+/**
+ * @brief Creates the action set, updates the classifiers and runs the EA.
+ * @param xcsf The XCSF data structure.
+ * @param state The input state.
+ * @param action The action selected.
+ * @param reward The reward from performing the action.
+ * @param reset Whether the environment is in the reset state.
+ */
+void xcs_multi_update(XCSF *xcsf, const double *state, int action, double reward, _Bool reset)
+{
+    // create action set
+    clset_action(xcsf, action);
+    // update previous action set and run EA
+    if(xcsf->prev_aset.list != NULL) {
+        double payoff = xcsf->prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
+        clset_validate(&xcsf->prev_aset);
+        clset_update(xcsf, &xcsf->prev_aset, xcsf->prev_state, &payoff, false);
+        if(xcsf->train) {
+            ea(xcsf, &xcsf->prev_aset);
+        }
+    }
+    // in goal state: update current action set and run EA
+    if(reset) {
+        clset_validate(&xcsf->aset);
+        clset_update(xcsf, &xcsf->aset, state, &reward, true);
+        if(xcsf->train) {
+            ea(xcsf, &xcsf->aset);
+        }
+    }
+}
+
+/**
+ * @brief Returns the system error.
+ * @param xcsf The XCSF data structure.
+ * @param action The current action.
+ * @param reward The current reward.
+ * @param reset The current reset status.
+ * @param max_p The maximum payoff in the environment.
+ * @return The prediction error.
+ */
+double xcs_multi_error(const XCSF *xcsf, int action, double reward, _Bool reset, double max_p)
+{
+    double error = 0;
+    if(xcsf->prev_aset.list != NULL) {
+        error += fabs(xcsf->GAMMA * pa_val(xcsf, action)
+                + xcsf->prev_reward - xcsf->prev_pred) / max_p;
+    }
+    if(reset) {
+        error += fabs(reward - pa_val(xcsf, action)) / max_p;
+    }
+    return error;
+}
+
+/**
  * @brief Constructs the match set and selects an action to perform.
  * @param xcsf The XCSF data structure.
- * @param x The input state.
+ * @param state The input state.
  * @return The selected action.
  */
-int xcs_multi_decision(XCSF *xcsf, const double *x)
+int xcs_multi_decision(XCSF *xcsf, const double *state)
 {
-    clset_match(xcsf, x);
-    pa_build(xcsf, x);
+    clset_match(xcsf, state);
+    pa_build(xcsf, state);
     if(xcsf->train && rand_uniform(0,1) < xcsf->P_EXPLORE) {
         return pa_rand_action(xcsf);
     }

@@ -25,7 +25,7 @@
 
 double xcs_single_error(const XCSF *xcsf, double reward);
 double xcs_single_step_exp(XCSF *xcsf);
-int xcs_single_decision(XCSF *xcsf, const double *x);
-void xcs_single_free(XCSF *xcsf);
-void xcs_single_init(XCSF *xcsf);
-void xcs_single_update(XCSF *xcsf, const double *x, int action, double reward);
+int xcs_single_decision(XCSF *xcsf, const double *state);
+void xcs_single_init_trial(XCSF *xcsf);
+void xcs_single_end_trial(XCSF *xcsf);
+void xcs_single_update(XCSF *xcsf, const double *state, int action, double reward);

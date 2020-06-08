@@ -103,17 +103,19 @@ for i in range(n):
     for j in range(xcs.PERF_TRIALS):
         # explore trial
         rmux_reset()
-        xcs.single_reset()
+        xcs.single_init_trial()
         action = xcs.single_decision(state, True)
         reward = rmux_reward(action)
         xcs.single_update(reward)
+        xcs.single_end_trial()
         # exploit trial
         rmux_reset()
-        xcs.single_reset()
+        xcs.single_init_trial()
         action = xcs.single_decision(state, False)
         reward = rmux_reward(action)
         performance[i] += reward
         error[i] += xcs.single_error(reward)
+        xcs.single_end_trial()
     performance[i] /= float(xcs.PERF_TRIALS)
     error[i] /= float(xcs.PERF_TRIALS)
     trials[i] = xcs.time() # number of trials so far

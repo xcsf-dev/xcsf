@@ -19,6 +19,7 @@
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Single-step reinforcement learning functions.
+ * @details A single trial is composed of a single decision step.
  */ 
 
 #include <stdio.h>
@@ -71,34 +72,35 @@ double xcs_single_step_exp(XCSF *xcsf)
  */
 static double xcs_single_trial(XCSF *xcsf, double *error, _Bool explore)
 {
-    xcs_single_init(xcsf);
+    xcs_single_init_trial(xcsf);
     param_set_train(xcsf, explore);
-    const double *x = env_get_state(xcsf);
-    int action = xcs_single_decision(xcsf, x);
+    const double *state = env_get_state(xcsf);
+    int action = xcs_single_decision(xcsf, state);
     double reward = env_execute(xcsf, action);
-    *error = xcs_single_error(xcsf, reward);
-    if(explore) {
-        xcs_single_update(xcsf, x, action, reward);
+    if(xcsf->train) {
+        xcs_single_update(xcsf, state, action, reward);
     }
-    xcs_single_free(xcsf);
+    *error = xcs_single_error(xcsf, reward);
+    xcs_single_end_trial(xcsf);
     return (reward > 0) ? 1 : 0;
 }
 
 /**
- * @brief Initialises match, action, and kill sets.
+ * @brief Initialises a single-step trial.
  * @param xcsf The XCSF data structure.
  */
-void xcs_single_init(XCSF *xcsf) {
+void xcs_single_init_trial(XCSF *xcsf)
+{
     clset_init(&xcsf->mset);
     clset_init(&xcsf->aset);
     clset_init(&xcsf->kset);
 }
 
 /**
- * @brief Frees memory used by match, action, and kill sets.
+ * @brief Ends a single-step trial.
  * @param xcsf The XCSF data structure.
  */
-void xcs_single_free(XCSF *xcsf)
+void xcs_single_end_trial(XCSF *xcsf)
 {
     clset_free(&xcsf->mset);
     clset_free(&xcsf->aset);
@@ -108,13 +110,13 @@ void xcs_single_free(XCSF *xcsf)
 /**
  * @brief Constructs the match set and selects an action to perform.
  * @param xcsf The XCSF data structure.
- * @param x The input state.
+ * @param state The input state.
  * @return The selected action.
  */
-int xcs_single_decision(XCSF *xcsf, const double *x)
+int xcs_single_decision(XCSF *xcsf, const double *state)
 {
-    clset_match(xcsf, x);
-    pa_build(xcsf, x);
+    clset_match(xcsf, state);
+    pa_build(xcsf, state);
     if(xcsf->train && rand_uniform(0,1) < xcsf->P_EXPLORE) {
         return pa_rand_action(xcsf);
     }
@@ -124,14 +126,14 @@ int xcs_single_decision(XCSF *xcsf, const double *x)
 /**
  * @brief Creates the action set, updates the classifiers and runs the EA.
  * @param xcsf The XCSF data structure.
- * @param x The input state.
+ * @param state The input state.
  * @param action The action selected.
  * @param reward The reward from performing the action.
  */
-void xcs_single_update(XCSF *xcsf, const double *x, int action, double reward)
+void xcs_single_update(XCSF *xcsf, const double *state, int action, double reward)
 {
     clset_action(xcsf, action);
-    clset_update(xcsf, &xcsf->aset, x, &reward, true);
+    clset_update(xcsf, &xcsf->aset, state, &reward, true);
     ea(xcsf, &xcsf->aset);
 }
 
