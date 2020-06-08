@@ -74,7 +74,7 @@ class Maze:
             return 0.7
         if s == 'Q':
             return 0.9
-        print("unsupported maze state: "+str(s))
+        print("invalid maze state: "+str(s))
         exit()
         
     def update_state(self):
