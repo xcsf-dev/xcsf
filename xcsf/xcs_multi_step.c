@@ -138,6 +138,9 @@ void xcs_multi_init_step(XCSF *xcsf)
 /**
  * @brief Ends a step in a multi-step trial.
  * @param xcsf The XCSF data structure.
+ * @param state The current input state.
+ * @param action The current action.
+ * @param reward The current reward.
  */
 void xcs_multi_end_step(XCSF *xcsf, const double *state, int action, double reward)
 {
