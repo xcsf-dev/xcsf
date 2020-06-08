@@ -22,7 +22,7 @@
 
 import xcsf.xcsf as xcsf
 import numpy as np
-import random
+import os, random
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 
@@ -35,7 +35,8 @@ class Maze:
     def __init__(self, filename):
         self.maze = []
         line = []
-        with open("../env/maze/"+filename+".txt") as f:
+        path = os.path.normpath("../env/maze/"+filename+".txt")
+        with open(path) as f:
             while True:
                 c = f.read(1)
                 if not c:
