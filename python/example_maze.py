@@ -100,13 +100,11 @@ class Maze:
         s = self.maze[y_new][x_new]
         if s == 'O' or s == 'Q':
             return 0
+        self.x_pos = x_new
+        self.y_pos = y_new
         if s == '*':
-            self.x_pos = x_new
-            self.y_pos = y_new
             return 0
         if s == 'F' or s == 'G':
-            self.x_pos = x_new
-            self.y_pos = y_new
             self.is_reset = True
             return self.max_payoff
         print("invalid maze type")
