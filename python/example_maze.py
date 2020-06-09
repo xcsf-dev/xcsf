@@ -162,7 +162,7 @@ for i in range(n):
         for k in range(xcs.TELETRANSPORTATION):
             xcs.init_step()
             maze.update_state()
-            action = xcs.decision(maze.state, True)
+            action = xcs.decision(maze.state, True) # explore
             reward = maze.execute(action)
             xcs.update(reward, maze.is_reset)
             xcs.end_step()
@@ -177,7 +177,7 @@ for i in range(n):
         for k in range(xcs.TELETRANSPORTATION):
             xcs.init_step()
             maze.update_state()
-            action = xcs.decision(maze.state, False)
+            action = xcs.decision(maze.state, False) # exploit
             reward = maze.execute(action)
             xcs.update(reward, maze.is_reset)
             err += xcs.error(reward, maze.is_reset, maze.max_payoff)

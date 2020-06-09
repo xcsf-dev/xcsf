@@ -32,47 +32,48 @@ np.set_printoptions(suppress=True)
 # Real-multiplexer problem
 ###########################
 
-mux = 6 # total number of bits
+class Mux:
 
-# set the number of position bits
-pos_bits = 1
-while pos_bits + pow(2, pos_bits) <= mux:
-    pos_bits += 1
-pos_bits -= 1
-print(str(mux)+" bits, "+str(pos_bits)+" position bits")
+    def __init__(self, n):
+        self.n_bits = n # total number of bits
+        self.n_actions = 2 # total number of actions
+        self.state = np.zeros(n) # current mux state
+        self.is_reset = True
+        self.max_payoff = 1
+        # set the number of position bits
+        self.pos_bits = 1
+        while self.pos_bits + pow(2, self.pos_bits) <= self.n_bits:
+            self.pos_bits += 1
+        self.pos_bits -= 1
+        print(str(self.n_bits)+" bits, "+str(self.pos_bits)+" position bits")
 
-# current mux state
-state = np.zeros(mux)
+    def reset(self):
+        for i in range(self.n_bits):
+            self.state[i] = random()
 
-# random mux
-def rmux_reset():
-    for i in range(mux):
-        state[i] = random()
+    def answer(self):
+        pos = self.pos_bits
+        for i in range(self.pos_bits):
+            if self.state[i] > 0.5:
+                pos += pow(2, self.pos_bits - 1 - i)
+        if self.state[pos] > 0.5:
+            return 1
+        return 0
 
-# calculate mux answer
-def rmux_answer():
-    pos = pos_bits
-    for i in range(pos_bits):
-        if state[i] > 0.5:
-            pos += pow(2, pos_bits - 1 - i)
-    if state[pos] > 0.5:
-        return 1
-    return 0
+    def execute(self, action):
+        if action == self.answer():
+            return self.max_payoff
+        return 0
 
-# mux reward
-def rmux_reward(action):
-    if action == rmux_answer():
-        return 1
-    return 0
+# Create new real-multiplexer problem
+mux = Mux(6)
 
 ###################
 # Initialise XCSF
 ###################
 
 # initialise XCSF for reinforcement learning
-x_dim = mux
-n_actions = 2
-xcs = xcsf.XCS(mux, n_actions, False)
+xcs = xcsf.XCS(mux.n_bits, mux.n_actions, False)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
@@ -107,22 +108,22 @@ bar = tqdm(total=n) # progress bar
 for i in range(n):
     for j in range(xcs.PERF_TRIALS):
         # explore trial
-        rmux_reset()
+        mux.reset()
         xcs.init_trial()
         xcs.init_step()
-        action = xcs.decision(state, True)
-        reward = rmux_reward(action)
-        xcs.update(reward, True)
+        action = xcs.decision(mux.state, True) # explore
+        reward = mux.execute(action)
+        xcs.update(reward, mux.is_reset)
         xcs.end_step()
         xcs.end_trial()
         # exploit trial
-        rmux_reset()
+        mux.reset()
         xcs.init_trial()
         xcs.init_step()
-        action = xcs.decision(state, False)
-        reward = rmux_reward(action)
+        action = xcs.decision(mux.state, False) # exploit
+        reward = mux.execute(action)
         performance[i] += reward
-        error[i] += xcs.error(reward, True, 1)
+        error[i] += xcs.error(reward, mux.is_reset, mux.max_payoff)
         xcs.end_step()
         xcs.end_trial()
     performance[i] /= float(xcs.PERF_TRIALS)
