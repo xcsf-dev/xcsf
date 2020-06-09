@@ -395,7 +395,7 @@ static void param_defaults_subsumption(XCSF *xcsf)
 {
     param_set_ea_subsumption(xcsf, false);
     param_set_set_subsumption(xcsf, false);
-    param_set_theta_sub(xcsf, 20);
+    param_set_theta_sub(xcsf, 100);
 }
 
 /**
