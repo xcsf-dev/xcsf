@@ -88,10 +88,9 @@ for i in range(n):
         xcs.init_trial()
         xcs.init_step()
         action = xcs.decision(state, True) # explore
+        reward = 0
         if action == answer:
             reward = MAX_PAYOFF
-        else:
-            reward = 0
         xcs.update(reward, True) # single-step problem
         xcs.end_step()
         xcs.end_trial()
@@ -102,10 +101,9 @@ for i in range(n):
         state = X_test[sample]
         answer = y_test[sample]
         action = xcs.decision(state, False) # exploit
+        reward = 0
         if action == answer:
             reward = MAX_PAYOFF
-        else:
-            reward = 0
         performance[i] += reward
         error[i] += xcs.error(reward, True, MAX_PAYOFF)
         xcs.end_step()
