@@ -84,6 +84,9 @@ xcs.BETA = 0.2 # classifier parameter update rate
 xcs.THETA_EA = 25 # EA frequency
 xcs.ALPHA = 0.1 # accuracy offset
 xcs.NU = 5 # accuracy slope
+xcs.EA_SUBSUMPTION = True
+xcs.SET_SUBSUMPTION = True
+xcs.THETA_SUB = 100 # minimum experience of a subsumer
 
 xcs.print_params()
 
