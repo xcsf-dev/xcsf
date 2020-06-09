@@ -52,7 +52,7 @@ TEST_CASE("COND_RECTANGLE")
     cond_rectangle_init(&xcsf, &c);
 
     const double x[5] = { 0.8455260670, 0.7566081103, 0.3125093674,
-        0.3449376898, 0.3677518467}; 
+        0.3449376898, 0.3677518467 };
 
     const double true_center[5] = { 0.6917788795, 0.7276272381, 0.2457498699,
         0.2704867908, 0.0000000000 };
@@ -78,4 +78,20 @@ TEST_CASE("COND_RECTANGLE")
     memcpy(p->spread, false_spread, xcsf.x_dim * sizeof(double));
     match = cond_rectangle_match(&xcsf, &c, x);
     REQUIRE(match == false);
+
+    /* test general */
+    CL c2;
+    cl_init(&xcsf, &c2, 1, 1);
+    cond_rectangle_init(&xcsf, &c2);
+    COND_RECTANGLE *p2 = (COND_RECTANGLE *) c2.cond;
+    const double center2[5] = { 0.6, 0.7, 0.2, 0.3, 0.0 };
+    const double spread2[5] = { 0.1, 0.1, 0.1, 0.1, 0.1 };
+    memcpy(p2->center, center2, xcsf.x_dim * sizeof(double));
+    memcpy(p2->spread, spread2, xcsf.x_dim * sizeof(double));
+    memcpy(p->center, true_center, xcsf.x_dim * sizeof(double));
+    memcpy(p->spread, true_spread, xcsf.x_dim * sizeof(double));
+    _Bool general = cond_rectangle_general(&xcsf, &c, &c2);
+    REQUIRE(general == true);
+    general = cond_rectangle_general(&xcsf, &c2, &c);
+    REQUIRE(general == false);
 }
