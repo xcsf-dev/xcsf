@@ -44,6 +44,7 @@ X_train = minmax_scale(X_train, feature_range=(0,1))
 X_test = minmax_scale(X_test, feature_range=(0,1))
 x_dim = 30
 n_actions = 2
+MAX_PAYOFF = 1
 train_len = len(X_train)
 test_len = len(X_test)
 print("train len = %d, test len = %d" % (train_len, test_len))
@@ -52,7 +53,7 @@ print("train len = %d, test len = %d" % (train_len, test_len))
 # Initialise XCSF
 ###################
 
-# initialise XCSF for single-step reinforcement learning
+# initialise XCSF for reinforcement learning
 xcs = xcsf.XCS(x_dim, n_actions, False)
 
 # override default.ini
@@ -84,27 +85,31 @@ for i in range(n):
         sample = randint(0, train_len-1)
         state = X_train[sample]
         answer = y_train[sample]
-        xcs.single_init_trial()
-        action = xcs.single_decision(state, True) # build mset, aset, pa, and select action
+        xcs.init_trial()
+        xcs.init_step()
+        action = xcs.decision(state, True) # explore
         if action == answer:
-            reward = 1
+            reward = MAX_PAYOFF
         else:
             reward = 0
-        xcs.single_update(reward) # update aset and potentially run EA
-        xcs.single_end_trial()
+        xcs.update(reward, True) # single-step problem
+        xcs.end_step()
+        xcs.end_trial()
         # exploit trial
-        xcs.single_init_trial()
+        xcs.init_trial()
+        xcs.init_step()
         sample = randint(0, test_len-1)
         state = X_test[sample]
         answer = y_test[sample]
-        action = xcs.single_decision(state, False) # false signifies exploit mode
+        action = xcs.decision(state, False) # exploit
         if action == answer:
-            reward = 1
+            reward = MAX_PAYOFF
         else:
             reward = 0
         performance[i] += reward
-        error[i] += xcs.single_error(reward) # calculate system prediction error
-        xcs.single_end_trial()
+        error[i] += xcs.error(reward, True, MAX_PAYOFF)
+        xcs.end_step()
+        xcs.end_trial()
     performance[i] /= float(xcs.PERF_TRIALS)
     error[i] /= float(xcs.PERF_TRIALS)
     trials[i] = xcs.time() # number of trials so far
@@ -141,9 +146,11 @@ yPredicted = []
 for i in range(test_len):
     state = X_test[i]
     answer = y_test[i]
-    xcs.single_init_trial()
-    action = xcs.single_decision(state, False)
-    xcs.single_end_trial()
+    xcs.init_trial()
+    xcs.init_step()
+    action = xcs.decision(state, False) # exploit
+    xcs.end_step()
+    xcs.end_trial()
     yActual.append(answer)
     yPredicted.append(action)
 
@@ -152,7 +159,7 @@ labels = ['Benign', 'Malignant']
 fig = plt.figure()
 subplt = fig.add_subplot(111)
 csubplt = subplt.matshow(confusion_matrix_val)
-plt.title('XCSF Confusion Matrix:')
+plt.title('Wisconsin Breast Cancer:')
 fig.colorbar(csubplt)
 subplt.set_xticklabels([''] + labels)
 subplt.set_yticklabels([''] + labels)
