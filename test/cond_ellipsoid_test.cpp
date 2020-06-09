@@ -71,11 +71,11 @@ TEST_CASE("COND_ELLIPSOID")
     memcpy(p->center, true_center, xcsf.x_dim * sizeof(double));
     memcpy(p->spread, true_spread, xcsf.x_dim * sizeof(double));
     _Bool match = cond_ellipsoid_match(&xcsf, &c, x);
-    REQUIRE(match == true);
+    CHECK_EQ(match, true);
 
     /* test for false match condition */
     memcpy(p->center, false_center, xcsf.x_dim * sizeof(double));
     memcpy(p->spread, false_spread, xcsf.x_dim * sizeof(double));
     match = cond_ellipsoid_match(&xcsf, &c, x);
-    REQUIRE(match == false);
+    CHECK_EQ(match, false);
 }

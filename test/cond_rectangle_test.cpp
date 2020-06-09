@@ -71,13 +71,13 @@ TEST_CASE("COND_RECTANGLE")
     memcpy(p->center, true_center, xcsf.x_dim * sizeof(double));
     memcpy(p->spread, true_spread, xcsf.x_dim * sizeof(double));
     _Bool match = cond_rectangle_match(&xcsf, &c, x);
-    REQUIRE(match == true);
+    CHECK_EQ(match, true);
 
     /* test for false match condition */
     memcpy(p->center, false_center, xcsf.x_dim * sizeof(double));
     memcpy(p->spread, false_spread, xcsf.x_dim * sizeof(double));
     match = cond_rectangle_match(&xcsf, &c, x);
-    REQUIRE(match == false);
+    CHECK_EQ(match, false);
 
     /* test general */
     CL c2;
@@ -91,7 +91,7 @@ TEST_CASE("COND_RECTANGLE")
     memcpy(p->center, true_center, xcsf.x_dim * sizeof(double));
     memcpy(p->spread, true_spread, xcsf.x_dim * sizeof(double));
     _Bool general = cond_rectangle_general(&xcsf, &c, &c2);
-    REQUIRE(general == true);
+    CHECK_EQ(general, true);
     general = cond_rectangle_general(&xcsf, &c2, &c);
-    REQUIRE(general == false);
+    CHECK_EQ(general, false);
 }

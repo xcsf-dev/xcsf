@@ -94,7 +94,7 @@ TEST_CASE("NEURAL")
     for(int i = 0; i < net.n_outputs; i++) {
         output_error += fabs(neural_output(&xcsf, &net, i) - output[i]);
     }
-    REQUIRE(doctest::Approx(output_error) == 0);
+    CHECK_EQ(doctest::Approx(output_error), 0);
 
     /* test convergence on one input */
     const double y[2] = { 0.7343893899, 0.2289711363 };
@@ -103,6 +103,6 @@ TEST_CASE("NEURAL")
         neural_propagate(&xcsf, &net, x);
         neural_learn(&xcsf, &net, y, x);
     }
-    REQUIRE(doctest::Approx(neural_output(&xcsf, &net, 0)) == y[0]);
-    REQUIRE(doctest::Approx(neural_output(&xcsf, &net, 1)) == y[1]);
+    CHECK_EQ(doctest::Approx(neural_output(&xcsf, &net, 0)), y[0]);
+    CHECK_EQ(doctest::Approx(neural_output(&xcsf, &net, 1)), y[1]);
 }

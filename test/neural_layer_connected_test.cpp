@@ -92,7 +92,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     for(int i = 0; i < l->n_outputs; i++) {
         output_error += fabs(l->output[i] - output[i]);
     }
-    REQUIRE(doctest::Approx(output_error) == 0);
+    CHECK_EQ(doctest::Approx(output_error), 0);
 
     /* test one backward pass of input */
     const double y[2] = { 0.7343893899, 0.2289711363 };
@@ -118,13 +118,13 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     for(int i = 0; i < l->n_weights; i++) {
         weight_error += fabs(l->weights[i] - new_weights[i]);
     }
-    REQUIRE(doctest::Approx(weight_error) == 0);
+    CHECK_EQ(doctest::Approx(weight_error), 0);
 
     double bias_error = 0;
     for(int i = 0; i < l->n_outputs; i++) {
         bias_error += fabs(l->biases[i] - new_biases[i]);
     }
-    REQUIRE(doctest::Approx(bias_error) == 0);
+    CHECK_EQ(doctest::Approx(bias_error), 0);
 
     /* test convergence on one input */
     const double conv_weights[20] = { 0.4127301724, -0.4103118294,
@@ -148,18 +148,18 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     }
     neural_layer_connected_forward(&xcsf, l, x);
 
-    REQUIRE(doctest::Approx(l->output[0]) == y[0]);
-    REQUIRE(doctest::Approx(l->output[1]) == y[1]);
+    CHECK_EQ(doctest::Approx(l->output[0]), y[0]);
+    CHECK_EQ(doctest::Approx(l->output[1]), y[1]);
 
     double conv_weight_error = 0;
     for(int i = 0; i < l->n_weights; i++) {
         conv_weight_error += fabs(l->weights[i] - conv_weights[i]);
     }
-    REQUIRE(doctest::Approx(conv_weight_error) == 0);
+    CHECK_EQ(doctest::Approx(conv_weight_error), 0);
 
     double conv_bias_error = 0;
     for(int i = 0; i < l->n_outputs; i++) {
         conv_bias_error += fabs(l->biases[i] - conv_biases[i]);
     }
-    REQUIRE(doctest::Approx(conv_bias_error) == 0);
+    CHECK_EQ(doctest::Approx(conv_bias_error), 0);
 }

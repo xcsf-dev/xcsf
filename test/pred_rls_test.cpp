@@ -70,7 +70,7 @@ TEST_CASE("PRED_RLS")
 
     pred_rls_compute(&xcsf, &c, x);
 
-    REQUIRE(doctest::Approx(c.prediction[0]) == 0.7343893899);
+    CHECK_EQ(doctest::Approx(c.prediction[0]), 0.7343893899);
 
     /* test one backward pass of input */
     const double y[1] = { -0.8289711363 };
@@ -152,13 +152,13 @@ TEST_CASE("PRED_RLS")
     for(int i = 0; i < 11; i++) {
         weight_error += fabs(p->weights[i] - new_weights[i]);
     }
-    REQUIRE(doctest::Approx(weight_error) == 0);
+    CHECK_EQ(doctest::Approx(weight_error), 0);
 
     double matrix_error = 0;
     for(int i = 0; i < 121; i++) {
         matrix_error += fabs(p->matrix[i] - new_matrix[i]);
     }
-    REQUIRE(doctest::Approx(matrix_error) == 0);
+    CHECK_EQ(doctest::Approx(matrix_error), 0);
 
     /* test convergence on one input */
     for(int i = 0; i < 200; i++) {
@@ -166,5 +166,5 @@ TEST_CASE("PRED_RLS")
         pred_rls_update(&xcsf, &c, x, y);
     }
     pred_rls_compute(&xcsf, &c, x);
-    REQUIRE(doctest::Approx(c.prediction[0]) == y[0]);
+    CHECK_EQ(doctest::Approx(c.prediction[0]), y[0]);
 }
