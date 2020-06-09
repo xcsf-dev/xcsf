@@ -527,16 +527,20 @@ static void clset_subsumption(XCSF *xcsf, SET *set)
     }
     // subsume the more specific classifiers in the set
     if(s != NULL) {
+        _Bool subsumed = false;
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             CL *c = iter->cl;
             if(s != c && cl_general(xcsf, s, c)) {
                 s->num += c->num;
                 c->num = 0;
                 clset_add(&xcsf->kset, c);
+                subsumed = true;
             }
         }
-        clset_validate(set);
-        clset_validate(&xcsf->pset);
+        if(subsumed) {
+            clset_validate(set);
+            clset_validate(&xcsf->pset);
+        }
     }
 }
 
