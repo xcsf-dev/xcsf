@@ -14,12 +14,12 @@
  */
 
 /**
- * @file xcs_multi_step.c
+ * @file xcs_rl.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
- * @brief Multi-step reinforcement learning functions.
- * @details A single trial is composed of multiple decision steps.
+ * @brief Reinforcement learning functions.
+ * @details A trial consists of one or more steps.
  */ 
 
 #include <stdio.h>
@@ -36,17 +36,17 @@
 #include "pa.h"
 #include "ea.h"
 #include "perf.h"
-#include "xcs_multi_step.h"
+#include "xcs_rl.h"
 #include "env.h"
 
-static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore);
+static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore);
 
 /**
- * @brief Executes a multi-step reinforcement learning experiment.
+ * @brief Executes a reinforcement learning experiment.
  * @param xcsf The XCSF data structure.
  * @return The mean number of steps to goal.
  */
-double xcs_multi_step_exp(XCSF *xcsf)
+double xcs_rl_exp(XCSF *xcsf)
 {
     pa_init(xcsf);
     double error = 0; // prediction error: individual trial
@@ -54,8 +54,8 @@ double xcs_multi_step_exp(XCSF *xcsf)
     double tperf = 0; // steps to goal: total over all trials
     double wperf = 0; // steps to goal: windowed total
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
-        xcs_multi_trial(xcsf, &error, true); // explore
-        double perf = xcs_multi_trial(xcsf, &error, false); // exploit
+        xcs_rl_trial(xcsf, &error, true); // explore
+        double perf = xcs_rl_trial(xcsf, &error, false); // exploit
         wperf += perf;
         tperf += perf;
         werr += error;
@@ -66,46 +66,51 @@ double xcs_multi_step_exp(XCSF *xcsf)
 }                                
 
 /**
- * @brief Executes a multi-step trial using a built-in environment.
+ * @brief Executes a reinforcement learning trial using a built-in environment.
  * @param xcsf The XCSF data structure.
  * @param error The mean system prediction error (set by this function).
  * @param explore Whether this is an exploration or exploitation trial.
- * @return The number of steps taken to reach the goal.
+ * @return Returns the accuracy for single-step problems and the number of
+ * steps taken to reach the goal for multi-step problems.
  */
-static double xcs_multi_trial(XCSF *xcsf, double *error, _Bool explore)
+static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
 {
     env_reset(xcsf);
     param_set_train(xcsf, explore);
-    xcs_multi_init_trial(xcsf);
+    xcs_rl_init_trial(xcsf);
     *error = 0; // mean prediction error over all steps taken
+    double reward = 0;
     _Bool reset = false;
     int steps = 0;
     while(steps < xcsf->TELETRANSPORTATION && !reset) {
-        xcs_multi_init_step(xcsf);
+        xcs_rl_init_step(xcsf);
         const double *state = env_get_state(xcsf);
-        int action = xcs_multi_decision(xcsf, state);
-        double reward = env_execute(xcsf, action);
+        int action = xcs_rl_decision(xcsf, state);
+        reward = env_execute(xcsf, action);
         reset = env_is_reset(xcsf);
-        xcs_multi_update(xcsf, state, action, reward, reset);
-        *error += xcs_multi_error(xcsf, action, reward, reset, env_max_payoff(xcsf));
-        xcs_multi_end_step(xcsf, state, action, reward);
+        xcs_rl_update(xcsf, state, action, reward, reset);
+        *error += xcs_rl_error(xcsf, action, reward, reset, env_max_payoff(xcsf));
+        xcs_rl_end_step(xcsf, state, action, reward);
         steps++;
     }
-    xcs_multi_end_trial(xcsf);
+    xcs_rl_end_trial(xcsf);
     *error /= steps;
+    if(!env_multistep(xcsf)) {
+        return (reward > 0) ? 1 : 0;
+    }
     return steps;
 }
 
 /**
- * @brief Initialises a multi-step trial.
+ * @brief Initialises a reinforcement learning trial.
  * @param xcsf The XCSF data structure.
  */
-void xcs_multi_init_trial(XCSF *xcsf)
+void xcs_rl_init_trial(XCSF *xcsf)
 {
     xcsf->prev_reward = 0;
     xcsf->prev_pred = 0;
     if(xcsf->x_dim < 1) { // memory allocation guard
-        printf("xcs_multi_init_trial(): error x_dim less than 1\n");
+        printf("xcs_rl_init_trial(): error x_dim less than 1\n");
         xcsf->x_dim = 1;
         exit(EXIT_FAILURE);
     }
@@ -115,10 +120,10 @@ void xcs_multi_init_trial(XCSF *xcsf)
 }
 
 /**
- * @brief Frees memory used by a multi-step trial.
+ * @brief Frees memory used by a reinforcement learning trial.
  * @param xcsf The XCSF data structure.
  */
-void xcs_multi_end_trial(XCSF *xcsf)
+void xcs_rl_end_trial(XCSF *xcsf)
 {
     clset_free(&xcsf->prev_aset);
     clset_kill(xcsf, &xcsf->kset);
@@ -126,23 +131,23 @@ void xcs_multi_end_trial(XCSF *xcsf)
 }
 
 /**
- * @brief Initialises a step in a multi-step trial.
+ * @brief Initialises a step in a reinforcement learning trial.
  * @param xcsf The XCSF data structure.
  */
-void xcs_multi_init_step(XCSF *xcsf)
+void xcs_rl_init_step(XCSF *xcsf)
 {
     clset_init(&xcsf->mset);
     clset_init(&xcsf->aset);
 }
 
 /**
- * @brief Ends a step in a multi-step trial.
+ * @brief Ends a step in a reinforcement learning trial.
  * @param xcsf The XCSF data structure.
  * @param state The current input state.
  * @param action The current action.
  * @param reward The current reward.
  */
-void xcs_multi_end_step(XCSF *xcsf, const double *state, int action, double reward)
+void xcs_rl_end_step(XCSF *xcsf, const double *state, int action, double reward)
 {
     clset_free(&xcsf->mset);
     clset_free(&xcsf->prev_aset);
@@ -153,14 +158,15 @@ void xcs_multi_end_step(XCSF *xcsf, const double *state, int action, double rewa
 }
 
 /**
- * @brief Creates the action set, updates the classifiers and runs the EA.
+ * @brief Provides reinforcement to the sets.
+ * @details Creates the action set, updates the classifiers and runs the EA.
  * @param xcsf The XCSF data structure.
  * @param state The input state.
  * @param action The action selected.
  * @param reward The reward from performing the action.
  * @param reset Whether the environment is in the reset state.
  */
-void xcs_multi_update(XCSF *xcsf, const double *state, int action, double reward, _Bool reset)
+void xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward, _Bool reset)
 {
     // create action set
     clset_action(xcsf, action);
@@ -184,7 +190,7 @@ void xcs_multi_update(XCSF *xcsf, const double *state, int action, double reward
 }
 
 /**
- * @brief Returns the system error.
+ * @brief Returns the reinforcement learning system prediction error.
  * @param xcsf The XCSF data structure.
  * @param action The current action.
  * @param reward The current reward.
@@ -192,7 +198,7 @@ void xcs_multi_update(XCSF *xcsf, const double *state, int action, double reward
  * @param max_p The maximum payoff in the environment.
  * @return The prediction error.
  */
-double xcs_multi_error(const XCSF *xcsf, int action, double reward, _Bool reset, double max_p)
+double xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset, double max_p)
 {
     double error = 0;
     if(xcsf->prev_aset.list != NULL) {
@@ -206,12 +212,13 @@ double xcs_multi_error(const XCSF *xcsf, int action, double reward, _Bool reset,
 }
 
 /**
- * @brief Constructs the match set and selects an action to perform.
+ * @brief Selects an action to perform in a reinforcement learning problem.
+ * @details Constructs the match set and selects an action to perform.
  * @param xcsf The XCSF data structure.
  * @param state The input state.
  * @return The selected action.
  */
-int xcs_multi_decision(XCSF *xcsf, const double *state)
+int xcs_rl_decision(XCSF *xcsf, const double *state)
 {
     clset_match(xcsf, state);
     pa_build(xcsf, state);

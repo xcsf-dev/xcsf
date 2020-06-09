@@ -32,8 +32,7 @@
 #include "env.h"
 #include "env_csv.h"
 #include "clset.h"
-#include "xcs_single_step.h"
-#include "xcs_multi_step.h"
+#include "xcs_rl.h"
 #include "xcs_supervised.h"
 
 int main(int argc, char **argv)
@@ -72,12 +71,7 @@ int main(int argc, char **argv)
     }
     // reinforcement learning - maze or mux
     else {
-        if(env_multistep(xcsf)) {
-            xcs_multi_step_exp(xcsf);
-        }
-        else {
-            xcs_single_step_exp(xcsf);
-        }
+        xcs_rl_exp(xcsf);
     }
     // clean up
     env_free(xcsf);

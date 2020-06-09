@@ -14,20 +14,20 @@
  */
      
 /**
- * @file xcs_multi_step.h
+ * @file xcs_rl.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
- * @brief Multi-step reinforcement learning functions.
+ * @brief Reinforcement learning functions.
  */ 
  
 #pragma once
 
-double xcs_multi_error(const XCSF *xcsf, int action, double reward, _Bool reset, double max_p);
-double xcs_multi_step_exp(XCSF *xcsf);
-int xcs_multi_decision(XCSF *xcsf, const double *state);
-void xcs_multi_end_step(XCSF *xcsf, const double *state, int action, double reward);
-void xcs_multi_end_trial(XCSF *xcsf);
-void xcs_multi_init_step(XCSF *xcsf);
-void xcs_multi_init_trial(XCSF *xcsf);
-void xcs_multi_update(XCSF *xcsf, const double *state, int action, double reward, _Bool reset);
+double xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset, double max_p);
+double xcs_rl_exp(XCSF *xcsf);
+int xcs_rl_decision(XCSF *xcsf, const double *state);
+void xcs_rl_end_step(XCSF *xcsf, const double *state, int action, double reward);
+void xcs_rl_end_trial(XCSF *xcsf);
+void xcs_rl_init_step(XCSF *xcsf);
+void xcs_rl_init_trial(XCSF *xcsf);
+void xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward, _Bool reset);

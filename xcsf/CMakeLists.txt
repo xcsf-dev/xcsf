@@ -57,8 +57,7 @@ set(XCSF_SOURCES
     rule_neural.c
     sam.c
     utils.c
-    xcs_multi_step.c
-    xcs_single_step.c
+    xcs_rl.c
     xcs_supervised.c
     xcsf.c
 )
@@ -105,8 +104,7 @@ set(XCSF_HEADERS
     rule_neural.h
     sam.h
     utils.h
-    xcs_multi_step.h
-    xcs_single_step.h
+    xcs_rl.h
     xcs_supervised.h
     xcsf.h
 )

@@ -69,8 +69,10 @@ def rmux_reward(action):
 # Initialise XCSF
 ###################
 
-# initialise XCSF for single-step reinforcement learning
-xcs = xcsf.XCS(mux, 2, False)
+# initialise XCSF for reinforcement learning
+x_dim = mux
+n_actions = 2
+xcs = xcsf.XCS(mux, n_actions, False)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
@@ -106,19 +108,23 @@ for i in range(n):
     for j in range(xcs.PERF_TRIALS):
         # explore trial
         rmux_reset()
-        xcs.single_init_trial()
-        action = xcs.single_decision(state, True)
+        xcs.init_trial()
+        xcs.init_step()
+        action = xcs.decision(state, True)
         reward = rmux_reward(action)
-        xcs.single_update(reward)
-        xcs.single_end_trial()
+        xcs.update(reward, True)
+        xcs.end_step()
+        xcs.end_trial()
         # exploit trial
         rmux_reset()
-        xcs.single_init_trial()
-        action = xcs.single_decision(state, False)
+        xcs.init_trial()
+        xcs.init_step()
+        action = xcs.decision(state, False)
         reward = rmux_reward(action)
         performance[i] += reward
-        error[i] += xcs.single_error(reward)
-        xcs.single_end_trial()
+        error[i] += xcs.error(reward, True, 1)
+        xcs.end_step()
+        xcs.end_trial()
     performance[i] /= float(xcs.PERF_TRIALS)
     error[i] /= float(xcs.PERF_TRIALS)
     trials[i] = xcs.time() # number of trials so far

@@ -35,9 +35,8 @@ namespace py = pybind11;
 extern "C" {   
 #include <stdbool.h>
 #include "xcsf.h"
+#include "xcs_rl.h"
 #include "xcs_supervised.h"
-#include "xcs_single_step.h"
-#include "xcs_multi_step.h"
 #include "pa.h"
 #include "config.h"
 #include "param.h"
@@ -129,86 +128,50 @@ class XCS
             xcsf_print_pop(&xcs, printc, printa, printp);
         }
 
-        /* Multi-step Reinforcement learning */
+        /* Reinforcement learning */
 
-        void multi_init_trial()
+        void init_trial()
         {
             if(xcs.time == 0) {
                 clset_pop_init(&xcs);
             }
-            xcs_multi_init_trial(&xcs);
+            xcs_rl_init_trial(&xcs);
         }
 
-        void multi_end_trial()
+        void end_trial()
         {
-            xcs_multi_end_trial(&xcs);
+            xcs_rl_end_trial(&xcs);
         }
 
-        void multi_init_step()
+        void init_step()
         {
-            xcs_multi_init_step(&xcs);
+            xcs_rl_init_step(&xcs);
         }
 
-        void multi_end_step()
+        void end_step()
         {
-            xcs_multi_end_step(&xcs, state, action, payoff);
+            xcs_rl_end_step(&xcs, state, action, payoff);
         }
 
-        int multi_decision(py::array_t<double> input, _Bool explore)
-        {
-            py::buffer_info buf = input.request();
-            state = (double *) buf.ptr;
-            param_set_train(&xcs, explore);
-            action = xcs_multi_decision(&xcs, state);
-            return action;
-        }
-
-        void multi_update(double reward, _Bool reset)
-        {
-            payoff = reward;
-            xcs_multi_update(&xcs, state, action, payoff, reset);
-        }
-
-        double multi_error(double reward, _Bool reset, double max_p)
-        {
-            payoff = reward;
-            return xcs_multi_error(&xcs, action, payoff, reset, max_p);
-        }
-
-        /* Single-step Reinforcement learning */
-
-        void single_init_trial()
-        {
-            if(xcs.time == 0) {
-                clset_pop_init(&xcs);
-            }
-            xcs_single_init_trial(&xcs);
-        }
-
-        void single_end_trial()
-        {
-            xcs_single_end_trial(&xcs);
-        }
-
-        int single_decision(py::array_t<double> input, _Bool explore)
+        int decision(py::array_t<double> input, _Bool explore)
         {
             py::buffer_info buf = input.request();
             state = (double *) buf.ptr;
             param_set_train(&xcs, explore);
-            action = xcs_single_decision(&xcs, state);
+            action = xcs_rl_decision(&xcs, state);
             return action;
         }
 
-        void single_update(double reward)
+        void update(double reward, _Bool reset)
         {
             payoff = reward;
-            xcs_single_update(&xcs, state, action, payoff);
+            xcs_rl_update(&xcs, state, action, payoff, reset);
         }
 
-        double single_error(double reward)
+        double error(double reward, _Bool reset, double max_p)
         {
             payoff = reward;
-            return xcs_single_error(&xcs, payoff);
+            return xcs_rl_error(&xcs, action, payoff, reset, max_p);
         }
 
         /* Supervised learning */
@@ -542,18 +505,13 @@ PYBIND11_MODULE(xcsf, m)
         .def("version_major", &XCS::version_major)
         .def("version_minor", &XCS::version_minor)
         .def("version_build", &XCS::version_build)
-        .def("single_init_trial", &XCS::single_init_trial)
-        .def("single_end_trial", &XCS::single_end_trial)
-        .def("single_decision", &XCS::single_decision)
-        .def("single_update", &XCS::single_update)
-        .def("single_error", &XCS::single_error)
-        .def("multi_init_trial", &XCS::multi_init_trial)
-        .def("multi_end_trial", &XCS::multi_end_trial)
-        .def("multi_init_step", &XCS::multi_init_step)
-        .def("multi_end_step", &XCS::multi_end_step)
-        .def("multi_decision", &XCS::multi_decision)
-        .def("multi_update", &XCS::multi_update)
-        .def("multi_error", &XCS::multi_error)
+        .def("init_trial", &XCS::init_trial)
+        .def("end_trial", &XCS::end_trial)
+        .def("init_step", &XCS::init_step)
+        .def("end_step", &XCS::end_step)
+        .def("decision", &XCS::decision)
+        .def("update", &XCS::update)
+        .def("error", &XCS::error)
         .def_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads, &XCS::set_omp_num_threads)
         .def_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
         .def_property("AUTO_ENCODE", &XCS::get_auto_encode, &XCS::set_auto_encode)

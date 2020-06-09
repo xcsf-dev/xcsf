@@ -114,7 +114,7 @@ class Maze:
 # Initialise XCSF
 ###################
 
-# initialise XCSF for multi-step reinforcement learning
+# initialise XCSF for reinforcement learning
 x_dim = 8
 n_actions = 8
 xcs = xcsf.XCS(x_dim, n_actions, True)
@@ -158,34 +158,34 @@ for i in range(n):
     for j in range(xcs.PERF_TRIALS):
         # explore trial
         maze.reset()
-        xcs.multi_init_trial()
+        xcs.init_trial()
         for k in range(xcs.TELETRANSPORTATION):
-            xcs.multi_init_step()
+            xcs.init_step()
             maze.update_state()
-            action = xcs.multi_decision(maze.state, True)
+            action = xcs.decision(maze.state, True)
             reward = maze.execute(action)
-            xcs.multi_update(reward, maze.is_reset)
-            xcs.multi_end_step()
+            xcs.update(reward, maze.is_reset)
+            xcs.end_step()
             if maze.is_reset:
                 break
-        xcs.multi_end_trial()
+        xcs.end_trial()
         # exploit trial
         err = 0
         cnt = 0
         maze.reset()
-        xcs.multi_init_trial()
+        xcs.init_trial()
         for k in range(xcs.TELETRANSPORTATION):
-            xcs.multi_init_step()
+            xcs.init_step()
             maze.update_state()
-            action = xcs.multi_decision(maze.state, False)
+            action = xcs.decision(maze.state, False)
             reward = maze.execute(action)
-            xcs.multi_update(reward, maze.is_reset)
-            err += xcs.multi_error(reward, maze.is_reset, maze.max_payoff)
+            xcs.update(reward, maze.is_reset)
+            err += xcs.error(reward, maze.is_reset, maze.max_payoff)
             cnt += 1
-            xcs.multi_end_step()
+            xcs.end_step()
             if maze.is_reset:
                 break
-        xcs.multi_end_trial()
+        xcs.end_trial()
         steps[i] += cnt
         error[i] += err / float(cnt)
     steps[i] /= float(xcs.PERF_TRIALS)
