@@ -200,8 +200,7 @@ typedef struct XCSF {
     double *prev_state; //!< Environment state on the previous step in a multi-step trial.
 
     // set by environment
-    int stage; //!< Current stage of training
-    _Bool train; //!< Training or test mode
+    _Bool explore; //!< Whether the system is currently exploring or exploiting
     int x_dim; //!< Number of problem input variables
     int y_dim; //!< Number of problem output variables
     int n_actions; //!< Number of class labels / actions

@@ -92,7 +92,7 @@ void param_set_pred_hidden_activation(XCSF *xcsf, int a);
 void param_set_ea_subsumption(XCSF *xcsf, _Bool a);
 void param_set_set_subsumption(XCSF *xcsf, _Bool a);
 void param_set_theta_sub(XCSF *xcsf, int a);
-void param_set_train(XCSF *xcsf, _Bool a);
+void param_set_explore(XCSF *xcsf, _Bool a);
 void param_set_x_dim(XCSF *xcsf, int a);
 void param_set_y_dim(XCSF *xcsf, int a);
 void param_set_n_actions(XCSF *xcsf, int a);

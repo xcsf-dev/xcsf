@@ -85,7 +85,7 @@ void neural_layer_noise_rand(const XCSF *xcsf, const LAYER *l)
 
 void neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
-    if(!xcsf->train) {
+    if(!xcsf->explore) {
         for(int i = 0; i < l->n_inputs; i++) {
             l->output[i] = input[i];
         }

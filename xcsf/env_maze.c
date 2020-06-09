@@ -136,7 +136,7 @@ void env_maze_reset(const XCSF *xcsf)
         env->ypos = irand_uniform(0, env->ysize);
     } while(env->maze[env->ypos][env->xpos] != '*');
 
-    if(MAZE_DEBUG && !xcsf->train) {
+    if(MAZE_DEBUG && !xcsf->explore) {
         printf("------------\n");
         env_maze_print(xcsf);
     }
@@ -240,7 +240,7 @@ double env_maze_execute(const XCSF *xcsf, int action)
             printf("invalid maze type\n");
             exit(EXIT_FAILURE);
     }
-    if(MAZE_DEBUG && !xcsf->train) {
+    if(MAZE_DEBUG && !xcsf->explore) {
         env_maze_print(xcsf);
     }
     return reward;

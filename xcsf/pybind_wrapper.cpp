@@ -157,7 +157,7 @@ class XCS
         {
             py::buffer_info buf = input.request();
             state = (double *) buf.ptr;
-            param_set_train(&xcs, explore);
+            param_set_explore(&xcs, explore);
             action = xcs_rl_decision(&xcs, state);
             return action;
         }

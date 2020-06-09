@@ -76,7 +76,7 @@ double xcs_rl_exp(XCSF *xcsf)
 static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
 {
     env_reset(xcsf);
-    param_set_train(xcsf, explore);
+    param_set_explore(xcsf, explore);
     xcs_rl_init_trial(xcsf);
     *error = 0; // mean prediction error over all steps taken
     double reward = 0;
@@ -175,7 +175,7 @@ void xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward, _
         double payoff = xcsf->prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
         clset_validate(&xcsf->prev_aset);
         clset_update(xcsf, &xcsf->prev_aset, xcsf->prev_state, &payoff, false);
-        if(xcsf->train) {
+        if(xcsf->explore) {
             ea(xcsf, &xcsf->prev_aset);
         }
     }
@@ -183,7 +183,7 @@ void xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward, _
     if(reset) {
         clset_validate(&xcsf->aset);
         clset_update(xcsf, &xcsf->aset, state, &reward, true);
-        if(xcsf->train) {
+        if(xcsf->explore) {
             ea(xcsf, &xcsf->aset);
         }
     }
@@ -222,7 +222,7 @@ int xcs_rl_decision(XCSF *xcsf, const double *state)
 {
     clset_match(xcsf, state);
     pa_build(xcsf, state);
-    if(xcsf->train && rand_uniform(0,1) < xcsf->P_EXPLORE) {
+    if(xcsf->explore && rand_uniform(0,1) < xcsf->P_EXPLORE) {
         return pa_rand_action(xcsf);
     }
     return pa_best_action(xcsf);

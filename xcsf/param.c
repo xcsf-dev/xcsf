@@ -134,7 +134,7 @@ size_t param_save(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
     s += fwrite(&xcsf->msetsize, sizeof(double), 1, fp);
     s += fwrite(&xcsf->mfrac, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->train, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->explore, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->n_actions, sizeof(int), 1, fp);
@@ -161,7 +161,7 @@ size_t param_load(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->time, sizeof(int), 1, fp);
     s += fread(&xcsf->msetsize, sizeof(double), 1, fp);
     s += fread(&xcsf->mfrac, sizeof(double), 1, fp);
-    s += fread(&xcsf->train, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->explore, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->n_actions, sizeof(int), 1, fp);
@@ -1468,9 +1468,9 @@ void param_set_x_dim(XCSF *xcsf, int a)
     }
 }
 
-void param_set_train(XCSF *xcsf, _Bool a)
+void param_set_explore(XCSF *xcsf, _Bool a)
 {
-    xcsf->train = a;
+    xcsf->explore = a;
 }
 
 void param_set_y_dim(XCSF *xcsf, int a)
