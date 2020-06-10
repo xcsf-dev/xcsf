@@ -40,7 +40,7 @@ static CL *ea_select_tournament(const XCSF *xcsf, const SET *set);
 static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set);
 static void ea_select_parents(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p);
 static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2,
-    _Bool cmod);
+                              _Bool cmod);
 static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod);
 
 /**
@@ -93,7 +93,7 @@ void ea(XCSF *xcsf, const SET *set)
  * @param cmod Whether crossover modified the offspring.
  */
 static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2,
-    _Bool cmod)
+                              _Bool cmod)
 {
     if(cmod) {
         c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err) / 2.0);
@@ -227,7 +227,7 @@ static CL *ea_select_tournament(const XCSF *xcsf, const SET *set)
     while(winner == NULL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             if((rand_uniform(0, 1) < xcsf->EA_SELECT_SIZE) &&
-                (winner == NULL || iter->cl->fit > winner->fit)) {
+                    (winner == NULL || iter->cl->fit > winner->fit)) {
                 winner = iter->cl;
             }
         }

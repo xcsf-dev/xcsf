@@ -24,6 +24,6 @@
 #pragma once
 
 double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
-    const INPUT *test_data, _Bool shuffle);
+                          const INPUT *test_data, _Bool shuffle);
 double xcs_supervised_score(XCSF *xcsf, const INPUT *test_data);
 void xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_samples);

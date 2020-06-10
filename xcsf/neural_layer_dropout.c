@@ -155,7 +155,7 @@ void neural_layer_dropout_print(const XCSF *xcsf, const LAYER *l, _Bool print_we
     (void)xcsf;
     (void)print_weights;
     printf("dropout in = %d, out = %d prob = %f\n",
-        l->n_inputs, l->n_outputs, l->probability);
+           l->n_inputs, l->n_outputs, l->probability);
 }
 
 size_t neural_layer_dropout_save(const XCSF *xcsf, const LAYER *l, FILE *fp)

@@ -25,9 +25,9 @@
 #include <stdlib.h>
 
 static void gemm_nn(int M, int N, int K, double ALPHA,
-    const double *A, int lda,
-    const double *B, int ldb,
-    double *C, int ldc)
+                    const double *A, int lda,
+                    const double *B, int ldb,
+                    double *C, int ldc)
 {
     for(int i = 0; i < M; i++) {
         for(int k = 0; k < K; k++) {
@@ -40,9 +40,9 @@ static void gemm_nn(int M, int N, int K, double ALPHA,
 }
 
 static void gemm_nt(int M, int N, int K, double ALPHA,
-    const double *A, int lda,
-    const double *B, int ldb,
-    double *C, int ldc)
+                    const double *A, int lda,
+                    const double *B, int ldb,
+                    double *C, int ldc)
 {
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {
@@ -56,9 +56,9 @@ static void gemm_nt(int M, int N, int K, double ALPHA,
 }
 
 static void gemm_tn(int M, int N, int K, double ALPHA,
-    const double *A, int lda,
-    const double *B, int ldb,
-    double *C, int ldc)
+                    const double *A, int lda,
+                    const double *B, int ldb,
+                    double *C, int ldc)
 {
     for(int i = 0; i < M; i++) {
         for(int k = 0; k < K; k++) {
@@ -71,9 +71,9 @@ static void gemm_tn(int M, int N, int K, double ALPHA,
 }
 
 static void gemm_tt(int M, int N, int K, double ALPHA,
-    const double *A, int lda,
-    const double *B, int ldb,
-    double *C, int ldc)
+                    const double *A, int lda,
+                    const double *B, int ldb,
+                    double *C, int ldc)
 {
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {
@@ -104,10 +104,10 @@ static void gemm_tt(int M, int N, int K, double ALPHA,
  * @param ldc Leading dimension of a two-dimensional array used to store the matrix C.
  */
 void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
-    const double *A, int lda,
-    const double *B, int ldb,
-    double BETA,
-    double *C, int ldc)
+               const double *A, int lda,
+               const double *B, int ldb,
+               double BETA,
+               double *C, int ldc)
 {
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {

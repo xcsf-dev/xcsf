@@ -274,7 +274,7 @@ void cl_print(const XCSF *xcsf, const CL *c, _Bool printc, _Bool printa, _Bool p
         printf("\n");
     }
     printf("err=%f fit=%f num=%d exp=%d size=%f time=%d age=%d mfrac=%f\n",
-        c->err, c->fit, c->num, c->exp, c->size, c->time, c->age, cl_mfrac(xcsf, c));
+           c->err, c->fit, c->num, c->exp, c->size, c->time, c->age, cl_mfrac(xcsf, c));
 }
 
 /**

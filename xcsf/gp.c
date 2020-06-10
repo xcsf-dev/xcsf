@@ -293,7 +293,7 @@ _Bool tree_mutate(const XCSF *xcsf, GP_TREE *gp)
             // terminals randomly replaced with other terminals
             if(gp->tree[i] >= GP_NUM_FUNC) {
                 gp->tree[i] = irand_uniform(GP_NUM_FUNC,
-                        GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
+                                            GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
             }
             // functions randomly replaced with other functions
             else {

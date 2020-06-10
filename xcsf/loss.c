@@ -106,7 +106,7 @@ double loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
     double error = 0;
     for(int i = 0; i < xcsf->y_dim; i++) {
         error += y[i] * log(fmax(pred[i], DBL_EPSILON)) +
-            (1 - y[i]) * log(fmax((1 - pred[i]), DBL_EPSILON));
+                 (1 - y[i]) * log(fmax((1 - pred[i]), DBL_EPSILON));
     }
     return -error;
 }

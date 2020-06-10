@@ -215,7 +215,7 @@ void rule_neural_act_cover(const XCSF *xcsf, const CL *c, const double *x, int a
     do {
         neural_rand(xcsf, &cond->net);
     } while(!rule_neural_cond_match(xcsf, c, x)
-        && rule_neural_act_compute(xcsf, c, x) != action);
+            && rule_neural_act_compute(xcsf, c, x) != action);
 }
 
 int rule_neural_act_compute(const XCSF *xcsf, const CL *c, const double *x)

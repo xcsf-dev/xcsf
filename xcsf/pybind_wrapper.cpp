@@ -230,7 +230,7 @@ class XCS
         }
 
         double fit(py::array_t<double> train_X, py::array_t<double> train_Y,
-            py::array_t<double> test_X, py::array_t<double> test_Y, _Bool shuffle)
+                   py::array_t<double> test_X, py::array_t<double> test_Y, _Bool shuffle)
         {
             py::buffer_info buf_train_x = train_X.request();
             py::buffer_info buf_train_y = train_Y.request();
@@ -1094,7 +1094,7 @@ PYBIND11_MODULE(xcsf, m)
     random_init();
     double (XCS::*fit1)(py::array_t<double>, py::array_t<double>, _Bool) = &XCS::fit;
     double (XCS::*fit2)(py::array_t<double>, py::array_t<double>,
-        py::array_t<double>, py::array_t<double>, _Bool) = &XCS::fit;
+                        py::array_t<double>, py::array_t<double>, _Bool) = &XCS::fit;
     py::class_<XCS>(m, "XCS")
     .def(py::init<int, int>())
     .def(py::init<int, int, _Bool>())
@@ -1149,28 +1149,28 @@ PYBIND11_MODULE(xcsf, m)
     .def_property("COND_EVOLVE_WEIGHTS", &XCS::get_cond_evolve_weights, &XCS::set_cond_evolve_weights)
     .def_property("COND_EVOLVE_NEURONS", &XCS::get_cond_evolve_neurons, &XCS::set_cond_evolve_neurons)
     .def_property("COND_EVOLVE_FUNCTIONS", &XCS::get_cond_evolve_functions,
-        &XCS::set_cond_evolve_functions)
+                  &XCS::set_cond_evolve_functions)
     .def_property("COND_EVOLVE_CONNECTIVITY", &XCS::get_cond_evolve_connectivity,
-        &XCS::set_cond_evolve_connectivity)
+                  &XCS::set_cond_evolve_connectivity)
     .def_property("COND_NUM_NEURONS", &XCS::get_cond_num_neurons, &XCS::set_cond_num_neurons)
     .def_property("COND_MAX_NEURONS", &XCS::get_cond_max_neurons, &XCS::set_cond_max_neurons)
     .def_property("COND_OUTPUT_ACTIVATION", &XCS::get_cond_output_activation,
-        &XCS::set_cond_output_activation)
+                  &XCS::set_cond_output_activation)
     .def_property("COND_HIDDEN_ACTIVATION", &XCS::get_cond_hidden_activation,
-        &XCS::set_cond_hidden_activation)
+                  &XCS::set_cond_hidden_activation)
     .def_property("PRED_NUM_NEURONS", &XCS::get_pred_num_neurons, &XCS::set_pred_num_neurons)
     .def_property("PRED_MAX_NEURONS", &XCS::get_pred_max_neurons, &XCS::set_pred_max_neurons)
     .def_property("PRED_OUTPUT_ACTIVATION", &XCS::get_pred_output_activation,
-        &XCS::set_pred_output_activation)
+                  &XCS::set_pred_output_activation)
     .def_property("PRED_HIDDEN_ACTIVATION", &XCS::get_pred_hidden_activation,
-        &XCS::set_pred_hidden_activation)
+                  &XCS::set_pred_hidden_activation)
     .def_property("PRED_MOMENTUM", &XCS::get_pred_momentum, &XCS::set_pred_momentum)
     .def_property("PRED_EVOLVE_WEIGHTS", &XCS::get_pred_evolve_weights, &XCS::set_pred_evolve_weights)
     .def_property("PRED_EVOLVE_NEURONS", &XCS::get_pred_evolve_neurons, &XCS::set_pred_evolve_neurons)
     .def_property("PRED_EVOLVE_FUNCTIONS", &XCS::get_pred_evolve_functions,
-        &XCS::set_pred_evolve_functions)
+                  &XCS::set_pred_evolve_functions)
     .def_property("PRED_EVOLVE_CONNECTIVITY", &XCS::get_pred_evolve_connectivity,
-        &XCS::set_pred_evolve_connectivity)
+                  &XCS::set_pred_evolve_connectivity)
     .def_property("PRED_EVOLVE_ETA", &XCS::get_pred_evolve_eta, &XCS::set_pred_evolve_eta)
     .def_property("PRED_SGD_WEIGHTS", &XCS::get_pred_sgd_weights, &XCS::set_pred_sgd_weights)
     .def_property("PRED_RESET", &XCS::get_pred_reset, &XCS::set_pred_reset)
@@ -1185,7 +1185,7 @@ PYBIND11_MODULE(xcsf, m)
     .def_property("PRED_ETA", &XCS::get_pred_eta, &XCS::set_pred_eta)
     .def_property("PRED_X0", &XCS::get_pred_x0, &XCS::set_pred_x0)
     .def_property("PRED_RLS_SCALE_FACTOR", &XCS::get_pred_rls_scale_factor,
-        &XCS::set_pred_rls_scale_factor)
+                  &XCS::set_pred_rls_scale_factor)
     .def_property("PRED_RLS_LAMBDA", &XCS::get_pred_rls_lambda, &XCS::set_pred_rls_lambda)
     .def_property("THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub)
     .def_property("EA_SUBSUMPTION", &XCS::get_ea_subsumption, &XCS::set_ea_subsumption)

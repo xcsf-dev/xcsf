@@ -111,7 +111,7 @@ void neural_layer_softmax_print(const XCSF *xcsf, const LAYER *l, _Bool print_we
     (void)xcsf;
     (void)print_weights;
     printf("softmax in = %d, out = %d, temp = %f\n",
-        l->n_inputs, l->n_outputs, l->scale);
+           l->n_inputs, l->n_outputs, l->scale);
 }
 
 _Bool neural_layer_softmax_mutate(const XCSF *xcsf, LAYER *l)

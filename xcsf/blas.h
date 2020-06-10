@@ -24,10 +24,10 @@
 #pragma once
 
 void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
-    const double *A, int lda,
-    const double *B, int ldb,
-    double BETA,
-    double *C, int ldc);
+               const double *A, int lda,
+               const double *B, int ldb,
+               double BETA,
+               double *C, int ldc);
 
 void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY);
 void blas_scal(int N, double ALPHA, double *X, int INCX);

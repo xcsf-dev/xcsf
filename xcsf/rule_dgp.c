@@ -170,7 +170,7 @@ void rule_dgp_act_cover(const XCSF *xcsf, const CL *c, const double *x, int acti
     do {
         graph_rand(xcsf, &cond->dgp);
     } while(!rule_dgp_cond_match(xcsf, c, x)
-        && rule_dgp_act_compute(xcsf, c, x) != action);
+            && rule_dgp_act_compute(xcsf, c, x) != action);
 }
 
 int rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x)
