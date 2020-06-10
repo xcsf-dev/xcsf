@@ -157,7 +157,7 @@ _Bool cond_ternary_mutate(const XCSF *xcsf, const CL *c)
     for(int i = 0; i < cond->length; i++) {
         if(rand_uniform(0, 1) < cond->mu[0]) {
             if(cond->string[i] == DONT_CARE) {
-                cond->string[i] = irand_uniform(0, 2) + '0';
+                cond->string[i] = (char) irand_uniform(0, 2) + '0';
             } else {
                 cond->string[i] = DONT_CARE;
             }
