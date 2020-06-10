@@ -41,7 +41,7 @@ size_t cl_save(const XCSF *xcsf, const CL *c, FILE *fp);
 void cl_copy(const XCSF *xcsf, CL *dest, const CL *src);
 void cl_cover(const XCSF *xcsf, CL *c, const double *x, int action);
 void cl_free(const XCSF *xcsf, CL *c);
-void cl_init(const XCSF *xcsf, CL *c, int size, int time);
+void cl_init(const XCSF *xcsf, CL *c, double size, int time);
 void cl_print(const XCSF *xcsf, const CL *c, _Bool printc, _Bool printa, _Bool printp);
 void cl_rand(const XCSF *xcsf, CL *c);
 void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int set_num, _Bool cur);

@@ -44,7 +44,7 @@ static void cl_update_size(const XCSF *xcsf, CL *c, int num_sum);
  * @param size The initial set size value.
  * @param time The current number of XCSF learning trials.
  */
-void cl_init(const XCSF *xcsf, CL *c, int size, int time)
+void cl_init(const XCSF *xcsf, CL *c, double size, int time)
 {
     c->fit = xcsf->INIT_FITNESS;
     c->err = xcsf->INIT_ERROR;
