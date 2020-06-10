@@ -41,7 +41,8 @@ void cond_ellipsoid_cover(const XCSF *xcsf, const CL *c, const double *x);
 void cond_ellipsoid_free(const XCSF *xcsf, const CL *c);
 void cond_ellipsoid_init(const XCSF *xcsf, CL *c);
 void cond_ellipsoid_print(const XCSF *xcsf, const CL *c);
-void cond_ellipsoid_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
+void cond_ellipsoid_update(const XCSF *xcsf, const CL *c, const double *x,
+                           const double *y);
 int cond_ellipsoid_size(const XCSF *xcsf, const CL *c);
 size_t cond_ellipsoid_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t cond_ellipsoid_load(const XCSF *xcsf, CL *c, FILE *fp);

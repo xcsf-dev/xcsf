@@ -39,9 +39,11 @@ static CL *ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum);
 static CL *ea_select_tournament(const XCSF *xcsf, const SET *set);
 static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set);
 static void ea_select_parents(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p);
-static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2,
+static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1,
+                              CL *c2,
                               _Bool cmod);
-static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod);
+static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod,
+                   _Bool mmod);
 
 /**
  * @brief Executes the evolutionary algorithm (EA).
@@ -92,7 +94,8 @@ void ea(XCSF *xcsf, const SET *set)
  * @param c2 The second offspring classifier to initialise.
  * @param cmod Whether crossover modified the offspring.
  */
-static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2,
+static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1,
+                              CL *c2,
                               _Bool cmod)
 {
     if(cmod) {
@@ -120,7 +123,8 @@ static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL
  * @param cmod Whether crossover modified the offspring.
  * @param mmod Whether mutation modified the offspring.
  */
-static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod)
+static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod,
+                   _Bool mmod)
 {
     if(!cmod && !mmod) {
         c1p->num++;

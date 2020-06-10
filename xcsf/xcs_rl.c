@@ -166,7 +166,8 @@ void xcs_rl_end_step(XCSF *xcsf, const double *state, int action, double reward)
  * @param reward The reward from performing the action.
  * @param reset Whether the environment is in the reset state.
  */
-void xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward, _Bool reset)
+void xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward,
+                   _Bool reset)
 {
     // create action set
     clset_action(xcsf, action);
@@ -198,7 +199,8 @@ void xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward, _
  * @param max_p The maximum payoff in the environment.
  * @return The prediction error.
  */
-double xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset, double max_p)
+double xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset,
+                    double max_p)
 {
     double error = 0;
     if(xcsf->prev_aset.list != NULL) {

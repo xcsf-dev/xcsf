@@ -175,7 +175,8 @@ static inline void act_print(const XCSF *xcsf, const CL *c)
  * @param x The input state.
  * @param y The payoff value.
  */
-static inline void act_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+static inline void act_update(const XCSF *xcsf, const CL *c, const double *x,
+                              const double *y)
 {
     (*c->act_vptr->act_impl_update)(xcsf, c, x, y);
 }

@@ -114,7 +114,8 @@ void rule_neural_cond_cover(const XCSF *xcsf, const CL *c, const double *x)
     (void)x;
 }
 
-void rule_neural_cond_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+void rule_neural_cond_update(const XCSF *xcsf, const CL *c, const double *x,
+                             const double *y)
 {
     (void)xcsf;
     (void)c;
@@ -232,7 +233,8 @@ int rule_neural_act_compute(const XCSF *xcsf, const CL *c, const double *x)
     return action;
 }
 
-void rule_neural_act_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+void rule_neural_act_update(const XCSF *xcsf, const CL *c, const double *x,
+                            const double *y)
 {
     (void)xcsf;
     (void)c;

@@ -37,7 +37,8 @@
 #include "xcs_supervised.h"
 
 static int xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle);
-static void xcs_supervised_trial(XCSF *xcsf, double *pred, const double *x, const double *y);
+static void xcs_supervised_trial(XCSF *xcsf, double *pred, const double *x,
+                                 const double *y);
 
 /**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
@@ -138,7 +139,8 @@ static int xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle)
  * @param x The feature variables.
  * @param y The labelled variables.
  */
-static void xcs_supervised_trial(XCSF *xcsf, double *pred, const double *x, const double *y)
+static void xcs_supervised_trial(XCSF *xcsf, double *pred, const double *x,
+                                 const double *y)
 {
     clset_init(&xcsf->mset);
     clset_init(&xcsf->kset);

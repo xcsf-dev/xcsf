@@ -109,7 +109,8 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
         }
     }
     // tmp_matrix2 = tmp_matrix1 * pred_matrix
-    blas_gemm(0, 0, n, n, n, 1, pred->tmp_matrix1, n, pred->matrix, n, 0, pred->tmp_matrix2, n);
+    blas_gemm(0, 0, n, n, n, 1, pred->tmp_matrix1, n, pred->matrix, n, 0, pred->tmp_matrix2,
+              n);
     // divide gain matrix entries by lambda
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {

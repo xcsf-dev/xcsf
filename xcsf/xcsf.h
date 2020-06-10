@@ -206,7 +206,8 @@ typedef struct XCSF {
     int x_dim; //!< Number of problem input variables
     int y_dim; //!< Number of problem output variables
     int n_actions; //!< Number of class labels / actions
-    double (*loss_ptr)(const struct XCSF *, const double *, const double *); //!< Error function
+    double (*loss_ptr)(const struct XCSF *, const double *,
+                       const double *); //!< Error function
 } XCSF;
 
 /**

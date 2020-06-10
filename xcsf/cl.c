@@ -175,7 +175,8 @@ double cl_acc(const XCSF *xcsf, const CL *c)
  * @param set_num The number of micro-classifiers in the set.
  * @param cur Whether the payoff is for the current or previous state.
  */
-void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int set_num, _Bool cur)
+void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int set_num,
+               _Bool cur)
 {
     c->exp++;
     // propagate inputs for the previous state update

@@ -87,7 +87,8 @@ static inline int cond_size(const XCSF *xcsf, const CL *c)
  * @param x The input state.
  * @param y The payoff value.
  */
-static inline void cond_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+static inline void cond_update(const XCSF *xcsf, const CL *c, const double *x,
+                               const double *y)
 {
     (*c->cond_vptr->cond_impl_update)(xcsf, c, x, y);
 }

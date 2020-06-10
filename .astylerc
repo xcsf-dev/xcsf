@@ -16,7 +16,7 @@ indent-preproc-define
 indent-switches
 indent=spaces=4
 lineend=linux
-max-code-length=100
+max-code-length=90
 max-continuation-indent=40
 min-conditional-indent=2
 pad-comma

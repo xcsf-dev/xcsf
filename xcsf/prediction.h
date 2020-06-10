@@ -161,7 +161,8 @@ static inline void pred_print(const XCSF *xcsf, const CL *c)
  * @param x The input state.
  * @param y The payoff value.
  */
-static inline void pred_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+static inline void pred_update(const XCSF *xcsf, const CL *c, const double *x,
+                               const double *y)
 {
     (*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
 }
@@ -172,7 +173,8 @@ static inline void pred_update(const XCSF *xcsf, const CL *c, const double *x, c
  * @param x The input state.
  * @param tmp_input The transformed input (set by this function).
  */
-static inline void pred_transform_input(const XCSF *xcsf, const double *x, double *tmp_input)
+static inline void pred_transform_input(const XCSF *xcsf, const double *x,
+                                        double *tmp_input)
 {
     // bias term
     tmp_input[0] = xcsf->PRED_X0;

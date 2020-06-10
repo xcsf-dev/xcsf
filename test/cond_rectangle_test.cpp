@@ -62,8 +62,8 @@ TEST_CASE("COND_RECTANGLE")
     const double false_center[5] = { 0.8992419107, 0.5587937197,
                                      0.6346787906, 0.0464343089, 0.4214295062
                                    };
-    const double false_spread[5] = { 0.9658827122, 0.7107445754,
-                                     0.7048862747, 0.1036188594, 0.4501471722
+    const double false_spread[5] = { 0.9658827122, 0.7107445754, 0.7048862747,
+                                     0.1036188594, 0.4501471722
                                    };
     /* test for true match condition */
     COND_RECTANGLE *p = (COND_RECTANGLE *) c.cond;

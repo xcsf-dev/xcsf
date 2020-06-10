@@ -347,7 +347,8 @@ double neural_output(const XCSF *xcsf, const NET *net, int i)
     if(i < net->n_outputs) {
         return layer_output(xcsf, net->head->layer)[i];
     }
-    printf("neural_output(): requested (%d) in output layer of size (%d)\n", i, net->n_outputs);
+    printf("neural_output(): requested (%d) in output layer of size (%d)\n", i,
+           net->n_outputs);
     exit(EXIT_FAILURE);
 }
 

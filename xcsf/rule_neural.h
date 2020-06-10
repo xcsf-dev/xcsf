@@ -40,7 +40,8 @@ void rule_neural_cond_cover(const XCSF *xcsf, const CL *c, const double *x);
 void rule_neural_cond_free(const XCSF *xcsf, const CL *c);
 void rule_neural_cond_init(const XCSF *xcsf, CL *c);
 void rule_neural_cond_print(const XCSF *xcsf, const CL *c);
-void rule_neural_cond_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
+void rule_neural_cond_update(const XCSF *xcsf, const CL *c, const double *x,
+                             const double *y);
 int rule_neural_cond_size(const XCSF *xcsf, const CL *c);
 size_t rule_neural_cond_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t rule_neural_cond_load(const XCSF *xcsf, CL *c, FILE *fp);
@@ -73,7 +74,8 @@ void rule_neural_act_cover(const XCSF *xcsf, const CL *c, const double *x, int a
 void rule_neural_act_free(const XCSF *xcsf, const CL *c);
 void rule_neural_act_init(const XCSF *xcsf, CL *c);
 void rule_neural_act_print(const XCSF *xcsf, const CL *c);
-void rule_neural_act_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
+void rule_neural_act_update(const XCSF *xcsf, const CL *c, const double *x,
+                            const double *y);
 size_t rule_neural_act_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t rule_neural_act_load(const XCSF *xcsf, CL *c, FILE *fp);
 

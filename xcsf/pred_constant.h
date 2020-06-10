@@ -33,7 +33,8 @@ void pred_constant_copy(const XCSF *xcsf, CL *dest, const CL *src);
 void pred_constant_free(const XCSF *xcsf, const CL *c);
 void pred_constant_init(const XCSF *xcsf, CL *c);
 void pred_constant_print(const XCSF *xcsf, const CL *c);
-void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
+void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x,
+                          const double *y);
 
 /**
  * @brief Constant prediction implemented functions.

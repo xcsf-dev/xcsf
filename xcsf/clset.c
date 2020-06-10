@@ -579,7 +579,8 @@ void clset_validate(SET *set)
  * @param printa Whether to print the actions.
  * @param printp Whether to print the predictions.
  */
-void clset_print(const XCSF *xcsf, const SET *set, _Bool printc, _Bool printa, _Bool printp)
+void clset_print(const XCSF *xcsf, const SET *set, _Bool printc, _Bool printa,
+                 _Bool printp)
 {
     for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         cl_print(xcsf, iter->cl, printc, printa, printp);
