@@ -48,7 +48,6 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu);
 static _Bool mutate_weights(const LAYER *l, double mu);
 static _Bool mutate_functions(LAYER *l, double mu);
 static void neuron_add(LAYER *l, int n);
-static void neuron_remove(LAYER *l, int n);
 static void weight_clamp(const LAYER *l);
 
 LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
@@ -296,7 +295,7 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu)
                 n = l->n_outputs - 1;
             }
             if(n > 0) {
-                neuron_remove(l, n);
+                neuron_add(l, -n);
                 mod = true;
             }
         }
@@ -319,51 +318,6 @@ static void neuron_add(LAYER *l, int n)
     l->n_outputs += n;
     int n_weights = l->n_outputs * l->n_inputs;
     double *weights = malloc(n_weights * sizeof(double));
-    double *weight_updates = malloc(n_weights * sizeof(double));
-    _Bool *weight_active = malloc(n_weights * sizeof(_Bool));
-    double *state = calloc(l->n_outputs, sizeof(double));
-    double *output = calloc(l->n_outputs, sizeof(double));
-    double *biases = malloc(l->n_outputs * sizeof(double));
-    double *bias_updates = malloc(l->n_outputs * sizeof(double));
-    double *delta = calloc(l->n_outputs, sizeof(double));
-    memcpy(weights, l->weights, l->n_weights * sizeof(double));
-    memcpy(weight_active, l->weight_active, l->n_weights * sizeof(_Bool));
-    memcpy(weight_updates, l->weight_updates, l->n_weights * sizeof(double));
-    for(int i = l->n_weights; i < n_weights; i++) {
-        weights[i] = rand_normal(0, 0.1);
-        weight_updates[i] = 0;
-        weight_active[i] = true;
-    }
-    memcpy(biases, l->biases, (l->n_outputs - n) * sizeof(double));
-    memcpy(bias_updates, l->bias_updates, (l->n_outputs - n) * sizeof(double));
-    for(int i = l->n_outputs - n; i < l->n_outputs; i++) {
-        biases[i] = 0;
-        bias_updates[i] = 0;
-    }
-    free(l->weights);
-    free(l->weight_active);
-    free(l->weight_updates);
-    free(l->state);
-    free(l->output);
-    free(l->biases);
-    free(l->bias_updates);
-    free(l->delta);
-    l->weights = weights;
-    l->weight_active = weight_active;
-    l->weight_updates = weight_updates;
-    l->state = state;
-    l->output = output;
-    l->biases = biases;
-    l->bias_updates = bias_updates;
-    l->delta = delta;
-    l->n_weights = n_weights;
-}
-
-static void neuron_remove(LAYER *l, int n)
-{
-    l->n_outputs -= n;
-    int n_weights = l->n_outputs * l->n_inputs;
-    double *weights = malloc(n_weights * sizeof(double));
     _Bool *weight_active = malloc(n_weights * sizeof(_Bool));
     double *weight_updates = malloc(n_weights * sizeof(double));
     double *state = calloc(l->n_outputs, sizeof(double));
@@ -371,11 +325,28 @@ static void neuron_remove(LAYER *l, int n)
     double *biases = malloc(l->n_outputs * sizeof(double));
     double *bias_updates = malloc(l->n_outputs * sizeof(double));
     double *delta = calloc(l->n_outputs, sizeof(double));
-    memcpy(weights, l->weights, n_weights * sizeof(double));
-    memcpy(weight_active, l->weight_active, n_weights * sizeof(_Bool));
-    memcpy(weight_updates, l->weight_updates, n_weights * sizeof(double));
-    memcpy(biases, l->biases, l->n_outputs * sizeof(double));
-    memcpy(bias_updates, l->bias_updates, l->n_outputs * sizeof(double));
+    double w_len = n_weights;
+    double o_len = l->n_outputs;
+    if(n > 0) {
+        w_len = l->n_weights;
+        o_len = l->n_outputs - n;
+    }
+    memcpy(weights, l->weights, w_len * sizeof(double));
+    memcpy(weight_active, l->weight_active, w_len * sizeof(_Bool));
+    memcpy(weight_updates, l->weight_updates, w_len * sizeof(double));
+    memcpy(biases, l->biases, o_len * sizeof(double));
+    memcpy(bias_updates, l->bias_updates, o_len * sizeof(double));
+    if(n > 0) {
+        for(int i = l->n_weights; i < n_weights; i++) {
+            weights[i] = rand_normal(0, 0.1);
+            weight_updates[i] = 0;
+            weight_active[i] = true;
+        }
+        for(int i = l->n_outputs - n; i < l->n_outputs; i++) {
+            biases[i] = 0;
+            bias_updates[i] = 0;
+        }
+    }
     free(l->weights);
     free(l->weight_active);
     free(l->weight_updates);
