@@ -36,13 +36,14 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-#define N_MU 4 //!< Number of mutation rates applied
+#define N_MU 5 //!< Number of mutation rates applied
 #define ETA_MAX 0.1 //!< Maximum gradient descent rate
 #define ETA_MIN 0.0001 //!< Minimum gradient descent rate
 #define WEIGHT_MIN -10 //!< Minimum value of a weight or bias
 #define WEIGHT_MAX  10 //!< Maximum value of a weight or bias
 
 static _Bool mutate_eta(LAYER *l, double mu);
+static _Bool mutate_connectivity(const LAYER *l, double mu);
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu);
 static _Bool mutate_weights(const LAYER *l, double mu);
 static _Bool mutate_functions(LAYER *l, double mu);
@@ -56,6 +57,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
+    l->options = o;
     l->function = f;
     l->n_inputs = in;
     l->n_outputs = n_init;
@@ -67,11 +69,17 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->bias_updates = calloc(l->n_outputs, sizeof(double));
     l->weight_updates = calloc(l->n_weights, sizeof(double));
     l->delta = calloc(l->n_outputs, sizeof(double));
+    l->weight_active = malloc(l->n_weights * sizeof(_Bool));
     l->weights = malloc(l->n_weights * sizeof(double));
     for(int i = 0; i < l->n_weights; i++) {
-        l->weights[i] = rand_normal(0, 0.1);
+        if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
+            l->weights[i] = 0;
+            l->weight_active[i] = false;
+        } else {
+            l->weights[i] = rand_normal(0, 0.1);
+            l->weight_active[i] = true;
+        }
     }
-    l->options = o;
     if(l->options & LAYER_EVOLVE_ETA) {
         l->eta = rand_uniform(ETA_MIN, ETA_MAX);
     } else {
@@ -96,12 +104,14 @@ LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *src)
     l->state = calloc(src->n_outputs, sizeof(double));
     l->output = calloc(src->n_outputs, sizeof(double));
     l->biases = malloc(src->n_outputs * sizeof(double));
+    memcpy(l->biases, src->biases, src->n_outputs * sizeof(double));
     l->bias_updates = calloc(src->n_outputs, sizeof(double));
     l->weight_updates = calloc(src->n_weights, sizeof(double));
     l->delta = calloc(src->n_outputs, sizeof(double));
     l->weights = malloc(src->n_weights * sizeof(double));
     memcpy(l->weights, src->weights, src->n_weights * sizeof(double));
-    memcpy(l->biases, src->biases, src->n_outputs * sizeof(double));
+    l->weight_active = malloc(src->n_weights * sizeof(_Bool));
+    memcpy(l->weight_active, src->weight_active, src->n_weights * sizeof(_Bool));
     l->options = src->options;
     l->eta = src->eta;
     l->mu = malloc(N_MU * sizeof(double));
@@ -119,6 +129,7 @@ void neural_layer_connected_free(const XCSF *xcsf, const LAYER *l)
     free(l->bias_updates);
     free(l->weight_updates);
     free(l->delta);
+    free(l->weight_active);
     free(l->mu);
 }
 
@@ -126,7 +137,13 @@ void neural_layer_connected_rand(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
     for(int i = 0; i < l->n_weights; i++) {
-        l->weights[i] = rand_normal(0, 1);
+        if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
+            l->weights[i] = 0;
+            l->weight_active[i] = false;
+        } else {
+            l->weights[i] = rand_normal(0, 1);
+            l->weight_active[i] = true;
+        }
     }
     for(int i = 0; i < l->n_outputs; i++) {
         l->biases[i] = rand_normal(0, 1);
@@ -191,7 +208,11 @@ void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
 static void weight_clamp(const LAYER *l)
 {
     for(int i = 0; i < l->n_weights; i++) {
-        l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
+        if(l->weight_active[i]) {
+            l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
+        } else {
+            l->weights[i] = 0;
+        }
     }
     for(int i = 0; i < l->n_outputs; i++) {
         l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
@@ -204,6 +225,7 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
     int n_weights = prev->n_outputs * l->n_outputs;
     double *weights = malloc(n_weights * sizeof(double));
     double *weight_updates = malloc(n_weights * sizeof(double));
+    _Bool *weight_active = malloc(n_weights * sizeof(_Bool));
     for(int i = 0; i < l->n_outputs; i++) {
         int orig_offset = i * l->n_inputs;
         int offset = i * prev->n_outputs;
@@ -211,16 +233,20 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
             if(j < l->n_inputs) {
                 weights[offset + j] = l->weights[orig_offset + j];
                 weight_updates[offset + j] = l->weight_updates[orig_offset + j];
+                weight_active[offset + j] = l->weight_active[orig_offset + j];
             } else {
-                weights[offset + j] = rand_normal(0, 0.1);
                 weight_updates[offset + j] = 0;
+                weights[offset + j] = rand_normal(0, 0.1);
+                weight_active[offset + j] = true;
             }
         }
     }
     free(l->weights);
     free(l->weight_updates);
+    free(l->weight_active);
     l->weights = weights;
     l->weight_updates = weight_updates;
+    l->weight_active = weight_active;
     l->n_weights = n_weights;
     l->n_inputs = prev->n_outputs;
 }
@@ -235,10 +261,13 @@ _Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
     if((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l, l->mu[1])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(l, l->mu[2])) {
+    if((l->options & LAYER_EVOLVE_CONNECT) && mutate_connectivity(l, l->mu[2])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_FUNCTIONS) && mutate_functions(l, l->mu[3])) {
+    if((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(l, l->mu[3])) {
+        mod = true;
+    }
+    if((l->options & LAYER_EVOLVE_FUNCTIONS) && mutate_functions(l, l->mu[4])) {
         mod = true;
     }
     return mod;
@@ -291,16 +320,19 @@ static void neuron_add(LAYER *l, int n)
     int n_weights = l->n_outputs * l->n_inputs;
     double *weights = malloc(n_weights * sizeof(double));
     double *weight_updates = malloc(n_weights * sizeof(double));
+    _Bool *weight_active = malloc(n_weights * sizeof(_Bool));
     double *state = calloc(l->n_outputs, sizeof(double));
     double *output = calloc(l->n_outputs, sizeof(double));
     double *biases = malloc(l->n_outputs * sizeof(double));
     double *bias_updates = malloc(l->n_outputs * sizeof(double));
     double *delta = calloc(l->n_outputs, sizeof(double));
     memcpy(weights, l->weights, l->n_weights * sizeof(double));
+    memcpy(weight_active, l->weight_active, l->n_weights * sizeof(_Bool));
     memcpy(weight_updates, l->weight_updates, l->n_weights * sizeof(double));
     for(int i = l->n_weights; i < n_weights; i++) {
         weights[i] = rand_normal(0, 0.1);
         weight_updates[i] = 0;
+        weight_active[i] = true;
     }
     memcpy(biases, l->biases, (l->n_outputs - n) * sizeof(double));
     memcpy(bias_updates, l->bias_updates, (l->n_outputs - n) * sizeof(double));
@@ -309,6 +341,7 @@ static void neuron_add(LAYER *l, int n)
         bias_updates[i] = 0;
     }
     free(l->weights);
+    free(l->weight_active);
     free(l->weight_updates);
     free(l->state);
     free(l->output);
@@ -316,6 +349,7 @@ static void neuron_add(LAYER *l, int n)
     free(l->bias_updates);
     free(l->delta);
     l->weights = weights;
+    l->weight_active = weight_active;
     l->weight_updates = weight_updates;
     l->state = state;
     l->output = output;
@@ -330,6 +364,7 @@ static void neuron_remove(LAYER *l, int n)
     l->n_outputs -= n;
     int n_weights = l->n_outputs * l->n_inputs;
     double *weights = malloc(n_weights * sizeof(double));
+    _Bool *weight_active = malloc(n_weights * sizeof(_Bool));
     double *weight_updates = malloc(n_weights * sizeof(double));
     double *state = calloc(l->n_outputs, sizeof(double));
     double *output = calloc(l->n_outputs, sizeof(double));
@@ -337,10 +372,12 @@ static void neuron_remove(LAYER *l, int n)
     double *bias_updates = malloc(l->n_outputs * sizeof(double));
     double *delta = calloc(l->n_outputs, sizeof(double));
     memcpy(weights, l->weights, n_weights * sizeof(double));
+    memcpy(weight_active, l->weight_active, n_weights * sizeof(_Bool));
     memcpy(weight_updates, l->weight_updates, n_weights * sizeof(double));
     memcpy(biases, l->biases, l->n_outputs * sizeof(double));
     memcpy(bias_updates, l->bias_updates, l->n_outputs * sizeof(double));
     free(l->weights);
+    free(l->weight_active);
     free(l->weight_updates);
     free(l->state);
     free(l->output);
@@ -348,6 +385,7 @@ static void neuron_remove(LAYER *l, int n)
     free(l->bias_updates);
     free(l->delta);
     l->weights = weights;
+    l->weight_active = weight_active;
     l->weight_updates = weight_updates;
     l->state = state;
     l->output = output;
@@ -357,15 +395,34 @@ static void neuron_remove(LAYER *l, int n)
     l->n_weights = n_weights;
 }
 
+static _Bool mutate_connectivity(const LAYER *l, double mu)
+{
+    _Bool mod = false;
+    for(int i = 0; i < l->n_weights; i++) {
+        if(rand_uniform(0, 1) < mu) {
+            l->weight_active[i] = ! l->weight_active[i];
+            if(l->weight_active[i]) {
+                l->weights[i] = rand_normal(0, 0.1);
+            } else {
+                l->weights[i] = 0;
+            }
+            mod = true;
+        }
+    }
+    return mod;
+}
+
 static _Bool mutate_weights(const LAYER *l, double mu)
 {
     _Bool mod = false;
     for(int i = 0; i < l->n_weights; i++) {
-        double orig = l->weights[i];
-        l->weights[i] += rand_normal(0, mu);
-        l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
-        if(l->weights[i] != orig) {
-            mod = true;
+        if(l->weight_active[i]) {
+            double orig = l->weights[i];
+            l->weights[i] += rand_normal(0, mu);
+            l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
+            if(l->weights[i] != orig) {
+                mod = true;
+            }
         }
     }
     for(int i = 0; i < l->n_outputs; i++) {
@@ -429,6 +486,7 @@ size_t neural_layer_connected_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
     s += fwrite(&l->function, sizeof(int), 1, fp);
     s += fwrite(&l->eta, sizeof(double), 1, fp);
     s += fwrite(l->weights, sizeof(double), l->n_weights, fp);
+    s += fwrite(l->weight_active, sizeof(_Bool), l->n_weights, fp);
     s += fwrite(l->biases, sizeof(double), l->n_outputs, fp);
     s += fwrite(l->bias_updates, sizeof(double), l->n_outputs, fp);
     s += fwrite(l->weight_updates, sizeof(double), l->n_weights, fp);
@@ -460,7 +518,9 @@ size_t neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     l->biases = malloc(l->n_outputs * sizeof(double));
     l->bias_updates = malloc(l->n_outputs * sizeof(double));
     l->weight_updates = malloc(l->n_weights * sizeof(double));
+    l->weight_active = malloc(l->n_weights * sizeof(_Bool));
     s += fread(l->weights, sizeof(double), l->n_weights, fp);
+    s += fread(l->weight_active, sizeof(_Bool), l->n_weights, fp);
     s += fread(l->biases, sizeof(double), l->n_outputs, fp);
     s += fread(l->bias_updates, sizeof(double), l->n_outputs, fp);
     s += fread(l->weight_updates, sizeof(double), l->n_weights, fp);

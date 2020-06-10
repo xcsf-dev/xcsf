@@ -79,6 +79,9 @@ static uint32_t cond_neural_lopt(const XCSF *xcsf)
     if(xcsf->COND_EVOLVE_FUNCTIONS) {
         lopt |= LAYER_EVOLVE_FUNCTIONS;
     }
+    if(xcsf->COND_EVOLVE_CONNECTIVITY) {
+        lopt |= LAYER_EVOLVE_CONNECT;
+    }
     return lopt;
 }
 

@@ -97,6 +97,9 @@ static uint32_t pred_neural_lopt(const XCSF *xcsf)
     if(xcsf->PRED_EVOLVE_FUNCTIONS) {
         lopt |= LAYER_EVOLVE_FUNCTIONS;
     }
+    if(xcsf->PRED_EVOLVE_CONNECTIVITY) {
+        lopt |= LAYER_EVOLVE_CONNECT;
+    }
     return lopt;
 }
 

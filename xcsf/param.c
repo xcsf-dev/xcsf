@@ -527,6 +527,7 @@ static void param_defaults_cl_condition(XCSF *xcsf)
     param_set_cond_evolve_weights(xcsf, true);
     param_set_cond_evolve_neurons(xcsf, true);
     param_set_cond_evolve_functions(xcsf, false);
+    param_set_cond_evolve_connectivity(xcsf, false);
     memset(xcsf->COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
     memset(xcsf->COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
     xcsf->COND_NUM_NEURONS[0] = 1;
@@ -561,6 +562,8 @@ static void param_print_cl_condition(const XCSF *xcsf)
     xcsf->COND_EVOLVE_NEURONS == true ? printf("true") : printf("false");
     printf(", COND_EVOLVE_FUNCTIONS=");
     xcsf->COND_EVOLVE_FUNCTIONS == true ? printf("true") : printf("false");
+    printf(", COND_EVOLVE_CONNECTIVITY=");
+    xcsf->COND_EVOLVE_CONNECTIVITY == true ? printf("true") : printf("false");
     printf(", COND_NUM_NEURONS=[");
     for(int i = 0;  i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; i++) {
         printf("%d;", xcsf->COND_NUM_NEURONS[i]);
@@ -601,6 +604,7 @@ static size_t param_save_cl_condition(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->COND_EVOLVE_CONNECTIVITY, sizeof(_Bool), 1, fp);
     s += fwrite(xcsf->COND_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fwrite(xcsf->COND_MAX_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fwrite(&xcsf->COND_OUTPUT_ACTIVATION, sizeof(int), 1, fp);
@@ -641,6 +645,7 @@ static size_t param_load_cl_condition(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->COND_EVOLVE_CONNECTIVITY, sizeof(_Bool), 1, fp);
     s += fread(xcsf->COND_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fread(xcsf->COND_MAX_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fread(&xcsf->COND_OUTPUT_ACTIVATION, sizeof(int), 1, fp);
@@ -664,6 +669,7 @@ static void param_defaults_cl_prediction(XCSF *xcsf)
     param_set_pred_evolve_weights(xcsf, true);
     param_set_pred_evolve_neurons(xcsf, true);
     param_set_pred_evolve_functions(xcsf, false);
+    param_set_pred_evolve_connectivity(xcsf, false);
     param_set_pred_sgd_weights(xcsf, true);
     param_set_pred_momentum(xcsf, 0.9);
     memset(xcsf->PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
@@ -695,6 +701,8 @@ static void param_print_cl_prediction(const XCSF *xcsf)
     xcsf->PRED_EVOLVE_NEURONS == true ? printf("true") : printf("false");
     printf(", PRED_EVOLVE_FUNCTIONS=");
     xcsf->PRED_EVOLVE_FUNCTIONS == true ? printf("true") : printf("false");
+    printf(", PRED_EVOLVE_CONNECTIVITY=");
+    xcsf->PRED_EVOLVE_CONNECTIVITY == true ? printf("true") : printf("false");
     printf(", PRED_SGD_WEIGHTS=");
     xcsf->PRED_SGD_WEIGHTS == true ? printf("true") : printf("false");
     printf(", PRED_MOMENTUM=%f", xcsf->PRED_MOMENTUM);
@@ -731,6 +739,7 @@ static size_t param_save_cl_prediction(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->PRED_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->PRED_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->PRED_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->PRED_EVOLVE_CONNECTIVITY, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->PRED_SGD_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->PRED_MOMENTUM, sizeof(double), 1, fp);
     s += fwrite(xcsf->PRED_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
@@ -759,6 +768,7 @@ static size_t param_load_cl_prediction(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->PRED_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->PRED_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->PRED_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->PRED_EVOLVE_CONNECTIVITY, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->PRED_SGD_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->PRED_MOMENTUM, sizeof(double), 1, fp);
     s += fread(xcsf->PRED_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
@@ -1263,6 +1273,11 @@ void param_set_cond_evolve_functions(XCSF *xcsf, _Bool a)
     xcsf->COND_EVOLVE_FUNCTIONS = a;
 }
 
+void param_set_cond_evolve_connectivity(XCSF *xcsf, _Bool a)
+{
+    xcsf->COND_EVOLVE_CONNECTIVITY = a;
+}
+
 void param_set_cond_output_activation(XCSF *xcsf, int a)
 {
     if(a < 0) {
@@ -1334,6 +1349,11 @@ void param_set_pred_evolve_neurons(XCSF *xcsf, _Bool a)
 void param_set_pred_evolve_functions(XCSF *xcsf, _Bool a)
 {
     xcsf->PRED_EVOLVE_FUNCTIONS = a;
+}
+
+void param_set_pred_evolve_connectivity(XCSF *xcsf, _Bool a)
+{
+    xcsf->PRED_EVOLVE_CONNECTIVITY = a;
 }
 
 void param_set_pred_evolve_eta(XCSF *xcsf, _Bool a)

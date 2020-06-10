@@ -35,6 +35,7 @@
 #define LAYER_EVOLVE_FUNCTIONS  (1<<2)
 #define LAYER_SGD_WEIGHTS       (1<<3)
 #define LAYER_EVOLVE_ETA        (1<<4)
+#define LAYER_EVOLVE_CONNECT    (1<<5)
 
 /**
  * @brief Neural network layer data structure.
@@ -45,6 +46,7 @@ typedef struct LAYER {
     double *output; //!< Current neuron outputs (after activation function)
     uint32_t options; //!< Bitwise layer options permitting weight evolution, etc.
     double *weights; //!< Weights for calculating neuron states
+    _Bool *weight_active; //!< Whether each connection is present in the layer
     double *biases; //!< Biases for calculating neuron states
     double *bias_updates; //!< Updates to biases
     double *weight_updates; //!< Updates to weights

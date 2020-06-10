@@ -159,6 +159,7 @@ typedef struct XCSF {
     _Bool COND_EVOLVE_WEIGHTS; //!< Whether to evolve condition network weights
     _Bool COND_EVOLVE_NEURONS; //!< Whether to evolve number of condition network neurons
     _Bool COND_EVOLVE_FUNCTIONS; //!< Whether to evolve condition network activation functions
+    _Bool COND_EVOLVE_CONNECTIVITY; //!< Whether to evolve condition network connectivity
     int COND_NUM_NEURONS[MAX_LAYERS]; //!< Initial num neurons in each condition hidden layer
     int COND_MAX_NEURONS[MAX_LAYERS]; //!< Max num of neurons in each condition hidden layer
     int COND_OUTPUT_ACTIVATION; //!< Activation function for the condition output layer
@@ -173,6 +174,7 @@ typedef struct XCSF {
     _Bool PRED_EVOLVE_WEIGHTS; //!< Whether to evolve prediction network weights
     _Bool PRED_EVOLVE_NEURONS; //!< Whether to evolve number of prediction network neurons
     _Bool PRED_EVOLVE_FUNCTIONS; //!< Whether to evolve prediction network activation functions
+    _Bool PRED_EVOLVE_CONNECTIVITY; //!< Whether to evolve prediction network connectivity
     _Bool PRED_EVOLVE_ETA; //!< Whether to evolve prediction gradient descent rates
     _Bool PRED_SGD_WEIGHTS; //!< Whether to use gradient descent for predictions
     double PRED_MOMENTUM; //!< Momentum for gradient descent
