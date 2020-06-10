@@ -49,7 +49,6 @@ static _Bool mutate_weights(const LAYER *l, double mu);
 static _Bool mutate_functions(LAYER *l, double mu);
 static void neuron_add(LAYER *l, int n);
 static void weight_clamp(const LAYER *l);
-static void weight_random(const LAYER *l, int i);
 
 LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
                                    uint32_t o)
@@ -72,7 +71,13 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->weight_active = malloc(l->n_weights * sizeof(_Bool));
     l->weights = malloc(l->n_weights * sizeof(double));
     for(int i = 0; i < l->n_weights; i++) {
-        weight_random(l, i);
+        if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
+            l->weights[i] = 0;
+            l->weight_active[i] = false;
+        } else {
+            l->weights[i] = rand_normal(0, 0.1);
+            l->weight_active[i] = true;
+        }
     }
     if(l->options & LAYER_EVOLVE_ETA) {
         l->eta = rand_uniform(ETA_MIN, ETA_MAX);
@@ -210,17 +215,6 @@ static void weight_clamp(const LAYER *l)
     }
     for(int i = 0; i < l->n_outputs; i++) {
         l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
-    }
-}
-
-static void weight_random(const LAYER *l, int i)
-{
-    if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
-        l->weights[i] = 0;
-        l->weight_active[i] = false;
-    } else {
-        l->weights[i] = rand_normal(0, 0.1);
-        l->weight_active[i] = true;
     }
 }
 
