@@ -55,7 +55,7 @@ void env_mux_init(XCSF *xcsf, int bits)
         (env->pos_bits)++;
     }
     (env->pos_bits)--;
-    int n = env->pos_bits + pow(2, env->pos_bits);
+    int n = env->pos_bits + (int) pow(2, env->pos_bits);
     env->state = malloc(sizeof(double) * n);
     param_set_n_actions(xcsf, 2);
     param_set_x_dim(xcsf, n);
@@ -100,7 +100,7 @@ double env_mux_execute(const XCSF *xcsf, int action)
     int pos = env->pos_bits;
     for(int i = 0; i < env->pos_bits; i++) {
         if(env->state[i] > 0.5) {
-            pos += pow(2, (double)(env->pos_bits - 1 - i));
+            pos += (int) pow(2, (double)(env->pos_bits - 1 - i));
         }
     }
     int answer = (env->state[pos] > 0.5) ? 1 : 0;
