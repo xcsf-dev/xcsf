@@ -325,8 +325,8 @@ static void neuron_add(LAYER *l, int n)
     double *biases = malloc(l->n_outputs * sizeof(double));
     double *bias_updates = malloc(l->n_outputs * sizeof(double));
     double *delta = calloc(l->n_outputs, sizeof(double));
-    double w_len = n_weights;
-    double o_len = l->n_outputs;
+    int w_len = n_weights;
+    int o_len = l->n_outputs;
     if(n > 0) {
         w_len = l->n_weights;
         o_len = l->n_outputs - n;
