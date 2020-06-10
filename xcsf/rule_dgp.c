@@ -38,8 +38,8 @@
 void rule_dgp_cond_init(const XCSF *xcsf, CL *c)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
-    new->n_outputs = fmax(1, ceil(log2(xcsf->n_actions)));
-    int n = fmax(xcsf->DGP_NUM_NODES, new->n_outputs + 1);
+    new->n_outputs = (int) fmax(1, ceil(log2(xcsf->n_actions)));
+    int n = (int) fmax(xcsf->DGP_NUM_NODES, new->n_outputs + 1);
     graph_init(xcsf, &new->dgp, n);
     graph_rand(xcsf, &new->dgp);
     c->cond = new;
@@ -132,7 +132,7 @@ size_t rule_dgp_cond_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
     size_t s = graph_load(xcsf, &new->dgp, fp);
-    new->n_outputs = fmax(1, ceil(log2(xcsf->n_actions)));
+    new->n_outputs = (int) fmax(1, ceil(log2(xcsf->n_actions)));
     c->cond = new;
     return s;
 }
@@ -180,7 +180,7 @@ int rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x)
     int action = 0;
     for(int i = 0; i < cond->n_outputs; i++) {
         if(graph_output(xcsf, &cond->dgp, i + 1) > 0.5) {
-            action += pow(2, i);
+            action += (int) pow(2, i);
         }
     }
     action = iclamp(0, xcsf->n_actions - 1, action);
