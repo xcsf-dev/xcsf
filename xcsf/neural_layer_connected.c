@@ -240,8 +240,9 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
                 weight_updates[offset + j] = l->weight_updates[orig_offset + j];
                 weight_active[offset + j] = l->weight_active[orig_offset + j];
             } else {
-                weight_random(l, offset + j);
+                weights[offset + j] = rand_normal(0, 0.1);
                 weight_updates[offset + j] = 0;
+                weight_active[offset + j] = true;
             }
         }
     }
@@ -343,7 +344,13 @@ static void neuron_add(LAYER *l, int n)
     memcpy(bias_updates, l->bias_updates, o_len * sizeof(double));
     if(n > 0) {
         for(int i = l->n_weights; i < n_weights; i++) {
-            weight_random(l, i);
+            if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
+                weights[i] = 0;
+                weight_active[i] = false;
+            } else {
+                weights[i] = rand_normal(0, 0.1);
+                weight_active[i] = true;
+            }
             weight_updates[i] = 0;
         }
         for(int i = l->n_outputs - n; i < l->n_outputs; i++) {
