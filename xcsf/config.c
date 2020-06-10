@@ -87,7 +87,7 @@ static void config_add_param(XCSF *xcsf, const char *name, char *value)
     } else if(strncmp(value, "false", 6) == 0) {
         i = 0;
     } else {
-        i = strtoimax(value, &end, BASE);
+        i = (int) strtoimax(value, &end, BASE);
     }
     double f = atof(value);
     // add parameter
@@ -364,7 +364,7 @@ static void config_get_ints(char *str, int *val)
     char *saveptr;
     const char *ptok = strtok_r(str, ARRAY_DELIM, &saveptr);
     while(ptok != NULL) {
-        val[num] = strtoimax(ptok, &end, BASE);
+        val[num] = (int) strtoimax(ptok, &end, BASE);
         ptok = strtok_r(NULL, ARRAY_DELIM, &saveptr);
         num++;
     }
