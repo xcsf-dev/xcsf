@@ -49,6 +49,7 @@ static _Bool mutate_weights(const LAYER *l, double mu);
 static _Bool mutate_functions(LAYER *l, double mu);
 static void neuron_add(LAYER *l, int n);
 static void weight_clamp(const LAYER *l);
+static void weight_random(const LAYER *l, int i);
 
 LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
                                    uint32_t o)
@@ -71,13 +72,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->weight_active = malloc(l->n_weights * sizeof(_Bool));
     l->weights = malloc(l->n_weights * sizeof(double));
     for(int i = 0; i < l->n_weights; i++) {
-        if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
-            l->weights[i] = 0;
-            l->weight_active[i] = false;
-        } else {
-            l->weights[i] = rand_normal(0, 0.1);
-            l->weight_active[i] = true;
-        }
+        weight_random(l, i);
     }
     if(l->options & LAYER_EVOLVE_ETA) {
         l->eta = rand_uniform(ETA_MIN, ETA_MAX);
@@ -218,6 +213,17 @@ static void weight_clamp(const LAYER *l)
     }
 }
 
+static void weight_random(const LAYER *l, int i)
+{
+    if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
+        l->weights[i] = 0;
+        l->weight_active[i] = false;
+    } else {
+        l->weights[i] = rand_normal(0, 0.1);
+        l->weight_active[i] = true;
+    }
+}
+
 void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     (void)xcsf;
@@ -234,9 +240,8 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
                 weight_updates[offset + j] = l->weight_updates[orig_offset + j];
                 weight_active[offset + j] = l->weight_active[orig_offset + j];
             } else {
+                weight_random(l, offset + j);
                 weight_updates[offset + j] = 0;
-                weights[offset + j] = rand_normal(0, 0.1);
-                weight_active[offset + j] = true;
             }
         }
     }
@@ -338,9 +343,8 @@ static void neuron_add(LAYER *l, int n)
     memcpy(bias_updates, l->bias_updates, o_len * sizeof(double));
     if(n > 0) {
         for(int i = l->n_weights; i < n_weights; i++) {
-            weights[i] = rand_normal(0, 0.1);
+            weight_random(l, i);
             weight_updates[i] = 0;
-            weight_active[i] = true;
         }
         for(int i = l->n_outputs - n; i < l->n_outputs; i++) {
             biases[i] = 0;
