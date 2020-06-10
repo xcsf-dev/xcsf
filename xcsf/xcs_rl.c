@@ -203,7 +203,7 @@ double xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset, do
     double error = 0;
     if(xcsf->prev_aset.list != NULL) {
         error += fabs(xcsf->GAMMA * pa_val(xcsf, action)
-                      + xcsf->prev_reward - xcsf->prev_pred) / max_p;
+                + xcsf->prev_reward - xcsf->prev_pred) / max_p;
     }
     if(reset) {
         error += fabs(reward - pa_val(xcsf, action)) / max_p;

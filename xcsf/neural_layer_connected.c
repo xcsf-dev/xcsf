@@ -51,7 +51,7 @@ static void neuron_add(LAYER *l, int n);
 static void weight_clamp(const LAYER *l);
 
 LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
-                                   uint32_t o)
+    uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
@@ -434,7 +434,7 @@ void neural_layer_connected_print(const XCSF *xcsf, const LAYER *l, _Bool print_
 {
     (void)xcsf;
     printf("connected %s, in = %d, out = %d, ",
-           neural_activation_string(l->function), l->n_inputs, l->n_outputs);
+        neural_activation_string(l->function), l->n_inputs, l->n_outputs);
     printf("weights (%d): ", l->n_weights);
     if(print_weights) {
         for(int i = 0; i < l->n_weights; i++) {

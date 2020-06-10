@@ -35,7 +35,7 @@
 #include "param.h"
 
 #ifdef PARALLEL
-#include <omp.h>
+    #include <omp.h>
 #endif
 
 // initialising parameters

@@ -49,7 +49,7 @@ static void xcs_supervised_trial(XCSF *xcsf, double *pred, const double *x, cons
  * @return The average XCSF training error using the loss function.
  */
 double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
-                          const INPUT *test_data, _Bool shuffle)
+    const INPUT *test_data, _Bool shuffle)
 {
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
