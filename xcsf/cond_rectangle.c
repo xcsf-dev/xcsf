@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 /**
  * @file cond_rectangle.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019--2020.
  * @brief Hyperrectangle condition functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -45,10 +45,10 @@ void cond_rectangle_init(const XCSF *xcsf, CL *c)
     for(int i = 0; i < xcsf->x_dim; i++) {
         new->center[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
         new->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
-    }  
+    }
     new->mu = malloc(N_MU * sizeof(double));
     sam_init(xcsf, new->mu, N_MU);
-    c->cond = new;     
+    c->cond = new;
 }
 
 void cond_rectangle_free(const XCSF *xcsf, const CL *c)
@@ -72,7 +72,7 @@ void cond_rectangle_copy(const XCSF *xcsf, CL *dest, const CL *src)
     memcpy(new->spread, src_cond->spread, xcsf->x_dim * sizeof(double));
     memcpy(new->mu, src_cond->mu, N_MU * sizeof(double));
     dest->cond = new;
-}                             
+}
 
 void cond_rectangle_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
@@ -115,20 +115,20 @@ static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x
     return dist;
 }
 
-_Bool cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2) 
+_Bool cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     const COND_RECTANGLE *cond1 = c1->cond;
     const COND_RECTANGLE *cond2 = c2->cond;
     _Bool changed = false;
-    if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
+    if(rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for(int i = 0; i < xcsf->x_dim; i++) {
-            if(rand_uniform(0,1) < 0.5) {
+            if(rand_uniform(0, 1) < 0.5) {
                 double tmp = cond1->center[i];
                 cond1->center[i] = cond2->center[i];
                 cond2->center[i] = tmp;
                 changed = true;
             }
-            if(rand_uniform(0,1) < 0.5) {
+            if(rand_uniform(0, 1) < 0.5) {
                 double tmp = cond1->spread[i];
                 cond1->spread[i] = cond2->spread[i];
                 cond2->spread[i] = tmp;
@@ -174,7 +174,7 @@ _Bool cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2)
         }
     }
     return true;
-}  
+}
 
 void cond_rectangle_print(const XCSF *xcsf, const CL *c)
 {

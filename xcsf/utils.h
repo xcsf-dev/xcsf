@@ -12,17 +12,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-                 
+
 /**
  * @file utils.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2019.
  * @brief Utility functions for random number handling, etc.
- */ 
+ */
 
 #pragma once
- 
+
 double rand_normal(double mu, double sigma);
 double rand_uniform(double min, double max);
 int irand_uniform(int min, int max);

@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-     
+
 /**
  * @file neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2012--2020.
  * @brief An implementation of a multi-layer perceptron neural network.
- */ 
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -71,10 +71,10 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
         net->n_inputs = l->n_inputs;
         net->n_outputs = l->n_outputs;
         net->output = l->output;
-    } 
+    }
     // insert
     else {
-        LLIST *iter = net->tail; 
+        LLIST *iter = net->tail;
         for(int i = 0; i < p && iter != NULL; i++) {
             iter = iter->prev;
         }
@@ -88,8 +88,7 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
             net->head = new;
             net->n_outputs = l->n_outputs;
             net->output = l->output;
-        }
-        else {
+        } else {
             new->next = iter->next;
             iter->next = new;
             // new tail
@@ -115,15 +114,14 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
 void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
 {
     // find the layer
-    LLIST *iter = net->tail; 
+    LLIST *iter = net->tail;
     for(int i = 0; i < p && iter != NULL; i++) {
         iter = iter->prev;
     }
     if(iter == NULL) {
         printf("neural_layer_remove(): error finding layer to remove\n");
         exit(EXIT_FAILURE);
-    }
-    else if(iter->next == NULL && iter->prev == NULL) {
+    } else if(iter->next == NULL && iter->prev == NULL) {
         printf("neural_layer_remove(): attempted to remove the only layer\n");
         exit(EXIT_FAILURE);
     }
@@ -167,7 +165,7 @@ void neural_copy(const XCSF *xcsf, NET *dest, const NET *src)
     for(const LLIST *iter = src->tail; iter != NULL; iter = iter->prev) {
         const LAYER *f = iter->layer;
         LAYER *l = layer_copy(xcsf, f);
-        neural_layer_insert(xcsf, dest, l, p); 
+        neural_layer_insert(xcsf, dest, l, p);
         p++;
     }
 }
@@ -187,7 +185,7 @@ void neural_free(const XCSF *xcsf, NET *net)
         free(iter);
         iter = net->tail;
         net->n_layers--;
-    }  
+    }
 }
 
 /**
@@ -200,7 +198,7 @@ void neural_rand(const XCSF *xcsf, const NET *net)
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_rand(xcsf, iter->layer);
     }
-}    
+}
 
 /**
  * @brief Mutates a neural network.
@@ -269,33 +267,29 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         memset(iter->layer->delta, 0, iter->layer->n_outputs * sizeof(double));
     }
-
     // calculate output layer error
     const LAYER *p = net->head->layer;
     for(int i = 0; i < p->n_outputs; i++) {
         p->delta[i] = (truth[i] - p->output[i]);
     }
-
     /* backward phase */
     for(const LLIST *iter = net->head; iter != NULL; iter = iter->next) {
         const LAYER *l = iter->layer;
         if(iter->next == NULL) {
             net->input = input;
             net->delta = 0;
-        }
-        else {
+        } else {
             const LAYER *prev = iter->next->layer;
             net->input = prev->output;
             net->delta = prev->delta;
         }
         layer_backward(xcsf, l, net);
     }
-
     /* update phase */
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_update(xcsf, iter->layer);
     }
-} 
+}
 
 /**
  * @brief Gradient descent updates a pair of active autoencoder layers.

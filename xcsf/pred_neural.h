@@ -19,13 +19,13 @@
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief Multi-layer perceptron neural network prediction functions.
- */ 
+ */
 
 #pragma once
 
 /**
  * @brief Multi-layer perceptron neural network prediction data structure.
- */ 
+ */
 typedef struct PRED_NEURAL {
     NET net; //!< Neural network
 } PRED_NEURAL;

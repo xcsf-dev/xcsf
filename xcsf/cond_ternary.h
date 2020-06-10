@@ -19,13 +19,13 @@
  * @copyright The Authors.
  * @date 2019--2020.
  * @brief Ternary condition functions.
- */ 
+ */
 
 #pragma once
 
 /**
  * @brief Ternary condition data structure.
- */ 
+ */
 typedef struct COND_TERNARY {
     char *string; //!< Ternary bitstring
     int length; //!< Length of the bitstring

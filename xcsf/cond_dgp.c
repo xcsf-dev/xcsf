@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-   
+
 /**
  * @file cond_dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief Dynamical GP graph condition functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -45,7 +45,7 @@ void cond_dgp_free(const XCSF *xcsf, const CL *c)
     const COND_DGP *cond = c->cond;
     graph_free(xcsf, &cond->dgp);
     free(c->cond);
-}                  
+}
 
 void cond_dgp_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
@@ -63,12 +63,15 @@ void cond_dgp_cover(const XCSF *xcsf, const CL *c, const double *x)
         graph_rand(xcsf, &cond->dgp);
     } while(!cond_dgp_match(xcsf, c, x));
 }
- 
+
 void cond_dgp_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
-    (void)xcsf; (void)c; (void)x; (void)y;
+    (void)xcsf;
+    (void)c;
+    (void)x;
+    (void)y;
 }
- 
+
 _Bool cond_dgp_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_DGP *cond = c->cond;
@@ -77,7 +80,7 @@ _Bool cond_dgp_match(const XCSF *xcsf, const CL *c, const double *x)
         return true;
     }
     return false;
-}            
+}
 
 _Bool cond_dgp_mutate(const XCSF *xcsf, const CL *c)
 {
@@ -94,7 +97,9 @@ _Bool cond_dgp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 _Bool cond_dgp_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    (void)xcsf; (void)c1; (void)c2;
+    (void)xcsf;
+    (void)c1;
+    (void)c2;
     return false;
 }
 
@@ -103,7 +108,7 @@ void cond_dgp_print(const XCSF *xcsf, const CL *c)
     (void)xcsf;
     const COND_DGP *cond = c->cond;
     graph_print(xcsf, &cond->dgp);
-}  
+}
 
 int cond_dgp_size(const XCSF *xcsf, const CL *c)
 {

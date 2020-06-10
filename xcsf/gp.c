@@ -21,7 +21,7 @@
  * @brief An implementation of GP trees based upon TinyGP.
  *
  * @details For a more detailed description see: Poli, R., Langdon, W. B., and
- * McPhee, N. F. (2008) "A Field Guide to Genetic Programming" 
+ * McPhee, N. F. (2008) "A Field Guide to Genetic Programming"
  * @see https://dces.essex.ac.uk/staff/rpoli/gp-field-guide/A_Field_Guide_to_Genetic_Programming.pdf
  */
 
@@ -55,7 +55,7 @@ void tree_init_cons(XCSF *xcsf)
     for(int i = 0; i < xcsf->GP_NUM_CONS; i++) {
         xcsf->gp_cons[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
     }
-}     
+}
 
 /**
  * @brief Frees the constants shared among all GP trees.
@@ -78,7 +78,7 @@ void tree_rand(const XCSF *xcsf, GP_TREE *gp)
     do {
         gp->len = tree_grow(xcsf, buffer, 0, GP_MAX_LEN, xcsf->GP_INIT_DEPTH);
     } while(gp->len < 0);
-    gp->tree = malloc(sizeof(int)*gp->len);
+    gp->tree = malloc(sizeof(int) * gp->len);
     memcpy(gp->tree, buffer, sizeof(int)*gp->len);
     sam_init(xcsf, gp->mu, GP_N_MU);
 }
@@ -107,7 +107,7 @@ void tree_free(const XCSF *xcsf, const GP_TREE *gp)
  */
 static int tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth)
 {
-    int prim = irand_uniform(0,2);
+    int prim = irand_uniform(0, 2);
     if(p >= max) {
         return (-1);
     }
@@ -118,22 +118,22 @@ static int tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth)
     if(prim == 0 || depth == 0) {
         prim = irand_uniform(GP_NUM_FUNC, GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
         buffer[p] = prim;
-        return (p+1);
+        return (p + 1);
     }
     // add new function
     else {
-        prim = irand_uniform(0,GP_NUM_FUNC);
+        prim = irand_uniform(0, GP_NUM_FUNC);
         switch(prim) {
-            case ADD: 
-            case SUB: 
-            case MUL: 
+            case ADD:
+            case SUB:
+            case MUL:
             case DIV:
                 buffer[p] = prim;
-                int one_child = tree_grow(xcsf, buffer, p+1, max, depth-1);
+                int one_child = tree_grow(xcsf, buffer, p + 1, max, depth - 1);
                 if(one_child < 0) {
                     return (-1);
                 }
-                return (tree_grow(xcsf, buffer, one_child, max, depth-1));
+                return (tree_grow(xcsf, buffer, one_child, max, depth - 1));
             default:
                 printf("tree_grow() invalid function: %d\n", prim);
                 exit(EXIT_FAILURE);
@@ -157,26 +157,28 @@ double tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x)
     }
     // constant
     else if(node >= GP_NUM_FUNC) {
-        return(xcsf->gp_cons[node-GP_NUM_FUNC]);
+        return(xcsf->gp_cons[node - GP_NUM_FUNC]);
     }
     // function
     switch(node) {
-        case ADD: return(tree_eval(xcsf,gp,x) + tree_eval(xcsf,gp,x));
-        case SUB: return(tree_eval(xcsf,gp,x) - tree_eval(xcsf,gp,x));
-        case MUL: return(tree_eval(xcsf,gp,x) * tree_eval(xcsf,gp,x));
+        case ADD:
+            return(tree_eval(xcsf, gp, x) + tree_eval(xcsf, gp, x));
+        case SUB:
+            return(tree_eval(xcsf, gp, x) - tree_eval(xcsf, gp, x));
+        case MUL:
+            return(tree_eval(xcsf, gp, x) * tree_eval(xcsf, gp, x));
         case DIV: {
-                      double num = tree_eval(xcsf,gp,x);
-                      double den = tree_eval(xcsf,gp,x);
-                      if(den == 0) {
-                          return(num);
-                      }
-                      else {
-                          return(num/den);
-                      }
-                  }
+            double num = tree_eval(xcsf, gp, x);
+            double den = tree_eval(xcsf, gp, x);
+            if(den == 0) {
+                return(num);
+            } else {
+                return(num / den);
+            }
+        }
         default:
-                  printf("eval() invalid function: %d\n", node);
-                  exit(EXIT_FAILURE);
+            printf("eval() invalid function: %d\n", node);
+            exit(EXIT_FAILURE);
     }
 }
 
@@ -187,7 +189,7 @@ double tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x)
  * @param p The position from which to traverse (start at 0).
  * @return The position after traversal.
  */
-int tree_print(const XCSF *xcsf, const GP_TREE *gp, int p) 
+int tree_print(const XCSF *xcsf, const GP_TREE *gp, int p)
 {
     int node = gp->tree[p];
     if(node >= GP_NUM_FUNC) {
@@ -197,7 +199,7 @@ int tree_print(const XCSF *xcsf, const GP_TREE *gp, int p)
         }
         // constant
         else {
-            printf("%f", xcsf->gp_cons[node-GP_NUM_FUNC]);
+            printf("%f", xcsf->gp_cons[node - GP_NUM_FUNC]);
         }
         p++;
         return(p);
@@ -207,16 +209,24 @@ int tree_print(const XCSF *xcsf, const GP_TREE *gp, int p)
     p++;
     int a1 = tree_print(xcsf, gp, p);
     switch(node) {
-        case ADD: printf( " + "); break;
-        case SUB: printf( " - "); break;
-        case MUL: printf( " * "); break;
-        case DIV: printf( " / "); break;
+        case ADD:
+            printf( " + ");
+            break;
+        case SUB:
+            printf( " - ");
+            break;
+        case MUL:
+            printf( " * ");
+            break;
+        case DIV:
+            printf( " / ");
+            break;
         default:
             printf("tree_print() invalid function: %d\n", node);
             exit(EXIT_FAILURE);
     }
     int a2 = tree_print(xcsf, gp, a1);
-    printf(")"); 
+    printf(")");
     return a2;
 }
 
@@ -232,7 +242,7 @@ void tree_copy(const XCSF *xcsf, GP_TREE *dest, const GP_TREE *src)
     dest->len = src->len;
     dest->tree = malloc(sizeof(int) * src->len);
     memcpy(dest->tree, src->tree, sizeof(int) * src->len);
-    dest->p = src->p;               
+    dest->p = src->p;
     memcpy(dest->mu, src->mu, sizeof(double) * GP_N_MU);
 }
 
@@ -246,20 +256,20 @@ void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
 {
     int len1 = p1->len;
     int len2 = p2->len;
-    int start1 = irand_uniform(0,len1);
+    int start1 = irand_uniform(0, len1);
     int end1 = tree_traverse(p1->tree, start1);
-    int start2 = irand_uniform(0,len2);
+    int start2 = irand_uniform(0, len2);
     int end2 = tree_traverse(p2->tree, start2);
-    int nlen1 = start1+(end2-start2)+(len1-end1);
-    int *new1 = malloc(sizeof(int)*nlen1);
+    int nlen1 = start1 + (end2 - start2) + (len1 - end1);
+    int *new1 = malloc(sizeof(int) * nlen1);
     memcpy(&new1[0], &p1->tree[0], sizeof(int)*start1);
-    memcpy(&new1[start1], &p2->tree[start2], sizeof(int)*(end2-start2));
-    memcpy(&new1[start1+(end2-start2)], &p1->tree[end1], sizeof(int)*(len1-end1));
-    int nlen2 = start2+(end1-start1)+(len2-end2);
-    int *new2 = malloc(sizeof(int)*nlen2);
+    memcpy(&new1[start1], &p2->tree[start2], sizeof(int) * (end2 - start2));
+    memcpy(&new1[start1 + (end2 - start2)], &p1->tree[end1], sizeof(int) * (len1 - end1));
+    int nlen2 = start2 + (end1 - start1) + (len2 - end2);
+    int *new2 = malloc(sizeof(int) * nlen2);
     memcpy(&new2[0], &p2->tree[0], sizeof(int)*start2);
-    memcpy(&new2[start2], &p1->tree[start1], sizeof(int)*(end1-start1));
-    memcpy(&new2[start2+(end1-start1)], &p2->tree[end2], sizeof(int)*(len2-end2));
+    memcpy(&new2[start2], &p1->tree[start1], sizeof(int) * (end1 - start1));
+    memcpy(&new2[start2 + (end1 - start1)], &p2->tree[end2], sizeof(int) * (len2 - end2));
     tree_free(xcsf, p1);
     tree_free(xcsf, p2);
     p1->tree = new1;
@@ -274,16 +284,16 @@ void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
  * @param gp The GP tree to be mutated.
  */
 _Bool tree_mutate(const XCSF *xcsf, GP_TREE *gp)
-{   
+{
     sam_adapt(xcsf, gp->mu, GP_N_MU);
     _Bool changed = false;
-    for(int i = 0; i < gp->len; i++) {  
-        if(rand_uniform(0,1) < gp->mu[0]) {
+    for(int i = 0; i < gp->len; i++) {
+        if(rand_uniform(0, 1) < gp->mu[0]) {
             changed = true;
             // terminals randomly replaced with other terminals
             if(gp->tree[i] >= GP_NUM_FUNC) {
-                gp->tree[i] = irand_uniform(GP_NUM_FUNC, 
-                        GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
+                gp->tree[i] = irand_uniform(GP_NUM_FUNC,
+                                            GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
             }
             // functions randomly replaced with other functions
             else {
@@ -307,10 +317,10 @@ static int tree_traverse(int *tree, int p)
         return(p);
     }
     switch(tree[p]) {
-        case ADD: 
-        case SUB: 
-        case MUL: 
-        case DIV: 
+        case ADD:
+        case SUB:
+        case MUL:
+        case DIV:
             p++;
             return(tree_traverse(tree, tree_traverse(tree, p)));
         default:

@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-             
+
 /**
  * @file clset.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Functions operating on sets of classifiers.
- */ 
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -99,8 +99,7 @@ static void clset_pop_del(XCSF *xcsf)
         (xcsf->pset.size)--;
         if(delprev == NULL) {
             xcsf->pset.list = del->next;
-        }
-        else {
+        } else {
             delprev->next = del->next;
         }
         free(del);
@@ -169,7 +168,7 @@ static void clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev)
 /**
  * @brief Enforces the maximum population size limit.
  * @param xcsf The XCSF data structure.
- */ 
+ */
 void clset_pop_enforce_limit(XCSF *xcsf)
 {
     while(xcsf->pset.num > xcsf->POP_SIZE) {
@@ -196,7 +195,7 @@ void clset_match(XCSF *xcsf, const double *x)
         j++;
     }
     // update current matching conditions setting m flags in parallel
-#pragma omp parallel for
+    #pragma omp parallel for
     for(int i = 0; i < xcsf->pset.size; i++) {
         cl_match(xcsf, blist[i]->cl, x);
     }
@@ -214,7 +213,7 @@ void clset_match(XCSF *xcsf, const double *x)
             clset_add(&xcsf->mset, iter->cl);
             cl_action(xcsf, iter->cl, x);
         }
-    }   
+    }
 #endif
     // perform covering if all actions are not represented
     if(xcsf->n_actions > 1 || xcsf->mset.size < 1) {
@@ -320,8 +319,7 @@ static void clset_cover_from_old(XCSF *xcsf, const double *x, int a)
     // expand for this phase
     if(xcsf->AUTO_ENCODE) {
         pred_neural_ae_expand(xcsf, new);
-    }
-    else {
+    } else {
         free(new->prediction);
         new->prediction = calloc(xcsf->y_dim, sizeof(double));
         pred_neural_ae_to_classifier(xcsf, new);
@@ -347,7 +345,7 @@ static void clset_cover_from_old(XCSF *xcsf, const double *x, int a)
 static void clset_cover_from_new(XCSF *xcsf, const double *x, int a)
 {
     CL *new = malloc(sizeof(CL));
-    cl_init(xcsf, new, (xcsf->mset.num)+1, xcsf->time);
+    cl_init(xcsf, new, (xcsf->mset.num) + 1, xcsf->time);
     cl_cover(xcsf, new, x, a);
     clset_add(&xcsf->pset, new);
     clset_add(&xcsf->mset, new);
@@ -391,7 +389,7 @@ void clset_pred(const XCSF *xcsf, const SET *set, const double *x, double *p)
         blist[j] = iter;
         j++;
     }
-#pragma omp parallel for reduction(+:presum[:xcsf->y_dim],fitsum)
+    #pragma omp parallel for reduction(+:presum[:xcsf->y_dim],fitsum)
     for(int i = 0; i < set->size; i++) {
         const double *predictions = cl_predict(xcsf, blist[i]->cl, x);
         for(int var = 0; var < xcsf->y_dim; var++) {
@@ -399,7 +397,7 @@ void clset_pred(const XCSF *xcsf, const SET *set, const double *x, double *p)
         }
         fitsum += blist[i]->cl->fit;
     }
-#pragma omp parallel for
+    #pragma omp parallel for
     for(int var = 0; var < xcsf->y_dim; var++) {
         p[var] = presum[var] / fitsum;
     }
@@ -410,13 +408,13 @@ void clset_pred(const XCSF *xcsf, const SET *set, const double *x, double *p)
             presum[var] += predictions[var] * iter->cl->fit;
         }
         fitsum += iter->cl->fit;
-    }    
+    }
     for(int var = 0; var < xcsf->y_dim; var++) {
         p[var] = presum[var] / fitsum;
     }
 #endif
     free(presum);
-}    
+}
 
 /**
  * @brief Constructs the action set from the match set.
@@ -429,8 +427,8 @@ void clset_action(XCSF *xcsf, int action)
         if(iter->cl->action == action) {
             clset_add(&xcsf->aset, iter->cl);
         }
-    }   
-}        
+    }
+}
 
 /**
  * @brief Adds a classifier to the set.
@@ -443,8 +441,7 @@ void clset_add(SET *set, CL *c)
         set->list = malloc(sizeof(CLIST));
         set->list->cl = c;
         set->list->next = NULL;
-    }
-    else {
+    } else {
         CLIST *new = malloc(sizeof(CLIST));
         new->cl = c;
         new->next = set->list;
@@ -461,7 +458,7 @@ void clset_add(SET *set, CL *c)
  * @param x The input state.
  * @param y The payoff from the environment.
  * @param cur Whether the update is for the current or previous state.
- */ 
+ */
 void clset_update(XCSF *xcsf, SET *set, const double *x, const double *y, _Bool cur)
 {
 #ifdef PARALLEL_UPDATE
@@ -471,7 +468,7 @@ void clset_update(XCSF *xcsf, SET *set, const double *x, const double *y, _Bool 
         blist[j] = iter;
         j++;
     }
-#pragma omp parallel for
+    #pragma omp parallel for
     for(int i = 0; i < set->size; i++) {
         cl_update(xcsf, blist[i]->cl, x, y, set->num, cur);
     }
@@ -490,7 +487,7 @@ void clset_update(XCSF *xcsf, SET *set, const double *x, const double *y, _Bool 
  * @brief Updates the fitness of classifiers in the set.
  * @param xcsf The XCSF data structure.
  * @param set The set to update.
- */ 
+ */
 static void clset_update_fit(const XCSF *xcsf, const SET *set)
 {
     double acc_sum = 0;
@@ -514,7 +511,7 @@ static void clset_update_fit(const XCSF *xcsf, const SET *set)
  * @brief Performs set subsumption.
  * @param xcsf The XCSF data structure.
  * @param set The set to perform subsumption.
- */ 
+ */
 static void clset_subsumption(XCSF *xcsf, SET *set)
 {
     // find the most general subsumer in the set
@@ -547,7 +544,7 @@ static void clset_subsumption(XCSF *xcsf, SET *set)
 /**
  * @brief Removes classifiers with 0 numerosity from the set.
  * @param set The set to validate.
- */ 
+ */
 void clset_validate(SET *set)
 {
     set->size = 0;
@@ -560,14 +557,12 @@ void clset_validate(SET *set)
                 set->list = iter->next;
                 free(iter);
                 iter = set->list;
-            }
-            else {
+            } else {
                 prev->next = iter->next;
                 free(iter);
                 iter = prev->next;
             }
-        }
-        else {
+        } else {
             set->size++;
             set->num += iter->cl->num;
             prev = iter;
@@ -607,7 +602,7 @@ void clset_set_times(const XCSF *xcsf, const SET *set)
  * @brief Calculates the total fitness of classifiers in the set.
  * @param set The set to calculate the total fitness.
  * @return The total fitness of classifiers in the set.
- */ 
+ */
 double clset_total_fit(const SET *set)
 {
     double sum = 0;
@@ -621,7 +616,7 @@ double clset_total_fit(const SET *set)
  * @brief Calculates the total time stamps of classifiers in the set.
  * @param set The set to calculate the total time.
  * @return The total time of classifiers in the set.
- */ 
+ */
 static double clset_total_time(const SET *set)
 {
     double sum = 0;
@@ -635,7 +630,7 @@ static double clset_total_time(const SET *set)
  * @brief Calculates the mean time stamp of classifiers in the set.
  * @param set The set to calculate the mean time.
  * @return The mean time of classifiers in the set.
- */ 
+ */
 double clset_mean_time(const SET *set)
 {
     return clset_total_time(set) / set->num;
@@ -644,7 +639,7 @@ double clset_mean_time(const SET *set)
 /**
  * @brief Frees the set, but not the classifiers.
  * @param set The set to free.
- */ 
+ */
 void clset_free(SET *set)
 {
     CLIST *iter = set->list;
@@ -661,7 +656,7 @@ void clset_free(SET *set)
  * @brief Frees the set and the classifiers.
  * @param xcsf The XCSF data structure.
  * @param set The set to free.
- */ 
+ */
 void clset_kill(const XCSF *xcsf, SET *set)
 {
     CLIST *iter = set->list;
@@ -736,7 +731,7 @@ double clset_mean_cond_size(const XCSF *xcsf, const SET *set)
  * @param xcsf The XCSF data structure.
  * @param set The set to calculate the mean prediction size.
  * @return The mean prediction size of classifiers in the set.
- */ 
+ */
 double clset_mean_pred_size(const XCSF *xcsf, const SET *set)
 {
     int sum = 0;
@@ -753,7 +748,7 @@ double clset_mean_pred_size(const XCSF *xcsf, const SET *set)
  * error below EPS_0. If no rules below EPS_0, the lowest error rule is used.
  * @param xcsf The XCSF data structure.
  * @return The fraction of inputs matched.
- */ 
+ */
 double clset_mfrac(const XCSF *xcsf)
 {
     double mfrac = 0;
@@ -789,7 +784,7 @@ double clset_mfrac(const XCSF *xcsf)
  * @param set The set to calculate the mean.
  * @param layer The position of layer to calculate.
  * @return The mean prediction layer ETA of classifiers in the set.
- */ 
+ */
 double clset_mean_eta(const XCSF *xcsf, const SET *set, int layer)
 {
     double sum = 0;

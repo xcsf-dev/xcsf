@@ -12,20 +12,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-  
+
 /**
  * @file cond_dgp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief Dynamical GP graph condition functions.
- */ 
+ */
 
 #pragma once
 
 /**
  * @brief Dynamical GP graph condition data structure.
- */ 
+ */
 typedef struct COND_DGP {
     GRAPH dgp; //!< DGP graph
 } COND_DGP;

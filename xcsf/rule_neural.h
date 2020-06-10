@@ -12,20 +12,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-   
+
 /**
  * @file rule_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019--2020.
  * @brief Neural network rule (condition + action) functions.
- */ 
+ */
 
 #pragma once
 
 /**
  * @brief Neural network rule data structure.
- */ 
+ */
 typedef struct RULE_NEURAL {
     NET net; //!< Neural network
     int n_outputs; //!< Number of action nodes (binarised)
@@ -62,7 +62,7 @@ static struct CondVtbl const rule_neural_cond_vtbl = {
     &rule_neural_cond_size,
     &rule_neural_cond_save,
     &rule_neural_cond_load
-};      
+};
 
 _Bool rule_neural_act_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_neural_act_general(const XCSF *xcsf, const CL *c1, const CL *c2);

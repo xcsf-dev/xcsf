@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-  
+
 /**
  * @file cond_dummy.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019-2020.
  * @brief Always-matching dummy condition functions.
- */ 
+ */
 
 #pragma once
 

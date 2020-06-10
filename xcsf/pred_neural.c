@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 /**
  * @file pred_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief Multi-layer perceptron neural network prediction functions.
- */ 
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -71,8 +71,7 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
         neural_layer_insert(xcsf, &new->net, l, i);
         l = neural_layer_softmax_init(xcsf, xcsf->y_dim, 1);
         neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
-    }
-    else {
+    } else {
         // regression
         l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim, f, lopt);
         neural_layer_insert(xcsf, &new->net, l, i);
@@ -122,8 +121,7 @@ void pred_neural_update(const XCSF *xcsf, const CL *c, const double *x, const do
         PRED_NEURAL *pred = c->pred;
         if(xcsf->AUTO_ENCODE) {
             neural_ae(xcsf, &pred->net, x);
-        }
-        else {
+        } else {
             neural_learn(xcsf, &pred->net, y, x);
         }
     }
@@ -142,11 +140,13 @@ void pred_neural_print(const XCSF *xcsf, const CL *c)
 {
     const PRED_NEURAL *pred = c->pred;
     neural_print(xcsf, &pred->net, false);
-}  
+}
 
 _Bool pred_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    (void)xcsf; (void) c1; (void)c2;
+    (void)xcsf;
+    (void) c1;
+    (void)c2;
     return false;
 }
 
@@ -247,7 +247,7 @@ void pred_neural_ae_expand(const XCSF *xcsf, const CL *c)
     // insert new decoder
     lopt &= ~LAYER_EVOLVE_NEURONS;
     l = neural_layer_connected_init(xcsf, n_encoder, n_inputs, n_inputs, f, lopt);
-    neural_layer_insert(xcsf, net, l, pos+1);
+    neural_layer_insert(xcsf, net, l, pos + 1);
     // resize the network as necessary
     neural_resize(xcsf, net);
 }
@@ -259,7 +259,7 @@ void pred_neural_ae_to_classifier(const XCSF *xcsf, const CL *c)
     LAYER *l;
     // remove decoders
     int n = net->n_layers;
-    for(int i = 0; i < n/2; i++) {
+    for(int i = 0; i < n / 2; i++) {
         neural_layer_remove(xcsf, net, net->n_layers - 1);
     }
     // reactivate modifications to initial layers

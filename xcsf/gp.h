@@ -12,22 +12,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-  
+
 /**
  * @file gp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief An implementation of GP trees based upon TinyGP.
- */ 
- 
+ */
+
 #pragma once
 
 #define GP_N_MU 1 //!< Number of GP mutation rates
 
 /**
  * @brief GP tree data structure.
- */ 
+ */
 typedef struct GP_TREE {
     int *tree; //!< Flattened tree representation of functions and terminals
     int len; //!< Size of the tree

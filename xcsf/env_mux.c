@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-     
+
 /**
  * @file env_mux.c
  * @author Richard Preen <rpreen@gmail.com>
@@ -27,7 +27,7 @@
  *
  * Example valid lengths: 3, 6, 11, 20, 37, 70, 135, 264.
  */
-   
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -83,7 +83,7 @@ const double *env_mux_get_state(const XCSF *xcsf)
 {
     const ENV_MUX *env = xcsf->env;
     for(int i = 0; i < xcsf->x_dim; i++) {
-        env->state[i] = rand_uniform(0,1);
+        env->state[i] = rand_uniform(0, 1);
     }
     return env->state;
 }
@@ -106,12 +106,11 @@ double env_mux_execute(const XCSF *xcsf, int action)
     int answer = (env->state[pos] > 0.5) ? 1 : 0;
     if(action == answer) {
         return MAX_PAYOFF;
-    }
-    else {
+    } else {
         return 0;
     }
-}  
-  
+}
+
 /**
  * @brief Dummy method since no multiplexer reset is necessary.
  * @param xcsf The XCSF data structure.
@@ -120,7 +119,7 @@ void env_mux_reset(const XCSF *xcsf)
 {
     (void)xcsf;
 }
- 
+
 /**
  * @brief Returns whether the multiplexer needs to be reset.
  * @param xcsf The XCSF data structure.
@@ -131,7 +130,7 @@ _Bool env_mux_isreset(const XCSF *xcsf)
     (void)xcsf;
     return true;
 }
- 
+
 /**
  * @brief Returns the maximum payoff value possible in the multiplexer.
  * @param xcsf The XCSF data structure.

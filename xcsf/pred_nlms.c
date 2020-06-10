@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-                    
+
 /**
  * @file pred_nlms.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Normalised least mean squares prediction functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -45,8 +45,7 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
     if(xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
         // offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
         pred->n = 1 + 2 * xcsf->x_dim + xcsf->x_dim * (xcsf->x_dim - 1) / 2;
-    }
-    else {
+    } else {
         pred->n = xcsf->x_dim + 1;
     }
     // initialise weights
@@ -58,8 +57,7 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
     if(xcsf->PRED_EVOLVE_ETA) {
         sam_init(xcsf, pred->mu, N_MU);
         pred->eta = rand_uniform(ETA_MIN, ETA_MAX);
-    }
-    else {
+    } else {
         memset(pred->mu, 0, sizeof(double) * N_MU);
         pred->eta = xcsf->PRED_ETA;
     }
@@ -98,7 +96,7 @@ void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x, const doub
     for(int var = 0; var < xcsf->y_dim; var++) {
         double error = y[var] - c->prediction[var];
         double correction = (pred->eta * error) / norm;
-        blas_axpy(n, correction, pred->tmp_input, 1, &pred->weights[var*n], 1);
+        blas_axpy(n, correction, pred->tmp_input, 1, &pred->weights[var * n], 1);
     }
 }
 
@@ -108,9 +106,9 @@ void pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x)
     int n = pred->n;
     pred_transform_input(xcsf, x, pred->tmp_input);
     for(int var = 0; var < xcsf->y_dim; var++) {
-        c->prediction[var] = blas_dot(n, &pred->weights[var*n], 1, pred->tmp_input, 1);
+        c->prediction[var] = blas_dot(n, &pred->weights[var * n], 1, pred->tmp_input, 1);
     }
-} 
+}
 
 void pred_nlms_print(const XCSF *xcsf, const CL *c)
 {
@@ -119,7 +117,7 @@ void pred_nlms_print(const XCSF *xcsf, const CL *c)
     printf("eta: %.5f, weights: ", pred->eta);
     for(int var = 0; var < xcsf->y_dim; var++) {
         for(int i = 0; i < n; i++) {
-            printf("%f, ", pred->weights[var*n+i]);
+            printf("%f, ", pred->weights[var * n + i]);
         }
         printf("\n");
     }
@@ -127,7 +125,9 @@ void pred_nlms_print(const XCSF *xcsf, const CL *c)
 
 _Bool pred_nlms_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    (void)xcsf; (void)c1; (void)c2;
+    (void)xcsf;
+    (void)c1;
+    (void)c2;
     return false;
 }
 

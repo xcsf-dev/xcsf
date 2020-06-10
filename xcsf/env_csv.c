@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-               
+
 /**
  * @file env_csv.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief CSV input file handling functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -112,14 +112,13 @@ static void env_csv_read(const char *fname, double **data, int *n_samples, int *
     if(fin == 0) {
         printf("Error opening file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
-    }    
+    }
     *n_samples = env_csv_samples(fin);
     *n_dim = env_csv_dim(fin);
     if(*n_samples > 0 && *n_dim > 0) {
         env_csv_read_data(fin, data, *n_samples, *n_dim);
         fclose(fin);
-    }
-    else {
+    } else {
         printf("Error reading file: %s. No samples found\n", fname);
         fclose(fin);
         exit(EXIT_FAILURE);
@@ -156,7 +155,7 @@ static int env_csv_dim(FILE *fin)
     if(fgets(line, MAX_COLS, fin) != NULL) {
         const char *ptok = strtok_r(line, DELIM, &saveptr);
         while(ptok != NULL) {
-            if(strnlen(ptok,MAX_COLS) > 0) {
+            if(strnlen(ptok, MAX_COLS) > 0) {
                 n_dim++;
             }
             ptok = strtok_r(NULL, DELIM, &saveptr);

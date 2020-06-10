@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-   
+
 /**
  * @file dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief An implementation of dynamical GP graphs with fuzzy activation functions.
- */ 
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,7 +65,7 @@ void graph_init(const XCSF *xcsf, GRAPH *dgp, int n)
  * @param src The source DGP graph.
  */
 void graph_copy(const XCSF *xcsf, GRAPH *dest, const GRAPH *src)
-{ 	
+{
     (void)xcsf;
     dest->t = src->t;
     dest->n = src->n;
@@ -110,11 +110,11 @@ void graph_reset(const XCSF *xcsf, const GRAPH *dgp)
  */
 void graph_rand(const XCSF *xcsf, GRAPH *dgp)
 {
-    dgp->t = irand_uniform(1,xcsf->MAX_T);
+    dgp->t = irand_uniform(1, xcsf->MAX_T);
     for(int i = 0; i < dgp->n; i++) {
         dgp->function[i] = irand_uniform(0, NUM_FUNC);
-        dgp->initial_state[i] = rand_uniform(0,1);
-        dgp->state[i] = rand_uniform(0,1);
+        dgp->initial_state[i] = rand_uniform(0, 1);
+        dgp->state[i] = rand_uniform(0, 1);
     }
     for(int i = 0; i < dgp->klen; i++) {
         dgp->connectivity[i] = random_connection(dgp->n, xcsf->x_dim);
@@ -129,7 +129,7 @@ void graph_rand(const XCSF *xcsf, GRAPH *dgp)
 static int random_connection(int n_nodes, int n_inputs)
 {
     // another node within the graph
-    if(rand_uniform(0,1) < 0.5) {
+    if(rand_uniform(0, 1) < 0.5) {
         return irand_uniform(0, n_nodes) + n_inputs;
     }
     // external input
@@ -165,8 +165,7 @@ static void synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double 
             int c = dgp->connectivity[i * xcsf->MAX_K + k];
             if(c < xcsf->x_dim) { // external input
                 dgp->tmp_input[k] = inputs[c];
-            }
-            else { // another node within the graph
+            } else { // another node within the graph
                 dgp->tmp_input[k] = dgp->state[c - xcsf->x_dim];
             }
         }
@@ -184,9 +183,9 @@ void graph_print(const XCSF *xcsf, const GRAPH *dgp)
 {
     printf("Graph: N=%d; T=%d\n", dgp->n, dgp->t);
     for(int i = 0; i < dgp->n; i++) {
-        printf("Node %d: func=%s state=%f init_state=%f con=[", 
-                i, function_string(dgp->function[i]),
-                dgp->state[i], dgp->initial_state[i]);
+        printf("Node %d: func=%s state=%f init_state=%f con=[",
+               i, function_string(dgp->function[i]),
+               dgp->state[i], dgp->initial_state[i]);
         printf("%d", dgp->connectivity[0]);
         for(int j = 1; j < xcsf->MAX_K; j++) {
             printf(",%d", dgp->connectivity[i]);
@@ -223,7 +222,7 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
     _Bool mod = false;
     // mutate functions
     for(int i = 0; i < dgp->n; i++) {
-        if(rand_uniform(0,1) < dgp->mu[0]) {
+        if(rand_uniform(0, 1) < dgp->mu[0]) {
             int orig = dgp->function[i];
             dgp->function[i] = irand_uniform(0, NUM_FUNC);
             if(orig != dgp->function[i]) {
@@ -233,18 +232,18 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
     }
     // mutate connectivity map
     for(int i = 0; i < dgp->klen; i++) {
-        if(rand_uniform(0,1) < dgp->mu[1]) {
+        if(rand_uniform(0, 1) < dgp->mu[1]) {
             int orig = dgp->connectivity[i];
             dgp->connectivity[i] = random_connection(dgp->n, xcsf->x_dim);
             if(orig != dgp->connectivity[i]) {
                 mod = true;
             }
         }
-    }               
+    }
     // mutate number of update cycles
-    if(rand_uniform(0,1) < dgp->mu[2]) {
+    if(rand_uniform(0, 1) < dgp->mu[2]) {
         int orig = dgp->t;
-        dgp->t = irand_uniform(1,xcsf->MAX_T);
+        dgp->t = irand_uniform(1, xcsf->MAX_T);
         if(orig != dgp->t) {
             mod = true;
         }
@@ -261,7 +260,9 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
  */
 _Bool graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 {
-    (void)xcsf; (void)dgp1; (void)dgp2;
+    (void)xcsf;
+    (void)dgp1;
+    (void)dgp2;
     return false;
 }
 
@@ -275,8 +276,7 @@ _Bool graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 static double node_activate(int function, const double *inputs, int k)
 {
     double state = 0;
-    switch(function)
-    {
+    switch(function) {
         case 0: // Fuzzy NOT
             state = 1 - inputs[0];
             break;
@@ -308,12 +308,15 @@ static double node_activate(int function, const double *inputs, int k)
 static const char *function_string(int function)
 {
     switch(function) {
-        case 0: return "Fuzzy NOT";
-        case 1: return "Fuzzy AND (CFMQVS)";
-        case 2: return "Fuzzy OR (CFMQVS)";
+        case 0:
+            return "Fuzzy NOT";
+        case 1:
+            return "Fuzzy AND (CFMQVS)";
+        case 2:
+            return "Fuzzy OR (CFMQVS)";
         default:
-                printf("function_string(): invalid node function: %d\n", function);
-                exit(EXIT_FAILURE);
+            printf("function_string(): invalid node function: %d\n", function);
+            exit(EXIT_FAILURE);
     }
 }
 

@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-           
+
 /**
  * @file cl.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Functions operating on classifiers.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -101,8 +101,7 @@ void cl_copy(const XCSF *xcsf, CL *dest, const CL *src)
     cond_copy(xcsf, dest, src);
     if(xcsf->PRED_RESET) {
         pred_init(xcsf, dest);
-    }
-    else {
+    } else {
         pred_copy(xcsf, dest, src);
     }
 }
@@ -130,7 +129,7 @@ void cl_rand(const XCSF *xcsf, CL *c)
 {
     action_set(xcsf, c);
     prediction_set(xcsf, c);
-    condition_set(xcsf, c); 
+    condition_set(xcsf, c);
     cond_init(xcsf, c);
     pred_init(xcsf, c);
     act_init(xcsf, c);
@@ -141,7 +140,7 @@ void cl_rand(const XCSF *xcsf, CL *c)
  * @param xcsf The XCSF data structure.
  * @param c The classifier to calculate the deletion vote.
  * @param avg_fit The population mean fitness.
- * @return The classifier's deletion vote. 
+ * @return The classifier's deletion vote.
  */
 double cl_del_vote(const XCSF *xcsf, const CL *c, double avg_fit)
 {
@@ -155,7 +154,7 @@ double cl_del_vote(const XCSF *xcsf, const CL *c, double avg_fit)
  * @brief Returns the accuracy of the classifier.
  * @param xcsf The XCSF data structure.
  * @param c The classifier.
- * @return The classifier's accuracy. 
+ * @return The classifier's accuracy.
  */
 double cl_acc(const XCSF *xcsf, const CL *c)
 {
@@ -202,8 +201,7 @@ static void cl_update_err(const XCSF *xcsf, CL *c, const double *y)
     double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
     if(c->exp < 1 / xcsf->BETA) {
         c->err = (c->err * (c->exp - 1) + error) / c->exp;
-    }
-    else {
+    } else {
         c->err += xcsf->BETA * (error - c->err);
     }
 }
@@ -230,8 +228,7 @@ static void cl_update_size(const XCSF *xcsf, CL *c, int num_sum)
 {
     if(c->exp < 1 / xcsf->BETA) {
         c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;
-    }
-    else {
+    } else {
         c->size += xcsf->BETA * (num_sum - c->size);
     }
 }
@@ -277,11 +274,11 @@ void cl_print(const XCSF *xcsf, const CL *c, _Bool printc, _Bool printa, _Bool p
         printf("\n");
     }
     printf("err=%f fit=%f num=%d exp=%d size=%f time=%d age=%d mfrac=%f\n",
-            c->err, c->fit, c->num, c->exp, c->size, c->time, c->age, cl_mfrac(xcsf, c));
-}  
+           c->err, c->fit, c->num, c->exp, c->size, c->time, c->age, cl_mfrac(xcsf, c));
+}
 
 /**
- * @brief Calculates whether the classifier matches the input. 
+ * @brief Calculates whether the classifier matches the input.
  * @param xcsf The XCSF data structure.
  * @param c The classifier to match.
  * @param x The input state.
@@ -313,17 +310,17 @@ double cl_mfrac(const XCSF *xcsf, const CL *c)
 }
 
 /**
- * @brief Returns whether the classifier matched the most recent input. 
+ * @brief Returns whether the classifier matched the most recent input.
  * @param xcsf The XCSF data structure.
  * @param c The classifier to match.
  * @return Whether the classifier matched the most recent input.
- */  
+ */
 _Bool cl_m(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     return c->m;
 }
- 
+
 /**
  * @brief Computes the current classifier action using the input.
  * @param xcsf The XCSF data structure.
@@ -336,7 +333,7 @@ int cl_action(const XCSF *xcsf, CL *c, const double *x)
     c->action = act_compute(xcsf, c, x);
     return c->action;
 }
- 
+
 /**
  * @brief Computes the current classifier payoff prediction using the input.
  * @param xcsf The XCSF data structure.
@@ -377,7 +374,7 @@ _Bool cl_general(const XCSF *xcsf, const CL *c1, const CL *c2)
         return act_general(xcsf, c1, c2);
     }
     return false;
-} 
+}
 
 /**
  * @brief Performs classifier mutation.
@@ -427,7 +424,7 @@ int cl_cond_size(const XCSF *xcsf, const CL *c)
 {
     return cond_size(xcsf, c);
 }
-                     
+
 /**
  * @brief Returns the size of the classifier prediction.
  * @param xcsf The XCSF data structure.

@@ -1,0 +1,16 @@
+suffix=none
+style=kr
+lineend=linux
+indent=spaces=4
+indent-switches
+align-pointer=name
+align-reference=name
+pad-oper
+pad-comma
+delete-empty-lines
+align-pointer=name
+align-reference=name
+break-one-line-headers
+add-braces
+close-templates
+max-code-length=100

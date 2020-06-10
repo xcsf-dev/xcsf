@@ -12,20 +12,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-  
+
 /**
  * @file cond_ellipsoid.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019--2020.
  * @brief Hyperellipsoid condition functions.
- */ 
+ */
 
 #pragma once
 
 /**
  * @brief Hyperellipsoid condition data structure.
- */ 
+ */
 typedef struct COND_ELLIPSOID {
     double *center; //!< Centers
     double *spread; //!< Spreads
@@ -63,4 +63,4 @@ static struct CondVtbl const cond_ellipsoid_vtbl = {
     &cond_ellipsoid_size,
     &cond_ellipsoid_save,
     &cond_ellipsoid_load
-};      
+};

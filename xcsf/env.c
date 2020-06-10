@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 /**
  * @file env.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2019.
  * @brief Built-in problem environment interface.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -44,16 +44,13 @@ void env_init(XCSF *xcsf, char **argv)
     if(strcmp(argv[1], "mp") == 0) {
         xcsf->env_vptr = &env_mux_vtbl;
         env_mux_init(xcsf, strtoimax(argv[2], &end, 10));
-    }
-    else if(strcmp(argv[1], "maze") == 0) {
+    } else if(strcmp(argv[1], "maze") == 0) {
         xcsf->env_vptr = &env_maze_vtbl;
         env_maze_init(xcsf, argv[2]);
-    }
-    else if(strcmp(argv[1], "csv") == 0) {
+    } else if(strcmp(argv[1], "csv") == 0) {
         xcsf->env_vptr = &env_csv_vtbl;
         env_csv_init(xcsf, argv[2]);
-    }
-    else {
+    } else {
         printf("Invalid environment specified: %s\n", argv[1]);
         printf("Available environments: {mp, maze, csv}\n");
         exit(EXIT_FAILURE);

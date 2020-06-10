@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-     
+
 /**
  * @file ea.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Evolutionary algorithm functions.
- */ 
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,7 +28,7 @@
 #include "xcsf.h"
 #include "utils.h"
 #include "cl.h"
-#include "clset.h"    
+#include "clset.h"
 #include "ea.h"
 #include "sam.h"
 
@@ -39,7 +39,8 @@ static CL *ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum);
 static CL *ea_select_tournament(const XCSF *xcsf, const SET *set);
 static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set);
 static void ea_select_parents(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p);
-static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2, _Bool cmod);
+static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2,
+                              _Bool cmod);
 static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod, _Bool mmod);
 
 /**
@@ -57,10 +58,11 @@ void ea(XCSF *xcsf, const SET *set)
     }
     clset_set_times(xcsf, set);
     // select parents
-    CL *c1p; CL *c2p;
+    CL *c1p;
+    CL *c2p;
     ea_select_parents(xcsf, set, &c1p, &c2p);
     // create offspring
-    for(int i = 0; i < xcsf->LAMBDA/2; i++) {
+    for(int i = 0; i < xcsf->LAMBDA / 2; i++) {
         // create copies of parents
         CL *c1 = malloc(sizeof(CL));
         CL *c2 = malloc(sizeof(CL));
@@ -71,7 +73,7 @@ void ea(XCSF *xcsf, const SET *set)
         // apply evolutionary operators to offspring
         _Bool cmod = cl_crossover(xcsf, c1, c2);
         _Bool m1mod = cl_mutate(xcsf, c1);
-        _Bool m2mod = cl_mutate(xcsf, c2); 
+        _Bool m2mod = cl_mutate(xcsf, c2);
         // initialise parameters
         ea_init_offspring(xcsf, c1p, c2p, c1, c2, cmod);
         // add to population
@@ -79,7 +81,7 @@ void ea(XCSF *xcsf, const SET *set)
         ea_add(xcsf, set, c2p, c1p, c2, cmod, m2mod);
     }
     clset_pop_enforce_limit(xcsf);
-}   
+}
 
 /**
  * @brief Initialises offspring error and fitness.
@@ -90,17 +92,17 @@ void ea(XCSF *xcsf, const SET *set)
  * @param c2 The second offspring classifier to initialise.
  * @param cmod Whether crossover modified the offspring.
  */
-static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2, _Bool cmod)
+static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1, CL *c2,
+                              _Bool cmod)
 {
     if(cmod) {
-        c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err)/2.0);
+        c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err) / 2.0);
         c2->err = c1->err;
         c1->fit = c1p->fit / c1p->num;
         c2->fit = c2p->fit / c2p->num;
-        c1->fit = xcsf->FIT_REDUC * ((c1->fit + c2->fit)/2.0);
+        c1->fit = xcsf->FIT_REDUC * ((c1->fit + c2->fit) / 2.0);
         c2->fit = c1->fit;
-    }
-    else {
+    } else {
         c1->err = xcsf->ERR_REDUC * c1p->err;
         c2->err = xcsf->ERR_REDUC * c2p->err;
         c1->fit = xcsf->FIT_REDUC * (c1p->fit / c1p->num);
@@ -124,11 +126,9 @@ static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool c
         c1p->num++;
         xcsf->pset.num++;
         cl_free(xcsf, c1);
-    }
-    else if(xcsf->EA_SUBSUMPTION) {
+    } else if(xcsf->EA_SUBSUMPTION) {
         ea_subsume(xcsf, c1, c1p, c2p, set);
-    }
-    else {
+    } else {
         clset_add(&xcsf->pset, c1);
     }
 }
@@ -148,8 +148,7 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
         c1p->num++;
         xcsf->pset.num++;
         cl_free(xcsf, c);
-    }
-    else if(cl_subsumer(xcsf, c2p) && cl_general(xcsf, c2p, c)) {
+    } else if(cl_subsumer(xcsf, c2p) && cl_general(xcsf, c2p, c)) {
         c2p->num++;
         xcsf->pset.num++;
         cl_free(xcsf, c);
@@ -166,13 +165,13 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
         }
         // found
         if(choices > 0) {
-            candidates[irand_uniform(0,choices)]->cl->num++;
+            candidates[irand_uniform(0, choices)]->cl->num++;
             xcsf->pset.num++;
             cl_free(xcsf, c);
         }
         // if no subsumers are found the offspring is added to the population
         else {
-            clset_add(&xcsf->pset, c);   
+            clset_add(&xcsf->pset, c);
         }
     }
 }
@@ -190,8 +189,7 @@ static void ea_select_parents(const XCSF *xcsf, const SET *set, CL **c1p, CL **c
         double fit_sum = clset_total_fit(set);
         *c1p = ea_select_rw(xcsf, set, fit_sum);
         *c2p = ea_select_rw(xcsf, set, fit_sum);
-    }
-    else {
+    } else {
         *c1p = ea_select_tournament(xcsf, set);
         *c2p = ea_select_tournament(xcsf, set);
     }
@@ -225,10 +223,10 @@ static CL *ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum)
  */
 static CL *ea_select_tournament(const XCSF *xcsf, const SET *set)
 {
-    CL *winner = NULL; 
+    CL *winner = NULL;
     while(winner == NULL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-            if((rand_uniform(0,1) < xcsf->EA_SELECT_SIZE) &&
+            if((rand_uniform(0, 1) < xcsf->EA_SELECT_SIZE) &&
                     (winner == NULL || iter->cl->fit > winner->fit)) {
                 winner = iter->cl;
             }

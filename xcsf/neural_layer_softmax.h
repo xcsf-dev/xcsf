@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-           
+
 /**
  * @file neural_layer_softmax.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief An implementation of a softmax layer.
- */ 
+ */
 
 #pragma once
 
@@ -32,7 +32,7 @@ void neural_layer_softmax_update(const XCSF *xcsf, const LAYER *l);
 void neural_layer_softmax_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
 _Bool neural_layer_softmax_mutate(const XCSF *xcsf, LAYER *l);
 void neural_layer_softmax_free(const XCSF *xcsf, const LAYER *l);
-double* neural_layer_softmax_output(const XCSF *xcsf, const LAYER *l);
+double *neural_layer_softmax_output(const XCSF *xcsf, const LAYER *l);
 size_t neural_layer_softmax_save(const XCSF *xcsf, const LAYER *l, FILE *fp);
 size_t neural_layer_softmax_load(const XCSF *xcsf, LAYER *l, FILE *fp);
 void neural_layer_softmax_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev);

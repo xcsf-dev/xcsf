@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 /**
  * @file cond_ternary.c
  * @author Richard Preen <rpreen@gmail.com>
@@ -20,7 +20,7 @@
  * @date 2019--2020.
  * @brief Ternary condition functions.
  * @details Binarises inputs.
- */ 
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,7 +50,7 @@ void cond_ternary_init(const XCSF *xcsf, CL *c)
     new->tmp_input = malloc(xcsf->COND_BITS * sizeof(char));
     new->mu = malloc(N_MU * sizeof(double));
     sam_init(xcsf, new->mu, N_MU);
-    c->cond = new;     
+    c->cond = new;
     cond_ternary_rand(xcsf, c);
 }
 
@@ -59,13 +59,11 @@ static void cond_ternary_rand(const XCSF *xcsf, const CL *c)
     (void)xcsf;
     const COND_TERNARY *cond = c->cond;
     for(int i = 0; i < cond->length; i++) {
-        if(rand_uniform(0,1) < P_DONTCARE) {
+        if(rand_uniform(0, 1) < P_DONTCARE) {
             cond->string[i] = DONT_CARE;
-        }
-        else if(rand_uniform(0,1) < 0.5) {
+        } else if(rand_uniform(0, 1) < 0.5) {
             cond->string[i] = '0';
-        }
-        else {
+        } else {
             cond->string[i] = '1';
         }
     }
@@ -93,7 +91,7 @@ void cond_ternary_copy(const XCSF *xcsf, CL *dest, const CL *src)
     memcpy(new->string, src_cond->string, src_cond->length * sizeof(char));
     memcpy(new->mu, src_cond->mu, N_MU * sizeof(double));
     dest->cond = new;
-}                             
+}
 
 void cond_ternary_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
@@ -101,10 +99,9 @@ void cond_ternary_cover(const XCSF *xcsf, const CL *c, const double *x)
     for(int i = 0; i < xcsf->x_dim; i++) {
         float_to_binary(x[i], cond->tmp_input, xcsf->COND_BITS);
         for(int j = 0; j < xcsf->COND_BITS; j++) {
-            if(rand_uniform(0,1) < P_DONTCARE) {
+            if(rand_uniform(0, 1) < P_DONTCARE) {
                 cond->string[i * xcsf->COND_BITS + j] = DONT_CARE;
-            }
-            else {
+            } else {
                 cond->string[i * xcsf->COND_BITS + j] = cond->tmp_input[j];
             }
         }
@@ -113,7 +110,10 @@ void cond_ternary_cover(const XCSF *xcsf, const CL *c, const double *x)
 
 void cond_ternary_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
-    (void)xcsf; (void)c; (void)x; (void)y;
+    (void)xcsf;
+    (void)c;
+    (void)x;
+    (void)y;
 }
 
 _Bool cond_ternary_match(const XCSF *xcsf, const CL *c, const double *x)
@@ -131,14 +131,14 @@ _Bool cond_ternary_match(const XCSF *xcsf, const CL *c, const double *x)
     return true;
 }
 
-_Bool cond_ternary_crossover(const XCSF *xcsf, const CL *c1, const CL *c2) 
+_Bool cond_ternary_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     const COND_TERNARY *cond1 = c1->cond;
     const COND_TERNARY *cond2 = c2->cond;
     _Bool changed = false;
-    if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
+    if(rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for(int i = 0; i < cond1->length; i++) {
-            if(rand_uniform(0,1) < 0.5) {
+            if(rand_uniform(0, 1) < 0.5) {
                 double tmp = cond1->string[i];
                 cond1->string[i] = cond2->string[i];
                 cond2->string[i] = tmp;
@@ -155,11 +155,10 @@ _Bool cond_ternary_mutate(const XCSF *xcsf, const CL *c)
     sam_adapt(xcsf, cond->mu, N_MU);
     _Bool changed = false;
     for(int i = 0; i < cond->length; i++) {
-        if(rand_uniform(0,1) < cond->mu[0]) {
+        if(rand_uniform(0, 1) < cond->mu[0]) {
             if(cond->string[i] == DONT_CARE) {
-                cond->string[i] = irand_uniform(0,2) + '0';
-            }
-            else {
+                cond->string[i] = irand_uniform(0, 2) + '0';
+            } else {
                 cond->string[i] = DONT_CARE;
             }
             changed = true;
@@ -177,13 +176,12 @@ _Bool cond_ternary_general(const XCSF *xcsf, const CL *c1, const CL *c2)
     for(int i = 0; i < cond1->length; i++) {
         if(cond1->string[i] != DONT_CARE && cond1->string[i] != cond2->string[i]) {
             return false;
-        }
-        else if(cond1->string[i] != cond2->string[i]) {
+        } else if(cond1->string[i] != cond2->string[i]) {
             general = true;
         }
     }
     return general;
-}  
+}
 
 void cond_ternary_print(const XCSF *xcsf, const CL *c)
 {

@@ -26,7 +26,7 @@
  * coded as 'O' and 'Q', empty positions as '*', and food as 'F' or 'G'. The 8
  * adjacent cells are perceived (encoded as reals) and 8 movements are possible
  * to the adjacent cells (if not blocked.) The animat is initially placed at a
- * random empty position. The goal is to find the shortest path to the food. 
+ * random empty position. The goal is to find the shortest path to the food.
  *
  * Some mazes require a form of memory to be solved optimally.
  * The optimal average number of steps for each maze is:
@@ -57,8 +57,8 @@
 
 #define MAZE_DEBUG false //!< Whether to print the state of the maze during exploitation
 #define MAX_PAYOFF 1.0 //!< The payoff provided at a food position
-static const int x_moves[] ={ 0, +1, +1, +1,  0, -1, -1, -1}; //!< Possible maze moves on x-axis
-static const int y_moves[] ={-1, -1,  0, +1, +1, +1,  0, -1}; //!< Possible maze moves on y-axis
+static const int x_moves[] = { 0, +1, +1, +1,  0, -1, -1, -1}; //!< Possible maze moves on x-axis
+static const int y_moves[] = {-1, -1,  0, +1, +1, +1,  0, -1}; //!< Possible maze moves on y-axis
 
 static void env_maze_print(const XCSF *xcsf);
 
@@ -87,8 +87,7 @@ void env_maze_init(XCSF *xcsf, const char *fname)
             y++;
             env->xsize = x;
             x = 0;
-        }
-        else {
+        } else {
             env->maze[y][x] = (char)c;
             x++;
         }
@@ -135,7 +134,6 @@ void env_maze_reset(const XCSF *xcsf)
         env->xpos = irand_uniform(0, env->xsize);
         env->ypos = irand_uniform(0, env->ysize);
     } while(env->maze[env->ypos][env->xpos] != '*');
-
     if(MAZE_DEBUG && !xcsf->explore) {
         printf("------------\n");
         env_maze_print(xcsf);
@@ -191,11 +189,21 @@ static double env_maze_sensor(const XCSF *xcsf, char s)
     (void)xcsf;
     double ret = 0;
     switch(s) {
-        case '*': ret = 0.1; break;
-        case 'O': ret = 0.3; break;
-        case 'G': ret = 0.5; break;
-        case 'F': ret = 0.7; break;
-        case 'Q': ret = 0.9; break;
+        case '*':
+            ret = 0.1;
+            break;
+        case 'O':
+            ret = 0.3;
+            break;
+        case 'G':
+            ret = 0.5;
+            break;
+        case 'F':
+            ret = 0.7;
+            break;
+        case 'Q':
+            ret = 0.9;
+            break;
         default:
             printf("unsupported maze state: %c\n", s);
             exit(EXIT_FAILURE);
@@ -229,7 +237,7 @@ double env_maze_execute(const XCSF *xcsf, int action)
             env->ypos = newy;
             env->xpos = newx;
             break;
-        case 'F': 
+        case 'F':
         case 'G':
             env->ypos = newy;
             env->xpos = newx;
@@ -279,8 +287,7 @@ static void env_maze_print(const XCSF *xcsf)
         for(int x = 0; x < env->xsize; x++) {
             if(x == env->xpos && y == env->ypos) {
                 printf("X");
-            }
-            else {
+            } else {
                 printf("%c", env->maze[y][x]);
             }
         }

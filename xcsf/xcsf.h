@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-   
+
 /**
  * @file xcsf.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019--2020.
  * @brief XCSF data structures.
- */ 
- 
+ */
+
 #pragma once
 
 static const int VERSION_MAJOR = 1; //!< XCSF major version number
@@ -120,7 +120,7 @@ typedef struct XCSF {
     // classifier parameters
     double ALPHA; //!< Linear coefficient used in calculating classifier accuracy
     double BETA; //!< Learning rate for updating error, fitness, and set size
-    double DELTA; //!< Fit used in prob of deletion if fit less than this frac of avg pop fit 
+    double DELTA; //!< Fit used in prob of deletion if fit less than this frac of avg pop fit
     double EPS_0; //!< Classifier target error, under which the accuracy is set to 1
     double ERR_REDUC; //!< Amount to reduce an offspring's error
     double FIT_REDUC; //!< Amount to reduce an offspring's fitness
@@ -163,7 +163,7 @@ typedef struct XCSF {
     int COND_MAX_NEURONS[MAX_LAYERS]; //!< Max num of neurons in each condition hidden layer
     int COND_OUTPUT_ACTIVATION; //!< Activation function for the condition output layer
     int COND_HIDDEN_ACTIVATION; //!< Activation function for the condition hidden layer
- 
+
     // prediction parameters
     _Bool PRED_RESET; //!< Whether to reset offspring predictions instead of copying
     double PRED_ETA; //!< Gradient desecnt rate for updating the prediction
@@ -204,8 +204,8 @@ typedef struct XCSF {
     int x_dim; //!< Number of problem input variables
     int y_dim; //!< Number of problem output variables
     int n_actions; //!< Number of class labels / actions
-    double (*loss_ptr)(const struct XCSF*, const double*, const double*); //!< Error function
-} XCSF;                  
+    double (*loss_ptr)(const struct XCSF *, const double *, const double *); //!< Error function
+} XCSF;
 
 /**
  * @brief Input data structure.

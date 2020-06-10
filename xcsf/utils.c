@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-                  
+
 /**
  * @file utils.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Utility functions for random number handling, etc.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -86,7 +86,7 @@ double rand_uniform(double min, double max)
  */
 double rand_normal(double mu, double sigma)
 {
-    static const double two_pi = 2*M_PI;
+    static const double two_pi = 2 * M_PI;
     static double z1;
     static _Bool generate;
     generate = !generate;

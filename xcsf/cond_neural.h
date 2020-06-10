@@ -19,13 +19,13 @@
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief Multi-layer perceptron neural network condition functions.
- */ 
- 
+ */
+
 #pragma once
 
 /**
  * @brief Multi-layer perceptron neural network condition data structure.
- */ 
+ */
 typedef struct COND_NEURAL {
     NET net; //!< Neural network
 } COND_NEURAL;
@@ -61,4 +61,4 @@ static struct CondVtbl const cond_neural_vtbl = {
     &cond_neural_size,
     &cond_neural_save,
     &cond_neural_load
-};      
+};

@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-     
+
 /**
  * @file xcs_rl.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Reinforcement learning functions.
- */ 
- 
+ */
+
 #pragma once
 
 double xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset, double max_p);

@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-      
+
 /**
  * @file sam.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Self-adaptive mutation functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -29,7 +29,7 @@
 #include "sam.h"
 
 #define N_RATES 10 //!< number of selectable mutation rates for rate selection adaptation
-static const double mrates[N_RATES] = {0.0001,0.001,0.002,0.005,0.01,0.01,0.02,0.05,0.1,1.0};
+static const double mrates[N_RATES] = {0.0001, 0.001, 0.002, 0.005, 0.01, 0.01, 0.02, 0.05, 0.1, 1.0};
 static void sam_rate_selection_init(double *mu, int n);
 static void sam_rate_selection_adapt(double *mu, int n);
 static void sam_log_normal_init(double *mu, int n);
@@ -44,8 +44,12 @@ static void sam_log_normal_adapt(double *mu, int n);
 void sam_init(const XCSF *xcsf, double *mu, int n)
 {
     switch(xcsf->SAM_TYPE) {
-        case SAM_LOG_NORMAL: sam_log_normal_init(mu, n); break;
-        case SAM_RATE_SELECT: sam_rate_selection_init(mu, n); break;
+        case SAM_LOG_NORMAL:
+            sam_log_normal_init(mu, n);
+            break;
+        case SAM_RATE_SELECT:
+            sam_rate_selection_init(mu, n);
+            break;
         default:
             printf("sam_reset(): invalid sam function: %d\n", xcsf->SAM_TYPE);
             exit(EXIT_FAILURE);
@@ -61,8 +65,12 @@ void sam_init(const XCSF *xcsf, double *mu, int n)
 void sam_adapt(const XCSF *xcsf, double *mu, int n)
 {
     switch(xcsf->SAM_TYPE) {
-        case SAM_LOG_NORMAL: sam_log_normal_adapt(mu, n); break;
-        case SAM_RATE_SELECT: sam_rate_selection_adapt(mu, n); break;
+        case SAM_LOG_NORMAL:
+            sam_log_normal_adapt(mu, n);
+            break;
+        case SAM_RATE_SELECT:
+            sam_rate_selection_adapt(mu, n);
+            break;
         default:
             printf("sam_adapt(): invalid sam function: %d\n", xcsf->SAM_TYPE);
             exit(EXIT_FAILURE);
@@ -77,7 +85,7 @@ void sam_adapt(const XCSF *xcsf, double *mu, int n)
 static void sam_log_normal_init(double *mu, int n)
 {
     for(int i = 0; i < n; i++) {
-        mu[i] = rand_uniform(0,1);
+        mu[i] = rand_uniform(0, 1);
     }
 }
 
@@ -89,7 +97,7 @@ static void sam_log_normal_init(double *mu, int n)
 static void sam_log_normal_adapt(double *mu, int n)
 {
     for(int i = 0; i < n; i++) {
-        mu[i] *= exp(rand_normal(0,1));
+        mu[i] *= exp(rand_normal(0, 1));
         mu[i] = clamp(0.0001, 1, mu[i]);
     }
 }
@@ -102,7 +110,7 @@ static void sam_log_normal_adapt(double *mu, int n)
 static void sam_rate_selection_init(double *mu, int n)
 {
     for(int i = 0; i < n; i++) {
-        mu[i] = mrates[irand_uniform(0,N_RATES)];
+        mu[i] = mrates[irand_uniform(0, N_RATES)];
     }
 }
 
@@ -115,8 +123,8 @@ static void sam_rate_selection_init(double *mu, int n)
 static void sam_rate_selection_adapt(double *mu, int n)
 {
     for(int i = 0; i < n; i++) {
-        if(rand_uniform(0,1) < 0.1) {
-            mu[i] = mrates[irand_uniform(0,N_RATES)];
+        if(rand_uniform(0, 1) < 0.1) {
+            mu[i] = mrates[irand_uniform(0, N_RATES)];
         }
     }
 }

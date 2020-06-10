@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-                      
+
 /**
  * @file pred_rls.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Recursive least mean squares prediction functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -40,8 +40,7 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
     if(xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
         // offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
         pred->n = 1 + 2 * xcsf->x_dim + xcsf->x_dim * (xcsf->x_dim - 1) / 2;
-    }
-    else {
+    } else {
         pred->n = xcsf->x_dim + 1;
     }
     // initialise weights
@@ -96,17 +95,16 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     // update weights using the error
     for(int var = 0; var < xcsf->y_dim; var++) {
         double error = y[var] - c->prediction[var];
-        blas_axpy(n, error, pred->tmp_vec, 1, &pred->weights[var*n], 1);
+        blas_axpy(n, error, pred->tmp_vec, 1, &pred->weights[var * n], 1);
     }
     // update gain matrix
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {
             double tmp = pred->tmp_vec[i] * pred->tmp_input[j];
             if(i == j) {
-                pred->tmp_matrix1[i*n+j] = 1 - tmp;
-            }
-            else {
-                pred->tmp_matrix1[i*n+j] = -tmp;
+                pred->tmp_matrix1[i * n + j] = 1 - tmp;
+            } else {
+                pred->tmp_matrix1[i * n + j] = -tmp;
             }
         }
     }
@@ -115,7 +113,7 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     // divide gain matrix entries by lambda
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {
-            pred->matrix[i*n+j] = pred->tmp_matrix2[i*n+j] / xcsf->PRED_RLS_LAMBDA;
+            pred->matrix[i * n + j] = pred->tmp_matrix2[i * n + j] / xcsf->PRED_RLS_LAMBDA;
         }
     }
 }
@@ -126,9 +124,9 @@ void pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x)
     int n = pred->n;
     pred_transform_input(xcsf, x, pred->tmp_input);
     for(int var = 0; var < xcsf->y_dim; var++) {
-        c->prediction[var] = blas_dot(n, &pred->weights[var*n], 1, pred->tmp_input, 1);
+        c->prediction[var] = blas_dot(n, &pred->weights[var * n], 1, pred->tmp_input, 1);
     }
-} 
+}
 
 void pred_rls_print(const XCSF *xcsf, const CL *c)
 {
@@ -137,7 +135,7 @@ void pred_rls_print(const XCSF *xcsf, const CL *c)
     int n = pred->n;
     for(int var = 0; var < xcsf->y_dim; var++) {
         for(int i = 0; i < n; i++) {
-            printf("%f, ", pred->weights[var*n+i]);
+            printf("%f, ", pred->weights[var * n + i]);
         }
         printf("\n");
     }
@@ -145,13 +143,16 @@ void pred_rls_print(const XCSF *xcsf, const CL *c)
 
 _Bool pred_rls_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    (void)xcsf; (void)c1; (void)c2;
+    (void)xcsf;
+    (void)c1;
+    (void)c2;
     return false;
 }
 
 _Bool pred_rls_mutate(const XCSF *xcsf, const CL *c)
 {
-    (void)xcsf; (void)c;
+    (void)xcsf;
+    (void)c;
     return false;
 }
 

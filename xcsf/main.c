@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-     
+
 /**
  * @file main.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Main function for stand-alone binary execution.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -36,19 +36,18 @@
 #include "xcs_supervised.h"
 
 int main(int argc, char **argv)
-{    
+{
     if(argc < 3 || argc > 5) {
         printf("Usage: xcsf problemType{csv|mp|maze} problem{.csv|size|maze} [config.ini] [xcs.bin]\n");
         exit(EXIT_FAILURE);
-    } 
+    }
     XCSF *xcsf = malloc(sizeof(XCSF));
     random_init();
     param_init(xcsf);
     // load parameter config
     if(argc > 3) {
         config_read(xcsf, argv[3]);
-    }
-    else {
+    } else {
         config_read(xcsf, "default.ini");
     }
     // initialise problem environment

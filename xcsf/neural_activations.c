@@ -12,20 +12,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-      
+
 /**
  * @file neural_activations.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2012--2020.
  * @brief Neural network activation functions.
- */ 
- 
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "utils.h"
 #include "neural_activations.h"
- 
+
 /**
  * @brief Returns the result from applying a specified activation function.
  * @param a The activation function to apply.
@@ -35,23 +35,34 @@
 double neural_activate(int a, double x)
 {
     switch(a) {
-        case LOGISTIC: return logistic_activate(x);
-        case RELU: return relu_activate(x);
-        case GAUSSIAN: return gaussian_activate(x);
-        case TANH: return tanh_activate(x);
-        case SIN: return sin_activate(x);
-        case COS: return cos_activate(x);
-        case SOFT_PLUS: return soft_plus_activate(x);
-        case LINEAR: return linear_activate(x);
-        case LEAKY: return leaky_activate(x);
-        case SELU: return selu_activate(x);
-        case LOGGY: return loggy_activate(x);
+        case LOGISTIC:
+            return logistic_activate(x);
+        case RELU:
+            return relu_activate(x);
+        case GAUSSIAN:
+            return gaussian_activate(x);
+        case TANH:
+            return tanh_activate(x);
+        case SIN:
+            return sin_activate(x);
+        case COS:
+            return cos_activate(x);
+        case SOFT_PLUS:
+            return soft_plus_activate(x);
+        case LINEAR:
+            return linear_activate(x);
+        case LEAKY:
+            return leaky_activate(x);
+        case SELU:
+            return selu_activate(x);
+        case LOGGY:
+            return loggy_activate(x);
         default:
             printf("neural_activate(): invalid activation function: %d\n", a);
             exit(EXIT_FAILURE);
     }
 }
-  
+
 /**
  * @brief Returns the derivative from applying a specified activation function.
  * @param a The activation function applied.
@@ -61,17 +72,28 @@ double neural_activate(int a, double x)
 double neural_gradient(int a, double x)
 {
     switch(a) {
-        case LOGISTIC: return logistic_gradient(x);
-        case RELU: return relu_gradient(x);
-        case GAUSSIAN: return gaussian_gradient(x);
-        case TANH: return tanh_gradient(x);
-        case SIN: return sin_gradient(x);
-        case COS: return cos_gradient(x);
-        case SOFT_PLUS: return soft_plus_gradient(x);
-        case LINEAR: return linear_gradient(x);
-        case LEAKY: return leaky_gradient(x);
-        case SELU: return selu_gradient(x);
-        case LOGGY: return loggy_gradient(x);
+        case LOGISTIC:
+            return logistic_gradient(x);
+        case RELU:
+            return relu_gradient(x);
+        case GAUSSIAN:
+            return gaussian_gradient(x);
+        case TANH:
+            return tanh_gradient(x);
+        case SIN:
+            return sin_gradient(x);
+        case COS:
+            return cos_gradient(x);
+        case SOFT_PLUS:
+            return soft_plus_gradient(x);
+        case LINEAR:
+            return linear_gradient(x);
+        case LEAKY:
+            return leaky_gradient(x);
+        case SELU:
+            return selu_gradient(x);
+        case LOGGY:
+            return loggy_gradient(x);
         default:
             printf("neural_gradient(): invalid activation function: %d\n", a);
             exit(EXIT_FAILURE);
@@ -85,18 +107,29 @@ double neural_gradient(int a, double x)
  */
 const char *neural_activation_string(int a)
 {
-     switch(a) {
-        case LOGISTIC: return "logistic";
-        case RELU: return "relu";
-        case GAUSSIAN: return "gaussian";
-        case TANH: return "tanh"; 
-        case SIN: return "sin";
-        case COS: return "cos";
-        case SOFT_PLUS: return "soft_plus";
-        case LINEAR: return "linear";
-        case LEAKY: return "leaky";
-        case SELU: return "selu";
-        case LOGGY: return "loggy";
+    switch(a) {
+        case LOGISTIC:
+            return "logistic";
+        case RELU:
+            return "relu";
+        case GAUSSIAN:
+            return "gaussian";
+        case TANH:
+            return "tanh";
+        case SIN:
+            return "sin";
+        case COS:
+            return "cos";
+        case SOFT_PLUS:
+            return "soft_plus";
+        case LINEAR:
+            return "linear";
+        case LEAKY:
+            return "leaky";
+        case SELU:
+            return "selu";
+        case LOGGY:
+            return "loggy";
         default:
             printf("neural_activation_string(): invalid activation function: %d\n", a);
             exit(EXIT_FAILURE);

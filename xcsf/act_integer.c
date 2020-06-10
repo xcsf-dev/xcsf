@@ -12,30 +12,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-   
+
 /**
  * @file act_integer.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief integer action functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "xcsf.h"       
+#include "xcsf.h"
 #include "utils.h"
 #include "sam.h"
 #include "action.h"
 #include "act_integer.h"
- 
+
 #define N_MU 1 //!< Number of integer action mutation rates
 
 _Bool act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    (void)xcsf; (void)c1; (void)c2;
+    (void)xcsf;
+    (void)c1;
+    (void)c2;
     return false;
 }
 
@@ -54,7 +56,7 @@ _Bool act_integer_mutate(const XCSF *xcsf, const CL *c)
 {
     ACT_INTEGER *act = c->act;
     sam_adapt(xcsf, act->mu, N_MU);
-    if(rand_uniform(0,1) < act->mu[0]) {
+    if(rand_uniform(0, 1) < act->mu[0]) {
         int old = act->action;
         act->action = irand_uniform(0, xcsf->n_actions);
         if(old != act->action) {
@@ -66,7 +68,8 @@ _Bool act_integer_mutate(const XCSF *xcsf, const CL *c)
 
 int act_integer_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
-    (void)xcsf; (void)x;
+    (void)xcsf;
+    (void)x;
     const ACT_INTEGER *act = c->act;
     return act->action;
 }
@@ -91,7 +94,8 @@ void act_integer_print(const XCSF *xcsf, const CL *c)
 
 void act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int action)
 {
-    (void)xcsf; (void)x;
+    (void)xcsf;
+    (void)x;
     ACT_INTEGER *act = c->act;
     act->action = action;
 }
@@ -112,10 +116,13 @@ void act_integer_init(const XCSF *xcsf, CL *c)
     new->action = irand_uniform(0, xcsf->n_actions);
     c->act = new;
 }
- 
+
 void act_integer_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
-    (void)xcsf; (void)c; (void)x; (void)y;
+    (void)xcsf;
+    (void)c;
+    (void)x;
+    (void)y;
 }
 
 size_t act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp)

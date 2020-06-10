@@ -20,7 +20,7 @@
  * @date 2015--2020.
  * @brief Reinforcement learning functions.
  * @details A trial consists of one or more steps.
- */ 
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,7 +63,7 @@ double xcs_rl_exp(XCSF *xcsf)
     }
     pa_free(xcsf);
     return tperf / xcsf->MAX_TRIALS;
-}                                
+}
 
 /**
  * @brief Executes a reinforcement learning trial using a built-in environment.
@@ -203,7 +203,7 @@ double xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset, do
     double error = 0;
     if(xcsf->prev_aset.list != NULL) {
         error += fabs(xcsf->GAMMA * pa_val(xcsf, action)
-                + xcsf->prev_reward - xcsf->prev_pred) / max_p;
+                      + xcsf->prev_reward - xcsf->prev_pred) / max_p;
     }
     if(reset) {
         error += fabs(reward - pa_val(xcsf, action)) / max_p;
@@ -222,7 +222,7 @@ int xcs_rl_decision(XCSF *xcsf, const double *state)
 {
     clset_match(xcsf, state);
     pa_build(xcsf, state);
-    if(xcsf->explore && rand_uniform(0,1) < xcsf->P_EXPLORE) {
+    if(xcsf->explore && rand_uniform(0, 1) < xcsf->P_EXPLORE) {
         return pa_rand_action(xcsf);
     }
     return pa_best_action(xcsf);

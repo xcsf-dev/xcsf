@@ -12,20 +12,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-    
+
 /**
  * @file env_mux.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief The real multiplexer problem environment.
- */ 
+ */
 
 #pragma once
 
 /**
  * @brief Real multiplexer environment data structure.
- */  
+ */
 typedef struct ENV_MUX {
     double *state; //!< Current state
     int pos_bits; //!< Number of position bits

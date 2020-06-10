@@ -12,17 +12,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-          
+
 /**
  * @file cl.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Functions operating on classifiers.
- */ 
+ */
 
 #pragma once
- 
+
 _Bool cl_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cl_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool cl_m(const XCSF *xcsf, const CL *c);

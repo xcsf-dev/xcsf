@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-       
+
 /**
  * @file neural_layer_connected.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief An implementation of a fully-connected layer of perceptrons.
- */ 
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -50,7 +50,8 @@ static void neuron_add(LAYER *l, int n);
 static void neuron_remove(LAYER *l, int n);
 static void weight_clamp(const LAYER *l);
 
-LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f, uint32_t o)
+LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
+                                   uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = CONNECTED;
@@ -68,13 +69,12 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->delta = calloc(l->n_outputs, sizeof(double));
     l->weights = malloc(l->n_weights * sizeof(double));
     for(int i = 0; i < l->n_weights; i++) {
-        l->weights[i] = rand_normal(0,0.1);
+        l->weights[i] = rand_normal(0, 0.1);
     }
     l->options = o;
     if(l->options & LAYER_EVOLVE_ETA) {
-        l->eta = rand_uniform(ETA_MIN,ETA_MAX);
-    }
-    else {
+        l->eta = rand_uniform(ETA_MIN, ETA_MAX);
+    } else {
         l->eta = xcsf->PRED_ETA;
     }
     l->mu = malloc(N_MU * sizeof(double));
@@ -126,10 +126,10 @@ void neural_layer_connected_rand(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
     for(int i = 0; i < l->n_weights; i++) {
-        l->weights[i] = rand_normal(0,1);
+        l->weights[i] = rand_normal(0, 1);
     }
     for(int i = 0; i < l->n_outputs; i++) {
-        l->biases[i] = rand_normal(0,1);
+        l->biases[i] = rand_normal(0, 1);
     }
 }
 
@@ -144,7 +144,7 @@ void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const doub
     // states = biases
     memcpy(l->state, l->biases, l->n_outputs * sizeof(double));
     // states += weights * inputs
-    blas_gemm(0,1,1,n,k,1,a,k,b,k,1,c,n);
+    blas_gemm(0, 1, 1, n, k, 1, a, k, b, k, 1, c, n);
     // apply activations
     neural_activate_array(l->state, l->output, l->n_outputs, l->function);
 }
@@ -164,7 +164,7 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET
         const double *b = net->input;
         double *c = l->weight_updates;
         blas_axpy(l->n_outputs, 1, l->delta, 1, l->bias_updates, 1);
-        blas_gemm(1,0,m,n,1,1,a,m,b,n,1,c,n);
+        blas_gemm(1, 0, m, n, 1, 1, a, m, b, n, 1, c, n);
     }
     // set the error for the previous layer (if there is one)
     if(net->delta) {
@@ -173,7 +173,7 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, const NET
         const double *a = l->delta;
         const double *b = l->weights;
         double *c = net->delta;
-        blas_gemm(0,0,1,n,k,1,a,k,b,n,1,c,n);
+        blas_gemm(0, 0, 1, n, k, 1, a, k, b, n, 1, c, n);
     }
 }
 
@@ -211,9 +211,8 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
             if(j < l->n_inputs) {
                 weights[offset + j] = l->weights[orig_offset + j];
                 weight_updates[offset + j] = l->weight_updates[orig_offset + j];
-            }
-            else {
-                weights[offset + j] = rand_normal(0,0.1);
+            } else {
+                weights[offset + j] = rand_normal(0, 0.1);
                 weight_updates[offset + j] = 0;
             }
         }
@@ -259,11 +258,11 @@ static _Bool mutate_eta(LAYER *l, double mu)
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu)
 {
     _Bool mod = false;
-    if(rand_uniform(0,1) < mu) {
+    if(rand_uniform(0, 1) < mu) {
         // number of neurons to add or remove
         int n = 1 + irand_uniform(0, xcsf->MAX_NEURON_MOD);
         // remove neurons
-        if(rand_uniform(0,1) < 0.5) {
+        if(rand_uniform(0, 1) < 0.5) {
             if(l->n_outputs - n < 1) {
                 n = l->n_outputs - 1;
             }
@@ -300,7 +299,7 @@ static void neuron_add(LAYER *l, int n)
     memcpy(weights, l->weights, l->n_weights * sizeof(double));
     memcpy(weight_updates, l->weight_updates, l->n_weights * sizeof(double));
     for(int i = l->n_weights; i < n_weights; i++) {
-        weights[i] = rand_normal(0,0.1);
+        weights[i] = rand_normal(0, 0.1);
         weight_updates[i] = 0;
     }
     memcpy(biases, l->biases, (l->n_outputs - n) * sizeof(double));
@@ -382,7 +381,7 @@ static _Bool mutate_weights(const LAYER *l, double mu)
 
 static _Bool mutate_functions(LAYER *l, double mu)
 {
-    if(rand_uniform(0,1) < mu) {
+    if(rand_uniform(0, 1) < mu) {
         int orig = l->function;
         l->function = irand_uniform(0, NUM_ACTIVATIONS);
         if(l->function != orig) {
@@ -402,7 +401,7 @@ void neural_layer_connected_print(const XCSF *xcsf, const LAYER *l, _Bool print_
 {
     (void)xcsf;
     printf("connected %s, in = %d, out = %d, ",
-            neural_activation_string(l->function), l->n_inputs, l->n_outputs);
+           neural_activation_string(l->function), l->n_inputs, l->n_outputs);
     printf("weights (%d): ", l->n_weights);
     if(print_weights) {
         for(int i = 0; i < l->n_weights; i++) {

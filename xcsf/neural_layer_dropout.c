@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-          
+
 /**
  * @file neural_layer_dropout.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief An implementation of a dropout layer.
- */ 
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -44,7 +44,7 @@ LAYER *neural_layer_dropout_init(const XCSF *xcsf, int in, double prob)
     l->options = 0;
     l->eta = 0;
     l->probability = prob;
-    l->scale = 1./(1.-prob);
+    l->scale = 1. / (1. - prob);
     l->output = calloc(l->n_inputs, sizeof(double));
     l->delta = malloc(l->n_inputs * sizeof(double));
     l->rand = malloc(l->n_inputs * sizeof(double));
@@ -80,7 +80,8 @@ void neural_layer_dropout_free(const XCSF *xcsf, const LAYER *l)
 
 void neural_layer_dropout_rand(const XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf;
+    (void)l;
 }
 
 void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input)
@@ -89,14 +90,12 @@ void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double
         for(int i = 0; i < l->n_inputs; i++) {
             l->output[i] = input[i];
         }
-    }
-    else {
+    } else {
         for(int i = 0; i < l->n_inputs; i++) {
-            l->rand[i] = rand_uniform(0,1);
+            l->rand[i] = rand_uniform(0, 1);
             if(l->rand[i] < l->probability) {
                 l->output[i] = 0;
-            }
-            else {
+            } else {
                 l->output[i] = input[i] * l->scale;
             }
         }
@@ -112,8 +111,7 @@ void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const NET *
     for(int i = 0; i < l->n_inputs; i++) {
         if(l->rand[i] < l->probability) {
             net->delta[i] = 0;
-        }
-        else {
+        } else {
             net->delta[i] += l->delta[i] * l->scale;
         }
     }
@@ -121,12 +119,14 @@ void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const NET *
 
 void neural_layer_dropout_update(const XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf;
+    (void)l;
 }
 
 _Bool neural_layer_dropout_mutate(const XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf; (void)l;
+    (void)xcsf;
+    (void)l;
     return false;
 }
 
@@ -152,9 +152,10 @@ double *neural_layer_dropout_output(const XCSF *xcsf, const LAYER *l)
 
 void neural_layer_dropout_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
 {
-    (void)xcsf; (void)print_weights;
+    (void)xcsf;
+    (void)print_weights;
     printf("dropout in = %d, out = %d prob = %f\n",
-            l->n_inputs, l->n_outputs, l->probability);
+           l->n_inputs, l->n_outputs, l->probability);
 }
 
 size_t neural_layer_dropout_save(const XCSF *xcsf, const LAYER *l, FILE *fp)

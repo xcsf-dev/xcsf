@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-               
+
 /**
  * @file config.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Config file handling functions
- */ 
+ */
 
 #pragma once
- 
+
 void config_read(XCSF *xcsf, const char *filename);

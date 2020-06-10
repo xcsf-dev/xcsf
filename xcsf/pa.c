@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-  
+
 /**
  * @file pa.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Prediction array functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -59,8 +59,7 @@ void pa_build(const XCSF *xcsf, const double *x)
     for(int i = 0; i < xcsf->n_actions; i++) {
         if(xcsf->nr[i] != 0) {
             xcsf->pa[i] /= xcsf->nr[i];
-        }
-        else {
+        } else {
             xcsf->pa[i] = 0;
         }
     }

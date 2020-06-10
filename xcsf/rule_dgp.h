@@ -12,21 +12,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-   
+
 /**
  * @file rule_dgp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019--2020.
  * @brief Dynamical GP graph rule (condition + action) functions.
- */ 
+ */
 
 #pragma once
 
 /**
  * @brief Dynamical GP graph rule data structure.
- */ 
-typedef struct RULE_DGP{
+ */
+typedef struct RULE_DGP {
     GRAPH dgp; //!< DGP graph
     int n_outputs; //!< Number of action nodes (binarised)
 } RULE_DGP;
@@ -62,7 +62,7 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
     &rule_dgp_cond_size,
     &rule_dgp_cond_save,
     &rule_dgp_cond_load
-};      
+};
 
 _Bool rule_dgp_act_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_dgp_act_general(const XCSF *xcsf, const CL *c1, const CL *c2);

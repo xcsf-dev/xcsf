@@ -12,20 +12,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-    
+
 /**
  * @file neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2012--2020.
  * @brief An implementation of a multi-layer perceptron neural network.
- */ 
+ */
 
 #pragma once
 
 /**
  * @brief Double linked list of layers data structure.
- */ 
+ */
 typedef struct LLIST {
     struct LAYER *layer; //!< Pointer to the layer data structure
     struct LLIST *prev; //!< Pointer to the previous layer (forward)
@@ -34,7 +34,7 @@ typedef struct LLIST {
 
 /**
  * @brief Neural network data structure.
- */  
+ */
 typedef struct NET {
     int n_layers; //!< Number of layers (hidden + output)
     int n_inputs; //!< Number of network inputs

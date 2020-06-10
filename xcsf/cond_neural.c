@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 /**
  * @file cond_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief Multi-layer perceptron neural network condition functions.
- */ 
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -87,7 +87,7 @@ void cond_neural_free(const XCSF *xcsf, const CL *c)
     COND_NEURAL *cond = c->cond;
     neural_free(xcsf, &cond->net);
     free(c->cond);
-}                  
+}
 
 void cond_neural_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
@@ -107,7 +107,10 @@ void cond_neural_cover(const XCSF *xcsf, const CL *c, const double *x)
 
 void cond_neural_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
-    (void)xcsf; (void)c; (void)x; (void)y;
+    (void)xcsf;
+    (void)c;
+    (void)x;
+    (void)y;
 }
 
 _Bool cond_neural_match(const XCSF *xcsf, const CL *c, const double *x)
@@ -118,7 +121,7 @@ _Bool cond_neural_match(const XCSF *xcsf, const CL *c, const double *x)
         return true;
     }
     return false;
-}                
+}
 
 _Bool cond_neural_mutate(const XCSF *xcsf, const CL *c)
 {
@@ -128,15 +131,19 @@ _Bool cond_neural_mutate(const XCSF *xcsf, const CL *c)
 
 _Bool cond_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    (void)xcsf; (void) c1; (void)c2;
+    (void)xcsf;
+    (void)c1;
+    (void)c2;
     return false;
 }
 
 _Bool cond_neural_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    (void)xcsf; (void)c1; (void)c2;
+    (void)xcsf;
+    (void)c1;
+    (void)c2;
     return false;
-}   
+}
 
 void cond_neural_print(const XCSF *xcsf, const CL *c)
 {

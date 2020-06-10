@@ -12,18 +12,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-         
+
 /**
  * @file loss.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019--2020.
  * @brief Loss functions for calculating prediction error.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h> 
+#include <math.h>
 #include <float.h>
 #include <errno.h>
 #include "xcsf.h"
@@ -45,7 +45,7 @@ double loss_mae(const XCSF *xcsf, const double *pred, const double *y)
     error /= xcsf->y_dim;
     return error;
 }
- 
+
 /**
  * @brief Mean squared error loss function.
  * @param xcsf The XCSF data structure.
@@ -106,11 +106,11 @@ double loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
     double error = 0;
     for(int i = 0; i < xcsf->y_dim; i++) {
         error += y[i] * log(fmax(pred[i], DBL_EPSILON)) +
-            (1-y[i]) * log(fmax((1-pred[i]), DBL_EPSILON));
+                 (1 - y[i]) * log(fmax((1 - pred[i]), DBL_EPSILON));
     }
     return -error;
 }
- 
+
 /**
  * @brief One-hot classification error.
  * @param xcsf The XCSF data structure.
@@ -131,7 +131,7 @@ double loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
     }
     return 0;
 }
- 
+
 /**
  * @brief Sets the XCSF error function to the implemented function.
  * @param xcsf The XCSF data structure.
@@ -139,12 +139,24 @@ double loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
 void loss_set_func(XCSF *xcsf)
 {
     switch(xcsf->LOSS_FUNC) {
-        case LOSS_MAE: xcsf->loss_ptr = &loss_mae; break;
-        case LOSS_MSE: xcsf->loss_ptr = &loss_mse; break;
-        case LOSS_RMSE: xcsf->loss_ptr = &loss_rmse; break;
-        case LOSS_LOG: xcsf->loss_ptr = &loss_log; break;
-        case LOSS_BINARY_LOG: xcsf->loss_ptr = &loss_binary_log; break;
-        case LOSS_ONEHOT_ACC: xcsf->loss_ptr = &loss_onehot_acc; break;
+        case LOSS_MAE:
+            xcsf->loss_ptr = &loss_mae;
+            break;
+        case LOSS_MSE:
+            xcsf->loss_ptr = &loss_mse;
+            break;
+        case LOSS_RMSE:
+            xcsf->loss_ptr = &loss_rmse;
+            break;
+        case LOSS_LOG:
+            xcsf->loss_ptr = &loss_log;
+            break;
+        case LOSS_BINARY_LOG:
+            xcsf->loss_ptr = &loss_binary_log;
+            break;
+        case LOSS_ONEHOT_ACC:
+            xcsf->loss_ptr = &loss_onehot_acc;
+            break;
         default:
             printf("invalid loss function: %d\n", xcsf->LOSS_FUNC);
             exit(EXIT_FAILURE);

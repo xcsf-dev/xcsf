@@ -12,20 +12,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-  
+
 /**
  * @file cond_gp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief Tree GP condition functions.
- */ 
+ */
 
 #pragma once
 
 /**
  * @brief Tree GP condition data structure.
- */ 
+ */
 typedef struct COND_GP {
     GP_TREE gp; //!< GP tree
 } COND_GP;
@@ -61,4 +61,4 @@ static struct CondVtbl const cond_gp_vtbl = {
     &cond_gp_size,
     &cond_gp_save,
     &cond_gp_load
-};      
+};

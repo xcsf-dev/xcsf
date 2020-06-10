@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-                    
+
 /**
  * @file pred_constant.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Piece-wise constant prediction functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -32,17 +32,21 @@
 
 void pred_constant_init(const XCSF *xcsf, CL *c)
 {
-    (void)xcsf; (void)c;
+    (void)xcsf;
+    (void)c;
 }
 
 void pred_constant_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
-    (void)xcsf; (void)dest; (void)src;
+    (void)xcsf;
+    (void)dest;
+    (void)src;
 }
 
 void pred_constant_free(const XCSF *xcsf, const CL *c)
 {
-    (void)xcsf; (void)c;
+    (void)xcsf;
+    (void)c;
 }
 
 void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
@@ -50,10 +54,9 @@ void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x, const 
     (void)x;
     if(c->exp < 1.0 / xcsf->PRED_ETA) {
         for(int var = 0; var < xcsf->y_dim; var++) {
-            c->prediction[var] = (c->prediction[var] * (c->exp-1.0) + y[var]) / (double)c->exp;
+            c->prediction[var] = (c->prediction[var] * (c->exp - 1.0) + y[var]) / (double)c->exp;
         }
-    }
-    else {
+    } else {
         for(int var = 0; var < xcsf->y_dim; var++) {
             c->prediction[var] += xcsf->PRED_ETA * (y[var] - c->prediction[var]);
         }
@@ -62,8 +65,10 @@ void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x, const 
 
 void pred_constant_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
-    (void)xcsf; (void)c; (void)x;
-} 
+    (void)xcsf;
+    (void)c;
+    (void)x;
+}
 
 void pred_constant_print(const XCSF *xcsf, const CL *c)
 {
@@ -76,13 +81,16 @@ void pred_constant_print(const XCSF *xcsf, const CL *c)
 
 _Bool pred_constant_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    (void)xcsf; (void)c1; (void)c2;
+    (void)xcsf;
+    (void)c1;
+    (void)c2;
     return false;
 }
 
 _Bool pred_constant_mutate(const XCSF *xcsf, const CL *c)
 {
-    (void)xcsf; (void)c;
+    (void)xcsf;
+    (void)c;
     return false;
 }
 
@@ -94,12 +102,16 @@ int pred_constant_size(const XCSF *xcsf, const CL *c)
 
 size_t pred_constant_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
-    (void)xcsf; (void)c; (void)fp;
+    (void)xcsf;
+    (void)c;
+    (void)fp;
     return 0;
 }
 
 size_t pred_constant_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
-    (void)xcsf; (void)c; (void)fp;
+    (void)xcsf;
+    (void)c;
+    (void)fp;
     return 0;
 }

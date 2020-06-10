@@ -12,76 +12,76 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-                      
+
 /**
  * @file blas.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
  * @brief Basic linear algebra functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
 static void gemm_nn(int M, int N, int K, double ALPHA,
-        const double *A, int lda,
-        const double *B, int ldb,
-        double *C, int ldc)
+                    const double *A, int lda,
+                    const double *B, int ldb,
+                    double *C, int ldc)
 {
     for(int i = 0; i < M; i++) {
         for(int k = 0; k < K; k++) {
-            double A_PART = ALPHA * A[i*lda+k];
+            double A_PART = ALPHA * A[i * lda + k];
             for(int j = 0; j < N; j++) {
-                C[i*ldc+j] += A_PART * B[k*ldb+j];
+                C[i * ldc + j] += A_PART * B[k * ldb + j];
             }
         }
     }
 }
 
 static void gemm_nt(int M, int N, int K, double ALPHA,
-        const double *A, int lda,
-        const double *B, int ldb,
-        double *C, int ldc)
+                    const double *A, int lda,
+                    const double *B, int ldb,
+                    double *C, int ldc)
 {
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {
             double sum = 0;
             for(int k = 0; k < K; k++) {
-                sum += ALPHA * A[i*lda+k] * B[j*ldb+k];
+                sum += ALPHA * A[i * lda + k] * B[j * ldb + k];
             }
-            C[i*ldc+j] += sum;
+            C[i * ldc + j] += sum;
         }
     }
 }
 
 static void gemm_tn(int M, int N, int K, double ALPHA,
-        const double *A, int lda,
-        const double *B, int ldb,
-        double *C, int ldc)
+                    const double *A, int lda,
+                    const double *B, int ldb,
+                    double *C, int ldc)
 {
     for(int i = 0; i < M; i++) {
         for(int k = 0; k < K; k++) {
-            double A_PART = ALPHA * A[k*lda+i];
+            double A_PART = ALPHA * A[k * lda + i];
             for(int j = 0; j < N; j++) {
-                C[i*ldc+j] += A_PART * B[k*ldb+j];
+                C[i * ldc + j] += A_PART * B[k * ldb + j];
             }
         }
     }
 }
 
 static void gemm_tt(int M, int N, int K, double ALPHA,
-        const double *A, int lda,
-        const double *B, int ldb,
-        double *C, int ldc)
+                    const double *A, int lda,
+                    const double *B, int ldb,
+                    double *C, int ldc)
 {
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {
             double sum = 0;
             for(int k = 0; k < K; k++) {
-                sum += ALPHA * A[i+k*lda] * B[k+j*ldb];
+                sum += ALPHA * A[i + k * lda] * B[k + j * ldb];
             }
-            C[i*ldc+j] += sum;
+            C[i * ldc + j] += sum;
         }
     }
 }
@@ -104,26 +104,23 @@ static void gemm_tt(int M, int N, int K, double ALPHA,
  * @param ldc Leading dimension of a two-dimensional array used to store the matrix C.
  */
 void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
-        const double *A, int lda,
-        const double *B, int ldb,
-        double BETA,
-        double *C, int ldc)
+               const double *A, int lda,
+               const double *B, int ldb,
+               double BETA,
+               double *C, int ldc)
 {
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {
-            C[i*ldc+j] *= BETA;
+            C[i * ldc + j] *= BETA;
         }
     }
     if(!TA && !TB) {
         gemm_nn(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
-    }
-    else if(TA && !TB) {
+    } else if(TA && !TB) {
         gemm_tn(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
-    }
-    else if(!TA && TB) {
+    } else if(!TA && TB) {
         gemm_nt(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
-    }
-    else {
+    } else {
         gemm_tt(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
     }
 }
@@ -140,7 +137,7 @@ void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
 void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
 {
     for(int i = 0; i < N; i++) {
-        Y[i*INCY] += ALPHA * X[i*INCX];
+        Y[i * INCY] += ALPHA * X[i * INCX];
     }
 }
 
@@ -154,7 +151,7 @@ void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int IN
 void blas_scal(int N, double ALPHA, double *X, int INCX)
 {
     for(int i = 0; i < N; i++) {
-        X[i*INCX] *= ALPHA;
+        X[i * INCX] *= ALPHA;
     }
 }
 
@@ -168,7 +165,7 @@ void blas_scal(int N, double ALPHA, double *X, int INCX)
 void blas_fill(int N, double ALPHA, double *X, int INCX)
 {
     for(int i = 0; i < N; i++) {
-        X[i*INCX] = ALPHA;
+        X[i * INCX] = ALPHA;
     }
 }
 
@@ -185,7 +182,7 @@ double blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
 {
     double dot = 0;
     for(int i = 0; i < N; i++) {
-        dot += X[i*INCX] * Y[i*INCY];
+        dot += X[i * INCX] * Y[i * INCY];
     }
     return dot;
 }

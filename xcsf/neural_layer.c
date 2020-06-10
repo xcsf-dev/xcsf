@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-           
+
 /**
  * @file neural_layer.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2019.
  * @brief Interface for neural network layers.
- */ 
-      
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "xcsf.h"
@@ -40,7 +40,7 @@
 void neural_layer_set_vptr(LAYER *l)
 {
     switch(l->layer_type) {
-        case CONNECTED: 
+        case CONNECTED:
             l->layer_vptr = &layer_connected_vtbl;
             break;
         case DROPOUT:
@@ -55,5 +55,5 @@ void neural_layer_set_vptr(LAYER *l)
         default:
             printf("Error setting layer vptr for type: %d\n", l->layer_type);
             exit(EXIT_FAILURE);
-    }   
+    }
 }

@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 /**
  * @file env_maze.h
  * @author Richard Preen <rpreen@gmail.com>
@@ -20,14 +20,14 @@
  * @date 2015--2020.
  * @brief The discrete maze problem environment module.
  */
-    
+
 #pragma once
 
 #define MAX_SIZE 50 //!< The maximum width/height of a maze
 
 /**
  * @brief Maze environment data structure.
- */ 
+ */
 typedef struct ENV_MAZE {
     double *state; //!< Current state
     char maze[MAX_SIZE][MAX_SIZE]; //!< Maze
@@ -58,4 +58,4 @@ static struct EnvVtbl const env_maze_vtbl = {
     &env_maze_get_state,
     &env_maze_free,
     &env_maze_reset
-};      
+};

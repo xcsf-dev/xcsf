@@ -12,17 +12,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-     
+
 /**
  * @file neural_activations.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2012--2020.
  * @brief Neural network activation functions.
- */ 
+ */
 
 #pragma once
- 
+
 #include <math.h>
 
 #define LOGISTIC 0 //!< Logistic [0,1]
@@ -41,32 +41,102 @@
 
 #define NEURON_MIN_STATE -100
 #define NEURON_MAX_STATE 100
- 
+
 double neural_activate(int a, double x);
 double neural_gradient(int a, double x);
 const char *neural_activation_string(int a);
 void neural_activate_array(double *state, double *output, int n, int a);
 void neural_gradient_array(const double *state, double *delta, int n, int a);
 
-static inline double logistic_activate(double x){return 1./(1.+exp(-x));}
-static inline double logistic_gradient(double x){double fx=1./(1.+exp(-x)); return (1-fx)*fx;}
-static inline double loggy_activate(double x){return 2./(1.+exp(-x))-1;}
-static inline double loggy_gradient(double x){double fx=exp(x); return (2.*fx)/pow(fx+1.,2);}
-static inline double gaussian_activate(double x){return exp(-x*x);}
-static inline double gaussian_gradient(double x){return -2*x*exp(-x*x);}
-static inline double relu_activate(double x){return x*(x>0);}
-static inline double relu_gradient(double x){return (x>0);}
-static inline double selu_activate(double x){return (x>=0)*1.0507*x+(x<0)*1.0507*1.6732*expm1(x);}
-static inline double selu_gradient(double x){return (x>=0)*1.0507+(x<0)*(1.0507*1.6732*exp(x));}
-static inline double linear_activate(double x){return x;}
-static inline double linear_gradient(double x){(void)x; return 1;}
-static inline double soft_plus_activate(double x){return log1p(exp(x));}
-static inline double soft_plus_gradient(double x){return 1./(1.+exp(-x));}
-static inline double tanh_activate(double x){return tanh(x);}
-static inline double tanh_gradient(double x){double t=tanh(x); return 1-t*t;}
-static inline double leaky_activate(double x){return (x>0) ? x : .1*x;}
-static inline double leaky_gradient(double x){return (x<0) ? .1 : 1;}
-static inline double sin_activate(double x){return sin(x);}
-static inline double sin_gradient(double x){return cos(x);}
-static inline double cos_activate(double x){return cos(x);}
-static inline double cos_gradient(double x){return -sin(x);}
+static inline double logistic_activate(double x)
+{
+    return 1. / (1. + exp(-x));
+}
+static inline double logistic_gradient(double x)
+{
+    double fx = 1. / (1. + exp(-x));
+    return (1 - fx) * fx;
+}
+static inline double loggy_activate(double x)
+{
+    return 2. / (1. + exp(-x)) - 1;
+}
+static inline double loggy_gradient(double x)
+{
+    double fx = exp(x);
+    return (2.*fx) / pow(fx + 1., 2);
+}
+static inline double gaussian_activate(double x)
+{
+    return exp(-x * x);
+}
+static inline double gaussian_gradient(double x)
+{
+    return -2 * x * exp(-x * x);
+}
+static inline double relu_activate(double x)
+{
+    return x * (x > 0);
+}
+static inline double relu_gradient(double x)
+{
+    return (x > 0);
+}
+static inline double selu_activate(double x)
+{
+    return (x >= 0) * 1.0507 * x + (x < 0) * 1.0507 * 1.6732 * expm1(x);
+}
+static inline double selu_gradient(double x)
+{
+    return (x >= 0) * 1.0507 + (x < 0) * (1.0507 * 1.6732 * exp(x));
+}
+static inline double linear_activate(double x)
+{
+    return x;
+}
+static inline double linear_gradient(double x)
+{
+    (void)x;
+    return 1;
+}
+static inline double soft_plus_activate(double x)
+{
+    return log1p(exp(x));
+}
+static inline double soft_plus_gradient(double x)
+{
+    return 1. / (1. + exp(-x));
+}
+static inline double tanh_activate(double x)
+{
+    return tanh(x);
+}
+static inline double tanh_gradient(double x)
+{
+    double t = tanh(x);
+    return 1 - t * t;
+}
+static inline double leaky_activate(double x)
+{
+    return (x > 0) ? x : .1 * x;
+}
+static inline double leaky_gradient(double x)
+{
+    return (x < 0) ? .1 : 1;
+}
+static inline double sin_activate(double x)
+{
+    return sin(x);
+}
+static inline double sin_gradient(double x)
+{
+    return cos(x);
+}
+static inline double cos_activate(double x)
+{
+    return cos(x);
+}
+static inline double cos_gradient(double x)
+{
+    return -sin(x);
+}

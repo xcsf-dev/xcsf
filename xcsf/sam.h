@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-        
+
 /**
  * @file sam.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Self-adaptive mutation functions.
- */ 
- 
+ */
+
 #pragma once
 
 #define SAM_LOG_NORMAL 0 //!< Log normal self-adaptation

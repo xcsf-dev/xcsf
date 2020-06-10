@@ -12,22 +12,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-  
+
 /**
  * @file dgp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief An implementation of dynamical GP graphs with fuzzy activation functions.
- */ 
+ */
 
 #pragma once
-                  
+
 #define DGP_N_MU 3 //!< Number of DGP mutation rates
 
 /**
  * @brief Dynamical GP graph data structure.
- */ 
+ */
 typedef struct GRAPH {
     int *connectivity; //!< Connectivity map
     double *state; //!< Current state of each node

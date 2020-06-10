@@ -12,18 +12,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-    
+
 /**
  * @file xcs_supervised.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Supervised regression learning functions.
- */ 
+ */
 
 #pragma once
 
 double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
-        const INPUT *test_data, _Bool shuffle);
+                          const INPUT *test_data, _Bool shuffle);
 double xcs_supervised_score(XCSF *xcsf, const INPUT *test_data);
 void xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_samples);

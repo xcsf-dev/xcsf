@@ -12,20 +12,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-        
+
 /**
  * @file condition.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Interface for classifier conditions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "xcsf.h"       
+#include "xcsf.h"
 #include "utils.h"
 #include "gp.h"
 #include "dgp.h"
@@ -36,8 +36,8 @@
 #include "cond_ellipsoid.h"
 #include "cond_gp.h"
 #include "cond_dgp.h"
-#include "cond_neural.h"       
-#include "cond_ternary.h"       
+#include "cond_neural.h"
+#include "cond_ternary.h"
 #include "action.h"
 #include "rule_dgp.h"
 #include "rule_neural.h"

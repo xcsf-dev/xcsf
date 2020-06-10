@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-   
+
 /**
  * @file cond_ellipsoid.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019--2020.
  * @brief Hyperellipsoid condition functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -72,7 +72,7 @@ void cond_ellipsoid_copy(const XCSF *xcsf, CL *dest, const CL *src)
     memcpy(new->spread, src_cond->spread, xcsf->x_dim * sizeof(double));
     memcpy(new->mu, src_cond->mu, N_MU * sizeof(double));
     dest->cond = new;
-}                             
+}
 
 void cond_ellipsoid_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
@@ -108,25 +108,25 @@ static double cond_ellipsoid_dist(const XCSF *xcsf, const CL *c, const double *x
     double dist = 0;
     for(int i = 0; i < xcsf->x_dim; i++) {
         double d = (x[i] - cond->center[i]) / cond->spread[i];
-        dist += d*d; // squared distance
+        dist += d * d; // squared distance
     }
     return dist;
 }
 
-_Bool cond_ellipsoid_crossover(const XCSF *xcsf, const CL *c1, const CL *c2) 
+_Bool cond_ellipsoid_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     const COND_ELLIPSOID *cond1 = c1->cond;
     const COND_ELLIPSOID *cond2 = c2->cond;
     _Bool changed = false;
-    if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
+    if(rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for(int i = 0; i < xcsf->x_dim; i++) {
-            if(rand_uniform(0,1) < 0.5) {
+            if(rand_uniform(0, 1) < 0.5) {
                 double tmp = cond1->center[i];
                 cond1->center[i] = cond2->center[i];
                 cond2->center[i] = tmp;
                 changed = true;
             }
-            if(rand_uniform(0,1) < 0.5) {
+            if(rand_uniform(0, 1) < 0.5) {
                 double tmp = cond1->spread[i];
                 cond1->spread[i] = cond2->spread[i];
                 cond2->spread[i] = tmp;
@@ -155,7 +155,7 @@ _Bool cond_ellipsoid_mutate(const XCSF *xcsf, const CL *c)
             changed = true;
         }
     }
-    return changed;   
+    return changed;
 }
 
 _Bool cond_ellipsoid_general(const XCSF *xcsf, const CL *c1, const CL *c2)
@@ -172,7 +172,7 @@ _Bool cond_ellipsoid_general(const XCSF *xcsf, const CL *c1, const CL *c2)
         }
     }
     return true;
-}  
+}
 
 void cond_ellipsoid_print(const XCSF *xcsf, const CL *c)
 {

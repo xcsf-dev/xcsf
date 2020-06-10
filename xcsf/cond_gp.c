@@ -12,15 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-   
+
 /**
  * @file cond_gp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief Tree GP condition functions.
- */ 
- 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -65,7 +65,10 @@ void cond_gp_cover(const XCSF *xcsf, const CL *c, const double *x)
 
 void cond_gp_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
-    (void)xcsf; (void)c; (void)x; (void)y;
+    (void)xcsf;
+    (void)c;
+    (void)x;
+    (void)y;
 }
 
 _Bool cond_gp_match(const XCSF *xcsf, const CL *c, const double *x)
@@ -77,7 +80,7 @@ _Bool cond_gp_match(const XCSF *xcsf, const CL *c, const double *x)
         return true;
     }
     return false;
-}    
+}
 
 _Bool cond_gp_mutate(const XCSF *xcsf, const CL *c)
 {
@@ -89,7 +92,7 @@ _Bool cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     COND_GP *cond1 = c1->cond;
     COND_GP *cond2 = c2->cond;
-    if(rand_uniform(0,1) < xcsf->P_CROSSOVER) {
+    if(rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         tree_crossover(xcsf, &cond1->gp, &cond2->gp);
         return true;
     }
@@ -98,7 +101,9 @@ _Bool cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 _Bool cond_gp_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    (void)xcsf; (void)c1; (void)c2;
+    (void)xcsf;
+    (void)c1;
+    (void)c2;
     return false;
 }
 
@@ -108,7 +113,7 @@ void cond_gp_print(const XCSF *xcsf, const CL *c)
     printf("GP tree: ");
     tree_print(xcsf, &cond->gp, 0);
     printf("\n");
-}  
+}
 
 int cond_gp_size(const XCSF *xcsf, const CL *c)
 {

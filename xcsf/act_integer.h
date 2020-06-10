@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-  
+
 /**
  * @file act_integer.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2019--2020.
  * @brief integer action functions.
- */ 
+ */
 
 #pragma once
 
@@ -60,4 +60,4 @@ static struct ActVtbl const act_integer_vtbl = {
     &act_integer_update,
     &act_integer_save,
     &act_integer_load
-};     
+};

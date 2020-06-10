@@ -19,13 +19,13 @@
  * @copyright The Authors.
  * @date 2019--2020.
  * @brief Hyperrectangle condition functions.
- */ 
+ */
 
 #pragma once
 
 /**
  * @brief Hyperrectangle condition data structure.
- */ 
+ */
 typedef struct COND_RECTANGLE {
     double *center; //!< Centers
     double *spread; //!< Spreads
@@ -63,4 +63,4 @@ static struct CondVtbl const cond_rectangle_vtbl = {
     &cond_rectangle_size,
     &cond_rectangle_save,
     &cond_rectangle_load
-};      
+};

@@ -12,14 +12,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-    
+
 /**
  * @file xcs_supervised.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
  * @brief Supervised regression learning functions.
- */ 
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,8 +49,8 @@ static void xcs_supervised_trial(XCSF *xcsf, double *pred, const double *x, cons
  * @return The average XCSF training error using the loss function.
  */
 double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
-        const INPUT *test_data, _Bool shuffle)
-{   
+                          const INPUT *test_data, _Bool shuffle)
+{
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
     double wterr = 0; // testing error: windowed total
@@ -88,7 +88,7 @@ double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
  * @param n_samples The number of instances.
  */
 void xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_samples)
-{   
+{
     param_set_explore(xcsf, false);
     for(int row = 0; row < n_samples; row++) {
         xcs_supervised_trial(xcsf, &pred[row * xcsf->y_dim], &x[row * xcsf->x_dim], NULL);
