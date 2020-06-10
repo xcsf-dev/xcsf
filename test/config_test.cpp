@@ -19,11 +19,11 @@
  * @copyright The Authors.
  * @date 2020.
  * @brief Configuration file reading tests.
- */ 
+ */
 
 #include "../lib/doctest/doctest/doctest.h"
 
-extern "C" {   
+extern "C" {
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -35,7 +35,8 @@ extern "C" {
 #include "../xcsf/config.h"
 }
 
-TEST_CASE("XCSF") {
+TEST_CASE("XCSF")
+{
     XCSF xcsf;
     random_init();
     param_init(&xcsf);

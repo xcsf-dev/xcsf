@@ -19,7 +19,7 @@
  * @copyright The Authors.
  * @date 2020.
  * @brief Main unit test loading.
- */ 
+ */
 
 #undef DOCTEST_CONFIG_DISABLE
 #define DOCTEST_CONFIG_IMPLEMENT

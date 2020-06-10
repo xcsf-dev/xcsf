@@ -19,11 +19,11 @@
  * @copyright The Authors.
  * @date 2020.
  * @brief Hyperrectangle condition tests.
- */ 
+ */
 
 #include "../lib/doctest/doctest/doctest.h"
 
-extern "C" {   
+extern "C" {
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -50,35 +50,32 @@ TEST_CASE("COND_RECTANGLE")
     xcsf.COND_TYPE = COND_TYPE_HYPERRECTANGLE;
     cl_init(&xcsf, &c, 1, 1);
     cond_rectangle_init(&xcsf, &c);
-
     const double x[5] = { 0.8455260670, 0.7566081103, 0.3125093674,
-        0.3449376898, 0.3677518467 };
-
+            0.3449376898, 0.3677518467
+        };
     const double true_center[5] = { 0.6917788795, 0.7276272381, 0.2457498699,
-        0.2704867908, 0.0000000000 };
-
+            0.2704867908, 0.0000000000
+        };
     const double true_spread[5] = { 0.5881265924, 0.8586376463, 0.2309959724,
-        0.5802303236, 0.9674486498 };
-
+            0.5802303236, 0.9674486498
+        };
     const double false_center[5] = { 0.8992419107, 0.5587937197,
-        0.6346787906, 0.0464343089, 0.4214295062 };
-
+            0.6346787906, 0.0464343089, 0.4214295062
+        };
     const double false_spread[5] = { 0.9658827122, 0.7107445754,
-        0.7048862747, 0.1036188594, 0.4501471722 };
-
+            0.7048862747, 0.1036188594, 0.4501471722
+        };
     /* test for true match condition */
     COND_RECTANGLE *p = (COND_RECTANGLE *) c.cond;
     memcpy(p->center, true_center, xcsf.x_dim * sizeof(double));
     memcpy(p->spread, true_spread, xcsf.x_dim * sizeof(double));
     _Bool match = cond_rectangle_match(&xcsf, &c, x);
     CHECK_EQ(match, true);
-
     /* test for false match condition */
     memcpy(p->center, false_center, xcsf.x_dim * sizeof(double));
     memcpy(p->spread, false_spread, xcsf.x_dim * sizeof(double));
     match = cond_rectangle_match(&xcsf, &c, x);
     CHECK_EQ(match, false);
-
     /* test general */
     CL c2;
     cl_init(&xcsf, &c2, 1, 1);
