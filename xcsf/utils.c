@@ -64,7 +64,7 @@ static double drand()
  */
 int irand_uniform(int min, int max)
 {
-    return floor(rand_uniform(min, max));
+    return (int) floor(rand_uniform(min, max));
 }
 
 /**
