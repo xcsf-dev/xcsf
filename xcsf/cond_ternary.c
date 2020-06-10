@@ -139,7 +139,7 @@ _Bool cond_ternary_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
     if(rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for(int i = 0; i < cond1->length; i++) {
             if(rand_uniform(0, 1) < 0.5) {
-                double tmp = cond1->string[i];
+                char tmp = cond1->string[i];
                 cond1->string[i] = cond2->string[i];
                 cond2->string[i] = tmp;
                 changed = true;
