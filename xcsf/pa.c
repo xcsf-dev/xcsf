@@ -56,7 +56,7 @@ void pa_build(const XCSF *xcsf, const double *x)
         nr[i] = 0;
     }
 #ifdef PARALLEL_PRED
-    CL **clist = malloc(sizeof(CL*) * set->size);
+    CL *clist[set->size];
     CLIST *iter = set->list;
     for(int i = 0; i < set->size; i++) {
         clist[i] = NULL;
@@ -73,7 +73,6 @@ void pa_build(const XCSF *xcsf, const double *x)
             nr[clist[i]->action] += clist[i]->fit;
         }
     }
-    free(clist);
 #else
     for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
