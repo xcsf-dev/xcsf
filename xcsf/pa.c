@@ -59,9 +59,7 @@ void pa_build(const XCSF *xcsf, const double *x)
     CLIST *iter = xcsf->mset.list;
     for(int i = 0; i < xcsf->mset.size; i++) {
         blist[i] = iter;
-        if(iter != NULL) {
-            iter = iter->next;
-        }
+        iter = iter->next;
     }
     #pragma omp parallel for reduction(+:pa[:pa_size],nr[:pa_size])
     for(int i = 0; i < xcsf->mset.size; i++) {
