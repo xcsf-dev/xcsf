@@ -47,6 +47,7 @@ void pa_init(XCSF *xcsf)
  */
 void pa_build(const XCSF *xcsf, const double *x)
 {
+    const SET *set = &xcsf->mset;
     double *pa = xcsf->pa;
     double *nr = xcsf->nr;
     int pa_size = xcsf->n_actions;
@@ -55,27 +56,24 @@ void pa_build(const XCSF *xcsf, const double *x)
         nr[i] = 0;
     }
 #ifdef PARALLEL_PRED
-    CLIST *clist[xcsf->mset.size];
-    for(int i = 0; i < xcsf->mset.size; i++) {
-        clist[i] = NULL;
-    }
-    CLIST *iter = xcsf->mset.list;
-    for(int i = 0; i < xcsf->mset.size; i++) {
-        clist[i] = iter;
+    CLIST *blist[set->size];
+    CLIST *iter = set->list;
+    for(int i = 0; i < set->size; i++) {
+        blist[i] = iter;
         if(iter != NULL) {
             iter = iter->next;
         }
     }
     #pragma omp parallel for reduction(+:pa[:pa_size],nr[:pa_size])
-    for(int i = 0; i < xcsf->mset.size; i++) {
-        if(clist[i] != NULL) {
-            const double *predictions = cl_predict(xcsf, clist[i]->cl, x);
-            pa[clist[i]->cl->action] += predictions[0] * clist[i]->cl->fit;
-            nr[clist[i]->cl->action] += clist[i]->cl->fit;
+    for(int i = 0; i < set->size; i++) {
+        if(blist[i] != NULL) {
+            const double *predictions = cl_predict(xcsf, blist[i]->cl, x);
+            pa[blist[i]->cl->action] += predictions[0] * blist[i]->cl->fit;
+            nr[blist[i]->cl->action] += blist[i]->cl->fit;
         }
     }
 #else
-    for(const CLIST *iter = xcsf->mset.list; iter != NULL; iter = iter->next) {
+    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
         pa[iter->cl->action] += predictions[0] * iter->cl->fit;
         nr[iter->cl->action] += iter->cl->fit;
