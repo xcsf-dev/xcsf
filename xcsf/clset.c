@@ -390,27 +390,29 @@ void clset_pred(const XCSF *xcsf, const SET *set, const double *x, double *p)
         j++;
     }
     #pragma omp parallel for reduction(+:presum[:xcsf->y_dim],fitsum)
-    for(int i = 0; i < set->size; i++) {
-        const double *predictions = cl_predict(xcsf, blist[i]->cl, x);
-        for(int var = 0; var < xcsf->y_dim; var++) {
-            presum[var] += predictions[var] * blist[i]->cl->fit;
+    for(j = 0; j < set->size; j++) {
+        if(blist[j] != NULL) {
+            const double *predictions = cl_predict(xcsf, blist[j]->cl, x);
+            for(int i = 0; i < xcsf->y_dim; i++) {
+                presum[i] += predictions[i] * blist[j]->cl->fit;
+            }
+            fitsum += blist[j]->cl->fit;
         }
-        fitsum += blist[i]->cl->fit;
     }
     #pragma omp parallel for
-    for(int var = 0; var < xcsf->y_dim; var++) {
-        p[var] = presum[var] / fitsum;
+    for(int i = 0; i < xcsf->y_dim; i++) {
+        p[i] = presum[i] / fitsum;
     }
 #else
     for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
-        for(int var = 0; var < xcsf->y_dim; var++) {
-            presum[var] += predictions[var] * iter->cl->fit;
+        for(int i = 0; i < xcsf->y_dim; i++) {
+            presum[i] += predictions[i] * iter->cl->fit;
         }
         fitsum += iter->cl->fit;
     }
-    for(int var = 0; var < xcsf->y_dim; var++) {
-        p[var] = presum[var] / fitsum;
+    for(int i = 0; i < xcsf->y_dim; i++) {
+        p[i] = presum[i] / fitsum;
     }
 #endif
     free(presum);
