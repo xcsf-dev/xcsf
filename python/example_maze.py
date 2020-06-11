@@ -116,8 +116,9 @@ class Maze:
 
 # initialise XCSF for reinforcement learning
 x_dim = 8
+y_dim = 1
 n_actions = 8
-xcs = xcsf.XCS(x_dim, n_actions, True)
+xcs = xcsf.XCS(x_dim, y_dim, n_actions)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8

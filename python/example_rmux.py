@@ -73,7 +73,7 @@ mux = Mux(6)
 ###################
 
 # initialise XCSF for reinforcement learning
-xcs = xcsf.XCS(mux.n_bits, mux.n_actions, False)
+xcs = xcsf.XCS(mux.n_bits, 1, mux.n_actions)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8

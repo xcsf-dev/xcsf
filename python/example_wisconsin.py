@@ -54,7 +54,7 @@ print("train len = %d, test len = %d" % (train_len, test_len))
 ###################
 
 # initialise XCSF for reinforcement learning
-xcs = xcsf.XCS(x_dim, n_actions, False)
+xcs = xcsf.XCS(x_dim, 1, n_actions)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8

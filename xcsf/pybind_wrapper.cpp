@@ -44,8 +44,6 @@ extern "C" {
 #include "clset.h"
 }
 
-void xcs_init(const char *filename);
-
 /**
  * @brief Python XCSF class data structure.
  */
@@ -61,42 +59,23 @@ class XCS
 
     public:
         /**
-         * @brief Constructor for reinforcement learning.
+         * @brief Constructor with default config.
          */
-        XCS(int x_dim, int n_actions, _Bool multistep)
-        {
-            (void)multistep;
-            param_set_x_dim(&xcs, x_dim);
-            param_set_y_dim(&xcs, 1);
-            param_set_n_actions(&xcs, n_actions);
-            xcs_init("default.ini");
-            pa_init(&xcs);
-        }
+        XCS(int x_dim, int y_dim, int n_actions) :
+            XCS(x_dim, y_dim, n_actions, "default.ini") {}
 
         /**
-         * @brief Constructor for supervised learning with default config.
+         * @brief Constructor with a specified config.
          */
-        XCS(int x_dim, int y_dim) : XCS(x_dim, y_dim, "default.ini") {}
-
-        /**
-         * @brief Constructor for supervised learning with a specified config.
-         */
-        XCS(int x_dim, int y_dim, const char *filename)
-        {
-            param_set_x_dim(&xcs, x_dim);
-            param_set_y_dim(&xcs, y_dim);
-            param_set_n_actions(&xcs, 1);
-            xcs_init(filename);
-        }
-
-        /**
-         * @brief Initialises python XCS structure.
-         */
-        void xcs_init(const char *filename)
+        XCS(int x_dim, int y_dim, int n_actions, const char *filename)
         {
             param_init(&xcs);
             config_read(&xcs, filename);
+            param_set_x_dim(&xcs, x_dim);
+            param_set_y_dim(&xcs, y_dim);
+            param_set_n_actions(&xcs, n_actions);
             xcsf_init(&xcs);
+            pa_init(&xcs);
             state = NULL;
             action = 0;
             payoff = 0;
@@ -1096,9 +1075,8 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*fit2)(py::array_t<double>, py::array_t<double>,
                         py::array_t<double>, py::array_t<double>, _Bool) = &XCS::fit;
     py::class_<XCS>(m, "XCS")
-    .def(py::init<int, int>())
-    .def(py::init<int, int, _Bool>())
-    .def(py::init<int, int, const char *>())
+    .def(py::init<int, int, int>())
+    .def(py::init<int, int, int, const char *>())
     .def("fit", fit1)
     .def("fit", fit2)
     .def("predict", &XCS::predict)

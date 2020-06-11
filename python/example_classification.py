@@ -66,8 +66,8 @@ print("x_dim = "+str(x_dim) + ", y_dim = " + str(y_dim))
 # Initialise XCSF
 ###################
 
-# initialise XCSF
-xcs = xcsf.XCS(x_dim, y_dim)
+# initialise XCSF for supervised learning
+xcs = xcsf.XCS(x_dim, y_dim, 1)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
