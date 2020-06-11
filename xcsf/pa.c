@@ -36,12 +36,14 @@
  */
 void pa_init(XCSF *xcsf)
 {
-    xcsf->pa = malloc(sizeof(double) * xcsf->n_actions);
-    xcsf->nr = malloc(sizeof(double) * xcsf->n_actions);
+    xcsf->pa = malloc(sizeof(double) * xcsf->n_actions * xcsf->y_dim);
+    xcsf->nr = malloc(sizeof(double) * xcsf->n_actions * xcsf->y_dim);
 }
 
 /**
  * @brief Builds the prediction array for the specified input.
+ * @details Calculates the match set mean fitness weighted prediction for each
+ * action. For supervised learning n_actions=1; for reinforcement learning y_dim=1.
  * @param xcsf The XCSF data structure.
  * @param x The input state.
  */
@@ -50,7 +52,7 @@ void pa_build(const XCSF *xcsf, const double *x)
     const SET *set = &xcsf->mset;
     double *pa = xcsf->pa;
     double *nr = xcsf->nr;
-    int pa_size = xcsf->n_actions;
+    int pa_size = xcsf->n_actions * xcsf->y_dim;
     for(int i = 0; i < pa_size; i++) {
         pa[i] = 0;
         nr[i] = 0;
@@ -69,22 +71,31 @@ void pa_build(const XCSF *xcsf, const double *x)
     for(int i = 0; i < set->size; i++) {
         if(clist[i] != NULL) {
             const double *predictions = cl_predict(xcsf, clist[i], x);
-            pa[clist[i]->action] += predictions[0] * clist[i]->fit;
-            nr[clist[i]->action] += clist[i]->fit;
+            double fitness = clist[i]->fit;
+            for(int j = 0; j < xcsf->y_dim; j++) {
+                pa[clist[i]->action * xcsf->y_dim + j] += predictions[j] * fitness;
+                nr[clist[i]->action * xcsf->y_dim + j] += fitness;
+            }
         }
     }
 #else
     for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
-        pa[iter->cl->action] += predictions[0] * iter->cl->fit;
-        nr[iter->cl->action] += iter->cl->fit;
+        double fitness = iter->cl->fit;
+        for(int j = 0; j < xcsf->y_dim; j++) {
+            pa[iter->cl->action * xcsf->y_dim + j] += predictions[j] * fitness;
+            nr[iter->cl->action * xcsf->y_dim + j] += fitness;
+        }
     }
 #endif
     for(int i = 0; i < xcsf->n_actions; i++) {
-        if(nr[i] != 0) {
-            pa[i] /= nr[i];
-        } else {
-            pa[i] = 0;
+        for(int j = 0; j < xcsf->y_dim; j++) {
+            int k = i * xcsf->y_dim + j;
+            if(nr[k] != 0) {
+                pa[k] /= nr[k];
+            } else {
+                pa[k] = 0;
+            }
         }
     }
 }

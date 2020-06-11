@@ -372,55 +372,6 @@ static _Bool clset_action_coverage(const XCSF *xcsf, _Bool *act_covered)
 }
 
 /**
- * @brief Calculates the set mean fitness weighted prediction.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the prediction.
- * @param x The input state.
- * @param p The predictions (set by this function).
- */
-void clset_pred(const XCSF *xcsf, const SET *set, const double *x, double *p)
-{
-    double *presum = calloc(xcsf->y_dim, sizeof(double));
-    double fitsum = 0;
-#ifdef PARALLEL_PRED
-    CLIST *blist[set->size];
-    CLIST *iter = set->list;
-    for(int i = 0; i < set->size; i++) {
-        blist[i] = iter;
-        if(iter != NULL) {
-            iter = iter->next;
-        }
-    }
-    #pragma omp parallel for reduction(+:presum[:xcsf->y_dim],fitsum)
-    for(int i = 0; i < set->size; i++) {
-        if(blist[i] != NULL) {
-            const double *predictions = cl_predict(xcsf, blist[i]->cl, x);
-            for(int j = 0; j < xcsf->y_dim; j++) {
-                presum[j] += predictions[j] * blist[i]->cl->fit;
-            }
-            fitsum += blist[i]->cl->fit;
-        }
-    }
-    #pragma omp parallel for
-    for(int i = 0; i < xcsf->y_dim; i++) {
-        p[i] = presum[i] / fitsum;
-    }
-#else
-    for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        const double *predictions = cl_predict(xcsf, iter->cl, x);
-        for(int i = 0; i < xcsf->y_dim; i++) {
-            presum[i] += predictions[i] * iter->cl->fit;
-        }
-        fitsum += iter->cl->fit;
-    }
-    for(int i = 0; i < xcsf->y_dim; i++) {
-        p[i] = presum[i] / fitsum;
-    }
-#endif
-    free(presum);
-}
-
-/**
  * @brief Constructs the action set from the match set.
  * @param xcsf The XCSF data structure.
  * @param action The action used to build the set.

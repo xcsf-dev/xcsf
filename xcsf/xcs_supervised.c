@@ -33,12 +33,12 @@
 #include "perf.h"
 #include "cl.h"
 #include "clset.h"
+#include "pa.h"
 #include "ea.h"
 #include "xcs_supervised.h"
 
 static int xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle);
-static void xcs_supervised_trial(XCSF *xcsf, double *pred, const double *x,
-                                 const double *y);
+static void xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y);
 
 /**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
@@ -55,15 +55,14 @@ double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
     double wterr = 0; // testing error: windowed total
-    double *pred = malloc(sizeof(double) * xcsf->y_dim);
     for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
         // training sample
         int row = xcs_supervised_sample(train_data, cnt, shuffle);
         const double *x = &train_data->x[row * train_data->x_dim];
         const double *y = &train_data->y[row * train_data->y_dim];
         param_set_explore(xcsf, true);
-        xcs_supervised_trial(xcsf, pred, x, y);
-        double error = (xcsf->loss_ptr)(xcsf, pred, y);
+        xcs_supervised_trial(xcsf, x, y);
+        double error = (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
         werr += error;
         err += error;
         // test sample
@@ -72,12 +71,11 @@ double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
             x = &test_data->x[row * test_data->x_dim];
             y = &test_data->y[row * test_data->y_dim];
             param_set_explore(xcsf, false);
-            xcs_supervised_trial(xcsf, pred, x, y);
-            wterr += (xcsf->loss_ptr)(xcsf, pred, y);
+            xcs_supervised_trial(xcsf, x, y);
+            wterr += (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
         }
         perf_print(xcsf, &werr, &wterr, cnt);
     }
-    free(pred);
     return err / xcsf->MAX_TRIALS;
 }
 
@@ -92,7 +90,8 @@ void xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_sam
 {
     param_set_explore(xcsf, false);
     for(int row = 0; row < n_samples; row++) {
-        xcs_supervised_trial(xcsf, &pred[row * xcsf->y_dim], &x[row * xcsf->x_dim], NULL);
+        xcs_supervised_trial(xcsf, &x[row * xcsf->x_dim], NULL);
+        memcpy(&pred[row * xcsf->y_dim], xcsf->pa, sizeof(double) * xcsf->y_dim);
     }
 }
 
@@ -106,14 +105,12 @@ double xcs_supervised_score(XCSF *xcsf, const INPUT *test_data)
 {
     param_set_explore(xcsf, false);
     double err = 0;
-    double *pred = malloc(sizeof(double) * xcsf->y_dim);
     for(int row = 0; row < test_data->n_samples; row++) {
         const double *x = &test_data->x[row * test_data->x_dim];
         const double *y = &test_data->y[row * test_data->y_dim];
-        xcs_supervised_trial(xcsf, pred, x, y);
-        err += (xcsf->loss_ptr)(xcsf, pred, y);
+        xcs_supervised_trial(xcsf, x, y);
+        err += (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
     }
-    free(pred);
     return err / test_data->n_samples;
 }
 
@@ -135,17 +132,15 @@ static int xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle)
 /**
  * @brief Executes a single XCSF trial.
  * @param xcsf The XCSF data structure.
- * @param pred The calculated XCSF prediction (set by this function).
  * @param x The feature variables.
  * @param y The labelled variables.
  */
-static void xcs_supervised_trial(XCSF *xcsf, double *pred, const double *x,
-                                 const double *y)
+static void xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y)
 {
     clset_init(&xcsf->mset);
     clset_init(&xcsf->kset);
     clset_match(xcsf, x);
-    clset_pred(xcsf, &xcsf->mset, x, pred);
+    pa_build(xcsf, x);
     if(xcsf->explore) {
         clset_update(xcsf, &xcsf->mset, x, y, true);
         ea(xcsf, &xcsf->mset);
