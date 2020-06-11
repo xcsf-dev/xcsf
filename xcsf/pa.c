@@ -30,14 +30,29 @@
 #include "cl.h"
 #include "pa.h"
 
+static void pa_reset(const XCSF *xcsf);
+
 /**
  * @brief Initialises the prediction array.
  * @param xcsf The XCSF data structure.
  */
 void pa_init(XCSF *xcsf)
 {
-    xcsf->pa = malloc(sizeof(double) * xcsf->n_actions * xcsf->y_dim);
-    xcsf->nr = malloc(sizeof(double) * xcsf->n_actions * xcsf->y_dim);
+    xcsf->pa_size = xcsf->n_actions * xcsf->y_dim;
+    xcsf->pa = malloc(sizeof(double) * xcsf->pa_size);
+    xcsf->nr = malloc(sizeof(double) * xcsf->pa_size);
+}
+
+/**
+ * @brief Resets the prediction array to zero.
+ * @param xcsf The XCSF data structure.
+ */
+static void pa_reset(const XCSF *xcsf)
+{
+    for(int i = 0; i < xcsf->pa_size; i++) {
+        xcsf->pa[i] = 0;
+        xcsf->nr[i] = 0;
+    }
 }
 
 /**
@@ -52,11 +67,7 @@ void pa_build(const XCSF *xcsf, const double *x)
     const SET *set = &xcsf->mset;
     double *pa = xcsf->pa;
     double *nr = xcsf->nr;
-    int pa_size = xcsf->n_actions * xcsf->y_dim;
-    for(int i = 0; i < pa_size; i++) {
-        pa[i] = 0;
-        nr[i] = 0;
-    }
+    pa_reset(xcsf);
 #ifdef PARALLEL_PRED
     CL *clist[set->size];
     CLIST *iter = set->list;
@@ -67,7 +78,7 @@ void pa_build(const XCSF *xcsf, const double *x)
             iter = iter->next;
         }
     }
-    #pragma omp parallel for reduction(+:pa[:pa_size],nr[:pa_size])
+    #pragma omp parallel for reduction(+:pa[:xcsf->pa_size],nr[:xcsf->pa_size])
     for(int i = 0; i < set->size; i++) {
         if(clist[i] != NULL) {
             const double *predictions = cl_predict(xcsf, clist[i], x);

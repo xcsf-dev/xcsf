@@ -48,7 +48,6 @@ static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore);
  */
 double xcs_rl_exp(XCSF *xcsf)
 {
-    pa_init(xcsf);
     double error = 0; // prediction error: individual trial
     double werr = 0; // prediction error: windowed total
     double tperf = 0; // steps to goal: total over all trials
@@ -61,7 +60,6 @@ double xcs_rl_exp(XCSF *xcsf)
         werr += error;
         perf_print(xcsf, &wperf, &werr, cnt);
     }
-    pa_free(xcsf);
     return tperf / xcsf->MAX_TRIALS;
 }
 

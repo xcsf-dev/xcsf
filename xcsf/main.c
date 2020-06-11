@@ -31,6 +31,7 @@
 #include "config.h"
 #include "env.h"
 #include "env_csv.h"
+#include "pa.h"
 #include "clset.h"
 #include "xcs_rl.h"
 #include "xcs_supervised.h"
@@ -63,6 +64,8 @@ int main(int argc, char **argv)
     else {
         clset_pop_init(xcsf);
     }
+    // initialise prediction array
+    pa_init(xcsf);
     // supervised regression - input csv file
     if(strcmp(argv[1], "csv") == 0) {
         const ENV_CSV *env = xcsf->env;
@@ -73,6 +76,7 @@ int main(int argc, char **argv)
         xcs_rl_exp(xcsf);
     }
     // clean up
+    pa_free(xcsf);
     env_free(xcsf);
     clset_kill(xcsf, &xcsf->pset);
     param_free(xcsf);

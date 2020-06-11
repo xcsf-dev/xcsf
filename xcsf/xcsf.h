@@ -193,6 +193,7 @@ typedef struct XCSF {
     void *env; //!< Environment structure
 
     // prediction array
+    int pa_size; //!< Prediction array size
     double *pa; //!< Prediction array (stores fitness weighted predictions)
     double *nr; //!< Prediction array (stores total fitness)
 
