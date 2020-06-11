@@ -315,21 +315,21 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu)
 
 static void neuron_add(LAYER *l, int n)
 {
-    l->n_outputs += n;
-    int n_weights = l->n_outputs * l->n_inputs;
+    int n_outputs = l->n_outputs + n;
+    int n_weights = n_outputs * l->n_inputs;
     double *weights = malloc(n_weights * sizeof(double));
     _Bool *weight_active = malloc(n_weights * sizeof(_Bool));
     double *weight_updates = malloc(n_weights * sizeof(double));
-    double *state = calloc(l->n_outputs, sizeof(double));
-    double *output = calloc(l->n_outputs, sizeof(double));
-    double *biases = malloc(l->n_outputs * sizeof(double));
-    double *bias_updates = malloc(l->n_outputs * sizeof(double));
-    double *delta = calloc(l->n_outputs, sizeof(double));
+    double *state = calloc(n_outputs, sizeof(double));
+    double *output = calloc(n_outputs, sizeof(double));
+    double *biases = malloc(n_outputs * sizeof(double));
+    double *bias_updates = malloc(n_outputs * sizeof(double));
+    double *delta = calloc(n_outputs, sizeof(double));
     int w_len = n_weights;
-    int o_len = l->n_outputs;
+    int o_len = n_outputs;
     if(n > 0) {
         w_len = l->n_weights;
-        o_len = l->n_outputs - n;
+        o_len = l->n_outputs;
     }
     memcpy(weights, l->weights, w_len * sizeof(double));
     memcpy(weight_active, l->weight_active, w_len * sizeof(_Bool));
@@ -347,7 +347,7 @@ static void neuron_add(LAYER *l, int n)
             }
             weight_updates[i] = 0;
         }
-        for(int i = l->n_outputs - n; i < l->n_outputs; i++) {
+        for(int i = l->n_outputs; i < n_outputs; i++) {
             biases[i] = 0;
             bias_updates[i] = 0;
         }
@@ -369,6 +369,7 @@ static void neuron_add(LAYER *l, int n)
     l->bias_updates = bias_updates;
     l->delta = delta;
     l->n_weights = n_weights;
+    l->n_outputs = n_outputs;
 }
 
 static _Bool mutate_connectivity(const LAYER *l, double mu)
