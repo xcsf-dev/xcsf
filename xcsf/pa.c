@@ -55,18 +55,26 @@ void pa_build(const XCSF *xcsf, const double *x)
         pa[i] = 0;
         nr[i] = 0;
     }
+    if(set->size < 1) {
+        printf("pa_build(): Warning: match set size less than 1\n");
+        return;
+    }
 #ifdef PARALLEL_PRED
     CLIST *blist[set->size];
-    int j = 0;
-    for(CLIST *iter = set->list; iter != NULL && j < set->size; iter = iter->next) {
-        blist[j] = iter;
-        j++;
+    CLIST *iter = set->list;
+    for(int i = 0; i < set->size; i++) {
+        blist[i] = iter;
+        if(iter != NULL) {
+            iter = iter->next;
+        }
     }
     #pragma omp parallel for reduction(+:pa[:pa_size],nr[:pa_size])
     for(int i = 0; i < set->size; i++) {
-        const double *predictions = cl_predict(xcsf, blist[i]->cl, x);
-        pa[blist[i]->cl->action] += predictions[0] * blist[i]->cl->fit;
-        nr[blist[i]->cl->action] += blist[i]->cl->fit;
+        if(blist[i] != NULL) {
+            const double *predictions = cl_predict(xcsf, blist[i]->cl, x);
+            pa[blist[i]->cl->action] += predictions[0] * blist[i]->cl->fit;
+            nr[blist[i]->cl->action] += blist[i]->cl->fit;
+        }
     }
 #else
     for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
