@@ -56,5 +56,5 @@ script:
       ./build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output make clean all;
       sonar-scanner;
     else
-      make
+      make -j2
     fi
