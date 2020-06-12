@@ -29,6 +29,7 @@
 #include "xcsf.h"
 #include "param.h"
 #include "clset.h"
+#include "pa.h"
 #include "cl.h"
 #include "neural.h"
 #include "prediction.h"
@@ -147,9 +148,11 @@ void xcsf_ae_expand(XCSF *xcsf)
 void xcsf_ae_to_classifier(XCSF *xcsf, int y_dim)
 {
     xcsf_store_pop(xcsf);
+    pa_free(xcsf);
     param_set_y_dim(xcsf, y_dim);
     param_set_auto_encode(xcsf, false);
     param_set_loss_func(xcsf, 5); // one-hot encoding error
+    pa_init(xcsf);
     for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         free(iter->cl->prediction);
         iter->cl->prediction = calloc(xcsf->y_dim, sizeof(double));
