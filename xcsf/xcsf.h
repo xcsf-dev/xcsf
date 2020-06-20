@@ -67,8 +67,8 @@ typedef struct CL {
     _Bool m; //!< Whether the classifier matches current input
     double *prediction; //!< Current classifier prediction
     int action; //!< Current classifier action
-    int age; // !< Total number of times match testing been performed
-    int mtotal; // !< Total number of times actually matched an input
+    int age; //!< Total number of times match testing been performed
+    int mtotal; //!< Total number of times actually matched an input
 } CL;
 
 /**
