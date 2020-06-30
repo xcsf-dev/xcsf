@@ -496,6 +496,7 @@ size_t neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     l->bias_updates = malloc(l->n_outputs * sizeof(double));
     l->weight_updates = malloc(l->n_weights * sizeof(double));
     l->weight_active = malloc(l->n_weights * sizeof(_Bool));
+    l->mu = malloc(N_MU * sizeof(double));
     s += fread(l->weights, sizeof(double), l->n_weights, fp);
     s += fread(l->weight_active, sizeof(_Bool), l->n_weights, fp);
     s += fread(l->biases, sizeof(double), l->n_outputs, fp);
