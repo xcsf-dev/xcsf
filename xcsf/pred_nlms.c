@@ -34,7 +34,6 @@
 #include "pred_nlms.h"
 
 #define N_MU 1 //!< Number of self-adaptive mutation rates
-#define ETA_MAX 0.1 //!< Maximum gradient descent rate
 #define ETA_MIN 0.0001 //!< Minimum gradient descent rate
 
 void pred_nlms_init(const XCSF *xcsf, CL *c)
@@ -56,7 +55,7 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
     pred->mu = malloc(N_MU * sizeof(double));
     if(xcsf->PRED_EVOLVE_ETA) {
         sam_init(xcsf, pred->mu, N_MU);
-        pred->eta = rand_uniform(ETA_MIN, ETA_MAX);
+        pred->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
     } else {
         memset(pred->mu, 0, sizeof(double) * N_MU);
         pred->eta = xcsf->PRED_ETA;
@@ -138,7 +137,7 @@ _Bool pred_nlms_mutate(const XCSF *xcsf, const CL *c)
         sam_adapt(xcsf, pred->mu, N_MU);
         double orig = pred->eta;
         pred->eta += rand_normal(0, pred->mu[0]);
-        pred->eta = clamp(ETA_MIN, ETA_MAX, pred->eta);
+        pred->eta = clamp(ETA_MIN, xcsf->PRED_ETA, pred->eta);
         if(orig != pred->eta) {
             return true;
         }

@@ -37,12 +37,11 @@
 #include "neural_layer_connected.h"
 
 #define N_MU 5 //!< Number of mutation rates applied
-#define ETA_MAX 0.1 //!< Maximum gradient descent rate
 #define ETA_MIN 0.0001 //!< Minimum gradient descent rate
 #define WEIGHT_MIN -10 //!< Minimum value of a weight or bias
 #define WEIGHT_MAX  10 //!< Maximum value of a weight or bias
 
-static _Bool mutate_eta(LAYER *l, double mu);
+static _Bool mutate_eta(const XCSF *xcsf, LAYER *l, double mu);
 static _Bool mutate_connectivity(const LAYER *l, double mu);
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu);
 static _Bool mutate_weights(const LAYER *l, double mu);
@@ -80,7 +79,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
         }
     }
     if(l->options & LAYER_EVOLVE_ETA) {
-        l->eta = rand_uniform(ETA_MIN, ETA_MAX);
+        l->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
     } else {
         l->eta = xcsf->PRED_ETA;
     }
@@ -254,7 +253,7 @@ _Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
-    if((l->options & LAYER_EVOLVE_ETA) && mutate_eta(l, l->mu[0])) {
+    if((l->options & LAYER_EVOLVE_ETA) && mutate_eta(xcsf, l, l->mu[0])) {
         mod = true;
     }
     if((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l, l->mu[1])) {
@@ -272,11 +271,11 @@ _Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
     return mod;
 }
 
-static _Bool mutate_eta(LAYER *l, double mu)
+static _Bool mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
 {
     double orig = l->eta;
     l->eta += rand_normal(0, mu);
-    l->eta = clamp(ETA_MIN, ETA_MAX, l->eta);
+    l->eta = clamp(ETA_MIN, xcsf->PRED_ETA, l->eta);
     if(l->eta != orig) {
         return true;
     }
