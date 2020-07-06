@@ -35,7 +35,6 @@ void param_set_max_trials(XCSF *xcsf, int a);
 void param_set_perf_trials(XCSF *xcsf, int a);
 void param_set_pop_size(XCSF *xcsf, int a);
 void param_set_loss_func(XCSF *xcsf, int a);
-void param_set_auto_encode(XCSF *xcsf, _Bool a);
 void param_set_gamma(XCSF *xcsf, double a);
 void param_set_teletransportation(XCSF *xcsf, int a);
 void param_set_p_explore(XCSF *xcsf, double a);
