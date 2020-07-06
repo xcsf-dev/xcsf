@@ -125,8 +125,6 @@ static void config_general(XCSF *xcsf, const char *n, char *v, int i, double f)
         param_set_perf_trials(xcsf, i);
     } else if(strncmp(n, "LOSS_FUNC", 10) == 0) {
         param_set_loss_func(xcsf, i);
-    } else if(strncmp(n, "AUTO_ENCODE", 9) == 0) {
-        param_set_auto_encode(xcsf, i);
     }
 }
 

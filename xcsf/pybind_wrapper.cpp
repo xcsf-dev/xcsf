@@ -123,14 +123,14 @@ class XCS
             param_print(&xcs);
         }
 
-        void ae_expand()
+        void pred_expand()
         {
-            xcsf_ae_expand(&xcs);
+            xcsf_pred_expand(&xcs);
         }
 
-        void ae_to_classifier(int y_dim)
+        void ae_to_classifier(int y_dim, int n_del)
         {
-            xcsf_ae_to_classifier(&xcs, y_dim);
+            xcsf_ae_to_classifier(&xcs, y_dim, n_del);
         }
 
         void print_pop(_Bool printc, _Bool printa, _Bool printp)
@@ -326,11 +326,6 @@ class XCS
         _Bool get_pop_init()
         {
             return xcs.POP_INIT;
-        }
-
-        _Bool get_auto_encode()
-        {
-            return xcs.AUTO_ENCODE;
         }
 
         int get_max_trials()
@@ -752,11 +747,6 @@ class XCS
             param_set_pop_init(&xcs, a);
         }
 
-        void set_auto_encode(_Bool a)
-        {
-            param_set_auto_encode(&xcs, a);
-        }
-
         void set_max_trials(int a)
         {
             param_set_max_trials(&xcs, a);
@@ -1095,7 +1085,6 @@ PYBIND11_MODULE(xcsf, m)
     .def("error", &XCS::error)
     .def_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads, &XCS::set_omp_num_threads)
     .def_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
-    .def_property("AUTO_ENCODE", &XCS::get_auto_encode, &XCS::set_auto_encode)
     .def_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials)
     .def_property("PERF_TRIALS", &XCS::get_perf_trials, &XCS::set_perf_trials)
     .def_property("POP_SIZE", &XCS::get_pop_max_size, &XCS::set_pop_max_size)
@@ -1191,7 +1180,7 @@ PYBIND11_MODULE(xcsf, m)
     .def("msetsize", &XCS::get_msetsize)
     .def("mfrac", &XCS::get_mfrac)
     .def("print_params", &XCS::print_params)
-    .def("ae_expand", &XCS::ae_expand)
+    .def("pred_expand", &XCS::pred_expand)
     .def("ae_to_classifier", &XCS::ae_to_classifier)
     ;
 }

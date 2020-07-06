@@ -45,9 +45,6 @@ static void clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev);
 static void clset_subsumption(XCSF *xcsf, SET *set);
 static void clset_update_fit(const XCSF *xcsf, const SET *set);
 static void clset_cover(XCSF *xcsf, const double *x);
-static void clset_cover_from_new(XCSF *xcsf, const double *x, int a);
-static void clset_cover_from_old(XCSF *xcsf, const double *x, int a);
-static void clset_cover_execute(XCSF *xcsf, const double *x, int a);
 
 /**
  * @brief Initialises a new population of random classifiers.
@@ -238,7 +235,12 @@ static void clset_cover(XCSF *xcsf, const double *x)
         covered = true;
         for(int i = 0; i < xcsf->n_actions; i++) {
             if(!act_covered[i]) {
-                clset_cover_execute(xcsf, x, i);
+                // create a new classifier with matching condition and action
+                CL *new = malloc(sizeof(CL));
+                cl_init(xcsf, new, (xcsf->mset.num) + 1, xcsf->time);
+                cl_cover(xcsf, new, x, i);
+                clset_add(&xcsf->pset, new);
+                clset_add(&xcsf->mset, new);
             }
         }
         // enforce population size
@@ -261,94 +263,6 @@ static void clset_cover(XCSF *xcsf, const double *x)
         }
     }
     free(act_covered);
-}
-
-/*
- * @brief Selects and executes a covering mechanism to create a new classifier.
- * @param xcsf The XCSF data structure.
- * @param x The input state to cover.
- * @param a The action to cover.
- */
-static void clset_cover_execute(XCSF *xcsf, const double *x, int a)
-{
-    // cover from a stored population
-    if(xcsf->prev_pset.list != NULL) {
-        clset_cover_from_old(xcsf, x, a);
-    }
-    // original covering from new
-    else {
-        clset_cover_from_new(xcsf, x, a);
-    }
-}
-
-/*
- * @brief Uses a stored population to create a new classifier to cover the
- * input state and action.
- * @param xcsf The XCSF data structure.
- * @param x The input state to cover.
- * @param a The action to cover.
- */
-static void clset_cover_from_old(XCSF *xcsf, const double *x, int a)
-{
-    if(a > 1) {
-        printf("clset_cover_from_old(): not implemented for reinforcement learning\n");
-        exit(EXIT_FAILURE);
-    }
-    // build match set using previous population
-    SET tmp_mset;
-    clset_init(&tmp_mset);
-    for(const CLIST *iter = xcsf->prev_pset.list; iter != NULL; iter = iter->next) {
-        if(cl_match(xcsf, iter->cl, x)) {
-            clset_add(&tmp_mset, iter->cl);
-        }
-    }
-    if(tmp_mset.size < 1) {
-        printf("clset_cover_from_old(): previous population's match set is empty\n");
-        exit(EXIT_FAILURE);
-    }
-    // find the fittest rule in the match set
-    const CLIST *best = tmp_mset.list;
-    for(const CLIST *iter = best->next; iter != NULL; iter = iter->next) {
-        if(best->cl->fit < iter->cl->fit) {
-            best = iter;
-        }
-    }
-    // create a copy of the fittest rule
-    CL *new = malloc(sizeof(CL));
-    cl_init_copy(xcsf, new, best->cl);
-    // expand for this phase
-    if(xcsf->AUTO_ENCODE) {
-        pred_neural_ae_expand(xcsf, new);
-    } else {
-        free(new->prediction);
-        new->prediction = calloc(xcsf->y_dim, sizeof(double));
-        pred_neural_ae_to_classifier(xcsf, new);
-    }
-    // set params
-    new->fit = xcsf->INIT_FITNESS;
-    new->err = xcsf->INIT_ERROR;
-    new->exp = 0;
-    new->time = xcsf->time;
-    // insert
-    clset_add(&xcsf->pset, new);
-    clset_add(&xcsf->mset, new);
-    // clean up
-    clset_free(&tmp_mset);
-}
-
-/*
- * @brief Creates a new classifier to cover the input state and action.
- * @param xcsf The XCSF data structure.
- * @param x The input state to cover.
- * @param a The action to cover.
- */
-static void clset_cover_from_new(XCSF *xcsf, const double *x, int a)
-{
-    CL *new = malloc(sizeof(CL));
-    cl_init(xcsf, new, (xcsf->mset.num) + 1, xcsf->time);
-    cl_cover(xcsf, new, x, a);
-    clset_add(&xcsf->pset, new);
-    clset_add(&xcsf->mset, new);
 }
 
 /**

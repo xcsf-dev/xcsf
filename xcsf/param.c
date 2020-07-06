@@ -192,7 +192,6 @@ static void param_defaults_general(XCSF *xcsf)
     param_set_perf_trials(xcsf, 1000);
     param_set_pop_size(xcsf, 2000);
     param_set_loss_func(xcsf, 0);
-    param_set_auto_encode(xcsf, false);
 }
 
 /**
@@ -208,8 +207,6 @@ static void param_print_general(const XCSF *xcsf)
     printf(", PERF_TRIALS=%d", xcsf->PERF_TRIALS);
     printf(", POP_SIZE=%d", xcsf->POP_SIZE);
     printf(", LOSS_FUNC=%d", xcsf->LOSS_FUNC);
-    printf(", AUTO_ENCODE=");
-    xcsf->AUTO_ENCODE == true ? printf("true") : printf("false");
 }
 
 /**
@@ -227,7 +224,6 @@ static size_t param_save_general(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->POP_SIZE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->AUTO_ENCODE, sizeof(_Bool), 1, fp);
     return s;
 }
 
@@ -246,7 +242,6 @@ static size_t param_load_general(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_SIZE, sizeof(int), 1, fp);
     s += fread(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
-    s += fread(&xcsf->AUTO_ENCODE, sizeof(_Bool), 1, fp);
     loss_set_func(xcsf);
     return s;
 }
@@ -887,11 +882,6 @@ void param_set_loss_func(XCSF *xcsf, int a)
         xcsf->LOSS_FUNC = a;
     }
     loss_set_func(xcsf);
-}
-
-void param_set_auto_encode(XCSF *xcsf, _Bool a)
-{
-    xcsf->AUTO_ENCODE = a;
 }
 
 void param_set_gamma(XCSF *xcsf, double a)
