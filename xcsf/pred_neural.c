@@ -217,7 +217,7 @@ void pred_neural_expand(const XCSF *xcsf, const CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     NET *net = &pred->net;
-    LAYER *h;
+    const LAYER *h;
     int n_inputs;
     // select top hidden layer
     if(net->n_layers > 1) {

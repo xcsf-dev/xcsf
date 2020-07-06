@@ -126,7 +126,7 @@ size_t xcsf_load(XCSF *xcsf, const char *fname)
  * prediction neural networks in the population.
  * @param xcsf The XCSF data structure.
  */
-void xcsf_pred_expand(XCSF *xcsf)
+void xcsf_pred_expand(const XCSF *xcsf)
 {
     for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         pred_neural_expand(xcsf, iter->cl);
