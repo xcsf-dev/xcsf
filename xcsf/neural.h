@@ -58,6 +58,6 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, struct LAYER *l, int p);
 void neural_layer_remove(const XCSF *xcsf, NET *net, int p);
 void neural_learn(const XCSF *xcsf, NET *net, const double *output, const double *input);
 void neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights);
-void neural_propagate(const XCSF *xcsf, const NET *net, const double *input);
+void neural_propagate(const XCSF *xcsf, NET *net, const double *input);
 void neural_rand(const XCSF *xcsf, const NET *net);
 void neural_resize(const XCSF *xcsf, const NET *net);

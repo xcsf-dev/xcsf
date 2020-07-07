@@ -84,11 +84,12 @@ void neural_layer_dropout_rand(const XCSF *xcsf, const LAYER *l)
     (void)l;
 }
 
-void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input)
+void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const NET *net)
 {
+    // net->input[] = this layer's input
     if(!xcsf->explore) {
         for(int i = 0; i < l->n_inputs; i++) {
-            l->output[i] = input[i];
+            l->output[i] = net->input[i];
         }
     } else {
         for(int i = 0; i < l->n_inputs; i++) {
@@ -96,7 +97,7 @@ void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double
             if(l->state[i] < l->probability) {
                 l->output[i] = 0;
             } else {
-                l->output[i] = input[i] * l->scale;
+                l->output[i] = net->input[i] * l->scale;
             }
         }
     }

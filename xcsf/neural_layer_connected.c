@@ -148,12 +148,12 @@ void neural_layer_connected_rand(const XCSF *xcsf, const LAYER *l)
     }
 }
 
-void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const double *input)
+void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const NET *net)
 {
     (void)xcsf;
     int k = l->n_inputs;
     int n = l->n_outputs;
-    const double *a = input;
+    const double *a = net->input;
     const double *b = l->weights;
     double *c = l->state;
     // states = biases

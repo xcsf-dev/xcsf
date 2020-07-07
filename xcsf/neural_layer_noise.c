@@ -84,19 +84,20 @@ void neural_layer_noise_rand(const XCSF *xcsf, const LAYER *l)
     (void)l;
 }
 
-void neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l, const double *input)
+void neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l, const NET *net)
 {
+    // net->input[] = this layer's input
     if(!xcsf->explore) {
         for(int i = 0; i < l->n_inputs; i++) {
-            l->output[i] = input[i];
+            l->output[i] = net->input[i];
         }
     } else {
         for(int i = 0; i < l->n_inputs; i++) {
             l->state[i] = rand_uniform(0, 1);
             if(l->state[i] < l->probability) {
-                l->output[i] = input[i] + rand_normal(0, l->scale);
+                l->output[i] = net->input[i] + rand_normal(0, l->scale);
             } else {
-                l->output[i] = input[i];
+                l->output[i] = net->input[i];
             }
         }
     }

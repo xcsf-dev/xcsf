@@ -76,7 +76,7 @@ struct LayerVtbl {
     void (*layer_impl_print)(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
     void (*layer_impl_update)(const XCSF *xcsf, const LAYER *l);
     void (*layer_impl_backward)(const XCSF *xcsf, const LAYER *l, const NET *net);
-    void (*layer_impl_forward)(const XCSF *xcsf, const LAYER *l, const double *input);
+    void (*layer_impl_forward)(const XCSF *xcsf, const LAYER *l, const NET *net);
     double *(*layer_impl_output)(const XCSF *xcsf, const LAYER *l);
     size_t (*layer_impl_save)(const XCSF *xcsf, const LAYER *l, FILE *fp);
     size_t (*layer_impl_load)(const XCSF *xcsf, LAYER *l, FILE *fp);
@@ -121,11 +121,11 @@ static inline double *layer_output(const XCSF *xcsf, const LAYER *l)
  * @brief Forward propagates an input through the layer.
  * @param xcsf The XCSF data structure.
  * @param l The layer to be forward propagated.
- * @param input The input to the layer.
+ * @param net The network the layer is within.
  */
-static inline void layer_forward(const XCSF *xcsf, const LAYER *l, const double *input)
+static inline void layer_forward(const XCSF *xcsf, const LAYER *l, const NET *net)
 {
-    (*l->layer_vptr->layer_impl_forward)(xcsf, l, input);
+    (*l->layer_vptr->layer_impl_forward)(xcsf, l, net);
 }
 
 /**

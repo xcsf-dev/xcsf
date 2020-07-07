@@ -72,18 +72,19 @@ void neural_layer_softmax_rand(const XCSF *xcsf, const LAYER *l)
     (void)l;
 }
 
-void neural_layer_softmax_forward(const XCSF *xcsf, const LAYER *l, const double *input)
+void neural_layer_softmax_forward(const XCSF *xcsf, const LAYER *l, const NET *net)
 {
+    // net->input[] = this layer's input
     (void)xcsf;
-    double largest = input[0];
+    double largest = net->input[0];
     for(int i = 1; i < l->n_inputs; i++) {
-        if(input[i] > largest) {
-            largest = input[i];
+        if(net->input[i] > largest) {
+            largest = net->input[i];
         }
     }
     double sum = 0;
     for(int i = 0; i < l->n_inputs; i++) {
-        double e = exp((input[i] / l->scale) - (largest / l->scale));
+        double e = exp((net->input[i] / l->scale) - (largest / l->scale));
         sum += e;
         l->output[i] = e;
     }
