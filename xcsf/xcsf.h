@@ -36,6 +36,7 @@ static const int VERSION_BUILD = 0; //!< XCSF build version number
 #define COND_TYPE_TERNARY 6 //!< Condition type ternary
 #define RULE_TYPE_DGP 11 //!< Condition type and action type DGP
 #define RULE_TYPE_NEURAL 12 //!< Condition type and action type neural
+#define RULE_TYPE_NETWORK 13 //!< Condition type and prediction type neural
 
 #define ACT_TYPE_INTEGER 0 //!< Action type integer
 

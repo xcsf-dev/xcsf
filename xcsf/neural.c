@@ -270,8 +270,20 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
     }
     // calculate output layer error
     const LAYER *p = net->head->layer;
-    for(int i = 0; i < p->n_outputs; i++) {
-        p->delta[i] = (truth[i] - p->output[i]);
+    if(xcsf->COND_TYPE == RULE_TYPE_NETWORK) {
+        // avoid backprop matching neuron
+        for(int i = 0; i < p->n_outputs - 1; i++) {
+            p->delta[i] = (truth[i] - p->output[i]);
+        }
+        p->delta[p->n_outputs - 1] = 0;
+    } else {
+        // backprop all neurons
+        for(int i = 0; i < p->n_outputs; i++) {
+            p->delta[i] = (truth[i] - p->output[i]);
+        }
+        for(int i = 0; i < p->n_outputs; i++) {
+            p->delta[i] = (truth[i] - p->output[i]);
+        }
     }
     /* backward phase */
     for(const LLIST *iter = net->head; iter != NULL; iter = iter->next) {

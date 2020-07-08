@@ -55,6 +55,7 @@ set(XCSF_SOURCES
     prediction.c
     rule_dgp.c
     rule_neural.c
+    rule_network.c
     sam.c
     utils.c
     xcs_rl.c
@@ -102,6 +103,7 @@ set(XCSF_HEADERS
     prediction.h
     rule_dgp.h
     rule_neural.h
+    rule_network.h
     sam.h
     utils.h
     xcs_rl.h

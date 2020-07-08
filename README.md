@@ -54,6 +54,7 @@ See `default.ini` for a full list of options.
 * `COND_TYPE = 6` : Ternary bitstrings (binarises inputs)
 * `COND_TYPE = 11` : Both conditions and actions in single dynamical GP graphs
 * `COND_TYPE = 12` : Both conditions and actions in single neural networks
+* `COND_TYPE = 13` : Both conditions and predictions in single neural networks
 
 ### Evolved Actions
 

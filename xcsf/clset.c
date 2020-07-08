@@ -31,9 +31,11 @@
 #include "cl.h"
 #include "clset.h"
 
+#include "condition.h"
 #include "prediction.h"
 #include "neural.h"
 #include "pred_neural.h"
+#include "rule_network.h"
 
 #define MAX_COVER 1000000 //!< maximum number of covering attempts
 
@@ -659,11 +661,21 @@ double clset_mean_eta(const XCSF *xcsf, const SET *set, int layer)
 {
     double sum = 0;
     int cnt = 0;
-    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        sum += pred_neural_eta(xcsf, iter->cl, layer);
-        cnt++;
+    if(xcsf->COND_TYPE == RULE_TYPE_NETWORK) {
+        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+            sum += rule_network_eta(xcsf, iter->cl, layer);
+            cnt++;
+        }
+    } else if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
+        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+            sum += pred_neural_neurons(xcsf, iter->cl, layer);
+            cnt++;
+        }
     }
-    return sum / cnt;
+    if(cnt != 0) {
+        return sum / cnt;
+    }
+    return 0;
 }
 
 /**
@@ -677,11 +689,21 @@ double clset_mean_neurons(const XCSF *xcsf, const SET *set, int layer)
 {
     int sum = 0;
     int cnt = 0;
-    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        sum += pred_neural_neurons(xcsf, iter->cl, layer);
-        cnt++;
+    if(xcsf->COND_TYPE == RULE_TYPE_NETWORK) {
+        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+            sum += rule_network_neurons(xcsf, iter->cl, layer);
+            cnt++;
+        }
+    } else if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
+        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+            sum += pred_neural_neurons(xcsf, iter->cl, layer);
+            cnt++;
+        }
     }
-    return (double) sum / cnt;
+    if(cnt != 0) {
+        return (double) sum / cnt;
+    }
+    return 0;
 }
 
 /**
@@ -694,9 +716,19 @@ double clset_mean_layers(const XCSF *xcsf, const SET *set)
 {
     int sum = 0;
     int cnt = 0;
-    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        sum += pred_neural_layers(xcsf, iter->cl);
-        cnt++;
+    if(xcsf->COND_TYPE == RULE_TYPE_NETWORK) {
+        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+            sum += rule_network_layers(xcsf, iter->cl);
+            cnt++;
+        }
+    } else if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
+        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+            sum += pred_neural_layers(xcsf, iter->cl);
+            cnt++;
+        }
     }
-    return (double) sum / cnt;
+    if(cnt != 0) {
+        return (double) sum / cnt;
+    }
+    return 0;
 }
