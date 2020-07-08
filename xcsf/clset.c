@@ -668,7 +668,7 @@ double clset_mean_eta(const XCSF *xcsf, const SET *set, int layer)
         }
     } else if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-            sum += pred_neural_neurons(xcsf, iter->cl, layer);
+            sum += pred_neural_eta(xcsf, iter->cl, layer);
             cnt++;
         }
     }
