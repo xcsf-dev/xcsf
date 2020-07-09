@@ -78,7 +78,7 @@ void neural_layer_noise_free(const XCSF *xcsf, const LAYER *l)
     free(l->state);
 }
 
-void neural_layer_noise_rand(const XCSF *xcsf, const LAYER *l)
+void neural_layer_noise_rand(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
     (void)l;

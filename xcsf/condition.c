@@ -42,7 +42,6 @@
 #include "rule_dgp.h"
 #include "rule_neural.h"
 #include "prediction.h"
-#include "rule_network.h"
 
 /**
  * @brief Sets a classifier's condition functions to the implementations.
@@ -80,10 +79,6 @@ void condition_set(const XCSF *xcsf, CL *c)
         case RULE_TYPE_NEURAL:
             c->cond_vptr = &rule_neural_cond_vtbl;
             c->act_vptr = &rule_neural_act_vtbl;
-            break;
-        case RULE_TYPE_NETWORK:
-            c->cond_vptr = &rule_network_cond_vtbl;
-            c->pred_vptr = &rule_network_pred_vtbl;
             break;
         default:
             printf("Invalid condition type specified: %d\n", xcsf->COND_TYPE);

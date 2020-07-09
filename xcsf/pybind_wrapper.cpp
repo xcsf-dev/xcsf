@@ -42,6 +42,7 @@ extern "C" {
 #include "param.h"
 #include "utils.h"
 #include "clset.h"
+#include "clset_neural.h"
 }
 
 /**
@@ -665,17 +666,37 @@ class XCS
 
         double get_pop_mean_pred_eta(int layer)
         {
-            return clset_mean_eta(&xcs, &xcs.pset, layer);
+            return clset_mean_pred_eta(&xcs, &xcs.pset, layer);
         }
 
         double get_pop_mean_pred_neurons(int layer)
         {
-            return clset_mean_neurons(&xcs, &xcs.pset, layer);
+            return clset_mean_pred_neurons(&xcs, &xcs.pset, layer);
+        }
+
+        double get_pop_mean_pred_connections(int layer)
+        {
+            return clset_mean_pred_connections(&xcs, &xcs.pset, layer);
         }
 
         double get_pop_mean_pred_layers()
         {
-            return clset_mean_layers(&xcs, &xcs.pset);
+            return clset_mean_pred_layers(&xcs, &xcs.pset);
+        }
+
+        double get_pop_mean_cond_connections(int layer)
+        {
+            return clset_mean_cond_connections(&xcs, &xcs.pset, layer);
+        }
+
+        double get_pop_mean_cond_neurons(int layer)
+        {
+            return clset_mean_cond_neurons(&xcs, &xcs.pset, layer);
+        }
+
+        double get_pop_mean_cond_layers()
+        {
+            return clset_mean_cond_layers(&xcs, &xcs.pset);
         }
 
         double get_msetsize()
@@ -1176,6 +1197,10 @@ PYBIND11_MODULE(xcsf, m)
     .def("pop_mean_pred_eta", &XCS::get_pop_mean_pred_eta)
     .def("pop_mean_pred_neurons", &XCS::get_pop_mean_pred_neurons)
     .def("pop_mean_pred_layers", &XCS::get_pop_mean_pred_layers)
+    .def("pop_mean_pred_connections", &XCS::get_pop_mean_pred_connections)
+    .def("pop_mean_cond_neurons", &XCS::get_pop_mean_cond_neurons)
+    .def("pop_mean_cond_layers", &XCS::get_pop_mean_cond_layers)
+    .def("pop_mean_cond_connections", &XCS::get_pop_mean_cond_connections)
     .def("print_pop", &XCS::print_pop)
     .def("msetsize", &XCS::get_msetsize)
     .def("mfrac", &XCS::get_mfrac)

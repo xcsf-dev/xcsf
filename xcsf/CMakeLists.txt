@@ -21,6 +21,7 @@ set(XCSF_SOURCES
     blas.c
     cl.c
     clset.c
+    clset_neural.c
     cond_dgp.c
     cond_dummy.c
     cond_ellipsoid.c
@@ -55,7 +56,6 @@ set(XCSF_SOURCES
     prediction.c
     rule_dgp.c
     rule_neural.c
-    rule_network.c
     sam.c
     utils.c
     xcs_rl.c
@@ -69,6 +69,7 @@ set(XCSF_HEADERS
     blas.h
     cl.h
     clset.h
+    clset_neural.h
     cond_dgp.h
     cond_dummy.h
     cond_ellipsoid.h
@@ -103,7 +104,6 @@ set(XCSF_HEADERS
     prediction.h
     rule_dgp.h
     rule_neural.h
-    rule_network.h
     sam.h
     utils.h
     xcs_rl.h

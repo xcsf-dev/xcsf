@@ -57,6 +57,7 @@ typedef struct LAYER {
     int n_outputs; //!< Number of layer outputs
     int max_outputs; //!< Maximum number of neurons in the layer
     int n_weights; //!< Number of layer weights
+    int n_active; //!< Number of active weights / connections
     int function; //!< Layer activation function
     double scale; //!< Usage depends on layer implementation
     double probability; //!< Usage depends on layer implementation
@@ -72,7 +73,7 @@ struct LayerVtbl {
     void (*layer_impl_resize)(const XCSF *xcsf, LAYER *l, const LAYER *prev);
     LAYER *(*layer_impl_copy)(const XCSF *xcsf, const LAYER *src);
     void (*layer_impl_free)(const XCSF *xcsf, const LAYER *l);
-    void (*layer_impl_rand)(const XCSF *xcsf, const LAYER *l);
+    void (*layer_impl_rand)(const XCSF *xcsf, LAYER *l);
     void (*layer_impl_print)(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
     void (*layer_impl_update)(const XCSF *xcsf, const LAYER *l);
     void (*layer_impl_backward)(const XCSF *xcsf, const LAYER *l, const NET *net);
@@ -198,7 +199,7 @@ static inline void layer_free(const XCSF *xcsf, const LAYER *l)
  * @param xcsf The XCSF data structure.
  * @param l The layer to be randomised.
  */
-static inline void layer_rand(const XCSF *xcsf, const LAYER *l)
+static inline void layer_rand(const XCSF *xcsf, LAYER *l)
 {
     (*l->layer_vptr->layer_impl_rand)(xcsf, l);
 }

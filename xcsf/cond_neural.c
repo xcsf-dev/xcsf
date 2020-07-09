@@ -174,3 +174,41 @@ size_t cond_neural_load(const XCSF *xcsf, CL *c, FILE *fp)
     c->cond = new;
     return s;
 }
+
+int cond_neural_neurons(const XCSF *xcsf, const CL *c, int layer)
+{
+    (void)xcsf;
+    const COND_NEURAL *cond = c->cond;
+    const NET *net = &cond->net;
+    int i = 0;
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        if(i == layer) {
+            return iter->layer->n_outputs;
+        }
+        i++;
+    }
+    return 0;
+}
+
+int cond_neural_connections(const XCSF *xcsf, const CL *c, int layer)
+{
+    (void)xcsf;
+    const COND_NEURAL *cond = c->cond;
+    const NET *net = &cond->net;
+    int i = 0;
+    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        if(i == layer) {
+            return iter->layer->n_active;
+        }
+        i++;
+    }
+    return 0;
+}
+
+int cond_neural_layers(const XCSF *xcsf, const CL *c)
+{
+    (void)xcsf;
+    const COND_NEURAL *cond = c->pred;
+    const NET *net = &cond->net;
+    return net->n_layers;
+}

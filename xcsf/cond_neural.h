@@ -43,6 +43,9 @@ void cond_neural_update(const XCSF *xcsf, const CL *c, const double *x, const do
 int cond_neural_size(const XCSF *xcsf, const CL *c);
 size_t cond_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t cond_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
+int cond_neural_neurons(const XCSF *xcsf, const CL *c, int layer);
+int cond_neural_layers(const XCSF *xcsf, const CL *c);
+int cond_neural_connections(const XCSF *xcsf, const CL *c, int layer);
 
 /**
  * @brief Multi-layer perceptron neural network condition implemented functions.

@@ -33,6 +33,7 @@ typedef struct PRED_NEURAL {
 _Bool pred_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool pred_neural_mutate(const XCSF *xcsf, const CL *c);
 double pred_neural_eta(const XCSF *xcsf, const CL *c, int layer);
+int pred_neural_connections(const XCSF *xcsf, const CL *c, int layer);
 int pred_neural_layers(const XCSF *xcsf, const CL *c);
 int pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer);
 int pred_neural_size(const XCSF *xcsf, const CL *c);

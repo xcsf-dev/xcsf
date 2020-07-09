@@ -66,7 +66,7 @@ LAYER *neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *src)
     return l;
 }
 
-void neural_layer_softmax_rand(const XCSF *xcsf, const LAYER *l)
+void neural_layer_softmax_rand(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
     (void)l;
