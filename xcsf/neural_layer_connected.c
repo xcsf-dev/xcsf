@@ -301,7 +301,7 @@ static _Bool mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
 
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu)
 {
-    int n = round(((2 * mu) - 1) * xcsf->MAX_NEURON_MOD);
+    int n = (int) round(((2 * mu) - 1) * xcsf->MAX_NEURON_MOD);
     if(n < 0 && l->n_outputs + n < 1) {
         n = -(l->n_outputs - 1);
     }
