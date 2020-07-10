@@ -301,32 +301,18 @@ static _Bool mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
 
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu)
 {
-    _Bool mod = false;
-    if(rand_uniform(0, 1) < mu) {
-        // number of neurons to add or remove
-        int n = 1 + irand_uniform(0, xcsf->MAX_NEURON_MOD);
-        // remove neurons
-        if(rand_uniform(0, 1) < 0.5) {
-            if(l->n_outputs - n < 1) {
-                n = l->n_outputs - 1;
-            }
-            if(n > 0) {
-                neuron_add(l, -n);
-                mod = true;
-            }
-        }
-        // add neurons
-        else {
-            if(l->n_outputs + n > l->max_outputs) {
-                n = l->max_outputs - l->n_outputs;
-            }
-            if(n > 0) {
-                neuron_add(l, n);
-                mod = true;
-            }
-        }
+    int n = round(((2 * mu) - 1) * xcsf->MAX_NEURON_MOD);
+    if(n < 0 && l->n_outputs + n < 1) {
+        n = -(l->n_outputs - 1);
     }
-    return mod;
+    else if(l->n_outputs + n > l->max_outputs) {
+        n = l->max_outputs - l->n_outputs;
+    }
+    if(n != 0) {
+        neuron_add(l, n);
+        return true;
+    }
+    return false;
 }
 
 static void neuron_add(LAYER *l, int n)
