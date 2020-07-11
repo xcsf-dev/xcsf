@@ -87,10 +87,10 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
 
 static void calc_n_active(LAYER *l)
 {
-    l->n_active = 0;
+    l->n_active = l->n_weights;
     for(int i = 0; i < l->n_weights; i++) {
-        if(l->weights[i] != 0) {
-            l->n_active += 1;
+        if(l->weights[i] == 0) {
+            l->n_active -= 1;
         }
     }
 }

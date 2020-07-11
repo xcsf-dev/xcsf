@@ -89,7 +89,7 @@ double clset_mean_cond_neurons(const XCSF *xcsf, const SET *set, int layer)
  */
 double clset_mean_cond_connections(const XCSF *xcsf, const SET *set, int layer)
 {
-    double sum = 0;
+    int sum = 0;
     int cnt = 0;
     if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
@@ -98,7 +98,7 @@ double clset_mean_cond_connections(const XCSF *xcsf, const SET *set, int layer)
         }
     }
     if(cnt != 0) {
-        return sum / cnt;
+        return (double) sum / cnt;
     }
     return 0;
 }
@@ -180,7 +180,7 @@ double clset_mean_pred_eta(const XCSF *xcsf, const SET *set, int layer)
  */
 double clset_mean_pred_connections(const XCSF *xcsf, const SET *set, int layer)
 {
-    double sum = 0;
+    int sum = 0;
     int cnt = 0;
     if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
@@ -189,7 +189,7 @@ double clset_mean_pred_connections(const XCSF *xcsf, const SET *set, int layer)
         }
     }
     if(cnt != 0) {
-        return sum / cnt;
+        return (double) sum / cnt;
     }
     return 0;
 }
