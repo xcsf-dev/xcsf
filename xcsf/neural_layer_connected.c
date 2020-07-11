@@ -72,15 +72,8 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->weights = malloc(l->n_weights * sizeof(double));
     l->n_active = l->n_weights;
     for(int i = 0; i < l->n_weights; i++) {
-        if(l->options & LAYER_EVOLVE_CONNECT && l->n_inputs > 1
-                && rand_uniform(0, 1) < 0.5) {
-            l->weights[i] = 0;
-            l->weight_active[i] = false;
-            l->n_active -= 1;
-        } else {
-            l->weights[i] = rand_normal(0, 0.1);
-            l->weight_active[i] = true;
-        }
+        l->weights[i] = rand_normal(0, 0.1);
+        l->weight_active[i] = true;
     }
     if(l->options & LAYER_EVOLVE_ETA) {
         l->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
