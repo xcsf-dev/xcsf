@@ -292,8 +292,7 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l, double mu)
     int n = (int) round(((2 * mu) - 1) * xcsf->MAX_NEURON_MOD);
     if(n < 0 && l->n_outputs + n < 1) {
         n = -(l->n_outputs - 1);
-    }
-    else if(l->n_outputs + n > l->max_outputs) {
+    } else if(l->n_outputs + n > l->max_outputs) {
         n = l->max_outputs - l->n_outputs;
     }
     if(n != 0) {

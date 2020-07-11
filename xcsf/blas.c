@@ -136,8 +136,14 @@ void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
  */
 void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
 {
-    for(int i = 0; i < N; i++) {
-        Y[i * INCY] += ALPHA * X[i * INCX];
+    if(ALPHA != 1) {
+        for(int i = 0; i < N; i++) {
+            Y[i * INCY] += ALPHA * X[i * INCX];
+        }
+    } else {
+        for(int i = 0; i < N; i++) {
+            Y[i * INCY] += X[i * INCX];
+        }
     }
 }
 
