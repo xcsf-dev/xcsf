@@ -156,8 +156,14 @@ void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int IN
  */
 void blas_scal(int N, double ALPHA, double *X, int INCX)
 {
-    for(int i = 0; i < N; i++) {
-        X[i * INCX] *= ALPHA;
+    if(ALPHA != 0) {
+        for(int i = 0; i < N; i++) {
+            X[i * INCX] *= ALPHA;
+        }
+    } else {
+        for(int i = 0; i < N; i++) {
+            X[i * INCX] = 0;
+        }
     }
 }
 
