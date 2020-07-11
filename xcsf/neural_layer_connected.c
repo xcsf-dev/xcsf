@@ -378,6 +378,10 @@ static void neuron_add(LAYER *l, int n)
 
 static _Bool mutate_connectivity(LAYER *l, double mu)
 {
+    if(l->n_inputs < 2) {
+        l->weight_active[0] = true;
+        return false;
+    }
     _Bool mod = false;
     for(int i = 0; i < l->n_weights; i++) {
         if(rand_uniform(0, 1) < mu) {
