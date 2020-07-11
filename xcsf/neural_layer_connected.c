@@ -374,12 +374,18 @@ static void neuron_add(LAYER *l, int n)
     l->n_weights = n_weights;
     l->n_outputs = n_outputs;
     calc_n_active(l);
+    // at least one connection must be active
+    if(l->n_active == 0) {
+        int r = irand_uniform(0, l->n_weights);
+        weights[r] = rand_normal(0, 0.1);
+        l->weight_active[r] = true;
+        l->n_active += 1;
+    }
 }
 
 static _Bool mutate_connectivity(LAYER *l, double mu)
 {
     if(l->n_inputs < 2) {
-        l->weight_active[0] = true;
         return false;
     }
     _Bool mod = false;
