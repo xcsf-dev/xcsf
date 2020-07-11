@@ -142,16 +142,10 @@ void neural_layer_connected_free(const XCSF *xcsf, const LAYER *l)
 void neural_layer_connected_rand(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
+    l->n_active = l->n_weights;
     for(int i = 0; i < l->n_weights; i++) {
-        if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
-            l->weights[i] = 0;
-            l->weight_active[i] = false;
-            l->n_active -= 1;
-        } else {
-            l->weights[i] = rand_normal(0, 1);
-            l->weight_active[i] = true;
-            l->n_active += 1;
-        }
+        l->weights[i] = rand_normal(0, 1);
+        l->weight_active[i] = true;
     }
     for(int i = 0; i < l->n_outputs; i++) {
         l->biases[i] = rand_normal(0, 1);
