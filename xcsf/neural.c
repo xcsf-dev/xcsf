@@ -273,9 +273,6 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
     for(int i = 0; i < p->n_outputs; i++) {
         p->delta[i] = (truth[i] - p->output[i]);
     }
-    for(int i = 0; i < p->n_outputs; i++) {
-        p->delta[i] = (truth[i] - p->output[i]);
-    }
     /* backward phase */
     for(const LLIST *iter = net->head; iter != NULL; iter = iter->next) {
         const LAYER *l = iter->layer;
