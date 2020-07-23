@@ -19,7 +19,7 @@
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief An implementation of a recurrent layer of perceptrons.
- * @details Fully-connected with a step of 1.
+ * @details Fully-connected, stateful, and with a step of 1.
  */
 
 #include <stdlib.h>

@@ -32,6 +32,7 @@
 #include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
+#include "neural_layer_recurrent.h"
 #include "neural_layer_dropout.h"
 #include "cl.h"
 #include "condition.h"
@@ -58,7 +59,7 @@ void rule_neural_cond_init(const XCSF *xcsf, CL *c)
             hmax = hinit;
         }
         int f = xcsf->COND_HIDDEN_ACTIVATION;
-        l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
+        l = neural_layer_recurrent_init(xcsf, n_inputs, hinit, hmax, f, lopt);
         neural_layer_insert(xcsf, &new->net, l, i);
         n_inputs = hinit;
         i++;
