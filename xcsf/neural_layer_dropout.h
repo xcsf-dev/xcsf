@@ -26,8 +26,8 @@
 LAYER *neural_layer_dropout_init(const XCSF *xcsf, int in, double prob);
 LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *src);
 void neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l);
-void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const NET *net);
-void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const NET *net);
+void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, NET *net);
+void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, NET *net);
 void neural_layer_dropout_update(const XCSF *xcsf, const LAYER *l);
 void neural_layer_dropout_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
 _Bool neural_layer_dropout_mutate(const XCSF *xcsf, LAYER *l);

@@ -29,6 +29,7 @@
 #define DROPOUT 1
 #define NOISE 2
 #define SOFTMAX 3
+#define RECURRENT 4
 
 #define LAYER_EVOLVE_WEIGHTS    (1<<0)
 #define LAYER_EVOLVE_NEURONS    (1<<1)
@@ -62,6 +63,10 @@ typedef struct LAYER {
     double scale; //!< Usage depends on layer implementation
     double probability; //!< Usage depends on layer implementation
     struct LayerVtbl const *layer_vptr; //!< Functions acting on layers
+    struct LAYER *input_layer; //!< Recursive layer input
+    struct LAYER *self_layer; //!< Recursive layer self
+    struct LAYER *output_layer; //!< Recursive layer output
+    double *prev_state;
 } LAYER;
 
 /**
@@ -76,8 +81,8 @@ struct LayerVtbl {
     void (*layer_impl_rand)(const XCSF *xcsf, LAYER *l);
     void (*layer_impl_print)(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
     void (*layer_impl_update)(const XCSF *xcsf, const LAYER *l);
-    void (*layer_impl_backward)(const XCSF *xcsf, const LAYER *l, const NET *net);
-    void (*layer_impl_forward)(const XCSF *xcsf, const LAYER *l, const NET *net);
+    void (*layer_impl_backward)(const XCSF *xcsf, const LAYER *l, NET *net);
+    void (*layer_impl_forward)(const XCSF *xcsf, const LAYER *l, NET *net);
     double *(*layer_impl_output)(const XCSF *xcsf, const LAYER *l);
     size_t (*layer_impl_save)(const XCSF *xcsf, const LAYER *l, FILE *fp);
     size_t (*layer_impl_load)(const XCSF *xcsf, LAYER *l, FILE *fp);
@@ -124,7 +129,7 @@ static inline double *layer_output(const XCSF *xcsf, const LAYER *l)
  * @param l The layer to be forward propagated.
  * @param net The network the layer is within.
  */
-static inline void layer_forward(const XCSF *xcsf, const LAYER *l, const NET *net)
+static inline void layer_forward(const XCSF *xcsf, const LAYER *l, NET *net)
 {
     (*l->layer_vptr->layer_impl_forward)(xcsf, l, net);
 }
@@ -135,7 +140,7 @@ static inline void layer_forward(const XCSF *xcsf, const LAYER *l, const NET *ne
  * @param l The layer to be backward propagated.
  * @param net The network being backward propagated.
  */
-static inline void layer_backward(const XCSF *xcsf, const LAYER *l, const NET *net)
+static inline void layer_backward(const XCSF *xcsf, const LAYER *l, NET *net)
 {
     (*l->layer_vptr->layer_impl_backward)(xcsf, l, net);
 }
@@ -215,4 +220,13 @@ static inline void layer_print(const XCSF *xcsf, const LAYER *l, _Bool print_wei
     (*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
 
+_Bool neural_layer_mutate_connectivity(LAYER *l, double mu);
+_Bool neural_layer_mutate_functions(LAYER *l, double mu);
+_Bool neural_layer_mutate_weights(LAYER *l, double mu);
+_Bool neural_layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu);
+int neural_layer_mutate_neurons(const XCSF *xcsf, LAYER *l, double mu);
+void neural_layer_add_neurons(LAYER *l, int n);
+void neural_layer_init_eta(const XCSF *xcsf, LAYER *l);
+void neural_layer_calc_n_active(LAYER *l);
 void neural_layer_set_vptr(LAYER *l);
+void neural_layer_weight_clamp(const LAYER *l);

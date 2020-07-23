@@ -84,7 +84,7 @@ void neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l)
     (void)l;
 }
 
-void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const NET *net)
+void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, NET *net)
 {
     // net->input[] = this layer's input
     if(!xcsf->explore) {
@@ -103,7 +103,7 @@ void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const NET *n
     }
 }
 
-void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const NET *net)
+void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, NET *net)
 {
     (void)xcsf;
     if(!net->delta) {

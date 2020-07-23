@@ -45,6 +45,7 @@ set(XCSF_SOURCES
     neural_layer_connected.c
     neural_layer_dropout.c
     neural_layer_noise.c
+    neural_layer_recurrent.c
     neural_layer_softmax.c
     pa.c
     param.c
@@ -93,6 +94,7 @@ set(XCSF_HEADERS
     neural_layer_connected.h
     neural_layer_dropout.h
     neural_layer_noise.h
+    neural_layer_recurrent.h
     neural_layer_softmax.h
     pa.h
     param.h

@@ -34,6 +34,7 @@
 #include "neural_layer_connected.h"
 #include "neural_layer_dropout.h"
 #include "neural_layer_noise.h"
+#include "neural_layer_recurrent.h"
 #include "neural_layer_softmax.h"
 #include "prediction.h"
 #include "pred_neural.h"
