@@ -197,8 +197,6 @@ _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
         mod = neural_layer_mutate_weights(l->output_layer, l->mu[3]) ? true : mod;
     }
     if(l->options & LAYER_EVOLVE_FUNCTIONS && neural_layer_mutate_functions(l, l->mu[4])) {
-        l->input_layer->function = l->function;
-        l->self_layer->function = l->function;
         l->output_layer->function = l->function;
         mod = true;
     }
