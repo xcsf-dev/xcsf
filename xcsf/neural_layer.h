@@ -224,7 +224,7 @@ _Bool neural_layer_mutate_connectivity(LAYER *l, double mu);
 _Bool neural_layer_mutate_functions(LAYER *l, double mu);
 _Bool neural_layer_mutate_weights(LAYER *l, double mu);
 _Bool neural_layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu);
-int neural_layer_mutate_neurons(const XCSF *xcsf, LAYER *l, double mu);
+int neural_layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu);
 void neural_layer_add_neurons(LAYER *l, int n);
 void neural_layer_init_eta(const XCSF *xcsf, LAYER *l);
 void neural_layer_calc_n_active(LAYER *l);
