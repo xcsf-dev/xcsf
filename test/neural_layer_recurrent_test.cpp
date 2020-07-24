@@ -14,7 +14,7 @@
  */
 
 /**
- * @file neural_layer_recurrent.cpp
+ * @file neural_layer_recurrent_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
