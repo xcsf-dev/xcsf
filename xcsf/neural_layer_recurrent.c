@@ -40,6 +40,9 @@
 
 #define N_MU 5 //!< Number of mutation rates applied to a recurrent layer
 
+static void set_layer_n_weights(LAYER *l);
+static void set_layer_n_active(LAYER *l);
+
 LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
                                    uint32_t o)
 {
@@ -58,15 +61,13 @@ LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->output = l->output_layer->output;
     l->delta = l->output_layer->delta;
     l->prev_state = calloc(l->n_outputs, sizeof(double));
-    l->n_active = l->input_layer->n_active + l->self_layer->n_active
-                  + l->output_layer->n_active;
-    // one set of mutation rates for the whole layer
     l->mu = malloc(N_MU * sizeof(double));
     sam_init(xcsf, l->mu, N_MU);
-    // one gradient descent rate for the whole layer
     l->eta = l->input_layer->eta;
     l->self_layer->eta = l->eta;
     l->output_layer->eta = l->eta;
+    set_layer_n_weights(l);
+    set_layer_n_active(l);
     return l;
 }
 
@@ -184,13 +185,15 @@ _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
             layer_add_neurons(l->input_layer, n);
             layer_add_neurons(l->self_layer, n);
             layer_add_neurons(l->output_layer, n);
-            free(l->state);
-            free(l->prev_state);
             l->n_outputs = l->output_layer->n_outputs;
-            l->state = calloc(l->n_outputs, sizeof(double));
-            l->prev_state = calloc(l->n_outputs, sizeof(double));
             l->output = l->output_layer->output;
             l->delta = l->output_layer->delta;
+            free(l->state);
+            free(l->prev_state);
+            l->state = calloc(l->n_outputs, sizeof(double));
+            l->prev_state = calloc(l->n_outputs, sizeof(double));
+            set_layer_n_weights(l);
+            set_layer_n_active(l);
             mod = true;
         }
     }
@@ -198,8 +201,7 @@ _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
         mod = layer_mutate_connectivity(l->input_layer, l->mu[2]) ? true : mod;
         mod = layer_mutate_connectivity(l->self_layer, l->mu[2]) ? true : mod;
         mod = layer_mutate_connectivity(l->output_layer, l->mu[2]) ? true : mod;
-        l->n_active = l->input_layer->n_active + l->self_layer->n_active
-                      + l->output_layer->n_active;
+        set_layer_n_active(l);
     }
     if(l->options & LAYER_EVOLVE_WEIGHTS) {
         mod = layer_mutate_weights(l->input_layer, l->mu[3]) ? true : mod;
@@ -271,4 +273,17 @@ size_t neural_layer_recurrent_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += layer_load(xcsf, l->self_layer, fp);
     s += layer_load(xcsf, l->output_layer, fp);
     return s;
+}
+
+static void set_layer_n_active(LAYER *l)
+{
+    l->n_active = l->input_layer->n_active + l->self_layer->n_active
+                  + l->output_layer->n_active;
+}
+
+static void set_layer_n_weights(LAYER *l)
+{
+    l->n_weights = l->input_layer->n_weights;
+    l->n_weights += l->self_layer->n_weights;
+    l->n_weights += l->output_layer->n_weights;
 }
