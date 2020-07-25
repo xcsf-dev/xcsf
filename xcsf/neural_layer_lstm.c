@@ -40,6 +40,10 @@
 
 #define N_MU 5 //!< Number of mutation rates applied to a lstm layer
 
+static _Bool mutate_eta(const XCSF *xcsf, LAYER *l);
+static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l);
+static _Bool mutate_connectivity(LAYER *l);
+static _Bool mutate_weights(LAYER *l);
 static void set_eta(LAYER *l);
 static void calloc_layer_arrays(LAYER *l);
 static void free_layer_arrays(const LAYER *l);
@@ -347,50 +351,78 @@ _Bool neural_layer_lstm_mutate(const XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
-    if((l->options & LAYER_EVOLVE_ETA) && neural_layer_mutate_eta(xcsf, l->uf, l->mu[0])) {
-        set_eta(l);
+    if((l->options & LAYER_EVOLVE_ETA) && mutate_eta(xcsf, l)) {
         mod = true;
     }
-    if(l->options & LAYER_EVOLVE_NEURONS) {
-        int n = neural_layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
-        if(n != 0) {
-            neural_layer_add_neurons(l->uf, n);
-            neural_layer_add_neurons(l->ui, n);
-            neural_layer_add_neurons(l->ug, n);
-            neural_layer_add_neurons(l->uo, n);
-            neural_layer_add_neurons(l->wf, n);
-            neural_layer_add_neurons(l->wi, n);
-            neural_layer_add_neurons(l->wg, n);
-            neural_layer_add_neurons(l->wo, n);
-            l->n_outputs = l->uf->n_outputs;
-            free_layer_arrays(l);
-            calloc_layer_arrays(l);
-            set_layer_n_weights(l);
-            set_layer_n_active(l);
-            mod = true;
-        }
+    if((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l)) {
+        mod = true;
     }
-    if(l->options & LAYER_EVOLVE_CONNECT) {
-        mod = neural_layer_mutate_connectivity(l->uf, l->mu[2]) ? true : mod;
-        mod = neural_layer_mutate_connectivity(l->ui, l->mu[2]) ? true : mod;
-        mod = neural_layer_mutate_connectivity(l->ug, l->mu[2]) ? true : mod;
-        mod = neural_layer_mutate_connectivity(l->uo, l->mu[2]) ? true : mod;
-        mod = neural_layer_mutate_connectivity(l->wf, l->mu[2]) ? true : mod;
-        mod = neural_layer_mutate_connectivity(l->wi, l->mu[2]) ? true : mod;
-        mod = neural_layer_mutate_connectivity(l->wg, l->mu[2]) ? true : mod;
-        mod = neural_layer_mutate_connectivity(l->wo, l->mu[2]) ? true : mod;
+    if((l->options & LAYER_EVOLVE_CONNECT) && mutate_connectivity(l)) {
+        mod = true;
+    }
+    if((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(l)) {
+        mod = true;
+    }
+    return mod;
+}
+
+static _Bool mutate_eta(const XCSF *xcsf, LAYER *l)
+{
+    if(neural_layer_mutate_eta(xcsf, l->uf, l->mu[0])) {
+        set_eta(l);
+        return true;
+    }
+    return false;
+}
+
+static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
+{
+    int n = neural_layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
+    if(n != 0) {
+        neural_layer_add_neurons(l->uf, n);
+        neural_layer_add_neurons(l->ui, n);
+        neural_layer_add_neurons(l->ug, n);
+        neural_layer_add_neurons(l->uo, n);
+        neural_layer_add_neurons(l->wf, n);
+        neural_layer_add_neurons(l->wi, n);
+        neural_layer_add_neurons(l->wg, n);
+        neural_layer_add_neurons(l->wo, n);
+        l->n_outputs = l->uf->n_outputs;
+        free_layer_arrays(l);
+        calloc_layer_arrays(l);
+        set_layer_n_weights(l);
         set_layer_n_active(l);
+        return true;
     }
-    if(l->options & LAYER_EVOLVE_WEIGHTS) {
-        mod = neural_layer_mutate_weights(l->uf, l->mu[3]) ? true : mod;
-        mod = neural_layer_mutate_weights(l->ui, l->mu[3]) ? true : mod;
-        mod = neural_layer_mutate_weights(l->ug, l->mu[3]) ? true : mod;
-        mod = neural_layer_mutate_weights(l->uo, l->mu[3]) ? true : mod;
-        mod = neural_layer_mutate_weights(l->wf, l->mu[3]) ? true : mod;
-        mod = neural_layer_mutate_weights(l->wi, l->mu[3]) ? true : mod;
-        mod = neural_layer_mutate_weights(l->wg, l->mu[3]) ? true : mod;
-        mod = neural_layer_mutate_weights(l->wo, l->mu[3]) ? true : mod;
-    }
+    return false;
+}
+
+static _Bool mutate_connectivity(LAYER *l)
+{
+    _Bool mod = false;
+    mod = neural_layer_mutate_connectivity(l->uf, l->mu[2]) ? true : mod;
+    mod = neural_layer_mutate_connectivity(l->ui, l->mu[2]) ? true : mod;
+    mod = neural_layer_mutate_connectivity(l->ug, l->mu[2]) ? true : mod;
+    mod = neural_layer_mutate_connectivity(l->uo, l->mu[2]) ? true : mod;
+    mod = neural_layer_mutate_connectivity(l->wf, l->mu[2]) ? true : mod;
+    mod = neural_layer_mutate_connectivity(l->wi, l->mu[2]) ? true : mod;
+    mod = neural_layer_mutate_connectivity(l->wg, l->mu[2]) ? true : mod;
+    mod = neural_layer_mutate_connectivity(l->wo, l->mu[2]) ? true : mod;
+    set_layer_n_active(l);
+    return mod;
+}
+
+static _Bool mutate_weights(LAYER *l)
+{
+    _Bool mod = false;
+    mod = neural_layer_mutate_weights(l->uf, l->mu[3]) ? true : mod;
+    mod = neural_layer_mutate_weights(l->ui, l->mu[3]) ? true : mod;
+    mod = neural_layer_mutate_weights(l->ug, l->mu[3]) ? true : mod;
+    mod = neural_layer_mutate_weights(l->uo, l->mu[3]) ? true : mod;
+    mod = neural_layer_mutate_weights(l->wf, l->mu[3]) ? true : mod;
+    mod = neural_layer_mutate_weights(l->wi, l->mu[3]) ? true : mod;
+    mod = neural_layer_mutate_weights(l->wg, l->mu[3]) ? true : mod;
+    mod = neural_layer_mutate_weights(l->wo, l->mu[3]) ? true : mod;
     return mod;
 }
 
