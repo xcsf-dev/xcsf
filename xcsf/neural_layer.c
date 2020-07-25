@@ -34,6 +34,7 @@
 #include "neural_layer_dropout.h"
 #include "neural_layer_noise.h"
 #include "neural_layer_recurrent.h"
+#include "neural_layer_lstm.h"
 #include "neural_layer_softmax.h"
 
 #define ETA_MIN 0.000001 //!< Minimum gradient descent rate
@@ -58,6 +59,9 @@ void neural_layer_set_vptr(LAYER *l)
             break;
         case RECURRENT:
             l->layer_vptr = &layer_recurrent_vtbl;
+            break;
+        case LSTM:
+            l->layer_vptr = &layer_lstm_vtbl;
             break;
         case SOFTMAX:
             l->layer_vptr = &layer_softmax_vtbl;

@@ -30,6 +30,7 @@
 #define NOISE 2
 #define SOFTMAX 3
 #define RECURRENT 4
+#define LSTM 5
 
 #define LAYER_EVOLVE_WEIGHTS    (1<<0)
 #define LAYER_EVOLVE_NEURONS    (1<<1)
@@ -63,10 +64,30 @@ typedef struct LAYER {
     double scale; //!< Usage depends on layer implementation
     double probability; //!< Usage depends on layer implementation
     struct LayerVtbl const *layer_vptr; //!< Functions acting on layers
+    double *prev_state; //!< Previous state for recursive layers
     struct LAYER *input_layer; //!< Recursive layer input
     struct LAYER *self_layer; //!< Recursive layer self
     struct LAYER *output_layer; //!< Recursive layer output
-    double *prev_state;
+    struct LAYER *uf; //!< LSTM
+    struct LAYER *ui; //!< LSTM
+    struct LAYER *ug; //!< LSTM
+    struct LAYER *uo; //!< LSTM
+    struct LAYER *wf; //!< LSTM
+    struct LAYER *wi; //!< LSTM
+    struct LAYER *wg; //!< LSTM
+    struct LAYER *wo; //!< LSTM
+    double *cell; //!< LSTM
+    double *prev_cell; //!< LSTM
+    double *f; //!< LSTM
+    double *i; //!< LSTM
+    double *g; //!< LSTM
+    double *o; //!< LSTM
+    double *c; //!< LSTM
+    double *h; //!< LSTM
+    double *temp; //!< LSTM
+    double *temp2; //!< LSTM
+    double *temp3; //!< LSTM
+    double *dc; //!< LSTM
 } LAYER;
 
 /**

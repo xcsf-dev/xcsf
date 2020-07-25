@@ -21,6 +21,7 @@ set(XCSF_TESTS
     config_test.cpp
     neural_test.cpp
     neural_layer_connected_test.cpp
+    neural_layer_lstm_test.cpp
     neural_layer_recurrent_test.cpp
     pred_nlms_test.cpp
     pred_rls_test.cpp
