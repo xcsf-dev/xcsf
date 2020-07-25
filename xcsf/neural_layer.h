@@ -68,6 +68,7 @@ typedef struct LAYER {
     struct LAYER *input_layer; //!< Recursive layer input
     struct LAYER *self_layer; //!< Recursive layer self
     struct LAYER *output_layer; //!< Recursive layer output
+    int recurrent_function; //!< LSTM
     struct LAYER *uf; //!< LSTM
     struct LAYER *ui; //!< LSTM
     struct LAYER *ug; //!< LSTM

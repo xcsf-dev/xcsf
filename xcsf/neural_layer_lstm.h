@@ -24,7 +24,7 @@
 #pragma once
 
 LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max,
-                              uint32_t o);
+                              int f, int rf, uint32_t o);
 LAYER *neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src);
 void neural_layer_lstm_rand(const XCSF *xcsf, LAYER *l);
 void neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l, NET *net);

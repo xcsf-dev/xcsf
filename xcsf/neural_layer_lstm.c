@@ -20,6 +20,7 @@
  * @date 2016--2020.
  * @brief An implementation of a long short-term memory layer.
  * @details Stateful, and with a step of 1.
+ * Typically the output activation is TANH and recurrent activation LOGISTIC.
  */
 
 #include <stdlib.h>
@@ -50,12 +51,15 @@ static void free_layer_arrays(const LAYER *l);
 static void set_layer_n_weights(LAYER *l);
 static void set_layer_n_active(LAYER *l);
 
-LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max, uint32_t o)
+LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
+                              int rf, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = LSTM;
     l->layer_vptr = &layer_lstm_vtbl;
     l->options = o;
+    l->function = f;
+    l->recurrent_function = rf;
     l->n_inputs = in;
     l->n_outputs = n_init;
     l->max_outputs = n_max;
@@ -157,6 +161,8 @@ LAYER *neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src)
     LAYER *l = malloc(sizeof(LAYER));
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
+    l->function = src->function;
+    l->recurrent_function = src->recurrent_function;
     l->options = src->options;
     l->n_inputs = src->n_inputs;
     l->n_outputs = src->n_outputs;
@@ -231,16 +237,16 @@ void neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l, NET *net)
     blas_axpy(l->n_outputs, 1, l->ug->output, 1, l->g, 1);
     memcpy(l->o, l->wo->output, l->n_outputs * sizeof(double));
     blas_axpy(l->n_outputs, 1, l->uo->output, 1, l->o, 1);
-    neural_activate_array(l->f, l->f, l->n_outputs, LOGISTIC);
-    neural_activate_array(l->i, l->i, l->n_outputs, LOGISTIC);
-    neural_activate_array(l->g, l->g, l->n_outputs, TANH);
-    neural_activate_array(l->o, l->o, l->n_outputs, LOGISTIC);
+    neural_activate_array(l->f, l->f, l->n_outputs, l->recurrent_function);
+    neural_activate_array(l->i, l->i, l->n_outputs, l->recurrent_function);
+    neural_activate_array(l->g, l->g, l->n_outputs, l->function);
+    neural_activate_array(l->o, l->o, l->n_outputs, l->recurrent_function);
     memcpy(l->temp, l->i, l->n_outputs * sizeof(double));
     blas_mul(l->n_outputs, l->g, 1, l->temp, 1);
     blas_mul(l->n_outputs, l->f, 1, l->c, 1);
     blas_axpy(l->n_outputs, 1, l->temp, 1, l->c, 1);
     memcpy(l->h, l->c, l->n_outputs * sizeof(double));
-    neural_activate_array(l->h, l->h, l->n_outputs, TANH);
+    neural_activate_array(l->h, l->h, l->n_outputs, l->function);
     blas_mul(l->n_outputs, l->o, 1, l->h, 1);
     memcpy(l->cell, l->c, l->n_outputs * sizeof(double));
     memcpy(l->output, l->h, l->n_outputs * sizeof(double));
@@ -268,21 +274,21 @@ void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, NET *net)
     blas_axpy(l->n_outputs, 1, l->ug->output, 1, l->g, 1);
     memcpy(l->o, l->wo->output, l->n_outputs * sizeof(double));
     blas_axpy(l->n_outputs, 1, l->uo->output, 1, l->o, 1);
-    neural_activate_array(l->f, l->f, l->n_outputs, LOGISTIC);
-    neural_activate_array(l->i, l->i, l->n_outputs, LOGISTIC);
-    neural_activate_array(l->g, l->g, l->n_outputs, TANH);
-    neural_activate_array(l->o, l->o, l->n_outputs, LOGISTIC);
+    neural_activate_array(l->f, l->f, l->n_outputs, l->recurrent_function);
+    neural_activate_array(l->i, l->i, l->n_outputs, l->recurrent_function);
+    neural_activate_array(l->g, l->g, l->n_outputs, l->function);
+    neural_activate_array(l->o, l->o, l->n_outputs, l->recurrent_function);
     memcpy(l->temp3, l->delta, l->n_outputs * sizeof(double));
     memcpy(l->temp, l->c, l->n_outputs * sizeof(double));
-    neural_activate_array(l->temp, l->temp, l->n_outputs, TANH);
+    neural_activate_array(l->temp, l->temp, l->n_outputs, l->function);
     memcpy(l->temp2, l->temp3, l->n_outputs * sizeof(double));
     blas_mul(l->n_outputs, l->o, 1, l->temp2, 1);
-    neural_gradient_array(l->temp, l->temp2, l->n_outputs, TANH);
+    neural_gradient_array(l->temp, l->temp2, l->n_outputs, l->function);
     blas_axpy(l->n_outputs, 1, l->dc, 1, l->temp2, 1);
     memcpy(l->temp, l->c, l->n_outputs * sizeof(double));
-    neural_activate_array(l->temp, l->temp, l->n_outputs, TANH);
+    neural_activate_array(l->temp, l->temp, l->n_outputs, l->function);
     blas_mul(l->n_outputs, l->temp3, 1, l->temp, 1);
-    neural_gradient_array(l->o, l->temp, l->n_outputs, LOGISTIC);
+    neural_gradient_array(l->o, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wo->delta, l->temp, l->n_outputs * sizeof(double));
     net->input = l->prev_state;
     net->delta = 0;
@@ -293,7 +299,7 @@ void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, NET *net)
     layer_backward(xcsf, l->uo, net);
     memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
     blas_mul(l->n_outputs, l->i, 1, l->temp, 1);
-    neural_gradient_array(l->g, l->temp, l->n_outputs, TANH);
+    neural_gradient_array(l->g, l->temp, l->n_outputs, l->function);
     memcpy(l->wg->delta, l->temp, l->n_outputs * sizeof(double));
     net->input = l->prev_state;
     net->delta = 0;
@@ -304,7 +310,7 @@ void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, NET *net)
     layer_backward(xcsf, l->ug, net);
     memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
     blas_mul(l->n_outputs, l->g, 1, l->temp, 1);
-    neural_gradient_array(l->i, l->temp, l->n_outputs, LOGISTIC);
+    neural_gradient_array(l->i, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wi->delta, l->temp, l->n_outputs * sizeof(double));
     net->input = l->prev_state;
     net->delta = 0;
@@ -315,7 +321,7 @@ void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, NET *net)
     layer_backward(xcsf, l->ui, net);
     memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
     blas_mul(l->n_outputs, l->prev_cell, 1, l->temp, 1);
-    neural_gradient_array(l->f, l->temp, l->n_outputs, LOGISTIC);
+    neural_gradient_array(l->f, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wf->delta, l->temp, l->n_outputs * sizeof(double));
     net->input = l->prev_state;
     net->delta = 0;
@@ -442,7 +448,10 @@ static _Bool mutate_weights(LAYER *l)
 
 void neural_layer_lstm_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
 {
-    printf("lstm, in = %d, out = %d\n", l->n_inputs, l->n_outputs);
+    printf("lstm, f = %s, rf = %s,  in = %d, out = %d\n",
+           neural_activation_string(l->function),
+           neural_activation_string(l->recurrent_function),
+           l->n_inputs, l->n_outputs);
     if(print_weights) {
         printf("uf layer:\n");
         layer_print(xcsf, l->uf, print_weights);
