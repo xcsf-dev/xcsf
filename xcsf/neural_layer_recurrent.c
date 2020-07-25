@@ -181,6 +181,11 @@ _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
             neural_layer_add_neurons(l->input_layer, n);
             neural_layer_add_neurons(l->self_layer, n);
             neural_layer_add_neurons(l->output_layer, n);
+            free(l->state);
+            free(l->prev_state);
+            l->n_outputs = l->output_layer->n_outputs;
+            l->state = calloc(l->n_outputs, sizeof(double));
+            l->prev_state = calloc(l->n_outputs, sizeof(double));
             mod = true;
         }
     }
