@@ -198,3 +198,18 @@ double blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
     }
     return dot;
 }
+
+/**
+ * @brief Multiplies the vector X by the vector Y and stores the result in vector Y.
+ * @param N The number of elements in vectors X and Y.
+ * @param X Vector with N elements.
+ * @param INCX Stride between consecutive elements of X.
+ * @param Y Vector with N elements.
+ * @param INCY Stride between consecutive elements of Y.
+ */
+void blas_mul(int N, const double *X, int INCX, double *Y, int INCY)
+{
+    for(int i = 0; i < N; i++) {
+        Y[i * INCY] *= X[i * INCX];
+    }
+}
