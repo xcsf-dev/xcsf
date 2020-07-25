@@ -64,7 +64,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
         l->weight_active[i] = true;
     }
     if(l->options & LAYER_EVOLVE_ETA) {
-        neural_layer_init_eta(xcsf, l);
+        layer_init_eta(xcsf, l);
     } else {
         l->eta = xcsf->PRED_ETA;
     }
@@ -181,7 +181,7 @@ void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
         blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
         blas_scal(l->n_outputs, xcsf->PRED_MOMENTUM, l->bias_updates, 1);
         blas_scal(l->n_weights, xcsf->PRED_MOMENTUM, l->weight_updates, 1);
-        neural_layer_weight_clamp(l);
+        layer_weight_clamp(l);
     }
 }
 
@@ -215,30 +215,30 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
     l->weight_active = weight_active;
     l->n_weights = n_weights;
     l->n_inputs = prev->n_outputs;
-    neural_layer_calc_n_active(l);
+    layer_calc_n_active(l);
 }
 
 _Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
-    if((l->options & LAYER_EVOLVE_ETA) && neural_layer_mutate_eta(xcsf, l, l->mu[0])) {
+    if((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
         mod = true;
     }
     if(l->options & LAYER_EVOLVE_NEURONS) {
-        int n = neural_layer_mutate_neurons(xcsf, l, l->mu[1]);
+        int n = layer_mutate_neurons(xcsf, l, l->mu[1]);
         if(n != 0) {
-            neural_layer_add_neurons(l, n);
+            layer_add_neurons(l, n);
             mod = true;
         }
     }
-    if((l->options & LAYER_EVOLVE_CONNECT) && neural_layer_mutate_connectivity(l, l->mu[2])) {
+    if((l->options & LAYER_EVOLVE_CONNECT) && layer_mutate_connectivity(l, l->mu[2])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_WEIGHTS) && neural_layer_mutate_weights(l, l->mu[3])) {
+    if((l->options & LAYER_EVOLVE_WEIGHTS) && layer_mutate_weights(l, l->mu[3])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_FUNCTIONS) && neural_layer_mutate_functions(l, l->mu[4])) {
+    if((l->options & LAYER_EVOLVE_FUNCTIONS) && layer_mutate_functions(l, l->mu[4])) {
         mod = true;
     }
     return mod;

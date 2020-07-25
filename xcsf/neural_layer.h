@@ -241,13 +241,13 @@ static inline void layer_print(const XCSF *xcsf, const LAYER *l, _Bool print_wei
     (*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
 
-_Bool neural_layer_mutate_connectivity(LAYER *l, double mu);
-_Bool neural_layer_mutate_functions(LAYER *l, double mu);
-_Bool neural_layer_mutate_weights(LAYER *l, double mu);
-_Bool neural_layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu);
-int neural_layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu);
-void neural_layer_add_neurons(LAYER *l, int n);
-void neural_layer_init_eta(const XCSF *xcsf, LAYER *l);
-void neural_layer_calc_n_active(LAYER *l);
-void neural_layer_set_vptr(LAYER *l);
-void neural_layer_weight_clamp(const LAYER *l);
+_Bool layer_mutate_connectivity(LAYER *l, double mu);
+_Bool layer_mutate_functions(LAYER *l, double mu);
+_Bool layer_mutate_weights(LAYER *l, double mu);
+_Bool layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu);
+int layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu);
+void layer_add_neurons(LAYER *l, int n);
+void layer_init_eta(const XCSF *xcsf, LAYER *l);
+void layer_calc_n_active(LAYER *l);
+void layer_set_vptr(LAYER *l);
+void layer_weight_clamp(const LAYER *l);

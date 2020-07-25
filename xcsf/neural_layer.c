@@ -79,7 +79,7 @@ void neural_layer_set_vptr(LAYER *l)
  * @param mu The rate of mutation.
  * @return Whether any alterations were made.
  */
-_Bool neural_layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
+_Bool layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
 {
     double orig = l->eta;
     l->eta += rand_normal(0, mu);
@@ -90,7 +90,7 @@ _Bool neural_layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
     return false;
 }
 
-int neural_layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu)
+int layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu)
 {
     int n = (int) round(((2 * mu) - 1) * xcsf->MAX_NEURON_MOD);
     if(n < 0 && l->n_outputs + n < 1) {
@@ -101,7 +101,7 @@ int neural_layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu)
     return n;
 }
 
-void neural_layer_add_neurons(LAYER *l, int n)
+void layer_add_neurons(LAYER *l, int n)
 {
     // assumes n is appropriately bounds checked
     // negative n will remove neurons
@@ -160,7 +160,7 @@ void neural_layer_add_neurons(LAYER *l, int n)
     l->delta = delta;
     l->n_weights = n_weights;
     l->n_outputs = n_outputs;
-    neural_layer_calc_n_active(l);
+    layer_calc_n_active(l);
     // at least one connection must be active
     if(l->n_active == 0) {
         int r = irand_uniform(0, l->n_weights);
@@ -170,7 +170,7 @@ void neural_layer_add_neurons(LAYER *l, int n)
     }
 }
 
-_Bool neural_layer_mutate_connectivity(LAYER *l, double mu)
+_Bool layer_mutate_connectivity(LAYER *l, double mu)
 {
     if(l->n_inputs < 2) {
         return false;
@@ -192,7 +192,7 @@ _Bool neural_layer_mutate_connectivity(LAYER *l, double mu)
     return mod;
 }
 
-_Bool neural_layer_mutate_weights(LAYER *l, double mu)
+_Bool layer_mutate_weights(LAYER *l, double mu)
 {
     _Bool mod = false;
     for(int i = 0; i < l->n_weights; i++) {
@@ -216,7 +216,7 @@ _Bool neural_layer_mutate_weights(LAYER *l, double mu)
     return mod;
 }
 
-_Bool neural_layer_mutate_functions(LAYER *l, double mu)
+_Bool layer_mutate_functions(LAYER *l, double mu)
 {
     if(rand_uniform(0, 1) < mu) {
         int orig = l->function;
@@ -228,7 +228,7 @@ _Bool neural_layer_mutate_functions(LAYER *l, double mu)
     return false;
 }
 
-void neural_layer_weight_clamp(const LAYER *l)
+void layer_weight_clamp(const LAYER *l)
 {
     for(int i = 0; i < l->n_weights; i++) {
         if(l->weight_active[i]) {
@@ -242,7 +242,7 @@ void neural_layer_weight_clamp(const LAYER *l)
     }
 }
 
-void neural_layer_calc_n_active(LAYER *l)
+void layer_calc_n_active(LAYER *l)
 {
     l->n_active = l->n_weights;
     for(int i = 0; i < l->n_weights; i++) {
@@ -252,7 +252,7 @@ void neural_layer_calc_n_active(LAYER *l)
     }
 }
 
-void neural_layer_init_eta(const XCSF *xcsf, LAYER *l)
+void layer_init_eta(const XCSF *xcsf, LAYER *l)
 {
     l->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
 }
