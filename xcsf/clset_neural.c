@@ -46,11 +46,13 @@ double clset_mean_cond_layers(const XCSF *xcsf, const SET *set)
 {
     int sum = 0;
     int cnt = 0;
-    if(xcsf->COND_TYPE == COND_TYPE_NEURAL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-            sum += cond_neural_layers(xcsf, iter->cl);
-            cnt++;
-        }
+    switch(xcsf->COND_TYPE) {
+        case COND_TYPE_NEURAL:
+        case RULE_TYPE_NEURAL:
+            for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+                sum += cond_neural_layers(xcsf, iter->cl);
+                cnt++;
+            }
     }
     if(cnt != 0) {
         return (double) sum / cnt;
@@ -58,7 +60,7 @@ double clset_mean_cond_layers(const XCSF *xcsf, const SET *set)
     return 0;
 }
 /**
- * @brief Calculates the mean number of condtion neurons for a given layer.
+ * @brief Calculates the mean number of condition neurons for a given layer.
  * @param xcsf The XCSF data structure.
  * @param set The set to calculate the mean.
  * @param layer The neural network layer position.
@@ -68,11 +70,13 @@ double clset_mean_cond_neurons(const XCSF *xcsf, const SET *set, int layer)
 {
     int sum = 0;
     int cnt = 0;
-    if(xcsf->COND_TYPE == COND_TYPE_NEURAL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-            sum += cond_neural_neurons(xcsf, iter->cl, layer);
-            cnt++;
-        }
+    switch(xcsf->COND_TYPE) {
+        case COND_TYPE_NEURAL:
+        case RULE_TYPE_NEURAL:
+            for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+                sum += cond_neural_neurons(xcsf, iter->cl, layer);
+                cnt++;
+            }
     }
     if(cnt != 0) {
         return (double) sum / cnt;
@@ -91,11 +95,13 @@ double clset_mean_cond_connections(const XCSF *xcsf, const SET *set, int layer)
 {
     int sum = 0;
     int cnt = 0;
-    if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-            sum += cond_neural_connections(xcsf, iter->cl, layer);
-            cnt++;
-        }
+    switch(xcsf->COND_TYPE) {
+        case COND_TYPE_NEURAL:
+        case RULE_TYPE_NEURAL:
+            for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+                sum += cond_neural_connections(xcsf, iter->cl, layer);
+                cnt++;
+            }
     }
     if(cnt != 0) {
         return (double) sum / cnt;
