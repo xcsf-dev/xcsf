@@ -45,7 +45,7 @@
  * @brief Sets a neural network layer's functions to the implementations.
  * @param l The neural network layer to set.
  */
-void neural_layer_set_vptr(LAYER *l)
+void layer_set_vptr(LAYER *l)
 {
     switch(l->layer_type) {
         case CONNECTED:

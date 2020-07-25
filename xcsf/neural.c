@@ -384,7 +384,7 @@ size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp)
     for(int i = 0; i < nlayers; i++) {
         LAYER *l = malloc(sizeof(LAYER));
         s += fread(&l->layer_type, sizeof(int), 1, fp);
-        neural_layer_set_vptr(l);
+        layer_set_vptr(l);
         s += layer_load(xcsf, l, fp);
         neural_layer_insert(xcsf, net, l, i);
     }
