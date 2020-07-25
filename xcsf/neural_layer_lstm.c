@@ -337,8 +337,14 @@ void neural_layer_lstm_update(const XCSF *xcsf, const LAYER *l)
 
 void neural_layer_lstm_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
-    printf("neural_layer_lstm_resize(): not implemented\n");
-    exit(EXIT_FAILURE);
+    neural_layer_connected_resize(xcsf, l->uf, prev);
+    neural_layer_connected_resize(xcsf, l->ui, prev);
+    neural_layer_connected_resize(xcsf, l->ug, prev);
+    neural_layer_connected_resize(xcsf, l->uo, prev);
+    neural_layer_connected_resize(xcsf, l->uf, prev);
+    l->n_inputs = prev->n_outputs;
+    set_layer_n_weights(l);
+    set_layer_n_active(l);
 }
 
 double *neural_layer_lstm_output(const XCSF *xcsf, const LAYER *l)
