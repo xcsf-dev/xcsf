@@ -383,6 +383,9 @@ _Bool neural_layer_lstm_mutate(const XCSF *xcsf, LAYER *l)
     if((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(l)) {
         mod = true;
     }
+    if((l->options & LAYER_EVOLVE_FUNCTIONS) && layer_mutate_functions(l, l->mu[4])) {
+        mod = true;
+    }
     return mod;
 }
 

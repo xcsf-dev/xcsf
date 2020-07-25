@@ -218,14 +218,24 @@ _Bool layer_mutate_weights(LAYER *l, double mu)
 
 _Bool layer_mutate_functions(LAYER *l, double mu)
 {
+    _Bool mod = false;
     if(rand_uniform(0, 1) < mu) {
         int orig = l->function;
         l->function = irand_uniform(0, NUM_ACTIVATIONS);
         if(l->function != orig) {
-            return true;
+            mod = true;
         }
     }
-    return false;
+    if(l->layer_type == LSTM) {
+        if(rand_uniform(0, 1) < mu) {
+            int orig = l->recurrent_function;
+            l->recurrent_function = irand_uniform(0, NUM_ACTIVATIONS);
+            if(l->recurrent_function != orig) {
+                mod = true;
+            }
+        }
+    }
+    return mod;
 }
 
 void layer_weight_clamp(const LAYER *l)
