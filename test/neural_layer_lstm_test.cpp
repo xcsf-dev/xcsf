@@ -108,7 +108,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     // forward pass
     net.input = x;
     neural_layer_lstm_forward(&xcsf, l, &net);
-    CHECK_EQ(doctest::Approx(l->output[0]), 0.419613);
+    CHECK_EQ(doctest::Approx(l->output[0]), 0.4196390756);
     /* test convergence on one input */
     for(int i = 0; i < 400; i++) {
         net.input = x;

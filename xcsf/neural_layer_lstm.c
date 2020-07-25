@@ -260,13 +260,13 @@ void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, NET *net)
     memset(l->uo->delta, 0, l->n_outputs * sizeof(double));
     memcpy(l->c, l->cell, l->n_outputs * sizeof(double));
     memcpy(l->h, l->output, l->n_outputs * sizeof(double));
-    memcpy(l->f, l->wf, l->n_outputs * sizeof(double));
+    memcpy(l->f, l->wf->output, l->n_outputs * sizeof(double));
     blas_axpy(l->n_outputs, 1, l->uf->output, 1, l->f, 1);
-    memcpy(l->i, l->wi, l->n_outputs * sizeof(double));
+    memcpy(l->i, l->wi->output, l->n_outputs * sizeof(double));
     blas_axpy(l->n_outputs, 1, l->ui->output, 1, l->i, 1);
-    memcpy(l->g, l->wg, l->n_outputs * sizeof(double));
+    memcpy(l->g, l->wg->output, l->n_outputs * sizeof(double));
     blas_axpy(l->n_outputs, 1, l->ug->output, 1, l->g, 1);
-    memcpy(l->o, l->wo, l->n_outputs * sizeof(double));
+    memcpy(l->o, l->wo->output, l->n_outputs * sizeof(double));
     blas_axpy(l->n_outputs, 1, l->uo->output, 1, l->o, 1);
     neural_activate_array(l->f, l->f, l->n_outputs, LOGISTIC);
     neural_activate_array(l->i, l->i, l->n_outputs, LOGISTIC);
