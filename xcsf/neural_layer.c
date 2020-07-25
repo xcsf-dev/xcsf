@@ -226,13 +226,11 @@ _Bool layer_mutate_functions(LAYER *l, double mu)
             mod = true;
         }
     }
-    if(l->layer_type == LSTM) {
-        if(rand_uniform(0, 1) < mu) {
-            int orig = l->recurrent_function;
-            l->recurrent_function = irand_uniform(0, NUM_ACTIVATIONS);
-            if(l->recurrent_function != orig) {
-                mod = true;
-            }
+    if(l->layer_type == LSTM && rand_uniform(0, 1) < mu) {
+        int orig = l->recurrent_function;
+        l->recurrent_function = irand_uniform(0, NUM_ACTIVATIONS);
+        if(l->recurrent_function != orig) {
+            mod = true;
         }
     }
     return mod;
