@@ -63,7 +63,7 @@ void param_set_cond_min(XCSF *xcsf, double a);
 void param_set_cond_smin(XCSF *xcsf, double a);
 void param_set_cond_bits(XCSF *xcsf, int a);
 void param_set_dgp_num_nodes(XCSF *xcsf, int a);
-void param_set_reset_states(XCSF *xcsf, _Bool a);
+void param_set_stateful(XCSF *xcsf, _Bool a);
 void param_set_max_k(XCSF *xcsf, int a);
 void param_set_max_t(XCSF *xcsf, int a);
 void param_set_gp_num_cons(XCSF *xcsf, int a);

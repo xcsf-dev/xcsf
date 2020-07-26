@@ -228,6 +228,8 @@ static void config_cl_general(XCSF *xcsf, const char *n, char *v, int i, double 
         param_set_eps_0(xcsf, f);
     } else if(strncmp(n, "M_PROBATION", 12) == 0) {
         param_set_m_probation(xcsf, i);
+    } else if(strncmp(n, "STATEFUL", 9) == 0) {
+        param_set_stateful(xcsf, i);
     }
 }
 
@@ -259,8 +261,6 @@ static void config_cl_condition(XCSF *xcsf, const char *n, char *v, int i, doubl
         param_set_gp_init_depth(xcsf, i);
     } else if(strncmp(n, "DGP_NUM_NODES", 14) == 0) {
         param_set_dgp_num_nodes(xcsf, i);
-    } else if(strncmp(n, "RESET_STATES", 13) == 0) {
-        param_set_reset_states(xcsf, i);
     } else if(strncmp(n, "MAX_K", 6) == 0) {
         param_set_max_k(xcsf, i);
     } else if(strncmp(n, "MAX_T", 6) == 0) {

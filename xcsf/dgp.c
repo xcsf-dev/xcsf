@@ -144,7 +144,7 @@ static int random_connection(int n_nodes, int n_inputs)
  */
 void graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
 {
-    if(xcsf->RESET_STATES) {
+    if(!xcsf->STATEFUL) {
         graph_reset(xcsf, dgp);
     }
     for(int t = 0; t < dgp->t; t++) {

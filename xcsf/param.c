@@ -263,6 +263,7 @@ static void param_defaults_cl_general(XCSF *xcsf)
     param_set_err_reduc(xcsf, 1);
     param_set_fit_reduc(xcsf, 0.1);
     param_set_m_probation(xcsf, 10000);
+    param_set_stateful(xcsf, true);
 }
 
 /**
@@ -282,6 +283,8 @@ static void param_print_cl_general(const XCSF *xcsf)
     printf(", ERR_REDUC=%f", xcsf->ERR_REDUC);
     printf(", FIT_REDUC=%f", xcsf->FIT_REDUC);
     printf(", M_PROBATION=%d", xcsf->M_PROBATION);
+    printf(", STATEFUL=");
+    xcsf->STATEFUL == true ? printf("true") : printf("false");
 }
 
 /**
@@ -304,6 +307,7 @@ static size_t param_save_cl_general(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->ERR_REDUC, sizeof(double), 1, fp);
     s += fwrite(&xcsf->FIT_REDUC, sizeof(double), 1, fp);
     s += fwrite(&xcsf->M_PROBATION, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->STATEFUL, sizeof(_Bool), 1, fp);
     return s;
 }
 
@@ -327,6 +331,7 @@ static size_t param_load_cl_general(XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->ERR_REDUC, sizeof(double), 1, fp);
     s += fread(&xcsf->FIT_REDUC, sizeof(double), 1, fp);
     s += fread(&xcsf->M_PROBATION, sizeof(int), 1, fp);
+    s += fread(&xcsf->STATEFUL, sizeof(_Bool), 1, fp);
     return s;
 }
 
@@ -515,7 +520,6 @@ static void param_defaults_cl_condition(XCSF *xcsf)
     param_set_gp_num_cons(xcsf, 100);
     param_set_gp_init_depth(xcsf, 5);
     param_set_dgp_num_nodes(xcsf, 20);
-    param_set_reset_states(xcsf, false);
     param_set_max_k(xcsf, 2);
     param_set_max_t(xcsf, 10);
     param_set_max_neuron_mod(xcsf, 1);
@@ -546,8 +550,6 @@ static void param_print_cl_condition(const XCSF *xcsf)
     printf(", GP_NUM_CONS=%d", xcsf->GP_NUM_CONS);
     printf(", GP_INIT_DEPTH=%d", xcsf->GP_INIT_DEPTH);
     printf(", DGP_NUM_NODES=%d", xcsf->DGP_NUM_NODES);
-    printf(", RESET_STATES=");
-    xcsf->RESET_STATES == true ? printf("true") : printf("false");
     printf(", MAX_K=%d", xcsf->MAX_K);
     printf(", MAX_T=%d", xcsf->MAX_T);
     printf(", MAX_NEURON_MOD=%d", xcsf->MAX_NEURON_MOD);
@@ -592,7 +594,6 @@ static size_t param_save_cl_condition(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->GP_INIT_DEPTH, sizeof(int), 1, fp);
     s += fwrite(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
     s += fwrite(&xcsf->DGP_NUM_NODES, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->RESET_STATES, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_T, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_NEURON_MOD, sizeof(int), 1, fp);
@@ -633,7 +634,6 @@ static size_t param_load_cl_condition(XCSF *xcsf, FILE *fp)
     xcsf->gp_cons = malloc(sizeof(double) * xcsf->GP_NUM_CONS);
     s += fread(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
     s += fread(&xcsf->DGP_NUM_NODES, sizeof(int), 1, fp);
-    s += fread(&xcsf->RESET_STATES, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fread(&xcsf->MAX_T, sizeof(int), 1, fp);
     s += fread(&xcsf->MAX_NEURON_MOD, sizeof(int), 1, fp);
@@ -1176,9 +1176,9 @@ void param_set_dgp_num_nodes(XCSF *xcsf, int a)
     }
 }
 
-void param_set_reset_states(XCSF *xcsf, _Bool a)
+void param_set_stateful(XCSF *xcsf, _Bool a)
 {
-    xcsf->RESET_STATES = a;
+    xcsf->STATEFUL = a;
 }
 
 void param_set_max_k(XCSF *xcsf, int a)
