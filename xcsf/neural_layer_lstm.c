@@ -410,6 +410,10 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
         layer_add_neurons(l->wi, n);
         layer_add_neurons(l->wg, n);
         layer_add_neurons(l->wo, n);
+        layer_resize(xcsf, l->wf, l->uf);
+        layer_resize(xcsf, l->wi, l->uf);
+        layer_resize(xcsf, l->wg, l->uf);
+        layer_resize(xcsf, l->wo, l->uf);
         l->n_outputs = l->uf->n_outputs;
         free_layer_arrays(l);
         calloc_layer_arrays(l);

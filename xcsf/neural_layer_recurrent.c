@@ -185,6 +185,8 @@ _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
             layer_add_neurons(l->input_layer, n);
             layer_add_neurons(l->self_layer, n);
             layer_add_neurons(l->output_layer, n);
+            layer_resize(xcsf, l->self_layer, l->input_layer);
+            layer_resize(xcsf, l->output_layer, l->input_layer);
             l->n_outputs = l->output_layer->n_outputs;
             l->output = l->output_layer->output;
             l->delta = l->output_layer->delta;
