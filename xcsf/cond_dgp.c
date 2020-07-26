@@ -24,6 +24,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "sam.h"
@@ -35,7 +36,8 @@
 void cond_dgp_init(const XCSF *xcsf, CL *c)
 {
     COND_DGP *new = malloc(sizeof(COND_DGP));
-    graph_init(xcsf, &new->dgp, xcsf->DGP_NUM_NODES);
+    int n = (int) fmax(xcsf->COND_NUM_NEURONS[0], 1);
+    graph_init(xcsf, &new->dgp, n);
     graph_rand(xcsf, &new->dgp);
     c->cond = new;
 }

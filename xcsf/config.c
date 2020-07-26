@@ -259,8 +259,6 @@ static void config_cl_condition(XCSF *xcsf, const char *n, char *v, int i, doubl
         param_set_gp_num_cons(xcsf, i);
     } else if(strncmp(n, "GP_INIT_DEPTH", 14) == 0) {
         param_set_gp_init_depth(xcsf, i);
-    } else if(strncmp(n, "DGP_NUM_NODES", 14) == 0) {
-        param_set_dgp_num_nodes(xcsf, i);
     } else if(strncmp(n, "MAX_K", 6) == 0) {
         param_set_max_k(xcsf, i);
     } else if(strncmp(n, "MAX_T", 6) == 0) {

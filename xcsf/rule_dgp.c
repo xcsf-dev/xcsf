@@ -39,7 +39,7 @@ void rule_dgp_cond_init(const XCSF *xcsf, CL *c)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
     new->n_outputs = (int) fmax(1, ceil(log2(xcsf->n_actions)));
-    int n = (int) fmax(xcsf->DGP_NUM_NODES, new->n_outputs + 1);
+    int n = (int) fmax(xcsf->COND_NUM_NEURONS[0], new->n_outputs + 1);
     graph_init(xcsf, &new->dgp, n);
     graph_rand(xcsf, &new->dgp);
     c->cond = new;

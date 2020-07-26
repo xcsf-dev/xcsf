@@ -145,7 +145,6 @@ typedef struct XCSF {
     double COND_MIN; //!< Minimum value expected from inputs
     double COND_SMIN; //!< Minimum initial spread for hyperectangles and hyperellipsoids
     int COND_BITS; //!< Number of bits per float to binarise inputs for ternary conditions
-    int DGP_NUM_NODES; //!< Number of nodes in a DGP graph
     _Bool STATEFUL; //!< Whether classifiers should retain state across trials
     int MAX_K; //!< Maximum number of connections a DGP node may have
     int MAX_T; //!< Maximum number of cycles to update a DGP graph

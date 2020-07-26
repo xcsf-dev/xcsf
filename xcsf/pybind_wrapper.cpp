@@ -554,11 +554,6 @@ class XCS
             return xcs.MAX_NEURON_MOD;
         }
 
-        int get_dgp_num_nodes()
-        {
-            return xcs.DGP_NUM_NODES;
-        }
-
         _Bool get_stateful()
         {
             return xcs.STATEFUL;
@@ -993,11 +988,6 @@ class XCS
             param_set_max_neuron_mod(&xcs, a);
         }
 
-        void set_dgp_num_nodes(int a)
-        {
-            param_set_dgp_num_nodes(&xcs, a);
-        }
-
         void set_stateful(_Bool a)
         {
             param_set_stateful(&xcs, a);
@@ -1167,7 +1157,6 @@ PYBIND11_MODULE(xcsf, m)
     .def_property("PRED_SGD_WEIGHTS", &XCS::get_pred_sgd_weights, &XCS::set_pred_sgd_weights)
     .def_property("PRED_RESET", &XCS::get_pred_reset, &XCS::set_pred_reset)
     .def_property("MAX_NEURON_MOD", &XCS::get_max_neuron_mod, &XCS::set_max_neuron_mod)
-    .def_property("DGP_NUM_NODES", &XCS::get_dgp_num_nodes, &XCS::set_dgp_num_nodes)
     .def_property("STATEFUL", &XCS::get_stateful, &XCS::set_stateful)
     .def_property("MAX_K", &XCS::get_max_k, &XCS::set_max_k)
     .def_property("MAX_T", &XCS::get_max_t, &XCS::set_max_t)

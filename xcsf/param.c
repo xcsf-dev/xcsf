@@ -519,7 +519,6 @@ static void param_defaults_cl_condition(XCSF *xcsf)
     param_set_cond_bits(xcsf, 1);
     param_set_gp_num_cons(xcsf, 100);
     param_set_gp_init_depth(xcsf, 5);
-    param_set_dgp_num_nodes(xcsf, 20);
     param_set_max_k(xcsf, 2);
     param_set_max_t(xcsf, 10);
     param_set_max_neuron_mod(xcsf, 1);
@@ -549,7 +548,6 @@ static void param_print_cl_condition(const XCSF *xcsf)
     printf(", COND_BITS=%d", xcsf->COND_BITS);
     printf(", GP_NUM_CONS=%d", xcsf->GP_NUM_CONS);
     printf(", GP_INIT_DEPTH=%d", xcsf->GP_INIT_DEPTH);
-    printf(", DGP_NUM_NODES=%d", xcsf->DGP_NUM_NODES);
     printf(", MAX_K=%d", xcsf->MAX_K);
     printf(", MAX_T=%d", xcsf->MAX_T);
     printf(", MAX_NEURON_MOD=%d", xcsf->MAX_NEURON_MOD);
@@ -593,7 +591,6 @@ static size_t param_save_cl_condition(const XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->GP_NUM_CONS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->GP_INIT_DEPTH, sizeof(int), 1, fp);
     s += fwrite(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
-    s += fwrite(&xcsf->DGP_NUM_NODES, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_T, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_NEURON_MOD, sizeof(int), 1, fp);
@@ -633,7 +630,6 @@ static size_t param_load_cl_condition(XCSF *xcsf, FILE *fp)
     free(xcsf->gp_cons); // always allocated on start
     xcsf->gp_cons = malloc(sizeof(double) * xcsf->GP_NUM_CONS);
     s += fread(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
-    s += fread(&xcsf->DGP_NUM_NODES, sizeof(int), 1, fp);
     s += fread(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fread(&xcsf->MAX_T, sizeof(int), 1, fp);
     s += fread(&xcsf->MAX_NEURON_MOD, sizeof(int), 1, fp);
@@ -1163,16 +1159,6 @@ void param_set_cond_bits(XCSF *xcsf, int a)
         xcsf->COND_BITS = 1;
     } else {
         xcsf->COND_BITS = a;
-    }
-}
-
-void param_set_dgp_num_nodes(XCSF *xcsf, int a)
-{
-    if(a < 1) {
-        printf("Warning: tried to set DGP_NUM_NODES too small\n");
-        xcsf->DGP_NUM_NODES = 1;
-    } else {
-        xcsf->DGP_NUM_NODES = a;
     }
 }
 
