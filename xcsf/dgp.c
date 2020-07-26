@@ -26,6 +26,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <limits.h>
+#include <math.h>
 #include "xcsf.h"
 #include "utils.h"
 #include "sam.h"
@@ -37,12 +38,15 @@ static const char *function_string(int function);
 static double node_activate(int function, const double *inputs, int k);
 static void synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs);
 static int random_connection(int n_nodes, int n_inputs);
+static _Bool graph_mutate_functions(const XCSF *xcsf, GRAPH *dgp);
+static _Bool graph_mutate_connectivity(const XCSF *xcsf, GRAPH *dgp);
+static _Bool graph_mutate_cycles(const XCSF *xcsf, GRAPH *dgp);
 
 /**
  * @brief Initialises a new DGP graph.
  * @param xcsf The XCSF data structure.
  * @param dgp The DGP graph to initialise.
- * @param n The the number of nodes in the graph.
+ * @param n The number of nodes in the graph.
  */
 void graph_init(const XCSF *xcsf, GRAPH *dgp, int n)
 {
@@ -218,9 +222,24 @@ void graph_free(const XCSF *xcsf, const GRAPH *dgp)
  */
 _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
 {
-    sam_adapt(xcsf, dgp->mu, DGP_N_MU);
     _Bool mod = false;
-    // mutate functions
+    sam_adapt(xcsf, dgp->mu, DGP_N_MU);
+    mod = graph_mutate_functions(xcsf, dgp) ? true : mod;
+    mod = graph_mutate_connectivity(xcsf, dgp) ? true : mod;
+    mod = graph_mutate_cycles(xcsf, dgp) ? true : mod;
+    return mod;
+}
+
+/**
+ * @brief Mutates the node functions within a DGP graph.
+ * @param xcsf The XCSF data structure.
+ * @param dgp The DGP graph to be mutated.
+ * @return Whether any alterations were made.
+ */
+static _Bool graph_mutate_functions(const XCSF *xcsf, GRAPH *dgp)
+{
+    (void)xcsf;
+    _Bool mod = false;
     for(int i = 0; i < dgp->n; i++) {
         if(rand_uniform(0, 1) < dgp->mu[0]) {
             int orig = dgp->function[i];
@@ -230,7 +249,18 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
             }
         }
     }
-    // mutate connectivity map
+    return mod;
+}
+
+/**
+ * @brief Mutates the connectivity of a DGP graph.
+ * @param xcsf The XCSF data structure.
+ * @param dgp The DGP graph to be mutated.
+ * @return Whether any alterations were made.
+ */
+static _Bool graph_mutate_connectivity(const XCSF *xcsf, GRAPH *dgp)
+{
+    _Bool mod = false;
     for(int i = 0; i < dgp->klen; i++) {
         if(rand_uniform(0, 1) < dgp->mu[1]) {
             int orig = dgp->connectivity[i];
@@ -240,7 +270,18 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
             }
         }
     }
-    // mutate number of update cycles
+    return mod;
+}
+
+/**
+ * @brief Mutates the number of update cycles performed by a DGP graph.
+ * @param xcsf The XCSF data structure.
+ * @param dgp The DGP graph to be mutated.
+ * @return Whether any alterations were made.
+ */
+static _Bool graph_mutate_cycles(const XCSF *xcsf, GRAPH *dgp)
+{
+    _Bool mod = false;
     if(rand_uniform(0, 1) < dgp->mu[2]) {
         int orig = dgp->t;
         dgp->t = irand_uniform(1, xcsf->MAX_T);
