@@ -263,8 +263,8 @@ static void config_cl_condition(XCSF *xcsf, const char *n, char *v, int i, doubl
         param_set_max_k(xcsf, i);
     } else if(strncmp(n, "MAX_T", 6) == 0) {
         param_set_max_t(xcsf, i);
-    } else if(strncmp(n, "MAX_NEURON_MOD", 15) == 0) {
-        param_set_max_neuron_mod(xcsf, i);
+    } else if(strncmp(n, "MAX_NEURON_GROW", 16) == 0) {
+        param_set_max_neuron_grow(xcsf, i);
     } else if(strncmp(n, "COND_EVOLVE_WEIGHTS", 20) == 0) {
         param_set_cond_evolve_weights(xcsf, i);
     } else if(strncmp(n, "COND_EVOLVE_NEURONS", 20) == 0) {

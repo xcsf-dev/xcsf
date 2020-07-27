@@ -80,23 +80,27 @@ xcs.NU = 5 # accuracy slope
 
 xcs.COND_TYPE = 3 # neural network conditions
 xcs.COND_OUTPUT_ACTIVATION = 3 # linear
-xcs.COND_HIDDEN_ACTIVATION = 1 # relu
-xcs.COND_NUM_NEURONS = [10] # initial neurons
+xcs.COND_HIDDEN_ACTIVATION = 9 # selu
+xcs.COND_NUM_NEURONS = [20] # initial neurons
 xcs.COND_MAX_NEURONS = [100] # maximum neurons
 xcs.COND_EVOLVE_WEIGHTS = True
 xcs.COND_EVOLVE_NEURONS = True
 xcs.COND_EVOLVE_FUNCTIONS = False
+xcs.COND_EVOLVE_CONNECTIVITY = True
 
+xcs.MAX_NEURON_GROW = 5
 xcs.PRED_TYPE = 5 # neural network predictors
 xcs.PRED_OUTPUT_ACTIVATION = 100 # soft max
-xcs.PRED_HIDDEN_ACTIVATION = 1 # relu
-xcs.PRED_NUM_NEURONS = [50] # initial neurons
+xcs.PRED_HIDDEN_ACTIVATION = 9 # selu
+xcs.PRED_NUM_NEURONS = [20] # initial neurons
 xcs.PRED_MAX_NEURONS = [100] # maximum neurons
 xcs.PRED_EVOLVE_WEIGHTS = True
 xcs.PRED_EVOLVE_NEURONS = True
 xcs.PRED_EVOLVE_FUNCTIONS = False
+xcs.PRED_EVOLVE_CONNECTIVITY = False
 xcs.PRED_EVOLVE_ETA = True
 xcs.PRED_SGD_WEIGHTS = True
+xcs.PRED_ETA = 0.001 # maximum gradient descent rate
 
 xcs.print_params()
 

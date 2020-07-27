@@ -67,7 +67,7 @@ void param_set_max_k(XCSF *xcsf, int a);
 void param_set_max_t(XCSF *xcsf, int a);
 void param_set_gp_num_cons(XCSF *xcsf, int a);
 void param_set_gp_init_depth(XCSF *xcsf, int a);
-void param_set_max_neuron_mod(XCSF *xcsf, int a);
+void param_set_max_neuron_grow(XCSF *xcsf, int a);
 void param_set_cond_eta(XCSF *xcsf, double a);
 void param_set_cond_evolve_weights(XCSF *xcsf, _Bool a);
 void param_set_cond_evolve_neurons(XCSF *xcsf, _Bool a);

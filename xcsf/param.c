@@ -521,7 +521,7 @@ static void param_defaults_cl_condition(XCSF *xcsf)
     param_set_gp_init_depth(xcsf, 5);
     param_set_max_k(xcsf, 2);
     param_set_max_t(xcsf, 10);
-    param_set_max_neuron_mod(xcsf, 1);
+    param_set_max_neuron_grow(xcsf, 1);
     param_set_cond_evolve_weights(xcsf, true);
     param_set_cond_evolve_neurons(xcsf, true);
     param_set_cond_evolve_functions(xcsf, false);
@@ -550,7 +550,7 @@ static void param_print_cl_condition(const XCSF *xcsf)
     printf(", GP_INIT_DEPTH=%d", xcsf->GP_INIT_DEPTH);
     printf(", MAX_K=%d", xcsf->MAX_K);
     printf(", MAX_T=%d", xcsf->MAX_T);
-    printf(", MAX_NEURON_MOD=%d", xcsf->MAX_NEURON_MOD);
+    printf(", MAX_NEURON_GROW=%d", xcsf->MAX_NEURON_GROW);
     printf(", COND_EVOLVE_WEIGHTS=");
     xcsf->COND_EVOLVE_WEIGHTS == true ? printf("true") : printf("false");
     printf(", COND_EVOLVE_NEURONS=");
@@ -593,7 +593,7 @@ static size_t param_save_cl_condition(const XCSF *xcsf, FILE *fp)
     s += fwrite(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
     s += fwrite(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_T, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->MAX_NEURON_MOD, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->MAX_NEURON_GROW, sizeof(int), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
@@ -632,7 +632,7 @@ static size_t param_load_cl_condition(XCSF *xcsf, FILE *fp)
     s += fread(xcsf->gp_cons, sizeof(double), xcsf->GP_NUM_CONS, fp);
     s += fread(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fread(&xcsf->MAX_T, sizeof(int), 1, fp);
-    s += fread(&xcsf->MAX_NEURON_MOD, sizeof(int), 1, fp);
+    s += fread(&xcsf->MAX_NEURON_GROW, sizeof(int), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
@@ -1211,13 +1211,13 @@ void param_set_gp_init_depth(XCSF *xcsf, int a)
     }
 }
 
-void param_set_max_neuron_mod(XCSF *xcsf, int a)
+void param_set_max_neuron_grow(XCSF *xcsf, int a)
 {
     if(a < 1) {
-        printf("Warning: tried to set MAX_NEURON_MOD too small\n");
-        xcsf->MAX_NEURON_MOD = 1;
+        printf("Warning: tried to set MAX_NEURON_GROW too small\n");
+        xcsf->MAX_NEURON_GROW = 1;
     } else {
-        xcsf->MAX_NEURON_MOD = a;
+        xcsf->MAX_NEURON_GROW = a;
     }
 }
 

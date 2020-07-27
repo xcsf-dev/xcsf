@@ -549,9 +549,9 @@ class XCS
             return xcs.PRED_RESET;
         }
 
-        int get_max_neuron_mod()
+        int get_max_neuron_grow()
         {
-            return xcs.MAX_NEURON_MOD;
+            return xcs.MAX_NEURON_GROW;
         }
 
         _Bool get_stateful()
@@ -983,9 +983,9 @@ class XCS
             param_set_pred_reset(&xcs, a);
         }
 
-        void set_max_neuron_mod(int a)
+        void set_max_neuron_grow(int a)
         {
-            param_set_max_neuron_mod(&xcs, a);
+            param_set_max_neuron_grow(&xcs, a);
         }
 
         void set_stateful(_Bool a)
@@ -1156,7 +1156,7 @@ PYBIND11_MODULE(xcsf, m)
     .def_property("PRED_EVOLVE_ETA", &XCS::get_pred_evolve_eta, &XCS::set_pred_evolve_eta)
     .def_property("PRED_SGD_WEIGHTS", &XCS::get_pred_sgd_weights, &XCS::set_pred_sgd_weights)
     .def_property("PRED_RESET", &XCS::get_pred_reset, &XCS::set_pred_reset)
-    .def_property("MAX_NEURON_MOD", &XCS::get_max_neuron_mod, &XCS::set_max_neuron_mod)
+    .def_property("MAX_NEURON_GROW", &XCS::get_max_neuron_grow, &XCS::set_max_neuron_grow)
     .def_property("STATEFUL", &XCS::get_stateful, &XCS::set_stateful)
     .def_property("MAX_K", &XCS::get_max_k, &XCS::set_max_k)
     .def_property("MAX_T", &XCS::get_max_t, &XCS::set_max_t)
