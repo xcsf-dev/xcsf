@@ -281,15 +281,12 @@ static _Bool graph_mutate_connectivity(const XCSF *xcsf, GRAPH *dgp)
  */
 static _Bool graph_mutate_cycles(const XCSF *xcsf, GRAPH *dgp)
 {
-    _Bool mod = false;
-    if(rand_uniform(0, 1) < dgp->mu[2]) {
-        int orig = dgp->t;
-        dgp->t = irand_uniform(1, xcsf->MAX_T);
-        if(orig != dgp->t) {
-            mod = true;
-        }
+    int n = (int) round((2 * dgp->mu[2]) - 1);
+    if(dgp->t + n < 1 || dgp->t + n > xcsf->MAX_T) {
+        return false;
     }
-    return mod;
+    dgp->t += n;
+    return true;
 }
 
 /**
