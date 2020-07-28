@@ -144,7 +144,7 @@ void layer_add_neurons(LAYER *l, int n)
     l->n_outputs = n_outputs;
     layer_calc_n_active(l);
     // at least one connection must be active
-    if(l->n_active == 0) {
+    if(l->n_active < 1) {
         int r = irand_uniform(0, l->n_weights);
         l->weights[r] = rand_normal(0, 0.1);
         l->weight_active[r] = true;
