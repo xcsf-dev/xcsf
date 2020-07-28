@@ -143,13 +143,6 @@ void layer_add_neurons(LAYER *l, int n)
     l->n_weights = n_weights;
     l->n_outputs = n_outputs;
     layer_calc_n_active(l);
-    // at least one connection must be active
-    if(l->n_active < 1) {
-        int r = irand_uniform(0, l->n_weights);
-        l->weights[r] = rand_normal(0, 0.1);
-        l->weight_active[r] = true;
-        l->n_active += 1;
-    }
 }
 
 _Bool layer_mutate_connectivity(LAYER *l, double mu)
@@ -170,6 +163,13 @@ _Bool layer_mutate_connectivity(LAYER *l, double mu)
             }
             mod = true;
         }
+    }
+    // at least one connection must be active
+    if(l->n_active < 1) {
+        int r = irand_uniform(0, l->n_weights);
+        l->weights[r] = rand_normal(0, 0.1);
+        l->weight_active[r] = true;
+        l->n_active += 1;
     }
     return mod;
 }
