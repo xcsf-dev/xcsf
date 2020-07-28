@@ -41,15 +41,16 @@
 
 #define N_MU 5 //!< Number of mutation rates applied to a lstm layer
 
+static _Bool mutate_connectivity(LAYER *l);
 static _Bool mutate_eta(const XCSF *xcsf, LAYER *l);
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l);
-static _Bool mutate_connectivity(LAYER *l);
 static _Bool mutate_weights(LAYER *l);
-static void set_eta(LAYER *l);
 static void calloc_layer_arrays(LAYER *l);
 static void free_layer_arrays(const LAYER *l);
-static void set_layer_n_weights(LAYER *l);
+static void reset_layer_deltas(const LAYER *l);
+static void set_eta(LAYER *l);
 static void set_layer_n_active(LAYER *l);
+static void set_layer_n_weights(LAYER *l);
 
 LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
                               int rf, uint32_t o)
@@ -252,8 +253,7 @@ void neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l, const double *i
     memcpy(l->output, l->h, l->n_outputs * sizeof(double));
 }
 
-void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, const double *input,
-                                double *delta)
+static void reset_layer_deltas(const LAYER *l)
 {
     memset(l->wf->delta, 0, l->n_outputs * sizeof(double));
     memset(l->wi->delta, 0, l->n_outputs * sizeof(double));
@@ -263,6 +263,12 @@ void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, const double *
     memset(l->ui->delta, 0, l->n_outputs * sizeof(double));
     memset(l->ug->delta, 0, l->n_outputs * sizeof(double));
     memset(l->uo->delta, 0, l->n_outputs * sizeof(double));
+}
+
+void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, const double *input,
+                                double *delta)
+{
+    reset_layer_deltas(l);
     memcpy(l->temp3, l->delta, l->n_outputs * sizeof(double));
     memcpy(l->temp, l->c, l->n_outputs * sizeof(double));
     neural_activate_array(l->temp, l->temp, l->n_outputs, l->function);
