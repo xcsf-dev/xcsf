@@ -122,7 +122,7 @@ void pred_neural_copy(const XCSF *xcsf, CL *dest, const CL *src)
 void pred_neural_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     if(xcsf->PRED_SGD_WEIGHTS) {
-        PRED_NEURAL *pred = c->pred;
+        const PRED_NEURAL *pred = c->pred;
         neural_learn(xcsf, &pred->net, y, x);
     }
 }
