@@ -36,6 +36,7 @@
 #include "neural_layer_recurrent.h"
 #include "neural_layer_lstm.h"
 #include "neural_layer_softmax.h"
+#include "neural_layer_maxpool.h"
 
 #define ETA_MIN 0.000001 //!< Minimum gradient descent rate
 #define WEIGHT_MIN -10 //!< Minimum value of a weight or bias
@@ -65,6 +66,9 @@ void layer_set_vptr(LAYER *l)
             break;
         case SOFTMAX:
             l->layer_vptr = &layer_softmax_vtbl;
+            break;
+        case MAXPOOL:
+            l->layer_vptr = &layer_maxpool_vtbl;
             break;
         default:
             printf("Error setting layer vptr for type: %d\n", l->layer_type);

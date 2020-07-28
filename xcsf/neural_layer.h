@@ -31,6 +31,7 @@
 #define SOFTMAX 3
 #define RECURRENT 4
 #define LSTM 5
+#define MAXPOOL 6
 
 #define LAYER_EVOLVE_WEIGHTS    (1<<0)
 #define LAYER_EVOLVE_NEURONS    (1<<1)
@@ -89,6 +90,16 @@ typedef struct LAYER {
     double *temp2; //!< LSTM
     double *temp3; //!< LSTM
     double *dc; //!< LSTM
+    int height; //!< Pool
+    int width; //!< Pool
+    int channels; //!< Pool
+    int pad; //!< Pool
+    int out_w; //!< Pool
+    int out_h; //!< Pool
+    int out_c; //!< Pool
+    int size; //!< Pool
+    int stride; //!< Pool
+    int *indexes; //!< Pool
 } LAYER;
 
 /**

@@ -35,6 +35,7 @@
 #include "neural_layer_dropout.h"
 #include "neural_layer_lstm.h"
 #include "neural_layer_noise.h"
+#include "neural_layer_maxpool.h"
 #include "neural_layer_recurrent.h"
 #include "neural_layer_softmax.h"
 #include "prediction.h"
@@ -49,9 +50,8 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     // hidden layers
     uint32_t lopt = pred_neural_lopt(xcsf);
     LAYER *l;
-    int i = 0;
     int n_inputs = xcsf->x_dim;
-    while(i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0) {
+    for(int i = 0; i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; i++) {
         int hinit = xcsf->PRED_NUM_NEURONS[i];
         int hmax = xcsf->PRED_MAX_NEURONS[i];
         if(hmax < hinit || !xcsf->PRED_EVOLVE_NEURONS) {
@@ -59,9 +59,8 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
         }
         int f = xcsf->PRED_HIDDEN_ACTIVATION;
         l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
-        neural_layer_insert(xcsf, &new->net, l, i);
+        neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
         n_inputs = hinit;
-        i++;
     }
     // output layer
     int f = xcsf->PRED_OUTPUT_ACTIVATION;
@@ -70,13 +69,13 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     if(f == SOFT_MAX) {
         // classification
         l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim, LINEAR, lopt);
-        neural_layer_insert(xcsf, &new->net, l, i);
+        neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
         l = neural_layer_softmax_init(xcsf, xcsf->y_dim, 1);
         neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
     } else {
         // regression
         l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim, f, lopt);
-        neural_layer_insert(xcsf, &new->net, l, i);
+        neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
     }
     c->pred = new;
 }
