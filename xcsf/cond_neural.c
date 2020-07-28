@@ -118,7 +118,7 @@ void cond_neural_update(const XCSF *xcsf, const CL *c, const double *x, const do
 
 _Bool cond_neural_match(const XCSF *xcsf, const CL *c, const double *x)
 {
-    COND_NEURAL *cond = c->cond;
+    const COND_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
     if(neural_output(xcsf, &cond->net, 0) > 0.5) {
         return true;

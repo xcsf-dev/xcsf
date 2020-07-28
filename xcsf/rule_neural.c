@@ -127,7 +127,7 @@ void rule_neural_cond_update(const XCSF *xcsf, const CL *c, const double *x,
 
 _Bool rule_neural_cond_match(const XCSF *xcsf, const CL *c, const double *x)
 {
-    RULE_NEURAL *cond = c->cond;
+    const RULE_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
     if(neural_output(xcsf, &cond->net, 0) > 0.5) {
         return true;
