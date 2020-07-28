@@ -111,64 +111,42 @@ void layer_add_neurons(LAYER *l, int n)
     // negative n will remove neurons
     int n_outputs = l->n_outputs + n;
     int n_weights = n_outputs * l->n_inputs;
-    double *weights = malloc(n_weights * sizeof(double));
-    _Bool *weight_active = malloc(n_weights * sizeof(_Bool));
-    double *weight_updates = malloc(n_weights * sizeof(double));
-    double *state = calloc(n_outputs, sizeof(double));
-    double *output = calloc(n_outputs, sizeof(double));
-    double *biases = malloc(n_outputs * sizeof(double));
-    double *bias_updates = malloc(n_outputs * sizeof(double));
-    double *delta = calloc(n_outputs, sizeof(double));
-    int w_len = n_weights;
-    int o_len = n_outputs;
-    if(n > 0) {
-        w_len = l->n_weights;
-        o_len = l->n_outputs;
-    }
-    memcpy(weights, l->weights, w_len * sizeof(double));
-    memcpy(weight_active, l->weight_active, w_len * sizeof(_Bool));
-    memcpy(weight_updates, l->weight_updates, w_len * sizeof(double));
-    memcpy(biases, l->biases, o_len * sizeof(double));
-    memcpy(bias_updates, l->bias_updates, o_len * sizeof(double));
+    size_t w_size_t = n_weights * sizeof(double);
+    size_t o_size_t = n_outputs * sizeof(double);
+    l->weights = (double*) realloc(l->weights, w_size_t);
+    l->weight_active = (_Bool*) realloc(l->weight_active, n_weights * sizeof(_Bool));
+    l->weight_updates = (double*) realloc(l->weight_updates, w_size_t);
+    l->state = (double*) realloc(l->state, o_size_t);
+    l->output = (double*) realloc(l->output, o_size_t);
+    l->biases = (double*) realloc(l->biases, o_size_t);
+    l->bias_updates = (double*) realloc(l->bias_updates, o_size_t);
+    l->delta = (double*) realloc(l->delta, o_size_t);
     if(n > 0) {
         for(int i = l->n_weights; i < n_weights; i++) {
             if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
-                weights[i] = 0;
-                weight_active[i] = false;
+                l->weights[i] = 0;
+                l->weight_active[i] = false;
             } else {
-                weights[i] = rand_normal(0, 0.1);
-                weight_active[i] = true;
+                l->weights[i] = rand_normal(0, 0.1);
+                l->weight_active[i] = true;
             }
-            weight_updates[i] = 0;
+            l->weight_updates[i] = 0;
         }
         for(int i = l->n_outputs; i < n_outputs; i++) {
-            biases[i] = 0;
-            bias_updates[i] = 0;
+            l->biases[i] = 0;
+            l->bias_updates[i] = 0;
+            l->output[i] = 0;
+            l->state[i] = 0;
+            l->delta[i] = 0;
         }
     }
-    free(l->weights);
-    free(l->weight_active);
-    free(l->weight_updates);
-    free(l->state);
-    free(l->output);
-    free(l->biases);
-    free(l->bias_updates);
-    free(l->delta);
-    l->weights = weights;
-    l->weight_active = weight_active;
-    l->weight_updates = weight_updates;
-    l->state = state;
-    l->output = output;
-    l->biases = biases;
-    l->bias_updates = bias_updates;
-    l->delta = delta;
     l->n_weights = n_weights;
     l->n_outputs = n_outputs;
     layer_calc_n_active(l);
     // at least one connection must be active
     if(l->n_active == 0) {
         int r = irand_uniform(0, l->n_weights);
-        weights[r] = rand_normal(0, 0.1);
+        l->weights[r] = rand_normal(0, 0.1);
         l->weight_active[r] = true;
         l->n_active += 1;
     }
