@@ -113,14 +113,14 @@ void layer_add_neurons(LAYER *l, int n)
     int n_weights = n_outputs * l->n_inputs;
     size_t w_size_t = n_weights * sizeof(double);
     size_t o_size_t = n_outputs * sizeof(double);
-    l->weights = (double*) realloc(l->weights, w_size_t);
-    l->weight_active = (_Bool*) realloc(l->weight_active, n_weights * sizeof(_Bool));
-    l->weight_updates = (double*) realloc(l->weight_updates, w_size_t);
-    l->state = (double*) realloc(l->state, o_size_t);
-    l->output = (double*) realloc(l->output, o_size_t);
-    l->biases = (double*) realloc(l->biases, o_size_t);
-    l->bias_updates = (double*) realloc(l->bias_updates, o_size_t);
-    l->delta = (double*) realloc(l->delta, o_size_t);
+    l->weights = (double *) realloc(l->weights, w_size_t);
+    l->weight_active = (_Bool *) realloc(l->weight_active, n_weights * sizeof(_Bool));
+    l->weight_updates = (double *) realloc(l->weight_updates, w_size_t);
+    l->state = (double *) realloc(l->state, o_size_t);
+    l->output = (double *) realloc(l->output, o_size_t);
+    l->biases = (double *) realloc(l->biases, o_size_t);
+    l->bias_updates = (double *) realloc(l->bias_updates, o_size_t);
+    l->delta = (double *) realloc(l->delta, o_size_t);
     if(n > 0) {
         for(int i = l->n_weights; i < n_weights; i++) {
             if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
