@@ -247,7 +247,7 @@ void neural_resize(const XCSF *xcsf, const NET *net)
  * @param net The neural network to propagate.
  * @param input The input state.
  */
-void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
+void neural_propagate(const XCSF *xcsf, const NET *net, const double *input)
 {
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_forward(xcsf, iter->layer, input);
@@ -262,7 +262,8 @@ void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
  * @param truth The desired network output.
  * @param input The input state.
  */
-void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double *input)
+void neural_learn(const XCSF *xcsf, const NET *net, const double *truth,
+                  const double *input)
 {
     /* reset deltas */
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
