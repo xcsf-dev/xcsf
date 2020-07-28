@@ -111,7 +111,6 @@ void neural_layer_maxpool_rand(const XCSF *xcsf, LAYER *l)
 
 void neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
-    // net->input[] = this layer's input
     (void)xcsf;
     int w_offset = -l->pad / 2;
     int h_offset = -l->pad / 2;
