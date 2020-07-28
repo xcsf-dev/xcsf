@@ -63,11 +63,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
         l->weights[i] = rand_normal(0, 0.1);
         l->weight_active[i] = true;
     }
-    if(l->options & LAYER_EVOLVE_ETA) {
-        layer_init_eta(xcsf, l);
-    } else {
-        l->eta = xcsf->PRED_ETA;
-    }
+    layer_init_eta(xcsf, l);
     l->mu = malloc(N_MU * sizeof(double));
     sam_init(xcsf, l->mu, N_MU);
     return l;

@@ -244,5 +244,9 @@ void layer_calc_n_active(LAYER *l)
 
 void layer_init_eta(const XCSF *xcsf, LAYER *l)
 {
-    l->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
+    if(l->options & LAYER_EVOLVE_ETA) {
+        l->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
+    } else {
+        l->eta = xcsf->PRED_ETA;
+    }
 }
