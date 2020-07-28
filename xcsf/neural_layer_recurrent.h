@@ -27,8 +27,10 @@ LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_m
                                    uint32_t o);
 LAYER *neural_layer_recurrent_copy(const XCSF *xcsf, const LAYER *src);
 void neural_layer_recurrent_rand(const XCSF *xcsf, LAYER *l);
-void neural_layer_recurrent_forward(const XCSF *xcsf, const LAYER *l, NET *net);
-void neural_layer_recurrent_backward(const XCSF *xcsf, const LAYER *l, NET *net);
+void neural_layer_recurrent_forward(const XCSF *xcsf, const LAYER *l,
+                                    const double *input);
+void neural_layer_recurrent_backward(const XCSF *xcsf, const LAYER *l,
+                                     const double *input, double *delta);
 void neural_layer_recurrent_update(const XCSF *xcsf, const LAYER *l);
 void neural_layer_recurrent_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
 _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l);

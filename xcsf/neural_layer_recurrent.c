@@ -116,34 +116,25 @@ void neural_layer_recurrent_rand(const XCSF *xcsf, LAYER *l)
     layer_rand(xcsf, l->output_layer);
 }
 
-void neural_layer_recurrent_forward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_recurrent_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
     memcpy(l->prev_state, l->state, l->n_outputs * sizeof(double));
-    layer_forward(xcsf, l->input_layer, net);
-    net->input = l->output_layer->output;
-    layer_forward(xcsf, l->self_layer, net);
+    layer_forward(xcsf, l->input_layer, input);
+    layer_forward(xcsf, l->self_layer, l->output_layer->output);
     memcpy(l->state, l->input_layer->output, l->n_outputs * sizeof(double));
     blas_axpy(l->n_outputs, 1, l->self_layer->output, 1, l->state, 1);
-    net->input = l->state;
-    layer_forward(xcsf, l->output_layer, net);
+    layer_forward(xcsf, l->output_layer, l->state);
 }
 
-void neural_layer_recurrent_backward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_recurrent_backward(const XCSF *xcsf, const LAYER *l,
+                                     const double *input, double *delta)
 {
     memset(l->input_layer->delta, 0, l->n_outputs * sizeof(double));
     memset(l->self_layer->delta, 0,  l->n_outputs * sizeof(double));
-    const double *input = net->input;
-    double *delta = net->delta;
-    net->input = l->state;
-    net->delta = l->self_layer->delta;
-    layer_backward(xcsf, l->output_layer, net);
+    layer_backward(xcsf, l->output_layer, l->state, l->self_layer->delta);
     memcpy(l->input_layer->delta, l->self_layer->delta, l->n_outputs * sizeof(double));
-    net->input = l->prev_state;
-    net->delta = 0;
-    layer_backward(xcsf, l->self_layer, net);
-    net->input = input;
-    net->delta = delta;
-    layer_backward(xcsf, l->input_layer, net);
+    layer_backward(xcsf, l->self_layer, l->prev_state, 0);
+    layer_backward(xcsf, l->input_layer, input, delta);
 }
 
 void neural_layer_recurrent_update(const XCSF *xcsf, const LAYER *l)

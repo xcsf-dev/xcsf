@@ -218,17 +218,17 @@ void neural_layer_lstm_rand(const XCSF *xcsf, LAYER *l)
     layer_rand(xcsf, l->wo);
 }
 
-void neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
-    layer_forward(xcsf, l->uf, net);
-    layer_forward(xcsf, l->ui, net);
-    layer_forward(xcsf, l->ug, net);
-    layer_forward(xcsf, l->uo, net);
-    net->input = l->h;
-    layer_forward(xcsf, l->wf, net);
-    layer_forward(xcsf, l->wi, net);
-    layer_forward(xcsf, l->wg, net);
-    layer_forward(xcsf, l->wo, net);
+    layer_forward(xcsf, l->uf, input);
+    layer_forward(xcsf, l->ui, input);
+    layer_forward(xcsf, l->ug, input);
+    layer_forward(xcsf, l->uo, input);
+    input = l->h;
+    layer_forward(xcsf, l->wf, input);
+    layer_forward(xcsf, l->wi, input);
+    layer_forward(xcsf, l->wg, input);
+    layer_forward(xcsf, l->wo, input);
     memcpy(l->f, l->wf->output, l->n_outputs * sizeof(double));
     blas_axpy(l->n_outputs, 1, l->uf->output, 1, l->f, 1);
     memcpy(l->i, l->wi->output, l->n_outputs * sizeof(double));
@@ -252,10 +252,9 @@ void neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l, NET *net)
     memcpy(l->output, l->h, l->n_outputs * sizeof(double));
 }
 
-void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, const double *input,
+                                double *delta)
 {
-    const double *input = net->input;
-    double *delta = net->delta;
     memset(l->wf->delta, 0, l->n_outputs * sizeof(double));
     memset(l->wi->delta, 0, l->n_outputs * sizeof(double));
     memset(l->wg->delta, 0, l->n_outputs * sizeof(double));
@@ -290,46 +289,30 @@ void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, NET *net)
     blas_mul(l->n_outputs, l->temp3, 1, l->temp, 1);
     neural_gradient_array(l->o, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wo->delta, l->temp, l->n_outputs * sizeof(double));
-    net->input = l->prev_state;
-    net->delta = 0;
-    layer_backward(xcsf, l->wo, net);
+    layer_backward(xcsf, l->wo, l->prev_state, 0);
     memcpy(l->uo->delta, l->temp, l->n_outputs * sizeof(double));
-    net->input = input;
-    net->delta = delta;
-    layer_backward(xcsf, l->uo, net);
+    layer_backward(xcsf, l->uo, input, delta);
     memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
     blas_mul(l->n_outputs, l->i, 1, l->temp, 1);
     neural_gradient_array(l->g, l->temp, l->n_outputs, l->function);
     memcpy(l->wg->delta, l->temp, l->n_outputs * sizeof(double));
-    net->input = l->prev_state;
-    net->delta = 0;
-    layer_backward(xcsf, l->wg, net);
+    layer_backward(xcsf, l->wg, l->prev_state, 0);
     memcpy(l->ug->delta, l->temp, l->n_outputs * sizeof(double));
-    net->input = input;
-    net->delta = delta;
-    layer_backward(xcsf, l->ug, net);
+    layer_backward(xcsf, l->ug, input, delta);
     memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
     blas_mul(l->n_outputs, l->g, 1, l->temp, 1);
     neural_gradient_array(l->i, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wi->delta, l->temp, l->n_outputs * sizeof(double));
-    net->input = l->prev_state;
-    net->delta = 0;
-    layer_backward(xcsf, l->wi, net);
+    layer_backward(xcsf, l->wi, l->prev_state, 0);
     memcpy(l->ui->delta, l->temp, l->n_outputs * sizeof(double));
-    net->input = input;
-    net->delta = delta;
-    layer_backward(xcsf, l->ui, net);
+    layer_backward(xcsf, l->ui, input, delta);
     memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
     blas_mul(l->n_outputs, l->prev_cell, 1, l->temp, 1);
     neural_gradient_array(l->f, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wf->delta, l->temp, l->n_outputs * sizeof(double));
-    net->input = l->prev_state;
-    net->delta = 0;
-    layer_backward(xcsf, l->wf, net);
+    layer_backward(xcsf, l->wf, l->prev_state, 0);
     memcpy(l->uf->delta, l->temp, l->n_outputs * sizeof(double));
-    net->input = input;
-    net->delta = delta;
-    layer_backward(xcsf, l->uf, net);
+    layer_backward(xcsf, l->uf, input, delta);
     memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
     blas_mul(l->n_outputs, l->f, 1, l->temp, 1);
     memcpy(l->dc, l->temp, l->n_outputs * sizeof(double));

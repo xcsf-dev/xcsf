@@ -85,43 +85,33 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     l->wg->biases[0] = 0;
     l->wo->biases[0] = 0;
     // first time
-    net.input = x;
-    neural_layer_lstm_forward(&xcsf, l, &net);
+    neural_layer_lstm_forward(&xcsf, l, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.18687713);
     // second time
-    net.input = x;
-    neural_layer_lstm_forward(&xcsf, l, &net);
+    neural_layer_lstm_forward(&xcsf, l, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.30359772);
     // third time
-    net.input = x;
-    neural_layer_lstm_forward(&xcsf, l, &net);
+    neural_layer_lstm_forward(&xcsf, l, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.37268567);
     /* test one backward pass of input */
     const double y[1] = { 0.946146918 };
-    net.input = x;
-    net.delta = 0;
     for(int i = 0; i < l->n_outputs; i++) {
         l->delta[i] = y[i] - l->output[i];
     }
-    neural_layer_lstm_backward(&xcsf, l, &net);
+    neural_layer_lstm_backward(&xcsf, l, x, 0);
     neural_layer_lstm_update(&xcsf, l);
     // forward pass
-    net.input = x;
-    neural_layer_lstm_forward(&xcsf, l, &net);
+    neural_layer_lstm_forward(&xcsf, l, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.4196390756);
     /* test convergence on one input */
     for(int i = 0; i < 400; i++) {
-        net.input = x;
-        neural_layer_lstm_forward(&xcsf, l, &net);
+        neural_layer_lstm_forward(&xcsf, l, x);
         for(int j = 0; j < l->n_outputs; j++) {
             l->delta[j] = y[j] - l->output[j];
         }
-        net.input = x;
-        net.delta = 0;
-        neural_layer_lstm_backward(&xcsf, l, &net);
+        neural_layer_lstm_backward(&xcsf, l, x, 0);
         neural_layer_lstm_update(&xcsf, l);
     }
-    net.input = x;
-    neural_layer_lstm_forward(&xcsf, l, &net);
+    neural_layer_lstm_forward(&xcsf, l, x);
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);
 }

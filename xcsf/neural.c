@@ -249,10 +249,9 @@ void neural_resize(const XCSF *xcsf, const NET *net)
  */
 void neural_propagate(const XCSF *xcsf, NET *net, const double *input)
 {
-    net->input = input;
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        layer_forward(xcsf, iter->layer, net);
-        net->input = layer_output(xcsf, iter->layer);
+        layer_forward(xcsf, iter->layer, input);
+        input = layer_output(xcsf, iter->layer);
     }
 }
 
@@ -278,14 +277,11 @@ void neural_learn(const XCSF *xcsf, NET *net, const double *truth, const double 
     for(const LLIST *iter = net->head; iter != NULL; iter = iter->next) {
         const LAYER *l = iter->layer;
         if(iter->next == NULL) {
-            net->input = input;
-            net->delta = 0;
+            layer_backward(xcsf, l, input, 0);
         } else {
             const LAYER *prev = iter->next->layer;
-            net->input = prev->output;
-            net->delta = prev->delta;
+            layer_backward(xcsf, l, prev->output, prev->delta);
         }
-        layer_backward(xcsf, l, net);
     }
     /* update phase */
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {

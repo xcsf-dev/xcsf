@@ -130,46 +130,41 @@ void neural_layer_connected_rand(const XCSF *xcsf, LAYER *l)
     }
 }
 
-void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
     (void)xcsf;
     int k = l->n_inputs;
     int n = l->n_outputs;
-    const double *a = net->input;
+    const double *a = input;
     const double *b = l->weights;
     double *c = l->state;
-    // states = biases
     memcpy(l->state, l->biases, l->n_outputs * sizeof(double));
-    // states += weights * inputs
     blas_gemm(0, 1, 1, n, k, 1, a, k, b, k, 1, c, n);
-    // apply activations
     neural_activate_array(l->state, l->output, l->n_outputs, l->function);
 }
 
-void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l,
+                                     const double *input, double *delta)
 {
-    // net->input[] = this layer's input
-    // net->delta[] = previous layer's delta
+    // input[] = this layer's input
+    // delta[] = previous layer's delta
     (void)xcsf;
-    // apply gradients
     neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
-    // calculate updates
     if(l->options & LAYER_SGD_WEIGHTS) {
         int m = l->n_outputs;
         int n = l->n_inputs;
         const double *a = l->delta;
-        const double *b = net->input;
+        const double *b = input;
         double *c = l->weight_updates;
         blas_axpy(l->n_outputs, 1, l->delta, 1, l->bias_updates, 1);
         blas_gemm(1, 0, m, n, 1, 1, a, m, b, n, 1, c, n);
     }
-    // set the error for the previous layer (if there is one)
-    if(net->delta) {
+    if(delta) {
         int k = l->n_outputs;
         int n = l->n_inputs;
         const double *a = l->delta;
         const double *b = l->weights;
-        double *c = net->delta;
+        double *c = delta;
         blas_gemm(0, 0, 1, n, k, 1, a, k, b, n, 1, c, n);
     }
 }

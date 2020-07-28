@@ -39,8 +39,6 @@ typedef struct NET {
     int n_layers; //!< Number of layers (hidden + output)
     int n_inputs; //!< Number of network inputs
     int n_outputs; //!< Number of network outputs
-    double *delta; //!< Delta for updating networks weights
-    const double *input; //!< Pointer to the network input
     double *output; //!< Pointer to the network output
     LLIST *head; //!< Pointer to the head layer (output layer)
     LLIST *tail; //!< Pointer to the tail layer (first layer)

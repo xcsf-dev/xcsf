@@ -76,50 +76,40 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     l->output_layer->weights[0] = 1;
     l->output_layer->biases[0] = 0;
     // first time
-    net.input = x;
-    neural_layer_recurrent_forward(&xcsf, l, &net);
+    neural_layer_recurrent_forward(&xcsf, l, x);
     double output_error = fabs(l->output[0] - 0.48335347);
     CHECK_EQ(doctest::Approx(output_error), 0);
     // second time
-    net.input = x;
-    neural_layer_recurrent_forward(&xcsf, l, &net);
+    neural_layer_recurrent_forward(&xcsf, l, x);
     output_error = fabs(l->output[0] - 0.3658727);
     CHECK_EQ(doctest::Approx(output_error), 0);
     // third time
-    net.input = x;
-    neural_layer_recurrent_forward(&xcsf, l, &net);
+    neural_layer_recurrent_forward(&xcsf, l, x);
     output_error = fabs(l->output[0] - 0.39353347);
     CHECK_EQ(doctest::Approx(output_error), 0);
 
     /* test one backward pass of input */
     const double y[1] = { 0.946146918 };
-    net.input = x;
-    net.delta = 0;
     for(int i = 0; i < l->n_outputs; i++) {
         l->delta[i] = y[i] - l->output[i];
     }
-    neural_layer_recurrent_backward(&xcsf, l, &net);
+    neural_layer_recurrent_backward(&xcsf, l, x, 0);
     neural_layer_recurrent_update(&xcsf, l);
 
     // forward pass
-    net.input = x;
-    neural_layer_recurrent_forward(&xcsf, l, &net);
+    neural_layer_recurrent_forward(&xcsf, l, x);
     output_error = fabs(l->output[0] - 0.3988695229);
     CHECK_EQ(doctest::Approx(output_error), 0);
 
     /* test convergence on one input */
     for(int i = 0; i < 400; i++) {
-        net.input = x;
-        neural_layer_recurrent_forward(&xcsf, l, &net);
+        neural_layer_recurrent_forward(&xcsf, l, x);
         for(int j = 0; j < l->n_outputs; j++) {
             l->delta[j] = y[j] - l->output[j];
         }
-        net.input = x;
-        net.delta = 0;
-        neural_layer_recurrent_backward(&xcsf, l, &net);
+        neural_layer_recurrent_backward(&xcsf, l, x, 0);
         neural_layer_recurrent_update(&xcsf, l);
     }
-    net.input = x;
-    neural_layer_recurrent_forward(&xcsf, l, &net);
+    neural_layer_recurrent_forward(&xcsf, l, x);
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);
 }

@@ -26,8 +26,9 @@
 LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std);
 LAYER *neural_layer_noise_copy(const XCSF *xcsf, const LAYER *src);
 void neural_layer_noise_rand(const XCSF *xcsf, LAYER *l);
-void neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l, NET *net);
-void neural_layer_noise_backward(const XCSF *xcsf, const LAYER *l, NET *net);
+void neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l, const double *input);
+void neural_layer_noise_backward(const XCSF *xcsf, const LAYER *l, const double *input,
+                                 double *delta);
 void neural_layer_noise_update(const XCSF *xcsf, const LAYER *l);
 void neural_layer_noise_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
 _Bool neural_layer_noise_mutate(const XCSF *xcsf, LAYER *l);

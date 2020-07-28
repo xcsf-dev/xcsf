@@ -88,12 +88,11 @@ void neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l)
     (void)l;
 }
 
-void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
-    // net->input[] = this layer's input
     if(!xcsf->explore) {
         for(int i = 0; i < l->n_inputs; i++) {
-            l->output[i] = net->input[i];
+            l->output[i] = input[i];
         }
     } else {
         for(int i = 0; i < l->n_inputs; i++) {
@@ -101,23 +100,25 @@ void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, NET *net)
             if(l->state[i] < l->probability) {
                 l->output[i] = 0;
             } else {
-                l->output[i] = net->input[i] * l->scale;
+                l->output[i] = input[i] * l->scale;
             }
         }
     }
 }
 
-void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const double *input,
+                                   double *delta)
 {
     (void)xcsf;
-    if(!net->delta) {
+    (void)input;
+    if(!delta) {
         return;
     }
     for(int i = 0; i < l->n_inputs; i++) {
         if(l->state[i] < l->probability) {
-            net->delta[i] = 0;
+            delta[i] = 0;
         } else {
-            net->delta[i] += l->delta[i] * l->scale;
+            delta[i] += l->delta[i] * l->scale;
         }
     }
 }

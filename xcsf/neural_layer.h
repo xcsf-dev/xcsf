@@ -114,8 +114,9 @@ struct LayerVtbl {
     void (*layer_impl_rand)(const XCSF *xcsf, LAYER *l);
     void (*layer_impl_print)(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
     void (*layer_impl_update)(const XCSF *xcsf, const LAYER *l);
-    void (*layer_impl_backward)(const XCSF *xcsf, const LAYER *l, NET *net);
-    void (*layer_impl_forward)(const XCSF *xcsf, const LAYER *l, NET *net);
+    void (*layer_impl_backward)(const XCSF *xcsf, const LAYER *l, const double *input,
+                                double *delta);
+    void (*layer_impl_forward)(const XCSF *xcsf, const LAYER *l, const double *input);
     double *(*layer_impl_output)(const XCSF *xcsf, const LAYER *l);
     size_t (*layer_impl_save)(const XCSF *xcsf, const LAYER *l, FILE *fp);
     size_t (*layer_impl_load)(const XCSF *xcsf, LAYER *l, FILE *fp);
@@ -160,22 +161,24 @@ static inline double *layer_output(const XCSF *xcsf, const LAYER *l)
  * @brief Forward propagates an input through the layer.
  * @param xcsf The XCSF data structure.
  * @param l The layer to be forward propagated.
- * @param net The network the layer is within.
+ * @param input The input to the layer.
  */
-static inline void layer_forward(const XCSF *xcsf, const LAYER *l, NET *net)
+static inline void layer_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
-    (*l->layer_vptr->layer_impl_forward)(xcsf, l, net);
+    (*l->layer_vptr->layer_impl_forward)(xcsf, l, input);
 }
 
 /**
  * @brief Backward propagates the error through a layer.
  * @param xcsf The XCSF data structure.
  * @param l The layer to be backward propagated.
- * @param net The network being backward propagated.
+ * @param input The input to the layer.
+ * @param delta The previous layer's delta.
  */
-static inline void layer_backward(const XCSF *xcsf, const LAYER *l, NET *net)
+static inline void layer_backward(const XCSF *xcsf, const LAYER *l, const double *input,
+                                  double *delta)
 {
-    (*l->layer_vptr->layer_impl_backward)(xcsf, l, net);
+    (*l->layer_vptr->layer_impl_backward)(xcsf, l, input, delta);
 }
 
 /**

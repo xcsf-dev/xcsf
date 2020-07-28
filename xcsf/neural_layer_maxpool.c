@@ -109,7 +109,7 @@ void neural_layer_maxpool_rand(const XCSF *xcsf, LAYER *l)
     (void)l;
 }
 
-void neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
     // net->input[] = this layer's input
     (void)xcsf;
@@ -131,7 +131,7 @@ void neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l, NET *net)
                         int index = cur_w + l->width * (cur_h + l->height * k);
                         int valid = (cur_h >= 0 && cur_h < l->height &&
                                      cur_w >= 0 && cur_w < l->width);
-                        double val = (valid != 0) ? net->input[index] : -DBL_MAX;
+                        double val = (valid != 0) ? input[index] : -DBL_MAX;
                         max_i = (val > max) ? index : max_i;
                         max = (val > max) ? val : max;
                     }
@@ -143,14 +143,16 @@ void neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l, NET *net)
     }
 }
 
-void neural_layer_maxpool_backward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_maxpool_backward(const XCSF *xcsf, const LAYER *l, const double *input,
+                                   double *delta)
 {
     (void)xcsf;
-    if(!net->delta) {
+    (void)input;
+    if(!delta) {
         return;
     }
     for(int i = 0; i < l->n_inputs; i++) {
-        net->delta[i] += l->delta[i];
+        delta[i] += l->delta[i];
     }
 }
 

@@ -88,33 +88,34 @@ void neural_layer_noise_rand(const XCSF *xcsf, LAYER *l)
     (void)l;
 }
 
-void neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
-    // net->input[] = this layer's input
     if(!xcsf->explore) {
         for(int i = 0; i < l->n_inputs; i++) {
-            l->output[i] = net->input[i];
+            l->output[i] = input[i];
         }
     } else {
         for(int i = 0; i < l->n_inputs; i++) {
             l->state[i] = rand_uniform(0, 1);
             if(l->state[i] < l->probability) {
-                l->output[i] = net->input[i] + rand_normal(0, l->scale);
+                l->output[i] = input[i] + rand_normal(0, l->scale);
             } else {
-                l->output[i] = net->input[i];
+                l->output[i] = input[i];
             }
         }
     }
 }
 
-void neural_layer_noise_backward(const XCSF *xcsf, const LAYER *l, NET *net)
+void neural_layer_noise_backward(const XCSF *xcsf, const LAYER *l, const double *input,
+                                 double *delta)
 {
     (void)xcsf;
-    if(!net->delta) {
+    (void)input;
+    if(!delta) {
         return;
     }
     for(int i = 0; i < l->n_inputs; i++) {
-        net->delta[i] += l->delta[i];
+        delta[i] += l->delta[i];
     }
 }
 
