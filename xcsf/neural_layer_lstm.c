@@ -255,14 +255,15 @@ void neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l, const double *i
 
 static void reset_layer_deltas(const LAYER *l)
 {
-    memset(l->wf->delta, 0, l->n_outputs * sizeof(double));
-    memset(l->wi->delta, 0, l->n_outputs * sizeof(double));
-    memset(l->wg->delta, 0, l->n_outputs * sizeof(double));
-    memset(l->wo->delta, 0, l->n_outputs * sizeof(double));
-    memset(l->uf->delta, 0, l->n_outputs * sizeof(double));
-    memset(l->ui->delta, 0, l->n_outputs * sizeof(double));
-    memset(l->ug->delta, 0, l->n_outputs * sizeof(double));
-    memset(l->uo->delta, 0, l->n_outputs * sizeof(double));
+    size_t size = l->n_outputs * sizeof(double);
+    memset(l->wf->delta, 0, size);
+    memset(l->wi->delta, 0, size);
+    memset(l->wg->delta, 0, size);
+    memset(l->wo->delta, 0, size);
+    memset(l->uf->delta, 0, size);
+    memset(l->ui->delta, 0, size);
+    memset(l->ug->delta, 0, size);
+    memset(l->uo->delta, 0, size);
 }
 
 void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, const double *input,
