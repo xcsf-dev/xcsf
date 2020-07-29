@@ -153,7 +153,8 @@ void neural_layer_maxpool_backward(const XCSF *xcsf, const LAYER *l, const doubl
         return;
     }
     for(int i = 0; i < l->n_inputs; i++) {
-        delta[i] += l->delta[i];
+        int index = l->indexes[i];
+        delta[index] += l->delta[i];
     }
 }
 
