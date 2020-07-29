@@ -213,3 +213,29 @@ void blas_mul(int N, const double *X, int INCX, double *Y, int INCY)
         Y[i * INCY] *= X[i * INCX];
     }
 }
+
+/**
+ * @brief Returns the sum of the vector X.
+ * @param X Vector with N elements.
+ * @param N The number of elements in vector X.
+ * @return The resulting sum.
+ */
+double blas_sum(const double *X, int N)
+{
+    double sum = 0;
+    for(int i = 0; i < N; i++) {
+        sum += X[i];
+    }
+    return sum;
+}
+
+/**
+ * @brief Returns the mean of the vector X.
+ * @param X Vector with N elements.
+ * @param N The number of elements in vector X.
+ * @return The resulting mean.
+ */
+double blas_mean(const double *X, int N)
+{
+    return blas_sum(X, N) / N;
+}
