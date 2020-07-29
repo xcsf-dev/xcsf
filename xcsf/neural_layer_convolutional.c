@@ -210,7 +210,7 @@ void neural_layer_convolutional_backward(const XCSF *xcsf, const LAYER *l,
         for(int i = 0; i < l->n_filters; i++) {
             l->bias_updates[i] += blas_sum(l->delta + k * i, k);
         }
-        double *a = l->delta;
+        const double *a = l->delta;
         double *b = l->temp;
         double *c = l->weight_updates;
         if(l->size == 1) {
@@ -222,7 +222,7 @@ void neural_layer_convolutional_backward(const XCSF *xcsf, const LAYER *l,
     }
     if(delta) {
         const double *a = l->weights;
-        double *b = l->delta;
+        const double *b = l->delta;
         double *c = l->temp;
         if(l->size == 1) {
             c = delta;
