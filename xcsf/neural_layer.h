@@ -61,6 +61,7 @@ typedef struct LAYER {
     int n_outputs; //!< Number of layer outputs
     int max_outputs; //!< Maximum number of neurons in the layer
     int n_weights; //!< Number of layer weights
+    int n_biases; //!< Number of layer biases
     int n_active; //!< Number of active weights / connections
     int function; //!< Layer activation function
     double scale; //!< Usage depends on layer implementation
@@ -269,3 +270,5 @@ void layer_init_eta(const XCSF *xcsf, LAYER *l);
 void layer_calc_n_active(LAYER *l);
 void layer_set_vptr(LAYER *l);
 void layer_weight_clamp(const LAYER *l);
+void layer_weight_rand(LAYER *l);
+void layer_weight_print(const LAYER *l, _Bool print_weights);

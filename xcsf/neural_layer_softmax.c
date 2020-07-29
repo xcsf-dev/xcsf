@@ -43,6 +43,7 @@ LAYER *neural_layer_softmax_init(const XCSF *xcsf, int in, double temp)
     l->n_outputs = in;
     l->max_outputs = in;
     l->n_weights = 0;
+    l->n_biases = 0;
     l->n_active = 0;
     l->options = 0;
     l->eta = 0;
@@ -61,6 +62,7 @@ LAYER *neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *src)
     l->n_inputs = src->n_inputs;
     l->n_outputs = src->n_outputs;
     l->n_weights = src->n_weights;
+    l->n_biases = src->n_biases;
     l->n_active = src->n_active;
     l->max_outputs = src->max_outputs;
     l->options = src->options;
@@ -173,6 +175,7 @@ size_t neural_layer_softmax_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->scale, sizeof(double), 1, fp);
     l->options = 0;
     l->n_weights = 0;
+    l->n_biases = 0;
     l->n_active = 0;
     l->eta = 0;
     if(l->n_inputs < 1 || l->n_outputs < 1 || l->max_outputs < 1) {

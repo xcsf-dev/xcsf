@@ -51,6 +51,7 @@ static void reset_layer_deltas(const LAYER *l);
 static void set_eta(LAYER *l);
 static void set_layer_n_active(LAYER *l);
 static void set_layer_n_weights(LAYER *l);
+static void set_layer_n_biases(LAYER *l);
 
 LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
                               int rf, uint32_t o)
@@ -72,6 +73,7 @@ LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max, i
     l->wi = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
     l->wg = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
     l->wo = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
+    set_layer_n_biases(l);
     set_layer_n_weights(l);
     set_layer_n_active(l);
     calloc_layer_arrays(l);
@@ -91,6 +93,18 @@ static void set_layer_n_weights(LAYER *l)
     l->n_weights += l->wi->n_weights;
     l->n_weights += l->wg->n_weights;
     l->n_weights += l->wo->n_weights;
+}
+
+static void set_layer_n_biases(LAYER *l)
+{
+    l->n_biases = l->uf->n_biases;
+    l->n_biases += l->ui->n_biases;
+    l->n_biases += l->ug->n_biases;
+    l->n_biases += l->uo->n_biases;
+    l->n_biases += l->wf->n_biases;
+    l->n_biases += l->wi->n_biases;
+    l->n_biases += l->wg->n_biases;
+    l->n_biases += l->wo->n_biases;
 }
 
 static void set_layer_n_active(LAYER *l)
@@ -168,6 +182,7 @@ LAYER *neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src)
     l->n_inputs = src->n_inputs;
     l->n_outputs = src->n_outputs;
     l->n_weights = src->n_weights;
+    l->n_biases = src->n_biases;
     l->n_active = src->n_active;
     l->eta = src->eta;
     l->max_outputs = src->max_outputs;
@@ -334,6 +349,7 @@ void neural_layer_lstm_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
     layer_resize(xcsf, l->uf, prev);
     l->n_inputs = prev->n_outputs;
     set_layer_n_weights(l);
+    set_layer_n_biases(l);
     set_layer_n_active(l);
 }
 
@@ -394,6 +410,7 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
         free_layer_arrays(l);
         calloc_layer_arrays(l);
         set_layer_n_weights(l);
+        set_layer_n_biases(l);
         set_layer_n_active(l);
         return true;
     }
@@ -461,6 +478,7 @@ size_t neural_layer_lstm_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
     s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->n_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->n_weights, sizeof(int), 1, fp);
+    s += fwrite(&l->n_biases, sizeof(int), 1, fp);
     s += fwrite(&l->max_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->n_active, sizeof(int), 1, fp);
     s += fwrite(&l->eta, sizeof(double), 1, fp);
@@ -496,11 +514,12 @@ size_t neural_layer_lstm_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->n_weights, sizeof(int), 1, fp);
+    s += fread(&l->n_biases, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->n_active, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
-    if(l->n_inputs < 1 || l->n_outputs < 1 || l->max_outputs < 1) {
+    if(l->n_inputs < 1 || l->n_outputs < 1 || l->n_biases < 1) {
         printf("neural_layer_lstm_load(): read error\n");
         l->n_outputs = 1;
         exit(EXIT_FAILURE);

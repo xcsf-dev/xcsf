@@ -40,6 +40,7 @@
 
 #define N_MU 5 //!< Number of mutation rates applied to a recurrent layer
 
+static void set_layer_n_biases(LAYER *l);
 static void set_layer_n_weights(LAYER *l);
 static void set_layer_n_active(LAYER *l);
 
@@ -66,6 +67,7 @@ LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->eta = l->input_layer->eta;
     l->self_layer->eta = l->eta;
     l->output_layer->eta = l->eta;
+    set_layer_n_biases(l);
     set_layer_n_weights(l);
     set_layer_n_active(l);
     return l;
@@ -186,6 +188,7 @@ _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
             l->state = calloc(l->n_outputs, sizeof(double));
             l->prev_state = calloc(l->n_outputs, sizeof(double));
             set_layer_n_weights(l);
+            set_layer_n_biases(l);
             set_layer_n_active(l);
             mod = true;
         }
@@ -279,4 +282,11 @@ static void set_layer_n_weights(LAYER *l)
     l->n_weights = l->input_layer->n_weights;
     l->n_weights += l->self_layer->n_weights;
     l->n_weights += l->output_layer->n_weights;
+}
+
+static void set_layer_n_biases(LAYER *l)
+{
+    l->n_biases = l->input_layer->n_biases;
+    l->n_biases += l->self_layer->n_biases;
+    l->n_biases += l->output_layer->n_biases;
 }

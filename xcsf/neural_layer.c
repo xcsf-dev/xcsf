@@ -222,6 +222,35 @@ _Bool layer_mutate_functions(LAYER *l, double mu)
     return mod;
 }
 
+void layer_weight_print(const LAYER *l, _Bool print_weights)
+{
+    printf("weights (%d): ", l->n_weights);
+    if(print_weights) {
+        for(int i = 0; i < l->n_weights; i++) {
+            printf("%.4f, ", l->weights[i]);
+        }
+    }
+    printf("biases (%d): ", l->n_biases);
+    if(print_weights) {
+        for(int i = 0; i < l->n_biases; i++) {
+            printf("%.4f, ", l->biases[i]);
+        }
+    }
+    printf("n_active: %d", l->n_active);
+}
+
+void layer_weight_rand(LAYER *l)
+{
+    l->n_active = l->n_weights;
+    for(int i = 0; i < l->n_weights; i++) {
+        l->weights[i] = rand_normal(0, 1);
+        l->weight_active[i] = true;
+    }
+    for(int i = 0; i < l->n_biases; i++) {
+        l->biases[i] = rand_normal(0, 1);
+    }
+}
+
 void layer_weight_clamp(const LAYER *l)
 {
     for(int i = 0; i < l->n_weights; i++) {
@@ -231,7 +260,7 @@ void layer_weight_clamp(const LAYER *l)
             l->weights[i] = 0;
         }
     }
-    for(int i = 0; i < l->n_outputs; i++) {
+    for(int i = 0; i < l->n_biases; i++) {
         l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
     }
 }

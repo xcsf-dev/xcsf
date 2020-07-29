@@ -43,6 +43,7 @@ LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std
     l->max_outputs = in;
     l->n_active = 0;
     l->n_weights = 0;
+    l->n_biases = 0;
     l->options = 0;
     l->eta = 0;
     l->probability = prob;
@@ -65,6 +66,7 @@ LAYER *neural_layer_noise_copy(const XCSF *xcsf, const LAYER *src)
     l->options = src->options;
     l->n_active = src->n_active;
     l->n_weights = src->n_weights;
+    l->n_biases = src->n_biases;
     l->eta = 0;
     l->probability = src->probability;
     l->scale = src->scale;
@@ -183,6 +185,7 @@ size_t neural_layer_noise_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->scale, sizeof(double), 1, fp);
     l->n_active = 0;
     l->n_weights = 0;
+    l->n_biases = 0;
     l->options = 0;
     l->eta = 0;
     if(l->n_inputs < 1 || l->n_outputs < 1 || l->max_outputs < 1) {
