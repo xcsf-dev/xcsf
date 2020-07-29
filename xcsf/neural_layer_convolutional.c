@@ -135,6 +135,7 @@ LAYER *neural_layer_convolutional_copy(const XCSF *xcsf, const LAYER *src)
     l->state = calloc(src->n_outputs, sizeof(double));
     l->output = calloc(src->n_outputs, sizeof(double));
     l->delta = calloc(src->n_outputs, sizeof(double));
+    l->n_biases = src->n_biases;
     l->bias_updates = calloc(src->n_filters, sizeof(double));
     l->biases = malloc(src->n_biases * sizeof(double));
     memcpy(l->biases, src->biases, src->n_biases * sizeof(double));
@@ -184,7 +185,7 @@ void neural_layer_convolutional_forward(const XCSF *xcsf, const LAYER *l,
         im2col(input, l->channels, l->height, l->width, l->size, l->stride, l->pad, b);
         blas_gemm(0, 0, m, n, k, 1, a, k, b, n, 1, c, n);
     }
-    for(int i = 0; i < l->n_filters; i++) {
+    for(int i = 0; i < l->n_biases; i++) {
         for(int j = 0; j < n; j++) {
             l->state[i * n + j] += l->biases[i];
         }
@@ -201,7 +202,7 @@ void neural_layer_convolutional_backward(const XCSF *xcsf, const LAYER *l,
     int k = l->out_w * l->out_h;
     if(l->options & LAYER_SGD_WEIGHTS) {
         neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
-        for(int i = 0; i < l->n_filters; i++) {
+        for(int i = 0; i < l->n_biases; i++) {
             l->bias_updates[i] += blas_sum(l->delta + k * i, k);
         }
         const double *a = l->delta;

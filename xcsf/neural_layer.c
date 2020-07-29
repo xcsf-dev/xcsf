@@ -192,7 +192,7 @@ _Bool layer_mutate_weights(LAYER *l, double mu)
             }
         }
     }
-    for(int i = 0; i < l->n_outputs; i++) {
+    for(int i = 0; i < l->n_biases; i++) {
         double orig = l->biases[i];
         l->biases[i] += rand_normal(0, mu);
         l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
