@@ -65,8 +65,10 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     CHECK_EQ(l->n_weights, 8);
     /* test forward passing input */
     const double x[1] = { 0.90598097 };
-    const double orig_weights[8] = { 0.1866107, -0.6872276,  1.0366809,
-        -0.02821708, -0.21004653,  0.4503114,  0.49545765,  0.71247584 };
+    const double orig_weights[8] = {
+        0.1866107, -0.6872276,  1.0366809, -0.02821708, -0.21004653,
+        0.4503114,  0.49545765,  0.71247584
+    };
     const double orig_biases[4] = { 0, 1, 0, 0 };
     l->ui->weights[0] = orig_weights[0];
     l->uf->weights[0] = orig_weights[1];
