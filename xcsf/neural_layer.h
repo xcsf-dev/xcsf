@@ -32,6 +32,7 @@
 #define RECURRENT 4
 #define LSTM 5
 #define MAXPOOL 6
+#define CONVOLUTIONAL 7
 
 #define LAYER_EVOLVE_WEIGHTS    (1<<0)
 #define LAYER_EVOLVE_NEURONS    (1<<1)
@@ -90,16 +91,18 @@ typedef struct LAYER {
     double *temp2; //!< LSTM
     double *temp3; //!< LSTM
     double *dc; //!< LSTM
-    int height; //!< Pool
-    int width; //!< Pool
-    int channels; //!< Pool
-    int pad; //!< Pool
-    int out_w; //!< Pool
-    int out_h; //!< Pool
-    int out_c; //!< Pool
-    int size; //!< Pool
-    int stride; //!< Pool
+    int height; //!< Pool and Conv
+    int width; //!< Pool and Conv
+    int channels; //!< Pool and Conv
+    int pad; //!< Pool and Conv
+    int out_w; //!< Pool and Conv
+    int out_h; //!< Pool and Conv
+    int out_c; //!< Pool and Conv
+    int size; //!< Pool and Conv
+    int stride; //!< Pool and Conv
     int *indexes; //!< Pool
+    int n_filters; //!< Conv
+    size_t workspace_size; //!< Conv
 } LAYER;
 
 /**

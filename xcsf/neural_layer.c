@@ -31,6 +31,7 @@
 #include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
+#include "neural_layer_convolutional.h"
 #include "neural_layer_dropout.h"
 #include "neural_layer_noise.h"
 #include "neural_layer_recurrent.h"
@@ -69,6 +70,9 @@ void layer_set_vptr(LAYER *l)
             break;
         case MAXPOOL:
             l->layer_vptr = &layer_maxpool_vtbl;
+            break;
+        case CONVOLUTIONAL:
+            l->layer_vptr = &layer_convolutional_vtbl;
             break;
         default:
             printf("Error setting layer vptr for type: %d\n", l->layer_type);

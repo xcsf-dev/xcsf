@@ -32,6 +32,7 @@
 #include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
+#include "neural_layer_convolutional.h"
 #include "neural_layer_dropout.h"
 #include "neural_layer_lstm.h"
 #include "neural_layer_noise.h"
