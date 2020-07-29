@@ -147,6 +147,7 @@ void layer_add_neurons(LAYER *l, int n)
     }
     l->n_weights = n_weights;
     l->n_outputs = n_outputs;
+    l->n_biases = n_outputs;
 }
 
 _Bool layer_mutate_connectivity(LAYER *l, double mu)
