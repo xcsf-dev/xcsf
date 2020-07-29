@@ -421,12 +421,12 @@ static void col2im(const double *data_col, int channels, int height, int width,
     int height_col = (height + 2 * pad - ksize) / stride + 1;
     int width_col = (width + 2 * pad - ksize) / stride + 1;
     int channels_col = channels * ksize * ksize;
-    for(int c = 0; c < channels_col; ++c) {
+    for(int c = 0; c < channels_col; c++) {
         int w_offset = c % ksize;
         int h_offset = (c / ksize) % ksize;
         int c_im = c / ksize / ksize;
-        for(int h = 0; h < height_col; ++h) {
-            for(int w = 0; w < width_col; ++w) {
+        for(int h = 0; h < height_col; h++) {
+            for(int w = 0; w < width_col; w++) {
                 int im_row = h_offset + h * stride;
                 int im_col = w_offset + w * stride;
                 int col_index = (c * height_col + h) * width_col + w;
