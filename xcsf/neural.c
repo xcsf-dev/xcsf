@@ -324,10 +324,10 @@ void neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
 }
 
 /**
- * @brief Returns the total number of hidden neurons in a neural network.
+ * @brief Returns the total number of non-zero weights in a neural network.
  * @param xcsf The XCSF data structure.
- * @param net The neural network to calculate the number of neurons.
- * @return The total number of hidden neurons.
+ * @param net The neural network to calculate the number of non-zero weights.
+ * @return The total number of non-zero weights.
  */
 int neural_size(const XCSF *xcsf, const NET *net)
 {
