@@ -67,7 +67,19 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
     l->size = kernel_size;
     l->pad = pad;
     l->n_biases = n_filters;
+    if(l->n_biases < 1) {
+        printf("neural_layer_convolutional_init(): invalid n_filters\n");
+        l->n_biases = 1;
+        exit(EXIT_FAILURE);
+    }
+    l->biases = calloc(l->n_biases, sizeof(double));
+    l->bias_updates = calloc(l->n_biases, sizeof(double));
     l->n_weights = l->channels * n_filters * kernel_size * kernel_size;
+    if(l->n_weights < 1) {
+        printf("neural_layer_convolutional_init(): invalid n_weights\n");
+        l->n_weights = 1;
+        exit(EXIT_FAILURE);
+    }
     l->weights = malloc(l->n_weights * sizeof(double));
     l->weight_updates = calloc(l->n_weights, sizeof(double));
     l->weight_active = malloc(l->n_weights * sizeof(_Bool));
@@ -79,15 +91,23 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
     l->out_h = convolutional_out_height(l);
     l->out_w = convolutional_out_width(l);
     l->out_c = n_filters;
-    l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->n_inputs = l->width * l->height * l->channels;
+    l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->max_outputs = l->n_outputs;
-    l->biases = calloc(l->n_biases, sizeof(double));
-    l->bias_updates = calloc(l->n_biases, sizeof(double));
+    if(l->n_outputs < 1) {
+        printf("neural_layer_convolutional_init(): invalid n_outputs\n");
+        l->n_outputs = 1;
+        exit(EXIT_FAILURE);
+    }
     l->state = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
     l->delta = calloc(l->n_outputs, sizeof(double));
     int work_size = l->out_h * l->out_w * l->size * l->size * c;
+    if(work_size < 1) {
+        printf("neural_layer_convolutional_init(): invalid work size\n");
+        work_size = 1;
+        exit(EXIT_FAILURE);
+    }
     l->workspace_size = work_size * sizeof(double);
     l->temp = malloc(l->workspace_size);
     layer_init_eta(xcsf, l);
