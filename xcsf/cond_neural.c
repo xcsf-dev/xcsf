@@ -50,6 +50,7 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
     neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = cond_neural_lopt(xcsf);
+    LAYER *l;
     int n_inputs = xcsf->x_dim;
     for(int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; i++) {
         int hinit = xcsf->COND_NUM_NEURONS[i];
@@ -58,14 +59,14 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
             hmax = hinit;
         }
         int f = xcsf->COND_HIDDEN_ACTIVATION;
-        LAYER *l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
+        l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
         neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
         n_inputs = hinit;
     }
     // output layer
     int f = xcsf->COND_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    LAYER *l = neural_layer_connected_init(xcsf, n_inputs, 1, 1, f, lopt);
+    l = neural_layer_connected_init(xcsf, n_inputs, 1, 1, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
     c->cond = new;
 }
@@ -211,7 +212,7 @@ int cond_neural_connections(const XCSF *xcsf, const CL *c, int layer)
 int cond_neural_layers(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
-    const COND_NEURAL *cond = c->pred;
+    const COND_NEURAL *cond = c->cond;
     const NET *net = &cond->net;
     return net->n_layers;
 }
