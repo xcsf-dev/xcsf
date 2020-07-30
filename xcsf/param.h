@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
- * @brief Functions for setting and printing XCSF parameters.
+ * @brief Functions for setting and printing parameters.
  */
 
 #pragma once
