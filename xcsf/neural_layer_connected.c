@@ -52,22 +52,30 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->max_outputs = n_max;
     l->n_weights = in * n_init;
     l->n_biases = l->n_outputs;
+    l->n_active = l->n_weights;
+    layer_init_eta(xcsf, l);
+    l->mu = malloc(N_MU * sizeof(double));
+    sam_init(xcsf, l->mu, N_MU);
+    if(l->n_outputs < 1) {
+        printf("neural_layer_connected_init(): invalid n_outputs\n");
+        exit(EXIT_FAILURE);
+    }
     l->state = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
-    l->biases = calloc(l->n_biases, sizeof(double));
-    l->bias_updates = calloc(l->n_biases, sizeof(double));
+    l->biases = calloc(l->n_outputs, sizeof(double));
+    l->bias_updates = calloc(l->n_outputs, sizeof(double));
+    if(l->n_weights < 1) {
+        printf("neural_layer_connected_init(): invalid n_weights\n");
+        exit(EXIT_FAILURE);
+    }
     l->weight_updates = calloc(l->n_weights, sizeof(double));
     l->delta = calloc(l->n_outputs, sizeof(double));
     l->weight_active = malloc(l->n_weights * sizeof(_Bool));
     l->weights = malloc(l->n_weights * sizeof(double));
-    l->n_active = l->n_weights;
     for(int i = 0; i < l->n_weights; i++) {
         l->weights[i] = rand_normal(0, 0.1);
         l->weight_active[i] = true;
     }
-    layer_init_eta(xcsf, l);
-    l->mu = malloc(N_MU * sizeof(double));
-    sam_init(xcsf, l->mu, N_MU);
     return l;
 }
 
