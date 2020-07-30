@@ -334,8 +334,14 @@ int neural_size(const XCSF *xcsf, const NET *net)
     (void)xcsf;
     int size = 0;
     for(const LLIST *iter = net->tail; iter->prev != NULL; iter = iter->prev) {
-        if(iter->layer->layer_type == CONNECTED || iter->layer->layer_type == RECURRENT) {
-            size += iter->layer->n_outputs;
+        switch(iter->layer->layer_type) {
+            case(CONNECTED):
+            case(RECURRENT):
+            case(LSTM):
+                size += iter->layer->n_outputs;
+                break;
+            default:
+                break;
         }
     }
     return size;
