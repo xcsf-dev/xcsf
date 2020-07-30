@@ -211,15 +211,22 @@ _Bool neural_mutate(const XCSF *xcsf, const NET *net)
 {
     _Bool mod = false;
     const LAYER *prev = NULL;
+    _Bool do_resize = false;
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        // previous layer has grown or shrunk: weight vector must be resized
-        if(prev != NULL && iter->layer->n_inputs != prev->n_outputs) {
+        // if the previous layer has grown or shrunk this layer must be resized
+        if(do_resize) {
             layer_resize(xcsf, iter->layer, prev);
         }
-        // mutate this layer
+        // mutate this layer and check if it changed size
+        do_resize = false;
+        int orig_outputs = iter->layer->n_outputs;
         if(layer_mutate(xcsf, iter->layer)) {
             mod = true;
+            if(iter->layer->n_outputs != orig_outputs) {
+                do_resize = true;
+            }
         }
+        // move to next layer
         prev = iter->layer;
     }
     return mod;
