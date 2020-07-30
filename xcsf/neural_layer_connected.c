@@ -42,6 +42,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
                                    uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
     l->options = o;
@@ -74,6 +75,7 @@ LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *src)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
     l->function = src->function;
@@ -137,8 +139,6 @@ void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const doub
 void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l,
                                      const double *input, double *delta)
 {
-    // input[] = this layer's input
-    // delta[] = previous layer's delta
     (void)xcsf;
     neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
     if(l->options & LAYER_SGD_WEIGHTS) {
@@ -270,6 +270,7 @@ size_t neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
+    layer_init(l);
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);

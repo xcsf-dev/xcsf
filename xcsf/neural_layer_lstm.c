@@ -57,6 +57,7 @@ LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max, i
                               int rf, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = LSTM;
     l->layer_vptr = &layer_lstm_vtbl;
     l->options = o;
@@ -174,6 +175,7 @@ static void set_eta(LAYER *l)
 LAYER *neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src)
 {
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
     l->function = src->function;
@@ -511,6 +513,7 @@ size_t neural_layer_lstm_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 size_t neural_layer_lstm_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     size_t s = 0;
+    layer_init(l);
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->n_weights, sizeof(int), 1, fp);

@@ -36,16 +36,12 @@ LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = NOISE;
     l->layer_vptr = &layer_noise_vtbl;
     l->n_inputs = in;
     l->n_outputs = in;
     l->max_outputs = in;
-    l->n_active = 0;
-    l->n_weights = 0;
-    l->n_biases = 0;
-    l->options = 0;
-    l->eta = 0;
     l->probability = prob;
     l->scale = std;
     l->output = calloc(l->n_inputs, sizeof(double));
@@ -58,16 +54,12 @@ LAYER *neural_layer_noise_copy(const XCSF *xcsf, const LAYER *src)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
     l->n_inputs = src->n_inputs;
     l->n_outputs = src->n_outputs;
     l->max_outputs = src->max_outputs;
-    l->options = src->options;
-    l->n_active = src->n_active;
-    l->n_weights = src->n_weights;
-    l->n_biases = src->n_biases;
-    l->eta = 0;
     l->probability = src->probability;
     l->scale = src->scale;
     l->output = calloc(src->n_inputs, sizeof(double));
@@ -178,16 +170,12 @@ size_t neural_layer_noise_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
+    layer_init(l);
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->probability, sizeof(double), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
-    l->n_active = 0;
-    l->n_weights = 0;
-    l->n_biases = 0;
-    l->options = 0;
-    l->eta = 0;
     if(l->n_inputs < 1 || l->n_outputs < 1 || l->max_outputs < 1) {
         printf("neural_layer_noise_load(): read error\n");
         l->n_inputs = 1;

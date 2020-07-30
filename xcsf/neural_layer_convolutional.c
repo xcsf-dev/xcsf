@@ -54,6 +54,7 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
                                        int pad, int f, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = CONVOLUTIONAL;
     l->layer_vptr = &layer_convolutional_vtbl;
     l->options = o;
@@ -108,6 +109,7 @@ LAYER *neural_layer_convolutional_copy(const XCSF *xcsf, const LAYER *src)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
     l->options = src->options;
@@ -321,6 +323,7 @@ size_t neural_layer_convolutional_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
+    layer_init(l);
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
     s += fread(&l->function, sizeof(int), 1, fp);
     s += fread(&l->height, sizeof(int), 1, fp);

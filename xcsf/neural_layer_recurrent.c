@@ -48,6 +48,7 @@ LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_m
                                    uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = RECURRENT;
     l->layer_vptr = &layer_recurrent_vtbl;
     l->options = o;
@@ -76,6 +77,7 @@ LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_m
 LAYER *neural_layer_recurrent_copy(const XCSF *xcsf, const LAYER *src)
 {
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
     l->options = src->options;
@@ -247,6 +249,7 @@ size_t neural_layer_recurrent_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 size_t neural_layer_recurrent_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     size_t s = 0;
+    layer_init(l);
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);

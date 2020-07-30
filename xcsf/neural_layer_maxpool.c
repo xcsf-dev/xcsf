@@ -40,6 +40,7 @@ LAYER *neural_layer_maxpool_init(const XCSF *xcsf, int h, int w, int c, int size
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = MAXPOOL;
     l->layer_vptr = &layer_maxpool_vtbl;
     l->height = h;
@@ -54,11 +55,6 @@ LAYER *neural_layer_maxpool_init(const XCSF *xcsf, int h, int w, int c, int size
     l->n_inputs = h * w * c;
     l->size = size;
     l->stride = stride;
-    l->n_active = 0;
-    l->n_weights = 0;
-    l->n_biases = 0;
-    l->options = 0;
-    l->eta = 0;
     calloc_layer_arrays(l);
     return l;
 }
@@ -67,6 +63,7 @@ LAYER *neural_layer_maxpool_copy(const XCSF *xcsf, const LAYER *src)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
+    layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
     l->height = src->height;
@@ -81,11 +78,6 @@ LAYER *neural_layer_maxpool_copy(const XCSF *xcsf, const LAYER *src)
     l->n_inputs = src->n_inputs;
     l->size = src->size;
     l->stride = src->stride;
-    l->n_active = src->n_active;
-    l->n_weights = src->n_weights;
-    l->n_biases = src->n_biases;
-    l->options = src->options;
-    l->eta = src->eta;
     calloc_layer_arrays(l);
     return l;
 }
@@ -218,6 +210,7 @@ size_t neural_layer_maxpool_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
+    layer_init(l);
     s += fread(&l->height, sizeof(int), 1, fp);
     s += fread(&l->width, sizeof(int), 1, fp);
     s += fread(&l->channels, sizeof(int), 1, fp);
@@ -230,11 +223,6 @@ size_t neural_layer_maxpool_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->size, sizeof(int), 1, fp);
     s += fread(&l->stride, sizeof(int), 1, fp);
-    l->n_active = 0;
-    l->n_weights = 0;
-    l->n_biases = 0;
-    l->options = 0;
-    l->eta = 0;
     if(l->n_outputs < 1) {
         printf("neural_layer_maxpool_load(): read error\n");
         l->n_outputs = 1;

@@ -284,3 +284,66 @@ void layer_init_eta(const XCSF *xcsf, LAYER *l)
         l->eta = xcsf->PRED_ETA;
     }
 }
+
+void layer_init(LAYER *l)
+{
+    l->layer_type = 0;
+    l->state = NULL;
+    l->output = NULL;
+    l->options = 0;
+    l->weights = NULL;
+    l->weight_active = NULL;
+    l->biases = NULL;
+    l->bias_updates = NULL;
+    l->weight_updates = NULL;
+    l->delta = NULL;
+    l->mu = NULL;
+    l->eta = 0;
+    l->n_inputs = 0;
+    l->n_outputs = 0;
+    l->max_outputs = 0;
+    l->n_weights = 0;
+    l->n_biases = 0;
+    l->n_active = 0;
+    l->function = 0;
+    l->scale = 0;
+    l->probability = 0;
+    l->layer_vptr = NULL;
+    l->prev_state = NULL;
+    l->input_layer = NULL;
+    l->self_layer = NULL;
+    l->output_layer = NULL;
+    l->recurrent_function = 0;
+    l->uf = NULL;
+    l->ui = NULL;
+    l->ug = NULL;
+    l->uo = NULL;
+    l->wf = NULL;
+    l->wi = NULL;
+    l->wg = NULL;
+    l->wo = NULL;
+    l->cell = NULL;
+    l->prev_cell = NULL;
+    l->f = NULL;
+    l->i = NULL;
+    l->g = NULL;
+    l->o = NULL;
+    l->c = NULL;
+    l->h = NULL;
+    l->temp = NULL;
+    l->temp2 = NULL;
+    l->temp3 = NULL;
+    l->dc = NULL;
+    l->height = 0;
+    l->width = 0;
+    l->channels = 0;
+    l->pad = 0;
+    l->out_w = 0;
+    l->out_h = 0;
+    l->out_c = 0;
+    l->size = 0;
+    l->stride = 0;
+    l->indexes = NULL;
+    l->n_filters = 0;
+    l->workspace_size = 0;
+}
