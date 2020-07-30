@@ -27,12 +27,18 @@
 #include <stdint.h>
 #include "xcsf.h"
 #include "utils.h"
-#include "cl.h"
 #include "neural_activations.h"
 #include "neural.h"
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
+#include "neural_layer_convolutional.h"
 #include "neural_layer_dropout.h"
+#include "neural_layer_lstm.h"
+#include "neural_layer_noise.h"
+#include "neural_layer_maxpool.h"
+#include "neural_layer_recurrent.h"
+#include "neural_layer_softmax.h"
+#include "cl.h"
 #include "condition.h"
 #include "cond_neural.h"
 
@@ -44,26 +50,23 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
     neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = cond_neural_lopt(xcsf);
-    LAYER *l;
-    int i = 0;
     int n_inputs = xcsf->x_dim;
-    while(i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0) {
+    for(int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; i++) {
         int hinit = xcsf->COND_NUM_NEURONS[i];
         int hmax = xcsf->COND_MAX_NEURONS[i];
         if(hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {
             hmax = hinit;
         }
         int f = xcsf->COND_HIDDEN_ACTIVATION;
-        l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
-        neural_layer_insert(xcsf, &new->net, l, i);
+        LAYER *l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
+        neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
         n_inputs = hinit;
-        i++;
     }
     // output layer
     int f = xcsf->COND_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    l = neural_layer_connected_init(xcsf, n_inputs, 1, 1, f, lopt);
-    neural_layer_insert(xcsf, &new->net, l, i);
+    LAYER *l = neural_layer_connected_init(xcsf, n_inputs, 1, 1, f, lopt);
+    neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
     c->cond = new;
 }
 
