@@ -98,6 +98,14 @@ _Bool layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
     return false;
 }
 
+/**
+ * @brief Returns the number of neurons to add or remove from a layer using the
+ * specified mutation rate.
+ * @param xcsf The XCSF data structure.
+ * @param l The neural network layer to mutate.
+ * @param mu The rate of mutation.
+ * @return The number of neurons to be added or removed.
+ */
 int layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu)
 {
     int n = (int) round(((2 * mu) - 1) * xcsf->MAX_NEURON_GROW);
@@ -109,11 +117,15 @@ int layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu)
     return n;
 }
 
-void layer_add_neurons(LAYER *l, int n)
+/**
+ * @brief Adds N neurons to a layer. Negative N removes neurons.
+ * @pre N must be appropriately bounds checked for the layer.
+ * @param l The neural network layer to mutate.
+ * @param N The number of neurons to add.
+ */
+void layer_add_neurons(LAYER *l, int N)
 {
-    // assumes n is appropriately bounds checked
-    // negative n will remove neurons
-    int n_outputs = l->n_outputs + n;
+    int n_outputs = l->n_outputs + N;
     int n_weights = n_outputs * l->n_inputs;
     size_t w_size_t = n_weights * sizeof(double);
     size_t o_size_t = n_outputs * sizeof(double);
@@ -125,7 +137,7 @@ void layer_add_neurons(LAYER *l, int n)
     l->biases = (double *) realloc(l->biases, o_size_t);
     l->bias_updates = (double *) realloc(l->bias_updates, o_size_t);
     l->delta = (double *) realloc(l->delta, o_size_t);
-    if(n > 0) {
+    if(N > 0) {
         for(int i = l->n_weights; i < n_weights; i++) {
             if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
                 l->weights[i] = 0;
@@ -150,6 +162,12 @@ void layer_add_neurons(LAYER *l, int n)
     l->n_biases = n_outputs;
 }
 
+/**
+ * @brief Mutates a layer's connectivity by zeroing weights.
+ * @param l The neural network layer to mutate.
+ * @param mu The rate of mutation.
+ * @return Whether any alterations were made.
+ */
 _Bool layer_mutate_connectivity(LAYER *l, double mu)
 {
     if(l->n_inputs < 2) {
@@ -179,6 +197,14 @@ _Bool layer_mutate_connectivity(LAYER *l, double mu)
     return mod;
 }
 
+/**
+ * @brief Mutates a layer's weights and biases by adding random numbers from a
+ * Gaussian normal distribution with zero mean and standard deviation equal to
+ * the mutation rate.
+ * @param l The neural network layer to mutate.
+ * @param mu The rate of mutation.
+ * @return Whether any alterations were made.
+ */
 _Bool layer_mutate_weights(LAYER *l, double mu)
 {
     _Bool mod = false;
@@ -203,6 +229,12 @@ _Bool layer_mutate_weights(LAYER *l, double mu)
     return mod;
 }
 
+/**
+ * @brief Mutates a layer's activation function by random selection.
+ * @param l The neural network layer to mutate.
+ * @param mu The rate of mutation.
+ * @return Whether any alterations were made.
+ */
 _Bool layer_mutate_functions(LAYER *l, double mu)
 {
     _Bool mod = false;
@@ -223,6 +255,11 @@ _Bool layer_mutate_functions(LAYER *l, double mu)
     return mod;
 }
 
+/**
+ * @brief Prints a layer's weights and biases.
+ * @param l The neural network layer to print.
+ * @param print_weights Whether to print each individual weight and bias.
+ */
 void layer_weight_print(const LAYER *l, _Bool print_weights)
 {
     printf("weights (%d): ", l->n_weights);
@@ -240,6 +277,10 @@ void layer_weight_print(const LAYER *l, _Bool print_weights)
     printf("n_active: %d", l->n_active);
 }
 
+/**
+ * @brief Randomises a layer's weights and biases.
+ * @param l The neural network layer to randomise.
+ */
 void layer_weight_rand(LAYER *l)
 {
     l->n_active = l->n_weights;
@@ -252,6 +293,10 @@ void layer_weight_rand(LAYER *l)
     }
 }
 
+/**
+ * @brief Clamps a layer's weights and biases within the range [WEIGHT_MIN, WEIGHT_MAX].
+ * @param l The neural network layer to clamp.
+ */
 void layer_weight_clamp(const LAYER *l)
 {
     for(int i = 0; i < l->n_weights; i++) {
@@ -266,6 +311,10 @@ void layer_weight_clamp(const LAYER *l)
     }
 }
 
+/**
+ * @brief Sets n_active to the number of non-zero weights within a layer.
+ * @param l The layer to calculate the number of non-zero weights.
+ */
 void layer_calc_n_active(LAYER *l)
 {
     l->n_active = l->n_weights;
@@ -276,6 +325,11 @@ void layer_calc_n_active(LAYER *l)
     }
 }
 
+/**
+ * @brief Initialises a layer's gradient descent rate.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to initialise.
+ */
 void layer_init_eta(const XCSF *xcsf, LAYER *l)
 {
     if(l->options & LAYER_EVOLVE_ETA) {
@@ -285,6 +339,10 @@ void layer_init_eta(const XCSF *xcsf, LAYER *l)
     }
 }
 
+/**
+ * @brief Initialises a layer to default values.
+ * @param l The layer to initialise.
+ */
 void layer_init(LAYER *l)
 {
     l->layer_type = 0;
