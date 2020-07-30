@@ -32,6 +32,9 @@
 #include "neural_layer.h"
 #include "neural_layer_noise.h"
 
+static void free_layer_arrays(const LAYER *l);
+static void malloc_layer_arrays(LAYER *l);
+
 LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std)
 {
     (void)xcsf;
@@ -44,10 +47,27 @@ LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std
     l->max_outputs = in;
     l->probability = prob;
     l->scale = std;
-    l->output = calloc(l->n_inputs, sizeof(double));
-    l->delta = malloc(l->n_inputs * sizeof(double));
-    l->state = malloc(l->n_inputs * sizeof(double));
+    malloc_layer_arrays(l);
     return l;
+}
+
+static void malloc_layer_arrays(LAYER *l)
+{
+    if(l->n_inputs < 1) {
+        printf("neural_layer_noise: malloc() invalid size\n");
+        l->n_inputs = 1;
+        exit(EXIT_FAILURE);
+    }
+    l->output = calloc(l->n_inputs, sizeof(double));
+    l->delta = calloc(l->n_inputs, sizeof(double));
+    l->state = calloc(l->n_inputs, sizeof(double));
+}
+
+static void free_layer_arrays(const LAYER *l)
+{
+    free(l->output);
+    free(l->delta);
+    free(l->state);
 }
 
 LAYER *neural_layer_noise_copy(const XCSF *xcsf, const LAYER *src)
@@ -62,18 +82,14 @@ LAYER *neural_layer_noise_copy(const XCSF *xcsf, const LAYER *src)
     l->max_outputs = src->max_outputs;
     l->probability = src->probability;
     l->scale = src->scale;
-    l->output = calloc(src->n_inputs, sizeof(double));
-    l->delta = malloc(src->n_inputs * sizeof(double));
-    l->state = malloc(src->n_inputs * sizeof(double));
+    malloc_layer_arrays(l);
     return l;
 }
 
 void neural_layer_noise_free(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
-    free(l->output);
-    free(l->delta);
-    free(l->state);
+    free_layer_arrays(l);
 }
 
 void neural_layer_noise_rand(const XCSF *xcsf, LAYER *l)
@@ -132,12 +148,8 @@ void neural_layer_noise_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
     l->n_inputs = prev->n_outputs;
     l->n_outputs = prev->n_outputs;
     l->max_outputs = prev->n_outputs;
-    free(l->output);
-    free(l->delta);
-    free(l->state);
-    l->output = calloc(l->n_inputs, sizeof(double));
-    l->delta = calloc(l->n_inputs, sizeof(double));
-    l->state = calloc(l->n_inputs, sizeof(double));
+    free_layer_arrays(l);
+    malloc_layer_arrays(l);
 }
 
 double *neural_layer_noise_output(const XCSF *xcsf, const LAYER *l)
@@ -176,13 +188,6 @@ size_t neural_layer_noise_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->probability, sizeof(double), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
-    if(l->n_inputs < 1 || l->n_outputs < 1 || l->max_outputs < 1) {
-        printf("neural_layer_noise_load(): read error\n");
-        l->n_inputs = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->output = calloc(l->n_inputs, sizeof(double));
-    l->delta = malloc(l->n_inputs * sizeof(double));
-    l->state = malloc(l->n_inputs * sizeof(double));
+    malloc_layer_arrays(l);
     return s;
 }

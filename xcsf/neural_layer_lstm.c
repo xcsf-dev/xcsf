@@ -45,13 +45,13 @@ static _Bool mutate_connectivity(LAYER *l);
 static _Bool mutate_eta(const XCSF *xcsf, LAYER *l);
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l);
 static _Bool mutate_weights(LAYER *l);
-static void calloc_layer_arrays(LAYER *l);
 static void free_layer_arrays(const LAYER *l);
+static void malloc_layer_arrays(LAYER *l);
 static void reset_layer_deltas(const LAYER *l);
 static void set_eta(LAYER *l);
 static void set_layer_n_active(LAYER *l);
-static void set_layer_n_weights(LAYER *l);
 static void set_layer_n_biases(LAYER *l);
+static void set_layer_n_weights(LAYER *l);
 
 LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
                               int rf, uint32_t o)
@@ -77,10 +77,10 @@ LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max, i
     set_layer_n_biases(l);
     set_layer_n_weights(l);
     set_layer_n_active(l);
-    calloc_layer_arrays(l);
+    set_eta(l);
+    malloc_layer_arrays(l);
     l->mu = malloc(N_MU * sizeof(double));
     sam_init(xcsf, l->mu, N_MU);
-    set_eta(l);
     return l;
 }
 
@@ -120,7 +120,7 @@ static void set_layer_n_active(LAYER *l)
     l->n_active += l->wo->n_active;
 }
 
-static void calloc_layer_arrays(LAYER *l)
+static void malloc_layer_arrays(LAYER *l)
 {
     l->delta = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
@@ -188,7 +188,6 @@ LAYER *neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src)
     l->n_active = src->n_active;
     l->eta = src->eta;
     l->max_outputs = src->max_outputs;
-    calloc_layer_arrays(l);
     l->uf = layer_copy(xcsf, src->uf);
     l->ui = layer_copy(xcsf, src->ui);
     l->ug = layer_copy(xcsf, src->ug);
@@ -197,6 +196,7 @@ LAYER *neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src)
     l->wi = layer_copy(xcsf, src->wi);
     l->wg = layer_copy(xcsf, src->wg);
     l->wo = layer_copy(xcsf, src->wo);
+    malloc_layer_arrays(l);
     l->mu = malloc(N_MU * sizeof(double));
     memcpy(l->mu, src->mu, N_MU * sizeof(double));
     return l;
@@ -409,11 +409,11 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
         layer_resize(xcsf, l->wg, l->uf);
         layer_resize(xcsf, l->wo, l->uf);
         l->n_outputs = l->uf->n_outputs;
-        free_layer_arrays(l);
-        calloc_layer_arrays(l);
         set_layer_n_weights(l);
         set_layer_n_biases(l);
         set_layer_n_active(l);
+        free_layer_arrays(l);
+        malloc_layer_arrays(l);
         return true;
     }
     return false;
@@ -522,29 +522,12 @@ size_t neural_layer_lstm_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->n_active, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
-    if(l->n_inputs < 1 || l->n_outputs < 1 || l->n_biases < 1) {
-        printf("neural_layer_lstm_load(): read error\n");
-        l->n_outputs = 1;
-        exit(EXIT_FAILURE);
-    }
+    malloc_layer_arrays(l);
     l->mu = malloc(N_MU * sizeof(double));
     s += fread(l->mu, sizeof(double), N_MU, fp);
-    l->delta = calloc(l->n_outputs, sizeof(double));
-    l->output = calloc(l->n_outputs, sizeof(double));
-    l->state = malloc(l->n_outputs * sizeof(double));
-    l->prev_state = malloc(l->n_outputs * sizeof(double));
-    l->prev_cell = malloc(l->n_outputs * sizeof(double));
-    l->cell = malloc(l->n_outputs * sizeof(double));
-    l->f = malloc(l->n_outputs * sizeof(double));
-    l->i = malloc(l->n_outputs * sizeof(double));
-    l->g = malloc(l->n_outputs * sizeof(double));
-    l->o = malloc(l->n_outputs * sizeof(double));
-    l->c = malloc(l->n_outputs * sizeof(double));
-    l->h = malloc(l->n_outputs * sizeof(double));
-    l->temp = malloc(l->n_outputs * sizeof(double));
-    l->temp2 = malloc(l->n_outputs * sizeof(double));
-    l->temp3 = malloc(l->n_outputs * sizeof(double));
-    l->dc = malloc(l->n_outputs * sizeof(double));
+    s += fread(l->state, sizeof(double), l->n_outputs, fp);
+    s += fread(l->prev_state, sizeof(double), l->n_outputs, fp);
+    s += fread(l->cell, sizeof(double), l->n_outputs, fp);
     s += fread(l->f, sizeof(double), l->n_outputs, fp);
     s += fread(l->i, sizeof(double), l->n_outputs, fp);
     s += fread(l->g, sizeof(double), l->n_outputs, fp);

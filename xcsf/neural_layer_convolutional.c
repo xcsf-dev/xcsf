@@ -48,6 +48,7 @@ static void col2im_add_pixel(double *im, int height, int width, int row, int col
                              int channel, int pad, double val);
 static void col2im(const double *data_col, int channels, int height, int width,
                    int ksize, int stride, int pad, double *data_im);
+static void malloc_layer_arrays(LAYER *l);
 
 LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
                                        int n_filters, int kernel_size, int stride,
@@ -78,42 +79,51 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
     int work_size = l->out_h * l->out_w * l->size * l->size * c;
     l->workspace_size = work_size * sizeof(double);
     layer_init_eta(xcsf, l);
-    l->mu = malloc(N_MU * sizeof(double));
-    sam_init(xcsf, l->mu, N_MU);
-    if(l->n_biases < 1) {
-        printf("neural_layer_convolutional_init(): invalid n_filters\n");
-        l->n_biases = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->biases = calloc(l->n_biases, sizeof(double));
-    l->bias_updates = calloc(l->n_biases, sizeof(double));
-    if(l->n_weights < 1) {
-        printf("neural_layer_convolutional_init(): invalid n_weights\n");
-        l->n_weights = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->weights = malloc(l->n_weights * sizeof(double));
-    l->weight_updates = calloc(l->n_weights, sizeof(double));
-    l->weight_active = malloc(l->n_weights * sizeof(_Bool));
+    malloc_layer_arrays(l);
     for(int i = 0; i < l->n_weights; i++) {
         l->weights[i] = rand_normal(0, 0.1);
         l->weight_active[i] = true;
     }
-    if(l->n_outputs < 1) {
-        printf("neural_layer_convolutional_init(): invalid n_outputs\n");
+    memset(l->biases, 0, l->n_biases * sizeof(double));
+    sam_init(xcsf, l->mu, N_MU);
+    return l;
+}
+
+static void malloc_layer_arrays(LAYER *l)
+{
+    if(l->n_biases < 1 || l->n_outputs < 1 || l->n_weights < 1 || l->workspace_size < 1) {
+        printf("neural_layer_convolutional: malloc() invalid size\n");
+        l->n_biases = 1;
         l->n_outputs = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->state = calloc(l->n_outputs, sizeof(double));
-    l->output = calloc(l->n_outputs, sizeof(double));
-    l->delta = calloc(l->n_outputs, sizeof(double));
-    if(l->workspace_size < 1) {
-        printf("neural_layer_convolutional_init(): invalid workspace_size\n");
+        l->n_weights = 1;
         l->workspace_size = 1;
         exit(EXIT_FAILURE);
     }
+    l->delta = calloc(l->n_outputs, sizeof(double));
+    l->state = calloc(l->n_outputs, sizeof(double));
+    l->output = calloc(l->n_outputs, sizeof(double));
+    l->weights = malloc(l->n_weights * sizeof(double));
+    l->biases = malloc(l->n_biases * sizeof(double));
+    l->bias_updates = calloc(l->n_biases, sizeof(double));
+    l->weight_updates = calloc(l->n_weights, sizeof(double));
+    l->weight_active = malloc(l->n_weights * sizeof(_Bool));
     l->temp = malloc(l->workspace_size);
-    return l;
+    l->mu = malloc(N_MU * sizeof(double));
+}
+
+void neural_layer_convolutional_free(const XCSF *xcsf, const LAYER *l)
+{
+    (void)xcsf;
+    free(l->delta);
+    free(l->state);
+    free(l->output);
+    free(l->weights);
+    free(l->biases);
+    free(l->bias_updates);
+    free(l->weight_updates);
+    free(l->weight_active);
+    free(l->temp);
+    free(l->mu);
 }
 
 static int convolutional_out_height(const LAYER *l)
@@ -143,11 +153,6 @@ LAYER *neural_layer_convolutional_copy(const XCSF *xcsf, const LAYER *src)
     l->size = src->size;
     l->pad = src->pad;
     l->n_weights = src->n_weights;
-    l->weights = malloc(src->n_weights * sizeof(double));
-    memcpy(l->weights, src->weights, src->n_weights * sizeof(double));
-    l->weight_updates = calloc(src->n_weights, sizeof(double));
-    l->weight_active = malloc(src->n_weights * sizeof(_Bool));
-    memcpy(l->weight_active, src->weight_active, src->n_weights * sizeof(_Bool));
     l->n_active = src->n_active;
     l->out_h = src->out_h;
     l->out_w = src->out_w;
@@ -155,40 +160,19 @@ LAYER *neural_layer_convolutional_copy(const XCSF *xcsf, const LAYER *src)
     l->n_outputs = src->n_outputs;
     l->n_inputs = src->n_inputs;
     l->max_outputs = src->max_outputs;
-    l->state = calloc(src->n_outputs, sizeof(double));
-    l->output = calloc(src->n_outputs, sizeof(double));
-    l->delta = calloc(src->n_outputs, sizeof(double));
     l->n_biases = src->n_biases;
-    l->bias_updates = calloc(src->n_filters, sizeof(double));
-    l->biases = malloc(src->n_biases * sizeof(double));
-    memcpy(l->biases, src->biases, src->n_biases * sizeof(double));
-    l->workspace_size = src->workspace_size;
-    l->temp = malloc(src->workspace_size);
     l->eta = src->eta;
-    l->mu = malloc(N_MU * sizeof(double));
+    malloc_layer_arrays(l);
+    memcpy(l->weights, src->weights, src->n_weights * sizeof(double));
+    memcpy(l->weight_active, src->weight_active, src->n_weights * sizeof(_Bool));
+    memcpy(l->biases, src->biases, src->n_biases * sizeof(double));
     memcpy(l->mu, src->mu, N_MU * sizeof(double));
     return l;
 }
 
-void neural_layer_convolutional_free(const XCSF *xcsf, const LAYER *l)
-{
-    (void)xcsf;
-    free(l->state);
-    free(l->output);
-    free(l->weights);
-    free(l->biases);
-    free(l->bias_updates);
-    free(l->weight_updates);
-    free(l->delta);
-    free(l->weight_active);
-    free(l->temp);
-    free(l->mu);
-}
-
 void neural_layer_convolutional_rand(const XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf;
-    layer_weight_rand(l);
+    layer_weight_rand(xcsf, l);
 }
 
 void neural_layer_convolutional_forward(const XCSF *xcsf, const LAYER *l,
@@ -324,6 +308,7 @@ size_t neural_layer_convolutional_save(const XCSF *xcsf, const LAYER *l, FILE *f
     s += fwrite(&l->out_h, sizeof(int), 1, fp);
     s += fwrite(&l->out_w, sizeof(int), 1, fp);
     s += fwrite(&l->out_c, sizeof(int), 1, fp);
+    s += fwrite(&l->n_biases, sizeof(int), 1, fp);
     s += fwrite(&l->n_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->max_outputs, sizeof(int), 1, fp);
@@ -357,6 +342,7 @@ size_t neural_layer_convolutional_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->out_h, sizeof(int), 1, fp);
     s += fread(&l->out_w, sizeof(int), 1, fp);
     s += fread(&l->out_c, sizeof(int), 1, fp);
+    s += fread(&l->n_biases, sizeof(int), 1, fp);
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
@@ -364,24 +350,7 @@ size_t neural_layer_convolutional_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->n_active, sizeof(int), 1, fp);
     s += fread(&l->workspace_size, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
-    if(l->n_inputs < 1 || l->n_outputs < 1 || l->n_filters < 1 || l->n_weights < 1) {
-        printf("neural_layer_convolutional_load(): read error\n");
-        l->n_outputs = 1;
-        l->n_weights = 1;
-        l->n_filters = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->n_biases = l->n_filters;
-    l->state = calloc(l->n_outputs, sizeof(double));
-    l->output = calloc(l->n_outputs, sizeof(double));
-    l->delta = calloc(l->n_outputs, sizeof(double));
-    l->temp = malloc(l->workspace_size);
-    l->weights = malloc(l->n_weights * sizeof(double));
-    l->weight_updates = malloc(l->n_weights * sizeof(double));
-    l->weight_active = malloc(l->n_weights * sizeof(_Bool));
-    l->biases = malloc(l->n_biases * sizeof(double));
-    l->bias_updates = malloc(l->n_biases * sizeof(double));
-    l->mu = malloc(N_MU * sizeof(double));
+    malloc_layer_arrays(l);
     s += fread(l->weights, sizeof(double), l->n_weights, fp);
     s += fread(l->weight_updates, sizeof(double), l->n_weights, fp);
     s += fread(l->weight_active, sizeof(_Bool), l->n_weights, fp);

@@ -40,6 +40,8 @@
 
 #define N_MU 5 //!< Number of mutation rates applied to a recurrent layer
 
+static void free_layer_arrays(const LAYER *l);
+static void malloc_layer_arrays(LAYER *l);
 static void set_layer_n_biases(LAYER *l);
 static void set_layer_n_weights(LAYER *l);
 static void set_layer_n_active(LAYER *l);
@@ -56,22 +58,39 @@ LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->n_inputs = in;
     l->n_outputs = n_init;
     l->max_outputs = n_max;
-    l->state = calloc(l->n_outputs, sizeof(double));
     l->input_layer = neural_layer_connected_init(xcsf, in, n_init, n_max, LINEAR, o);
     l->self_layer = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
     l->output_layer = neural_layer_connected_init(xcsf, n_init, n_init, n_max, f, o);
     l->output = l->output_layer->output;
     l->delta = l->output_layer->delta;
-    l->prev_state = calloc(l->n_outputs, sizeof(double));
-    l->mu = malloc(N_MU * sizeof(double));
-    sam_init(xcsf, l->mu, N_MU);
     l->eta = l->input_layer->eta;
     l->self_layer->eta = l->eta;
     l->output_layer->eta = l->eta;
     set_layer_n_biases(l);
     set_layer_n_weights(l);
     set_layer_n_active(l);
+    malloc_layer_arrays(l);
+    sam_init(xcsf, l->mu, N_MU);
     return l;
+}
+
+static void malloc_layer_arrays(LAYER *l)
+{
+    if(l->n_outputs < 1) {
+        printf("neural_layer_recurrent: malloc() invalid size\n");
+        l->n_outputs = 1;
+        exit(EXIT_FAILURE);
+    }
+    l->state = calloc(l->n_outputs, sizeof(double));
+    l->prev_state = calloc(l->n_outputs, sizeof(double));
+    l->mu = malloc(N_MU * sizeof(double));
+}
+
+static void free_layer_arrays(const LAYER *l)
+{
+    free(l->state);
+    free(l->prev_state);
+    free(l->mu);
 }
 
 LAYER *neural_layer_recurrent_copy(const XCSF *xcsf, const LAYER *src)
@@ -87,15 +106,13 @@ LAYER *neural_layer_recurrent_copy(const XCSF *xcsf, const LAYER *src)
     l->n_active = src->n_active;
     l->eta = src->eta;
     l->max_outputs = src->max_outputs;
-    l->state = calloc(src->n_outputs, sizeof(double));
     l->input_layer = layer_copy(xcsf, src->input_layer);
     l->self_layer = layer_copy(xcsf, src->self_layer);
     l->output_layer = layer_copy(xcsf, src->output_layer);
     l->output = l->output_layer->output;
     l->delta = l->output_layer->delta;
-    l->mu = malloc(N_MU * sizeof(double));
+    malloc_layer_arrays(l);
     memcpy(l->mu, src->mu, N_MU * sizeof(double));
-    l->prev_state = malloc(src->n_outputs * sizeof(double));
     memcpy(l->prev_state, src->prev_state, src->n_outputs * sizeof(double));
     return l;
 }
@@ -108,9 +125,7 @@ void neural_layer_recurrent_free(const XCSF *xcsf, const LAYER *l)
     free(l->input_layer);
     free(l->self_layer);
     free(l->output_layer);
-    free(l->state);
-    free(l->prev_state);
-    free(l->mu);
+    free_layer_arrays(l);
 }
 
 void neural_layer_recurrent_rand(const XCSF *xcsf, LAYER *l)
@@ -185,10 +200,9 @@ _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
             l->n_outputs = l->output_layer->n_outputs;
             l->output = l->output_layer->output;
             l->delta = l->output_layer->delta;
-            free(l->state);
-            free(l->prev_state);
-            l->state = calloc(l->n_outputs, sizeof(double));
-            l->prev_state = calloc(l->n_outputs, sizeof(double));
+            size_t size = l->n_outputs * sizeof(double);
+            l->state = (double *) realloc(l->state, size);
+            l->prev_state = (double *) realloc(l->prev_state, size);
             set_layer_n_weights(l);
             set_layer_n_biases(l);
             set_layer_n_active(l);
@@ -257,14 +271,7 @@ size_t neural_layer_recurrent_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->function, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
     s += fread(&l->n_active, sizeof(int), 1, fp);
-    if(l->n_inputs < 1 || l->n_outputs < 1 || l->max_outputs < 1) {
-        printf("neural_layer_recurrent_load(): read error\n");
-        l->n_outputs = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->mu = malloc(N_MU * sizeof(double));
-    l->state = malloc(l->n_outputs * sizeof(double));
-    l->prev_state = malloc(l->n_outputs * sizeof(double));
+    malloc_layer_arrays(l);
     s += fread(l->mu, sizeof(double), N_MU, fp);
     s += fread(l->state, sizeof(double), l->n_outputs, fp);
     s += fread(l->prev_state, sizeof(double), l->n_outputs, fp);

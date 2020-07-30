@@ -272,4 +272,4 @@ void layer_init_eta(const XCSF *xcsf, LAYER *l);
 void layer_set_vptr(LAYER *l);
 void layer_weight_clamp(const LAYER *l);
 void layer_weight_print(const LAYER *l, _Bool print_weights);
-void layer_weight_rand(LAYER *l);
+void layer_weight_rand(const XCSF *xcsf, LAYER *l);

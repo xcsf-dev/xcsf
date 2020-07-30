@@ -33,7 +33,7 @@
 #include "neural_layer.h"
 #include "neural_layer_maxpool.h"
 
-static void calloc_layer_arrays(LAYER *l);
+static void malloc_layer_arrays(LAYER *l);
 
 LAYER *neural_layer_maxpool_init(const XCSF *xcsf, int h, int w, int c, int size,
                                  int stride, int pad)
@@ -55,7 +55,7 @@ LAYER *neural_layer_maxpool_init(const XCSF *xcsf, int h, int w, int c, int size
     l->n_inputs = h * w * c;
     l->size = size;
     l->stride = stride;
-    calloc_layer_arrays(l);
+    malloc_layer_arrays(l);
     return l;
 }
 
@@ -78,14 +78,14 @@ LAYER *neural_layer_maxpool_copy(const XCSF *xcsf, const LAYER *src)
     l->n_inputs = src->n_inputs;
     l->size = src->size;
     l->stride = src->stride;
-    calloc_layer_arrays(l);
+    malloc_layer_arrays(l);
     return l;
 }
 
-static void calloc_layer_arrays(LAYER *l)
+static void malloc_layer_arrays(LAYER *l)
 {
     if(l->n_outputs < 1) {
-        printf("neural_layer_maxpool: calloc() invalid n_outputs\n");
+        printf("neural_layer_maxpool: malloc() invalid size\n");
         l->n_outputs = 1;
         exit(EXIT_FAILURE);
     }
@@ -228,6 +228,6 @@ size_t neural_layer_maxpool_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->size, sizeof(int), 1, fp);
     s += fread(&l->stride, sizeof(int), 1, fp);
-    calloc_layer_arrays(l);
+    malloc_layer_arrays(l);
     return s;
 }

@@ -32,6 +32,9 @@
 #include "neural_layer.h"
 #include "neural_layer_softmax.h"
 
+static void free_layer_arrays(const LAYER *l);
+static void malloc_layer_arrays(LAYER *l);
+
 LAYER *neural_layer_softmax_init(const XCSF *xcsf, int in, double temp)
 {
     (void)xcsf;
@@ -43,9 +46,25 @@ LAYER *neural_layer_softmax_init(const XCSF *xcsf, int in, double temp)
     l->n_inputs = in;
     l->n_outputs = in;
     l->max_outputs = in;
+    malloc_layer_arrays(l);
+    return l;
+}
+
+static void malloc_layer_arrays(LAYER *l)
+{
+    if(l->n_inputs < 1) {
+        printf("neural_layer_softmax: malloc() invalid size\n");
+        l->n_inputs = 1;
+        exit(EXIT_FAILURE);
+    }
     l->output = calloc(l->n_inputs, sizeof(double));
     l->delta = calloc(l->n_inputs, sizeof(double));
-    return l;
+}
+
+static void free_layer_arrays(const LAYER *l)
+{
+    free(l->output);
+    free(l->delta);
 }
 
 LAYER *neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *src)
@@ -59,8 +78,7 @@ LAYER *neural_layer_softmax_copy(const XCSF *xcsf, const LAYER *src)
     l->n_inputs = src->n_inputs;
     l->n_outputs = src->n_outputs;
     l->max_outputs = src->max_outputs;
-    l->output = calloc(src->n_inputs, sizeof(double));
-    l->delta = calloc(src->n_inputs, sizeof(double));
+    malloc_layer_arrays(l);
     return l;
 }
 
@@ -127,17 +145,14 @@ void neural_layer_softmax_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
     l->n_inputs = prev->n_outputs;
     l->n_outputs = prev->n_outputs;
     l->max_outputs = prev->n_outputs;
-    free(l->output);
-    free(l->delta);
-    l->output = calloc(l->n_inputs, sizeof(double));
-    l->delta = calloc(l->n_inputs, sizeof(double));
+    free_layer_arrays(l);
+    malloc_layer_arrays(l);
 }
 
 void neural_layer_softmax_free(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
-    free(l->output);
-    free(l->delta);
+    free_layer_arrays(l);
 }
 
 double *neural_layer_softmax_output(const XCSF *xcsf, const LAYER *l)
@@ -166,12 +181,6 @@ size_t neural_layer_softmax_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
-    if(l->n_inputs < 1 || l->n_outputs < 1 || l->max_outputs < 1) {
-        printf("neural_layer_softmax_load(): read error\n");
-        l->n_inputs = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->output = calloc(l->n_inputs, sizeof(double));
-    l->delta = calloc(l->n_inputs, sizeof(double));
+    malloc_layer_arrays(l);
     return s;
 }

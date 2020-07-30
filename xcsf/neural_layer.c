@@ -279,10 +279,12 @@ void layer_weight_print(const LAYER *l, _Bool print_weights)
 
 /**
  * @brief Randomises a layer's weights and biases.
+ * @param xcsf The XCSF data structure.
  * @param l The neural network layer to randomise.
  */
-void layer_weight_rand(LAYER *l)
+void layer_weight_rand(const XCSF *xcsf, LAYER *l)
 {
+    (void)xcsf;
     l->n_active = l->n_weights;
     for(int i = 0; i < l->n_weights; i++) {
         l->weights[i] = rand_normal(0, 1);
