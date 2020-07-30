@@ -58,6 +58,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     sam_init(xcsf, l->mu, N_MU);
     if(l->n_outputs < 1) {
         printf("neural_layer_connected_init(): invalid n_outputs\n");
+        l->n_outputs = 1;
         exit(EXIT_FAILURE);
     }
     l->state = calloc(l->n_outputs, sizeof(double));
@@ -66,6 +67,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->bias_updates = calloc(l->n_outputs, sizeof(double));
     if(l->n_weights < 1) {
         printf("neural_layer_connected_init(): invalid n_weights\n");
+        l->n_weights = 1;
         exit(EXIT_FAILURE);
     }
     l->weight_updates = calloc(l->n_weights, sizeof(double));
