@@ -91,7 +91,10 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_biases < 1 || l->n_outputs < 1 || l->n_weights < 1 || l->workspace_size < 1) {
+    if(l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX ||
+            l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX ||
+            l->n_weights < 1 || l->n_weights > N_WEIGHTS_MAX ||
+            l->workspace_size < 1) {
         printf("neural_layer_convolutional: malloc() invalid size\n");
         l->n_biases = 1;
         l->n_outputs = 1;

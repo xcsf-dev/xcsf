@@ -41,6 +41,13 @@
 #define LAYER_EVOLVE_ETA        (1<<4)
 #define LAYER_EVOLVE_CONNECT    (1<<5)
 
+#define ETA_MIN 0.000001 //!< Minimum gradient descent rate
+#define WEIGHT_MIN -10 //!< Minimum value of a weight or bias
+#define WEIGHT_MAX 10 //!< Maximum value of a weight or bias
+#define N_WEIGHTS_MAX 20000000 //!< Maximum number of weights per layer
+#define N_INPUTS_MAX 2000000 // !< Maximum number of inputs per layer
+#define N_OUTPUTS_MAX 2000000 // !< Maximum number of outputs per layer
+
 /**
  * @brief Neural network layer data structure.
  */

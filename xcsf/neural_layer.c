@@ -39,10 +39,6 @@
 #include "neural_layer_softmax.h"
 #include "neural_layer_maxpool.h"
 
-#define ETA_MIN 0.000001 //!< Minimum gradient descent rate
-#define WEIGHT_MIN -10 //!< Minimum value of a weight or bias
-#define WEIGHT_MAX 10 //!< Maximum value of a weight or bias
-
 /**
  * @brief Sets a neural network layer's functions to the implementations.
  * @param l The neural network layer to set.

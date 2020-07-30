@@ -84,7 +84,7 @@ LAYER *neural_layer_maxpool_copy(const XCSF *xcsf, const LAYER *src)
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_outputs < 1) {
+    if(l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
         printf("neural_layer_maxpool: malloc() invalid size\n");
         l->n_outputs = 1;
         exit(EXIT_FAILURE);

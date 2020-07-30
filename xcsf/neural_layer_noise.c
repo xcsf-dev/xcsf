@@ -53,7 +53,7 @@ LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_inputs < 1) {
+    if(l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
         printf("neural_layer_noise: malloc() invalid size\n");
         l->n_inputs = 1;
         exit(EXIT_FAILURE);

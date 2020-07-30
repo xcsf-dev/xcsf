@@ -68,7 +68,8 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_outputs < 1 || l->n_weights < 1) {
+    if(l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX ||
+            l->n_weights < 1 || l->n_weights > N_WEIGHTS_MAX) {
         printf("neural_layer_connected: malloc() invalid size\n");
         l->n_weights = 1;
         l->n_outputs = 1;

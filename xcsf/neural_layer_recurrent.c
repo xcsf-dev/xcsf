@@ -81,7 +81,7 @@ LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_m
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_outputs < 1) {
+    if(l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
         printf("neural_layer_recurrent: malloc() invalid size\n");
         l->n_outputs = 1;
         exit(EXIT_FAILURE);
