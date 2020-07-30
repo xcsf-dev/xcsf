@@ -338,7 +338,8 @@ int neural_size(const XCSF *xcsf, const NET *net)
             case(CONNECTED):
             case(RECURRENT):
             case(LSTM):
-                size += iter->layer->n_outputs;
+            case(CONVOLUTIONAL):
+                size += iter->layer->n_active;
                 break;
             default:
                 break;
