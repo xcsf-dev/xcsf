@@ -40,11 +40,16 @@
 
 #define N_MU 5 //!< Number of mutation rates applied to a recurrent layer
 
+static _Bool mutate_connectivity(LAYER *l);
+static _Bool mutate_eta(const XCSF *xcsf, LAYER *l);
+static _Bool mutate_functions(LAYER *l);
+static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l);
+static _Bool mutate_weights(LAYER *l);
 static void free_layer_arrays(const LAYER *l);
 static void malloc_layer_arrays(LAYER *l);
+static void set_layer_n_active(LAYER *l);
 static void set_layer_n_biases(LAYER *l);
 static void set_layer_n_weights(LAYER *l);
-static void set_layer_n_active(LAYER *l);
 
 LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
                                    uint32_t o)
@@ -183,12 +188,27 @@ _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
+    mod = mutate_eta(xcsf, l) ? true : mod;
+    mod = mutate_neurons(xcsf, l) ? true : mod;
+    mod = mutate_connectivity(l) ? true : mod;
+    mod = mutate_weights(l) ? true : mod;
+    mod = mutate_functions(l) ? true : mod;
+    return mod;
+}
+
+static _Bool mutate_eta(const XCSF *xcsf, LAYER *l)
+{
     if((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
         l->input_layer->eta = l->eta;
         l->self_layer->eta = l->eta;
         l->output_layer->eta = l->eta;
-        mod = true;
+        return true;
     }
+    return false;
+}
+
+static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
+{
     if(l->options & LAYER_EVOLVE_NEURONS) {
         int n = layer_mutate_neurons(xcsf, l->self_layer, l->mu[1]);
         if(n != 0) {
@@ -206,25 +226,42 @@ _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
             set_layer_n_weights(l);
             set_layer_n_biases(l);
             set_layer_n_active(l);
-            mod = true;
+            return true;
         }
     }
+    return false;
+}
+
+static _Bool mutate_connectivity(LAYER *l)
+{
+    _Bool mod = false;
     if(l->options & LAYER_EVOLVE_CONNECT) {
         mod = layer_mutate_connectivity(l->input_layer, l->mu[2]) ? true : mod;
         mod = layer_mutate_connectivity(l->self_layer, l->mu[2]) ? true : mod;
         mod = layer_mutate_connectivity(l->output_layer, l->mu[2]) ? true : mod;
         set_layer_n_active(l);
     }
+    return mod;
+}
+
+static _Bool mutate_weights(LAYER *l)
+{
+    _Bool mod = false;
     if(l->options & LAYER_EVOLVE_WEIGHTS) {
         mod = layer_mutate_weights(l->input_layer, l->mu[3]) ? true : mod;
         mod = layer_mutate_weights(l->self_layer, l->mu[3]) ? true : mod;
         mod = layer_mutate_weights(l->output_layer, l->mu[3]) ? true : mod;
     }
+    return mod;
+}
+
+static _Bool mutate_functions(LAYER *l)
+{
     if(l->options & LAYER_EVOLVE_FUNCTIONS && layer_mutate_functions(l, l->mu[4])) {
         l->output_layer->function = l->function;
-        mod = true;
+        return true;
     }
-    return mod;
+    return false;
 }
 
 void neural_layer_recurrent_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
