@@ -87,7 +87,8 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
     l->state = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
     l->delta = calloc(l->n_outputs, sizeof(double));
-    l->workspace_size = l->out_h * l->out_w * l->size * l->size * c * sizeof(double);
+    int work_size = l->out_h * l->out_w * l->size * l->size * c;
+    l->workspace_size = work_size * sizeof(double);
     l->temp = malloc(l->workspace_size);
     layer_init_eta(xcsf, l);
     l->mu = malloc(N_MU * sizeof(double));
