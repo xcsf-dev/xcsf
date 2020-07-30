@@ -84,6 +84,11 @@ LAYER *neural_layer_maxpool_copy(const XCSF *xcsf, const LAYER *src)
 
 static void calloc_layer_arrays(LAYER *l)
 {
+    if(l->n_outputs < 1) {
+        printf("neural_layer_maxpool: calloc() invalid n_outputs\n");
+        l->n_outputs = 1;
+        exit(EXIT_FAILURE);
+    }
     l->indexes = calloc(l->n_outputs, sizeof(int));
     l->output = calloc(l->n_outputs, sizeof(double));
     l->delta = calloc(l->n_outputs, sizeof(double));
@@ -107,7 +112,7 @@ void neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l, const double
 {
     (void)xcsf;
     int w_offset = -l->pad / 2;
-    int h_offset = -l->pad / 2;
+    int h_offset = w_offset;
     int h = l->out_h;
     int w = l->out_w;
     int c = l->channels;
@@ -223,11 +228,6 @@ size_t neural_layer_maxpool_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->size, sizeof(int), 1, fp);
     s += fread(&l->stride, sizeof(int), 1, fp);
-    if(l->n_outputs < 1) {
-        printf("neural_layer_maxpool_load(): read error\n");
-        l->n_outputs = 1;
-        exit(EXIT_FAILURE);
-    }
     calloc_layer_arrays(l);
     return s;
 }
