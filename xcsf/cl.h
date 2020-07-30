@@ -47,4 +47,3 @@ void cl_rand(const XCSF *xcsf, CL *c);
 void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int set_num,
                _Bool cur);
 void cl_update_fit(const XCSF *xcsf, CL *c, double acc_sum, double acc);
-void cl_init_copy(const XCSF *xcsf, CL *dest, const CL *src);
