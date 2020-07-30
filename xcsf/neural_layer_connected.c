@@ -65,13 +65,13 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->output = calloc(l->n_outputs, sizeof(double));
     l->biases = calloc(l->n_outputs, sizeof(double));
     l->bias_updates = calloc(l->n_outputs, sizeof(double));
+    l->delta = calloc(l->n_outputs, sizeof(double));
     if(l->n_weights < 1) {
         printf("neural_layer_connected_init(): invalid n_weights\n");
         l->n_weights = 1;
         exit(EXIT_FAILURE);
     }
     l->weight_updates = calloc(l->n_weights, sizeof(double));
-    l->delta = calloc(l->n_outputs, sizeof(double));
     l->weight_active = malloc(l->n_weights * sizeof(_Bool));
     l->weights = malloc(l->n_weights * sizeof(double));
     for(int i = 0; i < l->n_weights; i++) {
