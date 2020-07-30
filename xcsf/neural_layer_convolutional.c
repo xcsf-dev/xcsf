@@ -165,6 +165,7 @@ LAYER *neural_layer_convolutional_copy(const XCSF *xcsf, const LAYER *src)
     l->max_outputs = src->max_outputs;
     l->n_biases = src->n_biases;
     l->eta = src->eta;
+    l->workspace_size = src->workspace_size;
     malloc_layer_arrays(l);
     memcpy(l->weights, src->weights, src->n_weights * sizeof(double));
     memcpy(l->weight_active, src->weight_active, src->n_weights * sizeof(_Bool));
