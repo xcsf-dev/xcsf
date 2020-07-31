@@ -171,10 +171,21 @@ _Bool neural_layer_maxpool_mutate(const XCSF *xcsf, LAYER *l)
 void neural_layer_maxpool_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     (void)xcsf;
-    (void)l;
-    (void)prev;
-    printf("neural_layer_maxpool_resize(): cannot be resized\n");
-    exit(EXIT_FAILURE);
+    int w = prev->out_w;
+    int h = prev->out_h;
+    int c = prev->out_c;
+    l->height = h;
+    l->width = w;
+    l->channels = c;
+    l->n_inputs = h * w * c;
+    l->out_w = (w + l->pad - l->size)/l->stride + 1;
+    l->out_h = (h + l->pad - l->size)/l->stride + 1;
+    l->out_c = c;
+    l->n_outputs = l->out_h * l->out_w * l->out_c;
+    l->max_outputs = l->n_outputs;
+    l->indexes = realloc(l->indexes, l->n_outputs * sizeof(int));
+    l->output = realloc(l->output, l->n_outputs * sizeof(double));
+    l->delta = realloc(l->delta, l->n_outputs * sizeof(double));
 }
 
 double *neural_layer_maxpool_output(const XCSF *xcsf, const LAYER *l)
