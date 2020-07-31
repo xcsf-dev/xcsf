@@ -11,8 +11,8 @@ path_classifiers:
 extraction:
   cpp:
     index:
-       build_command:
-          - cd $LGTM_SRC/build
-          - cmake -DCMAKE_BUILD_TYPE=Debug ..
-          - make -j2
+      build_command:
+        - cd $LGTM_SRC/build
+        - cmake -DCMAKE_BUILD_TYPE=Debug ..
+        - make -j2
 ...
