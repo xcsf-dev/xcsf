@@ -108,9 +108,7 @@ void neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l)
 void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
     if(!xcsf->explore) {
-        for(int i = 0; i < l->n_inputs; i++) {
-            l->output[i] = input[i];
-        }
+        memcpy(l->output, input, sizeof(double) * l->n_inputs);
     } else {
         for(int i = 0; i < l->n_inputs; i++) {
             l->state[i] = rand_uniform(0, 1);
