@@ -57,9 +57,9 @@ script:
       cp ../.sonar-project.properties ./sonar-project.properties;
       wget -q https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip;
       unzip -q build-wrapper-linux-x86.zip;
-      cp ./build-wrapper-linux-x86/libinterceptor-x86_64.so
+      cp ./build-wrapper-linux-x86/libinterceptor-x86_64.so \
       ./build-wrapper-linux-x86/libinterceptor-haswell.so;
-      ./build-wrapper-linux-x86/build-wrapper-linux-x86-64
+      ./build-wrapper-linux-x86/build-wrapper-linux-x86-64 \
       --out-dir bw-output make clean all;
       sonar-scanner;
     else
