@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2015--2020.
- * @brief Config file handling functions
+ * @brief Configuration file handling functions.
  */
 
 #pragma once
