@@ -52,7 +52,7 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
     pred->weights = calloc(pred->n_weights, sizeof(double));
     blas_fill(xcsf->y_dim, xcsf->PRED_X0, pred->weights, pred->n);
     // initialise learning rate
-    pred->mu = malloc(N_MU * sizeof(double));
+    pred->mu = malloc(sizeof(double) * N_MU);
     if(xcsf->PRED_EVOLVE_ETA) {
         sam_init(xcsf, pred->mu, N_MU);
         pred->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
@@ -61,7 +61,7 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
         pred->eta = xcsf->PRED_ETA;
     }
     // initialise temporary storage for weight updating
-    pred->tmp_input = malloc(pred->n * sizeof(double));
+    pred->tmp_input = malloc(sizeof(double) * pred->n);
 }
 
 void pred_nlms_copy(const XCSF *xcsf, CL *dest, const CL *src)
@@ -69,8 +69,8 @@ void pred_nlms_copy(const XCSF *xcsf, CL *dest, const CL *src)
     pred_nlms_init(xcsf, dest);
     PRED_NLMS *dest_pred = dest->pred;
     const PRED_NLMS *src_pred = src->pred;
-    memcpy(dest_pred->weights, src_pred->weights, src_pred->n_weights * sizeof(double));
-    memcpy(dest_pred->mu, src_pred->mu, N_MU);
+    memcpy(dest_pred->weights, src_pred->weights, sizeof(double) * src_pred->n_weights);
+    memcpy(dest_pred->mu, src_pred->mu, sizeof(double) * N_MU);
     dest_pred->eta = src_pred->eta;
 }
 

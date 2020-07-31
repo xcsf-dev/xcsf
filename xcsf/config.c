@@ -272,10 +272,10 @@ static void config_cl_condition(XCSF *xcsf, const char *n, char *v, int i, doubl
     } else if(strncmp(n, "COND_EVOLVE_FUNCTIONS", 22) == 0) {
         param_set_cond_evolve_functions(xcsf, i);
     } else if(strncmp(n, "COND_NUM_NEURONS", 17) == 0) {
-        memset(xcsf->COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
+        memset(xcsf->COND_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->COND_NUM_NEURONS);
     } else if(strncmp(n, "COND_MAX_NEURONS", 17) == 0) {
-        memset(xcsf->COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
+        memset(xcsf->COND_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->COND_MAX_NEURONS);
     } else if(strncmp(n, "COND_OUTPUT_ACTIVATION", 23) == 0) {
         param_set_cond_output_activation(xcsf, i);
@@ -319,10 +319,10 @@ static void config_cl_prediction(XCSF *xcsf, const char *n, char *v, int i, doub
     } else if(strncmp(n, "PRED_MOMENTUM", 14) == 0) {
         param_set_pred_momentum(xcsf, f);
     } else if(strncmp(n, "PRED_NUM_NEURONS", 17) == 0) {
-        memset(xcsf->PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
+        memset(xcsf->PRED_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->PRED_NUM_NEURONS);
     } else if(strncmp(n, "PRED_MAX_NEURONS", 17) == 0) {
-        memset(xcsf->PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
+        memset(xcsf->PRED_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->PRED_MAX_NEURONS);
     } else if(strncmp(n, "PRED_OUTPUT_ACTIVATION", 23) == 0) {
         param_set_pred_output_activation(xcsf, i);

@@ -90,7 +90,7 @@ LAYER *neural_layer_lstm_init(const XCSF *xcsf, int n_inputs, int n_init, int n_
     set_layer_n_active(l);
     set_eta(l);
     malloc_layer_arrays(l);
-    l->mu = malloc(N_MU * sizeof(double));
+    l->mu = malloc(sizeof(double) * N_MU);
     sam_init(xcsf, l->mu, N_MU);
     return l;
 }
@@ -213,8 +213,8 @@ LAYER *neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src)
     l->wg = layer_copy(xcsf, src->wg);
     l->wo = layer_copy(xcsf, src->wo);
     malloc_layer_arrays(l);
-    l->mu = malloc(N_MU * sizeof(double));
-    memcpy(l->mu, src->mu, N_MU * sizeof(double));
+    l->mu = malloc(sizeof(double) * N_MU);
+    memcpy(l->mu, src->mu, sizeof(double) * N_MU);
     return l;
 }
 
@@ -263,27 +263,27 @@ void neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l, const double *i
     layer_forward(xcsf, l->wi, input);
     layer_forward(xcsf, l->wg, input);
     layer_forward(xcsf, l->wo, input);
-    memcpy(l->f, l->wf->output, l->n_outputs * sizeof(double));
+    memcpy(l->f, l->wf->output, sizeof(double) * l->n_outputs);
     blas_axpy(l->n_outputs, 1, l->uf->output, 1, l->f, 1);
-    memcpy(l->i, l->wi->output, l->n_outputs * sizeof(double));
+    memcpy(l->i, l->wi->output, sizeof(double) * l->n_outputs);
     blas_axpy(l->n_outputs, 1, l->ui->output, 1, l->i, 1);
-    memcpy(l->g, l->wg->output, l->n_outputs * sizeof(double));
+    memcpy(l->g, l->wg->output, sizeof(double) * l->n_outputs);
     blas_axpy(l->n_outputs, 1, l->ug->output, 1, l->g, 1);
-    memcpy(l->o, l->wo->output, l->n_outputs * sizeof(double));
+    memcpy(l->o, l->wo->output, sizeof(double) * l->n_outputs);
     blas_axpy(l->n_outputs, 1, l->uo->output, 1, l->o, 1);
     neural_activate_array(l->f, l->f, l->n_outputs, l->recurrent_function);
     neural_activate_array(l->i, l->i, l->n_outputs, l->recurrent_function);
     neural_activate_array(l->g, l->g, l->n_outputs, l->function);
     neural_activate_array(l->o, l->o, l->n_outputs, l->recurrent_function);
-    memcpy(l->temp, l->i, l->n_outputs * sizeof(double));
+    memcpy(l->temp, l->i, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->g, 1, l->temp, 1);
     blas_mul(l->n_outputs, l->f, 1, l->c, 1);
     blas_axpy(l->n_outputs, 1, l->temp, 1, l->c, 1);
-    memcpy(l->h, l->c, l->n_outputs * sizeof(double));
+    memcpy(l->h, l->c, sizeof(double) * l->n_outputs);
     neural_activate_array(l->h, l->h, l->n_outputs, l->function);
     blas_mul(l->n_outputs, l->o, 1, l->h, 1);
-    memcpy(l->cell, l->c, l->n_outputs * sizeof(double));
-    memcpy(l->output, l->h, l->n_outputs * sizeof(double));
+    memcpy(l->cell, l->c, sizeof(double) * l->n_outputs);
+    memcpy(l->output, l->h, sizeof(double) * l->n_outputs);
 }
 
 static void reset_layer_deltas(const LAYER *l)
@@ -303,45 +303,45 @@ void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, const double *
                                 double *delta)
 {
     reset_layer_deltas(l);
-    memcpy(l->temp3, l->delta, l->n_outputs * sizeof(double));
-    memcpy(l->temp, l->c, l->n_outputs * sizeof(double));
+    memcpy(l->temp3, l->delta, sizeof(double) * l->n_outputs);
+    memcpy(l->temp, l->c, sizeof(double) * l->n_outputs);
     neural_activate_array(l->temp, l->temp, l->n_outputs, l->function);
-    memcpy(l->temp2, l->temp3, l->n_outputs * sizeof(double));
+    memcpy(l->temp2, l->temp3, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->o, 1, l->temp2, 1);
     neural_gradient_array(l->temp, l->temp2, l->n_outputs, l->function);
     blas_axpy(l->n_outputs, 1, l->dc, 1, l->temp2, 1);
-    memcpy(l->temp, l->c, l->n_outputs * sizeof(double));
+    memcpy(l->temp, l->c, sizeof(double) * l->n_outputs);
     neural_activate_array(l->temp, l->temp, l->n_outputs, l->function);
     blas_mul(l->n_outputs, l->temp3, 1, l->temp, 1);
     neural_gradient_array(l->o, l->temp, l->n_outputs, l->recurrent_function);
-    memcpy(l->wo->delta, l->temp, l->n_outputs * sizeof(double));
+    memcpy(l->wo->delta, l->temp, sizeof(double) * l->n_outputs);
     layer_backward(xcsf, l->wo, l->prev_state, 0);
-    memcpy(l->uo->delta, l->temp, l->n_outputs * sizeof(double));
+    memcpy(l->uo->delta, l->temp, sizeof(double) * l->n_outputs);
     layer_backward(xcsf, l->uo, input, delta);
-    memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
+    memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->i, 1, l->temp, 1);
     neural_gradient_array(l->g, l->temp, l->n_outputs, l->function);
-    memcpy(l->wg->delta, l->temp, l->n_outputs * sizeof(double));
+    memcpy(l->wg->delta, l->temp, sizeof(double) * l->n_outputs);
     layer_backward(xcsf, l->wg, l->prev_state, 0);
-    memcpy(l->ug->delta, l->temp, l->n_outputs * sizeof(double));
+    memcpy(l->ug->delta, l->temp, sizeof(double) * l->n_outputs);
     layer_backward(xcsf, l->ug, input, delta);
-    memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
+    memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->g, 1, l->temp, 1);
     neural_gradient_array(l->i, l->temp, l->n_outputs, l->recurrent_function);
-    memcpy(l->wi->delta, l->temp, l->n_outputs * sizeof(double));
+    memcpy(l->wi->delta, l->temp, sizeof(double) * l->n_outputs);
     layer_backward(xcsf, l->wi, l->prev_state, 0);
-    memcpy(l->ui->delta, l->temp, l->n_outputs * sizeof(double));
+    memcpy(l->ui->delta, l->temp, sizeof(double) * l->n_outputs);
     layer_backward(xcsf, l->ui, input, delta);
-    memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
+    memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->prev_cell, 1, l->temp, 1);
     neural_gradient_array(l->f, l->temp, l->n_outputs, l->recurrent_function);
-    memcpy(l->wf->delta, l->temp, l->n_outputs * sizeof(double));
+    memcpy(l->wf->delta, l->temp, sizeof(double) * l->n_outputs);
     layer_backward(xcsf, l->wf, l->prev_state, 0);
-    memcpy(l->uf->delta, l->temp, l->n_outputs * sizeof(double));
+    memcpy(l->uf->delta, l->temp, sizeof(double) * l->n_outputs);
     layer_backward(xcsf, l->uf, input, delta);
-    memcpy(l->temp, l->temp2, l->n_outputs * sizeof(double));
+    memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->f, 1, l->temp, 1);
-    memcpy(l->dc, l->temp, l->n_outputs * sizeof(double));
+    memcpy(l->dc, l->temp, sizeof(double) * l->n_outputs);
 }
 
 void neural_layer_lstm_update(const XCSF *xcsf, const LAYER *l)
@@ -539,7 +539,7 @@ size_t neural_layer_lstm_load(const XCSF *xcsf, LAYER *l, FILE *fp)
     s += fread(&l->eta, sizeof(double), 1, fp);
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
     malloc_layer_arrays(l);
-    l->mu = malloc(N_MU * sizeof(double));
+    l->mu = malloc(sizeof(double) * N_MU);
     s += fread(l->mu, sizeof(double), N_MU, fp);
     s += fread(l->state, sizeof(double), l->n_outputs, fp);
     s += fread(l->prev_state, sizeof(double), l->n_outputs, fp);

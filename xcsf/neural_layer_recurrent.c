@@ -98,7 +98,7 @@ static void malloc_layer_arrays(LAYER *l)
     }
     l->state = calloc(l->n_outputs, sizeof(double));
     l->prev_state = calloc(l->n_outputs, sizeof(double));
-    l->mu = malloc(N_MU * sizeof(double));
+    l->mu = malloc(sizeof(double) * N_MU);
 }
 
 static void free_layer_arrays(const LAYER *l)
@@ -127,8 +127,8 @@ LAYER *neural_layer_recurrent_copy(const XCSF *xcsf, const LAYER *src)
     l->output = l->output_layer->output;
     l->delta = l->output_layer->delta;
     malloc_layer_arrays(l);
-    memcpy(l->mu, src->mu, N_MU * sizeof(double));
-    memcpy(l->prev_state, src->prev_state, src->n_outputs * sizeof(double));
+    memcpy(l->mu, src->mu, sizeof(double) * N_MU);
+    memcpy(l->prev_state, src->prev_state, sizeof(double) * src->n_outputs);
     return l;
 }
 
@@ -152,10 +152,10 @@ void neural_layer_recurrent_rand(const XCSF *xcsf, LAYER *l)
 
 void neural_layer_recurrent_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
-    memcpy(l->prev_state, l->state, l->n_outputs * sizeof(double));
+    memcpy(l->prev_state, l->state, sizeof(double) * l->n_outputs);
     layer_forward(xcsf, l->input_layer, input);
     layer_forward(xcsf, l->self_layer, l->output_layer->output);
-    memcpy(l->state, l->input_layer->output, l->n_outputs * sizeof(double));
+    memcpy(l->state, l->input_layer->output, sizeof(double) * l->n_outputs);
     blas_axpy(l->n_outputs, 1, l->self_layer->output, 1, l->state, 1);
     layer_forward(xcsf, l->output_layer, l->state);
 }
@@ -163,10 +163,10 @@ void neural_layer_recurrent_forward(const XCSF *xcsf, const LAYER *l, const doub
 void neural_layer_recurrent_backward(const XCSF *xcsf, const LAYER *l,
                                      const double *input, double *delta)
 {
-    memset(l->input_layer->delta, 0, l->n_outputs * sizeof(double));
-    memset(l->self_layer->delta, 0,  l->n_outputs * sizeof(double));
+    memset(l->input_layer->delta, 0, sizeof(double) * l->n_outputs);
+    memset(l->self_layer->delta, 0, sizeof(double) * l->n_outputs);
     layer_backward(xcsf, l->output_layer, l->state, l->self_layer->delta);
-    memcpy(l->input_layer->delta, l->self_layer->delta, l->n_outputs * sizeof(double));
+    memcpy(l->input_layer->delta, l->self_layer->delta, sizeof(double) * l->n_outputs);
     layer_backward(xcsf, l->self_layer, l->prev_state, 0);
     layer_backward(xcsf, l->input_layer, input, delta);
 }

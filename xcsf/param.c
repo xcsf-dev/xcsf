@@ -526,8 +526,8 @@ static void param_defaults_cl_condition(XCSF *xcsf)
     param_set_cond_evolve_neurons(xcsf, true);
     param_set_cond_evolve_functions(xcsf, false);
     param_set_cond_evolve_connectivity(xcsf, false);
-    memset(xcsf->COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-    memset(xcsf->COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
+    memset(xcsf->COND_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
+    memset(xcsf->COND_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
     xcsf->COND_NUM_NEURONS[0] = 1;
     xcsf->COND_MAX_NEURONS[0] = 10;
     param_set_cond_output_activation(xcsf, 0);
@@ -663,8 +663,8 @@ static void param_defaults_cl_prediction(XCSF *xcsf)
     param_set_pred_evolve_connectivity(xcsf, false);
     param_set_pred_sgd_weights(xcsf, true);
     param_set_pred_momentum(xcsf, 0.9);
-    memset(xcsf->PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-    memset(xcsf->PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
+    memset(xcsf->PRED_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
+    memset(xcsf->PRED_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
     xcsf->PRED_NUM_NEURONS[0] = 1;
     xcsf->PRED_MAX_NEURONS[0] = 10;
     param_set_pred_output_activation(xcsf, 0);

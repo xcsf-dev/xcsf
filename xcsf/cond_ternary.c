@@ -46,9 +46,9 @@ void cond_ternary_init(const XCSF *xcsf, CL *c)
 {
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
     new->length = xcsf->x_dim * xcsf->COND_BITS;
-    new->string = malloc(new->length * sizeof(char));
-    new->tmp_input = malloc(xcsf->COND_BITS * sizeof(char));
-    new->mu = malloc(N_MU * sizeof(double));
+    new->string = malloc(sizeof(char) * new->length);
+    new->tmp_input = malloc(sizeof(char) * xcsf->COND_BITS);
+    new->mu = malloc(sizeof(double) * N_MU);
     sam_init(xcsf, new->mu, N_MU);
     c->cond = new;
     cond_ternary_rand(xcsf, c);
@@ -85,11 +85,11 @@ void cond_ternary_copy(const XCSF *xcsf, CL *dest, const CL *src)
     COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
     const COND_TERNARY *src_cond = src->cond;
     new->length = src_cond->length;
-    new->string = malloc(src_cond->length * sizeof(char));
-    new->tmp_input = malloc(xcsf->COND_BITS * sizeof(char));
-    new->mu = malloc(N_MU * sizeof(double));
-    memcpy(new->string, src_cond->string, src_cond->length * sizeof(char));
-    memcpy(new->mu, src_cond->mu, N_MU * sizeof(double));
+    new->string = malloc(sizeof(char) * src_cond->length);
+    new->tmp_input = malloc(sizeof(char) * xcsf->COND_BITS);
+    new->mu = malloc(sizeof(double) * N_MU);
+    memcpy(new->string, src_cond->string, sizeof(char) * src_cond->length);
+    memcpy(new->mu, src_cond->mu, sizeof(double) * N_MU);
     dest->cond = new;
 }
 
@@ -224,10 +224,10 @@ size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp)
         new->length = 1;
         exit(EXIT_FAILURE);
     }
-    new->string = malloc(new->length * sizeof(char));
+    new->string = malloc(sizeof(char) * new->length);
     s += fread(new->string, sizeof(char), new->length, fp);
-    new->tmp_input = malloc(xcsf->COND_BITS * sizeof(char));
-    new->mu = malloc(N_MU * sizeof(double));
+    new->tmp_input = malloc(sizeof(char) * xcsf->COND_BITS);
+    new->mu = malloc(sizeof(double) * N_MU);
     s += fread(new->mu, sizeof(double), N_MU, fp);
     c->cond = new;
     return s;

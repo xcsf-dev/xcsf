@@ -79,7 +79,7 @@ void tree_rand(const XCSF *xcsf, GP_TREE *gp)
         gp->len = tree_grow(xcsf, buffer, 0, GP_MAX_LEN, xcsf->GP_INIT_DEPTH);
     } while(gp->len < 0);
     gp->tree = malloc(sizeof(int) * gp->len);
-    memcpy(gp->tree, buffer, sizeof(int)*gp->len);
+    memcpy(gp->tree, buffer, sizeof(int) * gp->len);
     sam_init(xcsf, gp->mu, GP_N_MU);
 }
 
@@ -262,12 +262,12 @@ void tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
     int end2 = tree_traverse(p2->tree, start2);
     int nlen1 = start1 + (end2 - start2) + (len1 - end1);
     int *new1 = malloc(sizeof(int) * nlen1);
-    memcpy(&new1[0], &p1->tree[0], sizeof(int)*start1);
+    memcpy(&new1[0], &p1->tree[0], sizeof(int) * start1);
     memcpy(&new1[start1], &p2->tree[start2], sizeof(int) * (end2 - start2));
     memcpy(&new1[start1 + (end2 - start2)], &p1->tree[end1], sizeof(int) * (len1 - end1));
     int nlen2 = start2 + (end1 - start1) + (len2 - end2);
     int *new2 = malloc(sizeof(int) * nlen2);
-    memcpy(&new2[0], &p2->tree[0], sizeof(int)*start2);
+    memcpy(&new2[0], &p2->tree[0], sizeof(int) * start2);
     memcpy(&new2[start2], &p1->tree[start1], sizeof(int) * (end1 - start1));
     memcpy(&new2[start2 + (end1 - start1)], &p2->tree[end2], sizeof(int) * (len2 - end2));
     tree_free(xcsf, p1);

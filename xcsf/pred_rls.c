@@ -54,7 +54,7 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
         pred->matrix[i * pred->n + i] = xcsf->PRED_RLS_SCALE_FACTOR;
     }
     // initialise temporary storage for weight updating
-    pred->tmp_input = malloc(pred->n * sizeof(double));
+    pred->tmp_input = malloc(sizeof(double) * pred->n);
     pred->tmp_vec = calloc(pred->n, sizeof(double));
     pred->tmp_matrix1 = calloc(n_sqrd, sizeof(double));
     pred->tmp_matrix2 = calloc(n_sqrd, sizeof(double));
@@ -65,7 +65,7 @@ void pred_rls_copy(const XCSF *xcsf, CL *dest, const CL *src)
     pred_rls_init(xcsf, dest);
     const PRED_RLS *dest_pred = dest->pred;
     const PRED_RLS *src_pred = src->pred;
-    memcpy(dest_pred->weights, src_pred->weights, src_pred->n_weights * sizeof(double));
+    memcpy(dest_pred->weights, src_pred->weights, sizeof(double) * src_pred->n_weights);
 }
 
 void pred_rls_free(const XCSF *xcsf, const CL *c)

@@ -112,7 +112,7 @@ void xcs_rl_init_trial(XCSF *xcsf)
         xcsf->x_dim = 1;
         exit(EXIT_FAILURE);
     }
-    xcsf->prev_state = malloc(xcsf->x_dim * sizeof(double));
+    xcsf->prev_state = malloc(sizeof(double) * xcsf->x_dim);
     clset_init(&xcsf->prev_aset);
     clset_init(&xcsf->kset);
 }

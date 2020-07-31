@@ -225,7 +225,7 @@ void clset_match(XCSF *xcsf, const double *x)
 static void clset_cover(XCSF *xcsf, const double *x)
 {
     int attempts = 0;
-    _Bool *act_covered = malloc(xcsf->n_actions * sizeof(_Bool));
+    _Bool *act_covered = malloc(sizeof(_Bool) * xcsf->n_actions);
     _Bool covered = clset_action_coverage(xcsf, act_covered);
     while(!covered) {
         covered = true;
@@ -269,7 +269,7 @@ static void clset_cover(XCSF *xcsf, const double *x)
  */
 static _Bool clset_action_coverage(const XCSF *xcsf, _Bool *act_covered)
 {
-    memset(act_covered, 0, xcsf->n_actions * sizeof(_Bool));
+    memset(act_covered, 0, sizeof(_Bool) * xcsf->n_actions);
     for(const CLIST *iter = xcsf->mset.list; iter != NULL; iter = iter->next) {
         act_covered[iter->cl->action] = true;
     }

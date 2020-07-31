@@ -98,7 +98,7 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
         l->weights[i] = rand_normal(0, 0.1);
         l->weight_active[i] = true;
     }
-    memset(l->biases, 0, l->n_biases * sizeof(double));
+    memset(l->biases, 0, sizeof(double) * l->n_biases);
     sam_init(xcsf, l->mu, N_MU);
     return l;
 }
@@ -129,13 +129,13 @@ static void malloc_layer_arrays(LAYER *l)
     l->delta = calloc(l->n_outputs, sizeof(double));
     l->state = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
-    l->weights = malloc(l->n_weights * sizeof(double));
-    l->biases = malloc(l->n_biases * sizeof(double));
+    l->weights = malloc(sizeof(double) * l->n_weights);
+    l->biases = malloc(sizeof(double) * l->n_biases);
     l->bias_updates = calloc(l->n_biases, sizeof(double));
     l->weight_updates = calloc(l->n_weights, sizeof(double));
-    l->weight_active = malloc(l->n_weights * sizeof(_Bool));
+    l->weight_active = malloc(sizeof(_Bool) * l->n_weights);
     l->temp = malloc(l->workspace_size);
-    l->mu = malloc(N_MU * sizeof(double));
+    l->mu = malloc(sizeof(double) * N_MU);
 }
 
 void neural_layer_convolutional_free(const XCSF *xcsf, const LAYER *l)
@@ -191,10 +191,10 @@ LAYER *neural_layer_convolutional_copy(const XCSF *xcsf, const LAYER *src)
     l->eta = src->eta;
     l->workspace_size = src->workspace_size;
     malloc_layer_arrays(l);
-    memcpy(l->weights, src->weights, src->n_weights * sizeof(double));
-    memcpy(l->weight_active, src->weight_active, src->n_weights * sizeof(_Bool));
-    memcpy(l->biases, src->biases, src->n_biases * sizeof(double));
-    memcpy(l->mu, src->mu, N_MU * sizeof(double));
+    memcpy(l->weights, src->weights, sizeof(double) * src->n_weights);
+    memcpy(l->weight_active, src->weight_active, sizeof(_Bool) * src->n_weights);
+    memcpy(l->biases, src->biases, sizeof(double) * src->n_biases);
+    memcpy(l->mu, src->mu, sizeof(double) * N_MU);
     return l;
 }
 
@@ -213,7 +213,7 @@ void neural_layer_convolutional_forward(const XCSF *xcsf, const LAYER *l,
     const double *a = l->weights;
     double *b = l->temp;
     double *c = l->state;
-    memset(l->state, 0, l->n_outputs * sizeof(double));
+    memset(l->state, 0, sizeof(double) * l->n_outputs);
     if(l->size == 1) {
         blas_gemm(0, 0, m, n, k, 1, a, k, input, n, 1, c, n);
     } else {

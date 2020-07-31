@@ -71,7 +71,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int n_inputs, int n_init, i
         l->weights[i] = rand_normal(0, 0.1);
         l->weight_active[i] = true;
     }
-    memset(l->biases, 0, l->n_biases * sizeof(double));
+    memset(l->biases, 0, sizeof(double) * l->n_biases);
     sam_init(xcsf, l->mu, N_MU);
     return l;
 }
@@ -87,13 +87,13 @@ static void malloc_layer_arrays(LAYER *l)
     }
     l->state = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
-    l->biases = malloc(l->n_outputs * sizeof(double));
+    l->biases = malloc(sizeof(double) * l->n_outputs);
     l->bias_updates = calloc(l->n_outputs, sizeof(double));
     l->delta = calloc(l->n_outputs, sizeof(double));
     l->weight_updates = calloc(l->n_weights, sizeof(double));
-    l->weight_active = malloc(l->n_weights * sizeof(_Bool));
-    l->weights = malloc(l->n_weights * sizeof(double));
-    l->mu = malloc(N_MU * sizeof(double));
+    l->weight_active = malloc(sizeof(_Bool) * l->n_weights);
+    l->weights = malloc(sizeof(double) * l->n_weights);
+    l->mu = malloc(sizeof(double) * N_MU);
 }
 
 void neural_layer_connected_free(const XCSF *xcsf, const LAYER *l)
@@ -127,10 +127,10 @@ LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *src)
     l->eta = src->eta;
     l->n_active = src->n_active;
     malloc_layer_arrays(l);
-    memcpy(l->biases, src->biases, src->n_biases * sizeof(double));
-    memcpy(l->weights, src->weights, src->n_weights * sizeof(double));
-    memcpy(l->weight_active, src->weight_active, src->n_weights * sizeof(_Bool));
-    memcpy(l->mu, src->mu, N_MU * sizeof(double));
+    memcpy(l->biases, src->biases, sizeof(double) * src->n_biases);
+    memcpy(l->weights, src->weights, sizeof(double) * src->n_weights);
+    memcpy(l->weight_active, src->weight_active, sizeof(_Bool) * src->n_weights);
+    memcpy(l->mu, src->mu, sizeof(double) * N_MU);
     return l;
 }
 
@@ -147,7 +147,7 @@ void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const doub
     const double *a = input;
     const double *b = l->weights;
     double *c = l->state;
-    memcpy(l->state, l->biases, l->n_outputs * sizeof(double));
+    memcpy(l->state, l->biases, sizeof(double) * l->n_outputs);
     blas_gemm(0, 1, 1, n, k, 1, a, k, b, k, 1, c, n);
     neural_activate_array(l->state, l->output, l->n_outputs, l->function);
 }
@@ -191,9 +191,9 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
 {
     (void)xcsf;
     int n_weights = prev->n_outputs * l->n_outputs;
-    double *weights = malloc(n_weights * sizeof(double));
-    double *weight_updates = malloc(n_weights * sizeof(double));
-    _Bool *weight_active = malloc(n_weights * sizeof(_Bool));
+    double *weights = malloc(sizeof(double) * n_weights);
+    double *weight_updates = malloc(sizeof(double) * n_weights);
+    _Bool *weight_active = malloc(sizeof(_Bool) * n_weights);
     for(int i = 0; i < l->n_outputs; i++) {
         int orig_offset = i * l->n_inputs;
         int offset = i * prev->n_outputs;

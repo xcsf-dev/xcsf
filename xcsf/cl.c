@@ -456,7 +456,7 @@ size_t cl_load(const XCSF *xcsf, CL *c, FILE *fp)
     s += fread(&c->m, sizeof(_Bool), 1, fp);
     s += fread(&c->age, sizeof(int), 1, fp);
     s += fread(&c->mtotal, sizeof(int), 1, fp);
-    c->prediction = malloc(xcsf->y_dim * sizeof(double));
+    c->prediction = malloc(sizeof(double) * xcsf->y_dim);
     s += fread(c->prediction, sizeof(double), xcsf->y_dim, fp);
     s += fread(&c->action, sizeof(int), 1, fp);
     action_set(xcsf, c);

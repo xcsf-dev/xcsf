@@ -40,9 +40,9 @@ static double cond_ellipsoid_dist(const XCSF *xcsf, const CL *c, const double *x
 void cond_ellipsoid_init(const XCSF *xcsf, CL *c)
 {
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
-    new->center = malloc(xcsf->x_dim * sizeof(double));
-    new->spread = malloc(xcsf->x_dim * sizeof(double));
-    new->mu = malloc(N_MU * sizeof(double));
+    new->center = malloc(sizeof(double) * xcsf->x_dim);
+    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    new->mu = malloc(sizeof(double) * N_MU);
     for(int i = 0; i < xcsf->x_dim; i++) {
         new->center[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
         new->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
@@ -65,12 +65,12 @@ void cond_ellipsoid_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
     const COND_ELLIPSOID *src_cond = src->cond;
-    new->center = malloc(xcsf->x_dim * sizeof(double));
-    new->spread = malloc(xcsf->x_dim * sizeof(double));
-    new->mu = malloc(N_MU * sizeof(double));
-    memcpy(new->center, src_cond->center, xcsf->x_dim * sizeof(double));
-    memcpy(new->spread, src_cond->spread, xcsf->x_dim * sizeof(double));
-    memcpy(new->mu, src_cond->mu, N_MU * sizeof(double));
+    new->center = malloc(sizeof(double) * xcsf->x_dim);
+    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    new->mu = malloc(sizeof(double) * N_MU);
+    memcpy(new->center, src_cond->center, sizeof(double) * xcsf->x_dim);
+    memcpy(new->spread, src_cond->spread, sizeof(double) * xcsf->x_dim);
+    memcpy(new->mu, src_cond->mu, sizeof(double) * N_MU);
     dest->cond = new;
 }
 
@@ -206,9 +206,9 @@ size_t cond_ellipsoid_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
-    new->center = malloc(xcsf->x_dim * sizeof(double));
-    new->spread = malloc(xcsf->x_dim * sizeof(double));
-    new->mu = malloc(N_MU * sizeof(double));
+    new->center = malloc(sizeof(double) * xcsf->x_dim);
+    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    new->mu = malloc(sizeof(double) * N_MU);
     s += fread(new->center, sizeof(double), xcsf->x_dim, fp);
     s += fread(new->spread, sizeof(double), xcsf->x_dim, fp);
     s += fread(new->mu, sizeof(double), N_MU, fp);
