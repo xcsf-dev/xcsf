@@ -228,14 +228,3 @@ double blas_sum(const double *X, int N)
     }
     return sum;
 }
-
-/**
- * @brief Returns the mean of the vector X.
- * @param X Vector with N elements.
- * @param N The number of elements in vector X.
- * @return The resulting mean.
- */
-double blas_mean(const double *X, int N)
-{
-    return blas_sum(X, N) / N;
-}
