@@ -220,9 +220,8 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
             l->n_outputs = l->output_layer->n_outputs;
             l->output = l->output_layer->output;
             l->delta = l->output_layer->delta;
-            size_t size = l->n_outputs * sizeof(double);
-            l->state = (double *) realloc(l->state, size);
-            l->prev_state = (double *) realloc(l->prev_state, size);
+            l->state = realloc(l->state, l->n_outputs * sizeof(double));
+            l->prev_state = realloc(l->prev_state, l->n_outputs * sizeof(double));
             set_layer_n_weights(l);
             set_layer_n_biases(l);
             set_layer_n_active(l);
