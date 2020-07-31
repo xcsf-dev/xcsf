@@ -1,3 +1,5 @@
+---
+# Configuration script for use with continuous integration service lgtm.com
 path_classifiers:
   docs:
     - doc
@@ -8,8 +10,9 @@ path_classifiers:
 
 extraction:
   cpp:
-     index:
-        build_command:
+    index:
+       build_command:
           - cd $LGTM_SRC/build
           - cmake -DCMAKE_BUILD_TYPE=Debug ..
           - make -j2
+...
