@@ -23,8 +23,8 @@
 
 #pragma once
 
-LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
-                                   uint32_t o);
+LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int n_inputs, int n_init, int n_max,
+                                   int f, uint32_t o);
 LAYER *neural_layer_recurrent_copy(const XCSF *xcsf, const LAYER *src);
 void neural_layer_recurrent_rand(const XCSF *xcsf, LAYER *l);
 void neural_layer_recurrent_forward(const XCSF *xcsf, const LAYER *l,

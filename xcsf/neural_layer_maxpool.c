@@ -35,6 +35,17 @@
 
 static void malloc_layer_arrays(LAYER *l);
 
+/**
+ * @brief Creates and initialises a 2D maxpooling layer.
+ * @param xcsf The XCSF data structure.
+ * @param h The input height.
+ * @param w The input width.
+ * @param c The number of input channels.
+ * @param size The size of the pooling window.
+ * @param stride The strides of the pooling operation.
+ * @param pad The padding of the pooling operation.
+ * @return A pointer to the new layer.
+ */
 LAYER *neural_layer_maxpool_init(const XCSF *xcsf, int h, int w, int c, int size,
                                  int stride, int pad)
 {
@@ -178,8 +189,8 @@ void neural_layer_maxpool_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
     l->width = w;
     l->channels = c;
     l->n_inputs = h * w * c;
-    l->out_w = (w + l->pad - l->size)/l->stride + 1;
-    l->out_h = (h + l->pad - l->size)/l->stride + 1;
+    l->out_w = (w + l->pad - l->size) / l->stride + 1;
+    l->out_h = (h + l->pad - l->size) / l->stride + 1;
     l->out_c = c;
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->max_outputs = l->n_outputs;

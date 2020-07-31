@@ -51,8 +51,18 @@ static void set_layer_n_active(LAYER *l);
 static void set_layer_n_biases(LAYER *l);
 static void set_layer_n_weights(LAYER *l);
 
-LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
-                                   uint32_t o)
+/**
+ * @brief Creates and initialises a recurrent layer.
+ * @param xcsf The XCSF data structure.
+ * @param n_inputs The number of inputs.
+ * @param n_init The initial number of neurons.
+ * @param n_max The maximum number of neurons.
+ * @param f The activation function.
+ * @param o The bitwise options specifying which operations can be performed.
+ * @return A pointer to the new layer.
+ */
+LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int n_inputs, int n_init, int n_max,
+                                   int f, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
@@ -60,10 +70,10 @@ LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->layer_vptr = &layer_recurrent_vtbl;
     l->options = o;
     l->function = f;
-    l->n_inputs = in;
+    l->n_inputs = n_inputs;
     l->n_outputs = n_init;
     l->max_outputs = n_max;
-    l->input_layer = neural_layer_connected_init(xcsf, in, n_init, n_max, LINEAR, o);
+    l->input_layer = neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
     l->self_layer = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
     l->output_layer = neural_layer_connected_init(xcsf, n_init, n_init, n_max, f, o);
     l->output = l->output_layer->output;

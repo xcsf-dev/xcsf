@@ -35,17 +35,24 @@
 static void free_layer_arrays(const LAYER *l);
 static void malloc_layer_arrays(LAYER *l);
 
-LAYER *neural_layer_softmax_init(const XCSF *xcsf, int in, double temp)
+/**
+ * @brief Creates and initialises a softmax layer.
+ * @param xcsf The XCSF data structure.
+ * @param n_inputs The number of inputs.
+ * @param temperature The scaling of the logits.
+ * @return A pointer to the new layer.
+ */
+LAYER *neural_layer_softmax_init(const XCSF *xcsf, int n_inputs, double temperature)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = SOFTMAX;
     l->layer_vptr = &layer_softmax_vtbl;
-    l->scale = temp;
-    l->n_inputs = in;
-    l->n_outputs = in;
-    l->max_outputs = in;
+    l->scale = temperature;
+    l->n_inputs = n_inputs;
+    l->n_outputs = n_inputs;
+    l->max_outputs = n_inputs;
     malloc_layer_arrays(l);
     return l;
 }

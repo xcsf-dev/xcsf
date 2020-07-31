@@ -40,8 +40,18 @@
 
 static void malloc_layer_arrays(LAYER *l);
 
-LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
-                                   uint32_t o)
+/**
+ * @brief Creates and initialises a fully-connected layer.
+ * @param xcsf The XCSF data structure.
+ * @param n_inputs The number of inputs.
+ * @param n_init The initial number of neurons.
+ * @param n_max The maximum number of neurons.
+ * @param f The activation function.
+ * @param o The bitwise options specifying which operations can be performed.
+ * @return A pointer to the new layer.
+ */
+LAYER *neural_layer_connected_init(const XCSF *xcsf, int n_inputs, int n_init, int n_max,
+                                   int f, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
@@ -49,10 +59,10 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int in, int n_init, int n_m
     l->layer_vptr = &layer_connected_vtbl;
     l->options = o;
     l->function = f;
-    l->n_inputs = in;
+    l->n_inputs = n_inputs;
     l->n_outputs = n_init;
     l->max_outputs = n_max;
-    l->n_weights = in * n_init;
+    l->n_weights = n_inputs * n_init;
     l->n_biases = l->n_outputs;
     l->n_active = l->n_weights;
     layer_init_eta(xcsf, l);

@@ -53,8 +53,19 @@ static void set_layer_n_active(LAYER *l);
 static void set_layer_n_biases(LAYER *l);
 static void set_layer_n_weights(LAYER *l);
 
-LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max, int f,
-                              int rf, uint32_t o)
+/**
+ * @brief Creates and initialises a long short-term memory layer.
+ * @param xcsf The XCSF data structure.
+ * @param n_inputs The number of inputs.
+ * @param n_init The initial number of neurons.
+ * @param n_max The maximum number of neurons.
+ * @param f The output activation function.
+ * @param rf The recurrent activation function.
+ * @param o The bitwise options specifying which operations can be performed.
+ * @return A pointer to the new layer.
+ */
+LAYER *neural_layer_lstm_init(const XCSF *xcsf, int n_inputs, int n_init, int n_max,
+                              int f, int rf, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
@@ -63,13 +74,13 @@ LAYER *neural_layer_lstm_init(const XCSF *xcsf, int in, int n_init, int n_max, i
     l->options = o;
     l->function = f;
     l->recurrent_function = rf;
-    l->n_inputs = in;
+    l->n_inputs = n_inputs;
     l->n_outputs = n_init;
     l->max_outputs = n_max;
-    l->uf = neural_layer_connected_init(xcsf, in, n_init, n_max, LINEAR, o);
-    l->ui = neural_layer_connected_init(xcsf, in, n_init, n_max, LINEAR, o);
-    l->ug = neural_layer_connected_init(xcsf, in, n_init, n_max, LINEAR, o);
-    l->uo = neural_layer_connected_init(xcsf, in, n_init, n_max, LINEAR, o);
+    l->uf = neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->ui = neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->ug = neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->uo = neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
     l->wf = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
     l->wi = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
     l->wg = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);

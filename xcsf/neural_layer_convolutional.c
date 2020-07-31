@@ -38,18 +38,33 @@
 
 #define N_MU 4 //!< Number of mutation rates applied to a convolutional layer
 
-static int convolutional_out_height(const LAYER *l);
-static int convolutional_out_width(const LAYER *l);
 static double im2col_get_pixel(const double *im, int height, int width, int row, int col,
                                int channel, int pad);
-static void im2col(const double *data_im, int channels, int height, int width,
-                   int ksize, int stride, int pad, double *data_col);
+static int convolutional_out_height(const LAYER *l);
+static int convolutional_out_width(const LAYER *l);
+static size_t get_workspace_size(const LAYER *l);
 static void col2im_add_pixel(double *im, int height, int width, int row, int col,
                              int channel, int pad, double val);
 static void col2im(const double *data_col, int channels, int height, int width,
                    int ksize, int stride, int pad, double *data_im);
+static void im2col(const double *data_im, int channels, int height, int width,
+                   int ksize, int stride, int pad, double *data_col);
 static void malloc_layer_arrays(LAYER *l);
 
+/**
+ * @brief Creates and initialises a 2D convolutional layer.
+ * @param xcsf The XCSF data structure.
+ * @param h The input height.
+ * @param w The input width.
+ * @param c The number of input channels.
+ * @param n_filters The number of kernel filters to apply.
+ * @param kernel_size The length of the convolution window.
+ * @param stride The stride length of the convolution.
+ * @param pad The padding of the convolution.
+ * @param f The activation function.
+ * @param o The bitwise options specifying which operations can be performed.
+ * @return A pointer to the new layer.
+ */
 LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
                                        int n_filters, int kernel_size, int stride,
                                        int pad, int f, uint32_t o)
@@ -76,8 +91,7 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
     l->n_inputs = l->width * l->height * l->channels;
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->max_outputs = l->n_outputs;
-    int work_size = l->out_h * l->out_w * l->size * l->size * c;
-    l->workspace_size = work_size * sizeof(double);
+    l->workspace_size = get_workspace_size(l);
     layer_init_eta(xcsf, l);
     malloc_layer_arrays(l);
     for(int i = 0; i < l->n_weights; i++) {
@@ -87,6 +101,11 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
     memset(l->biases, 0, l->n_biases * sizeof(double));
     sam_init(xcsf, l->mu, N_MU);
     return l;
+}
+
+static size_t get_workspace_size(const LAYER *l)
+{
+    return l->out_h * l->out_w * l->size * l->size * l->channels * sizeof(double);
 }
 
 static void malloc_layer_arrays(LAYER *l)
@@ -254,10 +273,18 @@ void neural_layer_convolutional_update(const XCSF *xcsf, const LAYER *l)
 void neural_layer_convolutional_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     (void)xcsf;
-    (void)l;
-    (void)prev;
-    printf("neural_layer_convolutional_resize(): cannot be resized\n");
-    exit(EXIT_FAILURE);
+    l->width = prev->out_w;
+    l->height = prev->out_h;
+    l->channels = prev->out_c;
+    l->out_w = convolutional_out_width(l);
+    l->out_h = convolutional_out_height(l);
+    l->n_outputs = l->out_h * l->out_w * l->out_c;
+    l->max_outputs = l->n_outputs;
+    l->n_inputs = l->width * l->height * l->channels;
+    l->output = realloc(l->state, l->n_outputs * sizeof(double));
+    l->output = realloc(l->output, l->n_outputs * sizeof(double));
+    l->delta  = realloc(l->delta,  l->n_outputs * sizeof(double));
+    l->workspace_size = get_workspace_size(l);
 }
 
 _Bool neural_layer_convolutional_mutate(const XCSF *xcsf, LAYER *l)

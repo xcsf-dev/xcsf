@@ -23,7 +23,7 @@
 
 #pragma once
 
-LAYER *neural_layer_dropout_init(const XCSF *xcsf, int in, double prob);
+LAYER *neural_layer_dropout_init(const XCSF *xcsf, int n_inputs, double probability);
 LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *src);
 void neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l);
 void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input);

@@ -35,17 +35,26 @@
 static void free_layer_arrays(const LAYER *l);
 static void malloc_layer_arrays(LAYER *l);
 
-LAYER *neural_layer_noise_init(const XCSF *xcsf, int in, double prob, double std)
+/**
+ * @brief Creates and initialises a Gaussian noise layer.
+ * @param xcsf The XCSF data structure.
+ * @param n_inputs The number of inputs.
+ * @param probability The probability of adding noise to an input.
+ * @param std The standard deviation of the Gaussian noise added.
+ * @return A pointer to the new layer.
+ */
+LAYER *neural_layer_noise_init(const XCSF *xcsf, int n_inputs, double probability,
+                               double std)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = NOISE;
     l->layer_vptr = &layer_noise_vtbl;
-    l->n_inputs = in;
-    l->n_outputs = in;
-    l->max_outputs = in;
-    l->probability = prob;
+    l->n_inputs = n_inputs;
+    l->n_outputs = n_inputs;
+    l->max_outputs = n_inputs;
+    l->probability = probability;
     l->scale = std;
     malloc_layer_arrays(l);
     return l;

@@ -35,18 +35,25 @@
 static void malloc_layer_arrays(LAYER *l);
 static void free_layer_arrays(const LAYER *l);
 
-LAYER *neural_layer_dropout_init(const XCSF *xcsf, int in, double prob)
+/**
+ * @brief Creates and initialises a dropout layer.
+ * @param xcsf The XCSF data structure.
+ * @param n_inputs The number of inputs.
+ * @param probability The probability of dropping an input.
+ * @return A pointer to the new layer.
+ */
+LAYER *neural_layer_dropout_init(const XCSF *xcsf, int n_inputs, double probability)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = DROPOUT;
     l->layer_vptr = &layer_dropout_vtbl;
-    l->n_inputs = in;
-    l->n_outputs = in;
-    l->max_outputs = in;
-    l->probability = prob;
-    l->scale = 1. / (1. - prob);
+    l->n_inputs = n_inputs;
+    l->n_outputs = n_inputs;
+    l->max_outputs = n_inputs;
+    l->probability = probability;
+    l->scale = 1. / (1. - probability);
     malloc_layer_arrays(l);
     return l;
 }
