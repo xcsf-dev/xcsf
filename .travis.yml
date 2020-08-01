@@ -1,5 +1,5 @@
 ---
-# Configuration script for use with continuous integration service travis-ci.org
+# Configuration script for use with continuous integration service travis-ci.com
 
 language: cpp
 

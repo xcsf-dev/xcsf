@@ -13,8 +13,8 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
     </tr>
     <tr>
         <td><a href="http://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a></td>
-        <td><a href="https://travis-ci.org/rpreen/xcsf"><img src="http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=linux&label=build&branch=master"></a></td>
-        <td><a href="https://travis-ci.org/rpreen/xcsf"><img src="http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=osx&label=build&branch=master"></a></td>
+        <td><a href="https://travis-ci.com/rpreen/xcsf"><img src="http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=linux&label=build&branch=master"></a></td>
+        <td><a href="https://travis-ci.com/rpreen/xcsf"><img src="http://badges.herokuapp.com/travis/rpreen/xcsf?env=BADGE=osx&label=build&branch=master"></a></td>
         <td><a href="https://ci.appveyor.com/project/rpreen/xcsf"><img src="https://ci.appveyor.com/api/projects/status/s4xge68jmlbam005?svg=true"></a></td>
     </tr>
 </table>
