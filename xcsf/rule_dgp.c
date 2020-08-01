@@ -178,7 +178,7 @@ int rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x)
     (void)x; // graph already updated
     const RULE_DGP *cond = c->cond;
     int action = 0;
-    for(int i = 0; i < cond->n_outputs; i++) {
+    for(int i = 0; i < cond->n_outputs; ++i) {
         if(graph_output(xcsf, &cond->dgp, i + 1) > 0.5) {
             action += (int) pow(2, i);
         }

@@ -84,12 +84,12 @@ void env_maze_init(XCSF *xcsf, const char *fname)
     int c;
     while((c = fgetc(fp)) != EOF) {
         if(c == '\n') {
-            y++;
+            ++y;
             env->xsize = x;
             x = 0;
         } else {
             env->maze[y][x] = (char)c;
-            x++;
+            ++x;
         }
         // check maximum maze size not exceeded
         if(x > MAX_SIZE || y > MAX_SIZE) {
@@ -160,8 +160,8 @@ const double *env_maze_get_state(const XCSF *xcsf)
 {
     const ENV_MAZE *env = xcsf->env;
     int spos = 0;
-    for(int y = -1; y < 2; y++) {
-        for(int x = -1; x < 2; x++) {
+    for(int y = -1; y < 2; ++y) {
+        for(int x = -1; x < 2; ++x) {
             // ignore current pos
             if(x == 0 && y == 0) {
                 continue;
@@ -172,7 +172,7 @@ const double *env_maze_get_state(const XCSF *xcsf)
             char s = env->maze[ysense][xsense];
             // convert sensor to real number
             env->state[spos] = env_maze_sensor(xcsf, s);
-            spos++;
+            ++spos;
         }
     }
     return env->state;
@@ -283,8 +283,8 @@ _Bool env_maze_multistep(const XCSF *xcsf)
 static void env_maze_print(const XCSF *xcsf)
 {
     const ENV_MAZE *env = xcsf->env;
-    for(int y = 0; y < env->ysize; y++) {
-        for(int x = 0; x < env->xsize; x++) {
+    for(int y = 0; y < env->ysize; ++y) {
+        for(int x = 0; x < env->xsize; ++x) {
             if(x == env->xpos && y == env->ypos) {
                 printf("X");
             } else {

@@ -362,7 +362,7 @@ static void config_get_ints(char *str, int *val)
     while(ptok != NULL) {
         val[num] = (int) strtoimax(ptok, &end, BASE);
         ptok = strtok_r(NULL, ARRAY_DELIM, &saveptr);
-        num++;
+        ++num;
     }
 }
 
@@ -375,7 +375,7 @@ static void config_trim(char *s)
     const char *d = s;
     do {
         while(*d == ' ' || *d == '\t' || *d == '\n' || *d == '\r') {
-            d++;
+            ++d;
         }
     } while((*s++ = *d++));
 }
@@ -390,7 +390,7 @@ static void config_newnvpair(XCSF *xcsf, const char *param)
     // get length of name
     size_t namelen = 0;
     _Bool err = true;
-    for(namelen = 0; namelen < strnlen(param, MAXLEN); namelen++) {
+    for(namelen = 0; namelen < strnlen(param, MAXLEN); ++namelen) {
         if(param[namelen] == '=') {
             err = false;
             break;
@@ -401,14 +401,14 @@ static void config_newnvpair(XCSF *xcsf, const char *param)
     }
     // get name
     char *name = malloc(namelen + 1);
-    for(size_t i = 0; i < namelen; i++) {
+    for(size_t i = 0; i < namelen; ++i) {
         name[i] = param[i];
     }
     name[namelen] = '\0';
     // get value
     size_t valuelen = strnlen(param, MAXLEN) - namelen; // length of value
     char *value = malloc(valuelen + 1);
-    for(size_t i = 0; i < valuelen; i++) {
+    for(size_t i = 0; i < valuelen; ++i) {
         value[i] = param[namelen + 1 + i];
     }
     value[valuelen] = '\0';

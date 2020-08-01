@@ -52,7 +52,7 @@ void pred_neural_init(const XCSF *xcsf, CL *c)
     uint32_t lopt = pred_neural_lopt(xcsf);
     LAYER *l;
     int n_inputs = xcsf->x_dim;
-    for(int i = 0; i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; i++) {
+    for(int i = 0; i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; ++i) {
         int hinit = xcsf->PRED_NUM_NEURONS[i];
         int hmax = xcsf->PRED_MAX_NEURONS[i];
         if(hmax < hinit || !xcsf->PRED_EVOLVE_NEURONS) {
@@ -132,7 +132,7 @@ void pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     const PRED_NEURAL *pred = c->pred;
     neural_propagate(xcsf, &pred->net, x);
-    for(int i = 0; i < xcsf->y_dim; i++) {
+    for(int i = 0; i < xcsf->y_dim; ++i) {
         c->prediction[i] = neural_output(xcsf, &pred->net, i);
     }
 }
@@ -187,7 +187,7 @@ double pred_neural_eta(const XCSF *xcsf, const CL *c, int layer)
         if(i == layer) {
             return iter->layer->eta;
         }
-        i++;
+        ++i;
     }
     return 0;
 }
@@ -202,7 +202,7 @@ int pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer)
         if(i == layer) {
             return iter->layer->n_outputs;
         }
-        i++;
+        ++i;
     }
     return 0;
 }
@@ -217,7 +217,7 @@ int pred_neural_connections(const XCSF *xcsf, const CL *c, int layer)
         if(i == layer) {
             return iter->layer->n_active;
         }
-        i++;
+        ++i;
     }
     return 0;
 }
@@ -262,7 +262,7 @@ void pred_neural_ae_to_classifier(const XCSF *xcsf, const CL *c, int n_del)
     NET *net = &pred->net;
     LAYER *l;
     // remove decoder layers
-    for(int i = 0; i < n_del && net->n_layers > 1; i++) {
+    for(int i = 0; i < n_del && net->n_layers > 1; ++i) {
         neural_layer_remove(xcsf, net, net->n_layers - 1);
     }
     // add new softmax output

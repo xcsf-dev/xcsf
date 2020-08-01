@@ -94,7 +94,7 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
     l->workspace_size = get_workspace_size(l);
     layer_init_eta(xcsf, l);
     malloc_layer_arrays(l);
-    for(int i = 0; i < l->n_weights; i++) {
+    for(int i = 0; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 0.1);
         l->weight_active[i] = true;
     }
@@ -220,8 +220,8 @@ void neural_layer_convolutional_forward(const XCSF *xcsf, const LAYER *l,
         im2col(input, l->channels, l->height, l->width, l->size, l->stride, l->pad, b);
         blas_gemm(0, 0, m, n, k, 1, a, k, b, n, 1, c, n);
     }
-    for(int i = 0; i < l->n_biases; i++) {
-        for(int j = 0; j < n; j++) {
+    for(int i = 0; i < l->n_biases; ++i) {
+        for(int j = 0; j < n; ++j) {
             l->state[i * n + j] += l->biases[i];
         }
     }
@@ -237,7 +237,7 @@ void neural_layer_convolutional_backward(const XCSF *xcsf, const LAYER *l,
     int k = l->out_w * l->out_h;
     if(l->options & LAYER_SGD_WEIGHTS) {
         neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
-        for(int i = 0; i < l->n_biases; i++) {
+        for(int i = 0; i < l->n_biases; ++i) {
             l->bias_updates[i] += blas_sum(l->delta + k * i, k);
         }
         const double *a = l->delta;
@@ -413,12 +413,12 @@ static void im2col(const double *data_im, int channels, int height, int width,
     int height_col = (height + 2 * pad - ksize) / stride + 1;
     int width_col = (width + 2 * pad - ksize) / stride + 1;
     int channels_col = channels * ksize * ksize;
-    for(int c = 0; c < channels_col; c++) {
+    for(int c = 0; c < channels_col; ++c) {
         int w_offset = c % ksize;
         int h_offset = (c / ksize) % ksize;
         int c_im = c / ksize / ksize;
-        for(int h = 0; h < height_col; h++) {
-            for(int w = 0; w < width_col; w++) {
+        for(int h = 0; h < height_col; ++h) {
+            for(int w = 0; w < width_col; ++w) {
                 int im_row = h_offset + h * stride;
                 int im_col = w_offset + w * stride;
                 int col_index = (c * height_col + h) * width_col + w;
@@ -446,12 +446,12 @@ static void col2im(const double *data_col, int channels, int height, int width,
     int height_col = (height + 2 * pad - ksize) / stride + 1;
     int width_col = (width + 2 * pad - ksize) / stride + 1;
     int channels_col = channels * ksize * ksize;
-    for(int c = 0; c < channels_col; c++) {
+    for(int c = 0; c < channels_col; ++c) {
         int w_offset = c % ksize;
         int h_offset = (c / ksize) % ksize;
         int c_im = c / ksize / ksize;
-        for(int h = 0; h < height_col; h++) {
-            for(int w = 0; w < width_col; w++) {
+        for(int h = 0; h < height_col; ++h) {
+            for(int w = 0; w < width_col; ++w) {
                 int im_row = h_offset + h * stride;
                 int im_col = w_offset + w * stride;
                 int col_index = (c * height_col + h) * width_col + w;

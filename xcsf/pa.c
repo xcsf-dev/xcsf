@@ -49,7 +49,7 @@ void pa_init(XCSF *xcsf)
  */
 static void pa_reset(const XCSF *xcsf)
 {
-    for(int i = 0; i < xcsf->pa_size; i++) {
+    for(int i = 0; i < xcsf->pa_size; ++i) {
         xcsf->pa[i] = 0;
         xcsf->nr[i] = 0;
     }
@@ -71,7 +71,7 @@ void pa_build(const XCSF *xcsf, const double *x)
 #ifdef PARALLEL_PRED
     CL *clist[set->size];
     CLIST *iter = set->list;
-    for(int i = 0; i < set->size; i++) {
+    for(int i = 0; i < set->size; ++i) {
         clist[i] = NULL;
         if(iter != NULL) {
             clist[i] = iter->cl;
@@ -79,11 +79,11 @@ void pa_build(const XCSF *xcsf, const double *x)
         }
     }
     #pragma omp parallel for reduction(+:pa[:xcsf->pa_size],nr[:xcsf->pa_size])
-    for(int i = 0; i < set->size; i++) {
+    for(int i = 0; i < set->size; ++i) {
         if(clist[i] != NULL) {
             const double *predictions = cl_predict(xcsf, clist[i], x);
             double fitness = clist[i]->fit;
-            for(int j = 0; j < xcsf->y_dim; j++) {
+            for(int j = 0; j < xcsf->y_dim; ++j) {
                 pa[clist[i]->action * xcsf->y_dim + j] += predictions[j] * fitness;
                 nr[clist[i]->action * xcsf->y_dim + j] += fitness;
             }
@@ -93,14 +93,14 @@ void pa_build(const XCSF *xcsf, const double *x)
     for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
         double fitness = iter->cl->fit;
-        for(int j = 0; j < xcsf->y_dim; j++) {
+        for(int j = 0; j < xcsf->y_dim; ++j) {
             pa[iter->cl->action * xcsf->y_dim + j] += predictions[j] * fitness;
             nr[iter->cl->action * xcsf->y_dim + j] += fitness;
         }
     }
 #endif
-    for(int i = 0; i < xcsf->n_actions; i++) {
-        for(int j = 0; j < xcsf->y_dim; j++) {
+    for(int i = 0; i < xcsf->n_actions; ++i) {
+        for(int j = 0; j < xcsf->y_dim; ++j) {
             int k = i * xcsf->y_dim + j;
             if(nr[k] != 0) {
                 pa[k] /= nr[k];
@@ -119,7 +119,7 @@ void pa_build(const XCSF *xcsf, const double *x)
 int pa_best_action(const XCSF *xcsf)
 {
     int action = 0;
-    for(int i = 1; i < xcsf->n_actions; i++) {
+    for(int i = 1; i < xcsf->n_actions; ++i) {
         if(xcsf->pa[action] < xcsf->pa[i]) {
             action = i;
         }
@@ -149,7 +149,7 @@ int pa_rand_action(const XCSF *xcsf)
 double pa_best_val(const XCSF *xcsf)
 {
     double max = xcsf->pa[0];
-    for(int i = 1; i < xcsf->n_actions; i++) {
+    for(int i = 1; i < xcsf->n_actions; ++i) {
         if(max < xcsf->pa[i]) {
             max = xcsf->pa[i];
         }

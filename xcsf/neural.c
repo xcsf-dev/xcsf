@@ -76,7 +76,7 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
     // insert
     else {
         LLIST *iter = net->tail;
-        for(int i = 0; i < p && iter != NULL; i++) {
+        for(int i = 0; i < p && iter != NULL; ++i) {
             iter = iter->prev;
         }
         LLIST *new = malloc(sizeof(LLIST));
@@ -103,7 +103,7 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
             }
         }
     }
-    net->n_layers++;
+    ++(net->n_layers);
 }
 
 /**
@@ -116,7 +116,7 @@ void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
 {
     // find the layer
     LLIST *iter = net->tail;
-    for(int i = 0; i < p && iter != NULL; i++) {
+    for(int i = 0; i < p && iter != NULL; ++i) {
         iter = iter->prev;
     }
     if(iter == NULL) {
@@ -167,7 +167,7 @@ void neural_copy(const XCSF *xcsf, NET *dest, const NET *src)
         const LAYER *f = iter->layer;
         LAYER *l = layer_copy(xcsf, f);
         neural_layer_insert(xcsf, dest, l, p);
-        p++;
+        ++p;
     }
 }
 
@@ -278,7 +278,7 @@ void neural_learn(const XCSF *xcsf, const NET *net, const double *truth,
     }
     // calculate output layer error
     const LAYER *p = net->head->layer;
-    for(int i = 0; i < p->n_outputs; i++) {
+    for(int i = 0; i < p->n_outputs; ++i) {
         p->delta[i] = (truth[i] - p->output[i]);
     }
     /* backward phase */
@@ -326,7 +326,7 @@ void neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
     for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         printf("layer (%d) ", i);
         layer_print(xcsf, iter->layer, print_weights);
-        i++;
+        ++i;
     }
 }
 
@@ -392,7 +392,7 @@ size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp)
     s += fread(&ninputs, sizeof(int), 1, fp);
     s += fread(&noutputs, sizeof(int), 1, fp);
     neural_init(xcsf, net);
-    for(int i = 0; i < nlayers; i++) {
+    for(int i = 0; i < nlayers; ++i) {
         LAYER *l = malloc(sizeof(LAYER));
         s += fread(&l->layer_type, sizeof(int), 1, fp);
         layer_set_vptr(l);

@@ -137,7 +137,7 @@ static void clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev)
         total_vote += cl_del_vote(xcsf, iter->cl, avg_fit);
     }
     int delsize = 0;
-    for(int i = 0; i < 2; i++) {
+    for(int i = 0; i < 2; ++i) {
         // perform a single roulette spin with the deletion vote
         CLIST *iter = xcsf->pset.list;
         CLIST *prev = NULL;
@@ -185,15 +185,15 @@ void clset_match(XCSF *xcsf, const double *x)
     int j = 0;
     for(CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         blist[j] = iter;
-        j++;
+        ++j;
     }
     // update current matching conditions setting m flags in parallel
     #pragma omp parallel for
-    for(int i = 0; i < xcsf->pset.size; i++) {
+    for(int i = 0; i < xcsf->pset.size; ++i) {
         cl_match(xcsf, blist[i]->cl, x);
     }
     // build match set list in series
-    for(int i = 0; i < xcsf->pset.size; i++) {
+    for(int i = 0; i < xcsf->pset.size; ++i) {
         if(cl_m(xcsf, blist[i]->cl)) {
             clset_add(&xcsf->mset, blist[i]->cl);
             cl_action(xcsf, blist[i]->cl, x);
@@ -229,7 +229,7 @@ static void clset_cover(XCSF *xcsf, const double *x)
     _Bool covered = clset_action_coverage(xcsf, act_covered);
     while(!covered) {
         covered = true;
-        for(int i = 0; i < xcsf->n_actions; i++) {
+        for(int i = 0; i < xcsf->n_actions; ++i) {
             if(!act_covered[i]) {
                 // create a new classifier with matching condition and action
                 CL *new = malloc(sizeof(CL));
@@ -252,7 +252,7 @@ static void clset_cover(XCSF *xcsf, const double *x)
                 covered = clset_action_coverage(xcsf, act_covered);
             }
         }
-        attempts++;
+        ++attempts;
         if(attempts > MAX_COVER) {
             printf("Error: maximum covering attempts (%d) exceeded\n", MAX_COVER);
             exit(EXIT_FAILURE);
@@ -273,7 +273,7 @@ static _Bool clset_action_coverage(const XCSF *xcsf, _Bool *act_covered)
     for(const CLIST *iter = xcsf->mset.list; iter != NULL; iter = iter->next) {
         act_covered[iter->cl->action] = true;
     }
-    for(int i = 0; i < xcsf->n_actions; i++) {
+    for(int i = 0; i < xcsf->n_actions; ++i) {
         if(!act_covered[i]) {
             return false;
         }
@@ -312,8 +312,8 @@ void clset_add(SET *set, CL *c)
         new->next = set->list;
         set->list = new;
     }
-    set->size++;
-    set->num++;
+    ++(set->size);
+    ++(set->num);
 }
 
 /**
@@ -331,10 +331,10 @@ void clset_update(XCSF *xcsf, SET *set, const double *x, const double *y, _Bool 
     int j = 0;
     for(CLIST *iter = set->list; iter != NULL && j < set->size; iter = iter->next) {
         blist[j] = iter;
-        j++;
+        ++j;
     }
     #pragma omp parallel for
-    for(int i = 0; i < set->size; i++) {
+    for(int i = 0; i < set->size; ++i) {
         cl_update(xcsf, blist[i]->cl, x, y, set->num, cur);
     }
 #else
@@ -362,13 +362,13 @@ static void clset_update_fit(const XCSF *xcsf, const SET *set)
     for(const CLIST *iter = set->list; iter != NULL && i < set->size; iter = iter->next) {
         accs[i] = cl_acc(xcsf, iter->cl);
         acc_sum += accs[i] * iter->cl->num;
-        i++;
+        ++i;
     }
     // update fitnesses
     i = 0;
     for(const CLIST *iter = set->list; iter != NULL && i < set->size; iter = iter->next) {
         cl_update_fit(xcsf, iter->cl, acc_sum, accs[i]);
-        i++;
+        ++i;
     }
 }
 
@@ -428,7 +428,7 @@ void clset_validate(SET *set)
                 iter = prev->next;
             }
         } else {
-            set->size++;
+            ++(set->size);
             set->num += iter->cl->num;
             prev = iter;
             iter = iter->next;
@@ -567,7 +567,7 @@ size_t clset_pop_load(XCSF *xcsf, FILE *fp)
     s += fread(&size, sizeof(int), 1, fp);
     s += fread(&num, sizeof(int), 1, fp);
     clset_init(&xcsf->pset);
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < size; ++i) {
         CL *c = malloc(sizeof(CL));
         s += cl_load(xcsf, c, fp);
         clset_add(&xcsf->pset, c);
@@ -587,7 +587,7 @@ double clset_mean_cond_size(const XCSF *xcsf, const SET *set)
     int cnt = 0;
     for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += cl_cond_size(xcsf, iter->cl);
-        cnt++;
+        ++cnt;
     }
     return (double) sum / cnt;
 }
@@ -604,7 +604,7 @@ double clset_mean_pred_size(const XCSF *xcsf, const SET *set)
     int cnt = 0;
     for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         sum += cl_pred_size(xcsf, iter->cl);
-        cnt++;
+        ++cnt;
     }
     return (double) sum / cnt;
 }

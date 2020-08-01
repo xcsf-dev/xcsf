@@ -560,12 +560,12 @@ static void param_print_cl_condition(const XCSF *xcsf)
     printf(", COND_EVOLVE_CONNECTIVITY=");
     xcsf->COND_EVOLVE_CONNECTIVITY == true ? printf("true") : printf("false");
     printf(", COND_NUM_NEURONS=[");
-    for(int i = 0;  i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; i++) {
+    for(int i = 0;  i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
         printf("%d;", xcsf->COND_NUM_NEURONS[i]);
     }
     printf("]");
     printf(", COND_MAX_NEURONS=[");
-    for(int i = 0;  i < MAX_LAYERS && xcsf->COND_MAX_NEURONS[i] > 0; i++) {
+    for(int i = 0;  i < MAX_LAYERS && xcsf->COND_MAX_NEURONS[i] > 0; ++i) {
         printf("%d;", xcsf->COND_MAX_NEURONS[i]);
     }
     printf("]");
@@ -698,12 +698,12 @@ static void param_print_cl_prediction(const XCSF *xcsf)
     xcsf->PRED_SGD_WEIGHTS == true ? printf("true") : printf("false");
     printf(", PRED_MOMENTUM=%f", xcsf->PRED_MOMENTUM);
     printf(", PRED_NUM_NEURONS=[");
-    for(int i = 0;  i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; i++) {
+    for(int i = 0;  i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; ++i) {
         printf("%d;", xcsf->PRED_NUM_NEURONS[i]);
     }
     printf("]");
     printf(", PRED_MAX_NEURONS=[");
-    for(int i = 0;  i < MAX_LAYERS && xcsf->PRED_MAX_NEURONS[i] > 0; i++) {
+    for(int i = 0;  i < MAX_LAYERS && xcsf->PRED_MAX_NEURONS[i] > 0; ++i) {
         printf("%d;", xcsf->PRED_MAX_NEURONS[i]);
     }
     printf("]");

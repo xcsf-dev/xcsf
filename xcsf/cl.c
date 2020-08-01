@@ -151,7 +151,7 @@ double cl_acc(const XCSF *xcsf, const CL *c)
 void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int set_num,
                _Bool cur)
 {
-    c->exp++;
+    ++(c->exp);
     // propagate inputs for the previous state update
     if(cur == false) {
         cl_predict(xcsf, c, x);
@@ -262,9 +262,9 @@ _Bool cl_match(const XCSF *xcsf, CL *c, const double *x)
 {
     c->m = cond_match(xcsf, c, x);
     if(c->m) {
-        c->mtotal++;
+        ++(c->mtotal);
     }
-    c->age++;
+    ++(c->age);
     return c->m;
 }
 

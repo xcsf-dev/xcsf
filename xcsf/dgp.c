@@ -46,13 +46,13 @@ static _Bool graph_mutate_cycles(const XCSF *xcsf, GRAPH *dgp);
  * @brief Initialises a new DGP graph.
  * @param xcsf The XCSF data structure.
  * @param dgp The DGP graph to initialise.
- * @param n The number of nodes in the graph.
+ * @param N The number of nodes in the graph.
  */
-void graph_init(const XCSF *xcsf, GRAPH *dgp, int n)
+void graph_init(const XCSF *xcsf, GRAPH *dgp, int N)
 {
     dgp->t = 0;
-    dgp->n = n;
-    dgp->klen = n * xcsf->MAX_K;
+    dgp->n = N;
+    dgp->klen = N * xcsf->MAX_K;
     dgp->state = malloc(sizeof(double) * dgp->n);
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
     dgp->tmp_state = malloc(sizeof(double) * dgp->n);
@@ -85,13 +85,13 @@ void graph_copy(const XCSF *xcsf, GRAPH *dest, const GRAPH *src)
  * @brief Returns the current state of a specified node in the graph.
  * @param xcsf The XCSF data structure.
  * @param dgp The DGP graph to output.
- * @param i Which node within the graph to output.
+ * @param IDX Which node within the graph to output.
  * @return The current state of the specified node.
  */
-double graph_output(const XCSF *xcsf, const GRAPH *dgp, int i)
+double graph_output(const XCSF *xcsf, const GRAPH *dgp, int IDX)
 {
     (void)xcsf;
-    return dgp->state[i];
+    return dgp->state[IDX];
 }
 
 /**
@@ -102,7 +102,7 @@ double graph_output(const XCSF *xcsf, const GRAPH *dgp, int i)
 void graph_reset(const XCSF *xcsf, const GRAPH *dgp)
 {
     (void)xcsf;
-    for(int i = 0; i < dgp->n; i++) {
+    for(int i = 0; i < dgp->n; ++i) {
         dgp->state[i] = dgp->initial_state[i];
     }
 }
@@ -115,12 +115,12 @@ void graph_reset(const XCSF *xcsf, const GRAPH *dgp)
 void graph_rand(const XCSF *xcsf, GRAPH *dgp)
 {
     dgp->t = irand_uniform(1, xcsf->MAX_T);
-    for(int i = 0; i < dgp->n; i++) {
+    for(int i = 0; i < dgp->n; ++i) {
         dgp->function[i] = irand_uniform(0, NUM_FUNC);
         dgp->initial_state[i] = rand_uniform(0, 1);
         dgp->state[i] = rand_uniform(0, 1);
     }
-    for(int i = 0; i < dgp->klen; i++) {
+    for(int i = 0; i < dgp->klen; ++i) {
         dgp->connectivity[i] = random_connection(dgp->n, xcsf->x_dim);
     }
 }
@@ -151,7 +151,7 @@ void graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
     if(!xcsf->STATEFUL) {
         graph_reset(xcsf, dgp);
     }
-    for(int t = 0; t < dgp->t; t++) {
+    for(int t = 0; t < dgp->t; ++t) {
         synchronous_update(xcsf, dgp, inputs);
     }
 }
@@ -164,8 +164,8 @@ void graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
  */
 static void synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
 {
-    for(int i = 0; i < dgp->n; i++) {
-        for(int k = 0; k < xcsf->MAX_K; k++) {
+    for(int i = 0; i < dgp->n; ++i) {
+        for(int k = 0; k < xcsf->MAX_K; ++k) {
             int c = dgp->connectivity[i * xcsf->MAX_K + k];
             if(c < xcsf->x_dim) { // external input
                 dgp->tmp_input[k] = inputs[c];
@@ -186,12 +186,12 @@ static void synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double 
 void graph_print(const XCSF *xcsf, const GRAPH *dgp)
 {
     printf("Graph: N=%d; T=%d\n", dgp->n, dgp->t);
-    for(int i = 0; i < dgp->n; i++) {
+    for(int i = 0; i < dgp->n; ++i) {
         printf("Node %d: func=%s state=%f init_state=%f con=[",
                i, function_string(dgp->function[i]),
                dgp->state[i], dgp->initial_state[i]);
         printf("%d", dgp->connectivity[0]);
-        for(int j = 1; j < xcsf->MAX_K; j++) {
+        for(int j = 1; j < xcsf->MAX_K; ++j) {
             printf(",%d", dgp->connectivity[i]);
         }
         printf("]\n");
@@ -224,9 +224,15 @@ _Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp)
 {
     _Bool mod = false;
     sam_adapt(xcsf, dgp->mu, DGP_N_MU);
-    mod = graph_mutate_functions(xcsf, dgp) ? true : mod;
-    mod = graph_mutate_connectivity(xcsf, dgp) ? true : mod;
-    mod = graph_mutate_cycles(xcsf, dgp) ? true : mod;
+    if(graph_mutate_functions(xcsf, dgp)) {
+        mod = true;
+    }
+    if(graph_mutate_connectivity(xcsf, dgp)) {
+        mod = true;
+    }
+    if(graph_mutate_cycles(xcsf, dgp)) {
+        mod = true;
+    }
     return mod;
 }
 
@@ -240,7 +246,7 @@ static _Bool graph_mutate_functions(const XCSF *xcsf, GRAPH *dgp)
 {
     (void)xcsf;
     _Bool mod = false;
-    for(int i = 0; i < dgp->n; i++) {
+    for(int i = 0; i < dgp->n; ++i) {
         if(rand_uniform(0, 1) < dgp->mu[0]) {
             int orig = dgp->function[i];
             dgp->function[i] = irand_uniform(0, NUM_FUNC);
@@ -261,7 +267,7 @@ static _Bool graph_mutate_functions(const XCSF *xcsf, GRAPH *dgp)
 static _Bool graph_mutate_connectivity(const XCSF *xcsf, GRAPH *dgp)
 {
     _Bool mod = false;
-    for(int i = 0; i < dgp->klen; i++) {
+    for(int i = 0; i < dgp->klen; ++i) {
         if(rand_uniform(0, 1) < dgp->mu[1]) {
             int orig = dgp->connectivity[i];
             dgp->connectivity[i] = random_connection(dgp->n, xcsf->x_dim);
@@ -308,10 +314,10 @@ _Bool graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
  * @brief Returns the result from applying a specified activation function.
  * @param function The activation function to apply.
  * @param inputs The input to the activation function.
- * @param k The number of inputs to the activation function.
+ * @param K The number of inputs to the activation function.
  * @return The result from applying the activation function.
  */
-static double node_activate(int function, const double *inputs, int k)
+static double node_activate(int function, const double *inputs, int K)
 {
     double state = 0;
     switch(function) {
@@ -320,13 +326,13 @@ static double node_activate(int function, const double *inputs, int k)
             break;
         case 1: // Fuzzy AND (CFMQVS)
             state = inputs[0];
-            for(int i = 1; i < k; i++) {
+            for(int i = 1; i < K; ++i) {
                 state *= inputs[i];
             }
             break;
         case 2: // Fuzzy OR (CFMQVS)
             state = inputs[0];
-            for(int i = 1; i < k; i++) {
+            for(int i = 1; i < K; ++i) {
                 state += inputs[i];
             }
             break;

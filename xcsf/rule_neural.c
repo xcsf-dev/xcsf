@@ -63,7 +63,7 @@ void rule_neural_cond_init(const XCSF *xcsf, CL *c)
         l = neural_layer_recurrent_init(xcsf, n_inputs, hinit, hmax, f, lopt);
         neural_layer_insert(xcsf, &new->net, l, i);
         n_inputs = hinit;
-        i++;
+        ++i;
     }
     // output layer
     int f = xcsf->COND_OUTPUT_ACTIVATION;
@@ -226,7 +226,7 @@ int rule_neural_act_compute(const XCSF *xcsf, const CL *c, const double *x)
     (void)x; // network already updated
     const RULE_NEURAL *cond = c->cond;
     int action = 0;
-    for(int i = 0; i < cond->n_outputs; i++) {
+    for(int i = 0; i < cond->n_outputs; ++i) {
         if(neural_output(xcsf, &cond->net, i + 1) > 0.5) {
             action += (int) pow(2, i);
         }

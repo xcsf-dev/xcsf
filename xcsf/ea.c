@@ -64,7 +64,7 @@ void ea(XCSF *xcsf, const SET *set)
     CL *c2p;
     ea_select_parents(xcsf, set, &c1p, &c2p);
     // create offspring
-    for(int i = 0; i < xcsf->LAMBDA / 2; i++) {
+    for(int i = 0; i < xcsf->LAMBDA / 2; ++i) {
         // create copies of parents
         CL *c1 = malloc(sizeof(CL));
         CL *c2 = malloc(sizeof(CL));
@@ -127,8 +127,8 @@ static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool c
                    _Bool mmod)
 {
     if(!cmod && !mmod) {
-        c1p->num++;
-        xcsf->pset.num++;
+        ++(c1p->num);
+        ++(xcsf->pset.num);
         cl_free(xcsf, c1);
     } else if(xcsf->EA_SUBSUMPTION) {
         ea_subsume(xcsf, c1, c1p, c2p, set);
@@ -149,12 +149,12 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
 {
     // check if either parent subsumes the offspring
     if(cl_subsumer(xcsf, c1p) && cl_general(xcsf, c1p, c)) {
-        c1p->num++;
-        xcsf->pset.num++;
+        ++(c1p->num);
+        ++(xcsf->pset.num);
         cl_free(xcsf, c);
     } else if(cl_subsumer(xcsf, c2p) && cl_general(xcsf, c2p, c)) {
-        c2p->num++;
-        xcsf->pset.num++;
+        ++(c2p->num);
+        ++(xcsf->pset.num);
         cl_free(xcsf, c);
     }
     // attempt to find a random subsumer from the set
@@ -164,13 +164,13 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
         for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             if(cl_subsumer(xcsf, iter->cl) && cl_general(xcsf, iter->cl, c)) {
                 candidates[choices] = iter;
-                choices++;
+                ++choices;
             }
         }
         // found
         if(choices > 0) {
-            candidates[irand_uniform(0, choices)]->cl->num++;
-            xcsf->pset.num++;
+            ++(candidates[irand_uniform(0, choices)]->cl->num);
+            ++(xcsf->pset.num);
             cl_free(xcsf, c);
         }
         // if no subsumers are found the offspring is added to the population

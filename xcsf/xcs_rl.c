@@ -52,7 +52,7 @@ double xcs_rl_exp(XCSF *xcsf)
     double werr = 0; // prediction error: windowed total
     double tperf = 0; // steps to goal: total over all trials
     double wperf = 0; // steps to goal: windowed total
-    for(int cnt = 0; cnt < xcsf->MAX_TRIALS; cnt++) {
+    for(int cnt = 0; cnt < xcsf->MAX_TRIALS; ++cnt) {
         xcs_rl_trial(xcsf, &error, true); // explore
         double perf = xcs_rl_trial(xcsf, &error, false); // exploit
         wperf += perf;
@@ -89,7 +89,7 @@ static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
         xcs_rl_update(xcsf, state, action, reward, reset);
         *error += xcs_rl_error(xcsf, action, reward, reset, env_max_payoff(xcsf));
         xcs_rl_end_step(xcsf, state, action, reward);
-        steps++;
+        ++steps;
     }
     xcs_rl_end_trial(xcsf);
     *error /= steps;

@@ -52,7 +52,7 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
     uint32_t lopt = cond_neural_lopt(xcsf);
     LAYER *l;
     int n_inputs = xcsf->x_dim;
-    for(int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; i++) {
+    for(int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
         int hinit = xcsf->COND_NUM_NEURONS[i];
         int hmax = xcsf->COND_MAX_NEURONS[i];
         if(hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {
@@ -189,7 +189,7 @@ int cond_neural_neurons(const XCSF *xcsf, const CL *c, int layer)
         if(i == layer) {
             return iter->layer->n_outputs;
         }
-        i++;
+        ++i;
     }
     return 0;
 }
@@ -204,7 +204,7 @@ int cond_neural_connections(const XCSF *xcsf, const CL *c, int layer)
         if(i == layer) {
             return iter->layer->n_active;
         }
-        i++;
+        ++i;
     }
     return 0;
 }

@@ -147,7 +147,7 @@ const char *neural_activation_string(int a)
  */
 void neural_activate_array(double *state, double *output, int n, int a)
 {
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < n; ++i) {
         state[i] = clamp(NEURON_MIN, NEURON_MAX, state[i]);
         output[i] = neural_activate(a, state[i]);
     }
@@ -162,7 +162,7 @@ void neural_activate_array(double *state, double *output, int n, int a)
  */
 void neural_gradient_array(const double *state, double *delta, int n, int a)
 {
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < n; ++i) {
         delta[i] *= neural_gradient(a, state[i]);
     }
 }

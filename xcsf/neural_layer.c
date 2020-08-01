@@ -132,7 +132,7 @@ void layer_add_neurons(LAYER *l, int N)
     l->bias_updates = realloc(l->bias_updates, n_outputs * sizeof(double));
     l->delta = realloc(l->delta, n_outputs * sizeof(double));
     if(N > 0) {
-        for(int i = l->n_weights; i < n_weights; i++) {
+        for(int i = l->n_weights; i < n_weights; ++i) {
             if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
                 l->weights[i] = 0;
                 l->weight_active[i] = false;
@@ -143,7 +143,7 @@ void layer_add_neurons(LAYER *l, int N)
             }
             l->weight_updates[i] = 0;
         }
-        for(int i = l->n_outputs; i < n_outputs; i++) {
+        for(int i = l->n_outputs; i < n_outputs; ++i) {
             l->biases[i] = 0;
             l->bias_updates[i] = 0;
             l->output[i] = 0;
@@ -168,7 +168,7 @@ _Bool layer_mutate_connectivity(LAYER *l, double mu)
         return false;
     }
     _Bool mod = false;
-    for(int i = 0; i < l->n_weights; i++) {
+    for(int i = 0; i < l->n_weights; ++i) {
         if(rand_uniform(0, 1) < mu) {
             l->weight_active[i] = ! l->weight_active[i];
             if(l->weight_active[i]) {
@@ -202,7 +202,7 @@ _Bool layer_mutate_connectivity(LAYER *l, double mu)
 _Bool layer_mutate_weights(LAYER *l, double mu)
 {
     _Bool mod = false;
-    for(int i = 0; i < l->n_weights; i++) {
+    for(int i = 0; i < l->n_weights; ++i) {
         if(l->weight_active[i]) {
             double orig = l->weights[i];
             l->weights[i] += rand_normal(0, mu);
@@ -212,7 +212,7 @@ _Bool layer_mutate_weights(LAYER *l, double mu)
             }
         }
     }
-    for(int i = 0; i < l->n_biases; i++) {
+    for(int i = 0; i < l->n_biases; ++i) {
         double orig = l->biases[i];
         l->biases[i] += rand_normal(0, mu);
         l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
@@ -258,13 +258,13 @@ void layer_weight_print(const LAYER *l, _Bool print_weights)
 {
     printf("weights (%d): ", l->n_weights);
     if(print_weights) {
-        for(int i = 0; i < l->n_weights; i++) {
+        for(int i = 0; i < l->n_weights; ++i) {
             printf("%.4f, ", l->weights[i]);
         }
     }
     printf("biases (%d): ", l->n_biases);
     if(print_weights) {
-        for(int i = 0; i < l->n_biases; i++) {
+        for(int i = 0; i < l->n_biases; ++i) {
             printf("%.4f, ", l->biases[i]);
         }
     }
@@ -280,11 +280,11 @@ void layer_weight_rand(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
     l->n_active = l->n_weights;
-    for(int i = 0; i < l->n_weights; i++) {
+    for(int i = 0; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 1);
         l->weight_active[i] = true;
     }
-    for(int i = 0; i < l->n_biases; i++) {
+    for(int i = 0; i < l->n_biases; ++i) {
         l->biases[i] = rand_normal(0, 1);
     }
 }
@@ -295,14 +295,14 @@ void layer_weight_rand(const XCSF *xcsf, LAYER *l)
  */
 void layer_weight_clamp(const LAYER *l)
 {
-    for(int i = 0; i < l->n_weights; i++) {
+    for(int i = 0; i < l->n_weights; ++i) {
         if(l->weight_active[i]) {
             l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
         } else {
             l->weights[i] = 0;
         }
     }
-    for(int i = 0; i < l->n_biases; i++) {
+    for(int i = 0; i < l->n_biases; ++i) {
         l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
     }
 }
@@ -314,7 +314,7 @@ void layer_weight_clamp(const LAYER *l)
 void layer_calc_n_active(LAYER *l)
 {
     l->n_active = l->n_weights;
-    for(int i = 0; i < l->n_weights; i++) {
+    for(int i = 0; i < l->n_weights; ++i) {
         if(l->weights[i] == 0) {
             l->n_active -= 1;
         }

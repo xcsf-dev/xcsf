@@ -49,7 +49,7 @@ double clset_mean_cond_layers(const XCSF *xcsf, const SET *set)
     if(xcsf->COND_TYPE == COND_TYPE_NEURAL || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += cond_neural_layers(xcsf, iter->cl);
-            cnt++;
+            ++cnt;
         }
     }
     if(cnt != 0) {
@@ -71,7 +71,7 @@ double clset_mean_cond_neurons(const XCSF *xcsf, const SET *set, int layer)
     if(xcsf->COND_TYPE == COND_TYPE_NEURAL || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += cond_neural_neurons(xcsf, iter->cl, layer);
-            cnt++;
+            ++cnt;
         }
     }
     if(cnt != 0) {
@@ -94,7 +94,7 @@ double clset_mean_cond_connections(const XCSF *xcsf, const SET *set, int layer)
     if(xcsf->COND_TYPE == COND_TYPE_NEURAL || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += cond_neural_connections(xcsf, iter->cl, layer);
-            cnt++;
+            ++cnt;
         }
     }
     if(cnt != 0) {
@@ -117,7 +117,7 @@ double clset_mean_pred_neurons(const XCSF *xcsf, const SET *set, int layer)
     if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += pred_neural_neurons(xcsf, iter->cl, layer);
-            cnt++;
+            ++cnt;
         }
     }
     if(cnt != 0) {
@@ -139,7 +139,7 @@ double clset_mean_pred_layers(const XCSF *xcsf, const SET *set)
     if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += pred_neural_layers(xcsf, iter->cl);
-            cnt++;
+            ++cnt;
         }
     }
     if(cnt != 0) {
@@ -162,7 +162,7 @@ double clset_mean_pred_eta(const XCSF *xcsf, const SET *set, int layer)
     if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += pred_neural_eta(xcsf, iter->cl, layer);
-            cnt++;
+            ++cnt;
         }
     }
     if(cnt != 0) {
@@ -185,7 +185,7 @@ double clset_mean_pred_connections(const XCSF *xcsf, const SET *set, int layer)
     if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
         for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += pred_neural_connections(xcsf, iter->cl, layer);
-            cnt++;
+            ++cnt;
         }
     }
     if(cnt != 0) {

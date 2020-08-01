@@ -286,7 +286,7 @@ class XCS
         py::list get_cond_num_neurons()
         {
             py::list list;
-            for(int i = 0; i < MAX_LAYERS && xcs.COND_NUM_NEURONS[i] > 0; i++) {
+            for(int i = 0; i < MAX_LAYERS && xcs.COND_NUM_NEURONS[i] > 0; ++i) {
                 list.append(xcs.COND_NUM_NEURONS[i]);
             }
             return list;
@@ -295,7 +295,7 @@ class XCS
         py::list get_cond_max_neurons()
         {
             py::list list;
-            for(int i = 0; i < MAX_LAYERS && xcs.COND_MAX_NEURONS[i] > 0; i++) {
+            for(int i = 0; i < MAX_LAYERS && xcs.COND_MAX_NEURONS[i] > 0; ++i) {
                 list.append(xcs.COND_MAX_NEURONS[i]);
             }
             return list;
@@ -304,7 +304,7 @@ class XCS
         py::list get_pred_num_neurons()
         {
             py::list list;
-            for(int i = 0; i < MAX_LAYERS && xcs.PRED_NUM_NEURONS[i] > 0; i++) {
+            for(int i = 0; i < MAX_LAYERS && xcs.PRED_NUM_NEURONS[i] > 0; ++i) {
                 list.append(xcs.PRED_NUM_NEURONS[i]);
             }
             return list;
@@ -313,7 +313,7 @@ class XCS
         py::list get_pred_max_neurons()
         {
             py::list list;
-            for(int i = 0; i < MAX_LAYERS && xcs.PRED_MAX_NEURONS[i] > 0; i++) {
+            for(int i = 0; i < MAX_LAYERS && xcs.PRED_MAX_NEURONS[i] > 0; ++i) {
                 list.append(xcs.PRED_MAX_NEURONS[i]);
             }
             return list;
@@ -724,7 +724,7 @@ class XCS
         void set_cond_num_neurons(py::list &a)
         {
             memset(xcs.COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-            for(size_t i = 0; i < a.size(); i++) {
+            for(size_t i = 0; i < a.size(); ++i) {
                 xcs.COND_NUM_NEURONS[i] = a[i].cast<int>();
             }
         }
@@ -732,7 +732,7 @@ class XCS
         void set_cond_max_neurons(py::list &a)
         {
             memset(xcs.COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
-            for(size_t i = 0; i < a.size(); i++) {
+            for(size_t i = 0; i < a.size(); ++i) {
                 xcs.COND_MAX_NEURONS[i] = a[i].cast<int>();
             }
         }
@@ -740,7 +740,7 @@ class XCS
         void set_pred_num_neurons(py::list &a)
         {
             memset(xcs.PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-            for(size_t i = 0; i < a.size(); i++) {
+            for(size_t i = 0; i < a.size(); ++i) {
                 xcs.PRED_NUM_NEURONS[i] = a[i].cast<int>();
             }
         }
@@ -748,7 +748,7 @@ class XCS
         void set_pred_max_neurons(py::list &a)
         {
             memset(xcs.PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
-            for(size_t i = 0; i < a.size(); i++) {
+            for(size_t i = 0; i < a.size(); ++i) {
                 xcs.PRED_MAX_NEURONS[i] = a[i].cast<int>();
             }
         }

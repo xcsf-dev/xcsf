@@ -92,7 +92,7 @@ void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x, const doub
     double norm = xcsf->PRED_X0 * xcsf->PRED_X0;
     norm += blas_dot(xcsf->x_dim, x, 1, x, 1);
     // update weights using the error
-    for(int var = 0; var < xcsf->y_dim; var++) {
+    for(int var = 0; var < xcsf->y_dim; ++var) {
         double error = y[var] - c->prediction[var];
         double correction = (pred->eta * error) / norm;
         blas_axpy(n, correction, pred->tmp_input, 1, &pred->weights[var * n], 1);
@@ -104,7 +104,7 @@ void pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x)
     const PRED_NLMS *pred = c->pred;
     int n = pred->n;
     pred_transform_input(xcsf, x, pred->tmp_input);
-    for(int var = 0; var < xcsf->y_dim; var++) {
+    for(int var = 0; var < xcsf->y_dim; ++var) {
         c->prediction[var] = blas_dot(n, &pred->weights[var * n], 1, pred->tmp_input, 1);
     }
 }
@@ -114,8 +114,8 @@ void pred_nlms_print(const XCSF *xcsf, const CL *c)
     const PRED_NLMS *pred = c->pred;
     int n = pred->n;
     printf("eta: %.5f, weights: ", pred->eta);
-    for(int var = 0; var < xcsf->y_dim; var++) {
-        for(int i = 0; i < n; i++) {
+    for(int var = 0; var < xcsf->y_dim; ++var) {
+        for(int i = 0; i < n; ++i) {
             printf("%f, ", pred->weights[var * n + i]);
         }
         printf("\n");

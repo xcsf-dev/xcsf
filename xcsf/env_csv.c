@@ -136,7 +136,7 @@ static int env_csv_samples(FILE *fin)
     int n_samples = 0;
     char line[MAX_COLS];
     while(fgets(line, MAX_COLS, fin) != NULL) {
-        n_samples++;
+        ++n_samples;
     }
     return n_samples;
 }
@@ -156,7 +156,7 @@ static int env_csv_dim(FILE *fin)
         const char *ptok = strtok_r(line, DELIM, &saveptr);
         while(ptok != NULL) {
             if(strnlen(ptok, MAX_COLS) > 0) {
-                n_dim++;
+                ++n_dim;
             }
             ptok = strtok_r(NULL, DELIM, &saveptr);
         }
@@ -180,10 +180,10 @@ static void env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim
     int i = 0;
     while(fgets(line, MAX_COLS, fin) != NULL && i < n_samples) {
         (*data)[i * n_dim] = atof(strtok_r(line, DELIM, &saveptr));
-        for(int j = 1; j < n_dim; j++) {
+        for(int j = 1; j < n_dim; ++j) {
             (*data)[i * n_dim + j] = atof(strtok_r(NULL, DELIM, &saveptr));
         }
-        i++;
+        ++i;
     }
 }
 

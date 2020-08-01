@@ -67,7 +67,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int n_inputs, int n_init, i
     l->n_active = l->n_weights;
     layer_init_eta(xcsf, l);
     malloc_layer_arrays(l);
-    for(int i = 0; i < l->n_weights; i++) {
+    for(int i = 0; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 0.1);
         l->weight_active[i] = true;
     }
@@ -194,10 +194,10 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
     double *weights = malloc(sizeof(double) * n_weights);
     double *weight_updates = malloc(sizeof(double) * n_weights);
     _Bool *weight_active = malloc(sizeof(_Bool) * n_weights);
-    for(int i = 0; i < l->n_outputs; i++) {
+    for(int i = 0; i < l->n_outputs; ++i) {
         int orig_offset = i * l->n_inputs;
         int offset = i * prev->n_outputs;
-        for(int j = 0; j < prev->n_outputs; j++) {
+        for(int j = 0; j < prev->n_outputs; ++j) {
             if(j < l->n_inputs) {
                 weights[offset + j] = l->weights[orig_offset + j];
                 weight_updates[offset + j] = l->weight_updates[orig_offset + j];

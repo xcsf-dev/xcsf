@@ -111,7 +111,7 @@ void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double
     if(!xcsf->explore) {
         memcpy(l->output, input, sizeof(double) * l->n_inputs);
     } else {
-        for(int i = 0; i < l->n_inputs; i++) {
+        for(int i = 0; i < l->n_inputs; ++i) {
             l->state[i] = rand_uniform(0, 1);
             if(l->state[i] < l->probability) {
                 l->output[i] = 0;
@@ -130,7 +130,7 @@ void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const doubl
     if(!delta) {
         return;
     }
-    for(int i = 0; i < l->n_inputs; i++) {
+    for(int i = 0; i < l->n_inputs; ++i) {
         if(l->state[i] < l->probability) {
             delta[i] = 0;
         } else {

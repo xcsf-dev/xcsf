@@ -58,7 +58,7 @@ static void cond_ternary_rand(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     const COND_TERNARY *cond = c->cond;
-    for(int i = 0; i < cond->length; i++) {
+    for(int i = 0; i < cond->length; ++i) {
         if(rand_uniform(0, 1) < P_DONTCARE) {
             cond->string[i] = DONT_CARE;
         } else if(rand_uniform(0, 1) < 0.5) {
@@ -96,9 +96,9 @@ void cond_ternary_copy(const XCSF *xcsf, CL *dest, const CL *src)
 void cond_ternary_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_TERNARY *cond = c->cond;
-    for(int i = 0; i < xcsf->x_dim; i++) {
+    for(int i = 0; i < xcsf->x_dim; ++i) {
         float_to_binary(x[i], cond->tmp_input, xcsf->COND_BITS);
-        for(int j = 0; j < xcsf->COND_BITS; j++) {
+        for(int j = 0; j < xcsf->COND_BITS; ++j) {
             if(rand_uniform(0, 1) < P_DONTCARE) {
                 cond->string[i * xcsf->COND_BITS + j] = DONT_CARE;
             } else {
@@ -119,9 +119,9 @@ void cond_ternary_update(const XCSF *xcsf, const CL *c, const double *x, const d
 _Bool cond_ternary_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_TERNARY *cond = c->cond;
-    for(int i = 0; i < xcsf->x_dim; i++) {
+    for(int i = 0; i < xcsf->x_dim; ++i) {
         float_to_binary(x[i], cond->tmp_input, xcsf->COND_BITS);
-        for(int j = 0; j < xcsf->COND_BITS; j++) {
+        for(int j = 0; j < xcsf->COND_BITS; ++j) {
             char s = cond->string[i * xcsf->COND_BITS + j];
             if(s != DONT_CARE && s != cond->tmp_input[j]) {
                 return false;
@@ -137,7 +137,7 @@ _Bool cond_ternary_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
     const COND_TERNARY *cond2 = c2->cond;
     _Bool changed = false;
     if(rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
-        for(int i = 0; i < cond1->length; i++) {
+        for(int i = 0; i < cond1->length; ++i) {
             if(rand_uniform(0, 1) < 0.5) {
                 char tmp = cond1->string[i];
                 cond1->string[i] = cond2->string[i];
@@ -154,7 +154,7 @@ _Bool cond_ternary_mutate(const XCSF *xcsf, const CL *c)
     const COND_TERNARY *cond = c->cond;
     sam_adapt(xcsf, cond->mu, N_MU);
     _Bool changed = false;
-    for(int i = 0; i < cond->length; i++) {
+    for(int i = 0; i < cond->length; ++i) {
         if(rand_uniform(0, 1) < cond->mu[0]) {
             if(cond->string[i] == DONT_CARE) {
                 cond->string[i] = (char) irand_uniform(0, 2) + '0';
@@ -173,7 +173,7 @@ _Bool cond_ternary_general(const XCSF *xcsf, const CL *c1, const CL *c2)
     const COND_TERNARY *cond1 = c1->cond;
     const COND_TERNARY *cond2 = c2->cond;
     _Bool general = false;
-    for(int i = 0; i < cond1->length; i++) {
+    for(int i = 0; i < cond1->length; ++i) {
         if(cond1->string[i] != DONT_CARE && cond1->string[i] != cond2->string[i]) {
             return false;
         } else if(cond1->string[i] != cond2->string[i]) {
@@ -188,7 +188,7 @@ void cond_ternary_print(const XCSF *xcsf, const CL *c)
     (void)xcsf;
     const COND_TERNARY *cond = c->cond;
     printf("ternary:");
-    for(int i = 0; i < cond->length; i++) {
+    for(int i = 0; i < cond->length; ++i) {
         printf("%c", cond->string[i]);
     }
     printf("\n");
@@ -242,7 +242,7 @@ size_t cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp)
 static void float_to_binary(double f, char *binary, int bits)
 {
     int a = (int)(f * pow(2, bits));
-    for(int i = 0; i < bits; i++) {
+    for(int i = 0; i < bits; ++i) {
         binary[i] = (a % 2) + '0';
         a /= 2;
     }
