@@ -43,9 +43,10 @@ void cond_ellipsoid_init(const XCSF *xcsf, CL *c)
     new->center = malloc(sizeof(double) * xcsf->x_dim);
     new->spread = malloc(sizeof(double) * xcsf->x_dim);
     new->mu = malloc(sizeof(double) * N_MU);
+    double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
     for (int i = 0; i < xcsf->x_dim; ++i) {
         new->center[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
-        new->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
+        new->spread[i] = rand_uniform(xcsf->COND_SMIN, spread_max);
     }
     sam_init(xcsf, new->mu, N_MU);
     c->cond = new;
@@ -77,9 +78,10 @@ void cond_ellipsoid_copy(const XCSF *xcsf, CL *dest, const CL *src)
 void cond_ellipsoid_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_ELLIPSOID *cond = c->cond;
+    double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
     for (int i = 0; i < xcsf->x_dim; ++i) {
         cond->center[i] = x[i];
-        cond->spread[i] = rand_uniform(xcsf->COND_SMIN, fabs(xcsf->COND_MAX - xcsf->COND_MIN));
+        cond->spread[i] = rand_uniform(xcsf->COND_SMIN, spread_max);
     }
 }
 
