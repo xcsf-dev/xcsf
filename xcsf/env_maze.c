@@ -55,12 +55,9 @@
 #include "env.h"
 #include "env_maze.h"
 
-#define MAZE_DEBUG (false) //!< Whether to print the state of the maze during exploitation
 #define MAX_PAYOFF (1.) //!< The payoff provided at a food position
 static const int x_moves[] = { 0, +1, +1, +1,  0, -1, -1, -1}; //!< Possible maze moves on x-axis
 static const int y_moves[] = {-1, -1,  0, +1, +1, +1,  0, -1}; //!< Possible maze moves on y-axis
-
-static void env_maze_print(const XCSF *xcsf);
 
 static double env_maze_sensor(const XCSF *xcsf, char s);
 
@@ -134,10 +131,6 @@ void env_maze_reset(const XCSF *xcsf)
         env->xpos = irand_uniform(0, env->xsize);
         env->ypos = irand_uniform(0, env->ysize);
     } while (env->maze[env->ypos][env->xpos] != '*');
-    if (MAZE_DEBUG && !xcsf->explore) {
-        printf("------------\n");
-        env_maze_print(xcsf);
-    }
 }
 
 /**
@@ -248,9 +241,6 @@ double env_maze_execute(const XCSF *xcsf, int action)
             printf("invalid maze type\n");
             exit(EXIT_FAILURE);
     }
-    if (MAZE_DEBUG && !xcsf->explore) {
-        env_maze_print(xcsf);
-    }
     return reward;
 }
 
@@ -274,24 +264,4 @@ _Bool env_maze_multistep(const XCSF *xcsf)
 {
     (void)xcsf;
     return true;
-}
-
-/**
- * @brief Prints the current state of the maze environment.
- * @param xcsf The XCSF data structure.
- */
-static void env_maze_print(const XCSF *xcsf)
-{
-    const ENV_MAZE *env = xcsf->env;
-    for (int y = 0; y < env->ysize; ++y) {
-        for (int x = 0; x < env->xsize; ++x) {
-            if (x == env->xpos && y == env->ypos) {
-                printf("X");
-            } else {
-                printf("%c", env->maze[y][x]);
-            }
-        }
-        printf("\n");
-    }
-    printf("\n");
 }
