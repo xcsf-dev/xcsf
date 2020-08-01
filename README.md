@@ -82,7 +82,7 @@ See `default.ini` for a full list of options.
 
 ### Stand-alone binary
  
-* C11 compliant compiler.
+* [C11](https://en.wikipedia.org/wiki/C11_(C_standard_revision)) compliant compiler.
 * [CMake](https://www.cmake.org "CMake") (>= 3.12)
 * [OpenMP](https://www.openmp.org "OpenMP") (Optional: PARALLEL=ON): supported by [GCC](https://gcc.gnu.org "GCC") and [Clang](https://clang.llvm.org "clang") with libomp.
 
