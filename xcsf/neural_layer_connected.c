@@ -50,8 +50,9 @@ static void malloc_layer_arrays(LAYER *l);
  * @param o The bitwise options specifying which operations can be performed.
  * @return A pointer to the new layer.
  */
-LAYER *neural_layer_connected_init(const XCSF *xcsf, int n_inputs, int n_init, int n_max,
-                                   int f, uint32_t o)
+LAYER *
+neural_layer_connected_init(const XCSF *xcsf, int n_inputs, int n_init,
+                            int n_max, int f, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
@@ -76,10 +77,11 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int n_inputs, int n_init, i
     return l;
 }
 
-static void malloc_layer_arrays(LAYER *l)
+static void
+malloc_layer_arrays(LAYER *l)
 {
     if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX ||
-            l->n_weights < 1 || l->n_weights > N_WEIGHTS_MAX) {
+        l->n_weights < 1 || l->n_weights > N_WEIGHTS_MAX) {
         printf("neural_layer_connected: malloc() invalid size\n");
         l->n_weights = 1;
         l->n_outputs = 1;
@@ -96,7 +98,8 @@ static void malloc_layer_arrays(LAYER *l)
     l->mu = malloc(sizeof(double) * N_MU);
 }
 
-void neural_layer_connected_free(const XCSF *xcsf, const LAYER *l)
+void
+neural_layer_connected_free(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
     free(l->state);
@@ -110,7 +113,8 @@ void neural_layer_connected_free(const XCSF *xcsf, const LAYER *l)
     free(l->mu);
 }
 
-LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *src)
+LAYER *
+neural_layer_connected_copy(const XCSF *xcsf, const LAYER *src)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
@@ -134,12 +138,15 @@ LAYER *neural_layer_connected_copy(const XCSF *xcsf, const LAYER *src)
     return l;
 }
 
-void neural_layer_connected_rand(const XCSF *xcsf, LAYER *l)
+void
+neural_layer_connected_rand(const XCSF *xcsf, LAYER *l)
 {
     layer_weight_rand(xcsf, l);
 }
 
-void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const double *input)
+void
+neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l,
+                               const double *input)
 {
     (void)xcsf;
     int k = l->n_inputs;
@@ -152,8 +159,9 @@ void neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l, const doub
     neural_activate_array(l->state, l->output, l->n_outputs, l->function);
 }
 
-void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l,
-                                     const double *input, double *delta)
+void
+neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l,
+                                const double *input, double *delta)
 {
     (void)xcsf;
     neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
@@ -176,7 +184,8 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l,
     }
 }
 
-void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
+void
+neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
         blas_axpy(l->n_biases, l->eta, l->bias_updates, 1, l->biases, 1);
@@ -187,7 +196,8 @@ void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
     }
 }
 
-void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
+void
+neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     (void)xcsf;
     int n_weights = prev->n_outputs * l->n_outputs;
@@ -220,11 +230,13 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
     layer_calc_n_active(l);
 }
 
-_Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
+_Bool
+neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
-    if ((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
+    if ((l->options & LAYER_EVOLVE_ETA) &&
+        layer_mutate_eta(xcsf, l, l->mu[0])) {
         mod = true;
     }
     if (l->options & LAYER_EVOLVE_NEURONS) {
@@ -234,25 +246,31 @@ _Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
             mod = true;
         }
     }
-    if ((l->options & LAYER_EVOLVE_CONNECT) && layer_mutate_connectivity(l, l->mu[2])) {
+    if ((l->options & LAYER_EVOLVE_CONNECT) &&
+        layer_mutate_connectivity(l, l->mu[2])) {
         mod = true;
     }
-    if ((l->options & LAYER_EVOLVE_WEIGHTS) && layer_mutate_weights(l, l->mu[3])) {
+    if ((l->options & LAYER_EVOLVE_WEIGHTS) &&
+        layer_mutate_weights(l, l->mu[3])) {
         mod = true;
     }
-    if ((l->options & LAYER_EVOLVE_FUNCTIONS) && layer_mutate_functions(l, l->mu[4])) {
+    if ((l->options & LAYER_EVOLVE_FUNCTIONS) &&
+        layer_mutate_functions(l, l->mu[4])) {
         mod = true;
     }
     return mod;
 }
 
-double *neural_layer_connected_output(const XCSF *xcsf, const LAYER *l)
+double *
+neural_layer_connected_output(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
     return l->output;
 }
 
-void neural_layer_connected_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
+void
+neural_layer_connected_print(const XCSF *xcsf, const LAYER *l,
+                             _Bool print_weights)
 {
     (void)xcsf;
     printf("connected %s, in = %d, out = %d, ",
@@ -261,7 +279,8 @@ void neural_layer_connected_print(const XCSF *xcsf, const LAYER *l, _Bool print_
     printf("\n");
 }
 
-size_t neural_layer_connected_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
+size_t
+neural_layer_connected_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
@@ -283,7 +302,8 @@ size_t neural_layer_connected_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
     return s;
 }
 
-size_t neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
+size_t
+neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;

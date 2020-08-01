@@ -56,8 +56,8 @@
 #include "env_maze.h"
 
 #define MAX_PAYOFF (1.) //!< The payoff provided at a food position
-static const int x_moves[] = { 0, +1, +1, +1,  0, -1, -1, -1}; //!< Possible maze moves on x-axis
-static const int y_moves[] = {-1, -1,  0, +1, +1, +1,  0, -1}; //!< Possible maze moves on y-axis
+static const int x_moves[] = { 0, +1, +1, +1,  0, -1, -1, -1}; //!< x-axis moves
+static const int y_moves[] = {-1, -1,  0, +1, +1, +1,  0, -1}; //!< y-axis moves
 
 static double env_maze_sensor(const XCSF *xcsf, char s);
 
@@ -66,7 +66,8 @@ static double env_maze_sensor(const XCSF *xcsf, char s);
  * @param xcsf The XCSF data structure.
  * @param fname The file name of the specified maze environment.
  */
-void env_maze_init(XCSF *xcsf, const char *fname)
+void
+env_maze_init(XCSF *xcsf, const char *fname)
 {
     // open maze file
     FILE *fp = fopen(fname, "rt");
@@ -112,7 +113,8 @@ void env_maze_init(XCSF *xcsf, const char *fname)
  * @brief Frees the maze environment.
  * @param xcsf The XCSF data structure.
  */
-void env_maze_free(const XCSF *xcsf)
+void
+env_maze_free(const XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     free(env->state);
@@ -123,7 +125,8 @@ void env_maze_free(const XCSF *xcsf)
  * @brief Resets the animat to a random empty position in the maze.
  * @param xcsf The XCSF data structure.
  */
-void env_maze_reset(const XCSF *xcsf)
+void
+env_maze_reset(const XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     env->reset = false;
@@ -138,7 +141,8 @@ void env_maze_reset(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return Whether the maze needs to be reset.
  */
-_Bool env_maze_isreset(const XCSF *xcsf)
+_Bool
+env_maze_isreset(const XCSF *xcsf)
 {
     const ENV_MAZE *env = xcsf->env;
     return env->reset;
@@ -149,7 +153,8 @@ _Bool env_maze_isreset(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return The current animat perceptions.
  */
-const double *env_maze_get_state(const XCSF *xcsf)
+const double *
+env_maze_get_state(const XCSF *xcsf)
 {
     const ENV_MAZE *env = xcsf->env;
     int spos = 0;
@@ -177,7 +182,8 @@ const double *env_maze_get_state(const XCSF *xcsf)
  * @param s The char value of the sensor.
  * @return A float encoding of the sensor.
  */
-static double env_maze_sensor(const XCSF *xcsf, char s)
+static double
+env_maze_sensor(const XCSF *xcsf, char s)
 {
     (void)xcsf;
     double ret = 0;
@@ -210,7 +216,8 @@ static double env_maze_sensor(const XCSF *xcsf, char s)
  * @param action The action to perform.
  * @return The payoff from performing the action.
  */
-double env_maze_execute(const XCSF *xcsf, int action)
+double
+env_maze_execute(const XCSF *xcsf, int action)
 {
     if (action < 0 || action > 7) {
         printf("invalid maze action\n");
@@ -218,8 +225,10 @@ double env_maze_execute(const XCSF *xcsf, int action)
     }
     ENV_MAZE *env = xcsf->env;
     // toroidal maze
-    int newx = ((env->xpos + x_moves[action]) % env->xsize + env->xsize) % env->xsize;
-    int newy = ((env->ypos + y_moves[action]) % env->ysize + env->ysize) % env->ysize;
+    int newx = ((env->xpos + x_moves[action]) % env->xsize + env->xsize) %
+               env->xsize;
+    int newy = ((env->ypos + y_moves[action]) % env->ysize + env->ysize) %
+               env->ysize;
     // make the move and recieve reward
     double reward = 0;
     switch (env->maze[newy][newx]) {
@@ -249,7 +258,8 @@ double env_maze_execute(const XCSF *xcsf, int action)
  * @param xcsf The XCSF data structure.
  * @return The maximum payoff.
  */
-double env_maze_maxpayoff(const XCSF *xcsf)
+double
+env_maze_maxpayoff(const XCSF *xcsf)
 {
     (void)xcsf;
     return MAX_PAYOFF;
@@ -260,7 +270,8 @@ double env_maze_maxpayoff(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return True
  */
-_Bool env_maze_multistep(const XCSF *xcsf)
+_Bool
+env_maze_multistep(const XCSF *xcsf)
 {
     (void)xcsf;
     return true;

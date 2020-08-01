@@ -24,10 +24,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void gemm_nn(int M, int N, int K, double ALPHA,
-                    const double *A, int lda,
-                    const double *B, int ldb,
-                    double *C, int ldc)
+static void
+gemm_nn(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
 {
     for (int i = 0; i < M; ++i) {
         for (int k = 0; k < K; ++k) {
@@ -39,10 +40,11 @@ static void gemm_nn(int M, int N, int K, double ALPHA,
     }
 }
 
-static void gemm_nt(int M, int N, int K, double ALPHA,
-                    const double *A, int lda,
-                    const double *B, int ldb,
-                    double *C, int ldc)
+static void
+gemm_nt(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
 {
     for (int i = 0; i < M; ++i) {
         for (int j = 0; j < N; ++j) {
@@ -55,10 +57,11 @@ static void gemm_nt(int M, int N, int K, double ALPHA,
     }
 }
 
-static void gemm_tn(int M, int N, int K, double ALPHA,
-                    const double *A, int lda,
-                    const double *B, int ldb,
-                    double *C, int ldc)
+static void
+gemm_tn(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
 {
     for (int i = 0; i < M; ++i) {
         for (int k = 0; k < K; ++k) {
@@ -70,10 +73,11 @@ static void gemm_tn(int M, int N, int K, double ALPHA,
     }
 }
 
-static void gemm_tt(int M, int N, int K, double ALPHA,
-                    const double *A, int lda,
-                    const double *B, int ldb,
-                    double *C, int ldc)
+static void
+gemm_tt(int M, int N, int K, double ALPHA,
+        const double *A, int lda,
+        const double *B, int ldb,
+        double *C, int ldc)
 {
     for (int i = 0; i < M; ++i) {
         for (int j = 0; j < N; ++j) {
@@ -95,19 +99,22 @@ static void gemm_tt(int M, int N, int K, double ALPHA,
  * @param N Number of columns of matrix op(B) and C.
  * @param K Number of columns of op(A) and rows of op(B).
  * @param ALPHA Scalar used for multiplication.
- * @param A Array of dimension lda × K with lda >= max(1,M) if TA=0 and lda × M with lda >= max(1,K) otherwise.
- * @param lda Leading dimension of two-dimensional array used to store the matrix A.
- * @param B Array of dimension ldb × N with ldb >= max(1,K) if TB=0 and ldb × K with ldb >= max(1,N) otherwise.
- * @param ldb Leading dimension of two-dimensional array used to store matrix B.
+ * @param A Array of dimension lda × K with lda >= max(1,M) if TA=0 and lda × M
+ * with lda >= max(1,K) otherwise.
+ * @param lda Leading dimension of a 2-D array used to store the matrix A.
+ * @param B Array of dimension ldb × N with ldb >= max(1,K) if TB=0 and ldb × K
+ * with ldb >= max(1,N) otherwise.
+ * @param ldb Leading dimension of a 2-D array used to store the matrix B.
  * @param BETA Scalar used for multiplication.
  * @param C Array of dimension ldc × N with ldc >= max(1,M).
- * @param ldc Leading dimension of a two-dimensional array used to store the matrix C.
+ * @param ldc Leading dimension of a 2-D array used to store the matrix C.
  */
-void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
-               const double *A, int lda,
-               const double *B, int ldb,
-               double BETA,
-               double *C, int ldc)
+void
+blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
+          const double *A, int lda,
+          const double *B, int ldb,
+          double BETA,
+          double *C, int ldc)
 {
     for (int i = 0; i < M; ++i) {
         for (int j = 0; j < N; ++j) {
@@ -126,7 +133,7 @@ void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
 }
 
 /**
- * @brief Multiplies the vector X by the scalar ALPHA and adds it to the vector Y.
+ * @brief Multiplies vector X by the scalar ALPHA and adds it to the vector Y.
  * @param N The number of elements in vectors X and Y.
  * @param ALPHA Scalar used for multiplication.
  * @param X Vector with N elements.
@@ -134,7 +141,8 @@ void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
  * @param Y Vector with N elements.
  * @param INCY Stride between consecutive elements of Y.
  */
-void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
+void
+blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
 {
     if (ALPHA != 1) {
         for (int i = 0; i < N; ++i) {
@@ -148,13 +156,14 @@ void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int IN
 }
 
 /**
- * @brief Scales the vector X by the scalar ALPHA and overwrites it with the result.
+ * @brief Scales vector X by the scalar ALPHA and overwrites it with the result.
  * @param N The number of elements in vector X.
  * @param ALPHA Scalar used for multiplication.
  * @param X Vector with N elements.
  * @param INCX Stride between consecutive elements of X.
  */
-void blas_scal(int N, double ALPHA, double *X, int INCX)
+void
+blas_scal(int N, double ALPHA, double *X, int INCX)
 {
     if (ALPHA != 0) {
         for (int i = 0; i < N; ++i) {
@@ -174,7 +183,8 @@ void blas_scal(int N, double ALPHA, double *X, int INCX)
  * @param X Vector with N elements.
  * @param INCX Stride between consecutive elements of X.
  */
-void blas_fill(int N, double ALPHA, double *X, int INCX)
+void
+blas_fill(int N, double ALPHA, double *X, int INCX)
 {
     for (int i = 0; i < N; ++i) {
         X[i * INCX] = ALPHA;
@@ -190,7 +200,8 @@ void blas_fill(int N, double ALPHA, double *X, int INCX)
  * @param INCY Stride between consecutive elements of Y.
  * @return The resulting dot product.
  */
-double blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
+double
+blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
 {
     double dot = 0;
     for (int i = 0; i < N; ++i) {
@@ -200,14 +211,15 @@ double blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
 }
 
 /**
- * @brief Multiplies the vector X by the vector Y and stores the result in vector Y.
+ * @brief Multiplies vector X by the vector Y and stores the result in vector Y.
  * @param N The number of elements in vectors X and Y.
  * @param X Vector with N elements.
  * @param INCX Stride between consecutive elements of X.
  * @param Y Vector with N elements.
  * @param INCY Stride between consecutive elements of Y.
  */
-void blas_mul(int N, const double *X, int INCX, double *Y, int INCY)
+void
+blas_mul(int N, const double *X, int INCX, double *Y, int INCY)
 {
     for (int i = 0; i < N; ++i) {
         Y[i * INCY] *= X[i * INCX];
@@ -220,7 +232,8 @@ void blas_mul(int N, const double *X, int INCX, double *Y, int INCY)
  * @param N The number of elements in vector X.
  * @return The resulting sum.
  */
-double blas_sum(const double *X, int N)
+double
+blas_sum(const double *X, int N)
 {
     double sum = 0;
     for (int i = 0; i < N; ++i) {

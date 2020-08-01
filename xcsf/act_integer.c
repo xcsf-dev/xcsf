@@ -33,7 +33,8 @@
 
 #define N_MU (1) //!< Number of integer action mutation rates
 
-_Bool act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+_Bool
+act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf;
     (void)c1;
@@ -41,7 +42,8 @@ _Bool act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
     return false;
 }
 
-_Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
+_Bool
+act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf;
     const ACT_INTEGER *act1 = c1->act;
@@ -52,7 +54,8 @@ _Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
     return true;
 }
 
-_Bool act_integer_mutate(const XCSF *xcsf, const CL *c)
+_Bool
+act_integer_mutate(const XCSF *xcsf, const CL *c)
 {
     ACT_INTEGER *act = c->act;
     sam_adapt(xcsf, act->mu, N_MU);
@@ -66,7 +69,8 @@ _Bool act_integer_mutate(const XCSF *xcsf, const CL *c)
     return false;
 }
 
-int act_integer_compute(const XCSF *xcsf, const CL *c, const double *x)
+int
+act_integer_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     (void)xcsf;
     (void)x;
@@ -74,7 +78,8 @@ int act_integer_compute(const XCSF *xcsf, const CL *c, const double *x)
     return act->action;
 }
 
-void act_integer_copy(const XCSF *xcsf, CL *dest, const CL *src)
+void
+act_integer_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     (void)xcsf;
     ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
@@ -85,14 +90,16 @@ void act_integer_copy(const XCSF *xcsf, CL *dest, const CL *src)
     dest->act = new;
 }
 
-void act_integer_print(const XCSF *xcsf, const CL *c)
+void
+act_integer_print(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     const ACT_INTEGER *act = c->act;
     printf("%d\n", act->action);
 }
 
-void act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int action)
+void
+act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int action)
 {
     (void)xcsf;
     (void)x;
@@ -100,7 +107,8 @@ void act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int actio
     act->action = action;
 }
 
-void act_integer_free(const XCSF *xcsf, const CL *c)
+void
+act_integer_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     const ACT_INTEGER *act = c->act;
@@ -108,7 +116,8 @@ void act_integer_free(const XCSF *xcsf, const CL *c)
     free(c->act);
 }
 
-void act_integer_init(const XCSF *xcsf, CL *c)
+void
+act_integer_init(const XCSF *xcsf, CL *c)
 {
     ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
     new->mu = malloc(sizeof(double) * N_MU);
@@ -117,7 +126,9 @@ void act_integer_init(const XCSF *xcsf, CL *c)
     c->act = new;
 }
 
-void act_integer_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+void
+act_integer_update(const XCSF *xcsf, const CL *c, const double *x,
+                   const double *y)
 {
     (void)xcsf;
     (void)c;
@@ -125,7 +136,8 @@ void act_integer_update(const XCSF *xcsf, const CL *c, const double *x, const do
     (void)y;
 }
 
-size_t act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp)
+size_t
+act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
@@ -135,7 +147,8 @@ size_t act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp)
     return s;
 }
 
-size_t act_integer_load(const XCSF *xcsf, CL *c, FILE *fp)
+size_t
+act_integer_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;

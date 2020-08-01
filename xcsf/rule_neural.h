@@ -70,7 +70,8 @@ _Bool rule_neural_act_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_neural_act_mutate(const XCSF *xcsf, const CL *c);
 int rule_neural_act_compute(const XCSF *xcsf, const CL *c, const double *x);
 void rule_neural_act_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void rule_neural_act_cover(const XCSF *xcsf, const CL *c, const double *x, int action);
+void rule_neural_act_cover(const XCSF *xcsf, const CL *c, const double *x,
+                           int action);
 void rule_neural_act_free(const XCSF *xcsf, const CL *c);
 void rule_neural_act_init(const XCSF *xcsf, CL *c);
 void rule_neural_act_print(const XCSF *xcsf, const CL *c);

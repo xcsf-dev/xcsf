@@ -28,8 +28,11 @@
 #include "utils.h"
 #include "sam.h"
 
-#define N_RATES (10) //!< number of selectable mutation rates for rate selection adaptation
-static const double mrates[N_RATES] = {0.0001, 0.001, 0.002, 0.005, 0.01, 0.01, 0.02, 0.05, 0.1, 1.0};
+#define N_RATES (10) //!< number of mutation rates for rate selection adaptation
+static const double mrates[N_RATES] = {
+    0.0001, 0.001, 0.002, 0.005, 0.01, 0.01, 0.02, 0.05, 0.1, 1.
+};
+
 static void sam_rate_selection_init(double *mu, int n);
 static void sam_rate_selection_adapt(double *mu, int n);
 static void sam_log_normal_init(double *mu, int n);
@@ -41,7 +44,8 @@ static void sam_log_normal_adapt(double *mu, int n);
  * @param mu The classifier's mutation rates.
  * @param n The number of mutation rates.
  */
-void sam_init(const XCSF *xcsf, double *mu, int n)
+void
+sam_init(const XCSF *xcsf, double *mu, int n)
 {
     switch (xcsf->SAM_TYPE) {
         case SAM_LOG_NORMAL:
@@ -62,7 +66,8 @@ void sam_init(const XCSF *xcsf, double *mu, int n)
  * @param mu The classifier's mutation rates.
  * @param n The number of mutation rates.
  */
-void sam_adapt(const XCSF *xcsf, double *mu, int n)
+void
+sam_adapt(const XCSF *xcsf, double *mu, int n)
 {
     switch (xcsf->SAM_TYPE) {
         case SAM_LOG_NORMAL:
@@ -82,7 +87,8 @@ void sam_adapt(const XCSF *xcsf, double *mu, int n)
  * @param mu The mutation rates to initialise.
  * @param n The number of mutation rates.
  */
-static void sam_log_normal_init(double *mu, int n)
+static void
+sam_log_normal_init(double *mu, int n)
 {
     for (int i = 0; i < n; ++i) {
         mu[i] = rand_uniform(0, 1);
@@ -94,7 +100,8 @@ static void sam_log_normal_init(double *mu, int n)
  * @param mu The mutation rates to adapt.
  * @param n The number of mutation rates.
  */
-static void sam_log_normal_adapt(double *mu, int n)
+static void
+sam_log_normal_adapt(double *mu, int n)
 {
     for (int i = 0; i < n; ++i) {
         mu[i] *= exp(rand_normal(0, 1));
@@ -107,7 +114,8 @@ static void sam_log_normal_adapt(double *mu, int n)
  * @param mu The mutation rates to initialise.
  * @param n The number of mutation rates.
  */
-static void sam_rate_selection_init(double *mu, int n)
+static void
+sam_rate_selection_init(double *mu, int n)
 {
     for (int i = 0; i < n; ++i) {
         mu[i] = mrates[irand_uniform(0, N_RATES)];
@@ -120,7 +128,8 @@ static void sam_rate_selection_init(double *mu, int n)
  * @param n The number of mutation rates.
  * @details With 10% probability, randomly selects one of the possible rates.
  */
-static void sam_rate_selection_adapt(double *mu, int n)
+static void
+sam_rate_selection_adapt(double *mu, int n)
 {
     for (int i = 0; i < n; ++i) {
         if (rand_uniform(0, 1) < 0.1) {

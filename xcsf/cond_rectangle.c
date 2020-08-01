@@ -35,9 +35,11 @@
 
 #define N_MU (1) //!< Number of hyperrectangle mutation rates
 
-static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x);
+static double cond_rectangle_dist(const XCSF *xcsf, const CL *c,
+                                  const double *x);
 
-void cond_rectangle_init(const XCSF *xcsf, CL *c)
+void
+cond_rectangle_init(const XCSF *xcsf, CL *c)
 {
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
     new->center = malloc(sizeof(double) * xcsf->x_dim);
@@ -52,7 +54,8 @@ void cond_rectangle_init(const XCSF *xcsf, CL *c)
     c->cond = new;
 }
 
-void cond_rectangle_free(const XCSF *xcsf, const CL *c)
+void
+cond_rectangle_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     const COND_RECTANGLE *cond = c->cond;
@@ -62,7 +65,8 @@ void cond_rectangle_free(const XCSF *xcsf, const CL *c)
     free(c->cond);
 }
 
-void cond_rectangle_copy(const XCSF *xcsf, CL *dest, const CL *src)
+void
+cond_rectangle_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));
     const COND_RECTANGLE *src_cond = src->cond;
@@ -75,7 +79,8 @@ void cond_rectangle_copy(const XCSF *xcsf, CL *dest, const CL *src)
     dest->cond = new;
 }
 
-void cond_rectangle_cover(const XCSF *xcsf, const CL *c, const double *x)
+void
+cond_rectangle_cover(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_RECTANGLE *cond = c->cond;
     double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
@@ -85,8 +90,9 @@ void cond_rectangle_cover(const XCSF *xcsf, const CL *c, const double *x)
     }
 }
 
-void cond_rectangle_update(const XCSF *xcsf, const CL *c, const double *x,
-                           const double *y)
+void
+cond_rectangle_update(const XCSF *xcsf, const CL *c, const double *x,
+                      const double *y)
 {
     (void)y;
     if (xcsf->COND_ETA > 0) {
@@ -97,7 +103,8 @@ void cond_rectangle_update(const XCSF *xcsf, const CL *c, const double *x,
     }
 }
 
-_Bool cond_rectangle_match(const XCSF *xcsf, const CL *c, const double *x)
+_Bool
+cond_rectangle_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     if (cond_rectangle_dist(xcsf, c, x) < 1) {
         return true;
@@ -105,20 +112,22 @@ _Bool cond_rectangle_match(const XCSF *xcsf, const CL *c, const double *x)
     return false;
 }
 
-static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x)
+static double
+cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_RECTANGLE *cond = c->cond;
     double dist = 0;
     for (int i = 0; i < xcsf->x_dim; ++i) {
         double d = fabs((x[i] - cond->center[i]) / cond->spread[i]);
         if (d > dist) {
-            dist = d; // max distance
+            dist = d;
         }
     }
     return dist;
 }
 
-_Bool cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+_Bool
+cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     const COND_RECTANGLE *cond1 = c1->cond;
     const COND_RECTANGLE *cond2 = c2->cond;
@@ -142,7 +151,8 @@ _Bool cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
     return changed;
 }
 
-_Bool cond_rectangle_mutate(const XCSF *xcsf, const CL *c)
+_Bool
+cond_rectangle_mutate(const XCSF *xcsf, const CL *c)
 {
     const COND_RECTANGLE *cond = c->cond;
     sam_adapt(xcsf, cond->mu, N_MU);
@@ -163,7 +173,8 @@ _Bool cond_rectangle_mutate(const XCSF *xcsf, const CL *c)
     return changed;
 }
 
-_Bool cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2)
+_Bool
+cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     const COND_RECTANGLE *cond1 = c1->cond;
     const COND_RECTANGLE *cond2 = c2->cond;
@@ -179,7 +190,8 @@ _Bool cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2)
     return true;
 }
 
-void cond_rectangle_print(const XCSF *xcsf, const CL *c)
+void
+cond_rectangle_print(const XCSF *xcsf, const CL *c)
 {
     const COND_RECTANGLE *cond = c->cond;
     printf("rectangle:");
@@ -190,13 +202,15 @@ void cond_rectangle_print(const XCSF *xcsf, const CL *c)
     printf("\n");
 }
 
-int cond_rectangle_size(const XCSF *xcsf, const CL *c)
+int
+cond_rectangle_size(const XCSF *xcsf, const CL *c)
 {
     (void)c;
     return xcsf->x_dim;
 }
 
-size_t cond_rectangle_save(const XCSF *xcsf, const CL *c, FILE *fp)
+size_t
+cond_rectangle_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     size_t s = 0;
     const COND_RECTANGLE *cond = c->cond;
@@ -206,7 +220,8 @@ size_t cond_rectangle_save(const XCSF *xcsf, const CL *c, FILE *fp)
     return s;
 }
 
-size_t cond_rectangle_load(const XCSF *xcsf, CL *c, FILE *fp)
+size_t
+cond_rectangle_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     size_t s = 0;
     COND_RECTANGLE *new = malloc(sizeof(COND_RECTANGLE));

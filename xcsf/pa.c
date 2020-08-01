@@ -36,7 +36,8 @@ static void pa_reset(const XCSF *xcsf);
  * @brief Initialises the prediction array.
  * @param xcsf The XCSF data structure.
  */
-void pa_init(XCSF *xcsf)
+void
+pa_init(XCSF *xcsf)
 {
     xcsf->pa_size = xcsf->n_actions * xcsf->y_dim;
     xcsf->pa = malloc(sizeof(double) * xcsf->pa_size);
@@ -47,7 +48,8 @@ void pa_init(XCSF *xcsf)
  * @brief Resets the prediction array to zero.
  * @param xcsf The XCSF data structure.
  */
-static void pa_reset(const XCSF *xcsf)
+static void
+pa_reset(const XCSF *xcsf)
 {
     for (int i = 0; i < xcsf->pa_size; ++i) {
         xcsf->pa[i] = 0;
@@ -58,11 +60,12 @@ static void pa_reset(const XCSF *xcsf)
 /**
  * @brief Builds the prediction array for the specified input.
  * @details Calculates the match set mean fitness weighted prediction for each
- * action. For supervised learning n_actions=1; for reinforcement learning y_dim=1.
+ * action. For supervised learning n_actions=1; reinforcement learning y_dim=1.
  * @param xcsf The XCSF data structure.
  * @param x The input state.
  */
-void pa_build(const XCSF *xcsf, const double *x)
+void
+pa_build(const XCSF *xcsf, const double *x)
 {
     const SET *set = &xcsf->mset;
     double *pa = xcsf->pa;
@@ -116,7 +119,8 @@ void pa_build(const XCSF *xcsf, const double *x)
  * @param xcsf The XCSF data structure.
  * @return The best action.
  */
-int pa_best_action(const XCSF *xcsf)
+int
+pa_best_action(const XCSF *xcsf)
 {
     int action = 0;
     for (int i = 1; i < xcsf->n_actions; ++i) {
@@ -132,7 +136,8 @@ int pa_best_action(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return A random action.
  */
-int pa_rand_action(const XCSF *xcsf)
+int
+pa_rand_action(const XCSF *xcsf)
 {
     int action = 0;
     do {
@@ -146,7 +151,8 @@ int pa_rand_action(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return The highest value in the prediction array.
  */
-double pa_best_val(const XCSF *xcsf)
+double
+pa_best_val(const XCSF *xcsf)
 {
     double max = xcsf->pa[0];
     for (int i = 1; i < xcsf->n_actions; ++i) {
@@ -163,7 +169,8 @@ double pa_best_val(const XCSF *xcsf)
  * @param action The specified action.
  * @return The value of the action in the prediction array.
  */
-double pa_val(const XCSF *xcsf, int action)
+double
+pa_val(const XCSF *xcsf, int action)
 {
     if (action >= 0 && action < xcsf->n_actions) {
         return xcsf->pa[action];
@@ -176,7 +183,8 @@ double pa_val(const XCSF *xcsf, int action)
  * @brief Frees the prediction array.
  * @param xcsf The XCSF data structure.
  */
-void pa_free(const XCSF *xcsf)
+void
+pa_free(const XCSF *xcsf)
 {
     free(xcsf->pa);
     free(xcsf->nr);

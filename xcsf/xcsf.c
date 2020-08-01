@@ -41,7 +41,8 @@
  * @brief Initialises XCSF with an empty population.
  * @param xcsf The XCSF data structure.
  */
-void xcsf_init(XCSF *xcsf)
+void
+xcsf_init(XCSF *xcsf)
 {
     xcsf->time = 0;
     xcsf->msetsize = 0;
@@ -56,7 +57,8 @@ void xcsf_init(XCSF *xcsf)
  * @param printa Whether to print action structures.
  * @param printp Whether to print prediction structures.
  */
-void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
+void
+xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
 {
     clset_print(xcsf, &xcsf->pset, printc, printa, printp);
 }
@@ -67,7 +69,8 @@ void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
  * @param fname The name of the output file.
  * @return The total number of elements written.
  */
-size_t xcsf_save(const XCSF *xcsf, const char *fname)
+size_t
+xcsf_save(const XCSF *xcsf, const char *fname)
 {
     FILE *fp = fopen(fname, "wb");
     if (fp == 0) {
@@ -90,7 +93,8 @@ size_t xcsf_save(const XCSF *xcsf, const char *fname)
  * @param fname The name of the input file.
  * @return The total number of elements read.
  */
-size_t xcsf_load(XCSF *xcsf, const char *fname)
+size_t
+xcsf_load(XCSF *xcsf, const char *fname)
 {
     if (xcsf->pset.size > 0) {
         clset_kill(xcsf, &xcsf->pset);
@@ -108,9 +112,11 @@ size_t xcsf_load(XCSF *xcsf, const char *fname)
     s += fread(&major, sizeof(int), 1, fp);
     s += fread(&minor, sizeof(int), 1, fp);
     s += fread(&build, sizeof(int), 1, fp);
-    if (major != VERSION_MAJOR || minor != VERSION_MINOR || build != VERSION_BUILD) {
+    if (major != VERSION_MAJOR || minor != VERSION_MINOR
+        || build != VERSION_BUILD) {
         printf("Error loading file: %s. Version mismatch. ", fname);
-        printf("This version: %d.%d.%d.\n", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
+        printf("This version: %d.%d.%d.\n", VERSION_MAJOR, VERSION_MINOR,
+               VERSION_BUILD);
         printf("Loaded version: %d.%d.%d\n", major, minor, build);
         fclose(fp);
         exit(EXIT_FAILURE);
@@ -126,7 +132,8 @@ size_t xcsf_load(XCSF *xcsf, const char *fname)
  * prediction neural networks in the population.
  * @param xcsf The XCSF data structure.
  */
-void xcsf_pred_expand(const XCSF *xcsf)
+void
+xcsf_pred_expand(const XCSF *xcsf)
 {
     for (const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         pred_neural_expand(xcsf, iter->cl);
@@ -143,7 +150,8 @@ void xcsf_pred_expand(const XCSF *xcsf)
  * @param y_dim The output dimension (i.e., the number of classes).
  * @param n_del The number of hidden layers to remove.
  */
-void xcsf_ae_to_classifier(XCSF *xcsf, int y_dim, int n_del)
+void
+xcsf_ae_to_classifier(XCSF *xcsf, int y_dim, int n_del)
 {
     pa_free(xcsf);
     param_set_y_dim(xcsf, y_dim);

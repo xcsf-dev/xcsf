@@ -30,31 +30,37 @@
 #include "prediction.h"
 #include "pred_constant.h"
 
-void pred_constant_init(const XCSF *xcsf, CL *c)
+void
+pred_constant_init(const XCSF *xcsf, CL *c)
 {
     (void)xcsf;
     (void)c;
 }
 
-void pred_constant_copy(const XCSF *xcsf, CL *dest, const CL *src)
+void
+pred_constant_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     (void)xcsf;
     (void)dest;
     (void)src;
 }
 
-void pred_constant_free(const XCSF *xcsf, const CL *c)
+void
+pred_constant_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     (void)c;
 }
 
-void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+void
+pred_constant_update(const XCSF *xcsf, const CL *c, const double *x,
+                     const double *y)
 {
     (void)x;
     if (c->exp < 1. / xcsf->PRED_ETA) {
         for (int var = 0; var < xcsf->y_dim; ++var) {
-            c->prediction[var] = (c->prediction[var] * (c->exp - 1.) + y[var]) / (double)c->exp;
+            c->prediction[var] = (c->prediction[var] * (c->exp - 1.) + y[var]) /
+                                 (double)c->exp;
         }
     } else {
         for (int var = 0; var < xcsf->y_dim; ++var) {
@@ -63,14 +69,16 @@ void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x, const 
     }
 }
 
-void pred_constant_compute(const XCSF *xcsf, const CL *c, const double *x)
+void
+pred_constant_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     (void)xcsf;
     (void)c;
     (void)x;
 }
 
-void pred_constant_print(const XCSF *xcsf, const CL *c)
+void
+pred_constant_print(const XCSF *xcsf, const CL *c)
 {
     printf("constant prediction: %f", c->prediction[0]);
     for (int var = 1; var < xcsf->y_dim; ++var) {
@@ -79,7 +87,8 @@ void pred_constant_print(const XCSF *xcsf, const CL *c)
     printf("\n");
 }
 
-_Bool pred_constant_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+_Bool
+pred_constant_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf;
     (void)c1;
@@ -87,20 +96,23 @@ _Bool pred_constant_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
     return false;
 }
 
-_Bool pred_constant_mutate(const XCSF *xcsf, const CL *c)
+_Bool
+pred_constant_mutate(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     (void)c;
     return false;
 }
 
-int pred_constant_size(const XCSF *xcsf, const CL *c)
+int
+pred_constant_size(const XCSF *xcsf, const CL *c)
 {
     (void)c;
     return xcsf->y_dim;
 }
 
-size_t pred_constant_save(const XCSF *xcsf, const CL *c, FILE *fp)
+size_t
+pred_constant_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf;
     (void)c;
@@ -108,7 +120,8 @@ size_t pred_constant_save(const XCSF *xcsf, const CL *c, FILE *fp)
     return 0;
 }
 
-size_t pred_constant_load(const XCSF *xcsf, CL *c, FILE *fp)
+size_t
+pred_constant_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     (void)xcsf;
     (void)c;

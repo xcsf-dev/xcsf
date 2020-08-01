@@ -23,15 +23,19 @@
 
 #pragma once
 
-LAYER *neural_layer_lstm_init(const XCSF *xcsf, int n_inputs, int n_init, int n_max,
+LAYER *neural_layer_lstm_init(const XCSF *xcsf, int n_inputs, int n_init,
+                              int n_max,
                               int f, int rf, uint32_t o);
 LAYER *neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src);
 void neural_layer_lstm_rand(const XCSF *xcsf, LAYER *l);
-void neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l, const double *input);
-void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, const double *input,
+void neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l,
+                               const double *input);
+void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l,
+                                const double *input,
                                 double *delta);
 void neural_layer_lstm_update(const XCSF *xcsf, const LAYER *l);
-void neural_layer_lstm_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
+void neural_layer_lstm_print(const XCSF *xcsf, const LAYER *l,
+                             _Bool print_weights);
 _Bool neural_layer_lstm_mutate(const XCSF *xcsf, LAYER *l);
 void neural_layer_lstm_free(const XCSF *xcsf, const LAYER *l);
 double *neural_layer_lstm_output(const XCSF *xcsf, const LAYER *l);

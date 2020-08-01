@@ -70,11 +70,13 @@ _Bool rule_dgp_act_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool rule_dgp_act_mutate(const XCSF *xcsf, const CL *c);
 int rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x);
 void rule_dgp_act_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void rule_dgp_act_cover(const XCSF *xcsf, const CL *c, const double *x, int action);
+void rule_dgp_act_cover(const XCSF *xcsf, const CL *c, const double *x,
+                        int action);
 void rule_dgp_act_free(const XCSF *xcsf, const CL *c);
 void rule_dgp_act_init(const XCSF *xcsf, CL *c);
 void rule_dgp_act_print(const XCSF *xcsf, const CL *c);
-void rule_dgp_act_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
+void rule_dgp_act_update(const XCSF *xcsf, const CL *c, const double *x,
+                         const double *y);
 size_t rule_dgp_act_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t rule_dgp_act_load(const XCSF *xcsf, CL *c, FILE *fp);
 

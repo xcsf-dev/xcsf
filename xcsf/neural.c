@@ -41,7 +41,8 @@
  * @param xcsf The XCSF data structure.
  * @param net The neural network to initialise.
  */
-void neural_init(const XCSF *xcsf, NET *net)
+void
+neural_init(const XCSF *xcsf, NET *net)
 {
     (void)xcsf;
     net->head = NULL;
@@ -59,7 +60,8 @@ void neural_init(const XCSF *xcsf, NET *net)
  * @param l The layer to insert.
  * @param p The position in the network to insert the layer.
  */
-void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
+void
+neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
 {
     (void)xcsf;
     // empty list
@@ -112,7 +114,8 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
  * @param net The neural network removing the layer.
  * @param p The position of the layer in the network to be removed.
  */
-void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
+void
+neural_layer_remove(const XCSF *xcsf, NET *net, int p)
 {
     // find the layer
     LLIST *iter = net->tail;
@@ -147,7 +150,7 @@ void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
         iter->next->prev = iter->prev;
         iter->prev->next = iter->next;
     }
-    net->n_layers--;
+    --(net->n_layers);
     layer_free(xcsf, iter->layer);
     free(iter->layer);
     free(iter);
@@ -159,7 +162,8 @@ void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
  * @param dest The destination neural network.
  * @param src The source neural network.
  */
-void neural_copy(const XCSF *xcsf, NET *dest, const NET *src)
+void
+neural_copy(const XCSF *xcsf, NET *dest, const NET *src)
 {
     neural_init(xcsf, dest);
     int p = 0;
@@ -176,7 +180,8 @@ void neural_copy(const XCSF *xcsf, NET *dest, const NET *src)
  * @param xcsf The XCSF data structure.
  * @param net The neural network to free.
  */
-void neural_free(const XCSF *xcsf, NET *net)
+void
+neural_free(const XCSF *xcsf, NET *net)
 {
     LLIST *iter = net->tail;
     while (iter != NULL) {
@@ -185,7 +190,7 @@ void neural_free(const XCSF *xcsf, NET *net)
         net->tail = iter->prev;
         free(iter);
         iter = net->tail;
-        net->n_layers--;
+        --(net->n_layers);
     }
 }
 
@@ -194,7 +199,8 @@ void neural_free(const XCSF *xcsf, NET *net)
  * @param xcsf The XCSF data structure.
  * @param net The neural network to randomise.
  */
-void neural_rand(const XCSF *xcsf, const NET *net)
+void
+neural_rand(const XCSF *xcsf, const NET *net)
 {
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_rand(xcsf, iter->layer);
@@ -207,7 +213,8 @@ void neural_rand(const XCSF *xcsf, const NET *net)
  * @param net The neural network to mutate.
  * @return Whether any alterations were made.
  */
-_Bool neural_mutate(const XCSF *xcsf, const NET *net)
+_Bool
+neural_mutate(const XCSF *xcsf, const NET *net)
 {
     _Bool mod = false;
     const LAYER *prev = NULL;
@@ -237,7 +244,8 @@ _Bool neural_mutate(const XCSF *xcsf, const NET *net)
  * @param xcsf The XCSF data structure.
  * @param net The neural network to resize.
  */
-void neural_resize(const XCSF *xcsf, const NET *net)
+void
+neural_resize(const XCSF *xcsf, const NET *net)
 {
     const LAYER *prev = NULL;
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -254,7 +262,8 @@ void neural_resize(const XCSF *xcsf, const NET *net)
  * @param net The neural network to propagate.
  * @param input The input state.
  */
-void neural_propagate(const XCSF *xcsf, const NET *net, const double *input)
+void
+neural_propagate(const XCSF *xcsf, const NET *net, const double *input)
 {
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_forward(xcsf, iter->layer, input);
@@ -269,8 +278,9 @@ void neural_propagate(const XCSF *xcsf, const NET *net, const double *input)
  * @param truth The desired network output.
  * @param input The input state.
  */
-void neural_learn(const XCSF *xcsf, const NET *net, const double *truth,
-                  const double *input)
+void
+neural_learn(const XCSF *xcsf, const NET *net, const double *truth,
+             const double *input)
 {
     /* reset deltas */
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -304,7 +314,8 @@ void neural_learn(const XCSF *xcsf, const NET *net, const double *truth,
  * @param i Which neuron in the output layer to return.
  * @return The output of the specified neuron.
  */
-double neural_output(const XCSF *xcsf, const NET *net, int i)
+double
+neural_output(const XCSF *xcsf, const NET *net, int i)
 {
     if (i < net->n_outputs) {
         return layer_output(xcsf, net->head->layer)[i];
@@ -320,7 +331,8 @@ double neural_output(const XCSF *xcsf, const NET *net, int i)
  * @param net The neural network to print.
  * @param print_weights Whether to print the weights in each layer.
  */
-void neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
+void
+neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
 {
     int i = 0;
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -336,7 +348,8 @@ void neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
  * @param net The neural network to calculate the number of non-zero weights.
  * @return The total number of non-zero weights.
  */
-int neural_size(const XCSF *xcsf, const NET *net)
+int
+neural_size(const XCSF *xcsf, const NET *net)
 {
     (void)xcsf;
     int size = 0;
@@ -362,7 +375,8 @@ int neural_size(const XCSF *xcsf, const NET *net)
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
+size_t
+neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&net->n_layers, sizeof(int), 1, fp);
@@ -382,7 +396,8 @@ size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
  * @param fp Pointer to the file to be read.
  * @return The number of elements read.
  */
-size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp)
+size_t
+neural_load(const XCSF *xcsf, NET *net, FILE *fp)
 {
     size_t s = 0;
     int nlayers = 0;

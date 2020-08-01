@@ -47,7 +47,8 @@ void pred_rls_copy(const XCSF *xcsf, CL *dest, const CL *src);
 void pred_rls_free(const XCSF *xcsf, const CL *c);
 void pred_rls_init(const XCSF *xcsf, CL *c);
 void pred_rls_print(const XCSF *xcsf, const CL *c);
-void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
+void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x,
+                     const double *y);
 
 /**
  * @brief Recursive least mean squares prediction implemented functions.

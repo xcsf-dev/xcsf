@@ -32,7 +32,8 @@
 #include "prediction.h"
 #include "pred_rls.h"
 
-void pred_rls_init(const XCSF *xcsf, CL *c)
+void
+pred_rls_init(const XCSF *xcsf, CL *c)
 {
     PRED_RLS *pred = malloc(sizeof(PRED_RLS));
     c->pred = pred;
@@ -60,15 +61,18 @@ void pred_rls_init(const XCSF *xcsf, CL *c)
     pred->tmp_matrix2 = calloc(n_sqrd, sizeof(double));
 }
 
-void pred_rls_copy(const XCSF *xcsf, CL *dest, const CL *src)
+void
+pred_rls_copy(const XCSF *xcsf, CL *dest, const CL *src)
 {
     pred_rls_init(xcsf, dest);
     const PRED_RLS *dest_pred = dest->pred;
     const PRED_RLS *src_pred = src->pred;
-    memcpy(dest_pred->weights, src_pred->weights, sizeof(double) * src_pred->n_weights);
+    memcpy(dest_pred->weights, src_pred->weights,
+           sizeof(double) * src_pred->n_weights);
 }
 
-void pred_rls_free(const XCSF *xcsf, const CL *c)
+void
+pred_rls_free(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     PRED_RLS *pred = c->pred;
@@ -81,21 +85,25 @@ void pred_rls_free(const XCSF *xcsf, const CL *c)
     free(pred);
 }
 
-void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+void
+pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (void)x;
     const PRED_RLS *pred = c->pred;
     int n = pred->n;
     // gain vector = matrix * tmp_input
-    blas_gemm(0, 0, n, 1, n, 1, pred->matrix, n, pred->tmp_input, 1, 0, pred->tmp_vec, 1);
+    const double *A = pred->matrix;
+    const double *B = pred->tmp_input;
+    double *C = pred->tmp_vec;
+    blas_gemm(0, 0, n, 1, n, 1, A, n, B, 1, 0, C, 1);
     // divide gain vector by lambda + tmp_vec
     double divisor = blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
     divisor = 1 / (divisor + xcsf->PRED_RLS_LAMBDA);
     blas_scal(n, divisor, pred->tmp_vec, 1);
     // update weights using the error
-    for (int var = 0; var < xcsf->y_dim; ++var) {
-        double error = y[var] - c->prediction[var];
-        blas_axpy(n, error, pred->tmp_vec, 1, &pred->weights[var * n], 1);
+    for (int i = 0; i < xcsf->y_dim; ++i) {
+        double error = y[i] - c->prediction[i];
+        blas_axpy(n, error, pred->tmp_vec, 1, &pred->weights[i * n], 1);
     }
     // update gain matrix
     for (int i = 0; i < n; ++i) {
@@ -109,8 +117,10 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
         }
     }
     // tmp_matrix2 = tmp_matrix1 * pred_matrix
-    blas_gemm(0, 0, n, n, n, 1, pred->tmp_matrix1, n, pred->matrix, n, 0, pred->tmp_matrix2,
-              n);
+    A = pred->tmp_matrix1;
+    B = pred->matrix;
+    C = pred->tmp_matrix2;
+    blas_gemm(0, 0, n, n, n, 1, A, n, B, n, 0, C, n);
     // divide gain matrix entries by lambda
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
@@ -119,30 +129,33 @@ void pred_rls_update(const XCSF *xcsf, const CL *c, const double *x, const doubl
     }
 }
 
-void pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x)
+void
+pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x)
 {
     const PRED_RLS *pred = c->pred;
     int n = pred->n;
     pred_transform_input(xcsf, x, pred->tmp_input);
-    for (int var = 0; var < xcsf->y_dim; ++var) {
-        c->prediction[var] = blas_dot(n, &pred->weights[var * n], 1, pred->tmp_input, 1);
+    for (int i = 0; i < xcsf->y_dim; ++i) {
+        c->prediction[i] = blas_dot(n, &pred->weights[i * n], 1, pred->tmp_input, 1);
     }
 }
 
-void pred_rls_print(const XCSF *xcsf, const CL *c)
+void
+pred_rls_print(const XCSF *xcsf, const CL *c)
 {
     const PRED_RLS *pred = c->pred;
     printf("RLS weights: ");
     int n = pred->n;
-    for (int var = 0; var < xcsf->y_dim; ++var) {
-        for (int i = 0; i < n; ++i) {
-            printf("%f, ", pred->weights[var * n + i]);
+    for (int i = 0; i < xcsf->y_dim; ++i) {
+        for (int j = 0; j < n; ++j) {
+            printf("%f, ", pred->weights[i * n + j]);
         }
         printf("\n");
     }
 }
 
-_Bool pred_rls_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+_Bool
+pred_rls_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     (void)xcsf;
     (void)c1;
@@ -150,21 +163,24 @@ _Bool pred_rls_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
     return false;
 }
 
-_Bool pred_rls_mutate(const XCSF *xcsf, const CL *c)
+_Bool
+pred_rls_mutate(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     (void)c;
     return false;
 }
 
-int pred_rls_size(const XCSF *xcsf, const CL *c)
+int
+pred_rls_size(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
     const PRED_RLS *pred = c->pred;
     return pred->n_weights;
 }
 
-size_t pred_rls_save(const XCSF *xcsf, const CL *c, FILE *fp)
+size_t
+pred_rls_save(const XCSF *xcsf, const CL *c, FILE *fp)
 {
     (void)xcsf;
     const PRED_RLS *pred = c->pred;
@@ -177,7 +193,8 @@ size_t pred_rls_save(const XCSF *xcsf, const CL *c, FILE *fp)
     return s;
 }
 
-size_t pred_rls_load(const XCSF *xcsf, CL *c, FILE *fp)
+size_t
+pred_rls_load(const XCSF *xcsf, CL *c, FILE *fp)
 {
     pred_rls_init(xcsf, c);
     PRED_RLS *pred = c->pred;

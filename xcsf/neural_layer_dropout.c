@@ -43,7 +43,8 @@ static void free_layer_arrays(const LAYER *l);
  * @param probability The probability of dropping an input.
  * @return A pointer to the new layer.
  */
-LAYER *neural_layer_dropout_init(const XCSF *xcsf, int n_inputs, double probability)
+LAYER *
+neural_layer_dropout_init(const XCSF *xcsf, int n_inputs, double probability)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
@@ -59,7 +60,8 @@ LAYER *neural_layer_dropout_init(const XCSF *xcsf, int n_inputs, double probabil
     return l;
 }
 
-static void malloc_layer_arrays(LAYER *l)
+static void
+malloc_layer_arrays(LAYER *l)
 {
     if (l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
         printf("neural_layer_dropout: malloc() invalid size\n");
@@ -71,20 +73,23 @@ static void malloc_layer_arrays(LAYER *l)
     l->state = calloc(l->n_inputs, sizeof(double));
 }
 
-static void free_layer_arrays(const LAYER *l)
+static void
+free_layer_arrays(const LAYER *l)
 {
     free(l->output);
     free(l->delta);
     free(l->state);
 }
 
-void neural_layer_dropout_free(const XCSF *xcsf, const LAYER *l)
+void
+neural_layer_dropout_free(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
     free_layer_arrays(l);
 }
 
-LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *src)
+LAYER *
+neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *src)
 {
     (void)xcsf;
     LAYER *l = malloc(sizeof(LAYER));
@@ -100,13 +105,16 @@ LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *src)
     return l;
 }
 
-void neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l)
+void
+neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
     (void)l;
 }
 
-void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input)
+void
+neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l,
+                             const double *input)
 {
     if (!xcsf->explore) {
         memcpy(l->output, input, sizeof(double) * l->n_inputs);
@@ -122,8 +130,10 @@ void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double
     }
 }
 
-void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const double *input,
-                                   double *delta)
+void
+neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l,
+                              const double *input,
+                              double *delta)
 {
     (void)xcsf;
     (void)input;
@@ -139,20 +149,23 @@ void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const doubl
     }
 }
 
-void neural_layer_dropout_update(const XCSF *xcsf, const LAYER *l)
+void
+neural_layer_dropout_update(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
     (void)l;
 }
 
-_Bool neural_layer_dropout_mutate(const XCSF *xcsf, LAYER *l)
+_Bool
+neural_layer_dropout_mutate(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
     (void)l;
     return false;
 }
 
-void neural_layer_dropout_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
+void
+neural_layer_dropout_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     (void)xcsf;
     l->n_inputs = prev->n_outputs;
@@ -162,13 +175,16 @@ void neural_layer_dropout_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
     malloc_layer_arrays(l);
 }
 
-double *neural_layer_dropout_output(const XCSF *xcsf, const LAYER *l)
+double *
+neural_layer_dropout_output(const XCSF *xcsf, const LAYER *l)
 {
     (void)xcsf;
     return l->output;
 }
 
-void neural_layer_dropout_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
+void
+neural_layer_dropout_print(const XCSF *xcsf, const LAYER *l,
+                           _Bool print_weights)
 {
     (void)xcsf;
     (void)print_weights;
@@ -176,7 +192,8 @@ void neural_layer_dropout_print(const XCSF *xcsf, const LAYER *l, _Bool print_we
            l->n_inputs, l->n_outputs, l->probability);
 }
 
-size_t neural_layer_dropout_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
+size_t
+neural_layer_dropout_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;
@@ -188,7 +205,8 @@ size_t neural_layer_dropout_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
     return s;
 }
 
-size_t neural_layer_dropout_load(const XCSF *xcsf, LAYER *l, FILE *fp)
+size_t
+neural_layer_dropout_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     (void)xcsf;
     size_t s = 0;

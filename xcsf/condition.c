@@ -48,7 +48,8 @@
  * @param xcsf The XCSF data structure.
  * @param c The classifier to set.
  */
-void condition_set(const XCSF *xcsf, CL *c)
+void
+condition_set(const XCSF *xcsf, CL *c)
 {
     switch (xcsf->COND_TYPE) {
         case COND_TYPE_DUMMY:

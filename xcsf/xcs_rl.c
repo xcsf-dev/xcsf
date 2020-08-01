@@ -46,7 +46,8 @@ static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore);
  * @param xcsf The XCSF data structure.
  * @return The mean number of steps to goal.
  */
-double xcs_rl_exp(XCSF *xcsf)
+double
+xcs_rl_exp(XCSF *xcsf)
 {
     double error = 0; // prediction error: individual trial
     double werr = 0; // prediction error: windowed total
@@ -71,7 +72,8 @@ double xcs_rl_exp(XCSF *xcsf)
  * @return Returns the accuracy for single-step problems and the number of
  * steps taken to reach the goal for multi-step problems.
  */
-static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
+static double
+xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
 {
     env_reset(xcsf);
     param_set_explore(xcsf, explore);
@@ -103,7 +105,8 @@ static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
  * @brief Initialises a reinforcement learning trial.
  * @param xcsf The XCSF data structure.
  */
-void xcs_rl_init_trial(XCSF *xcsf)
+void
+xcs_rl_init_trial(XCSF *xcsf)
 {
     xcsf->prev_reward = 0;
     xcsf->prev_pred = 0;
@@ -121,7 +124,8 @@ void xcs_rl_init_trial(XCSF *xcsf)
  * @brief Frees memory used by a reinforcement learning trial.
  * @param xcsf The XCSF data structure.
  */
-void xcs_rl_end_trial(XCSF *xcsf)
+void
+xcs_rl_end_trial(XCSF *xcsf)
 {
     clset_free(&xcsf->prev_aset);
     clset_kill(xcsf, &xcsf->kset);
@@ -132,7 +136,8 @@ void xcs_rl_end_trial(XCSF *xcsf)
  * @brief Initialises a step in a reinforcement learning trial.
  * @param xcsf The XCSF data structure.
  */
-void xcs_rl_init_step(XCSF *xcsf)
+void
+xcs_rl_init_step(XCSF *xcsf)
 {
     clset_init(&xcsf->mset);
     clset_init(&xcsf->aset);
@@ -145,7 +150,8 @@ void xcs_rl_init_step(XCSF *xcsf)
  * @param action The current action.
  * @param reward The current reward.
  */
-void xcs_rl_end_step(XCSF *xcsf, const double *state, int action, double reward)
+void
+xcs_rl_end_step(XCSF *xcsf, const double *state, int action, double reward)
 {
     clset_free(&xcsf->mset);
     clset_free(&xcsf->prev_aset);
@@ -164,8 +170,9 @@ void xcs_rl_end_step(XCSF *xcsf, const double *state, int action, double reward)
  * @param reward The reward from performing the action.
  * @param reset Whether the environment is in the reset state.
  */
-void xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward,
-                   _Bool reset)
+void
+xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward,
+              _Bool reset)
 {
     // create action set
     clset_action(xcsf, action);
@@ -197,8 +204,9 @@ void xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward,
  * @param max_p The maximum payoff in the environment.
  * @return The prediction error.
  */
-double xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset,
-                    double max_p)
+double
+xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset,
+             double max_p)
 {
     double error = 0;
     if (xcsf->prev_aset.list != NULL) {
@@ -218,7 +226,8 @@ double xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset,
  * @param state The input state.
  * @return The selected action.
  */
-int xcs_rl_decision(XCSF *xcsf, const double *state)
+int
+xcs_rl_decision(XCSF *xcsf, const double *state)
 {
     clset_match(xcsf, state);
     pa_build(xcsf, state);

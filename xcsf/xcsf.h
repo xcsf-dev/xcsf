@@ -112,8 +112,8 @@ typedef struct XCSF {
     int LOSS_FUNC; //!< Which loss/error function to apply
 
     // multi-step problem parameters
-    double GAMMA; //!< Discount factor in calculating the reward for multi-step problems
-    int TELETRANSPORTATION; //!< Num steps to reset a multi-step problem if goal not found
+    double GAMMA; //!< Discount factor in calculating reward for multi-step problems
+    int TELETRANSPORTATION; //!< Num steps to reset multistep problems if goal not found
     double P_EXPLORE; //!< Probability of exploring vs. exploiting
 
     // classifier parameters

@@ -49,8 +49,9 @@ static void xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y);
  * @param shuffle Whether to randomise the instances during training.
  * @return The average XCSF training error using the loss function.
  */
-double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
-                          const INPUT *test_data, _Bool shuffle)
+double
+xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
+                   const INPUT *test_data, _Bool shuffle)
 {
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
@@ -86,7 +87,8 @@ double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
  * @param pred The calculated XCSF predictions (set by this function).
  * @param n_samples The number of instances.
  */
-void xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_samples)
+void
+xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_samples)
 {
     param_set_explore(xcsf, false);
     for (int row = 0; row < n_samples; ++row) {
@@ -101,7 +103,8 @@ void xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_sam
  * @param test_data The input data to calculate the error.
  * @return The average XCSF error using the loss function.
  */
-double xcs_supervised_score(XCSF *xcsf, const INPUT *test_data)
+double
+xcs_supervised_score(XCSF *xcsf, const INPUT *test_data)
 {
     param_set_explore(xcsf, false);
     double err = 0;
@@ -121,7 +124,8 @@ double xcs_supervised_score(XCSF *xcsf, const INPUT *test_data)
  * @param shuffle Whether to select the sample randomly.
  * @return The row of the data sample selected.
  */
-static int xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle)
+static int
+xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle)
 {
     if (shuffle) {
         return irand_uniform(0, data->n_samples);
@@ -135,7 +139,8 @@ static int xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle)
  * @param x The feature variables.
  * @param y The labelled variables.
  */
-static void xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y)
+static void
+xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y)
 {
     clset_init(&xcsf->mset);
     clset_init(&xcsf->kset);

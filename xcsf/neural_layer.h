@@ -57,7 +57,7 @@ typedef struct LAYER {
     int layer_type; //!< Layer type: CONNECTED, DROPOUT, etc.
     double *state; //!< Current neuron states (before activation function)
     double *output; //!< Current neuron outputs (after activation function)
-    uint32_t options; //!< Bitwise layer options permitting weight evolution, etc.
+    uint32_t options; //!< Bitwise layer options permitting evolution, SGD, etc.
     double *weights; //!< Weights for calculating neuron states
     _Bool *weight_active; //!< Whether each connection is present in the layer
     double *biases; //!< Biases for calculating neuron states
@@ -127,9 +127,10 @@ struct LayerVtbl {
     void (*layer_impl_rand)(const XCSF *xcsf, LAYER *l);
     void (*layer_impl_print)(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
     void (*layer_impl_update)(const XCSF *xcsf, const LAYER *l);
-    void (*layer_impl_backward)(const XCSF *xcsf, const LAYER *l, const double *input,
-                                double *delta);
-    void (*layer_impl_forward)(const XCSF *xcsf, const LAYER *l, const double *input);
+    void (*layer_impl_backward)(const XCSF *xcsf, const LAYER *l,
+                                const double *input, double *delta);
+    void (*layer_impl_forward)(const XCSF *xcsf, const LAYER *l,
+                               const double *input);
     double *(*layer_impl_output)(const XCSF *xcsf, const LAYER *l);
     size_t (*layer_impl_save)(const XCSF *xcsf, const LAYER *l, FILE *fp);
     size_t (*layer_impl_load)(const XCSF *xcsf, LAYER *l, FILE *fp);
@@ -142,7 +143,8 @@ struct LayerVtbl {
  * @param fp Pointer to the file to be written.
  * @return The number of elements written.
  */
-static inline size_t layer_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
+static inline size_t
+layer_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 {
     return (*l->layer_vptr->layer_impl_save)(xcsf, l, fp);
 }
@@ -154,7 +156,8 @@ static inline size_t layer_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
  * @param fp Pointer to the file to be read.
  * @return The number of elements read.
  */
-static inline size_t layer_load(const XCSF *xcsf, LAYER *l, FILE *fp)
+static inline size_t
+layer_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 {
     return (*l->layer_vptr->layer_impl_load)(xcsf, l, fp);
 }
@@ -165,7 +168,8 @@ static inline size_t layer_load(const XCSF *xcsf, LAYER *l, FILE *fp)
  * @param l The layer whose outputs are to be returned.
  * @return The layer outputs.
  */
-static inline double *layer_output(const XCSF *xcsf, const LAYER *l)
+static inline double *
+layer_output(const XCSF *xcsf, const LAYER *l)
 {
     return (*l->layer_vptr->layer_impl_output)(xcsf, l);
 }
@@ -176,7 +180,8 @@ static inline double *layer_output(const XCSF *xcsf, const LAYER *l)
  * @param l The layer to be forward propagated.
  * @param input The input to the layer.
  */
-static inline void layer_forward(const XCSF *xcsf, const LAYER *l, const double *input)
+static inline void
+layer_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
     (*l->layer_vptr->layer_impl_forward)(xcsf, l, input);
 }
@@ -188,8 +193,9 @@ static inline void layer_forward(const XCSF *xcsf, const LAYER *l, const double 
  * @param input The input to the layer.
  * @param delta The previous layer's delta.
  */
-static inline void layer_backward(const XCSF *xcsf, const LAYER *l, const double *input,
-                                  double *delta)
+static inline void
+layer_backward(const XCSF *xcsf, const LAYER *l,
+               const double *input, double *delta)
 {
     (*l->layer_vptr->layer_impl_backward)(xcsf, l, input, delta);
 }
@@ -199,7 +205,8 @@ static inline void layer_backward(const XCSF *xcsf, const LAYER *l, const double
  * @param xcsf The XCSF data structure.
  * @param l The layer to be updated.
  */
-static inline void layer_update(const XCSF *xcsf, const LAYER *l)
+static inline void
+layer_update(const XCSF *xcsf, const LAYER *l)
 {
     (*l->layer_vptr->layer_impl_update)(xcsf, l);
 }
@@ -210,7 +217,8 @@ static inline void layer_update(const XCSF *xcsf, const LAYER *l)
  * @param l The layer to mutate.
  * @return Whether any alterations were made.
  */
-static inline _Bool layer_mutate(const XCSF *xcsf, LAYER *l)
+static inline _Bool
+layer_mutate(const XCSF *xcsf, LAYER *l)
 {
     return (*l->layer_vptr->layer_impl_mutate)(xcsf, l);
 }
@@ -222,7 +230,8 @@ static inline _Bool layer_mutate(const XCSF *xcsf, LAYER *l)
  * @param prev The layer prior to the one being mutated.
  * @return Whether any alterations were made.
  */
-static inline void layer_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
+static inline void
+layer_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     (*l->layer_vptr->layer_impl_resize)(xcsf, l, prev);
 }
@@ -233,7 +242,8 @@ static inline void layer_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
  * @param src The source layer.
  * @return A new copied layer.
  */
-static inline LAYER *layer_copy(const XCSF *xcsf, const LAYER *src)
+static inline LAYER *
+layer_copy(const XCSF *xcsf, const LAYER *src)
 {
     return (*src->layer_vptr->layer_impl_copy)(xcsf, src);
 }
@@ -243,7 +253,8 @@ static inline LAYER *layer_copy(const XCSF *xcsf, const LAYER *src)
  * @param xcsf The XCSF data structure.
  * @param l The layer to be freed.
  */
-static inline void layer_free(const XCSF *xcsf, const LAYER *l)
+static inline void
+layer_free(const XCSF *xcsf, const LAYER *l)
 {
     (*l->layer_vptr->layer_impl_free)(xcsf, l);
 }
@@ -253,7 +264,8 @@ static inline void layer_free(const XCSF *xcsf, const LAYER *l)
  * @param xcsf The XCSF data structure.
  * @param l The layer to be randomised.
  */
-static inline void layer_rand(const XCSF *xcsf, LAYER *l)
+static inline void
+layer_rand(const XCSF *xcsf, LAYER *l)
 {
     (*l->layer_vptr->layer_impl_rand)(xcsf, l);
 }
@@ -264,7 +276,8 @@ static inline void layer_rand(const XCSF *xcsf, LAYER *l)
  * @param l The layer to be printed.
  * @param print_weights Whether to print the weights.
  */
-static inline void layer_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
+static inline void
+layer_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
 {
     (*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }

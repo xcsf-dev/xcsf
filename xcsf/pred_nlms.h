@@ -45,7 +45,8 @@ void pred_nlms_copy(const XCSF *xcsf, CL *dest, const CL *src);
 void pred_nlms_free(const XCSF *xcsf, const CL *c);
 void pred_nlms_init(const XCSF *xcsf, CL *c);
 void pred_nlms_print(const XCSF *xcsf, const CL *c);
-void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
+void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x,
+                      const double *y);
 
 /**
  * @brief Normalised least mean squares prediction implemented functions.

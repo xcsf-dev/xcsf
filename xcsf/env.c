@@ -38,7 +38,8 @@
  * @param xcsf The XCSF data structure.
  * @param argv The command line arguments.
  */
-void env_init(XCSF *xcsf, char **argv)
+void
+env_init(XCSF *xcsf, char **argv)
 {
     char *end;
     if (strcmp(argv[1], "mp") == 0) {

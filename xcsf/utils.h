@@ -35,7 +35,8 @@ void random_init();
  * @param a The value to be clamped.
  * @return The clamped number.
  */
-static inline double clamp(double min, double max, double a)
+static inline double
+clamp(double min, double max, double a)
 {
     return (a < min) ? min : (a > max) ? max : a;
 }
@@ -47,7 +48,8 @@ static inline double clamp(double min, double max, double a)
  * @param a The value to be clamped.
  * @return The clamped number.
  */
-static inline int iclamp(int min, int max, int a)
+static inline int
+iclamp(int min, int max, int a)
 {
     return (a < min) ? min : (a > max) ? max : a;
 }

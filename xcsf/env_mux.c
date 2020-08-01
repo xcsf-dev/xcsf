@@ -44,17 +44,17 @@
  * @brief Initialises a real multiplexer environment of specified length.
  * @param xcsf The XCSF data structure.
  * @param bits The problem length.
- *
- * @details The biggest multiplexer problem is chosen that fits the specified length.
+ * @details The biggest mux problem is chosen that fits the specified length.
  */
-void env_mux_init(XCSF *xcsf, int bits)
+void
+env_mux_init(XCSF *xcsf, int bits)
 {
     ENV_MUX *env = malloc(sizeof(ENV_MUX));
     env->pos_bits = 1;
     while (env->pos_bits + pow(2, env->pos_bits) <= bits) {
         ++(env->pos_bits);
     }
-    (env->pos_bits)--;
+    --(env->pos_bits);
     int n = env->pos_bits + (int) pow(2, env->pos_bits);
     env->state = malloc(sizeof(double) * n);
     param_set_n_actions(xcsf, 2);
@@ -67,7 +67,8 @@ void env_mux_init(XCSF *xcsf, int bits)
  * @brief Frees the multiplexer environment.
  * @param xcsf The XCSF data structure.
  */
-void env_mux_free(const XCSF *xcsf)
+void
+env_mux_free(const XCSF *xcsf)
 {
     ENV_MUX *env = xcsf->env;
     free(env->state);
@@ -79,7 +80,8 @@ void env_mux_free(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return A random multiplexer problem.
  */
-const double *env_mux_get_state(const XCSF *xcsf)
+const double *
+env_mux_get_state(const XCSF *xcsf)
 {
     const ENV_MUX *env = xcsf->env;
     for (int i = 0; i < xcsf->x_dim; ++i) {
@@ -94,7 +96,8 @@ const double *env_mux_get_state(const XCSF *xcsf)
  * @param action The selected class.
  * @return The payoff from performing the action.
  */
-double env_mux_execute(const XCSF *xcsf, int action)
+double
+env_mux_execute(const XCSF *xcsf, int action)
 {
     const ENV_MUX *env = xcsf->env;
     int pos = env->pos_bits;
@@ -115,7 +118,8 @@ double env_mux_execute(const XCSF *xcsf, int action)
  * @brief Dummy method since no multiplexer reset is necessary.
  * @param xcsf The XCSF data structure.
  */
-void env_mux_reset(const XCSF *xcsf)
+void
+env_mux_reset(const XCSF *xcsf)
 {
     (void)xcsf;
 }
@@ -125,7 +129,8 @@ void env_mux_reset(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return True.
  */
-_Bool env_mux_isreset(const XCSF *xcsf)
+_Bool
+env_mux_isreset(const XCSF *xcsf)
 {
     (void)xcsf;
     return true;
@@ -136,7 +141,8 @@ _Bool env_mux_isreset(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return The maximum payoff.
  */
-double env_mux_maxpayoff(const XCSF *xcsf)
+double
+env_mux_maxpayoff(const XCSF *xcsf)
 {
     (void)xcsf;
     return MAX_PAYOFF;
@@ -147,7 +153,8 @@ double env_mux_maxpayoff(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  * @return False.
  */
-_Bool env_mux_multistep(const XCSF *xcsf)
+_Bool
+env_mux_multistep(const XCSF *xcsf)
 {
     (void)xcsf;
     return false;

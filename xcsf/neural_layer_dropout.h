@@ -23,14 +23,17 @@
 
 #pragma once
 
-LAYER *neural_layer_dropout_init(const XCSF *xcsf, int n_inputs, double probability);
+LAYER *neural_layer_dropout_init(const XCSF *xcsf, int n_inputs,
+                                 double probability);
 LAYER *neural_layer_dropout_copy(const XCSF *xcsf, const LAYER *src);
 void neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l);
-void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input);
-void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const double *input,
-                                   double *delta);
+void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l,
+                                  const double *input);
+void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l,
+                                   const double *input, double *delta);
 void neural_layer_dropout_update(const XCSF *xcsf, const LAYER *l);
-void neural_layer_dropout_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
+void neural_layer_dropout_print(const XCSF *xcsf, const LAYER *l,
+                                _Bool print_weights);
 _Bool neural_layer_dropout_mutate(const XCSF *xcsf, LAYER *l);
 void neural_layer_dropout_free(const XCSF *xcsf, const LAYER *l);
 double *neural_layer_dropout_output(const XCSF *xcsf, const LAYER *l);

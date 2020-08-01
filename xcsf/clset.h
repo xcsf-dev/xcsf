@@ -41,5 +41,6 @@ void clset_pop_init(XCSF *xcsf);
 void clset_print(const XCSF *xcsf, const SET *set, _Bool printc, _Bool printa,
                  _Bool printp);
 void clset_set_times(const XCSF *xcsf, const SET *set);
-void clset_update(XCSF *xcsf, SET *set, const double *x, const double *y, _Bool cur);
+void clset_update(XCSF *xcsf, SET *set, const double *x, const double *y,
+                  _Bool cur);
 void clset_validate(SET *set);

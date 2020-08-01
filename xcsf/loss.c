@@ -36,7 +36,8 @@
  * @param y The true values.
  * @return The mean absolute error.
  */
-double loss_mae(const XCSF *xcsf, const double *pred, const double *y)
+double
+loss_mae(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -53,7 +54,8 @@ double loss_mae(const XCSF *xcsf, const double *pred, const double *y)
  * @param y The true values.
  * @return The mean squared error.
  */
-double loss_mse(const XCSF *xcsf, const double *pred, const double *y)
+double
+loss_mse(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -70,7 +72,8 @@ double loss_mse(const XCSF *xcsf, const double *pred, const double *y)
  * @param y The true values.
  * @return The root mean squared error.
  */
-double loss_rmse(const XCSF *xcsf, const double *pred, const double *y)
+double
+loss_rmse(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = loss_mse(xcsf, pred, y);
     return sqrt(error);
@@ -78,14 +81,14 @@ double loss_rmse(const XCSF *xcsf, const double *pred, const double *y)
 
 /**
  * @brief Logistic log loss for multi-class classification.
+ * @pre The sum of predictions = 1 and a single target y_i has a value of 1.
  * @param xcsf The XCSF data structure.
  * @param pred The predicted values.
  * @param y The true values.
  * @return The log error.
- *
- * @details Assumes the sum of predictions = 1 and a single target y_i has a value of 1.
  */
-double loss_log(const XCSF *xcsf, const double *pred, const double *y)
+double
+loss_log(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -101,7 +104,8 @@ double loss_log(const XCSF *xcsf, const double *pred, const double *y)
  * @param y The true values.
  * @return The log error.
  */
-double loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
+double
+loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -118,7 +122,8 @@ double loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
  * @param y The true values.
  * @return The one-hot classification error.
  */
-double loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
+double
+loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
 {
     int p = 0;
     for (int i = 1; i < xcsf->y_dim; ++i) {
@@ -136,7 +141,8 @@ double loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
  * @brief Sets the XCSF error function to the implemented function.
  * @param xcsf The XCSF data structure.
  */
-void loss_set_func(XCSF *xcsf)
+void
+loss_set_func(XCSF *xcsf)
 {
     switch (xcsf->LOSS_FUNC) {
         case LOSS_MAE:

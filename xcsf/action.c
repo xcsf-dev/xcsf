@@ -35,7 +35,8 @@
  * @param xcsf The XCSF data structure.
  * @param c The classifier to set.
  */
-void action_set(const XCSF *xcsf, CL *c)
+void
+action_set(const XCSF *xcsf, CL *c)
 {
     switch (xcsf->ACT_TYPE) {
         case ACT_TYPE_INTEGER:

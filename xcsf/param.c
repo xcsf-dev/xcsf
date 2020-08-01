@@ -79,7 +79,8 @@ static size_t param_load_subsumption(XCSF *xcsf, FILE *fp);
  * @brief Initialises default XCSF parameters.
  * @param xcsf The XCSF data structure.
  */
-void param_init(XCSF *xcsf)
+void
+param_init(XCSF *xcsf)
 {
     xcsf->gp_cons = NULL;
     xcsf->time = 0;
@@ -99,7 +100,8 @@ void param_init(XCSF *xcsf)
  * @brief Frees XCSF parameter memory.
  * @param xcsf The XCSF data structure.
  */
-void param_free(const XCSF *xcsf)
+void
+param_free(const XCSF *xcsf)
 {
     tree_free_cons(xcsf);
 }
@@ -108,7 +110,8 @@ void param_free(const XCSF *xcsf)
  * @brief Prints all XCSF parameters.
  * @param xcsf The XCSF data structure.
  */
-void param_print(const XCSF *xcsf)
+void
+param_print(const XCSF *xcsf)
 {
     printf("VERSION=%d.%d.%d, ", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
     param_print_general(xcsf);
@@ -128,7 +131,8 @@ void param_print(const XCSF *xcsf)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-size_t param_save(const XCSF *xcsf, FILE *fp)
+size_t
+param_save(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
@@ -155,7 +159,8 @@ size_t param_save(const XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the input file.
  * @return The total number of elements read.
  */
-size_t param_load(XCSF *xcsf, FILE *fp)
+size_t
+param_load(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->time, sizeof(int), 1, fp);
@@ -184,7 +189,8 @@ size_t param_load(XCSF *xcsf, FILE *fp)
  * @brief Initialises default XCSF general parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_defaults_general(XCSF *xcsf)
+static void
+param_defaults_general(XCSF *xcsf)
 {
     param_set_omp_num_threads(xcsf, 8);
     param_set_pop_init(xcsf, true);
@@ -198,7 +204,8 @@ static void param_defaults_general(XCSF *xcsf)
  * @brief Prints XCSF general parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_print_general(const XCSF *xcsf)
+static void
+param_print_general(const XCSF *xcsf)
 {
     printf("OMP_NUM_THREADS=%d", xcsf->OMP_NUM_THREADS);
     printf(", POP_INIT=");
@@ -215,7 +222,8 @@ static void param_print_general(const XCSF *xcsf)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_save_general(const XCSF *xcsf, FILE *fp)
+static size_t
+param_save_general(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
@@ -233,7 +241,8 @@ static size_t param_save_general(const XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the output file.
  * @return The total number of elements read.
  */
-static size_t param_load_general(XCSF *xcsf, FILE *fp)
+static size_t
+param_load_general(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
@@ -250,7 +259,8 @@ static size_t param_load_general(XCSF *xcsf, FILE *fp)
  * @brief Initialises default general classifier parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_defaults_cl_general(XCSF *xcsf)
+static void
+param_defaults_cl_general(XCSF *xcsf)
 {
     param_set_eps_0(xcsf, 0.01);
     param_set_alpha(xcsf, 0.1);
@@ -270,7 +280,8 @@ static void param_defaults_cl_general(XCSF *xcsf)
  * @brief Prints XCSF general classifier parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_print_cl_general(const XCSF *xcsf)
+static void
+param_print_cl_general(const XCSF *xcsf)
 {
     printf(", EPS_0=%f", xcsf->EPS_0);
     printf(", ALPHA=%f", xcsf->ALPHA);
@@ -293,7 +304,8 @@ static void param_print_cl_general(const XCSF *xcsf)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_save_cl_general(const XCSF *xcsf, FILE *fp)
+static size_t
+param_save_cl_general(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->EPS_0, sizeof(double), 1, fp);
@@ -317,7 +329,8 @@ static size_t param_save_cl_general(const XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the output file.
  * @return The total number of elements read.
  */
-static size_t param_load_cl_general(XCSF *xcsf, FILE *fp)
+static size_t
+param_load_cl_general(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->EPS_0, sizeof(double), 1, fp);
@@ -339,7 +352,8 @@ static size_t param_load_cl_general(XCSF *xcsf, FILE *fp)
  * @brief Initialises default multistep parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_defaults_multistep(XCSF *xcsf)
+static void
+param_defaults_multistep(XCSF *xcsf)
 {
     param_set_gamma(xcsf, 0.95);
     param_set_teletransportation(xcsf, 50);
@@ -350,7 +364,8 @@ static void param_defaults_multistep(XCSF *xcsf)
  * @brief Prints XCSF multistep parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_print_multistep(const XCSF *xcsf)
+static void
+param_print_multistep(const XCSF *xcsf)
 {
     printf(", GAMMA=%f", xcsf->GAMMA);
     printf(", TELETRANSPORTATION=%d", xcsf->TELETRANSPORTATION);
@@ -363,7 +378,8 @@ static void param_print_multistep(const XCSF *xcsf)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_save_multistep(const XCSF *xcsf, FILE *fp)
+static size_t
+param_save_multistep(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->GAMMA, sizeof(double), 1, fp);
@@ -378,7 +394,8 @@ static size_t param_save_multistep(const XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the output file.
  * @return The total number of elements read.
  */
-static size_t param_load_multistep(XCSF *xcsf, FILE *fp)
+static size_t
+param_load_multistep(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->GAMMA, sizeof(double), 1, fp);
@@ -391,7 +408,8 @@ static size_t param_load_multistep(XCSF *xcsf, FILE *fp)
  * @brief Initialises default subsumption parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_defaults_subsumption(XCSF *xcsf)
+static void
+param_defaults_subsumption(XCSF *xcsf)
 {
     param_set_ea_subsumption(xcsf, false);
     param_set_set_subsumption(xcsf, false);
@@ -402,7 +420,8 @@ static void param_defaults_subsumption(XCSF *xcsf)
  * @brief Prints XCSF subsumption parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_print_subsumption(const XCSF *xcsf)
+static void
+param_print_subsumption(const XCSF *xcsf)
 {
     printf(", EA_SUBSUMPTION=");
     xcsf->EA_SUBSUMPTION == true ? printf("true") : printf("false");
@@ -417,7 +436,8 @@ static void param_print_subsumption(const XCSF *xcsf)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_save_subsumption(const XCSF *xcsf, FILE *fp)
+static size_t
+param_save_subsumption(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
@@ -432,7 +452,8 @@ static size_t param_save_subsumption(const XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the output file.
  * @return The total number of elements read.
  */
-static size_t param_load_subsumption(XCSF *xcsf, FILE *fp)
+static size_t
+param_load_subsumption(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
@@ -445,7 +466,8 @@ static size_t param_load_subsumption(XCSF *xcsf, FILE *fp)
  * @brief Initialises default evolutionary algorithm parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_defaults_ea(XCSF *xcsf)
+static void
+param_defaults_ea(XCSF *xcsf)
 {
     param_set_ea_select_type(xcsf, 0);
     param_set_ea_select_size(xcsf, 0.4);
@@ -459,7 +481,8 @@ static void param_defaults_ea(XCSF *xcsf)
  * @brief Prints XCSF evolutionary algorithm parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_print_ea(const XCSF *xcsf)
+static void
+param_print_ea(const XCSF *xcsf)
 {
     printf(", EA_SELECT_TYPE=%d", xcsf->EA_SELECT_TYPE);
     printf(", EA_SELECT_SIZE=%f", xcsf->EA_SELECT_SIZE);
@@ -475,7 +498,8 @@ static void param_print_ea(const XCSF *xcsf)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_save_ea(const XCSF *xcsf, FILE *fp)
+static size_t
+param_save_ea(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->EA_SELECT_TYPE, sizeof(int), 1, fp);
@@ -493,7 +517,8 @@ static size_t param_save_ea(const XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_load_ea(XCSF *xcsf, FILE *fp)
+static size_t
+param_load_ea(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->EA_SELECT_TYPE, sizeof(int), 1, fp);
@@ -509,7 +534,8 @@ static size_t param_load_ea(XCSF *xcsf, FILE *fp)
  * @brief Initialises default classifier condition parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_defaults_cl_condition(XCSF *xcsf)
+static void
+param_defaults_cl_condition(XCSF *xcsf)
 {
     param_set_cond_eta(xcsf, 0);
     param_set_cond_type(xcsf, 1);
@@ -538,7 +564,8 @@ static void param_defaults_cl_condition(XCSF *xcsf)
  * @brief Prints XCSF condtion parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_print_cl_condition(const XCSF *xcsf)
+static void
+param_print_cl_condition(const XCSF *xcsf)
 {
     printf(", COND_ETA=%f", xcsf->COND_ETA);
     printf(", COND_TYPE=%d", xcsf->COND_TYPE);
@@ -579,7 +606,8 @@ static void param_print_cl_condition(const XCSF *xcsf)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_save_cl_condition(const XCSF *xcsf, FILE *fp)
+static size_t
+param_save_cl_condition(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->COND_ETA, sizeof(double), 1, fp);
@@ -611,7 +639,8 @@ static size_t param_save_cl_condition(const XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_load_cl_condition(XCSF *xcsf, FILE *fp)
+static size_t
+param_load_cl_condition(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->COND_ETA, sizeof(double), 1, fp);
@@ -648,7 +677,8 @@ static size_t param_load_cl_condition(XCSF *xcsf, FILE *fp)
  * @brief Initialises default classifier prediction parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_defaults_cl_prediction(XCSF *xcsf)
+static void
+param_defaults_cl_prediction(XCSF *xcsf)
 {
     param_set_pred_type(xcsf, 1);
     param_set_pred_evolve_eta(xcsf, true);
@@ -675,7 +705,8 @@ static void param_defaults_cl_prediction(XCSF *xcsf)
  * @brief Prints XCSF prediction parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_print_cl_prediction(const XCSF *xcsf)
+static void
+param_print_cl_prediction(const XCSF *xcsf)
 {
     printf(", PRED_TYPE=%d", xcsf->PRED_TYPE);
     printf(", PRED_EVOLVE_ETA=");
@@ -717,7 +748,8 @@ static void param_print_cl_prediction(const XCSF *xcsf)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_save_cl_prediction(const XCSF *xcsf, FILE *fp)
+static size_t
+param_save_cl_prediction(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->PRED_TYPE, sizeof(int), 1, fp);
@@ -746,7 +778,8 @@ static size_t param_save_cl_prediction(const XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_load_cl_prediction(XCSF *xcsf, FILE *fp)
+static size_t
+param_load_cl_prediction(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->PRED_TYPE, sizeof(int), 1, fp);
@@ -773,7 +806,8 @@ static size_t param_load_cl_prediction(XCSF *xcsf, FILE *fp)
  * @brief Initialises default classifier action parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_defaults_cl_action(XCSF *xcsf)
+static void
+param_defaults_cl_action(XCSF *xcsf)
 {
     param_set_act_type(xcsf, 0);
 }
@@ -782,7 +816,8 @@ static void param_defaults_cl_action(XCSF *xcsf)
  * @brief Prints XCSF action parameters.
  * @param xcsf The XCSF data structure.
  */
-static void param_print_cl_action(const XCSF *xcsf)
+static void
+param_print_cl_action(const XCSF *xcsf)
 {
     printf(", ACT_TYPE=%d", xcsf->ACT_TYPE);
 }
@@ -793,7 +828,8 @@ static void param_print_cl_action(const XCSF *xcsf)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_save_cl_action(const XCSF *xcsf, FILE *fp)
+static size_t
+param_save_cl_action(const XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->ACT_TYPE, sizeof(int), 1, fp);
@@ -806,7 +842,8 @@ static size_t param_save_cl_action(const XCSF *xcsf, FILE *fp)
  * @param fp Pointer to the output file.
  * @return The total number of elements written.
  */
-static size_t param_load_cl_action(XCSF *xcsf, FILE *fp)
+static size_t
+param_load_cl_action(XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->ACT_TYPE, sizeof(int), 1, fp);
@@ -815,7 +852,8 @@ static size_t param_load_cl_action(XCSF *xcsf, FILE *fp)
 
 /* SETTERS */
 
-void param_set_omp_num_threads(XCSF *xcsf, int a)
+void
+param_set_omp_num_threads(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set OMP_NUM_THREADS too small\n");
@@ -831,12 +869,14 @@ void param_set_omp_num_threads(XCSF *xcsf, int a)
 #endif
 }
 
-void param_set_pop_init(XCSF *xcsf, _Bool a)
+void
+param_set_pop_init(XCSF *xcsf, _Bool a)
 {
     xcsf->POP_INIT = a;
 }
 
-void param_set_max_trials(XCSF *xcsf, int a)
+void
+param_set_max_trials(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set MAX_TRIALS too small\n");
@@ -846,7 +886,8 @@ void param_set_max_trials(XCSF *xcsf, int a)
     }
 }
 
-void param_set_perf_trials(XCSF *xcsf, int a)
+void
+param_set_perf_trials(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set PERF_TRIALS too small\n");
@@ -856,7 +897,8 @@ void param_set_perf_trials(XCSF *xcsf, int a)
     }
 }
 
-void param_set_pop_size(XCSF *xcsf, int a)
+void
+param_set_pop_size(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set POP_SIZE too small\n");
@@ -866,7 +908,8 @@ void param_set_pop_size(XCSF *xcsf, int a)
     }
 }
 
-void param_set_loss_func(XCSF *xcsf, int a)
+void
+param_set_loss_func(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set LOSS_FUNC too small\n");
@@ -880,7 +923,8 @@ void param_set_loss_func(XCSF *xcsf, int a)
     loss_set_func(xcsf);
 }
 
-void param_set_gamma(XCSF *xcsf, double a)
+void
+param_set_gamma(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set GAMMA too small\n");
@@ -893,7 +937,8 @@ void param_set_gamma(XCSF *xcsf, double a)
     }
 }
 
-void param_set_teletransportation(XCSF *xcsf, int a)
+void
+param_set_teletransportation(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set TELETRANSPORTATION too small\n");
@@ -903,7 +948,8 @@ void param_set_teletransportation(XCSF *xcsf, int a)
     }
 }
 
-void param_set_p_explore(XCSF *xcsf, double a)
+void
+param_set_p_explore(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set P_EXPLORE too small\n");
@@ -916,7 +962,8 @@ void param_set_p_explore(XCSF *xcsf, double a)
     }
 }
 
-void param_set_alpha(XCSF *xcsf, double a)
+void
+param_set_alpha(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set ALPHA too small\n");
@@ -929,7 +976,8 @@ void param_set_alpha(XCSF *xcsf, double a)
     }
 }
 
-void param_set_beta(XCSF *xcsf, double a)
+void
+param_set_beta(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set BETA too small\n");
@@ -942,7 +990,8 @@ void param_set_beta(XCSF *xcsf, double a)
     }
 }
 
-void param_set_delta(XCSF *xcsf, double a)
+void
+param_set_delta(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set DELTA too small\n");
@@ -955,7 +1004,8 @@ void param_set_delta(XCSF *xcsf, double a)
     }
 }
 
-void param_set_eps_0(XCSF *xcsf, double a)
+void
+param_set_eps_0(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set EPS_0 too small\n");
@@ -965,7 +1015,8 @@ void param_set_eps_0(XCSF *xcsf, double a)
     }
 }
 
-void param_set_err_reduc(XCSF *xcsf, double a)
+void
+param_set_err_reduc(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set ERR_REDUC too small\n");
@@ -978,7 +1029,8 @@ void param_set_err_reduc(XCSF *xcsf, double a)
     }
 }
 
-void param_set_fit_reduc(XCSF *xcsf, double a)
+void
+param_set_fit_reduc(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set FIT_REDUC too small\n");
@@ -991,7 +1043,8 @@ void param_set_fit_reduc(XCSF *xcsf, double a)
     }
 }
 
-void param_set_init_error(XCSF *xcsf, double a)
+void
+param_set_init_error(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set INIT_ERROR too small\n");
@@ -1001,7 +1054,8 @@ void param_set_init_error(XCSF *xcsf, double a)
     }
 }
 
-void param_set_init_fitness(XCSF *xcsf, double a)
+void
+param_set_init_fitness(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set INIT_FITNESS too small\n");
@@ -1011,7 +1065,8 @@ void param_set_init_fitness(XCSF *xcsf, double a)
     }
 }
 
-void param_set_nu(XCSF *xcsf, double a)
+void
+param_set_nu(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set NU too small\n");
@@ -1021,7 +1076,8 @@ void param_set_nu(XCSF *xcsf, double a)
     }
 }
 
-void param_set_theta_del(XCSF *xcsf, int a)
+void
+param_set_theta_del(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set THETA_DEL too small\n");
@@ -1031,7 +1087,8 @@ void param_set_theta_del(XCSF *xcsf, int a)
     }
 }
 
-void param_set_cond_type(XCSF *xcsf, int a)
+void
+param_set_cond_type(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set COND_TYPE too small\n");
@@ -1041,7 +1098,8 @@ void param_set_cond_type(XCSF *xcsf, int a)
     }
 }
 
-void param_set_pred_type(XCSF *xcsf, int a)
+void
+param_set_pred_type(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set PRED_TYPE too small\n");
@@ -1051,7 +1109,8 @@ void param_set_pred_type(XCSF *xcsf, int a)
     }
 }
 
-void param_set_act_type(XCSF *xcsf, int a)
+void
+param_set_act_type(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set ACT_TYPE too small\n");
@@ -1061,7 +1120,8 @@ void param_set_act_type(XCSF *xcsf, int a)
     }
 }
 
-void param_set_m_probation(XCSF *xcsf, int a)
+void
+param_set_m_probation(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set M_PROBATION too small\n");
@@ -1071,7 +1131,8 @@ void param_set_m_probation(XCSF *xcsf, int a)
     }
 }
 
-void param_set_sam_type(XCSF *xcsf, int a)
+void
+param_set_sam_type(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set SAM_TYPE too small\n");
@@ -1081,7 +1142,8 @@ void param_set_sam_type(XCSF *xcsf, int a)
     }
 }
 
-void param_set_p_crossover(XCSF *xcsf, double a)
+void
+param_set_p_crossover(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set P_CROSSOVER too small\n");
@@ -1094,7 +1156,8 @@ void param_set_p_crossover(XCSF *xcsf, double a)
     }
 }
 
-void param_set_theta_ea(XCSF *xcsf, double a)
+void
+param_set_theta_ea(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set THETA_EA too small\n");
@@ -1104,7 +1167,8 @@ void param_set_theta_ea(XCSF *xcsf, double a)
     }
 }
 
-void param_set_lambda(XCSF *xcsf, int a)
+void
+param_set_lambda(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set LAMBDA too small\n");
@@ -1114,7 +1178,8 @@ void param_set_lambda(XCSF *xcsf, int a)
     }
 }
 
-void param_set_ea_select_type(XCSF *xcsf, int a)
+void
+param_set_ea_select_type(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set EA_SELECT_TYPE too small\n");
@@ -1124,7 +1189,8 @@ void param_set_ea_select_type(XCSF *xcsf, int a)
     }
 }
 
-void param_set_ea_select_size(XCSF *xcsf, double a)
+void
+param_set_ea_select_size(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set EA_SELECT_SIZE too small\n");
@@ -1137,22 +1203,26 @@ void param_set_ea_select_size(XCSF *xcsf, double a)
     }
 }
 
-void param_set_cond_max(XCSF *xcsf, double a)
+void
+param_set_cond_max(XCSF *xcsf, double a)
 {
     xcsf->COND_MAX = a;
 }
 
-void param_set_cond_min(XCSF *xcsf, double a)
+void
+param_set_cond_min(XCSF *xcsf, double a)
 {
     xcsf->COND_MIN = a;
 }
 
-void param_set_cond_smin(XCSF *xcsf, double a)
+void
+param_set_cond_smin(XCSF *xcsf, double a)
 {
     xcsf->COND_SMIN = a;
 }
 
-void param_set_cond_bits(XCSF *xcsf, int a)
+void
+param_set_cond_bits(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set COND_BITS too small\n");
@@ -1162,12 +1232,14 @@ void param_set_cond_bits(XCSF *xcsf, int a)
     }
 }
 
-void param_set_stateful(XCSF *xcsf, _Bool a)
+void
+param_set_stateful(XCSF *xcsf, _Bool a)
 {
     xcsf->STATEFUL = a;
 }
 
-void param_set_max_k(XCSF *xcsf, int a)
+void
+param_set_max_k(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set MAX_K too small\n");
@@ -1177,7 +1249,8 @@ void param_set_max_k(XCSF *xcsf, int a)
     }
 }
 
-void param_set_max_t(XCSF *xcsf, int a)
+void
+param_set_max_t(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set MAX_T too small\n");
@@ -1187,7 +1260,8 @@ void param_set_max_t(XCSF *xcsf, int a)
     }
 }
 
-void param_set_gp_num_cons(XCSF *xcsf, int a)
+void
+param_set_gp_num_cons(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set GP_NUM_CONS too small\n");
@@ -1201,7 +1275,8 @@ void param_set_gp_num_cons(XCSF *xcsf, int a)
     tree_init_cons(xcsf);
 }
 
-void param_set_gp_init_depth(XCSF *xcsf, int a)
+void
+param_set_gp_init_depth(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set GP_INIT_DEPTH too small\n");
@@ -1211,7 +1286,8 @@ void param_set_gp_init_depth(XCSF *xcsf, int a)
     }
 }
 
-void param_set_max_neuron_grow(XCSF *xcsf, int a)
+void
+param_set_max_neuron_grow(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set MAX_NEURON_GROW too small\n");
@@ -1221,7 +1297,8 @@ void param_set_max_neuron_grow(XCSF *xcsf, int a)
     }
 }
 
-void param_set_cond_eta(XCSF *xcsf, double a)
+void
+param_set_cond_eta(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set COND_ETA too small\n");
@@ -1234,27 +1311,32 @@ void param_set_cond_eta(XCSF *xcsf, double a)
     }
 }
 
-void param_set_cond_evolve_weights(XCSF *xcsf, _Bool a)
+void
+param_set_cond_evolve_weights(XCSF *xcsf, _Bool a)
 {
     xcsf->COND_EVOLVE_WEIGHTS = a;
 }
 
-void param_set_cond_evolve_neurons(XCSF *xcsf, _Bool a)
+void
+param_set_cond_evolve_neurons(XCSF *xcsf, _Bool a)
 {
     xcsf->COND_EVOLVE_NEURONS = a;
 }
 
-void param_set_cond_evolve_functions(XCSF *xcsf, _Bool a)
+void
+param_set_cond_evolve_functions(XCSF *xcsf, _Bool a)
 {
     xcsf->COND_EVOLVE_FUNCTIONS = a;
 }
 
-void param_set_cond_evolve_connectivity(XCSF *xcsf, _Bool a)
+void
+param_set_cond_evolve_connectivity(XCSF *xcsf, _Bool a)
 {
     xcsf->COND_EVOLVE_CONNECTIVITY = a;
 }
 
-void param_set_cond_output_activation(XCSF *xcsf, int a)
+void
+param_set_cond_output_activation(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set COND_OUTPUT_ACTIVATION too small\n");
@@ -1264,7 +1346,8 @@ void param_set_cond_output_activation(XCSF *xcsf, int a)
     }
 }
 
-void param_set_cond_hidden_activation(XCSF *xcsf, int a)
+void
+param_set_cond_hidden_activation(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set COND_HIDDEN_ACTIVATION too small\n");
@@ -1274,12 +1357,14 @@ void param_set_cond_hidden_activation(XCSF *xcsf, int a)
     }
 }
 
-void param_set_pred_reset(XCSF *xcsf, _Bool a)
+void
+param_set_pred_reset(XCSF *xcsf, _Bool a)
 {
     xcsf->PRED_RESET = a;
 }
 
-void param_set_pred_eta(XCSF *xcsf, double a)
+void
+param_set_pred_eta(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set PRED_ETA too small\n");
@@ -1292,12 +1377,14 @@ void param_set_pred_eta(XCSF *xcsf, double a)
     }
 }
 
-void param_set_pred_x0(XCSF *xcsf, double a)
+void
+param_set_pred_x0(XCSF *xcsf, double a)
 {
     xcsf->PRED_X0 = a;
 }
 
-void param_set_pred_rls_lambda(XCSF *xcsf, double a)
+void
+param_set_pred_rls_lambda(XCSF *xcsf, double a)
 {
     if (a < DBL_EPSILON) {
         printf("Warning: tried to set PRED_RLS_LAMBDA too small\n");
@@ -1307,42 +1394,50 @@ void param_set_pred_rls_lambda(XCSF *xcsf, double a)
     }
 }
 
-void param_set_pred_rls_scale_factor(XCSF *xcsf, double a)
+void
+param_set_pred_rls_scale_factor(XCSF *xcsf, double a)
 {
     xcsf->PRED_RLS_SCALE_FACTOR = a;
 }
 
-void param_set_pred_evolve_weights(XCSF *xcsf, _Bool a)
+void
+param_set_pred_evolve_weights(XCSF *xcsf, _Bool a)
 {
     xcsf->PRED_EVOLVE_WEIGHTS = a;
 }
 
-void param_set_pred_evolve_neurons(XCSF *xcsf, _Bool a)
+void
+param_set_pred_evolve_neurons(XCSF *xcsf, _Bool a)
 {
     xcsf->PRED_EVOLVE_NEURONS = a;
 }
 
-void param_set_pred_evolve_functions(XCSF *xcsf, _Bool a)
+void
+param_set_pred_evolve_functions(XCSF *xcsf, _Bool a)
 {
     xcsf->PRED_EVOLVE_FUNCTIONS = a;
 }
 
-void param_set_pred_evolve_connectivity(XCSF *xcsf, _Bool a)
+void
+param_set_pred_evolve_connectivity(XCSF *xcsf, _Bool a)
 {
     xcsf->PRED_EVOLVE_CONNECTIVITY = a;
 }
 
-void param_set_pred_evolve_eta(XCSF *xcsf, _Bool a)
+void
+param_set_pred_evolve_eta(XCSF *xcsf, _Bool a)
 {
     xcsf->PRED_EVOLVE_ETA = a;
 }
 
-void param_set_pred_sgd_weights(XCSF *xcsf, _Bool a)
+void
+param_set_pred_sgd_weights(XCSF *xcsf, _Bool a)
 {
     xcsf->PRED_SGD_WEIGHTS = a;
 }
 
-void param_set_pred_momentum(XCSF *xcsf, double a)
+void
+param_set_pred_momentum(XCSF *xcsf, double a)
 {
     if (a < 0) {
         printf("Warning: tried to set PRED_MOMENTUM too small\n");
@@ -1355,7 +1450,8 @@ void param_set_pred_momentum(XCSF *xcsf, double a)
     }
 }
 
-void param_set_pred_output_activation(XCSF *xcsf, int a)
+void
+param_set_pred_output_activation(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set PRED_OUTPUT_ACTIVATION too small\n");
@@ -1365,7 +1461,8 @@ void param_set_pred_output_activation(XCSF *xcsf, int a)
     }
 }
 
-void param_set_pred_hidden_activation(XCSF *xcsf, int a)
+void
+param_set_pred_hidden_activation(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set PRED_HIDDEN_ACTIVATION too small\n");
@@ -1375,17 +1472,20 @@ void param_set_pred_hidden_activation(XCSF *xcsf, int a)
     }
 }
 
-void param_set_ea_subsumption(XCSF *xcsf, _Bool a)
+void
+param_set_ea_subsumption(XCSF *xcsf, _Bool a)
 {
     xcsf->EA_SUBSUMPTION = a;
 }
 
-void param_set_set_subsumption(XCSF *xcsf, _Bool a)
+void
+param_set_set_subsumption(XCSF *xcsf, _Bool a)
 {
     xcsf->SET_SUBSUMPTION = a;
 }
 
-void param_set_theta_sub(XCSF *xcsf, int a)
+void
+param_set_theta_sub(XCSF *xcsf, int a)
 {
     if (a < 0) {
         printf("Warning: tried to set THETA_SUB too small\n");
@@ -1395,7 +1495,8 @@ void param_set_theta_sub(XCSF *xcsf, int a)
     }
 }
 
-void param_set_x_dim(XCSF *xcsf, int a)
+void
+param_set_x_dim(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set x_dim too small\n");
@@ -1405,12 +1506,14 @@ void param_set_x_dim(XCSF *xcsf, int a)
     }
 }
 
-void param_set_explore(XCSF *xcsf, _Bool a)
+void
+param_set_explore(XCSF *xcsf, _Bool a)
 {
     xcsf->explore = a;
 }
 
-void param_set_y_dim(XCSF *xcsf, int a)
+void
+param_set_y_dim(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set y_dim too small\n");
@@ -1420,7 +1523,8 @@ void param_set_y_dim(XCSF *xcsf, int a)
     }
 }
 
-void param_set_n_actions(XCSF *xcsf, int a)
+void
+param_set_n_actions(XCSF *xcsf, int a)
 {
     if (a < 1) {
         printf("Warning: tried to set n_actions too small\n");

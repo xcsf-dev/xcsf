@@ -36,47 +36,38 @@
 #include "xcs_rl.h"
 #include "xcs_supervised.h"
 
-int main(int argc, char **argv)
+int
+main(int argc, char **argv)
 {
     if (argc < 3 || argc > 5) {
-        printf("Usage: xcsf problemType{csv|mp|maze} problem{.csv|size|maze} [config.ini] [xcs.bin]\n");
+        printf("Usage: xcsf problemType{csv|mp|maze} ");
+        printf("problem{.csv|size|maze} [config.ini] [xcs.bin]\n");
         exit(EXIT_FAILURE);
     }
     XCSF *xcsf = malloc(sizeof(XCSF));
     random_init();
     param_init(xcsf);
-    // load parameter config
-    if (argc > 3) {
+    if (argc > 3) { // load parameter config
         config_read(xcsf, argv[3]);
     } else {
         config_read(xcsf, "default.ini");
     }
-    // initialise problem environment
-    env_init(xcsf, argv);
-    // initialise empty sets
-    xcsf_init(xcsf);
-    // reload state of a previous experiment
-    if (argc == 5) {
+    env_init(xcsf, argv); // initialise problem environment
+    xcsf_init(xcsf); // initialise empty sets
+    if (argc == 5) { // reload state of a previous experiment
         size_t s = xcsf_load(xcsf, argv[4]);
         printf("XCSF loaded: %d elements\n", (int) s);
-    }
-    // new experiment
-    else {
+    } else { // new experiment
         clset_pop_init(xcsf);
     }
-    // initialise prediction array
-    pa_init(xcsf);
-    // supervised regression - input csv file
-    if (strcmp(argv[1], "csv") == 0) {
+    pa_init(xcsf); // initialise prediction array
+    if (strcmp(argv[1], "csv") == 0) { // supervised regression - csv file
         const ENV_CSV *env = xcsf->env;
         xcs_supervised_fit(xcsf, env->train_data, env->test_data, true);
-    }
-    // reinforcement learning - maze or mux
-    else {
+    } else { // reinforcement learning - maze or mux
         xcs_rl_exp(xcsf);
     }
-    // clean up
-    pa_free(xcsf);
+    pa_free(xcsf); // clean up
     env_free(xcsf);
     clset_kill(xcsf, &xcsf->pset);
     param_free(xcsf);

@@ -36,11 +36,13 @@ _Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2);
 _Bool act_integer_mutate(const XCSF *xcsf, const CL *c);
 int act_integer_compute(const XCSF *xcsf, const CL *c, const double *x);
 void act_integer_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int action);
+void act_integer_cover(const XCSF *xcsf, const CL *c, const double *x,
+                       int action);
 void act_integer_free(const XCSF *xcsf, const CL *c);
 void act_integer_init(const XCSF *xcsf, CL *c);
 void act_integer_print(const XCSF *xcsf, const CL *c);
-void act_integer_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
+void act_integer_update(const XCSF *xcsf, const CL *c, const double *x,
+                        const double *y);
 size_t act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp);
 size_t act_integer_load(const XCSF *xcsf, CL *c, FILE *fp);
 

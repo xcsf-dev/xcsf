@@ -38,9 +38,11 @@ void neural_layer_convolutional_print(const XCSF *xcsf, const LAYER *l,
 _Bool neural_layer_convolutional_mutate(const XCSF *xcsf, LAYER *l);
 void neural_layer_convolutional_free(const XCSF *xcsf, const LAYER *l);
 double *neural_layer_convolutional_output(const XCSF *xcsf, const LAYER *l);
-size_t neural_layer_convolutional_save(const XCSF *xcsf, const LAYER *l, FILE *fp);
+size_t neural_layer_convolutional_save(const XCSF *xcsf, const LAYER *l,
+                                       FILE *fp);
 size_t neural_layer_convolutional_load(const XCSF *xcsf, LAYER *l, FILE *fp);
-void neural_layer_convolutional_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev);
+void neural_layer_convolutional_resize(const XCSF *xcsf, LAYER *l,
+                                       const LAYER *prev);
 
 static struct LayerVtbl const layer_convolutional_vtbl = {
     &neural_layer_convolutional_mutate,

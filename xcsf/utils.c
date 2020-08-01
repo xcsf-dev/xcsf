@@ -36,7 +36,8 @@ static double drand();
 /**
  * @brief Initialises the pseudo-random number generator.
  */
-void random_init()
+void
+random_init()
 {
     time_t now = time(0);
     const unsigned char *p = (unsigned char *)&now;
@@ -53,7 +54,8 @@ void random_init()
  *
  * @details double precision SIMD oriented Fast Mersenne Twister (dSFMT).
  */
-static double drand()
+static double
+drand()
 {
     return dsfmt_gv_genrand_open_open();
 }
@@ -62,7 +64,8 @@ static double drand()
  * @brief Returns a uniform random integer [min,max] not inclusive of max.
  * @return A random integer.
  */
-int irand_uniform(int min, int max)
+int
+irand_uniform(int min, int max)
 {
     return (int) floor(rand_uniform(min, max));
 }
@@ -71,20 +74,21 @@ int irand_uniform(int min, int max)
  * @brief Returns a uniform random float [min,max].
  * @return A random float.
  */
-double rand_uniform(double min, double max)
+double
+rand_uniform(double min, double max)
 {
     return min + (drand() * (max - min));
 }
 
 /**
- * @brief Returns a normal random float with specified mean and standard deviation.
+ * @brief Returns a random Gaussian with specified mean and standard deviation.
  * @param mu Mean.
  * @param sigma Standard deviation.
  * @return A random float.
- *
  * @details Box-Muller transform.
  */
-double rand_normal(double mu, double sigma)
+double
+rand_normal(double mu, double sigma)
 {
     static const double two_pi = 2 * M_PI;
     static double z1;
