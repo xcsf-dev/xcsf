@@ -52,10 +52,10 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
     uint32_t lopt = cond_neural_lopt(xcsf);
     LAYER *l;
     int n_inputs = xcsf->x_dim;
-    for(int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
+    for (int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
         int hinit = xcsf->COND_NUM_NEURONS[i];
         int hmax = xcsf->COND_MAX_NEURONS[i];
-        if(hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {
+        if (hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {
             hmax = hinit;
         }
         int f = xcsf->COND_HIDDEN_ACTIVATION;
@@ -74,16 +74,16 @@ void cond_neural_init(const XCSF *xcsf, CL *c)
 static uint32_t cond_neural_lopt(const XCSF *xcsf)
 {
     uint32_t lopt = 0;
-    if(xcsf->COND_EVOLVE_WEIGHTS) {
+    if (xcsf->COND_EVOLVE_WEIGHTS) {
         lopt |= LAYER_EVOLVE_WEIGHTS;
     }
-    if(xcsf->COND_EVOLVE_NEURONS) {
+    if (xcsf->COND_EVOLVE_NEURONS) {
         lopt |= LAYER_EVOLVE_NEURONS;
     }
-    if(xcsf->COND_EVOLVE_FUNCTIONS) {
+    if (xcsf->COND_EVOLVE_FUNCTIONS) {
         lopt |= LAYER_EVOLVE_FUNCTIONS;
     }
-    if(xcsf->COND_EVOLVE_CONNECTIVITY) {
+    if (xcsf->COND_EVOLVE_CONNECTIVITY) {
         lopt |= LAYER_EVOLVE_CONNECT;
     }
     return lopt;
@@ -109,7 +109,7 @@ void cond_neural_cover(const XCSF *xcsf, const CL *c, const double *x)
     const COND_NEURAL *cond = c->cond;
     do {
         neural_rand(xcsf, &cond->net);
-    } while(!cond_neural_match(xcsf, c, x));
+    } while (!cond_neural_match(xcsf, c, x));
 }
 
 void cond_neural_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
@@ -124,7 +124,7 @@ _Bool cond_neural_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     const COND_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
-    if(neural_output(xcsf, &cond->net, 0) > 0.5) {
+    if (neural_output(xcsf, &cond->net, 0) > 0.5) {
         return true;
     }
     return false;
@@ -185,8 +185,8 @@ int cond_neural_neurons(const XCSF *xcsf, const CL *c, int layer)
     const COND_NEURAL *cond = c->cond;
     const NET *net = &cond->net;
     int i = 0;
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        if(i == layer) {
+    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        if (i == layer) {
             return iter->layer->n_outputs;
         }
         ++i;
@@ -200,8 +200,8 @@ int cond_neural_connections(const XCSF *xcsf, const CL *c, int layer)
     const COND_NEURAL *cond = c->cond;
     const NET *net = &cond->net;
     int i = 0;
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        if(i == layer) {
+    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        if (i == layer) {
             return iter->layer->n_active;
         }
         ++i;

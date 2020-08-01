@@ -73,7 +73,7 @@ void env_maze_init(XCSF *xcsf, const char *fname)
 {
     // open maze file
     FILE *fp = fopen(fname, "rt");
-    if(fp == 0) {
+    if (fp == 0) {
         printf("could not open %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
@@ -82,8 +82,8 @@ void env_maze_init(XCSF *xcsf, const char *fname)
     int x = 0;
     int y = 0;
     int c;
-    while((c = fgetc(fp)) != EOF) {
-        if(c == '\n') {
+    while ((c = fgetc(fp)) != EOF) {
+        if (c == '\n') {
             ++y;
             env->xsize = x;
             x = 0;
@@ -92,7 +92,7 @@ void env_maze_init(XCSF *xcsf, const char *fname)
             ++x;
         }
         // check maximum maze size not exceeded
-        if(x > MAX_SIZE || y > MAX_SIZE) {
+        if (x > MAX_SIZE || y > MAX_SIZE) {
             printf("Maze too big to be read. Max size = [%d,%d]\n", MAX_SIZE, MAX_SIZE);
             exit(EXIT_FAILURE);
         }
@@ -133,8 +133,8 @@ void env_maze_reset(const XCSF *xcsf)
     do {
         env->xpos = irand_uniform(0, env->xsize);
         env->ypos = irand_uniform(0, env->ysize);
-    } while(env->maze[env->ypos][env->xpos] != '*');
-    if(MAZE_DEBUG && !xcsf->explore) {
+    } while (env->maze[env->ypos][env->xpos] != '*');
+    if (MAZE_DEBUG && !xcsf->explore) {
         printf("------------\n");
         env_maze_print(xcsf);
     }
@@ -160,10 +160,10 @@ const double *env_maze_get_state(const XCSF *xcsf)
 {
     const ENV_MAZE *env = xcsf->env;
     int spos = 0;
-    for(int y = -1; y < 2; ++y) {
-        for(int x = -1; x < 2; ++x) {
+    for (int y = -1; y < 2; ++y) {
+        for (int x = -1; x < 2; ++x) {
             // ignore current pos
-            if(x == 0 && y == 0) {
+            if (x == 0 && y == 0) {
                 continue;
             }
             // toroidal maze
@@ -188,7 +188,7 @@ static double env_maze_sensor(const XCSF *xcsf, char s)
 {
     (void)xcsf;
     double ret = 0;
-    switch(s) {
+    switch (s) {
         case '*':
             ret = 0.1;
             break;
@@ -219,7 +219,7 @@ static double env_maze_sensor(const XCSF *xcsf, char s)
  */
 double env_maze_execute(const XCSF *xcsf, int action)
 {
-    if(action < 0 || action > 7) {
+    if (action < 0 || action > 7) {
         printf("invalid maze action\n");
         exit(EXIT_FAILURE);
     }
@@ -229,7 +229,7 @@ double env_maze_execute(const XCSF *xcsf, int action)
     int newy = ((env->ypos + y_moves[action]) % env->ysize + env->ysize) % env->ysize;
     // make the move and recieve reward
     double reward = 0;
-    switch(env->maze[newy][newx]) {
+    switch (env->maze[newy][newx]) {
         case 'O':
         case 'Q':
             break;
@@ -248,7 +248,7 @@ double env_maze_execute(const XCSF *xcsf, int action)
             printf("invalid maze type\n");
             exit(EXIT_FAILURE);
     }
-    if(MAZE_DEBUG && !xcsf->explore) {
+    if (MAZE_DEBUG && !xcsf->explore) {
         env_maze_print(xcsf);
     }
     return reward;
@@ -283,9 +283,9 @@ _Bool env_maze_multistep(const XCSF *xcsf)
 static void env_maze_print(const XCSF *xcsf)
 {
     const ENV_MAZE *env = xcsf->env;
-    for(int y = 0; y < env->ysize; ++y) {
-        for(int x = 0; x < env->xsize; ++x) {
-            if(x == env->xpos && y == env->ypos) {
+    for (int y = 0; y < env->ysize; ++y) {
+        for (int x = 0; x < env->xsize; ++x) {
+            if (x == env->xpos && y == env->ypos) {
                 printf("X");
             } else {
                 printf("%c", env->maze[y][x]);

@@ -63,7 +63,7 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
 {
     (void)xcsf;
     // empty list
-    if(net->head == NULL || net->tail == NULL) {
+    if (net->head == NULL || net->tail == NULL) {
         net->head = malloc(sizeof(LLIST));
         net->head->layer = l;
         net->head->prev = NULL;
@@ -76,14 +76,14 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
     // insert
     else {
         LLIST *iter = net->tail;
-        for(int i = 0; i < p && iter != NULL; ++i) {
+        for (int i = 0; i < p && iter != NULL; ++i) {
             iter = iter->prev;
         }
         LLIST *new = malloc(sizeof(LLIST));
         new->layer = l;
         new->prev = iter;
         // new head
-        if(iter == NULL) {
+        if (iter == NULL) {
             new->next = net->head;
             net->head->prev = new;
             net->head = new;
@@ -93,7 +93,7 @@ void neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
             new->next = iter->next;
             iter->next = new;
             // new tail
-            if(iter->next == NULL) {
+            if (iter->next == NULL) {
                 net->tail = new;
                 net->n_inputs = l->n_inputs;
             }
@@ -116,34 +116,34 @@ void neural_layer_remove(const XCSF *xcsf, NET *net, int p)
 {
     // find the layer
     LLIST *iter = net->tail;
-    for(int i = 0; i < p && iter != NULL; ++i) {
+    for (int i = 0; i < p && iter != NULL; ++i) {
         iter = iter->prev;
     }
-    if(iter == NULL) {
+    if (iter == NULL) {
         printf("neural_layer_remove(): error finding layer to remove\n");
         exit(EXIT_FAILURE);
-    } else if(iter->next == NULL && iter->prev == NULL) {
+    } else if (iter->next == NULL && iter->prev == NULL) {
         printf("neural_layer_remove(): attempted to remove the only layer\n");
         exit(EXIT_FAILURE);
     }
     // head
-    if(iter->prev == NULL) {
+    if (iter->prev == NULL) {
         net->head = iter->next;
-        if(iter->next != NULL) {
+        if (iter->next != NULL) {
             iter->next->prev = NULL;
         }
         net->output = net->head->layer->output;
         net->n_outputs = net->head->layer->n_outputs;
     }
     // tail
-    if(iter->next == NULL) {
+    if (iter->next == NULL) {
         net->tail = iter->prev;
-        if(iter->prev != NULL) {
+        if (iter->prev != NULL) {
             iter->prev->next = NULL;
         }
     }
     // middle
-    if(iter->prev != NULL && iter->next != NULL) {
+    if (iter->prev != NULL && iter->next != NULL) {
         iter->next->prev = iter->prev;
         iter->prev->next = iter->next;
     }
@@ -163,7 +163,7 @@ void neural_copy(const XCSF *xcsf, NET *dest, const NET *src)
 {
     neural_init(xcsf, dest);
     int p = 0;
-    for(const LLIST *iter = src->tail; iter != NULL; iter = iter->prev) {
+    for (const LLIST *iter = src->tail; iter != NULL; iter = iter->prev) {
         const LAYER *f = iter->layer;
         LAYER *l = layer_copy(xcsf, f);
         neural_layer_insert(xcsf, dest, l, p);
@@ -179,7 +179,7 @@ void neural_copy(const XCSF *xcsf, NET *dest, const NET *src)
 void neural_free(const XCSF *xcsf, NET *net)
 {
     LLIST *iter = net->tail;
-    while(iter != NULL) {
+    while (iter != NULL) {
         layer_free(xcsf, iter->layer);
         free(iter->layer);
         net->tail = iter->prev;
@@ -196,7 +196,7 @@ void neural_free(const XCSF *xcsf, NET *net)
  */
 void neural_rand(const XCSF *xcsf, const NET *net)
 {
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_rand(xcsf, iter->layer);
     }
 }
@@ -212,17 +212,17 @@ _Bool neural_mutate(const XCSF *xcsf, const NET *net)
     _Bool mod = false;
     const LAYER *prev = NULL;
     _Bool do_resize = false;
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         // if the previous layer has grown or shrunk this layer must be resized
-        if(do_resize) {
+        if (do_resize) {
             layer_resize(xcsf, iter->layer, prev);
         }
         // mutate this layer and check if it changed size
         do_resize = false;
         int orig_outputs = iter->layer->n_outputs;
-        if(layer_mutate(xcsf, iter->layer)) {
+        if (layer_mutate(xcsf, iter->layer)) {
             mod = true;
-            if(iter->layer->n_outputs != orig_outputs) {
+            if (iter->layer->n_outputs != orig_outputs) {
                 do_resize = true;
             }
         }
@@ -240,8 +240,8 @@ _Bool neural_mutate(const XCSF *xcsf, const NET *net)
 void neural_resize(const XCSF *xcsf, const NET *net)
 {
     const LAYER *prev = NULL;
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
-        if(prev != NULL && iter->layer->n_inputs != prev->n_outputs) {
+    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+        if (prev != NULL && iter->layer->n_inputs != prev->n_outputs) {
             layer_resize(xcsf, iter->layer, prev);
         }
         prev = iter->layer;
@@ -256,7 +256,7 @@ void neural_resize(const XCSF *xcsf, const NET *net)
  */
 void neural_propagate(const XCSF *xcsf, const NET *net, const double *input)
 {
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_forward(xcsf, iter->layer, input);
         input = layer_output(xcsf, iter->layer);
     }
@@ -273,18 +273,18 @@ void neural_learn(const XCSF *xcsf, const NET *net, const double *truth,
                   const double *input)
 {
     /* reset deltas */
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         memset(iter->layer->delta, 0, sizeof(double) * iter->layer->n_outputs);
     }
     // calculate output layer error
     const LAYER *p = net->head->layer;
-    for(int i = 0; i < p->n_outputs; ++i) {
+    for (int i = 0; i < p->n_outputs; ++i) {
         p->delta[i] = (truth[i] - p->output[i]);
     }
     /* backward phase */
-    for(const LLIST *iter = net->head; iter != NULL; iter = iter->next) {
+    for (const LLIST *iter = net->head; iter != NULL; iter = iter->next) {
         const LAYER *l = iter->layer;
-        if(iter->next == NULL) {
+        if (iter->next == NULL) {
             layer_backward(xcsf, l, input, 0);
         } else {
             const LAYER *prev = iter->next->layer;
@@ -292,7 +292,7 @@ void neural_learn(const XCSF *xcsf, const NET *net, const double *truth,
         }
     }
     /* update phase */
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_update(xcsf, iter->layer);
     }
 }
@@ -306,7 +306,7 @@ void neural_learn(const XCSF *xcsf, const NET *net, const double *truth,
  */
 double neural_output(const XCSF *xcsf, const NET *net, int i)
 {
-    if(i < net->n_outputs) {
+    if (i < net->n_outputs) {
         return layer_output(xcsf, net->head->layer)[i];
     }
     printf("neural_output(): requested (%d) in output layer of size (%d)\n", i,
@@ -323,7 +323,7 @@ double neural_output(const XCSF *xcsf, const NET *net, int i)
 void neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
 {
     int i = 0;
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         printf("layer (%d) ", i);
         layer_print(xcsf, iter->layer, print_weights);
         ++i;
@@ -340,12 +340,12 @@ int neural_size(const XCSF *xcsf, const NET *net)
 {
     (void)xcsf;
     int size = 0;
-    for(const LLIST *iter = net->tail; iter->prev != NULL; iter = iter->prev) {
-        switch(iter->layer->layer_type) {
-            case(CONNECTED):
-            case(RECURRENT):
-            case(LSTM):
-            case(CONVOLUTIONAL):
+    for (const LLIST *iter = net->tail; iter->prev != NULL; iter = iter->prev) {
+        switch (iter->layer->layer_type) {
+            case (CONNECTED):
+            case (RECURRENT):
+            case (LSTM):
+            case (CONVOLUTIONAL):
                 size += iter->layer->n_active;
                 break;
             default:
@@ -368,7 +368,7 @@ size_t neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
     s += fwrite(&net->n_layers, sizeof(int), 1, fp);
     s += fwrite(&net->n_inputs, sizeof(int), 1, fp);
     s += fwrite(&net->n_outputs, sizeof(int), 1, fp);
-    for(const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         s += fwrite(&iter->layer->layer_type, sizeof(int), 1, fp);
         s += layer_save(xcsf, iter->layer, fp);
     }
@@ -392,7 +392,7 @@ size_t neural_load(const XCSF *xcsf, NET *net, FILE *fp)
     s += fread(&ninputs, sizeof(int), 1, fp);
     s += fread(&noutputs, sizeof(int), 1, fp);
     neural_init(xcsf, net);
-    for(int i = 0; i < nlayers; ++i) {
+    for (int i = 0; i < nlayers; ++i) {
         LAYER *l = malloc(sizeof(LAYER));
         s += fread(&l->layer_type, sizeof(int), 1, fp);
         layer_set_vptr(l);

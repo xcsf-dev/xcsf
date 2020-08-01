@@ -45,7 +45,7 @@
  */
 void layer_set_vptr(LAYER *l)
 {
-    switch(l->layer_type) {
+    switch (l->layer_type) {
         case CONNECTED:
             l->layer_vptr = &layer_connected_vtbl;
             break;
@@ -88,7 +88,7 @@ _Bool layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
     double orig = l->eta;
     l->eta += rand_normal(0, mu);
     l->eta = clamp(ETA_MIN, xcsf->PRED_ETA, l->eta);
-    if(l->eta != orig) {
+    if (l->eta != orig) {
         return true;
     }
     return false;
@@ -105,9 +105,9 @@ _Bool layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
 int layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu)
 {
     int n = (int) round(((2 * mu) - 1) * xcsf->MAX_NEURON_GROW);
-    if(n < 0 && l->n_outputs + n < 1) {
+    if (n < 0 && l->n_outputs + n < 1) {
         n = -(l->n_outputs - 1);
-    } else if(l->n_outputs + n > l->max_outputs) {
+    } else if (l->n_outputs + n > l->max_outputs) {
         n = l->max_outputs - l->n_outputs;
     }
     return n;
@@ -131,9 +131,9 @@ void layer_add_neurons(LAYER *l, int N)
     l->biases = realloc(l->biases, n_outputs * sizeof(double));
     l->bias_updates = realloc(l->bias_updates, n_outputs * sizeof(double));
     l->delta = realloc(l->delta, n_outputs * sizeof(double));
-    if(N > 0) {
-        for(int i = l->n_weights; i < n_weights; ++i) {
-            if(l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
+    if (N > 0) {
+        for (int i = l->n_weights; i < n_weights; ++i) {
+            if (l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
                 l->weights[i] = 0;
                 l->weight_active[i] = false;
             } else {
@@ -143,7 +143,7 @@ void layer_add_neurons(LAYER *l, int N)
             }
             l->weight_updates[i] = 0;
         }
-        for(int i = l->n_outputs; i < n_outputs; ++i) {
+        for (int i = l->n_outputs; i < n_outputs; ++i) {
             l->biases[i] = 0;
             l->bias_updates[i] = 0;
             l->output[i] = 0;
@@ -164,14 +164,14 @@ void layer_add_neurons(LAYER *l, int N)
  */
 _Bool layer_mutate_connectivity(LAYER *l, double mu)
 {
-    if(l->n_inputs < 2) {
+    if (l->n_inputs < 2) {
         return false;
     }
     _Bool mod = false;
-    for(int i = 0; i < l->n_weights; ++i) {
-        if(rand_uniform(0, 1) < mu) {
+    for (int i = 0; i < l->n_weights; ++i) {
+        if (rand_uniform(0, 1) < mu) {
             l->weight_active[i] = ! l->weight_active[i];
-            if(l->weight_active[i]) {
+            if (l->weight_active[i]) {
                 l->weights[i] = rand_normal(0, 0.1);
                 l->n_active += 1;
             } else {
@@ -182,7 +182,7 @@ _Bool layer_mutate_connectivity(LAYER *l, double mu)
         }
     }
     // at least one connection must be active
-    if(l->n_active < 1) {
+    if (l->n_active < 1) {
         int r = irand_uniform(0, l->n_weights);
         l->weights[r] = rand_normal(0, 0.1);
         l->weight_active[r] = true;
@@ -202,21 +202,21 @@ _Bool layer_mutate_connectivity(LAYER *l, double mu)
 _Bool layer_mutate_weights(LAYER *l, double mu)
 {
     _Bool mod = false;
-    for(int i = 0; i < l->n_weights; ++i) {
-        if(l->weight_active[i]) {
+    for (int i = 0; i < l->n_weights; ++i) {
+        if (l->weight_active[i]) {
             double orig = l->weights[i];
             l->weights[i] += rand_normal(0, mu);
             l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
-            if(l->weights[i] != orig) {
+            if (l->weights[i] != orig) {
                 mod = true;
             }
         }
     }
-    for(int i = 0; i < l->n_biases; ++i) {
+    for (int i = 0; i < l->n_biases; ++i) {
         double orig = l->biases[i];
         l->biases[i] += rand_normal(0, mu);
         l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
-        if(l->biases[i] != orig) {
+        if (l->biases[i] != orig) {
             mod = true;
         }
     }
@@ -232,17 +232,17 @@ _Bool layer_mutate_weights(LAYER *l, double mu)
 _Bool layer_mutate_functions(LAYER *l, double mu)
 {
     _Bool mod = false;
-    if(rand_uniform(0, 1) < mu) {
+    if (rand_uniform(0, 1) < mu) {
         int orig = l->function;
         l->function = irand_uniform(0, NUM_ACTIVATIONS);
-        if(l->function != orig) {
+        if (l->function != orig) {
             mod = true;
         }
     }
-    if(l->layer_type == LSTM && rand_uniform(0, 1) < mu) {
+    if (l->layer_type == LSTM && rand_uniform(0, 1) < mu) {
         int orig = l->recurrent_function;
         l->recurrent_function = irand_uniform(0, NUM_ACTIVATIONS);
-        if(l->recurrent_function != orig) {
+        if (l->recurrent_function != orig) {
             mod = true;
         }
     }
@@ -257,14 +257,14 @@ _Bool layer_mutate_functions(LAYER *l, double mu)
 void layer_weight_print(const LAYER *l, _Bool print_weights)
 {
     printf("weights (%d): ", l->n_weights);
-    if(print_weights) {
-        for(int i = 0; i < l->n_weights; ++i) {
+    if (print_weights) {
+        for (int i = 0; i < l->n_weights; ++i) {
             printf("%.4f, ", l->weights[i]);
         }
     }
     printf("biases (%d): ", l->n_biases);
-    if(print_weights) {
-        for(int i = 0; i < l->n_biases; ++i) {
+    if (print_weights) {
+        for (int i = 0; i < l->n_biases; ++i) {
             printf("%.4f, ", l->biases[i]);
         }
     }
@@ -280,11 +280,11 @@ void layer_weight_rand(const XCSF *xcsf, LAYER *l)
 {
     (void)xcsf;
     l->n_active = l->n_weights;
-    for(int i = 0; i < l->n_weights; ++i) {
+    for (int i = 0; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 1);
         l->weight_active[i] = true;
     }
-    for(int i = 0; i < l->n_biases; ++i) {
+    for (int i = 0; i < l->n_biases; ++i) {
         l->biases[i] = rand_normal(0, 1);
     }
 }
@@ -295,14 +295,14 @@ void layer_weight_rand(const XCSF *xcsf, LAYER *l)
  */
 void layer_weight_clamp(const LAYER *l)
 {
-    for(int i = 0; i < l->n_weights; ++i) {
-        if(l->weight_active[i]) {
+    for (int i = 0; i < l->n_weights; ++i) {
+        if (l->weight_active[i]) {
             l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
         } else {
             l->weights[i] = 0;
         }
     }
-    for(int i = 0; i < l->n_biases; ++i) {
+    for (int i = 0; i < l->n_biases; ++i) {
         l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
     }
 }
@@ -314,8 +314,8 @@ void layer_weight_clamp(const LAYER *l)
 void layer_calc_n_active(LAYER *l)
 {
     l->n_active = l->n_weights;
-    for(int i = 0; i < l->n_weights; ++i) {
-        if(l->weights[i] == 0) {
+    for (int i = 0; i < l->n_weights; ++i) {
+        if (l->weights[i] == 0) {
             l->n_active -= 1;
         }
     }
@@ -328,7 +328,7 @@ void layer_calc_n_active(LAYER *l)
  */
 void layer_init_eta(const XCSF *xcsf, LAYER *l)
 {
-    if(l->options & LAYER_EVOLVE_ETA) {
+    if (l->options & LAYER_EVOLVE_ETA) {
         l->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
     } else {
         l->eta = xcsf->PRED_ETA;

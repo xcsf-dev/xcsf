@@ -41,13 +41,13 @@
 void env_init(XCSF *xcsf, char **argv)
 {
     char *end;
-    if(strcmp(argv[1], "mp") == 0) {
+    if (strcmp(argv[1], "mp") == 0) {
         xcsf->env_vptr = &env_mux_vtbl;
         env_mux_init(xcsf, (int) strtoimax(argv[2], &end, 10));
-    } else if(strcmp(argv[1], "maze") == 0) {
+    } else if (strcmp(argv[1], "maze") == 0) {
         xcsf->env_vptr = &env_maze_vtbl;
         env_maze_init(xcsf, argv[2]);
-    } else if(strcmp(argv[1], "csv") == 0) {
+    } else if (strcmp(argv[1], "csv") == 0) {
         xcsf->env_vptr = &env_csv_vtbl;
         env_csv_init(xcsf, argv[2]);
     } else {

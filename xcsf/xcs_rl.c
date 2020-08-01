@@ -52,7 +52,7 @@ double xcs_rl_exp(XCSF *xcsf)
     double werr = 0; // prediction error: windowed total
     double tperf = 0; // steps to goal: total over all trials
     double wperf = 0; // steps to goal: windowed total
-    for(int cnt = 0; cnt < xcsf->MAX_TRIALS; ++cnt) {
+    for (int cnt = 0; cnt < xcsf->MAX_TRIALS; ++cnt) {
         xcs_rl_trial(xcsf, &error, true); // explore
         double perf = xcs_rl_trial(xcsf, &error, false); // exploit
         wperf += perf;
@@ -80,7 +80,7 @@ static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
     double reward = 0;
     _Bool reset = false;
     int steps = 0;
-    while(steps < xcsf->TELETRANSPORTATION && !reset) {
+    while (steps < xcsf->TELETRANSPORTATION && !reset) {
         xcs_rl_init_step(xcsf);
         const double *state = env_get_state(xcsf);
         int action = xcs_rl_decision(xcsf, state);
@@ -93,7 +93,7 @@ static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
     }
     xcs_rl_end_trial(xcsf);
     *error /= steps;
-    if(!env_multistep(xcsf)) {
+    if (!env_multistep(xcsf)) {
         return (reward > 0) ? 1 : 0;
     }
     return steps;
@@ -107,7 +107,7 @@ void xcs_rl_init_trial(XCSF *xcsf)
 {
     xcsf->prev_reward = 0;
     xcsf->prev_pred = 0;
-    if(xcsf->x_dim < 1) { // memory allocation guard
+    if (xcsf->x_dim < 1) { // memory allocation guard
         printf("xcs_rl_init_trial(): error x_dim less than 1\n");
         xcsf->x_dim = 1;
         exit(EXIT_FAILURE);
@@ -170,19 +170,19 @@ void xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward,
     // create action set
     clset_action(xcsf, action);
     // update previous action set and run EA
-    if(xcsf->prev_aset.list != NULL) {
+    if (xcsf->prev_aset.list != NULL) {
         double payoff = xcsf->prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
         clset_validate(&xcsf->prev_aset);
         clset_update(xcsf, &xcsf->prev_aset, xcsf->prev_state, &payoff, false);
-        if(xcsf->explore) {
+        if (xcsf->explore) {
             ea(xcsf, &xcsf->prev_aset);
         }
     }
     // in goal state: update current action set and run EA
-    if(reset) {
+    if (reset) {
         clset_validate(&xcsf->aset);
         clset_update(xcsf, &xcsf->aset, state, &reward, true);
-        if(xcsf->explore) {
+        if (xcsf->explore) {
             ea(xcsf, &xcsf->aset);
         }
     }
@@ -201,11 +201,11 @@ double xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset,
                     double max_p)
 {
     double error = 0;
-    if(xcsf->prev_aset.list != NULL) {
+    if (xcsf->prev_aset.list != NULL) {
         error += fabs(xcsf->GAMMA * pa_val(xcsf, action)
                       + xcsf->prev_reward - xcsf->prev_pred) / max_p;
     }
-    if(reset) {
+    if (reset) {
         error += fabs(reward - pa_val(xcsf, action)) / max_p;
     }
     return error;
@@ -222,7 +222,7 @@ int xcs_rl_decision(XCSF *xcsf, const double *state)
 {
     clset_match(xcsf, state);
     pa_build(xcsf, state);
-    if(xcsf->explore && rand_uniform(0, 1) < xcsf->P_EXPLORE) {
+    if (xcsf->explore && rand_uniform(0, 1) < xcsf->P_EXPLORE) {
         return pa_rand_action(xcsf);
     }
     return pa_best_action(xcsf);

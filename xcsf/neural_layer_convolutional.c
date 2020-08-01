@@ -94,7 +94,7 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
     l->workspace_size = get_workspace_size(l);
     layer_init_eta(xcsf, l);
     malloc_layer_arrays(l);
-    for(int i = 0; i < l->n_weights; ++i) {
+    for (int i = 0; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 0.1);
         l->weight_active[i] = true;
     }
@@ -106,7 +106,7 @@ LAYER *neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
 static size_t get_workspace_size(const LAYER *l)
 {
     int size = l->out_h * l->out_w * l->size * l->size * l->channels;
-    if(size < 1) {
+    if (size < 1) {
         printf("neural_layer_convolutional: workspace_size overflow\n");
         exit(EXIT_FAILURE);
     }
@@ -115,7 +115,7 @@ static size_t get_workspace_size(const LAYER *l)
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX ||
+    if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX ||
             l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX ||
             l->n_weights < 1 || l->n_weights > N_WEIGHTS_MAX ||
             l->workspace_size < 1) {
@@ -214,14 +214,14 @@ void neural_layer_convolutional_forward(const XCSF *xcsf, const LAYER *l,
     double *b = l->temp;
     double *c = l->state;
     memset(l->state, 0, sizeof(double) * l->n_outputs);
-    if(l->size == 1) {
+    if (l->size == 1) {
         blas_gemm(0, 0, m, n, k, 1, a, k, input, n, 1, c, n);
     } else {
         im2col(input, l->channels, l->height, l->width, l->size, l->stride, l->pad, b);
         blas_gemm(0, 0, m, n, k, 1, a, k, b, n, 1, c, n);
     }
-    for(int i = 0; i < l->n_biases; ++i) {
-        for(int j = 0; j < n; ++j) {
+    for (int i = 0; i < l->n_biases; ++i) {
+        for (int j = 0; j < n; ++j) {
             l->state[i * n + j] += l->biases[i];
         }
     }
@@ -235,30 +235,30 @@ void neural_layer_convolutional_backward(const XCSF *xcsf, const LAYER *l,
     int m = l->n_filters;
     int n = l->size * l->size * l->channels;
     int k = l->out_w * l->out_h;
-    if(l->options & LAYER_SGD_WEIGHTS) {
+    if (l->options & LAYER_SGD_WEIGHTS) {
         neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
-        for(int i = 0; i < l->n_biases; ++i) {
+        for (int i = 0; i < l->n_biases; ++i) {
             l->bias_updates[i] += blas_sum(l->delta + k * i, k);
         }
         const double *a = l->delta;
         double *b = l->temp;
         double *c = l->weight_updates;
-        if(l->size == 1) {
+        if (l->size == 1) {
             blas_gemm(0, 1, m, n, k, 1, a, k, input, k, 1, c, n);
         } else {
             im2col(input, l->channels, l->height, l->width, l->size, l->stride, l->pad, b);
             blas_gemm(0, 1, m, n, k, 1, a, k, b, k, 1, c, n);
         }
     }
-    if(delta) {
+    if (delta) {
         const double *a = l->weights;
         const double *b = l->delta;
         double *c = l->temp;
-        if(l->size == 1) {
+        if (l->size == 1) {
             c = delta;
         }
         blas_gemm(1, 0, n, k, m, 1, a, n, b, k, 0, c, k);
-        if(l->size != 1) {
+        if (l->size != 1) {
             col2im(l->temp, l->channels, l->height, l->width, l->size, l->stride, l->pad, delta);
         }
     }
@@ -266,7 +266,7 @@ void neural_layer_convolutional_backward(const XCSF *xcsf, const LAYER *l,
 
 void neural_layer_convolutional_update(const XCSF *xcsf, const LAYER *l)
 {
-    if(l->options & LAYER_SGD_WEIGHTS) {
+    if (l->options & LAYER_SGD_WEIGHTS) {
         blas_axpy(l->n_biases, l->eta, l->bias_updates, 1, l->biases, 1);
         blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
         blas_scal(l->n_biases, xcsf->PRED_MOMENTUM, l->bias_updates, 1);
@@ -296,16 +296,16 @@ _Bool neural_layer_convolutional_mutate(const XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
-    if((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
+    if ((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_CONNECT) && layer_mutate_connectivity(l, l->mu[1])) {
+    if ((l->options & LAYER_EVOLVE_CONNECT) && layer_mutate_connectivity(l, l->mu[1])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_WEIGHTS) && layer_mutate_weights(l, l->mu[2])) {
+    if ((l->options & LAYER_EVOLVE_WEIGHTS) && layer_mutate_weights(l, l->mu[2])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_FUNCTIONS) && layer_mutate_functions(l, l->mu[3])) {
+    if ((l->options & LAYER_EVOLVE_FUNCTIONS) && layer_mutate_functions(l, l->mu[3])) {
         mod = true;
     }
     return mod;
@@ -401,7 +401,7 @@ static double im2col_get_pixel(const double *im, int height, int width, int row,
 {
     row -= pad;
     col -= pad;
-    if(row < 0 || col < 0 || row >= height || col >= width) {
+    if (row < 0 || col < 0 || row >= height || col >= width) {
         return 0;
     }
     return im[col + width * (row + height * channel)];
@@ -413,12 +413,12 @@ static void im2col(const double *data_im, int channels, int height, int width,
     int height_col = (height + 2 * pad - ksize) / stride + 1;
     int width_col = (width + 2 * pad - ksize) / stride + 1;
     int channels_col = channels * ksize * ksize;
-    for(int c = 0; c < channels_col; ++c) {
+    for (int c = 0; c < channels_col; ++c) {
         int w_offset = c % ksize;
         int h_offset = (c / ksize) % ksize;
         int c_im = c / ksize / ksize;
-        for(int h = 0; h < height_col; ++h) {
-            for(int w = 0; w < width_col; ++w) {
+        for (int h = 0; h < height_col; ++h) {
+            for (int w = 0; w < width_col; ++w) {
                 int im_row = h_offset + h * stride;
                 int im_col = w_offset + w * stride;
                 int col_index = (c * height_col + h) * width_col + w;
@@ -434,7 +434,7 @@ static void col2im_add_pixel(double *im, int height, int width, int row, int col
 {
     row -= pad;
     col -= pad;
-    if(row < 0 || col < 0 || row >= height || col >= width) {
+    if (row < 0 || col < 0 || row >= height || col >= width) {
         return;
     }
     im[col + width * (row + height * channel)] += val;
@@ -446,12 +446,12 @@ static void col2im(const double *data_col, int channels, int height, int width,
     int height_col = (height + 2 * pad - ksize) / stride + 1;
     int width_col = (width + 2 * pad - ksize) / stride + 1;
     int channels_col = channels * ksize * ksize;
-    for(int c = 0; c < channels_col; ++c) {
+    for (int c = 0; c < channels_col; ++c) {
         int w_offset = c % ksize;
         int h_offset = (c / ksize) % ksize;
         int c_im = c / ksize / ksize;
-        for(int h = 0; h < height_col; ++h) {
-            for(int w = 0; w < width_col; ++w) {
+        for (int h = 0; h < height_col; ++h) {
+            for (int w = 0; w < width_col; ++w) {
                 int im_row = h_offset + h * stride;
                 int im_col = w_offset + w * stride;
                 int col_index = (c * height_col + h) * width_col + w;

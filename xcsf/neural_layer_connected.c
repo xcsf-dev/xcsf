@@ -67,7 +67,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int n_inputs, int n_init, i
     l->n_active = l->n_weights;
     layer_init_eta(xcsf, l);
     malloc_layer_arrays(l);
-    for(int i = 0; i < l->n_weights; ++i) {
+    for (int i = 0; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 0.1);
         l->weight_active[i] = true;
     }
@@ -78,7 +78,7 @@ LAYER *neural_layer_connected_init(const XCSF *xcsf, int n_inputs, int n_init, i
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX ||
+    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX ||
             l->n_weights < 1 || l->n_weights > N_WEIGHTS_MAX) {
         printf("neural_layer_connected: malloc() invalid size\n");
         l->n_weights = 1;
@@ -157,7 +157,7 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l,
 {
     (void)xcsf;
     neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
-    if(l->options & LAYER_SGD_WEIGHTS) {
+    if (l->options & LAYER_SGD_WEIGHTS) {
         int m = l->n_outputs;
         int n = l->n_inputs;
         const double *a = l->delta;
@@ -166,7 +166,7 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l,
         blas_axpy(l->n_outputs, 1, l->delta, 1, l->bias_updates, 1);
         blas_gemm(1, 0, m, n, 1, 1, a, m, b, n, 1, c, n);
     }
-    if(delta) {
+    if (delta) {
         int k = l->n_outputs;
         int n = l->n_inputs;
         const double *a = l->delta;
@@ -178,7 +178,7 @@ void neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l,
 
 void neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
 {
-    if(l->options & LAYER_SGD_WEIGHTS) {
+    if (l->options & LAYER_SGD_WEIGHTS) {
         blas_axpy(l->n_biases, l->eta, l->bias_updates, 1, l->biases, 1);
         blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
         blas_scal(l->n_biases, xcsf->PRED_MOMENTUM, l->bias_updates, 1);
@@ -194,11 +194,11 @@ void neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev
     double *weights = malloc(sizeof(double) * n_weights);
     double *weight_updates = malloc(sizeof(double) * n_weights);
     _Bool *weight_active = malloc(sizeof(_Bool) * n_weights);
-    for(int i = 0; i < l->n_outputs; ++i) {
+    for (int i = 0; i < l->n_outputs; ++i) {
         int orig_offset = i * l->n_inputs;
         int offset = i * prev->n_outputs;
-        for(int j = 0; j < prev->n_outputs; ++j) {
-            if(j < l->n_inputs) {
+        for (int j = 0; j < prev->n_outputs; ++j) {
+            if (j < l->n_inputs) {
                 weights[offset + j] = l->weights[orig_offset + j];
                 weight_updates[offset + j] = l->weight_updates[orig_offset + j];
                 weight_active[offset + j] = l->weight_active[orig_offset + j];
@@ -224,23 +224,23 @@ _Bool neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
-    if((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
+    if ((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
         mod = true;
     }
-    if(l->options & LAYER_EVOLVE_NEURONS) {
+    if (l->options & LAYER_EVOLVE_NEURONS) {
         int n = layer_mutate_neurons(xcsf, l, l->mu[1]);
-        if(n != 0) {
+        if (n != 0) {
             layer_add_neurons(l, n);
             mod = true;
         }
     }
-    if((l->options & LAYER_EVOLVE_CONNECT) && layer_mutate_connectivity(l, l->mu[2])) {
+    if ((l->options & LAYER_EVOLVE_CONNECT) && layer_mutate_connectivity(l, l->mu[2])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_WEIGHTS) && layer_mutate_weights(l, l->mu[3])) {
+    if ((l->options & LAYER_EVOLVE_WEIGHTS) && layer_mutate_weights(l, l->mu[3])) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_FUNCTIONS) && layer_mutate_functions(l, l->mu[4])) {
+    if ((l->options & LAYER_EVOLVE_FUNCTIONS) && layer_mutate_functions(l, l->mu[4])) {
         mod = true;
     }
     return mod;

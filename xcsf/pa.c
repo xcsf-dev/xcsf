@@ -49,7 +49,7 @@ void pa_init(XCSF *xcsf)
  */
 static void pa_reset(const XCSF *xcsf)
 {
-    for(int i = 0; i < xcsf->pa_size; ++i) {
+    for (int i = 0; i < xcsf->pa_size; ++i) {
         xcsf->pa[i] = 0;
         xcsf->nr[i] = 0;
     }
@@ -71,38 +71,38 @@ void pa_build(const XCSF *xcsf, const double *x)
 #ifdef PARALLEL_PRED
     CL *clist[set->size];
     CLIST *iter = set->list;
-    for(int i = 0; i < set->size; ++i) {
+    for (int i = 0; i < set->size; ++i) {
         clist[i] = NULL;
-        if(iter != NULL) {
+        if (iter != NULL) {
             clist[i] = iter->cl;
             iter = iter->next;
         }
     }
     #pragma omp parallel for reduction(+:pa[:xcsf->pa_size],nr[:xcsf->pa_size])
-    for(int i = 0; i < set->size; ++i) {
-        if(clist[i] != NULL) {
+    for (int i = 0; i < set->size; ++i) {
+        if (clist[i] != NULL) {
             const double *predictions = cl_predict(xcsf, clist[i], x);
             double fitness = clist[i]->fit;
-            for(int j = 0; j < xcsf->y_dim; ++j) {
+            for (int j = 0; j < xcsf->y_dim; ++j) {
                 pa[clist[i]->action * xcsf->y_dim + j] += predictions[j] * fitness;
                 nr[clist[i]->action * xcsf->y_dim + j] += fitness;
             }
         }
     }
 #else
-    for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
         double fitness = iter->cl->fit;
-        for(int j = 0; j < xcsf->y_dim; ++j) {
+        for (int j = 0; j < xcsf->y_dim; ++j) {
             pa[iter->cl->action * xcsf->y_dim + j] += predictions[j] * fitness;
             nr[iter->cl->action * xcsf->y_dim + j] += fitness;
         }
     }
 #endif
-    for(int i = 0; i < xcsf->n_actions; ++i) {
-        for(int j = 0; j < xcsf->y_dim; ++j) {
+    for (int i = 0; i < xcsf->n_actions; ++i) {
+        for (int j = 0; j < xcsf->y_dim; ++j) {
             int k = i * xcsf->y_dim + j;
-            if(nr[k] != 0) {
+            if (nr[k] != 0) {
                 pa[k] /= nr[k];
             } else {
                 pa[k] = 0;
@@ -119,8 +119,8 @@ void pa_build(const XCSF *xcsf, const double *x)
 int pa_best_action(const XCSF *xcsf)
 {
     int action = 0;
-    for(int i = 1; i < xcsf->n_actions; ++i) {
-        if(xcsf->pa[action] < xcsf->pa[i]) {
+    for (int i = 1; i < xcsf->n_actions; ++i) {
+        if (xcsf->pa[action] < xcsf->pa[i]) {
             action = i;
         }
     }
@@ -137,7 +137,7 @@ int pa_rand_action(const XCSF *xcsf)
     int action = 0;
     do {
         action = irand_uniform(0, xcsf->n_actions);
-    } while(xcsf->nr[action] == 0);
+    } while (xcsf->nr[action] == 0);
     return action;
 }
 
@@ -149,8 +149,8 @@ int pa_rand_action(const XCSF *xcsf)
 double pa_best_val(const XCSF *xcsf)
 {
     double max = xcsf->pa[0];
-    for(int i = 1; i < xcsf->n_actions; ++i) {
-        if(max < xcsf->pa[i]) {
+    for (int i = 1; i < xcsf->n_actions; ++i) {
+        if (max < xcsf->pa[i]) {
             max = xcsf->pa[i];
         }
     }
@@ -165,7 +165,7 @@ double pa_best_val(const XCSF *xcsf)
  */
 double pa_val(const XCSF *xcsf, int action)
 {
-    if(action >= 0 && action < xcsf->n_actions) {
+    if (action >= 0 && action < xcsf->n_actions) {
         return xcsf->pa[action];
     }
     printf("pa_val() error: invalid action specified: %d\n", action);

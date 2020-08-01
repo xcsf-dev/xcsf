@@ -50,7 +50,7 @@
  */
 void condition_set(const XCSF *xcsf, CL *c)
 {
-    switch(xcsf->COND_TYPE) {
+    switch (xcsf->COND_TYPE) {
         case COND_TYPE_DUMMY:
             c->cond_vptr = &cond_dummy_vtbl;
             break;

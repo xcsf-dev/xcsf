@@ -43,7 +43,7 @@ static void sam_log_normal_adapt(double *mu, int n);
  */
 void sam_init(const XCSF *xcsf, double *mu, int n)
 {
-    switch(xcsf->SAM_TYPE) {
+    switch (xcsf->SAM_TYPE) {
         case SAM_LOG_NORMAL:
             sam_log_normal_init(mu, n);
             break;
@@ -64,7 +64,7 @@ void sam_init(const XCSF *xcsf, double *mu, int n)
  */
 void sam_adapt(const XCSF *xcsf, double *mu, int n)
 {
-    switch(xcsf->SAM_TYPE) {
+    switch (xcsf->SAM_TYPE) {
         case SAM_LOG_NORMAL:
             sam_log_normal_adapt(mu, n);
             break;
@@ -84,7 +84,7 @@ void sam_adapt(const XCSF *xcsf, double *mu, int n)
  */
 static void sam_log_normal_init(double *mu, int n)
 {
-    for(int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {
         mu[i] = rand_uniform(0, 1);
     }
 }
@@ -96,7 +96,7 @@ static void sam_log_normal_init(double *mu, int n)
  */
 static void sam_log_normal_adapt(double *mu, int n)
 {
-    for(int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {
         mu[i] *= exp(rand_normal(0, 1));
         mu[i] = clamp(0.0001, 1, mu[i]);
     }
@@ -109,7 +109,7 @@ static void sam_log_normal_adapt(double *mu, int n)
  */
 static void sam_rate_selection_init(double *mu, int n)
 {
-    for(int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {
         mu[i] = mrates[irand_uniform(0, N_RATES)];
     }
 }
@@ -122,8 +122,8 @@ static void sam_rate_selection_init(double *mu, int n)
  */
 static void sam_rate_selection_adapt(double *mu, int n)
 {
-    for(int i = 0; i < n; ++i) {
-        if(rand_uniform(0, 1) < 0.1) {
+    for (int i = 0; i < n; ++i) {
+        if (rand_uniform(0, 1) < 0.1) {
             mu[i] = mrates[irand_uniform(0, N_RATES)];
         }
     }

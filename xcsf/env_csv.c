@@ -109,13 +109,13 @@ static void env_csv_input_read(const char *infile, INPUT *train_data, INPUT *tes
 static void env_csv_read(const char *fname, double **data, int *n_samples, int *n_dim)
 {
     FILE *fin = fopen(fname, "rt");
-    if(fin == 0) {
+    if (fin == 0) {
         printf("Error opening file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
     *n_samples = env_csv_samples(fin);
     *n_dim = env_csv_dim(fin);
-    if(*n_samples > 0 && *n_dim > 0) {
+    if (*n_samples > 0 && *n_dim > 0) {
         env_csv_read_data(fin, data, *n_samples, *n_dim);
         fclose(fin);
     } else {
@@ -135,7 +135,7 @@ static int env_csv_samples(FILE *fin)
 {
     int n_samples = 0;
     char line[MAX_COLS];
-    while(fgets(line, MAX_COLS, fin) != NULL) {
+    while (fgets(line, MAX_COLS, fin) != NULL) {
         ++n_samples;
     }
     return n_samples;
@@ -152,10 +152,10 @@ static int env_csv_dim(FILE *fin)
     int n_dim = 0;
     char line[MAX_COLS];
     char *saveptr;
-    if(fgets(line, MAX_COLS, fin) != NULL) {
+    if (fgets(line, MAX_COLS, fin) != NULL) {
         const char *ptok = strtok_r(line, DELIM, &saveptr);
-        while(ptok != NULL) {
-            if(strnlen(ptok, MAX_COLS) > 0) {
+        while (ptok != NULL) {
+            if (strnlen(ptok, MAX_COLS) > 0) {
                 ++n_dim;
             }
             ptok = strtok_r(NULL, DELIM, &saveptr);
@@ -178,9 +178,9 @@ static void env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim
     char line[MAX_COLS];
     char *saveptr;
     int i = 0;
-    while(fgets(line, MAX_COLS, fin) != NULL && i < n_samples) {
+    while (fgets(line, MAX_COLS, fin) != NULL && i < n_samples) {
         (*data)[i * n_dim] = atof(strtok_r(line, DELIM, &saveptr));
-        for(int j = 1; j < n_dim; ++j) {
+        for (int j = 1; j < n_dim; ++j) {
             (*data)[i * n_dim + j] = atof(strtok_r(NULL, DELIM, &saveptr));
         }
         ++i;

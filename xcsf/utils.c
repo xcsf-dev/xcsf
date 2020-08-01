@@ -41,7 +41,7 @@ void random_init()
     time_t now = time(0);
     const unsigned char *p = (unsigned char *)&now;
     uint32_t seed = 0;
-    for(size_t i = 0; i < sizeof(now); ++i) {
+    for (size_t i = 0; i < sizeof(now); ++i) {
         seed = (seed * (UCHAR_MAX + 2U)) + p[i];
     }
     dsfmt_gv_init_gen_rand(seed);
@@ -90,7 +90,7 @@ double rand_normal(double mu, double sigma)
     static double z1;
     static _Bool generate;
     generate = !generate;
-    if(!generate) {
+    if (!generate) {
         return z1 * sigma + mu;
     }
     double u1 = drand();

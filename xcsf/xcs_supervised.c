@@ -55,7 +55,7 @@ double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
     double wterr = 0; // testing error: windowed total
-    for(int cnt = 0; cnt < xcsf->MAX_TRIALS; ++cnt) {
+    for (int cnt = 0; cnt < xcsf->MAX_TRIALS; ++cnt) {
         // training sample
         int row = xcs_supervised_sample(train_data, cnt, shuffle);
         const double *x = &train_data->x[row * train_data->x_dim];
@@ -66,7 +66,7 @@ double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
         werr += error;
         err += error;
         // test sample
-        if(test_data != NULL) {
+        if (test_data != NULL) {
             row = xcs_supervised_sample(test_data, cnt, shuffle);
             x = &test_data->x[row * test_data->x_dim];
             y = &test_data->y[row * test_data->y_dim];
@@ -89,7 +89,7 @@ double xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
 void xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_samples)
 {
     param_set_explore(xcsf, false);
-    for(int row = 0; row < n_samples; ++row) {
+    for (int row = 0; row < n_samples; ++row) {
         xcs_supervised_trial(xcsf, &x[row * xcsf->x_dim], NULL);
         memcpy(&pred[row * xcsf->y_dim], xcsf->pa, sizeof(double) * xcsf->y_dim);
     }
@@ -105,7 +105,7 @@ double xcs_supervised_score(XCSF *xcsf, const INPUT *test_data)
 {
     param_set_explore(xcsf, false);
     double err = 0;
-    for(int row = 0; row < test_data->n_samples; ++row) {
+    for (int row = 0; row < test_data->n_samples; ++row) {
         const double *x = &test_data->x[row * test_data->x_dim];
         const double *y = &test_data->y[row * test_data->y_dim];
         xcs_supervised_trial(xcsf, x, y);
@@ -123,7 +123,7 @@ double xcs_supervised_score(XCSF *xcsf, const INPUT *test_data)
  */
 static int xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle)
 {
-    if(shuffle) {
+    if (shuffle) {
         return irand_uniform(0, data->n_samples);
     }
     return cnt % data->n_samples;
@@ -141,7 +141,7 @@ static void xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y)
     clset_init(&xcsf->kset);
     clset_match(xcsf, x);
     pa_build(xcsf, x);
-    if(xcsf->explore) {
+    if (xcsf->explore) {
         clset_update(xcsf, &xcsf->mset, x, y, true);
         ea(xcsf, &xcsf->mset);
     }

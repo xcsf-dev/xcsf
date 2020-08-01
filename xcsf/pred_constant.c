@@ -52,12 +52,12 @@ void pred_constant_free(const XCSF *xcsf, const CL *c)
 void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (void)x;
-    if(c->exp < 1. / xcsf->PRED_ETA) {
-        for(int var = 0; var < xcsf->y_dim; ++var) {
+    if (c->exp < 1. / xcsf->PRED_ETA) {
+        for (int var = 0; var < xcsf->y_dim; ++var) {
             c->prediction[var] = (c->prediction[var] * (c->exp - 1.) + y[var]) / (double)c->exp;
         }
     } else {
-        for(int var = 0; var < xcsf->y_dim; ++var) {
+        for (int var = 0; var < xcsf->y_dim; ++var) {
             c->prediction[var] += xcsf->PRED_ETA * (y[var] - c->prediction[var]);
         }
     }
@@ -73,7 +73,7 @@ void pred_constant_compute(const XCSF *xcsf, const CL *c, const double *x)
 void pred_constant_print(const XCSF *xcsf, const CL *c)
 {
     printf("constant prediction: %f", c->prediction[0]);
-    for(int var = 1; var < xcsf->y_dim; ++var) {
+    for (int var = 1; var < xcsf->y_dim; ++var) {
         printf(", %f", c->prediction[var]);
     }
     printf("\n");

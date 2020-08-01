@@ -91,7 +91,7 @@ LAYER *neural_layer_recurrent_init(const XCSF *xcsf, int n_inputs, int n_init, i
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
+    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
         printf("neural_layer_recurrent: malloc() invalid size\n");
         l->n_outputs = 1;
         exit(EXIT_FAILURE);
@@ -173,7 +173,7 @@ void neural_layer_recurrent_backward(const XCSF *xcsf, const LAYER *l,
 
 void neural_layer_recurrent_update(const XCSF *xcsf, const LAYER *l)
 {
-    if(l->options & LAYER_SGD_WEIGHTS) {
+    if (l->options & LAYER_SGD_WEIGHTS) {
         layer_update(xcsf, l->input_layer);
         layer_update(xcsf, l->self_layer);
         layer_update(xcsf, l->output_layer);
@@ -208,7 +208,7 @@ _Bool neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
 
 static _Bool mutate_eta(const XCSF *xcsf, LAYER *l)
 {
-    if((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
+    if ((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
         l->input_layer->eta = l->eta;
         l->self_layer->eta = l->eta;
         l->output_layer->eta = l->eta;
@@ -219,9 +219,9 @@ static _Bool mutate_eta(const XCSF *xcsf, LAYER *l)
 
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
 {
-    if(l->options & LAYER_EVOLVE_NEURONS) {
+    if (l->options & LAYER_EVOLVE_NEURONS) {
         int n = layer_mutate_neurons(xcsf, l->self_layer, l->mu[1]);
-        if(n != 0) {
+        if (n != 0) {
             layer_add_neurons(l->input_layer, n);
             layer_add_neurons(l->self_layer, n);
             layer_add_neurons(l->output_layer, n);
@@ -244,7 +244,7 @@ static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
 static _Bool mutate_connectivity(LAYER *l)
 {
     _Bool mod = false;
-    if(l->options & LAYER_EVOLVE_CONNECT) {
+    if (l->options & LAYER_EVOLVE_CONNECT) {
         mod = layer_mutate_connectivity(l->input_layer, l->mu[2]) ? true : mod;
         mod = layer_mutate_connectivity(l->self_layer, l->mu[2]) ? true : mod;
         mod = layer_mutate_connectivity(l->output_layer, l->mu[2]) ? true : mod;
@@ -256,7 +256,7 @@ static _Bool mutate_connectivity(LAYER *l)
 static _Bool mutate_weights(LAYER *l)
 {
     _Bool mod = false;
-    if(l->options & LAYER_EVOLVE_WEIGHTS) {
+    if (l->options & LAYER_EVOLVE_WEIGHTS) {
         mod = layer_mutate_weights(l->input_layer, l->mu[3]) ? true : mod;
         mod = layer_mutate_weights(l->self_layer, l->mu[3]) ? true : mod;
         mod = layer_mutate_weights(l->output_layer, l->mu[3]) ? true : mod;
@@ -266,7 +266,7 @@ static _Bool mutate_weights(LAYER *l)
 
 static _Bool mutate_functions(LAYER *l)
 {
-    if(l->options & LAYER_EVOLVE_FUNCTIONS && layer_mutate_functions(l, l->mu[4])) {
+    if (l->options & LAYER_EVOLVE_FUNCTIONS && layer_mutate_functions(l, l->mu[4])) {
         l->output_layer->function = l->function;
         return true;
     }
@@ -277,7 +277,7 @@ void neural_layer_recurrent_print(const XCSF *xcsf, const LAYER *l, _Bool print_
 {
     printf("recurrent %s, in = %d, out = %d\n",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs);
-    if(print_weights) {
+    if (print_weights) {
         printf("recurrent input layer:\n");
         layer_print(xcsf, l->input_layer, print_weights);
         printf("recurrent self layer:\n");

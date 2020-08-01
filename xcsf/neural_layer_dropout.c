@@ -61,7 +61,7 @@ LAYER *neural_layer_dropout_init(const XCSF *xcsf, int n_inputs, double probabil
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
+    if (l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
         printf("neural_layer_dropout: malloc() invalid size\n");
         l->n_inputs = 1;
         exit(EXIT_FAILURE);
@@ -108,12 +108,12 @@ void neural_layer_dropout_rand(const XCSF *xcsf, LAYER *l)
 
 void neural_layer_dropout_forward(const XCSF *xcsf, const LAYER *l, const double *input)
 {
-    if(!xcsf->explore) {
+    if (!xcsf->explore) {
         memcpy(l->output, input, sizeof(double) * l->n_inputs);
     } else {
-        for(int i = 0; i < l->n_inputs; ++i) {
+        for (int i = 0; i < l->n_inputs; ++i) {
             l->state[i] = rand_uniform(0, 1);
-            if(l->state[i] < l->probability) {
+            if (l->state[i] < l->probability) {
                 l->output[i] = 0;
             } else {
                 l->output[i] = input[i] * l->scale;
@@ -127,11 +127,11 @@ void neural_layer_dropout_backward(const XCSF *xcsf, const LAYER *l, const doubl
 {
     (void)xcsf;
     (void)input;
-    if(!delta) {
+    if (!delta) {
         return;
     }
-    for(int i = 0; i < l->n_inputs; ++i) {
-        if(l->state[i] < l->probability) {
+    for (int i = 0; i < l->n_inputs; ++i) {
+        if (l->state[i] < l->probability) {
             delta[i] = 0;
         } else {
             delta[i] += l->delta[i] * l->scale;

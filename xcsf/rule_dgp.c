@@ -81,7 +81,7 @@ _Bool rule_dgp_cond_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     const RULE_DGP *cond = c->cond;
     graph_update(xcsf, &cond->dgp, x);
-    if(graph_output(xcsf, &cond->dgp, 0) > 0.5) {
+    if (graph_output(xcsf, &cond->dgp, 0) > 0.5) {
         return true;
     }
     return false;
@@ -169,8 +169,8 @@ void rule_dgp_act_cover(const XCSF *xcsf, const CL *c, const double *x, int acti
     RULE_DGP *cond = c->cond;
     do {
         graph_rand(xcsf, &cond->dgp);
-    } while(!rule_dgp_cond_match(xcsf, c, x)
-            && rule_dgp_act_compute(xcsf, c, x) != action);
+    } while (!rule_dgp_cond_match(xcsf, c, x)
+             && rule_dgp_act_compute(xcsf, c, x) != action);
 }
 
 int rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x)
@@ -178,8 +178,8 @@ int rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x)
     (void)x; // graph already updated
     const RULE_DGP *cond = c->cond;
     int action = 0;
-    for(int i = 0; i < cond->n_outputs; ++i) {
-        if(graph_output(xcsf, &cond->dgp, i + 1) > 0.5) {
+    for (int i = 0; i < cond->n_outputs; ++i) {
+        if (graph_output(xcsf, &cond->dgp, i + 1) > 0.5) {
             action += (int) pow(2, i);
         }
     }

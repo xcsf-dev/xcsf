@@ -46,7 +46,7 @@ _Bool act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
     (void)xcsf;
     const ACT_INTEGER *act1 = c1->act;
     const ACT_INTEGER *act2 = c2->act;
-    if(act1->action != act2->action) {
+    if (act1->action != act2->action) {
         return false;
     }
     return true;
@@ -56,10 +56,10 @@ _Bool act_integer_mutate(const XCSF *xcsf, const CL *c)
 {
     ACT_INTEGER *act = c->act;
     sam_adapt(xcsf, act->mu, N_MU);
-    if(rand_uniform(0, 1) < act->mu[0]) {
+    if (rand_uniform(0, 1) < act->mu[0]) {
         int old = act->action;
         act->action = irand_uniform(0, xcsf->n_actions);
-        if(old != act->action) {
+        if (old != act->action) {
             return true;
         }
     }

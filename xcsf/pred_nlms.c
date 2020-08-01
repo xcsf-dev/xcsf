@@ -41,7 +41,7 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
     PRED_NLMS *pred = malloc(sizeof(PRED_NLMS));
     c->pred = pred;
     // set the length of weights per predicted variable
-    if(xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
+    if (xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
         // offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
         pred->n = 1 + 2 * xcsf->x_dim + xcsf->x_dim * (xcsf->x_dim - 1) / 2;
     } else {
@@ -53,7 +53,7 @@ void pred_nlms_init(const XCSF *xcsf, CL *c)
     blas_fill(xcsf->y_dim, xcsf->PRED_X0, pred->weights, pred->n);
     // initialise learning rate
     pred->mu = malloc(sizeof(double) * N_MU);
-    if(xcsf->PRED_EVOLVE_ETA) {
+    if (xcsf->PRED_EVOLVE_ETA) {
         sam_init(xcsf, pred->mu, N_MU);
         pred->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
     } else {
@@ -92,7 +92,7 @@ void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x, const doub
     double norm = xcsf->PRED_X0 * xcsf->PRED_X0;
     norm += blas_dot(xcsf->x_dim, x, 1, x, 1);
     // update weights using the error
-    for(int var = 0; var < xcsf->y_dim; ++var) {
+    for (int var = 0; var < xcsf->y_dim; ++var) {
         double error = y[var] - c->prediction[var];
         double correction = (pred->eta * error) / norm;
         blas_axpy(n, correction, pred->tmp_input, 1, &pred->weights[var * n], 1);
@@ -104,7 +104,7 @@ void pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x)
     const PRED_NLMS *pred = c->pred;
     int n = pred->n;
     pred_transform_input(xcsf, x, pred->tmp_input);
-    for(int var = 0; var < xcsf->y_dim; ++var) {
+    for (int var = 0; var < xcsf->y_dim; ++var) {
         c->prediction[var] = blas_dot(n, &pred->weights[var * n], 1, pred->tmp_input, 1);
     }
 }
@@ -114,8 +114,8 @@ void pred_nlms_print(const XCSF *xcsf, const CL *c)
     const PRED_NLMS *pred = c->pred;
     int n = pred->n;
     printf("eta: %.5f, weights: ", pred->eta);
-    for(int var = 0; var < xcsf->y_dim; ++var) {
-        for(int i = 0; i < n; ++i) {
+    for (int var = 0; var < xcsf->y_dim; ++var) {
+        for (int i = 0; i < n; ++i) {
             printf("%f, ", pred->weights[var * n + i]);
         }
         printf("\n");
@@ -132,13 +132,13 @@ _Bool pred_nlms_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 
 _Bool pred_nlms_mutate(const XCSF *xcsf, const CL *c)
 {
-    if(xcsf->PRED_EVOLVE_ETA) {
+    if (xcsf->PRED_EVOLVE_ETA) {
         PRED_NLMS *pred = c->pred;
         sam_adapt(xcsf, pred->mu, N_MU);
         double orig = pred->eta;
         pred->eta += rand_normal(0, pred->mu[0]);
         pred->eta = clamp(ETA_MIN, xcsf->PRED_ETA, pred->eta);
-        if(orig != pred->eta) {
+        if (orig != pred->eta) {
             return true;
         }
     }

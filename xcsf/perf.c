@@ -41,7 +41,7 @@
  */
 void perf_print(const XCSF *xcsf, double *error, double *terror, int trial)
 {
-    if(trial % xcsf->PERF_TRIALS == 0 && trial > 0) {
+    if (trial % xcsf->PERF_TRIALS == 0 && trial > 0) {
         *error /= xcsf->PERF_TRIALS;
         *terror /= xcsf->PERF_TRIALS;
         printf("%d %.5f %.5f %d\n", trial, *error, *terror, xcsf->pset.size);

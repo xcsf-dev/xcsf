@@ -29,10 +29,10 @@ static void gemm_nn(int M, int N, int K, double ALPHA,
                     const double *B, int ldb,
                     double *C, int ldc)
 {
-    for(int i = 0; i < M; ++i) {
-        for(int k = 0; k < K; ++k) {
+    for (int i = 0; i < M; ++i) {
+        for (int k = 0; k < K; ++k) {
             double A_PART = ALPHA * A[i * lda + k];
-            for(int j = 0; j < N; ++j) {
+            for (int j = 0; j < N; ++j) {
                 C[i * ldc + j] += A_PART * B[k * ldb + j];
             }
         }
@@ -44,10 +44,10 @@ static void gemm_nt(int M, int N, int K, double ALPHA,
                     const double *B, int ldb,
                     double *C, int ldc)
 {
-    for(int i = 0; i < M; ++i) {
-        for(int j = 0; j < N; ++j) {
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
             double sum = 0;
-            for(int k = 0; k < K; ++k) {
+            for (int k = 0; k < K; ++k) {
                 sum += ALPHA * A[i * lda + k] * B[j * ldb + k];
             }
             C[i * ldc + j] += sum;
@@ -60,10 +60,10 @@ static void gemm_tn(int M, int N, int K, double ALPHA,
                     const double *B, int ldb,
                     double *C, int ldc)
 {
-    for(int i = 0; i < M; ++i) {
-        for(int k = 0; k < K; ++k) {
+    for (int i = 0; i < M; ++i) {
+        for (int k = 0; k < K; ++k) {
             double A_PART = ALPHA * A[k * lda + i];
-            for(int j = 0; j < N; ++j) {
+            for (int j = 0; j < N; ++j) {
                 C[i * ldc + j] += A_PART * B[k * ldb + j];
             }
         }
@@ -75,10 +75,10 @@ static void gemm_tt(int M, int N, int K, double ALPHA,
                     const double *B, int ldb,
                     double *C, int ldc)
 {
-    for(int i = 0; i < M; ++i) {
-        for(int j = 0; j < N; ++j) {
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
             double sum = 0;
-            for(int k = 0; k < K; ++k) {
+            for (int k = 0; k < K; ++k) {
                 sum += ALPHA * A[i + k * lda] * B[k + j * ldb];
             }
             C[i * ldc + j] += sum;
@@ -109,16 +109,16 @@ void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
                double BETA,
                double *C, int ldc)
 {
-    for(int i = 0; i < M; ++i) {
-        for(int j = 0; j < N; ++j) {
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
             C[i * ldc + j] *= BETA;
         }
     }
-    if(!TA && !TB) {
+    if (!TA && !TB) {
         gemm_nn(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
-    } else if(TA && !TB) {
+    } else if (TA && !TB) {
         gemm_tn(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
-    } else if(!TA && TB) {
+    } else if (!TA && TB) {
         gemm_nt(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
     } else {
         gemm_tt(M, N, K, ALPHA, A, lda, B, ldb, C, ldc);
@@ -136,12 +136,12 @@ void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
  */
 void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
 {
-    if(ALPHA != 1) {
-        for(int i = 0; i < N; ++i) {
+    if (ALPHA != 1) {
+        for (int i = 0; i < N; ++i) {
             Y[i * INCY] += ALPHA * X[i * INCX];
         }
     } else {
-        for(int i = 0; i < N; ++i) {
+        for (int i = 0; i < N; ++i) {
             Y[i * INCY] += X[i * INCX];
         }
     }
@@ -156,12 +156,12 @@ void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int IN
  */
 void blas_scal(int N, double ALPHA, double *X, int INCX)
 {
-    if(ALPHA != 0) {
-        for(int i = 0; i < N; ++i) {
+    if (ALPHA != 0) {
+        for (int i = 0; i < N; ++i) {
             X[i * INCX] *= ALPHA;
         }
     } else {
-        for(int i = 0; i < N; ++i) {
+        for (int i = 0; i < N; ++i) {
             X[i * INCX] = 0;
         }
     }
@@ -176,7 +176,7 @@ void blas_scal(int N, double ALPHA, double *X, int INCX)
  */
 void blas_fill(int N, double ALPHA, double *X, int INCX)
 {
-    for(int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i) {
         X[i * INCX] = ALPHA;
     }
 }
@@ -193,7 +193,7 @@ void blas_fill(int N, double ALPHA, double *X, int INCX)
 double blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
 {
     double dot = 0;
-    for(int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i) {
         dot += X[i * INCX] * Y[i * INCY];
     }
     return dot;
@@ -209,7 +209,7 @@ double blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
  */
 void blas_mul(int N, const double *X, int INCX, double *Y, int INCY)
 {
-    for(int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i) {
         Y[i * INCY] *= X[i * INCX];
     }
 }
@@ -223,7 +223,7 @@ void blas_mul(int N, const double *X, int INCX, double *Y, int INCY)
 double blas_sum(const double *X, int N)
 {
     double sum = 0;
-    for(int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i) {
         sum += X[i];
     }
     return sum;

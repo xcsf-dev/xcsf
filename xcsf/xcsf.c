@@ -70,7 +70,7 @@ void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
 size_t xcsf_save(const XCSF *xcsf, const char *fname)
 {
     FILE *fp = fopen(fname, "wb");
-    if(fp == 0) {
+    if (fp == 0) {
         printf("Error opening save file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
@@ -92,12 +92,12 @@ size_t xcsf_save(const XCSF *xcsf, const char *fname)
  */
 size_t xcsf_load(XCSF *xcsf, const char *fname)
 {
-    if(xcsf->pset.size > 0) {
+    if (xcsf->pset.size > 0) {
         clset_kill(xcsf, &xcsf->pset);
         clset_init(&xcsf->pset);
     }
     FILE *fp = fopen(fname, "rb");
-    if(fp == 0) {
+    if (fp == 0) {
         printf("Error opening load file: %s. %s.\n", fname, strerror(errno));
         exit(EXIT_FAILURE);
     }
@@ -108,7 +108,7 @@ size_t xcsf_load(XCSF *xcsf, const char *fname)
     s += fread(&major, sizeof(int), 1, fp);
     s += fread(&minor, sizeof(int), 1, fp);
     s += fread(&build, sizeof(int), 1, fp);
-    if(major != VERSION_MAJOR || minor != VERSION_MINOR || build != VERSION_BUILD) {
+    if (major != VERSION_MAJOR || minor != VERSION_MINOR || build != VERSION_BUILD) {
         printf("Error loading file: %s. Version mismatch. ", fname);
         printf("This version: %d.%d.%d.\n", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
         printf("Loaded version: %d.%d.%d\n", major, minor, build);
@@ -128,7 +128,7 @@ size_t xcsf_load(XCSF *xcsf, const char *fname)
  */
 void xcsf_pred_expand(const XCSF *xcsf)
 {
-    for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for (const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         pred_neural_expand(xcsf, iter->cl);
         iter->cl->fit = xcsf->INIT_FITNESS;
         iter->cl->err = xcsf->INIT_ERROR;
@@ -149,7 +149,7 @@ void xcsf_ae_to_classifier(XCSF *xcsf, int y_dim, int n_del)
     param_set_y_dim(xcsf, y_dim);
     param_set_loss_func(xcsf, 5); // one-hot encoding error
     pa_init(xcsf);
-    for(const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for (const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
         free(iter->cl->prediction);
         iter->cl->prediction = calloc(xcsf->y_dim, sizeof(double));
         pred_neural_ae_to_classifier(xcsf, iter->cl, n_del);

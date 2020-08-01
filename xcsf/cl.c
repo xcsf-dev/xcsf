@@ -72,7 +72,7 @@ void cl_copy(const XCSF *xcsf, CL *dest, const CL *src)
     dest->act_vptr = src->act_vptr;
     act_copy(xcsf, dest, src);
     cond_copy(xcsf, dest, src);
-    if(xcsf->PRED_RESET) {
+    if (xcsf->PRED_RESET) {
         pred_init(xcsf, dest);
     } else {
         pred_copy(xcsf, dest, src);
@@ -117,7 +117,7 @@ void cl_rand(const XCSF *xcsf, CL *c)
  */
 double cl_del_vote(const XCSF *xcsf, const CL *c, double avg_fit)
 {
-    if(c->exp > xcsf->THETA_DEL && c->fit / c->num < xcsf->DELTA * avg_fit) {
+    if (c->exp > xcsf->THETA_DEL && c->fit / c->num < xcsf->DELTA * avg_fit) {
         return c->size * c->num * avg_fit / (c->fit / c->num);
     }
     return c->size * c->num;
@@ -131,7 +131,7 @@ double cl_del_vote(const XCSF *xcsf, const CL *c, double avg_fit)
  */
 double cl_acc(const XCSF *xcsf, const CL *c)
 {
-    if(c->err > xcsf->EPS_0) {
+    if (c->err > xcsf->EPS_0) {
         double acc = xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
         return fmax(acc, DBL_EPSILON);
     }
@@ -153,7 +153,7 @@ void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int se
 {
     ++(c->exp);
     // propagate inputs for the previous state update
-    if(cur == false) {
+    if (cur == false) {
         cl_predict(xcsf, c, x);
     }
     cl_update_err(xcsf, c, y);
@@ -173,7 +173,7 @@ void cl_update(const XCSF *xcsf, CL *c, const double *x, const double *y, int se
 static void cl_update_err(const XCSF *xcsf, CL *c, const double *y)
 {
     double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
-    if(c->exp < 1 / xcsf->BETA) {
+    if (c->exp < 1 / xcsf->BETA) {
         c->err = (c->err * (c->exp - 1) + error) / c->exp;
     } else {
         c->err += xcsf->BETA * (error - c->err);
@@ -200,7 +200,7 @@ void cl_update_fit(const XCSF *xcsf, CL *c, double acc_sum, double acc)
  */
 static void cl_update_size(const XCSF *xcsf, CL *c, int num_sum)
 {
-    if(c->exp < 1 / xcsf->BETA) {
+    if (c->exp < 1 / xcsf->BETA) {
         c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;
     } else {
         c->size += xcsf->BETA * (num_sum - c->size);
@@ -231,17 +231,17 @@ void cl_free(const XCSF *xcsf, CL *c)
  */
 void cl_print(const XCSF *xcsf, const CL *c, _Bool printc, _Bool printa, _Bool printp)
 {
-    if(printc || printa || printp) {
+    if (printc || printa || printp) {
         printf("***********************************************\n");
-        if(printc) {
+        if (printc) {
             printf("\nCONDITION\n");
             cond_print(xcsf, c);
         }
-        if(printp) {
+        if (printp) {
             printf("\nPREDICTOR\n");
             pred_print(xcsf, c);
         }
-        if(printa) {
+        if (printa) {
             printf("\nACTION\n");
             act_print(xcsf, c);
         }
@@ -261,7 +261,7 @@ void cl_print(const XCSF *xcsf, const CL *c, _Bool printc, _Bool printa, _Bool p
 _Bool cl_match(const XCSF *xcsf, CL *c, const double *x)
 {
     c->m = cond_match(xcsf, c, x);
-    if(c->m) {
+    if (c->m) {
         ++(c->mtotal);
     }
     ++(c->age);
@@ -277,7 +277,7 @@ _Bool cl_match(const XCSF *xcsf, CL *c, const double *x)
 double cl_mfrac(const XCSF *xcsf, const CL *c)
 {
     (void)xcsf;
-    if(c->age > 0) {
+    if (c->age > 0) {
         return (double) c->mtotal / c->age;
     }
     return 0;
@@ -329,7 +329,7 @@ const double *cl_predict(const XCSF *xcsf, const CL *c, const double *x)
  */
 _Bool cl_subsumer(const XCSF *xcsf, const CL *c)
 {
-    if(c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
+    if (c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
         return true;
     }
     return false;
@@ -344,7 +344,7 @@ _Bool cl_subsumer(const XCSF *xcsf, const CL *c)
  */
 _Bool cl_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
-    if(cond_general(xcsf, c1, c2)) {
+    if (cond_general(xcsf, c1, c2)) {
         return act_general(xcsf, c1, c2);
     }
     return false;
@@ -361,10 +361,10 @@ _Bool cl_mutate(const XCSF *xcsf, const CL *c)
     _Bool cm = cond_mutate(xcsf, c);
     _Bool pm = pred_mutate(xcsf, c);
     _Bool am = false;
-    if(xcsf->n_actions > 1) {
+    if (xcsf->n_actions > 1) {
         am = act_mutate(xcsf, c);
     }
-    if(cm || pm || am) {
+    if (cm || pm || am) {
         return true;
     }
     return false;
@@ -382,7 +382,7 @@ _Bool cl_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
     _Bool cc = cond_crossover(xcsf, c1, c2);
     _Bool pc = pred_crossover(xcsf, c1, c2);
     _Bool ac = act_crossover(xcsf, c1, c2);
-    if(cc || pc || ac) {
+    if (cc || pc || ac) {
         return true;
     }
     return false;

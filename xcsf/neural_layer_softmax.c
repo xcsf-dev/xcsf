@@ -59,7 +59,7 @@ LAYER *neural_layer_softmax_init(const XCSF *xcsf, int n_inputs, double temperat
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
+    if (l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
         printf("neural_layer_softmax: malloc() invalid size\n");
         l->n_inputs = 1;
         exit(EXIT_FAILURE);
@@ -99,18 +99,18 @@ void neural_layer_softmax_forward(const XCSF *xcsf, const LAYER *l, const double
 {
     (void)xcsf;
     double largest = input[0];
-    for(int i = 1; i < l->n_inputs; ++i) {
-        if(input[i] > largest) {
+    for (int i = 1; i < l->n_inputs; ++i) {
+        if (input[i] > largest) {
             largest = input[i];
         }
     }
     double sum = 0;
-    for(int i = 0; i < l->n_inputs; ++i) {
+    for (int i = 0; i < l->n_inputs; ++i) {
         double e = exp((input[i] / l->scale) - (largest / l->scale));
         sum += e;
         l->output[i] = e;
     }
-    for(int i = 0; i < l->n_inputs; ++i) {
+    for (int i = 0; i < l->n_inputs; ++i) {
         l->output[i] /= sum;
     }
 }
@@ -120,7 +120,7 @@ void neural_layer_softmax_backward(const XCSF *xcsf, const LAYER *l, const doubl
 {
     (void)xcsf;
     (void)input;
-    for(int i = 0; i < l->n_inputs; ++i) {
+    for (int i = 0; i < l->n_inputs; ++i) {
         delta[i] += l->delta[i];
     }
 }

@@ -46,13 +46,13 @@ double clset_mean_cond_layers(const XCSF *xcsf, const SET *set)
 {
     int sum = 0;
     int cnt = 0;
-    if(xcsf->COND_TYPE == COND_TYPE_NEURAL || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    if (xcsf->COND_TYPE == COND_TYPE_NEURAL || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
+        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += cond_neural_layers(xcsf, iter->cl);
             ++cnt;
         }
     }
-    if(cnt != 0) {
+    if (cnt != 0) {
         return (double) sum / cnt;
     }
     return 0;
@@ -68,13 +68,13 @@ double clset_mean_cond_neurons(const XCSF *xcsf, const SET *set, int layer)
 {
     int sum = 0;
     int cnt = 0;
-    if(xcsf->COND_TYPE == COND_TYPE_NEURAL || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    if (xcsf->COND_TYPE == COND_TYPE_NEURAL || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
+        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += cond_neural_neurons(xcsf, iter->cl, layer);
             ++cnt;
         }
     }
-    if(cnt != 0) {
+    if (cnt != 0) {
         return (double) sum / cnt;
     }
     return 0;
@@ -91,13 +91,13 @@ double clset_mean_cond_connections(const XCSF *xcsf, const SET *set, int layer)
 {
     int sum = 0;
     int cnt = 0;
-    if(xcsf->COND_TYPE == COND_TYPE_NEURAL || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    if (xcsf->COND_TYPE == COND_TYPE_NEURAL || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
+        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += cond_neural_connections(xcsf, iter->cl, layer);
             ++cnt;
         }
     }
-    if(cnt != 0) {
+    if (cnt != 0) {
         return (double) sum / cnt;
     }
     return 0;
@@ -114,13 +114,13 @@ double clset_mean_pred_neurons(const XCSF *xcsf, const SET *set, int layer)
 {
     int sum = 0;
     int cnt = 0;
-    if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    if (xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
+        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += pred_neural_neurons(xcsf, iter->cl, layer);
             ++cnt;
         }
     }
-    if(cnt != 0) {
+    if (cnt != 0) {
         return (double) sum / cnt;
     }
     return 0;
@@ -136,13 +136,13 @@ double clset_mean_pred_layers(const XCSF *xcsf, const SET *set)
 {
     int sum = 0;
     int cnt = 0;
-    if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    if (xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
+        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += pred_neural_layers(xcsf, iter->cl);
             ++cnt;
         }
     }
-    if(cnt != 0) {
+    if (cnt != 0) {
         return (double) sum / cnt;
     }
     return 0;
@@ -159,13 +159,13 @@ double clset_mean_pred_eta(const XCSF *xcsf, const SET *set, int layer)
 {
     double sum = 0;
     int cnt = 0;
-    if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    if (xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
+        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += pred_neural_eta(xcsf, iter->cl, layer);
             ++cnt;
         }
     }
-    if(cnt != 0) {
+    if (cnt != 0) {
         return sum / cnt;
     }
     return 0;
@@ -182,13 +182,13 @@ double clset_mean_pred_connections(const XCSF *xcsf, const SET *set, int layer)
 {
     int sum = 0;
     int cnt = 0;
-    if(xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    if (xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
+        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             sum += pred_neural_connections(xcsf, iter->cl, layer);
             ++cnt;
         }
     }
-    if(cnt != 0) {
+    if (cnt != 0) {
         return (double) sum / cnt;
     }
     return 0;

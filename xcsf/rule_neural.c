@@ -53,10 +53,10 @@ void rule_neural_cond_init(const XCSF *xcsf, CL *c)
     LAYER *l;
     int i = 0;
     int n_inputs = xcsf->x_dim;
-    while(i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0) {
+    while (i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0) {
         int hinit = xcsf->COND_NUM_NEURONS[i];
         int hmax = xcsf->COND_MAX_NEURONS[i];
-        if(hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {
+        if (hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {
             hmax = hinit;
         }
         int f = xcsf->COND_HIDDEN_ACTIVATION;
@@ -78,16 +78,16 @@ void rule_neural_cond_init(const XCSF *xcsf, CL *c)
 static uint32_t rule_neural_lopt(const XCSF *xcsf)
 {
     uint32_t lopt = 0;
-    if(xcsf->COND_EVOLVE_WEIGHTS) {
+    if (xcsf->COND_EVOLVE_WEIGHTS) {
         lopt |= LAYER_EVOLVE_WEIGHTS;
     }
-    if(xcsf->COND_EVOLVE_NEURONS) {
+    if (xcsf->COND_EVOLVE_NEURONS) {
         lopt |= LAYER_EVOLVE_NEURONS;
     }
-    if(xcsf->COND_EVOLVE_FUNCTIONS) {
+    if (xcsf->COND_EVOLVE_FUNCTIONS) {
         lopt |= LAYER_EVOLVE_FUNCTIONS;
     }
-    if(xcsf->COND_EVOLVE_CONNECTIVITY) {
+    if (xcsf->COND_EVOLVE_CONNECTIVITY) {
         lopt |= LAYER_EVOLVE_CONNECT;
     }
     return lopt;
@@ -129,7 +129,7 @@ _Bool rule_neural_cond_match(const XCSF *xcsf, const CL *c, const double *x)
 {
     const RULE_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
-    if(neural_output(xcsf, &cond->net, 0) > 0.5) {
+    if (neural_output(xcsf, &cond->net, 0) > 0.5) {
         return true;
     }
     return false;
@@ -217,8 +217,8 @@ void rule_neural_act_cover(const XCSF *xcsf, const CL *c, const double *x, int a
     const RULE_NEURAL *cond = c->cond;
     do {
         neural_rand(xcsf, &cond->net);
-    } while(!rule_neural_cond_match(xcsf, c, x)
-            && rule_neural_act_compute(xcsf, c, x) != action);
+    } while (!rule_neural_cond_match(xcsf, c, x)
+             && rule_neural_act_compute(xcsf, c, x) != action);
 }
 
 int rule_neural_act_compute(const XCSF *xcsf, const CL *c, const double *x)
@@ -226,8 +226,8 @@ int rule_neural_act_compute(const XCSF *xcsf, const CL *c, const double *x)
     (void)x; // network already updated
     const RULE_NEURAL *cond = c->cond;
     int action = 0;
-    for(int i = 0; i < cond->n_outputs; ++i) {
-        if(neural_output(xcsf, &cond->net, i + 1) > 0.5) {
+    for (int i = 0; i < cond->n_outputs; ++i) {
+        if (neural_output(xcsf, &cond->net, i + 1) > 0.5) {
             action += (int) pow(2, i);
         }
     }

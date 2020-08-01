@@ -39,7 +39,7 @@
 double loss_mae(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
-    for(int i = 0; i < xcsf->y_dim; ++i) {
+    for (int i = 0; i < xcsf->y_dim; ++i) {
         error += fabs(y[i] - pred[i]);
     }
     error /= xcsf->y_dim;
@@ -56,7 +56,7 @@ double loss_mae(const XCSF *xcsf, const double *pred, const double *y)
 double loss_mse(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
-    for(int i = 0; i < xcsf->y_dim; ++i) {
+    for (int i = 0; i < xcsf->y_dim; ++i) {
         error += (y[i] - pred[i]) * (y[i] - pred[i]);
     }
     error /= xcsf->y_dim;
@@ -88,7 +88,7 @@ double loss_rmse(const XCSF *xcsf, const double *pred, const double *y)
 double loss_log(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
-    for(int i = 0; i < xcsf->y_dim; ++i) {
+    for (int i = 0; i < xcsf->y_dim; ++i) {
         error += y[i] * log(fmax(pred[i], DBL_EPSILON));
     }
     return -error;
@@ -104,7 +104,7 @@ double loss_log(const XCSF *xcsf, const double *pred, const double *y)
 double loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
-    for(int i = 0; i < xcsf->y_dim; ++i) {
+    for (int i = 0; i < xcsf->y_dim; ++i) {
         error += y[i] * log(fmax(pred[i], DBL_EPSILON)) +
                  (1 - y[i]) * log(fmax((1 - pred[i]), DBL_EPSILON));
     }
@@ -121,12 +121,12 @@ double loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
 double loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
 {
     int p = 0;
-    for(int i = 1; i < xcsf->y_dim; ++i) {
-        if(pred[i] > pred[p]) {
+    for (int i = 1; i < xcsf->y_dim; ++i) {
+        if (pred[i] > pred[p]) {
             p = i;
         }
     }
-    if(y[p] != 1) {
+    if (y[p] != 1) {
         return 1;
     }
     return 0;
@@ -138,7 +138,7 @@ double loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
  */
 void loss_set_func(XCSF *xcsf)
 {
-    switch(xcsf->LOSS_FUNC) {
+    switch (xcsf->LOSS_FUNC) {
         case LOSS_MAE:
             xcsf->loss_ptr = &loss_mae;
             break;

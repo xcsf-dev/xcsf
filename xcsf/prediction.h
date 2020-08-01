@@ -180,15 +180,15 @@ static inline void pred_transform_input(const XCSF *xcsf, const double *x,
     tmp_input[0] = xcsf->PRED_X0;
     int idx = 1;
     // linear terms
-    for(int i = 0; i < xcsf->x_dim; ++i) {
+    for (int i = 0; i < xcsf->x_dim; ++i) {
         tmp_input[idx] = x[i];
         ++idx;
     }
     // quadratic terms
-    if(xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC
+    if (xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC
             || xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
-        for(int i = 0; i < xcsf->x_dim; ++i) {
-            for(int j = i; j < xcsf->x_dim; ++j) {
+        for (int i = 0; i < xcsf->x_dim; ++i) {
+            for (int j = i; j < xcsf->x_dim; ++j) {
                 tmp_input[idx] = x[i] * x[j];
                 ++idx;
             }

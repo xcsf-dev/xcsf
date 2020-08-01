@@ -143,7 +143,7 @@ class XCS
 
         void init_trial()
         {
-            if(xcs.time == 0) {
+            if (xcs.time == 0) {
                 clset_pop_init(&xcs);
             }
             xcs_rl_init_trial(&xcs);
@@ -191,7 +191,7 @@ class XCS
         {
             py::buffer_info buf_x = train_X.request();
             py::buffer_info buf_y = train_Y.request();
-            if(buf_x.shape[0] != buf_y.shape[0]) {
+            if (buf_x.shape[0] != buf_y.shape[0]) {
                 printf("error: training X and Y n_samples are not equal\n");
                 exit(EXIT_FAILURE);
             }
@@ -202,7 +202,7 @@ class XCS
             train_data->x = (double *) buf_x.ptr;
             train_data->y = (double *) buf_y.ptr;
             // first execution
-            if(xcs.time == 0) {
+            if (xcs.time == 0) {
                 clset_pop_init(&xcs);
             }
             // execute
@@ -216,19 +216,19 @@ class XCS
             py::buffer_info buf_train_y = train_Y.request();
             py::buffer_info buf_test_x = test_X.request();
             py::buffer_info buf_test_y = test_Y.request();
-            if(buf_train_x.shape[0] != buf_train_y.shape[0]) {
+            if (buf_train_x.shape[0] != buf_train_y.shape[0]) {
                 printf("error: training X and Y n_samples are not equal\n");
                 exit(EXIT_FAILURE);
             }
-            if(buf_test_x.shape[0] != buf_test_y.shape[0]) {
+            if (buf_test_x.shape[0] != buf_test_y.shape[0]) {
                 printf("error: testing X and Y n_samples are not equal\n");
                 exit(EXIT_FAILURE);
             }
-            if(buf_train_x.shape[1] != buf_test_x.shape[1]) {
+            if (buf_train_x.shape[1] != buf_test_x.shape[1]) {
                 printf("error: number of training and testing X cols are not equal\n");
                 exit(EXIT_FAILURE);
             }
-            if(buf_train_y.shape[1] != buf_test_y.shape[1]) {
+            if (buf_train_y.shape[1] != buf_test_y.shape[1]) {
                 printf("error: number of training and testing Y cols are not equal\n");
                 exit(EXIT_FAILURE);
             }
@@ -245,7 +245,7 @@ class XCS
             test_data->x = (double *) buf_test_x.ptr;
             test_data->y = (double *) buf_test_y.ptr;
             // first execution
-            if(xcs.time == 0) {
+            if (xcs.time == 0) {
                 clset_pop_init(&xcs);
             }
             // execute
@@ -269,7 +269,7 @@ class XCS
         {
             py::buffer_info buf_x = test_X.request();
             py::buffer_info buf_y = test_Y.request();
-            if(buf_x.shape[0] != buf_y.shape[0]) {
+            if (buf_x.shape[0] != buf_y.shape[0]) {
                 printf("error: training X and Y n_samples are not equal\n");
                 exit(EXIT_FAILURE);
             }
@@ -286,7 +286,7 @@ class XCS
         py::list get_cond_num_neurons()
         {
             py::list list;
-            for(int i = 0; i < MAX_LAYERS && xcs.COND_NUM_NEURONS[i] > 0; ++i) {
+            for (int i = 0; i < MAX_LAYERS && xcs.COND_NUM_NEURONS[i] > 0; ++i) {
                 list.append(xcs.COND_NUM_NEURONS[i]);
             }
             return list;
@@ -295,7 +295,7 @@ class XCS
         py::list get_cond_max_neurons()
         {
             py::list list;
-            for(int i = 0; i < MAX_LAYERS && xcs.COND_MAX_NEURONS[i] > 0; ++i) {
+            for (int i = 0; i < MAX_LAYERS && xcs.COND_MAX_NEURONS[i] > 0; ++i) {
                 list.append(xcs.COND_MAX_NEURONS[i]);
             }
             return list;
@@ -304,7 +304,7 @@ class XCS
         py::list get_pred_num_neurons()
         {
             py::list list;
-            for(int i = 0; i < MAX_LAYERS && xcs.PRED_NUM_NEURONS[i] > 0; ++i) {
+            for (int i = 0; i < MAX_LAYERS && xcs.PRED_NUM_NEURONS[i] > 0; ++i) {
                 list.append(xcs.PRED_NUM_NEURONS[i]);
             }
             return list;
@@ -313,7 +313,7 @@ class XCS
         py::list get_pred_max_neurons()
         {
             py::list list;
-            for(int i = 0; i < MAX_LAYERS && xcs.PRED_MAX_NEURONS[i] > 0; ++i) {
+            for (int i = 0; i < MAX_LAYERS && xcs.PRED_MAX_NEURONS[i] > 0; ++i) {
                 list.append(xcs.PRED_MAX_NEURONS[i]);
             }
             return list;
@@ -724,7 +724,7 @@ class XCS
         void set_cond_num_neurons(py::list &a)
         {
             memset(xcs.COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-            for(size_t i = 0; i < a.size(); ++i) {
+            for (size_t i = 0; i < a.size(); ++i) {
                 xcs.COND_NUM_NEURONS[i] = a[i].cast<int>();
             }
         }
@@ -732,7 +732,7 @@ class XCS
         void set_cond_max_neurons(py::list &a)
         {
             memset(xcs.COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
-            for(size_t i = 0; i < a.size(); ++i) {
+            for (size_t i = 0; i < a.size(); ++i) {
                 xcs.COND_MAX_NEURONS[i] = a[i].cast<int>();
             }
         }
@@ -740,7 +740,7 @@ class XCS
         void set_pred_num_neurons(py::list &a)
         {
             memset(xcs.PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-            for(size_t i = 0; i < a.size(); ++i) {
+            for (size_t i = 0; i < a.size(); ++i) {
                 xcs.PRED_NUM_NEURONS[i] = a[i].cast<int>();
             }
         }
@@ -748,7 +748,7 @@ class XCS
         void set_pred_max_neurons(py::list &a)
         {
             memset(xcs.PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
-            for(size_t i = 0; i < a.size(); ++i) {
+            for (size_t i = 0; i < a.size(); ++i) {
                 xcs.PRED_MAX_NEURONS[i] = a[i].cast<int>();
             }
         }

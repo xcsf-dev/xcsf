@@ -133,7 +133,7 @@ static void set_layer_n_active(LAYER *l)
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
+    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
         printf("neural_layer_lstm: malloc() invalid size\n");
         l->n_outputs = 1;
         exit(EXIT_FAILURE);
@@ -346,7 +346,7 @@ void neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l, const double *
 
 void neural_layer_lstm_update(const XCSF *xcsf, const LAYER *l)
 {
-    if(l->options & LAYER_SGD_WEIGHTS) {
+    if (l->options & LAYER_SGD_WEIGHTS) {
         layer_update(xcsf, l->wf);
         layer_update(xcsf, l->wi);
         layer_update(xcsf, l->wg);
@@ -381,19 +381,19 @@ _Bool neural_layer_lstm_mutate(const XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
-    if((l->options & LAYER_EVOLVE_ETA) && mutate_eta(xcsf, l)) {
+    if ((l->options & LAYER_EVOLVE_ETA) && mutate_eta(xcsf, l)) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l)) {
+    if ((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l)) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_CONNECT) && mutate_connectivity(l)) {
+    if ((l->options & LAYER_EVOLVE_CONNECT) && mutate_connectivity(l)) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(l)) {
+    if ((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(l)) {
         mod = true;
     }
-    if((l->options & LAYER_EVOLVE_FUNCTIONS) && layer_mutate_functions(l, l->mu[4])) {
+    if ((l->options & LAYER_EVOLVE_FUNCTIONS) && layer_mutate_functions(l, l->mu[4])) {
         mod = true;
     }
     return mod;
@@ -401,7 +401,7 @@ _Bool neural_layer_lstm_mutate(const XCSF *xcsf, LAYER *l)
 
 static _Bool mutate_eta(const XCSF *xcsf, LAYER *l)
 {
-    if(layer_mutate_eta(xcsf, l->uf, l->mu[0])) {
+    if (layer_mutate_eta(xcsf, l->uf, l->mu[0])) {
         set_eta(l);
         return true;
     }
@@ -411,7 +411,7 @@ static _Bool mutate_eta(const XCSF *xcsf, LAYER *l)
 static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l)
 {
     int n = layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
-    if(n != 0) {
+    if (n != 0) {
         layer_add_neurons(l->uf, n);
         layer_add_neurons(l->ui, n);
         layer_add_neurons(l->ug, n);
@@ -470,7 +470,7 @@ void neural_layer_lstm_print(const XCSF *xcsf, const LAYER *l, _Bool print_weigh
            neural_activation_string(l->function),
            neural_activation_string(l->recurrent_function),
            l->n_inputs, l->n_outputs);
-    if(print_weights) {
+    if (print_weights) {
         printf("uf layer:\n");
         layer_print(xcsf, l->uf, print_weights);
         printf("ui layer:\n");

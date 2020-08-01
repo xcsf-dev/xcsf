@@ -37,7 +37,7 @@
  */
 void action_set(const XCSF *xcsf, CL *c)
 {
-    switch(xcsf->ACT_TYPE) {
+    switch (xcsf->ACT_TYPE) {
         case ACT_TYPE_INTEGER:
             c->act_vptr = &act_integer_vtbl;
             break;

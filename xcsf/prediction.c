@@ -41,7 +41,7 @@
  */
 void prediction_set(const XCSF *xcsf, CL *c)
 {
-    switch(xcsf->PRED_TYPE) {
+    switch (xcsf->PRED_TYPE) {
         case PRED_TYPE_CONSTANT:
             c->pred_vptr = &pred_constant_vtbl;
             break;

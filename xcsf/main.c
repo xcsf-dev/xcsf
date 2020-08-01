@@ -38,7 +38,7 @@
 
 int main(int argc, char **argv)
 {
-    if(argc < 3 || argc > 5) {
+    if (argc < 3 || argc > 5) {
         printf("Usage: xcsf problemType{csv|mp|maze} problem{.csv|size|maze} [config.ini] [xcs.bin]\n");
         exit(EXIT_FAILURE);
     }
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     random_init();
     param_init(xcsf);
     // load parameter config
-    if(argc > 3) {
+    if (argc > 3) {
         config_read(xcsf, argv[3]);
     } else {
         config_read(xcsf, "default.ini");
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     // initialise empty sets
     xcsf_init(xcsf);
     // reload state of a previous experiment
-    if(argc == 5) {
+    if (argc == 5) {
         size_t s = xcsf_load(xcsf, argv[4]);
         printf("XCSF loaded: %d elements\n", (int) s);
     }
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
     // initialise prediction array
     pa_init(xcsf);
     // supervised regression - input csv file
-    if(strcmp(argv[1], "csv") == 0) {
+    if (strcmp(argv[1], "csv") == 0) {
         const ENV_CSV *env = xcsf->env;
         xcs_supervised_fit(xcsf, env->train_data, env->test_data, true);
     }

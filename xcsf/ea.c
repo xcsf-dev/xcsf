@@ -55,7 +55,7 @@ void ea(XCSF *xcsf, const SET *set)
     // increase EA time
     xcsf->time += 1;
     // check if the EA should be run
-    if(set->size == 0 || xcsf->time - clset_mean_time(set) < xcsf->THETA_EA) {
+    if (set->size == 0 || xcsf->time - clset_mean_time(set) < xcsf->THETA_EA) {
         return;
     }
     clset_set_times(xcsf, set);
@@ -64,7 +64,7 @@ void ea(XCSF *xcsf, const SET *set)
     CL *c2p;
     ea_select_parents(xcsf, set, &c1p, &c2p);
     // create offspring
-    for(int i = 0; i < xcsf->LAMBDA / 2; ++i) {
+    for (int i = 0; i < xcsf->LAMBDA / 2; ++i) {
         // create copies of parents
         CL *c1 = malloc(sizeof(CL));
         CL *c2 = malloc(sizeof(CL));
@@ -98,7 +98,7 @@ static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL
                               CL *c2,
                               _Bool cmod)
 {
-    if(cmod) {
+    if (cmod) {
         c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err) / 2.0);
         c2->err = c1->err;
         c1->fit = c1p->fit / c1p->num;
@@ -126,11 +126,11 @@ static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL
 static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod,
                    _Bool mmod)
 {
-    if(!cmod && !mmod) {
+    if (!cmod && !mmod) {
         ++(c1p->num);
         ++(xcsf->pset.num);
         cl_free(xcsf, c1);
-    } else if(xcsf->EA_SUBSUMPTION) {
+    } else if (xcsf->EA_SUBSUMPTION) {
         ea_subsume(xcsf, c1, c1p, c2p, set);
     } else {
         clset_add(&xcsf->pset, c1);
@@ -148,11 +148,11 @@ static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool c
 static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
 {
     // check if either parent subsumes the offspring
-    if(cl_subsumer(xcsf, c1p) && cl_general(xcsf, c1p, c)) {
+    if (cl_subsumer(xcsf, c1p) && cl_general(xcsf, c1p, c)) {
         ++(c1p->num);
         ++(xcsf->pset.num);
         cl_free(xcsf, c);
-    } else if(cl_subsumer(xcsf, c2p) && cl_general(xcsf, c2p, c)) {
+    } else if (cl_subsumer(xcsf, c2p) && cl_general(xcsf, c2p, c)) {
         ++(c2p->num);
         ++(xcsf->pset.num);
         cl_free(xcsf, c);
@@ -161,14 +161,14 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
     else {
         CLIST *candidates[set->size];
         int choices = 0;
-        for(CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-            if(cl_subsumer(xcsf, iter->cl) && cl_general(xcsf, iter->cl, c)) {
+        for (CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+            if (cl_subsumer(xcsf, iter->cl) && cl_general(xcsf, iter->cl, c)) {
                 candidates[choices] = iter;
                 ++choices;
             }
         }
         // found
-        if(choices > 0) {
+        if (choices > 0) {
             ++(candidates[irand_uniform(0, choices)]->cl->num);
             ++(xcsf->pset.num);
             cl_free(xcsf, c);
@@ -189,7 +189,7 @@ static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
  */
 static void ea_select_parents(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p)
 {
-    if(xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
+    if (xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
         double fit_sum = clset_total_fit(set);
         *c1p = ea_select_rw(xcsf, set, fit_sum);
         *c2p = ea_select_rw(xcsf, set, fit_sum);
@@ -212,7 +212,7 @@ static CL *ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum)
     double p = rand_uniform(0, fit_sum);
     const CLIST *iter = set->list;
     double sum = iter->cl->fit;
-    while(p > sum) {
+    while (p > sum) {
         iter = iter->next;
         sum += iter->cl->fit;
     }
@@ -228,9 +228,9 @@ static CL *ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum)
 static CL *ea_select_tournament(const XCSF *xcsf, const SET *set)
 {
     CL *winner = NULL;
-    while(winner == NULL) {
-        for(const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-            if((rand_uniform(0, 1) < xcsf->EA_SELECT_SIZE) &&
+    while (winner == NULL) {
+        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+            if ((rand_uniform(0, 1) < xcsf->EA_SELECT_SIZE) &&
                     (winner == NULL || iter->cl->fit > winner->fit)) {
                 winner = iter->cl;
             }

@@ -95,7 +95,7 @@ LAYER *neural_layer_maxpool_copy(const XCSF *xcsf, const LAYER *src)
 
 static void malloc_layer_arrays(LAYER *l)
 {
-    if(l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
+    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
         printf("neural_layer_maxpool: malloc() invalid size\n");
         l->n_outputs = 1;
         exit(EXIT_FAILURE);
@@ -127,14 +127,14 @@ void neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l, const double
     int h = l->out_h;
     int w = l->out_w;
     int c = l->channels;
-    for(int k = 0; k < c; ++k) {
-        for(int i = 0; i < h; ++i) {
-            for(int j = 0; j < w; ++j) {
+    for (int k = 0; k < c; ++k) {
+        for (int i = 0; i < h; ++i) {
+            for (int j = 0; j < w; ++j) {
                 int out_index = j + w * (i + h * k);
                 double max = -DBL_MAX;
                 int max_i = -1;
-                for(int n = 0; n < l->size; ++n) {
-                    for(int m = 0; m < l->size; ++m) {
+                for (int n = 0; n < l->size; ++n) {
+                    for (int m = 0; m < l->size; ++m) {
                         int cur_h = h_offset + i * l->stride + n;
                         int cur_w = w_offset + j * l->stride + m;
                         int index = cur_w + l->width * (cur_h + l->height * k);
@@ -157,10 +157,10 @@ void neural_layer_maxpool_backward(const XCSF *xcsf, const LAYER *l, const doubl
 {
     (void)xcsf;
     (void)input;
-    if(!delta) {
+    if (!delta) {
         return;
     }
-    for(int i = 0; i < l->n_outputs; ++i) {
+    for (int i = 0; i < l->n_outputs; ++i) {
         int index = l->indexes[i];
         delta[index] += l->delta[i];
     }

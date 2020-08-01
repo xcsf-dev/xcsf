@@ -60,7 +60,7 @@ void cond_gp_cover(const XCSF *xcsf, const CL *c, const double *x)
     do {
         tree_free(xcsf, &cond->gp);
         tree_rand(xcsf, &cond->gp);
-    } while(!cond_gp_match(xcsf, c, x));
+    } while (!cond_gp_match(xcsf, c, x));
 }
 
 void cond_gp_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
@@ -76,7 +76,7 @@ _Bool cond_gp_match(const XCSF *xcsf, const CL *c, const double *x)
     COND_GP *cond = c->cond;
     cond->gp.p = 0;
     double result = tree_eval(xcsf, &cond->gp, x);
-    if(result > 0.5) {
+    if (result > 0.5) {
         return true;
     }
     return false;
@@ -92,7 +92,7 @@ _Bool cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {
     COND_GP *cond1 = c1->cond;
     COND_GP *cond2 = c2->cond;
-    if(rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
+    if (rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         tree_crossover(xcsf, &cond1->gp, &cond2->gp);
         return true;
     }

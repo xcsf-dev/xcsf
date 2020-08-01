@@ -21,5 +21,6 @@ max-continuation-indent=40
 min-conditional-indent=2
 pad-comma
 pad-oper
+pad-header
 style=kr
 suffix=none
