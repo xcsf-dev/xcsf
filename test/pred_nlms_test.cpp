@@ -56,33 +56,34 @@ TEST_CASE("PRED_NLMS")
     CHECK_EQ(p->n, 11);
     CHECK_EQ(p->n_weights, 11);
     /* test one forward pass of input */
-    const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
-                           -0.0814486626, 0.0923277094, 0.2779675621, -0.3109822596,
-                           -0.6788371120, -0.0714929928, -0.1332985280
-                         };
-    const double orig_weights[11] = { 0.3326639519, -0.4446678553,
-                                      0.1033557369, -1.2581317787, 2.8042169798, 0.2236021733,
-                                      -1.2206964138, -0.2022042865, -1.5489524535, -2.0932767781,
-                                      5.4797621223
-                                    };
+    const double x[10] = {
+        -0.4792173279, -0.2056298252, -0.1775459629, -0.0814486626,
+            0.0923277094, 0.2779675621, -0.3109822596, -0.6788371120,
+            -0.0714929928, -0.1332985280
+        };
+    const double orig_weights[11] = {
+        0.3326639519, -0.4446678553, 0.1033557369, -1.2581317787, 2.8042169798,
+        0.2236021733, -1.2206964138, -0.2022042865, -1.5489524535,
+        -2.0932767781, 5.4797621223
+    };
     memcpy(p->weights, orig_weights, 11 * sizeof(double));
     pred_nlms_compute(&xcsf, &c, x);
     CHECK_EQ(doctest::Approx(c.prediction[0]), 0.7343893899);
     /* test one backward pass of input */
     const double y[1] = { -0.8289711363 };
-    const double new_weights[11] = { 0.2535580953, -0.4067589581,
-                                     0.1196222604, -1.2440868532, 2.8106600460, 0.2162985108,
-                                     -1.2426852759, -0.1776037685, -1.4952524623, -2.0876212637,
-                                     5.4903068165
-                                   };
+    const double new_weights[11] = {
+        0.2535580953, -0.4067589581, 0.1196222604, -1.2440868532, 2.8106600460,
+        0.2162985108, -1.2426852759, -0.1776037685, -1.4952524623,
+        -2.0876212637, 5.4903068165
+    };
     pred_nlms_update(&xcsf, &c, x, y);
     double weight_error = 0;
-    for(int i = 0; i < 11; i++) {
+    for (int i = 0; i < 11; ++i) {
         weight_error += fabs(p->weights[i] - new_weights[i]);
     }
     CHECK_EQ(doctest::Approx(weight_error), 0);
     /* test convergence on one input */
-    for(int i = 0; i < 200; i++) {
+    for (int i = 0; i < 200; ++i) {
         pred_nlms_compute(&xcsf, &c, x);
         pred_nlms_update(&xcsf, &c, x, y);
     }

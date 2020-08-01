@@ -74,7 +74,8 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     const double orig_weights[18] = {
         -0.3494757, 0.37103638, 0.43885502, 0.11762521, 0.35432652, 0.17391846,
             0.46650133, -0.00751933, 0.01440367, 0.3583322, 0.3935847, 0.10529158,
-            0.28923538, -0.28357792, 0.14083597, 0.2338815, -0.46515846, -0.36625803
+            0.28923538, -0.28357792, 0.14083597, 0.2338815, -0.46515846,
+            -0.36625803
         };
     const double orig_biases[2] = { 0, 0 };
     const double x[16] = {
@@ -90,12 +91,12 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
         0.7416452, 0.39779976, 0.45610222, 0.2851106
     };
     int index = 0;
-    for(int k = 0; k < l->size; k++) {
-        for(int j = 0; j < l->size; j++) {
-            for(int i = 0; i < l->n_filters; i++) {
+    for (int k = 0; k < l->size; ++k) {
+        for (int j = 0; j < l->size; ++j) {
+            for (int i = 0; i < l->n_filters; ++i) {
                 int pos = j + l->size * (k + l->size * i);
                 l->weights[pos] = orig_weights[index];
-                index++;
+                ++index;
             }
         }
     }
@@ -103,12 +104,12 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     neural_layer_convolutional_forward(&xcsf, l, x);
     double output_error = 0;
     index = 0;
-    for(int k = 0; k < l->out_h; k++) {
-        for(int j = 0; j < l->out_w; j++) {
-            for(int i = 0; i < l->out_c; i++) {
+    for (int k = 0; k < l->out_h; ++k) {
+        for (int j = 0; j < l->out_w; ++j) {
+            for (int i = 0; i < l->out_c; ++i) {
                 double layer_output_i = l->output[j + l->out_w * (k + l->out_h * i)];
                 output_error += fabs(layer_output_i - output[index]);
-                index++;
+                ++index;
             }
         }
     }
@@ -120,15 +121,15 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
         1.0699066, 0.69851404, 1.7120876, 0.5649568, 1.8013113, 0.2873966,
         1.2277601, 0.
     };
-    for(int e = 0; e < 2000; e++) {
+    for (int e = 0; e < 2000; ++e) {
         neural_layer_convolutional_forward(&xcsf, l, x);
         index = 0;
-        for(int k = 0; k < l->out_h; k++) {
-            for(int j = 0; j < l->out_w; j++) {
-                for(int i = 0; i < l->out_c; i++) {
+        for (int k = 0; k < l->out_h; ++k) {
+            for (int j = 0; j < l->out_w; ++j) {
+                for (int i = 0; i < l->out_c; ++i) {
                     int pos = j + l->out_w * (k + l->out_h * i);
                     l->delta[pos] = y[index] - l->output[pos];
-                    index++;
+                    ++index;
                 }
             }
         }
@@ -138,13 +139,13 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     neural_layer_convolutional_forward(&xcsf, l, x);
     double conv_error = 0;
     index = 0;
-    for(int k = 0; k < l->out_h; k++) {
-        for(int j = 0; j < l->out_w; j++) {
-            for(int i = 0; i < l->out_c; i++) {
+    for (int k = 0; k < l->out_h; ++k) {
+        for (int j = 0; j < l->out_w; ++j) {
+            for (int i = 0; i < l->out_c; ++i) {
                 int pos = j + l->out_w * (k + l->out_h * i);
                 double error = y[index] - l->output[pos];
                 conv_error += error * error;
-                index++;
+                ++index;
             }
         }
     }

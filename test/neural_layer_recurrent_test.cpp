@@ -88,7 +88,7 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     CHECK_EQ(doctest::Approx(output_error), 0);
     /* test one backward pass of input */
     const double y[1] = { 0.946146918 };
-    for(int i = 0; i < l->n_outputs; i++) {
+    for (int i = 0; i < l->n_outputs; ++i) {
         l->delta[i] = y[i] - l->output[i];
     }
     neural_layer_recurrent_backward(&xcsf, l, x, 0);
@@ -98,9 +98,9 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     output_error = fabs(l->output[0] - 0.3988695229);
     CHECK_EQ(doctest::Approx(output_error), 0);
     /* test convergence on one input */
-    for(int i = 0; i < 400; i++) {
+    for (int i = 0; i < 400; ++i) {
         neural_layer_recurrent_forward(&xcsf, l, x);
-        for(int j = 0; j < l->n_outputs; j++) {
+        for (int j = 0; j < l->n_outputs; ++j) {
             l->delta[j] = y[j] - l->output[j];
         }
         neural_layer_recurrent_backward(&xcsf, l, x, 0);

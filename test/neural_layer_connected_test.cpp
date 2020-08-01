@@ -83,7 +83,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     memcpy(l->biases, orig_biases, l->n_outputs * sizeof(double));
     neural_layer_connected_forward(&xcsf, l, x);
     double output_error = 0;
-    for(int i = 0; i < l->n_outputs; i++) {
+    for (int i = 0; i < l->n_outputs; ++i) {
         output_error += fabs(l->output[i] - output[i]);
     }
     CHECK_EQ(doctest::Approx(output_error), 0);
@@ -97,18 +97,18 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
                                      -0.2022868364, -1.5491063675
                                    };
     const double new_biases[2] = { 0.1023849362, -1.2569771221 };
-    for(int i = 0; i < l->n_outputs; i++) {
+    for (int i = 0; i < l->n_outputs; ++i) {
         l->delta[i] = y[i] - l->output[i];
     }
     neural_layer_connected_backward(&xcsf, l, x, 0);
     neural_layer_connected_update(&xcsf, l);
     double weight_error = 0;
-    for(int i = 0; i < l->n_weights; i++) {
+    for (int i = 0; i < l->n_weights; ++i) {
         weight_error += fabs(l->weights[i] - new_weights[i]);
     }
     CHECK_EQ(doctest::Approx(weight_error), 0);
     double bias_error = 0;
-    for(int i = 0; i < l->n_outputs; i++) {
+    for (int i = 0; i < l->n_outputs; ++i) {
         bias_error += fabs(l->biases[i] - new_biases[i]);
     }
     CHECK_EQ(doctest::Approx(bias_error), 0);
@@ -121,9 +121,9 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
                                       -0.2392683912, -1.6180583952
                                     };
     const double conv_biases[2] = { -0.0637213195, -0.7397018847 };
-    for(int i = 0; i < 200; i++) {
+    for (int i = 0; i < 200; ++i) {
         neural_layer_connected_forward(&xcsf, l, x);
-        for(int j = 0; j < l->n_outputs; j++) {
+        for (int j = 0; j < l->n_outputs; ++j) {
             l->delta[j] = y[j] - l->output[j];
         }
         neural_layer_connected_backward(&xcsf, l, x, 0);
@@ -133,12 +133,12 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);
     CHECK_EQ(doctest::Approx(l->output[1]), y[1]);
     double conv_weight_error = 0;
-    for(int i = 0; i < l->n_weights; i++) {
+    for (int i = 0; i < l->n_weights; ++i) {
         conv_weight_error += fabs(l->weights[i] - conv_weights[i]);
     }
     CHECK_EQ(doctest::Approx(conv_weight_error), 0);
     double conv_bias_error = 0;
-    for(int i = 0; i < l->n_outputs; i++) {
+    for (int i = 0; i < l->n_outputs; ++i) {
         conv_bias_error += fabs(l->biases[i] - conv_biases[i]);
     }
     CHECK_EQ(doctest::Approx(conv_bias_error), 0);

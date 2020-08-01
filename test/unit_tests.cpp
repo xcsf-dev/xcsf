@@ -27,12 +27,13 @@
 
 #include "../lib/doctest/doctest/doctest.h"
 
-int main(int argc, char **argv)
+int
+main(int argc, char **argv)
 {
     doctest::Context context;
     context.applyCommandLine(argc, argv);
     int res = context.run();
-    if(context.shouldExit()) {
+    if (context.shouldExit()) {
         return res;
     }
 }
