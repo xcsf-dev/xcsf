@@ -33,7 +33,7 @@
 #include "condition.h"
 #include "cond_rectangle.h"
 
-#define N_MU 1 //!< Number of hyperrectangle mutation rates
+#define N_MU (1) //!< Number of hyperrectangle mutation rates
 
 static double cond_rectangle_dist(const XCSF *xcsf, const CL *c, const double *x);
 

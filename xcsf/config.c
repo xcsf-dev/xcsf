@@ -31,9 +31,9 @@
 #include "param.h"
 #include "config.h"
 
-#define ARRAY_DELIM "," //!< Delimeter for config arrays
-#define MAXLEN 127 //!< Maximum config file line length to read
-#define BASE 10 //!< Decimal numbers
+#define ARRAY_DELIM (",") //!< Delimeter for config arrays
+#define MAXLEN (127) //!< Maximum config file line length to read
+#define BASE (10) //!< Decimal numbers
 
 static void config_add_param(XCSF *xcsf, const char *name, char *value);
 static void config_get_ints(char *str, int *val);

@@ -35,12 +35,12 @@
 #include "sam.h"
 #include "gp.h"
 
-#define GP_MAX_LEN 10000 //!< Maximum length of a GP tree. 
-#define GP_NUM_FUNC 4 //!< Number of selectable GP functions
-#define ADD 0
-#define SUB 1
-#define MUL 2
-#define DIV 3
+#define GP_MAX_LEN (10000) //!< Maximum length of a GP tree. 
+#define GP_NUM_FUNC (4) //!< Number of selectable GP functions
+#define ADD (0)
+#define SUB (1)
+#define MUL (2)
+#define DIV (3)
 
 static int tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth);
 static int tree_traverse(int *tree, int p);

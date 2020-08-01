@@ -32,7 +32,7 @@
 #include "sam.h"
 #include "dgp.h"
 
-#define NUM_FUNC 3 //!< Number of selectable node functions
+#define NUM_FUNC (3) //!< Number of selectable node functions
 
 static const char *function_string(int function);
 static double node_activate(int function, const double *inputs, int k);

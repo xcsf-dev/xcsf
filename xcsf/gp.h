@@ -23,7 +23,7 @@
 
 #pragma once
 
-#define GP_N_MU 1 //!< Number of GP mutation rates
+#define GP_N_MU (1) //!< Number of GP mutation rates
 
 /**
  * @brief GP tree data structure.

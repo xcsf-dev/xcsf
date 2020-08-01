@@ -33,7 +33,7 @@
 #include "condition.h"
 #include "cond_ellipsoid.h"
 
-#define N_MU 1 //!< Number of hyperellipsoid mutation rates
+#define N_MU (1) //!< Number of hyperellipsoid mutation rates
 
 static double cond_ellipsoid_dist(const XCSF *xcsf, const CL *c, const double *x);
 

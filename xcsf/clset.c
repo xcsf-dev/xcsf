@@ -31,7 +31,7 @@
 #include "cl.h"
 #include "clset.h"
 
-#define MAX_COVER 1000000 //!< maximum number of covering attempts
+#define MAX_COVER (1000000) //!< maximum number of covering attempts
 
 static _Bool clset_action_coverage(const XCSF *xcsf, _Bool *act_covered);
 static double clset_total_time(const SET *set);

@@ -55,8 +55,8 @@
 #include "env.h"
 #include "env_maze.h"
 
-#define MAZE_DEBUG false //!< Whether to print the state of the maze during exploitation
-#define MAX_PAYOFF 1.0 //!< The payoff provided at a food position
+#define MAZE_DEBUG (false) //!< Whether to print the state of the maze during exploitation
+#define MAX_PAYOFF (1.) //!< The payoff provided at a food position
 static const int x_moves[] = { 0, +1, +1, +1,  0, -1, -1, -1}; //!< Possible maze moves on x-axis
 static const int y_moves[] = {-1, -1,  0, +1, +1, +1,  0, -1}; //!< Possible maze moves on y-axis
 

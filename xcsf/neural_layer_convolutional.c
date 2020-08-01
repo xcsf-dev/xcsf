@@ -36,7 +36,7 @@
 #include "neural_layer.h"
 #include "neural_layer_convolutional.h"
 
-#define N_MU 4 //!< Number of mutation rates applied to a convolutional layer
+#define N_MU (4) //!< Number of mutation rates applied to a convolutional layer
 
 static double im2col_get_pixel(const double *im, int height, int width, int row, int col,
                                int channel, int pad);

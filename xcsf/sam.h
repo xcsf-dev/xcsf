@@ -23,8 +23,8 @@
 
 #pragma once
 
-#define SAM_LOG_NORMAL 0 //!< Log normal self-adaptation
-#define SAM_RATE_SELECT 1 //!< Ten normally distributed rates
+#define SAM_LOG_NORMAL (0) //!< Log normal self-adaptation
+#define SAM_RATE_SELECT (1) //!< Ten normally distributed rates
 
 void sam_adapt(const XCSF *xcsf, double *mu, int n);
 void sam_init(const XCSF *xcsf, double *mu, int n);

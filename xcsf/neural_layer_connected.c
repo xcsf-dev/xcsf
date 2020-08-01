@@ -36,7 +36,7 @@
 #include "neural_layer.h"
 #include "neural_layer_connected.h"
 
-#define N_MU 5 //!< Number of mutation rates applied to a connected layer
+#define N_MU (5) //!< Number of mutation rates applied to a connected layer
 
 static void malloc_layer_arrays(LAYER *l);
 

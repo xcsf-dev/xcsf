@@ -25,19 +25,19 @@
 
 #include <math.h>
 
-#define LOGISTIC 0 //!< Logistic [0,1]
-#define RELU 1 //!< Rectified linear unit [0,inf]
-#define TANH 2 //!< Tanh [-1,1]
-#define LINEAR 3 //!< Linear [-inf,inf]
-#define GAUSSIAN 4 //!< Gaussian (0,1]
-#define SIN 5 //!< Sine [-1,1]
-#define COS 6 //!< Cos [-1,1]
-#define SOFT_PLUS 7 //!< Soft plus [0,inf]
-#define LEAKY 8 //!< Leaky rectified linear unit [-inf,inf]
-#define SELU 9 //!< Scaled-exponential linear unit [-1.7581,inf]
-#define LOGGY 10 //!< Logistic [-1,1]
-#define NUM_ACTIVATIONS 11
-#define SOFT_MAX 100 //!< Softmax
+#define LOGISTIC (0) //!< Logistic [0,1]
+#define RELU (1) //!< Rectified linear unit [0,inf]
+#define TANH (2) //!< Tanh [-1,1]
+#define LINEAR (3) //!< Linear [-inf,inf]
+#define GAUSSIAN (4) //!< Gaussian (0,1]
+#define SIN (5) //!< Sine [-1,1]
+#define COS (6) //!< Cos [-1,1]
+#define SOFT_PLUS (7) //!< Soft plus [0,inf]
+#define LEAKY (8) //!< Leaky rectified linear unit [-inf,inf]
+#define SELU (9) //!< Scaled-exponential linear unit [-1.7581,inf]
+#define LOGGY (10) //!< Logistic [-1,1]
+#define NUM_ACTIVATIONS (11)
+#define SOFT_MAX (100) //!< Softmax
 
 double neural_activate(int a, double x);
 double neural_gradient(int a, double x);

@@ -35,9 +35,9 @@
 #include "condition.h"
 #include "cond_ternary.h"
 
-#define N_MU 1 //!< Number of ternary mutation rates
-#define P_DONTCARE 0.5 //!< Don't care probability in randomisation and covering
-#define DONT_CARE '#' //!< Don't care symbol
+#define N_MU (1) //!< Number of ternary mutation rates
+#define P_DONTCARE (0.5) //!< Don't care probability in randomisation and covering
+#define DONT_CARE ('#') //!< Don't care symbol
 
 static void cond_ternary_rand(const XCSF *xcsf, const CL *c);
 static void float_to_binary(double f, char *binary, int bits);

@@ -31,7 +31,7 @@
 #include "action.h"
 #include "act_integer.h"
 
-#define N_MU 1 //!< Number of integer action mutation rates
+#define N_MU (1) //!< Number of integer action mutation rates
 
 _Bool act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 {

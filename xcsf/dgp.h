@@ -23,7 +23,7 @@
 
 #pragma once
 
-#define DGP_N_MU 3 //!< Number of DGP mutation rates
+#define DGP_N_MU (3) //!< Number of DGP mutation rates
 
 /**
  * @brief Dynamical GP graph data structure.

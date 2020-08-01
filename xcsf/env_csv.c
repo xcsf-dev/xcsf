@@ -32,10 +32,10 @@
 #include "env.h"
 #include "env_csv.h"
 
-#define MAX_ROWS 100000 //!< Maximum number of instances
-#define MAX_COLS 200 //!< Maximum line length
-#define MAX_NAME 200 //!< Maximum file name length
-#define DELIM "," //!< File delimiter
+#define MAX_ROWS (100000) //!< Maximum number of instances
+#define MAX_COLS (200) //!< Maximum line length
+#define MAX_NAME (200) //!< Maximum file name length
+#define DELIM (",") //!< File delimiter
 
 static void env_csv_read(const char *fname, double **data, int *num_prob, int *num_vars);
 static void env_csv_input_read(const char *infile, INPUT *train_data, INPUT *test_data);

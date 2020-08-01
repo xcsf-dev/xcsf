@@ -39,7 +39,7 @@
 #include "neural_layer_connected.h"
 #include "neural_layer_lstm.h"
 
-#define N_MU 5 //!< Number of mutation rates applied to a lstm layer
+#define N_MU (5) //!< Number of mutation rates applied to a lstm layer
 
 static _Bool mutate_connectivity(LAYER *l);
 static _Bool mutate_eta(const XCSF *xcsf, LAYER *l);

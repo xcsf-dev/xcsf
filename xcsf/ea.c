@@ -32,8 +32,8 @@
 #include "ea.h"
 #include "sam.h"
 
-#define EA_SELECT_ROULETTE 0
-#define EA_SELECT_TOURNAMENT 1
+#define EA_SELECT_ROULETTE (0)
+#define EA_SELECT_TOURNAMENT (1)
 
 static CL *ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum);
 static CL *ea_select_tournament(const XCSF *xcsf, const SET *set);

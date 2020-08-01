@@ -38,7 +38,7 @@
 #include "env.h"
 #include "env_mux.h"
 
-#define MAX_PAYOFF 1.0 //!< Payoff provided for making a correct classification
+#define MAX_PAYOFF (1.) //!< Payoff provided for making a correct classification
 
 /**
  * @brief Initialises a real multiplexer environment of specified length.

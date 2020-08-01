@@ -33,8 +33,8 @@
 #include "prediction.h"
 #include "pred_nlms.h"
 
-#define N_MU 1 //!< Number of self-adaptive mutation rates
-#define ETA_MIN 0.0001 //!< Minimum gradient descent rate
+#define N_MU (1) //!< Number of self-adaptive mutation rates
+#define ETA_MIN (0.0001) //!< Minimum gradient descent rate
 
 void pred_nlms_init(const XCSF *xcsf, CL *c)
 {

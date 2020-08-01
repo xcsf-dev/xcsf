@@ -25,14 +25,14 @@
 
 #include <stdint.h>
 
-#define CONNECTED 0
-#define DROPOUT 1
-#define NOISE 2
-#define SOFTMAX 3
-#define RECURRENT 4
-#define LSTM 5
-#define MAXPOOL 6
-#define CONVOLUTIONAL 7
+#define CONNECTED (0)
+#define DROPOUT (1)
+#define NOISE (2)
+#define SOFTMAX (3)
+#define RECURRENT (4)
+#define LSTM (5)
+#define MAXPOOL (6)
+#define CONVOLUTIONAL (7)
 
 #define LAYER_EVOLVE_WEIGHTS    (1<<0)
 #define LAYER_EVOLVE_NEURONS    (1<<1)
@@ -41,14 +41,14 @@
 #define LAYER_EVOLVE_ETA        (1<<4)
 #define LAYER_EVOLVE_CONNECT    (1<<5)
 
-#define ETA_MIN 0.000001 //!< Minimum gradient descent rate
-#define NEURON_MIN -100 //!< Minimum neuron state
-#define NEURON_MAX 100 //!< Maximum neuron state
-#define WEIGHT_MIN -10 //!< Minimum value of a weight or bias
-#define WEIGHT_MAX 10 //!< Maximum value of a weight or bias
-#define N_WEIGHTS_MAX 20000000 //!< Maximum number of weights per layer
-#define N_INPUTS_MAX 2000000 // !< Maximum number of inputs per layer
-#define N_OUTPUTS_MAX 2000000 // !< Maximum number of outputs per layer
+#define ETA_MIN (0.000001) //!< Minimum gradient descent rate
+#define NEURON_MIN (-100) //!< Minimum neuron state
+#define NEURON_MAX (100) //!< Maximum neuron state
+#define WEIGHT_MIN (-10) //!< Minimum value of a weight or bias
+#define WEIGHT_MAX (10) //!< Maximum value of a weight or bias
+#define N_WEIGHTS_MAX (20000000) //!< Maximum number of weights per layer
+#define N_INPUTS_MAX (2000000) // !< Maximum number of inputs per layer
+#define N_OUTPUTS_MAX (2000000) // !< Maximum number of outputs per layer
 
 /**
  * @brief Neural network layer data structure.

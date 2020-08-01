@@ -23,7 +23,7 @@
 
 #pragma once
 
-#define MAX_SIZE 50 //!< The maximum width/height of a maze
+#define MAX_SIZE (50) //!< The maximum width/height of a maze
 
 /**
  * @brief Maze environment data structure.
