@@ -39,9 +39,6 @@
 #define NUM_ACTIVATIONS 11
 #define SOFT_MAX 100 //!< Softmax
 
-#define NEURON_MIN_STATE -100
-#define NEURON_MAX_STATE 100
-
 double neural_activate(int a, double x);
 double neural_gradient(int a, double x);
 const char *neural_activation_string(int a);

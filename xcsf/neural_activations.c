@@ -23,7 +23,9 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "xcsf.h"
 #include "utils.h"
+#include "neural_layer.h"
 #include "neural_activations.h"
 
 /**
@@ -146,7 +148,7 @@ const char *neural_activation_string(int a)
 void neural_activate_array(double *state, double *output, int n, int a)
 {
     for(int i = 0; i < n; i++) {
-        state[i] = clamp(NEURON_MIN_STATE, NEURON_MAX_STATE, state[i]);
+        state[i] = clamp(NEURON_MIN, NEURON_MAX, state[i]);
         output[i] = neural_activate(a, state[i]);
     }
 }
