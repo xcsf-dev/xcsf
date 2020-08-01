@@ -110,7 +110,7 @@ static size_t get_workspace_size(const LAYER *l)
         printf("neural_layer_convolutional: workspace_size overflow\n");
         exit(EXIT_FAILURE);
     }
-    return size * sizeof(double);
+    return sizeof(double) * size;
 }
 
 static void malloc_layer_arrays(LAYER *l)
