@@ -35,19 +35,44 @@
 #define MAXLEN (127) //!< Maximum config file line length to read
 #define BASE (10) //!< Decimal numbers
 
-static void config_add_param(XCSF *xcsf, const char *name, char *value);
-static void config_get_ints(char *str, int *val);
-static void config_newnvpair(XCSF *xcsf, const char *param);
-static void config_process(XCSF *xcsf, const char *configline);
-static void config_trim(char *s);
-static void config_cl_act(XCSF *xcsf, const char *n, char *v, int i, double f);
-static void config_cl_gen(XCSF *xcsf, const char *n, char *v, int i, double f);
-static void config_ea(XCSF *xcsf, const char *n, char *v, int i, double f);
-static void config_general(XCSF *xcsf, const char *n, char *v, int i, double f);
-static void config_multi(XCSF *xcsf, const char *n, char *v, int i, double f);
-static void config_subsump(XCSF *xcsf, const char *n, char *v, int i, double f);
-static void config_cl_cond(XCSF *xcsf, const char *n, char *v, int i, double f);
-static void config_cl_pred(XCSF *xcsf, const char *n, char *v, int i, double f);
+static void
+config_add_param(XCSF *xcsf, const char *name, char *value);
+
+static void
+config_get_ints(char *str, int *val);
+
+static void
+config_newnvpair(XCSF *xcsf, const char *param);
+
+static void
+config_process(XCSF *xcsf, const char *configline);
+
+static void
+config_trim(char *s);
+
+static void
+config_cl_act(XCSF *xcsf, const char *n, char *v, int i, double f);
+
+static void
+config_cl_gen(XCSF *xcsf, const char *n, char *v, int i, double f);
+
+static void
+config_ea(XCSF *xcsf, const char *n, char *v, int i, double f);
+
+static void
+config_general(XCSF *xcsf, const char *n, char *v, int i, double f);
+
+static void
+config_multi(XCSF *xcsf, const char *n, char *v, int i, double f);
+
+static void
+config_subsump(XCSF *xcsf, const char *n, char *v, int i, double f);
+
+static void
+config_cl_cond(XCSF *xcsf, const char *n, char *v, int i, double f);
+
+static void
+config_cl_pred(XCSF *xcsf, const char *n, char *v, int i, double f);
 
 /**
  * @brief Reads the specified configuration file.

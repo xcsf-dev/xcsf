@@ -32,20 +32,45 @@ typedef struct COND_ELLIPSOID {
     double *mu; //!< Mutation rates
 } COND_ELLIPSOID;
 
-_Bool cond_ellipsoid_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_ellipsoid_general(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_ellipsoid_match(const XCSF *xcsf, const CL *c, const double *x);
-_Bool cond_ellipsoid_mutate(const XCSF *xcsf, const CL *c);
-void cond_ellipsoid_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void cond_ellipsoid_cover(const XCSF *xcsf, const CL *c, const double *x);
-void cond_ellipsoid_free(const XCSF *xcsf, const CL *c);
-void cond_ellipsoid_init(const XCSF *xcsf, CL *c);
-void cond_ellipsoid_print(const XCSF *xcsf, const CL *c);
-void cond_ellipsoid_update(const XCSF *xcsf, const CL *c, const double *x,
-                           const double *y);
-int cond_ellipsoid_size(const XCSF *xcsf, const CL *c);
-size_t cond_ellipsoid_save(const XCSF *xcsf, const CL *c, FILE *fp);
-size_t cond_ellipsoid_load(const XCSF *xcsf, CL *c, FILE *fp);
+_Bool
+cond_ellipsoid_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+cond_ellipsoid_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+cond_ellipsoid_match(const XCSF *xcsf, const CL *c, const double *x);
+
+_Bool
+cond_ellipsoid_mutate(const XCSF *xcsf, const CL *c);
+
+void
+cond_ellipsoid_copy(const XCSF *xcsf, CL *dest, const CL *src);
+
+void
+cond_ellipsoid_cover(const XCSF *xcsf, const CL *c, const double *x);
+
+void
+cond_ellipsoid_free(const XCSF *xcsf, const CL *c);
+
+void
+cond_ellipsoid_init(const XCSF *xcsf, CL *c);
+
+void
+cond_ellipsoid_print(const XCSF *xcsf, const CL *c);
+
+void
+cond_ellipsoid_update(const XCSF *xcsf, const CL *c, const double *x,
+                      const double *y);
+
+int
+cond_ellipsoid_size(const XCSF *xcsf, const CL *c);
+
+size_t
+cond_ellipsoid_save(const XCSF *xcsf, const CL *c, FILE *fp);
+
+size_t
+cond_ellipsoid_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
  * @brief Hyperellipsoid condition implemented functions.

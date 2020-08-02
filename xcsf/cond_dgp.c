@@ -33,6 +33,11 @@
 #include "condition.h"
 #include "cond_dgp.h"
 
+/**
+ * @brief Creates and initialises a dynamical GP graph condition.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose condition is to be initialised.
+ */
 void
 cond_dgp_init(const XCSF *xcsf, CL *c)
 {

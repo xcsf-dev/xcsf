@@ -23,7 +23,8 @@
 
 #pragma once
 
-void condition_set(const XCSF *xcsf, CL *c);
+void
+condition_set(const XCSF *xcsf, CL *c);
 
 /**
  * @brief Condition interface data structure.
@@ -92,8 +93,7 @@ cond_size(const XCSF *xcsf, const CL *c)
  * @param y The payoff value.
  */
 static inline void
-cond_update(const XCSF *xcsf, const CL *c, const double *x,
-            const double *y)
+cond_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (*c->cond_vptr->cond_impl_update)(xcsf, c, x, y);
 }

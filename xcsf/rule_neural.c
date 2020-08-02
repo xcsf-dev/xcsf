@@ -42,7 +42,8 @@
 
 /* CONDITION FUNCTIONS */
 
-static uint32_t rule_neural_lopt(const XCSF *xcsf);
+static uint32_t
+rule_neural_lopt(const XCSF *xcsf);
 
 void
 rule_neural_cond_init(const XCSF *xcsf, CL *c)

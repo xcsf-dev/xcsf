@@ -30,20 +30,45 @@ typedef struct COND_DGP {
     GRAPH dgp; //!< DGP graph
 } COND_DGP;
 
-_Bool cond_dgp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_dgp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_dgp_match(const XCSF *xcsf, const CL *c, const double *x);
-_Bool cond_dgp_mutate(const XCSF *xcsf, const CL *c);
-void cond_dgp_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void cond_dgp_cover(const XCSF *xcsf, const CL *c, const double *x);
-void cond_dgp_free(const XCSF *xcsf, const CL *c);
-void cond_dgp_init(const XCSF *xcsf, CL *c);
-void cond_dgp_print(const XCSF *xcsf, const CL *c);
-void cond_dgp_update(const XCSF *xcsf, const CL *c, const double *x,
-                     const double *y);
-int cond_dgp_size(const XCSF *xcsf, const CL *c);
-size_t cond_dgp_save(const XCSF *xcsf, const CL *c, FILE *fp);
-size_t cond_dgp_load(const XCSF *xcsf, CL *c, FILE *fp);
+_Bool
+cond_dgp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+cond_dgp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+cond_dgp_match(const XCSF *xcsf, const CL *c, const double *x);
+
+_Bool
+cond_dgp_mutate(const XCSF *xcsf, const CL *c);
+
+void
+cond_dgp_copy(const XCSF *xcsf, CL *dest, const CL *src);
+
+void
+cond_dgp_cover(const XCSF *xcsf, const CL *c, const double *x);
+
+void
+cond_dgp_free(const XCSF *xcsf, const CL *c);
+
+void
+cond_dgp_init(const XCSF *xcsf, CL *c);
+
+void
+cond_dgp_print(const XCSF *xcsf, const CL *c);
+
+void
+cond_dgp_update(const XCSF *xcsf, const CL *c, const double *x,
+                const double *y);
+
+int
+cond_dgp_size(const XCSF *xcsf, const CL *c);
+
+size_t
+cond_dgp_save(const XCSF *xcsf, const CL *c, FILE *fp);
+
+size_t
+cond_dgp_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
  * @brief Dynamical GP graph condition implemented functions.

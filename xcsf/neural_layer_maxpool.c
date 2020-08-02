@@ -33,7 +33,8 @@
 #include "neural_layer.h"
 #include "neural_layer_maxpool.h"
 
-static void malloc_layer_arrays(LAYER *l);
+static void
+malloc_layer_arrays(LAYER *l);
 
 /**
  * @brief Creates and initialises a 2D maxpooling layer.

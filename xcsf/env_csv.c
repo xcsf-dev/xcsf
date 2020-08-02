@@ -37,14 +37,20 @@
 #define MAX_NAME (200) //!< Maximum file name length
 #define DELIM (",") //!< File delimiter
 
-static void env_csv_read(const char *fname, double **data, int *n_samples,
-                         int *n_dim);
-static void env_csv_input_read(const char *infile, INPUT *train_data,
-                               INPUT *test_data);
-static void env_csv_read_data(FILE *fin, double **data, int n_samples,
-                              int n_dim);
-static int env_csv_samples(FILE *fin);
-static int env_csv_dim(FILE *fin);
+static void
+env_csv_read(const char *fname, double **data, int *n_samples, int *n_dim);
+
+static void
+env_csv_input_read(const char *infile, INPUT *train_data, INPUT *test_data);
+
+static void
+env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim);
+
+static int
+env_csv_samples(FILE *fin);
+
+static int
+env_csv_dim(FILE *fin);
 
 /**
  * @brief Initialises a CSV input environment from a specified filename.

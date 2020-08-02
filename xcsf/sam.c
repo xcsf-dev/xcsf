@@ -30,13 +30,20 @@
 
 #define N_RATES (10) //!< number of mutation rates for rate selection adaptation
 static const double mrates[N_RATES] = {
-    0.0001, 0.001, 0.002, 0.005, 0.01, 0.01, 0.02, 0.05, 0.1, 1.
-};
+    0.0001, 0.001, 0.002, 0.005, 0.01, 0.01, 0.02, 0.05, 0.1, 0.5
+}; //!< mutation values for rate selection adaptation
 
-static void sam_rate_selection_init(double *mu, int n);
-static void sam_rate_selection_adapt(double *mu, int n);
-static void sam_log_normal_init(double *mu, int n);
-static void sam_log_normal_adapt(double *mu, int n);
+static void
+sam_rate_selection_init(double *mu, int n);
+
+static void
+sam_rate_selection_adapt(double *mu, int n);
+
+static void
+sam_log_normal_init(double *mu, int n);
+
+static void
+sam_log_normal_adapt(double *mu, int n);
 
 /**
  * @brief Initialises self-adaptive mutation rates.

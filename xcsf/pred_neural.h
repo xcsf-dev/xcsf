@@ -30,24 +30,57 @@ typedef struct PRED_NEURAL {
     NET net; //!< Neural network
 } PRED_NEURAL;
 
-_Bool pred_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool pred_neural_mutate(const XCSF *xcsf, const CL *c);
-double pred_neural_eta(const XCSF *xcsf, const CL *c, int layer);
-int pred_neural_connections(const XCSF *xcsf, const CL *c, int layer);
-int pred_neural_layers(const XCSF *xcsf, const CL *c);
-int pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer);
-int pred_neural_size(const XCSF *xcsf, const CL *c);
-size_t pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
-size_t pred_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
-void pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x);
-void pred_neural_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void pred_neural_free(const XCSF *xcsf, const CL *c);
-void pred_neural_init(const XCSF *xcsf, CL *c);
-void pred_neural_print(const XCSF *xcsf, const CL *c);
-void pred_neural_update(const XCSF *xcsf, const CL *c, const double *x,
-                        const double *y);
-void pred_neural_expand(const XCSF *xcsf, const CL *c);
-void pred_neural_ae_to_classifier(const XCSF *xcsf, const CL *c, int n_del);
+_Bool
+pred_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+pred_neural_mutate(const XCSF *xcsf, const CL *c);
+
+double
+pred_neural_eta(const XCSF *xcsf, const CL *c, int layer);
+
+int
+pred_neural_connections(const XCSF *xcsf, const CL *c, int layer);
+
+int
+pred_neural_layers(const XCSF *xcsf, const CL *c);
+
+int
+pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer);
+
+int
+pred_neural_size(const XCSF *xcsf, const CL *c);
+
+size_t
+pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
+
+size_t
+pred_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
+
+void
+pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x);
+
+void
+pred_neural_copy(const XCSF *xcsf, CL *dest, const CL *src);
+
+void
+pred_neural_free(const XCSF *xcsf, const CL *c);
+
+void
+pred_neural_init(const XCSF *xcsf, CL *c);
+
+void
+pred_neural_print(const XCSF *xcsf, const CL *c);
+
+void
+pred_neural_update(const XCSF *xcsf, const CL *c,
+                   const double *x, const double *y);
+
+void
+pred_neural_expand(const XCSF *xcsf, const CL *c);
+
+void
+pred_neural_ae_to_classifier(const XCSF *xcsf, const CL *c, int n_del);
 
 /**
  * @brief Multi-layer perceptron neural network prediction implemented functions.

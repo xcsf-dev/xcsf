@@ -38,7 +38,8 @@
 
 #define N_MU (5) //!< Number of mutation rates applied to a connected layer
 
-static void malloc_layer_arrays(LAYER *l);
+static void
+malloc_layer_arrays(LAYER *l);
 
 /**
  * @brief Creates and initialises a fully-connected layer.

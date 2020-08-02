@@ -39,7 +39,8 @@
 #include "xcs_rl.h"
 #include "env.h"
 
-static double xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore);
+static double
+xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore);
 
 /**
  * @brief Executes a reinforcement learning experiment.

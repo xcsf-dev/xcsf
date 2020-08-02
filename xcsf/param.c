@@ -38,42 +38,109 @@
     #include <omp.h>
 #endif
 
-// initialising parameters
-static void param_defaults_cl_action(XCSF *xcsf);
-static void param_defaults_cl_condition(XCSF *xcsf);
-static void param_defaults_cl_general(XCSF *xcsf);
-static void param_defaults_cl_prediction(XCSF *xcsf);
-static void param_defaults_ea(XCSF *xcsf);
-static void param_defaults_general(XCSF *xcsf);
-static void param_defaults_multistep(XCSF *xcsf);
-static void param_defaults_subsumption(XCSF *xcsf);
-// printing parameters
-static void param_print_cl_action(const XCSF *xcsf);
-static void param_print_cl_condition(const XCSF *xcsf);
-static void param_print_cl_general(const XCSF *xcsf);
-static void param_print_cl_prediction(const XCSF *xcsf);
-static void param_print_ea(const XCSF *xcsf);
-static void param_print_general(const XCSF *xcsf);
-static void param_print_multistep(const XCSF *xcsf);
-static void param_print_subsumption(const XCSF *xcsf);
-// saving parameters
-static size_t param_save_cl_action(const XCSF *xcsf, FILE *fp);
-static size_t param_save_cl_condition(const XCSF *xcsf, FILE *fp);
-static size_t param_save_cl_general(const XCSF *xcsf, FILE *fp);
-static size_t param_save_cl_prediction(const XCSF *xcsf, FILE *fp);
-static size_t param_save_ea(const XCSF *xcsf, FILE *fp);
-static size_t param_save_general(const XCSF *xcsf, FILE *fp);
-static size_t param_save_multistep(const XCSF *xcsf, FILE *fp);
-static size_t param_save_subsumption(const XCSF *xcsf, FILE *fp);
-// loading parameters
-static size_t param_load_cl_action(XCSF *xcsf, FILE *fp);
-static size_t param_load_cl_condition(XCSF *xcsf, FILE *fp);
-static size_t param_load_cl_general(XCSF *xcsf, FILE *fp);
-static size_t param_load_cl_prediction(XCSF *xcsf, FILE *fp);
-static size_t param_load_ea(XCSF *xcsf, FILE *fp);
-static size_t param_load_general(XCSF *xcsf, FILE *fp);
-static size_t param_load_multistep(XCSF *xcsf, FILE *fp);
-static size_t param_load_subsumption(XCSF *xcsf, FILE *fp);
+/* initialising parameters */
+
+static void
+param_defaults_cl_action(XCSF *xcsf);
+
+static void
+param_defaults_cl_condition(XCSF *xcsf);
+
+static void
+param_defaults_cl_general(XCSF *xcsf);
+
+static void
+param_defaults_cl_prediction(XCSF *xcsf);
+
+static void
+param_defaults_ea(XCSF *xcsf);
+
+static void
+param_defaults_general(XCSF *xcsf);
+
+static void
+param_defaults_multistep(XCSF *xcsf);
+
+static void
+param_defaults_subsumption(XCSF *xcsf);
+
+/* printing parameters */
+
+static void
+param_print_cl_action(const XCSF *xcsf);
+
+static void
+param_print_cl_condition(const XCSF *xcsf);
+
+static void
+param_print_cl_general(const XCSF *xcsf);
+
+static void
+param_print_cl_prediction(const XCSF *xcsf);
+
+static void
+param_print_ea(const XCSF *xcsf);
+
+static void
+param_print_general(const XCSF *xcsf);
+
+static void
+param_print_multistep(const XCSF *xcsf);
+
+static void
+param_print_subsumption(const XCSF *xcsf);
+
+/* saving parameters */
+
+static size_t
+param_save_cl_action(const XCSF *xcsf, FILE *fp);
+
+static size_t
+param_save_cl_condition(const XCSF *xcsf, FILE *fp);
+
+static size_t
+param_save_cl_general(const XCSF *xcsf, FILE *fp);
+
+static size_t
+param_save_cl_prediction(const XCSF *xcsf, FILE *fp);
+
+static size_t
+param_save_ea(const XCSF *xcsf, FILE *fp);
+
+static size_t
+param_save_general(const XCSF *xcsf, FILE *fp);
+
+static size_t
+param_save_multistep(const XCSF *xcsf, FILE *fp);
+
+static size_t
+param_save_subsumption(const XCSF *xcsf, FILE *fp);
+
+/* loading parameters */
+
+static size_t
+param_load_cl_action(XCSF *xcsf, FILE *fp);
+
+static size_t
+param_load_cl_condition(XCSF *xcsf, FILE *fp);
+
+static size_t
+param_load_cl_general(XCSF *xcsf, FILE *fp);
+
+static size_t
+param_load_cl_prediction(XCSF *xcsf, FILE *fp);
+
+static size_t
+param_load_ea(XCSF *xcsf, FILE *fp);
+
+static size_t
+param_load_general(XCSF *xcsf, FILE *fp);
+
+static size_t
+param_load_multistep(XCSF *xcsf, FILE *fp);
+
+static size_t
+param_load_subsumption(XCSF *xcsf, FILE *fp);
 
 /**
  * @brief Initialises default XCSF parameters.

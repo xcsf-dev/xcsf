@@ -34,8 +34,11 @@
 #include "action.h"
 #include "cl.h"
 
-static void cl_update_err(const XCSF *xcsf, CL *c, const double *y);
-static void cl_update_size(const XCSF *xcsf, CL *c, int num_sum);
+static void
+cl_update_err(const XCSF *xcsf, CL *c, const double *y);
+
+static void
+cl_update_size(const XCSF *xcsf, CL *c, int num_sum);
 
 /**
  * @brief Initialises a new classifier.

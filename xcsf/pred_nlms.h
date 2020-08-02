@@ -35,18 +35,39 @@ typedef struct PRED_NLMS {
     double *tmp_input; //!< Temporary storage for updating weights
 } PRED_NLMS;
 
-_Bool pred_nlms_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool pred_nlms_mutate(const XCSF *xcsf, const CL *c);
-int pred_nlms_size(const XCSF *xcsf, const CL *c);
-size_t pred_nlms_load(const XCSF *xcsf, CL *c, FILE *fp);
-size_t pred_nlms_save(const XCSF *xcsf, const CL *c, FILE *fp);
-void pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x);
-void pred_nlms_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void pred_nlms_free(const XCSF *xcsf, const CL *c);
-void pred_nlms_init(const XCSF *xcsf, CL *c);
-void pred_nlms_print(const XCSF *xcsf, const CL *c);
-void pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x,
-                      const double *y);
+_Bool
+pred_nlms_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+pred_nlms_mutate(const XCSF *xcsf, const CL *c);
+
+int
+pred_nlms_size(const XCSF *xcsf, const CL *c);
+
+size_t
+pred_nlms_load(const XCSF *xcsf, CL *c, FILE *fp);
+
+size_t
+pred_nlms_save(const XCSF *xcsf, const CL *c, FILE *fp);
+
+void
+pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x);
+
+void
+pred_nlms_copy(const XCSF *xcsf, CL *dest, const CL *src);
+
+void
+pred_nlms_free(const XCSF *xcsf, const CL *c);
+
+void
+pred_nlms_init(const XCSF *xcsf, CL *c);
+
+void
+pred_nlms_print(const XCSF *xcsf, const CL *c);
+
+void
+pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x,
+                 const double *y);
 
 /**
  * @brief Normalised least mean squares prediction implemented functions.

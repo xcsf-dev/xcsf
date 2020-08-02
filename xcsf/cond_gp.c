@@ -32,6 +32,11 @@
 #include "gp.h"
 #include "cond_gp.h"
 
+/**
+ * @brief Creates and initialises a tree-GP condition.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose condition is to be initialised.
+ */
 void
 cond_gp_init(const XCSF *xcsf, CL *c)
 {

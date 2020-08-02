@@ -39,9 +39,17 @@
 #define P_DONTCARE (0.5) //!< Don't care probability in randomisation and covering
 #define DONT_CARE ('#') //!< Don't care symbol
 
-static void cond_ternary_rand(const XCSF *xcsf, const CL *c);
-static void float_to_binary(double f, char *binary, int bits);
+static void
+cond_ternary_rand(const XCSF *xcsf, const CL *c);
 
+static void
+float_to_binary(double f, char *binary, int bits);
+
+/**
+ * @brief Creates and initialises a ternary bitstring condition.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose condition is to be initialised.
+ */
 void
 cond_ternary_init(const XCSF *xcsf, CL *c)
 {

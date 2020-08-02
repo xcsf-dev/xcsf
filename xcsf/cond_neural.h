@@ -30,23 +30,54 @@ typedef struct COND_NEURAL {
     NET net; //!< Neural network
 } COND_NEURAL;
 
-_Bool cond_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_neural_general(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_neural_match(const XCSF *xcsf, const CL *c, const double *x);
-_Bool cond_neural_mutate(const XCSF *xcsf, const CL *c);
-void cond_neural_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void cond_neural_cover(const XCSF *xcsf, const CL *c, const double *x);
-void cond_neural_free(const XCSF *xcsf, const CL *c);
-void cond_neural_init(const XCSF *xcsf, CL *c);
-void cond_neural_print(const XCSF *xcsf, const CL *c);
-void cond_neural_update(const XCSF *xcsf, const CL *c, const double *x,
-                        const double *y);
-int cond_neural_size(const XCSF *xcsf, const CL *c);
-size_t cond_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
-size_t cond_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
-int cond_neural_neurons(const XCSF *xcsf, const CL *c, int layer);
-int cond_neural_layers(const XCSF *xcsf, const CL *c);
-int cond_neural_connections(const XCSF *xcsf, const CL *c, int layer);
+_Bool
+cond_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+cond_neural_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+cond_neural_match(const XCSF *xcsf, const CL *c, const double *x);
+
+_Bool
+cond_neural_mutate(const XCSF *xcsf, const CL *c);
+
+void
+cond_neural_copy(const XCSF *xcsf, CL *dest, const CL *src);
+
+void
+cond_neural_cover(const XCSF *xcsf, const CL *c, const double *x);
+
+void
+cond_neural_free(const XCSF *xcsf, const CL *c);
+
+void
+cond_neural_init(const XCSF *xcsf, CL *c);
+
+void
+cond_neural_print(const XCSF *xcsf, const CL *c);
+
+void
+cond_neural_update(const XCSF *xcsf, const CL *c, const double *x,
+                   const double *y);
+
+int
+cond_neural_size(const XCSF *xcsf, const CL *c);
+
+size_t
+cond_neural_save(const XCSF *xcsf, const CL *c, FILE *fp);
+
+size_t
+cond_neural_load(const XCSF *xcsf, CL *c, FILE *fp);
+
+int
+cond_neural_neurons(const XCSF *xcsf, const CL *c, int layer);
+
+int
+cond_neural_layers(const XCSF *xcsf, const CL *c);
+
+int
+cond_neural_connections(const XCSF *xcsf, const CL *c, int layer);
 
 /**
  * @brief Multi-layer perceptron neural network condition implemented functions.

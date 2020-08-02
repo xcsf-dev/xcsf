@@ -35,14 +35,25 @@
 #define EA_SELECT_ROULETTE (0)
 #define EA_SELECT_TOURNAMENT (1)
 
-static CL *ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum);
-static CL *ea_select_tournament(const XCSF *xcsf, const SET *set);
-static void ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set);
-static void ea_select(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p);
-static void ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p,
-                              CL *c1, CL *c2, _Bool cmod);
-static void ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1,
-                   _Bool cmod, _Bool mmod);
+static CL *
+ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum);
+
+static CL *
+ea_select_tournament(const XCSF *xcsf, const SET *set);
+
+static void
+ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set);
+
+static void
+ea_select(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p);
+
+static void
+ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p,
+                  CL *c1, CL *c2, _Bool cmod);
+
+static void
+ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1,
+       _Bool cmod, _Bool mmod);
 
 /**
  * @brief Executes the evolutionary algorithm (EA).

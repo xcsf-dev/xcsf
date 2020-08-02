@@ -31,10 +31,23 @@
 #define LOSS_ONEHOT_ACC (5) //!< One-hot encoding classification error
 #define LOSS_NUM (6) //!< Total number of selectable loss functions
 
-double loss_mae(const XCSF *xcsf, const double *pred, const double *y);
-double loss_mse(const XCSF *xcsf, const double *pred, const double *y);
-double loss_rmse(const XCSF *xcsf, const double *pred, const double *y);
-double loss_log(const XCSF *xcsf, const double *pred, const double *y);
-double loss_binary_log(const XCSF *xcsf, const double *pred, const double *y);
-double loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y);
-void loss_set_func(XCSF *xcsf);
+double
+loss_mae(const XCSF *xcsf, const double *pred, const double *y);
+
+double
+loss_mse(const XCSF *xcsf, const double *pred, const double *y);
+
+double
+loss_rmse(const XCSF *xcsf, const double *pred, const double *y);
+
+double
+loss_log(const XCSF *xcsf, const double *pred, const double *y);
+
+double
+loss_binary_log(const XCSF *xcsf, const double *pred, const double *y);
+
+double
+loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y);
+
+void
+loss_set_func(XCSF *xcsf);

@@ -220,9 +220,15 @@ typedef struct INPUT {
     int n_samples; //!< Number of instances
 } INPUT;
 
-size_t xcsf_load(XCSF *xcsf, const char *fname);
-size_t xcsf_save(const XCSF *xcsf, const char *fname);
-void xcsf_init(XCSF *xcsf);
-void xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);
-void xcsf_ae_to_classifier(XCSF *xcsf, int y_dim, int n_del);
-void xcsf_pred_expand(const XCSF *xcsf);
+size_t
+xcsf_load(XCSF *xcsf, const char *fname);
+size_t
+xcsf_save(const XCSF *xcsf, const char *fname);
+void
+xcsf_init(XCSF *xcsf);
+void
+xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);
+void
+xcsf_ae_to_classifier(XCSF *xcsf, int y_dim, int n_del);
+void
+xcsf_pred_expand(const XCSF *xcsf);

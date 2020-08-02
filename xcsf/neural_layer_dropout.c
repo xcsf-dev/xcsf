@@ -33,8 +33,11 @@
 #include "neural_layer.h"
 #include "neural_layer_dropout.h"
 
-static void malloc_layer_arrays(LAYER *l);
-static void free_layer_arrays(const LAYER *l);
+static void
+malloc_layer_arrays(LAYER *l);
+
+static void
+free_layer_arrays(const LAYER *l);
 
 /**
  * @brief Creates and initialises a dropout layer.

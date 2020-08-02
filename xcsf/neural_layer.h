@@ -194,8 +194,8 @@ layer_forward(const XCSF *xcsf, const LAYER *l, const double *input)
  * @param delta The previous layer's delta.
  */
 static inline void
-layer_backward(const XCSF *xcsf, const LAYER *l,
-               const double *input, double *delta)
+layer_backward(const XCSF *xcsf, const LAYER *l, const double *input,
+               double *delta)
 {
     (*l->layer_vptr->layer_impl_backward)(xcsf, l, input, delta);
 }
@@ -282,16 +282,41 @@ layer_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
     (*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
 
-_Bool layer_mutate_connectivity(LAYER *l, double mu);
-_Bool layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu);
-_Bool layer_mutate_functions(LAYER *l, double mu);
-_Bool layer_mutate_weights(LAYER *l, double mu);
-int layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu);
-void layer_add_neurons(LAYER *l, int n);
-void layer_calc_n_active(LAYER *l);
-void layer_init(LAYER *l);
-void layer_init_eta(const XCSF *xcsf, LAYER *l);
-void layer_set_vptr(LAYER *l);
-void layer_weight_clamp(const LAYER *l);
-void layer_weight_print(const LAYER *l, _Bool print_weights);
-void layer_weight_rand(const XCSF *xcsf, LAYER *l);
+_Bool
+layer_mutate_connectivity(LAYER *l, double mu);
+
+_Bool
+layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu);
+
+_Bool
+layer_mutate_functions(LAYER *l, double mu);
+
+_Bool
+layer_mutate_weights(LAYER *l, double mu);
+
+int
+layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu);
+
+void
+layer_add_neurons(LAYER *l, int n);
+
+void
+layer_calc_n_active(LAYER *l);
+
+void
+layer_init(LAYER *l);
+
+void
+layer_init_eta(const XCSF *xcsf, LAYER *l);
+
+void
+layer_set_vptr(LAYER *l);
+
+void
+layer_weight_clamp(const LAYER *l);
+
+void
+layer_weight_print(const LAYER *l, _Bool print_weights);
+
+void
+layer_weight_rand(const XCSF *xcsf, LAYER *l);

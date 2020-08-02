@@ -30,7 +30,8 @@
 #include "cl.h"
 #include "pa.h"
 
-static void pa_reset(const XCSF *xcsf);
+static void
+pa_reset(const XCSF *xcsf);
 
 /**
  * @brief Initialises the prediction array.

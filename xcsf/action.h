@@ -23,7 +23,8 @@
 
 #pragma once
 
-void action_set(const XCSF *xcsf, CL *c);
+void
+action_set(const XCSF *xcsf, CL *c);
 
 /**
  * @brief Action interface data structure.
@@ -189,8 +190,7 @@ act_print(const XCSF *xcsf, const CL *c)
  * @param y The payoff value.
  */
 static inline void
-act_update(const XCSF *xcsf, const CL *c, const double *x,
-           const double *y)
+act_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (*c->act_vptr->act_impl_update)(xcsf, c, x, y);
 }

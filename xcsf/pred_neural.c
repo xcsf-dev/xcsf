@@ -42,8 +42,15 @@
 #include "prediction.h"
 #include "pred_neural.h"
 
-static uint32_t pred_neural_lopt(const XCSF *xcsf);
+static uint32_t
+pred_neural_lopt(const XCSF *xcsf);
 
+/**
+ * @brief Creates and initialises a neural network prediction.
+ * @details Uses fully-connected layers.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose prediction is to be initialised.
+ */
 void
 pred_neural_init(const XCSF *xcsf, CL *c)
 {

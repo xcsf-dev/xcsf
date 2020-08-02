@@ -32,8 +32,11 @@
 #include "neural_layer.h"
 #include "neural_layer_softmax.h"
 
-static void free_layer_arrays(const LAYER *l);
-static void malloc_layer_arrays(LAYER *l);
+static void
+free_layer_arrays(const LAYER *l);
+
+static void
+malloc_layer_arrays(LAYER *l);
 
 /**
  * @brief Creates and initialises a softmax layer.

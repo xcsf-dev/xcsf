@@ -5,6 +5,7 @@ align-reference=name
 attach-closing-while
 break-one-line-headers
 break-return-type
+break-return-type-decl
 close-templates
 convert-tabs
 delete-empty-lines

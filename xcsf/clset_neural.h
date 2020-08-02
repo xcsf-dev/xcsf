@@ -21,10 +21,23 @@
  * @brief Functions operating on sets of neural classifiers.
  */
 
-double clset_mean_cond_connections(const XCSF *xcsf, const SET *set, int layer);
-double clset_mean_cond_layers(const XCSF *xcsf, const SET *set);
-double clset_mean_cond_neurons(const XCSF *xcsf, const SET *set, int layer);
-double clset_mean_pred_connections(const XCSF *xcsf, const SET *set, int layer);
-double clset_mean_pred_eta(const XCSF *xcsf, const SET *set, int layer);
-double clset_mean_pred_layers(const XCSF *xcsf, const SET *set);
-double clset_mean_pred_neurons(const XCSF *xcsf, const SET *set, int layer);
+double
+clset_mean_cond_connections(const XCSF *xcsf, const SET *set, int layer);
+
+double
+clset_mean_cond_layers(const XCSF *xcsf, const SET *set);
+
+double
+clset_mean_cond_neurons(const XCSF *xcsf, const SET *set, int layer);
+
+double
+clset_mean_pred_connections(const XCSF *xcsf, const SET *set, int layer);
+
+double
+clset_mean_pred_eta(const XCSF *xcsf, const SET *set, int layer);
+
+double
+clset_mean_pred_layers(const XCSF *xcsf, const SET *set);
+
+double
+clset_mean_pred_neurons(const XCSF *xcsf, const SET *set, int layer);

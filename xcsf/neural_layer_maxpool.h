@@ -23,23 +23,48 @@
 
 #pragma once
 
-LAYER *neural_layer_maxpool_init(const XCSF *xcsf, int h, int w, int c,
-                                 int size, int stride, int pad);
-LAYER *neural_layer_maxpool_copy(const XCSF *xcsf, const LAYER *src);
-void neural_layer_maxpool_rand(const XCSF *xcsf, LAYER *l);
-void neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l,
-                                  const double *input);
-void neural_layer_maxpool_backward(const XCSF *xcsf, const LAYER *l,
-                                   const double *input, double *delta);
-void neural_layer_maxpool_update(const XCSF *xcsf, const LAYER *l);
-void neural_layer_maxpool_print(const XCSF *xcsf, const LAYER *l,
-                                _Bool print_weights);
-_Bool neural_layer_maxpool_mutate(const XCSF *xcsf, LAYER *l);
-void neural_layer_maxpool_free(const XCSF *xcsf, const LAYER *l);
-double *neural_layer_maxpool_output(const XCSF *xcsf, const LAYER *l);
-size_t neural_layer_maxpool_save(const XCSF *xcsf, const LAYER *l, FILE *fp);
-size_t neural_layer_maxpool_load(const XCSF *xcsf, LAYER *l, FILE *fp);
-void neural_layer_maxpool_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev);
+LAYER *
+neural_layer_maxpool_init(const XCSF *xcsf, int h, int w, int c,
+                          int size, int stride, int pad);
+
+LAYER *
+neural_layer_maxpool_copy(const XCSF *xcsf, const LAYER *src);
+
+void
+neural_layer_maxpool_rand(const XCSF *xcsf, LAYER *l);
+
+void
+neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l,
+                             const double *input);
+
+void
+neural_layer_maxpool_backward(const XCSF *xcsf, const LAYER *l,
+                              const double *input, double *delta);
+
+void
+neural_layer_maxpool_update(const XCSF *xcsf, const LAYER *l);
+
+void
+neural_layer_maxpool_print(const XCSF *xcsf, const LAYER *l,
+                           _Bool print_weights);
+
+_Bool
+neural_layer_maxpool_mutate(const XCSF *xcsf, LAYER *l);
+
+void
+neural_layer_maxpool_free(const XCSF *xcsf, const LAYER *l);
+
+double *
+neural_layer_maxpool_output(const XCSF *xcsf, const LAYER *l);
+
+size_t
+neural_layer_maxpool_save(const XCSF *xcsf, const LAYER *l, FILE *fp);
+
+size_t
+neural_layer_maxpool_load(const XCSF *xcsf, LAYER *l, FILE *fp);
+
+void
+neural_layer_maxpool_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev);
 
 static struct LayerVtbl const layer_maxpool_vtbl = {
     &neural_layer_maxpool_mutate,

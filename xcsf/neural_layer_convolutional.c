@@ -38,18 +38,33 @@
 
 #define N_MU (4) //!< Number of mutation rates applied to a convolutional layer
 
-static double im2col_get_pixel(const double *im, int height, int width, int row,
-                               int col, int channel, int pad);
-static int convolutional_out_height(const LAYER *l);
-static int convolutional_out_width(const LAYER *l);
-static size_t get_workspace_size(const LAYER *l);
-static void col2im_add_pixel(double *im, int height, int width, int row,
-                             int col, int channel, int pad, double val);
-static void col2im(const double *data_col, int channels, int height, int width,
-                   int ksize, int stride, int pad, double *data_im);
-static void im2col(const double *data_im, int channels, int height, int width,
-                   int ksize, int stride, int pad, double *data_col);
-static void malloc_layer_arrays(LAYER *l);
+static double
+im2col_get_pixel(const double *im, int height, int width, int row,
+                 int col, int channel, int pad);
+
+static int
+convolutional_out_height(const LAYER *l);
+
+static int
+convolutional_out_width(const LAYER *l);
+
+static size_t
+get_workspace_size(const LAYER *l);
+
+static void
+col2im_add_pixel(double *im, int height, int width, int row,
+                 int col, int channel, int pad, double val);
+
+static void
+col2im(const double *data_col, int channels, int height, int width,
+       int ksize, int stride, int pad, double *data_im);
+
+static void
+im2col(const double *data_im, int channels, int height, int width,
+       int ksize, int stride, int pad, double *data_col);
+
+static void
+malloc_layer_arrays(LAYER *l);
 
 /**
  * @brief Creates and initialises a 2D convolutional layer.

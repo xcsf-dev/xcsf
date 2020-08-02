@@ -30,20 +30,44 @@ typedef struct COND_GP {
     GP_TREE gp; //!< GP tree
 } COND_GP;
 
-_Bool cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_gp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_gp_match(const XCSF *xcsf, const CL *c, const double *x);
-_Bool cond_gp_mutate(const XCSF *xcsf, const CL *c);
-void cond_gp_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void cond_gp_cover(const XCSF *xcsf, const CL *c, const double *x);
-void cond_gp_free(const XCSF *xcsf, const CL *c);
-void cond_gp_init(const XCSF *xcsf, CL *c);
-void cond_gp_print(const XCSF *xcsf, const CL *c);
-void cond_gp_update(const XCSF *xcsf, const CL *c, const double *x,
-                    const double *y);
-int cond_gp_size(const XCSF *xcsf, const CL *c);
-size_t cond_gp_save(const XCSF *xcsf, const CL *c, FILE *fp);
-size_t cond_gp_load(const XCSF *xcsf, CL *c, FILE *fp);
+_Bool
+cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+cond_gp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+cond_gp_match(const XCSF *xcsf, const CL *c, const double *x);
+
+_Bool
+cond_gp_mutate(const XCSF *xcsf, const CL *c);
+
+void
+cond_gp_copy(const XCSF *xcsf, CL *dest, const CL *src);
+
+void
+cond_gp_cover(const XCSF *xcsf, const CL *c, const double *x);
+
+void
+cond_gp_free(const XCSF *xcsf, const CL *c);
+
+void
+cond_gp_init(const XCSF *xcsf, CL *c);
+
+void
+cond_gp_print(const XCSF *xcsf, const CL *c);
+
+void
+cond_gp_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
+
+int
+cond_gp_size(const XCSF *xcsf, const CL *c);
+
+size_t
+cond_gp_save(const XCSF *xcsf, const CL *c, FILE *fp);
+
+size_t
+cond_gp_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
  * @brief Tree GP condition implemented functions.

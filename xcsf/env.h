@@ -23,7 +23,8 @@
 
 #pragma once
 
-void env_init(XCSF *xcsf, char **argv);
+void
+env_init(XCSF *xcsf, char **argv);
 
 /**
  * @brief Built-in problem environment interface data structure.

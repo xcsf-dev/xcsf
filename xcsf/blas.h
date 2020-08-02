@@ -23,15 +23,27 @@
 
 #pragma once
 
-void blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
-               const double *A, int lda,
-               const double *B, int ldb,
-               double BETA,
-               double *C, int ldc);
-void blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y,
-               int INCY);
-void blas_mul(int N, const double *X, int INCX, double *Y, int INCY);
-void blas_scal(int N, double ALPHA, double *X, int INCX);
-void blas_fill(int N, double ALPHA, double *X, int INCX);
-double blas_dot(int N, const double *X, int INCX, const double *Y, int INCY);
-double blas_sum(const double *X, int N);
+void
+blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA,
+          const double *A, int lda,
+          const double *B, int ldb,
+          double BETA,
+          double *C, int ldc);
+
+void
+blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY);
+
+void
+blas_mul(int N, const double *X, int INCX, double *Y, int INCY);
+
+void
+blas_scal(int N, double ALPHA, double *X, int INCX);
+
+void
+blas_fill(int N, double ALPHA, double *X, int INCX);
+
+double
+blas_dot(int N, const double *X, int INCX, const double *Y, int INCY);
+
+double
+blas_sum(const double *X, int N);

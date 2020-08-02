@@ -23,10 +23,17 @@
 
 #pragma once
 
-double rand_normal(double mu, double sigma);
-double rand_uniform(double min, double max);
-int irand_uniform(int min, int max);
-void random_init();
+double
+rand_normal(double mu, double sigma);
+
+double
+rand_uniform(double min, double max);
+
+int
+irand_uniform(int min, int max);
+
+void
+random_init();
 
 /**
  * @brief Returns a float clamped within the specified range.

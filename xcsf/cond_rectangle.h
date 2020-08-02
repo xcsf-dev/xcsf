@@ -32,20 +32,45 @@ typedef struct COND_RECTANGLE {
     double *mu; //!< Mutation rates
 } COND_RECTANGLE;
 
-_Bool cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool cond_rectangle_match(const XCSF *xcsf, const CL *c, const double *x);
-_Bool cond_rectangle_mutate(const XCSF *xcsf, const CL *c);
-void cond_rectangle_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void cond_rectangle_cover(const XCSF *xcsf, const CL *c, const double *x);
-void cond_rectangle_free(const XCSF *xcsf, const CL *c);
-void cond_rectangle_init(const XCSF *xcsf, CL *c);
-void cond_rectangle_print(const XCSF *xcsf, const CL *c);
-void cond_rectangle_update(const XCSF *xcsf, const CL *c, const double *x,
-                           const double *y);
-int cond_rectangle_size(const XCSF *xcsf, const CL *c);
-size_t cond_rectangle_save(const XCSF *xcsf, const CL *c, FILE *fp);
-size_t cond_rectangle_load(const XCSF *xcsf, CL *c, FILE *fp);
+_Bool
+cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+cond_rectangle_match(const XCSF *xcsf, const CL *c, const double *x);
+
+_Bool
+cond_rectangle_mutate(const XCSF *xcsf, const CL *c);
+
+void
+cond_rectangle_copy(const XCSF *xcsf, CL *dest, const CL *src);
+
+void
+cond_rectangle_cover(const XCSF *xcsf, const CL *c, const double *x);
+
+void
+cond_rectangle_free(const XCSF *xcsf, const CL *c);
+
+void
+cond_rectangle_init(const XCSF *xcsf, CL *c);
+
+void
+cond_rectangle_print(const XCSF *xcsf, const CL *c);
+
+void
+cond_rectangle_update(const XCSF *xcsf, const CL *c, const double *x,
+                      const double *y);
+
+int
+cond_rectangle_size(const XCSF *xcsf, const CL *c);
+
+size_t
+cond_rectangle_save(const XCSF *xcsf, const CL *c, FILE *fp);
+
+size_t
+cond_rectangle_load(const XCSF *xcsf, CL *c, FILE *fp);
 
 /**
  * @brief Hyperrectangle condition implemented functions.

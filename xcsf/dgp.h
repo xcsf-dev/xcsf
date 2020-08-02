@@ -41,15 +41,38 @@ typedef struct GRAPH {
     double mu[DGP_N_MU]; //!< Mutation rates
 } GRAPH;
 
-_Bool graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
-_Bool graph_mutate(const XCSF *xcsf, GRAPH *dgp);
-double graph_output(const XCSF *xcsf, const GRAPH *dgp, int i);
-size_t graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp);
-size_t graph_save(const XCSF *xcsf, const GRAPH *dgp, FILE *fp);
-void graph_copy(const XCSF *xcsf, GRAPH *dest, const GRAPH *src);
-void graph_free(const XCSF *xcsf, const GRAPH *dgp);
-void graph_init(const XCSF *xcsf, GRAPH *dgp, int n);
-void graph_print(const XCSF *xcsf, const GRAPH *dgp);
-void graph_rand(const XCSF *xcsf, GRAPH *dgp);
-void graph_reset(const XCSF *xcsf, const GRAPH *dgp);
-void graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs);
+_Bool
+graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
+
+_Bool
+graph_mutate(const XCSF *xcsf, GRAPH *dgp);
+
+double
+graph_output(const XCSF *xcsf, const GRAPH *dgp, int i);
+
+size_t
+graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp);
+
+size_t
+graph_save(const XCSF *xcsf, const GRAPH *dgp, FILE *fp);
+
+void
+graph_copy(const XCSF *xcsf, GRAPH *dest, const GRAPH *src);
+
+void
+graph_free(const XCSF *xcsf, const GRAPH *dgp);
+
+void
+graph_init(const XCSF *xcsf, GRAPH *dgp, int n);
+
+void
+graph_print(const XCSF *xcsf, const GRAPH *dgp);
+
+void
+graph_rand(const XCSF *xcsf, GRAPH *dgp);
+
+void
+graph_reset(const XCSF *xcsf, const GRAPH *dgp);
+
+void
+graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs);

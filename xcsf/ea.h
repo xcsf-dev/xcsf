@@ -23,4 +23,5 @@
 
 #pragma once
 
-void ea(XCSF *xcsf, const SET *set);
+void
+ea(XCSF *xcsf, const SET *set);

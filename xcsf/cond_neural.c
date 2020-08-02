@@ -42,8 +42,15 @@
 #include "condition.h"
 #include "cond_neural.h"
 
-static uint32_t cond_neural_lopt(const XCSF *xcsf);
+static uint32_t
+cond_neural_lopt(const XCSF *xcsf);
 
+/**
+ * @brief Creates and initialises a neural network condition.
+ * @details Uses fully-connected layers.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose condition is to be initialised.
+ */
 void
 cond_neural_init(const XCSF *xcsf, CL *c)
 {

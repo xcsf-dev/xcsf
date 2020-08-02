@@ -31,7 +31,8 @@
 #include "../lib/dSFMT/dSFMT.h"
 #include "utils.h"
 
-static double drand();
+static double
+drand();
 
 /**
  * @brief Initialises the pseudo-random number generator.

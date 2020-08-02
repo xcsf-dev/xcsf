@@ -34,14 +34,26 @@
 
 #define NUM_FUNC (3) //!< Number of selectable node functions
 
-static const char *function_string(int function);
-static double node_activate(int function, const double *inputs, int k);
-static void synchronous_update(const XCSF *xcsf, const GRAPH *dgp,
-                               const double *inputs);
-static int random_connection(int n_nodes, int n_inputs);
-static _Bool graph_mutate_functions(const XCSF *xcsf, GRAPH *dgp);
-static _Bool graph_mutate_connectivity(const XCSF *xcsf, GRAPH *dgp);
-static _Bool graph_mutate_cycles(const XCSF *xcsf, GRAPH *dgp);
+static const char *
+function_string(int function);
+
+static double
+node_activate(int function, const double *inputs, int k);
+
+static void
+synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs);
+
+static int
+random_connection(int n_nodes, int n_inputs);
+
+static _Bool
+graph_mutate_functions(const XCSF *xcsf, GRAPH *dgp);
+
+static _Bool
+graph_mutate_connectivity(const XCSF *xcsf, GRAPH *dgp);
+
+static _Bool
+graph_mutate_cycles(const XCSF *xcsf, GRAPH *dgp);
 
 /**
  * @brief Initialises a new DGP graph.

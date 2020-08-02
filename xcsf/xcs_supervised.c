@@ -37,8 +37,11 @@
 #include "ea.h"
 #include "xcs_supervised.h"
 
-static int xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle);
-static void xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y);
+static int
+xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle);
+
+static void
+xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y);
 
 /**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the

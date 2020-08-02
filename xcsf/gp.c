@@ -22,7 +22,8 @@
  *
  * @details For a more detailed description see: Poli, R., Langdon, W. B., and
  * McPhee, N. F. (2008) "A Field Guide to Genetic Programming"
- * @see https://dces.essex.ac.uk/staff/rpoli/gp-field-guide/A_Field_Guide_to_Genetic_Programming.pdf
+ * @see
+ * https://dces.essex.ac.uk/staff/rpoli/gp-field-guide/A_Field_Guide_to_Genetic_Programming.pdf
  */
 
 #include <stdio.h>
@@ -42,8 +43,11 @@
 #define MUL (2)
 #define DIV (3)
 
-static int tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth);
-static int tree_traverse(int *tree, int p);
+static int
+tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth);
+
+static int
+tree_traverse(int *tree, int p);
 
 /**
  * @brief Initialises the constants shared among all GP trees.

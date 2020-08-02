@@ -23,4 +23,5 @@
 
 #pragma once
 
-void config_read(XCSF *xcsf, const char *filename);
+void
+config_read(XCSF *xcsf, const char *filename);

@@ -23,7 +23,8 @@
 
 #pragma once
 
-void prediction_set(const XCSF *xcsf, CL *c);
+void
+prediction_set(const XCSF *xcsf, CL *c);
 
 /**
  * @brief Prediction interface data structure.
@@ -173,8 +174,7 @@ pred_print(const XCSF *xcsf, const CL *c)
  * @param y The payoff value.
  */
 static inline void
-pred_update(const XCSF *xcsf, const CL *c,
-            const double *x, const double *y)
+pred_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
 {
     (*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
 }
@@ -186,8 +186,7 @@ pred_update(const XCSF *xcsf, const CL *c,
  * @param tmp_input The transformed input (set by this function).
  */
 static inline void
-pred_transform_input(const XCSF *xcsf,
-                     const double *x, double *tmp_input)
+pred_transform_input(const XCSF *xcsf, const double *x, double *tmp_input)
 {
     // bias term
     tmp_input[0] = xcsf->PRED_X0;

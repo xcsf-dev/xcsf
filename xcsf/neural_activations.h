@@ -39,11 +39,20 @@
 #define NUM_ACTIVATIONS (11) //!< Number of activations available
 #define SOFT_MAX (100) //!< Softmax
 
-double neural_activate(int a, double x);
-double neural_gradient(int a, double x);
-const char *neural_activation_string(int a);
-void neural_activate_array(double *state, double *output, int n, int a);
-void neural_gradient_array(const double *state, double *delta, int n, int a);
+double
+neural_activate(int a, double x);
+
+double
+neural_gradient(int a, double x);
+
+const char *
+neural_activation_string(int a);
+
+void
+neural_activate_array(double *state, double *output, int n, int a);
+
+void
+neural_gradient_array(const double *state, double *delta, int n, int a);
 
 static inline double
 logistic_activate(double x)

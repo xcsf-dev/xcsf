@@ -40,16 +40,26 @@
 
 #define N_MU (5) //!< Number of mutation rates applied to a recurrent layer
 
-static _Bool mutate_connectivity(LAYER *l);
-static _Bool mutate_eta(const XCSF *xcsf, LAYER *l);
-static _Bool mutate_functions(LAYER *l);
-static _Bool mutate_neurons(const XCSF *xcsf, LAYER *l);
-static _Bool mutate_weights(LAYER *l);
-static void free_layer_arrays(const LAYER *l);
-static void malloc_layer_arrays(LAYER *l);
-static void set_layer_n_active(LAYER *l);
-static void set_layer_n_biases(LAYER *l);
-static void set_layer_n_weights(LAYER *l);
+static _Bool
+mutate_connectivity(LAYER *l);
+static _Bool
+mutate_eta(const XCSF *xcsf, LAYER *l);
+static _Bool
+mutate_functions(LAYER *l);
+static _Bool
+mutate_neurons(const XCSF *xcsf, LAYER *l);
+static _Bool
+mutate_weights(LAYER *l);
+static void
+free_layer_arrays(const LAYER *l);
+static void
+malloc_layer_arrays(LAYER *l);
+static void
+set_layer_n_active(LAYER *l);
+static void
+set_layer_n_biases(LAYER *l);
+static void
+set_layer_n_weights(LAYER *l);
 
 /**
  * @brief Creates and initialises a recurrent layer.

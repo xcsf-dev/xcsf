@@ -59,7 +59,8 @@
 static const int x_moves[] = { 0, +1, +1, +1,  0, -1, -1, -1}; //!< x-axis moves
 static const int y_moves[] = {-1, -1,  0, +1, +1, +1,  0, -1}; //!< y-axis moves
 
-static double env_maze_sensor(const XCSF *xcsf, char s);
+static double
+env_maze_sensor(const XCSF *xcsf, char s);
 
 /**
  * @brief Initialises a maze environment from a specified file.

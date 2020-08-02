@@ -23,18 +23,39 @@
 
 #pragma once
 
-_Bool pred_constant_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
-_Bool pred_constant_mutate(const XCSF *xcsf, const CL *c);
-int pred_constant_size(const XCSF *xcsf, const CL *c);
-size_t pred_constant_load(const XCSF *xcsf, CL *c, FILE *fp);
-size_t pred_constant_save(const XCSF *xcsf, const CL *c, FILE *fp);
-void pred_constant_compute(const XCSF *xcsf, const CL *c, const double *x);
-void pred_constant_copy(const XCSF *xcsf, CL *dest, const CL *src);
-void pred_constant_free(const XCSF *xcsf, const CL *c);
-void pred_constant_init(const XCSF *xcsf, CL *c);
-void pred_constant_print(const XCSF *xcsf, const CL *c);
-void pred_constant_update(const XCSF *xcsf, const CL *c, const double *x,
-                          const double *y);
+_Bool
+pred_constant_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+
+_Bool
+pred_constant_mutate(const XCSF *xcsf, const CL *c);
+
+int
+pred_constant_size(const XCSF *xcsf, const CL *c);
+
+size_t
+pred_constant_load(const XCSF *xcsf, CL *c, FILE *fp);
+
+size_t
+pred_constant_save(const XCSF *xcsf, const CL *c, FILE *fp);
+
+void
+pred_constant_compute(const XCSF *xcsf, const CL *c, const double *x);
+
+void
+pred_constant_copy(const XCSF *xcsf, CL *dest, const CL *src);
+
+void
+pred_constant_free(const XCSF *xcsf, const CL *c);
+
+void
+pred_constant_init(const XCSF *xcsf, CL *c);
+
+void
+pred_constant_print(const XCSF *xcsf, const CL *c);
+
+void
+pred_constant_update(const XCSF *xcsf, const CL *c,
+                     const double *x, const double *y);
 
 /**
  * @brief Constant prediction implemented functions.

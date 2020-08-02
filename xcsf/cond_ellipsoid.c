@@ -35,9 +35,15 @@
 
 #define N_MU (1) //!< Number of hyperellipsoid mutation rates
 
-static double cond_ellipsoid_dist(const XCSF *xcsf, const CL *c,
-                                  const double *x);
+static double
+cond_ellipsoid_dist(const XCSF *xcsf, const CL *c, const double *x);
 
+/**
+ * @brief Creates and initialises a hyperellipsoid condition.
+ * @details Uses the center-spread representation.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose condition is to be initialised.
+ */
 void
 cond_ellipsoid_init(const XCSF *xcsf, CL *c)
 {

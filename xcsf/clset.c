@@ -33,15 +33,29 @@
 
 #define MAX_COVER (1000000) //!< maximum number of covering attempts
 
-static _Bool clset_action_coverage(const XCSF *xcsf, _Bool *act_covered);
-static double clset_total_time(const SET *set);
-static void clset_pop_del(XCSF *xcsf);
-static void clset_pop_never_match(const XCSF *xcsf, CLIST **del,
-                                  CLIST **delprev);
-static void clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev);
-static void clset_subsumption(XCSF *xcsf, SET *set);
-static void clset_update_fit(const XCSF *xcsf, const SET *set);
-static void clset_cover(XCSF *xcsf, const double *x);
+static _Bool
+clset_action_coverage(const XCSF *xcsf, _Bool *act_covered);
+
+static double
+clset_total_time(const SET *set);
+
+static void
+clset_pop_del(XCSF *xcsf);
+
+static void
+clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev);
+
+static void
+clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev);
+
+static void
+clset_subsumption(XCSF *xcsf, SET *set);
+
+static void
+clset_update_fit(const XCSF *xcsf, const SET *set);
+
+static void
+clset_cover(XCSF *xcsf, const double *x);
 
 /**
  * @brief Initialises a new population of random classifiers.
