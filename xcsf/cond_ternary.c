@@ -44,7 +44,7 @@ float_to_binary(double f, char *binary, int bits);
 void
 cond_ternary_init(const struct XCSF *xcsf, struct CL *c)
 {
-    COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
+    struct COND_TERNARY *new = malloc(sizeof(struct COND_TERNARY));
     new->length = xcsf->x_dim * xcsf->COND_BITS;
     new->string = malloc(sizeof(char) * new->length);
     new->tmp_input = malloc(sizeof(char) * xcsf->COND_BITS);
@@ -58,7 +58,7 @@ static void
 cond_ternary_rand(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
-    const COND_TERNARY *cond = c->cond;
+    const struct COND_TERNARY *cond = c->cond;
     for (int i = 0; i < cond->length; ++i) {
         if (rand_uniform(0, 1) < P_DONTCARE) {
             cond->string[i] = DONT_CARE;
@@ -74,7 +74,7 @@ void
 cond_ternary_free(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
-    const COND_TERNARY *cond = c->cond;
+    const struct COND_TERNARY *cond = c->cond;
     free(cond->string);
     free(cond->tmp_input);
     free(cond->mu);
@@ -86,8 +86,8 @@ cond_ternary_copy(const struct XCSF *xcsf, struct CL *dest,
                   const struct CL *src)
 {
     (void) xcsf;
-    COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
-    const COND_TERNARY *src_cond = src->cond;
+    struct COND_TERNARY *new = malloc(sizeof(struct COND_TERNARY));
+    const struct COND_TERNARY *src_cond = src->cond;
     new->length = src_cond->length;
     new->string = malloc(sizeof(char) * src_cond->length);
     new->tmp_input = malloc(sizeof(char) * xcsf->COND_BITS);
@@ -100,7 +100,7 @@ cond_ternary_copy(const struct XCSF *xcsf, struct CL *dest,
 void
 cond_ternary_cover(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
-    const COND_TERNARY *cond = c->cond;
+    const struct COND_TERNARY *cond = c->cond;
     for (int i = 0; i < xcsf->x_dim; ++i) {
         float_to_binary(x[i], cond->tmp_input, xcsf->COND_BITS);
         for (int j = 0; j < xcsf->COND_BITS; ++j) {
@@ -126,7 +126,7 @@ cond_ternary_update(const struct XCSF *xcsf, const struct CL *c,
 _Bool
 cond_ternary_match(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
-    const COND_TERNARY *cond = c->cond;
+    const struct COND_TERNARY *cond = c->cond;
     for (int i = 0; i < xcsf->x_dim; ++i) {
         float_to_binary(x[i], cond->tmp_input, xcsf->COND_BITS);
         for (int j = 0; j < xcsf->COND_BITS; ++j) {
@@ -143,8 +143,8 @@ _Bool
 cond_ternary_crossover(const struct XCSF *xcsf, const struct CL *c1,
                        const struct CL *c2)
 {
-    const COND_TERNARY *cond1 = c1->cond;
-    const COND_TERNARY *cond2 = c2->cond;
+    const struct COND_TERNARY *cond1 = c1->cond;
+    const struct COND_TERNARY *cond2 = c2->cond;
     _Bool changed = false;
     if (rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for (int i = 0; i < cond1->length; ++i) {
@@ -162,7 +162,7 @@ cond_ternary_crossover(const struct XCSF *xcsf, const struct CL *c1,
 _Bool
 cond_ternary_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
-    const COND_TERNARY *cond = c->cond;
+    const struct COND_TERNARY *cond = c->cond;
     sam_adapt(xcsf, cond->mu, N_MU);
     _Bool changed = false;
     for (int i = 0; i < cond->length; ++i) {
@@ -183,8 +183,8 @@ cond_ternary_general(const struct XCSF *xcsf, const struct CL *c1,
                      const struct CL *c2)
 {
     (void) xcsf;
-    const COND_TERNARY *cond1 = c1->cond;
-    const COND_TERNARY *cond2 = c2->cond;
+    const struct COND_TERNARY *cond1 = c1->cond;
+    const struct COND_TERNARY *cond2 = c2->cond;
     _Bool general = false;
     for (int i = 0; i < cond1->length; ++i) {
         if (cond1->string[i] != DONT_CARE &&
@@ -201,7 +201,7 @@ void
 cond_ternary_print(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
-    const COND_TERNARY *cond = c->cond;
+    const struct COND_TERNARY *cond = c->cond;
     printf("ternary:");
     for (int i = 0; i < cond->length; ++i) {
         printf("%c", cond->string[i]);
@@ -213,7 +213,7 @@ int
 cond_ternary_size(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
-    const COND_TERNARY *cond = c->cond;
+    const struct COND_TERNARY *cond = c->cond;
     return cond->length;
 }
 
@@ -222,7 +222,7 @@ cond_ternary_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;
-    const COND_TERNARY *cond = c->cond;
+    const struct COND_TERNARY *cond = c->cond;
     s += fwrite(&cond->length, sizeof(int), 1, fp);
     s += fwrite(cond->string, sizeof(char), cond->length, fp);
     s += fwrite(cond->mu, sizeof(double), N_MU, fp);
@@ -234,7 +234,7 @@ cond_ternary_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;
-    COND_TERNARY *new = malloc(sizeof(COND_TERNARY));
+    struct COND_TERNARY *new = malloc(sizeof(struct COND_TERNARY));
     new->length = 0;
     s += fread(&new->length, sizeof(int), 1, fp);
     if (new->length < 1) {

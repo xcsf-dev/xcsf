@@ -32,7 +32,7 @@
  * @brief Dynamical GP graph rule data structure.
  */
 typedef struct RULE_DGP {
-    GRAPH dgp; //!< DGP graph
+    struct GRAPH dgp; //!< DGP graph
     int n_outputs; //!< Number of action nodes (binarised)
 } RULE_DGP;
 

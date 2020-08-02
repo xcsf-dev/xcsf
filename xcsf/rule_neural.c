@@ -37,7 +37,7 @@ rule_neural_lopt(const struct XCSF *xcsf);
 void
 rule_neural_cond_init(const struct XCSF *xcsf, struct CL *c)
 {
-    RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
+    struct RULE_NEURAL *new = malloc(sizeof(struct RULE_NEURAL));
     neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = rule_neural_lopt(xcsf);
@@ -89,7 +89,7 @@ rule_neural_lopt(const struct XCSF *xcsf)
 void
 rule_neural_cond_free(const struct XCSF *xcsf, const struct CL *c)
 {
-    RULE_NEURAL *cond = c->cond;
+    struct RULE_NEURAL *cond = c->cond;
     neural_free(xcsf, &cond->net);
     free(c->cond);
 }
@@ -98,8 +98,8 @@ void
 rule_neural_cond_copy(const struct XCSF *xcsf, struct CL *dest,
                       const struct CL *src)
 {
-    RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
-    const RULE_NEURAL *src_cond = src->cond;
+    struct RULE_NEURAL *new = malloc(sizeof(struct RULE_NEURAL));
+    const struct RULE_NEURAL *src_cond = src->cond;
     new->n_outputs = src_cond->n_outputs;
     neural_copy(xcsf, &new->net, &src_cond->net);
     dest->cond = new;
@@ -128,7 +128,7 @@ _Bool
 rule_neural_cond_match(const struct XCSF *xcsf, const struct CL *c,
                        const double *x)
 {
-    const RULE_NEURAL *cond = c->cond;
+    const struct RULE_NEURAL *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
     if (neural_output(xcsf, &cond->net, 0) > 0.5) {
         return true;
@@ -139,7 +139,7 @@ rule_neural_cond_match(const struct XCSF *xcsf, const struct CL *c,
 _Bool
 rule_neural_cond_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
-    const RULE_NEURAL *cond = c->cond;
+    const struct RULE_NEURAL *cond = c->cond;
     return neural_mutate(xcsf, &cond->net);
 }
 
@@ -166,21 +166,21 @@ rule_neural_cond_general(const struct XCSF *xcsf, const struct CL *c1,
 void
 rule_neural_cond_print(const struct XCSF *xcsf, const struct CL *c)
 {
-    const RULE_NEURAL *cond = c->cond;
+    const struct RULE_NEURAL *cond = c->cond;
     neural_print(xcsf, &cond->net, false);
 }
 
 int
 rule_neural_cond_size(const struct XCSF *xcsf, const struct CL *c)
 {
-    const RULE_NEURAL *cond = c->cond;
+    const struct RULE_NEURAL *cond = c->cond;
     return neural_size(xcsf, &cond->net);
 }
 
 size_t
 rule_neural_cond_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
-    const RULE_NEURAL *cond = c->cond;
+    const struct RULE_NEURAL *cond = c->cond;
     size_t s = neural_save(xcsf, &cond->net, fp);
     return s;
 }
@@ -188,7 +188,7 @@ rule_neural_cond_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 size_t
 rule_neural_cond_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
-    RULE_NEURAL *new = malloc(sizeof(RULE_NEURAL));
+    struct RULE_NEURAL *new = malloc(sizeof(struct RULE_NEURAL));
     size_t s = neural_load(xcsf, &new->net, fp);
     new->n_outputs = (int) fmax(1, ceil(log2(xcsf->n_actions)));
     c->cond = new;
@@ -231,7 +231,7 @@ void
 rule_neural_act_cover(const struct XCSF *xcsf, const struct CL *c,
                       const double *x, int action)
 {
-    const RULE_NEURAL *cond = c->cond;
+    const struct RULE_NEURAL *cond = c->cond;
     do {
         neural_rand(xcsf, &cond->net);
     } while (!rule_neural_cond_match(xcsf, c, x) &&
@@ -243,7 +243,7 @@ rule_neural_act_compute(const struct XCSF *xcsf, const struct CL *c,
                         const double *x)
 {
     (void) x;
-    const RULE_NEURAL *cond = c->cond;
+    const struct RULE_NEURAL *cond = c->cond;
     int action = 0;
     for (int i = 0; i < cond->n_outputs; ++i) {
         if (neural_output(xcsf, &cond->net, i + 1) > 0.5) {

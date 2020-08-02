@@ -31,7 +31,7 @@
  * @brief Dynamical GP graph condition data structure.
  */
 typedef struct COND_DGP {
-    GRAPH dgp; //!< DGP graph
+    struct GRAPH dgp; //!< DGP graph
 } COND_DGP;
 
 _Bool

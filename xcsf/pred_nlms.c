@@ -32,7 +32,7 @@
 void
 pred_nlms_init(const struct XCSF *xcsf, struct CL *c)
 {
-    PRED_NLMS *pred = malloc(sizeof(PRED_NLMS));
+    struct PRED_NLMS *pred = malloc(sizeof(struct PRED_NLMS));
     c->pred = pred;
     // set the length of weights per predicted variable
     if (xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
@@ -62,8 +62,8 @@ void
 pred_nlms_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 {
     pred_nlms_init(xcsf, dest);
-    PRED_NLMS *dest_pred = dest->pred;
-    const PRED_NLMS *src_pred = src->pred;
+    struct PRED_NLMS *dest_pred = dest->pred;
+    const struct PRED_NLMS *src_pred = src->pred;
     memcpy(dest_pred->weights, src_pred->weights,
            sizeof(double) * src_pred->n_weights);
     memcpy(dest_pred->mu, src_pred->mu, sizeof(double) * N_MU);
@@ -74,7 +74,7 @@ void
 pred_nlms_free(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
-    PRED_NLMS *pred = c->pred;
+    struct PRED_NLMS *pred = c->pred;
     free(pred->weights);
     free(pred->tmp_input);
     free(pred->mu);
@@ -85,7 +85,7 @@ void
 pred_nlms_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
                  const double *y)
 {
-    const PRED_NLMS *pred = c->pred;
+    const struct PRED_NLMS *pred = c->pred;
     int n = pred->n;
     // normalise update
     double norm = xcsf->PRED_X0 * xcsf->PRED_X0;
@@ -101,7 +101,7 @@ pred_nlms_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
 void
 pred_nlms_compute(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
-    const PRED_NLMS *pred = c->pred;
+    const struct PRED_NLMS *pred = c->pred;
     int n = pred->n;
     pred_transform_input(xcsf, x, pred->tmp_input);
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -113,7 +113,7 @@ pred_nlms_compute(const struct XCSF *xcsf, const struct CL *c, const double *x)
 void
 pred_nlms_print(const struct XCSF *xcsf, const struct CL *c)
 {
-    const PRED_NLMS *pred = c->pred;
+    const struct PRED_NLMS *pred = c->pred;
     int n = pred->n;
     printf("eta: %.5f, weights: ", pred->eta);
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -138,7 +138,7 @@ _Bool
 pred_nlms_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
     if (xcsf->PRED_EVOLVE_ETA) {
-        PRED_NLMS *pred = c->pred;
+        struct PRED_NLMS *pred = c->pred;
         sam_adapt(xcsf, pred->mu, N_MU);
         double orig = pred->eta;
         pred->eta += rand_normal(0, pred->mu[0]);
@@ -154,7 +154,7 @@ int
 pred_nlms_size(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
-    const PRED_NLMS *pred = c->pred;
+    const struct PRED_NLMS *pred = c->pred;
     return pred->n_weights;
 }
 
@@ -162,7 +162,7 @@ size_t
 pred_nlms_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
     (void) xcsf;
-    const PRED_NLMS *pred = c->pred;
+    const struct PRED_NLMS *pred = c->pred;
     size_t s = 0;
     s += fwrite(&pred->n, sizeof(int), 1, fp);
     s += fwrite(&pred->n_weights, sizeof(int), 1, fp);
@@ -176,7 +176,7 @@ size_t
 pred_nlms_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
     pred_nlms_init(xcsf, c);
-    PRED_NLMS *pred = c->pred;
+    struct PRED_NLMS *pred = c->pred;
     size_t s = 0;
     s += fread(&pred->n, sizeof(int), 1, fp);
     s += fread(&pred->n_weights, sizeof(int), 1, fp);

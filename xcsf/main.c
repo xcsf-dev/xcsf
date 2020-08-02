@@ -39,7 +39,7 @@ main(int argc, char **argv)
         printf("problem{.csv|size|maze} [config.ini] [xcs.bin]\n");
         exit(EXIT_FAILURE);
     }
-    struct XCSF *xcsf = malloc(sizeof(XCSF));
+    struct XCSF *xcsf = malloc(sizeof(struct XCSF));
     random_init();
     param_init(xcsf);
     if (argc > 3) { // load parameter config

@@ -53,7 +53,7 @@ env_csv_dim(FILE *fin);
 void
 env_csv_init(struct XCSF *xcsf, const char *fname)
 {
-    ENV_CSV *env = malloc(sizeof(ENV_CSV));
+    struct ENV_CSV *env = malloc(sizeof(struct ENV_CSV));
     env->train_data = malloc(sizeof(INPUT));
     env->test_data = malloc(sizeof(INPUT));
     env_csv_input_read(fname, env->train_data, env->test_data);
@@ -70,7 +70,7 @@ env_csv_init(struct XCSF *xcsf, const char *fname)
 void
 env_csv_free(const struct XCSF *xcsf)
 {
-    ENV_CSV *env = xcsf->env;
+    struct ENV_CSV *env = xcsf->env;
     free(env->train_data->x);
     free(env->train_data->y);
     free(env->test_data->x);

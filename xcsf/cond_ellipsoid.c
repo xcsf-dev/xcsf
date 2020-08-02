@@ -40,7 +40,7 @@ cond_ellipsoid_dist(const struct XCSF *xcsf, const struct CL *c,
 void
 cond_ellipsoid_init(const struct XCSF *xcsf, struct CL *c)
 {
-    COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
+    struct COND_ELLIPSOID *new = malloc(sizeof(struct COND_ELLIPSOID));
     new->center = malloc(sizeof(double) * xcsf->x_dim);
     new->spread = malloc(sizeof(double) * xcsf->x_dim);
     new->mu = malloc(sizeof(double) * N_MU);
@@ -57,7 +57,7 @@ void
 cond_ellipsoid_free(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
-    const COND_ELLIPSOID *cond = c->cond;
+    const struct COND_ELLIPSOID *cond = c->cond;
     free(cond->center);
     free(cond->spread);
     free(cond->mu);
@@ -68,8 +68,8 @@ void
 cond_ellipsoid_copy(const struct XCSF *xcsf, struct CL *dest,
                     const struct CL *src)
 {
-    COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
-    const COND_ELLIPSOID *src_cond = src->cond;
+    struct COND_ELLIPSOID *new = malloc(sizeof(struct COND_ELLIPSOID));
+    const struct COND_ELLIPSOID *src_cond = src->cond;
     new->center = malloc(sizeof(double) * xcsf->x_dim);
     new->spread = malloc(sizeof(double) * xcsf->x_dim);
     new->mu = malloc(sizeof(double) * N_MU);
@@ -83,7 +83,7 @@ void
 cond_ellipsoid_cover(const struct XCSF *xcsf, const struct CL *c,
                      const double *x)
 {
-    const COND_ELLIPSOID *cond = c->cond;
+    const struct COND_ELLIPSOID *cond = c->cond;
     double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
     for (int i = 0; i < xcsf->x_dim; ++i) {
         cond->center[i] = x[i];
@@ -97,7 +97,7 @@ cond_ellipsoid_update(const struct XCSF *xcsf, const struct CL *c,
 {
     (void) y;
     if (xcsf->COND_ETA > 0) {
-        const COND_ELLIPSOID *cond = c->cond;
+        const struct COND_ELLIPSOID *cond = c->cond;
         for (int i = 0; i < xcsf->x_dim; ++i) {
             cond->center[i] += xcsf->COND_ETA * (x[i] - cond->center[i]);
         }
@@ -118,7 +118,7 @@ static double
 cond_ellipsoid_dist(const struct XCSF *xcsf, const struct CL *c,
                     const double *x)
 {
-    const COND_ELLIPSOID *cond = c->cond;
+    const struct COND_ELLIPSOID *cond = c->cond;
     double dist = 0;
     for (int i = 0; i < xcsf->x_dim; ++i) {
         double d = (x[i] - cond->center[i]) / cond->spread[i];
@@ -131,8 +131,8 @@ _Bool
 cond_ellipsoid_crossover(const struct XCSF *xcsf, const struct CL *c1,
                          const struct CL *c2)
 {
-    const COND_ELLIPSOID *cond1 = c1->cond;
-    const COND_ELLIPSOID *cond2 = c2->cond;
+    const struct COND_ELLIPSOID *cond1 = c1->cond;
+    const struct COND_ELLIPSOID *cond2 = c2->cond;
     _Bool changed = false;
     if (rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for (int i = 0; i < xcsf->x_dim; ++i) {
@@ -156,7 +156,7 @@ cond_ellipsoid_crossover(const struct XCSF *xcsf, const struct CL *c1,
 _Bool
 cond_ellipsoid_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
-    const COND_ELLIPSOID *cond = c->cond;
+    const struct COND_ELLIPSOID *cond = c->cond;
     sam_adapt(xcsf, cond->mu, N_MU);
     _Bool changed = false;
     for (int i = 0; i < xcsf->x_dim; ++i) {
@@ -180,8 +180,8 @@ _Bool
 cond_ellipsoid_general(const struct XCSF *xcsf, const struct CL *c1,
                        const struct CL *c2)
 {
-    const COND_ELLIPSOID *cond1 = c1->cond;
-    const COND_ELLIPSOID *cond2 = c2->cond;
+    const struct COND_ELLIPSOID *cond1 = c1->cond;
+    const struct COND_ELLIPSOID *cond2 = c2->cond;
     for (int i = 0; i < xcsf->x_dim; ++i) {
         double l1 = cond1->center[i] - cond1->spread[i];
         double l2 = cond2->center[i] - cond2->spread[i];
@@ -197,7 +197,7 @@ cond_ellipsoid_general(const struct XCSF *xcsf, const struct CL *c1,
 void
 cond_ellipsoid_print(const struct XCSF *xcsf, const struct CL *c)
 {
-    const COND_ELLIPSOID *cond = c->cond;
+    const struct COND_ELLIPSOID *cond = c->cond;
     printf("ellipsoid:");
     for (int i = 0; i < xcsf->x_dim; ++i) {
         printf(" (%5f, ", cond->center[i]);
@@ -217,7 +217,7 @@ size_t
 cond_ellipsoid_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
     size_t s = 0;
-    const COND_ELLIPSOID *cond = c->cond;
+    const struct COND_ELLIPSOID *cond = c->cond;
     s += fwrite(cond->center, sizeof(double), xcsf->x_dim, fp);
     s += fwrite(cond->spread, sizeof(double), xcsf->x_dim, fp);
     s += fwrite(cond->mu, sizeof(double), N_MU, fp);
@@ -228,7 +228,7 @@ size_t
 cond_ellipsoid_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
     size_t s = 0;
-    COND_ELLIPSOID *new = malloc(sizeof(COND_ELLIPSOID));
+    struct COND_ELLIPSOID *new = malloc(sizeof(struct COND_ELLIPSOID));
     new->center = malloc(sizeof(double) * xcsf->x_dim);
     new->spread = malloc(sizeof(double) * xcsf->x_dim);
     new->mu = malloc(sizeof(double) * N_MU);
