@@ -51,12 +51,12 @@ extern "C" {
 class XCS
 {
   private:
-    XCSF xcs;          //!< XCSF data structure
-    double *state;     //!< Current input state for RL
-    int action;        //!< Current action for RL
-    double payoff;     //!< Current reward for RL
-    INPUT *train_data; //!< Current training data for supervised learning
-    INPUT *test_data;  //!< Currrent test data for supervised learning
+    struct XCSF xcs; //!< XCSF data structure
+    double *state; //!< Current input state for RL
+    int action; //!< Current action for RL
+    double payoff; //!< Current reward for RL
+    struct INPUT *train_data; //!< Training data for supervised learning
+    struct INPUT *test_data; //!< Test data for supervised learning
 
   public:
     /**
@@ -82,13 +82,13 @@ class XCS
         state = NULL;
         action = 0;
         payoff = 0;
-        train_data = (INPUT *) malloc(sizeof(INPUT));
+        train_data = (struct INPUT *) malloc(sizeof(struct INPUT));
         train_data->n_samples = 0;
         train_data->x_dim = 0;
         train_data->y_dim = 0;
         train_data->x = NULL;
         train_data->y = NULL;
-        test_data = (INPUT *) malloc(sizeof(INPUT));
+        test_data = (struct INPUT *) malloc(sizeof(struct INPUT));
         test_data->n_samples = 0;
         test_data->x_dim = 0;
         test_data->y_dim = 0;
