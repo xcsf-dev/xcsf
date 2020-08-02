@@ -45,37 +45,40 @@ typedef struct GRAPH {
 } GRAPH;
 
 _Bool
-graph_crossover(const struct XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
+graph_crossover(const struct XCSF *xcsf, struct GRAPH *dgp1,
+                struct GRAPH *dgp2);
 
 _Bool
-graph_mutate(const struct XCSF *xcsf, GRAPH *dgp);
+graph_mutate(const struct XCSF *xcsf, struct GRAPH *dgp);
 
 double
-graph_output(const struct XCSF *xcsf, const GRAPH *dgp, int i);
+graph_output(const struct XCSF *xcsf, const struct GRAPH *dgp, int i);
 
 size_t
-graph_load(const struct XCSF *xcsf, GRAPH *dgp, FILE *fp);
+graph_load(const struct XCSF *xcsf, struct GRAPH *dgp, FILE *fp);
 
 size_t
-graph_save(const struct XCSF *xcsf, const GRAPH *dgp, FILE *fp);
+graph_save(const struct XCSF *xcsf, const struct GRAPH *dgp, FILE *fp);
 
 void
-graph_copy(const struct XCSF *xcsf, GRAPH *dest, const GRAPH *src);
+graph_copy(const struct XCSF *xcsf, struct GRAPH *dest,
+           const struct GRAPH *src);
 
 void
-graph_free(const struct XCSF *xcsf, const GRAPH *dgp);
+graph_free(const struct XCSF *xcsf, const struct GRAPH *dgp);
 
 void
-graph_init(const struct XCSF *xcsf, GRAPH *dgp, int n);
+graph_init(const struct XCSF *xcsf, struct GRAPH *dgp, int n);
 
 void
-graph_print(const struct XCSF *xcsf, const GRAPH *dgp);
+graph_print(const struct XCSF *xcsf, const struct GRAPH *dgp);
 
 void
-graph_rand(const struct XCSF *xcsf, GRAPH *dgp);
+graph_rand(const struct XCSF *xcsf, struct GRAPH *dgp);
 
 void
-graph_reset(const struct XCSF *xcsf, const GRAPH *dgp);
+graph_reset(const struct XCSF *xcsf, const struct GRAPH *dgp);
 
 void
-graph_update(const struct XCSF *xcsf, const GRAPH *dgp, const double *inputs);
+graph_update(const struct XCSF *xcsf, const struct GRAPH *dgp,
+             const double *inputs);

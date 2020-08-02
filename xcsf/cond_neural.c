@@ -198,7 +198,7 @@ cond_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer)
 {
     (void) xcsf;
     const COND_NEURAL *cond = c->cond;
-    const NET *net = &cond->net;
+    const struct NET *net = &cond->net;
     int i = 0;
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         if (i == layer) {
@@ -214,7 +214,7 @@ cond_neural_connections(const struct XCSF *xcsf, const struct CL *c, int layer)
 {
     (void) xcsf;
     const COND_NEURAL *cond = c->cond;
-    const NET *net = &cond->net;
+    const struct NET *net = &cond->net;
     int i = 0;
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         if (i == layer) {
@@ -230,6 +230,6 @@ cond_neural_layers(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
     const COND_NEURAL *cond = c->cond;
-    const NET *net = &cond->net;
+    const struct NET *net = &cond->net;
     return net->n_layers;
 }

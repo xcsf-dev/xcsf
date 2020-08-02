@@ -212,7 +212,7 @@ pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer)
 {
     (void) xcsf;
     const PRED_NEURAL *pred = c->pred;
-    const NET *net = &pred->net;
+    const struct NET *net = &pred->net;
     int i = 0;
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         if (i == layer) {
@@ -228,7 +228,7 @@ pred_neural_connections(const struct XCSF *xcsf, const struct CL *c, int layer)
 {
     (void) xcsf;
     const PRED_NEURAL *pred = c->pred;
-    const NET *net = &pred->net;
+    const struct NET *net = &pred->net;
     int i = 0;
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         if (i == layer) {
@@ -244,7 +244,7 @@ pred_neural_layers(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
     const PRED_NEURAL *pred = c->pred;
-    const NET *net = &pred->net;
+    const struct NET *net = &pred->net;
     return net->n_layers;
 }
 
@@ -252,7 +252,7 @@ void
 pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
 {
     PRED_NEURAL *pred = c->pred;
-    NET *net = &pred->net;
+    struct NET *net = &pred->net;
     const struct LAYER *h;
     int n_inputs;
     // select top hidden layer
@@ -281,7 +281,7 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct CL *c,
                              int n_del)
 {
     PRED_NEURAL *pred = c->pred;
-    NET *net = &pred->net;
+    struct NET *net = &pred->net;
     struct LAYER *l;
     // remove decoder layers
     for (int i = 0; i < n_del && net->n_layers > 1; ++i) {

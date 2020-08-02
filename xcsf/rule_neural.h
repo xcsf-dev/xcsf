@@ -32,7 +32,7 @@
  * @brief Neural network rule data structure.
  */
 typedef struct RULE_NEURAL {
-    NET net; //!< Neural network
+    struct NET net; //!< Neural network
     int n_outputs; //!< Number of action nodes (binarised)
 } RULE_NEURAL;
 

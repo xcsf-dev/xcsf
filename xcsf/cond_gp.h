@@ -31,7 +31,7 @@
  * @brief Tree GP condition data structure.
  */
 typedef struct COND_GP {
-    GP_TREE gp; //!< GP tree
+    struct GP_TREE gp; //!< GP tree
 } COND_GP;
 
 _Bool

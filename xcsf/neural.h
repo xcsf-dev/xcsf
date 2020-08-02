@@ -47,47 +47,50 @@ typedef struct NET {
 } NET;
 
 _Bool
-neural_mutate(const struct XCSF *xcsf, const NET *net);
+neural_mutate(const struct XCSF *xcsf, const struct NET *net);
 
 double
-neural_output(const struct XCSF *xcsf, const NET *net, int i);
+neural_output(const struct XCSF *xcsf, const struct NET *net, int i);
 
 int
-neural_size(const struct XCSF *xcsf, const NET *net);
+neural_size(const struct XCSF *xcsf, const struct NET *net);
 
 size_t
-neural_load(const struct XCSF *xcsf, NET *net, FILE *fp);
+neural_load(const struct XCSF *xcsf, struct NET *net, FILE *fp);
 
 size_t
-neural_save(const struct XCSF *xcsf, const NET *net, FILE *fp);
+neural_save(const struct XCSF *xcsf, const struct NET *net, FILE *fp);
 
 void
-neural_copy(const struct XCSF *xcsf, NET *dest, const NET *src);
+neural_copy(const struct XCSF *xcsf, struct NET *dest, const struct NET *src);
 
 void
-neural_free(const struct XCSF *xcsf, NET *net);
+neural_free(const struct XCSF *xcsf, struct NET *net);
 
 void
-neural_init(const struct XCSF *xcsf, NET *net);
+neural_init(const struct XCSF *xcsf, struct NET *net);
 
 void
-neural_layer_insert(const struct XCSF *xcsf, NET *net, struct LAYER *l, int p);
+neural_layer_insert(const struct XCSF *xcsf, struct NET *net, struct LAYER *l,
+                    int p);
 
 void
-neural_layer_remove(const struct XCSF *xcsf, NET *net, int p);
+neural_layer_remove(const struct XCSF *xcsf, struct NET *net, int p);
 
 void
-neural_learn(const struct XCSF *xcsf, const NET *net, const double *output,
-             const double *input);
+neural_learn(const struct XCSF *xcsf, const struct NET *net,
+             const double *output, const double *input);
 
 void
-neural_print(const struct XCSF *xcsf, const NET *net, _Bool print_weights);
+neural_print(const struct XCSF *xcsf, const struct NET *net,
+             _Bool print_weights);
 
 void
-neural_propagate(const struct XCSF *xcsf, const NET *net, const double *input);
+neural_propagate(const struct XCSF *xcsf, const struct NET *net,
+                 const double *input);
 
 void
-neural_rand(const struct XCSF *xcsf, const NET *net);
+neural_rand(const struct XCSF *xcsf, const struct NET *net);
 
 void
-neural_resize(const struct XCSF *xcsf, const NET *net);
+neural_resize(const struct XCSF *xcsf, const struct NET *net);

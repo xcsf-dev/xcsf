@@ -31,7 +31,7 @@
  * @brief Multi-layer perceptron neural network prediction data structure.
  */
 typedef struct PRED_NEURAL {
-    NET net; //!< Neural network
+    struct NET net; //!< Neural network
 } PRED_NEURAL;
 
 _Bool
