@@ -402,20 +402,16 @@ clset_update_fit(const struct XCSF *xcsf, const struct SET *set)
     double acc_sum = 0;
     double accs[set->size];
     // calculate accuracies
-    int i = 0;
     const struct CLIST *iter = set->list;
-    while (iter != NULL && i < set->size) {
+    for (int i = 0; iter != NULL && i < set->size; i++) {
         accs[i] = cl_acc(xcsf, iter->cl);
         acc_sum += accs[i] * iter->cl->num;
-        ++i;
         iter = iter->next;
     }
     // update fitnesses
-    i = 0;
     iter = set->list;
-    while (iter != NULL && i < set->size) {
+    for (int i = 0; iter != NULL && i < set->size; i++) {
         cl_update_fit(xcsf, iter->cl, acc_sum, accs[i]);
-        ++i;
         iter = iter->next;
     }
 }
