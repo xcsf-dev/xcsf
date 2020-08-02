@@ -74,8 +74,8 @@ ea(struct XCSF *xcsf, const struct SET *set)
     // create offspring
     for (int i = 0; i < xcsf->LAMBDA / 2; ++i) {
         // create copies of parents
-        struct CL *c1 = malloc(sizeof(CL));
-        struct CL *c2 = malloc(sizeof(CL));
+        struct CL *c1 = malloc(sizeof(struct CL));
+        struct CL *c2 = malloc(sizeof(struct CL));
         cl_init(xcsf, c1, c1p->size, c1p->time);
         cl_init(xcsf, c2, c2p->size, c2p->time);
         cl_copy(xcsf, c1, c1p);

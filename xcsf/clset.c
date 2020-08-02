@@ -62,7 +62,7 @@ clset_pop_init(struct XCSF *xcsf)
 {
     if (xcsf->POP_INIT) {
         while (xcsf->pset.num < xcsf->POP_SIZE) {
-            struct CL *new = malloc(sizeof(CL));
+            struct CL *new = malloc(sizeof(struct CL));
             cl_init(xcsf, new, xcsf->POP_SIZE, 0);
             cl_rand(xcsf, new);
             clset_add(&xcsf->pset, new);
@@ -261,7 +261,7 @@ clset_cover(struct XCSF *xcsf, const double *x)
         for (int i = 0; i < xcsf->n_actions; ++i) {
             if (!act_covered[i]) {
                 // create a new classifier with matching condition and action
-                struct CL *new = malloc(sizeof(CL));
+                struct CL *new = malloc(sizeof(struct CL));
                 cl_init(xcsf, new, (xcsf->mset.num) + 1, xcsf->time);
                 cl_cover(xcsf, new, x, i);
                 clset_add(&xcsf->pset, new);
@@ -338,11 +338,11 @@ void
 clset_add(struct SET *set, struct CL *c)
 {
     if (set->list == NULL) {
-        set->list = malloc(sizeof(CLIST));
+        set->list = malloc(sizeof(struct CLIST));
         set->list->cl = c;
         set->list->next = NULL;
     } else {
-        struct CLIST *new = malloc(sizeof(CLIST));
+        struct CLIST *new = malloc(sizeof(struct CLIST));
         new->cl = c;
         new->next = set->list;
         set->list = new;
@@ -627,7 +627,7 @@ clset_pop_load(struct XCSF *xcsf, FILE *fp)
     s += fread(&num, sizeof(int), 1, fp);
     clset_init(&xcsf->pset);
     for (int i = 0; i < size; ++i) {
-        struct CL *c = malloc(sizeof(CL));
+        struct CL *c = malloc(sizeof(struct CL));
         s += cl_load(xcsf, c, fp);
         clset_add(&xcsf->pset, c);
     }
