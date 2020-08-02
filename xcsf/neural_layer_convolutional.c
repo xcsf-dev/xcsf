@@ -76,7 +76,7 @@ neural_layer_convolutional_init(const struct XCSF *xcsf, int h, int w, int c,
                                 int n_filters, int kernel_size, int stride,
                                 int pad, int f, uint32_t o)
 {
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = CONVOLUTIONAL;
     l->layer_vptr = &layer_convolutional_vtbl;
@@ -179,7 +179,7 @@ neural_layer_convolutional_copy(const struct XCSF *xcsf,
                                 const struct LAYER *src)
 {
     (void) xcsf;
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;

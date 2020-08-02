@@ -45,7 +45,7 @@ neural_layer_maxpool_init(const struct XCSF *xcsf, int h, int w, int c,
                           int size, int stride, int pad)
 {
     (void) xcsf;
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = MAXPOOL;
     l->layer_vptr = &layer_maxpool_vtbl;
@@ -69,7 +69,7 @@ struct LAYER *
 neural_layer_maxpool_copy(const struct XCSF *xcsf, const struct LAYER *src)
 {
     (void) xcsf;
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;

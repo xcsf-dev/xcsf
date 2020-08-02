@@ -46,7 +46,7 @@ struct LAYER *
 neural_layer_connected_init(const struct XCSF *xcsf, int n_inputs, int n_init,
                             int n_max, int f, uint32_t o)
 {
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
@@ -109,7 +109,7 @@ struct LAYER *
 neural_layer_connected_copy(const struct XCSF *xcsf, const struct LAYER *src)
 {
     (void) xcsf;
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;

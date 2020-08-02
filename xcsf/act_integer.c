@@ -42,8 +42,8 @@ act_integer_general(const struct XCSF *xcsf, const struct CL *c1,
                     const struct CL *c2)
 {
     (void) xcsf;
-    const ACT_INTEGER *act1 = c1->act;
-    const ACT_INTEGER *act2 = c2->act;
+    const struct ACT_INTEGER *act1 = c1->act;
+    const struct ACT_INTEGER *act2 = c2->act;
     if (act1->action != act2->action) {
         return false;
     }
@@ -53,7 +53,7 @@ act_integer_general(const struct XCSF *xcsf, const struct CL *c1,
 _Bool
 act_integer_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
-    ACT_INTEGER *act = c->act;
+    struct ACT_INTEGER *act = c->act;
     sam_adapt(xcsf, act->mu, N_MU);
     if (rand_uniform(0, 1) < act->mu[0]) {
         int old = act->action;
@@ -71,7 +71,7 @@ act_integer_compute(const struct XCSF *xcsf, const struct CL *c,
 {
     (void) xcsf;
     (void) x;
-    const ACT_INTEGER *act = c->act;
+    const struct ACT_INTEGER *act = c->act;
     return act->action;
 }
 
@@ -79,8 +79,8 @@ void
 act_integer_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 {
     (void) xcsf;
-    ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
-    const ACT_INTEGER *src_act = src->act;
+    struct ACT_INTEGER *new = malloc(sizeof(struct ACT_INTEGER));
+    const struct ACT_INTEGER *src_act = src->act;
     new->action = src_act->action;
     new->mu = malloc(sizeof(double) * N_MU);
     memcpy(new->mu, src_act->mu, sizeof(double) * N_MU);
@@ -91,7 +91,7 @@ void
 act_integer_print(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
-    const ACT_INTEGER *act = c->act;
+    const struct ACT_INTEGER *act = c->act;
     printf("%d\n", act->action);
 }
 
@@ -101,7 +101,7 @@ act_integer_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
 {
     (void) xcsf;
     (void) x;
-    ACT_INTEGER *act = c->act;
+    struct ACT_INTEGER *act = c->act;
     act->action = action;
 }
 
@@ -109,7 +109,7 @@ void
 act_integer_free(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;
-    const ACT_INTEGER *act = c->act;
+    const struct ACT_INTEGER *act = c->act;
     free(act->mu);
     free(c->act);
 }
@@ -117,7 +117,7 @@ act_integer_free(const struct XCSF *xcsf, const struct CL *c)
 void
 act_integer_init(const struct XCSF *xcsf, struct CL *c)
 {
-    ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
+    struct ACT_INTEGER *new = malloc(sizeof(struct ACT_INTEGER));
     new->mu = malloc(sizeof(double) * N_MU);
     sam_init(xcsf, new->mu, N_MU);
     new->action = irand_uniform(0, xcsf->n_actions);
@@ -139,7 +139,7 @@ act_integer_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;
-    const ACT_INTEGER *act = c->act;
+    const struct ACT_INTEGER *act = c->act;
     s += fwrite(&act->action, sizeof(int), 1, fp);
     s += fwrite(act->mu, sizeof(double), N_MU, fp);
     return s;
@@ -150,7 +150,7 @@ act_integer_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;
-    ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
+    struct ACT_INTEGER *new = malloc(sizeof(struct ACT_INTEGER));
     s += fread(&new->action, sizeof(int), 1, fp);
     new->mu = malloc(sizeof(double) * N_MU);
     s += fread(new->mu, sizeof(double), N_MU, fp);

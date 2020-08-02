@@ -66,7 +66,7 @@ struct LAYER *
 neural_layer_recurrent_init(const struct XCSF *xcsf, int n_inputs, int n_init,
                             int n_max, int f, uint32_t o)
 {
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = RECURRENT;
     l->layer_vptr = &layer_recurrent_vtbl;
@@ -118,7 +118,7 @@ free_layer_arrays(const struct LAYER *l)
 struct LAYER *
 neural_layer_recurrent_copy(const struct XCSF *xcsf, const struct LAYER *src)
 {
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;

@@ -43,7 +43,7 @@ neural_layer_softmax_init(const struct XCSF *xcsf, int n_inputs,
                           double temperature)
 {
     (void) xcsf;
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = SOFTMAX;
     l->layer_vptr = &layer_softmax_vtbl;
@@ -78,7 +78,7 @@ struct LAYER *
 neural_layer_softmax_copy(const struct XCSF *xcsf, const struct LAYER *src)
 {
     (void) xcsf;
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;

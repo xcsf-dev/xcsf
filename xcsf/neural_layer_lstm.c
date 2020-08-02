@@ -80,7 +80,7 @@ struct LAYER *
 neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
                        int n_max, int f, int rf, uint32_t o)
 {
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = LSTM;
     l->layer_vptr = &layer_lstm_vtbl;
@@ -199,7 +199,7 @@ set_eta(struct LAYER *l)
 struct LAYER *
 neural_layer_lstm_copy(const struct XCSF *xcsf, const struct LAYER *src)
 {
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;

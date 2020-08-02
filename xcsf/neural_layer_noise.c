@@ -44,7 +44,7 @@ neural_layer_noise_init(const struct XCSF *xcsf, int n_inputs,
                         double probability, double std)
 {
     (void) xcsf;
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = NOISE;
     l->layer_vptr = &layer_noise_vtbl;
@@ -82,7 +82,7 @@ struct LAYER *
 neural_layer_noise_copy(const struct XCSF *xcsf, const struct LAYER *src)
 {
     (void) xcsf;
-    struct LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
