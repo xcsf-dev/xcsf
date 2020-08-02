@@ -95,19 +95,19 @@ class XCS
         }
 
         int
-        version_major()
+        version_major(void)
         {
             return VERSION_MAJOR;
         }
 
         int
-        version_minor()
+        version_minor(void)
         {
             return VERSION_MINOR;
         }
 
         int
-        version_build()
+        version_build(void)
         {
             return VERSION_BUILD;
         }
@@ -125,13 +125,13 @@ class XCS
         }
 
         void
-        print_params()
+        print_params(void)
         {
             param_print(&xcs);
         }
 
         void
-        pred_expand()
+        pred_expand(void)
         {
             xcsf_pred_expand(&xcs);
         }
@@ -151,7 +151,7 @@ class XCS
         /* Reinforcement learning */
 
         void
-        init_trial()
+        init_trial(void)
         {
             if (xcs.time == 0) {
                 clset_pop_init(&xcs);
@@ -160,19 +160,19 @@ class XCS
         }
 
         void
-        end_trial()
+        end_trial(void)
         {
             xcs_rl_end_trial(&xcs);
         }
 
         void
-        init_step()
+        init_step(void)
         {
             xcs_rl_init_step(&xcs);
         }
 
         void
-        end_step()
+        end_step(void)
         {
             xcs_rl_end_step(&xcs, state, action, payoff);
         }
@@ -305,7 +305,7 @@ class XCS
         /* GETTERS */
 
         py::list
-        get_cond_num_neurons()
+        get_cond_num_neurons(void)
         {
             py::list list;
             for (int i = 0; i < MAX_LAYERS && xcs.COND_NUM_NEURONS[i] > 0; ++i) {
@@ -315,7 +315,7 @@ class XCS
         }
 
         py::list
-        get_cond_max_neurons()
+        get_cond_max_neurons(void)
         {
             py::list list;
             for (int i = 0; i < MAX_LAYERS && xcs.COND_MAX_NEURONS[i] > 0; ++i) {
@@ -325,7 +325,7 @@ class XCS
         }
 
         py::list
-        get_pred_num_neurons()
+        get_pred_num_neurons(void)
         {
             py::list list;
             for (int i = 0; i < MAX_LAYERS && xcs.PRED_NUM_NEURONS[i] > 0; ++i) {
@@ -335,7 +335,7 @@ class XCS
         }
 
         py::list
-        get_pred_max_neurons()
+        get_pred_max_neurons(void)
         {
             py::list list;
             for (int i = 0; i < MAX_LAYERS && xcs.PRED_MAX_NEURONS[i] > 0; ++i) {
@@ -345,409 +345,409 @@ class XCS
         }
 
         int
-        get_omp_num_threads()
+        get_omp_num_threads(void)
         {
             return xcs.OMP_NUM_THREADS;
         }
 
         _Bool
-        get_pop_init()
+        get_pop_init(void)
         {
             return xcs.POP_INIT;
         }
 
         int
-        get_max_trials()
+        get_max_trials(void)
         {
             return xcs.MAX_TRIALS;
         }
 
         int
-        get_perf_trials()
+        get_perf_trials(void)
         {
             return xcs.PERF_TRIALS;
         }
 
         int
-        get_pop_max_size()
+        get_pop_max_size(void)
         {
             return xcs.POP_SIZE;
         }
 
         int
-        get_loss_func()
+        get_loss_func(void)
         {
             return xcs.LOSS_FUNC;
         }
 
         double
-        get_alpha()
+        get_alpha(void)
         {
             return xcs.ALPHA;
         }
 
         double
-        get_beta()
+        get_beta(void)
         {
             return xcs.BETA;
         }
 
         double
-        get_delta()
+        get_delta(void)
         {
             return xcs.DELTA;
         }
 
         double
-        get_eps_0()
+        get_eps_0(void)
         {
             return xcs.EPS_0;
         }
 
         double
-        get_err_reduc()
+        get_err_reduc(void)
         {
             return xcs.ERR_REDUC;
         }
 
         double
-        get_fit_reduc()
+        get_fit_reduc(void)
         {
             return xcs.FIT_REDUC;
         }
 
         double
-        get_init_error()
+        get_init_error(void)
         {
             return xcs.INIT_ERROR;
         }
 
         double
-        get_init_fitness()
+        get_init_fitness(void)
         {
             return xcs.INIT_FITNESS;
         }
 
         double
-        get_nu()
+        get_nu(void)
         {
             return xcs.NU;
         }
 
         int
-        get_m_probation()
+        get_m_probation(void)
         {
             return xcs.M_PROBATION;
         }
 
         int
-        get_theta_del()
+        get_theta_del(void)
         {
             return xcs.THETA_DEL;
         }
 
         int
-        get_act_type()
+        get_act_type(void)
         {
             return xcs.ACT_TYPE;
         }
 
         int
-        get_cond_type()
+        get_cond_type(void)
         {
             return xcs.COND_TYPE;
         }
 
         int
-        get_pred_type()
+        get_pred_type(void)
         {
             return xcs.PRED_TYPE;
         }
 
         double
-        get_p_crossover()
+        get_p_crossover(void)
         {
             return xcs.P_CROSSOVER;
         }
 
         double
-        get_theta_ea()
+        get_theta_ea(void)
         {
             return xcs.THETA_EA;
         }
 
         int
-        get_lambda()
+        get_lambda(void)
         {
             return xcs.LAMBDA;
         }
 
         int
-        get_ea_select_type()
+        get_ea_select_type(void)
         {
             return xcs.EA_SELECT_TYPE;
         }
 
         double
-        get_ea_select_size()
+        get_ea_select_size(void)
         {
             return xcs.EA_SELECT_SIZE;
         }
 
         int
-        get_sam_type()
+        get_sam_type(void)
         {
             return xcs.SAM_TYPE;
         }
 
         double
-        get_max_con()
+        get_max_con(void)
         {
             return xcs.COND_MAX;
         }
 
         double
-        get_min_con()
+        get_min_con(void)
         {
             return xcs.COND_MIN;
         }
 
         double
-        get_cond_smin()
+        get_cond_smin(void)
         {
             return xcs.COND_SMIN;
         }
 
         int
-        get_cond_bits()
+        get_cond_bits(void)
         {
             return xcs.COND_BITS;
         }
 
         _Bool
-        get_cond_evolve_weights()
+        get_cond_evolve_weights(void)
         {
             return xcs.COND_EVOLVE_WEIGHTS;
         }
 
         _Bool
-        get_cond_evolve_neurons()
+        get_cond_evolve_neurons(void)
         {
             return xcs.COND_EVOLVE_NEURONS;
         }
 
         _Bool
-        get_cond_evolve_functions()
+        get_cond_evolve_functions(void)
         {
             return xcs.COND_EVOLVE_FUNCTIONS;
         }
 
         _Bool
-        get_cond_evolve_connectivity()
+        get_cond_evolve_connectivity(void)
         {
             return xcs.COND_EVOLVE_CONNECTIVITY;
         }
 
         int
-        get_cond_output_activation()
+        get_cond_output_activation(void)
         {
             return xcs.COND_OUTPUT_ACTIVATION;
         }
 
         int
-        get_cond_hidden_activation()
+        get_cond_hidden_activation(void)
         {
             return xcs.COND_HIDDEN_ACTIVATION;
         }
 
         int
-        get_pred_output_activation()
+        get_pred_output_activation(void)
         {
             return xcs.PRED_OUTPUT_ACTIVATION;
         }
 
         int
-        get_pred_hidden_activation()
+        get_pred_hidden_activation(void)
         {
             return xcs.PRED_HIDDEN_ACTIVATION;
         }
 
         double
-        get_pred_momentum()
+        get_pred_momentum(void)
         {
             return xcs.PRED_MOMENTUM;
         }
 
         _Bool
-        get_pred_evolve_weights()
+        get_pred_evolve_weights(void)
         {
             return xcs.PRED_EVOLVE_WEIGHTS;
         }
 
         _Bool
-        get_pred_evolve_neurons()
+        get_pred_evolve_neurons(void)
         {
             return xcs.PRED_EVOLVE_NEURONS;
         }
 
         _Bool
-        get_pred_evolve_functions()
+        get_pred_evolve_functions(void)
         {
             return xcs.PRED_EVOLVE_FUNCTIONS;
         }
 
         _Bool
-        get_pred_evolve_connectivity()
+        get_pred_evolve_connectivity(void)
         {
             return xcs.PRED_EVOLVE_CONNECTIVITY;
         }
 
         _Bool
-        get_pred_evolve_eta()
+        get_pred_evolve_eta(void)
         {
             return xcs.PRED_EVOLVE_ETA;
         }
 
         _Bool
-        get_pred_sgd_weights()
+        get_pred_sgd_weights(void)
         {
             return xcs.PRED_SGD_WEIGHTS;
         }
 
         _Bool
-        get_pred_reset()
+        get_pred_reset(void)
         {
             return xcs.PRED_RESET;
         }
 
         int
-        get_max_neuron_grow()
+        get_max_neuron_grow(void)
         {
             return xcs.MAX_NEURON_GROW;
         }
 
         _Bool
-        get_stateful()
+        get_stateful(void)
         {
             return xcs.STATEFUL;
         }
 
         int
-        get_max_k()
+        get_max_k(void)
         {
             return xcs.MAX_K;
         }
 
         int
-        get_max_t()
+        get_max_t(void)
         {
             return xcs.MAX_T;
         }
 
         int
-        get_gp_num_cons()
+        get_gp_num_cons(void)
         {
             return xcs.GP_NUM_CONS;
         }
 
         int
-        get_gp_init_depth()
+        get_gp_init_depth(void)
         {
             return xcs.GP_INIT_DEPTH;
         }
 
         double
-        get_pred_eta()
+        get_pred_eta(void)
         {
             return xcs.PRED_ETA;
         }
 
         double
-        get_cond_eta()
+        get_cond_eta(void)
         {
             return xcs.COND_ETA;
         }
 
         double
-        get_pred_x0()
+        get_pred_x0(void)
         {
             return xcs.PRED_X0;
         }
 
         double
-        get_pred_rls_scale_factor()
+        get_pred_rls_scale_factor(void)
         {
             return xcs.PRED_RLS_SCALE_FACTOR;
         }
 
         double
-        get_pred_rls_lambda()
+        get_pred_rls_lambda(void)
         {
             return xcs.PRED_RLS_LAMBDA;
         }
 
         int
-        get_theta_sub()
+        get_theta_sub(void)
         {
             return xcs.THETA_SUB;
         }
 
         _Bool
-        get_ea_subsumption()
+        get_ea_subsumption(void)
         {
             return xcs.EA_SUBSUMPTION;
         }
 
         _Bool
-        get_set_subsumption()
+        get_set_subsumption(void)
         {
             return xcs.SET_SUBSUMPTION;
         }
 
         int
-        get_pop_size()
+        get_pop_size(void)
         {
             return xcs.pset.size;
         }
 
         int
-        get_pop_num()
+        get_pop_num(void)
         {
             return xcs.pset.num;
         }
 
         int
-        get_time()
+        get_time(void)
         {
             return xcs.time;
         }
 
         double
-        get_x_dim()
+        get_x_dim(void)
         {
             return xcs.x_dim;
         }
 
         double
-        get_y_dim()
+        get_y_dim(void)
         {
             return xcs.y_dim;
         }
 
         double
-        get_n_actions()
+        get_n_actions(void)
         {
             return xcs.n_actions;
         }
 
         double
-        get_pop_mean_cond_size()
+        get_pop_mean_cond_size(void)
         {
             return clset_mean_cond_size(&xcs, &xcs.pset);
         }
 
         double
-        get_pop_mean_pred_size()
+        get_pop_mean_pred_size(void)
         {
             return clset_mean_pred_size(&xcs, &xcs.pset);
         }
@@ -771,7 +771,7 @@ class XCS
         }
 
         double
-        get_pop_mean_pred_layers()
+        get_pop_mean_pred_layers(void)
         {
             return clset_mean_pred_layers(&xcs, &xcs.pset);
         }
@@ -789,37 +789,37 @@ class XCS
         }
 
         double
-        get_pop_mean_cond_layers()
+        get_pop_mean_cond_layers(void)
         {
             return clset_mean_cond_layers(&xcs, &xcs.pset);
         }
 
         double
-        get_msetsize()
+        get_msetsize(void)
         {
             return xcs.msetsize;
         }
 
         double
-        get_mfrac()
+        get_mfrac(void)
         {
             return xcs.mfrac;
         }
 
         int
-        get_teletransportation()
+        get_teletransportation(void)
         {
             return xcs.TELETRANSPORTATION;
         }
 
         double
-        get_gamma()
+        get_gamma(void)
         {
             return xcs.GAMMA;
         }
 
         double
-        get_p_explore()
+        get_p_explore(void)
         {
             return xcs.P_EXPLORE;
         }
