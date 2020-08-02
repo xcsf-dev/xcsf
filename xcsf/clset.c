@@ -209,7 +209,7 @@ clset_match(struct XCSF *xcsf, const double *x)
     // prepare for parallel processing of matching conditions
     struct CLIST *blist[xcsf->pset.size];
     struct CLIST *iter = xcsf->pset.list;
-    for (int i = 0; iter != NULL && i < xcsf->pset.size; i++) {
+    for (int i = 0; iter != NULL && i < xcsf->pset.size; ++i) {
         blist[i] = iter;
         iter = iter->next;
     }
@@ -370,7 +370,7 @@ clset_update(struct XCSF *xcsf, struct SET *set, const double *x,
 #ifdef PARALLEL_UPDATE
     struct CLIST *blist[set->size];
     struct CLIST *iter = set->list;
-    for (int i = 0; iter != NULL && i < set->size; i++) {
+    for (int i = 0; iter != NULL && i < set->size; ++i) {
         blist[i] = iter;
         iter = iter->next;
     }
@@ -403,14 +403,14 @@ clset_update_fit(const struct XCSF *xcsf, const struct SET *set)
     double accs[set->size];
     // calculate accuracies
     const struct CLIST *iter = set->list;
-    for (int i = 0; iter != NULL && i < set->size; i++) {
+    for (int i = 0; iter != NULL && i < set->size; ++i) {
         accs[i] = cl_acc(xcsf, iter->cl);
         acc_sum += accs[i] * iter->cl->num;
         iter = iter->next;
     }
     // update fitnesses
     iter = set->list;
-    for (int i = 0; iter != NULL && i < set->size; i++) {
+    for (int i = 0; iter != NULL && i < set->size; ++i) {
         cl_update_fit(xcsf, iter->cl, acc_sum, accs[i]);
         iter = iter->next;
     }
