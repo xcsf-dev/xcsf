@@ -33,7 +33,7 @@ int
 irand_uniform(int min, int max);
 
 void
-random_init();
+random_init(void);
 
 /**
  * @brief Returns a float clamped within the specified range.

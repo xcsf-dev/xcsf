@@ -31,14 +31,11 @@
 #include "../lib/dSFMT/dSFMT.h"
 #include "utils.h"
 
-static double
-drand();
-
 /**
  * @brief Initialises the pseudo-random number generator.
  */
 void
-random_init()
+random_init(void)
 {
     time_t now = time(0);
     const unsigned char *p = (unsigned char *)&now;
@@ -47,18 +44,6 @@ random_init()
         seed = (seed * (UCHAR_MAX + 2U)) + p[i];
     }
     dsfmt_gv_init_gen_rand(seed);
-}
-
-/**
- * @brief Returns a uniform random float (0,1)
- * @return A random float.
- *
- * @details double precision SIMD oriented Fast Mersenne Twister (dSFMT).
- */
-static double
-drand()
-{
-    return dsfmt_gv_genrand_open_open();
 }
 
 /**
@@ -78,7 +63,7 @@ irand_uniform(int min, int max)
 double
 rand_uniform(double min, double max)
 {
-    return min + (drand() * (max - min));
+    return min + (dsfmt_gv_genrand_open_open() * (max - min));
 }
 
 /**
@@ -98,8 +83,8 @@ rand_normal(double mu, double sigma)
     if (!generate) {
         return z1 * sigma + mu;
     }
-    double u1 = drand();
-    double u2 = drand();
+    double u1 = dsfmt_gv_genrand_open_open(); 
+    double u2 = dsfmt_gv_genrand_open_open(); 
     double z0 = sqrt(-2 * log(u1)) * cos(two_pi * u2);
     z1 = sqrt(-2 * log(u1)) * sin(two_pi * u2);
     return z0 * sigma + mu;
