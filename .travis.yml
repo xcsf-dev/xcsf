@@ -26,15 +26,26 @@ matrix:
       addons: &gcc6
         apt:
           packages: ['g++-6', 'python3']
-        sonarcloud:
-          organization: "rpreen"
-      env: BADGE=linux BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
+      env: BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
 
     # Python library OSX
     - os: osx
       osx_image: xcode10.1
       compiler: clang
-      env: BADGE=osx BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
+      env: BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
+
+    # Doxygen
+    - os: linux
+      compiler: gcc
+      addons: &gcc6
+        apt:
+          packages: ['doxygen', 'graphviz']
+      env: DOXYGEN="ON" BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        local_dir: docs/html
+        github_token: $GH_REPO_TOKEN
 
 before_script:
   - |
@@ -62,6 +73,8 @@ script:
       ./build-wrapper-linux-x86/build-wrapper-linux-x86-64 \
       --out-dir bw-output make clean all;
       sonar-scanner;
+    elif [[ "${DOXYGEN}" == "ON" ]]; then
+      make docs -j2
     else
       make -j2
     fi
