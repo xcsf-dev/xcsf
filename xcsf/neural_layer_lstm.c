@@ -33,37 +33,37 @@
 #define N_MU (5) //!< Number of mutation rates applied to a lstm layer
 
 static _Bool
-mutate_connectivity(LAYER *l);
+mutate_connectivity(struct LAYER *l);
 
 static _Bool
-mutate_eta(const struct XCSF *xcsf, LAYER *l);
+mutate_eta(const struct XCSF *xcsf, struct LAYER *l);
 
 static _Bool
-mutate_neurons(const struct XCSF *xcsf, LAYER *l);
+mutate_neurons(const struct XCSF *xcsf, struct LAYER *l);
 
 static _Bool
-mutate_weights(LAYER *l);
+mutate_weights(struct LAYER *l);
 
 static void
-free_layer_arrays(const LAYER *l);
+free_layer_arrays(const struct LAYER *l);
 
 static void
-malloc_layer_arrays(LAYER *l);
+malloc_layer_arrays(struct LAYER *l);
 
 static void
-reset_layer_deltas(const LAYER *l);
+reset_layer_deltas(const struct LAYER *l);
 
 static void
-set_eta(LAYER *l);
+set_eta(struct LAYER *l);
 
 static void
-set_layer_n_active(LAYER *l);
+set_layer_n_active(struct LAYER *l);
 
 static void
-set_layer_n_biases(LAYER *l);
+set_layer_n_biases(struct LAYER *l);
 
 static void
-set_layer_n_weights(LAYER *l);
+set_layer_n_weights(struct LAYER *l);
 
 /**
  * @brief Creates and initialises a long short-term memory layer.
@@ -76,11 +76,11 @@ set_layer_n_weights(LAYER *l);
  * @param o The bitwise options specifying which operations can be performed.
  * @return A pointer to the new layer.
  */
-LAYER *
+struct LAYER *
 neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
                        int n_max, int f, int rf, uint32_t o)
 {
-    LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = LSTM;
     l->layer_vptr = &layer_lstm_vtbl;
@@ -113,7 +113,7 @@ neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
 }
 
 static void
-set_layer_n_weights(LAYER *l)
+set_layer_n_weights(struct LAYER *l)
 {
     l->n_weights = l->uf->n_weights + l->ui->n_weights + l->ug->n_weights +
         l->uo->n_weights + l->wf->n_weights + l->wi->n_weights +
@@ -121,7 +121,7 @@ set_layer_n_weights(LAYER *l)
 }
 
 static void
-set_layer_n_biases(LAYER *l)
+set_layer_n_biases(struct LAYER *l)
 {
     l->n_biases = l->uf->n_biases + l->ui->n_biases + l->ug->n_biases +
         l->uo->n_biases + l->wf->n_biases + l->wi->n_biases + l->wg->n_biases +
@@ -129,7 +129,7 @@ set_layer_n_biases(LAYER *l)
 }
 
 static void
-set_layer_n_active(LAYER *l)
+set_layer_n_active(struct LAYER *l)
 {
     l->n_active = l->uf->n_active + l->ui->n_active + l->ug->n_active +
         l->uo->n_active + l->wf->n_active + l->wi->n_active + l->wg->n_active +
@@ -137,7 +137,7 @@ set_layer_n_active(LAYER *l)
 }
 
 static void
-malloc_layer_arrays(LAYER *l)
+malloc_layer_arrays(struct LAYER *l)
 {
     if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
         printf("neural_layer_lstm: malloc() invalid size\n");
@@ -163,7 +163,7 @@ malloc_layer_arrays(LAYER *l)
 }
 
 static void
-free_layer_arrays(const LAYER *l)
+free_layer_arrays(const struct LAYER *l)
 {
     free(l->delta);
     free(l->output);
@@ -184,7 +184,7 @@ free_layer_arrays(const LAYER *l)
 }
 
 static void
-set_eta(LAYER *l)
+set_eta(struct LAYER *l)
 {
     l->eta = l->uf->eta;
     l->ui->eta = l->eta;
@@ -196,10 +196,10 @@ set_eta(LAYER *l)
     l->wo->eta = l->eta;
 }
 
-LAYER *
-neural_layer_lstm_copy(const struct XCSF *xcsf, const LAYER *src)
+struct LAYER *
+neural_layer_lstm_copy(const struct XCSF *xcsf, const struct LAYER *src)
 {
-    LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
@@ -228,7 +228,7 @@ neural_layer_lstm_copy(const struct XCSF *xcsf, const LAYER *src)
 }
 
 void
-neural_layer_lstm_free(const struct XCSF *xcsf, const LAYER *l)
+neural_layer_lstm_free(const struct XCSF *xcsf, const struct LAYER *l)
 {
     layer_free(xcsf, l->uf);
     layer_free(xcsf, l->ui);
@@ -251,7 +251,7 @@ neural_layer_lstm_free(const struct XCSF *xcsf, const LAYER *l)
 }
 
 void
-neural_layer_lstm_rand(const struct XCSF *xcsf, LAYER *l)
+neural_layer_lstm_rand(const struct XCSF *xcsf, struct LAYER *l)
 {
     layer_rand(xcsf, l->uf);
     layer_rand(xcsf, l->ui);
@@ -264,7 +264,7 @@ neural_layer_lstm_rand(const struct XCSF *xcsf, LAYER *l)
 }
 
 void
-neural_layer_lstm_forward(const struct XCSF *xcsf, const LAYER *l,
+neural_layer_lstm_forward(const struct XCSF *xcsf, const struct LAYER *l,
                           const double *input)
 {
     layer_forward(xcsf, l->uf, input);
@@ -300,7 +300,7 @@ neural_layer_lstm_forward(const struct XCSF *xcsf, const LAYER *l,
 }
 
 static void
-reset_layer_deltas(const LAYER *l)
+reset_layer_deltas(const struct LAYER *l)
 {
     size_t size = l->n_outputs * sizeof(double);
     memset(l->wf->delta, 0, size);
@@ -314,7 +314,7 @@ reset_layer_deltas(const LAYER *l)
 }
 
 void
-neural_layer_lstm_backward(const struct XCSF *xcsf, const LAYER *l,
+neural_layer_lstm_backward(const struct XCSF *xcsf, const struct LAYER *l,
                            const double *input, double *delta)
 {
     reset_layer_deltas(l);
@@ -360,7 +360,7 @@ neural_layer_lstm_backward(const struct XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_lstm_update(const struct XCSF *xcsf, const LAYER *l)
+neural_layer_lstm_update(const struct XCSF *xcsf, const struct LAYER *l)
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
         layer_update(xcsf, l->wf);
@@ -375,7 +375,8 @@ neural_layer_lstm_update(const struct XCSF *xcsf, const LAYER *l)
 }
 
 void
-neural_layer_lstm_resize(const struct XCSF *xcsf, LAYER *l, const LAYER *prev)
+neural_layer_lstm_resize(const struct XCSF *xcsf, struct LAYER *l,
+                         const struct LAYER *prev)
 {
     layer_resize(xcsf, l->uf, prev);
     layer_resize(xcsf, l->ui, prev);
@@ -389,14 +390,14 @@ neural_layer_lstm_resize(const struct XCSF *xcsf, LAYER *l, const LAYER *prev)
 }
 
 double *
-neural_layer_lstm_output(const struct XCSF *xcsf, const LAYER *l)
+neural_layer_lstm_output(const struct XCSF *xcsf, const struct LAYER *l)
 {
     (void) xcsf;
     return l->output;
 }
 
 _Bool
-neural_layer_lstm_mutate(const struct XCSF *xcsf, LAYER *l)
+neural_layer_lstm_mutate(const struct XCSF *xcsf, struct LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
@@ -420,7 +421,7 @@ neural_layer_lstm_mutate(const struct XCSF *xcsf, LAYER *l)
 }
 
 static _Bool
-mutate_eta(const struct XCSF *xcsf, LAYER *l)
+mutate_eta(const struct XCSF *xcsf, struct LAYER *l)
 {
     if (layer_mutate_eta(xcsf, l->uf, l->mu[0])) {
         set_eta(l);
@@ -430,7 +431,7 @@ mutate_eta(const struct XCSF *xcsf, LAYER *l)
 }
 
 static _Bool
-mutate_neurons(const struct XCSF *xcsf, LAYER *l)
+mutate_neurons(const struct XCSF *xcsf, struct LAYER *l)
 {
     int n = layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
     if (n != 0) {
@@ -458,7 +459,7 @@ mutate_neurons(const struct XCSF *xcsf, LAYER *l)
 }
 
 static _Bool
-mutate_connectivity(LAYER *l)
+mutate_connectivity(struct LAYER *l)
 {
     _Bool mod = false;
     mod = layer_mutate_connectivity(l->uf, l->mu[2]) ? true : mod;
@@ -474,7 +475,7 @@ mutate_connectivity(LAYER *l)
 }
 
 static _Bool
-mutate_weights(LAYER *l)
+mutate_weights(struct LAYER *l)
 {
     _Bool mod = false;
     mod = layer_mutate_weights(l->uf, l->mu[3]) ? true : mod;
@@ -489,7 +490,7 @@ mutate_weights(LAYER *l)
 }
 
 void
-neural_layer_lstm_print(const struct XCSF *xcsf, const LAYER *l,
+neural_layer_lstm_print(const struct XCSF *xcsf, const struct LAYER *l,
                         _Bool print_weights)
 {
     printf("lstm, f = %s, rf = %s,  in = %d, out = %d\n",
@@ -517,7 +518,7 @@ neural_layer_lstm_print(const struct XCSF *xcsf, const LAYER *l,
 }
 
 size_t
-neural_layer_lstm_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp)
+neural_layer_lstm_save(const struct XCSF *xcsf, const struct LAYER *l, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
@@ -554,7 +555,7 @@ neural_layer_lstm_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp)
 }
 
 size_t
-neural_layer_lstm_load(const struct XCSF *xcsf, LAYER *l, FILE *fp)
+neural_layer_lstm_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp)
 {
     size_t s = 0;
     layer_init(l);

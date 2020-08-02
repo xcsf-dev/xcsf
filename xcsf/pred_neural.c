@@ -48,7 +48,7 @@ pred_neural_init(const struct XCSF *xcsf, struct CL *c)
     neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = pred_neural_lopt(xcsf);
-    LAYER *l;
+    struct LAYER *l;
     int n_inputs = xcsf->x_dim;
     for (int i = 0; i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; ++i) {
         int hinit = xcsf->PRED_NUM_NEURONS[i];
@@ -253,7 +253,7 @@ pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     NET *net = &pred->net;
-    const LAYER *h;
+    const struct LAYER *h;
     int n_inputs;
     // select top hidden layer
     if (net->n_layers > 1) {
@@ -270,8 +270,8 @@ pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
     int f = xcsf->PRED_HIDDEN_ACTIVATION;
     int pos = net->n_layers - 1;
     uint32_t lopt = pred_neural_lopt(xcsf);
-    LAYER *l = neural_layer_connected_init(xcsf, n_inputs, n_outputs,
-                                           max_outputs, f, lopt);
+    struct LAYER *l = neural_layer_connected_init(xcsf, n_inputs, n_outputs,
+                                                  max_outputs, f, lopt);
     neural_layer_insert(xcsf, net, l, pos);
     neural_resize(xcsf, net);
 }
@@ -282,7 +282,7 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct CL *c,
 {
     PRED_NEURAL *pred = c->pred;
     NET *net = &pred->net;
-    LAYER *l;
+    struct LAYER *l;
     // remove decoder layers
     for (int i = 0; i < n_del && net->n_layers > 1; ++i) {
         neural_layer_remove(xcsf, net, net->n_layers - 1);

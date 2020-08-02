@@ -53,7 +53,7 @@ neural_init(const struct XCSF *xcsf, NET *net)
  * @param p The position in the network to insert the layer.
  */
 void
-neural_layer_insert(const struct XCSF *xcsf, NET *net, LAYER *l, int p)
+neural_layer_insert(const struct XCSF *xcsf, NET *net, struct LAYER *l, int p)
 {
     (void) xcsf;
     // empty list
@@ -160,8 +160,8 @@ neural_copy(const struct XCSF *xcsf, NET *dest, const NET *src)
     neural_init(xcsf, dest);
     int p = 0;
     for (const LLIST *iter = src->tail; iter != NULL; iter = iter->prev) {
-        const LAYER *f = iter->layer;
-        LAYER *l = layer_copy(xcsf, f);
+        const struct LAYER *f = iter->layer;
+        struct LAYER *l = layer_copy(xcsf, f);
         neural_layer_insert(xcsf, dest, l, p);
         ++p;
     }
@@ -209,7 +209,7 @@ _Bool
 neural_mutate(const struct XCSF *xcsf, const NET *net)
 {
     _Bool mod = false;
-    const LAYER *prev = NULL;
+    const struct LAYER *prev = NULL;
     _Bool do_resize = false;
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         // if the previous layer has grown or shrunk this layer must be resized
@@ -239,7 +239,7 @@ neural_mutate(const struct XCSF *xcsf, const NET *net)
 void
 neural_resize(const struct XCSF *xcsf, const NET *net)
 {
-    const LAYER *prev = NULL;
+    const struct LAYER *prev = NULL;
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         if (prev != NULL && iter->layer->n_inputs != prev->n_outputs) {
             layer_resize(xcsf, iter->layer, prev);
@@ -279,17 +279,17 @@ neural_learn(const struct XCSF *xcsf, const NET *net, const double *truth,
         memset(iter->layer->delta, 0, sizeof(double) * iter->layer->n_outputs);
     }
     // calculate output layer error
-    const LAYER *p = net->head->layer;
+    const struct LAYER *p = net->head->layer;
     for (int i = 0; i < p->n_outputs; ++i) {
         p->delta[i] = (truth[i] - p->output[i]);
     }
     /* backward phase */
     for (const LLIST *iter = net->head; iter != NULL; iter = iter->next) {
-        const LAYER *l = iter->layer;
+        const struct LAYER *l = iter->layer;
         if (iter->next == NULL) {
             layer_backward(xcsf, l, input, 0);
         } else {
-            const LAYER *prev = iter->next->layer;
+            const struct LAYER *prev = iter->next->layer;
             layer_backward(xcsf, l, prev->output, prev->delta);
         }
     }
@@ -401,7 +401,7 @@ neural_load(const struct XCSF *xcsf, NET *net, FILE *fp)
     s += fread(&noutputs, sizeof(int), 1, fp);
     neural_init(xcsf, net);
     for (int i = 0; i < nlayers; ++i) {
-        LAYER *l = malloc(sizeof(LAYER));
+        struct LAYER *l = malloc(sizeof(LAYER));
         s += fread(&l->layer_type, sizeof(int), 1, fp);
         layer_set_vptr(l);
         s += layer_load(xcsf, l, fp);

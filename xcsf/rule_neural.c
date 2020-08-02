@@ -41,7 +41,7 @@ rule_neural_cond_init(const struct XCSF *xcsf, struct CL *c)
     neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = rule_neural_lopt(xcsf);
-    LAYER *l;
+    struct LAYER *l;
     int i = 0;
     int n_inputs = xcsf->x_dim;
     while (i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0) {

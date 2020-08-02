@@ -26,45 +26,46 @@
 #include "neural_layer.h"
 #include "xcsf.h"
 
-LAYER *
+struct LAYER *
 neural_layer_softmax_init(const struct XCSF *xcsf, int n_inputs,
                           double temperature);
-LAYER *
-neural_layer_softmax_copy(const struct XCSF *xcsf, const LAYER *src);
+struct LAYER *
+neural_layer_softmax_copy(const struct XCSF *xcsf, const struct LAYER *src);
 
 void
-neural_layer_softmax_rand(const struct XCSF *xcsf, LAYER *l);
+neural_layer_softmax_rand(const struct XCSF *xcsf, struct LAYER *l);
 
 void
-neural_layer_softmax_forward(const struct XCSF *xcsf, const LAYER *l,
+neural_layer_softmax_forward(const struct XCSF *xcsf, const struct LAYER *l,
                              const double *input);
 void
-neural_layer_softmax_backward(const struct XCSF *xcsf, const LAYER *l,
+neural_layer_softmax_backward(const struct XCSF *xcsf, const struct LAYER *l,
                               const double *input, double *delta);
 void
-neural_layer_softmax_update(const struct XCSF *xcsf, const LAYER *l);
+neural_layer_softmax_update(const struct XCSF *xcsf, const struct LAYER *l);
 
 void
-neural_layer_softmax_print(const struct XCSF *xcsf, const LAYER *l,
+neural_layer_softmax_print(const struct XCSF *xcsf, const struct LAYER *l,
                            _Bool print_weights);
 _Bool
-neural_layer_softmax_mutate(const struct XCSF *xcsf, LAYER *l);
+neural_layer_softmax_mutate(const struct XCSF *xcsf, struct LAYER *l);
 
 void
-neural_layer_softmax_free(const struct XCSF *xcsf, const LAYER *l);
+neural_layer_softmax_free(const struct XCSF *xcsf, const struct LAYER *l);
 
 double *
-neural_layer_softmax_output(const struct XCSF *xcsf, const LAYER *l);
+neural_layer_softmax_output(const struct XCSF *xcsf, const struct LAYER *l);
 
 size_t
-neural_layer_softmax_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp);
+neural_layer_softmax_save(const struct XCSF *xcsf, const struct LAYER *l,
+                          FILE *fp);
 
 size_t
-neural_layer_softmax_load(const struct XCSF *xcsf, LAYER *l, FILE *fp);
+neural_layer_softmax_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp);
 
 void
-neural_layer_softmax_resize(const struct XCSF *xcsf, LAYER *l,
-                            const LAYER *prev);
+neural_layer_softmax_resize(const struct XCSF *xcsf, struct LAYER *l,
+                            const struct LAYER *prev);
 
 static struct LayerVtbl const layer_softmax_vtbl = {
     &neural_layer_softmax_mutate,  &neural_layer_softmax_resize,

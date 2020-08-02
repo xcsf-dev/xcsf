@@ -30,7 +30,7 @@
 #define N_MU (5) //!< Number of mutation rates applied to a connected layer
 
 static void
-malloc_layer_arrays(LAYER *l);
+malloc_layer_arrays(struct LAYER *l);
 
 /**
  * @brief Creates and initialises a fully-connected layer.
@@ -42,11 +42,11 @@ malloc_layer_arrays(LAYER *l);
  * @param o The bitwise options specifying which operations can be performed.
  * @return A pointer to the new layer.
  */
-LAYER *
+struct LAYER *
 neural_layer_connected_init(const struct XCSF *xcsf, int n_inputs, int n_init,
                             int n_max, int f, uint32_t o)
 {
-    LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = CONNECTED;
     l->layer_vptr = &layer_connected_vtbl;
@@ -70,7 +70,7 @@ neural_layer_connected_init(const struct XCSF *xcsf, int n_inputs, int n_init,
 }
 
 static void
-malloc_layer_arrays(LAYER *l)
+malloc_layer_arrays(struct LAYER *l)
 {
     if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
         l->n_weights > N_WEIGHTS_MAX) {
@@ -91,7 +91,7 @@ malloc_layer_arrays(LAYER *l)
 }
 
 void
-neural_layer_connected_free(const struct XCSF *xcsf, const LAYER *l)
+neural_layer_connected_free(const struct XCSF *xcsf, const struct LAYER *l)
 {
     (void) xcsf;
     free(l->state);
@@ -105,11 +105,11 @@ neural_layer_connected_free(const struct XCSF *xcsf, const LAYER *l)
     free(l->mu);
 }
 
-LAYER *
-neural_layer_connected_copy(const struct XCSF *xcsf, const LAYER *src)
+struct LAYER *
+neural_layer_connected_copy(const struct XCSF *xcsf, const struct LAYER *src)
 {
     (void) xcsf;
-    LAYER *l = malloc(sizeof(LAYER));
+    struct LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
@@ -132,13 +132,13 @@ neural_layer_connected_copy(const struct XCSF *xcsf, const LAYER *src)
 }
 
 void
-neural_layer_connected_rand(const struct XCSF *xcsf, LAYER *l)
+neural_layer_connected_rand(const struct XCSF *xcsf, struct LAYER *l)
 {
     layer_weight_rand(xcsf, l);
 }
 
 void
-neural_layer_connected_forward(const struct XCSF *xcsf, const LAYER *l,
+neural_layer_connected_forward(const struct XCSF *xcsf, const struct LAYER *l,
                                const double *input)
 {
     (void) xcsf;
@@ -153,7 +153,7 @@ neural_layer_connected_forward(const struct XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_connected_backward(const struct XCSF *xcsf, const LAYER *l,
+neural_layer_connected_backward(const struct XCSF *xcsf, const struct LAYER *l,
                                 const double *input, double *delta)
 {
     (void) xcsf;
@@ -178,7 +178,7 @@ neural_layer_connected_backward(const struct XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_connected_update(const struct XCSF *xcsf, const LAYER *l)
+neural_layer_connected_update(const struct XCSF *xcsf, const struct LAYER *l)
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
         blas_axpy(l->n_biases, l->eta, l->bias_updates, 1, l->biases, 1);
@@ -190,8 +190,8 @@ neural_layer_connected_update(const struct XCSF *xcsf, const LAYER *l)
 }
 
 void
-neural_layer_connected_resize(const struct XCSF *xcsf, LAYER *l,
-                              const LAYER *prev)
+neural_layer_connected_resize(const struct XCSF *xcsf, struct LAYER *l,
+                              const struct LAYER *prev)
 {
     (void) xcsf;
     int n_weights = prev->n_outputs * l->n_outputs;
@@ -225,7 +225,7 @@ neural_layer_connected_resize(const struct XCSF *xcsf, LAYER *l,
 }
 
 _Bool
-neural_layer_connected_mutate(const struct XCSF *xcsf, LAYER *l)
+neural_layer_connected_mutate(const struct XCSF *xcsf, struct LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
@@ -256,14 +256,14 @@ neural_layer_connected_mutate(const struct XCSF *xcsf, LAYER *l)
 }
 
 double *
-neural_layer_connected_output(const struct XCSF *xcsf, const LAYER *l)
+neural_layer_connected_output(const struct XCSF *xcsf, const struct LAYER *l)
 {
     (void) xcsf;
     return l->output;
 }
 
 void
-neural_layer_connected_print(const struct XCSF *xcsf, const LAYER *l,
+neural_layer_connected_print(const struct XCSF *xcsf, const struct LAYER *l,
                              _Bool print_weights)
 {
     (void) xcsf;
@@ -274,7 +274,8 @@ neural_layer_connected_print(const struct XCSF *xcsf, const LAYER *l,
 }
 
 size_t
-neural_layer_connected_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp)
+neural_layer_connected_save(const struct XCSF *xcsf, const struct LAYER *l,
+                            FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;
@@ -297,7 +298,7 @@ neural_layer_connected_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp)
 }
 
 size_t
-neural_layer_connected_load(const struct XCSF *xcsf, LAYER *l, FILE *fp)
+neural_layer_connected_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;
