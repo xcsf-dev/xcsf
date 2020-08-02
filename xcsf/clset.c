@@ -208,11 +208,9 @@ clset_match(struct XCSF *xcsf, const double *x)
 #ifdef PARALLEL_MATCH
     // prepare for parallel processing of matching conditions
     struct CLIST *blist[xcsf->pset.size];
-    int j = 0;
     struct CLIST *iter = xcsf->pset.list;
-    while (iter != NULL) {
-        blist[j] = iter;
-        ++j;
+    for (int i = 0; iter != NULL && i < xcsf->pset.size; i++) {
+        blist[i] = iter;
         iter = iter->next;
     }
 // update current matching conditions setting m flags in parallel
@@ -371,11 +369,9 @@ clset_update(struct XCSF *xcsf, struct SET *set, const double *x,
 {
 #ifdef PARALLEL_UPDATE
     struct CLIST *blist[set->size];
-    int j = 0;
     struct CLIST *iter = set->list;
-    while (iter != NULL && j < set->size) {
-        blist[j] = iter;
-        ++j;
+    for (int i = 0; iter != NULL && i < set->size; i++) {
+        blist[i] = iter;
         iter = iter->next;
     }
 #pragma omp parallel for
