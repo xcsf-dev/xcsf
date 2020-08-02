@@ -85,15 +85,15 @@ env_maze_init(struct XCSF *xcsf, const char *fname)
         }
         // check maximum maze size not exceeded
         if (x > MAX_SIZE || y > MAX_SIZE) {
-            printf("Maze too big to be read. Max size = [%d,%d]\n", MAX_SIZE,
-                   MAX_SIZE);
+            printf("Maze too big. Max size = [%d,%d]\n", MAX_SIZE, MAX_SIZE);
+            fclose(fp);
             exit(EXIT_FAILURE);
         }
     }
     // check if EOF came from an end-of-file or an error
     if (ferror(fp)) {
-        printf("EOF read error: could not open %s. %s.\n", fname,
-               strerror(errno));
+        printf("EOF error: could not open %s. %s.\n", fname, strerror(errno));
+        fclose(fp);
         exit(EXIT_FAILURE);
     }
     env->ysize = y;
