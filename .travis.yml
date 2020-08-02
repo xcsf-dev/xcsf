@@ -74,7 +74,7 @@ script:
       --out-dir bw-output make clean all;
       sonar-scanner;
     elif [[ "${DOXYGEN}" == "ON" ]]; then
-      make docs -j2
+      make doc -j2
     else
       make -j2
     fi
