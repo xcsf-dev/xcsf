@@ -21,23 +21,16 @@
  * @brief Interface for neural network layers.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "utils.h"
 #include "neural_activations.h"
-#include "neural.h"
-#include "neural_layer.h"
 #include "neural_layer_connected.h"
 #include "neural_layer_convolutional.h"
 #include "neural_layer_dropout.h"
+#include "neural_layer_lstm.h"
+#include "neural_layer_maxpool.h"
 #include "neural_layer_noise.h"
 #include "neural_layer_recurrent.h"
-#include "neural_layer_lstm.h"
 #include "neural_layer_softmax.h"
-#include "neural_layer_maxpool.h"
+#include "utils.h"
 
 /**
  * @brief Sets a neural network layer's functions to the implementations.
@@ -85,7 +78,7 @@ layer_set_vptr(LAYER *l)
  * @return Whether any alterations were made.
  */
 _Bool
-layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
+layer_mutate_eta(const struct XCSF *xcsf, LAYER *l, double mu)
 {
     double orig = l->eta;
     l->eta += rand_normal(0, mu);
@@ -105,7 +98,7 @@ layer_mutate_eta(const XCSF *xcsf, LAYER *l, double mu)
  * @return The number of neurons to be added or removed.
  */
 int
-layer_mutate_neurons(const XCSF *xcsf, const LAYER *l, double mu)
+layer_mutate_neurons(const struct XCSF *xcsf, const LAYER *l, double mu)
 {
     int n = (int) round(((2 * mu) - 1) * xcsf->MAX_NEURON_GROW);
     if (n < 0 && l->n_outputs + n < 1) {
@@ -175,7 +168,7 @@ layer_mutate_connectivity(LAYER *l, double mu)
     _Bool mod = false;
     for (int i = 0; i < l->n_weights; ++i) {
         if (rand_uniform(0, 1) < mu) {
-            l->weight_active[i] = ! l->weight_active[i];
+            l->weight_active[i] = !l->weight_active[i];
             if (l->weight_active[i]) {
                 l->weights[i] = rand_normal(0, 0.1);
                 l->n_active += 1;
@@ -285,9 +278,9 @@ layer_weight_print(const LAYER *l, _Bool print_weights)
  * @param l The neural network layer to randomise.
  */
 void
-layer_weight_rand(const XCSF *xcsf, LAYER *l)
+layer_weight_rand(const struct XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     l->n_active = l->n_weights;
     for (int i = 0; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 1);
@@ -338,7 +331,7 @@ layer_calc_n_active(LAYER *l)
  * @param l The layer to initialise.
  */
 void
-layer_init_eta(const XCSF *xcsf, LAYER *l)
+layer_init_eta(const struct XCSF *xcsf, LAYER *l)
 {
     if (l->options & LAYER_EVOLVE_ETA) {
         l->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);

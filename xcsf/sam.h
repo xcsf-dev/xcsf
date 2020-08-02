@@ -23,11 +23,13 @@
 
 #pragma once
 
+#include "xcsf.h"
+
 #define SAM_LOG_NORMAL (0) //!< Log normal self-adaptation
 #define SAM_RATE_SELECT (1) //!< Ten normally distributed rates
 
 void
-sam_adapt(const XCSF *xcsf, double *mu, int n);
+sam_adapt(const struct XCSF *xcsf, double *mu, int n);
 
 void
-sam_init(const XCSF *xcsf, double *mu, int n);
+sam_init(const struct XCSF *xcsf, double *mu, int n);

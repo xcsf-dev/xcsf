@@ -23,26 +23,32 @@
 
 #pragma once
 
+#include "xcsf.h"
+
 void
-prediction_set(const XCSF *xcsf, CL *c);
+prediction_set(const struct XCSF *xcsf, struct CL *c);
 
 /**
  * @brief Prediction interface data structure.
  * @details Prediction implementations must implement these functions.
  */
 struct PredVtbl {
-    _Bool (*pred_impl_crossover)(const XCSF *xcsf, const CL *c1, const CL *c2);
-    _Bool (*pred_impl_mutate)(const XCSF *xcsf, const CL *c);
-    void (*pred_impl_compute)(const XCSF *xcsf, const CL *c, const double *x);
-    void (*pred_impl_copy)(const XCSF *xcsf, CL *dest, const CL *src);
-    void (*pred_impl_free)(const XCSF *xcsf, const CL *c);
-    void (*pred_impl_init)(const XCSF *xcsf, CL *c);
-    void (*pred_impl_print)(const XCSF *xcsf, const CL *c);
-    void (*pred_impl_update)(const XCSF *xcsf, const CL *c, const double *x,
-                             const double *y);
-    int (*pred_impl_size)(const XCSF *xcsf, const CL *c);
-    size_t (*pred_impl_save)(const XCSF *xcsf, const CL *c, FILE *fp);
-    size_t (*pred_impl_load)(const XCSF *xcsf, CL *c, FILE *fp);
+    _Bool (*pred_impl_crossover)(const struct XCSF *xcsf, const struct CL *c1,
+                                 const struct CL *c2);
+    _Bool (*pred_impl_mutate)(const struct XCSF *xcsf, const struct CL *c);
+    void (*pred_impl_compute)(const struct XCSF *xcsf, const struct CL *c,
+                              const double *x);
+    void (*pred_impl_copy)(const struct XCSF *xcsf, struct CL *dest,
+                           const struct CL *src);
+    void (*pred_impl_free)(const struct XCSF *xcsf, const struct CL *c);
+    void (*pred_impl_init)(const struct XCSF *xcsf, struct CL *c);
+    void (*pred_impl_print)(const struct XCSF *xcsf, const struct CL *c);
+    void (*pred_impl_update)(const struct XCSF *xcsf, const struct CL *c,
+                             const double *x, const double *y);
+    int (*pred_impl_size)(const struct XCSF *xcsf, const struct CL *c);
+    size_t (*pred_impl_save)(const struct XCSF *xcsf, const struct CL *c,
+                             FILE *fp);
+    size_t (*pred_impl_load)(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 };
 
 /**
@@ -53,7 +59,7 @@ struct PredVtbl {
  * @return The number of elements written.
  */
 static inline size_t
-pred_save(const XCSF *xcsf, const CL *c, FILE *fp)
+pred_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
     return (*c->pred_vptr->pred_impl_save)(xcsf, c, fp);
 }
@@ -66,7 +72,7 @@ pred_save(const XCSF *xcsf, const CL *c, FILE *fp)
  * @return The number of elements read.
  */
 static inline size_t
-pred_load(const XCSF *xcsf, CL *c, FILE *fp)
+pred_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
     return (*c->pred_vptr->pred_impl_load)(xcsf, c, fp);
 }
@@ -78,7 +84,7 @@ pred_load(const XCSF *xcsf, CL *c, FILE *fp)
  * @return The size of the prediction.
  */
 static inline int
-pred_size(const XCSF *xcsf, const CL *c)
+pred_size(const struct XCSF *xcsf, const struct CL *c)
 {
     return (*c->pred_vptr->pred_impl_size)(xcsf, c);
 }
@@ -91,7 +97,8 @@ pred_size(const XCSF *xcsf, const CL *c)
  * @return Whether any alterations were made.
  */
 static inline _Bool
-pred_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+pred_crossover(const struct XCSF *xcsf, const struct CL *c1,
+               const struct CL *c2)
 {
     return (*c1->pred_vptr->pred_impl_crossover)(xcsf, c1, c2);
 }
@@ -103,7 +110,7 @@ pred_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
  * @return Whether any alterations were made.
  */
 static inline _Bool
-pred_mutate(const XCSF *xcsf, const CL *c)
+pred_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
     return (*c->pred_vptr->pred_impl_mutate)(xcsf, c);
 }
@@ -115,7 +122,7 @@ pred_mutate(const XCSF *xcsf, const CL *c)
  * @param x The input state.
  */
 static inline void
-pred_compute(const XCSF *xcsf, const CL *c, const double *x)
+pred_compute(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
     (*c->pred_vptr->pred_impl_compute)(xcsf, c, x);
 }
@@ -127,7 +134,7 @@ pred_compute(const XCSF *xcsf, const CL *c, const double *x)
  * @param src The source classifier.
  */
 static inline void
-pred_copy(const XCSF *xcsf, CL *dest, const CL *src)
+pred_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 {
     (*src->pred_vptr->pred_impl_copy)(xcsf, dest, src);
 }
@@ -138,7 +145,7 @@ pred_copy(const XCSF *xcsf, CL *dest, const CL *src)
  * @param c The classifier whose prediction is to be freed.
  */
 static inline void
-pred_free(const XCSF *xcsf, const CL *c)
+pred_free(const struct XCSF *xcsf, const struct CL *c)
 {
     (*c->pred_vptr->pred_impl_free)(xcsf, c);
 }
@@ -149,7 +156,7 @@ pred_free(const XCSF *xcsf, const CL *c)
  * @param c The classifier whose prediction is to be initialised.
  */
 static inline void
-pred_init(const XCSF *xcsf, CL *c)
+pred_init(const struct XCSF *xcsf, struct CL *c)
 {
     (*c->pred_vptr->pred_impl_init)(xcsf, c);
 }
@@ -160,7 +167,7 @@ pred_init(const XCSF *xcsf, CL *c)
  * @param c The classifier whose prediction is to be printed.
  */
 static inline void
-pred_print(const XCSF *xcsf, const CL *c)
+pred_print(const struct XCSF *xcsf, const struct CL *c)
 {
     (*c->pred_vptr->pred_impl_print)(xcsf, c);
 }
@@ -174,7 +181,8 @@ pred_print(const XCSF *xcsf, const CL *c)
  * @param y The payoff value.
  */
 static inline void
-pred_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+pred_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+            const double *y)
 {
     (*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
 }
@@ -186,7 +194,8 @@ pred_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
  * @param tmp_input The transformed input (set by this function).
  */
 static inline void
-pred_transform_input(const XCSF *xcsf, const double *x, double *tmp_input)
+pred_transform_input(const struct XCSF *xcsf, const double *x,
+                     double *tmp_input)
 {
     // bias term
     tmp_input[0] = xcsf->PRED_X0;
@@ -197,8 +206,8 @@ pred_transform_input(const XCSF *xcsf, const double *x, double *tmp_input)
         ++idx;
     }
     // quadratic terms
-    if (xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC
-        || xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
+    if (xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC ||
+        xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
         for (int i = 0; i < xcsf->x_dim; ++i) {
             for (int j = i; j < xcsf->x_dim; ++j) {
                 tmp_input[idx] = x[i] * x[j];

@@ -18,19 +18,13 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
- * @brief An implementation of dynamical GP graphs with fuzzy activation functions.
+ * @brief An implementation of dynamical GP graphs with fuzzy activation
+ * functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <limits.h>
-#include <math.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "sam.h"
 #include "dgp.h"
+#include "sam.h"
+#include "utils.h"
 
 #define NUM_FUNC (3) //!< Number of selectable node functions
 
@@ -41,19 +35,20 @@ static double
 node_activate(int function, const double *inputs, int k);
 
 static void
-synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs);
+synchronous_update(const struct XCSF *xcsf, const GRAPH *dgp,
+                   const double *inputs);
 
 static int
 random_connection(int n_nodes, int n_inputs);
 
 static _Bool
-graph_mutate_functions(const XCSF *xcsf, GRAPH *dgp);
+graph_mutate_functions(const struct XCSF *xcsf, GRAPH *dgp);
 
 static _Bool
-graph_mutate_connectivity(const XCSF *xcsf, GRAPH *dgp);
+graph_mutate_connectivity(const struct XCSF *xcsf, GRAPH *dgp);
 
 static _Bool
-graph_mutate_cycles(const XCSF *xcsf, GRAPH *dgp);
+graph_mutate_cycles(const struct XCSF *xcsf, GRAPH *dgp);
 
 /**
  * @brief Initialises a new DGP graph.
@@ -62,7 +57,7 @@ graph_mutate_cycles(const XCSF *xcsf, GRAPH *dgp);
  * @param N The number of nodes in the graph.
  */
 void
-graph_init(const XCSF *xcsf, GRAPH *dgp, int N)
+graph_init(const struct XCSF *xcsf, GRAPH *dgp, int N)
 {
     dgp->t = 0;
     dgp->n = N;
@@ -83,9 +78,9 @@ graph_init(const XCSF *xcsf, GRAPH *dgp, int N)
  * @param src The source DGP graph.
  */
 void
-graph_copy(const XCSF *xcsf, GRAPH *dest, const GRAPH *src)
+graph_copy(const struct XCSF *xcsf, GRAPH *dest, const GRAPH *src)
 {
-    (void)xcsf;
+    (void) xcsf;
     dest->t = src->t;
     dest->n = src->n;
     dest->klen = src->klen;
@@ -104,9 +99,9 @@ graph_copy(const XCSF *xcsf, GRAPH *dest, const GRAPH *src)
  * @return The current state of the specified node.
  */
 double
-graph_output(const XCSF *xcsf, const GRAPH *dgp, int IDX)
+graph_output(const struct XCSF *xcsf, const GRAPH *dgp, int IDX)
 {
-    (void)xcsf;
+    (void) xcsf;
     return dgp->state[IDX];
 }
 
@@ -116,9 +111,9 @@ graph_output(const XCSF *xcsf, const GRAPH *dgp, int IDX)
  * @param dgp The DGP graph to reset.
  */
 void
-graph_reset(const XCSF *xcsf, const GRAPH *dgp)
+graph_reset(const struct XCSF *xcsf, const GRAPH *dgp)
 {
-    (void)xcsf;
+    (void) xcsf;
     for (int i = 0; i < dgp->n; ++i) {
         dgp->state[i] = dgp->initial_state[i];
     }
@@ -130,7 +125,7 @@ graph_reset(const XCSF *xcsf, const GRAPH *dgp)
  * @param dgp The DGP graph to randomise.
  */
 void
-graph_rand(const XCSF *xcsf, GRAPH *dgp)
+graph_rand(const struct XCSF *xcsf, GRAPH *dgp)
 {
     dgp->t = irand_uniform(1, xcsf->MAX_T);
     for (int i = 0; i < dgp->n; ++i) {
@@ -166,7 +161,7 @@ random_connection(int n_nodes, int n_inputs)
  * @param inputs The inputs to the graph.
  */
 void
-graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
+graph_update(const struct XCSF *xcsf, const GRAPH *dgp, const double *inputs)
 {
     if (!xcsf->STATEFUL) {
         graph_reset(xcsf, dgp);
@@ -183,7 +178,8 @@ graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
  * @param inputs The inputs to the graph.
  */
 static void
-synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
+synchronous_update(const struct XCSF *xcsf, const GRAPH *dgp,
+                   const double *inputs)
 {
     for (int i = 0; i < dgp->n; ++i) {
         for (int k = 0; k < xcsf->MAX_K; ++k) {
@@ -194,8 +190,8 @@ synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
                 dgp->tmp_input[k] = dgp->state[c - xcsf->x_dim];
             }
         }
-        dgp->tmp_state[i] = node_activate(dgp->function[i], dgp->tmp_input,
-                                          xcsf->MAX_K);
+        dgp->tmp_state[i] =
+            node_activate(dgp->function[i], dgp->tmp_input, xcsf->MAX_K);
     }
     memcpy(dgp->state, dgp->tmp_state, sizeof(double) * dgp->n);
 }
@@ -206,13 +202,13 @@ synchronous_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs)
  * @param dgp The DGP graph to print.
  */
 void
-graph_print(const XCSF *xcsf, const GRAPH *dgp)
+graph_print(const struct XCSF *xcsf, const GRAPH *dgp)
 {
     printf("Graph: N=%d; T=%d\n", dgp->n, dgp->t);
     for (int i = 0; i < dgp->n; ++i) {
-        printf("Node %d: func=%s state=%f init_state=%f con=[",
-               i, function_string(dgp->function[i]),
-               dgp->state[i], dgp->initial_state[i]);
+        printf("Node %d: func=%s state=%f init_state=%f con=[", i,
+               function_string(dgp->function[i]), dgp->state[i],
+               dgp->initial_state[i]);
         printf("%d", dgp->connectivity[0]);
         for (int j = 1; j < xcsf->MAX_K; ++j) {
             printf(",%d", dgp->connectivity[i]);
@@ -227,9 +223,9 @@ graph_print(const XCSF *xcsf, const GRAPH *dgp)
  * @param dgp The DGP graph to be freed.
  */
 void
-graph_free(const XCSF *xcsf, const GRAPH *dgp)
+graph_free(const struct XCSF *xcsf, const GRAPH *dgp)
 {
-    (void)xcsf;
+    (void) xcsf;
     free(dgp->connectivity);
     free(dgp->state);
     free(dgp->initial_state);
@@ -245,7 +241,7 @@ graph_free(const XCSF *xcsf, const GRAPH *dgp)
  * @return Whether any alterations were made.
  */
 _Bool
-graph_mutate(const XCSF *xcsf, GRAPH *dgp)
+graph_mutate(const struct XCSF *xcsf, GRAPH *dgp)
 {
     _Bool mod = false;
     sam_adapt(xcsf, dgp->mu, DGP_N_MU);
@@ -268,9 +264,9 @@ graph_mutate(const XCSF *xcsf, GRAPH *dgp)
  * @return Whether any alterations were made.
  */
 static _Bool
-graph_mutate_functions(const XCSF *xcsf, GRAPH *dgp)
+graph_mutate_functions(const struct XCSF *xcsf, GRAPH *dgp)
 {
-    (void)xcsf;
+    (void) xcsf;
     _Bool mod = false;
     for (int i = 0; i < dgp->n; ++i) {
         if (rand_uniform(0, 1) < dgp->mu[0]) {
@@ -291,7 +287,7 @@ graph_mutate_functions(const XCSF *xcsf, GRAPH *dgp)
  * @return Whether any alterations were made.
  */
 static _Bool
-graph_mutate_connectivity(const XCSF *xcsf, GRAPH *dgp)
+graph_mutate_connectivity(const struct XCSF *xcsf, GRAPH *dgp)
 {
     _Bool mod = false;
     for (int i = 0; i < dgp->klen; ++i) {
@@ -313,7 +309,7 @@ graph_mutate_connectivity(const XCSF *xcsf, GRAPH *dgp)
  * @return Whether any alterations were made.
  */
 static _Bool
-graph_mutate_cycles(const XCSF *xcsf, GRAPH *dgp)
+graph_mutate_cycles(const struct XCSF *xcsf, GRAPH *dgp)
 {
     int n = (int) round((2 * dgp->mu[2]) - 1);
     if (dgp->t + n < 1 || dgp->t + n > xcsf->MAX_T) {
@@ -331,11 +327,11 @@ graph_mutate_cycles(const XCSF *xcsf, GRAPH *dgp)
  * @return Whether crossover was performed.
  */
 _Bool
-graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
+graph_crossover(const struct XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2)
 {
-    (void)xcsf;
-    (void)dgp1;
-    (void)dgp2;
+    (void) xcsf;
+    (void) dgp1;
+    (void) dgp2;
     return false;
 }
 
@@ -403,9 +399,9 @@ function_string(int function)
  * @return The number of elements written.
  */
 size_t
-graph_save(const XCSF *xcsf, const GRAPH *dgp, FILE *fp)
+graph_save(const struct XCSF *xcsf, const GRAPH *dgp, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     s += fwrite(&dgp->n, sizeof(int), 1, fp);
     s += fwrite(&dgp->t, sizeof(int), 1, fp);
@@ -426,9 +422,9 @@ graph_save(const XCSF *xcsf, const GRAPH *dgp, FILE *fp)
  * @return The number of elements written.
  */
 size_t
-graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp)
+graph_load(const struct XCSF *xcsf, GRAPH *dgp, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     s += fread(&dgp->n, sizeof(int), 1, fp);
     s += fread(&dgp->t, sizeof(int), 1, fp);

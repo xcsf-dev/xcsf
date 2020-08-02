@@ -21,58 +21,51 @@
  * @brief Configuration file handling functions.
  */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <inttypes.h>
-#include <errno.h>
-#include "xcsf.h"
-#include "param.h"
 #include "config.h"
+#include "param.h"
 
 #define ARRAY_DELIM (",") //!< Delimeter for config arrays
 #define MAXLEN (127) //!< Maximum config file line length to read
 #define BASE (10) //!< Decimal numbers
 
 static void
-config_add_param(XCSF *xcsf, const char *name, char *value);
+config_add_param(struct XCSF *xcsf, const char *name, char *value);
 
 static void
 config_get_ints(char *str, int *val);
 
 static void
-config_newnvpair(XCSF *xcsf, const char *param);
+config_newnvpair(struct XCSF *xcsf, const char *param);
 
 static void
-config_process(XCSF *xcsf, const char *configline);
+config_process(struct XCSF *xcsf, const char *configline);
 
 static void
 config_trim(char *s);
 
 static void
-config_cl_act(XCSF *xcsf, const char *n, char *v, int i, double f);
+config_cl_act(struct XCSF *xcsf, const char *n, char *v, int i, double f);
 
 static void
-config_cl_gen(XCSF *xcsf, const char *n, char *v, int i, double f);
+config_cl_gen(struct XCSF *xcsf, const char *n, char *v, int i, double f);
 
 static void
-config_ea(XCSF *xcsf, const char *n, char *v, int i, double f);
+config_ea(struct XCSF *xcsf, const char *n, char *v, int i, double f);
 
 static void
-config_general(XCSF *xcsf, const char *n, char *v, int i, double f);
+config_general(struct XCSF *xcsf, const char *n, char *v, int i, double f);
 
 static void
-config_multi(XCSF *xcsf, const char *n, char *v, int i, double f);
+config_multi(struct XCSF *xcsf, const char *n, char *v, int i, double f);
 
 static void
-config_subsump(XCSF *xcsf, const char *n, char *v, int i, double f);
+config_subsump(struct XCSF *xcsf, const char *n, char *v, int i, double f);
 
 static void
-config_cl_cond(XCSF *xcsf, const char *n, char *v, int i, double f);
+config_cl_cond(struct XCSF *xcsf, const char *n, char *v, int i, double f);
 
 static void
-config_cl_pred(XCSF *xcsf, const char *n, char *v, int i, double f);
+config_cl_pred(struct XCSF *xcsf, const char *n, char *v, int i, double f);
 
 /**
  * @brief Reads the specified configuration file.
@@ -80,7 +73,7 @@ config_cl_pred(XCSF *xcsf, const char *n, char *v, int i, double f);
  * @param filename The name of the configuration file.
  */
 void
-config_read(XCSF *xcsf, const char *filename)
+config_read(struct XCSF *xcsf, const char *filename)
 {
     FILE *f = fopen(filename, "rt");
     if (f == NULL) {
@@ -105,7 +98,7 @@ config_read(XCSF *xcsf, const char *filename)
  * @param value Parameter value.
  */
 static void
-config_add_param(XCSF *xcsf, const char *name, char *value)
+config_add_param(struct XCSF *xcsf, const char *name, char *value)
 {
     int i;
     char *end;
@@ -137,10 +130,10 @@ config_add_param(XCSF *xcsf, const char *name, char *value)
  * @param f Float representation of the parameter value.
  */
 static void
-config_general(XCSF *xcsf, const char *n, char *v, int i, double f)
+config_general(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    (void)v;
-    (void)f;
+    (void) v;
+    (void) f;
     if (strncmp(n, "OMP_NUM_THREADS", 16) == 0) {
         param_set_omp_num_threads(xcsf, i);
     } else if (strncmp(n, "POP_SIZE", 9) == 0) {
@@ -165,9 +158,9 @@ config_general(XCSF *xcsf, const char *n, char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_multi(XCSF *xcsf, const char *n, char *v, int i, double f)
+config_multi(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    (void)v;
+    (void) v;
     if (strncmp(n, "TELETRANSPORTATION", 19) == 0) {
         param_set_teletransportation(xcsf, i);
     } else if (strncmp(n, "GAMMA", 6) == 0) {
@@ -186,10 +179,10 @@ config_multi(XCSF *xcsf, const char *n, char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_subsump(XCSF *xcsf, const char *n, char *v, int i, double f)
+config_subsump(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    (void)v;
-    (void)f;
+    (void) v;
+    (void) f;
     if (strncmp(n, "EA_SUBSUMPTION", 15) == 0) {
         param_set_ea_subsumption(xcsf, i);
     } else if (strncmp(n, "SET_SUBSUMPTION", 16) == 0) {
@@ -208,9 +201,9 @@ config_subsump(XCSF *xcsf, const char *n, char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_ea(XCSF *xcsf, const char *n, char *v, int i, double f)
+config_ea(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    (void)v;
+    (void) v;
     if (strncmp(n, "EA_SELECT_TYPE", 15) == 0) {
         param_set_ea_select_type(xcsf, i);
     } else if (strncmp(n, "EA_SELECT_SIZE", 15) == 0) {
@@ -235,9 +228,9 @@ config_ea(XCSF *xcsf, const char *n, char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_cl_gen(XCSF *xcsf, const char *n, char *v, int i, double f)
+config_cl_gen(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    (void)v;
+    (void) v;
     if (strncmp(n, "ALPHA", 6) == 0) {
         param_set_alpha(xcsf, f);
     } else if (strncmp(n, "BETA", 5) == 0) {
@@ -274,7 +267,7 @@ config_cl_gen(XCSF *xcsf, const char *n, char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_cl_cond(XCSF *xcsf, const char *n, char *v, int i, double f)
+config_cl_cond(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     if (strncmp(n, "COND_MIN", 9) == 0) {
         param_set_cond_min(xcsf, f);
@@ -326,7 +319,7 @@ config_cl_cond(XCSF *xcsf, const char *n, char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_cl_pred(XCSF *xcsf, const char *n, char *v, int i, double f)
+config_cl_pred(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     if (strncmp(n, "PRED_TYPE", 10) == 0) {
         param_set_pred_type(xcsf, i);
@@ -374,10 +367,10 @@ config_cl_pred(XCSF *xcsf, const char *n, char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_cl_act(XCSF *xcsf, const char *n, char *v, int i, double f)
+config_cl_act(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    (void)v;
-    (void)f;
+    (void) v;
+    (void) f;
     if (strncmp(n, "ACT_TYPE", 9) == 0) {
         param_set_act_type(xcsf, i);
     }
@@ -423,7 +416,7 @@ config_trim(char *s)
  * @param param The parameter to add.
  */
 static void
-config_newnvpair(XCSF *xcsf, const char *param)
+config_newnvpair(struct XCSF *xcsf, const char *param)
 {
     // get length of name
     size_t namelen = 0;
@@ -463,7 +456,7 @@ config_newnvpair(XCSF *xcsf, const char *param)
  * @param configline A single line of the configuration file.
  */
 static void
-config_process(XCSF *xcsf, const char *configline)
+config_process(struct XCSF *xcsf, const char *configline)
 {
     // ignore empty lines
     if (strnlen(configline, MAXLEN) == 0) {

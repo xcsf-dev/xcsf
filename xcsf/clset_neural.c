@@ -21,20 +21,13 @@
  * @brief Functions operating on sets of neural classifiers.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <float.h>
-#include <string.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "condition.h"
-#include "prediction.h"
-#include "neural.h"
-#include "cond_neural.h"
-#include "pred_neural.h"
-#include "cl.h"
 #include "clset_neural.h"
+#include "cl.h"
+#include "cond_neural.h"
+#include "condition.h"
+#include "pred_neural.h"
+#include "prediction.h"
+#include "utils.h"
 
 /**
  * @brief Calculates the mean number of condition layers in the set.
@@ -43,13 +36,14 @@
  * @return The mean number of layers.
  */
 double
-clset_mean_cond_layers(const XCSF *xcsf, const SET *set)
+clset_mean_cond_layers(const struct XCSF *xcsf, const struct SET *set)
 {
     int sum = 0;
     int cnt = 0;
-    if (xcsf->COND_TYPE == COND_TYPE_NEURAL
-        || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
-        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    if (xcsf->COND_TYPE == COND_TYPE_NEURAL ||
+        xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
+        for (const struct CLIST *iter = set->list; iter != NULL;
+             iter = iter->next) {
             sum += cond_neural_layers(xcsf, iter->cl);
             ++cnt;
         }
@@ -67,13 +61,15 @@ clset_mean_cond_layers(const XCSF *xcsf, const SET *set)
  * @return The mean number of neurons in the layer.
  */
 double
-clset_mean_cond_neurons(const XCSF *xcsf, const SET *set, int layer)
+clset_mean_cond_neurons(const struct XCSF *xcsf, const struct SET *set,
+                        int layer)
 {
     int sum = 0;
     int cnt = 0;
-    if (xcsf->COND_TYPE == COND_TYPE_NEURAL
-        || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
-        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    if (xcsf->COND_TYPE == COND_TYPE_NEURAL ||
+        xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
+        for (const struct CLIST *iter = set->list; iter != NULL;
+             iter = iter->next) {
             sum += cond_neural_neurons(xcsf, iter->cl, layer);
             ++cnt;
         }
@@ -92,13 +88,15 @@ clset_mean_cond_neurons(const XCSF *xcsf, const SET *set, int layer)
  * @return The mean number of connections in the layer.
  */
 double
-clset_mean_cond_connections(const XCSF *xcsf, const SET *set, int layer)
+clset_mean_cond_connections(const struct XCSF *xcsf, const struct SET *set,
+                            int layer)
 {
     int sum = 0;
     int cnt = 0;
-    if (xcsf->COND_TYPE == COND_TYPE_NEURAL
-        || xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
-        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    if (xcsf->COND_TYPE == COND_TYPE_NEURAL ||
+        xcsf->COND_TYPE == RULE_TYPE_NEURAL) {
+        for (const struct CLIST *iter = set->list; iter != NULL;
+             iter = iter->next) {
             sum += cond_neural_connections(xcsf, iter->cl, layer);
             ++cnt;
         }
@@ -117,12 +115,14 @@ clset_mean_cond_connections(const XCSF *xcsf, const SET *set, int layer)
  * @return The mean number of neurons in the layer.
  */
 double
-clset_mean_pred_neurons(const XCSF *xcsf, const SET *set, int layer)
+clset_mean_pred_neurons(const struct XCSF *xcsf, const struct SET *set,
+                        int layer)
 {
     int sum = 0;
     int cnt = 0;
     if (xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
-        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        for (const struct CLIST *iter = set->list; iter != NULL;
+             iter = iter->next) {
             sum += pred_neural_neurons(xcsf, iter->cl, layer);
             ++cnt;
         }
@@ -140,12 +140,13 @@ clset_mean_pred_neurons(const XCSF *xcsf, const SET *set, int layer)
  * @return The mean number of layers.
  */
 double
-clset_mean_pred_layers(const XCSF *xcsf, const SET *set)
+clset_mean_pred_layers(const struct XCSF *xcsf, const struct SET *set)
 {
     int sum = 0;
     int cnt = 0;
     if (xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
-        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        for (const struct CLIST *iter = set->list; iter != NULL;
+             iter = iter->next) {
             sum += pred_neural_layers(xcsf, iter->cl);
             ++cnt;
         }
@@ -164,12 +165,13 @@ clset_mean_pred_layers(const XCSF *xcsf, const SET *set)
  * @return The mean prediction layer ETA of classifiers in the set.
  */
 double
-clset_mean_pred_eta(const XCSF *xcsf, const SET *set, int layer)
+clset_mean_pred_eta(const struct XCSF *xcsf, const struct SET *set, int layer)
 {
     double sum = 0;
     int cnt = 0;
     if (xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
-        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        for (const struct CLIST *iter = set->list; iter != NULL;
+             iter = iter->next) {
             sum += pred_neural_eta(xcsf, iter->cl, layer);
             ++cnt;
         }
@@ -188,12 +190,14 @@ clset_mean_pred_eta(const XCSF *xcsf, const SET *set, int layer)
  * @return The mean number of connections in the layer.
  */
 double
-clset_mean_pred_connections(const XCSF *xcsf, const SET *set, int layer)
+clset_mean_pred_connections(const struct XCSF *xcsf, const struct SET *set,
+                            int layer)
 {
     int sum = 0;
     int cnt = 0;
     if (xcsf->PRED_TYPE == PRED_TYPE_NEURAL) {
-        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        for (const struct CLIST *iter = set->list; iter != NULL;
+             iter = iter->next) {
             sum += pred_neural_connections(xcsf, iter->cl, layer);
             ++cnt;
         }

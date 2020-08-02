@@ -21,12 +21,9 @@
  * @brief Neural network activation functions.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "neural_layer.h"
 #include "neural_activations.h"
+#include "neural_layer.h"
+#include "utils.h"
 
 /**
  * @brief Returns the result from applying a specified activation function.

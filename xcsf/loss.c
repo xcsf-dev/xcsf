@@ -21,12 +21,6 @@
  * @brief Loss functions for calculating prediction error.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <float.h>
-#include <errno.h>
-#include "xcsf.h"
 #include "loss.h"
 
 /**
@@ -37,7 +31,7 @@
  * @return The mean absolute error.
  */
 double
-loss_mae(const XCSF *xcsf, const double *pred, const double *y)
+loss_mae(const struct XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -55,7 +49,7 @@ loss_mae(const XCSF *xcsf, const double *pred, const double *y)
  * @return The mean squared error.
  */
 double
-loss_mse(const XCSF *xcsf, const double *pred, const double *y)
+loss_mse(const struct XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -73,7 +67,7 @@ loss_mse(const XCSF *xcsf, const double *pred, const double *y)
  * @return The root mean squared error.
  */
 double
-loss_rmse(const XCSF *xcsf, const double *pred, const double *y)
+loss_rmse(const struct XCSF *xcsf, const double *pred, const double *y)
 {
     double error = loss_mse(xcsf, pred, y);
     return sqrt(error);
@@ -88,7 +82,7 @@ loss_rmse(const XCSF *xcsf, const double *pred, const double *y)
  * @return The log error.
  */
 double
-loss_log(const XCSF *xcsf, const double *pred, const double *y)
+loss_log(const struct XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -105,12 +99,12 @@ loss_log(const XCSF *xcsf, const double *pred, const double *y)
  * @return The log error.
  */
 double
-loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
+loss_binary_log(const struct XCSF *xcsf, const double *pred, const double *y)
 {
     double error = 0;
     for (int i = 0; i < xcsf->y_dim; ++i) {
         error += y[i] * log(fmax(pred[i], DBL_EPSILON)) +
-                 (1 - y[i]) * log(fmax((1 - pred[i]), DBL_EPSILON));
+            (1 - y[i]) * log(fmax((1 - pred[i]), DBL_EPSILON));
     }
     return -error;
 }
@@ -123,7 +117,7 @@ loss_binary_log(const XCSF *xcsf, const double *pred, const double *y)
  * @return The one-hot classification error.
  */
 double
-loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
+loss_onehot_acc(const struct XCSF *xcsf, const double *pred, const double *y)
 {
     int p = 0;
     for (int i = 1; i < xcsf->y_dim; ++i) {
@@ -142,7 +136,7 @@ loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y)
  * @param xcsf The XCSF data structure.
  */
 void
-loss_set_func(XCSF *xcsf)
+loss_set_func(struct XCSF *xcsf)
 {
     switch (xcsf->LOSS_FUNC) {
         case LOSS_MAE:

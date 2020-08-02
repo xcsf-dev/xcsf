@@ -23,21 +23,12 @@
  * Typically the output activation is TANH and recurrent activation LOGISTIC.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <limits.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "blas.h"
-#include "sam.h"
-#include "neural_activations.h"
-#include "neural.h"
-#include "neural_layer.h"
-#include "neural_layer_connected.h"
 #include "neural_layer_lstm.h"
+#include "blas.h"
+#include "neural_activations.h"
+#include "neural_layer_connected.h"
+#include "sam.h"
+#include "utils.h"
 
 #define N_MU (5) //!< Number of mutation rates applied to a lstm layer
 
@@ -45,10 +36,10 @@ static _Bool
 mutate_connectivity(LAYER *l);
 
 static _Bool
-mutate_eta(const XCSF *xcsf, LAYER *l);
+mutate_eta(const struct XCSF *xcsf, LAYER *l);
 
 static _Bool
-mutate_neurons(const XCSF *xcsf, LAYER *l);
+mutate_neurons(const struct XCSF *xcsf, LAYER *l);
 
 static _Bool
 mutate_weights(LAYER *l);
@@ -86,8 +77,8 @@ set_layer_n_weights(LAYER *l);
  * @return A pointer to the new layer.
  */
 LAYER *
-neural_layer_lstm_init(const XCSF *xcsf, int n_inputs, int n_init, int n_max,
-                       int f, int rf, uint32_t o)
+neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
+                       int n_max, int f, int rf, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
@@ -99,10 +90,14 @@ neural_layer_lstm_init(const XCSF *xcsf, int n_inputs, int n_init, int n_max,
     l->n_inputs = n_inputs;
     l->n_outputs = n_init;
     l->max_outputs = n_max;
-    l->uf = neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->ui = neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->ug = neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->uo = neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->uf =
+        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->ui =
+        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->ug =
+        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->uo =
+        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
     l->wf = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
     l->wi = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
     l->wg = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
@@ -120,40 +115,25 @@ neural_layer_lstm_init(const XCSF *xcsf, int n_inputs, int n_init, int n_max,
 static void
 set_layer_n_weights(LAYER *l)
 {
-    l->n_weights = l->uf->n_weights
-                   + l->ui->n_weights
-                   + l->ug->n_weights
-                   + l->uo->n_weights
-                   + l->wf->n_weights
-                   + l->wi->n_weights
-                   + l->wg->n_weights
-                   + l->wo->n_weights;
+    l->n_weights = l->uf->n_weights + l->ui->n_weights + l->ug->n_weights +
+        l->uo->n_weights + l->wf->n_weights + l->wi->n_weights +
+        l->wg->n_weights + l->wo->n_weights;
 }
 
 static void
 set_layer_n_biases(LAYER *l)
 {
-    l->n_biases = l->uf->n_biases
-                  + l->ui->n_biases
-                  + l->ug->n_biases
-                  + l->uo->n_biases
-                  + l->wf->n_biases
-                  + l->wi->n_biases
-                  + l->wg->n_biases
-                  + l->wo->n_biases;
+    l->n_biases = l->uf->n_biases + l->ui->n_biases + l->ug->n_biases +
+        l->uo->n_biases + l->wf->n_biases + l->wi->n_biases + l->wg->n_biases +
+        l->wo->n_biases;
 }
 
 static void
 set_layer_n_active(LAYER *l)
 {
-    l->n_active = l->uf->n_active
-                  + l->ui->n_active
-                  + l->ug->n_active
-                  + l->uo->n_active
-                  + l->wf->n_active
-                  + l->wi->n_active
-                  + l->wg->n_active
-                  + l->wo->n_active;
+    l->n_active = l->uf->n_active + l->ui->n_active + l->ug->n_active +
+        l->uo->n_active + l->wf->n_active + l->wi->n_active + l->wg->n_active +
+        l->wo->n_active;
 }
 
 static void
@@ -217,7 +197,7 @@ set_eta(LAYER *l)
 }
 
 LAYER *
-neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src)
+neural_layer_lstm_copy(const struct XCSF *xcsf, const LAYER *src)
 {
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
@@ -248,7 +228,7 @@ neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src)
 }
 
 void
-neural_layer_lstm_free(const XCSF *xcsf, const LAYER *l)
+neural_layer_lstm_free(const struct XCSF *xcsf, const LAYER *l)
 {
     layer_free(xcsf, l->uf);
     layer_free(xcsf, l->ui);
@@ -271,7 +251,7 @@ neural_layer_lstm_free(const XCSF *xcsf, const LAYER *l)
 }
 
 void
-neural_layer_lstm_rand(const XCSF *xcsf, LAYER *l)
+neural_layer_lstm_rand(const struct XCSF *xcsf, LAYER *l)
 {
     layer_rand(xcsf, l->uf);
     layer_rand(xcsf, l->ui);
@@ -284,7 +264,8 @@ neural_layer_lstm_rand(const XCSF *xcsf, LAYER *l)
 }
 
 void
-neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l, const double *input)
+neural_layer_lstm_forward(const struct XCSF *xcsf, const LAYER *l,
+                          const double *input)
 {
     layer_forward(xcsf, l->uf, input);
     layer_forward(xcsf, l->ui, input);
@@ -333,7 +314,7 @@ reset_layer_deltas(const LAYER *l)
 }
 
 void
-neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l,
+neural_layer_lstm_backward(const struct XCSF *xcsf, const LAYER *l,
                            const double *input, double *delta)
 {
     reset_layer_deltas(l);
@@ -379,7 +360,7 @@ neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_lstm_update(const XCSF *xcsf, const LAYER *l)
+neural_layer_lstm_update(const struct XCSF *xcsf, const LAYER *l)
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
         layer_update(xcsf, l->wf);
@@ -394,7 +375,7 @@ neural_layer_lstm_update(const XCSF *xcsf, const LAYER *l)
 }
 
 void
-neural_layer_lstm_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
+neural_layer_lstm_resize(const struct XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
     layer_resize(xcsf, l->uf, prev);
     layer_resize(xcsf, l->ui, prev);
@@ -408,31 +389,27 @@ neural_layer_lstm_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 }
 
 double *
-neural_layer_lstm_output(const XCSF *xcsf, const LAYER *l)
+neural_layer_lstm_output(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     return l->output;
 }
 
 _Bool
-neural_layer_lstm_mutate(const XCSF *xcsf, LAYER *l)
+neural_layer_lstm_mutate(const struct XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
-    if ((l->options & LAYER_EVOLVE_ETA) &&
-        mutate_eta(xcsf, l)) {
+    if ((l->options & LAYER_EVOLVE_ETA) && mutate_eta(xcsf, l)) {
         mod = true;
     }
-    if ((l->options & LAYER_EVOLVE_NEURONS) &&
-        mutate_neurons(xcsf, l)) {
+    if ((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l)) {
         mod = true;
     }
-    if ((l->options & LAYER_EVOLVE_CONNECT) &&
-        mutate_connectivity(l)) {
+    if ((l->options & LAYER_EVOLVE_CONNECT) && mutate_connectivity(l)) {
         mod = true;
     }
-    if ((l->options & LAYER_EVOLVE_WEIGHTS) &&
-        mutate_weights(l)) {
+    if ((l->options & LAYER_EVOLVE_WEIGHTS) && mutate_weights(l)) {
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_FUNCTIONS) &&
@@ -443,7 +420,7 @@ neural_layer_lstm_mutate(const XCSF *xcsf, LAYER *l)
 }
 
 static _Bool
-mutate_eta(const XCSF *xcsf, LAYER *l)
+mutate_eta(const struct XCSF *xcsf, LAYER *l)
 {
     if (layer_mutate_eta(xcsf, l->uf, l->mu[0])) {
         set_eta(l);
@@ -453,7 +430,7 @@ mutate_eta(const XCSF *xcsf, LAYER *l)
 }
 
 static _Bool
-mutate_neurons(const XCSF *xcsf, LAYER *l)
+mutate_neurons(const struct XCSF *xcsf, LAYER *l)
 {
     int n = layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
     if (n != 0) {
@@ -512,12 +489,13 @@ mutate_weights(LAYER *l)
 }
 
 void
-neural_layer_lstm_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
+neural_layer_lstm_print(const struct XCSF *xcsf, const LAYER *l,
+                        _Bool print_weights)
 {
     printf("lstm, f = %s, rf = %s,  in = %d, out = %d\n",
            neural_activation_string(l->function),
-           neural_activation_string(l->recurrent_function),
-           l->n_inputs, l->n_outputs);
+           neural_activation_string(l->recurrent_function), l->n_inputs,
+           l->n_outputs);
     if (print_weights) {
         printf("uf layer:\n");
         layer_print(xcsf, l->uf, print_weights);
@@ -539,7 +517,7 @@ neural_layer_lstm_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
 }
 
 size_t
-neural_layer_lstm_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
+neural_layer_lstm_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
@@ -576,7 +554,7 @@ neural_layer_lstm_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 }
 
 size_t
-neural_layer_lstm_load(const XCSF *xcsf, LAYER *l, FILE *fp)
+neural_layer_lstm_load(const struct XCSF *xcsf, LAYER *l, FILE *fp)
 {
     size_t s = 0;
     layer_init(l);

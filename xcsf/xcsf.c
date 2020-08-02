@@ -21,20 +21,10 @@
  * @brief System-level functions for initialising, saving, loading, etc.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <errno.h>
-#include "xcsf.h"
-#include "param.h"
 #include "clset.h"
-#include "pa.h"
-#include "cl.h"
-#include "neural.h"
-#include "prediction.h"
-#include "condition.h"
 #include "cond_neural.h"
+#include "pa.h"
+#include "param.h"
 #include "pred_neural.h"
 
 /**
@@ -42,7 +32,7 @@
  * @param xcsf The XCSF data structure.
  */
 void
-xcsf_init(XCSF *xcsf)
+xcsf_init(struct XCSF *xcsf)
 {
     xcsf->time = 0;
     xcsf->msetsize = 0;
@@ -58,7 +48,8 @@ xcsf_init(XCSF *xcsf)
  * @param printp Whether to print prediction structures.
  */
 void
-xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
+xcsf_print_pop(const struct XCSF *xcsf, _Bool printc, _Bool printa,
+               _Bool printp)
 {
     clset_print(xcsf, &xcsf->pset, printc, printa, printp);
 }
@@ -70,7 +61,7 @@ xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp)
  * @return The total number of elements written.
  */
 size_t
-xcsf_save(const XCSF *xcsf, const char *fname)
+xcsf_save(const struct XCSF *xcsf, const char *fname)
 {
     FILE *fp = fopen(fname, "wb");
     if (fp == 0) {
@@ -94,7 +85,7 @@ xcsf_save(const XCSF *xcsf, const char *fname)
  * @return The total number of elements read.
  */
 size_t
-xcsf_load(XCSF *xcsf, const char *fname)
+xcsf_load(struct XCSF *xcsf, const char *fname)
 {
     if (xcsf->pset.size > 0) {
         clset_kill(xcsf, &xcsf->pset);
@@ -112,8 +103,8 @@ xcsf_load(XCSF *xcsf, const char *fname)
     s += fread(&major, sizeof(int), 1, fp);
     s += fread(&minor, sizeof(int), 1, fp);
     s += fread(&build, sizeof(int), 1, fp);
-    if (major != VERSION_MAJOR || minor != VERSION_MINOR
-        || build != VERSION_BUILD) {
+    if (major != VERSION_MAJOR || minor != VERSION_MINOR ||
+        build != VERSION_BUILD) {
         printf("Error loading file: %s. Version mismatch. ", fname);
         printf("This version: %d.%d.%d.\n", VERSION_MAJOR, VERSION_MINOR,
                VERSION_BUILD);
@@ -133,9 +124,10 @@ xcsf_load(XCSF *xcsf, const char *fname)
  * @param xcsf The XCSF data structure.
  */
 void
-xcsf_pred_expand(const XCSF *xcsf)
+xcsf_pred_expand(const struct XCSF *xcsf)
 {
-    for (const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = xcsf->pset.list; iter != NULL;
+         iter = iter->next) {
         pred_neural_expand(xcsf, iter->cl);
         iter->cl->fit = xcsf->INIT_FITNESS;
         iter->cl->err = xcsf->INIT_ERROR;
@@ -151,13 +143,14 @@ xcsf_pred_expand(const XCSF *xcsf)
  * @param n_del The number of hidden layers to remove.
  */
 void
-xcsf_ae_to_classifier(XCSF *xcsf, int y_dim, int n_del)
+xcsf_ae_to_classifier(struct XCSF *xcsf, int y_dim, int n_del)
 {
     pa_free(xcsf);
     param_set_y_dim(xcsf, y_dim);
     param_set_loss_func(xcsf, 5); // one-hot encoding error
     pa_init(xcsf);
-    for (const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = xcsf->pset.list; iter != NULL;
+         iter = iter->next) {
         free(iter->cl->prediction);
         iter->cl->prediction = calloc(xcsf->y_dim, sizeof(double));
         pred_neural_ae_to_classifier(xcsf, iter->cl, n_del);

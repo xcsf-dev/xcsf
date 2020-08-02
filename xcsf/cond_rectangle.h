@@ -23,6 +23,9 @@
 
 #pragma once
 
+#include "condition.h"
+#include "xcsf.h"
+
 /**
  * @brief Hyperrectangle condition data structure.
  */
@@ -33,60 +36,56 @@ typedef struct COND_RECTANGLE {
 } COND_RECTANGLE;
 
 _Bool
-cond_rectangle_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+cond_rectangle_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                         const struct CL *c2);
 
 _Bool
-cond_rectangle_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+cond_rectangle_general(const struct XCSF *xcsf, const struct CL *c1,
+                       const struct CL *c2);
 
 _Bool
-cond_rectangle_match(const XCSF *xcsf, const CL *c, const double *x);
+cond_rectangle_match(const struct XCSF *xcsf, const struct CL *c,
+                     const double *x);
 
 _Bool
-cond_rectangle_mutate(const XCSF *xcsf, const CL *c);
+cond_rectangle_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_rectangle_copy(const XCSF *xcsf, CL *dest, const CL *src);
+cond_rectangle_copy(const struct XCSF *xcsf, struct CL *dest,
+                    const struct CL *src);
 
 void
-cond_rectangle_cover(const XCSF *xcsf, const CL *c, const double *x);
+cond_rectangle_cover(const struct XCSF *xcsf, const struct CL *c,
+                     const double *x);
 
 void
-cond_rectangle_free(const XCSF *xcsf, const CL *c);
+cond_rectangle_free(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_rectangle_init(const XCSF *xcsf, CL *c);
+cond_rectangle_init(const struct XCSF *xcsf, struct CL *c);
 
 void
-cond_rectangle_print(const XCSF *xcsf, const CL *c);
+cond_rectangle_print(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_rectangle_update(const XCSF *xcsf, const CL *c, const double *x,
-                      const double *y);
+cond_rectangle_update(const struct XCSF *xcsf, const struct CL *c,
+                      const double *x, const double *y);
 
 int
-cond_rectangle_size(const XCSF *xcsf, const CL *c);
+cond_rectangle_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t
-cond_rectangle_save(const XCSF *xcsf, const CL *c, FILE *fp);
+cond_rectangle_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
 
 size_t
-cond_rectangle_load(const XCSF *xcsf, CL *c, FILE *fp);
+cond_rectangle_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 
 /**
  * @brief Hyperrectangle condition implemented functions.
  */
 static struct CondVtbl const cond_rectangle_vtbl = {
-    &cond_rectangle_crossover,
-    &cond_rectangle_general,
-    &cond_rectangle_match,
-    &cond_rectangle_mutate,
-    &cond_rectangle_copy,
-    &cond_rectangle_cover,
-    &cond_rectangle_free,
-    &cond_rectangle_init,
-    &cond_rectangle_print,
-    &cond_rectangle_update,
-    &cond_rectangle_size,
-    &cond_rectangle_save,
-    &cond_rectangle_load
-};
+    &cond_rectangle_crossover, &cond_rectangle_general, &cond_rectangle_match,
+    &cond_rectangle_mutate,    &cond_rectangle_copy,    &cond_rectangle_cover,
+    &cond_rectangle_free,      &cond_rectangle_init,    &cond_rectangle_print,
+    &cond_rectangle_update,    &cond_rectangle_size,    &cond_rectangle_save,
+    &cond_rectangle_load};

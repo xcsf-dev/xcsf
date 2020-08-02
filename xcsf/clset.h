@@ -23,60 +23,63 @@
 
 #pragma once
 
-double
-clset_mean_cond_size(const XCSF *xcsf, const SET *set);
+#include "xcsf.h"
 
 double
-clset_mean_pred_size(const XCSF *xcsf, const SET *set);
+clset_mean_cond_size(const struct XCSF *xcsf, const struct SET *set);
 
 double
-clset_mean_time(const SET *set);
+clset_mean_pred_size(const struct XCSF *xcsf, const struct SET *set);
 
 double
-clset_mfrac(const XCSF *xcsf);
+clset_mean_time(const struct SET *set);
 
 double
-clset_total_fit(const SET *set);
+clset_mfrac(const struct XCSF *xcsf);
+
+double
+clset_total_fit(const struct SET *set);
 
 size_t
-clset_pop_load(XCSF *xcsf, FILE *fp);
+clset_pop_load(struct XCSF *xcsf, FILE *fp);
 
 size_t
-clset_pop_save(const XCSF *xcsf, FILE *fp);
+clset_pop_save(const struct XCSF *xcsf, FILE *fp);
 
 void
-clset_action(XCSF *xcsf, int action);
+clset_action(struct XCSF *xcsf, int action);
 
 void
-clset_add(SET *set, CL *c);
+clset_add(struct SET *set, struct CL *c);
 
 void
-clset_free(SET *set);
+clset_free(struct SET *set);
 
 void
-clset_init(SET *set);
+clset_init(struct SET *set);
 
 void
-clset_kill(const XCSF *xcsf, SET *set);
+clset_kill(const struct XCSF *xcsf, struct SET *set);
 
 void
-clset_match(XCSF *xcsf, const double *x);
+clset_match(struct XCSF *xcsf, const double *x);
 
 void
-clset_pop_enforce_limit(XCSF *xcsf);
+clset_pop_enforce_limit(struct XCSF *xcsf);
 
 void
-clset_pop_init(XCSF *xcsf);
+clset_pop_init(struct XCSF *xcsf);
 
 void
-clset_print(const XCSF *xcsf, const SET *set, _Bool printc, _Bool printa,
-            _Bool printp);
+clset_print(const struct XCSF *xcsf, const struct SET *set, _Bool printc,
+            _Bool printa, _Bool printp);
 
 void
-clset_set_times(const XCSF *xcsf, const SET *set);
+clset_set_times(const struct XCSF *xcsf, const struct SET *set);
 
 void
-clset_update(XCSF *xcsf, SET *set, const double *x, const double *y, _Bool cur);
+clset_update(struct XCSF *xcsf, struct SET *set, const double *x,
+             const double *y, _Bool cur);
 
 void
-clset_validate(SET *set);
+clset_validate(struct SET *set);

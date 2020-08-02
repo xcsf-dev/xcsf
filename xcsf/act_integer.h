@@ -23,6 +23,9 @@
 
 #pragma once
 
+#include "action.h"
+#include "xcsf.h"
+
 /**
  * @brief Integer action data structure.
  */
@@ -32,56 +35,52 @@ typedef struct ACT_INTEGER {
 } ACT_INTEGER;
 
 _Bool
-act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+act_integer_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                      const struct CL *c2);
 
 _Bool
-act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+act_integer_general(const struct XCSF *xcsf, const struct CL *c1,
+                    const struct CL *c2);
 
 _Bool
-act_integer_mutate(const XCSF *xcsf, const CL *c);
+act_integer_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 int
-act_integer_compute(const XCSF *xcsf, const CL *c, const double *x);
+act_integer_compute(const struct XCSF *xcsf, const struct CL *c,
+                    const double *x);
 
 void
-act_integer_copy(const XCSF *xcsf, CL *dest, const CL *src);
+act_integer_copy(const struct XCSF *xcsf, struct CL *dest,
+                 const struct CL *src);
 
 void
-act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int action);
+act_integer_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
+                  int action);
 
 void
-act_integer_free(const XCSF *xcsf, const CL *c);
+act_integer_free(const struct XCSF *xcsf, const struct CL *c);
 
 void
-act_integer_init(const XCSF *xcsf, CL *c);
+act_integer_init(const struct XCSF *xcsf, struct CL *c);
 
 void
-act_integer_print(const XCSF *xcsf, const CL *c);
+act_integer_print(const struct XCSF *xcsf, const struct CL *c);
 
 void
-act_integer_update(const XCSF *xcsf, const CL *c, const double *x,
+act_integer_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
                    const double *y);
 
 size_t
-act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp);
+act_integer_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
 
 size_t
-act_integer_load(const XCSF *xcsf, CL *c, FILE *fp);
+act_integer_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 
 /**
  * @brief Integer action implemented functions.
  */
 static struct ActVtbl const act_integer_vtbl = {
-    &act_integer_general,
-    &act_integer_crossover,
-    &act_integer_mutate,
-    &act_integer_compute,
-    &act_integer_copy,
-    &act_integer_cover,
-    &act_integer_free,
-    &act_integer_init,
-    &act_integer_print,
-    &act_integer_update,
-    &act_integer_save,
-    &act_integer_load
-};
+    &act_integer_general, &act_integer_crossover, &act_integer_mutate,
+    &act_integer_compute, &act_integer_copy,      &act_integer_cover,
+    &act_integer_free,    &act_integer_init,      &act_integer_print,
+    &act_integer_update,  &act_integer_save,      &act_integer_load};

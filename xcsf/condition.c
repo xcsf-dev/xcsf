@@ -21,27 +21,15 @@
  * @brief Interface for classifier conditions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "gp.h"
-#include "dgp.h"
-#include "neural.h"
-#include "condition.h"
+#include "cond_dgp.h"
 #include "cond_dummy.h"
-#include "cond_rectangle.h"
 #include "cond_ellipsoid.h"
 #include "cond_gp.h"
-#include "cond_dgp.h"
 #include "cond_neural.h"
+#include "cond_rectangle.h"
 #include "cond_ternary.h"
-#include "action.h"
 #include "rule_dgp.h"
 #include "rule_neural.h"
-#include "prediction.h"
 
 /**
  * @brief Sets a classifier's condition functions to the implementations.
@@ -49,7 +37,7 @@
  * @param c The classifier to set.
  */
 void
-condition_set(const XCSF *xcsf, CL *c)
+condition_set(const struct XCSF *xcsf, struct CL *c)
 {
     switch (xcsf->COND_TYPE) {
         case COND_TYPE_DUMMY:

@@ -23,21 +23,23 @@
 
 #pragma once
 
+#include "xcsf.h"
+
 void
-env_init(XCSF *xcsf, char **argv);
+env_init(struct XCSF *xcsf, char **argv);
 
 /**
  * @brief Built-in problem environment interface data structure.
  * @details Environment implementations must implement these functions.
  */
 struct EnvVtbl {
-    _Bool (*env_impl_isreset)(const XCSF *xcsf);
-    _Bool (*env_impl_multistep)(const XCSF *xcsf);
-    double (*env_impl_execute)(const XCSF *xcsf, int action);
-    double (*env_impl_max_payoff)(const XCSF *xcsf);
-    const double *(*env_impl_get_state)(const XCSF *xcsf);
-    void (*env_impl_free)(const XCSF *xcsf);
-    void (*env_impl_reset)(const XCSF *xcsf);
+    _Bool (*env_impl_isreset)(const struct XCSF *xcsf);
+    _Bool (*env_impl_multistep)(const struct XCSF *xcsf);
+    double (*env_impl_execute)(const struct XCSF *xcsf, int action);
+    double (*env_impl_max_payoff)(const struct XCSF *xcsf);
+    const double *(*env_impl_get_state)(const struct XCSF *xcsf);
+    void (*env_impl_free)(const struct XCSF *xcsf);
+    void (*env_impl_reset)(const struct XCSF *xcsf);
 };
 
 /**
@@ -46,7 +48,7 @@ struct EnvVtbl {
  * @return Whether the environment needs to be reset.
  */
 static inline _Bool
-env_is_reset(const XCSF *xcsf)
+env_is_reset(const struct XCSF *xcsf)
 {
     return (*xcsf->env_vptr->env_impl_isreset)(xcsf);
 }
@@ -57,7 +59,7 @@ env_is_reset(const XCSF *xcsf)
  * @return Whether the environment is multistep.
  */
 static inline _Bool
-env_multistep(const XCSF *xcsf)
+env_multistep(const struct XCSF *xcsf)
 {
     return (*xcsf->env_vptr->env_impl_multistep)(xcsf);
 }
@@ -69,7 +71,7 @@ env_multistep(const XCSF *xcsf)
  * @return The payoff from performing the action.
  */
 static inline double
-env_execute(const XCSF *xcsf, int action)
+env_execute(const struct XCSF *xcsf, int action)
 {
     return (*xcsf->env_vptr->env_impl_execute)(xcsf, action);
 }
@@ -80,7 +82,7 @@ env_execute(const XCSF *xcsf, int action)
  * @return The maximum payoff.
  */
 static inline double
-env_max_payoff(const XCSF *xcsf)
+env_max_payoff(const struct XCSF *xcsf)
 {
     return (*xcsf->env_vptr->env_impl_max_payoff)(xcsf);
 }
@@ -91,7 +93,7 @@ env_max_payoff(const XCSF *xcsf)
  * @return The current perceptions.
  */
 static inline const double *
-env_get_state(const XCSF *xcsf)
+env_get_state(const struct XCSF *xcsf)
 {
     return (*xcsf->env_vptr->env_impl_get_state)(xcsf);
 }
@@ -101,7 +103,7 @@ env_get_state(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  */
 static inline void
-env_free(const XCSF *xcsf)
+env_free(const struct XCSF *xcsf)
 {
     (*xcsf->env_vptr->env_impl_free)(xcsf);
 }
@@ -111,7 +113,7 @@ env_free(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  */
 static inline void
-env_reset(const XCSF *xcsf)
+env_reset(const struct XCSF *xcsf)
 {
     (*xcsf->env_vptr->env_impl_reset)(xcsf);
 }

@@ -22,32 +22,23 @@
  * @details Fully-connected, stateful, and with a step of 1.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <limits.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "blas.h"
-#include "sam.h"
-#include "neural_activations.h"
-#include "neural.h"
-#include "neural_layer.h"
-#include "neural_layer_connected.h"
 #include "neural_layer_recurrent.h"
+#include "blas.h"
+#include "neural_activations.h"
+#include "neural_layer_connected.h"
+#include "sam.h"
+#include "utils.h"
 
 #define N_MU (5) //!< Number of mutation rates applied to a recurrent layer
 
 static _Bool
 mutate_connectivity(LAYER *l);
 static _Bool
-mutate_eta(const XCSF *xcsf, LAYER *l);
+mutate_eta(const struct XCSF *xcsf, LAYER *l);
 static _Bool
 mutate_functions(LAYER *l);
 static _Bool
-mutate_neurons(const XCSF *xcsf, LAYER *l);
+mutate_neurons(const struct XCSF *xcsf, LAYER *l);
 static _Bool
 mutate_weights(LAYER *l);
 static void
@@ -72,7 +63,7 @@ set_layer_n_weights(LAYER *l);
  * @return A pointer to the new layer.
  */
 LAYER *
-neural_layer_recurrent_init(const XCSF *xcsf, int n_inputs, int n_init,
+neural_layer_recurrent_init(const struct XCSF *xcsf, int n_inputs, int n_init,
                             int n_max, int f, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
@@ -125,7 +116,7 @@ free_layer_arrays(const LAYER *l)
 }
 
 LAYER *
-neural_layer_recurrent_copy(const XCSF *xcsf, const LAYER *src)
+neural_layer_recurrent_copy(const struct XCSF *xcsf, const LAYER *src)
 {
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
@@ -150,7 +141,7 @@ neural_layer_recurrent_copy(const XCSF *xcsf, const LAYER *src)
 }
 
 void
-neural_layer_recurrent_free(const XCSF *xcsf, const LAYER *l)
+neural_layer_recurrent_free(const struct XCSF *xcsf, const LAYER *l)
 {
     layer_free(xcsf, l->input_layer);
     layer_free(xcsf, l->self_layer);
@@ -162,7 +153,7 @@ neural_layer_recurrent_free(const XCSF *xcsf, const LAYER *l)
 }
 
 void
-neural_layer_recurrent_rand(const XCSF *xcsf, LAYER *l)
+neural_layer_recurrent_rand(const struct XCSF *xcsf, LAYER *l)
 {
     layer_rand(xcsf, l->input_layer);
     layer_rand(xcsf, l->self_layer);
@@ -170,7 +161,7 @@ neural_layer_recurrent_rand(const XCSF *xcsf, LAYER *l)
 }
 
 void
-neural_layer_recurrent_forward(const XCSF *xcsf, const LAYER *l,
+neural_layer_recurrent_forward(const struct XCSF *xcsf, const LAYER *l,
                                const double *input)
 {
     memcpy(l->prev_state, l->state, sizeof(double) * l->n_outputs);
@@ -182,7 +173,7 @@ neural_layer_recurrent_forward(const XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_recurrent_backward(const XCSF *xcsf, const LAYER *l,
+neural_layer_recurrent_backward(const struct XCSF *xcsf, const LAYER *l,
                                 const double *input, double *delta)
 {
     memset(l->input_layer->delta, 0, sizeof(double) * l->n_outputs);
@@ -195,7 +186,7 @@ neural_layer_recurrent_backward(const XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_recurrent_update(const XCSF *xcsf, const LAYER *l)
+neural_layer_recurrent_update(const struct XCSF *xcsf, const LAYER *l)
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
         layer_update(xcsf, l->input_layer);
@@ -205,24 +196,24 @@ neural_layer_recurrent_update(const XCSF *xcsf, const LAYER *l)
 }
 
 void
-neural_layer_recurrent_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
+neural_layer_recurrent_resize(const struct XCSF *xcsf, LAYER *l,
+                              const LAYER *prev)
 {
     layer_resize(xcsf, l->input_layer, prev);
     l->n_inputs = l->input_layer->n_inputs;
-    l->n_active = l->input_layer->n_active
-                  + l->self_layer->n_active
-                  + l->output_layer->n_active;
+    l->n_active = l->input_layer->n_active + l->self_layer->n_active +
+        l->output_layer->n_active;
 }
 
 double *
-neural_layer_recurrent_output(const XCSF *xcsf, const LAYER *l)
+neural_layer_recurrent_output(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     return l->output;
 }
 
 _Bool
-neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
+neural_layer_recurrent_mutate(const struct XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
@@ -235,9 +226,10 @@ neural_layer_recurrent_mutate(const XCSF *xcsf, LAYER *l)
 }
 
 static _Bool
-mutate_eta(const XCSF *xcsf, LAYER *l)
+mutate_eta(const struct XCSF *xcsf, LAYER *l)
 {
-    if ((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
+    if ((l->options & LAYER_EVOLVE_ETA) &&
+        layer_mutate_eta(xcsf, l, l->mu[0])) {
         l->input_layer->eta = l->eta;
         l->self_layer->eta = l->eta;
         l->output_layer->eta = l->eta;
@@ -247,7 +239,7 @@ mutate_eta(const XCSF *xcsf, LAYER *l)
 }
 
 static _Bool
-mutate_neurons(const XCSF *xcsf, LAYER *l)
+mutate_neurons(const struct XCSF *xcsf, LAYER *l)
 {
     if (l->options & LAYER_EVOLVE_NEURONS) {
         int n = layer_mutate_neurons(xcsf, l->self_layer, l->mu[1]);
@@ -261,7 +253,8 @@ mutate_neurons(const XCSF *xcsf, LAYER *l)
             l->output = l->output_layer->output;
             l->delta = l->output_layer->delta;
             l->state = realloc(l->state, l->n_outputs * sizeof(double));
-            l->prev_state = realloc(l->prev_state, l->n_outputs * sizeof(double));
+            l->prev_state =
+                realloc(l->prev_state, l->n_outputs * sizeof(double));
             set_layer_n_weights(l);
             set_layer_n_biases(l);
             set_layer_n_active(l);
@@ -299,8 +292,8 @@ mutate_weights(LAYER *l)
 static _Bool
 mutate_functions(LAYER *l)
 {
-    if (l->options & LAYER_EVOLVE_FUNCTIONS
-        && layer_mutate_functions(l, l->mu[4])) {
+    if (l->options & LAYER_EVOLVE_FUNCTIONS &&
+        layer_mutate_functions(l, l->mu[4])) {
         l->output_layer->function = l->function;
         return true;
     }
@@ -308,7 +301,7 @@ mutate_functions(LAYER *l)
 }
 
 void
-neural_layer_recurrent_print(const XCSF *xcsf, const LAYER *l,
+neural_layer_recurrent_print(const struct XCSF *xcsf, const LAYER *l,
                              _Bool print_weights)
 {
     printf("recurrent %s, in = %d, out = %d\n",
@@ -324,7 +317,7 @@ neural_layer_recurrent_print(const XCSF *xcsf, const LAYER *l,
 }
 
 size_t
-neural_layer_recurrent_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
+neural_layer_recurrent_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
@@ -344,7 +337,7 @@ neural_layer_recurrent_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 }
 
 size_t
-neural_layer_recurrent_load(const XCSF *xcsf, LAYER *l, FILE *fp)
+neural_layer_recurrent_load(const struct XCSF *xcsf, LAYER *l, FILE *fp)
 {
     size_t s = 0;
     layer_init(l);
@@ -368,23 +361,20 @@ neural_layer_recurrent_load(const XCSF *xcsf, LAYER *l, FILE *fp)
 static void
 set_layer_n_active(LAYER *l)
 {
-    l->n_active = l->input_layer->n_active
-                  + l->self_layer->n_active
-                  + l->output_layer->n_active;
+    l->n_active = l->input_layer->n_active + l->self_layer->n_active +
+        l->output_layer->n_active;
 }
 
 static void
 set_layer_n_weights(LAYER *l)
 {
-    l->n_weights = l->input_layer->n_weights
-                   + l->self_layer->n_weights
-                   + l->output_layer->n_weights;
+    l->n_weights = l->input_layer->n_weights + l->self_layer->n_weights +
+        l->output_layer->n_weights;
 }
 
 static void
 set_layer_n_biases(LAYER *l)
 {
-    l->n_biases = l->input_layer->n_biases
-                  + l->self_layer->n_biases
-                  + l->output_layer->n_biases;
+    l->n_biases = l->input_layer->n_biases + l->self_layer->n_biases +
+        l->output_layer->n_biases;
 }

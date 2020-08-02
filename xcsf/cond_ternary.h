@@ -23,6 +23,9 @@
 
 #pragma once
 
+#include "condition.h"
+#include "xcsf.h"
+
 /**
  * @brief Ternary condition data structure.
  */
@@ -34,60 +37,56 @@ typedef struct COND_TERNARY {
 } COND_TERNARY;
 
 _Bool
-cond_ternary_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+cond_ternary_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                       const struct CL *c2);
 
 _Bool
-cond_ternary_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+cond_ternary_general(const struct XCSF *xcsf, const struct CL *c1,
+                     const struct CL *c2);
 
 _Bool
-cond_ternary_match(const XCSF *xcsf, const CL *c, const double *x);
+cond_ternary_match(const struct XCSF *xcsf, const struct CL *c,
+                   const double *x);
 
 _Bool
-cond_ternary_mutate(const XCSF *xcsf, const CL *c);
+cond_ternary_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_ternary_copy(const XCSF *xcsf, CL *dest, const CL *src);
+cond_ternary_copy(const struct XCSF *xcsf, struct CL *dest,
+                  const struct CL *src);
 
 void
-cond_ternary_cover(const XCSF *xcsf, const CL *c, const double *x);
+cond_ternary_cover(const struct XCSF *xcsf, const struct CL *c,
+                   const double *x);
 
 void
-cond_ternary_free(const XCSF *xcsf, const CL *c);
+cond_ternary_free(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_ternary_init(const XCSF *xcsf, CL *c);
+cond_ternary_init(const struct XCSF *xcsf, struct CL *c);
 
 void
-cond_ternary_print(const XCSF *xcsf, const CL *c);
+cond_ternary_print(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_ternary_update(const XCSF *xcsf, const CL *c, const double *x,
-                    const double *y);
+cond_ternary_update(const struct XCSF *xcsf, const struct CL *c,
+                    const double *x, const double *y);
 
 int
-cond_ternary_size(const XCSF *xcsf, const CL *c);
+cond_ternary_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t
-cond_ternary_save(const XCSF *xcsf, const CL *c, FILE *fp);
+cond_ternary_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
 
 size_t
-cond_ternary_load(const XCSF *xcsf, CL *c, FILE *fp);
+cond_ternary_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 
 /**
  * @brief Ternary condition implemented functions.
  */
 static struct CondVtbl const cond_ternary_vtbl = {
-    &cond_ternary_crossover,
-    &cond_ternary_general,
-    &cond_ternary_match,
-    &cond_ternary_mutate,
-    &cond_ternary_copy,
-    &cond_ternary_cover,
-    &cond_ternary_free,
-    &cond_ternary_init,
-    &cond_ternary_print,
-    &cond_ternary_update,
-    &cond_ternary_size,
-    &cond_ternary_save,
-    &cond_ternary_load
-};
+    &cond_ternary_crossover, &cond_ternary_general, &cond_ternary_match,
+    &cond_ternary_mutate,    &cond_ternary_copy,    &cond_ternary_cover,
+    &cond_ternary_free,      &cond_ternary_init,    &cond_ternary_print,
+    &cond_ternary_update,    &cond_ternary_size,    &cond_ternary_save,
+    &cond_ternary_load};

@@ -23,47 +23,45 @@
 
 #pragma once
 
+#include "env.h"
+#include "xcsf.h"
+
 /**
  * @brief CSV environment data structure.
  */
 typedef struct ENV_CSV {
-    INPUT *train_data;
-    INPUT *test_data;
+    struct INPUT *train_data;
+    struct INPUT *test_data;
 } ENV_CSV;
 
 _Bool
-env_csv_isreset(const XCSF *xcsf);
+env_csv_isreset(const struct XCSF *xcsf);
 
 _Bool
-env_csv_multistep(const XCSF *xcsf);
+env_csv_multistep(const struct XCSF *xcsf);
 
 double
-env_csv_execute(const XCSF *xcsf, int action);
+env_csv_execute(const struct XCSF *xcsf, int action);
 
 double
-env_csv_maxpayoff(const XCSF *xcsf);
+env_csv_maxpayoff(const struct XCSF *xcsf);
 
 const double *
-env_csv_get_state(const XCSF *xcsf);
+env_csv_get_state(const struct XCSF *xcsf);
 
 void
-env_csv_free(const XCSF *xcsf);
+env_csv_free(const struct XCSF *xcsf);
 
 void
-env_csv_init(XCSF *xcsf, const char *filename);
+env_csv_init(struct XCSF *xcsf, const char *filename);
 
 void
-env_csv_reset(const XCSF *xcsf);
+env_csv_reset(const struct XCSF *xcsf);
 
 /**
  * @brief csv input environment implemented functions.
  */
 static struct EnvVtbl const env_csv_vtbl = {
-    &env_csv_isreset,
-    &env_csv_multistep,
-    &env_csv_execute,
-    &env_csv_maxpayoff,
-    &env_csv_get_state,
-    &env_csv_free,
-    &env_csv_reset
-};
+    &env_csv_isreset,   &env_csv_multistep, &env_csv_execute,
+    &env_csv_maxpayoff, &env_csv_get_state, &env_csv_free,
+    &env_csv_reset};

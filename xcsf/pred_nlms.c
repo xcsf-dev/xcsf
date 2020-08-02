@@ -21,23 +21,16 @@
  * @brief Normalised least mean squares prediction functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "utils.h"
+#include "pred_nlms.h"
 #include "blas.h"
 #include "sam.h"
-#include "cl.h"
-#include "prediction.h"
-#include "pred_nlms.h"
+#include "utils.h"
 
 #define N_MU (1) //!< Number of self-adaptive mutation rates
 #define ETA_MIN (0.0001) //!< Minimum gradient descent rate
 
 void
-pred_nlms_init(const XCSF *xcsf, CL *c)
+pred_nlms_init(const struct XCSF *xcsf, struct CL *c)
 {
     PRED_NLMS *pred = malloc(sizeof(PRED_NLMS));
     c->pred = pred;
@@ -66,7 +59,7 @@ pred_nlms_init(const XCSF *xcsf, CL *c)
 }
 
 void
-pred_nlms_copy(const XCSF *xcsf, CL *dest, const CL *src)
+pred_nlms_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 {
     pred_nlms_init(xcsf, dest);
     PRED_NLMS *dest_pred = dest->pred;
@@ -78,9 +71,9 @@ pred_nlms_copy(const XCSF *xcsf, CL *dest, const CL *src)
 }
 
 void
-pred_nlms_free(const XCSF *xcsf, const CL *c)
+pred_nlms_free(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
+    (void) xcsf;
     PRED_NLMS *pred = c->pred;
     free(pred->weights);
     free(pred->tmp_input);
@@ -89,8 +82,8 @@ pred_nlms_free(const XCSF *xcsf, const CL *c)
 }
 
 void
-pred_nlms_update(const XCSF *xcsf, const CL *c,
-                 const double *x, const double *y)
+pred_nlms_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+                 const double *y)
 {
     const PRED_NLMS *pred = c->pred;
     int n = pred->n;
@@ -106,18 +99,19 @@ pred_nlms_update(const XCSF *xcsf, const CL *c,
 }
 
 void
-pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x)
+pred_nlms_compute(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
     const PRED_NLMS *pred = c->pred;
     int n = pred->n;
     pred_transform_input(xcsf, x, pred->tmp_input);
     for (int i = 0; i < xcsf->y_dim; ++i) {
-        c->prediction[i] = blas_dot(n, &pred->weights[i * n], 1, pred->tmp_input, 1);
+        c->prediction[i] =
+            blas_dot(n, &pred->weights[i * n], 1, pred->tmp_input, 1);
     }
 }
 
 void
-pred_nlms_print(const XCSF *xcsf, const CL *c)
+pred_nlms_print(const struct XCSF *xcsf, const struct CL *c)
 {
     const PRED_NLMS *pred = c->pred;
     int n = pred->n;
@@ -131,16 +125,17 @@ pred_nlms_print(const XCSF *xcsf, const CL *c)
 }
 
 _Bool
-pred_nlms_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+pred_nlms_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                    const struct CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void) xcsf;
+    (void) c1;
+    (void) c2;
     return false;
 }
 
 _Bool
-pred_nlms_mutate(const XCSF *xcsf, const CL *c)
+pred_nlms_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
     if (xcsf->PRED_EVOLVE_ETA) {
         PRED_NLMS *pred = c->pred;
@@ -156,17 +151,17 @@ pred_nlms_mutate(const XCSF *xcsf, const CL *c)
 }
 
 int
-pred_nlms_size(const XCSF *xcsf, const CL *c)
+pred_nlms_size(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
+    (void) xcsf;
     const PRED_NLMS *pred = c->pred;
     return pred->n_weights;
 }
 
 size_t
-pred_nlms_save(const XCSF *xcsf, const CL *c, FILE *fp)
+pred_nlms_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     const PRED_NLMS *pred = c->pred;
     size_t s = 0;
     s += fwrite(&pred->n, sizeof(int), 1, fp);
@@ -178,7 +173,7 @@ pred_nlms_save(const XCSF *xcsf, const CL *c, FILE *fp)
 }
 
 size_t
-pred_nlms_load(const XCSF *xcsf, CL *c, FILE *fp)
+pred_nlms_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
     pred_nlms_init(xcsf, c);
     PRED_NLMS *pred = c->pred;

@@ -21,14 +21,9 @@
  * @brief Interface for classifier actions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "utils.h"
 #include "action.h"
 #include "act_integer.h"
+#include "utils.h"
 
 /**
  * @brief Sets a classifier's action functions to the implementations.
@@ -36,7 +31,7 @@
  * @param c The classifier to set.
  */
 void
-action_set(const XCSF *xcsf, CL *c)
+action_set(const struct XCSF *xcsf, struct CL *c)
 {
     switch (xcsf->ACT_TYPE) {
         case ACT_TYPE_INTEGER:

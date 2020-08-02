@@ -22,25 +22,17 @@
  * @details A trial consists of one or more steps.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <math.h>
-#include <limits.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "param.h"
-#include "cl.h"
-#include "clset.h"
-#include "pa.h"
-#include "ea.h"
-#include "perf.h"
 #include "xcs_rl.h"
+#include "clset.h"
+#include "ea.h"
 #include "env.h"
+#include "pa.h"
+#include "param.h"
+#include "perf.h"
+#include "utils.h"
 
 static double
-xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore);
+xcs_rl_trial(struct XCSF *xcsf, double *error, _Bool explore);
 
 /**
  * @brief Executes a reinforcement learning experiment.
@@ -48,7 +40,7 @@ xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore);
  * @return The mean number of steps to goal.
  */
 double
-xcs_rl_exp(XCSF *xcsf)
+xcs_rl_exp(struct XCSF *xcsf)
 {
     double error = 0; // prediction error: individual trial
     double werr = 0; // prediction error: windowed total
@@ -74,7 +66,7 @@ xcs_rl_exp(XCSF *xcsf)
  * steps taken to reach the goal for multi-step problems.
  */
 static double
-xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
+xcs_rl_trial(struct XCSF *xcsf, double *error, _Bool explore)
 {
     env_reset(xcsf);
     param_set_explore(xcsf, explore);
@@ -90,7 +82,8 @@ xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
         reward = env_execute(xcsf, action);
         reset = env_is_reset(xcsf);
         xcs_rl_update(xcsf, state, action, reward, reset);
-        *error += xcs_rl_error(xcsf, action, reward, reset, env_max_payoff(xcsf));
+        *error +=
+            xcs_rl_error(xcsf, action, reward, reset, env_max_payoff(xcsf));
         xcs_rl_end_step(xcsf, state, action, reward);
         ++steps;
     }
@@ -107,7 +100,7 @@ xcs_rl_trial(XCSF *xcsf, double *error, _Bool explore)
  * @param xcsf The XCSF data structure.
  */
 void
-xcs_rl_init_trial(XCSF *xcsf)
+xcs_rl_init_trial(struct XCSF *xcsf)
 {
     xcsf->prev_reward = 0;
     xcsf->prev_pred = 0;
@@ -126,7 +119,7 @@ xcs_rl_init_trial(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  */
 void
-xcs_rl_end_trial(XCSF *xcsf)
+xcs_rl_end_trial(struct XCSF *xcsf)
 {
     clset_free(&xcsf->prev_aset);
     clset_kill(xcsf, &xcsf->kset);
@@ -138,7 +131,7 @@ xcs_rl_end_trial(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  */
 void
-xcs_rl_init_step(XCSF *xcsf)
+xcs_rl_init_step(struct XCSF *xcsf)
 {
     clset_init(&xcsf->mset);
     clset_init(&xcsf->aset);
@@ -152,7 +145,8 @@ xcs_rl_init_step(XCSF *xcsf)
  * @param reward The current reward.
  */
 void
-xcs_rl_end_step(XCSF *xcsf, const double *state, int action, double reward)
+xcs_rl_end_step(struct XCSF *xcsf, const double *state, int action,
+                double reward)
 {
     clset_free(&xcsf->mset);
     clset_free(&xcsf->prev_aset);
@@ -172,7 +166,7 @@ xcs_rl_end_step(XCSF *xcsf, const double *state, int action, double reward)
  * @param reset Whether the environment is in the reset state.
  */
 void
-xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward,
+xcs_rl_update(struct XCSF *xcsf, const double *state, int action, double reward,
               _Bool reset)
 {
     // create action set
@@ -206,13 +200,14 @@ xcs_rl_update(XCSF *xcsf, const double *state, int action, double reward,
  * @return The prediction error.
  */
 double
-xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset,
+xcs_rl_error(const struct XCSF *xcsf, int action, double reward, _Bool reset,
              double max_p)
 {
     double error = 0;
     if (xcsf->prev_aset.list != NULL) {
-        error += fabs(xcsf->GAMMA * pa_val(xcsf, action)
-                      + xcsf->prev_reward - xcsf->prev_pred) / max_p;
+        error += fabs(xcsf->GAMMA * pa_val(xcsf, action) + xcsf->prev_reward -
+                      xcsf->prev_pred) /
+            max_p;
     }
     if (reset) {
         error += fabs(reward - pa_val(xcsf, action)) / max_p;
@@ -228,7 +223,7 @@ xcs_rl_error(const XCSF *xcsf, int action, double reward, _Bool reset,
  * @return The selected action.
  */
 int
-xcs_rl_decision(XCSF *xcsf, const double *state)
+xcs_rl_decision(struct XCSF *xcsf, const double *state)
 {
     clset_match(xcsf, state);
     pa_build(xcsf, state);

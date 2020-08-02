@@ -21,20 +21,11 @@
  * @brief An implementation of a fully-connected layer of perceptrons.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <limits.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "blas.h"
-#include "sam.h"
-#include "neural_activations.h"
-#include "neural.h"
-#include "neural_layer.h"
 #include "neural_layer_connected.h"
+#include "blas.h"
+#include "neural_activations.h"
+#include "sam.h"
+#include "utils.h"
 
 #define N_MU (5) //!< Number of mutation rates applied to a connected layer
 
@@ -52,7 +43,7 @@ malloc_layer_arrays(LAYER *l);
  * @return A pointer to the new layer.
  */
 LAYER *
-neural_layer_connected_init(const XCSF *xcsf, int n_inputs, int n_init,
+neural_layer_connected_init(const struct XCSF *xcsf, int n_inputs, int n_init,
                             int n_max, int f, uint32_t o)
 {
     LAYER *l = malloc(sizeof(LAYER));
@@ -81,8 +72,8 @@ neural_layer_connected_init(const XCSF *xcsf, int n_inputs, int n_init,
 static void
 malloc_layer_arrays(LAYER *l)
 {
-    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX ||
-        l->n_weights < 1 || l->n_weights > N_WEIGHTS_MAX) {
+    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
+        l->n_weights > N_WEIGHTS_MAX) {
         printf("neural_layer_connected: malloc() invalid size\n");
         l->n_weights = 1;
         l->n_outputs = 1;
@@ -100,9 +91,9 @@ malloc_layer_arrays(LAYER *l)
 }
 
 void
-neural_layer_connected_free(const XCSF *xcsf, const LAYER *l)
+neural_layer_connected_free(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     free(l->state);
     free(l->output);
     free(l->biases);
@@ -115,9 +106,9 @@ neural_layer_connected_free(const XCSF *xcsf, const LAYER *l)
 }
 
 LAYER *
-neural_layer_connected_copy(const XCSF *xcsf, const LAYER *src)
+neural_layer_connected_copy(const struct XCSF *xcsf, const LAYER *src)
 {
-    (void)xcsf;
+    (void) xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
@@ -134,22 +125,23 @@ neural_layer_connected_copy(const XCSF *xcsf, const LAYER *src)
     malloc_layer_arrays(l);
     memcpy(l->biases, src->biases, sizeof(double) * src->n_biases);
     memcpy(l->weights, src->weights, sizeof(double) * src->n_weights);
-    memcpy(l->weight_active, src->weight_active, sizeof(_Bool) * src->n_weights);
+    memcpy(l->weight_active, src->weight_active,
+           sizeof(_Bool) * src->n_weights);
     memcpy(l->mu, src->mu, sizeof(double) * N_MU);
     return l;
 }
 
 void
-neural_layer_connected_rand(const XCSF *xcsf, LAYER *l)
+neural_layer_connected_rand(const struct XCSF *xcsf, LAYER *l)
 {
     layer_weight_rand(xcsf, l);
 }
 
 void
-neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l,
+neural_layer_connected_forward(const struct XCSF *xcsf, const LAYER *l,
                                const double *input)
 {
-    (void)xcsf;
+    (void) xcsf;
     int k = l->n_inputs;
     int n = l->n_outputs;
     const double *a = input;
@@ -161,10 +153,10 @@ neural_layer_connected_forward(const XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l,
+neural_layer_connected_backward(const struct XCSF *xcsf, const LAYER *l,
                                 const double *input, double *delta)
 {
-    (void)xcsf;
+    (void) xcsf;
     neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
     if (l->options & LAYER_SGD_WEIGHTS) {
         int m = l->n_outputs;
@@ -186,7 +178,7 @@ neural_layer_connected_backward(const XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
+neural_layer_connected_update(const struct XCSF *xcsf, const LAYER *l)
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
         blas_axpy(l->n_biases, l->eta, l->bias_updates, 1, l->biases, 1);
@@ -198,9 +190,10 @@ neural_layer_connected_update(const XCSF *xcsf, const LAYER *l)
 }
 
 void
-neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
+neural_layer_connected_resize(const struct XCSF *xcsf, LAYER *l,
+                              const LAYER *prev)
 {
-    (void)xcsf;
+    (void) xcsf;
     int n_weights = prev->n_outputs * l->n_outputs;
     double *weights = malloc(sizeof(double) * n_weights);
     double *weight_updates = malloc(sizeof(double) * n_weights);
@@ -232,7 +225,7 @@ neural_layer_connected_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 }
 
 _Bool
-neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
+neural_layer_connected_mutate(const struct XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
@@ -263,17 +256,17 @@ neural_layer_connected_mutate(const XCSF *xcsf, LAYER *l)
 }
 
 double *
-neural_layer_connected_output(const XCSF *xcsf, const LAYER *l)
+neural_layer_connected_output(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     return l->output;
 }
 
 void
-neural_layer_connected_print(const XCSF *xcsf, const LAYER *l,
+neural_layer_connected_print(const struct XCSF *xcsf, const LAYER *l,
                              _Bool print_weights)
 {
-    (void)xcsf;
+    (void) xcsf;
     printf("connected %s, in = %d, out = %d, ",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs);
     layer_weight_print(l, print_weights);
@@ -281,9 +274,9 @@ neural_layer_connected_print(const XCSF *xcsf, const LAYER *l,
 }
 
 size_t
-neural_layer_connected_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
+neural_layer_connected_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->n_outputs, sizeof(int), 1, fp);
@@ -304,9 +297,9 @@ neural_layer_connected_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 }
 
 size_t
-neural_layer_connected_load(const XCSF *xcsf, LAYER *l, FILE *fp)
+neural_layer_connected_load(const struct XCSF *xcsf, LAYER *l, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     layer_init(l);
     s += fread(&l->n_inputs, sizeof(int), 1, fp);

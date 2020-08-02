@@ -23,61 +23,57 @@
 
 #pragma once
 
-_Bool
-cond_dummy_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+#include "condition.h"
+#include "xcsf.h"
 
 _Bool
-cond_dummy_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+cond_dummy_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                     const struct CL *c2);
 
 _Bool
-cond_dummy_match(const XCSF *xcsf, const CL *c, const double *x);
+cond_dummy_general(const struct XCSF *xcsf, const struct CL *c1,
+                   const struct CL *c2);
 
 _Bool
-cond_dummy_mutate(const XCSF *xcsf, const CL *c);
+cond_dummy_match(const struct XCSF *xcsf, const struct CL *c, const double *x);
+
+_Bool
+cond_dummy_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_dummy_copy(const XCSF *xcsf, CL *dest, const CL *src);
+cond_dummy_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
 
 void
-cond_dummy_cover(const XCSF *xcsf, const CL *c, const double *x);
+cond_dummy_cover(const struct XCSF *xcsf, const struct CL *c, const double *x);
 
 void
-cond_dummy_free(const XCSF *xcsf, const CL *c);
+cond_dummy_free(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_dummy_init(const XCSF *xcsf, CL *c);
+cond_dummy_init(const struct XCSF *xcsf, struct CL *c);
 
 void
-cond_dummy_print(const XCSF *xcsf, const CL *c);
+cond_dummy_print(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_dummy_update(const XCSF *xcsf, const CL *c, const double *x,
+cond_dummy_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
                   const double *y);
 
 int
-cond_dummy_size(const XCSF *xcsf, const CL *c);
+cond_dummy_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t
-cond_dummy_save(const XCSF *xcsf, const CL *c, FILE *fp);
+cond_dummy_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
 
 size_t
-cond_dummy_load(const XCSF *xcsf, CL *c, FILE *fp);
+cond_dummy_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 
 /**
  * @brief Dummy condition implemented functions.
  */
 static struct CondVtbl const cond_dummy_vtbl = {
-    &cond_dummy_crossover,
-    &cond_dummy_general,
-    &cond_dummy_match,
-    &cond_dummy_mutate,
-    &cond_dummy_copy,
-    &cond_dummy_cover,
-    &cond_dummy_free,
-    &cond_dummy_init,
-    &cond_dummy_print,
-    &cond_dummy_update,
-    &cond_dummy_size,
-    &cond_dummy_save,
-    &cond_dummy_load
-};
+    &cond_dummy_crossover, &cond_dummy_general, &cond_dummy_match,
+    &cond_dummy_mutate,    &cond_dummy_copy,    &cond_dummy_cover,
+    &cond_dummy_free,      &cond_dummy_init,    &cond_dummy_print,
+    &cond_dummy_update,    &cond_dummy_size,    &cond_dummy_save,
+    &cond_dummy_load};

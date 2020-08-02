@@ -21,17 +21,14 @@
  * @brief Self-adaptive mutation functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include "xcsf.h"
-#include "utils.h"
 #include "sam.h"
+#include "utils.h"
 
 #define N_RATES (10) //!< number of mutation rates for rate selection adaptation
 static const double mrates[N_RATES] = {
-    0.0001, 0.001, 0.002, 0.005, 0.01, 0.01, 0.02, 0.05, 0.1, 0.5
-}; //!< mutation values for rate selection adaptation
+    0.0001, 0.001, 0.002, 0.005, 0.01,
+    0.01,   0.02,  0.05,  0.1,   0.5}; //!< mutation values for rate
+                                       //!< selection adaptation
 
 static void
 sam_rate_selection_init(double *mu, int n);
@@ -52,7 +49,7 @@ sam_log_normal_adapt(double *mu, int n);
  * @param n The number of mutation rates.
  */
 void
-sam_init(const XCSF *xcsf, double *mu, int n)
+sam_init(const struct XCSF *xcsf, double *mu, int n)
 {
     switch (xcsf->SAM_TYPE) {
         case SAM_LOG_NORMAL:
@@ -74,7 +71,7 @@ sam_init(const XCSF *xcsf, double *mu, int n)
  * @param n The number of mutation rates.
  */
 void
-sam_adapt(const XCSF *xcsf, double *mu, int n)
+sam_adapt(const struct XCSF *xcsf, double *mu, int n)
 {
     switch (xcsf->SAM_TYPE) {
         case SAM_LOG_NORMAL:

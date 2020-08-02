@@ -26,17 +26,11 @@
  * https://dces.essex.ac.uk/staff/rpoli/gp-field-guide/A_Field_Guide_to_Genetic_Programming.pdf
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <limits.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "sam.h"
 #include "gp.h"
+#include "sam.h"
+#include "utils.h"
 
-#define GP_MAX_LEN (10000) //!< Maximum length of a GP tree. 
+#define GP_MAX_LEN (10000) //!< Maximum length of a GP tree.
 #define GP_NUM_FUNC (4) //!< Number of selectable GP functions
 #define ADD (0)
 #define SUB (1)
@@ -44,7 +38,7 @@
 #define DIV (3)
 
 static int
-tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth);
+tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth);
 
 static int
 tree_traverse(int *tree, int p);
@@ -54,7 +48,7 @@ tree_traverse(int *tree, int p);
  * @param xcsf The XCSF data structure.
  */
 void
-tree_init_cons(XCSF *xcsf)
+tree_init_cons(struct XCSF *xcsf)
 {
     xcsf->gp_cons = malloc(sizeof(double) * xcsf->GP_NUM_CONS);
     for (int i = 0; i < xcsf->GP_NUM_CONS; ++i) {
@@ -67,7 +61,7 @@ tree_init_cons(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  */
 void
-tree_free_cons(const XCSF *xcsf)
+tree_free_cons(const struct XCSF *xcsf)
 {
     free(xcsf->gp_cons);
 }
@@ -78,7 +72,7 @@ tree_free_cons(const XCSF *xcsf)
  * @param gp The GP tree being randomised.
  */
 void
-tree_rand(const XCSF *xcsf, GP_TREE *gp)
+tree_rand(const struct XCSF *xcsf, GP_TREE *gp)
 {
     int buffer[GP_MAX_LEN];
     gp->len = 0;
@@ -96,9 +90,9 @@ tree_rand(const XCSF *xcsf, GP_TREE *gp)
  * @param gp The GP tree to free.
  */
 void
-tree_free(const XCSF *xcsf, const GP_TREE *gp)
+tree_free(const struct XCSF *xcsf, const GP_TREE *gp)
 {
-    (void)xcsf;
+    (void) xcsf;
     free(gp->tree);
 }
 
@@ -114,7 +108,7 @@ tree_free(const XCSF *xcsf, const GP_TREE *gp)
  * @details Only used to create an initial tree.
  */
 static int
-tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth)
+tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth)
 {
     int prim = irand_uniform(0, 2);
     if (p >= max) {
@@ -159,7 +153,7 @@ tree_grow(const XCSF *xcsf, int *buffer, int p, int max, int depth)
  * @return The result from evaluating the GP tree.
  */
 double
-tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x)
+tree_eval(const struct XCSF *xcsf, GP_TREE *gp, const double *x)
 {
     int node = gp->tree[gp->p];
     ++(gp->p);
@@ -202,7 +196,7 @@ tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x)
  * @return The position after traversal.
  */
 int
-tree_print(const XCSF *xcsf, const GP_TREE *gp, int p)
+tree_print(const struct XCSF *xcsf, const GP_TREE *gp, int p)
 {
     int node = gp->tree[p];
     if (node >= GP_NUM_FUNC) {
@@ -218,21 +212,21 @@ tree_print(const XCSF *xcsf, const GP_TREE *gp, int p)
         return (p);
     }
     // function
-    printf( "(");
+    printf("(");
     ++p;
     int a1 = tree_print(xcsf, gp, p);
     switch (node) {
         case ADD:
-            printf( " + ");
+            printf(" + ");
             break;
         case SUB:
-            printf( " - ");
+            printf(" - ");
             break;
         case MUL:
-            printf( " * ");
+            printf(" * ");
             break;
         case DIV:
-            printf( " / ");
+            printf(" / ");
             break;
         default:
             printf("tree_print() invalid function: %d\n", node);
@@ -250,9 +244,9 @@ tree_print(const XCSF *xcsf, const GP_TREE *gp, int p)
  * @param src The source GP tree.
  */
 void
-tree_copy(const XCSF *xcsf, GP_TREE *dest, const GP_TREE *src)
+tree_copy(const struct XCSF *xcsf, GP_TREE *dest, const GP_TREE *src)
 {
-    (void)xcsf;
+    (void) xcsf;
     dest->len = src->len;
     dest->tree = malloc(sizeof(int) * src->len);
     memcpy(dest->tree, src->tree, sizeof(int) * src->len);
@@ -267,7 +261,7 @@ tree_copy(const XCSF *xcsf, GP_TREE *dest, const GP_TREE *src)
  * @param p2 The second GP tree to perform crossover.
  */
 void
-tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
+tree_crossover(const struct XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
 {
     int len1 = p1->len;
     int len2 = p2->len;
@@ -302,7 +296,7 @@ tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2)
  * @return Whether any alterations were made.
  */
 _Bool
-tree_mutate(const XCSF *xcsf, GP_TREE *gp)
+tree_mutate(const struct XCSF *xcsf, GP_TREE *gp)
 {
     _Bool changed = false;
     sam_adapt(xcsf, gp->mu, GP_N_MU);
@@ -357,9 +351,9 @@ tree_traverse(int *tree, int p)
  * @return The number of elements written.
  */
 size_t
-tree_save(const XCSF *xcsf, const GP_TREE *gp, FILE *fp)
+tree_save(const struct XCSF *xcsf, const GP_TREE *gp, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     s += fwrite(&gp->p, sizeof(int), 1, fp);
     s += fwrite(&gp->len, sizeof(int), 1, fp);
@@ -376,9 +370,9 @@ tree_save(const XCSF *xcsf, const GP_TREE *gp, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-tree_load(const XCSF *xcsf, GP_TREE *gp, FILE *fp)
+tree_load(const struct XCSF *xcsf, GP_TREE *gp, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     s += fread(&gp->p, sizeof(int), 1, fp);
     s += fread(&gp->len, sizeof(int), 1, fp);

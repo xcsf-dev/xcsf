@@ -17,21 +17,13 @@
  * @file env.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Built-in problem environment interface.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <inttypes.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "env.h"
-#include "env_mux.h"
-#include "env_maze.h"
 #include "env_csv.h"
+#include "env_maze.h"
+#include "env_mux.h"
 
 /**
  * @brief Initialises a built-in problem environment.
@@ -39,7 +31,7 @@
  * @param argv The command line arguments.
  */
 void
-env_init(XCSF *xcsf, char **argv)
+env_init(struct XCSF *xcsf, char **argv)
 {
     char *end;
     if (strcmp(argv[1], "mp") == 0) {

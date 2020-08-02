@@ -21,16 +21,9 @@
  * @brief Tree GP condition functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "sam.h"
-#include "cl.h"
-#include "condition.h"
-#include "gp.h"
 #include "cond_gp.h"
+#include "sam.h"
+#include "utils.h"
 
 /**
  * @brief Creates and initialises a tree-GP condition.
@@ -38,7 +31,7 @@
  * @param c The classifier whose condition is to be initialised.
  */
 void
-cond_gp_init(const XCSF *xcsf, CL *c)
+cond_gp_init(const struct XCSF *xcsf, struct CL *c)
 {
     COND_GP *new = malloc(sizeof(COND_GP));
     tree_rand(xcsf, &new->gp);
@@ -46,7 +39,7 @@ cond_gp_init(const XCSF *xcsf, CL *c)
 }
 
 void
-cond_gp_free(const XCSF *xcsf, const CL *c)
+cond_gp_free(const struct XCSF *xcsf, const struct CL *c)
 {
     const COND_GP *cond = c->cond;
     tree_free(xcsf, &cond->gp);
@@ -54,7 +47,7 @@ cond_gp_free(const XCSF *xcsf, const CL *c)
 }
 
 void
-cond_gp_copy(const XCSF *xcsf, CL *dest, const CL *src)
+cond_gp_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 {
     COND_GP *new = malloc(sizeof(COND_GP));
     const COND_GP *src_cond = src->cond;
@@ -63,7 +56,7 @@ cond_gp_copy(const XCSF *xcsf, CL *dest, const CL *src)
 }
 
 void
-cond_gp_cover(const XCSF *xcsf, const CL *c, const double *x)
+cond_gp_cover(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
     COND_GP *cond = c->cond;
     do {
@@ -73,16 +66,17 @@ cond_gp_cover(const XCSF *xcsf, const CL *c, const double *x)
 }
 
 void
-cond_gp_update(const XCSF *xcsf, const CL *c, const double *x, const double *y)
+cond_gp_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+               const double *y)
 {
-    (void)xcsf;
-    (void)c;
-    (void)x;
-    (void)y;
+    (void) xcsf;
+    (void) c;
+    (void) x;
+    (void) y;
 }
 
 _Bool
-cond_gp_match(const XCSF *xcsf, const CL *c, const double *x)
+cond_gp_match(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
     COND_GP *cond = c->cond;
     cond->gp.p = 0;
@@ -94,14 +88,15 @@ cond_gp_match(const XCSF *xcsf, const CL *c, const double *x)
 }
 
 _Bool
-cond_gp_mutate(const XCSF *xcsf, const CL *c)
+cond_gp_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
     COND_GP *cond = c->cond;
     return tree_mutate(xcsf, &cond->gp);
 }
 
 _Bool
-cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+cond_gp_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                  const struct CL *c2)
 {
     COND_GP *cond1 = c1->cond;
     COND_GP *cond2 = c2->cond;
@@ -113,16 +108,17 @@ cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 }
 
 _Bool
-cond_gp_general(const XCSF *xcsf, const CL *c1, const CL *c2)
+cond_gp_general(const struct XCSF *xcsf, const struct CL *c1,
+                const struct CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void) xcsf;
+    (void) c1;
+    (void) c2;
     return false;
 }
 
 void
-cond_gp_print(const XCSF *xcsf, const CL *c)
+cond_gp_print(const struct XCSF *xcsf, const struct CL *c)
 {
     const COND_GP *cond = c->cond;
     printf("GP tree: ");
@@ -131,15 +127,15 @@ cond_gp_print(const XCSF *xcsf, const CL *c)
 }
 
 int
-cond_gp_size(const XCSF *xcsf, const CL *c)
+cond_gp_size(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
+    (void) xcsf;
     const COND_GP *cond = c->cond;
     return cond->gp.len;
 }
 
 size_t
-cond_gp_save(const XCSF *xcsf, const CL *c, FILE *fp)
+cond_gp_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
     const COND_GP *cond = c->cond;
     size_t s = tree_save(xcsf, &cond->gp, fp);
@@ -147,7 +143,7 @@ cond_gp_save(const XCSF *xcsf, const CL *c, FILE *fp)
 }
 
 size_t
-cond_gp_load(const XCSF *xcsf, CL *c, FILE *fp)
+cond_gp_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
     COND_GP *new = malloc(sizeof(COND_GP));
     size_t s = tree_load(xcsf, &new->gp, fp);

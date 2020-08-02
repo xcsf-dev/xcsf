@@ -21,52 +21,48 @@
  * @brief Functions operating on sets of classifiers.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <float.h>
-#include <string.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "cl.h"
 #include "clset.h"
+#include "cl.h"
+#include "utils.h"
 
 #define MAX_COVER (1000000) //!< maximum number of covering attempts
 
 static _Bool
-clset_action_coverage(const XCSF *xcsf, _Bool *act_covered);
+clset_action_coverage(const struct XCSF *xcsf, _Bool *act_covered);
 
 static double
-clset_total_time(const SET *set);
+clset_total_time(const struct SET *set);
 
 static void
-clset_pop_del(XCSF *xcsf);
+clset_pop_del(struct XCSF *xcsf);
 
 static void
-clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev);
+clset_pop_never_match(const struct XCSF *xcsf, struct CLIST **del,
+                      struct CLIST **delprev);
 
 static void
-clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev);
+clset_pop_roulette(const struct XCSF *xcsf, struct CLIST **del,
+                   struct CLIST **delprev);
 
 static void
-clset_subsumption(XCSF *xcsf, SET *set);
+clset_subsumption(struct XCSF *xcsf, struct SET *set);
 
 static void
-clset_update_fit(const XCSF *xcsf, const SET *set);
+clset_update_fit(const struct XCSF *xcsf, const struct SET *set);
 
 static void
-clset_cover(XCSF *xcsf, const double *x);
+clset_cover(struct XCSF *xcsf, const double *x);
 
 /**
  * @brief Initialises a new population of random classifiers.
  * @param xcsf The XCSF data structure.
  */
 void
-clset_pop_init(XCSF *xcsf)
+clset_pop_init(struct XCSF *xcsf)
 {
     if (xcsf->POP_INIT) {
         while (xcsf->pset.num < xcsf->POP_SIZE) {
-            CL *new = malloc(sizeof(CL));
+            struct CL *new = malloc(sizeof(CL));
             cl_init(xcsf, new, xcsf->POP_SIZE, 0);
             cl_rand(xcsf, new);
             clset_add(&xcsf->pset, new);
@@ -79,7 +75,7 @@ clset_pop_init(XCSF *xcsf)
  * @param set The set to be initialised.
  */
 void
-clset_init(SET *set)
+clset_init(struct SET *set)
 {
     set->list = NULL;
     set->size = 0;
@@ -91,10 +87,10 @@ clset_init(SET *set)
  * @param xcsf The XCSF data structure.
  */
 static void
-clset_pop_del(XCSF *xcsf)
+clset_pop_del(struct XCSF *xcsf)
 {
-    CLIST *del = NULL;
-    CLIST *delprev = NULL;
+    struct CLIST *del = NULL;
+    struct CLIST *delprev = NULL;
     // select any rules that never match
     clset_pop_never_match(xcsf, &del, &delprev);
     // if none found, select a rule using roulette wheel
@@ -125,10 +121,12 @@ clset_pop_del(XCSF *xcsf)
  * by this function).
  */
 static void
-clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev)
+clset_pop_never_match(const struct XCSF *xcsf, struct CLIST **del,
+                      struct CLIST **delprev)
 {
-    CLIST *prev = NULL;
-    for (CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    struct CLIST *prev = NULL;
+    for (struct CLIST *iter = xcsf->pset.list; iter != NULL;
+         iter = iter->next) {
         if (iter->cl->mtotal == 0 && iter->cl->age > xcsf->M_PROBATION) {
             *del = iter;
             *delprev = prev;
@@ -151,18 +149,20 @@ clset_pop_never_match(const XCSF *xcsf, CLIST **del, CLIST **delprev)
  * roulete spin.
  */
 static void
-clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev)
+clset_pop_roulette(const struct XCSF *xcsf, struct CLIST **del,
+                   struct CLIST **delprev)
 {
     double avg_fit = clset_total_fit(&xcsf->pset) / xcsf->pset.num;
     double total_vote = 0;
-    for (const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = xcsf->pset.list; iter != NULL;
+         iter = iter->next) {
         total_vote += cl_del_vote(xcsf, iter->cl, avg_fit);
     }
     int delsize = 0;
     for (int i = 0; i < 2; ++i) {
         // perform a single roulette spin with the deletion vote
-        CLIST *iter = xcsf->pset.list;
-        CLIST *prev = NULL;
+        struct CLIST *iter = xcsf->pset.list;
+        struct CLIST *prev = NULL;
         double p = rand_uniform(0, total_vote);
         double sum = cl_del_vote(xcsf, iter->cl, avg_fit);
         while (p > sum) {
@@ -185,7 +185,7 @@ clset_pop_roulette(const XCSF *xcsf, CLIST **del, CLIST **delprev)
  * @param xcsf The XCSF data structure.
  */
 void
-clset_pop_enforce_limit(XCSF *xcsf)
+clset_pop_enforce_limit(struct XCSF *xcsf)
 {
     while (xcsf->pset.num > xcsf->POP_SIZE) {
         clset_pop_del(xcsf);
@@ -201,18 +201,19 @@ clset_pop_enforce_limit(XCSF *xcsf)
  * to the match set. Covering is performed if any actions are unrepresented.
  */
 void
-clset_match(XCSF *xcsf, const double *x)
+clset_match(struct XCSF *xcsf, const double *x)
 {
 #ifdef PARALLEL_MATCH
     // prepare for parallel processing of matching conditions
-    CLIST *blist[xcsf->pset.size];
+    struct CLIST *blist[xcsf->pset.size];
     int j = 0;
-    for (CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for (struct CLIST *iter = xcsf->pset.list; iter != NULL;
+         iter = iter->next) {
         blist[j] = iter;
         ++j;
     }
-    // update current matching conditions setting m flags in parallel
-    #pragma omp parallel for
+// update current matching conditions setting m flags in parallel
+#pragma omp parallel for
     for (int i = 0; i < xcsf->pset.size; ++i) {
         cl_match(xcsf, blist[i]->cl, x);
     }
@@ -225,7 +226,8 @@ clset_match(XCSF *xcsf, const double *x)
     }
 #else
     // update matching conditions and build match set list in series
-    for (CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for (struct CLIST *iter = xcsf->pset.list; iter != NULL;
+         iter = iter->next) {
         if (cl_match(xcsf, iter->cl, x)) {
             clset_add(&xcsf->mset, iter->cl);
             cl_action(xcsf, iter->cl, x);
@@ -237,10 +239,10 @@ clset_match(XCSF *xcsf, const double *x)
         clset_cover(xcsf, x);
     }
     // update statistics
-    xcsf->msetsize += (xcsf->mset.size - xcsf->msetsize) * (10 /
-                      (double) xcsf->PERF_TRIALS);
-    xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * (10 /
-                   (double) xcsf->PERF_TRIALS);
+    xcsf->msetsize +=
+        (xcsf->mset.size - xcsf->msetsize) * (10 / (double) xcsf->PERF_TRIALS);
+    xcsf->mfrac +=
+        (clset_mfrac(xcsf) - xcsf->mfrac) * (10 / (double) xcsf->PERF_TRIALS);
 }
 
 /**
@@ -249,7 +251,7 @@ clset_match(XCSF *xcsf, const double *x)
  * @param x The input state.
  */
 static void
-clset_cover(XCSF *xcsf, const double *x)
+clset_cover(struct XCSF *xcsf, const double *x)
 {
     int attempts = 0;
     _Bool *act_covered = malloc(sizeof(_Bool) * xcsf->n_actions);
@@ -259,7 +261,7 @@ clset_cover(XCSF *xcsf, const double *x)
         for (int i = 0; i < xcsf->n_actions; ++i) {
             if (!act_covered[i]) {
                 // create a new classifier with matching condition and action
-                CL *new = malloc(sizeof(CL));
+                struct CL *new = malloc(sizeof(CL));
                 cl_init(xcsf, new, (xcsf->mset.num) + 1, xcsf->time);
                 cl_cover(xcsf, new, x, i);
                 clset_add(&xcsf->pset, new);
@@ -282,7 +284,7 @@ clset_cover(XCSF *xcsf, const double *x)
         }
         ++attempts;
         if (attempts > MAX_COVER) {
-            printf("Error: maximum covering attempts (%d) exceeded\n", MAX_COVER);
+            printf("Error: max covering attempts (%d) exceeded\n", MAX_COVER);
             exit(EXIT_FAILURE);
         }
     }
@@ -296,10 +298,11 @@ clset_cover(XCSF *xcsf, const double *x)
  * @return Whether all actions are covered.
  */
 static _Bool
-clset_action_coverage(const XCSF *xcsf, _Bool *act_covered)
+clset_action_coverage(const struct XCSF *xcsf, _Bool *act_covered)
 {
     memset(act_covered, 0, sizeof(_Bool) * xcsf->n_actions);
-    for (const CLIST *iter = xcsf->mset.list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = xcsf->mset.list; iter != NULL;
+         iter = iter->next) {
         act_covered[iter->cl->action] = true;
     }
     for (int i = 0; i < xcsf->n_actions; ++i) {
@@ -316,9 +319,10 @@ clset_action_coverage(const XCSF *xcsf, _Bool *act_covered)
  * @param action The action used to build the set.
  */
 void
-clset_action(XCSF *xcsf, int action)
+clset_action(struct XCSF *xcsf, int action)
 {
-    for (const CLIST *iter = xcsf->mset.list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = xcsf->mset.list; iter != NULL;
+         iter = iter->next) {
         if (iter->cl->action == action) {
             clset_add(&xcsf->aset, iter->cl);
         }
@@ -331,14 +335,14 @@ clset_action(XCSF *xcsf, int action)
  * @param c The classifier to add.
  */
 void
-clset_add(SET *set, CL *c)
+clset_add(struct SET *set, struct CL *c)
 {
     if (set->list == NULL) {
         set->list = malloc(sizeof(CLIST));
         set->list->cl = c;
         set->list->next = NULL;
     } else {
-        CLIST *new = malloc(sizeof(CLIST));
+        struct CLIST *new = malloc(sizeof(CLIST));
         new->cl = c;
         new->next = set->list;
         set->list = new;
@@ -356,22 +360,23 @@ clset_add(SET *set, CL *c)
  * @param cur Whether the update is for the current or previous state.
  */
 void
-clset_update(XCSF *xcsf, SET *set, const double *x, const double *y, _Bool cur)
+clset_update(struct XCSF *xcsf, struct SET *set, const double *x,
+             const double *y, _Bool cur)
 {
 #ifdef PARALLEL_UPDATE
-    CLIST *blist[set->size];
+    struct CLIST *blist[set->size];
     int j = 0;
-    for (CLIST *iter = set->list; iter != NULL
-         && j < set->size; iter = iter->next) {
+    for (struct CLIST *iter = set->list; iter != NULL && j < set->size;
+         iter = iter->next) {
         blist[j] = iter;
         ++j;
     }
-    #pragma omp parallel for
+#pragma omp parallel for
     for (int i = 0; i < set->size; ++i) {
         cl_update(xcsf, blist[i]->cl, x, y, set->num, cur);
     }
 #else
-    for (CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for (struct CLIST *iter = set->list; iter != NULL; iter = iter->next) {
         cl_update(xcsf, iter->cl, x, y, set->num, cur);
     }
 #endif
@@ -387,22 +392,22 @@ clset_update(XCSF *xcsf, SET *set, const double *x, const double *y, _Bool cur)
  * @param set The set to update.
  */
 static void
-clset_update_fit(const XCSF *xcsf, const SET *set)
+clset_update_fit(const struct XCSF *xcsf, const struct SET *set)
 {
     double acc_sum = 0;
     double accs[set->size];
     // calculate accuracies
     int i = 0;
-    for (const CLIST *iter = set->list; iter != NULL
-         && i < set->size; iter = iter->next) {
+    for (const struct CLIST *iter = set->list; iter != NULL && i < set->size;
+         iter = iter->next) {
         accs[i] = cl_acc(xcsf, iter->cl);
         acc_sum += accs[i] * iter->cl->num;
         ++i;
     }
     // update fitnesses
     i = 0;
-    for (const CLIST *iter = set->list; iter != NULL
-         && i < set->size; iter = iter->next) {
+    for (const struct CLIST *iter = set->list; iter != NULL && i < set->size;
+         iter = iter->next) {
         cl_update_fit(xcsf, iter->cl, acc_sum, accs[i]);
         ++i;
     }
@@ -414,12 +419,13 @@ clset_update_fit(const XCSF *xcsf, const SET *set)
  * @param set The set to perform subsumption.
  */
 static void
-clset_subsumption(XCSF *xcsf, SET *set)
+clset_subsumption(struct XCSF *xcsf, struct SET *set)
 {
     // find the most general subsumer in the set
-    CL *s = NULL;
-    for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-        CL *c = iter->cl;
+    struct CL *s = NULL;
+    for (const struct CLIST *iter = set->list; iter != NULL;
+         iter = iter->next) {
+        struct CL *c = iter->cl;
         if (cl_subsumer(xcsf, c) && (s == NULL || cl_general(xcsf, c, s))) {
             s = c;
         }
@@ -427,8 +433,9 @@ clset_subsumption(XCSF *xcsf, SET *set)
     // subsume the more specific classifiers in the set
     if (s != NULL) {
         _Bool subsumed = false;
-        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
-            CL *c = iter->cl;
+        for (const struct CLIST *iter = set->list; iter != NULL;
+             iter = iter->next) {
+            struct CL *c = iter->cl;
             if (s != c && cl_general(xcsf, s, c)) {
                 s->num += c->num;
                 c->num = 0;
@@ -448,12 +455,12 @@ clset_subsumption(XCSF *xcsf, SET *set)
  * @param set The set to validate.
  */
 void
-clset_validate(SET *set)
+clset_validate(struct SET *set)
 {
     set->size = 0;
     set->num = 0;
-    CLIST *prev = NULL;
-    CLIST *iter = set->list;
+    struct CLIST *prev = NULL;
+    struct CLIST *iter = set->list;
     while (iter != NULL) {
         if (iter->cl == NULL || iter->cl->num == 0) {
             if (prev == NULL) {
@@ -483,10 +490,11 @@ clset_validate(SET *set)
  * @param printp Whether to print the predictions.
  */
 void
-clset_print(const XCSF *xcsf, const SET *set, _Bool printc, _Bool printa,
-            _Bool printp)
+clset_print(const struct XCSF *xcsf, const struct SET *set, _Bool printc,
+            _Bool printa, _Bool printp)
 {
-    for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = set->list; iter != NULL;
+         iter = iter->next) {
         cl_print(xcsf, iter->cl, printc, printa, printp);
     }
 }
@@ -497,9 +505,10 @@ clset_print(const XCSF *xcsf, const SET *set, _Bool printc, _Bool printa,
  * @param set The set to update the time stamps.
  */
 void
-clset_set_times(const XCSF *xcsf, const SET *set)
+clset_set_times(const struct XCSF *xcsf, const struct SET *set)
 {
-    for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = set->list; iter != NULL;
+         iter = iter->next) {
         iter->cl->time = xcsf->time;
     }
 }
@@ -510,10 +519,11 @@ clset_set_times(const XCSF *xcsf, const SET *set)
  * @return The total fitness of classifiers in the set.
  */
 double
-clset_total_fit(const SET *set)
+clset_total_fit(const struct SET *set)
 {
     double sum = 0;
-    for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = set->list; iter != NULL;
+         iter = iter->next) {
         sum += iter->cl->fit;
     }
     return sum;
@@ -525,10 +535,11 @@ clset_total_fit(const SET *set)
  * @return The total time of classifiers in the set.
  */
 static double
-clset_total_time(const SET *set)
+clset_total_time(const struct SET *set)
 {
     double sum = 0;
-    for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = set->list; iter != NULL;
+         iter = iter->next) {
         sum += iter->cl->time * iter->cl->num;
     }
     return sum;
@@ -540,7 +551,7 @@ clset_total_time(const SET *set)
  * @return The mean time of classifiers in the set.
  */
 double
-clset_mean_time(const SET *set)
+clset_mean_time(const struct SET *set)
 {
     return clset_total_time(set) / set->num;
 }
@@ -550,9 +561,9 @@ clset_mean_time(const SET *set)
  * @param set The set to free.
  */
 void
-clset_free(SET *set)
+clset_free(struct SET *set)
 {
-    CLIST *iter = set->list;
+    struct CLIST *iter = set->list;
     while (iter != NULL) {
         set->list = iter->next;
         free(iter);
@@ -568,9 +579,9 @@ clset_free(SET *set)
  * @param set The set to free.
  */
 void
-clset_kill(const XCSF *xcsf, SET *set)
+clset_kill(const struct XCSF *xcsf, struct SET *set)
 {
-    CLIST *iter = set->list;
+    struct CLIST *iter = set->list;
     while (iter != NULL) {
         cl_free(xcsf, iter->cl);
         set->list = iter->next;
@@ -588,12 +599,13 @@ clset_kill(const XCSF *xcsf, SET *set)
  * @return The number of elements written.
  */
 size_t
-clset_pop_save(const XCSF *xcsf, FILE *fp)
+clset_pop_save(const struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->pset.size, sizeof(int), 1, fp);
     s += fwrite(&xcsf->pset.num, sizeof(int), 1, fp);
-    for (const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = xcsf->pset.list; iter != NULL;
+         iter = iter->next) {
         s += cl_save(xcsf, iter->cl, fp);
     }
     return s;
@@ -606,7 +618,7 @@ clset_pop_save(const XCSF *xcsf, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-clset_pop_load(XCSF *xcsf, FILE *fp)
+clset_pop_load(struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     int size = 0;
@@ -615,7 +627,7 @@ clset_pop_load(XCSF *xcsf, FILE *fp)
     s += fread(&num, sizeof(int), 1, fp);
     clset_init(&xcsf->pset);
     for (int i = 0; i < size; ++i) {
-        CL *c = malloc(sizeof(CL));
+        struct CL *c = malloc(sizeof(CL));
         s += cl_load(xcsf, c, fp);
         clset_add(&xcsf->pset, c);
     }
@@ -629,11 +641,12 @@ clset_pop_load(XCSF *xcsf, FILE *fp)
  * @return The mean condition size of classifiers in the set.
  */
 double
-clset_mean_cond_size(const XCSF *xcsf, const SET *set)
+clset_mean_cond_size(const struct XCSF *xcsf, const struct SET *set)
 {
     int sum = 0;
     int cnt = 0;
-    for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = set->list; iter != NULL;
+         iter = iter->next) {
         sum += cl_cond_size(xcsf, iter->cl);
         ++cnt;
     }
@@ -647,11 +660,12 @@ clset_mean_cond_size(const XCSF *xcsf, const SET *set)
  * @return The mean prediction size of classifiers in the set.
  */
 double
-clset_mean_pred_size(const XCSF *xcsf, const SET *set)
+clset_mean_pred_size(const struct XCSF *xcsf, const struct SET *set)
 {
     int sum = 0;
     int cnt = 0;
-    for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = set->list; iter != NULL;
+         iter = iter->next) {
         sum += cl_pred_size(xcsf, iter->cl);
         ++cnt;
     }
@@ -665,11 +679,12 @@ clset_mean_pred_size(const XCSF *xcsf, const SET *set)
  * @return The fraction of inputs matched.
  */
 double
-clset_mfrac(const XCSF *xcsf)
+clset_mfrac(const struct XCSF *xcsf)
 {
     double mfrac = 0;
     // most general rule below EPS_0
-    for (const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = xcsf->pset.list; iter != NULL;
+         iter = iter->next) {
         double e = iter->cl->err;
         if (e < xcsf->EPS_0 && iter->cl->exp > 1 / xcsf->BETA) {
             double m = cl_mfrac(xcsf, iter->cl);
@@ -681,7 +696,8 @@ clset_mfrac(const XCSF *xcsf)
     // lowest error rule
     if (mfrac == 0) {
         double error = DBL_MAX;
-        for (const CLIST *iter = xcsf->pset.list; iter != NULL; iter = iter->next) {
+        for (const struct CLIST *iter = xcsf->pset.list; iter != NULL;
+             iter = iter->next) {
             double e = iter->cl->err;
             if (e < error && iter->cl->exp > 1 / xcsf->BETA) {
                 mfrac = cl_mfrac(xcsf, iter->cl);

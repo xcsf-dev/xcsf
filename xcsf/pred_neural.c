@@ -21,29 +21,19 @@
  * @brief Multi-layer perceptron neural network prediction functions.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "cl.h"
+#include "pred_neural.h"
 #include "neural_activations.h"
-#include "neural.h"
-#include "neural_layer.h"
 #include "neural_layer_connected.h"
 #include "neural_layer_convolutional.h"
 #include "neural_layer_dropout.h"
 #include "neural_layer_lstm.h"
-#include "neural_layer_noise.h"
 #include "neural_layer_maxpool.h"
+#include "neural_layer_noise.h"
 #include "neural_layer_recurrent.h"
 #include "neural_layer_softmax.h"
-#include "prediction.h"
-#include "pred_neural.h"
 
 static uint32_t
-pred_neural_lopt(const XCSF *xcsf);
+pred_neural_lopt(const struct XCSF *xcsf);
 
 /**
  * @brief Creates and initialises a neural network prediction.
@@ -52,7 +42,7 @@ pred_neural_lopt(const XCSF *xcsf);
  * @param c The classifier whose prediction is to be initialised.
  */
 void
-pred_neural_init(const XCSF *xcsf, CL *c)
+pred_neural_init(const struct XCSF *xcsf, struct CL *c)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     neural_init(xcsf, &new->net);
@@ -77,22 +67,22 @@ pred_neural_init(const XCSF *xcsf, CL *c)
     lopt &= ~LAYER_EVOLVE_FUNCTIONS; // never evolve the output neurons function
     if (f == SOFT_MAX) {
         // classification
-        l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim,
-                                        LINEAR, lopt);
+        l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim,
+                                        xcsf->y_dim, LINEAR, lopt);
         neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
         l = neural_layer_softmax_init(xcsf, xcsf->y_dim, 1);
         neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
     } else {
         // regression
-        l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim, xcsf->y_dim,
-                                        f, lopt);
+        l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim,
+                                        xcsf->y_dim, f, lopt);
         neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
     }
     c->pred = new;
 }
 
 static uint32_t
-pred_neural_lopt(const XCSF *xcsf)
+pred_neural_lopt(const struct XCSF *xcsf)
 {
     uint32_t lopt = 0;
     if (xcsf->PRED_EVOLVE_ETA) {
@@ -117,7 +107,7 @@ pred_neural_lopt(const XCSF *xcsf)
 }
 
 void
-pred_neural_free(const XCSF *xcsf, const CL *c)
+pred_neural_free(const struct XCSF *xcsf, const struct CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     neural_free(xcsf, &pred->net);
@@ -125,7 +115,7 @@ pred_neural_free(const XCSF *xcsf, const CL *c)
 }
 
 void
-pred_neural_copy(const XCSF *xcsf, CL *dest, const CL *src)
+pred_neural_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     const PRED_NEURAL *src_pred = src->pred;
@@ -134,8 +124,8 @@ pred_neural_copy(const XCSF *xcsf, CL *dest, const CL *src)
 }
 
 void
-pred_neural_update(const XCSF *xcsf, const CL *c,
-                   const double *x, const double *y)
+pred_neural_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+                   const double *y)
 {
     if (xcsf->PRED_SGD_WEIGHTS) {
         const PRED_NEURAL *pred = c->pred;
@@ -144,7 +134,8 @@ pred_neural_update(const XCSF *xcsf, const CL *c,
 }
 
 void
-pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x)
+pred_neural_compute(const struct XCSF *xcsf, const struct CL *c,
+                    const double *x)
 {
     const PRED_NEURAL *pred = c->pred;
     neural_propagate(xcsf, &pred->net, x);
@@ -154,37 +145,38 @@ pred_neural_compute(const XCSF *xcsf, const CL *c, const double *x)
 }
 
 void
-pred_neural_print(const XCSF *xcsf, const CL *c)
+pred_neural_print(const struct XCSF *xcsf, const struct CL *c)
 {
     const PRED_NEURAL *pred = c->pred;
     neural_print(xcsf, &pred->net, false);
 }
 
 _Bool
-pred_neural_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+pred_neural_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                      const struct CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void) xcsf;
+    (void) c1;
+    (void) c2;
     return false;
 }
 
 _Bool
-pred_neural_mutate(const XCSF *xcsf, const CL *c)
+pred_neural_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
     const PRED_NEURAL *pred = c->pred;
     return neural_mutate(xcsf, &pred->net);
 }
 
 int
-pred_neural_size(const XCSF *xcsf, const CL *c)
+pred_neural_size(const struct XCSF *xcsf, const struct CL *c)
 {
     const PRED_NEURAL *pred = c->pred;
     return neural_size(xcsf, &pred->net);
 }
 
 size_t
-pred_neural_save(const XCSF *xcsf, const CL *c, FILE *fp)
+pred_neural_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
     const PRED_NEURAL *pred = c->pred;
     size_t s = neural_save(xcsf, &pred->net, fp);
@@ -192,7 +184,7 @@ pred_neural_save(const XCSF *xcsf, const CL *c, FILE *fp)
 }
 
 size_t
-pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp)
+pred_neural_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
     PRED_NEURAL *new = malloc(sizeof(PRED_NEURAL));
     size_t s = neural_load(xcsf, &new->net, fp);
@@ -201,9 +193,9 @@ pred_neural_load(const XCSF *xcsf, CL *c, FILE *fp)
 }
 
 double
-pred_neural_eta(const XCSF *xcsf, const CL *c, int layer)
+pred_neural_eta(const struct XCSF *xcsf, const struct CL *c, int layer)
 {
-    (void)xcsf;
+    (void) xcsf;
     const PRED_NEURAL *pred = c->pred;
     int i = 0;
     for (const LLIST *iter = pred->net.tail; iter != NULL; iter = iter->prev) {
@@ -216,9 +208,9 @@ pred_neural_eta(const XCSF *xcsf, const CL *c, int layer)
 }
 
 int
-pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer)
+pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer)
 {
-    (void)xcsf;
+    (void) xcsf;
     const PRED_NEURAL *pred = c->pred;
     const NET *net = &pred->net;
     int i = 0;
@@ -232,9 +224,9 @@ pred_neural_neurons(const XCSF *xcsf, const CL *c, int layer)
 }
 
 int
-pred_neural_connections(const XCSF *xcsf, const CL *c, int layer)
+pred_neural_connections(const struct XCSF *xcsf, const struct CL *c, int layer)
 {
-    (void)xcsf;
+    (void) xcsf;
     const PRED_NEURAL *pred = c->pred;
     const NET *net = &pred->net;
     int i = 0;
@@ -248,16 +240,16 @@ pred_neural_connections(const XCSF *xcsf, const CL *c, int layer)
 }
 
 int
-pred_neural_layers(const XCSF *xcsf, const CL *c)
+pred_neural_layers(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
+    (void) xcsf;
     const PRED_NEURAL *pred = c->pred;
     const NET *net = &pred->net;
     return net->n_layers;
 }
 
 void
-pred_neural_expand(const XCSF *xcsf, const CL *c)
+pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
 {
     PRED_NEURAL *pred = c->pred;
     NET *net = &pred->net;
@@ -285,7 +277,8 @@ pred_neural_expand(const XCSF *xcsf, const CL *c)
 }
 
 void
-pred_neural_ae_to_classifier(const XCSF *xcsf, const CL *c, int n_del)
+pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct CL *c,
+                             int n_del)
 {
     PRED_NEURAL *pred = c->pred;
     NET *net = &pred->net;
@@ -299,8 +292,8 @@ pred_neural_ae_to_classifier(const XCSF *xcsf, const CL *c, int n_del)
     uint32_t lopt = pred_neural_lopt(xcsf);
     lopt &= ~LAYER_EVOLVE_NEURONS;
     lopt &= ~LAYER_EVOLVE_FUNCTIONS;
-    l = neural_layer_connected_init(xcsf, code_size, xcsf->y_dim,
-                                    xcsf->y_dim, LINEAR, lopt);
+    l = neural_layer_connected_init(xcsf, code_size, xcsf->y_dim, xcsf->y_dim,
+                                    LINEAR, lopt);
     neural_layer_insert(xcsf, net, l, net->n_layers);
     l = neural_layer_softmax_init(xcsf, xcsf->y_dim, 1);
     neural_layer_insert(xcsf, net, l, net->n_layers);

@@ -25,6 +25,8 @@
 
 #define GP_N_MU (1) //!< Number of GP mutation rates
 
+#include "xcsf.h"
+
 /**
  * @brief GP tree data structure.
  */
@@ -36,34 +38,34 @@ typedef struct GP_TREE {
 } GP_TREE;
 
 void
-tree_free_cons(const XCSF *xcsf);
+tree_free_cons(const struct XCSF *xcsf);
 
 void
-tree_init_cons(XCSF *xcsf);
+tree_init_cons(struct XCSF *xcsf);
 
 void
-tree_free(const XCSF *xcsf, const GP_TREE *gp);
+tree_free(const struct XCSF *xcsf, const GP_TREE *gp);
 
 void
-tree_rand(const XCSF *xcsf, GP_TREE *gp);
+tree_rand(const struct XCSF *xcsf, GP_TREE *gp);
 
 void
-tree_copy(const XCSF *xcsf, GP_TREE *dest, const GP_TREE *src);
+tree_copy(const struct XCSF *xcsf, GP_TREE *dest, const GP_TREE *src);
 
 int
-tree_print(const XCSF *xcsf, const GP_TREE *gp, int p);
+tree_print(const struct XCSF *xcsf, const GP_TREE *gp, int p);
 
 double
-tree_eval(const XCSF *xcsf, GP_TREE *gp, const double *x);
+tree_eval(const struct XCSF *xcsf, GP_TREE *gp, const double *x);
 
 void
-tree_crossover(const XCSF *xcsf, GP_TREE *p1, GP_TREE *p2);
+tree_crossover(const struct XCSF *xcsf, GP_TREE *p1, GP_TREE *p2);
 
 _Bool
-tree_mutate(const XCSF *xcsf, GP_TREE *gp);
+tree_mutate(const struct XCSF *xcsf, GP_TREE *gp);
 
 size_t
-tree_save(const XCSF *xcsf, const GP_TREE *gp, FILE *fp);
+tree_save(const struct XCSF *xcsf, const GP_TREE *gp, FILE *fp);
 
 size_t
-tree_load(const XCSF *xcsf, GP_TREE *gp, FILE *fp);
+tree_load(const struct XCSF *xcsf, GP_TREE *gp, FILE *fp);

@@ -23,6 +23,11 @@
 
 #pragma once
 
+#include "action.h"
+#include "condition.h"
+#include "dgp.h"
+#include "xcsf.h"
+
 /**
  * @brief Dynamical GP graph rule data structure.
  */
@@ -32,115 +37,107 @@ typedef struct RULE_DGP {
 } RULE_DGP;
 
 _Bool
-rule_dgp_cond_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+rule_dgp_cond_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                        const struct CL *c2);
 
 _Bool
-rule_dgp_cond_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+rule_dgp_cond_general(const struct XCSF *xcsf, const struct CL *c1,
+                      const struct CL *c2);
 
 _Bool
-rule_dgp_cond_match(const XCSF *xcsf, const CL *c, const double *x);
+rule_dgp_cond_match(const struct XCSF *xcsf, const struct CL *c,
+                    const double *x);
 
 _Bool
-rule_dgp_cond_mutate(const XCSF *xcsf, const CL *c);
+rule_dgp_cond_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 void
-rule_dgp_cond_copy(const XCSF *xcsf, CL *dest, const CL *src);
+rule_dgp_cond_copy(const struct XCSF *xcsf, struct CL *dest,
+                   const struct CL *src);
 
 void
-rule_dgp_cond_cover(const XCSF *xcsf, const CL *c, const double *x);
+rule_dgp_cond_cover(const struct XCSF *xcsf, const struct CL *c,
+                    const double *x);
 
 void
-rule_dgp_cond_free(const XCSF *xcsf, const CL *c);
+rule_dgp_cond_free(const struct XCSF *xcsf, const struct CL *c);
 
 void
-rule_dgp_cond_init(const XCSF *xcsf, CL *c);
+rule_dgp_cond_init(const struct XCSF *xcsf, struct CL *c);
 
 void
-rule_dgp_cond_print(const XCSF *xcsf, const CL *c);
+rule_dgp_cond_print(const struct XCSF *xcsf, const struct CL *c);
 
 void
-rule_dgp_cond_update(const XCSF *xcsf, const CL *c,
+rule_dgp_cond_update(const struct XCSF *xcsf, const struct CL *c,
                      const double *x, const double *y);
 
 int
-rule_dgp_cond_size(const XCSF *xcsf, const CL *c);
+rule_dgp_cond_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t
-rule_dgp_cond_save(const XCSF *xcsf, const CL *c, FILE *fp);
+rule_dgp_cond_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
 
 size_t
-rule_dgp_cond_load(const XCSF *xcsf, CL *c, FILE *fp);
+rule_dgp_cond_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 
 /**
  * @brief Dynamical GP rule condition implemented functions.
  */
 static struct CondVtbl const rule_dgp_cond_vtbl = {
-    &rule_dgp_cond_crossover,
-    &rule_dgp_cond_general,
-    &rule_dgp_cond_match,
-    &rule_dgp_cond_mutate,
-    &rule_dgp_cond_copy,
-    &rule_dgp_cond_cover,
-    &rule_dgp_cond_free,
-    &rule_dgp_cond_init,
-    &rule_dgp_cond_print,
-    &rule_dgp_cond_update,
-    &rule_dgp_cond_size,
-    &rule_dgp_cond_save,
-    &rule_dgp_cond_load
-};
+    &rule_dgp_cond_crossover, &rule_dgp_cond_general, &rule_dgp_cond_match,
+    &rule_dgp_cond_mutate,    &rule_dgp_cond_copy,    &rule_dgp_cond_cover,
+    &rule_dgp_cond_free,      &rule_dgp_cond_init,    &rule_dgp_cond_print,
+    &rule_dgp_cond_update,    &rule_dgp_cond_size,    &rule_dgp_cond_save,
+    &rule_dgp_cond_load};
 
 _Bool
-rule_dgp_act_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+rule_dgp_act_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                       const struct CL *c2);
 
 _Bool
-rule_dgp_act_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+rule_dgp_act_general(const struct XCSF *xcsf, const struct CL *c1,
+                     const struct CL *c2);
 
 _Bool
-rule_dgp_act_mutate(const XCSF *xcsf, const CL *c);
+rule_dgp_act_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 int
-rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x);
+rule_dgp_act_compute(const struct XCSF *xcsf, const struct CL *c,
+                     const double *x);
 
 void
-rule_dgp_act_copy(const XCSF *xcsf, CL *dest, const CL *src);
+rule_dgp_act_copy(const struct XCSF *xcsf, struct CL *dest,
+                  const struct CL *src);
 
 void
-rule_dgp_act_cover(const XCSF *xcsf, const CL *c, const double *x, int action);
+rule_dgp_act_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
+                   int action);
 
 void
-rule_dgp_act_free(const XCSF *xcsf, const CL *c);
+rule_dgp_act_free(const struct XCSF *xcsf, const struct CL *c);
 
 void
-rule_dgp_act_init(const XCSF *xcsf, CL *c);
+rule_dgp_act_init(const struct XCSF *xcsf, struct CL *c);
 
 void
-rule_dgp_act_print(const XCSF *xcsf, const CL *c);
+rule_dgp_act_print(const struct XCSF *xcsf, const struct CL *c);
 
 void
-rule_dgp_act_update(const XCSF *xcsf, const CL *c,
+rule_dgp_act_update(const struct XCSF *xcsf, const struct CL *c,
                     const double *x, const double *y);
 
 size_t
-rule_dgp_act_save(const XCSF *xcsf, const CL *c, FILE *fp);
+rule_dgp_act_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
 
 size_t
-rule_dgp_act_load(const XCSF *xcsf, CL *c, FILE *fp);
+rule_dgp_act_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 
 /**
  * @brief Dynamical GP rule action implemented functions.
  */
 static struct ActVtbl const rule_dgp_act_vtbl = {
-    &rule_dgp_act_general,
-    &rule_dgp_act_crossover,
-    &rule_dgp_act_mutate,
-    &rule_dgp_act_compute,
-    &rule_dgp_act_copy,
-    &rule_dgp_act_cover,
-    &rule_dgp_act_free,
-    &rule_dgp_act_init,
-    &rule_dgp_act_print,
-    &rule_dgp_act_update,
-    &rule_dgp_act_save,
-    &rule_dgp_act_load
-};
+    &rule_dgp_act_general, &rule_dgp_act_crossover, &rule_dgp_act_mutate,
+    &rule_dgp_act_compute, &rule_dgp_act_copy,      &rule_dgp_act_cover,
+    &rule_dgp_act_free,    &rule_dgp_act_init,      &rule_dgp_act_print,
+    &rule_dgp_act_update,  &rule_dgp_act_save,      &rule_dgp_act_load};

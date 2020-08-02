@@ -21,17 +21,10 @@
  * @brief An implementation of a 2D maxpooling layer.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <limits.h>
-#include <float.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "neural_activations.h"
-#include "neural.h"
-#include "neural_layer.h"
 #include "neural_layer_maxpool.h"
+#include "neural_activations.h"
+#include "utils.h"
+#include "xcsf.h"
 
 static void
 malloc_layer_arrays(LAYER *l);
@@ -48,10 +41,10 @@ malloc_layer_arrays(LAYER *l);
  * @return A pointer to the new layer.
  */
 LAYER *
-neural_layer_maxpool_init(const XCSF *xcsf, int h, int w, int c,
+neural_layer_maxpool_init(const struct XCSF *xcsf, int h, int w, int c,
                           int size, int stride, int pad)
 {
-    (void)xcsf;
+    (void) xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = MAXPOOL;
@@ -73,9 +66,9 @@ neural_layer_maxpool_init(const XCSF *xcsf, int h, int w, int c,
 }
 
 LAYER *
-neural_layer_maxpool_copy(const XCSF *xcsf, const LAYER *src)
+neural_layer_maxpool_copy(const struct XCSF *xcsf, const LAYER *src)
 {
-    (void)xcsf;
+    (void) xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
@@ -110,26 +103,26 @@ malloc_layer_arrays(LAYER *l)
 }
 
 void
-neural_layer_maxpool_free(const XCSF *xcsf, const LAYER *l)
+neural_layer_maxpool_free(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     free(l->indexes);
     free(l->output);
     free(l->delta);
 }
 
 void
-neural_layer_maxpool_rand(const XCSF *xcsf, LAYER *l)
+neural_layer_maxpool_rand(const struct XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf;
-    (void)l;
+    (void) xcsf;
+    (void) l;
 }
 
 void
-neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l,
+neural_layer_maxpool_forward(const struct XCSF *xcsf, const LAYER *l,
                              const double *input)
 {
-    (void)xcsf;
+    (void) xcsf;
     int w_offset = -l->pad / 2;
     int h_offset = w_offset;
     int h = l->out_h;
@@ -161,11 +154,11 @@ neural_layer_maxpool_forward(const XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_maxpool_backward(const XCSF *xcsf, const LAYER *l,
+neural_layer_maxpool_backward(const struct XCSF *xcsf, const LAYER *l,
                               const double *input, double *delta)
 {
-    (void)xcsf;
-    (void)input;
+    (void) xcsf;
+    (void) input;
     if (!delta) {
         return;
     }
@@ -176,24 +169,25 @@ neural_layer_maxpool_backward(const XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_maxpool_update(const XCSF *xcsf, const LAYER *l)
+neural_layer_maxpool_update(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
-    (void)l;
+    (void) xcsf;
+    (void) l;
 }
 
 _Bool
-neural_layer_maxpool_mutate(const XCSF *xcsf, LAYER *l)
+neural_layer_maxpool_mutate(const struct XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf;
-    (void)l;
+    (void) xcsf;
+    (void) l;
     return false;
 }
 
 void
-neural_layer_maxpool_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
+neural_layer_maxpool_resize(const struct XCSF *xcsf, LAYER *l,
+                            const LAYER *prev)
 {
-    (void)xcsf;
+    (void) xcsf;
     int w = prev->out_w;
     int h = prev->out_h;
     int c = prev->out_c;
@@ -212,27 +206,28 @@ neural_layer_maxpool_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 }
 
 double *
-neural_layer_maxpool_output(const XCSF *xcsf, const LAYER *l)
+neural_layer_maxpool_output(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     return l->output;
 }
 
 void
-neural_layer_maxpool_print(const XCSF *xcsf, const LAYER *l,
+neural_layer_maxpool_print(const struct XCSF *xcsf, const LAYER *l,
                            _Bool print_weights)
 {
-    (void)xcsf;
-    (void)print_weights;
-    printf("maxpool in=%d, out=%d, h=%d, w=%d, c=%d, size=%d, stride=%d, pad=%d\n",
-           l->n_inputs, l->n_outputs, l->height, l->width, l->channels,
-           l->size, l->stride, l->pad);
+    (void) xcsf;
+    (void) print_weights;
+    printf(
+        "maxpool in=%d, out=%d, h=%d, w=%d, c=%d, size=%d, stride=%d, pad=%d\n",
+        l->n_inputs, l->n_outputs, l->height, l->width, l->channels, l->size,
+        l->stride, l->pad);
 }
 
 size_t
-neural_layer_maxpool_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
+neural_layer_maxpool_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     s += fwrite(&l->height, sizeof(int), 1, fp);
     s += fwrite(&l->width, sizeof(int), 1, fp);
@@ -250,9 +245,9 @@ neural_layer_maxpool_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 }
 
 size_t
-neural_layer_maxpool_load(const XCSF *xcsf, LAYER *l, FILE *fp)
+neural_layer_maxpool_load(const struct XCSF *xcsf, LAYER *l, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     layer_init(l);
     s += fread(&l->height, sizeof(int), 1, fp);

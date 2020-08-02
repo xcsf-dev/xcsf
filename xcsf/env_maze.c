@@ -44,23 +44,16 @@
  * Woods 102: 3.31
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <errno.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "param.h"
-#include "env.h"
 #include "env_maze.h"
+#include "param.h"
+#include "utils.h"
 
 #define MAX_PAYOFF (1.) //!< The payoff provided at a food position
-static const int x_moves[] = { 0, +1, +1, +1,  0, -1, -1, -1}; //!< x-axis moves
-static const int y_moves[] = {-1, -1,  0, +1, +1, +1,  0, -1}; //!< y-axis moves
+static const int x_moves[] = {0, +1, +1, +1, 0, -1, -1, -1}; //!< x-axis moves
+static const int y_moves[] = {-1, -1, 0, +1, +1, +1, 0, -1}; //!< y-axis moves
 
 static double
-env_maze_sensor(const XCSF *xcsf, char s);
+env_maze_sensor(const struct XCSF *xcsf, char s);
 
 /**
  * @brief Initialises a maze environment from a specified file.
@@ -68,7 +61,7 @@ env_maze_sensor(const XCSF *xcsf, char s);
  * @param fname The file name of the specified maze environment.
  */
 void
-env_maze_init(XCSF *xcsf, const char *fname)
+env_maze_init(struct XCSF *xcsf, const char *fname)
 {
     // open maze file
     FILE *fp = fopen(fname, "rt");
@@ -87,18 +80,20 @@ env_maze_init(XCSF *xcsf, const char *fname)
             env->xsize = x;
             x = 0;
         } else {
-            env->maze[y][x] = (char)c;
+            env->maze[y][x] = (char) c;
             ++x;
         }
         // check maximum maze size not exceeded
         if (x > MAX_SIZE || y > MAX_SIZE) {
-            printf("Maze too big to be read. Max size = [%d,%d]\n", MAX_SIZE, MAX_SIZE);
+            printf("Maze too big to be read. Max size = [%d,%d]\n", MAX_SIZE,
+                   MAX_SIZE);
             exit(EXIT_FAILURE);
         }
     }
     // check if EOF came from an end-of-file or an error
     if (ferror(fp)) {
-        printf("EOF read error: could not open %s. %s.\n", fname, strerror(errno));
+        printf("EOF read error: could not open %s. %s.\n", fname,
+               strerror(errno));
         exit(EXIT_FAILURE);
     }
     env->ysize = y;
@@ -115,7 +110,7 @@ env_maze_init(XCSF *xcsf, const char *fname)
  * @param xcsf The XCSF data structure.
  */
 void
-env_maze_free(const XCSF *xcsf)
+env_maze_free(const struct XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     free(env->state);
@@ -127,7 +122,7 @@ env_maze_free(const XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  */
 void
-env_maze_reset(const XCSF *xcsf)
+env_maze_reset(const struct XCSF *xcsf)
 {
     ENV_MAZE *env = xcsf->env;
     env->reset = false;
@@ -143,7 +138,7 @@ env_maze_reset(const XCSF *xcsf)
  * @return Whether the maze needs to be reset.
  */
 _Bool
-env_maze_isreset(const XCSF *xcsf)
+env_maze_isreset(const struct XCSF *xcsf)
 {
     const ENV_MAZE *env = xcsf->env;
     return env->reset;
@@ -155,7 +150,7 @@ env_maze_isreset(const XCSF *xcsf)
  * @return The current animat perceptions.
  */
 const double *
-env_maze_get_state(const XCSF *xcsf)
+env_maze_get_state(const struct XCSF *xcsf)
 {
     const ENV_MAZE *env = xcsf->env;
     int spos = 0;
@@ -166,8 +161,10 @@ env_maze_get_state(const XCSF *xcsf)
                 continue;
             }
             // toroidal maze
-            int xsense = ((env->xpos + x) % env->xsize + env->xsize) % env->xsize;
-            int ysense = ((env->ypos + y) % env->ysize + env->ysize) % env->ysize;
+            int xsense =
+                ((env->xpos + x) % env->xsize + env->xsize) % env->xsize;
+            int ysense =
+                ((env->ypos + y) % env->ysize + env->ysize) % env->ysize;
             char s = env->maze[ysense][xsense];
             // convert sensor to real number
             env->state[spos] = env_maze_sensor(xcsf, s);
@@ -184,9 +181,9 @@ env_maze_get_state(const XCSF *xcsf)
  * @return A float encoding of the sensor.
  */
 static double
-env_maze_sensor(const XCSF *xcsf, char s)
+env_maze_sensor(const struct XCSF *xcsf, char s)
 {
-    (void)xcsf;
+    (void) xcsf;
     double ret = 0;
     switch (s) {
         case '*':
@@ -218,7 +215,7 @@ env_maze_sensor(const XCSF *xcsf, char s)
  * @return The payoff from performing the action.
  */
 double
-env_maze_execute(const XCSF *xcsf, int action)
+env_maze_execute(const struct XCSF *xcsf, int action)
 {
     if (action < 0 || action > 7) {
         printf("invalid maze action\n");
@@ -226,10 +223,10 @@ env_maze_execute(const XCSF *xcsf, int action)
     }
     ENV_MAZE *env = xcsf->env;
     // toroidal maze
-    int newx = ((env->xpos + x_moves[action]) % env->xsize + env->xsize) %
-               env->xsize;
-    int newy = ((env->ypos + y_moves[action]) % env->ysize + env->ysize) %
-               env->ysize;
+    int newx =
+        ((env->xpos + x_moves[action]) % env->xsize + env->xsize) % env->xsize;
+    int newy =
+        ((env->ypos + y_moves[action]) % env->ysize + env->ysize) % env->ysize;
     // make the move and recieve reward
     double reward = 0;
     switch (env->maze[newy][newx]) {
@@ -260,9 +257,9 @@ env_maze_execute(const XCSF *xcsf, int action)
  * @return The maximum payoff.
  */
 double
-env_maze_maxpayoff(const XCSF *xcsf)
+env_maze_maxpayoff(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
     return MAX_PAYOFF;
 }
 
@@ -272,8 +269,8 @@ env_maze_maxpayoff(const XCSF *xcsf)
  * @return True
  */
 _Bool
-env_maze_multistep(const XCSF *xcsf)
+env_maze_multistep(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
     return true;
 }

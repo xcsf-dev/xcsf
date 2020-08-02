@@ -21,26 +21,17 @@
  * @brief An implementation of a 2D convolutional layer.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <limits.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "blas.h"
-#include "sam.h"
-#include "neural_activations.h"
-#include "neural.h"
-#include "neural_layer.h"
 #include "neural_layer_convolutional.h"
+#include "blas.h"
+#include "neural_activations.h"
+#include "sam.h"
+#include "utils.h"
 
 #define N_MU (4) //!< Number of mutation rates applied to a convolutional layer
 
 static double
-im2col_get_pixel(const double *im, int height, int width, int row,
-                 int col, int channel, int pad);
+im2col_get_pixel(const double *im, int height, int width, int row, int col,
+                 int channel, int pad);
 
 static int
 convolutional_out_height(const LAYER *l);
@@ -52,16 +43,16 @@ static size_t
 get_workspace_size(const LAYER *l);
 
 static void
-col2im_add_pixel(double *im, int height, int width, int row,
-                 int col, int channel, int pad, double val);
+col2im_add_pixel(double *im, int height, int width, int row, int col,
+                 int channel, int pad, double val);
 
 static void
-col2im(const double *data_col, int channels, int height, int width,
-       int ksize, int stride, int pad, double *data_im);
+col2im(const double *data_col, int channels, int height, int width, int ksize,
+       int stride, int pad, double *data_im);
 
 static void
-im2col(const double *data_im, int channels, int height, int width,
-       int ksize, int stride, int pad, double *data_col);
+im2col(const double *data_im, int channels, int height, int width, int ksize,
+       int stride, int pad, double *data_col);
 
 static void
 malloc_layer_arrays(LAYER *l);
@@ -81,7 +72,7 @@ malloc_layer_arrays(LAYER *l);
  * @return A pointer to the new layer.
  */
 LAYER *
-neural_layer_convolutional_init(const XCSF *xcsf, int h, int w, int c,
+neural_layer_convolutional_init(const struct XCSF *xcsf, int h, int w, int c,
                                 int n_filters, int kernel_size, int stride,
                                 int pad, int f, uint32_t o)
 {
@@ -133,10 +124,9 @@ get_workspace_size(const LAYER *l)
 static void
 malloc_layer_arrays(LAYER *l)
 {
-    if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX ||
-        l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX ||
-        l->n_weights < 1 || l->n_weights > N_WEIGHTS_MAX ||
-        l->workspace_size < 1) {
+    if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX || l->n_outputs < 1 ||
+        l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
+        l->n_weights > N_WEIGHTS_MAX || l->workspace_size < 1) {
         printf("neural_layer_convolutional: malloc() invalid size\n");
         l->n_biases = 1;
         l->n_outputs = 1;
@@ -157,9 +147,9 @@ malloc_layer_arrays(LAYER *l)
 }
 
 void
-neural_layer_convolutional_free(const XCSF *xcsf, const LAYER *l)
+neural_layer_convolutional_free(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     free(l->delta);
     free(l->state);
     free(l->output);
@@ -185,9 +175,9 @@ convolutional_out_width(const LAYER *l)
 }
 
 LAYER *
-neural_layer_convolutional_copy(const XCSF *xcsf, const LAYER *src)
+neural_layer_convolutional_copy(const struct XCSF *xcsf, const LAYER *src)
 {
-    (void)xcsf;
+    (void) xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
@@ -214,23 +204,24 @@ neural_layer_convolutional_copy(const XCSF *xcsf, const LAYER *src)
     l->workspace_size = src->workspace_size;
     malloc_layer_arrays(l);
     memcpy(l->weights, src->weights, sizeof(double) * src->n_weights);
-    memcpy(l->weight_active, src->weight_active, sizeof(_Bool) * src->n_weights);
+    memcpy(l->weight_active, src->weight_active,
+           sizeof(_Bool) * src->n_weights);
     memcpy(l->biases, src->biases, sizeof(double) * src->n_biases);
     memcpy(l->mu, src->mu, sizeof(double) * N_MU);
     return l;
 }
 
 void
-neural_layer_convolutional_rand(const XCSF *xcsf, LAYER *l)
+neural_layer_convolutional_rand(const struct XCSF *xcsf, LAYER *l)
 {
     layer_weight_rand(xcsf, l);
 }
 
 void
-neural_layer_convolutional_forward(const XCSF *xcsf, const LAYER *l,
+neural_layer_convolutional_forward(const struct XCSF *xcsf, const LAYER *l,
                                    const double *input)
 {
-    (void)xcsf;
+    (void) xcsf;
     int m = l->n_filters;
     int k = l->size * l->size * l->channels;
     int n = l->out_w * l->out_h;
@@ -241,7 +232,8 @@ neural_layer_convolutional_forward(const XCSF *xcsf, const LAYER *l,
     if (l->size == 1) {
         blas_gemm(0, 0, m, n, k, 1, a, k, input, n, 1, c, n);
     } else {
-        im2col(input, l->channels, l->height, l->width, l->size, l->stride, l->pad, b);
+        im2col(input, l->channels, l->height, l->width, l->size, l->stride,
+               l->pad, b);
         blas_gemm(0, 0, m, n, k, 1, a, k, b, n, 1, c, n);
     }
     for (int i = 0; i < l->n_biases; ++i) {
@@ -253,10 +245,10 @@ neural_layer_convolutional_forward(const XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_convolutional_backward(const XCSF *xcsf, const LAYER *l,
+neural_layer_convolutional_backward(const struct XCSF *xcsf, const LAYER *l,
                                     const double *input, double *delta)
 {
-    (void)xcsf;
+    (void) xcsf;
     int m = l->n_filters;
     int n = l->size * l->size * l->channels;
     int k = l->out_w * l->out_h;
@@ -271,7 +263,8 @@ neural_layer_convolutional_backward(const XCSF *xcsf, const LAYER *l,
         if (l->size == 1) {
             blas_gemm(0, 1, m, n, k, 1, a, k, input, k, 1, c, n);
         } else {
-            im2col(input, l->channels, l->height, l->width, l->size, l->stride, l->pad, b);
+            im2col(input, l->channels, l->height, l->width, l->size, l->stride,
+                   l->pad, b);
             blas_gemm(0, 1, m, n, k, 1, a, k, b, k, 1, c, n);
         }
     }
@@ -284,14 +277,14 @@ neural_layer_convolutional_backward(const XCSF *xcsf, const LAYER *l,
         }
         blas_gemm(1, 0, n, k, m, 1, a, n, b, k, 0, c, k);
         if (l->size != 1) {
-            col2im(l->temp, l->channels, l->height, l->width, l->size, l->stride, l->pad,
-                   delta);
+            col2im(l->temp, l->channels, l->height, l->width, l->size,
+                   l->stride, l->pad, delta);
         }
     }
 }
 
 void
-neural_layer_convolutional_update(const XCSF *xcsf, const LAYER *l)
+neural_layer_convolutional_update(const struct XCSF *xcsf, const LAYER *l)
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
         blas_axpy(l->n_biases, l->eta, l->bias_updates, 1, l->biases, 1);
@@ -303,9 +296,10 @@ neural_layer_convolutional_update(const XCSF *xcsf, const LAYER *l)
 }
 
 void
-neural_layer_convolutional_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
+neural_layer_convolutional_resize(const struct XCSF *xcsf, LAYER *l,
+                                  const LAYER *prev)
 {
-    (void)xcsf;
+    (void) xcsf;
     l->width = prev->out_w;
     l->height = prev->out_h;
     l->channels = prev->out_c;
@@ -316,45 +310,48 @@ neural_layer_convolutional_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
     l->n_inputs = l->width * l->height * l->channels;
     l->output = realloc(l->state, l->n_outputs * sizeof(double));
     l->output = realloc(l->output, l->n_outputs * sizeof(double));
-    l->delta  = realloc(l->delta,  l->n_outputs * sizeof(double));
+    l->delta = realloc(l->delta, l->n_outputs * sizeof(double));
     l->workspace_size = get_workspace_size(l);
 }
 
 _Bool
-neural_layer_convolutional_mutate(const XCSF *xcsf, LAYER *l)
+neural_layer_convolutional_mutate(const struct XCSF *xcsf, LAYER *l)
 {
     sam_adapt(xcsf, l->mu, N_MU);
     _Bool mod = false;
-    if ((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(xcsf, l, l->mu[0])) {
+    if ((l->options & LAYER_EVOLVE_ETA) &&
+        layer_mutate_eta(xcsf, l, l->mu[0])) {
         mod = true;
     }
-    if ((l->options & LAYER_EVOLVE_CONNECT)
-        && layer_mutate_connectivity(l, l->mu[1])) {
+    if ((l->options & LAYER_EVOLVE_CONNECT) &&
+        layer_mutate_connectivity(l, l->mu[1])) {
         mod = true;
     }
-    if ((l->options & LAYER_EVOLVE_WEIGHTS) && layer_mutate_weights(l, l->mu[2])) {
+    if ((l->options & LAYER_EVOLVE_WEIGHTS) &&
+        layer_mutate_weights(l, l->mu[2])) {
         mod = true;
     }
-    if ((l->options & LAYER_EVOLVE_FUNCTIONS)
-        && layer_mutate_functions(l, l->mu[3])) {
+    if ((l->options & LAYER_EVOLVE_FUNCTIONS) &&
+        layer_mutate_functions(l, l->mu[3])) {
         mod = true;
     }
     return mod;
 }
 
 double *
-neural_layer_convolutional_output(const XCSF *xcsf, const LAYER *l)
+neural_layer_convolutional_output(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     return l->output;
 }
 
 void
-neural_layer_convolutional_print(const XCSF *xcsf, const LAYER *l,
+neural_layer_convolutional_print(const struct XCSF *xcsf, const LAYER *l,
                                  _Bool print_weights)
 {
-    (void)xcsf;
-    printf("convolutional %s, in=%d, out=%d, filters=%d, size=%d, stride=%d, pad=%d",
+    (void) xcsf;
+    printf("convolutional %s, in=%d, out=%d, filters=%d, size=%d, stride=%d, "
+           "pad=%d",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs,
            l->size, l->n_filters, l->stride, l->pad);
     layer_weight_print(l, print_weights);
@@ -362,9 +359,10 @@ neural_layer_convolutional_print(const XCSF *xcsf, const LAYER *l,
 }
 
 size_t
-neural_layer_convolutional_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
+neural_layer_convolutional_save(const struct XCSF *xcsf, const LAYER *l,
+                                FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     s += fwrite(&l->options, sizeof(uint32_t), 1, fp);
     s += fwrite(&l->function, sizeof(int), 1, fp);
@@ -396,9 +394,9 @@ neural_layer_convolutional_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 }
 
 size_t
-neural_layer_convolutional_load(const XCSF *xcsf, LAYER *l, FILE *fp)
+neural_layer_convolutional_load(const struct XCSF *xcsf, LAYER *l, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     layer_init(l);
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
@@ -444,8 +442,8 @@ im2col_get_pixel(const double *im, int height, int width, int row, int col,
 }
 
 static void
-im2col(const double *data_im, int channels, int height, int width,
-       int ksize, int stride, int pad, double *data_col)
+im2col(const double *data_im, int channels, int height, int width, int ksize,
+       int stride, int pad, double *data_col)
 {
     int height_col = (height + 2 * pad - ksize) / stride + 1;
     int width_col = (width + 2 * pad - ksize) / stride + 1;
@@ -459,8 +457,8 @@ im2col(const double *data_im, int channels, int height, int width,
                 int im_row = h_offset + h * stride;
                 int im_col = w_offset + w * stride;
                 int col_index = (c * height_col + h) * width_col + w;
-                data_col[col_index] = im2col_get_pixel(data_im, height, width,
-                                                       im_row, im_col, c_im, pad);
+                data_col[col_index] = im2col_get_pixel(
+                    data_im, height, width, im_row, im_col, c_im, pad);
             }
         }
     }
@@ -479,8 +477,8 @@ col2im_add_pixel(double *im, int height, int width, int row, int col,
 }
 
 static void
-col2im(const double *data_col, int channels, int height, int width,
-       int ksize, int stride, int pad, double *data_im)
+col2im(const double *data_col, int channels, int height, int width, int ksize,
+       int stride, int pad, double *data_im)
 {
     int height_col = (height + 2 * pad - ksize) / stride + 1;
     int width_col = (width + 2 * pad - ksize) / stride + 1;
@@ -495,7 +493,8 @@ col2im(const double *data_col, int channels, int height, int width,
                 int im_col = w_offset + w * stride;
                 int col_index = (c * height_col + h) * width_col + w;
                 double val = data_col[col_index];
-                col2im_add_pixel(data_im, height, width, im_row, im_col, c_im, pad, val);
+                col2im_add_pixel(data_im, height, width, im_row, im_col, c_im,
+                                 pad, val);
             }
         }
     }

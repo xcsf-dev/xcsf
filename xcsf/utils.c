@@ -21,15 +21,11 @@
  * @brief Utility functions for random number handling, etc.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <time.h>
-#include <limits.h>
-#include <float.h>
-#include <math.h>
-#include "../lib/dSFMT/dSFMT.h"
 #include "utils.h"
+#include "../lib/dSFMT/dSFMT.h"
+#include <limits.h>
+#include <math.h>
+#include <time.h>
 
 /**
  * @brief Initialises the pseudo-random number generator.
@@ -38,7 +34,7 @@ void
 random_init(void)
 {
     time_t now = time(0);
-    const unsigned char *p = (unsigned char *)&now;
+    const unsigned char *p = (unsigned char *) &now;
     uint32_t seed = 0;
     for (size_t i = 0; i < sizeof(now); ++i) {
         seed = (seed * (UCHAR_MAX + 2U)) + p[i];
@@ -83,8 +79,8 @@ rand_normal(double mu, double sigma)
     if (!generate) {
         return z1 * sigma + mu;
     }
-    double u1 = dsfmt_gv_genrand_open_open(); 
-    double u2 = dsfmt_gv_genrand_open_open(); 
+    double u1 = dsfmt_gv_genrand_open_open();
+    double u2 = dsfmt_gv_genrand_open_open();
     double z0 = sqrt(-2 * log(u1)) * cos(two_pi * u2);
     z1 = sqrt(-2 * log(u1)) * sin(two_pi * u2);
     return z0 * sigma + mu;

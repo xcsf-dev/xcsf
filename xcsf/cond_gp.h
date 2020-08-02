@@ -23,6 +23,10 @@
 
 #pragma once
 
+#include "condition.h"
+#include "gp.h"
+#include "xcsf.h"
+
 /**
  * @brief Tree GP condition data structure.
  */
@@ -31,59 +35,52 @@ typedef struct COND_GP {
 } COND_GP;
 
 _Bool
-cond_gp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+cond_gp_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                  const struct CL *c2);
 
 _Bool
-cond_gp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+cond_gp_general(const struct XCSF *xcsf, const struct CL *c1,
+                const struct CL *c2);
 
 _Bool
-cond_gp_match(const XCSF *xcsf, const CL *c, const double *x);
+cond_gp_match(const struct XCSF *xcsf, const struct CL *c, const double *x);
 
 _Bool
-cond_gp_mutate(const XCSF *xcsf, const CL *c);
+cond_gp_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_gp_copy(const XCSF *xcsf, CL *dest, const CL *src);
+cond_gp_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
 
 void
-cond_gp_cover(const XCSF *xcsf, const CL *c, const double *x);
+cond_gp_cover(const struct XCSF *xcsf, const struct CL *c, const double *x);
 
 void
-cond_gp_free(const XCSF *xcsf, const CL *c);
+cond_gp_free(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_gp_init(const XCSF *xcsf, CL *c);
+cond_gp_init(const struct XCSF *xcsf, struct CL *c);
 
 void
-cond_gp_print(const XCSF *xcsf, const CL *c);
+cond_gp_print(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_gp_update(const XCSF *xcsf, const CL *c, const double *x, const double *y);
+cond_gp_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+               const double *y);
 
 int
-cond_gp_size(const XCSF *xcsf, const CL *c);
+cond_gp_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t
-cond_gp_save(const XCSF *xcsf, const CL *c, FILE *fp);
+cond_gp_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
 
 size_t
-cond_gp_load(const XCSF *xcsf, CL *c, FILE *fp);
+cond_gp_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 
 /**
  * @brief Tree GP condition implemented functions.
  */
 static struct CondVtbl const cond_gp_vtbl = {
-    &cond_gp_crossover,
-    &cond_gp_general,
-    &cond_gp_match,
-    &cond_gp_mutate,
-    &cond_gp_copy,
-    &cond_gp_cover,
-    &cond_gp_free,
-    &cond_gp_init,
-    &cond_gp_print,
-    &cond_gp_update,
-    &cond_gp_size,
-    &cond_gp_save,
-    &cond_gp_load
-};
+    &cond_gp_crossover, &cond_gp_general, &cond_gp_match, &cond_gp_mutate,
+    &cond_gp_copy,      &cond_gp_cover,   &cond_gp_free,  &cond_gp_init,
+    &cond_gp_print,     &cond_gp_update,  &cond_gp_size,  &cond_gp_save,
+    &cond_gp_load};

@@ -21,15 +21,6 @@
  * @brief System performance printing.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <time.h>
-#include <errno.h>
-#include "xcsf.h"
-#include "cl.h"
-#include "clset.h"
 #include "perf.h"
 
 /**
@@ -40,7 +31,7 @@
  * @param trial The number of learning trials executed.
  */
 void
-perf_print(const XCSF *xcsf, double *error, double *terror, int trial)
+perf_print(const struct XCSF *xcsf, double *error, double *terror, int trial)
 {
     if (trial % xcsf->PERF_TRIALS == 0 && trial > 0) {
         *error /= xcsf->PERF_TRIALS;

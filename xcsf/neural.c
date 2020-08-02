@@ -21,15 +21,7 @@
  * @brief An implementation of a multi-layer perceptron neural network.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "neural_activations.h"
 #include "neural.h"
-#include "neural_layer.h"
 #include "neural_layer_connected.h"
 #include "neural_layer_dropout.h"
 #include "neural_layer_noise.h"
@@ -42,9 +34,9 @@
  * @param net The neural network to initialise.
  */
 void
-neural_init(const XCSF *xcsf, NET *net)
+neural_init(const struct XCSF *xcsf, NET *net)
 {
-    (void)xcsf;
+    (void) xcsf;
     net->head = NULL;
     net->tail = NULL;
     net->n_layers = 0;
@@ -61,9 +53,9 @@ neural_init(const XCSF *xcsf, NET *net)
  * @param p The position in the network to insert the layer.
  */
 void
-neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
+neural_layer_insert(const struct XCSF *xcsf, NET *net, LAYER *l, int p)
 {
-    (void)xcsf;
+    (void) xcsf;
     // empty list
     if (net->head == NULL || net->tail == NULL) {
         net->head = malloc(sizeof(LLIST));
@@ -115,7 +107,7 @@ neural_layer_insert(const XCSF *xcsf, NET *net, LAYER *l, int p)
  * @param p The position of the layer in the network to be removed.
  */
 void
-neural_layer_remove(const XCSF *xcsf, NET *net, int p)
+neural_layer_remove(const struct XCSF *xcsf, NET *net, int p)
 {
     // find the layer
     LLIST *iter = net->tail;
@@ -163,7 +155,7 @@ neural_layer_remove(const XCSF *xcsf, NET *net, int p)
  * @param src The source neural network.
  */
 void
-neural_copy(const XCSF *xcsf, NET *dest, const NET *src)
+neural_copy(const struct XCSF *xcsf, NET *dest, const NET *src)
 {
     neural_init(xcsf, dest);
     int p = 0;
@@ -181,7 +173,7 @@ neural_copy(const XCSF *xcsf, NET *dest, const NET *src)
  * @param net The neural network to free.
  */
 void
-neural_free(const XCSF *xcsf, NET *net)
+neural_free(const struct XCSF *xcsf, NET *net)
 {
     LLIST *iter = net->tail;
     while (iter != NULL) {
@@ -200,7 +192,7 @@ neural_free(const XCSF *xcsf, NET *net)
  * @param net The neural network to randomise.
  */
 void
-neural_rand(const XCSF *xcsf, const NET *net)
+neural_rand(const struct XCSF *xcsf, const NET *net)
 {
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_rand(xcsf, iter->layer);
@@ -214,7 +206,7 @@ neural_rand(const XCSF *xcsf, const NET *net)
  * @return Whether any alterations were made.
  */
 _Bool
-neural_mutate(const XCSF *xcsf, const NET *net)
+neural_mutate(const struct XCSF *xcsf, const NET *net)
 {
     _Bool mod = false;
     const LAYER *prev = NULL;
@@ -245,7 +237,7 @@ neural_mutate(const XCSF *xcsf, const NET *net)
  * @param net The neural network to resize.
  */
 void
-neural_resize(const XCSF *xcsf, const NET *net)
+neural_resize(const struct XCSF *xcsf, const NET *net)
 {
     const LAYER *prev = NULL;
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -263,7 +255,7 @@ neural_resize(const XCSF *xcsf, const NET *net)
  * @param input The input state.
  */
 void
-neural_propagate(const XCSF *xcsf, const NET *net, const double *input)
+neural_propagate(const struct XCSF *xcsf, const NET *net, const double *input)
 {
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
         layer_forward(xcsf, iter->layer, input);
@@ -279,7 +271,7 @@ neural_propagate(const XCSF *xcsf, const NET *net, const double *input)
  * @param input The input state.
  */
 void
-neural_learn(const XCSF *xcsf, const NET *net, const double *truth,
+neural_learn(const struct XCSF *xcsf, const NET *net, const double *truth,
              const double *input)
 {
     /* reset deltas */
@@ -308,14 +300,15 @@ neural_learn(const XCSF *xcsf, const NET *net, const double *truth,
 }
 
 /**
- * @brief Returns the output of a specified neuron in the output layer of a neural network.
+ * @brief Returns the output of a specified neuron in the output layer of a
+ * neural network.
  * @param xcsf The XCSF data structure.
  * @param net The neural network to output.
  * @param i Which neuron in the output layer to return.
  * @return The output of the specified neuron.
  */
 double
-neural_output(const XCSF *xcsf, const NET *net, int i)
+neural_output(const struct XCSF *xcsf, const NET *net, int i)
 {
     if (i < net->n_outputs) {
         return layer_output(xcsf, net->head->layer)[i];
@@ -332,7 +325,7 @@ neural_output(const XCSF *xcsf, const NET *net, int i)
  * @param print_weights Whether to print the weights in each layer.
  */
 void
-neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
+neural_print(const struct XCSF *xcsf, const NET *net, _Bool print_weights)
 {
     int i = 0;
     for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
@@ -349,9 +342,9 @@ neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
  * @return The calculated total.
  */
 int
-neural_size(const XCSF *xcsf, const NET *net)
+neural_size(const struct XCSF *xcsf, const NET *net)
 {
-    (void)xcsf;
+    (void) xcsf;
     int size = 0;
     for (const LLIST *iter = net->tail; iter->prev != NULL; iter = iter->prev) {
         switch (iter->layer->layer_type) {
@@ -376,7 +369,7 @@ neural_size(const XCSF *xcsf, const NET *net)
  * @return The number of elements written.
  */
 size_t
-neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
+neural_save(const struct XCSF *xcsf, const NET *net, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&net->n_layers, sizeof(int), 1, fp);
@@ -397,7 +390,7 @@ neural_save(const XCSF *xcsf, const NET *net, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-neural_load(const XCSF *xcsf, NET *net, FILE *fp)
+neural_load(const struct XCSF *xcsf, NET *net, FILE *fp)
 {
     size_t s = 0;
     int nlayers = 0;

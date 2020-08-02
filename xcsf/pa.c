@@ -21,24 +21,19 @@
  * @brief Prediction array functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "cl.h"
 #include "pa.h"
+#include "cl.h"
+#include "utils.h"
 
 static void
-pa_reset(const XCSF *xcsf);
+pa_reset(const struct XCSF *xcsf);
 
 /**
  * @brief Initialises the prediction array.
  * @param xcsf The XCSF data structure.
  */
 void
-pa_init(XCSF *xcsf)
+pa_init(struct XCSF *xcsf)
 {
     xcsf->pa_size = xcsf->n_actions * xcsf->y_dim;
     xcsf->pa = malloc(sizeof(double) * xcsf->pa_size);
@@ -50,7 +45,7 @@ pa_init(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  */
 static void
-pa_reset(const XCSF *xcsf)
+pa_reset(const struct XCSF *xcsf)
 {
     for (int i = 0; i < xcsf->pa_size; ++i) {
         xcsf->pa[i] = 0;
@@ -66,15 +61,15 @@ pa_reset(const XCSF *xcsf)
  * @param x The input state.
  */
 void
-pa_build(const XCSF *xcsf, const double *x)
+pa_build(const struct XCSF *xcsf, const double *x)
 {
-    const SET *set = &xcsf->mset;
+    const struct SET *set = &xcsf->mset;
     double *pa = xcsf->pa;
     double *nr = xcsf->nr;
     pa_reset(xcsf);
 #ifdef PARALLEL_PRED
-    CL *clist[set->size];
-    CLIST *iter = set->list;
+    struct CL *clist[set->size];
+    struct CLIST *iter = set->list;
     for (int i = 0; i < set->size; ++i) {
         clist[i] = NULL;
         if (iter != NULL) {
@@ -82,19 +77,21 @@ pa_build(const XCSF *xcsf, const double *x)
             iter = iter->next;
         }
     }
-    #pragma omp parallel for reduction(+:pa[:xcsf->pa_size],nr[:xcsf->pa_size])
+#pragma omp parallel for reduction(+ : pa[:xcsf->pa_size], nr[:xcsf->pa_size])
     for (int i = 0; i < set->size; ++i) {
         if (clist[i] != NULL) {
             const double *predictions = cl_predict(xcsf, clist[i], x);
             double fitness = clist[i]->fit;
             for (int j = 0; j < xcsf->y_dim; ++j) {
-                pa[clist[i]->action * xcsf->y_dim + j] += predictions[j] * fitness;
+                pa[clist[i]->action * xcsf->y_dim + j] +=
+                    predictions[j] * fitness;
                 nr[clist[i]->action * xcsf->y_dim + j] += fitness;
             }
         }
     }
 #else
-    for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+    for (const struct CLIST *iter = set->list; iter != NULL;
+         iter = iter->next) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
         double fitness = iter->cl->fit;
         for (int j = 0; j < xcsf->y_dim; ++j) {
@@ -121,7 +118,7 @@ pa_build(const XCSF *xcsf, const double *x)
  * @return The best action.
  */
 int
-pa_best_action(const XCSF *xcsf)
+pa_best_action(const struct XCSF *xcsf)
 {
     int action = 0;
     for (int i = 1; i < xcsf->n_actions; ++i) {
@@ -138,7 +135,7 @@ pa_best_action(const XCSF *xcsf)
  * @return A random action.
  */
 int
-pa_rand_action(const XCSF *xcsf)
+pa_rand_action(const struct XCSF *xcsf)
 {
     int action = 0;
     do {
@@ -153,7 +150,7 @@ pa_rand_action(const XCSF *xcsf)
  * @return The highest value in the prediction array.
  */
 double
-pa_best_val(const XCSF *xcsf)
+pa_best_val(const struct XCSF *xcsf)
 {
     double max = xcsf->pa[0];
     for (int i = 1; i < xcsf->n_actions; ++i) {
@@ -171,7 +168,7 @@ pa_best_val(const XCSF *xcsf)
  * @return The value of the action in the prediction array.
  */
 double
-pa_val(const XCSF *xcsf, int action)
+pa_val(const struct XCSF *xcsf, int action)
 {
     if (action >= 0 && action < xcsf->n_actions) {
         return xcsf->pa[action];
@@ -185,7 +182,7 @@ pa_val(const XCSF *xcsf, int action)
  * @param xcsf The XCSF data structure.
  */
 void
-pa_free(const XCSF *xcsf)
+pa_free(const struct XCSF *xcsf)
 {
     free(xcsf->pa);
     free(xcsf->nr);

@@ -23,6 +23,10 @@
 
 #pragma once
 
+#include "condition.h"
+#include "dgp.h"
+#include "xcsf.h"
+
 /**
  * @brief Dynamical GP graph condition data structure.
  */
@@ -31,60 +35,52 @@ typedef struct COND_DGP {
 } COND_DGP;
 
 _Bool
-cond_dgp_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+cond_dgp_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                   const struct CL *c2);
 
 _Bool
-cond_dgp_general(const XCSF *xcsf, const CL *c1, const CL *c2);
+cond_dgp_general(const struct XCSF *xcsf, const struct CL *c1,
+                 const struct CL *c2);
 
 _Bool
-cond_dgp_match(const XCSF *xcsf, const CL *c, const double *x);
+cond_dgp_match(const struct XCSF *xcsf, const struct CL *c, const double *x);
 
 _Bool
-cond_dgp_mutate(const XCSF *xcsf, const CL *c);
+cond_dgp_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_dgp_copy(const XCSF *xcsf, CL *dest, const CL *src);
+cond_dgp_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
 
 void
-cond_dgp_cover(const XCSF *xcsf, const CL *c, const double *x);
+cond_dgp_cover(const struct XCSF *xcsf, const struct CL *c, const double *x);
 
 void
-cond_dgp_free(const XCSF *xcsf, const CL *c);
+cond_dgp_free(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_dgp_init(const XCSF *xcsf, CL *c);
+cond_dgp_init(const struct XCSF *xcsf, struct CL *c);
 
 void
-cond_dgp_print(const XCSF *xcsf, const CL *c);
+cond_dgp_print(const struct XCSF *xcsf, const struct CL *c);
 
 void
-cond_dgp_update(const XCSF *xcsf, const CL *c, const double *x,
+cond_dgp_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
                 const double *y);
 
 int
-cond_dgp_size(const XCSF *xcsf, const CL *c);
+cond_dgp_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t
-cond_dgp_save(const XCSF *xcsf, const CL *c, FILE *fp);
+cond_dgp_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
 
 size_t
-cond_dgp_load(const XCSF *xcsf, CL *c, FILE *fp);
+cond_dgp_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 
 /**
  * @brief Dynamical GP graph condition implemented functions.
  */
 static struct CondVtbl const cond_dgp_vtbl = {
-    &cond_dgp_crossover,
-    &cond_dgp_general,
-    &cond_dgp_match,
-    &cond_dgp_mutate,
-    &cond_dgp_copy,
-    &cond_dgp_cover,
-    &cond_dgp_free,
-    &cond_dgp_init,
-    &cond_dgp_print,
-    &cond_dgp_update,
-    &cond_dgp_size,
-    &cond_dgp_save,
-    &cond_dgp_load
-};
+    &cond_dgp_crossover, &cond_dgp_general, &cond_dgp_match, &cond_dgp_mutate,
+    &cond_dgp_copy,      &cond_dgp_cover,   &cond_dgp_free,  &cond_dgp_init,
+    &cond_dgp_print,     &cond_dgp_update,  &cond_dgp_size,  &cond_dgp_save,
+    &cond_dgp_load};

@@ -23,6 +23,9 @@
 
 #pragma once
 
+#include "env.h"
+#include "xcsf.h"
+
 #define MAX_SIZE (50) //!< The maximum width/height of a maze
 
 /**
@@ -39,38 +42,33 @@ typedef struct ENV_MAZE {
 } ENV_MAZE;
 
 _Bool
-env_maze_isreset(const XCSF *xcsf);
+env_maze_isreset(const struct XCSF *xcsf);
 
 _Bool
-env_maze_multistep(const XCSF *xcsf);
+env_maze_multistep(const struct XCSF *xcsf);
 
 double
-env_maze_execute(const XCSF *xcsf, int action);
+env_maze_execute(const struct XCSF *xcsf, int action);
 
 double
-env_maze_maxpayoff(const XCSF *xcsf);
+env_maze_maxpayoff(const struct XCSF *xcsf);
 
 const double *
-env_maze_get_state(const XCSF *xcsf);
+env_maze_get_state(const struct XCSF *xcsf);
 
 void
-env_maze_free(const XCSF *xcsf);
+env_maze_free(const struct XCSF *xcsf);
 
 void
-env_maze_init(XCSF *xcsf, const char *filename);
+env_maze_init(struct XCSF *xcsf, const char *filename);
 
 void
-env_maze_reset(const XCSF *xcsf);
+env_maze_reset(const struct XCSF *xcsf);
 
 /**
  * @brief Maze environment implemented functions.
  */
 static struct EnvVtbl const env_maze_vtbl = {
-    &env_maze_isreset,
-    &env_maze_multistep,
-    &env_maze_execute,
-    &env_maze_maxpayoff,
-    &env_maze_get_state,
-    &env_maze_free,
-    &env_maze_reset
-};
+    &env_maze_isreset,   &env_maze_multistep, &env_maze_execute,
+    &env_maze_maxpayoff, &env_maze_get_state, &env_maze_free,
+    &env_maze_reset};

@@ -21,16 +21,8 @@
  * @brief CSV input file handling functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <errno.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "param.h"
-#include "env.h"
 #include "env_csv.h"
+#include "param.h"
 
 #define MAX_ROWS (100000) //!< Maximum number of instances
 #define MAX_COLS (200) //!< Maximum line length
@@ -41,7 +33,8 @@ static void
 env_csv_read(const char *fname, double **data, int *n_samples, int *n_dim);
 
 static void
-env_csv_input_read(const char *infile, INPUT *train_data, INPUT *test_data);
+env_csv_input_read(const char *infile, struct INPUT *train_data,
+                   struct INPUT *test_data);
 
 static void
 env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim);
@@ -58,7 +51,7 @@ env_csv_dim(FILE *fin);
  * @param fname The file name of the csv data.
  */
 void
-env_csv_init(XCSF *xcsf, const char *fname)
+env_csv_init(struct XCSF *xcsf, const char *fname)
 {
     ENV_CSV *env = malloc(sizeof(ENV_CSV));
     env->train_data = malloc(sizeof(INPUT));
@@ -75,7 +68,7 @@ env_csv_init(XCSF *xcsf, const char *fname)
  * @param xcsf The XCSF data structure.
  */
 void
-env_csv_free(const XCSF *xcsf)
+env_csv_free(const struct XCSF *xcsf)
 {
     ENV_CSV *env = xcsf->env;
     free(env->train_data->x);
@@ -95,13 +88,16 @@ env_csv_free(const XCSF *xcsf)
  * @details Expects an identical number of x and y samples.
  */
 static void
-env_csv_input_read(const char *infile, INPUT *train_data, INPUT *test_data)
+env_csv_input_read(const char *infile, struct INPUT *train_data,
+                   struct INPUT *test_data)
 {
     char name[MAX_NAME];
     snprintf(name, MAX_NAME, "%s_train_x.csv", infile);
-    env_csv_read(name, &train_data->x, &train_data->n_samples, &train_data->x_dim);
+    env_csv_read(name, &train_data->x, &train_data->n_samples,
+                 &train_data->x_dim);
     snprintf(name, MAX_NAME, "%s_train_y.csv", infile);
-    env_csv_read(name, &train_data->y, &train_data->n_samples, &train_data->y_dim);
+    env_csv_read(name, &train_data->y, &train_data->n_samples,
+                 &train_data->y_dim);
     snprintf(name, MAX_NAME, "%s_test_x.csv", infile);
     env_csv_read(name, &test_data->x, &test_data->n_samples, &test_data->x_dim);
     snprintf(name, MAX_NAME, "%s_test_y.csv", infile);
@@ -134,7 +130,8 @@ env_csv_read(const char *fname, double **data, int *n_samples, int *n_dim)
         fclose(fin);
         exit(EXIT_FAILURE);
     }
-    printf("Loaded: %s: %d samples, %d dimensions\n", fname, *n_samples, *n_dim);
+    printf("Loaded: %s: %d samples, %d dimensions\n", fname, *n_samples,
+           *n_dim);
 }
 
 /**
@@ -202,43 +199,43 @@ env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim)
 }
 
 void
-env_csv_reset(const XCSF *xcsf)
+env_csv_reset(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
 }
 
 _Bool
-env_csv_isreset(const XCSF *xcsf)
+env_csv_isreset(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
     return true;
 }
 
 const double *
-env_csv_get_state(const XCSF *xcsf)
+env_csv_get_state(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
     return 0;
 }
 
 double
-env_csv_execute(const XCSF *xcsf, int action)
+env_csv_execute(const struct XCSF *xcsf, int action)
 {
-    (void)xcsf;
-    (void)action;
+    (void) xcsf;
+    (void) action;
     return 0;
 }
 
 _Bool
-env_csv_multistep(const XCSF *xcsf)
+env_csv_multistep(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
     return false;
 }
 
 double
-env_csv_maxpayoff(const XCSF *xcsf)
+env_csv_maxpayoff(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
     return 0;
 }

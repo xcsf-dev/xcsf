@@ -28,15 +28,9 @@
  * Example valid lengths: 3, 6, 11, 20, 37, 70, 135, 264.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <math.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "param.h"
-#include "env.h"
 #include "env_mux.h"
+#include "param.h"
+#include "utils.h"
 
 #define MAX_PAYOFF (1.) //!< Payoff provided for making a correct classification
 
@@ -47,7 +41,7 @@
  * @details The biggest mux problem is chosen that fits the specified length.
  */
 void
-env_mux_init(XCSF *xcsf, int bits)
+env_mux_init(struct XCSF *xcsf, int bits)
 {
     ENV_MUX *env = malloc(sizeof(ENV_MUX));
     env->pos_bits = 1;
@@ -68,7 +62,7 @@ env_mux_init(XCSF *xcsf, int bits)
  * @param xcsf The XCSF data structure.
  */
 void
-env_mux_free(const XCSF *xcsf)
+env_mux_free(const struct XCSF *xcsf)
 {
     ENV_MUX *env = xcsf->env;
     free(env->state);
@@ -81,7 +75,7 @@ env_mux_free(const XCSF *xcsf)
  * @return A random multiplexer problem.
  */
 const double *
-env_mux_get_state(const XCSF *xcsf)
+env_mux_get_state(const struct XCSF *xcsf)
 {
     const ENV_MUX *env = xcsf->env;
     for (int i = 0; i < xcsf->x_dim; ++i) {
@@ -97,13 +91,13 @@ env_mux_get_state(const XCSF *xcsf)
  * @return The payoff from performing the action.
  */
 double
-env_mux_execute(const XCSF *xcsf, int action)
+env_mux_execute(const struct XCSF *xcsf, int action)
 {
     const ENV_MUX *env = xcsf->env;
     int pos = env->pos_bits;
     for (int i = 0; i < env->pos_bits; ++i) {
         if (env->state[i] > 0.5) {
-            pos += (int) pow(2, (double)(env->pos_bits - 1 - i));
+            pos += (int) pow(2, (double) (env->pos_bits - 1 - i));
         }
     }
     int answer = (env->state[pos] > 0.5) ? 1 : 0;
@@ -119,9 +113,9 @@ env_mux_execute(const XCSF *xcsf, int action)
  * @param xcsf The XCSF data structure.
  */
 void
-env_mux_reset(const XCSF *xcsf)
+env_mux_reset(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
 }
 
 /**
@@ -130,9 +124,9 @@ env_mux_reset(const XCSF *xcsf)
  * @return True.
  */
 _Bool
-env_mux_isreset(const XCSF *xcsf)
+env_mux_isreset(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
     return true;
 }
 
@@ -142,9 +136,9 @@ env_mux_isreset(const XCSF *xcsf)
  * @return The maximum payoff.
  */
 double
-env_mux_maxpayoff(const XCSF *xcsf)
+env_mux_maxpayoff(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
     return MAX_PAYOFF;
 }
 
@@ -154,8 +148,8 @@ env_mux_maxpayoff(const XCSF *xcsf)
  * @return False.
  */
 _Bool
-env_mux_multistep(const XCSF *xcsf)
+env_mux_multistep(const struct XCSF *xcsf)
 {
-    (void)xcsf;
+    (void) xcsf;
     return false;
 }

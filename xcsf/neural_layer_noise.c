@@ -21,16 +21,9 @@
  * @brief An implementation of a Gaussian noise adding layer.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <limits.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "neural_activations.h"
-#include "neural.h"
-#include "neural_layer.h"
 #include "neural_layer_noise.h"
+#include "neural_activations.h"
+#include "utils.h"
 
 static void
 free_layer_arrays(const LAYER *l);
@@ -47,10 +40,10 @@ malloc_layer_arrays(LAYER *l);
  * @return A pointer to the new layer.
  */
 LAYER *
-neural_layer_noise_init(const XCSF *xcsf, int n_inputs,
+neural_layer_noise_init(const struct XCSF *xcsf, int n_inputs,
                         double probability, double std)
 {
-    (void)xcsf;
+    (void) xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = NOISE;
@@ -86,9 +79,9 @@ free_layer_arrays(const LAYER *l)
 }
 
 LAYER *
-neural_layer_noise_copy(const XCSF *xcsf, const LAYER *src)
+neural_layer_noise_copy(const struct XCSF *xcsf, const LAYER *src)
 {
-    (void)xcsf;
+    (void) xcsf;
     LAYER *l = malloc(sizeof(LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
@@ -103,21 +96,21 @@ neural_layer_noise_copy(const XCSF *xcsf, const LAYER *src)
 }
 
 void
-neural_layer_noise_free(const XCSF *xcsf, const LAYER *l)
+neural_layer_noise_free(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     free_layer_arrays(l);
 }
 
 void
-neural_layer_noise_rand(const XCSF *xcsf, LAYER *l)
+neural_layer_noise_rand(const struct XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf;
-    (void)l;
+    (void) xcsf;
+    (void) l;
 }
 
 void
-neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l,
+neural_layer_noise_forward(const struct XCSF *xcsf, const LAYER *l,
                            const double *input)
 {
     if (!xcsf->explore) {
@@ -137,11 +130,11 @@ neural_layer_noise_forward(const XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_noise_backward(const XCSF *xcsf, const LAYER *l,
+neural_layer_noise_backward(const struct XCSF *xcsf, const LAYER *l,
                             const double *input, double *delta)
 {
-    (void)xcsf;
-    (void)input;
+    (void) xcsf;
+    (void) input;
     if (!delta) {
         return;
     }
@@ -151,24 +144,24 @@ neural_layer_noise_backward(const XCSF *xcsf, const LAYER *l,
 }
 
 void
-neural_layer_noise_update(const XCSF *xcsf, const LAYER *l)
+neural_layer_noise_update(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
-    (void)l;
+    (void) xcsf;
+    (void) l;
 }
 
 _Bool
-neural_layer_noise_mutate(const XCSF *xcsf, LAYER *l)
+neural_layer_noise_mutate(const struct XCSF *xcsf, LAYER *l)
 {
-    (void)xcsf;
-    (void)l;
+    (void) xcsf;
+    (void) l;
     return false;
 }
 
 void
-neural_layer_noise_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
+neural_layer_noise_resize(const struct XCSF *xcsf, LAYER *l, const LAYER *prev)
 {
-    (void)xcsf;
+    (void) xcsf;
     l->n_inputs = prev->n_outputs;
     l->n_outputs = prev->n_outputs;
     l->max_outputs = prev->n_outputs;
@@ -177,25 +170,26 @@ neural_layer_noise_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev)
 }
 
 double *
-neural_layer_noise_output(const XCSF *xcsf, const LAYER *l)
+neural_layer_noise_output(const struct XCSF *xcsf, const LAYER *l)
 {
-    (void)xcsf;
+    (void) xcsf;
     return l->output;
 }
 
 void
-neural_layer_noise_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights)
+neural_layer_noise_print(const struct XCSF *xcsf, const LAYER *l,
+                         _Bool print_weights)
 {
-    (void)xcsf;
-    (void)print_weights;
-    printf("noise in = %d, out = %d, prob = %f, stdev = %f\n",
-           l->n_inputs, l->n_outputs, l->probability, l->scale);
+    (void) xcsf;
+    (void) print_weights;
+    printf("noise in = %d, out = %d, prob = %f, stdev = %f\n", l->n_inputs,
+           l->n_outputs, l->probability, l->scale);
 }
 
 size_t
-neural_layer_noise_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
+neural_layer_noise_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
     s += fwrite(&l->n_outputs, sizeof(int), 1, fp);
@@ -206,9 +200,9 @@ neural_layer_noise_save(const XCSF *xcsf, const LAYER *l, FILE *fp)
 }
 
 size_t
-neural_layer_noise_load(const XCSF *xcsf, LAYER *l, FILE *fp)
+neural_layer_noise_load(const struct XCSF *xcsf, LAYER *l, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     layer_init(l);
     s += fread(&l->n_inputs, sizeof(int), 1, fp);

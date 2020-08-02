@@ -23,6 +23,8 @@
 
 #pragma once
 
+#include "xcsf.h"
+
 #define LOSS_MAE (0) //!< Mean absolute error
 #define LOSS_MSE (1) //!< Mean squared error
 #define LOSS_RMSE (2) //!< Root mean squared error
@@ -32,22 +34,22 @@
 #define LOSS_NUM (6) //!< Total number of selectable loss functions
 
 double
-loss_mae(const XCSF *xcsf, const double *pred, const double *y);
+loss_mae(const struct XCSF *xcsf, const double *pred, const double *y);
 
 double
-loss_mse(const XCSF *xcsf, const double *pred, const double *y);
+loss_mse(const struct XCSF *xcsf, const double *pred, const double *y);
 
 double
-loss_rmse(const XCSF *xcsf, const double *pred, const double *y);
+loss_rmse(const struct XCSF *xcsf, const double *pred, const double *y);
 
 double
-loss_log(const XCSF *xcsf, const double *pred, const double *y);
+loss_log(const struct XCSF *xcsf, const double *pred, const double *y);
 
 double
-loss_binary_log(const XCSF *xcsf, const double *pred, const double *y);
+loss_binary_log(const struct XCSF *xcsf, const double *pred, const double *y);
 
 double
-loss_onehot_acc(const XCSF *xcsf, const double *pred, const double *y);
+loss_onehot_acc(const struct XCSF *xcsf, const double *pred, const double *y);
 
 void
-loss_set_func(XCSF *xcsf);
+loss_set_func(struct XCSF *xcsf);

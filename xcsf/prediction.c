@@ -21,18 +21,10 @@
  * @brief Interface for classifier predictions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "neural.h"
-#include "prediction.h"
 #include "pred_constant.h"
+#include "pred_neural.h"
 #include "pred_nlms.h"
 #include "pred_rls.h"
-#include "pred_neural.h"
 
 /**
  * @brief Sets a classifier's prediction functions to the implementations.
@@ -40,7 +32,7 @@
  * @param c The classifier to set.
  */
 void
-prediction_set(const XCSF *xcsf, CL *c)
+prediction_set(const struct XCSF *xcsf, struct CL *c)
 {
     switch (xcsf->PRED_TYPE) {
         case PRED_TYPE_CONSTANT:

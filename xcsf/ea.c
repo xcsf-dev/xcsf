@@ -21,39 +21,36 @@
  * @brief Evolutionary algorithm functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "utils.h"
+#include "ea.h"
 #include "cl.h"
 #include "clset.h"
-#include "ea.h"
-#include "sam.h"
+#include "utils.h"
 
 #define EA_SELECT_ROULETTE (0)
 #define EA_SELECT_TOURNAMENT (1)
 
-static CL *
-ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum);
+static struct CL *
+ea_select_rw(const struct XCSF *xcsf, const struct SET *set, double fit_sum);
 
-static CL *
-ea_select_tournament(const XCSF *xcsf, const SET *set);
-
-static void
-ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set);
+static struct CL *
+ea_select_tournament(const struct XCSF *xcsf, const struct SET *set);
 
 static void
-ea_select(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p);
+ea_subsume(struct XCSF *xcsf, struct CL *c, struct CL *c1p, struct CL *c2p,
+           const struct SET *set);
 
 static void
-ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p,
-                  CL *c1, CL *c2, _Bool cmod);
+ea_select(const struct XCSF *xcsf, const struct SET *set, struct CL **c1p,
+          struct CL **c2p);
 
 static void
-ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1,
-       _Bool cmod, _Bool mmod);
+ea_init_offspring(const struct XCSF *xcsf, const struct CL *c1p,
+                  const struct CL *c2p, struct CL *c1, struct CL *c2,
+                  _Bool cmod);
+
+static void
+ea_add(struct XCSF *xcsf, const struct SET *set, struct CL *c1p, struct CL *c2p,
+       struct CL *c1, _Bool cmod, _Bool mmod);
 
 /**
  * @brief Executes the evolutionary algorithm (EA).
@@ -61,7 +58,7 @@ ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1,
  * @param set The set in which to run the EA.
  */
 void
-ea(XCSF *xcsf, const SET *set)
+ea(struct XCSF *xcsf, const struct SET *set)
 {
     // increase EA time
     xcsf->time += 1;
@@ -71,14 +68,14 @@ ea(XCSF *xcsf, const SET *set)
     }
     clset_set_times(xcsf, set);
     // select parents
-    CL *c1p;
-    CL *c2p;
+    struct CL *c1p;
+    struct CL *c2p;
     ea_select(xcsf, set, &c1p, &c2p);
     // create offspring
     for (int i = 0; i < xcsf->LAMBDA / 2; ++i) {
         // create copies of parents
-        CL *c1 = malloc(sizeof(CL));
-        CL *c2 = malloc(sizeof(CL));
+        struct CL *c1 = malloc(sizeof(CL));
+        struct CL *c2 = malloc(sizeof(CL));
         cl_init(xcsf, c1, c1p->size, c1p->time);
         cl_init(xcsf, c2, c2p->size, c2p->time);
         cl_copy(xcsf, c1, c1p);
@@ -106,8 +103,9 @@ ea(XCSF *xcsf, const SET *set)
  * @param cmod Whether crossover modified the offspring.
  */
 static void
-ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1,
-                  CL *c2, _Bool cmod)
+ea_init_offspring(const struct XCSF *xcsf, const struct CL *c1p,
+                  const struct CL *c2p, struct CL *c1, struct CL *c2,
+                  _Bool cmod)
 {
     if (cmod) {
         c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err) / 2.0);
@@ -135,8 +133,8 @@ ea_init_offspring(const XCSF *xcsf, const CL *c1p, const CL *c2p, CL *c1,
  * @param mmod Whether mutation modified the offspring.
  */
 static void
-ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod,
-       _Bool mmod)
+ea_add(struct XCSF *xcsf, const struct SET *set, struct CL *c1p, struct CL *c2p,
+       struct CL *c1, _Bool cmod, _Bool mmod)
 {
     if (!cmod && !mmod) {
         ++(c1p->num);
@@ -158,7 +156,8 @@ ea_add(XCSF *xcsf, const SET *set, CL *c1p, CL *c2p, CL *c1, _Bool cmod,
  * @param set The set in which the EA is being run.
  */
 static void
-ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
+ea_subsume(struct XCSF *xcsf, struct CL *c, struct CL *c1p, struct CL *c2p,
+           const struct SET *set)
 {
     // check if either parent subsumes the offspring
     if (cl_subsumer(xcsf, c1p) && cl_general(xcsf, c1p, c)) {
@@ -172,9 +171,9 @@ ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
     }
     // attempt to find a random subsumer from the set
     else {
-        CLIST *candidates[set->size];
+        struct CLIST *candidates[set->size];
         int choices = 0;
-        for (CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        for (struct CLIST *iter = set->list; iter != NULL; iter = iter->next) {
             if (cl_subsumer(xcsf, iter->cl) && cl_general(xcsf, iter->cl, c)) {
                 candidates[choices] = iter;
                 ++choices;
@@ -201,7 +200,8 @@ ea_subsume(XCSF *xcsf, CL *c, CL *c1p, CL *c2p, const SET *set)
  * @param c2p Second parent classifier (set by this function).
  */
 static void
-ea_select(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p)
+ea_select(const struct XCSF *xcsf, const struct SET *set, struct CL **c1p,
+          struct CL **c2p)
 {
     if (xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
         double fit_sum = clset_total_fit(set);
@@ -220,12 +220,12 @@ ea_select(const XCSF *xcsf, const SET *set, CL **c1p, CL **c2p)
  * @param fit_sum The sum of all the fitnesses in the set.
  * @return A pointer to the selected classifier.
  */
-static CL *
-ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum)
+static struct CL *
+ea_select_rw(const struct XCSF *xcsf, const struct SET *set, double fit_sum)
 {
-    (void)xcsf;
+    (void) xcsf;
     double p = rand_uniform(0, fit_sum);
-    const CLIST *iter = set->list;
+    const struct CLIST *iter = set->list;
     double sum = iter->cl->fit;
     while (p > sum) {
         iter = iter->next;
@@ -240,12 +240,13 @@ ea_select_rw(const XCSF *xcsf, const SET *set, double fit_sum)
  * @param set The set to select from.
  * @return A pointer to the selected classifier.
  */
-static CL *
-ea_select_tournament(const XCSF *xcsf, const SET *set)
+static struct CL *
+ea_select_tournament(const struct XCSF *xcsf, const struct SET *set)
 {
-    CL *winner = NULL;
+    struct CL *winner = NULL;
     while (winner == NULL) {
-        for (const CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        for (const struct CLIST *iter = set->list; iter != NULL;
+             iter = iter->next) {
             if ((rand_uniform(0, 1) < xcsf->EA_SELECT_SIZE) &&
                 (winner == NULL || iter->cl->fit > winner->fit)) {
                 winner = iter->cl;

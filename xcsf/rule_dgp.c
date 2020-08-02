@@ -21,22 +21,13 @@
  * @brief Dynamical GP graph rule (condition + action) functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <math.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "cl.h"
-#include "dgp.h"
-#include "condition.h"
-#include "action.h"
 #include "rule_dgp.h"
+#include "utils.h"
 
 /* CONDITION FUNCTIONS */
 
 void
-rule_dgp_cond_init(const XCSF *xcsf, CL *c)
+rule_dgp_cond_init(const struct XCSF *xcsf, struct CL *c)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
     new->n_outputs = (int) fmax(1, ceil(log2(xcsf->n_actions)));
@@ -47,7 +38,7 @@ rule_dgp_cond_init(const XCSF *xcsf, CL *c)
 }
 
 void
-rule_dgp_cond_free(const XCSF *xcsf, const CL *c)
+rule_dgp_cond_free(const struct XCSF *xcsf, const struct CL *c)
 {
     const RULE_DGP *cond = c->cond;
     graph_free(xcsf, &cond->dgp);
@@ -55,7 +46,8 @@ rule_dgp_cond_free(const XCSF *xcsf, const CL *c)
 }
 
 void
-rule_dgp_cond_copy(const XCSF *xcsf, CL *dest, const CL *src)
+rule_dgp_cond_copy(const struct XCSF *xcsf, struct CL *dest,
+                   const struct CL *src)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
     const RULE_DGP *src_cond = src->cond;
@@ -66,25 +58,27 @@ rule_dgp_cond_copy(const XCSF *xcsf, CL *dest, const CL *src)
 }
 
 void
-rule_dgp_cond_cover(const XCSF *xcsf, const CL *c, const double *x)
+rule_dgp_cond_cover(const struct XCSF *xcsf, const struct CL *c,
+                    const double *x)
 {
-    (void)xcsf;
-    (void)c;
-    (void)x;
+    (void) xcsf;
+    (void) c;
+    (void) x;
 }
 
 void
-rule_dgp_cond_update(const XCSF *xcsf, const CL *c, const double *x,
-                     const double *y)
+rule_dgp_cond_update(const struct XCSF *xcsf, const struct CL *c,
+                     const double *x, const double *y)
 {
-    (void)xcsf;
-    (void)c;
-    (void)x;
-    (void)y;
+    (void) xcsf;
+    (void) c;
+    (void) x;
+    (void) y;
 }
 
 _Bool
-rule_dgp_cond_match(const XCSF *xcsf, const CL *c, const double *x)
+rule_dgp_cond_match(const struct XCSF *xcsf, const struct CL *c,
+                    const double *x)
 {
     const RULE_DGP *cond = c->cond;
     graph_update(xcsf, &cond->dgp, x);
@@ -95,14 +89,15 @@ rule_dgp_cond_match(const XCSF *xcsf, const CL *c, const double *x)
 }
 
 _Bool
-rule_dgp_cond_mutate(const XCSF *xcsf, const CL *c)
+rule_dgp_cond_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
     RULE_DGP *cond = c->cond;
     return graph_mutate(xcsf, &cond->dgp);
 }
 
 _Bool
-rule_dgp_cond_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+rule_dgp_cond_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                        const struct CL *c2)
 {
     RULE_DGP *cond1 = c1->cond;
     RULE_DGP *cond2 = c2->cond;
@@ -110,31 +105,32 @@ rule_dgp_cond_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
 }
 
 _Bool
-rule_dgp_cond_general(const XCSF *xcsf, const CL *c1, const CL *c2)
+rule_dgp_cond_general(const struct XCSF *xcsf, const struct CL *c1,
+                      const struct CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void) xcsf;
+    (void) c1;
+    (void) c2;
     return false;
 }
 
 void
-rule_dgp_cond_print(const XCSF *xcsf, const CL *c)
+rule_dgp_cond_print(const struct XCSF *xcsf, const struct CL *c)
 {
     const RULE_DGP *cond = c->cond;
     graph_print(xcsf, &cond->dgp);
 }
 
 int
-rule_dgp_cond_size(const XCSF *xcsf, const CL *c)
+rule_dgp_cond_size(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
+    (void) xcsf;
     const RULE_DGP *cond = c->cond;
     return cond->dgp.n;
 }
 
 size_t
-rule_dgp_cond_save(const XCSF *xcsf, const CL *c, FILE *fp)
+rule_dgp_cond_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
     const RULE_DGP *cond = c->cond;
     size_t s = graph_save(xcsf, &cond->dgp, fp);
@@ -142,7 +138,7 @@ rule_dgp_cond_save(const XCSF *xcsf, const CL *c, FILE *fp)
 }
 
 size_t
-rule_dgp_cond_load(const XCSF *xcsf, CL *c, FILE *fp)
+rule_dgp_cond_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
     RULE_DGP *new = malloc(sizeof(RULE_DGP));
     size_t s = graph_load(xcsf, &new->dgp, fp);
@@ -154,48 +150,51 @@ rule_dgp_cond_load(const XCSF *xcsf, CL *c, FILE *fp)
 /* ACTION FUNCTIONS */
 
 void
-rule_dgp_act_init(const XCSF *xcsf, CL *c)
+rule_dgp_act_init(const struct XCSF *xcsf, struct CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void) xcsf;
+    (void) c;
 }
 
 void
-rule_dgp_act_free(const XCSF *xcsf, const CL *c)
+rule_dgp_act_free(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void) xcsf;
+    (void) c;
 }
 
 void
-rule_dgp_act_copy(const XCSF *xcsf, CL *dest, const CL *src)
+rule_dgp_act_copy(const struct XCSF *xcsf, struct CL *dest,
+                  const struct CL *src)
 {
-    (void)xcsf;
-    (void)dest;
-    (void)src;
+    (void) xcsf;
+    (void) dest;
+    (void) src;
 }
 
 void
-rule_dgp_act_print(const XCSF *xcsf, const CL *c)
+rule_dgp_act_print(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void) xcsf;
+    (void) c;
 }
 
 void
-rule_dgp_act_cover(const XCSF *xcsf, const CL *c, const double *x, int action)
+rule_dgp_act_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
+                   int action)
 {
     RULE_DGP *cond = c->cond;
     do {
         graph_rand(xcsf, &cond->dgp);
-    } while (!rule_dgp_cond_match(xcsf, c, x)
-             && rule_dgp_act_compute(xcsf, c, x) != action);
+    } while (!rule_dgp_cond_match(xcsf, c, x) &&
+             rule_dgp_act_compute(xcsf, c, x) != action);
 }
 
 int
-rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x)
+rule_dgp_act_compute(const struct XCSF *xcsf, const struct CL *c,
+                     const double *x)
 {
-    (void)x;
+    (void) x;
     const RULE_DGP *cond = c->cond;
     int action = 0;
     for (int i = 0; i < cond->n_outputs; ++i) {
@@ -208,55 +207,57 @@ rule_dgp_act_compute(const XCSF *xcsf, const CL *c, const double *x)
 }
 
 void
-rule_dgp_act_update(const XCSF *xcsf, const CL *c,
+rule_dgp_act_update(const struct XCSF *xcsf, const struct CL *c,
                     const double *x, const double *y)
 {
-    (void)xcsf;
-    (void)c;
-    (void)x;
-    (void)y;
+    (void) xcsf;
+    (void) c;
+    (void) x;
+    (void) y;
 }
 
 _Bool
-rule_dgp_act_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+rule_dgp_act_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                       const struct CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void) xcsf;
+    (void) c1;
+    (void) c2;
     return false;
 }
 
 _Bool
-rule_dgp_act_general(const XCSF *xcsf, const CL *c1, const CL *c2)
+rule_dgp_act_general(const struct XCSF *xcsf, const struct CL *c1,
+                     const struct CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void) xcsf;
+    (void) c1;
+    (void) c2;
     return false;
 }
 
 _Bool
-rule_dgp_act_mutate(const XCSF *xcsf, const CL *c)
+rule_dgp_act_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void) xcsf;
+    (void) c;
     return false;
 }
 
 size_t
-rule_dgp_act_save(const XCSF *xcsf, const CL *c, FILE *fp)
+rule_dgp_act_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
-    (void)xcsf;
-    (void)c;
-    (void)fp;
+    (void) xcsf;
+    (void) c;
+    (void) fp;
     return 0;
 }
 
 size_t
-rule_dgp_act_load(const XCSF *xcsf, CL *c, FILE *fp)
+rule_dgp_act_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
-    (void)xcsf;
-    (void)c;
-    (void)fp;
+    (void) xcsf;
+    (void) c;
+    (void) fp;
     return 0;
 }

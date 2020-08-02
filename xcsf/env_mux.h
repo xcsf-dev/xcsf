@@ -23,6 +23,9 @@
 
 #pragma once
 
+#include "env.h"
+#include "xcsf.h"
+
 /**
  * @brief Real multiplexer environment data structure.
  */
@@ -32,38 +35,33 @@ typedef struct ENV_MUX {
 } ENV_MUX;
 
 _Bool
-env_mux_isreset(const XCSF *xcsf);
+env_mux_isreset(const struct XCSF *xcsf);
 
 _Bool
-env_mux_multistep(const XCSF *xcsf);
+env_mux_multistep(const struct XCSF *xcsf);
 
 double
-env_mux_execute(const XCSF *xcsf, int action);
+env_mux_execute(const struct XCSF *xcsf, int action);
 
 double
-env_mux_maxpayoff(const XCSF *xcsf);
+env_mux_maxpayoff(const struct XCSF *xcsf);
 
 const double *
-env_mux_get_state(const XCSF *xcsf);
+env_mux_get_state(const struct XCSF *xcsf);
 
 void
-env_mux_free(const XCSF *xcsf);
+env_mux_free(const struct XCSF *xcsf);
 
 void
-env_mux_init(XCSF *xcsf, int bits);
+env_mux_init(struct XCSF *xcsf, int bits);
 
 void
-env_mux_reset(const XCSF *xcsf);
+env_mux_reset(const struct XCSF *xcsf);
 
 /**
  * @brief Real multiplexer environment implemented functions.
  */
 static struct EnvVtbl const env_mux_vtbl = {
-    &env_mux_isreset,
-    &env_mux_multistep,
-    &env_mux_execute,
-    &env_mux_maxpayoff,
-    &env_mux_get_state,
-    &env_mux_free,
-    &env_mux_reset
-};
+    &env_mux_isreset,   &env_mux_multistep, &env_mux_execute,
+    &env_mux_maxpayoff, &env_mux_get_state, &env_mux_free,
+    &env_mux_reset};

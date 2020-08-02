@@ -21,118 +21,114 @@
  * @brief Always-matching dummy condition functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "cl.h"
-#include "condition.h"
 #include "cond_dummy.h"
 
 void
-cond_dummy_init(const XCSF *xcsf, CL *c)
+cond_dummy_init(const struct XCSF *xcsf, struct CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void) xcsf;
+    (void) c;
 }
 
 void
-cond_dummy_free(const XCSF *xcsf, const CL *c)
+cond_dummy_free(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void) xcsf;
+    (void) c;
 }
 
 void
-cond_dummy_copy(const XCSF *xcsf, CL *dest, const CL *src)
+cond_dummy_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 {
-    (void)xcsf;
-    (void)dest;
-    (void)src;
+    (void) xcsf;
+    (void) dest;
+    (void) src;
 }
 
 void
-cond_dummy_cover(const XCSF *xcsf, const CL *c, const double *x)
+cond_dummy_cover(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
-    (void)xcsf;
-    (void)c;
-    (void)x;
+    (void) xcsf;
+    (void) c;
+    (void) x;
 }
 
 void
-cond_dummy_update(const XCSF *xcsf, const CL *c, const double *x,
+cond_dummy_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
                   const double *y)
 {
-    (void)xcsf;
-    (void)c;
-    (void)x;
-    (void)y;
+    (void) xcsf;
+    (void) c;
+    (void) x;
+    (void) y;
 }
 
 _Bool
-cond_dummy_match(const XCSF *xcsf, const CL *c, const double *x)
+cond_dummy_match(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
-    (void)xcsf;
-    (void)c;
-    (void)x;
+    (void) xcsf;
+    (void) c;
+    (void) x;
     return true;
 }
 
 _Bool
-cond_dummy_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+cond_dummy_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                     const struct CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void) xcsf;
+    (void) c1;
+    (void) c2;
     return false;
 }
 
 _Bool
-cond_dummy_mutate(const XCSF *xcsf, const CL *c)
+cond_dummy_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void) xcsf;
+    (void) c;
     return false;
 }
 
 _Bool
-cond_dummy_general(const XCSF *xcsf, const CL *c1, const CL *c2)
+cond_dummy_general(const struct XCSF *xcsf, const struct CL *c1,
+                   const struct CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void) xcsf;
+    (void) c1;
+    (void) c2;
     return false;
 }
 
 void
-cond_dummy_print(const XCSF *xcsf, const CL *c)
+cond_dummy_print(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void) xcsf;
+    (void) c;
 }
 
 int
-cond_dummy_size(const XCSF *xcsf, const CL *c)
+cond_dummy_size(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
-    (void)c;
+    (void) xcsf;
+    (void) c;
     return 0;
 }
 
 size_t
-cond_dummy_save(const XCSF *xcsf, const CL *c, FILE *fp)
+cond_dummy_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
-    (void)xcsf;
-    (void)c;
-    (void)fp;
+    (void) xcsf;
+    (void) c;
+    (void) fp;
     return 0;
 }
 
 size_t
-cond_dummy_load(const XCSF *xcsf, CL *c, FILE *fp)
+cond_dummy_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
-    (void)xcsf;
-    (void)c;
-    (void)fp;
+    (void) xcsf;
+    (void) c;
+    (void) fp;
     return 0;
 }

@@ -23,7 +23,7 @@
 
 #pragma once
 
-#include <math.h>
+#include "xcsf.h"
 
 #define LOGISTIC (0) //!< Logistic [0,1]
 #define RELU (1) //!< Rectified linear unit [0,inf]
@@ -77,7 +77,7 @@ static inline double
 loggy_gradient(double x)
 {
     double fx = exp(x);
-    return (2.*fx) / pow(fx + 1., 2);
+    return (2. * fx) / pow(fx + 1., 2);
 }
 
 static inline double
@@ -125,7 +125,7 @@ linear_activate(double x)
 static inline double
 linear_gradient(double x)
 {
-    (void)x;
+    (void) x;
     return 1;
 }
 

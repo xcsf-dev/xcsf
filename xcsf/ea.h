@@ -23,5 +23,10 @@
 
 #pragma once
 
+struct XCSF;
+struct SET;
+struct CLIST;
+struct CL;
+
 void
-ea(XCSF *xcsf, const SET *set);
+ea(struct XCSF *xcsf, const struct SET *set);

@@ -23,6 +23,9 @@
 
 #pragma once
 
+#include "prediction.h"
+#include "xcsf.h"
+
 /**
  * @brief Normalised least mean squares prediction data structure.
  */
@@ -36,52 +39,45 @@ typedef struct PRED_NLMS {
 } PRED_NLMS;
 
 _Bool
-pred_nlms_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+pred_nlms_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                    const struct CL *c2);
 
 _Bool
-pred_nlms_mutate(const XCSF *xcsf, const CL *c);
+pred_nlms_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 int
-pred_nlms_size(const XCSF *xcsf, const CL *c);
+pred_nlms_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t
-pred_nlms_load(const XCSF *xcsf, CL *c, FILE *fp);
+pred_nlms_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 
 size_t
-pred_nlms_save(const XCSF *xcsf, const CL *c, FILE *fp);
+pred_nlms_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
 
 void
-pred_nlms_compute(const XCSF *xcsf, const CL *c, const double *x);
+pred_nlms_compute(const struct XCSF *xcsf, const struct CL *c, const double *x);
 
 void
-pred_nlms_copy(const XCSF *xcsf, CL *dest, const CL *src);
+pred_nlms_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
 
 void
-pred_nlms_free(const XCSF *xcsf, const CL *c);
+pred_nlms_free(const struct XCSF *xcsf, const struct CL *c);
 
 void
-pred_nlms_init(const XCSF *xcsf, CL *c);
+pred_nlms_init(const struct XCSF *xcsf, struct CL *c);
 
 void
-pred_nlms_print(const XCSF *xcsf, const CL *c);
+pred_nlms_print(const struct XCSF *xcsf, const struct CL *c);
 
 void
-pred_nlms_update(const XCSF *xcsf, const CL *c, const double *x,
+pred_nlms_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
                  const double *y);
 
 /**
  * @brief Normalised least mean squares prediction implemented functions.
  */
 static struct PredVtbl const pred_nlms_vtbl = {
-    &pred_nlms_crossover,
-    &pred_nlms_mutate,
-    &pred_nlms_compute,
-    &pred_nlms_copy,
-    &pred_nlms_free,
-    &pred_nlms_init,
-    &pred_nlms_print,
-    &pred_nlms_update,
-    &pred_nlms_size,
-    &pred_nlms_save,
-    &pred_nlms_load
-};
+    &pred_nlms_crossover, &pred_nlms_mutate, &pred_nlms_compute,
+    &pred_nlms_copy,      &pred_nlms_free,   &pred_nlms_init,
+    &pred_nlms_print,     &pred_nlms_update, &pred_nlms_size,
+    &pred_nlms_save,      &pred_nlms_load};

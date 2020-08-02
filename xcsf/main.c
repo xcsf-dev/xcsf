@@ -21,20 +21,15 @@
  * @brief Main function for stand-alone binary execution.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "param.h"
+#include "clset.h"
 #include "config.h"
-#include "env.h"
 #include "env_csv.h"
 #include "pa.h"
-#include "clset.h"
+#include "param.h"
+#include "utils.h"
 #include "xcs_rl.h"
 #include "xcs_supervised.h"
+#include "xcsf.h"
 
 int
 main(int argc, char **argv)
@@ -44,7 +39,7 @@ main(int argc, char **argv)
         printf("problem{.csv|size|maze} [config.ini] [xcs.bin]\n");
         exit(EXIT_FAILURE);
     }
-    XCSF *xcsf = malloc(sizeof(XCSF));
+    struct XCSF *xcsf = malloc(sizeof(XCSF));
     random_init();
     param_init(xcsf);
     if (argc > 3) { // load parameter config

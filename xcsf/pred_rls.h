@@ -23,6 +23,9 @@
 
 #pragma once
 
+#include "prediction.h"
+#include "xcsf.h"
+
 /**
  * @brief Recursive least mean squares prediction data structure.
  */
@@ -38,52 +41,44 @@ typedef struct PRED_RLS {
 } PRED_RLS;
 
 _Bool
-pred_rls_crossover(const XCSF *xcsf, const CL *c1, const CL *c2);
+pred_rls_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                   const struct CL *c2);
 
 _Bool
-pred_rls_mutate(const XCSF *xcsf, const CL *c);
+pred_rls_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 int
-pred_rls_size(const XCSF *xcsf, const CL *c);
+pred_rls_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t
-pred_rls_load(const XCSF *xcsf, CL *c, FILE *fp);
+pred_rls_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
 
 size_t
-pred_rls_save(const XCSF *xcsf, const CL *c, FILE *fp);
+pred_rls_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
 
 void
-pred_rls_compute(const XCSF *xcsf, const CL *c, const double *x);
+pred_rls_compute(const struct XCSF *xcsf, const struct CL *c, const double *x);
 
 void
-pred_rls_copy(const XCSF *xcsf, CL *dest, const CL *src);
+pred_rls_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
 
 void
-pred_rls_free(const XCSF *xcsf, const CL *c);
+pred_rls_free(const struct XCSF *xcsf, const struct CL *c);
 
 void
-pred_rls_init(const XCSF *xcsf, CL *c);
+pred_rls_init(const struct XCSF *xcsf, struct CL *c);
 
 void
-pred_rls_print(const XCSF *xcsf, const CL *c);
+pred_rls_print(const struct XCSF *xcsf, const struct CL *c);
 
 void
-pred_rls_update(const XCSF *xcsf, const CL *c, const double *x,
+pred_rls_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
                 const double *y);
 
 /**
  * @brief Recursive least mean squares prediction implemented functions.
  */
 static struct PredVtbl const pred_rls_vtbl = {
-    &pred_rls_crossover,
-    &pred_rls_mutate,
-    &pred_rls_compute,
-    &pred_rls_copy,
-    &pred_rls_free,
-    &pred_rls_init,
-    &pred_rls_print,
-    &pred_rls_update,
-    &pred_rls_size,
-    &pred_rls_save,
-    &pred_rls_load
-};
+    &pred_rls_crossover, &pred_rls_mutate, &pred_rls_compute, &pred_rls_copy,
+    &pred_rls_free,      &pred_rls_init,   &pred_rls_print,   &pred_rls_update,
+    &pred_rls_size,      &pred_rls_save,   &pred_rls_load};

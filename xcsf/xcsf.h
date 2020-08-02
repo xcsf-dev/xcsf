@@ -23,13 +23,24 @@
 
 #pragma once
 
+#include <errno.h>
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <math.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 static const int VERSION_MAJOR = 1; //!< XCSF major version number
 static const int VERSION_MINOR = 0; //!< XCSF minor version number
 static const int VERSION_BUILD = 0; //!< XCSF build version number
 
 #define COND_TYPE_DUMMY (0) //!< Condition type dummy
 #define COND_TYPE_HYPERRECTANGLE (1) //!< Condition type hyperrectangle
-#define COND_TYPE_HYPERELLIPSOID (2)  //!< Condition type hyperellipsoid
+#define COND_TYPE_HYPERELLIPSOID (2) //!< Condition type hyperellipsoid
 #define COND_TYPE_NEURAL (3) //!< Condition type neural network
 #define COND_TYPE_GP (4) //!< Condition type tree GP
 #define COND_TYPE_DGP (5) //!< Condition type DGP
@@ -76,7 +87,7 @@ typedef struct CL {
  * @brief Classifier linked list.
  */
 typedef struct CLIST {
-    CL *cl; //!< Pointer to classifier data structure
+    struct CL *cl; //!< Pointer to classifier data structure
     struct CLIST *next; //!< Pointer to the next list element
 } CLIST;
 
@@ -84,7 +95,7 @@ typedef struct CLIST {
  * @brief Classifier set.
  */
 typedef struct SET {
-    CLIST *list; //!< Linked list of classifiers
+    struct CLIST *list; //!< Linked list of classifiers
     int size; //!< Number of macro-classifiers
     int num; //!< The total numerosity of classifiers
 } SET;
@@ -105,36 +116,40 @@ typedef struct XCSF {
 
     // experiment parameters
     int OMP_NUM_THREADS; //!< Number of threads for parallel processing
-    _Bool POP_INIT; //!< Population initially empty or filled with random conditions
+    _Bool POP_INIT; //!< Pop initially empty or filled with random conditions
     int MAX_TRIALS; //!< Number of problem instances to run in one experiment
-    int PERF_TRIALS; //!< Number of problem instances to average performance output
+    int PERF_TRIALS; //!< Number of problem instances to avg performance output
     int POP_SIZE; //!< Maximum number of micro-classifiers in the population
     int LOSS_FUNC; //!< Which loss/error function to apply
 
     // multi-step problem parameters
-    double GAMMA; //!< Discount factor in calculating reward for multi-step problems
-    int TELETRANSPORTATION; //!< Num steps to reset multistep problems if goal not found
+    double GAMMA; //!< Discount factor in calculating reward for multi-step
+                  //!< problems
+    int TELETRANSPORTATION; //!< Num steps to reset multistep problems if goal
+                            //!< not found
     double P_EXPLORE; //!< Probability of exploring vs. exploiting
 
     // classifier parameters
-    double ALPHA; //!< Linear coefficient used in calculating classifier accuracy
+    double ALPHA; //!< Linear coefficient used to calculate classifier accuracy
     double BETA; //!< Learning rate for updating error, fitness, and set size
-    double DELTA; //!< Fit used in prob of deletion if fit less than this frac of avg pop fit
-    double EPS_0; //!< Classifier target error, under which the accuracy is set to 1
+    double DELTA; //!< Fit used in prob of deletion if fit less than this frac
+                  //!< of avg pop fit
+    double EPS_0; //!< Target error under which classifier accuracy is set to 1
     double ERR_REDUC; //!< Amount to reduce an offspring's error
     double FIT_REDUC; //!< Amount to reduce an offspring's fitness
     double INIT_ERROR; //!< Initial classifier error value
     double INIT_FITNESS; //!< Initial classifier fitness value
     double NU; //!< Exponent used in calculating classifier accuracy
-    int THETA_DEL; //!< Min experience before fitness used in probability of deletion
-    int COND_TYPE; //!< Classifier condition type: hyperrectangles, GP trees, etc.
-    int PRED_TYPE; //!< Classifier prediction type: least squares, neural nets, etc.
+    int THETA_DEL; //!< Min experience before fitness used during deletion
+    int COND_TYPE; //!< Classifier condition type: hyperrectangles, etc.
+    int PRED_TYPE; //!< Classifier prediction type: least squares, etc.
     int ACT_TYPE; //!< Classifier action type
-    int M_PROBATION; //!< Trials since rule creation it must match at least 1 input or be deleted
+    int M_PROBATION; //!< Trials since rule creation it must match at least 1
+                     //!< input or be deleted
     int SAM_TYPE; //!< Self-adaptive mutation algorithm
 
     // evolutionary algorithm parameters
-    double P_CROSSOVER; //!< Probability of applying crossover (for hyperrectangles)
+    double P_CROSSOVER; //!< Probability of applying crossover
     double THETA_EA; //!< Average match set time between EA invocations
     int LAMBDA; //!< Number of offspring to create each EA invocation
     int EA_SELECT_TYPE; //!< Roulette or tournament for EA parental selection
@@ -143,43 +158,59 @@ typedef struct XCSF {
     // classifier condition parameters
     double COND_MAX; //!< Maximum value expected from inputs
     double COND_MIN; //!< Minimum value expected from inputs
-    double COND_SMIN; //!< Minimum initial spread for hyperectangles and hyperellipsoids
-    int COND_BITS; //!< Number of bits per float to binarise inputs for ternary conditions
+    double COND_SMIN; //!< Minimum initial spread for hyperectangles etc.
+    int COND_BITS; //!< Bits per float to binarise inputs for ternary conditions
     _Bool STATEFUL; //!< Whether classifiers should retain state across trials
     int MAX_K; //!< Maximum number of connections a DGP node may have
     int MAX_T; //!< Maximum number of cycles to update a DGP graph
     int GP_NUM_CONS; //!< Number of constants available for GP trees
     int GP_INIT_DEPTH; //!< Initial depth of GP trees
     double *gp_cons; //!< Stores constants available for GP trees
-    int MAX_NEURON_GROW; //!< Maximum number of neurons to add or remove during mutation
+    int MAX_NEURON_GROW; //!< Max num of neurons to add/remove during mutation
 
     double COND_ETA; //!< Gradient descent rate for updating the condition
     _Bool COND_EVOLVE_WEIGHTS; //!< Whether to evolve condition network weights
-    _Bool COND_EVOLVE_NEURONS; //!< Whether to evolve number of condition network neurons
-    _Bool COND_EVOLVE_FUNCTIONS; //!< Whether to evolve condition network activation functions
-    _Bool COND_EVOLVE_CONNECTIVITY; //!< Whether to evolve condition network connectivity
-    int COND_NUM_NEURONS[MAX_LAYERS]; //!< Initial num neurons in each condition hidden layer
-    int COND_MAX_NEURONS[MAX_LAYERS]; //!< Max num of neurons in each condition hidden layer
-    int COND_OUTPUT_ACTIVATION; //!< Activation function for the condition output layer
-    int COND_HIDDEN_ACTIVATION; //!< Activation function for the condition hidden layer
+    _Bool COND_EVOLVE_NEURONS; //!< Whether to evolve number of condition
+                               //!< network neurons
+    _Bool COND_EVOLVE_FUNCTIONS; //!< Whether to evolve condition network
+                                 //!< activation functions
+    _Bool COND_EVOLVE_CONNECTIVITY; //!< Whether to evolve condition network
+                                    //!< connectivity
+    int COND_NUM_NEURONS[MAX_LAYERS]; //!< Initial num neurons in each condition
+                                      //!< hidden layer
+    int COND_MAX_NEURONS[MAX_LAYERS]; //!< Max num of neurons in each condition
+                                      //!< hidden layer
+    int COND_OUTPUT_ACTIVATION; //!< Activation function for the condition
+                                //!< output layer
+    int COND_HIDDEN_ACTIVATION; //!< Activation function for the condition
+                                //!< hidden layer
 
     // prediction parameters
-    _Bool PRED_RESET; //!< Whether to reset offspring predictions instead of copying
+    _Bool PRED_RESET; //!< Whether to reset offspring predictions instead of
+                      //!< copying
     double PRED_ETA; //!< Gradient desecnt rate for updating the prediction
     double PRED_X0; //!< Prediction weight vector offset value
-    double PRED_RLS_SCALE_FACTOR; //!< Initial diagonal values of the RLS gain-matrix
-    double PRED_RLS_LAMBDA; //!< Forget rate for RLS: small values may be unstable
+    double PRED_RLS_SCALE_FACTOR; //!< Initial values for the RLS gain-matrix
+    double PRED_RLS_LAMBDA; //!< Forget rate for RLS
     _Bool PRED_EVOLVE_WEIGHTS; //!< Whether to evolve prediction network weights
-    _Bool PRED_EVOLVE_NEURONS; //!< Whether to evolve number of prediction network neurons
-    _Bool PRED_EVOLVE_FUNCTIONS; //!< Whether to evolve prediction network activation functions
-    _Bool PRED_EVOLVE_CONNECTIVITY; //!< Whether to evolve prediction network connectivity
-    _Bool PRED_EVOLVE_ETA; //!< Whether to evolve prediction gradient descent rates
+    _Bool PRED_EVOLVE_NEURONS; //!< Whether to evolve number of prediction
+                               //!< network neurons
+    _Bool PRED_EVOLVE_FUNCTIONS; //!< Whether to evolve prediction network
+                                 //!< activation functions
+    _Bool PRED_EVOLVE_CONNECTIVITY; //!< Whether to evolve prediction network
+                                    //!< connectivity
+    _Bool PRED_EVOLVE_ETA; //!< Whether to evolve prediction gradient descent
+                           //!< rates
     _Bool PRED_SGD_WEIGHTS; //!< Whether to use gradient descent for predictions
     double PRED_MOMENTUM; //!< Momentum for gradient descent
-    int PRED_NUM_NEURONS[MAX_LAYERS]; //!< Initial num neurons in each prediction hidden layer
-    int PRED_MAX_NEURONS[MAX_LAYERS]; //!< Max num of neurons in each prediction hidden layer
-    int PRED_OUTPUT_ACTIVATION; //!< Activation function for the prediction output layer
-    int PRED_HIDDEN_ACTIVATION; //!< Activation function for the prediction hidden layer
+    int PRED_NUM_NEURONS[MAX_LAYERS]; //!< Initial num neurons in each
+                                      //!< prediction hidden layer
+    int PRED_MAX_NEURONS[MAX_LAYERS]; //!< Max num of neurons in each prediction
+                                      //!< hidden layer
+    int PRED_OUTPUT_ACTIVATION; //!< Activation function for the prediction
+                                //!< output layer
+    int PRED_HIDDEN_ACTIVATION; //!< Activation function for the prediction
+                                //!< hidden layer
 
     // subsumption parameters
     _Bool EA_SUBSUMPTION; //!< Whether to try and subsume offspring classifiers
@@ -196,9 +227,9 @@ typedef struct XCSF {
     double *nr; //!< Prediction array (stores total fitness)
 
     // multi-step
-    double prev_reward; //!< Reward from the previous step in a multi-step trial.
-    double prev_pred; //!< Payoff prediction made on the previous step in a multi-step trial.
-    double *prev_state; //!< Environment state on the previous step in a multi-step trial.
+    double prev_reward; //!< Reward from previous step in a multi-step trial
+    double prev_pred; //!< Payoff prediction made on the previous step
+    double *prev_state; //!< Environment state on the previous step
 
     // set by environment
     _Bool explore; //!< Whether the system is currently exploring or exploiting
@@ -221,14 +252,20 @@ typedef struct INPUT {
 } INPUT;
 
 size_t
-xcsf_load(XCSF *xcsf, const char *fname);
+xcsf_load(struct XCSF *xcsf, const char *fname);
+
 size_t
-xcsf_save(const XCSF *xcsf, const char *fname);
+xcsf_save(const struct XCSF *xcsf, const char *fname);
+
 void
-xcsf_init(XCSF *xcsf);
+xcsf_init(struct XCSF *xcsf);
+
 void
-xcsf_print_pop(const XCSF *xcsf, _Bool printc, _Bool printa, _Bool printp);
+xcsf_print_pop(const struct XCSF *xcsf, _Bool printc, _Bool printa,
+               _Bool printp);
+
 void
-xcsf_ae_to_classifier(XCSF *xcsf, int y_dim, int n_del);
+xcsf_ae_to_classifier(struct XCSF *xcsf, int y_dim, int n_del);
+
 void
-xcsf_pred_expand(const XCSF *xcsf);
+xcsf_pred_expand(const struct XCSF *xcsf);

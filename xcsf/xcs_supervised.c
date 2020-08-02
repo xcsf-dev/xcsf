@@ -21,27 +21,20 @@
  * @brief Supervised regression learning functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <errno.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "param.h"
-#include "loss.h"
-#include "perf.h"
-#include "cl.h"
-#include "clset.h"
-#include "pa.h"
-#include "ea.h"
 #include "xcs_supervised.h"
+#include "clset.h"
+#include "ea.h"
+#include "loss.h"
+#include "pa.h"
+#include "param.h"
+#include "perf.h"
+#include "utils.h"
 
 static int
-xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle);
+xcs_supervised_sample(const struct INPUT *data, int cnt, _Bool shuffle);
 
 static void
-xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y);
+xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y);
 
 /**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
@@ -53,8 +46,8 @@ xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y);
  * @return The average XCSF training error using the loss function.
  */
 double
-xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
-                   const INPUT *test_data, _Bool shuffle)
+xcs_supervised_fit(struct XCSF *xcsf, const struct INPUT *train_data,
+                   const struct INPUT *test_data, _Bool shuffle)
 {
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
@@ -91,12 +84,14 @@ xcs_supervised_fit(XCSF *xcsf, const INPUT *train_data,
  * @param n_samples The number of instances.
  */
 void
-xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_samples)
+xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
+                       int n_samples)
 {
     param_set_explore(xcsf, false);
     for (int row = 0; row < n_samples; ++row) {
         xcs_supervised_trial(xcsf, &x[row * xcsf->x_dim], NULL);
-        memcpy(&pred[row * xcsf->y_dim], xcsf->pa, sizeof(double) * xcsf->y_dim);
+        memcpy(&pred[row * xcsf->y_dim], xcsf->pa,
+               sizeof(double) * xcsf->y_dim);
     }
 }
 
@@ -107,7 +102,7 @@ xcs_supervised_predict(XCSF *xcsf, const double *x, double *pred, int n_samples)
  * @return The average XCSF error using the loss function.
  */
 double
-xcs_supervised_score(XCSF *xcsf, const INPUT *test_data)
+xcs_supervised_score(struct XCSF *xcsf, const struct INPUT *test_data)
 {
     param_set_explore(xcsf, false);
     double err = 0;
@@ -128,7 +123,7 @@ xcs_supervised_score(XCSF *xcsf, const INPUT *test_data)
  * @return The row of the data sample selected.
  */
 static int
-xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle)
+xcs_supervised_sample(const struct INPUT *data, int cnt, _Bool shuffle)
 {
     if (shuffle) {
         return irand_uniform(0, data->n_samples);
@@ -143,7 +138,7 @@ xcs_supervised_sample(const INPUT *data, int cnt, _Bool shuffle)
  * @param y The labelled variables.
  */
 static void
-xcs_supervised_trial(XCSF *xcsf, const double *x, const double *y)
+xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y)
 {
     clset_init(&xcsf->mset);
     clset_init(&xcsf->kset);

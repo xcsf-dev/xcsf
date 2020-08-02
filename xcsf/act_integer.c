@@ -21,31 +21,27 @@
  * @brief integer action functions.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "xcsf.h"
-#include "utils.h"
-#include "sam.h"
-#include "action.h"
 #include "act_integer.h"
+#include "sam.h"
+#include "utils.h"
 
 #define N_MU (1) //!< Number of integer action mutation rates
 
 _Bool
-act_integer_crossover(const XCSF *xcsf, const CL *c1, const CL *c2)
+act_integer_crossover(const struct XCSF *xcsf, const struct CL *c1,
+                      const struct CL *c2)
 {
-    (void)xcsf;
-    (void)c1;
-    (void)c2;
+    (void) xcsf;
+    (void) c1;
+    (void) c2;
     return false;
 }
 
 _Bool
-act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
+act_integer_general(const struct XCSF *xcsf, const struct CL *c1,
+                    const struct CL *c2)
 {
-    (void)xcsf;
+    (void) xcsf;
     const ACT_INTEGER *act1 = c1->act;
     const ACT_INTEGER *act2 = c2->act;
     if (act1->action != act2->action) {
@@ -55,7 +51,7 @@ act_integer_general(const XCSF *xcsf, const CL *c1, const CL *c2)
 }
 
 _Bool
-act_integer_mutate(const XCSF *xcsf, const CL *c)
+act_integer_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
     ACT_INTEGER *act = c->act;
     sam_adapt(xcsf, act->mu, N_MU);
@@ -70,18 +66,19 @@ act_integer_mutate(const XCSF *xcsf, const CL *c)
 }
 
 int
-act_integer_compute(const XCSF *xcsf, const CL *c, const double *x)
+act_integer_compute(const struct XCSF *xcsf, const struct CL *c,
+                    const double *x)
 {
-    (void)xcsf;
-    (void)x;
+    (void) xcsf;
+    (void) x;
     const ACT_INTEGER *act = c->act;
     return act->action;
 }
 
 void
-act_integer_copy(const XCSF *xcsf, CL *dest, const CL *src)
+act_integer_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 {
-    (void)xcsf;
+    (void) xcsf;
     ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
     const ACT_INTEGER *src_act = src->act;
     new->action = src_act->action;
@@ -91,33 +88,34 @@ act_integer_copy(const XCSF *xcsf, CL *dest, const CL *src)
 }
 
 void
-act_integer_print(const XCSF *xcsf, const CL *c)
+act_integer_print(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
+    (void) xcsf;
     const ACT_INTEGER *act = c->act;
     printf("%d\n", act->action);
 }
 
 void
-act_integer_cover(const XCSF *xcsf, const CL *c, const double *x, int action)
+act_integer_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
+                  int action)
 {
-    (void)xcsf;
-    (void)x;
+    (void) xcsf;
+    (void) x;
     ACT_INTEGER *act = c->act;
     act->action = action;
 }
 
 void
-act_integer_free(const XCSF *xcsf, const CL *c)
+act_integer_free(const struct XCSF *xcsf, const struct CL *c)
 {
-    (void)xcsf;
+    (void) xcsf;
     const ACT_INTEGER *act = c->act;
     free(act->mu);
     free(c->act);
 }
 
 void
-act_integer_init(const XCSF *xcsf, CL *c)
+act_integer_init(const struct XCSF *xcsf, struct CL *c)
 {
     ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
     new->mu = malloc(sizeof(double) * N_MU);
@@ -127,19 +125,19 @@ act_integer_init(const XCSF *xcsf, CL *c)
 }
 
 void
-act_integer_update(const XCSF *xcsf, const CL *c, const double *x,
+act_integer_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
                    const double *y)
 {
-    (void)xcsf;
-    (void)c;
-    (void)x;
-    (void)y;
+    (void) xcsf;
+    (void) c;
+    (void) x;
+    (void) y;
 }
 
 size_t
-act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp)
+act_integer_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     const ACT_INTEGER *act = c->act;
     s += fwrite(&act->action, sizeof(int), 1, fp);
@@ -148,9 +146,9 @@ act_integer_save(const XCSF *xcsf, const CL *c, FILE *fp)
 }
 
 size_t
-act_integer_load(const XCSF *xcsf, CL *c, FILE *fp)
+act_integer_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 {
-    (void)xcsf;
+    (void) xcsf;
     size_t s = 0;
     ACT_INTEGER *new = malloc(sizeof(ACT_INTEGER));
     s += fread(&new->action, sizeof(int), 1, fp);

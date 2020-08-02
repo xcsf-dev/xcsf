@@ -23,59 +23,57 @@
 
 #pragma once
 
+#include "neural_layer.h"
+#include "xcsf.h"
+
 LAYER *
-neural_layer_lstm_init(const XCSF *xcsf, int n_inputs, int n_init,
+neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
                        int n_max, int f, int rf, uint32_t o);
 
 LAYER *
-neural_layer_lstm_copy(const XCSF *xcsf, const LAYER *src);
+neural_layer_lstm_copy(const struct XCSF *xcsf, const LAYER *src);
 
 void
-neural_layer_lstm_rand(const XCSF *xcsf, LAYER *l);
+neural_layer_lstm_rand(const struct XCSF *xcsf, LAYER *l);
 
 void
-neural_layer_lstm_forward(const XCSF *xcsf, const LAYER *l,
+neural_layer_lstm_forward(const struct XCSF *xcsf, const LAYER *l,
                           const double *input);
 
 void
-neural_layer_lstm_backward(const XCSF *xcsf, const LAYER *l,
+neural_layer_lstm_backward(const struct XCSF *xcsf, const LAYER *l,
                            const double *input, double *delta);
 
 void
-neural_layer_lstm_update(const XCSF *xcsf, const LAYER *l);
+neural_layer_lstm_update(const struct XCSF *xcsf, const LAYER *l);
 
 void
-neural_layer_lstm_print(const XCSF *xcsf, const LAYER *l, _Bool print_weights);
+neural_layer_lstm_print(const struct XCSF *xcsf, const LAYER *l,
+                        _Bool print_weights);
 
 _Bool
-neural_layer_lstm_mutate(const XCSF *xcsf, LAYER *l);
+neural_layer_lstm_mutate(const struct XCSF *xcsf, LAYER *l);
 
 void
-neural_layer_lstm_free(const XCSF *xcsf, const LAYER *l);
+neural_layer_lstm_free(const struct XCSF *xcsf, const LAYER *l);
 
 double *
-neural_layer_lstm_output(const XCSF *xcsf, const LAYER *l);
+neural_layer_lstm_output(const struct XCSF *xcsf, const LAYER *l);
 
 size_t
-neural_layer_lstm_save(const XCSF *xcsf, const LAYER *l, FILE *fp);
+neural_layer_lstm_save(const struct XCSF *xcsf, const LAYER *l, FILE *fp);
 
 size_t
-neural_layer_lstm_load(const XCSF *xcsf, LAYER *l, FILE *fp);
+neural_layer_lstm_load(const struct XCSF *xcsf, LAYER *l, FILE *fp);
 
 void
-neural_layer_lstm_resize(const XCSF *xcsf, LAYER *l, const LAYER *prev);
+neural_layer_lstm_resize(const struct XCSF *xcsf, LAYER *l, const LAYER *prev);
 
 static struct LayerVtbl const layer_lstm_vtbl = {
-    &neural_layer_lstm_mutate,
-    &neural_layer_lstm_resize,
-    &neural_layer_lstm_copy,
-    &neural_layer_lstm_free,
-    &neural_layer_lstm_rand,
-    &neural_layer_lstm_print,
-    &neural_layer_lstm_update,
-    &neural_layer_lstm_backward,
-    &neural_layer_lstm_forward,
-    &neural_layer_lstm_output,
-    &neural_layer_lstm_save,
-    &neural_layer_lstm_load,
+    &neural_layer_lstm_mutate,  &neural_layer_lstm_resize,
+    &neural_layer_lstm_copy,    &neural_layer_lstm_free,
+    &neural_layer_lstm_rand,    &neural_layer_lstm_print,
+    &neural_layer_lstm_update,  &neural_layer_lstm_backward,
+    &neural_layer_lstm_forward, &neural_layer_lstm_output,
+    &neural_layer_lstm_save,    &neural_layer_lstm_load,
 };

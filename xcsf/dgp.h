@@ -18,10 +18,13 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
- * @brief An implementation of dynamical GP graphs with fuzzy activation functions.
+ * @brief An implementation of dynamical GP graphs with fuzzy activation
+ * functions.
  */
 
 #pragma once
+
+#include "xcsf.h"
 
 #define DGP_N_MU (3) //!< Number of DGP mutation rates
 
@@ -42,37 +45,37 @@ typedef struct GRAPH {
 } GRAPH;
 
 _Bool
-graph_crossover(const XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
+graph_crossover(const struct XCSF *xcsf, GRAPH *dgp1, GRAPH *dgp2);
 
 _Bool
-graph_mutate(const XCSF *xcsf, GRAPH *dgp);
+graph_mutate(const struct XCSF *xcsf, GRAPH *dgp);
 
 double
-graph_output(const XCSF *xcsf, const GRAPH *dgp, int i);
+graph_output(const struct XCSF *xcsf, const GRAPH *dgp, int i);
 
 size_t
-graph_load(const XCSF *xcsf, GRAPH *dgp, FILE *fp);
+graph_load(const struct XCSF *xcsf, GRAPH *dgp, FILE *fp);
 
 size_t
-graph_save(const XCSF *xcsf, const GRAPH *dgp, FILE *fp);
+graph_save(const struct XCSF *xcsf, const GRAPH *dgp, FILE *fp);
 
 void
-graph_copy(const XCSF *xcsf, GRAPH *dest, const GRAPH *src);
+graph_copy(const struct XCSF *xcsf, GRAPH *dest, const GRAPH *src);
 
 void
-graph_free(const XCSF *xcsf, const GRAPH *dgp);
+graph_free(const struct XCSF *xcsf, const GRAPH *dgp);
 
 void
-graph_init(const XCSF *xcsf, GRAPH *dgp, int n);
+graph_init(const struct XCSF *xcsf, GRAPH *dgp, int n);
 
 void
-graph_print(const XCSF *xcsf, const GRAPH *dgp);
+graph_print(const struct XCSF *xcsf, const GRAPH *dgp);
 
 void
-graph_rand(const XCSF *xcsf, GRAPH *dgp);
+graph_rand(const struct XCSF *xcsf, GRAPH *dgp);
 
 void
-graph_reset(const XCSF *xcsf, const GRAPH *dgp);
+graph_reset(const struct XCSF *xcsf, const GRAPH *dgp);
 
 void
-graph_update(const XCSF *xcsf, const GRAPH *dgp, const double *inputs);
+graph_update(const struct XCSF *xcsf, const GRAPH *dgp, const double *inputs);
