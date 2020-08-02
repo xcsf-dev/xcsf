@@ -343,10 +343,10 @@ neural_print(const XCSF *xcsf, const NET *net, _Bool print_weights)
 }
 
 /**
- * @brief Returns the total number of non-zero weights in a neural network.
+ * @brief Returns the total number of neurons in a neural network.
  * @param xcsf The XCSF data structure.
- * @param net The neural network to calculate the number of non-zero weights.
- * @return The total number of non-zero weights.
+ * @param net The neural network to calculate the number of neurons.
+ * @return The calculated total.
  */
 int
 neural_size(const XCSF *xcsf, const NET *net)
@@ -359,7 +359,7 @@ neural_size(const XCSF *xcsf, const NET *net)
             case (RECURRENT):
             case (LSTM):
             case (CONVOLUTIONAL):
-                size += iter->layer->n_active;
+                size += iter->layer->n_outputs;
                 break;
             default:
                 break;
