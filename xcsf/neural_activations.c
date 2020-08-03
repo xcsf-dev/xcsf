@@ -149,7 +149,7 @@ void
 neural_activate_array(double *state, double *output, int n, int a)
 {
     for (int i = 0; i < n; ++i) {
-        state[i] = clamp(NEURON_MIN, NEURON_MAX, state[i]);
+        state[i] = clamp(state[i], NEURON_MIN, NEURON_MAX);
         output[i] = neural_activate(a, state[i]);
     }
 }

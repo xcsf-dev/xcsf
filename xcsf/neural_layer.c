@@ -82,7 +82,7 @@ layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, double mu)
 {
     double orig = l->eta;
     l->eta += rand_normal(0, mu);
-    l->eta = clamp(ETA_MIN, xcsf->PRED_ETA, l->eta);
+    l->eta = clamp(l->eta, ETA_MIN, xcsf->PRED_ETA);
     if (l->eta != orig) {
         return true;
     }
@@ -205,7 +205,7 @@ layer_mutate_weights(struct LAYER *l, double mu)
         if (l->weight_active[i]) {
             double orig = l->weights[i];
             l->weights[i] += rand_normal(0, mu);
-            l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
+            l->weights[i] = clamp(l->weights[i], WEIGHT_MIN, WEIGHT_MAX);
             if (l->weights[i] != orig) {
                 mod = true;
             }
@@ -214,7 +214,7 @@ layer_mutate_weights(struct LAYER *l, double mu)
     for (int i = 0; i < l->n_biases; ++i) {
         double orig = l->biases[i];
         l->biases[i] += rand_normal(0, mu);
-        l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
+        l->biases[i] = clamp(l->biases[i], WEIGHT_MIN, WEIGHT_MAX);
         if (l->biases[i] != orig) {
             mod = true;
         }
@@ -300,13 +300,13 @@ layer_weight_clamp(const struct LAYER *l)
 {
     for (int i = 0; i < l->n_weights; ++i) {
         if (l->weight_active[i]) {
-            l->weights[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->weights[i]);
+            l->weights[i] = clamp(l->weights[i], WEIGHT_MIN, WEIGHT_MAX);
         } else {
             l->weights[i] = 0;
         }
     }
     for (int i = 0; i < l->n_biases; ++i) {
-        l->biases[i] = clamp(WEIGHT_MIN, WEIGHT_MAX, l->biases[i]);
+        l->biases[i] = clamp(l->biases[i], WEIGHT_MIN, WEIGHT_MAX);
     }
 }
 

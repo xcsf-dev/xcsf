@@ -52,7 +52,7 @@ sam_log_normal_adapt(double *mu, int n)
 {
     for (int i = 0; i < n; ++i) {
         mu[i] *= exp(rand_normal(0, 1));
-        mu[i] = clamp(0.0001, 1, mu[i]);
+        mu[i] = clamp(mu[i], 0.0001, 1);
     }
 }
 

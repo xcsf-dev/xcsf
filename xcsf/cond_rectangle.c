@@ -161,7 +161,7 @@ cond_rectangle_mutate(const struct XCSF *xcsf, const struct CL *c)
         double orig = cond->center[i];
         cond->center[i] += rand_normal(0, cond->mu[0]);
         cond->center[i] =
-            clamp(xcsf->COND_MIN, xcsf->COND_MAX, cond->center[i]);
+            clamp(cond->center[i], xcsf->COND_MIN, xcsf->COND_MAX);
         if (orig != cond->center[i]) {
             changed = true;
         }

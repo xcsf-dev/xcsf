@@ -142,7 +142,7 @@ pred_nlms_mutate(const struct XCSF *xcsf, const struct CL *c)
         sam_adapt(xcsf, pred->mu, N_MU);
         double orig = pred->eta;
         pred->eta += rand_normal(0, pred->mu[0]);
-        pred->eta = clamp(ETA_MIN, xcsf->PRED_ETA, pred->eta);
+        pred->eta = clamp(pred->eta, ETA_MIN, xcsf->PRED_ETA);
         if (orig != pred->eta) {
             return true;
         }

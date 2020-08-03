@@ -37,26 +37,26 @@ random_init(void);
 
 /**
  * @brief Returns a float clamped within the specified range.
+ * @param a The value to be clamped.
  * @param min Minimum value.
  * @param max Maximum value.
- * @param a The value to be clamped.
  * @return The clamped number.
  */
 static inline double
-clamp(double min, double max, double a)
+clamp(double a, double min, double max)
 {
     return (a < min) ? min : (a > max) ? max : a;
 }
 
 /**
  * @brief Returns an integer clamped within the specified range.
+ * @param a The value to be clamped.
  * @param min Minimum value.
  * @param max Maximum value.
- * @param a The value to be clamped.
  * @return The clamped number.
  */
 static inline int
-iclamp(int min, int max, int a)
+iclamp(int a, int min, int max)
 {
     return (a < min) ? min : (a > max) ? max : a;
 }
