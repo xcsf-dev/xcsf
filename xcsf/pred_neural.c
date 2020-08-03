@@ -197,12 +197,12 @@ pred_neural_eta(const struct XCSF *xcsf, const struct CL *c, int layer)
 {
     (void) xcsf;
     const struct PRED_NEURAL *pred = c->pred;
-    int i = 0;
-    for (const LLIST *iter = pred->net.tail; iter != NULL; iter = iter->prev) {
+    const struct LLIST *iter = pred->net.tail;
+    for (int i = 0; iter != NULL; ++i) {
         if (i == layer) {
             return iter->layer->eta;
         }
-        ++i;
+        iter = iter->prev;
     }
     return 0;
 }
@@ -212,13 +212,12 @@ pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer)
 {
     (void) xcsf;
     const struct PRED_NEURAL *pred = c->pred;
-    const struct NET *net = &pred->net;
-    int i = 0;
-    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    const struct LLIST *iter = pred->net.tail;
+    for (int i = 0; iter != NULL; ++i) {
         if (i == layer) {
             return iter->layer->n_outputs;
         }
-        ++i;
+        iter = iter->prev;
     }
     return 0;
 }
@@ -228,13 +227,12 @@ pred_neural_connections(const struct XCSF *xcsf, const struct CL *c, int layer)
 {
     (void) xcsf;
     const struct PRED_NEURAL *pred = c->pred;
-    const struct NET *net = &pred->net;
-    int i = 0;
-    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    const struct LLIST *iter = pred->net.tail;
+    for (int i = 0; iter != NULL; ++i) {
         if (i == layer) {
             return iter->layer->n_active;
         }
-        ++i;
+        iter = iter->prev;
     }
     return 0;
 }

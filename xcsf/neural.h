@@ -42,8 +42,8 @@ typedef struct NET {
     int n_inputs; //!< Number of network inputs
     int n_outputs; //!< Number of network outputs
     double *output; //!< Pointer to the network output
-    LLIST *head; //!< Pointer to the head layer (output layer)
-    LLIST *tail; //!< Pointer to the tail layer (first layer)
+    struct LLIST *head; //!< Pointer to the head layer (output layer)
+    struct LLIST *tail; //!< Pointer to the tail layer (first layer)
 } NET;
 
 _Bool

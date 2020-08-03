@@ -59,7 +59,7 @@ neural_layer_insert(const struct XCSF *xcsf, struct NET *net, struct LAYER *l,
     (void) xcsf;
     // empty list
     if (net->head == NULL || net->tail == NULL) {
-        net->head = malloc(sizeof(LLIST));
+        net->head = malloc(sizeof(struct LLIST));
         net->head->layer = l;
         net->head->prev = NULL;
         net->head->next = NULL;
@@ -70,11 +70,11 @@ neural_layer_insert(const struct XCSF *xcsf, struct NET *net, struct LAYER *l,
     }
     // insert
     else {
-        LLIST *iter = net->tail;
+        struct LLIST *iter = net->tail;
         for (int i = 0; i < p && iter != NULL; ++i) {
             iter = iter->prev;
         }
-        LLIST *new = malloc(sizeof(LLIST));
+        struct LLIST *new = malloc(sizeof(struct LLIST));
         new->layer = l;
         new->prev = iter;
         // new head
@@ -111,7 +111,7 @@ void
 neural_layer_remove(const struct XCSF *xcsf, struct NET *net, int p)
 {
     // find the layer
-    LLIST *iter = net->tail;
+    struct LLIST *iter = net->tail;
     for (int i = 0; i < p && iter != NULL; ++i) {
         iter = iter->prev;
     }
@@ -160,11 +160,13 @@ neural_copy(const struct XCSF *xcsf, struct NET *dest, const struct NET *src)
 {
     neural_init(xcsf, dest);
     int p = 0;
-    for (const LLIST *iter = src->tail; iter != NULL; iter = iter->prev) {
+    const struct LLIST *iter = src->tail;
+    while (iter != NULL) {
         const struct LAYER *f = iter->layer;
         struct LAYER *l = layer_copy(xcsf, f);
         neural_layer_insert(xcsf, dest, l, p);
         ++p;
+        iter = iter->prev;
     }
 }
 
@@ -176,7 +178,7 @@ neural_copy(const struct XCSF *xcsf, struct NET *dest, const struct NET *src)
 void
 neural_free(const struct XCSF *xcsf, struct NET *net)
 {
-    LLIST *iter = net->tail;
+    struct LLIST *iter = net->tail;
     while (iter != NULL) {
         layer_free(xcsf, iter->layer);
         free(iter->layer);
@@ -195,8 +197,10 @@ neural_free(const struct XCSF *xcsf, struct NET *net)
 void
 neural_rand(const struct XCSF *xcsf, const struct NET *net)
 {
-    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    const struct LLIST *iter = net->tail;
+    while (iter != NULL) {
         layer_rand(xcsf, iter->layer);
+        iter = iter->prev;
     }
 }
 
@@ -210,9 +214,10 @@ _Bool
 neural_mutate(const struct XCSF *xcsf, const struct NET *net)
 {
     _Bool mod = false;
-    const struct LAYER *prev = NULL;
     _Bool do_resize = false;
-    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    const struct LAYER *prev = NULL;
+    const struct LLIST *iter = net->tail;
+    while (iter != NULL) {
         // if the previous layer has grown or shrunk this layer must be resized
         if (do_resize) {
             layer_resize(xcsf, iter->layer, prev);
@@ -228,6 +233,7 @@ neural_mutate(const struct XCSF *xcsf, const struct NET *net)
         }
         // move to next layer
         prev = iter->layer;
+        iter = iter->prev;
     }
     return mod;
 }
@@ -241,11 +247,13 @@ void
 neural_resize(const struct XCSF *xcsf, const struct NET *net)
 {
     const struct LAYER *prev = NULL;
-    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    const struct LLIST *iter = net->tail;
+    while (iter != NULL) {
         if (prev != NULL && iter->layer->n_inputs != prev->n_outputs) {
             layer_resize(xcsf, iter->layer, prev);
         }
         prev = iter->layer;
+        iter = iter->prev;
     }
 }
 
@@ -259,9 +267,11 @@ void
 neural_propagate(const struct XCSF *xcsf, const struct NET *net,
                  const double *input)
 {
-    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    const struct LLIST *iter = net->tail;
+    while (iter != NULL) {
         layer_forward(xcsf, iter->layer, input);
         input = layer_output(xcsf, iter->layer);
+        iter = iter->prev;
     }
 }
 
@@ -277,8 +287,10 @@ neural_learn(const struct XCSF *xcsf, const struct NET *net,
              const double *truth, const double *input)
 {
     /* reset deltas */
-    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    const struct LLIST *iter = net->tail;
+    while (iter != NULL) {
         memset(iter->layer->delta, 0, sizeof(double) * iter->layer->n_outputs);
+        iter = iter->prev;
     }
     // calculate output layer error
     const struct LAYER *p = net->head->layer;
@@ -286,7 +298,8 @@ neural_learn(const struct XCSF *xcsf, const struct NET *net,
         p->delta[i] = (truth[i] - p->output[i]);
     }
     /* backward phase */
-    for (const LLIST *iter = net->head; iter != NULL; iter = iter->next) {
+    iter = net->head;
+    while (iter != NULL) {
         const struct LAYER *l = iter->layer;
         if (iter->next == NULL) {
             layer_backward(xcsf, l, input, 0);
@@ -294,10 +307,13 @@ neural_learn(const struct XCSF *xcsf, const struct NET *net,
             const struct LAYER *prev = iter->next->layer;
             layer_backward(xcsf, l, prev->output, prev->delta);
         }
+        iter = iter->next;
     }
     /* update phase */
-    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    iter = net->tail;
+    while (iter != NULL) {
         layer_update(xcsf, iter->layer);
+        iter = iter->prev;
     }
 }
 
@@ -330,11 +346,11 @@ void
 neural_print(const struct XCSF *xcsf, const struct NET *net,
              _Bool print_weights)
 {
-    int i = 0;
-    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    const struct LLIST *iter = net->tail;
+    for (int i = 0; iter != NULL; ++i) {
         printf("layer (%d) ", i);
         layer_print(xcsf, iter->layer, print_weights);
-        ++i;
+        iter = iter->prev;
     }
 }
 
@@ -349,7 +365,8 @@ neural_size(const struct XCSF *xcsf, const struct NET *net)
 {
     (void) xcsf;
     int size = 0;
-    for (const LLIST *iter = net->tail; iter->prev != NULL; iter = iter->prev) {
+    const struct LLIST *iter = net->tail;
+    while (iter->prev != NULL) {
         switch (iter->layer->layer_type) {
             case (CONNECTED):
             case (RECURRENT):
@@ -360,6 +377,7 @@ neural_size(const struct XCSF *xcsf, const struct NET *net)
             default:
                 break;
         }
+        iter = iter->prev;
     }
     return size;
 }
@@ -378,9 +396,11 @@ neural_save(const struct XCSF *xcsf, const struct NET *net, FILE *fp)
     s += fwrite(&net->n_layers, sizeof(int), 1, fp);
     s += fwrite(&net->n_inputs, sizeof(int), 1, fp);
     s += fwrite(&net->n_outputs, sizeof(int), 1, fp);
-    for (const LLIST *iter = net->tail; iter != NULL; iter = iter->prev) {
+    const struct LLIST *iter = net->tail;
+    while (iter->prev != NULL) {
         s += fwrite(&iter->layer->layer_type, sizeof(int), 1, fp);
         s += layer_save(xcsf, iter->layer, fp);
+        iter = iter->prev;
     }
     return s;
 }
