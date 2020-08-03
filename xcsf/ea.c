@@ -29,70 +29,6 @@
 #define EA_SELECT_ROULETTE (0)
 #define EA_SELECT_TOURNAMENT (1)
 
-static struct CL *
-ea_select_rw(const struct XCSF *xcsf, const struct SET *set, double fit_sum);
-
-static struct CL *
-ea_select_tournament(const struct XCSF *xcsf, const struct SET *set);
-
-static void
-ea_subsume(struct XCSF *xcsf, struct CL *c, struct CL *c1p, struct CL *c2p,
-           const struct SET *set);
-
-static void
-ea_select(const struct XCSF *xcsf, const struct SET *set, struct CL **c1p,
-          struct CL **c2p);
-
-static void
-ea_init_offspring(const struct XCSF *xcsf, const struct CL *c1p,
-                  const struct CL *c2p, struct CL *c1, struct CL *c2,
-                  _Bool cmod);
-
-static void
-ea_add(struct XCSF *xcsf, const struct SET *set, struct CL *c1p, struct CL *c2p,
-       struct CL *c1, _Bool cmod, _Bool mmod);
-
-/**
- * @brief Executes the evolutionary algorithm (EA).
- * @param xcsf The XCSF data structure.
- * @param set The set in which to run the EA.
- */
-void
-ea(struct XCSF *xcsf, const struct SET *set)
-{
-    // increase EA time
-    xcsf->time += 1;
-    // check if the EA should be run
-    if (set->size == 0 || xcsf->time - clset_mean_time(set) < xcsf->THETA_EA) {
-        return;
-    }
-    clset_set_times(xcsf, set);
-    // select parents
-    struct CL *c1p;
-    struct CL *c2p;
-    ea_select(xcsf, set, &c1p, &c2p);
-    // create offspring
-    for (int i = 0; i < xcsf->LAMBDA / 2; ++i) {
-        // create copies of parents
-        struct CL *c1 = malloc(sizeof(struct CL));
-        struct CL *c2 = malloc(sizeof(struct CL));
-        cl_init(xcsf, c1, c1p->size, c1p->time);
-        cl_init(xcsf, c2, c2p->size, c2p->time);
-        cl_copy(xcsf, c1, c1p);
-        cl_copy(xcsf, c2, c2p);
-        // apply evolutionary operators to offspring
-        _Bool cmod = cl_crossover(xcsf, c1, c2);
-        _Bool m1mod = cl_mutate(xcsf, c1);
-        _Bool m2mod = cl_mutate(xcsf, c2);
-        // initialise parameters
-        ea_init_offspring(xcsf, c1p, c2p, c1, c2, cmod);
-        // add to population
-        ea_add(xcsf, set, c1p, c2p, c1, cmod, m1mod);
-        ea_add(xcsf, set, c2p, c1p, c2, cmod, m2mod);
-    }
-    clset_pop_enforce_limit(xcsf);
-}
-
 /**
  * @brief Initialises offspring error and fitness.
  * @param xcsf The XCSF data structure.
@@ -119,31 +55,6 @@ ea_init_offspring(const struct XCSF *xcsf, const struct CL *c1p,
         c2->err = xcsf->ERR_REDUC * c2p->err;
         c1->fit = xcsf->FIT_REDUC * (c1p->fit / c1p->num);
         c2->fit = xcsf->FIT_REDUC * (c2p->fit / c2p->num);
-    }
-}
-
-/**
- * @brief Adds offspring to the population.
- * @param xcsf The XCSF data structure.
- * @param set The set in which the EA is being run.
- * @param c1p First parent classifier.
- * @param c2p Second parent classifier.
- * @param c1 The offspring classifier to add.
- * @param cmod Whether crossover modified the offspring.
- * @param mmod Whether mutation modified the offspring.
- */
-static void
-ea_add(struct XCSF *xcsf, const struct SET *set, struct CL *c1p, struct CL *c2p,
-       struct CL *c1, _Bool cmod, _Bool mmod)
-{
-    if (!cmod && !mmod) {
-        ++(c1p->num);
-        ++(xcsf->pset.num);
-        cl_free(xcsf, c1);
-    } else if (xcsf->EA_SUBSUMPTION) {
-        ea_subsume(xcsf, c1, c1p, c2p, set);
-    } else {
-        clset_add(&xcsf->pset, c1);
     }
 }
 
@@ -193,23 +104,27 @@ ea_subsume(struct XCSF *xcsf, struct CL *c, struct CL *c1p, struct CL *c2p,
 }
 
 /**
- * @brief Selects two parents.
+ * @brief Adds offspring to the population.
  * @param xcsf The XCSF data structure.
  * @param set The set in which the EA is being run.
- * @param c1p First parent classifier (set by this function).
- * @param c2p Second parent classifier (set by this function).
+ * @param c1p First parent classifier.
+ * @param c2p Second parent classifier.
+ * @param c1 The offspring classifier to add.
+ * @param cmod Whether crossover modified the offspring.
+ * @param mmod Whether mutation modified the offspring.
  */
 static void
-ea_select(const struct XCSF *xcsf, const struct SET *set, struct CL **c1p,
-          struct CL **c2p)
+ea_add(struct XCSF *xcsf, const struct SET *set, struct CL *c1p, struct CL *c2p,
+       struct CL *c1, _Bool cmod, _Bool mmod)
 {
-    if (xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
-        double fit_sum = clset_total_fit(set);
-        *c1p = ea_select_rw(xcsf, set, fit_sum);
-        *c2p = ea_select_rw(xcsf, set, fit_sum);
+    if (!cmod && !mmod) {
+        ++(c1p->num);
+        ++(xcsf->pset.num);
+        cl_free(xcsf, c1);
+    } else if (xcsf->EA_SUBSUMPTION) {
+        ea_subsume(xcsf, c1, c1p, c2p, set);
     } else {
-        *c1p = ea_select_tournament(xcsf, set);
-        *c2p = ea_select_tournament(xcsf, set);
+        clset_add(&xcsf->pset, c1);
     }
 }
 
@@ -254,4 +169,66 @@ ea_select_tournament(const struct XCSF *xcsf, const struct SET *set)
         }
     }
     return winner;
+}
+
+/**
+ * @brief Selects two parents.
+ * @param xcsf The XCSF data structure.
+ * @param set The set in which the EA is being run.
+ * @param c1p First parent classifier (set by this function).
+ * @param c2p Second parent classifier (set by this function).
+ */
+static void
+ea_select(const struct XCSF *xcsf, const struct SET *set, struct CL **c1p,
+          struct CL **c2p)
+{
+    if (xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
+        double fit_sum = clset_total_fit(set);
+        *c1p = ea_select_rw(xcsf, set, fit_sum);
+        *c2p = ea_select_rw(xcsf, set, fit_sum);
+    } else {
+        *c1p = ea_select_tournament(xcsf, set);
+        *c2p = ea_select_tournament(xcsf, set);
+    }
+}
+
+/**
+ * @brief Executes the evolutionary algorithm (EA).
+ * @param xcsf The XCSF data structure.
+ * @param set The set in which to run the EA.
+ */
+void
+ea(struct XCSF *xcsf, const struct SET *set)
+{
+    // increase EA time
+    xcsf->time += 1;
+    // check if the EA should be run
+    if (set->size == 0 || xcsf->time - clset_mean_time(set) < xcsf->THETA_EA) {
+        return;
+    }
+    clset_set_times(xcsf, set);
+    // select parents
+    struct CL *c1p;
+    struct CL *c2p;
+    ea_select(xcsf, set, &c1p, &c2p);
+    // create offspring
+    for (int i = 0; i < xcsf->LAMBDA / 2; ++i) {
+        // create copies of parents
+        struct CL *c1 = malloc(sizeof(struct CL));
+        struct CL *c2 = malloc(sizeof(struct CL));
+        cl_init(xcsf, c1, c1p->size, c1p->time);
+        cl_init(xcsf, c2, c2p->size, c2p->time);
+        cl_copy(xcsf, c1, c1p);
+        cl_copy(xcsf, c2, c2p);
+        // apply evolutionary operators to offspring
+        _Bool cmod = cl_crossover(xcsf, c1, c2);
+        _Bool m1mod = cl_mutate(xcsf, c1);
+        _Bool m2mod = cl_mutate(xcsf, c2);
+        // initialise parameters
+        ea_init_offspring(xcsf, c1p, c2p, c1, c2, cmod);
+        // add to population
+        ea_add(xcsf, set, c1p, c2p, c1, cmod, m1mod);
+        ea_add(xcsf, set, c2p, c1p, c2, cmod, m2mod);
+    }
+    clset_pop_enforce_limit(xcsf);
 }

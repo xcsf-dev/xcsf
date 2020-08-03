@@ -38,6 +38,7 @@ set(XCSF_SOURCES
     env_maze.c
     env_mux.c
     gp.c
+    image.c
     loss.c
     neural.c
     neural_activations.c
@@ -90,6 +91,7 @@ set(XCSF_HEADERS
     env_maze.h
     env_mux.h
     gp.h
+    image.h
     loss.h
     neural.h
     neural_activations.h

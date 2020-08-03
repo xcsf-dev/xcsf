@@ -26,10 +26,25 @@
 #include "utils.h"
 
 static void
-malloc_layer_arrays(struct LAYER *l);
+malloc_layer_arrays(struct LAYER *l)
+{
+    if (l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
+        printf("neural_layer_dropout: malloc() invalid size\n");
+        l->n_inputs = 1;
+        exit(EXIT_FAILURE);
+    }
+    l->output = calloc(l->n_inputs, sizeof(double));
+    l->delta = calloc(l->n_inputs, sizeof(double));
+    l->state = calloc(l->n_inputs, sizeof(double));
+}
 
 static void
-free_layer_arrays(const struct LAYER *l);
+free_layer_arrays(const struct LAYER *l)
+{
+    free(l->output);
+    free(l->delta);
+    free(l->state);
+}
 
 /**
  * @brief Creates and initialises a dropout layer.
@@ -54,27 +69,6 @@ neural_layer_dropout_init(const struct XCSF *xcsf, int n_inputs,
     l->scale = 1. / (1. - probability);
     malloc_layer_arrays(l);
     return l;
-}
-
-static void
-malloc_layer_arrays(struct LAYER *l)
-{
-    if (l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
-        printf("neural_layer_dropout: malloc() invalid size\n");
-        l->n_inputs = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->output = calloc(l->n_inputs, sizeof(double));
-    l->delta = calloc(l->n_inputs, sizeof(double));
-    l->state = calloc(l->n_inputs, sizeof(double));
-}
-
-static void
-free_layer_arrays(const struct LAYER *l)
-{
-    free(l->output);
-    free(l->delta);
-    free(l->state);
 }
 
 void

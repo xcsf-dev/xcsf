@@ -27,7 +27,17 @@
 #include "xcsf.h"
 
 static void
-malloc_layer_arrays(struct LAYER *l);
+malloc_layer_arrays(struct LAYER *l)
+{
+    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
+        printf("neural_layer_maxpool: malloc() invalid size\n");
+        l->n_outputs = 1;
+        exit(EXIT_FAILURE);
+    }
+    l->indexes = calloc(l->n_outputs, sizeof(int));
+    l->output = calloc(l->n_outputs, sizeof(double));
+    l->delta = calloc(l->n_outputs, sizeof(double));
+}
 
 /**
  * @brief Creates and initialises a 2D maxpooling layer.
@@ -87,19 +97,6 @@ neural_layer_maxpool_copy(const struct XCSF *xcsf, const struct LAYER *src)
     l->stride = src->stride;
     malloc_layer_arrays(l);
     return l;
-}
-
-static void
-malloc_layer_arrays(struct LAYER *l)
-{
-    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
-        printf("neural_layer_maxpool: malloc() invalid size\n");
-        l->n_outputs = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->indexes = calloc(l->n_outputs, sizeof(int));
-    l->output = calloc(l->n_outputs, sizeof(double));
-    l->delta = calloc(l->n_outputs, sizeof(double));
 }
 
 void

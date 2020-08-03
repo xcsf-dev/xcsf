@@ -27,92 +27,6 @@
 
 #define MAX_COVER (1000000) //!< maximum number of covering attempts
 
-static _Bool
-clset_action_coverage(const struct XCSF *xcsf, _Bool *act_covered);
-
-static double
-clset_total_time(const struct SET *set);
-
-static void
-clset_pop_del(struct XCSF *xcsf);
-
-static void
-clset_pop_never_match(const struct XCSF *xcsf, struct CLIST **del,
-                      struct CLIST **delprev);
-
-static void
-clset_pop_roulette(const struct XCSF *xcsf, struct CLIST **del,
-                   struct CLIST **delprev);
-
-static void
-clset_subsumption(struct XCSF *xcsf, struct SET *set);
-
-static void
-clset_update_fit(const struct XCSF *xcsf, const struct SET *set);
-
-static void
-clset_cover(struct XCSF *xcsf, const double *x);
-
-/**
- * @brief Initialises a new population of random classifiers.
- * @param xcsf The XCSF data structure.
- */
-void
-clset_pop_init(struct XCSF *xcsf)
-{
-    if (xcsf->POP_INIT) {
-        while (xcsf->pset.num < xcsf->POP_SIZE) {
-            struct CL *new = malloc(sizeof(struct CL));
-            cl_init(xcsf, new, xcsf->POP_SIZE, 0);
-            cl_rand(xcsf, new);
-            clset_add(&xcsf->pset, new);
-        }
-    }
-}
-
-/**
- * @brief Initialises a new set.
- * @param set The set to be initialised.
- */
-void
-clset_init(struct SET *set)
-{
-    set->list = NULL;
-    set->size = 0;
-    set->num = 0;
-}
-
-/**
- * @brief Deletes a single classifier from the population set.
- * @param xcsf The XCSF data structure.
- */
-static void
-clset_pop_del(struct XCSF *xcsf)
-{
-    struct CLIST *del = NULL;
-    struct CLIST *delprev = NULL;
-    // select any rules that never match
-    clset_pop_never_match(xcsf, &del, &delprev);
-    // if none found, select a rule using roulette wheel
-    if (del == NULL) {
-        clset_pop_roulette(xcsf, &del, &delprev);
-    }
-    // decrement numerosity
-    --(del->cl->num);
-    --(xcsf->pset.num);
-    // macro classifier must be deleted
-    if (del->cl->num == 0) {
-        clset_add(&xcsf->kset, del->cl);
-        --(xcsf->pset.size);
-        if (delprev == NULL) {
-            xcsf->pset.list = del->next;
-        } else {
-            delprev->next = del->next;
-        }
-        free(del);
-    }
-}
-
 /**
  * @brief Finds a rule in the population that never matches an input.
  * @param xcsf The XCSF data structure.
@@ -183,6 +97,216 @@ clset_pop_roulette(const struct XCSF *xcsf, struct CLIST **del,
 }
 
 /**
+ * @brief Deletes a single classifier from the population set.
+ * @param xcsf The XCSF data structure.
+ */
+static void
+clset_pop_del(struct XCSF *xcsf)
+{
+    struct CLIST *del = NULL;
+    struct CLIST *delprev = NULL;
+    // select any rules that never match
+    clset_pop_never_match(xcsf, &del, &delprev);
+    // if none found, select a rule using roulette wheel
+    if (del == NULL) {
+        clset_pop_roulette(xcsf, &del, &delprev);
+    }
+    // decrement numerosity
+    --(del->cl->num);
+    --(xcsf->pset.num);
+    // macro classifier must be deleted
+    if (del->cl->num == 0) {
+        clset_add(&xcsf->kset, del->cl);
+        --(xcsf->pset.size);
+        if (delprev == NULL) {
+            xcsf->pset.list = del->next;
+        } else {
+            delprev->next = del->next;
+        }
+        free(del);
+    }
+}
+
+/**
+ * @brief Checks whether each action is covered by the match set.
+ * @param xcsf The XCSF data structure.
+ * @param act_covered Array of action coverage flags (set by this function).
+ * @return Whether all actions are covered.
+ */
+static _Bool
+clset_action_coverage(const struct XCSF *xcsf, _Bool *act_covered)
+{
+    memset(act_covered, 0, sizeof(_Bool) * xcsf->n_actions);
+    const struct CLIST *iter = xcsf->mset.list;
+    while (iter != NULL) {
+        act_covered[iter->cl->action] = true;
+        iter = iter->next;
+    }
+    for (int i = 0; i < xcsf->n_actions; ++i) {
+        if (!act_covered[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+/**
+ * @brief Ensures all possible actions are covered by the match set.
+ * @param xcsf The XCSF data structure.
+ * @param x The input state.
+ */
+static void
+clset_cover(struct XCSF *xcsf, const double *x)
+{
+    int attempts = 0;
+    _Bool *act_covered = malloc(sizeof(_Bool) * xcsf->n_actions);
+    _Bool covered = clset_action_coverage(xcsf, act_covered);
+    while (!covered) {
+        covered = true;
+        for (int i = 0; i < xcsf->n_actions; ++i) {
+            if (!act_covered[i]) {
+                // create a new classifier with matching condition and action
+                struct CL *new = malloc(sizeof(struct CL));
+                cl_init(xcsf, new, (xcsf->mset.num) + 1, xcsf->time);
+                cl_cover(xcsf, new, x, i);
+                clset_add(&xcsf->pset, new);
+                clset_add(&xcsf->mset, new);
+            }
+        }
+        // enforce population size
+        int prev_psize = xcsf->pset.size;
+        clset_pop_enforce_limit(xcsf);
+        // if a macro classifier was deleted,
+        // remove any deleted rules from the match set
+        if (prev_psize > xcsf->pset.size) {
+            int prev_msize = xcsf->mset.size;
+            clset_validate(&xcsf->mset);
+            // if the deleted classifier was in the match set,
+            // check if an action is now not covered
+            if (prev_msize > xcsf->mset.size) {
+                covered = clset_action_coverage(xcsf, act_covered);
+            }
+        }
+        ++attempts;
+        if (attempts > MAX_COVER) {
+            printf("Error: max covering attempts (%d) exceeded\n", MAX_COVER);
+            exit(EXIT_FAILURE);
+        }
+    }
+    free(act_covered);
+}
+
+/**
+ * @brief Updates the fitness of classifiers in the set.
+ * @param xcsf The XCSF data structure.
+ * @param set The set to update.
+ */
+static void
+clset_update_fit(const struct XCSF *xcsf, const struct SET *set)
+{
+    double acc_sum = 0;
+    double accs[set->size];
+    // calculate accuracies
+    const struct CLIST *iter = set->list;
+    for (int i = 0; iter != NULL && i < set->size; ++i) {
+        accs[i] = cl_acc(xcsf, iter->cl);
+        acc_sum += accs[i] * iter->cl->num;
+        iter = iter->next;
+    }
+    // update fitnesses
+    iter = set->list;
+    for (int i = 0; iter != NULL && i < set->size; ++i) {
+        cl_update_fit(xcsf, iter->cl, acc_sum, accs[i]);
+        iter = iter->next;
+    }
+}
+
+/**
+ * @brief Performs set subsumption.
+ * @param xcsf The XCSF data structure.
+ * @param set The set to perform subsumption.
+ */
+static void
+clset_subsumption(struct XCSF *xcsf, struct SET *set)
+{
+    // find the most general subsumer in the set
+    struct CL *s = NULL;
+    const struct CLIST *iter = set->list;
+    while (iter != NULL) {
+        struct CL *c = iter->cl;
+        if (cl_subsumer(xcsf, c) && (s == NULL || cl_general(xcsf, c, s))) {
+            s = c;
+        }
+        iter = iter->next;
+    }
+    // subsume the more specific classifiers in the set
+    if (s != NULL) {
+        _Bool subsumed = false;
+        iter = set->list;
+        while (iter != NULL) {
+            struct CL *c = iter->cl;
+            if (s != c && cl_general(xcsf, s, c)) {
+                s->num += c->num;
+                c->num = 0;
+                clset_add(&xcsf->kset, c);
+                subsumed = true;
+            }
+            iter = iter->next;
+        }
+        if (subsumed) {
+            clset_validate(set);
+            clset_validate(&xcsf->pset);
+        }
+    }
+}
+
+/**
+ * @brief Calculates the total time stamps of classifiers in the set.
+ * @param set The set to calculate the total time.
+ * @return The total time of classifiers in the set.
+ */
+static double
+clset_total_time(const struct SET *set)
+{
+    double sum = 0;
+    const struct CLIST *iter = set->list;
+    while (iter != NULL) {
+        sum += iter->cl->time * iter->cl->num;
+        iter = iter->next;
+    }
+    return sum;
+}
+
+/**
+ * @brief Initialises a new population of random classifiers.
+ * @param xcsf The XCSF data structure.
+ */
+void
+clset_pop_init(struct XCSF *xcsf)
+{
+    if (xcsf->POP_INIT) {
+        while (xcsf->pset.num < xcsf->POP_SIZE) {
+            struct CL *new = malloc(sizeof(struct CL));
+            cl_init(xcsf, new, xcsf->POP_SIZE, 0);
+            cl_rand(xcsf, new);
+            clset_add(&xcsf->pset, new);
+        }
+    }
+}
+
+/**
+ * @brief Initialises a new set.
+ * @param set The set to be initialised.
+ */
+void
+clset_init(struct SET *set)
+{
+    set->list = NULL;
+    set->size = 0;
+    set->num = 0;
+}
+
+/**
  * @brief Enforces the maximum population size limit.
  * @param xcsf The XCSF data structure.
  */
@@ -245,75 +369,6 @@ clset_match(struct XCSF *xcsf, const double *x)
         (xcsf->mset.size - xcsf->msetsize) * (10 / (double) xcsf->PERF_TRIALS);
     xcsf->mfrac +=
         (clset_mfrac(xcsf) - xcsf->mfrac) * (10 / (double) xcsf->PERF_TRIALS);
-}
-
-/**
- * @brief Ensures all possible actions are covered by the match set.
- * @param xcsf The XCSF data structure.
- * @param x The input state.
- */
-static void
-clset_cover(struct XCSF *xcsf, const double *x)
-{
-    int attempts = 0;
-    _Bool *act_covered = malloc(sizeof(_Bool) * xcsf->n_actions);
-    _Bool covered = clset_action_coverage(xcsf, act_covered);
-    while (!covered) {
-        covered = true;
-        for (int i = 0; i < xcsf->n_actions; ++i) {
-            if (!act_covered[i]) {
-                // create a new classifier with matching condition and action
-                struct CL *new = malloc(sizeof(struct CL));
-                cl_init(xcsf, new, (xcsf->mset.num) + 1, xcsf->time);
-                cl_cover(xcsf, new, x, i);
-                clset_add(&xcsf->pset, new);
-                clset_add(&xcsf->mset, new);
-            }
-        }
-        // enforce population size
-        int prev_psize = xcsf->pset.size;
-        clset_pop_enforce_limit(xcsf);
-        // if a macro classifier was deleted,
-        // remove any deleted rules from the match set
-        if (prev_psize > xcsf->pset.size) {
-            int prev_msize = xcsf->mset.size;
-            clset_validate(&xcsf->mset);
-            // if the deleted classifier was in the match set,
-            // check if an action is now not covered
-            if (prev_msize > xcsf->mset.size) {
-                covered = clset_action_coverage(xcsf, act_covered);
-            }
-        }
-        ++attempts;
-        if (attempts > MAX_COVER) {
-            printf("Error: max covering attempts (%d) exceeded\n", MAX_COVER);
-            exit(EXIT_FAILURE);
-        }
-    }
-    free(act_covered);
-}
-
-/**
- * @brief Checks whether each action is covered by the match set.
- * @param xcsf The XCSF data structure.
- * @param act_covered Array of action coverage flags (set by this function).
- * @return Whether all actions are covered.
- */
-static _Bool
-clset_action_coverage(const struct XCSF *xcsf, _Bool *act_covered)
-{
-    memset(act_covered, 0, sizeof(_Bool) * xcsf->n_actions);
-    const struct CLIST *iter = xcsf->mset.list;
-    while (iter != NULL) {
-        act_covered[iter->cl->action] = true;
-        iter = iter->next;
-    }
-    for (int i = 0; i < xcsf->n_actions; ++i) {
-        if (!act_covered[i]) {
-            return false;
-        }
-    }
-    return true;
 }
 
 /**
@@ -388,70 +443,6 @@ clset_update(struct XCSF *xcsf, struct SET *set, const double *x,
     clset_update_fit(xcsf, set);
     if (xcsf->SET_SUBSUMPTION) {
         clset_subsumption(xcsf, set);
-    }
-}
-
-/**
- * @brief Updates the fitness of classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to update.
- */
-static void
-clset_update_fit(const struct XCSF *xcsf, const struct SET *set)
-{
-    double acc_sum = 0;
-    double accs[set->size];
-    // calculate accuracies
-    const struct CLIST *iter = set->list;
-    for (int i = 0; iter != NULL && i < set->size; ++i) {
-        accs[i] = cl_acc(xcsf, iter->cl);
-        acc_sum += accs[i] * iter->cl->num;
-        iter = iter->next;
-    }
-    // update fitnesses
-    iter = set->list;
-    for (int i = 0; iter != NULL && i < set->size; ++i) {
-        cl_update_fit(xcsf, iter->cl, acc_sum, accs[i]);
-        iter = iter->next;
-    }
-}
-
-/**
- * @brief Performs set subsumption.
- * @param xcsf The XCSF data structure.
- * @param set The set to perform subsumption.
- */
-static void
-clset_subsumption(struct XCSF *xcsf, struct SET *set)
-{
-    // find the most general subsumer in the set
-    struct CL *s = NULL;
-    const struct CLIST *iter = set->list;
-    while (iter != NULL) {
-        struct CL *c = iter->cl;
-        if (cl_subsumer(xcsf, c) && (s == NULL || cl_general(xcsf, c, s))) {
-            s = c;
-        }
-        iter = iter->next;
-    }
-    // subsume the more specific classifiers in the set
-    if (s != NULL) {
-        _Bool subsumed = false;
-        iter = set->list;
-        while (iter != NULL) {
-            struct CL *c = iter->cl;
-            if (s != c && cl_general(xcsf, s, c)) {
-                s->num += c->num;
-                c->num = 0;
-                clset_add(&xcsf->kset, c);
-                subsumed = true;
-            }
-            iter = iter->next;
-        }
-        if (subsumed) {
-            clset_validate(set);
-            clset_validate(&xcsf->pset);
-        }
     }
 }
 
@@ -532,23 +523,6 @@ clset_total_fit(const struct SET *set)
     const struct CLIST *iter = set->list;
     while (iter != NULL) {
         sum += iter->cl->fit;
-        iter = iter->next;
-    }
-    return sum;
-}
-
-/**
- * @brief Calculates the total time stamps of classifiers in the set.
- * @param set The set to calculate the total time.
- * @return The total time of classifiers in the set.
- */
-static double
-clset_total_time(const struct SET *set)
-{
-    double sum = 0;
-    const struct CLIST *iter = set->list;
-    while (iter != NULL) {
-        sum += iter->cl->time * iter->cl->num;
         iter = iter->next;
     }
     return sum;

@@ -23,39 +23,60 @@
 
 #include "neural_layer_convolutional.h"
 #include "blas.h"
+#include "image.h"
 #include "neural_activations.h"
 #include "sam.h"
 #include "utils.h"
 
 #define N_MU (4) //!< Number of mutation rates applied to a convolutional layer
 
-static double
-im2col_get_pixel(const double *im, int height, int width, int row, int col,
-                 int channel, int pad);
-
-static int
-convolutional_out_height(const struct LAYER *l);
-
-static int
-convolutional_out_width(const struct LAYER *l);
-
 static size_t
-get_workspace_size(const struct LAYER *l);
+get_workspace_size(const struct LAYER *l)
+{
+    int size = l->out_h * l->out_w * l->size * l->size * l->channels;
+    if (size < 1) {
+        printf("neural_layer_convolutional: workspace_size overflow\n");
+        exit(EXIT_FAILURE);
+    }
+    return sizeof(double) * size;
+}
 
 static void
-col2im_add_pixel(double *im, int height, int width, int row, int col,
-                 int channel, int pad, double val);
+malloc_layer_arrays(struct LAYER *l)
+{
+    if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX || l->n_outputs < 1 ||
+        l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
+        l->n_weights > N_WEIGHTS_MAX || l->workspace_size < 1) {
+        printf("neural_layer_convolutional: malloc() invalid size\n");
+        l->n_biases = 1;
+        l->n_outputs = 1;
+        l->n_weights = 1;
+        l->workspace_size = 1;
+        exit(EXIT_FAILURE);
+    }
+    l->delta = calloc(l->n_outputs, sizeof(double));
+    l->state = calloc(l->n_outputs, sizeof(double));
+    l->output = calloc(l->n_outputs, sizeof(double));
+    l->weights = malloc(sizeof(double) * l->n_weights);
+    l->biases = malloc(sizeof(double) * l->n_biases);
+    l->bias_updates = calloc(l->n_biases, sizeof(double));
+    l->weight_updates = calloc(l->n_weights, sizeof(double));
+    l->weight_active = malloc(sizeof(_Bool) * l->n_weights);
+    l->temp = malloc(l->workspace_size);
+    l->mu = malloc(sizeof(double) * N_MU);
+}
 
-static void
-col2im(const double *data_col, int channels, int height, int width, int ksize,
-       int stride, int pad, double *data_im);
+static int
+convolutional_out_height(const struct LAYER *l)
+{
+    return (l->height + 2 * l->pad - l->size) / l->stride + 1;
+}
 
-static void
-im2col(const double *data_im, int channels, int height, int width, int ksize,
-       int stride, int pad, double *data_col);
-
-static void
-malloc_layer_arrays(struct LAYER *l);
+static int
+convolutional_out_width(const struct LAYER *l)
+{
+    return (l->width + 2 * l->pad - l->size) / l->stride + 1;
+}
 
 /**
  * @brief Creates and initialises a 2D convolutional layer.
@@ -110,42 +131,6 @@ neural_layer_convolutional_init(const struct XCSF *xcsf, int h, int w, int c,
     return l;
 }
 
-static size_t
-get_workspace_size(const struct LAYER *l)
-{
-    int size = l->out_h * l->out_w * l->size * l->size * l->channels;
-    if (size < 1) {
-        printf("neural_layer_convolutional: workspace_size overflow\n");
-        exit(EXIT_FAILURE);
-    }
-    return sizeof(double) * size;
-}
-
-static void
-malloc_layer_arrays(struct LAYER *l)
-{
-    if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX || l->n_outputs < 1 ||
-        l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
-        l->n_weights > N_WEIGHTS_MAX || l->workspace_size < 1) {
-        printf("neural_layer_convolutional: malloc() invalid size\n");
-        l->n_biases = 1;
-        l->n_outputs = 1;
-        l->n_weights = 1;
-        l->workspace_size = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->delta = calloc(l->n_outputs, sizeof(double));
-    l->state = calloc(l->n_outputs, sizeof(double));
-    l->output = calloc(l->n_outputs, sizeof(double));
-    l->weights = malloc(sizeof(double) * l->n_weights);
-    l->biases = malloc(sizeof(double) * l->n_biases);
-    l->bias_updates = calloc(l->n_biases, sizeof(double));
-    l->weight_updates = calloc(l->n_weights, sizeof(double));
-    l->weight_active = malloc(sizeof(_Bool) * l->n_weights);
-    l->temp = malloc(l->workspace_size);
-    l->mu = malloc(sizeof(double) * N_MU);
-}
-
 void
 neural_layer_convolutional_free(const struct XCSF *xcsf, const struct LAYER *l)
 {
@@ -160,18 +145,6 @@ neural_layer_convolutional_free(const struct XCSF *xcsf, const struct LAYER *l)
     free(l->weight_active);
     free(l->temp);
     free(l->mu);
-}
-
-static int
-convolutional_out_height(const struct LAYER *l)
-{
-    return (l->height + 2 * l->pad - l->size) / l->stride + 1;
-}
-
-static int
-convolutional_out_width(const struct LAYER *l)
-{
-    return (l->width + 2 * l->pad - l->size) / l->stride + 1;
 }
 
 struct LAYER *
@@ -432,75 +405,4 @@ neural_layer_convolutional_load(const struct XCSF *xcsf, struct LAYER *l,
     s += fread(l->bias_updates, sizeof(double), l->n_biases, fp);
     s += fread(l->mu, sizeof(double), N_MU, fp);
     return s;
-}
-
-static double
-im2col_get_pixel(const double *im, int height, int width, int row, int col,
-                 int channel, int pad)
-{
-    row -= pad;
-    col -= pad;
-    if (row < 0 || col < 0 || row >= height || col >= width) {
-        return 0;
-    }
-    return im[col + width * (row + height * channel)];
-}
-
-static void
-im2col(const double *data_im, int channels, int height, int width, int ksize,
-       int stride, int pad, double *data_col)
-{
-    int height_col = (height + 2 * pad - ksize) / stride + 1;
-    int width_col = (width + 2 * pad - ksize) / stride + 1;
-    int channels_col = channels * ksize * ksize;
-    for (int c = 0; c < channels_col; ++c) {
-        int w_offset = c % ksize;
-        int h_offset = (c / ksize) % ksize;
-        int c_im = c / ksize / ksize;
-        for (int h = 0; h < height_col; ++h) {
-            for (int w = 0; w < width_col; ++w) {
-                int im_row = h_offset + h * stride;
-                int im_col = w_offset + w * stride;
-                int col_index = (c * height_col + h) * width_col + w;
-                data_col[col_index] = im2col_get_pixel(
-                    data_im, height, width, im_row, im_col, c_im, pad);
-            }
-        }
-    }
-}
-
-static void
-col2im_add_pixel(double *im, int height, int width, int row, int col,
-                 int channel, int pad, double val)
-{
-    row -= pad;
-    col -= pad;
-    if (row < 0 || col < 0 || row >= height || col >= width) {
-        return;
-    }
-    im[col + width * (row + height * channel)] += val;
-}
-
-static void
-col2im(const double *data_col, int channels, int height, int width, int ksize,
-       int stride, int pad, double *data_im)
-{
-    int height_col = (height + 2 * pad - ksize) / stride + 1;
-    int width_col = (width + 2 * pad - ksize) / stride + 1;
-    int channels_col = channels * ksize * ksize;
-    for (int c = 0; c < channels_col; ++c) {
-        int w_offset = c % ksize;
-        int h_offset = (c / ksize) % ksize;
-        int c_im = c / ksize / ksize;
-        for (int h = 0; h < height_col; ++h) {
-            for (int w = 0; w < width_col; ++w) {
-                int im_row = h_offset + h * stride;
-                int im_col = w_offset + w * stride;
-                int col_index = (c * height_col + h) * width_col + w;
-                double val = data_col[col_index];
-                col2im_add_pixel(data_im, height, width, im_row, im_col, c_im,
-                                 pad, val);
-            }
-        }
-    }
 }

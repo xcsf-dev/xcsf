@@ -29,111 +29,6 @@
 #define MAX_NAME (200) //!< Maximum file name length
 #define DELIM (",") //!< File delimiter
 
-static void
-env_csv_read(const char *fname, double **data, int *n_samples, int *n_dim);
-
-static void
-env_csv_input_read(const char *infile, struct INPUT *train_data,
-                   struct INPUT *test_data);
-
-static void
-env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim);
-
-static int
-env_csv_samples(FILE *fin);
-
-static int
-env_csv_dim(FILE *fin);
-
-/**
- * @brief Initialises a CSV input environment from a specified filename.
- * @param xcsf The XCSF data structure.
- * @param fname The file name of the csv data.
- */
-void
-env_csv_init(struct XCSF *xcsf, const char *fname)
-{
-    struct ENV_CSV *env = malloc(sizeof(struct ENV_CSV));
-    env->train_data = malloc(sizeof(INPUT));
-    env->test_data = malloc(sizeof(INPUT));
-    env_csv_input_read(fname, env->train_data, env->test_data);
-    xcsf->env = env;
-    param_set_n_actions(xcsf, 1);
-    param_set_x_dim(xcsf, env->train_data->x_dim);
-    param_set_y_dim(xcsf, env->train_data->y_dim);
-}
-
-/**
- * @brief Frees the csv environment.
- * @param xcsf The XCSF data structure.
- */
-void
-env_csv_free(const struct XCSF *xcsf)
-{
-    struct ENV_CSV *env = xcsf->env;
-    free(env->train_data->x);
-    free(env->train_data->y);
-    free(env->test_data->x);
-    free(env->test_data->y);
-    free(env->train_data);
-    free(env->test_data);
-    free(env);
-}
-
-/**
- * @brief Parses specified csv files into training and testing data sets.
- * @param infile The base name of the csv files to read.
- * @param train_data The data structure to load the training data.
- * @param test_data The data structure to load the testing data.
- * @details Expects an identical number of x and y samples.
- */
-static void
-env_csv_input_read(const char *infile, struct INPUT *train_data,
-                   struct INPUT *test_data)
-{
-    char name[MAX_NAME];
-    snprintf(name, MAX_NAME, "%s_train_x.csv", infile);
-    env_csv_read(name, &train_data->x, &train_data->n_samples,
-                 &train_data->x_dim);
-    snprintf(name, MAX_NAME, "%s_train_y.csv", infile);
-    env_csv_read(name, &train_data->y, &train_data->n_samples,
-                 &train_data->y_dim);
-    snprintf(name, MAX_NAME, "%s_test_x.csv", infile);
-    env_csv_read(name, &test_data->x, &test_data->n_samples, &test_data->x_dim);
-    snprintf(name, MAX_NAME, "%s_test_y.csv", infile);
-    env_csv_read(name, &test_data->y, &test_data->n_samples, &test_data->y_dim);
-}
-
-/**
- * @brief Parses a specified csv file.
- * @param fname The name of the csv file to read.
- * @param data The data structure to load the data (set by this function).
- * @param n_samples The number of samples in the dataset (set by this function).
- * @param n_dim The number of dimensions in the dataset (set by this function).
- * @details Provided a file name will set the data, n_samples, and n_dim.
- */
-static void
-env_csv_read(const char *fname, double **data, int *n_samples, int *n_dim)
-{
-    FILE *fin = fopen(fname, "rt");
-    if (fin == 0) {
-        printf("Error opening file: %s. %s.\n", fname, strerror(errno));
-        exit(EXIT_FAILURE);
-    }
-    *n_samples = env_csv_samples(fin);
-    *n_dim = env_csv_dim(fin);
-    if (*n_samples > 0 && *n_dim > 0) {
-        env_csv_read_data(fin, data, *n_samples, *n_dim);
-        fclose(fin);
-    } else {
-        printf("Error reading file: %s. No samples found\n", fname);
-        fclose(fin);
-        exit(EXIT_FAILURE);
-    }
-    printf("Loaded: %s: %d samples, %d dimensions\n", fname, *n_samples,
-           *n_dim);
-}
-
 /**
  * @brief Returns the number of samples in a csv file.
  * @param fin The csv file.
@@ -196,6 +91,95 @@ env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim)
         }
         ++i;
     }
+}
+
+/**
+ * @brief Parses a specified csv file.
+ * @param fname The name of the csv file to read.
+ * @param data The data structure to load the data (set by this function).
+ * @param n_samples The number of samples in the dataset (set by this function).
+ * @param n_dim The number of dimensions in the dataset (set by this function).
+ * @details Provided a file name will set the data, n_samples, and n_dim.
+ */
+static void
+env_csv_read(const char *fname, double **data, int *n_samples, int *n_dim)
+{
+    FILE *fin = fopen(fname, "rt");
+    if (fin == 0) {
+        printf("Error opening file: %s. %s.\n", fname, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+    *n_samples = env_csv_samples(fin);
+    *n_dim = env_csv_dim(fin);
+    if (*n_samples > 0 && *n_dim > 0) {
+        env_csv_read_data(fin, data, *n_samples, *n_dim);
+        fclose(fin);
+    } else {
+        printf("Error reading file: %s. No samples found\n", fname);
+        fclose(fin);
+        exit(EXIT_FAILURE);
+    }
+    printf("Loaded: %s: %d samples, %d dimensions\n", fname, *n_samples,
+           *n_dim);
+}
+
+/**
+ * @brief Parses specified csv files into training and testing data sets.
+ * @param infile The base name of the csv files to read.
+ * @param train_data The data structure to load the training data.
+ * @param test_data The data structure to load the testing data.
+ * @details Expects an identical number of x and y samples.
+ */
+static void
+env_csv_input_read(const char *infile, struct INPUT *train_data,
+                   struct INPUT *test_data)
+{
+    char name[MAX_NAME];
+    snprintf(name, MAX_NAME, "%s_train_x.csv", infile);
+    env_csv_read(name, &train_data->x, &train_data->n_samples,
+                 &train_data->x_dim);
+    snprintf(name, MAX_NAME, "%s_train_y.csv", infile);
+    env_csv_read(name, &train_data->y, &train_data->n_samples,
+                 &train_data->y_dim);
+    snprintf(name, MAX_NAME, "%s_test_x.csv", infile);
+    env_csv_read(name, &test_data->x, &test_data->n_samples, &test_data->x_dim);
+    snprintf(name, MAX_NAME, "%s_test_y.csv", infile);
+    env_csv_read(name, &test_data->y, &test_data->n_samples, &test_data->y_dim);
+}
+
+/**
+ * @brief Initialises a CSV input environment from a specified filename.
+ * @param xcsf The XCSF data structure.
+ * @param fname The file name of the csv data.
+ */
+void
+env_csv_init(struct XCSF *xcsf, const char *fname)
+{
+    struct ENV_CSV *env = malloc(sizeof(struct ENV_CSV));
+    env->train_data = malloc(sizeof(INPUT));
+    env->test_data = malloc(sizeof(INPUT));
+    env_csv_input_read(fname, env->train_data, env->test_data);
+    xcsf->env = env;
+    param_set_n_actions(xcsf, 1);
+    param_set_x_dim(xcsf, env->train_data->x_dim);
+    param_set_y_dim(xcsf, env->train_data->y_dim);
+}
+
+/**
+ * @brief Frees the csv environment.
+ * @param xcsf The XCSF data structure.
+ */
+void
+env_csv_free(const struct XCSF *xcsf)
+{
+    struct ENV_CSV *env = xcsf->env;
+    free(env->train_data->x);
+    free(env->train_data->y);
+    free(env->test_data->x);
+    free(env->test_data->y);
+    free(env->train_data);
+    free(env->test_data);
+    free(env);
 }
 
 void

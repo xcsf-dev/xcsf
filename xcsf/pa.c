@@ -25,21 +25,6 @@
 #include "cl.h"
 #include "utils.h"
 
-static void
-pa_reset(const struct XCSF *xcsf);
-
-/**
- * @brief Initialises the prediction array.
- * @param xcsf The XCSF data structure.
- */
-void
-pa_init(struct XCSF *xcsf)
-{
-    xcsf->pa_size = xcsf->n_actions * xcsf->y_dim;
-    xcsf->pa = malloc(sizeof(double) * xcsf->pa_size);
-    xcsf->nr = malloc(sizeof(double) * xcsf->pa_size);
-}
-
 /**
  * @brief Resets the prediction array to zero.
  * @param xcsf The XCSF data structure.
@@ -51,6 +36,18 @@ pa_reset(const struct XCSF *xcsf)
         xcsf->pa[i] = 0;
         xcsf->nr[i] = 0;
     }
+}
+
+/**
+ * @brief Initialises the prediction array.
+ * @param xcsf The XCSF data structure.
+ */
+void
+pa_init(struct XCSF *xcsf)
+{
+    xcsf->pa_size = xcsf->n_actions * xcsf->y_dim;
+    xcsf->pa = malloc(sizeof(double) * xcsf->pa_size);
+    xcsf->nr = malloc(sizeof(double) * xcsf->pa_size);
 }
 
 /**

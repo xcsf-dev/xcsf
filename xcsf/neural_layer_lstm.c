@@ -32,86 +32,6 @@
 
 #define N_MU (5) //!< Number of mutation rates applied to a lstm layer
 
-static _Bool
-mutate_connectivity(struct LAYER *l);
-
-static _Bool
-mutate_eta(const struct XCSF *xcsf, struct LAYER *l);
-
-static _Bool
-mutate_neurons(const struct XCSF *xcsf, struct LAYER *l);
-
-static _Bool
-mutate_weights(struct LAYER *l);
-
-static void
-free_layer_arrays(const struct LAYER *l);
-
-static void
-malloc_layer_arrays(struct LAYER *l);
-
-static void
-reset_layer_deltas(const struct LAYER *l);
-
-static void
-set_eta(struct LAYER *l);
-
-static void
-set_layer_n_active(struct LAYER *l);
-
-static void
-set_layer_n_biases(struct LAYER *l);
-
-static void
-set_layer_n_weights(struct LAYER *l);
-
-/**
- * @brief Creates and initialises a long short-term memory layer.
- * @param xcsf The XCSF data structure.
- * @param n_inputs The number of inputs.
- * @param n_init The initial number of neurons.
- * @param n_max The maximum number of neurons.
- * @param f The output activation function.
- * @param rf The recurrent activation function.
- * @param o The bitwise options specifying which operations can be performed.
- * @return A pointer to the new layer.
- */
-struct LAYER *
-neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
-                       int n_max, int f, int rf, uint32_t o)
-{
-    struct LAYER *l = malloc(sizeof(struct LAYER));
-    layer_init(l);
-    l->layer_type = LSTM;
-    l->layer_vptr = &layer_lstm_vtbl;
-    l->options = o;
-    l->function = f;
-    l->recurrent_function = rf;
-    l->n_inputs = n_inputs;
-    l->n_outputs = n_init;
-    l->max_outputs = n_max;
-    l->uf =
-        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->ui =
-        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->ug =
-        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->uo =
-        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->wf = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
-    l->wi = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
-    l->wg = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
-    l->wo = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
-    set_layer_n_biases(l);
-    set_layer_n_weights(l);
-    set_layer_n_active(l);
-    set_eta(l);
-    malloc_layer_arrays(l);
-    l->mu = malloc(sizeof(double) * N_MU);
-    sam_init(xcsf, l->mu, N_MU);
-    return l;
-}
-
 static void
 set_layer_n_weights(struct LAYER *l)
 {
@@ -194,6 +114,136 @@ set_eta(struct LAYER *l)
     l->wi->eta = l->eta;
     l->wg->eta = l->eta;
     l->wo->eta = l->eta;
+}
+
+static void
+reset_layer_deltas(const struct LAYER *l)
+{
+    size_t size = l->n_outputs * sizeof(double);
+    memset(l->wf->delta, 0, size);
+    memset(l->wi->delta, 0, size);
+    memset(l->wg->delta, 0, size);
+    memset(l->wo->delta, 0, size);
+    memset(l->uf->delta, 0, size);
+    memset(l->ui->delta, 0, size);
+    memset(l->ug->delta, 0, size);
+    memset(l->uo->delta, 0, size);
+}
+
+static _Bool
+mutate_eta(const struct XCSF *xcsf, struct LAYER *l)
+{
+    if (layer_mutate_eta(xcsf, l->uf, l->mu[0])) {
+        set_eta(l);
+        return true;
+    }
+    return false;
+}
+
+static _Bool
+mutate_neurons(const struct XCSF *xcsf, struct LAYER *l)
+{
+    int n = layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
+    if (n != 0) {
+        layer_add_neurons(l->uf, n);
+        layer_add_neurons(l->ui, n);
+        layer_add_neurons(l->ug, n);
+        layer_add_neurons(l->uo, n);
+        layer_add_neurons(l->wf, n);
+        layer_add_neurons(l->wi, n);
+        layer_add_neurons(l->wg, n);
+        layer_add_neurons(l->wo, n);
+        layer_resize(xcsf, l->wf, l->uf);
+        layer_resize(xcsf, l->wi, l->uf);
+        layer_resize(xcsf, l->wg, l->uf);
+        layer_resize(xcsf, l->wo, l->uf);
+        l->n_outputs = l->uf->n_outputs;
+        set_layer_n_weights(l);
+        set_layer_n_biases(l);
+        set_layer_n_active(l);
+        free_layer_arrays(l);
+        malloc_layer_arrays(l);
+        return true;
+    }
+    return false;
+}
+
+static _Bool
+mutate_connectivity(struct LAYER *l)
+{
+    _Bool mod = false;
+    mod = layer_mutate_connectivity(l->uf, l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->ui, l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->ug, l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->uo, l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->wf, l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->wi, l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->wg, l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->wo, l->mu[2]) ? true : mod;
+    set_layer_n_active(l);
+    return mod;
+}
+
+static _Bool
+mutate_weights(struct LAYER *l)
+{
+    _Bool mod = false;
+    mod = layer_mutate_weights(l->uf, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->ui, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->ug, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->uo, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->wf, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->wi, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->wg, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->wo, l->mu[3]) ? true : mod;
+    return mod;
+}
+
+/**
+ * @brief Creates and initialises a long short-term memory layer.
+ * @param xcsf The XCSF data structure.
+ * @param n_inputs The number of inputs.
+ * @param n_init The initial number of neurons.
+ * @param n_max The maximum number of neurons.
+ * @param f The output activation function.
+ * @param rf The recurrent activation function.
+ * @param o The bitwise options specifying which operations can be performed.
+ * @return A pointer to the new layer.
+ */
+struct LAYER *
+neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
+                       int n_max, int f, int rf, uint32_t o)
+{
+    struct LAYER *l = malloc(sizeof(struct LAYER));
+    layer_init(l);
+    l->layer_type = LSTM;
+    l->layer_vptr = &layer_lstm_vtbl;
+    l->options = o;
+    l->function = f;
+    l->recurrent_function = rf;
+    l->n_inputs = n_inputs;
+    l->n_outputs = n_init;
+    l->max_outputs = n_max;
+    l->uf =
+        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->ui =
+        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->ug =
+        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->uo =
+        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
+    l->wf = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
+    l->wi = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
+    l->wg = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
+    l->wo = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
+    set_layer_n_biases(l);
+    set_layer_n_weights(l);
+    set_layer_n_active(l);
+    set_eta(l);
+    malloc_layer_arrays(l);
+    l->mu = malloc(sizeof(double) * N_MU);
+    sam_init(xcsf, l->mu, N_MU);
+    return l;
 }
 
 struct LAYER *
@@ -297,20 +347,6 @@ neural_layer_lstm_forward(const struct XCSF *xcsf, const struct LAYER *l,
     blas_mul(l->n_outputs, l->o, 1, l->h, 1);
     memcpy(l->cell, l->c, sizeof(double) * l->n_outputs);
     memcpy(l->output, l->h, sizeof(double) * l->n_outputs);
-}
-
-static void
-reset_layer_deltas(const struct LAYER *l)
-{
-    size_t size = l->n_outputs * sizeof(double);
-    memset(l->wf->delta, 0, size);
-    memset(l->wi->delta, 0, size);
-    memset(l->wg->delta, 0, size);
-    memset(l->wo->delta, 0, size);
-    memset(l->uf->delta, 0, size);
-    memset(l->ui->delta, 0, size);
-    memset(l->ug->delta, 0, size);
-    memset(l->uo->delta, 0, size);
 }
 
 void
@@ -417,75 +453,6 @@ neural_layer_lstm_mutate(const struct XCSF *xcsf, struct LAYER *l)
         layer_mutate_functions(l, l->mu[4])) {
         mod = true;
     }
-    return mod;
-}
-
-static _Bool
-mutate_eta(const struct XCSF *xcsf, struct LAYER *l)
-{
-    if (layer_mutate_eta(xcsf, l->uf, l->mu[0])) {
-        set_eta(l);
-        return true;
-    }
-    return false;
-}
-
-static _Bool
-mutate_neurons(const struct XCSF *xcsf, struct LAYER *l)
-{
-    int n = layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
-    if (n != 0) {
-        layer_add_neurons(l->uf, n);
-        layer_add_neurons(l->ui, n);
-        layer_add_neurons(l->ug, n);
-        layer_add_neurons(l->uo, n);
-        layer_add_neurons(l->wf, n);
-        layer_add_neurons(l->wi, n);
-        layer_add_neurons(l->wg, n);
-        layer_add_neurons(l->wo, n);
-        layer_resize(xcsf, l->wf, l->uf);
-        layer_resize(xcsf, l->wi, l->uf);
-        layer_resize(xcsf, l->wg, l->uf);
-        layer_resize(xcsf, l->wo, l->uf);
-        l->n_outputs = l->uf->n_outputs;
-        set_layer_n_weights(l);
-        set_layer_n_biases(l);
-        set_layer_n_active(l);
-        free_layer_arrays(l);
-        malloc_layer_arrays(l);
-        return true;
-    }
-    return false;
-}
-
-static _Bool
-mutate_connectivity(struct LAYER *l)
-{
-    _Bool mod = false;
-    mod = layer_mutate_connectivity(l->uf, l->mu[2]) ? true : mod;
-    mod = layer_mutate_connectivity(l->ui, l->mu[2]) ? true : mod;
-    mod = layer_mutate_connectivity(l->ug, l->mu[2]) ? true : mod;
-    mod = layer_mutate_connectivity(l->uo, l->mu[2]) ? true : mod;
-    mod = layer_mutate_connectivity(l->wf, l->mu[2]) ? true : mod;
-    mod = layer_mutate_connectivity(l->wi, l->mu[2]) ? true : mod;
-    mod = layer_mutate_connectivity(l->wg, l->mu[2]) ? true : mod;
-    mod = layer_mutate_connectivity(l->wo, l->mu[2]) ? true : mod;
-    set_layer_n_active(l);
-    return mod;
-}
-
-static _Bool
-mutate_weights(struct LAYER *l)
-{
-    _Bool mod = false;
-    mod = layer_mutate_weights(l->uf, l->mu[3]) ? true : mod;
-    mod = layer_mutate_weights(l->ui, l->mu[3]) ? true : mod;
-    mod = layer_mutate_weights(l->ug, l->mu[3]) ? true : mod;
-    mod = layer_mutate_weights(l->uo, l->mu[3]) ? true : mod;
-    mod = layer_mutate_weights(l->wf, l->mu[3]) ? true : mod;
-    mod = layer_mutate_weights(l->wi, l->mu[3]) ? true : mod;
-    mod = layer_mutate_weights(l->wg, l->mu[3]) ? true : mod;
-    mod = layer_mutate_weights(l->wo, l->mu[3]) ? true : mod;
     return mod;
 }
 

@@ -26,10 +26,23 @@
 #include "utils.h"
 
 static void
-free_layer_arrays(const struct LAYER *l);
+malloc_layer_arrays(struct LAYER *l)
+{
+    if (l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
+        printf("neural_layer_softmax: malloc() invalid size\n");
+        l->n_inputs = 1;
+        exit(EXIT_FAILURE);
+    }
+    l->output = calloc(l->n_inputs, sizeof(double));
+    l->delta = calloc(l->n_inputs, sizeof(double));
+}
 
 static void
-malloc_layer_arrays(struct LAYER *l);
+free_layer_arrays(const struct LAYER *l)
+{
+    free(l->output);
+    free(l->delta);
+}
 
 /**
  * @brief Creates and initialises a softmax layer.
@@ -53,25 +66,6 @@ neural_layer_softmax_init(const struct XCSF *xcsf, int n_inputs,
     l->max_outputs = n_inputs;
     malloc_layer_arrays(l);
     return l;
-}
-
-static void
-malloc_layer_arrays(struct LAYER *l)
-{
-    if (l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
-        printf("neural_layer_softmax: malloc() invalid size\n");
-        l->n_inputs = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->output = calloc(l->n_inputs, sizeof(double));
-    l->delta = calloc(l->n_inputs, sizeof(double));
-}
-
-static void
-free_layer_arrays(const struct LAYER *l)
-{
-    free(l->output);
-    free(l->delta);
 }
 
 struct LAYER *

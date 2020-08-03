@@ -28,97 +28,23 @@
 #define MAXLEN (127) //!< Maximum config file line length to read
 #define BASE (10) //!< Decimal numbers
 
-static void
-config_add_param(struct XCSF *xcsf, const char *name, char *value);
-
-static void
-config_get_ints(char *str, int *val);
-
-static void
-config_newnvpair(struct XCSF *xcsf, const char *param);
-
-static void
-config_process(struct XCSF *xcsf, const char *configline);
-
-static void
-config_trim(char *s);
-
-static void
-config_cl_act(struct XCSF *xcsf, const char *n, char *v, int i, double f);
-
-static void
-config_cl_gen(struct XCSF *xcsf, const char *n, char *v, int i, double f);
-
-static void
-config_ea(struct XCSF *xcsf, const char *n, char *v, int i, double f);
-
-static void
-config_general(struct XCSF *xcsf, const char *n, char *v, int i, double f);
-
-static void
-config_multi(struct XCSF *xcsf, const char *n, char *v, int i, double f);
-
-static void
-config_subsump(struct XCSF *xcsf, const char *n, char *v, int i, double f);
-
-static void
-config_cl_cond(struct XCSF *xcsf, const char *n, char *v, int i, double f);
-
-static void
-config_cl_pred(struct XCSF *xcsf, const char *n, char *v, int i, double f);
-
 /**
- * @brief Reads the specified configuration file.
- * @param xcsf The XCSF data structure.
- * @param filename The name of the configuration file.
- */
-void
-config_read(struct XCSF *xcsf, const char *filename)
-{
-    FILE *f = fopen(filename, "rt");
-    if (f == NULL) {
-        printf("Warning: could not open %s.\n", filename);
-        return;
-    }
-    char buff[MAXLEN];
-    while (!feof(f)) {
-        if (fgets(buff, MAXLEN - 2, f) == NULL) {
-            break;
-        }
-        config_trim(buff);
-        config_process(xcsf, buff);
-    }
-    fclose(f);
-}
-
-/**
- * @brief Sets specified parameter.
- * @param xcsf The XCSF data structure.
- * @param name Parameter name.
- * @param value Parameter value.
+ * @brief Reads a csv list of ints into an array.
+ * @param str String list of values.
+ * @param val An integer array (set by this function).
  */
 static void
-config_add_param(struct XCSF *xcsf, const char *name, char *value)
+config_get_ints(char *str, int *val)
 {
-    int i;
+    int num = 0;
     char *end;
-    if (strncmp(value, "true", 5) == 0) {
-        i = 1;
-    } else if (strncmp(value, "false", 6) == 0) {
-        i = 0;
-    } else {
-        i = (int) strtoimax(value, &end, BASE);
+    char *saveptr;
+    const char *ptok = strtok_r(str, ARRAY_DELIM, &saveptr);
+    while (ptok != NULL) {
+        val[num] = (int) strtoimax(ptok, &end, BASE);
+        ptok = strtok_r(NULL, ARRAY_DELIM, &saveptr);
+        ++num;
     }
-    double f = atof(value);
-    // add parameter
-    config_general(xcsf, name, value, i, f);
-    config_multi(xcsf, name, value, i, f);
-    config_subsump(xcsf, name, value, i, f);
-    config_ea(xcsf, name, value, i, f);
-    config_cl_gen(xcsf, name, value, i, f);
-    config_cl_cond(xcsf, name, value, i, f);
-    config_cl_pred(xcsf, name, value, i, f);
-    config_cl_act(xcsf, name, value, i, f);
 }
 
 /**
@@ -377,22 +303,33 @@ config_cl_act(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 }
 
 /**
- * @brief Reads a csv list of ints into an array.
- * @param str String list of values.
- * @param val An integer array (set by this function).
+ * @brief Sets specified parameter.
+ * @param xcsf The XCSF data structure.
+ * @param name Parameter name.
+ * @param value Parameter value.
  */
 static void
-config_get_ints(char *str, int *val)
+config_add_param(struct XCSF *xcsf, const char *name, char *value)
 {
-    int num = 0;
+    int i;
     char *end;
-    char *saveptr;
-    const char *ptok = strtok_r(str, ARRAY_DELIM, &saveptr);
-    while (ptok != NULL) {
-        val[num] = (int) strtoimax(ptok, &end, BASE);
-        ptok = strtok_r(NULL, ARRAY_DELIM, &saveptr);
-        ++num;
+    if (strncmp(value, "true", 5) == 0) {
+        i = 1;
+    } else if (strncmp(value, "false", 6) == 0) {
+        i = 0;
+    } else {
+        i = (int) strtoimax(value, &end, BASE);
     }
+    double f = atof(value);
+    // add parameter
+    config_general(xcsf, name, value, i, f);
+    config_multi(xcsf, name, value, i, f);
+    config_subsump(xcsf, name, value, i, f);
+    config_ea(xcsf, name, value, i, f);
+    config_cl_gen(xcsf, name, value, i, f);
+    config_cl_cond(xcsf, name, value, i, f);
+    config_cl_pred(xcsf, name, value, i, f);
+    config_cl_act(xcsf, name, value, i, f);
 }
 
 /**
@@ -472,4 +409,28 @@ config_process(struct XCSF *xcsf, const char *configline)
         *ptr = '\0';
     }
     config_newnvpair(xcsf, configline);
+}
+
+/**
+ * @brief Reads the specified configuration file.
+ * @param xcsf The XCSF data structure.
+ * @param filename The name of the configuration file.
+ */
+void
+config_read(struct XCSF *xcsf, const char *filename)
+{
+    FILE *f = fopen(filename, "rt");
+    if (f == NULL) {
+        printf("Warning: could not open %s.\n", filename);
+        return;
+    }
+    char buff[MAXLEN];
+    while (!feof(f)) {
+        if (fgets(buff, MAXLEN - 2, f) == NULL) {
+            break;
+        }
+        config_trim(buff);
+        config_process(xcsf, buff);
+    }
+    fclose(f);
 }

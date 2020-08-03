@@ -30,7 +30,25 @@
 #define N_MU (5) //!< Number of mutation rates applied to a connected layer
 
 static void
-malloc_layer_arrays(struct LAYER *l);
+malloc_layer_arrays(struct LAYER *l)
+{
+    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
+        l->n_weights > N_WEIGHTS_MAX) {
+        printf("neural_layer_connected: malloc() invalid size\n");
+        l->n_weights = 1;
+        l->n_outputs = 1;
+        exit(EXIT_FAILURE);
+    }
+    l->state = calloc(l->n_outputs, sizeof(double));
+    l->output = calloc(l->n_outputs, sizeof(double));
+    l->biases = malloc(sizeof(double) * l->n_outputs);
+    l->bias_updates = calloc(l->n_outputs, sizeof(double));
+    l->delta = calloc(l->n_outputs, sizeof(double));
+    l->weight_updates = calloc(l->n_weights, sizeof(double));
+    l->weight_active = malloc(sizeof(_Bool) * l->n_weights);
+    l->weights = malloc(sizeof(double) * l->n_weights);
+    l->mu = malloc(sizeof(double) * N_MU);
+}
 
 /**
  * @brief Creates and initialises a fully-connected layer.
@@ -67,27 +85,6 @@ neural_layer_connected_init(const struct XCSF *xcsf, int n_inputs, int n_init,
     memset(l->biases, 0, sizeof(double) * l->n_biases);
     sam_init(xcsf, l->mu, N_MU);
     return l;
-}
-
-static void
-malloc_layer_arrays(struct LAYER *l)
-{
-    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
-        l->n_weights > N_WEIGHTS_MAX) {
-        printf("neural_layer_connected: malloc() invalid size\n");
-        l->n_weights = 1;
-        l->n_outputs = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->state = calloc(l->n_outputs, sizeof(double));
-    l->output = calloc(l->n_outputs, sizeof(double));
-    l->biases = malloc(sizeof(double) * l->n_outputs);
-    l->bias_updates = calloc(l->n_outputs, sizeof(double));
-    l->delta = calloc(l->n_outputs, sizeof(double));
-    l->weight_updates = calloc(l->n_weights, sizeof(double));
-    l->weight_active = malloc(sizeof(_Bool) * l->n_weights);
-    l->weights = malloc(sizeof(double) * l->n_weights);
-    l->mu = malloc(sizeof(double) * N_MU);
 }
 
 void

@@ -33,7 +33,23 @@
 #include "neural_layer_softmax.h"
 
 static uint32_t
-cond_neural_lopt(const struct XCSF *xcsf);
+cond_neural_lopt(const struct XCSF *xcsf)
+{
+    uint32_t lopt = 0;
+    if (xcsf->COND_EVOLVE_WEIGHTS) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if (xcsf->COND_EVOLVE_NEURONS) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if (xcsf->COND_EVOLVE_FUNCTIONS) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+    if (xcsf->COND_EVOLVE_CONNECTIVITY) {
+        lopt |= LAYER_EVOLVE_CONNECT;
+    }
+    return lopt;
+}
 
 /**
  * @brief Creates and initialises a neural network condition.
@@ -67,25 +83,6 @@ cond_neural_init(const struct XCSF *xcsf, struct CL *c)
     l = neural_layer_connected_init(xcsf, n_inputs, 1, 1, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
     c->cond = new;
-}
-
-static uint32_t
-cond_neural_lopt(const struct XCSF *xcsf)
-{
-    uint32_t lopt = 0;
-    if (xcsf->COND_EVOLVE_WEIGHTS) {
-        lopt |= LAYER_EVOLVE_WEIGHTS;
-    }
-    if (xcsf->COND_EVOLVE_NEURONS) {
-        lopt |= LAYER_EVOLVE_NEURONS;
-    }
-    if (xcsf->COND_EVOLVE_FUNCTIONS) {
-        lopt |= LAYER_EVOLVE_FUNCTIONS;
-    }
-    if (xcsf->COND_EVOLVE_CONNECTIVITY) {
-        lopt |= LAYER_EVOLVE_CONNECT;
-    }
-    return lopt;
 }
 
 void

@@ -52,8 +52,39 @@
 static const int x_moves[] = {0, +1, +1, +1, 0, -1, -1, -1}; //!< x-axis moves
 static const int y_moves[] = {-1, -1, 0, +1, +1, +1, 0, -1}; //!< y-axis moves
 
+/**
+ * @brief Returns a float encoding of a sensor perception.
+ * @param xcsf The XCSF data structure.
+ * @param s The char value of the sensor.
+ * @return A float encoding of the sensor.
+ */
 static double
-env_maze_sensor(const struct XCSF *xcsf, char s);
+env_maze_sensor(const struct XCSF *xcsf, char s)
+{
+    (void) xcsf;
+    double ret = 0;
+    switch (s) {
+        case '*':
+            ret = 0.1;
+            break;
+        case 'O':
+            ret = 0.3;
+            break;
+        case 'G':
+            ret = 0.5;
+            break;
+        case 'F':
+            ret = 0.7;
+            break;
+        case 'Q':
+            ret = 0.9;
+            break;
+        default:
+            printf("unsupported maze state: %c\n", s);
+            exit(EXIT_FAILURE);
+    }
+    return ret;
+}
 
 /**
  * @brief Initialises a maze environment from a specified file.
@@ -172,40 +203,6 @@ env_maze_get_state(const struct XCSF *xcsf)
         }
     }
     return env->state;
-}
-
-/**
- * @brief Returns a float encoding of a sensor perception.
- * @param xcsf The XCSF data structure.
- * @param s The char value of the sensor.
- * @return A float encoding of the sensor.
- */
-static double
-env_maze_sensor(const struct XCSF *xcsf, char s)
-{
-    (void) xcsf;
-    double ret = 0;
-    switch (s) {
-        case '*':
-            ret = 0.1;
-            break;
-        case 'O':
-            ret = 0.3;
-            break;
-        case 'G':
-            ret = 0.5;
-            break;
-        case 'F':
-            ret = 0.7;
-            break;
-        case 'Q':
-            ret = 0.9;
-            break;
-        default:
-            printf("unsupported maze state: %c\n", s);
-            exit(EXIT_FAILURE);
-    }
-    return ret;
 }
 
 /**

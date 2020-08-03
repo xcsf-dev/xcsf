@@ -30,220 +30,6 @@
 #include <omp.h>
 #endif
 
-/* initialising parameters */
-
-static void
-param_defaults_cl_action(struct XCSF *xcsf);
-
-static void
-param_defaults_cl_condition(struct XCSF *xcsf);
-
-static void
-param_defaults_cl_general(struct XCSF *xcsf);
-
-static void
-param_defaults_cl_prediction(struct XCSF *xcsf);
-
-static void
-param_defaults_ea(struct XCSF *xcsf);
-
-static void
-param_defaults_general(struct XCSF *xcsf);
-
-static void
-param_defaults_multistep(struct XCSF *xcsf);
-
-static void
-param_defaults_subsumption(struct XCSF *xcsf);
-
-/* printing parameters */
-
-static void
-param_print_cl_action(const struct XCSF *xcsf);
-
-static void
-param_print_cl_condition(const struct XCSF *xcsf);
-
-static void
-param_print_cl_general(const struct XCSF *xcsf);
-
-static void
-param_print_cl_prediction(const struct XCSF *xcsf);
-
-static void
-param_print_ea(const struct XCSF *xcsf);
-
-static void
-param_print_general(const struct XCSF *xcsf);
-
-static void
-param_print_multistep(const struct XCSF *xcsf);
-
-static void
-param_print_subsumption(const struct XCSF *xcsf);
-
-/* saving parameters */
-
-static size_t
-param_save_cl_action(const struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_save_cl_condition(const struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_save_cl_general(const struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_save_cl_prediction(const struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_save_ea(const struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_save_general(const struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_save_multistep(const struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_save_subsumption(const struct XCSF *xcsf, FILE *fp);
-
-/* loading parameters */
-
-static size_t
-param_load_cl_action(struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_load_cl_condition(struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_load_cl_general(struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_load_cl_prediction(struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_load_ea(struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_load_general(struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_load_multistep(struct XCSF *xcsf, FILE *fp);
-
-static size_t
-param_load_subsumption(struct XCSF *xcsf, FILE *fp);
-
-/**
- * @brief Initialises default XCSF parameters.
- * @param xcsf The XCSF data structure.
- */
-void
-param_init(struct XCSF *xcsf)
-{
-    xcsf->gp_cons = NULL;
-    xcsf->time = 0;
-    xcsf->msetsize = 0;
-    xcsf->mfrac = 0;
-    param_defaults_cl_action(xcsf);
-    param_defaults_cl_condition(xcsf);
-    param_defaults_cl_general(xcsf);
-    param_defaults_cl_prediction(xcsf);
-    param_defaults_ea(xcsf);
-    param_defaults_general(xcsf);
-    param_defaults_multistep(xcsf);
-    param_defaults_subsumption(xcsf);
-}
-
-/**
- * @brief Frees XCSF parameter memory.
- * @param xcsf The XCSF data structure.
- */
-void
-param_free(const struct XCSF *xcsf)
-{
-    tree_free_cons(xcsf);
-}
-
-/**
- * @brief Prints all XCSF parameters.
- * @param xcsf The XCSF data structure.
- */
-void
-param_print(const struct XCSF *xcsf)
-{
-    printf("VERSION=%d.%d.%d, ", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
-    param_print_general(xcsf);
-    param_print_multistep(xcsf);
-    param_print_ea(xcsf);
-    param_print_subsumption(xcsf);
-    param_print_cl_general(xcsf);
-    param_print_cl_condition(xcsf);
-    param_print_cl_prediction(xcsf);
-    param_print_cl_action(xcsf);
-    printf("\n");
-}
-
-/**
- * @brief Writes the XCSF data structure to a binary file.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
- * @return The total number of elements written.
- */
-size_t
-param_save(const struct XCSF *xcsf, FILE *fp)
-{
-    size_t s = 0;
-    s += fwrite(&xcsf->time, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->msetsize, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->mfrac, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->explore, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->x_dim, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->y_dim, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->n_actions, sizeof(int), 1, fp);
-    s += param_save_general(xcsf, fp);
-    s += param_save_multistep(xcsf, fp);
-    s += param_save_ea(xcsf, fp);
-    s += param_save_subsumption(xcsf, fp);
-    s += param_save_cl_general(xcsf, fp);
-    s += param_save_cl_condition(xcsf, fp);
-    s += param_save_cl_prediction(xcsf, fp);
-    s += param_save_cl_action(xcsf, fp);
-    return s;
-}
-
-/**
- * @brief Reads the XCSF data structure from a binary file.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the input file.
- * @return The total number of elements read.
- */
-size_t
-param_load(struct XCSF *xcsf, FILE *fp)
-{
-    size_t s = 0;
-    s += fread(&xcsf->time, sizeof(int), 1, fp);
-    s += fread(&xcsf->msetsize, sizeof(double), 1, fp);
-    s += fread(&xcsf->mfrac, sizeof(double), 1, fp);
-    s += fread(&xcsf->explore, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->x_dim, sizeof(int), 1, fp);
-    s += fread(&xcsf->y_dim, sizeof(int), 1, fp);
-    s += fread(&xcsf->n_actions, sizeof(int), 1, fp);
-    if (xcsf->x_dim < 1 || xcsf->y_dim < 1) {
-        printf("param_load(): read error\n");
-        exit(EXIT_FAILURE);
-    }
-    s += param_load_general(xcsf, fp);
-    s += param_load_multistep(xcsf, fp);
-    s += param_load_ea(xcsf, fp);
-    s += param_load_subsumption(xcsf, fp);
-    s += param_load_cl_general(xcsf, fp);
-    s += param_load_cl_condition(xcsf, fp);
-    s += param_load_cl_prediction(xcsf, fp);
-    s += param_load_cl_action(xcsf, fp);
-    return s;
-}
-
 /**
  * @brief Initialises default XCSF general parameters.
  * @param xcsf The XCSF data structure.
@@ -1591,4 +1377,114 @@ param_set_n_actions(struct XCSF *xcsf, int a)
     } else {
         xcsf->n_actions = a;
     }
+}
+
+/**
+ * @brief Initialises default XCSF parameters.
+ * @param xcsf The XCSF data structure.
+ */
+void
+param_init(struct XCSF *xcsf)
+{
+    xcsf->gp_cons = NULL;
+    xcsf->time = 0;
+    xcsf->msetsize = 0;
+    xcsf->mfrac = 0;
+    param_defaults_cl_action(xcsf);
+    param_defaults_cl_condition(xcsf);
+    param_defaults_cl_general(xcsf);
+    param_defaults_cl_prediction(xcsf);
+    param_defaults_ea(xcsf);
+    param_defaults_general(xcsf);
+    param_defaults_multistep(xcsf);
+    param_defaults_subsumption(xcsf);
+}
+
+/**
+ * @brief Frees XCSF parameter memory.
+ * @param xcsf The XCSF data structure.
+ */
+void
+param_free(const struct XCSF *xcsf)
+{
+    tree_free_cons(xcsf);
+}
+
+/**
+ * @brief Prints all XCSF parameters.
+ * @param xcsf The XCSF data structure.
+ */
+void
+param_print(const struct XCSF *xcsf)
+{
+    printf("VERSION=%d.%d.%d, ", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
+    param_print_general(xcsf);
+    param_print_multistep(xcsf);
+    param_print_ea(xcsf);
+    param_print_subsumption(xcsf);
+    param_print_cl_general(xcsf);
+    param_print_cl_condition(xcsf);
+    param_print_cl_prediction(xcsf);
+    param_print_cl_action(xcsf);
+    printf("\n");
+}
+
+/**
+ * @brief Writes the XCSF data structure to a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param fp Pointer to the output file.
+ * @return The total number of elements written.
+ */
+size_t
+param_save(const struct XCSF *xcsf, FILE *fp)
+{
+    size_t s = 0;
+    s += fwrite(&xcsf->time, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->msetsize, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->mfrac, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->explore, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->x_dim, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->y_dim, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->n_actions, sizeof(int), 1, fp);
+    s += param_save_general(xcsf, fp);
+    s += param_save_multistep(xcsf, fp);
+    s += param_save_ea(xcsf, fp);
+    s += param_save_subsumption(xcsf, fp);
+    s += param_save_cl_general(xcsf, fp);
+    s += param_save_cl_condition(xcsf, fp);
+    s += param_save_cl_prediction(xcsf, fp);
+    s += param_save_cl_action(xcsf, fp);
+    return s;
+}
+
+/**
+ * @brief Reads the XCSF data structure from a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param fp Pointer to the input file.
+ * @return The total number of elements read.
+ */
+size_t
+param_load(struct XCSF *xcsf, FILE *fp)
+{
+    size_t s = 0;
+    s += fread(&xcsf->time, sizeof(int), 1, fp);
+    s += fread(&xcsf->msetsize, sizeof(double), 1, fp);
+    s += fread(&xcsf->mfrac, sizeof(double), 1, fp);
+    s += fread(&xcsf->explore, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->x_dim, sizeof(int), 1, fp);
+    s += fread(&xcsf->y_dim, sizeof(int), 1, fp);
+    s += fread(&xcsf->n_actions, sizeof(int), 1, fp);
+    if (xcsf->x_dim < 1 || xcsf->y_dim < 1) {
+        printf("param_load(): read error\n");
+        exit(EXIT_FAILURE);
+    }
+    s += param_load_general(xcsf, fp);
+    s += param_load_multistep(xcsf, fp);
+    s += param_load_ea(xcsf, fp);
+    s += param_load_subsumption(xcsf, fp);
+    s += param_load_cl_general(xcsf, fp);
+    s += param_load_cl_condition(xcsf, fp);
+    s += param_load_cl_prediction(xcsf, fp);
+    s += param_load_cl_action(xcsf, fp);
+    return s;
 }

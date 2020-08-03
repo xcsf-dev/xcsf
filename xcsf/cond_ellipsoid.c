@@ -29,7 +29,16 @@
 
 static double
 cond_ellipsoid_dist(const struct XCSF *xcsf, const struct CL *c,
-                    const double *x);
+                    const double *x)
+{
+    const struct COND_ELLIPSOID *cond = c->cond;
+    double dist = 0;
+    for (int i = 0; i < xcsf->x_dim; ++i) {
+        double d = (x[i] - cond->center[i]) / cond->spread[i];
+        dist += d * d;
+    }
+    return dist;
+}
 
 /**
  * @brief Creates and initialises a hyperellipsoid condition.
@@ -112,19 +121,6 @@ cond_ellipsoid_match(const struct XCSF *xcsf, const struct CL *c,
         return true;
     }
     return false;
-}
-
-static double
-cond_ellipsoid_dist(const struct XCSF *xcsf, const struct CL *c,
-                    const double *x)
-{
-    const struct COND_ELLIPSOID *cond = c->cond;
-    double dist = 0;
-    for (int i = 0; i < xcsf->x_dim; ++i) {
-        double d = (x[i] - cond->center[i]) / cond->spread[i];
-        dist += d * d;
-    }
-    return dist;
 }
 
 _Bool

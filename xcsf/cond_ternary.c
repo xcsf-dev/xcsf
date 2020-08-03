@@ -30,11 +30,37 @@
 #define P_DONTCARE (0.5) //!< Don't care probability
 #define DONT_CARE ('#') //!< Don't care symbol
 
+/**
+ * @brief Generates a binary string from a float.
+ * @param f The float to binarise.
+ * @param binary The converted binary string (set by this function).
+ * @param bits The number of bits to use for binarising.
+ */
 static void
-cond_ternary_rand(const struct XCSF *xcsf, const struct CL *c);
+float_to_binary(double f, char *binary, int bits)
+{
+    int a = (int) (f * pow(2, bits));
+    for (int i = 0; i < bits; ++i) {
+        binary[i] = (a % 2) + '0';
+        a /= 2;
+    }
+}
 
 static void
-float_to_binary(double f, char *binary, int bits);
+cond_ternary_rand(const struct XCSF *xcsf, const struct CL *c)
+{
+    (void) xcsf;
+    const struct COND_TERNARY *cond = c->cond;
+    for (int i = 0; i < cond->length; ++i) {
+        if (rand_uniform(0, 1) < P_DONTCARE) {
+            cond->string[i] = DONT_CARE;
+        } else if (rand_uniform(0, 1) < 0.5) {
+            cond->string[i] = '0';
+        } else {
+            cond->string[i] = '1';
+        }
+    }
+}
 
 /**
  * @brief Creates and initialises a ternary bitstring condition.
@@ -52,22 +78,6 @@ cond_ternary_init(const struct XCSF *xcsf, struct CL *c)
     sam_init(xcsf, new->mu, N_MU);
     c->cond = new;
     cond_ternary_rand(xcsf, c);
-}
-
-static void
-cond_ternary_rand(const struct XCSF *xcsf, const struct CL *c)
-{
-    (void) xcsf;
-    const struct COND_TERNARY *cond = c->cond;
-    for (int i = 0; i < cond->length; ++i) {
-        if (rand_uniform(0, 1) < P_DONTCARE) {
-            cond->string[i] = DONT_CARE;
-        } else if (rand_uniform(0, 1) < 0.5) {
-            cond->string[i] = '0';
-        } else {
-            cond->string[i] = '1';
-        }
-    }
 }
 
 void
@@ -249,20 +259,4 @@ cond_ternary_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
     s += fread(new->mu, sizeof(double), N_MU, fp);
     c->cond = new;
     return s;
-}
-
-/**
- * @brief Generates a binary string from a float.
- * @param f The float to binarise.
- * @param binary The converted binary string (set by this function).
- * @param bits The number of bits to use for binarising.
- */
-static void
-float_to_binary(double f, char *binary, int bits)
-{
-    int a = (int) (f * pow(2, bits));
-    for (int i = 0; i < bits; ++i) {
-        binary[i] = (a % 2) + '0';
-        a /= 2;
-    }
 }

@@ -33,7 +33,29 @@
 #include "neural_layer_softmax.h"
 
 static uint32_t
-pred_neural_lopt(const struct XCSF *xcsf);
+pred_neural_lopt(const struct XCSF *xcsf)
+{
+    uint32_t lopt = 0;
+    if (xcsf->PRED_EVOLVE_ETA) {
+        lopt |= LAYER_EVOLVE_ETA;
+    }
+    if (xcsf->PRED_SGD_WEIGHTS) {
+        lopt |= LAYER_SGD_WEIGHTS;
+    }
+    if (xcsf->PRED_EVOLVE_WEIGHTS) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if (xcsf->PRED_EVOLVE_NEURONS) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if (xcsf->PRED_EVOLVE_FUNCTIONS) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+    if (xcsf->PRED_EVOLVE_CONNECTIVITY) {
+        lopt |= LAYER_EVOLVE_CONNECT;
+    }
+    return lopt;
+}
 
 /**
  * @brief Creates and initialises a neural network prediction.
@@ -79,31 +101,6 @@ pred_neural_init(const struct XCSF *xcsf, struct CL *c)
         neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
     }
     c->pred = new;
-}
-
-static uint32_t
-pred_neural_lopt(const struct XCSF *xcsf)
-{
-    uint32_t lopt = 0;
-    if (xcsf->PRED_EVOLVE_ETA) {
-        lopt |= LAYER_EVOLVE_ETA;
-    }
-    if (xcsf->PRED_SGD_WEIGHTS) {
-        lopt |= LAYER_SGD_WEIGHTS;
-    }
-    if (xcsf->PRED_EVOLVE_WEIGHTS) {
-        lopt |= LAYER_EVOLVE_WEIGHTS;
-    }
-    if (xcsf->PRED_EVOLVE_NEURONS) {
-        lopt |= LAYER_EVOLVE_NEURONS;
-    }
-    if (xcsf->PRED_EVOLVE_FUNCTIONS) {
-        lopt |= LAYER_EVOLVE_FUNCTIONS;
-    }
-    if (xcsf->PRED_EVOLVE_CONNECTIVITY) {
-        lopt |= LAYER_EVOLVE_CONNECT;
-    }
-    return lopt;
 }
 
 void

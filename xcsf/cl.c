@@ -28,11 +28,39 @@
 #include "prediction.h"
 #include "utils.h"
 
+/**
+ * @brief Updates the error of the classifier using the payoff.
+ * @pre Classifier prediction must have been updated for the input state.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier to update.
+ * @param y The payoff value.
+ */
 static void
-cl_update_err(const struct XCSF *xcsf, struct CL *c, const double *y);
+cl_update_err(const struct XCSF *xcsf, struct CL *c, const double *y)
+{
+    double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
+    if (c->exp < 1 / xcsf->BETA) {
+        c->err = (c->err * (c->exp - 1) + error) / c->exp;
+    } else {
+        c->err += xcsf->BETA * (error - c->err);
+    }
+}
 
+/**
+ * @brief Updates the set size estimate for the classifier.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier to update.
+ * @param num_sum The number of micro-classifiers in the set.
+ */
 static void
-cl_update_size(const struct XCSF *xcsf, struct CL *c, int num_sum);
+cl_update_size(const struct XCSF *xcsf, struct CL *c, int num_sum)
+{
+    if (c->exp < 1 / xcsf->BETA) {
+        c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;
+    } else {
+        c->size += xcsf->BETA * (num_sum - c->size);
+    }
+}
 
 /**
  * @brief Initialises a new classifier.
@@ -168,24 +196,6 @@ cl_update(const struct XCSF *xcsf, struct CL *c, const double *x,
 }
 
 /**
- * @brief Updates the error of the classifier using the payoff.
- * @pre Classifier prediction must have been updated for the input state.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to update.
- * @param y The payoff value.
- */
-static void
-cl_update_err(const struct XCSF *xcsf, struct CL *c, const double *y)
-{
-    double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
-    if (c->exp < 1 / xcsf->BETA) {
-        c->err = (c->err * (c->exp - 1) + error) / c->exp;
-    } else {
-        c->err += xcsf->BETA * (error - c->err);
-    }
-}
-
-/**
  * @brief Updates the fitness of the classifier.
  * @param xcsf The XCSF data structure.
  * @param c The classifier to update.
@@ -196,22 +206,6 @@ void
 cl_update_fit(const struct XCSF *xcsf, struct CL *c, double acc_sum, double acc)
 {
     c->fit += xcsf->BETA * ((acc * c->num) / acc_sum - c->fit);
-}
-
-/**
- * @brief Updates the set size estimate for the classifier.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to update.
- * @param num_sum The number of micro-classifiers in the set.
- */
-static void
-cl_update_size(const struct XCSF *xcsf, struct CL *c, int num_sum)
-{
-    if (c->exp < 1 / xcsf->BETA) {
-        c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;
-    } else {
-        c->size += xcsf->BETA * (num_sum - c->size);
-    }
 }
 
 /**

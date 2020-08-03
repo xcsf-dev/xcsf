@@ -30,11 +30,42 @@
 #include "perf.h"
 #include "utils.h"
 
+/**
+ * @brief Selects a data sample for training or testing.
+ * @param data The input data.
+ * @param cnt The current sequence counter.
+ * @param shuffle Whether to select the sample randomly.
+ * @return The row of the data sample selected.
+ */
 static int
-xcs_supervised_sample(const struct INPUT *data, int cnt, _Bool shuffle);
+xcs_supervised_sample(const struct INPUT *data, int cnt, _Bool shuffle)
+{
+    if (shuffle) {
+        return irand_uniform(0, data->n_samples);
+    }
+    return cnt % data->n_samples;
+}
 
+/**
+ * @brief Executes a single XCSF trial.
+ * @param xcsf The XCSF data structure.
+ * @param x The feature variables.
+ * @param y The labelled variables.
+ */
 static void
-xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y);
+xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y)
+{
+    clset_init(&xcsf->mset);
+    clset_init(&xcsf->kset);
+    clset_match(xcsf, x);
+    pa_build(xcsf, x);
+    if (xcsf->explore) {
+        clset_update(xcsf, &xcsf->mset, x, y, true);
+        ea(xcsf, &xcsf->mset);
+    }
+    clset_kill(xcsf, &xcsf->kset);
+    clset_free(&xcsf->mset);
+}
 
 /**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
@@ -113,41 +144,4 @@ xcs_supervised_score(struct XCSF *xcsf, const struct INPUT *test_data)
         err += (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
     }
     return err / test_data->n_samples;
-}
-
-/**
- * @brief Selects a data sample for training or testing.
- * @param data The input data.
- * @param cnt The current sequence counter.
- * @param shuffle Whether to select the sample randomly.
- * @return The row of the data sample selected.
- */
-static int
-xcs_supervised_sample(const struct INPUT *data, int cnt, _Bool shuffle)
-{
-    if (shuffle) {
-        return irand_uniform(0, data->n_samples);
-    }
-    return cnt % data->n_samples;
-}
-
-/**
- * @brief Executes a single XCSF trial.
- * @param xcsf The XCSF data structure.
- * @param x The feature variables.
- * @param y The labelled variables.
- */
-static void
-xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y)
-{
-    clset_init(&xcsf->mset);
-    clset_init(&xcsf->kset);
-    clset_match(xcsf, x);
-    pa_build(xcsf, x);
-    if (xcsf->explore) {
-        clset_update(xcsf, &xcsf->mset, x, y, true);
-        ea(xcsf, &xcsf->mset);
-    }
-    clset_kill(xcsf, &xcsf->kset);
-    clset_free(&xcsf->mset);
 }

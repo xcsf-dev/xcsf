@@ -32,7 +32,23 @@
 /* CONDITION FUNCTIONS */
 
 static uint32_t
-rule_neural_lopt(const struct XCSF *xcsf);
+rule_neural_lopt(const struct XCSF *xcsf)
+{
+    uint32_t lopt = 0;
+    if (xcsf->COND_EVOLVE_WEIGHTS) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if (xcsf->COND_EVOLVE_NEURONS) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if (xcsf->COND_EVOLVE_FUNCTIONS) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+    if (xcsf->COND_EVOLVE_CONNECTIVITY) {
+        lopt |= LAYER_EVOLVE_CONNECT;
+    }
+    return lopt;
+}
 
 void
 rule_neural_cond_init(const struct XCSF *xcsf, struct CL *c)
@@ -65,25 +81,6 @@ rule_neural_cond_init(const struct XCSF *xcsf, struct CL *c)
     l = neural_layer_connected_init(xcsf, n_inputs, n + 1, n + 1, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, i);
     c->cond = new;
-}
-
-static uint32_t
-rule_neural_lopt(const struct XCSF *xcsf)
-{
-    uint32_t lopt = 0;
-    if (xcsf->COND_EVOLVE_WEIGHTS) {
-        lopt |= LAYER_EVOLVE_WEIGHTS;
-    }
-    if (xcsf->COND_EVOLVE_NEURONS) {
-        lopt |= LAYER_EVOLVE_NEURONS;
-    }
-    if (xcsf->COND_EVOLVE_FUNCTIONS) {
-        lopt |= LAYER_EVOLVE_FUNCTIONS;
-    }
-    if (xcsf->COND_EVOLVE_CONNECTIVITY) {
-        lopt |= LAYER_EVOLVE_CONNECT;
-    }
-    return lopt;
 }
 
 void
