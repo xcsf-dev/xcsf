@@ -77,4 +77,5 @@ static struct LayerVtbl const layer_noise_vtbl = {
     &neural_layer_noise_rand,    &neural_layer_noise_print,
     &neural_layer_noise_update,  &neural_layer_noise_backward,
     &neural_layer_noise_forward, &neural_layer_noise_output,
-    &neural_layer_noise_save,    &neural_layer_noise_load};
+    &neural_layer_noise_save,    &neural_layer_noise_load
+};

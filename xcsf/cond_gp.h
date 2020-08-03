@@ -83,4 +83,5 @@ static struct CondVtbl const cond_gp_vtbl = {
     &cond_gp_crossover, &cond_gp_general, &cond_gp_match, &cond_gp_mutate,
     &cond_gp_copy,      &cond_gp_cover,   &cond_gp_free,  &cond_gp_init,
     &cond_gp_print,     &cond_gp_update,  &cond_gp_size,  &cond_gp_save,
-    &cond_gp_load};
+    &cond_gp_load
+};

@@ -77,4 +77,5 @@ static struct LayerVtbl const layer_dropout_vtbl = {
     &neural_layer_dropout_rand,    &neural_layer_dropout_print,
     &neural_layer_dropout_update,  &neural_layer_dropout_backward,
     &neural_layer_dropout_forward, &neural_layer_dropout_output,
-    &neural_layer_dropout_save,    &neural_layer_dropout_load};
+    &neural_layer_dropout_save,    &neural_layer_dropout_load
+};

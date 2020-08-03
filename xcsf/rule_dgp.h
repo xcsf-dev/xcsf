@@ -89,7 +89,8 @@ static struct CondVtbl const rule_dgp_cond_vtbl = {
     &rule_dgp_cond_mutate,    &rule_dgp_cond_copy,    &rule_dgp_cond_cover,
     &rule_dgp_cond_free,      &rule_dgp_cond_init,    &rule_dgp_cond_print,
     &rule_dgp_cond_update,    &rule_dgp_cond_size,    &rule_dgp_cond_save,
-    &rule_dgp_cond_load};
+    &rule_dgp_cond_load
+};
 
 _Bool
 rule_dgp_act_crossover(const struct XCSF *xcsf, const struct CL *c1,
@@ -140,4 +141,5 @@ static struct ActVtbl const rule_dgp_act_vtbl = {
     &rule_dgp_act_general, &rule_dgp_act_crossover, &rule_dgp_act_mutate,
     &rule_dgp_act_compute, &rule_dgp_act_copy,      &rule_dgp_act_cover,
     &rule_dgp_act_free,    &rule_dgp_act_init,      &rule_dgp_act_print,
-    &rule_dgp_act_update,  &rule_dgp_act_save,      &rule_dgp_act_load};
+    &rule_dgp_act_update,  &rule_dgp_act_save,      &rule_dgp_act_load
+};

@@ -77,4 +77,5 @@ static struct LayerVtbl const layer_maxpool_vtbl = {
     &neural_layer_maxpool_rand,    &neural_layer_maxpool_print,
     &neural_layer_maxpool_update,  &neural_layer_maxpool_backward,
     &neural_layer_maxpool_forward, &neural_layer_maxpool_output,
-    &neural_layer_maxpool_save,    &neural_layer_maxpool_load};
+    &neural_layer_maxpool_save,    &neural_layer_maxpool_load
+};

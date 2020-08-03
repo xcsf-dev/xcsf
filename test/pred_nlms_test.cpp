@@ -24,17 +24,17 @@
 #include "../lib/doctest/doctest/doctest.h"
 
 extern "C" {
+#include "../xcsf/cl.h"
+#include "../xcsf/param.h"
+#include "../xcsf/pred_nlms.h"
+#include "../xcsf/prediction.h"
+#include "../xcsf/utils.h"
+#include "../xcsf/xcsf.h"
+#include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
-#include <math.h>
-#include "../xcsf/xcsf.h"
-#include "../xcsf/utils.h"
-#include "../xcsf/param.h"
-#include "../xcsf/cl.h"
-#include "../xcsf/prediction.h"
-#include "../xcsf/pred_nlms.h"
 }
 
 TEST_CASE("PRED_NLMS")
@@ -56,15 +56,14 @@ TEST_CASE("PRED_NLMS")
     CHECK_EQ(p->n, 11);
     CHECK_EQ(p->n_weights, 11);
     /* test one forward pass of input */
-    const double x[10] = {
-        -0.4792173279, -0.2056298252, -0.1775459629, -0.0814486626,
-            0.0923277094, 0.2779675621, -0.3109822596, -0.6788371120,
-            -0.0714929928, -0.1332985280
-        };
+    const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
+                           -0.0814486626, 0.0923277094,  0.2779675621,
+                           -0.3109822596, -0.6788371120, -0.0714929928,
+                           -0.1332985280 };
     const double orig_weights[11] = {
-        0.3326639519, -0.4446678553, 0.1033557369, -1.2581317787, 2.8042169798,
-        0.2236021733, -1.2206964138, -0.2022042865, -1.5489524535,
-        -2.0932767781, 5.4797621223
+        0.3326639519,  -0.4446678553, 0.1033557369,  -1.2581317787,
+        2.8042169798,  0.2236021733,  -1.2206964138, -0.2022042865,
+        -1.5489524535, -2.0932767781, 5.4797621223
     };
     memcpy(p->weights, orig_weights, 11 * sizeof(double));
     pred_nlms_compute(&xcsf, &c, x);
@@ -72,9 +71,9 @@ TEST_CASE("PRED_NLMS")
     /* test one backward pass of input */
     const double y[1] = { -0.8289711363 };
     const double new_weights[11] = {
-        0.2535580953, -0.4067589581, 0.1196222604, -1.2440868532, 2.8106600460,
-        0.2162985108, -1.2426852759, -0.1776037685, -1.4952524623,
-        -2.0876212637, 5.4903068165
+        0.2535580953,  -0.4067589581, 0.1196222604,  -1.2440868532,
+        2.8106600460,  0.2162985108,  -1.2426852759, -0.1776037685,
+        -1.4952524623, -2.0876212637, 5.4903068165
     };
     pred_nlms_update(&xcsf, &c, x, y);
     double weight_error = 0;

@@ -70,4 +70,5 @@ static struct PredVtbl const pred_constant_vtbl = {
     &pred_constant_crossover, &pred_constant_mutate, &pred_constant_compute,
     &pred_constant_copy,      &pred_constant_free,   &pred_constant_init,
     &pred_constant_print,     &pred_constant_update, &pred_constant_size,
-    &pred_constant_save,      &pred_constant_load};
+    &pred_constant_save,      &pred_constant_load
+};

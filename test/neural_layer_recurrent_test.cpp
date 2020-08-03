@@ -24,20 +24,20 @@
 #include "../lib/doctest/doctest/doctest.h"
 
 extern "C" {
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <math.h>
-#include "../xcsf/xcsf.h"
-#include "../xcsf/utils.h"
-#include "../xcsf/param.h"
 #include "../xcsf/cl.h"
 #include "../xcsf/neural.h"
 #include "../xcsf/neural_activations.h"
 #include "../xcsf/neural_layer.h"
 #include "../xcsf/neural_layer_connected.h"
 #include "../xcsf/neural_layer_recurrent.h"
+#include "../xcsf/param.h"
+#include "../xcsf/utils.h"
+#include "../xcsf/xcsf.h"
+#include <math.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 }
 
 TEST_CASE("NEURAL_LAYER_RECURRENT")

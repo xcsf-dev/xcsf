@@ -80,4 +80,5 @@ static struct PredVtbl const pred_nlms_vtbl = {
     &pred_nlms_crossover, &pred_nlms_mutate, &pred_nlms_compute,
     &pred_nlms_copy,      &pred_nlms_free,   &pred_nlms_init,
     &pred_nlms_print,     &pred_nlms_update, &pred_nlms_size,
-    &pred_nlms_save,      &pred_nlms_load};
+    &pred_nlms_save,      &pred_nlms_load
+};

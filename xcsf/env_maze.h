@@ -71,4 +71,5 @@ env_maze_reset(const struct XCSF *xcsf);
 static struct EnvVtbl const env_maze_vtbl = {
     &env_maze_isreset,   &env_maze_multistep, &env_maze_execute,
     &env_maze_maxpayoff, &env_maze_get_state, &env_maze_free,
-    &env_maze_reset};
+    &env_maze_reset
+};

@@ -89,4 +89,5 @@ static struct CondVtbl const cond_ternary_vtbl = {
     &cond_ternary_mutate,    &cond_ternary_copy,    &cond_ternary_cover,
     &cond_ternary_free,      &cond_ternary_init,    &cond_ternary_print,
     &cond_ternary_update,    &cond_ternary_size,    &cond_ternary_save,
-    &cond_ternary_load};
+    &cond_ternary_load
+};

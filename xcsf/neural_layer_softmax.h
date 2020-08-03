@@ -73,4 +73,5 @@ static struct LayerVtbl const layer_softmax_vtbl = {
     &neural_layer_softmax_rand,    &neural_layer_softmax_print,
     &neural_layer_softmax_update,  &neural_layer_softmax_backward,
     &neural_layer_softmax_forward, &neural_layer_softmax_output,
-    &neural_layer_softmax_save,    &neural_layer_softmax_load};
+    &neural_layer_softmax_save,    &neural_layer_softmax_load
+};

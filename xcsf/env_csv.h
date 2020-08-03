@@ -64,4 +64,5 @@ env_csv_reset(const struct XCSF *xcsf);
 static struct EnvVtbl const env_csv_vtbl = {
     &env_csv_isreset,   &env_csv_multistep, &env_csv_execute,
     &env_csv_maxpayoff, &env_csv_get_state, &env_csv_free,
-    &env_csv_reset};
+    &env_csv_reset
+};

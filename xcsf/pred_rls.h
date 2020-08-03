@@ -81,4 +81,5 @@ pred_rls_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
 static struct PredVtbl const pred_rls_vtbl = {
     &pred_rls_crossover, &pred_rls_mutate, &pred_rls_compute, &pred_rls_copy,
     &pred_rls_free,      &pred_rls_init,   &pred_rls_print,   &pred_rls_update,
-    &pred_rls_size,      &pred_rls_save,   &pred_rls_load};
+    &pred_rls_size,      &pred_rls_save,   &pred_rls_load
+};

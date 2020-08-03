@@ -24,20 +24,20 @@
 #include "../lib/doctest/doctest/doctest.h"
 
 extern "C" {
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <math.h>
-#include "../xcsf/xcsf.h"
-#include "../xcsf/utils.h"
-#include "../xcsf/param.h"
 #include "../xcsf/cl.h"
 #include "../xcsf/neural.h"
 #include "../xcsf/neural_activations.h"
 #include "../xcsf/neural_layer.h"
 #include "../xcsf/neural_layer_connected.h"
 #include "../xcsf/neural_layer_lstm.h"
+#include "../xcsf/param.h"
+#include "../xcsf/utils.h"
+#include "../xcsf/xcsf.h"
+#include <math.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 }
 
 TEST_CASE("NEURAL_LAYER_LSTM")
@@ -65,10 +65,9 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     CHECK_EQ(l->n_weights, 8);
     /* test forward passing input */
     const double x[1] = { 0.90598097 };
-    const double orig_weights[8] = {
-        0.1866107, -0.6872276,  1.0366809, -0.02821708, -0.21004653,
-        0.4503114,  0.49545765,  0.71247584
-    };
+    const double orig_weights[8] = { 0.1866107,   -0.6872276,  1.0366809,
+                                     -0.02821708, -0.21004653, 0.4503114,
+                                     0.49545765,  0.71247584 };
     const double orig_biases[4] = { 0, 1, 0, 0 };
     l->ui->weights[0] = orig_weights[0];
     l->uf->weights[0] = orig_weights[1];

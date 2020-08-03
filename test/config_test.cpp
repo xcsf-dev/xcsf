@@ -24,15 +24,15 @@
 #include "../lib/doctest/doctest/doctest.h"
 
 extern "C" {
+#include "../xcsf/config.h"
+#include "../xcsf/param.h"
+#include "../xcsf/utils.h"
+#include "../xcsf/xcsf.h"
+#include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
-#include <math.h>
-#include "../xcsf/xcsf.h"
-#include "../xcsf/utils.h"
-#include "../xcsf/param.h"
-#include "../xcsf/config.h"
 }
 
 TEST_CASE("XCSF")

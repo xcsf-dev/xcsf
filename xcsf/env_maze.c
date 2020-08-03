@@ -49,8 +49,8 @@
 #include "utils.h"
 
 #define MAX_PAYOFF (1.) //!< The payoff provided at a food position
-static const int x_moves[] = {0, +1, +1, +1, 0, -1, -1, -1}; //!< x-axis moves
-static const int y_moves[] = {-1, -1, 0, +1, +1, +1, 0, -1}; //!< y-axis moves
+static const int x_moves[] = { 0, +1, +1, +1, 0, -1, -1, -1 }; //!< x-axis moves
+static const int y_moves[] = { -1, -1, 0, +1, +1, +1, 0, -1 }; //!< y-axis moves
 
 /**
  * @brief Returns a float encoding of a sensor perception.

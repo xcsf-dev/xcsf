@@ -88,4 +88,5 @@ static struct CondVtbl const cond_rectangle_vtbl = {
     &cond_rectangle_mutate,    &cond_rectangle_copy,    &cond_rectangle_cover,
     &cond_rectangle_free,      &cond_rectangle_init,    &cond_rectangle_print,
     &cond_rectangle_update,    &cond_rectangle_size,    &cond_rectangle_save,
-    &cond_rectangle_load};
+    &cond_rectangle_load
+};

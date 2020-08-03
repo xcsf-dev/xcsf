@@ -64,4 +64,5 @@ env_mux_reset(const struct XCSF *xcsf);
 static struct EnvVtbl const env_mux_vtbl = {
     &env_mux_isreset,   &env_mux_multistep, &env_mux_execute,
     &env_mux_maxpayoff, &env_mux_get_state, &env_mux_free,
-    &env_mux_reset};
+    &env_mux_reset
+};

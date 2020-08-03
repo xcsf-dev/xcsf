@@ -91,7 +91,8 @@ static struct CondVtbl const rule_neural_cond_vtbl = {
     &rule_neural_cond_free,      &rule_neural_cond_init,
     &rule_neural_cond_print,     &rule_neural_cond_update,
     &rule_neural_cond_size,      &rule_neural_cond_save,
-    &rule_neural_cond_load};
+    &rule_neural_cond_load
+};
 
 _Bool
 rule_neural_act_crossover(const struct XCSF *xcsf, const struct CL *c1,
@@ -144,4 +145,5 @@ static struct ActVtbl const rule_neural_act_vtbl = {
     &rule_neural_act_copy,    &rule_neural_act_cover,
     &rule_neural_act_free,    &rule_neural_act_init,
     &rule_neural_act_print,   &rule_neural_act_update,
-    &rule_neural_act_save,    &rule_neural_act_load};
+    &rule_neural_act_save,    &rule_neural_act_load
+};
