@@ -154,20 +154,21 @@ cond_rectangle_crossover(const struct XCSF *xcsf, const struct CL *c1,
 _Bool
 cond_rectangle_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
-    const struct COND_RECTANGLE *cond = c->cond;
-    sam_adapt(xcsf, cond->mu, N_MU);
     _Bool changed = false;
+    const struct COND_RECTANGLE *cond = c->cond;
+    double *center = cond->center;
+    double *spread = cond->spread;
+    sam_adapt(xcsf, cond->mu, N_MU);
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        double orig = cond->center[i];
-        cond->center[i] += rand_normal(0, cond->mu[0]);
-        cond->center[i] =
-            clamp(cond->center[i], xcsf->COND_MIN, xcsf->COND_MAX);
-        if (orig != cond->center[i]) {
+        double orig = center[i];
+        center[i] += rand_normal(0, cond->mu[0]);
+        center[i] = clamp(center[i], xcsf->COND_MIN, xcsf->COND_MAX);
+        if (orig != center[i]) {
             changed = true;
         }
-        orig = cond->spread[i];
-        cond->spread[i] += rand_normal(0, cond->mu[0]);
-        if (orig != cond->spread[i]) {
+        orig = spread[i];
+        spread[i] += rand_normal(0, cond->mu[0]);
+        if (orig != spread[i]) {
             changed = true;
         }
     }
