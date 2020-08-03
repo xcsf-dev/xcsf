@@ -38,13 +38,13 @@ matrix:
     - os: linux
       compiler: gcc
       addons: &gcc6
-      apt:
-        packages:
-          - 'doxygen'
-          - 'doxygen-gui'
-          - 'doxygen-doc'
-          - 'doxygen-latex'
-          - 'graphviz'
+        apt:
+          packages:
+            - 'doxygen'
+            - 'doxygen-gui'
+            - 'doxygen-doc'
+            - 'doxygen-latex'
+            - 'graphviz'
       env: DOXYGEN="ON" BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
       deploy:
         provider: pages
