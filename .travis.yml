@@ -39,7 +39,7 @@ matrix:
       compiler: gcc
       addons: &gcc6
         apt:
-          packages: ['doxygen', 'graphviz']
+          packages: ['doxygen', 'doxygen-latex', 'graphviz']
       env: DOXYGEN="ON" BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
       deploy:
         provider: pages
