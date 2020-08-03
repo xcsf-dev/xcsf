@@ -27,7 +27,7 @@
 #include "loss.h"
 
 #ifdef PARALLEL
-#include <omp.h>
+    #include <omp.h>
 #endif
 
 /**

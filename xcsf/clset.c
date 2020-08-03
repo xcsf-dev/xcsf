@@ -337,8 +337,8 @@ clset_match(struct XCSF *xcsf, const double *x)
         blist[i] = iter;
         iter = iter->next;
     }
-// update current matching conditions setting m flags in parallel
-#pragma omp parallel for
+    // update current matching conditions setting m flags in parallel
+    #pragma omp parallel for
     for (int i = 0; i < xcsf->pset.size; ++i) {
         cl_match(xcsf, blist[i]->cl, x);
     }
@@ -429,7 +429,7 @@ clset_update(struct XCSF *xcsf, struct SET *set, const double *x,
         blist[i] = iter;
         iter = iter->next;
     }
-#pragma omp parallel for
+    #pragma omp parallel for
     for (int i = 0; i < set->size; ++i) {
         cl_update(xcsf, blist[i]->cl, x, y, set->num, cur);
     }

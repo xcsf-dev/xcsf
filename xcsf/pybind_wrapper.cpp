@@ -22,7 +22,7 @@
  */
 
 #ifdef _WIN32 // Try to work around https://bugs.python.org/issue11566
-#define _hypot hypot
+    #define _hypot hypot
 #endif
 
 #include "../lib/pybind11/include/pybind11/numpy.h"
@@ -284,8 +284,8 @@ class XCS
             (double *) malloc(sizeof(double) * n_samples * xcs.y_dim);
         xcs_supervised_predict(&xcs, input, output, n_samples);
         // return numpy array
-        return py::array_t<double>(std::vector<ptrdiff_t>{n_samples, xcs.y_dim},
-                                   output);
+        return py::array_t<double>(
+            std::vector<ptrdiff_t>{ n_samples, xcs.y_dim }, output);
     }
 
     double
