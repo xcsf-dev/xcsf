@@ -347,10 +347,12 @@ neural_print(const struct XCSF *xcsf, const struct NET *net,
              _Bool print_weights)
 {
     const struct LLIST *iter = net->tail;
-    for (int i = 0; iter != NULL; ++i) {
+    int i = 0;
+    while (iter != NULL) {
         printf("layer (%d) ", i);
         layer_print(xcsf, iter->layer, print_weights);
         iter = iter->prev;
+        ++i;
     }
 }
 
