@@ -35,3 +35,4 @@ DOT_GRAPH_MAX_NODES    = 200
 MAX_DOT_GRAPH_DEPTH    = 50
 FULL_PATH_NAMES        = NO
 USE_MATHJAX            = YES
+MATHJAX_RELPATH        = https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/
