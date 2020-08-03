@@ -37,11 +37,79 @@
 #define MUL (2)
 #define DIV (3)
 
+/**
+ * @brief Traverses a GP tree.
+ * @param tree The tree to traverse.
+ * @param p The position from which to traverse.
+ * @return The position after traversal.
+ */
 static int
-tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth);
+tree_traverse(int *tree, int p)
+{
+    if (tree[p] >= GP_NUM_FUNC) {
+        ++p;
+        return (p);
+    }
+    switch (tree[p]) {
+        case ADD:
+        case SUB:
+        case MUL:
+        case DIV:
+            ++p;
+            return (tree_traverse(tree, tree_traverse(tree, p)));
+        default:
+            printf("tree_traverse() invalid function: %d\n", tree[p]);
+            exit(EXIT_FAILURE);
+    }
+}
 
+/**
+ * @brief Grows a random GP tree of specified max length and depth.
+ * @details Only used to create an initial tree.
+ * @param xcsf The XCSF data structure.
+ * @param buffer Buffer to hold the flattened GP tree generated.
+ * @param p The position from which to traverse (start at 0).
+ * @param max Maximum tree length.
+ * @param depth Maximum tree depth.
+ * @return The position after traversal (i.e., tree length).
+ */
 static int
-tree_traverse(int *tree, int p);
+tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth)
+{
+    int prim = irand_uniform(0, 2);
+    if (p >= max) {
+        return (-1);
+    }
+    if (p == 0) {
+        prim = 1;
+    }
+    // add constant or external input
+    if (prim == 0 || depth == 0) {
+        prim = irand_uniform(GP_NUM_FUNC,
+                             GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
+        buffer[p] = prim;
+        return (p + 1);
+    }
+    // add new function
+    else {
+        prim = irand_uniform(0, GP_NUM_FUNC);
+        switch (prim) {
+            case ADD:
+            case SUB:
+            case MUL:
+            case DIV:
+                buffer[p] = prim;
+                int one_child = tree_grow(xcsf, buffer, p + 1, max, depth - 1);
+                if (one_child < 0) {
+                    return (-1);
+                }
+                return (tree_grow(xcsf, buffer, one_child, max, depth - 1));
+            default:
+                printf("tree_grow() invalid function: %d\n", prim);
+                exit(EXIT_FAILURE);
+        }
+    }
+}
 
 /**
  * @brief Initialises the constants shared among all GP trees.
@@ -94,55 +162,6 @@ tree_free(const struct XCSF *xcsf, const struct GP_TREE *gp)
 {
     (void) xcsf;
     free(gp->tree);
-}
-
-/**
- * @brief Grows a random GP tree of specified max length and depth.
- * @param xcsf The XCSF data structure.
- * @param buffer Buffer to hold the flattened GP tree generated.
- * @param p The position from which to traverse (start at 0).
- * @param max Maximum tree length.
- * @param depth Maximum tree depth.
- * @return The position after traversal (i.e., tree length).
- *
- * @details Only used to create an initial tree.
- */
-static int
-tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth)
-{
-    int prim = irand_uniform(0, 2);
-    if (p >= max) {
-        return (-1);
-    }
-    if (p == 0) {
-        prim = 1;
-    }
-    // add constant or external input
-    if (prim == 0 || depth == 0) {
-        prim = irand_uniform(GP_NUM_FUNC,
-                             GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
-        buffer[p] = prim;
-        return (p + 1);
-    }
-    // add new function
-    else {
-        prim = irand_uniform(0, GP_NUM_FUNC);
-        switch (prim) {
-            case ADD:
-            case SUB:
-            case MUL:
-            case DIV:
-                buffer[p] = prim;
-                int one_child = tree_grow(xcsf, buffer, p + 1, max, depth - 1);
-                if (one_child < 0) {
-                    return (-1);
-                }
-                return (tree_grow(xcsf, buffer, one_child, max, depth - 1));
-            default:
-                printf("tree_grow() invalid function: %d\n", prim);
-                exit(EXIT_FAILURE);
-        }
-    }
 }
 
 /**
@@ -316,32 +335,6 @@ tree_mutate(const struct XCSF *xcsf, struct GP_TREE *gp)
         }
     }
     return changed;
-}
-
-/**
- * @brief Traverses a GP tree.
- * @param tree The tree to traverse.
- * @param p The position from which to traverse.
- * @return The position after traversal.
- */
-static int
-tree_traverse(int *tree, int p)
-{
-    if (tree[p] >= GP_NUM_FUNC) {
-        ++p;
-        return (p);
-    }
-    switch (tree[p]) {
-        case ADD:
-        case SUB:
-        case MUL:
-        case DIV:
-            ++p;
-            return (tree_traverse(tree, tree_traverse(tree, p)));
-        default:
-            printf("tree_traverse() invalid function: %d\n", tree[p]);
-            exit(EXIT_FAILURE);
-    }
 }
 
 /**
