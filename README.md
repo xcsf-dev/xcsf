@@ -39,6 +39,39 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
 
 *******************************************************************************
 
+## XCSF Overview
+
+Each XCSF classifier *cl* consists of:
+
+- a condition structure *cl.C* that determines whether the rule matches input *x&#8407;*
+- an action structure *cl.A* that selects an action *a* to be performed for a given *x&#8407;*
+- a prediction structure *cl.P* that computes the expected payoff for performing *a* upon receipt of *x&#8407;*
+
+In addition, each classifier maintains a measure of its experience *exp*, error &epsilon;, fitness *F*, numerosity *num*, average participated set size *s*, and the time stamp *ts* of the last EA invocation on a participating set.
+
+For each learning trial, XCSF constructs a match set [M] composed of classifiers in the population set [P] whose *cl.C* matches *x&#8407;*. If [M] contains fewer than *&theta;*<sub>mna</sub> actions, a covering mechanism generates classifiers with matching *cl.C* and random action *a*. For each possible action *a<sub>k</sub>* in [M], XCSF estimates the expected payoff by computing the fitness-weighted average as a system prediction *P*(*a<sub>k</sub>*). That is, for each action *k* and classifier prediction *p<sub>j</sub>* in [M], the system prediction *P<sub>k</sub> = &#8721;<sub>j</sub> F<sub>j</sub>p<sub>j</sub> / &#8721;<sub>j</sub>F<sub>j</sub>*. A system action is then randomly or probabilistically selected during exploration, and the highest payoff action *P<sub>k</sub>* used during exploitation. Classifiers in [M] advocating the chosen action are subsequently used to construct an action set [A]. The action is then performed and a scalar reward *r* &isin; &#8477; received, along with the next sensory input.
+
+In a single-step problem, each classifier *cl<sub>j</sub>* &isin; [A] has its experience incremented and fitness, error, and set size updated using the Widrow-Hoff delta rule with learning rate *&beta;* &isin; [0,1] as follows.
+
+- Error: *&epsilon;<sub>j</sub> &larr; &epsilon;<sub>j</sub> + &beta;*(*|r - p<sub>j</sub>| - &epsilon;<sub>j</sub>*)
+- Accuracy: *&kappa;<sub>j</sub>* =
+    * 1 if *&epsilon;<sub>j</sub> < &epsilon;<sub>0</sub>*
+    * *&alpha;*(*&epsilon;<sub>j</sub> / &epsilon;<sub>0</sub>*)*<sup>-&nu;</sub>* otherwise.
+<br>With target error threshold *&epsilon;<sub>0</sub>* and accuracy fall-off rate *&alpha;* &isin; [0,1], *&nu;* &isin; &#8469;<sub>&gt;0</sub>.
+- Relative accuracy: *&kappa;<sub>j</sub>' = (&kappa;<sub>j</sub> &centerdot; num<sub>j</sub>) / &#8721;<sub>j</sub> &kappa;<sub>j</sub> &centerdot; num<sub>j</sub>*
+- Fitness: *F<sub>j</sub> &larr; F<sub>j</sub> + &beta;*(*&kappa;<sub>j</sub>' - F<sub>j</sub>*)
+- Set size estimate: *s<sub>j</sub> &larr; s<sub>j</sub> + &beta;*(|[A]| - *s<sub>j</sub>*)
+
+Thereafter, *cl.C*, *cl.A*, and *cl.P* are updated according to the representation adopted.
+
+The EA is applied to classifiers within [A] if the average time since its previous execution exceeds *&theta;*<sub>EA</sub>. Upon invocation, the *ts* of each classifier is updated. Two parents are chosen based on their fitness via roulette wheel selection and *&lambda;* number of offspring are created via crossover with probability *&chi;* and mutation with probability *&mu;*. Offspring parameters are initialised by setting the error and fitness to the parental average, and discounted by reduction parameters for error *&epsilon;<sub>R</sub>* and fitness *F<sub>R</sub>*. Offspring *exp* and *num* are set to one. If subsumption is enabled and the offspring are subsumed by either parent with sufficient accuracy (*&epsilon;<sub>j</sub>* &lt; *&epsilon;<sub>0</sub>*) and experience (*exp<sub>j</sub> &gt; &theta;*<sub>sub</sub>) it is not included in [P]; instead the parents' *num* is incremented. The resulting offspring are added to [P] and the maximum (micro-classifier) population size *N* is enforced by removing classifiers selected via roulette (or tournament) with the deletion vote.
+
+The deletion vote is set proportionally to the set size estimate *s*. However, the vote is increased by a factor *F&#773; / F<sub>j</sub>* for classifiers that are sufficiently experienced (*exp<sub>j</sub> &gt; &theta;*<sub>del</sub>) and with small fitness (*F<sub>j</sub> &lt; &delta;F&#773;*) where *F&#773;* is the [P] mean fitness, and typically *&delta;* = 0.1.
+
+In a multi-step problem, the previous action set [A]<sub>-1</sub> is instead updated and the EA may be run therein. For regression problems, a single (dummy) action is used such that [A] = [M] and *cl.P* is made directly accessible to the environment.
+
+A number of interacting pressures have been identified. A set pressure provides more frequent reproduction opportunities for more general rules. In opposition is a fitness pressure which represses the reproduction of inaccurate and over-general rules. Many forms of *cl.C*, *cl.A*, and *cl.P* have been used for classifier knowledge representation since the original ternary conditions, integer actions, and scalar predictions. Some of these are implemented here.
+
 ## Features
 
 Implements both [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning) via the updating of match set errors directly and [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) via the updating of action set predictions with an environment reward.
