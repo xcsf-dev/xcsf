@@ -53,7 +53,7 @@ For each learning trial, XCSF constructs a match set [M] composed of classifiers
 
 In a single-step problem, each classifier *cl<sub>j</sub>* &isin; [A] has its experience incremented and fitness, error, and set size updated using the Widrow-Hoff delta rule with learning rate *&beta;* &isin; [0,1] as follows.
 
-- Error: *&epsilon;<sub>j</sub> &larr; &epsilon;<sub>j</sub> + &beta;*(*|r - p<sub>j</sub>| - &epsilon;<sub>j</sub>*)
+- Error: *&epsilon;<sub>j</sub> &larr; &epsilon;<sub>j</sub> + &beta;*(|*r - p<sub>j</sub>*| - *&epsilon;<sub>j</sub>*)
 - Accuracy: *&kappa;<sub>j</sub>* =
     * 1 if *&epsilon;<sub>j</sub> < &epsilon;<sub>0</sub>*
     * *&alpha;*(*&epsilon;<sub>j</sub> / &epsilon;<sub>0</sub>*)*<sup>-&nu;</sub>* otherwise.
