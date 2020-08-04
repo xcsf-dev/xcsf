@@ -136,7 +136,6 @@ layer_add_neurons(struct LAYER *l, int N)
             } else {
                 l->weights[i] = rand_normal(0, 0.1);
                 l->weight_active[i] = true;
-                ++(l->n_active);
             }
             l->weight_updates[i] = 0;
         }
@@ -151,6 +150,7 @@ layer_add_neurons(struct LAYER *l, int N)
     l->n_weights = n_weights;
     l->n_outputs = n_outputs;
     l->n_biases = n_outputs;
+    layer_calc_n_active(l);
 }
 
 /**
