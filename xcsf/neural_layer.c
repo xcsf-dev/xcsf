@@ -185,6 +185,7 @@ layer_mutate_connectivity(struct LAYER *l, double mu)
         l->weights[r] = rand_normal(0, 0.1);
         l->weight_active[r] = true;
         ++(l->n_active);
+        mod = true;
     }
     return mod;
 }
