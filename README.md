@@ -58,7 +58,7 @@ In a single-step problem, each classifier *cl<sub>j</sub>* &isin; [A] has its ex
     * 1 if *&epsilon;<sub>j</sub> < &epsilon;<sub>0</sub>*
     * *&alpha;*(*&epsilon;<sub>j</sub> / &epsilon;<sub>0</sub>*)*<sup>-&nu;</sub>* otherwise.
 <br>With target error threshold *&epsilon;<sub>0</sub>* and accuracy fall-off rate *&alpha;* &isin; [0,1], *&nu;* &isin; &#8469;<sub>&gt;0</sub>.
-- Relative accuracy: *&kappa;<sub>j</sub>' = (&kappa;<sub>j</sub> &centerdot; num<sub>j</sub>) / &#8721;<sub>j</sub> &kappa;<sub>j</sub> &centerdot; num<sub>j</sub>*
+- Relative accuracy: *&kappa;<sub>j</sub>*' = (*&kappa;<sub>j</sub> &centerdot; num<sub>j</sub>*) / *&#8721;<sub>j</sub> &kappa;<sub>j</sub> &centerdot; num<sub>j</sub>*
 - Fitness: *F<sub>j</sub> &larr; F<sub>j</sub> + &beta;*(*&kappa;<sub>j</sub>' - F<sub>j</sub>*)
 - Set size estimate: *s<sub>j</sub> &larr; s<sub>j</sub> + &beta;*(|[A]| - *s<sub>j</sub>*)
 
