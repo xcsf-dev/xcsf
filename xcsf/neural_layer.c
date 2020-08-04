@@ -136,7 +136,7 @@ layer_add_neurons(struct LAYER *l, int N)
             } else {
                 l->weights[i] = rand_normal(0, 0.1);
                 l->weight_active[i] = true;
-                l->n_active += 1;
+                ++(l->n_active);
             }
             l->weight_updates[i] = 0;
         }
@@ -171,10 +171,10 @@ layer_mutate_connectivity(struct LAYER *l, double mu)
             l->weight_active[i] = !l->weight_active[i];
             if (l->weight_active[i]) {
                 l->weights[i] = rand_normal(0, 0.1);
-                l->n_active += 1;
+                ++(l->n_active);
             } else {
                 l->weights[i] = 0;
-                l->n_active -= 1;
+                --(l->n_active);
             }
             mod = true;
         }
@@ -184,7 +184,7 @@ layer_mutate_connectivity(struct LAYER *l, double mu)
         int r = irand_uniform(0, l->n_weights);
         l->weights[r] = rand_normal(0, 0.1);
         l->weight_active[r] = true;
-        l->n_active += 1;
+        ++(l->n_active);
     }
     return mod;
 }
@@ -320,7 +320,7 @@ layer_calc_n_active(struct LAYER *l)
     l->n_active = l->n_weights;
     for (int i = 0; i < l->n_weights; ++i) {
         if (l->weights[i] == 0) {
-            l->n_active -= 1;
+            --(l->n_active);
         }
     }
 }

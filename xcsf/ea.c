@@ -201,7 +201,7 @@ void
 ea(struct XCSF *xcsf, const struct SET *set)
 {
     // increase EA time
-    xcsf->time += 1;
+    ++(xcsf->time);
     // check if the EA should be run
     if (set->size == 0 || xcsf->time - clset_mean_time(set) < xcsf->THETA_EA) {
         return;
