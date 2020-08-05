@@ -288,9 +288,9 @@ neural_layer_convolutional_resize(const struct XCSF *xcsf, struct LAYER *l,
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->max_outputs = l->n_outputs;
     l->n_inputs = l->width * l->height * l->channels;
-    l->state = realloc(l->state, l->n_outputs * sizeof(double));
-    l->output = realloc(l->output, l->n_outputs * sizeof(double));
-    l->delta = realloc(l->delta, l->n_outputs * sizeof(double));
+    l->state = realloc(l->state, sizeof(double) * l->n_outputs);
+    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
+    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
     l->workspace_size = get_workspace_size(l);
 }
 

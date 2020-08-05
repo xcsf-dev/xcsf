@@ -201,9 +201,9 @@ neural_layer_maxpool_resize(const struct XCSF *xcsf, struct LAYER *l,
     l->out_c = c;
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->max_outputs = l->n_outputs;
-    l->indexes = realloc(l->indexes, l->n_outputs * sizeof(int));
-    l->output = realloc(l->output, l->n_outputs * sizeof(double));
-    l->delta = realloc(l->delta, l->n_outputs * sizeof(double));
+    l->indexes = realloc(l->indexes, sizeof(int) * l->n_outputs);
+    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
+    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
 }
 
 double *

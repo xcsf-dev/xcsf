@@ -165,9 +165,9 @@ neural_layer_dropout_resize(const struct XCSF *xcsf, struct LAYER *l,
     l->n_inputs = prev->n_outputs;
     l->n_outputs = prev->n_outputs;
     l->max_outputs = prev->n_outputs;
-    l->state = realloc(l->state, l->n_outputs * sizeof(double));
-    l->output = realloc(l->output, l->n_outputs * sizeof(double));
-    l->delta = realloc(l->delta, l->n_outputs * sizeof(double));
+    l->state = realloc(l->state, sizeof(double) * l->n_outputs);
+    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
+    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
 }
 
 double *
