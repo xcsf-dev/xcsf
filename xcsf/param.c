@@ -350,7 +350,7 @@ param_save_ea(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->EA_SELECT_TYPE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->EA_SELECT_SIZE, sizeof(double), 1, fp);
     s += fwrite(&xcsf->THETA_EA, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->LAMBDA, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->LAMBDA, sizeof(int), 1, fp);
     s += fwrite(&xcsf->P_CROSSOVER, sizeof(double), 1, fp);
     s += fwrite(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
     return s;
@@ -369,7 +369,7 @@ param_load_ea(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->EA_SELECT_TYPE, sizeof(int), 1, fp);
     s += fread(&xcsf->EA_SELECT_SIZE, sizeof(double), 1, fp);
     s += fread(&xcsf->THETA_EA, sizeof(double), 1, fp);
-    s += fread(&xcsf->LAMBDA, sizeof(double), 1, fp);
+    s += fread(&xcsf->LAMBDA, sizeof(int), 1, fp);
     s += fread(&xcsf->P_CROSSOVER, sizeof(double), 1, fp);
     s += fread(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
     return s;
