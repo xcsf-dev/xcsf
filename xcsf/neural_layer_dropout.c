@@ -82,6 +82,10 @@ struct LAYER *
 neural_layer_dropout_copy(const struct XCSF *xcsf, const struct LAYER *src)
 {
     (void) xcsf;
+    if (src->layer_type != DROPOUT) {
+        printf("neural_layer_dropout_copy(): incorrect source layer type\n");
+        exit(EXIT_FAILURE);
+    }
     struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;

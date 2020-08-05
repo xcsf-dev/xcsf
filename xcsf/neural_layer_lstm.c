@@ -249,6 +249,10 @@ neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
 struct LAYER *
 neural_layer_lstm_copy(const struct XCSF *xcsf, const struct LAYER *src)
 {
+    if (src->layer_type != LSTM) {
+        printf("neural_layer_lstm_copy(): incorrect source layer type\n");
+        exit(EXIT_FAILURE);
+    }
     struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;

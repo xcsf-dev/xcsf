@@ -152,6 +152,10 @@ neural_layer_convolutional_copy(const struct XCSF *xcsf,
                                 const struct LAYER *src)
 {
     (void) xcsf;
+    if (src->layer_type != CONVOLUTIONAL) {
+        printf("neural_layer_convolut_copy() incorrect source layer type\n");
+        exit(EXIT_FAILURE);
+    }
     struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
     l->layer_type = src->layer_type;
