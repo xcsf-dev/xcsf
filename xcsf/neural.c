@@ -218,18 +218,19 @@ neural_mutate(const struct XCSF *xcsf, const struct NET *net)
     const struct LAYER *prev = NULL;
     const struct LLIST *iter = net->tail;
     while (iter != NULL) {
+        int orig_outputs = iter->layer->n_outputs;
         // if the previous layer has grown or shrunk this layer must be resized
         if (do_resize) {
             layer_resize(xcsf, iter->layer, prev);
+            do_resize = false;
         }
-        // mutate this layer and check if it changed size
-        do_resize = false;
-        int orig_outputs = iter->layer->n_outputs;
+        // mutate this layer
         if (layer_mutate(xcsf, iter->layer)) {
             mod = true;
-            if (iter->layer->n_outputs != orig_outputs) {
-                do_resize = true;
-            }
+        }
+        // check if this layer changed size
+        if (iter->layer->n_outputs != orig_outputs) {
+            do_resize = true;
         }
         // move to next layer
         prev = iter->layer;
