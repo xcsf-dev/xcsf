@@ -41,7 +41,7 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
 
 ## XCSF Overview
 
-XCSF maintains a population of classifiers where each classifier *cl* consists of:
+XCSF is [rule-based](https://en.wikipedia.org/wiki/Rule-based_machine_learning) and maintains a population of classifiers where each classifier *cl* consists of:
 
 - a condition structure *cl.C* that determines whether the rule matches input *x&#8407;*
 - an action structure *cl.A* that selects an action *a* to be performed for a given *x&#8407;*
