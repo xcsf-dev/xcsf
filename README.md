@@ -53,14 +53,14 @@ For each step within a learning trial, XCSF constructs a match set [M] composed 
 
 In a single-step problem, each classifier *cl<sub>j</sub>* &isin; [A] has its experience incremented and fitness, error, and set size updated using the Widrow-Hoff [delta rule](https://en.wikipedia.org/wiki/Delta_rule) with learning rate *&beta;* &isin; [0,1] as follows.
 
-- Error: *&epsilon;<sub>j</sub> &larr; &epsilon;<sub>j</sub> + &beta;* (| *r* - *p<sub>j</sub>* | - *&epsilon;<sub>j</sub>*)
+- Error: *&epsilon;<sub>j</sub> &larr; &epsilon;<sub>j</sub> + &beta;* (| *r* &minus; *p<sub>j</sub>* | &minus; *&epsilon;<sub>j</sub>*)
 - Accuracy: *&kappa;<sub>j</sub>* =
     * 1 if *&epsilon;<sub>j</sub> < &epsilon;<sub>0</sub>*
     * *&alpha;* ( *&epsilon;<sub>j</sub> / &epsilon;<sub>0</sub>* )<sup>&minus;*&nu;*</sup> otherwise.
 <br>With target error threshold *&epsilon;<sub>0</sub>* and accuracy offset *&alpha;* &isin; [0,1], and slope *&nu;*.
 - Relative accuracy: *&kappa;<sub>j</sub>'* = (*&kappa;<sub>j</sub> &middot; num<sub>j</sub>*) / *&sum;<sub>j</sub> &kappa;<sub>j</sub> &middot; num<sub>j</sub>*
-- Fitness: *F<sub>j</sub> &larr; F<sub>j</sub> + &beta;*(*&kappa;<sub>j</sub>' - F<sub>j</sub>*)
-- Set size estimate: *s<sub>j</sub> &larr; s<sub>j</sub> + &beta;*(|[A]| - *s<sub>j</sub>*)
+- Fitness: *F<sub>j</sub> &larr; F<sub>j</sub> + &beta;*(*&kappa;<sub>j</sub>' &minus; F<sub>j</sub>*)
+- Set size estimate: *s<sub>j</sub> &larr; s<sub>j</sub> + &beta;*(|[A]| &minus; *s<sub>j</sub>*)
 
 Thereafter, *cl.C*, *cl.A*, and *cl.P* are updated according to the representation adopted.
 
