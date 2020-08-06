@@ -51,7 +51,7 @@ In addition, each classifier maintains a measure of its experience *exp*, error 
 
 For each step within a learning trial, XCSF constructs a match set [M] composed of classifiers in the population set [P] whose *cl.C* matches ***x***. If [M] contains fewer than *&theta;*<sub>mna</sub> actions, a covering mechanism generates classifiers with matching *cl.C* and random *cl.A*.
 
-For each possible action *a<sub>k</sub>* in [M], XCSF estimates the expected payoff by computing the fitness-weighted average system prediction *P*(*a<sub>k</sub>*). That is, for each action *k* and classifier prediction *p<sub>j</sub>* in [M], the system prediction *P<sub>k</sub> = &sum;<sub>j</sub> F<sub>j</sub>p<sub>j</sub> / &sum;<sub>j</sub>F<sub>j</sub>*.
+For each possible action *a<sub>k</sub>* in [M], XCSF estimates the expected payoff by computing the fitness-weighted average prediction *P*(*a<sub>k</sub>*). That is, for each action *k* and classifier prediction *p<sub>j</sub>* in [M], the system prediction *P<sub>k</sub> = &sum;<sub>j</sub> F<sub>j</sub>p<sub>j</sub> / &sum;<sub>j</sub>F<sub>j</sub>*.
 
 A system action is then randomly or probabilistically selected during exploration, and the highest payoff action *P<sub>k</sub>* used during exploitation. Classifiers in [M] advocating the chosen action are subsequently used to construct an action set [A]. The action is then performed and a scalar reward *r* &isin; &real; received, along with the next sensory input.
 
