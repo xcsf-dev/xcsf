@@ -126,13 +126,14 @@ xcsf_load(struct XCSF *xcsf, const char *fname)
 void
 xcsf_pred_expand(const struct XCSF *xcsf)
 {
-    for (const struct CLIST *iter = xcsf->pset.list; iter != NULL;
-         iter = iter->next) {
+    const struct CLIST *iter = xcsf->pset.list;
+    while (iter != NULL) {
         pred_neural_expand(xcsf, iter->cl);
         iter->cl->fit = xcsf->INIT_FITNESS;
         iter->cl->err = xcsf->INIT_ERROR;
         iter->cl->exp = 0;
         iter->cl->time = xcsf->time;
+        iter = iter->next;
     }
 }
 
@@ -149,8 +150,8 @@ xcsf_ae_to_classifier(struct XCSF *xcsf, int y_dim, int n_del)
     param_set_y_dim(xcsf, y_dim);
     param_set_loss_func(xcsf, 5); // one-hot encoding error
     pa_init(xcsf);
-    for (const struct CLIST *iter = xcsf->pset.list; iter != NULL;
-         iter = iter->next) {
+    const struct CLIST *iter = xcsf->pset.list;
+    while (iter != NULL) {
         free(iter->cl->prediction);
         iter->cl->prediction = calloc(xcsf->y_dim, sizeof(double));
         pred_neural_ae_to_classifier(xcsf, iter->cl, n_del);
@@ -158,5 +159,6 @@ xcsf_ae_to_classifier(struct XCSF *xcsf, int y_dim, int n_del)
         iter->cl->err = xcsf->INIT_ERROR;
         iter->cl->exp = 0;
         iter->cl->time = xcsf->time;
+        iter = iter->next;
     }
 }
