@@ -54,7 +54,7 @@ param_print_general(const struct XCSF *xcsf)
 {
     printf("OMP_NUM_THREADS=%d", xcsf->OMP_NUM_THREADS);
     printf(", POP_INIT=");
-    xcsf->POP_INIT == true ? printf("true") : printf("false");
+    xcsf->POP_INIT ? printf("true") : printf("false");
     printf(", MAX_TRIALS=%d", xcsf->MAX_TRIALS);
     printf(", PERF_TRIALS=%d", xcsf->PERF_TRIALS);
     printf(", POP_SIZE=%d", xcsf->POP_SIZE);
@@ -140,7 +140,7 @@ param_print_cl_general(const struct XCSF *xcsf)
     printf(", FIT_REDUC=%f", xcsf->FIT_REDUC);
     printf(", M_PROBATION=%d", xcsf->M_PROBATION);
     printf(", STATEFUL=");
-    xcsf->STATEFUL == true ? printf("true") : printf("false");
+    xcsf->STATEFUL ? printf("true") : printf("false");
 }
 
 /**
@@ -269,9 +269,9 @@ static void
 param_print_subsumption(const struct XCSF *xcsf)
 {
     printf(", EA_SUBSUMPTION=");
-    xcsf->EA_SUBSUMPTION == true ? printf("true") : printf("false");
+    xcsf->EA_SUBSUMPTION ? printf("true") : printf("false");
     printf(", SET_SUBSUMPTION=");
-    xcsf->SET_SUBSUMPTION == true ? printf("true") : printf("false");
+    xcsf->SET_SUBSUMPTION ? printf("true") : printf("false");
     printf(", THETA_SUB=%d", xcsf->THETA_SUB);
 }
 
@@ -424,13 +424,13 @@ param_print_cl_condition(const struct XCSF *xcsf)
     printf(", MAX_T=%d", xcsf->MAX_T);
     printf(", MAX_NEURON_GROW=%d", xcsf->MAX_NEURON_GROW);
     printf(", COND_EVOLVE_WEIGHTS=");
-    xcsf->COND_EVOLVE_WEIGHTS == true ? printf("true") : printf("false");
+    xcsf->COND_EVOLVE_WEIGHTS ? printf("true") : printf("false");
     printf(", COND_EVOLVE_NEURONS=");
-    xcsf->COND_EVOLVE_NEURONS == true ? printf("true") : printf("false");
+    xcsf->COND_EVOLVE_NEURONS ? printf("true") : printf("false");
     printf(", COND_EVOLVE_FUNCTIONS=");
-    xcsf->COND_EVOLVE_FUNCTIONS == true ? printf("true") : printf("false");
+    xcsf->COND_EVOLVE_FUNCTIONS ? printf("true") : printf("false");
     printf(", COND_EVOLVE_CONNECTIVITY=");
-    xcsf->COND_EVOLVE_CONNECTIVITY == true ? printf("true") : printf("false");
+    xcsf->COND_EVOLVE_CONNECTIVITY ? printf("true") : printf("false");
     printf(", COND_NUM_NEURONS=[");
     for (int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
         printf("%d;", xcsf->COND_NUM_NEURONS[i]);
@@ -555,23 +555,23 @@ param_print_cl_prediction(const struct XCSF *xcsf)
 {
     printf(", PRED_TYPE=%d", xcsf->PRED_TYPE);
     printf(", PRED_EVOLVE_ETA=");
-    xcsf->PRED_EVOLVE_ETA == true ? printf("true") : printf("false");
+    xcsf->PRED_EVOLVE_ETA ? printf("true") : printf("false");
     printf(", PRED_ETA=%f", xcsf->PRED_ETA);
     printf(", PRED_RESET=");
-    xcsf->PRED_RESET == true ? printf("true") : printf("false");
+    xcsf->PRED_RESET ? printf("true") : printf("false");
     printf(", PRED_X0=%f", xcsf->PRED_X0);
     printf(", PRED_RLS_SCALE_FACTOR=%f", xcsf->PRED_RLS_SCALE_FACTOR);
     printf(", PRED_RLS_LAMBDA=%f", xcsf->PRED_RLS_LAMBDA);
     printf(", PRED_EVOLVE_WEIGHTS=");
-    xcsf->PRED_EVOLVE_WEIGHTS == true ? printf("true") : printf("false");
+    xcsf->PRED_EVOLVE_WEIGHTS ? printf("true") : printf("false");
     printf(", PRED_EVOLVE_NEURONS=");
-    xcsf->PRED_EVOLVE_NEURONS == true ? printf("true") : printf("false");
+    xcsf->PRED_EVOLVE_NEURONS ? printf("true") : printf("false");
     printf(", PRED_EVOLVE_FUNCTIONS=");
-    xcsf->PRED_EVOLVE_FUNCTIONS == true ? printf("true") : printf("false");
+    xcsf->PRED_EVOLVE_FUNCTIONS ? printf("true") : printf("false");
     printf(", PRED_EVOLVE_CONNECTIVITY=");
-    xcsf->PRED_EVOLVE_CONNECTIVITY == true ? printf("true") : printf("false");
+    xcsf->PRED_EVOLVE_CONNECTIVITY ? printf("true") : printf("false");
     printf(", PRED_SGD_WEIGHTS=");
-    xcsf->PRED_SGD_WEIGHTS == true ? printf("true") : printf("false");
+    xcsf->PRED_SGD_WEIGHTS ? printf("true") : printf("false");
     printf(", PRED_MOMENTUM=%f", xcsf->PRED_MOMENTUM);
     printf(", PRED_NUM_NEURONS=[");
     for (int i = 0; i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; ++i) {
