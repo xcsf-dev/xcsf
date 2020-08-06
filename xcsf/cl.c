@@ -185,7 +185,7 @@ cl_update(const struct XCSF *xcsf, struct CL *c, const double *x,
 {
     ++(c->exp);
     // propagate inputs for the previous state update
-    if (cur == false) {
+    if (!cur) {
         cl_predict(xcsf, c, x);
     }
     cl_update_err(xcsf, c, y);
