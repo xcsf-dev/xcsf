@@ -58,9 +58,8 @@ rule_neural_cond_init(const struct XCSF *xcsf, struct CL *c)
     // hidden layers
     uint32_t lopt = rule_neural_lopt(xcsf);
     struct LAYER *l;
-    int i = 0;
     int n_inputs = xcsf->x_dim;
-    while (i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0) {
+    for (int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
         int hinit = xcsf->COND_NUM_NEURONS[i];
         int hmax = xcsf->COND_MAX_NEURONS[i];
         if (hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {
@@ -68,18 +67,16 @@ rule_neural_cond_init(const struct XCSF *xcsf, struct CL *c)
         }
         int f = xcsf->COND_HIDDEN_ACTIVATION;
         l = neural_layer_recurrent_init(xcsf, n_inputs, hinit, hmax, f, lopt);
-        neural_layer_insert(xcsf, &new->net, l, i);
+        neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
         n_inputs = hinit;
-        ++i;
     }
     // output layer
     int f = xcsf->COND_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    int n =
-        (int) fmax(1, ceil(log2(xcsf->n_actions))); // number of action neurons
+    int n = (int) fmax(1, ceil(log2(xcsf->n_actions))); // n action neurons
     new->n_outputs = n;
     l = neural_layer_connected_init(xcsf, n_inputs, n + 1, n + 1, f, lopt);
-    neural_layer_insert(xcsf, &new->net, l, i);
+    neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
     c->cond = new;
 }
 
