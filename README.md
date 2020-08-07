@@ -80,6 +80,10 @@ In a multi-step problem, the previous action set [A]<sub>-1</sub> is instead upd
 
 A number of interacting pressures have been identified. A set pressure provides more frequent reproduction opportunities for more general rules. In opposition is a fitness pressure which represses the reproduction of inaccurate and over-general rules. Many forms of *cl.C*, *cl.A*, and *cl.P* have been used for classifier knowledge representation since the original ternary conditions, integer actions, and scalar predictions. Some of these are implemented here.
 
+<img src="schematic.svg">
+
+Schematic illustration of XCSF.
+
 *******************************************************************************
 
 ## Features

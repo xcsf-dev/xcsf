@@ -114,6 +114,7 @@ if(DOXYGEN_FOUND)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
+    file(COPY schematic.svg DESTINATION doc/html)
 endif()
 
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
