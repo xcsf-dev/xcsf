@@ -76,14 +76,14 @@ The resulting offspring are added to [P] and the maximum (micro-classifier) popu
 
 The deletion vote is set proportionally to the set size estimate *s*. However, the vote is increased by a factor *F̅ / F<sub>j</sub>* for classifiers that are sufficiently experienced (*exp<sub>j</sub> &gt; &theta;*<sub>del</sub>) and with small fitness (*F<sub>j</sub> &lt; &delta;F̅*) where *F̅* is the [P] mean fitness, and typically *&delta;* = 0.1.
 
-In a multi-step problem, the previous action set [A]<sub>-1</sub> is instead updated using a *&gamma;* &isin; [0,1] discounted reward (similar to [*Q*-learning](https://en.wikipedia.org/wiki/Q-learning)) and the EA may be run therein. For regression problems, a single (dummy) action is used such that [A] = [M] and *cl.P* is made directly accessible to the environment.
+In a multi-step problem, the previous action set [A]<sub>-1</sub> is instead updated using a *&gamma;* &isin; [0,1] discounted reward (similar to [*Q*-learning](https://en.wikipedia.org/wiki/Q-learning)) and the EA may be run therein.
 
 A number of interacting pressures have been identified. A set pressure provides more frequent reproduction opportunities for more general rules. In opposition is a fitness pressure which represses the reproduction of inaccurate and over-general rules. Many forms of *cl.C*, *cl.A*, and *cl.P* have been used for classifier knowledge representation since the original ternary conditions, integer actions, and scalar predictions. Some of these are implemented here.
 
 <img src="schematic.svg">
 
-Schematic illustration of XCSF.
-
+Schematic illustration of XCSF for reinforcement learning. For supervised learning, a single (dummy) action is used such that [A] = [M] and *cl.P* is made directly accessible to the environment.
+                                                                                                 
 *******************************************************************************
 
 ## Features
