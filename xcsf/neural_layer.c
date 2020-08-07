@@ -22,6 +22,7 @@
  */
 
 #include "neural_activations.h"
+#include "neural_layer_avgpool.h"
 #include "neural_layer_connected.h"
 #include "neural_layer_convolutional.h"
 #include "neural_layer_dropout.h"
@@ -63,6 +64,9 @@ layer_set_vptr(struct LAYER *l)
             break;
         case CONVOLUTIONAL:
             l->layer_vptr = &layer_convolutional_vtbl;
+            break;
+        case AVGPOOL:
+            l->layer_vptr = &layer_avgpool_vtbl;
             break;
         default:
             printf("Error setting layer vptr for type: %d\n", l->layer_type);

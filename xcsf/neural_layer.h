@@ -33,6 +33,7 @@
 #define LSTM (5)
 #define MAXPOOL (6)
 #define CONVOLUTIONAL (7)
+#define AVGPOOL (8)
 
 #define LAYER_EVOLVE_WEIGHTS (1 << 0)
 #define LAYER_EVOLVE_NEURONS (1 << 1)

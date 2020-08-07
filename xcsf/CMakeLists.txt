@@ -43,6 +43,7 @@ set(XCSF_SOURCES
     neural.c
     neural_activations.c
     neural_layer.c
+    neural_layer_avgpool.c
     neural_layer_connected.c
     neural_layer_convolutional.c
     neural_layer_dropout.c
@@ -96,6 +97,7 @@ set(XCSF_HEADERS
     neural.h
     neural_activations.h
     neural_layer.h
+    neural_layer_avgpool.h
     neural_layer_connected.h
     neural_layer_convolutional.h
     neural_layer_dropout.h

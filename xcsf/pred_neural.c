@@ -23,6 +23,7 @@
 
 #include "pred_neural.h"
 #include "neural_activations.h"
+#include "neural_layer_avgpool.h"
 #include "neural_layer_connected.h"
 #include "neural_layer_convolutional.h"
 #include "neural_layer_dropout.h"
