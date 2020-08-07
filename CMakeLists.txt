@@ -1,18 +1,18 @@
-# 
-#  Copyright (C) 2019--2020 Richard Preen <rpreen@gmail.com>
-# 
-#  This program is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or
-#  (at your option) any later version.
-# 
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-# 
-#  You should have received a copy of the GNU General Public License
-#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Copyright (C) 2019--2020 Richard Preen <rpreen@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program.  If not, see <http://www.gnu.org/licenses/>.
 
 cmake_minimum_required(VERSION 3.12)
 
@@ -73,10 +73,11 @@ if(PARALLEL)
     find_package(OpenMP REQUIRED)
     if(OpenMP_FOUND)
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL -DPARALLEL_MATCH -DPARALLEL_PRED -DPARALLEL_UPDATE")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPARALLEL -DPARALLEL_MATCH -DPARALLEL_PRED -DPARALLEL_UPDATE")
-        link_libraries(${OpenMP_C_LIBRARIES} ${OpenMP_CXX_LIBRARIES})
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_MATCH")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_PRED")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_UPDATE")
+        link_libraries(${OpenMP_C_LIBRARIES})
     endif()
 endif()
 
@@ -94,8 +95,8 @@ if(XCSF_PYLIB)
 endif()
 
 add_subdirectory(xcsf)
-file(COPY default.ini DESTINATION .)             
- 
+file(COPY default.ini DESTINATION .)
+
 option(ENABLE_TESTS "Build unit tests" OFF)
 if(ENABLE_TESTS)
     enable_testing()
@@ -107,13 +108,14 @@ if(DOXYGEN_FOUND)
     set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in)
     set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
-    add_custom_target(doc # ALL
+    add_custom_target(
+        doc # ALL
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
 endif()
- 
+
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS_DEBUG: ${CMAKE_C_FLAGS_DEBUG}")
 message(STATUS "CMAKE_C_FLAGS_RELEASE: ${CMAKE_C_FLAGS_RELEASE}")
