@@ -78,7 +78,7 @@ The deletion vote is set proportionally to the set size estimate *s*. However, t
 
 In a multi-step problem, the previous action set [A]<sub>-1</sub> is instead updated using a *&gamma;* &isin; [0,1] discounted reward (similar to [*Q*-learning](https://en.wikipedia.org/wiki/Q-learning)) and the EA may be run therein.
 
-<img src="schematic.svg">
+<img src="doc/schematic.svg">
 
 Schematic illustration (shown above) of XCSF for reinforcement learning. For supervised learning, a single (dummy) action is used such that [A] = [M] and *cl.P* is made directly accessible to the environment.
                                                                                                  
