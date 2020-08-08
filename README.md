@@ -47,7 +47,7 @@ XCSF is [rule-based](https://en.wikipedia.org/wiki/Rule-based_machine_learning) 
 - an action structure *cl.A* that selects an action *a* to be performed for a given ***x***
 - a prediction structure *cl.P* that computes the expected payoff for performing *a* upon receipt of ***x***
 
-In addition, each classifier maintains a measure of its experience *exp*, error &epsilon;, fitness *F*, numerosity *num*, average participated set size *s*, and the time stamp *ts* of the last [evolutionary algorithm](https://en.wikipedia.org/wiki/Evolutionary_algorithm) (EA) invocation on a participating set.
+In addition, each classifier maintains a measure of its experience *exp*, error &epsilon;, fitness *F*, numerosity *num*, average participated set size *as*, and the time stamp *ts* of the last [evolutionary algorithm](https://en.wikipedia.org/wiki/Evolutionary_algorithm) (EA) invocation on a participating set.
 
 For each step within a learning trial, XCSF constructs a match set [M] composed of classifiers in the population set [P] whose *cl.C* matches ***x***. If [M] contains fewer than *&theta;*<sub>mna</sub> actions, a covering mechanism generates classifiers with matching *cl.C* and random *cl.A*.
 
@@ -64,7 +64,7 @@ In a single-step problem, each classifier *cl<sub>j</sub>* &isin; [A] has its ex
 <br>With target error threshold *&epsilon;<sub>0</sub>* and accuracy offset *&alpha;* &isin; [0,1], and slope *&nu;*.
 - Relative accuracy: *&kappa;<sub>j</sub>'* = (*&kappa;<sub>j</sub> &middot; num<sub>j</sub>*) / *&sum;<sub>j</sub> &kappa;<sub>j</sub> &middot; num<sub>j</sub>*
 - Fitness: *F<sub>j</sub> &larr; F<sub>j</sub> + &beta;*(*&kappa;<sub>j</sub>' &minus; F<sub>j</sub>*)
-- Set size estimate: *s<sub>j</sub> &larr; s<sub>j</sub> + &beta;*(|[A]| &minus; *s<sub>j</sub>*)
+- Set size estimate: *as<sub>j</sub> &larr; as<sub>j</sub> + &beta;*(|[A]| &minus; *as<sub>j</sub>*)
 
 Thereafter, *cl.C*, *cl.A*, and *cl.P* are updated according to the representation adopted.
 
@@ -74,7 +74,7 @@ Offspring parameters are initialised by setting the error and fitness to the par
 
 The resulting offspring are added to [P] and the maximum (micro-classifier) population size *N* is enforced by removing classifiers selected via roulette with the deletion vote.
 
-The deletion vote is set proportionally to the set size estimate *s*. However, the vote is increased by a factor *F̅ / F<sub>j</sub>* for classifiers that are sufficiently experienced (*exp<sub>j</sub> &gt; &theta;*<sub>del</sub>) and with small fitness (*F<sub>j</sub> &lt; &delta;F̅*) where *F̅* is the [P] mean fitness, and typically *&delta;* = 0.1.
+The deletion vote is set proportionally to the set size estimate *as*. However, the vote is increased by a factor *F̅ / F<sub>j</sub>* for classifiers that are sufficiently experienced (*exp<sub>j</sub> &gt; &theta;*<sub>del</sub>) and with small fitness (*F<sub>j</sub> &lt; &delta;F̅*) where *F̅* is the [P] mean fitness, and typically *&delta;* = 0.1.
 
 In a multi-step problem, the previous action set [A]<sub>-1</sub> is instead updated using a *&gamma;* &isin; [0,1] discounted reward (similar to [*Q*-learning](https://en.wikipedia.org/wiki/Q-learning)) and the EA may be run therein.
 
