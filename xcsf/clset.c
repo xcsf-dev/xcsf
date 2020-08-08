@@ -245,7 +245,7 @@ clset_subsumption(struct XCSF *xcsf, struct SET *set)
         iter = set->list;
         while (iter != NULL) {
             struct CL *c = iter->cl;
-            if (s != c && cl_general(xcsf, s, c)) {
+            if (c != NULL && s != c && cl_general(xcsf, s, c)) {
                 s->num += c->num;
                 c->num = 0;
                 clset_add(&xcsf->kset, c);
