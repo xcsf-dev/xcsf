@@ -14,56 +14,59 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
-################################################################################
-# This example uses the multi-step reinforcement learning mechanism to solve
-# mazes loaded from an input file.
-################################################################################
+"""This example demonstrates the XCSF multi-step reinforcement learning
+mechanisms to solve discrete mazes loaded from a specified input file.
+Classifiers are composed of ternary conditions, linear recursive least squares
+predictions and integer actions."""
 
-import xcsf.xcsf as xcsf
-import numpy as np
 import os
+import sys
 import random
+import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-
-###########################
-# Maze Environment
-###########################
+import xcsf.xcsf as xcsf
 
 class Maze:
+    """Maze problem environment."""
 
-    def __init__(self, filename):
-        self.maze = []
+    def __init__(self, file_name):
+        """Constructs a new maze problem from the maze file_name."""
+        self.maze = [] #: maze as read from the input file
         line = []
-        path = os.path.normpath("../env/maze/"+filename+".txt")
+        path = os.path.normpath("../env/maze/"+file_name+".txt")
         with open(path) as f:
             while True:
                 c = f.read(1)
                 if not c:
                     break
-                elif c == '\n':
+                if c == '\n':
                     self.maze.append(line)
                     line = []
                 else:
                     line.append(c)
-        self.x_size = len(self.maze[0])
-        self.y_size = len(self.maze)
-        self.state = np.zeros(8)
-        self.x_pos = 0
-        self.y_pos = 0
-        self.is_reset = False
-        self.max_payoff = 1
+        self.x_size = len(self.maze[0]) #: maze width
+        self.y_size = len(self.maze) #: maze height
+        self.state = np.zeros(8) #: current maze state
+        self.x_pos = 0 #: current x position within the maze
+        self.y_pos = 0 #: current y position within the maze
+        self.is_reset = False #: whether the goal state has been reached
+        self.max_payoff = 1 #: reward for finding the goal
 
     def reset(self):
+        """Resets a maze problem: generating a new random start position."""
         self.is_reset = False
         while True:
-            self.x_pos = random.randint(0, self.x_size-1)
-            self.y_pos = random.randint(0, self.y_size-1)
+            self.x_pos = random.randint(0, self.x_size - 1)
+            self.y_pos = random.randint(0, self.y_size - 1)
             if self.maze[self.y_pos][self.x_pos] == '*':
                 break
 
-    def sensor(self, s):
+    def sensor(self, x_pos, y_pos):
+        """Returns the real-number representation of a discrete maze cell."""
+        s = self.maze[y_pos][x_pos]
         if s == '*':
             return 0.1
         if s == 'O':
@@ -75,50 +78,51 @@ class Maze:
         if s == 'Q':
             return 0.9
         print("invalid maze state: "+str(s))
-        exit()
-        
+        sys.exit()
+
     def update_state(self):
+        """Sets the current state to a real-vector representing the sensory input."""
         spos = 0
-        for y in range(-1,2):
-            for x in range(-1,2):
+        for y in range(-1, 2):
+            for x in range(-1, 2):
                 if x == 0 and y == 0:
                     continue
                 x_sense = ((self.x_pos + x) % self.x_size + self.x_size) % self.x_size
                 y_sense = ((self.y_pos + y) % self.y_size + self.y_size) % self.y_size
-                s = self.maze[y_sense][x_sense]
-                self.state[spos] = self.sensor(s)
+                self.state[spos] = self.sensor(x_sense, y_sense)
                 spos += 1
 
-    def execute(self, action):
-        if action < 0 or action > 7:
+    def execute(self, act):
+        """Executes an action within the maze and returns the immediate reward."""
+        if act < 0 or act > 7:
             print("invalid maze action")
-            exit()
-        x_moves = [ 0, +1, +1, +1,  0, -1, -1, -1]
-        y_moves = [-1, -1,  0, +1, +1, +1,  0, -1]
-        x_new = ((self.x_pos + x_moves[action]) % self.x_size + self.x_size) % self.x_size
-        y_new = ((self.y_pos + y_moves[action]) % self.y_size + self.y_size) % self.y_size
+            sys.exit()
+        x_moves = [0, 1, 1, 1, 0, -1, -1, -1]
+        y_moves = [-1, -1, 0, 1, 1, 1, 0, -1]
+        x_new = ((self.x_pos + x_moves[act]) % self.x_size + self.x_size) % self.x_size
+        y_new = ((self.y_pos + y_moves[act]) % self.y_size + self.y_size) % self.y_size
         s = self.maze[y_new][x_new]
-        if s == 'O' or s == 'Q':
+        if s in ('O', 'Q'):
             return 0
         self.x_pos = x_new
         self.y_pos = y_new
         if s == '*':
             return 0
-        if s == 'F' or s == 'G':
+        if s in ('F', 'G'):
             self.is_reset = True
             return self.max_payoff
         print("invalid maze type")
-        exit()
+        sys.exit()
 
 ###################
 # Initialise XCSF
 ###################
 
 # initialise XCSF for reinforcement learning
-x_dim = 8
-y_dim = 1
-n_actions = 8
-xcs = xcsf.XCS(x_dim, y_dim, n_actions)
+X_DIM = 8
+Y_DIM = 1
+N_ACTIONS = 8
+xcs = xcsf.XCS(X_DIM, Y_DIM, N_ACTIONS)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
@@ -143,19 +147,19 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-n = 40 # 2,000 trials
-trials = np.zeros(n)
-psize = np.zeros(n)
-msize = np.zeros(n)
-steps = np.zeros(n)
-error = np.zeros(n)
-bar = tqdm(total=n) # progress bar
+N = 40 # 2,000 trials
+trials = np.zeros(N)
+psize = np.zeros(N)
+msize = np.zeros(N)
+steps = np.zeros(N)
+error = np.zeros(N)
+bar = tqdm(total=N) # progress bar
 
 MAZE_NAME = "maze4"
-goal_steps = 3.5
+GOAL_STEPS = 3.5
 maze = Maze(MAZE_NAME)
 
-for i in range(n):
+for i in range(N):
     for j in range(xcs.PERF_TRIALS):
         # explore trial
         maze.reset()
@@ -191,12 +195,12 @@ for i in range(n):
         error[i] += err / float(cnt)
     steps[i] /= float(xcs.PERF_TRIALS)
     error[i] /= float(xcs.PERF_TRIALS)
-    trials[i] = (i+1) * xcs.PERF_TRIALS
+    trials[i] = (i + 1) * xcs.PERF_TRIALS
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
     # update status
-    status = ("trials=%d steps=%.5f error=%.5f psize=%d msize=%.1f"
-        % (trials[i], steps[i], error[i], psize[i], msize[i]))
+    status = ("trials=%d steps=%.5f error=%.5f psize=%d msize=%.1f" %
+              (trials[i], steps[i], error[i], psize[i], msize[i]))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)
@@ -206,12 +210,12 @@ bar.close()
 # Plot XCSF learning performance
 #################################
 
-plt.figure(figsize=(10,6))
+plt.figure(figsize=(10, 6))
 plt.plot(trials, steps)
 plt.grid(linestyle='dotted', linewidth=1)
-plt.axhline(y=goal_steps, xmin=0, xmax=1, linestyle='dashed', color='k')
+plt.axhline(y=GOAL_STEPS, xmin=0, xmax=1, linestyle='dashed', color='k')
 plt.title(MAZE_NAME, fontsize=14)
 plt.ylabel('Steps to Goal', fontsize=12)
 plt.xlabel('Trials', fontsize=12)
-plt.xlim([0, n * xcs.PERF_TRIALS])
+plt.xlim([0, N * xcs.PERF_TRIALS])
 plt.show()

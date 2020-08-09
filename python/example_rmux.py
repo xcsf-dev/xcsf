@@ -14,54 +14,52 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
-################################################################################
-# This example uses the reinforcement learning mechanism to construct and update
-# match and action sets with classifiers composed of hyperrectangle conditions,
-# linear least squares predictions, and integer actions to solve the real-mux.
-################################################################################
+"""This example demonstrates the XCSF reinforcement learning mechanisms applied
+to the real-multiplexer problem. Classifiers are composed of hyperrectangle
+conditions, linear least squares predictions, and integer actions."""
 
-import xcsf.xcsf as xcsf # Import XCSF
-import numpy as np
 from random import random
+import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-np.set_printoptions(suppress=True)
-
-###########################
-# Real-multiplexer problem
-###########################
+import xcsf.xcsf as xcsf
 
 class Mux:
+    """Real-multiplexer problem environment."""
 
-    def __init__(self, n):
-        self.n_bits = n # total number of bits
-        self.n_actions = 2 # total number of actions
-        self.state = np.zeros(n) # current mux state
-        self.is_reset = True
-        self.max_payoff = 1
-        # set the number of position bits
-        self.pos_bits = 1
+    def __init__(self, n_bits):
+        """Constructs a new real-multiplexer problem of maximum size n_bits."""
+        self.n_bits = n_bits #: total number of bits
+        self.n_actions = 2 #: total number of actions
+        self.state = np.zeros(n_bits) #: current mux state
+        self.is_reset = True #: single-step problem: always reset the trial
+        self.max_payoff = 1 #: reward for a correct prediction
+        self.pos_bits = 1 #: number of addressing bits
         while self.pos_bits + pow(2, self.pos_bits) <= self.n_bits:
             self.pos_bits += 1
         self.pos_bits -= 1
         print(str(self.n_bits)+" bits, "+str(self.pos_bits)+" position bits")
 
     def reset(self):
-        for i in range(self.n_bits):
-            self.state[i] = random()
+        """Generates a random real-multiplexer state."""
+        for k in range(self.n_bits):
+            self.state[k] = random()
 
     def answer(self):
+        """Returns the (discretised) bit addressed by the current mux state."""
         pos = self.pos_bits
-        for i in range(self.pos_bits):
-            if self.state[i] > 0.5:
-                pos += pow(2, self.pos_bits - 1 - i)
+        for k in range(self.pos_bits):
+            if self.state[k] > 0.5:
+                pos += pow(2, self.pos_bits - 1 - k)
         if self.state[pos] > 0.5:
             return 1
         return 0
 
-    def execute(self, action):
-        if action == self.answer():
+    def execute(self, act):
+        """Returns the reward for performing an action."""
+        if act == self.answer():
             return self.max_payoff
         return 0
 
@@ -97,15 +95,15 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-n = 100 # 100,000 trials
-trials = np.zeros(n)
-psize = np.zeros(n)
-msize = np.zeros(n)
-performance = np.zeros(n)
-error = np.zeros(n)
-bar = tqdm(total=n) # progress bar
+N = 100 # 100,000 trials
+trials = np.zeros(N)
+psize = np.zeros(N)
+msize = np.zeros(N)
+performance = np.zeros(N)
+error = np.zeros(N)
+bar = tqdm(total=N) # progress bar
 
-for i in range(n):
+for i in range(N):
     for j in range(xcs.PERF_TRIALS):
         # explore trial
         mux.reset()
@@ -132,8 +130,8 @@ for i in range(n):
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
     # update status
-    status = ("trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f"
-        % (trials[i], performance[i], error[i], psize[i], msize[i]))
+    status = ("trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f" %
+              (trials[i], performance[i], error[i], psize[i], msize[i]))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)
@@ -143,12 +141,12 @@ bar.close()
 # Plot XCSF learning performance
 #################################
 
-plt.figure(figsize=(10,6))
+plt.figure(figsize=(10, 6))
 plt.plot(trials, performance, label='Performance')
 plt.plot(trials, error, label='System error')
 plt.grid(linestyle='dotted', linewidth=1)
 plt.title(str(mux.n_bits)+'-bit Real Multiplexer', fontsize=14)
 plt.xlabel('Trials', fontsize=12)
-plt.xlim([0, n * xcs.PERF_TRIALS])
+plt.xlim([0, N * xcs.PERF_TRIALS])
 plt.legend()
 plt.show()

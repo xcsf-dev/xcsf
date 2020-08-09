@@ -14,23 +14,22 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
-################################################################################
-# This example uses the supervised learning mechanism to construct and update
-# match sets with classifiers composed of neural network conditions and
-# predictions similar to XCSF for function approximation. Classifier predictions
-# use a softmax layer for output and labels are one-hot encoded.
-################################################################################
+"""This example demonstrates the XCSF supervised learning mechanisms to perform
+classification on the USPS handwritten digits dataset. Classifiers are composed
+of neural network conditions and predictions. A softmax layer is used as
+prediction output and labels are one-hot encoded. Similar to regression, a
+single dummy action is performed such that [A] = [M]."""
 
-import xcsf.xcsf as xcsf # Import XCSF
 import numpy as np
+import matplotlib.pyplot as plt
+from tqdm import tqdm
 from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-import matplotlib.pyplot as plt
-from tqdm import tqdm
-np.set_printoptions(suppress=True)
+from sklearn.preprocessing import minmax_scale, OneHotEncoder
+import xcsf.xcsf as xcsf
 
 ###############################
 # Load training and test data
@@ -42,10 +41,9 @@ data = fetch_openml(data_id=41082) # 256 features, 10 classes, 9298 instances
 # split into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.1)
 
-# normalise features (zero mean and unit variance)
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.fit_transform(X_test)
+# scale features [0,1]
+X_train = minmax_scale(X_train, feature_range=(0, 1))
+X_test = minmax_scale(X_test, feature_range=(0, 1))
 
 # one hot encode labels
 onehot_encoder = OneHotEncoder(sparse=False, categories='auto')
@@ -58,16 +56,16 @@ print("X_test shape = "+str(np.shape(X_test)))
 print("y_test shape = "+str(np.shape(y_test)))
 
 # get number of input and output variables
-x_dim = np.shape(X_train)[1]
-y_dim = np.shape(y_train)[1]
-print("x_dim = "+str(x_dim) + ", y_dim = " + str(y_dim))
+X_DIM = np.shape(X_train)[1]
+Y_DIM = np.shape(y_train)[1]
+print("x_dim = "+str(X_DIM) + ", y_dim = " + str(Y_DIM))
 
 ###################
 # Initialise XCSF
 ###################
 
 # initialise XCSF for supervised learning
-xcs = xcsf.XCS(x_dim, y_dim, 1)
+xcs = xcsf.XCS(X_DIM, Y_DIM, 1)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
@@ -108,14 +106,14 @@ xcs.print_params()
 # Example plotting in matplotlib
 ##################################
 
-n = 100 # 100,000 trials
-trials = np.zeros(n)
-psize = np.zeros(n)
-msize = np.zeros(n)
-train_err = np.zeros(n)
-test_err = np.zeros(n)
-bar = tqdm(total=n) # progress bar
-for i in range(n):
+N = 100 # 100,000 trials
+trials = np.zeros(N)
+psize = np.zeros(N)
+msize = np.zeros(N)
+train_err = np.zeros(N)
+test_err = np.zeros(N)
+bar = tqdm(total=N) # progress bar
+for i in range(N):
     # train
     train_err[i] = xcs.fit(X_train, y_train, True) # True = shuffle
     trials[i] = xcs.time() # number of trials so far
@@ -124,23 +122,23 @@ for i in range(n):
     # test
     test_err[i] = xcs.score(X_test, y_test)
     # update status
-    status = ("trials=%d train_err=%.5f test_err=%.5f psize=%d msize=%.1f"
-        % (trials[i], train_err[i], test_err[i], psize[i], msize[i]))
+    status = ("trials=%d train_err=%.5f test_err=%.5f psize=%d msize=%.1f" %
+              (trials[i], train_err[i], test_err[i], psize[i], msize[i]))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)
 bar.close()
 
 # plot XCSF learning performance
-plt.figure(figsize=(10,6))
+plt.figure(figsize=(10, 6))
 plt.plot(trials, train_err, label='Train Error')
 plt.plot(trials, test_err, label='Test Error')
 plt.grid(linestyle='dotted', linewidth=1)
-plt.axhline(y=xcs.EPS_0, xmin=0.0, xmax=1.0, linestyle='dashed', color='k')
+plt.axhline(y=xcs.EPS_0, xmin=0, xmax=1, linestyle='dashed', color='k')
 plt.title('XCSF Training Performance', fontsize=14)
 plt.xlabel('Trials', fontsize=12)
 plt.ylabel('Error', fontsize=12)
-plt.xlim([0,n*xcs.MAX_TRIALS])
+plt.xlim([0, N * xcs.MAX_TRIALS])
 plt.legend()
 plt.show()
 
@@ -148,7 +146,7 @@ plt.show()
 print("XCSF")
 pred = xcs.predict(X_test) # soft max predictions
 pred = np.argmax(pred, axis=1) # select most likely class
-pred = onehot_encoder.fit_transform(pred.reshape(-1,1))
+pred = onehot_encoder.fit_transform(pred.reshape(-1, 1))
 inv_y_test = onehot_encoder.inverse_transform(y_test)
 inv_pred = onehot_encoder.inverse_transform(pred)
 print(classification_report(inv_y_test, inv_pred, digits=4))

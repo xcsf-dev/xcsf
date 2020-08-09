@@ -14,23 +14,23 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
-################################################################################
-# This example uses the supervised learning mechanism to construct and update
-# match sets with classifiers composed of neural network conditions and
-# predictions for function approximation. No action sets are used.
-################################################################################
+"""This example demonstrates the XCSF supervised learning mechanisms to perform
+regression on the Boston house price dataset. Classifiers are composed of
+neural network conditions and predictions. A single dummy action is performed
+such that [A] = [M]."""
 
-import xcsf.xcsf as xcsf # Import XCSF
 import numpy as np
+import matplotlib.pyplot as plt
+from tqdm import tqdm
 from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import minmax_scale, StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
-import matplotlib.pyplot as plt
-from tqdm import tqdm
+import xcsf.xcsf as xcsf
 np.set_printoptions(suppress=True)
 
 ###############################
@@ -44,9 +44,9 @@ data = fetch_openml(data_id=189)
 X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.1)
 
 # reshape into 2D numpy arrays
-if(len(np.shape(y_train)) == 1):
+if len(np.shape(y_train)) == 1:
     y_train = np.reshape(y_train, (y_train.shape[0], 1))
-if(len(np.shape(y_test)) == 1):
+if len(np.shape(y_test)) == 1:
     y_test = np.reshape(y_test, (y_test.shape[0], 1))
 
 # normalise inputs (zero mean and unit variance)
@@ -55,8 +55,8 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.fit_transform(X_test)
 
 # scale outputs [0,1]
-y_train = minmax_scale(y_train, feature_range=(0,1))
-y_test = minmax_scale(y_test, feature_range=(0,1))
+y_train = minmax_scale(y_train, feature_range=(0, 1))
+y_test = minmax_scale(y_test, feature_range=(0, 1))
 
 print("X_train shape = "+str(np.shape(X_train)))
 print("y_train shape = "+str(np.shape(y_train)))
@@ -64,16 +64,16 @@ print("X_test shape = "+str(np.shape(X_test)))
 print("y_test shape = "+str(np.shape(y_test)))
 
 # get number of input and output variables
-x_dim = np.shape(X_train)[1]
-y_dim = np.shape(y_train)[1]
-print("x_dim = "+str(x_dim) + ", y_dim = " + str(y_dim))
+X_DIM = np.shape(X_train)[1]
+Y_DIM = np.shape(y_train)[1]
+print("x_dim = "+str(X_DIM) + ", y_dim = " + str(Y_DIM))
 
 ###################
 # Initialise XCSF
 ###################
 
 # initialise XCSF for supervised learning
-xcs = xcsf.XCS(x_dim, y_dim, 1)
+xcs = xcsf.XCS(X_DIM, Y_DIM, 1)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
@@ -110,14 +110,14 @@ xcs.print_params()
 # Example plotting in matplotlib
 ##################################
 
-n = 100 # 100,000 trials
-trials = np.zeros(n)
-psize = np.zeros(n)
-msize = np.zeros(n)
-train_mse = np.zeros(n)
-test_mse = np.zeros(n)
-bar = tqdm(total=n) # progress bar
-for i in range(n):
+N = 100 # 100,000 trials
+trials = np.zeros(N)
+psize = np.zeros(N)
+msize = np.zeros(N)
+train_mse = np.zeros(N)
+test_mse = np.zeros(N)
+bar = tqdm(total=N) # progress bar
+for i in range(N):
     # train
     train_mse[i] = xcs.fit(X_train, y_train, True) # True = shuffle
     trials[i] = xcs.time() # number of trials so far
@@ -126,23 +126,23 @@ for i in range(n):
     # test
     test_mse[i] = xcs.score(X_test, y_test)
     # update status
-    status = ("trials=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f"
-        % (trials[i], train_mse[i], test_mse[i], psize[i], msize[i]))
+    status = ("trials=%d train_mse=%.5f test_mse=%.5f psize=%d msize=%.1f" %
+              (trials[i], train_mse[i], test_mse[i], psize[i], msize[i]))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)
 bar.close()
 
 # plot XCSF learning performance
-plt.figure(figsize=(10,6))
+plt.figure(figsize=(10, 6))
 plt.plot(trials, train_mse, label='Train MSE')
 plt.plot(trials, test_mse, label='Test MSE')
 plt.grid(linestyle='dotted', linewidth=1)
-plt.axhline(y=xcs.EPS_0, xmin=0.0, xmax=1.0, linestyle='dashed', color='k')
+plt.axhline(y=xcs.EPS_0, xmin=0, xmax=1, linestyle='dashed', color='k')
 plt.title('XCSF Training Performance', fontsize=14)
 plt.xlabel('Trials', fontsize=12)
 plt.ylabel('Mean Squared Error', fontsize=12)
-plt.xlim([0,n*xcs.MAX_TRIALS])
+plt.xlim([0, N * xcs.MAX_TRIALS])
 plt.legend()
 plt.show()
 
@@ -163,7 +163,9 @@ lm_mse = mean_squared_error(lm_pred, y_test)
 print('Linear regression MSE = %.4f' % (lm_mse))
 
 # compare with MLP regressor
-mlp = MLPRegressor(hidden_layer_sizes=(50,), activation='relu', solver='adam', learning_rate='adaptive', max_iter=1000, learning_rate_init=0.01, alpha=0.01)
+mlp = MLPRegressor(hidden_layer_sizes=(50,), activation='relu', solver='adam',
+                   learning_rate='adaptive', learning_rate_init=0.01,
+                   max_iter=1000, alpha=0.01)
 mlp.fit(X_train, y_train.ravel())
 mlp_pred = mlp.predict(X_test)
 mlp_mse = mean_squared_error(mlp_pred, y_test)

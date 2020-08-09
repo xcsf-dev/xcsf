@@ -14,16 +14,15 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
-################################################################################
-# This example uses the reinforcement learning mechanism to construct and update
-# match and action sets with classifiers composed of hyperrectangle conditions,
-# linear least squares predictions, and integer actions to solve UCI Wisconsin.
-################################################################################
+"""This example demonstrates the XCSF reinforcement learning mechanisms applied
+to the UCI Wisconsin breast cancer classification dataset. Classifiers are
+composed of hyperrectangle conditions, linear least squares predictions, and
+integer actions."""
 
-import xcsf.xcsf as xcsf # Import XCSF
-import numpy as np
 from random import randint
+import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
@@ -31,19 +30,17 @@ from sklearn.preprocessing import minmax_scale
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import confusion_matrix
-np.set_printoptions(suppress=True)
-
-##############################
-# UCI Breast cancer wisconsin
-##############################
-
 from sklearn.datasets import load_breast_cancer
+from sklearn.neural_network import MLPClassifier
+from sklearn.tree import DecisionTreeClassifier
+import xcsf.xcsf as xcsf
+
 data = load_breast_cancer() # 30 features, 2 classes # 569 instances
 X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.2)
-X_train = minmax_scale(X_train, feature_range=(0,1))
-X_test = minmax_scale(X_test, feature_range=(0,1))
-x_dim = 30
-n_actions = 2
+X_train = minmax_scale(X_train, feature_range=(0, 1))
+X_test = minmax_scale(X_test, feature_range=(0, 1))
+X_DIM = 30
+N_ACTIONS = 2
 MAX_PAYOFF = 1
 train_len = len(X_train)
 test_len = len(X_test)
@@ -54,7 +51,7 @@ print("train len = %d, test len = %d" % (train_len, test_len))
 ###################
 
 # initialise XCSF for reinforcement learning
-xcs = xcsf.XCS(x_dim, 1, n_actions)
+xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
 # override default.ini
 xcs.OMP_NUM_THREADS = 8
@@ -71,15 +68,15 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-n = 100 # 100,000 trials
-trials = np.zeros(n)
-psize = np.zeros(n)
-msize = np.zeros(n)
-performance = np.zeros(n)
-error = np.zeros(n)
-bar = tqdm(total=n) # progress bar
+N = 100 # 100,000 trials
+trials = np.zeros(N)
+psize = np.zeros(N)
+msize = np.zeros(N)
+performance = np.zeros(N)
+error = np.zeros(N)
+bar = tqdm(total=N) # progress bar
 
-for i in range(n):
+for i in range(N):
     for j in range(xcs.PERF_TRIALS):
         # explore trial
         sample = randint(0, train_len-1)
@@ -88,9 +85,7 @@ for i in range(n):
         xcs.init_trial()
         xcs.init_step()
         action = xcs.decision(state, True) # explore
-        reward = 0
-        if action == answer:
-            reward = MAX_PAYOFF
+        reward = MAX_PAYOFF if action == answer else 0
         xcs.update(reward, True) # single-step problem
         xcs.end_step()
         xcs.end_trial()
@@ -101,9 +96,7 @@ for i in range(n):
         state = X_test[sample]
         answer = y_test[sample]
         action = xcs.decision(state, False) # exploit
-        reward = 0
-        if action == answer:
-            reward = MAX_PAYOFF
+        reward = MAX_PAYOFF if action == answer else 0
         performance[i] += reward
         error[i] += xcs.error(reward, True, MAX_PAYOFF)
         xcs.end_step()
@@ -114,8 +107,8 @@ for i in range(n):
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
     # update status
-    status = ("trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f"
-            % (trials[i], performance[i], error[i], psize[i], msize[i]))
+    status = ("trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f" %
+              (trials[i], performance[i], error[i], psize[i], msize[i]))
     bar.set_description(status)
     bar.refresh()
     bar.update(1)
@@ -125,13 +118,13 @@ bar.close()
 # plot XCSF learning performance
 ##################################
 
-plt.figure(figsize=(10,6))
+plt.figure(figsize=(10, 6))
 plt.plot(trials, performance, label='Performance')
 plt.plot(trials, error, label='System error')
 plt.grid(linestyle='dotted', linewidth=1)
 plt.title('Wisconsin Breast Cancer', fontsize=14)
 plt.xlabel('Trials', fontsize=12)
-plt.xlim([0, n * xcs.PERF_TRIALS])
+plt.xlim([0, N * xcs.PERF_TRIALS])
 plt.legend()
 plt.show()
 
@@ -172,8 +165,8 @@ print("XCSF f1: "+str(f1_score(yActual, yPredicted, average=None)))
 # Compare with alternatives
 ############################
 
-from sklearn.neural_network import MLPClassifier
-mlp = MLPClassifier(hidden_layer_sizes=(100, ), activation='relu', solver='adam', learning_rate='adaptive', max_iter=1000)
+mlp = MLPClassifier(hidden_layer_sizes=(100, ), activation='relu',
+                    solver='adam', learning_rate='adaptive', max_iter=1000)
 mlp.fit(X_train, y_train)
 
 yActual = []
@@ -181,14 +174,13 @@ yPredicted = []
 for i in range(test_len):
     state = X_test[i]
     answer = y_test[i]
-    action = mlp.predict(X_test[i].reshape(1,-1))
+    action = mlp.predict(X_test[i].reshape(1, -1))
     yActual.append(answer)
     yPredicted.append(action)
 
 print("MLP accuracy: "+str(accuracy_score(yActual, yPredicted)))
 print("MLP f1: "+str(f1_score(yActual, yPredicted, average=None)))
 
-from sklearn.tree import DecisionTreeClassifier
 dtc = DecisionTreeClassifier()
 dtc.fit(X_train, y_train)
 
@@ -197,7 +189,7 @@ yPredicted = []
 for i in range(test_len):
     state = X_test[i]
     answer = y_test[i]
-    action = dtc.predict(X_test[i].reshape(1,-1))
+    action = dtc.predict(X_test[i].reshape(1, -1))
     yActual.append(answer)
     yPredicted.append(action)
 
