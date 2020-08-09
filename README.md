@@ -80,7 +80,7 @@ In a multi-step problem, the previous action set [A]<sub>-1</sub> is instead upd
 
 <img src="doc/schematic.svg">
 
-Schematic illustration (shown above) of XCSF for reinforcement learning. For supervised learning, a single (dummy) action is used such that [A] = [M] and *cl.P* is made directly accessible to the environment.
+Schematic illustration (shown above) of XCSF for reinforcement learning. For supervised learning, a single (dummy) action is used such that [A] = [M] and the system prediction is made directly accessible to the environment.
                                                                                                  
 A number of interacting pressures have been identified. A set pressure provides more frequent reproduction opportunities for more general rules. In opposition is a fitness pressure which represses the reproduction of inaccurate and over-general rules. Many forms of *cl.C*, *cl.A*, and *cl.P* have been used for classifier knowledge representation since the original ternary conditions, integer actions, and scalar predictions. Some of these are implemented here.
 
