@@ -291,7 +291,7 @@ layer_print(const struct XCSF *xcsf, const struct LAYER *l, _Bool print_weights)
 }
 
 _Bool
-layer_mutate_connectivity(struct LAYER *l, double mu);
+layer_mutate_connectivity(struct LAYER *l, double mu_enable, double mu_disable);
 
 _Bool
 layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, double mu);

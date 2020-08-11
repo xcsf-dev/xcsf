@@ -159,37 +159,37 @@ layer_add_neurons(struct LAYER *l, int N)
 
 /**
  * @brief Mutates a layer's connectivity by zeroing weights.
+ * @details Ensures that at least one connection/weight is active.
  * @param l The neural network layer to mutate.
- * @param mu The rate of mutation.
+ * @param mu_enable The probability of enabling a currently disabled weight.
+ * @param mu_disable The probability of disabling a currently enabled weight.
  * @return Whether any alterations were made.
  */
 _Bool
-layer_mutate_connectivity(struct LAYER *l, double mu)
+layer_mutate_connectivity(struct LAYER *l, double mu_enable, double mu_disable)
 {
-    if (l->n_inputs < 2) {
-        return false;
-    }
     _Bool mod = false;
-    for (int i = 0; i < l->n_weights; ++i) {
-        if (rand_uniform(0, 1) < mu) {
-            l->weight_active[i] = !l->weight_active[i];
-            if (l->weight_active[i]) {
+    if (l->n_inputs > 1) {
+        for (int i = 0; i < l->n_weights; ++i) {
+            if (!l->weight_active[i] && rand_uniform(0, 1) < mu_enable) {
+                l->weight_active[i] = true;
                 l->weights[i] = rand_normal(0, 0.1);
                 ++(l->n_active);
-            } else {
+                mod = true;
+            } else if (l->weight_active[i] && rand_uniform(0, 1) < mu_disable) {
+                l->weight_active[i] = false;
                 l->weights[i] = 0;
                 --(l->n_active);
+                mod = true;
             }
+        }
+        if (l->n_active < 1) {
+            int r = irand_uniform(0, l->n_weights);
+            l->weights[r] = rand_normal(0, 0.1);
+            l->weight_active[r] = true;
+            ++(l->n_active);
             mod = true;
         }
-    }
-    // at least one connection must be active
-    if (l->n_active < 1) {
-        int r = irand_uniform(0, l->n_weights);
-        l->weights[r] = rand_normal(0, 0.1);
-        l->weight_active[r] = true;
-        ++(l->n_active);
-        mod = true;
     }
     return mod;
 }

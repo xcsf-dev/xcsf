@@ -27,7 +27,7 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (5) //!< Number of mutation rates applied to a connected layer
+#define N_MU (6) //!< Number of mutation rates applied to a connected layer
 
 static void
 malloc_layer_arrays(struct LAYER *l)
@@ -242,15 +242,15 @@ neural_layer_connected_mutate(const struct XCSF *xcsf, struct LAYER *l)
         }
     }
     if ((l->options & LAYER_EVOLVE_CONNECT) &&
-        layer_mutate_connectivity(l, l->mu[2])) {
+        layer_mutate_connectivity(l, l->mu[2], l->mu[3])) {
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_WEIGHTS) &&
-        layer_mutate_weights(l, l->mu[3])) {
+        layer_mutate_weights(l, l->mu[4])) {
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_FUNCTIONS) &&
-        layer_mutate_functions(l, l->mu[4])) {
+        layer_mutate_functions(l, l->mu[5])) {
         mod = true;
     }
     return mod;

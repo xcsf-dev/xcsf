@@ -28,7 +28,7 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (4) //!< Number of mutation rates applied to a convolutional layer
+#define N_MU (5) //!< Number of mutation rates applied to a convolutional layer
 
 static size_t
 get_workspace_size(const struct LAYER *l)
@@ -304,15 +304,15 @@ neural_layer_convolutional_mutate(const struct XCSF *xcsf, struct LAYER *l)
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_CONNECT) &&
-        layer_mutate_connectivity(l, l->mu[1])) {
+        layer_mutate_connectivity(l, l->mu[1], l->mu[2])) {
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_WEIGHTS) &&
-        layer_mutate_weights(l, l->mu[2])) {
+        layer_mutate_weights(l, l->mu[3])) {
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_FUNCTIONS) &&
-        layer_mutate_functions(l, l->mu[3])) {
+        layer_mutate_functions(l, l->mu[4])) {
         mod = true;
     }
     return mod;

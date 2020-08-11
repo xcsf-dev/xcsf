@@ -29,7 +29,7 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (5) //!< Number of mutation rates applied to a recurrent layer
+#define N_MU (6) //!< Number of mutation rates applied to a recurrent layer
 
 static void
 malloc_layer_arrays(struct LAYER *l)
@@ -117,9 +117,15 @@ mutate_connectivity(struct LAYER *l)
 {
     _Bool mod = false;
     if (l->options & LAYER_EVOLVE_CONNECT) {
-        mod = layer_mutate_connectivity(l->input_layer, l->mu[2]) ? true : mod;
-        mod = layer_mutate_connectivity(l->self_layer, l->mu[2]) ? true : mod;
-        mod = layer_mutate_connectivity(l->output_layer, l->mu[2]) ? true : mod;
+        if (layer_mutate_connectivity(l->input_layer, l->mu[2], l->mu[3])) {
+            mod = true;
+        }
+        if (layer_mutate_connectivity(l->self_layer, l->mu[2], l->mu[3])) {
+            mod = true;
+        }
+        if (layer_mutate_connectivity(l->output_layer, l->mu[2], l->mu[3])) {
+            mod = true;
+        }
         set_layer_n_active(l);
     }
     return mod;
@@ -130,9 +136,15 @@ mutate_weights(struct LAYER *l)
 {
     _Bool mod = false;
     if (l->options & LAYER_EVOLVE_WEIGHTS) {
-        mod = layer_mutate_weights(l->input_layer, l->mu[3]) ? true : mod;
-        mod = layer_mutate_weights(l->self_layer, l->mu[3]) ? true : mod;
-        mod = layer_mutate_weights(l->output_layer, l->mu[3]) ? true : mod;
+        if (layer_mutate_weights(l->input_layer, l->mu[4])) {
+            mod = true;
+        }
+        if (layer_mutate_weights(l->self_layer, l->mu[4])) {
+            mod = true;
+        }
+        if (layer_mutate_weights(l->output_layer, l->mu[4])) {
+            mod = true;
+        }
     }
     return mod;
 }
@@ -141,7 +153,7 @@ static _Bool
 mutate_functions(struct LAYER *l)
 {
     if (l->options & LAYER_EVOLVE_FUNCTIONS &&
-        layer_mutate_functions(l, l->mu[4])) {
+        layer_mutate_functions(l, l->mu[5])) {
         l->output_layer->function = l->function;
         return true;
     }
