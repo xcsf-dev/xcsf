@@ -27,6 +27,7 @@
 
 #define SAM_LOG_NORMAL (0) //!< Log normal self-adaptation
 #define SAM_RATE_SELECT (1) //!< Ten normally distributed rates
+#define SAM_UNIFORM (2) //!< Uniformly random self-adaptation
 
 void
 sam_adapt(const struct XCSF *xcsf, double *mu, int n);

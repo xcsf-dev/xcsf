@@ -24,10 +24,10 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_RATES (20) //!< number of mutation rates for rate selection adaptation
+#define MU_EPSILON 0.0001 //!< smallest mutation rate allowable
+#define N_RATES (10) //!< number of mutation rates for rate selection adaptation
 static const double mrates[N_RATES] = {
-    0.0001, 0.001, 0.002, 0.003, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2,
-    0.25,   0.3,   0.4,   0.5,   0.6,   0.7,  0.75, 0.8,  0.9, 1.0
+    0.0001, 0.001, 0.002, 0.005, 0.01, 0.01, 0.02, 0.05, 0.1, 1.0
 }; //!< values for rate selection adaptation
 
 /**
@@ -39,7 +39,7 @@ static void
 sam_log_normal_init(double *mu, int n)
 {
     for (int i = 0; i < n; ++i) {
-        mu[i] = rand_uniform(0, 1);
+        mu[i] = rand_uniform(MU_EPSILON, 1);
     }
 }
 
@@ -53,7 +53,22 @@ sam_log_normal_adapt(double *mu, int n)
 {
     for (int i = 0; i < n; ++i) {
         mu[i] *= exp(rand_normal(0, 1));
-        mu[i] = clamp(mu[i], 0.0001, 1);
+        mu[i] = clamp(mu[i], MU_EPSILON, 1);
+    }
+}
+
+/**
+ * @brief With 10% probability selects a uniformly random mutation rate.
+ * @param mu The mutation rates to adapt.
+ * @param n The number of mutation rates.
+ */
+static void
+sam_uniform_adapt(double *mu, int n)
+{
+    for (int i = 0; i < n; ++i) {
+        if (rand_uniform(0, 1) < 0.1) {
+            mu[i] = rand_uniform(MU_EPSILON, 1);
+        }
     }
 }
 
@@ -97,6 +112,7 @@ sam_init(const struct XCSF *xcsf, double *mu, int n)
 {
     switch (xcsf->SAM_TYPE) {
         case SAM_LOG_NORMAL:
+        case SAM_UNIFORM:
             sam_log_normal_init(mu, n);
             break;
         case SAM_RATE_SELECT:
@@ -123,6 +139,9 @@ sam_adapt(const struct XCSF *xcsf, double *mu, int n)
             break;
         case SAM_RATE_SELECT:
             sam_rate_selection_adapt(mu, n);
+            break;
+        case SAM_UNIFORM:
+            sam_uniform_adapt(mu, n);
             break;
         default:
             printf("sam_adapt(): invalid sam function: %d\n", xcsf->SAM_TYPE);
