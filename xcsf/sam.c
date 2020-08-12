@@ -24,9 +24,9 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_RATES (10) //!< number of mutation rates for rate selection adaptation
+#define N_RATES (15) //!< number of mutation rates for rate selection adaptation
 static const double mrates[N_RATES] = {
-    0.0001, 0.001, 0.002, 0.005, 0.01, 0.01, 0.02, 0.05, 0.1, 0.5
+    .0001, .001, .002, .005, .01, .02, .05, .1, .5, .6, .7, .75, .8, .9, 1.
 }; //!< values for rate selection adaptation
 
 /**
