@@ -243,6 +243,7 @@ neural_layer_connected_mutate(const struct XCSF *xcsf, struct LAYER *l)
     }
     if ((l->options & LAYER_EVOLVE_CONNECT) &&
         layer_mutate_connectivity(l, l->mu[2], l->mu[3])) {
+        layer_ensure_input_represention(l);
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_WEIGHTS) &&

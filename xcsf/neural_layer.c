@@ -159,7 +159,6 @@ layer_add_neurons(struct LAYER *l, int N)
 
 /**
  * @brief Mutates a layer's connectivity by zeroing weights.
- * @details Ensures that at least one connection/weight is active.
  * @param l The neural network layer to mutate.
  * @param mu_enable The probability of enabling a currently disabled weight.
  * @param mu_disable The probability of disabling a currently enabled weight.
@@ -169,7 +168,7 @@ _Bool
 layer_mutate_connectivity(struct LAYER *l, double mu_enable, double mu_disable)
 {
     _Bool mod = false;
-    if (l->n_inputs > 1) {
+    if (l->n_inputs > 1 && l->n_outputs > 1) {
         for (int i = 0; i < l->n_weights; ++i) {
             if (!l->weight_active[i] && rand_uniform(0, 1) < mu_enable) {
                 l->weight_active[i] = true;
@@ -183,15 +182,53 @@ layer_mutate_connectivity(struct LAYER *l, double mu_enable, double mu_disable)
                 mod = true;
             }
         }
-        if (l->n_active < 1) {
-            int r = irand_uniform(0, l->n_weights);
-            l->weights[r] = rand_normal(0, 0.1);
-            l->weight_active[r] = true;
-            ++(l->n_active);
-            mod = true;
-        }
     }
     return mod;
+}
+
+/**
+ * @brief Ensures that each neuron is connected to at least one input and each
+ * input is connected to at least one neuron.
+ * @param l A neural network layer.
+ */
+void
+layer_ensure_input_represention(struct LAYER *l)
+{
+    // each neuron must be connected to at least one input
+    for (int i = 0; i < l->n_outputs; ++i) {
+        int active = 0;
+        int offset = l->n_inputs * i;
+        for (int j = 0; j < l->n_inputs; ++j) {
+            if (l->weight_active[offset + j]) {
+                ++active;
+            }
+        }
+        if (active < 1) {
+            int r = irand_uniform(0, l->n_inputs);
+            l->weights[offset + r] = rand_normal(0, 0.1);
+            l->weight_active[offset + r] = true;
+            ++(l->n_active);
+            ++active;
+        }
+    }
+    // each input must be represented at least once
+    for (int i = 0; i < l->n_inputs; ++i) {
+        int active = 0;
+        for (int j = 0; j < l->n_outputs; ++j) {
+            if (l->weight_active[l->n_inputs * j + i]) {
+                ++active;
+            }
+        }
+        while (active < 1) {
+            int offset = l->n_inputs * irand_uniform(0, l->n_outputs);
+            if (!l->weight_active[offset + i]) {
+                l->weights[offset + i] = rand_normal(0, 0.1);
+                l->weight_active[offset + i] = true;
+                ++(l->n_active);
+                ++active;
+            }
+        }
+    }
 }
 
 /**

@@ -328,3 +328,6 @@ layer_weight_print(const struct LAYER *l, _Bool print_weights);
 
 void
 layer_weight_rand(const struct XCSF *xcsf, struct LAYER *l);
+
+void
+layer_ensure_input_represention(struct LAYER *l);
