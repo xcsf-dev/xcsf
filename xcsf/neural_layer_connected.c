@@ -223,7 +223,9 @@ neural_layer_connected_resize(const struct XCSF *xcsf, struct LAYER *l,
     l->n_weights = n_weights;
     l->n_inputs = prev->n_outputs;
     layer_calc_n_active(l);
-    layer_ensure_input_represention(l);
+    if (l->options & LAYER_EVOLVE_CONNECT) {
+        layer_ensure_input_represention(l);
+    }
 }
 
 _Bool
