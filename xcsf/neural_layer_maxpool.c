@@ -251,7 +251,6 @@ neural_layer_maxpool_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;
-    layer_init(l);
     s += fread(&l->height, sizeof(int), 1, fp);
     s += fread(&l->width, sizeof(int), 1, fp);
     s += fread(&l->channels, sizeof(int), 1, fp);

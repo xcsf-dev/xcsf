@@ -428,6 +428,7 @@ neural_load(const struct XCSF *xcsf, struct NET *net, FILE *fp)
     neural_init(xcsf, net);
     for (int i = 0; i < nlayers; ++i) {
         struct LAYER *l = malloc(sizeof(struct LAYER));
+        layer_init(l);
         s += fread(&l->layer_type, sizeof(int), 1, fp);
         layer_set_vptr(l);
         s += layer_load(xcsf, l, fp);

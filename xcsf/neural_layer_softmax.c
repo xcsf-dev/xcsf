@@ -197,7 +197,6 @@ neural_layer_softmax_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;
-    layer_init(l);
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);

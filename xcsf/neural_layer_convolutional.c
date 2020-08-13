@@ -384,7 +384,6 @@ neural_layer_convolutional_load(const struct XCSF *xcsf, struct LAYER *l,
 {
     (void) xcsf;
     size_t s = 0;
-    layer_init(l);
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
     s += fread(&l->function, sizeof(int), 1, fp);
     s += fread(&l->height, sizeof(int), 1, fp);

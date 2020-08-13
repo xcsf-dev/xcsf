@@ -533,7 +533,6 @@ size_t
 neural_layer_lstm_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp)
 {
     size_t s = 0;
-    layer_init(l);
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->n_weights, sizeof(int), 1, fp);
