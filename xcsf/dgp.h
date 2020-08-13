@@ -26,8 +26,6 @@
 
 #include "xcsf.h"
 
-#define DGP_N_MU (3) //!< Number of DGP mutation rates
-
 /**
  * @brief Dynamical GP graph data structure.
  */
@@ -41,7 +39,7 @@ typedef struct GRAPH {
     int n; //!< Number of nodes
     int t; //!< Number of cycles to run
     int klen; //!< Length of connectivity map
-    double mu[DGP_N_MU]; //!< Mutation rates
+    double *mu; //!< Mutation rates
 } GRAPH;
 
 _Bool

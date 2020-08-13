@@ -112,9 +112,6 @@ void
 param_set_m_probation(struct XCSF *xcsf, int a);
 
 void
-param_set_sam_type(struct XCSF *xcsf, int a);
-
-void
 param_set_p_crossover(struct XCSF *xcsf, double a);
 
 void

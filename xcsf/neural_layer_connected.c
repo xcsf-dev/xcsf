@@ -28,6 +28,10 @@
 #include "utils.h"
 
 #define N_MU (6) //!< Number of mutation rates applied to a connected layer
+static const int MU_TYPE[N_MU] = {
+    SAM_LOG_NORMAL, SAM_LOG_NORMAL, SAM_LOG_NORMAL,
+    SAM_LOG_NORMAL, SAM_LOG_NORMAL, SAM_LOG_NORMAL
+}; //<! Self-adaptation method
 
 static void
 malloc_layer_arrays(struct LAYER *l)
@@ -83,7 +87,7 @@ neural_layer_connected_init(const struct XCSF *xcsf, int n_inputs, int n_init,
         l->weight_active[i] = true;
     }
     memset(l->biases, 0, sizeof(double) * l->n_biases);
-    sam_init(xcsf, l->mu, N_MU);
+    sam_init(l->mu, N_MU, MU_TYPE);
     return l;
 }
 
@@ -231,7 +235,7 @@ neural_layer_connected_resize(const struct XCSF *xcsf, struct LAYER *l,
 _Bool
 neural_layer_connected_mutate(const struct XCSF *xcsf, struct LAYER *l)
 {
-    sam_adapt(xcsf, l->mu, N_MU);
+    sam_adapt(l->mu, N_MU, MU_TYPE);
     _Bool mod = false;
     if ((l->options & LAYER_EVOLVE_ETA) &&
         layer_mutate_eta(xcsf, l, l->mu[0])) {

@@ -26,9 +26,10 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (1) //!< Number of ternary mutation rates
 #define P_DONTCARE (0.5) //!< Don't care probability
 #define DONT_CARE ('#') //!< Don't care symbol
+#define N_MU (1) //!< Number of ternary mutation rates
+static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
 
 /**
  * @brief Generates a binary string from a float.
@@ -75,7 +76,7 @@ cond_ternary_init(const struct XCSF *xcsf, struct CL *c)
     new->string = malloc(sizeof(char) * new->length);
     new->tmp_input = malloc(sizeof(char) * xcsf->COND_BITS);
     new->mu = malloc(sizeof(double) * N_MU);
-    sam_init(xcsf, new->mu, N_MU);
+    sam_init(new->mu, N_MU, MU_TYPE);
     c->cond = new;
     cond_ternary_rand(xcsf, c);
 }
@@ -172,8 +173,9 @@ cond_ternary_crossover(const struct XCSF *xcsf, const struct CL *c1,
 _Bool
 cond_ternary_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
+    (void) xcsf;
     const struct COND_TERNARY *cond = c->cond;
-    sam_adapt(xcsf, cond->mu, N_MU);
+    sam_adapt(cond->mu, N_MU, MU_TYPE);
     _Bool changed = false;
     for (int i = 0; i < cond->length; ++i) {
         if (rand_uniform(0, 1) < cond->mu[0]) {

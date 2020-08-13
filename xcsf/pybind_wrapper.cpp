@@ -497,12 +497,6 @@ class XCS
         return xcs.EA_SELECT_SIZE;
     }
 
-    int
-    get_sam_type(void)
-    {
-        return xcs.SAM_TYPE;
-    }
-
     double
     get_max_con(void)
     {
@@ -1016,12 +1010,6 @@ class XCS
     }
 
     void
-    set_sam_type(int a)
-    {
-        param_set_sam_type(&xcs, a);
-    }
-
-    void
     set_max_con(double a)
     {
         param_set_cond_max(&xcs, a);
@@ -1304,7 +1292,6 @@ PYBIND11_MODULE(xcsf, m)
                       &XCS::set_ea_select_type)
         .def_property("EA_SELECT_SIZE", &XCS::get_ea_select_size,
                       &XCS::set_ea_select_size)
-        .def_property("SAM_TYPE", &XCS::get_sam_type, &XCS::set_sam_type)
         .def_property("COND_MAX", &XCS::get_max_con, &XCS::set_max_con)
         .def_property("COND_MIN", &XCS::get_min_con, &XCS::set_min_con)
         .def_property("COND_SMIN", &XCS::get_cond_smin, &XCS::set_cond_smin)

@@ -26,8 +26,9 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (1) //!< Number of self-adaptive mutation rates
 #define ETA_MIN (0.0001) //!< Minimum gradient descent rate
+#define N_MU (1) //!< Number of self-adaptive mutation rates
+static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
 
 void
 pred_nlms_init(const struct XCSF *xcsf, struct CL *c)
@@ -48,7 +49,7 @@ pred_nlms_init(const struct XCSF *xcsf, struct CL *c)
     // initialise learning rate
     pred->mu = malloc(sizeof(double) * N_MU);
     if (xcsf->PRED_EVOLVE_ETA) {
-        sam_init(xcsf, pred->mu, N_MU);
+        sam_init(pred->mu, N_MU, MU_TYPE);
         pred->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
     } else {
         memset(pred->mu, 0, sizeof(double) * N_MU);
@@ -139,7 +140,7 @@ pred_nlms_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
     if (xcsf->PRED_EVOLVE_ETA) {
         struct PRED_NLMS *pred = c->pred;
-        sam_adapt(xcsf, pred->mu, N_MU);
+        sam_adapt(pred->mu, N_MU, MU_TYPE);
         double orig = pred->eta;
         pred->eta += rand_normal(0, pred->mu[0]);
         pred->eta = clamp(pred->eta, ETA_MIN, xcsf->PRED_ETA);

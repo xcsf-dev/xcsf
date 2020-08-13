@@ -140,8 +140,6 @@ config_ea(struct XCSF *xcsf, const char *n, char *v, int i, double f)
         param_set_lambda(xcsf, i);
     } else if (strncmp(n, "P_CROSSOVER", 12) == 0) {
         param_set_p_crossover(xcsf, f);
-    } else if (strncmp(n, "SAM_TYPE", 9) == 0) {
-        param_set_sam_type(xcsf, i);
     }
 }
 

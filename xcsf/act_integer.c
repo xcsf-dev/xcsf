@@ -26,6 +26,7 @@
 #include "utils.h"
 
 #define N_MU (1) //!< Number of integer action mutation rates
+static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
 
 _Bool
 act_integer_crossover(const struct XCSF *xcsf, const struct CL *c1,
@@ -54,7 +55,7 @@ _Bool
 act_integer_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
     struct ACT_INTEGER *act = c->act;
-    sam_adapt(xcsf, act->mu, N_MU);
+    sam_adapt(act->mu, N_MU, MU_TYPE);
     if (rand_uniform(0, 1) < act->mu[0]) {
         int old = act->action;
         act->action = irand_uniform(0, xcsf->n_actions);
@@ -119,7 +120,7 @@ act_integer_init(const struct XCSF *xcsf, struct CL *c)
 {
     struct ACT_INTEGER *new = malloc(sizeof(struct ACT_INTEGER));
     new->mu = malloc(sizeof(double) * N_MU);
-    sam_init(xcsf, new->mu, N_MU);
+    sam_init(new->mu, N_MU, MU_TYPE);
     new->action = irand_uniform(0, xcsf->n_actions);
     c->act = new;
 }

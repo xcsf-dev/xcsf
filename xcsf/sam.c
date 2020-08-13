@@ -31,120 +31,58 @@ static const double mrates[N_RATES] = {
 }; //!< values for rate selection adaptation
 
 /**
- * @brief Initialises log normal self-adaptive mutation rates.
- * @param mu The mutation rates to initialise.
- * @param n The number of mutation rates.
- */
-static void
-sam_log_normal_init(double *mu, int n)
-{
-    for (int i = 0; i < n; ++i) {
-        mu[i] = rand_uniform(MU_EPSILON, 1);
-    }
-}
-
-/**
- * @brief Performs log normal self-adaptation.
- * @param mu The mutation rates to adapt.
- * @param n The number of mutation rates.
- */
-static void
-sam_log_normal_adapt(double *mu, int n)
-{
-    for (int i = 0; i < n; ++i) {
-        mu[i] *= exp(rand_normal(0, 1));
-        mu[i] = clamp(mu[i], MU_EPSILON, 1);
-    }
-}
-
-/**
- * @brief With 10% probability selects a uniformly random mutation rate.
- * @param mu The mutation rates to adapt.
- * @param n The number of mutation rates.
- */
-static void
-sam_uniform_adapt(double *mu, int n)
-{
-    for (int i = 0; i < n; ++i) {
-        if (rand_uniform(0, 1) < 0.1) {
-            mu[i] = rand_uniform(MU_EPSILON, 1);
-        }
-    }
-}
-
-/**
- * @brief Initialises rate selection self-adaptive mutation.
- * @param mu The mutation rates to initialise.
- * @param n The number of mutation rates.
- */
-static void
-sam_rate_selection_init(double *mu, int n)
-{
-    for (int i = 0; i < n; ++i) {
-        mu[i] = mrates[irand_uniform(0, N_RATES)];
-    }
-}
-
-/**
- * @brief Performs self-adaptation via a rate selection mechanism.
- * @param mu The mutation rates to adapt.
- * @param n The number of mutation rates.
- * @details With 10% probability, randomly selects one of the possible rates.
- */
-static void
-sam_rate_selection_adapt(double *mu, int n)
-{
-    for (int i = 0; i < n; ++i) {
-        if (rand_uniform(0, 1) < 0.1) {
-            mu[i] = mrates[irand_uniform(0, N_RATES)];
-        }
-    }
-}
-
-/**
  * @brief Initialises self-adaptive mutation rates.
- * @param xcsf The XCSF data structure.
- * @param mu The classifier's mutation rates.
- * @param n The number of mutation rates.
+ * @param mu Vector of mutation rates.
+ * @param N Number of mutation rates.
+ * @param type Vector specifying each rate type.
  */
 void
-sam_init(const struct XCSF *xcsf, double *mu, int n)
+sam_init(double *mu, int N, const int *type)
 {
-    switch (xcsf->SAM_TYPE) {
-        case SAM_LOG_NORMAL:
-        case SAM_UNIFORM:
-            sam_log_normal_init(mu, n);
-            break;
-        case SAM_RATE_SELECT:
-            sam_rate_selection_init(mu, n);
-            break;
-        default:
-            printf("sam_reset(): invalid sam function: %d\n", xcsf->SAM_TYPE);
-            exit(EXIT_FAILURE);
+    for (int i = 0; i < N; ++i) {
+        switch (type[i]) {
+            case SAM_LOG_NORMAL:
+            case SAM_UNIFORM:
+                mu[i] = rand_uniform(MU_EPSILON, 1);
+                break;
+            case SAM_RATE_SELECT:
+                mu[i] = mrates[irand_uniform(0, N_RATES)];
+                break;
+            default:
+                printf("sam_init(): invalid sam function: %d\n", type[i]);
+                exit(EXIT_FAILURE);
+        }
     }
 }
 
 /**
  * @brief Self-adapts mutation rates.
- * @param xcsf The XCSF data structure.
- * @param mu The classifier's mutation rates.
- * @param n The number of mutation rates.
+ * @param mu Vector of mutation rates.
+ * @param N Number of mutation rates.
+ * @param type Vector specifying each rate type.
  */
 void
-sam_adapt(const struct XCSF *xcsf, double *mu, int n)
+sam_adapt(double *mu, int N, const int *type)
 {
-    switch (xcsf->SAM_TYPE) {
-        case SAM_LOG_NORMAL:
-            sam_log_normal_adapt(mu, n);
-            break;
-        case SAM_RATE_SELECT:
-            sam_rate_selection_adapt(mu, n);
-            break;
-        case SAM_UNIFORM:
-            sam_uniform_adapt(mu, n);
-            break;
-        default:
-            printf("sam_adapt(): invalid sam function: %d\n", xcsf->SAM_TYPE);
-            exit(EXIT_FAILURE);
+    for (int i = 0; i < N; ++i) {
+        switch (type[i]) {
+            case SAM_LOG_NORMAL:
+                mu[i] *= exp(rand_normal(0, 1));
+                mu[i] = clamp(mu[i], MU_EPSILON, 1);
+                break;
+            case SAM_RATE_SELECT:
+                if (rand_uniform(0, 1) < 0.1) {
+                    mu[i] = mrates[irand_uniform(0, N_RATES)];
+                }
+                break;
+            case SAM_UNIFORM:
+                if (rand_uniform(0, 1) < 0.1) {
+                    mu[i] = irand_uniform(MU_EPSILON, 1);
+                }
+                break;
+            default:
+                printf("sam_adapt(): invalid sam function: %d\n", type[i]);
+                exit(EXIT_FAILURE);
+        }
     }
 }

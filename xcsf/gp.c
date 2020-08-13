@@ -37,6 +37,9 @@
 #define MUL (2)
 #define DIV (3)
 
+#define N_MU (1) //!< Number of tree-GP mutation rates
+static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
+
 /**
  * @brief Traverses a GP tree.
  * @param tree The tree to traverse.
@@ -149,7 +152,8 @@ tree_rand(const struct XCSF *xcsf, struct GP_TREE *gp)
     } while (gp->len < 0);
     gp->tree = malloc(sizeof(int) * gp->len);
     memcpy(gp->tree, buffer, sizeof(int) * gp->len);
-    sam_init(xcsf, gp->mu, GP_N_MU);
+    gp->mu = malloc(sizeof(double) * N_MU);
+    sam_init(gp->mu, N_MU, MU_TYPE);
 }
 
 /**
@@ -162,6 +166,7 @@ tree_free(const struct XCSF *xcsf, const struct GP_TREE *gp)
 {
     (void) xcsf;
     free(gp->tree);
+    free(gp->mu);
 }
 
 /**
@@ -271,7 +276,8 @@ tree_copy(const struct XCSF *xcsf, struct GP_TREE *dest,
     dest->tree = malloc(sizeof(int) * src->len);
     memcpy(dest->tree, src->tree, sizeof(int) * src->len);
     dest->p = src->p;
-    memcpy(dest->mu, src->mu, sizeof(double) * GP_N_MU);
+    dest->mu = malloc(sizeof(double) * N_MU);
+    memcpy(dest->mu, src->mu, sizeof(double) * N_MU);
 }
 
 /**
@@ -319,7 +325,7 @@ _Bool
 tree_mutate(const struct XCSF *xcsf, struct GP_TREE *gp)
 {
     _Bool changed = false;
-    sam_adapt(xcsf, gp->mu, GP_N_MU);
+    sam_adapt(gp->mu, N_MU, MU_TYPE);
     int terminal_max = GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim;
     for (int i = 0; i < gp->len; ++i) {
         if (rand_uniform(0, 1) < gp->mu[0]) {
@@ -352,7 +358,7 @@ tree_save(const struct XCSF *xcsf, const struct GP_TREE *gp, FILE *fp)
     s += fwrite(&gp->p, sizeof(int), 1, fp);
     s += fwrite(&gp->len, sizeof(int), 1, fp);
     s += fwrite(gp->tree, sizeof(int), gp->len, fp);
-    s += fwrite(gp->mu, sizeof(double), GP_N_MU, fp);
+    s += fwrite(gp->mu, sizeof(double), N_MU, fp);
     return s;
 }
 
@@ -377,6 +383,6 @@ tree_load(const struct XCSF *xcsf, struct GP_TREE *gp, FILE *fp)
     }
     gp->tree = malloc(sizeof(int) * gp->len);
     s += fread(gp->tree, sizeof(int), gp->len, fp);
-    s += fread(gp->mu, sizeof(double), GP_N_MU, fp);
+    s += fread(gp->mu, sizeof(double), N_MU, fp);
     return s;
 }

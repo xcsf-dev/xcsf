@@ -26,6 +26,7 @@
 #include "utils.h"
 
 #define N_MU (1) //!< Number of hyperrectangle mutation rates
+static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
 
 static double
 cond_rectangle_dist(const struct XCSF *xcsf, const struct CL *c,
@@ -60,7 +61,7 @@ cond_rectangle_init(const struct XCSF *xcsf, struct CL *c)
         new->spread[i] = rand_uniform(xcsf->COND_SMIN, spread_max);
     }
     new->mu = malloc(sizeof(double) * N_MU);
-    sam_init(xcsf, new->mu, N_MU);
+    sam_init(new->mu, N_MU, MU_TYPE);
     c->cond = new;
 }
 
@@ -158,7 +159,7 @@ cond_rectangle_mutate(const struct XCSF *xcsf, const struct CL *c)
     const struct COND_RECTANGLE *cond = c->cond;
     double *center = cond->center;
     double *spread = cond->spread;
-    sam_adapt(xcsf, cond->mu, N_MU);
+    sam_adapt(cond->mu, N_MU, MU_TYPE);
     for (int i = 0; i < xcsf->x_dim; ++i) {
         double orig = center[i];
         center[i] += rand_normal(0, cond->mu[0]);

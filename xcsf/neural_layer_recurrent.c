@@ -30,6 +30,10 @@
 #include "utils.h"
 
 #define N_MU (6) //!< Number of mutation rates applied to a recurrent layer
+static const int MU_TYPE[N_MU] = {
+    SAM_LOG_NORMAL, SAM_LOG_NORMAL, SAM_LOG_NORMAL,
+    SAM_LOG_NORMAL, SAM_LOG_NORMAL, SAM_LOG_NORMAL
+}; //<! Self-adaptation method
 
 static void
 malloc_layer_arrays(struct LAYER *l)
@@ -198,7 +202,7 @@ neural_layer_recurrent_init(const struct XCSF *xcsf, int n_inputs, int n_init,
     set_layer_n_weights(l);
     set_layer_n_active(l);
     malloc_layer_arrays(l);
-    sam_init(xcsf, l->mu, N_MU);
+    sam_init(l->mu, N_MU, MU_TYPE);
     return l;
 }
 
@@ -306,7 +310,7 @@ neural_layer_recurrent_output(const struct XCSF *xcsf, const struct LAYER *l)
 _Bool
 neural_layer_recurrent_mutate(const struct XCSF *xcsf, struct LAYER *l)
 {
-    sam_adapt(xcsf, l->mu, N_MU);
+    sam_adapt(l->mu, N_MU, MU_TYPE);
     _Bool mod = false;
     mod = mutate_eta(xcsf, l) ? true : mod;
     mod = mutate_neurons(xcsf, l) ? true : mod;

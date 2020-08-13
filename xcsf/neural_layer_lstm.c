@@ -31,6 +31,10 @@
 #include "utils.h"
 
 #define N_MU (6) //!< Number of mutation rates applied to a lstm layer
+static const int MU_TYPE[N_MU] = {
+    SAM_LOG_NORMAL, SAM_LOG_NORMAL, SAM_LOG_NORMAL,
+    SAM_LOG_NORMAL, SAM_LOG_NORMAL, SAM_LOG_NORMAL
+}; //<! Self-adaptation method
 
 static void
 set_layer_n_weights(struct LAYER *l)
@@ -242,7 +246,7 @@ neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
     set_eta(l);
     malloc_layer_arrays(l);
     l->mu = malloc(sizeof(double) * N_MU);
-    sam_init(xcsf, l->mu, N_MU);
+    sam_init(l->mu, N_MU, MU_TYPE);
     return l;
 }
 
@@ -439,7 +443,7 @@ neural_layer_lstm_output(const struct XCSF *xcsf, const struct LAYER *l)
 _Bool
 neural_layer_lstm_mutate(const struct XCSF *xcsf, struct LAYER *l)
 {
-    sam_adapt(xcsf, l->mu, N_MU);
+    sam_adapt(l->mu, N_MU, MU_TYPE);
     _Bool mod = false;
     if ((l->options & LAYER_EVOLVE_ETA) && mutate_eta(xcsf, l)) {
         mod = true;

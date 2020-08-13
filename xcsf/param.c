@@ -319,7 +319,6 @@ param_defaults_ea(struct XCSF *xcsf)
     param_set_theta_ea(xcsf, 50);
     param_set_lambda(xcsf, 2);
     param_set_p_crossover(xcsf, 0.8);
-    param_set_sam_type(xcsf, 0);
 }
 
 /**
@@ -334,7 +333,6 @@ param_print_ea(const struct XCSF *xcsf)
     printf(", THETA_EA=%f", xcsf->THETA_EA);
     printf(", LAMBDA=%d", xcsf->LAMBDA);
     printf(", P_CROSSOVER=%f", xcsf->P_CROSSOVER);
-    printf(", SAM_TYPE=%d", xcsf->SAM_TYPE);
 }
 
 /**
@@ -352,7 +350,6 @@ param_save_ea(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->THETA_EA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->LAMBDA, sizeof(int), 1, fp);
     s += fwrite(&xcsf->P_CROSSOVER, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
     return s;
 }
 
@@ -371,7 +368,6 @@ param_load_ea(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->THETA_EA, sizeof(double), 1, fp);
     s += fread(&xcsf->LAMBDA, sizeof(int), 1, fp);
     s += fread(&xcsf->P_CROSSOVER, sizeof(double), 1, fp);
-    s += fread(&xcsf->SAM_TYPE, sizeof(int), 1, fp);
     return s;
 }
 
@@ -973,17 +969,6 @@ param_set_m_probation(struct XCSF *xcsf, int a)
         xcsf->M_PROBATION = 0;
     } else {
         xcsf->M_PROBATION = a;
-    }
-}
-
-void
-param_set_sam_type(struct XCSF *xcsf, int a)
-{
-    if (a < 0) {
-        printf("Warning: tried to set SAM_TYPE too small\n");
-        xcsf->SAM_TYPE = 0;
-    } else {
-        xcsf->SAM_TYPE = a;
     }
 }
 

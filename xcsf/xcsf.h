@@ -156,7 +156,6 @@ typedef struct XCSF {
     int PRED_TYPE; //!< Classifier prediction type: least squares, etc.
     int ACT_TYPE; //!< Classifier action type
     int M_PROBATION; //!< Trials since creation a cl must match at least 1 input
-    int SAM_TYPE; //!< Self-adaptive mutation algorithm
     int LAMBDA; //!< Number of offspring to create each EA invocation
     int EA_SELECT_TYPE; //!< Roulette or tournament for EA parental selection
     int COND_BITS; //!< Bits per float to binarise inputs for ternary conditions

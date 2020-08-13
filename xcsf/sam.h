@@ -30,7 +30,7 @@
 #define SAM_UNIFORM (2) //!< Uniformly random self-adaptation
 
 void
-sam_adapt(const struct XCSF *xcsf, double *mu, int n);
+sam_adapt(double *mu, int N, const int *type);
 
 void
-sam_init(const struct XCSF *xcsf, double *mu, int n);
+sam_init(double *mu, int N, const int *type);

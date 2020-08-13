@@ -23,8 +23,6 @@
 
 #pragma once
 
-#define GP_N_MU (1) //!< Number of GP mutation rates
-
 #include "xcsf.h"
 
 /**
@@ -34,7 +32,7 @@ typedef struct GP_TREE {
     int *tree; //!< Flattened tree representation of functions and terminals
     int len; //!< Size of the tree
     int p; //!< Current position in the tree
-    double mu[GP_N_MU]; //!< Mutation rates
+    double *mu; //!< Mutation rates
 } GP_TREE;
 
 void
