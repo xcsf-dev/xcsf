@@ -19,11 +19,7 @@
  * @copyright The Authors.
  * @date 2016--2020.
  * @brief An implementation of GP trees based upon TinyGP.
- *
- * @details For a more detailed description see: Poli, R., Langdon, W. B., and
- * McPhee, N. F. (2008) "A Field Guide to Genetic Programming"
- * @see
- * https://dces.essex.ac.uk/staff/rpoli/gp-field-guide/A_Field_Guide_to_Genetic_Programming.pdf
+ * @see Poli, Langdon, and McPhee (2008) "A Field Guide to Genetic Programming"
  */
 
 #include "gp.h"
