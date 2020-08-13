@@ -30,7 +30,7 @@
 
 #define N_MU (5) //!< Number of mutation rates applied to a convolutional layer
 static const int MU_TYPE[N_MU] = {
-    SAM_LOG_NORMAL, SAM_RATE_SELECT, SAM_RATE_SELECT, SAM_RATE_SELECT,
+    SAM_RATE_SELECT, SAM_RATE_SELECT, SAM_RATE_SELECT, SAM_RATE_SELECT,
     SAM_RATE_SELECT
 }; //<! Self-adaptation method
 

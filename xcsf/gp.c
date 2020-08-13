@@ -38,7 +38,9 @@
 #define DIV (3)
 
 #define N_MU (1) //!< Number of tree-GP mutation rates
-static const int MU_TYPE[N_MU] = { SAM_RATE_SELECT }; //<! Self-adaptation method
+static const int MU_TYPE[N_MU] = {
+    SAM_RATE_SELECT
+}; //<! Self-adaptation method
 
 /**
  * @brief Traverses a GP tree.

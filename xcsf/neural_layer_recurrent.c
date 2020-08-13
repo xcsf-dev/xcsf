@@ -31,7 +31,7 @@
 
 #define N_MU (6) //!< Number of mutation rates applied to a recurrent layer
 static const int MU_TYPE[N_MU] = {
-    SAM_LOG_NORMAL,  SAM_UNIFORM,     SAM_RATE_SELECT,
+    SAM_RATE_SELECT, SAM_UNIFORM,     SAM_RATE_SELECT,
     SAM_RATE_SELECT, SAM_RATE_SELECT, SAM_RATE_SELECT
 }; //<! Self-adaptation method
 
