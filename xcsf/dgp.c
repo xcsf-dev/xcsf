@@ -28,8 +28,8 @@
 
 #define NUM_FUNC (3) //!< Number of selectable node functions
 #define N_MU (3) //!< Number of integer action mutation rates
-static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL, SAM_LOG_NORMAL,
-                                   SAM_LOG_NORMAL }; //<! Self-adaptation method
+static const int MU_TYPE[N_MU] = { SAM_RATE_SELECT, SAM_RATE_SELECT,
+                                   SAM_UNIFORM }; //<! Self-adaptation method
 
 /**
  * @brief Returns a random connection.
