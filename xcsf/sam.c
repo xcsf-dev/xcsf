@@ -27,7 +27,7 @@
 #define MU_EPSILON 0.0001 //!< smallest mutation rate allowable
 #define N_RATES (10) //!< number of mutation rates for rate selection adaptation
 static const double mrates[N_RATES] = {
-    0.0001, 0.001, 0.002, 0.005, 0.01, 0.01, 0.02, 0.05, 0.1, 1.0
+    0.0001, 0.001, 0.002, 0.005, 0.01, 0.01, 0.02, 0.05, 0.1, 0.5
 }; //!< values for rate selection adaptation
 
 /**
