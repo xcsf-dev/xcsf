@@ -77,7 +77,7 @@ sam_adapt(double *mu, int N, const int *type)
                 break;
             case SAM_UNIFORM:
                 if (rand_uniform(0, 1) < 0.1) {
-                    mu[i] = irand_uniform(MU_EPSILON, 1);
+                    mu[i] = rand_uniform(MU_EPSILON, 1);
                 }
                 break;
             default:
