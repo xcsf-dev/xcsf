@@ -81,17 +81,22 @@ xcs.POP_SIZE = 500
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.LOSS_FUNC = 1 # MSE
 xcs.EPS_0 = 0.004 # target error
-xcs.ALPHA = 0.1 # accuracy offset
-xcs.NU = 50 # accuracy slope
+xcs.ALPHA = 1 # accuracy offset
+xcs.NU = 20 # accuracy slope
+xcs.THETA_EA = 50 # EA invocation frequency
+xcs.THETA_DEL = 50 # min experience before fitness used in deletion
+xcs.BETA = 0.1 # update rate for error, etc.
 
+xcs.MAX_NEURON_GROW = 1 # max neurons to add/remove per mutation event
 xcs.COND_TYPE = 3 # neural network conditions
 xcs.COND_OUTPUT_ACTIVATION = 3 # linear
-xcs.COND_HIDDEN_ACTIVATION = 3 # linear
+xcs.COND_HIDDEN_ACTIVATION = 1 # relu
 xcs.COND_NUM_NEURONS = [1]
 xcs.COND_MAX_NEURONS = [20]
 xcs.COND_EVOLVE_WEIGHTS = True
 xcs.COND_EVOLVE_NEURONS = True
 xcs.COND_EVOLVE_FUNCTIONS = False
+xcs.COND_EVOLVE_CONNECTIVITY = True
 
 xcs.PRED_TYPE = 5 # neural network predictors
 xcs.PRED_OUTPUT_ACTIVATION = 7 # softplus
@@ -101,8 +106,10 @@ xcs.PRED_MAX_NEURONS = [50]
 xcs.PRED_EVOLVE_WEIGHTS = True
 xcs.PRED_EVOLVE_NEURONS = False
 xcs.PRED_EVOLVE_FUNCTIONS = False
+xcs.PRED_EVOLVE_CONNECTIVITY = True
 xcs.PRED_EVOLVE_ETA = True
 xcs.PRED_SGD_WEIGHTS = True
+xcs.PRED_ETA = 0.01 # maximum gradient descent rate
 
 xcs.print_params()
 
