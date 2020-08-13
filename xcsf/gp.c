@@ -84,15 +84,12 @@ tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth)
     if (p == 0) {
         prim = 1;
     }
-    // add constant or external input
     if (prim == 0 || depth == 0) {
         prim = irand_uniform(GP_NUM_FUNC,
                              GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
         buffer[p] = prim;
         return (p + 1);
-    }
-    // add new function
-    else {
+    } else {
         prim = irand_uniform(0, GP_NUM_FUNC);
         switch (prim) {
             case ADD:
@@ -179,15 +176,11 @@ tree_eval(const struct XCSF *xcsf, struct GP_TREE *gp, const double *x)
 {
     int node = gp->tree[gp->p];
     ++(gp->p);
-    // external input
     if (node >= GP_NUM_FUNC + xcsf->GP_NUM_CONS) {
         return (x[node - GP_NUM_FUNC - xcsf->GP_NUM_CONS]);
-    }
-    // constant
-    else if (node >= GP_NUM_FUNC) {
+    } else if (node >= GP_NUM_FUNC) {
         return (xcsf->gp_cons[node - GP_NUM_FUNC]);
     }
-    // function
     switch (node) {
         case ADD:
             return (tree_eval(xcsf, gp, x) + tree_eval(xcsf, gp, x));
@@ -222,18 +215,14 @@ tree_print(const struct XCSF *xcsf, const struct GP_TREE *gp, int p)
 {
     int node = gp->tree[p];
     if (node >= GP_NUM_FUNC) {
-        // external input
         if (node >= GP_NUM_FUNC + xcsf->GP_NUM_CONS) {
             printf("IN:%d ", node - GP_NUM_FUNC - xcsf->GP_NUM_CONS);
-        }
-        // constant
-        else {
+        } else {
             printf("%f", xcsf->gp_cons[node - GP_NUM_FUNC]);
         }
         ++p;
         return (p);
     }
-    // function
     printf("(");
     ++p;
     int a1 = tree_print(xcsf, gp, p);
@@ -315,6 +304,8 @@ tree_crossover(const struct XCSF *xcsf, struct GP_TREE *p1, struct GP_TREE *p2)
 
 /**
  * @brief Performs point mutation on a GP tree.
+ * @details Terminals are randomly replaced with other terminals and functions
+ * are randomly replaced with other functions.
  * @param xcsf The XCSF data structure.
  * @param gp The GP tree to be mutated.
  * @return Whether any alterations were made.
@@ -328,12 +319,9 @@ tree_mutate(const struct XCSF *xcsf, struct GP_TREE *gp)
     for (int i = 0; i < gp->len; ++i) {
         if (rand_uniform(0, 1) < gp->mu[0]) {
             changed = true;
-            // terminals randomly replaced with other terminals
             if (gp->tree[i] >= GP_NUM_FUNC) {
                 gp->tree[i] = irand_uniform(GP_NUM_FUNC, terminal_max);
-            }
-            // functions randomly replaced with other functions
-            else {
+            } else {
                 gp->tree[i] = irand_uniform(0, GP_NUM_FUNC);
             }
         }
