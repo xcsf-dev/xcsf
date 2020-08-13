@@ -193,9 +193,8 @@ tree_eval(const struct XCSF *xcsf, struct GP_TREE *gp, const double *x)
             double den = tree_eval(xcsf, gp, x);
             if (den == 0) {
                 return (num);
-            } else {
-                return (num / den);
             }
+            return (num / den);
         }
         default:
             printf("eval() invalid function: %d\n", node);
