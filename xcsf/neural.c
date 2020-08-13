@@ -369,7 +369,7 @@ neural_size(const struct XCSF *xcsf, const struct NET *net)
     (void) xcsf;
     int size = 0;
     const struct LLIST *iter = net->tail;
-    while (iter->prev != NULL) {
+    while (iter != NULL) {
         switch (iter->layer->layer_type) {
             case (CONNECTED):
             case (RECURRENT):
@@ -400,7 +400,7 @@ neural_save(const struct XCSF *xcsf, const struct NET *net, FILE *fp)
     s += fwrite(&net->n_inputs, sizeof(int), 1, fp);
     s += fwrite(&net->n_outputs, sizeof(int), 1, fp);
     const struct LLIST *iter = net->tail;
-    while (iter->prev != NULL) {
+    while (iter != NULL) {
         s += fwrite(&iter->layer->layer_type, sizeof(int), 1, fp);
         s += layer_save(xcsf, iter->layer, fp);
         iter = iter->prev;
