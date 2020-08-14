@@ -104,7 +104,7 @@ int
 layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l, double mu)
 {
     int n = 0;
-    if (rand_uniform(0, 1) < mu) {
+    if (rand_uniform(0, 0.1) < mu) { // 10x higher probability
         while (n == 0) {
             double m = clamp(rand_normal(0, 0.5), -1, 1);
             n = (int) round(m * xcsf->MAX_NEURON_GROW);
