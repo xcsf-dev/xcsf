@@ -30,10 +30,14 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (6) //!< Number of mutation rates applied to a lstm layer
+#define N_MU (6) //!< Number of mutation rates applied to an LSTM layer
 static const int MU_TYPE[N_MU] = {
-    SAM_RATE_SELECT, SAM_UNIFORM,     SAM_RATE_SELECT,
-    SAM_RATE_SELECT, SAM_RATE_SELECT, SAM_RATE_SELECT
+    SAM_LOG_NORMAL, //!< Rate of gradient descent mutation
+    SAM_UNIFORM, //!< Number of neurons to add or remove
+    SAM_LOG_NORMAL, //!< Weight enabling mutation rate
+    SAM_LOG_NORMAL, //!< Weight disabling mutation rate
+    SAM_LOG_NORMAL, //!< Weight magnitude mutation
+    SAM_LOG_NORMAL //!< Activation function mutation rate
 }; //<! Self-adaptation method
 
 static void

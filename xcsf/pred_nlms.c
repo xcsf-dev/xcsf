@@ -28,7 +28,9 @@
 
 #define ETA_MIN (0.0001) //!< Minimum gradient descent rate
 #define N_MU (1) //!< Number of self-adaptive mutation rates
-static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
+static const int MU_TYPE[N_MU] = {
+    SAM_LOG_NORMAL //!< Rate of gradient descent mutation
+}; //<! Self-adaptation method
 
 void
 pred_nlms_init(const struct XCSF *xcsf, struct CL *c)

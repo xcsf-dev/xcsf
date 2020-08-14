@@ -27,9 +27,12 @@
 #include "utils.h"
 
 #define NUM_FUNC (3) //!< Number of selectable node functions
-#define N_MU (3) //!< Number of integer action mutation rates
-static const int MU_TYPE[N_MU] = { SAM_RATE_SELECT, SAM_RATE_SELECT,
-                                   SAM_UNIFORM }; //<! Self-adaptation method
+#define N_MU (3) //!< Number of DGP graph mutation rates
+static const int MU_TYPE[N_MU] = {
+    SAM_LOG_NORMAL, //!< Node function mutation
+    SAM_LOG_NORMAL, //!< Connectivity mutation
+    SAM_UNIFORM //!< Number of update cycles mutation
+}; //<! Self-adaptation method
 
 /**
  * @brief Returns a random connection.
