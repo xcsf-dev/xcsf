@@ -103,14 +103,12 @@ int
 layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l)
 {
     int n = 0;
-    if (rand_uniform(0, 1) < 0.6666) {
-        double m = clamp(rand_normal(0, 0.5), -1, 1);
-        n = (int) round(m * xcsf->MAX_NEURON_GROW);
-        if (n < 0 && l->n_outputs + n < 1) {
-            n = -(l->n_outputs - 1);
-        } else if (l->n_outputs + n > l->max_outputs) {
-            n = l->max_outputs - l->n_outputs;
-        }
+    double m = clamp(rand_normal(0, 0.5), -1, 1);
+    n = (int) round(m * xcsf->MAX_NEURON_GROW);
+    if (n < 0 && l->n_outputs + n < 1) {
+        n = -(l->n_outputs - 1);
+    } else if (l->n_outputs + n > l->max_outputs) {
+        n = l->max_outputs - l->n_outputs;
     }
     return n;
 }
