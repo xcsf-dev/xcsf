@@ -97,18 +97,23 @@ layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, double mu)
  * @brief Returns the number of neurons to add or remove from a layer
  * @param xcsf The XCSF data structure.
  * @param l The neural network layer to mutate.
+ * @param mu The rate of mutation.
  * @return The number of neurons to be added or removed.
  */
 int
-layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l)
+layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l, double mu)
 {
     int n = 0;
-    double m = clamp(rand_normal(0, 0.5), -1, 1);
-    n = (int) round(m * xcsf->MAX_NEURON_GROW);
-    if (n < 0 && l->n_outputs + n < 1) {
-        n = -(l->n_outputs - 1);
-    } else if (l->n_outputs + n > l->max_outputs) {
-        n = l->max_outputs - l->n_outputs;
+    if (rand_uniform(0, 1) < mu) {
+        while (n == 0) {
+            double m = clamp(rand_normal(0, 0.5), -1, 1);
+            n = (int) round(m * xcsf->MAX_NEURON_GROW);
+        }
+        if (n < 0 && l->n_outputs + n < 1) {
+            n = -(l->n_outputs - 1);
+        } else if (l->n_outputs + n > l->max_outputs) {
+            n = l->max_outputs - l->n_outputs;
+        }
     }
     return n;
 }

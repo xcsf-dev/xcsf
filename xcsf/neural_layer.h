@@ -303,7 +303,7 @@ _Bool
 layer_mutate_weights(struct LAYER *l, double mu);
 
 int
-layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l);
+layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l, double mu);
 
 void
 layer_add_neurons(struct LAYER *l, int n);

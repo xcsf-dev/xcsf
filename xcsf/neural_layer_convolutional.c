@@ -30,11 +30,11 @@
 
 #define N_MU (5) //!< Number of mutation rates applied to a convolutional layer
 static const int MU_TYPE[N_MU] = {
-    SAM_LOG_NORMAL, //!< Rate of gradient descent mutation
-    SAM_LOG_NORMAL, //!< Weight enabling mutation rate
-    SAM_LOG_NORMAL, //!< Weight disabling mutation rate
-    SAM_LOG_NORMAL, //!< Weight magnitude mutation
-    SAM_LOG_NORMAL //!< Activation function mutation rate
+    SAM_RATE_SELECT, //!< Rate of gradient descent mutation
+    SAM_RATE_SELECT, //!< Weight enabling mutation rate
+    SAM_RATE_SELECT, //!< Weight disabling mutation rate
+    SAM_RATE_SELECT, //!< Weight magnitude mutation
+    SAM_RATE_SELECT //!< Activation function mutation rate
 }; //<! Self-adaptation method
 
 static size_t
