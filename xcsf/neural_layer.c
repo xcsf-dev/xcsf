@@ -104,11 +104,14 @@ layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, double mu)
 int
 layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l, double mu)
 {
-    int n = (int) round(((2 * mu) - 1) * xcsf->MAX_NEURON_GROW);
-    if (n < 0 && l->n_outputs + n < 1) {
-        n = -(l->n_outputs - 1);
-    } else if (l->n_outputs + n > l->max_outputs) {
-        n = l->max_outputs - l->n_outputs;
+    int n = 0;
+    if (rand_uniform(0, 1) < mu) {
+        n = irand_uniform(1, xcsf->MAX_NEURON_GROW);
+        if (n < 0 && l->n_outputs + n < 1) {
+            n = -(l->n_outputs - 1);
+        } else if (l->n_outputs + n > l->max_outputs) {
+            n = l->max_outputs - l->n_outputs;
+        }
     }
     return n;
 }
