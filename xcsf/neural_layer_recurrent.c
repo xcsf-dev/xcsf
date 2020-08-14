@@ -29,10 +29,9 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (6) //!< Number of mutation rates applied to a recurrent layer
+#define N_MU (5) //!< Number of mutation rates applied to a recurrent layer
 static const int MU_TYPE[N_MU] = {
     SAM_LOG_NORMAL, //!< Rate of gradient descent mutation
-    SAM_LOG_NORMAL, //!< Rate of neuron growth / removal
     SAM_LOG_NORMAL, //!< Weight enabling mutation rate
     SAM_LOG_NORMAL, //!< Weight disabling mutation rate
     SAM_LOG_NORMAL, //!< Weight magnitude mutation
@@ -98,7 +97,7 @@ static _Bool
 mutate_neurons(const struct XCSF *xcsf, struct LAYER *l)
 {
     if (l->options & LAYER_EVOLVE_NEURONS) {
-        int n = layer_mutate_neurons(xcsf, l->self_layer, l->mu[1]);
+        int n = layer_mutate_neurons(xcsf, l->self_layer);
         if (n != 0) {
             layer_add_neurons(l->input_layer, n);
             layer_add_neurons(l->self_layer, n);
@@ -125,13 +124,13 @@ mutate_connectivity(struct LAYER *l)
 {
     _Bool mod = false;
     if (l->options & LAYER_EVOLVE_CONNECT) {
-        if (layer_mutate_connectivity(l->input_layer, l->mu[2], l->mu[3])) {
+        if (layer_mutate_connectivity(l->input_layer, l->mu[1], l->mu[2])) {
             mod = true;
         }
-        if (layer_mutate_connectivity(l->self_layer, l->mu[2], l->mu[3])) {
+        if (layer_mutate_connectivity(l->self_layer, l->mu[1], l->mu[2])) {
             mod = true;
         }
-        if (layer_mutate_connectivity(l->output_layer, l->mu[2], l->mu[3])) {
+        if (layer_mutate_connectivity(l->output_layer, l->mu[1], l->mu[2])) {
             mod = true;
         }
         set_layer_n_active(l);
@@ -144,13 +143,13 @@ mutate_weights(struct LAYER *l)
 {
     _Bool mod = false;
     if (l->options & LAYER_EVOLVE_WEIGHTS) {
-        if (layer_mutate_weights(l->input_layer, l->mu[4])) {
+        if (layer_mutate_weights(l->input_layer, l->mu[3])) {
             mod = true;
         }
-        if (layer_mutate_weights(l->self_layer, l->mu[4])) {
+        if (layer_mutate_weights(l->self_layer, l->mu[3])) {
             mod = true;
         }
-        if (layer_mutate_weights(l->output_layer, l->mu[4])) {
+        if (layer_mutate_weights(l->output_layer, l->mu[3])) {
             mod = true;
         }
     }
@@ -161,7 +160,7 @@ static _Bool
 mutate_functions(struct LAYER *l)
 {
     if (l->options & LAYER_EVOLVE_FUNCTIONS &&
-        layer_mutate_functions(l, l->mu[5])) {
+        layer_mutate_functions(l, l->mu[4])) {
         l->output_layer->function = l->function;
         return true;
     }

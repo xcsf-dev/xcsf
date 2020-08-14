@@ -27,10 +27,9 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (6) //!< Number of mutation rates applied to a connected layer
+#define N_MU (5) //!< Number of mutation rates applied to a connected layer
 static const int MU_TYPE[N_MU] = {
     SAM_LOG_NORMAL, //!< Rate of gradient descent mutation
-    SAM_LOG_NORMAL, //!< Rate of neuron growth / removal
     SAM_LOG_NORMAL, //!< Weight enabling mutation rate
     SAM_LOG_NORMAL, //!< Weight disabling mutation rate
     SAM_LOG_NORMAL, //!< Weight magnitude mutation
@@ -246,23 +245,23 @@ neural_layer_connected_mutate(const struct XCSF *xcsf, struct LAYER *l)
         mod = true;
     }
     if (l->options & LAYER_EVOLVE_NEURONS) {
-        int n = layer_mutate_neurons(xcsf, l, l->mu[1]);
+        int n = layer_mutate_neurons(xcsf, l);
         if (n != 0) {
             layer_add_neurons(l, n);
             mod = true;
         }
     }
     if ((l->options & LAYER_EVOLVE_CONNECT) &&
-        layer_mutate_connectivity(l, l->mu[2], l->mu[3])) {
+        layer_mutate_connectivity(l, l->mu[1], l->mu[2])) {
         layer_ensure_input_represention(l);
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_WEIGHTS) &&
-        layer_mutate_weights(l, l->mu[4])) {
+        layer_mutate_weights(l, l->mu[3])) {
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_FUNCTIONS) &&
-        layer_mutate_functions(l, l->mu[5])) {
+        layer_mutate_functions(l, l->mu[4])) {
         mod = true;
     }
     return mod;

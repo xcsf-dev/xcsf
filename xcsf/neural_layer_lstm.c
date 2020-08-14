@@ -30,10 +30,9 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (6) //!< Number of mutation rates applied to an LSTM layer
+#define N_MU (5) //!< Number of mutation rates applied to an LSTM layer
 static const int MU_TYPE[N_MU] = {
     SAM_LOG_NORMAL, //!< Rate of gradient descent mutation
-    SAM_LOG_NORMAL, //!< Rate of neuron growth / removal
     SAM_LOG_NORMAL, //!< Weight enabling mutation rate
     SAM_LOG_NORMAL, //!< Weight disabling mutation rate
     SAM_LOG_NORMAL, //!< Weight magnitude mutation
@@ -151,7 +150,7 @@ mutate_eta(const struct XCSF *xcsf, struct LAYER *l)
 static _Bool
 mutate_neurons(const struct XCSF *xcsf, struct LAYER *l)
 {
-    int n = layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
+    int n = layer_mutate_neurons(xcsf, l->uf);
     if (n != 0) {
         layer_add_neurons(l->uf, n);
         layer_add_neurons(l->ui, n);
@@ -180,14 +179,14 @@ static _Bool
 mutate_connectivity(struct LAYER *l)
 {
     _Bool mod = false;
-    mod = layer_mutate_connectivity(l->uf, l->mu[2], l->mu[3]) ? true : mod;
-    mod = layer_mutate_connectivity(l->ui, l->mu[2], l->mu[3]) ? true : mod;
-    mod = layer_mutate_connectivity(l->ug, l->mu[2], l->mu[3]) ? true : mod;
-    mod = layer_mutate_connectivity(l->uo, l->mu[2], l->mu[3]) ? true : mod;
-    mod = layer_mutate_connectivity(l->wf, l->mu[2], l->mu[3]) ? true : mod;
-    mod = layer_mutate_connectivity(l->wi, l->mu[2], l->mu[3]) ? true : mod;
-    mod = layer_mutate_connectivity(l->wg, l->mu[2], l->mu[3]) ? true : mod;
-    mod = layer_mutate_connectivity(l->wo, l->mu[2], l->mu[3]) ? true : mod;
+    mod = layer_mutate_connectivity(l->uf, l->mu[1], l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->ui, l->mu[1], l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->ug, l->mu[1], l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->uo, l->mu[1], l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->wf, l->mu[1], l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->wi, l->mu[1], l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->wg, l->mu[1], l->mu[2]) ? true : mod;
+    mod = layer_mutate_connectivity(l->wo, l->mu[1], l->mu[2]) ? true : mod;
     set_layer_n_active(l);
     return mod;
 }
@@ -196,14 +195,14 @@ static _Bool
 mutate_weights(struct LAYER *l)
 {
     _Bool mod = false;
-    mod = layer_mutate_weights(l->uf, l->mu[4]) ? true : mod;
-    mod = layer_mutate_weights(l->ui, l->mu[4]) ? true : mod;
-    mod = layer_mutate_weights(l->ug, l->mu[4]) ? true : mod;
-    mod = layer_mutate_weights(l->uo, l->mu[4]) ? true : mod;
-    mod = layer_mutate_weights(l->wf, l->mu[4]) ? true : mod;
-    mod = layer_mutate_weights(l->wi, l->mu[4]) ? true : mod;
-    mod = layer_mutate_weights(l->wg, l->mu[4]) ? true : mod;
-    mod = layer_mutate_weights(l->wo, l->mu[4]) ? true : mod;
+    mod = layer_mutate_weights(l->uf, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->ui, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->ug, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->uo, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->wf, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->wi, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->wg, l->mu[3]) ? true : mod;
+    mod = layer_mutate_weights(l->wo, l->mu[3]) ? true : mod;
     return mod;
 }
 
@@ -462,7 +461,7 @@ neural_layer_lstm_mutate(const struct XCSF *xcsf, struct LAYER *l)
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_FUNCTIONS) &&
-        layer_mutate_functions(l, l->mu[5])) {
+        layer_mutate_functions(l, l->mu[4])) {
         mod = true;
     }
     return mod;
