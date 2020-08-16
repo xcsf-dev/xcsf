@@ -166,7 +166,7 @@ cond_neural_print(const struct XCSF *xcsf, const struct CL *c)
     neural_print(xcsf, &cond->net, false);
 }
 
-int
+double
 cond_neural_size(const struct XCSF *xcsf, const struct CL *c)
 {
     const struct COND_NEURAL *cond = c->cond;

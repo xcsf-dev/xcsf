@@ -45,7 +45,7 @@ pred_nlms_crossover(const struct XCSF *xcsf, const struct CL *c1,
 _Bool
 pred_nlms_mutate(const struct XCSF *xcsf, const struct CL *c);
 
-int
+double
 pred_nlms_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t

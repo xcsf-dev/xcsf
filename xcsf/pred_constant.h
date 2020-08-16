@@ -33,7 +33,7 @@ pred_constant_crossover(const struct XCSF *xcsf, const struct CL *c1,
 _Bool
 pred_constant_mutate(const struct XCSF *xcsf, const struct CL *c);
 
-int
+double
 pred_constant_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t

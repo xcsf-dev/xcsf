@@ -71,7 +71,7 @@ void
 cond_rectangle_update(const struct XCSF *xcsf, const struct CL *c,
                       const double *x, const double *y);
 
-int
+double
 cond_rectangle_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t

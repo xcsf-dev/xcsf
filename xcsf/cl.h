@@ -58,10 +58,10 @@ cl_mfrac(const struct XCSF *xcsf, const struct CL *c);
 int
 cl_action(const struct XCSF *xcsf, struct CL *c, const double *x);
 
-int
+double
 cl_cond_size(const struct XCSF *xcsf, const struct CL *c);
 
-int
+double
 cl_pred_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t

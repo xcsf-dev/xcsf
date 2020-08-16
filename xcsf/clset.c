@@ -74,7 +74,7 @@ clset_pop_roulette(const struct XCSF *xcsf, struct CLIST **del,
         total_vote += cl_del_vote(xcsf, iter->cl, avg_fit);
         iter = iter->next;
     }
-    int delsize = 0;
+    double delsize = 0;
     for (int i = 0; i < 2; ++i) {
         // perform a single roulette spin with the deletion vote
         iter = xcsf->pset.list;
@@ -87,11 +87,11 @@ clset_pop_roulette(const struct XCSF *xcsf, struct CLIST **del,
             sum += cl_del_vote(xcsf, iter->cl, avg_fit);
         }
         // select the rule for deletion if it is the largest sized winner
-        int size = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
-        if (*del == NULL || size > delsize) {
+        double s = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
+        if (*del == NULL || s > delsize) {
             *del = iter;
             *delprev = prev;
-            delsize = size;
+            delsize = s;
         }
     }
 }
@@ -627,7 +627,7 @@ clset_pop_load(struct XCSF *xcsf, FILE *fp)
 double
 clset_mean_cond_size(const struct XCSF *xcsf, const struct SET *set)
 {
-    int sum = 0;
+    double sum = 0;
     int cnt = 0;
     const struct CLIST *iter = set->list;
     while (iter != NULL) {
@@ -635,7 +635,7 @@ clset_mean_cond_size(const struct XCSF *xcsf, const struct SET *set)
         ++cnt;
         iter = iter->next;
     }
-    return (double) sum / cnt;
+    return sum / cnt;
 }
 
 /**
@@ -647,7 +647,7 @@ clset_mean_cond_size(const struct XCSF *xcsf, const struct SET *set)
 double
 clset_mean_pred_size(const struct XCSF *xcsf, const struct SET *set)
 {
-    int sum = 0;
+    double sum = 0;
     int cnt = 0;
     const struct CLIST *iter = set->list;
     while (iter != NULL) {
@@ -655,7 +655,7 @@ clset_mean_pred_size(const struct XCSF *xcsf, const struct SET *set)
         ++cnt;
         iter = iter->next;
     }
-    return (double) sum / cnt;
+    return sum / cnt;
 }
 
 /**

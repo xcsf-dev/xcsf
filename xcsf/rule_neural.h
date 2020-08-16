@@ -72,7 +72,7 @@ void
 rule_neural_cond_update(const struct XCSF *xcsf, const struct CL *c,
                         const double *x, const double *y);
 
-int
+double
 rule_neural_cond_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t

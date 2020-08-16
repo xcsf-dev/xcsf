@@ -49,7 +49,7 @@ struct CondVtbl {
     void (*cond_impl_print)(const struct XCSF *xcsf, const struct CL *c);
     void (*cond_impl_update)(const struct XCSF *xcsf, const struct CL *c,
                              const double *x, const double *y);
-    int (*cond_impl_size)(const struct XCSF *xcsf, const struct CL *c);
+    double (*cond_impl_size)(const struct XCSF *xcsf, const struct CL *c);
     size_t (*cond_impl_save)(const struct XCSF *xcsf, const struct CL *c,
                              FILE *fp);
     size_t (*cond_impl_load)(const struct XCSF *xcsf, struct CL *c, FILE *fp);
@@ -87,7 +87,7 @@ cond_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
  * @param c The classifier whose condition size to return.
  * @return The size of the condition.
  */
-static inline int
+static inline double
 cond_size(const struct XCSF *xcsf, const struct CL *c)
 {
     return (*c->cond_vptr->cond_impl_size)(xcsf, c);

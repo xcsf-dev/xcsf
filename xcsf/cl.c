@@ -408,7 +408,7 @@ cl_crossover(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
  * @param c The classifier whose condition size to return.
  * @return The size of the condition.
  */
-int
+double
 cl_cond_size(const struct XCSF *xcsf, const struct CL *c)
 {
     return cond_size(xcsf, c);
@@ -420,7 +420,7 @@ cl_cond_size(const struct XCSF *xcsf, const struct CL *c)
  * @param c The classifier whose prediction size to return.
  * @return The size of the prediction.
  */
-int
+double
 cl_pred_size(const struct XCSF *xcsf, const struct CL *c)
 {
     return pred_size(xcsf, c);

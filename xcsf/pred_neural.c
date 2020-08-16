@@ -164,7 +164,7 @@ pred_neural_mutate(const struct XCSF *xcsf, const struct CL *c)
     return neural_mutate(xcsf, &pred->net);
 }
 
-int
+double
 pred_neural_size(const struct XCSF *xcsf, const struct CL *c)
 {
     const struct PRED_NEURAL *pred = c->pred;

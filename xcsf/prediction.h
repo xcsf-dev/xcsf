@@ -45,7 +45,7 @@ struct PredVtbl {
     void (*pred_impl_print)(const struct XCSF *xcsf, const struct CL *c);
     void (*pred_impl_update)(const struct XCSF *xcsf, const struct CL *c,
                              const double *x, const double *y);
-    int (*pred_impl_size)(const struct XCSF *xcsf, const struct CL *c);
+    double (*pred_impl_size)(const struct XCSF *xcsf, const struct CL *c);
     size_t (*pred_impl_save)(const struct XCSF *xcsf, const struct CL *c,
                              FILE *fp);
     size_t (*pred_impl_load)(const struct XCSF *xcsf, struct CL *c, FILE *fp);
@@ -83,7 +83,7 @@ pred_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
  * @param c The classifier whose prediction size to return.
  * @return The size of the prediction.
  */
-static inline int
+static inline double
 pred_size(const struct XCSF *xcsf, const struct CL *c)
 {
     return (*c->pred_vptr->pred_impl_size)(xcsf, c);

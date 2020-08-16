@@ -107,7 +107,7 @@ cond_dummy_print(const struct XCSF *xcsf, const struct CL *c)
     (void) c;
 }
 
-int
+double
 cond_dummy_size(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;

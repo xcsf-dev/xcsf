@@ -363,7 +363,7 @@ neural_print(const struct XCSF *xcsf, const struct NET *net,
  * @param net The neural network to calculate the number of non-zero weights.
  * @return The calculated total.
  */
-int
+double
 neural_size(const struct XCSF *xcsf, const struct NET *net)
 {
     (void) xcsf;

@@ -204,7 +204,7 @@ cond_ellipsoid_print(const struct XCSF *xcsf, const struct CL *c)
     printf("\n");
 }
 
-int
+double
 cond_ellipsoid_size(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) c;

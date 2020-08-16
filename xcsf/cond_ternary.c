@@ -221,7 +221,7 @@ cond_ternary_print(const struct XCSF *xcsf, const struct CL *c)
     printf("\n");
 }
 
-int
+double
 cond_ternary_size(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;

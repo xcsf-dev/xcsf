@@ -206,7 +206,7 @@ cond_rectangle_print(const struct XCSF *xcsf, const struct CL *c)
     printf("\n");
 }
 
-int
+double
 cond_rectangle_size(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) c;

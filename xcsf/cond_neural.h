@@ -68,7 +68,7 @@ void
 cond_neural_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
                    const double *y);
 
-int
+double
 cond_neural_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t

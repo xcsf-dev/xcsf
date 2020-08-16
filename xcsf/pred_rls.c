@@ -168,7 +168,7 @@ pred_rls_mutate(const struct XCSF *xcsf, const struct CL *c)
     return false;
 }
 
-int
+double
 pred_rls_size(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;

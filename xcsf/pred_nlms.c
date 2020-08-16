@@ -153,7 +153,7 @@ pred_nlms_mutate(const struct XCSF *xcsf, const struct CL *c)
     return false;
 }
 
-int
+double
 pred_nlms_size(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;

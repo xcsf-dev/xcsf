@@ -53,7 +53,7 @@ pred_neural_layers(const struct XCSF *xcsf, const struct CL *c);
 int
 pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer);
 
-int
+double
 pred_neural_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t

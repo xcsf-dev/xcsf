@@ -101,7 +101,7 @@ pred_constant_mutate(const struct XCSF *xcsf, const struct CL *c)
     return false;
 }
 
-int
+double
 pred_constant_size(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) c;

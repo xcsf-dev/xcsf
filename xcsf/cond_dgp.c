@@ -122,7 +122,7 @@ cond_dgp_print(const struct XCSF *xcsf, const struct CL *c)
     graph_print(xcsf, &cond->dgp);
 }
 
-int
+double
 cond_dgp_size(const struct XCSF *xcsf, const struct CL *c)
 {
     (void) xcsf;

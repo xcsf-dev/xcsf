@@ -71,7 +71,7 @@ void
 cond_ellipsoid_update(const struct XCSF *xcsf, const struct CL *c,
                       const double *x, const double *y);
 
-int
+double
 cond_ellipsoid_size(const struct XCSF *xcsf, const struct CL *c);
 
 size_t
