@@ -371,10 +371,10 @@ neural_size(const struct XCSF *xcsf, const struct NET *net)
     const struct LLIST *iter = net->tail;
     while (iter != NULL) {
         switch (iter->layer->layer_type) {
-            case (CONNECTED):
-            case (RECURRENT):
-            case (LSTM):
-            case (CONVOLUTIONAL):
+            case CONNECTED:
+            case RECURRENT:
+            case LSTM:
+            case CONVOLUTIONAL:
                 size += iter->layer->n_active;
                 break;
             default:
