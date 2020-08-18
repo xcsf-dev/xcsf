@@ -180,7 +180,7 @@ cond_ternary_mutate(const struct XCSF *xcsf, const struct CL *c)
     for (int i = 0; i < cond->length; ++i) {
         if (rand_uniform(0, 1) < cond->mu[0]) {
             if (cond->string[i] == DONT_CARE) {
-                cond->string[i] = (char) irand_uniform(0, 2) + '0';
+                cond->string[i] = rand_uniform(0, 1) < 0.5 ? '0' : '1';
             } else {
                 cond->string[i] = DONT_CARE;
             }
@@ -202,7 +202,8 @@ cond_ternary_general(const struct XCSF *xcsf, const struct CL *c1,
         if (cond1->string[i] != DONT_CARE &&
             cond1->string[i] != cond2->string[i]) {
             return false;
-        } else if (cond1->string[i] != cond2->string[i]) {
+        }
+        if (cond1->string[i] != cond2->string[i]) {
             general = true;
         }
     }
