@@ -295,7 +295,7 @@ config_cl_act(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     (void) v;
     (void) f;
-    if (strncmp(n, "ACT_TYPE", 9) == 0) {
+    if (strncmp(n, "ACT_TYPE", 8) == 0) {
         param_set_act_type(xcsf, i);
     }
 }
@@ -311,9 +311,9 @@ config_add_param(struct XCSF *xcsf, const char *name, char *value)
 {
     int i = 0;
     char *endptr = NULL;
-    if (strncmp(value, "true", 5) == 0) {
+    if (strncmp(value, "true", 4) == 0) {
         i = 1;
-    } else if (strncmp(value, "false", 6) == 0) {
+    } else if (strncmp(value, "false", 5) == 0) {
         i = 0;
     } else {
         i = (int) strtoimax(value, &endptr, BASE);
