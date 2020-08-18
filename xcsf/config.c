@@ -60,17 +60,17 @@ config_general(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     (void) v;
     (void) f;
-    if (strncmp(n, "OMP_NUM_THREADS", 16) == 0) {
+    if (strncmp(n, "OMP_NUM_THREADS", 15) == 0) {
         param_set_omp_num_threads(xcsf, i);
-    } else if (strncmp(n, "POP_SIZE", 9) == 0) {
+    } else if (strncmp(n, "POP_SIZE", 8) == 0) {
         param_set_pop_size(xcsf, i);
-    } else if (strncmp(n, "MAX_TRIALS", 10) == 0) {
+    } else if (strncmp(n, "MAX_TRIALS", 9) == 0) {
         param_set_max_trials(xcsf, i);
-    } else if (strncmp(n, "POP_INIT", 9) == 0) {
+    } else if (strncmp(n, "POP_INIT", 8) == 0) {
         param_set_pop_init(xcsf, i);
-    } else if (strncmp(n, "PERF_TRIALS", 12) == 0) {
+    } else if (strncmp(n, "PERF_TRIALS", 11) == 0) {
         param_set_perf_trials(xcsf, i);
-    } else if (strncmp(n, "LOSS_FUNC", 10) == 0) {
+    } else if (strncmp(n, "LOSS_FUNC", 9) == 0) {
         param_set_loss_func(xcsf, i);
     }
 }
@@ -87,11 +87,11 @@ static void
 config_multi(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     (void) v;
-    if (strncmp(n, "TELETRANSPORTATION", 19) == 0) {
+    if (strncmp(n, "TELETRANSPORTATION", 18) == 0) {
         param_set_teletransportation(xcsf, i);
-    } else if (strncmp(n, "GAMMA", 6) == 0) {
+    } else if (strncmp(n, "GAMMA", 5) == 0) {
         param_set_gamma(xcsf, f);
-    } else if (strncmp(n, "P_EXPLORE", 10) == 0) {
+    } else if (strncmp(n, "P_EXPLORE", 9) == 0) {
         param_set_p_explore(xcsf, f);
     }
 }
@@ -109,11 +109,11 @@ config_subsump(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     (void) v;
     (void) f;
-    if (strncmp(n, "EA_SUBSUMPTION", 15) == 0) {
+    if (strncmp(n, "EA_SUBSUMPTION", 14) == 0) {
         param_set_ea_subsumption(xcsf, i);
-    } else if (strncmp(n, "SET_SUBSUMPTION", 16) == 0) {
+    } else if (strncmp(n, "SET_SUBSUMPTION", 15) == 0) {
         param_set_set_subsumption(xcsf, i);
-    } else if (strncmp(n, "THETA_SUB", 10) == 0) {
+    } else if (strncmp(n, "THETA_SUB", 9) == 0) {
         param_set_theta_sub(xcsf, i);
     }
 }
@@ -130,15 +130,15 @@ static void
 config_ea(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     (void) v;
-    if (strncmp(n, "EA_SELECT_TYPE", 15) == 0) {
+    if (strncmp(n, "EA_SELECT_TYPE", 14) == 0) {
         param_set_ea_select_type(xcsf, i);
-    } else if (strncmp(n, "EA_SELECT_SIZE", 15) == 0) {
+    } else if (strncmp(n, "EA_SELECT_SIZE", 14) == 0) {
         param_set_ea_select_size(xcsf, f);
-    } else if (strncmp(n, "THETA_EA", 9) == 0) {
+    } else if (strncmp(n, "THETA_EA", 8) == 0) {
         param_set_theta_ea(xcsf, f);
-    } else if (strncmp(n, "LAMBDA", 7) == 0) {
+    } else if (strncmp(n, "LAMBDA", 6) == 0) {
         param_set_lambda(xcsf, i);
-    } else if (strncmp(n, "P_CROSSOVER", 12) == 0) {
+    } else if (strncmp(n, "P_CROSSOVER", 11) == 0) {
         param_set_p_crossover(xcsf, f);
     }
 }
@@ -155,29 +155,29 @@ static void
 config_cl_gen(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
     (void) v;
-    if (strncmp(n, "ALPHA", 6) == 0) {
+    if (strncmp(n, "ALPHA", 5) == 0) {
         param_set_alpha(xcsf, f);
-    } else if (strncmp(n, "BETA", 5) == 0) {
+    } else if (strncmp(n, "BETA", 4) == 0) {
         param_set_beta(xcsf, f);
-    } else if (strncmp(n, "DELTA", 6) == 0) {
+    } else if (strncmp(n, "DELTA", 5) == 0) {
         param_set_delta(xcsf, f);
-    } else if (strncmp(n, "NU", 3) == 0) {
+    } else if (strncmp(n, "NU", 2) == 0) {
         param_set_nu(xcsf, f);
-    } else if (strncmp(n, "THETA_DEL", 10) == 0) {
+    } else if (strncmp(n, "THETA_DEL", 9) == 0) {
         param_set_theta_del(xcsf, i);
-    } else if (strncmp(n, "INIT_FITNESS", 13) == 0) {
+    } else if (strncmp(n, "INIT_FITNESS", 12) == 0) {
         param_set_init_fitness(xcsf, f);
-    } else if (strncmp(n, "INIT_ERROR", 11) == 0) {
+    } else if (strncmp(n, "INIT_ERROR", 10) == 0) {
         param_set_init_error(xcsf, f);
-    } else if (strncmp(n, "ERR_REDUC", 10) == 0) {
+    } else if (strncmp(n, "ERR_REDUC", 9) == 0) {
         param_set_err_reduc(xcsf, f);
-    } else if (strncmp(n, "FIT_REDUC", 10) == 0) {
+    } else if (strncmp(n, "FIT_REDUC", 9) == 0) {
         param_set_fit_reduc(xcsf, f);
-    } else if (strncmp(n, "EPS_0", 6) == 0) {
+    } else if (strncmp(n, "EPS_0", 5) == 0) {
         param_set_eps_0(xcsf, f);
-    } else if (strncmp(n, "M_PROBATION", 12) == 0) {
+    } else if (strncmp(n, "M_PROBATION", 11) == 0) {
         param_set_m_probation(xcsf, i);
-    } else if (strncmp(n, "STATEFUL", 9) == 0) {
+    } else if (strncmp(n, "STATEFUL", 8) == 0) {
         param_set_stateful(xcsf, i);
     }
 }
@@ -193,43 +193,43 @@ config_cl_gen(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 static void
 config_cl_cond(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    if (strncmp(n, "COND_MIN", 9) == 0) {
+    if (strncmp(n, "COND_MIN", 8) == 0) {
         param_set_cond_min(xcsf, f);
-    } else if (strncmp(n, "COND_MAX", 9) == 0) {
+    } else if (strncmp(n, "COND_MAX", 8) == 0) {
         param_set_cond_max(xcsf, f);
-    } else if (strncmp(n, "COND_TYPE", 10) == 0) {
+    } else if (strncmp(n, "COND_TYPE", 9) == 0) {
         param_set_cond_type(xcsf, i);
-    } else if (strncmp(n, "COND_SMIN", 10) == 0) {
+    } else if (strncmp(n, "COND_SMIN", 9) == 0) {
         param_set_cond_smin(xcsf, f);
-    } else if (strncmp(n, "COND_BITS", 10) == 0) {
+    } else if (strncmp(n, "COND_BITS", 9) == 0) {
         param_set_cond_bits(xcsf, i);
-    } else if (strncmp(n, "COND_ETA", 9) == 0) {
+    } else if (strncmp(n, "COND_ETA", 8) == 0) {
         param_set_cond_eta(xcsf, f);
-    } else if (strncmp(n, "GP_NUM_CONS", 12) == 0) {
+    } else if (strncmp(n, "GP_NUM_CONS", 11) == 0) {
         param_set_gp_num_cons(xcsf, i);
-    } else if (strncmp(n, "GP_INIT_DEPTH", 14) == 0) {
+    } else if (strncmp(n, "GP_INIT_DEPTH", 13) == 0) {
         param_set_gp_init_depth(xcsf, i);
-    } else if (strncmp(n, "MAX_K", 6) == 0) {
+    } else if (strncmp(n, "MAX_K", 5) == 0) {
         param_set_max_k(xcsf, i);
-    } else if (strncmp(n, "MAX_T", 6) == 0) {
+    } else if (strncmp(n, "MAX_T", 5) == 0) {
         param_set_max_t(xcsf, i);
-    } else if (strncmp(n, "MAX_NEURON_GROW", 16) == 0) {
+    } else if (strncmp(n, "MAX_NEURON_GROW", 15) == 0) {
         param_set_max_neuron_grow(xcsf, i);
-    } else if (strncmp(n, "COND_EVOLVE_WEIGHTS", 20) == 0) {
+    } else if (strncmp(n, "COND_EVOLVE_WEIGHTS", 19) == 0) {
         param_set_cond_evolve_weights(xcsf, i);
-    } else if (strncmp(n, "COND_EVOLVE_NEURONS", 20) == 0) {
+    } else if (strncmp(n, "COND_EVOLVE_NEURONS", 19) == 0) {
         param_set_cond_evolve_neurons(xcsf, i);
-    } else if (strncmp(n, "COND_EVOLVE_FUNCTIONS", 22) == 0) {
+    } else if (strncmp(n, "COND_EVOLVE_FUNCTIONS", 21) == 0) {
         param_set_cond_evolve_functions(xcsf, i);
-    } else if (strncmp(n, "COND_NUM_NEURONS", 17) == 0) {
+    } else if (strncmp(n, "COND_NUM_NEURONS", 16) == 0) {
         memset(xcsf->COND_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->COND_NUM_NEURONS);
-    } else if (strncmp(n, "COND_MAX_NEURONS", 17) == 0) {
+    } else if (strncmp(n, "COND_MAX_NEURONS", 16) == 0) {
         memset(xcsf->COND_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->COND_MAX_NEURONS);
-    } else if (strncmp(n, "COND_OUTPUT_ACTIVATION", 23) == 0) {
+    } else if (strncmp(n, "COND_OUTPUT_ACTIVATION", 22) == 0) {
         param_set_cond_output_activation(xcsf, i);
-    } else if (strncmp(n, "COND_HIDDEN_ACTIVATION", 23) == 0) {
+    } else if (strncmp(n, "COND_HIDDEN_ACTIVATION", 22) == 0) {
         param_set_cond_hidden_activation(xcsf, i);
     }
 }
@@ -245,39 +245,39 @@ config_cl_cond(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 static void
 config_cl_pred(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    if (strncmp(n, "PRED_TYPE", 10) == 0) {
+    if (strncmp(n, "PRED_TYPE", 9) == 0) {
         param_set_pred_type(xcsf, i);
-    } else if (strncmp(n, "PRED_ETA", 9) == 0) {
+    } else if (strncmp(n, "PRED_ETA", 8) == 0) {
         param_set_pred_eta(xcsf, f);
-    } else if (strncmp(n, "PRED_RESET", 11) == 0) {
+    } else if (strncmp(n, "PRED_RESET", 10) == 0) {
         param_set_pred_reset(xcsf, i);
-    } else if (strncmp(n, "PRED_X0", 8) == 0) {
+    } else if (strncmp(n, "PRED_X0", 7) == 0) {
         param_set_pred_x0(xcsf, f);
-    } else if (strncmp(n, "PRED_RLS_SCALE_FACTOR", 22) == 0) {
+    } else if (strncmp(n, "PRED_RLS_SCALE_FACTOR", 21) == 0) {
         param_set_pred_rls_scale_factor(xcsf, f);
-    } else if (strncmp(n, "PRED_RLS_LAMBDA", 16) == 0) {
+    } else if (strncmp(n, "PRED_RLS_LAMBDA", 15) == 0) {
         param_set_pred_rls_lambda(xcsf, f);
-    } else if (strncmp(n, "PRED_EVOLVE_WEIGHTS", 20) == 0) {
+    } else if (strncmp(n, "PRED_EVOLVE_WEIGHTS", 19) == 0) {
         param_set_pred_evolve_weights(xcsf, i);
-    } else if (strncmp(n, "PRED_EVOLVE_NEURONS", 20) == 0) {
+    } else if (strncmp(n, "PRED_EVOLVE_NEURONS", 19) == 0) {
         param_set_pred_evolve_neurons(xcsf, i);
-    } else if (strncmp(n, "PRED_EVOLVE_FUNCTIONS", 22) == 0) {
+    } else if (strncmp(n, "PRED_EVOLVE_FUNCTIONS", 21) == 0) {
         param_set_pred_evolve_functions(xcsf, i);
-    } else if (strncmp(n, "PRED_EVOLVE_ETA", 16) == 0) {
+    } else if (strncmp(n, "PRED_EVOLVE_ETA", 15) == 0) {
         param_set_pred_evolve_eta(xcsf, i);
-    } else if (strncmp(n, "PRED_SGD_WEIGHTS", 17) == 0) {
+    } else if (strncmp(n, "PRED_SGD_WEIGHTS", 16) == 0) {
         param_set_pred_sgd_weights(xcsf, i);
-    } else if (strncmp(n, "PRED_MOMENTUM", 14) == 0) {
+    } else if (strncmp(n, "PRED_MOMENTUM", 13) == 0) {
         param_set_pred_momentum(xcsf, f);
-    } else if (strncmp(n, "PRED_NUM_NEURONS", 17) == 0) {
+    } else if (strncmp(n, "PRED_NUM_NEURONS", 16) == 0) {
         memset(xcsf->PRED_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->PRED_NUM_NEURONS);
-    } else if (strncmp(n, "PRED_MAX_NEURONS", 17) == 0) {
+    } else if (strncmp(n, "PRED_MAX_NEURONS", 16) == 0) {
         memset(xcsf->PRED_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->PRED_MAX_NEURONS);
-    } else if (strncmp(n, "PRED_OUTPUT_ACTIVATION", 23) == 0) {
+    } else if (strncmp(n, "PRED_OUTPUT_ACTIVATION", 22) == 0) {
         param_set_pred_output_activation(xcsf, i);
-    } else if (strncmp(n, "PRED_HIDDEN_ACTIVATION", 23) == 0) {
+    } else if (strncmp(n, "PRED_HIDDEN_ACTIVATION", 22) == 0) {
         param_set_pred_hidden_activation(xcsf, i);
     }
 }
