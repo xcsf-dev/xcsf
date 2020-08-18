@@ -89,15 +89,15 @@ env_maze_sensor(const struct XCSF *xcsf, char s)
 /**
  * @brief Initialises a maze environment from a specified file.
  * @param xcsf The XCSF data structure.
- * @param fname The file name of the specified maze environment.
+ * @param filename The file name of the specified maze environment.
  */
 void
-env_maze_init(struct XCSF *xcsf, const char *fname)
+env_maze_init(struct XCSF *xcsf, const char *filename)
 {
     // open maze file
-    FILE *fp = fopen(fname, "rt");
+    FILE *fp = fopen(filename, "rt");
     if (fp == 0) {
-        printf("could not open %s. %s.\n", fname, strerror(errno));
+        printf("could not open %s. %s.\n", filename, strerror(errno));
         exit(EXIT_FAILURE);
     }
     // read maze
@@ -123,7 +123,7 @@ env_maze_init(struct XCSF *xcsf, const char *fname)
     }
     // check if EOF came from an end-of-file or an error
     if (ferror(fp)) {
-        printf("EOF error: could not open %s. %s.\n", fname, strerror(errno));
+        printf("EOF error opening %s. %s.\n", filename, strerror(errno));
         fclose(fp);
         exit(EXIT_FAILURE);
     }
