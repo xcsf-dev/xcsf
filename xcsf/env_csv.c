@@ -123,7 +123,7 @@ env_csv_read(const char *filename, double **data, int *n_samples, int *n_dim)
         fclose(fin);
         exit(EXIT_FAILURE);
     }
-    printf("Loaded: %s: n_samples=%d, n_dim=%d\n", filename, *n_samples, *n_dim);
+    printf("Loaded: %s: samples=%d, dim=%d\n", filename, *n_samples, *n_dim);
 }
 
 /**
