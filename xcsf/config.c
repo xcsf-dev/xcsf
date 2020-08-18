@@ -193,16 +193,8 @@ config_cl_gen(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 static void
 config_cl_cond(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 {
-    if (strncmp(n, "COND_MIN", 8) == 0) {
-        param_set_cond_min(xcsf, f);
-    } else if (strncmp(n, "COND_MAX", 8) == 0) {
-        param_set_cond_max(xcsf, f);
-    } else if (strncmp(n, "COND_TYPE", 9) == 0) {
+    if (strncmp(n, "COND_TYPE", 9) == 0) {
         param_set_cond_type(xcsf, i);
-    } else if (strncmp(n, "COND_SMIN", 9) == 0) {
-        param_set_cond_smin(xcsf, f);
-    } else if (strncmp(n, "COND_BITS", 9) == 0) {
-        param_set_cond_bits(xcsf, i);
     } else if (strncmp(n, "COND_ETA", 8) == 0) {
         param_set_cond_eta(xcsf, f);
     } else if (strncmp(n, "GP_NUM_CONS", 11) == 0) {
@@ -231,6 +223,14 @@ config_cl_cond(struct XCSF *xcsf, const char *n, char *v, int i, double f)
         param_set_cond_output_activation(xcsf, i);
     } else if (strncmp(n, "COND_HIDDEN_ACTIVATION", 22) == 0) {
         param_set_cond_hidden_activation(xcsf, i);
+    } else if (strncmp(n, "COND_MIN", 8) == 0) {
+        param_set_cond_min(xcsf, f);
+    } else if (strncmp(n, "COND_MAX", 8) == 0) {
+        param_set_cond_max(xcsf, f);
+    } else if (strncmp(n, "COND_SMIN", 9) == 0) {
+        param_set_cond_smin(xcsf, f);
+    } else if (strncmp(n, "COND_BITS", 9) == 0) {
+        param_set_cond_bits(xcsf, i);
     }
 }
 
