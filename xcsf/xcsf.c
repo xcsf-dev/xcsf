@@ -21,6 +21,7 @@
  * @brief System-level functions for initialising, saving, loading, etc.
  */
 
+#include "cl.h"
 #include "clset.h"
 #include "cond_neural.h"
 #include "pa.h"
@@ -38,6 +39,21 @@ xcsf_init(struct XCSF *xcsf)
     xcsf->msetsize = 0;
     xcsf->mfrac = 0;
     clset_init(&xcsf->pset);
+    clset_init(&xcsf->prev_pset);
+}
+
+/**
+ * @brief Frees XCSF population sets.
+ * @param xcsf The XCSF data structure.
+ */
+void
+xcsf_free(struct XCSF *xcsf)
+{
+    xcsf->time = 0;
+    xcsf->msetsize = 0;
+    xcsf->mfrac = 0;
+    clset_kill(xcsf, &xcsf->pset);
+    clset_kill(xcsf, &xcsf->prev_pset);
 }
 
 /**
@@ -161,4 +177,38 @@ xcsf_ae_to_classifier(struct XCSF *xcsf, int y_dim, int n_del)
         iter->cl->time = xcsf->time;
         iter = iter->next;
     }
+}
+
+/**
+ * @brief Stores the current population.
+ * @param xcsf The XCSF data structure.
+ */
+void
+xcsf_store_pop(XCSF *xcsf)
+{
+    clset_kill(xcsf, &xcsf->prev_pset);
+    const CLIST *iter = xcsf->pset.list;
+    while (iter != NULL) {
+        CL *new = malloc(sizeof(CL));
+        const CL *src = iter->cl;
+        cl_init_copy(xcsf, new, src);
+        clset_add(&xcsf->prev_pset, new);
+        iter = iter->next;
+    }
+}
+
+/**
+ * @brief Retrieves the previously stored population.
+ * @param xcsf The XCSF data structure.
+ */
+void
+xcsf_retrieve_pop(XCSF *xcsf)
+{
+    if (xcsf->prev_pset.size < 1) {
+        printf("xcsf_retrieve_pop(): no previous population found\n");
+        exit(EXIT_FAILURE);
+    }
+    clset_kill(xcsf, &xcsf->pset);
+    xcsf->pset = xcsf->prev_pset;
+    clset_init(&xcsf->prev_pset);
 }

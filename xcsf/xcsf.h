@@ -140,6 +140,7 @@ typedef struct XCSF {
     double (*loss_ptr)(const struct XCSF *, const double *,
                        const double *); //!< Error function
     SET pset; //!< Population set
+    SET prev_pset; //!< Previously stored population set
     SET mset; //!< Match set
     SET aset; //!< Action set
     SET kset; //!< Kill set
@@ -213,6 +214,9 @@ size_t
 xcsf_save(const struct XCSF *xcsf, const char *fname);
 
 void
+xcsf_free(struct XCSF *xcsf);
+
+void
 xcsf_init(struct XCSF *xcsf);
 
 void
@@ -224,3 +228,9 @@ xcsf_ae_to_classifier(struct XCSF *xcsf, int y_dim, int n_del);
 
 void
 xcsf_pred_expand(const struct XCSF *xcsf);
+
+void
+xcsf_retrieve_pop(XCSF *xcsf);
+
+void
+xcsf_store_pop(XCSF *xcsf);

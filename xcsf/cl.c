@@ -107,6 +107,34 @@ cl_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 }
 
 /**
+ * @brief Initialises and creates a copy of one classifier from another.
+ * @param xcsf The XCSF data structure.
+ * @param dest The destination classifier.
+ * @param src The source classifier.
+ */
+void
+cl_init_copy(const XCSF *xcsf, CL *dest, const CL *src)
+{
+    dest->prediction = calloc(xcsf->y_dim, sizeof(double));
+    dest->fit = src->fit;
+    dest->err = src->err;
+    dest->num = src->num;
+    dest->exp = src->exp;
+    dest->size = src->size;
+    dest->time = src->time;
+    dest->action = src->action;
+    dest->m = src->m;
+    dest->age = src->age;
+    dest->mtotal = src->mtotal;
+    dest->cond_vptr = src->cond_vptr;
+    dest->pred_vptr = src->pred_vptr;
+    dest->act_vptr = src->act_vptr;
+    act_copy(xcsf, dest, src);
+    cond_copy(xcsf, dest, src);
+    pred_copy(xcsf, dest, src);
+}
+
+/**
  * @brief Covers the condition and action for a classifier.
  * @param xcsf The XCSF data structure.
  * @param c The classifier being covered.

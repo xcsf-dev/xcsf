@@ -125,6 +125,18 @@ class XCS
     }
 
     void
+    store(void)
+    {
+        xcsf_store_pop(&xcs);
+    }
+
+    void
+    retrieve(void)
+    {
+        xcsf_retrieve_pop(&xcs);
+    }
+
+    void
     print_params(void)
     {
         param_print(&xcs);
@@ -1249,6 +1261,8 @@ PYBIND11_MODULE(xcsf, m)
         .def("score", &XCS::score)
         .def("save", &XCS::save)
         .def("load", &XCS::load)
+        .def("store", &XCS::store)
+        .def("retrieve", &XCS::retrieve)
         .def("version_major", &XCS::version_major)
         .def("version_minor", &XCS::version_minor)
         .def("version_build", &XCS::version_build)

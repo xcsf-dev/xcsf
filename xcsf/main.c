@@ -64,7 +64,7 @@ main(int argc, char **argv)
     }
     pa_free(xcsf); // clean up
     env_free(xcsf);
-    clset_kill(xcsf, &xcsf->pset);
+    xcsf_free(xcsf);
     param_free(xcsf);
     free(xcsf);
     return EXIT_SUCCESS;
