@@ -24,6 +24,7 @@
 #include "cl.h"
 #include "clset.h"
 #include "cond_neural.h"
+#include "loss.h"
 #include "pa.h"
 #include "param.h"
 #include "pred_neural.h"
@@ -164,7 +165,7 @@ xcsf_ae_to_classifier(struct XCSF *xcsf, int y_dim, int n_del)
 {
     pa_free(xcsf);
     param_set_y_dim(xcsf, y_dim);
-    param_set_loss_func(xcsf, 5); // one-hot encoding error
+    param_set_loss_func(xcsf, LOSS_ONEHOT_ACC);
     pa_init(xcsf);
     const struct CLIST *iter = xcsf->pset.list;
     while (iter != NULL) {
