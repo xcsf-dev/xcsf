@@ -253,7 +253,7 @@ pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
 {
     struct PRED_NEURAL *pred = c->pred;
     struct NET *net = &pred->net;
-    const struct LAYER *h;
+    const struct LAYER *h = NULL;
     int n_inputs;
     // select top hidden layer
     if (net->n_layers > 1) {
@@ -282,7 +282,7 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct CL *c,
 {
     struct PRED_NEURAL *pred = c->pred;
     struct NET *net = &pred->net;
-    struct LAYER *l;
+    struct LAYER *l = NULL;
     // remove decoder layers
     for (int i = 0; i < n_del && net->n_layers > 1; ++i) {
         neural_layer_remove(xcsf, net, net->n_layers - 1);
