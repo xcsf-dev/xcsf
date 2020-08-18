@@ -82,12 +82,16 @@ env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim)
     rewind(fin);
     *data = malloc(sizeof(double) * n_dim * n_samples);
     char line[MAX_COLS];
+    char *str = NULL;
     char *saveptr = NULL;
+    char *endptr = NULL;
     int i = 0;
     while (fgets(line, MAX_COLS, fin) != NULL && i < n_samples) {
-        (*data)[i * n_dim] = atof(strtok_r(line, DELIM, &saveptr));
+        str = strtok_r(line, DELIM, &saveptr);
+        (*data)[i * n_dim] = strtod(str, &endptr);
         for (int j = 1; j < n_dim; ++j) {
-            (*data)[i * n_dim + j] = atof(strtok_r(NULL, DELIM, &saveptr));
+            str = strtok_r(NULL, DELIM, &saveptr);
+            (*data)[i * n_dim + j] = strtod(str, &endptr);
         }
         ++i;
     }
@@ -119,8 +123,7 @@ env_csv_read(const char *filename, double **data, int *n_samples, int *n_dim)
         fclose(fin);
         exit(EXIT_FAILURE);
     }
-    printf("Loaded: %s: %d samples, %d dimensions\n", filename, *n_samples,
-           *n_dim);
+    printf("Loaded: %s: n_samples=%d, n_dim=%d\n", filename, *n_samples, *n_dim);
 }
 
 /**
