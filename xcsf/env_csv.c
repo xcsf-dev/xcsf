@@ -82,7 +82,7 @@ env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim)
     rewind(fin);
     *data = malloc(sizeof(double) * n_dim * n_samples);
     char line[MAX_COLS];
-    char *str = NULL;
+    const char *str = NULL;
     char *saveptr = NULL;
     char *endptr = NULL;
     int i = 0;
