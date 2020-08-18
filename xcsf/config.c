@@ -37,8 +37,8 @@ static void
 config_get_ints(char *str, int *val)
 {
     int num = 0;
-    char *end;
-    char *saveptr;
+    char *end = NULL;
+    char *saveptr = NULL;
     const char *ptok = strtok_r(str, ARRAY_DELIM, &saveptr);
     while (ptok != NULL) {
         val[num] = (int) strtoimax(ptok, &end, BASE);
@@ -309,16 +309,16 @@ config_cl_act(struct XCSF *xcsf, const char *n, char *v, int i, double f)
 static void
 config_add_param(struct XCSF *xcsf, const char *name, char *value)
 {
-    int i;
-    char *end;
+    int i = 0;
+    char *endptr = NULL;
     if (strncmp(value, "true", 5) == 0) {
         i = 1;
     } else if (strncmp(value, "false", 6) == 0) {
         i = 0;
     } else {
-        i = (int) strtoimax(value, &end, BASE);
+        i = (int) strtoimax(value, &endptr, BASE);
     }
-    double f = atof(value);
+    double f = strtod(value, &endptr);
     // add parameter
     config_general(xcsf, name, value, i, f);
     config_multi(xcsf, name, value, i, f);
