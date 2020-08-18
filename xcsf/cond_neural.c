@@ -64,7 +64,7 @@ cond_neural_init(const struct XCSF *xcsf, struct CL *c)
     neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = cond_neural_lopt(xcsf);
-    struct LAYER *l;
+    struct LAYER *l = NULL;
     int n_inputs = xcsf->x_dim;
     for (int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
         int hinit = xcsf->COND_NUM_NEURONS[i];
