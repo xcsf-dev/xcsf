@@ -208,10 +208,10 @@ typedef struct INPUT {
 } INPUT;
 
 size_t
-xcsf_load(struct XCSF *xcsf, const char *fname);
+xcsf_load(struct XCSF *xcsf, const char *filename);
 
 size_t
-xcsf_save(const struct XCSF *xcsf, const char *fname);
+xcsf_save(const struct XCSF *xcsf, const char *filename);
 
 void
 xcsf_free(struct XCSF *xcsf);

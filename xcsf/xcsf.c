@@ -74,15 +74,15 @@ xcsf_print_pop(const struct XCSF *xcsf, _Bool printc, _Bool printa,
 /**
  * @brief Writes the current state of XCSF to a binary file.
  * @param xcsf The XCSF data structure.
- * @param fname The name of the output file.
+ * @param filename The name of the output file.
  * @return The total number of elements written.
  */
 size_t
-xcsf_save(const struct XCSF *xcsf, const char *fname)
+xcsf_save(const struct XCSF *xcsf, const char *filename)
 {
-    FILE *fp = fopen(fname, "wb");
+    FILE *fp = fopen(filename, "wb");
     if (fp == 0) {
-        printf("Error opening save file: %s. %s.\n", fname, strerror(errno));
+        printf("Error saving file: %s. %s.\n", filename, strerror(errno));
         exit(EXIT_FAILURE);
     }
     size_t s = 0;
@@ -98,19 +98,19 @@ xcsf_save(const struct XCSF *xcsf, const char *fname)
 /**
  * @brief Reads the state of XCSF from a binary file.
  * @param xcsf The XCSF data structure.
- * @param fname The name of the input file.
+ * @param filename The name of the input file.
  * @return The total number of elements read.
  */
 size_t
-xcsf_load(struct XCSF *xcsf, const char *fname)
+xcsf_load(struct XCSF *xcsf, const char *filename)
 {
     if (xcsf->pset.size > 0) {
         clset_kill(xcsf, &xcsf->pset);
         clset_init(&xcsf->pset);
     }
-    FILE *fp = fopen(fname, "rb");
+    FILE *fp = fopen(filename, "rb");
     if (fp == 0) {
-        printf("Error opening load file: %s. %s.\n", fname, strerror(errno));
+        printf("Error loading file: %s. %s.\n", filename, strerror(errno));
         exit(EXIT_FAILURE);
     }
     size_t s = 0;
@@ -122,7 +122,7 @@ xcsf_load(struct XCSF *xcsf, const char *fname)
     s += fread(&build, sizeof(int), 1, fp);
     if (major != VERSION_MAJOR || minor != VERSION_MINOR ||
         build != VERSION_BUILD) {
-        printf("Error loading file: %s. Version mismatch. ", fname);
+        printf("Error loading file: %s. Version mismatch. ", filename);
         printf("This version: %d.%d.%d.\n", VERSION_MAJOR, VERSION_MINOR,
                VERSION_BUILD);
         printf("Loaded version: %d.%d.%d\n", major, minor, build);

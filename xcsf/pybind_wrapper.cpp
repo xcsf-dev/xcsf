@@ -113,15 +113,15 @@ class XCS
     }
 
     size_t
-    save(char *fname)
+    save(char *filename)
     {
-        return xcsf_save(&xcs, fname);
+        return xcsf_save(&xcs, filename);
     }
 
     size_t
-    load(char *fname)
+    load(char *filename)
     {
-        return xcsf_load(&xcs, fname);
+        return xcsf_load(&xcs, filename);
     }
 
     void

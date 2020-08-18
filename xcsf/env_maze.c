@@ -104,7 +104,7 @@ env_maze_init(struct XCSF *xcsf, const char *filename)
     struct ENV_MAZE *env = malloc(sizeof(struct ENV_MAZE));
     int x = 0;
     int y = 0;
-    int c;
+    int c = 0;
     while ((c = fgetc(fp)) != EOF) {
         if (c == '\n') {
             ++y;
