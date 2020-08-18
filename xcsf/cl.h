@@ -86,8 +86,8 @@ void
 cl_init_copy(const XCSF *xcsf, CL *dest, const CL *src);
 
 void
-cl_print(const struct XCSF *xcsf, const struct CL *c, _Bool printc,
-         _Bool printa, _Bool printp);
+cl_print(const struct XCSF *xcsf, const struct CL *c, _Bool print_cond,
+         _Bool print_act, _Bool print_pred);
 
 void
 cl_rand(const struct XCSF *xcsf, struct CL *c);
