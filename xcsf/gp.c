@@ -79,7 +79,7 @@ tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth)
 {
     int prim = irand_uniform(0, 2);
     if (p >= max) {
-        return (-1);
+        return -1;
     }
     if (p == 0) {
         prim = 1;
@@ -89,23 +89,22 @@ tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth)
                              GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
         buffer[p] = prim;
         return (p + 1);
-    } else {
-        prim = irand_uniform(0, GP_NUM_FUNC);
-        switch (prim) {
-            case ADD:
-            case SUB:
-            case MUL:
-            case DIV:
-                buffer[p] = prim;
-                int one_child = tree_grow(xcsf, buffer, p + 1, max, depth - 1);
-                if (one_child < 0) {
-                    return (-1);
-                }
-                return (tree_grow(xcsf, buffer, one_child, max, depth - 1));
-            default:
-                printf("tree_grow() invalid function: %d\n", prim);
-                exit(EXIT_FAILURE);
-        }
+    }
+    prim = irand_uniform(0, GP_NUM_FUNC);
+    switch (prim) {
+        case ADD:
+        case SUB:
+        case MUL:
+        case DIV:
+            buffer[p] = prim;
+            int one_child = tree_grow(xcsf, buffer, p + 1, max, depth - 1);
+            if (one_child < 0) {
+                return -1;
+            }
+            return (tree_grow(xcsf, buffer, one_child, max, depth - 1));
+        default:
+            printf("tree_grow() invalid function: %d\n", prim);
+            exit(EXIT_FAILURE);
     }
 }
 

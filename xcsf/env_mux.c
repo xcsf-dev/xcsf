@@ -103,9 +103,8 @@ env_mux_execute(const struct XCSF *xcsf, int action)
     int answer = (env->state[pos] > 0.5) ? 1 : 0;
     if (action == answer) {
         return MAX_PAYOFF;
-    } else {
-        return 0;
     }
+    return 0;
 }
 
 /**
