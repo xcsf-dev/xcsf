@@ -254,7 +254,7 @@ pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
     struct PRED_NEURAL *pred = c->pred;
     struct NET *net = &pred->net;
     const struct LAYER *h = NULL;
-    int n_inputs;
+    int n_inputs = 0;
     // select top hidden layer
     if (net->n_layers > 1) {
         h = net->head->next->layer;

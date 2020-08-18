@@ -177,7 +177,8 @@ tree_eval(const struct XCSF *xcsf, struct GP_TREE *gp, const double *x)
     ++(gp->p);
     if (node >= GP_NUM_FUNC + xcsf->GP_NUM_CONS) {
         return (x[node - GP_NUM_FUNC - xcsf->GP_NUM_CONS]);
-    } else if (node >= GP_NUM_FUNC) {
+    }
+    if (node >= GP_NUM_FUNC) {
         return (xcsf->gp_cons[node - GP_NUM_FUNC]);
     }
     switch (node) {

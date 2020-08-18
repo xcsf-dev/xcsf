@@ -33,7 +33,7 @@
 void
 env_init(struct XCSF *xcsf, char **argv)
 {
-    char *end;
+    char *end = NULL;
     if (strcmp(argv[1], "mp") == 0) {
         xcsf->env_vptr = &env_mux_vtbl;
         env_mux_init(xcsf, (int) strtoimax(argv[2], &end, 10));

@@ -90,8 +90,7 @@ ea_subsume(struct XCSF *xcsf, struct CL *c, struct CL *c1p, struct CL *c2p,
                 ++choices;
             }
         }
-        // found
-        if (choices > 0) {
+        if (choices > 0) { // found
             ++(candidates[irand_uniform(0, choices)]->cl->num);
             ++(xcsf->pset.num);
             cl_free(xcsf, c);
@@ -208,8 +207,8 @@ ea(struct XCSF *xcsf, const struct SET *set)
     }
     clset_set_times(xcsf, set);
     // select parents
-    struct CL *c1p;
-    struct CL *c2p;
+    struct CL *c1p = NULL;
+    struct CL *c2p = NULL;
     ea_select(xcsf, set, &c1p, &c2p);
     // create offspring
     for (int i = 0; i < xcsf->LAMBDA / 2; ++i) {
