@@ -131,7 +131,8 @@ max_pool(const struct LAYER *l, const double *input, int i, int j, int k)
             int cur_h = h_offset + i * l->stride + n;
             int cur_w = w_offset + j * l->stride + m;
             int index = cur_w + l->width * (cur_h + l->height * k);
-            if (index >= 0 && index < l->n_inputs && input[index] > max) {
+            if (cur_h >= 0 && cur_h < l->height && cur_w >= 0 &&
+                cur_w < l->width && input[index] > max) {
                 max_index = index;
                 max = input[index];
             }
