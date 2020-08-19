@@ -52,11 +52,10 @@ clset_pop_never_match(const struct XCSF *xcsf, struct CLIST **del,
 }
 
 /*
- * @brief Selects a classifier from the population for deletion via roulette
- * wheel.
+ * @brief Selects a classifier from the population for deletion via roulette.
  * @details Two classifiers are selected using roulette wheel selection with the
  * deletion vote and the one with the largest condition + prediction size is
- * chosen. For fixed-length representations the effect is the same as one
+ * chosen. For fixed-length representations, the effect is the same as one
  * roulete spin.
  * @param xcsf The XCSF data structure.
  * @param del A pointer to the rule to be deleted (set by this function).
