@@ -119,36 +119,39 @@ neural_layer_maxpool_rand(const struct XCSF *xcsf, struct LAYER *l)
     (void) l;
 }
 
+static int
+max_pool(const struct LAYER *l, const double *input, int i, int j, int k)
+{
+    int w_offset = -l->pad / 2;
+    int h_offset = w_offset;
+    double max = -DBL_MAX;
+    int max_index = -1;
+    for (int n = 0; n < l->size; ++n) {
+        for (int m = 0; m < l->size; ++m) {
+            int cur_h = h_offset + i * l->stride + n;
+            int cur_w = w_offset + j * l->stride + m;
+            if (cur_h >= 0 && cur_h < l->height && cur_w >= 0 &&
+                cur_w < l->width) {
+                int index = cur_w + l->width * (cur_h + l->height * k);
+                max_index = (input[index] > max) ? index : max_index;
+            }
+        }
+    }
+    return max_index;
+}
+
 void
 neural_layer_maxpool_forward(const struct XCSF *xcsf, const struct LAYER *l,
                              const double *input)
 {
     (void) xcsf;
-    int w_offset = -l->pad / 2;
-    int h_offset = w_offset;
-    int h = l->out_h;
-    int w = l->out_w;
-    int c = l->channels;
-    for (int k = 0; k < c; ++k) {
-        for (int i = 0; i < h; ++i) {
-            for (int j = 0; j < w; ++j) {
-                int out_index = j + w * (i + h * k);
-                double max = -DBL_MAX;
-                int max_i = -1;
-                for (int n = 0; n < l->size; ++n) {
-                    for (int m = 0; m < l->size; ++m) {
-                        int cur_h = h_offset + i * l->stride + n;
-                        int cur_w = w_offset + j * l->stride + m;
-                        int index = cur_w + l->width * (cur_h + l->height * k);
-                        int valid = (cur_h >= 0 && cur_h < l->height &&
-                                     cur_w >= 0 && cur_w < l->width);
-                        double val = (valid != 0) ? input[index] : -DBL_MAX;
-                        max_i = (val > max) ? index : max_i;
-                        max = (val > max) ? val : max;
-                    }
-                }
-                l->output[out_index] = max;
-                l->indexes[out_index] = max_i;
+    for (int k = 0; k < l->channels; ++k) {
+        for (int i = 0; i < l->out_h; ++i) {
+            for (int j = 0; j < l->out_w; ++j) {
+                int out_index = j + l->out_w * (i + l->out_h * k);
+                int max_index = max_pool(l, input, i, j, k);
+                l->indexes[out_index] = max_index;
+                l->output[out_index] = input[max_index];
             }
         }
     }
