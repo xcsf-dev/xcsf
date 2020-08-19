@@ -163,12 +163,11 @@ neural_layer_maxpool_backward(const struct XCSF *xcsf, const struct LAYER *l,
 {
     (void) xcsf;
     (void) input;
-    if (!delta) {
-        return;
-    }
-    for (int i = 0; i < l->n_outputs; ++i) {
-        int index = l->indexes[i];
-        delta[index] += l->delta[i];
+    if (delta) {
+        for (int i = 0; i < l->n_outputs; ++i) {
+            int index = l->indexes[i];
+            delta[index] += l->delta[i];
+        }
     }
 }
 
