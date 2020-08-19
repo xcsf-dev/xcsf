@@ -22,8 +22,8 @@
  */
 
 static void
-col2im_add_pixel(double *im, int height, int width, int row, int col,
-                 int channel, int pad, double val)
+col2im_add_pixel(double *im, const int height, const int width, int row,
+                 int col, const int channel, const int pad, const double val)
 {
     row -= pad;
     col -= pad;
@@ -34,8 +34,8 @@ col2im_add_pixel(double *im, int height, int width, int row, int col,
 }
 
 static double
-im2col_get_pixel(const double *im, int height, int width, int row, int col,
-                 int channel, int pad)
+im2col_get_pixel(const double *im, const int height, const int width, int row,
+                 int col, const int channel, const int pad)
 {
     row -= pad;
     col -= pad;
@@ -46,22 +46,23 @@ im2col_get_pixel(const double *im, int height, int width, int row, int col,
 }
 
 void
-col2im(const double *data_col, int channels, int height, int width, int ksize,
-       int stride, int pad, double *data_im)
+col2im(const double *data_col, const int channels, const int height,
+       const int width, const int ksize, const int stride, const int pad,
+       double *data_im)
 {
-    int height_col = (height + 2 * pad - ksize) / stride + 1;
-    int width_col = (width + 2 * pad - ksize) / stride + 1;
-    int channels_col = channels * ksize * ksize;
+    const int height_col = (height + 2 * pad - ksize) / stride + 1;
+    const int width_col = (width + 2 * pad - ksize) / stride + 1;
+    const int channels_col = channels * ksize * ksize;
     for (int c = 0; c < channels_col; ++c) {
-        int w_offset = c % ksize;
-        int h_offset = (c / ksize) % ksize;
-        int c_im = c / ksize / ksize;
+        const int w_offset = c % ksize;
+        const int h_offset = (c / ksize) % ksize;
+        const int c_im = c / ksize / ksize;
         for (int h = 0; h < height_col; ++h) {
             for (int w = 0; w < width_col; ++w) {
-                int im_row = h_offset + h * stride;
-                int im_col = w_offset + w * stride;
-                int col_index = (c * height_col + h) * width_col + w;
-                double val = data_col[col_index];
+                const int im_row = h_offset + h * stride;
+                const int im_col = w_offset + w * stride;
+                const int col_index = (c * height_col + h) * width_col + w;
+                const double val = data_col[col_index];
                 col2im_add_pixel(data_im, height, width, im_row, im_col, c_im,
                                  pad, val);
             }
@@ -70,21 +71,22 @@ col2im(const double *data_col, int channels, int height, int width, int ksize,
 }
 
 void
-im2col(const double *data_im, int channels, int height, int width, int ksize,
-       int stride, int pad, double *data_col)
+im2col(const double *data_im, const int channels, const int height,
+       const int width, const int ksize, const int stride, const int pad,
+       double *data_col)
 {
-    int height_col = (height + 2 * pad - ksize) / stride + 1;
-    int width_col = (width + 2 * pad - ksize) / stride + 1;
-    int channels_col = channels * ksize * ksize;
+    const int height_col = (height + 2 * pad - ksize) / stride + 1;
+    const int width_col = (width + 2 * pad - ksize) / stride + 1;
+    const int channels_col = channels * ksize * ksize;
     for (int c = 0; c < channels_col; ++c) {
-        int w_offset = c % ksize;
-        int h_offset = (c / ksize) % ksize;
-        int c_im = c / ksize / ksize;
+        const int w_offset = c % ksize;
+        const int h_offset = (c / ksize) % ksize;
+        const int c_im = c / ksize / ksize;
         for (int h = 0; h < height_col; ++h) {
             for (int w = 0; w < width_col; ++w) {
-                int im_row = h_offset + h * stride;
-                int im_col = w_offset + w * stride;
-                int col_index = (c * height_col + h) * width_col + w;
+                const int im_row = h_offset + h * stride;
+                const int im_col = w_offset + w * stride;
+                const int col_index = (c * height_col + h) * width_col + w;
                 data_col[col_index] = im2col_get_pixel(
                     data_im, height, width, im_row, im_col, c_im, pad);
             }

@@ -22,9 +22,11 @@
  */
 
 void
-col2im(const double *data_col, int channels, int height, int width, int ksize,
-       int stride, int pad, double *data_im);
+col2im(const double *data_col, const int channels, const int height,
+       const int width, const int ksize, const int stride, const int pad,
+       double *data_im);
 
 void
-im2col(const double *data_im, int channels, int height, int width, int ksize,
-       int stride, int pad, double *data_col);
+im2col(const double *data_im, const int channels, const int height,
+       const int width, const int ksize, const int stride, const int pad,
+       double *data_col);
