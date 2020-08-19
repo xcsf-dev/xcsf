@@ -50,7 +50,7 @@ double
 cl_acc(const struct XCSF *xcsf, const struct CL *c);
 
 double
-cl_del_vote(const struct XCSF *xcsf, const struct CL *c, double avg_fit);
+cl_del_vote(const struct XCSF *xcsf, const struct CL *c, const double avg_fit);
 
 double
 cl_mfrac(const struct XCSF *xcsf, const struct CL *c);
@@ -74,28 +74,30 @@ void
 cl_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
 
 void
-cl_cover(const struct XCSF *xcsf, struct CL *c, const double *x, int action);
+cl_cover(const struct XCSF *xcsf, struct CL *c, const double *x,
+         const int action);
 
 void
 cl_free(const struct XCSF *xcsf, struct CL *c);
 
 void
-cl_init(const struct XCSF *xcsf, struct CL *c, double size, int time);
+cl_init(const struct XCSF *xcsf, struct CL *c, const double size,
+        const int time);
 
 void
 cl_init_copy(const XCSF *xcsf, CL *dest, const CL *src);
 
 void
-cl_print(const struct XCSF *xcsf, const struct CL *c, _Bool print_cond,
-         _Bool print_act, _Bool print_pred);
+cl_print(const struct XCSF *xcsf, const struct CL *c, const _Bool print_cond,
+         const _Bool print_act, const _Bool print_pred);
 
 void
 cl_rand(const struct XCSF *xcsf, struct CL *c);
 
 void
 cl_update(const struct XCSF *xcsf, struct CL *c, const double *x,
-          const double *y, int set_num, _Bool cur);
+          const double *y, const int set_num, const _Bool cur);
 
 void
-cl_update_fit(const struct XCSF *xcsf, struct CL *c, double acc_sum,
-              double acc);
+cl_update_fit(const struct XCSF *xcsf, struct CL *c, const double acc_sum,
+              const double acc);

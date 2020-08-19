@@ -141,7 +141,7 @@ cond_ternary_match(const struct XCSF *xcsf, const struct CL *c, const double *x)
     for (int i = 0; i < xcsf->x_dim; ++i) {
         float_to_binary(x[i], cond->tmp_input, xcsf->COND_BITS);
         for (int j = 0; j < xcsf->COND_BITS; ++j) {
-            char s = cond->string[i * xcsf->COND_BITS + j];
+            const char s = cond->string[i * xcsf->COND_BITS + j];
             if (s != DONT_CARE && s != cond->tmp_input[j]) {
                 return false;
             }
@@ -160,7 +160,7 @@ cond_ternary_crossover(const struct XCSF *xcsf, const struct CL *c1,
     if (rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for (int i = 0; i < cond1->length; ++i) {
             if (rand_uniform(0, 1) < 0.5) {
-                char tmp = cond1->string[i];
+                const char tmp = cond1->string[i];
                 cond1->string[i] = cond2->string[i];
                 cond2->string[i] = tmp;
                 changed = true;
@@ -180,7 +180,7 @@ cond_ternary_mutate(const struct XCSF *xcsf, const struct CL *c)
     for (int i = 0; i < cond->length; ++i) {
         if (rand_uniform(0, 1) < cond->mu[0]) {
             if (cond->string[i] == DONT_CARE) {
-                cond->string[i] = rand_uniform(0, 1) < 0.5 ? '0' : '1';
+                cond->string[i] = (rand_uniform(0, 1) < 0.5) ? '0' : '1';
             } else {
                 cond->string[i] = DONT_CARE;
             }

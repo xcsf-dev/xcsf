@@ -35,7 +35,7 @@ cond_ellipsoid_dist(const struct XCSF *xcsf, const struct CL *c,
     const struct COND_ELLIPSOID *cond = c->cond;
     double dist = 0;
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        double d = (x[i] - cond->center[i]) / cond->spread[i];
+        const double d = (x[i] - cond->center[i]) / cond->spread[i];
         dist += d * d;
     }
     return dist;
@@ -54,7 +54,7 @@ cond_ellipsoid_init(const struct XCSF *xcsf, struct CL *c)
     new->center = malloc(sizeof(double) * xcsf->x_dim);
     new->spread = malloc(sizeof(double) * xcsf->x_dim);
     new->mu = malloc(sizeof(double) * N_MU);
-    double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
+    const double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
     for (int i = 0; i < xcsf->x_dim; ++i) {
         new->center[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
         new->spread[i] = rand_uniform(xcsf->COND_SMIN, spread_max);
@@ -94,7 +94,7 @@ cond_ellipsoid_cover(const struct XCSF *xcsf, const struct CL *c,
                      const double *x)
 {
     const struct COND_ELLIPSOID *cond = c->cond;
-    double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
+    const double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
     for (int i = 0; i < xcsf->x_dim; ++i) {
         cond->center[i] = x[i];
         cond->spread[i] = rand_uniform(xcsf->COND_SMIN, spread_max);
@@ -134,13 +134,13 @@ cond_ellipsoid_crossover(const struct XCSF *xcsf, const struct CL *c1,
     if (rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for (int i = 0; i < xcsf->x_dim; ++i) {
             if (rand_uniform(0, 1) < 0.5) {
-                double tmp = cond1->center[i];
+                const double tmp = cond1->center[i];
                 cond1->center[i] = cond2->center[i];
                 cond2->center[i] = tmp;
                 changed = true;
             }
             if (rand_uniform(0, 1) < 0.5) {
-                double tmp = cond1->spread[i];
+                const double tmp = cond1->spread[i];
                 cond1->spread[i] = cond2->spread[i];
                 cond2->spread[i] = tmp;
                 changed = true;
@@ -181,10 +181,10 @@ cond_ellipsoid_general(const struct XCSF *xcsf, const struct CL *c1,
     const struct COND_ELLIPSOID *cond1 = c1->cond;
     const struct COND_ELLIPSOID *cond2 = c2->cond;
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        double l1 = cond1->center[i] - cond1->spread[i];
-        double l2 = cond2->center[i] - cond2->spread[i];
-        double u1 = cond1->center[i] + cond1->spread[i];
-        double u2 = cond2->center[i] + cond2->spread[i];
+        const double l1 = cond1->center[i] - cond1->spread[i];
+        const double l2 = cond2->center[i] - cond2->spread[i];
+        const double u1 = cond1->center[i] + cond1->spread[i];
+        const double u2 = cond2->center[i] + cond2->spread[i];
         if (l1 > l2 || u1 < u2) {
             return false;
         }

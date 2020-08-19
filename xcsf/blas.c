@@ -24,8 +24,9 @@
 #include "blas.h"
 
 static void
-gemm_nn(int M, int N, int K, double ALPHA, const double *A, int lda,
-        const double *B, int ldb, double *C, int ldc)
+gemm_nn(const int M, const int N, const int K, const double ALPHA,
+        const double *A, const int lda, const double *B, const int ldb,
+        double *C, const int ldc)
 {
     for (int i = 0; i < M; ++i) {
         for (int k = 0; k < K; ++k) {
@@ -38,8 +39,9 @@ gemm_nn(int M, int N, int K, double ALPHA, const double *A, int lda,
 }
 
 static void
-gemm_nt(int M, int N, int K, double ALPHA, const double *A, int lda,
-        const double *B, int ldb, double *C, int ldc)
+gemm_nt(const int M, const int N, const int K, const double ALPHA,
+        const double *A, const int lda, const double *B, const int ldb,
+        double *C, const int ldc)
 {
     for (int i = 0; i < M; ++i) {
         for (int j = 0; j < N; ++j) {
@@ -53,8 +55,9 @@ gemm_nt(int M, int N, int K, double ALPHA, const double *A, int lda,
 }
 
 static void
-gemm_tn(int M, int N, int K, double ALPHA, const double *A, int lda,
-        const double *B, int ldb, double *C, int ldc)
+gemm_tn(const int M, const int N, const int K, const double ALPHA,
+        const double *A, const int lda, const double *B, const int ldb,
+        double *C, const int ldc)
 {
     for (int i = 0; i < M; ++i) {
         for (int k = 0; k < K; ++k) {
@@ -67,8 +70,9 @@ gemm_tn(int M, int N, int K, double ALPHA, const double *A, int lda,
 }
 
 static void
-gemm_tt(int M, int N, int K, double ALPHA, const double *A, int lda,
-        const double *B, int ldb, double *C, int ldc)
+gemm_tt(const int M, const int N, const int K, const double ALPHA,
+        const double *A, const int lda, const double *B, const int ldb,
+        double *C, const int ldc)
 {
     for (int i = 0; i < M; ++i) {
         for (int j = 0; j < N; ++j) {
@@ -101,8 +105,9 @@ gemm_tt(int M, int N, int K, double ALPHA, const double *A, int lda,
  * @param ldc Leading dimension of a 2-D array used to store the matrix C.
  */
 void
-blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA, const double *A,
-          int lda, const double *B, int ldb, double BETA, double *C, int ldc)
+blas_gemm(const int TA, const int TB, const int M, const int N, const int K,
+          const double ALPHA, const double *A, const int lda, const double *B,
+          const int ldb, const double BETA, double *C, const int ldc)
 {
     for (int i = 0; i < M; ++i) {
         for (int j = 0; j < N; ++j) {
@@ -130,7 +135,8 @@ blas_gemm(int TA, int TB, int M, int N, int K, double ALPHA, const double *A,
  * @param INCY Stride between consecutive elements of Y.
  */
 void
-blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
+blas_axpy(const int N, const double ALPHA, const double *X, const int INCX,
+          double *Y, const int INCY)
 {
     if (ALPHA != 1) {
         for (int i = 0; i < N; ++i) {
@@ -151,7 +157,7 @@ blas_axpy(int N, double ALPHA, const double *X, int INCX, double *Y, int INCY)
  * @param INCX Stride between consecutive elements of X.
  */
 void
-blas_scal(int N, double ALPHA, double *X, int INCX)
+blas_scal(const int N, const double ALPHA, double *X, const int INCX)
 {
     if (ALPHA != 0) {
         for (int i = 0; i < N; ++i) {
@@ -172,7 +178,7 @@ blas_scal(int N, double ALPHA, double *X, int INCX)
  * @param INCX Stride between consecutive elements of X.
  */
 void
-blas_fill(int N, double ALPHA, double *X, int INCX)
+blas_fill(const int N, const double ALPHA, double *X, const int INCX)
 {
     for (int i = 0; i < N; ++i) {
         X[i * INCX] = ALPHA;
@@ -189,7 +195,8 @@ blas_fill(int N, double ALPHA, double *X, int INCX)
  * @return The resulting dot product.
  */
 double
-blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
+blas_dot(const int N, const double *X, const int INCX, const double *Y,
+         const int INCY)
 {
     double dot = 0;
     for (int i = 0; i < N; ++i) {
@@ -207,7 +214,8 @@ blas_dot(int N, const double *X, int INCX, const double *Y, int INCY)
  * @param INCY Stride between consecutive elements of Y.
  */
 void
-blas_mul(int N, const double *X, int INCX, double *Y, int INCY)
+blas_mul(const int N, const double *X, const int INCX, double *Y,
+         const int INCY)
 {
     for (int i = 0; i < N; ++i) {
         Y[i * INCY] *= X[i * INCX];
@@ -221,7 +229,7 @@ blas_mul(int N, const double *X, int INCX, double *Y, int INCY)
  * @return The resulting sum.
  */
 double
-blas_sum(const double *X, int N)
+blas_sum(const double *X, const int N)
 {
     double sum = 0;
     for (int i = 0; i < N; ++i) {

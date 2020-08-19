@@ -220,11 +220,11 @@ void
 xcsf_init(struct XCSF *xcsf);
 
 void
-xcsf_print_pop(const struct XCSF *xcsf, _Bool printc, _Bool printa,
-               _Bool printp);
+xcsf_print_pop(const struct XCSF *xcsf, const _Bool print_cond,
+               const _Bool print_act, const _Bool print_pred);
 
 void
-xcsf_ae_to_classifier(struct XCSF *xcsf, int y_dim, int n_del);
+xcsf_ae_to_classifier(struct XCSF *xcsf, const int y_dim, const int n_del);
 
 void
 xcsf_pred_expand(const struct XCSF *xcsf);

@@ -50,7 +50,7 @@ _Bool
 neural_mutate(const struct XCSF *xcsf, const struct NET *net);
 
 double
-neural_output(const struct XCSF *xcsf, const struct NET *net, int i);
+neural_output(const struct XCSF *xcsf, const struct NET *net, const int IDX);
 
 double
 neural_size(const struct XCSF *xcsf, const struct NET *net);
@@ -72,10 +72,10 @@ neural_init(const struct XCSF *xcsf, struct NET *net);
 
 void
 neural_layer_insert(const struct XCSF *xcsf, struct NET *net, struct LAYER *l,
-                    int p);
+                    const int pos);
 
 void
-neural_layer_remove(const struct XCSF *xcsf, struct NET *net, int p);
+neural_layer_remove(const struct XCSF *xcsf, struct NET *net, const int pos);
 
 void
 neural_learn(const struct XCSF *xcsf, const struct NET *net,
@@ -83,7 +83,7 @@ neural_learn(const struct XCSF *xcsf, const struct NET *net,
 
 void
 neural_print(const struct XCSF *xcsf, const struct NET *net,
-             _Bool print_weights);
+             const _Bool print_weights);
 
 void
 neural_propagate(const struct XCSF *xcsf, const struct NET *net,

@@ -42,16 +42,18 @@ _Bool
 pred_neural_mutate(const struct XCSF *xcsf, const struct CL *c);
 
 double
-pred_neural_eta(const struct XCSF *xcsf, const struct CL *c, int layer);
+pred_neural_eta(const struct XCSF *xcsf, const struct CL *c, const int layer);
 
 int
-pred_neural_connections(const struct XCSF *xcsf, const struct CL *c, int layer);
+pred_neural_connections(const struct XCSF *xcsf, const struct CL *c,
+                        const int layer);
 
 int
 pred_neural_layers(const struct XCSF *xcsf, const struct CL *c);
 
 int
-pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer);
+pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c,
+                    const int layer);
 
 double
 pred_neural_size(const struct XCSF *xcsf, const struct CL *c);
@@ -88,7 +90,7 @@ pred_neural_expand(const struct XCSF *xcsf, const struct CL *c);
 
 void
 pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct CL *c,
-                             int n_del);
+                             const int n_del);
 
 /**
  * @brief Multi-layer perceptron neural network prediction implemented

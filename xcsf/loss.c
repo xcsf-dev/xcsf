@@ -69,8 +69,7 @@ loss_mse(const struct XCSF *xcsf, const double *pred, const double *y)
 double
 loss_rmse(const struct XCSF *xcsf, const double *pred, const double *y)
 {
-    double error = loss_mse(xcsf, pred, y);
-    return sqrt(error);
+    return sqrt(loss_mse(xcsf, pred, y));
 }
 
 /**

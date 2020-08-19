@@ -36,12 +36,12 @@
 
 /**
  * @brief Initialises a real multiplexer environment of specified length.
+ * @details The biggest mux problem is chosen that fits the specified length.
  * @param xcsf The XCSF data structure.
  * @param bits The problem length.
- * @details The biggest mux problem is chosen that fits the specified length.
  */
 void
-env_mux_init(struct XCSF *xcsf, int bits)
+env_mux_init(struct XCSF *xcsf, const int bits)
 {
     struct ENV_MUX *env = malloc(sizeof(struct ENV_MUX));
     env->pos_bits = 1;
@@ -49,7 +49,7 @@ env_mux_init(struct XCSF *xcsf, int bits)
         ++(env->pos_bits);
     }
     --(env->pos_bits);
-    int n = env->pos_bits + (int) pow(2, env->pos_bits);
+    const int n = env->pos_bits + (int) pow(2, env->pos_bits);
     env->state = malloc(sizeof(double) * n);
     param_set_n_actions(xcsf, 2);
     param_set_x_dim(xcsf, n);
@@ -91,7 +91,7 @@ env_mux_get_state(const struct XCSF *xcsf)
  * @return The payoff from performing the action.
  */
 double
-env_mux_execute(const struct XCSF *xcsf, int action)
+env_mux_execute(const struct XCSF *xcsf, const int action)
 {
     const struct ENV_MUX *env = xcsf->env;
     int pos = env->pos_bits;
@@ -100,11 +100,8 @@ env_mux_execute(const struct XCSF *xcsf, int action)
             pos += (int) pow(2, (double) (env->pos_bits - 1 - i));
         }
     }
-    int answer = (env->state[pos] > 0.5) ? 1 : 0;
-    if (action == answer) {
-        return MAX_PAYOFF;
-    }
-    return 0;
+    const int answer = (env->state[pos] > 0.5) ? 1 : 0;
+    return (action == answer) ? MAX_PAYOFF : 0;
 }
 
 /**

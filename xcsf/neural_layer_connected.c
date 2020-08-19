@@ -69,8 +69,9 @@ malloc_layer_arrays(struct LAYER *l)
  * @return A pointer to the new layer.
  */
 struct LAYER *
-neural_layer_connected_init(const struct XCSF *xcsf, int n_inputs, int n_init,
-                            int n_max, int f, uint32_t o)
+neural_layer_connected_init(const struct XCSF *xcsf, const int n_inputs,
+                            const int n_init, const int n_max, const int f,
+                            const uint32_t o)
 {
     struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
@@ -151,8 +152,8 @@ neural_layer_connected_forward(const struct XCSF *xcsf, const struct LAYER *l,
                                const double *input)
 {
     (void) xcsf;
-    int k = l->n_inputs;
-    int n = l->n_outputs;
+    const int k = l->n_inputs;
+    const int n = l->n_outputs;
     const double *a = input;
     const double *b = l->weights;
     double *c = l->state;
@@ -168,8 +169,8 @@ neural_layer_connected_backward(const struct XCSF *xcsf, const struct LAYER *l,
     (void) xcsf;
     neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
     if (l->options & LAYER_SGD_WEIGHTS) {
-        int m = l->n_outputs;
-        int n = l->n_inputs;
+        const int m = l->n_outputs;
+        const int n = l->n_inputs;
         const double *a = l->delta;
         const double *b = input;
         double *c = l->weight_updates;
@@ -177,8 +178,8 @@ neural_layer_connected_backward(const struct XCSF *xcsf, const struct LAYER *l,
         blas_gemm(1, 0, m, n, 1, 1, a, m, b, n, 1, c, n);
     }
     if (delta) {
-        int k = l->n_outputs;
-        int n = l->n_inputs;
+        const int k = l->n_outputs;
+        const int n = l->n_inputs;
         const double *a = l->delta;
         const double *b = l->weights;
         double *c = delta;
@@ -203,13 +204,13 @@ neural_layer_connected_resize(const struct XCSF *xcsf, struct LAYER *l,
                               const struct LAYER *prev)
 {
     (void) xcsf;
-    int n_weights = prev->n_outputs * l->n_outputs;
+    const int n_weights = prev->n_outputs * l->n_outputs;
     double *weights = malloc(sizeof(double) * n_weights);
     double *weight_updates = malloc(sizeof(double) * n_weights);
     _Bool *weight_active = malloc(sizeof(_Bool) * n_weights);
     for (int i = 0; i < l->n_outputs; ++i) {
-        int orig_offset = i * l->n_inputs;
-        int offset = i * prev->n_outputs;
+        const int orig_offset = i * l->n_inputs;
+        const int offset = i * prev->n_outputs;
         for (int j = 0; j < prev->n_outputs; ++j) {
             if (j < l->n_inputs) {
                 weights[offset + j] = l->weights[orig_offset + j];
@@ -246,7 +247,7 @@ neural_layer_connected_mutate(const struct XCSF *xcsf, struct LAYER *l)
         mod = true;
     }
     if (l->options & LAYER_EVOLVE_NEURONS) {
-        int n = layer_mutate_neurons(xcsf, l, l->mu[1]);
+        const int n = layer_mutate_neurons(xcsf, l, l->mu[1]);
         if (n != 0) {
             layer_add_neurons(l, n);
             mod = true;
@@ -277,7 +278,7 @@ neural_layer_connected_output(const struct XCSF *xcsf, const struct LAYER *l)
 
 void
 neural_layer_connected_print(const struct XCSF *xcsf, const struct LAYER *l,
-                             _Bool print_weights)
+                             const _Bool print_weights)
 {
     (void) xcsf;
     printf("connected %s, in = %d, out = %d, ",

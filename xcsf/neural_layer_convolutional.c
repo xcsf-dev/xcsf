@@ -40,7 +40,7 @@ static const int MU_TYPE[N_MU] = {
 static size_t
 get_workspace_size(const struct LAYER *l)
 {
-    int size = l->out_h * l->out_w * l->size * l->size * l->channels;
+    const int size = l->out_h * l->out_w * l->size * l->size * l->channels;
     if (size < 1) {
         printf("neural_layer_convolutional: workspace_size overflow\n");
         exit(EXIT_FAILURE);
@@ -100,9 +100,10 @@ convolutional_out_width(const struct LAYER *l)
  * @return A pointer to the new layer.
  */
 struct LAYER *
-neural_layer_convolutional_init(const struct XCSF *xcsf, int h, int w, int c,
-                                int n_filters, int kernel_size, int stride,
-                                int pad, int f, uint32_t o)
+neural_layer_convolutional_init(const struct XCSF *xcsf, const int h,
+                                const int w, const int c, const int n_filters,
+                                const int kernel_size, const int stride,
+                                const int pad, const int f, const uint32_t o)
 {
     struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
@@ -207,9 +208,9 @@ neural_layer_convolutional_forward(const struct XCSF *xcsf,
                                    const struct LAYER *l, const double *input)
 {
     (void) xcsf;
-    int m = l->n_filters;
-    int k = l->size * l->size * l->channels;
-    int n = l->out_w * l->out_h;
+    const int m = l->n_filters;
+    const int k = l->size * l->size * l->channels;
+    const int n = l->out_w * l->out_h;
     const double *a = l->weights;
     double *b = l->temp;
     double *c = l->state;
@@ -235,9 +236,9 @@ neural_layer_convolutional_backward(const struct XCSF *xcsf,
                                     double *delta)
 {
     (void) xcsf;
-    int m = l->n_filters;
-    int n = l->size * l->size * l->channels;
-    int k = l->out_w * l->out_h;
+    const int m = l->n_filters;
+    const int n = l->size * l->size * l->channels;
+    const int k = l->out_w * l->out_h;
     if (l->options & LAYER_SGD_WEIGHTS) {
         neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
         for (int i = 0; i < l->n_biases; ++i) {
@@ -335,7 +336,7 @@ neural_layer_convolutional_output(const struct XCSF *xcsf,
 
 void
 neural_layer_convolutional_print(const struct XCSF *xcsf, const struct LAYER *l,
-                                 _Bool print_weights)
+                                 const _Bool print_weights)
 {
     (void) xcsf;
     printf("convolutional %s, in=%d, out=%d, filters=%d, size=%d, stride=%d, "

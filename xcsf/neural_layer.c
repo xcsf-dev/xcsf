@@ -82,9 +82,9 @@ layer_set_vptr(struct LAYER *l)
  * @return Whether any alterations were made.
  */
 _Bool
-layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, double mu)
+layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, const double mu)
 {
-    double orig = l->eta;
+    const double orig = l->eta;
     l->eta += rand_normal(0, mu);
     l->eta = clamp(l->eta, ETA_MIN, xcsf->PRED_ETA);
     if (l->eta != orig) {
@@ -101,12 +101,13 @@ layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, double mu)
  * @return The number of neurons to be added or removed.
  */
 int
-layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l, double mu)
+layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l,
+                     const double mu)
 {
     int n = 0;
     if (rand_uniform(0, 0.1) < mu) { // 10x higher probability
         while (n == 0) {
-            double m = clamp(rand_normal(0, 0.5), -1, 1);
+            const double m = clamp(rand_normal(0, 0.5), -1, 1);
             n = (int) round(m * xcsf->MAX_NEURON_GROW);
         }
         if (n < 0 && l->n_outputs + n < 1) {
@@ -125,10 +126,10 @@ layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l, double mu)
  * @param N The number of neurons to add.
  */
 void
-layer_add_neurons(struct LAYER *l, int N)
+layer_add_neurons(struct LAYER *l, const int N)
 {
-    int n_outputs = l->n_outputs + N;
-    int n_weights = n_outputs * l->n_inputs;
+    const int n_outputs = l->n_outputs + N;
+    const int n_weights = n_outputs * l->n_inputs;
     l->weights = realloc(l->weights, sizeof(double) * n_weights);
     l->weight_active = realloc(l->weight_active, sizeof(_Bool) * n_weights);
     l->weight_updates = realloc(l->weight_updates, sizeof(double) * n_weights);
@@ -170,7 +171,8 @@ layer_add_neurons(struct LAYER *l, int N)
  * @return Whether any alterations were made.
  */
 _Bool
-layer_mutate_connectivity(struct LAYER *l, double mu_enable, double mu_disable)
+layer_mutate_connectivity(struct LAYER *l, const double mu_enable,
+                          const double mu_disable)
 {
     _Bool mod = false;
     if (l->n_inputs > 1 && l->n_outputs > 1) {
@@ -202,14 +204,14 @@ layer_ensure_input_represention(struct LAYER *l)
     // each neuron must be connected to at least one input
     for (int i = 0; i < l->n_outputs; ++i) {
         int active = 0;
-        int offset = l->n_inputs * i;
+        const int offset = l->n_inputs * i;
         for (int j = 0; j < l->n_inputs; ++j) {
             if (l->weight_active[offset + j]) {
                 ++active;
             }
         }
         if (active < 1) {
-            int r = irand_uniform(0, l->n_inputs);
+            const int r = irand_uniform(0, l->n_inputs);
             l->weights[offset + r] = rand_normal(0, 0.1);
             l->weight_active[offset + r] = true;
             ++(l->n_active);
@@ -225,7 +227,7 @@ layer_ensure_input_represention(struct LAYER *l)
             }
         }
         while (active < 1) {
-            int offset = l->n_inputs * irand_uniform(0, l->n_outputs);
+            const int offset = l->n_inputs * irand_uniform(0, l->n_outputs);
             if (!l->weight_active[offset + i]) {
                 l->weights[offset + i] = rand_normal(0, 0.1);
                 l->weight_active[offset + i] = true;
@@ -245,12 +247,12 @@ layer_ensure_input_represention(struct LAYER *l)
  * @return Whether any alterations were made.
  */
 _Bool
-layer_mutate_weights(struct LAYER *l, double mu)
+layer_mutate_weights(struct LAYER *l, const double mu)
 {
     _Bool mod = false;
     for (int i = 0; i < l->n_weights; ++i) {
         if (l->weight_active[i]) {
-            double orig = l->weights[i];
+            const double orig = l->weights[i];
             l->weights[i] += rand_normal(0, mu);
             l->weights[i] = clamp(l->weights[i], WEIGHT_MIN, WEIGHT_MAX);
             if (l->weights[i] != orig) {
@@ -259,7 +261,7 @@ layer_mutate_weights(struct LAYER *l, double mu)
         }
     }
     for (int i = 0; i < l->n_biases; ++i) {
-        double orig = l->biases[i];
+        const double orig = l->biases[i];
         l->biases[i] += rand_normal(0, mu);
         l->biases[i] = clamp(l->biases[i], WEIGHT_MIN, WEIGHT_MAX);
         if (l->biases[i] != orig) {
@@ -276,18 +278,18 @@ layer_mutate_weights(struct LAYER *l, double mu)
  * @return Whether any alterations were made.
  */
 _Bool
-layer_mutate_functions(struct LAYER *l, double mu)
+layer_mutate_functions(struct LAYER *l, const double mu)
 {
     _Bool mod = false;
     if (rand_uniform(0, 1) < mu) {
-        int orig = l->function;
+        const int orig = l->function;
         l->function = irand_uniform(0, NUM_ACTIVATIONS);
         if (l->function != orig) {
             mod = true;
         }
     }
     if (l->layer_type == LSTM && rand_uniform(0, 1) < mu) {
-        int orig = l->recurrent_function;
+        const int orig = l->recurrent_function;
         l->recurrent_function = irand_uniform(0, NUM_ACTIVATIONS);
         if (l->recurrent_function != orig) {
             mod = true;
@@ -302,7 +304,7 @@ layer_mutate_functions(struct LAYER *l, double mu)
  * @param print_weights Whether to print each individual weight and bias.
  */
 void
-layer_weight_print(const struct LAYER *l, _Bool print_weights)
+layer_weight_print(const struct LAYER *l, const _Bool print_weights)
 {
     printf("weights (%d): ", l->n_weights);
     if (print_weights) {

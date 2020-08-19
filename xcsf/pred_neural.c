@@ -79,13 +79,13 @@ pred_neural_init(const struct XCSF *xcsf, struct CL *c)
         if (hmax < hinit || !xcsf->PRED_EVOLVE_NEURONS) {
             hmax = hinit;
         }
-        int f = xcsf->PRED_HIDDEN_ACTIVATION;
+        const int f = xcsf->PRED_HIDDEN_ACTIVATION;
         l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
         neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
         n_inputs = hinit;
     }
     // output layer
-    int f = xcsf->PRED_OUTPUT_ACTIVATION;
+    const int f = xcsf->PRED_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
     lopt &= ~LAYER_EVOLVE_FUNCTIONS; // never evolve the output neurons function
     if (f == SOFT_MAX) { // classification
@@ -189,7 +189,7 @@ pred_neural_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
 }
 
 double
-pred_neural_eta(const struct XCSF *xcsf, const struct CL *c, int layer)
+pred_neural_eta(const struct XCSF *xcsf, const struct CL *c, const int layer)
 {
     (void) xcsf;
     const struct PRED_NEURAL *pred = c->pred;
@@ -206,7 +206,8 @@ pred_neural_eta(const struct XCSF *xcsf, const struct CL *c, int layer)
 }
 
 int
-pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer)
+pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c,
+                    const int layer)
 {
     (void) xcsf;
     const struct PRED_NEURAL *pred = c->pred;
@@ -223,7 +224,8 @@ pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer)
 }
 
 int
-pred_neural_connections(const struct XCSF *xcsf, const struct CL *c, int layer)
+pred_neural_connections(const struct XCSF *xcsf, const struct CL *c,
+                        const int layer)
 {
     (void) xcsf;
     const struct PRED_NEURAL *pred = c->pred;
@@ -265,11 +267,11 @@ pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
         h = net->head->layer;
         n_inputs = h->n_inputs;
     }
-    int n_outputs = h->n_outputs;
-    int max_outputs = h->max_outputs;
-    int f = xcsf->PRED_HIDDEN_ACTIVATION;
-    int pos = net->n_layers - 1;
-    uint32_t lopt = pred_neural_lopt(xcsf);
+    const int n_outputs = h->n_outputs;
+    const int max_outputs = h->max_outputs;
+    const int f = xcsf->PRED_HIDDEN_ACTIVATION;
+    const int pos = net->n_layers - 1;
+    const uint32_t lopt = pred_neural_lopt(xcsf);
     struct LAYER *l = neural_layer_connected_init(xcsf, n_inputs, n_outputs,
                                                   max_outputs, f, lopt);
     neural_layer_insert(xcsf, net, l, pos);
@@ -278,7 +280,7 @@ pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
 
 void
 pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct CL *c,
-                             int n_del)
+                             const int n_del)
 {
     struct PRED_NEURAL *pred = c->pred;
     struct NET *net = &pred->net;
@@ -288,7 +290,7 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct CL *c,
         neural_layer_remove(xcsf, net, net->n_layers - 1);
     }
     // add new softmax output
-    int code_size = net->n_outputs;
+    const int code_size = net->n_outputs;
     uint32_t lopt = pred_neural_lopt(xcsf);
     lopt &= ~LAYER_EVOLVE_NEURONS;
     lopt &= ~LAYER_EVOLVE_FUNCTIONS;

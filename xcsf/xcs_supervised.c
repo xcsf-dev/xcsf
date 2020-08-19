@@ -38,7 +38,8 @@
  * @return The row of the data sample selected.
  */
 static int
-xcs_supervised_sample(const struct INPUT *data, int cnt, _Bool shuffle)
+xcs_supervised_sample(const struct INPUT *data, const int cnt,
+                      const _Bool shuffle)
 {
     if (shuffle) {
         return irand_uniform(0, data->n_samples);
@@ -78,7 +79,7 @@ xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y)
  */
 double
 xcs_supervised_fit(struct XCSF *xcsf, const struct INPUT *train_data,
-                   const struct INPUT *test_data, _Bool shuffle)
+                   const struct INPUT *test_data, const _Bool shuffle)
 {
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
@@ -90,7 +91,7 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct INPUT *train_data,
         const double *y = &train_data->y[row * train_data->y_dim];
         param_set_explore(xcsf, true);
         xcs_supervised_trial(xcsf, x, y);
-        double error = (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
+        const double error = (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
         werr += error;
         err += error;
         // test sample
@@ -116,7 +117,7 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct INPUT *train_data,
  */
 void
 xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
-                       int n_samples)
+                       const int n_samples)
 {
     param_set_explore(xcsf, false);
     for (int row = 0; row < n_samples; ++row) {

@@ -89,14 +89,14 @@ pred_nlms_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
                  const double *y)
 {
     const struct PRED_NLMS *pred = c->pred;
-    int n = pred->n;
+    const int n = pred->n;
     // normalise update
     double norm = xcsf->PRED_X0 * xcsf->PRED_X0;
     norm += blas_dot(xcsf->x_dim, x, 1, x, 1);
     // update weights using the error
     for (int i = 0; i < xcsf->y_dim; ++i) {
-        double error = y[i] - c->prediction[i];
-        double correction = (pred->eta * error) / norm;
+        const double error = y[i] - c->prediction[i];
+        const double correction = (pred->eta * error) / norm;
         blas_axpy(n, correction, pred->tmp_input, 1, &pred->weights[i * n], 1);
     }
 }
@@ -105,7 +105,7 @@ void
 pred_nlms_compute(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
     const struct PRED_NLMS *pred = c->pred;
-    int n = pred->n;
+    const int n = pred->n;
     pred_transform_input(xcsf, x, pred->tmp_input);
     for (int i = 0; i < xcsf->y_dim; ++i) {
         c->prediction[i] =
@@ -117,7 +117,7 @@ void
 pred_nlms_print(const struct XCSF *xcsf, const struct CL *c)
 {
     const struct PRED_NLMS *pred = c->pred;
-    int n = pred->n;
+    const int n = pred->n;
     printf("eta: %.5f, weights: ", pred->eta);
     for (int i = 0; i < xcsf->y_dim; ++i) {
         for (int j = 0; j < n; ++j) {
@@ -143,7 +143,7 @@ pred_nlms_mutate(const struct XCSF *xcsf, const struct CL *c)
     if (xcsf->PRED_EVOLVE_ETA) {
         struct PRED_NLMS *pred = c->pred;
         sam_adapt(pred->mu, N_MU, MU_TYPE);
-        double orig = pred->eta;
+        const double orig = pred->eta;
         pred->eta += rand_normal(0, pred->mu[0]);
         pred->eta = clamp(pred->eta, ETA_MIN, xcsf->PRED_ETA);
         if (orig != pred->eta) {

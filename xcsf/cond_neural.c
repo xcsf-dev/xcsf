@@ -67,18 +67,18 @@ cond_neural_init(const struct XCSF *xcsf, struct CL *c)
     struct LAYER *l = NULL;
     int n_inputs = xcsf->x_dim;
     for (int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
-        int hinit = xcsf->COND_NUM_NEURONS[i];
+        const int hinit = xcsf->COND_NUM_NEURONS[i];
         int hmax = xcsf->COND_MAX_NEURONS[i];
         if (hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {
             hmax = hinit;
         }
-        int f = xcsf->COND_HIDDEN_ACTIVATION;
+        const int f = xcsf->COND_HIDDEN_ACTIVATION;
         l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
         neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
         n_inputs = hinit;
     }
     // output layer
-    int f = xcsf->COND_OUTPUT_ACTIVATION;
+    const int f = xcsf->COND_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
     l = neural_layer_connected_init(xcsf, n_inputs, 1, 1, f, lopt);
     neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);

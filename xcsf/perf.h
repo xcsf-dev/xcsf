@@ -26,4 +26,5 @@
 #include "xcsf.h"
 
 void
-perf_print(const struct XCSF *xcsf, double *error, double *terror, int trial);
+perf_print(const struct XCSF *xcsf, double *error, double *terror,
+           const int trial);

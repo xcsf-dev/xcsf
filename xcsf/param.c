@@ -694,7 +694,7 @@ param_load_cl_action(struct XCSF *xcsf, FILE *fp)
 /* SETTERS */
 
 void
-param_set_omp_num_threads(struct XCSF *xcsf, int a)
+param_set_omp_num_threads(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set OMP_NUM_THREADS too small\n");
@@ -711,13 +711,13 @@ param_set_omp_num_threads(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_pop_init(struct XCSF *xcsf, _Bool a)
+param_set_pop_init(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->POP_INIT = a;
 }
 
 void
-param_set_max_trials(struct XCSF *xcsf, int a)
+param_set_max_trials(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set MAX_TRIALS too small\n");
@@ -728,7 +728,7 @@ param_set_max_trials(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_perf_trials(struct XCSF *xcsf, int a)
+param_set_perf_trials(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set PERF_TRIALS too small\n");
@@ -739,7 +739,7 @@ param_set_perf_trials(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_pop_size(struct XCSF *xcsf, int a)
+param_set_pop_size(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set POP_SIZE too small\n");
@@ -750,7 +750,7 @@ param_set_pop_size(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_loss_func(struct XCSF *xcsf, int a)
+param_set_loss_func(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set LOSS_FUNC too small\n");
@@ -765,7 +765,7 @@ param_set_loss_func(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_gamma(struct XCSF *xcsf, double a)
+param_set_gamma(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set GAMMA too small\n");
@@ -779,7 +779,7 @@ param_set_gamma(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_teletransportation(struct XCSF *xcsf, int a)
+param_set_teletransportation(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set TELETRANSPORTATION too small\n");
@@ -790,7 +790,7 @@ param_set_teletransportation(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_p_explore(struct XCSF *xcsf, double a)
+param_set_p_explore(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set P_EXPLORE too small\n");
@@ -804,7 +804,7 @@ param_set_p_explore(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_alpha(struct XCSF *xcsf, double a)
+param_set_alpha(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set ALPHA too small\n");
@@ -818,7 +818,7 @@ param_set_alpha(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_beta(struct XCSF *xcsf, double a)
+param_set_beta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set BETA too small\n");
@@ -832,7 +832,7 @@ param_set_beta(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_delta(struct XCSF *xcsf, double a)
+param_set_delta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set DELTA too small\n");
@@ -846,7 +846,7 @@ param_set_delta(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_eps_0(struct XCSF *xcsf, double a)
+param_set_eps_0(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set EPS_0 too small\n");
@@ -857,7 +857,7 @@ param_set_eps_0(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_err_reduc(struct XCSF *xcsf, double a)
+param_set_err_reduc(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set ERR_REDUC too small\n");
@@ -871,7 +871,7 @@ param_set_err_reduc(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_fit_reduc(struct XCSF *xcsf, double a)
+param_set_fit_reduc(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set FIT_REDUC too small\n");
@@ -885,7 +885,7 @@ param_set_fit_reduc(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_init_error(struct XCSF *xcsf, double a)
+param_set_init_error(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set INIT_ERROR too small\n");
@@ -896,7 +896,7 @@ param_set_init_error(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_init_fitness(struct XCSF *xcsf, double a)
+param_set_init_fitness(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set INIT_FITNESS too small\n");
@@ -907,7 +907,7 @@ param_set_init_fitness(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_nu(struct XCSF *xcsf, double a)
+param_set_nu(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set NU too small\n");
@@ -918,7 +918,7 @@ param_set_nu(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_theta_del(struct XCSF *xcsf, int a)
+param_set_theta_del(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set THETA_DEL too small\n");
@@ -929,7 +929,7 @@ param_set_theta_del(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_cond_type(struct XCSF *xcsf, int a)
+param_set_cond_type(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set COND_TYPE too small\n");
@@ -940,7 +940,7 @@ param_set_cond_type(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_pred_type(struct XCSF *xcsf, int a)
+param_set_pred_type(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set PRED_TYPE too small\n");
@@ -951,7 +951,7 @@ param_set_pred_type(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_act_type(struct XCSF *xcsf, int a)
+param_set_act_type(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set ACT_TYPE too small\n");
@@ -962,7 +962,7 @@ param_set_act_type(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_m_probation(struct XCSF *xcsf, int a)
+param_set_m_probation(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set M_PROBATION too small\n");
@@ -973,7 +973,7 @@ param_set_m_probation(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_p_crossover(struct XCSF *xcsf, double a)
+param_set_p_crossover(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set P_CROSSOVER too small\n");
@@ -987,7 +987,7 @@ param_set_p_crossover(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_theta_ea(struct XCSF *xcsf, double a)
+param_set_theta_ea(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set THETA_EA too small\n");
@@ -998,7 +998,7 @@ param_set_theta_ea(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_lambda(struct XCSF *xcsf, int a)
+param_set_lambda(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set LAMBDA too small\n");
@@ -1009,7 +1009,7 @@ param_set_lambda(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_ea_select_type(struct XCSF *xcsf, int a)
+param_set_ea_select_type(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set EA_SELECT_TYPE too small\n");
@@ -1020,7 +1020,7 @@ param_set_ea_select_type(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_ea_select_size(struct XCSF *xcsf, double a)
+param_set_ea_select_size(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set EA_SELECT_SIZE too small\n");
@@ -1034,25 +1034,25 @@ param_set_ea_select_size(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_cond_max(struct XCSF *xcsf, double a)
+param_set_cond_max(struct XCSF *xcsf, const double a)
 {
     xcsf->COND_MAX = a;
 }
 
 void
-param_set_cond_min(struct XCSF *xcsf, double a)
+param_set_cond_min(struct XCSF *xcsf, const double a)
 {
     xcsf->COND_MIN = a;
 }
 
 void
-param_set_cond_smin(struct XCSF *xcsf, double a)
+param_set_cond_smin(struct XCSF *xcsf, const double a)
 {
     xcsf->COND_SMIN = a;
 }
 
 void
-param_set_cond_bits(struct XCSF *xcsf, int a)
+param_set_cond_bits(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set COND_BITS too small\n");
@@ -1063,13 +1063,13 @@ param_set_cond_bits(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_stateful(struct XCSF *xcsf, _Bool a)
+param_set_stateful(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->STATEFUL = a;
 }
 
 void
-param_set_max_k(struct XCSF *xcsf, int a)
+param_set_max_k(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set MAX_K too small\n");
@@ -1080,7 +1080,7 @@ param_set_max_k(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_max_t(struct XCSF *xcsf, int a)
+param_set_max_t(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set MAX_T too small\n");
@@ -1091,7 +1091,7 @@ param_set_max_t(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_gp_num_cons(struct XCSF *xcsf, int a)
+param_set_gp_num_cons(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set GP_NUM_CONS too small\n");
@@ -1106,7 +1106,7 @@ param_set_gp_num_cons(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_gp_init_depth(struct XCSF *xcsf, int a)
+param_set_gp_init_depth(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set GP_INIT_DEPTH too small\n");
@@ -1117,7 +1117,7 @@ param_set_gp_init_depth(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_max_neuron_grow(struct XCSF *xcsf, int a)
+param_set_max_neuron_grow(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set MAX_NEURON_GROW too small\n");
@@ -1128,7 +1128,7 @@ param_set_max_neuron_grow(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_cond_eta(struct XCSF *xcsf, double a)
+param_set_cond_eta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set COND_ETA too small\n");
@@ -1142,31 +1142,31 @@ param_set_cond_eta(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_cond_evolve_weights(struct XCSF *xcsf, _Bool a)
+param_set_cond_evolve_weights(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->COND_EVOLVE_WEIGHTS = a;
 }
 
 void
-param_set_cond_evolve_neurons(struct XCSF *xcsf, _Bool a)
+param_set_cond_evolve_neurons(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->COND_EVOLVE_NEURONS = a;
 }
 
 void
-param_set_cond_evolve_functions(struct XCSF *xcsf, _Bool a)
+param_set_cond_evolve_functions(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->COND_EVOLVE_FUNCTIONS = a;
 }
 
 void
-param_set_cond_evolve_connectivity(struct XCSF *xcsf, _Bool a)
+param_set_cond_evolve_connectivity(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->COND_EVOLVE_CONNECTIVITY = a;
 }
 
 void
-param_set_cond_output_activation(struct XCSF *xcsf, int a)
+param_set_cond_output_activation(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set COND_OUTPUT_ACTIVATION too small\n");
@@ -1177,7 +1177,7 @@ param_set_cond_output_activation(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_cond_hidden_activation(struct XCSF *xcsf, int a)
+param_set_cond_hidden_activation(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set COND_HIDDEN_ACTIVATION too small\n");
@@ -1188,13 +1188,13 @@ param_set_cond_hidden_activation(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_pred_reset(struct XCSF *xcsf, _Bool a)
+param_set_pred_reset(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->PRED_RESET = a;
 }
 
 void
-param_set_pred_eta(struct XCSF *xcsf, double a)
+param_set_pred_eta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set PRED_ETA too small\n");
@@ -1208,13 +1208,13 @@ param_set_pred_eta(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_pred_x0(struct XCSF *xcsf, double a)
+param_set_pred_x0(struct XCSF *xcsf, const double a)
 {
     xcsf->PRED_X0 = a;
 }
 
 void
-param_set_pred_rls_lambda(struct XCSF *xcsf, double a)
+param_set_pred_rls_lambda(struct XCSF *xcsf, const double a)
 {
     if (a < DBL_EPSILON) {
         printf("Warning: tried to set PRED_RLS_LAMBDA too small\n");
@@ -1225,49 +1225,49 @@ param_set_pred_rls_lambda(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_pred_rls_scale_factor(struct XCSF *xcsf, double a)
+param_set_pred_rls_scale_factor(struct XCSF *xcsf, const double a)
 {
     xcsf->PRED_RLS_SCALE_FACTOR = a;
 }
 
 void
-param_set_pred_evolve_weights(struct XCSF *xcsf, _Bool a)
+param_set_pred_evolve_weights(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->PRED_EVOLVE_WEIGHTS = a;
 }
 
 void
-param_set_pred_evolve_neurons(struct XCSF *xcsf, _Bool a)
+param_set_pred_evolve_neurons(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->PRED_EVOLVE_NEURONS = a;
 }
 
 void
-param_set_pred_evolve_functions(struct XCSF *xcsf, _Bool a)
+param_set_pred_evolve_functions(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->PRED_EVOLVE_FUNCTIONS = a;
 }
 
 void
-param_set_pred_evolve_connectivity(struct XCSF *xcsf, _Bool a)
+param_set_pred_evolve_connectivity(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->PRED_EVOLVE_CONNECTIVITY = a;
 }
 
 void
-param_set_pred_evolve_eta(struct XCSF *xcsf, _Bool a)
+param_set_pred_evolve_eta(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->PRED_EVOLVE_ETA = a;
 }
 
 void
-param_set_pred_sgd_weights(struct XCSF *xcsf, _Bool a)
+param_set_pred_sgd_weights(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->PRED_SGD_WEIGHTS = a;
 }
 
 void
-param_set_pred_momentum(struct XCSF *xcsf, double a)
+param_set_pred_momentum(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
         printf("Warning: tried to set PRED_MOMENTUM too small\n");
@@ -1281,7 +1281,7 @@ param_set_pred_momentum(struct XCSF *xcsf, double a)
 }
 
 void
-param_set_pred_output_activation(struct XCSF *xcsf, int a)
+param_set_pred_output_activation(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set PRED_OUTPUT_ACTIVATION too small\n");
@@ -1292,7 +1292,7 @@ param_set_pred_output_activation(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_pred_hidden_activation(struct XCSF *xcsf, int a)
+param_set_pred_hidden_activation(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set PRED_HIDDEN_ACTIVATION too small\n");
@@ -1303,19 +1303,19 @@ param_set_pred_hidden_activation(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_ea_subsumption(struct XCSF *xcsf, _Bool a)
+param_set_ea_subsumption(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->EA_SUBSUMPTION = a;
 }
 
 void
-param_set_set_subsumption(struct XCSF *xcsf, _Bool a)
+param_set_set_subsumption(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->SET_SUBSUMPTION = a;
 }
 
 void
-param_set_theta_sub(struct XCSF *xcsf, int a)
+param_set_theta_sub(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
         printf("Warning: tried to set THETA_SUB too small\n");
@@ -1326,7 +1326,7 @@ param_set_theta_sub(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_x_dim(struct XCSF *xcsf, int a)
+param_set_x_dim(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set x_dim too small\n");
@@ -1337,13 +1337,13 @@ param_set_x_dim(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_explore(struct XCSF *xcsf, _Bool a)
+param_set_explore(struct XCSF *xcsf, const _Bool a)
 {
     xcsf->explore = a;
 }
 
 void
-param_set_y_dim(struct XCSF *xcsf, int a)
+param_set_y_dim(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set y_dim too small\n");
@@ -1354,7 +1354,7 @@ param_set_y_dim(struct XCSF *xcsf, int a)
 }
 
 void
-param_set_n_actions(struct XCSF *xcsf, int a)
+param_set_n_actions(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set n_actions too small\n");

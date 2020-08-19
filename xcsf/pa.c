@@ -78,7 +78,7 @@ pa_build(const struct XCSF *xcsf, const double *x)
     for (int i = 0; i < set->size; ++i) {
         if (clist[i] != NULL) {
             const double *predictions = cl_predict(xcsf, clist[i], x);
-            double fitness = clist[i]->fit;
+            const double fitness = clist[i]->fit;
             for (int j = 0; j < xcsf->y_dim; ++j) {
                 pa[clist[i]->action * xcsf->y_dim + j] +=
                     predictions[j] * fitness;
@@ -87,19 +87,20 @@ pa_build(const struct XCSF *xcsf, const double *x)
         }
     }
 #else
-    for (const struct CLIST *iter = set->list; iter != NULL;
-         iter = iter->next) {
+    const struct CLIST *iter = set->list;
+    while (iter != NULL) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
-        double fitness = iter->cl->fit;
+        const double fitness = iter->cl->fit;
         for (int j = 0; j < xcsf->y_dim; ++j) {
             pa[iter->cl->action * xcsf->y_dim + j] += predictions[j] * fitness;
             nr[iter->cl->action * xcsf->y_dim + j] += fitness;
         }
+        iter = iter->next;
     }
 #endif
     for (int i = 0; i < xcsf->n_actions; ++i) {
         for (int j = 0; j < xcsf->y_dim; ++j) {
-            int k = i * xcsf->y_dim + j;
+            const int k = i * xcsf->y_dim + j;
             if (nr[k] != 0) {
                 pa[k] /= nr[k];
             } else {
@@ -165,7 +166,7 @@ pa_best_val(const struct XCSF *xcsf)
  * @return The value of the action in the prediction array.
  */
 double
-pa_val(const struct XCSF *xcsf, int action)
+pa_val(const struct XCSF *xcsf, const int action)
 {
     if (action >= 0 && action < xcsf->n_actions) {
         return xcsf->pa[action];

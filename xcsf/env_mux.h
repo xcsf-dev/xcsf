@@ -41,7 +41,7 @@ _Bool
 env_mux_multistep(const struct XCSF *xcsf);
 
 double
-env_mux_execute(const struct XCSF *xcsf, int action);
+env_mux_execute(const struct XCSF *xcsf, const int action);
 
 double
 env_mux_maxpayoff(const struct XCSF *xcsf);

@@ -52,8 +52,8 @@ free_layer_arrays(const struct LAYER *l)
  * @return A pointer to the new layer.
  */
 struct LAYER *
-neural_layer_softmax_init(const struct XCSF *xcsf, int n_inputs,
-                          double temperature)
+neural_layer_softmax_init(const struct XCSF *xcsf, const int n_inputs,
+                          const double temperature)
 {
     (void) xcsf;
     struct LAYER *l = malloc(sizeof(struct LAYER));
@@ -123,8 +123,10 @@ neural_layer_softmax_backward(const struct XCSF *xcsf, const struct LAYER *l,
 {
     (void) xcsf;
     (void) input;
-    for (int i = 0; i < l->n_inputs; ++i) {
-        delta[i] += l->delta[i];
+    if (delta) {
+        for (int i = 0; i < l->n_inputs; ++i) {
+            delta[i] += l->delta[i];
+        }
     }
 }
 
@@ -137,7 +139,7 @@ neural_layer_softmax_update(const struct XCSF *xcsf, const struct LAYER *l)
 
 void
 neural_layer_softmax_print(const struct XCSF *xcsf, const struct LAYER *l,
-                           _Bool print_weights)
+                           const _Bool print_weights)
 {
     (void) xcsf;
     (void) print_weights;

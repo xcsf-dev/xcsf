@@ -59,31 +59,24 @@ static const int y_moves[] = { -1, -1, 0, +1, +1, +1, 0, -1 }; //!< y-axis moves
  * @return A float encoding of the sensor.
  */
 static double
-env_maze_sensor(const struct XCSF *xcsf, char s)
+env_maze_sensor(const struct XCSF *xcsf, const char s)
 {
     (void) xcsf;
-    double ret = 0;
     switch (s) {
         case '*':
-            ret = 0.1;
-            break;
+            return 0.1;
         case 'O':
-            ret = 0.3;
-            break;
+            return 0.3;
         case 'G':
-            ret = 0.5;
-            break;
+            return 0.5;
         case 'F':
-            ret = 0.7;
-            break;
+            return 0.7;
         case 'Q':
-            ret = 0.9;
-            break;
+            return 0.9;
         default:
             printf("unsupported maze state: %c\n", s);
             exit(EXIT_FAILURE);
     }
-    return ret;
 }
 
 /**
@@ -192,11 +185,11 @@ env_maze_get_state(const struct XCSF *xcsf)
                 continue;
             }
             // toroidal maze
-            int xsense =
+            const int xsense =
                 ((env->xpos + x) % env->xsize + env->xsize) % env->xsize;
-            int ysense =
+            const int ysense =
                 ((env->ypos + y) % env->ysize + env->ysize) % env->ysize;
-            char s = env->maze[ysense][xsense];
+            const char s = env->maze[ysense][xsense];
             // convert sensor to real number
             env->state[spos] = env_maze_sensor(xcsf, s);
             ++spos;
@@ -212,7 +205,7 @@ env_maze_get_state(const struct XCSF *xcsf)
  * @return The payoff from performing the action.
  */
 double
-env_maze_execute(const struct XCSF *xcsf, int action)
+env_maze_execute(const struct XCSF *xcsf, const int action)
 {
     if (action < 0 || action > 7) {
         printf("invalid maze action\n");
@@ -220,9 +213,9 @@ env_maze_execute(const struct XCSF *xcsf, int action)
     }
     struct ENV_MAZE *env = xcsf->env;
     // toroidal maze
-    int newx =
+    const int newx =
         ((env->xpos + x_moves[action]) % env->xsize + env->xsize) % env->xsize;
-    int newy =
+    const int newy =
         ((env->ypos + y_moves[action]) % env->ysize + env->ysize) % env->ysize;
     // make the move and recieve reward
     double reward = 0;

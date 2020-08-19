@@ -42,7 +42,7 @@ pred_rls_init(const struct XCSF *xcsf, struct CL *c)
     pred->weights = calloc(pred->n_weights, sizeof(double));
     blas_fill(xcsf->y_dim, xcsf->PRED_X0, pred->weights, pred->n);
     // initialise gain matrix
-    int n_sqrd = pred->n * pred->n;
+    const int n_sqrd = pred->n * pred->n;
     pred->matrix = calloc(n_sqrd, sizeof(double));
     for (int i = 0; i < pred->n; ++i) {
         pred->matrix[i * pred->n + i] = xcsf->PRED_RLS_SCALE_FACTOR;
@@ -84,7 +84,7 @@ pred_rls_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
 {
     (void) x;
     const struct PRED_RLS *pred = c->pred;
-    int n = pred->n;
+    const int n = pred->n;
     // gain vector = matrix * tmp_input
     const double *A = pred->matrix;
     const double *B = pred->tmp_input;
@@ -96,13 +96,13 @@ pred_rls_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
     blas_scal(n, divisor, pred->tmp_vec, 1);
     // update weights using the error
     for (int i = 0; i < xcsf->y_dim; ++i) {
-        double error = y[i] - c->prediction[i];
+        const double error = y[i] - c->prediction[i];
         blas_axpy(n, error, pred->tmp_vec, 1, &pred->weights[i * n], 1);
     }
     // update gain matrix
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            double tmp = pred->tmp_vec[i] * pred->tmp_input[j];
+            const double tmp = pred->tmp_vec[i] * pred->tmp_input[j];
             if (i == j) {
                 pred->tmp_matrix1[i * n + j] = 1 - tmp;
             } else {
@@ -128,7 +128,7 @@ void
 pred_rls_compute(const struct XCSF *xcsf, const struct CL *c, const double *x)
 {
     const struct PRED_RLS *pred = c->pred;
-    int n = pred->n;
+    const int n = pred->n;
     pred_transform_input(xcsf, x, pred->tmp_input);
     for (int i = 0; i < xcsf->y_dim; ++i) {
         c->prediction[i] =
@@ -141,7 +141,7 @@ pred_rls_print(const struct XCSF *xcsf, const struct CL *c)
 {
     const struct PRED_RLS *pred = c->pred;
     printf("RLS weights: ");
-    int n = pred->n;
+    const int n = pred->n;
     for (int i = 0; i < xcsf->y_dim; ++i) {
         for (int j = 0; j < n; ++j) {
             printf("%f, ", pred->weights[i * n + j]);
@@ -185,7 +185,7 @@ pred_rls_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
     s += fwrite(&pred->n, sizeof(int), 1, fp);
     s += fwrite(&pred->n_weights, sizeof(int), 1, fp);
     s += fwrite(pred->weights, sizeof(double), pred->n_weights, fp);
-    int n_sqrd = pred->n * pred->n;
+    const int n_sqrd = pred->n * pred->n;
     s += fwrite(pred->matrix, sizeof(double), n_sqrd, fp);
     return s;
 }
@@ -199,7 +199,7 @@ pred_rls_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
     s += fread(&pred->n, sizeof(int), 1, fp);
     s += fread(&pred->n_weights, sizeof(int), 1, fp);
     s += fread(pred->weights, sizeof(double), pred->n_weights, fp);
-    int n_sqrd = pred->n * pred->n;
+    const int n_sqrd = pred->n * pred->n;
     s += fread(pred->matrix, sizeof(double), n_sqrd, fp);
     return s;
 }

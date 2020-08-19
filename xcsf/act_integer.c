@@ -57,7 +57,7 @@ act_integer_mutate(const struct XCSF *xcsf, const struct CL *c)
     struct ACT_INTEGER *act = c->act;
     sam_adapt(act->mu, N_MU, MU_TYPE);
     if (rand_uniform(0, 1) < act->mu[0]) {
-        int old = act->action;
+        const int old = act->action;
         act->action = irand_uniform(0, xcsf->n_actions);
         if (old != act->action) {
             return true;
@@ -98,7 +98,7 @@ act_integer_print(const struct XCSF *xcsf, const struct CL *c)
 
 void
 act_integer_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
-                  int action)
+                  const int action)
 {
     (void) xcsf;
     (void) x;

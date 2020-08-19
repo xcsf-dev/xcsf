@@ -43,7 +43,7 @@ struct ActVtbl {
     void (*act_impl_copy)(const struct XCSF *xcsf, struct CL *dest,
                           const struct CL *src);
     void (*act_impl_cover)(const struct XCSF *xcsf, const struct CL *c,
-                           const double *x, int action);
+                           const double *x, const int action);
     void (*act_impl_free)(const struct XCSF *xcsf, const struct CL *c);
     void (*act_impl_init)(const struct XCSF *xcsf, struct CL *c);
     void (*act_impl_print)(const struct XCSF *xcsf, const struct CL *c);
@@ -152,7 +152,7 @@ act_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
  */
 static inline void
 act_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
-          int action)
+          const int action)
 {
     (*c->act_vptr->act_impl_cover)(xcsf, c, x, action);
 }

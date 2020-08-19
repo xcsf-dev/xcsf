@@ -27,8 +27,9 @@
 #include "xcsf.h"
 
 struct LAYER *
-neural_layer_recurrent_init(const struct XCSF *xcsf, int n_inputs, int n_init,
-                            int n_max, int f, uint32_t o);
+neural_layer_recurrent_init(const struct XCSF *xcsf, const int n_inputs,
+                            const int n_init, const int n_max, const int f,
+                            const uint32_t o);
 
 struct LAYER *
 neural_layer_recurrent_copy(const struct XCSF *xcsf, const struct LAYER *src);
@@ -49,7 +50,7 @@ neural_layer_recurrent_update(const struct XCSF *xcsf, const struct LAYER *l);
 
 void
 neural_layer_recurrent_print(const struct XCSF *xcsf, const struct LAYER *l,
-                             _Bool print_weights);
+                             const _Bool print_weights);
 
 _Bool
 neural_layer_recurrent_mutate(const struct XCSF *xcsf, struct LAYER *l);

@@ -50,7 +50,7 @@ _Bool
 graph_mutate(const struct XCSF *xcsf, struct GRAPH *dgp);
 
 double
-graph_output(const struct XCSF *xcsf, const struct GRAPH *dgp, int i);
+graph_output(const struct XCSF *xcsf, const struct GRAPH *dgp, const int IDX);
 
 size_t
 graph_load(const struct XCSF *xcsf, struct GRAPH *dgp, FILE *fp);
@@ -66,7 +66,7 @@ void
 graph_free(const struct XCSF *xcsf, const struct GRAPH *dgp);
 
 void
-graph_init(const struct XCSF *xcsf, struct GRAPH *dgp, int n);
+graph_init(const struct XCSF *xcsf, struct GRAPH *dgp, const int n);
 
 void
 graph_print(const struct XCSF *xcsf, const struct GRAPH *dgp);

@@ -54,8 +54,8 @@ free_layer_arrays(const struct LAYER *l)
  * @return A pointer to the new layer.
  */
 struct LAYER *
-neural_layer_dropout_init(const struct XCSF *xcsf, int n_inputs,
-                          double probability)
+neural_layer_dropout_init(const struct XCSF *xcsf, const int n_inputs,
+                          const double probability)
 {
     (void) xcsf;
     struct LAYER *l = malloc(sizeof(struct LAYER));
@@ -130,14 +130,13 @@ neural_layer_dropout_backward(const struct XCSF *xcsf, const struct LAYER *l,
 {
     (void) xcsf;
     (void) input;
-    if (!delta) {
-        return;
-    }
-    for (int i = 0; i < l->n_inputs; ++i) {
-        if (l->state[i] < l->probability) {
-            delta[i] = 0;
-        } else {
-            delta[i] += l->delta[i] * l->scale;
+    if (delta) {
+        for (int i = 0; i < l->n_inputs; ++i) {
+            if (l->state[i] < l->probability) {
+                delta[i] = 0;
+            } else {
+                delta[i] += l->delta[i] * l->scale;
+            }
         }
     }
 }
@@ -179,7 +178,7 @@ neural_layer_dropout_output(const struct XCSF *xcsf, const struct LAYER *l)
 
 void
 neural_layer_dropout_print(const struct XCSF *xcsf, const struct LAYER *l,
-                           _Bool print_weights)
+                           const _Bool print_weights)
 {
     (void) xcsf;
     (void) print_weights;

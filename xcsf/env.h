@@ -35,7 +35,7 @@ env_init(struct XCSF *xcsf, char **argv);
 struct EnvVtbl {
     _Bool (*env_impl_isreset)(const struct XCSF *xcsf);
     _Bool (*env_impl_multistep)(const struct XCSF *xcsf);
-    double (*env_impl_execute)(const struct XCSF *xcsf, int action);
+    double (*env_impl_execute)(const struct XCSF *xcsf, const int action);
     double (*env_impl_max_payoff)(const struct XCSF *xcsf);
     const double *(*env_impl_get_state)(const struct XCSF *xcsf);
     void (*env_impl_free)(const struct XCSF *xcsf);
@@ -71,7 +71,7 @@ env_multistep(const struct XCSF *xcsf)
  * @return The payoff from performing the action.
  */
 static inline double
-env_execute(const struct XCSF *xcsf, int action)
+env_execute(const struct XCSF *xcsf, const int action)
 {
     return (*xcsf->env_vptr->env_impl_execute)(xcsf, action);
 }

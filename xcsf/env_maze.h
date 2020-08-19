@@ -48,7 +48,7 @@ _Bool
 env_maze_multistep(const struct XCSF *xcsf);
 
 double
-env_maze_execute(const struct XCSF *xcsf, int action);
+env_maze_execute(const struct XCSF *xcsf, const int action);
 
 double
 env_maze_maxpayoff(const struct XCSF *xcsf);

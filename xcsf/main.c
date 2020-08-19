@@ -50,7 +50,7 @@ main(int argc, char **argv)
     env_init(xcsf, argv); // initialise problem environment
     xcsf_init(xcsf); // initialise empty sets
     if (argc == 5) { // reload state of a previous experiment
-        size_t s = xcsf_load(xcsf, argv[4]);
+        const size_t s = xcsf_load(xcsf, argv[4]);
         printf("XCSF loaded: %d elements\n", (int) s);
     } else { // new experiment
         clset_pop_init(xcsf);

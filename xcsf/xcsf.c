@@ -60,15 +60,15 @@ xcsf_free(struct XCSF *xcsf)
 /**
  * @brief Prints the current XCSF population.
  * @param xcsf The XCSF data structure.
- * @param printc Whether to print condition structures.
- * @param printa Whether to print action structures.
- * @param printp Whether to print prediction structures.
+ * @param print_cond Whether to print condition structures.
+ * @param print_act Whether to print action structures.
+ * @param print_pred Whether to print prediction structures.
  */
 void
-xcsf_print_pop(const struct XCSF *xcsf, _Bool printc, _Bool printa,
-               _Bool printp)
+xcsf_print_pop(const struct XCSF *xcsf, const _Bool print_cond,
+               const _Bool print_act, const _Bool print_pred)
 {
-    clset_print(xcsf, &xcsf->pset, printc, printa, printp);
+    clset_print(xcsf, &xcsf->pset, print_cond, print_act, print_pred);
 }
 
 /**
@@ -161,7 +161,7 @@ xcsf_pred_expand(const struct XCSF *xcsf)
  * @param n_del The number of hidden layers to remove.
  */
 void
-xcsf_ae_to_classifier(struct XCSF *xcsf, int y_dim, int n_del)
+xcsf_ae_to_classifier(struct XCSF *xcsf, const int y_dim, const int n_del)
 {
     pa_free(xcsf);
     param_set_y_dim(xcsf, y_dim);

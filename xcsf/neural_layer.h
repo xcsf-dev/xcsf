@@ -129,7 +129,7 @@ struct LayerVtbl {
     void (*layer_impl_free)(const struct XCSF *xcsf, const struct LAYER *l);
     void (*layer_impl_rand)(const struct XCSF *xcsf, struct LAYER *l);
     void (*layer_impl_print)(const struct XCSF *xcsf, const struct LAYER *l,
-                             _Bool print_weights);
+                             const _Bool print_weights);
     void (*layer_impl_update)(const struct XCSF *xcsf, const struct LAYER *l);
     void (*layer_impl_backward)(const struct XCSF *xcsf, const struct LAYER *l,
                                 const double *input, double *delta);
@@ -285,28 +285,31 @@ layer_rand(const struct XCSF *xcsf, struct LAYER *l)
  * @param print_weights Whether to print the weights.
  */
 static inline void
-layer_print(const struct XCSF *xcsf, const struct LAYER *l, _Bool print_weights)
+layer_print(const struct XCSF *xcsf, const struct LAYER *l,
+            const _Bool print_weights)
 {
     (*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
 
 _Bool
-layer_mutate_connectivity(struct LAYER *l, double mu_enable, double mu_disable);
+layer_mutate_connectivity(struct LAYER *l, const double mu_enable,
+                          const double mu_disable);
 
 _Bool
-layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, double mu);
+layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, const double mu);
 
 _Bool
-layer_mutate_functions(struct LAYER *l, double mu);
+layer_mutate_functions(struct LAYER *l, const double mu);
 
 _Bool
-layer_mutate_weights(struct LAYER *l, double mu);
+layer_mutate_weights(struct LAYER *l, const double mu);
 
 int
-layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l, double mu);
+layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l,
+                     const double mu);
 
 void
-layer_add_neurons(struct LAYER *l, int n);
+layer_add_neurons(struct LAYER *l, const int n);
 
 void
 layer_calc_n_active(struct LAYER *l);
@@ -324,7 +327,7 @@ void
 layer_weight_clamp(const struct LAYER *l);
 
 void
-layer_weight_print(const struct LAYER *l, _Bool print_weights);
+layer_weight_print(const struct LAYER *l, const _Bool print_weights);
 
 void
 layer_weight_rand(const struct XCSF *xcsf, struct LAYER *l);

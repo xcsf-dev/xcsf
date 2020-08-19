@@ -55,7 +55,7 @@ act_integer_copy(const struct XCSF *xcsf, struct CL *dest,
 
 void
 act_integer_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
-                  int action);
+                  const int action);
 
 void
 act_integer_free(const struct XCSF *xcsf, const struct CL *c);

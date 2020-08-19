@@ -30,7 +30,7 @@
 #define SAM_UNIFORM (2) //!< Uniformly random self-adaptation
 
 void
-sam_adapt(double *mu, int N, const int *type);
+sam_adapt(double *mu, const int N, const int *type);
 
 void
-sam_init(double *mu, int N, const int *type);
+sam_init(double *mu, const int N, const int *type);

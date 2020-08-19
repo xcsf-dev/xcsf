@@ -32,7 +32,7 @@ double
 pa_best_val(const struct XCSF *xcsf);
 
 double
-pa_val(const struct XCSF *xcsf, int act);
+pa_val(const struct XCSF *xcsf, const int action);
 
 int
 pa_best_action(const struct XCSF *xcsf);

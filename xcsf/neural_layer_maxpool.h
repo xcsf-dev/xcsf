@@ -27,8 +27,9 @@
 #include "xcsf.h"
 
 struct LAYER *
-neural_layer_maxpool_init(const struct XCSF *xcsf, int h, int w, int c,
-                          int size, int stride, int pad);
+neural_layer_maxpool_init(const struct XCSF *xcsf, const int h, const int w,
+                          const int c, const int size, const int stride,
+                          const int pad);
 
 struct LAYER *
 neural_layer_maxpool_copy(const struct XCSF *xcsf, const struct LAYER *src);
@@ -49,7 +50,7 @@ neural_layer_maxpool_update(const struct XCSF *xcsf, const struct LAYER *l);
 
 void
 neural_layer_maxpool_print(const struct XCSF *xcsf, const struct LAYER *l,
-                           _Bool print_weights);
+                           const _Bool print_weights);
 
 _Bool
 neural_layer_maxpool_mutate(const struct XCSF *xcsf, struct LAYER *l);

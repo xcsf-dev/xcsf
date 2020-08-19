@@ -54,20 +54,20 @@ clset_pop_never_match(const struct XCSF *xcsf, struct CLIST **del,
 /*
  * @brief Selects a classifier from the population for deletion via roulette
  * wheel.
- * @param xcsf The XCSF data structure.
- * @param del A pointer to the rule to be deleted (set by this function).
- * @param delprev A pointer to the rule previous to the one being deleted (set
- * by this function).
  * @details Two classifiers are selected using roulette wheel selection with the
  * deletion vote and the one with the largest condition + prediction size is
  * chosen. For fixed-length representations the effect is the same as one
  * roulete spin.
+ * @param xcsf The XCSF data structure.
+ * @param del A pointer to the rule to be deleted (set by this function).
+ * @param delprev A pointer to the rule previous to the one being deleted (set
+ * by this function).
  */
 static void
 clset_pop_roulette(const struct XCSF *xcsf, struct CLIST **del,
                    struct CLIST **delprev)
 {
-    double avg_fit = clset_total_fit(&xcsf->pset) / xcsf->pset.num;
+    const double avg_fit = clset_total_fit(&xcsf->pset) / xcsf->pset.num;
     double total_vote = 0;
     struct CLIST *iter = xcsf->pset.list;
     while (iter != NULL) {
@@ -79,7 +79,7 @@ clset_pop_roulette(const struct XCSF *xcsf, struct CLIST **del,
         // perform a single roulette spin with the deletion vote
         iter = xcsf->pset.list;
         struct CLIST *prev = NULL;
-        double p = rand_uniform(0, total_vote);
+        const double p = rand_uniform(0, total_vote);
         double sum = cl_del_vote(xcsf, iter->cl, avg_fit);
         while (p > sum) {
             prev = iter;
@@ -87,7 +87,8 @@ clset_pop_roulette(const struct XCSF *xcsf, struct CLIST **del,
             sum += cl_del_vote(xcsf, iter->cl, avg_fit);
         }
         // select the rule for deletion if it is the largest sized winner
-        double s = cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
+        const double s =
+            cl_cond_size(xcsf, iter->cl) + cl_pred_size(xcsf, iter->cl);
         if (*del == NULL || s > delsize) {
             *del = iter;
             *delprev = prev;
@@ -114,7 +115,7 @@ clset_pop_del(struct XCSF *xcsf)
     // decrement numerosity
     --(del->cl->num);
     --(xcsf->pset.num);
-    // macro classifier must be deleted
+    // remove macro-classifiers as necessary
     if (del->cl->num == 0) {
         clset_add(&xcsf->kset, del->cl);
         --(xcsf->pset.size);
@@ -174,7 +175,7 @@ clset_cover(struct XCSF *xcsf, const double *x)
             }
         }
         // enforce population size
-        int prev_psize = xcsf->pset.size;
+        const int prev_psize = xcsf->pset.size;
         clset_pop_enforce_limit(xcsf);
         // if a macro classifier was deleted,
         // remove any deleted rules from the match set
@@ -377,7 +378,7 @@ clset_match(struct XCSF *xcsf, const double *x)
  * @param action The action used to build the set.
  */
 void
-clset_action(struct XCSF *xcsf, int action)
+clset_action(struct XCSF *xcsf, const int action)
 {
     const struct CLIST *iter = xcsf->mset.list;
     while (iter != NULL) {
@@ -420,7 +421,7 @@ clset_add(struct SET *set, struct CL *c)
  */
 void
 clset_update(struct XCSF *xcsf, struct SET *set, const double *x,
-             const double *y, _Bool cur)
+             const double *y, const _Bool cur)
 {
 #ifdef PARALLEL_UPDATE
     struct CLIST *blist[set->size];
@@ -481,17 +482,18 @@ clset_validate(struct SET *set)
  * @brief Prints the classifiers in the set.
  * @param xcsf The XCSF data structure.
  * @param set The set to print.
- * @param printc Whether to print the conditions.
- * @param printa Whether to print the actions.
- * @param printp Whether to print the predictions.
+ * @param print_cond Whether to print the conditions.
+ * @param print_act Whether to print the actions.
+ * @param print_pred Whether to print the predictions.
  */
 void
-clset_print(const struct XCSF *xcsf, const struct SET *set, _Bool printc,
-            _Bool printa, _Bool printp)
+clset_print(const struct XCSF *xcsf, const struct SET *set,
+            const _Bool print_cond, const _Bool print_act,
+            const _Bool print_pred)
 {
     const struct CLIST *iter = set->list;
     while (iter != NULL) {
-        cl_print(xcsf, iter->cl, printc, printa, printp);
+        cl_print(xcsf, iter->cl, print_cond, print_act, print_pred);
         iter = iter->next;
     }
 }
@@ -671,9 +673,9 @@ clset_mfrac(const struct XCSF *xcsf)
     // most general rule below EPS_0
     const struct CLIST *iter = xcsf->pset.list;
     while (iter != NULL) {
-        double e = iter->cl->err;
+        const double e = iter->cl->err;
         if (e < xcsf->EPS_0 && iter->cl->exp > 1 / xcsf->BETA) {
-            double m = cl_mfrac(xcsf, iter->cl);
+            const double m = cl_mfrac(xcsf, iter->cl);
             if (m > mfrac) {
                 mfrac = m;
             }
@@ -685,7 +687,7 @@ clset_mfrac(const struct XCSF *xcsf)
         double error = DBL_MAX;
         iter = xcsf->pset.list;
         while (iter != NULL) {
-            double e = iter->cl->err;
+            const double e = iter->cl->err;
             if (e < error && iter->cl->exp > 1 / xcsf->BETA) {
                 mfrac = cl_mfrac(xcsf, iter->cl);
                 error = e;

@@ -151,7 +151,7 @@ mutate_eta(const struct XCSF *xcsf, struct LAYER *l)
 static _Bool
 mutate_neurons(const struct XCSF *xcsf, struct LAYER *l)
 {
-    int n = layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
+    const int n = layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
     if (n != 0) {
         layer_add_neurons(l->uf, n);
         layer_add_neurons(l->ui, n);
@@ -219,8 +219,9 @@ mutate_weights(struct LAYER *l)
  * @return A pointer to the new layer.
  */
 struct LAYER *
-neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
-                       int n_max, int f, int rf, uint32_t o)
+neural_layer_lstm_init(const struct XCSF *xcsf, const int n_inputs,
+                       const int n_init, const int n_max, const int f,
+                       const int rf, const uint32_t o)
 {
     struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
@@ -470,7 +471,7 @@ neural_layer_lstm_mutate(const struct XCSF *xcsf, struct LAYER *l)
 
 void
 neural_layer_lstm_print(const struct XCSF *xcsf, const struct LAYER *l,
-                        _Bool print_weights)
+                        const _Bool print_weights)
 {
     printf("lstm, f = %s, rf = %s,  in = %d, out = %d\n",
            neural_activation_string(l->function),

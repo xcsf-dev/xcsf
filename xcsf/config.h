@@ -23,10 +23,7 @@
 
 #pragma once
 
-struct XCSF;
-struct SET;
-struct CLIST;
-struct CL;
+#include "xcsf.h"
 
 void
 config_read(struct XCSF *xcsf, const char *filename);

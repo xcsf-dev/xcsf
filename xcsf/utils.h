@@ -24,13 +24,13 @@
 #pragma once
 
 double
-rand_normal(double mu, double sigma);
+rand_normal(const double mu, const double sigma);
 
 double
-rand_uniform(double min, double max);
+rand_uniform(const double min, const double max);
 
 int
-irand_uniform(int min, int max);
+irand_uniform(const int min, const int max);
 
 void
 random_init(void);
@@ -43,7 +43,7 @@ random_init(void);
  * @return The clamped number.
  */
 static inline double
-clamp(double a, double min, double max)
+clamp(const double a, const double min, const double max)
 {
     return (a < min) ? min : (a > max) ? max : a;
 }
@@ -56,7 +56,7 @@ clamp(double a, double min, double max)
  * @return The clamped number.
  */
 static inline int
-iclamp(int a, int min, int max)
+iclamp(const int a, const int min, const int max)
 {
     return (a < min) ? min : (a > max) ? max : a;
 }

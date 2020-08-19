@@ -41,7 +41,7 @@ _Bool
 env_csv_multistep(const struct XCSF *xcsf);
 
 double
-env_csv_execute(const struct XCSF *xcsf, int action);
+env_csv_execute(const struct XCSF *xcsf, const int action);
 
 double
 env_csv_maxpayoff(const struct XCSF *xcsf);

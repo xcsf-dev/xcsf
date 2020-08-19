@@ -31,7 +31,8 @@
  * @param trial The number of learning trials executed.
  */
 void
-perf_print(const struct XCSF *xcsf, double *error, double *terror, int trial)
+perf_print(const struct XCSF *xcsf, double *error, double *terror,
+           const int trial)
 {
     if (trial % xcsf->PERF_TRIALS == 0 && trial > 0) {
         *error /= xcsf->PERF_TRIALS;

@@ -77,7 +77,8 @@ env_csv_dim(FILE *fin)
  * @param n_dim The number of dimensions.
  */
 static void
-env_csv_read_data(FILE *fin, double **data, int n_samples, int n_dim)
+env_csv_read_data(FILE *fin, double **data, const int n_samples,
+                  const int n_dim)
 {
     rewind(fin);
     *data = malloc(sizeof(double) * n_dim * n_samples);
@@ -206,7 +207,7 @@ env_csv_get_state(const struct XCSF *xcsf)
 }
 
 double
-env_csv_execute(const struct XCSF *xcsf, int action)
+env_csv_execute(const struct XCSF *xcsf, const int action)
 {
     (void) xcsf;
     (void) action;

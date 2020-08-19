@@ -31,7 +31,7 @@ rule_dgp_cond_init(const struct XCSF *xcsf, struct CL *c)
 {
     struct RULE_DGP *new = malloc(sizeof(struct RULE_DGP));
     new->n_outputs = (int) fmax(1, ceil(log2(xcsf->n_actions)));
-    int n = (int) fmax(xcsf->COND_NUM_NEURONS[0], new->n_outputs + 1);
+    const int n = (int) fmax(xcsf->COND_NUM_NEURONS[0], new->n_outputs + 1);
     graph_init(xcsf, &new->dgp, n);
     graph_rand(xcsf, &new->dgp);
     c->cond = new;
@@ -181,7 +181,7 @@ rule_dgp_act_print(const struct XCSF *xcsf, const struct CL *c)
 
 void
 rule_dgp_act_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
-                   int action)
+                   const int action)
 {
     struct RULE_DGP *cond = c->cond;
     do {

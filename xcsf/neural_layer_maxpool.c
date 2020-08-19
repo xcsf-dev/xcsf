@@ -51,8 +51,9 @@ malloc_layer_arrays(struct LAYER *l)
  * @return A pointer to the new layer.
  */
 struct LAYER *
-neural_layer_maxpool_init(const struct XCSF *xcsf, int h, int w, int c,
-                          int size, int stride, int pad)
+neural_layer_maxpool_init(const struct XCSF *xcsf, const int h, const int w,
+                          const int c, const int size, const int stride,
+                          const int pad)
 {
     (void) xcsf;
     struct LAYER *l = malloc(sizeof(struct LAYER));
@@ -120,7 +121,8 @@ neural_layer_maxpool_rand(const struct XCSF *xcsf, struct LAYER *l)
 }
 
 static int
-max_pool(const struct LAYER *l, const double *input, int i, int j, int k)
+max_pool(const struct LAYER *l, const double *input, const int i, const int j,
+         const int k)
 {
     int w_offset = -l->pad / 2;
     int h_offset = w_offset;
@@ -149,8 +151,8 @@ neural_layer_maxpool_forward(const struct XCSF *xcsf, const struct LAYER *l,
     for (int k = 0; k < l->channels; ++k) {
         for (int i = 0; i < l->out_h; ++i) {
             for (int j = 0; j < l->out_w; ++j) {
-                int out_index = j + l->out_w * (i + l->out_h * k);
-                int max_index = max_pool(l, input, i, j, k);
+                const int out_index = j + l->out_w * (i + l->out_h * k);
+                const int max_index = max_pool(l, input, i, j, k);
                 l->indexes[out_index] = max_index;
                 l->output[out_index] = input[max_index];
             }
@@ -166,7 +168,7 @@ neural_layer_maxpool_backward(const struct XCSF *xcsf, const struct LAYER *l,
     (void) input;
     if (delta) {
         for (int i = 0; i < l->n_outputs; ++i) {
-            int index = l->indexes[i];
+            const int index = l->indexes[i];
             delta[index] += l->delta[i];
         }
     }
@@ -192,9 +194,9 @@ neural_layer_maxpool_resize(const struct XCSF *xcsf, struct LAYER *l,
                             const struct LAYER *prev)
 {
     (void) xcsf;
-    int w = prev->out_w;
-    int h = prev->out_h;
-    int c = prev->out_c;
+    const int w = prev->out_w;
+    const int h = prev->out_h;
+    const int c = prev->out_c;
     l->height = h;
     l->width = w;
     l->channels = c;
@@ -218,7 +220,7 @@ neural_layer_maxpool_output(const struct XCSF *xcsf, const struct LAYER *l)
 
 void
 neural_layer_maxpool_print(const struct XCSF *xcsf, const struct LAYER *l,
-                           _Bool print_weights)
+                           const _Bool print_weights)
 {
     (void) xcsf;
     (void) print_weights;

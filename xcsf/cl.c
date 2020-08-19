@@ -38,7 +38,7 @@
 static void
 cl_update_err(const struct XCSF *xcsf, struct CL *c, const double *y)
 {
-    double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
+    const double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
     if (c->exp < 1 / xcsf->BETA) {
         c->err = (c->err * (c->exp - 1) + error) / c->exp;
     } else {
@@ -53,7 +53,7 @@ cl_update_err(const struct XCSF *xcsf, struct CL *c, const double *y)
  * @param num_sum The number of micro-classifiers in the set.
  */
 static void
-cl_update_size(const struct XCSF *xcsf, struct CL *c, int num_sum)
+cl_update_size(const struct XCSF *xcsf, struct CL *c, const int num_sum)
 {
     if (c->exp < 1 / xcsf->BETA) {
         c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;
@@ -70,7 +70,8 @@ cl_update_size(const struct XCSF *xcsf, struct CL *c, int num_sum)
  * @param time The current EA time.
  */
 void
-cl_init(const struct XCSF *xcsf, struct CL *c, double size, int time)
+cl_init(const struct XCSF *xcsf, struct CL *c, const double size,
+        const int time)
 {
     c->fit = xcsf->INIT_FITNESS;
     c->err = xcsf->INIT_ERROR;
@@ -142,7 +143,8 @@ cl_init_copy(const XCSF *xcsf, CL *dest, const CL *src)
  * @param action The action to cover.
  */
 void
-cl_cover(const struct XCSF *xcsf, struct CL *c, const double *x, int action)
+cl_cover(const struct XCSF *xcsf, struct CL *c, const double *x,
+         const int action)
 {
     cl_rand(xcsf, c);
     cond_cover(xcsf, c, x);
@@ -173,7 +175,7 @@ cl_rand(const struct XCSF *xcsf, struct CL *c)
  * @return The classifier's deletion vote.
  */
 double
-cl_del_vote(const struct XCSF *xcsf, const struct CL *c, double avg_fit)
+cl_del_vote(const struct XCSF *xcsf, const struct CL *c, const double avg_fit)
 {
     if (c->exp > xcsf->THETA_DEL && c->fit / c->num < xcsf->DELTA * avg_fit) {
         return c->size * c->num * avg_fit / (c->fit / c->num);
@@ -191,7 +193,7 @@ double
 cl_acc(const struct XCSF *xcsf, const struct CL *c)
 {
     if (c->err > xcsf->EPS_0) {
-        double acc = xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
+        const double acc = xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
         return fmax(acc, DBL_EPSILON);
     }
     return 1;
@@ -209,7 +211,7 @@ cl_acc(const struct XCSF *xcsf, const struct CL *c)
  */
 void
 cl_update(const struct XCSF *xcsf, struct CL *c, const double *x,
-          const double *y, int set_num, _Bool cur)
+          const double *y, const int set_num, const _Bool cur)
 {
     ++(c->exp);
     if (!cur) { // propagate inputs for the previous state update
@@ -230,7 +232,8 @@ cl_update(const struct XCSF *xcsf, struct CL *c, const double *x,
  * @param acc The accuracy of the classifier being updated.
  */
 void
-cl_update_fit(const struct XCSF *xcsf, struct CL *c, double acc_sum, double acc)
+cl_update_fit(const struct XCSF *xcsf, struct CL *c, const double acc_sum,
+              const double acc)
 {
     c->fit += xcsf->BETA * ((acc * c->num) / acc_sum - c->fit);
 }
@@ -259,8 +262,8 @@ cl_free(const struct XCSF *xcsf, struct CL *c)
  * @param print_pred Whether to print the prediction.
  */
 void
-cl_print(const struct XCSF *xcsf, const struct CL *c, _Bool print_cond,
-         _Bool print_act, _Bool print_pred)
+cl_print(const struct XCSF *xcsf, const struct CL *c, const _Bool print_cond,
+         const _Bool print_act, const _Bool print_pred)
 {
     if (print_cond || print_act || print_pred) {
         printf("***********************************************\n");
@@ -398,12 +401,9 @@ cl_general(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
 _Bool
 cl_mutate(const struct XCSF *xcsf, const struct CL *c)
 {
-    _Bool cm = cond_mutate(xcsf, c);
-    _Bool pm = pred_mutate(xcsf, c);
-    _Bool am = false;
-    if (xcsf->n_actions > 1) {
-        am = act_mutate(xcsf, c);
-    }
+    const _Bool cm = cond_mutate(xcsf, c);
+    const _Bool pm = pred_mutate(xcsf, c);
+    const _Bool am = (xcsf->n_actions > 1) ? act_mutate(xcsf, c) : false;
     if (cm || pm || am) {
         return true;
     }
@@ -420,9 +420,9 @@ cl_mutate(const struct XCSF *xcsf, const struct CL *c)
 _Bool
 cl_crossover(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
 {
-    _Bool cc = cond_crossover(xcsf, c1, c2);
-    _Bool pc = pred_crossover(xcsf, c1, c2);
-    _Bool ac = act_crossover(xcsf, c1, c2);
+    const _Bool cc = cond_crossover(xcsf, c1, c2);
+    const _Bool pc = pred_crossover(xcsf, c1, c2);
+    const _Bool ac = act_crossover(xcsf, c1, c2);
     if (cc || pc || ac) {
         return true;
     }

@@ -40,152 +40,153 @@
 #define SOFT_MAX (100) //!< Softmax
 
 double
-neural_activate(int a, double x);
+neural_activate(const int a, const double x);
 
 double
-neural_gradient(int a, double x);
+neural_gradient(const int a, const double x);
 
 const char *
-neural_activation_string(int a);
+neural_activation_string(const int a);
 
 void
-neural_activate_array(double *state, double *output, int n, int a);
+neural_activate_array(double *state, double *output, const int n, const int a);
 
 void
-neural_gradient_array(const double *state, double *delta, int n, int a);
+neural_gradient_array(const double *state, double *delta, const int n,
+                      const int a);
 
 static inline double
-logistic_activate(double x)
+logistic_activate(const double x)
 {
     return 1. / (1. + exp(-x));
 }
 
 static inline double
-logistic_gradient(double x)
+logistic_gradient(const double x)
 {
     double fx = 1. / (1. + exp(-x));
     return (1 - fx) * fx;
 }
 
 static inline double
-loggy_activate(double x)
+loggy_activate(const double x)
 {
     return 2. / (1. + exp(-x)) - 1;
 }
 
 static inline double
-loggy_gradient(double x)
+loggy_gradient(const double x)
 {
     double fx = exp(x);
     return (2. * fx) / pow(fx + 1., 2);
 }
 
 static inline double
-gaussian_activate(double x)
+gaussian_activate(const double x)
 {
     return exp(-x * x);
 }
 
 static inline double
-gaussian_gradient(double x)
+gaussian_gradient(const double x)
 {
     return -2 * x * exp(-x * x);
 }
 
 static inline double
-relu_activate(double x)
+relu_activate(const double x)
 {
     return x * (x > 0);
 }
 
 static inline double
-relu_gradient(double x)
+relu_gradient(const double x)
 {
     return (x > 0);
 }
 
 static inline double
-selu_activate(double x)
+selu_activate(const double x)
 {
     return (x >= 0) * 1.0507 * x + (x < 0) * 1.0507 * 1.6732 * expm1(x);
 }
 
 static inline double
-selu_gradient(double x)
+selu_gradient(const double x)
 {
     return (x >= 0) * 1.0507 + (x < 0) * (1.0507 * 1.6732 * exp(x));
 }
 
 static inline double
-linear_activate(double x)
+linear_activate(const double x)
 {
     return x;
 }
 
 static inline double
-linear_gradient(double x)
+linear_gradient(const double x)
 {
     (void) x;
     return 1;
 }
 
 static inline double
-soft_plus_activate(double x)
+soft_plus_activate(const double x)
 {
     return log1p(exp(x));
 }
 
 static inline double
-soft_plus_gradient(double x)
+soft_plus_gradient(const double x)
 {
     return 1. / (1. + exp(-x));
 }
 
 static inline double
-tanh_activate(double x)
+tanh_activate(const double x)
 {
     return tanh(x);
 }
 
 static inline double
-tanh_gradient(double x)
+tanh_gradient(const double x)
 {
     double t = tanh(x);
     return 1 - t * t;
 }
 
 static inline double
-leaky_activate(double x)
+leaky_activate(const double x)
 {
     return (x > 0) ? x : .1 * x;
 }
 
 static inline double
-leaky_gradient(double x)
+leaky_gradient(const double x)
 {
     return (x < 0) ? .1 : 1;
 }
 
 static inline double
-sin_activate(double x)
+sin_activate(const double x)
 {
     return sin(x);
 }
 
 static inline double
-sin_gradient(double x)
+sin_gradient(const double x)
 {
     return cos(x);
 }
 
 static inline double
-cos_activate(double x)
+cos_activate(const double x)
 {
     return cos(x);
 }
 
 static inline double
-cos_gradient(double x)
+cos_gradient(const double x)
 {
     return -sin(x);
 }

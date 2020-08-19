@@ -40,7 +40,7 @@ static const int MU_TYPE[N_MU] = {
  * @param n_inputs The number of external inputs to the graph.
  */
 static int
-random_connection(int n_nodes, int n_inputs)
+random_connection(const int n_nodes, const int n_inputs)
 {
     // another node within the graph
     if (rand_uniform(0, 1) < 0.5) {
@@ -63,7 +63,7 @@ graph_mutate_functions(const struct XCSF *xcsf, struct GRAPH *dgp)
     _Bool mod = false;
     for (int i = 0; i < dgp->n; ++i) {
         if (rand_uniform(0, 1) < dgp->mu[0]) {
-            int orig = dgp->function[i];
+            const int orig = dgp->function[i];
             dgp->function[i] = irand_uniform(0, NUM_FUNC);
             if (orig != dgp->function[i]) {
                 mod = true;
@@ -85,7 +85,7 @@ graph_mutate_connectivity(const struct XCSF *xcsf, struct GRAPH *dgp)
     _Bool mod = false;
     for (int i = 0; i < dgp->klen; ++i) {
         if (rand_uniform(0, 1) < dgp->mu[1]) {
-            int orig = dgp->connectivity[i];
+            const int orig = dgp->connectivity[i];
             dgp->connectivity[i] = random_connection(dgp->n, xcsf->x_dim);
             if (orig != dgp->connectivity[i]) {
                 mod = true;
@@ -104,7 +104,7 @@ graph_mutate_connectivity(const struct XCSF *xcsf, struct GRAPH *dgp)
 static _Bool
 graph_mutate_cycles(const struct XCSF *xcsf, struct GRAPH *dgp)
 {
-    int n = (int) round((2 * dgp->mu[2]) - 1);
+    const int n = (int) round((2 * dgp->mu[2]) - 1);
     if (dgp->t + n < 1 || dgp->t + n > xcsf->MAX_T) {
         return false;
     }
@@ -120,7 +120,7 @@ graph_mutate_cycles(const struct XCSF *xcsf, struct GRAPH *dgp)
  * @return The result from applying the activation function.
  */
 static double
-node_activate(int function, const double *inputs, int K)
+node_activate(int function, const double *inputs, const int K)
 {
     double state = 0;
     switch (function) {
@@ -153,7 +153,7 @@ node_activate(int function, const double *inputs, int K)
  * @return The name of the node function.
  */
 static const char *
-function_string(int function)
+function_string(const int function)
 {
     switch (function) {
         case 0:
@@ -180,7 +180,7 @@ synchronous_update(const struct XCSF *xcsf, const struct GRAPH *dgp,
 {
     for (int i = 0; i < dgp->n; ++i) {
         for (int k = 0; k < xcsf->MAX_K; ++k) {
-            int c = dgp->connectivity[i * xcsf->MAX_K + k];
+            const int c = dgp->connectivity[i * xcsf->MAX_K + k];
             if (c < xcsf->x_dim) { // external input
                 dgp->tmp_input[k] = inputs[c];
             } else { // another node within the graph
@@ -200,7 +200,7 @@ synchronous_update(const struct XCSF *xcsf, const struct GRAPH *dgp,
  * @param N The number of nodes in the graph.
  */
 void
-graph_init(const struct XCSF *xcsf, struct GRAPH *dgp, int N)
+graph_init(const struct XCSF *xcsf, struct GRAPH *dgp, const int N)
 {
     dgp->t = 0;
     dgp->n = N;
@@ -243,7 +243,7 @@ graph_copy(const struct XCSF *xcsf, struct GRAPH *dest, const struct GRAPH *src)
  * @return The current state of the specified node.
  */
 double
-graph_output(const struct XCSF *xcsf, const struct GRAPH *dgp, int IDX)
+graph_output(const struct XCSF *xcsf, const struct GRAPH *dgp, const int IDX)
 {
     (void) xcsf;
     return dgp->state[IDX];

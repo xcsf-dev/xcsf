@@ -47,7 +47,7 @@ size_t
 clset_pop_save(const struct XCSF *xcsf, FILE *fp);
 
 void
-clset_action(struct XCSF *xcsf, int action);
+clset_action(struct XCSF *xcsf, const int action);
 
 void
 clset_add(struct SET *set, struct CL *c);
@@ -71,15 +71,16 @@ void
 clset_pop_init(struct XCSF *xcsf);
 
 void
-clset_print(const struct XCSF *xcsf, const struct SET *set, _Bool printc,
-            _Bool printa, _Bool printp);
+clset_print(const struct XCSF *xcsf, const struct SET *set,
+            const _Bool print_cond, const _Bool print_act,
+            const _Bool print_pred);
 
 void
 clset_set_times(const struct XCSF *xcsf, const struct SET *set);
 
 void
 clset_update(struct XCSF *xcsf, struct SET *set, const double *x,
-             const double *y, _Bool cur);
+             const double *y, const _Bool cur);
 
 void
 clset_validate(struct SET *set);

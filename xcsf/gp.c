@@ -75,7 +75,8 @@ tree_traverse(int *tree, int p)
  * @return The position after traversal (i.e., tree length).
  */
 static int
-tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth)
+tree_grow(const struct XCSF *xcsf, int *buffer, const int p, const int max,
+          const int depth)
 {
     int prim = irand_uniform(0, 2);
     if (p >= max) {
@@ -85,8 +86,8 @@ tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth)
         prim = 1;
     }
     if (prim == 0 || depth == 0) {
-        prim = irand_uniform(GP_NUM_FUNC,
-                             GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim);
+        const int terminal_max = GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim;
+        prim = irand_uniform(GP_NUM_FUNC, terminal_max);
         buffer[p] = prim;
         return (p + 1);
     }
@@ -97,11 +98,11 @@ tree_grow(const struct XCSF *xcsf, int *buffer, int p, int max, int depth)
         case MUL:
         case DIV:
             buffer[p] = prim;
-            int one_child = tree_grow(xcsf, buffer, p + 1, max, depth - 1);
-            if (one_child < 0) {
+            const int child = tree_grow(xcsf, buffer, p + 1, max, depth - 1);
+            if (child < 0) {
                 return -1;
             }
-            return (tree_grow(xcsf, buffer, one_child, max, depth - 1));
+            return (tree_grow(xcsf, buffer, child, max, depth - 1));
         default:
             printf("tree_grow() invalid function: %d\n", prim);
             exit(EXIT_FAILURE);
@@ -173,7 +174,7 @@ tree_free(const struct XCSF *xcsf, const struct GP_TREE *gp)
 double
 tree_eval(const struct XCSF *xcsf, struct GP_TREE *gp, const double *x)
 {
-    int node = gp->tree[gp->p];
+    const int node = gp->tree[gp->p];
     ++(gp->p);
     if (node >= GP_NUM_FUNC + xcsf->GP_NUM_CONS) {
         return (x[node - GP_NUM_FUNC - xcsf->GP_NUM_CONS]);
@@ -189,8 +190,8 @@ tree_eval(const struct XCSF *xcsf, struct GP_TREE *gp, const double *x)
         case MUL:
             return (tree_eval(xcsf, gp, x) * tree_eval(xcsf, gp, x));
         case DIV: {
-            double num = tree_eval(xcsf, gp, x);
-            double den = tree_eval(xcsf, gp, x);
+            const double num = tree_eval(xcsf, gp, x);
+            const double den = tree_eval(xcsf, gp, x);
             if (den == 0) {
                 return (num);
             }
@@ -212,7 +213,7 @@ tree_eval(const struct XCSF *xcsf, struct GP_TREE *gp, const double *x)
 int
 tree_print(const struct XCSF *xcsf, const struct GP_TREE *gp, int p)
 {
-    int node = gp->tree[p];
+    const int node = gp->tree[p];
     if (node >= GP_NUM_FUNC) {
         if (node >= GP_NUM_FUNC + xcsf->GP_NUM_CONS) {
             printf("IN:%d ", node - GP_NUM_FUNC - xcsf->GP_NUM_CONS);
@@ -224,7 +225,7 @@ tree_print(const struct XCSF *xcsf, const struct GP_TREE *gp, int p)
     }
     printf("(");
     ++p;
-    int a1 = tree_print(xcsf, gp, p);
+    const int a1 = tree_print(xcsf, gp, p);
     switch (node) {
         case ADD:
             printf(" + ");
@@ -242,7 +243,7 @@ tree_print(const struct XCSF *xcsf, const struct GP_TREE *gp, int p)
             printf("tree_print() invalid function: %d\n", node);
             exit(EXIT_FAILURE);
     }
-    int a2 = tree_print(xcsf, gp, a1);
+    const int a2 = tree_print(xcsf, gp, a1);
     printf(")");
     return a2;
 }
@@ -275,19 +276,19 @@ tree_copy(const struct XCSF *xcsf, struct GP_TREE *dest,
 void
 tree_crossover(const struct XCSF *xcsf, struct GP_TREE *p1, struct GP_TREE *p2)
 {
-    int len1 = p1->len;
-    int len2 = p2->len;
-    int start1 = irand_uniform(0, len1);
-    int end1 = tree_traverse(p1->tree, start1);
-    int start2 = irand_uniform(0, len2);
-    int end2 = tree_traverse(p2->tree, start2);
-    int nlen1 = start1 + (end2 - start2) + (len1 - end1);
+    const int len1 = p1->len;
+    const int len2 = p2->len;
+    const int start1 = irand_uniform(0, len1);
+    const int end1 = tree_traverse(p1->tree, start1);
+    const int start2 = irand_uniform(0, len2);
+    const int end2 = tree_traverse(p2->tree, start2);
+    const int nlen1 = start1 + (end2 - start2) + (len1 - end1);
     int *new1 = malloc(sizeof(int) * nlen1);
     memcpy(&new1[0], &p1->tree[0], sizeof(int) * start1);
     memcpy(&new1[start1], &p2->tree[start2], sizeof(int) * (end2 - start2));
     memcpy(&new1[start1 + (end2 - start2)], &p1->tree[end1],
            sizeof(int) * (len1 - end1));
-    int nlen2 = start2 + (end1 - start1) + (len2 - end2);
+    const int nlen2 = start2 + (end1 - start1) + (len2 - end2);
     int *new2 = malloc(sizeof(int) * nlen2);
     memcpy(&new2[0], &p2->tree[0], sizeof(int) * start2);
     memcpy(&new2[start2], &p1->tree[start1], sizeof(int) * (end1 - start1));
@@ -314,7 +315,7 @@ tree_mutate(const struct XCSF *xcsf, struct GP_TREE *gp)
 {
     _Bool changed = false;
     sam_adapt(gp->mu, N_MU, MU_TYPE);
-    int terminal_max = GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim;
+    const int terminal_max = GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim;
     for (int i = 0; i < gp->len; ++i) {
         if (rand_uniform(0, 1) < gp->mu[0]) {
             changed = true;

@@ -47,7 +47,7 @@ random_init(void)
  * @return A random integer.
  */
 int
-irand_uniform(int min, int max)
+irand_uniform(const int min, const int max)
 {
     return (int) floor(rand_uniform(min, max));
 }
@@ -57,7 +57,7 @@ irand_uniform(int min, int max)
  * @return A random float.
  */
 double
-rand_uniform(double min, double max)
+rand_uniform(const double min, const double max)
 {
     return min + (dsfmt_gv_genrand_open_open() * (max - min));
 }
@@ -70,7 +70,7 @@ rand_uniform(double min, double max)
  * @details Box-Muller transform.
  */
 double
-rand_normal(double mu, double sigma)
+rand_normal(const double mu, const double sigma)
 {
     static const double two_pi = 2 * M_PI;
     static double z1;
@@ -79,9 +79,9 @@ rand_normal(double mu, double sigma)
     if (!generate) {
         return z1 * sigma + mu;
     }
-    double u1 = dsfmt_gv_genrand_open_open();
-    double u2 = dsfmt_gv_genrand_open_open();
-    double z0 = sqrt(-2 * log(u1)) * cos(two_pi * u2);
+    const double u1 = dsfmt_gv_genrand_open_open();
+    const double u2 = dsfmt_gv_genrand_open_open();
+    const double z0 = sqrt(-2 * log(u1)) * cos(two_pi * u2);
     z1 = sqrt(-2 * log(u1)) * sin(two_pi * u2);
     return z0 * sigma + mu;
 }

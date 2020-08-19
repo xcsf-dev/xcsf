@@ -63,7 +63,7 @@ clset_mean_cond_layers(const struct XCSF *xcsf, const struct SET *set)
  */
 double
 clset_mean_cond_neurons(const struct XCSF *xcsf, const struct SET *set,
-                        int layer)
+                        const int layer)
 {
     int sum = 0;
     int cnt = 0;
@@ -91,7 +91,7 @@ clset_mean_cond_neurons(const struct XCSF *xcsf, const struct SET *set,
  */
 double
 clset_mean_cond_connections(const struct XCSF *xcsf, const struct SET *set,
-                            int layer)
+                            const int layer)
 {
     int sum = 0;
     int cnt = 0;
@@ -119,7 +119,7 @@ clset_mean_cond_connections(const struct XCSF *xcsf, const struct SET *set,
  */
 double
 clset_mean_pred_neurons(const struct XCSF *xcsf, const struct SET *set,
-                        int layer)
+                        const int layer)
 {
     int sum = 0;
     int cnt = 0;
@@ -170,7 +170,8 @@ clset_mean_pred_layers(const struct XCSF *xcsf, const struct SET *set)
  * @return The mean prediction layer ETA of classifiers in the set.
  */
 double
-clset_mean_pred_eta(const struct XCSF *xcsf, const struct SET *set, int layer)
+clset_mean_pred_eta(const struct XCSF *xcsf, const struct SET *set,
+                    const int layer)
 {
     double sum = 0;
     int cnt = 0;
@@ -197,7 +198,7 @@ clset_mean_pred_eta(const struct XCSF *xcsf, const struct SET *set, int layer)
  */
 double
 clset_mean_pred_connections(const struct XCSF *xcsf, const struct SET *set,
-                            int layer)
+                            const int layer)
 {
     int sum = 0;
     int cnt = 0;

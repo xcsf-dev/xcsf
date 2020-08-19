@@ -26,8 +26,8 @@
 #include "xcsf.h"
 
 double
-xcs_rl_error(const struct XCSF *xcsf, int action, double reward, _Bool reset,
-             double max_p);
+xcs_rl_error(const struct XCSF *xcsf, const int action, const double reward,
+             const _Bool reset, const double max_p);
 
 double
 xcs_rl_exp(struct XCSF *xcsf);
@@ -36,8 +36,8 @@ int
 xcs_rl_decision(struct XCSF *xcsf, const double *state);
 
 void
-xcs_rl_end_step(struct XCSF *xcsf, const double *state, int action,
-                double reward);
+xcs_rl_end_step(struct XCSF *xcsf, const double *state, const int action,
+                const double reward);
 
 void
 xcs_rl_end_trial(struct XCSF *xcsf);
@@ -49,5 +49,5 @@ void
 xcs_rl_init_trial(struct XCSF *xcsf);
 
 void
-xcs_rl_update(struct XCSF *xcsf, const double *state, int action, double reward,
-              _Bool reset);
+xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
+              const double reward, const _Bool reset);

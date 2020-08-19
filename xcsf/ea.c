@@ -41,7 +41,7 @@
 static void
 ea_init_offspring(const struct XCSF *xcsf, const struct CL *c1p,
                   const struct CL *c2p, struct CL *c1, struct CL *c2,
-                  _Bool cmod)
+                  const _Bool cmod)
 {
     if (cmod) {
         c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err) / 2.0);
@@ -114,7 +114,7 @@ ea_subsume(struct XCSF *xcsf, struct CL *c, struct CL *c1p, struct CL *c2p,
  */
 static void
 ea_add(struct XCSF *xcsf, const struct SET *set, struct CL *c1p, struct CL *c2p,
-       struct CL *c1, _Bool cmod, _Bool mmod)
+       struct CL *c1, const _Bool cmod, const _Bool mmod)
 {
     if (!cmod && !mmod) {
         ++(c1p->num);
@@ -135,10 +135,11 @@ ea_add(struct XCSF *xcsf, const struct SET *set, struct CL *c1p, struct CL *c2p,
  * @return A pointer to the selected classifier.
  */
 static struct CL *
-ea_select_rw(const struct XCSF *xcsf, const struct SET *set, double fit_sum)
+ea_select_rw(const struct XCSF *xcsf, const struct SET *set,
+             const double fit_sum)
 {
     (void) xcsf;
-    double p = rand_uniform(0, fit_sum);
+    const double p = rand_uniform(0, fit_sum);
     const struct CLIST *iter = set->list;
     double sum = iter->cl->fit;
     while (p > sum) {
@@ -159,12 +160,13 @@ ea_select_tournament(const struct XCSF *xcsf, const struct SET *set)
 {
     struct CL *winner = NULL;
     while (winner == NULL) {
-        for (const struct CLIST *iter = set->list; iter != NULL;
-             iter = iter->next) {
+        const struct CLIST *iter = set->list;
+        while (iter != NULL) {
             if ((rand_uniform(0, 1) < xcsf->EA_SELECT_SIZE) &&
                 (winner == NULL || iter->cl->fit > winner->fit)) {
                 winner = iter->cl;
             }
+            iter = iter->next;
         }
     }
     return winner;
@@ -182,7 +184,7 @@ ea_select(const struct XCSF *xcsf, const struct SET *set, struct CL **c1p,
           struct CL **c2p)
 {
     if (xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
-        double fit_sum = clset_total_fit(set);
+        const double fit_sum = clset_total_fit(set);
         *c1p = ea_select_rw(xcsf, set, fit_sum);
         *c2p = ea_select_rw(xcsf, set, fit_sum);
     } else {
@@ -220,9 +222,9 @@ ea(struct XCSF *xcsf, const struct SET *set)
         cl_copy(xcsf, c1, c1p);
         cl_copy(xcsf, c2, c2p);
         // apply evolutionary operators to offspring
-        _Bool cmod = cl_crossover(xcsf, c1, c2);
-        _Bool m1mod = cl_mutate(xcsf, c1);
-        _Bool m2mod = cl_mutate(xcsf, c2);
+        const _Bool cmod = cl_crossover(xcsf, c1, c2);
+        const _Bool m1mod = cl_mutate(xcsf, c1);
+        const _Bool m2mod = cl_mutate(xcsf, c2);
         // initialise parameters
         ea_init_offspring(xcsf, c1p, c2p, c1, c2, cmod);
         // add to population

@@ -27,8 +27,8 @@
 #include "xcsf.h"
 
 struct LAYER *
-neural_layer_noise_init(const struct XCSF *xcsf, int n_inputs,
-                        double probability, double std);
+neural_layer_noise_init(const struct XCSF *xcsf, const int n_inputs,
+                        const double probability, const double std);
 
 struct LAYER *
 neural_layer_noise_copy(const struct XCSF *xcsf, const struct LAYER *src);
@@ -49,7 +49,7 @@ neural_layer_noise_update(const struct XCSF *xcsf, const struct LAYER *l);
 
 void
 neural_layer_noise_print(const struct XCSF *xcsf, const struct LAYER *l,
-                         _Bool print_weights);
+                         const _Bool print_weights);
 
 _Bool
 neural_layer_noise_mutate(const struct XCSF *xcsf, struct LAYER *l);

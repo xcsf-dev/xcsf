@@ -98,7 +98,7 @@ static _Bool
 mutate_neurons(const struct XCSF *xcsf, struct LAYER *l)
 {
     if (l->options & LAYER_EVOLVE_NEURONS) {
-        int n = layer_mutate_neurons(xcsf, l->self_layer, l->mu[1]);
+        const int n = layer_mutate_neurons(xcsf, l->self_layer, l->mu[1]);
         if (n != 0) {
             layer_add_neurons(l->input_layer, n);
             layer_add_neurons(l->self_layer, n);
@@ -179,8 +179,9 @@ mutate_functions(struct LAYER *l)
  * @return A pointer to the new layer.
  */
 struct LAYER *
-neural_layer_recurrent_init(const struct XCSF *xcsf, int n_inputs, int n_init,
-                            int n_max, int f, uint32_t o)
+neural_layer_recurrent_init(const struct XCSF *xcsf, const int n_inputs,
+                            const int n_init, const int n_max, const int f,
+                            const uint32_t o)
 {
     struct LAYER *l = malloc(sizeof(struct LAYER));
     layer_init(l);
@@ -326,7 +327,7 @@ neural_layer_recurrent_mutate(const struct XCSF *xcsf, struct LAYER *l)
 
 void
 neural_layer_recurrent_print(const struct XCSF *xcsf, const struct LAYER *l,
-                             _Bool print_weights)
+                             const _Bool print_weights)
 {
     printf("recurrent %s, in = %d, out = %d\n",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs);

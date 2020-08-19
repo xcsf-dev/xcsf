@@ -115,7 +115,7 @@ rule_neural_act_copy(const struct XCSF *xcsf, struct CL *dest,
 
 void
 rule_neural_act_cover(const struct XCSF *xcsf, const struct CL *c,
-                      const double *x, int action);
+                      const double *x, const int action);
 
 void
 rule_neural_act_free(const struct XCSF *xcsf, const struct CL *c);

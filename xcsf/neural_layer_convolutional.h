@@ -27,9 +27,10 @@
 #include "xcsf.h"
 
 struct LAYER *
-neural_layer_convolutional_init(const struct XCSF *xcsf, int h, int w, int c,
-                                int n_filters, int kernel_size, int stride,
-                                int pad, int f, uint32_t o);
+neural_layer_convolutional_init(const struct XCSF *xcsf, const int h,
+                                const int w, const int c, const int n_filters,
+                                const int kernel_size, const int stride,
+                                const int pad, const int f, const uint32_t o);
 
 struct LAYER *
 neural_layer_convolutional_copy(const struct XCSF *xcsf,
@@ -53,7 +54,7 @@ neural_layer_convolutional_update(const struct XCSF *xcsf,
 
 void
 neural_layer_convolutional_print(const struct XCSF *xcsf, const struct LAYER *l,
-                                 _Bool print_weights);
+                                 const _Bool print_weights);
 
 _Bool
 neural_layer_convolutional_mutate(const struct XCSF *xcsf, struct LAYER *l);

@@ -27,8 +27,9 @@
 #include "xcsf.h"
 
 struct LAYER *
-neural_layer_lstm_init(const struct XCSF *xcsf, int n_inputs, int n_init,
-                       int n_max, int f, int rf, uint32_t o);
+neural_layer_lstm_init(const struct XCSF *xcsf, const int n_inputs,
+                       const int n_init, const int n_max, const int f,
+                       const int rf, const uint32_t o);
 
 struct LAYER *
 neural_layer_lstm_copy(const struct XCSF *xcsf, const struct LAYER *src);
@@ -49,7 +50,7 @@ neural_layer_lstm_update(const struct XCSF *xcsf, const struct LAYER *l);
 
 void
 neural_layer_lstm_print(const struct XCSF *xcsf, const struct LAYER *l,
-                        _Bool print_weights);
+                        const _Bool print_weights);
 
 _Bool
 neural_layer_lstm_mutate(const struct XCSF *xcsf, struct LAYER *l);

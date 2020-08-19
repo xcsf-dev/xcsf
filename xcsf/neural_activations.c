@@ -32,7 +32,7 @@
  * @return The result from applying the activation function.
  */
 double
-neural_activate(int a, double x)
+neural_activate(const int a, const double x)
 {
     switch (a) {
         case LOGISTIC:
@@ -70,7 +70,7 @@ neural_activate(int a, double x)
  * @return The derivative from applying the activation function.
  */
 double
-neural_gradient(int a, double x)
+neural_gradient(const int a, const double x)
 {
     switch (a) {
         case LOGISTIC:
@@ -107,7 +107,7 @@ neural_gradient(int a, double x)
  * @return The name of the activation function.
  */
 const char *
-neural_activation_string(int a)
+neural_activation_string(const int a)
 {
     switch (a) {
         case LOGISTIC:
@@ -146,7 +146,7 @@ neural_activation_string(int a)
  * @param a The activation function.
  */
 void
-neural_activate_array(double *state, double *output, int n, int a)
+neural_activate_array(double *state, double *output, const int n, const int a)
 {
     for (int i = 0; i < n; ++i) {
         state[i] = clamp(state[i], NEURON_MIN, NEURON_MAX);
@@ -162,7 +162,8 @@ neural_activate_array(double *state, double *output, int n, int a)
  * @param a The activation function.
  */
 void
-neural_gradient_array(const double *state, double *delta, int n, int a)
+neural_gradient_array(const double *state, double *delta, const int n,
+                      const int a)
 {
     for (int i = 0; i < n; ++i) {
         delta[i] *= neural_gradient(a, state[i]);

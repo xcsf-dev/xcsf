@@ -56,7 +56,8 @@ config_get_ints(char *str, int *val)
  * @param f Float representation of the parameter value.
  */
 static void
-config_general(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
+config_general(struct XCSF *xcsf, const char *n, const char *v, const int i,
+               const double f)
 {
     (void) v;
     (void) f;
@@ -84,7 +85,8 @@ config_general(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_multi(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
+config_multi(struct XCSF *xcsf, const char *n, const char *v, const int i,
+             const double f)
 {
     (void) v;
     if (strncmp(n, "TELETRANSPORTATION\0", 19) == 0) {
@@ -105,7 +107,8 @@ config_multi(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_subsump(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
+config_subsump(struct XCSF *xcsf, const char *n, const char *v, const int i,
+               const double f)
 {
     (void) v;
     (void) f;
@@ -127,7 +130,8 @@ config_subsump(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_ea(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
+config_ea(struct XCSF *xcsf, const char *n, const char *v, const int i,
+          const double f)
 {
     (void) v;
     if (strncmp(n, "EA_SELECT_TYPE\0", 15) == 0) {
@@ -152,7 +156,8 @@ config_ea(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_cl_gen(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
+config_cl_gen(struct XCSF *xcsf, const char *n, const char *v, const int i,
+              const double f)
 {
     (void) v;
     if (strncmp(n, "ALPHA\0", 6) == 0) {
@@ -191,7 +196,8 @@ config_cl_gen(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_cl_cond(struct XCSF *xcsf, const char *n, char *v, int i, double f)
+config_cl_cond(struct XCSF *xcsf, const char *n, char *v, const int i,
+               const double f)
 {
     if (strncmp(n, "COND_TYPE\0", 10) == 0) {
         param_set_cond_type(xcsf, i);
@@ -243,7 +249,8 @@ config_cl_cond(struct XCSF *xcsf, const char *n, char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_cl_pred(struct XCSF *xcsf, const char *n, char *v, int i, double f)
+config_cl_pred(struct XCSF *xcsf, const char *n, char *v, const int i,
+               const double f)
 {
     if (strncmp(n, "PRED_TYPE\0", 10) == 0) {
         param_set_pred_type(xcsf, i);
@@ -291,7 +298,8 @@ config_cl_pred(struct XCSF *xcsf, const char *n, char *v, int i, double f)
  * @param f Float representation of the parameter value.
  */
 static void
-config_cl_act(struct XCSF *xcsf, const char *n, const char *v, int i, double f)
+config_cl_act(struct XCSF *xcsf, const char *n, const char *v, const int i,
+              const double f)
 {
     (void) v;
     (void) f;
@@ -372,7 +380,7 @@ config_newnvpair(struct XCSF *xcsf, const char *param)
     }
     name[namelen] = '\0';
     // get value
-    size_t valuelen = strnlen(param, MAXLEN) - namelen; // length of value
+    const size_t valuelen = strnlen(param, MAXLEN) - namelen; // length of value
     char *value = malloc(valuelen + 1);
     for (size_t i = 0; i < valuelen; ++i) {
         value[i] = param[namelen + 1 + i];

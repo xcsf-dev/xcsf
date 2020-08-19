@@ -27,7 +27,8 @@
 #include "xcsf.h"
 
 struct LAYER *
-neural_layer_avgpool_init(const struct XCSF *xcsf, int h, int w, int c);
+neural_layer_avgpool_init(const struct XCSF *xcsf, const int h, const int w,
+                          const int c);
 
 struct LAYER *
 neural_layer_avgpool_copy(const struct XCSF *xcsf, const struct LAYER *src);
@@ -48,7 +49,7 @@ neural_layer_avgpool_update(const struct XCSF *xcsf, const struct LAYER *l);
 
 void
 neural_layer_avgpool_print(const struct XCSF *xcsf, const struct LAYER *l,
-                           _Bool print_weights);
+                           const _Bool print_weights);
 
 _Bool
 neural_layer_avgpool_mutate(const struct XCSF *xcsf, struct LAYER *l);

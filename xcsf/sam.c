@@ -37,7 +37,7 @@ static const double mrates[N_RATES] = {
  * @param type Vector specifying each rate type.
  */
 void
-sam_init(double *mu, int N, const int *type)
+sam_init(double *mu, const int N, const int *type)
 {
     for (int i = 0; i < N; ++i) {
         switch (type[i]) {
@@ -62,7 +62,7 @@ sam_init(double *mu, int N, const int *type)
  * @param type Vector specifying each rate type.
  */
 void
-sam_adapt(double *mu, int N, const int *type)
+sam_adapt(double *mu, const int N, const int *type)
 {
     for (int i = 0; i < N; ++i) {
         switch (type[i]) {

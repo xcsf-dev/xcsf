@@ -50,15 +50,14 @@ neural_init(const struct XCSF *xcsf, struct NET *net)
  * @param xcsf The XCSF data structure.
  * @param net The neural network receiving the layer.
  * @param l The layer to insert.
- * @param p The position in the network to insert the layer.
+ * @param pos The position in the network to insert the layer.
  */
 void
 neural_layer_insert(const struct XCSF *xcsf, struct NET *net, struct LAYER *l,
-                    int p)
+                    const int pos)
 {
     (void) xcsf;
-    // empty list
-    if (net->head == NULL || net->tail == NULL) {
+    if (net->head == NULL || net->tail == NULL) { // empty list
         net->head = malloc(sizeof(struct LLIST));
         net->head->layer = l;
         net->head->prev = NULL;
@@ -67,18 +66,15 @@ neural_layer_insert(const struct XCSF *xcsf, struct NET *net, struct LAYER *l,
         net->n_inputs = l->n_inputs;
         net->n_outputs = l->n_outputs;
         net->output = l->output;
-    }
-    // insert
-    else {
+    } else { // insert
         struct LLIST *iter = net->tail;
-        for (int i = 0; i < p && iter != NULL; ++i) {
+        for (int i = 0; i < pos && iter != NULL; ++i) {
             iter = iter->prev;
         }
         struct LLIST *new = malloc(sizeof(struct LLIST));
         new->layer = l;
         new->prev = iter;
-        // new head
-        if (iter == NULL) {
+        if (iter == NULL) { // new head
             new->next = net->head;
             net->head->prev = new;
             net->head = new;
@@ -87,13 +83,10 @@ neural_layer_insert(const struct XCSF *xcsf, struct NET *net, struct LAYER *l,
         } else {
             new->next = iter->next;
             iter->next = new;
-            // new tail
-            if (iter->next == NULL) {
+            if (iter->next == NULL) { // new tail
                 net->tail = new;
                 net->n_inputs = l->n_inputs;
-            }
-            // middle
-            else {
+            } else { // middle
                 new->next->prev = new;
             }
         }
@@ -105,14 +98,14 @@ neural_layer_insert(const struct XCSF *xcsf, struct NET *net, struct LAYER *l,
  * @brief Removes a layer from a neural network.
  * @param xcsf The XCSF data structure.
  * @param net The neural network removing the layer.
- * @param p The position of the layer in the network to be removed.
+ * @param pos The position of the layer in the network to be removed.
  */
 void
-neural_layer_remove(const struct XCSF *xcsf, struct NET *net, int p)
+neural_layer_remove(const struct XCSF *xcsf, struct NET *net, const int pos)
 {
     // find the layer
     struct LLIST *iter = net->tail;
-    for (int i = 0; i < p && iter != NULL; ++i) {
+    for (int i = 0; i < pos && iter != NULL; ++i) {
         iter = iter->prev;
     }
     if (iter == NULL) {
@@ -218,7 +211,7 @@ neural_mutate(const struct XCSF *xcsf, const struct NET *net)
     const struct LAYER *prev = NULL;
     const struct LLIST *iter = net->tail;
     while (iter != NULL) {
-        int orig_outputs = iter->layer->n_outputs;
+        const int orig_outputs = iter->layer->n_outputs;
         // if the previous layer has grown or shrunk this layer must be resized
         if (do_resize) {
             layer_resize(xcsf, iter->layer, prev);
@@ -323,17 +316,16 @@ neural_learn(const struct XCSF *xcsf, const struct NET *net,
  * neural network.
  * @param xcsf The XCSF data structure.
  * @param net The neural network to output.
- * @param i Which neuron in the output layer to return.
+ * @param IDX Which neuron in the output layer to return.
  * @return The output of the specified neuron.
  */
 double
-neural_output(const struct XCSF *xcsf, const struct NET *net, int i)
+neural_output(const struct XCSF *xcsf, const struct NET *net, const int IDX)
 {
-    if (i < net->n_outputs) {
-        return layer_output(xcsf, net->head->layer)[i];
+    if (IDX < net->n_outputs) {
+        return layer_output(xcsf, net->head->layer)[IDX];
     }
-    printf("neural_output(): requested (%d) in output layer of size (%d)\n", i,
-           net->n_outputs);
+    printf("neural_output(): error (%d) >= (%d)\n", IDX, net->n_outputs);
     exit(EXIT_FAILURE);
 }
 
@@ -345,7 +337,7 @@ neural_output(const struct XCSF *xcsf, const struct NET *net, int i)
  */
 void
 neural_print(const struct XCSF *xcsf, const struct NET *net,
-             _Bool print_weights)
+             const _Bool print_weights)
 {
     const struct LLIST *iter = net->tail;
     int i = 0;

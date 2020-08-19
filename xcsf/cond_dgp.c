@@ -34,7 +34,7 @@ void
 cond_dgp_init(const struct XCSF *xcsf, struct CL *c)
 {
     struct COND_DGP *new = malloc(sizeof(struct COND_DGP));
-    int n = (int) fmax(xcsf->COND_NUM_NEURONS[0], 1);
+    const int n = (int) fmax(xcsf->COND_NUM_NEURONS[0], 1);
     graph_init(xcsf, &new->dgp, n);
     graph_rand(xcsf, &new->dgp);
     c->cond = new;

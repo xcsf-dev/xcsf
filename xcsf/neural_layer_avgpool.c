@@ -47,7 +47,8 @@ malloc_layer_arrays(struct LAYER *l)
  * @return A pointer to the new layer.
  */
 struct LAYER *
-neural_layer_avgpool_init(const struct XCSF *xcsf, int h, int w, int c)
+neural_layer_avgpool_init(const struct XCSF *xcsf, const int h, const int w,
+                          const int c)
 {
     (void) xcsf;
     struct LAYER *l = malloc(sizeof(struct LAYER));
@@ -112,7 +113,7 @@ neural_layer_avgpool_forward(const struct XCSF *xcsf, const struct LAYER *l,
                              const double *input)
 {
     (void) xcsf;
-    int n = l->height * l->width;
+    const int n = l->height * l->width;
     for (int k = 0; k < l->channels; ++k) {
         l->output[k] = 0;
         for (int i = 0; i < n; ++i) {
@@ -128,13 +129,12 @@ neural_layer_avgpool_backward(const struct XCSF *xcsf, const struct LAYER *l,
 {
     (void) xcsf;
     (void) input;
-    if (!delta) {
-        return;
-    }
-    int n = l->height * l->width;
-    for (int k = 0; k < l->channels; ++k) {
-        for (int i = 0; i < n; ++i) {
-            delta[i + n * k] += l->delta[k] / n;
+    if (delta) {
+        const int n = l->height * l->width;
+        for (int k = 0; k < l->channels; ++k) {
+            for (int i = 0; i < n; ++i) {
+                delta[i + n * k] += l->delta[k] / n;
+            }
         }
     }
 }
@@ -159,9 +159,9 @@ neural_layer_avgpool_resize(const struct XCSF *xcsf, struct LAYER *l,
                             const struct LAYER *prev)
 {
     (void) xcsf;
-    int h = prev->out_h;
-    int w = prev->out_w;
-    int c = prev->out_c;
+    const int h = prev->out_h;
+    const int w = prev->out_w;
+    const int c = prev->out_c;
     l->height = h;
     l->width = w;
     l->channels = c;
@@ -182,7 +182,7 @@ neural_layer_avgpool_output(const struct XCSF *xcsf, const struct LAYER *l)
 
 void
 neural_layer_avgpool_print(const struct XCSF *xcsf, const struct LAYER *l,
-                           _Bool print_weights)
+                           const _Bool print_weights)
 {
     (void) xcsf;
     (void) print_weights;

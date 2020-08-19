@@ -27,8 +27,8 @@
 #include "xcsf.h"
 
 struct LAYER *
-neural_layer_softmax_init(const struct XCSF *xcsf, int n_inputs,
-                          double temperature);
+neural_layer_softmax_init(const struct XCSF *xcsf, const int n_inputs,
+                          const double temperature);
 struct LAYER *
 neural_layer_softmax_copy(const struct XCSF *xcsf, const struct LAYER *src);
 
@@ -46,7 +46,7 @@ neural_layer_softmax_update(const struct XCSF *xcsf, const struct LAYER *l);
 
 void
 neural_layer_softmax_print(const struct XCSF *xcsf, const struct LAYER *l,
-                           _Bool print_weights);
+                           const _Bool print_weights);
 _Bool
 neural_layer_softmax_mutate(const struct XCSF *xcsf, struct LAYER *l);
 

@@ -40,7 +40,7 @@
  * steps taken to reach the goal for multi-step problems.
  */
 static double
-xcs_rl_trial(struct XCSF *xcsf, double *error, _Bool explore)
+xcs_rl_trial(struct XCSF *xcsf, double *error, const _Bool explore)
 {
     env_reset(xcsf);
     param_set_explore(xcsf, explore);
@@ -52,7 +52,7 @@ xcs_rl_trial(struct XCSF *xcsf, double *error, _Bool explore)
     while (steps < xcsf->TELETRANSPORTATION && !reset) {
         xcs_rl_init_step(xcsf);
         const double *state = env_get_state(xcsf);
-        int action = xcs_rl_decision(xcsf, state);
+        const int action = xcs_rl_decision(xcsf, state);
         reward = env_execute(xcsf, action);
         reset = env_is_reset(xcsf);
         xcs_rl_update(xcsf, state, action, reward, reset);
@@ -83,7 +83,7 @@ xcs_rl_exp(struct XCSF *xcsf)
     double wperf = 0; // steps to goal: windowed total
     for (int cnt = 0; cnt < xcsf->MAX_TRIALS; ++cnt) {
         xcs_rl_trial(xcsf, &error, true); // explore
-        double perf = xcs_rl_trial(xcsf, &error, false); // exploit
+        const double perf = xcs_rl_trial(xcsf, &error, false); // exploit
         wperf += perf;
         tperf += perf;
         werr += error;
@@ -142,8 +142,8 @@ xcs_rl_init_step(struct XCSF *xcsf)
  * @param reward The current reward.
  */
 void
-xcs_rl_end_step(struct XCSF *xcsf, const double *state, int action,
-                double reward)
+xcs_rl_end_step(struct XCSF *xcsf, const double *state, const int action,
+                const double reward)
 {
     clset_free(&xcsf->mset);
     clset_free(&xcsf->prev_aset);
@@ -163,16 +163,16 @@ xcs_rl_end_step(struct XCSF *xcsf, const double *state, int action,
  * @param reset Whether the environment is in the reset state.
  */
 void
-xcs_rl_update(struct XCSF *xcsf, const double *state, int action, double reward,
-              _Bool reset)
+xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
+              const double reward, const _Bool reset)
 {
     // create action set
     clset_action(xcsf, action);
     // update previous action set and run EA
     if (xcsf->prev_aset.list != NULL) {
-        double payoff = xcsf->prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
+        const double p = xcsf->prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
         clset_validate(&xcsf->prev_aset);
-        clset_update(xcsf, &xcsf->prev_aset, xcsf->prev_state, &payoff, false);
+        clset_update(xcsf, &xcsf->prev_aset, xcsf->prev_state, &p, false);
         if (xcsf->explore) {
             ea(xcsf, &xcsf->prev_aset);
         }
@@ -197,8 +197,8 @@ xcs_rl_update(struct XCSF *xcsf, const double *state, int action, double reward,
  * @return The prediction error.
  */
 double
-xcs_rl_error(const struct XCSF *xcsf, int action, double reward, _Bool reset,
-             double max_p)
+xcs_rl_error(const struct XCSF *xcsf, const int action, const double reward,
+             const _Bool reset, const double max_p)
 {
     double error = 0;
     if (xcsf->prev_aset.list != NULL) {
