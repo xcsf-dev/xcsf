@@ -179,7 +179,7 @@ clset_cover(struct XCSF *xcsf, const double *x)
         // if a macro classifier was deleted,
         // remove any deleted rules from the match set
         if (prev_psize > xcsf->pset.size) {
-            int prev_msize = xcsf->mset.size;
+            const int prev_msize = xcsf->mset.size;
             clset_validate(&xcsf->mset);
             // if the deleted classifier was in the match set,
             // check if an action is now not covered

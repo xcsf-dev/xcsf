@@ -30,7 +30,7 @@ gemm_nn(const int M, const int N, const int K, const double ALPHA,
 {
     for (int i = 0; i < M; ++i) {
         for (int k = 0; k < K; ++k) {
-            double A_PART = ALPHA * A[i * lda + k];
+            const double A_PART = ALPHA * A[i * lda + k];
             for (int j = 0; j < N; ++j) {
                 C[i * ldc + j] += A_PART * B[k * ldb + j];
             }
@@ -61,7 +61,7 @@ gemm_tn(const int M, const int N, const int K, const double ALPHA,
 {
     for (int i = 0; i < M; ++i) {
         for (int k = 0; k < K; ++k) {
-            double A_PART = ALPHA * A[k * lda + i];
+            const double A_PART = ALPHA * A[k * lda + i];
             for (int j = 0; j < N; ++j) {
                 C[i * ldc + j] += A_PART * B[k * ldb + j];
             }
