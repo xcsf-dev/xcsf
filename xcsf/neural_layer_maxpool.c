@@ -124,8 +124,8 @@ static int
 max_pool(const struct LAYER *l, const double *input, const int i, const int j,
          const int k)
 {
-    int w_offset = -l->pad / 2;
-    int h_offset = w_offset;
+    const int w_offset = -l->pad / 2;
+    const int h_offset = w_offset;
     double max = -DBL_MAX;
     int max_index = -1;
     for (int n = 0; n < l->size; ++n) {
@@ -168,8 +168,7 @@ neural_layer_maxpool_backward(const struct XCSF *xcsf, const struct LAYER *l,
     (void) input;
     if (delta) {
         for (int i = 0; i < l->n_outputs; ++i) {
-            const int index = l->indexes[i];
-            delta[index] += l->delta[i];
+            delta[l->indexes[i]] += l->delta[i];
         }
     }
 }

@@ -108,7 +108,7 @@ neural_layer_softmax_forward(const struct XCSF *xcsf, const struct LAYER *l,
     }
     double sum = 0;
     for (int i = 0; i < l->n_inputs; ++i) {
-        double e = exp((input[i] / l->scale) - (largest / l->scale));
+        const double e = exp((input[i] / l->scale) - (largest / l->scale));
         sum += e;
         l->output[i] = e;
     }

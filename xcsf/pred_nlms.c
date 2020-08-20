@@ -91,8 +91,8 @@ pred_nlms_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
     const struct PRED_NLMS *pred = c->pred;
     const int n = pred->n;
     // normalise update
-    double norm = xcsf->PRED_X0 * xcsf->PRED_X0;
-    norm += blas_dot(xcsf->x_dim, x, 1, x, 1);
+    const double norm =
+        xcsf->PRED_X0 * xcsf->PRED_X0 + blas_dot(xcsf->x_dim, x, 1, x, 1);
     // update weights using the error
     for (int i = 0; i < xcsf->y_dim; ++i) {
         const double error = y[i] - c->prediction[i];
