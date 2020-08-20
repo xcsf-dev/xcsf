@@ -326,7 +326,7 @@ config_add_param(struct XCSF *xcsf, const char *name, char *value)
     } else {
         i = (int) strtoimax(value, &endptr, BASE);
     }
-    double f = strtod(value, &endptr);
+    const double f = strtod(value, &endptr);
     // add parameter
     config_general(xcsf, name, value, i, f);
     config_multi(xcsf, name, value, i, f);

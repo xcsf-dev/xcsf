@@ -35,7 +35,7 @@ cond_rectangle_dist(const struct XCSF *xcsf, const struct CL *c,
     const struct COND_RECTANGLE *cond = c->cond;
     double dist = 0;
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        double d = fabs((x[i] - cond->center[i]) / cond->spread[i]);
+        const double d = fabs((x[i] - cond->center[i]) / cond->spread[i]);
         if (d > dist) {
             dist = d;
         }

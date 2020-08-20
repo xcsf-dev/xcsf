@@ -38,7 +38,7 @@ static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
  * @param bits The number of bits to use for binarising.
  */
 static void
-float_to_binary(double f, char *binary, int bits)
+float_to_binary(const double f, char *binary, const int bits)
 {
     int a = (int) (f * pow(2, bits));
     for (int i = 0; i < bits; ++i) {

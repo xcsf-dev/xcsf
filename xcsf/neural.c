@@ -152,13 +152,11 @@ void
 neural_copy(const struct XCSF *xcsf, struct NET *dest, const struct NET *src)
 {
     neural_init(xcsf, dest);
-    int p = 0;
     const struct LLIST *iter = src->tail;
     while (iter != NULL) {
         const struct LAYER *f = iter->layer;
         struct LAYER *l = layer_copy(xcsf, f);
-        neural_layer_insert(xcsf, dest, l, p);
-        ++p;
+        neural_layer_insert(xcsf, dest, l, dest->n_layers);
         iter = iter->prev;
     }
 }
