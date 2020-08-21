@@ -33,7 +33,7 @@ pred_rls_init(const struct XCSF *xcsf, struct CL *c)
     // set the length of weights per predicted variable
     if (xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
         // offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
-        pred->n = 1 + 2 * xcsf->x_dim + xcsf->x_dim * (xcsf->x_dim - 1) * 0.5;
+        pred->n = 1 + 2 * xcsf->x_dim + xcsf->x_dim * (xcsf->x_dim - 1) / 2;
     } else {
         pred->n = xcsf->x_dim + 1;
     }
