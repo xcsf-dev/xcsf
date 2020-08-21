@@ -29,40 +29,6 @@
 #include "utils.h"
 
 /**
- * @brief Updates the prediction error for a classifier.
- * @pre Classifier prediction must have been updated for the input state.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to update.
- * @param y The true value.
- */
-static void
-cl_update_err(const struct XCSF *xcsf, struct CL *c, const double *y)
-{
-    const double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
-    if (c->exp < 1 / xcsf->BETA) {
-        c->err = (c->err * (c->exp - 1) + error) / c->exp;
-    } else {
-        c->err += xcsf->BETA * (error - c->err);
-    }
-}
-
-/**
- * @brief Updates the set size estimate for a classifier.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to update.
- * @param num_sum The number of micro-classifiers in the set.
- */
-static void
-cl_update_size(const struct XCSF *xcsf, struct CL *c, const int num_sum)
-{
-    if (c->exp < 1 / xcsf->BETA) {
-        c->size = (c->size * (c->exp - 1) + num_sum) / c->exp;
-    } else {
-        c->size += xcsf->BETA * (num_sum - c->size);
-    }
-}
-
-/**
  * @brief Initialises a new classifier.
  * @param xcsf The XCSF data structure.
  * @param c The classifier data structure to initialise.
@@ -217,8 +183,14 @@ cl_update(const struct XCSF *xcsf, struct CL *c, const double *x,
     if (!cur) { // propagate inputs for the previous state update
         cl_predict(xcsf, c, x);
     }
-    cl_update_err(xcsf, c, y);
-    cl_update_size(xcsf, c, set_num);
+    const double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
+    if (c->exp * xcsf->BETA < 1) {
+        c->err = (c->err * (c->exp - 1) + error) / c->exp;
+        c->size = (c->size * (c->exp - 1) + set_num) / c->exp;
+    } else {
+        c->err += xcsf->BETA * (error - c->err);
+        c->size += xcsf->BETA * (set_num - c->size);
+    }
     cond_update(xcsf, c, x, y);
     pred_update(xcsf, c, x, y);
     act_update(xcsf, c, x, y);
