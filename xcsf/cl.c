@@ -143,7 +143,7 @@ cl_rand(const struct XCSF *xcsf, struct CL *c)
 double
 cl_del_vote(const struct XCSF *xcsf, const struct CL *c, const double avg_fit)
 {
-    if (c->exp > xcsf->THETA_DEL && c->fit / c->num < xcsf->DELTA * avg_fit) {
+    if (c->exp > xcsf->THETA_DEL && c->fit < xcsf->DELTA * avg_fit * c->num) {
         return c->size * c->num * avg_fit / (c->fit / c->num);
     }
     return c->size * c->num;
