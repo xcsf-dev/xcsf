@@ -365,10 +365,9 @@ clset_match(struct XCSF *xcsf, const double *x)
         clset_cover(xcsf, x);
     }
     // update statistics
-    xcsf->msetsize +=
-        (xcsf->mset.size - xcsf->msetsize) * (10 / (double) xcsf->PERF_TRIALS);
-    xcsf->mfrac +=
-        (clset_mfrac(xcsf) - xcsf->mfrac) * (10 / (double) xcsf->PERF_TRIALS);
+    const double step = 10. / xcsf->PERF_TRIALS;
+    xcsf->msetsize += (xcsf->mset.size - xcsf->msetsize) * step;
+    xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * step;
 }
 
 /**
@@ -673,7 +672,7 @@ clset_mfrac(const struct XCSF *xcsf)
     const struct CLIST *iter = xcsf->pset.list;
     while (iter != NULL) {
         const double e = iter->cl->err;
-        if (e < xcsf->EPS_0 && iter->cl->exp > 1 / xcsf->BETA) {
+        if (e < xcsf->EPS_0 && iter->cl->exp * xcsf->BETA > 1) {
             const double m = cl_mfrac(xcsf, iter->cl);
             if (m > mfrac) {
                 mfrac = m;
@@ -687,7 +686,7 @@ clset_mfrac(const struct XCSF *xcsf)
         iter = xcsf->pset.list;
         while (iter != NULL) {
             const double e = iter->cl->err;
-            if (e < error && iter->cl->exp > 1 / xcsf->BETA) {
+            if (e < error && iter->cl->exp * xcsf->BETA > 1) {
                 mfrac = cl_mfrac(xcsf, iter->cl);
                 error = e;
             }
