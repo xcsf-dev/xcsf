@@ -166,8 +166,8 @@ cl_acc(const struct XCSF *xcsf, const struct CL *c)
 }
 
 /**
- * @brief Updates a classifier's parameters as well as condition, action, and
- * prediction depending on the knowledge representation.
+ * @brief Updates a classifier's experience, error, and set size; condition,
+ * action, and prediction are updated depending on the knowledge representation.
  * @param xcsf The XCSF data structure.
  * @param c The classifier to update.
  * @param x The input state.
