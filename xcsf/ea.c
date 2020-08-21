@@ -44,11 +44,11 @@ ea_init_offspring(const struct XCSF *xcsf, const struct CL *c1p,
                   const _Bool cmod)
 {
     if (cmod) {
-        c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err) / 2.0);
+        c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err) * 0.5);
         c2->err = c1->err;
         c1->fit = c1p->fit / c1p->num;
         c2->fit = c2p->fit / c2p->num;
-        c1->fit = xcsf->FIT_REDUC * ((c1->fit + c2->fit) / 2.0);
+        c1->fit = xcsf->FIT_REDUC * ((c1->fit + c2->fit) * 0.5);
         c2->fit = c1->fit;
     } else {
         c1->err = xcsf->ERR_REDUC * c1p->err;
@@ -213,7 +213,7 @@ ea(struct XCSF *xcsf, const struct SET *set)
     struct CL *c2p = NULL;
     ea_select(xcsf, set, &c1p, &c2p);
     // create offspring
-    for (int i = 0; i < xcsf->LAMBDA / 2; ++i) {
+    for (int i = 0; i * 2 < xcsf->LAMBDA; ++i) {
         // create copies of parents
         struct CL *c1 = malloc(sizeof(struct CL));
         struct CL *c2 = malloc(sizeof(struct CL));
