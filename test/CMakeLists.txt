@@ -36,7 +36,7 @@ add_test(NAME xcsf COMMAND tests)
 
 add_custom_command(
     TARGET tests
-    COMMENT "Run tests"
+    COMMENT "Running tests..."
     POST_BUILD
     COMMAND tests
 )
