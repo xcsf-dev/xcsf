@@ -78,7 +78,7 @@ static inline double
 loggy_gradient(const double x)
 {
     double fx = exp(x);
-    return (2. * fx) / pow(fx + 1., 2);
+    return (2 * fx) / ((fx + 1) * (fx + 1));
 }
 
 static inline double
