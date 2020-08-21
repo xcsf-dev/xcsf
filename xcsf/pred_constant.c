@@ -51,10 +51,10 @@ pred_constant_update(const struct XCSF *xcsf, const struct CL *c,
                      const double *x, const double *y)
 {
     (void) x;
-    if (c->exp < 1. / xcsf->PRED_ETA) {
+    if (c->exp * xcsf->PRED_ETA < 1) {
         for (int var = 0; var < xcsf->y_dim; ++var) {
             c->prediction[var] =
-                (c->prediction[var] * (c->exp - 1.) + y[var]) / (double) c->exp;
+                (c->prediction[var] * (c->exp - 1) + y[var]) / c->exp;
         }
     } else {
         for (int var = 0; var < xcsf->y_dim; ++var) {
