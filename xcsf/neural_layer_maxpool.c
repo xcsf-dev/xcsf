@@ -124,7 +124,7 @@ static int
 max_pool(const struct LAYER *l, const double *input, const int i, const int j,
          const int k)
 {
-    const int w_offset = -l->pad / 2;
+    const int w_offset = -l->pad * 0.5;
     const int h_offset = w_offset;
     double max = -DBL_MAX;
     int max_index = -1;
