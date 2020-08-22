@@ -52,12 +52,6 @@ if(NOT MSVC)
     if(CMAKE_C_COMPILER_ID MATCHES "Clang")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wuninitialized")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wuninitialized")
-        set(CMAKE_AR
-            ${CMAKE_CXX_COMPILER_AR}
-            CACHE PATH "AR" FORCE)
-        set(CMAKE_RANLIB
-            ${CMAKE_CXX_COMPILER_RANLIB}
-            CACHE PATH "RANLIB" FORCE)
     else()
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmaybe-uninitialized")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wmaybe-uninitialized")
@@ -95,6 +89,18 @@ if(PARALLEL)
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_UPDATE")
         link_libraries(${OpenMP_C_LIBRARIES})
     endif()
+endif()
+
+if(UNIX
+   AND NOT APPLE
+   AND CMAKE_C_COMPILER_ID MATCHES "Clang")
+    # Linux Clang
+    set(CMAKE_AR
+        ${CMAKE_CXX_COMPILER_AR}
+        CACHE PATH "AR" FORCE)
+    set(CMAKE_RANLIB
+        ${CMAKE_CXX_COMPILER_RANLIB}
+        CACHE PATH "RANLIB" FORCE)
 endif()
 
 set(CMAKE_C_FLAGS_DEBUG "-g3")
