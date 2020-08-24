@@ -44,7 +44,7 @@ malloc_layer_arrays(struct LAYER *l)
  * @param h The input height.
  * @param w The input width.
  * @param c The number of input channels.
- * @param stride The strides of the pooling operation.
+ * @param stride The strides of the upsampling operation.
  * @return A pointer to the new layer.
  */
 struct LAYER *
