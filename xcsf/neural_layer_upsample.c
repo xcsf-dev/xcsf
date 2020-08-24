@@ -111,33 +111,24 @@ neural_layer_upsample_rand(const struct XCSF *xcsf, struct LAYER *l)
     (void) l;
 }
 
-static void
-upsample(const double *in, const int w, const int h, const int c,
-         const int stride, _Bool forward, double *out)
-{
-    const int s = stride;
-    for (int k = 0; k < c; ++k) {
-        for (int j = 0; j < h * s; ++j) {
-            for (int i = 0; i < w * s; ++i) {
-                const int in_index = k * w * h + (j / s) * w + i / s;
-                const int out_index = k * w * h * s * s + j * w * s + i;
-                if (forward) {
-                    out[out_index] = in[in_index];
-                } else {
-                    out[in_index] += in[out_index];
-                }
-            }
-        }
-    }
-}
-
 void
 neural_layer_upsample_forward(const struct XCSF *xcsf, const struct LAYER *l,
                               const double *input)
 {
     (void) xcsf;
-    upsample(input, l->width, l->height, l->channels, l->stride, true,
-             l->output);
+    const int w = l->width;
+    const int h = l->height;
+    const int c = l->channels;
+    const int s = l->stride;
+    for (int k = 0; k < c; ++k) {
+        for (int j = 0; j < h * s; ++j) {
+            for (int i = 0; i < w * s; ++i) {
+                const int in_index = k * w * h + (j / s) * w + i / s;
+                const int out_index = k * w * h * s * s + j * w * s + i;
+                l->output[out_index] = input[in_index];
+            }
+        }
+    }
 }
 
 void
@@ -147,8 +138,19 @@ neural_layer_upsample_backward(const struct XCSF *xcsf, const struct LAYER *l,
     (void) xcsf;
     (void) input;
     if (delta) {
-        upsample(l->delta, l->width, l->height, l->channels, l->stride, false,
-                 delta);
+        const int w = l->width;
+        const int h = l->height;
+        const int c = l->channels;
+        const int s = l->stride;
+        for (int k = 0; k < c; ++k) {
+            for (int j = 0; j < h * s; ++j) {
+                for (int i = 0; i < w * s; ++i) {
+                    const int in_index = k * w * h + (j / s) * w + i / s;
+                    const int out_index = k * w * h * s * s + j * w * s + i;
+                    delta[in_index] += l->delta[out_index];
+                }
+            }
+        }
     }
 }
 
