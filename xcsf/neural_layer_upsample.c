@@ -138,7 +138,7 @@ neural_layer_upsample_backward(const struct XCSF *xcsf, const struct LAYER *l,
     (void) xcsf;
     (void) input;
     if (!delta) {
-        return
+        return;
     }
     const int w = l->width;
     const int h = l->height;
