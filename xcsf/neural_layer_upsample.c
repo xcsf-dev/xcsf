@@ -39,7 +39,7 @@ malloc_layer_arrays(struct LAYER *l)
 }
 
 /**
- * @brief Creates and initialises a 2D upsampleing layer.
+ * @brief Creates and initialises a 2D upsampling layer.
  * @param xcsf The XCSF data structure.
  * @param h The input height.
  * @param w The input width.
