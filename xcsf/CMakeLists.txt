@@ -52,6 +52,7 @@ set(XCSF_SOURCES
     neural_layer_noise.c
     neural_layer_recurrent.c
     neural_layer_softmax.c
+    neural_layer_upsample.c
     pa.c
     param.c
     perf.c
@@ -106,6 +107,7 @@ set(XCSF_HEADERS
     neural_layer_noise.h
     neural_layer_recurrent.h
     neural_layer_softmax.h
+    neural_layer_upsample.h
     pa.h
     param.h
     perf.h

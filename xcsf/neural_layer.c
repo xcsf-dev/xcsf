@@ -31,6 +31,7 @@
 #include "neural_layer_noise.h"
 #include "neural_layer_recurrent.h"
 #include "neural_layer_softmax.h"
+#include "neural_layer_upsample.h"
 #include "utils.h"
 
 /**
@@ -67,6 +68,9 @@ layer_set_vptr(struct LAYER *l)
             break;
         case AVGPOOL:
             l->layer_vptr = &layer_avgpool_vtbl;
+            break;
+        case UPSAMPLE:
+            l->layer_vptr = &layer_upsample_vtbl;
             break;
         default:
             printf("Error setting layer vptr for type: %d\n", l->layer_type);

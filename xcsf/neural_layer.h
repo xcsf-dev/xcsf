@@ -34,6 +34,7 @@
 #define MAXPOOL (6)
 #define CONVOLUTIONAL (7)
 #define AVGPOOL (8)
+#define UPSAMPLE (9)
 
 #define LAYER_EVOLVE_WEIGHTS (1 << 0)
 #define LAYER_EVOLVE_NEURONS (1 << 1)
@@ -102,15 +103,15 @@ typedef struct LAYER {
     double *temp2; //!< LSTM
     double *temp3; //!< LSTM
     double *dc; //!< LSTM
-    int height; //!< Pool and Conv
-    int width; //!< Pool and Conv
-    int channels; //!< Pool and Conv
+    int height; //!< Pool, Conv, and Upsample
+    int width; //!< Pool, Conv, and Upsample
+    int channels; //!< Pool, Conv, and Upsample
     int pad; //!< Pool and Conv
-    int out_w; //!< Pool and Conv
-    int out_h; //!< Pool and Conv
-    int out_c; //!< Pool and Conv
+    int out_w; //!< Pool, Conv, and Upsample
+    int out_h; //!< Pool, Conv, and Upsample
+    int out_c; //!< Pool, Conv, and Upsample
     int size; //!< Pool and Conv
-    int stride; //!< Pool and Conv
+    int stride; //!< Pool, Conv, and Upsample
     int *indexes; //!< Pool
     int n_filters; //!< Conv
     size_t workspace_size; //!< Conv

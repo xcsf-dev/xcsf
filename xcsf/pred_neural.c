@@ -32,6 +32,7 @@
 #include "neural_layer_noise.h"
 #include "neural_layer_recurrent.h"
 #include "neural_layer_softmax.h"
+#include "neural_layer_upsample.h"
 
 static uint32_t
 pred_neural_lopt(const struct XCSF *xcsf)
