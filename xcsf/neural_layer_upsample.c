@@ -137,18 +137,19 @@ neural_layer_upsample_backward(const struct XCSF *xcsf, const struct LAYER *l,
 {
     (void) xcsf;
     (void) input;
-    if (delta) {
-        const int w = l->width;
-        const int h = l->height;
-        const int c = l->channels;
-        const int s = l->stride;
-        for (int k = 0; k < c; ++k) {
-            for (int j = 0; j < h * s; ++j) {
-                for (int i = 0; i < w * s; ++i) {
-                    const int in_index = k * w * h + (j / s) * w + i / s;
-                    const int out_index = k * w * h * s * s + j * w * s + i;
-                    delta[in_index] += l->delta[out_index];
-                }
+    if (!delta) {
+        return
+    }
+    const int w = l->width;
+    const int h = l->height;
+    const int c = l->channels;
+    const int s = l->stride;
+    for (int k = 0; k < c; ++k) {
+        for (int j = 0; j < h * s; ++j) {
+            for (int i = 0; i < w * s; ++i) {
+                const int in_index = k * w * h + (j / s) * w + i / s;
+                const int out_index = k * w * h * s * s + j * w * s + i;
+                delta[in_index] += l->delta[out_index];
             }
         }
     }
