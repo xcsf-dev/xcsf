@@ -117,7 +117,7 @@ upsample(const double *in, const int w, const int h, const int c,
 {
     const int s = stride;
     for (int k = 0; k < c; ++k) {
-        for (int j = 0; j < h * stride; ++j) {
+        for (int j = 0; j < h * s; ++j) {
             for (int i = 0; i < w * s; ++i) {
                 const int in_index = k * w * h + (j / s) * w + i / s;
                 const int out_index = k * w * h * s * s + j * w * s + i;
