@@ -348,24 +348,30 @@ neural_print(const struct XCSF *xcsf, const struct NET *net,
 }
 
 /**
- * @brief Returns the total number of non-zero weights in a neural network.
+ * @brief Returns the sum of the weight values squared in a neural network.
  * @param xcsf The XCSF data structure.
- * @param net The neural network to calculate the number of non-zero weights.
- * @return The calculated total.
+ * @param net A neural network.
+ * @return The calculated network size.
  */
 double
 neural_size(const struct XCSF *xcsf, const struct NET *net)
 {
     (void) xcsf;
-    int size = 0;
+    double size = 0;
     const struct LLIST *iter = net->tail;
     while (iter != NULL) {
-        switch (iter->layer->layer_type) {
+        const LAYER *l = iter->layer;
+        switch (l->layer_type) {
             case CONNECTED:
             case RECURRENT:
             case LSTM:
             case CONVOLUTIONAL:
-                size += iter->layer->n_active;
+#ifdef PARALLEL
+    #pragma omp parallel for reduction(+ : size)
+#endif
+                for (int i = 0; i < l->n_weights; ++i) {
+                    size += l->weights[i] * l->weights[i];
+                }
                 break;
             default:
                 break;
