@@ -52,6 +52,7 @@ TEST_CASE("NEURAL")
     param_set_pred_type(&xcsf, PRED_TYPE_NEURAL);
     param_set_pred_eta(&xcsf, 0.1);
     param_set_pred_momentum(&xcsf, 0.9);
+    param_set_pred_decay(&xcsf, 0);
     const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
                            -0.0814486626, 0.0923277094,  0.2779675621,
                            -0.3109822596, -0.6788371120, -0.0714929928,

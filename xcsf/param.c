@@ -534,6 +534,7 @@ param_defaults_cl_prediction(struct XCSF *xcsf)
     param_set_pred_evolve_connectivity(xcsf, false);
     param_set_pred_sgd_weights(xcsf, true);
     param_set_pred_momentum(xcsf, 0.9);
+    param_set_pred_decay(xcsf, 0.0005);
     memset(xcsf->PRED_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
     memset(xcsf->PRED_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
     xcsf->PRED_NUM_NEURONS[0] = 1;
@@ -569,6 +570,7 @@ param_print_cl_prediction(const struct XCSF *xcsf)
     printf(", PRED_SGD_WEIGHTS=");
     xcsf->PRED_SGD_WEIGHTS ? printf("true") : printf("false");
     printf(", PRED_MOMENTUM=%f", xcsf->PRED_MOMENTUM);
+    printf(", PRED_DECAY=%f", xcsf->PRED_DECAY);
     printf(", PRED_NUM_NEURONS=[");
     for (int i = 0; i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; ++i) {
         printf("%d;", xcsf->PRED_NUM_NEURONS[i]);
@@ -606,6 +608,7 @@ param_save_cl_prediction(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->PRED_EVOLVE_CONNECTIVITY, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->PRED_SGD_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->PRED_MOMENTUM, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->PRED_DECAY, sizeof(double), 1, fp);
     s += fwrite(xcsf->PRED_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fwrite(xcsf->PRED_MAX_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fwrite(&xcsf->PRED_OUTPUT_ACTIVATION, sizeof(int), 1, fp);
@@ -636,6 +639,7 @@ param_load_cl_prediction(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->PRED_EVOLVE_CONNECTIVITY, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->PRED_SGD_WEIGHTS, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->PRED_MOMENTUM, sizeof(double), 1, fp);
+    s += fread(&xcsf->PRED_DECAY, sizeof(double), 1, fp);
     s += fread(xcsf->PRED_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fread(xcsf->PRED_MAX_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fread(&xcsf->PRED_OUTPUT_ACTIVATION, sizeof(int), 1, fp);
@@ -1277,6 +1281,20 @@ param_set_pred_momentum(struct XCSF *xcsf, const double a)
         xcsf->PRED_MOMENTUM = 1;
     } else {
         xcsf->PRED_MOMENTUM = a;
+    }
+}
+
+void
+param_set_pred_decay(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set PRED_DECAY too small\n");
+        xcsf->PRED_DECAY = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set PRED_DECAY too large\n");
+        xcsf->PRED_DECAY = 1;
+    } else {
+        xcsf->PRED_DECAY = a;
     }
 }
 

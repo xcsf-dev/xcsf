@@ -130,6 +130,7 @@ typedef struct XCSF {
     double PRED_RLS_SCALE_FACTOR; //!< Initial values for the RLS gain-matrix
     double PRED_RLS_LAMBDA; //!< Forget rate for RLS
     double PRED_MOMENTUM; //!< Momentum for gradient descent
+    double PRED_DECAY; //!< Weight decay for gradient descent
     struct EnvVtbl const *env_vptr; //!< Functions acting on environments
     void *env; //!< Environment structure
     double *pa; //!< Prediction array (stores fitness weighted predictions)

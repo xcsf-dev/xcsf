@@ -276,6 +276,8 @@ config_cl_pred(struct XCSF *xcsf, const char *n, char *v, const int i,
         param_set_pred_sgd_weights(xcsf, i);
     } else if (strncmp(n, "PRED_MOMENTUM\0", 14) == 0) {
         param_set_pred_momentum(xcsf, f);
+    } else if (strncmp(n, "PRED_DECAY\0", 11) == 0) {
+        param_set_pred_decay(xcsf, f);
     } else if (strncmp(n, "PRED_NUM_NEURONS\0", 17) == 0) {
         memset(xcsf->PRED_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->PRED_NUM_NEURONS);

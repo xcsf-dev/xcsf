@@ -214,6 +214,9 @@ void
 param_set_pred_momentum(struct XCSF *xcsf, const double a);
 
 void
+param_set_pred_decay(struct XCSF *xcsf, const double a);
+
+void
 param_set_pred_output_activation(struct XCSF *xcsf, const int a);
 
 void

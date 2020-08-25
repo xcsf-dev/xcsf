@@ -53,6 +53,7 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     param_set_pred_type(&xcsf, PRED_TYPE_NEURAL);
     param_set_pred_eta(&xcsf, 0.1);
     param_set_pred_momentum(&xcsf, 0.9);
+    param_set_pred_decay(&xcsf, 0);
     neural_init(&xcsf, &net);
     uint32_t o = 0;
     o |= LAYER_SGD_WEIGHTS;
