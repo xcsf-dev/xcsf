@@ -587,6 +587,12 @@ class XCS
         return xcs.PRED_MOMENTUM;
     }
 
+    double
+    get_pred_decay(void)
+    {
+        return xcs.PRED_DECAY;
+    }
+
     _Bool
     get_pred_evolve_weights(void)
     {
@@ -1100,6 +1106,12 @@ class XCS
     }
 
     void
+    set_pred_decay(double a)
+    {
+        param_set_pred_decay(&xcs, a);
+    }
+
+    void
     set_pred_evolve_weights(_Bool a)
     {
         param_set_pred_evolve_weights(&xcs, a);
@@ -1341,6 +1353,7 @@ PYBIND11_MODULE(xcsf, m)
                       &XCS::set_pred_hidden_activation)
         .def_property("PRED_MOMENTUM", &XCS::get_pred_momentum,
                       &XCS::set_pred_momentum)
+        .def_property("PRED_DECAY", &XCS::get_pred_decay, &XCS::set_pred_decay)
         .def_property("PRED_EVOLVE_WEIGHTS", &XCS::get_pred_evolve_weights,
                       &XCS::set_pred_evolve_weights)
         .def_property("PRED_EVOLVE_NEURONS", &XCS::get_pred_evolve_neurons,
