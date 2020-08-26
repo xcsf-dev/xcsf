@@ -197,7 +197,7 @@ xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
  * @return The prediction error.
  */
 double
-xcs_rl_error(const struct XCSF *xcsf, const int action, const double reward,
+xcs_rl_error(struct XCSF *xcsf, const int action, const double reward,
              const _Bool reset, const double max_p)
 {
     double error = 0;
@@ -209,6 +209,7 @@ xcs_rl_error(const struct XCSF *xcsf, const int action, const double reward,
     if (reset) {
         error += fabs(reward - pa_val(xcsf, action)) / max_p;
     }
+    xcsf->error += (error - xcsf->error) * xcsf->BETA;
     return error;
 }
 

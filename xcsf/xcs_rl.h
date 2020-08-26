@@ -26,7 +26,7 @@
 #include "xcsf.h"
 
 double
-xcs_rl_error(const struct XCSF *xcsf, const int action, const double reward,
+xcs_rl_error(struct XCSF *xcsf, const int action, const double reward,
              const _Bool reset, const double max_p);
 
 double

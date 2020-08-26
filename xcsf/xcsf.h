@@ -104,6 +104,7 @@ typedef struct SET {
  * @brief XCSF data structure.
  */
 typedef struct XCSF {
+    double error; //!< Average system error
     double msetsize; //!< Average match set size
     double mfrac; //!< Generalisation measure
     double GAMMA; //!< Discount factor for multi-step reward

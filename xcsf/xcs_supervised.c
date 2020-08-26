@@ -94,6 +94,7 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct INPUT *train_data,
         const double error = (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
         werr += error;
         err += error;
+        xcsf->error += (error - xcsf->error) * xcsf->BETA;
         // test sample
         if (test_data != NULL) {
             row = xcs_supervised_sample(test_data, cnt, shuffle);

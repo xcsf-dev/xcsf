@@ -53,10 +53,10 @@ clset_pop_never_match(const struct XCSF *xcsf, struct CLIST **del,
 
 /*
  * @brief Selects a classifier from the population for deletion via roulette.
- * @details Two classifiers are selected using roulette wheel selection with the
- * deletion vote and the one with the largest condition + prediction size is
- * chosen. For fixed-length representations, the effect is the same as one
- * roulete spin.
+ * @details If the average system error is below EPS_0, two classifiers are
+ * selected using roulette wheel selection with the deletion vote and the one
+ * with the largest condition + prediction size is chosen. For fixed-length
+ * representations, the effect is the same as one roulete spin.
  * @param xcsf The XCSF data structure.
  * @param del A pointer to the rule to be deleted (set by this function).
  * @param delprev A pointer to the rule previous to the one being deleted (set
@@ -74,7 +74,8 @@ clset_pop_roulette(const struct XCSF *xcsf, struct CLIST **del,
         iter = iter->next;
     }
     double delsize = 0;
-    for (int i = 0; i < 2; ++i) {
+    const int n_spins = (xcsf->error < xcsf->EPS_0) ? 2 : 1;
+    for (int i = 0; i < n_spins; ++i) {
         // perform a single roulette spin with the deletion vote
         iter = xcsf->pset.list;
         struct CLIST *prev = NULL;
@@ -365,9 +366,8 @@ clset_match(struct XCSF *xcsf, const double *x)
         clset_cover(xcsf, x);
     }
     // update statistics
-    const double step = 10. / xcsf->PERF_TRIALS;
-    xcsf->msetsize += (xcsf->mset.size - xcsf->msetsize) * step;
-    xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * step;
+    xcsf->msetsize += (xcsf->mset.size - xcsf->msetsize) * xcsf->BETA;
+    xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * xcsf->BETA;
 }
 
 /**
