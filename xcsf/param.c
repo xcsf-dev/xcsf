@@ -1391,7 +1391,7 @@ param_init(struct XCSF *xcsf)
 {
     xcsf->gp_cons = NULL;
     xcsf->time = 0;
-    xcsf->error = 0;
+    xcsf->error = xcsf->EPS_0;
     xcsf->msetsize = 0;
     xcsf->mfrac = 0;
     param_defaults_cl_action(xcsf);
