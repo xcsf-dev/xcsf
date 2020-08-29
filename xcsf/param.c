@@ -23,6 +23,10 @@
 
 #include "param.h"
 
+#ifdef PARALLEL
+    #include <omp.h>
+#endif
+
 /**
  * @brief Initialises default XCSF general parameters.
  * @param xcsf The XCSF data structure.
@@ -799,4 +803,26 @@ param_load(struct XCSF *xcsf, FILE *fp)
     s += param_load_cl_prediction(xcsf, fp);
     s += param_load_cl_action(xcsf, fp);
     return s;
+}
+
+/**
+ * @brief Sets the number of OMP threads.
+ * @param xcsf The XCSF data structure.
+ * @param a The number of threads.
+ */
+void
+param_set_omp_num_threads(struct XCSF *xcsf, const int a)
+{
+    if (a < 1) {
+        printf("Warning: tried to set OMP_NUM_THREADS too small\n");
+        xcsf->OMP_NUM_THREADS = 1;
+    } else if (a > 1000) {
+        printf("Warning: tried to set OMP_NUM_THREADS too large\n");
+        xcsf->OMP_NUM_THREADS = 1000;
+    } else {
+        xcsf->OMP_NUM_THREADS = a;
+    }
+#ifdef PARALLEL
+    omp_set_num_threads(xcsf->OMP_NUM_THREADS);
+#endif
 }

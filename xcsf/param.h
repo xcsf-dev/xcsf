@@ -27,10 +27,6 @@
 #include "loss.h"
 #include "xcsf.h"
 
-#ifdef PARALLEL
-    #include <omp.h>
-#endif
-
 void
 param_free(const struct XCSF *xcsf);
 
@@ -48,22 +44,8 @@ param_save(const struct XCSF *xcsf, FILE *fp);
 
 /* setters */
 
-static inline void
-param_set_omp_num_threads(struct XCSF *xcsf, const int a)
-{
-    if (a < 1) {
-        printf("Warning: tried to set OMP_NUM_THREADS too small\n");
-        xcsf->OMP_NUM_THREADS = 1;
-    } else if (a > 1000) {
-        printf("Warning: tried to set OMP_NUM_THREADS too large\n");
-        xcsf->OMP_NUM_THREADS = 1000;
-    } else {
-        xcsf->OMP_NUM_THREADS = a;
-    }
-#ifdef PARALLEL
-    omp_set_num_threads(xcsf->OMP_NUM_THREADS);
-#endif
-}
+void
+param_set_omp_num_threads(struct XCSF *xcsf, const int a);
 
 static inline void
 param_set_pop_init(struct XCSF *xcsf, const _Bool a)
