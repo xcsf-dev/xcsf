@@ -131,19 +131,41 @@ xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
 /**
  * @brief Calculates the XCSF error for the input data.
  * @param xcsf The XCSF data structure.
- * @param test_data The input data to calculate the error.
+ * @param data The input data to calculate the error.
  * @return The average XCSF error using the loss function.
  */
 double
-xcs_supervised_score(struct XCSF *xcsf, const struct INPUT *test_data)
+xcs_supervised_score(struct XCSF *xcsf, const struct INPUT *data)
 {
     param_set_explore(xcsf, false);
     double err = 0;
-    for (int row = 0; row < test_data->n_samples; ++row) {
-        const double *x = &test_data->x[row * test_data->x_dim];
-        const double *y = &test_data->y[row * test_data->y_dim];
+    for (int row = 0; row < data->n_samples; ++row) {
+        const double *x = &data->x[row * data->x_dim];
+        const double *y = &data->y[row * data->y_dim];
         xcs_supervised_trial(xcsf, x, y);
         err += (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
     }
-    return err / test_data->n_samples;
+    return err / data->n_samples;
+}
+
+/**
+ * @brief Calculates the XCSF error for a subsample of the input data.
+ * @param xcsf The XCSF data structure.
+ * @param data The input data to calculate the error.
+ * @param N The number of subsamples to draw randomly for scoring.
+ * @return The average XCSF error using the loss function.
+ */
+double
+xcs_supervised_score_n(struct XCSF *xcsf, const struct INPUT *data, const int N)
+{
+    param_set_explore(xcsf, false);
+    double err = 0;
+    for (int i = 0; i < N; ++i) {
+        const int row = xcs_supervised_sample(data, i, true);
+        const double *x = &data->x[row * data->x_dim];
+        const double *y = &data->y[row * data->y_dim];
+        xcs_supervised_trial(xcsf, x, y);
+        err += (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
+    }
+    return err / N;
 }

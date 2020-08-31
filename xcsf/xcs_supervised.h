@@ -30,7 +30,11 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct INPUT *train_data,
                    const struct INPUT *test_data, const _Bool shuffle);
 
 double
-xcs_supervised_score(struct XCSF *xcsf, const struct INPUT *test_data);
+xcs_supervised_score(struct XCSF *xcsf, const struct INPUT *data);
+
+double
+xcs_supervised_score_n(struct XCSF *xcsf, const struct INPUT *data,
+                       const int N);
 
 void
 xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,

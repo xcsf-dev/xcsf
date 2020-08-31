@@ -303,6 +303,12 @@ class XCS
     double
     score(py::array_t<double> test_X, py::array_t<double> test_Y)
     {
+        return score(test_X, test_Y, 0);
+    }
+
+    double
+    score(py::array_t<double> test_X, py::array_t<double> test_Y, const int N)
+    {
         py::buffer_info buf_x = test_X.request();
         py::buffer_info buf_y = test_Y.request();
         if (buf_x.shape[0] != buf_y.shape[0]) {
@@ -314,6 +320,9 @@ class XCS
         test_data->y_dim = buf_y.shape[1];
         test_data->x = (double *) buf_x.ptr;
         test_data->y = (double *) buf_y.ptr;
+        if (N > 1) {
+            return xcs_supervised_score_n(&xcs, test_data, N);
+        }
         return xcs_supervised_score(&xcs, test_data);
     }
 
@@ -1259,18 +1268,26 @@ class XCS
 PYBIND11_MODULE(xcsf, m)
 {
     random_init();
+
     double (XCS::*fit1)(py::array_t<double>, py::array_t<double>, _Bool) =
         &XCS::fit;
     double (XCS::*fit2)(py::array_t<double>, py::array_t<double>,
                         py::array_t<double>, py::array_t<double>, _Bool) =
         &XCS::fit;
+    double (XCS::*score1)(py::array_t<double> test_X,
+                          py::array_t<double> test_Y) = &XCS::score;
+    double (XCS::*score2)(py::array_t<double> test_X,
+                          py::array_t<double> test_Y, const int N) =
+        &XCS::score;
+
     py::class_<XCS>(m, "XCS")
         .def(py::init<int, int, int>())
         .def(py::init<int, int, int, const char *>())
         .def("fit", fit1)
         .def("fit", fit2)
         .def("predict", &XCS::predict)
-        .def("score", &XCS::score)
+        .def("score", score1)
+        .def("score", score2)
         .def("save", &XCS::save)
         .def("load", &XCS::load)
         .def("store", &XCS::store)
