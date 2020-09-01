@@ -152,12 +152,15 @@ xcs_supervised_score(struct XCSF *xcsf, const struct INPUT *data)
  * @brief Calculates the XCSF error for a subsample of the input data.
  * @param xcsf The XCSF data structure.
  * @param data The input data to calculate the error.
- * @param N The number of subsamples to draw randomly for scoring.
+ * @param N The maximum number of samples to draw randomly for scoring.
  * @return The average XCSF error using the loss function.
  */
 double
 xcs_supervised_score_n(struct XCSF *xcsf, const struct INPUT *data, const int N)
 {
+    if (N > data->n_samples) {
+        return xcs_supervised_score(xcsf, data);
+    }
     param_set_explore(xcsf, false);
     double err = 0;
     for (int i = 0; i < N; ++i) {
