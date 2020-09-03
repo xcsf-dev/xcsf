@@ -531,7 +531,7 @@ param_defaults_cl_prediction(struct XCSF *xcsf)
     param_set_pred_evolve_connectivity(xcsf, false);
     param_set_pred_sgd_weights(xcsf, true);
     param_set_pred_momentum(xcsf, 0.9);
-    param_set_pred_decay(xcsf, 0.0005);
+    param_set_pred_decay(xcsf, 0);
     memset(xcsf->PRED_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
     memset(xcsf->PRED_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
     xcsf->PRED_NUM_NEURONS[0] = 1;
