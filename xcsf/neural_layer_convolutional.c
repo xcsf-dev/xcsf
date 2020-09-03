@@ -276,8 +276,12 @@ neural_layer_convolutional_update(const struct XCSF *xcsf,
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
         blas_axpy(l->n_biases, l->eta, l->bias_updates, 1, l->biases, 1);
-        blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
         blas_scal(l->n_biases, xcsf->PRED_MOMENTUM, l->bias_updates, 1);
+        if (xcsf->PRED_DECAY > 0) {
+            blas_axpy(l->n_weights, -(xcsf->PRED_DECAY), l->weights, 1,
+                      l->weight_updates, 1);
+        }
+        blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
         blas_scal(l->n_weights, xcsf->PRED_MOMENTUM, l->weight_updates, 1);
         layer_weight_clamp(l);
     }
