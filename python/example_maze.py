@@ -24,6 +24,7 @@ predictions and integer actions."""
 import os
 import sys
 import random
+from turtle import Screen, Turtle
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
@@ -219,3 +220,90 @@ plt.ylabel('Steps to Goal', fontsize=12)
 plt.xlabel('Trials', fontsize=12)
 plt.xlim([0, N * xcs.PERF_TRIALS])
 plt.show()
+
+#################################
+# Visualise some maze runs
+#################################
+
+GRID_WIDTH = maze.x_size
+GRID_HEIGHT = maze.y_size
+CELL_SIZE = 20
+
+WIDTH, HEIGHT = 1400, 720
+screen = Screen()
+screen.setup(WIDTH + 4, HEIGHT + 8)
+screen.setworldcoordinates(0, 0, WIDTH, HEIGHT)
+
+def draw_maze(XOFF, YOFF):
+    """Draws the background and outline of the current maze."""
+    bg = Turtle(visible=False)
+    screen.tracer(False)
+    bg.penup()
+    bg.shape("square")
+    bg.shapesize(1, 1)
+    for y in range(maze.y_size):
+        for x in range(maze.x_size):
+            s = maze.maze[y][x]
+            if s == '*':
+                bg.color("white")
+            if s == 'O':
+                bg.color("black")
+            if s == 'G':
+                bg.color("yellow")
+            if s == 'F':
+                bg.color("yellow")
+            if s == 'Q':
+                bg.color("brown")
+            bg.goto(XOFF + x * CELL_SIZE, YOFF + y * CELL_SIZE)
+            bg.stamp()
+    XOFF = XOFF - CELL_SIZE / 2
+    YOFF = YOFF - CELL_SIZE / 2
+    bg.goto(XOFF, YOFF)
+    bg.pensize(2)
+    bg.color("black")
+    bg.pendown()
+    bg.goto(XOFF, YOFF + GRID_HEIGHT * CELL_SIZE)
+    bg.goto(XOFF + GRID_WIDTH * CELL_SIZE, YOFF + GRID_HEIGHT * CELL_SIZE)
+    bg.goto(XOFF + GRID_WIDTH * CELL_SIZE, YOFF)
+    bg.goto(XOFF, YOFF)
+    bg.penup()
+
+def visualise(XOFF, YOFF):
+    """Executes an XCSF exploit run through the maze and draws the path."""
+    agent = Turtle(visible=True)
+    agent.shape("turtle")
+    agent.color("green")
+    agent.speed("normal")
+    agent.shapesize(0.5, 0.5)
+    agent.pensize(2)
+    maze.reset()
+    xcs.init_trial()
+    for k in range(xcs.TELETRANSPORTATION):
+        xcs.init_step()
+        maze.update_state()
+        if k == 0:
+            agent.penup()
+            agent.goto(XOFF + maze.x_pos * CELL_SIZE, YOFF + maze.y_pos * CELL_SIZE)
+            screen.tracer(True)
+            agent.pendown()
+        action = xcs.decision(maze.state, False)
+        reward = maze.execute(action)
+        agent.goto(XOFF + maze.x_pos * CELL_SIZE, YOFF + maze.y_pos * CELL_SIZE)
+        xcs.update(reward, maze.is_reset)
+        xcs.end_step()
+        if maze.is_reset:
+            break
+    xcs.end_trial()
+
+GRID_XOFF = (GRID_WIDTH * CELL_SIZE)
+GRID_YOFF = (GRID_HEIGHT * CELL_SIZE)
+
+# draw some runs through the maze
+for i in range(8):
+    for j in range(4):
+        XOFF = i * (GRID_XOFF + CELL_SIZE)
+        YOFF = j * (GRID_YOFF + CELL_SIZE)
+        draw_maze(XOFF, YOFF)
+        visualise(XOFF, YOFF)
+
+input("Press enter to exit.")
