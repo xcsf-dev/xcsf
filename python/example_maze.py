@@ -44,7 +44,7 @@ class Maze:
                 if not c:
                     break
                 if c == '\n':
-                    self.maze.append(line)
+                    self.maze.insert(0, line)
                     line = []
                 else:
                     line.append(c)
