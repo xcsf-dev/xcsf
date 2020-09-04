@@ -249,6 +249,12 @@ $ python example_classification.py
 
 *******************************************************************************
 
+Example runs (from `example_maze.py`) through Maze4 after 2000 learning trials:
+
+<img src="doc/maze4_vis.png">
+
+*******************************************************************************
+
 ## Contributing
 
 Contributions are always welcome.
