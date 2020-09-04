@@ -97,7 +97,7 @@ See `default.ini` for a full list of options.
 * `COND_TYPE = 0` : Always matching dummy condition
 * `COND_TYPE = 1` : Hyperrectangles
 * `COND_TYPE = 2` : Hyperellipsoids
-* `COND_TYPE = 3` : Multilayer perceptron neural networks
+* `COND_TYPE = 3` : Artificial neural networks
 * `COND_TYPE = 4` : GP trees
 * `COND_TYPE = 5` : Dynamical GP graphs
 * `COND_TYPE = 6` : Ternary bitstrings (binarises inputs)
@@ -115,7 +115,7 @@ See `default.ini` for a full list of options.
 * `PRED_TYPE = 2` : Quadratic least squares
 * `PRED_TYPE = 3` : Linear recursive least squares
 * `PRED_TYPE = 4` : Quadratic recursive least squares
-* `PRED_TYPE = 5` : Stochastic gradient descent multilayer perceptron neural networks
+* `PRED_TYPE = 5` : Stochastic gradient descent artificial neural networks
 
 *******************************************************************************
 
