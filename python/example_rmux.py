@@ -16,9 +16,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""This example demonstrates the XCSF reinforcement learning mechanisms applied
-to the real-multiplexer problem. Classifiers are composed of hyperrectangle
-conditions, linear least squares predictions, and integer actions."""
+"""
+This example demonstrates the XCSF reinforcement learning mechanisms applied to
+the real-multiplexer problem. Classifiers are composed of hyperrectangle
+conditions, linear least squares predictions, and integer actions.
+
+The Mux class generates random real vectors of length k+pow(2,k) where the
+first k bits determine the position of the output bit in the last pow(2,k)
+bits. E.g., for a 3-bit problem, the first (rounded) bit addresses which of the
+following 2 bits are the (rounded) output.
+
+Example valid lengths: 3, 6, 11, 20, 37, 70, 135, 264.
+"""
 
 from random import random
 import numpy as np
