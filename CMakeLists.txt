@@ -156,6 +156,8 @@ if(DOXYGEN_FOUND)
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
     file(COPY doc/schematic.svg DESTINATION doc/html/doc)
+    file(COPY doc/maze4_perf.png DESTINATION doc/html/doc)
+    file(COPY doc/maze4_vis.png DESTINATION doc/html/doc)
 endif()
 
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
