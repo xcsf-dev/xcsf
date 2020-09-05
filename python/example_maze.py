@@ -16,10 +16,33 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""This example demonstrates the XCSF multi-step reinforcement learning
-mechanisms to solve discrete mazes loaded from a specified input file.
-Classifiers are composed of ternary conditions, linear recursive least squares
-predictions and integer actions."""
+"""
+This example demonstrates the XCSF multi-step reinforcement learning mechanisms
+to solve discrete mazes loaded from a specified input file.
+
+The maze class reads in the chosen maze from a file where each entry specifies
+a distinct position in the maze. The maze is toroidal and if the agent/animat
+reaches one edge it can reenter the maze from the other side. Obstacles are
+coded as 'O' and 'Q', empty positions as '*', and food as 'F' or 'G'. The 8
+adjacent cells are perceived by the animat and 8 movements are possible to one
+of the adjacent cells (if not blocked.) The animat is initially placed at a
+random empty position. The goal is to find the shortest path to the food.
+
+Some mazes require a form of memory to be solved optimally.
+The optimal average number of steps for each maze is:
+
+woods1: 1.7
+woods2: 1.7
+woods14: 9.5
+maze4: 3.5
+maze5: 4.61
+maze6: 5.19
+maze7: 4.33
+maze10: 5.11
+woods101: 2.9
+woods101half: 3.1
+woods102: 3.31
+"""
 
 import os
 import sys
