@@ -235,7 +235,7 @@ Multi-step reinforcement learning example:
 $ python example_maze.py
 ```
 
-OpenAI Gym (reinforcement learning) example:
+[OpenAI Gym](https://gym.openai.com) (reinforcement learning) example:
 
 ```
 $ python example_cartpole.py
