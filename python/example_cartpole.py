@@ -145,6 +145,7 @@ N = 10
 for i in range(N):
     episode_score = 0
     err = 0
+    cnt = 0
     state = env.reset()
     xcs.init_trial()
     while True:
@@ -154,6 +155,7 @@ for i in range(N):
         next_state, reward, is_reset, info = env.step(action)
         xcs.update(reward, is_reset)
         err += xcs.error(reward, is_reset, MAX_PAYOFF)
+        cnt += 1
         episode_score += reward
         xcs.end_step()
         state = next_state
@@ -162,5 +164,5 @@ for i in range(N):
     xcs.end_trial()
     perf = (episode_score / env._max_episode_steps) * 100
     print("exploit %d/%d: perf=%.2f%%, score=%.2f, error=%.5f" %
-          (i+1, N, perf, episode_score, err))
+          (i+1, N, perf, episode_score, err / cnt))
 env.close()
