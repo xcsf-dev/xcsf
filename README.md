@@ -235,6 +235,12 @@ Multi-step reinforcement learning example:
 $ python example_maze.py
 ```
 
+OpenAI Gym (reinforcement learning) example:
+
+```
+$ python example_cartpole.py
+```
+
 Supervised regression learning example:
 
 ```
