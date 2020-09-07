@@ -260,6 +260,11 @@ Example runs (from `example_maze.py`) through Maze4 after 2000 learning trials:
 <img src="doc/maze4_perf.png">
 <img src="doc/maze4_visual.png">
 
+
+Example runs (from `example_cartpole.py`) on the OpenAI Gym cart-pole problem:
+
+<img src="doc/cartpole_visual.gif">
+
 *******************************************************************************
 
 ## Contributing
