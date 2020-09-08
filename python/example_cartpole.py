@@ -50,13 +50,15 @@ xcs.ALPHA = 0.1 # accuracy offset
 xcs.NU = 5 # accuracy slope
 xcs.EA_SUBSUMPTION = False
 xcs.SET_SUBSUMPTION = False
-xcs.THETA_EA = 50 # EA invocation frequency
+xcs.THETA_EA = 100 # EA invocation frequency
+xcs.THETA_DEL = 100 # min experience before fitness used for deletion
+xcs.P_EXPLORE = 1 # probability of picking a random action during exploration
 
 xcs.MAX_NEURON_GROW = 1 # max neurons to add/remove per mut
 xcs.COND_TYPE = 3 # neural network conditions
 xcs.COND_OUTPUT_ACTIVATION = 3 # linear
 xcs.COND_HIDDEN_ACTIVATION = 9 # selu
-xcs.COND_NUM_NEURONS = [10] # initial neurons
+xcs.COND_NUM_NEURONS = [1] # initial neurons
 xcs.COND_MAX_NEURONS = [100] # maximum neurons
 xcs.COND_EVOLVE_WEIGHTS = True
 xcs.COND_EVOLVE_NEURONS = True
@@ -68,9 +70,9 @@ xcs.ACT_TYPE = 0 # integer actions
 xcs.PRED_TYPE = 5 # neural network predictions
 xcs.PRED_OUTPUT_ACTIVATION = 3 # linear
 xcs.PRED_HIDDEN_ACTIVATION = 9 # selu
-xcs.PRED_NUM_NEURONS = [10] # initial neurons
-xcs.PRED_MAX_NEURONS = [10] # maximum neurons
-xcs.PRED_EVOLVE_WEIGHTS = True
+xcs.PRED_NUM_NEURONS = [20, 20] # initial neurons
+xcs.PRED_MAX_NEURONS = [20, 20] # maximum neurons
+xcs.PRED_EVOLVE_WEIGHTS = False
 xcs.PRED_EVOLVE_NEURONS = False
 xcs.PRED_EVOLVE_FUNCTIONS = False
 xcs.PRED_EVOLVE_CONNECTIVITY = False
@@ -85,10 +87,8 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-N = 40 # maximum 4000 learning trials/episodes
+N = 100 # maximum 10,000 learning trials/episodes
 trials = np.zeros(N)
-psize = np.zeros(N)
-msize = np.zeros(N)
 score = np.zeros(N)
 error = np.zeros(N)
 
@@ -117,7 +117,6 @@ for i in range(N):
             xcs.init_step()
             action = xcs.decision(state, False)
             next_state, reward, is_reset, info = env.step(action)
-            xcs.update(reward, is_reset)
             err += xcs.error(reward, is_reset, MAX_PAYOFF)
             episode_score += reward
             cnt += 1
@@ -131,10 +130,8 @@ for i in range(N):
     score[i] /= float(xcs.PERF_TRIALS)
     error[i] /= float(xcs.PERF_TRIALS)
     trials[i] = (i + 1) * xcs.PERF_TRIALS
-    psize[i] = xcs.pop_size()
-    msize[i] = xcs.msetsize()
-    status = ("episodes=%d score=%.2f error=%.5f psize=%d msize=%.1f" %
-              (trials[i], score[i], error[i], psize[i], msize[i]))
+    status = ("episodes=%d score=%.2f error=%.5f" %
+              (trials[i], score[i], error[i]))
     print(status)
     if score[i] > env.spec.reward_threshold: # solved
         print("solved: score %.2f > %.2f" % (score[i], env.spec.reward_threshold))
@@ -153,7 +150,6 @@ for i in range(N):
         xcs.init_step()
         action = xcs.decision(state, False)
         next_state, reward, is_reset, info = env.step(action)
-        xcs.update(reward, is_reset)
         err += xcs.error(reward, is_reset, MAX_PAYOFF)
         cnt += 1
         episode_score += reward
