@@ -196,6 +196,11 @@ while True:
     xcs.end_step()
     state = next_state
     if is_reset:
+        if SAVE_GIF:
+            for delay in range(100):
+                frames.append(frames[-1])
+                fscore.append(fscore[-1])
+                ftrial.append(ftrial[-1])
         break
 xcs.end_trial()
 perf = (episode_score / env._max_episode_steps) * 100
