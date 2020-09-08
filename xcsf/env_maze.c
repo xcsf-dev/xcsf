@@ -41,7 +41,11 @@
  * Maze 10: 5.11 \n
  * Woods 101: 2.9 \n
  * Woods 101 1/2: 3.1 \n
- * Woods 102: 3.31
+ * Woods 102: 3.31 \n
+ * Maze F1: 1.8 \n
+ * Maze F2: 2.5 \n
+ * Maze F3: 3.375 \n
+ * Maze F4: 4.5
  */
 
 #include "env_maze.h"

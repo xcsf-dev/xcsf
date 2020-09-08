@@ -42,6 +42,10 @@ maze10: 5.11
 woods101: 2.9
 woods101half: 3.1
 woods102: 3.31
+mazef1: 1.8
+mazef2: 2.5
+mazef3: 3.375
+mazef4: 4.5
 """
 
 import os
