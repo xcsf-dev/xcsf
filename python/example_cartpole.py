@@ -21,6 +21,9 @@ This example demonstrates the XCSF multi-step reinforcement learning mechanisms
 to solve the cart-pole problem from the OpenAI Gym.
 """
 
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+from matplotlib import animation
 import numpy as np
 import gym
 import xcsf.xcsf as xcsf
@@ -33,6 +36,26 @@ env = gym.make('CartPole-v0')
 X_DIM = env.observation_space.shape[0]
 N_ACTIONS = env.action_space.n
 MAX_PAYOFF = 1
+SAVE_GIF = False
+
+def save_frames_as_gif(frames, fscore, path='./', filename='animation.gif'):
+    """Save animation as gif"""
+    rcParams['font.family'] = 'monospace'
+    fig = plt.figure(dpi=90)
+    fig.set_size_inches(3, 3)
+    ax = fig.add_subplot(111)
+    patch = plt.imshow(frames[0])
+    bbox = dict(boxstyle="round", fc="0.8")
+    plt.axis('off')
+    def animate(i):
+        patch.set_data(frames[i])
+        strial = str(ftrial[i])
+        sscore = str(int(fscore[i]))
+        text = ('trial = %5s, score = %3s' % (strial, sscore))
+        ax.annotate(text, xy=(0,100), xytext=(-30,1), fontsize=12, bbox=bbox)
+    anim = animation.FuncAnimation(plt.gcf(), animate, frames=len(frames),
+            interval=100, blit=False)
+    anim.save(path + filename, writer='imagemagick', fps=30)
 
 ###################
 # Initialise XCSF
@@ -70,8 +93,8 @@ xcs.ACT_TYPE = 0 # integer actions
 xcs.PRED_TYPE = 5 # neural network predictions
 xcs.PRED_OUTPUT_ACTIVATION = 3 # linear
 xcs.PRED_HIDDEN_ACTIVATION = 9 # selu
-xcs.PRED_NUM_NEURONS = [20, 20] # initial neurons
-xcs.PRED_MAX_NEURONS = [20, 20] # maximum neurons
+xcs.PRED_NUM_NEURONS = [5] # initial neurons
+xcs.PRED_MAX_NEURONS = [5] # maximum neurons
 xcs.PRED_EVOLVE_WEIGHTS = False
 xcs.PRED_EVOLVE_NEURONS = False
 xcs.PRED_EVOLVE_FUNCTIONS = False
@@ -92,6 +115,11 @@ trials = np.zeros(N)
 score = np.zeros(N)
 error = np.zeros(N)
 
+frames = [] # for creating a gif
+fscore = []
+ftrial = []
+
+# learning trials/episodes
 for i in range(N):
     for j in range(xcs.PERF_TRIALS):
         # explore trial/episode
@@ -114,6 +142,10 @@ for i in range(N):
         state = env.reset()
         xcs.init_trial()
         while True:
+            if SAVE_GIF and i % 5 == 0 and j == 0: # every 500 trials
+                frames.append(env.render(mode="rgb_array"))
+                fscore.append(episode_score)
+                ftrial.append(i * xcs.PERF_TRIALS)
             xcs.init_step()
             action = xcs.decision(state, False)
             next_state, reward, is_reset, info = env.step(action)
@@ -123,6 +155,11 @@ for i in range(N):
             xcs.end_step()
             state = next_state
             if is_reset:
+                if SAVE_GIF and i % 5 == 0 and j == 0:
+                    for delay in range(100):
+                        frames.append(frames[-1])
+                        fscore.append(fscore[-1])
+                        ftrial.append(ftrial[-1])
                 break
         xcs.end_trial()
         score[i] += episode_score
@@ -137,28 +174,40 @@ for i in range(N):
         print("solved: score %.2f > %.2f" % (score[i], env.spec.reward_threshold))
         break
 
-# display 10 exploit trials/episodes
-N = 10
-for i in range(N):
-    episode_score = 0
-    err = 0
-    cnt = 0
-    state = env.reset()
-    xcs.init_trial()
-    while True:
+# final exploit trial/episode
+episode_score = 0
+err = 0
+cnt = 0
+state = env.reset()
+xcs.init_trial()
+while True:
+    if SAVE_GIF:
+        frames.append(env.render(mode="rgb_array"))
+        fscore.append(episode_score)
+        ftrial.append('final')
+    else:
         env.render()
-        xcs.init_step()
-        action = xcs.decision(state, False)
-        next_state, reward, is_reset, info = env.step(action)
-        err += xcs.error(reward, is_reset, MAX_PAYOFF)
-        cnt += 1
-        episode_score += reward
-        xcs.end_step()
-        state = next_state
-        if is_reset:
-            break
-    xcs.end_trial()
-    perf = (episode_score / env._max_episode_steps) * 100
-    print("exploit %d/%d: perf=%.2f%%, score=%.2f, error=%.5f" %
-          (i+1, N, perf, episode_score, err / cnt))
+    xcs.init_step()
+    action = xcs.decision(state, False)
+    next_state, reward, is_reset, info = env.step(action)
+    err += xcs.error(reward, is_reset, MAX_PAYOFF)
+    cnt += 1
+    episode_score += reward
+    xcs.end_step()
+    state = next_state
+    if is_reset:
+        break
+xcs.end_trial()
+perf = (episode_score / env._max_episode_steps) * 100
+print("exploit: perf=%.2f%%, score=%.2f, error=%.5f" %
+      (perf, episode_score, err / cnt))
+
+# close Gym
 env.close()
+
+if SAVE_GIF:
+    print("Creating gif. This may take a while...")
+    save_frames_as_gif(frames, fscore)
+
+# to crop and optimise gif
+# gifsicle -O3 --colors=64 --use-col=web --lossy=100 --crop 10,10-270,220 --output out.gif animation.gif
