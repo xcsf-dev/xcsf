@@ -94,74 +94,123 @@ class XCS
         test_data->y = NULL;
     }
 
+    /**
+     * @brief Returns the XCSF major version number.
+     * @return Major version number.
+     */
     int
     version_major(void)
     {
         return VERSION_MAJOR;
     }
 
+    /**
+     * @brief Returns the XCSF minor version number.
+     * @return Minor version number.
+     */
     int
     version_minor(void)
     {
         return VERSION_MINOR;
     }
 
+    /**
+     * @brief Returns the XCSF build version number.
+     * @return Build version number.
+     */
     int
     version_build(void)
     {
         return VERSION_BUILD;
     }
 
+    /**
+     * @brief Writes the entire current state of XCSF to a binary file.
+     * @param filename String containing the name of the output file.
+     * @return The total number of elements written.
+     */
     size_t
     save(char *filename)
     {
         return xcsf_save(&xcs, filename);
     }
 
+    /**
+     * @brief Reads the entire current state of XCSF from a binary file.
+     * @param filename String containing the name of the input file.
+     * @return The total number of elements read.
+     */
     size_t
     load(char *filename)
     {
         return xcsf_load(&xcs, filename);
     }
 
+    /**
+     * @brief Stores the current population in memory for later retrieval.
+     */
     void
     store(void)
     {
         xcsf_store_pop(&xcs);
     }
 
+    /**
+     * @brief Retrieves the stored population, setting it as current.
+     */
     void
     retrieve(void)
     {
         xcsf_retrieve_pop(&xcs);
     }
 
+    /**
+     * @brief Prints the XCSF parameters and their current values.
+     */
     void
     print_params(void)
     {
         param_print(&xcs);
     }
 
+    /**
+     * @brief Inserts a new hidden layer before the output layer within all
+     * prediction neural networks in the population.
+     */
     void
     pred_expand(void)
     {
         xcsf_pred_expand(&xcs);
     }
 
+    /**
+     * @brief Switches from autoencoding to classification.
+     * @param y_dim The output dimension (i.e., the number of classes).
+     * @param n_del The number of hidden layers to remove.
+     */
     void
     ae_to_classifier(int y_dim, int n_del)
     {
         xcsf_ae_to_classifier(&xcs, y_dim, n_del);
     }
 
+    /**
+     * @brief Prints the current population.
+     * @param print_cond Whether to print the condition.
+     * @param print_act Whether to print the action.
+     * @param print_pred Whether to print the prediction.
+     */
     void
-    print_pop(_Bool printc, _Bool printa, _Bool printp)
+    print_pop(_Bool print_cond, _Bool print_act, _Bool print_pred)
     {
-        xcsf_print_pop(&xcs, printc, printa, printp);
+        xcsf_print_pop(&xcs, print_cond, print_act, print_pred);
     }
 
     /* Reinforcement learning */
 
+    /**
+     * @brief Initialises a reinforcement learning trial.
+     */
     void
     init_trial(void)
     {
@@ -171,24 +220,40 @@ class XCS
         xcs_rl_init_trial(&xcs);
     }
 
+    /**
+     * @brief Frees memory used by a reinforcement learning trial.
+     */
     void
     end_trial(void)
     {
         xcs_rl_end_trial(&xcs);
     }
 
+    /**
+     * @brief Initialises a step in a reinforcement learning trial.
+     */
     void
     init_step(void)
     {
         xcs_rl_init_step(&xcs);
     }
 
+    /**
+     * @brief Ends a step in a reinforcement learning trial.
+     */
     void
     end_step(void)
     {
         xcs_rl_end_step(&xcs, state, action, payoff);
     }
 
+    /**
+     * @brief Selects an action to perform in a reinforcement learning problem.
+     * @details Constructs the match set and selects an action to perform.
+     * @param input The input state.
+     * @param explore Whether this is an exploration step.
+     * @return The selected action.
+     */
     int
     decision(py::array_t<double> input, _Bool explore)
     {
@@ -199,6 +264,12 @@ class XCS
         return action;
     }
 
+    /**
+     * @brief Creates the action set using the previously selected action,
+     * updates the classifiers, and runs the EA on explore steps.
+     * @param reward The reward from performing the action.
+     * @param reset Whether the environment is in the reset state.
+     */
     void
     update(double reward, _Bool reset)
     {
@@ -206,6 +277,27 @@ class XCS
         xcs_rl_update(&xcs, state, action, payoff, reset);
     }
 
+    /**
+     * @brief Creates the action set using a specified action,
+     * updates the classifiers, and runs the EA on explore steps.
+     * @param reward The reward from performing the action.
+     * @param reset Whether the environment is in the reset state.
+     * @param act The selected action.
+     */
+    void
+    update(double reward, _Bool reset, int act)
+    {
+        payoff = reward;
+        xcs_rl_update(&xcs, state, act, payoff, reset);
+    }
+
+    /**
+     * @brief Returns the reinforcement learning system prediction error.
+     * @param reward The current reward.
+     * @param reset The current reset status.
+     * @param max_p The maximum payoff in the environment.
+     * @return The prediction error.
+     */
     double
     error(double reward, _Bool reset, double max_p)
     {
@@ -215,6 +307,14 @@ class XCS
 
     /* Supervised learning */
 
+    /**
+     * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
+     * provided training data.
+     * @param train_X The input values to use for training.
+     * @param train_Y The true output values to use for training.
+     * @param shuffle Whether to randomise the instances during training.
+     * @return The average XCSF training error using the loss function.
+     */
     double
     fit(py::array_t<double> train_X, py::array_t<double> train_Y, _Bool shuffle)
     {
@@ -238,6 +338,16 @@ class XCS
         return xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
     }
 
+    /**
+     * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
+     * provided training data and test iterations using the test data.
+     * @param train_X The input values to use for training.
+     * @param train_Y The true output values to use for training.
+     * @param test_X The input values to use for testing.
+     * @param test_Y The true output values to use for testing.
+     * @param shuffle Whether to randomise the instances during training.
+     * @return The average XCSF training error using the loss function.
+     */
     double
     fit(py::array_t<double> train_X, py::array_t<double> train_Y,
         py::array_t<double> test_X, py::array_t<double> test_Y, _Bool shuffle)
@@ -284,28 +394,46 @@ class XCS
         return xcs_supervised_fit(&xcs, train_data, test_data, shuffle);
     }
 
+    /**
+     * @brief Returns the XCSF prediction array for the provided input.
+     * @param x The input feature variables.
+     * @return The prediction array values.
+     */
     py::array_t<double>
     predict(py::array_t<double> x)
     {
         // inputs to predict
         py::buffer_info buf_x = x.request();
-        int n_samples = buf_x.shape[0];
+        const int n_samples = buf_x.shape[0];
         double *input = (double *) buf_x.ptr;
         // predicted outputs
         double *output =
-            (double *) malloc(sizeof(double) * n_samples * xcs.y_dim);
+            (double *) malloc(sizeof(double) * n_samples * xcs.pa_size);
         xcs_supervised_predict(&xcs, input, output, n_samples);
         // return numpy array
         return py::array_t<double>(
-            std::vector<ptrdiff_t>{ n_samples, xcs.y_dim }, output);
+            std::vector<ptrdiff_t>{ n_samples, xcs.pa_size }, output);
     }
 
+    /**
+     * @brief Returns the error over one sequential pass of the provided data.
+     * @param test_X The input values to use for scoring.
+     * @param test_Y The true output values to use for scoring.
+     * @return The average XCSF error using the loss function.
+     */
     double
     score(py::array_t<double> test_X, py::array_t<double> test_Y)
     {
         return score(test_X, test_Y, 0);
     }
 
+    /**
+     * @brief Returns the error using N random samples from the provided data.
+     * @param test_X The input values to use for scoring.
+     * @param test_Y The true output values to use for scoring.
+     * @param N The maximum number of samples to draw randomly for scoring.
+     * @return The average XCSF error using the loss function.
+     */
     double
     score(py::array_t<double> test_X, py::array_t<double> test_Y, const int N)
     {
@@ -1279,6 +1407,8 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*score2)(py::array_t<double> test_X,
                           py::array_t<double> test_Y, const int N) =
         &XCS::score;
+    void (XCS::*update1)(double, _Bool) = &XCS::update;
+    void (XCS::*update2)(double, _Bool, int) = &XCS::update;
 
     py::class_<XCS>(m, "XCS")
         .def(py::init<int, int, int>())
@@ -1300,7 +1430,8 @@ PYBIND11_MODULE(xcsf, m)
         .def("init_step", &XCS::init_step)
         .def("end_step", &XCS::end_step)
         .def("decision", &XCS::decision)
-        .def("update", &XCS::update)
+        .def("update", update1)
+        .def("update", update2)
         .def("error", &XCS::error)
         .def_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads,
                       &XCS::set_omp_num_threads)
