@@ -33,7 +33,7 @@ env_init(struct XCSF *xcsf, char **argv);
  * @details Environment implementations must implement these functions.
  */
 struct EnvVtbl {
-    _Bool (*env_impl_isreset)(const struct XCSF *xcsf);
+    _Bool (*env_impl_is_done)(const struct XCSF *xcsf);
     _Bool (*env_impl_multistep)(const struct XCSF *xcsf);
     double (*env_impl_execute)(const struct XCSF *xcsf, const int action);
     double (*env_impl_max_payoff)(const struct XCSF *xcsf);
@@ -43,14 +43,14 @@ struct EnvVtbl {
 };
 
 /**
- * @brief Returns whether the environment needs to be reset.
+ * @brief Returns whether the environment is in a terminal state.
  * @param xcsf The XCSF data structure.
- * @return Whether the environment needs to be reset.
+ * @return Whether the environment is in a terminal state.
  */
 static inline _Bool
-env_is_reset(const struct XCSF *xcsf)
+env_is_done(const struct XCSF *xcsf)
 {
-    return (*xcsf->env_vptr->env_impl_isreset)(xcsf);
+    return (*xcsf->env_vptr->env_impl_is_done)(xcsf);
 }
 
 /**

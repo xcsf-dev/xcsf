@@ -186,19 +186,33 @@ env_csv_free(const struct XCSF *xcsf)
     free(env);
 }
 
+/**
+ * @brief Dummy method since no csv environment reset is necessary.
+ * @param xcsf The XCSF data structure.
+ */
 void
 env_csv_reset(const struct XCSF *xcsf)
 {
     (void) xcsf;
 }
 
+/**
+ * @brief Returns whether the csv environment is in a terminal state.
+ * @param xcsf The XCSF data structure.
+ * @return True.
+ */
 _Bool
-env_csv_isreset(const struct XCSF *xcsf)
+env_csv_is_done(const struct XCSF *xcsf)
 {
     (void) xcsf;
     return true;
 }
 
+/**
+ * @brief Dummy method since no state is returned by the csv environment.
+ * @param xcsf The XCSF data structure.
+ * @return 0.
+ */
 const double *
 env_csv_get_state(const struct XCSF *xcsf)
 {
@@ -206,6 +220,12 @@ env_csv_get_state(const struct XCSF *xcsf)
     return 0;
 }
 
+/**
+ * @brief Dummy method since no action is executed by the csv environment.
+ * @param xcsf The XCSF data structure.
+ * @param action The selected action.
+ * @return 0.
+ */
 double
 env_csv_execute(const struct XCSF *xcsf, const int action)
 {
@@ -214,6 +234,11 @@ env_csv_execute(const struct XCSF *xcsf, const int action)
     return 0;
 }
 
+/**
+ * @brief Returns whether the csv environment is a multistep problem.
+ * @param xcsf The XCSF data structure.
+ * @return False.
+ */
 _Bool
 env_csv_multistep(const struct XCSF *xcsf)
 {
@@ -221,6 +246,11 @@ env_csv_multistep(const struct XCSF *xcsf)
     return false;
 }
 
+/**
+ * @brief Returns the maximum payoff value possible in the csv environment.
+ * @param xcsf The XCSF data structure.
+ * @return 0.
+ */
 double
 env_csv_maxpayoff(const struct XCSF *xcsf)
 {

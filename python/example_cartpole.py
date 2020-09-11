@@ -127,9 +127,9 @@ ftrial = []
 def replay(replay_size = 200):
     """Performs experience replay updates"""
     batch = random.sample(memory, min(len(memory), replay_size))
-    for state, action, reward, next_state, is_reset in batch:
+    for state, action, reward, next_state, done in batch:
         y_target = reward
-        if not is_reset: # predict next state payoff
+        if not done: # predict next state payoff
             prediction_array = xcs.predict(next_state.reshape(1, X_DIM))[0]
             y_target += xcs.GAMMA * np.max(prediction_array)
         xcs.init_trial()
@@ -150,11 +150,11 @@ for i in range(N):
         while True:
             xcs.init_step()
             action = xcs.decision(state, True)
-            next_state, reward, is_reset, info = env.step(action)
+            next_state, reward, done, info = env.step(action)
             xcs.end_step()
-            memory.append((state, action, reward, next_state, is_reset))
+            memory.append((state, action, reward, next_state, done))
             state = next_state
-            if is_reset:
+            if done:
                 break
         xcs.end_trial()
         replay() # perform experience replay update
@@ -171,13 +171,13 @@ for i in range(N):
                 ftrial.append(i * xcs.PERF_TRIALS)
             xcs.init_step()
             action = xcs.decision(state, False)
-            next_state, reward, is_reset, info = env.step(action)
-            err += xcs.error(reward, is_reset, MAX_PAYOFF)
+            next_state, reward, done, info = env.step(action)
+            err += xcs.error(reward, done, MAX_PAYOFF)
             episode_score += reward
             cnt += 1
             xcs.end_step()
             state = next_state
-            if is_reset:
+            if done:
                 if SAVE_GIF and i % 5 == 0 and j == 0:
                     for delay in range(100):
                         frames.append(frames[-1])
@@ -213,13 +213,13 @@ while True:
         env.render()
     xcs.init_step()
     action = xcs.decision(state, False)
-    next_state, reward, is_reset, info = env.step(action)
-    err += xcs.error(reward, is_reset, MAX_PAYOFF)
+    next_state, reward, done, info = env.step(action)
+    err += xcs.error(reward, done, MAX_PAYOFF)
     cnt += 1
     episode_score += reward
     xcs.end_step()
     state = next_state
-    if is_reset:
+    if done:
         if SAVE_GIF:
             for delay in range(100):
                 frames.append(frames[-1])

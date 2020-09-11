@@ -47,17 +47,17 @@ xcs_rl_trial(struct XCSF *xcsf, double *error, const _Bool explore)
     xcs_rl_init_trial(xcsf);
     *error = 0; // mean prediction error over all steps taken
     double reward = 0;
-    _Bool reset = false;
+    _Bool done = false;
     int steps = 0;
-    while (steps < xcsf->TELETRANSPORTATION && !reset) {
+    while (steps < xcsf->TELETRANSPORTATION && !done) {
         xcs_rl_init_step(xcsf);
         const double *state = env_get_state(xcsf);
         const int action = xcs_rl_decision(xcsf, state);
         reward = env_execute(xcsf, action);
-        reset = env_is_reset(xcsf);
-        xcs_rl_update(xcsf, state, action, reward, reset);
+        done = env_is_done(xcsf);
+        xcs_rl_update(xcsf, state, action, reward, done);
         *error +=
-            xcs_rl_error(xcsf, action, reward, reset, env_max_payoff(xcsf));
+            xcs_rl_error(xcsf, action, reward, done, env_max_payoff(xcsf));
         xcs_rl_end_step(xcsf, state, action, reward);
         ++steps;
     }
@@ -160,11 +160,11 @@ xcs_rl_end_step(struct XCSF *xcsf, const double *state, const int action,
  * @param state The input state.
  * @param action The action selected.
  * @param reward The reward from performing the action.
- * @param reset Whether the environment is in the reset state.
+ * @param done Whether the environment is in a terminal state.
  */
 void
 xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
-              const double reward, const _Bool reset)
+              const double reward, const _Bool done)
 {
     // create action set
     clset_action(xcsf, action);
@@ -177,8 +177,8 @@ xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
             ea(xcsf, &xcsf->prev_aset);
         }
     }
-    // in goal state: update current action set and run EA
-    if (reset) {
+    // in terminal state: update current action set and run EA
+    if (done) {
         clset_validate(&xcsf->aset);
         clset_update(xcsf, &xcsf->aset, state, &reward, true);
         if (xcsf->explore) {
@@ -192,13 +192,13 @@ xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
  * @param xcsf The XCSF data structure.
  * @param action The current action.
  * @param reward The current reward.
- * @param reset The current reset status.
+ * @param done Whether the environment is in a terminal state.
  * @param max_p The maximum payoff in the environment.
  * @return The prediction error.
  */
 double
 xcs_rl_error(struct XCSF *xcsf, const int action, const double reward,
-             const _Bool reset, const double max_p)
+             const _Bool done, const double max_p)
 {
     double error = 0;
     if (xcsf->prev_aset.list != NULL) {
@@ -206,7 +206,7 @@ xcs_rl_error(struct XCSF *xcsf, const int action, const double reward,
                       xcsf->prev_pred) /
             max_p;
     }
-    if (reset) {
+    if (done) {
         error += fabs(reward - pa_val(xcsf, action)) / max_p;
     }
     xcsf->error += (error - xcsf->error) * xcsf->BETA;

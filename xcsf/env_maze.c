@@ -153,7 +153,7 @@ void
 env_maze_reset(const struct XCSF *xcsf)
 {
     struct ENV_MAZE *env = xcsf->env;
-    env->reset = false;
+    env->done = false;
     do {
         env->xpos = irand_uniform(0, env->xsize);
         env->ypos = irand_uniform(0, env->ysize);
@@ -161,15 +161,15 @@ env_maze_reset(const struct XCSF *xcsf)
 }
 
 /**
- * @brief Returns whether the maze needs to be reset.
+ * @brief Returns whether the maze is in a terminal state.
  * @param xcsf The XCSF data structure.
- * @return Whether the maze needs to be reset.
+ * @return Whether the maze is in a terminal state.
  */
 _Bool
-env_maze_isreset(const struct XCSF *xcsf)
+env_maze_is_done(const struct XCSF *xcsf)
 {
     const struct ENV_MAZE *env = xcsf->env;
-    return env->reset;
+    return env->done;
 }
 
 /**
@@ -235,7 +235,7 @@ env_maze_execute(const struct XCSF *xcsf, const int action)
         case 'G':
             env->ypos = newy;
             env->xpos = newx;
-            env->reset = true;
+            env->done = true;
             reward = MAX_PAYOFF;
             break;
         default:

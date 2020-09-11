@@ -80,12 +80,12 @@ class Maze:
         self.state = np.zeros(8) #: current maze state
         self.x_pos = 0 #: current x position within the maze
         self.y_pos = 0 #: current y position within the maze
-        self.is_reset = False #: whether the goal state has been reached
+        self.done = False #: whether the goal state has been reached
         self.max_payoff = 1 #: reward for finding the goal
 
     def reset(self):
         """Resets a maze problem: generating a new random start position."""
-        self.is_reset = False
+        self.done = False
         while True:
             self.x_pos = random.randint(0, self.x_size - 1)
             self.y_pos = random.randint(0, self.y_size - 1)
@@ -137,7 +137,7 @@ class Maze:
         if s == '*':
             return 0
         if s in ('F', 'G'):
-            self.is_reset = True
+            self.done = True
             return self.max_payoff
         print("invalid maze type")
         sys.exit()
@@ -197,9 +197,9 @@ for i in range(N):
             maze.update_state()
             action = xcs.decision(maze.state, True) # explore
             reward = maze.execute(action)
-            xcs.update(reward, maze.is_reset)
+            xcs.update(reward, maze.done)
             xcs.end_step()
-            if maze.is_reset:
+            if maze.done:
                 break
         xcs.end_trial()
         # exploit trial
@@ -212,11 +212,11 @@ for i in range(N):
             maze.update_state()
             action = xcs.decision(maze.state, False) # exploit
             reward = maze.execute(action)
-            xcs.update(reward, maze.is_reset)
-            err += xcs.error(reward, maze.is_reset, maze.max_payoff)
+            xcs.update(reward, maze.done)
+            err += xcs.error(reward, maze.done, maze.max_payoff)
             cnt += 1
             xcs.end_step()
-            if maze.is_reset:
+            if maze.done:
                 break
         xcs.end_trial()
         steps[i] += cnt
@@ -316,9 +316,9 @@ def visualise(XOFF, YOFF):
         action = xcs.decision(maze.state, False)
         reward = maze.execute(action)
         agent.goto(XOFF + maze.x_pos * CELL_SIZE, YOFF + maze.y_pos * CELL_SIZE)
-        xcs.update(reward, maze.is_reset)
+        xcs.update(reward, maze.done)
         xcs.end_step()
-        if maze.is_reset:
+        if maze.done:
             break
     xcs.end_trial()
 

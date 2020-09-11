@@ -35,7 +35,7 @@ typedef struct ENV_CSV {
 } ENV_CSV;
 
 _Bool
-env_csv_isreset(const struct XCSF *xcsf);
+env_csv_is_done(const struct XCSF *xcsf);
 
 _Bool
 env_csv_multistep(const struct XCSF *xcsf);
@@ -62,7 +62,7 @@ env_csv_reset(const struct XCSF *xcsf);
  * @brief csv input environment implemented functions.
  */
 static struct EnvVtbl const env_csv_vtbl = {
-    &env_csv_isreset,   &env_csv_multistep, &env_csv_execute,
+    &env_csv_is_done,   &env_csv_multistep, &env_csv_execute,
     &env_csv_maxpayoff, &env_csv_get_state, &env_csv_free,
     &env_csv_reset
 };

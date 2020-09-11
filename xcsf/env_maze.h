@@ -38,11 +38,11 @@ typedef struct ENV_MAZE {
     int ypos; //!< Current y position
     int xsize; //!< Maze size in x dimension
     int ysize; //!< Maze size in y dimension
-    _Bool reset; //!< Whether the trial needs to be reset (e.g., in goal state)
+    _Bool done; //!< Whether the maze is in a terminal state.
 } ENV_MAZE;
 
 _Bool
-env_maze_isreset(const struct XCSF *xcsf);
+env_maze_is_done(const struct XCSF *xcsf);
 
 _Bool
 env_maze_multistep(const struct XCSF *xcsf);
@@ -69,7 +69,7 @@ env_maze_reset(const struct XCSF *xcsf);
  * @brief Maze environment implemented functions.
  */
 static struct EnvVtbl const env_maze_vtbl = {
-    &env_maze_isreset,   &env_maze_multistep, &env_maze_execute,
+    &env_maze_is_done,   &env_maze_multistep, &env_maze_execute,
     &env_maze_maxpayoff, &env_maze_get_state, &env_maze_free,
     &env_maze_reset
 };

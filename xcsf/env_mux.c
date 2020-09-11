@@ -70,7 +70,7 @@ env_mux_free(const struct XCSF *xcsf)
 }
 
 /**
- * @brief Returns a random problem instance.
+ * @brief Returns a random multiplexer problem instance.
  * @param xcsf The XCSF data structure.
  * @return A random multiplexer problem.
  */
@@ -85,9 +85,9 @@ env_mux_get_state(const struct XCSF *xcsf)
 }
 
 /**
- * @brief Returns the reward for executing the action.
+ * @brief Returns the reward for executing a multiplexer action.
  * @param xcsf The XCSF data structure.
- * @param action The selected class.
+ * @param action The selected action.
  * @return The payoff from performing the action.
  */
 double
@@ -115,12 +115,12 @@ env_mux_reset(const struct XCSF *xcsf)
 }
 
 /**
- * @brief Returns whether the multiplexer needs to be reset.
+ * @brief Returns whether the multiplexer is in a terminal state.
  * @param xcsf The XCSF data structure.
  * @return True.
  */
 _Bool
-env_mux_isreset(const struct XCSF *xcsf)
+env_mux_is_done(const struct XCSF *xcsf)
 {
     (void) xcsf;
     return true;
@@ -139,7 +139,7 @@ env_mux_maxpayoff(const struct XCSF *xcsf)
 }
 
 /**
- * @brief Returns whether the environment is a multistep problem.
+ * @brief Returns whether the multiplexer is a multistep problem.
  * @param xcsf The XCSF data structure.
  * @return False.
  */

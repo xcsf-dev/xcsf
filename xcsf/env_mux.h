@@ -35,7 +35,7 @@ typedef struct ENV_MUX {
 } ENV_MUX;
 
 _Bool
-env_mux_isreset(const struct XCSF *xcsf);
+env_mux_is_done(const struct XCSF *xcsf);
 
 _Bool
 env_mux_multistep(const struct XCSF *xcsf);
@@ -62,7 +62,7 @@ env_mux_reset(const struct XCSF *xcsf);
  * @brief Real multiplexer environment implemented functions.
  */
 static struct EnvVtbl const env_mux_vtbl = {
-    &env_mux_isreset,   &env_mux_multistep, &env_mux_execute,
+    &env_mux_is_done,   &env_mux_multistep, &env_mux_execute,
     &env_mux_maxpayoff, &env_mux_get_state, &env_mux_free,
     &env_mux_reset
 };
