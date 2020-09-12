@@ -269,7 +269,7 @@ Example runs (from `example_cartpole.py`) on the OpenAI Gym cart-pole problem:
 
 ## Contributing
 
-Contributions are always welcome.
+Contributions are always welcome. See `CONTRIBUTING.md` for details.
 
 *******************************************************************************
 
