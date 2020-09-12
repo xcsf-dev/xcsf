@@ -22,11 +22,9 @@ For example: `pylint python/example_rmux.py`
 
 ### CMake
 
-All CMakeLists should be linted and formatted using the style `.cmake-format.yml`. Linting is performed with [cmake-lint](https://github.com/cmake-lint/cmake-lint) and formatting with [cmake-format](https://github.com/cheshirekow/cmake_format).
+All CMakeLists should be formatted with [cmake-format](https://github.com/cheshirekow/cmake_format) using the style `.cmake-format.yml`.
 
 For example:
-
-`cmake-lint -c .cmake-format.yml CMakeLists.txt`
 
 `cmake-format -c .cmake-format.yml -i CMakeLists.txt`
 
