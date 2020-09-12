@@ -24,9 +24,7 @@ For example: `pylint python/example_rmux.py`
 
 All CMakeLists should be formatted with [cmake-format](https://github.com/cheshirekow/cmake_format) using the style `.cmake-format.yml`.
 
-For example:
-
-`cmake-format -c .cmake-format.yml -i CMakeLists.txt`
+For example: `cmake-format -c .cmake-format.yml -i CMakeLists.txt`
 
 ### Yaml
 
