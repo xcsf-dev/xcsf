@@ -275,4 +275,4 @@ Contributions are always welcome. See `CONTRIBUTING.md` for details.
 
 ## License
 
-This project is released under the GNU Public License v3.
+This project is released under the GNU Public License v3. See `LICENSE.md` for details.
