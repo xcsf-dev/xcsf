@@ -59,6 +59,9 @@ class XCS
   public:
     /**
      * @brief Constructor with default config.
+     * @param x_dim The dimensionality of the input variables.
+     * @param y_dim The dimensionality of the prediction variables.
+     * @param n_actions The total number of possible actions.
      */
     XCS(const int x_dim, const int y_dim, const int n_actions) :
         XCS(x_dim, y_dim, n_actions, "default.ini")
@@ -67,6 +70,10 @@ class XCS
 
     /**
      * @brief Constructor with a specified config.
+     * @param x_dim The dimensionality of the input variables.
+     * @param y_dim The dimensionality of the prediction variables.
+     * @param n_actions The total number of possible actions.
+     * @param filename The name of a parameter configuration file.
      */
     XCS(const int x_dim, const int y_dim, const int n_actions,
         const char *filename)
@@ -270,41 +277,41 @@ class XCS
      * @brief Creates the action set using the previously selected action,
      * updates the classifiers, and runs the EA on explore steps.
      * @param reward The reward from performing the action.
-     * @param reset Whether the environment is in the reset state.
+     * @param done Whether the environment is in a terminal state.
      */
     void
-    update(const double reward, const _Bool reset)
+    update(const double reward, const _Bool done)
     {
         payoff = reward;
-        xcs_rl_update(&xcs, state, action, payoff, reset);
+        xcs_rl_update(&xcs, state, action, payoff, done);
     }
 
     /**
      * @brief Creates the action set using a specified action,
      * updates the classifiers, and runs the EA on explore steps.
      * @param reward The reward from performing the action.
-     * @param reset Whether the environment is in the reset state.
+     * @param done Whether the environment is in a terminal state.
      * @param act The selected action.
      */
     void
-    update(const double reward, const _Bool reset, const int act)
+    update(const double reward, const _Bool done, const int act)
     {
         payoff = reward;
-        xcs_rl_update(&xcs, state, act, payoff, reset);
+        xcs_rl_update(&xcs, state, act, payoff, done);
     }
 
     /**
      * @brief Returns the reinforcement learning system prediction error.
      * @param reward The current reward.
-     * @param reset The current reset status.
+     * @param done Whether the environment is in a terminal state.
      * @param max_p The maximum payoff in the environment.
      * @return The prediction error.
      */
     double
-    error(const double reward, const _Bool reset, const double max_p)
+    error(const double reward, const _Bool done, const double max_p)
     {
         payoff = reward;
-        return xcs_rl_error(&xcs, action, payoff, reset, max_p);
+        return xcs_rl_error(&xcs, action, payoff, done, max_p);
     }
 
     /* Supervised learning */
@@ -398,7 +405,7 @@ class XCS
 
     /**
      * @brief Returns the XCSF prediction array for the provided input.
-     * @param x The input feature variables.
+     * @param x The input variables.
      * @return The prediction array values.
      */
     py::array_t<double>
