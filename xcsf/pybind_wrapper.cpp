@@ -60,7 +60,7 @@ class XCS
     /**
      * @brief Constructor with default config.
      */
-    XCS(int x_dim, int y_dim, int n_actions) :
+    XCS(const int x_dim, const int y_dim, const int n_actions) :
         XCS(x_dim, y_dim, n_actions, "default.ini")
     {
     }
@@ -68,7 +68,8 @@ class XCS
     /**
      * @brief Constructor with a specified config.
      */
-    XCS(int x_dim, int y_dim, int n_actions, const char *filename)
+    XCS(const int x_dim, const int y_dim, const int n_actions,
+        const char *filename)
     {
         param_init(&xcs);
         config_read(&xcs, filename);
@@ -130,7 +131,7 @@ class XCS
      * @return The total number of elements written.
      */
     size_t
-    save(char *filename)
+    save(const char *filename)
     {
         return xcsf_save(&xcs, filename);
     }
@@ -141,7 +142,7 @@ class XCS
      * @return The total number of elements read.
      */
     size_t
-    load(char *filename)
+    load(const char *filename)
     {
         return xcsf_load(&xcs, filename);
     }
@@ -189,7 +190,7 @@ class XCS
      * @param n_del The number of hidden layers to remove.
      */
     void
-    ae_to_classifier(int y_dim, int n_del)
+    ae_to_classifier(const int y_dim, const int n_del)
     {
         xcsf_ae_to_classifier(&xcs, y_dim, n_del);
     }
@@ -201,7 +202,8 @@ class XCS
      * @param print_pred Whether to print the prediction.
      */
     void
-    print_pop(_Bool print_cond, _Bool print_act, _Bool print_pred)
+    print_pop(const _Bool print_cond, const _Bool print_act,
+              const _Bool print_pred)
     {
         xcsf_print_pop(&xcs, print_cond, print_act, print_pred);
     }
@@ -255,7 +257,7 @@ class XCS
      * @return The selected action.
      */
     int
-    decision(py::array_t<double> input, _Bool explore)
+    decision(const py::array_t<double> input, const _Bool explore)
     {
         py::buffer_info buf = input.request();
         state = (double *) buf.ptr;
@@ -271,7 +273,7 @@ class XCS
      * @param reset Whether the environment is in the reset state.
      */
     void
-    update(double reward, _Bool reset)
+    update(const double reward, const _Bool reset)
     {
         payoff = reward;
         xcs_rl_update(&xcs, state, action, payoff, reset);
@@ -285,7 +287,7 @@ class XCS
      * @param act The selected action.
      */
     void
-    update(double reward, _Bool reset, int act)
+    update(const double reward, const _Bool reset, const int act)
     {
         payoff = reward;
         xcs_rl_update(&xcs, state, act, payoff, reset);
@@ -299,7 +301,7 @@ class XCS
      * @return The prediction error.
      */
     double
-    error(double reward, _Bool reset, double max_p)
+    error(const double reward, const _Bool reset, const double max_p)
     {
         payoff = reward;
         return xcs_rl_error(&xcs, action, payoff, reset, max_p);
@@ -316,10 +318,11 @@ class XCS
      * @return The average XCSF training error using the loss function.
      */
     double
-    fit(py::array_t<double> train_X, py::array_t<double> train_Y, _Bool shuffle)
+    fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
+        const _Bool shuffle)
     {
-        py::buffer_info buf_x = train_X.request();
-        py::buffer_info buf_y = train_Y.request();
+        const py::buffer_info buf_x = train_X.request();
+        const py::buffer_info buf_y = train_Y.request();
         if (buf_x.shape[0] != buf_y.shape[0]) {
             printf("error: training X and Y n_samples are not equal\n");
             exit(EXIT_FAILURE);
@@ -349,13 +352,14 @@ class XCS
      * @return The average XCSF training error using the loss function.
      */
     double
-    fit(py::array_t<double> train_X, py::array_t<double> train_Y,
-        py::array_t<double> test_X, py::array_t<double> test_Y, _Bool shuffle)
+    fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
+        const py::array_t<double> test_X, const py::array_t<double> test_Y,
+        const _Bool shuffle)
     {
-        py::buffer_info buf_train_x = train_X.request();
-        py::buffer_info buf_train_y = train_Y.request();
-        py::buffer_info buf_test_x = test_X.request();
-        py::buffer_info buf_test_y = test_Y.request();
+        const py::buffer_info buf_train_x = train_X.request();
+        const py::buffer_info buf_train_y = train_Y.request();
+        const py::buffer_info buf_test_x = test_X.request();
+        const py::buffer_info buf_test_y = test_Y.request();
         if (buf_train_x.shape[0] != buf_train_y.shape[0]) {
             printf("error: training X and Y n_samples are not equal\n");
             exit(EXIT_FAILURE);
@@ -365,13 +369,11 @@ class XCS
             exit(EXIT_FAILURE);
         }
         if (buf_train_x.shape[1] != buf_test_x.shape[1]) {
-            printf(
-                "error: number of training and testing X cols are not equal\n");
+            printf("error: number of train and test X cols are not equal\n");
             exit(EXIT_FAILURE);
         }
         if (buf_train_y.shape[1] != buf_test_y.shape[1]) {
-            printf(
-                "error: number of training and testing Y cols are not equal\n");
+            printf("error: number of train and test Y cols are not equal\n");
             exit(EXIT_FAILURE);
         }
         // load training data
@@ -400,12 +402,12 @@ class XCS
      * @return The prediction array values.
      */
     py::array_t<double>
-    predict(py::array_t<double> x)
+    predict(const py::array_t<double> x)
     {
         // inputs to predict
-        py::buffer_info buf_x = x.request();
+        const py::buffer_info buf_x = x.request();
         const int n_samples = buf_x.shape[0];
-        double *input = (double *) buf_x.ptr;
+        const double *input = (double *) buf_x.ptr;
         // predicted outputs
         double *output =
             (double *) malloc(sizeof(double) * n_samples * xcs.pa_size);
@@ -422,7 +424,7 @@ class XCS
      * @return The average XCSF error using the loss function.
      */
     double
-    score(py::array_t<double> test_X, py::array_t<double> test_Y)
+    score(const py::array_t<double> test_X, const py::array_t<double> test_Y)
     {
         return score(test_X, test_Y, 0);
     }
@@ -435,10 +437,11 @@ class XCS
      * @return The average XCSF error using the loss function.
      */
     double
-    score(py::array_t<double> test_X, py::array_t<double> test_Y, const int N)
+    score(const py::array_t<double> test_X, const py::array_t<double> test_Y,
+          const int N)
     {
-        py::buffer_info buf_x = test_X.request();
-        py::buffer_info buf_y = test_Y.request();
+        const py::buffer_info buf_x = test_X.request();
+        const py::buffer_info buf_y = test_Y.request();
         if (buf_x.shape[0] != buf_y.shape[0]) {
             printf("error: training X and Y n_samples are not equal\n");
             exit(EXIT_FAILURE);
@@ -905,19 +908,19 @@ class XCS
     }
 
     double
-    get_pop_mean_pred_eta(int layer)
+    get_pop_mean_pred_eta(const int layer)
     {
         return clset_mean_pred_eta(&xcs, &xcs.pset, layer);
     }
 
     double
-    get_pop_mean_pred_neurons(int layer)
+    get_pop_mean_pred_neurons(const int layer)
     {
         return clset_mean_pred_neurons(&xcs, &xcs.pset, layer);
     }
 
     double
-    get_pop_mean_pred_connections(int layer)
+    get_pop_mean_pred_connections(const int layer)
     {
         return clset_mean_pred_connections(&xcs, &xcs.pset, layer);
     }
@@ -929,13 +932,13 @@ class XCS
     }
 
     double
-    get_pop_mean_cond_connections(int layer)
+    get_pop_mean_cond_connections(const int layer)
     {
         return clset_mean_cond_connections(&xcs, &xcs.pset, layer);
     }
 
     double
-    get_pop_mean_cond_neurons(int layer)
+    get_pop_mean_cond_neurons(const int layer)
     {
         return clset_mean_cond_neurons(&xcs, &xcs.pset, layer);
     }
@@ -979,7 +982,7 @@ class XCS
     /* SETTERS */
 
     void
-    set_cond_num_neurons(py::list &a)
+    set_cond_num_neurons(const py::list &a)
     {
         memset(xcs.COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
         for (size_t i = 0; i < a.size(); ++i) {
@@ -988,7 +991,7 @@ class XCS
     }
 
     void
-    set_cond_max_neurons(py::list &a)
+    set_cond_max_neurons(const py::list &a)
     {
         memset(xcs.COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
         for (size_t i = 0; i < a.size(); ++i) {
@@ -997,7 +1000,7 @@ class XCS
     }
 
     void
-    set_pred_num_neurons(py::list &a)
+    set_pred_num_neurons(const py::list &a)
     {
         memset(xcs.PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
         for (size_t i = 0; i < a.size(); ++i) {
@@ -1006,7 +1009,7 @@ class XCS
     }
 
     void
-    set_pred_max_neurons(py::list &a)
+    set_pred_max_neurons(const py::list &a)
     {
         memset(xcs.PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
         for (size_t i = 0; i < a.size(); ++i) {
@@ -1015,379 +1018,379 @@ class XCS
     }
 
     void
-    set_omp_num_threads(int a)
+    set_omp_num_threads(const int a)
     {
         param_set_omp_num_threads(&xcs, a);
     }
 
     void
-    set_pop_init(_Bool a)
+    set_pop_init(const _Bool a)
     {
         param_set_pop_init(&xcs, a);
     }
 
     void
-    set_max_trials(int a)
+    set_max_trials(const int a)
     {
         param_set_max_trials(&xcs, a);
     }
 
     void
-    set_perf_trials(int a)
+    set_perf_trials(const int a)
     {
         param_set_perf_trials(&xcs, a);
     }
 
     void
-    set_pop_max_size(int a)
+    set_pop_max_size(const int a)
     {
         param_set_pop_size(&xcs, a);
     }
 
     void
-    set_loss_func(int a)
+    set_loss_func(const int a)
     {
         param_set_loss_func(&xcs, a);
     }
 
     void
-    set_alpha(double a)
+    set_alpha(const double a)
     {
         param_set_alpha(&xcs, a);
     }
 
     void
-    set_beta(double a)
+    set_beta(const double a)
     {
         param_set_beta(&xcs, a);
     }
 
     void
-    set_delta(double a)
+    set_delta(const double a)
     {
         param_set_delta(&xcs, a);
     }
 
     void
-    set_eps_0(double a)
+    set_eps_0(const double a)
     {
         param_set_eps_0(&xcs, a);
     }
 
     void
-    set_err_reduc(double a)
+    set_err_reduc(const double a)
     {
         param_set_err_reduc(&xcs, a);
     }
 
     void
-    set_fit_reduc(double a)
+    set_fit_reduc(const double a)
     {
         param_set_fit_reduc(&xcs, a);
     }
 
     void
-    set_init_error(double a)
+    set_init_error(const double a)
     {
         param_set_init_error(&xcs, a);
     }
 
     void
-    set_init_fitness(double a)
+    set_init_fitness(const double a)
     {
         param_set_init_fitness(&xcs, a);
     }
 
     void
-    set_nu(double a)
+    set_nu(const double a)
     {
         param_set_nu(&xcs, a);
     }
 
     void
-    set_m_probation(int a)
+    set_m_probation(const int a)
     {
         param_set_m_probation(&xcs, a);
     }
 
     void
-    set_theta_del(int a)
+    set_theta_del(const int a)
     {
         param_set_theta_del(&xcs, a);
     }
 
     void
-    set_act_type(int a)
+    set_act_type(const int a)
     {
         param_set_act_type(&xcs, a);
     }
 
     void
-    set_cond_type(int a)
+    set_cond_type(const int a)
     {
         param_set_cond_type(&xcs, a);
     }
 
     void
-    set_pred_type(int a)
+    set_pred_type(const int a)
     {
         param_set_pred_type(&xcs, a);
     }
 
     void
-    set_p_crossover(double a)
+    set_p_crossover(const double a)
     {
         param_set_p_crossover(&xcs, a);
     }
 
     void
-    set_theta_ea(double a)
+    set_theta_ea(const double a)
     {
         param_set_theta_ea(&xcs, a);
     }
 
     void
-    set_lambda(int a)
+    set_lambda(const int a)
     {
         param_set_lambda(&xcs, a);
     }
 
     void
-    set_ea_select_type(int a)
+    set_ea_select_type(const int a)
     {
         param_set_ea_select_type(&xcs, a);
     }
 
     void
-    set_ea_select_size(double a)
+    set_ea_select_size(const double a)
     {
         param_set_ea_select_size(&xcs, a);
     }
 
     void
-    set_max_con(double a)
+    set_max_con(const double a)
     {
         param_set_cond_max(&xcs, a);
     }
 
     void
-    set_min_con(double a)
+    set_min_con(const double a)
     {
         param_set_cond_min(&xcs, a);
     }
 
     void
-    set_cond_smin(double a)
+    set_cond_smin(const double a)
     {
         param_set_cond_smin(&xcs, a);
     }
 
     void
-    set_cond_bits(int a)
+    set_cond_bits(const int a)
     {
         param_set_cond_bits(&xcs, a);
     }
 
     void
-    set_cond_evolve_weights(_Bool a)
+    set_cond_evolve_weights(const _Bool a)
     {
         param_set_cond_evolve_weights(&xcs, a);
     }
 
     void
-    set_cond_evolve_neurons(_Bool a)
+    set_cond_evolve_neurons(const _Bool a)
     {
         param_set_cond_evolve_neurons(&xcs, a);
     }
 
     void
-    set_cond_evolve_functions(_Bool a)
+    set_cond_evolve_functions(const _Bool a)
     {
         param_set_cond_evolve_functions(&xcs, a);
     }
 
     void
-    set_cond_evolve_connectivity(_Bool a)
+    set_cond_evolve_connectivity(const _Bool a)
     {
         param_set_cond_evolve_connectivity(&xcs, a);
     }
 
     void
-    set_cond_output_activation(int a)
+    set_cond_output_activation(const int a)
     {
         param_set_cond_output_activation(&xcs, a);
     }
 
     void
-    set_cond_hidden_activation(int a)
+    set_cond_hidden_activation(const int a)
     {
         param_set_cond_hidden_activation(&xcs, a);
     }
 
     void
-    set_pred_output_activation(int a)
+    set_pred_output_activation(const int a)
     {
         param_set_pred_output_activation(&xcs, a);
     }
 
     void
-    set_pred_hidden_activation(int a)
+    set_pred_hidden_activation(const int a)
     {
         param_set_pred_hidden_activation(&xcs, a);
     }
 
     void
-    set_pred_momentum(double a)
+    set_pred_momentum(const double a)
     {
         param_set_pred_momentum(&xcs, a);
     }
 
     void
-    set_pred_decay(double a)
+    set_pred_decay(const double a)
     {
         param_set_pred_decay(&xcs, a);
     }
 
     void
-    set_pred_evolve_weights(_Bool a)
+    set_pred_evolve_weights(const _Bool a)
     {
         param_set_pred_evolve_weights(&xcs, a);
     }
 
     void
-    set_pred_evolve_neurons(_Bool a)
+    set_pred_evolve_neurons(const _Bool a)
     {
         param_set_pred_evolve_neurons(&xcs, a);
     }
 
     void
-    set_pred_evolve_functions(_Bool a)
+    set_pred_evolve_functions(const _Bool a)
     {
         param_set_pred_evolve_functions(&xcs, a);
     }
 
     void
-    set_pred_evolve_connectivity(_Bool a)
+    set_pred_evolve_connectivity(const _Bool a)
     {
         param_set_pred_evolve_connectivity(&xcs, a);
     }
 
     void
-    set_pred_evolve_eta(_Bool a)
+    set_pred_evolve_eta(const _Bool a)
     {
         param_set_pred_evolve_eta(&xcs, a);
     }
 
     void
-    set_pred_sgd_weights(_Bool a)
+    set_pred_sgd_weights(const _Bool a)
     {
         param_set_pred_sgd_weights(&xcs, a);
     }
 
     void
-    set_pred_reset(_Bool a)
+    set_pred_reset(const _Bool a)
     {
         param_set_pred_reset(&xcs, a);
     }
 
     void
-    set_max_neuron_grow(int a)
+    set_max_neuron_grow(const int a)
     {
         param_set_max_neuron_grow(&xcs, a);
     }
 
     void
-    set_stateful(_Bool a)
+    set_stateful(const _Bool a)
     {
         param_set_stateful(&xcs, a);
     }
 
     void
-    set_max_k(int a)
+    set_max_k(const int a)
     {
         param_set_max_k(&xcs, a);
     }
 
     void
-    set_max_t(int a)
+    set_max_t(const int a)
     {
         param_set_max_t(&xcs, a);
     }
 
     void
-    set_gp_num_cons(int a)
+    set_gp_num_cons(const int a)
     {
         param_set_gp_num_cons(&xcs, a);
     }
 
     void
-    set_gp_init_depth(int a)
+    set_gp_init_depth(const int a)
     {
         param_set_gp_init_depth(&xcs, a);
     }
 
     void
-    set_pred_eta(double a)
+    set_pred_eta(const double a)
     {
         param_set_pred_eta(&xcs, a);
     }
 
     void
-    set_cond_eta(double a)
+    set_cond_eta(const double a)
     {
         param_set_cond_eta(&xcs, a);
     }
 
     void
-    set_pred_x0(double a)
+    set_pred_x0(const double a)
     {
         param_set_pred_x0(&xcs, a);
     }
 
     void
-    set_pred_rls_scale_factor(double a)
+    set_pred_rls_scale_factor(const double a)
     {
         param_set_pred_rls_scale_factor(&xcs, a);
     }
 
     void
-    set_pred_rls_lambda(double a)
+    set_pred_rls_lambda(const double a)
     {
         param_set_pred_rls_lambda(&xcs, a);
     }
 
     void
-    set_theta_sub(int a)
+    set_theta_sub(const int a)
     {
         param_set_theta_sub(&xcs, a);
     }
 
     void
-    set_ea_subsumption(_Bool a)
+    set_ea_subsumption(const _Bool a)
     {
         param_set_ea_subsumption(&xcs, a);
     }
 
     void
-    set_set_subsumption(_Bool a)
+    set_set_subsumption(const _Bool a)
     {
         param_set_set_subsumption(&xcs, a);
     }
 
     void
-    set_teletransportation(int a)
+    set_teletransportation(const int a)
     {
         param_set_teletransportation(&xcs, a);
     }
 
     void
-    set_gamma(double a)
+    set_gamma(const double a)
     {
         param_set_gamma(&xcs, a);
     }
 
     void
-    set_p_explore(double a)
+    set_p_explore(const double a)
     {
         param_set_p_explore(&xcs, a);
     }
@@ -1397,22 +1400,22 @@ PYBIND11_MODULE(xcsf, m)
 {
     random_init();
 
-    double (XCS::*fit1)(py::array_t<double>, py::array_t<double>, _Bool) =
-        &XCS::fit;
-    double (XCS::*fit2)(py::array_t<double>, py::array_t<double>,
-                        py::array_t<double>, py::array_t<double>, _Bool) =
-        &XCS::fit;
-    double (XCS::*score1)(py::array_t<double> test_X,
-                          py::array_t<double> test_Y) = &XCS::score;
-    double (XCS::*score2)(py::array_t<double> test_X,
-                          py::array_t<double> test_Y, const int N) =
+    double (XCS::*fit1)(const py::array_t<double>, const py::array_t<double>,
+                        const _Bool) = &XCS::fit;
+    double (XCS::*fit2)(const py::array_t<double>, const py::array_t<double>,
+                        const py::array_t<double>, const py::array_t<double>,
+                        const _Bool) = &XCS::fit;
+    double (XCS::*score1)(const py::array_t<double> test_X,
+                          const py::array_t<double> test_Y) = &XCS::score;
+    double (XCS::*score2)(const py::array_t<double> test_X,
+                          const py::array_t<double> test_Y, const int N) =
         &XCS::score;
-    void (XCS::*update1)(double, _Bool) = &XCS::update;
-    void (XCS::*update2)(double, _Bool, int) = &XCS::update;
+    void (XCS::*update1)(const double, const _Bool) = &XCS::update;
+    void (XCS::*update2)(const double, const _Bool, const int) = &XCS::update;
 
     py::class_<XCS>(m, "XCS")
-        .def(py::init<int, int, int>())
-        .def(py::init<int, int, int, const char *>())
+        .def(py::init<const int, const int, const int>())
+        .def(py::init<const int, const int, const int, const char *>())
         .def("fit", fit1)
         .def("fit", fit2)
         .def("predict", &XCS::predict)
