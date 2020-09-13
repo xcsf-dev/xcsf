@@ -12,7 +12,7 @@ All C/C++ code should be formatted with [clang-format](https://clang.llvm.org/do
 
 For example: `clang-format -i -style=file */*.c */*.h */*.cpp`
 
-Each data structure and function should be documented with minimal [Doxygen comments](https://www.doxygen.nl/manual/docblocks.html). Try to follow the style of existing code.
+Each data structure and function should be documented with minimal [Doxygen comments](https://www.doxygen.nl/manual/docblocks.html). Please try to follow the style of existing code and use [const-correctness](https://en.wikipedia.org/wiki/Const_(computer_programming)).
 
 ### Python
 
