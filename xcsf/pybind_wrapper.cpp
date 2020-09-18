@@ -224,13 +224,12 @@ class XCS
      * @param action The selected action.
      * @param reward The reward for having performed the action.
      */
-    void
-    update_sar(const py::array_t<double> input, const int action,
-               const double reward)
+    double
+    fit(const py::array_t<double> input, const int action, const double reward)
     {
         py::buffer_info buf = input.request();
         state = (double *) buf.ptr;
-        xcs_rl_update_sar(&xcs, state, action, reward);
+        return xcs_rl_fit(&xcs, state, action, reward);
     }
 
     /**
@@ -1423,9 +1422,11 @@ PYBIND11_MODULE(xcsf, m)
 {
     random_init();
 
-    double (XCS::*fit1)(const py::array_t<double>, const py::array_t<double>,
-                        const _Bool) = &XCS::fit;
+    double (XCS::*fit1)(const py::array_t<double>, const int, const double) =
+        &XCS::fit;
     double (XCS::*fit2)(const py::array_t<double>, const py::array_t<double>,
+                        const _Bool) = &XCS::fit;
+    double (XCS::*fit3)(const py::array_t<double>, const py::array_t<double>,
                         const py::array_t<double>, const py::array_t<double>,
                         const _Bool) = &XCS::fit;
     double (XCS::*score1)(const py::array_t<double> test_X,
@@ -1441,6 +1442,7 @@ PYBIND11_MODULE(xcsf, m)
         .def(py::init<const int, const int, const int, const char *>())
         .def("fit", fit1)
         .def("fit", fit2)
+        .def("fit", fit3)
         .def("predict", &XCS::predict)
         .def("score", score1)
         .def("score", score2)
@@ -1456,7 +1458,6 @@ PYBIND11_MODULE(xcsf, m)
         .def("init_step", &XCS::init_step)
         .def("end_step", &XCS::end_step)
         .def("decision", &XCS::decision)
-        .def("update_sar", &XCS::update_sar)
         .def("update", update1)
         .def("update", update2)
         .def("error", &XCS::error)

@@ -134,7 +134,7 @@ def replay(replay_size=5000):
         if not done:
             prediction_array = xcs.predict(next_state.reshape(1,-1))[0]
             y_target += GAMMA * np.max(prediction_array)
-        xcs.update_sar(state, action, y_target)
+        xcs.fit(state, action, y_target)
 
 def egreedy_action(state):
     """ Selects an action using an epsilon greedy policy """

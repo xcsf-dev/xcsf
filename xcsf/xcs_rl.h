@@ -52,6 +52,6 @@ void
 xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
               const double reward, const _Bool reset);
 
-void
-xcs_rl_update_sar(struct XCSF *xcsf, const double *state, const int action,
-                  const double reward);
+double
+xcs_rl_fit(struct XCSF *xcsf, const double *state, const int action,
+           const double reward);
