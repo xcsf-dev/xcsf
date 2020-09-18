@@ -46,7 +46,7 @@ fscore = []
 ftrial = []
 
 def save_frames_as_gif(path='./', filename='animation.gif'):
-    """Save animation as gif"""
+    """ Save animation as gif """
     rcParams['font.family'] = 'monospace'
     fig = plt.figure(dpi=90)
     fig.set_size_inches(3, 3)
@@ -70,11 +70,9 @@ def save_frames_as_gif(path='./', filename='animation.gif'):
 
 xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
-xcs.OMP_NUM_THREADS = 8
-xcs.POP_SIZE = 500
-xcs.PERF_TRIALS = 100
+xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
+xcs.POP_SIZE = 500 # maximum population size
 xcs.EPS_0 = 0.001 # target error
-xcs.GAMMA = 0.95 # discount rate for delayed reward
 xcs.BETA = 0.05 # classifier parameter update rate
 xcs.ALPHA = 1 # accuracy offset
 xcs.NU = 5 # accuracy slope
@@ -110,9 +108,10 @@ xcs.PRED_SGD_WEIGHTS = True
 xcs.PRED_ETA = 0.0001 # maximum gradient descent rate
 xcs.PRED_DECAY = 0 # weight decay
 
-xcs.P_EXPLORE = 1 # initial probability of exploring on a learning step
-MIN_EXPLORE = 0.01 # the minimum exploration rate
-EXPLORE_DECAY = 0.995 # the decay of exploration after each batch replay
+GAMMA = 0.95 # discount rate for delayed reward
+epsilon = 1 # initial probability of exploring
+EPSILON_MIN = 0.1 # the minimum exploration rate
+EPSILON_DECAY = 0.9 # the decay of exploration after each batch replay
 
 xcs.print_params()
 
@@ -120,84 +119,84 @@ xcs.print_params()
 # Execute experiment
 #####################
 
+total_steps = 0 # total number of steps performed
 MAX_EPISODES = 2000 # maximum number of episodes to run
 N = 100 # number of episodes to average performance
-memory = deque(maxlen = 50000)
-scores = deque(maxlen = N)
+memory = deque(maxlen = 50000) # memory buffer for experience replay
+scores = deque(maxlen = N) # scores used to calculate moving average
 
-def replay(replay_size = 5000):
-    """Performs experience replay updates"""
+def replay(replay_size=5000):
+    """ Performs experience replay updates """
     batch_size = min(len(memory), replay_size)
     batch = random.sample(memory, batch_size)
     for state, action, reward, next_state, done in batch:
         y_target = reward
         if not done:
-            prediction_array = xcs.predict(next_state.reshape(1, X_DIM))[0]
-            y_target += xcs.GAMMA * np.max(prediction_array)
-        xcs.init_trial()
-        xcs.init_step()
-        xcs.decision(state, True) # create match set and forward prop state
-        xcs.update(y_target, True, action) # create action set and update
-        xcs.end_step()
-        xcs.end_trial()
-    if xcs.P_EXPLORE > MIN_EXPLORE:
-        xcs.P_EXPLORE *= EXPLORE_DECAY
+            prediction_array = xcs.predict(next_state.reshape(1,-1))[0]
+            y_target += GAMMA * np.max(prediction_array)
+        xcs.update_sar(state, action, y_target)
 
-def episode(learn, episode_nr, gif):
-    """Performs a single episode, recording learning episodes"""
+def egreedy_action(state):
+    """ Selects an action using an epsilon greedy policy """
+    if np.random.rand() < epsilon:
+        return random.randrange(N_ACTIONS)
+    prediction_array = xcs.predict(state.reshape(1,-1))[0]
+    return np.argmax(prediction_array)
+
+def episode(episode_nr, create_gif):
+    """ Executes a single episode, saving to memory buffer """
     episode_score = 0
-    steps = 0
+    episode_steps = 0
     state = env.reset()
-    xcs.init_trial()
     while True:
-        xcs.init_step()
-        action = xcs.decision(state, learn)
+        action = egreedy_action(state)
         next_state, reward, done, _ = env.step(action)
-        xcs.end_step()
-        steps += 1
+        episode_steps += 1
         episode_score += reward
-        if learn:
-            memory.append((state, action, reward, next_state, done))
-        if gif:
+        memory.append((state, action, reward, next_state, done))
+        if create_gif:
             frames.append(env.render(mode="rgb_array"))
             fscore.append(episode_score)
             ftrial.append(episode_nr)
         if done:
-            if gif:
+            if create_gif:
                 for _ in range(100):
                     frames.append(frames[-1])
                     fscore.append(fscore[-1])
                     ftrial.append(ftrial[-1])
             break
         state = next_state
-    xcs.end_trial()
-    if not learn:
-        scores.append(episode_score)
-    return episode_score
+    return episode_score, episode_steps
 
 # learning episodes
-for j in range(MAX_EPISODES):
-    # learning episode
-    episode(True, j, False)
-    # experience replay update
+for ep in range(MAX_EPISODES):
+    gif = False
+    if SAVE_GIF and ep % SAVE_GIF_EPISODES == 0:
+        gif = True
+    # execute a single episode
+    ep_score, ep_steps = episode(ep, gif)
+    # perform experience replay updates
     replay()
-    # exploit episode for monitoring performance
-    if SAVE_GIF and j % SAVE_GIF_EPISODES == 0:
-        episode(False, j, True)
-    else:
-        episode(False, j, False)
+    # display performance
+    total_steps += ep_steps
+    scores.append(ep_score)
     mean_score = np.mean(scores)
-    print ("episodes=%d mean_score=%.2f" % (j, mean_score))
+    print ("episodes=%d steps=%d score=%.2f epsilon=%.5f" %
+           (ep, total_steps, mean_score, epsilon))
     # is the problem solved?
-    if j > 99 and mean_score > env.spec.reward_threshold:
+    if ep > 99 and mean_score > env.spec.reward_threshold:
         print("solved after %d episodes: mean score %.2f > %.2f" %
-              (j, mean_score, env.spec.reward_threshold))
+              (ep, mean_score, env.spec.reward_threshold))
         break
+    # decay the exploration rate
+    if epsilon > EPSILON_MIN:
+        epsilon *= EPSILON_DECAY
 
 # final exploit episode
-score = episode(False, j, SAVE_GIF)
-perf = (score / env._max_episode_steps) * 100
-print("exploit: perf=%.2f%%, score=%.2f" % (perf, score))
+epsilon = 0
+ep_score, ep_steps = episode(ep, SAVE_GIF)
+perf = (ep_score / env._max_episode_steps) * 100
+print("exploit: perf=%.2f%%, score=%.2f" % (perf, ep_score))
 
 # close Gym
 env.close()
