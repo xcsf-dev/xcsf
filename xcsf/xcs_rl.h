@@ -51,3 +51,7 @@ xcs_rl_init_trial(struct XCSF *xcsf);
 void
 xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
               const double reward, const _Bool reset);
+
+void
+xcs_rl_update_sar(struct XCSF *xcsf, const double *state, const int action,
+                  const double reward);

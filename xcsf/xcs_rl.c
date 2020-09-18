@@ -93,6 +93,27 @@ xcs_rl_exp(struct XCSF *xcsf)
 }
 
 /**
+ * @brief Creates and updates an action set for a given (state, action, reward).
+ * @param xcsf The XCSF data structure.
+ * @param state The input state to match.
+ * @param action The selected action.
+ * @param reward The reward for having performed the action.
+ */
+void
+xcs_rl_update_sar(struct XCSF *xcsf, const double *state, const int action,
+                  const double reward)
+{
+    xcs_rl_init_trial(xcsf);
+    xcs_rl_init_step(xcsf);
+    clset_match(xcsf, state);
+    pa_build(xcsf, state);
+    param_set_explore(xcsf, true); // ensure EA is executed
+    xcs_rl_update(xcsf, state, action, reward, true);
+    xcs_rl_end_step(xcsf, state, action, reward);
+    xcs_rl_end_trial(xcsf);
+}
+
+/**
  * @brief Initialises a reinforcement learning trial.
  * @param xcsf The XCSF data structure.
  */

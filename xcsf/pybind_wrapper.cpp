@@ -218,6 +218,22 @@ class XCS
     /* Reinforcement learning */
 
     /**
+     * @brief Creates and updates an action set for a given (state, action,
+     * reward).
+     * @param input The input state to match.
+     * @param action The selected action.
+     * @param reward The reward for having performed the action.
+     */
+    void
+    update_sar(const py::array_t<double> input, const int action,
+               const double reward)
+    {
+        py::buffer_info buf = input.request();
+        state = (double *) buf.ptr;
+        xcs_rl_update_sar(&xcs, state, action, reward);
+    }
+
+    /**
      * @brief Initialises a reinforcement learning trial.
      */
     void
@@ -1440,6 +1456,7 @@ PYBIND11_MODULE(xcsf, m)
         .def("init_step", &XCS::init_step)
         .def("end_step", &XCS::end_step)
         .def("decision", &XCS::decision)
+        .def("update_sar", &XCS::update_sar)
         .def("update", update1)
         .def("update", update2)
         .def("error", &XCS::error)
