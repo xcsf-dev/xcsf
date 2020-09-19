@@ -98,7 +98,7 @@ xcs_rl_exp(struct XCSF *xcsf)
  * @param state The input state to match.
  * @param action The selected action.
  * @param reward The reward for having performed the action.
- * @return The (absolute) prediction error.
+ * @return The prediction error.
  */
 double
 xcs_rl_fit(struct XCSF *xcsf, const double *state, const int action,
@@ -108,7 +108,8 @@ xcs_rl_fit(struct XCSF *xcsf, const double *state, const int action,
     xcs_rl_init_step(xcsf);
     clset_match(xcsf, state);
     pa_build(xcsf, state);
-    const double error = fabs(pa_val(xcsf, action) - reward);
+    const double prediction = pa_val(xcsf, action);
+    const double error = (xcsf->loss_ptr)(xcsf, &prediction, &reward);
     param_set_explore(xcsf, true); // ensure EA is executed
     xcs_rl_update(xcsf, state, action, reward, true);
     xcs_rl_end_step(xcsf, state, action, reward);

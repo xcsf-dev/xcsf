@@ -222,7 +222,7 @@ class XCS
      * @param input The input state to match.
      * @param action The selected action.
      * @param reward The reward for having performed the action.
-     * @return The (absolute) prediction error.
+     * @return The prediction error.
      */
     double
     fit(const py::array_t<double> input, const int action, const double reward)
