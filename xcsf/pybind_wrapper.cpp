@@ -467,6 +467,16 @@ class XCS
 
     /* GETTERS */
 
+    /**
+     * @brief Returns the current system error.
+     * @return Moving average of the system error, updated with step size BETA.
+     */
+    double
+    error(void)
+    {
+        return xcs.error;
+    }
+
     py::list
     get_cond_num_neurons(void)
     {
@@ -1421,15 +1431,21 @@ PYBIND11_MODULE(xcsf, m)
                           const py::array_t<double> test_Y, const int N) =
         &XCS::score;
 
+    double (XCS::*error1)(void) = &XCS::error;
+    double (XCS::*error2)(const double, const _Bool, const double) =
+        &XCS::error;
+
     py::class_<XCS>(m, "XCS")
         .def(py::init<const int, const int, const int>())
         .def(py::init<const int, const int, const int, const char *>())
         .def("fit", fit1)
         .def("fit", fit2)
         .def("fit", fit3)
-        .def("predict", &XCS::predict)
         .def("score", score1)
         .def("score", score2)
+        .def("error", error1)
+        .def("error", error2)
+        .def("predict", &XCS::predict)
         .def("save", &XCS::save)
         .def("load", &XCS::load)
         .def("store", &XCS::store)
@@ -1443,7 +1459,6 @@ PYBIND11_MODULE(xcsf, m)
         .def("end_step", &XCS::end_step)
         .def("decision", &XCS::decision)
         .def("update", &XCS::update)
-        .def("error", &XCS::error)
         .def_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads,
                       &XCS::set_omp_num_threads)
         .def_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
