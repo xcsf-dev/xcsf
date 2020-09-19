@@ -112,6 +112,7 @@ xcs_rl_fit(struct XCSF *xcsf, const double *state, const int action,
     xcs_rl_update(xcsf, state, action, reward, true);
     xcs_rl_end_step(xcsf, state, action, reward);
     xcs_rl_end_trial(xcsf);
+    xcsf->error += (error - xcsf->error) * xcsf->BETA;
     return error;
 }
 
