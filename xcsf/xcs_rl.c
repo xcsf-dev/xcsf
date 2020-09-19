@@ -98,6 +98,7 @@ xcs_rl_exp(struct XCSF *xcsf)
  * @param state The input state to match.
  * @param action The selected action.
  * @param reward The reward for having performed the action.
+ * @return The (absolute) prediction error.
  */
 double
 xcs_rl_fit(struct XCSF *xcsf, const double *state, const int action,

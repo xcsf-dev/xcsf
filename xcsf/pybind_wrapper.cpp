@@ -218,11 +218,11 @@ class XCS
     /* Reinforcement learning */
 
     /**
-     * @brief Creates and updates an action set for a given (state, action,
-     * reward).
+     * @brief Creates/updates an action set for a given (state, action, reward).
      * @param input The input state to match.
      * @param action The selected action.
      * @param reward The reward for having performed the action.
+     * @return The (absolute) prediction error.
      */
     double
     fit(const py::array_t<double> input, const int action, const double reward)
@@ -299,20 +299,6 @@ class XCS
     {
         payoff = reward;
         xcs_rl_update(&xcs, state, action, payoff, done);
-    }
-
-    /**
-     * @brief Creates the action set using a specified action,
-     * updates the classifiers, and runs the EA on explore steps.
-     * @param reward The reward from performing the action.
-     * @param done Whether the environment is in a terminal state.
-     * @param act The selected action.
-     */
-    void
-    update(const double reward, const _Bool done, const int act)
-    {
-        payoff = reward;
-        xcs_rl_update(&xcs, state, act, payoff, done);
     }
 
     /**
@@ -1434,8 +1420,6 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*score2)(const py::array_t<double> test_X,
                           const py::array_t<double> test_Y, const int N) =
         &XCS::score;
-    void (XCS::*update1)(const double, const _Bool) = &XCS::update;
-    void (XCS::*update2)(const double, const _Bool, const int) = &XCS::update;
 
     py::class_<XCS>(m, "XCS")
         .def(py::init<const int, const int, const int>())
@@ -1458,8 +1442,7 @@ PYBIND11_MODULE(xcsf, m)
         .def("init_step", &XCS::init_step)
         .def("end_step", &XCS::end_step)
         .def("decision", &XCS::decision)
-        .def("update", update1)
-        .def("update", update2)
+        .def("update", &XCS::update)
         .def("error", &XCS::error)
         .def_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads,
                       &XCS::set_omp_num_threads)
