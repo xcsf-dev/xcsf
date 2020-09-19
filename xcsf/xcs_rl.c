@@ -227,13 +227,13 @@ xcs_rl_error(struct XCSF *xcsf, const int action, const double reward,
              const _Bool done, const double max_p)
 {
     double error = 0;
+    const double prediction = pa_val(xcsf, action);
     if (xcsf->prev_aset.list != NULL) {
-        error += fabs(xcsf->GAMMA * pa_val(xcsf, action) + xcsf->prev_reward -
-                      xcsf->prev_pred) /
-            max_p;
+        const double p = xcsf->GAMMA * prediction + xcsf->prev_reward;
+        error += (xcsf->loss_ptr)(xcsf, &xcsf->prev_pred, &p) / max_p;
     }
     if (done) {
-        error += fabs(reward - pa_val(xcsf, action)) / max_p;
+        error += (xcsf->loss_ptr)(xcsf, &prediction, &reward) / max_p;
     }
     xcsf->error += (error - xcsf->error) * xcsf->BETA;
     return error;
