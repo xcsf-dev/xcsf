@@ -385,6 +385,8 @@ clset_action(struct XCSF *xcsf, const int action)
         }
         iter = iter->next;
     }
+    // update statistics
+    xcsf->asetsize += (xcsf->aset.size - xcsf->asetsize) * xcsf->BETA;
 }
 
 /**

@@ -703,6 +703,7 @@ param_init(struct XCSF *xcsf)
     xcsf->time = 0;
     xcsf->error = xcsf->EPS_0;
     xcsf->msetsize = 0;
+    xcsf->asetsize = 0;
     xcsf->mfrac = 0;
     param_defaults_cl_action(xcsf);
     param_defaults_cl_condition(xcsf);
@@ -756,6 +757,7 @@ param_save(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
     s += fwrite(&xcsf->error, sizeof(double), 1, fp);
     s += fwrite(&xcsf->msetsize, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->asetsize, sizeof(double), 1, fp);
     s += fwrite(&xcsf->mfrac, sizeof(double), 1, fp);
     s += fwrite(&xcsf->explore, sizeof(_Bool), 1, fp);
     s += fwrite(&xcsf->x_dim, sizeof(int), 1, fp);
@@ -785,6 +787,7 @@ param_load(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->time, sizeof(int), 1, fp);
     s += fread(&xcsf->error, sizeof(double), 1, fp);
     s += fread(&xcsf->msetsize, sizeof(double), 1, fp);
+    s += fread(&xcsf->asetsize, sizeof(double), 1, fp);
     s += fread(&xcsf->mfrac, sizeof(double), 1, fp);
     s += fread(&xcsf->explore, sizeof(_Bool), 1, fp);
     s += fread(&xcsf->x_dim, sizeof(int), 1, fp);

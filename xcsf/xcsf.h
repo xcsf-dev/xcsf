@@ -106,6 +106,7 @@ typedef struct SET {
 typedef struct XCSF {
     double error; //!< Average system error
     double msetsize; //!< Average match set size
+    double asetsize; //!< Average action set size
     double mfrac; //!< Generalisation measure
     double GAMMA; //!< Discount factor for multi-step reward
     double P_EXPLORE; //!< Probability of exploring vs. exploiting

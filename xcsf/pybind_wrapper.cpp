@@ -974,6 +974,12 @@ class XCS
     }
 
     double
+    get_asetsize(void)
+    {
+        return xcs.asetsize;
+    }
+
+    double
     get_mfrac(void)
     {
         return xcs.mfrac;
@@ -1584,6 +1590,7 @@ PYBIND11_MODULE(xcsf, m)
         .def("pop_mean_cond_connections", &XCS::get_pop_mean_cond_connections)
         .def("print_pop", &XCS::print_pop)
         .def("msetsize", &XCS::get_msetsize)
+        .def("asetsize", &XCS::get_asetsize)
         .def("mfrac", &XCS::get_mfrac)
         .def("print_params", &XCS::print_params)
         .def("pred_expand", &XCS::pred_expand)

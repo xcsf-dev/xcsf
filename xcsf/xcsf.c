@@ -39,6 +39,7 @@ xcsf_init(struct XCSF *xcsf)
     xcsf->time = 0;
     xcsf->error = xcsf->EPS_0;
     xcsf->msetsize = 0;
+    xcsf->asetsize = 0;
     xcsf->mfrac = 0;
     clset_init(&xcsf->pset);
     clset_init(&xcsf->prev_pset);
@@ -54,6 +55,7 @@ xcsf_free(struct XCSF *xcsf)
     xcsf->time = 0;
     xcsf->error = xcsf->EPS_0;
     xcsf->msetsize = 0;
+    xcsf->asetsize = 0;
     xcsf->mfrac = 0;
     clset_kill(xcsf, &xcsf->pset);
     clset_kill(xcsf, &xcsf->prev_pset);
