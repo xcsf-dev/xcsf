@@ -115,6 +115,8 @@ cl_cover(const struct XCSF *xcsf, struct CL *c, const double *x,
     cl_rand(xcsf, c);
     cond_cover(xcsf, c, x);
     act_cover(xcsf, c, x, action);
+    c->m = true;
+    c->action = action;
 }
 
 /**
