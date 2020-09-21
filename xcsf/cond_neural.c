@@ -32,25 +32,6 @@
 #include "neural_layer_recurrent.h"
 #include "neural_layer_softmax.h"
 
-static uint32_t
-cond_neural_lopt(const struct XCSF *xcsf)
-{
-    uint32_t lopt = 0;
-    if (xcsf->COND_EVOLVE_WEIGHTS) {
-        lopt |= LAYER_EVOLVE_WEIGHTS;
-    }
-    if (xcsf->COND_EVOLVE_NEURONS) {
-        lopt |= LAYER_EVOLVE_NEURONS;
-    }
-    if (xcsf->COND_EVOLVE_FUNCTIONS) {
-        lopt |= LAYER_EVOLVE_FUNCTIONS;
-    }
-    if (xcsf->COND_EVOLVE_CONNECTIVITY) {
-        lopt |= LAYER_EVOLVE_CONNECT;
-    }
-    return lopt;
-}
-
 /**
  * @brief Creates and initialises a neural network condition.
  * @details Uses fully-connected layers.
@@ -63,7 +44,7 @@ cond_neural_init(const struct XCSF *xcsf, struct CL *c)
     struct COND_NEURAL *new = malloc(sizeof(struct COND_NEURAL));
     neural_init(xcsf, &new->net);
     // hidden layers
-    uint32_t lopt = cond_neural_lopt(xcsf);
+    uint32_t lopt = neural_cond_lopt(xcsf);
     struct LAYER *l = NULL;
     int n_inputs = xcsf->x_dim;
     for (int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {

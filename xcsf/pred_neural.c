@@ -34,31 +34,6 @@
 #include "neural_layer_softmax.h"
 #include "neural_layer_upsample.h"
 
-static uint32_t
-pred_neural_lopt(const struct XCSF *xcsf)
-{
-    uint32_t lopt = 0;
-    if (xcsf->PRED_EVOLVE_ETA) {
-        lopt |= LAYER_EVOLVE_ETA;
-    }
-    if (xcsf->PRED_SGD_WEIGHTS) {
-        lopt |= LAYER_SGD_WEIGHTS;
-    }
-    if (xcsf->PRED_EVOLVE_WEIGHTS) {
-        lopt |= LAYER_EVOLVE_WEIGHTS;
-    }
-    if (xcsf->PRED_EVOLVE_NEURONS) {
-        lopt |= LAYER_EVOLVE_NEURONS;
-    }
-    if (xcsf->PRED_EVOLVE_FUNCTIONS) {
-        lopt |= LAYER_EVOLVE_FUNCTIONS;
-    }
-    if (xcsf->PRED_EVOLVE_CONNECTIVITY) {
-        lopt |= LAYER_EVOLVE_CONNECT;
-    }
-    return lopt;
-}
-
 /**
  * @brief Creates and initialises a neural network prediction.
  * @details Uses fully-connected layers.
@@ -71,7 +46,7 @@ pred_neural_init(const struct XCSF *xcsf, struct CL *c)
     struct PRED_NEURAL *new = malloc(sizeof(struct PRED_NEURAL));
     neural_init(xcsf, &new->net);
     // hidden layers
-    uint32_t lopt = pred_neural_lopt(xcsf);
+    uint32_t lopt = neural_pred_lopt(xcsf);
     struct LAYER *l = NULL;
     int n_inputs = xcsf->x_dim;
     for (int i = 0; i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; ++i) {
@@ -272,7 +247,7 @@ pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
     const int max_outputs = h->max_outputs;
     const int f = xcsf->PRED_HIDDEN_ACTIVATION;
     const int pos = net->n_layers - 1;
-    const uint32_t lopt = pred_neural_lopt(xcsf);
+    const uint32_t lopt = neural_pred_lopt(xcsf);
     struct LAYER *l = neural_layer_connected_init(xcsf, n_inputs, n_outputs,
                                                   max_outputs, f, lopt);
     neural_layer_insert(xcsf, net, l, pos);
@@ -292,7 +267,7 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct CL *c,
     }
     // add new softmax output
     const int code_size = net->n_outputs;
-    uint32_t lopt = pred_neural_lopt(xcsf);
+    uint32_t lopt = neural_pred_lopt(xcsf);
     lopt &= ~LAYER_EVOLVE_NEURONS;
     lopt &= ~LAYER_EVOLVE_FUNCTIONS;
     l = neural_layer_connected_init(xcsf, code_size, xcsf->y_dim, xcsf->y_dim,

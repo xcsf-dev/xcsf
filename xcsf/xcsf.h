@@ -50,6 +50,7 @@ static const int VERSION_BUILD = 0; //!< XCSF build version number
 #define RULE_TYPE_NETWORK (13) //!< Condition type and prediction type neural
 
 #define ACT_TYPE_INTEGER (0) //!< Action type integer
+#define ACT_TYPE_NEURAL (1) //!< Action type neural network
 
 #define PRED_TYPE_CONSTANT (0) //!< Prediction type constant
 #define PRED_TYPE_NLMS_LINEAR (1) //!< Prediction type linear nlms

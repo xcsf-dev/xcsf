@@ -23,6 +23,7 @@
 
 #pragma once
 
+#include "neural_layer.h"
 #include "xcsf.h"
 
 /**
@@ -94,3 +95,47 @@ neural_rand(const struct XCSF *xcsf, const struct NET *net);
 
 void
 neural_resize(const struct XCSF *xcsf, const struct NET *net);
+
+static uint32_t
+neural_cond_lopt(const struct XCSF *xcsf)
+{
+    uint32_t lopt = 0;
+    if (xcsf->COND_EVOLVE_WEIGHTS) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if (xcsf->COND_EVOLVE_NEURONS) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if (xcsf->COND_EVOLVE_FUNCTIONS) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+    if (xcsf->COND_EVOLVE_CONNECTIVITY) {
+        lopt |= LAYER_EVOLVE_CONNECT;
+    }
+    return lopt;
+}
+
+static uint32_t
+neural_pred_lopt(const struct XCSF *xcsf)
+{
+    uint32_t lopt = 0;
+    if (xcsf->PRED_EVOLVE_ETA) {
+        lopt |= LAYER_EVOLVE_ETA;
+    }
+    if (xcsf->PRED_SGD_WEIGHTS) {
+        lopt |= LAYER_SGD_WEIGHTS;
+    }
+    if (xcsf->PRED_EVOLVE_WEIGHTS) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if (xcsf->PRED_EVOLVE_NEURONS) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if (xcsf->PRED_EVOLVE_FUNCTIONS) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+    if (xcsf->PRED_EVOLVE_CONNECTIVITY) {
+        lopt |= LAYER_EVOLVE_CONNECT;
+    }
+    return lopt;
+}

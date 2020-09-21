@@ -23,6 +23,7 @@
 
 #include "action.h"
 #include "act_integer.h"
+#include "act_neural.h"
 #include "utils.h"
 
 /**
@@ -36,6 +37,9 @@ action_set(const struct XCSF *xcsf, struct CL *c)
     switch (xcsf->ACT_TYPE) {
         case ACT_TYPE_INTEGER:
             c->act_vptr = &act_integer_vtbl;
+            break;
+        case ACT_TYPE_NEURAL:
+            c->act_vptr = &act_neural_vtbl;
             break;
         default:
             printf("Invalid action type specified: %d\n", xcsf->ACT_TYPE);

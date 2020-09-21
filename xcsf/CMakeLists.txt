@@ -17,6 +17,7 @@
 
 set(XCSF_SOURCES
     act_integer.c
+    act_neural.c
     action.c
     blas.c
     cl.c
@@ -72,6 +73,7 @@ set(XCSF_SOURCES
 
 set(XCSF_HEADERS
     act_integer.h
+    act_neural.h
     action.h
     blas.h
     cl.h
