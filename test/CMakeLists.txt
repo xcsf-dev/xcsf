@@ -19,6 +19,7 @@ set(XCSF_TESTS
     cond_ellipsoid_test.cpp
     cond_rectangle_test.cpp
     config_test.cpp
+    loss_test.cpp
     neural_layer_connected_test.cpp
     neural_layer_convolutional_test.cpp
     neural_layer_lstm_test.cpp
