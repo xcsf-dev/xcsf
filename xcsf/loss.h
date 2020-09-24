@@ -31,7 +31,11 @@
 #define LOSS_LOG (3) //!< Log loss
 #define LOSS_BINARY_LOG (4) //!< Binary log loss
 #define LOSS_ONEHOT_ACC (5) //!< One-hot encoding classification error
-#define LOSS_NUM (6) //!< Total number of selectable loss functions
+#define LOSS_HUBER (6) //!< Huber loss
+#define LOSS_NUM (7) //!< Total number of selectable loss functions
+
+double
+loss_huber(const struct XCSF *xcsf, const double *pred, const double *y);
 
 double
 loss_mae(const struct XCSF *xcsf, const double *pred, const double *y);

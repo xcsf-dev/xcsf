@@ -23,6 +23,8 @@
 
 #include "loss.h"
 
+#define H_DELTA (1.0) //!< Delta parameter for Huber loss calculation.
+
 /**
  * @brief Mean absolute error loss function.
  * @param xcsf The XCSF data structure.
@@ -131,6 +133,29 @@ loss_onehot_acc(const struct XCSF *xcsf, const double *pred, const double *y)
 }
 
 /**
+ * @brief Huber loss function.
+ * @param xcsf The XCSF data structure.
+ * @param pred The predicted values.
+ * @param y The true values.
+ * @return The Huber loss.
+ */
+double
+loss_huber(const struct XCSF *xcsf, const double *pred, const double *y)
+{
+    double error = 0;
+    for (int i = 0; i < xcsf->y_dim; ++i) {
+        const double a = y[i] - pred[i];
+        if (fabs(a) > H_DELTA) {
+            error += 0.5 * H_DELTA * H_DELTA + H_DELTA * (fabs(a) - H_DELTA);
+        } else {
+            error += 0.5 * a * a;
+        }
+    }
+    error /= xcsf->y_dim;
+    return error;
+}
+
+/**
  * @brief Sets the XCSF error function to the implemented function.
  * @param xcsf The XCSF data structure.
  */
@@ -155,6 +180,9 @@ loss_set_func(struct XCSF *xcsf)
             break;
         case LOSS_ONEHOT_ACC:
             xcsf->loss_ptr = &loss_onehot_acc;
+            break;
+        case LOSS_HUBER:
+            xcsf->loss_ptr = &loss_huber;
             break;
         default:
             printf("invalid loss function: %d\n", xcsf->LOSS_FUNC);
