@@ -37,7 +37,6 @@ import xcsf.xcsf as xcsf
 env = gym.make('CartPole-v0')
 X_DIM = env.observation_space.shape[0]
 N_ACTIONS = env.action_space.n
-MAX_PAYOFF = 1
 
 SAVE_GIF = False # for creating a gif
 SAVE_GIF_EPISODES = 50
