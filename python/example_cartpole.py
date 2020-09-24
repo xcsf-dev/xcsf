@@ -68,10 +68,12 @@ def save_frames_as_gif(path='./', filename='animation.gif'):
 # Initialise XCSF
 ###################
 
-xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
+# constructor = (x_dim, y_dim, n_actions)
+xcs = xcsf.XCS(X_DIM, N_ACTIONS, 1) # Supervised mode: i.e, single action
 
 xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
-xcs.POP_SIZE = 500 # maximum population size
+xcs.MAX_TRIALS = 1 # one trial per fit
+xcs.POP_SIZE = 200 # maximum population size
 xcs.EPS_0 = 0.001 # target error
 xcs.BETA = 0.05 # classifier parameter update rate
 xcs.ALPHA = 1 # accuracy offset
@@ -82,6 +84,10 @@ xcs.THETA_EA = 100 # EA invocation frequency
 xcs.THETA_DEL = 100 # min experience before fitness used for deletion
 
 xcs.MAX_NEURON_GROW = 1 # max neurons to add/remove per mut
+
+xcs.ACT_TYPE = 0 # (dummy) integer actions
+
+xcs.POP_INIT = False # use covering to initialise
 xcs.COND_TYPE = 3 # neural network conditions
 xcs.COND_OUTPUT_ACTIVATION = 3 # linear
 xcs.COND_HIDDEN_ACTIVATION = 9 # selu
@@ -92,13 +98,11 @@ xcs.COND_EVOLVE_NEURONS = True
 xcs.COND_EVOLVE_FUNCTIONS = False
 xcs.COND_EVOLVE_CONNECTIVITY = False
 
-xcs.ACT_TYPE = 0 # integer actions
-
 xcs.PRED_TYPE = 5 # neural network predictions
 xcs.PRED_OUTPUT_ACTIVATION = 3 # linear
 xcs.PRED_HIDDEN_ACTIVATION = 9 # selu
-xcs.PRED_NUM_NEURONS = [5] # initial neurons
-xcs.PRED_MAX_NEURONS = [100] # maximum neurons
+xcs.PRED_NUM_NEURONS = [20] # initial neurons
+xcs.PRED_MAX_NEURONS = [200] # maximum neurons
 xcs.PRED_EVOLVE_WEIGHTS = True
 xcs.PRED_EVOLVE_NEURONS = True
 xcs.PRED_EVOLVE_FUNCTIONS = False
@@ -111,7 +115,8 @@ xcs.PRED_DECAY = 0 # weight decay
 GAMMA = 0.95 # discount rate for delayed reward
 epsilon = 1 # initial probability of exploring
 EPSILON_MIN = 0.1 # the minimum exploration rate
-EPSILON_DECAY = 0.9 # the decay of exploration after each batch replay
+EPSILON_DECAY = 0.98 # the decay of exploration after each batch replay
+REPLAY_TIME = 10 # perform replay update every n episodes
 
 xcs.print_params()
 
@@ -125,7 +130,7 @@ N = 100 # number of episodes to average performance
 memory = deque(maxlen = 50000) # memory buffer for experience replay
 scores = deque(maxlen = N) # scores used to calculate moving average
 
-def replay(replay_size=5000):
+def replay(replay_size=50000):
     """ Performs experience replay updates """
     batch_size = min(len(memory), replay_size)
     batch = random.sample(memory, batch_size)
@@ -134,7 +139,9 @@ def replay(replay_size=5000):
         if not done:
             prediction_array = xcs.predict(next_state.reshape(1,-1))[0]
             y_target += GAMMA * np.max(prediction_array)
-        xcs.fit(state, action, y_target)
+        target = xcs.predict(state.reshape(1,-1))[0]
+        target[action] = y_target
+        xcs.fit(state.reshape(1,-1), target.reshape(1,-1), True)
 
 def egreedy_action(state):
     """ Selects an action using an epsilon greedy policy """
@@ -176,13 +183,14 @@ for ep in range(MAX_EPISODES):
     # execute a single episode
     ep_score, ep_steps = episode(ep, gif)
     # perform experience replay updates
-    replay()
+    if ep % REPLAY_TIME == 0:
+        replay()
     # display performance
     total_steps += ep_steps
     scores.append(ep_score)
     mean_score = np.mean(scores)
-    print ("episodes=%d steps=%d score=%.2f epsilon=%.5f" %
-           (ep, total_steps, mean_score, epsilon))
+    print ("episodes=%d steps=%d score=%.2f epsilon=%.5f error=%.5f msize=%.2f" %
+           (ep, total_steps, mean_score, epsilon, xcs.error(), xcs.msetsize()))
     # is the problem solved?
     if ep > 99 and mean_score > env.spec.reward_threshold:
         print("solved after %d episodes: mean score %.2f > %.2f" %
@@ -195,8 +203,6 @@ for ep in range(MAX_EPISODES):
 # final exploit episode
 epsilon = 0
 ep_score, ep_steps = episode(ep, SAVE_GIF)
-perf = (ep_score / env._max_episode_steps) * 100
-print("exploit: perf=%.2f%%, score=%.2f" % (perf, ep_score))
 
 # close Gym
 env.close()
