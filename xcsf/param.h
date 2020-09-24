@@ -102,6 +102,17 @@ param_set_loss_func(struct XCSF *xcsf, const int a)
 }
 
 static inline void
+param_set_huber_delta(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set HUBER_DELTA too small\n");
+        xcsf->HUBER_DELTA = 0;
+    } else {
+        xcsf->HUBER_DELTA = a;
+    }
+}
+
+static inline void
 param_set_gamma(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {

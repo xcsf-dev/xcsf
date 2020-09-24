@@ -126,7 +126,6 @@ typedef struct XCSF {
     double COND_MAX; //!< Maximum value expected from inputs
     double COND_MIN; //!< Minimum value expected from inputs
     double COND_SMIN; //!< Minimum initial spread for hyperectangles etc.
-    double *gp_cons; //!< Stores constants available for GP trees
     double COND_ETA; //!< Gradient descent rate for updating the condition
     double PRED_ETA; //!< Gradient desecnt rate for updating the prediction
     double PRED_X0; //!< Prediction weight vector offset value
@@ -134,12 +133,14 @@ typedef struct XCSF {
     double PRED_RLS_LAMBDA; //!< Forget rate for RLS
     double PRED_MOMENTUM; //!< Momentum for gradient descent
     double PRED_DECAY; //!< Weight decay for gradient descent
-    struct EnvVtbl const *env_vptr; //!< Functions acting on environments
-    void *env; //!< Environment structure
-    double *pa; //!< Prediction array (stores fitness weighted predictions)
-    double *nr; //!< Prediction array (stores total fitness)
+    double HUBER_DELTA; //!< Delta parameter for Huber loss calculation.
     double prev_reward; //!< Reward from previous step in a multi-step trial
     double prev_pred; //!< Payoff prediction made on the previous step
+    struct EnvVtbl const *env_vptr; //!< Functions acting on environments
+    void *env; //!< Environment structure
+    double *gp_cons; //!< Stores constants available for GP trees
+    double *pa; //!< Prediction array (stores fitness weighted predictions)
+    double *nr; //!< Prediction array (stores total fitness)
     double *prev_state; //!< Environment state on the previous step
     double (*loss_ptr)(const struct XCSF *, const double *,
                        const double *); //!< Error function

@@ -91,7 +91,9 @@ TEST_CASE("LOSS FUNCTIONS")
 
     // Test HUBER
     param_set_loss_func(&xcsf, LOSS_HUBER);
+    param_set_huber_delta(&xcsf, 1);
     CHECK_EQ(xcsf.LOSS_FUNC, LOSS_HUBER);
+    CHECK_EQ(xcsf.HUBER_DELTA, 1);
     error = (xcsf.loss_ptr)(&xcsf, p, y);
     CHECK_EQ(doctest::Approx(error), 0.07132315);
 }

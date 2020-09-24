@@ -40,6 +40,7 @@ param_defaults_general(struct XCSF *xcsf)
     param_set_perf_trials(xcsf, 1000);
     param_set_pop_size(xcsf, 2000);
     param_set_loss_func(xcsf, 0);
+    param_set_huber_delta(xcsf, 1);
 }
 
 /**
@@ -56,6 +57,7 @@ param_print_general(const struct XCSF *xcsf)
     printf(", PERF_TRIALS=%d", xcsf->PERF_TRIALS);
     printf(", POP_SIZE=%d", xcsf->POP_SIZE);
     printf(", LOSS_FUNC=%d", xcsf->LOSS_FUNC);
+    printf(", HUBER_DELTA=%f", xcsf->HUBER_DELTA);
 }
 
 /**
@@ -74,6 +76,7 @@ param_save_general(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->POP_SIZE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->HUBER_DELTA, sizeof(double), 1, fp);
     return s;
 }
 
@@ -93,6 +96,7 @@ param_load_general(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_SIZE, sizeof(int), 1, fp);
     s += fread(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
+    s += fread(&xcsf->HUBER_DELTA, sizeof(double), 1, fp);
     loss_set_func(xcsf);
     return s;
 }
