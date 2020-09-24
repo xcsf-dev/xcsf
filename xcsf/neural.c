@@ -284,10 +284,10 @@ neural_learn(const struct XCSF *xcsf, const struct NET *net,
         memset(iter->layer->delta, 0, sizeof(double) * iter->layer->n_outputs);
         iter = iter->prev;
     }
-    // calculate output layer error
+    // calculate output layer delta
     const struct LAYER *p = net->head->layer;
     for (int i = 0; i < p->n_outputs; ++i) {
-        p->delta[i] = (truth[i] - p->output[i]);
+        p->delta[i] = truth[i] - p->output[i];
     }
     /* backward phase */
     iter = net->head;
