@@ -55,7 +55,7 @@
 /**
  * @brief Neural network layer data structure.
  */
-typedef struct LAYER {
+struct LAYER {
     int layer_type; //!< Layer type: CONNECTED, DROPOUT, etc.
     double *state; //!< Current neuron states (before activation function)
     double *output; //!< Current neuron outputs (after activation function)
@@ -115,7 +115,7 @@ typedef struct LAYER {
     int *indexes; //!< Pool
     int n_filters; //!< Conv
     size_t workspace_size; //!< Conv
-} LAYER;
+};
 
 /**
  * @brief Neural network layer interface data structure.

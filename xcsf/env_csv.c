@@ -160,8 +160,8 @@ void
 env_csv_init(struct XCSF *xcsf, const char *filename)
 {
     struct ENV_CSV *env = malloc(sizeof(struct ENV_CSV));
-    env->train_data = malloc(sizeof(INPUT));
-    env->test_data = malloc(sizeof(INPUT));
+    env->train_data = malloc(sizeof(struct INPUT));
+    env->test_data = malloc(sizeof(struct INPUT));
     env_csv_input_read(filename, env->train_data, env->test_data);
     xcsf->env = env;
     param_set_n_actions(xcsf, 1);

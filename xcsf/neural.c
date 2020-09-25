@@ -360,7 +360,7 @@ neural_size(const struct XCSF *xcsf, const struct NET *net)
     int size = 0;
     const struct LLIST *iter = net->tail;
     while (iter != NULL) {
-        const LAYER *l = iter->layer;
+        const struct LAYER *l = iter->layer;
         switch (l->layer_type) {
             case CONNECTED:
             case RECURRENT:

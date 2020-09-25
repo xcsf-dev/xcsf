@@ -31,10 +31,10 @@
 /**
  * @brief Neural network rule data structure.
  */
-typedef struct RULE_NEURAL {
+struct RULE_NEURAL {
     struct NET net; //!< Neural network
     int n_outputs; //!< Number of action nodes (binarised)
-} RULE_NEURAL;
+};
 
 _Bool
 rule_neural_cond_crossover(const struct XCSF *xcsf, const struct CL *c1,

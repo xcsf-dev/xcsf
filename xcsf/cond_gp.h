@@ -30,9 +30,9 @@
 /**
  * @brief Tree GP condition data structure.
  */
-typedef struct COND_GP {
+struct COND_GP {
     struct GP_TREE gp; //!< GP tree
-} COND_GP;
+};
 
 _Bool
 cond_gp_crossover(const struct XCSF *xcsf, const struct CL *c1,

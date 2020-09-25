@@ -30,9 +30,9 @@
 /**
  * @brief Dynamical GP graph condition data structure.
  */
-typedef struct COND_DGP {
+struct COND_DGP {
     struct GRAPH dgp; //!< DGP graph
-} COND_DGP;
+};
 
 _Bool
 cond_dgp_crossover(const struct XCSF *xcsf, const struct CL *c1,

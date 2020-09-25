@@ -31,7 +31,7 @@
 /**
  * @brief Maze environment data structure.
  */
-typedef struct ENV_MAZE {
+struct ENV_MAZE {
     double *state; //!< Current state
     char maze[MAX_SIZE][MAX_SIZE]; //!< Maze
     int xpos; //!< Current x position
@@ -39,7 +39,7 @@ typedef struct ENV_MAZE {
     int xsize; //!< Maze size in x dimension
     int ysize; //!< Maze size in y dimension
     _Bool done; //!< Whether the maze is in a terminal state.
-} ENV_MAZE;
+};
 
 _Bool
 env_maze_is_done(const struct XCSF *xcsf);

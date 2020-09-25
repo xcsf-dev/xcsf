@@ -28,12 +28,12 @@
 /**
  * @brief GP tree data structure.
  */
-typedef struct GP_TREE {
+struct GP_TREE {
     int *tree; //!< Flattened tree representation of functions and terminals
     int len; //!< Size of the tree
     int p; //!< Current position in the tree
     double *mu; //!< Mutation rates
-} GP_TREE;
+};
 
 void
 tree_free_cons(const struct XCSF *xcsf);

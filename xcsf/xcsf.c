@@ -189,13 +189,13 @@ xcsf_ae_to_classifier(struct XCSF *xcsf, const int y_dim, const int n_del)
  * @param xcsf The XCSF data structure.
  */
 void
-xcsf_store_pop(XCSF *xcsf)
+xcsf_store_pop(struct XCSF *xcsf)
 {
     clset_kill(xcsf, &xcsf->prev_pset);
-    const CLIST *iter = xcsf->pset.list;
+    const struct CLIST *iter = xcsf->pset.list;
     while (iter != NULL) {
-        CL *new = malloc(sizeof(CL));
-        const CL *src = iter->cl;
+        struct CL *new = malloc(sizeof(struct CL));
+        const struct CL *src = iter->cl;
         cl_init_copy(xcsf, new, src);
         clset_add(&xcsf->prev_pset, new);
         iter = iter->next;
@@ -207,7 +207,7 @@ xcsf_store_pop(XCSF *xcsf)
  * @param xcsf The XCSF data structure.
  */
 void
-xcsf_retrieve_pop(XCSF *xcsf)
+xcsf_retrieve_pop(struct XCSF *xcsf)
 {
     if (xcsf->prev_pset.size < 1) {
         printf("xcsf_retrieve_pop(): no previous population found\n");

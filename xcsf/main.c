@@ -57,7 +57,7 @@ main(int argc, char **argv)
     }
     pa_init(xcsf); // initialise prediction array
     if (strcmp(argv[1], "csv") == 0) { // supervised regression - csv file
-        const ENV_CSV *env = xcsf->env;
+        const struct ENV_CSV *env = xcsf->env;
         xcs_supervised_fit(xcsf, env->train_data, env->test_data, true);
     } else { // reinforcement learning - maze or mux
         xcs_rl_exp(xcsf);

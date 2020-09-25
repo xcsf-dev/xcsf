@@ -30,9 +30,9 @@
 /**
  * @brief Multi-layer perceptron neural network condition data structure.
  */
-typedef struct COND_NEURAL {
+struct COND_NEURAL {
     struct NET net; //!< Neural network
-} COND_NEURAL;
+};
 
 _Bool
 cond_neural_crossover(const struct XCSF *xcsf, const struct CL *c1,

@@ -64,7 +64,7 @@ static const int VERSION_BUILD = 0; //!< XCSF build version number
 /**
  * @brief Classifier data structure.
  */
-typedef struct CL {
+struct CL {
     struct CondVtbl const *cond_vptr; //!< Functions acting on conditions
     struct PredVtbl const *pred_vptr; //!< Functions acting on predictions
     struct ActVtbl const *act_vptr; //!< Functions acting on actions
@@ -82,29 +82,29 @@ typedef struct CL {
     int action; //!< Current classifier action
     int age; //!< Total number of times match testing been performed
     int mtotal; //!< Total number of times actually matched an input
-} CL;
+};
 
 /**
  * @brief Classifier linked list.
  */
-typedef struct CLIST {
+struct CLIST {
     struct CL *cl; //!< Pointer to classifier data structure
     struct CLIST *next; //!< Pointer to the next list element
-} CLIST;
+};
 
 /**
  * @brief Classifier set.
  */
-typedef struct SET {
+struct SET {
     struct CLIST *list; //!< Linked list of classifiers
     int size; //!< Number of macro-classifiers
     int num; //!< The total numerosity of classifiers
-} SET;
+};
 
 /**
  * @brief XCSF data structure.
  */
-typedef struct XCSF {
+struct XCSF {
     double error; //!< Average system error
     double msetsize; //!< Average match set size
     double asetsize; //!< Average action set size
@@ -144,12 +144,12 @@ typedef struct XCSF {
     double *prev_state; //!< Environment state on the previous step
     double (*loss_ptr)(const struct XCSF *, const double *,
                        const double *); //!< Error function
-    SET pset; //!< Population set
-    SET prev_pset; //!< Previously stored population set
-    SET mset; //!< Match set
-    SET aset; //!< Action set
-    SET kset; //!< Kill set
-    SET prev_aset; //!< Previous action set
+    struct SET pset; //!< Population set
+    struct SET prev_pset; //!< Previously stored population set
+    struct SET mset; //!< Match set
+    struct SET aset; //!< Action set
+    struct SET kset; //!< Kill set
+    struct SET prev_aset; //!< Previous action set
     int time; //!< Current number of EA executions
     int OMP_NUM_THREADS; //!< Number of threads for parallel processing
     int MAX_TRIALS; //!< Number of problem instances to run in one experiment
@@ -199,18 +199,18 @@ typedef struct XCSF {
     _Bool EA_SUBSUMPTION; //!< Whether to try and subsume offspring classifiers
     _Bool SET_SUBSUMPTION; //!< Whether to perform match set subsumption
     _Bool explore; //!< Whether the system is currently exploring or exploiting
-} XCSF;
+};
 
 /**
  * @brief Input data structure.
  */
-typedef struct INPUT {
+struct INPUT {
     double *x; //!< Feature variables
     double *y; //!< Target variables
     int x_dim; //!< Number of feature variables
     int y_dim; //!< Number of target variables
     int n_samples; //!< Number of instances
-} INPUT;
+};
 
 size_t
 xcsf_load(struct XCSF *xcsf, const char *filename);
@@ -235,7 +235,7 @@ void
 xcsf_pred_expand(const struct XCSF *xcsf);
 
 void
-xcsf_retrieve_pop(XCSF *xcsf);
+xcsf_retrieve_pop(struct XCSF *xcsf);
 
 void
-xcsf_store_pop(XCSF *xcsf);
+xcsf_store_pop(struct XCSF *xcsf);

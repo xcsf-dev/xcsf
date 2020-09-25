@@ -29,7 +29,7 @@
 /**
  * @brief Dynamical GP graph data structure.
  */
-typedef struct GRAPH {
+struct GRAPH {
     int *connectivity; //!< Connectivity map
     double *state; //!< Current state of each node
     double *initial_state; //!< Initial node states
@@ -40,7 +40,7 @@ typedef struct GRAPH {
     int t; //!< Number of cycles to run
     int klen; //!< Length of connectivity map
     double *mu; //!< Mutation rates
-} GRAPH;
+};
 
 _Bool
 graph_crossover(const struct XCSF *xcsf, struct GRAPH *dgp1,

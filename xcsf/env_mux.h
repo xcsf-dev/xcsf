@@ -29,10 +29,10 @@
 /**
  * @brief Real multiplexer environment data structure.
  */
-typedef struct ENV_MUX {
+struct ENV_MUX {
     double *state; //!< Current state
     int pos_bits; //!< Number of position bits
-} ENV_MUX;
+};
 
 _Bool
 env_mux_is_done(const struct XCSF *xcsf);

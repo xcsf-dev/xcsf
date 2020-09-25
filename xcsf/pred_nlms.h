@@ -29,14 +29,14 @@
 /**
  * @brief Normalised least mean squares prediction data structure.
  */
-typedef struct PRED_NLMS {
+struct PRED_NLMS {
     int n; //!< Number of weights for each predicted variable
     int n_weights; //!< Total number of weights
     double *weights; //!< Weights used to compute prediction
     double *mu; //!< Mutation rates
     double eta; //!< Gradient descent rate
     double *tmp_input; //!< Temporary storage for updating weights
-} PRED_NLMS;
+};
 
 _Bool
 pred_nlms_crossover(const struct XCSF *xcsf, const struct CL *c1,

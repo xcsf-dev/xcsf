@@ -29,12 +29,12 @@
 /**
  * @brief Ternary condition data structure.
  */
-typedef struct COND_TERNARY {
+struct COND_TERNARY {
     char *string; //!< Ternary bitstring
     int length; //!< Length of the bitstring
     double *mu; //!< Mutation rates
     char *tmp_input; //!< Temporary storage for float conversion
-} COND_TERNARY;
+};
 
 _Bool
 cond_ternary_crossover(const struct XCSF *xcsf, const struct CL *c1,

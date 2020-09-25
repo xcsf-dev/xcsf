@@ -29,11 +29,11 @@
 /**
  * @brief Hyperrectangle condition data structure.
  */
-typedef struct COND_RECTANGLE {
+struct COND_RECTANGLE {
     double *center; //!< Centers
     double *spread; //!< Spreads
     double *mu; //!< Mutation rates
-} COND_RECTANGLE;
+};
 
 _Bool
 cond_rectangle_crossover(const struct XCSF *xcsf, const struct CL *c1,

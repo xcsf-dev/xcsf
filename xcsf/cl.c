@@ -80,7 +80,7 @@ cl_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
  * @param src The source classifier.
  */
 void
-cl_init_copy(const XCSF *xcsf, CL *dest, const CL *src)
+cl_init_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 {
     dest->prediction = calloc(xcsf->y_dim, sizeof(double));
     dest->fit = src->fit;

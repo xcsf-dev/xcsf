@@ -30,9 +30,9 @@
 /**
  * @brief Multi-layer perceptron neural network prediction data structure.
  */
-typedef struct PRED_NEURAL {
+struct PRED_NEURAL {
     struct NET net; //!< Neural network
-} PRED_NEURAL;
+};
 
 _Bool
 pred_neural_crossover(const struct XCSF *xcsf, const struct CL *c1,

@@ -29,7 +29,7 @@
 /**
  * @brief Recursive least mean squares prediction data structure.
  */
-typedef struct PRED_RLS {
+struct PRED_RLS {
     int n; //!< Number of weights for each predicted variable
     int n_weights; //!< Total number of weights
     double *weights; //!< Weights used to compute prediction
@@ -38,7 +38,7 @@ typedef struct PRED_RLS {
     double *tmp_vec; //!< Temporary storage for updating weights
     double *tmp_matrix1; //!< Temporary storage for updating gain matrix
     double *tmp_matrix2; //!< Temporary storage for updating gain matrix
-} PRED_RLS;
+};
 
 _Bool
 pred_rls_crossover(const struct XCSF *xcsf, const struct CL *c1,

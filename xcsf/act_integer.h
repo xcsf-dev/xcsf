@@ -29,10 +29,10 @@
 /**
  * @brief Integer action data structure.
  */
-typedef struct ACT_INTEGER {
+struct ACT_INTEGER {
     int action; //!< Integer action
     double *mu; //!< Mutation rates
-} ACT_INTEGER;
+};
 
 _Bool
 act_integer_crossover(const struct XCSF *xcsf, const struct CL *c1,

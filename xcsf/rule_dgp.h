@@ -31,10 +31,10 @@
 /**
  * @brief Dynamical GP graph rule data structure.
  */
-typedef struct RULE_DGP {
+struct RULE_DGP {
     struct GRAPH dgp; //!< DGP graph
     int n_outputs; //!< Number of action nodes (binarised)
-} RULE_DGP;
+};
 
 _Bool
 rule_dgp_cond_crossover(const struct XCSF *xcsf, const struct CL *c1,

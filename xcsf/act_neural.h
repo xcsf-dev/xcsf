@@ -30,9 +30,9 @@
 /**
  * @brief Neural network action data structure.
  */
-typedef struct ACT_NEURAL {
+struct ACT_NEURAL {
     struct NET net; //!< Neural network
-} ACT_NEURAL;
+};
 
 _Bool
 act_neural_crossover(const struct XCSF *xcsf, const struct CL *c1,

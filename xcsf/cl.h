@@ -85,7 +85,7 @@ cl_init(const struct XCSF *xcsf, struct CL *c, const double size,
         const int time);
 
 void
-cl_init_copy(const XCSF *xcsf, CL *dest, const CL *src);
+cl_init_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
 
 void
 cl_print(const struct XCSF *xcsf, const struct CL *c, const _Bool print_cond,

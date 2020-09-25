@@ -29,10 +29,10 @@
 /**
  * @brief CSV environment data structure.
  */
-typedef struct ENV_CSV {
+struct ENV_CSV {
     struct INPUT *train_data;
     struct INPUT *test_data;
-} ENV_CSV;
+};
 
 _Bool
 env_csv_is_done(const struct XCSF *xcsf);

@@ -29,11 +29,11 @@
 /**
  * @brief Hyperellipsoid condition data structure.
  */
-typedef struct COND_ELLIPSOID {
+struct COND_ELLIPSOID {
     double *center; //!< Centers
     double *spread; //!< Spreads
     double *mu; //!< Mutation rates
-} COND_ELLIPSOID;
+};
 
 _Bool
 cond_ellipsoid_crossover(const struct XCSF *xcsf, const struct CL *c1,
