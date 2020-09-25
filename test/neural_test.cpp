@@ -42,9 +42,9 @@ extern "C" {
 TEST_CASE("NEURAL")
 {
     /* test one forward pass of input through two layers*/
-    XCSF xcsf;
-    NET net;
-    LAYER *l;
+    struct XCSF xcsf;
+    struct NET net;
+    struct LAYER *l;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 10);
@@ -74,12 +74,12 @@ TEST_CASE("NEURAL")
     o |= LAYER_SGD_WEIGHTS;
     o |= LAYER_EVOLVE_WEIGHTS;
     l = neural_layer_connected_init(&xcsf, 10, 2, 2, LOGISTIC, o);
-    memcpy(l->weights, orig_weights1, l->n_weights * sizeof(double));
-    memcpy(l->biases, orig_biases1, l->n_outputs * sizeof(double));
+    memcpy(l->weights, orig_weights1, sizeof(double) * l->n_weights);
+    memcpy(l->biases, orig_biases1, sizeof(double) * l->n_outputs);
     neural_layer_insert(&xcsf, &net, l, 0);
     l = neural_layer_connected_init(&xcsf, 2, 2, 2, LOGISTIC, o);
-    memcpy(l->weights, orig_weights2, l->n_weights * sizeof(double));
-    memcpy(l->biases, orig_biases2, l->n_outputs * sizeof(double));
+    memcpy(l->weights, orig_weights2, sizeof(double) * l->n_weights);
+    memcpy(l->biases, orig_biases2, sizeof(double) * l->n_outputs);
     neural_layer_insert(&xcsf, &net, l, 1);
     neural_propagate(&xcsf, &net, x);
     double output_error = 0;

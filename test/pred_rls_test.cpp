@@ -40,8 +40,8 @@ extern "C" {
 TEST_CASE("PRED_RLS")
 {
     /* test initialisation */
-    XCSF xcsf;
-    CL c;
+    struct XCSF xcsf;
+    struct CL c;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 10);
@@ -52,7 +52,7 @@ TEST_CASE("PRED_RLS")
     param_set_pred_rls_lambda(&xcsf, 1);
     cl_init(&xcsf, &c, 1, 1);
     pred_rls_init(&xcsf, &c);
-    PRED_RLS *p = (PRED_RLS *) c.pred;
+    struct PRED_RLS *p = (struct PRED_RLS *) c.pred;
     CHECK_EQ(p->n, 11);
     CHECK_EQ(p->n_weights, 11);
     /* test one forward pass of input */
@@ -65,7 +65,7 @@ TEST_CASE("PRED_RLS")
         2.8042169798,  0.2236021733,  -1.2206964138, -0.2022042865,
         -1.5489524535, -2.0932767781, 5.4797621223
     };
-    memcpy(p->weights, orig_weights, 11 * sizeof(double));
+    memcpy(p->weights, orig_weights, sizeof(double) * 11);
     pred_rls_compute(&xcsf, &c, x);
     CHECK_EQ(doctest::Approx(c.prediction[0]), 0.7343893899);
     /* test one backward pass of input */
@@ -141,7 +141,7 @@ TEST_CASE("PRED_RLS")
         -107.2811462280, -36.0167269681,  -139.7579702419, 33.3919016747,
         938.8736130242
     };
-    memcpy(p->matrix, orig_matrix, 121 * sizeof(double));
+    memcpy(p->matrix, orig_matrix, sizeof(double) * 121);
     pred_rls_update(&xcsf, &c, x, y);
     double weight_error = 0;
     for (int i = 0; i < 11; ++i) {

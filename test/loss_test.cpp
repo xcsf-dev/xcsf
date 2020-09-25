@@ -38,7 +38,7 @@ extern "C" {
 TEST_CASE("LOSS FUNCTIONS")
 {
     // Initialisation
-    XCSF xcsf;
+    struct XCSF xcsf;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 10);

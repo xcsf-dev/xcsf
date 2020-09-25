@@ -42,9 +42,9 @@ extern "C" {
 TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
 {
     /* test initialisation */
-    XCSF xcsf;
-    NET net;
-    LAYER *l;
+    struct XCSF xcsf;
+    struct NET net;
+    struct LAYER *l;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 10);
@@ -94,20 +94,20 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     for (int k = 0; k < l->size; ++k) {
         for (int j = 0; j < l->size; ++j) {
             for (int i = 0; i < l->n_filters; ++i) {
-                int pos = j + l->size * (k + l->size * i);
+                const int pos = j + l->size * (k + l->size * i);
                 l->weights[pos] = orig_weights[index];
                 ++index;
             }
         }
     }
-    memcpy(l->biases, orig_biases, l->n_filters * sizeof(double));
+    memcpy(l->biases, orig_biases, sizeof(double) * l->n_filters);
     neural_layer_convolutional_forward(&xcsf, l, x);
     double output_error = 0;
     index = 0;
     for (int k = 0; k < l->out_h; ++k) {
         for (int j = 0; j < l->out_w; ++j) {
             for (int i = 0; i < l->out_c; ++i) {
-                double layer_output_i =
+                const double layer_output_i =
                     l->output[j + l->out_w * (k + l->out_h * i)];
                 output_error += fabs(layer_output_i - output[index]);
                 ++index;
@@ -130,7 +130,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
         for (int k = 0; k < l->out_h; ++k) {
             for (int j = 0; j < l->out_w; ++j) {
                 for (int i = 0; i < l->out_c; ++i) {
-                    int pos = j + l->out_w * (k + l->out_h * i);
+                    const int pos = j + l->out_w * (k + l->out_h * i);
                     l->delta[pos] = y[index] - l->output[pos];
                     ++index;
                 }
@@ -145,8 +145,8 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     for (int k = 0; k < l->out_h; ++k) {
         for (int j = 0; j < l->out_w; ++j) {
             for (int i = 0; i < l->out_c; ++i) {
-                int pos = j + l->out_w * (k + l->out_h * i);
-                double error = y[index] - l->output[pos];
+                const int pos = j + l->out_w * (k + l->out_h * i);
+                const double error = y[index] - l->output[pos];
                 conv_error += error * error;
                 ++index;
             }

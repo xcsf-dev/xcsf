@@ -43,9 +43,9 @@ extern "C" {
 TEST_CASE("NEURAL_LAYER_LSTM")
 {
     /* test initialisation */
-    XCSF xcsf;
-    NET net;
-    LAYER *l;
+    struct XCSF xcsf;
+    struct NET net;
+    struct LAYER *l;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 1);

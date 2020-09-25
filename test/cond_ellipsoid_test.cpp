@@ -38,8 +38,8 @@ extern "C" {
 
 TEST_CASE("COND_ELLIPSOID")
 {
-    XCSF xcsf;
-    CL c;
+    struct XCSF xcsf;
+    struct CL c1;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 5);
@@ -48,8 +48,8 @@ TEST_CASE("COND_ELLIPSOID")
     xcsf.COND_MAX = 1;
     xcsf.COND_SMIN = 1;
     xcsf.COND_TYPE = COND_TYPE_HYPERELLIPSOID;
-    cl_init(&xcsf, &c, 1, 1);
-    cond_ellipsoid_init(&xcsf, &c);
+    cl_init(&xcsf, &c1, 1, 1);
+    cond_ellipsoid_init(&xcsf, &c1);
     const double x[5] = { 0.8455260670, 0.7566081103, 0.3125093674,
                           0.3449376898, 0.3677518467 };
     const double true_center[5] = { 0.6917788795, 0.7276272381, 0.2457498699,
@@ -61,14 +61,29 @@ TEST_CASE("COND_ELLIPSOID")
     const double false_spread[5] = { 0.9658827122, 0.7107445754, 0.7048862747,
                                      0.1036188594, 0.4501471722 };
     /* test for true match condition */
-    COND_ELLIPSOID *p = (COND_ELLIPSOID *) c.cond;
-    memcpy(p->center, true_center, xcsf.x_dim * sizeof(double));
-    memcpy(p->spread, true_spread, xcsf.x_dim * sizeof(double));
-    _Bool match = cond_ellipsoid_match(&xcsf, &c, x);
+    struct COND_ELLIPSOID *p = (struct COND_ELLIPSOID *) c1.cond;
+    memcpy(p->center, true_center, sizeof(double) * xcsf.x_dim);
+    memcpy(p->spread, true_spread, sizeof(double) * xcsf.x_dim);
+    _Bool match = cond_ellipsoid_match(&xcsf, &c1, x);
     CHECK_EQ(match, true);
     /* test for false match condition */
-    memcpy(p->center, false_center, xcsf.x_dim * sizeof(double));
-    memcpy(p->spread, false_spread, xcsf.x_dim * sizeof(double));
-    match = cond_ellipsoid_match(&xcsf, &c, x);
+    memcpy(p->center, false_center, sizeof(double) * xcsf.x_dim);
+    memcpy(p->spread, false_spread, sizeof(double) * xcsf.x_dim);
+    match = cond_ellipsoid_match(&xcsf, &c1, x);
     CHECK_EQ(match, false);
+    /* test general */
+    struct CL c2;
+    cl_init(&xcsf, &c2, 1, 1);
+    cond_ellipsoid_init(&xcsf, &c2);
+    struct COND_ELLIPSOID *p2 = (struct COND_ELLIPSOID *) c2.cond;
+    const double center2[5] = { 0.6, 0.7, 0.2, 0.3, 0.0 };
+    const double spread2[5] = { 0.1, 0.1, 0.1, 0.1, 0.1 };
+    memcpy(p2->center, center2, sizeof(double) * xcsf.x_dim);
+    memcpy(p2->spread, spread2, sizeof(double) * xcsf.x_dim);
+    memcpy(p->center, true_center, sizeof(double) * xcsf.x_dim);
+    memcpy(p->spread, true_spread, sizeof(double) * xcsf.x_dim);
+    _Bool general = cond_ellipsoid_general(&xcsf, &c1, &c2);
+    CHECK_EQ(general, true);
+    general = cond_ellipsoid_general(&xcsf, &c2, &c1);
+    CHECK_EQ(general, false);
 }

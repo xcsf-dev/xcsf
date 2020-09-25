@@ -40,8 +40,8 @@ extern "C" {
 TEST_CASE("PRED_NLMS")
 {
     /* test initialisation */
-    XCSF xcsf;
-    CL c;
+    struct XCSF xcsf;
+    struct CL c;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 10);
@@ -52,7 +52,7 @@ TEST_CASE("PRED_NLMS")
     param_set_pred_eta(&xcsf, 0.1);
     cl_init(&xcsf, &c, 1, 1);
     pred_nlms_init(&xcsf, &c);
-    PRED_NLMS *p = (PRED_NLMS *) c.pred;
+    struct PRED_NLMS *p = (struct PRED_NLMS *) c.pred;
     CHECK_EQ(p->n, 11);
     CHECK_EQ(p->n_weights, 11);
     /* test one forward pass of input */
@@ -65,7 +65,7 @@ TEST_CASE("PRED_NLMS")
         2.8042169798,  0.2236021733,  -1.2206964138, -0.2022042865,
         -1.5489524535, -2.0932767781, 5.4797621223
     };
-    memcpy(p->weights, orig_weights, 11 * sizeof(double));
+    memcpy(p->weights, orig_weights, sizeof(double) * 11);
     pred_nlms_compute(&xcsf, &c, x);
     CHECK_EQ(doctest::Approx(c.prediction[0]), 0.7343893899);
     /* test one backward pass of input */

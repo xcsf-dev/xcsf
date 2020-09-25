@@ -42,9 +42,9 @@ extern "C" {
 TEST_CASE("NEURAL_LAYER_CONNECTED")
 {
     /* test initialisation */
-    XCSF xcsf;
-    NET net;
-    LAYER *l;
+    struct XCSF xcsf;
+    struct NET net;
+    struct LAYER *l;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 10);
@@ -80,8 +80,8 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
         0.2236021733,  -1.2206964138, -0.2022042865, -1.5489524535
     };
     const double orig_biases[2] = { 0.1033557369, -1.2581317787 };
-    memcpy(l->weights, orig_weights, l->n_weights * sizeof(double));
-    memcpy(l->biases, orig_biases, l->n_outputs * sizeof(double));
+    memcpy(l->weights, orig_weights, sizeof(double) * l->n_weights);
+    memcpy(l->biases, orig_biases, sizeof(double) * l->n_outputs);
     neural_layer_connected_forward(&xcsf, l, x);
     double output_error = 0;
     for (int i = 0; i < l->n_outputs; ++i) {
