@@ -215,7 +215,7 @@ layer_ensure_input_represention(struct Layer *l)
             }
         }
         if (active < 1) {
-            const int r = irand_uniform(0, l->n_inputs);
+            const int r = rand_uniform_int(0, l->n_inputs);
             l->weights[offset + r] = rand_normal(0, 0.1);
             l->weight_active[offset + r] = true;
             ++(l->n_active);
@@ -231,7 +231,7 @@ layer_ensure_input_represention(struct Layer *l)
             }
         }
         while (active < 1) {
-            const int offset = l->n_inputs * irand_uniform(0, l->n_outputs);
+            const int offset = l->n_inputs * rand_uniform_int(0, l->n_outputs);
             if (!l->weight_active[offset + i]) {
                 l->weights[offset + i] = rand_normal(0, 0.1);
                 l->weight_active[offset + i] = true;
@@ -287,14 +287,14 @@ layer_mutate_functions(struct Layer *l, const double mu)
     _Bool mod = false;
     if (rand_uniform(0, 1) < mu) {
         const int orig = l->function;
-        l->function = irand_uniform(0, NUM_ACTIVATIONS);
+        l->function = rand_uniform_int(0, NUM_ACTIVATIONS);
         if (l->function != orig) {
             mod = true;
         }
     }
     if (l->layer_type == LSTM && rand_uniform(0, 1) < mu) {
         const int orig = l->recurrent_function;
-        l->recurrent_function = irand_uniform(0, NUM_ACTIVATIONS);
+        l->recurrent_function = rand_uniform_int(0, NUM_ACTIVATIONS);
         if (l->recurrent_function != orig) {
             mod = true;
         }

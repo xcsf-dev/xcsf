@@ -31,7 +31,7 @@
  * @brief Initialises the pseudo-random number generator.
  */
 void
-random_init(void)
+rand_init(void)
 {
     time_t now = time(0);
     const unsigned char *p = (unsigned char *) &now;
@@ -43,16 +43,6 @@ random_init(void)
 }
 
 /**
- * @brief Returns a uniform random integer [min,max] not inclusive of max.
- * @return A random integer.
- */
-int
-irand_uniform(const int min, const int max)
-{
-    return (int) floor(rand_uniform(min, max));
-}
-
-/**
  * @brief Returns a uniform random float [min,max].
  * @return A random float.
  */
@@ -60,6 +50,16 @@ double
 rand_uniform(const double min, const double max)
 {
     return min + (dsfmt_gv_genrand_open_open() * (max - min));
+}
+
+/**
+ * @brief Returns a uniform random integer [min,max] not inclusive of max.
+ * @return A random integer.
+ */
+int
+rand_uniform_int(const int min, const int max)
+{
+    return (int) floor(rand_uniform(min, max));
 }
 
 /**

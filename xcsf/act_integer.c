@@ -58,7 +58,7 @@ act_integer_mutate(const struct XCSF *xcsf, const struct Cl *c)
     sam_adapt(act->mu, N_MU, MU_TYPE);
     if (rand_uniform(0, 1) < act->mu[0]) {
         const int old = act->action;
-        act->action = irand_uniform(0, xcsf->n_actions);
+        act->action = rand_uniform_int(0, xcsf->n_actions);
         if (old != act->action) {
             return true;
         }
@@ -121,7 +121,7 @@ act_integer_init(const struct XCSF *xcsf, struct Cl *c)
     struct ActInteger *new = malloc(sizeof(struct ActInteger));
     new->mu = malloc(sizeof(double) * N_MU);
     sam_init(new->mu, N_MU, MU_TYPE);
-    new->action = irand_uniform(0, xcsf->n_actions);
+    new->action = rand_uniform_int(0, xcsf->n_actions);
     c->act = new;
 }
 

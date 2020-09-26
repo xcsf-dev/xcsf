@@ -137,7 +137,7 @@ pa_rand_action(const struct XCSF *xcsf)
 {
     int action = 0;
     do {
-        action = irand_uniform(0, xcsf->n_actions);
+        action = rand_uniform_int(0, xcsf->n_actions);
     } while (xcsf->nr[action] == 0);
     return action;
 }

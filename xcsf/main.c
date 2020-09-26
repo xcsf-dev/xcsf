@@ -40,7 +40,7 @@ main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
     struct XCSF *xcsf = malloc(sizeof(struct XCSF));
-    random_init();
+    rand_init();
     param_init(xcsf);
     if (argc > 3) { // load parameter config
         config_read(xcsf, argv[3]);

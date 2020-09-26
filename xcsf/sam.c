@@ -46,7 +46,7 @@ sam_init(double *mu, const int N, const int *type)
                 mu[i] = rand_uniform(MU_EPSILON, 1);
                 break;
             case SAM_RATE_SELECT:
-                mu[i] = mrates[irand_uniform(0, N_RATES)];
+                mu[i] = mrates[rand_uniform_int(0, N_RATES)];
                 break;
             default:
                 printf("sam_init(): invalid sam function: %d\n", type[i]);
@@ -72,7 +72,7 @@ sam_adapt(double *mu, const int N, const int *type)
                 break;
             case SAM_RATE_SELECT:
                 if (rand_uniform(0, 1) < 0.1) {
-                    mu[i] = mrates[irand_uniform(0, N_RATES)];
+                    mu[i] = mrates[rand_uniform_int(0, N_RATES)];
                 }
                 break;
             case SAM_UNIFORM:

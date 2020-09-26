@@ -78,7 +78,7 @@ static int
 tree_grow(const struct XCSF *xcsf, int *buffer, const int p, const int max,
           const int depth)
 {
-    int prim = irand_uniform(0, 2);
+    int prim = rand_uniform_int(0, 2);
     if (p >= max) {
         return -1;
     }
@@ -87,11 +87,11 @@ tree_grow(const struct XCSF *xcsf, int *buffer, const int p, const int max,
     }
     if (prim == 0 || depth == 0) {
         const int terminal_max = GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim;
-        prim = irand_uniform(GP_NUM_FUNC, terminal_max);
+        prim = rand_uniform_int(GP_NUM_FUNC, terminal_max);
         buffer[p] = prim;
         return (p + 1);
     }
-    prim = irand_uniform(0, GP_NUM_FUNC);
+    prim = rand_uniform_int(0, GP_NUM_FUNC);
     switch (prim) {
         case ADD:
         case SUB:
@@ -278,9 +278,9 @@ tree_crossover(const struct XCSF *xcsf, struct GPTree *p1, struct GPTree *p2)
 {
     const int len1 = p1->len;
     const int len2 = p2->len;
-    const int start1 = irand_uniform(0, len1);
+    const int start1 = rand_uniform_int(0, len1);
     const int end1 = tree_traverse(p1->tree, start1);
-    const int start2 = irand_uniform(0, len2);
+    const int start2 = rand_uniform_int(0, len2);
     const int end2 = tree_traverse(p2->tree, start2);
     const int nlen1 = start1 + (end2 - start2) + (len1 - end1);
     int *new1 = malloc(sizeof(int) * nlen1);
@@ -320,9 +320,9 @@ tree_mutate(const struct XCSF *xcsf, struct GPTree *gp)
         if (rand_uniform(0, 1) < gp->mu[0]) {
             changed = true;
             if (gp->tree[i] >= GP_NUM_FUNC) {
-                gp->tree[i] = irand_uniform(GP_NUM_FUNC, terminal_max);
+                gp->tree[i] = rand_uniform_int(GP_NUM_FUNC, terminal_max);
             } else {
-                gp->tree[i] = irand_uniform(0, GP_NUM_FUNC);
+                gp->tree[i] = rand_uniform_int(0, GP_NUM_FUNC);
             }
         }
     }

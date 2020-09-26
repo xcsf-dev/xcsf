@@ -38,7 +38,7 @@ extern "C" {
 TEST_CASE("XCSF")
 {
     struct XCSF xcsf;
-    random_init();
+    rand_init();
     param_init(&xcsf);
     config_read(&xcsf, "../default.ini");
     CHECK_EQ(xcsf.ALPHA, 0.1);

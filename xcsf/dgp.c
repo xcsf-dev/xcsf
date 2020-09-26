@@ -44,10 +44,10 @@ random_connection(const int n_nodes, const int n_inputs)
 {
     // another node within the graph
     if (rand_uniform(0, 1) < 0.5) {
-        return irand_uniform(0, n_nodes) + n_inputs;
+        return rand_uniform_int(0, n_nodes) + n_inputs;
     }
     // external input
-    return irand_uniform(0, n_inputs);
+    return rand_uniform_int(0, n_inputs);
 }
 
 /**
@@ -64,7 +64,7 @@ graph_mutate_functions(const struct XCSF *xcsf, struct Graph *dgp)
     for (int i = 0; i < dgp->n; ++i) {
         if (rand_uniform(0, 1) < dgp->mu[0]) {
             const int orig = dgp->function[i];
-            dgp->function[i] = irand_uniform(0, NUM_FUNC);
+            dgp->function[i] = rand_uniform_int(0, NUM_FUNC);
             if (orig != dgp->function[i]) {
                 mod = true;
             }
@@ -271,9 +271,9 @@ graph_reset(const struct XCSF *xcsf, const struct Graph *dgp)
 void
 graph_rand(const struct XCSF *xcsf, struct Graph *dgp)
 {
-    dgp->t = irand_uniform(1, xcsf->MAX_T);
+    dgp->t = rand_uniform_int(1, xcsf->MAX_T);
     for (int i = 0; i < dgp->n; ++i) {
-        dgp->function[i] = irand_uniform(0, NUM_FUNC);
+        dgp->function[i] = rand_uniform_int(0, NUM_FUNC);
         dgp->initial_state[i] = rand_uniform(0, 1);
         dgp->state[i] = rand_uniform(0, 1);
     }

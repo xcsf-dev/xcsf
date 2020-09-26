@@ -1422,7 +1422,7 @@ class XCS
 
 PYBIND11_MODULE(xcsf, m)
 {
-    random_init();
+    rand_init();
 
     double (XCS::*fit1)(const py::array_t<double>, const int, const double) =
         &XCS::fit;

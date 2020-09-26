@@ -91,7 +91,7 @@ ea_subsume(struct XCSF *xcsf, struct Cl *c, struct Cl *c1p, struct Cl *c2p,
             }
         }
         if (choices > 0) { // found
-            ++(candidates[irand_uniform(0, choices)]->cl->num);
+            ++(candidates[rand_uniform_int(0, choices)]->cl->num);
             ++(xcsf->pset.num);
             cl_free(xcsf, c);
         }

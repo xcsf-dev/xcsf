@@ -155,8 +155,8 @@ env_maze_reset(const struct XCSF *xcsf)
     struct EnvMaze *env = xcsf->env;
     env->done = false;
     do {
-        env->xpos = irand_uniform(0, env->xsize);
-        env->ypos = irand_uniform(0, env->ysize);
+        env->xpos = rand_uniform_int(0, env->xsize);
+        env->ypos = rand_uniform_int(0, env->ysize);
     } while (env->maze[env->ypos][env->xpos] != '*');
 }
 

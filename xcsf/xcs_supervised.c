@@ -42,7 +42,7 @@ xcs_supervised_sample(const struct Input *data, const int cnt,
                       const _Bool shuffle)
 {
     if (shuffle) {
-        return irand_uniform(0, data->n_samples);
+        return rand_uniform_int(0, data->n_samples);
     }
     return cnt % data->n_samples;
 }

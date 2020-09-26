@@ -17,7 +17,7 @@
  * @file utils.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2019.
+ * @date 2015--2020.
  * @brief Utility functions for random number handling, etc.
  */
 
@@ -30,10 +30,10 @@ double
 rand_uniform(const double min, const double max);
 
 int
-irand_uniform(const int min, const int max);
+rand_uniform_int(const int min, const int max);
 
 void
-random_init(void);
+rand_init(void);
 
 /**
  * @brief Returns a float clamped within the specified range.

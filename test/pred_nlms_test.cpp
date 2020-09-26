@@ -42,7 +42,7 @@ TEST_CASE("PRED_NLMS")
     /* test initialisation */
     struct XCSF xcsf;
     struct Cl c;
-    random_init();
+    rand_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 10);
     param_set_y_dim(&xcsf, 1);
