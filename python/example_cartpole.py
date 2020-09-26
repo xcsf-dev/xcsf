@@ -177,7 +177,7 @@ for ep in range(MAX_EPISODES):
     print ("episodes=%d steps=%d score=%.2f epsilon=%.5f error=%.5f msize=%.2f" %
            (ep, total_steps, mean_score, epsilon, xcs.error(), xcs.msetsize()))
     # is the problem solved?
-    if ep > 99 and mean_score > env.spec.reward_threshold:
+    if ep > N and mean_score > env.spec.reward_threshold:
         print("solved after %d episodes: mean score %.2f > %.2f" %
               (ep, mean_score, env.spec.reward_threshold))
         break
