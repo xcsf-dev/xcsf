@@ -71,6 +71,7 @@ def save_frames_as_gif(path='./', filename='animation.gif'):
 xcs = xcsf.XCS(X_DIM, N_ACTIONS, 1) # Supervised mode: i.e, single action
 
 xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
+xcs.POP_INIT = False # use covering to initialise
 xcs.MAX_TRIALS = 1 # one trial per fit
 xcs.POP_SIZE = 200 # maximum population size
 xcs.EPS_0 = 0.001 # target error
@@ -82,11 +83,9 @@ xcs.SET_SUBSUMPTION = False
 xcs.THETA_EA = 100 # EA invocation frequency
 xcs.THETA_DEL = 100 # min experience before fitness used for deletion
 
-xcs.MAX_NEURON_GROW = 1 # max neurons to add/remove per mut
-
 xcs.ACT_TYPE = 0 # (dummy) integer actions
+xcs.PRED_TYPE = 4 # Quadratic RLS
 
-xcs.POP_INIT = False # use covering to initialise
 xcs.COND_TYPE = 3 # neural network conditions
 xcs.COND_OUTPUT_ACTIVATION = 3 # linear
 xcs.COND_HIDDEN_ACTIVATION = 9 # selu
@@ -96,26 +95,13 @@ xcs.COND_EVOLVE_WEIGHTS = True
 xcs.COND_EVOLVE_NEURONS = True
 xcs.COND_EVOLVE_FUNCTIONS = False
 xcs.COND_EVOLVE_CONNECTIVITY = False
-
-xcs.PRED_TYPE = 5 # neural network predictions
-xcs.PRED_OUTPUT_ACTIVATION = 3 # linear
-xcs.PRED_HIDDEN_ACTIVATION = 9 # selu
-xcs.PRED_NUM_NEURONS = [20] # initial neurons
-xcs.PRED_MAX_NEURONS = [200] # maximum neurons
-xcs.PRED_EVOLVE_WEIGHTS = True
-xcs.PRED_EVOLVE_NEURONS = True
-xcs.PRED_EVOLVE_FUNCTIONS = False
-xcs.PRED_EVOLVE_CONNECTIVITY = False
-xcs.PRED_EVOLVE_ETA = True
-xcs.PRED_SGD_WEIGHTS = True
-xcs.PRED_ETA = 0.0001 # maximum gradient descent rate
-xcs.PRED_DECAY = 0 # weight decay
+xcs.MAX_NEURON_GROW = 1 # max neurons to add/remove per mut
 
 GAMMA = 0.95 # discount rate for delayed reward
 epsilon = 1 # initial probability of exploring
 EPSILON_MIN = 0.1 # the minimum exploration rate
 EPSILON_DECAY = 0.98 # the decay of exploration after each batch replay
-REPLAY_TIME = 10 # perform replay update every n episodes
+REPLAY_TIME = 1 # perform replay update every n episodes
 
 xcs.print_params()
 
@@ -129,7 +115,7 @@ N = 100 # number of episodes to average performance
 memory = deque(maxlen = 50000) # memory buffer for experience replay
 scores = deque(maxlen = N) # scores used to calculate moving average
 
-def replay(replay_size=50000):
+def replay(replay_size=5000):
     """ Performs experience replay updates """
     batch_size = min(len(memory), replay_size)
     batch = random.sample(memory, batch_size)
