@@ -29,10 +29,10 @@
 static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
 
 static double
-cond_rectangle_dist(const struct XCSF *xcsf, const struct CL *c,
+cond_rectangle_dist(const struct XCSF *xcsf, const struct Cl *c,
                     const double *x)
 {
-    const struct COND_RECTANGLE *cond = c->cond;
+    const struct CondRectangle *cond = c->cond;
     double dist = 0;
     for (int i = 0; i < xcsf->x_dim; ++i) {
         const double d = fabs((x[i] - cond->center[i]) / cond->spread[i]);
@@ -50,9 +50,9 @@ cond_rectangle_dist(const struct XCSF *xcsf, const struct CL *c,
  * @param c The classifier whose condition is to be initialised.
  */
 void
-cond_rectangle_init(const struct XCSF *xcsf, struct CL *c)
+cond_rectangle_init(const struct XCSF *xcsf, struct Cl *c)
 {
-    struct COND_RECTANGLE *new = malloc(sizeof(struct COND_RECTANGLE));
+    struct CondRectangle *new = malloc(sizeof(struct CondRectangle));
     new->center = malloc(sizeof(double) * xcsf->x_dim);
     new->spread = malloc(sizeof(double) * xcsf->x_dim);
     const double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
@@ -66,10 +66,10 @@ cond_rectangle_init(const struct XCSF *xcsf, struct CL *c)
 }
 
 void
-cond_rectangle_free(const struct XCSF *xcsf, const struct CL *c)
+cond_rectangle_free(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
-    const struct COND_RECTANGLE *cond = c->cond;
+    const struct CondRectangle *cond = c->cond;
     free(cond->center);
     free(cond->spread);
     free(cond->mu);
@@ -77,11 +77,11 @@ cond_rectangle_free(const struct XCSF *xcsf, const struct CL *c)
 }
 
 void
-cond_rectangle_copy(const struct XCSF *xcsf, struct CL *dest,
-                    const struct CL *src)
+cond_rectangle_copy(const struct XCSF *xcsf, struct Cl *dest,
+                    const struct Cl *src)
 {
-    struct COND_RECTANGLE *new = malloc(sizeof(struct COND_RECTANGLE));
-    const struct COND_RECTANGLE *src_cond = src->cond;
+    struct CondRectangle *new = malloc(sizeof(struct CondRectangle));
+    const struct CondRectangle *src_cond = src->cond;
     new->center = malloc(sizeof(double) * xcsf->x_dim);
     new->spread = malloc(sizeof(double) * xcsf->x_dim);
     new->mu = malloc(sizeof(double) * N_MU);
@@ -92,10 +92,10 @@ cond_rectangle_copy(const struct XCSF *xcsf, struct CL *dest,
 }
 
 void
-cond_rectangle_cover(const struct XCSF *xcsf, const struct CL *c,
+cond_rectangle_cover(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
 {
-    const struct COND_RECTANGLE *cond = c->cond;
+    const struct CondRectangle *cond = c->cond;
     const double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
     for (int i = 0; i < xcsf->x_dim; ++i) {
         cond->center[i] = x[i];
@@ -104,12 +104,12 @@ cond_rectangle_cover(const struct XCSF *xcsf, const struct CL *c,
 }
 
 void
-cond_rectangle_update(const struct XCSF *xcsf, const struct CL *c,
+cond_rectangle_update(const struct XCSF *xcsf, const struct Cl *c,
                       const double *x, const double *y)
 {
     (void) y;
     if (xcsf->COND_ETA > 0) {
-        const struct COND_RECTANGLE *cond = c->cond;
+        const struct CondRectangle *cond = c->cond;
         for (int i = 0; i < xcsf->x_dim; ++i) {
             cond->center[i] += xcsf->COND_ETA * (x[i] - cond->center[i]);
         }
@@ -117,7 +117,7 @@ cond_rectangle_update(const struct XCSF *xcsf, const struct CL *c,
 }
 
 _Bool
-cond_rectangle_match(const struct XCSF *xcsf, const struct CL *c,
+cond_rectangle_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
 {
     if (cond_rectangle_dist(xcsf, c, x) < 1) {
@@ -127,11 +127,11 @@ cond_rectangle_match(const struct XCSF *xcsf, const struct CL *c,
 }
 
 _Bool
-cond_rectangle_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                         const struct CL *c2)
+cond_rectangle_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                         const struct Cl *c2)
 {
-    const struct COND_RECTANGLE *cond1 = c1->cond;
-    const struct COND_RECTANGLE *cond2 = c2->cond;
+    const struct CondRectangle *cond1 = c1->cond;
+    const struct CondRectangle *cond2 = c2->cond;
     _Bool changed = false;
     if (rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for (int i = 0; i < xcsf->x_dim; ++i) {
@@ -153,10 +153,10 @@ cond_rectangle_crossover(const struct XCSF *xcsf, const struct CL *c1,
 }
 
 _Bool
-cond_rectangle_mutate(const struct XCSF *xcsf, const struct CL *c)
+cond_rectangle_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     _Bool changed = false;
-    const struct COND_RECTANGLE *cond = c->cond;
+    const struct CondRectangle *cond = c->cond;
     double *center = cond->center;
     double *spread = cond->spread;
     sam_adapt(cond->mu, N_MU, MU_TYPE);
@@ -177,11 +177,11 @@ cond_rectangle_mutate(const struct XCSF *xcsf, const struct CL *c)
 }
 
 _Bool
-cond_rectangle_general(const struct XCSF *xcsf, const struct CL *c1,
-                       const struct CL *c2)
+cond_rectangle_general(const struct XCSF *xcsf, const struct Cl *c1,
+                       const struct Cl *c2)
 {
-    const struct COND_RECTANGLE *cond1 = c1->cond;
-    const struct COND_RECTANGLE *cond2 = c2->cond;
+    const struct CondRectangle *cond1 = c1->cond;
+    const struct CondRectangle *cond2 = c2->cond;
     for (int i = 0; i < xcsf->x_dim; ++i) {
         const double l1 = cond1->center[i] - cond1->spread[i];
         const double l2 = cond2->center[i] - cond2->spread[i];
@@ -195,9 +195,9 @@ cond_rectangle_general(const struct XCSF *xcsf, const struct CL *c1,
 }
 
 void
-cond_rectangle_print(const struct XCSF *xcsf, const struct CL *c)
+cond_rectangle_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct COND_RECTANGLE *cond = c->cond;
+    const struct CondRectangle *cond = c->cond;
     printf("rectangle:");
     for (int i = 0; i < xcsf->x_dim; ++i) {
         printf(" (c=%5f, ", cond->center[i]);
@@ -207,17 +207,17 @@ cond_rectangle_print(const struct XCSF *xcsf, const struct CL *c)
 }
 
 double
-cond_rectangle_size(const struct XCSF *xcsf, const struct CL *c)
+cond_rectangle_size(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) c;
     return xcsf->x_dim;
 }
 
 size_t
-cond_rectangle_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
+cond_rectangle_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
     size_t s = 0;
-    const struct COND_RECTANGLE *cond = c->cond;
+    const struct CondRectangle *cond = c->cond;
     s += fwrite(cond->center, sizeof(double), xcsf->x_dim, fp);
     s += fwrite(cond->spread, sizeof(double), xcsf->x_dim, fp);
     s += fwrite(cond->mu, sizeof(double), N_MU, fp);
@@ -225,10 +225,10 @@ cond_rectangle_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 }
 
 size_t
-cond_rectangle_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
+cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     size_t s = 0;
-    struct COND_RECTANGLE *new = malloc(sizeof(struct COND_RECTANGLE));
+    struct CondRectangle *new = malloc(sizeof(struct CondRectangle));
     new->center = malloc(sizeof(double) * xcsf->x_dim);
     new->spread = malloc(sizeof(double) * xcsf->x_dim);
     new->mu = malloc(sizeof(double) * N_MU);

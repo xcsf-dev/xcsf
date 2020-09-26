@@ -24,21 +24,21 @@
 #include "cond_dummy.h"
 
 void
-cond_dummy_init(const struct XCSF *xcsf, struct CL *c)
+cond_dummy_init(const struct XCSF *xcsf, struct Cl *c)
 {
     (void) xcsf;
     (void) c;
 }
 
 void
-cond_dummy_free(const struct XCSF *xcsf, const struct CL *c)
+cond_dummy_free(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     (void) c;
 }
 
 void
-cond_dummy_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
+cond_dummy_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
     (void) xcsf;
     (void) dest;
@@ -46,7 +46,7 @@ cond_dummy_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
 }
 
 void
-cond_dummy_cover(const struct XCSF *xcsf, const struct CL *c, const double *x)
+cond_dummy_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     (void) xcsf;
     (void) c;
@@ -54,7 +54,7 @@ cond_dummy_cover(const struct XCSF *xcsf, const struct CL *c, const double *x)
 }
 
 void
-cond_dummy_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+cond_dummy_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                   const double *y)
 {
     (void) xcsf;
@@ -64,7 +64,7 @@ cond_dummy_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
 }
 
 _Bool
-cond_dummy_match(const struct XCSF *xcsf, const struct CL *c, const double *x)
+cond_dummy_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     (void) xcsf;
     (void) c;
@@ -73,8 +73,8 @@ cond_dummy_match(const struct XCSF *xcsf, const struct CL *c, const double *x)
 }
 
 _Bool
-cond_dummy_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                     const struct CL *c2)
+cond_dummy_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                     const struct Cl *c2)
 {
     (void) xcsf;
     (void) c1;
@@ -83,7 +83,7 @@ cond_dummy_crossover(const struct XCSF *xcsf, const struct CL *c1,
 }
 
 _Bool
-cond_dummy_mutate(const struct XCSF *xcsf, const struct CL *c)
+cond_dummy_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     (void) c;
@@ -91,8 +91,8 @@ cond_dummy_mutate(const struct XCSF *xcsf, const struct CL *c)
 }
 
 _Bool
-cond_dummy_general(const struct XCSF *xcsf, const struct CL *c1,
-                   const struct CL *c2)
+cond_dummy_general(const struct XCSF *xcsf, const struct Cl *c1,
+                   const struct Cl *c2)
 {
     (void) xcsf;
     (void) c1;
@@ -101,14 +101,14 @@ cond_dummy_general(const struct XCSF *xcsf, const struct CL *c1,
 }
 
 void
-cond_dummy_print(const struct XCSF *xcsf, const struct CL *c)
+cond_dummy_print(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     (void) c;
 }
 
 double
-cond_dummy_size(const struct XCSF *xcsf, const struct CL *c)
+cond_dummy_size(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     (void) c;
@@ -116,7 +116,7 @@ cond_dummy_size(const struct XCSF *xcsf, const struct CL *c)
 }
 
 size_t
-cond_dummy_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
+cond_dummy_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
     (void) xcsf;
     (void) c;
@@ -125,7 +125,7 @@ cond_dummy_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 }
 
 size_t
-cond_dummy_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
+cond_dummy_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     (void) xcsf;
     (void) c;

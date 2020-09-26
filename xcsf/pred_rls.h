@@ -29,7 +29,7 @@
 /**
  * @brief Recursive least mean squares prediction data structure.
  */
-struct PRED_RLS {
+struct PredRLS {
     int n; //!< Number of weights for each predicted variable
     int n_weights; //!< Total number of weights
     double *weights; //!< Weights used to compute prediction
@@ -41,38 +41,38 @@ struct PRED_RLS {
 };
 
 _Bool
-pred_rls_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                   const struct CL *c2);
+pred_rls_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                   const struct Cl *c2);
 
 _Bool
-pred_rls_mutate(const struct XCSF *xcsf, const struct CL *c);
+pred_rls_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 double
-pred_rls_size(const struct XCSF *xcsf, const struct CL *c);
+pred_rls_size(const struct XCSF *xcsf, const struct Cl *c);
 
 size_t
-pred_rls_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+pred_rls_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 size_t
-pred_rls_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
+pred_rls_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 void
-pred_rls_compute(const struct XCSF *xcsf, const struct CL *c, const double *x);
+pred_rls_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x);
 
 void
-pred_rls_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
+pred_rls_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src);
 
 void
-pred_rls_free(const struct XCSF *xcsf, const struct CL *c);
+pred_rls_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-pred_rls_init(const struct XCSF *xcsf, struct CL *c);
+pred_rls_init(const struct XCSF *xcsf, struct Cl *c);
 
 void
-pred_rls_print(const struct XCSF *xcsf, const struct CL *c);
+pred_rls_print(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-pred_rls_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+pred_rls_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                 const double *y);
 
 /**

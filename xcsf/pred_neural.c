@@ -41,13 +41,13 @@
  * @param c The classifier whose prediction is to be initialised.
  */
 void
-pred_neural_init(const struct XCSF *xcsf, struct CL *c)
+pred_neural_init(const struct XCSF *xcsf, struct Cl *c)
 {
-    struct PRED_NEURAL *new = malloc(sizeof(struct PRED_NEURAL));
+    struct PredNeural *new = malloc(sizeof(struct PredNeural));
     neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = neural_pred_lopt(xcsf);
-    struct LAYER *l = NULL;
+    struct Layer *l = NULL;
     int n_inputs = xcsf->x_dim;
     for (int i = 0; i < MAX_LAYERS && xcsf->PRED_NUM_NEURONS[i] > 0; ++i) {
         const int hinit = xcsf->PRED_NUM_NEURONS[i];
@@ -79,37 +79,37 @@ pred_neural_init(const struct XCSF *xcsf, struct CL *c)
 }
 
 void
-pred_neural_free(const struct XCSF *xcsf, const struct CL *c)
+pred_neural_free(const struct XCSF *xcsf, const struct Cl *c)
 {
-    struct PRED_NEURAL *pred = c->pred;
+    struct PredNeural *pred = c->pred;
     neural_free(xcsf, &pred->net);
     free(pred);
 }
 
 void
-pred_neural_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
+pred_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
-    struct PRED_NEURAL *new = malloc(sizeof(struct PRED_NEURAL));
-    const struct PRED_NEURAL *src_pred = src->pred;
+    struct PredNeural *new = malloc(sizeof(struct PredNeural));
+    const struct PredNeural *src_pred = src->pred;
     neural_copy(xcsf, &new->net, &src_pred->net);
     dest->pred = new;
 }
 
 void
-pred_neural_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+pred_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                    const double *y)
 {
     if (xcsf->PRED_SGD_WEIGHTS) {
-        const struct PRED_NEURAL *pred = c->pred;
+        const struct PredNeural *pred = c->pred;
         neural_learn(xcsf, &pred->net, y, x);
     }
 }
 
 void
-pred_neural_compute(const struct XCSF *xcsf, const struct CL *c,
+pred_neural_compute(const struct XCSF *xcsf, const struct Cl *c,
                     const double *x)
 {
-    const struct PRED_NEURAL *pred = c->pred;
+    const struct PredNeural *pred = c->pred;
     neural_propagate(xcsf, &pred->net, x);
     for (int i = 0; i < xcsf->y_dim; ++i) {
         c->prediction[i] = neural_output(xcsf, &pred->net, i);
@@ -117,15 +117,15 @@ pred_neural_compute(const struct XCSF *xcsf, const struct CL *c,
 }
 
 void
-pred_neural_print(const struct XCSF *xcsf, const struct CL *c)
+pred_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct PRED_NEURAL *pred = c->pred;
+    const struct PredNeural *pred = c->pred;
     neural_print(xcsf, &pred->net, false);
 }
 
 _Bool
-pred_neural_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                      const struct CL *c2)
+pred_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                      const struct Cl *c2)
 {
     (void) xcsf;
     (void) c1;
@@ -134,42 +134,42 @@ pred_neural_crossover(const struct XCSF *xcsf, const struct CL *c1,
 }
 
 _Bool
-pred_neural_mutate(const struct XCSF *xcsf, const struct CL *c)
+pred_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct PRED_NEURAL *pred = c->pred;
+    const struct PredNeural *pred = c->pred;
     return neural_mutate(xcsf, &pred->net);
 }
 
 double
-pred_neural_size(const struct XCSF *xcsf, const struct CL *c)
+pred_neural_size(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct PRED_NEURAL *pred = c->pred;
+    const struct PredNeural *pred = c->pred;
     return neural_size(xcsf, &pred->net);
 }
 
 size_t
-pred_neural_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
+pred_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
-    const struct PRED_NEURAL *pred = c->pred;
+    const struct PredNeural *pred = c->pred;
     size_t s = neural_save(xcsf, &pred->net, fp);
     return s;
 }
 
 size_t
-pred_neural_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
+pred_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
-    struct PRED_NEURAL *new = malloc(sizeof(struct PRED_NEURAL));
+    struct PredNeural *new = malloc(sizeof(struct PredNeural));
     size_t s = neural_load(xcsf, &new->net, fp);
     c->pred = new;
     return s;
 }
 
 double
-pred_neural_eta(const struct XCSF *xcsf, const struct CL *c, const int layer)
+pred_neural_eta(const struct XCSF *xcsf, const struct Cl *c, const int layer)
 {
     (void) xcsf;
-    const struct PRED_NEURAL *pred = c->pred;
-    const struct LLIST *iter = pred->net.tail;
+    const struct PredNeural *pred = c->pred;
+    const struct Llist *iter = pred->net.tail;
     int i = 0;
     while (iter != NULL) {
         if (i == layer) {
@@ -182,12 +182,12 @@ pred_neural_eta(const struct XCSF *xcsf, const struct CL *c, const int layer)
 }
 
 int
-pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c,
+pred_neural_neurons(const struct XCSF *xcsf, const struct Cl *c,
                     const int layer)
 {
     (void) xcsf;
-    const struct PRED_NEURAL *pred = c->pred;
-    const struct LLIST *iter = pred->net.tail;
+    const struct PredNeural *pred = c->pred;
+    const struct Llist *iter = pred->net.tail;
     int i = 0;
     while (iter != NULL) {
         if (i == layer) {
@@ -200,12 +200,12 @@ pred_neural_neurons(const struct XCSF *xcsf, const struct CL *c,
 }
 
 int
-pred_neural_connections(const struct XCSF *xcsf, const struct CL *c,
+pred_neural_connections(const struct XCSF *xcsf, const struct Cl *c,
                         const int layer)
 {
     (void) xcsf;
-    const struct PRED_NEURAL *pred = c->pred;
-    const struct LLIST *iter = pred->net.tail;
+    const struct PredNeural *pred = c->pred;
+    const struct Llist *iter = pred->net.tail;
     int i = 0;
     while (iter != NULL) {
         if (i == layer) {
@@ -218,20 +218,20 @@ pred_neural_connections(const struct XCSF *xcsf, const struct CL *c,
 }
 
 int
-pred_neural_layers(const struct XCSF *xcsf, const struct CL *c)
+pred_neural_layers(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
-    const struct PRED_NEURAL *pred = c->pred;
-    const struct NET *net = &pred->net;
+    const struct PredNeural *pred = c->pred;
+    const struct Net *net = &pred->net;
     return net->n_layers;
 }
 
 void
-pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
+pred_neural_expand(const struct XCSF *xcsf, const struct Cl *c)
 {
-    struct PRED_NEURAL *pred = c->pred;
-    struct NET *net = &pred->net;
-    const struct LAYER *h = NULL;
+    struct PredNeural *pred = c->pred;
+    struct Net *net = &pred->net;
+    const struct Layer *h = NULL;
     int n_inputs = 0;
     // select top hidden layer
     if (net->n_layers > 1) {
@@ -248,19 +248,19 @@ pred_neural_expand(const struct XCSF *xcsf, const struct CL *c)
     const int f = xcsf->PRED_HIDDEN_ACTIVATION;
     const int pos = net->n_layers - 1;
     const uint32_t lopt = neural_pred_lopt(xcsf);
-    struct LAYER *l = neural_layer_connected_init(xcsf, n_inputs, n_outputs,
+    struct Layer *l = neural_layer_connected_init(xcsf, n_inputs, n_outputs,
                                                   max_outputs, f, lopt);
     neural_layer_insert(xcsf, net, l, pos);
     neural_resize(xcsf, net);
 }
 
 void
-pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct CL *c,
+pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct Cl *c,
                              const int n_del)
 {
-    struct PRED_NEURAL *pred = c->pred;
-    struct NET *net = &pred->net;
-    struct LAYER *l = NULL;
+    struct PredNeural *pred = c->pred;
+    struct Net *net = &pred->net;
+    struct Layer *l = NULL;
     // remove decoder layers
     for (int i = 0; i < n_del && net->n_layers > 1; ++i) {
         neural_layer_remove(xcsf, net, net->n_layers - 1);

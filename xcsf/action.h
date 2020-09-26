@@ -26,32 +26,32 @@
 #include "xcsf.h"
 
 void
-action_set(const struct XCSF *xcsf, struct CL *c);
+action_set(const struct XCSF *xcsf, struct Cl *c);
 
 /**
  * @brief Action interface data structure.
  * @details Action implementations must implement these functions.
  */
 struct ActVtbl {
-    _Bool (*act_impl_general)(const struct XCSF *xcsf, const struct CL *c1,
-                              const struct CL *c2);
-    _Bool (*act_impl_crossover)(const struct XCSF *xcsf, const struct CL *c1,
-                                const struct CL *c2);
-    _Bool (*act_impl_mutate)(const struct XCSF *xcsf, const struct CL *c);
-    int (*act_impl_compute)(const struct XCSF *xcsf, const struct CL *c,
+    _Bool (*act_impl_general)(const struct XCSF *xcsf, const struct Cl *c1,
+                              const struct Cl *c2);
+    _Bool (*act_impl_crossover)(const struct XCSF *xcsf, const struct Cl *c1,
+                                const struct Cl *c2);
+    _Bool (*act_impl_mutate)(const struct XCSF *xcsf, const struct Cl *c);
+    int (*act_impl_compute)(const struct XCSF *xcsf, const struct Cl *c,
                             const double *x);
-    void (*act_impl_copy)(const struct XCSF *xcsf, struct CL *dest,
-                          const struct CL *src);
-    void (*act_impl_cover)(const struct XCSF *xcsf, const struct CL *c,
+    void (*act_impl_copy)(const struct XCSF *xcsf, struct Cl *dest,
+                          const struct Cl *src);
+    void (*act_impl_cover)(const struct XCSF *xcsf, const struct Cl *c,
                            const double *x, const int action);
-    void (*act_impl_free)(const struct XCSF *xcsf, const struct CL *c);
-    void (*act_impl_init)(const struct XCSF *xcsf, struct CL *c);
-    void (*act_impl_print)(const struct XCSF *xcsf, const struct CL *c);
-    void (*act_impl_update)(const struct XCSF *xcsf, const struct CL *c,
+    void (*act_impl_free)(const struct XCSF *xcsf, const struct Cl *c);
+    void (*act_impl_init)(const struct XCSF *xcsf, struct Cl *c);
+    void (*act_impl_print)(const struct XCSF *xcsf, const struct Cl *c);
+    void (*act_impl_update)(const struct XCSF *xcsf, const struct Cl *c,
                             const double *x, const double *y);
-    size_t (*act_impl_save)(const struct XCSF *xcsf, const struct CL *c,
+    size_t (*act_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                             FILE *fp);
-    size_t (*act_impl_load)(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+    size_t (*act_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 };
 
 /**
@@ -62,7 +62,7 @@ struct ActVtbl {
  * @return The number of elements written.
  */
 static inline size_t
-act_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
+act_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
     return (*c->act_vptr->act_impl_save)(xcsf, c, fp);
 }
@@ -75,7 +75,7 @@ act_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
  * @return The number of elements read.
  */
 static inline size_t
-act_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
+act_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     return (*c->act_vptr->act_impl_load)(xcsf, c, fp);
 }
@@ -88,7 +88,7 @@ act_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
  * @return Whether the action of c1 is more general than c2.
  */
 static inline _Bool
-act_general(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
+act_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 {
     return (*c1->act_vptr->act_impl_general)(xcsf, c1, c2);
 }
@@ -101,7 +101,7 @@ act_general(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
  * @return Whether any alterations were made.
  */
 static inline _Bool
-act_crossover(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
+act_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 {
     return (*c1->act_vptr->act_impl_crossover)(xcsf, c1, c2);
 }
@@ -113,7 +113,7 @@ act_crossover(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
  * @return Whether any alterations were made.
  */
 static inline _Bool
-act_mutate(const struct XCSF *xcsf, const struct CL *c)
+act_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->act_vptr->act_impl_mutate)(xcsf, c);
 }
@@ -126,7 +126,7 @@ act_mutate(const struct XCSF *xcsf, const struct CL *c)
  * @return The classifier's action.
  */
 static inline int
-act_compute(const struct XCSF *xcsf, const struct CL *c, const double *x)
+act_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     return (*c->act_vptr->act_impl_compute)(xcsf, c, x);
 }
@@ -138,7 +138,7 @@ act_compute(const struct XCSF *xcsf, const struct CL *c, const double *x)
  * @param src The source classifier.
  */
 static inline void
-act_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
+act_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
     (*src->act_vptr->act_impl_copy)(xcsf, dest, src);
 }
@@ -151,7 +151,7 @@ act_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
  * @param action The action to cover.
  */
 static inline void
-act_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
+act_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
           const int action)
 {
     (*c->act_vptr->act_impl_cover)(xcsf, c, x, action);
@@ -163,7 +163,7 @@ act_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
  * @param c The classifier whose action is to be freed.
  */
 static inline void
-act_free(const struct XCSF *xcsf, const struct CL *c)
+act_free(const struct XCSF *xcsf, const struct Cl *c)
 {
     (*c->act_vptr->act_impl_free)(xcsf, c);
 }
@@ -174,7 +174,7 @@ act_free(const struct XCSF *xcsf, const struct CL *c)
  * @param c The classifier whose action is to be initialised.
  */
 static inline void
-act_init(const struct XCSF *xcsf, struct CL *c)
+act_init(const struct XCSF *xcsf, struct Cl *c)
 {
     (*c->act_vptr->act_impl_init)(xcsf, c);
 }
@@ -185,7 +185,7 @@ act_init(const struct XCSF *xcsf, struct CL *c)
  * @param c The classifier whose action is to be printed.
  */
 static inline void
-act_print(const struct XCSF *xcsf, const struct CL *c)
+act_print(const struct XCSF *xcsf, const struct Cl *c)
 {
     (*c->act_vptr->act_impl_print)(xcsf, c);
 }
@@ -198,7 +198,7 @@ act_print(const struct XCSF *xcsf, const struct CL *c)
  * @param y The payoff value.
  */
 static inline void
-act_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+act_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
            const double *y)
 {
     (*c->act_vptr->act_impl_update)(xcsf, c, x, y);

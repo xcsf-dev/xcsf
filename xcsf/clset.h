@@ -26,19 +26,19 @@
 #include "xcsf.h"
 
 double
-clset_mean_cond_size(const struct XCSF *xcsf, const struct SET *set);
+clset_mean_cond_size(const struct XCSF *xcsf, const struct Set *set);
 
 double
-clset_mean_pred_size(const struct XCSF *xcsf, const struct SET *set);
+clset_mean_pred_size(const struct XCSF *xcsf, const struct Set *set);
 
 double
-clset_mean_time(const struct SET *set);
+clset_mean_time(const struct Set *set);
 
 double
 clset_mfrac(const struct XCSF *xcsf);
 
 double
-clset_total_fit(const struct SET *set);
+clset_total_fit(const struct Set *set);
 
 size_t
 clset_pop_load(struct XCSF *xcsf, FILE *fp);
@@ -50,16 +50,16 @@ void
 clset_action(struct XCSF *xcsf, const int action);
 
 void
-clset_add(struct SET *set, struct CL *c);
+clset_add(struct Set *set, struct Cl *c);
 
 void
-clset_free(struct SET *set);
+clset_free(struct Set *set);
 
 void
-clset_init(struct SET *set);
+clset_init(struct Set *set);
 
 void
-clset_kill(const struct XCSF *xcsf, struct SET *set);
+clset_kill(const struct XCSF *xcsf, struct Set *set);
 
 void
 clset_match(struct XCSF *xcsf, const double *x);
@@ -71,16 +71,16 @@ void
 clset_pop_init(struct XCSF *xcsf);
 
 void
-clset_print(const struct XCSF *xcsf, const struct SET *set,
+clset_print(const struct XCSF *xcsf, const struct Set *set,
             const _Bool print_cond, const _Bool print_act,
             const _Bool print_pred);
 
 void
-clset_set_times(const struct XCSF *xcsf, const struct SET *set);
+clset_set_times(const struct XCSF *xcsf, const struct Set *set);
 
 void
-clset_update(struct XCSF *xcsf, struct SET *set, const double *x,
+clset_update(struct XCSF *xcsf, struct Set *set, const double *x,
              const double *y, const _Bool cur);
 
 void
-clset_validate(struct SET *set);
+clset_validate(struct Set *set);

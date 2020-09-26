@@ -26,4 +26,4 @@
 #include "xcsf.h"
 
 void
-ea(struct XCSF *xcsf, const struct SET *set);
+ea(struct XCSF *xcsf, const struct Set *set);

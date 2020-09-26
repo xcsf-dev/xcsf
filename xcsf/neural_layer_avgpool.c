@@ -27,7 +27,7 @@
 #include "xcsf.h"
 
 static void
-malloc_layer_arrays(struct LAYER *l)
+malloc_layer_arrays(struct Layer *l)
 {
     if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
         printf("neural_layer_avgpool: malloc() invalid size\n");
@@ -46,12 +46,12 @@ malloc_layer_arrays(struct LAYER *l)
  * @param c The number of input channels.
  * @return A pointer to the new layer.
  */
-struct LAYER *
+struct Layer *
 neural_layer_avgpool_init(const struct XCSF *xcsf, const int h, const int w,
                           const int c)
 {
     (void) xcsf;
-    struct LAYER *l = malloc(sizeof(struct LAYER));
+    struct Layer *l = malloc(sizeof(struct Layer));
     layer_init(l);
     l->layer_type = AVGPOOL;
     l->layer_vptr = &layer_avgpool_vtbl;
@@ -68,15 +68,15 @@ neural_layer_avgpool_init(const struct XCSF *xcsf, const int h, const int w,
     return l;
 }
 
-struct LAYER *
-neural_layer_avgpool_copy(const struct XCSF *xcsf, const struct LAYER *src)
+struct Layer *
+neural_layer_avgpool_copy(const struct XCSF *xcsf, const struct Layer *src)
 {
     (void) xcsf;
     if (src->layer_type != AVGPOOL) {
         printf("neural_layer_avgpool_copy(): incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
-    struct LAYER *l = malloc(sizeof(struct LAYER));
+    struct Layer *l = malloc(sizeof(struct Layer));
     layer_init(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
@@ -94,7 +94,7 @@ neural_layer_avgpool_copy(const struct XCSF *xcsf, const struct LAYER *src)
 }
 
 void
-neural_layer_avgpool_free(const struct XCSF *xcsf, const struct LAYER *l)
+neural_layer_avgpool_free(const struct XCSF *xcsf, const struct Layer *l)
 {
     (void) xcsf;
     free(l->output);
@@ -102,14 +102,14 @@ neural_layer_avgpool_free(const struct XCSF *xcsf, const struct LAYER *l)
 }
 
 void
-neural_layer_avgpool_rand(const struct XCSF *xcsf, struct LAYER *l)
+neural_layer_avgpool_rand(const struct XCSF *xcsf, struct Layer *l)
 {
     (void) xcsf;
     (void) l;
 }
 
 void
-neural_layer_avgpool_forward(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_avgpool_forward(const struct XCSF *xcsf, const struct Layer *l,
                              const double *input)
 {
     (void) xcsf;
@@ -124,7 +124,7 @@ neural_layer_avgpool_forward(const struct XCSF *xcsf, const struct LAYER *l,
 }
 
 void
-neural_layer_avgpool_backward(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_avgpool_backward(const struct XCSF *xcsf, const struct Layer *l,
                               const double *input, double *delta)
 {
     (void) xcsf;
@@ -140,14 +140,14 @@ neural_layer_avgpool_backward(const struct XCSF *xcsf, const struct LAYER *l,
 }
 
 void
-neural_layer_avgpool_update(const struct XCSF *xcsf, const struct LAYER *l)
+neural_layer_avgpool_update(const struct XCSF *xcsf, const struct Layer *l)
 {
     (void) xcsf;
     (void) l;
 }
 
 _Bool
-neural_layer_avgpool_mutate(const struct XCSF *xcsf, struct LAYER *l)
+neural_layer_avgpool_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
     (void) xcsf;
     (void) l;
@@ -155,8 +155,8 @@ neural_layer_avgpool_mutate(const struct XCSF *xcsf, struct LAYER *l)
 }
 
 void
-neural_layer_avgpool_resize(const struct XCSF *xcsf, struct LAYER *l,
-                            const struct LAYER *prev)
+neural_layer_avgpool_resize(const struct XCSF *xcsf, struct Layer *l,
+                            const struct Layer *prev)
 {
     (void) xcsf;
     const int h = prev->out_h;
@@ -174,14 +174,14 @@ neural_layer_avgpool_resize(const struct XCSF *xcsf, struct LAYER *l,
 }
 
 double *
-neural_layer_avgpool_output(const struct XCSF *xcsf, const struct LAYER *l)
+neural_layer_avgpool_output(const struct XCSF *xcsf, const struct Layer *l)
 {
     (void) xcsf;
     return l->output;
 }
 
 void
-neural_layer_avgpool_print(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_avgpool_print(const struct XCSF *xcsf, const struct Layer *l,
                            const _Bool print_weights)
 {
     (void) xcsf;
@@ -191,7 +191,7 @@ neural_layer_avgpool_print(const struct XCSF *xcsf, const struct LAYER *l,
 }
 
 size_t
-neural_layer_avgpool_save(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_avgpool_save(const struct XCSF *xcsf, const struct Layer *l,
                           FILE *fp)
 {
     (void) xcsf;
@@ -209,7 +209,7 @@ neural_layer_avgpool_save(const struct XCSF *xcsf, const struct LAYER *l,
 }
 
 size_t
-neural_layer_avgpool_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp)
+neural_layer_avgpool_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;

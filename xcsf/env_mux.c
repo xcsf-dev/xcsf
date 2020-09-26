@@ -43,7 +43,7 @@
 void
 env_mux_init(struct XCSF *xcsf, const int bits)
 {
-    struct ENV_MUX *env = malloc(sizeof(struct ENV_MUX));
+    struct EnvMux *env = malloc(sizeof(struct EnvMux));
     env->pos_bits = 1;
     while (env->pos_bits + pow(2, env->pos_bits) <= bits) {
         ++(env->pos_bits);
@@ -64,7 +64,7 @@ env_mux_init(struct XCSF *xcsf, const int bits)
 void
 env_mux_free(const struct XCSF *xcsf)
 {
-    struct ENV_MUX *env = xcsf->env;
+    struct EnvMux *env = xcsf->env;
     free(env->state);
     free(env);
 }
@@ -77,7 +77,7 @@ env_mux_free(const struct XCSF *xcsf)
 const double *
 env_mux_get_state(const struct XCSF *xcsf)
 {
-    const struct ENV_MUX *env = xcsf->env;
+    const struct EnvMux *env = xcsf->env;
     for (int i = 0; i < xcsf->x_dim; ++i) {
         env->state[i] = rand_uniform(0, 1);
     }
@@ -93,7 +93,7 @@ env_mux_get_state(const struct XCSF *xcsf)
 double
 env_mux_execute(const struct XCSF *xcsf, const int action)
 {
-    const struct ENV_MUX *env = xcsf->env;
+    const struct EnvMux *env = xcsf->env;
     int pos = env->pos_bits;
     for (int i = 0; i < env->pos_bits; ++i) {
         if (env->state[i] > 0.5) {

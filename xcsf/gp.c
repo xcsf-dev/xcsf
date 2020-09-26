@@ -138,7 +138,7 @@ tree_free_cons(const struct XCSF *xcsf)
  * @param gp The GP tree being randomised.
  */
 void
-tree_rand(const struct XCSF *xcsf, struct GP_TREE *gp)
+tree_rand(const struct XCSF *xcsf, struct GPTree *gp)
 {
     int buffer[GP_MAX_LEN];
     gp->len = 0;
@@ -157,7 +157,7 @@ tree_rand(const struct XCSF *xcsf, struct GP_TREE *gp)
  * @param gp The GP tree to free.
  */
 void
-tree_free(const struct XCSF *xcsf, const struct GP_TREE *gp)
+tree_free(const struct XCSF *xcsf, const struct GPTree *gp)
 {
     (void) xcsf;
     free(gp->tree);
@@ -172,7 +172,7 @@ tree_free(const struct XCSF *xcsf, const struct GP_TREE *gp)
  * @return The result from evaluating the GP tree.
  */
 double
-tree_eval(const struct XCSF *xcsf, struct GP_TREE *gp, const double *x)
+tree_eval(const struct XCSF *xcsf, struct GPTree *gp, const double *x)
 {
     const int node = gp->tree[gp->p];
     ++(gp->p);
@@ -211,7 +211,7 @@ tree_eval(const struct XCSF *xcsf, struct GP_TREE *gp, const double *x)
  * @return The position after traversal.
  */
 int
-tree_print(const struct XCSF *xcsf, const struct GP_TREE *gp, int p)
+tree_print(const struct XCSF *xcsf, const struct GPTree *gp, int p)
 {
     const int node = gp->tree[p];
     if (node >= GP_NUM_FUNC) {
@@ -255,8 +255,8 @@ tree_print(const struct XCSF *xcsf, const struct GP_TREE *gp, int p)
  * @param src The source GP tree.
  */
 void
-tree_copy(const struct XCSF *xcsf, struct GP_TREE *dest,
-          const struct GP_TREE *src)
+tree_copy(const struct XCSF *xcsf, struct GPTree *dest,
+          const struct GPTree *src)
 {
     (void) xcsf;
     dest->len = src->len;
@@ -274,7 +274,7 @@ tree_copy(const struct XCSF *xcsf, struct GP_TREE *dest,
  * @param p2 The second GP tree to perform crossover.
  */
 void
-tree_crossover(const struct XCSF *xcsf, struct GP_TREE *p1, struct GP_TREE *p2)
+tree_crossover(const struct XCSF *xcsf, struct GPTree *p1, struct GPTree *p2)
 {
     const int len1 = p1->len;
     const int len2 = p2->len;
@@ -311,7 +311,7 @@ tree_crossover(const struct XCSF *xcsf, struct GP_TREE *p1, struct GP_TREE *p2)
  * @return Whether any alterations were made.
  */
 _Bool
-tree_mutate(const struct XCSF *xcsf, struct GP_TREE *gp)
+tree_mutate(const struct XCSF *xcsf, struct GPTree *gp)
 {
     _Bool changed = false;
     sam_adapt(gp->mu, N_MU, MU_TYPE);
@@ -337,7 +337,7 @@ tree_mutate(const struct XCSF *xcsf, struct GP_TREE *gp)
  * @return The number of elements written.
  */
 size_t
-tree_save(const struct XCSF *xcsf, const struct GP_TREE *gp, FILE *fp)
+tree_save(const struct XCSF *xcsf, const struct GPTree *gp, FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;
@@ -356,7 +356,7 @@ tree_save(const struct XCSF *xcsf, const struct GP_TREE *gp, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-tree_load(const struct XCSF *xcsf, struct GP_TREE *gp, FILE *fp)
+tree_load(const struct XCSF *xcsf, struct GPTree *gp, FILE *fp)
 {
     (void) xcsf;
     size_t s = 0;

@@ -39,7 +39,7 @@
  * @param l The neural network layer to set.
  */
 void
-layer_set_vptr(struct LAYER *l)
+layer_set_vptr(struct Layer *l)
 {
     switch (l->layer_type) {
         case CONNECTED:
@@ -86,7 +86,7 @@ layer_set_vptr(struct LAYER *l)
  * @return Whether any alterations were made.
  */
 _Bool
-layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, const double mu)
+layer_mutate_eta(const struct XCSF *xcsf, struct Layer *l, const double mu)
 {
     const double orig = l->eta;
     l->eta += rand_normal(0, mu);
@@ -105,7 +105,7 @@ layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, const double mu)
  * @return The number of neurons to be added or removed.
  */
 int
-layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l,
+layer_mutate_neurons(const struct XCSF *xcsf, const struct Layer *l,
                      const double mu)
 {
     int n = 0;
@@ -130,7 +130,7 @@ layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l,
  * @param N The number of neurons to add.
  */
 void
-layer_add_neurons(struct LAYER *l, const int N)
+layer_add_neurons(struct Layer *l, const int N)
 {
     const int n_outputs = l->n_outputs + N;
     const int n_weights = n_outputs * l->n_inputs;
@@ -175,7 +175,7 @@ layer_add_neurons(struct LAYER *l, const int N)
  * @return Whether any alterations were made.
  */
 _Bool
-layer_mutate_connectivity(struct LAYER *l, const double mu_enable,
+layer_mutate_connectivity(struct Layer *l, const double mu_enable,
                           const double mu_disable)
 {
     _Bool mod = false;
@@ -203,7 +203,7 @@ layer_mutate_connectivity(struct LAYER *l, const double mu_enable,
  * @param l A neural network layer.
  */
 void
-layer_ensure_input_represention(struct LAYER *l)
+layer_ensure_input_represention(struct Layer *l)
 {
     // each neuron must be connected to at least one input
     for (int i = 0; i < l->n_outputs; ++i) {
@@ -251,7 +251,7 @@ layer_ensure_input_represention(struct LAYER *l)
  * @return Whether any alterations were made.
  */
 _Bool
-layer_mutate_weights(struct LAYER *l, const double mu)
+layer_mutate_weights(struct Layer *l, const double mu)
 {
     _Bool mod = false;
     for (int i = 0; i < l->n_weights; ++i) {
@@ -282,7 +282,7 @@ layer_mutate_weights(struct LAYER *l, const double mu)
  * @return Whether any alterations were made.
  */
 _Bool
-layer_mutate_functions(struct LAYER *l, const double mu)
+layer_mutate_functions(struct Layer *l, const double mu)
 {
     _Bool mod = false;
     if (rand_uniform(0, 1) < mu) {
@@ -308,7 +308,7 @@ layer_mutate_functions(struct LAYER *l, const double mu)
  * @param print_weights Whether to print each individual weight and bias.
  */
 void
-layer_weight_print(const struct LAYER *l, const _Bool print_weights)
+layer_weight_print(const struct Layer *l, const _Bool print_weights)
 {
     printf("weights (%d): ", l->n_weights);
     if (print_weights) {
@@ -331,7 +331,7 @@ layer_weight_print(const struct LAYER *l, const _Bool print_weights)
  * @param l The neural network layer to randomise.
  */
 void
-layer_weight_rand(const struct XCSF *xcsf, struct LAYER *l)
+layer_weight_rand(const struct XCSF *xcsf, struct Layer *l)
 {
     (void) xcsf;
     l->n_active = l->n_weights;
@@ -349,7 +349,7 @@ layer_weight_rand(const struct XCSF *xcsf, struct LAYER *l)
  * @param l The neural network layer to clamp.
  */
 void
-layer_weight_clamp(const struct LAYER *l)
+layer_weight_clamp(const struct Layer *l)
 {
     for (int i = 0; i < l->n_weights; ++i) {
         if (l->weight_active[i]) {
@@ -368,7 +368,7 @@ layer_weight_clamp(const struct LAYER *l)
  * @param l The layer to calculate the number of non-zero weights.
  */
 void
-layer_calc_n_active(struct LAYER *l)
+layer_calc_n_active(struct Layer *l)
 {
     l->n_active = l->n_weights;
     for (int i = 0; i < l->n_weights; ++i) {
@@ -384,7 +384,7 @@ layer_calc_n_active(struct LAYER *l)
  * @param l The layer to initialise.
  */
 void
-layer_init_eta(const struct XCSF *xcsf, struct LAYER *l)
+layer_init_eta(const struct XCSF *xcsf, struct Layer *l)
 {
     if (l->options & LAYER_EVOLVE_ETA) {
         l->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
@@ -398,7 +398,7 @@ layer_init_eta(const struct XCSF *xcsf, struct LAYER *l)
  * @param l The layer to initialise.
  */
 void
-layer_init(struct LAYER *l)
+layer_init(struct Layer *l)
 {
     l->layer_type = 0;
     l->state = NULL;

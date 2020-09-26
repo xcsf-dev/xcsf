@@ -64,7 +64,7 @@ static const int VERSION_BUILD = 0; //!< XCSF build version number
 /**
  * @brief Classifier data structure.
  */
-struct CL {
+struct Cl {
     struct CondVtbl const *cond_vptr; //!< Functions acting on conditions
     struct PredVtbl const *pred_vptr; //!< Functions acting on predictions
     struct ActVtbl const *act_vptr; //!< Functions acting on actions
@@ -87,16 +87,16 @@ struct CL {
 /**
  * @brief Classifier linked list.
  */
-struct CLIST {
-    struct CL *cl; //!< Pointer to classifier data structure
-    struct CLIST *next; //!< Pointer to the next list element
+struct Clist {
+    struct Cl *cl; //!< Pointer to classifier data structure
+    struct Clist *next; //!< Pointer to the next list element
 };
 
 /**
  * @brief Classifier set.
  */
-struct SET {
-    struct CLIST *list; //!< Linked list of classifiers
+struct Set {
+    struct Clist *list; //!< Linked list of classifiers
     int size; //!< Number of macro-classifiers
     int num; //!< The total numerosity of classifiers
 };
@@ -144,12 +144,12 @@ struct XCSF {
     double *prev_state; //!< Environment state on the previous step
     double (*loss_ptr)(const struct XCSF *, const double *,
                        const double *); //!< Error function
-    struct SET pset; //!< Population set
-    struct SET prev_pset; //!< Previously stored population set
-    struct SET mset; //!< Match set
-    struct SET aset; //!< Action set
-    struct SET kset; //!< Kill set
-    struct SET prev_aset; //!< Previous action set
+    struct Set pset; //!< Population set
+    struct Set prev_pset; //!< Previously stored population set
+    struct Set mset; //!< Match set
+    struct Set aset; //!< Action set
+    struct Set kset; //!< Kill set
+    struct Set prev_aset; //!< Previous action set
     int time; //!< Current number of EA executions
     int OMP_NUM_THREADS; //!< Number of threads for parallel processing
     int MAX_TRIALS; //!< Number of problem instances to run in one experiment
@@ -204,7 +204,7 @@ struct XCSF {
 /**
  * @brief Input data structure.
  */
-struct INPUT {
+struct Input {
     double *x; //!< Feature variables
     double *y; //!< Target variables
     int x_dim; //!< Number of feature variables

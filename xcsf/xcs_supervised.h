@@ -26,14 +26,14 @@
 #include "xcsf.h"
 
 double
-xcs_supervised_fit(struct XCSF *xcsf, const struct INPUT *train_data,
-                   const struct INPUT *test_data, const _Bool shuffle);
+xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
+                   const struct Input *test_data, const _Bool shuffle);
 
 double
-xcs_supervised_score(struct XCSF *xcsf, const struct INPUT *data);
+xcs_supervised_score(struct XCSF *xcsf, const struct Input *data);
 
 double
-xcs_supervised_score_n(struct XCSF *xcsf, const struct INPUT *data,
+xcs_supervised_score_n(struct XCSF *xcsf, const struct Input *data,
                        const int N);
 
 void

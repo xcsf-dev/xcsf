@@ -26,51 +26,51 @@
 #include "neural_layer.h"
 #include "xcsf.h"
 
-struct LAYER *
+struct Layer *
 neural_layer_recurrent_init(const struct XCSF *xcsf, const int n_inputs,
                             const int n_init, const int n_max, const int f,
                             const uint32_t o);
 
-struct LAYER *
-neural_layer_recurrent_copy(const struct XCSF *xcsf, const struct LAYER *src);
+struct Layer *
+neural_layer_recurrent_copy(const struct XCSF *xcsf, const struct Layer *src);
 
 void
-neural_layer_recurrent_rand(const struct XCSF *xcsf, struct LAYER *l);
+neural_layer_recurrent_rand(const struct XCSF *xcsf, struct Layer *l);
 
 void
-neural_layer_recurrent_forward(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_recurrent_forward(const struct XCSF *xcsf, const struct Layer *l,
                                const double *input);
 
 void
-neural_layer_recurrent_backward(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_recurrent_backward(const struct XCSF *xcsf, const struct Layer *l,
                                 const double *input, double *delta);
 
 void
-neural_layer_recurrent_update(const struct XCSF *xcsf, const struct LAYER *l);
+neural_layer_recurrent_update(const struct XCSF *xcsf, const struct Layer *l);
 
 void
-neural_layer_recurrent_print(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_recurrent_print(const struct XCSF *xcsf, const struct Layer *l,
                              const _Bool print_weights);
 
 _Bool
-neural_layer_recurrent_mutate(const struct XCSF *xcsf, struct LAYER *l);
+neural_layer_recurrent_mutate(const struct XCSF *xcsf, struct Layer *l);
 
 void
-neural_layer_recurrent_free(const struct XCSF *xcsf, const struct LAYER *l);
+neural_layer_recurrent_free(const struct XCSF *xcsf, const struct Layer *l);
 
 double *
-neural_layer_recurrent_output(const struct XCSF *xcsf, const struct LAYER *l);
+neural_layer_recurrent_output(const struct XCSF *xcsf, const struct Layer *l);
 
 size_t
-neural_layer_recurrent_save(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_recurrent_save(const struct XCSF *xcsf, const struct Layer *l,
                             FILE *fp);
 
 size_t
-neural_layer_recurrent_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp);
+neural_layer_recurrent_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp);
 
 void
-neural_layer_recurrent_resize(const struct XCSF *xcsf, struct LAYER *l,
-                              const struct LAYER *prev);
+neural_layer_recurrent_resize(const struct XCSF *xcsf, struct Layer *l,
+                              const struct Layer *prev);
 
 static struct LayerVtbl const layer_recurrent_vtbl = {
     &neural_layer_recurrent_mutate,  &neural_layer_recurrent_resize,

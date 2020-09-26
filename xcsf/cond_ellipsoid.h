@@ -29,56 +29,56 @@
 /**
  * @brief Hyperellipsoid condition data structure.
  */
-struct COND_ELLIPSOID {
+struct CondEllipsoid {
     double *center; //!< Centers
     double *spread; //!< Spreads
     double *mu; //!< Mutation rates
 };
 
 _Bool
-cond_ellipsoid_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                         const struct CL *c2);
+cond_ellipsoid_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                         const struct Cl *c2);
 
 _Bool
-cond_ellipsoid_general(const struct XCSF *xcsf, const struct CL *c1,
-                       const struct CL *c2);
+cond_ellipsoid_general(const struct XCSF *xcsf, const struct Cl *c1,
+                       const struct Cl *c2);
 
 _Bool
-cond_ellipsoid_match(const struct XCSF *xcsf, const struct CL *c,
+cond_ellipsoid_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x);
 
 _Bool
-cond_ellipsoid_mutate(const struct XCSF *xcsf, const struct CL *c);
+cond_ellipsoid_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ellipsoid_copy(const struct XCSF *xcsf, struct CL *dest,
-                    const struct CL *src);
+cond_ellipsoid_copy(const struct XCSF *xcsf, struct Cl *dest,
+                    const struct Cl *src);
 
 void
-cond_ellipsoid_cover(const struct XCSF *xcsf, const struct CL *c,
+cond_ellipsoid_cover(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x);
 
 void
-cond_ellipsoid_free(const struct XCSF *xcsf, const struct CL *c);
+cond_ellipsoid_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ellipsoid_init(const struct XCSF *xcsf, struct CL *c);
+cond_ellipsoid_init(const struct XCSF *xcsf, struct Cl *c);
 
 void
-cond_ellipsoid_print(const struct XCSF *xcsf, const struct CL *c);
+cond_ellipsoid_print(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ellipsoid_update(const struct XCSF *xcsf, const struct CL *c,
+cond_ellipsoid_update(const struct XCSF *xcsf, const struct Cl *c,
                       const double *x, const double *y);
 
 double
-cond_ellipsoid_size(const struct XCSF *xcsf, const struct CL *c);
+cond_ellipsoid_size(const struct XCSF *xcsf, const struct Cl *c);
 
 size_t
-cond_ellipsoid_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
+cond_ellipsoid_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-cond_ellipsoid_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+cond_ellipsoid_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 /**
  * @brief Hyperellipsoid condition implemented functions.

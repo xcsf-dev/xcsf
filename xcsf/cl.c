@@ -36,7 +36,7 @@
  * @param time The current EA time.
  */
 void
-cl_init(const struct XCSF *xcsf, struct CL *c, const double size,
+cl_init(const struct XCSF *xcsf, struct Cl *c, const double size,
         const int time)
 {
     c->fit = xcsf->INIT_FITNESS;
@@ -59,7 +59,7 @@ cl_init(const struct XCSF *xcsf, struct CL *c, const double size,
  * @param src The source classifier.
  */
 void
-cl_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
+cl_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
     dest->cond_vptr = src->cond_vptr;
     dest->pred_vptr = src->pred_vptr;
@@ -80,7 +80,7 @@ cl_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
  * @param src The source classifier.
  */
 void
-cl_init_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
+cl_init_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
     dest->prediction = calloc(xcsf->y_dim, sizeof(double));
     dest->fit = src->fit;
@@ -109,7 +109,7 @@ cl_init_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
  * @param action The action to cover.
  */
 void
-cl_cover(const struct XCSF *xcsf, struct CL *c, const double *x,
+cl_cover(const struct XCSF *xcsf, struct Cl *c, const double *x,
          const int action)
 {
     cl_rand(xcsf, c);
@@ -125,7 +125,7 @@ cl_cover(const struct XCSF *xcsf, struct CL *c, const double *x,
  * @param c The classifier being randomly initialised.
  */
 void
-cl_rand(const struct XCSF *xcsf, struct CL *c)
+cl_rand(const struct XCSF *xcsf, struct Cl *c)
 {
     action_set(xcsf, c);
     prediction_set(xcsf, c);
@@ -143,7 +143,7 @@ cl_rand(const struct XCSF *xcsf, struct CL *c)
  * @return The classifier's deletion vote.
  */
 double
-cl_del_vote(const struct XCSF *xcsf, const struct CL *c, const double avg_fit)
+cl_del_vote(const struct XCSF *xcsf, const struct Cl *c, const double avg_fit)
 {
     if (c->exp > xcsf->THETA_DEL && c->fit < xcsf->DELTA * avg_fit * c->num) {
         return c->size * c->num * avg_fit / (c->fit / c->num);
@@ -158,7 +158,7 @@ cl_del_vote(const struct XCSF *xcsf, const struct CL *c, const double avg_fit)
  * @return The classifier's accuracy.
  */
 double
-cl_acc(const struct XCSF *xcsf, const struct CL *c)
+cl_acc(const struct XCSF *xcsf, const struct Cl *c)
 {
     if (c->err > xcsf->EPS_0) {
         const double acc = xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
@@ -178,7 +178,7 @@ cl_acc(const struct XCSF *xcsf, const struct CL *c)
  * @param cur Whether the payoff is for the current or previous state.
  */
 void
-cl_update(const struct XCSF *xcsf, struct CL *c, const double *x,
+cl_update(const struct XCSF *xcsf, struct Cl *c, const double *x,
           const double *y, const int set_num, const _Bool cur)
 {
     ++(c->exp);
@@ -206,7 +206,7 @@ cl_update(const struct XCSF *xcsf, struct CL *c, const double *x,
  * @param acc The accuracy of the classifier being updated.
  */
 void
-cl_update_fit(const struct XCSF *xcsf, struct CL *c, const double acc_sum,
+cl_update_fit(const struct XCSF *xcsf, struct Cl *c, const double acc_sum,
               const double acc)
 {
     c->fit += xcsf->BETA * ((acc * c->num) / acc_sum - c->fit);
@@ -218,7 +218,7 @@ cl_update_fit(const struct XCSF *xcsf, struct CL *c, const double acc_sum,
  * @param c The classifier to free.
  */
 void
-cl_free(const struct XCSF *xcsf, struct CL *c)
+cl_free(const struct XCSF *xcsf, struct Cl *c)
 {
     free(c->prediction);
     cond_free(xcsf, c);
@@ -236,7 +236,7 @@ cl_free(const struct XCSF *xcsf, struct CL *c)
  * @param print_pred Whether to print the prediction.
  */
 void
-cl_print(const struct XCSF *xcsf, const struct CL *c, const _Bool print_cond,
+cl_print(const struct XCSF *xcsf, const struct Cl *c, const _Bool print_cond,
          const _Bool print_act, const _Bool print_pred)
 {
     if (print_cond || print_act || print_pred) {
@@ -268,7 +268,7 @@ cl_print(const struct XCSF *xcsf, const struct CL *c, const _Bool print_cond,
  * @return Whether the classifier matches the input.
  */
 _Bool
-cl_match(const struct XCSF *xcsf, struct CL *c, const double *x)
+cl_match(const struct XCSF *xcsf, struct Cl *c, const double *x)
 {
     c->m = cond_match(xcsf, c, x);
     if (c->m) {
@@ -285,7 +285,7 @@ cl_match(const struct XCSF *xcsf, struct CL *c, const double *x)
  * @return The fraction of matching inputs.
  */
 double
-cl_mfrac(const struct XCSF *xcsf, const struct CL *c)
+cl_mfrac(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     if (c->age > 0) {
@@ -301,7 +301,7 @@ cl_mfrac(const struct XCSF *xcsf, const struct CL *c)
  * @return Whether the classifier matched the most recent input.
  */
 _Bool
-cl_m(const struct XCSF *xcsf, const struct CL *c)
+cl_m(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     return c->m;
@@ -315,7 +315,7 @@ cl_m(const struct XCSF *xcsf, const struct CL *c)
  * @return The classifier's action.
  */
 int
-cl_action(const struct XCSF *xcsf, struct CL *c, const double *x)
+cl_action(const struct XCSF *xcsf, struct Cl *c, const double *x)
 {
     c->action = act_compute(xcsf, c, x);
     return c->action;
@@ -329,7 +329,7 @@ cl_action(const struct XCSF *xcsf, struct CL *c, const double *x)
  * @return The classifier's (payoff) predictions.
  */
 const double *
-cl_predict(const struct XCSF *xcsf, const struct CL *c, const double *x)
+cl_predict(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     pred_compute(xcsf, c, x);
     return c->prediction;
@@ -342,7 +342,7 @@ cl_predict(const struct XCSF *xcsf, const struct CL *c, const double *x)
  * @return Whether the classifier is an eligible subsumer.
  */
 _Bool
-cl_subsumer(const struct XCSF *xcsf, const struct CL *c)
+cl_subsumer(const struct XCSF *xcsf, const struct Cl *c)
 {
     if (c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
         return true;
@@ -358,7 +358,7 @@ cl_subsumer(const struct XCSF *xcsf, const struct CL *c)
  * @return Whether classifier c1 is more general than c2.
  */
 _Bool
-cl_general(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
+cl_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 {
     if (cond_general(xcsf, c1, c2)) {
         return act_general(xcsf, c1, c2);
@@ -373,7 +373,7 @@ cl_general(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
  * @return Whether any alterations were made.
  */
 _Bool
-cl_mutate(const struct XCSF *xcsf, const struct CL *c)
+cl_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     const _Bool cm = cond_mutate(xcsf, c);
     const _Bool pm = pred_mutate(xcsf, c);
@@ -392,7 +392,7 @@ cl_mutate(const struct XCSF *xcsf, const struct CL *c)
  * @return Whether any alterations were made.
  */
 _Bool
-cl_crossover(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
+cl_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 {
     const _Bool cc = cond_crossover(xcsf, c1, c2);
     const _Bool pc = pred_crossover(xcsf, c1, c2);
@@ -410,7 +410,7 @@ cl_crossover(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
  * @return The size of the condition.
  */
 double
-cl_cond_size(const struct XCSF *xcsf, const struct CL *c)
+cl_cond_size(const struct XCSF *xcsf, const struct Cl *c)
 {
     return cond_size(xcsf, c);
 }
@@ -422,7 +422,7 @@ cl_cond_size(const struct XCSF *xcsf, const struct CL *c)
  * @return The size of the prediction.
  */
 double
-cl_pred_size(const struct XCSF *xcsf, const struct CL *c)
+cl_pred_size(const struct XCSF *xcsf, const struct Cl *c)
 {
     return pred_size(xcsf, c);
 }
@@ -435,7 +435,7 @@ cl_pred_size(const struct XCSF *xcsf, const struct CL *c)
  * @return The number of elements written.
  */
 size_t
-cl_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
+cl_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&c->err, sizeof(double), 1, fp);
@@ -463,7 +463,7 @@ cl_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-cl_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
+cl_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     size_t s = 0;
     s += fread(&c->err, sizeof(double), 1, fp);

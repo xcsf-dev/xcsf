@@ -135,8 +135,8 @@ env_csv_read(const char *filename, double **data, int *n_samples, int *n_dim)
  * @details Expects an identical number of x and y samples.
  */
 static void
-env_csv_input_read(const char *infile, struct INPUT *train_data,
-                   struct INPUT *test_data)
+env_csv_input_read(const char *infile, struct Input *train_data,
+                   struct Input *test_data)
 {
     char name[MAX_NAME];
     snprintf(name, MAX_NAME, "%s_train_x.csv", infile);
@@ -159,9 +159,9 @@ env_csv_input_read(const char *infile, struct INPUT *train_data,
 void
 env_csv_init(struct XCSF *xcsf, const char *filename)
 {
-    struct ENV_CSV *env = malloc(sizeof(struct ENV_CSV));
-    env->train_data = malloc(sizeof(struct INPUT));
-    env->test_data = malloc(sizeof(struct INPUT));
+    struct EnvCSV *env = malloc(sizeof(struct EnvCSV));
+    env->train_data = malloc(sizeof(struct Input));
+    env->test_data = malloc(sizeof(struct Input));
     env_csv_input_read(filename, env->train_data, env->test_data);
     xcsf->env = env;
     param_set_n_actions(xcsf, 1);
@@ -176,7 +176,7 @@ env_csv_init(struct XCSF *xcsf, const char *filename)
 void
 env_csv_free(const struct XCSF *xcsf)
 {
-    struct ENV_CSV *env = xcsf->env;
+    struct EnvCSV *env = xcsf->env;
     free(env->train_data->x);
     free(env->train_data->y);
     free(env->test_data->x);

@@ -55,7 +55,7 @@
 /**
  * @brief Neural network layer data structure.
  */
-struct LAYER {
+struct Layer {
     int layer_type; //!< Layer type: CONNECTED, DROPOUT, etc.
     double *state; //!< Current neuron states (before activation function)
     double *output; //!< Current neuron outputs (after activation function)
@@ -79,18 +79,18 @@ struct LAYER {
     double probability; //!< Usage depends on layer implementation
     struct LayerVtbl const *layer_vptr; //!< Functions acting on layers
     double *prev_state; //!< Previous state for recursive layers
-    struct LAYER *input_layer; //!< Recursive layer input
-    struct LAYER *self_layer; //!< Recursive layer self
-    struct LAYER *output_layer; //!< Recursive layer output
+    struct Layer *input_layer; //!< Recursive layer input
+    struct Layer *self_layer; //!< Recursive layer self
+    struct Layer *output_layer; //!< Recursive layer output
     int recurrent_function; //!< LSTM
-    struct LAYER *uf; //!< LSTM
-    struct LAYER *ui; //!< LSTM
-    struct LAYER *ug; //!< LSTM
-    struct LAYER *uo; //!< LSTM
-    struct LAYER *wf; //!< LSTM
-    struct LAYER *wi; //!< LSTM
-    struct LAYER *wg; //!< LSTM
-    struct LAYER *wo; //!< LSTM
+    struct Layer *uf; //!< LSTM
+    struct Layer *ui; //!< LSTM
+    struct Layer *ug; //!< LSTM
+    struct Layer *uo; //!< LSTM
+    struct Layer *wf; //!< LSTM
+    struct Layer *wi; //!< LSTM
+    struct Layer *wg; //!< LSTM
+    struct Layer *wo; //!< LSTM
     double *cell; //!< LSTM
     double *prev_cell; //!< LSTM
     double *f; //!< LSTM
@@ -122,25 +122,25 @@ struct LAYER {
  * @details Neural network layer implementations must implement these functions.
  */
 struct LayerVtbl {
-    _Bool (*layer_impl_mutate)(const struct XCSF *xcsf, struct LAYER *l);
-    void (*layer_impl_resize)(const struct XCSF *xcsf, struct LAYER *l,
-                              const struct LAYER *prev);
-    struct LAYER *(*layer_impl_copy)(const struct XCSF *xcsf,
-                                     const struct LAYER *src);
-    void (*layer_impl_free)(const struct XCSF *xcsf, const struct LAYER *l);
-    void (*layer_impl_rand)(const struct XCSF *xcsf, struct LAYER *l);
-    void (*layer_impl_print)(const struct XCSF *xcsf, const struct LAYER *l,
+    _Bool (*layer_impl_mutate)(const struct XCSF *xcsf, struct Layer *l);
+    void (*layer_impl_resize)(const struct XCSF *xcsf, struct Layer *l,
+                              const struct Layer *prev);
+    struct Layer *(*layer_impl_copy)(const struct XCSF *xcsf,
+                                     const struct Layer *src);
+    void (*layer_impl_free)(const struct XCSF *xcsf, const struct Layer *l);
+    void (*layer_impl_rand)(const struct XCSF *xcsf, struct Layer *l);
+    void (*layer_impl_print)(const struct XCSF *xcsf, const struct Layer *l,
                              const _Bool print_weights);
-    void (*layer_impl_update)(const struct XCSF *xcsf, const struct LAYER *l);
-    void (*layer_impl_backward)(const struct XCSF *xcsf, const struct LAYER *l,
+    void (*layer_impl_update)(const struct XCSF *xcsf, const struct Layer *l);
+    void (*layer_impl_backward)(const struct XCSF *xcsf, const struct Layer *l,
                                 const double *input, double *delta);
-    void (*layer_impl_forward)(const struct XCSF *xcsf, const struct LAYER *l,
+    void (*layer_impl_forward)(const struct XCSF *xcsf, const struct Layer *l,
                                const double *input);
     double *(*layer_impl_output)(const struct XCSF *xcsf,
-                                 const struct LAYER *l);
-    size_t (*layer_impl_save)(const struct XCSF *xcsf, const struct LAYER *l,
+                                 const struct Layer *l);
+    size_t (*layer_impl_save)(const struct XCSF *xcsf, const struct Layer *l,
                               FILE *fp);
-    size_t (*layer_impl_load)(const struct XCSF *xcsf, struct LAYER *l,
+    size_t (*layer_impl_load)(const struct XCSF *xcsf, struct Layer *l,
                               FILE *fp);
 };
 
@@ -152,7 +152,7 @@ struct LayerVtbl {
  * @return The number of elements written.
  */
 static inline size_t
-layer_save(const struct XCSF *xcsf, const struct LAYER *l, FILE *fp)
+layer_save(const struct XCSF *xcsf, const struct Layer *l, FILE *fp)
 {
     return (*l->layer_vptr->layer_impl_save)(xcsf, l, fp);
 }
@@ -165,7 +165,7 @@ layer_save(const struct XCSF *xcsf, const struct LAYER *l, FILE *fp)
  * @return The number of elements read.
  */
 static inline size_t
-layer_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp)
+layer_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
 {
     return (*l->layer_vptr->layer_impl_load)(xcsf, l, fp);
 }
@@ -177,7 +177,7 @@ layer_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp)
  * @return The layer outputs.
  */
 static inline double *
-layer_output(const struct XCSF *xcsf, const struct LAYER *l)
+layer_output(const struct XCSF *xcsf, const struct Layer *l)
 {
     return (*l->layer_vptr->layer_impl_output)(xcsf, l);
 }
@@ -189,7 +189,7 @@ layer_output(const struct XCSF *xcsf, const struct LAYER *l)
  * @param input The input to the layer.
  */
 static inline void
-layer_forward(const struct XCSF *xcsf, const struct LAYER *l,
+layer_forward(const struct XCSF *xcsf, const struct Layer *l,
               const double *input)
 {
     (*l->layer_vptr->layer_impl_forward)(xcsf, l, input);
@@ -203,7 +203,7 @@ layer_forward(const struct XCSF *xcsf, const struct LAYER *l,
  * @param delta The previous layer's delta.
  */
 static inline void
-layer_backward(const struct XCSF *xcsf, const struct LAYER *l,
+layer_backward(const struct XCSF *xcsf, const struct Layer *l,
                const double *input, double *delta)
 {
     (*l->layer_vptr->layer_impl_backward)(xcsf, l, input, delta);
@@ -215,7 +215,7 @@ layer_backward(const struct XCSF *xcsf, const struct LAYER *l,
  * @param l The layer to be updated.
  */
 static inline void
-layer_update(const struct XCSF *xcsf, const struct LAYER *l)
+layer_update(const struct XCSF *xcsf, const struct Layer *l)
 {
     (*l->layer_vptr->layer_impl_update)(xcsf, l);
 }
@@ -227,7 +227,7 @@ layer_update(const struct XCSF *xcsf, const struct LAYER *l)
  * @return Whether any alterations were made.
  */
 static inline _Bool
-layer_mutate(const struct XCSF *xcsf, struct LAYER *l)
+layer_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
     return (*l->layer_vptr->layer_impl_mutate)(xcsf, l);
 }
@@ -240,7 +240,7 @@ layer_mutate(const struct XCSF *xcsf, struct LAYER *l)
  * @return Whether any alterations were made.
  */
 static inline void
-layer_resize(const struct XCSF *xcsf, struct LAYER *l, const struct LAYER *prev)
+layer_resize(const struct XCSF *xcsf, struct Layer *l, const struct Layer *prev)
 {
     (*l->layer_vptr->layer_impl_resize)(xcsf, l, prev);
 }
@@ -251,8 +251,8 @@ layer_resize(const struct XCSF *xcsf, struct LAYER *l, const struct LAYER *prev)
  * @param src The source layer.
  * @return A new copied layer.
  */
-static inline struct LAYER *
-layer_copy(const struct XCSF *xcsf, const struct LAYER *src)
+static inline struct Layer *
+layer_copy(const struct XCSF *xcsf, const struct Layer *src)
 {
     return (*src->layer_vptr->layer_impl_copy)(xcsf, src);
 }
@@ -263,7 +263,7 @@ layer_copy(const struct XCSF *xcsf, const struct LAYER *src)
  * @param l The layer to be freed.
  */
 static inline void
-layer_free(const struct XCSF *xcsf, const struct LAYER *l)
+layer_free(const struct XCSF *xcsf, const struct Layer *l)
 {
     (*l->layer_vptr->layer_impl_free)(xcsf, l);
 }
@@ -274,7 +274,7 @@ layer_free(const struct XCSF *xcsf, const struct LAYER *l)
  * @param l The layer to be randomised.
  */
 static inline void
-layer_rand(const struct XCSF *xcsf, struct LAYER *l)
+layer_rand(const struct XCSF *xcsf, struct Layer *l)
 {
     (*l->layer_vptr->layer_impl_rand)(xcsf, l);
 }
@@ -286,52 +286,52 @@ layer_rand(const struct XCSF *xcsf, struct LAYER *l)
  * @param print_weights Whether to print the weights.
  */
 static inline void
-layer_print(const struct XCSF *xcsf, const struct LAYER *l,
+layer_print(const struct XCSF *xcsf, const struct Layer *l,
             const _Bool print_weights)
 {
     (*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
 
 _Bool
-layer_mutate_connectivity(struct LAYER *l, const double mu_enable,
+layer_mutate_connectivity(struct Layer *l, const double mu_enable,
                           const double mu_disable);
 
 _Bool
-layer_mutate_eta(const struct XCSF *xcsf, struct LAYER *l, const double mu);
+layer_mutate_eta(const struct XCSF *xcsf, struct Layer *l, const double mu);
 
 _Bool
-layer_mutate_functions(struct LAYER *l, const double mu);
+layer_mutate_functions(struct Layer *l, const double mu);
 
 _Bool
-layer_mutate_weights(struct LAYER *l, const double mu);
+layer_mutate_weights(struct Layer *l, const double mu);
 
 int
-layer_mutate_neurons(const struct XCSF *xcsf, const struct LAYER *l,
+layer_mutate_neurons(const struct XCSF *xcsf, const struct Layer *l,
                      const double mu);
 
 void
-layer_add_neurons(struct LAYER *l, const int n);
+layer_add_neurons(struct Layer *l, const int n);
 
 void
-layer_calc_n_active(struct LAYER *l);
+layer_calc_n_active(struct Layer *l);
 
 void
-layer_init(struct LAYER *l);
+layer_init(struct Layer *l);
 
 void
-layer_init_eta(const struct XCSF *xcsf, struct LAYER *l);
+layer_init_eta(const struct XCSF *xcsf, struct Layer *l);
 
 void
-layer_set_vptr(struct LAYER *l);
+layer_set_vptr(struct Layer *l);
 
 void
-layer_weight_clamp(const struct LAYER *l);
+layer_weight_clamp(const struct Layer *l);
 
 void
-layer_weight_print(const struct LAYER *l, const _Bool print_weights);
+layer_weight_print(const struct Layer *l, const _Bool print_weights);
 
 void
-layer_weight_rand(const struct XCSF *xcsf, struct LAYER *l);
+layer_weight_rand(const struct XCSF *xcsf, struct Layer *l);
 
 void
-layer_ensure_input_represention(struct LAYER *l);
+layer_ensure_input_represention(struct Layer *l);

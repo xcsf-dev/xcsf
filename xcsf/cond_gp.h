@@ -30,51 +30,51 @@
 /**
  * @brief Tree GP condition data structure.
  */
-struct COND_GP {
-    struct GP_TREE gp; //!< GP tree
+struct CondGP {
+    struct GPTree gp; //!< GP tree
 };
 
 _Bool
-cond_gp_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                  const struct CL *c2);
+cond_gp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                  const struct Cl *c2);
 
 _Bool
-cond_gp_general(const struct XCSF *xcsf, const struct CL *c1,
-                const struct CL *c2);
+cond_gp_general(const struct XCSF *xcsf, const struct Cl *c1,
+                const struct Cl *c2);
 
 _Bool
-cond_gp_match(const struct XCSF *xcsf, const struct CL *c, const double *x);
+cond_gp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x);
 
 _Bool
-cond_gp_mutate(const struct XCSF *xcsf, const struct CL *c);
+cond_gp_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_gp_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
+cond_gp_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src);
 
 void
-cond_gp_cover(const struct XCSF *xcsf, const struct CL *c, const double *x);
+cond_gp_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x);
 
 void
-cond_gp_free(const struct XCSF *xcsf, const struct CL *c);
+cond_gp_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_gp_init(const struct XCSF *xcsf, struct CL *c);
+cond_gp_init(const struct XCSF *xcsf, struct Cl *c);
 
 void
-cond_gp_print(const struct XCSF *xcsf, const struct CL *c);
+cond_gp_print(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_gp_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+cond_gp_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                const double *y);
 
 double
-cond_gp_size(const struct XCSF *xcsf, const struct CL *c);
+cond_gp_size(const struct XCSF *xcsf, const struct Cl *c);
 
 size_t
-cond_gp_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
+cond_gp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-cond_gp_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 /**
  * @brief Tree GP condition implemented functions.

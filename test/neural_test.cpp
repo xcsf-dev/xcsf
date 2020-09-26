@@ -43,8 +43,8 @@ TEST_CASE("NEURAL")
 {
     /* test one forward pass of input through two layers*/
     struct XCSF xcsf;
-    struct NET net;
-    struct LAYER *l;
+    struct Net net;
+    struct Layer *l;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 10);

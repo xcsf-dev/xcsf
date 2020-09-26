@@ -26,33 +26,33 @@
 #include "xcsf.h"
 
 void
-condition_set(const struct XCSF *xcsf, struct CL *c);
+condition_set(const struct XCSF *xcsf, struct Cl *c);
 
 /**
  * @brief Condition interface data structure.
  * @details Condition implementations must implement these functions.
  */
 struct CondVtbl {
-    _Bool (*cond_impl_crossover)(const struct XCSF *xcsf, const struct CL *c1,
-                                 const struct CL *c2);
-    _Bool (*cond_impl_general)(const struct XCSF *xcsf, const struct CL *c1,
-                               const struct CL *c2);
-    _Bool (*cond_impl_match)(const struct XCSF *xcsf, const struct CL *c,
+    _Bool (*cond_impl_crossover)(const struct XCSF *xcsf, const struct Cl *c1,
+                                 const struct Cl *c2);
+    _Bool (*cond_impl_general)(const struct XCSF *xcsf, const struct Cl *c1,
+                               const struct Cl *c2);
+    _Bool (*cond_impl_match)(const struct XCSF *xcsf, const struct Cl *c,
                              const double *x);
-    _Bool (*cond_impl_mutate)(const struct XCSF *xcsf, const struct CL *c);
-    void (*cond_impl_copy)(const struct XCSF *xcsf, struct CL *dest,
-                           const struct CL *src);
-    void (*cond_impl_cover)(const struct XCSF *xcsf, const struct CL *c,
+    _Bool (*cond_impl_mutate)(const struct XCSF *xcsf, const struct Cl *c);
+    void (*cond_impl_copy)(const struct XCSF *xcsf, struct Cl *dest,
+                           const struct Cl *src);
+    void (*cond_impl_cover)(const struct XCSF *xcsf, const struct Cl *c,
                             const double *x);
-    void (*cond_impl_free)(const struct XCSF *xcsf, const struct CL *c);
-    void (*cond_impl_init)(const struct XCSF *xcsf, struct CL *c);
-    void (*cond_impl_print)(const struct XCSF *xcsf, const struct CL *c);
-    void (*cond_impl_update)(const struct XCSF *xcsf, const struct CL *c,
+    void (*cond_impl_free)(const struct XCSF *xcsf, const struct Cl *c);
+    void (*cond_impl_init)(const struct XCSF *xcsf, struct Cl *c);
+    void (*cond_impl_print)(const struct XCSF *xcsf, const struct Cl *c);
+    void (*cond_impl_update)(const struct XCSF *xcsf, const struct Cl *c,
                              const double *x, const double *y);
-    double (*cond_impl_size)(const struct XCSF *xcsf, const struct CL *c);
-    size_t (*cond_impl_save)(const struct XCSF *xcsf, const struct CL *c,
+    double (*cond_impl_size)(const struct XCSF *xcsf, const struct Cl *c);
+    size_t (*cond_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                              FILE *fp);
-    size_t (*cond_impl_load)(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+    size_t (*cond_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 };
 
 /**
@@ -63,7 +63,7 @@ struct CondVtbl {
  * @return The number of elements written.
  */
 static inline size_t
-cond_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
+cond_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
     return (*c->cond_vptr->cond_impl_save)(xcsf, c, fp);
 }
@@ -76,7 +76,7 @@ cond_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
  * @return The number of elements read.
  */
 static inline size_t
-cond_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
+cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     return (*c->cond_vptr->cond_impl_load)(xcsf, c, fp);
 }
@@ -88,7 +88,7 @@ cond_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
  * @return The size of the condition.
  */
 static inline double
-cond_size(const struct XCSF *xcsf, const struct CL *c)
+cond_size(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->cond_vptr->cond_impl_size)(xcsf, c);
 }
@@ -101,7 +101,7 @@ cond_size(const struct XCSF *xcsf, const struct CL *c)
  * @param y The payoff value.
  */
 static inline void
-cond_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+cond_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
             const double *y)
 {
     (*c->cond_vptr->cond_impl_update)(xcsf, c, x, y);
@@ -115,8 +115,8 @@ cond_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
  * @return Whether any alterations were made.
  */
 static inline _Bool
-cond_crossover(const struct XCSF *xcsf, const struct CL *c1,
-               const struct CL *c2)
+cond_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+               const struct Cl *c2)
 {
     return (*c1->cond_vptr->cond_impl_crossover)(xcsf, c1, c2);
 }
@@ -130,7 +130,7 @@ cond_crossover(const struct XCSF *xcsf, const struct CL *c1,
  * @return Whether the condition of c1 is more general than c2.
  */
 static inline _Bool
-cond_general(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
+cond_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 {
     return (*c1->cond_vptr->cond_impl_general)(xcsf, c1, c2);
 }
@@ -143,7 +143,7 @@ cond_general(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2)
  * @return Whether the condition matches the input.
  */
 static inline _Bool
-cond_match(const struct XCSF *xcsf, const struct CL *c, const double *x)
+cond_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     return (*c->cond_vptr->cond_impl_match)(xcsf, c, x);
 }
@@ -155,7 +155,7 @@ cond_match(const struct XCSF *xcsf, const struct CL *c, const double *x)
  * @return Whether any alterations were made.
  */
 static inline _Bool
-cond_mutate(const struct XCSF *xcsf, const struct CL *c)
+cond_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->cond_vptr->cond_impl_mutate)(xcsf, c);
 }
@@ -167,7 +167,7 @@ cond_mutate(const struct XCSF *xcsf, const struct CL *c)
  * @param src The source classifier.
  */
 static inline void
-cond_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
+cond_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
     (*src->cond_vptr->cond_impl_copy)(xcsf, dest, src);
 }
@@ -179,7 +179,7 @@ cond_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
  * @param x The input state to cover.
  */
 static inline void
-cond_cover(const struct XCSF *xcsf, const struct CL *c, const double *x)
+cond_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     (*c->cond_vptr->cond_impl_cover)(xcsf, c, x);
 }
@@ -190,7 +190,7 @@ cond_cover(const struct XCSF *xcsf, const struct CL *c, const double *x)
  * @param c The classifier whose condition is to be freed.
  */
 static inline void
-cond_free(const struct XCSF *xcsf, const struct CL *c)
+cond_free(const struct XCSF *xcsf, const struct Cl *c)
 {
     (*c->cond_vptr->cond_impl_free)(xcsf, c);
 }
@@ -201,7 +201,7 @@ cond_free(const struct XCSF *xcsf, const struct CL *c)
  * @param c The classifier whose condition is to be initialised.
  */
 static inline void
-cond_init(const struct XCSF *xcsf, struct CL *c)
+cond_init(const struct XCSF *xcsf, struct Cl *c)
 {
     (*c->cond_vptr->cond_impl_init)(xcsf, c);
 }
@@ -212,7 +212,7 @@ cond_init(const struct XCSF *xcsf, struct CL *c)
  * @param c The classifier whose condition is to be printed.
  */
 static inline void
-cond_print(const struct XCSF *xcsf, const struct CL *c)
+cond_print(const struct XCSF *xcsf, const struct Cl *c)
 {
     (*c->cond_vptr->cond_impl_print)(xcsf, c);
 }

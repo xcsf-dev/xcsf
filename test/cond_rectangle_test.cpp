@@ -39,7 +39,7 @@ extern "C" {
 TEST_CASE("COND_RECTANGLE")
 {
     struct XCSF xcsf;
-    struct CL c1;
+    struct Cl c1;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 5);
@@ -61,7 +61,7 @@ TEST_CASE("COND_RECTANGLE")
     const double false_spread[5] = { 0.9658827122, 0.7107445754, 0.7048862747,
                                      0.1036188594, 0.4501471722 };
     /* test for true match condition */
-    struct COND_RECTANGLE *p = (struct COND_RECTANGLE *) c1.cond;
+    struct CondRectangle *p = (struct CondRectangle *) c1.cond;
     memcpy(p->center, true_center, sizeof(double) * xcsf.x_dim);
     memcpy(p->spread, true_spread, sizeof(double) * xcsf.x_dim);
     _Bool match = cond_rectangle_match(&xcsf, &c1, x);
@@ -72,10 +72,10 @@ TEST_CASE("COND_RECTANGLE")
     match = cond_rectangle_match(&xcsf, &c1, x);
     CHECK_EQ(match, false);
     /* test general */
-    struct CL c2;
+    struct Cl c2;
     cl_init(&xcsf, &c2, 1, 1);
     cond_rectangle_init(&xcsf, &c2);
-    struct COND_RECTANGLE *p2 = (struct COND_RECTANGLE *) c2.cond;
+    struct CondRectangle *p2 = (struct CondRectangle *) c2.cond;
     const double center2[5] = { 0.6, 0.7, 0.2, 0.3, 0.0 };
     const double spread2[5] = { 0.1, 0.1, 0.1, 0.1, 0.1 };
     memcpy(p2->center, center2, sizeof(double) * xcsf.x_dim);

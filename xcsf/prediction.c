@@ -32,7 +32,7 @@
  * @param c The classifier to set.
  */
 void
-prediction_set(const struct XCSF *xcsf, struct CL *c)
+prediction_set(const struct XCSF *xcsf, struct Cl *c)
 {
     switch (xcsf->PRED_TYPE) {
         case PRED_TYPE_CONSTANT:

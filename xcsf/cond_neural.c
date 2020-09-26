@@ -39,13 +39,13 @@
  * @param c The classifier whose condition is to be initialised.
  */
 void
-cond_neural_init(const struct XCSF *xcsf, struct CL *c)
+cond_neural_init(const struct XCSF *xcsf, struct Cl *c)
 {
-    struct COND_NEURAL *new = malloc(sizeof(struct COND_NEURAL));
+    struct CondNeural *new = malloc(sizeof(struct CondNeural));
     neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = neural_cond_lopt(xcsf);
-    struct LAYER *l = NULL;
+    struct Layer *l = NULL;
     int n_inputs = xcsf->x_dim;
     for (int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
         const int hinit = xcsf->COND_NUM_NEURONS[i];
@@ -67,33 +67,33 @@ cond_neural_init(const struct XCSF *xcsf, struct CL *c)
 }
 
 void
-cond_neural_free(const struct XCSF *xcsf, const struct CL *c)
+cond_neural_free(const struct XCSF *xcsf, const struct Cl *c)
 {
-    struct COND_NEURAL *cond = c->cond;
+    struct CondNeural *cond = c->cond;
     neural_free(xcsf, &cond->net);
     free(c->cond);
 }
 
 void
-cond_neural_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
+cond_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
-    struct COND_NEURAL *new = malloc(sizeof(struct COND_NEURAL));
-    const struct COND_NEURAL *src_cond = src->cond;
+    struct CondNeural *new = malloc(sizeof(struct CondNeural));
+    const struct CondNeural *src_cond = src->cond;
     neural_copy(xcsf, &new->net, &src_cond->net);
     dest->cond = new;
 }
 
 void
-cond_neural_cover(const struct XCSF *xcsf, const struct CL *c, const double *x)
+cond_neural_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
-    const struct COND_NEURAL *cond = c->cond;
+    const struct CondNeural *cond = c->cond;
     do {
         neural_rand(xcsf, &cond->net);
     } while (!cond_neural_match(xcsf, c, x));
 }
 
 void
-cond_neural_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+cond_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                    const double *y)
 {
     (void) xcsf;
@@ -103,9 +103,9 @@ cond_neural_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
 }
 
 _Bool
-cond_neural_match(const struct XCSF *xcsf, const struct CL *c, const double *x)
+cond_neural_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
-    const struct COND_NEURAL *cond = c->cond;
+    const struct CondNeural *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
     if (neural_output(xcsf, &cond->net, 0) > 0.5) {
         return true;
@@ -114,15 +114,15 @@ cond_neural_match(const struct XCSF *xcsf, const struct CL *c, const double *x)
 }
 
 _Bool
-cond_neural_mutate(const struct XCSF *xcsf, const struct CL *c)
+cond_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct COND_NEURAL *cond = c->cond;
+    const struct CondNeural *cond = c->cond;
     return neural_mutate(xcsf, &cond->net);
 }
 
 _Bool
-cond_neural_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                      const struct CL *c2)
+cond_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                      const struct Cl *c2)
 {
     (void) xcsf;
     (void) c1;
@@ -131,8 +131,8 @@ cond_neural_crossover(const struct XCSF *xcsf, const struct CL *c1,
 }
 
 _Bool
-cond_neural_general(const struct XCSF *xcsf, const struct CL *c1,
-                    const struct CL *c2)
+cond_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
+                    const struct Cl *c2)
 {
     (void) xcsf;
     (void) c1;
@@ -141,43 +141,43 @@ cond_neural_general(const struct XCSF *xcsf, const struct CL *c1,
 }
 
 void
-cond_neural_print(const struct XCSF *xcsf, const struct CL *c)
+cond_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct COND_NEURAL *cond = c->cond;
+    const struct CondNeural *cond = c->cond;
     neural_print(xcsf, &cond->net, false);
 }
 
 double
-cond_neural_size(const struct XCSF *xcsf, const struct CL *c)
+cond_neural_size(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct COND_NEURAL *cond = c->cond;
+    const struct CondNeural *cond = c->cond;
     return neural_size(xcsf, &cond->net);
 }
 
 size_t
-cond_neural_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
+cond_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
-    const struct COND_NEURAL *cond = c->cond;
+    const struct CondNeural *cond = c->cond;
     size_t s = neural_save(xcsf, &cond->net, fp);
     return s;
 }
 
 size_t
-cond_neural_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
+cond_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
-    struct COND_NEURAL *new = malloc(sizeof(struct COND_NEURAL));
+    struct CondNeural *new = malloc(sizeof(struct CondNeural));
     size_t s = neural_load(xcsf, &new->net, fp);
     c->cond = new;
     return s;
 }
 
 int
-cond_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer)
+cond_neural_neurons(const struct XCSF *xcsf, const struct Cl *c, int layer)
 {
     (void) xcsf;
-    const struct COND_NEURAL *cond = c->cond;
-    const struct NET *net = &cond->net;
-    const struct LLIST *iter = net->tail;
+    const struct CondNeural *cond = c->cond;
+    const struct Net *net = &cond->net;
+    const struct Llist *iter = net->tail;
     int i = 0;
     while (iter != NULL) {
         if (i == layer) {
@@ -190,12 +190,12 @@ cond_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer)
 }
 
 int
-cond_neural_connections(const struct XCSF *xcsf, const struct CL *c, int layer)
+cond_neural_connections(const struct XCSF *xcsf, const struct Cl *c, int layer)
 {
     (void) xcsf;
-    const struct COND_NEURAL *cond = c->cond;
-    const struct NET *net = &cond->net;
-    const struct LLIST *iter = net->tail;
+    const struct CondNeural *cond = c->cond;
+    const struct Net *net = &cond->net;
+    const struct Llist *iter = net->tail;
     int i = 0;
     while (iter != NULL) {
         if (i == layer) {
@@ -208,10 +208,10 @@ cond_neural_connections(const struct XCSF *xcsf, const struct CL *c, int layer)
 }
 
 int
-cond_neural_layers(const struct XCSF *xcsf, const struct CL *c)
+cond_neural_layers(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
-    const struct COND_NEURAL *cond = c->cond;
-    const struct NET *net = &cond->net;
+    const struct CondNeural *cond = c->cond;
+    const struct Net *net = &cond->net;
     return net->n_layers;
 }

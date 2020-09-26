@@ -44,8 +44,8 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
 {
     /* test initialisation */
     struct XCSF xcsf;
-    struct NET net;
-    struct LAYER *l;
+    struct Net net;
+    struct Layer *l;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 1);

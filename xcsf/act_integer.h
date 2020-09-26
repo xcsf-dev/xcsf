@@ -29,52 +29,52 @@
 /**
  * @brief Integer action data structure.
  */
-struct ACT_INTEGER {
+struct ActInteger {
     int action; //!< Integer action
     double *mu; //!< Mutation rates
 };
 
 _Bool
-act_integer_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                      const struct CL *c2);
+act_integer_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                      const struct Cl *c2);
 
 _Bool
-act_integer_general(const struct XCSF *xcsf, const struct CL *c1,
-                    const struct CL *c2);
+act_integer_general(const struct XCSF *xcsf, const struct Cl *c1,
+                    const struct Cl *c2);
 
 _Bool
-act_integer_mutate(const struct XCSF *xcsf, const struct CL *c);
+act_integer_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 int
-act_integer_compute(const struct XCSF *xcsf, const struct CL *c,
+act_integer_compute(const struct XCSF *xcsf, const struct Cl *c,
                     const double *x);
 
 void
-act_integer_copy(const struct XCSF *xcsf, struct CL *dest,
-                 const struct CL *src);
+act_integer_copy(const struct XCSF *xcsf, struct Cl *dest,
+                 const struct Cl *src);
 
 void
-act_integer_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
+act_integer_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                   const int action);
 
 void
-act_integer_free(const struct XCSF *xcsf, const struct CL *c);
+act_integer_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-act_integer_init(const struct XCSF *xcsf, struct CL *c);
+act_integer_init(const struct XCSF *xcsf, struct Cl *c);
 
 void
-act_integer_print(const struct XCSF *xcsf, const struct CL *c);
+act_integer_print(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-act_integer_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+act_integer_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                    const double *y);
 
 size_t
-act_integer_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
+act_integer_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-act_integer_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+act_integer_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 /**
  * @brief Integer action implemented functions.

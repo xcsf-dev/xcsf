@@ -31,7 +31,7 @@
 /**
  * @brief Maze environment data structure.
  */
-struct ENV_MAZE {
+struct EnvMaze {
     double *state; //!< Current state
     char maze[MAX_SIZE][MAX_SIZE]; //!< Maze
     int xpos; //!< Current x position

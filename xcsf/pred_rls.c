@@ -26,9 +26,9 @@
 #include "utils.h"
 
 void
-pred_rls_init(const struct XCSF *xcsf, struct CL *c)
+pred_rls_init(const struct XCSF *xcsf, struct Cl *c)
 {
-    struct PRED_RLS *pred = malloc(sizeof(struct PRED_RLS));
+    struct PredRLS *pred = malloc(sizeof(struct PredRLS));
     c->pred = pred;
     // set the length of weights per predicted variable
     if (xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
@@ -55,20 +55,20 @@ pred_rls_init(const struct XCSF *xcsf, struct CL *c)
 }
 
 void
-pred_rls_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src)
+pred_rls_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
     pred_rls_init(xcsf, dest);
-    const struct PRED_RLS *dest_pred = dest->pred;
-    const struct PRED_RLS *src_pred = src->pred;
+    const struct PredRLS *dest_pred = dest->pred;
+    const struct PredRLS *src_pred = src->pred;
     memcpy(dest_pred->weights, src_pred->weights,
            sizeof(double) * src_pred->n_weights);
 }
 
 void
-pred_rls_free(const struct XCSF *xcsf, const struct CL *c)
+pred_rls_free(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
-    struct PRED_RLS *pred = c->pred;
+    struct PredRLS *pred = c->pred;
     free(pred->weights);
     free(pred->matrix);
     free(pred->tmp_input);
@@ -79,11 +79,11 @@ pred_rls_free(const struct XCSF *xcsf, const struct CL *c)
 }
 
 void
-pred_rls_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+pred_rls_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                 const double *y)
 {
     (void) x;
-    const struct PRED_RLS *pred = c->pred;
+    const struct PredRLS *pred = c->pred;
     const int n = pred->n;
     // gain vector = matrix * tmp_input
     const double *A = pred->matrix;
@@ -125,9 +125,9 @@ pred_rls_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
 }
 
 void
-pred_rls_compute(const struct XCSF *xcsf, const struct CL *c, const double *x)
+pred_rls_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
-    const struct PRED_RLS *pred = c->pred;
+    const struct PredRLS *pred = c->pred;
     const int n = pred->n;
     pred_transform_input(xcsf, x, pred->tmp_input);
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -137,9 +137,9 @@ pred_rls_compute(const struct XCSF *xcsf, const struct CL *c, const double *x)
 }
 
 void
-pred_rls_print(const struct XCSF *xcsf, const struct CL *c)
+pred_rls_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct PRED_RLS *pred = c->pred;
+    const struct PredRLS *pred = c->pred;
     printf("RLS weights: ");
     const int n = pred->n;
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -151,8 +151,8 @@ pred_rls_print(const struct XCSF *xcsf, const struct CL *c)
 }
 
 _Bool
-pred_rls_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                   const struct CL *c2)
+pred_rls_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                   const struct Cl *c2)
 {
     (void) xcsf;
     (void) c1;
@@ -161,7 +161,7 @@ pred_rls_crossover(const struct XCSF *xcsf, const struct CL *c1,
 }
 
 _Bool
-pred_rls_mutate(const struct XCSF *xcsf, const struct CL *c)
+pred_rls_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     (void) c;
@@ -169,18 +169,18 @@ pred_rls_mutate(const struct XCSF *xcsf, const struct CL *c)
 }
 
 double
-pred_rls_size(const struct XCSF *xcsf, const struct CL *c)
+pred_rls_size(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
-    const struct PRED_RLS *pred = c->pred;
+    const struct PredRLS *pred = c->pred;
     return pred->n_weights;
 }
 
 size_t
-pred_rls_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
+pred_rls_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
     (void) xcsf;
-    const struct PRED_RLS *pred = c->pred;
+    const struct PredRLS *pred = c->pred;
     size_t s = 0;
     s += fwrite(&pred->n, sizeof(int), 1, fp);
     s += fwrite(&pred->n_weights, sizeof(int), 1, fp);
@@ -191,10 +191,10 @@ pred_rls_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 }
 
 size_t
-pred_rls_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
+pred_rls_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     pred_rls_init(xcsf, c);
-    struct PRED_RLS *pred = c->pred;
+    struct PredRLS *pred = c->pred;
     size_t s = 0;
     s += fread(&pred->n, sizeof(int), 1, fp);
     s += fread(&pred->n_weights, sizeof(int), 1, fp);

@@ -37,7 +37,7 @@
  * @param c The classifier to set.
  */
 void
-condition_set(const struct XCSF *xcsf, struct CL *c)
+condition_set(const struct XCSF *xcsf, struct Cl *c)
 {
     switch (xcsf->COND_TYPE) {
         case COND_TYPE_DUMMY:

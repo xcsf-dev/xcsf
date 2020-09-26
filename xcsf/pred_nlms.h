@@ -29,7 +29,7 @@
 /**
  * @brief Normalised least mean squares prediction data structure.
  */
-struct PRED_NLMS {
+struct PredNLMS {
     int n; //!< Number of weights for each predicted variable
     int n_weights; //!< Total number of weights
     double *weights; //!< Weights used to compute prediction
@@ -39,38 +39,38 @@ struct PRED_NLMS {
 };
 
 _Bool
-pred_nlms_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                    const struct CL *c2);
+pred_nlms_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                    const struct Cl *c2);
 
 _Bool
-pred_nlms_mutate(const struct XCSF *xcsf, const struct CL *c);
+pred_nlms_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 double
-pred_nlms_size(const struct XCSF *xcsf, const struct CL *c);
+pred_nlms_size(const struct XCSF *xcsf, const struct Cl *c);
 
 size_t
-pred_nlms_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+pred_nlms_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 size_t
-pred_nlms_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
+pred_nlms_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 void
-pred_nlms_compute(const struct XCSF *xcsf, const struct CL *c, const double *x);
+pred_nlms_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x);
 
 void
-pred_nlms_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
+pred_nlms_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src);
 
 void
-pred_nlms_free(const struct XCSF *xcsf, const struct CL *c);
+pred_nlms_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-pred_nlms_init(const struct XCSF *xcsf, struct CL *c);
+pred_nlms_init(const struct XCSF *xcsf, struct Cl *c);
 
 void
-pred_nlms_print(const struct XCSF *xcsf, const struct CL *c);
+pred_nlms_print(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-pred_nlms_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+pred_nlms_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                  const double *y);
 
 /**

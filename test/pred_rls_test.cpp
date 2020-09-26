@@ -41,7 +41,7 @@ TEST_CASE("PRED_RLS")
 {
     /* test initialisation */
     struct XCSF xcsf;
-    struct CL c;
+    struct Cl c;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 10);
@@ -52,7 +52,7 @@ TEST_CASE("PRED_RLS")
     param_set_pred_rls_lambda(&xcsf, 1);
     cl_init(&xcsf, &c, 1, 1);
     pred_rls_init(&xcsf, &c);
-    struct PRED_RLS *p = (struct PRED_RLS *) c.pred;
+    struct PredRLS *p = (struct PredRLS *) c.pred;
     CHECK_EQ(p->n, 11);
     CHECK_EQ(p->n_weights, 11);
     /* test one forward pass of input */

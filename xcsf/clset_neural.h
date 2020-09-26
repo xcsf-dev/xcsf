@@ -24,27 +24,27 @@
 #include "xcsf.h"
 
 double
-clset_mean_cond_connections(const struct XCSF *xcsf, const struct SET *set,
+clset_mean_cond_connections(const struct XCSF *xcsf, const struct Set *set,
                             const int layer);
 
 double
-clset_mean_cond_layers(const struct XCSF *xcsf, const struct SET *set);
+clset_mean_cond_layers(const struct XCSF *xcsf, const struct Set *set);
 
 double
-clset_mean_cond_neurons(const struct XCSF *xcsf, const struct SET *set,
+clset_mean_cond_neurons(const struct XCSF *xcsf, const struct Set *set,
                         const int layer);
 
 double
-clset_mean_pred_connections(const struct XCSF *xcsf, const struct SET *set,
+clset_mean_pred_connections(const struct XCSF *xcsf, const struct Set *set,
                             const int layer);
 
 double
-clset_mean_pred_eta(const struct XCSF *xcsf, const struct SET *set,
+clset_mean_pred_eta(const struct XCSF *xcsf, const struct Set *set,
                     const int layer);
 
 double
-clset_mean_pred_layers(const struct XCSF *xcsf, const struct SET *set);
+clset_mean_pred_layers(const struct XCSF *xcsf, const struct Set *set);
 
 double
-clset_mean_pred_neurons(const struct XCSF *xcsf, const struct SET *set,
+clset_mean_pred_neurons(const struct XCSF *xcsf, const struct Set *set,
                         const int layer);

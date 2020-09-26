@@ -30,61 +30,61 @@
 /**
  * @brief Multi-layer perceptron neural network condition data structure.
  */
-struct COND_NEURAL {
-    struct NET net; //!< Neural network
+struct CondNeural {
+    struct Net net; //!< Neural network
 };
 
 _Bool
-cond_neural_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                      const struct CL *c2);
+cond_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                      const struct Cl *c2);
 
 _Bool
-cond_neural_general(const struct XCSF *xcsf, const struct CL *c1,
-                    const struct CL *c2);
+cond_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
+                    const struct Cl *c2);
 
 _Bool
-cond_neural_match(const struct XCSF *xcsf, const struct CL *c, const double *x);
+cond_neural_match(const struct XCSF *xcsf, const struct Cl *c, const double *x);
 
 _Bool
-cond_neural_mutate(const struct XCSF *xcsf, const struct CL *c);
+cond_neural_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_neural_copy(const struct XCSF *xcsf, struct CL *dest,
-                 const struct CL *src);
+cond_neural_copy(const struct XCSF *xcsf, struct Cl *dest,
+                 const struct Cl *src);
 
 void
-cond_neural_cover(const struct XCSF *xcsf, const struct CL *c, const double *x);
+cond_neural_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x);
 
 void
-cond_neural_free(const struct XCSF *xcsf, const struct CL *c);
+cond_neural_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_neural_init(const struct XCSF *xcsf, struct CL *c);
+cond_neural_init(const struct XCSF *xcsf, struct Cl *c);
 
 void
-cond_neural_print(const struct XCSF *xcsf, const struct CL *c);
+cond_neural_print(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_neural_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+cond_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                    const double *y);
 
 double
-cond_neural_size(const struct XCSF *xcsf, const struct CL *c);
+cond_neural_size(const struct XCSF *xcsf, const struct Cl *c);
 
 size_t
-cond_neural_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
+cond_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-cond_neural_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+cond_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 int
-cond_neural_neurons(const struct XCSF *xcsf, const struct CL *c, int layer);
+cond_neural_neurons(const struct XCSF *xcsf, const struct Cl *c, int layer);
 
 int
-cond_neural_layers(const struct XCSF *xcsf, const struct CL *c);
+cond_neural_layers(const struct XCSF *xcsf, const struct Cl *c);
 
 int
-cond_neural_connections(const struct XCSF *xcsf, const struct CL *c, int layer);
+cond_neural_connections(const struct XCSF *xcsf, const struct Cl *c, int layer);
 
 /**
  * @brief Multi-layer perceptron neural network condition implemented functions.

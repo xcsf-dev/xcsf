@@ -29,7 +29,7 @@
 /**
  * @brief Ternary condition data structure.
  */
-struct COND_TERNARY {
+struct CondTernary {
     char *string; //!< Ternary bitstring
     int length; //!< Length of the bitstring
     double *mu; //!< Mutation rates
@@ -37,49 +37,49 @@ struct COND_TERNARY {
 };
 
 _Bool
-cond_ternary_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                       const struct CL *c2);
+cond_ternary_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                       const struct Cl *c2);
 
 _Bool
-cond_ternary_general(const struct XCSF *xcsf, const struct CL *c1,
-                     const struct CL *c2);
+cond_ternary_general(const struct XCSF *xcsf, const struct Cl *c1,
+                     const struct Cl *c2);
 
 _Bool
-cond_ternary_match(const struct XCSF *xcsf, const struct CL *c,
+cond_ternary_match(const struct XCSF *xcsf, const struct Cl *c,
                    const double *x);
 
 _Bool
-cond_ternary_mutate(const struct XCSF *xcsf, const struct CL *c);
+cond_ternary_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ternary_copy(const struct XCSF *xcsf, struct CL *dest,
-                  const struct CL *src);
+cond_ternary_copy(const struct XCSF *xcsf, struct Cl *dest,
+                  const struct Cl *src);
 
 void
-cond_ternary_cover(const struct XCSF *xcsf, const struct CL *c,
+cond_ternary_cover(const struct XCSF *xcsf, const struct Cl *c,
                    const double *x);
 
 void
-cond_ternary_free(const struct XCSF *xcsf, const struct CL *c);
+cond_ternary_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ternary_init(const struct XCSF *xcsf, struct CL *c);
+cond_ternary_init(const struct XCSF *xcsf, struct Cl *c);
 
 void
-cond_ternary_print(const struct XCSF *xcsf, const struct CL *c);
+cond_ternary_print(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ternary_update(const struct XCSF *xcsf, const struct CL *c,
+cond_ternary_update(const struct XCSF *xcsf, const struct Cl *c,
                     const double *x, const double *y);
 
 double
-cond_ternary_size(const struct XCSF *xcsf, const struct CL *c);
+cond_ternary_size(const struct XCSF *xcsf, const struct Cl *c);
 
 size_t
-cond_ternary_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
+cond_ternary_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-cond_ternary_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+cond_ternary_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 /**
  * @brief Ternary condition implemented functions.

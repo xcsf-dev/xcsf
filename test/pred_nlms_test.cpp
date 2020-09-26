@@ -41,7 +41,7 @@ TEST_CASE("PRED_NLMS")
 {
     /* test initialisation */
     struct XCSF xcsf;
-    struct CL c;
+    struct Cl c;
     random_init();
     param_init(&xcsf);
     param_set_x_dim(&xcsf, 10);
@@ -52,7 +52,7 @@ TEST_CASE("PRED_NLMS")
     param_set_pred_eta(&xcsf, 0.1);
     cl_init(&xcsf, &c, 1, 1);
     pred_nlms_init(&xcsf, &c);
-    struct PRED_NLMS *p = (struct PRED_NLMS *) c.pred;
+    struct PredNLMS *p = (struct PredNLMS *) c.pred;
     CHECK_EQ(p->n, 11);
     CHECK_EQ(p->n_weights, 11);
     /* test one forward pass of input */

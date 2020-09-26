@@ -147,7 +147,7 @@ xcsf_load(struct XCSF *xcsf, const char *filename)
 void
 xcsf_pred_expand(const struct XCSF *xcsf)
 {
-    const struct CLIST *iter = xcsf->pset.list;
+    const struct Clist *iter = xcsf->pset.list;
     while (iter != NULL) {
         pred_neural_expand(xcsf, iter->cl);
         iter->cl->fit = xcsf->INIT_FITNESS;
@@ -171,7 +171,7 @@ xcsf_ae_to_classifier(struct XCSF *xcsf, const int y_dim, const int n_del)
     param_set_y_dim(xcsf, y_dim);
     param_set_loss_func(xcsf, LOSS_ONEHOT_ACC);
     pa_init(xcsf);
-    const struct CLIST *iter = xcsf->pset.list;
+    const struct Clist *iter = xcsf->pset.list;
     while (iter != NULL) {
         free(iter->cl->prediction);
         iter->cl->prediction = calloc(xcsf->y_dim, sizeof(double));
@@ -192,10 +192,10 @@ void
 xcsf_store_pop(struct XCSF *xcsf)
 {
     clset_kill(xcsf, &xcsf->prev_pset);
-    const struct CLIST *iter = xcsf->pset.list;
+    const struct Clist *iter = xcsf->pset.list;
     while (iter != NULL) {
-        struct CL *new = malloc(sizeof(struct CL));
-        const struct CL *src = iter->cl;
+        struct Cl *new = malloc(sizeof(struct Cl));
+        const struct Cl *src = iter->cl;
         cl_init_copy(xcsf, new, src);
         clset_add(&xcsf->prev_pset, new);
         iter = iter->next;

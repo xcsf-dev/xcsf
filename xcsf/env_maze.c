@@ -98,7 +98,7 @@ env_maze_init(struct XCSF *xcsf, const char *filename)
         exit(EXIT_FAILURE);
     }
     // read maze
-    struct ENV_MAZE *env = malloc(sizeof(struct ENV_MAZE));
+    struct EnvMaze *env = malloc(sizeof(struct EnvMaze));
     int x = 0;
     int y = 0;
     int c = 0;
@@ -140,7 +140,7 @@ env_maze_init(struct XCSF *xcsf, const char *filename)
 void
 env_maze_free(const struct XCSF *xcsf)
 {
-    struct ENV_MAZE *env = xcsf->env;
+    struct EnvMaze *env = xcsf->env;
     free(env->state);
     free(env);
 }
@@ -152,7 +152,7 @@ env_maze_free(const struct XCSF *xcsf)
 void
 env_maze_reset(const struct XCSF *xcsf)
 {
-    struct ENV_MAZE *env = xcsf->env;
+    struct EnvMaze *env = xcsf->env;
     env->done = false;
     do {
         env->xpos = irand_uniform(0, env->xsize);
@@ -168,7 +168,7 @@ env_maze_reset(const struct XCSF *xcsf)
 _Bool
 env_maze_is_done(const struct XCSF *xcsf)
 {
-    const struct ENV_MAZE *env = xcsf->env;
+    const struct EnvMaze *env = xcsf->env;
     return env->done;
 }
 
@@ -180,7 +180,7 @@ env_maze_is_done(const struct XCSF *xcsf)
 const double *
 env_maze_get_state(const struct XCSF *xcsf)
 {
-    const struct ENV_MAZE *env = xcsf->env;
+    const struct EnvMaze *env = xcsf->env;
     int spos = 0;
     for (int y = -1; y < 2; ++y) {
         for (int x = -1; x < 2; ++x) {
@@ -215,7 +215,7 @@ env_maze_execute(const struct XCSF *xcsf, const int action)
         printf("invalid maze action\n");
         exit(EXIT_FAILURE);
     }
-    struct ENV_MAZE *env = xcsf->env;
+    struct EnvMaze *env = xcsf->env;
     // toroidal maze
     const int newx =
         ((env->xpos + x_moves[action]) % env->xsize + env->xsize) % env->xsize;

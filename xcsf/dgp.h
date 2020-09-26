@@ -29,7 +29,7 @@
 /**
  * @brief Dynamical GP graph data structure.
  */
-struct GRAPH {
+struct Graph {
     int *connectivity; //!< Connectivity map
     double *state; //!< Current state of each node
     double *initial_state; //!< Initial node states
@@ -43,40 +43,40 @@ struct GRAPH {
 };
 
 _Bool
-graph_crossover(const struct XCSF *xcsf, struct GRAPH *dgp1,
-                struct GRAPH *dgp2);
+graph_crossover(const struct XCSF *xcsf, struct Graph *dgp1,
+                struct Graph *dgp2);
 
 _Bool
-graph_mutate(const struct XCSF *xcsf, struct GRAPH *dgp);
+graph_mutate(const struct XCSF *xcsf, struct Graph *dgp);
 
 double
-graph_output(const struct XCSF *xcsf, const struct GRAPH *dgp, const int IDX);
+graph_output(const struct XCSF *xcsf, const struct Graph *dgp, const int IDX);
 
 size_t
-graph_load(const struct XCSF *xcsf, struct GRAPH *dgp, FILE *fp);
+graph_load(const struct XCSF *xcsf, struct Graph *dgp, FILE *fp);
 
 size_t
-graph_save(const struct XCSF *xcsf, const struct GRAPH *dgp, FILE *fp);
+graph_save(const struct XCSF *xcsf, const struct Graph *dgp, FILE *fp);
 
 void
-graph_copy(const struct XCSF *xcsf, struct GRAPH *dest,
-           const struct GRAPH *src);
+graph_copy(const struct XCSF *xcsf, struct Graph *dest,
+           const struct Graph *src);
 
 void
-graph_free(const struct XCSF *xcsf, const struct GRAPH *dgp);
+graph_free(const struct XCSF *xcsf, const struct Graph *dgp);
 
 void
-graph_init(const struct XCSF *xcsf, struct GRAPH *dgp, const int n);
+graph_init(const struct XCSF *xcsf, struct Graph *dgp, const int n);
 
 void
-graph_print(const struct XCSF *xcsf, const struct GRAPH *dgp);
+graph_print(const struct XCSF *xcsf, const struct Graph *dgp);
 
 void
-graph_rand(const struct XCSF *xcsf, struct GRAPH *dgp);
+graph_rand(const struct XCSF *xcsf, struct Graph *dgp);
 
 void
-graph_reset(const struct XCSF *xcsf, const struct GRAPH *dgp);
+graph_reset(const struct XCSF *xcsf, const struct Graph *dgp);
 
 void
-graph_update(const struct XCSF *xcsf, const struct GRAPH *dgp,
+graph_update(const struct XCSF *xcsf, const struct Graph *dgp,
              const double *inputs);

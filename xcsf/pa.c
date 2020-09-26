@@ -60,13 +60,13 @@ pa_init(struct XCSF *xcsf)
 void
 pa_build(const struct XCSF *xcsf, const double *x)
 {
-    const struct SET *set = &xcsf->mset;
+    const struct Set *set = &xcsf->mset;
     double *pa = xcsf->pa;
     double *nr = xcsf->nr;
     pa_reset(xcsf);
 #ifdef PARALLEL_PRED
-    struct CL *clist[set->size];
-    struct CLIST *iter = set->list;
+    struct Cl *clist[set->size];
+    struct Clist *iter = set->list;
     for (int i = 0; i < set->size; ++i) {
         clist[i] = NULL;
         if (iter != NULL) {
@@ -87,7 +87,7 @@ pa_build(const struct XCSF *xcsf, const double *x)
         }
     }
 #else
-    const struct CLIST *iter = set->list;
+    const struct Clist *iter = set->list;
     while (iter != NULL) {
         const double *predictions = cl_predict(xcsf, iter->cl, x);
         const double fitness = iter->cl->fit;

@@ -24,15 +24,15 @@
 #include "pred_constant.h"
 
 void
-pred_constant_init(const struct XCSF *xcsf, struct CL *c)
+pred_constant_init(const struct XCSF *xcsf, struct Cl *c)
 {
     (void) xcsf;
     (void) c;
 }
 
 void
-pred_constant_copy(const struct XCSF *xcsf, struct CL *dest,
-                   const struct CL *src)
+pred_constant_copy(const struct XCSF *xcsf, struct Cl *dest,
+                   const struct Cl *src)
 {
     (void) xcsf;
     (void) dest;
@@ -40,14 +40,14 @@ pred_constant_copy(const struct XCSF *xcsf, struct CL *dest,
 }
 
 void
-pred_constant_free(const struct XCSF *xcsf, const struct CL *c)
+pred_constant_free(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     (void) c;
 }
 
 void
-pred_constant_update(const struct XCSF *xcsf, const struct CL *c,
+pred_constant_update(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x, const double *y)
 {
     (void) x;
@@ -65,7 +65,7 @@ pred_constant_update(const struct XCSF *xcsf, const struct CL *c,
 }
 
 void
-pred_constant_compute(const struct XCSF *xcsf, const struct CL *c,
+pred_constant_compute(const struct XCSF *xcsf, const struct Cl *c,
                       const double *x)
 {
     (void) xcsf;
@@ -74,7 +74,7 @@ pred_constant_compute(const struct XCSF *xcsf, const struct CL *c,
 }
 
 void
-pred_constant_print(const struct XCSF *xcsf, const struct CL *c)
+pred_constant_print(const struct XCSF *xcsf, const struct Cl *c)
 {
     printf("constant prediction: %f", c->prediction[0]);
     for (int var = 1; var < xcsf->y_dim; ++var) {
@@ -84,8 +84,8 @@ pred_constant_print(const struct XCSF *xcsf, const struct CL *c)
 }
 
 _Bool
-pred_constant_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                        const struct CL *c2)
+pred_constant_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                        const struct Cl *c2)
 {
     (void) xcsf;
     (void) c1;
@@ -94,7 +94,7 @@ pred_constant_crossover(const struct XCSF *xcsf, const struct CL *c1,
 }
 
 _Bool
-pred_constant_mutate(const struct XCSF *xcsf, const struct CL *c)
+pred_constant_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     (void) c;
@@ -102,14 +102,14 @@ pred_constant_mutate(const struct XCSF *xcsf, const struct CL *c)
 }
 
 double
-pred_constant_size(const struct XCSF *xcsf, const struct CL *c)
+pred_constant_size(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) c;
     return xcsf->y_dim;
 }
 
 size_t
-pred_constant_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
+pred_constant_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
     (void) xcsf;
     (void) c;
@@ -118,7 +118,7 @@ pred_constant_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp)
 }
 
 size_t
-pred_constant_load(const struct XCSF *xcsf, struct CL *c, FILE *fp)
+pred_constant_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     (void) xcsf;
     (void) c;

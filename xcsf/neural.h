@@ -29,72 +29,72 @@
 /**
  * @brief Double linked list of layers data structure.
  */
-struct LLIST {
-    struct LAYER *layer; //!< Pointer to the layer data structure
-    struct LLIST *prev; //!< Pointer to the previous layer (forward)
-    struct LLIST *next; //!< Pointer to the next layer (backward)
+struct Llist {
+    struct Layer *layer; //!< Pointer to the layer data structure
+    struct Llist *prev; //!< Pointer to the previous layer (forward)
+    struct Llist *next; //!< Pointer to the next layer (backward)
 };
 
 /**
  * @brief Neural network data structure.
  */
-struct NET {
+struct Net {
     int n_layers; //!< Number of layers (hidden + output)
     int n_inputs; //!< Number of network inputs
     int n_outputs; //!< Number of network outputs
     double *output; //!< Pointer to the network output
-    struct LLIST *head; //!< Pointer to the head layer (output layer)
-    struct LLIST *tail; //!< Pointer to the tail layer (first layer)
+    struct Llist *head; //!< Pointer to the head layer (output layer)
+    struct Llist *tail; //!< Pointer to the tail layer (first layer)
 };
 
 _Bool
-neural_mutate(const struct XCSF *xcsf, const struct NET *net);
+neural_mutate(const struct XCSF *xcsf, const struct Net *net);
 
 double
-neural_output(const struct XCSF *xcsf, const struct NET *net, const int IDX);
+neural_output(const struct XCSF *xcsf, const struct Net *net, const int IDX);
 
 double
-neural_size(const struct XCSF *xcsf, const struct NET *net);
+neural_size(const struct XCSF *xcsf, const struct Net *net);
 
 size_t
-neural_load(const struct XCSF *xcsf, struct NET *net, FILE *fp);
+neural_load(const struct XCSF *xcsf, struct Net *net, FILE *fp);
 
 size_t
-neural_save(const struct XCSF *xcsf, const struct NET *net, FILE *fp);
+neural_save(const struct XCSF *xcsf, const struct Net *net, FILE *fp);
 
 void
-neural_copy(const struct XCSF *xcsf, struct NET *dest, const struct NET *src);
+neural_copy(const struct XCSF *xcsf, struct Net *dest, const struct Net *src);
 
 void
-neural_free(const struct XCSF *xcsf, struct NET *net);
+neural_free(const struct XCSF *xcsf, struct Net *net);
 
 void
-neural_init(const struct XCSF *xcsf, struct NET *net);
+neural_init(const struct XCSF *xcsf, struct Net *net);
 
 void
-neural_layer_insert(const struct XCSF *xcsf, struct NET *net, struct LAYER *l,
+neural_layer_insert(const struct XCSF *xcsf, struct Net *net, struct Layer *l,
                     const int pos);
 
 void
-neural_layer_remove(const struct XCSF *xcsf, struct NET *net, const int pos);
+neural_layer_remove(const struct XCSF *xcsf, struct Net *net, const int pos);
 
 void
-neural_learn(const struct XCSF *xcsf, const struct NET *net,
+neural_learn(const struct XCSF *xcsf, const struct Net *net,
              const double *output, const double *input);
 
 void
-neural_print(const struct XCSF *xcsf, const struct NET *net,
+neural_print(const struct XCSF *xcsf, const struct Net *net,
              const _Bool print_weights);
 
 void
-neural_propagate(const struct XCSF *xcsf, const struct NET *net,
+neural_propagate(const struct XCSF *xcsf, const struct Net *net,
                  const double *input);
 
 void
-neural_rand(const struct XCSF *xcsf, const struct NET *net);
+neural_rand(const struct XCSF *xcsf, const struct Net *net);
 
 void
-neural_resize(const struct XCSF *xcsf, const struct NET *net);
+neural_resize(const struct XCSF *xcsf, const struct Net *net);
 
 static uint32_t
 neural_cond_lopt(const struct XCSF *xcsf)

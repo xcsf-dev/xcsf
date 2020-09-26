@@ -26,78 +26,78 @@
 #include "xcsf.h"
 
 _Bool
-cl_crossover(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2);
+cl_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2);
 
 _Bool
-cl_general(const struct XCSF *xcsf, const struct CL *c1, const struct CL *c2);
+cl_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2);
 
 _Bool
-cl_m(const struct XCSF *xcsf, const struct CL *c);
+cl_m(const struct XCSF *xcsf, const struct Cl *c);
 
 _Bool
-cl_match(const struct XCSF *xcsf, struct CL *c, const double *x);
+cl_match(const struct XCSF *xcsf, struct Cl *c, const double *x);
 
 _Bool
-cl_mutate(const struct XCSF *xcsf, const struct CL *c);
+cl_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 _Bool
-cl_subsumer(const struct XCSF *xcsf, const struct CL *c);
+cl_subsumer(const struct XCSF *xcsf, const struct Cl *c);
 
 const double *
-cl_predict(const struct XCSF *xcsf, const struct CL *c, const double *x);
+cl_predict(const struct XCSF *xcsf, const struct Cl *c, const double *x);
 
 double
-cl_acc(const struct XCSF *xcsf, const struct CL *c);
+cl_acc(const struct XCSF *xcsf, const struct Cl *c);
 
 double
-cl_del_vote(const struct XCSF *xcsf, const struct CL *c, const double avg_fit);
+cl_del_vote(const struct XCSF *xcsf, const struct Cl *c, const double avg_fit);
 
 double
-cl_mfrac(const struct XCSF *xcsf, const struct CL *c);
+cl_mfrac(const struct XCSF *xcsf, const struct Cl *c);
 
 int
-cl_action(const struct XCSF *xcsf, struct CL *c, const double *x);
+cl_action(const struct XCSF *xcsf, struct Cl *c, const double *x);
 
 double
-cl_cond_size(const struct XCSF *xcsf, const struct CL *c);
+cl_cond_size(const struct XCSF *xcsf, const struct Cl *c);
 
 double
-cl_pred_size(const struct XCSF *xcsf, const struct CL *c);
+cl_pred_size(const struct XCSF *xcsf, const struct Cl *c);
 
 size_t
-cl_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+cl_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 size_t
-cl_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
+cl_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 void
-cl_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
+cl_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src);
 
 void
-cl_cover(const struct XCSF *xcsf, struct CL *c, const double *x,
+cl_cover(const struct XCSF *xcsf, struct Cl *c, const double *x,
          const int action);
 
 void
-cl_free(const struct XCSF *xcsf, struct CL *c);
+cl_free(const struct XCSF *xcsf, struct Cl *c);
 
 void
-cl_init(const struct XCSF *xcsf, struct CL *c, const double size,
+cl_init(const struct XCSF *xcsf, struct Cl *c, const double size,
         const int time);
 
 void
-cl_init_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
+cl_init_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src);
 
 void
-cl_print(const struct XCSF *xcsf, const struct CL *c, const _Bool print_cond,
+cl_print(const struct XCSF *xcsf, const struct Cl *c, const _Bool print_cond,
          const _Bool print_act, const _Bool print_pred);
 
 void
-cl_rand(const struct XCSF *xcsf, struct CL *c);
+cl_rand(const struct XCSF *xcsf, struct Cl *c);
 
 void
-cl_update(const struct XCSF *xcsf, struct CL *c, const double *x,
+cl_update(const struct XCSF *xcsf, struct Cl *c, const double *x,
           const double *y, const int set_num, const _Bool cur);
 
 void
-cl_update_fit(const struct XCSF *xcsf, struct CL *c, const double acc_sum,
+cl_update_fit(const struct XCSF *xcsf, struct Cl *c, const double acc_sum,
               const double acc);

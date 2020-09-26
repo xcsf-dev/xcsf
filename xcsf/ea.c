@@ -39,8 +39,8 @@
  * @param cmod Whether crossover modified the offspring.
  */
 static void
-ea_init_offspring(const struct XCSF *xcsf, const struct CL *c1p,
-                  const struct CL *c2p, struct CL *c1, struct CL *c2,
+ea_init_offspring(const struct XCSF *xcsf, const struct Cl *c1p,
+                  const struct Cl *c2p, struct Cl *c1, struct Cl *c2,
                   const _Bool cmod)
 {
     if (cmod) {
@@ -67,8 +67,8 @@ ea_init_offspring(const struct XCSF *xcsf, const struct CL *c1p,
  * @param set The set in which the EA is being run.
  */
 static void
-ea_subsume(struct XCSF *xcsf, struct CL *c, struct CL *c1p, struct CL *c2p,
-           const struct SET *set)
+ea_subsume(struct XCSF *xcsf, struct Cl *c, struct Cl *c1p, struct Cl *c2p,
+           const struct Set *set)
 {
     // check if either parent subsumes the offspring
     if (cl_subsumer(xcsf, c1p) && cl_general(xcsf, c1p, c)) {
@@ -82,9 +82,9 @@ ea_subsume(struct XCSF *xcsf, struct CL *c, struct CL *c1p, struct CL *c2p,
     }
     // attempt to find a random subsumer from the set
     else {
-        struct CLIST *candidates[set->size];
+        struct Clist *candidates[set->size];
         int choices = 0;
-        for (struct CLIST *iter = set->list; iter != NULL; iter = iter->next) {
+        for (struct Clist *iter = set->list; iter != NULL; iter = iter->next) {
             if (cl_subsumer(xcsf, iter->cl) && cl_general(xcsf, iter->cl, c)) {
                 candidates[choices] = iter;
                 ++choices;
@@ -113,8 +113,8 @@ ea_subsume(struct XCSF *xcsf, struct CL *c, struct CL *c1p, struct CL *c2p,
  * @param mmod Whether mutation modified the offspring.
  */
 static void
-ea_add(struct XCSF *xcsf, const struct SET *set, struct CL *c1p, struct CL *c2p,
-       struct CL *c1, const _Bool cmod, const _Bool mmod)
+ea_add(struct XCSF *xcsf, const struct Set *set, struct Cl *c1p, struct Cl *c2p,
+       struct Cl *c1, const _Bool cmod, const _Bool mmod)
 {
     if (!cmod && !mmod) {
         ++(c1p->num);
@@ -134,13 +134,13 @@ ea_add(struct XCSF *xcsf, const struct SET *set, struct CL *c1p, struct CL *c2p,
  * @param fit_sum The sum of all the fitnesses in the set.
  * @return A pointer to the selected classifier.
  */
-static struct CL *
-ea_select_rw(const struct XCSF *xcsf, const struct SET *set,
+static struct Cl *
+ea_select_rw(const struct XCSF *xcsf, const struct Set *set,
              const double fit_sum)
 {
     (void) xcsf;
     const double p = rand_uniform(0, fit_sum);
-    const struct CLIST *iter = set->list;
+    const struct Clist *iter = set->list;
     double sum = iter->cl->fit;
     while (p > sum) {
         iter = iter->next;
@@ -155,12 +155,12 @@ ea_select_rw(const struct XCSF *xcsf, const struct SET *set,
  * @param set The set to select from.
  * @return A pointer to the selected classifier.
  */
-static struct CL *
-ea_select_tournament(const struct XCSF *xcsf, const struct SET *set)
+static struct Cl *
+ea_select_tournament(const struct XCSF *xcsf, const struct Set *set)
 {
-    struct CL *winner = NULL;
+    struct Cl *winner = NULL;
     while (winner == NULL) {
-        const struct CLIST *iter = set->list;
+        const struct Clist *iter = set->list;
         while (iter != NULL) {
             if ((rand_uniform(0, 1) < xcsf->EA_SELECT_SIZE) &&
                 (winner == NULL || iter->cl->fit > winner->fit)) {
@@ -180,8 +180,8 @@ ea_select_tournament(const struct XCSF *xcsf, const struct SET *set)
  * @param c2p Second parent classifier (set by this function).
  */
 static void
-ea_select(const struct XCSF *xcsf, const struct SET *set, struct CL **c1p,
-          struct CL **c2p)
+ea_select(const struct XCSF *xcsf, const struct Set *set, struct Cl **c1p,
+          struct Cl **c2p)
 {
     if (xcsf->EA_SELECT_TYPE == EA_SELECT_ROULETTE) {
         const double fit_sum = clset_total_fit(set);
@@ -199,7 +199,7 @@ ea_select(const struct XCSF *xcsf, const struct SET *set, struct CL **c1p,
  * @param set The set in which to run the EA.
  */
 void
-ea(struct XCSF *xcsf, const struct SET *set)
+ea(struct XCSF *xcsf, const struct Set *set)
 {
     // increase EA time
     ++(xcsf->time);
@@ -209,14 +209,14 @@ ea(struct XCSF *xcsf, const struct SET *set)
     }
     clset_set_times(xcsf, set);
     // select parents
-    struct CL *c1p = NULL;
-    struct CL *c2p = NULL;
+    struct Cl *c1p = NULL;
+    struct Cl *c2p = NULL;
     ea_select(xcsf, set, &c1p, &c2p);
     // create offspring
     for (int i = 0; i * 2 < xcsf->LAMBDA; ++i) {
         // create copies of parents
-        struct CL *c1 = malloc(sizeof(struct CL));
-        struct CL *c2 = malloc(sizeof(struct CL));
+        struct Cl *c1 = malloc(sizeof(struct Cl));
+        struct Cl *c2 = malloc(sizeof(struct Cl));
         cl_init(xcsf, c1, c1p->size, c1p->time);
         cl_init(xcsf, c2, c2p->size, c2p->time);
         cl_copy(xcsf, c1, c1p);

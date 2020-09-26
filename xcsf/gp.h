@@ -28,7 +28,7 @@
 /**
  * @brief GP tree data structure.
  */
-struct GP_TREE {
+struct GPTree {
     int *tree; //!< Flattened tree representation of functions and terminals
     int len; //!< Size of the tree
     int p; //!< Current position in the tree
@@ -42,29 +42,29 @@ void
 tree_init_cons(struct XCSF *xcsf);
 
 void
-tree_free(const struct XCSF *xcsf, const struct GP_TREE *gp);
+tree_free(const struct XCSF *xcsf, const struct GPTree *gp);
 
 void
-tree_rand(const struct XCSF *xcsf, struct GP_TREE *gp);
+tree_rand(const struct XCSF *xcsf, struct GPTree *gp);
 
 void
-tree_copy(const struct XCSF *xcsf, struct GP_TREE *dest,
-          const struct GP_TREE *src);
+tree_copy(const struct XCSF *xcsf, struct GPTree *dest,
+          const struct GPTree *src);
 
 int
-tree_print(const struct XCSF *xcsf, const struct GP_TREE *gp, int p);
+tree_print(const struct XCSF *xcsf, const struct GPTree *gp, int p);
 
 double
-tree_eval(const struct XCSF *xcsf, struct GP_TREE *gp, const double *x);
+tree_eval(const struct XCSF *xcsf, struct GPTree *gp, const double *x);
 
 void
-tree_crossover(const struct XCSF *xcsf, struct GP_TREE *p1, struct GP_TREE *p2);
+tree_crossover(const struct XCSF *xcsf, struct GPTree *p1, struct GPTree *p2);
 
 _Bool
-tree_mutate(const struct XCSF *xcsf, struct GP_TREE *gp);
+tree_mutate(const struct XCSF *xcsf, struct GPTree *gp);
 
 size_t
-tree_save(const struct XCSF *xcsf, const struct GP_TREE *gp, FILE *fp);
+tree_save(const struct XCSF *xcsf, const struct GPTree *gp, FILE *fp);
 
 size_t
-tree_load(const struct XCSF *xcsf, struct GP_TREE *gp, FILE *fp);
+tree_load(const struct XCSF *xcsf, struct GPTree *gp, FILE *fp);

@@ -30,50 +30,50 @@
 /**
  * @brief Neural network action data structure.
  */
-struct ACT_NEURAL {
-    struct NET net; //!< Neural network
+struct ActNeural {
+    struct Net net; //!< Neural network
 };
 
 _Bool
-act_neural_crossover(const struct XCSF *xcsf, const struct CL *c1,
-                     const struct CL *c2);
+act_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
+                     const struct Cl *c2);
 
 _Bool
-act_neural_general(const struct XCSF *xcsf, const struct CL *c1,
-                   const struct CL *c2);
+act_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
+                   const struct Cl *c2);
 
 _Bool
-act_neural_mutate(const struct XCSF *xcsf, const struct CL *c);
+act_neural_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 int
-act_neural_compute(const struct XCSF *xcsf, const struct CL *c,
+act_neural_compute(const struct XCSF *xcsf, const struct Cl *c,
                    const double *x);
 
 void
-act_neural_copy(const struct XCSF *xcsf, struct CL *dest, const struct CL *src);
+act_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src);
 
 void
-act_neural_cover(const struct XCSF *xcsf, const struct CL *c, const double *x,
+act_neural_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                  const int action);
 
 void
-act_neural_free(const struct XCSF *xcsf, const struct CL *c);
+act_neural_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-act_neural_init(const struct XCSF *xcsf, struct CL *c);
+act_neural_init(const struct XCSF *xcsf, struct Cl *c);
 
 void
-act_neural_print(const struct XCSF *xcsf, const struct CL *c);
+act_neural_print(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-act_neural_update(const struct XCSF *xcsf, const struct CL *c, const double *x,
+act_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                   const double *y);
 
 size_t
-act_neural_save(const struct XCSF *xcsf, const struct CL *c, FILE *fp);
+act_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-act_neural_load(const struct XCSF *xcsf, struct CL *c, FILE *fp);
+act_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 /**
  * @brief neural action implemented functions.

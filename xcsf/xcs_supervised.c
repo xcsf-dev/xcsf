@@ -38,7 +38,7 @@
  * @return The row of the data sample selected.
  */
 static int
-xcs_supervised_sample(const struct INPUT *data, const int cnt,
+xcs_supervised_sample(const struct Input *data, const int cnt,
                       const _Bool shuffle)
 {
     if (shuffle) {
@@ -78,8 +78,8 @@ xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y)
  * @return The average XCSF training error using the loss function.
  */
 double
-xcs_supervised_fit(struct XCSF *xcsf, const struct INPUT *train_data,
-                   const struct INPUT *test_data, const _Bool shuffle)
+xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
+                   const struct Input *test_data, const _Bool shuffle)
 {
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
@@ -135,7 +135,7 @@ xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
  * @return The average XCSF error using the loss function.
  */
 double
-xcs_supervised_score(struct XCSF *xcsf, const struct INPUT *data)
+xcs_supervised_score(struct XCSF *xcsf, const struct Input *data)
 {
     param_set_explore(xcsf, false);
     double err = 0;
@@ -156,7 +156,7 @@ xcs_supervised_score(struct XCSF *xcsf, const struct INPUT *data)
  * @return The average XCSF error using the loss function.
  */
 double
-xcs_supervised_score_n(struct XCSF *xcsf, const struct INPUT *data, const int N)
+xcs_supervised_score_n(struct XCSF *xcsf, const struct Input *data, const int N)
 {
     if (N > data->n_samples) {
         return xcs_supervised_score(xcsf, data);

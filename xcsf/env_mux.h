@@ -29,7 +29,7 @@
 /**
  * @brief Real multiplexer environment data structure.
  */
-struct ENV_MUX {
+struct EnvMux {
     double *state; //!< Current state
     int pos_bits; //!< Number of position bits
 };

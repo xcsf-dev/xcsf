@@ -26,50 +26,50 @@
 #include "neural_layer.h"
 #include "xcsf.h"
 
-struct LAYER *
+struct Layer *
 neural_layer_upsample_init(const struct XCSF *xcsf, const int h, const int w,
                            const int c, const int stride);
 
-struct LAYER *
-neural_layer_upsample_copy(const struct XCSF *xcsf, const struct LAYER *src);
+struct Layer *
+neural_layer_upsample_copy(const struct XCSF *xcsf, const struct Layer *src);
 
 void
-neural_layer_upsample_rand(const struct XCSF *xcsf, struct LAYER *l);
+neural_layer_upsample_rand(const struct XCSF *xcsf, struct Layer *l);
 
 void
-neural_layer_upsample_forward(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_upsample_forward(const struct XCSF *xcsf, const struct Layer *l,
                               const double *input);
 
 void
-neural_layer_upsample_backward(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_upsample_backward(const struct XCSF *xcsf, const struct Layer *l,
                                const double *input, double *delta);
 
 void
-neural_layer_upsample_update(const struct XCSF *xcsf, const struct LAYER *l);
+neural_layer_upsample_update(const struct XCSF *xcsf, const struct Layer *l);
 
 void
-neural_layer_upsample_print(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_upsample_print(const struct XCSF *xcsf, const struct Layer *l,
                             const _Bool print_weights);
 
 _Bool
-neural_layer_upsample_mutate(const struct XCSF *xcsf, struct LAYER *l);
+neural_layer_upsample_mutate(const struct XCSF *xcsf, struct Layer *l);
 
 void
-neural_layer_upsample_free(const struct XCSF *xcsf, const struct LAYER *l);
+neural_layer_upsample_free(const struct XCSF *xcsf, const struct Layer *l);
 
 double *
-neural_layer_upsample_output(const struct XCSF *xcsf, const struct LAYER *l);
+neural_layer_upsample_output(const struct XCSF *xcsf, const struct Layer *l);
 
 size_t
-neural_layer_upsample_save(const struct XCSF *xcsf, const struct LAYER *l,
+neural_layer_upsample_save(const struct XCSF *xcsf, const struct Layer *l,
                            FILE *fp);
 
 size_t
-neural_layer_upsample_load(const struct XCSF *xcsf, struct LAYER *l, FILE *fp);
+neural_layer_upsample_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp);
 
 void
-neural_layer_upsample_resize(const struct XCSF *xcsf, struct LAYER *l,
-                             const struct LAYER *prev);
+neural_layer_upsample_resize(const struct XCSF *xcsf, struct Layer *l,
+                             const struct Layer *prev);
 
 static struct LayerVtbl const layer_upsample_vtbl = {
     &neural_layer_upsample_mutate,  &neural_layer_upsample_resize,

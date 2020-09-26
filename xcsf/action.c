@@ -32,7 +32,7 @@
  * @param c The classifier to set.
  */
 void
-action_set(const struct XCSF *xcsf, struct CL *c)
+action_set(const struct XCSF *xcsf, struct Cl *c)
 {
     switch (xcsf->ACT_TYPE) {
         case ACT_TYPE_INTEGER:

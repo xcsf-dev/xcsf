@@ -29,9 +29,9 @@
 /**
  * @brief CSV environment data structure.
  */
-struct ENV_CSV {
-    struct INPUT *train_data;
-    struct INPUT *test_data;
+struct EnvCSV {
+    struct Input *train_data;
+    struct Input *test_data;
 };
 
 _Bool
