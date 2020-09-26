@@ -202,7 +202,7 @@ rule_dgp_act_compute(const struct XCSF *xcsf, const struct Cl *c,
             action += (int) pow(2, i);
         }
     }
-    action = iclamp(action, 0, xcsf->n_actions - 1);
+    action = clamp_int(action, 0, xcsf->n_actions - 1);
     return action;
 }
 

@@ -56,7 +56,7 @@ clamp(const double a, const double min, const double max)
  * @return The clamped number.
  */
 static inline int
-iclamp(const int a, const int min, const int max)
+clamp_int(const int a, const int min, const int max)
 {
     return (a < min) ? min : (a > max) ? max : a;
 }
