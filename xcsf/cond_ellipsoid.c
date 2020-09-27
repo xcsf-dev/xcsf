@@ -185,10 +185,12 @@ cond_ellipsoid_general(const struct XCSF *xcsf, const struct Cl *c1,
             cond1->spread[i] != cond2->spread[i]) {
             temp[i] += cond2->spread[i];
             if (cond_ellipsoid_dist(xcsf, c1, temp) > 1) {
+                free(temp);
                 return false;
             }
             temp[i] -= 2 * cond2->spread[i];
             if (cond_ellipsoid_dist(xcsf, c1, temp) > 1) {
+                free(temp);
                 return false;
             }
             temp[i] = cond2->center[i];
