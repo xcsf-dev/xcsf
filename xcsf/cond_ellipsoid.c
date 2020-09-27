@@ -28,6 +28,19 @@
 #define N_MU (1) //!< Number of hyperellipsoid mutation rates
 static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
 
+static double
+cond_ellipsoid_dist(const struct XCSF *xcsf, const struct Cl *c,
+                    const double *x)
+{
+    const struct CondEllipsoid *cond = c->cond;
+    double dist = 0;
+    for (int i = 0; i < xcsf->x_dim; ++i) {
+        const double d = (x[i] - cond->center[i]) / cond->spread[i];
+        dist += d * d;
+    }
+    return dist;
+}
+
 /**
  * @brief Creates and initialises a hyperellipsoid condition.
  * @details Uses the center-spread representation.
@@ -105,13 +118,7 @@ _Bool
 cond_ellipsoid_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
 {
-    const struct CondEllipsoid *cond = c->cond;
-    double dist = 0;
-    for (int i = 0; i < xcsf->x_dim; ++i) {
-        const double d = (x[i] - cond->center[i]) / cond->spread[i];
-        dist += d * d;
-    }
-    return (dist < 1);
+    return (cond_ellipsoid_dist(xcsf, c, x) < 1);
 }
 
 _Bool
@@ -171,15 +178,23 @@ cond_ellipsoid_general(const struct XCSF *xcsf, const struct Cl *c1,
 {
     const struct CondEllipsoid *cond1 = c1->cond;
     const struct CondEllipsoid *cond2 = c2->cond;
+    double *temp = malloc(sizeof(double) * xcsf->x_dim);
+    memcpy(temp, cond2->center, sizeof(double) * xcsf->x_dim);
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        const double l1 = cond1->center[i] - cond1->spread[i];
-        const double l2 = cond2->center[i] - cond2->spread[i];
-        const double u1 = cond1->center[i] + cond1->spread[i];
-        const double u2 = cond2->center[i] + cond2->spread[i];
-        if (l1 > l2 || u1 < u2) {
-            return false;
+        if (cond1->center[i] != cond2->center[i] ||
+            cond1->spread[i] != cond2->spread[i]) {
+            temp[i] += cond2->spread[i];
+            if (cond_ellipsoid_dist(xcsf, c1, temp) > 1) {
+                return false;
+            }
+            temp[i] -= 2 * cond2->spread[i];
+            if (cond_ellipsoid_dist(xcsf, c1, temp) > 1) {
+                return false;
+            }
+            temp[i] = cond2->center[i];
         }
     }
+    free(temp);
     return true;
 }
 
