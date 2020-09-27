@@ -169,6 +169,7 @@ cond_rectangle_mutate(const struct XCSF *xcsf, const struct Cl *c)
         }
         orig = spread[i];
         spread[i] += rand_normal(0, cond->mu[0]);
+        spread[i] = fmax(DBL_EPSILON, spread[i]);
         if (orig != spread[i]) {
             changed = true;
         }
