@@ -28,21 +28,6 @@
 #define N_MU (1) //!< Number of hyperrectangle mutation rates
 static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
 
-static double
-cond_rectangle_dist(const struct XCSF *xcsf, const struct Cl *c,
-                    const double *x)
-{
-    const struct CondRectangle *cond = c->cond;
-    double dist = 0;
-    for (int i = 0; i < xcsf->x_dim; ++i) {
-        const double d = fabs((x[i] - cond->center[i]) / cond->spread[i]);
-        if (d > dist) {
-            dist = d;
-        }
-    }
-    return dist;
-}
-
 /**
  * @brief Creates and initialises a hyperrectangle condition.
  * @details Uses the center-spread representation.
@@ -120,7 +105,15 @@ _Bool
 cond_rectangle_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
 {
-    return (cond_rectangle_dist(xcsf, c, x) < 1);
+    const struct CondRectangle *cond = c->cond;
+    double dist = 0;
+    for (int i = 0; i < xcsf->x_dim; ++i) {
+        const double d = fabs((x[i] - cond->center[i]) / cond->spread[i]);
+        if (d > dist) {
+            dist = d;
+        }
+    }
+    return (dist < 1);
 }
 
 _Bool

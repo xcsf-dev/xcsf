@@ -28,19 +28,6 @@
 #define N_MU (1) //!< Number of hyperellipsoid mutation rates
 static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
 
-static double
-cond_ellipsoid_dist(const struct XCSF *xcsf, const struct Cl *c,
-                    const double *x)
-{
-    const struct CondEllipsoid *cond = c->cond;
-    double dist = 0;
-    for (int i = 0; i < xcsf->x_dim; ++i) {
-        const double d = (x[i] - cond->center[i]) / cond->spread[i];
-        dist += d * d;
-    }
-    return dist;
-}
-
 /**
  * @brief Creates and initialises a hyperellipsoid condition.
  * @details Uses the center-spread representation.
@@ -118,7 +105,13 @@ _Bool
 cond_ellipsoid_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
 {
-    return (cond_ellipsoid_dist(xcsf, c, x) < 1);
+    const struct CondEllipsoid *cond = c->cond;
+    double dist = 0;
+    for (int i = 0; i < xcsf->x_dim; ++i) {
+        const double d = (x[i] - cond->center[i]) / cond->spread[i];
+        dist += d * d;
+    }
+    return (dist < 1);
 }
 
 _Bool
