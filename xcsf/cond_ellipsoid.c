@@ -118,10 +118,7 @@ _Bool
 cond_ellipsoid_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
 {
-    if (cond_ellipsoid_dist(xcsf, c, x) < 1) {
-        return true;
-    }
-    return false;
+    return (cond_ellipsoid_dist(xcsf, c, x) < 1);
 }
 
 _Bool
