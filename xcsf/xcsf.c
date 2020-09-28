@@ -210,8 +210,8 @@ void
 xcsf_retrieve_pop(struct XCSF *xcsf)
 {
     if (xcsf->prev_pset.size < 1) {
-        printf("xcsf_retrieve_pop(): no previous population found\n");
-        exit(EXIT_FAILURE);
+        printf("warning: xcsf_retrieve_pop() no previous population found\n");
+        return;
     }
     clset_kill(xcsf, &xcsf->pset);
     xcsf->pset = xcsf->prev_pset;
