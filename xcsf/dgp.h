@@ -34,7 +34,7 @@ struct Graph {
     double *state; //!< Current state of each node
     double *initial_state; //!< Initial node states
     double *tmp_state; //!< Temporary storage for synchronous update
-    double *tmp_input; // !< Temporary storage for updating the graph
+    double *tmp_input; //!< Temporary storage for updating the graph
     int *function; //!< Node activation functions
     int n; //!< Number of nodes
     int t; //!< Number of cycles to run

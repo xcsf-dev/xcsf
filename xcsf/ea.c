@@ -26,8 +26,8 @@
 #include "clset.h"
 #include "utils.h"
 
-#define EA_SELECT_ROULETTE (0)
-#define EA_SELECT_TOURNAMENT (1)
+#define EA_SELECT_ROULETTE (0) //!< Roulette wheel parental selection
+#define EA_SELECT_TOURNAMENT (1) //!< Tournament parental selection
 
 /**
  * @brief Initialises offspring error and fitness.

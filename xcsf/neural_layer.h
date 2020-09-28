@@ -25,23 +25,23 @@
 
 #include "xcsf.h"
 
-#define CONNECTED (0)
-#define DROPOUT (1)
-#define NOISE (2)
-#define SOFTMAX (3)
-#define RECURRENT (4)
-#define LSTM (5)
-#define MAXPOOL (6)
-#define CONVOLUTIONAL (7)
-#define AVGPOOL (8)
-#define UPSAMPLE (9)
+#define CONNECTED (0) //!< Layer type connected
+#define DROPOUT (1) //!< Layer type dropout
+#define NOISE (2) //!< Layer type noise
+#define SOFTMAX (3) //!< Layer type softmax
+#define RECURRENT (4) //!< Layer type recurrent
+#define LSTM (5) //!< Layer type LSTM
+#define MAXPOOL (6) //!< Layer type maxpooling
+#define CONVOLUTIONAL (7) //!< Layer type convolutional
+#define AVGPOOL (8) //!< Layer type average pooling
+#define UPSAMPLE (9) //!< Layer type upsample
 
-#define LAYER_EVOLVE_WEIGHTS (1 << 0)
-#define LAYER_EVOLVE_NEURONS (1 << 1)
-#define LAYER_EVOLVE_FUNCTIONS (1 << 2)
-#define LAYER_SGD_WEIGHTS (1 << 3)
-#define LAYER_EVOLVE_ETA (1 << 4)
-#define LAYER_EVOLVE_CONNECT (1 << 5)
+#define LAYER_EVOLVE_WEIGHTS (1 << 0) //!< Layer may evolve weights
+#define LAYER_EVOLVE_NEURONS (1 << 1) //!< Layer may evolve neurons
+#define LAYER_EVOLVE_FUNCTIONS (1 << 2) //!< Layer may evolve functions
+#define LAYER_SGD_WEIGHTS (1 << 3) //!< Layer may perform gradient descent
+#define LAYER_EVOLVE_ETA (1 << 4) //!< Layer may evolve rate of gradient descent
+#define LAYER_EVOLVE_CONNECT (1 << 5) //!< Layer may evolve connectivity
 
 #define ETA_MIN (0.000001) //!< Minimum gradient descent rate
 #define NEURON_MIN (-1000) //!< Minimum neuron state
@@ -49,8 +49,8 @@
 #define WEIGHT_MIN (-10) //!< Minimum value of a weight or bias
 #define WEIGHT_MAX (10) //!< Maximum value of a weight or bias
 #define N_WEIGHTS_MAX (20000000) //!< Maximum number of weights per layer
-#define N_INPUTS_MAX (2000000) // !< Maximum number of inputs per layer
-#define N_OUTPUTS_MAX (2000000) // !< Maximum number of outputs per layer
+#define N_INPUTS_MAX (2000000) //!< Maximum number of inputs per layer
+#define N_OUTPUTS_MAX (2000000) //!< Maximum number of outputs per layer
 
 /**
  * @brief Neural network layer data structure.
