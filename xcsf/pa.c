@@ -77,11 +77,10 @@ pa_build(const struct XCSF *xcsf, const double *x)
     #pragma omp parallel for reduction(+ : pa[:xcsf->pa_size], nr[:xcsf->pa_size])
     for (int i = 0; i < set->size; ++i) {
         if (clist[i] != NULL) {
-            const double *predictions = cl_predict(xcsf, clist[i], x);
+            const double *pred = cl_predict(xcsf, clist[i], x);
             const double fitness = clist[i]->fit;
             for (int j = 0; j < xcsf->y_dim; ++j) {
-                pa[clist[i]->action * xcsf->y_dim + j] +=
-                    predictions[j] * fitness;
+                pa[clist[i]->action * xcsf->y_dim + j] += pred[j] * fitness;
                 nr[clist[i]->action * xcsf->y_dim + j] += fitness;
             }
         }
@@ -89,10 +88,10 @@ pa_build(const struct XCSF *xcsf, const double *x)
 #else
     const struct Clist *iter = set->list;
     while (iter != NULL) {
-        const double *predictions = cl_predict(xcsf, iter->cl, x);
+        const double *pred = cl_predict(xcsf, iter->cl, x);
         const double fitness = iter->cl->fit;
         for (int j = 0; j < xcsf->y_dim; ++j) {
-            pa[iter->cl->action * xcsf->y_dim + j] += predictions[j] * fitness;
+            pa[iter->cl->action * xcsf->y_dim + j] += pred[j] * fitness;
             nr[iter->cl->action * xcsf->y_dim + j] += fitness;
         }
         iter = iter->next;
