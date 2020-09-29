@@ -51,7 +51,7 @@ clset_pop_never_match(const struct XCSF *xcsf, struct Clist **del,
     }
 }
 
-/*
+/**
  * @brief Selects a classifier from the population for deletion via roulette.
  * @details If the average system error is below EPS_0, two classifiers are
  * selected using roulette wheel selection with the deletion vote and the one
