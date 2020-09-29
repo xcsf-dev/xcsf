@@ -26,8 +26,19 @@
 #include "utils.h"
 
 #define N_MU (1) //!< Number of integer action mutation rates
-static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
 
+/**
+ * @brief Self-adaptation method for mutating integer actions.
+ */
+static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL };
+
+/**
+ * @brief Dummy function since integer actions do not perform crossover.
+ * @param xcsf The XCSF data structure.
+ * @param c1 The first classifier whose action is being crossed.
+ * @param c2 The second classifier whose action is being crossed.
+ * @return False.
+ */
 _Bool
 act_integer_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                       const struct Cl *c2)
@@ -38,6 +49,13 @@ act_integer_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Returns whether the action of classifier c1 is more general than c2.
+ * @param xcsf The XCSF data structure.
+ * @param c1 The classifier whose action is tested to be more general.
+ * @param c2 The classifier whose action is tested to be more specific.
+ * @return Whether the action of c1 is more general than c2.
+ */
 _Bool
 act_integer_general(const struct XCSF *xcsf, const struct Cl *c1,
                     const struct Cl *c2)
@@ -51,6 +69,12 @@ act_integer_general(const struct XCSF *xcsf, const struct Cl *c1,
     return true;
 }
 
+/**
+ * @brief Mutates an integer action.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is being mutated.
+ * @return Whether any alterations were made.
+ */
 _Bool
 act_integer_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -66,6 +90,13 @@ act_integer_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return false;
 }
 
+/**
+ * @brief Returns a classifier's integer action.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action to return.
+ * @param x The input state.
+ * @return The classifier's action.
+ */
 int
 act_integer_compute(const struct XCSF *xcsf, const struct Cl *c,
                     const double *x)
@@ -76,6 +107,12 @@ act_integer_compute(const struct XCSF *xcsf, const struct Cl *c,
     return act->action;
 }
 
+/**
+ * @brief Copies an integer action from one classifier to another.
+ * @param xcsf The XCSF data structure.
+ * @param dest The destination classifier.
+ * @param src The source classifier.
+ */
 void
 act_integer_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
@@ -88,6 +125,11 @@ act_integer_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
     dest->act = new;
 }
 
+/**
+ * @brief Prints an integer action.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is to be printed.
+ */
 void
 act_integer_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -96,6 +138,13 @@ act_integer_print(const struct XCSF *xcsf, const struct Cl *c)
     printf("%d\n", act->action);
 }
 
+/**
+ * @brief Sets an integer action to a specified value.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is being covered.
+ * @param x The input state to cover.
+ * @param action The action to cover.
+ */
 void
 act_integer_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                   const int action)
@@ -106,6 +155,11 @@ act_integer_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     act->action = action;
 }
 
+/**
+ * @brief Frees the memory used by an integer action.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is to be freed.
+ */
 void
 act_integer_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -115,6 +169,11 @@ act_integer_free(const struct XCSF *xcsf, const struct Cl *c)
     free(c->act);
 }
 
+/**
+ * @brief Initialises an integer action.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is to be initialised.
+ */
 void
 act_integer_init(const struct XCSF *xcsf, struct Cl *c)
 {
@@ -125,6 +184,13 @@ act_integer_init(const struct XCSF *xcsf, struct Cl *c)
     c->act = new;
 }
 
+/**
+ * @brief Dummy function since integer actions are not updated.
+ * @param xcsf The XCSF data structure.
+ * @param c A classifier data structure.
+ * @param x The input state.
+ * @param y The payoff value.
+ */
 void
 act_integer_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                    const double *y)
@@ -135,6 +201,13 @@ act_integer_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) y;
 }
 
+/**
+ * @brief Writes an integer action to a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is to be written.
+ * @param fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 act_integer_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -146,6 +219,13 @@ act_integer_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads an integer action from a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is to be read.
+ * @param fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 act_integer_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {

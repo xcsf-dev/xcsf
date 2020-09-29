@@ -72,6 +72,13 @@ act_neural_init(const struct XCSF *xcsf, struct Cl *c)
     c->act = new;
 }
 
+/**
+ * @brief Dummy function since crossover is not performed on neural actions.
+ * @param xcsf The XCSF data structure.
+ * @param c1 The first classifier whose action is being crossed.
+ * @param c2 The second classifier whose action is being crossed.
+ * @return False.
+ */
 _Bool
 act_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                      const struct Cl *c2)
@@ -82,6 +89,13 @@ act_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Dummy function since neural actions do not generalise another.
+ * @param xcsf The XCSF data structure.
+ * @param c1 The classifier whose action is tested to be more general.
+ * @param c2 The classifier whose action is tested to be more specific.
+ * @return False.
+ */
 _Bool
 act_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
                    const struct Cl *c2)
@@ -92,6 +106,12 @@ act_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Mutates a neural network action.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is being mutated.
+ * @return Whether any alterations were made.
+ */
 _Bool
 act_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -99,6 +119,13 @@ act_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return neural_mutate(xcsf, &act->net);
 }
 
+/**
+ * @brief Computes the current neural network action using the input.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier calculating the action.
+ * @param x The input state.
+ * @return The neural action.
+ */
 int
 act_neural_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -108,6 +135,12 @@ act_neural_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     return max_index(outputs, xcsf->n_actions);
 }
 
+/**
+ * @brief Copies a neural network action from one classifier to another.
+ * @param xcsf The XCSF data structure.
+ * @param dest The destination classifier.
+ * @param src The source classifier.
+ */
 void
 act_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
@@ -117,6 +150,11 @@ act_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
     dest->act = new;
 }
 
+/**
+ * @brief Prints a neural network action.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is to be printed.
+ */
 void
 act_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -124,6 +162,13 @@ act_neural_print(const struct XCSF *xcsf, const struct Cl *c)
     neural_print(xcsf, &act->net, false);
 }
 
+/**
+ * @brief Generates a neural network that covers the specified input:action.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is being covered.
+ * @param x The input state to cover.
+ * @param action The action to cover.
+ */
 void
 act_neural_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                  const int action)
@@ -134,6 +179,11 @@ act_neural_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     } while (action != act_neural_compute(xcsf, c, x));
 }
 
+/**
+ * @brief Frees the memory used by a neural network action.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is to be freed.
+ */
 void
 act_neural_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -142,6 +192,13 @@ act_neural_free(const struct XCSF *xcsf, const struct Cl *c)
     free(c->act);
 }
 
+/**
+ * @brief Dummy function since neural network actions are not updated.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is to be updated.
+ * @param x The input state.
+ * @param y The payoff value.
+ */
 void
 act_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                   const double *y)
@@ -152,6 +209,13 @@ act_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) y;
 }
 
+/**
+ * @brief Writes a neural network action to a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is to be written.
+ * @param fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 act_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -160,6 +224,13 @@ act_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads a neural network action from a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param c The classifier whose action is to be read.
+ * @param fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 act_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
