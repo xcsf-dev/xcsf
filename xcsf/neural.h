@@ -53,6 +53,9 @@ neural_mutate(const struct XCSF *xcsf, const struct Net *net);
 double
 neural_output(const struct XCSF *xcsf, const struct Net *net, const int IDX);
 
+double *
+neural_outputs(const struct XCSF *xcsf, const struct Net *net);
+
 double
 neural_size(const struct XCSF *xcsf, const struct Net *net);
 

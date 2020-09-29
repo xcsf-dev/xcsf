@@ -22,6 +22,7 @@
  */
 
 #include "loss.h"
+#include "utils.h"
 
 /**
  * @brief Mean absolute error loss function.
@@ -118,13 +119,8 @@ loss_binary_log(const struct XCSF *xcsf, const double *pred, const double *y)
 double
 loss_onehot_acc(const struct XCSF *xcsf, const double *pred, const double *y)
 {
-    int p = 0;
-    for (int i = 1; i < xcsf->y_dim; ++i) {
-        if (pred[i] > pred[p]) {
-            p = i;
-        }
-    }
-    if (y[p] != 1) {
+    const int max_i = max_index(pred, xcsf->y_dim);
+    if (y[max_i] != 1) {
         return 1;
     }
     return 0;

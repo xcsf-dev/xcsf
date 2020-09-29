@@ -33,6 +33,7 @@
 #include "neural_layer_recurrent.h"
 #include "neural_layer_softmax.h"
 #include "neural_layer_upsample.h"
+#include "utils.h"
 
 /**
  * @brief Creates and initialises an action neural network.
@@ -103,16 +104,8 @@ act_neural_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     const struct ActNeural *act = c->act;
     neural_propagate(xcsf, &act->net, x);
-    int action = 0;
-    double max = neural_output(xcsf, &act->net, 0);
-    for (int i = 1; i < xcsf->n_actions; ++i) {
-        const double output = neural_output(xcsf, &act->net, i);
-        if (output > max) {
-            action = i;
-            max = output;
-        }
-    }
-    return action;
+    const double *outputs = neural_outputs(xcsf, &act->net);
+    return max_index(outputs, xcsf->n_actions);
 }
 
 void

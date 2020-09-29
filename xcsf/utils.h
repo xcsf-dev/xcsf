@@ -23,6 +23,9 @@
 
 #pragma once
 
+#include <stdio.h>
+#include <stdlib.h>
+
 double
 rand_normal(const double mu, const double sigma);
 
@@ -59,4 +62,28 @@ static inline int
 clamp_int(const int a, const int min, const int max)
 {
     return (a < min) ? min : (a > max) ? max : a;
+}
+
+/**
+ * @brief Returns the index of the largest element in vector X.
+ * @param X Vector with N elements.
+ * @param N The number of elements in vector X.
+ * @return The index of the largest element.
+ */
+static inline int
+max_index(const double *X, const int N)
+{
+    if (N < 1) {
+        printf("max_index() error: N < 1\n");
+        exit(EXIT_FAILURE);
+    }
+    int max_i = 0;
+    double max = X[0];
+    for (int i = 1; i < N; ++i) {
+        if (X[i] > max) {
+            max_i = i;
+            max = X[i];
+        }
+    }
+    return max_i;
 }

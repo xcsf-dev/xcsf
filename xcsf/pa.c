@@ -118,13 +118,7 @@ pa_build(const struct XCSF *xcsf, const double *x)
 int
 pa_best_action(const struct XCSF *xcsf)
 {
-    int action = 0;
-    for (int i = 1; i < xcsf->n_actions; ++i) {
-        if (xcsf->pa[action] < xcsf->pa[i]) {
-            action = i;
-        }
-    }
-    return action;
+    return max_index(xcsf->pa, xcsf->n_actions);
 }
 
 /**
@@ -150,13 +144,8 @@ pa_rand_action(const struct XCSF *xcsf)
 double
 pa_best_val(const struct XCSF *xcsf)
 {
-    double max = xcsf->pa[0];
-    for (int i = 1; i < xcsf->n_actions; ++i) {
-        if (max < xcsf->pa[i]) {
-            max = xcsf->pa[i];
-        }
-    }
-    return max;
+    const int max_i = max_index(xcsf->pa, xcsf->pa_size);
+    return xcsf->pa[max_i];
 }
 
 /**
@@ -168,11 +157,11 @@ pa_best_val(const struct XCSF *xcsf)
 double
 pa_val(const struct XCSF *xcsf, const int action)
 {
-    if (action >= 0 && action < xcsf->n_actions) {
-        return xcsf->pa[action];
+    if (action < 0 || action >= xcsf->n_actions) {
+        printf("pa_val() error: invalid action specified: %d\n", action);
+        exit(EXIT_FAILURE);
     }
-    printf("pa_val() error: invalid action specified: %d\n", action);
-    exit(EXIT_FAILURE);
+    return xcsf->pa[action];
 }
 
 /**

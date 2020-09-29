@@ -320,11 +320,23 @@ neural_learn(const struct XCSF *xcsf, const struct Net *net,
 double
 neural_output(const struct XCSF *xcsf, const struct Net *net, const int IDX)
 {
-    if (IDX < net->n_outputs) {
-        return layer_output(xcsf, net->head->layer)[IDX];
+    if (IDX < 0 || IDX >= net->n_outputs) {
+        printf("neural_output(): error (%d) >= (%d)\n", IDX, net->n_outputs);
+        exit(EXIT_FAILURE);
     }
-    printf("neural_output(): error (%d) >= (%d)\n", IDX, net->n_outputs);
-    exit(EXIT_FAILURE);
+    return layer_output(xcsf, net->head->layer)[IDX];
+}
+
+/**
+ * @brief Returns the outputs from the output layer of a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network to output.
+ * @return The neural network outputs.
+ */
+double *
+neural_outputs(const struct XCSF *xcsf, const struct Net *net)
+{
+    return layer_output(xcsf, net->head->layer);
 }
 
 /**
