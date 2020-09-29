@@ -25,6 +25,10 @@
 #include "neural_activations.h"
 #include "utils.h"
 
+/**
+ * @brief Allocate memory used by a dropout layer.
+ * @param l The layer to be allocated memory.
+ */
 static void
 malloc_layer_arrays(struct Layer *l)
 {
@@ -38,6 +42,10 @@ malloc_layer_arrays(struct Layer *l)
     l->state = calloc(l->n_inputs, sizeof(double));
 }
 
+/**
+ * @brief Free memory used by a dropout layer.
+ * @param l The layer to be freed.
+ */
 static void
 free_layer_arrays(const struct Layer *l)
 {
@@ -71,6 +79,11 @@ neural_layer_dropout_init(const struct XCSF *xcsf, const int n_inputs,
     return l;
 }
 
+/**
+ * @brief Free memory used by a dropout layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to be freed.
+ */
 void
 neural_layer_dropout_free(const struct XCSF *xcsf, const struct Layer *l)
 {
@@ -78,6 +91,12 @@ neural_layer_dropout_free(const struct XCSF *xcsf, const struct Layer *l)
     free_layer_arrays(l);
 }
 
+/**
+ * @brief Initialises and creates a copy of one dropout layer from another.
+ * @param xcsf The XCSF data structure.
+ * @param src The source layer.
+ * @return A pointer to the new layer.
+ */
 struct Layer *
 neural_layer_dropout_copy(const struct XCSF *xcsf, const struct Layer *src)
 {
@@ -99,6 +118,11 @@ neural_layer_dropout_copy(const struct XCSF *xcsf, const struct Layer *src)
     return l;
 }
 
+/**
+ * @brief Dummy function since dropout layers have no weights.
+ * @param xcsf The XCSF data structure.
+ * @param l A dropout layer.
+ */
 void
 neural_layer_dropout_rand(const struct XCSF *xcsf, struct Layer *l)
 {
@@ -106,6 +130,12 @@ neural_layer_dropout_rand(const struct XCSF *xcsf, struct Layer *l)
     (void) l;
 }
 
+/**
+ * @brief Forward propagates a dropout layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to forward propagate.
+ * @param input The input to the layer.
+ */
 void
 neural_layer_dropout_forward(const struct XCSF *xcsf, const struct Layer *l,
                              const double *input)
@@ -124,6 +154,13 @@ neural_layer_dropout_forward(const struct XCSF *xcsf, const struct Layer *l,
     }
 }
 
+/**
+ * @brief Backward propagates a dropout layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to backward propagate.
+ * @param input The input to the layer.
+ * @param delta The previous layer's error (set by this function).
+ */
 void
 neural_layer_dropout_backward(const struct XCSF *xcsf, const struct Layer *l,
                               const double *input, double *delta)
@@ -141,6 +178,11 @@ neural_layer_dropout_backward(const struct XCSF *xcsf, const struct Layer *l,
     }
 }
 
+/**
+ * @brief Dummy function since a dropout layer has no weights.
+ * @param xcsf The XCSF data structure.
+ * @param l A dropout layer.
+ */
 void
 neural_layer_dropout_update(const struct XCSF *xcsf, const struct Layer *l)
 {
@@ -148,6 +190,12 @@ neural_layer_dropout_update(const struct XCSF *xcsf, const struct Layer *l)
     (void) l;
 }
 
+/**
+ * @brief Dummy function since a dropout layer cannot be mutated.
+ * @param xcsf The XCSF data structure.
+ * @param l A dropout layer.
+ * @return False.
+ */
 _Bool
 neural_layer_dropout_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
@@ -156,6 +204,12 @@ neural_layer_dropout_mutate(const struct XCSF *xcsf, struct Layer *l)
     return false;
 }
 
+/**
+ * @brief Resizes a dropout layer if the previous layer has changed size.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to resize.
+ * @param prev The layer previous to the one being resized.
+ */
 void
 neural_layer_dropout_resize(const struct XCSF *xcsf, struct Layer *l,
                             const struct Layer *prev)
@@ -169,6 +223,12 @@ neural_layer_dropout_resize(const struct XCSF *xcsf, struct Layer *l,
     l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
 }
 
+/**
+ * @brief Returns the output from a dropout layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer whose output to return.
+ * @return The layer output.
+ */
 double *
 neural_layer_dropout_output(const struct XCSF *xcsf, const struct Layer *l)
 {
@@ -176,6 +236,12 @@ neural_layer_dropout_output(const struct XCSF *xcsf, const struct Layer *l)
     return l->output;
 }
 
+/**
+ * @brief Prints a dropout layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to print.
+ * @param print_weights Whether to print the values of the weights and biases.
+ */
 void
 neural_layer_dropout_print(const struct XCSF *xcsf, const struct Layer *l,
                            const _Bool print_weights)
@@ -186,6 +252,13 @@ neural_layer_dropout_print(const struct XCSF *xcsf, const struct Layer *l,
            l->probability);
 }
 
+/**
+ * @brief Writes a dropout layer to a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to save.
+ * @param fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 neural_layer_dropout_save(const struct XCSF *xcsf, const struct Layer *l,
                           FILE *fp)
@@ -200,6 +273,13 @@ neural_layer_dropout_save(const struct XCSF *xcsf, const struct Layer *l,
     return s;
 }
 
+/**
+ * @brief Reads a dropout layer from a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to load.
+ * @param fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 neural_layer_dropout_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
 {
