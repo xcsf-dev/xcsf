@@ -30,7 +30,7 @@
 #define N_MU (6) //!< Number of mutation rates applied to a connected layer
 
 /**
- * @brief Self-adaptation method
+ * @brief Self-adaptation method for mutating a connected layer.
  */
 static const int MU_TYPE[N_MU] = {
     SAM_RATE_SELECT, //!< Rate of gradient descent mutation
@@ -225,7 +225,7 @@ neural_layer_connected_backward(const struct XCSF *xcsf, const struct Layer *l,
 }
 
 /**
- * @brief Updates the weights and biases of connected layer.
+ * @brief Updates the weights and biases of a connected layer.
  * @param xcsf The XCSF data structure.
  * @param l The layer to update.
  */

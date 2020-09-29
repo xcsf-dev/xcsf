@@ -71,6 +71,9 @@ void
 neural_layer_noise_resize(const struct XCSF *xcsf, struct Layer *l,
                           const struct Layer *prev);
 
+/**
+ * @brief Neural Gaussian noise layer implemented functions.
+ */
 static struct LayerVtbl const layer_noise_vtbl = {
     &neural_layer_noise_mutate,  &neural_layer_noise_resize,
     &neural_layer_noise_copy,    &neural_layer_noise_free,

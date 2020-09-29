@@ -72,6 +72,9 @@ void
 neural_layer_recurrent_resize(const struct XCSF *xcsf, struct Layer *l,
                               const struct Layer *prev);
 
+/**
+ * @brief Neural recurrent layer implemented functions.
+ */
 static struct LayerVtbl const layer_recurrent_vtbl = {
     &neural_layer_recurrent_mutate,  &neural_layer_recurrent_resize,
     &neural_layer_recurrent_copy,    &neural_layer_recurrent_free,

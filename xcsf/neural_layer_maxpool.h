@@ -72,6 +72,9 @@ void
 neural_layer_maxpool_resize(const struct XCSF *xcsf, struct Layer *l,
                             const struct Layer *prev);
 
+/**
+ * @brief Neural maxpooling layer implemented functions.
+ */
 static struct LayerVtbl const layer_maxpool_vtbl = {
     &neural_layer_maxpool_mutate,  &neural_layer_maxpool_resize,
     &neural_layer_maxpool_copy,    &neural_layer_maxpool_free,

@@ -71,6 +71,9 @@ void
 neural_layer_avgpool_resize(const struct XCSF *xcsf, struct Layer *l,
                             const struct Layer *prev);
 
+/**
+ * @brief Neural average pooling layer implemented functions.
+ */
 static struct LayerVtbl const layer_avgpool_vtbl = {
     &neural_layer_avgpool_mutate,  &neural_layer_avgpool_resize,
     &neural_layer_avgpool_copy,    &neural_layer_avgpool_free,

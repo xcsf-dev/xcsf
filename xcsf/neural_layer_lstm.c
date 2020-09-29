@@ -31,6 +31,10 @@
 #include "utils.h"
 
 #define N_MU (6) //!< Number of mutation rates applied to an LSTM layer
+
+/**
+ * @brief Self-adaptation method for mutating an LSTM layer.
+ */
 static const int MU_TYPE[N_MU] = {
     SAM_RATE_SELECT, //!< Rate of gradient descent mutation
     SAM_RATE_SELECT, //!< Rate of neuron growth / removal
@@ -38,8 +42,12 @@ static const int MU_TYPE[N_MU] = {
     SAM_RATE_SELECT, //!< Weight disabling mutation rate
     SAM_RATE_SELECT, //!< Weight magnitude mutation
     SAM_RATE_SELECT //!< Activation function mutation rate
-}; //<! Self-adaptation method
+};
 
+/**
+ * @brief Sets the total number of weights in an LSTM layer.
+ * @param l The layer to update the total number of weights.
+ */
 static void
 set_layer_n_weights(struct Layer *l)
 {
@@ -48,6 +56,10 @@ set_layer_n_weights(struct Layer *l)
         l->wg->n_weights + l->wo->n_weights;
 }
 
+/**
+ * @brief Sets the total number of biases in an LSTM layer.
+ * @param l The layer to update the total number of biases.
+ */
 static void
 set_layer_n_biases(struct Layer *l)
 {
@@ -56,6 +68,10 @@ set_layer_n_biases(struct Layer *l)
         l->wo->n_biases;
 }
 
+/**
+ * @brief Sets the number of active (non-zero) weights in an LSTM layer.
+ * @param l The layer to update the number of active weights.
+ */
 static void
 set_layer_n_active(struct Layer *l)
 {
@@ -64,6 +80,10 @@ set_layer_n_active(struct Layer *l)
         l->wo->n_active;
 }
 
+/**
+ * @brief Allocate memory used by an LSTM layer.
+ * @param l The layer to be allocated memory.
+ */
 static void
 malloc_layer_arrays(struct Layer *l)
 {
@@ -90,6 +110,10 @@ malloc_layer_arrays(struct Layer *l)
     l->dc = calloc(l->n_outputs, sizeof(double));
 }
 
+/**
+ * @brief Free memory used by an LSTM layer.
+ * @param l The layer to be freed.
+ */
 static void
 free_layer_arrays(const struct Layer *l)
 {
@@ -111,6 +135,10 @@ free_layer_arrays(const struct Layer *l)
     free(l->dc);
 }
 
+/**
+ * @brief Sets the gradient descent rate used to update an LSTM layer.
+ * @param l The layer whose gradient descent rate is to be set.
+ */
 static void
 set_eta(struct Layer *l)
 {
@@ -124,6 +152,10 @@ set_eta(struct Layer *l)
     l->wo->eta = l->eta;
 }
 
+/**
+ * @brief Zeros the deltas used to update an LSTM layer.
+ * @param l The layer whose deltas are to be reset.
+ */
 static void
 reset_layer_deltas(const struct Layer *l)
 {
@@ -138,6 +170,12 @@ reset_layer_deltas(const struct Layer *l)
     memset(l->uo->delta, 0, size);
 }
 
+/**
+ * @brief Mutates the gradient descent rate used to update an LSTM layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer whose gradient descent rate is to be mutated.
+ * @return Whether any alterations were made.
+ */
 static _Bool
 mutate_eta(const struct XCSF *xcsf, struct Layer *l)
 {
@@ -148,6 +186,12 @@ mutate_eta(const struct XCSF *xcsf, struct Layer *l)
     return false;
 }
 
+/**
+ * @brief Mutates the number of neurons in an LSTM layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer whose number of neurons is to be mutated.
+ * @return Whether any alterations were made.
+ */
 static _Bool
 mutate_neurons(const struct XCSF *xcsf, struct Layer *l)
 {
@@ -176,6 +220,11 @@ mutate_neurons(const struct XCSF *xcsf, struct Layer *l)
     return false;
 }
 
+/**
+ * @brief Mutates the number of active weights in an LSTM layer.
+ * @param l The layer whose number of active weights is to be mutated.
+ * @return Whether any alterations were made.
+ */
 static _Bool
 mutate_connectivity(struct Layer *l)
 {
@@ -192,6 +241,11 @@ mutate_connectivity(struct Layer *l)
     return mod;
 }
 
+/**
+ * @brief Mutates the magnitude of weights and biases in an LSTM layer.
+ * @param l The layer whose weights are to be mutated.
+ * @return Whether any alterations were made.
+ */
 static _Bool
 mutate_weights(struct Layer *l)
 {
@@ -255,6 +309,12 @@ neural_layer_lstm_init(const struct XCSF *xcsf, const int n_inputs,
     return l;
 }
 
+/**
+ * @brief Initialises and creates a copy of one LSTM layer from another.
+ * @param xcsf The XCSF data structure.
+ * @param src The source layer.
+ * @return A pointer to the new layer.
+ */
 struct Layer *
 neural_layer_lstm_copy(const struct XCSF *xcsf, const struct Layer *src)
 {
@@ -290,6 +350,11 @@ neural_layer_lstm_copy(const struct XCSF *xcsf, const struct Layer *src)
     return l;
 }
 
+/**
+ * @brief Free memory used by an LSTM layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to be freed.
+ */
 void
 neural_layer_lstm_free(const struct XCSF *xcsf, const struct Layer *l)
 {
@@ -313,6 +378,11 @@ neural_layer_lstm_free(const struct XCSF *xcsf, const struct Layer *l)
     free(l->mu);
 }
 
+/**
+ * @brief Randomises an LSTM layer weights.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to randomise.
+ */
 void
 neural_layer_lstm_rand(const struct XCSF *xcsf, struct Layer *l)
 {
@@ -326,6 +396,12 @@ neural_layer_lstm_rand(const struct XCSF *xcsf, struct Layer *l)
     layer_rand(xcsf, l->wo);
 }
 
+/**
+ * @brief Forward propagates an LSTM layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to forward propagate.
+ * @param input The input to the layer.
+ */
 void
 neural_layer_lstm_forward(const struct XCSF *xcsf, const struct Layer *l,
                           const double *input)
@@ -362,6 +438,13 @@ neural_layer_lstm_forward(const struct XCSF *xcsf, const struct Layer *l,
     memcpy(l->output, l->h, sizeof(double) * l->n_outputs);
 }
 
+/**
+ * @brief Backward propagates an LSTM layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to backward propagate.
+ * @param input The input to the layer.
+ * @param delta The previous layer's error (set by this function).
+ */
 void
 neural_layer_lstm_backward(const struct XCSF *xcsf, const struct Layer *l,
                            const double *input, double *delta)
@@ -408,6 +491,11 @@ neural_layer_lstm_backward(const struct XCSF *xcsf, const struct Layer *l,
     memcpy(l->dc, l->temp, sizeof(double) * l->n_outputs);
 }
 
+/**
+ * @brief Updates the weights and biases of an LSTM layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to update.
+ */
 void
 neural_layer_lstm_update(const struct XCSF *xcsf, const struct Layer *l)
 {
@@ -423,6 +511,12 @@ neural_layer_lstm_update(const struct XCSF *xcsf, const struct Layer *l)
     }
 }
 
+/**
+ * @brief Resizes an LSTM layer if the previous layer has changed size.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to resize.
+ * @param prev The layer previous to the one being resized.
+ */
 void
 neural_layer_lstm_resize(const struct XCSF *xcsf, struct Layer *l,
                          const struct Layer *prev)
@@ -438,6 +532,12 @@ neural_layer_lstm_resize(const struct XCSF *xcsf, struct Layer *l,
     set_layer_n_active(l);
 }
 
+/**
+ * @brief Returns the output from an LSTM layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer whose output to return.
+ * @return The layer output.
+ */
 double *
 neural_layer_lstm_output(const struct XCSF *xcsf, const struct Layer *l)
 {
@@ -445,6 +545,12 @@ neural_layer_lstm_output(const struct XCSF *xcsf, const struct Layer *l)
     return l->output;
 }
 
+/**
+ * @brief Mutates an LSTM layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to mutate.
+ * @return Whether any alterations were made.
+ */
 _Bool
 neural_layer_lstm_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
@@ -469,6 +575,12 @@ neural_layer_lstm_mutate(const struct XCSF *xcsf, struct Layer *l)
     return mod;
 }
 
+/**
+ * @brief Prints an LSTM layer.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to print.
+ * @param print_weights Whether to print the values of the weights and biases.
+ */
 void
 neural_layer_lstm_print(const struct XCSF *xcsf, const struct Layer *l,
                         const _Bool print_weights)
@@ -497,6 +609,13 @@ neural_layer_lstm_print(const struct XCSF *xcsf, const struct Layer *l,
     }
 }
 
+/**
+ * @brief Writes an LSTM layer to a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to save.
+ * @param fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 neural_layer_lstm_save(const struct XCSF *xcsf, const struct Layer *l, FILE *fp)
 {
@@ -534,6 +653,13 @@ neural_layer_lstm_save(const struct XCSF *xcsf, const struct Layer *l, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads an LSTM layer from a binary file.
+ * @param xcsf The XCSF data structure.
+ * @param l The layer to load.
+ * @param fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 neural_layer_lstm_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
 {

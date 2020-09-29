@@ -71,6 +71,9 @@ void
 neural_layer_dropout_resize(const struct XCSF *xcsf, struct Layer *l,
                             const struct Layer *prev);
 
+/**
+ * @brief Neural dropout layer implemented functions.
+ */
 static struct LayerVtbl const layer_dropout_vtbl = {
     &neural_layer_dropout_mutate,  &neural_layer_dropout_resize,
     &neural_layer_dropout_copy,    &neural_layer_dropout_free,

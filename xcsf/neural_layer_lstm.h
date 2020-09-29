@@ -72,6 +72,9 @@ void
 neural_layer_lstm_resize(const struct XCSF *xcsf, struct Layer *l,
                          const struct Layer *prev);
 
+/**
+ * @brief Neural long short-term memory layer implemented functions.
+ */
 static struct LayerVtbl const layer_lstm_vtbl = {
     &neural_layer_lstm_mutate,  &neural_layer_lstm_resize,
     &neural_layer_lstm_copy,    &neural_layer_lstm_free,

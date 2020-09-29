@@ -78,6 +78,9 @@ void
 neural_layer_convolutional_resize(const struct XCSF *xcsf, struct Layer *l,
                                   const struct Layer *prev);
 
+/**
+ * @brief Neural convolutional layer implemented functions.
+ */
 static struct LayerVtbl const layer_convolutional_vtbl = {
     &neural_layer_convolutional_mutate,  &neural_layer_convolutional_resize,
     &neural_layer_convolutional_copy,    &neural_layer_convolutional_free,

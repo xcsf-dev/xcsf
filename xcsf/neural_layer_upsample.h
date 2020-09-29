@@ -71,6 +71,9 @@ void
 neural_layer_upsample_resize(const struct XCSF *xcsf, struct Layer *l,
                              const struct Layer *prev);
 
+/**
+ * @brief Neural upsampling layer implemented functions.
+ */
 static struct LayerVtbl const layer_upsample_vtbl = {
     &neural_layer_upsample_mutate,  &neural_layer_upsample_resize,
     &neural_layer_upsample_copy,    &neural_layer_upsample_free,

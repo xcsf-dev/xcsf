@@ -72,6 +72,9 @@ void
 neural_layer_connected_resize(const struct XCSF *xcsf, struct Layer *l,
                               const struct Layer *prev);
 
+/**
+ * @brief Neural connected layer implemented functions.
+ */
 static struct LayerVtbl const layer_connected_vtbl = {
     &neural_layer_connected_mutate,  &neural_layer_connected_resize,
     &neural_layer_connected_copy,    &neural_layer_connected_free,
