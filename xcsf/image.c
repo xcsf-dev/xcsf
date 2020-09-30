@@ -46,16 +46,16 @@ im2col_get_pixel(const double *im, const int height, const int width, int row,
 }
 
 /**
- * @brief Transforms a column matrix to an image matrix.
+ * @brief Transforms a column vector to an image vector.
  * @details Used for GEMM convolutional backward propagation.
- * @param data_col Input column matrix.
+ * @param data_col Input column vector.
  * @param channels Number of image channels.
  * @param height Image height.
  * @param width Image width.
  * @param ksize Kernel size.
  * @param stride Kernel stride.
  * @param pad Kernel padding.
- * @param data_im The resulting image matrix.
+ * @param data_im The resulting image vector.
  */
 void
 col2im(const double *data_col, const int channels, const int height,
@@ -83,16 +83,16 @@ col2im(const double *data_col, const int channels, const int height,
 }
 
 /**
- * @brief Transforms an image matrix to a column matrix.
+ * @brief Transforms an image vector to a column vector.
  * @details Used for GEMM convolutional forward propagation.
- * @param data_im Image matrix of dimension: height × width × channels.
+ * @param data_im Image vector of dimension: height × width × channels.
  * @param channels Number of image channels.
  * @param height Image height.
  * @param width Image width.
  * @param ksize Kernel size.
  * @param stride Kernel stride.
  * @param pad Kernel padding.
- * @param data_col The resulting column matrix.
+ * @param data_col The resulting column vector.
  */
 void
 im2col(const double *data_im, const int channels, const int height,
