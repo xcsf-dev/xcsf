@@ -162,7 +162,7 @@ neural_layer_push(const struct XCSF *xcsf, struct Net *net, struct Layer *l)
 void
 neural_layer_pop(const struct XCSF *xcsf, struct Net *net)
 {
-    neural_layer_remove(xcsf, net, net->n_layers);
+    neural_layer_remove(xcsf, net, net->n_layers - 1);
 }
 
 /**
