@@ -18,8 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
- * @brief An implementation of dynamical GP graphs with fuzzy activation
- * functions.
+ * @brief An implementation of dynamical GP graphs with fuzzy activations.
  */
 
 #include "dgp.h"
@@ -28,11 +27,15 @@
 
 #define NUM_FUNC (3) //!< Number of selectable node functions
 #define N_MU (3) //!< Number of DGP graph mutation rates
+
+/**
+ * @brief Self-adaptation method for mutating DGP graphs.
+ */
 static const int MU_TYPE[N_MU] = {
     SAM_LOG_NORMAL, //!< Node function mutation
     SAM_LOG_NORMAL, //!< Connectivity mutation
     SAM_UNIFORM //!< Number of update cycles mutation
-}; //<! Self-adaptation method
+};
 
 /**
  * @brief Returns a random connection.
@@ -363,11 +366,11 @@ graph_mutate(const struct XCSF *xcsf, struct Graph *dgp)
 }
 
 /**
- * @brief Performs uniform crossover with two DGP graphs.
+ * @brief Dummy function since crossover is not performed on DGP graphs.
  * @param xcsf The XCSF data structure.
  * @param dgp1 The first DGP graph to perform crossover.
  * @param dgp2 The second DGP graph to perform crossover.
- * @return Whether crossover was performed.
+ * @return False.
  */
 _Bool
 graph_crossover(const struct XCSF *xcsf, struct Graph *dgp1, struct Graph *dgp2)
