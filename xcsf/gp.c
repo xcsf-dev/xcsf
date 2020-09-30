@@ -28,15 +28,17 @@
 
 #define GP_MAX_LEN (10000) //!< Maximum length of a GP tree.
 #define GP_NUM_FUNC (4) //!< Number of selectable GP functions
-#define ADD (0)
-#define SUB (1)
-#define MUL (2)
-#define DIV (3)
+#define ADD (0) //!< Addition function
+#define SUB (1) //!< Subtraction function
+#define MUL (2) //!< Multiplication function
+#define DIV (3) //!< Division function
 
 #define N_MU (1) //!< Number of tree-GP mutation rates
-static const int MU_TYPE[N_MU] = {
-    SAM_RATE_SELECT
-}; //<! Self-adaptation method
+
+/**
+ * @brief Self-adaptation method for mutating GP trees.
+ */
+static const int MU_TYPE[N_MU] = { SAM_RATE_SELECT };
 
 /**
  * @brief Traverses a GP tree.
