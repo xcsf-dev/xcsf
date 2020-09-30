@@ -143,6 +143,29 @@ neural_layer_remove(const struct XCSF *xcsf, struct Net *net, const int pos)
 }
 
 /**
+ * @brief Inserts a layer at the head of a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network receiving the layer.
+ * @param l The layer to insert.
+ */
+void
+neural_layer_push(const struct XCSF *xcsf, struct Net *net, struct Layer *l)
+{
+    neural_layer_insert(xcsf, net, l, net->n_layers);
+}
+
+/**
+ * @brief Removes the layer at the head of a neural network.
+ * @param xcsf The XCSF data structure.
+ * @param net The neural network receiving the layer.
+ */
+void
+neural_layer_pop(const struct XCSF *xcsf, struct Net *net)
+{
+    neural_layer_remove(xcsf, net, net->n_layers);
+}
+
+/**
  * @brief Copies a neural network.
  * @param xcsf The XCSF data structure.
  * @param dest The destination neural network.
@@ -154,9 +177,8 @@ neural_copy(const struct XCSF *xcsf, struct Net *dest, const struct Net *src)
     neural_init(xcsf, dest);
     const struct Llist *iter = src->tail;
     while (iter != NULL) {
-        const struct Layer *f = iter->layer;
-        struct Layer *l = layer_copy(xcsf, f);
-        neural_layer_insert(xcsf, dest, l, dest->n_layers);
+        struct Layer *l = layer_copy(xcsf, iter->layer);
+        neural_layer_push(xcsf, dest, l);
         iter = iter->prev;
     }
 }
@@ -435,7 +457,7 @@ neural_load(const struct XCSF *xcsf, struct Net *net, FILE *fp)
         s += fread(&l->layer_type, sizeof(int), 1, fp);
         layer_set_vptr(l);
         s += layer_load(xcsf, l, fp);
-        neural_layer_insert(xcsf, net, l, i);
+        neural_layer_push(xcsf, net, l);
     }
     return s;
 }

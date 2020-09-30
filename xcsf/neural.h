@@ -82,6 +82,12 @@ void
 neural_layer_remove(const struct XCSF *xcsf, struct Net *net, const int pos);
 
 void
+neural_layer_push(const struct XCSF *xcsf, struct Net *net, struct Layer *l);
+
+void
+neural_layer_pop(const struct XCSF *xcsf, struct Net *net);
+
+void
 neural_learn(const struct XCSF *xcsf, const struct Net *net,
              const double *output, const double *input);
 

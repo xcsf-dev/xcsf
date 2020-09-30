@@ -48,7 +48,7 @@ rule_neural_cond_init(const struct XCSF *xcsf, struct Cl *c)
         }
         const int f = xcsf->COND_HIDDEN_ACTIVATION;
         l = neural_layer_recurrent_init(xcsf, n_inputs, hinit, hmax, f, lopt);
-        neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
+        neural_layer_push(xcsf, &new->net, l);
         n_inputs = hinit;
     }
     // output layer
@@ -58,7 +58,7 @@ rule_neural_cond_init(const struct XCSF *xcsf, struct Cl *c)
         (int) fmax(1, ceil(log2(xcsf->n_actions))); // n action neurons
     new->n_outputs = n;
     l = neural_layer_connected_init(xcsf, n_inputs, n + 1, n + 1, f, lopt);
-    neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
+    neural_layer_push(xcsf, &new->net, l);
     c->cond = new;
 }
 

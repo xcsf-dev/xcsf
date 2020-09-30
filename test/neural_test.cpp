@@ -76,11 +76,11 @@ TEST_CASE("NEURAL")
     l = neural_layer_connected_init(&xcsf, 10, 2, 2, LOGISTIC, o);
     memcpy(l->weights, orig_weights1, sizeof(double) * l->n_weights);
     memcpy(l->biases, orig_biases1, sizeof(double) * l->n_outputs);
-    neural_layer_insert(&xcsf, &net, l, 0);
+    neural_layer_push(&xcsf, &net, l);
     l = neural_layer_connected_init(&xcsf, 2, 2, 2, LOGISTIC, o);
     memcpy(l->weights, orig_weights2, sizeof(double) * l->n_weights);
     memcpy(l->biases, orig_biases2, sizeof(double) * l->n_outputs);
-    neural_layer_insert(&xcsf, &net, l, 1);
+    neural_layer_push(&xcsf, &net, l);
     neural_propagate(&xcsf, &net, x);
     double output_error = 0;
     for (int i = 0; i < net.n_outputs; ++i) {

@@ -57,7 +57,7 @@ pred_neural_init(const struct XCSF *xcsf, struct Cl *c)
         }
         const int f = xcsf->PRED_HIDDEN_ACTIVATION;
         l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
-        neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
+        neural_layer_push(xcsf, &new->net, l);
         n_inputs = hinit;
     }
     // output layer
@@ -67,13 +67,13 @@ pred_neural_init(const struct XCSF *xcsf, struct Cl *c)
     if (f == SOFT_MAX) { // classification
         l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim,
                                         xcsf->y_dim, LINEAR, lopt);
-        neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
+        neural_layer_push(xcsf, &new->net, l);
         l = neural_layer_softmax_init(xcsf, xcsf->y_dim, 1);
-        neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
+        neural_layer_push(xcsf, &new->net, l);
     } else { // regression
         l = neural_layer_connected_init(xcsf, n_inputs, xcsf->y_dim,
                                         xcsf->y_dim, f, lopt);
-        neural_layer_insert(xcsf, &new->net, l, new->net.n_layers);
+        neural_layer_push(xcsf, &new->net, l);
     }
     c->pred = new;
 }
@@ -263,7 +263,7 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct Cl *c,
     struct Layer *l = NULL;
     // remove decoder layers
     for (int i = 0; i < n_del && net->n_layers > 1; ++i) {
-        neural_layer_remove(xcsf, net, net->n_layers - 1);
+        neural_layer_pop(xcsf, net);
     }
     // add new softmax output
     const int code_size = net->n_outputs;
@@ -272,7 +272,7 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct Cl *c,
     lopt &= ~LAYER_EVOLVE_FUNCTIONS;
     l = neural_layer_connected_init(xcsf, code_size, xcsf->y_dim, xcsf->y_dim,
                                     LINEAR, lopt);
-    neural_layer_insert(xcsf, net, l, net->n_layers);
+    neural_layer_push(xcsf, net, l);
     l = neural_layer_softmax_init(xcsf, xcsf->y_dim, 1);
-    neural_layer_insert(xcsf, net, l, net->n_layers);
+    neural_layer_push(xcsf, net, l);
 }
