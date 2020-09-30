@@ -47,6 +47,7 @@ im2col_get_pixel(const double *im, const int height, const int width, int row,
 
 /**
  * @brief Transforms a column vector to an image vector.
+ * @details Used for GEMM convolutional backward propagation.
  * @param data_col Input column vector.
  * @param channels Number of image channels.
  * @param height Image height.
@@ -83,6 +84,7 @@ col2im(const double *data_col, const int channels, const int height,
 
 /**
  * @brief Transforms an image vector to a column vector.
+ * @details Used for GEMM convolutional forward propagation.
  * @param data_im Image vector of dimension: height × width × channels.
  * @param channels Number of image channels.
  * @param height Image height.
