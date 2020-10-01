@@ -31,7 +31,7 @@
 
 /**
  * @brief Returns the number of samples in a csv file.
- * @param fin The csv file.
+ * @param [in] fin The csv file.
  * @return The number of samples.
  */
 static int
@@ -47,7 +47,7 @@ env_csv_samples(FILE *fin)
 
 /**
  * @brief Returns the number of dimensions in a csv file.
- * @param fin The csv file.
+ * @param [in] fin The csv file.
  * @return The number of dimensions.
  */
 static int
@@ -71,10 +71,10 @@ env_csv_dim(FILE *fin)
 
 /**
  * @brief Reads the data from a csv file.
- * @param fin The csv file.
- * @param data The data (set by this function).
- * @param n_samples The number of samples.
- * @param n_dim The number of dimensions.
+ * @param [in] fin The csv file.
+ * @param [out] data The read data.
+ * @param [in] n_samples The number of samples.
+ * @param [in] n_dim The number of dimensions.
  */
 static void
 env_csv_read_data(FILE *fin, double **data, const int n_samples,
@@ -100,11 +100,11 @@ env_csv_read_data(FILE *fin, double **data, const int n_samples,
 
 /**
  * @brief Parses a specified csv file.
- * @param filename The name of the csv file to read.
- * @param data The data structure to load the data (set by this function).
- * @param n_samples The number of samples in the dataset (set by this function).
- * @param n_dim The number of dimensions in the dataset (set by this function).
  * @details Provided a file name will set the data, n_samples, and n_dim.
+ * @param [in] filename The name of the csv file to read.
+ * @param [out] data A data structure to store the data.
+ * @param [out] n_samples The number of samples in the dataset.
+ * @param [out] n_dim The number of dimensions in the dataset.
  */
 static void
 env_csv_read(const char *filename, double **data, int *n_samples, int *n_dim)
@@ -129,10 +129,10 @@ env_csv_read(const char *filename, double **data, int *n_samples, int *n_dim)
 
 /**
  * @brief Parses specified csv files into training and testing data sets.
- * @param infile The base name of the csv files to read.
- * @param train_data The data structure to load the training data.
- * @param test_data The data structure to load the testing data.
- * @details Expects an identical number of x and y samples.
+ * @pre Identical number of x and y samples.
+ * @param [in] infile The base name of the csv files to read.
+ * @param [out] train_data The data structure to load the training data.
+ * @param [out] test_data The data structure to load the testing data.
  */
 static void
 env_csv_input_read(const char *infile, struct Input *train_data,
@@ -153,8 +153,8 @@ env_csv_input_read(const char *infile, struct Input *train_data,
 
 /**
  * @brief Initialises a CSV input environment from a specified filename.
- * @param xcsf The XCSF data structure.
- * @param filename The file name of the csv data.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] filename The file name of the csv data.
  */
 void
 env_csv_init(struct XCSF *xcsf, const char *filename)
@@ -171,7 +171,7 @@ env_csv_init(struct XCSF *xcsf, const char *filename)
 
 /**
  * @brief Frees the csv environment.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 env_csv_free(const struct XCSF *xcsf)
@@ -188,7 +188,7 @@ env_csv_free(const struct XCSF *xcsf)
 
 /**
  * @brief Dummy method since no csv environment reset is necessary.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 env_csv_reset(const struct XCSF *xcsf)
@@ -198,7 +198,7 @@ env_csv_reset(const struct XCSF *xcsf)
 
 /**
  * @brief Returns whether the csv environment is in a terminal state.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return True.
  */
 _Bool
@@ -210,7 +210,7 @@ env_csv_is_done(const struct XCSF *xcsf)
 
 /**
  * @brief Dummy method since no state is returned by the csv environment.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return 0.
  */
 const double *
@@ -222,8 +222,8 @@ env_csv_get_state(const struct XCSF *xcsf)
 
 /**
  * @brief Dummy method since no action is executed by the csv environment.
- * @param xcsf The XCSF data structure.
- * @param action The selected action.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] action The selected action.
  * @return 0.
  */
 double
@@ -236,7 +236,7 @@ env_csv_execute(const struct XCSF *xcsf, const int action)
 
 /**
  * @brief Returns whether the csv environment is a multistep problem.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return False.
  */
 _Bool
@@ -248,7 +248,7 @@ env_csv_multistep(const struct XCSF *xcsf)
 
 /**
  * @brief Returns the maximum payoff value possible in the csv environment.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return 0.
  */
 double

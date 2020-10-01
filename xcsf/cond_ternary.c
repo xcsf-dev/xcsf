@@ -29,13 +29,17 @@
 #define P_DONTCARE (0.5) //!< Don't care probability
 #define DONT_CARE ('#') //!< Don't care symbol
 #define N_MU (1) //!< Number of ternary mutation rates
-static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL }; //<! Self-adaptation method
+
+/**
+ * @brief Self-adaptation method for mutating ternary conditions.
+ */
+static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL };
 
 /**
  * @brief Generates a binary string from a float.
- * @param f The float to binarise.
- * @param binary The converted binary string (set by this function).
- * @param bits The number of bits to use for binarising.
+ * @param [in] f The float to binarise.
+ * @param [out] binary The converted binary string.
+ * @param [in] bits The number of bits to use for binarising.
  */
 static void
 float_to_binary(const double f, char *binary, const int bits)
@@ -65,8 +69,8 @@ cond_ternary_rand(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Creates and initialises a ternary bitstring condition.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is to be initialised.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be initialised.
  */
 void
 cond_ternary_init(const struct XCSF *xcsf, struct Cl *c)

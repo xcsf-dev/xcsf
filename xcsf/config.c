@@ -30,8 +30,8 @@
 
 /**
  * @brief Reads a csv list of ints into an array.
- * @param str String list of values.
- * @param val An integer array (set by this function).
+ * @param [in] str String list of values.
+ * @param [out] val An integer array.
  */
 static void
 config_get_ints(char *str, int *val)
@@ -49,11 +49,11 @@ config_get_ints(char *str, int *val)
 
 /**
  * @brief Sets general XCSF parameters.
- * @param xcsf The XCSF data structure.
- * @param n String representation of the parameter name.
- * @param v String representation of the parameter value.
- * @param i Integer representation of the parameter value.
- * @param f Float representation of the parameter value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
  */
 static void
 config_general(struct XCSF *xcsf, const char *n, const char *v, const int i,
@@ -79,11 +79,11 @@ config_general(struct XCSF *xcsf, const char *n, const char *v, const int i,
 
 /**
  * @brief Sets multistep experiment parameters.
- * @param xcsf The XCSF data structure.
- * @param n String representation of the parameter name.
- * @param v String representation of the parameter value.
- * @param i Integer representation of the parameter value.
- * @param f Float representation of the parameter value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
  */
 static void
 config_multi(struct XCSF *xcsf, const char *n, const char *v, const int i,
@@ -101,11 +101,11 @@ config_multi(struct XCSF *xcsf, const char *n, const char *v, const int i,
 
 /**
  * @brief Sets subsumption parameters.
- * @param xcsf The XCSF data structure.
- * @param n String representation of the parameter name.
- * @param v String representation of the parameter value.
- * @param i Integer representation of the parameter value.
- * @param f Float representation of the parameter value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
  */
 static void
 config_subsump(struct XCSF *xcsf, const char *n, const char *v, const int i,
@@ -124,11 +124,11 @@ config_subsump(struct XCSF *xcsf, const char *n, const char *v, const int i,
 
 /**
  * @brief Sets evolutionary algorithm parameters.
- * @param xcsf The XCSF data structure.
- * @param n String representation of the parameter name.
- * @param v String representation of the parameter value.
- * @param i Integer representation of the parameter value.
- * @param f Float representation of the parameter value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
  */
 static void
 config_ea(struct XCSF *xcsf, const char *n, const char *v, const int i,
@@ -150,11 +150,11 @@ config_ea(struct XCSF *xcsf, const char *n, const char *v, const int i,
 
 /**
  * @brief Sets general classifier parameters.
- * @param xcsf The XCSF data structure.
- * @param n String representation of the parameter name.
- * @param v String representation of the parameter value.
- * @param i Integer representation of the parameter value.
- * @param f Float representation of the parameter value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
  */
 static void
 config_cl_gen(struct XCSF *xcsf, const char *n, const char *v, const int i,
@@ -190,11 +190,11 @@ config_cl_gen(struct XCSF *xcsf, const char *n, const char *v, const int i,
 
 /**
  * @brief Sets classifier condition parameters.
- * @param xcsf The XCSF data structure.
- * @param n String representation of the parameter name.
- * @param v String representation of the parameter value.
- * @param i Integer representation of the parameter value.
- * @param f Float representation of the parameter value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
  */
 static void
 config_cl_cond(struct XCSF *xcsf, const char *n, char *v, const int i,
@@ -243,11 +243,11 @@ config_cl_cond(struct XCSF *xcsf, const char *n, char *v, const int i,
 
 /**
  * @brief Sets classifier prediction parameters.
- * @param xcsf The XCSF data structure.
- * @param n String representation of the parameter name.
- * @param v String representation of the parameter value.
- * @param i Integer representation of the parameter value.
- * @param f Float representation of the parameter value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
  */
 static void
 config_cl_pred(struct XCSF *xcsf, const char *n, char *v, const int i,
@@ -294,11 +294,11 @@ config_cl_pred(struct XCSF *xcsf, const char *n, char *v, const int i,
 
 /**
  * @brief Sets classifier action parameters.
- * @param xcsf The XCSF data structure.
- * @param n String representation of the parameter name.
- * @param v String representation of the parameter value.
- * @param i Integer representation of the parameter value.
- * @param f Float representation of the parameter value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
  */
 static void
 config_cl_act(struct XCSF *xcsf, const char *n, const char *v, const int i,
@@ -313,9 +313,9 @@ config_cl_act(struct XCSF *xcsf, const char *n, const char *v, const int i,
 
 /**
  * @brief Sets specified parameter.
- * @param xcsf The XCSF data structure.
- * @param name Parameter name.
- * @param value Parameter value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] name Parameter name.
+ * @param [in] value Parameter value.
  */
 static void
 config_add_param(struct XCSF *xcsf, const char *name, char *value)
@@ -343,7 +343,7 @@ config_add_param(struct XCSF *xcsf, const char *name, char *value)
 
 /**
  * @brief Removes tabs/spaces/lf/cr
- * @param s The line to trim.
+ * @param [in] s The line to trim.
  */
 static void
 config_trim(char *s)
@@ -358,8 +358,8 @@ config_trim(char *s)
 
 /**
  * @brief Adds a parameter to the list.
- * @param xcsf The XCSF data structure.
- * @param param The parameter to add.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] param The parameter to add.
  */
 static void
 config_newnvpair(struct XCSF *xcsf, const char *param)
@@ -398,22 +398,19 @@ config_newnvpair(struct XCSF *xcsf, const char *param)
 
 /**
  * @brief Parses a line of the config file and adds to the list.
- * @param xcsf The XCSF data structure.
- * @param configline A single line of the configuration file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] configline A single line of the configuration file.
  */
 static void
 config_process(struct XCSF *xcsf, const char *configline)
 {
-    // ignore empty lines
-    if (strnlen(configline, MAXLEN) == 0) {
+    if (strnlen(configline, MAXLEN) == 0) { // ignore empty lines
         return;
     }
-    // lines starting with # are comments
-    if (configline[0] == '#') {
+    if (configline[0] == '#') { // lines starting with # are comments
         return;
     }
-    // remove anything after #
-    char *ptr = strchr(configline, '#');
+    char *ptr = strchr(configline, '#'); // remove anything after #
     if (ptr != NULL) {
         *ptr = '\0';
     }
@@ -422,8 +419,8 @@ config_process(struct XCSF *xcsf, const char *configline)
 
 /**
  * @brief Reads the specified configuration file.
- * @param xcsf The XCSF data structure.
- * @param filename The name of the configuration file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] filename The name of the configuration file.
  */
 void
 config_read(struct XCSF *xcsf, const char *filename)

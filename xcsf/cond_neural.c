@@ -35,8 +35,8 @@
 /**
  * @brief Creates and initialises a neural network condition.
  * @details Uses fully-connected layers.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is to be initialised.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be initialised.
  */
 void
 cond_neural_init(const struct XCSF *xcsf, struct Cl *c)

@@ -37,8 +37,8 @@
 /**
  * @brief Creates and initialises a neural network prediction.
  * @details Uses fully-connected layers.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose prediction is to be initialised.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be initialised.
  */
 void
 pred_neural_init(const struct XCSF *xcsf, struct Cl *c)

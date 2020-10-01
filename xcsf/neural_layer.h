@@ -145,10 +145,10 @@ struct LayerVtbl {
 };
 
 /**
- * @brief Writes the layer to a binary file.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be written.
- * @param fp Pointer to the file to be written.
+ * @brief Writes the layer to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be written.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 static inline size_t
@@ -158,10 +158,10 @@ layer_save(const struct XCSF *xcsf, const struct Layer *l, FILE *fp)
 }
 
 /**
- * @brief Reads the layer from a binary file.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be read.
- * @param fp Pointer to the file to be read.
+ * @brief Reads the layer from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be read.
+ * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 static inline size_t
@@ -172,8 +172,8 @@ layer_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
 
 /**
  * @brief Returns the outputs of a layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer whose outputs are to be returned.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer whose outputs are to be returned.
  * @return The layer outputs.
  */
 static inline double *
@@ -184,9 +184,9 @@ layer_output(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Forward propagates an input through the layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be forward propagated.
- * @param input The input to the layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be forward propagated.
+ * @param [in] input The input to the layer.
  */
 static inline void
 layer_forward(const struct XCSF *xcsf, const struct Layer *l,
@@ -197,10 +197,10 @@ layer_forward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Backward propagates the error through a layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be backward propagated.
- * @param input The input to the layer.
- * @param delta The previous layer's delta.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be backward propagated.
+ * @param [in] input The input to the layer.
+ * @param [out] delta The previous layer's delta.
  */
 static inline void
 layer_backward(const struct XCSF *xcsf, const struct Layer *l,
@@ -211,8 +211,8 @@ layer_backward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Updates the weights and biases of a layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be updated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be updated.
  */
 static inline void
 layer_update(const struct XCSF *xcsf, const struct Layer *l)
@@ -222,8 +222,8 @@ layer_update(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Performs layer mutation.
- * @param xcsf The XCSF data structure.
- * @param l The layer to mutate.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
  */
 static inline _Bool
@@ -234,9 +234,9 @@ layer_mutate(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Resizes a layer using the previous layer's inputs
- * @param xcsf The XCSF data structure.
- * @param l The layer to mutate.
- * @param prev The layer prior to the one being mutated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to mutate.
+ * @param [in] prev The layer prior to the one being mutated.
  * @return Whether any alterations were made.
  */
 static inline void
@@ -247,8 +247,8 @@ layer_resize(const struct XCSF *xcsf, struct Layer *l, const struct Layer *prev)
 
 /**
  * @brief Creates and returns a copy of a specified layer.
- * @param xcsf The XCSF data structure.
- * @param src The source layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] src The source layer.
  * @return A new copied layer.
  */
 static inline struct Layer *
@@ -259,8 +259,8 @@ layer_copy(const struct XCSF *xcsf, const struct Layer *src)
 
 /**
  * @brief Frees the memory used by the layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be freed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be freed.
  */
 static inline void
 layer_free(const struct XCSF *xcsf, const struct Layer *l)
@@ -270,8 +270,8 @@ layer_free(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Randomises a layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be randomised.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be randomised.
  */
 static inline void
 layer_rand(const struct XCSF *xcsf, struct Layer *l)
@@ -281,9 +281,9 @@ layer_rand(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Prints the layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be printed.
- * @param print_weights Whether to print the weights.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be printed.
+ * @param [in] print_weights Whether to print the weights.
  */
 static inline void
 layer_print(const struct XCSF *xcsf, const struct Layer *l,

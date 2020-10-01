@@ -26,15 +26,18 @@
 
 #define MU_EPSILON 0.0005 //!< smallest mutation rate allowable
 #define N_RATES (10) //!< number of mutation rates for rate selection adaptation
-static const double mrates[N_RATES] = {
-    0.0005, 0.001, 0.002, 0.003, 0.005, 0.01, 0.015, 0.02, 0.05, 0.1
-}; //!< values for rate selection adaptation
+
+/**
+ * @brief Values for rate selection adaptation.
+ */
+static const double mrates[N_RATES] = { 0.0005, 0.001, 0.002, 0.003, 0.005,
+                                        0.01,   0.015, 0.02,  0.05,  0.1 };
 
 /**
  * @brief Initialises self-adaptive mutation rates.
- * @param mu Vector of mutation rates.
- * @param N Number of mutation rates.
- * @param type Vector specifying each rate type.
+ * @param [out] mu Vector of mutation rates.
+ * @param [in] N Number of mutation rates.
+ * @param [in] type Vector specifying each rate type.
  */
 void
 sam_init(double *mu, const int N, const int *type)
@@ -57,9 +60,9 @@ sam_init(double *mu, const int N, const int *type)
 
 /**
  * @brief Self-adapts mutation rates.
- * @param mu Vector of mutation rates.
- * @param N Number of mutation rates.
- * @param type Vector specifying each rate type.
+ * @param [out] mu Vector of mutation rates.
+ * @param [in] N Number of mutation rates.
+ * @param [in] type Vector specifying each rate type.
  */
 void
 sam_adapt(double *mu, const int N, const int *type)

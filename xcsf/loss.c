@@ -26,9 +26,9 @@
 
 /**
  * @brief Mean absolute error loss function.
- * @param xcsf The XCSF data structure.
- * @param pred The predicted values.
- * @param y The true values.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] pred The predicted values.
+ * @param [in] y The true values.
  * @return The mean absolute error.
  */
 double
@@ -44,9 +44,9 @@ loss_mae(const struct XCSF *xcsf, const double *pred, const double *y)
 
 /**
  * @brief Mean squared error loss function.
- * @param xcsf The XCSF data structure.
- * @param pred The predicted values.
- * @param y The true values.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] pred The predicted values.
+ * @param [in] y The true values.
  * @return The mean squared error.
  */
 double
@@ -62,9 +62,9 @@ loss_mse(const struct XCSF *xcsf, const double *pred, const double *y)
 
 /**
  * @brief Root mean squared error loss function.
- * @param xcsf The XCSF data structure.
- * @param pred The predicted values.
- * @param y The true values.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] pred The predicted values.
+ * @param [in] y The true values.
  * @return The root mean squared error.
  */
 double
@@ -76,9 +76,9 @@ loss_rmse(const struct XCSF *xcsf, const double *pred, const double *y)
 /**
  * @brief Logistic log loss for multi-class classification.
  * @pre The sum of predictions = 1 and a single target y_i has a value of 1.
- * @param xcsf The XCSF data structure.
- * @param pred The predicted values.
- * @param y The true values.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] pred The predicted values.
+ * @param [in] y The true values.
  * @return The log error.
  */
 double
@@ -93,9 +93,9 @@ loss_log(const struct XCSF *xcsf, const double *pred, const double *y)
 
 /**
  * @brief Binary logistic log loss for binary-class classification.
- * @param xcsf The XCSF data structure.
- * @param pred The predicted values.
- * @param y The true values.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] pred The predicted values.
+ * @param [in] y The true values.
  * @return The log error.
  */
 double
@@ -111,9 +111,9 @@ loss_binary_log(const struct XCSF *xcsf, const double *pred, const double *y)
 
 /**
  * @brief One-hot classification error.
- * @param xcsf The XCSF data structure.
- * @param pred The predicted values.
- * @param y The true values.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] pred The predicted values.
+ * @param [in] y The true values.
  * @return The one-hot classification error.
  */
 double
@@ -128,9 +128,9 @@ loss_onehot_acc(const struct XCSF *xcsf, const double *pred, const double *y)
 
 /**
  * @brief Huber loss function.
- * @param xcsf The XCSF data structure.
- * @param pred The predicted values.
- * @param y The true values.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] pred The predicted values.
+ * @param [in] y The true values.
  * @return The Huber loss.
  */
 double
@@ -152,7 +152,7 @@ loss_huber(const struct XCSF *xcsf, const double *pred, const double *y)
 
 /**
  * @brief Sets the XCSF error function to the implemented function.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 loss_set_func(struct XCSF *xcsf)

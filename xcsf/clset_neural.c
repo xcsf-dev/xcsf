@@ -31,8 +31,8 @@
 
 /**
  * @brief Calculates the mean number of condition layers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to calculate the mean.
  * @return The mean number of layers.
  */
 double
@@ -56,9 +56,9 @@ clset_mean_cond_layers(const struct XCSF *xcsf, const struct Set *set)
 }
 /**
  * @brief Calculates the mean number of condition neurons for a given layer.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean.
- * @param layer The neural network layer position.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to calculate the mean.
+ * @param [in] layer The neural network layer position.
  * @return The mean number of neurons in the layer.
  */
 double
@@ -84,9 +84,9 @@ clset_mean_cond_neurons(const struct XCSF *xcsf, const struct Set *set,
 
 /**
  * @brief Calculates the mean number of condition connections in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean.
- * @param layer The position of layer to calculate.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to calculate the mean.
+ * @param [in] layer The position of layer to calculate.
  * @return The mean number of connections in the layer.
  */
 double
@@ -112,9 +112,9 @@ clset_mean_cond_connections(const struct XCSF *xcsf, const struct Set *set,
 
 /**
  * @brief Calculates the mean number of prediction neurons for a given layer.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean.
- * @param layer The neural network layer position.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to calculate the mean.
+ * @param [in] layer The neural network layer position.
  * @return The mean number of neurons in the layer.
  */
 double
@@ -139,8 +139,8 @@ clset_mean_pred_neurons(const struct XCSF *xcsf, const struct Set *set,
 
 /**
  * @brief Calculates the mean number of prediction layers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to calculate the mean.
  * @return The mean number of layers.
  */
 double
@@ -164,9 +164,9 @@ clset_mean_pred_layers(const struct XCSF *xcsf, const struct Set *set)
 
 /**
  * @brief Calculates the mean prediction layer ETA of classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean.
- * @param layer The position of layer to calculate.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to calculate the mean.
+ * @param [in] layer The position of layer to calculate.
  * @return The mean prediction layer ETA of classifiers in the set.
  */
 double
@@ -191,9 +191,9 @@ clset_mean_pred_eta(const struct XCSF *xcsf, const struct Set *set,
 
 /**
  * @brief Calculates the mean number of prediction connections in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean.
- * @param layer The position of layer to calculate.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to calculate the mean.
+ * @param [in] layer The position of layer to calculate.
  * @return The mean number of connections in the layer.
  */
 double

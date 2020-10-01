@@ -28,8 +28,8 @@
 
 /**
  * @brief Sets a classifier's action functions to the implementations.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to set.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to set.
  */
 void
 action_set(const struct XCSF *xcsf, struct Cl *c)

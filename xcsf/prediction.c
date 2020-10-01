@@ -28,8 +28,8 @@
 
 /**
  * @brief Sets a classifier's prediction functions to the implementations.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to set.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to set.
  */
 void
 prediction_set(const struct XCSF *xcsf, struct Cl *c)

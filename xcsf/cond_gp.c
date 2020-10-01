@@ -27,8 +27,8 @@
 
 /**
  * @brief Creates and initialises a tree-GP condition.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is to be initialised.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be initialised.
  */
 void
 cond_gp_init(const struct XCSF *xcsf, struct Cl *c)

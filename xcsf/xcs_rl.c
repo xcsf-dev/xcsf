@@ -33,9 +33,9 @@
 
 /**
  * @brief Executes a reinforcement learning trial using a built-in environment.
- * @param xcsf The XCSF data structure.
- * @param error The mean system prediction error (set by this function).
- * @param explore Whether this is an exploration or exploitation trial.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [out] error The mean system prediction error.
+ * @param [in] explore Whether this is an exploration or exploitation trial.
  * @return Returns the accuracy for single-step problems and the number of
  * steps taken to reach the goal for multi-step problems.
  */
@@ -71,7 +71,7 @@ xcs_rl_trial(struct XCSF *xcsf, double *error, const _Bool explore)
 
 /**
  * @brief Executes a reinforcement learning experiment.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return The mean number of steps to goal.
  */
 double
@@ -94,10 +94,10 @@ xcs_rl_exp(struct XCSF *xcsf)
 
 /**
  * @brief Creates and updates an action set for a given (state, action, reward).
- * @param xcsf The XCSF data structure.
- * @param state The input state to match.
- * @param action The selected action.
- * @param reward The reward for having performed the action.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] state The input state to match.
+ * @param [in] action The selected action.
+ * @param [in] reward The reward for having performed the action.
  * @return The prediction error.
  */
 double
@@ -120,7 +120,7 @@ xcs_rl_fit(struct XCSF *xcsf, const double *state, const int action,
 
 /**
  * @brief Initialises a reinforcement learning trial.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 xcs_rl_init_trial(struct XCSF *xcsf)
@@ -139,7 +139,7 @@ xcs_rl_init_trial(struct XCSF *xcsf)
 
 /**
  * @brief Frees memory used by a reinforcement learning trial.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 xcs_rl_end_trial(struct XCSF *xcsf)
@@ -151,7 +151,7 @@ xcs_rl_end_trial(struct XCSF *xcsf)
 
 /**
  * @brief Initialises a step in a reinforcement learning trial.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 xcs_rl_init_step(struct XCSF *xcsf)
@@ -162,10 +162,10 @@ xcs_rl_init_step(struct XCSF *xcsf)
 
 /**
  * @brief Ends a step in a reinforcement learning trial.
- * @param xcsf The XCSF data structure.
- * @param state The current input state.
- * @param action The current action.
- * @param reward The current reward.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] state The current input state.
+ * @param [in] action The current action.
+ * @param [in] reward The current reward.
  */
 void
 xcs_rl_end_step(struct XCSF *xcsf, const double *state, const int action,
@@ -182,20 +182,18 @@ xcs_rl_end_step(struct XCSF *xcsf, const double *state, const int action,
 /**
  * @brief Provides reinforcement to the sets.
  * @details Creates the action set, updates the classifiers and runs the EA.
- * @param xcsf The XCSF data structure.
- * @param state The input state.
- * @param action The action selected.
- * @param reward The reward from performing the action.
- * @param done Whether the environment is in a terminal state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] state The input state.
+ * @param [in] action The action selected.
+ * @param [in] reward The reward from performing the action.
+ * @param [in] done Whether the environment is in a terminal state.
  */
 void
 xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
               const double reward, const _Bool done)
 {
-    // create action set
-    clset_action(xcsf, action);
-    // update previous action set and run EA
-    if (xcsf->prev_aset.list != NULL) {
+    clset_action(xcsf, action); // create action set
+    if (xcsf->prev_aset.list != NULL) { // update previous action set and run EA
         const double p = xcsf->prev_reward + (xcsf->GAMMA * pa_best_val(xcsf));
         clset_validate(&xcsf->prev_aset);
         clset_update(xcsf, &xcsf->prev_aset, xcsf->prev_state, &p, false);
@@ -203,8 +201,7 @@ xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
             ea(xcsf, &xcsf->prev_aset);
         }
     }
-    // in terminal state: update current action set and run EA
-    if (done) {
+    if (done) { // in terminal state: update current action set and run EA
         clset_validate(&xcsf->aset);
         clset_update(xcsf, &xcsf->aset, state, &reward, true);
         if (xcsf->explore) {
@@ -215,11 +212,11 @@ xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
 
 /**
  * @brief Returns the reinforcement learning system prediction error.
- * @param xcsf The XCSF data structure.
- * @param action The current action.
- * @param reward The current reward.
- * @param done Whether the environment is in a terminal state.
- * @param max_p The maximum payoff in the environment.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] action The current action.
+ * @param [in] reward The current reward.
+ * @param [in] done Whether the environment is in a terminal state.
+ * @param [in] max_p The maximum payoff in the environment.
  * @return The prediction error.
  */
 double
@@ -242,8 +239,8 @@ xcs_rl_error(struct XCSF *xcsf, const int action, const double reward,
 /**
  * @brief Selects an action to perform in a reinforcement learning problem.
  * @details Constructs the match set and selects an action to perform.
- * @param xcsf The XCSF data structure.
- * @param state The input state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] state The input state.
  * @return The selected action.
  */
 int

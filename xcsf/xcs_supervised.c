@@ -32,9 +32,9 @@
 
 /**
  * @brief Selects a data sample for training or testing.
- * @param data The input data.
- * @param cnt The current sequence counter.
- * @param shuffle Whether to select the sample randomly.
+ * @param [in] data The input data.
+ * @param [in] cnt The current sequence counter.
+ * @param [in] shuffle Whether to select the sample randomly.
  * @return The row of the data sample selected.
  */
 static int
@@ -49,9 +49,9 @@ xcs_supervised_sample(const struct Input *data, const int cnt,
 
 /**
  * @brief Executes a single XCSF trial.
- * @param xcsf The XCSF data structure.
- * @param x The feature variables.
- * @param y The labelled variables.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] x The feature variables.
+ * @param [in] y The labelled variables.
  */
 static void
 xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y)
@@ -71,10 +71,10 @@ xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y)
 /**
  * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
  * training data and test iterations using the test data.
- * @param xcsf The XCSF data structure.
- * @param train_data The input data to use for training.
- * @param test_data The input data to use for testing.
- * @param shuffle Whether to randomise the instances during training.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] train_data The input data to use for training.
+ * @param [in] test_data The input data to use for testing.
+ * @param [in] shuffle Whether to randomise the instances during training.
  * @return The average XCSF training error using the loss function.
  */
 double
@@ -111,10 +111,10 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
 
 /**
  * @brief Calculates the XCSF predictions for the provided input.
- * @param xcsf The XCSF data structure.
- * @param x The input feature variables.
- * @param pred The calculated XCSF predictions (set by this function).
- * @param n_samples The number of instances.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] x The input feature variables.
+ * @param [out] pred The calculated XCSF predictions.
+ * @param [in] n_samples The number of instances.
  */
 void
 xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
@@ -130,8 +130,8 @@ xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
 
 /**
  * @brief Calculates the XCSF error for the input data.
- * @param xcsf The XCSF data structure.
- * @param data The input data to calculate the error.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] data The input data to calculate the error.
  * @return The average XCSF error using the loss function.
  */
 double
@@ -150,9 +150,9 @@ xcs_supervised_score(struct XCSF *xcsf, const struct Input *data)
 
 /**
  * @brief Calculates the XCSF error for a subsample of the input data.
- * @param xcsf The XCSF data structure.
- * @param data The input data to calculate the error.
- * @param N The maximum number of samples to draw randomly for scoring.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] data The input data to calculate the error.
+ * @param [in] N The maximum number of samples to draw randomly for scoring.
  * @return The average XCSF error using the loss function.
  */
 double

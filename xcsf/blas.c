@@ -88,21 +88,21 @@ gemm_tt(const int M, const int N, const int K, const double ALPHA,
 /**
  * @brief Performs the matrix-matrix multiplication:
  * \f$ C = \alpha \mbox{op}(A) \mbox{op}(B) + \beta C \f$.
- * @param TA Operation op(A) that is non- or (conj.) transpose.
- * @param TB Operation op(B) that is non- or (conj.) transpose.
- * @param M Number of rows of matrix op(A) and C.
- * @param N Number of columns of matrix op(B) and C.
- * @param K Number of columns of op(A) and rows of op(B).
- * @param ALPHA Scalar used for multiplication.
- * @param A Array of dimension lda × K with lda >= max(1,M) if TA=0 and lda × M
- * with lda >= max(1,K) otherwise.
- * @param lda Leading dimension of a 2-D array used to store the matrix A.
- * @param B Array of dimension ldb × N with ldb >= max(1,K) if TB=0 and ldb × K
- * with ldb >= max(1,N) otherwise.
- * @param ldb Leading dimension of a 2-D array used to store the matrix B.
- * @param BETA Scalar used for multiplication.
- * @param C Array of dimension ldc × N with ldc >= max(1,M).
- * @param ldc Leading dimension of a 2-D array used to store the matrix C.
+ * @param [in] TA Operation op(A) that is non- or (conj.) transpose.
+ * @param [in] TB Operation op(B) that is non- or (conj.) transpose.
+ * @param [in] M Number of rows of matrix op(A) and C.
+ * @param [in] N Number of columns of matrix op(B) and C.
+ * @param [in] K Number of columns of op(A) and rows of op(B).
+ * @param [in] ALPHA Scalar used for multiplication.
+ * @param [in] A Array of dimension lda × K with lda >= max(1,M) if TA=0 and lda
+ * × M with lda >= max(1,K) otherwise.
+ * @param [in] lda Leading dimension of a 2-D array used to store the matrix A.
+ * @param [in] B Array of dimension ldb × N with ldb >= max(1,K) if TB=0 and ldb
+ * × K with ldb >= max(1,N) otherwise.
+ * @param [in] ldb Leading dimension of a 2-D array used to store the matrix B.
+ * @param [in] BETA Scalar used for multiplication.
+ * @param [out] C Array of dimension ldc × N with ldc >= max(1,M).
+ * @param [in] ldc Leading dimension of a 2-D array used to store the matrix C.
  */
 void
 blas_gemm(const int TA, const int TB, const int M, const int N, const int K,
@@ -127,12 +127,12 @@ blas_gemm(const int TA, const int TB, const int M, const int N, const int K,
 
 /**
  * @brief Multiplies vector X by the scalar ALPHA and adds it to the vector Y.
- * @param N The number of elements in vectors X and Y.
- * @param ALPHA Scalar used for multiplication.
- * @param X Vector with N elements.
- * @param INCX Stride between consecutive elements of X.
- * @param Y Vector with N elements.
- * @param INCY Stride between consecutive elements of Y.
+ * @param [in] N The number of elements in vectors X and Y.
+ * @param [in] ALPHA Scalar used for multiplication.
+ * @param [in] X Vector with N elements.
+ * @param [in] INCX Stride between consecutive elements of X.
+ * @param [out] Y Vector with N elements.
+ * @param [in] INCY Stride between consecutive elements of Y.
  */
 void
 blas_axpy(const int N, const double ALPHA, const double *X, const int INCX,
@@ -151,10 +151,10 @@ blas_axpy(const int N, const double ALPHA, const double *X, const int INCX,
 
 /**
  * @brief Scales vector X by the scalar ALPHA and overwrites it with the result.
- * @param N The number of elements in vector X.
- * @param ALPHA Scalar used for multiplication.
- * @param X Vector with N elements.
- * @param INCX Stride between consecutive elements of X.
+ * @param [in] N The number of elements in vector X.
+ * @param [in] ALPHA Scalar used for multiplication.
+ * @param [out] X Vector with N elements.
+ * @param [in] INCX Stride between consecutive elements of X.
  */
 void
 blas_scal(const int N, const double ALPHA, double *X, const int INCX)
@@ -172,10 +172,10 @@ blas_scal(const int N, const double ALPHA, double *X, const int INCX)
 
 /**
  * @brief Fills the vector X with the value ALPHA.
- * @param N The number of elements in vector X.
- * @param ALPHA The value to fill the vector.
- * @param X Vector with N elements.
- * @param INCX Stride between consecutive elements of X.
+ * @param [in] N The number of elements in vector X.
+ * @param [in] ALPHA The value to fill the vector.
+ * @param [out] X Vector with N elements.
+ * @param [in] INCX Stride between consecutive elements of X.
  */
 void
 blas_fill(const int N, const double ALPHA, double *X, const int INCX)
@@ -187,11 +187,11 @@ blas_fill(const int N, const double ALPHA, double *X, const int INCX)
 
 /**
  * @brief Computes the dot product of two vectors.
- * @param N The number of elements in vectors X and Y.
- * @param X Vector with N elements.
- * @param INCX Stride between consecutive elements of X.
- * @param Y Vector with N elements.
- * @param INCY Stride between consecutive elements of Y.
+ * @param [in] N The number of elements in vectors X and Y.
+ * @param [in] X Vector with N elements.
+ * @param [in] INCX Stride between consecutive elements of X.
+ * @param [in] Y Vector with N elements.
+ * @param [in] INCY Stride between consecutive elements of Y.
  * @return The resulting dot product.
  */
 double
@@ -207,11 +207,11 @@ blas_dot(const int N, const double *X, const int INCX, const double *Y,
 
 /**
  * @brief Multiplies vector X by the vector Y and stores the result in vector Y.
- * @param N The number of elements in vectors X and Y.
- * @param X Vector with N elements.
- * @param INCX Stride between consecutive elements of X.
- * @param Y Vector with N elements.
- * @param INCY Stride between consecutive elements of Y.
+ * @param [in] N The number of elements in vectors X and Y.
+ * @param [in] X Vector with N elements.
+ * @param [in] INCX Stride between consecutive elements of X.
+ * @param [out] Y Vector with N elements.
+ * @param [in] INCY Stride between consecutive elements of Y.
  */
 void
 blas_mul(const int N, const double *X, const int INCX, double *Y,
@@ -224,8 +224,8 @@ blas_mul(const int N, const double *X, const int INCX, double *Y,
 
 /**
  * @brief Returns the sum of the vector X.
- * @param X Vector with N elements.
- * @param N The number of elements in vector X.
+ * @param [in] X Vector with N elements.
+ * @param [in] N The number of elements in vector X.
  * @return The resulting sum.
  */
 double

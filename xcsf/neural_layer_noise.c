@@ -27,7 +27,7 @@
 
 /**
  * @brief Allocate memory used by a noise layer.
- * @param l The layer to be allocated memory.
+ * @param [in] l The layer to be allocated memory.
  */
 static void
 malloc_layer_arrays(struct Layer *l)
@@ -44,7 +44,7 @@ malloc_layer_arrays(struct Layer *l)
 
 /**
  * @brief Free memory used by a noise layer.
- * @param l The layer to be freed.
+ * @param [in] l The layer to be freed.
  */
 static void
 free_layer_arrays(const struct Layer *l)
@@ -56,10 +56,10 @@ free_layer_arrays(const struct Layer *l)
 
 /**
  * @brief Creates and initialises a noise layer.
- * @param xcsf The XCSF data structure.
- * @param n_inputs The number of inputs.
- * @param probability The probability of adding noise to an input.
- * @param std The standard deviation of the Gaussian noise added.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n_inputs The number of inputs.
+ * @param [in] probability The probability of adding noise to an input.
+ * @param [in] std The standard deviation of the Gaussian noise added.
  * @return A pointer to the new layer.
  */
 struct Layer *
@@ -82,8 +82,8 @@ neural_layer_noise_init(const struct XCSF *xcsf, const int n_inputs,
 
 /**
  * @brief Initialises and creates a copy of one noise layer from another.
- * @param xcsf The XCSF data structure.
- * @param src The source layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] src The source layer.
  * @return A pointer to the new layer.
  */
 struct Layer *
@@ -109,8 +109,8 @@ neural_layer_noise_copy(const struct XCSF *xcsf, const struct Layer *src)
 
 /**
  * @brief Free memory used by a noise layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be freed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be freed.
  */
 void
 neural_layer_noise_free(const struct XCSF *xcsf, const struct Layer *l)
@@ -121,8 +121,8 @@ neural_layer_noise_free(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Dummy function since noise layers have no weights.
- * @param xcsf The XCSF data structure.
- * @param l A softmax layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l A softmax layer.
  */
 void
 neural_layer_noise_rand(const struct XCSF *xcsf, struct Layer *l)
@@ -133,9 +133,9 @@ neural_layer_noise_rand(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Forward propagates a noise layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to forward propagate.
- * @param input The input to the layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to forward propagate.
+ * @param [in] input The input to the layer.
  */
 void
 neural_layer_noise_forward(const struct XCSF *xcsf, const struct Layer *l,
@@ -159,10 +159,10 @@ neural_layer_noise_forward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Backward propagates a noise layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to backward propagate.
- * @param input The input to the layer.
- * @param delta The previous layer's error (set by this function).
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to backward propagate.
+ * @param [in] input The input to the layer.
+ * @param [out] delta The previous layer's error.
  */
 void
 neural_layer_noise_backward(const struct XCSF *xcsf, const struct Layer *l,
@@ -179,8 +179,8 @@ neural_layer_noise_backward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Dummy function since a noise layer has no weights.
- * @param xcsf The XCSF data structure.
- * @param l A noise layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l A noise layer.
  */
 void
 neural_layer_noise_update(const struct XCSF *xcsf, const struct Layer *l)
@@ -191,8 +191,8 @@ neural_layer_noise_update(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Dummy function since a noise layer cannot be mutated.
- * @param xcsf The XCSF data structure.
- * @param l A noise layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l A noise layer.
  * @return False.
  */
 _Bool
@@ -205,9 +205,9 @@ neural_layer_noise_mutate(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Resizes a noise layer if the previous layer has changed size.
- * @param xcsf The XCSF data structure.
- * @param l The layer to resize.
- * @param prev The layer previous to the one being resized.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to resize.
+ * @param [in] prev The layer previous to the one being resized.
  */
 void
 neural_layer_noise_resize(const struct XCSF *xcsf, struct Layer *l,
@@ -223,8 +223,8 @@ neural_layer_noise_resize(const struct XCSF *xcsf, struct Layer *l,
 
 /**
  * @brief Returns the output from a noise layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer whose output to return.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer whose output to return.
  * @return The layer output.
  */
 double *
@@ -236,9 +236,9 @@ neural_layer_noise_output(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Prints a noise layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to print.
- * @param print_weights Whether to print the values of the weights and biases.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to print.
+ * @param [in] print_weights Whether to print the values of weights and biases.
  */
 void
 neural_layer_noise_print(const struct XCSF *xcsf, const struct Layer *l,
@@ -251,10 +251,10 @@ neural_layer_noise_print(const struct XCSF *xcsf, const struct Layer *l,
 }
 
 /**
- * @brief Writes a noise layer to a binary file.
- * @param xcsf The XCSF data structure.
- * @param l The layer to save.
- * @param fp Pointer to the file to be written.
+ * @brief Writes a noise layer to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to save.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
@@ -272,10 +272,10 @@ neural_layer_noise_save(const struct XCSF *xcsf, const struct Layer *l,
 }
 
 /**
- * @brief Reads a noise layer from a binary file.
- * @param xcsf The XCSF data structure.
- * @param l The layer to load.
- * @param fp Pointer to the file to be read.
+ * @brief Reads a noise layer from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to load.
+ * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 size_t

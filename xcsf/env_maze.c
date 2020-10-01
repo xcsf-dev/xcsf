@@ -53,13 +53,21 @@
 #include "utils.h"
 
 #define MAX_PAYOFF (1.) //!< The payoff provided at a food position
-static const int x_moves[] = { 0, +1, +1, +1, 0, -1, -1, -1 }; //!< x-axis moves
-static const int y_moves[] = { -1, -1, 0, +1, +1, +1, 0, -1 }; //!< y-axis moves
+
+/**
+ * @brief Maze x-axis moves.
+ */
+static const int x_moves[] = { 0, +1, +1, +1, 0, -1, -1, -1 };
+
+/**
+ * @brief Maze y-axis moves.
+ */
+static const int y_moves[] = { -1, -1, 0, +1, +1, +1, 0, -1 };
 
 /**
  * @brief Returns a float encoding of a sensor perception.
- * @param xcsf The XCSF data structure.
- * @param s The char value of the sensor.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] s The char value of the sensor.
  * @return A float encoding of the sensor.
  */
 static double
@@ -85,8 +93,8 @@ env_maze_sensor(const struct XCSF *xcsf, const char s)
 
 /**
  * @brief Initialises a maze environment from a specified file.
- * @param xcsf The XCSF data structure.
- * @param filename The file name of the specified maze environment.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] filename The file name of the specified maze environment.
  */
 void
 env_maze_init(struct XCSF *xcsf, const char *filename)
@@ -135,7 +143,7 @@ env_maze_init(struct XCSF *xcsf, const char *filename)
 
 /**
  * @brief Frees the maze environment.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 env_maze_free(const struct XCSF *xcsf)
@@ -147,7 +155,7 @@ env_maze_free(const struct XCSF *xcsf)
 
 /**
  * @brief Resets the animat to a random empty position in the maze.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 env_maze_reset(const struct XCSF *xcsf)
@@ -162,7 +170,7 @@ env_maze_reset(const struct XCSF *xcsf)
 
 /**
  * @brief Returns whether the maze is in a terminal state.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return Whether the maze is in a terminal state.
  */
 _Bool
@@ -174,7 +182,7 @@ env_maze_is_done(const struct XCSF *xcsf)
 
 /**
  * @brief Returns the current animat perceptions in the maze.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return The current animat perceptions.
  */
 const double *
@@ -184,8 +192,7 @@ env_maze_get_state(const struct XCSF *xcsf)
     int spos = 0;
     for (int y = -1; y < 2; ++y) {
         for (int x = -1; x < 2; ++x) {
-            // ignore current pos
-            if (x == 0 && y == 0) {
+            if (x == 0 && y == 0) { // ignore current pos
                 continue;
             }
             // toroidal maze
@@ -204,8 +211,8 @@ env_maze_get_state(const struct XCSF *xcsf)
 
 /**
  * @brief Executes the specified action and returns the payoff.
- * @param xcsf The XCSF data structure.
- * @param action The action to perform.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] action The action to perform.
  * @return The payoff from performing the action.
  */
 double
@@ -247,7 +254,7 @@ env_maze_execute(const struct XCSF *xcsf, const int action)
 
 /**
  * @brief Returns the maximum payoff value possible in the maze.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return The maximum payoff.
  */
 double
@@ -259,7 +266,7 @@ env_maze_maxpayoff(const struct XCSF *xcsf)
 
 /**
  * @brief Returns whether the environment is a multistep problem.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return True
  */
 _Bool

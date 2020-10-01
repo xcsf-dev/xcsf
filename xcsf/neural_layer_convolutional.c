@@ -43,7 +43,7 @@ static const int MU_TYPE[N_MU] = {
 
 /**
  * @brief Returns the memory workspace size for a convolutional layer.
- * @param l A convolutional layer.
+ * @param [in] l A convolutional layer.
  * @return The workspace size.
  */
 static size_t
@@ -59,7 +59,7 @@ get_workspace_size(const struct Layer *l)
 
 /**
  * @brief Allocate memory used by a convolutional layer.
- * @param l The layer to be allocated memory.
+ * @param [in] l The layer to be allocated memory.
  */
 static void
 malloc_layer_arrays(struct Layer *l)
@@ -88,7 +88,7 @@ malloc_layer_arrays(struct Layer *l)
 
 /**
  * @brief Returns the output height of a convolutional layer.
- * @param l A convolutional layer.
+ * @param [in] l A convolutional layer.
  * @return The output height.
  */
 static int
@@ -99,7 +99,7 @@ convolutional_out_height(const struct Layer *l)
 
 /**
  * @brief Returns the output width of a convolutional layer.
- * @param l A convolutional layer.
+ * @param [in] l A convolutional layer.
  * @return The output width.
  */
 static int
@@ -110,16 +110,16 @@ convolutional_out_width(const struct Layer *l)
 
 /**
  * @brief Creates and initialises a 2D convolutional layer.
- * @param xcsf The XCSF data structure.
- * @param h The input height.
- * @param w The input width.
- * @param c The number of input channels.
- * @param n_filters The number of kernel filters to apply.
- * @param kernel_size The length of the convolution window.
- * @param stride The stride length of the convolution.
- * @param pad The padding of the convolution.
- * @param f The activation function.
- * @param o The bitwise options specifying which operations can be performed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] h The input height.
+ * @param [in] w The input width.
+ * @param [in] c The number of input channels.
+ * @param [in] n_filters The number of kernel filters to apply.
+ * @param [in] kernel_size The length of the convolution window.
+ * @param [in] stride The stride length of the convolution.
+ * @param [in] pad The padding of the convolution.
+ * @param [in] f Activation function.
+ * @param [in] o Bitwise options specifying which operations can be performed.
  * @return A pointer to the new layer.
  */
 struct Layer *
@@ -164,8 +164,8 @@ neural_layer_convolutional_init(const struct XCSF *xcsf, const int h,
 
 /**
  * @brief Free memory used by a convolutional layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be freed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be freed.
  */
 void
 neural_layer_convolutional_free(const struct XCSF *xcsf, const struct Layer *l)
@@ -185,8 +185,8 @@ neural_layer_convolutional_free(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Initialises and copies one convolutional layer from another.
- * @param xcsf The XCSF data structure.
- * @param src The source layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] src The source layer.
  * @return A pointer to the new layer.
  */
 struct Layer *
@@ -233,8 +233,8 @@ neural_layer_convolutional_copy(const struct XCSF *xcsf,
 
 /**
  * @brief Randomises the weights of a convolutional layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to randomise.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to randomise.
  */
 void
 neural_layer_convolutional_rand(const struct XCSF *xcsf, struct Layer *l)
@@ -244,9 +244,9 @@ neural_layer_convolutional_rand(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Forward propagates a convolutional layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to forward propagate.
- * @param input The input to the layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to forward propagate.
+ * @param [in] input The input to the layer.
  */
 void
 neural_layer_convolutional_forward(const struct XCSF *xcsf,
@@ -277,10 +277,10 @@ neural_layer_convolutional_forward(const struct XCSF *xcsf,
 
 /**
  * @brief Backward propagates a convolutional layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to backward propagate.
- * @param input The input to the layer.
- * @param delta The previous layer's error (set by this function).
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to backward propagate.
+ * @param [in] input The input to the layer.
+ * @param [out] delta The previous layer's error.
  */
 void
 neural_layer_convolutional_backward(const struct XCSF *xcsf,
@@ -324,8 +324,8 @@ neural_layer_convolutional_backward(const struct XCSF *xcsf,
 
 /**
  * @brief Updates the weights and biases of a convolutional layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to update.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to update.
  */
 void
 neural_layer_convolutional_update(const struct XCSF *xcsf,
@@ -346,9 +346,9 @@ neural_layer_convolutional_update(const struct XCSF *xcsf,
 
 /**
  * @brief Resizes a convolutional layer if the previous layer has changed size.
- * @param xcsf The XCSF data structure.
- * @param l The layer to resize.
- * @param prev The layer previous to the one being resized.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to resize.
+ * @param [in] prev The layer previous to the one being resized.
  */
 void
 neural_layer_convolutional_resize(const struct XCSF *xcsf, struct Layer *l,
@@ -371,8 +371,8 @@ neural_layer_convolutional_resize(const struct XCSF *xcsf, struct Layer *l,
 
 /**
  * @brief Mutates a convolutional layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to mutate.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
  */
 _Bool
@@ -401,8 +401,8 @@ neural_layer_convolutional_mutate(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Returns the output from a convolutional layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer whose output to return.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer whose output to return.
  * @return The layer output.
  */
 double *
@@ -415,9 +415,9 @@ neural_layer_convolutional_output(const struct XCSF *xcsf,
 
 /**
  * @brief Prints a convolutional layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to print.
- * @param print_weights Whether to print the values of the weights and biases.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to print.
+ * @param [in] print_weights Whether to print the values of weights and biases.
  */
 void
 neural_layer_convolutional_print(const struct XCSF *xcsf, const struct Layer *l,
@@ -433,10 +433,10 @@ neural_layer_convolutional_print(const struct XCSF *xcsf, const struct Layer *l,
 }
 
 /**
- * @brief Writes a convolutional layer to a binary file.
- * @param xcsf The XCSF data structure.
- * @param l The layer to save.
- * @param fp Pointer to the file to be written.
+ * @brief Writes a convolutional layer to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to save.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
@@ -475,10 +475,10 @@ neural_layer_convolutional_save(const struct XCSF *xcsf, const struct Layer *l,
 }
 
 /**
- * @brief Reads a convolutional layer from a binary file.
- * @param xcsf The XCSF data structure.
- * @param l The layer to load.
- * @param fp Pointer to the file to be read.
+ * @brief Reads a convolutional layer from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to load.
+ * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 size_t

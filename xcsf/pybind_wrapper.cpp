@@ -59,9 +59,9 @@ class XCS
   public:
     /**
      * @brief Constructor with default config.
-     * @param x_dim The dimensionality of the input variables.
-     * @param y_dim The dimensionality of the prediction variables.
-     * @param n_actions The total number of possible actions.
+     * @param [in] x_dim The dimensionality of the input variables.
+     * @param [in] y_dim The dimensionality of the prediction variables.
+     * @param [in] n_actions The total number of possible actions.
      */
     XCS(const int x_dim, const int y_dim, const int n_actions) :
         XCS(x_dim, y_dim, n_actions, "default.ini")
@@ -70,10 +70,10 @@ class XCS
 
     /**
      * @brief Constructor with a specified config.
-     * @param x_dim The dimensionality of the input variables.
-     * @param y_dim The dimensionality of the prediction variables.
-     * @param n_actions The total number of possible actions.
-     * @param filename The name of a parameter configuration file.
+     * @param [in] x_dim The dimensionality of the input variables.
+     * @param [in] y_dim The dimensionality of the prediction variables.
+     * @param [in] n_actions The total number of possible actions.
+     * @param [in] filename The name of a parameter configuration file.
      */
     XCS(const int x_dim, const int y_dim, const int n_actions,
         const char *filename)
@@ -133,8 +133,8 @@ class XCS
     }
 
     /**
-     * @brief Writes the entire current state of XCSF to a binary file.
-     * @param filename String containing the name of the output file.
+     * @brief Writes the entire current state of XCSF to a file.
+     * @param [in] filename String containing the name of the output file.
      * @return The total number of elements written.
      */
     size_t
@@ -144,8 +144,8 @@ class XCS
     }
 
     /**
-     * @brief Reads the entire current state of XCSF from a binary file.
-     * @param filename String containing the name of the input file.
+     * @brief Reads the entire current state of XCSF from a file.
+     * @param [in] filename String containing the name of the input file.
      * @return The total number of elements read.
      */
     size_t
@@ -193,8 +193,8 @@ class XCS
 
     /**
      * @brief Switches from autoencoding to classification.
-     * @param y_dim The output dimension (i.e., the number of classes).
-     * @param n_del The number of hidden layers to remove.
+     * @param [in] y_dim The output dimension (i.e., the number of classes).
+     * @param [in] n_del The number of hidden layers to remove.
      */
     void
     ae_to_classifier(const int y_dim, const int n_del)
@@ -204,9 +204,9 @@ class XCS
 
     /**
      * @brief Prints the current population.
-     * @param print_cond Whether to print the condition.
-     * @param print_act Whether to print the action.
-     * @param print_pred Whether to print the prediction.
+     * @param [in] print_cond Whether to print the condition.
+     * @param [in] print_act Whether to print the action.
+     * @param [in] print_pred Whether to print the prediction.
      */
     void
     print_pop(const _Bool print_cond, const _Bool print_act,
@@ -219,9 +219,9 @@ class XCS
 
     /**
      * @brief Creates/updates an action set for a given (state, action, reward).
-     * @param input The input state to match.
-     * @param action The selected action.
-     * @param reward The reward for having performed the action.
+     * @param [in] input The input state to match.
+     * @param [in] action The selected action.
+     * @param [in] reward The reward for having performed the action.
      * @return The prediction error.
      */
     double
@@ -274,8 +274,8 @@ class XCS
     /**
      * @brief Selects an action to perform in a reinforcement learning problem.
      * @details Constructs the match set and selects an action to perform.
-     * @param input The input state.
-     * @param explore Whether this is an exploration step.
+     * @param [in] input The input state.
+     * @param [in] explore Whether this is an exploration step.
      * @return The selected action.
      */
     int
@@ -291,8 +291,8 @@ class XCS
     /**
      * @brief Creates the action set using the previously selected action,
      * updates the classifiers, and runs the EA on explore steps.
-     * @param reward The reward from performing the action.
-     * @param done Whether the environment is in a terminal state.
+     * @param [in] reward The reward from performing the action.
+     * @param [in] done Whether the environment is in a terminal state.
      */
     void
     update(const double reward, const _Bool done)
@@ -303,9 +303,9 @@ class XCS
 
     /**
      * @brief Returns the reinforcement learning system prediction error.
-     * @param reward The current reward.
-     * @param done Whether the environment is in a terminal state.
-     * @param max_p The maximum payoff in the environment.
+     * @param [in] reward The current reward.
+     * @param [in] done Whether the environment is in a terminal state.
+     * @param [in] max_p The maximum payoff in the environment.
      * @return The prediction error.
      */
     double
@@ -320,9 +320,9 @@ class XCS
     /**
      * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
      * provided training data.
-     * @param train_X The input values to use for training.
-     * @param train_Y The true output values to use for training.
-     * @param shuffle Whether to randomise the instances during training.
+     * @param [in] train_X The input values to use for training.
+     * @param [in] train_Y The true output values to use for training.
+     * @param [in] shuffle Whether to randomise the instances during training.
      * @return The average XCSF training error using the loss function.
      */
     double
@@ -352,11 +352,11 @@ class XCS
     /**
      * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
      * provided training data and test iterations using the test data.
-     * @param train_X The input values to use for training.
-     * @param train_Y The true output values to use for training.
-     * @param test_X The input values to use for testing.
-     * @param test_Y The true output values to use for testing.
-     * @param shuffle Whether to randomise the instances during training.
+     * @param [in] train_X The input values to use for training.
+     * @param [in] train_Y The true output values to use for training.
+     * @param [in] test_X The input values to use for testing.
+     * @param [in] test_Y The true output values to use for testing.
+     * @param [in] shuffle Whether to randomise the instances during training.
      * @return The average XCSF training error using the loss function.
      */
     double
@@ -406,7 +406,7 @@ class XCS
 
     /**
      * @brief Returns the XCSF prediction array for the provided input.
-     * @param x The input variables.
+     * @param [in] x The input variables.
      * @return The prediction array values.
      */
     py::array_t<double>
@@ -427,8 +427,8 @@ class XCS
 
     /**
      * @brief Returns the error over one sequential pass of the provided data.
-     * @param test_X The input values to use for scoring.
-     * @param test_Y The true output values to use for scoring.
+     * @param [in] test_X The input values to use for scoring.
+     * @param [in] test_Y The true output values to use for scoring.
      * @return The average XCSF error using the loss function.
      */
     double
@@ -439,9 +439,9 @@ class XCS
 
     /**
      * @brief Returns the error using N random samples from the provided data.
-     * @param test_X The input values to use for scoring.
-     * @param test_Y The true output values to use for scoring.
-     * @param N The maximum number of samples to draw randomly for scoring.
+     * @param [in] test_X The input values to use for scoring.
+     * @param [in] test_Y The true output values to use for scoring.
+     * @param [in] N The maximum number of samples to draw randomly for scoring.
      * @return The average XCSF error using the loss function.
      */
     double

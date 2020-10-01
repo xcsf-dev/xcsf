@@ -27,8 +27,8 @@
 
 /**
  * @brief Returns the result from applying a specified activation function.
- * @param a The activation function to apply.
- * @param x The input to the activation function.
+ * @param [in] a The activation function to apply.
+ * @param [in] x The input to the activation function.
  * @return The result from applying the activation function.
  */
 double
@@ -65,8 +65,8 @@ neural_activate(const int a, const double x)
 
 /**
  * @brief Returns the derivative from applying a specified activation function.
- * @param a The activation function applied.
- * @param x The input to the activation function.
+ * @param [in] a The activation function applied.
+ * @param [in] x The input to the activation function.
  * @return The derivative from applying the activation function.
  */
 double
@@ -103,7 +103,7 @@ neural_gradient(const int a, const double x)
 
 /**
  * @brief Returns the name of a specified activation function.
- * @param a The activation function.
+ * @param [in] a The activation function.
  * @return The name of the activation function.
  */
 const char *
@@ -140,10 +140,10 @@ neural_activation_string(const int a)
 
 /**
  * @brief Applies a specified activation function to an array.
- * @param state The neuron states.
- * @param output The neuron outputs (set by this function).
- * @param n The length of the input array.
- * @param a The activation function.
+ * @param [in] state The neuron states.
+ * @param [out] output The neuron outputs.
+ * @param [in] n The length of the input array.
+ * @param [in] a The activation function.
  */
 void
 neural_activate_array(double *state, double *output, const int n, const int a)
@@ -156,10 +156,10 @@ neural_activate_array(double *state, double *output, const int n, const int a)
 
 /**
  * @brief Applies a specified gradient function to an array.
- * @param state The neuron states.
- * @param delta The neuron gradients (set by this function).
- * @param n The length of the input array.
- * @param a The activation function.
+ * @param [in] state The neuron states.
+ * @param [out] delta The neuron gradients.
+ * @param [in] n The length of the input array.
+ * @param [in] a The activation function.
  */
 void
 neural_gradient_array(const double *state, double *delta, const int n,

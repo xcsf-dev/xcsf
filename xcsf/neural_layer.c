@@ -36,7 +36,7 @@
 
 /**
  * @brief Sets a neural network layer's functions to the implementations.
- * @param l The neural network layer to set.
+ * @param [in] l The neural network layer to set.
  */
 void
 layer_set_vptr(struct Layer *l)
@@ -80,9 +80,9 @@ layer_set_vptr(struct Layer *l)
 
 /**
  * @brief Mutates the gradient descent rate of a neural layer.
- * @param xcsf The XCSF data structure.
- * @param l The neural network layer to mutate.
- * @param mu The rate of mutation.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The neural network layer to mutate.
+ * @param [in] mu The rate of mutation.
  * @return Whether any alterations were made.
  */
 _Bool
@@ -99,9 +99,9 @@ layer_mutate_eta(const struct XCSF *xcsf, struct Layer *l, const double mu)
 
 /**
  * @brief Returns the number of neurons to add or remove from a layer
- * @param xcsf The XCSF data structure.
- * @param l The neural network layer to mutate.
- * @param mu The rate of mutation.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The neural network layer to mutate.
+ * @param [in] mu The rate of mutation.
  * @return The number of neurons to be added or removed.
  */
 int
@@ -126,8 +126,8 @@ layer_mutate_neurons(const struct XCSF *xcsf, const struct Layer *l,
 /**
  * @brief Adds N neurons to a layer. Negative N removes neurons.
  * @pre N must be appropriately bounds checked for the layer.
- * @param l The neural network layer to mutate.
- * @param N The number of neurons to add.
+ * @param [in] l The neural network layer to mutate.
+ * @param [in] N The number of neurons to add.
  */
 void
 layer_add_neurons(struct Layer *l, const int N)
@@ -169,9 +169,9 @@ layer_add_neurons(struct Layer *l, const int N)
 
 /**
  * @brief Mutates a layer's connectivity by zeroing weights.
- * @param l The neural network layer to mutate.
- * @param mu_enable The probability of enabling a currently disabled weight.
- * @param mu_disable The probability of disabling a currently enabled weight.
+ * @param [in] l The neural network layer to mutate.
+ * @param [in] mu_enable Probability of enabling a currently disabled weight.
+ * @param [in] mu_disable Probability of disabling a currently enabled weight.
  * @return Whether any alterations were made.
  */
 _Bool
@@ -200,7 +200,7 @@ layer_mutate_connectivity(struct Layer *l, const double mu_enable,
 /**
  * @brief Ensures that each neuron is connected to at least one input and each
  * input is connected to at least one neuron.
- * @param l A neural network layer.
+ * @param [in] l A neural network layer.
  */
 void
 layer_ensure_input_represention(struct Layer *l)
@@ -246,8 +246,8 @@ layer_ensure_input_represention(struct Layer *l)
  * @brief Mutates a layer's weights and biases by adding random numbers from a
  * Gaussian normal distribution with zero mean and standard deviation equal to
  * the mutation rate.
- * @param l The neural network layer to mutate.
- * @param mu The rate of mutation.
+ * @param [in] l The neural network layer to mutate.
+ * @param [in] mu The rate of mutation.
  * @return Whether any alterations were made.
  */
 _Bool
@@ -277,8 +277,8 @@ layer_mutate_weights(struct Layer *l, const double mu)
 
 /**
  * @brief Mutates a layer's activation function by random selection.
- * @param l The neural network layer to mutate.
- * @param mu The rate of mutation.
+ * @param [in] l The neural network layer to mutate.
+ * @param [in] mu The rate of mutation.
  * @return Whether any alterations were made.
  */
 _Bool
@@ -304,8 +304,8 @@ layer_mutate_functions(struct Layer *l, const double mu)
 
 /**
  * @brief Prints a layer's weights and biases.
- * @param l The neural network layer to print.
- * @param print_weights Whether to print each individual weight and bias.
+ * @param [in] l The neural network layer to print.
+ * @param [in] print_weights Whether to print each individual weight and bias.
  */
 void
 layer_weight_print(const struct Layer *l, const _Bool print_weights)
@@ -327,8 +327,8 @@ layer_weight_print(const struct Layer *l, const _Bool print_weights)
 
 /**
  * @brief Randomises a layer's weights and biases.
- * @param xcsf The XCSF data structure.
- * @param l The neural network layer to randomise.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The neural network layer to randomise.
  */
 void
 layer_weight_rand(const struct XCSF *xcsf, struct Layer *l)
@@ -346,7 +346,7 @@ layer_weight_rand(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Clamps a layer's weights and biases in range [WEIGHT_MIN, WEIGHT_MAX].
- * @param l The neural network layer to clamp.
+ * @param [in] l The neural network layer to clamp.
  */
 void
 layer_weight_clamp(const struct Layer *l)
@@ -365,7 +365,7 @@ layer_weight_clamp(const struct Layer *l)
 
 /**
  * @brief Sets n_active to the number of non-zero weights within a layer.
- * @param l The layer to calculate the number of non-zero weights.
+ * @param [in] l The layer to calculate the number of non-zero weights.
  */
 void
 layer_calc_n_active(struct Layer *l)
@@ -380,8 +380,8 @@ layer_calc_n_active(struct Layer *l)
 
 /**
  * @brief Initialises a layer's gradient descent rate.
- * @param xcsf The XCSF data structure.
- * @param l The layer to initialise.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to initialise.
  */
 void
 layer_init_eta(const struct XCSF *xcsf, struct Layer *l)
@@ -395,7 +395,7 @@ layer_init_eta(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Initialises a layer to default values.
- * @param l The layer to initialise.
+ * @param [in] l The layer to initialise.
  */
 void
 layer_init(struct Layer *l)

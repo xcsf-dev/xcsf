@@ -30,10 +30,10 @@
 
 /**
  * @brief Initialises a new classifier.
- * @param xcsf The XCSF data structure.
- * @param c The classifier data structure to initialise.
- * @param size The initial set size value.
- * @param time The current EA time.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier data structure to initialise.
+ * @param [in] size The initial set size value.
+ * @param [in] time The current EA time.
  */
 void
 cl_init(const struct XCSF *xcsf, struct Cl *c, const double size,
@@ -54,9 +54,9 @@ cl_init(const struct XCSF *xcsf, struct Cl *c, const double size,
 
 /**
  * @brief Copies condition, action, and prediction structures.
- * @param xcsf The XCSF data structure.
- * @param dest The destination classifier.
- * @param src The source classifier.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dest The destination classifier.
+ * @param [in] src The source classifier.
  */
 void
 cl_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
@@ -75,9 +75,9 @@ cl_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 
 /**
  * @brief Initialises and creates a copy of one classifier from another.
- * @param xcsf The XCSF data structure.
- * @param dest The destination classifier.
- * @param src The source classifier.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dest The destination classifier.
+ * @param [in] src The source classifier.
  */
 void
 cl_init_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
@@ -103,10 +103,10 @@ cl_init_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 
 /**
  * @brief Covers the condition and action for a classifier.
- * @param xcsf The XCSF data structure.
- * @param c The classifier being covered.
- * @param x The input state to cover.
- * @param action The action to cover.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier being covered.
+ * @param [in] x The input state to cover.
+ * @param [in] action The action to cover.
  */
 void
 cl_cover(const struct XCSF *xcsf, struct Cl *c, const double *x,
@@ -121,8 +121,8 @@ cl_cover(const struct XCSF *xcsf, struct Cl *c, const double *x,
 
 /**
  * @brief Initialises random actions, conditions and predictions.
- * @param xcsf The XCSF data structure.
- * @param c The classifier being randomly initialised.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier being randomly initialised.
  */
 void
 cl_rand(const struct XCSF *xcsf, struct Cl *c)
@@ -137,9 +137,9 @@ cl_rand(const struct XCSF *xcsf, struct Cl *c)
 
 /**
  * @brief Returns the deletion vote of a classifier.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to calculate the deletion vote.
- * @param avg_fit The population mean fitness.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to calculate the deletion vote.
+ * @param [in] avg_fit The population mean fitness.
  * @return The classifier's deletion vote.
  */
 double
@@ -153,8 +153,8 @@ cl_del_vote(const struct XCSF *xcsf, const struct Cl *c, const double avg_fit)
 
 /**
  * @brief Returns the accuracy of a classifier.
- * @param xcsf The XCSF data structure.
- * @param c The classifier.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier.
  * @return The classifier's accuracy.
  */
 double
@@ -168,14 +168,15 @@ cl_acc(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 /**
- * @brief Updates a classifier's experience, error, and set size; condition,
- * action, and prediction are updated depending on the knowledge representation.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to update.
- * @param x The input state.
- * @param y The true (payoff) value.
- * @param set_num The number of micro-classifiers in the set.
- * @param cur Whether the payoff is for the current or previous state.
+ * @brief Updates a classifier's experience, error, and set size.
+ * @details Condition, action, and prediction are updated depending on the
+ * knowledge representation.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to update.
+ * @param [in] x The input state.
+ * @param [in] y The true (payoff) value.
+ * @param [in] set_num The number of micro-classifiers in the set.
+ * @param [in] cur Whether the payoff is for the current or previous state.
  */
 void
 cl_update(const struct XCSF *xcsf, struct Cl *c, const double *x,
@@ -200,10 +201,10 @@ cl_update(const struct XCSF *xcsf, struct Cl *c, const double *x,
 
 /**
  * @brief Updates the fitness of a classifier.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to update.
- * @param acc_sum The sum of all accuracies in the set.
- * @param acc The accuracy of the classifier being updated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to update.
+ * @param [in] acc_sum The sum of all accuracies in the set.
+ * @param [in] acc The accuracy of the classifier being updated.
  */
 void
 cl_update_fit(const struct XCSF *xcsf, struct Cl *c, const double acc_sum,
@@ -214,8 +215,8 @@ cl_update_fit(const struct XCSF *xcsf, struct Cl *c, const double acc_sum,
 
 /**
  * @brief Frees the memory used by a classifier.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to free.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to free.
  */
 void
 cl_free(const struct XCSF *xcsf, struct Cl *c)
@@ -229,11 +230,11 @@ cl_free(const struct XCSF *xcsf, struct Cl *c)
 
 /**
  * @brief Prints a classifier.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to print.
- * @param print_cond Whether to print the condition.
- * @param print_act Whether to print the action.
- * @param print_pred Whether to print the prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to print.
+ * @param [in] print_cond Whether to print the condition.
+ * @param [in] print_act Whether to print the action.
+ * @param [in] print_pred Whether to print the prediction.
  */
 void
 cl_print(const struct XCSF *xcsf, const struct Cl *c, const _Bool print_cond,
@@ -262,9 +263,9 @@ cl_print(const struct XCSF *xcsf, const struct Cl *c, const _Bool print_cond,
 
 /**
  * @brief Calculates whether a classifier matches an input.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to test for matching.
- * @param x The input state to be matched.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to test for matching.
+ * @param [in] x The input state to be matched.
  * @return Whether the classifier matches the input.
  */
 _Bool
@@ -280,8 +281,8 @@ cl_match(const struct XCSF *xcsf, struct Cl *c, const double *x)
 
 /**
  * @brief Returns the fraction of observed inputs matched by a classifier.
- * @param xcsf The XCSF data structure.
- * @param c The classifier data structure.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier data structure.
  * @return The fraction of matching inputs.
  */
 double
@@ -296,8 +297,8 @@ cl_mfrac(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Returns whether a classifier matched the most recent input.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to test for matching.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to test for matching.
  * @return Whether the classifier matched the most recent input.
  */
 _Bool
@@ -309,9 +310,9 @@ cl_m(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Computes the current classifier action using the input.
- * @param xcsf The XCSF data structure.
- * @param c The classifier calculating the action.
- * @param x The input state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier calculating the action.
+ * @param [in] x The input state.
  * @return The classifier's action.
  */
 int
@@ -323,9 +324,9 @@ cl_action(const struct XCSF *xcsf, struct Cl *c, const double *x)
 
 /**
  * @brief Computes the current classifier prediction using the input.
- * @param xcsf The XCSF data structure.
- * @param c The classifier making the prediction.
- * @param x The input state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier making the prediction.
+ * @param [in] x The input state.
  * @return The classifier's (payoff) predictions.
  */
 const double *
@@ -337,8 +338,8 @@ cl_predict(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 
 /**
  * @brief Returns whether a classifier is a potential subsumer.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to print.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to print.
  * @return Whether the classifier is an eligible subsumer.
  */
 _Bool
@@ -352,9 +353,9 @@ cl_subsumer(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Returns whether classifier c1 is more general than c2.
- * @param xcsf The XCSF data structure.
- * @param c1 The classifier tested to be more general.
- * @param c2 The classifier tested to be more specific.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The classifier tested to be more general.
+ * @param [in] c2 The classifier tested to be more specific.
  * @return Whether classifier c1 is more general than c2.
  */
 _Bool
@@ -368,8 +369,8 @@ cl_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 
 /**
  * @brief Performs classifier mutation.
- * @param xcsf The XCSF data structure.
- * @param c The classifier being mutated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier being mutated.
  * @return Whether any alterations were made.
  */
 _Bool
@@ -386,9 +387,9 @@ cl_mutate(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Performs classifier crossover.
- * @param xcsf The XCSF data structure.
- * @param c1 The first classifier being crossed.
- * @param c2 The second classifier being crossed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The first classifier being crossed.
+ * @param [in] c2 The second classifier being crossed.
  * @return Whether any alterations were made.
  */
 _Bool
@@ -405,8 +406,8 @@ cl_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 
 /**
  * @brief Returns the size of a classifier's condition.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition size to return.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition size to return.
  * @return The size of the condition.
  */
 double
@@ -417,8 +418,8 @@ cl_cond_size(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Returns the size of a classifier's prediction.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose prediction size to return.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction size to return.
  * @return The size of the prediction.
  */
 double
@@ -428,10 +429,10 @@ cl_pred_size(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 /**
- * @brief Writes a classifier to a binary file.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to save.
- * @param fp Pointer to the file to be written.
+ * @brief Writes a classifier to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to save.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
@@ -456,10 +457,10 @@ cl_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 }
 
 /**
- * @brief Reads a classifier from a binary file.
- * @param xcsf The XCSF data structure.
- * @param c The classifier to load.
- * @param fp Pointer to the file to be read.
+ * @brief Reads a classifier from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to load.
+ * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 size_t

@@ -55,10 +55,10 @@ struct ActVtbl {
 };
 
 /**
- * @brief Writes the action to a binary file.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose action is to be written.
- * @param fp Pointer to the file to be written.
+ * @brief Writes the action to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose action is to be written.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 static inline size_t
@@ -68,10 +68,10 @@ act_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 }
 
 /**
- * @brief Reads the action from a binary file.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose action is to be read.
- * @param fp Pointer to the file to be read.
+ * @brief Reads the action from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose action is to be read.
+ * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 static inline size_t
@@ -82,9 +82,9 @@ act_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 
 /**
  * @brief Returns whether the action of classifier c1 is more general than c2.
- * @param xcsf The XCSF data structure.
- * @param c1 The classifier whose action is tested to be more general.
- * @param c2 The classifier whose action is tested to be more specific.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The classifier whose action is tested to be more general.
+ * @param [in] c2 The classifier whose action is tested to be more specific.
  * @return Whether the action of c1 is more general than c2.
  */
 static inline _Bool
@@ -95,9 +95,9 @@ act_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 
 /**
  * @brief Performs classifier action crossover.
- * @param xcsf The XCSF data structure.
- * @param c1 The first classifier whose action is being crossed.
- * @param c2 The second classifier whose action is being crossed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The first classifier whose action is being crossed.
+ * @param [in] c2 The second classifier whose action is being crossed.
  * @return Whether any alterations were made.
  */
 static inline _Bool
@@ -108,8 +108,8 @@ act_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 
 /**
  * @brief Performs classifier action mutation.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose action is being mutated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose action is being mutated.
  * @return Whether any alterations were made.
  */
 static inline _Bool
@@ -120,9 +120,9 @@ act_mutate(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Computes the current classifier action using the input.
- * @param xcsf The XCSF data structure.
- * @param c The classifier calculating the action.
- * @param x The input state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier calculating the action.
+ * @param [in] x The input state.
  * @return The classifier's action.
  */
 static inline int
@@ -133,9 +133,9 @@ act_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 
 /**
  * @brief Copies the action from one classifier to another.
- * @param xcsf The XCSF data structure.
- * @param dest The destination classifier.
- * @param src The source classifier.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dest The destination classifier.
+ * @param [in] src The source classifier.
  */
 static inline void
 act_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
@@ -145,10 +145,10 @@ act_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 
 /**
  * @brief Generates an action that matches the specified value.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose action is being covered.
- * @param x The input state to cover.
- * @param action The action to cover.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose action is being covered.
+ * @param [in] x The input state to cover.
+ * @param [in] action The action to cover.
  */
 static inline void
 act_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
@@ -159,8 +159,8 @@ act_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
 
 /**
  * @brief Frees the memory used by the classifier action.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose action is to be freed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose action is to be freed.
  */
 static inline void
 act_free(const struct XCSF *xcsf, const struct Cl *c)
@@ -170,8 +170,8 @@ act_free(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Initialises a classifier's action.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose action is to be initialised.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose action is to be initialised.
  */
 static inline void
 act_init(const struct XCSF *xcsf, struct Cl *c)
@@ -181,8 +181,8 @@ act_init(const struct XCSF *xcsf, struct Cl *c)
 
 /**
  * @brief Prints the classifier action.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose action is to be printed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose action is to be printed.
  */
 static inline void
 act_print(const struct XCSF *xcsf, const struct Cl *c)
@@ -192,10 +192,10 @@ act_print(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Updates the classifier's action.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose action is to be updated.
- * @param x The input state.
- * @param y The payoff value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier whose action is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
  */
 static inline void
 act_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,

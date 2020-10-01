@@ -39,8 +39,8 @@ static const int MU_TYPE[N_MU] = {
 
 /**
  * @brief Returns a random connection.
- * @param n_nodes The number of nodes in the graph.
- * @param n_inputs The number of external inputs to the graph.
+ * @param [in] n_nodes The number of nodes in the graph.
+ * @param [in] n_inputs The number of external inputs to the graph.
  */
 static int
 random_connection(const int n_nodes, const int n_inputs)
@@ -55,8 +55,8 @@ random_connection(const int n_nodes, const int n_inputs)
 
 /**
  * @brief Mutates the node functions within a DGP graph.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to be mutated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
 static _Bool
@@ -78,8 +78,8 @@ graph_mutate_functions(const struct XCSF *xcsf, struct Graph *dgp)
 
 /**
  * @brief Mutates the connectivity of a DGP graph.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to be mutated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
 static _Bool
@@ -100,8 +100,8 @@ graph_mutate_connectivity(const struct XCSF *xcsf, struct Graph *dgp)
 
 /**
  * @brief Mutates the number of update cycles performed by a DGP graph.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to be mutated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
 static _Bool
@@ -117,9 +117,9 @@ graph_mutate_cycles(const struct XCSF *xcsf, struct Graph *dgp)
 
 /**
  * @brief Returns the result from applying a specified activation function.
- * @param function The activation function to apply.
- * @param inputs The input to the activation function.
- * @param K The number of inputs to the activation function.
+ * @param [in] function The activation function to apply.
+ * @param [in] inputs The input to the activation function.
+ * @param [in] K The number of inputs to the activation function.
  * @return The result from applying the activation function.
  */
 static double
@@ -152,7 +152,7 @@ node_activate(int function, const double *inputs, const int K)
 
 /**
  * @brief Returns the name of a specified node function.
- * @param function The node function.
+ * @param [in] function The node function.
  * @return The name of the node function.
  */
 static const char *
@@ -173,9 +173,9 @@ function_string(const int function)
 
 /**
  * @brief Performs a synchronous update.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to update.
- * @param inputs The inputs to the graph.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to update.
+ * @param [in] inputs The inputs to the graph.
  */
 static void
 synchronous_update(const struct XCSF *xcsf, const struct Graph *dgp,
@@ -198,9 +198,9 @@ synchronous_update(const struct XCSF *xcsf, const struct Graph *dgp,
 
 /**
  * @brief Initialises a new DGP graph.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to initialise.
- * @param N The number of nodes in the graph.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to initialise.
+ * @param [in] N The number of nodes in the graph.
  */
 void
 graph_init(const struct XCSF *xcsf, struct Graph *dgp, const int N)
@@ -220,9 +220,9 @@ graph_init(const struct XCSF *xcsf, struct Graph *dgp, const int N)
 
 /**
  * @brief Copies a DGP graph.
- * @param xcsf The XCSF data structure.
- * @param dest The destination DGP graph.
- * @param src The source DGP graph.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dest The destination DGP graph.
+ * @param [in] src The source DGP graph.
  */
 void
 graph_copy(const struct XCSF *xcsf, struct Graph *dest, const struct Graph *src)
@@ -240,9 +240,9 @@ graph_copy(const struct XCSF *xcsf, struct Graph *dest, const struct Graph *src)
 
 /**
  * @brief Returns the current state of a specified node in the graph.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to output.
- * @param IDX Which node within the graph to output.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to output.
+ * @param [in] IDX Which node within the graph to output.
  * @return The current state of the specified node.
  */
 double
@@ -254,8 +254,8 @@ graph_output(const struct XCSF *xcsf, const struct Graph *dgp, const int IDX)
 
 /**
  * @brief Resets the states to their initial state.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to reset.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to reset.
  */
 void
 graph_reset(const struct XCSF *xcsf, const struct Graph *dgp)
@@ -268,8 +268,8 @@ graph_reset(const struct XCSF *xcsf, const struct Graph *dgp)
 
 /**
  * @brief Randomises a specified DGP graph.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to randomise.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to randomise.
  */
 void
 graph_rand(const struct XCSF *xcsf, struct Graph *dgp)
@@ -287,9 +287,9 @@ graph_rand(const struct XCSF *xcsf, struct Graph *dgp)
 
 /**
  * @brief Updates a DGP graph T cycles.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to update.
- * @param inputs The inputs to the graph.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to update.
+ * @param [in] inputs The inputs to the graph.
  */
 void
 graph_update(const struct XCSF *xcsf, const struct Graph *dgp,
@@ -305,8 +305,8 @@ graph_update(const struct XCSF *xcsf, const struct Graph *dgp,
 
 /**
  * @brief Prints a DGP graph.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to print.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to print.
  */
 void
 graph_print(const struct XCSF *xcsf, const struct Graph *dgp)
@@ -326,8 +326,8 @@ graph_print(const struct XCSF *xcsf, const struct Graph *dgp)
 
 /**
  * @brief Frees a DGP graph.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to be freed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to be freed.
  */
 void
 graph_free(const struct XCSF *xcsf, const struct Graph *dgp)
@@ -344,8 +344,8 @@ graph_free(const struct XCSF *xcsf, const struct Graph *dgp)
 
 /**
  * @brief Mutates a specified DGP graph.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to be mutated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
 _Bool
@@ -367,9 +367,9 @@ graph_mutate(const struct XCSF *xcsf, struct Graph *dgp)
 
 /**
  * @brief Dummy function since crossover is not performed on DGP graphs.
- * @param xcsf The XCSF data structure.
- * @param dgp1 The first DGP graph to perform crossover.
- * @param dgp2 The second DGP graph to perform crossover.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp1 The first DGP graph to perform crossover.
+ * @param [in] dgp2 The second DGP graph to perform crossover.
  * @return False.
  */
 _Bool
@@ -382,10 +382,10 @@ graph_crossover(const struct XCSF *xcsf, struct Graph *dgp1, struct Graph *dgp2)
 }
 
 /**
- * @brief Writes DGP graph to a binary file.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to save.
- * @param fp Pointer to the file to be written.
+ * @brief Writes DGP graph to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to save.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
@@ -405,10 +405,10 @@ graph_save(const struct XCSF *xcsf, const struct Graph *dgp, FILE *fp)
 }
 
 /**
- * @brief Reads DGP graph from a binary file.
- * @param xcsf The XCSF data structure.
- * @param dgp The DGP graph to load.
- * @param fp Pointer to the file to be written.
+ * @brief Reads DGP graph from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dgp The DGP graph to load.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t

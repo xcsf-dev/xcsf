@@ -31,12 +31,12 @@
 
 /**
  * @brief Initialises offspring error and fitness.
- * @param xcsf The XCSF data structure.
- * @param c1p First parent classifier.
- * @param c2p Second parent classifier.
- * @param c1 The first offspring classifier to initialise.
- * @param c2 The second offspring classifier to initialise.
- * @param cmod Whether crossover modified the offspring.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1p First parent classifier.
+ * @param [in] c2p Second parent classifier.
+ * @param [in] c1 The first offspring classifier to initialise.
+ * @param [in] c2 The second offspring classifier to initialise.
+ * @param [in] cmod Whether crossover modified the offspring.
  */
 static void
 ea_init_offspring(const struct XCSF *xcsf, const struct Cl *c1p,
@@ -60,11 +60,11 @@ ea_init_offspring(const struct XCSF *xcsf, const struct Cl *c1p,
 
 /**
  * @brief Performs evolutionary algorithm subsumption.
- * @param xcsf The XCSF data structure.
- * @param c The offspring classifier to attempt to subsume.
- * @param c1p First parent classifier.
- * @param c2p Second parent classifier.
- * @param set The set in which the EA is being run.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The offspring classifier to attempt to subsume.
+ * @param [in] c1p First parent classifier.
+ * @param [in] c2p Second parent classifier.
+ * @param [in] set The set in which the EA is being run.
  */
 static void
 ea_subsume(struct XCSF *xcsf, struct Cl *c, struct Cl *c1p, struct Cl *c2p,
@@ -104,13 +104,13 @@ ea_subsume(struct XCSF *xcsf, struct Cl *c, struct Cl *c1p, struct Cl *c2p,
 
 /**
  * @brief Adds offspring to the population.
- * @param xcsf The XCSF data structure.
- * @param set The set in which the EA is being run.
- * @param c1p First parent classifier.
- * @param c2p Second parent classifier.
- * @param c1 The offspring classifier to add.
- * @param cmod Whether crossover modified the offspring.
- * @param mmod Whether mutation modified the offspring.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set in which the EA is being run.
+ * @param [in] c1p First parent classifier.
+ * @param [in] c2p Second parent classifier.
+ * @param [in] c1 The offspring classifier to add.
+ * @param [in] cmod Whether crossover modified the offspring.
+ * @param [in] mmod Whether mutation modified the offspring.
  */
 static void
 ea_add(struct XCSF *xcsf, const struct Set *set, struct Cl *c1p, struct Cl *c2p,
@@ -129,9 +129,9 @@ ea_add(struct XCSF *xcsf, const struct Set *set, struct Cl *c1p, struct Cl *c2p,
 
 /**
  * @brief Selects a classifier from the set via roulete wheel.
- * @param xcsf The XCSF data structure.
- * @param set The set to select from.
- * @param fit_sum The sum of all the fitnesses in the set.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to select from.
+ * @param [in] fit_sum The sum of all the fitnesses in the set.
  * @return A pointer to the selected classifier.
  */
 static struct Cl *
@@ -151,8 +151,8 @@ ea_select_rw(const struct XCSF *xcsf, const struct Set *set,
 
 /**
  * @brief Selects a classifier from the set via tournament.
- * @param xcsf The XCSF data structure.
- * @param set The set to select from.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to select from.
  * @return A pointer to the selected classifier.
  */
 static struct Cl *
@@ -174,10 +174,10 @@ ea_select_tournament(const struct XCSF *xcsf, const struct Set *set)
 
 /**
  * @brief Selects two parents.
- * @param xcsf The XCSF data structure.
- * @param set The set in which the EA is being run.
- * @param c1p First parent classifier (set by this function).
- * @param c2p Second parent classifier (set by this function).
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set in which the EA is being run.
+ * @param [out] c1p First selected parent classifier.
+ * @param [out] c2p Second selected parent classifier.
  */
 static void
 ea_select(const struct XCSF *xcsf, const struct Set *set, struct Cl **c1p,
@@ -195,8 +195,8 @@ ea_select(const struct XCSF *xcsf, const struct Set *set, struct Cl **c1p,
 
 /**
  * @brief Executes the evolutionary algorithm (EA).
- * @param xcsf The XCSF data structure.
- * @param set The set in which to run the EA.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set in which to run the EA.
  */
 void
 ea(struct XCSF *xcsf, const struct Set *set)

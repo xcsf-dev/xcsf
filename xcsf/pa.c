@@ -27,7 +27,7 @@
 
 /**
  * @brief Resets the prediction array to zero.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 pa_reset(const struct XCSF *xcsf)
@@ -40,7 +40,7 @@ pa_reset(const struct XCSF *xcsf)
 
 /**
  * @brief Initialises the prediction array.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 pa_init(struct XCSF *xcsf)
@@ -54,8 +54,8 @@ pa_init(struct XCSF *xcsf)
  * @brief Builds the prediction array for the specified input.
  * @details Calculates the match set mean fitness weighted prediction for each
  * action. For supervised learning n_actions=1; reinforcement learning y_dim=1.
- * @param xcsf The XCSF data structure.
- * @param x The input state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] x The input state.
  */
 void
 pa_build(const struct XCSF *xcsf, const double *x)
@@ -111,7 +111,7 @@ pa_build(const struct XCSF *xcsf, const double *x)
 
 /**
  * @brief Returns the best action in the prediction array.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return The best action.
  */
 int
@@ -122,7 +122,7 @@ pa_best_action(const struct XCSF *xcsf)
 
 /**
  * @brief Returns a random action from the prediction array.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return A random action.
  */
 int
@@ -137,7 +137,7 @@ pa_rand_action(const struct XCSF *xcsf)
 
 /**
  * @brief Returns the highest value in the prediction array.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return The highest value in the prediction array.
  */
 double
@@ -149,8 +149,8 @@ pa_best_val(const struct XCSF *xcsf)
 
 /**
  * @brief Returns the value of a specified action in the prediction array.
- * @param xcsf The XCSF data structure.
- * @param action The specified action.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] action The specified action.
  * @return The value of the action in the prediction array.
  */
 double
@@ -165,7 +165,7 @@ pa_val(const struct XCSF *xcsf, const int action)
 
 /**
  * @brief Frees the prediction array.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 pa_free(const struct XCSF *xcsf)

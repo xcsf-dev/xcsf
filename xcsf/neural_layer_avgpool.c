@@ -28,7 +28,7 @@
 
 /**
  * @brief Allocate memory used by an average pooling layer.
- * @param l The layer to be allocated memory.
+ * @param [in] l The layer to be allocated memory.
  */
 static void
 malloc_layer_arrays(struct Layer *l)
@@ -44,10 +44,10 @@ malloc_layer_arrays(struct Layer *l)
 
 /**
  * @brief Creates and initialises an average pooling layer.
- * @param xcsf The XCSF data structure.
- * @param h The input height.
- * @param w The input width.
- * @param c The number of input channels.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] h The input height.
+ * @param [in] w The input width.
+ * @param [in] c The number of input channels.
  * @return A pointer to the new layer.
  */
 struct Layer *
@@ -74,8 +74,8 @@ neural_layer_avgpool_init(const struct XCSF *xcsf, const int h, const int w,
 
 /**
  * @brief Initialises and copies one average pooling layer from another.
- * @param xcsf The XCSF data structure.
- * @param src The source layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] src The source layer.
  * @return A pointer to the new layer.
  */
 struct Layer *
@@ -105,8 +105,8 @@ neural_layer_avgpool_copy(const struct XCSF *xcsf, const struct Layer *src)
 
 /**
  * @brief Free memory used by an average pooling layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to be freed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to be freed.
  */
 void
 neural_layer_avgpool_free(const struct XCSF *xcsf, const struct Layer *l)
@@ -118,8 +118,8 @@ neural_layer_avgpool_free(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Dummy function since average pooling layers have no weights.
- * @param xcsf The XCSF data structure.
- * @param l An average pooling layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l An average pooling layer.
  */
 void
 neural_layer_avgpool_rand(const struct XCSF *xcsf, struct Layer *l)
@@ -130,9 +130,9 @@ neural_layer_avgpool_rand(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Forward propagates an average pooling layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to forward propagate.
- * @param input The input to the layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to forward propagate.
+ * @param [in] input The input to the layer.
  */
 void
 neural_layer_avgpool_forward(const struct XCSF *xcsf, const struct Layer *l,
@@ -151,10 +151,10 @@ neural_layer_avgpool_forward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Backward propagates an average pooling layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to backward propagate.
- * @param input The input to the layer.
- * @param delta The previous layer's error (set by this function).
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to backward propagate.
+ * @param [in] input The input to the layer.
+ * @param [out] delta The previous layer's error.
  */
 void
 neural_layer_avgpool_backward(const struct XCSF *xcsf, const struct Layer *l,
@@ -174,8 +174,8 @@ neural_layer_avgpool_backward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Dummy function since average pooling layers have no weights.
- * @param xcsf The XCSF data structure.
- * @param l An average pooling layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l An average pooling layer.
  */
 void
 neural_layer_avgpool_update(const struct XCSF *xcsf, const struct Layer *l)
@@ -186,8 +186,8 @@ neural_layer_avgpool_update(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Dummy function since average pooling layers cannot be mutated.
- * @param xcsf The XCSF data structure.
- * @param l An average pooling layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l An average pooling layer.
  * @return False.
  */
 _Bool
@@ -200,9 +200,9 @@ neural_layer_avgpool_mutate(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Resizes an avg pooling layer if the previous layer has changed size.
- * @param xcsf The XCSF data structure.
- * @param l The layer to resize.
- * @param prev The layer previous to the one being resized.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to resize.
+ * @param [in] prev The layer previous to the one being resized.
  */
 void
 neural_layer_avgpool_resize(const struct XCSF *xcsf, struct Layer *l,
@@ -225,8 +225,8 @@ neural_layer_avgpool_resize(const struct XCSF *xcsf, struct Layer *l,
 
 /**
  * @brief Returns the output from an average pooling layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer whose output to return.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer whose output to return.
  * @return The layer output.
  */
 double *
@@ -238,9 +238,9 @@ neural_layer_avgpool_output(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Prints an average pooling layer.
- * @param xcsf The XCSF data structure.
- * @param l The layer to print.
- * @param print_weights Whether to print the values of the weights and biases.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to print.
+ * @param [in] print_weights Whether to print the values of weights and biases.
  */
 void
 neural_layer_avgpool_print(const struct XCSF *xcsf, const struct Layer *l,
@@ -253,10 +253,10 @@ neural_layer_avgpool_print(const struct XCSF *xcsf, const struct Layer *l,
 }
 
 /**
- * @brief Writes an average pooling layer to a binary file.
- * @param xcsf The XCSF data structure.
- * @param l The layer to save.
- * @param fp Pointer to the file to be written.
+ * @brief Writes an average pooling layer to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to save.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
@@ -278,10 +278,10 @@ neural_layer_avgpool_save(const struct XCSF *xcsf, const struct Layer *l,
 }
 
 /**
- * @brief Reads an average pooling layer from a binary file.
- * @param xcsf The XCSF data structure.
- * @param l The layer to load.
- * @param fp Pointer to the file to be read.
+ * @brief Reads an average pooling layer from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] l The layer to load.
+ * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 size_t

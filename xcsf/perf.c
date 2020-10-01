@@ -25,10 +25,10 @@
 
 /**
  * @brief Displays the current training and test performance.
- * @param xcsf The XCSF data structure.
- * @param error The current training error.
- * @param terror The current testing error.
- * @param trial The number of learning trials executed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] error The current training error.
+ * @param [in] terror The current testing error.
+ * @param [in] trial The number of learning trials executed.
  */
 void
 perf_print(const struct XCSF *xcsf, double *error, double *terror,

@@ -40,9 +40,9 @@ rand_init(void);
 
 /**
  * @brief Returns a float clamped within the specified range.
- * @param a The value to be clamped.
- * @param min Minimum value.
- * @param max Maximum value.
+ * @param [in] a The value to be clamped.
+ * @param [in] min Minimum value.
+ * @param [in] max Maximum value.
  * @return The clamped number.
  */
 static inline double
@@ -53,9 +53,9 @@ clamp(const double a, const double min, const double max)
 
 /**
  * @brief Returns an integer clamped within the specified range.
- * @param a The value to be clamped.
- * @param min Minimum value.
- * @param max Maximum value.
+ * @param [in] a The value to be clamped.
+ * @param [in] min Minimum value.
+ * @param [in] max Maximum value.
  * @return The clamped number.
  */
 static inline int
@@ -66,8 +66,8 @@ clamp_int(const int a, const int min, const int max)
 
 /**
  * @brief Returns the index of the largest element in vector X.
- * @param X Vector with N elements.
- * @param N The number of elements in vector X.
+ * @param [in] X Vector with N elements.
+ * @param [in] N The number of elements in vector X.
  * @return The index of the largest element.
  */
 static inline int

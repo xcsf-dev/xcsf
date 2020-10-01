@@ -29,10 +29,9 @@
 
 /**
  * @brief Finds a rule in the population that never matches an input.
- * @param xcsf The XCSF data structure.
- * @param del A pointer to the classifier to be deleted (set by this function).
- * @param delprev A pointer to the rule previous to the one being deleted (set
- * by this function).
+ * @param [in] xcsf The XCSF data structure.
+ * @param [out] del A pointer to the classifier to be deleted.
+ * @param [out] delprev A pointer to the rule previous to the one being deleted.
  */
 static void
 clset_pop_never_match(const struct XCSF *xcsf, struct Clist **del,
@@ -57,10 +56,9 @@ clset_pop_never_match(const struct XCSF *xcsf, struct Clist **del,
  * selected using roulette wheel selection with the deletion vote and the one
  * with the largest condition + prediction size is chosen. For fixed-length
  * representations, the effect is the same as one roulete spin.
- * @param xcsf The XCSF data structure.
- * @param del A pointer to the rule to be deleted (set by this function).
- * @param delprev A pointer to the rule previous to the one being deleted (set
- * by this function).
+ * @param [in] xcsf The XCSF data structure.
+ * @param [out] del A pointer to the rule to be deleted.
+ * @param [out] delprev A pointer to the rule previous to the one being deleted.
  */
 static void
 clset_pop_roulette(const struct XCSF *xcsf, struct Clist **del,
@@ -99,7 +97,7 @@ clset_pop_roulette(const struct XCSF *xcsf, struct Clist **del,
 
 /**
  * @brief Deletes a single classifier from the population set.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 clset_pop_del(struct XCSF *xcsf)
@@ -130,8 +128,8 @@ clset_pop_del(struct XCSF *xcsf)
 
 /**
  * @brief Checks whether each action is covered by the match set.
- * @param xcsf The XCSF data structure.
- * @param act_covered Array of action coverage flags (set by this function).
+ * @param [in] xcsf The XCSF data structure.
+ * @param [out] act_covered Array of action coverage flags.
  * @return Whether all actions are covered.
  */
 static _Bool
@@ -153,8 +151,8 @@ clset_action_coverage(const struct XCSF *xcsf, _Bool *act_covered)
 
 /**
  * @brief Ensures all possible actions are covered by the match set.
- * @param xcsf The XCSF data structure.
- * @param x The input state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] x The input state.
  */
 static void
 clset_cover(struct XCSF *xcsf, const double *x)
@@ -199,8 +197,8 @@ clset_cover(struct XCSF *xcsf, const double *x)
 
 /**
  * @brief Updates the fitness of classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to update.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to update.
  */
 static void
 clset_update_fit(const struct XCSF *xcsf, const struct Set *set)
@@ -224,8 +222,8 @@ clset_update_fit(const struct XCSF *xcsf, const struct Set *set)
 
 /**
  * @brief Performs set subsumption.
- * @param xcsf The XCSF data structure.
- * @param set The set to perform subsumption.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to perform subsumption.
  */
 static void
 clset_subsumption(struct XCSF *xcsf, struct Set *set)
@@ -263,7 +261,7 @@ clset_subsumption(struct XCSF *xcsf, struct Set *set)
 
 /**
  * @brief Calculates the total time stamps of classifiers in the set.
- * @param set The set to calculate the total time.
+ * @param [in] set The set to calculate the total time.
  * @return The total time of classifiers in the set.
  */
 static double
@@ -280,7 +278,7 @@ clset_total_time(const struct Set *set)
 
 /**
  * @brief Initialises a new population of random classifiers.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 clset_pop_init(struct XCSF *xcsf)
@@ -297,7 +295,7 @@ clset_pop_init(struct XCSF *xcsf)
 
 /**
  * @brief Initialises a new set.
- * @param set The set to be initialised.
+ * @param [in] set The set to be initialised.
  */
 void
 clset_init(struct Set *set)
@@ -309,7 +307,7 @@ clset_init(struct Set *set)
 
 /**
  * @brief Enforces the maximum population size limit.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 clset_pop_enforce_limit(struct XCSF *xcsf)
@@ -321,11 +319,11 @@ clset_pop_enforce_limit(struct XCSF *xcsf)
 
 /**
  * @brief Constructs the match set.
- * @param xcsf The XCSF data structure.
- * @param x The input state.
  * @details Processes the matching conditions for each classifier in the
  * population. If a classifier matches, its action is updated and it is added
  * to the match set. Covering is performed if any actions are unrepresented.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] x The input state.
  */
 void
 clset_match(struct XCSF *xcsf, const double *x)
@@ -372,8 +370,8 @@ clset_match(struct XCSF *xcsf, const double *x)
 
 /**
  * @brief Constructs the action set from the match set.
- * @param xcsf The XCSF data structure.
- * @param action The action used to build the set.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] action The action used to build the set.
  */
 void
 clset_action(struct XCSF *xcsf, const int action)
@@ -391,8 +389,8 @@ clset_action(struct XCSF *xcsf, const int action)
 
 /**
  * @brief Adds a classifier to the set.
- * @param set The set to add the classifier.
- * @param c The classifier to add.
+ * @param [in] set The set to add the classifier.
+ * @param [in] c The classifier to add.
  */
 void
 clset_add(struct Set *set, struct Cl *c)
@@ -413,11 +411,11 @@ clset_add(struct Set *set, struct Cl *c)
 
 /**
  * @brief Provides reinforcement to the set and performs set subsumption.
- * @param xcsf The XCSF data structure.
- * @param set The set to provide reinforcement.
- * @param x The input state.
- * @param y The payoff from the environment.
- * @param cur Whether the update is for the current or previous state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to provide reinforcement.
+ * @param [in] x The input state.
+ * @param [in] y The payoff from the environment.
+ * @param [in] cur Whether the update is for the current or previous state.
  */
 void
 clset_update(struct XCSF *xcsf, struct Set *set, const double *x,
@@ -449,7 +447,7 @@ clset_update(struct XCSF *xcsf, struct Set *set, const double *x,
 
 /**
  * @brief Removes classifiers with 0 numerosity from the set.
- * @param set The set to validate.
+ * @param [in] set The set to validate.
  */
 void
 clset_validate(struct Set *set)
@@ -480,11 +478,11 @@ clset_validate(struct Set *set)
 
 /**
  * @brief Prints the classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to print.
- * @param print_cond Whether to print the conditions.
- * @param print_act Whether to print the actions.
- * @param print_pred Whether to print the predictions.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to print.
+ * @param [in] print_cond Whether to print the conditions.
+ * @param [in] print_act Whether to print the actions.
+ * @param [in] print_pred Whether to print the predictions.
  */
 void
 clset_print(const struct XCSF *xcsf, const struct Set *set,
@@ -500,8 +498,8 @@ clset_print(const struct XCSF *xcsf, const struct Set *set,
 
 /**
  * @brief Sets the time stamps for classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to update the time stamps.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to update the time stamps.
  */
 void
 clset_set_times(const struct XCSF *xcsf, const struct Set *set)
@@ -515,7 +513,7 @@ clset_set_times(const struct XCSF *xcsf, const struct Set *set)
 
 /**
  * @brief Calculates the total fitness of classifiers in the set.
- * @param set The set to calculate the total fitness.
+ * @param [in] set The set to calculate the total fitness.
  * @return The total fitness of classifiers in the set.
  */
 double
@@ -532,7 +530,7 @@ clset_total_fit(const struct Set *set)
 
 /**
  * @brief Calculates the mean time stamp of classifiers in the set.
- * @param set The set to calculate the mean time.
+ * @param [in] set The set to calculate the mean time.
  * @return The mean time of classifiers in the set.
  */
 double
@@ -543,7 +541,7 @@ clset_mean_time(const struct Set *set)
 
 /**
  * @brief Frees the set, but not the classifiers.
- * @param set The set to free.
+ * @param [in] set The set to free.
  */
 void
 clset_free(struct Set *set)
@@ -560,8 +558,8 @@ clset_free(struct Set *set)
 
 /**
  * @brief Frees the set and the classifiers.
- * @param xcsf The XCSF data structure.
- * @param set The set to free.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to free.
  */
 void
 clset_kill(const struct XCSF *xcsf, struct Set *set)
@@ -578,9 +576,9 @@ clset_kill(const struct XCSF *xcsf, struct Set *set)
 }
 
 /**
- * @brief Writes the population set to a binary file.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the file to be written.
+ * @brief Writes the population set to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
@@ -598,9 +596,9 @@ clset_pop_save(const struct XCSF *xcsf, FILE *fp)
 }
 
 /**
- * @brief Reads the population set from a binary file.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the file to be read.
+ * @brief Reads the population set from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 size_t
@@ -622,8 +620,8 @@ clset_pop_load(struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Calculates the mean condition size of classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean condition size.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to calculate the mean condition size.
  * @return The mean condition size of classifiers in the set.
  */
 double
@@ -642,8 +640,8 @@ clset_mean_cond_size(const struct XCSF *xcsf, const struct Set *set)
 
 /**
  * @brief Calculates the mean prediction size of classifiers in the set.
- * @param xcsf The XCSF data structure.
- * @param set The set to calculate the mean prediction size.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] set The set to calculate the mean prediction size.
  * @return The mean prediction size of classifiers in the set.
  */
 double
@@ -663,7 +661,7 @@ clset_mean_pred_size(const struct XCSF *xcsf, const struct Set *set)
 /**
  * @brief Returns the fraction of inputs matched by the most general rule with
  * error below EPS_0. If no rules below EPS_0, the lowest error rule is used.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return The fraction of inputs matched.
  */
 double

@@ -31,7 +31,7 @@
 
 /**
  * @brief Initialises XCSF with an empty population.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 xcsf_init(struct XCSF *xcsf)
@@ -47,7 +47,7 @@ xcsf_init(struct XCSF *xcsf)
 
 /**
  * @brief Frees XCSF population sets.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 xcsf_free(struct XCSF *xcsf)
@@ -63,10 +63,10 @@ xcsf_free(struct XCSF *xcsf)
 
 /**
  * @brief Prints the current XCSF population.
- * @param xcsf The XCSF data structure.
- * @param print_cond Whether to print condition structures.
- * @param print_act Whether to print action structures.
- * @param print_pred Whether to print prediction structures.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] print_cond Whether to print condition structures.
+ * @param [in] print_act Whether to print action structures.
+ * @param [in] print_pred Whether to print prediction structures.
  */
 void
 xcsf_print_pop(const struct XCSF *xcsf, const _Bool print_cond,
@@ -76,9 +76,9 @@ xcsf_print_pop(const struct XCSF *xcsf, const _Bool print_cond,
 }
 
 /**
- * @brief Writes the current state of XCSF to a binary file.
- * @param xcsf The XCSF data structure.
- * @param filename The name of the output file.
+ * @brief Writes the current state of XCSF to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] filename The name of the output file.
  * @return The total number of elements written.
  */
 size_t
@@ -100,9 +100,9 @@ xcsf_save(const struct XCSF *xcsf, const char *filename)
 }
 
 /**
- * @brief Reads the state of XCSF from a binary file.
- * @param xcsf The XCSF data structure.
- * @param filename The name of the input file.
+ * @brief Reads the state of XCSF from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] filename The name of the input file.
  * @return The total number of elements read.
  */
 size_t
@@ -142,7 +142,7 @@ xcsf_load(struct XCSF *xcsf, const char *filename)
 /**
  * @brief Inserts a new hidden layer before the output layer within all
  * prediction neural networks in the population.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 xcsf_pred_expand(const struct XCSF *xcsf)
@@ -160,9 +160,9 @@ xcsf_pred_expand(const struct XCSF *xcsf)
 
 /**
  * @brief Switches from autoencoding to classification.
- * @param xcsf The XCSF data structure.
- * @param y_dim The output dimension (i.e., the number of classes).
- * @param n_del The number of hidden layers to remove.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] y_dim The output dimension (i.e., the number of classes).
+ * @param [in] n_del The number of hidden layers to remove.
  */
 void
 xcsf_ae_to_classifier(struct XCSF *xcsf, const int y_dim, const int n_del)
@@ -186,7 +186,7 @@ xcsf_ae_to_classifier(struct XCSF *xcsf, const int y_dim, const int n_del)
 
 /**
  * @brief Stores the current population.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 xcsf_store_pop(struct XCSF *xcsf)
@@ -204,7 +204,7 @@ xcsf_store_pop(struct XCSF *xcsf)
 
 /**
  * @brief Retrieves the previously stored population.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 xcsf_retrieve_pop(struct XCSF *xcsf)

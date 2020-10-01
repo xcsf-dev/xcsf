@@ -52,10 +52,10 @@ struct PredVtbl {
 };
 
 /**
- * @brief Writes the prediction to a binary file.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose prediction is to be written.
- * @param fp Pointer to the file to be written.
+ * @brief Writes the prediction to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be written.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 static inline size_t
@@ -65,10 +65,10 @@ pred_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 }
 
 /**
- * @brief Reads the prediction from a binary file.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose prediction is to be read.
- * @param fp Pointer to the file to be read.
+ * @brief Reads the prediction from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be read.
+ * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 static inline size_t
@@ -79,8 +79,8 @@ pred_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 
 /**
  * @brief Returns the size of the classifier prediction.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose prediction size to return.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction size to return.
  * @return The size of the prediction.
  */
 static inline double
@@ -91,9 +91,9 @@ pred_size(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Performs classifier prediction crossover.
- * @param xcsf The XCSF data structure.
- * @param c1 The first classifier whose prediction is being crossed.
- * @param c2 The second classifier whose prediction is being crossed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The first classifier whose prediction is being crossed.
+ * @param [in] c2 The second classifier whose prediction is being crossed.
  * @return Whether any alterations were made.
  */
 static inline _Bool
@@ -105,8 +105,8 @@ pred_crossover(const struct XCSF *xcsf, const struct Cl *c1,
 
 /**
  * @brief Performs classifier prediction mutation.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose prediction is being mutated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is being mutated.
  * @return Whether any alterations were made.
  */
 static inline _Bool
@@ -117,9 +117,9 @@ pred_mutate(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Computes the current classifier prediction using the input.
- * @param xcsf The XCSF data structure.
- * @param c The classifier calculating the prediction.
- * @param x The input state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier calculating the prediction.
+ * @param [in] x The input state.
  */
 static inline void
 pred_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
@@ -129,9 +129,9 @@ pred_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 
 /**
  * @brief Copies the prediction from one classifier to another.
- * @param xcsf The XCSF data structure.
- * @param dest The destination classifier.
- * @param src The source classifier.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dest The destination classifier.
+ * @param [in] src The source classifier.
  */
 static inline void
 pred_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
@@ -141,8 +141,8 @@ pred_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 
 /**
  * @brief Frees the memory used by the classifier prediction.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose prediction is to be freed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be freed.
  */
 static inline void
 pred_free(const struct XCSF *xcsf, const struct Cl *c)
@@ -152,8 +152,8 @@ pred_free(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Initialises a classifier's prediction.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose prediction is to be initialised.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be initialised.
  */
 static inline void
 pred_init(const struct XCSF *xcsf, struct Cl *c)
@@ -163,8 +163,8 @@ pred_init(const struct XCSF *xcsf, struct Cl *c)
 
 /**
  * @brief Prints the classifier prediction.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose prediction is to be printed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be printed.
  */
 static inline void
 pred_print(const struct XCSF *xcsf, const struct Cl *c)
@@ -174,11 +174,11 @@ pred_print(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Updates the classifier's prediction.
- * @details Assumes the prediction has been computed for the current state.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose prediction is to be updated.
- * @param x The input state.
- * @param y The payoff value.
+ * @pre The prediction has been computed for the current state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier whose prediction is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
  */
 static inline void
 pred_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
@@ -189,9 +189,9 @@ pred_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
 
 /**
  * @brief Prepares the input state for least squares computation.
- * @param xcsf The XCSF data structure.
- * @param x The input state.
- * @param tmp_input The transformed input (set by this function).
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] x The input state.
+ * @param [out] tmp_input The transformed input.
  */
 static inline void
 pred_transform_input(const struct XCSF *xcsf, const double *x,

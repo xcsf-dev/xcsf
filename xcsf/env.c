@@ -27,8 +27,8 @@
 
 /**
  * @brief Initialises a built-in problem environment.
- * @param xcsf The XCSF data structure.
- * @param argv The command line arguments.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] argv The command line arguments.
  */
 void
 env_init(struct XCSF *xcsf, char **argv)

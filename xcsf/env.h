@@ -44,7 +44,7 @@ struct EnvVtbl {
 
 /**
  * @brief Returns whether the environment is in a terminal state.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return Whether the environment is in a terminal state.
  */
 static inline _Bool
@@ -55,7 +55,7 @@ env_is_done(const struct XCSF *xcsf)
 
 /**
  * @brief Returns whether the environment is a multistep problem.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return Whether the environment is multistep.
  */
 static inline _Bool
@@ -66,8 +66,8 @@ env_multistep(const struct XCSF *xcsf)
 
 /**
  * @brief Executes the specified action and returns the payoff.
- * @param xcsf The XCSF data structure.
- * @param action The action to perform.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] action The action to perform.
  * @return The payoff from performing the action.
  */
 static inline double
@@ -78,7 +78,7 @@ env_execute(const struct XCSF *xcsf, const int action)
 
 /**
  * @brief Returns the maximum payoff value possible in the environment.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return The maximum payoff.
  */
 static inline double
@@ -89,7 +89,7 @@ env_max_payoff(const struct XCSF *xcsf)
 
 /**
  * @brief Returns the current environment perceptions.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return The current perceptions.
  */
 static inline const double *
@@ -100,7 +100,7 @@ env_get_state(const struct XCSF *xcsf)
 
 /**
  * @brief Frees the environment.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static inline void
 env_free(const struct XCSF *xcsf)
@@ -110,7 +110,7 @@ env_free(const struct XCSF *xcsf)
 
 /**
  * @brief Resets the environment.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static inline void
 env_reset(const struct XCSF *xcsf)

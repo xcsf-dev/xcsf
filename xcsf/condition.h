@@ -56,10 +56,10 @@ struct CondVtbl {
 };
 
 /**
- * @brief Writes the condition to a binary file.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is to be written.
- * @param fp Pointer to the file to be written.
+ * @brief Writes the condition to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be written.
+ * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 static inline size_t
@@ -69,10 +69,10 @@ cond_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 }
 
 /**
- * @brief Reads the condition from a binary file.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is to be read.
- * @param fp Pointer to the file to be read.
+ * @brief Reads the condition from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be read.
+ * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 static inline size_t
@@ -83,8 +83,8 @@ cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 
 /**
  * @brief Returns the size of the classifier condition.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition size to return.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition size to return.
  * @return The size of the condition.
  */
 static inline double
@@ -95,10 +95,10 @@ cond_size(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Updates the classifier's condition.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is to be updated.
- * @param x The input state.
- * @param y The payoff value.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier whose condition is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
  */
 static inline void
 cond_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
@@ -109,9 +109,9 @@ cond_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
 
 /**
  * @brief Performs classifier condition crossover.
- * @param xcsf The XCSF data structure.
- * @param c1 The first classifier whose condition is being crossed.
- * @param c2 The second classifier whose condition is being crossed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The first classifier whose condition is being crossed.
+ * @param [in] c2 The second classifier whose condition is being crossed.
  * @return Whether any alterations were made.
  */
 static inline _Bool
@@ -124,9 +124,9 @@ cond_crossover(const struct XCSF *xcsf, const struct Cl *c1,
 /**
  * @brief Returns whether the condition of classifier c1 is more general than
  * c2.
- * @param xcsf The XCSF data structure.
- * @param c1 The classifier whose condition is tested to be more general.
- * @param c2 The classifier whose condition is tested to be more specific.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The classifier whose condition is tested to be more general.
+ * @param [in] c2 The classifier whose condition is tested to be more specific.
  * @return Whether the condition of c1 is more general than c2.
  */
 static inline _Bool
@@ -137,9 +137,9 @@ cond_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 
 /**
  * @brief Calculates whether the condition matches the input.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition to match.
- * @param x The input state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition to match.
+ * @param [in] x The input state.
  * @return Whether the condition matches the input.
  */
 static inline _Bool
@@ -150,8 +150,8 @@ cond_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 
 /**
  * @brief Performs classifier condition mutation.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is being mutated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is being mutated.
  * @return Whether any alterations were made.
  */
 static inline _Bool
@@ -162,9 +162,9 @@ cond_mutate(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Copies the condition from one classifier to another.
- * @param xcsf The XCSF data structure.
- * @param dest The destination classifier.
- * @param src The source classifier.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dest The destination classifier.
+ * @param [in] src The source classifier.
  */
 static inline void
 cond_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
@@ -174,9 +174,9 @@ cond_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 
 /**
  * @brief Generates a condition that matches the current input.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is being covered.
- * @param x The input state to cover.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is being covered.
+ * @param [in] x The input state to cover.
  */
 static inline void
 cond_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
@@ -186,8 +186,8 @@ cond_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 
 /**
  * @brief Frees the memory used by the classifier condition.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is to be freed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be freed.
  */
 static inline void
 cond_free(const struct XCSF *xcsf, const struct Cl *c)
@@ -197,8 +197,8 @@ cond_free(const struct XCSF *xcsf, const struct Cl *c)
 
 /**
  * @brief Initialises a classifier's condition.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is to be initialised.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be initialised.
  */
 static inline void
 cond_init(const struct XCSF *xcsf, struct Cl *c)
@@ -208,8 +208,8 @@ cond_init(const struct XCSF *xcsf, struct Cl *c)
 
 /**
  * @brief Prints the classifier condition.
- * @param xcsf The XCSF data structure.
- * @param c The classifier whose condition is to be printed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be printed.
  */
 static inline void
 cond_print(const struct XCSF *xcsf, const struct Cl *c)

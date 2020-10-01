@@ -44,6 +44,8 @@ rand_init(void)
 
 /**
  * @brief Returns a uniform random float [min,max].
+ * @param [in] min Minimum value.
+ * @param [in] max Maximum value.
  * @return A random float.
  */
 double
@@ -54,6 +56,8 @@ rand_uniform(const double min, const double max)
 
 /**
  * @brief Returns a uniform random integer [min,max] not inclusive of max.
+ * @param [in] min Minimum value.
+ * @param [in] max Maximum value (non-inclusive).
  * @return A random integer.
  */
 int
@@ -64,10 +68,10 @@ rand_uniform_int(const int min, const int max)
 
 /**
  * @brief Returns a random Gaussian with specified mean and standard deviation.
- * @param mu Mean.
- * @param sigma Standard deviation.
- * @return A random float.
  * @details Box-Muller transform.
+ * @param [in] mu Mean.
+ * @param [in] sigma Standard deviation.
+ * @return A random float.
  */
 double
 rand_normal(const double mu, const double sigma)

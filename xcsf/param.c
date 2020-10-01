@@ -29,7 +29,7 @@
 
 /**
  * @brief Initialises default XCSF general parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_defaults_general(struct XCSF *xcsf)
@@ -45,7 +45,7 @@ param_defaults_general(struct XCSF *xcsf)
 
 /**
  * @brief Prints XCSF general parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_print_general(const struct XCSF *xcsf)
@@ -62,8 +62,8 @@ param_print_general(const struct XCSF *xcsf)
 
 /**
  * @brief Saves XCSF general parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -82,8 +82,8 @@ param_save_general(const struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Loads XCSF general parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements read.
  */
 static size_t
@@ -103,7 +103,7 @@ param_load_general(struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Initialises default general classifier parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_defaults_cl_general(struct XCSF *xcsf)
@@ -124,7 +124,7 @@ param_defaults_cl_general(struct XCSF *xcsf)
 
 /**
  * @brief Prints XCSF general classifier parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_print_cl_general(const struct XCSF *xcsf)
@@ -146,8 +146,8 @@ param_print_cl_general(const struct XCSF *xcsf)
 
 /**
  * @brief Saves XCSF general classifier parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -171,8 +171,8 @@ param_save_cl_general(const struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Loads XCSF general classifier parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements read.
  */
 static size_t
@@ -196,7 +196,7 @@ param_load_cl_general(struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Initialises default multistep parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_defaults_multistep(struct XCSF *xcsf)
@@ -208,7 +208,7 @@ param_defaults_multistep(struct XCSF *xcsf)
 
 /**
  * @brief Prints XCSF multistep parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_print_multistep(const struct XCSF *xcsf)
@@ -220,8 +220,8 @@ param_print_multistep(const struct XCSF *xcsf)
 
 /**
  * @brief Saves multistep parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -236,8 +236,8 @@ param_save_multistep(const struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Saves multistep parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements read.
  */
 static size_t
@@ -252,7 +252,7 @@ param_load_multistep(struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Initialises default subsumption parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_defaults_subsumption(struct XCSF *xcsf)
@@ -264,7 +264,7 @@ param_defaults_subsumption(struct XCSF *xcsf)
 
 /**
  * @brief Prints XCSF subsumption parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_print_subsumption(const struct XCSF *xcsf)
@@ -278,8 +278,8 @@ param_print_subsumption(const struct XCSF *xcsf)
 
 /**
  * @brief Saves subsumption parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -294,8 +294,8 @@ param_save_subsumption(const struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Loads subsumption parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements read.
  */
 static size_t
@@ -310,7 +310,7 @@ param_load_subsumption(struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Initialises default evolutionary algorithm parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_defaults_ea(struct XCSF *xcsf)
@@ -324,7 +324,7 @@ param_defaults_ea(struct XCSF *xcsf)
 
 /**
  * @brief Prints XCSF evolutionary algorithm parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_print_ea(const struct XCSF *xcsf)
@@ -338,8 +338,8 @@ param_print_ea(const struct XCSF *xcsf)
 
 /**
  * @brief Saves XCSF evolutionary algorithm parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -356,8 +356,8 @@ param_save_ea(const struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Loads XCSF evolutionary algorithm parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -374,7 +374,7 @@ param_load_ea(struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Initialises default classifier condition parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_defaults_cl_condition(struct XCSF *xcsf)
@@ -404,7 +404,7 @@ param_defaults_cl_condition(struct XCSF *xcsf)
 
 /**
  * @brief Prints XCSF condtion parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_print_cl_condition(const struct XCSF *xcsf)
@@ -444,8 +444,8 @@ param_print_cl_condition(const struct XCSF *xcsf)
 
 /**
  * @brief Saves XCSF classifier condition parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -477,8 +477,8 @@ param_save_cl_condition(const struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Loads XCSF classifier condition parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -517,7 +517,7 @@ param_load_cl_condition(struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Initialises default classifier prediction parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_defaults_cl_prediction(struct XCSF *xcsf)
@@ -546,7 +546,7 @@ param_defaults_cl_prediction(struct XCSF *xcsf)
 
 /**
  * @brief Prints XCSF prediction parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_print_cl_prediction(const struct XCSF *xcsf)
@@ -588,8 +588,8 @@ param_print_cl_prediction(const struct XCSF *xcsf)
 
 /**
  * @brief Saves XCSF classifier prediction parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -619,8 +619,8 @@ param_save_cl_prediction(const struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Loads XCSF classifier prediction parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -650,7 +650,7 @@ param_load_cl_prediction(struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Initialises default classifier action parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_defaults_cl_action(struct XCSF *xcsf)
@@ -660,7 +660,7 @@ param_defaults_cl_action(struct XCSF *xcsf)
 
 /**
  * @brief Prints XCSF action parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 static void
 param_print_cl_action(const struct XCSF *xcsf)
@@ -670,8 +670,8 @@ param_print_cl_action(const struct XCSF *xcsf)
 
 /**
  * @brief Saves XCSF classifier action parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -684,8 +684,8 @@ param_save_cl_action(const struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Loads XCSF classifier action parameters.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 static size_t
@@ -698,7 +698,7 @@ param_load_cl_action(struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Initialises default XCSF parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 param_init(struct XCSF *xcsf)
@@ -721,7 +721,7 @@ param_init(struct XCSF *xcsf)
 
 /**
  * @brief Frees XCSF parameter memory.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 param_free(const struct XCSF *xcsf)
@@ -731,7 +731,7 @@ param_free(const struct XCSF *xcsf)
 
 /**
  * @brief Prints all XCSF parameters.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 param_print(const struct XCSF *xcsf)
@@ -749,9 +749,9 @@ param_print(const struct XCSF *xcsf)
 }
 
 /**
- * @brief Writes the XCSF data structure to a binary file.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the output file.
+ * @brief Writes the XCSF data structure to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
  * @return The total number of elements written.
  */
 size_t
@@ -779,9 +779,9 @@ param_save(const struct XCSF *xcsf, FILE *fp)
 }
 
 /**
- * @brief Reads the XCSF data structure from a binary file.
- * @param xcsf The XCSF data structure.
- * @param fp Pointer to the input file.
+ * @brief Reads the XCSF data structure from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the input file.
  * @return The total number of elements read.
  */
 size_t
@@ -814,8 +814,8 @@ param_load(struct XCSF *xcsf, FILE *fp)
 
 /**
  * @brief Sets the number of OMP threads.
- * @param xcsf The XCSF data structure.
- * @param a The number of threads.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] a The number of threads.
  */
 void
 param_set_omp_num_threads(struct XCSF *xcsf, const int a)

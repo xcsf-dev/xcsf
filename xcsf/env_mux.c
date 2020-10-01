@@ -37,8 +37,8 @@
 /**
  * @brief Initialises a real multiplexer environment of specified length.
  * @details The biggest mux problem is chosen that fits the specified length.
- * @param xcsf The XCSF data structure.
- * @param bits The problem length.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] bits The problem length.
  */
 void
 env_mux_init(struct XCSF *xcsf, const int bits)
@@ -59,7 +59,7 @@ env_mux_init(struct XCSF *xcsf, const int bits)
 
 /**
  * @brief Frees the multiplexer environment.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 env_mux_free(const struct XCSF *xcsf)
@@ -71,7 +71,7 @@ env_mux_free(const struct XCSF *xcsf)
 
 /**
  * @brief Returns a random multiplexer problem instance.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return A random multiplexer problem.
  */
 const double *
@@ -86,8 +86,8 @@ env_mux_get_state(const struct XCSF *xcsf)
 
 /**
  * @brief Returns the reward for executing a multiplexer action.
- * @param xcsf The XCSF data structure.
- * @param action The selected action.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] action The selected action.
  * @return The payoff from performing the action.
  */
 double
@@ -106,7 +106,7 @@ env_mux_execute(const struct XCSF *xcsf, const int action)
 
 /**
  * @brief Dummy method since no multiplexer reset is necessary.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  */
 void
 env_mux_reset(const struct XCSF *xcsf)
@@ -116,7 +116,7 @@ env_mux_reset(const struct XCSF *xcsf)
 
 /**
  * @brief Returns whether the multiplexer is in a terminal state.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return True.
  */
 _Bool
@@ -128,7 +128,7 @@ env_mux_is_done(const struct XCSF *xcsf)
 
 /**
  * @brief Returns the maximum payoff value possible in the multiplexer.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return The maximum payoff.
  */
 double
@@ -140,7 +140,7 @@ env_mux_maxpayoff(const struct XCSF *xcsf)
 
 /**
  * @brief Returns whether the multiplexer is a multistep problem.
- * @param xcsf The XCSF data structure.
+ * @param [in] xcsf The XCSF data structure.
  * @return False.
  */
 _Bool
