@@ -318,10 +318,10 @@ clset_pop_enforce_limit(struct XCSF *xcsf)
 }
 
 /**
- * @brief Constructs the match set.
- * @details Processes the matching conditions for each classifier in the
- * population. If a classifier matches, its action is updated and it is added
- * to the match set. Covering is performed if any actions are unrepresented.
+ * @brief Constructs the match set - forward propagates conditions and actions.
+ * @details Processes the matching conditions and actions for each classifier
+ * in the population. If a classifier matches, it is added to the match set.
+ * Covering is performed if any actions are unrepresented.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] x The input state.
  */
@@ -336,20 +336,20 @@ clset_match(struct XCSF *xcsf, const double *x)
         blist[i] = iter;
         iter = iter->next;
     }
-    // update current matching conditions setting m flags in parallel
+    // process conditions and actions setting m flags in parallel
     #pragma omp parallel for
     for (int i = 0; i < xcsf->pset.size; ++i) {
         cl_match(xcsf, blist[i]->cl, x);
+        cl_action(xcsf, blist[i]->cl, x);
     }
     // build match set list in series
     for (int i = 0; i < xcsf->pset.size; ++i) {
         if (cl_m(xcsf, blist[i]->cl)) {
             clset_add(&xcsf->mset, blist[i]->cl);
-            cl_action(xcsf, blist[i]->cl, x);
         }
     }
 #else
-    // update matching conditions and build match set list in series
+    // process conditions and actions and build match set list in series
     struct Clist *iter = xcsf->pset.list;
     while (iter != NULL) {
         if (cl_match(xcsf, iter->cl, x)) {
