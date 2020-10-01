@@ -75,17 +75,17 @@ void
 neural_init(const struct XCSF *xcsf, struct Net *net);
 
 void
-neural_layer_insert(const struct XCSF *xcsf, struct Net *net, struct Layer *l,
-                    const int pos);
+neural_insert(const struct XCSF *xcsf, struct Net *net, struct Layer *l,
+              const int pos);
 
 void
-neural_layer_remove(const struct XCSF *xcsf, struct Net *net, const int pos);
+neural_remove(const struct XCSF *xcsf, struct Net *net, const int pos);
 
 void
-neural_layer_push(const struct XCSF *xcsf, struct Net *net, struct Layer *l);
+neural_push(const struct XCSF *xcsf, struct Net *net, struct Layer *l);
 
 void
-neural_layer_pop(const struct XCSF *xcsf, struct Net *net);
+neural_pop(const struct XCSF *xcsf, struct Net *net);
 
 void
 neural_learn(const struct XCSF *xcsf, const struct Net *net,

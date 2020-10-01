@@ -55,14 +55,14 @@ cond_neural_init(const struct XCSF *xcsf, struct Cl *c)
         }
         const int f = xcsf->COND_HIDDEN_ACTIVATION;
         l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
-        neural_layer_push(xcsf, &new->net, l);
+        neural_push(xcsf, &new->net, l);
         n_inputs = hinit;
     }
     // output layer
     const int f = xcsf->COND_OUTPUT_ACTIVATION;
     lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
     l = neural_layer_connected_init(xcsf, n_inputs, 1, 1, f, lopt);
-    neural_layer_push(xcsf, &new->net, l);
+    neural_push(xcsf, &new->net, l);
     c->cond = new;
 }
 

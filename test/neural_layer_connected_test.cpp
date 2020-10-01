@@ -58,7 +58,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     o |= LAYER_SGD_WEIGHTS;
     o |= LAYER_EVOLVE_WEIGHTS;
     l = neural_layer_connected_init(&xcsf, 10, 2, 2, LOGISTIC, o);
-    neural_layer_push(&xcsf, &net, l);
+    neural_push(&xcsf, &net, l);
     CHECK_EQ(l->function, LOGISTIC);
     CHECK_EQ(l->n_inputs, 10);
     CHECK_EQ(l->n_outputs, 2);

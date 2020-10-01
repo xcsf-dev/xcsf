@@ -56,7 +56,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     uint32_t o = 0;
     o |= LAYER_SGD_WEIGHTS;
     l = neural_layer_convolutional_init(&xcsf, 4, 4, 1, 2, 3, 1, 1, RELU, o);
-    neural_layer_push(&xcsf, &net, l);
+    neural_push(&xcsf, &net, l);
     CHECK_EQ(l->function, RELU);
     CHECK_EQ(l->n_filters, 2);
     CHECK_EQ(l->size, 3);

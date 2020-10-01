@@ -58,7 +58,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     uint32_t o = 0;
     o |= LAYER_SGD_WEIGHTS;
     l = neural_layer_lstm_init(&xcsf, 1, 1, 1, TANH, LOGISTIC, o);
-    neural_layer_push(&xcsf, &net, l);
+    neural_push(&xcsf, &net, l);
     CHECK_EQ(l->n_inputs, 1);
     CHECK_EQ(l->n_outputs, 1);
     CHECK_EQ(l->max_outputs, 1);

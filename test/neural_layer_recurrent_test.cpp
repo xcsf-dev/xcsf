@@ -59,7 +59,7 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     o |= LAYER_SGD_WEIGHTS;
     o |= LAYER_EVOLVE_WEIGHTS;
     l = neural_layer_recurrent_init(&xcsf, 1, 1, 1, LOGISTIC, o);
-    neural_layer_push(&xcsf, &net, l);
+    neural_push(&xcsf, &net, l);
     CHECK_EQ(l->function, LOGISTIC);
     CHECK_EQ(l->n_inputs, 1);
     CHECK_EQ(l->n_outputs, 1);

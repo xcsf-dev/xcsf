@@ -53,8 +53,8 @@ neural_init(const struct XCSF *xcsf, struct Net *net)
  * @param pos The position in the network to insert the layer.
  */
 void
-neural_layer_insert(const struct XCSF *xcsf, struct Net *net, struct Layer *l,
-                    const int pos)
+neural_insert(const struct XCSF *xcsf, struct Net *net, struct Layer *l,
+              const int pos)
 {
     (void) xcsf;
     if (net->head == NULL || net->tail == NULL) { // empty list
@@ -101,7 +101,7 @@ neural_layer_insert(const struct XCSF *xcsf, struct Net *net, struct Layer *l,
  * @param pos The position of the layer in the network to be removed.
  */
 void
-neural_layer_remove(const struct XCSF *xcsf, struct Net *net, const int pos)
+neural_remove(const struct XCSF *xcsf, struct Net *net, const int pos)
 {
     // find the layer
     struct Llist *iter = net->tail;
@@ -149,9 +149,9 @@ neural_layer_remove(const struct XCSF *xcsf, struct Net *net, const int pos)
  * @param l The layer to insert.
  */
 void
-neural_layer_push(const struct XCSF *xcsf, struct Net *net, struct Layer *l)
+neural_push(const struct XCSF *xcsf, struct Net *net, struct Layer *l)
 {
-    neural_layer_insert(xcsf, net, l, net->n_layers);
+    neural_insert(xcsf, net, l, net->n_layers);
 }
 
 /**
@@ -160,9 +160,9 @@ neural_layer_push(const struct XCSF *xcsf, struct Net *net, struct Layer *l)
  * @param net The neural network receiving the layer.
  */
 void
-neural_layer_pop(const struct XCSF *xcsf, struct Net *net)
+neural_pop(const struct XCSF *xcsf, struct Net *net)
 {
-    neural_layer_remove(xcsf, net, net->n_layers - 1);
+    neural_remove(xcsf, net, net->n_layers - 1);
 }
 
 /**
@@ -178,7 +178,7 @@ neural_copy(const struct XCSF *xcsf, struct Net *dest, const struct Net *src)
     const struct Llist *iter = src->tail;
     while (iter != NULL) {
         struct Layer *l = layer_copy(xcsf, iter->layer);
-        neural_layer_push(xcsf, dest, l);
+        neural_push(xcsf, dest, l);
         iter = iter->prev;
     }
 }
@@ -457,7 +457,7 @@ neural_load(const struct XCSF *xcsf, struct Net *net, FILE *fp)
         s += fread(&l->layer_type, sizeof(int), 1, fp);
         layer_set_vptr(l);
         s += layer_load(xcsf, l, fp);
-        neural_layer_push(xcsf, net, l);
+        neural_push(xcsf, net, l);
     }
     return s;
 }
