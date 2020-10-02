@@ -16,14 +16,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""This example demonstrates the XCSF reinforcement learning mechanisms applied
-to the UCI Wisconsin breast cancer classification dataset. Classifiers are
-composed of hyperrectangle conditions, linear least squares predictions, and
-integer actions."""
+"""
+This example demonstrates the use of XCSF with action sets applied to the UCI
+Wisconsin breast cancer classification dataset. Classifiers are composed of
+hyperrectangle conditions, linear least squares predictions, and integer actions.
+"""
 
-from random import randint
+import random
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import minmax_scale
@@ -50,7 +52,7 @@ print("train len = %d, test len = %d" % (train_len, test_len))
 # Initialise XCSF
 ###################
 
-# initialise XCSF for reinforcement learning
+# constructor = (x_dim, y_dim, n_actions)
 xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
 # override default.ini
@@ -78,29 +80,22 @@ bar = tqdm(total=N) # progress bar
 
 for i in range(N):
     for j in range(xcs.PERF_TRIALS):
-        # explore trial
-        sample = randint(0, train_len-1)
+        # learning trial
+        sample = random.randint(0, train_len-1)
         state = X_train[sample]
         answer = y_train[sample]
-        xcs.init_trial()
-        xcs.init_step()
-        action = xcs.decision(state, True) # explore
+        action = random.randrange(N_ACTIONS) # random action
         reward = MAX_PAYOFF if action == answer else 0
-        xcs.update(reward, True) # single-step problem
-        xcs.end_step()
-        xcs.end_trial()
-        # exploit trial
-        xcs.init_trial()
-        xcs.init_step()
-        sample = randint(0, test_len-1)
+        xcs.fit(state, action, reward) # update action set, run EA, etc.
+        # testing trial
+        sample = random.randint(0, test_len-1)
         state = X_test[sample]
         answer = y_test[sample]
-        action = xcs.decision(state, False) # exploit
+        prediction_array = xcs.predict(state.reshape(1,-1))[0]
+        action = np.argmax(prediction_array) # best action
         reward = MAX_PAYOFF if action == answer else 0
         performance[i] += reward
         error[i] += xcs.error(reward, True, MAX_PAYOFF)
-        xcs.end_step()
-        xcs.end_trial()
     performance[i] /= float(xcs.PERF_TRIALS)
     error[i] /= float(xcs.PERF_TRIALS)
     trials[i] = xcs.time() # number of trials so far
@@ -132,66 +127,41 @@ plt.show()
 # Confusion Matrix
 ###################
 
-yActual = []
-yPredicted = []
-for i in range(test_len):
-    state = X_test[i]
-    answer = y_test[i]
-    xcs.init_trial()
-    xcs.init_step()
-    action = xcs.decision(state, False) # exploit
-    xcs.end_step()
-    xcs.end_trial()
-    yActual.append(answer)
-    yPredicted.append(action)
+prediction_arrays = xcs.predict(X_test) # generate prediction arrays
+y_pred = np.argmax(prediction_arrays, axis=1) # class with largest prediction
 
-confusion_matrix_val = confusion_matrix(yActual, yPredicted)
+confusion_matrix_val = confusion_matrix(y_test, y_pred)
+positions = [0, 1]
 labels = ['Benign', 'Malignant']
 fig = plt.figure()
 subplt = fig.add_subplot(111)
 csubplt = subplt.matshow(confusion_matrix_val)
 plt.title('Wisconsin Breast Cancer:')
 fig.colorbar(csubplt)
-subplt.set_xticklabels([''] + labels)
-subplt.set_yticklabels([''] + labels)
+subplt.xaxis.set_major_locator(ticker.FixedLocator(positions))
+subplt.xaxis.set_major_formatter(ticker.FixedFormatter(labels))
+subplt.yaxis.set_major_locator(ticker.FixedLocator(positions))
+subplt.yaxis.set_major_formatter(ticker.FixedFormatter(labels))
 plt.xlabel('Predicted')
 plt.ylabel('Actual')
 plt.show()
-
-print("XCSF accuracy: "+str(accuracy_score(yActual, yPredicted)))
-print("XCSF f1: "+str(f1_score(yActual, yPredicted, average=None)))
 
 ############################
 # Compare with alternatives
 ############################
 
+print('XCSF accuracy: ' + str(accuracy_score(y_test, y_pred)))
+print('XCSF f1: ' + str(f1_score(y_test, y_pred, average=None)))
+
 mlp = MLPClassifier(hidden_layer_sizes=(100, ), activation='relu',
                     solver='adam', learning_rate='adaptive', max_iter=1000)
 mlp.fit(X_train, y_train)
-
-yActual = []
-yPredicted = []
-for i in range(test_len):
-    state = X_test[i]
-    answer = y_test[i]
-    action = mlp.predict(X_test[i].reshape(1, -1))
-    yActual.append(answer)
-    yPredicted.append(action)
-
-print("MLP accuracy: "+str(accuracy_score(yActual, yPredicted)))
-print("MLP f1: "+str(f1_score(yActual, yPredicted, average=None)))
+y_pred = mlp.predict(X_test)
+print('MLP accuracy: ' + str(accuracy_score(y_test, y_pred)))
+print('MLP f1: ' + str(f1_score(y_test, y_pred, average=None)))
 
 dtc = DecisionTreeClassifier()
 dtc.fit(X_train, y_train)
-
-yActual = []
-yPredicted = []
-for i in range(test_len):
-    state = X_test[i]
-    answer = y_test[i]
-    action = dtc.predict(X_test[i].reshape(1, -1))
-    yActual.append(answer)
-    yPredicted.append(action)
-
-print("Decision tree accuracy: "+str(accuracy_score(yActual, yPredicted)))
-print("Decision tree f1: "+str(f1_score(yActual, yPredicted, average=None)))
+y_pred = dtc.predict(X_test)
+print('Decision tree accuracy: ' + str(accuracy_score(y_test, y_pred)))
+print('Decision tree f1: ' + str(f1_score(y_test, y_pred, average=None)))
