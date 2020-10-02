@@ -114,7 +114,6 @@ psize = np.zeros(N)
 msize = np.zeros(N)
 performance = np.zeros(N)
 error = np.zeros(N)
-bar = tqdm(total=N) # progress bar
 
 def egreedy_action(state, epsilon):
     """ Selects an action using an epsilon greedy policy. """
@@ -127,6 +126,7 @@ def egreedy_action(state, epsilon):
 
 def run_experiment():
     """ Executes a single experiment. """
+    bar = tqdm(total=N) # progress bar
     for i in range(N):
         for _ in range(PERF_TRIALS):
             # explore trial
