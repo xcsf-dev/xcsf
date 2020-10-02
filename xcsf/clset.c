@@ -25,12 +25,12 @@
 #include "cl.h"
 #include "utils.h"
 
-#define MAX_COVER (1000000) //!< maximum number of covering attempts
+#define MAX_COVER (1000000) //!< Maximum number of covering attempts
 
 /**
  * @brief Finds a rule in the population that never matches an input.
  * @param [in] xcsf The XCSF data structure.
- * @param [out] del A pointer to the classifier to be deleted.
+ * @param [out] del A pointer to the classifier to be deleted, if one is found.
  * @param [out] delprev A pointer to the rule previous to the one being deleted.
  */
 static void
@@ -129,7 +129,7 @@ clset_pop_del(struct XCSF *xcsf)
 /**
  * @brief Checks whether each action is covered by the match set.
  * @param [in] xcsf The XCSF data structure.
- * @param [out] act_covered Array of action coverage flags.
+ * @param [out] act_covered Vector specifying whether each action is covered.
  * @return Whether all actions are covered.
  */
 static _Bool

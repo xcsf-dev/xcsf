@@ -51,6 +51,11 @@ float_to_binary(const double f, char *binary, const int bits)
     }
 }
 
+/**
+ * @brief Randomises a ternary condition.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be initialised.
+ */
 static void
 cond_ternary_rand(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -85,6 +90,11 @@ cond_ternary_init(const struct XCSF *xcsf, struct Cl *c)
     cond_ternary_rand(xcsf, c);
 }
 
+/**
+ * @brief Frees the memory used by a ternary condition.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be freed.
+ */
 void
 cond_ternary_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -96,6 +106,12 @@ cond_ternary_free(const struct XCSF *xcsf, const struct Cl *c)
     free(c->cond);
 }
 
+/**
+ * @brief Copies a ternary condition from one classifier to another.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dest The destination classifier.
+ * @param [in] src The source classifier.
+ */
 void
 cond_ternary_copy(const struct XCSF *xcsf, struct Cl *dest,
                   const struct Cl *src)
@@ -112,6 +128,12 @@ cond_ternary_copy(const struct XCSF *xcsf, struct Cl *dest,
     dest->cond = new;
 }
 
+/**
+ * @brief Generates a ternary condition that matches the current input.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is being covered.
+ * @param [in] x The input state to cover.
+ */
 void
 cond_ternary_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -128,6 +150,13 @@ cond_ternary_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     }
 }
 
+/**
+ * @brief Dummy function since ternary conditions are not updated.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier whose condition is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
+ */
 void
 cond_ternary_update(const struct XCSF *xcsf, const struct Cl *c,
                     const double *x, const double *y)
@@ -138,6 +167,13 @@ cond_ternary_update(const struct XCSF *xcsf, const struct Cl *c,
     (void) y;
 }
 
+/**
+ * @brief Calculates whether a ternary condition matches an input.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition to match.
+ * @param [in] x The input state.
+ * @return Whether the condition matches the input.
+ */
 _Bool
 cond_ternary_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -154,6 +190,13 @@ cond_ternary_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     return true;
 }
 
+/**
+ * @brief Performs uniform crossover with two ternary conditions.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The first classifier whose condition is being crossed.
+ * @param [in] c2 The second classifier whose condition is being crossed.
+ * @return Whether any alterations were made.
+ */
 _Bool
 cond_ternary_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                        const struct Cl *c2)
@@ -174,6 +217,12 @@ cond_ternary_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return changed;
 }
 
+/**
+ * @brief Mutates a ternary condition.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is being mutated.
+ * @return Whether any alterations were made.
+ */
 _Bool
 cond_ternary_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -194,6 +243,13 @@ cond_ternary_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return changed;
 }
 
+/**
+ * @brief Returns whether classifier c1 has a condition more general than c2.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The classifier whose condition is tested to be more general.
+ * @param [in] c2 The classifier whose condition is tested to be more specific.
+ * @return Whether the condition of c1 is more general than c2.
+ */
 _Bool
 cond_ternary_general(const struct XCSF *xcsf, const struct Cl *c1,
                      const struct Cl *c2)
@@ -214,6 +270,11 @@ cond_ternary_general(const struct XCSF *xcsf, const struct Cl *c1,
     return general;
 }
 
+/**
+ * @brief Prints a ternary condition.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be printed.
+ */
 void
 cond_ternary_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -226,6 +287,12 @@ cond_ternary_print(const struct XCSF *xcsf, const struct Cl *c)
     printf("\n");
 }
 
+/**
+ * @brief Returns the size of a ternary condition.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition size to return.
+ * @return The size of the condition.
+ */
 double
 cond_ternary_size(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -234,6 +301,13 @@ cond_ternary_size(const struct XCSF *xcsf, const struct Cl *c)
     return cond->length;
 }
 
+/**
+ * @brief Writes a ternary condition to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 cond_ternary_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -246,6 +320,13 @@ cond_ternary_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads a ternary condition from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose condition is to be read.
+ * @param [in] fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 cond_ternary_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {

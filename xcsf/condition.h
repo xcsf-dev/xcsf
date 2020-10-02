@@ -122,8 +122,7 @@ cond_crossover(const struct XCSF *xcsf, const struct Cl *c1,
 }
 
 /**
- * @brief Returns whether the condition of classifier c1 is more general than
- * c2.
+ * @brief Returns whether classifier c1 has a condition more general than c2.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] c1 The classifier whose condition is tested to be more general.
  * @param [in] c2 The classifier whose condition is tested to be more specific.

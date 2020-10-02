@@ -36,6 +36,11 @@ static const int MU_TYPE[N_MU] = {
     SAM_LOG_NORMAL //!< Rate of gradient descent mutation
 };
 
+/**
+ * @brief Initialises an NLMS prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be initialised.
+ */
 void
 pred_nlms_init(const struct XCSF *xcsf, struct Cl *c)
 {
@@ -65,6 +70,12 @@ pred_nlms_init(const struct XCSF *xcsf, struct Cl *c)
     pred->tmp_input = malloc(sizeof(double) * pred->n);
 }
 
+/**
+ * @brief Copies an NLMS prediction from one classifier to another.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dest The destination classifier.
+ * @param [in] src The source classifier.
+ */
 void
 pred_nlms_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
@@ -77,6 +88,11 @@ pred_nlms_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
     dest_pred->eta = src_pred->eta;
 }
 
+/**
+ * @brief Frees the memory used by an NLMS prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be freed.
+ */
 void
 pred_nlms_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -88,6 +104,14 @@ pred_nlms_free(const struct XCSF *xcsf, const struct Cl *c)
     free(pred);
 }
 
+/**
+ * @brief Updates an NLMS prediction for a given input and truth sample.
+ * @pre The prediction has been computed for the current state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier whose prediction is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
+ */
 void
 pred_nlms_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                  const double *y)
@@ -105,6 +129,12 @@ pred_nlms_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     }
 }
 
+/**
+ * @brief Computes the current NLMS prediction for a provided input.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier calculating the prediction.
+ * @param [in] x The input state.
+ */
 void
 pred_nlms_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -117,6 +147,11 @@ pred_nlms_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     }
 }
 
+/**
+ * @brief Prints an NLMS prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be printed.
+ */
 void
 pred_nlms_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -131,6 +166,13 @@ pred_nlms_print(const struct XCSF *xcsf, const struct Cl *c)
     }
 }
 
+/**
+ * @brief Dummy function since NLMS predictions do not perform crossover.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The first classifier whose prediction is being crossed.
+ * @param [in] c2 The second classifier whose prediction is being crossed.
+ * @return False.
+ */
 _Bool
 pred_nlms_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                     const struct Cl *c2)
@@ -141,6 +183,12 @@ pred_nlms_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Mutates the gradient descent rate used to update an NLMS prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is being mutated.
+ * @return Whether any alterations were made.
+ */
 _Bool
 pred_nlms_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -157,6 +205,12 @@ pred_nlms_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return false;
 }
 
+/**
+ * @brief Returns the size of an NLMS prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction size to return.
+ * @return The number of weights.
+ */
 double
 pred_nlms_size(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -165,6 +219,13 @@ pred_nlms_size(const struct XCSF *xcsf, const struct Cl *c)
     return pred->n_weights;
 }
 
+/**
+ * @brief Writes an NLMS prediction to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 pred_nlms_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -179,6 +240,13 @@ pred_nlms_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads an NLMS prediction from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be read.
+ * @param [in] fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 pred_nlms_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {

@@ -60,7 +60,7 @@ sam_init(double *mu, const int N, const int *type)
 
 /**
  * @brief Self-adapts mutation rates.
- * @param [out] mu Vector of mutation rates.
+ * @param [in,out] mu Vector of mutation rates.
  * @param [in] N Number of mutation rates.
  * @param [in] type Vector specifying each rate type.
  */

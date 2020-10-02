@@ -78,6 +78,11 @@ pred_neural_init(const struct XCSF *xcsf, struct Cl *c)
     c->pred = new;
 }
 
+/**
+ * @brief Frees the memory used by a neural network prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be freed.
+ */
 void
 pred_neural_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -86,6 +91,12 @@ pred_neural_free(const struct XCSF *xcsf, const struct Cl *c)
     free(pred);
 }
 
+/**
+ * @brief Copies a neural network prediction from one classifier to another.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dest The destination classifier.
+ * @param [in] src The source classifier.
+ */
 void
 pred_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
@@ -95,6 +106,14 @@ pred_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
     dest->pred = new;
 }
 
+/**
+ * @brief Backward propagates and updates a neural network prediction.
+ * @pre The prediction has been forward propagated for the current state.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier whose prediction is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
+ */
 void
 pred_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                    const double *y)
@@ -105,6 +124,12 @@ pred_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     }
 }
 
+/**
+ * @brief Forward propagates a neural network prediction with a provided input.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier calculating the prediction.
+ * @param [in] x The input state.
+ */
 void
 pred_neural_compute(const struct XCSF *xcsf, const struct Cl *c,
                     const double *x)
@@ -116,6 +141,11 @@ pred_neural_compute(const struct XCSF *xcsf, const struct Cl *c,
     }
 }
 
+/**
+ * @brief Prints a neural network prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be printed.
+ */
 void
 pred_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -123,6 +153,13 @@ pred_neural_print(const struct XCSF *xcsf, const struct Cl *c)
     neural_print(xcsf, &pred->net, false);
 }
 
+/**
+ * @brief Dummy function since neural predictions do not perform crossover.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The first classifier whose prediction is being crossed.
+ * @param [in] c2 The second classifier whose prediction is being crossed.
+ * @return False.
+ */
 _Bool
 pred_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                       const struct Cl *c2)
@@ -133,6 +170,12 @@ pred_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Mutates a neural network prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is being mutated.
+ * @return Whether any alterations were made.
+ */
 _Bool
 pred_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -140,6 +183,13 @@ pred_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return neural_mutate(xcsf, &pred->net);
 }
 
+/**
+ * @brief Returns the size of a neural network prediction.
+ * @see neural_size()
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction size to return.
+ * @return The network size.
+ */
 double
 pred_neural_size(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -147,6 +197,13 @@ pred_neural_size(const struct XCSF *xcsf, const struct Cl *c)
     return neural_size(xcsf, &pred->net);
 }
 
+/**
+ * @brief Writes a neural network prediction to a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 pred_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -155,6 +212,13 @@ pred_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads a neural network prediction from a file.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be read.
+ * @param [in] fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 pred_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
@@ -164,6 +228,13 @@ pred_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Returns the gradient descent rate of a neural prediction layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier maintaining a neural network prediction.
+ * @param [in] layer Position of a layer in the network.
+ * @return The current gradient descent rate of a layer.
+ */
 double
 pred_neural_eta(const struct XCSF *xcsf, const struct Cl *c, const int layer)
 {
@@ -181,6 +252,13 @@ pred_neural_eta(const struct XCSF *xcsf, const struct Cl *c, const int layer)
     return 0;
 }
 
+/**
+ * @brief Returns the number of neurons in a neural prediction layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier maintaining a neural network prediction.
+ * @param [in] layer Position of a layer in the network.
+ * @return The current number of neurons in a layer.
+ */
 int
 pred_neural_neurons(const struct XCSF *xcsf, const struct Cl *c,
                     const int layer)
@@ -199,6 +277,13 @@ pred_neural_neurons(const struct XCSF *xcsf, const struct Cl *c,
     return 0;
 }
 
+/**
+ * @brief Returns the number of active connections in a neural prediction layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier maintaining a neural network prediction.
+ * @param [in] layer Position of a layer in the network.
+ * @return The current number of neurons in a layer.
+ */
 int
 pred_neural_connections(const struct XCSF *xcsf, const struct Cl *c,
                         const int layer)
@@ -217,6 +302,12 @@ pred_neural_connections(const struct XCSF *xcsf, const struct Cl *c,
     return 0;
 }
 
+/**
+ * @brief Returns the number of layers within a neural network prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier maintaining a neural network prediction.
+ * @return The number of layers.
+ */
 int
 pred_neural_layers(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -226,6 +317,11 @@ pred_neural_layers(const struct XCSF *xcsf, const struct Cl *c)
     return net->n_layers;
 }
 
+/**
+ * @brief Creates and inserts a hidden layer before the prediction output layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose neural prediction is to be expanded.
+ */
 void
 pred_neural_expand(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -233,13 +329,10 @@ pred_neural_expand(const struct XCSF *xcsf, const struct Cl *c)
     struct Net *net = &pred->net;
     const struct Layer *h = NULL;
     int n_inputs = 0;
-    // select top hidden layer
-    if (net->n_layers > 1) {
+    if (net->n_layers > 1) { // select top hidden layer
         h = net->head->next->layer;
         n_inputs = h->n_outputs;
-    }
-    // if only one layer, must use output layer
-    else {
+    } else { // if only one layer, must use output layer
         h = net->head->layer;
         n_inputs = h->n_inputs;
     }
@@ -254,6 +347,12 @@ pred_neural_expand(const struct XCSF *xcsf, const struct Cl *c)
     neural_resize(xcsf, net);
 }
 
+/**
+ * @brief Removes prediction (decoder) layers and inserts softmax output layer.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier to convert from autoencoding to classification.
+ * @param [in] n_del Number of (decoder) layers to remove from the network.
+ */
 void
 pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct Cl *c,
                              const int n_del)

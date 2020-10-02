@@ -139,9 +139,9 @@ neural_activation_string(const int a)
 }
 
 /**
- * @brief Applies a specified activation function to an array.
- * @param [in] state The neuron states.
- * @param [out] output The neuron outputs.
+ * @brief Applies an activation function to a vector of neuron states.
+ * @param [in,out] state The neuron states.
+ * @param [in,out] output The neuron outputs.
  * @param [in] n The length of the input array.
  * @param [in] a The activation function.
  */
@@ -155,9 +155,9 @@ neural_activate_array(double *state, double *output, const int n, const int a)
 }
 
 /**
- * @brief Applies a specified gradient function to an array.
+ * @brief Applies a gradient function to a vector of neuron states.
  * @param [in] state The neuron states.
- * @param [out] delta The neuron gradients.
+ * @param [in,out] delta The neuron gradients.
  * @param [in] n The length of the input array.
  * @param [in] a The activation function.
  */

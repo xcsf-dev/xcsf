@@ -101,7 +101,7 @@ gemm_tt(const int M, const int N, const int K, const double ALPHA,
  * × K with ldb >= max(1,N) otherwise.
  * @param [in] ldb Leading dimension of a 2-D array used to store the matrix B.
  * @param [in] BETA Scalar used for multiplication.
- * @param [out] C Array of dimension ldc × N with ldc >= max(1,M).
+ * @param [in,out] C Array of dimension ldc × N with ldc >= max(1,M).
  * @param [in] ldc Leading dimension of a 2-D array used to store the matrix C.
  */
 void
@@ -131,7 +131,7 @@ blas_gemm(const int TA, const int TB, const int M, const int N, const int K,
  * @param [in] ALPHA Scalar used for multiplication.
  * @param [in] X Vector with N elements.
  * @param [in] INCX Stride between consecutive elements of X.
- * @param [out] Y Vector with N elements.
+ * @param [in,out] Y Vector with N elements.
  * @param [in] INCY Stride between consecutive elements of Y.
  */
 void
@@ -153,7 +153,7 @@ blas_axpy(const int N, const double ALPHA, const double *X, const int INCX,
  * @brief Scales vector X by the scalar ALPHA and overwrites it with the result.
  * @param [in] N The number of elements in vector X.
  * @param [in] ALPHA Scalar used for multiplication.
- * @param [out] X Vector with N elements.
+ * @param [in,out] X Vector with N elements.
  * @param [in] INCX Stride between consecutive elements of X.
  */
 void
@@ -210,7 +210,7 @@ blas_dot(const int N, const double *X, const int INCX, const double *Y,
  * @param [in] N The number of elements in vectors X and Y.
  * @param [in] X Vector with N elements.
  * @param [in] INCX Stride between consecutive elements of X.
- * @param [out] Y Vector with N elements.
+ * @param [in,out] Y Vector with N elements.
  * @param [in] INCY Stride between consecutive elements of Y.
  */
 void

@@ -23,6 +23,11 @@
 
 #include "pred_constant.h"
 
+/**
+ * @brief Dummy function since constant predictions have no data structure.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be initialised.
+ */
 void
 pred_constant_init(const struct XCSF *xcsf, struct Cl *c)
 {
@@ -30,6 +35,12 @@ pred_constant_init(const struct XCSF *xcsf, struct Cl *c)
     (void) c;
 }
 
+/**
+ * @brief Dummy function since constant predictions have no data structure.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] dest The destination classifier.
+ * @param [in] src The source classifier.
+ */
 void
 pred_constant_copy(const struct XCSF *xcsf, struct Cl *dest,
                    const struct Cl *src)
@@ -39,6 +50,11 @@ pred_constant_copy(const struct XCSF *xcsf, struct Cl *dest,
     (void) src;
 }
 
+/**
+ * @brief Dummy function since constant predictions have no data structure.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be freed.
+ */
 void
 pred_constant_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -46,6 +62,13 @@ pred_constant_free(const struct XCSF *xcsf, const struct Cl *c)
     (void) c;
 }
 
+/**
+ * @brief Updates a constant prediction for a given input and truth sample.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier whose prediction is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
+ */
 void
 pred_constant_update(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x, const double *y)
@@ -64,6 +87,12 @@ pred_constant_update(const struct XCSF *xcsf, const struct Cl *c,
     }
 }
 
+/**
+ * @brief Dummy function since constant predictions are not computed.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier calculating the prediction.
+ * @param [in] x The input state.
+ */
 void
 pred_constant_compute(const struct XCSF *xcsf, const struct Cl *c,
                       const double *x)
@@ -73,6 +102,11 @@ pred_constant_compute(const struct XCSF *xcsf, const struct Cl *c,
     (void) x;
 }
 
+/**
+ * @brief Prints a constant prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be printed.
+ */
 void
 pred_constant_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -83,6 +117,13 @@ pred_constant_print(const struct XCSF *xcsf, const struct Cl *c)
     printf("\n");
 }
 
+/**
+ * @brief Dummy function since constant predictions do not perform crossover.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c1 The first classifier whose prediction is being crossed.
+ * @param [in] c2 The second classifier whose prediction is being crossed.
+ * @return False.
+ */
 _Bool
 pred_constant_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                         const struct Cl *c2)
@@ -93,6 +134,12 @@ pred_constant_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Dummy function since constant predictions do not perform mutation.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is being mutated.
+ * @return False.
+ */
 _Bool
 pred_constant_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -101,6 +148,12 @@ pred_constant_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return false;
 }
 
+/**
+ * @brief Returns the size of a constant prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction size to return.
+ * @return The output dimension.
+ */
 double
 pred_constant_size(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -108,6 +161,13 @@ pred_constant_size(const struct XCSF *xcsf, const struct Cl *c)
     return xcsf->y_dim;
 }
 
+/**
+ * @brief Dummy function since constant predictions have no data structure.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return 0.
+ */
 size_t
 pred_constant_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -117,6 +177,13 @@ pred_constant_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return 0;
 }
 
+/**
+ * @brief Dummy function since constant predictions have no data structure.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c The classifier whose prediction is to be read.
+ * @param [in] fp Pointer to the file to be read.
+ * @return 0.
+ */
 size_t
 pred_constant_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
