@@ -20,13 +20,6 @@
 This example demonstrates XCSF (single-step) reinforcement learning applied to
 the real-multiplexer problem. Classifiers are composed of hyperrectangle
 conditions, linear least squares predictions, and integer actions.
-
-The Mux class generates random real vectors of length k+pow(2,k) where the
-first k bits determine the position of the output bit in the last pow(2,k)
-bits. E.g., for a 3-bit problem, the first (rounded) bit addresses which of the
-following 2 bits are the (rounded) output.
-
-Example valid lengths: 3, 6, 11, 20, 37, 70, 135, 264.
 """
 
 import random
@@ -36,7 +29,16 @@ from tqdm import tqdm
 import xcsf.xcsf as xcsf
 
 class Mux:
-    """ Real-multiplexer problem environment. """
+    """
+    Real-multiplexer problem environment.
+
+    The Mux class generates random real vectors of length k+pow(2,k) where the
+    first k bits determine the position of the output bit in the last pow(2,k)
+    bits. E.g., for a 3-bit problem, the first (rounded) bit addresses which of the
+    following 2 bits are the (rounded) output.
+
+    Example valid lengths: 3, 6, 11, 20, 37, 70, 135, 264.
+    """
 
     def __init__(self, n_bits):
         """ Constructs a new real-multiplexer problem of maximum size n_bits. """
@@ -81,7 +83,7 @@ MAX_PAYOFF = mux.max_payoff
 # Initialise XCSF
 ###################
 
-# initialise XCSF for reinforcement learning
+# constructor = (x_dim, y_dim, n_actions)
 xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
 # override default.ini
@@ -144,7 +146,7 @@ def run_experiment():
         psize[i] = xcs.pop_size() # current population size
         msize[i] = xcs.msetsize() # avg match set size
         # update status
-        status = ("trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f" %
+        status = ('trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f' %
                 (trials[i], performance[i], error[i], psize[i], msize[i]))
         bar.set_description(status)
         bar.refresh()
