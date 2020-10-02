@@ -282,7 +282,7 @@ pred_neural_neurons(const struct XCSF *xcsf, const struct Cl *c,
  * @param [in] xcsf The XCSF data structure.
  * @param [in] c Classifier maintaining a neural network prediction.
  * @param [in] layer Position of a layer in the network.
- * @return The current number of neurons in a layer.
+ * @return The current number of active (non-zero) connections in a layer.
  */
 int
 pred_neural_connections(const struct XCSF *xcsf, const struct Cl *c,
