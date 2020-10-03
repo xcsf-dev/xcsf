@@ -18,8 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2016--2020.
- * @brief An implementation of dynamical GP graphs with fuzzy activation
- * functions.
+ * @brief An implementation of dynamical GP graphs with fuzzy activations.
  */
 
 #pragma once
