@@ -53,7 +53,7 @@ class Maze:
 
     def __init__(self, filename):
         """ Constructs a new maze problem given a maze file name. """
-        self.name = filename
+        self.name = filename #: maze name
         self.maze = [] #: maze as read from the input file
         line = []
         path = os.path.normpath('../env/maze/'+filename+'.txt')
@@ -80,6 +80,8 @@ class Maze:
             self.y_pos = random.randint(0, self.y_size - 1)
             if self.maze[self.y_pos][self.x_pos] == '*':
                 break
+        self.update_state()
+        return np.copy(self.state)
 
     def sensor(self, x_pos, y_pos):
         """ Returns the real-number representation of a discrete maze cell. """
@@ -109,8 +111,11 @@ class Maze:
                 self.state[spos] = self.sensor(x_sense, y_sense)
                 spos += 1
 
-    def execute(self, act):
-        """ Executes an action, returns reward and whether terminal state reached. """
+    def step(self, act):
+        """
+        Takes a step in the maze, performing the specified action.
+        Returns next state, immediate reward and whether terminal state reached.
+        """
         if act < 0 or act > 7:
             print('invalid maze action')
             sys.exit()
@@ -120,13 +125,14 @@ class Maze:
         y_new = ((self.y_pos + y_moves[act]) % self.y_size + self.y_size) % self.y_size
         s = self.maze[y_new][x_new]
         if s in ('O', 'Q'):
-            return 0, False
+            return np.copy(self.state), 0, False
         self.x_pos = x_new
         self.y_pos = y_new
+        self.update_state()
         if s == '*':
-            return 0, False
+            return np.copy(self.state), 0, False
         if s in ('F', 'G'):
-            return Maze.max_payoff, True
+            return np.copy(self.state), Maze.max_payoff, True
         print('invalid maze type')
         sys.exit()
 
@@ -180,34 +186,34 @@ maze = Maze('maze4')
 for i in range(N):
     for j in range(xcs.PERF_TRIALS):
         # explore trial
-        maze.reset()
+        state = maze.reset()
         xcs.init_trial()
         for k in range(xcs.TELETRANSPORTATION):
             xcs.init_step()
-            maze.update_state()
-            action = xcs.decision(maze.state, True) # explore
-            reward, done = maze.execute(action)
+            action = xcs.decision(state, True) # explore
+            next_state, reward, done = maze.step(action)
             xcs.update(reward, done)
             xcs.end_step()
             if done:
                 break
+            state = next_state
         xcs.end_trial()
         # exploit trial
         err = 0
         cnt = 0
-        maze.reset()
+        state = maze.reset()
         xcs.init_trial()
         for k in range(xcs.TELETRANSPORTATION):
             xcs.init_step()
-            maze.update_state()
-            action = xcs.decision(maze.state, False) # exploit
-            reward, done = maze.execute(action)
+            action = xcs.decision(state, False) # exploit
+            next_state, reward, done = maze.step(action)
             xcs.update(reward, done)
             err += xcs.error(reward, done, Maze.max_payoff)
             cnt += 1
             xcs.end_step()
             if done:
                 break
+            state = next_state
         xcs.end_trial()
         steps[i] += cnt
         error[i] += err / float(cnt)
@@ -268,7 +274,7 @@ def draw_maze(XOFF, YOFF):
             if s == 'G':
                 bg.color('yellow')
             if s == 'F':
-                bg.color("yellow")
+                bg.color('yellow')
             if s == 'Q':
                 bg.color('brown')
             bg.goto(XOFF + x * CELL_SIZE, YOFF + y * CELL_SIZE)
@@ -293,23 +299,23 @@ def visualise(XOFF, YOFF):
     agent.speed('normal')
     agent.shapesize(0.5, 0.5)
     agent.pensize(2)
-    maze.reset()
+    state = maze.reset()
     xcs.init_trial()
     for k in range(xcs.TELETRANSPORTATION):
         xcs.init_step()
-        maze.update_state()
         if k == 0:
             agent.penup()
             agent.goto(XOFF + maze.x_pos * CELL_SIZE, YOFF + maze.y_pos * CELL_SIZE)
             screen.tracer(True)
             agent.pendown()
-        action = xcs.decision(maze.state, False)
-        reward, done = maze.execute(action)
+        action = xcs.decision(state, False)
+        next_state, reward, done = maze.step(action)
         agent.goto(XOFF + maze.x_pos * CELL_SIZE, YOFF + maze.y_pos * CELL_SIZE)
         xcs.update(reward, done)
         xcs.end_step()
         if done:
             break
+        state = next_state
     xcs.end_trial()
 
 GRID_XOFF = (GRID_WIDTH * CELL_SIZE)
