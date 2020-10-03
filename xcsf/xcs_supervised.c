@@ -123,7 +123,7 @@ xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
     param_set_explore(xcsf, false);
     for (int row = 0; row < n_samples; ++row) {
         xcs_supervised_trial(xcsf, &x[row * xcsf->x_dim], NULL);
-        memcpy(&pred[row * xcsf->y_dim * xcsf->n_actions], xcsf->pa,
+        memcpy(&pred[row * xcsf->pa_size], xcsf->pa,
                sizeof(double) * xcsf->pa_size);
     }
 }
