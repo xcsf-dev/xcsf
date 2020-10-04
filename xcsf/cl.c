@@ -29,7 +29,7 @@
 #include "utils.h"
 
 /**
- * @brief Initialises a new classifier.
+ * @brief Initialises a new classifier - but not condition, action, prediction.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] c The classifier data structure to initialise.
  * @param [in] size The initial set size value.
