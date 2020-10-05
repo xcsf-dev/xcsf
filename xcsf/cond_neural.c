@@ -102,19 +102,6 @@ cond_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) c;
     (void) x;
     (void) y;
-
-    if (c->exp * xcsf->BETA > 1 && c->err > xcsf->EPS_0) {
-        const double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
-        if (error > c->err * 1.1) {
-            const double truth[1] = { 0 };
-            const struct CondNeural *cond = c->cond;
-            neural_learn(xcsf, &cond->net, truth, x);
-        } else if (error < c->err * 0.9) {
-            const double truth[1] = { 1 };
-            const struct CondNeural *cond = c->cond;
-            neural_learn(xcsf, &cond->net, truth, x);
-        }
-    }
 }
 
 bool
