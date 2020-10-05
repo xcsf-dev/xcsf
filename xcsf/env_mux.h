@@ -34,10 +34,10 @@ struct EnvMux {
     int pos_bits; //!< Number of position bits
 };
 
-_Bool
+bool
 env_mux_is_done(const struct XCSF *xcsf);
 
-_Bool
+bool
 env_mux_multistep(const struct XCSF *xcsf);
 
 double

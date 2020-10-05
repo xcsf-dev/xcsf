@@ -39,7 +39,7 @@
  */
 static int
 xcs_supervised_sample(const struct Input *data, const int cnt,
-                      const _Bool shuffle)
+                      const bool shuffle)
 {
     if (shuffle) {
         return rand_uniform_int(0, data->n_samples);
@@ -79,7 +79,7 @@ xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y)
  */
 double
 xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
-                   const struct Input *test_data, const _Bool shuffle)
+                   const struct Input *test_data, const bool shuffle)
 {
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total

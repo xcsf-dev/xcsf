@@ -312,10 +312,10 @@ tree_crossover(const struct XCSF *xcsf, struct GPTree *p1, struct GPTree *p2)
  * @param [in] gp The GP tree to be mutated.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 tree_mutate(const struct XCSF *xcsf, struct GPTree *gp)
 {
-    _Bool changed = false;
+    bool changed = false;
     sam_adapt(gp->mu, N_MU, MU_TYPE);
     const int terminal_max = GP_NUM_FUNC + xcsf->GP_NUM_CONS + xcsf->x_dim;
     for (int i = 0; i < gp->len; ++i) {

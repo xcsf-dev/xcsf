@@ -41,11 +41,11 @@ struct Graph {
     double *mu; //!< Mutation rates
 };
 
-_Bool
+bool
 graph_crossover(const struct XCSF *xcsf, struct Graph *dgp1,
                 struct Graph *dgp2);
 
-_Bool
+bool
 graph_mutate(const struct XCSF *xcsf, struct Graph *dgp);
 
 double

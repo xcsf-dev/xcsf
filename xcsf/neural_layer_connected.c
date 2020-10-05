@@ -61,7 +61,7 @@ malloc_layer_arrays(struct Layer *l)
     l->bias_updates = calloc(l->n_outputs, sizeof(double));
     l->delta = calloc(l->n_outputs, sizeof(double));
     l->weight_updates = calloc(l->n_weights, sizeof(double));
-    l->weight_active = malloc(sizeof(_Bool) * l->n_weights);
+    l->weight_active = malloc(sizeof(bool) * l->n_weights);
     l->weights = malloc(sizeof(double) * l->n_weights);
     l->mu = malloc(sizeof(double) * N_MU);
 }
@@ -154,8 +154,7 @@ neural_layer_connected_copy(const struct XCSF *xcsf, const struct Layer *src)
     malloc_layer_arrays(l);
     memcpy(l->biases, src->biases, sizeof(double) * src->n_biases);
     memcpy(l->weights, src->weights, sizeof(double) * src->n_weights);
-    memcpy(l->weight_active, src->weight_active,
-           sizeof(_Bool) * src->n_weights);
+    memcpy(l->weight_active, src->weight_active, sizeof(bool) * src->n_weights);
     memcpy(l->mu, src->mu, sizeof(double) * N_MU);
     return l;
 }
@@ -259,7 +258,7 @@ neural_layer_connected_resize(const struct XCSF *xcsf, struct Layer *l,
     const int n_weights = prev->n_outputs * l->n_outputs;
     double *weights = malloc(sizeof(double) * n_weights);
     double *weight_updates = malloc(sizeof(double) * n_weights);
-    _Bool *weight_active = malloc(sizeof(_Bool) * n_weights);
+    bool *weight_active = malloc(sizeof(bool) * n_weights);
     for (int i = 0; i < l->n_outputs; ++i) {
         const int orig_offset = i * l->n_inputs;
         const int offset = i * prev->n_outputs;
@@ -295,11 +294,11 @@ neural_layer_connected_resize(const struct XCSF *xcsf, struct Layer *l,
  * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 neural_layer_connected_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
     sam_adapt(l->mu, N_MU, MU_TYPE);
-    _Bool mod = false;
+    bool mod = false;
     if ((l->options & LAYER_EVOLVE_ETA) &&
         layer_mutate_eta(xcsf, l, l->mu[0])) {
         mod = true;
@@ -348,7 +347,7 @@ neural_layer_connected_output(const struct XCSF *xcsf, const struct Layer *l)
  */
 void
 neural_layer_connected_print(const struct XCSF *xcsf, const struct Layer *l,
-                             const _Bool print_weights)
+                             const bool print_weights)
 {
     (void) xcsf;
     printf("connected %s, in = %d, out = %d, ",
@@ -380,7 +379,7 @@ neural_layer_connected_save(const struct XCSF *xcsf, const struct Layer *l,
     s += fwrite(&l->eta, sizeof(double), 1, fp);
     s += fwrite(&l->n_active, sizeof(int), 1, fp);
     s += fwrite(l->weights, sizeof(double), l->n_weights, fp);
-    s += fwrite(l->weight_active, sizeof(_Bool), l->n_weights, fp);
+    s += fwrite(l->weight_active, sizeof(bool), l->n_weights, fp);
     s += fwrite(l->biases, sizeof(double), l->n_biases, fp);
     s += fwrite(l->bias_updates, sizeof(double), l->n_biases, fp);
     s += fwrite(l->weight_updates, sizeof(double), l->n_weights, fp);
@@ -411,7 +410,7 @@ neural_layer_connected_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
     s += fread(&l->n_active, sizeof(int), 1, fp);
     malloc_layer_arrays(l);
     s += fread(l->weights, sizeof(double), l->n_weights, fp);
-    s += fread(l->weight_active, sizeof(_Bool), l->n_weights, fp);
+    s += fread(l->weight_active, sizeof(bool), l->n_weights, fp);
     s += fread(l->biases, sizeof(double), l->n_biases, fp);
     s += fread(l->bias_updates, sizeof(double), l->n_biases, fp);
     s += fread(l->weight_updates, sizeof(double), l->n_weights, fp);

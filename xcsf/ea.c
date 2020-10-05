@@ -41,7 +41,7 @@
 static void
 ea_init_offspring(const struct XCSF *xcsf, const struct Cl *c1p,
                   const struct Cl *c2p, struct Cl *c1, struct Cl *c2,
-                  const _Bool cmod)
+                  const bool cmod)
 {
     if (cmod) {
         c1->err = xcsf->ERR_REDUC * ((c1p->err + c2p->err) * 0.5);
@@ -114,7 +114,7 @@ ea_subsume(struct XCSF *xcsf, struct Cl *c, struct Cl *c1p, struct Cl *c2p,
  */
 static void
 ea_add(struct XCSF *xcsf, const struct Set *set, struct Cl *c1p, struct Cl *c2p,
-       struct Cl *c1, const _Bool cmod, const _Bool mmod)
+       struct Cl *c1, const bool cmod, const bool mmod)
 {
     if (!cmod && !mmod) {
         ++(c1p->num);
@@ -222,9 +222,9 @@ ea(struct XCSF *xcsf, const struct Set *set)
         cl_copy(xcsf, c1, c1p);
         cl_copy(xcsf, c2, c2p);
         // apply evolutionary operators to offspring
-        const _Bool cmod = cl_crossover(xcsf, c1, c2);
-        const _Bool m1mod = cl_mutate(xcsf, c1);
-        const _Bool m2mod = cl_mutate(xcsf, c2);
+        const bool cmod = cl_crossover(xcsf, c1, c2);
+        const bool m1mod = cl_mutate(xcsf, c1);
+        const bool m2mod = cl_mutate(xcsf, c2);
         // initialise parameters
         ea_init_offspring(xcsf, c1p, c2p, c1, c2, cmod);
         // add to population

@@ -34,11 +34,11 @@ struct PredNeural {
     struct Net net; //!< Neural network
 };
 
-_Bool
+bool
 pred_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                       const struct Cl *c2);
 
-_Bool
+bool
 pred_neural_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 double

@@ -77,7 +77,7 @@ struct Cl {
     int exp; //!< Experience
     double size; //!< Average participated set size
     int time; //!< Time EA last executed in a participating set
-    _Bool m; //!< Whether the classifier matches current input
+    bool m; //!< Whether the classifier matches current input
     double *prediction; //!< Current classifier prediction
     int action; //!< Current classifier action
     int age; //!< Total number of times match testing been performed
@@ -183,22 +183,22 @@ struct XCSF {
     int COND_MAX_NEURONS[MAX_LAYERS]; //!< Condition maximum number of neurons
     int PRED_NUM_NEURONS[MAX_LAYERS]; //!< Prediction initial number of neurons
     int PRED_MAX_NEURONS[MAX_LAYERS]; //!< Prediction maximum number of neurons
-    _Bool POP_INIT; //!< Pop initially empty or filled with random conditions
-    _Bool STATEFUL; //!< Whether classifiers should retain state across trials
-    _Bool COND_EVOLVE_WEIGHTS; //!< Evolve condition weights
-    _Bool COND_EVOLVE_NEURONS; //!< Evolve number of condition neurons
-    _Bool COND_EVOLVE_FUNCTIONS; //!< Evolve condition activations
-    _Bool COND_EVOLVE_CONNECTIVITY; //!< Evolve condition connections
-    _Bool PRED_RESET; //!< Reset offspring predictions instead of copying
-    _Bool PRED_EVOLVE_WEIGHTS; //!< Evolve prediction weights
-    _Bool PRED_EVOLVE_NEURONS; //!< Evolve number of prediction neurons
-    _Bool PRED_EVOLVE_FUNCTIONS; //!< Evolve prediction activations
-    _Bool PRED_EVOLVE_CONNECTIVITY; //!< Evolve prediction connections
-    _Bool PRED_EVOLVE_ETA; //!< Evolve prediction gradient descent rates
-    _Bool PRED_SGD_WEIGHTS; //!< Whether to use gradient descent for predictions
-    _Bool EA_SUBSUMPTION; //!< Whether to try and subsume offspring classifiers
-    _Bool SET_SUBSUMPTION; //!< Whether to perform match set subsumption
-    _Bool explore; //!< Whether the system is currently exploring or exploiting
+    bool POP_INIT; //!< Pop initially empty or filled with random conditions
+    bool STATEFUL; //!< Whether classifiers should retain state across trials
+    bool COND_EVOLVE_WEIGHTS; //!< Evolve condition weights
+    bool COND_EVOLVE_NEURONS; //!< Evolve number of condition neurons
+    bool COND_EVOLVE_FUNCTIONS; //!< Evolve condition activations
+    bool COND_EVOLVE_CONNECTIVITY; //!< Evolve condition connections
+    bool PRED_RESET; //!< Reset offspring predictions instead of copying
+    bool PRED_EVOLVE_WEIGHTS; //!< Evolve prediction weights
+    bool PRED_EVOLVE_NEURONS; //!< Evolve number of prediction neurons
+    bool PRED_EVOLVE_FUNCTIONS; //!< Evolve prediction activations
+    bool PRED_EVOLVE_CONNECTIVITY; //!< Evolve prediction connections
+    bool PRED_EVOLVE_ETA; //!< Evolve prediction gradient descent rates
+    bool PRED_SGD_WEIGHTS; //!< Whether to use gradient descent for predictions
+    bool EA_SUBSUMPTION; //!< Whether to try and subsume offspring classifiers
+    bool SET_SUBSUMPTION; //!< Whether to perform match set subsumption
+    bool explore; //!< Whether the system is currently exploring or exploiting
 };
 
 /**
@@ -225,8 +225,8 @@ void
 xcsf_init(struct XCSF *xcsf);
 
 void
-xcsf_print_pop(const struct XCSF *xcsf, const _Bool print_cond,
-               const _Bool print_act, const _Bool print_pred);
+xcsf_print_pop(const struct XCSF *xcsf, const bool print_cond,
+               const bool print_act, const bool print_pred);
 
 void
 xcsf_ae_to_classifier(struct XCSF *xcsf, const int y_dim, const int n_del);

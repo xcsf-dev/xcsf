@@ -190,7 +190,7 @@ neural_layer_avgpool_update(const struct XCSF *xcsf, const struct Layer *l)
  * @param [in] l An average pooling layer.
  * @return False.
  */
-_Bool
+bool
 neural_layer_avgpool_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
     (void) xcsf;
@@ -244,7 +244,7 @@ neural_layer_avgpool_output(const struct XCSF *xcsf, const struct Layer *l)
  */
 void
 neural_layer_avgpool_print(const struct XCSF *xcsf, const struct Layer *l,
-                           const _Bool print_weights)
+                           const bool print_weights)
 {
     (void) xcsf;
     (void) print_weights;

@@ -118,20 +118,20 @@ cond_ellipsoid_update(const struct XCSF *xcsf, const struct Cl *c,
     }
 }
 
-_Bool
+bool
 cond_ellipsoid_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
 {
     return (cond_ellipsoid_dist(xcsf, c, x) < 1);
 }
 
-_Bool
+bool
 cond_ellipsoid_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                          const struct Cl *c2)
 {
     const struct CondEllipsoid *cond1 = c1->cond;
     const struct CondEllipsoid *cond2 = c2->cond;
-    _Bool changed = false;
+    bool changed = false;
     if (rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for (int i = 0; i < xcsf->x_dim; ++i) {
             if (rand_uniform(0, 1) < 0.5) {
@@ -151,10 +151,10 @@ cond_ellipsoid_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return changed;
 }
 
-_Bool
+bool
 cond_ellipsoid_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
-    _Bool changed = false;
+    bool changed = false;
     const struct CondEllipsoid *cond = c->cond;
     double *center = cond->center;
     double *spread = cond->spread;
@@ -176,7 +176,7 @@ cond_ellipsoid_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return changed;
 }
 
-_Bool
+bool
 cond_ellipsoid_general(const struct XCSF *xcsf, const struct Cl *c1,
                        const struct Cl *c2)
 {

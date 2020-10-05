@@ -26,18 +26,18 @@
 #include "condition.h"
 #include "xcsf.h"
 
-_Bool
+bool
 cond_dummy_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                      const struct Cl *c2);
 
-_Bool
+bool
 cond_dummy_general(const struct XCSF *xcsf, const struct Cl *c1,
                    const struct Cl *c2);
 
-_Bool
+bool
 cond_dummy_match(const struct XCSF *xcsf, const struct Cl *c, const double *x);
 
-_Bool
+bool
 cond_dummy_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 void

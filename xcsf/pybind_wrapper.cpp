@@ -209,8 +209,8 @@ class XCS
      * @param [in] print_pred Whether to print the prediction.
      */
     void
-    print_pop(const _Bool print_cond, const _Bool print_act,
-              const _Bool print_pred)
+    print_pop(const bool print_cond, const bool print_act,
+              const bool print_pred)
     {
         xcsf_print_pop(&xcs, print_cond, print_act, print_pred);
     }
@@ -279,7 +279,7 @@ class XCS
      * @return The selected action.
      */
     int
-    decision(const py::array_t<double> input, const _Bool explore)
+    decision(const py::array_t<double> input, const bool explore)
     {
         py::buffer_info buf = input.request();
         state = (double *) buf.ptr;
@@ -295,7 +295,7 @@ class XCS
      * @param [in] done Whether the environment is in a terminal state.
      */
     void
-    update(const double reward, const _Bool done)
+    update(const double reward, const bool done)
     {
         payoff = reward;
         xcs_rl_update(&xcs, state, action, payoff, done);
@@ -309,7 +309,7 @@ class XCS
      * @return The prediction error.
      */
     double
-    error(const double reward, const _Bool done, const double max_p)
+    error(const double reward, const bool done, const double max_p)
     {
         payoff = reward;
         return xcs_rl_error(&xcs, action, payoff, done, max_p);
@@ -327,7 +327,7 @@ class XCS
      */
     double
     fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
-        const _Bool shuffle)
+        const bool shuffle)
     {
         const py::buffer_info buf_x = train_X.request();
         const py::buffer_info buf_y = train_Y.request();
@@ -362,7 +362,7 @@ class XCS
     double
     fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
         const py::array_t<double> test_X, const py::array_t<double> test_Y,
-        const _Bool shuffle)
+        const bool shuffle)
     {
         const py::buffer_info buf_train_x = train_X.request();
         const py::buffer_info buf_train_y = train_Y.request();
@@ -523,7 +523,7 @@ class XCS
         return xcs.OMP_NUM_THREADS;
     }
 
-    _Bool
+    bool
     get_pop_init(void)
     {
         return xcs.POP_INIT;
@@ -691,25 +691,25 @@ class XCS
         return xcs.COND_BITS;
     }
 
-    _Bool
+    bool
     get_cond_evolve_weights(void)
     {
         return xcs.COND_EVOLVE_WEIGHTS;
     }
 
-    _Bool
+    bool
     get_cond_evolve_neurons(void)
     {
         return xcs.COND_EVOLVE_NEURONS;
     }
 
-    _Bool
+    bool
     get_cond_evolve_functions(void)
     {
         return xcs.COND_EVOLVE_FUNCTIONS;
     }
 
-    _Bool
+    bool
     get_cond_evolve_connectivity(void)
     {
         return xcs.COND_EVOLVE_CONNECTIVITY;
@@ -751,43 +751,43 @@ class XCS
         return xcs.PRED_DECAY;
     }
 
-    _Bool
+    bool
     get_pred_evolve_weights(void)
     {
         return xcs.PRED_EVOLVE_WEIGHTS;
     }
 
-    _Bool
+    bool
     get_pred_evolve_neurons(void)
     {
         return xcs.PRED_EVOLVE_NEURONS;
     }
 
-    _Bool
+    bool
     get_pred_evolve_functions(void)
     {
         return xcs.PRED_EVOLVE_FUNCTIONS;
     }
 
-    _Bool
+    bool
     get_pred_evolve_connectivity(void)
     {
         return xcs.PRED_EVOLVE_CONNECTIVITY;
     }
 
-    _Bool
+    bool
     get_pred_evolve_eta(void)
     {
         return xcs.PRED_EVOLVE_ETA;
     }
 
-    _Bool
+    bool
     get_pred_sgd_weights(void)
     {
         return xcs.PRED_SGD_WEIGHTS;
     }
 
-    _Bool
+    bool
     get_pred_reset(void)
     {
         return xcs.PRED_RESET;
@@ -799,7 +799,7 @@ class XCS
         return xcs.MAX_NEURON_GROW;
     }
 
-    _Bool
+    bool
     get_stateful(void)
     {
         return xcs.STATEFUL;
@@ -865,13 +865,13 @@ class XCS
         return xcs.THETA_SUB;
     }
 
-    _Bool
+    bool
     get_ea_subsumption(void)
     {
         return xcs.EA_SUBSUMPTION;
     }
 
-    _Bool
+    bool
     get_set_subsumption(void)
     {
         return xcs.SET_SUBSUMPTION;
@@ -1048,7 +1048,7 @@ class XCS
     }
 
     void
-    set_pop_init(const _Bool a)
+    set_pop_init(const bool a)
     {
         param_set_pop_init(&xcs, a);
     }
@@ -1216,25 +1216,25 @@ class XCS
     }
 
     void
-    set_cond_evolve_weights(const _Bool a)
+    set_cond_evolve_weights(const bool a)
     {
         param_set_cond_evolve_weights(&xcs, a);
     }
 
     void
-    set_cond_evolve_neurons(const _Bool a)
+    set_cond_evolve_neurons(const bool a)
     {
         param_set_cond_evolve_neurons(&xcs, a);
     }
 
     void
-    set_cond_evolve_functions(const _Bool a)
+    set_cond_evolve_functions(const bool a)
     {
         param_set_cond_evolve_functions(&xcs, a);
     }
 
     void
-    set_cond_evolve_connectivity(const _Bool a)
+    set_cond_evolve_connectivity(const bool a)
     {
         param_set_cond_evolve_connectivity(&xcs, a);
     }
@@ -1276,43 +1276,43 @@ class XCS
     }
 
     void
-    set_pred_evolve_weights(const _Bool a)
+    set_pred_evolve_weights(const bool a)
     {
         param_set_pred_evolve_weights(&xcs, a);
     }
 
     void
-    set_pred_evolve_neurons(const _Bool a)
+    set_pred_evolve_neurons(const bool a)
     {
         param_set_pred_evolve_neurons(&xcs, a);
     }
 
     void
-    set_pred_evolve_functions(const _Bool a)
+    set_pred_evolve_functions(const bool a)
     {
         param_set_pred_evolve_functions(&xcs, a);
     }
 
     void
-    set_pred_evolve_connectivity(const _Bool a)
+    set_pred_evolve_connectivity(const bool a)
     {
         param_set_pred_evolve_connectivity(&xcs, a);
     }
 
     void
-    set_pred_evolve_eta(const _Bool a)
+    set_pred_evolve_eta(const bool a)
     {
         param_set_pred_evolve_eta(&xcs, a);
     }
 
     void
-    set_pred_sgd_weights(const _Bool a)
+    set_pred_sgd_weights(const bool a)
     {
         param_set_pred_sgd_weights(&xcs, a);
     }
 
     void
-    set_pred_reset(const _Bool a)
+    set_pred_reset(const bool a)
     {
         param_set_pred_reset(&xcs, a);
     }
@@ -1324,7 +1324,7 @@ class XCS
     }
 
     void
-    set_stateful(const _Bool a)
+    set_stateful(const bool a)
     {
         param_set_stateful(&xcs, a);
     }
@@ -1390,13 +1390,13 @@ class XCS
     }
 
     void
-    set_ea_subsumption(const _Bool a)
+    set_ea_subsumption(const bool a)
     {
         param_set_ea_subsumption(&xcs, a);
     }
 
     void
-    set_set_subsumption(const _Bool a)
+    set_set_subsumption(const bool a)
     {
         param_set_set_subsumption(&xcs, a);
     }
@@ -1427,10 +1427,10 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*fit1)(const py::array_t<double>, const int, const double) =
         &XCS::fit;
     double (XCS::*fit2)(const py::array_t<double>, const py::array_t<double>,
-                        const _Bool) = &XCS::fit;
+                        const bool) = &XCS::fit;
     double (XCS::*fit3)(const py::array_t<double>, const py::array_t<double>,
                         const py::array_t<double>, const py::array_t<double>,
-                        const _Bool) = &XCS::fit;
+                        const bool) = &XCS::fit;
     double (XCS::*score1)(const py::array_t<double> test_X,
                           const py::array_t<double> test_Y) = &XCS::score;
     double (XCS::*score2)(const py::array_t<double> test_X,
@@ -1438,8 +1438,7 @@ PYBIND11_MODULE(xcsf, m)
         &XCS::score;
 
     double (XCS::*error1)(void) = &XCS::error;
-    double (XCS::*error2)(const double, const _Bool, const double) =
-        &XCS::error;
+    double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
 
     py::class_<XCS>(m, "XCS")
         .def(py::init<const int, const int, const int>())

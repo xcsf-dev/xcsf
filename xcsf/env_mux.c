@@ -119,7 +119,7 @@ env_mux_reset(const struct XCSF *xcsf)
  * @param [in] xcsf The XCSF data structure.
  * @return True.
  */
-_Bool
+bool
 env_mux_is_done(const struct XCSF *xcsf)
 {
     (void) xcsf;
@@ -143,7 +143,7 @@ env_mux_maxpayoff(const struct XCSF *xcsf)
  * @param [in] xcsf The XCSF data structure.
  * @return False.
  */
-_Bool
+bool
 env_mux_multistep(const struct XCSF *xcsf)
 {
     (void) xcsf;

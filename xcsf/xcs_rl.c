@@ -40,14 +40,14 @@
  * steps taken to reach the goal for multi-step problems.
  */
 static double
-xcs_rl_trial(struct XCSF *xcsf, double *error, const _Bool explore)
+xcs_rl_trial(struct XCSF *xcsf, double *error, const bool explore)
 {
     env_reset(xcsf);
     param_set_explore(xcsf, explore);
     xcs_rl_init_trial(xcsf);
     *error = 0; // mean prediction error over all steps taken
     double reward = 0;
-    _Bool done = false;
+    bool done = false;
     int steps = 0;
     while (steps < xcsf->TELETRANSPORTATION && !done) {
         xcs_rl_init_step(xcsf);
@@ -190,7 +190,7 @@ xcs_rl_end_step(struct XCSF *xcsf, const double *state, const int action,
  */
 void
 xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
-              const double reward, const _Bool done)
+              const double reward, const bool done)
 {
     clset_action(xcsf, action); // create action set
     if (xcsf->prev_aset.list != NULL) { // update previous action set and run EA
@@ -221,7 +221,7 @@ xcs_rl_update(struct XCSF *xcsf, const double *state, const int action,
  */
 double
 xcs_rl_error(struct XCSF *xcsf, const int action, const double reward,
-             const _Bool done, const double max_p)
+             const bool done, const double max_p)
 {
     double error = 0;
     const double prediction = pa_val(xcsf, action);

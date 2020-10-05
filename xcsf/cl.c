@@ -180,7 +180,7 @@ cl_acc(const struct XCSF *xcsf, const struct Cl *c)
  */
 void
 cl_update(const struct XCSF *xcsf, struct Cl *c, const double *x,
-          const double *y, const int set_num, const _Bool cur)
+          const double *y, const int set_num, const bool cur)
 {
     ++(c->exp);
     if (!cur) { // propagate inputs for the previous state update
@@ -237,8 +237,8 @@ cl_free(const struct XCSF *xcsf, struct Cl *c)
  * @param [in] print_pred Whether to print the prediction.
  */
 void
-cl_print(const struct XCSF *xcsf, const struct Cl *c, const _Bool print_cond,
-         const _Bool print_act, const _Bool print_pred)
+cl_print(const struct XCSF *xcsf, const struct Cl *c, const bool print_cond,
+         const bool print_act, const bool print_pred)
 {
     if (print_cond || print_act || print_pred) {
         printf("***********************************************\n");
@@ -268,7 +268,7 @@ cl_print(const struct XCSF *xcsf, const struct Cl *c, const _Bool print_cond,
  * @param [in] x The input state to be matched.
  * @return Whether the classifier matches the input.
  */
-_Bool
+bool
 cl_match(const struct XCSF *xcsf, struct Cl *c, const double *x)
 {
     c->m = cond_match(xcsf, c, x);
@@ -301,7 +301,7 @@ cl_mfrac(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c The classifier to test for matching.
  * @return Whether the classifier matched the most recent input.
  */
-_Bool
+bool
 cl_m(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
@@ -342,7 +342,7 @@ cl_predict(const struct XCSF *xcsf, const struct Cl *c, const double *x)
  * @param [in] c The classifier to print.
  * @return Whether the classifier is an eligible subsumer.
  */
-_Bool
+bool
 cl_subsumer(const struct XCSF *xcsf, const struct Cl *c)
 {
     if (c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
@@ -358,7 +358,7 @@ cl_subsumer(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c2 The classifier tested to be more specific.
  * @return Whether classifier c1 is more general than c2.
  */
-_Bool
+bool
 cl_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 {
     if (cond_general(xcsf, c1, c2)) {
@@ -373,12 +373,12 @@ cl_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
  * @param [in] c The classifier being mutated.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 cl_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const _Bool cm = cond_mutate(xcsf, c);
-    const _Bool pm = pred_mutate(xcsf, c);
-    const _Bool am = (xcsf->n_actions > 1) ? act_mutate(xcsf, c) : false;
+    const bool cm = cond_mutate(xcsf, c);
+    const bool pm = pred_mutate(xcsf, c);
+    const bool am = (xcsf->n_actions > 1) ? act_mutate(xcsf, c) : false;
     if (cm || pm || am) {
         return true;
     }
@@ -392,12 +392,12 @@ cl_mutate(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c2 The second classifier being crossed.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 cl_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 {
-    const _Bool cc = cond_crossover(xcsf, c1, c2);
-    const _Bool pc = pred_crossover(xcsf, c1, c2);
-    const _Bool ac = act_crossover(xcsf, c1, c2);
+    const bool cc = cond_crossover(xcsf, c1, c2);
+    const bool pc = pred_crossover(xcsf, c1, c2);
+    const bool ac = act_crossover(xcsf, c1, c2);
     if (cc || pc || ac) {
         return true;
     }
@@ -445,7 +445,7 @@ cl_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     s += fwrite(&c->exp, sizeof(int), 1, fp);
     s += fwrite(&c->size, sizeof(double), 1, fp);
     s += fwrite(&c->time, sizeof(int), 1, fp);
-    s += fwrite(&c->m, sizeof(_Bool), 1, fp);
+    s += fwrite(&c->m, sizeof(bool), 1, fp);
     s += fwrite(&c->age, sizeof(int), 1, fp);
     s += fwrite(&c->mtotal, sizeof(int), 1, fp);
     s += fwrite(c->prediction, sizeof(double), xcsf->y_dim, fp);
@@ -473,7 +473,7 @@ cl_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     s += fread(&c->exp, sizeof(int), 1, fp);
     s += fread(&c->size, sizeof(double), 1, fp);
     s += fread(&c->time, sizeof(int), 1, fp);
-    s += fread(&c->m, sizeof(_Bool), 1, fp);
+    s += fread(&c->m, sizeof(bool), 1, fp);
     s += fread(&c->age, sizeof(int), 1, fp);
     s += fread(&c->mtotal, sizeof(int), 1, fp);
     c->prediction = malloc(sizeof(double) * xcsf->y_dim);

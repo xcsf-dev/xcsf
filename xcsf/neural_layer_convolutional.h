@@ -54,9 +54,9 @@ neural_layer_convolutional_update(const struct XCSF *xcsf,
 
 void
 neural_layer_convolutional_print(const struct XCSF *xcsf, const struct Layer *l,
-                                 const _Bool print_weights);
+                                 const bool print_weights);
 
-_Bool
+bool
 neural_layer_convolutional_mutate(const struct XCSF *xcsf, struct Layer *l);
 
 void

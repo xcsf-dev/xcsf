@@ -69,8 +69,8 @@ xcsf_free(struct XCSF *xcsf)
  * @param [in] print_pred Whether to print prediction structures.
  */
 void
-xcsf_print_pop(const struct XCSF *xcsf, const _Bool print_cond,
-               const _Bool print_act, const _Bool print_pred)
+xcsf_print_pop(const struct XCSF *xcsf, const bool print_cond,
+               const bool print_act, const bool print_pred)
 {
     clset_print(xcsf, &xcsf->pset, print_cond, print_act, print_pred);
 }

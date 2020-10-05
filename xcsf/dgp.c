@@ -59,11 +59,11 @@ random_connection(const int n_nodes, const int n_inputs)
  * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 graph_mutate_functions(const struct XCSF *xcsf, struct Graph *dgp)
 {
     (void) xcsf;
-    _Bool mod = false;
+    bool mod = false;
     for (int i = 0; i < dgp->n; ++i) {
         if (rand_uniform(0, 1) < dgp->mu[0]) {
             const int orig = dgp->function[i];
@@ -82,10 +82,10 @@ graph_mutate_functions(const struct XCSF *xcsf, struct Graph *dgp)
  * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 graph_mutate_connectivity(const struct XCSF *xcsf, struct Graph *dgp)
 {
-    _Bool mod = false;
+    bool mod = false;
     for (int i = 0; i < dgp->klen; ++i) {
         if (rand_uniform(0, 1) < dgp->mu[1]) {
             const int orig = dgp->connectivity[i];
@@ -104,7 +104,7 @@ graph_mutate_connectivity(const struct XCSF *xcsf, struct Graph *dgp)
  * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 graph_mutate_cycles(const struct XCSF *xcsf, struct Graph *dgp)
 {
     const int n = (int) round((2 * dgp->mu[2]) - 1);
@@ -348,10 +348,10 @@ graph_free(const struct XCSF *xcsf, const struct Graph *dgp)
  * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 graph_mutate(const struct XCSF *xcsf, struct Graph *dgp)
 {
-    _Bool mod = false;
+    bool mod = false;
     sam_adapt(dgp->mu, N_MU, MU_TYPE);
     if (graph_mutate_functions(xcsf, dgp)) {
         mod = true;
@@ -372,7 +372,7 @@ graph_mutate(const struct XCSF *xcsf, struct Graph *dgp)
  * @param [in] dgp2 The second DGP graph to perform crossover.
  * @return False.
  */
-_Bool
+bool
 graph_crossover(const struct XCSF *xcsf, struct Graph *dgp1, struct Graph *dgp2)
 {
     (void) xcsf;

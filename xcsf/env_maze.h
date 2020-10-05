@@ -38,13 +38,13 @@ struct EnvMaze {
     int ypos; //!< Current y position
     int xsize; //!< Maze size in x dimension
     int ysize; //!< Maze size in y dimension
-    _Bool done; //!< Whether the maze is in a terminal state.
+    bool done; //!< Whether the maze is in a terminal state.
 };
 
-_Bool
+bool
 env_maze_is_done(const struct XCSF *xcsf);
 
-_Bool
+bool
 env_maze_multistep(const struct XCSF *xcsf);
 
 double

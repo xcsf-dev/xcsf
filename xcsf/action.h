@@ -33,11 +33,11 @@ action_set(const struct XCSF *xcsf, struct Cl *c);
  * @details Action implementations must implement these functions.
  */
 struct ActVtbl {
-    _Bool (*act_impl_general)(const struct XCSF *xcsf, const struct Cl *c1,
-                              const struct Cl *c2);
-    _Bool (*act_impl_crossover)(const struct XCSF *xcsf, const struct Cl *c1,
-                                const struct Cl *c2);
-    _Bool (*act_impl_mutate)(const struct XCSF *xcsf, const struct Cl *c);
+    bool (*act_impl_general)(const struct XCSF *xcsf, const struct Cl *c1,
+                             const struct Cl *c2);
+    bool (*act_impl_crossover)(const struct XCSF *xcsf, const struct Cl *c1,
+                               const struct Cl *c2);
+    bool (*act_impl_mutate)(const struct XCSF *xcsf, const struct Cl *c);
     int (*act_impl_compute)(const struct XCSF *xcsf, const struct Cl *c,
                             const double *x);
     void (*act_impl_copy)(const struct XCSF *xcsf, struct Cl *dest,
@@ -87,7 +87,7 @@ act_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] c2 The classifier whose action is tested to be more specific.
  * @return Whether the action of c1 is more general than c2.
  */
-static inline _Bool
+static inline bool
 act_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 {
     return (*c1->act_vptr->act_impl_general)(xcsf, c1, c2);
@@ -100,7 +100,7 @@ act_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
  * @param [in] c2 The second classifier whose action is being crossed.
  * @return Whether any alterations were made.
  */
-static inline _Bool
+static inline bool
 act_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 {
     return (*c1->act_vptr->act_impl_crossover)(xcsf, c1, c2);
@@ -112,7 +112,7 @@ act_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
  * @param [in] c The classifier whose action is being mutated.
  * @return Whether any alterations were made.
  */
-static inline _Bool
+static inline bool
 act_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->act_vptr->act_impl_mutate)(xcsf, c);

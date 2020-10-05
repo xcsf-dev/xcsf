@@ -79,7 +79,7 @@ act_neural_init(const struct XCSF *xcsf, struct Cl *c)
  * @param [in] c2 The second classifier whose action is being crossed.
  * @return False.
  */
-_Bool
+bool
 act_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                      const struct Cl *c2)
 {
@@ -96,7 +96,7 @@ act_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
  * @param [in] c2 The classifier whose action is tested to be more specific.
  * @return False.
  */
-_Bool
+bool
 act_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
                    const struct Cl *c2)
 {
@@ -112,7 +112,7 @@ act_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
  * @param [in] c The classifier whose action is being mutated.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 act_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct ActNeural *act = c->act;

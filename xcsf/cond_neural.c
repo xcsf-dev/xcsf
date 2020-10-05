@@ -45,6 +45,8 @@ cond_neural_init(const struct XCSF *xcsf, struct Cl *c)
     neural_init(xcsf, &new->net);
     // hidden layers
     uint32_t lopt = neural_cond_lopt(xcsf);
+    lopt |= LAYER_EVOLVE_ETA;
+    lopt |= LAYER_SGD_WEIGHTS;
     struct Layer *l = NULL;
     int n_inputs = xcsf->x_dim;
     for (int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
@@ -100,9 +102,22 @@ cond_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) c;
     (void) x;
     (void) y;
+
+    if (c->exp * xcsf->BETA > 1 && c->err > xcsf->EPS_0) {
+        const double error = (xcsf->loss_ptr)(xcsf, c->prediction, y);
+        if (error > c->err * 1.1) {
+            const double truth[1] = { 0 };
+            const struct CondNeural *cond = c->cond;
+            neural_learn(xcsf, &cond->net, truth, x);
+        } else if (error < c->err * 0.9) {
+            const double truth[1] = { 1 };
+            const struct CondNeural *cond = c->cond;
+            neural_learn(xcsf, &cond->net, truth, x);
+        }
+    }
 }
 
-_Bool
+bool
 cond_neural_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     const struct CondNeural *cond = c->cond;
@@ -113,14 +128,14 @@ cond_neural_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     return false;
 }
 
-_Bool
+bool
 cond_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct CondNeural *cond = c->cond;
     return neural_mutate(xcsf, &cond->net);
 }
 
-_Bool
+bool
 cond_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                       const struct Cl *c2)
 {
@@ -130,7 +145,7 @@ cond_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
-_Bool
+bool
 cond_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
                     const struct Cl *c2)
 {

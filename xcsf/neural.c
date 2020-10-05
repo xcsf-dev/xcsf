@@ -223,11 +223,11 @@ neural_rand(const struct XCSF *xcsf, const struct Net *net)
  * @param [in] net The neural network to mutate.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 neural_mutate(const struct XCSF *xcsf, const struct Net *net)
 {
-    _Bool mod = false;
-    _Bool do_resize = false;
+    bool mod = false;
+    bool do_resize = false;
     const struct Layer *prev = NULL;
     const struct Llist *iter = net->tail;
     while (iter != NULL) {
@@ -369,7 +369,7 @@ neural_outputs(const struct XCSF *xcsf, const struct Net *net)
  */
 void
 neural_print(const struct XCSF *xcsf, const struct Net *net,
-             const _Bool print_weights)
+             const bool print_weights)
 {
     const struct Llist *iter = net->tail;
     int i = 0;

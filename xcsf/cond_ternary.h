@@ -36,19 +36,19 @@ struct CondTernary {
     char *tmp_input; //!< Temporary storage for float conversion
 };
 
-_Bool
+bool
 cond_ternary_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                        const struct Cl *c2);
 
-_Bool
+bool
 cond_ternary_general(const struct XCSF *xcsf, const struct Cl *c1,
                      const struct Cl *c2);
 
-_Bool
+bool
 cond_ternary_match(const struct XCSF *xcsf, const struct Cl *c,
                    const double *x);
 
-_Bool
+bool
 cond_ternary_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 void

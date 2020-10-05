@@ -366,7 +366,7 @@ config_newnvpair(struct XCSF *xcsf, const char *param)
 {
     // get length of name
     size_t namelen = 0;
-    _Bool err = true;
+    bool err = true;
     for (namelen = 0; namelen < strnlen(param, MAXLEN); ++namelen) {
         if (param[namelen] == '=') {
             err = false;

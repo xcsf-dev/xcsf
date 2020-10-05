@@ -25,22 +25,22 @@
 
 #include "xcsf.h"
 
-_Bool
+bool
 cl_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2);
 
-_Bool
+bool
 cl_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2);
 
-_Bool
+bool
 cl_m(const struct XCSF *xcsf, const struct Cl *c);
 
-_Bool
+bool
 cl_match(const struct XCSF *xcsf, struct Cl *c, const double *x);
 
-_Bool
+bool
 cl_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
-_Bool
+bool
 cl_subsumer(const struct XCSF *xcsf, const struct Cl *c);
 
 const double *
@@ -88,15 +88,15 @@ void
 cl_init_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src);
 
 void
-cl_print(const struct XCSF *xcsf, const struct Cl *c, const _Bool print_cond,
-         const _Bool print_act, const _Bool print_pred);
+cl_print(const struct XCSF *xcsf, const struct Cl *c, const bool print_cond,
+         const bool print_act, const bool print_pred);
 
 void
 cl_rand(const struct XCSF *xcsf, struct Cl *c);
 
 void
 cl_update(const struct XCSF *xcsf, struct Cl *c, const double *x,
-          const double *y, const int set_num, const _Bool cur);
+          const double *y, const int set_num, const bool cur);
 
 void
 cl_update_fit(const struct XCSF *xcsf, struct Cl *c, const double acc_sum,

@@ -48,7 +48,7 @@ void
 param_set_omp_num_threads(struct XCSF *xcsf, const int a);
 
 static inline void
-param_set_pop_init(struct XCSF *xcsf, const _Bool a)
+param_set_pop_init(struct XCSF *xcsf, const bool a)
 {
     xcsf->POP_INIT = a;
 }
@@ -411,7 +411,7 @@ param_set_cond_bits(struct XCSF *xcsf, const int a)
 }
 
 static inline void
-param_set_stateful(struct XCSF *xcsf, const _Bool a)
+param_set_stateful(struct XCSF *xcsf, const bool a)
 {
     xcsf->STATEFUL = a;
 }
@@ -490,25 +490,25 @@ param_set_cond_eta(struct XCSF *xcsf, const double a)
 }
 
 static inline void
-param_set_cond_evolve_weights(struct XCSF *xcsf, const _Bool a)
+param_set_cond_evolve_weights(struct XCSF *xcsf, const bool a)
 {
     xcsf->COND_EVOLVE_WEIGHTS = a;
 }
 
 static inline void
-param_set_cond_evolve_neurons(struct XCSF *xcsf, const _Bool a)
+param_set_cond_evolve_neurons(struct XCSF *xcsf, const bool a)
 {
     xcsf->COND_EVOLVE_NEURONS = a;
 }
 
 static inline void
-param_set_cond_evolve_functions(struct XCSF *xcsf, const _Bool a)
+param_set_cond_evolve_functions(struct XCSF *xcsf, const bool a)
 {
     xcsf->COND_EVOLVE_FUNCTIONS = a;
 }
 
 static inline void
-param_set_cond_evolve_connectivity(struct XCSF *xcsf, const _Bool a)
+param_set_cond_evolve_connectivity(struct XCSF *xcsf, const bool a)
 {
     xcsf->COND_EVOLVE_CONNECTIVITY = a;
 }
@@ -536,7 +536,7 @@ param_set_cond_hidden_activation(struct XCSF *xcsf, const int a)
 }
 
 static inline void
-param_set_pred_reset(struct XCSF *xcsf, const _Bool a)
+param_set_pred_reset(struct XCSF *xcsf, const bool a)
 {
     xcsf->PRED_RESET = a;
 }
@@ -579,37 +579,37 @@ param_set_pred_rls_scale_factor(struct XCSF *xcsf, const double a)
 }
 
 static inline void
-param_set_pred_evolve_weights(struct XCSF *xcsf, const _Bool a)
+param_set_pred_evolve_weights(struct XCSF *xcsf, const bool a)
 {
     xcsf->PRED_EVOLVE_WEIGHTS = a;
 }
 
 static inline void
-param_set_pred_evolve_neurons(struct XCSF *xcsf, const _Bool a)
+param_set_pred_evolve_neurons(struct XCSF *xcsf, const bool a)
 {
     xcsf->PRED_EVOLVE_NEURONS = a;
 }
 
 static inline void
-param_set_pred_evolve_functions(struct XCSF *xcsf, const _Bool a)
+param_set_pred_evolve_functions(struct XCSF *xcsf, const bool a)
 {
     xcsf->PRED_EVOLVE_FUNCTIONS = a;
 }
 
 static inline void
-param_set_pred_evolve_connectivity(struct XCSF *xcsf, const _Bool a)
+param_set_pred_evolve_connectivity(struct XCSF *xcsf, const bool a)
 {
     xcsf->PRED_EVOLVE_CONNECTIVITY = a;
 }
 
 static inline void
-param_set_pred_evolve_eta(struct XCSF *xcsf, const _Bool a)
+param_set_pred_evolve_eta(struct XCSF *xcsf, const bool a)
 {
     xcsf->PRED_EVOLVE_ETA = a;
 }
 
 static inline void
-param_set_pred_sgd_weights(struct XCSF *xcsf, const _Bool a)
+param_set_pred_sgd_weights(struct XCSF *xcsf, const bool a)
 {
     xcsf->PRED_SGD_WEIGHTS = a;
 }
@@ -665,13 +665,13 @@ param_set_pred_hidden_activation(struct XCSF *xcsf, const int a)
 }
 
 static inline void
-param_set_ea_subsumption(struct XCSF *xcsf, const _Bool a)
+param_set_ea_subsumption(struct XCSF *xcsf, const bool a)
 {
     xcsf->EA_SUBSUMPTION = a;
 }
 
 static inline void
-param_set_set_subsumption(struct XCSF *xcsf, const _Bool a)
+param_set_set_subsumption(struct XCSF *xcsf, const bool a)
 {
     xcsf->SET_SUBSUMPTION = a;
 }
@@ -699,7 +699,7 @@ param_set_x_dim(struct XCSF *xcsf, const int a)
 }
 
 static inline void
-param_set_explore(struct XCSF *xcsf, const _Bool a)
+param_set_explore(struct XCSF *xcsf, const bool a)
 {
     xcsf->explore = a;
 }

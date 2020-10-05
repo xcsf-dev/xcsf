@@ -72,15 +72,14 @@ clset_pop_init(struct XCSF *xcsf);
 
 void
 clset_print(const struct XCSF *xcsf, const struct Set *set,
-            const _Bool print_cond, const _Bool print_act,
-            const _Bool print_pred);
+            const bool print_cond, const bool print_act, const bool print_pred);
 
 void
 clset_set_times(const struct XCSF *xcsf, const struct Set *set);
 
 void
 clset_update(struct XCSF *xcsf, struct Set *set, const double *x,
-             const double *y, const _Bool cur);
+             const double *y, const bool cur);
 
 void
 clset_validate(struct Set *set);

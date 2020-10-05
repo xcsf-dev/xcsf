@@ -111,7 +111,7 @@ set_layer_n_biases(struct Layer *l)
  * @param [in] l The layer whose gradient descent rate is to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 mutate_eta(const struct XCSF *xcsf, struct Layer *l)
 {
     if ((l->options & LAYER_EVOLVE_ETA) &&
@@ -130,7 +130,7 @@ mutate_eta(const struct XCSF *xcsf, struct Layer *l)
  * @param [in] l The layer whose number of neurons is to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 mutate_neurons(const struct XCSF *xcsf, struct Layer *l)
 {
     if (l->options & LAYER_EVOLVE_NEURONS) {
@@ -161,10 +161,10 @@ mutate_neurons(const struct XCSF *xcsf, struct Layer *l)
  * @param [in] l The layer whose number of active weights is to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 mutate_connectivity(struct Layer *l)
 {
-    _Bool mod = false;
+    bool mod = false;
     if (l->options & LAYER_EVOLVE_CONNECT) {
         if (layer_mutate_connectivity(l->input_layer, l->mu[2], l->mu[3])) {
             mod = true;
@@ -185,10 +185,10 @@ mutate_connectivity(struct Layer *l)
  * @param [in] l The layer whose weights are to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 mutate_weights(struct Layer *l)
 {
-    _Bool mod = false;
+    bool mod = false;
     if (l->options & LAYER_EVOLVE_WEIGHTS) {
         if (layer_mutate_weights(l->input_layer, l->mu[4])) {
             mod = true;
@@ -208,7 +208,7 @@ mutate_weights(struct Layer *l)
  * @param [in] l The layer whose activation function is to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 mutate_functions(struct Layer *l)
 {
     if (l->options & LAYER_EVOLVE_FUNCTIONS &&
@@ -415,11 +415,11 @@ neural_layer_recurrent_output(const struct XCSF *xcsf, const struct Layer *l)
  * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 neural_layer_recurrent_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
     sam_adapt(l->mu, N_MU, MU_TYPE);
-    _Bool mod = false;
+    bool mod = false;
     mod = mutate_eta(xcsf, l) ? true : mod;
     mod = mutate_neurons(xcsf, l) ? true : mod;
     mod = mutate_connectivity(l) ? true : mod;
@@ -436,7 +436,7 @@ neural_layer_recurrent_mutate(const struct XCSF *xcsf, struct Layer *l)
  */
 void
 neural_layer_recurrent_print(const struct XCSF *xcsf, const struct Layer *l,
-                             const _Bool print_weights)
+                             const bool print_weights)
 {
     printf("recurrent %s, in = %d, out = %d\n",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs);

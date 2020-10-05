@@ -174,7 +174,7 @@ cond_ternary_update(const struct XCSF *xcsf, const struct Cl *c,
  * @param [in] x The input state.
  * @return Whether the condition matches the input.
  */
-_Bool
+bool
 cond_ternary_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     const struct CondTernary *cond = c->cond;
@@ -197,13 +197,13 @@ cond_ternary_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
  * @param [in] c2 The second classifier whose condition is being crossed.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 cond_ternary_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                        const struct Cl *c2)
 {
     const struct CondTernary *cond1 = c1->cond;
     const struct CondTernary *cond2 = c2->cond;
-    _Bool changed = false;
+    bool changed = false;
     if (rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
         for (int i = 0; i < cond1->length; ++i) {
             if (rand_uniform(0, 1) < 0.5) {
@@ -223,13 +223,13 @@ cond_ternary_crossover(const struct XCSF *xcsf, const struct Cl *c1,
  * @param [in] c The classifier whose condition is being mutated.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 cond_ternary_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     const struct CondTernary *cond = c->cond;
     sam_adapt(cond->mu, N_MU, MU_TYPE);
-    _Bool changed = false;
+    bool changed = false;
     for (int i = 0; i < cond->length; ++i) {
         if (rand_uniform(0, 1) < cond->mu[0]) {
             if (cond->string[i] == DONT_CARE) {
@@ -250,14 +250,14 @@ cond_ternary_mutate(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c2 The classifier whose condition is tested to be more specific.
  * @return Whether the condition of c1 is more general than c2.
  */
-_Bool
+bool
 cond_ternary_general(const struct XCSF *xcsf, const struct Cl *c1,
                      const struct Cl *c2)
 {
     (void) xcsf;
     const struct CondTernary *cond1 = c1->cond;
     const struct CondTernary *cond2 = c2->cond;
-    _Bool general = false;
+    bool general = false;
     for (int i = 0; i < cond1->length; ++i) {
         if (cond1->string[i] != DONT_CARE &&
             cond1->string[i] != cond2->string[i]) {

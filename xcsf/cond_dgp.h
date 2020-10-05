@@ -34,18 +34,18 @@ struct CondDGP {
     struct Graph dgp; //!< DGP graph
 };
 
-_Bool
+bool
 cond_dgp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                    const struct Cl *c2);
 
-_Bool
+bool
 cond_dgp_general(const struct XCSF *xcsf, const struct Cl *c1,
                  const struct Cl *c2);
 
-_Bool
+bool
 cond_dgp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x);
 
-_Bool
+bool
 cond_dgp_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 void

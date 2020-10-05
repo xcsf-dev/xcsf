@@ -34,18 +34,18 @@ struct CondNeural {
     struct Net net; //!< Neural network
 };
 
-_Bool
+bool
 cond_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                       const struct Cl *c2);
 
-_Bool
+bool
 cond_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
                     const struct Cl *c2);
 
-_Bool
+bool
 cond_neural_match(const struct XCSF *xcsf, const struct Cl *c, const double *x);
 
-_Bool
+bool
 cond_neural_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 void

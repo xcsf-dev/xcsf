@@ -26,6 +26,7 @@
 #include <limits.h>
 #include <math.h>
 #include <time.h>
+#include <stdbool.h>
 
 /**
  * @brief Initialises the pseudo-random number generator.
@@ -78,7 +79,7 @@ rand_normal(const double mu, const double sigma)
 {
     static const double two_pi = 2 * M_PI;
     static double z1;
-    static _Bool generate;
+    static bool generate;
     generate = !generate;
     if (!generate) {
         return z1 * sigma + mu;

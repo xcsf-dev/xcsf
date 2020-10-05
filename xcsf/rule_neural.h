@@ -36,19 +36,19 @@ struct RuleNeural {
     int n_outputs; //!< Number of action nodes (binarised)
 };
 
-_Bool
+bool
 rule_neural_cond_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                            const struct Cl *c2);
 
-_Bool
+bool
 rule_neural_cond_general(const struct XCSF *xcsf, const struct Cl *c1,
                          const struct Cl *c2);
 
-_Bool
+bool
 rule_neural_cond_match(const struct XCSF *xcsf, const struct Cl *c,
                        const double *x);
 
-_Bool
+bool
 rule_neural_cond_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 void
@@ -94,15 +94,15 @@ static struct CondVtbl const rule_neural_cond_vtbl = {
     &rule_neural_cond_load
 };
 
-_Bool
+bool
 rule_neural_act_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                           const struct Cl *c2);
 
-_Bool
+bool
 rule_neural_act_general(const struct XCSF *xcsf, const struct Cl *c1,
                         const struct Cl *c2);
 
-_Bool
+bool
 rule_neural_act_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 int

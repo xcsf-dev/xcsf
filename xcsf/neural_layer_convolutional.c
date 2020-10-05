@@ -81,7 +81,7 @@ malloc_layer_arrays(struct Layer *l)
     l->biases = malloc(sizeof(double) * l->n_biases);
     l->bias_updates = calloc(l->n_biases, sizeof(double));
     l->weight_updates = calloc(l->n_weights, sizeof(double));
-    l->weight_active = malloc(sizeof(_Bool) * l->n_weights);
+    l->weight_active = malloc(sizeof(bool) * l->n_weights);
     l->temp = malloc(l->workspace_size);
     l->mu = malloc(sizeof(double) * N_MU);
 }
@@ -224,8 +224,7 @@ neural_layer_convolutional_copy(const struct XCSF *xcsf,
     l->workspace_size = src->workspace_size;
     malloc_layer_arrays(l);
     memcpy(l->weights, src->weights, sizeof(double) * src->n_weights);
-    memcpy(l->weight_active, src->weight_active,
-           sizeof(_Bool) * src->n_weights);
+    memcpy(l->weight_active, src->weight_active, sizeof(bool) * src->n_weights);
     memcpy(l->biases, src->biases, sizeof(double) * src->n_biases);
     memcpy(l->mu, src->mu, sizeof(double) * N_MU);
     return l;
@@ -375,11 +374,11 @@ neural_layer_convolutional_resize(const struct XCSF *xcsf, struct Layer *l,
  * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 neural_layer_convolutional_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
     sam_adapt(l->mu, N_MU, MU_TYPE);
-    _Bool mod = false;
+    bool mod = false;
     if ((l->options & LAYER_EVOLVE_ETA) &&
         layer_mutate_eta(xcsf, l, l->mu[0])) {
         mod = true;
@@ -421,7 +420,7 @@ neural_layer_convolutional_output(const struct XCSF *xcsf,
  */
 void
 neural_layer_convolutional_print(const struct XCSF *xcsf, const struct Layer *l,
-                                 const _Bool print_weights)
+                                 const bool print_weights)
 {
     (void) xcsf;
     printf("convolutional %s, in=%d, out=%d, filters=%d, size=%d, stride=%d, "
@@ -467,7 +466,7 @@ neural_layer_convolutional_save(const struct XCSF *xcsf, const struct Layer *l,
     s += fwrite(&l->eta, sizeof(double), 1, fp);
     s += fwrite(l->weights, sizeof(double), l->n_weights, fp);
     s += fwrite(l->weight_updates, sizeof(double), l->n_weights, fp);
-    s += fwrite(l->weight_active, sizeof(_Bool), l->n_weights, fp);
+    s += fwrite(l->weight_active, sizeof(bool), l->n_weights, fp);
     s += fwrite(l->biases, sizeof(double), l->n_biases, fp);
     s += fwrite(l->bias_updates, sizeof(double), l->n_filters, fp);
     s += fwrite(l->mu, sizeof(double), N_MU, fp);
@@ -510,7 +509,7 @@ neural_layer_convolutional_load(const struct XCSF *xcsf, struct Layer *l,
     malloc_layer_arrays(l);
     s += fread(l->weights, sizeof(double), l->n_weights, fp);
     s += fread(l->weight_updates, sizeof(double), l->n_weights, fp);
-    s += fread(l->weight_active, sizeof(_Bool), l->n_weights, fp);
+    s += fread(l->weight_active, sizeof(bool), l->n_weights, fp);
     s += fread(l->biases, sizeof(double), l->n_biases, fp);
     s += fread(l->bias_updates, sizeof(double), l->n_biases, fp);
     s += fread(l->mu, sizeof(double), N_MU, fp);

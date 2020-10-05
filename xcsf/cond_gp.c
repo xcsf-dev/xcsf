@@ -75,7 +75,7 @@ cond_gp_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) y;
 }
 
-_Bool
+bool
 cond_gp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     struct CondGP *cond = c->cond;
@@ -86,14 +86,14 @@ cond_gp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     return false;
 }
 
-_Bool
+bool
 cond_gp_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     struct CondGP *cond = c->cond;
     return tree_mutate(xcsf, &cond->gp);
 }
 
-_Bool
+bool
 cond_gp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                   const struct Cl *c2)
 {
@@ -106,7 +106,7 @@ cond_gp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
-_Bool
+bool
 cond_gp_general(const struct XCSF *xcsf, const struct Cl *c1,
                 const struct Cl *c2)
 {

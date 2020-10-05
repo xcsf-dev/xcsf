@@ -50,9 +50,9 @@ neural_layer_maxpool_update(const struct XCSF *xcsf, const struct Layer *l);
 
 void
 neural_layer_maxpool_print(const struct XCSF *xcsf, const struct Layer *l,
-                           const _Bool print_weights);
+                           const bool print_weights);
 
-_Bool
+bool
 neural_layer_maxpool_mutate(const struct XCSF *xcsf, struct Layer *l);
 
 void

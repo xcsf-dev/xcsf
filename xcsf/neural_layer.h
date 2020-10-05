@@ -61,7 +61,7 @@ struct Layer {
     double *output; //!< Current neuron outputs (after activation function)
     uint32_t options; //!< Bitwise layer options permitting evolution, SGD, etc.
     double *weights; //!< Weights for calculating neuron states
-    _Bool *weight_active; //!< Whether each connection is present in the layer
+    bool *weight_active; //!< Whether each connection is present in the layer
     double *biases; //!< Biases for calculating neuron states
     double *bias_updates; //!< Updates to biases
     double *weight_updates; //!< Updates to weights
@@ -122,7 +122,7 @@ struct Layer {
  * @details Neural network layer implementations must implement these functions.
  */
 struct LayerVtbl {
-    _Bool (*layer_impl_mutate)(const struct XCSF *xcsf, struct Layer *l);
+    bool (*layer_impl_mutate)(const struct XCSF *xcsf, struct Layer *l);
     void (*layer_impl_resize)(const struct XCSF *xcsf, struct Layer *l,
                               const struct Layer *prev);
     struct Layer *(*layer_impl_copy)(const struct XCSF *xcsf,
@@ -130,7 +130,7 @@ struct LayerVtbl {
     void (*layer_impl_free)(const struct XCSF *xcsf, const struct Layer *l);
     void (*layer_impl_rand)(const struct XCSF *xcsf, struct Layer *l);
     void (*layer_impl_print)(const struct XCSF *xcsf, const struct Layer *l,
-                             const _Bool print_weights);
+                             const bool print_weights);
     void (*layer_impl_update)(const struct XCSF *xcsf, const struct Layer *l);
     void (*layer_impl_backward)(const struct XCSF *xcsf, const struct Layer *l,
                                 const double *input, double *delta);
@@ -226,7 +226,7 @@ layer_update(const struct XCSF *xcsf, const struct Layer *l)
  * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
  */
-static inline _Bool
+static inline bool
 layer_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
     return (*l->layer_vptr->layer_impl_mutate)(xcsf, l);
@@ -287,22 +287,22 @@ layer_rand(const struct XCSF *xcsf, struct Layer *l)
  */
 static inline void
 layer_print(const struct XCSF *xcsf, const struct Layer *l,
-            const _Bool print_weights)
+            const bool print_weights)
 {
     (*l->layer_vptr->layer_impl_print)(xcsf, l, print_weights);
 }
 
-_Bool
+bool
 layer_mutate_connectivity(struct Layer *l, const double mu_enable,
                           const double mu_disable);
 
-_Bool
+bool
 layer_mutate_eta(const struct XCSF *xcsf, struct Layer *l, const double mu);
 
-_Bool
+bool
 layer_mutate_functions(struct Layer *l, const double mu);
 
-_Bool
+bool
 layer_mutate_weights(struct Layer *l, const double mu);
 
 int
@@ -328,7 +328,7 @@ void
 layer_weight_clamp(const struct Layer *l);
 
 void
-layer_weight_print(const struct Layer *l, const _Bool print_weights);
+layer_weight_print(const struct Layer *l, const bool print_weights);
 
 void
 layer_weight_rand(const struct XCSF *xcsf, struct Layer *l);

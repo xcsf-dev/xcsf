@@ -35,19 +35,19 @@ struct CondRectangle {
     double *mu; //!< Mutation rates
 };
 
-_Bool
+bool
 cond_rectangle_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                          const struct Cl *c2);
 
-_Bool
+bool
 cond_rectangle_general(const struct XCSF *xcsf, const struct Cl *c1,
                        const struct Cl *c2);
 
-_Bool
+bool
 cond_rectangle_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x);
 
-_Bool
+bool
 cond_rectangle_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 void

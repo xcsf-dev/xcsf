@@ -63,7 +63,7 @@ cond_dummy_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) y;
 }
 
-_Bool
+bool
 cond_dummy_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     (void) xcsf;
@@ -72,7 +72,7 @@ cond_dummy_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     return true;
 }
 
-_Bool
+bool
 cond_dummy_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                      const struct Cl *c2)
 {
@@ -82,7 +82,7 @@ cond_dummy_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
-_Bool
+bool
 cond_dummy_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
@@ -90,7 +90,7 @@ cond_dummy_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return false;
 }
 
-_Bool
+bool
 cond_dummy_general(const struct XCSF *xcsf, const struct Cl *c1,
                    const struct Cl *c2)
 {

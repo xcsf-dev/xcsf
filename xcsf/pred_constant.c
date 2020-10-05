@@ -124,7 +124,7 @@ pred_constant_print(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c2 The second classifier whose prediction is being crossed.
  * @return False.
  */
-_Bool
+bool
 pred_constant_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                         const struct Cl *c2)
 {
@@ -140,7 +140,7 @@ pred_constant_crossover(const struct XCSF *xcsf, const struct Cl *c1,
  * @param [in] c The classifier whose prediction is being mutated.
  * @return False.
  */
-_Bool
+bool
 pred_constant_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;

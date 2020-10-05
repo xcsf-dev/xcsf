@@ -85,7 +85,7 @@ layer_set_vptr(struct Layer *l)
  * @param [in] mu The rate of mutation.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 layer_mutate_eta(const struct XCSF *xcsf, struct Layer *l, const double mu)
 {
     const double orig = l->eta;
@@ -135,7 +135,7 @@ layer_add_neurons(struct Layer *l, const int N)
     const int n_outputs = l->n_outputs + N;
     const int n_weights = n_outputs * l->n_inputs;
     l->weights = realloc(l->weights, sizeof(double) * n_weights);
-    l->weight_active = realloc(l->weight_active, sizeof(_Bool) * n_weights);
+    l->weight_active = realloc(l->weight_active, sizeof(bool) * n_weights);
     l->weight_updates = realloc(l->weight_updates, sizeof(double) * n_weights);
     l->state = realloc(l->state, sizeof(double) * n_outputs);
     l->output = realloc(l->output, sizeof(double) * n_outputs);
@@ -174,11 +174,11 @@ layer_add_neurons(struct Layer *l, const int N)
  * @param [in] mu_disable Probability of disabling a currently enabled weight.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 layer_mutate_connectivity(struct Layer *l, const double mu_enable,
                           const double mu_disable)
 {
-    _Bool mod = false;
+    bool mod = false;
     if (l->n_inputs > 1 && l->n_outputs > 1) {
         for (int i = 0; i < l->n_weights; ++i) {
             if (!l->weight_active[i] && rand_uniform(0, 1) < mu_enable) {
@@ -250,10 +250,10 @@ layer_ensure_input_represention(struct Layer *l)
  * @param [in] mu The rate of mutation.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 layer_mutate_weights(struct Layer *l, const double mu)
 {
-    _Bool mod = false;
+    bool mod = false;
     for (int i = 0; i < l->n_weights; ++i) {
         if (l->weight_active[i]) {
             const double orig = l->weights[i];
@@ -281,10 +281,10 @@ layer_mutate_weights(struct Layer *l, const double mu)
  * @param [in] mu The rate of mutation.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 layer_mutate_functions(struct Layer *l, const double mu)
 {
-    _Bool mod = false;
+    bool mod = false;
     if (rand_uniform(0, 1) < mu) {
         const int orig = l->function;
         l->function = rand_uniform_int(0, NUM_ACTIVATIONS);
@@ -308,7 +308,7 @@ layer_mutate_functions(struct Layer *l, const double mu)
  * @param [in] print_weights Whether to print each individual weight and bias.
  */
 void
-layer_weight_print(const struct Layer *l, const _Bool print_weights)
+layer_weight_print(const struct Layer *l, const bool print_weights)
 {
     printf("weights (%d): ", l->n_weights);
     if (print_weights) {

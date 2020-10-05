@@ -60,7 +60,7 @@ tree_eval(const struct XCSF *xcsf, struct GPTree *gp, const double *x);
 void
 tree_crossover(const struct XCSF *xcsf, struct GPTree *p1, struct GPTree *p2);
 
-_Bool
+bool
 tree_mutate(const struct XCSF *xcsf, struct GPTree *gp);
 
 size_t

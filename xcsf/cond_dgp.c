@@ -77,7 +77,7 @@ cond_dgp_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) y;
 }
 
-_Bool
+bool
 cond_dgp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     const struct CondDGP *cond = c->cond;
@@ -88,14 +88,14 @@ cond_dgp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     return false;
 }
 
-_Bool
+bool
 cond_dgp_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     struct CondDGP *cond = c->cond;
     return graph_mutate(xcsf, &cond->dgp);
 }
 
-_Bool
+bool
 cond_dgp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                    const struct Cl *c2)
 {
@@ -104,7 +104,7 @@ cond_dgp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return graph_crossover(xcsf, &cond1->dgp, &cond2->dgp);
 }
 
-_Bool
+bool
 cond_dgp_general(const struct XCSF *xcsf, const struct Cl *c1,
                  const struct Cl *c2)
 {

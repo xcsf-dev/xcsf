@@ -71,7 +71,7 @@ param_save_general(const struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->POP_INIT, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->POP_INIT, sizeof(bool), 1, fp);
     s += fwrite(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->POP_SIZE, sizeof(int), 1, fp);
@@ -91,7 +91,7 @@ param_load_general(struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
-    s += fread(&xcsf->POP_INIT, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->POP_INIT, sizeof(bool), 1, fp);
     s += fread(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
     s += fread(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_SIZE, sizeof(int), 1, fp);
@@ -165,7 +165,7 @@ param_save_cl_general(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->ERR_REDUC, sizeof(double), 1, fp);
     s += fwrite(&xcsf->FIT_REDUC, sizeof(double), 1, fp);
     s += fwrite(&xcsf->M_PROBATION, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->STATEFUL, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->STATEFUL, sizeof(bool), 1, fp);
     return s;
 }
 
@@ -190,7 +190,7 @@ param_load_cl_general(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->ERR_REDUC, sizeof(double), 1, fp);
     s += fread(&xcsf->FIT_REDUC, sizeof(double), 1, fp);
     s += fread(&xcsf->M_PROBATION, sizeof(int), 1, fp);
-    s += fread(&xcsf->STATEFUL, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->STATEFUL, sizeof(bool), 1, fp);
     return s;
 }
 
@@ -286,8 +286,8 @@ static size_t
 param_save_subsumption(const struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
-    s += fwrite(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->EA_SUBSUMPTION, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->SET_SUBSUMPTION, sizeof(bool), 1, fp);
     s += fwrite(&xcsf->THETA_SUB, sizeof(int), 1, fp);
     return s;
 }
@@ -302,8 +302,8 @@ static size_t
 param_load_subsumption(struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
-    s += fread(&xcsf->EA_SUBSUMPTION, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->SET_SUBSUMPTION, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->EA_SUBSUMPTION, sizeof(bool), 1, fp);
+    s += fread(&xcsf->SET_SUBSUMPTION, sizeof(bool), 1, fp);
     s += fread(&xcsf->THETA_SUB, sizeof(int), 1, fp);
     return s;
 }
@@ -464,10 +464,10 @@ param_save_cl_condition(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_T, sizeof(int), 1, fp);
     s += fwrite(&xcsf->MAX_NEURON_GROW, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->COND_EVOLVE_CONNECTIVITY, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->COND_EVOLVE_NEURONS, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->COND_EVOLVE_CONNECTIVITY, sizeof(bool), 1, fp);
     s += fwrite(xcsf->COND_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fwrite(xcsf->COND_MAX_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fwrite(&xcsf->COND_OUTPUT_ACTIVATION, sizeof(int), 1, fp);
@@ -504,10 +504,10 @@ param_load_cl_condition(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->MAX_K, sizeof(int), 1, fp);
     s += fread(&xcsf->MAX_T, sizeof(int), 1, fp);
     s += fread(&xcsf->MAX_NEURON_GROW, sizeof(int), 1, fp);
-    s += fread(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->COND_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->COND_EVOLVE_CONNECTIVITY, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->COND_EVOLVE_WEIGHTS, sizeof(bool), 1, fp);
+    s += fread(&xcsf->COND_EVOLVE_NEURONS, sizeof(bool), 1, fp);
+    s += fread(&xcsf->COND_EVOLVE_FUNCTIONS, sizeof(bool), 1, fp);
+    s += fread(&xcsf->COND_EVOLVE_CONNECTIVITY, sizeof(bool), 1, fp);
     s += fread(xcsf->COND_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fread(xcsf->COND_MAX_NEURONS, sizeof(int), MAX_LAYERS, fp);
     s += fread(&xcsf->COND_OUTPUT_ACTIVATION, sizeof(int), 1, fp);
@@ -597,17 +597,17 @@ param_save_cl_prediction(const struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->PRED_TYPE, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->PRED_EVOLVE_ETA, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->PRED_EVOLVE_ETA, sizeof(bool), 1, fp);
     s += fwrite(&xcsf->PRED_ETA, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->PRED_RESET, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->PRED_RESET, sizeof(bool), 1, fp);
     s += fwrite(&xcsf->PRED_X0, sizeof(double), 1, fp);
     s += fwrite(&xcsf->PRED_RLS_SCALE_FACTOR, sizeof(double), 1, fp);
     s += fwrite(&xcsf->PRED_RLS_LAMBDA, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->PRED_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->PRED_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->PRED_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->PRED_EVOLVE_CONNECTIVITY, sizeof(_Bool), 1, fp);
-    s += fwrite(&xcsf->PRED_SGD_WEIGHTS, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->PRED_EVOLVE_WEIGHTS, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->PRED_EVOLVE_NEURONS, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->PRED_EVOLVE_FUNCTIONS, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->PRED_EVOLVE_CONNECTIVITY, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->PRED_SGD_WEIGHTS, sizeof(bool), 1, fp);
     s += fwrite(&xcsf->PRED_MOMENTUM, sizeof(double), 1, fp);
     s += fwrite(&xcsf->PRED_DECAY, sizeof(double), 1, fp);
     s += fwrite(xcsf->PRED_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
@@ -628,17 +628,17 @@ param_load_cl_prediction(struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fread(&xcsf->PRED_TYPE, sizeof(int), 1, fp);
-    s += fread(&xcsf->PRED_EVOLVE_ETA, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->PRED_EVOLVE_ETA, sizeof(bool), 1, fp);
     s += fread(&xcsf->PRED_ETA, sizeof(double), 1, fp);
-    s += fread(&xcsf->PRED_RESET, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->PRED_RESET, sizeof(bool), 1, fp);
     s += fread(&xcsf->PRED_X0, sizeof(double), 1, fp);
     s += fread(&xcsf->PRED_RLS_SCALE_FACTOR, sizeof(double), 1, fp);
     s += fread(&xcsf->PRED_RLS_LAMBDA, sizeof(double), 1, fp);
-    s += fread(&xcsf->PRED_EVOLVE_WEIGHTS, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->PRED_EVOLVE_NEURONS, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->PRED_EVOLVE_FUNCTIONS, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->PRED_EVOLVE_CONNECTIVITY, sizeof(_Bool), 1, fp);
-    s += fread(&xcsf->PRED_SGD_WEIGHTS, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->PRED_EVOLVE_WEIGHTS, sizeof(bool), 1, fp);
+    s += fread(&xcsf->PRED_EVOLVE_NEURONS, sizeof(bool), 1, fp);
+    s += fread(&xcsf->PRED_EVOLVE_FUNCTIONS, sizeof(bool), 1, fp);
+    s += fread(&xcsf->PRED_EVOLVE_CONNECTIVITY, sizeof(bool), 1, fp);
+    s += fread(&xcsf->PRED_SGD_WEIGHTS, sizeof(bool), 1, fp);
     s += fread(&xcsf->PRED_MOMENTUM, sizeof(double), 1, fp);
     s += fread(&xcsf->PRED_DECAY, sizeof(double), 1, fp);
     s += fread(xcsf->PRED_NUM_NEURONS, sizeof(int), MAX_LAYERS, fp);
@@ -763,7 +763,7 @@ param_save(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->msetsize, sizeof(double), 1, fp);
     s += fwrite(&xcsf->asetsize, sizeof(double), 1, fp);
     s += fwrite(&xcsf->mfrac, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->explore, sizeof(_Bool), 1, fp);
+    s += fwrite(&xcsf->explore, sizeof(bool), 1, fp);
     s += fwrite(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->n_actions, sizeof(int), 1, fp);
@@ -793,7 +793,7 @@ param_load(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->msetsize, sizeof(double), 1, fp);
     s += fread(&xcsf->asetsize, sizeof(double), 1, fp);
     s += fread(&xcsf->mfrac, sizeof(double), 1, fp);
-    s += fread(&xcsf->explore, sizeof(_Bool), 1, fp);
+    s += fread(&xcsf->explore, sizeof(bool), 1, fp);
     s += fread(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->n_actions, sizeof(int), 1, fp);

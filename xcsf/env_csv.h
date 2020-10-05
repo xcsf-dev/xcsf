@@ -34,10 +34,10 @@ struct EnvCSV {
     struct Input *test_data;
 };
 
-_Bool
+bool
 env_csv_is_done(const struct XCSF *xcsf);
 
-_Bool
+bool
 env_csv_multistep(const struct XCSF *xcsf);
 
 double

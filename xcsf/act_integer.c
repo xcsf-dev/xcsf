@@ -39,7 +39,7 @@ static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL };
  * @param [in] c2 The second classifier whose action is being crossed.
  * @return False.
  */
-_Bool
+bool
 act_integer_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                       const struct Cl *c2)
 {
@@ -56,7 +56,7 @@ act_integer_crossover(const struct XCSF *xcsf, const struct Cl *c1,
  * @param [in] c2 The classifier whose action is tested to be more specific.
  * @return Whether the action of c1 is more general than c2.
  */
-_Bool
+bool
 act_integer_general(const struct XCSF *xcsf, const struct Cl *c1,
                     const struct Cl *c2)
 {
@@ -75,7 +75,7 @@ act_integer_general(const struct XCSF *xcsf, const struct Cl *c1,
  * @param [in] c The classifier whose action is being mutated.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 act_integer_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     struct ActInteger *act = c->act;

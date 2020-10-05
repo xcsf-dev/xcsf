@@ -201,7 +201,7 @@ env_csv_reset(const struct XCSF *xcsf)
  * @param [in] xcsf The XCSF data structure.
  * @return True.
  */
-_Bool
+bool
 env_csv_is_done(const struct XCSF *xcsf)
 {
     (void) xcsf;
@@ -239,7 +239,7 @@ env_csv_execute(const struct XCSF *xcsf, const int action)
  * @param [in] xcsf The XCSF data structure.
  * @return False.
  */
-_Bool
+bool
 env_csv_multistep(const struct XCSF *xcsf)
 {
     (void) xcsf;

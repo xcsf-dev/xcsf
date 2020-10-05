@@ -182,7 +182,7 @@ neural_layer_softmax_update(const struct XCSF *xcsf, const struct Layer *l)
  */
 void
 neural_layer_softmax_print(const struct XCSF *xcsf, const struct Layer *l,
-                           const _Bool print_weights)
+                           const bool print_weights)
 {
     (void) xcsf;
     (void) print_weights;
@@ -196,7 +196,7 @@ neural_layer_softmax_print(const struct XCSF *xcsf, const struct Layer *l,
  * @param [in] l A softmax layer.
  * @return False.
  */
-_Bool
+bool
 neural_layer_softmax_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
     (void) xcsf;

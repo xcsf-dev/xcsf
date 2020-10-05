@@ -132,10 +132,10 @@ clset_pop_del(struct XCSF *xcsf)
  * @param [out] act_covered Vector specifying whether each action is covered.
  * @return Whether all actions are covered.
  */
-static _Bool
-clset_action_coverage(const struct XCSF *xcsf, _Bool *act_covered)
+static bool
+clset_action_coverage(const struct XCSF *xcsf, bool *act_covered)
 {
-    memset(act_covered, 0, sizeof(_Bool) * xcsf->n_actions);
+    memset(act_covered, 0, sizeof(bool) * xcsf->n_actions);
     const struct Clist *iter = xcsf->mset.list;
     while (iter != NULL) {
         act_covered[iter->cl->action] = true;
@@ -158,8 +158,8 @@ static void
 clset_cover(struct XCSF *xcsf, const double *x)
 {
     int attempts = 0;
-    _Bool *act_covered = malloc(sizeof(_Bool) * xcsf->n_actions);
-    _Bool covered = clset_action_coverage(xcsf, act_covered);
+    bool *act_covered = malloc(sizeof(bool) * xcsf->n_actions);
+    bool covered = clset_action_coverage(xcsf, act_covered);
     while (!covered) {
         covered = true;
         for (int i = 0; i < xcsf->n_actions; ++i) {
@@ -240,7 +240,7 @@ clset_subsumption(struct XCSF *xcsf, struct Set *set)
     }
     // subsume the more specific classifiers in the set
     if (s != NULL) {
-        _Bool subsumed = false;
+        bool subsumed = false;
         iter = set->list;
         while (iter != NULL) {
             struct Cl *c = iter->cl;
@@ -419,7 +419,7 @@ clset_add(struct Set *set, struct Cl *c)
  */
 void
 clset_update(struct XCSF *xcsf, struct Set *set, const double *x,
-             const double *y, const _Bool cur)
+             const double *y, const bool cur)
 {
 #ifdef PARALLEL_UPDATE
     struct Clist *blist[set->size];
@@ -486,8 +486,7 @@ clset_validate(struct Set *set)
  */
 void
 clset_print(const struct XCSF *xcsf, const struct Set *set,
-            const _Bool print_cond, const _Bool print_act,
-            const _Bool print_pred)
+            const bool print_cond, const bool print_act, const bool print_pred)
 {
     const struct Clist *iter = set->list;
     while (iter != NULL) {

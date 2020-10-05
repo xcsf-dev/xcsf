@@ -173,7 +173,7 @@ env_maze_reset(const struct XCSF *xcsf)
  * @param [in] xcsf The XCSF data structure.
  * @return Whether the maze is in a terminal state.
  */
-_Bool
+bool
 env_maze_is_done(const struct XCSF *xcsf)
 {
     const struct EnvMaze *env = xcsf->env;
@@ -269,7 +269,7 @@ env_maze_maxpayoff(const struct XCSF *xcsf)
  * @param [in] xcsf The XCSF data structure.
  * @return True
  */
-_Bool
+bool
 env_maze_multistep(const struct XCSF *xcsf)
 {
     (void) xcsf;

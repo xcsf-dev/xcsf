@@ -176,7 +176,7 @@ reset_layer_deltas(const struct Layer *l)
  * @param [in] l The layer whose gradient descent rate is to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 mutate_eta(const struct XCSF *xcsf, struct Layer *l)
 {
     if (layer_mutate_eta(xcsf, l->uf, l->mu[0])) {
@@ -192,7 +192,7 @@ mutate_eta(const struct XCSF *xcsf, struct Layer *l)
  * @param [in] l The layer whose number of neurons is to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 mutate_neurons(const struct XCSF *xcsf, struct Layer *l)
 {
     const int n = layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
@@ -225,10 +225,10 @@ mutate_neurons(const struct XCSF *xcsf, struct Layer *l)
  * @param [in] l The layer whose number of active weights is to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 mutate_connectivity(struct Layer *l)
 {
-    _Bool mod = false;
+    bool mod = false;
     mod = layer_mutate_connectivity(l->uf, l->mu[2], l->mu[3]) ? true : mod;
     mod = layer_mutate_connectivity(l->ui, l->mu[2], l->mu[3]) ? true : mod;
     mod = layer_mutate_connectivity(l->ug, l->mu[2], l->mu[3]) ? true : mod;
@@ -246,10 +246,10 @@ mutate_connectivity(struct Layer *l)
  * @param [in] l The layer whose weights are to be mutated.
  * @return Whether any alterations were made.
  */
-static _Bool
+static bool
 mutate_weights(struct Layer *l)
 {
-    _Bool mod = false;
+    bool mod = false;
     mod = layer_mutate_weights(l->uf, l->mu[4]) ? true : mod;
     mod = layer_mutate_weights(l->ui, l->mu[4]) ? true : mod;
     mod = layer_mutate_weights(l->ug, l->mu[4]) ? true : mod;
@@ -551,11 +551,11 @@ neural_layer_lstm_output(const struct XCSF *xcsf, const struct Layer *l)
  * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
  */
-_Bool
+bool
 neural_layer_lstm_mutate(const struct XCSF *xcsf, struct Layer *l)
 {
     sam_adapt(l->mu, N_MU, MU_TYPE);
-    _Bool mod = false;
+    bool mod = false;
     if ((l->options & LAYER_EVOLVE_ETA) && mutate_eta(xcsf, l)) {
         mod = true;
     }
@@ -583,7 +583,7 @@ neural_layer_lstm_mutate(const struct XCSF *xcsf, struct Layer *l)
  */
 void
 neural_layer_lstm_print(const struct XCSF *xcsf, const struct Layer *l,
-                        const _Bool print_weights)
+                        const bool print_weights)
 {
     printf("lstm, f = %s, rf = %s,  in = %d, out = %d\n",
            neural_activation_string(l->function),

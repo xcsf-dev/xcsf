@@ -38,11 +38,11 @@ struct PredNLMS {
     double *tmp_input; //!< Temporary storage for updating weights
 };
 
-_Bool
+bool
 pred_nlms_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                     const struct Cl *c2);
 
-_Bool
+bool
 pred_nlms_mutate(const struct XCSF *xcsf, const struct Cl *c);
 
 double

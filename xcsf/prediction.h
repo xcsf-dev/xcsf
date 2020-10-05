@@ -33,9 +33,9 @@ prediction_set(const struct XCSF *xcsf, struct Cl *c);
  * @details Prediction implementations must implement these functions.
  */
 struct PredVtbl {
-    _Bool (*pred_impl_crossover)(const struct XCSF *xcsf, const struct Cl *c1,
-                                 const struct Cl *c2);
-    _Bool (*pred_impl_mutate)(const struct XCSF *xcsf, const struct Cl *c);
+    bool (*pred_impl_crossover)(const struct XCSF *xcsf, const struct Cl *c1,
+                                const struct Cl *c2);
+    bool (*pred_impl_mutate)(const struct XCSF *xcsf, const struct Cl *c);
     void (*pred_impl_compute)(const struct XCSF *xcsf, const struct Cl *c,
                               const double *x);
     void (*pred_impl_copy)(const struct XCSF *xcsf, struct Cl *dest,
@@ -96,7 +96,7 @@ pred_size(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c2 The second classifier whose prediction is being crossed.
  * @return Whether any alterations were made.
  */
-static inline _Bool
+static inline bool
 pred_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                const struct Cl *c2)
 {
@@ -109,7 +109,7 @@ pred_crossover(const struct XCSF *xcsf, const struct Cl *c1,
  * @param [in] c The classifier whose prediction is being mutated.
  * @return Whether any alterations were made.
  */
-static inline _Bool
+static inline bool
 pred_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->pred_vptr->pred_impl_mutate)(xcsf, c);

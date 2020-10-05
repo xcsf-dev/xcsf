@@ -47,7 +47,7 @@ struct Net {
     struct Llist *tail; //!< Pointer to the tail layer (first layer)
 };
 
-_Bool
+bool
 neural_mutate(const struct XCSF *xcsf, const struct Net *net);
 
 double
@@ -93,7 +93,7 @@ neural_learn(const struct XCSF *xcsf, const struct Net *net,
 
 void
 neural_print(const struct XCSF *xcsf, const struct Net *net,
-             const _Bool print_weights);
+             const bool print_weights);
 
 void
 neural_propagate(const struct XCSF *xcsf, const struct Net *net,

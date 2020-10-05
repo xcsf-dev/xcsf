@@ -33,13 +33,13 @@ condition_set(const struct XCSF *xcsf, struct Cl *c);
  * @details Condition implementations must implement these functions.
  */
 struct CondVtbl {
-    _Bool (*cond_impl_crossover)(const struct XCSF *xcsf, const struct Cl *c1,
-                                 const struct Cl *c2);
-    _Bool (*cond_impl_general)(const struct XCSF *xcsf, const struct Cl *c1,
-                               const struct Cl *c2);
-    _Bool (*cond_impl_match)(const struct XCSF *xcsf, const struct Cl *c,
-                             const double *x);
-    _Bool (*cond_impl_mutate)(const struct XCSF *xcsf, const struct Cl *c);
+    bool (*cond_impl_crossover)(const struct XCSF *xcsf, const struct Cl *c1,
+                                const struct Cl *c2);
+    bool (*cond_impl_general)(const struct XCSF *xcsf, const struct Cl *c1,
+                              const struct Cl *c2);
+    bool (*cond_impl_match)(const struct XCSF *xcsf, const struct Cl *c,
+                            const double *x);
+    bool (*cond_impl_mutate)(const struct XCSF *xcsf, const struct Cl *c);
     void (*cond_impl_copy)(const struct XCSF *xcsf, struct Cl *dest,
                            const struct Cl *src);
     void (*cond_impl_cover)(const struct XCSF *xcsf, const struct Cl *c,
@@ -114,7 +114,7 @@ cond_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
  * @param [in] c2 The second classifier whose condition is being crossed.
  * @return Whether any alterations were made.
  */
-static inline _Bool
+static inline bool
 cond_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                const struct Cl *c2)
 {
@@ -128,7 +128,7 @@ cond_crossover(const struct XCSF *xcsf, const struct Cl *c1,
  * @param [in] c2 The classifier whose condition is tested to be more specific.
  * @return Whether the condition of c1 is more general than c2.
  */
-static inline _Bool
+static inline bool
 cond_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
 {
     return (*c1->cond_vptr->cond_impl_general)(xcsf, c1, c2);
@@ -141,7 +141,7 @@ cond_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)
  * @param [in] x The input state.
  * @return Whether the condition matches the input.
  */
-static inline _Bool
+static inline bool
 cond_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     return (*c->cond_vptr->cond_impl_match)(xcsf, c, x);
@@ -153,7 +153,7 @@ cond_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
  * @param [in] c The classifier whose condition is being mutated.
  * @return Whether any alterations were made.
  */
-static inline _Bool
+static inline bool
 cond_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->cond_vptr->cond_impl_mutate)(xcsf, c);

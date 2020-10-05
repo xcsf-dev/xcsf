@@ -27,7 +27,7 @@
 
 double
 xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
-                   const struct Input *test_data, const _Bool shuffle);
+                   const struct Input *test_data, const bool shuffle);
 
 double
 xcs_supervised_score(struct XCSF *xcsf, const struct Input *data);
