@@ -25,8 +25,8 @@
 #include "../lib/dSFMT/dSFMT.h"
 #include <limits.h>
 #include <math.h>
-#include <time.h>
 #include <stdbool.h>
+#include <time.h>
 
 /**
  * @brief Initialises the pseudo-random number generator.

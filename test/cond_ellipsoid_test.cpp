@@ -64,7 +64,7 @@ TEST_CASE("COND_ELLIPSOID")
     struct CondEllipsoid *p = (struct CondEllipsoid *) c1.cond;
     memcpy(p->center, true_center, sizeof(double) * xcsf.x_dim);
     memcpy(p->spread, true_spread, sizeof(double) * xcsf.x_dim);
-    _Bool match = cond_ellipsoid_match(&xcsf, &c1, x);
+    bool match = cond_ellipsoid_match(&xcsf, &c1, x);
     CHECK_EQ(match, true);
     /* test for false match condition */
     memcpy(p->center, false_center, sizeof(double) * xcsf.x_dim);
@@ -82,7 +82,7 @@ TEST_CASE("COND_ELLIPSOID")
     memcpy(p2->spread, spread2, sizeof(double) * xcsf.x_dim);
     memcpy(p->center, true_center, sizeof(double) * xcsf.x_dim);
     memcpy(p->spread, true_spread, sizeof(double) * xcsf.x_dim);
-    _Bool general = cond_ellipsoid_general(&xcsf, &c1, &c2);
+    bool general = cond_ellipsoid_general(&xcsf, &c1, &c2);
     CHECK_EQ(general, true);
     general = cond_ellipsoid_general(&xcsf, &c2, &c1);
     CHECK_EQ(general, false);
