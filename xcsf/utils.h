@@ -93,7 +93,7 @@ max_index(const double *X, const int N)
  * @param [out] binary The converted binary string.
  * @param [in] bits The number of bits to use for binarising.
  */
-static void
+static inline void
 float_to_binary(const double f, char *binary, const int bits)
 {
     int a = (int) (f * pow(2, bits));
