@@ -23,8 +23,7 @@
 
 #pragma once
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "xcsf.h"
 
 double
 rand_normal(const double mu, const double sigma);
@@ -86,4 +85,20 @@ max_index(const double *X, const int N)
         }
     }
     return max_i;
+}
+
+/**
+ * @brief Generates a binary string from a float.
+ * @param [in] f The float to binarise.
+ * @param [out] binary The converted binary string.
+ * @param [in] bits The number of bits to use for binarising.
+ */
+static void
+float_to_binary(const double f, char *binary, const int bits)
+{
+    int a = (int) (f * pow(2, bits));
+    for (int i = 0; i < bits; ++i) {
+        binary[i] = (a % 2) + '0';
+        a /= 2;
+    }
 }

@@ -36,22 +36,6 @@
 static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL };
 
 /**
- * @brief Generates a binary string from a float.
- * @param [in] f The float to binarise.
- * @param [out] binary The converted binary string.
- * @param [in] bits The number of bits to use for binarising.
- */
-static void
-float_to_binary(const double f, char *binary, const int bits)
-{
-    int a = (int) (f * pow(2, bits));
-    for (int i = 0; i < bits; ++i) {
-        binary[i] = (a % 2) + '0';
-        a /= 2;
-    }
-}
-
-/**
  * @brief Randomises a ternary condition.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] c The classifier whose condition is to be initialised.
