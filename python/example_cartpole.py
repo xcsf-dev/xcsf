@@ -51,7 +51,7 @@ def save_frames_as_gif(path='./', filename='animation.gif'):
     fig.set_size_inches(3, 3)
     ax = fig.add_subplot(111)
     patch = plt.imshow(frames[0])
-    bbox = dict(boxstyle="round", fc="0.8")
+    bbox = dict(boxstyle='round', fc='0.8')
     plt.axis('off')
     def animate(i):
         patch.set_data(frames[i])
@@ -147,7 +147,7 @@ def episode(episode_nr, create_gif):
         episode_score += reward
         memory.append((state, action, reward, next_state, done))
         if create_gif:
-            frames.append(env.render(mode="rgb_array"))
+            frames.append(env.render(mode='rgb_array'))
             fscore.append(episode_score)
             ftrial.append(episode_nr)
         if done:
@@ -174,11 +174,11 @@ for ep in range(MAX_EPISODES):
     total_steps += ep_steps
     scores.append(ep_score)
     mean_score = np.mean(scores)
-    print ("episodes=%d steps=%d score=%.2f epsilon=%.5f error=%.5f msize=%.2f" %
-           (ep, total_steps, mean_score, epsilon, xcs.error(), xcs.msetsize()))
+    print('episodes=%d steps=%d score=%.2f epsilon=%.5f error=%.5f msize=%.2f' %
+          (ep, total_steps, mean_score, epsilon, xcs.error(), xcs.msetsize()))
     # is the problem solved?
     if ep > N and mean_score > env.spec.reward_threshold:
-        print("solved after %d episodes: mean score %.2f > %.2f" %
+        print('solved after %d episodes: mean score %.2f > %.2f' %
               (ep, mean_score, env.spec.reward_threshold))
         break
     # decay the exploration rate
@@ -193,8 +193,8 @@ ep_score, ep_steps = episode(ep, SAVE_GIF)
 env.close()
 
 if SAVE_GIF:
-    print("Creating gif. This may take a while...")
+    print('Creating gif. This may take a while...')
     save_frames_as_gif()
-    print("To crop and optimise gif:")
-    print("gifsicle -O3 --colors=64 --use-col=web --lossy=100 " \
-          "--crop 0,10-270,220 --output out.gif animation.gif")
+    print('To crop and optimise gif:')
+    print('gifsicle -O3 --colors=64 --use-col=web --lossy=100 ' \
+          '--crop 0,10-270,220 --output out.gif animation.gif')

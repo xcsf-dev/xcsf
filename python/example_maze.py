@@ -34,22 +34,25 @@ class Maze:
     """
     Maze problem environment.
 
-    The maze class reads in the chosen maze from a file where each entry specifies
-    a distinct position in the maze. The maze is toroidal and if the agent/animat
-    reaches one edge it can reenter the maze from the other side. Obstacles are
-    coded as 'O' and 'Q', empty positions as '*', and food as 'F' or 'G'. The 8
-    adjacent cells are perceived by the animat and 8 movements are possible to one
-    of the adjacent cells (if not blocked.) The animat is initially placed at a
-    random empty position. The goal is to find the shortest path to the food.
+    The maze class reads in the chosen maze from a file where each entry
+    specifies a distinct position in the maze. The maze is toroidal and if the
+    agent/animat reaches one edge it can reenter the maze from the other side.
+    Obstacles are coded as 'O' and 'Q', empty positions as '*', and food as 'F'
+    or 'G'. The 8 adjacent cells are perceived by the animat and 8 movements
+    are possible to one of the adjacent cells (if not blocked.) The animat is
+    initially placed at a random empty position. The goal is to find the
+    shortest path to the food.
 
     Some mazes require a form of memory to be solved optimally.
     """
 
-    optimal = { 'woods1': 1.7, 'woods2': 1.7, 'woods14': 9.5, 'maze4': 3.5,
+    OPTIMAL = { 'woods1': 1.7, 'woods2': 1.7, 'woods14': 9.5, 'maze4': 3.5,
             'maze5': 4.61, 'maze6': 5.19, 'maze7': 4.33, 'maze10': 5.11,
             'woods101': 2.9, 'woods101half': 3.1, 'woods102': 3.31,
             'mazef1': 1.8, 'mazef2': 2.5, 'mazef3': 3.375, 'mazef4': 4.5 }
-    max_payoff = 1 #: reward for finding the goal
+    MAX_PAYOFF = 1 #: reward for finding the goal
+    X_MOVES = [0, 1, 1, 1, 0, -1, -1, -1] #: possible moves on x-axis
+    Y_MOVES = [-1, -1, 0, 1, 1, 1, 0, -1] #: possible moves on y-axis
 
     def __init__(self, filename):
         """ Constructs a new maze problem given a maze file name. """
@@ -100,15 +103,15 @@ class Maze:
         sys.exit()
 
     def update_state(self):
-        """ Sets the current state to a real-vector representing the sensory input. """
+        """ Sets the state to a real-vector representing the sensory input. """
         spos = 0
-        for y in range(-1, 2):
-            for x in range(-1, 2):
-                if x == 0 and y == 0:
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                if j == 0 and i == 0:
                     continue
-                x_sense = ((self.x_pos + x) % self.x_size + self.x_size) % self.x_size
-                y_sense = ((self.y_pos + y) % self.y_size + self.y_size) % self.y_size
-                self.state[spos] = self.sensor(x_sense, y_sense)
+                x = ((self.x_pos + j) % self.x_size + self.x_size) % self.x_size
+                y = ((self.y_pos + i) % self.y_size + self.y_size) % self.y_size
+                self.state[spos] = self.sensor(x, y)
                 spos += 1
 
     def step(self, act):
@@ -119,10 +122,10 @@ class Maze:
         if act < 0 or act > 7:
             print('invalid maze action')
             sys.exit()
-        x_moves = [0, 1, 1, 1, 0, -1, -1, -1]
-        y_moves = [-1, -1, 0, 1, 1, 1, 0, -1]
-        x_new = ((self.x_pos + x_moves[act]) % self.x_size + self.x_size) % self.x_size
-        y_new = ((self.y_pos + y_moves[act]) % self.y_size + self.y_size) % self.y_size
+        x_vec = Maze.X_MOVES[act]
+        y_vec = Maze.Y_MOVES[act]
+        x_new = ((self.x_pos + x_vec) % self.x_size + self.x_size) % self.x_size
+        y_new = ((self.y_pos + y_vec) % self.y_size + self.y_size) % self.y_size
         s = self.maze[y_new][x_new]
         if s in ('O', 'Q'):
             return np.copy(self.state), 0, False
@@ -132,13 +135,17 @@ class Maze:
         if s == '*':
             return np.copy(self.state), 0, False
         if s in ('F', 'G'):
-            return np.copy(self.state), Maze.max_payoff, True
+            return np.copy(self.state), self.max_payoff(), True
         print('invalid maze type')
         sys.exit()
 
-    def optimal_steps(self):
+    def optimal(self):
         """ Returns the optimal number of steps to the goal. """
-        return Maze.optimal[self.name]
+        return Maze.OPTIMAL[self.name]
+
+    def max_payoff(self):
+        """ Returns the reward for reaching the goal state. """
+        return float(Maze.MAX_PAYOFF)
 
 ###################
 # Initialise XCSF
@@ -179,70 +186,72 @@ psize = np.zeros(N)
 msize = np.zeros(N)
 steps = np.zeros(N)
 error = np.zeros(N)
-bar = tqdm(total=N) # progress bar
+
+def run_experiment(env):
+    """ Executes a single experiment. """
+    bar = tqdm(total=N) # progress bar
+    for i in range(N):
+        for _ in range(xcs.PERF_TRIALS):
+            # explore trial
+            state = env.reset()
+            xcs.init_trial()
+            for _ in range(xcs.TELETRANSPORTATION):
+                xcs.init_step()
+                action = xcs.decision(state, True) # explore
+                next_state, reward, done = env.step(action)
+                xcs.update(reward, done)
+                xcs.end_step()
+                if done:
+                    break
+                state = next_state
+            xcs.end_trial()
+            # exploit trial
+            err = 0
+            cnt = 0
+            state = env.reset()
+            xcs.init_trial()
+            for _ in range(xcs.TELETRANSPORTATION):
+                xcs.init_step()
+                action = xcs.decision(state, False) # exploit
+                next_state, reward, done = env.step(action)
+                xcs.update(reward, done)
+                err += xcs.error(reward, done, env.max_payoff())
+                cnt += 1
+                xcs.end_step()
+                if done:
+                    break
+                state = next_state
+            xcs.end_trial()
+            steps[i] += cnt
+            error[i] += err / float(cnt)
+        steps[i] /= float(xcs.PERF_TRIALS)
+        error[i] /= float(xcs.PERF_TRIALS)
+        trials[i] = (i + 1) * xcs.PERF_TRIALS
+        psize[i] = xcs.pop_size() # current population size
+        msize[i] = xcs.msetsize() # avg match set size
+        # update status
+        status = ('trials=%d steps=%.5f error=%.5f psize=%d msize=%.1f' %
+                (trials[i], steps[i], error[i], psize[i], msize[i]))
+        bar.set_description(status)
+        bar.refresh()
+        bar.update(1)
+    bar.close()
+
+def plot_performance(env):
+    """ Plots learning performance. """
+    plt.figure(figsize=(10, 6))
+    plt.plot(trials, steps)
+    plt.grid(linestyle='dotted', linewidth=1)
+    plt.axhline(y=env.optimal(), xmin=0, xmax=1, linestyle='--', color='k')
+    plt.title(env.name, fontsize=14)
+    plt.ylabel('Steps to Goal', fontsize=12)
+    plt.xlabel('Trials', fontsize=12)
+    plt.xlim([0, N * xcs.PERF_TRIALS])
+    plt.show()
 
 maze = Maze('maze4')
-
-for i in range(N):
-    for j in range(xcs.PERF_TRIALS):
-        # explore trial
-        state = maze.reset()
-        xcs.init_trial()
-        for k in range(xcs.TELETRANSPORTATION):
-            xcs.init_step()
-            action = xcs.decision(state, True) # explore
-            next_state, reward, done = maze.step(action)
-            xcs.update(reward, done)
-            xcs.end_step()
-            if done:
-                break
-            state = next_state
-        xcs.end_trial()
-        # exploit trial
-        err = 0
-        cnt = 0
-        state = maze.reset()
-        xcs.init_trial()
-        for k in range(xcs.TELETRANSPORTATION):
-            xcs.init_step()
-            action = xcs.decision(state, False) # exploit
-            next_state, reward, done = maze.step(action)
-            xcs.update(reward, done)
-            err += xcs.error(reward, done, Maze.max_payoff)
-            cnt += 1
-            xcs.end_step()
-            if done:
-                break
-            state = next_state
-        xcs.end_trial()
-        steps[i] += cnt
-        error[i] += err / float(cnt)
-    steps[i] /= float(xcs.PERF_TRIALS)
-    error[i] /= float(xcs.PERF_TRIALS)
-    trials[i] = (i + 1) * xcs.PERF_TRIALS
-    psize[i] = xcs.pop_size() # current population size
-    msize[i] = xcs.msetsize() # avg match set size
-    # update status
-    status = ('trials=%d steps=%.5f error=%.5f psize=%d msize=%.1f' %
-              (trials[i], steps[i], error[i], psize[i], msize[i]))
-    bar.set_description(status)
-    bar.refresh()
-    bar.update(1)
-bar.close()
-
-#################################
-# Plot XCSF learning performance
-#################################
-
-plt.figure(figsize=(10, 6))
-plt.plot(trials, steps)
-plt.grid(linestyle='dotted', linewidth=1)
-plt.axhline(y=maze.optimal_steps(), xmin=0, xmax=1, linestyle='dashed', color='k')
-plt.title(maze.name, fontsize=14)
-plt.ylabel('Steps to Goal', fontsize=12)
-plt.xlabel('Trials', fontsize=12)
-plt.xlim([0, N * xcs.PERF_TRIALS])
-plt.show()
+run_experiment(maze)
+plot_performance(maze)
 
 #################################
 # Visualise some maze runs
@@ -251,13 +260,12 @@ plt.show()
 GRID_WIDTH = maze.x_size
 GRID_HEIGHT = maze.y_size
 CELL_SIZE = 20
-
 WIDTH, HEIGHT = 1400, 720
 screen = Screen()
 screen.setup(WIDTH + 4, HEIGHT + 8)
 screen.setworldcoordinates(0, 0, WIDTH, HEIGHT)
 
-def draw_maze(XOFF, YOFF):
+def draw_maze(xoff, yoff):
     """ Draws the background and outline of the current maze. """
     bg = Turtle(visible=False)
     screen.tracer(False)
@@ -277,40 +285,39 @@ def draw_maze(XOFF, YOFF):
                 bg.color('yellow')
             if s == 'Q':
                 bg.color('brown')
-            bg.goto(XOFF + x * CELL_SIZE, YOFF + y * CELL_SIZE)
+            bg.goto(xoff + x * CELL_SIZE, yoff + y * CELL_SIZE)
             bg.stamp()
-    XOFF = XOFF - CELL_SIZE / 2
-    YOFF = YOFF - CELL_SIZE / 2
-    bg.goto(XOFF, YOFF)
+    xoff = xoff - CELL_SIZE / 2
+    yoff = yoff - CELL_SIZE / 2
+    bg.goto(xoff, yoff)
     bg.pensize(2)
     bg.color('black')
     bg.pendown()
-    bg.goto(XOFF, YOFF + GRID_HEIGHT * CELL_SIZE)
-    bg.goto(XOFF + GRID_WIDTH * CELL_SIZE, YOFF + GRID_HEIGHT * CELL_SIZE)
-    bg.goto(XOFF + GRID_WIDTH * CELL_SIZE, YOFF)
-    bg.goto(XOFF, YOFF)
+    bg.goto(xoff, yoff + GRID_HEIGHT * CELL_SIZE)
+    bg.goto(xoff + GRID_WIDTH * CELL_SIZE, yoff + GRID_HEIGHT * CELL_SIZE)
+    bg.goto(xoff + GRID_WIDTH * CELL_SIZE, yoff)
+    bg.goto(xoff, yoff)
     bg.penup()
 
-def visualise(XOFF, YOFF):
+def visualise(xoff, yoff):
     """ Executes an XCSF exploit run through the maze and draws the path. """
+    state = maze.reset()
     agent = Turtle(visible=True)
     agent.shape('turtle')
     agent.color('green')
     agent.speed('normal')
     agent.shapesize(0.5, 0.5)
     agent.pensize(2)
-    state = maze.reset()
+    agent.penup()
+    agent.goto(xoff + maze.x_pos * CELL_SIZE, yoff + maze.y_pos * CELL_SIZE)
+    agent.pendown()
+    screen.tracer(True)
     xcs.init_trial()
-    for k in range(xcs.TELETRANSPORTATION):
+    for _ in range(xcs.TELETRANSPORTATION):
         xcs.init_step()
-        if k == 0:
-            agent.penup()
-            agent.goto(XOFF + maze.x_pos * CELL_SIZE, YOFF + maze.y_pos * CELL_SIZE)
-            screen.tracer(True)
-            agent.pendown()
         action = xcs.decision(state, False)
         next_state, reward, done = maze.step(action)
-        agent.goto(XOFF + maze.x_pos * CELL_SIZE, YOFF + maze.y_pos * CELL_SIZE)
+        agent.goto(xoff + maze.x_pos * CELL_SIZE, yoff + maze.y_pos * CELL_SIZE)
         xcs.update(reward, done)
         xcs.end_step()
         if done:
@@ -318,15 +325,16 @@ def visualise(XOFF, YOFF):
         state = next_state
     xcs.end_trial()
 
-GRID_XOFF = (GRID_WIDTH * CELL_SIZE)
-GRID_YOFF = (GRID_HEIGHT * CELL_SIZE)
+def draw_runs():
+    """ Draw some runs through the maze. """
+    grid_xoff = (GRID_WIDTH * CELL_SIZE)
+    grid_yoff = (GRID_HEIGHT * CELL_SIZE)
+    for i in range(8):
+        for j in range(4):
+            xoff = i * (grid_xoff + CELL_SIZE)
+            yoff = j * (grid_yoff + CELL_SIZE)
+            draw_maze(xoff, yoff)
+            visualise(xoff, yoff)
 
-# draw some runs through the maze
-for i in range(8):
-    for j in range(4):
-        XOFF = i * (GRID_XOFF + CELL_SIZE)
-        YOFF = j * (GRID_YOFF + CELL_SIZE)
-        draw_maze(XOFF, YOFF)
-        visualise(XOFF, YOFF)
-
+draw_runs()
 input('Press enter to exit.')

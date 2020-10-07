@@ -34,8 +34,8 @@ class Mux:
 
     The Mux class generates random real vectors of length k+pow(2,k) where the
     first k bits determine the position of the output bit in the last pow(2,k)
-    bits. E.g., for a 3-bit problem, the first (rounded) bit addresses which of the
-    following 2 bits are the (rounded) output.
+    bits. E.g., for a 3-bit problem, the first (rounded) bit addresses which of
+    the following 2 bits are the (rounded) output.
 
     Example valid lengths: 3, 6, 11, 20, 37, 70, 135, 264.
     """
@@ -50,7 +50,7 @@ class Mux:
         while self.pos_bits + pow(2, self.pos_bits) <= self.n_bits:
             self.pos_bits += 1
         self.pos_bits -= 1
-        print(str(self.n_bits)+" bits, "+str(self.pos_bits)+" position bits")
+        print(str(self.n_bits)+' bits, '+str(self.pos_bits)+' position bits')
 
     def reset(self):
         """ Generates a random real-multiplexer state. """

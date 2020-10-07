@@ -16,11 +16,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""This example demonstrates the XCSF supervised learning mechanisms to perform
+"""
+This example demonstrates the XCSF supervised learning mechanisms to perform
 classification on the USPS handwritten digits dataset. Classifiers are composed
 of neural network conditions and predictions. A softmax layer is used as
 prediction output and labels are one-hot encoded. Similar to regression, a
-single dummy action is performed such that [A] = [M]."""
+single dummy action is performed such that [A] = [M].
+"""
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -39,7 +41,8 @@ import xcsf.xcsf as xcsf
 data = fetch_openml(data_id=41082) # 256 features, 10 classes, 9298 instances
 
 # split into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.1)
+X_train, X_test, y_train, y_test = \
+    train_test_split(data.data, data.target, test_size=0.1)
 
 # scale features [0,1]
 X_train = minmax_scale(X_train, feature_range=(0, 1))
@@ -50,15 +53,15 @@ onehot_encoder = OneHotEncoder(sparse=False, categories='auto')
 y_train = onehot_encoder.fit_transform(y_train.reshape(-1, 1))
 y_test = onehot_encoder.fit_transform(y_test.reshape(-1, 1))
 
-print("X_train shape = "+str(np.shape(X_train)))
-print("y_train shape = "+str(np.shape(y_train)))
-print("X_test shape = "+str(np.shape(X_test)))
-print("y_test shape = "+str(np.shape(y_test)))
+print('X_train shape = ' + str(np.shape(X_train)))
+print('y_train shape = ' + str(np.shape(y_train)))
+print('X_test shape = ' + str(np.shape(X_test)))
+print('y_test shape = ' + str(np.shape(y_test)))
 
 # get number of input and output variables
 X_DIM = np.shape(X_train)[1]
 Y_DIM = np.shape(y_train)[1]
-print("x_dim = "+str(X_DIM) + ", y_dim = " + str(Y_DIM))
+print('x_dim = ' + str(X_DIM) + ', y_dim = ' + str(Y_DIM))
 
 ###################
 # Initialise XCSF
@@ -122,7 +125,7 @@ for i in range(N):
     # test
     test_err[i] = xcs.score(X_test, y_test)
     # update status
-    status = ("trials=%d train_err=%.5f test_err=%.5f psize=%d msize=%.1f" %
+    status = ('trials=%d train_err=%.5f test_err=%.5f psize=%d msize=%.1f' %
               (trials[i], train_err[i], test_err[i], psize[i], msize[i]))
     bar.set_description(status)
     bar.refresh()
@@ -143,7 +146,7 @@ plt.legend()
 plt.show()
 
 # final XCSF test score
-print("XCSF")
+print('XCSF')
 pred = xcs.predict(X_test) # soft max predictions
 pred = np.argmax(pred, axis=1) # select most likely class
 pred = onehot_encoder.fit_transform(pred.reshape(-1, 1))

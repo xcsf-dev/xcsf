@@ -43,7 +43,8 @@ np.set_printoptions(suppress=True)
 data = fetch_openml(data_id=189)
 
 # split into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.1)
+X_train, X_test, y_train, y_test = \
+    train_test_split(data.data, data.target, test_size=0.1)
 
 # reshape into 2D numpy arrays
 if len(np.shape(y_train)) == 1:
@@ -180,7 +181,7 @@ plt.show()
 ############################
 
 # final XCSF test score
-print("*****************************")
+print('*****************************')
 print('Restoring system from trial %d with val_mse=%.5f' % (val_trial, val_min))
 xcs.retrieve()
 xcsf_pred = xcs.predict(X_test)
@@ -210,9 +211,9 @@ print('MLP Regressor Test MSE = %.4f' % (mlp_mse))
 #####################################
 
 pred = xcs.predict(X_test[:10])
-print("*****************************")
-print("first 10 predictions = ")
+print('*****************************')
+print('first 10 predictions = ')
 print(pred[:10])
-print("*****************************")
-print("first 10 answers = ")
+print('*****************************')
+print('first 10 answers = ')
 print(y_test[:10])

@@ -19,7 +19,8 @@
 """
 This example demonstrates the use of XCSF with action sets applied to the UCI
 Wisconsin breast cancer classification dataset. Classifiers are composed of
-hyperrectangle conditions, linear least squares predictions, and integer actions.
+hyperrectangle conditions, linear least squares predictions, and integer
+actions.
 """
 
 import random
@@ -38,7 +39,8 @@ from sklearn.tree import DecisionTreeClassifier
 import xcsf.xcsf as xcsf
 
 data = load_breast_cancer() # 30 features, 2 classes # 569 instances
-X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.2)
+X_train, X_test, y_train, y_test = \
+    train_test_split(data.data, data.target, test_size=0.2)
 X_train = minmax_scale(X_train, feature_range=(0, 1))
 X_test = minmax_scale(X_test, feature_range=(0, 1))
 X_DIM = 30
@@ -46,7 +48,7 @@ N_ACTIONS = 2
 MAX_PAYOFF = 1
 train_len = len(X_train)
 test_len = len(X_test)
-print("train len = %d, test len = %d" % (train_len, test_len))
+print('train len = %d, test len = %d' % (train_len, test_len))
 
 ###################
 # Initialise XCSF
@@ -102,7 +104,7 @@ for i in range(N):
     psize[i] = xcs.pop_size() # current population size
     msize[i] = xcs.msetsize() # avg match set size
     # update status
-    status = ("trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f" %
+    status = ('trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f' %
               (trials[i], performance[i], error[i], psize[i], msize[i]))
     bar.set_description(status)
     bar.refresh()
