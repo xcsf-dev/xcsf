@@ -187,43 +187,36 @@ msize = np.zeros(N)
 steps = np.zeros(N)
 error = np.zeros(N)
 
+def trial(env, explore):
+    """ Executes a single trial/episode. """
+    err = 0
+    state = env.reset()
+    xcs.init_trial()
+    for cnt in range(xcs.TELETRANSPORTATION):
+        xcs.init_step()
+        action = xcs.decision(state, explore)
+        next_state, reward, done = env.step(action)
+        xcs.update(reward, done)
+        err += xcs.error(reward, done, env.max_payoff())
+        xcs.end_step()
+        if done:
+            break
+        state = next_state
+    cnt += 1
+    xcs.end_trial()
+    return cnt, err / cnt
+
 def run_experiment(env):
     """ Executes a single experiment. """
     bar = tqdm(total=N) # progress bar
     for i in range(N):
         for _ in range(xcs.PERF_TRIALS):
-            # explore trial
-            state = env.reset()
-            xcs.init_trial()
-            for _ in range(xcs.TELETRANSPORTATION):
-                xcs.init_step()
-                action = xcs.decision(state, True) # explore
-                next_state, reward, done = env.step(action)
-                xcs.update(reward, done)
-                xcs.end_step()
-                if done:
-                    break
-                state = next_state
-            xcs.end_trial()
-            # exploit trial
-            err = 0
-            cnt = 0
-            state = env.reset()
-            xcs.init_trial()
-            for _ in range(xcs.TELETRANSPORTATION):
-                xcs.init_step()
-                action = xcs.decision(state, False) # exploit
-                next_state, reward, done = env.step(action)
-                xcs.update(reward, done)
-                err += xcs.error(reward, done, env.max_payoff())
-                cnt += 1
-                xcs.end_step()
-                if done:
-                    break
-                state = next_state
-            xcs.end_trial()
+            # explore
+            trial(env, True)
+            # exploit
+            cnt, err = trial(env, False)
             steps[i] += cnt
-            error[i] += err / float(cnt)
+            error[i] += err
         steps[i] /= float(xcs.PERF_TRIALS)
         error[i] /= float(xcs.PERF_TRIALS)
         trials[i] = (i + 1) * xcs.PERF_TRIALS
