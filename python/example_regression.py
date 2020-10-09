@@ -67,11 +67,8 @@ Y_DIM = np.shape(y_train)[1]
 print('x_dim = '+str(X_DIM) + ', y_dim = ' + str(Y_DIM))
 
 # 10% of training for validation
-N_VAL = int(len(X_train) * 0.1)
-X_val = X_train[:N_VAL]
-y_val = y_train[:N_VAL]
-X_train = X_train[N_VAL:]
-y_train = y_train[N_VAL:]
+X_train, X_val, y_train, y_val = \
+    train_test_split(X_train, y_train, test_size=0.1)
 
 print('X_train shape = ' + str(np.shape(X_train)))
 print('y_train shape = ' + str(np.shape(y_train)))
