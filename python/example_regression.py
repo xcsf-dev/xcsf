@@ -49,7 +49,6 @@ X_train, X_test, y_train, y_test = \
 # reshape into 2D numpy arrays
 if len(np.shape(y_train)) == 1:
     y_train = np.reshape(y_train, (y_train.shape[0], 1))
-if len(np.shape(y_test)) == 1:
     y_test = np.reshape(y_test, (y_test.shape[0], 1))
 
 # normalise inputs (zero mean and unit variance)
