@@ -53,8 +53,9 @@ if len(np.shape(y_train)) == 1:
 
 # normalise inputs (zero mean and unit variance)
 scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.fit_transform(X_test)
+scaler.fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
 
 # scale outputs [0,1]
 y_train = minmax_scale(y_train, feature_range=(0, 1))
