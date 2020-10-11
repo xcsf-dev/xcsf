@@ -94,29 +94,29 @@ See `default.ini` for a full list of options.
 
 ### Evolved Conditions
 
-* `COND_TYPE = 0` : Always matching dummy condition
-* `COND_TYPE = 1` : Hyperrectangles
-* `COND_TYPE = 2` : Hyperellipsoids
-* `COND_TYPE = 3` : Neural networks
-* `COND_TYPE = 4` : GP trees
-* `COND_TYPE = 5` : Dynamical GP graphs
-* `COND_TYPE = 6` : Ternary bitstrings (binarises inputs)
-* `COND_TYPE = 11` : Both conditions and actions in single dynamical GP graphs
-* `COND_TYPE = 12` : Both conditions and actions in single (recurrent) neural networks
+* `COND_TYPE = dummy` : Always matching dummy condition
+* `COND_TYPE = hyperrectangle` : Hyperrectangles
+* `COND_TYPE = hypereelipsoid` : Hyperellipsoids
+* `COND_TYPE = neural` : Neural networks
+* `COND_TYPE = tree-gp` : GP trees
+* `COND_TYPE = dgp` : Dynamical GP graphs
+* `COND_TYPE = ternary` : Ternary bitstrings (binarises inputs)
+* `COND_TYPE = rule-dgp` : Both conditions and actions in single dynamical GP graphs
+* `COND_TYPE = rule-neural` : Both conditions and actions in single (recurrent) neural networks
 
 ### Evolved Actions
 
-* `ACT_TYPE = 0` : Integers
-* `ACT_TYPE = 1` : Neural networks
+* `ACT_TYPE = integer` : Integers
+* `ACT_TYPE = neural` : Neural networks
 
 ### Computed Predictions
 
-* `PRED_TYPE = 0` : Piece-wise constant
-* `PRED_TYPE = 1` : Linear least squares
-* `PRED_TYPE = 2` : Quadratic least squares
-* `PRED_TYPE = 3` : Linear recursive least squares
-* `PRED_TYPE = 4` : Quadratic recursive least squares
-* `PRED_TYPE = 5` : Stochastic gradient descent neural networks
+* `PRED_TYPE = constant` : Piece-wise constant
+* `PRED_TYPE = nlms-linear` : Linear least squares
+* `PRED_TYPE = nlms-quadratic` : Quadratic least squares
+* `PRED_TYPE = rls-linear` : Linear recursive least squares
+* `PRED_TYPE = rls-quadratic` : Quadratic recursive least squares
+* `PRED_TYPE = neural` : Stochastic gradient descent neural networks
 
 *******************************************************************************
 
