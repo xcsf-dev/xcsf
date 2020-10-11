@@ -23,8 +23,11 @@
 
 #pragma once
 
+#include "action.h"
+#include "condition.h"
 #include "gp.h"
 #include "loss.h"
+#include "prediction.h"
 #include "xcsf.h"
 
 void
@@ -274,6 +277,42 @@ param_set_theta_del(struct XCSF *xcsf, const int a)
     } else {
         xcsf->THETA_DEL = a;
     }
+}
+
+static inline void
+param_set_act_type_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->ACT_TYPE = action_type_as_int(a);
+}
+
+static inline void
+param_set_cond_type_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->COND_TYPE = condition_type_as_int(a);
+}
+
+static inline void
+param_set_pred_type_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->PRED_TYPE = prediction_type_as_int(a);
+}
+
+static inline const char *
+param_act_type_as_string(struct XCSF *xcsf)
+{
+    return action_type_as_string(xcsf->ACT_TYPE);
+}
+
+static inline const char *
+param_pred_type_as_string(struct XCSF *xcsf)
+{
+    return prediction_type_as_string(xcsf->PRED_TYPE);
+}
+
+static inline const char *
+param_cond_type_as_string(struct XCSF *xcsf)
+{
+    return condition_type_as_string(xcsf->COND_TYPE);
 }
 
 static inline void

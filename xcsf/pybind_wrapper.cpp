@@ -619,22 +619,22 @@ class XCS
         return xcs.THETA_DEL;
     }
 
-    int
+    const char *
     get_act_type(void)
     {
-        return xcs.ACT_TYPE;
+        return param_act_type_as_string(&xcs);
     }
 
-    int
+    const char *
     get_cond_type(void)
     {
-        return xcs.COND_TYPE;
+        return param_cond_type_as_string(&xcs);
     }
 
-    int
+    const char *
     get_pred_type(void)
     {
-        return xcs.PRED_TYPE;
+        return param_pred_type_as_string(&xcs);
     }
 
     double
@@ -1144,21 +1144,21 @@ class XCS
     }
 
     void
-    set_act_type(const int a)
+    set_act_type(const char *a)
     {
-        param_set_act_type(&xcs, a);
+        param_set_act_type_string(&xcs, a);
     }
 
     void
-    set_cond_type(const int a)
+    set_cond_type(const char *a)
     {
-        param_set_cond_type(&xcs, a);
+        param_set_cond_type_string(&xcs, a);
     }
 
     void
-    set_pred_type(const int a)
+    set_pred_type(const char *a)
     {
-        param_set_pred_type(&xcs, a);
+        param_set_pred_type_string(&xcs, a);
     }
 
     void

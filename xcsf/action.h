@@ -28,6 +28,12 @@
 void
 action_set(const struct XCSF *xcsf, struct Cl *c);
 
+const char *
+action_type_as_string(const int type);
+
+int
+action_type_as_int(const char *type);
+
 /**
  * @brief Action interface data structure.
  * @details Action implementations must implement these functions.

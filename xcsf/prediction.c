@@ -26,6 +26,13 @@
 #include "pred_nlms.h"
 #include "pred_rls.h"
 
+#define PRED_STRING_CONSTANT ("constant") //!< Constant
+#define PRED_STRING_NLMS_LINEAR ("nlms-linear") //!< Linear nlms
+#define PRED_STRING_NLMS_QUADRATIC ("nlms-quadratic") //!< Quadratic nlms
+#define PRED_STRING_RLS_LINEAR ("rls-linear") //!< Linear rls
+#define PRED_STRING_RLS_QUADRATIC ("rls-quadratic") //!< Quadratic rls
+#define PRED_STRING_NEURAL ("neural") //!< Neural
+
 /**
  * @brief Sets a classifier's prediction functions to the implementations.
  * @param [in] xcsf The XCSF data structure.
@@ -50,7 +57,64 @@ prediction_set(const struct XCSF *xcsf, struct Cl *c)
             c->pred_vptr = &pred_neural_vtbl;
             break;
         default:
-            printf("Invalid prediction type specified: %d\n", xcsf->PRED_TYPE);
+            printf("prediction_set(): invalid type: %d\n", xcsf->PRED_TYPE);
             exit(EXIT_FAILURE);
     }
+}
+
+/**
+ * @brief Returns a string representation of a prediction type from the integer.
+ * @param [in] type Integer representation of a prediction type.
+ * @return String representing the name of the prediction type.
+ */
+const char *
+prediction_type_as_string(const int type)
+{
+    switch (type) {
+        case PRED_TYPE_CONSTANT:
+            return PRED_STRING_CONSTANT;
+        case PRED_TYPE_NLMS_LINEAR:
+            return PRED_STRING_NLMS_LINEAR;
+        case PRED_TYPE_NLMS_QUADRATIC:
+            return PRED_STRING_NLMS_QUADRATIC;
+        case PRED_TYPE_RLS_LINEAR:
+            return PRED_STRING_RLS_LINEAR;
+        case PRED_TYPE_RLS_QUADRATIC:
+            return PRED_STRING_RLS_QUADRATIC;
+        case PRED_TYPE_NEURAL:
+            return PRED_STRING_NEURAL;
+        default:
+            printf("prediction_type_as_string(): invalid type: %d\n", type);
+            exit(EXIT_FAILURE);
+    }
+}
+
+/**
+ * @brief Returns the integer representation of a prediction type given a name.
+ * @param [in] type String representation of a prediction type.
+ * @return Integer representing the prediction type.
+ */
+int
+prediction_type_as_int(const char *type)
+{
+    if (strncmp(type, PRED_STRING_CONSTANT, 8) == 0) {
+        return PRED_TYPE_CONSTANT;
+    }
+    if (strncmp(type, PRED_STRING_NLMS_LINEAR, 11) == 0) {
+        return PRED_TYPE_NLMS_LINEAR;
+    }
+    if (strncmp(type, PRED_STRING_NLMS_QUADRATIC, 14) == 0) {
+        return PRED_TYPE_NLMS_QUADRATIC;
+    }
+    if (strncmp(type, PRED_STRING_RLS_LINEAR, 10) == 0) {
+        return PRED_TYPE_RLS_LINEAR;
+    }
+    if (strncmp(type, PRED_STRING_RLS_QUADRATIC, 13) == 0) {
+        return PRED_TYPE_RLS_QUADRATIC;
+    }
+    if (strncmp(type, PRED_STRING_NEURAL, 6) == 0) {
+        return PRED_TYPE_NEURAL;
+    }
+    printf("prediction_type_as_int(): invalid type: %s\n", type);
+    exit(EXIT_FAILURE);
 }

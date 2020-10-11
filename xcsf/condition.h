@@ -28,6 +28,12 @@
 void
 condition_set(const struct XCSF *xcsf, struct Cl *c);
 
+const char *
+condition_type_as_string(const int type);
+
+int
+condition_type_as_int(const char *type);
+
 /**
  * @brief Condition interface data structure.
  * @details Condition implementations must implement these functions.

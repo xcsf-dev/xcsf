@@ -201,7 +201,7 @@ config_cl_cond(struct XCSF *xcsf, const char *n, char *v, const int i,
                const double f)
 {
     if (strncmp(n, "COND_TYPE\0", 10) == 0) {
-        param_set_cond_type(xcsf, i);
+        param_set_cond_type_string(xcsf, v);
     } else if (strncmp(n, "COND_MIN\0", 9) == 0) {
         param_set_cond_min(xcsf, f);
     } else if (strncmp(n, "COND_MAX\0", 9) == 0) {
@@ -254,7 +254,7 @@ config_cl_pred(struct XCSF *xcsf, const char *n, char *v, const int i,
                const double f)
 {
     if (strncmp(n, "PRED_TYPE\0", 10) == 0) {
-        param_set_pred_type(xcsf, i);
+        param_set_pred_type_string(xcsf, v);
     } else if (strncmp(n, "PRED_ETA\0", 9) == 0) {
         param_set_pred_eta(xcsf, f);
     } else if (strncmp(n, "PRED_RESET\0", 11) == 0) {
@@ -304,10 +304,10 @@ static void
 config_cl_act(struct XCSF *xcsf, const char *n, const char *v, const int i,
               const double f)
 {
-    (void) v;
+    (void) i;
     (void) f;
     if (strncmp(n, "ACT_TYPE\0", 9) == 0) {
-        param_set_act_type(xcsf, i);
+        param_set_act_type_string(xcsf, v);
     }
 }
 

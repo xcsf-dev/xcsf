@@ -410,7 +410,7 @@ static void
 param_print_cl_condition(const struct XCSF *xcsf)
 {
     printf(", COND_ETA=%f", xcsf->COND_ETA);
-    printf(", COND_TYPE=%d", xcsf->COND_TYPE);
+    printf(", COND_TYPE=%s", condition_type_as_string(xcsf->COND_TYPE));
     printf(", COND_MIN=%f", xcsf->COND_MIN);
     printf(", COND_MAX=%f", xcsf->COND_MAX);
     printf(", COND_SMIN=%f", xcsf->COND_SMIN);
@@ -551,7 +551,7 @@ param_defaults_cl_prediction(struct XCSF *xcsf)
 static void
 param_print_cl_prediction(const struct XCSF *xcsf)
 {
-    printf(", PRED_TYPE=%d", xcsf->PRED_TYPE);
+    printf(", PRED_TYPE=%s", prediction_type_as_string(xcsf->PRED_TYPE));
     printf(", PRED_EVOLVE_ETA=");
     xcsf->PRED_EVOLVE_ETA ? printf("true") : printf("false");
     printf(", PRED_ETA=%f", xcsf->PRED_ETA);
@@ -665,7 +665,7 @@ param_defaults_cl_action(struct XCSF *xcsf)
 static void
 param_print_cl_action(const struct XCSF *xcsf)
 {
-    printf(", ACT_TYPE=%d", xcsf->ACT_TYPE);
+    printf(", ACT_TYPE=%s", action_type_as_string(xcsf->ACT_TYPE));
 }
 
 /**

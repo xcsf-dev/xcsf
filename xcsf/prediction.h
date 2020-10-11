@@ -28,6 +28,12 @@
 void
 prediction_set(const struct XCSF *xcsf, struct Cl *c);
 
+const char *
+prediction_type_as_string(const int type);
+
+int
+prediction_type_as_int(const char *type);
+
 /**
  * @brief Prediction interface data structure.
  * @details Prediction implementations must implement these functions.

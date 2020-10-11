@@ -83,10 +83,10 @@ xcs.SET_SUBSUMPTION = False
 xcs.THETA_EA = 100 # EA invocation frequency
 xcs.THETA_DEL = 100 # min experience before fitness used for deletion
 
-xcs.ACT_TYPE = 0 # (dummy) integer actions
-xcs.PRED_TYPE = 4 # Quadratic RLS
+xcs.ACT_TYPE = 'integer' # (dummy) integer actions
+xcs.PRED_TYPE = 'rls-quadratic' # Quadratic RLS
 
-xcs.COND_TYPE = 3 # neural network conditions
+xcs.COND_TYPE = 'neural' # neural network conditions
 xcs.COND_OUTPUT_ACTIVATION = 3 # linear
 xcs.COND_HIDDEN_ACTIVATION = 9 # selu
 xcs.COND_NUM_NEURONS = [1] # initial neurons

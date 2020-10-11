@@ -95,9 +95,10 @@ xcs.NU = 20 # accuracy slope
 xcs.THETA_EA = 50 # EA invocation frequency
 xcs.THETA_DEL = 50 # min experience before fitness used in deletion
 xcs.BETA = 0.1 # update rate for error, etc.
+xcs.ACT_TYPE = 'integer' # (dummy) integer actions
 
 xcs.MAX_NEURON_GROW = 1 # max neurons to add/remove per mutation event
-xcs.COND_TYPE = 3 # neural network conditions
+xcs.COND_TYPE = 'neural' # neural network conditions
 xcs.COND_OUTPUT_ACTIVATION = 3 # linear
 xcs.COND_HIDDEN_ACTIVATION = 1 # relu
 xcs.COND_NUM_NEURONS = [10]
@@ -107,7 +108,7 @@ xcs.COND_EVOLVE_NEURONS = True
 xcs.COND_EVOLVE_FUNCTIONS = False
 xcs.COND_EVOLVE_CONNECTIVITY = True
 
-xcs.PRED_TYPE = 5 # neural network predictors
+xcs.PRED_TYPE = 'neural' # neural network predictors
 xcs.PRED_OUTPUT_ACTIVATION = 7 # softplus
 xcs.PRED_HIDDEN_ACTIVATION = 1 # relu
 xcs.PRED_NUM_NEURONS = [10]

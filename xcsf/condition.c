@@ -31,6 +31,17 @@
 #include "rule_dgp.h"
 #include "rule_neural.h"
 
+#define COND_STRING_DUMMY ("dummy") //!< Dummy
+#define COND_STRING_HYPERRECTANGLE ("hyperrectangle") //!< Hyperrectangle
+#define COND_STRING_HYPERELLIPSOID ("hyperellipsoid") //!< Hyperellipsoid
+#define COND_STRING_NEURAL ("neural") //!< Neural
+#define COND_STRING_GP ("tree-gp") //!< Tree GP
+#define COND_STRING_DGP ("dgp") //!< DGP
+#define COND_STRING_TERNARY ("ternary") //!< Ternary
+#define COND_STRING_RULE_DGP ("rule-dgp") //!< Rule DGP
+#define COND_STRING_RULE_NEURAL ("rule-neural") //!< Rule neural
+#define COND_STRING_RULE_NETWORK ("rule-network") //!< Rule network
+
 /**
  * @brief Sets a classifier's condition functions to the implementations.
  * @param [in] xcsf The XCSF data structure.
@@ -73,4 +84,81 @@ condition_set(const struct XCSF *xcsf, struct Cl *c)
             printf("Invalid condition type specified: %d\n", xcsf->COND_TYPE);
             exit(EXIT_FAILURE);
     }
+}
+
+/**
+ * @brief Returns a string representation of a condition type from an integer.
+ * @param [in] type Integer representation of a condition type.
+ * @return String representing the name of the condition type.
+ */
+const char *
+condition_type_as_string(const int type)
+{
+    switch (type) {
+        case COND_TYPE_DUMMY:
+            return COND_STRING_DUMMY;
+        case COND_TYPE_HYPERRECTANGLE:
+            return COND_STRING_HYPERRECTANGLE;
+        case COND_TYPE_HYPERELLIPSOID:
+            return COND_STRING_HYPERELLIPSOID;
+        case COND_TYPE_NEURAL:
+            return COND_STRING_NEURAL;
+        case COND_TYPE_GP:
+            return COND_STRING_GP;
+        case COND_TYPE_DGP:
+            return COND_STRING_DGP;
+        case COND_TYPE_TERNARY:
+            return COND_STRING_TERNARY;
+        case RULE_TYPE_DGP:
+            return COND_STRING_RULE_DGP;
+        case RULE_TYPE_NEURAL:
+            return COND_STRING_RULE_NEURAL;
+        case RULE_TYPE_NETWORK:
+            return COND_STRING_RULE_NETWORK;
+        default:
+            printf("condition_type_as_string(): invalid type: %d\n", type);
+            exit(EXIT_FAILURE);
+    }
+}
+
+/**
+ * @brief Returns the integer representation of a condition type given a name.
+ * @param [in] type String representation of a condition type.
+ * @return Integer representing the condition type.
+ */
+int
+condition_type_as_int(const char *type)
+{
+    if (strncmp(type, COND_STRING_DUMMY, 5) == 0) {
+        return COND_TYPE_DUMMY;
+    }
+    if (strncmp(type, COND_STRING_HYPERRECTANGLE, 14) == 0) {
+        return COND_TYPE_HYPERRECTANGLE;
+    }
+    if (strncmp(type, COND_STRING_HYPERELLIPSOID, 14) == 0) {
+        return COND_TYPE_HYPERRECTANGLE;
+    }
+    if (strncmp(type, COND_STRING_NEURAL, 6) == 0) {
+        return COND_TYPE_NEURAL;
+    }
+    if (strncmp(type, COND_STRING_GP, 7) == 0) {
+        return COND_TYPE_GP;
+    }
+    if (strncmp(type, COND_STRING_DGP, 3) == 0) {
+        return COND_TYPE_DGP;
+    }
+    if (strncmp(type, COND_STRING_TERNARY, 7) == 0) {
+        return COND_TYPE_TERNARY;
+    }
+    if (strncmp(type, COND_STRING_RULE_DGP, 8) == 0) {
+        return RULE_TYPE_DGP;
+    }
+    if (strncmp(type, COND_STRING_RULE_NEURAL, 11) == 0) {
+        return RULE_TYPE_NEURAL;
+    }
+    if (strncmp(type, COND_STRING_RULE_NETWORK, 12) == 0) {
+        return RULE_TYPE_NETWORK;
+    }
+    printf("condition_type_as_int(): invalid type: %s\n", type);
+    exit(EXIT_FAILURE);
 }

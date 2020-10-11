@@ -56,6 +56,7 @@ main(int argc, char **argv)
         clset_pop_init(xcsf);
     }
     pa_init(xcsf); // initialise prediction array
+    param_print(xcsf); // print parameters used
     if (strcmp(argv[1], "csv") == 0) { // supervised regression - csv file
         const struct EnvCSV *env = xcsf->env;
         xcs_supervised_fit(xcsf, env->train_data, env->test_data, true);

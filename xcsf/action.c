@@ -26,6 +26,9 @@
 #include "act_neural.h"
 #include "utils.h"
 
+#define ACT_STRING_INTEGER ("integer") //!< Integer
+#define ACT_STRING_NEURAL ("neural") //!< Neural
+
 /**
  * @brief Sets a classifier's action functions to the implementations.
  * @param [in] xcsf The XCSF data structure.
@@ -45,4 +48,41 @@ action_set(const struct XCSF *xcsf, struct Cl *c)
             printf("Invalid action type specified: %d\n", xcsf->ACT_TYPE);
             exit(EXIT_FAILURE);
     }
+}
+
+/**
+ * @brief Returns a string representation of an action type from an integer.
+ * @param [in] type Integer representation of an action type.
+ * @return String representing the name of the action type.
+ */
+const char *
+action_type_as_string(const int type)
+{
+    switch (type) {
+        case ACT_TYPE_INTEGER:
+            return ACT_STRING_INTEGER;
+        case ACT_TYPE_NEURAL:
+            return ACT_STRING_NEURAL;
+        default:
+            printf("action_type_as_string(): invalid type: %d\n", type);
+            exit(EXIT_FAILURE);
+    }
+}
+
+/**
+ * @brief Returns the integer representation of an action type given a name.
+ * @param [in] type String representation of a condition type.
+ * @return Integer representing the action type.
+ */
+int
+action_type_as_int(const char *type)
+{
+    if (strncmp(type, ACT_STRING_INTEGER, 7) == 0) {
+        return ACT_TYPE_INTEGER;
+    }
+    if (strncmp(type, ACT_STRING_NEURAL, 6) == 0) {
+        return ACT_TYPE_NEURAL;
+    }
+    printf("action_type_as_int(): invalid type: %s\n", type);
+    exit(EXIT_FAILURE);
 }

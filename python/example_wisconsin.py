@@ -62,9 +62,9 @@ xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000
 xcs.PERF_TRIALS = 1000
 xcs.EPS_0 = 0.01 # target error
-xcs.COND_TYPE = 1 # hyperrectangles
-xcs.PRED_TYPE = 1 # linear least squares
-xcs.ACT_TYPE = 0 # integers
+xcs.COND_TYPE = 'hyperrectangle' # hyperrectangle conditions
+xcs.PRED_TYPE = 'nlms-linear' # linear least squares predictions
+xcs.ACT_TYPE = 'integer' # integer actions
 
 xcs.print_params()
 

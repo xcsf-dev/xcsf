@@ -78,8 +78,9 @@ xcs.LOSS_FUNC = 5 # one-hot encoding accuracy
 xcs.EPS_0 = 0.01 # 1% target error
 xcs.ALPHA = 0.1 # accuracy offset
 xcs.NU = 5 # accuracy slope
+xcs.ACT_TYPE = 'integer' # (dummy) integer actions
 
-xcs.COND_TYPE = 3 # neural network conditions
+xcs.COND_TYPE = 'neural' # neural network conditions
 xcs.COND_OUTPUT_ACTIVATION = 3 # linear
 xcs.COND_HIDDEN_ACTIVATION = 9 # selu
 xcs.COND_NUM_NEURONS = [20] # initial neurons
@@ -90,7 +91,7 @@ xcs.COND_EVOLVE_FUNCTIONS = False
 xcs.COND_EVOLVE_CONNECTIVITY = True
 
 xcs.MAX_NEURON_GROW = 5
-xcs.PRED_TYPE = 5 # neural network predictors
+xcs.PRED_TYPE = 'neural' # neural network predictors
 xcs.PRED_OUTPUT_ACTIVATION = 100 # soft max
 xcs.PRED_HIDDEN_ACTIVATION = 9 # selu
 xcs.PRED_NUM_NEURONS = [20] # initial neurons
