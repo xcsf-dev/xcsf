@@ -39,18 +39,18 @@
 #define NUM_ACTIVATIONS (11) //!< Number of activations available
 #define SOFT_MAX (100) //!< Softmax
 
-#define STRING_LOGISTIC ("logistic") //!< Logistic
-#define STRING_RELU ("relu") //!< RELU
-#define STRING_TANH ("tanh") //!< Tanh
-#define STRING_LINEAR ("linear") //!< Linear
-#define STRING_GAUSSIAN ("gaussian") //!< Gaussian
-#define STRING_SIN ("sin") //!< Sine
-#define STRING_COS ("cos") //!< Cos
-#define STRING_SOFT_PLUS ("softplus") //!< Soft plus
-#define STRING_LEAKY ("leaky") //!< Leaky
-#define STRING_SELU ("selu") //!< SELU
-#define STRING_LOGGY ("loggy") //!< Loggy
-#define STRING_SOFT_MAX ("softmax") //!< Softmax
+#define STRING_LOGISTIC ("logistic\0") //!< Logistic
+#define STRING_RELU ("relu\0") //!< RELU
+#define STRING_TANH ("tanh\0") //!< Tanh
+#define STRING_LINEAR ("linear\0") //!< Linear
+#define STRING_GAUSSIAN ("gaussian\0") //!< Gaussian
+#define STRING_SIN ("sin\0") //!< Sine
+#define STRING_COS ("cos\0") //!< Cos
+#define STRING_SOFT_PLUS ("softplus\0") //!< Soft plus
+#define STRING_LEAKY ("leaky\0") //!< Leaky
+#define STRING_SELU ("selu\0") //!< SELU
+#define STRING_LOGGY ("loggy\0") //!< Loggy
+#define STRING_SOFT_MAX ("softmax\0") //!< Softmax
 
 double
 neural_activate(const int a, const double x);
