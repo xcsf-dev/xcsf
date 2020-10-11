@@ -299,19 +299,19 @@ param_set_pred_type_string(struct XCSF *xcsf, const char *a)
 }
 
 static inline const char *
-param_act_type_as_string(struct XCSF *xcsf)
+param_act_type_as_string(const struct XCSF *xcsf)
 {
     return action_type_as_string(xcsf->ACT_TYPE);
 }
 
 static inline const char *
-param_pred_type_as_string(struct XCSF *xcsf)
+param_pred_type_as_string(const struct XCSF *xcsf)
 {
     return prediction_type_as_string(xcsf->PRED_TYPE);
 }
 
 static inline const char *
-param_cond_type_as_string(struct XCSF *xcsf)
+param_cond_type_as_string(const struct XCSF *xcsf)
 {
     return condition_type_as_string(xcsf->COND_TYPE);
 }
