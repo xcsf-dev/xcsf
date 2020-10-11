@@ -25,6 +25,12 @@
 
 #include "xcsf.h"
 
+#define ACT_TYPE_INTEGER (0) //!< Action type integer
+#define ACT_TYPE_NEURAL (1) //!< Action type neural network
+
+#define ACT_STRING_INTEGER ("integer") //!< Integer
+#define ACT_STRING_NEURAL ("neural") //!< Neural
+
 void
 action_set(const struct XCSF *xcsf, struct Cl *c);
 

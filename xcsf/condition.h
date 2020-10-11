@@ -25,6 +25,28 @@
 
 #include "xcsf.h"
 
+#define COND_TYPE_DUMMY (0) //!< Condition type dummy
+#define COND_TYPE_HYPERRECTANGLE (1) //!< Condition type hyperrectangle
+#define COND_TYPE_HYPERELLIPSOID (2) //!< Condition type hyperellipsoid
+#define COND_TYPE_NEURAL (3) //!< Condition type neural network
+#define COND_TYPE_GP (4) //!< Condition type tree GP
+#define COND_TYPE_DGP (5) //!< Condition type DGP
+#define COND_TYPE_TERNARY (6) //!< Condition type ternary
+#define RULE_TYPE_DGP (11) //!< Condition type and action type DGP
+#define RULE_TYPE_NEURAL (12) //!< Condition type and action type neural
+#define RULE_TYPE_NETWORK (13) //!< Condition type and prediction type neural
+
+#define COND_STRING_DUMMY ("dummy") //!< Dummy
+#define COND_STRING_HYPERRECTANGLE ("hyperrectangle") //!< Hyperrectangle
+#define COND_STRING_HYPERELLIPSOID ("hyperellipsoid") //!< Hyperellipsoid
+#define COND_STRING_NEURAL ("neural") //!< Neural
+#define COND_STRING_GP ("tree-gp") //!< Tree GP
+#define COND_STRING_DGP ("dgp") //!< DGP
+#define COND_STRING_TERNARY ("ternary") //!< Ternary
+#define COND_STRING_RULE_DGP ("rule-dgp") //!< Rule DGP
+#define COND_STRING_RULE_NEURAL ("rule-neural") //!< Rule neural
+#define COND_STRING_RULE_NETWORK ("rule-network") //!< Rule network
+
 void
 condition_set(const struct XCSF *xcsf, struct Cl *c);
 

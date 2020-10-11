@@ -162,10 +162,6 @@ xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000
 xcs.PERF_TRIALS = 50
 xcs.EPS_0 = 0.001 # target error
-xcs.COND_TYPE = 'ternary' # ternary conditions
-xcs.COND_BITS = 2 # bits per maze sensor
-xcs.PRED_TYPE = 'rls-linear' # linear recursive least squares predictions
-xcs.ACT_TYPE = 'integers' # integer actions
 xcs.BETA = 0.2 # classifier parameter update rate
 xcs.THETA_EA = 25 # EA frequency
 xcs.ALPHA = 0.1 # accuracy offset
@@ -173,6 +169,9 @@ xcs.NU = 5 # accuracy slope
 xcs.EA_SUBSUMPTION = True
 xcs.SET_SUBSUMPTION = True
 xcs.THETA_SUB = 100 # minimum experience of a subsumer
+xcs.action('integer') # integer actions
+xcs.condition('ternary', { 'bits': 2 }) # ternary conditions: 2-bits per float
+xcs.prediction('rls-linear') # linear recursive least squares predictions
 
 xcs.print_params()
 

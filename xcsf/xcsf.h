@@ -38,27 +38,6 @@ static const int VERSION_MAJOR = 1; //!< XCSF major version number
 static const int VERSION_MINOR = 0; //!< XCSF minor version number
 static const int VERSION_BUILD = 0; //!< XCSF build version number
 
-#define COND_TYPE_DUMMY (0) //!< Condition type dummy
-#define COND_TYPE_HYPERRECTANGLE (1) //!< Condition type hyperrectangle
-#define COND_TYPE_HYPERELLIPSOID (2) //!< Condition type hyperellipsoid
-#define COND_TYPE_NEURAL (3) //!< Condition type neural network
-#define COND_TYPE_GP (4) //!< Condition type tree GP
-#define COND_TYPE_DGP (5) //!< Condition type DGP
-#define COND_TYPE_TERNARY (6) //!< Condition type ternary
-#define RULE_TYPE_DGP (11) //!< Condition type and action type DGP
-#define RULE_TYPE_NEURAL (12) //!< Condition type and action type neural
-#define RULE_TYPE_NETWORK (13) //!< Condition type and prediction type neural
-
-#define ACT_TYPE_INTEGER (0) //!< Action type integer
-#define ACT_TYPE_NEURAL (1) //!< Action type neural network
-
-#define PRED_TYPE_CONSTANT (0) //!< Prediction type constant
-#define PRED_TYPE_NLMS_LINEAR (1) //!< Prediction type linear nlms
-#define PRED_TYPE_NLMS_QUADRATIC (2) //!< Prediction type quadratic nlms
-#define PRED_TYPE_RLS_LINEAR (3) //!< Prediction type linear rls
-#define PRED_TYPE_RLS_QUADRATIC (4) //!< Prediction type quadratic rls
-#define PRED_TYPE_NEURAL (5) //!< Prediction type neural
-
 #define MAX_LAYERS (100) //!< Maximum number of neural network layers
 
 /**

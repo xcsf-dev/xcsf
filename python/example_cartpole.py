@@ -83,19 +83,20 @@ xcs.SET_SUBSUMPTION = False
 xcs.THETA_EA = 100 # EA invocation frequency
 xcs.THETA_DEL = 100 # min experience before fitness used for deletion
 
-xcs.ACT_TYPE = 'integer' # (dummy) integer actions
-xcs.PRED_TYPE = 'rls-quadratic' # Quadratic RLS
-
-xcs.COND_TYPE = 'neural' # neural network conditions
-xcs.COND_OUTPUT_ACTIVATION = 'linear'
-xcs.COND_HIDDEN_ACTIVATION = 'selu'
-xcs.COND_NUM_NEURONS = [1] # initial neurons
-xcs.COND_MAX_NEURONS = [100] # maximum neurons
-xcs.COND_EVOLVE_WEIGHTS = True
-xcs.COND_EVOLVE_NEURONS = True
-xcs.COND_EVOLVE_FUNCTIONS = False
-xcs.COND_EVOLVE_CONNECTIVITY = False
-xcs.MAX_NEURON_GROW = 1 # max neurons to add/remove per mut
+cond_args = {
+        'output-activation': 'linear',
+        'hidden-activation': 'selu',
+        'evolve-weights': True,
+        'evolve-neurons': True,
+        'evolve-functions': False,
+        'evolve-connectivity': False,
+        'num-neurons': [1], # number of initial neurons
+        'max-neurons': [100], # maximum number of neurons
+        'max-neuron-grow': 1, # max neurons to add/remove per mutation event
+    }
+xcs.condition('neural', cond_args) # neural network conditions
+xcs.action('integer') # (dummy) integer actions
+xcs.prediction('rls-quadratic') # Quadratic RLS
 
 GAMMA = 0.95 # discount rate for delayed reward
 epsilon = 1 # initial probability of exploring

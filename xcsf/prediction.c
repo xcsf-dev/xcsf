@@ -26,13 +26,6 @@
 #include "pred_nlms.h"
 #include "pred_rls.h"
 
-#define PRED_STRING_CONSTANT ("constant") //!< Constant
-#define PRED_STRING_NLMS_LINEAR ("nlms-linear") //!< Linear nlms
-#define PRED_STRING_NLMS_QUADRATIC ("nlms-quadratic") //!< Quadratic nlms
-#define PRED_STRING_RLS_LINEAR ("rls-linear") //!< Linear rls
-#define PRED_STRING_RLS_QUADRATIC ("rls-quadratic") //!< Quadratic rls
-#define PRED_STRING_NEURAL ("neural") //!< Neural
-
 /**
  * @brief Sets a classifier's prediction functions to the implementations.
  * @param [in] xcsf The XCSF data structure.

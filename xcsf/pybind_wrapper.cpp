@@ -33,11 +33,14 @@
 namespace py = pybind11;
 
 extern "C" {
+#include "action.h"
 #include "clset.h"
 #include "clset_neural.h"
+#include "condition.h"
 #include "config.h"
 #include "pa.h"
 #include "param.h"
+#include "prediction.h"
 #include "utils.h"
 #include "xcs_rl.h"
 #include "xcs_supervised.h"
@@ -477,46 +480,6 @@ class XCS
         return xcs.error;
     }
 
-    py::list
-    get_cond_num_neurons(void)
-    {
-        py::list list;
-        for (int i = 0; i < MAX_LAYERS && xcs.COND_NUM_NEURONS[i] > 0; ++i) {
-            list.append(xcs.COND_NUM_NEURONS[i]);
-        }
-        return list;
-    }
-
-    py::list
-    get_cond_max_neurons(void)
-    {
-        py::list list;
-        for (int i = 0; i < MAX_LAYERS && xcs.COND_MAX_NEURONS[i] > 0; ++i) {
-            list.append(xcs.COND_MAX_NEURONS[i]);
-        }
-        return list;
-    }
-
-    py::list
-    get_pred_num_neurons(void)
-    {
-        py::list list;
-        for (int i = 0; i < MAX_LAYERS && xcs.PRED_NUM_NEURONS[i] > 0; ++i) {
-            list.append(xcs.PRED_NUM_NEURONS[i]);
-        }
-        return list;
-    }
-
-    py::list
-    get_pred_max_neurons(void)
-    {
-        py::list list;
-        for (int i = 0; i < MAX_LAYERS && xcs.PRED_MAX_NEURONS[i] > 0; ++i) {
-            list.append(xcs.PRED_MAX_NEURONS[i]);
-        }
-        return list;
-    }
-
     int
     get_omp_num_threads(void)
     {
@@ -619,24 +582,6 @@ class XCS
         return xcs.THETA_DEL;
     }
 
-    const char *
-    get_act_type(void)
-    {
-        return param_act_type_as_string(&xcs);
-    }
-
-    const char *
-    get_cond_type(void)
-    {
-        return param_cond_type_as_string(&xcs);
-    }
-
-    const char *
-    get_pred_type(void)
-    {
-        return param_pred_type_as_string(&xcs);
-    }
-
     double
     get_p_crossover(void)
     {
@@ -665,198 +610,6 @@ class XCS
     get_ea_select_size(void)
     {
         return xcs.EA_SELECT_SIZE;
-    }
-
-    double
-    get_max_con(void)
-    {
-        return xcs.COND_MAX;
-    }
-
-    double
-    get_min_con(void)
-    {
-        return xcs.COND_MIN;
-    }
-
-    double
-    get_cond_smin(void)
-    {
-        return xcs.COND_SMIN;
-    }
-
-    int
-    get_cond_bits(void)
-    {
-        return xcs.COND_BITS;
-    }
-
-    bool
-    get_cond_evolve_weights(void)
-    {
-        return xcs.COND_EVOLVE_WEIGHTS;
-    }
-
-    bool
-    get_cond_evolve_neurons(void)
-    {
-        return xcs.COND_EVOLVE_NEURONS;
-    }
-
-    bool
-    get_cond_evolve_functions(void)
-    {
-        return xcs.COND_EVOLVE_FUNCTIONS;
-    }
-
-    bool
-    get_cond_evolve_connectivity(void)
-    {
-        return xcs.COND_EVOLVE_CONNECTIVITY;
-    }
-
-    const char *
-    get_cond_output_activation(void)
-    {
-        return param_cond_output_activation_string(&xcs);
-    }
-
-    const char *
-    get_cond_hidden_activation(void)
-    {
-        return param_cond_hidden_activation_string(&xcs);
-    }
-
-    const char *
-    get_pred_output_activation(void)
-    {
-        return param_pred_output_activation_string(&xcs);
-    }
-
-    const char *
-    get_pred_hidden_activation(void)
-    {
-        return param_pred_hidden_activation_string(&xcs);
-    }
-
-    double
-    get_pred_momentum(void)
-    {
-        return xcs.PRED_MOMENTUM;
-    }
-
-    double
-    get_pred_decay(void)
-    {
-        return xcs.PRED_DECAY;
-    }
-
-    bool
-    get_pred_evolve_weights(void)
-    {
-        return xcs.PRED_EVOLVE_WEIGHTS;
-    }
-
-    bool
-    get_pred_evolve_neurons(void)
-    {
-        return xcs.PRED_EVOLVE_NEURONS;
-    }
-
-    bool
-    get_pred_evolve_functions(void)
-    {
-        return xcs.PRED_EVOLVE_FUNCTIONS;
-    }
-
-    bool
-    get_pred_evolve_connectivity(void)
-    {
-        return xcs.PRED_EVOLVE_CONNECTIVITY;
-    }
-
-    bool
-    get_pred_evolve_eta(void)
-    {
-        return xcs.PRED_EVOLVE_ETA;
-    }
-
-    bool
-    get_pred_sgd_weights(void)
-    {
-        return xcs.PRED_SGD_WEIGHTS;
-    }
-
-    bool
-    get_pred_reset(void)
-    {
-        return xcs.PRED_RESET;
-    }
-
-    int
-    get_max_neuron_grow(void)
-    {
-        return xcs.MAX_NEURON_GROW;
-    }
-
-    bool
-    get_stateful(void)
-    {
-        return xcs.STATEFUL;
-    }
-
-    int
-    get_max_k(void)
-    {
-        return xcs.MAX_K;
-    }
-
-    int
-    get_max_t(void)
-    {
-        return xcs.MAX_T;
-    }
-
-    int
-    get_gp_num_cons(void)
-    {
-        return xcs.GP_NUM_CONS;
-    }
-
-    int
-    get_gp_init_depth(void)
-    {
-        return xcs.GP_INIT_DEPTH;
-    }
-
-    double
-    get_pred_eta(void)
-    {
-        return xcs.PRED_ETA;
-    }
-
-    double
-    get_cond_eta(void)
-    {
-        return xcs.COND_ETA;
-    }
-
-    double
-    get_pred_x0(void)
-    {
-        return xcs.PRED_X0;
-    }
-
-    double
-    get_pred_rls_scale_factor(void)
-    {
-        return xcs.PRED_RLS_SCALE_FACTOR;
-    }
-
-    double
-    get_pred_rls_lambda(void)
-    {
-        return xcs.PRED_RLS_LAMBDA;
     }
 
     int
@@ -1005,39 +758,362 @@ class XCS
 
     /* SETTERS */
 
+    /**
+     * @brief Sets the condition type.
+     * @param [in] type String representing a name of a condition type.
+     */
     void
-    set_cond_num_neurons(const py::list &a)
+    set_condition(const std::string type)
     {
-        memset(xcs.COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-        for (size_t i = 0; i < a.size(); ++i) {
-            xcs.COND_NUM_NEURONS[i] = a[i].cast<int>();
+        set_condition(type, {});
+    }
+
+    /**
+     * @brief Sets the action type.
+     * @param [in] type String representing a name of an action type.
+     */
+    void
+    set_action(const std::string type)
+    {
+        set_action(type, {});
+    }
+
+    /**
+     * @brief Sets the prediction type.
+     * @param [in] type String representing a name of a prediction type.
+     */
+    void
+    set_prediction(const std::string type)
+    {
+        set_prediction(type, {});
+    }
+
+    /**
+     * @brief Sets the condition type and initialisation arguments.
+     * @param [in] type String representing a name of a condition type.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
+    void
+    set_condition(const std::string type, const py::dict &args)
+    {
+        if (type == COND_STRING_DUMMY) {
+            xcs.COND_TYPE = COND_TYPE_DUMMY;
+        } else if (type == COND_STRING_HYPERRECTANGLE) {
+            xcs.COND_TYPE = COND_TYPE_HYPERRECTANGLE;
+            unpack_cond_csr(args);
+        } else if (type == COND_STRING_HYPERELLIPSOID) {
+            xcs.COND_TYPE = COND_TYPE_HYPERELLIPSOID;
+            unpack_cond_csr(args);
+        } else if (type == COND_STRING_NEURAL) {
+            xcs.COND_TYPE = COND_TYPE_NEURAL;
+            unpack_cond_neural(args);
+        } else if (type == COND_STRING_GP) {
+            xcs.COND_TYPE = COND_TYPE_GP;
+            unpack_cond_gp(args);
+        } else if (type == COND_STRING_DGP) {
+            xcs.COND_TYPE = COND_TYPE_DGP;
+            unpack_cond_dgp(args);
+        } else if (type == COND_STRING_TERNARY) {
+            xcs.COND_TYPE = COND_TYPE_TERNARY;
+            unpack_cond_ternary(args);
+        } else if (type == COND_STRING_RULE_DGP) {
+            xcs.COND_TYPE = RULE_TYPE_DGP;
+            unpack_cond_dgp(args);
+        } else if (type == COND_STRING_RULE_NEURAL) {
+            xcs.COND_TYPE = RULE_TYPE_NEURAL;
+            unpack_cond_neural(args);
+        } else if (type == COND_STRING_RULE_NETWORK) {
+            xcs.COND_TYPE = RULE_TYPE_NETWORK;
+            unpack_cond_neural(args);
         }
     }
 
+    /**
+     * @brief Sets parameters used by center-spread conditions.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
     void
-    set_cond_max_neurons(const py::list &a)
+    unpack_cond_csr(const py::dict &args)
     {
-        memset(xcs.COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
-        for (size_t i = 0; i < a.size(); ++i) {
-            xcs.COND_MAX_NEURONS[i] = a[i].cast<int>();
+        for (std::pair<py::handle, py::handle> item : args) {
+            auto name = item.first.cast<std::string>();
+            if (name == "min") {
+                const auto value = item.second.cast<double>();
+                param_set_cond_min(&xcs, value);
+            } else if (name == "max") {
+                const auto value = item.second.cast<double>();
+                param_set_cond_max(&xcs, value);
+            } else if (name == "spread-min") {
+                const auto value = item.second.cast<double>();
+                param_set_cond_smin(&xcs, value);
+            } else if (name == "eta") {
+                const auto value = item.second.cast<double>();
+                param_set_cond_eta(&xcs, value);
+            }
         }
     }
 
+    /**
+     * @brief Sets parameters used by tree-GP conditions.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
     void
-    set_pred_num_neurons(const py::list &a)
+    unpack_cond_gp(const py::dict &args)
     {
-        memset(xcs.PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-        for (size_t i = 0; i < a.size(); ++i) {
-            xcs.PRED_NUM_NEURONS[i] = a[i].cast<int>();
+        for (std::pair<py::handle, py::handle> item : args) {
+            auto name = item.first.cast<std::string>();
+            if (name == "num-cons") {
+                const auto value = item.second.cast<int>();
+                param_set_gp_num_cons(&xcs, value);
+            } else if (name == "init-depth") {
+                const auto value = item.second.cast<int>();
+                param_set_gp_init_depth(&xcs, value);
+            }
         }
     }
 
+    /**
+     * @brief Sets parameters used by dynamical GP graph conditions.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
     void
-    set_pred_max_neurons(const py::list &a)
+    unpack_cond_dgp(const py::dict &args)
     {
-        memset(xcs.PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
-        for (size_t i = 0; i < a.size(); ++i) {
-            xcs.PRED_MAX_NEURONS[i] = a[i].cast<int>();
+        for (std::pair<py::handle, py::handle> item : args) {
+            auto name = item.first.cast<std::string>();
+            if (name == "max-k") {
+                const auto value = item.second.cast<int>();
+                param_set_max_k(&xcs, value);
+            } else if (name == "max-t") {
+                const auto value = item.second.cast<int>();
+                param_set_max_t(&xcs, value);
+            } else if (name == "max-neuron-grow") {
+                const auto value = item.second.cast<int>();
+                param_set_max_neuron_grow(&xcs, value);
+            } else if (name == "stateful") {
+                const auto value = item.second.cast<bool>();
+                param_set_stateful(&xcs, value);
+            }
+        }
+    }
+
+    /**
+     * @brief Sets parameters used by ternary conditions.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
+    void
+    unpack_cond_ternary(const py::dict &args)
+    {
+        for (std::pair<py::handle, py::handle> item : args) {
+            auto name = item.first.cast<std::string>();
+            if (name == "bits") {
+                const auto value = item.second.cast<int>();
+                param_set_cond_bits(&xcs, value);
+            }
+        }
+    }
+
+    /**
+     * @brief Sets parameters used by neural network conditions.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
+    void
+    unpack_cond_neural(const py::dict &args)
+    {
+        for (std::pair<py::handle, py::handle> item : args) {
+            auto name = item.first.cast<std::string>();
+            if (name == "max-neuron-grow") {
+                const auto value = item.second.cast<int>();
+                param_set_max_neuron_grow(&xcs, value);
+            } else if (name == "evolve-weights") {
+                const auto value = item.second.cast<bool>();
+                param_set_cond_evolve_weights(&xcs, value);
+            } else if (name == "evolve-neurons") {
+                const auto value = item.second.cast<bool>();
+                param_set_cond_evolve_neurons(&xcs, value);
+            } else if (name == "evolve-functions") {
+                const auto value = item.second.cast<bool>();
+                param_set_cond_evolve_functions(&xcs, value);
+            } else if (name == "evolve-connectivity") {
+                const auto value = item.second.cast<bool>();
+                param_set_cond_evolve_connectivity(&xcs, value);
+            } else if (name == "output-activation") {
+                const auto value = item.second.cast<std::string>();
+                param_set_cond_output_activation_string(&xcs, value.c_str());
+            } else if (name == "hidden-activation") {
+                const auto value = item.second.cast<std::string>();
+                param_set_cond_hidden_activation_string(&xcs, value.c_str());
+            } else if (name == "num-neurons") {
+                const auto value = item.second.cast<py::list>();
+                memset(xcs.COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
+                for (size_t i = 0; i < value.size(); ++i) {
+                    xcs.COND_NUM_NEURONS[i] = value[i].cast<int>();
+                }
+            } else if (name == "max-neurons") {
+                const auto value = item.second.cast<py::list>();
+                memset(xcs.COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
+                for (size_t i = 0; i < value.size(); ++i) {
+                    xcs.COND_MAX_NEURONS[i] = value[i].cast<int>();
+                }
+            }
+        }
+    }
+
+    /**
+     * @brief Sets the action type and initialisation arguments.
+     * @param [in] type String representing a name of a condition type.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
+    void
+    set_action(const std::string type, const py::dict &args)
+    {
+        if (type == ACT_STRING_INTEGER) {
+            xcs.ACT_TYPE = ACT_TYPE_INTEGER;
+        } else if (type == ACT_STRING_NEURAL) {
+            xcs.ACT_TYPE = ACT_TYPE_NEURAL;
+            unpack_cond_neural(args);
+        }
+    }
+
+    /**
+     * @brief Sets the prediction type and initialisation arguments.
+     * @param [in] type String representing a name of a condition type.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
+    void
+    set_prediction(const std::string type, const py::dict &args)
+    {
+        if (type == PRED_STRING_CONSTANT) {
+            xcs.PRED_TYPE = PRED_TYPE_CONSTANT;
+        } else if (type == PRED_STRING_NLMS_LINEAR) {
+            xcs.PRED_TYPE = PRED_TYPE_NLMS_LINEAR;
+            unpack_pred_nlms(args);
+        } else if (type == PRED_STRING_NLMS_QUADRATIC) {
+            xcs.PRED_TYPE = PRED_TYPE_NLMS_QUADRATIC;
+            unpack_pred_nlms(args);
+        } else if (type == PRED_STRING_RLS_LINEAR) {
+            xcs.PRED_TYPE = PRED_TYPE_RLS_LINEAR;
+            unpack_pred_rls(args);
+        } else if (type == PRED_STRING_RLS_QUADRATIC) {
+            xcs.PRED_TYPE = PRED_TYPE_RLS_QUADRATIC;
+            unpack_pred_rls(args);
+        } else if (type == PRED_STRING_NEURAL) {
+            xcs.PRED_TYPE = PRED_TYPE_NEURAL;
+            unpack_pred_neural(args);
+        }
+    }
+
+    /**
+     * @brief Sets parameters used by neural network predictions.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
+    void
+    unpack_pred_neural(const py::dict &args)
+    {
+        for (std::pair<py::handle, py::handle> item : args) {
+            auto name = item.first.cast<std::string>();
+            if (name == "max-neuron-grow") {
+                const auto value = item.second.cast<int>();
+                param_set_max_neuron_grow(&xcs, value);
+            } else if (name == "reset") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_reset(&xcs, value);
+            } else if (name == "eta") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_eta(&xcs, value);
+            } else if (name == "evolve-eta") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_evolve_eta(&xcs, value);
+            } else if (name == "evolve-weights") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_evolve_weights(&xcs, value);
+            } else if (name == "evolve-neurons") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_evolve_neurons(&xcs, value);
+            } else if (name == "evolve-functions") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_evolve_functions(&xcs, value);
+            } else if (name == "evolve-connectivity") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_evolve_connectivity(&xcs, value);
+            } else if (name == "sgd-weights") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_sgd_weights(&xcs, value);
+            } else if (name == "momentum") {
+                const auto value = item.second.cast<double>();
+                param_set_pred_momentum(&xcs, value);
+            } else if (name == "decay") {
+                const auto value = item.second.cast<double>();
+                param_set_pred_decay(&xcs, value);
+            } else if (name == "output-activation") {
+                const auto value = item.second.cast<std::string>();
+                param_set_pred_output_activation_string(&xcs, value.c_str());
+            } else if (name == "hidden-activation") {
+                const auto value = item.second.cast<std::string>();
+                param_set_pred_hidden_activation_string(&xcs, value.c_str());
+            } else if (name == "num-neurons") {
+                const auto value = item.second.cast<py::list>();
+                memset(xcs.PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
+                for (size_t i = 0; i < value.size(); ++i) {
+                    xcs.PRED_NUM_NEURONS[i] = value[i].cast<int>();
+                }
+            } else if (name == "max-neurons") {
+                const auto value = item.second.cast<py::list>();
+                memset(xcs.PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
+                for (size_t i = 0; i < value.size(); ++i) {
+                    xcs.PRED_MAX_NEURONS[i] = value[i].cast<int>();
+                }
+            }
+        }
+    }
+
+    /**
+     * @brief Sets parameters used by least mean squares predictions.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
+    void
+    unpack_pred_nlms(const py::dict &args)
+    {
+        for (std::pair<py::handle, py::handle> item : args) {
+            auto name = item.first.cast<std::string>();
+            if (name == "x0") {
+                const auto value = item.second.cast<double>();
+                param_set_pred_x0(&xcs, value);
+            } else if (name == "eta") {
+                const auto value = item.second.cast<double>();
+                param_set_pred_eta(&xcs, value);
+            } else if (name == "evolve_eta") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_evolve_eta(&xcs, value);
+            } else if (name == "reset") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_reset(&xcs, value);
+            }
+        }
+    }
+
+    /**
+     * @brief Sets parameters used by recursive least mean squares predictions.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
+    void
+    unpack_pred_rls(const py::dict &args)
+    {
+        for (std::pair<py::handle, py::handle> item : args) {
+            auto name = item.first.cast<std::string>();
+            if (name == "x0") {
+                const auto value = item.second.cast<double>();
+                param_set_pred_x0(&xcs, value);
+            } else if (name == "reset") {
+                const auto value = item.second.cast<bool>();
+                param_set_pred_reset(&xcs, value);
+            } else if (name == "rls-scale-factor") {
+                const auto value = item.second.cast<double>();
+                param_set_pred_rls_scale_factor(&xcs, value);
+            } else if (name == "rls-lambda") {
+                const auto value = item.second.cast<double>();
+                param_set_pred_rls_lambda(&xcs, value);
+            }
         }
     }
 
@@ -1144,24 +1220,6 @@ class XCS
     }
 
     void
-    set_act_type(const char *a)
-    {
-        param_set_act_type_string(&xcs, a);
-    }
-
-    void
-    set_cond_type(const char *a)
-    {
-        param_set_cond_type_string(&xcs, a);
-    }
-
-    void
-    set_pred_type(const char *a)
-    {
-        param_set_pred_type_string(&xcs, a);
-    }
-
-    void
     set_p_crossover(const double a)
     {
         param_set_p_crossover(&xcs, a);
@@ -1189,198 +1247,6 @@ class XCS
     set_ea_select_size(const double a)
     {
         param_set_ea_select_size(&xcs, a);
-    }
-
-    void
-    set_max_con(const double a)
-    {
-        param_set_cond_max(&xcs, a);
-    }
-
-    void
-    set_min_con(const double a)
-    {
-        param_set_cond_min(&xcs, a);
-    }
-
-    void
-    set_cond_smin(const double a)
-    {
-        param_set_cond_smin(&xcs, a);
-    }
-
-    void
-    set_cond_bits(const int a)
-    {
-        param_set_cond_bits(&xcs, a);
-    }
-
-    void
-    set_cond_evolve_weights(const bool a)
-    {
-        param_set_cond_evolve_weights(&xcs, a);
-    }
-
-    void
-    set_cond_evolve_neurons(const bool a)
-    {
-        param_set_cond_evolve_neurons(&xcs, a);
-    }
-
-    void
-    set_cond_evolve_functions(const bool a)
-    {
-        param_set_cond_evolve_functions(&xcs, a);
-    }
-
-    void
-    set_cond_evolve_connectivity(const bool a)
-    {
-        param_set_cond_evolve_connectivity(&xcs, a);
-    }
-
-    void
-    set_cond_output_activation(const char *a)
-    {
-        param_set_cond_output_activation_string(&xcs, a);
-    }
-
-    void
-    set_cond_hidden_activation(const char *a)
-    {
-        param_set_cond_hidden_activation_string(&xcs, a);
-    }
-
-    void
-    set_pred_output_activation(const char *a)
-    {
-        param_set_pred_output_activation_string(&xcs, a);
-    }
-
-    void
-    set_pred_hidden_activation(const char *a)
-    {
-        param_set_pred_hidden_activation_string(&xcs, a);
-    }
-
-    void
-    set_pred_momentum(const double a)
-    {
-        param_set_pred_momentum(&xcs, a);
-    }
-
-    void
-    set_pred_decay(const double a)
-    {
-        param_set_pred_decay(&xcs, a);
-    }
-
-    void
-    set_pred_evolve_weights(const bool a)
-    {
-        param_set_pred_evolve_weights(&xcs, a);
-    }
-
-    void
-    set_pred_evolve_neurons(const bool a)
-    {
-        param_set_pred_evolve_neurons(&xcs, a);
-    }
-
-    void
-    set_pred_evolve_functions(const bool a)
-    {
-        param_set_pred_evolve_functions(&xcs, a);
-    }
-
-    void
-    set_pred_evolve_connectivity(const bool a)
-    {
-        param_set_pred_evolve_connectivity(&xcs, a);
-    }
-
-    void
-    set_pred_evolve_eta(const bool a)
-    {
-        param_set_pred_evolve_eta(&xcs, a);
-    }
-
-    void
-    set_pred_sgd_weights(const bool a)
-    {
-        param_set_pred_sgd_weights(&xcs, a);
-    }
-
-    void
-    set_pred_reset(const bool a)
-    {
-        param_set_pred_reset(&xcs, a);
-    }
-
-    void
-    set_max_neuron_grow(const int a)
-    {
-        param_set_max_neuron_grow(&xcs, a);
-    }
-
-    void
-    set_stateful(const bool a)
-    {
-        param_set_stateful(&xcs, a);
-    }
-
-    void
-    set_max_k(const int a)
-    {
-        param_set_max_k(&xcs, a);
-    }
-
-    void
-    set_max_t(const int a)
-    {
-        param_set_max_t(&xcs, a);
-    }
-
-    void
-    set_gp_num_cons(const int a)
-    {
-        param_set_gp_num_cons(&xcs, a);
-    }
-
-    void
-    set_gp_init_depth(const int a)
-    {
-        param_set_gp_init_depth(&xcs, a);
-    }
-
-    void
-    set_pred_eta(const double a)
-    {
-        param_set_pred_eta(&xcs, a);
-    }
-
-    void
-    set_cond_eta(const double a)
-    {
-        param_set_cond_eta(&xcs, a);
-    }
-
-    void
-    set_pred_x0(const double a)
-    {
-        param_set_pred_x0(&xcs, a);
-    }
-
-    void
-    set_pred_rls_scale_factor(const double a)
-    {
-        param_set_pred_rls_scale_factor(&xcs, a);
-    }
-
-    void
-    set_pred_rls_lambda(const double a)
-    {
-        param_set_pred_rls_lambda(&xcs, a);
     }
 
     void
@@ -1431,6 +1297,7 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*fit3)(const py::array_t<double>, const py::array_t<double>,
                         const py::array_t<double>, const py::array_t<double>,
                         const bool) = &XCS::fit;
+
     double (XCS::*score1)(const py::array_t<double> test_X,
                           const py::array_t<double> test_Y) = &XCS::score;
     double (XCS::*score2)(const py::array_t<double> test_X,
@@ -1440,9 +1307,27 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*error1)(void) = &XCS::error;
     double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
 
+    void (XCS::*condition1)(const std::string) = &XCS::set_condition;
+    void (XCS::*condition2)(const std::string, const py::dict &) =
+        &XCS::set_condition;
+
+    void (XCS::*action1)(const std::string) = &XCS::set_action;
+    void (XCS::*action2)(const std::string, const py::dict &) =
+        &XCS::set_action;
+
+    void (XCS::*prediction1)(const std::string) = &XCS::set_prediction;
+    void (XCS::*prediction2)(const std::string, const py::dict &) =
+        &XCS::set_prediction;
+
     py::class_<XCS>(m, "XCS")
         .def(py::init<const int, const int, const int>())
         .def(py::init<const int, const int, const int, const char *>())
+        .def("condition", condition1)
+        .def("condition", condition2)
+        .def("action", action1)
+        .def("action", action2)
+        .def("prediction", prediction1)
+        .def("prediction", prediction2)
         .def("fit", fit1)
         .def("fit", fit2)
         .def("fit", fit3)
@@ -1486,9 +1371,6 @@ PYBIND11_MODULE(xcsf, m)
         .def_property("M_PROBATION", &XCS::get_m_probation,
                       &XCS::set_m_probation)
         .def_property("THETA_DEL", &XCS::get_theta_del, &XCS::set_theta_del)
-        .def_property("ACT_TYPE", &XCS::get_act_type, &XCS::set_act_type)
-        .def_property("COND_TYPE", &XCS::get_cond_type, &XCS::set_cond_type)
-        .def_property("PRED_TYPE", &XCS::get_pred_type, &XCS::set_pred_type)
         .def_property("P_CROSSOVER", &XCS::get_p_crossover,
                       &XCS::set_p_crossover)
         .def_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea)
@@ -1497,72 +1379,6 @@ PYBIND11_MODULE(xcsf, m)
                       &XCS::set_ea_select_type)
         .def_property("EA_SELECT_SIZE", &XCS::get_ea_select_size,
                       &XCS::set_ea_select_size)
-        .def_property("COND_MAX", &XCS::get_max_con, &XCS::set_max_con)
-        .def_property("COND_MIN", &XCS::get_min_con, &XCS::set_min_con)
-        .def_property("COND_SMIN", &XCS::get_cond_smin, &XCS::set_cond_smin)
-        .def_property("COND_BITS", &XCS::get_cond_bits, &XCS::set_cond_bits)
-        .def_property("COND_EVOLVE_WEIGHTS", &XCS::get_cond_evolve_weights,
-                      &XCS::set_cond_evolve_weights)
-        .def_property("COND_EVOLVE_NEURONS", &XCS::get_cond_evolve_neurons,
-                      &XCS::set_cond_evolve_neurons)
-        .def_property("COND_EVOLVE_FUNCTIONS", &XCS::get_cond_evolve_functions,
-                      &XCS::set_cond_evolve_functions)
-        .def_property("COND_EVOLVE_CONNECTIVITY",
-                      &XCS::get_cond_evolve_connectivity,
-                      &XCS::set_cond_evolve_connectivity)
-        .def_property("COND_NUM_NEURONS", &XCS::get_cond_num_neurons,
-                      &XCS::set_cond_num_neurons)
-        .def_property("COND_MAX_NEURONS", &XCS::get_cond_max_neurons,
-                      &XCS::set_cond_max_neurons)
-        .def_property("COND_OUTPUT_ACTIVATION",
-                      &XCS::get_cond_output_activation,
-                      &XCS::set_cond_output_activation)
-        .def_property("COND_HIDDEN_ACTIVATION",
-                      &XCS::get_cond_hidden_activation,
-                      &XCS::set_cond_hidden_activation)
-        .def_property("PRED_NUM_NEURONS", &XCS::get_pred_num_neurons,
-                      &XCS::set_pred_num_neurons)
-        .def_property("PRED_MAX_NEURONS", &XCS::get_pred_max_neurons,
-                      &XCS::set_pred_max_neurons)
-        .def_property("PRED_OUTPUT_ACTIVATION",
-                      &XCS::get_pred_output_activation,
-                      &XCS::set_pred_output_activation)
-        .def_property("PRED_HIDDEN_ACTIVATION",
-                      &XCS::get_pred_hidden_activation,
-                      &XCS::set_pred_hidden_activation)
-        .def_property("PRED_MOMENTUM", &XCS::get_pred_momentum,
-                      &XCS::set_pred_momentum)
-        .def_property("PRED_DECAY", &XCS::get_pred_decay, &XCS::set_pred_decay)
-        .def_property("PRED_EVOLVE_WEIGHTS", &XCS::get_pred_evolve_weights,
-                      &XCS::set_pred_evolve_weights)
-        .def_property("PRED_EVOLVE_NEURONS", &XCS::get_pred_evolve_neurons,
-                      &XCS::set_pred_evolve_neurons)
-        .def_property("PRED_EVOLVE_FUNCTIONS", &XCS::get_pred_evolve_functions,
-                      &XCS::set_pred_evolve_functions)
-        .def_property("PRED_EVOLVE_CONNECTIVITY",
-                      &XCS::get_pred_evolve_connectivity,
-                      &XCS::set_pred_evolve_connectivity)
-        .def_property("PRED_EVOLVE_ETA", &XCS::get_pred_evolve_eta,
-                      &XCS::set_pred_evolve_eta)
-        .def_property("PRED_SGD_WEIGHTS", &XCS::get_pred_sgd_weights,
-                      &XCS::set_pred_sgd_weights)
-        .def_property("PRED_RESET", &XCS::get_pred_reset, &XCS::set_pred_reset)
-        .def_property("MAX_NEURON_GROW", &XCS::get_max_neuron_grow,
-                      &XCS::set_max_neuron_grow)
-        .def_property("STATEFUL", &XCS::get_stateful, &XCS::set_stateful)
-        .def_property("MAX_K", &XCS::get_max_k, &XCS::set_max_k)
-        .def_property("MAX_T", &XCS::get_max_t, &XCS::set_max_t)
-        .def_property("GP_NUM_CONS", &XCS::get_gp_num_cons,
-                      &XCS::set_gp_num_cons)
-        .def_property("GP_INIT_DEPTH", &XCS::get_gp_init_depth,
-                      &XCS::set_gp_init_depth)
-        .def_property("COND_ETA", &XCS::get_cond_eta, &XCS::set_cond_eta)
-        .def_property("PRED_ETA", &XCS::get_pred_eta, &XCS::set_pred_eta)
-        .def_property("PRED_X0", &XCS::get_pred_x0, &XCS::set_pred_x0)
-        .def_property("PRED_RLS_SCALE_FACTOR", &XCS::get_pred_rls_scale_factor,
-                      &XCS::set_pred_rls_scale_factor)
-        .def_property("PRED_RLS_LAMBDA", &XCS::get_pred_rls_lambda,
-                      &XCS::set_pred_rls_lambda)
         .def_property("THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub)
         .def_property("EA_SUBSUMPTION", &XCS::get_ea_subsumption,
                       &XCS::set_ea_subsumption)

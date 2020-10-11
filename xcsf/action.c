@@ -26,9 +26,6 @@
 #include "act_neural.h"
 #include "utils.h"
 
-#define ACT_STRING_INTEGER ("integer") //!< Integer
-#define ACT_STRING_NEURAL ("neural") //!< Neural
-
 /**
  * @brief Sets a classifier's action functions to the implementations.
  * @param [in] xcsf The XCSF data structure.

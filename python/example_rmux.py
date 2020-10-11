@@ -90,9 +90,6 @@ xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
 xcs.POP_SIZE = 1000 # maximum population size
 xcs.EPS_0 = 0.01 # target error
-xcs.COND_TYPE = 'hyperrectangle' # hyperrectangle conditions
-xcs.PRED_TYPE = 'nlms-linear' # linear least squares predictions
-xcs.ACT_TYPE = 'integer' # integer actions
 xcs.BETA = 0.2 # classifier parameter update rate
 xcs.THETA_EA = 25 # EA frequency
 xcs.ALPHA = 0.1 # accuracy offset
@@ -100,6 +97,9 @@ xcs.NU = 5 # accuracy slope
 xcs.EA_SUBSUMPTION = True
 xcs.SET_SUBSUMPTION = True
 xcs.THETA_SUB = 100 # minimum experience of a subsumer
+xcs.action('integer')
+xcs.condition('hyperrectangle', { 'min': 0, 'max': 1, 'spread-min': 0.1 })
+xcs.prediction('nlms-linear')
 
 xcs.print_params()
 

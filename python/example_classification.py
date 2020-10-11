@@ -78,31 +78,38 @@ xcs.LOSS_FUNC = 5 # one-hot encoding accuracy
 xcs.EPS_0 = 0.01 # 1% target error
 xcs.ALPHA = 0.1 # accuracy offset
 xcs.NU = 5 # accuracy slope
-xcs.ACT_TYPE = 'integer' # (dummy) integer actions
+xcs.action('integer') # (dummy) integer actions
 
-xcs.COND_TYPE = 'neural' # neural network conditions
-xcs.COND_OUTPUT_ACTIVATION = 'linear'
-xcs.COND_HIDDEN_ACTIVATION = 'selu'
-xcs.COND_NUM_NEURONS = [20] # initial neurons
-xcs.COND_MAX_NEURONS = [100] # maximum neurons
-xcs.COND_EVOLVE_WEIGHTS = True
-xcs.COND_EVOLVE_NEURONS = True
-xcs.COND_EVOLVE_FUNCTIONS = False
-xcs.COND_EVOLVE_CONNECTIVITY = True
+cond_args = {
+        'output-activation': 'linear',
+        'hidden-activation': 'selu',
+        'evolve-weights': True,
+        'evolve-neurons': True,
+        'evolve-functions': False,
+        'evolve-connectivity': True,
+        'num-neurons': [20], # number of initial neurons
+        'max-neurons': [100], # maximum number of neurons
+        'max-neuron-grow': 5, # max neurons to add/remove per mutation event
+    }
+xcs.condition('neural', cond_args)
 
-xcs.MAX_NEURON_GROW = 5
-xcs.PRED_TYPE = 'neural' # neural network predictors
-xcs.PRED_OUTPUT_ACTIVATION = 'softmax'
-xcs.PRED_HIDDEN_ACTIVATION = 'selu'
-xcs.PRED_NUM_NEURONS = [20] # initial neurons
-xcs.PRED_MAX_NEURONS = [100] # maximum neurons
-xcs.PRED_EVOLVE_WEIGHTS = True
-xcs.PRED_EVOLVE_NEURONS = True
-xcs.PRED_EVOLVE_FUNCTIONS = False
-xcs.PRED_EVOLVE_CONNECTIVITY = False
-xcs.PRED_EVOLVE_ETA = True
-xcs.PRED_SGD_WEIGHTS = True
-xcs.PRED_ETA = 0.001 # maximum gradient descent rate
+pred_args = {
+        'output-activation': 'softmax',
+        'hidden-activation': 'selu',
+        'sgd-weights': True,
+        'eta': 0.001, # maximum gradient descent rate
+        'momentum': 0.9,
+        'decay': 0,
+        'evolve-eta': True,
+        'evolve-weights': True,
+        'evolve-neurons': True,
+        'evolve-functions': False,
+        'evolve-connectivity': True,
+        'num-neurons': [20], # number of initial neurons
+        'max-neurons': [10], # maximum number of neurons
+        'max-neuron-grow': 5, # max neurons to add/remove per mutation event
+    }
+xcs.prediction('neural', pred_args)
 
 xcs.print_params()
 

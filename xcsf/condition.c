@@ -31,17 +31,6 @@
 #include "rule_dgp.h"
 #include "rule_neural.h"
 
-#define COND_STRING_DUMMY ("dummy") //!< Dummy
-#define COND_STRING_HYPERRECTANGLE ("hyperrectangle") //!< Hyperrectangle
-#define COND_STRING_HYPERELLIPSOID ("hyperellipsoid") //!< Hyperellipsoid
-#define COND_STRING_NEURAL ("neural") //!< Neural
-#define COND_STRING_GP ("tree-gp") //!< Tree GP
-#define COND_STRING_DGP ("dgp") //!< DGP
-#define COND_STRING_TERNARY ("ternary") //!< Ternary
-#define COND_STRING_RULE_DGP ("rule-dgp") //!< Rule DGP
-#define COND_STRING_RULE_NEURAL ("rule-neural") //!< Rule neural
-#define COND_STRING_RULE_NETWORK ("rule-network") //!< Rule network
-
 /**
  * @brief Sets a classifier's condition functions to the implementations.
  * @param [in] xcsf The XCSF data structure.

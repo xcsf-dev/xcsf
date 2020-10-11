@@ -25,6 +25,20 @@
 
 #include "xcsf.h"
 
+#define PRED_TYPE_CONSTANT (0) //!< Prediction type constant
+#define PRED_TYPE_NLMS_LINEAR (1) //!< Prediction type linear nlms
+#define PRED_TYPE_NLMS_QUADRATIC (2) //!< Prediction type quadratic nlms
+#define PRED_TYPE_RLS_LINEAR (3) //!< Prediction type linear rls
+#define PRED_TYPE_RLS_QUADRATIC (4) //!< Prediction type quadratic rls
+#define PRED_TYPE_NEURAL (5) //!< Prediction type neural
+
+#define PRED_STRING_CONSTANT ("constant") //!< Constant
+#define PRED_STRING_NLMS_LINEAR ("nlms-linear") //!< Linear nlms
+#define PRED_STRING_NLMS_QUADRATIC ("nlms-quadratic") //!< Quadratic nlms
+#define PRED_STRING_RLS_LINEAR ("rls-linear") //!< Linear rls
+#define PRED_STRING_RLS_QUADRATIC ("rls-quadratic") //!< Quadratic rls
+#define PRED_STRING_NEURAL ("neural") //!< Neural
+
 void
 prediction_set(const struct XCSF *xcsf, struct Cl *c);
 
