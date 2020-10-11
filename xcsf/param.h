@@ -576,25 +576,25 @@ param_set_cond_hidden_activation(struct XCSF *xcsf, const int a)
 }
 
 static inline const char *
-param_pred_hidden_activation_string(struct XCSF *xcsf)
+param_pred_hidden_activation_string(const struct XCSF *xcsf)
 {
     return neural_activation_string(xcsf->PRED_HIDDEN_ACTIVATION);
 }
 
 static inline const char *
-param_cond_hidden_activation_string(struct XCSF *xcsf)
+param_cond_hidden_activation_string(const struct XCSF *xcsf)
 {
     return neural_activation_string(xcsf->COND_HIDDEN_ACTIVATION);
 }
 
 static inline const char *
-param_pred_output_activation_string(struct XCSF *xcsf)
+param_pred_output_activation_string(const struct XCSF *xcsf)
 {
     return neural_activation_string(xcsf->PRED_OUTPUT_ACTIVATION);
 }
 
 static inline const char *
-param_cond_output_activation_string(struct XCSF *xcsf)
+param_cond_output_activation_string(const struct XCSF *xcsf)
 {
     return neural_activation_string(xcsf->COND_OUTPUT_ACTIVATION);
 }
