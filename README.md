@@ -96,7 +96,7 @@ See `default.ini` for a full list of options.
 
 * `COND_TYPE = dummy` : Always matching dummy condition
 * `COND_TYPE = hyperrectangle` : Hyperrectangles
-* `COND_TYPE = hypereelipsoid` : Hyperellipsoids
+* `COND_TYPE = hyperellipsoid` : Hyperellipsoids
 * `COND_TYPE = neural` : Neural networks
 * `COND_TYPE = tree-gp` : GP trees
 * `COND_TYPE = dgp` : Dynamical GP graphs
