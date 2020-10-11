@@ -32,12 +32,12 @@
 #define PRED_TYPE_RLS_QUADRATIC (4) //!< Prediction type quadratic rls
 #define PRED_TYPE_NEURAL (5) //!< Prediction type neural
 
-#define PRED_STRING_CONSTANT ("constant") //!< Constant
-#define PRED_STRING_NLMS_LINEAR ("nlms-linear") //!< Linear nlms
-#define PRED_STRING_NLMS_QUADRATIC ("nlms-quadratic") //!< Quadratic nlms
-#define PRED_STRING_RLS_LINEAR ("rls-linear") //!< Linear rls
-#define PRED_STRING_RLS_QUADRATIC ("rls-quadratic") //!< Quadratic rls
-#define PRED_STRING_NEURAL ("neural") //!< Neural
+#define PRED_STRING_CONSTANT ("constant\0") //!< Constant
+#define PRED_STRING_NLMS_LINEAR ("nlms-linear\0") //!< Linear nlms
+#define PRED_STRING_NLMS_QUADRATIC ("nlms-quadratic\0") //!< Quadratic nlms
+#define PRED_STRING_RLS_LINEAR ("rls-linear\0") //!< Linear rls
+#define PRED_STRING_RLS_QUADRATIC ("rls-quadratic\0") //!< Quadratic rls
+#define PRED_STRING_NEURAL ("neural\0") //!< Neural
 
 void
 prediction_set(const struct XCSF *xcsf, struct Cl *c);

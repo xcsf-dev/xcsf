@@ -222,25 +222,25 @@ loss_type_as_string(const int type)
 int
 loss_type_as_int(const char *type)
 {
-    if (strncmp(type, LOSS_STRING_MAE, 3) == 0) {
+    if (strncmp(type, LOSS_STRING_MAE, 4) == 0) {
         return LOSS_MAE;
     }
-    if (strncmp(type, LOSS_STRING_MSE, 3) == 0) {
+    if (strncmp(type, LOSS_STRING_MSE, 4) == 0) {
         return LOSS_MSE;
     }
-    if (strncmp(type, LOSS_STRING_RMSE, 4) == 0) {
+    if (strncmp(type, LOSS_STRING_RMSE, 5) == 0) {
         return LOSS_RMSE;
     }
-    if (strncmp(type, LOSS_STRING_LOG, 3) == 0) {
+    if (strncmp(type, LOSS_STRING_LOG, 4) == 0) {
         return LOSS_LOG;
     }
-    if (strncmp(type, LOSS_STRING_BINARY_LOG, 10) == 0) {
+    if (strncmp(type, LOSS_STRING_BINARY_LOG, 11) == 0) {
         return LOSS_BINARY_LOG;
     }
-    if (strncmp(type, LOSS_STRING_ONEHOT, 6) == 0) {
+    if (strncmp(type, LOSS_STRING_ONEHOT, 7) == 0) {
         return LOSS_ONEHOT;
     }
-    if (strncmp(type, LOSS_STRING_HUBER, 5) == 0) {
+    if (strncmp(type, LOSS_STRING_HUBER, 6) == 0) {
         return LOSS_HUBER;
     }
     printf("loss_type_as_int(): invalid type: %s\n", type);

@@ -118,34 +118,34 @@ condition_type_as_string(const int type)
 int
 condition_type_as_int(const char *type)
 {
-    if (strncmp(type, COND_STRING_DUMMY, 5) == 0) {
+    if (strncmp(type, COND_STRING_DUMMY, 6) == 0) {
         return COND_TYPE_DUMMY;
     }
-    if (strncmp(type, COND_STRING_HYPERRECTANGLE, 14) == 0) {
+    if (strncmp(type, COND_STRING_HYPERRECTANGLE, 15) == 0) {
         return COND_TYPE_HYPERRECTANGLE;
     }
-    if (strncmp(type, COND_STRING_HYPERELLIPSOID, 14) == 0) {
+    if (strncmp(type, COND_STRING_HYPERELLIPSOID, 15) == 0) {
         return COND_TYPE_HYPERRECTANGLE;
     }
-    if (strncmp(type, COND_STRING_NEURAL, 6) == 0) {
+    if (strncmp(type, COND_STRING_NEURAL, 7) == 0) {
         return COND_TYPE_NEURAL;
     }
-    if (strncmp(type, COND_STRING_GP, 7) == 0) {
+    if (strncmp(type, COND_STRING_GP, 8) == 0) {
         return COND_TYPE_GP;
     }
-    if (strncmp(type, COND_STRING_DGP, 3) == 0) {
+    if (strncmp(type, COND_STRING_DGP, 4) == 0) {
         return COND_TYPE_DGP;
     }
-    if (strncmp(type, COND_STRING_TERNARY, 7) == 0) {
+    if (strncmp(type, COND_STRING_TERNARY, 8) == 0) {
         return COND_TYPE_TERNARY;
     }
-    if (strncmp(type, COND_STRING_RULE_DGP, 8) == 0) {
+    if (strncmp(type, COND_STRING_RULE_DGP, 9) == 0) {
         return RULE_TYPE_DGP;
     }
-    if (strncmp(type, COND_STRING_RULE_NEURAL, 11) == 0) {
+    if (strncmp(type, COND_STRING_RULE_NEURAL, 12) == 0) {
         return RULE_TYPE_NEURAL;
     }
-    if (strncmp(type, COND_STRING_RULE_NETWORK, 12) == 0) {
+    if (strncmp(type, COND_STRING_RULE_NETWORK, 13) == 0) {
         return RULE_TYPE_NETWORK;
     }
     printf("condition_type_as_int(): invalid type: %s\n", type);

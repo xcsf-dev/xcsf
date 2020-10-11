@@ -34,13 +34,13 @@
 #define LOSS_HUBER (6) //!< Huber loss
 #define LOSS_NUM (7) //!< Total number of selectable loss functions
 
-#define LOSS_STRING_MAE ("mae") //!< Mean absolute error
-#define LOSS_STRING_MSE ("mse") //!< Mean squared error
-#define LOSS_STRING_RMSE ("rmse") //!< Root mean squared error
-#define LOSS_STRING_LOG ("log") //!< Log loss
-#define LOSS_STRING_BINARY_LOG ("binary-log") //!< Binary log loss
-#define LOSS_STRING_ONEHOT ("onehot") //!< One-hot classification error
-#define LOSS_STRING_HUBER ("huber") //!< Huber loss
+#define LOSS_STRING_MAE ("mae\0") //!< Mean absolute error
+#define LOSS_STRING_MSE ("mse\0") //!< Mean squared error
+#define LOSS_STRING_RMSE ("rmse\0") //!< Root mean squared error
+#define LOSS_STRING_LOG ("log\0") //!< Log loss
+#define LOSS_STRING_BINARY_LOG ("binary-log\0") //!< Binary log loss
+#define LOSS_STRING_ONEHOT ("onehot\0") //!< One-hot classification error
+#define LOSS_STRING_HUBER ("huber\0") //!< Huber loss
 
 double
 loss_huber(const struct XCSF *xcsf, const double *pred, const double *y);

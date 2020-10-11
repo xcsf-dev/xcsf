@@ -74,10 +74,10 @@ action_type_as_string(const int type)
 int
 action_type_as_int(const char *type)
 {
-    if (strncmp(type, ACT_STRING_INTEGER, 7) == 0) {
+    if (strncmp(type, ACT_STRING_INTEGER, 8) == 0) {
         return ACT_TYPE_INTEGER;
     }
-    if (strncmp(type, ACT_STRING_NEURAL, 6) == 0) {
+    if (strncmp(type, ACT_STRING_NEURAL, 7) == 0) {
         return ACT_TYPE_NEURAL;
     }
     printf("action_type_as_int(): invalid type: %s\n", type);

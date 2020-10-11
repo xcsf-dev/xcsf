@@ -90,22 +90,22 @@ prediction_type_as_string(const int type)
 int
 prediction_type_as_int(const char *type)
 {
-    if (strncmp(type, PRED_STRING_CONSTANT, 8) == 0) {
+    if (strncmp(type, PRED_STRING_CONSTANT, 9) == 0) {
         return PRED_TYPE_CONSTANT;
     }
-    if (strncmp(type, PRED_STRING_NLMS_LINEAR, 11) == 0) {
+    if (strncmp(type, PRED_STRING_NLMS_LINEAR, 12) == 0) {
         return PRED_TYPE_NLMS_LINEAR;
     }
-    if (strncmp(type, PRED_STRING_NLMS_QUADRATIC, 14) == 0) {
+    if (strncmp(type, PRED_STRING_NLMS_QUADRATIC, 15) == 0) {
         return PRED_TYPE_NLMS_QUADRATIC;
     }
-    if (strncmp(type, PRED_STRING_RLS_LINEAR, 10) == 0) {
+    if (strncmp(type, PRED_STRING_RLS_LINEAR, 11) == 0) {
         return PRED_TYPE_RLS_LINEAR;
     }
-    if (strncmp(type, PRED_STRING_RLS_QUADRATIC, 13) == 0) {
+    if (strncmp(type, PRED_STRING_RLS_QUADRATIC, 14) == 0) {
         return PRED_TYPE_RLS_QUADRATIC;
     }
-    if (strncmp(type, PRED_STRING_NEURAL, 6) == 0) {
+    if (strncmp(type, PRED_STRING_NEURAL, 7) == 0) {
         return PRED_TYPE_NEURAL;
     }
     printf("prediction_type_as_int(): invalid type: %s\n", type);

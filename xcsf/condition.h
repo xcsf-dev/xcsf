@@ -36,16 +36,16 @@
 #define RULE_TYPE_NEURAL (12) //!< Condition type and action type neural
 #define RULE_TYPE_NETWORK (13) //!< Condition type and prediction type neural
 
-#define COND_STRING_DUMMY ("dummy") //!< Dummy
-#define COND_STRING_HYPERRECTANGLE ("hyperrectangle") //!< Hyperrectangle
-#define COND_STRING_HYPERELLIPSOID ("hyperellipsoid") //!< Hyperellipsoid
-#define COND_STRING_NEURAL ("neural") //!< Neural
-#define COND_STRING_GP ("tree-gp") //!< Tree GP
-#define COND_STRING_DGP ("dgp") //!< DGP
-#define COND_STRING_TERNARY ("ternary") //!< Ternary
-#define COND_STRING_RULE_DGP ("rule-dgp") //!< Rule DGP
-#define COND_STRING_RULE_NEURAL ("rule-neural") //!< Rule neural
-#define COND_STRING_RULE_NETWORK ("rule-network") //!< Rule network
+#define COND_STRING_DUMMY ("dummy\0") //!< Dummy
+#define COND_STRING_HYPERRECTANGLE ("hyperrectangle\0") //!< Hyperrectangle
+#define COND_STRING_HYPERELLIPSOID ("hyperellipsoid\0") //!< Hyperellipsoid
+#define COND_STRING_NEURAL ("neural\0") //!< Neural
+#define COND_STRING_GP ("tree-gp\0") //!< Tree GP
+#define COND_STRING_DGP ("dgp\0") //!< DGP
+#define COND_STRING_TERNARY ("ternary\0") //!< Ternary
+#define COND_STRING_RULE_DGP ("rule-dgp\0") //!< Rule DGP
+#define COND_STRING_RULE_NEURAL ("rule-neural\0") //!< Rule neural
+#define COND_STRING_RULE_NETWORK ("rule-network\0") //!< Rule network
 
 void
 condition_set(const struct XCSF *xcsf, struct Cl *c);
