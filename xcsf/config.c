@@ -235,9 +235,9 @@ config_cl_cond(struct XCSF *xcsf, const char *n, char *v, const int i,
         memset(xcsf->COND_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->COND_MAX_NEURONS);
     } else if (strncmp(n, "COND_OUTPUT_ACTIVATION\0", 23) == 0) {
-        param_set_cond_output_activation(xcsf, i);
+        param_set_cond_output_activation_string(xcsf, v);
     } else if (strncmp(n, "COND_HIDDEN_ACTIVATION\0", 23) == 0) {
-        param_set_cond_hidden_activation(xcsf, i);
+        param_set_cond_hidden_activation_string(xcsf, v);
     }
 }
 
@@ -286,9 +286,9 @@ config_cl_pred(struct XCSF *xcsf, const char *n, char *v, const int i,
         memset(xcsf->PRED_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
         config_get_ints(v, xcsf->PRED_MAX_NEURONS);
     } else if (strncmp(n, "PRED_OUTPUT_ACTIVATION\0", 23) == 0) {
-        param_set_pred_output_activation(xcsf, i);
+        param_set_pred_output_activation_string(xcsf, v);
     } else if (strncmp(n, "PRED_HIDDEN_ACTIVATION\0", 23) == 0) {
-        param_set_pred_hidden_activation(xcsf, i);
+        param_set_pred_hidden_activation_string(xcsf, v);
     }
 }
 

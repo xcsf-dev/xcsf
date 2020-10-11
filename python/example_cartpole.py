@@ -87,8 +87,8 @@ xcs.ACT_TYPE = 'integer' # (dummy) integer actions
 xcs.PRED_TYPE = 'rls-quadratic' # Quadratic RLS
 
 xcs.COND_TYPE = 'neural' # neural network conditions
-xcs.COND_OUTPUT_ACTIVATION = 3 # linear
-xcs.COND_HIDDEN_ACTIVATION = 9 # selu
+xcs.COND_OUTPUT_ACTIVATION = 'linear'
+xcs.COND_HIDDEN_ACTIVATION = 'selu'
 xcs.COND_NUM_NEURONS = [1] # initial neurons
 xcs.COND_MAX_NEURONS = [100] # maximum neurons
 xcs.COND_EVOLVE_WEIGHTS = True

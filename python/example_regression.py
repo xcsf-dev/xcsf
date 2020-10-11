@@ -99,8 +99,8 @@ xcs.ACT_TYPE = 'integer' # (dummy) integer actions
 
 xcs.MAX_NEURON_GROW = 1 # max neurons to add/remove per mutation event
 xcs.COND_TYPE = 'neural' # neural network conditions
-xcs.COND_OUTPUT_ACTIVATION = 3 # linear
-xcs.COND_HIDDEN_ACTIVATION = 1 # relu
+xcs.COND_OUTPUT_ACTIVATION = 'linear'
+xcs.COND_HIDDEN_ACTIVATION = 'relu'
 xcs.COND_NUM_NEURONS = [10]
 xcs.COND_MAX_NEURONS = [100]
 xcs.COND_EVOLVE_WEIGHTS = True
@@ -109,8 +109,8 @@ xcs.COND_EVOLVE_FUNCTIONS = False
 xcs.COND_EVOLVE_CONNECTIVITY = True
 
 xcs.PRED_TYPE = 'neural' # neural network predictors
-xcs.PRED_OUTPUT_ACTIVATION = 7 # softplus
-xcs.PRED_HIDDEN_ACTIVATION = 1 # relu
+xcs.PRED_OUTPUT_ACTIVATION = 'softplus'
+xcs.PRED_HIDDEN_ACTIVATION = 'relu'
 xcs.PRED_NUM_NEURONS = [10]
 xcs.PRED_MAX_NEURONS = [10]
 xcs.PRED_EVOLVE_WEIGHTS = True

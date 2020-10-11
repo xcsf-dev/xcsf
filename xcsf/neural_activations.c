@@ -111,31 +111,81 @@ neural_activation_string(const int a)
 {
     switch (a) {
         case LOGISTIC:
-            return "logistic";
+            return STRING_LOGISTIC;
         case RELU:
-            return "relu";
+            return STRING_RELU;
         case GAUSSIAN:
-            return "gaussian";
+            return STRING_GAUSSIAN;
         case TANH:
-            return "tanh";
+            return STRING_TANH;
         case SIN:
-            return "sin";
+            return STRING_SIN;
         case COS:
-            return "cos";
+            return STRING_COS;
         case SOFT_PLUS:
-            return "soft_plus";
+            return STRING_SOFT_PLUS;
         case LINEAR:
-            return "linear";
+            return STRING_LINEAR;
         case LEAKY:
-            return "leaky";
+            return STRING_LEAKY;
         case SELU:
-            return "selu";
+            return STRING_SELU;
         case LOGGY:
-            return "loggy";
+            return STRING_LOGGY;
+        case SOFT_MAX:
+            return STRING_SOFT_MAX;
         default:
             printf("neural_activation_string(): invalid activation: %d\n", a);
             exit(EXIT_FAILURE);
     }
+}
+
+/**
+ * @brief Returns the integer representation of an activation function.
+ * @param [in] a String representing the name of an activation function.
+ * @return Integer representing an activation function.
+ */
+int
+neural_activation_as_int(const char *a)
+{
+    if (strncmp(a, STRING_LOGISTIC, 8) == 0) {
+        return LOGISTIC;
+    }
+    if (strncmp(a, STRING_RELU, 4) == 0) {
+        return RELU;
+    }
+    if (strncmp(a, STRING_GAUSSIAN, 8) == 0) {
+        return GAUSSIAN;
+    }
+    if (strncmp(a, STRING_TANH, 4) == 0) {
+        return TANH;
+    }
+    if (strncmp(a, STRING_SIN, 3) == 0) {
+        return SIN;
+    }
+    if (strncmp(a, STRING_COS, 3) == 0) {
+        return COS;
+    }
+    if (strncmp(a, STRING_SOFT_PLUS, 9) == 0) {
+        return SOFT_PLUS;
+    }
+    if (strncmp(a, STRING_LINEAR, 6) == 0) {
+        return LINEAR;
+    }
+    if (strncmp(a, STRING_LEAKY, 5) == 0) {
+        return LEAKY;
+    }
+    if (strncmp(a, STRING_SELU, 4) == 0) {
+        return SELU;
+    }
+    if (strncmp(a, STRING_LOGGY, 5) == 0) {
+        return LOGGY;
+    }
+    if (strncmp(a, STRING_SOFT_MAX, 8) == 0) {
+        return SOFT_MAX;
+    }
+    printf("neural_activation_as_int(): invalid activation: %s\n", a);
+    exit(EXIT_FAILURE);
 }
 
 /**

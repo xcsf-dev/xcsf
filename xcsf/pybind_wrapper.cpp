@@ -715,28 +715,28 @@ class XCS
         return xcs.COND_EVOLVE_CONNECTIVITY;
     }
 
-    int
+    const char *
     get_cond_output_activation(void)
     {
-        return xcs.COND_OUTPUT_ACTIVATION;
+        return param_cond_output_activation_string(&xcs);
     }
 
-    int
+    const char *
     get_cond_hidden_activation(void)
     {
-        return xcs.COND_HIDDEN_ACTIVATION;
+        return param_cond_hidden_activation_string(&xcs);
     }
 
-    int
+    const char *
     get_pred_output_activation(void)
     {
-        return xcs.PRED_OUTPUT_ACTIVATION;
+        return param_pred_output_activation_string(&xcs);
     }
 
-    int
+    const char *
     get_pred_hidden_activation(void)
     {
-        return xcs.PRED_HIDDEN_ACTIVATION;
+        return param_pred_hidden_activation_string(&xcs);
     }
 
     double
@@ -1240,27 +1240,27 @@ class XCS
     }
 
     void
-    set_cond_output_activation(const int a)
+    set_cond_output_activation(const char *a)
     {
-        param_set_cond_output_activation(&xcs, a);
+        param_set_cond_output_activation_string(&xcs, a);
     }
 
     void
-    set_cond_hidden_activation(const int a)
+    set_cond_hidden_activation(const char *a)
     {
-        param_set_cond_hidden_activation(&xcs, a);
+        param_set_cond_hidden_activation_string(&xcs, a);
     }
 
     void
-    set_pred_output_activation(const int a)
+    set_pred_output_activation(const char *a)
     {
-        param_set_pred_output_activation(&xcs, a);
+        param_set_pred_output_activation_string(&xcs, a);
     }
 
     void
-    set_pred_hidden_activation(const int a)
+    set_pred_hidden_activation(const char *a)
     {
-        param_set_pred_hidden_activation(&xcs, a);
+        param_set_pred_hidden_activation_string(&xcs, a);
     }
 
     void

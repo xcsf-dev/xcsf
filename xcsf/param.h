@@ -27,6 +27,7 @@
 #include "condition.h"
 #include "gp.h"
 #include "loss.h"
+#include "neural_activations.h"
 #include "prediction.h"
 #include "xcsf.h"
 
@@ -572,6 +573,54 @@ param_set_cond_hidden_activation(struct XCSF *xcsf, const int a)
     } else {
         xcsf->COND_HIDDEN_ACTIVATION = a;
     }
+}
+
+static inline const char *
+param_pred_hidden_activation_string(struct XCSF *xcsf)
+{
+    return neural_activation_string(xcsf->PRED_HIDDEN_ACTIVATION);
+}
+
+static inline const char *
+param_cond_hidden_activation_string(struct XCSF *xcsf)
+{
+    return neural_activation_string(xcsf->COND_HIDDEN_ACTIVATION);
+}
+
+static inline const char *
+param_pred_output_activation_string(struct XCSF *xcsf)
+{
+    return neural_activation_string(xcsf->PRED_OUTPUT_ACTIVATION);
+}
+
+static inline const char *
+param_cond_output_activation_string(struct XCSF *xcsf)
+{
+    return neural_activation_string(xcsf->COND_OUTPUT_ACTIVATION);
+}
+
+static inline void
+param_set_cond_hidden_activation_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->COND_HIDDEN_ACTIVATION = neural_activation_as_int(a);
+}
+
+static inline void
+param_set_pred_hidden_activation_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->PRED_HIDDEN_ACTIVATION = neural_activation_as_int(a);
+}
+
+static inline void
+param_set_cond_output_activation_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->COND_OUTPUT_ACTIVATION = neural_activation_as_int(a);
+}
+
+static inline void
+param_set_pred_output_activation_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->PRED_OUTPUT_ACTIVATION = neural_activation_as_int(a);
 }
 
 static inline void

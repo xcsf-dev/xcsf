@@ -81,8 +81,8 @@ xcs.NU = 5 # accuracy slope
 xcs.ACT_TYPE = 'integer' # (dummy) integer actions
 
 xcs.COND_TYPE = 'neural' # neural network conditions
-xcs.COND_OUTPUT_ACTIVATION = 3 # linear
-xcs.COND_HIDDEN_ACTIVATION = 9 # selu
+xcs.COND_OUTPUT_ACTIVATION = 'linear'
+xcs.COND_HIDDEN_ACTIVATION = 'selu'
 xcs.COND_NUM_NEURONS = [20] # initial neurons
 xcs.COND_MAX_NEURONS = [100] # maximum neurons
 xcs.COND_EVOLVE_WEIGHTS = True
@@ -92,8 +92,8 @@ xcs.COND_EVOLVE_CONNECTIVITY = True
 
 xcs.MAX_NEURON_GROW = 5
 xcs.PRED_TYPE = 'neural' # neural network predictors
-xcs.PRED_OUTPUT_ACTIVATION = 100 # soft max
-xcs.PRED_HIDDEN_ACTIVATION = 9 # selu
+xcs.PRED_OUTPUT_ACTIVATION = 'softmax'
+xcs.PRED_HIDDEN_ACTIVATION = 'selu'
 xcs.PRED_NUM_NEURONS = [20] # initial neurons
 xcs.PRED_MAX_NEURONS = [100] # maximum neurons
 xcs.PRED_EVOLVE_WEIGHTS = True

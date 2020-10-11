@@ -39,6 +39,19 @@
 #define NUM_ACTIVATIONS (11) //!< Number of activations available
 #define SOFT_MAX (100) //!< Softmax
 
+#define STRING_LOGISTIC ("logistic") //!< Logistic
+#define STRING_RELU ("relu") //!< RELU
+#define STRING_TANH ("tanh") //!< Tanh
+#define STRING_LINEAR ("linear") //!< Linear
+#define STRING_GAUSSIAN ("gaussian") //!< Gaussian
+#define STRING_SIN ("sin") //!< Sine
+#define STRING_COS ("cos") //!< Cos
+#define STRING_SOFT_PLUS ("softplus") //!< Soft plus
+#define STRING_LEAKY ("leaky") //!< Leaky
+#define STRING_SELU ("selu") //!< SELU
+#define STRING_LOGGY ("loggy") //!< Loggy
+#define STRING_SOFT_MAX ("softmax") //!< Softmax
+
 double
 neural_activate(const int a, const double x);
 
@@ -47,6 +60,9 @@ neural_gradient(const int a, const double x);
 
 const char *
 neural_activation_string(const int a);
+
+int
+neural_activation_as_int(const char *a);
 
 void
 neural_activate_array(double *state, double *output, const int n, const int a);
