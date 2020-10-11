@@ -117,7 +117,7 @@ loss_binary_log(const struct XCSF *xcsf, const double *pred, const double *y)
  * @return The one-hot classification error.
  */
 double
-loss_onehot_acc(const struct XCSF *xcsf, const double *pred, const double *y)
+loss_onehot(const struct XCSF *xcsf, const double *pred, const double *y)
 {
     const int max_i = max_index(pred, xcsf->y_dim);
     if (y[max_i] != 1) {
@@ -173,8 +173,8 @@ loss_set_func(struct XCSF *xcsf)
         case LOSS_BINARY_LOG:
             xcsf->loss_ptr = &loss_binary_log;
             break;
-        case LOSS_ONEHOT_ACC:
-            xcsf->loss_ptr = &loss_onehot_acc;
+        case LOSS_ONEHOT:
+            xcsf->loss_ptr = &loss_onehot;
             break;
         case LOSS_HUBER:
             xcsf->loss_ptr = &loss_huber;
@@ -183,4 +183,66 @@ loss_set_func(struct XCSF *xcsf)
             printf("invalid loss function: %d\n", xcsf->LOSS_FUNC);
             exit(EXIT_FAILURE);
     }
+}
+
+/**
+ * @brief Returns a string representation of a loss type from the integer.
+ * @param [in] type Integer representation of a loss function type.
+ * @return String representing the name of the loss function type.
+ */
+const char *
+loss_type_as_string(const int type)
+{
+    switch (type) {
+        case LOSS_MAE:
+            return LOSS_STRING_MAE;
+        case LOSS_MSE:
+            return LOSS_STRING_MSE;
+        case LOSS_RMSE:
+            return LOSS_STRING_RMSE;
+        case LOSS_LOG:
+            return LOSS_STRING_LOG;
+        case LOSS_BINARY_LOG:
+            return LOSS_STRING_BINARY_LOG;
+        case LOSS_ONEHOT:
+            return LOSS_STRING_ONEHOT;
+        case LOSS_HUBER:
+            return LOSS_STRING_HUBER;
+        default:
+            printf("loss_type_as_string(): invalid type: %d\n", type);
+            exit(EXIT_FAILURE);
+    }
+}
+
+/**
+ * @brief Returns the integer representation of a loss type given a name.
+ * @param [in] type String representation of a loss function type.
+ * @return Integer representing the loss function type.
+ */
+int
+loss_type_as_int(const char *type)
+{
+    if (strncmp(type, LOSS_STRING_MAE, 3) == 0) {
+        return LOSS_MAE;
+    }
+    if (strncmp(type, LOSS_STRING_MSE, 3) == 0) {
+        return LOSS_MSE;
+    }
+    if (strncmp(type, LOSS_STRING_RMSE, 4) == 0) {
+        return LOSS_RMSE;
+    }
+    if (strncmp(type, LOSS_STRING_LOG, 3) == 0) {
+        return LOSS_LOG;
+    }
+    if (strncmp(type, LOSS_STRING_BINARY_LOG, 10) == 0) {
+        return LOSS_BINARY_LOG;
+    }
+    if (strncmp(type, LOSS_STRING_ONEHOT, 6) == 0) {
+        return LOSS_ONEHOT;
+    }
+    if (strncmp(type, LOSS_STRING_HUBER, 5) == 0) {
+        return LOSS_HUBER;
+    }
+    printf("loss_type_as_int(): invalid type: %s\n", type);
+    exit(EXIT_FAILURE);
 }

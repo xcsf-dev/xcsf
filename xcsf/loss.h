@@ -30,9 +30,17 @@
 #define LOSS_RMSE (2) //!< Root mean squared error
 #define LOSS_LOG (3) //!< Log loss
 #define LOSS_BINARY_LOG (4) //!< Binary log loss
-#define LOSS_ONEHOT_ACC (5) //!< One-hot encoding classification error
+#define LOSS_ONEHOT (5) //!< One-hot encoding classification error
 #define LOSS_HUBER (6) //!< Huber loss
 #define LOSS_NUM (7) //!< Total number of selectable loss functions
+
+#define LOSS_STRING_MAE ("mae") //!< Mean absolute error
+#define LOSS_STRING_MSE ("mse") //!< Mean squared error
+#define LOSS_STRING_RMSE ("rmse") //!< Root mean squared error
+#define LOSS_STRING_LOG ("log") //!< Log loss
+#define LOSS_STRING_BINARY_LOG ("binary-log") //!< Binary log loss
+#define LOSS_STRING_ONEHOT ("onehot") //!< One-hot classification error
+#define LOSS_STRING_HUBER ("huber") //!< Huber loss
 
 double
 loss_huber(const struct XCSF *xcsf, const double *pred, const double *y);
@@ -53,7 +61,13 @@ double
 loss_binary_log(const struct XCSF *xcsf, const double *pred, const double *y);
 
 double
-loss_onehot_acc(const struct XCSF *xcsf, const double *pred, const double *y);
+loss_onehot(const struct XCSF *xcsf, const double *pred, const double *y);
 
 void
 loss_set_func(struct XCSF *xcsf);
+
+const char *
+loss_type_as_string(const int type);
+
+int
+loss_type_as_int(const char *type);

@@ -91,6 +91,13 @@ param_set_pop_size(struct XCSF *xcsf, const int a)
 }
 
 static inline void
+param_set_loss_func_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->LOSS_FUNC = loss_type_as_int(a);
+    loss_set_func(xcsf);
+}
+
+static inline void
 param_set_loss_func(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {

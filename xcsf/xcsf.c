@@ -169,7 +169,7 @@ xcsf_ae_to_classifier(struct XCSF *xcsf, const int y_dim, const int n_del)
 {
     pa_free(xcsf);
     param_set_y_dim(xcsf, y_dim);
-    param_set_loss_func(xcsf, LOSS_ONEHOT_ACC);
+    param_set_loss_func(xcsf, LOSS_ONEHOT);
     pa_init(xcsf);
     const struct Clist *iter = xcsf->pset.list;
     while (iter != NULL) {

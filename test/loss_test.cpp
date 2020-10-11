@@ -83,9 +83,9 @@ TEST_CASE("LOSS FUNCTIONS")
     error = (xcsf.loss_ptr)(&xcsf, p, y);
     CHECK_EQ(doctest::Approx(error), 9.07707219);
 
-    // Test ONEHOT ACC
-    param_set_loss_func(&xcsf, LOSS_ONEHOT_ACC);
-    CHECK_EQ(xcsf.LOSS_FUNC, LOSS_ONEHOT_ACC);
+    // Test ONEHOT
+    param_set_loss_func(&xcsf, LOSS_ONEHOT);
+    CHECK_EQ(xcsf.LOSS_FUNC, LOSS_ONEHOT);
     error = (xcsf.loss_ptr)(&xcsf, p, y);
     CHECK_EQ(doctest::Approx(error), 1);
 

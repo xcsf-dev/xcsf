@@ -59,7 +59,6 @@ static void
 config_general(struct XCSF *xcsf, const char *n, const char *v, const int i,
                const double f)
 {
-    (void) v;
     if (strncmp(n, "OMP_NUM_THREADS\0", 16) == 0) {
         param_set_omp_num_threads(xcsf, i);
     } else if (strncmp(n, "POP_SIZE\0", 9) == 0) {
@@ -71,7 +70,7 @@ config_general(struct XCSF *xcsf, const char *n, const char *v, const int i,
     } else if (strncmp(n, "PERF_TRIALS\0", 12) == 0) {
         param_set_perf_trials(xcsf, i);
     } else if (strncmp(n, "LOSS_FUNC\0", 10) == 0) {
-        param_set_loss_func(xcsf, i);
+        param_set_loss_func_string(xcsf, v);
     } else if (strncmp(n, "HUBER_DELTA\0", 12) == 0) {
         param_set_huber_delta(xcsf, f);
     }

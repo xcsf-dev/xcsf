@@ -39,7 +39,7 @@ param_defaults_general(struct XCSF *xcsf)
     param_set_max_trials(xcsf, 100000);
     param_set_perf_trials(xcsf, 1000);
     param_set_pop_size(xcsf, 2000);
-    param_set_loss_func(xcsf, 0);
+    param_set_loss_func(xcsf, LOSS_MAE);
     param_set_huber_delta(xcsf, 1);
 }
 
@@ -56,7 +56,7 @@ param_print_general(const struct XCSF *xcsf)
     printf(", MAX_TRIALS=%d", xcsf->MAX_TRIALS);
     printf(", PERF_TRIALS=%d", xcsf->PERF_TRIALS);
     printf(", POP_SIZE=%d", xcsf->POP_SIZE);
-    printf(", LOSS_FUNC=%d", xcsf->LOSS_FUNC);
+    printf(", LOSS_FUNC=%s", loss_type_as_string(xcsf->LOSS_FUNC));
     printf(", HUBER_DELTA=%f", xcsf->HUBER_DELTA);
 }
 

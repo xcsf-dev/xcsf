@@ -510,10 +510,10 @@ class XCS
         return xcs.POP_SIZE;
     }
 
-    int
+    const char *
     get_loss_func(void)
     {
-        return xcs.LOSS_FUNC;
+        return loss_type_as_string(xcs.LOSS_FUNC);
     }
 
     double
@@ -1148,9 +1148,9 @@ class XCS
     }
 
     void
-    set_loss_func(const int a)
+    set_loss_func(const char *a)
     {
-        param_set_loss_func(&xcs, a);
+        param_set_loss_func_string(&xcs, a);
     }
 
     void
