@@ -127,7 +127,6 @@ prediction_layers = {
         'type': 'connected',
         'activation': 'relu',
         'sgd-weights': True,
-        'max-neuron-grow': 0,
         'evolve-neurons': False,
         'evolve-weights': True,
         'evolve-functions': False,
