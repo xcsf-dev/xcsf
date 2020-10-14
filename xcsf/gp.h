@@ -49,9 +49,6 @@ struct GPTree {
 };
 
 void
-tree_free_cons(const struct GPTreeArgs *args);
-
-void
 tree_init_cons(struct GPTreeArgs *args);
 
 void

@@ -124,16 +124,6 @@ tree_init_cons(struct GPTreeArgs *args)
 }
 
 /**
- * @brief Frees the constants shared among all GP trees.
- * @param [in] args Tree GP parameters.
- */
-void
-tree_free_cons(const struct GPTreeArgs *args)
-{
-    free(args->constants);
-}
-
-/**
  * @brief Creates a random GP tree.
  * @param [in] gp The GP tree being randomised.
  * @param [in] args Tree GP parameters.
