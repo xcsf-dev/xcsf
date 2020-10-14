@@ -365,7 +365,9 @@ param_print(const struct XCSF *xcsf)
         case RULE_TYPE_NETWORK:
             break;
         default:
-            action_param_print(xcsf);
+            if (xcsf->n_actions > 1) {
+                action_param_print(xcsf);
+            }
             break;
     }
     cond_param_print(xcsf);
