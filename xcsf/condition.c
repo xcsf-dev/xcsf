@@ -391,10 +391,9 @@ cond_param_free(struct XCSF *xcsf)
     tree_args_free(cond->targs);
     free(cond->targs);
     free(cond->dargs);
-    struct LayerArgs *args = cond->largs;
-    while (args != NULL) {
+    while (cond->largs != NULL) {
+        struct LayerArgs *args = cond->largs;
         cond->largs = args->next;
         free(args);
     }
-    free(cond->largs);
 }
