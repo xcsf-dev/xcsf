@@ -69,27 +69,24 @@ tree_traverse(int *tree, int p)
  * @brief Grows a random GP tree of specified max length and depth.
  * @details Only used to create an initial tree.
  * @param [in] args Tree GP parameters.
- * @param [in,out] buffer Buffer to hold the flattened GP tree generated.
+ * @param [in,out] tree Vector holding the flattened GP tree generated.
  * @param [in] p The position from which to traverse (start at 0).
  * @param [in] max Maximum tree length.
  * @param [in] depth Maximum tree depth.
  * @return The position after traversal (i.e., tree length).
  */
 static int
-tree_grow(const struct GPTreeArgs *args, int *buffer, const int p,
-          const int max, const int depth)
+tree_grow(const struct GPTreeArgs *args, int *tree, const int p, const int max,
+          const int depth)
 {
-    int prim = rand_uniform_int(0, 2);
     if (p >= max) {
         return -1;
     }
-    if (p == 0) {
-        prim = 1;
-    }
+    int prim = p != 0 ? rand_uniform_int(0, 2) : 1;
     if (prim == 0 || depth == 0) {
         const int max_term = GP_NUM_FUNC + args->n_constants + args->n_inputs;
         prim = rand_uniform_int(GP_NUM_FUNC, max_term);
-        buffer[p] = prim;
+        tree[p] = prim;
         return p + 1;
     }
     prim = rand_uniform_int(0, GP_NUM_FUNC);
@@ -98,12 +95,12 @@ tree_grow(const struct GPTreeArgs *args, int *buffer, const int p,
         case SUB:
         case MUL:
         case DIV:
-            buffer[p] = prim;
-            const int child = tree_grow(args, buffer, p + 1, max, depth - 1);
+            tree[p] = prim;
+            const int child = tree_grow(args, tree, p + 1, max, depth - 1);
             if (child < 0) {
                 return -1;
             }
-            return tree_grow(args, buffer, child, max, depth - 1);
+            return tree_grow(args, tree, child, max, depth - 1);
         default:
             printf("tree_grow() invalid function: %d\n", prim);
             exit(EXIT_FAILURE);
@@ -118,13 +115,12 @@ tree_grow(const struct GPTreeArgs *args, int *buffer, const int p,
 void
 tree_rand(struct GPTree *gp, const struct GPTreeArgs *args)
 {
-    int buffer[args->max_len];
+    gp->tree = malloc(sizeof(int) * args->max_len);
     gp->len = 0;
     do {
-        gp->len = tree_grow(args, buffer, 0, args->max_len, args->init_depth);
+        gp->len = tree_grow(args, gp->tree, 0, args->max_len, args->init_depth);
     } while (gp->len < 0);
-    gp->tree = malloc(sizeof(int) * gp->len);
-    memcpy(gp->tree, buffer, sizeof(int) * gp->len);
+    gp->tree = realloc(gp->tree, sizeof(double) * gp->len);
     gp->mu = malloc(sizeof(double) * N_MU);
     sam_init(gp->mu, N_MU, MU_TYPE);
 }
