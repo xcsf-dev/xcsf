@@ -886,7 +886,7 @@ class XCS
                 tree_param_set_max(targs, item.second.cast<double>());
             }
         }
-        tree_args_build_constants(targs);
+        tree_args_init_constants(targs);
     }
 
     /**

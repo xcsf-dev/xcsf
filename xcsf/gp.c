@@ -111,19 +111,6 @@ tree_grow(const struct GPTreeArgs *args, int *buffer, const int p,
 }
 
 /**
- * @brief Initialises the constants shared among all GP trees.
- * @param [in] args Tree GP parameters.
- */
-void
-tree_init_cons(struct GPTreeArgs *args)
-{
-    args->constants = malloc(sizeof(double) * args->n_constants);
-    for (int i = 0; i < args->n_constants; ++i) {
-        args->constants[i] = rand_uniform(args->min, args->max);
-    }
-}
-
-/**
  * @brief Creates a random GP tree.
  * @param [in] gp The GP tree being randomised.
  * @param [in] args Tree GP parameters.
@@ -440,7 +427,7 @@ tree_args_load(struct GPTreeArgs *args, FILE *fp)
  * @param [in] args Parameters for initialising and operating GP trees.
  */
 void
-tree_args_build_constants(struct GPTreeArgs *args)
+tree_args_init_constants(struct GPTreeArgs *args)
 {
     if (args->constants != NULL) {
         free(args->constants);

@@ -167,7 +167,7 @@ cond_param_gp_defaults(struct XCSF *xcsf)
     tree_param_set_max_len(args, 10000);
     tree_param_set_n_constants(args, 100);
     tree_param_set_n_inputs(args, xcsf->x_dim);
-    tree_args_build_constants(args);
+    tree_args_init_constants(args);
     xcsf->cond->targs = args;
 }
 

@@ -49,9 +49,6 @@ struct GPTree {
 };
 
 void
-tree_init_cons(struct GPTreeArgs *args);
-
-void
 tree_free(const struct GPTree *gp);
 
 void
@@ -94,7 +91,7 @@ size_t
 tree_args_load(struct GPTreeArgs *args, FILE *fp);
 
 void
-tree_args_build_constants(struct GPTreeArgs *args);
+tree_args_init_constants(struct GPTreeArgs *args);
 
 /* parameter setters */
 

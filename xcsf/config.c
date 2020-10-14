@@ -481,5 +481,5 @@ config_read(struct XCSF *xcsf, const char *filename)
         config_process(xcsf, buff);
     }
     fclose(f);
-    tree_args_build_constants(xcsf->cond->targs);
+    tree_args_init_constants(xcsf->cond->targs);
 }
