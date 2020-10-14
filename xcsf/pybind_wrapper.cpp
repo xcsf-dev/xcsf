@@ -777,7 +777,7 @@ class XCS
      * @param [in] type String representing a name of a condition type.
      */
     void
-    set_condition(const std::string type)
+    set_condition(std::string const type)
     {
         set_condition(type, {});
     }
@@ -787,7 +787,7 @@ class XCS
      * @param [in] type String representing a name of an action type.
      */
     void
-    set_action(const std::string type)
+    set_action(std::string const type)
     {
         set_action(type, {});
     }
@@ -797,7 +797,7 @@ class XCS
      * @param [in] type String representing a name of a prediction type.
      */
     void
-    set_prediction(const std::string type)
+    set_prediction(std::string const type)
     {
         set_prediction(type, {});
     }
