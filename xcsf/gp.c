@@ -50,7 +50,7 @@ tree_traverse(int *tree, int p)
 {
     if (tree[p] >= GP_NUM_FUNC) {
         ++p;
-        return (p);
+        return p;
     }
     switch (tree[p]) {
         case ADD:
@@ -58,7 +58,7 @@ tree_traverse(int *tree, int p)
         case MUL:
         case DIV:
             ++p;
-            return (tree_traverse(tree, tree_traverse(tree, p)));
+            return tree_traverse(tree, tree_traverse(tree, p));
         default:
             printf("tree_traverse() invalid function: %d\n", tree[p]);
             exit(EXIT_FAILURE);
@@ -90,7 +90,7 @@ tree_grow(const struct GPTreeArgs *args, int *buffer, const int p,
         const int max_term = GP_NUM_FUNC + args->n_constants + args->n_inputs;
         prim = rand_uniform_int(GP_NUM_FUNC, max_term);
         buffer[p] = prim;
-        return (p + 1);
+        return p + 1;
     }
     prim = rand_uniform_int(0, GP_NUM_FUNC);
     switch (prim) {
@@ -103,7 +103,7 @@ tree_grow(const struct GPTreeArgs *args, int *buffer, const int p,
             if (child < 0) {
                 return -1;
             }
-            return (tree_grow(args, buffer, child, max, depth - 1));
+            return tree_grow(args, buffer, child, max, depth - 1);
         default:
             printf("tree_grow() invalid function: %d\n", prim);
             exit(EXIT_FAILURE);
@@ -153,25 +153,25 @@ tree_eval(struct GPTree *gp, const struct GPTreeArgs *args, const double *x)
     const int node = gp->tree[gp->p];
     ++(gp->p);
     if (node >= GP_NUM_FUNC + args->n_constants) {
-        return (x[node - GP_NUM_FUNC - args->n_constants]);
+        return x[node - GP_NUM_FUNC - args->n_constants];
     }
     if (node >= GP_NUM_FUNC) {
-        return (args->constants[node - GP_NUM_FUNC]);
+        return args->constants[node - GP_NUM_FUNC];
     }
     switch (node) {
         case ADD:
-            return (tree_eval(gp, args, x) + tree_eval(gp, args, x));
+            return tree_eval(gp, args, x) + tree_eval(gp, args, x);
         case SUB:
-            return (tree_eval(gp, args, x) - tree_eval(gp, args, x));
+            return tree_eval(gp, args, x) - tree_eval(gp, args, x);
         case MUL:
-            return (tree_eval(gp, args, x) * tree_eval(gp, args, x));
+            return tree_eval(gp, args, x) * tree_eval(gp, args, x);
         case DIV: {
             const double num = tree_eval(gp, args, x);
             const double den = tree_eval(gp, args, x);
-            if (den == 0) {
-                return (num);
+            if (den != 0) {
+                return num / den;
             }
-            return (num / den);
+            return num;
         }
         default:
             printf("eval() invalid function: %d\n", node);
@@ -197,7 +197,7 @@ tree_print(const struct GPTree *gp, const struct GPTreeArgs *args, int p)
             printf("%f", args->constants[node - GP_NUM_FUNC]);
         }
         ++p;
-        return (p);
+        return p;
     }
     printf("(");
     ++p;
