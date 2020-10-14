@@ -172,14 +172,13 @@ reset_layer_deltas(const struct Layer *l)
 
 /**
  * @brief Mutates the gradient descent rate used to update an LSTM layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer whose gradient descent rate is to be mutated.
  * @return Whether any alterations were made.
  */
 static bool
-mutate_eta(const struct XCSF *xcsf, struct Layer *l)
+mutate_eta(struct Layer *l)
 {
-    if (layer_mutate_eta(xcsf, l->uf, l->mu[0])) {
+    if (layer_mutate_eta(l->uf, l->mu[0])) {
         set_eta(l);
         return true;
     }
@@ -188,14 +187,13 @@ mutate_eta(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Mutates the number of neurons in an LSTM layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer whose number of neurons is to be mutated.
  * @return Whether any alterations were made.
  */
 static bool
-mutate_neurons(const struct XCSF *xcsf, struct Layer *l)
+mutate_neurons(struct Layer *l)
 {
-    const int n = layer_mutate_neurons(xcsf, l->uf, l->mu[1]);
+    const int n = layer_mutate_neurons(l->uf, l->mu[1]);
     if (n != 0) {
         layer_add_neurons(l->uf, n);
         layer_add_neurons(l->ui, n);
@@ -205,10 +203,10 @@ mutate_neurons(const struct XCSF *xcsf, struct Layer *l)
         layer_add_neurons(l->wi, n);
         layer_add_neurons(l->wg, n);
         layer_add_neurons(l->wo, n);
-        layer_resize(xcsf, l->wf, l->uf);
-        layer_resize(xcsf, l->wi, l->uf);
-        layer_resize(xcsf, l->wg, l->uf);
-        layer_resize(xcsf, l->wo, l->uf);
+        layer_resize(l->wf, l->uf);
+        layer_resize(l->wi, l->uf);
+        layer_resize(l->wg, l->uf);
+        layer_resize(l->wo, l->uf);
         l->n_outputs = l->uf->n_outputs;
         set_layer_n_weights(l);
         set_layer_n_biases(l);
@@ -262,43 +260,36 @@ mutate_weights(struct Layer *l)
 }
 
 /**
- * @brief Creates and initialises a long short-term memory layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] n_inputs The number of inputs.
- * @param [in] n_init The initial number of neurons.
- * @param [in] n_max The maximum number of neurons.
- * @param [in] f Output activation function.
- * @param [in] rf Recurrent activation function.
- * @param [in] o Bitwise options specifying which operations can be performed.
- * @return A pointer to the new layer.
+ * @brief Initialises a long short-term memory layer.
+ * @param [in] l Layer to initialise.
+ * @param [in] args Parameters to initialise the layer.
  */
-struct Layer *
-neural_layer_lstm_init(const struct XCSF *xcsf, const int n_inputs,
-                       const int n_init, const int n_max, const int f,
-                       const int rf, const uint32_t o)
+void
+neural_layer_lstm_init(struct Layer *l, const struct LayerArgs *args)
 {
-    struct Layer *l = malloc(sizeof(struct Layer));
-    layer_init(l);
-    l->layer_type = LSTM;
-    l->layer_vptr = &layer_lstm_vtbl;
-    l->options = o;
-    l->function = f;
-    l->recurrent_function = rf;
-    l->n_inputs = n_inputs;
-    l->n_outputs = n_init;
-    l->max_outputs = n_max;
-    l->uf =
-        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->ui =
-        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->ug =
-        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->uo =
-        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->wf = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
-    l->wi = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
-    l->wg = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
-    l->wo = neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
+    l->options = layer_opt(args);
+    l->function = args->function;
+    l->recurrent_function = args->recurrent_function;
+    l->n_inputs = args->n_inputs;
+    l->n_outputs = args->n_init;
+    l->max_outputs = args->n_max;
+    l->eta_max = args->eta;
+    l->momentum = args->momentum;
+    l->max_neuron_grow = args->max_neuron_grow;
+    l->decay = args->decay;
+    struct LayerArgs *cargs = layer_args_copy(args);
+    cargs->layer_type = CONNECTED; // lstm is composed of 8 connected layers
+    cargs->function = LINEAR;
+    l->uf = layer_init(cargs); // input layers
+    l->ui = layer_init(cargs);
+    l->ug = layer_init(cargs);
+    l->uo = layer_init(cargs);
+    cargs->n_inputs = cargs->n_init;
+    l->wf = layer_init(cargs); // self layers
+    l->wi = layer_init(cargs);
+    l->wg = layer_init(cargs);
+    l->wo = layer_init(cargs);
+    free(cargs);
     set_layer_n_biases(l);
     set_layer_n_weights(l);
     set_layer_n_active(l);
@@ -306,24 +297,22 @@ neural_layer_lstm_init(const struct XCSF *xcsf, const int n_inputs,
     malloc_layer_arrays(l);
     l->mu = malloc(sizeof(double) * N_MU);
     sam_init(l->mu, N_MU, MU_TYPE);
-    return l;
 }
 
 /**
  * @brief Initialises and creates a copy of one LSTM layer from another.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] src The source layer.
  * @return A pointer to the new layer.
  */
 struct Layer *
-neural_layer_lstm_copy(const struct XCSF *xcsf, const struct Layer *src)
+neural_layer_lstm_copy(const struct Layer *src)
 {
     if (src->layer_type != LSTM) {
         printf("neural_layer_lstm_copy(): incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
-    layer_init(l);
+    layer_defaults(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
     l->function = src->function;
@@ -335,15 +324,19 @@ neural_layer_lstm_copy(const struct XCSF *xcsf, const struct Layer *src)
     l->n_biases = src->n_biases;
     l->n_active = src->n_active;
     l->eta = src->eta;
+    l->eta_max = src->eta_max;
+    l->momentum = src->momentum;
+    l->decay = src->decay;
+    l->max_neuron_grow = src->max_neuron_grow;
     l->max_outputs = src->max_outputs;
-    l->uf = layer_copy(xcsf, src->uf);
-    l->ui = layer_copy(xcsf, src->ui);
-    l->ug = layer_copy(xcsf, src->ug);
-    l->uo = layer_copy(xcsf, src->uo);
-    l->wf = layer_copy(xcsf, src->wf);
-    l->wi = layer_copy(xcsf, src->wi);
-    l->wg = layer_copy(xcsf, src->wg);
-    l->wo = layer_copy(xcsf, src->wo);
+    l->uf = layer_copy(src->uf);
+    l->ui = layer_copy(src->ui);
+    l->ug = layer_copy(src->ug);
+    l->uo = layer_copy(src->uo);
+    l->wf = layer_copy(src->wf);
+    l->wi = layer_copy(src->wi);
+    l->wg = layer_copy(src->wg);
+    l->wo = layer_copy(src->wo);
     malloc_layer_arrays(l);
     l->mu = malloc(sizeof(double) * N_MU);
     memcpy(l->mu, src->mu, sizeof(double) * N_MU);
@@ -352,20 +345,19 @@ neural_layer_lstm_copy(const struct XCSF *xcsf, const struct Layer *src)
 
 /**
  * @brief Free memory used by an LSTM layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to be freed.
  */
 void
-neural_layer_lstm_free(const struct XCSF *xcsf, const struct Layer *l)
+neural_layer_lstm_free(const struct Layer *l)
 {
-    layer_free(xcsf, l->uf);
-    layer_free(xcsf, l->ui);
-    layer_free(xcsf, l->ug);
-    layer_free(xcsf, l->uo);
-    layer_free(xcsf, l->wf);
-    layer_free(xcsf, l->wi);
-    layer_free(xcsf, l->wg);
-    layer_free(xcsf, l->wo);
+    layer_free(l->uf);
+    layer_free(l->ui);
+    layer_free(l->ug);
+    layer_free(l->uo);
+    layer_free(l->wf);
+    layer_free(l->wi);
+    layer_free(l->wg);
+    layer_free(l->wo);
     free(l->uf);
     free(l->ui);
     free(l->ug);
@@ -380,20 +372,19 @@ neural_layer_lstm_free(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Randomises an LSTM layer weights.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to randomise.
  */
 void
-neural_layer_lstm_rand(const struct XCSF *xcsf, struct Layer *l)
+neural_layer_lstm_rand(struct Layer *l)
 {
-    layer_rand(xcsf, l->uf);
-    layer_rand(xcsf, l->ui);
-    layer_rand(xcsf, l->ug);
-    layer_rand(xcsf, l->uo);
-    layer_rand(xcsf, l->wf);
-    layer_rand(xcsf, l->wi);
-    layer_rand(xcsf, l->wg);
-    layer_rand(xcsf, l->wo);
+    layer_rand(l->uf);
+    layer_rand(l->ui);
+    layer_rand(l->ug);
+    layer_rand(l->uo);
+    layer_rand(l->wf);
+    layer_rand(l->wi);
+    layer_rand(l->wg);
+    layer_rand(l->wo);
 }
 
 /**
@@ -440,14 +431,13 @@ neural_layer_lstm_forward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Backward propagates an LSTM layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to backward propagate.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's error.
  */
 void
-neural_layer_lstm_backward(const struct XCSF *xcsf, const struct Layer *l,
-                           const double *input, double *delta)
+neural_layer_lstm_backward(const struct Layer *l, const double *input,
+                           double *delta)
 {
     reset_layer_deltas(l);
     memcpy(l->temp3, l->delta, sizeof(double) * l->n_outputs);
@@ -462,30 +452,30 @@ neural_layer_lstm_backward(const struct XCSF *xcsf, const struct Layer *l,
     blas_mul(l->n_outputs, l->temp3, 1, l->temp, 1);
     neural_gradient_array(l->o, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wo->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(xcsf, l->wo, l->prev_state, 0);
+    layer_backward(l->wo, l->prev_state, 0);
     memcpy(l->uo->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(xcsf, l->uo, input, delta);
+    layer_backward(l->uo, input, delta);
     memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->i, 1, l->temp, 1);
     neural_gradient_array(l->g, l->temp, l->n_outputs, l->function);
     memcpy(l->wg->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(xcsf, l->wg, l->prev_state, 0);
+    layer_backward(l->wg, l->prev_state, 0);
     memcpy(l->ug->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(xcsf, l->ug, input, delta);
+    layer_backward(l->ug, input, delta);
     memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->g, 1, l->temp, 1);
     neural_gradient_array(l->i, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wi->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(xcsf, l->wi, l->prev_state, 0);
+    layer_backward(l->wi, l->prev_state, 0);
     memcpy(l->ui->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(xcsf, l->ui, input, delta);
+    layer_backward(l->ui, input, delta);
     memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->prev_cell, 1, l->temp, 1);
     neural_gradient_array(l->f, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wf->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(xcsf, l->wf, l->prev_state, 0);
+    layer_backward(l->wf, l->prev_state, 0);
     memcpy(l->uf->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(xcsf, l->uf, input, delta);
+    layer_backward(l->uf, input, delta);
     memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->f, 1, l->temp, 1);
     memcpy(l->dc, l->temp, sizeof(double) * l->n_outputs);
@@ -493,39 +483,36 @@ neural_layer_lstm_backward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Updates the weights and biases of an LSTM layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to update.
  */
 void
-neural_layer_lstm_update(const struct XCSF *xcsf, const struct Layer *l)
+neural_layer_lstm_update(const struct Layer *l)
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
-        layer_update(xcsf, l->wf);
-        layer_update(xcsf, l->wi);
-        layer_update(xcsf, l->wg);
-        layer_update(xcsf, l->wo);
-        layer_update(xcsf, l->uf);
-        layer_update(xcsf, l->ui);
-        layer_update(xcsf, l->ug);
-        layer_update(xcsf, l->uo);
+        layer_update(l->wf);
+        layer_update(l->wi);
+        layer_update(l->wg);
+        layer_update(l->wo);
+        layer_update(l->uf);
+        layer_update(l->ui);
+        layer_update(l->ug);
+        layer_update(l->uo);
     }
 }
 
 /**
  * @brief Resizes an LSTM layer if the previous layer has changed size.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to resize.
  * @param [in] prev The layer previous to the one being resized.
  */
 void
-neural_layer_lstm_resize(const struct XCSF *xcsf, struct Layer *l,
-                         const struct Layer *prev)
+neural_layer_lstm_resize(struct Layer *l, const struct Layer *prev)
 {
-    layer_resize(xcsf, l->uf, prev);
-    layer_resize(xcsf, l->ui, prev);
-    layer_resize(xcsf, l->ug, prev);
-    layer_resize(xcsf, l->uo, prev);
-    layer_resize(xcsf, l->uf, prev);
+    layer_resize(l->uf, prev);
+    layer_resize(l->ui, prev);
+    layer_resize(l->ug, prev);
+    layer_resize(l->uo, prev);
+    layer_resize(l->uf, prev);
     l->n_inputs = prev->n_outputs;
     set_layer_n_weights(l);
     set_layer_n_biases(l);
@@ -534,32 +521,29 @@ neural_layer_lstm_resize(const struct XCSF *xcsf, struct Layer *l,
 
 /**
  * @brief Returns the output from an LSTM layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer whose output to return.
  * @return The layer output.
  */
 double *
-neural_layer_lstm_output(const struct XCSF *xcsf, const struct Layer *l)
+neural_layer_lstm_output(const struct Layer *l)
 {
-    (void) xcsf;
     return l->output;
 }
 
 /**
  * @brief Mutates an LSTM layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
  */
 bool
-neural_layer_lstm_mutate(const struct XCSF *xcsf, struct Layer *l)
+neural_layer_lstm_mutate(struct Layer *l)
 {
     sam_adapt(l->mu, N_MU, MU_TYPE);
     bool mod = false;
-    if ((l->options & LAYER_EVOLVE_ETA) && mutate_eta(xcsf, l)) {
+    if ((l->options & LAYER_EVOLVE_ETA) && mutate_eta(l)) {
         mod = true;
     }
-    if ((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(xcsf, l)) {
+    if ((l->options & LAYER_EVOLVE_NEURONS) && mutate_neurons(l)) {
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_CONNECT) && mutate_connectivity(l)) {
@@ -577,13 +561,11 @@ neural_layer_lstm_mutate(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Prints an LSTM layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to print.
  * @param [in] print_weights Whether to print the values of weights and biases.
  */
 void
-neural_layer_lstm_print(const struct XCSF *xcsf, const struct Layer *l,
-                        const bool print_weights)
+neural_layer_lstm_print(const struct Layer *l, const bool print_weights)
 {
     printf("lstm, f = %s, rf = %s,  in = %d, out = %d\n",
            neural_activation_string(l->function),
@@ -591,33 +573,32 @@ neural_layer_lstm_print(const struct XCSF *xcsf, const struct Layer *l,
            l->n_outputs);
     if (print_weights) {
         printf("uf layer:\n");
-        layer_print(xcsf, l->uf, print_weights);
+        layer_print(l->uf, print_weights);
         printf("ui layer:\n");
-        layer_print(xcsf, l->ui, print_weights);
+        layer_print(l->ui, print_weights);
         printf("ug layer:\n");
-        layer_print(xcsf, l->ug, print_weights);
+        layer_print(l->ug, print_weights);
         printf("uo layer:\n");
-        layer_print(xcsf, l->uo, print_weights);
+        layer_print(l->uo, print_weights);
         printf("wf layer:\n");
-        layer_print(xcsf, l->wf, print_weights);
+        layer_print(l->wf, print_weights);
         printf("wi layer:\n");
-        layer_print(xcsf, l->wi, print_weights);
+        layer_print(l->wi, print_weights);
         printf("wg layer:\n");
-        layer_print(xcsf, l->wg, print_weights);
+        layer_print(l->wg, print_weights);
         printf("wo layer:\n");
-        layer_print(xcsf, l->wo, print_weights);
+        layer_print(l->wo, print_weights);
     }
 }
 
 /**
  * @brief Writes an LSTM layer to a file.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to save.
  * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
-neural_layer_lstm_save(const struct XCSF *xcsf, const struct Layer *l, FILE *fp)
+neural_layer_lstm_save(const struct Layer *l, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
@@ -627,6 +608,10 @@ neural_layer_lstm_save(const struct XCSF *xcsf, const struct Layer *l, FILE *fp)
     s += fwrite(&l->max_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->n_active, sizeof(int), 1, fp);
     s += fwrite(&l->eta, sizeof(double), 1, fp);
+    s += fwrite(&l->eta_max, sizeof(double), 1, fp);
+    s += fwrite(&l->momentum, sizeof(double), 1, fp);
+    s += fwrite(&l->decay, sizeof(double), 1, fp);
+    s += fwrite(&l->max_neuron_grow, sizeof(int), 1, fp);
     s += fwrite(&l->options, sizeof(uint32_t), 1, fp);
     s += fwrite(l->mu, sizeof(double), N_MU, fp);
     s += fwrite(l->state, sizeof(double), l->n_outputs, fp);
@@ -642,26 +627,25 @@ neural_layer_lstm_save(const struct XCSF *xcsf, const struct Layer *l, FILE *fp)
     s += fwrite(l->temp2, sizeof(double), l->n_outputs, fp);
     s += fwrite(l->temp3, sizeof(double), l->n_outputs, fp);
     s += fwrite(l->dc, sizeof(double), l->n_outputs, fp);
-    s += layer_save(xcsf, l->uf, fp);
-    s += layer_save(xcsf, l->ui, fp);
-    s += layer_save(xcsf, l->ug, fp);
-    s += layer_save(xcsf, l->uo, fp);
-    s += layer_save(xcsf, l->wf, fp);
-    s += layer_save(xcsf, l->wi, fp);
-    s += layer_save(xcsf, l->wg, fp);
-    s += layer_save(xcsf, l->wo, fp);
+    s += layer_save(l->uf, fp);
+    s += layer_save(l->ui, fp);
+    s += layer_save(l->ug, fp);
+    s += layer_save(l->uo, fp);
+    s += layer_save(l->wf, fp);
+    s += layer_save(l->wi, fp);
+    s += layer_save(l->wg, fp);
+    s += layer_save(l->wo, fp);
     return s;
 }
 
 /**
  * @brief Reads an LSTM layer from a file.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to load.
  * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 size_t
-neural_layer_lstm_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
+neural_layer_lstm_load(struct Layer *l, FILE *fp)
 {
     size_t s = 0;
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
@@ -671,6 +655,10 @@ neural_layer_lstm_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->n_active, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
+    s += fread(&l->eta_max, sizeof(double), 1, fp);
+    s += fread(&l->momentum, sizeof(double), 1, fp);
+    s += fread(&l->decay, sizeof(double), 1, fp);
+    s += fread(&l->max_neuron_grow, sizeof(int), 1, fp);
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
     malloc_layer_arrays(l);
     l->mu = malloc(sizeof(double) * N_MU);
@@ -688,13 +676,13 @@ neural_layer_lstm_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
     s += fread(l->temp2, sizeof(double), l->n_outputs, fp);
     s += fread(l->temp3, sizeof(double), l->n_outputs, fp);
     s += fread(l->dc, sizeof(double), l->n_outputs, fp);
-    s += layer_load(xcsf, l->uf, fp);
-    s += layer_load(xcsf, l->ui, fp);
-    s += layer_load(xcsf, l->ug, fp);
-    s += layer_load(xcsf, l->uo, fp);
-    s += layer_load(xcsf, l->wf, fp);
-    s += layer_load(xcsf, l->wi, fp);
-    s += layer_load(xcsf, l->wg, fp);
-    s += layer_load(xcsf, l->wo, fp);
+    s += layer_load(l->uf, fp);
+    s += layer_load(l->ui, fp);
+    s += layer_load(l->ug, fp);
+    s += layer_load(l->uo, fp);
+    s += layer_load(l->wf, fp);
+    s += layer_load(l->wi, fp);
+    s += layer_load(l->wg, fp);
+    s += layer_load(l->wo, fp);
     return s;
 }

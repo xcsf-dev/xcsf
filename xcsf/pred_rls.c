@@ -36,7 +36,7 @@ pred_rls_init(const struct XCSF *xcsf, struct Cl *c)
     struct PredRLS *pred = malloc(sizeof(struct PredRLS));
     c->pred = pred;
     // set the length of weights per predicted variable
-    if (xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
+    if (xcsf->pred->type == PRED_TYPE_RLS_QUADRATIC) {
         // offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
         pred->n = 1 + 2 * xcsf->x_dim + xcsf->x_dim * (xcsf->x_dim - 1) / 2;
     } else {
@@ -45,12 +45,12 @@ pred_rls_init(const struct XCSF *xcsf, struct Cl *c)
     // initialise weights
     pred->n_weights = pred->n * xcsf->y_dim;
     pred->weights = calloc(pred->n_weights, sizeof(double));
-    blas_fill(xcsf->y_dim, xcsf->PRED_X0, pred->weights, pred->n);
+    blas_fill(xcsf->y_dim, xcsf->pred->x0, pred->weights, pred->n);
     // initialise gain matrix
     const int n_sqrd = pred->n * pred->n;
     pred->matrix = calloc(n_sqrd, sizeof(double));
     for (int i = 0; i < pred->n; ++i) {
-        pred->matrix[i * pred->n + i] = xcsf->PRED_RLS_SCALE_FACTOR;
+        pred->matrix[i * pred->n + i] = xcsf->pred->scale_factor;
     }
     // initialise temporary storage for weight updating
     pred->tmp_input = malloc(sizeof(double) * pred->n);
@@ -116,7 +116,7 @@ pred_rls_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     blas_gemm(0, 0, n, 1, n, 1, A, n, B, 1, 0, C, 1);
     // divide gain vector by lambda + tmp_vec
     double divisor = blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
-    divisor = 1 / (divisor + xcsf->PRED_RLS_LAMBDA);
+    divisor = 1 / (divisor + xcsf->pred->lambda);
     blas_scal(n, divisor, pred->tmp_vec, 1);
     // update weights using the error
     for (int i = 0; i < xcsf->y_dim; ++i) {
@@ -140,10 +140,10 @@ pred_rls_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     C = pred->tmp_matrix2;
     blas_gemm(0, 0, n, n, n, 1, A, n, B, n, 0, C, n);
     // divide gain matrix entries by lambda
+    const double lambda = xcsf->pred->lambda;
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            pred->matrix[i * n + j] =
-                pred->tmp_matrix2[i * n + j] / xcsf->PRED_RLS_LAMBDA;
+            pred->matrix[i * n + j] = pred->tmp_matrix2[i * n + j] / lambda;
         }
     }
 }
@@ -159,7 +159,7 @@ pred_rls_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     const struct PredRLS *pred = c->pred;
     const int n = pred->n;
-    pred_transform_input(xcsf, x, pred->tmp_input);
+    pred_transform_input(xcsf, x, xcsf->pred->x0, pred->tmp_input);
     for (int i = 0; i < xcsf->y_dim; ++i) {
         c->prediction[i] =
             blas_dot(n, &pred->weights[i * n], 1, pred->tmp_input, 1);

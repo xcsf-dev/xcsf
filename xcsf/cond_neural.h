@@ -25,6 +25,7 @@
 
 #include "condition.h"
 #include "neural.h"
+#include "neural_activations.h"
 #include "xcsf.h"
 
 /**

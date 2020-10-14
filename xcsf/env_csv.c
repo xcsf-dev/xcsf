@@ -164,9 +164,9 @@ env_csv_init(struct XCSF *xcsf, const char *filename)
     env->test_data = malloc(sizeof(struct Input));
     env_csv_input_read(filename, env->train_data, env->test_data);
     xcsf->env = env;
-    param_set_n_actions(xcsf, 1);
-    param_set_x_dim(xcsf, env->train_data->x_dim);
-    param_set_y_dim(xcsf, env->train_data->y_dim);
+    const int x_dim = env->train_data->x_dim;
+    const int y_dim = env->train_data->y_dim;
+    param_init(xcsf, x_dim, y_dim, 1);
 }
 
 /**

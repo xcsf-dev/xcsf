@@ -22,6 +22,7 @@
  */
 
 #include "cond_rectangle.h"
+#include "ea.h"
 #include "sam.h"
 #include "utils.h"
 
@@ -59,10 +60,10 @@ cond_rectangle_init(const struct XCSF *xcsf, struct Cl *c)
     struct CondRectangle *new = malloc(sizeof(struct CondRectangle));
     new->center = malloc(sizeof(double) * xcsf->x_dim);
     new->spread = malloc(sizeof(double) * xcsf->x_dim);
-    const double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
+    const double spread_max = fabs(xcsf->cond->max - xcsf->cond->min);
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        new->center[i] = rand_uniform(xcsf->COND_MIN, xcsf->COND_MAX);
-        new->spread[i] = rand_uniform(xcsf->COND_SMIN, spread_max);
+        new->center[i] = rand_uniform(xcsf->cond->min, xcsf->cond->max);
+        new->spread[i] = rand_uniform(xcsf->cond->spread_min, spread_max);
     }
     new->mu = malloc(sizeof(double) * N_MU);
     sam_init(new->mu, N_MU, MU_TYPE);
@@ -100,10 +101,10 @@ cond_rectangle_cover(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
 {
     const struct CondRectangle *cond = c->cond;
-    const double spread_max = fabs(xcsf->COND_MAX - xcsf->COND_MIN);
+    const double spread_max = fabs(xcsf->cond->max - xcsf->cond->min);
     for (int i = 0; i < xcsf->x_dim; ++i) {
         cond->center[i] = x[i];
-        cond->spread[i] = rand_uniform(xcsf->COND_SMIN, spread_max);
+        cond->spread[i] = rand_uniform(xcsf->cond->spread_min, spread_max);
     }
 }
 
@@ -112,10 +113,10 @@ cond_rectangle_update(const struct XCSF *xcsf, const struct Cl *c,
                       const double *x, const double *y)
 {
     (void) y;
-    if (xcsf->COND_ETA > 0) {
+    if (xcsf->cond->eta > 0) {
         const struct CondRectangle *cond = c->cond;
         for (int i = 0; i < xcsf->x_dim; ++i) {
-            cond->center[i] += xcsf->COND_ETA * (x[i] - cond->center[i]);
+            cond->center[i] += xcsf->cond->eta * (x[i] - cond->center[i]);
         }
     }
 }
@@ -134,7 +135,7 @@ cond_rectangle_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     const struct CondRectangle *cond1 = c1->cond;
     const struct CondRectangle *cond2 = c2->cond;
     bool changed = false;
-    if (rand_uniform(0, 1) < xcsf->P_CROSSOVER) {
+    if (rand_uniform(0, 1) < xcsf->ea->p_crossover) {
         for (int i = 0; i < xcsf->x_dim; ++i) {
             if (rand_uniform(0, 1) < 0.5) {
                 const double tmp = cond1->center[i];
@@ -164,7 +165,7 @@ cond_rectangle_mutate(const struct XCSF *xcsf, const struct Cl *c)
     for (int i = 0; i < xcsf->x_dim; ++i) {
         double orig = center[i];
         center[i] += rand_normal(0, cond->mu[0]);
-        center[i] = clamp(center[i], xcsf->COND_MIN, xcsf->COND_MAX);
+        center[i] = clamp(center[i], xcsf->cond->min, xcsf->cond->max);
         if (orig != center[i]) {
             changed = true;
         }

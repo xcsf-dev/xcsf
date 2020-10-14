@@ -97,36 +97,65 @@ xcs.THETA_DEL = 50 # min experience before fitness used in deletion
 xcs.BETA = 0.1 # update rate for error, etc.
 xcs.action('integer') # (dummy) integer actions
 
-cond_args = {
-        'output-activation': 'linear',
-        'hidden-activation': 'relu',
+condition_layers = {
+    'layer_0': { # hidden layer
+        'type': 'connected',
+        'activation': 'relu',
         'evolve-weights': True,
         'evolve-neurons': True,
         'evolve-functions': False,
         'evolve-connectivity': True,
-        'num-neurons': [10], # number of initial neurons
-        'max-neurons': [100], # maximum number of neurons
-        'max-neuron-grow': 1, # max neurons to add/remove per mutation event
-    }
-xcs.condition('neural', cond_args)
-
-pred_args = {
-        'output-activation': 'softplus',
-        'hidden-activation': 'relu',
-        'sgd-weights': True,
-        'eta': 0.1, # maximum gradient descent rate
-        'momentum': 0.9,
-        'decay': 0,
-        'evolve-eta': True,
+        'n-init': 10,
+        'n-max': 100,
+        'n-inputs': X_DIM,
+        'max-neuron-grow': 1,
+    },
+    'layer_1': { # output layer
+        'type': 'connected',
+        'activation': 'linear',
         'evolve-weights': True,
-        'evolve-neurons': False,
         'evolve-functions': False,
         'evolve-connectivity': True,
-        'num-neurons': [10], # number of initial neurons
-        'max-neurons': [10], # maximum number of neurons
-        'max-neuron-grow': 1, # max neurons to add/remove per mutation event
+        'n-init': 1,
+        'n-inputs': 10,
     }
-xcs.prediction('neural', pred_args)
+}
+xcs.condition('neural', condition_layers) # neural network conditions
+
+prediction_layers = {
+    'layer_0': { # hidden layer
+        'type': 'connected',
+        'activation': 'relu',
+        'sgd-weights': True,
+        'max-neuron-grow': 0,
+        'evolve-neurons': False,
+        'evolve-weights': True,
+        'evolve-functions': False,
+        'evolve-connectivity': True,
+        'evolve-eta': True,
+        'eta': 0.1,
+        'eta-min': 0.000001,
+        'momentum': 0.9,
+        'n-init': 10,
+        'n-max': 10,
+        'n-inputs': X_DIM,
+    },
+    'layer_1': { # output layer
+        'type': 'connected',
+        'activation': 'softplus',
+        'sgd-weights': True,
+        'evolve-weights': True,
+        'evolve-functions': False,
+        'evolve-connectivity': True,
+        'evolve-eta': True,
+        'eta': 0.1,
+        'eta-min': 0.000001,
+        'momentum': 0.9,
+        'n-init': Y_DIM,
+        'n-inputs': 10,
+    }
+}
+xcs.prediction('neural', prediction_layers) # neural network predictions
 
 xcs.print_params()
 

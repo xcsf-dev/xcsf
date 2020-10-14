@@ -84,52 +84,45 @@ struct Set {
  * @brief XCSF data structure.
  */
 struct XCSF {
-    double error; //!< Average system error
-    double msetsize; //!< Average match set size
-    double asetsize; //!< Average action set size
-    double mfrac; //!< Generalisation measure
-    double GAMMA; //!< Discount factor for multi-step reward
-    double P_EXPLORE; //!< Probability of exploring vs. exploiting
-    double ALPHA; //!< Linear coefficient used to calculate classifier accuracy
-    double BETA; //!< Learning rate for updating error, fitness, and set size
-    double DELTA; //!< Fraction of population to increase deletion vote
-    double EPS_0; //!< Target error under which classifier accuracy is set to 1
-    double ERR_REDUC; //!< Amount to reduce an offspring's error
-    double FIT_REDUC; //!< Amount to reduce an offspring's fitness
-    double INIT_ERROR; //!< Initial classifier error value
-    double INIT_FITNESS; //!< Initial classifier fitness value
-    double NU; //!< Exponent used in calculating classifier accuracy
-    double P_CROSSOVER; //!< Probability of applying crossover
-    double THETA_EA; //!< Average match set time between EA invocations
-    double EA_SELECT_SIZE; //!< Fraction of set size for tournaments
-    double COND_MAX; //!< Maximum value expected from inputs
-    double COND_MIN; //!< Minimum value expected from inputs
-    double COND_SMIN; //!< Minimum initial spread for hyperectangles etc.
-    double COND_ETA; //!< Gradient descent rate for updating the condition
-    double PRED_ETA; //!< Gradient desecnt rate for updating the prediction
-    double PRED_X0; //!< Prediction weight vector offset value
-    double PRED_RLS_SCALE_FACTOR; //!< Initial values for the RLS gain-matrix
-    double PRED_RLS_LAMBDA; //!< Forget rate for RLS
-    double PRED_MOMENTUM; //!< Momentum for gradient descent
-    double PRED_DECAY; //!< Weight decay for gradient descent
-    double HUBER_DELTA; //!< Delta parameter for Huber loss calculation.
-    double prev_reward; //!< Reward from previous step in a multi-step trial
-    double prev_pred; //!< Payoff prediction made on the previous step
-    struct EnvVtbl const *env_vptr; //!< Functions acting on environments
-    void *env; //!< Environment structure
-    double *gp_cons; //!< Stores constants available for GP trees
-    double *pa; //!< Prediction array (stores fitness weighted predictions)
-    double *nr; //!< Prediction array (stores total fitness)
-    double *prev_state; //!< Environment state on the previous step
-    double (*loss_ptr)(const struct XCSF *, const double *,
-                       const double *); //!< Error function
     struct Set pset; //!< Population set
     struct Set prev_pset; //!< Previously stored population set
     struct Set mset; //!< Match set
     struct Set aset; //!< Action set
     struct Set kset; //!< Kill set
     struct Set prev_aset; //!< Previous action set
+    struct ActArgs *act; //!< Action parameters
+    struct CondArgs *cond; //!< Condition parameters
+    struct PredArgs *pred; //!< Prediction parameters
+    struct EAArgs *ea; //!< EA parameters
+    struct EnvVtbl const *env_vptr; //!< Functions acting on environments
+    void *env; //!< Environment structure (for built-in problems)
+    double error; //!< Average system error
+    double msetsize; //!< Average match set size
+    double asetsize; //!< Average action set size
+    double mfrac; //!< Generalisation measure
+    double prev_reward; //!< Reward from previous step in a multi-step trial
+    double prev_pred; //!< Payoff prediction made on the previous step
+    double *pa; //!< Prediction array (stores fitness weighted predictions)
+    double *nr; //!< Prediction array (stores total fitness)
+    double *prev_state; //!< Environment state on the previous step
     int time; //!< Current number of EA executions
+    int pa_size; //!< Prediction array size
+    int x_dim; //!< Number of problem input variables
+    int y_dim; //!< Number of problem output variables
+    int n_actions; //!< Number of class labels / actions
+    bool explore; //!< Whether the system is currently exploring or exploiting
+    double (*loss_ptr)(const struct XCSF *, const double *,
+                       const double *); //!< Error function
+    double GAMMA; //!< Discount factor for multi-step reward
+    double P_EXPLORE; //!< Probability of exploring vs. exploiting
+    double ALPHA; //!< Linear coefficient used to calculate classifier accuracy
+    double BETA; //!< Learning rate for updating error, fitness, and set size
+    double DELTA; //!< Fraction of population to increase deletion vote
+    double EPS_0; //!< Target error under which classifier accuracy is set to 1
+    double INIT_ERROR; //!< Initial classifier error value
+    double INIT_FITNESS; //!< Initial classifier fitness value
+    double NU; //!< Exponent used in calculating classifier accuracy
+    double HUBER_DELTA; //!< Delta parameter for Huber loss calculation.
     int OMP_NUM_THREADS; //!< Number of threads for parallel processing
     int MAX_TRIALS; //!< Number of problem instances to run in one experiment
     int PERF_TRIALS; //!< Number of problem instances to avg performance output
@@ -137,47 +130,11 @@ struct XCSF {
     int LOSS_FUNC; //!< Which loss/error function to apply
     int TELETRANSPORTATION; //!< Maximum steps for a multi-step problem
     int THETA_DEL; //!< Min experience before fitness used during deletion
-    int COND_TYPE; //!< Classifier condition type: hyperrectangles, etc.
-    int PRED_TYPE; //!< Classifier prediction type: least squares, etc.
-    int ACT_TYPE; //!< Classifier action type
     int M_PROBATION; //!< Trials since creation a cl must match at least 1 input
-    int LAMBDA; //!< Number of offspring to create each EA invocation
-    int EA_SELECT_TYPE; //!< Roulette or tournament for EA parental selection
-    int COND_BITS; //!< Bits per float to binarise inputs for ternary conditions
-    int MAX_K; //!< Maximum number of connections a DGP node may have
-    int MAX_T; //!< Maximum number of cycles to update a DGP graph
-    int GP_NUM_CONS; //!< Number of constants available for GP trees
-    int GP_INIT_DEPTH; //!< Initial depth of GP trees
-    int MAX_NEURON_GROW; //!< Max num of neurons to add/remove during mutation
-    int COND_OUTPUT_ACTIVATION; //!< Condition output activation function
-    int COND_HIDDEN_ACTIVATION; //!< Condition hidden activation function
-    int PRED_OUTPUT_ACTIVATION; //!< Prediction output activation function
-    int PRED_HIDDEN_ACTIVATION; //!< Prediction hidden activation function
     int THETA_SUB; //!< Minimum experience of a classifier to become a subsumer
-    int pa_size; //!< Prediction array size
-    int x_dim; //!< Number of problem input variables
-    int y_dim; //!< Number of problem output variables
-    int n_actions; //!< Number of class labels / actions
-    int COND_NUM_NEURONS[MAX_LAYERS]; //!< Condition initial number of neurons
-    int COND_MAX_NEURONS[MAX_LAYERS]; //!< Condition maximum number of neurons
-    int PRED_NUM_NEURONS[MAX_LAYERS]; //!< Prediction initial number of neurons
-    int PRED_MAX_NEURONS[MAX_LAYERS]; //!< Prediction maximum number of neurons
     bool POP_INIT; //!< Pop initially empty or filled with random conditions
-    bool STATEFUL; //!< Whether classifiers should retain state across trials
-    bool COND_EVOLVE_WEIGHTS; //!< Evolve condition weights
-    bool COND_EVOLVE_NEURONS; //!< Evolve number of condition neurons
-    bool COND_EVOLVE_FUNCTIONS; //!< Evolve condition activations
-    bool COND_EVOLVE_CONNECTIVITY; //!< Evolve condition connections
-    bool PRED_RESET; //!< Reset offspring predictions instead of copying
-    bool PRED_EVOLVE_WEIGHTS; //!< Evolve prediction weights
-    bool PRED_EVOLVE_NEURONS; //!< Evolve number of prediction neurons
-    bool PRED_EVOLVE_FUNCTIONS; //!< Evolve prediction activations
-    bool PRED_EVOLVE_CONNECTIVITY; //!< Evolve prediction connections
-    bool PRED_EVOLVE_ETA; //!< Evolve prediction gradient descent rates
-    bool PRED_SGD_WEIGHTS; //!< Whether to use gradient descent for predictions
-    bool EA_SUBSUMPTION; //!< Whether to try and subsume offspring classifiers
     bool SET_SUBSUMPTION; //!< Whether to perform match set subsumption
-    bool explore; //!< Whether the system is currently exploring or exploiting
+    bool STATEFUL; //!< Whether classifiers should retain state across trials
 };
 
 /**

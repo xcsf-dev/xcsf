@@ -30,6 +30,7 @@ extern "C" {
 #include "../xcsf/neural_layer.h"
 #include "../xcsf/neural_layer_convolutional.h"
 #include "../xcsf/param.h"
+#include "../xcsf/prediction.h"
 #include "../xcsf/utils.h"
 #include "../xcsf/xcsf.h"
 #include <math.h>
@@ -46,17 +47,26 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     struct Net net;
     struct Layer *l;
     rand_init();
-    param_init(&xcsf);
-    param_set_x_dim(&xcsf, 10);
-    param_set_y_dim(&xcsf, 2);
-    param_set_pred_type(&xcsf, PRED_TYPE_NEURAL);
-    param_set_pred_eta(&xcsf, 0.1);
-    param_set_pred_momentum(&xcsf, 0.9);
-    neural_init(&xcsf, &net);
-    uint32_t o = 0;
-    o |= LAYER_SGD_WEIGHTS;
-    l = neural_layer_convolutional_init(&xcsf, 4, 4, 1, 2, 3, 1, 1, RELU, o);
-    neural_push(&xcsf, &net, l);
+    param_init(&xcsf, 10, 2, 1);
+    pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+    neural_init(&net);
+    struct LayerArgs args;
+    layer_args_init(&args);
+    args.layer_type = CONVOLUTIONAL;
+    args.function = RELU;
+    args.width = 4;
+    args.height = 4;
+    args.channels = 1;
+    args.n_filters = 2;
+    args.size = 3;
+    args.stride = 1;
+    args.pad = 1;
+    args.decay = 0;
+    args.eta = 0.1;
+    args.momentum = 0.9;
+    args.sgd_weights = true;
+    l = layer_init(&args);
+    neural_push(&net, l);
     CHECK_EQ(l->function, RELU);
     CHECK_EQ(l->n_filters, 2);
     CHECK_EQ(l->size, 3);
@@ -69,7 +79,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     CHECK_EQ(l->n_outputs, 32);
     CHECK_EQ(l->n_weights, 18);
     CHECK_EQ(l->eta, 0.1);
-    CHECK_EQ(l->options, o);
+    CHECK_EQ(l->momentum, 0.9);
     /* test one forward pass of input */
     const double orig_weights[18] = { -0.3494757, 0.37103638,  0.43885502,
                                       0.11762521, 0.35432652,  0.17391846,
@@ -136,8 +146,8 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
                 }
             }
         }
-        neural_layer_convolutional_backward(&xcsf, l, x, 0);
-        neural_layer_convolutional_update(&xcsf, l);
+        neural_layer_convolutional_backward(l, x, 0);
+        neural_layer_convolutional_update(l);
     }
     neural_layer_convolutional_forward(&xcsf, l, x);
     double conv_error = 0;

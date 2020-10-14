@@ -134,11 +134,9 @@ env_maze_init(struct XCSF *xcsf, const char *filename)
     }
     env->ysize = y;
     env->state = malloc(sizeof(double) * 8);
-    param_set_n_actions(xcsf, 8);
-    param_set_x_dim(xcsf, 8);
-    param_set_y_dim(xcsf, 1);
     xcsf->env = env;
     fclose(fp);
+    param_init(xcsf, 8, 1, 8);
 }
 
 /**

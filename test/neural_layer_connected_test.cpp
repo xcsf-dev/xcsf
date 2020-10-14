@@ -30,6 +30,7 @@ extern "C" {
 #include "../xcsf/neural_layer.h"
 #include "../xcsf/neural_layer_connected.h"
 #include "../xcsf/param.h"
+#include "../xcsf/prediction.h"
 #include "../xcsf/utils.h"
 #include "../xcsf/xcsf.h"
 #include <math.h>
@@ -46,26 +47,29 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     struct Net net;
     struct Layer *l;
     rand_init();
-    param_init(&xcsf);
-    param_set_x_dim(&xcsf, 10);
-    param_set_y_dim(&xcsf, 2);
-    param_set_pred_type(&xcsf, PRED_TYPE_NEURAL);
-    param_set_pred_eta(&xcsf, 0.1);
-    param_set_pred_momentum(&xcsf, 0.9);
-    param_set_pred_decay(&xcsf, 0);
-    neural_init(&xcsf, &net);
-    uint32_t o = 0;
-    o |= LAYER_SGD_WEIGHTS;
-    o |= LAYER_EVOLVE_WEIGHTS;
-    l = neural_layer_connected_init(&xcsf, 10, 2, 2, LOGISTIC, o);
-    neural_push(&xcsf, &net, l);
+    param_init(&xcsf, 10, 2, 1);
+    pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+    neural_init(&net);
+    struct LayerArgs args;
+    layer_args_init(&args);
+    args.layer_type = CONNECTED;
+    args.function = LOGISTIC;
+    args.n_inputs = 10;
+    args.n_init = 2;
+    args.n_max = 2;
+    args.eta = 0.1;
+    args.momentum = 0.9;
+    args.decay = 0;
+    args.sgd_weights = true;
+    l = layer_init(&args);
+    neural_push(&net, l);
     CHECK_EQ(l->function, LOGISTIC);
     CHECK_EQ(l->n_inputs, 10);
     CHECK_EQ(l->n_outputs, 2);
     CHECK_EQ(l->max_outputs, 2);
     CHECK_EQ(l->n_weights, 20);
     CHECK_EQ(l->eta, 0.1);
-    CHECK_EQ(l->options, o);
+    CHECK_EQ(l->momentum, 0.9);
     /* test one forward pass of input */
     const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
                            -0.0814486626, 0.0923277094,  0.2779675621,
@@ -101,8 +105,8 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     for (int i = 0; i < l->n_outputs; ++i) {
         l->delta[i] = y[i] - l->output[i];
     }
-    neural_layer_connected_backward(&xcsf, l, x, 0);
-    neural_layer_connected_update(&xcsf, l);
+    neural_layer_connected_backward(l, x, 0);
+    neural_layer_connected_update(l);
     double weight_error = 0;
     for (int i = 0; i < l->n_weights; ++i) {
         weight_error += fabs(l->weights[i] - new_weights[i]);
@@ -127,8 +131,8 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
         for (int j = 0; j < l->n_outputs; ++j) {
             l->delta[j] = y[j] - l->output[j];
         }
-        neural_layer_connected_backward(&xcsf, l, x, 0);
-        neural_layer_connected_update(&xcsf, l);
+        neural_layer_connected_backward(l, x, 0);
+        neural_layer_connected_update(l);
     }
     neural_layer_connected_forward(&xcsf, l, x);
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);

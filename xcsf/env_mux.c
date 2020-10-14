@@ -51,10 +51,8 @@ env_mux_init(struct XCSF *xcsf, const int bits)
     --(env->pos_bits);
     const int n = env->pos_bits + (int) pow(2, env->pos_bits);
     env->state = malloc(sizeof(double) * n);
-    param_set_n_actions(xcsf, 2);
-    param_set_x_dim(xcsf, n);
-    param_set_y_dim(xcsf, 1);
     xcsf->env = env;
+    param_init(xcsf, n, 1, 2);
 }
 
 /**

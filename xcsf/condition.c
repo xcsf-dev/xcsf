@@ -39,7 +39,7 @@
 void
 condition_set(const struct XCSF *xcsf, struct Cl *c)
 {
-    switch (xcsf->COND_TYPE) {
+    switch (xcsf->cond->type) {
         case COND_TYPE_DUMMY:
             c->cond_vptr = &cond_dummy_vtbl;
             break;
@@ -70,7 +70,7 @@ condition_set(const struct XCSF *xcsf, struct Cl *c)
             c->act_vptr = &rule_neural_act_vtbl;
             break;
         default:
-            printf("Invalid condition type specified: %d\n", xcsf->COND_TYPE);
+            printf("Invalid condition type specified: %d\n", xcsf->cond->type);
             exit(EXIT_FAILURE);
     }
 }
@@ -150,4 +150,251 @@ condition_type_as_int(const char *type)
     }
     printf("condition_type_as_int(): invalid type: %s\n", type);
     exit(EXIT_FAILURE);
+}
+
+/**
+ * @brief Initialises default tree GP condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+cond_param_gp_defaults(struct XCSF *xcsf)
+{
+    struct GPTreeArgs *args = malloc(sizeof(struct GPTreeArgs));
+    tree_args_init(args);
+    tree_param_set_max(args, 1);
+    tree_param_set_min(args, 0);
+    tree_param_set_init_depth(args, 5);
+    tree_param_set_max_len(args, 10000);
+    tree_param_set_n_constants(args, 100);
+    tree_param_set_n_inputs(args, xcsf->x_dim);
+    tree_args_build_constants(args);
+    xcsf->cond->targs = args;
+}
+
+/**
+ * @brief Initialises default DGP condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+cond_param_dgp_defaults(struct XCSF *xcsf)
+{
+    struct DGPArgs *args = malloc(sizeof(struct DGPArgs));
+    graph_args_init(args);
+    graph_param_set_max_k(args, 2);
+    graph_param_set_max_t(args, 10);
+    graph_param_set_n(args, 10);
+    graph_param_set_n_inputs(args, xcsf->x_dim);
+    xcsf->cond->dargs = args;
+}
+
+/**
+ * @brief Initialises default neural condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+cond_param_neural_defaults(struct XCSF *xcsf)
+{
+    // hidden layer
+    struct LayerArgs *args = malloc(sizeof(struct LayerArgs));
+    layer_args_init(args);
+    args->layer_type = CONNECTED;
+    args->n_inputs = xcsf->x_dim;
+    args->n_init = 1;
+    args->n_max = 100;
+    args->max_neuron_grow = 1;
+    args->function = LOGISTIC;
+    args->evolve_weights = true;
+    args->evolve_neurons = true;
+    args->evolve_connect = true;
+    xcsf->cond->largs = args;
+    // output layer
+    args->next = layer_args_copy(args);
+    args->next->n_inputs = args->n_init;
+    args->next->n_max = 1;
+    args->next->evolve_neurons = false;
+}
+
+/**
+ * @brief Initialises default condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+cond_param_defaults(struct XCSF *xcsf)
+{
+    cond_param_set_type(xcsf, COND_TYPE_HYPERRECTANGLE);
+    cond_param_set_eta(xcsf, 0);
+    cond_param_set_min(xcsf, 0);
+    cond_param_set_max(xcsf, 1);
+    cond_param_set_spread_min(xcsf, 0.1);
+    cond_param_set_p_dontcare(xcsf, 0.5);
+    cond_param_set_bits(xcsf, 1);
+    cond_param_neural_defaults(xcsf);
+    cond_param_dgp_defaults(xcsf);
+    cond_param_gp_defaults(xcsf);
+}
+
+/**
+ * @brief Prints ternary condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+cond_param_print_ternary(const struct XCSF *xcsf)
+{
+    const struct CondArgs *cond = xcsf->cond;
+    printf(", COND_P_DONTCARE=%f", cond->p_dontcare);
+    printf(", COND_BITS=%d", cond->bits);
+}
+
+/**
+ * @brief Prints center-spread representation condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+cond_param_print_csr(const struct XCSF *xcsf)
+{
+    const struct CondArgs *cond = xcsf->cond;
+    printf(", COND_ETA=%f", cond->eta);
+    printf(", COND_MIN=%f", cond->min);
+    printf(", COND_MAX=%f", cond->max);
+    printf(", COND_SPREAD_MIN=%f", cond->spread_min);
+}
+
+/**
+ * @brief Prints Tree GP condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+cond_param_print_gp(const struct XCSF *xcsf)
+{
+    const struct GPTreeArgs *arg = xcsf->cond->targs;
+    printf(", COND_GP={");
+    tree_args_print(arg);
+    printf("}");
+}
+
+/**
+ * @brief Prints DGP graph condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+cond_param_print_dgp(const struct XCSF *xcsf)
+{
+    const struct DGPArgs *arg = xcsf->cond->dargs;
+    printf(", COND_DGP={");
+    graph_args_print(arg);
+    printf("}");
+}
+
+/**
+ * @brief Prints neural network condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+cond_param_print_neural(const struct XCSF *xcsf)
+{
+    const struct LayerArgs *arg = xcsf->cond->largs;
+    int cnt = 0;
+    while (arg != NULL) {
+        printf(", COND_LAYER_%d={", cnt);
+        layer_args_print(arg);
+        arg = arg->next;
+        printf("}");
+        ++cnt;
+    }
+}
+
+/**
+ * @brief Prints condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+cond_param_print(const struct XCSF *xcsf)
+{
+    const struct CondArgs *cond = xcsf->cond;
+    printf(", COND_TYPE=%s", condition_type_as_string(cond->type));
+    switch (cond->type) {
+        case COND_TYPE_TERNARY:
+            cond_param_print_ternary(xcsf);
+            break;
+        case COND_TYPE_HYPERELLIPSOID:
+        case COND_TYPE_HYPERRECTANGLE:
+            cond_param_print_csr(xcsf);
+            break;
+        case COND_TYPE_GP:
+            cond_param_print_gp(xcsf);
+            break;
+        case COND_TYPE_DGP:
+            cond_param_print_dgp(xcsf);
+            break;
+        case COND_TYPE_NEURAL:
+            cond_param_print_neural(xcsf);
+            break;
+        default:
+            break;
+    }
+}
+
+/**
+ * @brief Saves condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
+ * @return The total number of elements written.
+ */
+size_t
+cond_param_save(const struct XCSF *xcsf, FILE *fp)
+{
+    const struct CondArgs *cond = xcsf->cond;
+    size_t s = 0;
+    s += fwrite(&cond->type, sizeof(int), 1, fp);
+    s += fwrite(&cond->eta, sizeof(double), 1, fp);
+    s += fwrite(&cond->min, sizeof(double), 1, fp);
+    s += fwrite(&cond->max, sizeof(double), 1, fp);
+    s += fwrite(&cond->spread_min, sizeof(double), 1, fp);
+    s += fwrite(&cond->p_dontcare, sizeof(double), 1, fp);
+    s += fwrite(&cond->bits, sizeof(int), 1, fp);
+    s += graph_args_save(cond->dargs, fp);
+    s += tree_args_save(cond->targs, fp);
+    return s;
+}
+
+/**
+ * @brief Loads condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
+ * @return The total number of elements written.
+ */
+size_t
+cond_param_load(struct XCSF *xcsf, FILE *fp)
+{
+    struct CondArgs *cond = xcsf->cond;
+    size_t s = 0;
+    s += fread(&cond->type, sizeof(int), 1, fp);
+    s += fread(&cond->eta, sizeof(double), 1, fp);
+    s += fread(&cond->min, sizeof(double), 1, fp);
+    s += fread(&cond->max, sizeof(double), 1, fp);
+    s += fread(&cond->spread_min, sizeof(double), 1, fp);
+    s += fread(&cond->p_dontcare, sizeof(double), 1, fp);
+    s += fread(&cond->bits, sizeof(int), 1, fp);
+    s += graph_args_load(cond->dargs, fp);
+    s += tree_args_load(cond->targs, fp);
+    return s;
+}
+
+/**
+ * @brief Frees condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+cond_param_free(struct XCSF *xcsf)
+{
+    struct CondArgs *cond = xcsf->cond;
+    tree_args_free(cond->targs);
+    free(cond->targs);
+    free(cond->dargs);
+    struct LayerArgs *args = cond->largs;
+    while (args != NULL) {
+        cond->largs = args->next;
+        free(args);
+    }
+    free(cond->largs);
 }

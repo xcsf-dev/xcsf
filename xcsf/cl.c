@@ -24,6 +24,7 @@
 #include "cl.h"
 #include "action.h"
 #include "condition.h"
+#include "ea.h"
 #include "loss.h"
 #include "prediction.h"
 #include "utils.h"
@@ -66,7 +67,7 @@ cl_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
     dest->act_vptr = src->act_vptr;
     act_copy(xcsf, dest, src);
     cond_copy(xcsf, dest, src);
-    if (xcsf->PRED_RESET) {
+    if (xcsf->ea->pred_reset) {
         pred_init(xcsf, dest);
     } else {
         pred_copy(xcsf, dest, src);

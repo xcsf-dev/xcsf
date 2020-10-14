@@ -80,17 +80,16 @@ layer_set_vptr(struct Layer *l)
 
 /**
  * @brief Mutates the gradient descent rate of a neural layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The neural network layer to mutate.
  * @param [in] mu The rate of mutation.
  * @return Whether any alterations were made.
  */
 bool
-layer_mutate_eta(const struct XCSF *xcsf, struct Layer *l, const double mu)
+layer_mutate_eta(struct Layer *l, const double mu)
 {
     const double orig = l->eta;
     l->eta += rand_normal(0, mu);
-    l->eta = clamp(l->eta, ETA_MIN, xcsf->PRED_ETA);
+    l->eta = clamp(l->eta, l->eta_min, l->eta_max);
     if (l->eta != orig) {
         return true;
     }
@@ -99,20 +98,18 @@ layer_mutate_eta(const struct XCSF *xcsf, struct Layer *l, const double mu)
 
 /**
  * @brief Returns the number of neurons to add or remove from a layer
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The neural network layer to mutate.
  * @param [in] mu The rate of mutation.
  * @return The number of neurons to be added or removed.
  */
 int
-layer_mutate_neurons(const struct XCSF *xcsf, const struct Layer *l,
-                     const double mu)
+layer_mutate_neurons(const struct Layer *l, const double mu)
 {
     int n = 0;
     if (rand_uniform(0, 0.1) < mu) { // 10x higher probability
         while (n == 0) {
             const double m = clamp(rand_normal(0, 0.5), -1, 1);
-            n = (int) round(m * xcsf->MAX_NEURON_GROW);
+            n = (int) round(m * l->max_neuron_grow);
         }
         if (n < 0 && l->n_outputs + n < 1) {
             n = -(l->n_outputs - 1);
@@ -327,13 +324,11 @@ layer_weight_print(const struct Layer *l, const bool print_weights)
 
 /**
  * @brief Randomises a layer's weights and biases.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The neural network layer to randomise.
  */
 void
-layer_weight_rand(const struct XCSF *xcsf, struct Layer *l)
+layer_weight_rand(struct Layer *l)
 {
-    (void) xcsf;
     l->n_active = l->n_weights;
     for (int i = 0; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 1);
@@ -380,16 +375,15 @@ layer_calc_n_active(struct Layer *l)
 
 /**
  * @brief Initialises a layer's gradient descent rate.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to initialise.
  */
 void
-layer_init_eta(const struct XCSF *xcsf, struct Layer *l)
+layer_init_eta(struct Layer *l)
 {
     if (l->options & LAYER_EVOLVE_ETA) {
-        l->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
+        l->eta = rand_uniform(l->eta_min, l->eta_max);
     } else {
-        l->eta = xcsf->PRED_ETA;
+        l->eta = l->eta_max;
     }
 }
 
@@ -398,7 +392,7 @@ layer_init_eta(const struct XCSF *xcsf, struct Layer *l)
  * @param [in] l The layer to initialise.
  */
 void
-layer_init(struct Layer *l)
+layer_defaults(struct Layer *l)
 {
     l->layer_type = 0;
     l->state = NULL;
@@ -412,9 +406,14 @@ layer_init(struct Layer *l)
     l->delta = NULL;
     l->mu = NULL;
     l->eta = 0;
+    l->eta_max = 0;
+    l->eta_min = 0;
+    l->momentum = 0;
+    l->decay = 0;
     l->n_inputs = 0;
     l->n_outputs = 0;
     l->max_outputs = 0;
+    l->max_neuron_grow = 0;
     l->n_weights = 0;
     l->n_biases = 0;
     l->n_active = 0;
@@ -459,4 +458,304 @@ layer_init(struct Layer *l)
     l->indexes = NULL;
     l->n_filters = 0;
     l->workspace_size = 0;
+}
+
+/**
+ * @brief Sets layer parameters to default values.
+ * @param [in] args The layer parameters to initialise.
+ */
+void
+layer_args_init(struct LayerArgs *args)
+{
+    args->layer_type = CONNECTED;
+    args->n_inputs = 0;
+    args->n_init = 0;
+    args->n_max = 0;
+    args->max_neuron_grow = 0;
+    args->function = LOGISTIC;
+    args->recurrent_function = LOGISTIC;
+    args->height = 0;
+    args->width = 0;
+    args->channels = 0;
+    args->n_filters = 0;
+    args->size = 0;
+    args->stride = 0;
+    args->pad = 0;
+    args->eta = 0;
+    args->eta_min = 0;
+    args->momentum = 0;
+    args->decay = 0;
+    args->probability = 0;
+    args->scale = 0;
+    args->evolve_weights = false;
+    args->evolve_neurons = false;
+    args->evolve_functions = false;
+    args->evolve_eta = false;
+    args->evolve_connect = false;
+    args->sgd_weights = false;
+    args->next = NULL;
+}
+
+/**
+ * @brief Creates and returns a copy of specified layer parameters.
+ * @param [in] src The layer parameters to be copied.
+ */
+struct LayerArgs *
+layer_args_copy(const struct LayerArgs *src)
+{
+    struct LayerArgs *new = malloc(sizeof(struct LayerArgs));
+    new->layer_type = src->layer_type;
+    new->n_inputs = src->n_inputs;
+    new->n_init = src->n_init;
+    new->n_max = src->n_max;
+    new->max_neuron_grow = src->max_neuron_grow;
+    new->function = src->function;
+    new->recurrent_function = src->recurrent_function;
+    new->height = src->height;
+    new->width = src->width;
+    new->channels = src->channels;
+    new->n_filters = src->n_filters;
+    new->size = src->size;
+    new->stride = src->stride;
+    new->pad = src->pad;
+    new->eta = src->eta;
+    new->eta_min = src->eta_min;
+    new->momentum = src->momentum;
+    new->decay = src->decay;
+    new->probability = src->probability;
+    new->scale = src->scale;
+    new->evolve_weights = src->evolve_weights;
+    new->evolve_neurons = src->evolve_neurons;
+    new->evolve_functions = src->evolve_functions;
+    new->evolve_eta = src->evolve_eta;
+    new->evolve_connect = src->evolve_connect;
+    new->sgd_weights = src->sgd_weights;
+    new->next = NULL;
+    return new;
+}
+
+/**
+ * @brief Prints layer input parameters.
+ * @param [in] args The layer parameters to print.
+ */
+static void
+layer_args_print_inputs(const struct LayerArgs *args)
+{
+    printf(", n_inputs=%d", args->n_inputs);
+    switch (args->layer_type) {
+        case CONVOLUTIONAL:
+        case MAXPOOL:
+        case AVGPOOL:
+        case UPSAMPLE:
+            printf(", height=%d", args->height);
+            printf(", width=%d", args->width);
+            printf(", channels=%d", args->channels);
+            printf(", size=%d", args->size);
+            printf(", stride=%d", args->stride);
+            printf(", pad=%d", args->pad);
+            break;
+    }
+}
+
+/**
+ * @brief Prints layer gradient descent parameters.
+ * @param [in] args The layer parameters to print.
+ */
+static void
+layer_args_print_sgd(const struct LayerArgs *args)
+{
+    if (args->sgd_weights) {
+        printf(", sgd_weights=true");
+        printf(", eta=%f", args->eta);
+        if (args->evolve_eta) {
+            printf(", evolve_eta=true");
+            printf(", eta_min=%f", args->eta_min);
+        } else {
+            printf(", evolve_eta=false");
+        }
+        printf(", momentum=%f", args->momentum);
+        printf(", decay=%f", args->decay);
+    } else {
+        printf(", sgd_weights=false");
+    }
+}
+
+/**
+ * @brief Prints layer evolutionary operator parameters.
+ * @param [in] args The layer parameters to print.
+ */
+static void
+layer_args_print_evo(const struct LayerArgs *args)
+{
+    printf(", evolve_weights=");
+    args->evolve_weights ? printf("true") : printf("false");
+    printf(", evolve_neurons=");
+    args->evolve_neurons ? printf("true") : printf("false");
+    printf(", evolve_functions=");
+    args->evolve_functions ? printf("true") : printf("false");
+    printf(", evolve_connect=");
+    args->evolve_connect ? printf("true") : printf("false");
+    if (args->evolve_neurons) {
+        printf(", n_max=%d", args->n_max);
+        printf(", max_neuron_grow=%d", args->max_neuron_grow);
+    }
+}
+
+/**
+ * @brief Prints layer activation function parameters.
+ * @param [in] args The layer parameters to print.
+ */
+static void
+layer_args_print_activation(const struct LayerArgs *args)
+{
+    switch (args->layer_type) {
+        case AVGPOOL:
+        case MAXPOOL:
+        case UPSAMPLE:
+        case DROPOUT:
+        case NOISE:
+        case SOFTMAX:
+            return;
+    }
+    printf(", activation=%s", neural_activation_string(args->function));
+    if (args->layer_type == LSTM) {
+        printf(", recurrent_activation=%s",
+               neural_activation_string(args->recurrent_function));
+    }
+}
+
+/**
+ * @brief Prints layer parameters.
+ * @param [in] args The layer parameters to print.
+ */
+void
+layer_args_print(const struct LayerArgs *args)
+{
+    printf("layer_type=%s", layer_type_as_string(args->layer_type));
+    layer_args_print_activation(args);
+    layer_args_print_inputs(args);
+    printf(", n_init=%d", args->n_init);
+    if (args->layer_type == CONVOLUTIONAL) {
+        printf(", n_filters=%d", args->n_filters);
+    } else if (args->layer_type == DROPOUT || args->layer_type == NOISE) {
+        printf(", probability=%f", args->probability);
+    }
+    switch (args->layer_type) {
+        case NOISE:
+        case DROPOUT:
+        case SOFTMAX:
+            printf(", scale=%f", args->scale);
+            return;
+        default:
+            break;
+    }
+    layer_args_print_evo(args);
+    layer_args_print_sgd(args);
+}
+
+/**
+ * @brief Returns a string representation of a layer type from an integer.
+ * @param [in] type Integer representation of a layer type.
+ * @return String representing the name of the layer type.
+ */
+const char *
+layer_type_as_string(const int type)
+{
+    switch (type) {
+        case CONNECTED:
+            return STRING_CONNECTED;
+        case DROPOUT:
+            return STRING_DROPOUT;
+        case NOISE:
+            return STRING_NOISE;
+        case SOFTMAX:
+            return STRING_SOFTMAX;
+        case RECURRENT:
+            return STRING_RECURRENT;
+        case LSTM:
+            return STRING_LSTM;
+        case MAXPOOL:
+            return STRING_MAXPOOL;
+        case CONVOLUTIONAL:
+            return STRING_CONVOLUTIONAL;
+        case AVGPOOL:
+            return STRING_AVGPOOL;
+        case UPSAMPLE:
+            return STRING_UPSAMPLE;
+        default:
+            printf("layer_type_as_string(): invalid type: %d\n", type);
+            exit(EXIT_FAILURE);
+    }
+}
+
+/**
+ * @brief Returns the integer representation of a layer type given a name.
+ * @param [in] type String representation of a layer type.
+ * @return Integer representing the layer type.
+ */
+int
+layer_type_as_int(const char *type)
+{
+    if (strncmp(type, STRING_CONNECTED, 10) == 0) {
+        return CONNECTED;
+    }
+    if (strncmp(type, STRING_DROPOUT, 8) == 0) {
+        return DROPOUT;
+    }
+    if (strncmp(type, STRING_SOFTMAX, 8) == 0) {
+        return SOFTMAX;
+    }
+    if (strncmp(type, STRING_NOISE, 6) == 0) {
+        return NOISE;
+    }
+    if (strncmp(type, STRING_RECURRENT, 9) == 0) {
+        return RECURRENT;
+    }
+    if (strncmp(type, STRING_LSTM, 5) == 0) {
+        return LSTM;
+    }
+    if (strncmp(type, STRING_MAXPOOL, 8) == 0) {
+        return MAXPOOL;
+    }
+    if (strncmp(type, STRING_CONVOLUTIONAL, 14) == 0) {
+        return CONVOLUTIONAL;
+    }
+    if (strncmp(type, STRING_AVGPOOL, 8) == 0) {
+        return AVGPOOL;
+    }
+    if (strncmp(type, STRING_UPSAMPLE, 9) == 0) {
+        return UPSAMPLE;
+    }
+    printf("layer_type_as_int(): invalid type: %s\n", type);
+    exit(EXIT_FAILURE);
+}
+
+/**
+ * @brief Returns a bitstring representing the permissions granted by a layer.
+ * @param [in] args Layer initialisation parameters.
+ * @return Bitstring representing the layer options.
+ */
+uint32_t
+layer_opt(const struct LayerArgs *args)
+{
+    uint32_t lopt = 0;
+    if (args->evolve_eta) {
+        lopt |= LAYER_EVOLVE_ETA;
+    }
+    if (args->sgd_weights) {
+        lopt |= LAYER_SGD_WEIGHTS;
+    }
+    if (args->evolve_weights) {
+        lopt |= LAYER_EVOLVE_WEIGHTS;
+    }
+    if (args->evolve_neurons) {
+        lopt |= LAYER_EVOLVE_NEURONS;
+    }
+    if (args->evolve_functions) {
+        lopt |= LAYER_EVOLVE_FUNCTIONS;
+    }
+    if (args->evolve_connect) {
+        lopt |= LAYER_EVOLVE_CONNECT;
+    }
+    return lopt;
 }

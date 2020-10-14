@@ -44,58 +44,42 @@ malloc_layer_arrays(struct Layer *l)
 }
 
 /**
- * @brief Creates and initialises a 2D maxpooling layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] h The input height.
- * @param [in] w The input width.
- * @param [in] c The number of input channels.
- * @param [in] size The size of the pooling window.
- * @param [in] stride The strides of the pooling operation.
- * @param [in] pad The padding of the pooling operation.
- * @return A pointer to the new layer.
+ * @brief Initialises a 2D maxpooling layer.
+ * @param [in] l Layer to initialise.
+ * @param [in] args Parameters to initialise the layer.
  */
-struct Layer *
-neural_layer_maxpool_init(const struct XCSF *xcsf, const int h, const int w,
-                          const int c, const int size, const int stride,
-                          const int pad)
+void
+neural_layer_maxpool_init(struct Layer *l, const struct LayerArgs *args)
 {
-    (void) xcsf;
-    struct Layer *l = malloc(sizeof(struct Layer));
-    layer_init(l);
-    l->layer_type = MAXPOOL;
-    l->layer_vptr = &layer_maxpool_vtbl;
-    l->height = h;
-    l->width = w;
-    l->channels = c;
-    l->pad = pad;
-    l->out_w = (w + pad - size) / stride + 1;
-    l->out_h = (h + pad - size) / stride + 1;
-    l->out_c = c;
+    l->height = args->height;
+    l->width = args->width;
+    l->channels = args->channels;
+    l->pad = args->pad;
+    l->size = args->size;
+    l->stride = args->stride;
+    l->out_w = (l->width + l->pad - l->size) / l->stride + 1;
+    l->out_h = (l->height + l->pad - l->size) / l->stride + 1;
+    l->out_c = l->channels;
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->max_outputs = l->n_outputs;
-    l->n_inputs = h * w * c;
-    l->size = size;
-    l->stride = stride;
+    l->n_inputs = l->height * l->width * l->channels;
     malloc_layer_arrays(l);
-    return l;
 }
 
 /**
  * @brief Initialises and creates a copy of one maxpooling layer from another.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] src The source layer.
  * @return A pointer to the new layer.
  */
 struct Layer *
-neural_layer_maxpool_copy(const struct XCSF *xcsf, const struct Layer *src)
+neural_layer_maxpool_copy(const struct Layer *src)
 {
-    (void) xcsf;
     if (src->layer_type != MAXPOOL) {
         printf("neural_layer_maxpool_copy(): incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
-    layer_init(l);
+    layer_defaults(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
     l->height = src->height;
@@ -116,13 +100,11 @@ neural_layer_maxpool_copy(const struct XCSF *xcsf, const struct Layer *src)
 
 /**
  * @brief Free memory used by a maxpooling layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to be freed.
  */
 void
-neural_layer_maxpool_free(const struct XCSF *xcsf, const struct Layer *l)
+neural_layer_maxpool_free(const struct Layer *l)
 {
-    (void) xcsf;
     free(l->indexes);
     free(l->output);
     free(l->delta);
@@ -130,13 +112,11 @@ neural_layer_maxpool_free(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Dummy function since maxpooling layers have no weights.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l A maxpooling layer.
  */
 void
-neural_layer_maxpool_rand(const struct XCSF *xcsf, struct Layer *l)
+neural_layer_maxpool_rand(struct Layer *l)
 {
-    (void) xcsf;
     (void) l;
 }
 
@@ -198,16 +178,14 @@ neural_layer_maxpool_forward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Backward propagates a maxpooling layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to backward propagate.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's error.
  */
 void
-neural_layer_maxpool_backward(const struct XCSF *xcsf, const struct Layer *l,
-                              const double *input, double *delta)
+neural_layer_maxpool_backward(const struct Layer *l, const double *input,
+                              double *delta)
 {
-    (void) xcsf;
     (void) input;
     if (delta) {
         for (int i = 0; i < l->n_outputs; ++i) {
@@ -218,41 +196,34 @@ neural_layer_maxpool_backward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Dummy function since a maxpooling layer has no weights.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l A maxpooling layer.
  */
 void
-neural_layer_maxpool_update(const struct XCSF *xcsf, const struct Layer *l)
+neural_layer_maxpool_update(const struct Layer *l)
 {
-    (void) xcsf;
     (void) l;
 }
 
 /**
  * @brief Dummy function since a maxpooling layer cannot be mutated.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l A maxpooling layer.
  * @return False.
  */
 bool
-neural_layer_maxpool_mutate(const struct XCSF *xcsf, struct Layer *l)
+neural_layer_maxpool_mutate(struct Layer *l)
 {
-    (void) xcsf;
     (void) l;
     return false;
 }
 
 /**
  * @brief Resizes a maxpooling layer if the previous layer has changed size.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to resize.
  * @param [in] prev The layer previous to the one being resized.
  */
 void
-neural_layer_maxpool_resize(const struct XCSF *xcsf, struct Layer *l,
-                            const struct Layer *prev)
+neural_layer_maxpool_resize(struct Layer *l, const struct Layer *prev)
 {
-    (void) xcsf;
     const int w = prev->out_w;
     const int h = prev->out_h;
     const int c = prev->out_c;
@@ -272,28 +243,23 @@ neural_layer_maxpool_resize(const struct XCSF *xcsf, struct Layer *l,
 
 /**
  * @brief Returns the output from a maxpooling layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer whose output to return.
  * @return The layer output.
  */
 double *
-neural_layer_maxpool_output(const struct XCSF *xcsf, const struct Layer *l)
+neural_layer_maxpool_output(const struct Layer *l)
 {
-    (void) xcsf;
     return l->output;
 }
 
 /**
  * @brief Prints a maxpooling layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to print.
  * @param [in] print_weights Whether to print the values of weights and biases.
  */
 void
-neural_layer_maxpool_print(const struct XCSF *xcsf, const struct Layer *l,
-                           const bool print_weights)
+neural_layer_maxpool_print(const struct Layer *l, const bool print_weights)
 {
-    (void) xcsf;
     (void) print_weights;
     printf(
         "maxpool in=%d, out=%d, h=%d, w=%d, c=%d, size=%d, stride=%d, pad=%d\n",
@@ -303,16 +269,13 @@ neural_layer_maxpool_print(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Writes a maxpooling layer to a file.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to save.
  * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
-neural_layer_maxpool_save(const struct XCSF *xcsf, const struct Layer *l,
-                          FILE *fp)
+neural_layer_maxpool_save(const struct Layer *l, FILE *fp)
 {
-    (void) xcsf;
     size_t s = 0;
     s += fwrite(&l->height, sizeof(int), 1, fp);
     s += fwrite(&l->width, sizeof(int), 1, fp);
@@ -331,15 +294,13 @@ neural_layer_maxpool_save(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Reads a maxpooling layer from a file.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to load.
  * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 size_t
-neural_layer_maxpool_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
+neural_layer_maxpool_load(struct Layer *l, FILE *fp)
 {
-    (void) xcsf;
     size_t s = 0;
     s += fread(&l->height, sizeof(int), 1, fp);
     s += fread(&l->width, sizeof(int), 1, fp);

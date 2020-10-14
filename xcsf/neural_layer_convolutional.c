@@ -109,49 +109,38 @@ convolutional_out_width(const struct Layer *l)
 }
 
 /**
- * @brief Creates and initialises a 2D convolutional layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] h The input height.
- * @param [in] w The input width.
- * @param [in] c The number of input channels.
- * @param [in] n_filters The number of kernel filters to apply.
- * @param [in] kernel_size The length of the convolution window.
- * @param [in] stride The stride length of the convolution.
- * @param [in] pad The padding of the convolution.
- * @param [in] f Activation function.
- * @param [in] o Bitwise options specifying which operations can be performed.
- * @return A pointer to the new layer.
+ * @brief Initialises a 2D convolutional layer.
+ * @param [in] l Layer to initialise.
+ * @param [in] args Parameters to initialise the layer.
  */
-struct Layer *
-neural_layer_convolutional_init(const struct XCSF *xcsf, const int h,
-                                const int w, const int c, const int n_filters,
-                                const int kernel_size, const int stride,
-                                const int pad, const int f, const uint32_t o)
+void
+neural_layer_convolutional_init(struct Layer *l, const struct LayerArgs *args)
 {
-    struct Layer *l = malloc(sizeof(struct Layer));
-    layer_init(l);
-    l->layer_type = CONVOLUTIONAL;
-    l->layer_vptr = &layer_convolutional_vtbl;
-    l->options = o;
-    l->function = f;
-    l->height = h;
-    l->width = w;
-    l->channels = c;
-    l->n_filters = n_filters;
-    l->stride = stride;
-    l->size = kernel_size;
-    l->pad = pad;
-    l->n_biases = n_filters;
-    l->n_weights = l->channels * n_filters * kernel_size * kernel_size;
+    l->options = layer_opt(args);
+    l->function = args->function;
+    l->height = args->height;
+    l->width = args->width;
+    l->channels = args->channels;
+    l->n_filters = args->n_filters;
+    l->stride = args->stride;
+    l->size = args->size;
+    l->pad = args->pad;
+    l->max_neuron_grow = args->max_neuron_grow;
+    l->eta_max = args->eta;
+    l->eta_min = args->eta_min;
+    l->momentum = args->momentum;
+    l->decay = args->decay;
+    l->n_biases = l->n_filters;
+    l->n_weights = l->channels * l->n_filters * l->size * l->size;
     l->n_active = l->n_weights;
     l->out_h = convolutional_out_height(l);
     l->out_w = convolutional_out_width(l);
-    l->out_c = n_filters;
+    l->out_c = l->n_filters;
     l->n_inputs = l->width * l->height * l->channels;
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->max_outputs = l->n_outputs;
     l->workspace_size = get_workspace_size(l);
-    layer_init_eta(xcsf, l);
+    layer_init_eta(l);
     malloc_layer_arrays(l);
     for (int i = 0; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 0.1);
@@ -159,18 +148,15 @@ neural_layer_convolutional_init(const struct XCSF *xcsf, const int h,
     }
     memset(l->biases, 0, sizeof(double) * l->n_biases);
     sam_init(l->mu, N_MU, MU_TYPE);
-    return l;
 }
 
 /**
  * @brief Free memory used by a convolutional layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to be freed.
  */
 void
-neural_layer_convolutional_free(const struct XCSF *xcsf, const struct Layer *l)
+neural_layer_convolutional_free(const struct Layer *l)
 {
-    (void) xcsf;
     free(l->delta);
     free(l->state);
     free(l->output);
@@ -185,21 +171,18 @@ neural_layer_convolutional_free(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Initialises and copies one convolutional layer from another.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] src The source layer.
  * @return A pointer to the new layer.
  */
 struct Layer *
-neural_layer_convolutional_copy(const struct XCSF *xcsf,
-                                const struct Layer *src)
+neural_layer_convolutional_copy(const struct Layer *src)
 {
-    (void) xcsf;
     if (src->layer_type != CONVOLUTIONAL) {
         printf("neural_layer_convolut_copy() incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
-    layer_init(l);
+    layer_defaults(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
     l->options = src->options;
@@ -221,6 +204,8 @@ neural_layer_convolutional_copy(const struct XCSF *xcsf,
     l->max_outputs = src->max_outputs;
     l->n_biases = src->n_biases;
     l->eta = src->eta;
+    l->eta_max = src->eta_max;
+    l->eta_min = src->eta_min;
     l->workspace_size = src->workspace_size;
     malloc_layer_arrays(l);
     memcpy(l->weights, src->weights, sizeof(double) * src->n_weights);
@@ -232,13 +217,12 @@ neural_layer_convolutional_copy(const struct XCSF *xcsf,
 
 /**
  * @brief Randomises the weights of a convolutional layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to randomise.
  */
 void
-neural_layer_convolutional_rand(const struct XCSF *xcsf, struct Layer *l)
+neural_layer_convolutional_rand(struct Layer *l)
 {
-    layer_weight_rand(xcsf, l);
+    layer_weight_rand(l);
 }
 
 /**
@@ -276,17 +260,14 @@ neural_layer_convolutional_forward(const struct XCSF *xcsf,
 
 /**
  * @brief Backward propagates a convolutional layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to backward propagate.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's error.
  */
 void
-neural_layer_convolutional_backward(const struct XCSF *xcsf,
-                                    const struct Layer *l, const double *input,
+neural_layer_convolutional_backward(const struct Layer *l, const double *input,
                                     double *delta)
 {
-    (void) xcsf;
     const int m = l->n_filters;
     const int n = l->size * l->size * l->channels;
     const int k = l->out_w * l->out_h;
@@ -323,37 +304,32 @@ neural_layer_convolutional_backward(const struct XCSF *xcsf,
 
 /**
  * @brief Updates the weights and biases of a convolutional layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to update.
  */
 void
-neural_layer_convolutional_update(const struct XCSF *xcsf,
-                                  const struct Layer *l)
+neural_layer_convolutional_update(const struct Layer *l)
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
         blas_axpy(l->n_biases, l->eta, l->bias_updates, 1, l->biases, 1);
-        blas_scal(l->n_biases, xcsf->PRED_MOMENTUM, l->bias_updates, 1);
-        if (xcsf->PRED_DECAY > 0) {
-            blas_axpy(l->n_weights, -(xcsf->PRED_DECAY), l->weights, 1,
+        blas_scal(l->n_biases, l->momentum, l->bias_updates, 1);
+        if (l->decay > 0) {
+            blas_axpy(l->n_weights, -(l->decay), l->weights, 1,
                       l->weight_updates, 1);
         }
         blas_axpy(l->n_weights, l->eta, l->weight_updates, 1, l->weights, 1);
-        blas_scal(l->n_weights, xcsf->PRED_MOMENTUM, l->weight_updates, 1);
+        blas_scal(l->n_weights, l->momentum, l->weight_updates, 1);
         layer_weight_clamp(l);
     }
 }
 
 /**
  * @brief Resizes a convolutional layer if the previous layer has changed size.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to resize.
  * @param [in] prev The layer previous to the one being resized.
  */
 void
-neural_layer_convolutional_resize(const struct XCSF *xcsf, struct Layer *l,
-                                  const struct Layer *prev)
+neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev)
 {
-    (void) xcsf;
     l->width = prev->out_w;
     l->height = prev->out_h;
     l->channels = prev->out_c;
@@ -370,17 +346,15 @@ neural_layer_convolutional_resize(const struct XCSF *xcsf, struct Layer *l,
 
 /**
  * @brief Mutates a convolutional layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
  */
 bool
-neural_layer_convolutional_mutate(const struct XCSF *xcsf, struct Layer *l)
+neural_layer_convolutional_mutate(struct Layer *l)
 {
     sam_adapt(l->mu, N_MU, MU_TYPE);
     bool mod = false;
-    if ((l->options & LAYER_EVOLVE_ETA) &&
-        layer_mutate_eta(xcsf, l, l->mu[0])) {
+    if ((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(l, l->mu[0])) {
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_CONNECT) &&
@@ -400,29 +374,24 @@ neural_layer_convolutional_mutate(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Returns the output from a convolutional layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer whose output to return.
  * @return The layer output.
  */
 double *
-neural_layer_convolutional_output(const struct XCSF *xcsf,
-                                  const struct Layer *l)
+neural_layer_convolutional_output(const struct Layer *l)
 {
-    (void) xcsf;
     return l->output;
 }
 
 /**
  * @brief Prints a convolutional layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to print.
  * @param [in] print_weights Whether to print the values of weights and biases.
  */
 void
-neural_layer_convolutional_print(const struct XCSF *xcsf, const struct Layer *l,
+neural_layer_convolutional_print(const struct Layer *l,
                                  const bool print_weights)
 {
-    (void) xcsf;
     printf("convolutional %s, in=%d, out=%d, filters=%d, size=%d, stride=%d, "
            "pad=%d, ",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs,
@@ -433,16 +402,13 @@ neural_layer_convolutional_print(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Writes a convolutional layer to a file.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to save.
  * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
-neural_layer_convolutional_save(const struct XCSF *xcsf, const struct Layer *l,
-                                FILE *fp)
+neural_layer_convolutional_save(const struct Layer *l, FILE *fp)
 {
-    (void) xcsf;
     size_t s = 0;
     s += fwrite(&l->options, sizeof(uint32_t), 1, fp);
     s += fwrite(&l->function, sizeof(int), 1, fp);
@@ -464,6 +430,11 @@ neural_layer_convolutional_save(const struct XCSF *xcsf, const struct Layer *l,
     s += fwrite(&l->n_active, sizeof(int), 1, fp);
     s += fwrite(&l->workspace_size, sizeof(int), 1, fp);
     s += fwrite(&l->eta, sizeof(double), 1, fp);
+    s += fwrite(&l->eta_max, sizeof(double), 1, fp);
+    s += fwrite(&l->eta_min, sizeof(double), 1, fp);
+    s += fwrite(&l->momentum, sizeof(double), 1, fp);
+    s += fwrite(&l->decay, sizeof(double), 1, fp);
+    s += fwrite(&l->max_neuron_grow, sizeof(int), 1, fp);
     s += fwrite(l->weights, sizeof(double), l->n_weights, fp);
     s += fwrite(l->weight_updates, sizeof(double), l->n_weights, fp);
     s += fwrite(l->weight_active, sizeof(bool), l->n_weights, fp);
@@ -475,16 +446,13 @@ neural_layer_convolutional_save(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Reads a convolutional layer from a file.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to load.
  * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 size_t
-neural_layer_convolutional_load(const struct XCSF *xcsf, struct Layer *l,
-                                FILE *fp)
+neural_layer_convolutional_load(struct Layer *l, FILE *fp)
 {
-    (void) xcsf;
     size_t s = 0;
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
     s += fread(&l->function, sizeof(int), 1, fp);
@@ -506,6 +474,11 @@ neural_layer_convolutional_load(const struct XCSF *xcsf, struct Layer *l,
     s += fread(&l->n_active, sizeof(int), 1, fp);
     s += fread(&l->workspace_size, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
+    s += fread(&l->eta_max, sizeof(double), 1, fp);
+    s += fread(&l->eta_min, sizeof(double), 1, fp);
+    s += fread(&l->momentum, sizeof(double), 1, fp);
+    s += fread(&l->decay, sizeof(double), 1, fp);
+    s += fread(&l->max_neuron_grow, sizeof(int), 1, fp);
     malloc_layer_arrays(l);
     s += fread(l->weights, sizeof(double), l->n_weights, fp);
     s += fread(l->weight_updates, sizeof(double), l->n_weights, fp);

@@ -47,6 +47,22 @@
 #define COND_STRING_RULE_NEURAL ("rule-neural\0") //!< Rule neural
 #define COND_STRING_RULE_NETWORK ("rule-network\0") //!< Rule network
 
+/**
+ * @brief Parameters for initialising and operating conditions.
+ */
+struct CondArgs {
+    int type; //!< Classifier condition type: hyperrectangles, etc.
+    double eta; //!< Gradient descent rate
+    double max; //!< Maximum value expected from inputs
+    double min; //!< Minimum value expected from inputs
+    double p_dontcare; //!< Don't care probability
+    double spread_min; //!< Minimum initial spread
+    int bits; //!< Bits per float to binarise inputs
+    struct LayerArgs *largs; //!< Linked-list of layer parameters
+    struct DGPArgs *dargs; //!< DGP parameters
+    struct GPTreeArgs *targs; //!< Tree GP parameters
+};
+
 void
 condition_set(const struct XCSF *xcsf, struct Cl *c);
 
@@ -55,6 +71,21 @@ condition_type_as_string(const int type);
 
 int
 condition_type_as_int(const char *type);
+
+void
+cond_param_defaults(struct XCSF *xcsf);
+
+void
+cond_param_free(struct XCSF *xcsf);
+
+void
+cond_param_print(const struct XCSF *xcsf);
+
+size_t
+cond_param_save(const struct XCSF *xcsf, FILE *fp);
+
+size_t
+cond_param_load(struct XCSF *xcsf, FILE *fp);
 
 /**
  * @brief Condition interface data structure.
@@ -242,4 +273,91 @@ static inline void
 cond_print(const struct XCSF *xcsf, const struct Cl *c)
 {
     (*c->cond_vptr->cond_impl_print)(xcsf, c);
+}
+
+/* parameter setters */
+
+static inline void
+cond_param_set_eta(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set COND ETA too small\n");
+        xcsf->cond->eta = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set COND ETA too large\n");
+        xcsf->cond->eta = 1;
+    } else {
+        xcsf->cond->eta = a;
+    }
+}
+
+static inline void
+cond_param_set_min(struct XCSF *xcsf, const double a)
+{
+    xcsf->cond->min = a;
+}
+
+static inline void
+cond_param_set_max(struct XCSF *xcsf, const double a)
+{
+    xcsf->cond->max = a;
+}
+
+static inline void
+cond_param_set_p_dontcare(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set COND P_DONTCARE too small\n");
+        xcsf->cond->p_dontcare = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set COND P_DONTCARE too large\n");
+        xcsf->cond->p_dontcare = 1;
+    } else {
+        xcsf->cond->p_dontcare = a;
+    }
+}
+
+static inline void
+cond_param_set_spread_min(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set COND SPREAD_MIN too small\n");
+        xcsf->cond->spread_min = 0;
+    } else {
+        xcsf->cond->spread_min = a;
+    }
+}
+
+static inline void
+cond_param_set_bits(struct XCSF *xcsf, const int a)
+{
+    if (a < 1) {
+        printf("Warning: tried to set COND BITS too small\n");
+        xcsf->cond->bits = 1;
+    } else {
+        xcsf->cond->bits = a;
+    }
+}
+
+static inline void
+cond_param_set_type_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->cond->type = condition_type_as_int(a);
+}
+
+static inline const char *
+cond_param_type_as_string(const struct XCSF *xcsf)
+{
+    return condition_type_as_string(xcsf->cond->type);
+}
+
+static inline void
+cond_param_set_type(struct XCSF *xcsf, const int a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set COND TYPE too small\n");
+        xcsf->cond->type = 0;
+    } else {
+        xcsf->cond->type = a;
+    }
 }

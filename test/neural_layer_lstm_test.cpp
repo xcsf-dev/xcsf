@@ -31,6 +31,7 @@ extern "C" {
 #include "../xcsf/neural_layer_connected.h"
 #include "../xcsf/neural_layer_lstm.h"
 #include "../xcsf/param.h"
+#include "../xcsf/prediction.h"
 #include "../xcsf/utils.h"
 #include "../xcsf/xcsf.h"
 #include <math.h>
@@ -47,22 +48,26 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     struct Net net;
     struct Layer *l;
     rand_init();
-    param_init(&xcsf);
-    param_set_x_dim(&xcsf, 1);
-    param_set_y_dim(&xcsf, 1);
-    param_set_pred_type(&xcsf, PRED_TYPE_NEURAL);
-    param_set_pred_eta(&xcsf, 0.1);
-    param_set_pred_momentum(&xcsf, 0.9);
-    param_set_pred_decay(&xcsf, 0);
-    neural_init(&xcsf, &net);
-    uint32_t o = 0;
-    o |= LAYER_SGD_WEIGHTS;
-    l = neural_layer_lstm_init(&xcsf, 1, 1, 1, TANH, LOGISTIC, o);
-    neural_push(&xcsf, &net, l);
+    param_init(&xcsf, 1, 1, 1);
+    pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+    neural_init(&net);
+    struct LayerArgs args;
+    layer_args_init(&args);
+    args.layer_type = LSTM;
+    args.function = TANH;
+    args.recurrent_function = LOGISTIC;
+    args.n_inputs = 1;
+    args.n_init = 1;
+    args.n_max = 1;
+    args.eta = 0.1;
+    args.momentum = 0.9;
+    args.decay = 0;
+    args.sgd_weights = true;
+    l = layer_init(&args);
+    neural_push(&net, l);
     CHECK_EQ(l->n_inputs, 1);
     CHECK_EQ(l->n_outputs, 1);
     CHECK_EQ(l->max_outputs, 1);
-    CHECK_EQ(l->options, o);
     CHECK_EQ(l->n_weights, 8);
     /* test forward passing input */
     const double x[1] = { 0.90598097 };
@@ -100,8 +105,8 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     for (int i = 0; i < l->n_outputs; ++i) {
         l->delta[i] = y[i] - l->output[i];
     }
-    neural_layer_lstm_backward(&xcsf, l, x, 0);
-    neural_layer_lstm_update(&xcsf, l);
+    neural_layer_lstm_backward(l, x, 0);
+    neural_layer_lstm_update(l);
     // forward pass
     neural_layer_lstm_forward(&xcsf, l, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.4196390756);
@@ -111,8 +116,8 @@ TEST_CASE("NEURAL_LAYER_LSTM")
         for (int j = 0; j < l->n_outputs; ++j) {
             l->delta[j] = y[j] - l->output[j];
         }
-        neural_layer_lstm_backward(&xcsf, l, x, 0);
-        neural_layer_lstm_update(&xcsf, l);
+        neural_layer_lstm_backward(l, x, 0);
+        neural_layer_lstm_update(l);
     }
     neural_layer_lstm_forward(&xcsf, l, x);
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);

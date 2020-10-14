@@ -55,14 +55,12 @@ random_connection(const int n_nodes, const int n_inputs)
 
 /**
  * @brief Mutates the node functions within a DGP graph.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
 static bool
-graph_mutate_functions(const struct XCSF *xcsf, struct Graph *dgp)
+graph_mutate_functions(struct Graph *dgp)
 {
-    (void) xcsf;
     bool mod = false;
     for (int i = 0; i < dgp->n; ++i) {
         if (rand_uniform(0, 1) < dgp->mu[0]) {
@@ -78,18 +76,17 @@ graph_mutate_functions(const struct XCSF *xcsf, struct Graph *dgp)
 
 /**
  * @brief Mutates the connectivity of a DGP graph.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
 static bool
-graph_mutate_connectivity(const struct XCSF *xcsf, struct Graph *dgp)
+graph_mutate_connectivity(struct Graph *dgp)
 {
     bool mod = false;
     for (int i = 0; i < dgp->klen; ++i) {
         if (rand_uniform(0, 1) < dgp->mu[1]) {
             const int orig = dgp->connectivity[i];
-            dgp->connectivity[i] = random_connection(dgp->n, xcsf->x_dim);
+            dgp->connectivity[i] = random_connection(dgp->n, dgp->n_inputs);
             if (orig != dgp->connectivity[i]) {
                 mod = true;
             }
@@ -100,15 +97,14 @@ graph_mutate_connectivity(const struct XCSF *xcsf, struct Graph *dgp)
 
 /**
  * @brief Mutates the number of update cycles performed by a DGP graph.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
 static bool
-graph_mutate_cycles(const struct XCSF *xcsf, struct Graph *dgp)
+graph_mutate_cycles(struct Graph *dgp)
 {
     const int n = (int) round((2 * dgp->mu[2]) - 1);
-    if (dgp->t + n < 1 || dgp->t + n > xcsf->MAX_T) {
+    if (dgp->t + n < 1 || dgp->t + n > dgp->max_t) {
         return false;
     }
     dgp->t += n;
@@ -173,45 +169,45 @@ function_string(const int function)
 
 /**
  * @brief Performs a synchronous update.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to update.
  * @param [in] inputs The inputs to the graph.
  */
 static void
-synchronous_update(const struct XCSF *xcsf, const struct Graph *dgp,
-                   const double *inputs)
+synchronous_update(const struct Graph *dgp, const double *inputs)
 {
     for (int i = 0; i < dgp->n; ++i) {
-        for (int k = 0; k < xcsf->MAX_K; ++k) {
-            const int c = dgp->connectivity[i * xcsf->MAX_K + k];
-            if (c < xcsf->x_dim) { // external input
+        for (int k = 0; k < dgp->max_k; ++k) {
+            const int c = dgp->connectivity[i * dgp->max_k + k];
+            if (c < dgp->n_inputs) { // external input
                 dgp->tmp_input[k] = inputs[c];
             } else { // another node within the graph
-                dgp->tmp_input[k] = dgp->state[c - xcsf->x_dim];
+                dgp->tmp_input[k] = dgp->state[c - dgp->n_inputs];
             }
         }
         dgp->tmp_state[i] =
-            node_activate(dgp->function[i], dgp->tmp_input, xcsf->MAX_K);
+            node_activate(dgp->function[i], dgp->tmp_input, dgp->max_k);
     }
     memcpy(dgp->state, dgp->tmp_state, sizeof(double) * dgp->n);
 }
 
 /**
  * @brief Initialises a new DGP graph.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to initialise.
- * @param [in] N The number of nodes in the graph.
+ * @param [in] args Parameters for initialising a DGP graph.
  */
 void
-graph_init(const struct XCSF *xcsf, struct Graph *dgp, const int N)
+graph_init(struct Graph *dgp, const struct DGPArgs *args)
 {
     dgp->t = 0;
-    dgp->n = N;
-    dgp->klen = N * xcsf->MAX_K;
+    dgp->n = args->n;
+    dgp->max_k = args->max_k;
+    dgp->max_t = args->max_t;
+    dgp->n_inputs = args->n_inputs;
+    dgp->klen = dgp->n * dgp->max_k;
     dgp->state = malloc(sizeof(double) * dgp->n);
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
     dgp->tmp_state = malloc(sizeof(double) * dgp->n);
-    dgp->tmp_input = malloc(sizeof(double) * xcsf->MAX_K);
+    dgp->tmp_input = malloc(sizeof(double) * dgp->max_k);
     dgp->function = malloc(sizeof(int) * dgp->n);
     dgp->connectivity = malloc(sizeof(int) * dgp->klen);
     dgp->mu = malloc(sizeof(double) * N_MU);
@@ -220,17 +216,18 @@ graph_init(const struct XCSF *xcsf, struct Graph *dgp, const int N)
 
 /**
  * @brief Copies a DGP graph.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dest The destination DGP graph.
  * @param [in] src The source DGP graph.
  */
 void
-graph_copy(const struct XCSF *xcsf, struct Graph *dest, const struct Graph *src)
+graph_copy(struct Graph *dest, const struct Graph *src)
 {
-    (void) xcsf;
     dest->t = src->t;
     dest->n = src->n;
     dest->klen = src->klen;
+    dest->max_k = src->max_k;
+    dest->max_t = src->max_t;
+    dest->n_inputs = src->n_inputs;
     memcpy(dest->state, src->state, sizeof(double) * src->n);
     memcpy(dest->initial_state, src->initial_state, sizeof(double) * src->n);
     memcpy(dest->function, src->function, sizeof(int) * src->n);
@@ -240,27 +237,23 @@ graph_copy(const struct XCSF *xcsf, struct Graph *dest, const struct Graph *src)
 
 /**
  * @brief Returns the current state of a specified node in the graph.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to output.
  * @param [in] IDX Which node within the graph to output.
  * @return The current state of the specified node.
  */
 double
-graph_output(const struct XCSF *xcsf, const struct Graph *dgp, const int IDX)
+graph_output(const struct Graph *dgp, const int IDX)
 {
-    (void) xcsf;
     return dgp->state[IDX];
 }
 
 /**
  * @brief Resets the states to their initial state.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to reset.
  */
 void
-graph_reset(const struct XCSF *xcsf, const struct Graph *dgp)
+graph_reset(const struct Graph *dgp)
 {
-    (void) xcsf;
     for (int i = 0; i < dgp->n; ++i) {
         dgp->state[i] = dgp->initial_state[i];
     }
@@ -268,48 +261,45 @@ graph_reset(const struct XCSF *xcsf, const struct Graph *dgp)
 
 /**
  * @brief Randomises a specified DGP graph.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to randomise.
  */
 void
-graph_rand(const struct XCSF *xcsf, struct Graph *dgp)
+graph_rand(struct Graph *dgp)
 {
-    dgp->t = rand_uniform_int(1, xcsf->MAX_T);
+    dgp->t = rand_uniform_int(1, dgp->max_t);
     for (int i = 0; i < dgp->n; ++i) {
         dgp->function[i] = rand_uniform_int(0, NUM_FUNC);
         dgp->initial_state[i] = rand_uniform(0, 1);
         dgp->state[i] = rand_uniform(0, 1);
     }
     for (int i = 0; i < dgp->klen; ++i) {
-        dgp->connectivity[i] = random_connection(dgp->n, xcsf->x_dim);
+        dgp->connectivity[i] = random_connection(dgp->n, dgp->n_inputs);
     }
 }
 
 /**
  * @brief Updates a DGP graph T cycles.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to update.
  * @param [in] inputs The inputs to the graph.
+ * @param [in] reset Whether to reset states to initial values.
  */
 void
-graph_update(const struct XCSF *xcsf, const struct Graph *dgp,
-             const double *inputs)
+graph_update(const struct Graph *dgp, const double *inputs, const bool reset)
 {
-    if (!xcsf->STATEFUL) {
-        graph_reset(xcsf, dgp);
+    if (reset) {
+        graph_reset(dgp);
     }
     for (int t = 0; t < dgp->t; ++t) {
-        synchronous_update(xcsf, dgp, inputs);
+        synchronous_update(dgp, inputs);
     }
 }
 
 /**
  * @brief Prints a DGP graph.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to print.
  */
 void
-graph_print(const struct XCSF *xcsf, const struct Graph *dgp)
+graph_print(const struct Graph *dgp)
 {
     printf("Graph: N=%d; T=%d\n", dgp->n, dgp->t);
     for (int i = 0; i < dgp->n; ++i) {
@@ -317,7 +307,7 @@ graph_print(const struct XCSF *xcsf, const struct Graph *dgp)
                function_string(dgp->function[i]), dgp->state[i],
                dgp->initial_state[i]);
         printf("%d", dgp->connectivity[0]);
-        for (int j = 1; j < xcsf->MAX_K; ++j) {
+        for (int j = 1; j < dgp->max_k; ++j) {
             printf(",%d", dgp->connectivity[i]);
         }
         printf("]\n");
@@ -326,13 +316,11 @@ graph_print(const struct XCSF *xcsf, const struct Graph *dgp)
 
 /**
  * @brief Frees a DGP graph.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to be freed.
  */
 void
-graph_free(const struct XCSF *xcsf, const struct Graph *dgp)
+graph_free(const struct Graph *dgp)
 {
-    (void) xcsf;
     free(dgp->connectivity);
     free(dgp->state);
     free(dgp->initial_state);
@@ -344,58 +332,41 @@ graph_free(const struct XCSF *xcsf, const struct Graph *dgp)
 
 /**
  * @brief Mutates a specified DGP graph.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to be mutated.
  * @return Whether any alterations were made.
  */
 bool
-graph_mutate(const struct XCSF *xcsf, struct Graph *dgp)
+graph_mutate(struct Graph *dgp)
 {
     bool mod = false;
     sam_adapt(dgp->mu, N_MU, MU_TYPE);
-    if (graph_mutate_functions(xcsf, dgp)) {
+    if (graph_mutate_functions(dgp)) {
         mod = true;
     }
-    if (graph_mutate_connectivity(xcsf, dgp)) {
+    if (graph_mutate_connectivity(dgp)) {
         mod = true;
     }
-    if (graph_mutate_cycles(xcsf, dgp)) {
+    if (graph_mutate_cycles(dgp)) {
         mod = true;
     }
     return mod;
 }
 
 /**
- * @brief Dummy function since crossover is not performed on DGP graphs.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] dgp1 The first DGP graph to perform crossover.
- * @param [in] dgp2 The second DGP graph to perform crossover.
- * @return False.
- */
-bool
-graph_crossover(const struct XCSF *xcsf, struct Graph *dgp1, struct Graph *dgp2)
-{
-    (void) xcsf;
-    (void) dgp1;
-    (void) dgp2;
-    return false;
-}
-
-/**
  * @brief Writes DGP graph to a file.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to save.
  * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
-graph_save(const struct XCSF *xcsf, const struct Graph *dgp, FILE *fp)
+graph_save(const struct Graph *dgp, FILE *fp)
 {
-    (void) xcsf;
     size_t s = 0;
     s += fwrite(&dgp->n, sizeof(int), 1, fp);
     s += fwrite(&dgp->t, sizeof(int), 1, fp);
     s += fwrite(&dgp->klen, sizeof(int), 1, fp);
+    s += fwrite(&dgp->max_t, sizeof(int), 1, fp);
+    s += fwrite(&dgp->max_k, sizeof(int), 1, fp);
     s += fwrite(dgp->state, sizeof(double), dgp->n, fp);
     s += fwrite(dgp->initial_state, sizeof(double), dgp->n, fp);
     s += fwrite(dgp->function, sizeof(int), dgp->n, fp);
@@ -406,19 +377,19 @@ graph_save(const struct XCSF *xcsf, const struct Graph *dgp, FILE *fp)
 
 /**
  * @brief Reads DGP graph from a file.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] dgp The DGP graph to load.
  * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
-graph_load(const struct XCSF *xcsf, struct Graph *dgp, FILE *fp)
+graph_load(struct Graph *dgp, FILE *fp)
 {
-    (void) xcsf;
     size_t s = 0;
     s += fread(&dgp->n, sizeof(int), 1, fp);
     s += fread(&dgp->t, sizeof(int), 1, fp);
     s += fread(&dgp->klen, sizeof(int), 1, fp);
+    s += fread(&dgp->max_t, sizeof(int), 1, fp);
+    s += fread(&dgp->max_k, sizeof(int), 1, fp);
     if (dgp->n < 1 || dgp->klen < 1) {
         printf("graph_load(): read error\n");
         dgp->n = 1;
@@ -428,7 +399,7 @@ graph_load(const struct XCSF *xcsf, struct Graph *dgp, FILE *fp)
     dgp->state = malloc(sizeof(double) * dgp->n);
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
     dgp->tmp_state = malloc(sizeof(double) * dgp->n);
-    dgp->tmp_input = malloc(sizeof(double) * xcsf->MAX_K);
+    dgp->tmp_input = malloc(sizeof(double) * dgp->max_k);
     dgp->function = malloc(sizeof(int) * dgp->n);
     dgp->connectivity = malloc(sizeof(int) * dgp->klen);
     s += fread(dgp->state, sizeof(double), dgp->n, fp);
@@ -436,5 +407,65 @@ graph_load(const struct XCSF *xcsf, struct Graph *dgp, FILE *fp)
     s += fread(dgp->function, sizeof(int), dgp->n, fp);
     s += fread(dgp->connectivity, sizeof(int), dgp->klen, fp);
     s += fread(dgp->mu, sizeof(double), N_MU, fp);
+    return s;
+}
+
+/**
+ * @brief Sets DGP parameters to default values.
+ * @param [in] args Parameters for initialising and operating DGP graphs.
+ */
+void
+graph_args_init(struct DGPArgs *args)
+{
+    args->max_k = 0;
+    args->max_t = 0;
+    args->n = 0;
+    args->n_inputs = 0;
+}
+
+/**
+ * @brief Prints DGP parameters.
+ * @param [in] args Parameters for initialising and operating DGP graphs.
+ */
+void
+graph_args_print(const struct DGPArgs *args)
+{
+    printf("max_k=%d", args->max_k);
+    printf(", max_t=%d", args->max_t);
+    printf(", n=%d", args->n);
+    printf(", n_inputs=%d", args->n_inputs);
+}
+
+/**
+ * @brief Saves DGP parameters.
+ * @param [in] args Parameters for initialising and operating DGP graphs.
+ * @param [in] fp Pointer to the output file.
+ * @return The total number of elements written.
+ */
+size_t
+graph_args_save(const struct DGPArgs *args, FILE *fp)
+{
+    size_t s = 0;
+    s += fwrite(&args->max_k, sizeof(int), 1, fp);
+    s += fwrite(&args->max_t, sizeof(int), 1, fp);
+    s += fwrite(&args->n, sizeof(int), 1, fp);
+    s += fwrite(&args->n_inputs, sizeof(int), 1, fp);
+    return s;
+}
+
+/**
+ * @brief Loads DGP parameters.
+ * @param [in] args Parameters for initialising and operating DGP graphs.
+ * @param [in] fp Pointer to the output file.
+ * @return The total number of elements written.
+ */
+size_t
+graph_args_load(struct DGPArgs *args, FILE *fp)
+{
+    size_t s = 0;
+    s += fread(&args->max_k, sizeof(int), 1, fp);
+    s += fread(&args->max_t, sizeof(int), 1, fp);
+    s += fread(&args->n, sizeof(int), 1, fp);
+    s += fread(&args->n_inputs, sizeof(int), 1, fp);
     return s;
 }

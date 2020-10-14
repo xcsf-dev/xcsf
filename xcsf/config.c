@@ -22,7 +22,13 @@
  */
 
 #include "config.h"
+#include "action.h"
+#include "condition.h"
+#include "dgp.h"
+#include "ea.h"
+#include "gp.h"
 #include "param.h"
+#include "prediction.h"
 
 #define ARRAY_DELIM (",") //!< Delimeter for config arrays
 #define MAXLEN (127) //!< Maximum config file line length to read
@@ -112,9 +118,7 @@ config_subsump(struct XCSF *xcsf, const char *n, const char *v, const int i,
 {
     (void) v;
     (void) f;
-    if (strncmp(n, "EA_SUBSUMPTION\0", 15) == 0) {
-        param_set_ea_subsumption(xcsf, i);
-    } else if (strncmp(n, "SET_SUBSUMPTION\0", 16) == 0) {
+    if (strncmp(n, "SET_SUBSUMPTION\0", 16) == 0) {
         param_set_set_subsumption(xcsf, i);
     } else if (strncmp(n, "THETA_SUB\0", 10) == 0) {
         param_set_theta_sub(xcsf, i);
@@ -133,17 +137,22 @@ static void
 config_ea(struct XCSF *xcsf, const char *n, const char *v, const int i,
           const double f)
 {
-    (void) v;
     if (strncmp(n, "EA_SELECT_TYPE\0", 15) == 0) {
-        param_set_ea_select_type(xcsf, i);
+        ea_param_set_type_string(xcsf, v);
     } else if (strncmp(n, "EA_SELECT_SIZE\0", 15) == 0) {
-        param_set_ea_select_size(xcsf, f);
+        ea_param_set_select_size(xcsf, f);
     } else if (strncmp(n, "THETA_EA\0", 9) == 0) {
-        param_set_theta_ea(xcsf, f);
+        ea_param_set_theta(xcsf, f);
     } else if (strncmp(n, "LAMBDA\0", 7) == 0) {
-        param_set_lambda(xcsf, i);
+        ea_param_set_lambda(xcsf, i);
     } else if (strncmp(n, "P_CROSSOVER\0", 12) == 0) {
-        param_set_p_crossover(xcsf, f);
+        ea_param_set_p_crossover(xcsf, f);
+    } else if (strncmp(n, "ERR_REDUC\0", 10) == 0) {
+        ea_param_set_err_reduc(xcsf, f);
+    } else if (strncmp(n, "FIT_REDUC\0", 10) == 0) {
+        ea_param_set_fit_reduc(xcsf, f);
+    } else if (strncmp(n, "EA_PRED_RESET\0", 14) == 0) {
+        ea_param_set_pred_reset(xcsf, i);
     }
 }
 
@@ -174,16 +183,106 @@ config_cl_gen(struct XCSF *xcsf, const char *n, const char *v, const int i,
         param_set_init_fitness(xcsf, f);
     } else if (strncmp(n, "INIT_ERROR\0", 11) == 0) {
         param_set_init_error(xcsf, f);
-    } else if (strncmp(n, "ERR_REDUC\0", 10) == 0) {
-        param_set_err_reduc(xcsf, f);
-    } else if (strncmp(n, "FIT_REDUC\0", 10) == 0) {
-        param_set_fit_reduc(xcsf, f);
     } else if (strncmp(n, "EPS_0\0", 6) == 0) {
         param_set_eps_0(xcsf, f);
     } else if (strncmp(n, "M_PROBATION\0", 12) == 0) {
         param_set_m_probation(xcsf, i);
     } else if (strncmp(n, "STATEFUL\0", 9) == 0) {
         param_set_stateful(xcsf, i);
+    }
+}
+
+/**
+ * @brief Sets classifier DGP condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
+ */
+static void
+config_cl_cond_dgp(struct XCSF *xcsf, const char *n, char *v, const int i,
+                   const double f)
+{
+    (void) v;
+    (void) f;
+    if (strncmp(n, "COND_DGP_MAX_K\0", 15) == 0) {
+        graph_param_set_max_k(xcsf->cond->dargs, i);
+    } else if (strncmp(n, "COND_DGP_MAX_T\0", 15) == 0) {
+        graph_param_set_max_t(xcsf->cond->dargs, i);
+    } else if (strncmp(n, "COND_DGP_N\0", 11) == 0) {
+        graph_param_set_n(xcsf->cond->dargs, i);
+    }
+}
+
+/**
+ * @brief Sets classifier tree GP condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
+ */
+static void
+config_cl_cond_gp(struct XCSF *xcsf, const char *n, char *v, const int i,
+                  const double f)
+{
+    (void) v;
+    if (strncmp(n, "COND_GP_NUM_CONS\0", 17) == 0) {
+        tree_param_set_n_constants(xcsf->cond->targs, i);
+    } else if (strncmp(n, "COND_GP_INIT_DEPTH\0", 19) == 0) {
+        tree_param_set_init_depth(xcsf->cond->targs, i);
+    } else if (strncmp(n, "COND_GP_MIN_CON\0", 16) == 0) {
+        tree_param_set_min(xcsf->cond->targs, f);
+    } else if (strncmp(n, "COND_GP_MAX_CON\0", 16) == 0) {
+        tree_param_set_max(xcsf->cond->targs, f);
+    } else if (strncmp(n, "COND_GP_MAX_LEN\0", 16) == 0) {
+        tree_param_set_max_len(xcsf->cond->targs, i);
+    }
+}
+
+/**
+ * @brief Sets classifier center-spread-representation condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
+ */
+static void
+config_cl_cond_csr(struct XCSF *xcsf, const char *n, char *v, const int i,
+                   const double f)
+{
+    (void) i;
+    (void) v;
+    if (strncmp(n, "COND_MIN\0", 9) == 0) {
+        cond_param_set_min(xcsf, f);
+    } else if (strncmp(n, "COND_MAX\0", 9) == 0) {
+        cond_param_set_max(xcsf, f);
+    } else if (strncmp(n, "COND_SPREAD_MIN\0", 16) == 0) {
+        cond_param_set_spread_min(xcsf, f);
+    } else if (strncmp(n, "COND_ETA\0", 9) == 0) {
+        cond_param_set_eta(xcsf, f);
+    }
+}
+
+/**
+ * @brief Sets classifier ternary condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
+ */
+static void
+config_cl_cond_ternary(struct XCSF *xcsf, const char *n, char *v, const int i,
+                       const double f)
+{
+    (void) v;
+    if (strncmp(n, "COND_BITS\0", 10) == 0) {
+        cond_param_set_bits(xcsf, i);
+    } else if (strncmp(n, "COND_P_DONTCARE\0", 16) == 0) {
+        cond_param_set_p_dontcare(xcsf, f);
     }
 }
 
@@ -200,43 +299,39 @@ config_cl_cond(struct XCSF *xcsf, const char *n, char *v, const int i,
                const double f)
 {
     if (strncmp(n, "COND_TYPE\0", 10) == 0) {
-        param_set_cond_type_string(xcsf, v);
-    } else if (strncmp(n, "COND_MIN\0", 9) == 0) {
-        param_set_cond_min(xcsf, f);
-    } else if (strncmp(n, "COND_MAX\0", 9) == 0) {
-        param_set_cond_max(xcsf, f);
-    } else if (strncmp(n, "COND_SMIN\0", 10) == 0) {
-        param_set_cond_smin(xcsf, f);
-    } else if (strncmp(n, "COND_BITS\0", 10) == 0) {
-        param_set_cond_bits(xcsf, i);
-    } else if (strncmp(n, "COND_ETA\0", 9) == 0) {
-        param_set_cond_eta(xcsf, f);
-    } else if (strncmp(n, "GP_NUM_CONS\0", 12) == 0) {
-        param_set_gp_num_cons(xcsf, i);
-    } else if (strncmp(n, "GP_INIT_DEPTH\0", 14) == 0) {
-        param_set_gp_init_depth(xcsf, i);
-    } else if (strncmp(n, "MAX_K\0", 6) == 0) {
-        param_set_max_k(xcsf, i);
-    } else if (strncmp(n, "MAX_T\0", 6) == 0) {
-        param_set_max_t(xcsf, i);
-    } else if (strncmp(n, "MAX_NEURON_GROW\0", 16) == 0) {
-        param_set_max_neuron_grow(xcsf, i);
-    } else if (strncmp(n, "COND_EVOLVE_WEIGHTS\0", 20) == 0) {
-        param_set_cond_evolve_weights(xcsf, i);
-    } else if (strncmp(n, "COND_EVOLVE_NEURONS\0", 20) == 0) {
-        param_set_cond_evolve_neurons(xcsf, i);
-    } else if (strncmp(n, "COND_EVOLVE_FUNCTIONS\0", 22) == 0) {
-        param_set_cond_evolve_functions(xcsf, i);
-    } else if (strncmp(n, "COND_NUM_NEURONS\0", 17) == 0) {
-        memset(xcsf->COND_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
-        config_get_ints(v, xcsf->COND_NUM_NEURONS);
-    } else if (strncmp(n, "COND_MAX_NEURONS\0", 17) == 0) {
-        memset(xcsf->COND_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
-        config_get_ints(v, xcsf->COND_MAX_NEURONS);
-    } else if (strncmp(n, "COND_OUTPUT_ACTIVATION\0", 23) == 0) {
-        param_set_cond_output_activation_string(xcsf, v);
-    } else if (strncmp(n, "COND_HIDDEN_ACTIVATION\0", 23) == 0) {
-        param_set_cond_hidden_activation_string(xcsf, v);
+        cond_param_set_type_string(xcsf, v);
+    }
+    config_cl_cond_ternary(xcsf, n, v, i, f);
+    config_cl_cond_csr(xcsf, n, v, i, f);
+    config_cl_cond_dgp(xcsf, n, v, i, f);
+    config_cl_cond_gp(xcsf, n, v, i, f);
+}
+
+/**
+ * @brief Sets classifier least squares prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
+ */
+static void
+config_cl_pred_ls(struct XCSF *xcsf, const char *n, char *v, const int i,
+                  const double f)
+{
+    (void) v;
+    if (strncmp(n, "PRED_ETA\0", 9) == 0) {
+        pred_param_set_eta(xcsf, f);
+    } else if (strncmp(n, "PRED_ETA_MIN\0", 13) == 0) {
+        pred_param_set_eta_min(xcsf, f);
+    } else if (strncmp(n, "PRED_X0\0", 8) == 0) {
+        pred_param_set_x0(xcsf, f);
+    } else if (strncmp(n, "PRED_EVOLVE_ETA\0", 16) == 0) {
+        pred_param_set_evolve_eta(xcsf, i);
+    } else if (strncmp(n, "PRED_RLS_SCALE_FACTOR\0", 22) == 0) {
+        pred_param_set_scale_factor(xcsf, f);
+    } else if (strncmp(n, "PRED_RLS_LAMBDA\0", 16) == 0) {
+        pred_param_set_lambda(xcsf, f);
     }
 }
 
@@ -253,42 +348,9 @@ config_cl_pred(struct XCSF *xcsf, const char *n, char *v, const int i,
                const double f)
 {
     if (strncmp(n, "PRED_TYPE\0", 10) == 0) {
-        param_set_pred_type_string(xcsf, v);
-    } else if (strncmp(n, "PRED_ETA\0", 9) == 0) {
-        param_set_pred_eta(xcsf, f);
-    } else if (strncmp(n, "PRED_RESET\0", 11) == 0) {
-        param_set_pred_reset(xcsf, i);
-    } else if (strncmp(n, "PRED_X0\0", 8) == 0) {
-        param_set_pred_x0(xcsf, f);
-    } else if (strncmp(n, "PRED_RLS_SCALE_FACTOR\0", 22) == 0) {
-        param_set_pred_rls_scale_factor(xcsf, f);
-    } else if (strncmp(n, "PRED_RLS_LAMBDA\0", 16) == 0) {
-        param_set_pred_rls_lambda(xcsf, f);
-    } else if (strncmp(n, "PRED_EVOLVE_WEIGHTS\0", 20) == 0) {
-        param_set_pred_evolve_weights(xcsf, i);
-    } else if (strncmp(n, "PRED_EVOLVE_NEURONS\0", 20) == 0) {
-        param_set_pred_evolve_neurons(xcsf, i);
-    } else if (strncmp(n, "PRED_EVOLVE_FUNCTIONS\0", 22) == 0) {
-        param_set_pred_evolve_functions(xcsf, i);
-    } else if (strncmp(n, "PRED_EVOLVE_ETA\0", 16) == 0) {
-        param_set_pred_evolve_eta(xcsf, i);
-    } else if (strncmp(n, "PRED_SGD_WEIGHTS\0", 17) == 0) {
-        param_set_pred_sgd_weights(xcsf, i);
-    } else if (strncmp(n, "PRED_MOMENTUM\0", 14) == 0) {
-        param_set_pred_momentum(xcsf, f);
-    } else if (strncmp(n, "PRED_DECAY\0", 11) == 0) {
-        param_set_pred_decay(xcsf, f);
-    } else if (strncmp(n, "PRED_NUM_NEURONS\0", 17) == 0) {
-        memset(xcsf->PRED_NUM_NEURONS, 0, sizeof(int) * MAX_LAYERS);
-        config_get_ints(v, xcsf->PRED_NUM_NEURONS);
-    } else if (strncmp(n, "PRED_MAX_NEURONS\0", 17) == 0) {
-        memset(xcsf->PRED_MAX_NEURONS, 0, sizeof(int) * MAX_LAYERS);
-        config_get_ints(v, xcsf->PRED_MAX_NEURONS);
-    } else if (strncmp(n, "PRED_OUTPUT_ACTIVATION\0", 23) == 0) {
-        param_set_pred_output_activation_string(xcsf, v);
-    } else if (strncmp(n, "PRED_HIDDEN_ACTIVATION\0", 23) == 0) {
-        param_set_pred_hidden_activation_string(xcsf, v);
+        pred_param_set_type_string(xcsf, v);
     }
+    config_cl_pred_ls(xcsf, n, v, i, f);
 }
 
 /**
@@ -306,7 +368,7 @@ config_cl_act(struct XCSF *xcsf, const char *n, const char *v, const int i,
     (void) i;
     (void) f;
     if (strncmp(n, "ACT_TYPE\0", 9) == 0) {
-        param_set_act_type_string(xcsf, v);
+        action_param_set_type_string(xcsf, v);
     }
 }
 
@@ -438,4 +500,5 @@ config_read(struct XCSF *xcsf, const char *filename)
         config_process(xcsf, buff);
     }
     fclose(f);
+    tree_args_build_constants(xcsf->cond->targs);
 }

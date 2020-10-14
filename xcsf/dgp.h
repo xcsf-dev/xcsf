@@ -26,6 +26,16 @@
 #include "xcsf.h"
 
 /**
+ * @brief Parameters for initialising DGP graphs.
+ */
+struct DGPArgs {
+    int max_k; //!< Maximum number of connections a node may have
+    int max_t; //!< Maximum number of update cycles
+    int n; //!< Number of nodes in the graph
+    int n_inputs; //!< Number of inputs to the graph
+};
+
+/**
  * @brief Dynamical GP graph data structure.
  */
 struct Graph {
@@ -38,44 +48,99 @@ struct Graph {
     int n; //!< Number of nodes
     int t; //!< Number of cycles to run
     int klen; //!< Length of connectivity map
+    int max_k; //!< Maximum number of connections a node may have
+    int max_t; //!< Maximum number of update cycles
+    int n_inputs; //!< Number of inputs to the graph
     double *mu; //!< Mutation rates
 };
 
 bool
-graph_crossover(const struct XCSF *xcsf, struct Graph *dgp1,
-                struct Graph *dgp2);
-
-bool
-graph_mutate(const struct XCSF *xcsf, struct Graph *dgp);
+graph_mutate(struct Graph *dgp);
 
 double
-graph_output(const struct XCSF *xcsf, const struct Graph *dgp, const int IDX);
+graph_output(const struct Graph *dgp, const int IDX);
 
 size_t
-graph_load(const struct XCSF *xcsf, struct Graph *dgp, FILE *fp);
+graph_load(struct Graph *dgp, FILE *fp);
 
 size_t
-graph_save(const struct XCSF *xcsf, const struct Graph *dgp, FILE *fp);
+graph_save(const struct Graph *dgp, FILE *fp);
 
 void
-graph_copy(const struct XCSF *xcsf, struct Graph *dest,
-           const struct Graph *src);
+graph_copy(struct Graph *dest, const struct Graph *src);
 
 void
-graph_free(const struct XCSF *xcsf, const struct Graph *dgp);
+graph_free(const struct Graph *dgp);
 
 void
-graph_init(const struct XCSF *xcsf, struct Graph *dgp, const int n);
+graph_init(struct Graph *dgp, const struct DGPArgs *args);
 
 void
-graph_print(const struct XCSF *xcsf, const struct Graph *dgp);
+graph_print(const struct Graph *dgp);
 
 void
-graph_rand(const struct XCSF *xcsf, struct Graph *dgp);
+graph_rand(struct Graph *dgp);
 
 void
-graph_reset(const struct XCSF *xcsf, const struct Graph *dgp);
+graph_reset(const struct Graph *dgp);
 
 void
-graph_update(const struct XCSF *xcsf, const struct Graph *dgp,
-             const double *inputs);
+graph_update(const struct Graph *dgp, const double *inputs, const bool reset);
+
+void
+graph_args_init(struct DGPArgs *args);
+
+void
+graph_args_print(const struct DGPArgs *args);
+
+size_t
+graph_args_save(const struct DGPArgs *args, FILE *fp);
+
+size_t
+graph_args_load(struct DGPArgs *args, FILE *fp);
+
+/* parameter setters */
+
+static inline void
+graph_param_set_max_k(struct DGPArgs *args, const int a)
+{
+    if (a < 1) {
+        printf("Warning: tried to set DGP MAX_K too small\n");
+        args->max_k = 1;
+    } else {
+        args->max_k = a;
+    }
+}
+
+static inline void
+graph_param_set_max_t(struct DGPArgs *args, const int a)
+{
+    if (a < 1) {
+        printf("Warning: tried to set DGP MAX_T too small\n");
+        args->max_t = 1;
+    } else {
+        args->max_t = a;
+    }
+}
+
+static inline void
+graph_param_set_n(struct DGPArgs *args, const int a)
+{
+    if (a < 1) {
+        printf("Warning: tried to set DGP N too small\n");
+        args->n = 1;
+    } else {
+        args->n = a;
+    }
+}
+
+static inline void
+graph_param_set_n_inputs(struct DGPArgs *args, const int a)
+{
+    if (a < 1) {
+        printf("Warning: tried to set DGP N_INPUTS too small\n");
+        args->n_inputs = 1;
+    } else {
+        args->n_inputs = a;
+    }
+}

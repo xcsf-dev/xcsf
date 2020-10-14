@@ -74,15 +74,14 @@ pred_constant_update(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x, const double *y)
 {
     (void) x;
-    if (c->exp * xcsf->PRED_ETA < 1) {
+    if (c->exp * xcsf->BETA < 1) {
         for (int var = 0; var < xcsf->y_dim; ++var) {
             c->prediction[var] =
                 (c->prediction[var] * (c->exp - 1) + y[var]) / c->exp;
         }
     } else {
         for (int var = 0; var < xcsf->y_dim; ++var) {
-            c->prediction[var] +=
-                xcsf->PRED_ETA * (y[var] - c->prediction[var]);
+            c->prediction[var] += xcsf->BETA * (y[var] - c->prediction[var]);
         }
     }
 }

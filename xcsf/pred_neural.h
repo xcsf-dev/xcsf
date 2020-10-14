@@ -24,6 +24,8 @@
 #pragma once
 
 #include "neural.h"
+#include "neural_activations.h"
+#include "neural_layer.h"
 #include "prediction.h"
 #include "xcsf.h"
 

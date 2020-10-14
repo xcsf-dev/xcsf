@@ -38,6 +38,11 @@ extern "C" {
 #include "clset_neural.h"
 #include "condition.h"
 #include "config.h"
+#include "dgp.h"
+#include "ea.h"
+#include "gp.h"
+#include "neural_activations.h"
+#include "neural_layer.h"
 #include "pa.h"
 #include "param.h"
 #include "prediction.h"
@@ -81,11 +86,8 @@ class XCS
     XCS(const int x_dim, const int y_dim, const int n_actions,
         const char *filename)
     {
-        param_init(&xcs);
+        param_init(&xcs, x_dim, y_dim, n_actions);
         config_read(&xcs, filename);
-        param_set_x_dim(&xcs, x_dim);
-        param_set_y_dim(&xcs, y_dim);
-        param_set_n_actions(&xcs, n_actions);
         xcsf_init(&xcs);
         pa_init(&xcs);
         state = NULL;
@@ -541,18 +543,6 @@ class XCS
     }
 
     double
-    get_err_reduc(void)
-    {
-        return xcs.ERR_REDUC;
-    }
-
-    double
-    get_fit_reduc(void)
-    {
-        return xcs.FIT_REDUC;
-    }
-
-    double
     get_init_error(void)
     {
         return xcs.INIT_ERROR;
@@ -576,52 +566,22 @@ class XCS
         return xcs.M_PROBATION;
     }
 
+    bool
+    get_stateful(void)
+    {
+        return xcs.STATEFUL;
+    }
+
     int
     get_theta_del(void)
     {
         return xcs.THETA_DEL;
     }
 
-    double
-    get_p_crossover(void)
-    {
-        return xcs.P_CROSSOVER;
-    }
-
-    double
-    get_theta_ea(void)
-    {
-        return xcs.THETA_EA;
-    }
-
-    int
-    get_lambda(void)
-    {
-        return xcs.LAMBDA;
-    }
-
-    int
-    get_ea_select_type(void)
-    {
-        return xcs.EA_SELECT_TYPE;
-    }
-
-    double
-    get_ea_select_size(void)
-    {
-        return xcs.EA_SELECT_SIZE;
-    }
-
     int
     get_theta_sub(void)
     {
         return xcs.THETA_SUB;
-    }
-
-    bool
-    get_ea_subsumption(void)
-    {
-        return xcs.EA_SUBSUMPTION;
     }
 
     bool
@@ -756,6 +716,60 @@ class XCS
         return xcs.P_EXPLORE;
     }
 
+    int
+    get_ea_select_type(void)
+    {
+        return xcs.ea->select_type;
+    }
+
+    double
+    get_ea_select_size(void)
+    {
+        return xcs.ea->select_size;
+    }
+
+    double
+    get_theta_ea(void)
+    {
+        return xcs.ea->theta;
+    }
+
+    int
+    get_lambda(void)
+    {
+        return xcs.ea->lambda;
+    }
+
+    double
+    get_p_crossover(void)
+    {
+        return xcs.ea->p_crossover;
+    }
+
+    double
+    get_err_reduc(void)
+    {
+        return xcs.ea->err_reduc;
+    }
+
+    double
+    get_fit_reduc(void)
+    {
+        return xcs.ea->fit_reduc;
+    }
+
+    bool
+    get_ea_subsumption(void)
+    {
+        return xcs.ea->subsumption;
+    }
+
+    bool
+    get_ea_pred_reset(void)
+    {
+        return xcs.ea->pred_reset;
+    }
+
     /* SETTERS */
 
     /**
@@ -796,35 +810,29 @@ class XCS
     void
     set_condition(const std::string type, const py::dict &args)
     {
-        if (type == COND_STRING_DUMMY) {
-            xcs.COND_TYPE = COND_TYPE_DUMMY;
-        } else if (type == COND_STRING_HYPERRECTANGLE) {
-            xcs.COND_TYPE = COND_TYPE_HYPERRECTANGLE;
-            unpack_cond_csr(args);
-        } else if (type == COND_STRING_HYPERELLIPSOID) {
-            xcs.COND_TYPE = COND_TYPE_HYPERELLIPSOID;
-            unpack_cond_csr(args);
-        } else if (type == COND_STRING_NEURAL) {
-            xcs.COND_TYPE = COND_TYPE_NEURAL;
-            unpack_cond_neural(args);
-        } else if (type == COND_STRING_GP) {
-            xcs.COND_TYPE = COND_TYPE_GP;
-            unpack_cond_gp(args);
-        } else if (type == COND_STRING_DGP) {
-            xcs.COND_TYPE = COND_TYPE_DGP;
-            unpack_cond_dgp(args);
-        } else if (type == COND_STRING_TERNARY) {
-            xcs.COND_TYPE = COND_TYPE_TERNARY;
-            unpack_cond_ternary(args);
-        } else if (type == COND_STRING_RULE_DGP) {
-            xcs.COND_TYPE = RULE_TYPE_DGP;
-            unpack_cond_dgp(args);
-        } else if (type == COND_STRING_RULE_NEURAL) {
-            xcs.COND_TYPE = RULE_TYPE_NEURAL;
-            unpack_cond_neural(args);
-        } else if (type == COND_STRING_RULE_NETWORK) {
-            xcs.COND_TYPE = RULE_TYPE_NETWORK;
-            unpack_cond_neural(args);
+        cond_param_set_type_string(&xcs, type.c_str());
+        switch (xcs.cond->type) {
+            case COND_TYPE_HYPERRECTANGLE:
+            case COND_TYPE_HYPERELLIPSOID:
+                unpack_cond_csr(args);
+                break;
+            case COND_TYPE_NEURAL:
+            case RULE_TYPE_NEURAL:
+            case RULE_TYPE_NETWORK:
+                unpack_cond_neural(args);
+                break;
+            case COND_TYPE_GP:
+                unpack_cond_gp(args);
+                break;
+            case COND_TYPE_DGP:
+            case RULE_TYPE_DGP:
+                unpack_cond_dgp(args);
+                break;
+            case COND_TYPE_TERNARY:
+                unpack_cond_ternary(args);
+                break;
+            default:
+                break;
         }
     }
 
@@ -839,16 +847,16 @@ class XCS
             auto name = item.first.cast<std::string>();
             if (name == "min") {
                 const auto value = item.second.cast<double>();
-                param_set_cond_min(&xcs, value);
+                cond_param_set_min(&xcs, value);
             } else if (name == "max") {
                 const auto value = item.second.cast<double>();
-                param_set_cond_max(&xcs, value);
+                cond_param_set_max(&xcs, value);
             } else if (name == "spread-min") {
                 const auto value = item.second.cast<double>();
-                param_set_cond_smin(&xcs, value);
+                cond_param_set_spread_min(&xcs, value);
             } else if (name == "eta") {
                 const auto value = item.second.cast<double>();
-                param_set_cond_eta(&xcs, value);
+                cond_param_set_eta(&xcs, value);
             }
         }
     }
@@ -860,16 +868,25 @@ class XCS
     void
     unpack_cond_gp(const py::dict &args)
     {
+        struct GPTreeArgs *targs = xcs.cond->targs;
+        tree_param_set_n_inputs(targs, xcs.x_dim);
         for (std::pair<py::handle, py::handle> item : args) {
             auto name = item.first.cast<std::string>();
-            if (name == "num-cons") {
-                const auto value = item.second.cast<int>();
-                param_set_gp_num_cons(&xcs, value);
+            if (name == "n-constants") {
+                tree_param_set_n_constants(targs, item.second.cast<int>());
             } else if (name == "init-depth") {
-                const auto value = item.second.cast<int>();
-                param_set_gp_init_depth(&xcs, value);
+                tree_param_set_init_depth(targs, item.second.cast<int>());
+            } else if (name == "max-len") {
+                tree_param_set_max_len(targs, item.second.cast<int>());
+            } else if (name == "n-inputs") {
+                tree_param_set_n_inputs(targs, item.second.cast<int>());
+            } else if (name == "min") {
+                tree_param_set_min(targs, item.second.cast<double>());
+            } else if (name == "max") {
+                tree_param_set_max(targs, item.second.cast<double>());
             }
         }
+        tree_args_build_constants(targs);
     }
 
     /**
@@ -879,20 +896,18 @@ class XCS
     void
     unpack_cond_dgp(const py::dict &args)
     {
+        struct DGPArgs *dargs = xcs.cond->dargs;
+        graph_param_set_n_inputs(dargs, xcs.x_dim);
         for (std::pair<py::handle, py::handle> item : args) {
             auto name = item.first.cast<std::string>();
             if (name == "max-k") {
-                const auto value = item.second.cast<int>();
-                param_set_max_k(&xcs, value);
+                graph_param_set_max_k(dargs, item.second.cast<int>());
             } else if (name == "max-t") {
-                const auto value = item.second.cast<int>();
-                param_set_max_t(&xcs, value);
-            } else if (name == "max-neuron-grow") {
-                const auto value = item.second.cast<int>();
-                param_set_max_neuron_grow(&xcs, value);
-            } else if (name == "stateful") {
-                const auto value = item.second.cast<bool>();
-                param_set_stateful(&xcs, value);
+                graph_param_set_max_t(dargs, item.second.cast<int>());
+            } else if (name == "n") {
+                graph_param_set_n(dargs, item.second.cast<int>());
+            } else if (name == "n-inputs") {
+                graph_param_set_n_inputs(dargs, item.second.cast<int>());
             }
         }
     }
@@ -908,53 +923,104 @@ class XCS
             auto name = item.first.cast<std::string>();
             if (name == "bits") {
                 const auto value = item.second.cast<int>();
-                param_set_cond_bits(&xcs, value);
+                cond_param_set_bits(&xcs, value);
+            }
+        }
+    }
+
+    void
+    unpack_cond_neural(const py::dict &args)
+    {
+        // clear existing layer parameters
+        while (xcs.cond->largs != NULL) {
+            struct LayerArgs *larg = xcs.cond->largs;
+            xcs.cond->largs = xcs.cond->largs->next;
+            free(larg);
+        }
+        // add new layer parameters
+        for (auto item : args) {
+            struct LayerArgs *larg =
+                (struct LayerArgs *) malloc(sizeof(struct LayerArgs));
+            layer_args_init(larg);
+            unpack_layer_params(larg, item.second.cast<py::dict>());
+            if (xcs.cond->largs == NULL) {
+                xcs.cond->largs = larg;
+            } else {
+                struct LayerArgs *iter = xcs.cond->largs;
+                while (iter->next != NULL) {
+                    iter = iter->next;
+                }
+                iter->next = larg;
             }
         }
     }
 
     /**
-     * @brief Sets parameters used by neural network conditions.
+     * @brief Sets parameters used by a neural network layer.
+     * @param [in] larg Layer parameter structure to set.
      * @param [in] args Python dictionary of argument name:value pairs.
      */
     void
-    unpack_cond_neural(const py::dict &args)
+    unpack_layer_params(struct LayerArgs *larg, const py::dict &args)
     {
         for (std::pair<py::handle, py::handle> item : args) {
-            auto name = item.first.cast<std::string>();
-            if (name == "max-neuron-grow") {
-                const auto value = item.second.cast<int>();
-                param_set_max_neuron_grow(&xcs, value);
+            const auto name = item.first.cast<std::string>();
+            if (name == "type") {
+                const auto value = item.second.cast<std::string>();
+                larg->layer_type = layer_type_as_int(value.c_str());
+            } else if (name == "max-neuron-grow") {
+                larg->max_neuron_grow = item.second.cast<int>();
             } else if (name == "evolve-weights") {
-                const auto value = item.second.cast<bool>();
-                param_set_cond_evolve_weights(&xcs, value);
+                larg->evolve_weights = item.second.cast<bool>();
             } else if (name == "evolve-neurons") {
-                const auto value = item.second.cast<bool>();
-                param_set_cond_evolve_neurons(&xcs, value);
+                larg->evolve_neurons = item.second.cast<bool>();
             } else if (name == "evolve-functions") {
-                const auto value = item.second.cast<bool>();
-                param_set_cond_evolve_functions(&xcs, value);
+                larg->evolve_functions = item.second.cast<bool>();
             } else if (name == "evolve-connectivity") {
-                const auto value = item.second.cast<bool>();
-                param_set_cond_evolve_connectivity(&xcs, value);
-            } else if (name == "output-activation") {
+                larg->evolve_connect = item.second.cast<bool>();
+            } else if (name == "evolve-eta") {
+                larg->evolve_eta = item.second.cast<bool>();
+            } else if (name == "sgd-weights") {
+                larg->sgd_weights = item.second.cast<bool>();
+            } else if (name == "activation") {
                 const auto value = item.second.cast<std::string>();
-                param_set_cond_output_activation_string(&xcs, value.c_str());
-            } else if (name == "hidden-activation") {
+                larg->function = neural_activation_as_int(value.c_str());
+            } else if (name == "recurrent-activation") {
                 const auto value = item.second.cast<std::string>();
-                param_set_cond_hidden_activation_string(&xcs, value.c_str());
-            } else if (name == "num-neurons") {
-                const auto value = item.second.cast<py::list>();
-                memset(xcs.COND_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-                for (size_t i = 0; i < value.size(); ++i) {
-                    xcs.COND_NUM_NEURONS[i] = value[i].cast<int>();
-                }
-            } else if (name == "max-neurons") {
-                const auto value = item.second.cast<py::list>();
-                memset(xcs.COND_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
-                for (size_t i = 0; i < value.size(); ++i) {
-                    xcs.COND_MAX_NEURONS[i] = value[i].cast<int>();
-                }
+                larg->recurrent_function =
+                    neural_activation_as_int(value.c_str());
+            } else if (name == "n-inputs") {
+                larg->n_inputs = item.second.cast<int>();
+            } else if (name == "n-init") {
+                larg->n_init = item.second.cast<int>();
+            } else if (name == "n-max") {
+                larg->n_max = item.second.cast<int>();
+            } else if (name == "eta") {
+                larg->eta = item.second.cast<double>();
+            } else if (name == "eta-min") {
+                larg->eta_min = item.second.cast<double>();
+            } else if (name == "momentum") {
+                larg->momentum = item.second.cast<double>();
+            } else if (name == "decay") {
+                larg->decay = item.second.cast<double>();
+            } else if (name == "scale") {
+                larg->scale = item.second.cast<double>();
+            } else if (name == "probability") {
+                larg->probability = item.second.cast<double>();
+            } else if (name == "height") {
+                larg->height = item.second.cast<int>();
+            } else if (name == "width") {
+                larg->width = item.second.cast<int>();
+            } else if (name == "channels") {
+                larg->channels = item.second.cast<int>();
+            } else if (name == "n-filters") {
+                larg->n_filters = item.second.cast<int>();
+            } else if (name == "size") {
+                larg->size = item.second.cast<int>();
+            } else if (name == "stride") {
+                larg->stride = item.second.cast<int>();
+            } else if (name == "pad") {
+                larg->pad = item.second.cast<int>();
             }
         }
     }
@@ -967,10 +1033,8 @@ class XCS
     void
     set_action(const std::string type, const py::dict &args)
     {
-        if (type == ACT_STRING_INTEGER) {
-            xcs.ACT_TYPE = ACT_TYPE_INTEGER;
-        } else if (type == ACT_STRING_NEURAL) {
-            xcs.ACT_TYPE = ACT_TYPE_NEURAL;
+        action_param_set_type_string(&xcs, type.c_str());
+        if (xcs.act->type == ACT_TYPE_NEURAL) {
             unpack_cond_neural(args);
         }
     }
@@ -983,23 +1047,21 @@ class XCS
     void
     set_prediction(const std::string type, const py::dict &args)
     {
-        if (type == PRED_STRING_CONSTANT) {
-            xcs.PRED_TYPE = PRED_TYPE_CONSTANT;
-        } else if (type == PRED_STRING_NLMS_LINEAR) {
-            xcs.PRED_TYPE = PRED_TYPE_NLMS_LINEAR;
-            unpack_pred_nlms(args);
-        } else if (type == PRED_STRING_NLMS_QUADRATIC) {
-            xcs.PRED_TYPE = PRED_TYPE_NLMS_QUADRATIC;
-            unpack_pred_nlms(args);
-        } else if (type == PRED_STRING_RLS_LINEAR) {
-            xcs.PRED_TYPE = PRED_TYPE_RLS_LINEAR;
-            unpack_pred_rls(args);
-        } else if (type == PRED_STRING_RLS_QUADRATIC) {
-            xcs.PRED_TYPE = PRED_TYPE_RLS_QUADRATIC;
-            unpack_pred_rls(args);
-        } else if (type == PRED_STRING_NEURAL) {
-            xcs.PRED_TYPE = PRED_TYPE_NEURAL;
-            unpack_pred_neural(args);
+        pred_param_set_type_string(&xcs, type.c_str());
+        switch (xcs.pred->type) {
+            case PRED_TYPE_NLMS_LINEAR:
+            case PRED_TYPE_NLMS_QUADRATIC:
+                unpack_pred_nlms(args);
+                break;
+            case PRED_TYPE_RLS_LINEAR:
+            case PRED_TYPE_RLS_QUADRATIC:
+                unpack_pred_rls(args);
+                break;
+            case PRED_TYPE_NEURAL:
+                unpack_pred_neural(args);
+                break;
+            default:
+                break;
         }
     }
 
@@ -1010,59 +1072,26 @@ class XCS
     void
     unpack_pred_neural(const py::dict &args)
     {
-        for (std::pair<py::handle, py::handle> item : args) {
-            auto name = item.first.cast<std::string>();
-            if (name == "max-neuron-grow") {
-                const auto value = item.second.cast<int>();
-                param_set_max_neuron_grow(&xcs, value);
-            } else if (name == "reset") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_reset(&xcs, value);
-            } else if (name == "eta") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_eta(&xcs, value);
-            } else if (name == "evolve-eta") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_evolve_eta(&xcs, value);
-            } else if (name == "evolve-weights") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_evolve_weights(&xcs, value);
-            } else if (name == "evolve-neurons") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_evolve_neurons(&xcs, value);
-            } else if (name == "evolve-functions") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_evolve_functions(&xcs, value);
-            } else if (name == "evolve-connectivity") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_evolve_connectivity(&xcs, value);
-            } else if (name == "sgd-weights") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_sgd_weights(&xcs, value);
-            } else if (name == "momentum") {
-                const auto value = item.second.cast<double>();
-                param_set_pred_momentum(&xcs, value);
-            } else if (name == "decay") {
-                const auto value = item.second.cast<double>();
-                param_set_pred_decay(&xcs, value);
-            } else if (name == "output-activation") {
-                const auto value = item.second.cast<std::string>();
-                param_set_pred_output_activation_string(&xcs, value.c_str());
-            } else if (name == "hidden-activation") {
-                const auto value = item.second.cast<std::string>();
-                param_set_pred_hidden_activation_string(&xcs, value.c_str());
-            } else if (name == "num-neurons") {
-                const auto value = item.second.cast<py::list>();
-                memset(xcs.PRED_NUM_NEURONS, 0, MAX_LAYERS * sizeof(int));
-                for (size_t i = 0; i < value.size(); ++i) {
-                    xcs.PRED_NUM_NEURONS[i] = value[i].cast<int>();
+        // clear existing layer parameters
+        while (xcs.pred->largs != NULL) {
+            struct LayerArgs *larg = xcs.pred->largs;
+            xcs.pred->largs = xcs.pred->largs->next;
+            free(larg);
+        }
+        // add new layer parameters
+        for (auto item : args) {
+            struct LayerArgs *larg =
+                (struct LayerArgs *) malloc(sizeof(struct LayerArgs));
+            layer_args_init(larg);
+            unpack_layer_params(larg, item.second.cast<py::dict>());
+            if (xcs.pred->largs == NULL) {
+                xcs.pred->largs = larg;
+            } else {
+                struct LayerArgs *iter = xcs.pred->largs;
+                while (iter->next != NULL) {
+                    iter = iter->next;
                 }
-            } else if (name == "max-neurons") {
-                const auto value = item.second.cast<py::list>();
-                memset(xcs.PRED_MAX_NEURONS, 0, MAX_LAYERS * sizeof(int));
-                for (size_t i = 0; i < value.size(); ++i) {
-                    xcs.PRED_MAX_NEURONS[i] = value[i].cast<int>();
-                }
+                iter->next = larg;
             }
         }
     }
@@ -1077,17 +1106,13 @@ class XCS
         for (std::pair<py::handle, py::handle> item : args) {
             auto name = item.first.cast<std::string>();
             if (name == "x0") {
-                const auto value = item.second.cast<double>();
-                param_set_pred_x0(&xcs, value);
+                pred_param_set_x0(&xcs, item.second.cast<double>());
             } else if (name == "eta") {
-                const auto value = item.second.cast<double>();
-                param_set_pred_eta(&xcs, value);
+                pred_param_set_eta(&xcs, item.second.cast<double>());
+            } else if (name == "eta-min") {
+                pred_param_set_eta_min(&xcs, item.second.cast<double>());
             } else if (name == "evolve_eta") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_evolve_eta(&xcs, value);
-            } else if (name == "reset") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_reset(&xcs, value);
+                pred_param_set_evolve_eta(&xcs, item.second.cast<bool>());
             }
         }
     }
@@ -1103,16 +1128,13 @@ class XCS
             auto name = item.first.cast<std::string>();
             if (name == "x0") {
                 const auto value = item.second.cast<double>();
-                param_set_pred_x0(&xcs, value);
-            } else if (name == "reset") {
-                const auto value = item.second.cast<bool>();
-                param_set_pred_reset(&xcs, value);
+                pred_param_set_x0(&xcs, value);
             } else if (name == "rls-scale-factor") {
                 const auto value = item.second.cast<double>();
-                param_set_pred_rls_scale_factor(&xcs, value);
+                pred_param_set_scale_factor(&xcs, value);
             } else if (name == "rls-lambda") {
                 const auto value = item.second.cast<double>();
-                param_set_pred_rls_lambda(&xcs, value);
+                pred_param_set_lambda(&xcs, value);
             }
         }
     }
@@ -1178,18 +1200,6 @@ class XCS
     }
 
     void
-    set_err_reduc(const double a)
-    {
-        param_set_err_reduc(&xcs, a);
-    }
-
-    void
-    set_fit_reduc(const double a)
-    {
-        param_set_fit_reduc(&xcs, a);
-    }
-
-    void
     set_init_error(const double a)
     {
         param_set_init_error(&xcs, a);
@@ -1220,45 +1230,9 @@ class XCS
     }
 
     void
-    set_p_crossover(const double a)
-    {
-        param_set_p_crossover(&xcs, a);
-    }
-
-    void
-    set_theta_ea(const double a)
-    {
-        param_set_theta_ea(&xcs, a);
-    }
-
-    void
-    set_lambda(const int a)
-    {
-        param_set_lambda(&xcs, a);
-    }
-
-    void
-    set_ea_select_type(const int a)
-    {
-        param_set_ea_select_type(&xcs, a);
-    }
-
-    void
-    set_ea_select_size(const double a)
-    {
-        param_set_ea_select_size(&xcs, a);
-    }
-
-    void
     set_theta_sub(const int a)
     {
         param_set_theta_sub(&xcs, a);
-    }
-
-    void
-    set_ea_subsumption(const bool a)
-    {
-        param_set_ea_subsumption(&xcs, a);
     }
 
     void
@@ -1274,6 +1248,12 @@ class XCS
     }
 
     void
+    set_stateful(const bool a)
+    {
+        param_set_stateful(&xcs, a);
+    }
+
+    void
     set_gamma(const double a)
     {
         param_set_gamma(&xcs, a);
@@ -1283,6 +1263,60 @@ class XCS
     set_p_explore(const double a)
     {
         param_set_p_explore(&xcs, a);
+    }
+
+    void
+    set_ea_select_type(const char *a)
+    {
+        ea_param_set_type_string(&xcs, a);
+    }
+
+    void
+    set_ea_select_size(const double a)
+    {
+        ea_param_set_select_size(&xcs, a);
+    }
+
+    void
+    set_theta_ea(const double a)
+    {
+        ea_param_set_theta(&xcs, a);
+    }
+
+    void
+    set_lambda(const int a)
+    {
+        ea_param_set_lambda(&xcs, a);
+    }
+
+    void
+    set_p_crossover(const double a)
+    {
+        ea_param_set_p_crossover(&xcs, a);
+    }
+
+    void
+    set_err_reduc(const double a)
+    {
+        ea_param_set_err_reduc(&xcs, a);
+    }
+
+    void
+    set_fit_reduc(const double a)
+    {
+        ea_param_set_fit_reduc(&xcs, a);
+    }
+
+    void
+    set_ea_subsumption(const bool a)
+    {
+        ea_param_set_subsumption(&xcs, a);
+    }
+
+    void
+    set_ea_pred_reset(const bool a)
+    {
+        ea_param_set_pred_reset(&xcs, a);
     }
 };
 
@@ -1362,8 +1396,7 @@ PYBIND11_MODULE(xcsf, m)
         .def_property("BETA", &XCS::get_beta, &XCS::set_beta)
         .def_property("DELTA", &XCS::get_delta, &XCS::set_delta)
         .def_property("EPS_0", &XCS::get_eps_0, &XCS::set_eps_0)
-        .def_property("ERR_REDUC", &XCS::get_err_reduc, &XCS::set_err_reduc)
-        .def_property("FIT_REDUC", &XCS::get_fit_reduc, &XCS::set_fit_reduc)
+        .def_property("STATEFUL", &XCS::get_stateful, &XCS::set_stateful)
         .def_property("INIT_ERROR", &XCS::get_init_error, &XCS::set_init_error)
         .def_property("INIT_FITNESS", &XCS::get_init_fitness,
                       &XCS::set_init_fitness)
@@ -1371,23 +1404,27 @@ PYBIND11_MODULE(xcsf, m)
         .def_property("M_PROBATION", &XCS::get_m_probation,
                       &XCS::set_m_probation)
         .def_property("THETA_DEL", &XCS::get_theta_del, &XCS::set_theta_del)
-        .def_property("P_CROSSOVER", &XCS::get_p_crossover,
-                      &XCS::set_p_crossover)
-        .def_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea)
-        .def_property("LAMBDA", &XCS::get_lambda, &XCS::set_lambda)
-        .def_property("EA_SELECT_TYPE", &XCS::get_ea_select_type,
-                      &XCS::set_ea_select_type)
-        .def_property("EA_SELECT_SIZE", &XCS::get_ea_select_size,
-                      &XCS::set_ea_select_size)
         .def_property("THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub)
-        .def_property("EA_SUBSUMPTION", &XCS::get_ea_subsumption,
-                      &XCS::set_ea_subsumption)
         .def_property("SET_SUBSUMPTION", &XCS::get_set_subsumption,
                       &XCS::set_set_subsumption)
         .def_property("TELETRANSPORTATION", &XCS::get_teletransportation,
                       &XCS::set_teletransportation)
         .def_property("GAMMA", &XCS::get_gamma, &XCS::set_gamma)
         .def_property("P_EXPLORE", &XCS::get_p_explore, &XCS::set_p_explore)
+        .def_property("EA_SELECT_TYPE", &XCS::get_ea_select_type,
+                      &XCS::set_ea_select_type)
+        .def_property("EA_SELECT_SIZE", &XCS::get_ea_select_size,
+                      &XCS::set_ea_select_size)
+        .def_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea)
+        .def_property("P_CROSSOVER", &XCS::get_p_crossover,
+                      &XCS::set_p_crossover)
+        .def_property("LAMBDA", &XCS::get_lambda, &XCS::set_lambda)
+        .def_property("ERR_REDUC", &XCS::get_err_reduc, &XCS::set_err_reduc)
+        .def_property("FIT_REDUC", &XCS::get_fit_reduc, &XCS::set_fit_reduc)
+        .def_property("EA_SUBSUMPTION", &XCS::get_ea_subsumption,
+                      &XCS::set_ea_subsumption)
+        .def_property("EA_PRED_RESET", &XCS::get_ea_pred_reset,
+                      &XCS::set_ea_pred_reset)
         .def("pop_size", &XCS::get_pop_size)
         .def("pop_num", &XCS::get_pop_num)
         .def("time", &XCS::get_time)

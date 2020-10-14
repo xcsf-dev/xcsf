@@ -34,7 +34,6 @@
 
 /**
  * @brief Creates and initialises a neural network condition.
- * @details Uses fully-connected layers.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] c The classifier whose condition is to be initialised.
  */
@@ -42,46 +41,32 @@ void
 cond_neural_init(const struct XCSF *xcsf, struct Cl *c)
 {
     struct CondNeural *new = malloc(sizeof(struct CondNeural));
-    neural_init(xcsf, &new->net);
-    // hidden layers
-    uint32_t lopt = neural_cond_lopt(xcsf);
-    lopt |= LAYER_EVOLVE_ETA;
-    lopt |= LAYER_SGD_WEIGHTS;
-    struct Layer *l = NULL;
-    int n_inputs = xcsf->x_dim;
-    for (int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
-        const int hinit = xcsf->COND_NUM_NEURONS[i];
-        int hmax = xcsf->COND_MAX_NEURONS[i];
-        if (hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {
-            hmax = hinit;
-        }
-        const int f = xcsf->COND_HIDDEN_ACTIVATION;
-        l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
-        neural_push(xcsf, &new->net, l);
-        n_inputs = hinit;
+    neural_init(&new->net);
+    const struct LayerArgs *arg = xcsf->cond->largs;
+    while (arg != NULL) {
+        struct Layer *l = layer_init(arg);
+        neural_push(&new->net, l);
+        arg = arg->next;
     }
-    // output layer
-    const int f = xcsf->COND_OUTPUT_ACTIVATION;
-    lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    l = neural_layer_connected_init(xcsf, n_inputs, 1, 1, f, lopt);
-    neural_push(xcsf, &new->net, l);
     c->cond = new;
 }
 
 void
 cond_neural_free(const struct XCSF *xcsf, const struct Cl *c)
 {
+    (void) xcsf;
     struct CondNeural *cond = c->cond;
-    neural_free(xcsf, &cond->net);
+    neural_free(&cond->net);
     free(c->cond);
 }
 
 void
 cond_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
+    (void) xcsf;
     struct CondNeural *new = malloc(sizeof(struct CondNeural));
     const struct CondNeural *src_cond = src->cond;
-    neural_copy(xcsf, &new->net, &src_cond->net);
+    neural_copy(&new->net, &src_cond->net);
     dest->cond = new;
 }
 
@@ -90,7 +75,7 @@ cond_neural_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     const struct CondNeural *cond = c->cond;
     do {
-        neural_rand(xcsf, &cond->net);
+        neural_rand(&cond->net);
     } while (!cond_neural_match(xcsf, c, x));
 }
 
@@ -109,7 +94,7 @@ cond_neural_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     const struct CondNeural *cond = c->cond;
     neural_propagate(xcsf, &cond->net, x);
-    if (neural_output(xcsf, &cond->net, 0) > 0.5) {
+    if (neural_output(&cond->net, 0) > 0.5) {
         return true;
     }
     return false;
@@ -118,8 +103,9 @@ cond_neural_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 bool
 cond_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
+    (void) xcsf;
     const struct CondNeural *cond = c->cond;
-    return neural_mutate(xcsf, &cond->net);
+    return neural_mutate(&cond->net);
 }
 
 bool
@@ -145,30 +131,34 @@ cond_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
+    (void) xcsf;
     const struct CondNeural *cond = c->cond;
-    neural_print(xcsf, &cond->net, false);
+    neural_print(&cond->net, false);
 }
 
 double
 cond_neural_size(const struct XCSF *xcsf, const struct Cl *c)
 {
+    (void) xcsf;
     const struct CondNeural *cond = c->cond;
-    return neural_size(xcsf, &cond->net);
+    return neural_size(&cond->net);
 }
 
 size_t
 cond_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
+    (void) xcsf;
     const struct CondNeural *cond = c->cond;
-    size_t s = neural_save(xcsf, &cond->net, fp);
+    size_t s = neural_save(&cond->net, fp);
     return s;
 }
 
 size_t
 cond_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
+    (void) xcsf;
     struct CondNeural *new = malloc(sizeof(struct CondNeural));
-    size_t s = neural_load(xcsf, &new->net, fp);
+    size_t s = neural_load(&new->net, fp);
     c->cond = new;
     return s;
 }

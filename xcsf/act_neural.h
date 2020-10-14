@@ -25,6 +25,8 @@
 
 #include "action.h"
 #include "neural.h"
+#include "neural_activations.h"
+#include "neural_layer.h"
 #include "xcsf.h"
 
 /**

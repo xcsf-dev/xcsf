@@ -48,103 +48,56 @@ struct Net {
 };
 
 bool
-neural_mutate(const struct XCSF *xcsf, const struct Net *net);
+neural_mutate(const struct Net *net);
 
 double
-neural_output(const struct XCSF *xcsf, const struct Net *net, const int IDX);
+neural_output(const struct Net *net, const int IDX);
 
 double *
-neural_outputs(const struct XCSF *xcsf, const struct Net *net);
+neural_outputs(const struct Net *net);
 
 double
-neural_size(const struct XCSF *xcsf, const struct Net *net);
+neural_size(const struct Net *net);
 
 size_t
-neural_load(const struct XCSF *xcsf, struct Net *net, FILE *fp);
+neural_load(struct Net *net, FILE *fp);
 
 size_t
-neural_save(const struct XCSF *xcsf, const struct Net *net, FILE *fp);
+neural_save(const struct Net *net, FILE *fp);
 
 void
-neural_copy(const struct XCSF *xcsf, struct Net *dest, const struct Net *src);
+neural_copy(struct Net *dest, const struct Net *src);
 
 void
-neural_free(const struct XCSF *xcsf, struct Net *net);
+neural_free(struct Net *net);
 
 void
-neural_init(const struct XCSF *xcsf, struct Net *net);
+neural_init(struct Net *net);
 
 void
-neural_insert(const struct XCSF *xcsf, struct Net *net, struct Layer *l,
-              const int pos);
+neural_insert(struct Net *net, struct Layer *l, const int pos);
 
 void
-neural_remove(const struct XCSF *xcsf, struct Net *net, const int pos);
+neural_remove(struct Net *net, const int pos);
 
 void
-neural_push(const struct XCSF *xcsf, struct Net *net, struct Layer *l);
+neural_push(struct Net *net, struct Layer *l);
 
 void
-neural_pop(const struct XCSF *xcsf, struct Net *net);
+neural_pop(struct Net *net);
 
 void
-neural_learn(const struct XCSF *xcsf, const struct Net *net,
-             const double *output, const double *input);
+neural_learn(const struct Net *net, const double *output, const double *input);
 
 void
-neural_print(const struct XCSF *xcsf, const struct Net *net,
-             const bool print_weights);
+neural_print(const struct Net *net, const bool print_weights);
 
 void
 neural_propagate(const struct XCSF *xcsf, const struct Net *net,
                  const double *input);
 
 void
-neural_rand(const struct XCSF *xcsf, const struct Net *net);
+neural_rand(const struct Net *net);
 
 void
-neural_resize(const struct XCSF *xcsf, const struct Net *net);
-
-static uint32_t
-neural_cond_lopt(const struct XCSF *xcsf)
-{
-    uint32_t lopt = 0;
-    if (xcsf->COND_EVOLVE_WEIGHTS) {
-        lopt |= LAYER_EVOLVE_WEIGHTS;
-    }
-    if (xcsf->COND_EVOLVE_NEURONS) {
-        lopt |= LAYER_EVOLVE_NEURONS;
-    }
-    if (xcsf->COND_EVOLVE_FUNCTIONS) {
-        lopt |= LAYER_EVOLVE_FUNCTIONS;
-    }
-    if (xcsf->COND_EVOLVE_CONNECTIVITY) {
-        lopt |= LAYER_EVOLVE_CONNECT;
-    }
-    return lopt;
-}
-
-static uint32_t
-neural_pred_lopt(const struct XCSF *xcsf)
-{
-    uint32_t lopt = 0;
-    if (xcsf->PRED_EVOLVE_ETA) {
-        lopt |= LAYER_EVOLVE_ETA;
-    }
-    if (xcsf->PRED_SGD_WEIGHTS) {
-        lopt |= LAYER_SGD_WEIGHTS;
-    }
-    if (xcsf->PRED_EVOLVE_WEIGHTS) {
-        lopt |= LAYER_EVOLVE_WEIGHTS;
-    }
-    if (xcsf->PRED_EVOLVE_NEURONS) {
-        lopt |= LAYER_EVOLVE_NEURONS;
-    }
-    if (xcsf->PRED_EVOLVE_FUNCTIONS) {
-        lopt |= LAYER_EVOLVE_FUNCTIONS;
-    }
-    if (xcsf->PRED_EVOLVE_CONNECTIVITY) {
-        lopt |= LAYER_EVOLVE_CONNECT;
-    }
-    return lopt;
-}
+neural_resize(const struct Net *net);

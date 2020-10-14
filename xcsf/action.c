@@ -34,7 +34,7 @@
 void
 action_set(const struct XCSF *xcsf, struct Cl *c)
 {
-    switch (xcsf->ACT_TYPE) {
+    switch (xcsf->act->type) {
         case ACT_TYPE_INTEGER:
             c->act_vptr = &act_integer_vtbl;
             break;
@@ -42,7 +42,7 @@ action_set(const struct XCSF *xcsf, struct Cl *c)
             c->act_vptr = &act_neural_vtbl;
             break;
         default:
-            printf("Invalid action type specified: %d\n", xcsf->ACT_TYPE);
+            printf("Invalid action type specified: %d\n", xcsf->act->type);
             exit(EXIT_FAILURE);
     }
 }
@@ -82,4 +82,120 @@ action_type_as_int(const char *type)
     }
     printf("action_type_as_int(): invalid type: %s\n", type);
     exit(EXIT_FAILURE);
+}
+
+/**
+ * @brief Initialises default neural action parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+action_param_neural_defaults(struct XCSF *xcsf)
+{
+    // hidden layer
+    struct LayerArgs *la = malloc(sizeof(struct LayerArgs));
+    layer_args_init(la);
+    la->layer_type = CONNECTED;
+    la->n_inputs = xcsf->x_dim;
+    la->n_init = 1;
+    la->n_max = 100;
+    la->max_neuron_grow = 1;
+    la->function = LOGISTIC;
+    la->evolve_weights = true;
+    la->evolve_neurons = true;
+    la->evolve_connect = true;
+    xcsf->act->largs = la;
+    // softmax output layer
+    la->next = layer_args_copy(la);
+    la->next->function = LINEAR;
+    la->next->n_inputs = la->n_init;
+    la->next->n_init = xcsf->n_actions;
+    la->next->n_max = xcsf->n_actions;
+    la->next->evolve_neurons = false;
+    la->next->next = layer_args_copy(la->next);
+    la->next->next->n_inputs = la->next->n_init;
+    la->next->next->layer_type = SOFTMAX;
+    la->next->next->scale = 1;
+}
+
+/**
+ * @brief Initialises default action parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+action_param_defaults(struct XCSF *xcsf)
+{
+    action_param_set_type(xcsf, ACT_TYPE_NEURAL);
+    action_param_neural_defaults(xcsf);
+}
+
+/**
+ * @brief Prints neural network action parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+action_param_print_neural(const struct XCSF *xcsf)
+{
+    const struct LayerArgs *arg = xcsf->act->largs;
+    int cnt = 0;
+    while (arg != NULL) {
+        printf(", ACT_LAYER_%d={", cnt);
+        layer_args_print(arg);
+        arg = arg->next;
+        printf("}");
+        ++cnt;
+    }
+}
+
+/**
+ * @brief Prints action parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+action_param_print(const struct XCSF *xcsf)
+{
+    const struct ActArgs *act = xcsf->act;
+    printf(", ACT_TYPE=%s", action_type_as_string(act->type));
+    if (xcsf->act->type == ACT_TYPE_NEURAL) {
+        action_param_print_neural(xcsf);
+    }
+}
+
+/**
+ * @brief Saves action parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
+ * @return The total number of elements written.
+ */
+size_t
+action_param_save(const struct XCSF *xcsf, FILE *fp)
+{
+    const struct ActArgs *act = xcsf->act;
+    size_t s = 0;
+    s += fwrite(&act->type, sizeof(int), 1, fp);
+    return s;
+}
+
+/**
+ * @brief Loads action parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
+ * @return The total number of elements written.
+ */
+size_t
+action_param_load(struct XCSF *xcsf, FILE *fp)
+{
+    struct ActArgs *act = xcsf->act;
+    size_t s = 0;
+    s += fread(&act->type, sizeof(int), 1, fp);
+    return s;
+}
+
+/**
+ * @brief Frees action parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+action_param_free(struct XCSF *xcsf)
+{
+    (void) xcsf;
 }

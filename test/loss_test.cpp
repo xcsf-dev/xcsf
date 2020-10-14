@@ -40,10 +40,7 @@ TEST_CASE("LOSS FUNCTIONS")
     // Initialisation
     struct XCSF xcsf;
     rand_init();
-    param_init(&xcsf);
-    param_set_x_dim(&xcsf, 10);
-    param_set_y_dim(&xcsf, 2);
-    param_set_n_actions(&xcsf, 1);
+    param_init(&xcsf, 10, 2, 1);
     CHECK_EQ(xcsf.x_dim, 10);
     CHECK_EQ(xcsf.y_dim, 2);
     CHECK_EQ(xcsf.n_actions, 1);

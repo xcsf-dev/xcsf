@@ -43,13 +43,11 @@ TEST_CASE("PRED_RLS")
     struct XCSF xcsf;
     struct Cl c;
     rand_init();
-    param_init(&xcsf);
-    param_set_x_dim(&xcsf, 10);
-    param_set_y_dim(&xcsf, 1);
-    param_set_pred_type(&xcsf, PRED_TYPE_RLS_LINEAR);
-    param_set_pred_x0(&xcsf, 1);
-    param_set_pred_rls_scale_factor(&xcsf, 1000);
-    param_set_pred_rls_lambda(&xcsf, 1);
+    param_init(&xcsf, 10, 1, 1);
+    pred_param_set_type(&xcsf, PRED_TYPE_RLS_LINEAR);
+    pred_param_set_x0(&xcsf, 1);
+    pred_param_set_scale_factor(&xcsf, 1000);
+    pred_param_set_lambda(&xcsf, 1);
     cl_init(&xcsf, &c, 1, 1);
     pred_rls_init(&xcsf, &c);
     struct PredRLS *p = (struct PredRLS *) c.pred;

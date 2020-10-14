@@ -34,17 +34,17 @@ void
 cond_dgp_init(const struct XCSF *xcsf, struct Cl *c)
 {
     struct CondDGP *new = malloc(sizeof(struct CondDGP));
-    const int n = (int) fmax(xcsf->COND_NUM_NEURONS[0], 1);
-    graph_init(xcsf, &new->dgp, n);
-    graph_rand(xcsf, &new->dgp);
+    graph_init(&new->dgp, xcsf->cond->dargs);
+    graph_rand(&new->dgp);
     c->cond = new;
 }
 
 void
 cond_dgp_free(const struct XCSF *xcsf, const struct Cl *c)
 {
+    (void) xcsf;
     const struct CondDGP *cond = c->cond;
-    graph_free(xcsf, &cond->dgp);
+    graph_free(&cond->dgp);
     free(c->cond);
 }
 
@@ -53,17 +53,18 @@ cond_dgp_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
     struct CondDGP *new = malloc(sizeof(struct CondDGP));
     const struct CondDGP *src_cond = src->cond;
-    graph_init(xcsf, &new->dgp, src_cond->dgp.n);
-    graph_copy(xcsf, &new->dgp, &src_cond->dgp);
+    graph_init(&new->dgp, xcsf->cond->dargs);
+    graph_copy(&new->dgp, &src_cond->dgp);
     dest->cond = new;
 }
 
 void
 cond_dgp_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
+    (void) xcsf;
     struct CondDGP *cond = c->cond;
     do {
-        graph_rand(xcsf, &cond->dgp);
+        graph_rand(&cond->dgp);
     } while (!cond_dgp_match(xcsf, c, x));
 }
 
@@ -81,8 +82,8 @@ bool
 cond_dgp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     const struct CondDGP *cond = c->cond;
-    graph_update(xcsf, &cond->dgp, x);
-    if (graph_output(xcsf, &cond->dgp, 0) > 0.5) {
+    graph_update(&cond->dgp, x, !xcsf->STATEFUL);
+    if (graph_output(&cond->dgp, 0) > 0.5) {
         return true;
     }
     return false;
@@ -91,17 +92,19 @@ cond_dgp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 bool
 cond_dgp_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
+    (void) xcsf;
     struct CondDGP *cond = c->cond;
-    return graph_mutate(xcsf, &cond->dgp);
+    return graph_mutate(&cond->dgp);
 }
 
 bool
 cond_dgp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                    const struct Cl *c2)
 {
-    struct CondDGP *cond1 = c1->cond;
-    struct CondDGP *cond2 = c2->cond;
-    return graph_crossover(xcsf, &cond1->dgp, &cond2->dgp);
+    (void) xcsf;
+    (void) c1;
+    (void) c2;
+    return false;
 }
 
 bool
@@ -119,7 +122,7 @@ cond_dgp_print(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     const struct CondDGP *cond = c->cond;
-    graph_print(xcsf, &cond->dgp);
+    graph_print(&cond->dgp);
 }
 
 double
@@ -133,16 +136,18 @@ cond_dgp_size(const struct XCSF *xcsf, const struct Cl *c)
 size_t
 cond_dgp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
+    (void) xcsf;
     const struct CondDGP *cond = c->cond;
-    size_t s = graph_save(xcsf, &cond->dgp, fp);
+    size_t s = graph_save(&cond->dgp, fp);
     return s;
 }
 
 size_t
 cond_dgp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
+    (void) xcsf;
     struct CondDGP *new = malloc(sizeof(struct CondDGP));
-    size_t s = graph_load(xcsf, &new->dgp, fp);
+    size_t s = graph_load(&new->dgp, fp);
     c->cond = new;
     return s;
 }

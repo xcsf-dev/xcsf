@@ -83,18 +83,31 @@ xcs.SET_SUBSUMPTION = False
 xcs.THETA_EA = 100 # EA invocation frequency
 xcs.THETA_DEL = 100 # min experience before fitness used for deletion
 
-cond_args = {
-        'output-activation': 'linear',
-        'hidden-activation': 'selu',
+condition_layers = {
+    'layer_0': { # hidden layer
+        'type': 'connected',
+        'activation': 'selu',
         'evolve-weights': True,
         'evolve-neurons': True,
         'evolve-functions': False,
         'evolve-connectivity': False,
-        'num-neurons': [1], # number of initial neurons
-        'max-neurons': [100], # maximum number of neurons
-        'max-neuron-grow': 1, # max neurons to add/remove per mutation event
+        'n-init': 1,
+        'n-max': 100,
+        'n-inputs': X_DIM,
+        'max-neuron-grow': 1,
+    },
+    'layer_1': { # output layer
+        'type': 'connected',
+        'activation': 'linear',
+        'evolve-weights': True,
+        'evolve-functions': False,
+        'evolve-connectivity': False,
+        'n-init': 1,
+        'n-inputs': 1,
     }
-xcs.condition('neural', cond_args) # neural network conditions
+}
+
+xcs.condition('neural', condition_layers) # neural network conditions
 xcs.action('integer') # (dummy) integer actions
 xcs.prediction('rls-quadratic') # Quadratic RLS
 

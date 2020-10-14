@@ -31,6 +31,14 @@
 #define ACT_STRING_INTEGER ("integer\0") //!< Integer
 #define ACT_STRING_NEURAL ("neural\0") //!< Neural
 
+/**
+ * @brief Parameters for initialising and operating actions.
+ */
+struct ActArgs {
+    int type; //!< Classifier action type
+    struct LayerArgs *largs; //!< Linked-list of layer parameters
+};
+
 void
 action_set(const struct XCSF *xcsf, struct Cl *c);
 
@@ -39,6 +47,21 @@ action_type_as_string(const int type);
 
 int
 action_type_as_int(const char *type);
+
+void
+action_param_defaults(struct XCSF *xcsf);
+
+void
+action_param_free(struct XCSF *xcsf);
+
+void
+action_param_print(const struct XCSF *xcsf);
+
+size_t
+action_param_save(const struct XCSF *xcsf, FILE *fp);
+
+size_t
+action_param_load(struct XCSF *xcsf, FILE *fp);
 
 /**
  * @brief Action interface data structure.
@@ -214,4 +237,29 @@ act_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
            const double *y)
 {
     (*c->act_vptr->act_impl_update)(xcsf, c, x, y);
+}
+
+/* parameter setters */
+
+static inline void
+action_param_set_type_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->act->type = action_type_as_int(a);
+}
+
+static inline const char *
+action_param_type_as_string(const struct XCSF *xcsf)
+{
+    return action_type_as_string(xcsf->act->type);
+}
+
+static inline void
+action_param_set_type(struct XCSF *xcsf, const int a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set ACT TYPE too small\n");
+        xcsf->act->type = 0;
+    } else {
+        xcsf->act->type = a;
+    }
 }

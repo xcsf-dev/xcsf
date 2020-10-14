@@ -37,7 +37,6 @@
 
 /**
  * @brief Creates and initialises an action neural network.
- * @details Uses fully-connected layers.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] c The classifier whose action is to be initialised.
  */
@@ -45,30 +44,13 @@ void
 act_neural_init(const struct XCSF *xcsf, struct Cl *c)
 {
     struct ActNeural *new = malloc(sizeof(struct ActNeural));
-    neural_init(xcsf, &new->net);
-    // hidden layers
-    uint32_t lopt = neural_cond_lopt(xcsf);
-    struct Layer *l = NULL;
-    int n_inputs = xcsf->x_dim;
-    for (int i = 0; i < MAX_LAYERS && xcsf->COND_NUM_NEURONS[i] > 0; ++i) {
-        const int hinit = xcsf->COND_NUM_NEURONS[i];
-        int hmax = xcsf->COND_MAX_NEURONS[i];
-        if (hmax < hinit || !xcsf->COND_EVOLVE_NEURONS) {
-            hmax = hinit;
-        }
-        const int f = xcsf->COND_HIDDEN_ACTIVATION;
-        l = neural_layer_connected_init(xcsf, n_inputs, hinit, hmax, f, lopt);
-        neural_push(xcsf, &new->net, l);
-        n_inputs = hinit;
+    neural_init(&new->net);
+    const struct LayerArgs *arg = xcsf->act->largs;
+    while (arg != NULL) {
+        struct Layer *l = layer_init(arg);
+        neural_push(&new->net, l);
+        arg = arg->next;
     }
-    // output layer
-    lopt &= ~LAYER_EVOLVE_NEURONS; // never evolve the number of output neurons
-    lopt &= ~LAYER_EVOLVE_FUNCTIONS; // never evolve the output neurons function
-    l = neural_layer_connected_init(xcsf, n_inputs, xcsf->n_actions,
-                                    xcsf->n_actions, LINEAR, lopt);
-    neural_push(xcsf, &new->net, l);
-    l = neural_layer_softmax_init(xcsf, xcsf->n_actions, 1);
-    neural_push(xcsf, &new->net, l);
     c->act = new;
 }
 
@@ -115,8 +97,9 @@ act_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
 bool
 act_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
+    (void) xcsf;
     const struct ActNeural *act = c->act;
-    return neural_mutate(xcsf, &act->net);
+    return neural_mutate(&act->net);
 }
 
 /**
@@ -131,7 +114,7 @@ act_neural_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     const struct ActNeural *act = c->act;
     neural_propagate(xcsf, &act->net, x);
-    const double *outputs = neural_outputs(xcsf, &act->net);
+    const double *outputs = neural_outputs(&act->net);
     return max_index(outputs, xcsf->n_actions);
 }
 
@@ -144,9 +127,10 @@ act_neural_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 void
 act_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
+    (void) xcsf;
     struct ActNeural *new = malloc(sizeof(struct ActNeural));
     const struct ActNeural *src_act = src->act;
-    neural_copy(xcsf, &new->net, &src_act->net);
+    neural_copy(&new->net, &src_act->net);
     dest->act = new;
 }
 
@@ -158,8 +142,9 @@ act_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 void
 act_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
+    (void) xcsf;
     const struct ActNeural *act = c->act;
-    neural_print(xcsf, &act->net, false);
+    neural_print(&act->net, false);
 }
 
 /**
@@ -175,7 +160,7 @@ act_neural_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
 {
     const struct ActNeural *act = c->act;
     do {
-        neural_rand(xcsf, &act->net);
+        neural_rand(&act->net);
     } while (action != act_neural_compute(xcsf, c, x));
 }
 
@@ -187,8 +172,9 @@ act_neural_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x,
 void
 act_neural_free(const struct XCSF *xcsf, const struct Cl *c)
 {
+    (void) xcsf;
     struct ActNeural *act = c->act;
-    neural_free(xcsf, &act->net);
+    neural_free(&act->net);
     free(c->act);
 }
 
@@ -219,8 +205,9 @@ act_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
 size_t
 act_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
+    (void) xcsf;
     const struct ActNeural *act = c->act;
-    size_t s = neural_save(xcsf, &act->net, fp);
+    size_t s = neural_save(&act->net, fp);
     return s;
 }
 
@@ -234,8 +221,9 @@ act_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 size_t
 act_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
+    (void) xcsf;
     struct ActNeural *new = malloc(sizeof(struct ActNeural));
-    size_t s = neural_load(xcsf, &new->net, fp);
+    size_t s = neural_load(&new->net, fp);
     c->act = new;
     return s;
 }

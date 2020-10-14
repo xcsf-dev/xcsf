@@ -34,7 +34,7 @@
 void
 prediction_set(const struct XCSF *xcsf, struct Cl *c)
 {
-    switch (xcsf->PRED_TYPE) {
+    switch (xcsf->pred->type) {
         case PRED_TYPE_CONSTANT:
             c->pred_vptr = &pred_constant_vtbl;
             break;
@@ -50,7 +50,7 @@ prediction_set(const struct XCSF *xcsf, struct Cl *c)
             c->pred_vptr = &pred_neural_vtbl;
             break;
         default:
-            printf("prediction_set(): invalid type: %d\n", xcsf->PRED_TYPE);
+            printf("prediction_set(): invalid type: %d\n", xcsf->pred->type);
             exit(EXIT_FAILURE);
     }
 }
@@ -110,4 +110,177 @@ prediction_type_as_int(const char *type)
     }
     printf("prediction_type_as_int(): invalid type: %s\n", type);
     exit(EXIT_FAILURE);
+}
+
+/**
+ * @brief Initialises default neural prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+pred_param_neural_defaults(struct XCSF *xcsf)
+{
+    // hidden layer
+    struct LayerArgs *la = malloc(sizeof(struct LayerArgs));
+    layer_args_init(la);
+    la->layer_type = CONNECTED;
+    la->n_inputs = xcsf->x_dim;
+    la->n_init = 10;
+    la->n_max = 100;
+    la->max_neuron_grow = 1;
+    la->function = LOGISTIC;
+    la->evolve_weights = true;
+    la->evolve_neurons = true;
+    la->evolve_connect = true;
+    la->evolve_eta = true;
+    la->sgd_weights = true;
+    la->eta = 0.01;
+    la->momentum = 0.9;
+    xcsf->pred->largs = la;
+    // output layer
+    la->next = layer_args_copy(la);
+    la->next->n_inputs = la->n_init;
+    la->next->n_init = xcsf->y_dim;
+    la->next->n_max = xcsf->y_dim;
+    la->next->evolve_neurons = false;
+}
+
+/**
+ * @brief Initialises default prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+pred_param_defaults(struct XCSF *xcsf)
+{
+    pred_param_set_type(xcsf, PRED_TYPE_NLMS_LINEAR);
+    pred_param_set_eta(xcsf, 0.1);
+    pred_param_set_eta_min(xcsf, 0.00001);
+    pred_param_set_lambda(xcsf, 1);
+    pred_param_set_scale_factor(xcsf, 1000);
+    pred_param_set_x0(xcsf, 1);
+    pred_param_set_evolve_eta(xcsf, true);
+    pred_param_neural_defaults(xcsf);
+}
+
+/**
+ * @brief Prints least mean squres prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+pred_param_print_nlms(const struct XCSF *xcsf)
+{
+    const struct PredArgs *pred = xcsf->pred;
+    printf(", PRED_X0=%f", pred->x0);
+    printf(", PRED_ETA=%f", pred->eta);
+    printf(", PRED_ETA_MIN=%f", pred->eta_min);
+    printf(", PRED_EVOLVE_ETA=");
+    pred->evolve_eta ? printf("true") : printf("false");
+}
+
+/**
+ * @brief Prints recursive least mean squres prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+pred_param_print_rls(const struct XCSF *xcsf)
+{
+    const struct PredArgs *pred = xcsf->pred;
+    printf(", PRED_X0=%f", pred->x0);
+    printf(", PRED_LAMBDA=%f", pred->lambda);
+    printf(", PRED_SCALE_FACTOR=%f", pred->scale_factor);
+}
+
+/**
+ * @brief Prints neural network prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+pred_param_print_neural(const struct XCSF *xcsf)
+{
+    const struct LayerArgs *arg = xcsf->pred->largs;
+    int cnt = 0;
+    while (arg != NULL) {
+        printf(", PRED_LAYER_%d={", cnt);
+        layer_args_print(arg);
+        arg = arg->next;
+        printf("}");
+        ++cnt;
+    }
+}
+
+/**
+ * @brief Prints prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+pred_param_print(const struct XCSF *xcsf)
+{
+    const struct PredArgs *pred = xcsf->pred;
+    printf(", PRED_TYPE=%s", prediction_type_as_string(pred->type));
+    switch (pred->type) {
+        case PRED_TYPE_NLMS_LINEAR:
+        case PRED_TYPE_NLMS_QUADRATIC:
+            pred_param_print_nlms(xcsf);
+            break;
+        case PRED_TYPE_RLS_LINEAR:
+        case PRED_TYPE_RLS_QUADRATIC:
+            pred_param_print_rls(xcsf);
+            break;
+        case PRED_TYPE_NEURAL:
+            pred_param_print_neural(xcsf);
+            break;
+        default:
+            break;
+    }
+}
+
+/**
+ * @brief Saves prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
+ * @return The total number of elements written.
+ */
+size_t
+pred_param_save(const struct XCSF *xcsf, FILE *fp)
+{
+    const struct PredArgs *pred = xcsf->pred;
+    size_t s = 0;
+    s += fwrite(&pred->type, sizeof(int), 1, fp);
+    s += fwrite(&pred->eta, sizeof(double), 1, fp);
+    s += fwrite(&pred->eta_min, sizeof(double), 1, fp);
+    s += fwrite(&pred->lambda, sizeof(double), 1, fp);
+    s += fwrite(&pred->scale_factor, sizeof(double), 1, fp);
+    s += fwrite(&pred->x0, sizeof(double), 1, fp);
+    s += fwrite(&pred->evolve_eta, sizeof(bool), 1, fp);
+    return s;
+}
+
+/**
+ * @brief Loads prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] fp Pointer to the output file.
+ * @return The total number of elements written.
+ */
+size_t
+pred_param_load(struct XCSF *xcsf, FILE *fp)
+{
+    struct PredArgs *pred = xcsf->pred;
+    size_t s = 0;
+    s += fread(&pred->type, sizeof(int), 1, fp);
+    s += fread(&pred->eta, sizeof(double), 1, fp);
+    s += fread(&pred->eta_min, sizeof(double), 1, fp);
+    s += fread(&pred->lambda, sizeof(double), 1, fp);
+    s += fread(&pred->scale_factor, sizeof(double), 1, fp);
+    s += fread(&pred->x0, sizeof(double), 1, fp);
+    s += fread(&pred->evolve_eta, sizeof(bool), 1, fp);
+    return s;
+}
+
+/**
+ * @brief Frees prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+pred_param_free(struct XCSF *xcsf)
+{
+    (void) xcsf;
 }

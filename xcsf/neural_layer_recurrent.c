@@ -107,15 +107,13 @@ set_layer_n_biases(struct Layer *l)
 
 /**
  * @brief Mutates the gradient descent rate used to update a recurrent layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer whose gradient descent rate is to be mutated.
  * @return Whether any alterations were made.
  */
 static bool
-mutate_eta(const struct XCSF *xcsf, struct Layer *l)
+mutate_eta(struct Layer *l)
 {
-    if ((l->options & LAYER_EVOLVE_ETA) &&
-        layer_mutate_eta(xcsf, l, l->mu[0])) {
+    if ((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(l, l->mu[0])) {
         l->input_layer->eta = l->eta;
         l->self_layer->eta = l->eta;
         l->output_layer->eta = l->eta;
@@ -126,21 +124,20 @@ mutate_eta(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Mutates the number of neurons in a recurrent layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer whose number of neurons is to be mutated.
  * @return Whether any alterations were made.
  */
 static bool
-mutate_neurons(const struct XCSF *xcsf, struct Layer *l)
+mutate_neurons(struct Layer *l)
 {
     if (l->options & LAYER_EVOLVE_NEURONS) {
-        const int n = layer_mutate_neurons(xcsf, l->self_layer, l->mu[1]);
+        const int n = layer_mutate_neurons(l->self_layer, l->mu[1]);
         if (n != 0) {
             layer_add_neurons(l->input_layer, n);
             layer_add_neurons(l->self_layer, n);
             layer_add_neurons(l->output_layer, n);
-            layer_resize(xcsf, l->self_layer, l->input_layer);
-            layer_resize(xcsf, l->output_layer, l->input_layer);
+            layer_resize(l->self_layer, l->input_layer);
+            layer_resize(l->output_layer, l->input_layer);
             l->n_outputs = l->output_layer->n_outputs;
             l->output = l->output_layer->output;
             l->delta = l->output_layer->delta;
@@ -220,35 +217,27 @@ mutate_functions(struct Layer *l)
 }
 
 /**
- * @brief Creates and initialises a recurrent layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] n_inputs The number of inputs.
- * @param [in] n_init The initial number of neurons.
- * @param [in] n_max The maximum number of neurons.
- * @param [in] f Activation function.
- * @param [in] o Bitwise options specifying which operations can be performed.
- * @return A pointer to the new layer.
+ * @brief Initialises a recurrent layer.
+ * @param [in] l Layer to initialise.
+ * @param [in] args Parameters to initialise the layer.
  */
-struct Layer *
-neural_layer_recurrent_init(const struct XCSF *xcsf, const int n_inputs,
-                            const int n_init, const int n_max, const int f,
-                            const uint32_t o)
+void
+neural_layer_recurrent_init(struct Layer *l, const struct LayerArgs *args)
 {
-    struct Layer *l = malloc(sizeof(struct Layer));
-    layer_init(l);
-    l->layer_type = RECURRENT;
-    l->layer_vptr = &layer_recurrent_vtbl;
-    l->options = o;
-    l->function = f;
-    l->n_inputs = n_inputs;
-    l->n_outputs = n_init;
-    l->max_outputs = n_max;
-    l->input_layer =
-        neural_layer_connected_init(xcsf, n_inputs, n_init, n_max, LINEAR, o);
-    l->self_layer =
-        neural_layer_connected_init(xcsf, n_init, n_init, n_max, LINEAR, o);
-    l->output_layer =
-        neural_layer_connected_init(xcsf, n_init, n_init, n_max, f, o);
+    l->options = layer_opt(args);
+    l->function = args->function;
+    l->n_inputs = args->n_inputs;
+    l->n_outputs = args->n_init;
+    l->max_outputs = args->n_max;
+    struct LayerArgs *cargs = layer_args_copy(args);
+    cargs->layer_type = CONNECTED; // recurrent layer is composed of 3 connected
+    cargs->function = LINEAR; // input layer and self layer are linear
+    l->input_layer = layer_init(cargs);
+    cargs->n_inputs = cargs->n_init; // n_init inputs to self and output layers
+    l->self_layer = layer_init(cargs);
+    cargs->function = args->function; // output activation
+    l->output_layer = layer_init(cargs);
+    free(cargs);
     l->output = l->output_layer->output;
     l->delta = l->output_layer->delta;
     l->eta = l->input_layer->eta;
@@ -259,24 +248,22 @@ neural_layer_recurrent_init(const struct XCSF *xcsf, const int n_inputs,
     set_layer_n_active(l);
     malloc_layer_arrays(l);
     sam_init(l->mu, N_MU, MU_TYPE);
-    return l;
 }
 
 /**
  * @brief Initialises and creates a copy of one recurrent layer from another.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] src The source layer.
  * @return A pointer to the new layer.
  */
 struct Layer *
-neural_layer_recurrent_copy(const struct XCSF *xcsf, const struct Layer *src)
+neural_layer_recurrent_copy(const struct Layer *src)
 {
     if (src->layer_type != RECURRENT) {
         printf("neural_layer_recurrent_copy(): incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
-    layer_init(l);
+    layer_defaults(l);
     l->layer_type = src->layer_type;
     l->layer_vptr = src->layer_vptr;
     l->options = src->options;
@@ -286,9 +273,9 @@ neural_layer_recurrent_copy(const struct XCSF *xcsf, const struct Layer *src)
     l->n_active = src->n_active;
     l->eta = src->eta;
     l->max_outputs = src->max_outputs;
-    l->input_layer = layer_copy(xcsf, src->input_layer);
-    l->self_layer = layer_copy(xcsf, src->self_layer);
-    l->output_layer = layer_copy(xcsf, src->output_layer);
+    l->input_layer = layer_copy(src->input_layer);
+    l->self_layer = layer_copy(src->self_layer);
+    l->output_layer = layer_copy(src->output_layer);
     l->output = l->output_layer->output;
     l->delta = l->output_layer->delta;
     malloc_layer_arrays(l);
@@ -299,15 +286,14 @@ neural_layer_recurrent_copy(const struct XCSF *xcsf, const struct Layer *src)
 
 /**
  * @brief Free memory used by a recurrent layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to be freed.
  */
 void
-neural_layer_recurrent_free(const struct XCSF *xcsf, const struct Layer *l)
+neural_layer_recurrent_free(const struct Layer *l)
 {
-    layer_free(xcsf, l->input_layer);
-    layer_free(xcsf, l->self_layer);
-    layer_free(xcsf, l->output_layer);
+    layer_free(l->input_layer);
+    layer_free(l->self_layer);
+    layer_free(l->output_layer);
     free(l->input_layer);
     free(l->self_layer);
     free(l->output_layer);
@@ -316,15 +302,14 @@ neural_layer_recurrent_free(const struct XCSF *xcsf, const struct Layer *l)
 
 /**
  * @brief Randomises a recurrent layer weights.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to randomise.
  */
 void
-neural_layer_recurrent_rand(const struct XCSF *xcsf, struct Layer *l)
+neural_layer_recurrent_rand(struct Layer *l)
 {
-    layer_rand(xcsf, l->input_layer);
-    layer_rand(xcsf, l->self_layer);
-    layer_rand(xcsf, l->output_layer);
+    layer_rand(l->input_layer);
+    layer_rand(l->self_layer);
+    layer_rand(l->output_layer);
 }
 
 /**
@@ -347,50 +332,46 @@ neural_layer_recurrent_forward(const struct XCSF *xcsf, const struct Layer *l,
 
 /**
  * @brief Backward propagates a recurrent layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to backward propagate.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's error.
  */
 void
-neural_layer_recurrent_backward(const struct XCSF *xcsf, const struct Layer *l,
-                                const double *input, double *delta)
+neural_layer_recurrent_backward(const struct Layer *l, const double *input,
+                                double *delta)
 {
     memset(l->input_layer->delta, 0, sizeof(double) * l->n_outputs);
     memset(l->self_layer->delta, 0, sizeof(double) * l->n_outputs);
-    layer_backward(xcsf, l->output_layer, l->state, l->self_layer->delta);
+    layer_backward(l->output_layer, l->state, l->self_layer->delta);
     memcpy(l->input_layer->delta, l->self_layer->delta,
            sizeof(double) * l->n_outputs);
-    layer_backward(xcsf, l->self_layer, l->prev_state, 0);
-    layer_backward(xcsf, l->input_layer, input, delta);
+    layer_backward(l->self_layer, l->prev_state, 0);
+    layer_backward(l->input_layer, input, delta);
 }
 
 /**
  * @brief Updates the weights and biases of a recurrent layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to update.
  */
 void
-neural_layer_recurrent_update(const struct XCSF *xcsf, const struct Layer *l)
+neural_layer_recurrent_update(const struct Layer *l)
 {
     if (l->options & LAYER_SGD_WEIGHTS) {
-        layer_update(xcsf, l->input_layer);
-        layer_update(xcsf, l->self_layer);
-        layer_update(xcsf, l->output_layer);
+        layer_update(l->input_layer);
+        layer_update(l->self_layer);
+        layer_update(l->output_layer);
     }
 }
 
 /**
  * @brief Resizes a recurrent layer if the previous layer has changed size.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to resize.
  * @param [in] prev The layer previous to the one being resized.
  */
 void
-neural_layer_recurrent_resize(const struct XCSF *xcsf, struct Layer *l,
-                              const struct Layer *prev)
+neural_layer_recurrent_resize(struct Layer *l, const struct Layer *prev)
 {
-    layer_resize(xcsf, l->input_layer, prev);
+    layer_resize(l->input_layer, prev);
     l->n_inputs = l->input_layer->n_inputs;
     l->n_active = l->input_layer->n_active + l->self_layer->n_active +
         l->output_layer->n_active;
@@ -398,30 +379,27 @@ neural_layer_recurrent_resize(const struct XCSF *xcsf, struct Layer *l,
 
 /**
  * @brief Returns the output from a recurrent layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer whose output to return.
  * @return The layer output.
  */
 double *
-neural_layer_recurrent_output(const struct XCSF *xcsf, const struct Layer *l)
+neural_layer_recurrent_output(const struct Layer *l)
 {
-    (void) xcsf;
     return l->output;
 }
 
 /**
  * @brief Mutates a recurrent layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
  */
 bool
-neural_layer_recurrent_mutate(const struct XCSF *xcsf, struct Layer *l)
+neural_layer_recurrent_mutate(struct Layer *l)
 {
     sam_adapt(l->mu, N_MU, MU_TYPE);
     bool mod = false;
-    mod = mutate_eta(xcsf, l) ? true : mod;
-    mod = mutate_neurons(xcsf, l) ? true : mod;
+    mod = mutate_eta(l) ? true : mod;
+    mod = mutate_neurons(l) ? true : mod;
     mod = mutate_connectivity(l) ? true : mod;
     mod = mutate_weights(l) ? true : mod;
     mod = mutate_functions(l) ? true : mod;
@@ -430,36 +408,32 @@ neural_layer_recurrent_mutate(const struct XCSF *xcsf, struct Layer *l)
 
 /**
  * @brief Prints a recurrent layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to print.
  * @param [in] print_weights Whether to print the values of weights and biases.
  */
 void
-neural_layer_recurrent_print(const struct XCSF *xcsf, const struct Layer *l,
-                             const bool print_weights)
+neural_layer_recurrent_print(const struct Layer *l, const bool print_weights)
 {
     printf("recurrent %s, in = %d, out = %d\n",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs);
     if (print_weights) {
         printf("recurrent input layer:\n");
-        layer_print(xcsf, l->input_layer, print_weights);
+        layer_print(l->input_layer, print_weights);
         printf("recurrent self layer:\n");
-        layer_print(xcsf, l->self_layer, print_weights);
+        layer_print(l->self_layer, print_weights);
         printf("recurrent output layer:\n");
-        layer_print(xcsf, l->output_layer, print_weights);
+        layer_print(l->output_layer, print_weights);
     }
 }
 
 /**
  * @brief Writes a recurrent layer to a file.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to save.
  * @param [in] fp Pointer to the file to be written.
  * @return The number of elements written.
  */
 size_t
-neural_layer_recurrent_save(const struct XCSF *xcsf, const struct Layer *l,
-                            FILE *fp)
+neural_layer_recurrent_save(const struct Layer *l, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&l->n_inputs, sizeof(int), 1, fp);
@@ -472,21 +446,20 @@ neural_layer_recurrent_save(const struct XCSF *xcsf, const struct Layer *l,
     s += fwrite(l->mu, sizeof(double), N_MU, fp);
     s += fwrite(l->state, sizeof(double), l->n_outputs, fp);
     s += fwrite(l->prev_state, sizeof(double), l->n_outputs, fp);
-    s += layer_save(xcsf, l->input_layer, fp);
-    s += layer_save(xcsf, l->self_layer, fp);
-    s += layer_save(xcsf, l->output_layer, fp);
+    s += layer_save(l->input_layer, fp);
+    s += layer_save(l->self_layer, fp);
+    s += layer_save(l->output_layer, fp);
     return s;
 }
 
 /**
  * @brief Reads a recurrent layer from a file.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to load.
  * @param [in] fp Pointer to the file to be read.
  * @return The number of elements read.
  */
 size_t
-neural_layer_recurrent_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
+neural_layer_recurrent_load(struct Layer *l, FILE *fp)
 {
     size_t s = 0;
     s += fread(&l->n_inputs, sizeof(int), 1, fp);
@@ -500,8 +473,8 @@ neural_layer_recurrent_load(const struct XCSF *xcsf, struct Layer *l, FILE *fp)
     s += fread(l->mu, sizeof(double), N_MU, fp);
     s += fread(l->state, sizeof(double), l->n_outputs, fp);
     s += fread(l->prev_state, sizeof(double), l->n_outputs, fp);
-    s += layer_load(xcsf, l->input_layer, fp);
-    s += layer_load(xcsf, l->self_layer, fp);
-    s += layer_load(xcsf, l->output_layer, fp);
+    s += layer_load(l->input_layer, fp);
+    s += layer_load(l->self_layer, fp);
+    s += layer_load(l->output_layer, fp);
     return s;
 }

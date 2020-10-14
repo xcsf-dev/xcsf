@@ -39,7 +39,7 @@ TEST_CASE("XCSF")
 {
     struct XCSF xcsf;
     rand_init();
-    param_init(&xcsf);
+    param_init(&xcsf, 1, 1, 1);
     config_read(&xcsf, "../default.ini");
     CHECK_EQ(xcsf.ALPHA, 0.1);
 }

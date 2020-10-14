@@ -41,13 +41,12 @@ main(int argc, char **argv)
     }
     struct XCSF *xcsf = malloc(sizeof(struct XCSF));
     rand_init();
-    param_init(xcsf);
+    env_init(xcsf, argv); // initialise environment and default parameters
     if (argc > 3) { // load parameter config
         config_read(xcsf, argv[3]);
     } else {
         config_read(xcsf, "default.ini");
     }
-    env_init(xcsf, argv); // initialise problem environment
     xcsf_init(xcsf); // initialise empty sets
     if (argc == 5) { // reload state of a previous experiment
         const size_t s = xcsf_load(xcsf, argv[4]);

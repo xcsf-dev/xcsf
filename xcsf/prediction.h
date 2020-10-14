@@ -39,6 +39,20 @@
 #define PRED_STRING_RLS_QUADRATIC ("rls-quadratic\0") //!< Quadratic rls
 #define PRED_STRING_NEURAL ("neural\0") //!< Neural
 
+/**
+ * @brief Parameters for initialising and operating predictions.
+ */
+struct PredArgs {
+    int type; //!< Classifier prediction type: least squares, etc.
+    bool evolve_eta; //!< Whether to evolve the gradient descent rate
+    double eta; //!< Gradient descent rate
+    double eta_min; //!< Minimum gradient descent rate
+    double lambda; //!< RLS forget rate
+    double scale_factor; //!< Initial values for the RLS gain-matrix
+    double x0; //!< Prediction weight vector offset value
+    struct LayerArgs *largs; //!< Linked-list of layer parameters
+};
+
 void
 prediction_set(const struct XCSF *xcsf, struct Cl *c);
 
@@ -47,6 +61,21 @@ prediction_type_as_string(const int type);
 
 int
 prediction_type_as_int(const char *type);
+
+void
+pred_param_defaults(struct XCSF *xcsf);
+
+void
+pred_param_free(struct XCSF *xcsf);
+
+void
+pred_param_print(const struct XCSF *xcsf);
+
+size_t
+pred_param_save(const struct XCSF *xcsf, FILE *fp);
+
+size_t
+pred_param_load(struct XCSF *xcsf, FILE *fp);
 
 /**
  * @brief Prediction interface data structure.
@@ -211,14 +240,15 @@ pred_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
  * @brief Prepares the input state for least squares computation.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] x The input state.
+ * @param [in] X0 Bias term.
  * @param [out] tmp_input The transformed input.
  */
 static inline void
-pred_transform_input(const struct XCSF *xcsf, const double *x,
+pred_transform_input(const struct XCSF *xcsf, const double *x, const double X0,
                      double *tmp_input)
 {
     // bias term
-    tmp_input[0] = xcsf->PRED_X0;
+    tmp_input[0] = X0;
     int idx = 1;
     // linear terms
     for (int i = 0; i < xcsf->x_dim; ++i) {
@@ -226,8 +256,8 @@ pred_transform_input(const struct XCSF *xcsf, const double *x,
         ++idx;
     }
     // quadratic terms
-    if (xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC ||
-        xcsf->PRED_TYPE == PRED_TYPE_RLS_QUADRATIC) {
+    if (xcsf->pred->type == PRED_TYPE_NLMS_QUADRATIC ||
+        xcsf->pred->type == PRED_TYPE_RLS_QUADRATIC) {
         for (int i = 0; i < xcsf->x_dim; ++i) {
             for (int j = i; j < xcsf->x_dim; ++j) {
                 tmp_input[idx] = x[i] * x[j];
@@ -235,4 +265,81 @@ pred_transform_input(const struct XCSF *xcsf, const double *x,
             }
         }
     }
+}
+
+/* parameter setters */
+
+static inline void
+pred_param_set_eta(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set PRED ETA too small\n");
+        xcsf->pred->eta = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set PRED ETA too large\n");
+        xcsf->pred->eta = 1;
+    } else {
+        xcsf->pred->eta = a;
+    }
+}
+
+static inline void
+pred_param_set_eta_min(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set PRED ETA_MIN too small\n");
+        xcsf->pred->eta_min = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set PRED ETA_MIN too large\n");
+        xcsf->pred->eta_min = 1;
+    } else {
+        xcsf->pred->eta_min = a;
+    }
+}
+
+static inline void
+pred_param_set_lambda(struct XCSF *xcsf, const double a)
+{
+    xcsf->pred->lambda = a;
+}
+
+static inline void
+pred_param_set_scale_factor(struct XCSF *xcsf, const double a)
+{
+    xcsf->pred->scale_factor = a;
+}
+
+static inline void
+pred_param_set_x0(struct XCSF *xcsf, const double a)
+{
+    xcsf->pred->x0 = a;
+}
+
+static inline void
+pred_param_set_evolve_eta(struct XCSF *xcsf, const bool a)
+{
+    xcsf->pred->evolve_eta = a;
+}
+
+static inline void
+pred_param_set_type(struct XCSF *xcsf, const int a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set PRED TYPE too small\n");
+        xcsf->pred->type = 0;
+    } else {
+        xcsf->pred->type = a;
+    }
+}
+
+static inline void
+pred_param_set_type_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->pred->type = prediction_type_as_int(a);
+}
+
+static inline const char *
+pred_param_type_as_string(const struct XCSF *xcsf)
+{
+    return prediction_type_as_string(xcsf->pred->type);
 }

@@ -41,13 +41,11 @@ TEST_CASE("COND_ELLIPSOID")
     struct XCSF xcsf;
     struct Cl c1;
     rand_init();
-    param_init(&xcsf);
-    param_set_x_dim(&xcsf, 5);
-    param_set_y_dim(&xcsf, 1);
-    xcsf.COND_MIN = 0;
-    xcsf.COND_MAX = 1;
-    xcsf.COND_SMIN = 1;
-    xcsf.COND_TYPE = COND_TYPE_HYPERELLIPSOID;
+    param_init(&xcsf, 5, 1, 1);
+    cond_param_set_type(&xcsf, COND_TYPE_HYPERELLIPSOID);
+    cond_param_set_min(&xcsf, 0);
+    cond_param_set_max(&xcsf, 1);
+    cond_param_set_spread_min(&xcsf, 1);
     cl_init(&xcsf, &c1, 1, 1);
     cond_ellipsoid_init(&xcsf, &c1);
     const double x[5] = { 0.8455260670, 0.7566081103, 0.3125093674,

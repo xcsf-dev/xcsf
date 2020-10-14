@@ -26,7 +26,6 @@
 #include "sam.h"
 #include "utils.h"
 
-#define ETA_MIN (0.0001) //!< Minimum gradient descent rate
 #define N_MU (1) //!< Number of self-adaptive mutation rates
 
 /**
@@ -47,7 +46,7 @@ pred_nlms_init(const struct XCSF *xcsf, struct Cl *c)
     struct PredNLMS *pred = malloc(sizeof(struct PredNLMS));
     c->pred = pred;
     // set the length of weights per predicted variable
-    if (xcsf->PRED_TYPE == PRED_TYPE_NLMS_QUADRATIC) {
+    if (xcsf->pred->type == PRED_TYPE_NLMS_QUADRATIC) {
         // offset(1) + n linear + n quadratic + n*(n-1)/2 mixed terms
         pred->n = 1 + 2 * xcsf->x_dim + xcsf->x_dim * (xcsf->x_dim - 1) / 2;
     } else {
@@ -56,15 +55,15 @@ pred_nlms_init(const struct XCSF *xcsf, struct Cl *c)
     // initialise weights
     pred->n_weights = pred->n * xcsf->y_dim;
     pred->weights = calloc(pred->n_weights, sizeof(double));
-    blas_fill(xcsf->y_dim, xcsf->PRED_X0, pred->weights, pred->n);
+    blas_fill(xcsf->y_dim, xcsf->pred->x0, pred->weights, pred->n);
     // initialise learning rate
     pred->mu = malloc(sizeof(double) * N_MU);
-    if (xcsf->PRED_EVOLVE_ETA) {
+    if (xcsf->pred->evolve_eta) {
         sam_init(pred->mu, N_MU, MU_TYPE);
-        pred->eta = rand_uniform(ETA_MIN, xcsf->PRED_ETA);
+        pred->eta = rand_uniform(xcsf->pred->eta_min, xcsf->pred->eta);
     } else {
         memset(pred->mu, 0, sizeof(double) * N_MU);
-        pred->eta = xcsf->PRED_ETA;
+        pred->eta = xcsf->pred->eta;
     }
     // initialise temporary storage for weight updating
     pred->tmp_input = malloc(sizeof(double) * pred->n);
@@ -117,10 +116,10 @@ pred_nlms_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                  const double *y)
 {
     const struct PredNLMS *pred = c->pred;
-    const int n = pred->n;
     // normalise update
-    const double norm =
-        xcsf->PRED_X0 * xcsf->PRED_X0 + blas_dot(xcsf->x_dim, x, 1, x, 1);
+    const int n = pred->n;
+    const double X0 = xcsf->pred->x0;
+    const double norm = X0 * X0 + blas_dot(xcsf->x_dim, x, 1, x, 1);
     // update weights using the error
     for (int i = 0; i < xcsf->y_dim; ++i) {
         const double error = y[i] - c->prediction[i];
@@ -140,7 +139,7 @@ pred_nlms_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     const struct PredNLMS *pred = c->pred;
     const int n = pred->n;
-    pred_transform_input(xcsf, x, pred->tmp_input);
+    pred_transform_input(xcsf, x, xcsf->pred->x0, pred->tmp_input);
     for (int i = 0; i < xcsf->y_dim; ++i) {
         c->prediction[i] =
             blas_dot(n, &pred->weights[i * n], 1, pred->tmp_input, 1);
@@ -192,12 +191,12 @@ pred_nlms_crossover(const struct XCSF *xcsf, const struct Cl *c1,
 bool
 pred_nlms_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
-    if (xcsf->PRED_EVOLVE_ETA) {
+    if (xcsf->pred->evolve_eta) {
         struct PredNLMS *pred = c->pred;
         sam_adapt(pred->mu, N_MU, MU_TYPE);
         const double orig = pred->eta;
         pred->eta += rand_normal(0, pred->mu[0]);
-        pred->eta = clamp(pred->eta, ETA_MIN, xcsf->PRED_ETA);
+        pred->eta = clamp(pred->eta, xcsf->pred->eta_min, xcsf->pred->eta);
         if (orig != pred->eta) {
             return true;
         }
