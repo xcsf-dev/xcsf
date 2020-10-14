@@ -125,7 +125,7 @@ condition_type_as_int(const char *type)
         return COND_TYPE_HYPERRECTANGLE;
     }
     if (strncmp(type, COND_STRING_HYPERELLIPSOID, 15) == 0) {
-        return COND_TYPE_HYPERRECTANGLE;
+        return COND_TYPE_HYPERELLIPSOID;
     }
     if (strncmp(type, COND_STRING_NEURAL, 7) == 0) {
         return COND_TYPE_NEURAL;
