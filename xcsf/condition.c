@@ -387,13 +387,8 @@ cond_param_load(struct XCSF *xcsf, FILE *fp)
 void
 cond_param_free(struct XCSF *xcsf)
 {
-    struct CondArgs *cond = xcsf->cond;
-    tree_args_free(cond->targs);
-    free(cond->targs);
-    free(cond->dargs);
-    while (cond->largs != NULL) {
-        struct LayerArgs *args = cond->largs;
-        cond->largs = args->next;
-        free(args);
-    }
+    tree_args_free(xcsf->cond->targs);
+    free(xcsf->cond->targs);
+    free(xcsf->cond->dargs);
+    layer_args_free(xcsf->cond->largs);
 }

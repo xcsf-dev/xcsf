@@ -658,6 +658,20 @@ layer_args_print(const struct LayerArgs *args)
 }
 
 /**
+ * @brief Frees memory used by layer parameters.
+ * @param [in] largs The layer parameters to print.
+ */
+void
+layer_args_free(struct LayerArgs *largs)
+{
+    while (largs != NULL) {
+        struct LayerArgs *args = largs;
+        largs = args->next;
+        free(args);
+    }
+}
+
+/**
  * @brief Returns a string representation of a layer type from an integer.
  * @param [in] type Integer representation of a layer type.
  * @return String representing the name of the layer type.
