@@ -777,7 +777,7 @@ class XCS
      * @param [in] type String representing a name of a condition type.
      */
     void
-    set_condition(std::string const type)
+    set_condition(const std::string &type)
     {
         set_condition(type, {});
     }
@@ -787,7 +787,7 @@ class XCS
      * @param [in] type String representing a name of an action type.
      */
     void
-    set_action(std::string const type)
+    set_action(const std::string &type)
     {
         set_action(type, {});
     }
@@ -797,7 +797,7 @@ class XCS
      * @param [in] type String representing a name of a prediction type.
      */
     void
-    set_prediction(std::string const type)
+    set_prediction(const std::string &type)
     {
         set_prediction(type, {});
     }
@@ -808,7 +808,7 @@ class XCS
      * @param [in] args Python dictionary of argument name:value pairs.
      */
     void
-    set_condition(const std::string type, const py::dict &args)
+    set_condition(const std::string &type, const py::dict &args)
     {
         cond_param_set_type_string(&xcs, type.c_str());
         switch (xcs.cond->type) {
@@ -1031,7 +1031,7 @@ class XCS
      * @param [in] args Python dictionary of argument name:value pairs.
      */
     void
-    set_action(const std::string type, const py::dict &args)
+    set_action(const std::string &type, const py::dict &args)
     {
         action_param_set_type_string(&xcs, type.c_str());
         if (xcs.act->type == ACT_TYPE_NEURAL) {
@@ -1045,7 +1045,7 @@ class XCS
      * @param [in] args Python dictionary of argument name:value pairs.
      */
     void
-    set_prediction(const std::string type, const py::dict &args)
+    set_prediction(const std::string &type, const py::dict &args)
     {
         pred_param_set_type_string(&xcs, type.c_str());
         switch (xcs.pred->type) {
@@ -1341,16 +1341,16 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*error1)(void) = &XCS::error;
     double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
 
-    void (XCS::*condition1)(const std::string) = &XCS::set_condition;
-    void (XCS::*condition2)(const std::string, const py::dict &) =
+    void (XCS::*condition1)(const std::string &) = &XCS::set_condition;
+    void (XCS::*condition2)(const std::string &, const py::dict &) =
         &XCS::set_condition;
 
-    void (XCS::*action1)(const std::string) = &XCS::set_action;
-    void (XCS::*action2)(const std::string, const py::dict &) =
+    void (XCS::*action1)(const std::string &) = &XCS::set_action;
+    void (XCS::*action2)(const std::string &, const py::dict &) =
         &XCS::set_action;
 
-    void (XCS::*prediction1)(const std::string) = &XCS::set_prediction;
-    void (XCS::*prediction2)(const std::string, const py::dict &) =
+    void (XCS::*prediction1)(const std::string &) = &XCS::set_prediction;
+    void (XCS::*prediction2)(const std::string &, const py::dict &) =
         &XCS::set_prediction;
 
     py::class_<XCS>(m, "XCS")
