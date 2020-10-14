@@ -92,31 +92,31 @@ Implements both [supervised learning](https://en.wikipedia.org/wiki/Supervised_l
 
 See `default.ini` for a full list of options.
 
-### Evolved Conditions
+### Conditions
 
-* `COND_TYPE = dummy` : Always matching dummy condition
-* `COND_TYPE = hyperrectangle` : Hyperrectangles
-* `COND_TYPE = hyperellipsoid` : Hyperellipsoids
-* `COND_TYPE = neural` : Neural networks
-* `COND_TYPE = tree-gp` : GP trees
-* `COND_TYPE = dgp` : Dynamical GP graphs
-* `COND_TYPE = ternary` : Ternary bitstrings (binarises inputs)
-* `COND_TYPE = rule-dgp` : Both conditions and actions in single dynamical GP graphs
-* `COND_TYPE = rule-neural` : Both conditions and actions in single (recurrent) neural networks
+* Always matching dummy conditions
+* Hyperrectangles
+* Hyperellipsoids
+* Neural networks
+* GP trees
+* Dynamical GP graphs
+* Ternary bitstrings (binarises inputs)
+* Both conditions and actions in single dynamical GP graphs
+* Both conditions and actions in single neural networks
 
-### Evolved Actions
+### Actions
 
-* `ACT_TYPE = integer` : Integers
-* `ACT_TYPE = neural` : Neural networks
+* Integers
+* Neural networks
 
-### Computed Predictions
+### Predictions
 
-* `PRED_TYPE = constant` : Piece-wise constant
-* `PRED_TYPE = nlms-linear` : Linear least squares
-* `PRED_TYPE = nlms-quadratic` : Quadratic least squares
-* `PRED_TYPE = rls-linear` : Linear recursive least squares
-* `PRED_TYPE = rls-quadratic` : Quadratic recursive least squares
-* `PRED_TYPE = neural` : Stochastic gradient descent neural networks
+* Piece-wise constant
+* Linear least squares
+* Quadratic least squares
+* Linear recursive least squares
+* Quadratic recursive least squares
+* Stochastic gradient descent neural networks
 
 *******************************************************************************
 
