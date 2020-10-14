@@ -256,20 +256,19 @@ ea_param_defaults(struct XCSF *xcsf)
 void
 ea_param_print(const struct XCSF *xcsf)
 {
-    const struct EAArgs *ea = xcsf->ea;
-    printf(", EA_SELECT_TYPE=%s", ea_type_as_string(ea->select_type));
-    if (ea->select_type == EA_SELECT_TOURNAMENT) {
-        printf(", EA_SELECT_SIZE=%f", ea->select_size);
+    printf(", EA_SELECT_TYPE=%s", ea_type_as_string(xcsf->ea->select_type));
+    if (xcsf->ea->select_type == EA_SELECT_TOURNAMENT) {
+        printf(", EA_SELECT_SIZE=%f", xcsf->ea->select_size);
     }
-    printf(", THETA_EA=%f", ea->theta);
-    printf(", LAMBDA=%d", ea->lambda);
-    printf(", P_CROSSOVER=%f", ea->p_crossover);
-    printf(", ERR_REDUC=%f", ea->err_reduc);
-    printf(", FIT_REDUC=%f", ea->fit_reduc);
+    printf(", THETA_EA=%f", xcsf->ea->theta);
+    printf(", LAMBDA=%d", xcsf->ea->lambda);
+    printf(", P_CROSSOVER=%f", xcsf->ea->p_crossover);
+    printf(", ERR_REDUC=%f", xcsf->ea->err_reduc);
+    printf(", FIT_REDUC=%f", xcsf->ea->fit_reduc);
     printf(", EA_SUBSUMPTION=");
-    ea->subsumption ? printf("true") : printf("false");
+    xcsf->ea->subsumption ? printf("true") : printf("false");
     printf(", EA_PRED_RESET=");
-    ea->pred_reset ? printf("true") : printf("false");
+    xcsf->ea->pred_reset ? printf("true") : printf("false");
 }
 
 /**
@@ -281,17 +280,16 @@ ea_param_print(const struct XCSF *xcsf)
 size_t
 ea_param_save(const struct XCSF *xcsf, FILE *fp)
 {
-    const struct EAArgs *ea = xcsf->ea;
     size_t s = 0;
-    s += fwrite(&ea->select_type, sizeof(int), 1, fp);
-    s += fwrite(&ea->select_size, sizeof(double), 1, fp);
-    s += fwrite(&ea->theta, sizeof(double), 1, fp);
-    s += fwrite(&ea->lambda, sizeof(int), 1, fp);
-    s += fwrite(&ea->p_crossover, sizeof(double), 1, fp);
-    s += fwrite(&ea->err_reduc, sizeof(double), 1, fp);
-    s += fwrite(&ea->fit_reduc, sizeof(double), 1, fp);
-    s += fwrite(&ea->subsumption, sizeof(bool), 1, fp);
-    s += fwrite(&ea->pred_reset, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->ea->select_type, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->ea->select_size, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->ea->theta, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->ea->lambda, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->ea->p_crossover, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->ea->err_reduc, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->ea->fit_reduc, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->ea->subsumption, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->ea->pred_reset, sizeof(bool), 1, fp);
     return s;
 }
 
@@ -304,17 +302,16 @@ ea_param_save(const struct XCSF *xcsf, FILE *fp)
 size_t
 ea_param_load(struct XCSF *xcsf, FILE *fp)
 {
-    struct EAArgs *ea = xcsf->ea;
     size_t s = 0;
-    s += fread(&ea->select_type, sizeof(int), 1, fp);
-    s += fread(&ea->select_size, sizeof(double), 1, fp);
-    s += fread(&ea->theta, sizeof(double), 1, fp);
-    s += fread(&ea->lambda, sizeof(int), 1, fp);
-    s += fread(&ea->p_crossover, sizeof(double), 1, fp);
-    s += fread(&ea->err_reduc, sizeof(double), 1, fp);
-    s += fread(&ea->fit_reduc, sizeof(double), 1, fp);
-    s += fread(&ea->subsumption, sizeof(bool), 1, fp);
-    s += fread(&ea->pred_reset, sizeof(bool), 1, fp);
+    s += fread(&xcsf->ea->select_type, sizeof(int), 1, fp);
+    s += fread(&xcsf->ea->select_size, sizeof(double), 1, fp);
+    s += fread(&xcsf->ea->theta, sizeof(double), 1, fp);
+    s += fread(&xcsf->ea->lambda, sizeof(int), 1, fp);
+    s += fread(&xcsf->ea->p_crossover, sizeof(double), 1, fp);
+    s += fread(&xcsf->ea->err_reduc, sizeof(double), 1, fp);
+    s += fread(&xcsf->ea->fit_reduc, sizeof(double), 1, fp);
+    s += fread(&xcsf->ea->subsumption, sizeof(bool), 1, fp);
+    s += fread(&xcsf->ea->pred_reset, sizeof(bool), 1, fp);
     return s;
 }
 
