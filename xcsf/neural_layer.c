@@ -554,6 +554,8 @@ layer_args_print_inputs(const struct LayerArgs *args)
             printf(", stride=%d", args->stride);
             printf(", pad=%d", args->pad);
             break;
+        default:
+            break;
     }
 }
 
@@ -616,6 +618,8 @@ layer_args_print_activation(const struct LayerArgs *args)
         case NOISE:
         case SOFTMAX:
             return;
+        default:
+            break;
     }
     printf(", activation=%s", neural_activation_string(args->function));
     if (args->layer_type == LSTM) {

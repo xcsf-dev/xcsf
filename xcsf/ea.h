@@ -53,9 +53,6 @@ void
 ea_param_defaults(struct XCSF *xcsf);
 
 void
-ea_param_free(struct XCSF *xcsf);
-
-void
 ea_param_print(const struct XCSF *xcsf);
 
 size_t

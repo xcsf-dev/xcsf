@@ -337,7 +337,6 @@ param_init(struct XCSF *xcsf, const int x_dim, const int y_dim,
 void
 param_free(struct XCSF *xcsf)
 {
-    ea_param_free(xcsf);
     action_param_free(xcsf);
     cond_param_free(xcsf);
     pred_param_free(xcsf);

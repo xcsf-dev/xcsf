@@ -35,25 +35,6 @@
 #define BASE (10) //!< Decimal numbers
 
 /**
- * @brief Reads a csv list of ints into an array.
- * @param [in] str String list of values.
- * @param [out] val An integer array.
- */
-static void
-config_get_ints(char *str, int *val)
-{
-    int num = 0;
-    char *end = NULL;
-    char *saveptr = NULL;
-    const char *ptok = strtok_r(str, ARRAY_DELIM, &saveptr);
-    while (ptok != NULL) {
-        val[num] = (int) strtoimax(ptok, &end, BASE);
-        ptok = strtok_r(NULL, ARRAY_DELIM, &saveptr);
-        ++num;
-    }
-}
-
-/**
  * @brief Sets general XCSF parameters.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] n String representation of the parameter name.

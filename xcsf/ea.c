@@ -319,16 +319,6 @@ ea_param_load(struct XCSF *xcsf, FILE *fp)
 }
 
 /**
- * @brief Frees evolutionary algorithm parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-void
-ea_param_free(struct XCSF *xcsf)
-{
-    (void) xcsf;
-}
-
-/**
  * @brief Returns a string representation of an EA select type from an integer.
  * @param [in] type Integer representation of an EA select type.
  * @return String representing the name of the EA select type.
