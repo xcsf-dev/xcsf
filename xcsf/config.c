@@ -185,7 +185,7 @@ config_cl_gen(struct XCSF *xcsf, const char *n, const char *v, const int i,
  * @param [in] f Float representation of the parameter value.
  */
 static void
-config_layer(const char *n, char *v, const int i, const double f)
+config_layer(const char *n, const char *v, const int i, const double f)
 {
     if (strncmp(n, "LAYER_ACTIVATION\0", 17) == 0) {
         current_layer->function = neural_activation_as_int(v);
@@ -228,15 +228,15 @@ config_layer(const char *n, char *v, const int i, const double f)
     } else if (strncmp(n, "LAYER_CHANNELS\0", 15) == 0) {
         current_layer->channels = i;
     } else if (strncmp(n, "LAYER_PROBABILITY\0", 18) == 0) {
-        current_layer->probability = i;
+        current_layer->probability = f;
     } else if (strncmp(n, "LAYER_SIZE\0", 11) == 0) {
-        current_layer->size = f;
+        current_layer->size = i;
     } else if (strncmp(n, "LAYER_STRIDE\0", 13) == 0) {
-        current_layer->stride = f;
+        current_layer->stride = i;
     } else if (strncmp(n, "LAYER_PAD\0", 10) == 0) {
-        current_layer->pad = f;
+        current_layer->pad = i;
     } else if (strncmp(n, "LAYER_N_FILTERS\0", 16) == 0) {
-        current_layer->n_filters = f;
+        current_layer->n_filters = i;
     }
 }
 
@@ -247,7 +247,7 @@ config_layer(const char *n, char *v, const int i, const double f)
  * @param [in] v String representation of the parameter value.
  */
 static void
-config_cl_cond_neural(struct XCSF *xcsf, const char *n, char *v)
+config_cl_cond_neural(struct XCSF *xcsf, const char *n, const char *v)
 {
     if (strncmp(n, "COND_LAYER_TYPE\0", 16) == 0) {
         if (xcsf->cond->largs == NULL) {
@@ -262,10 +262,9 @@ config_cl_cond_neural(struct XCSF *xcsf, const char *n, char *v)
             layer_args_init(current_layer);
             current_layer->n_inputs = tail->n_init;
         }
+        current_layer->n_init = 1; // single condition matching neuron
         if (xcsf->cond->type == RULE_TYPE_NEURAL) { // binary action outputs
-            current_layer->n_init = 1 + fmax(1, ceil(log2(xcsf->n_actions)));
-        } else { // single condition matching neuron
-            current_layer->n_init = 1;
+            current_layer->n_init += (int) fmax(1, ceil(log2(xcsf->n_actions)));
         }
         current_layer->layer_type = layer_type_as_int(v);
     }
@@ -280,7 +279,7 @@ config_cl_cond_neural(struct XCSF *xcsf, const char *n, char *v)
  * @param [in] f Float representation of the parameter value.
  */
 static void
-config_cl_cond_dgp(struct XCSF *xcsf, const char *n, char *v, const int i,
+config_cl_cond_dgp(struct XCSF *xcsf, const char *n, const char *v, const int i,
                    const double f)
 {
     (void) v;
@@ -303,7 +302,7 @@ config_cl_cond_dgp(struct XCSF *xcsf, const char *n, char *v, const int i,
  * @param [in] f Float representation of the parameter value.
  */
 static void
-config_cl_cond_gp(struct XCSF *xcsf, const char *n, char *v, const int i,
+config_cl_cond_gp(struct XCSF *xcsf, const char *n, const char *v, const int i,
                   const double f)
 {
     (void) v;
@@ -329,7 +328,7 @@ config_cl_cond_gp(struct XCSF *xcsf, const char *n, char *v, const int i,
  * @param [in] f Float representation of the parameter value.
  */
 static void
-config_cl_cond_csr(struct XCSF *xcsf, const char *n, char *v, const int i,
+config_cl_cond_csr(struct XCSF *xcsf, const char *n, const char *v, const int i,
                    const double f)
 {
     (void) i;
@@ -354,8 +353,8 @@ config_cl_cond_csr(struct XCSF *xcsf, const char *n, char *v, const int i,
  * @param [in] f Float representation of the parameter value.
  */
 static void
-config_cl_cond_ternary(struct XCSF *xcsf, const char *n, char *v, const int i,
-                       const double f)
+config_cl_cond_ternary(struct XCSF *xcsf, const char *n, const char *v,
+                       const int i, const double f)
 {
     (void) v;
     if (strncmp(n, "COND_BITS\0", 10) == 0) {
@@ -374,7 +373,7 @@ config_cl_cond_ternary(struct XCSF *xcsf, const char *n, char *v, const int i,
  * @param [in] f Float representation of the parameter value.
  */
 static void
-config_cl_cond(struct XCSF *xcsf, const char *n, char *v, const int i,
+config_cl_cond(struct XCSF *xcsf, const char *n, const char *v, const int i,
                const double f)
 {
     if (strncmp(n, "COND_TYPE\0", 10) == 0) {
