@@ -18,9 +18,9 @@
 
 """
 This example demonstrates the XCSF supervised learning mechanisms to perform
-regression on the Boston house price dataset. Classifiers are composed of
-neural network conditions and predictions. A single dummy action is performed
-such that [A] = [M].
+regression on the Boston house price dataset. Classifiers are composed of tree
+GP conditions and neural network predictions. A single dummy action is
+performed such that [A] = [M].
 """
 
 import numpy as np
@@ -97,30 +97,15 @@ xcs.THETA_DEL = 50 # min experience before fitness used in deletion
 xcs.BETA = 0.1 # update rate for error, etc.
 xcs.action('integer') # (dummy) integer actions
 
-condition_layers = {
-    'layer_0': { # hidden layer
-        'type': 'connected',
-        'activation': 'relu',
-        'evolve-weights': True,
-        'evolve-neurons': True,
-        'evolve-functions': False,
-        'evolve-connect': True,
-        'n-init': 10,
-        'n-max': 100,
-        'n-inputs': X_DIM,
-        'max-neuron-grow': 1,
-    },
-    'layer_1': { # output layer
-        'type': 'connected',
-        'activation': 'linear',
-        'evolve-weights': True,
-        'evolve-functions': False,
-        'evolve-connect': True,
-        'n-init': 1,
-        'n-inputs': 10,
-    }
+tree_args = {
+    'min': 0, # minimum value of a constant
+    'max': 1, # maximum value of a constant
+    'n-constants': 100, # number of (global) constants
+    'init-depth': 5, # initial tree depth
+    'max-len': 10000, # maximum initial length
+    'n-inputs': X_DIM, # number of inputs
 }
-xcs.condition('neural', condition_layers) # neural network conditions
+xcs.condition('tree-gp', tree_args) # GP tree conditions
 
 prediction_layers = {
     'layer_0': { # hidden layer
