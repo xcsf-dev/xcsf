@@ -672,6 +672,21 @@ layer_args_free(struct LayerArgs *largs)
 }
 
 /**
+ * @brief Returns the current output layer arguments.
+ * @param [in] head Head of the list of layer parameters.
+ * @return Layer parameters pertaining to the current output layer.
+ */
+struct LayerArgs *
+layer_args_tail(struct LayerArgs *head)
+{
+    struct LayerArgs *tail = head;
+    while (tail->next != NULL) {
+        tail = tail->next;
+    }
+    return tail;
+}
+
+/**
  * @brief Returns a string representation of a layer type from an integer.
  * @param [in] type Integer representation of a layer type.
  * @return String representing the name of the layer type.

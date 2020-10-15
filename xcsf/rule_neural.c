@@ -215,9 +215,9 @@ rule_neural_act_compute(const struct XCSF *xcsf, const struct Cl *c,
     (void) x;
     const struct RuleNeural *cond = c->cond;
     int action = 0;
-    for (int i = 0; i < cond->n_outputs; ++i) {
-        if (neural_output(&cond->net, i + 1) > 0.5) {
-            action += (int) pow(2, i);
+    for (int i = 1; i < cond->n_outputs; ++i) {
+        if (neural_output(&cond->net, i) > 0.5) {
+            action += (int) pow(2, i - 1);
         }
     }
     action = clamp_int(action, 0, xcsf->n_actions - 1);

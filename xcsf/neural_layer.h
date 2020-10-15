@@ -377,6 +377,9 @@ layer_args_init(struct LayerArgs *args);
 struct LayerArgs *
 layer_args_copy(const struct LayerArgs *src);
 
+struct LayerArgs *
+layer_args_tail(struct LayerArgs *head);
+
 void
 layer_args_print(const struct LayerArgs *args);
 

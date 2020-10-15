@@ -199,7 +199,7 @@ cond_param_neural_defaults(struct XCSF *xcsf)
     layer_args_init(args);
     args->layer_type = CONNECTED;
     args->n_inputs = xcsf->x_dim;
-    args->n_init = 1;
+    args->n_init = 10;
     args->n_max = 100;
     args->max_neuron_grow = 1;
     args->function = LOGISTIC;
@@ -209,6 +209,7 @@ cond_param_neural_defaults(struct XCSF *xcsf)
     xcsf->cond->largs = args;
     // output layer
     args->next = layer_args_copy(args);
+    args->next->function = LINEAR;
     args->next->n_inputs = args->n_init;
     args->next->n_max = 1;
     args->next->evolve_neurons = false;
@@ -327,6 +328,8 @@ cond_param_print(const struct XCSF *xcsf)
             cond_param_print_dgp(xcsf);
             break;
         case COND_TYPE_NEURAL:
+        case RULE_TYPE_NEURAL:
+        case RULE_TYPE_NETWORK:
             cond_param_print_neural(xcsf);
             break;
         default:
@@ -391,4 +394,7 @@ cond_param_free(struct XCSF *xcsf)
     free(xcsf->cond->targs);
     free(xcsf->cond->dargs);
     layer_args_free(xcsf->cond->largs);
+    xcsf->cond->targs = NULL;
+    xcsf->cond->dargs = NULL;
+    xcsf->cond->largs = NULL;
 }

@@ -283,4 +283,5 @@ void
 pred_param_free(struct XCSF *xcsf)
 {
     layer_args_free(xcsf->pred->largs);
+    xcsf->pred->largs = NULL;
 }

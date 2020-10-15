@@ -198,4 +198,5 @@ void
 action_param_free(struct XCSF *xcsf)
 {
     layer_args_free(xcsf->act->largs);
+    xcsf->act->largs = NULL;
 }

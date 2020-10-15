@@ -27,12 +27,16 @@
 #include "dgp.h"
 #include "ea.h"
 #include "gp.h"
+#include "neural_activations.h"
+#include "neural_layer.h"
 #include "param.h"
 #include "prediction.h"
 
 #define ARRAY_DELIM (",") //!< Delimeter for config arrays
 #define MAXLEN (127) //!< Maximum config file line length to read
 #define BASE (10) //!< Decimal numbers
+
+struct LayerArgs *current_layer; //!< Current layer parameters being read
 
 /**
  * @brief Sets general XCSF parameters.
@@ -174,6 +178,100 @@ config_cl_gen(struct XCSF *xcsf, const char *n, const char *v, const int i,
 }
 
 /**
+ * @brief Sets neural network layer parameters.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ * @param [in] i Integer representation of the parameter value.
+ * @param [in] f Float representation of the parameter value.
+ */
+static void
+config_layer(const char *n, char *v, const int i, const double f)
+{
+    if (strncmp(n, "LAYER_ACTIVATION\0", 17) == 0) {
+        current_layer->function = neural_activation_as_int(v);
+    } else if (strncmp(n, "LAYER_RECURRENT_ACTIVATION\0", 27) == 0) {
+        current_layer->recurrent_function = neural_activation_as_int(v);
+    } else if (strncmp(n, "LAYER_N_INIT\0", 13) == 0) {
+        current_layer->n_init = i;
+    } else if (strncmp(n, "LAYER_N_MAX\0", 12) == 0) {
+        current_layer->n_max = i;
+    } else if (strncmp(n, "LAYER_N_INPUTS\0", 15) == 0) {
+        current_layer->n_inputs = i;
+    } else if (strncmp(n, "LAYER_MAX_NEURON_GROW\0", 22) == 0) {
+        current_layer->max_neuron_grow = i;
+    } else if (strncmp(n, "LAYER_EVOLVE_WEIGHTS\0", 21) == 0) {
+        current_layer->evolve_weights = i;
+    } else if (strncmp(n, "LAYER_EVOLVE_NEURONS\0", 21) == 0) {
+        current_layer->evolve_neurons = i;
+    } else if (strncmp(n, "LAYER_EVOLVE_FUNCTIONS\0", 23) == 0) {
+        current_layer->evolve_functions = i;
+    } else if (strncmp(n, "LAYER_EVOLVE_CONNECT\0", 21) == 0) {
+        current_layer->evolve_connect = i;
+    } else if (strncmp(n, "LAYER_EVOLVE_ETA\0", 17) == 0) {
+        current_layer->evolve_eta = i;
+    } else if (strncmp(n, "LAYER_SGD_WEIGHTS\0", 18) == 0) {
+        current_layer->sgd_weights = i;
+    } else if (strncmp(n, "LAYER_ETA\0", 10) == 0) {
+        current_layer->eta = f;
+    } else if (strncmp(n, "LAYER_ETA_MIN\0", 14) == 0) {
+        current_layer->eta_min = f;
+    } else if (strncmp(n, "LAYER_MOMENTUM\0", 15) == 0) {
+        current_layer->momentum = f;
+    } else if (strncmp(n, "LAYER_DECAY\0", 12) == 0) {
+        current_layer->decay = f;
+    } else if (strncmp(n, "LAYER_SCALE\0", 12) == 0) {
+        current_layer->scale = f;
+    } else if (strncmp(n, "LAYER_WIDTH\0", 12) == 0) {
+        current_layer->width = i;
+    } else if (strncmp(n, "LAYER_HEIGHT\0", 13) == 0) {
+        current_layer->height = i;
+    } else if (strncmp(n, "LAYER_CHANNELS\0", 15) == 0) {
+        current_layer->channels = i;
+    } else if (strncmp(n, "LAYER_PROBABILITY\0", 18) == 0) {
+        current_layer->probability = i;
+    } else if (strncmp(n, "LAYER_SIZE\0", 11) == 0) {
+        current_layer->size = f;
+    } else if (strncmp(n, "LAYER_STRIDE\0", 13) == 0) {
+        current_layer->stride = f;
+    } else if (strncmp(n, "LAYER_PAD\0", 10) == 0) {
+        current_layer->pad = f;
+    } else if (strncmp(n, "LAYER_N_FILTERS\0", 16) == 0) {
+        current_layer->n_filters = f;
+    }
+}
+
+/**
+ * @brief Sets classifier neural network condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ */
+static void
+config_cl_cond_neural(struct XCSF *xcsf, const char *n, char *v)
+{
+    if (strncmp(n, "COND_LAYER_TYPE\0", 16) == 0) {
+        if (xcsf->cond->largs == NULL) {
+            xcsf->cond->largs = malloc(sizeof(struct LayerArgs));
+            current_layer = xcsf->cond->largs;
+            layer_args_init(current_layer);
+            current_layer->n_inputs = xcsf->x_dim;
+        } else {
+            struct LayerArgs *tail = layer_args_tail(xcsf->cond->largs);
+            tail->next = malloc(sizeof(struct LayerArgs));
+            current_layer = tail->next;
+            layer_args_init(current_layer);
+            current_layer->n_inputs = tail->n_init;
+        }
+        if (xcsf->cond->type == RULE_TYPE_NEURAL) { // binary action outputs
+            current_layer->n_init = 1 + fmax(1, ceil(log2(xcsf->n_actions)));
+        } else { // single condition matching neuron
+            current_layer->n_init = 1;
+        }
+        current_layer->layer_type = layer_type_as_int(v);
+    }
+}
+
+/**
  * @brief Sets classifier DGP condition parameters.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] n String representation of the parameter name.
@@ -286,6 +384,34 @@ config_cl_cond(struct XCSF *xcsf, const char *n, char *v, const int i,
     config_cl_cond_csr(xcsf, n, v, i, f);
     config_cl_cond_dgp(xcsf, n, v, i, f);
     config_cl_cond_gp(xcsf, n, v, i, f);
+    config_cl_cond_neural(xcsf, n, v);
+}
+
+/**
+ * @brief Sets classifier neural network prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ */
+static void
+config_cl_pred_neural(struct XCSF *xcsf, const char *n, const char *v)
+{
+    if (strncmp(n, "PRED_LAYER_TYPE\0", 16) == 0) {
+        if (xcsf->pred->largs == NULL) {
+            xcsf->pred->largs = malloc(sizeof(struct LayerArgs));
+            current_layer = xcsf->pred->largs;
+            layer_args_init(current_layer);
+            current_layer->n_inputs = xcsf->x_dim;
+        } else {
+            struct LayerArgs *tail = layer_args_tail(xcsf->pred->largs);
+            tail->next = malloc(sizeof(struct LayerArgs));
+            current_layer = tail->next;
+            layer_args_init(current_layer);
+            current_layer->n_inputs = tail->n_init;
+        }
+        current_layer->n_init = xcsf->y_dim;
+        current_layer->layer_type = layer_type_as_int(v);
+    }
 }
 
 /**
@@ -297,7 +423,7 @@ config_cl_cond(struct XCSF *xcsf, const char *n, char *v, const int i,
  * @param [in] f Float representation of the parameter value.
  */
 static void
-config_cl_pred_ls(struct XCSF *xcsf, const char *n, char *v, const int i,
+config_cl_pred_ls(struct XCSF *xcsf, const char *n, const char *v, const int i,
                   const double f)
 {
     (void) v;
@@ -325,13 +451,41 @@ config_cl_pred_ls(struct XCSF *xcsf, const char *n, char *v, const int i,
  * @param [in] f Float representation of the parameter value.
  */
 static void
-config_cl_pred(struct XCSF *xcsf, const char *n, char *v, const int i,
+config_cl_pred(struct XCSF *xcsf, const char *n, const char *v, const int i,
                const double f)
 {
     if (strncmp(n, "PRED_TYPE\0", 10) == 0) {
         pred_param_set_type_string(xcsf, v);
     }
     config_cl_pred_ls(xcsf, n, v, i, f);
+    config_cl_pred_neural(xcsf, n, v);
+}
+
+/**
+ * @brief Sets classifier neural network action parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] n String representation of the parameter name.
+ * @param [in] v String representation of the parameter value.
+ */
+static void
+config_cl_act_neural(struct XCSF *xcsf, const char *n, const char *v)
+{
+    if (strncmp(n, "ACT_LAYER_TYPE\0", 15) == 0) {
+        if (xcsf->act->largs == NULL) {
+            xcsf->act->largs = malloc(sizeof(struct LayerArgs));
+            current_layer = xcsf->act->largs;
+            layer_args_init(current_layer);
+            current_layer->n_inputs = xcsf->x_dim;
+        } else {
+            struct LayerArgs *tail = layer_args_tail(xcsf->act->largs);
+            tail->next = malloc(sizeof(struct LayerArgs));
+            current_layer = tail->next;
+            layer_args_init(current_layer);
+            current_layer->n_inputs = tail->n_init;
+        }
+        current_layer->n_init = xcsf->n_actions;
+        current_layer->layer_type = layer_type_as_int(v);
+    }
 }
 
 /**
@@ -351,6 +505,7 @@ config_cl_act(struct XCSF *xcsf, const char *n, const char *v, const int i,
     if (strncmp(n, "ACT_TYPE\0", 9) == 0) {
         action_param_set_type_string(xcsf, v);
     }
+    config_cl_act_neural(xcsf, n, v);
 }
 
 /**
@@ -372,7 +527,6 @@ config_add_param(struct XCSF *xcsf, const char *name, char *value)
         i = (int) strtoimax(value, &endptr, BASE);
     }
     const double f = strtod(value, &endptr);
-    // add parameter
     config_general(xcsf, name, value, i, f);
     config_multi(xcsf, name, value, i, f);
     config_subsump(xcsf, name, value, i, f);
@@ -381,6 +535,9 @@ config_add_param(struct XCSF *xcsf, const char *name, char *value)
     config_cl_cond(xcsf, name, value, i, f);
     config_cl_pred(xcsf, name, value, i, f);
     config_cl_act(xcsf, name, value, i, f);
+    if (current_layer != NULL) {
+        config_layer(name, value, i, f);
+    }
 }
 
 /**
@@ -406,7 +563,7 @@ config_trim(char *s)
 static void
 config_newnvpair(struct XCSF *xcsf, const char *param)
 {
-    // get length of name
+    // get length of parameter name
     size_t namelen = 0;
     bool err = true;
     for (namelen = 0; namelen < strnlen(param, MAXLEN); ++namelen) {
@@ -418,22 +575,20 @@ config_newnvpair(struct XCSF *xcsf, const char *param)
     if (err) {
         return; // no '=' found
     }
-    // get name
+    // get parameter name
     char *name = malloc(namelen + 1);
     for (size_t i = 0; i < namelen; ++i) {
         name[i] = param[i];
     }
     name[namelen] = '\0';
-    // get value
-    const size_t valuelen = strnlen(param, MAXLEN) - namelen; // length of value
+    // get parameter value
+    const size_t valuelen = strnlen(param, MAXLEN) - namelen;
     char *value = malloc(valuelen + 1);
     for (size_t i = 0; i < valuelen; ++i) {
         value[i] = param[namelen + 1 + i];
     }
     value[valuelen] = '\0';
-    // add
     config_add_param(xcsf, name, value);
-    // clean up
     free(name);
     free(value);
 }
@@ -472,6 +627,15 @@ config_read(struct XCSF *xcsf, const char *filename)
         printf("Warning: could not open %s.\n", filename);
         return;
     }
+    // clear existing layer parameters
+    layer_args_free(xcsf->act->largs);
+    layer_args_free(xcsf->cond->largs);
+    layer_args_free(xcsf->pred->largs);
+    xcsf->act->largs = NULL;
+    xcsf->cond->largs = NULL;
+    xcsf->pred->largs = NULL;
+    current_layer = NULL;
+    // load new parameters from config
     char buff[MAXLEN];
     while (!feof(f)) {
         if (fgets(buff, MAXLEN - 2, f) == NULL) {
