@@ -90,7 +90,7 @@ condition_layers = {
         'evolve-weights': True,
         'evolve-neurons': True,
         'evolve-functions': False,
-        'evolve-connectivity': False,
+        'evolve-connect': False,
         'n-init': 1,
         'n-max': 100,
         'n-inputs': X_DIM,
@@ -101,7 +101,7 @@ condition_layers = {
         'activation': 'linear',
         'evolve-weights': True,
         'evolve-functions': False,
-        'evolve-connectivity': False,
+        'evolve-connect': False,
         'n-init': 1,
         'n-inputs': 1,
     }

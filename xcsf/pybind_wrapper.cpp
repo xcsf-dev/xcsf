@@ -976,7 +976,7 @@ class XCS
                 larg->evolve_neurons = item.second.cast<bool>();
             } else if (name == "evolve-functions") {
                 larg->evolve_functions = item.second.cast<bool>();
-            } else if (name == "evolve-connectivity") {
+            } else if (name == "evolve-connect") {
                 larg->evolve_connect = item.second.cast<bool>();
             } else if (name == "evolve-eta") {
                 larg->evolve_eta = item.second.cast<bool>();
