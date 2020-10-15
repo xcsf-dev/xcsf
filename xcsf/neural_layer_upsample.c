@@ -71,13 +71,13 @@ neural_layer_upsample_init(struct Layer *l, const struct LayerArgs *args)
 struct Layer *
 neural_layer_upsample_copy(const struct Layer *src)
 {
-    if (src->layer_type != UPSAMPLE) {
+    if (src->type != UPSAMPLE) {
         printf("neural_layer_upsample_copy(): incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
     layer_defaults(l);
-    l->layer_type = src->layer_type;
+    l->type = src->type;
     l->layer_vptr = src->layer_vptr;
     l->height = src->height;
     l->width = src->width;

@@ -266,7 +266,7 @@ config_cl_cond_neural(struct XCSF *xcsf, const char *n, const char *v)
         if (xcsf->cond->type == RULE_TYPE_NEURAL) { // binary action outputs
             current_layer->n_init += (int) fmax(1, ceil(log2(xcsf->n_actions)));
         }
-        current_layer->layer_type = layer_type_as_int(v);
+        current_layer->type = layer_type_as_int(v);
     }
 }
 
@@ -409,7 +409,7 @@ config_cl_pred_neural(struct XCSF *xcsf, const char *n, const char *v)
             current_layer->n_inputs = tail->n_init;
         }
         current_layer->n_init = xcsf->y_dim;
-        current_layer->layer_type = layer_type_as_int(v);
+        current_layer->type = layer_type_as_int(v);
     }
 }
 
@@ -483,7 +483,7 @@ config_cl_act_neural(struct XCSF *xcsf, const char *n, const char *v)
             current_layer->n_inputs = tail->n_init;
         }
         current_layer->n_init = xcsf->n_actions;
-        current_layer->layer_type = layer_type_as_int(v);
+        current_layer->type = layer_type_as_int(v);
     }
 }
 

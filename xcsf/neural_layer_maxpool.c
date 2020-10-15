@@ -74,13 +74,13 @@ neural_layer_maxpool_init(struct Layer *l, const struct LayerArgs *args)
 struct Layer *
 neural_layer_maxpool_copy(const struct Layer *src)
 {
-    if (src->layer_type != MAXPOOL) {
+    if (src->type != MAXPOOL) {
         printf("neural_layer_maxpool_copy(): incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
     layer_defaults(l);
-    l->layer_type = src->layer_type;
+    l->type = src->type;
     l->layer_vptr = src->layer_vptr;
     l->height = src->height;
     l->width = src->width;

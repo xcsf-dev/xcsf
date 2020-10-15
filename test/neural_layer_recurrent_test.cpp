@@ -53,7 +53,7 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     neural_init(&net);
     struct LayerArgs args;
     layer_args_init(&args);
-    args.layer_type = RECURRENT;
+    args.type = RECURRENT;
     args.function = LOGISTIC;
     args.n_inputs = 1;
     args.n_init = 1;

@@ -75,13 +75,13 @@ neural_layer_softmax_init(struct Layer *l, const struct LayerArgs *args)
 struct Layer *
 neural_layer_softmax_copy(const struct Layer *src)
 {
-    if (src->layer_type != SOFTMAX) {
+    if (src->type != SOFTMAX) {
         printf("neural_layer_softmax_copy(): incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
     layer_defaults(l);
-    l->layer_type = src->layer_type;
+    l->type = src->type;
     l->layer_vptr = src->layer_vptr;
     l->scale = src->scale;
     l->n_inputs = src->n_inputs;

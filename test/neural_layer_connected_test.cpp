@@ -52,7 +52,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     neural_init(&net);
     struct LayerArgs args;
     layer_args_init(&args);
-    args.layer_type = CONNECTED;
+    args.type = CONNECTED;
     args.function = LOGISTIC;
     args.n_inputs = 10;
     args.n_init = 2;

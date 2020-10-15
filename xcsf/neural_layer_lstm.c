@@ -278,7 +278,7 @@ neural_layer_lstm_init(struct Layer *l, const struct LayerArgs *args)
     l->max_neuron_grow = args->max_neuron_grow;
     l->decay = args->decay;
     struct LayerArgs *cargs = layer_args_copy(args);
-    cargs->layer_type = CONNECTED; // lstm is composed of 8 connected layers
+    cargs->type = CONNECTED; // lstm is composed of 8 connected layers
     cargs->function = LINEAR;
     l->uf = layer_init(cargs); // input layers
     l->ui = layer_init(cargs);
@@ -307,13 +307,13 @@ neural_layer_lstm_init(struct Layer *l, const struct LayerArgs *args)
 struct Layer *
 neural_layer_lstm_copy(const struct Layer *src)
 {
-    if (src->layer_type != LSTM) {
+    if (src->type != LSTM) {
         printf("neural_layer_lstm_copy(): incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
     layer_defaults(l);
-    l->layer_type = src->layer_type;
+    l->type = src->type;
     l->layer_vptr = src->layer_vptr;
     l->function = src->function;
     l->recurrent_function = src->recurrent_function;

@@ -41,7 +41,7 @@
 void
 layer_set_vptr(struct Layer *l)
 {
-    switch (l->layer_type) {
+    switch (l->type) {
         case CONNECTED:
             l->layer_vptr = &layer_connected_vtbl;
             break;
@@ -73,7 +73,7 @@ layer_set_vptr(struct Layer *l)
             l->layer_vptr = &layer_upsample_vtbl;
             break;
         default:
-            printf("Error setting layer vptr for type: %d\n", l->layer_type);
+            printf("Error setting layer vptr for type: %d\n", l->type);
             exit(EXIT_FAILURE);
     }
 }
@@ -289,7 +289,7 @@ layer_mutate_functions(struct Layer *l, const double mu)
             mod = true;
         }
     }
-    if (l->layer_type == LSTM && rand_uniform(0, 1) < mu) {
+    if (l->type == LSTM && rand_uniform(0, 1) < mu) {
         const int orig = l->recurrent_function;
         l->recurrent_function = rand_uniform_int(0, NUM_ACTIVATIONS);
         if (l->recurrent_function != orig) {
@@ -394,7 +394,7 @@ layer_init_eta(struct Layer *l)
 void
 layer_defaults(struct Layer *l)
 {
-    l->layer_type = 0;
+    l->type = 0;
     l->state = NULL;
     l->output = NULL;
     l->options = 0;
@@ -467,7 +467,7 @@ layer_defaults(struct Layer *l)
 void
 layer_args_init(struct LayerArgs *args)
 {
-    args->layer_type = CONNECTED;
+    args->type = CONNECTED;
     args->n_inputs = 0;
     args->n_init = 0;
     args->n_max = 0;
@@ -504,7 +504,7 @@ struct LayerArgs *
 layer_args_copy(const struct LayerArgs *src)
 {
     struct LayerArgs *new = malloc(sizeof(struct LayerArgs));
-    new->layer_type = src->layer_type;
+    new->type = src->type;
     new->n_inputs = src->n_inputs;
     new->n_init = src->n_init;
     new->n_max = src->n_max;
@@ -542,7 +542,7 @@ static void
 layer_args_print_inputs(const struct LayerArgs *args)
 {
     printf(", n_inputs=%d", args->n_inputs);
-    switch (args->layer_type) {
+    switch (args->type) {
         case CONVOLUTIONAL:
         case MAXPOOL:
         case AVGPOOL:
@@ -610,7 +610,7 @@ layer_args_print_evo(const struct LayerArgs *args)
 static void
 layer_args_print_activation(const struct LayerArgs *args)
 {
-    switch (args->layer_type) {
+    switch (args->type) {
         case AVGPOOL:
         case MAXPOOL:
         case UPSAMPLE:
@@ -622,7 +622,7 @@ layer_args_print_activation(const struct LayerArgs *args)
             break;
     }
     printf(", activation=%s", neural_activation_string(args->function));
-    if (args->layer_type == LSTM) {
+    if (args->type == LSTM) {
         printf(", recurrent_activation=%s",
                neural_activation_string(args->recurrent_function));
     }
@@ -635,16 +635,16 @@ layer_args_print_activation(const struct LayerArgs *args)
 void
 layer_args_print(const struct LayerArgs *args)
 {
-    printf("layer_type=%s", layer_type_as_string(args->layer_type));
+    printf("type=%s", layer_type_as_string(args->type));
     layer_args_print_activation(args);
     layer_args_print_inputs(args);
     printf(", n_init=%d", args->n_init);
-    if (args->layer_type == CONVOLUTIONAL) {
+    if (args->type == CONVOLUTIONAL) {
         printf(", n_filters=%d", args->n_filters);
-    } else if (args->layer_type == DROPOUT || args->layer_type == NOISE) {
+    } else if (args->type == DROPOUT || args->type == NOISE) {
         printf(", probability=%f", args->probability);
     }
-    switch (args->layer_type) {
+    switch (args->type) {
         case NOISE:
         case DROPOUT:
         case SOFTMAX:

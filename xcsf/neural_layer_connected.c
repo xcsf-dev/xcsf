@@ -123,13 +123,13 @@ neural_layer_connected_free(const struct Layer *l)
 struct Layer *
 neural_layer_connected_copy(const struct Layer *src)
 {
-    if (src->layer_type != CONNECTED) {
+    if (src->type != CONNECTED) {
         printf("neural_layer_connected_copy(): incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
     layer_defaults(l);
-    l->layer_type = src->layer_type;
+    l->type = src->type;
     l->layer_vptr = src->layer_vptr;
     l->function = src->function;
     l->n_inputs = src->n_inputs;

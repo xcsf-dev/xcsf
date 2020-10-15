@@ -374,7 +374,7 @@ neural_size(const struct Net *net)
     const struct Llist *iter = net->tail;
     while (iter != NULL) {
         const struct Layer *l = iter->layer;
-        switch (l->layer_type) {
+        switch (l->type) {
             case CONNECTED:
             case RECURRENT:
             case LSTM:
@@ -404,7 +404,7 @@ neural_save(const struct Net *net, FILE *fp)
     s += fwrite(&net->n_outputs, sizeof(int), 1, fp);
     const struct Llist *iter = net->tail;
     while (iter != NULL) {
-        s += fwrite(&iter->layer->layer_type, sizeof(int), 1, fp);
+        s += fwrite(&iter->layer->type, sizeof(int), 1, fp);
         s += layer_save(iter->layer, fp);
         iter = iter->prev;
     }
@@ -431,7 +431,7 @@ neural_load(struct Net *net, FILE *fp)
     for (int i = 0; i < nlayers; ++i) {
         struct Layer *l = malloc(sizeof(struct Layer));
         layer_defaults(l);
-        s += fread(&l->layer_type, sizeof(int), 1, fp);
+        s += fread(&l->type, sizeof(int), 1, fp);
         layer_set_vptr(l);
         s += layer_load(l, fp);
         neural_push(net, l);

@@ -94,7 +94,7 @@ action_param_neural_defaults(struct XCSF *xcsf)
     // hidden layer
     struct LayerArgs *la = malloc(sizeof(struct LayerArgs));
     layer_args_init(la);
-    la->layer_type = CONNECTED;
+    la->type = CONNECTED;
     la->n_inputs = xcsf->x_dim;
     la->n_init = 1;
     la->n_max = 100;
@@ -113,7 +113,7 @@ action_param_neural_defaults(struct XCSF *xcsf)
     la->next->evolve_neurons = false;
     la->next->next = layer_args_copy(la->next);
     la->next->next->n_inputs = la->next->n_init;
-    la->next->next->layer_type = SOFTMAX;
+    la->next->next->type = SOFTMAX;
     la->next->next->scale = 1;
 }
 

@@ -66,7 +66,7 @@
  * @brief Parameters for initialising a neural network layer.
  */
 struct LayerArgs {
-    int layer_type; //!< Layer type: CONNECTED, DROPOUT, etc.
+    int type; //!< Layer type: CONNECTED, DROPOUT, etc.
     int n_inputs; //!< Number of inputs
     int n_init; //!< Initial number of units / neurons
     int n_max; //!< Maximum number of units / neurons
@@ -99,7 +99,7 @@ struct LayerArgs {
  * @brief Neural network layer data structure.
  */
 struct Layer {
-    int layer_type; //!< Layer type: CONNECTED, DROPOUT, etc.
+    int type; //!< Layer type: CONNECTED, DROPOUT, etc.
     double *state; //!< Current neuron states (before activation function)
     double *output; //!< Current neuron outputs (after activation function)
     uint32_t options; //!< Bitwise layer options permitting evolution, SGD, etc.
@@ -399,7 +399,7 @@ layer_init(const struct LayerArgs *args)
 {
     struct Layer *l = (struct Layer *) malloc(sizeof(struct Layer));
     layer_defaults(l);
-    l->layer_type = args->layer_type;
+    l->type = args->type;
     layer_set_vptr(l);
     (*l->layer_vptr->layer_impl_init)(l, args);
     return l;

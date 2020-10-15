@@ -52,7 +52,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     neural_init(&net);
     struct LayerArgs args;
     layer_args_init(&args);
-    args.layer_type = CONVOLUTIONAL;
+    args.type = CONVOLUTIONAL;
     args.function = RELU;
     args.width = 4;
     args.height = 4;

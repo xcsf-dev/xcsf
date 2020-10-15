@@ -230,7 +230,7 @@ neural_layer_recurrent_init(struct Layer *l, const struct LayerArgs *args)
     l->n_outputs = args->n_init;
     l->max_outputs = args->n_max;
     struct LayerArgs *cargs = layer_args_copy(args);
-    cargs->layer_type = CONNECTED; // recurrent layer is composed of 3 connected
+    cargs->type = CONNECTED; // recurrent layer is composed of 3 connected
     cargs->function = LINEAR; // input layer and self layer are linear
     l->input_layer = layer_init(cargs);
     cargs->n_inputs = cargs->n_init; // n_init inputs to self and output layers
@@ -258,13 +258,13 @@ neural_layer_recurrent_init(struct Layer *l, const struct LayerArgs *args)
 struct Layer *
 neural_layer_recurrent_copy(const struct Layer *src)
 {
-    if (src->layer_type != RECURRENT) {
+    if (src->type != RECURRENT) {
         printf("neural_layer_recurrent_copy(): incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
     layer_defaults(l);
-    l->layer_type = src->layer_type;
+    l->type = src->type;
     l->layer_vptr = src->layer_vptr;
     l->options = src->options;
     l->function = src->function;

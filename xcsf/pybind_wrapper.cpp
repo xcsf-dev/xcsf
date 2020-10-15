@@ -967,7 +967,7 @@ class XCS
             const auto name = item.first.cast<std::string>();
             if (name == "type") {
                 const auto value = item.second.cast<std::string>();
-                larg->layer_type = layer_type_as_int(value.c_str());
+                larg->type = layer_type_as_int(value.c_str());
             } else if (name == "max-neuron-grow") {
                 larg->max_neuron_grow = item.second.cast<int>();
             } else if (name == "evolve-weights") {

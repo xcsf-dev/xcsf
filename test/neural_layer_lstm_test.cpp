@@ -53,7 +53,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     neural_init(&net);
     struct LayerArgs args;
     layer_args_init(&args);
-    args.layer_type = LSTM;
+    args.type = LSTM;
     args.function = TANH;
     args.recurrent_function = LOGISTIC;
     args.n_inputs = 1;

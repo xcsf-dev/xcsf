@@ -122,7 +122,7 @@ pred_param_neural_defaults(struct XCSF *xcsf)
     // hidden layer
     struct LayerArgs *la = malloc(sizeof(struct LayerArgs));
     layer_args_init(la);
-    la->layer_type = CONNECTED;
+    la->type = CONNECTED;
     la->n_inputs = xcsf->x_dim;
     la->n_init = 10;
     la->n_max = 100;

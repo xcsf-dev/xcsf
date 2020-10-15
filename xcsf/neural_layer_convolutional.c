@@ -177,13 +177,13 @@ neural_layer_convolutional_free(const struct Layer *l)
 struct Layer *
 neural_layer_convolutional_copy(const struct Layer *src)
 {
-    if (src->layer_type != CONVOLUTIONAL) {
+    if (src->type != CONVOLUTIONAL) {
         printf("neural_layer_convolut_copy() incorrect source layer type\n");
         exit(EXIT_FAILURE);
     }
     struct Layer *l = malloc(sizeof(struct Layer));
     layer_defaults(l);
-    l->layer_type = src->layer_type;
+    l->type = src->type;
     l->layer_vptr = src->layer_vptr;
     l->options = src->options;
     l->function = src->function;
