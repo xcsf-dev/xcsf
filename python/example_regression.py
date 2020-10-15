@@ -81,12 +81,11 @@ print('y_test shape = ' + str(np.shape(y_test)))
 # Initialise XCSF
 ###################
 
-# initialise XCSF for supervised learning
-xcs = xcsf.XCS(X_DIM, Y_DIM, 1)
+xcs = xcsf.XCS(X_DIM, Y_DIM, 1) # initialise XCSF for supervised learning
 
 # override default.ini
-xcs.OMP_NUM_THREADS = 8
-xcs.POP_SIZE = 500
+xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
+xcs.POP_SIZE = 500 # maximum population size
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.LOSS_FUNC = 'mse' # mean squared error
 xcs.EPS_0 = 0.005 # target error
@@ -143,9 +142,9 @@ xcs.prediction('neural', prediction_layers) # neural network predictions
 
 xcs.print_params()
 
-##################################
-# Example plotting in matplotlib
-##################################
+#################
+# Run experiment
+#################
 
 N = 200 # 200,000 trials
 trials = np.zeros(N)
