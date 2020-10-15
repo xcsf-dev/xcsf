@@ -514,7 +514,7 @@ config_cl_act(struct XCSF *xcsf, const char *n, const char *v, const int i,
  * @param [in] value Parameter value.
  */
 static void
-config_add_param(struct XCSF *xcsf, const char *name, char *value)
+config_add_param(struct XCSF *xcsf, const char *name, const char *value)
 {
     int i = 0;
     char *endptr = NULL;
