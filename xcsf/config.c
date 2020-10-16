@@ -32,7 +32,6 @@
 #include "param.h"
 #include "prediction.h"
 
-#define ARRAY_DELIM (",") //!< Delimeter for config arrays
 #define MAXLEN (127) //!< Maximum config file line length to read
 #define BASE (10) //!< Decimal numbers
 
