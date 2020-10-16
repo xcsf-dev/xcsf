@@ -779,7 +779,7 @@ class XCS
     void
     set_condition(const std::string &type)
     {
-        set_condition(type, {});
+        cond_param_set_type_string(&xcs, type.c_str());
     }
 
     /**
@@ -789,7 +789,7 @@ class XCS
     void
     set_action(const std::string &type)
     {
-        set_action(type, {});
+        action_param_set_type_string(&xcs, type.c_str());
     }
 
     /**
@@ -799,7 +799,7 @@ class XCS
     void
     set_prediction(const std::string &type)
     {
-        set_prediction(type, {});
+        pred_param_set_type_string(&xcs, type.c_str());
     }
 
     /**
