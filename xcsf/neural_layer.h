@@ -65,7 +65,7 @@
 /**
  * @brief Parameters for initialising a neural network layer.
  */
-struct LayerArgs {
+struct ArgsLayer {
     int type; //!< Layer type: CONNECTED, DROPOUT, etc.
     int n_inputs; //!< Number of inputs
     int n_init; //!< Initial number of units / neurons
@@ -92,7 +92,7 @@ struct LayerArgs {
     _Bool evolve_eta; //!< Ability to evolve gradient descent rate
     _Bool evolve_connect; //!< Ability to evolve weight connectivity
     _Bool sgd_weights; //!< Ability to update weights with gradient descent
-    struct LayerArgs *next; //!< Next layer parameters
+    struct ArgsLayer *next; //!< Next layer parameters
 };
 
 /**
@@ -170,7 +170,7 @@ struct Layer {
  * @details Neural network layer implementations must implement these functions.
  */
 struct LayerVtbl {
-    void (*layer_impl_init)(struct Layer *l, const struct LayerArgs *args);
+    void (*layer_impl_init)(struct Layer *l, const struct ArgsLayer *args);
     bool (*layer_impl_mutate)(struct Layer *l);
     void (*layer_impl_resize)(struct Layer *l, const struct Layer *prev);
     struct Layer *(*layer_impl_copy)(const struct Layer *src);
@@ -372,22 +372,22 @@ int
 layer_type_as_int(const char *type);
 
 void
-layer_args_init(struct LayerArgs *args);
+layer_args_init(struct ArgsLayer *args);
 
-struct LayerArgs *
-layer_args_copy(const struct LayerArgs *src);
+struct ArgsLayer *
+layer_args_copy(const struct ArgsLayer *src);
 
-struct LayerArgs *
-layer_args_tail(struct LayerArgs *head);
-
-void
-layer_args_print(const struct LayerArgs *args);
+struct ArgsLayer *
+layer_args_tail(struct ArgsLayer *head);
 
 void
-layer_args_free(struct LayerArgs **largs);
+layer_args_print(const struct ArgsLayer *args);
+
+void
+layer_args_free(struct ArgsLayer **largs);
 
 uint32_t
-layer_opt(const struct LayerArgs *args);
+layer_opt(const struct ArgsLayer *args);
 
 bool
 layer_receives_images(const int type);
@@ -398,7 +398,7 @@ layer_receives_images(const int type);
  * @return A pointer to the new layer.
  */
 static inline struct Layer *
-layer_init(const struct LayerArgs *args)
+layer_init(const struct ArgsLayer *args)
 {
     struct Layer *l = (struct Layer *) malloc(sizeof(struct Layer));
     layer_defaults(l);

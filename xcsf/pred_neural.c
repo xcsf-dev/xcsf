@@ -312,8 +312,8 @@ pred_neural_expand(const struct XCSF *xcsf, const struct Cl *c)
         h = net->head->layer;
         n_inputs = h->n_inputs;
     }
-    const struct LayerArgs *largs = xcsf->pred->largs;
-    struct LayerArgs new;
+    const struct ArgsLayer *largs = xcsf->pred->largs;
+    struct ArgsLayer new;
     layer_args_init(&new);
     new.type = CONNECTED;
     new.function = largs->function;
@@ -353,8 +353,8 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct Cl *c,
         neural_pop(net);
     }
     // add new softmax output
-    const struct LayerArgs *largs = xcsf->pred->largs;
-    struct LayerArgs new;
+    const struct ArgsLayer *largs = xcsf->pred->largs;
+    struct ArgsLayer new;
     layer_args_init(&new);
     new.type = CONNECTED;
     new.function = LINEAR;

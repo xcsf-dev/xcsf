@@ -868,7 +868,7 @@ class XCS
     void
     unpack_cond_gp(const py::dict &args)
     {
-        struct GPTreeArgs *targs = xcs.cond->targs;
+        struct ArgsGPTree *targs = xcs.cond->targs;
         tree_param_set_n_inputs(targs, xcs.x_dim);
         for (std::pair<py::handle, py::handle> item : args) {
             auto name = item.first.cast<std::string>();
@@ -894,7 +894,7 @@ class XCS
     void
     unpack_cond_dgp(const py::dict &args)
     {
-        struct DGPArgs *dargs = xcs.cond->dargs;
+        struct ArgsDGP *dargs = xcs.cond->dargs;
         graph_param_set_n_inputs(dargs, xcs.x_dim);
         for (std::pair<py::handle, py::handle> item : args) {
             auto name = item.first.cast<std::string>();
@@ -931,14 +931,14 @@ class XCS
     {
         layer_args_free(&xcs.cond->largs);
         for (auto item : args) {
-            struct LayerArgs *larg =
-                (struct LayerArgs *) malloc(sizeof(struct LayerArgs));
+            struct ArgsLayer *larg =
+                (struct ArgsLayer *) malloc(sizeof(struct ArgsLayer));
             layer_args_init(larg);
             unpack_layer_params(larg, item.second.cast<py::dict>());
             if (xcs.cond->largs == NULL) {
                 xcs.cond->largs = larg;
             } else {
-                struct LayerArgs *iter = xcs.cond->largs;
+                struct ArgsLayer *iter = xcs.cond->largs;
                 while (iter->next != NULL) {
                     iter = iter->next;
                 }
@@ -953,7 +953,7 @@ class XCS
      * @param [in] args Python dictionary of argument name:value pairs.
      */
     void
-    unpack_layer_params(struct LayerArgs *larg, const py::dict &args)
+    unpack_layer_params(struct ArgsLayer *larg, const py::dict &args)
     {
         larg->n_inputs = xcs.x_dim;
         for (std::pair<py::handle, py::handle> item : args) {
@@ -1065,14 +1065,14 @@ class XCS
     {
         layer_args_free(&xcs.pred->largs);
         for (auto item : args) {
-            struct LayerArgs *larg =
-                (struct LayerArgs *) malloc(sizeof(struct LayerArgs));
+            struct ArgsLayer *larg =
+                (struct ArgsLayer *) malloc(sizeof(struct ArgsLayer));
             layer_args_init(larg);
             unpack_layer_params(larg, item.second.cast<py::dict>());
             if (xcs.pred->largs == NULL) {
                 xcs.pred->largs = larg;
             } else {
-                struct LayerArgs *iter = xcs.pred->largs;
+                struct ArgsLayer *iter = xcs.pred->largs;
                 while (iter->next != NULL) {
                     iter = iter->next;
                 }

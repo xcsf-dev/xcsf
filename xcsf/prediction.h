@@ -42,7 +42,7 @@
 /**
  * @brief Parameters for initialising and operating predictions.
  */
-struct PredArgs {
+struct ArgsPred {
     int type; //!< Classifier prediction type: least squares, etc.
     bool evolve_eta; //!< Whether to evolve the gradient descent rate
     double eta; //!< Gradient descent rate
@@ -50,7 +50,7 @@ struct PredArgs {
     double lambda; //!< RLS forget rate
     double scale_factor; //!< Initial values for the RLS gain-matrix
     double x0; //!< Prediction weight vector offset value
-    struct LayerArgs *largs; //!< Linked-list of layer parameters
+    struct ArgsLayer *largs; //!< Linked-list of layer parameters
 };
 
 void

@@ -90,10 +90,10 @@ struct XCSF {
     struct Set aset; //!< Action set
     struct Set kset; //!< Kill set
     struct Set prev_aset; //!< Previous action set
-    struct ActArgs *act; //!< Action parameters
-    struct CondArgs *cond; //!< Condition parameters
-    struct PredArgs *pred; //!< Prediction parameters
-    struct EAArgs *ea; //!< EA parameters
+    struct ArgsAct *act; //!< Action parameters
+    struct ArgsCond *cond; //!< Condition parameters
+    struct ArgsPred *pred; //!< Prediction parameters
+    struct ArgsEA *ea; //!< EA parameters
     struct EnvVtbl const *env_vptr; //!< Functions acting on environments
     void *env; //!< Environment structure (for built-in problems)
     double error; //!< Average system error

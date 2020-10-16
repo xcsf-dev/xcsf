@@ -27,7 +27,7 @@
 #include "xcsf.h"
 
 void
-neural_layer_maxpool_init(struct Layer *l, const struct LayerArgs *args);
+neural_layer_maxpool_init(struct Layer *l, const struct ArgsLayer *args);
 
 struct Layer *
 neural_layer_maxpool_copy(const struct Layer *src);

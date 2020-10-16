@@ -76,7 +76,7 @@ tree_traverse(int *tree, int p)
  * @return The position after traversal (i.e., tree length).
  */
 static int
-tree_grow(const struct GPTreeArgs *args, int *tree, const int p, const int max,
+tree_grow(const struct ArgsGPTree *args, int *tree, const int p, const int max,
           const int depth)
 {
     if (p >= max) {
@@ -113,7 +113,7 @@ tree_grow(const struct GPTreeArgs *args, int *tree, const int p, const int max,
  * @param [in] args Tree GP parameters.
  */
 void
-tree_rand(struct GPTree *gp, const struct GPTreeArgs *args)
+tree_rand(struct GPTree *gp, const struct ArgsGPTree *args)
 {
     gp->tree = malloc(sizeof(int) * args->max_len);
     gp->len = 0;
@@ -144,7 +144,7 @@ tree_free(const struct GPTree *gp)
  * @return The result from evaluating the GP tree.
  */
 double
-tree_eval(struct GPTree *gp, const struct GPTreeArgs *args, const double *x)
+tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x)
 {
     const int node = gp->tree[gp->p];
     ++(gp->p);
@@ -183,7 +183,7 @@ tree_eval(struct GPTree *gp, const struct GPTreeArgs *args, const double *x)
  * @return The position after traversal.
  */
 int
-tree_print(const struct GPTree *gp, const struct GPTreeArgs *args, int p)
+tree_print(const struct GPTree *gp, const struct ArgsGPTree *args, int p)
 {
     const int node = gp->tree[p];
     if (node >= GP_NUM_FUNC) {
@@ -279,7 +279,7 @@ tree_crossover(struct GPTree *p1, struct GPTree *p2)
  * @return Whether any alterations were made.
  */
 bool
-tree_mutate(struct GPTree *gp, const struct GPTreeArgs *args)
+tree_mutate(struct GPTree *gp, const struct ArgsGPTree *args)
 {
     bool changed = false;
     sam_adapt(gp->mu, N_MU, MU_TYPE);
@@ -342,7 +342,7 @@ tree_load(struct GPTree *gp, FILE *fp)
  * @param [in] args Parameters for initialising and operating GP trees.
  */
 void
-tree_args_init(struct GPTreeArgs *args)
+tree_args_init(struct ArgsGPTree *args)
 {
     args->max = 0;
     args->min = 0;
@@ -358,7 +358,7 @@ tree_args_init(struct GPTreeArgs *args)
  * @param [in] args Parameters for initialising and operating GP trees.
  */
 void
-tree_args_free(struct GPTreeArgs *args)
+tree_args_free(struct ArgsGPTree *args)
 {
     free(args->constants);
 }
@@ -368,7 +368,7 @@ tree_args_free(struct GPTreeArgs *args)
  * @param [in] args Parameters for initialising and operating GP trees.
  */
 void
-tree_args_print(const struct GPTreeArgs *args)
+tree_args_print(const struct ArgsGPTree *args)
 {
     printf("min_constant=%f", args->min);
     printf(", max_constant=%f", args->max);
@@ -384,7 +384,7 @@ tree_args_print(const struct GPTreeArgs *args)
  * @return The total number of elements written.
  */
 size_t
-tree_args_save(const struct GPTreeArgs *args, FILE *fp)
+tree_args_save(const struct ArgsGPTree *args, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&args->max, sizeof(double), 1, fp);
@@ -404,7 +404,7 @@ tree_args_save(const struct GPTreeArgs *args, FILE *fp)
  * @return The total number of elements read.
  */
 size_t
-tree_args_load(struct GPTreeArgs *args, FILE *fp)
+tree_args_load(struct ArgsGPTree *args, FILE *fp)
 {
     size_t s = 0;
     s += fread(&args->max, sizeof(double), 1, fp);
@@ -422,7 +422,7 @@ tree_args_load(struct GPTreeArgs *args, FILE *fp)
  * @param [in] args Parameters for initialising and operating GP trees.
  */
 void
-tree_args_init_constants(struct GPTreeArgs *args)
+tree_args_init_constants(struct ArgsGPTree *args)
 {
     if (args->constants != NULL) {
         free(args->constants);

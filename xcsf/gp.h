@@ -28,7 +28,7 @@
 /**
  * @brief Parameters for initialising GP trees.
  */
-struct GPTreeArgs {
+struct ArgsGPTree {
     double max; //!< Maximum value of a constant
     double min; //!< Minimum value of a constant
     int n_inputs; //!< Number of inputs
@@ -52,22 +52,22 @@ void
 tree_free(const struct GPTree *gp);
 
 void
-tree_rand(struct GPTree *gp, const struct GPTreeArgs *args);
+tree_rand(struct GPTree *gp, const struct ArgsGPTree *args);
 
 void
 tree_copy(struct GPTree *dest, const struct GPTree *src);
 
 int
-tree_print(const struct GPTree *gp, const struct GPTreeArgs *args, int p);
+tree_print(const struct GPTree *gp, const struct ArgsGPTree *args, int p);
 
 double
-tree_eval(struct GPTree *gp, const struct GPTreeArgs *args, const double *x);
+tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x);
 
 void
 tree_crossover(struct GPTree *p1, struct GPTree *p2);
 
 bool
-tree_mutate(struct GPTree *gp, const struct GPTreeArgs *args);
+tree_mutate(struct GPTree *gp, const struct ArgsGPTree *args);
 
 size_t
 tree_save(const struct GPTree *gp, FILE *fp);
@@ -76,45 +76,45 @@ size_t
 tree_load(struct GPTree *gp, FILE *fp);
 
 void
-tree_args_init(struct GPTreeArgs *args);
+tree_args_init(struct ArgsGPTree *args);
 
 void
-tree_args_free(struct GPTreeArgs *args);
+tree_args_free(struct ArgsGPTree *args);
 
 void
-tree_args_print(const struct GPTreeArgs *args);
+tree_args_print(const struct ArgsGPTree *args);
 
 size_t
-tree_args_save(const struct GPTreeArgs *args, FILE *fp);
+tree_args_save(const struct ArgsGPTree *args, FILE *fp);
 
 size_t
-tree_args_load(struct GPTreeArgs *args, FILE *fp);
+tree_args_load(struct ArgsGPTree *args, FILE *fp);
 
 void
-tree_args_init_constants(struct GPTreeArgs *args);
+tree_args_init_constants(struct ArgsGPTree *args);
 
 /* parameter setters */
 
 static inline void
-tree_param_set_max(struct GPTreeArgs *args, const double a)
+tree_param_set_max(struct ArgsGPTree *args, const double a)
 {
     args->max = a;
 }
 
 static inline void
-tree_param_set_min(struct GPTreeArgs *args, const double a)
+tree_param_set_min(struct ArgsGPTree *args, const double a)
 {
     args->min = a;
 }
 
 static inline void
-tree_param_set_n_inputs(struct GPTreeArgs *args, const int a)
+tree_param_set_n_inputs(struct ArgsGPTree *args, const int a)
 {
     args->n_inputs = a;
 }
 
 static inline void
-tree_param_set_n_constants(struct GPTreeArgs *args, const int a)
+tree_param_set_n_constants(struct ArgsGPTree *args, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set GP N_CONSTANTS too small\n");
@@ -125,7 +125,7 @@ tree_param_set_n_constants(struct GPTreeArgs *args, const int a)
 }
 
 static inline void
-tree_param_set_init_depth(struct GPTreeArgs *args, const int a)
+tree_param_set_init_depth(struct ArgsGPTree *args, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set GP INIT_DEPTH too small\n");
@@ -136,7 +136,7 @@ tree_param_set_init_depth(struct GPTreeArgs *args, const int a)
 }
 
 static inline void
-tree_param_set_max_len(struct GPTreeArgs *args, const int a)
+tree_param_set_max_len(struct ArgsGPTree *args, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set GP MAX_LEN too small\n");

@@ -28,7 +28,7 @@
 /**
  * @brief Parameters for initialising DGP graphs.
  */
-struct DGPArgs {
+struct ArgsDGP {
     int max_k; //!< Maximum number of connections a node may have
     int max_t; //!< Maximum number of update cycles
     int n; //!< Number of nodes in the graph
@@ -73,7 +73,7 @@ void
 graph_free(const struct Graph *dgp);
 
 void
-graph_init(struct Graph *dgp, const struct DGPArgs *args);
+graph_init(struct Graph *dgp, const struct ArgsDGP *args);
 
 void
 graph_print(const struct Graph *dgp);
@@ -88,21 +88,21 @@ void
 graph_update(const struct Graph *dgp, const double *inputs, const bool reset);
 
 void
-graph_args_init(struct DGPArgs *args);
+graph_args_init(struct ArgsDGP *args);
 
 void
-graph_args_print(const struct DGPArgs *args);
+graph_args_print(const struct ArgsDGP *args);
 
 size_t
-graph_args_save(const struct DGPArgs *args, FILE *fp);
+graph_args_save(const struct ArgsDGP *args, FILE *fp);
 
 size_t
-graph_args_load(struct DGPArgs *args, FILE *fp);
+graph_args_load(struct ArgsDGP *args, FILE *fp);
 
 /* parameter setters */
 
 static inline void
-graph_param_set_max_k(struct DGPArgs *args, const int a)
+graph_param_set_max_k(struct ArgsDGP *args, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set DGP MAX_K too small\n");
@@ -113,7 +113,7 @@ graph_param_set_max_k(struct DGPArgs *args, const int a)
 }
 
 static inline void
-graph_param_set_max_t(struct DGPArgs *args, const int a)
+graph_param_set_max_t(struct ArgsDGP *args, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set DGP MAX_T too small\n");
@@ -124,7 +124,7 @@ graph_param_set_max_t(struct DGPArgs *args, const int a)
 }
 
 static inline void
-graph_param_set_n(struct DGPArgs *args, const int a)
+graph_param_set_n(struct ArgsDGP *args, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set DGP N too small\n");
@@ -135,7 +135,7 @@ graph_param_set_n(struct DGPArgs *args, const int a)
 }
 
 static inline void
-graph_param_set_n_inputs(struct DGPArgs *args, const int a)
+graph_param_set_n_inputs(struct ArgsDGP *args, const int a)
 {
     if (a < 1) {
         printf("Warning: tried to set DGP N_INPUTS too small\n");

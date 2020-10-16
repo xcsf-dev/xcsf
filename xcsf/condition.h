@@ -50,7 +50,7 @@
 /**
  * @brief Parameters for initialising and operating conditions.
  */
-struct CondArgs {
+struct ArgsCond {
     int type; //!< Classifier condition type: hyperrectangles, etc.
     double eta; //!< Gradient descent rate
     double max; //!< Maximum value expected from inputs
@@ -58,9 +58,9 @@ struct CondArgs {
     double p_dontcare; //!< Don't care probability
     double spread_min; //!< Minimum initial spread
     int bits; //!< Bits per float to binarise inputs
-    struct LayerArgs *largs; //!< Linked-list of layer parameters
-    struct DGPArgs *dargs; //!< DGP parameters
-    struct GPTreeArgs *targs; //!< Tree GP parameters
+    struct ArgsLayer *largs; //!< Linked-list of layer parameters
+    struct ArgsDGP *dargs; //!< DGP parameters
+    struct ArgsGPTree *targs; //!< Tree GP parameters
 };
 
 void

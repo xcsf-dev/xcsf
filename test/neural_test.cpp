@@ -66,7 +66,7 @@ TEST_CASE("NEURAL")
                                       -1.2581317787 };
     const double orig_biases2[2] = { 0.1033557369, -1.2581317787 };
     neural_init(&net);
-    struct LayerArgs args;
+    struct ArgsLayer args;
     layer_args_init(&args);
     args.type = CONNECTED;
     args.function = LOGISTIC;

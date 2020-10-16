@@ -49,7 +49,7 @@ neural_init(struct Net *net)
  * @param [in] arg List of layer parameters defining the initial network.
  */
 void
-neural_create(struct Net *net, struct LayerArgs *arg)
+neural_create(struct Net *net, struct ArgsLayer *arg)
 {
     neural_init(net);
     const struct Layer *prev_layer = NULL;

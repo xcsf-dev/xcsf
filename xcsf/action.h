@@ -34,9 +34,9 @@
 /**
  * @brief Parameters for initialising and operating actions.
  */
-struct ActArgs {
+struct ArgsAct {
     int type; //!< Classifier action type
-    struct LayerArgs *largs; //!< Linked-list of layer parameters
+    struct ArgsLayer *largs; //!< Linked-list of layer parameters
 };
 
 void

@@ -92,7 +92,7 @@ static void
 action_param_neural_defaults(struct XCSF *xcsf)
 {
     // hidden layer
-    struct LayerArgs *la = malloc(sizeof(struct LayerArgs));
+    struct ArgsLayer *la = malloc(sizeof(struct ArgsLayer));
     layer_args_init(la);
     la->type = CONNECTED;
     la->n_inputs = xcsf->x_dim;
@@ -135,7 +135,7 @@ action_param_defaults(struct XCSF *xcsf)
 static void
 action_param_print_neural(const struct XCSF *xcsf)
 {
-    const struct LayerArgs *arg = xcsf->act->largs;
+    const struct ArgsLayer *arg = xcsf->act->largs;
     int cnt = 0;
     while (arg != NULL) {
         printf(", ACT_LAYER_%d={", cnt);
@@ -153,7 +153,7 @@ action_param_print_neural(const struct XCSF *xcsf)
 void
 action_param_print(const struct XCSF *xcsf)
 {
-    const struct ActArgs *act = xcsf->act;
+    const struct ArgsAct *act = xcsf->act;
     printf(", ACT_TYPE=%s", action_type_as_string(act->type));
     if (xcsf->act->type == ACT_TYPE_NEURAL) {
         action_param_print_neural(xcsf);
@@ -169,7 +169,7 @@ action_param_print(const struct XCSF *xcsf)
 size_t
 action_param_save(const struct XCSF *xcsf, FILE *fp)
 {
-    const struct ActArgs *act = xcsf->act;
+    const struct ArgsAct *act = xcsf->act;
     size_t s = 0;
     s += fwrite(&act->type, sizeof(int), 1, fp);
     return s;
@@ -184,7 +184,7 @@ action_param_save(const struct XCSF *xcsf, FILE *fp)
 size_t
 action_param_load(struct XCSF *xcsf, FILE *fp)
 {
-    struct ActArgs *act = xcsf->act;
+    struct ArgsAct *act = xcsf->act;
     size_t s = 0;
     s += fread(&act->type, sizeof(int), 1, fp);
     return s;

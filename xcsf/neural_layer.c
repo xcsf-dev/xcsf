@@ -465,7 +465,7 @@ layer_defaults(struct Layer *l)
  * @param [in] args The layer parameters to initialise.
  */
 void
-layer_args_init(struct LayerArgs *args)
+layer_args_init(struct ArgsLayer *args)
 {
     args->type = CONNECTED;
     args->n_inputs = 0;
@@ -500,10 +500,10 @@ layer_args_init(struct LayerArgs *args)
  * @brief Creates and returns a copy of specified layer parameters.
  * @param [in] src The layer parameters to be copied.
  */
-struct LayerArgs *
-layer_args_copy(const struct LayerArgs *src)
+struct ArgsLayer *
+layer_args_copy(const struct ArgsLayer *src)
 {
-    struct LayerArgs *new = malloc(sizeof(struct LayerArgs));
+    struct ArgsLayer *new = malloc(sizeof(struct ArgsLayer));
     new->type = src->type;
     new->n_inputs = src->n_inputs;
     new->n_init = src->n_init;
@@ -539,7 +539,7 @@ layer_args_copy(const struct LayerArgs *src)
  * @param [in] args The layer parameters to print.
  */
 static void
-layer_args_print_inputs(const struct LayerArgs *args)
+layer_args_print_inputs(const struct ArgsLayer *args)
 {
     switch (args->type) {
         case CONVOLUTIONAL:
@@ -575,7 +575,7 @@ layer_args_print_inputs(const struct LayerArgs *args)
  * @param [in] args The layer parameters to print.
  */
 static void
-layer_args_print_sgd(const struct LayerArgs *args)
+layer_args_print_sgd(const struct ArgsLayer *args)
 {
     if (args->sgd_weights) {
         printf(", sgd_weights=true");
@@ -596,7 +596,7 @@ layer_args_print_sgd(const struct LayerArgs *args)
  * @param [in] args The layer parameters to print.
  */
 static void
-layer_args_print_evo(const struct LayerArgs *args)
+layer_args_print_evo(const struct ArgsLayer *args)
 {
     if (args->evolve_weights) {
         printf(", evolve_weights=true");
@@ -619,7 +619,7 @@ layer_args_print_evo(const struct LayerArgs *args)
  * @param [in] args The layer parameters to print.
  */
 static void
-layer_args_print_activation(const struct LayerArgs *args)
+layer_args_print_activation(const struct ArgsLayer *args)
 {
     switch (args->type) {
         case AVGPOOL:
@@ -644,7 +644,7 @@ layer_args_print_activation(const struct LayerArgs *args)
  * @param [in] args The layer parameters to print.
  */
 void
-layer_args_print(const struct LayerArgs *args)
+layer_args_print(const struct ArgsLayer *args)
 {
     printf("type=%s", layer_type_as_string(args->type));
     layer_args_print_activation(args);
@@ -682,10 +682,10 @@ layer_args_print(const struct LayerArgs *args)
  * @param [in] largs Pointer to the list of layer parameters to free.
  */
 void
-layer_args_free(struct LayerArgs **largs)
+layer_args_free(struct ArgsLayer **largs)
 {
     while (*largs != NULL) {
-        struct LayerArgs *arg = *largs;
+        struct ArgsLayer *arg = *largs;
         *largs = (*largs)->next;
         free(arg);
     }
@@ -696,10 +696,10 @@ layer_args_free(struct LayerArgs **largs)
  * @param [in] head Head of the list of layer parameters.
  * @return Layer parameters pertaining to the current output layer.
  */
-struct LayerArgs *
-layer_args_tail(struct LayerArgs *head)
+struct ArgsLayer *
+layer_args_tail(struct ArgsLayer *head)
 {
-    struct LayerArgs *tail = head;
+    struct ArgsLayer *tail = head;
     while (tail->next != NULL) {
         tail = tail->next;
     }
@@ -817,7 +817,7 @@ layer_type_as_int(const char *type)
  * @return Bitstring representing the layer options.
  */
 uint32_t
-layer_opt(const struct LayerArgs *args)
+layer_opt(const struct ArgsLayer *args)
 {
     uint32_t lopt = 0;
     if (args->evolve_eta) {

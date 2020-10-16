@@ -34,7 +34,7 @@
 /**
  * @brief Parameters for operating the evolutionary algorithm.
  */
-struct EAArgs {
+struct ArgsEA {
     bool subsumption; //!< Whether to try and subsume offspring classifiers
     double select_size; //!< Fraction of set size for tournaments
     double err_reduc; //!< Amount to reduce an offspring's error

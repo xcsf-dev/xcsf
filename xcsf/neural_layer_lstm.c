@@ -265,7 +265,7 @@ mutate_weights(struct Layer *l)
  * @param [in] args Parameters to initialise the layer.
  */
 void
-neural_layer_lstm_init(struct Layer *l, const struct LayerArgs *args)
+neural_layer_lstm_init(struct Layer *l, const struct ArgsLayer *args)
 {
     l->options = layer_opt(args);
     l->function = args->function;
@@ -277,7 +277,7 @@ neural_layer_lstm_init(struct Layer *l, const struct LayerArgs *args)
     l->momentum = args->momentum;
     l->max_neuron_grow = args->max_neuron_grow;
     l->decay = args->decay;
-    struct LayerArgs *cargs = layer_args_copy(args);
+    struct ArgsLayer *cargs = layer_args_copy(args);
     cargs->type = CONNECTED; // lstm is composed of 8 connected layers
     cargs->function = LINEAR;
     l->uf = layer_init(cargs); // input layers

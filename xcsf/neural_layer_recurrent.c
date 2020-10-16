@@ -222,14 +222,14 @@ mutate_functions(struct Layer *l)
  * @param [in] args Parameters to initialise the layer.
  */
 void
-neural_layer_recurrent_init(struct Layer *l, const struct LayerArgs *args)
+neural_layer_recurrent_init(struct Layer *l, const struct ArgsLayer *args)
 {
     l->options = layer_opt(args);
     l->function = args->function;
     l->n_inputs = args->n_inputs;
     l->n_outputs = args->n_init;
     l->max_outputs = args->n_max;
-    struct LayerArgs *cargs = layer_args_copy(args);
+    struct ArgsLayer *cargs = layer_args_copy(args);
     cargs->type = CONNECTED; // recurrent layer is composed of 3 connected
     cargs->function = LINEAR; // input layer and self layer are linear
     l->input_layer = layer_init(cargs);

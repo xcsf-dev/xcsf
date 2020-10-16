@@ -75,7 +75,7 @@ void
 neural_init(struct Net *net);
 
 void
-neural_create(struct Net *net, struct LayerArgs *arg);
+neural_create(struct Net *net, struct ArgsLayer *arg);
 
 void
 neural_insert(struct Net *net, struct Layer *l, const int pos);

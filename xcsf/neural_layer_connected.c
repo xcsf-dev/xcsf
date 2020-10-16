@@ -72,7 +72,7 @@ malloc_layer_arrays(struct Layer *l)
  * @param [in] args Parameters to initialise the layer.
  */
 void
-neural_layer_connected_init(struct Layer *l, const struct LayerArgs *args)
+neural_layer_connected_init(struct Layer *l, const struct ArgsLayer *args)
 {
     l->options = layer_opt(args);
     l->function = args->function;

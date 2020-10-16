@@ -317,10 +317,10 @@ param_init(struct XCSF *xcsf, const int x_dim, const int y_dim,
     xcsf->msetsize = 0;
     xcsf->asetsize = 0;
     xcsf->mfrac = 0;
-    xcsf->ea = malloc(sizeof(struct EAArgs));
-    xcsf->act = malloc(sizeof(struct ActArgs));
-    xcsf->cond = malloc(sizeof(struct CondArgs));
-    xcsf->pred = malloc(sizeof(struct PredArgs));
+    xcsf->ea = malloc(sizeof(struct ArgsEA));
+    xcsf->act = malloc(sizeof(struct ArgsAct));
+    xcsf->cond = malloc(sizeof(struct ArgsCond));
+    xcsf->pred = malloc(sizeof(struct ArgsPred));
     param_set_n_actions(xcsf, n_actions);
     param_set_x_dim(xcsf, x_dim);
     param_set_y_dim(xcsf, y_dim);

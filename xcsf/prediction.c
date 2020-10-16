@@ -120,7 +120,7 @@ static void
 pred_param_neural_defaults(struct XCSF *xcsf)
 {
     // hidden layer
-    struct LayerArgs *la = malloc(sizeof(struct LayerArgs));
+    struct ArgsLayer *la = malloc(sizeof(struct ArgsLayer));
     layer_args_init(la);
     la->type = CONNECTED;
     la->n_inputs = xcsf->x_dim;
@@ -168,7 +168,7 @@ pred_param_defaults(struct XCSF *xcsf)
 static void
 pred_param_print_nlms(const struct XCSF *xcsf)
 {
-    const struct PredArgs *pred = xcsf->pred;
+    const struct ArgsPred *pred = xcsf->pred;
     printf(", PRED_X0=%f", pred->x0);
     printf(", PRED_ETA=%f", pred->eta);
     printf(", PRED_ETA_MIN=%f", pred->eta_min);
@@ -183,7 +183,7 @@ pred_param_print_nlms(const struct XCSF *xcsf)
 static void
 pred_param_print_rls(const struct XCSF *xcsf)
 {
-    const struct PredArgs *pred = xcsf->pred;
+    const struct ArgsPred *pred = xcsf->pred;
     printf(", PRED_X0=%f", pred->x0);
     printf(", PRED_LAMBDA=%f", pred->lambda);
     printf(", PRED_SCALE_FACTOR=%f", pred->scale_factor);
@@ -196,7 +196,7 @@ pred_param_print_rls(const struct XCSF *xcsf)
 static void
 pred_param_print_neural(const struct XCSF *xcsf)
 {
-    const struct LayerArgs *arg = xcsf->pred->largs;
+    const struct ArgsLayer *arg = xcsf->pred->largs;
     int cnt = 0;
     while (arg != NULL) {
         printf(", PRED_LAYER_%d={", cnt);
@@ -214,7 +214,7 @@ pred_param_print_neural(const struct XCSF *xcsf)
 void
 pred_param_print(const struct XCSF *xcsf)
 {
-    const struct PredArgs *pred = xcsf->pred;
+    const struct ArgsPred *pred = xcsf->pred;
     printf(", PRED_TYPE=%s", prediction_type_as_string(pred->type));
     switch (pred->type) {
         case PRED_TYPE_NLMS_LINEAR:
@@ -242,7 +242,7 @@ pred_param_print(const struct XCSF *xcsf)
 size_t
 pred_param_save(const struct XCSF *xcsf, FILE *fp)
 {
-    const struct PredArgs *pred = xcsf->pred;
+    const struct ArgsPred *pred = xcsf->pred;
     size_t s = 0;
     s += fwrite(&pred->type, sizeof(int), 1, fp);
     s += fwrite(&pred->eta, sizeof(double), 1, fp);
@@ -263,7 +263,7 @@ pred_param_save(const struct XCSF *xcsf, FILE *fp)
 size_t
 pred_param_load(struct XCSF *xcsf, FILE *fp)
 {
-    struct PredArgs *pred = xcsf->pred;
+    struct ArgsPred *pred = xcsf->pred;
     size_t s = 0;
     s += fread(&pred->type, sizeof(int), 1, fp);
     s += fread(&pred->eta, sizeof(double), 1, fp);

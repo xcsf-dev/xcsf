@@ -51,7 +51,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     param_init(&xcsf, 1, 1, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
     neural_init(&net);
-    struct LayerArgs args;
+    struct ArgsLayer args;
     layer_args_init(&args);
     args.type = LSTM;
     args.function = TANH;

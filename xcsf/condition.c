@@ -159,7 +159,7 @@ condition_type_as_int(const char *type)
 static void
 cond_param_gp_defaults(struct XCSF *xcsf)
 {
-    struct GPTreeArgs *args = malloc(sizeof(struct GPTreeArgs));
+    struct ArgsGPTree *args = malloc(sizeof(struct ArgsGPTree));
     tree_args_init(args);
     tree_param_set_max(args, 1);
     tree_param_set_min(args, 0);
@@ -178,7 +178,7 @@ cond_param_gp_defaults(struct XCSF *xcsf)
 static void
 cond_param_dgp_defaults(struct XCSF *xcsf)
 {
-    struct DGPArgs *args = malloc(sizeof(struct DGPArgs));
+    struct ArgsDGP *args = malloc(sizeof(struct ArgsDGP));
     graph_args_init(args);
     graph_param_set_max_k(args, 2);
     graph_param_set_max_t(args, 10);
@@ -195,7 +195,7 @@ static void
 cond_param_neural_defaults(struct XCSF *xcsf)
 {
     // hidden layer
-    struct LayerArgs *args = malloc(sizeof(struct LayerArgs));
+    struct ArgsLayer *args = malloc(sizeof(struct ArgsLayer));
     layer_args_init(args);
     args->type = CONNECTED;
     args->n_inputs = xcsf->x_dim;
@@ -241,7 +241,7 @@ cond_param_defaults(struct XCSF *xcsf)
 static void
 cond_param_print_ternary(const struct XCSF *xcsf)
 {
-    const struct CondArgs *cond = xcsf->cond;
+    const struct ArgsCond *cond = xcsf->cond;
     printf(", COND_P_DONTCARE=%f", cond->p_dontcare);
     printf(", COND_BITS=%d", cond->bits);
 }
@@ -253,7 +253,7 @@ cond_param_print_ternary(const struct XCSF *xcsf)
 static void
 cond_param_print_csr(const struct XCSF *xcsf)
 {
-    const struct CondArgs *cond = xcsf->cond;
+    const struct ArgsCond *cond = xcsf->cond;
     printf(", COND_ETA=%f", cond->eta);
     printf(", COND_MIN=%f", cond->min);
     printf(", COND_MAX=%f", cond->max);
@@ -267,7 +267,7 @@ cond_param_print_csr(const struct XCSF *xcsf)
 static void
 cond_param_print_gp(const struct XCSF *xcsf)
 {
-    const struct GPTreeArgs *arg = xcsf->cond->targs;
+    const struct ArgsGPTree *arg = xcsf->cond->targs;
     printf(", COND_GP={");
     tree_args_print(arg);
     printf("}");
@@ -280,7 +280,7 @@ cond_param_print_gp(const struct XCSF *xcsf)
 static void
 cond_param_print_dgp(const struct XCSF *xcsf)
 {
-    const struct DGPArgs *arg = xcsf->cond->dargs;
+    const struct ArgsDGP *arg = xcsf->cond->dargs;
     printf(", COND_DGP={");
     graph_args_print(arg);
     printf("}");
@@ -293,7 +293,7 @@ cond_param_print_dgp(const struct XCSF *xcsf)
 static void
 cond_param_print_neural(const struct XCSF *xcsf)
 {
-    const struct LayerArgs *arg = xcsf->cond->largs;
+    const struct ArgsLayer *arg = xcsf->cond->largs;
     int cnt = 0;
     while (arg != NULL) {
         printf(", COND_LAYER_%d={", cnt);
@@ -311,7 +311,7 @@ cond_param_print_neural(const struct XCSF *xcsf)
 void
 cond_param_print(const struct XCSF *xcsf)
 {
-    const struct CondArgs *cond = xcsf->cond;
+    const struct ArgsCond *cond = xcsf->cond;
     printf(", COND_TYPE=%s", condition_type_as_string(cond->type));
     switch (cond->type) {
         case COND_TYPE_TERNARY:
@@ -346,7 +346,7 @@ cond_param_print(const struct XCSF *xcsf)
 size_t
 cond_param_save(const struct XCSF *xcsf, FILE *fp)
 {
-    const struct CondArgs *cond = xcsf->cond;
+    const struct ArgsCond *cond = xcsf->cond;
     size_t s = 0;
     s += fwrite(&cond->type, sizeof(int), 1, fp);
     s += fwrite(&cond->eta, sizeof(double), 1, fp);
@@ -369,7 +369,7 @@ cond_param_save(const struct XCSF *xcsf, FILE *fp)
 size_t
 cond_param_load(struct XCSF *xcsf, FILE *fp)
 {
-    struct CondArgs *cond = xcsf->cond;
+    struct ArgsCond *cond = xcsf->cond;
     size_t s = 0;
     s += fread(&cond->type, sizeof(int), 1, fp);
     s += fread(&cond->eta, sizeof(double), 1, fp);

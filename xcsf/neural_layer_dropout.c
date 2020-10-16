@@ -60,7 +60,7 @@ free_layer_arrays(const struct Layer *l)
  * @param [in] args Parameters to initialise the layer.
  */
 void
-neural_layer_dropout_init(struct Layer *l, const struct LayerArgs *args)
+neural_layer_dropout_init(struct Layer *l, const struct ArgsLayer *args)
 {
     l->n_inputs = args->n_inputs;
     l->n_outputs = args->n_inputs;

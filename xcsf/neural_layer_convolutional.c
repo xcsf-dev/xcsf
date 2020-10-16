@@ -114,7 +114,7 @@ convolutional_out_width(const struct Layer *l)
  * @param [in] args Parameters to initialise the layer.
  */
 void
-neural_layer_convolutional_init(struct Layer *l, const struct LayerArgs *args)
+neural_layer_convolutional_init(struct Layer *l, const struct ArgsLayer *args)
 {
     l->options = layer_opt(args);
     l->function = args->function;

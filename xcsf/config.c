@@ -35,7 +35,7 @@
 #define MAXLEN (127) //!< Maximum config file line length to read
 #define BASE (10) //!< Decimal numbers
 
-struct LayerArgs *current_layer; //!< Current layer parameters being read
+struct ArgsLayer *current_layer; //!< Current layer parameters being read
 
 /**
  * @brief Sets general XCSF parameters.
@@ -250,13 +250,13 @@ config_cl_cond_neural(struct XCSF *xcsf, const char *n, const char *v)
 {
     if (strncmp(n, "COND_LAYER_TYPE\0", 16) == 0) {
         if (xcsf->cond->largs == NULL) {
-            xcsf->cond->largs = malloc(sizeof(struct LayerArgs));
+            xcsf->cond->largs = malloc(sizeof(struct ArgsLayer));
             current_layer = xcsf->cond->largs;
             layer_args_init(current_layer);
             current_layer->n_inputs = xcsf->x_dim;
         } else {
-            struct LayerArgs *tail = layer_args_tail(xcsf->cond->largs);
-            tail->next = malloc(sizeof(struct LayerArgs));
+            struct ArgsLayer *tail = layer_args_tail(xcsf->cond->largs);
+            tail->next = malloc(sizeof(struct ArgsLayer));
             current_layer = tail->next;
             layer_args_init(current_layer);
         }
@@ -395,13 +395,13 @@ config_cl_pred_neural(struct XCSF *xcsf, const char *n, const char *v)
 {
     if (strncmp(n, "PRED_LAYER_TYPE\0", 16) == 0) {
         if (xcsf->pred->largs == NULL) {
-            xcsf->pred->largs = malloc(sizeof(struct LayerArgs));
+            xcsf->pred->largs = malloc(sizeof(struct ArgsLayer));
             current_layer = xcsf->pred->largs;
             layer_args_init(current_layer);
             current_layer->n_inputs = xcsf->x_dim;
         } else {
-            struct LayerArgs *tail = layer_args_tail(xcsf->pred->largs);
-            tail->next = malloc(sizeof(struct LayerArgs));
+            struct ArgsLayer *tail = layer_args_tail(xcsf->pred->largs);
+            tail->next = malloc(sizeof(struct ArgsLayer));
             current_layer = tail->next;
             layer_args_init(current_layer);
             current_layer->n_inputs = tail->n_init;
@@ -469,13 +469,13 @@ config_cl_act_neural(struct XCSF *xcsf, const char *n, const char *v)
 {
     if (strncmp(n, "ACT_LAYER_TYPE\0", 15) == 0) {
         if (xcsf->act->largs == NULL) {
-            xcsf->act->largs = malloc(sizeof(struct LayerArgs));
+            xcsf->act->largs = malloc(sizeof(struct ArgsLayer));
             current_layer = xcsf->act->largs;
             layer_args_init(current_layer);
             current_layer->n_inputs = xcsf->x_dim;
         } else {
-            struct LayerArgs *tail = layer_args_tail(xcsf->act->largs);
-            tail->next = malloc(sizeof(struct LayerArgs));
+            struct ArgsLayer *tail = layer_args_tail(xcsf->act->largs);
+            tail->next = malloc(sizeof(struct ArgsLayer));
             current_layer = tail->next;
             layer_args_init(current_layer);
             current_layer->n_inputs = tail->n_init;

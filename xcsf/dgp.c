@@ -196,7 +196,7 @@ synchronous_update(const struct Graph *dgp, const double *inputs)
  * @param [in] args Parameters for initialising a DGP graph.
  */
 void
-graph_init(struct Graph *dgp, const struct DGPArgs *args)
+graph_init(struct Graph *dgp, const struct ArgsDGP *args)
 {
     dgp->t = 0;
     dgp->n = args->n;
@@ -415,7 +415,7 @@ graph_load(struct Graph *dgp, FILE *fp)
  * @param [in] args Parameters for initialising and operating DGP graphs.
  */
 void
-graph_args_init(struct DGPArgs *args)
+graph_args_init(struct ArgsDGP *args)
 {
     args->max_k = 0;
     args->max_t = 0;
@@ -428,7 +428,7 @@ graph_args_init(struct DGPArgs *args)
  * @param [in] args Parameters for initialising and operating DGP graphs.
  */
 void
-graph_args_print(const struct DGPArgs *args)
+graph_args_print(const struct ArgsDGP *args)
 {
     printf("max_k=%d", args->max_k);
     printf(", max_t=%d", args->max_t);
@@ -443,7 +443,7 @@ graph_args_print(const struct DGPArgs *args)
  * @return The total number of elements written.
  */
 size_t
-graph_args_save(const struct DGPArgs *args, FILE *fp)
+graph_args_save(const struct ArgsDGP *args, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&args->max_k, sizeof(int), 1, fp);
@@ -460,7 +460,7 @@ graph_args_save(const struct DGPArgs *args, FILE *fp)
  * @return The total number of elements written.
  */
 size_t
-graph_args_load(struct DGPArgs *args, FILE *fp)
+graph_args_load(struct ArgsDGP *args, FILE *fp)
 {
     size_t s = 0;
     s += fread(&args->max_k, sizeof(int), 1, fp);
