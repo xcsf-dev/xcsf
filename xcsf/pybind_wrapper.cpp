@@ -920,8 +920,9 @@ class XCS
         for (std::pair<py::handle, py::handle> item : args) {
             auto name = item.first.cast<std::string>();
             if (name == "bits") {
-                const auto value = item.second.cast<int>();
-                cond_param_set_bits(&xcs, value);
+                cond_param_set_bits(&xcs, item.second.cast<int>());
+            } else if (name == "p-dontcare") {
+                cond_param_set_p_dontcare(&xcs, item.second.cast<double>());
             }
         }
     }
