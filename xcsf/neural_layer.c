@@ -541,7 +541,6 @@ layer_args_copy(const struct LayerArgs *src)
 static void
 layer_args_print_inputs(const struct LayerArgs *args)
 {
-    printf(", n_inputs=%d", args->n_inputs);
     switch (args->type) {
         case CONVOLUTIONAL:
         case MAXPOOL:
@@ -638,12 +637,6 @@ layer_args_print(const struct LayerArgs *args)
     printf("type=%s", layer_type_as_string(args->type));
     layer_args_print_activation(args);
     layer_args_print_inputs(args);
-    printf(", n_init=%d", args->n_init);
-    if (args->type == CONVOLUTIONAL) {
-        printf(", n_filters=%d", args->n_filters);
-    } else if (args->type == DROPOUT || args->type == NOISE) {
-        printf(", probability=%f", args->probability);
-    }
     switch (args->type) {
         case NOISE:
         case DROPOUT:
@@ -652,6 +645,12 @@ layer_args_print(const struct LayerArgs *args)
             return;
         default:
             break;
+    }
+    printf(", n_init=%d", args->n_init);
+    if (args->type == CONVOLUTIONAL) {
+        printf(", n_filters=%d", args->n_filters);
+    } else if (args->type == DROPOUT || args->type == NOISE) {
+        printf(", probability=%f", args->probability);
     }
     layer_args_print_evo(args);
     layer_args_print_sgd(args);
@@ -717,6 +716,34 @@ layer_type_as_string(const int type)
             return STRING_UPSAMPLE;
         default:
             printf("layer_type_as_string(): invalid type: %d\n", type);
+            exit(EXIT_FAILURE);
+    }
+}
+
+/**
+ * @brief Returns a whether a layer type expects images as input.
+ * @param [in] type Integer representation of a layer type.
+ * @return Whether images (height × width × channels) are expected as inputs.
+ */
+bool
+layer_receives_images(const int type)
+{
+    switch (type) {
+        case AVGPOOL:
+        case MAXPOOL:
+        case UPSAMPLE:
+        case CONVOLUTIONAL:
+            return true;
+        case CONNECTED:
+        case RECURRENT:
+        case LSTM:
+        case DROPOUT:
+        case NOISE:
+        case SOFTMAX:
+            return false;
+            ;
+        default:
+            printf("layer_receives_images(): invalid type: %d\n", type);
             exit(EXIT_FAILURE);
     }
 }

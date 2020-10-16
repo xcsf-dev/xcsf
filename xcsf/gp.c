@@ -370,8 +370,7 @@ tree_args_free(struct GPTreeArgs *args)
 void
 tree_args_print(const struct GPTreeArgs *args)
 {
-    printf("n_inputs=%d", args->n_inputs);
-    printf(", min_constant=%f", args->min);
+    printf("min_constant=%f", args->min);
     printf(", max_constant=%f", args->max);
     printf(", n_constants=%d", args->n_constants);
     printf(", init_depth=%d", args->init_depth);

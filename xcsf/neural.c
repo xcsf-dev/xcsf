@@ -44,6 +44,52 @@ neural_init(struct Net *net)
 }
 
 /**
+ * @brief Initialises and creates a new neural network from a parameter list.
+ * @param [in] net The neural network to initialise.
+ * @param [in] arg List of layer parameters defining the initial network.
+ */
+void
+neural_create(struct Net *net, struct LayerArgs *arg)
+{
+    neural_init(net);
+    struct Layer *prev_layer = NULL;
+    while (arg != NULL) {
+        if (prev_layer != NULL) {
+            if (layer_receives_images(arg->type) &&
+                !layer_receives_images(prev_layer->type)) {
+                printf("neural_create() error: %s layers expect input images\n",
+                       layer_type_as_string(arg->type));
+                exit(EXIT_FAILURE);
+            }
+            arg->height = prev_layer->out_h; // pass through n inputs
+            arg->width = prev_layer->out_w;
+            arg->channels = prev_layer->out_c;
+            arg->n_inputs = prev_layer->n_outputs;
+            switch (arg->type) {
+                case AVGPOOL:
+                case MAXPOOL:
+                case DROPOUT:
+                case UPSAMPLE:
+                case SOFTMAX:
+                case NOISE:
+                    arg->n_init = prev_layer->n_outputs;
+                    break;
+                default:
+                    break;
+            }
+        }
+        struct Layer *l = layer_init(arg);
+        neural_push(net, l);
+        prev_layer = l;
+        arg = arg->next;
+    }
+    if (net->n_layers < 1 || net->n_outputs < 1 || net->n_inputs < 1) {
+        printf("neural_create() error: initialising network\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
+/**
  * @brief Inserts a layer into a neural network.
  * @param [in] net The neural network receiving the layer.
  * @param [in] l The layer to insert.

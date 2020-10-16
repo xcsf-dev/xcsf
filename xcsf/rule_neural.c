@@ -35,15 +35,12 @@ void
 rule_neural_cond_init(const struct XCSF *xcsf, struct Cl *c)
 {
     struct RuleNeural *new = malloc(sizeof(struct RuleNeural));
-    neural_init(&new->net);
-    const struct LayerArgs *arg = xcsf->cond->largs;
-    while (arg != NULL) {
-        struct Layer *l = layer_init(arg);
-        neural_push(&new->net, l);
-        arg = arg->next;
-        if (arg == NULL) { // output layer
-            new->n_outputs = l->n_outputs;
-        }
+    neural_create(&new->net, xcsf->cond->largs);
+    new->n_outputs = (int) fmax(1, ceil(log2(xcsf->n_actions)));
+    if (new->n_outputs != new->net.n_outputs + 1) {
+        printf("rule_neural_init(): n_outputs(%d) != expected(%d)\n",
+               new->net.n_outputs + 1, new->n_outputs);
+        exit(EXIT_FAILURE);
     }
     c->cond = new;
 }

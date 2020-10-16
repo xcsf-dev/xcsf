@@ -102,7 +102,6 @@ tree_args = {
     'n-constants': 100, # number of (global) constants
     'init-depth': 5, # initial tree depth
     'max-len': 10000, # maximum initial length
-    'n-inputs': X_DIM, # number of inputs
 }
 xcs.condition('tree-gp', tree_args) # GP tree conditions
 
@@ -135,7 +134,6 @@ prediction_layers = {
         'eta-min': 0.000001,
         'momentum': 0.9,
         'n-init': Y_DIM,
-        'n-inputs': 10,
     }
 }
 xcs.prediction('neural', prediction_layers) # neural network predictions

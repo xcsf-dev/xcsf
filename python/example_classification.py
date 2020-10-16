@@ -90,8 +90,8 @@ condition_layers = {
         'evolve-connect': True,
         'n-init': 20,
         'n-max': 100,
-        'n-inputs': X_DIM,
         'max-neuron-grow': 5,
+        'n-inputs': X_DIM,
     },
     'layer_1': { # output layer
         'type': 'connected',
@@ -100,7 +100,6 @@ condition_layers = {
         'evolve-functions': False,
         'evolve-connect': True,
         'n-init': 1,
-        'n-inputs': 20,
     }
 }
 xcs.condition('neural', condition_layers) # neural network conditions
@@ -135,13 +134,10 @@ prediction_layers = {
         'eta-min': 0.000001,
         'momentum': 0.9,
         'n-init': Y_DIM,
-        'n-inputs': 20,
     },
     'layer_2': { # output layer - softmax composed of two layers
         'type': 'softmax',
         'scale': 1,
-        'n-init': Y_DIM,
-        'n-inputs': Y_DIM,
     }
 }
 xcs.prediction('neural', prediction_layers) # neural network predictions

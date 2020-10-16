@@ -41,13 +41,7 @@ void
 cond_neural_init(const struct XCSF *xcsf, struct Cl *c)
 {
     struct CondNeural *new = malloc(sizeof(struct CondNeural));
-    neural_init(&new->net);
-    const struct LayerArgs *arg = xcsf->cond->largs;
-    while (arg != NULL) {
-        struct Layer *l = layer_init(arg);
-        neural_push(&new->net, l);
-        arg = arg->next;
-    }
+    neural_create(&new->net, xcsf->cond->largs);
     c->cond = new;
 }
 

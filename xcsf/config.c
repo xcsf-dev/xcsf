@@ -260,7 +260,6 @@ config_cl_cond_neural(struct XCSF *xcsf, const char *n, const char *v)
             tail->next = malloc(sizeof(struct LayerArgs));
             current_layer = tail->next;
             layer_args_init(current_layer);
-            current_layer->n_inputs = tail->n_init;
         }
         current_layer->n_init = 1; // single condition matching neuron
         if (xcsf->cond->type == RULE_TYPE_NEURAL) { // binary action outputs

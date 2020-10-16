@@ -103,7 +103,6 @@ condition_layers = {
         'evolve-functions': False,
         'evolve-connect': False,
         'n-init': 1,
-        'n-inputs': 1,
     }
 }
 

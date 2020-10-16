@@ -44,13 +44,7 @@ void
 act_neural_init(const struct XCSF *xcsf, struct Cl *c)
 {
     struct ActNeural *new = malloc(sizeof(struct ActNeural));
-    neural_init(&new->net);
-    const struct LayerArgs *arg = xcsf->act->largs;
-    while (arg != NULL) {
-        struct Layer *l = layer_init(arg);
-        neural_push(&new->net, l);
-        arg = arg->next;
-    }
+    neural_create(&new->net, xcsf->act->largs);
     c->act = new;
 }
 

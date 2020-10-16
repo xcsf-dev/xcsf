@@ -878,8 +878,6 @@ class XCS
                 tree_param_set_init_depth(targs, item.second.cast<int>());
             } else if (name == "max-len") {
                 tree_param_set_max_len(targs, item.second.cast<int>());
-            } else if (name == "n-inputs") {
-                tree_param_set_n_inputs(targs, item.second.cast<int>());
             } else if (name == "min") {
                 tree_param_set_min(targs, item.second.cast<double>());
             } else if (name == "max") {
@@ -963,6 +961,7 @@ class XCS
     void
     unpack_layer_params(struct LayerArgs *larg, const py::dict &args)
     {
+        larg->n_inputs = xcs.x_dim;
         for (std::pair<py::handle, py::handle> item : args) {
             const auto name = item.first.cast<std::string>();
             if (name == "type") {
@@ -989,8 +988,6 @@ class XCS
                 const auto value = item.second.cast<std::string>();
                 larg->recurrent_function =
                     neural_activation_as_int(value.c_str());
-            } else if (name == "n-inputs") {
-                larg->n_inputs = item.second.cast<int>();
             } else if (name == "n-init") {
                 larg->n_init = item.second.cast<int>();
             } else if (name == "n-max") {

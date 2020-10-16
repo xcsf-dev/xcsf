@@ -389,6 +389,9 @@ layer_args_free(struct LayerArgs *largs);
 uint32_t
 layer_opt(const struct LayerArgs *args);
 
+bool
+layer_receives_images(const int type);
+
 /**
  * @brief Creates and initialises a new layer.
  * @param [in] args Layer parameters used to initialise the layer.
