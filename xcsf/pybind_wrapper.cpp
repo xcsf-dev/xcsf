@@ -846,17 +846,15 @@ class XCS
         for (std::pair<py::handle, py::handle> item : args) {
             auto name = item.first.cast<std::string>();
             if (name == "min") {
-                const auto value = item.second.cast<double>();
-                cond_param_set_min(&xcs, value);
+                cond_param_set_min(&xcs, item.second.cast<double>());
             } else if (name == "max") {
-                const auto value = item.second.cast<double>();
-                cond_param_set_max(&xcs, value);
+                cond_param_set_max(&xcs, item.second.cast<double>());
             } else if (name == "spread-min") {
-                const auto value = item.second.cast<double>();
-                cond_param_set_spread_min(&xcs, value);
+                cond_param_set_spread_min(&xcs, item.second.cast<double>());
             } else if (name == "eta") {
-                const auto value = item.second.cast<double>();
-                cond_param_set_eta(&xcs, value);
+                cond_param_set_eta(&xcs, item.second.cast<double>());
+            } else {
+                printf("Unknown center-spread parameter: %s\n", name.c_str());
             }
         }
     }
@@ -882,6 +880,8 @@ class XCS
                 tree_param_set_min(targs, item.second.cast<double>());
             } else if (name == "max") {
                 tree_param_set_max(targs, item.second.cast<double>());
+            } else {
+                printf("Unknown tree-GP parameter: %s\n", name.c_str());
             }
         }
         tree_args_init_constants(targs);
@@ -906,6 +906,8 @@ class XCS
                 graph_param_set_n(dargs, item.second.cast<int>());
             } else if (name == "n-inputs") {
                 graph_param_set_n_inputs(dargs, item.second.cast<int>());
+            } else {
+                printf("Unknown DGP parameter: %s\n", name.c_str());
             }
         }
     }
@@ -923,6 +925,8 @@ class XCS
                 cond_param_set_bits(&xcs, item.second.cast<int>());
             } else if (name == "p-dontcare") {
                 cond_param_set_p_dontcare(&xcs, item.second.cast<double>());
+            } else {
+                printf("Unknown ternary parameter: %s\n", name.c_str());
             }
         }
     }
@@ -1013,6 +1017,8 @@ class XCS
                 larg->stride = item.second.cast<int>();
             } else if (name == "pad") {
                 larg->pad = item.second.cast<int>();
+            } else {
+                printf("Unknown neural layer parameter: %s\n", name.c_str());
             }
         }
     }
@@ -1099,6 +1105,8 @@ class XCS
                 pred_param_set_eta_min(&xcs, item.second.cast<double>());
             } else if (name == "evolve_eta") {
                 pred_param_set_evolve_eta(&xcs, item.second.cast<bool>());
+            } else {
+                printf("Unknown NLMS parameter: %s\n", name.c_str());
             }
         }
     }
@@ -1113,14 +1121,13 @@ class XCS
         for (std::pair<py::handle, py::handle> item : args) {
             auto name = item.first.cast<std::string>();
             if (name == "x0") {
-                const auto value = item.second.cast<double>();
-                pred_param_set_x0(&xcs, value);
+                pred_param_set_x0(&xcs, item.second.cast<double>());
             } else if (name == "rls-scale-factor") {
-                const auto value = item.second.cast<double>();
-                pred_param_set_scale_factor(&xcs, value);
+                pred_param_set_scale_factor(&xcs, item.second.cast<double>());
             } else if (name == "rls-lambda") {
-                const auto value = item.second.cast<double>();
-                pred_param_set_lambda(&xcs, value);
+                pred_param_set_lambda(&xcs, item.second.cast<double>());
+            } else {
+                printf("Unknown RLS parameter: %s\n", name.c_str());
             }
         }
     }

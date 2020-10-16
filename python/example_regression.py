@@ -120,7 +120,6 @@ prediction_layers = {
         'momentum': 0.9,
         'n-init': 10,
         'n-max': 10,
-        'n-inputs': X_DIM,
     },
     'layer_1': { # output layer
         'type': 'connected',

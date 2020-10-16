@@ -91,7 +91,6 @@ condition_layers = {
         'n-init': 20,
         'n-max': 100,
         'max-neuron-grow': 5,
-        'n-inputs': X_DIM,
     },
     'layer_1': { # output layer
         'type': 'connected',
@@ -120,7 +119,6 @@ prediction_layers = {
         'momentum': 0.9,
         'n-init': 20,
         'n-max': 100,
-        'n-inputs': X_DIM,
     },
     'layer_1': { # output layer - softmax composed of two layers
         'type': 'connected',
