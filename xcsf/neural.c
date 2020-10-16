@@ -52,7 +52,7 @@ void
 neural_create(struct Net *net, struct LayerArgs *arg)
 {
     neural_init(net);
-    struct Layer *prev_layer = NULL;
+    const struct Layer *prev_layer = NULL;
     while (arg != NULL) {
         if (prev_layer != NULL) {
             if (layer_receives_images(arg->type) &&
