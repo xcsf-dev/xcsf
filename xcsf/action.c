@@ -89,7 +89,7 @@ action_type_as_int(const char *type)
  * @param [in] xcsf The XCSF data structure.
  */
 static void
-action_param_neural_defaults(struct XCSF *xcsf)
+action_param_defaults_neural(struct XCSF *xcsf)
 {
     // hidden layer
     struct ArgsLayer *la = malloc(sizeof(struct ArgsLayer));
@@ -125,7 +125,7 @@ void
 action_param_defaults(struct XCSF *xcsf)
 {
     action_param_set_type(xcsf, ACT_TYPE_NEURAL);
-    action_param_neural_defaults(xcsf);
+    action_param_defaults_neural(xcsf);
 }
 
 /**

@@ -117,7 +117,7 @@ prediction_type_as_int(const char *type)
  * @param [in] xcsf The XCSF data structure.
  */
 static void
-pred_param_neural_defaults(struct XCSF *xcsf)
+pred_param_defaults_neural(struct XCSF *xcsf)
 {
     // hidden layer
     struct ArgsLayer *la = malloc(sizeof(struct ArgsLayer));
@@ -158,7 +158,7 @@ pred_param_defaults(struct XCSF *xcsf)
     pred_param_set_scale_factor(xcsf, 1000);
     pred_param_set_x0(xcsf, 1);
     pred_param_set_evolve_eta(xcsf, true);
-    pred_param_neural_defaults(xcsf);
+    pred_param_defaults_neural(xcsf);
 }
 
 /**

@@ -157,7 +157,7 @@ condition_type_as_int(const char *type)
  * @param [in] xcsf The XCSF data structure.
  */
 static void
-cond_param_gp_defaults(struct XCSF *xcsf)
+cond_param_defaults_gp(struct XCSF *xcsf)
 {
     struct ArgsGPTree *args = malloc(sizeof(struct ArgsGPTree));
     tree_args_init(args);
@@ -176,7 +176,7 @@ cond_param_gp_defaults(struct XCSF *xcsf)
  * @param [in] xcsf The XCSF data structure.
  */
 static void
-cond_param_dgp_defaults(struct XCSF *xcsf)
+cond_param_defaults_dgp(struct XCSF *xcsf)
 {
     struct ArgsDGP *args = malloc(sizeof(struct ArgsDGP));
     graph_args_init(args);
@@ -192,7 +192,7 @@ cond_param_dgp_defaults(struct XCSF *xcsf)
  * @param [in] xcsf The XCSF data structure.
  */
 static void
-cond_param_neural_defaults(struct XCSF *xcsf)
+cond_param_defaults_neural(struct XCSF *xcsf)
 {
     // hidden layer
     struct ArgsLayer *args = malloc(sizeof(struct ArgsLayer));
@@ -229,9 +229,9 @@ cond_param_defaults(struct XCSF *xcsf)
     cond_param_set_spread_min(xcsf, 0.1);
     cond_param_set_p_dontcare(xcsf, 0.5);
     cond_param_set_bits(xcsf, 1);
-    cond_param_neural_defaults(xcsf);
-    cond_param_dgp_defaults(xcsf);
-    cond_param_gp_defaults(xcsf);
+    cond_param_defaults_neural(xcsf);
+    cond_param_defaults_dgp(xcsf);
+    cond_param_defaults_gp(xcsf);
 }
 
 /**
