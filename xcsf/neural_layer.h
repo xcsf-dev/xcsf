@@ -384,7 +384,7 @@ void
 layer_args_print(const struct LayerArgs *args);
 
 void
-layer_args_free(struct LayerArgs *largs);
+layer_args_free(struct LayerArgs **largs);
 
 uint32_t
 layer_opt(const struct LayerArgs *args);

@@ -282,6 +282,5 @@ pred_param_load(struct XCSF *xcsf, FILE *fp)
 void
 pred_param_free(struct XCSF *xcsf)
 {
-    layer_args_free(xcsf->pred->largs);
-    xcsf->pred->largs = NULL;
+    layer_args_free(&xcsf->pred->largs);
 }

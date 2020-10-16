@@ -197,6 +197,5 @@ action_param_load(struct XCSF *xcsf, FILE *fp)
 void
 action_param_free(struct XCSF *xcsf)
 {
-    layer_args_free(xcsf->act->largs);
-    xcsf->act->largs = NULL;
+    layer_args_free(&xcsf->act->largs);
 }

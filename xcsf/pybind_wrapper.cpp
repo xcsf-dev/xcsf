@@ -929,13 +929,7 @@ class XCS
     void
     unpack_cond_neural(const py::dict &args)
     {
-        // clear existing layer parameters
-        while (xcs.cond->largs != NULL) {
-            struct LayerArgs *larg = xcs.cond->largs;
-            xcs.cond->largs = xcs.cond->largs->next;
-            free(larg);
-        }
-        // add new layer parameters
+        layer_args_free(&xcs.cond->largs);
         for (auto item : args) {
             struct LayerArgs *larg =
                 (struct LayerArgs *) malloc(sizeof(struct LayerArgs));
@@ -1069,13 +1063,7 @@ class XCS
     void
     unpack_pred_neural(const py::dict &args)
     {
-        // clear existing layer parameters
-        while (xcs.pred->largs != NULL) {
-            struct LayerArgs *larg = xcs.pred->largs;
-            xcs.pred->largs = xcs.pred->largs->next;
-            free(larg);
-        }
-        // add new layer parameters
+        layer_args_free(&xcs.pred->largs);
         for (auto item : args) {
             struct LayerArgs *larg =
                 (struct LayerArgs *) malloc(sizeof(struct LayerArgs));

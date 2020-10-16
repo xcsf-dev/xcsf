@@ -678,16 +678,16 @@ layer_args_print(const struct LayerArgs *args)
 }
 
 /**
- * @brief Frees memory used by layer parameters.
- * @param [in] largs The layer parameters to print.
+ * @brief Frees memory used by a list of layer parameters and points to NULL.
+ * @param [in] largs Pointer to the list of layer parameters to free.
  */
 void
-layer_args_free(struct LayerArgs *largs)
+layer_args_free(struct LayerArgs **largs)
 {
-    while (largs != NULL) {
-        struct LayerArgs *args = largs;
-        largs = args->next;
-        free(args);
+    while (*largs != NULL) {
+        struct LayerArgs *arg = *largs;
+        *largs = (*largs)->next;
+        free(arg);
     }
 }
 

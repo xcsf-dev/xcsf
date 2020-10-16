@@ -393,8 +393,7 @@ cond_param_free(struct XCSF *xcsf)
     tree_args_free(xcsf->cond->targs);
     free(xcsf->cond->targs);
     free(xcsf->cond->dargs);
-    layer_args_free(xcsf->cond->largs);
     xcsf->cond->targs = NULL;
     xcsf->cond->dargs = NULL;
-    xcsf->cond->largs = NULL;
+    layer_args_free(&xcsf->cond->largs);
 }

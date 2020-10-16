@@ -625,12 +625,9 @@ config_read(struct XCSF *xcsf, const char *filename)
         return;
     }
     // clear existing layer parameters
-    layer_args_free(xcsf->act->largs);
-    layer_args_free(xcsf->cond->largs);
-    layer_args_free(xcsf->pred->largs);
-    xcsf->act->largs = NULL;
-    xcsf->cond->largs = NULL;
-    xcsf->pred->largs = NULL;
+    layer_args_free(&xcsf->act->largs);
+    layer_args_free(&xcsf->cond->largs);
+    layer_args_free(&xcsf->pred->largs);
     current_layer = NULL;
     // load new parameters from config
     char buff[MAXLEN];
