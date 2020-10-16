@@ -546,12 +546,24 @@ layer_args_print_inputs(const struct LayerArgs *args)
         case MAXPOOL:
         case AVGPOOL:
         case UPSAMPLE:
-            printf(", height=%d", args->height);
-            printf(", width=%d", args->width);
-            printf(", channels=%d", args->channels);
-            printf(", size=%d", args->size);
-            printf(", stride=%d", args->stride);
-            printf(", pad=%d", args->pad);
+            if (args->height > 0) {
+                printf(", height=%d", args->height);
+            }
+            if (args->width > 0) {
+                printf(", width=%d", args->width);
+            }
+            if (args->channels > 0) {
+                printf(", channels=%d", args->channels);
+            }
+            if (args->size > 0) {
+                printf(", size=%d", args->size);
+            }
+            if (args->stride > 0) {
+                printf(", stride=%d", args->stride);
+            }
+            if (args->pad > 0) {
+                printf(", pad=%d", args->pad);
+            }
             break;
         default:
             break;
@@ -576,8 +588,6 @@ layer_args_print_sgd(const struct LayerArgs *args)
         }
         printf(", momentum=%f", args->momentum);
         printf(", decay=%f", args->decay);
-    } else {
-        printf(", sgd_weights=false");
     }
 }
 
@@ -588,15 +598,17 @@ layer_args_print_sgd(const struct LayerArgs *args)
 static void
 layer_args_print_evo(const struct LayerArgs *args)
 {
-    printf(", evolve_weights=");
-    args->evolve_weights ? printf("true") : printf("false");
-    printf(", evolve_neurons=");
-    args->evolve_neurons ? printf("true") : printf("false");
-    printf(", evolve_functions=");
-    args->evolve_functions ? printf("true") : printf("false");
-    printf(", evolve_connect=");
-    args->evolve_connect ? printf("true") : printf("false");
+    if (args->evolve_weights) {
+        printf(", evolve_weights=true");
+    }
+    if (args->evolve_functions) {
+        printf(", evolve_functions=true");
+    }
+    if (args->evolve_connect) {
+        printf(", evolve_connect=true");
+    }
     if (args->evolve_neurons) {
+        printf(", evolve_neurons=true");
         printf(", n_max=%d", args->n_max);
         printf(", max_neuron_grow=%d", args->max_neuron_grow);
     }
@@ -638,19 +650,28 @@ layer_args_print(const struct LayerArgs *args)
     layer_args_print_activation(args);
     layer_args_print_inputs(args);
     switch (args->type) {
+        case AVGPOOL:
+        case MAXPOOL:
+        case UPSAMPLE:
+            return;
+        case CONVOLUTIONAL:
+            printf(", n_filters=%d", args->n_filters);
+            break;
         case NOISE:
+            printf(", probability=%f", args->probability);
+            printf(", scale=%f", args->scale);
+            break;
         case DROPOUT:
+            printf(", probability=%f", args->probability);
+            break;
         case SOFTMAX:
             printf(", scale=%f", args->scale);
             return;
         default:
             break;
     }
-    printf(", n_init=%d", args->n_init);
-    if (args->type == CONVOLUTIONAL) {
-        printf(", n_filters=%d", args->n_filters);
-    } else if (args->type == DROPOUT || args->type == NOISE) {
-        printf(", probability=%f", args->probability);
+    if (args->n_init > 0) {
+        printf(", n_init=%d", args->n_init);
     }
     layer_args_print_evo(args);
     layer_args_print_sgd(args);
