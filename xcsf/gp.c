@@ -82,29 +82,17 @@ tree_grow(const struct ArgsGPTree *args, int *tree, const int pos,
     if (pos >= max) {
         return -1;
     }
-    int prim = pos != 0 ? rand_uniform_int(0, 2) : 1;
-    if (prim == 0 || depth == 0) {
+    if (depth == 0 || (pos != 0 && rand_uniform(0, 1) < 0.5)) {
         const int max_term = GP_NUM_FUNC + args->n_constants + args->n_inputs;
-        prim = rand_uniform_int(GP_NUM_FUNC, max_term);
-        tree[pos] = prim;
+        tree[pos] = rand_uniform_int(GP_NUM_FUNC, max_term);
         return pos + 1;
     }
-    prim = rand_uniform_int(0, GP_NUM_FUNC);
-    switch (prim) {
-        case ADD:
-        case SUB:
-        case MUL:
-        case DIV:
-            tree[pos] = prim;
-            const int child = tree_grow(args, tree, pos + 1, max, depth - 1);
-            if (child < 0) {
-                return -1;
-            }
-            return tree_grow(args, tree, child, max, depth - 1);
-        default:
-            printf("tree_grow() invalid function: %d\n", prim);
-            exit(EXIT_FAILURE);
+    tree[pos] = rand_uniform_int(0, GP_NUM_FUNC);
+    const int child = tree_grow(args, tree, pos + 1, max, depth - 1);
+    if (child < 0) {
+        return -1;
     }
+    return tree_grow(args, tree, child, max, depth - 1);
 }
 
 /**
