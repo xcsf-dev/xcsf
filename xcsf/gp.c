@@ -188,7 +188,7 @@ tree_print(const struct GPTree *gp, const struct ArgsGPTree *args, int p)
     const int node = gp->tree[p];
     if (node >= GP_NUM_FUNC) {
         if (node >= GP_NUM_FUNC + args->n_constants) {
-            printf("IN:%d ", node - GP_NUM_FUNC - args->n_constants);
+            printf("I:%d", node - GP_NUM_FUNC - args->n_constants);
         } else {
             printf("%f", args->constants[node - GP_NUM_FUNC]);
         }
