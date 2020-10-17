@@ -855,6 +855,7 @@ class XCS
                 cond_param_set_eta(&xcs, item.second.cast<double>());
             } else {
                 printf("Unknown center-spread parameter: %s\n", name.c_str());
+                exit(EXIT_FAILURE);
             }
         }
     }
@@ -882,6 +883,7 @@ class XCS
                 tree_param_set_max(targs, item.second.cast<double>());
             } else {
                 printf("Unknown tree-GP parameter: %s\n", name.c_str());
+                exit(EXIT_FAILURE);
             }
         }
         tree_args_init_constants(targs);
@@ -908,6 +910,7 @@ class XCS
                 graph_param_set_n_inputs(dargs, item.second.cast<int>());
             } else {
                 printf("Unknown DGP parameter: %s\n", name.c_str());
+                exit(EXIT_FAILURE);
             }
         }
     }
@@ -927,6 +930,7 @@ class XCS
                 cond_param_set_p_dontcare(&xcs, item.second.cast<double>());
             } else {
                 printf("Unknown ternary parameter: %s\n", name.c_str());
+                exit(EXIT_FAILURE);
             }
         }
     }
@@ -1019,6 +1023,7 @@ class XCS
                 larg->pad = item.second.cast<int>();
             } else {
                 printf("Unknown neural layer parameter: %s\n", name.c_str());
+                exit(EXIT_FAILURE);
             }
         }
     }
@@ -1107,6 +1112,7 @@ class XCS
                 pred_param_set_evolve_eta(&xcs, item.second.cast<bool>());
             } else {
                 printf("Unknown NLMS parameter: %s\n", name.c_str());
+                exit(EXIT_FAILURE);
             }
         }
     }
@@ -1128,6 +1134,7 @@ class XCS
                 pred_param_set_lambda(&xcs, item.second.cast<double>());
             } else {
                 printf("Unknown RLS parameter: %s\n", name.c_str());
+                exit(EXIT_FAILURE);
             }
         }
     }
