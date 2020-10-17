@@ -90,7 +90,7 @@ A number of interacting pressures have been identified. A set pressure provides 
 
 Implements both [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning) via the updating of match set errors directly and [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) via the updating of action set predictions with an environment reward.
 
-See `default.ini` for a full list of options.
+See `default.ini` for a list of options and `python/README.md` for Python library usage.
 
 ### Conditions
 
