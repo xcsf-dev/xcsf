@@ -89,19 +89,14 @@ condition_layers = {
         'activation': 'selu',
         'evolve-weights': True,
         'evolve-neurons': True,
-        'evolve-functions': False,
-        'evolve-connect': False,
         'n-init': 1,
         'n-max': 100,
-        'n-inputs': X_DIM,
         'max-neuron-grow': 1,
     },
     'layer_1': { # output layer
         'type': 'connected',
         'activation': 'linear',
         'evolve-weights': True,
-        'evolve-functions': False,
-        'evolve-connect': False,
         'n-init': 1,
     }
 }
