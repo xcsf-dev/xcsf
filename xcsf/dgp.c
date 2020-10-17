@@ -440,7 +440,6 @@ graph_args_print(const struct ArgsDGP *args)
     printf("max_k=%d", args->max_k);
     printf(", max_t=%d", args->max_t);
     printf(", n=%d", args->n);
-    printf(", n_inputs=%d", args->n_inputs);
     if (args->evolve_cycles) {
         printf(", evolve_cycles=true");
     }
