@@ -127,7 +127,7 @@ See [Neural Network Initialisation](#neural-network-initialisation).
 
 ```python
 xcs.condition('neural', layer_args)
-xcs.condition('rule-neural', args) # conditions + actions in single neural nets
+xcs.condition('rule-neural', layer_args) # conditions + actions in single neural nets
 ```
 
 *******************************************************************************
