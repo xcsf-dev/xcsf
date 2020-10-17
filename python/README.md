@@ -92,6 +92,7 @@ args = {
     'eta': 0, # gradient descent rate for moving centers to mean inputs matched
 }
 xcs.condition('hyperrectangle', args)
+xcs.condition('hyperellipsoid', args)
 ```
 
 ### GP Trees
