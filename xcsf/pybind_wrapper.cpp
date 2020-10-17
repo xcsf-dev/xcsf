@@ -912,8 +912,6 @@ class XCS
                 graph_param_set_max_t(dargs, item.second.cast<int>());
             } else if (name == "n") {
                 graph_param_set_n(dargs, item.second.cast<int>());
-            } else if (name == "n-inputs") {
-                graph_param_set_n_inputs(dargs, item.second.cast<int>());
             } else {
                 printf("Unknown DGP parameter: %s\n", name.c_str());
                 exit(EXIT_FAILURE);

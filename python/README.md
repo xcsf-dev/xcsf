@@ -114,8 +114,6 @@ args = {
     'max-k': 2, # number of connections per node
     'max-t': 10, # maximum number of cycles to update graphs
     'n': 20, # number of nodes in the graph
-    'init-depth': 5, # initial depth of a tree
-    'n-inputs': 1, # number of graph inputs (optional: x_dim used as default) 
 }
 xcs.condition('dgp', args)
 ```
