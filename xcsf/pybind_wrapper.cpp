@@ -519,6 +519,12 @@ class XCS
     }
 
     double
+    get_huber_delta(void)
+    {
+        return xcs.HUBER_DELTA;
+    }
+
+    double
     get_alpha(void)
     {
         return xcs.ALPHA;
@@ -1176,6 +1182,12 @@ class XCS
     }
 
     void
+    set_huber_delta(const double a)
+    {
+        param_set_huber_delta(&xcs, a);
+    }
+
+    void
     set_alpha(const double a)
     {
         param_set_alpha(&xcs, a);
@@ -1392,6 +1404,8 @@ PYBIND11_MODULE(xcsf, m)
         .def_property("POP_SIZE", &XCS::get_pop_max_size,
                       &XCS::set_pop_max_size)
         .def_property("LOSS_FUNC", &XCS::get_loss_func, &XCS::set_loss_func)
+        .def_property("HUBER_DELTA", &XCS::get_huber_delta,
+                      &XCS::set_huber_delta)
         .def_property("ALPHA", &XCS::get_alpha, &XCS::set_alpha)
         .def_property("BETA", &XCS::get_beta, &XCS::set_beta)
         .def_property("DELTA", &XCS::get_delta, &XCS::set_delta)
