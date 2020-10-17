@@ -286,11 +286,14 @@ tree_mutate(struct GPTree *gp, const struct ArgsGPTree *args)
     const int max_term = GP_NUM_FUNC + args->n_constants + args->n_inputs;
     for (int i = 0; i < gp->len; ++i) {
         if (rand_uniform(0, 1) < gp->mu[0]) {
-            changed = true;
+            const int orig = gp->tree[i];
             if (gp->tree[i] >= GP_NUM_FUNC) {
                 gp->tree[i] = rand_uniform_int(GP_NUM_FUNC, max_term);
             } else {
                 gp->tree[i] = rand_uniform_int(0, GP_NUM_FUNC);
+            }
+            if (gp->tree[i] != orig) {
+                changed = true;
             }
         }
     }
