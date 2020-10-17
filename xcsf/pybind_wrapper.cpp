@@ -1112,7 +1112,7 @@ class XCS
                 pred_param_set_eta(&xcs, item.second.cast<double>());
             } else if (name == "eta-min") {
                 pred_param_set_eta_min(&xcs, item.second.cast<double>());
-            } else if (name == "evolve_eta") {
+            } else if (name == "evolve-eta") {
                 pred_param_set_evolve_eta(&xcs, item.second.cast<bool>());
             } else {
                 printf("Unknown NLMS parameter: %s\n", name.c_str());
