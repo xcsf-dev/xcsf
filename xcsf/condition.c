@@ -326,6 +326,7 @@ cond_param_print(const struct XCSF *xcsf)
             cond_param_print_gp(xcsf);
             break;
         case COND_TYPE_DGP:
+        case RULE_TYPE_DGP:
             cond_param_print_dgp(xcsf);
             break;
         case COND_TYPE_NEURAL:
