@@ -52,17 +52,8 @@ tree_traverse(int *tree, int pos)
         ++pos;
         return pos;
     }
-    switch (tree[pos]) {
-        case ADD:
-        case SUB:
-        case MUL:
-        case DIV:
-            ++pos;
-            return tree_traverse(tree, tree_traverse(tree, pos));
-        default:
-            printf("tree_traverse() invalid function: %d\n", tree[pos]);
-            exit(EXIT_FAILURE);
-    }
+    ++pos;
+    return tree_traverse(tree, tree_traverse(tree, pos));
 }
 
 /**
