@@ -44,7 +44,7 @@ struct ArgsGPTree {
 struct GPTree {
     int *tree; //!< Flattened tree representation of functions and terminals
     int len; //!< Size of the tree
-    int p; //!< Current position in the tree
+    int pos; //!< Current position in the tree
     double *mu; //!< Mutation rates
 };
 
@@ -58,7 +58,7 @@ void
 tree_copy(struct GPTree *dest, const struct GPTree *src);
 
 int
-tree_print(const struct GPTree *gp, const struct ArgsGPTree *args, int p);
+tree_print(const struct GPTree *gp, const struct ArgsGPTree *args, int pos);
 
 double
 tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x);

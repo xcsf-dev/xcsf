@@ -82,7 +82,7 @@ bool
 cond_gp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
     struct CondGP *cond = c->cond;
-    cond->gp.p = 0;
+    cond->gp.pos = 0;
     if (tree_eval(&cond->gp, xcsf->cond->targs, x) > 0.5) {
         return true;
     }

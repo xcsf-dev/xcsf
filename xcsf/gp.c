@@ -42,25 +42,25 @@ static const int MU_TYPE[N_MU] = { SAM_RATE_SELECT };
 /**
  * @brief Traverses a GP tree.
  * @param [in] tree The tree to traverse.
- * @param [in] p The position from which to traverse.
+ * @param [in] pos The position from which to traverse.
  * @return The position after traversal.
  */
 static int
-tree_traverse(int *tree, int p)
+tree_traverse(int *tree, int pos)
 {
-    if (tree[p] >= GP_NUM_FUNC) {
-        ++p;
-        return p;
+    if (tree[pos] >= GP_NUM_FUNC) {
+        ++pos;
+        return pos;
     }
-    switch (tree[p]) {
+    switch (tree[pos]) {
         case ADD:
         case SUB:
         case MUL:
         case DIV:
-            ++p;
-            return tree_traverse(tree, tree_traverse(tree, p));
+            ++pos;
+            return tree_traverse(tree, tree_traverse(tree, pos));
         default:
-            printf("tree_traverse() invalid function: %d\n", tree[p]);
+            printf("tree_traverse() invalid function: %d\n", tree[pos]);
             exit(EXIT_FAILURE);
     }
 }
@@ -70,24 +70,24 @@ tree_traverse(int *tree, int p)
  * @details Only used to create an initial tree.
  * @param [in] args Tree GP parameters.
  * @param [in,out] tree Vector holding the flattened GP tree generated.
- * @param [in] p The position from which to traverse (start at 0).
+ * @param [in] pos The position from which to traverse (start at 0).
  * @param [in] max Maximum tree length.
  * @param [in] depth Maximum tree depth.
  * @return The position after traversal (i.e., tree length).
  */
 static int
-tree_grow(const struct ArgsGPTree *args, int *tree, const int p, const int max,
-          const int depth)
+tree_grow(const struct ArgsGPTree *args, int *tree, const int pos,
+          const int max, const int depth)
 {
-    if (p >= max) {
+    if (pos >= max) {
         return -1;
     }
-    int prim = p != 0 ? rand_uniform_int(0, 2) : 1;
+    int prim = pos != 0 ? rand_uniform_int(0, 2) : 1;
     if (prim == 0 || depth == 0) {
         const int max_term = GP_NUM_FUNC + args->n_constants + args->n_inputs;
         prim = rand_uniform_int(GP_NUM_FUNC, max_term);
-        tree[p] = prim;
-        return p + 1;
+        tree[pos] = prim;
+        return pos + 1;
     }
     prim = rand_uniform_int(0, GP_NUM_FUNC);
     switch (prim) {
@@ -95,8 +95,8 @@ tree_grow(const struct ArgsGPTree *args, int *tree, const int p, const int max,
         case SUB:
         case MUL:
         case DIV:
-            tree[p] = prim;
-            const int child = tree_grow(args, tree, p + 1, max, depth - 1);
+            tree[pos] = prim;
+            const int child = tree_grow(args, tree, pos + 1, max, depth - 1);
             if (child < 0) {
                 return -1;
             }
@@ -146,8 +146,8 @@ tree_free(const struct GPTree *gp)
 double
 tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x)
 {
-    const int node = gp->tree[gp->p];
-    ++(gp->p);
+    const int node = gp->tree[gp->pos];
+    ++(gp->pos);
     if (node >= GP_NUM_FUNC + args->n_constants) {
         return x[node - GP_NUM_FUNC - args->n_constants];
     }
@@ -179,25 +179,25 @@ tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x)
  * @brief Prints a GP tree.
  * @param [in] gp The GP tree to print.
  * @param [in] args Tree GP parameters.
- * @param [in] p The position from which to traverse (start at 0).
+ * @param [in] pos The position from which to traverse (start at 0).
  * @return The position after traversal.
  */
 int
-tree_print(const struct GPTree *gp, const struct ArgsGPTree *args, int p)
+tree_print(const struct GPTree *gp, const struct ArgsGPTree *args, int pos)
 {
-    const int node = gp->tree[p];
+    const int node = gp->tree[pos];
     if (node >= GP_NUM_FUNC) {
         if (node >= GP_NUM_FUNC + args->n_constants) {
             printf("I:%d", node - GP_NUM_FUNC - args->n_constants);
         } else {
             printf("%f", args->constants[node - GP_NUM_FUNC]);
         }
-        ++p;
-        return p;
+        ++pos;
+        return pos;
     }
     printf("(");
-    ++p;
-    const int a1 = tree_print(gp, args, p);
+    ++pos;
+    const int a1 = tree_print(gp, args, pos);
     switch (node) {
         case ADD:
             printf(" + ");
@@ -231,7 +231,7 @@ tree_copy(struct GPTree *dest, const struct GPTree *src)
     dest->len = src->len;
     dest->tree = malloc(sizeof(int) * src->len);
     memcpy(dest->tree, src->tree, sizeof(int) * src->len);
-    dest->p = src->p;
+    dest->pos = src->pos;
     dest->mu = malloc(sizeof(double) * N_MU);
     memcpy(dest->mu, src->mu, sizeof(double) * N_MU);
 }
@@ -310,7 +310,7 @@ size_t
 tree_save(const struct GPTree *gp, FILE *fp)
 {
     size_t s = 0;
-    s += fwrite(&gp->p, sizeof(int), 1, fp);
+    s += fwrite(&gp->pos, sizeof(int), 1, fp);
     s += fwrite(&gp->len, sizeof(int), 1, fp);
     s += fwrite(gp->tree, sizeof(int), gp->len, fp);
     s += fwrite(gp->mu, sizeof(double), N_MU, fp);
@@ -327,7 +327,7 @@ size_t
 tree_load(struct GPTree *gp, FILE *fp)
 {
     size_t s = 0;
-    s += fread(&gp->p, sizeof(int), 1, fp);
+    s += fread(&gp->pos, sizeof(int), 1, fp);
     s += fread(&gp->len, sizeof(int), 1, fp);
     if (gp->len < 1) {
         printf("tree_load(): read error\n");
