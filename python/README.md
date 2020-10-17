@@ -347,9 +347,9 @@ layer_args = {
 }
 ```
 
-### Maxpooling Layers
+### Max-pooling Layers
 
-Maxpooling layers require image inputs and produce image outputs. If used as
+Max-pooling layers require image inputs and produce image outputs. If used as
 the first layer, the width, height, and number of channels must be specified.
 
 ```python
@@ -372,9 +372,9 @@ layer_args = {
 }
 ```
 
-### Averagepooling Layers
+### Average-pooling Layers
 
-Averagepooling layers require image inputs. If used as the first layer, the
+Average-pooling layers require image inputs. If used as the first layer, the
 width, height, and number of channels must be specified. Outputs an average for
 each input channel.
 
@@ -425,7 +425,7 @@ See examples:
 
 *******************************************************************************
 
-## Supervised Regession
+## Supervised Regression
 
 See example:
 
