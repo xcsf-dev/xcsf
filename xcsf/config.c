@@ -288,6 +288,8 @@ config_cl_cond_dgp(struct XCSF *xcsf, const char *n, const char *v, const int i,
         graph_param_set_max_t(xcsf->cond->dargs, i);
     } else if (strncmp(n, "COND_DGP_N\0", 11) == 0) {
         graph_param_set_n(xcsf->cond->dargs, i);
+    } else if (strncmp(n, "COND_DGP_EVOLVE_CYCLES\0", 23) == 0) {
+        graph_param_set_evolve_cycles(xcsf->cond->dargs, i);
     }
 }
 

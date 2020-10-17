@@ -184,6 +184,7 @@ cond_param_defaults_dgp(struct XCSF *xcsf)
     graph_param_set_max_t(args, 10);
     graph_param_set_n(args, 10);
     graph_param_set_n_inputs(args, xcsf->x_dim);
+    graph_param_set_evolve_cycles(args, true);
     xcsf->cond->dargs = args;
 }
 

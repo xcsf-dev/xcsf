@@ -29,6 +29,7 @@
  * @brief Parameters for initialising DGP graphs.
  */
 struct ArgsDGP {
+    bool evolve_cycles; //!< Whether to evolve the number of update cycles
     int max_k; //!< Maximum number of connections a node may have
     int max_t; //!< Maximum number of update cycles
     int n; //!< Number of nodes in the graph
@@ -39,18 +40,19 @@ struct ArgsDGP {
  * @brief Dynamical GP graph data structure.
  */
 struct Graph {
-    int *connectivity; //!< Connectivity map
-    double *state; //!< Current state of each node
+    bool evolve_cycles; //!< Whether to evolve the number of update cycles
     double *initial_state; //!< Initial node states
-    double *tmp_state; //!< Temporary storage for synchronous update
+    double *state; //!< Current state of each node
     double *tmp_input; //!< Temporary storage for updating the graph
+    double *tmp_state; //!< Temporary storage for synchronous update
+    int *connectivity; //!< Connectivity map
     int *function; //!< Node activation functions
-    int n; //!< Number of nodes
-    int t; //!< Number of cycles to run
     int klen; //!< Length of connectivity map
     int max_k; //!< Maximum number of connections a node may have
     int max_t; //!< Maximum number of update cycles
+    int n; //!< Number of nodes
     int n_inputs; //!< Number of inputs to the graph
+    int t; //!< Number of cycles to run
     double *mu; //!< Mutation rates
 };
 
@@ -143,4 +145,10 @@ graph_param_set_n_inputs(struct ArgsDGP *args, const int a)
     } else {
         args->n_inputs = a;
     }
+}
+
+static inline void
+graph_param_set_evolve_cycles(struct ArgsDGP *args, const bool a)
+{
+    args->evolve_cycles = a;
 }

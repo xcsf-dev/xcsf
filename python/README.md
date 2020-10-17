@@ -114,6 +114,7 @@ args = {
     'max-k': 2, # number of connections per node
     'max-t': 10, # maximum number of cycles to update graphs
     'n': 20, # number of nodes in the graph
+    'evolve-cycles': True, # whether to evolve the number of update cycles
 }
 xcs.condition('dgp', args)
 ```

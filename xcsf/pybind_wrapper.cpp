@@ -912,6 +912,8 @@ class XCS
                 graph_param_set_max_t(dargs, item.second.cast<int>());
             } else if (name == "n") {
                 graph_param_set_n(dargs, item.second.cast<int>());
+            } else if (name == "evolve-cycles") {
+                graph_param_set_evolve_cycles(dargs, item.second.cast<bool>());
             } else {
                 printf("Unknown DGP parameter: %s\n", name.c_str());
                 exit(EXIT_FAILURE);

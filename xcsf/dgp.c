@@ -198,11 +198,12 @@ synchronous_update(const struct Graph *dgp, const double *inputs)
 void
 graph_init(struct Graph *dgp, const struct ArgsDGP *args)
 {
-    dgp->t = 0;
-    dgp->n = args->n;
-    dgp->max_k = args->max_k;
-    dgp->max_t = args->max_t;
     dgp->n_inputs = args->n_inputs;
+    dgp->n = args->n;
+    dgp->t = args->max_t;
+    dgp->max_t = args->max_t;
+    dgp->max_k = args->max_k;
+    dgp->evolve_cycles = args->evolve_cycles;
     dgp->klen = dgp->n * dgp->max_k;
     dgp->state = malloc(sizeof(double) * dgp->n);
     dgp->initial_state = malloc(sizeof(double) * dgp->n);
@@ -228,6 +229,7 @@ graph_copy(struct Graph *dest, const struct Graph *src)
     dest->max_k = src->max_k;
     dest->max_t = src->max_t;
     dest->n_inputs = src->n_inputs;
+    dest->evolve_cycles = src->evolve_cycles;
     memcpy(dest->state, src->state, sizeof(double) * src->n);
     memcpy(dest->initial_state, src->initial_state, sizeof(double) * src->n);
     memcpy(dest->function, src->function, sizeof(int) * src->n);
@@ -266,7 +268,9 @@ graph_reset(const struct Graph *dgp)
 void
 graph_rand(struct Graph *dgp)
 {
-    dgp->t = rand_uniform_int(1, dgp->max_t);
+    if (dgp->evolve_cycles) {
+        dgp->t = rand_uniform_int(1, dgp->max_t);
+    }
     for (int i = 0; i < dgp->n; ++i) {
         dgp->function[i] = rand_uniform_int(0, NUM_FUNC);
         dgp->initial_state[i] = rand_uniform(0, 1);
@@ -346,7 +350,7 @@ graph_mutate(struct Graph *dgp)
     if (graph_mutate_connectivity(dgp)) {
         mod = true;
     }
-    if (graph_mutate_cycles(dgp)) {
+    if (dgp->evolve_cycles && graph_mutate_cycles(dgp)) {
         mod = true;
     }
     return mod;
@@ -362,6 +366,7 @@ size_t
 graph_save(const struct Graph *dgp, FILE *fp)
 {
     size_t s = 0;
+    s += fwrite(&dgp->evolve_cycles, sizeof(bool), 1, fp);
     s += fwrite(&dgp->n, sizeof(int), 1, fp);
     s += fwrite(&dgp->t, sizeof(int), 1, fp);
     s += fwrite(&dgp->klen, sizeof(int), 1, fp);
@@ -385,6 +390,7 @@ size_t
 graph_load(struct Graph *dgp, FILE *fp)
 {
     size_t s = 0;
+    s += fread(&dgp->evolve_cycles, sizeof(bool), 1, fp);
     s += fread(&dgp->n, sizeof(int), 1, fp);
     s += fread(&dgp->t, sizeof(int), 1, fp);
     s += fread(&dgp->klen, sizeof(int), 1, fp);
@@ -421,6 +427,7 @@ graph_args_init(struct ArgsDGP *args)
     args->max_t = 0;
     args->n = 0;
     args->n_inputs = 0;
+    args->evolve_cycles = false;
 }
 
 /**
@@ -434,6 +441,9 @@ graph_args_print(const struct ArgsDGP *args)
     printf(", max_t=%d", args->max_t);
     printf(", n=%d", args->n);
     printf(", n_inputs=%d", args->n_inputs);
+    if (args->evolve_cycles) {
+        printf(", evolve_cycles=true");
+    }
 }
 
 /**
@@ -446,6 +456,7 @@ size_t
 graph_args_save(const struct ArgsDGP *args, FILE *fp)
 {
     size_t s = 0;
+    s += fwrite(&args->evolve_cycles, sizeof(bool), 1, fp);
     s += fwrite(&args->max_k, sizeof(int), 1, fp);
     s += fwrite(&args->max_t, sizeof(int), 1, fp);
     s += fwrite(&args->n, sizeof(int), 1, fp);
@@ -463,6 +474,7 @@ size_t
 graph_args_load(struct ArgsDGP *args, FILE *fp)
 {
     size_t s = 0;
+    s += fread(&args->evolve_cycles, sizeof(bool), 1, fp);
     s += fread(&args->max_k, sizeof(int), 1, fp);
     s += fread(&args->max_t, sizeof(int), 1, fp);
     s += fread(&args->n, sizeof(int), 1, fp);
