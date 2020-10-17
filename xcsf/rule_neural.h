@@ -33,7 +33,6 @@
  */
 struct RuleNeural {
     struct Net net; //!< Neural network
-    int n_outputs; //!< Number of action nodes (binarised)
 };
 
 bool

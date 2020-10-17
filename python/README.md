@@ -122,7 +122,12 @@ xcs.condition('rule-dgp', args) # conditions + actions in single DGP graphs
 
 ### Neural Networks
 
-Output layer should be ```'n-init': 1```.
+Condition output layers should be ```'n-init': 1```.
+
+Rule output layers should be ```'n-init': 1 + binary``` where binary is the
+number of outputs required to output binary actions. For example, for 8 actions,
+3 binary outputs are required and the output layer should be of size 4.
+
 See [Neural Network Initialisation](#neural-network-initialisation).
 
 ```python

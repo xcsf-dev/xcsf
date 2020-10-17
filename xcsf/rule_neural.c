@@ -36,10 +36,11 @@ rule_neural_cond_init(const struct XCSF *xcsf, struct Cl *c)
 {
     struct RuleNeural *new = malloc(sizeof(struct RuleNeural));
     neural_create(&new->net, xcsf->cond->largs);
-    new->n_outputs = (int) fmax(1, ceil(log2(xcsf->n_actions)));
-    if (new->n_outputs != new->net.n_outputs + 1) {
+    const int expected = (int) fmax(1, ceil(log2(xcsf->n_actions))) + 1;
+    if (new->net.n_outputs != expected) {
         printf("rule_neural_init(): n_outputs(%d) != expected(%d)\n",
-               new->net.n_outputs + 1, new->n_outputs);
+               new->net.n_outputs, expected);
+        printf("neural rules output binary actions + 1 matching neuron\n");
         exit(EXIT_FAILURE);
     }
     c->cond = new;
@@ -61,7 +62,6 @@ rule_neural_cond_copy(const struct XCSF *xcsf, struct Cl *dest,
     (void) xcsf;
     struct RuleNeural *new = malloc(sizeof(struct RuleNeural));
     const struct RuleNeural *src_cond = src->cond;
-    new->n_outputs = src_cond->n_outputs;
     neural_copy(&new->net, &src_cond->net);
     dest->cond = new;
 }
@@ -156,7 +156,6 @@ rule_neural_cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     (void) xcsf;
     struct RuleNeural *new = malloc(sizeof(struct RuleNeural));
     size_t s = neural_load(&new->net, fp);
-    new->n_outputs = (int) fmax(1, ceil(log2(xcsf->n_actions)));
     c->cond = new;
     return s;
 }
@@ -212,7 +211,7 @@ rule_neural_act_compute(const struct XCSF *xcsf, const struct Cl *c,
     (void) x;
     const struct RuleNeural *cond = c->cond;
     int action = 0;
-    for (int i = 1; i < cond->n_outputs; ++i) {
+    for (int i = 1; i < cond->net.n_outputs; ++i) {
         if (neural_output(&cond->net, i) > 0.5) {
             action += (int) pow(2, i - 1);
         }
