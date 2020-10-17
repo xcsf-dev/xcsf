@@ -123,7 +123,7 @@ xcs.condition('dgp', args)
 ### Neural Networks
 
 Output layer should be ```'n-init': 1```.
-See [Neural Network Initialisation](neural-network-initialisation).
+See [Neural Network Initialisation](#neural-network-initialisation).
 
 ```python
 xcs.condition('neural', layer_args)
@@ -142,7 +142,7 @@ xcs.action('integer')
 ### Neural Networks
 
 Output layer should be a softmax.
-See [Neural Network Initialisation](neural-network-initialisation).
+See [Neural Network Initialisation](#neural-network-initialisation).
 
 ```python
 xcs.action('neural', layer_args)
@@ -187,7 +187,7 @@ xcs.prediction('rls-quadratic', args)
 ### Neural Networks
 
 Output layer should be ```'n-init': y_dim```.
-See [Neural Network Initialisation](neural-network-initialisation).
+See [Neural Network Initialisation](#neural-network-initialisation).
 
 ```python
 xcs.prediction('neural', layer_args)
