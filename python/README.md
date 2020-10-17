@@ -247,7 +247,6 @@ layer_args = {
         'eta-min': 0.0001, # minimum gradient descent update rate (if evolved)
         'momentum': 0.9, # momentum for gradient descent update
         'decay': 0, # weight decay during gradient descent update
-        'n-inputs': 100, # (optional: default uses previous layer's outputs or x_dim)
     },       
 }
 ```
