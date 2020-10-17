@@ -117,6 +117,7 @@ args = {
     'evolve-cycles': True, # whether to evolve the number of update cycles
 }
 xcs.condition('dgp', args)
+xcs.condition('rule-dgp', args) # conditions + actions in single DGP graphs
 ```
 
 ### Neural Networks
@@ -126,6 +127,7 @@ See [Neural Network Initialisation](#neural-network-initialisation).
 
 ```python
 xcs.condition('neural', layer_args)
+xcs.condition('rule-neural', args) # conditions + actions in single neural nets
 ```
 
 *******************************************************************************
