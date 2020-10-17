@@ -96,9 +96,9 @@ tree_rand(struct GPTree *gp, const struct ArgsGPTree *args)
 {
     gp->tree = malloc(sizeof(int) * args->max_len);
     gp->len = 0;
-    do {
+    while (gp->len < 1) {
         gp->len = tree_grow(args, gp->tree, 0, args->max_len, args->init_depth);
-    } while (gp->len < 0);
+    }
     gp->tree = realloc(gp->tree, sizeof(int) * gp->len);
     gp->mu = malloc(sizeof(double) * N_MU);
     sam_init(gp->mu, N_MU, MU_TYPE);
