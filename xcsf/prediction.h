@@ -53,14 +53,17 @@ struct ArgsPred {
     struct ArgsLayer *largs; //!< Linked-list of layer parameters
 };
 
-void
-prediction_set(const struct XCSF *xcsf, struct Cl *c);
-
 const char *
 prediction_type_as_string(const int type);
 
 int
 prediction_type_as_int(const char *type);
+
+size_t
+pred_param_load(struct XCSF *xcsf, FILE *fp);
+
+size_t
+pred_param_save(const struct XCSF *xcsf, FILE *fp);
 
 void
 pred_param_defaults(struct XCSF *xcsf);
@@ -71,11 +74,12 @@ pred_param_free(struct XCSF *xcsf);
 void
 pred_param_print(const struct XCSF *xcsf);
 
-size_t
-pred_param_save(const struct XCSF *xcsf, FILE *fp);
+void
+pred_transform_input(const struct XCSF *xcsf, const double *x, const double X0,
+                     double *tmp_input);
 
-size_t
-pred_param_load(struct XCSF *xcsf, FILE *fp);
+void
+prediction_set(const struct XCSF *xcsf, struct Cl *c);
 
 /**
  * @brief Prediction interface data structure.
@@ -234,37 +238,6 @@ pred_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
             const double *y)
 {
     (*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
-}
-
-/**
- * @brief Prepares the input state for least squares computation.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] x The input state.
- * @param [in] X0 Bias term.
- * @param [out] tmp_input The transformed input.
- */
-static inline void
-pred_transform_input(const struct XCSF *xcsf, const double *x, const double X0,
-                     double *tmp_input)
-{
-    // bias term
-    tmp_input[0] = X0;
-    int idx = 1;
-    // linear terms
-    for (int i = 0; i < xcsf->x_dim; ++i) {
-        tmp_input[idx] = x[i];
-        ++idx;
-    }
-    // quadratic terms
-    if (xcsf->pred->type == PRED_TYPE_NLMS_QUADRATIC ||
-        xcsf->pred->type == PRED_TYPE_RLS_QUADRATIC) {
-        for (int i = 0; i < xcsf->x_dim; ++i) {
-            for (int j = i; j < xcsf->x_dim; ++j) {
-                tmp_input[idx] = x[i] * x[j];
-                ++idx;
-            }
-        }
-    }
 }
 
 /* parameter setters */

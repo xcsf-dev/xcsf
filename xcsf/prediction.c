@@ -284,3 +284,34 @@ pred_param_free(struct XCSF *xcsf)
 {
     layer_args_free(&xcsf->pred->largs);
 }
+
+/**
+ * @brief Prepares the input state for least squares computation.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] x The input state.
+ * @param [in] X0 Bias term.
+ * @param [out] tmp_input The transformed input.
+ */
+void
+pred_transform_input(const struct XCSF *xcsf, const double *x, const double X0,
+                     double *tmp_input)
+{
+    // bias term
+    tmp_input[0] = X0;
+    int idx = 1;
+    // linear terms
+    for (int i = 0; i < xcsf->x_dim; ++i) {
+        tmp_input[idx] = x[i];
+        ++idx;
+    }
+    // quadratic terms
+    if (xcsf->pred->type == PRED_TYPE_NLMS_QUADRATIC ||
+        xcsf->pred->type == PRED_TYPE_RLS_QUADRATIC) {
+        for (int i = 0; i < xcsf->x_dim; ++i) {
+            for (int j = i; j < xcsf->x_dim; ++j) {
+                tmp_input[idx] = x[i] * x[j];
+                ++idx;
+            }
+        }
+    }
+}
