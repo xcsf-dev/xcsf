@@ -133,20 +133,20 @@ tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x)
     if (node >= GP_NUM_FUNC) {
         return args->constants[node - GP_NUM_FUNC];
     }
+    const double a = tree_eval(gp, args, x);
+    const double b = tree_eval(gp, args, x);
     switch (node) {
         case ADD:
-            return tree_eval(gp, args, x) + tree_eval(gp, args, x);
+            return a + b;
         case SUB:
-            return tree_eval(gp, args, x) - tree_eval(gp, args, x);
+            return a - b;
         case MUL:
-            return tree_eval(gp, args, x) * tree_eval(gp, args, x);
+            return a * b;
         case DIV: {
-            const double num = tree_eval(gp, args, x);
-            const double den = tree_eval(gp, args, x);
-            if (den != 0) {
-                return num / den;
+            if (b != 0) {
+                return a / b;
             }
-            return num;
+            return a;
         }
         default:
             printf("eval() invalid function: %d\n", node);
