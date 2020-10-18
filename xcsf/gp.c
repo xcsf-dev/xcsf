@@ -143,10 +143,7 @@ tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x)
         case MUL:
             return a * b;
         case DIV:
-            if (b != 0) {
-                return a / b;
-            }
-            return a;
+            return (b != 0) ? (a / b) : a;
         default:
             printf("tree_eval() invalid function: %d\n", node);
             exit(EXIT_FAILURE);
