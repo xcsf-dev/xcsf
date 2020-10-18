@@ -103,52 +103,17 @@ graph_args_load(struct ArgsDGP *args, FILE *fp);
 
 /* parameter setters */
 
-static inline void
-graph_param_set_max_k(struct ArgsDGP *args, const int a)
-{
-    if (a < 1) {
-        printf("Warning: tried to set DGP MAX_K too small\n");
-        args->max_k = 1;
-    } else {
-        args->max_k = a;
-    }
-}
+void
+graph_param_set_max_k(struct ArgsDGP *args, const int a);
 
-static inline void
-graph_param_set_max_t(struct ArgsDGP *args, const int a)
-{
-    if (a < 1) {
-        printf("Warning: tried to set DGP MAX_T too small\n");
-        args->max_t = 1;
-    } else {
-        args->max_t = a;
-    }
-}
+void
+graph_param_set_max_t(struct ArgsDGP *args, const int a);
 
-static inline void
-graph_param_set_n(struct ArgsDGP *args, const int a)
-{
-    if (a < 1) {
-        printf("Warning: tried to set DGP N too small\n");
-        args->n = 1;
-    } else {
-        args->n = a;
-    }
-}
+void
+graph_param_set_n(struct ArgsDGP *args, const int a);
 
-static inline void
-graph_param_set_n_inputs(struct ArgsDGP *args, const int a)
-{
-    if (a < 1) {
-        printf("Warning: tried to set DGP N_INPUTS too small\n");
-        args->n_inputs = 1;
-    } else {
-        args->n_inputs = a;
-    }
-}
+void
+graph_param_set_n_inputs(struct ArgsDGP *args, const int a);
 
-static inline void
-graph_param_set_evolve_cycles(struct ArgsDGP *args, const bool a)
-{
-    args->evolve_cycles = a;
-}
+void
+graph_param_set_evolve_cycles(struct ArgsDGP *args, const bool a);

@@ -315,3 +315,80 @@ pred_transform_input(const struct XCSF *xcsf, const double *x, const double X0,
         }
     }
 }
+
+/* parameter setters */
+
+void
+pred_param_set_eta(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set PRED ETA too small\n");
+        xcsf->pred->eta = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set PRED ETA too large\n");
+        xcsf->pred->eta = 1;
+    } else {
+        xcsf->pred->eta = a;
+    }
+}
+
+void
+pred_param_set_eta_min(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set PRED ETA_MIN too small\n");
+        xcsf->pred->eta_min = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set PRED ETA_MIN too large\n");
+        xcsf->pred->eta_min = 1;
+    } else {
+        xcsf->pred->eta_min = a;
+    }
+}
+
+void
+pred_param_set_lambda(struct XCSF *xcsf, const double a)
+{
+    xcsf->pred->lambda = a;
+}
+
+void
+pred_param_set_scale_factor(struct XCSF *xcsf, const double a)
+{
+    xcsf->pred->scale_factor = a;
+}
+
+void
+pred_param_set_x0(struct XCSF *xcsf, const double a)
+{
+    xcsf->pred->x0 = a;
+}
+
+void
+pred_param_set_evolve_eta(struct XCSF *xcsf, const bool a)
+{
+    xcsf->pred->evolve_eta = a;
+}
+
+void
+pred_param_set_type(struct XCSF *xcsf, const int a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set PRED TYPE too small\n");
+        xcsf->pred->type = 0;
+    } else {
+        xcsf->pred->type = a;
+    }
+}
+
+void
+pred_param_set_type_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->pred->type = prediction_type_as_int(a);
+}
+
+const char *
+pred_param_type_as_string(const struct XCSF *xcsf)
+{
+    return prediction_type_as_string(xcsf->pred->type);
+}

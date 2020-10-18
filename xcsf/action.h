@@ -241,25 +241,11 @@ act_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
 
 /* parameter setters */
 
-static inline void
-action_param_set_type_string(struct XCSF *xcsf, const char *a)
-{
-    xcsf->act->type = action_type_as_int(a);
-}
+void
+action_param_set_type_string(struct XCSF *xcsf, const char *a);
 
-static inline const char *
-action_param_type_as_string(const struct XCSF *xcsf)
-{
-    return action_type_as_string(xcsf->act->type);
-}
+const char *
+action_param_type_as_string(const struct XCSF *xcsf);
 
-static inline void
-action_param_set_type(struct XCSF *xcsf, const int a)
-{
-    if (a < 0) {
-        printf("Warning: tried to set ACT TYPE too small\n");
-        xcsf->act->type = 0;
-    } else {
-        xcsf->act->type = a;
-    }
-}
+void
+action_param_set_type(struct XCSF *xcsf, const int a);

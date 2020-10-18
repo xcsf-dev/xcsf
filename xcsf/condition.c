@@ -399,3 +399,90 @@ cond_param_free(struct XCSF *xcsf)
     xcsf->cond->dargs = NULL;
     layer_args_free(&xcsf->cond->largs);
 }
+
+/* parameter setters */
+
+void
+cond_param_set_eta(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set COND ETA too small\n");
+        xcsf->cond->eta = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set COND ETA too large\n");
+        xcsf->cond->eta = 1;
+    } else {
+        xcsf->cond->eta = a;
+    }
+}
+
+void
+cond_param_set_min(struct XCSF *xcsf, const double a)
+{
+    xcsf->cond->min = a;
+}
+
+void
+cond_param_set_max(struct XCSF *xcsf, const double a)
+{
+    xcsf->cond->max = a;
+}
+
+void
+cond_param_set_p_dontcare(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set COND P_DONTCARE too small\n");
+        xcsf->cond->p_dontcare = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set COND P_DONTCARE too large\n");
+        xcsf->cond->p_dontcare = 1;
+    } else {
+        xcsf->cond->p_dontcare = a;
+    }
+}
+
+void
+cond_param_set_spread_min(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set COND SPREAD_MIN too small\n");
+        xcsf->cond->spread_min = 0;
+    } else {
+        xcsf->cond->spread_min = a;
+    }
+}
+
+void
+cond_param_set_bits(struct XCSF *xcsf, const int a)
+{
+    if (a < 1) {
+        printf("Warning: tried to set COND BITS too small\n");
+        xcsf->cond->bits = 1;
+    } else {
+        xcsf->cond->bits = a;
+    }
+}
+
+void
+cond_param_set_type_string(struct XCSF *xcsf, const char *a)
+{
+    xcsf->cond->type = condition_type_as_int(a);
+}
+
+const char *
+cond_param_type_as_string(const struct XCSF *xcsf)
+{
+    return condition_type_as_string(xcsf->cond->type);
+}
+
+void
+cond_param_set_type(struct XCSF *xcsf, const int a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set COND TYPE too small\n");
+        xcsf->cond->type = 0;
+    } else {
+        xcsf->cond->type = a;
+    }
+}

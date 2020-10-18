@@ -95,53 +95,20 @@ tree_args_init_constants(struct ArgsGPTree *args);
 
 /* parameter setters */
 
-static inline void
-tree_param_set_max(struct ArgsGPTree *args, const double a)
-{
-    args->max = a;
-}
+void
+tree_param_set_max(struct ArgsGPTree *args, const double a);
 
-static inline void
-tree_param_set_min(struct ArgsGPTree *args, const double a)
-{
-    args->min = a;
-}
+void
+tree_param_set_min(struct ArgsGPTree *args, const double a);
 
-static inline void
-tree_param_set_n_inputs(struct ArgsGPTree *args, const int a)
-{
-    args->n_inputs = a;
-}
+void
+tree_param_set_n_inputs(struct ArgsGPTree *args, const int a);
 
-static inline void
-tree_param_set_n_constants(struct ArgsGPTree *args, const int a)
-{
-    if (a < 1) {
-        printf("Warning: tried to set GP N_CONSTANTS too small\n");
-        args->n_constants = 1;
-    } else {
-        args->n_constants = a;
-    }
-}
+void
+tree_param_set_n_constants(struct ArgsGPTree *args, const int a);
 
-static inline void
-tree_param_set_init_depth(struct ArgsGPTree *args, const int a)
-{
-    if (a < 1) {
-        printf("Warning: tried to set GP INIT_DEPTH too small\n");
-        args->init_depth = 1;
-    } else {
-        args->init_depth = a;
-    }
-}
+void
+tree_param_set_init_depth(struct ArgsGPTree *args, const int a);
 
-static inline void
-tree_param_set_max_len(struct ArgsGPTree *args, const int a)
-{
-    if (a < 1) {
-        printf("Warning: tried to set GP MAX_LEN too small\n");
-        args->max_len = 1;
-    } else {
-        args->max_len = a;
-    }
-}
+void
+tree_param_set_max_len(struct ArgsGPTree *args, const int a);

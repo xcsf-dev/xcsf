@@ -69,115 +69,35 @@ ea_type_as_int(const char *type);
 
 /* parameter setters */
 
-static inline void
-ea_param_set_select_size(struct XCSF *xcsf, const double a)
-{
-    if (a < 0) {
-        printf("Warning: tried to set EA SELECT_SIZE too small\n");
-        xcsf->ea->select_size = 0;
-    } else if (a > 1) {
-        printf("Warning: tried to set EA SELECT_SIZE too large\n");
-        xcsf->ea->select_size = 1;
-    } else {
-        xcsf->ea->select_size = a;
-    }
-}
+void
+ea_param_set_select_size(struct XCSF *xcsf, const double a);
 
-static inline void
-ea_param_set_theta(struct XCSF *xcsf, const double a)
-{
-    if (a < 0) {
-        printf("Warning: tried to set EA THETA too small\n");
-        xcsf->ea->theta = 0;
-    } else {
-        xcsf->ea->theta = a;
-    }
-}
+void
+ea_param_set_theta(struct XCSF *xcsf, const double a);
 
-static inline void
-ea_param_set_p_crossover(struct XCSF *xcsf, const double a)
-{
-    if (a < 0) {
-        printf("Warning: tried to set EA P_CROSSOVER too small\n");
-        xcsf->ea->p_crossover = 0;
-    } else if (a > 1) {
-        printf("Warning: tried to set EA P_CROSSOVER too large\n");
-        xcsf->ea->p_crossover = 1;
-    } else {
-        xcsf->ea->p_crossover = a;
-    }
-}
+void
+ea_param_set_p_crossover(struct XCSF *xcsf, const double a);
 
-static inline void
-ea_param_set_lambda(struct XCSF *xcsf, const int a)
-{
-    if (a < 1) {
-        printf("Warning: tried to set EA LAMBDA too small\n");
-        xcsf->ea->lambda = 1;
-    } else {
-        xcsf->ea->lambda = a;
-    }
-}
+void
+ea_param_set_lambda(struct XCSF *xcsf, const int a);
 
-static inline void
-ea_param_set_err_reduc(struct XCSF *xcsf, const double a)
-{
-    if (a < 0) {
-        printf("Warning: tried to set EA ERR_REDUC too small\n");
-        xcsf->ea->err_reduc = 0;
-    } else if (a > 1) {
-        printf("Warning: tried to set EA ERR_REDUC too large\n");
-        xcsf->ea->err_reduc = 1;
-    } else {
-        xcsf->ea->err_reduc = a;
-    }
-}
+void
+ea_param_set_err_reduc(struct XCSF *xcsf, const double a);
 
-static inline void
-ea_param_set_fit_reduc(struct XCSF *xcsf, const double a)
-{
-    if (a < 0) {
-        printf("Warning: tried to set EA FIT_REDUC too small\n");
-        xcsf->ea->fit_reduc = 0;
-    } else if (a > 1) {
-        printf("Warning: tried to set EA FIT_REDUC too large\n");
-        xcsf->ea->fit_reduc = 1;
-    } else {
-        xcsf->ea->fit_reduc = a;
-    }
-}
+void
+ea_param_set_fit_reduc(struct XCSF *xcsf, const double a);
 
-static inline void
-ea_param_set_subsumption(struct XCSF *xcsf, const bool a)
-{
-    xcsf->ea->subsumption = a;
-}
+void
+ea_param_set_subsumption(struct XCSF *xcsf, const bool a);
 
-static inline void
-ea_param_set_pred_reset(struct XCSF *xcsf, const bool a)
-{
-    xcsf->ea->pred_reset = a;
-}
+void
+ea_param_set_pred_reset(struct XCSF *xcsf, const bool a);
 
-static inline void
-ea_param_set_select_type(struct XCSF *xcsf, const int a)
-{
-    if (a == EA_SELECT_ROULETTE || a == EA_SELECT_TOURNAMENT) {
-        xcsf->ea->select_type = a;
-    } else {
-        printf("Error setting EA SELECT_TYPE\n");
-        exit(EXIT_FAILURE);
-    }
-}
+void
+ea_param_set_select_type(struct XCSF *xcsf, const int a);
 
-static inline void
-ea_param_set_type_string(struct XCSF *xcsf, const char *a)
-{
-    xcsf->ea->select_type = ea_type_as_int(a);
-}
+void
+ea_param_set_type_string(struct XCSF *xcsf, const char *a);
 
-static inline const char *
-ea_param_type_as_string(const struct XCSF *xcsf)
-{
-    return ea_type_as_string(xcsf->ea->select_type);
-}
+const char *
+ea_param_type_as_string(const struct XCSF *xcsf);
