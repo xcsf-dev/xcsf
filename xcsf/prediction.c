@@ -171,9 +171,10 @@ pred_param_print_nlms(const struct XCSF *xcsf)
     const struct ArgsPred *pred = xcsf->pred;
     printf(", PRED_X0=%f", pred->x0);
     printf(", PRED_ETA=%f", pred->eta);
-    printf(", PRED_ETA_MIN=%f", pred->eta_min);
-    printf(", PRED_EVOLVE_ETA=");
-    pred->evolve_eta ? printf("true") : printf("false");
+    if (pred->evolve_eta) {
+        printf(", PRED_EVOLVE_ETA=true");
+        printf(", PRED_ETA_MIN=%f", pred->eta_min);
+    }
 }
 
 /**
