@@ -33,6 +33,8 @@
 #define DIV (3) //!< Division function
 
 #define N_MU (1) //!< Number of tree-GP mutation rates
+#define RET_MIN (-1000) //!< Minimum tree return value
+#define RET_MAX (1000) //!< Maximum tree return value
 
 /**
  * @brief Self-adaptation method for mutating GP trees.
@@ -133,8 +135,8 @@ tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x)
     if (node >= GP_NUM_FUNC) {
         return args->constants[node - GP_NUM_FUNC];
     }
-    const double a = tree_eval(gp, args, x);
-    const double b = tree_eval(gp, args, x);
+    const double a = clamp(tree_eval(gp, args, x), RET_MIN, RET_MAX);
+    const double b = clamp(tree_eval(gp, args, x), RET_MIN, RET_MAX);
     switch (node) {
         case ADD:
             return a + b;
