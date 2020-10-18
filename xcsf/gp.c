@@ -430,7 +430,12 @@ tree_param_set_min(struct ArgsGPTree *args, const double a)
 void
 tree_param_set_n_inputs(struct ArgsGPTree *args, const int a)
 {
-    args->n_inputs = a;
+    if (a < 1) {
+        printf("Warning: tried to set GP N_INPUTS too small\n");
+        args->n_inputs = 1;
+    } else {
+        args->n_inputs = a;
+    }
 }
 
 void
