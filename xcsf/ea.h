@@ -43,7 +43,7 @@ struct ArgsEA {
     double theta; //!< Average match set time between EA invocations
     int lambda; //!< Number of offspring to create each EA invocation
     int select_type; //!< Roulette or tournament for EA parental selection
-    bool pred_reset; // Whether to reset or copy offspring predictions
+    bool pred_reset; //!< Whether to reset or copy offspring predictions
 };
 
 void
