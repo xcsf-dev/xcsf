@@ -43,9 +43,9 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
 
 XCSF is [rule-based](https://en.wikipedia.org/wiki/Rule-based_machine_learning) and maintains a population of classifiers where each classifier *cl* consists of:
 
-- a condition structure *cl.C* that determines whether the rule matches input ***x***
-- an action structure *cl.A* that selects an action *a* to be performed for a given ***x***
-- a prediction structure *cl.P* that computes the expected payoff for performing *a* upon receipt of ***x***
+- a condition component *cl.C* that determines whether the rule matches input ***x***
+- an action component *cl.A* that selects an action *a* to be performed for a given ***x***
+- a prediction component *cl.P* that computes the expected payoff for performing *a* upon receipt of ***x***
 
 In addition, each classifier maintains a measure of its experience *exp*, error &epsilon;, fitness *F*, numerosity *num*, average participated set size *as*, and the time stamp *ts* of the last [evolutionary algorithm](https://en.wikipedia.org/wiki/Evolutionary_algorithm) (EA) invocation on a participating set.
 
