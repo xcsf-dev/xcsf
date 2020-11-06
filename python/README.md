@@ -20,6 +20,18 @@
     * [Recursive Least Mean Squares](#recursive-least-mean-squares)
     * [Neural Networks](#neural-networks)
 * [Initialising Neural Networks](#neural-network-initialisation)
+    * [General Network Specification](#general-network-specification)
+    * [Activation Functions](#activation-functions)
+    * [Connected Layers](#connected-layers)
+    * [Recurrent Layers](#recurrent-layers)
+    * [LSTM Layers](#lstm-layers)
+    * [Softmax Layers](#softmax-layers)
+    * [Dropout Layers](#dropout-layers)
+    * [Noise Layers](#noise-layers)
+    * [Convolutional Layers](#convolutional-layers)
+    * [Max-pooling Layers](#max-pooling-layers)
+    * [Average-pooling Layers](#average-pooling-layers)
+    * [Upsampling Layers](#upsampling-layers)
 * [Saving and Loading XCSF](#saving-and-loading-xcsf)
 * [Storing and Retreiving XCSF](#storing-and-retreiving-xcsf)
 * [Printing XCSF](#printing-xcsf)
@@ -231,7 +243,7 @@ xcs.prediction('neural', layer_args)
 
 ## Neural Network Initialisation
 
-General network specification:
+### General Network Specification
 
 ```python
 layer_args = {
