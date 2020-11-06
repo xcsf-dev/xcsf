@@ -331,6 +331,8 @@ layer_args = {
 
 Convolutional layers require image inputs and produce image outputs. If used as
 the first layer, the width, height, and number of channels must be specified.
+If ```'evolve-neurons': True``` the number of filters will be evolved using an
+initial number of filters ```'n-init'``` and maximum number ```'n-max'```.
 
 ```python
 layer_args = {
