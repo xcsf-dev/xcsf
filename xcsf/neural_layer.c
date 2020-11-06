@@ -539,32 +539,25 @@ layer_args_copy(const struct ArgsLayer *src)
 static void
 layer_args_print_inputs(const struct ArgsLayer *args)
 {
-    switch (args->type) {
-        case CONVOLUTIONAL:
-        case MAXPOOL:
-        case AVGPOOL:
-        case UPSAMPLE:
-            if (args->height > 0) {
-                printf(", height=%d", args->height);
-            }
-            if (args->width > 0) {
-                printf(", width=%d", args->width);
-            }
-            if (args->channels > 0) {
-                printf(", channels=%d", args->channels);
-            }
-            if (args->size > 0) {
-                printf(", size=%d", args->size);
-            }
-            if (args->stride > 0) {
-                printf(", stride=%d", args->stride);
-            }
-            if (args->pad > 0) {
-                printf(", pad=%d", args->pad);
-            }
-            break;
-        default:
-            break;
+    if (layer_receives_images(args->type)) {
+        if (args->height > 0) {
+            printf(", height=%d", args->height);
+        }
+        if (args->width > 0) {
+            printf(", width=%d", args->width);
+        }
+        if (args->channels > 0) {
+            printf(", channels=%d", args->channels);
+        }
+        if (args->size > 0) {
+            printf(", size=%d", args->size);
+        }
+        if (args->stride > 0) {
+            printf(", stride=%d", args->stride);
+        }
+        if (args->pad > 0) {
+            printf(", pad=%d", args->pad);
+        }
     }
 }
 
@@ -687,6 +680,32 @@ layer_args_free(struct ArgsLayer **largs)
 }
 
 /**
+ * @brief Checks input layer arguments are valid.
+ * @param [in] arg Input layer parameters.
+ */
+static void
+layer_args_validate_inputs(struct ArgsLayer *arg)
+{
+    if (layer_receives_images(arg->type)) {
+        if (arg->channels < 1) {
+            printf("Error: input channels < 1\n");
+            exit(EXIT_FAILURE);
+        }
+        if (arg->height < 1) {
+            printf("Error: input height < 1\n");
+            exit(EXIT_FAILURE);
+        }
+        if (arg->width < 1) {
+            printf("Error: input width < 1\n");
+            exit(EXIT_FAILURE);
+        }
+    } else if (arg->n_inputs < 1) {
+        printf("Error: number of inputs < 1\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
+/**
  * @brief Checks network layer arguments are valid.
  * @param [in] args List of layer parameters to check.
  */
@@ -694,16 +713,21 @@ void
 layer_args_validate(struct ArgsLayer *args)
 {
     struct ArgsLayer *arg = args;
-    while (arg != NULL) {
-        if (arg->max_neuron_grow < 1 && arg->evolve_neurons) {
-            printf("Warning: evolving neurons but max_neuron_grow < 1\n");
-            arg->max_neuron_grow = 1;
+    if (arg == NULL) {
+        printf("Error: empty layer argument list\n");
+        exit(EXIT_FAILURE);
+    }
+    layer_args_validate_inputs(arg);
+    do {
+        if (arg->evolve_neurons && arg->max_neuron_grow < 1) {
+            printf("Error: evolving neurons but max_neuron_grow < 1\n");
+            exit(EXIT_FAILURE);
         }
         if (arg->n_max < arg->n_init) {
             arg->n_max = arg->n_init;
         }
         arg = arg->next;
-    }
+    } while (arg != NULL);
 }
 
 /**
@@ -770,17 +794,8 @@ layer_receives_images(const int type)
         case UPSAMPLE:
         case CONVOLUTIONAL:
             return true;
-        case CONNECTED:
-        case RECURRENT:
-        case LSTM:
-        case DROPOUT:
-        case NOISE:
-        case SOFTMAX:
-            return false;
-            ;
         default:
-            printf("layer_receives_images(): invalid type: %d\n", type);
-            exit(EXIT_FAILURE);
+            return false;
     }
 }
 
