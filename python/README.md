@@ -1,5 +1,32 @@
 # Python Library Usage
 
+## Table of Contents
+
+* [Constructor](#constructor)
+* [Initialising General Parameters](#initialising-general-parameters)
+* [Initialising Conditions](#initialising-conditions)
+    * [Always match (dummy)](#always-match-dummy)
+    * [Ternary Bitstrings](#ternary-bitstrings)
+    * [Hyperrectangles and Hyperellipsoids](#hyperrectangles-and-hyperellipsoids)
+    * [GP Trees](#gp-trees)
+    * [DGP Graphs](#dgp-graphs)
+    * [Neural Networks](#neural-networks)
+* [Initialising Actions](#initialising-actions)
+    * [Integers](#integers)
+    * [Neural Networks](#neural-networks)
+* [Initialising Predictions](#initialising-predictions)
+    * [Constant](#constant)
+    * [Normalised Least Mean Squares](#normalised-least-mean-squares)
+    * [Recursive Least Mean Squares](#recursive-least-mean-squares)
+    * [Neural Networks](#neural-networks)
+* [Initialising Neural Networks](#neural-network-initialisation)
+* [Saving and Loading XCSF](#saving-and-loading-xcsf)
+* [Storing and Retreiving XCSF](#storing-and-retreiving-xcsf)
+* [Printing XCSF](#printing-xcsf)
+* [Reinforcement Learning](#reinforcement-learning)
+* [Supervised Regression](#supervised-regression)
+* [Supervised Classification](#supervised-classification)
+
 *******************************************************************************
 
 ## Constructor
@@ -82,7 +109,7 @@ args = {
 xcs.condition('ternary', args)
 ```
 
-### Hyperrectangles / Hyperellipsoids
+### Hyperrectangles and Hyperellipsoids
 
 ```python
 args = {
@@ -419,6 +446,58 @@ layer_args = {
         'stride': 2,
     },       
 }
+```
+
+*******************************************************************************
+
+## Saving and Loading XCSF
+
+To save the entire current state of XCSF to a binary file:
+
+```python
+xcs.save('saved_name.bin')
+```
+
+To load the entire state of XCSF from a binary file:
+
+```python
+xcs.load('saved_name.bin')
+```
+
+*******************************************************************************
+
+## Storing and Retreiving XCSF
+
+To store the current XCSF population in memory for later retreival, overwriting
+any previously stored population:
+
+```python
+xcs.store()
+```
+
+To retrieve the previously stored XCSF population from memory:
+
+```python
+xcs.retreive()
+```
+
+*******************************************************************************
+
+## Printing XCSF
+
+To print the current XCSF parameters:
+
+```python
+xcs.print_params()
+```
+
+To print the current XCSF population:
+
+```python
+print_condition = True # whether to print the classifier conditions
+print_action = True # whether to print the classifier actions
+print_prediction = True # whether to print the classifier predictions
+xcs.print_pop(print_condition, print_action, print_prediction)
 ```
 
 *******************************************************************************
