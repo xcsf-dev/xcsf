@@ -960,6 +960,7 @@ class XCS
                 iter->next = larg;
             }
         }
+        layer_args_validate(xcs.cond->largs);
     }
 
     /**
