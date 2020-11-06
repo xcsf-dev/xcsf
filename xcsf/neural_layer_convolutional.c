@@ -332,18 +332,35 @@ neural_layer_convolutional_update(const struct Layer *l)
 void
 neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev)
 {
+    const int old_n_outputs = l->n_outputs;
+    const int old_n_weights = l->n_weights;
     l->width = prev->out_w;
     l->height = prev->out_h;
     l->channels = prev->out_c;
     l->out_w = convolutional_out_width(l);
     l->out_h = convolutional_out_height(l);
     l->n_outputs = l->out_h * l->out_w * l->out_c;
-    l->max_outputs = l->n_outputs;
     l->n_inputs = l->width * l->height * l->channels;
+    l->n_weights = l->channels * l->n_filters * l->size * l->size;
+    l->weights = realloc(l->weights, sizeof(double) * l->n_weights);
+    l->weight_updates =
+        realloc(l->weight_updates, sizeof(double) * l->n_weights);
+    l->weight_active = realloc(l->weight_active, sizeof(bool) * l->n_weights);
+    for (int i = old_n_weights; i < l->n_weights; ++i) {
+        l->weights[i] = rand_normal(0, 0.1);
+        l->weight_updates[i] = 0;
+        l->weight_active[i] = true;
+    }
     l->state = realloc(l->state, sizeof(double) * l->n_outputs);
     l->output = realloc(l->output, sizeof(double) * l->n_outputs);
     l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
+    for (int i = old_n_outputs; i < l->n_outputs; ++i) {
+        l->delta[i] = 0;
+        l->state[i] = 0;
+        l->output[i] = 0;
+    }
     l->workspace_size = get_workspace_size(l);
+    l->temp = realloc(l->temp, l->workspace_size);
 }
 
 /**
