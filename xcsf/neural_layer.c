@@ -684,7 +684,7 @@ layer_args_free(struct ArgsLayer **largs)
  * @param [in] arg Input layer parameters.
  */
 static void
-layer_args_validate_inputs(struct ArgsLayer *arg)
+layer_args_validate_inputs(const struct ArgsLayer *arg)
 {
     if (layer_receives_images(arg->type)) {
         if (arg->channels < 1) {
