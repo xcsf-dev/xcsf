@@ -688,7 +688,7 @@ layer_args_free(struct ArgsLayer **largs)
 
 /**
  * @brief Checks network layer arguments are valid.
- * @param [in] largs List of layer parameters to check.
+ * @param [in] args List of layer parameters to check.
  */
 void
 layer_args_validate(struct ArgsLayer *args)

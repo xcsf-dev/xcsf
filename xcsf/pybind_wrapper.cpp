@@ -941,6 +941,10 @@ class XCS
         }
     }
 
+    /**
+     * @brief Sets parameters used by neural network conditions.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
     void
     unpack_cond_neural(const py::dict &args)
     {
@@ -1043,8 +1047,34 @@ class XCS
     {
         action_param_set_type_string(&xcs, type.c_str());
         if (xcs.act->type == ACT_TYPE_NEURAL) {
-            unpack_cond_neural(args);
+            unpack_act_neural(args);
         }
+    }
+
+    /**
+     * @brief Sets parameters used by neural network actions.
+     * @param [in] args Python dictionary of argument name:value pairs.
+     */
+    void
+    unpack_act_neural(const py::dict &args)
+    {
+        layer_args_free(&xcs.act->largs);
+        for (auto item : args) {
+            struct ArgsLayer *larg =
+                (struct ArgsLayer *) malloc(sizeof(struct ArgsLayer));
+            layer_args_init(larg);
+            unpack_layer_params(larg, item.second.cast<py::dict>());
+            if (xcs.act->largs == NULL) {
+                xcs.act->largs = larg;
+            } else {
+                struct ArgsLayer *iter = xcs.act->largs;
+                while (iter->next != NULL) {
+                    iter = iter->next;
+                }
+                iter->next = larg;
+            }
+        }
+        layer_args_validate(xcs.act->largs);
     }
 
     /**
