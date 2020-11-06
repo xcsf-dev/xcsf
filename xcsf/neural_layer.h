@@ -68,7 +68,7 @@
 struct ArgsLayer {
     int type; //!< Layer type: CONNECTED, DROPOUT, etc.
     int n_inputs; //!< Number of inputs
-    int n_init; //!< Initial number of units / neurons
+    int n_init; //!< Initial number of units / neurons / filters
     int n_max; //!< Maximum number of units / neurons
     int max_neuron_grow; //!< Maximum number neurons to add per mutation event
     int function; //!< Activation function
@@ -76,7 +76,6 @@ struct ArgsLayer {
     int height; //!< Pool, Conv, and Upsample
     int width; //!< Pool, Conv, and Upsample
     int channels; //!< Pool, Conv, and Upsample
-    int n_filters; //!< Conv
     int size; //!< Pool and Conv
     int stride; //!< Pool, Conv, and Upsample
     int pad; //!< Pool and Conv
@@ -385,6 +384,9 @@ layer_args_print(const struct ArgsLayer *args);
 
 void
 layer_args_free(struct ArgsLayer **largs);
+
+void
+layer_args_validate(struct ArgsLayer *args);
 
 uint32_t
 layer_opt(const struct ArgsLayer *args);

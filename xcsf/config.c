@@ -234,8 +234,6 @@ config_layer(const char *n, const char *v, const int i, const double f)
         current_layer->stride = i;
     } else if (strncmp(n, "LAYER_PAD\0", 10) == 0) {
         current_layer->pad = i;
-    } else if (strncmp(n, "LAYER_N_FILTERS\0", 16) == 0) {
-        current_layer->n_filters = i;
     }
 }
 
@@ -641,5 +639,8 @@ config_read(struct XCSF *xcsf, const char *filename)
         config_process(xcsf, buff);
     }
     fclose(f);
+    layer_args_validate(xcsf->act->largs);
+    layer_args_validate(xcsf->cond->largs);
+    layer_args_validate(xcsf->pred->largs);
     tree_args_init_constants(xcsf->cond->targs);
 }

@@ -111,7 +111,7 @@ layer_mutate_neurons(const struct Layer *l, const double mu)
             const double m = clamp(rand_normal(0, 0.5), -1, 1);
             n = (int) round(m * l->max_neuron_grow);
         }
-        if (n < 0 && l->n_outputs + n < 1) {
+        if (l->n_outputs + n < 1) {
             n = -(l->n_outputs - 1);
         } else if (l->n_outputs + n > l->max_outputs) {
             n = l->max_outputs - l->n_outputs;
@@ -477,7 +477,6 @@ layer_args_init(struct ArgsLayer *args)
     args->height = 0;
     args->width = 0;
     args->channels = 0;
-    args->n_filters = 0;
     args->size = 0;
     args->stride = 0;
     args->pad = 0;
@@ -514,7 +513,6 @@ layer_args_copy(const struct ArgsLayer *src)
     new->height = src->height;
     new->width = src->width;
     new->channels = src->channels;
-    new->n_filters = src->n_filters;
     new->size = src->size;
     new->stride = src->stride;
     new->pad = src->pad;
@@ -654,9 +652,6 @@ layer_args_print(const struct ArgsLayer *args)
         case MAXPOOL:
         case UPSAMPLE:
             return;
-        case CONVOLUTIONAL:
-            printf(", n_filters=%d", args->n_filters);
-            break;
         case NOISE:
             printf(", probability=%f", args->probability);
             printf(", scale=%f", args->scale);
@@ -688,6 +683,26 @@ layer_args_free(struct ArgsLayer **largs)
         struct ArgsLayer *arg = *largs;
         *largs = (*largs)->next;
         free(arg);
+    }
+}
+
+/**
+ * @brief Checks network layer arguments are valid.
+ * @param [in] largs List of layer parameters to check.
+ */
+void
+layer_args_validate(struct ArgsLayer *args)
+{
+    struct ArgsLayer *arg = args;
+    while (arg != NULL) {
+        if (arg->max_neuron_grow < 1 && arg->evolve_neurons) {
+            printf("Warning: evolving neurons but max_neuron_grow < 1\n");
+            arg->max_neuron_grow = 1;
+        }
+        if (arg->n_max < arg->n_init) {
+            arg->n_max = arg->n_init;
+        }
+        arg = arg->next;
     }
 }
 

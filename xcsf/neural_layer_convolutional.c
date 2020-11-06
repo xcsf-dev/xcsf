@@ -28,13 +28,14 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (5) //!< Number of mutation rates applied to a convolutional layer
+#define N_MU (6) //!< Number of mutation rates applied to a convolutional layer
 
 /**
  * @brief Self-adaptation method for mutating a convolutional layer.
  */
 static const int MU_TYPE[N_MU] = {
     SAM_RATE_SELECT, //!< Rate of gradient descent mutation
+    SAM_RATE_SELECT, //!< Number of filters mutation rate
     SAM_RATE_SELECT, //!< Weight enabling mutation rate
     SAM_RATE_SELECT, //!< Weight disabling mutation rate
     SAM_RATE_SELECT, //!< Weight magnitude mutation
@@ -121,7 +122,8 @@ neural_layer_convolutional_init(struct Layer *l, const struct ArgsLayer *args)
     l->height = args->height;
     l->width = args->width;
     l->channels = args->channels;
-    l->n_filters = args->n_filters;
+    l->n_filters = args->n_init;
+    l->max_outputs = args->n_max;
     l->stride = args->stride;
     l->size = args->size;
     l->pad = args->pad;
@@ -138,7 +140,6 @@ neural_layer_convolutional_init(struct Layer *l, const struct ArgsLayer *args)
     l->out_c = l->n_filters;
     l->n_inputs = l->width * l->height * l->channels;
     l->n_outputs = l->out_h * l->out_w * l->out_c;
-    l->max_outputs = l->n_outputs;
     l->workspace_size = get_workspace_size(l);
     layer_init_eta(l);
     malloc_layer_arrays(l);
@@ -202,6 +203,7 @@ neural_layer_convolutional_copy(const struct Layer *src)
     l->n_outputs = src->n_outputs;
     l->n_inputs = src->n_inputs;
     l->max_outputs = src->max_outputs;
+    l->max_neuron_grow = src->max_neuron_grow;
     l->n_biases = src->n_biases;
     l->eta = src->eta;
     l->eta_max = src->eta_max;
@@ -345,6 +347,79 @@ neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev)
 }
 
 /**
+ * @brief Returns the number of kernel filters to add or remove from a layer
+ * @param [in] l The neural network layer to mutate.
+ * @param [in] mu The rate of mutation.
+ * @return The number of filters to be added or removed.
+ */
+static int
+neural_layer_convolutional_mutate_filter(const struct Layer *l, const double mu)
+{
+    int n = 0;
+    if (rand_uniform(0, 0.1) < mu) { // 10x higher probability
+        while (n == 0) {
+            const double m = clamp(rand_normal(0, 0.5), -1, 1);
+            n = (int) round(m * l->max_neuron_grow);
+        }
+        if (l->n_filters + n < 1) {
+            n = -(l->n_filters - 1);
+        } else if (l->n_filters + n > l->max_outputs) {
+            n = l->max_outputs - l->n_filters;
+        }
+    }
+    return n;
+}
+
+/**
+ * @brief Adds N filters to a layer. Negative N removes filters.
+ * @pre N must be appropriately bounds checked for the layer.
+ * @param [in] l The neural network layer to mutate.
+ * @param [in] N The number of filters to add.
+ */
+static void
+neural_layer_convolutional_add_filters(struct Layer *l, const int N)
+{
+    const int n_filters = l->n_filters + N;
+    const int n_weights = l->channels * n_filters * l->size * l->size;
+    const int n_outputs = l->out_h * l->out_w * n_filters;
+    l->state = realloc(l->state, sizeof(double) * n_outputs);
+    l->output = realloc(l->output, sizeof(double) * n_outputs);
+    l->delta = realloc(l->delta, sizeof(double) * n_outputs);
+    l->weights = realloc(l->weights, sizeof(double) * n_weights);
+    l->weight_active = realloc(l->weight_active, sizeof(bool) * n_weights);
+    l->weight_updates = realloc(l->weight_updates, sizeof(double) * n_weights);
+    l->biases = realloc(l->biases, sizeof(double) * n_filters);
+    l->bias_updates = realloc(l->bias_updates, sizeof(double) * n_filters);
+    if (N > 0) {
+        for (int i = l->n_weights; i < n_weights; ++i) {
+            if (l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
+                l->weights[i] = 0;
+                l->weight_active[i] = false;
+            } else {
+                l->weights[i] = rand_normal(0, 0.1);
+                l->weight_active[i] = true;
+            }
+            l->weight_updates[i] = 0;
+        }
+        for (int i = l->n_filters; i < n_filters; ++i) {
+            l->biases[i] = 0;
+            l->bias_updates[i] = 0;
+            l->output[i] = 0;
+            l->state[i] = 0;
+            l->delta[i] = 0;
+        }
+    }
+    l->n_weights = n_weights;
+    l->n_filters = n_filters;
+    l->n_biases = n_filters;
+    l->out_c = n_filters;
+    l->n_outputs = n_outputs;
+    l->workspace_size = get_workspace_size(l);
+    l->temp = realloc(l->temp, l->workspace_size);
+    layer_calc_n_active(l);
+}
+
+/**
  * @brief Mutates a convolutional layer.
  * @param [in] l The layer to mutate.
  * @return Whether any alterations were made.
@@ -357,16 +432,23 @@ neural_layer_convolutional_mutate(struct Layer *l)
     if ((l->options & LAYER_EVOLVE_ETA) && layer_mutate_eta(l, l->mu[0])) {
         mod = true;
     }
+    if (l->options & LAYER_EVOLVE_NEURONS) {
+        const int n = neural_layer_convolutional_mutate_filter(l, l->mu[1]);
+        if (n != 0) {
+            neural_layer_convolutional_add_filters(l, n);
+            mod = true;
+        }
+    }
     if ((l->options & LAYER_EVOLVE_CONNECT) &&
-        layer_mutate_connectivity(l, l->mu[1], l->mu[2])) {
+        layer_mutate_connectivity(l, l->mu[2], l->mu[3])) {
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_WEIGHTS) &&
-        layer_mutate_weights(l, l->mu[3])) {
+        layer_mutate_weights(l, l->mu[4])) {
         mod = true;
     }
     if ((l->options & LAYER_EVOLVE_FUNCTIONS) &&
-        layer_mutate_functions(l, l->mu[4])) {
+        layer_mutate_functions(l, l->mu[5])) {
         mod = true;
     }
     return mod;

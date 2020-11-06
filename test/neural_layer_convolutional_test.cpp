@@ -57,7 +57,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     args.width = 4;
     args.height = 4;
     args.channels = 1;
-    args.n_filters = 2;
+    args.n_init = 2;
     args.size = 3;
     args.stride = 1;
     args.pad = 1;

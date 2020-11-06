@@ -340,7 +340,7 @@ layer_args = {
         'height': 16, # input height
         'width': 16, # input width
         'channels': 1, # number of input channels
-        'n-filters': 6, # number of convolutional kernel filters
+        'n-init': 6, # number of convolutional kernel filters
         'size': 3, # the size of the convolution window
         'stride': 1, # the stride of the convolution window
         'pad': 1, # the padding of the convolution window

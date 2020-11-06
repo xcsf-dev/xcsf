@@ -1019,8 +1019,6 @@ class XCS
                 larg->width = item.second.cast<int>();
             } else if (name == "channels") {
                 larg->channels = item.second.cast<int>();
-            } else if (name == "n-filters") {
-                larg->n_filters = item.second.cast<int>();
             } else if (name == "size") {
                 larg->size = item.second.cast<int>();
             } else if (name == "stride") {
@@ -1097,6 +1095,7 @@ class XCS
                 iter->next = larg;
             }
         }
+        layer_args_validate(xcs.pred->largs);
     }
 
     /**
