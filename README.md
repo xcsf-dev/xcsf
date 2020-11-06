@@ -1,6 +1,6 @@
 # XCSF learning classifier system
 
-An implementation of the XCSF [learning classifier system](https://en.wikipedia.org/wiki/Learning_classifier_system) that can be built as a stand-alone binary or as a Python library. XCSF is an accuracy-based [online](https://en.wikipedia.org/wiki/Online_machine_learning) [evolutionary](https://en.wikipedia.org/wiki/Evolutionary_computation) [machine learning](https://en.wikipedia.org/wiki/Machine_learning) system with locally approximating functions that compute classifier payoff prediction directly from the input state. It can be seen as a generalisation of XCS where the prediction is a scalar value. XCSF attempts to find solutions that are accurate and maximally general over the global input space, similar to most machine learning techniques. However, it maintains the additional power to subdivide the input space into simpler local approximations.
+An implementation of the XCSF [learning classifier system](https://en.wikipedia.org/wiki/Learning_classifier_system) that can be built as a stand-alone binary or as a Python library. XCSF is an accuracy-based [online](https://en.wikipedia.org/wiki/Online_machine_learning) [evolutionary](https://en.wikipedia.org/wiki/Evolutionary_computation) [machine learning](https://en.wikipedia.org/wiki/Machine_learning) system with locally approximating functions that compute classifier payoff prediction directly from the input state. It can be seen as a generalisation of XCS where the prediction is a scalar value. XCSF attempts to find solutions that are accurate and maximally general over the global input space, similar to most machine learning techniques. However, it maintains the additional power to adaptively subdivide the input space into simpler local approximations.
 
 *******************************************************************************
 
@@ -47,15 +47,17 @@ XCSF is [rule-based](https://en.wikipedia.org/wiki/Rule-based_machine_learning) 
 - an action component *cl.A* that selects an action *a* to be performed for a given ***x***
 - a prediction component *cl.P* that computes the expected payoff for performing *a* upon receipt of ***x***
 
-In addition, each classifier maintains a measure of its experience *exp*, error &epsilon;, fitness *F*, numerosity *num*, average participated set size *as*, and the time stamp *ts* of the last [evolutionary algorithm](https://en.wikipedia.org/wiki/Evolutionary_algorithm) (EA) invocation on a participating set.
+XCSF thus generates rules of the general form:
+
+IF *matches &larr; cl.C(****x****)* THEN perform action *a &larr; cl.A(****x****)* and EXPECT payoff ***p*** *&larr; cl.P(****x****)*.
 
 For each step within a learning trial, XCSF constructs a match set [M] composed of classifiers in the population set [P] whose *cl.C* matches ***x***. If [M] contains fewer than *&theta;*<sub>mna</sub> actions, a covering mechanism generates classifiers with matching *cl.C* and random *cl.A*.
 
-For each possible action *a<sub>k</sub>* in [M], XCSF estimates the expected payoff by computing the fitness-weighted average prediction *P*(*a<sub>k</sub>*). That is, for each action *k* and classifier prediction *p<sub>j</sub>* in [M], the system prediction *P<sub>k</sub> = &sum;<sub>j</sub> F<sub>j</sub>p<sub>j</sub> / &sum;<sub>j</sub>F<sub>j</sub>*.
+For each possible action *a<sub>k</sub>* in [M], XCSF estimates the expected payoff by computing the fitness-weighted average prediction *P*(*a<sub>k</sub>*). That is, for each action *a<sub>k</sub>* and classifier prediction *p<sub>j</sub>* in [M], the system prediction *P<sub>k</sub> = &sum;<sub>j</sub> F<sub>j</sub>p<sub>j</sub> / &sum;<sub>j</sub>F<sub>j</sub>*.
 
 A system action is then randomly or probabilistically selected during exploration, and the highest payoff action *P<sub>k</sub>* used during exploitation. Classifiers in [M] advocating the chosen action are subsequently used to construct an action set [A]. The action is then performed and a scalar reward *r* &isin; &real; received, along with the next sensory input.
 
-In a single-step problem, each classifier *cl<sub>j</sub>* &isin; [A] has its experience incremented and fitness, error, and set size updated using the Widrow-Hoff [delta rule](https://en.wikipedia.org/wiki/Delta_rule) with learning rate *&beta;* &isin; [0,1] as follows.
+Upon reaching a terminal state within the environment (as is always the case in single-step problems), each classifier *cl<sub>j</sub>* &isin; [A] has its experience incremented and fitness, error, and set size *as* updated using the Widrow-Hoff [delta rule](https://en.wikipedia.org/wiki/Delta_rule) with learning rate *&beta;* &isin; [0,1] as follows.
 
 - Error: *&epsilon;<sub>j</sub> &larr; &epsilon;<sub>j</sub> + &beta;* (| *r* &minus; *p<sub>j</sub>* | &minus; *&epsilon;<sub>j</sub>*)
 - Accuracy: *&kappa;<sub>j</sub>* =
@@ -63,24 +65,25 @@ In a single-step problem, each classifier *cl<sub>j</sub>* &isin; [A] has its ex
     * *&alpha;* ( *&epsilon;<sub>j</sub> / &epsilon;<sub>0</sub>* )<sup>&minus;*&nu;*</sup> otherwise.
 <br>With target error threshold *&epsilon;<sub>0</sub>* and accuracy offset *&alpha;* &isin; [0,1], and slope *&nu;*.
 - Relative accuracy: *&kappa;<sub>j</sub>'* = (*&kappa;<sub>j</sub> &middot; num<sub>j</sub>*) / *&sum;<sub>j</sub> &kappa;<sub>j</sub> &middot; num<sub>j</sub>*
+<br>Where classifiers are initialised with numerosity *num* = 1.
 - Fitness: *F<sub>j</sub> &larr; F<sub>j</sub> + &beta;*(*&kappa;<sub>j</sub>' &minus; F<sub>j</sub>*)
 - Set size estimate: *as<sub>j</sub> &larr; as<sub>j</sub> + &beta;*(|[A]| &minus; *as<sub>j</sub>*)
 
 Thereafter, *cl.C*, *cl.A*, and *cl.P* are updated according to the representation adopted.
 
-The EA is applied to classifiers within [A] if the average time since its previous execution exceeds *&theta;*<sub>EA</sub>. Upon invocation, the *ts* of each classifier is updated. Two parents are chosen based on their fitness via [roulette wheel selection](https://en.wikipedia.org/wiki/Fitness_proportionate_selection) (or [tournament](https://en.wikipedia.org/wiki/Tournament_selection)) and *&lambda;* number of offspring are created via [crossover](https://en.wikipedia.org/wiki/Crossover_(genetic_algorithm)) with probability *&chi;* and [mutation](https://en.wikipedia.org/wiki/Mutation_(genetic_algorithm)) with probability *&mu;*.
+The [evolutionary algorithm](https://en.wikipedia.org/wiki/Evolutionary_algorithm) (EA) is applied to classifiers within [A] if the average time since its previous execution exceeds *&theta;*<sub>EA</sub>. Upon invocation, the time stamp *ts* of each classifier is updated. Two parents are chosen based on their fitness via [roulette wheel selection](https://en.wikipedia.org/wiki/Fitness_proportionate_selection) (or [tournament](https://en.wikipedia.org/wiki/Tournament_selection)) and *&lambda;* number of offspring are created via [crossover](https://en.wikipedia.org/wiki/Crossover_(genetic_algorithm)) with probability *&chi;* and [mutation](https://en.wikipedia.org/wiki/Mutation_(genetic_algorithm)) with probability *&mu;*.
 
 Offspring parameters are initialised by setting the error and fitness to the parental average, and discounted by reduction parameters for error *&epsilon;<sub>R</sub>* and fitness *F<sub>R</sub>*. Offspring *exp* and *num* are set to one. If subsumption is enabled and the offspring are subsumed by either parent with sufficient accuracy (*&epsilon;<sub>j</sub>* &lt; *&epsilon;<sub>0</sub>*) and experience (*exp<sub>j</sub> &gt; &theta;*<sub>sub</sub>) it is not included in [P]; instead the parents' *num* is incremented.
 
 The resulting offspring are added to [P] and the maximum (micro-classifier) population size *N* is enforced by removing classifiers selected via roulette with the deletion vote.
 
-The deletion vote is set proportionally to the set size estimate *as*. However, the vote is increased by a factor *F̅ / F<sub>j</sub>* for classifiers that are sufficiently experienced (*exp<sub>j</sub> &gt; &theta;*<sub>del</sub>) and with small fitness (*F<sub>j</sub> &lt; &delta;F̅*) where *F̅* is the [P] mean fitness, and typically *&delta;* = 0.1.
+The deletion vote is set proportionally to the set size estimate *as*. However, the vote is increased by a factor *F̅ / F<sub>j</sub>* for classifiers that are sufficiently experienced (*exp<sub>j</sub> &gt; &theta;*<sub>del</sub>) and with small fitness (*F<sub>j</sub> &lt; &delta;F̅*) where *F̅* is the [P] mean fitness, and typically *&delta;* = 0.1. Classifiers selected for deletion have their (micro-classifier) *num* decremented, and in the event that *num* < 1, are removed from [P].
 
-In a multi-step problem, the previous action set [A]<sub>-1</sub> is instead updated using a *&gamma;* &isin; [0,1] discounted reward (similar to [*Q*-learning](https://en.wikipedia.org/wiki/Q-learning)) and the EA may be run therein.
+In multi-step problems, the previous action set [A]<sub>-1</sub> is updated after each step using a *&gamma;* &isin; [0,1] discounted reward (similar to [*Q*-learning](https://en.wikipedia.org/wiki/Q-learning)) and the EA may be run therein.
 
 <img src="doc/schematic.svg">
 
-Schematic illustration (shown above) of XCSF for reinforcement learning. For supervised learning, a single (dummy) action is used such that [A] = [M] and the system prediction is made directly accessible to the environment.
+A schematic illustration of XCSF is shown above. For supervised learning, a single (dummy) action can be used such that [A] = [M] and the system prediction made directly accessible to the environment.
                                                                                                  
 A number of interacting pressures have been identified. A set pressure provides more frequent reproduction opportunities for more general rules. In opposition is a fitness pressure which represses the reproduction of inaccurate and over-general rules. Many forms of *cl.C*, *cl.A*, and *cl.P* have been used for classifier knowledge representation since the original ternary conditions, integer actions, and scalar predictions. Some of these are implemented here.
 
