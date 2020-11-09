@@ -526,7 +526,7 @@ xcs.print_pop(print_condition, print_action, print_prediction)
 ## XCSF Getters
 
 Values for all [general parameters](#initialising-general-parameters) are
-accessible by simply printing the property. Specific getter functions:
+directly accessible via the property. Specific getter functions:
 
 ```python
 # General
