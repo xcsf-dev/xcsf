@@ -62,6 +62,11 @@ xcs = xcsf.XCS(x_dim, y_dim, n_actions)
 
 ## Initialising General Parameters
 
+Default parameter values are hard-coded within XCSF. The `default.ini`
+configuration file is parsed upon invocation of the [constructor](#constructor)
+and overrides these values. At run-time, the values may be further overridden
+within python by using the following properties:
+
 ```python
 # General XCSF
 xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use 
