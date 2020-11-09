@@ -548,7 +548,7 @@ xcs.pop_mean_pred_eta(layer) # returns the mean eta for a prediction layer
 xcs.pop_mean_pred_neurons(layer) # returns the mean number of neurons for a prediction layer
 xcs.pop_mean_pred_layers() # returns the mean number of layers in the prediction networks
 xcs.pop_mean_pred_connections(layer) # returns the number of active connections for a prediction layer
-xcs.pop_mean_cond_neurons(layer) # returns the mean population prediction eta for the layer
+xcs.pop_mean_cond_neurons(layer) # returns the mean number of neurons for a condition layer
 xcs.pop_mean_cond_layers() # returns the mean number of layers in the condition networks
 xcs.pop_mean_cond_connections(layer) # returns the number of active connections for a condition layer
 ```
