@@ -35,9 +35,18 @@
 * [Saving and Loading XCSF](#saving-and-loading-xcsf)
 * [Storing and Retreiving XCSF](#storing-and-retreiving-xcsf)
 * [Printing XCSF](#printing-xcsf)
+* [XCSF Getters](#xcsf-getters)
 * [Reinforcement Learning](#reinforcement-learning)
-* [Supervised Regression](#supervised-regression)
-* [Supervised Classification](#supervised-classification)
+    * [Reinforcement Initialisation](#reinforcement-initialisation)
+    * [Reinforcement Learning Method 1](#reinforcement-learning-method-1)
+    * [Reinforcement Learning Method 2](#reinforcement-learning-method-2)
+    * [Reinforcement Examples](#reinforcement-examples)
+* [Supervised Learning](#supervised-learning)
+    * [Supervised Initialisation](#supervised-initialisation)
+    * [Supervised Fitting](#supervised-fitting)
+    * [Supervised Scoring](#supervised-scoring)
+    * [Supervised Predicting](#supervised-predicting)
+    * [Supervised Examples](#supervised-examples)
 
 *******************************************************************************
 
@@ -514,26 +523,152 @@ xcs.print_pop(print_condition, print_action, print_prediction)
 
 *******************************************************************************
 
+## XCSF Getters
+
+Values for all [general parameters](#initialising-general-parameters) are
+accessible by simply printing the property. Specific getter functions:
+
+```python
+# General
+xcs.pop_size() # returns the mean population size
+xcs.pop_num() # returns the mean population numerosity
+xcs.msetsize() # returns the mean match set size
+xcs.asetsize() # returns the mean action set size
+xcs.mfrac() # returns the mean fraction of inputs matched by the best rule
+xcs.time() # returns the current EA time
+xcs.version_major() # returns the XCSF major version number
+xcs.version_minor() # returns the XCSF minor version number
+xcs.version_build() # returns the XCSF build version number
+xcs.pop_mean_cond_size() # returns the mean condition size
+xcs.pop_mean_pred_size() # returns the mean prediction size
+
+# Neural network specific - population set averages
+# 'layer' argument specifies the location of a layer: first layer=0, 1, 2, ...
+xcs.pop_mean_pred_eta(layer) # returns the mean eta for a prediction layer
+xcs.pop_mean_pred_neurons(layer) # returns the mean number of neurons for a prediction layer
+xcs.pop_mean_pred_layers() # returns the mean number of layers in the prediction networks
+xcs.pop_mean_pred_connections(layer) # returns the number of active connections for a prediction layer
+xcs.pop_mean_cond_neurons(layer) # returns the mean population prediction eta for the layer
+xcs.pop_mean_cond_layers() # returns the mean number of layers in the condition networks
+xcs.pop_mean_cond_connections(layer) # returns the number of active connections for a condition layer
+```
+
+*******************************************************************************
+
 ## Reinforcement Learning
 
-See examples:
+### Reinforcement Initialisation
+
+Initialise XCSF with `y_dim = 1` for predictions to estimate the scalar reward.
+
+```python
+import xcsf.xcsf as xcsf
+xcs = xcsf.XCS(x_dim, 1, n_actions)
+```
+
+### Reinforcement Learning Method 1
+
+The standard method involves the basic loop as shown below. `state` must be a
+1-D numpy array representing the feature values of a single instance; `reward`
+must be a scalar value representing the current environmental reward for having
+performed the action; and `done` must be a boolean value representing whether
+the environment is currently in a terminal state.
+
+```python
+state = env.reset()
+xcs.init_trial()
+for cnt in range(xcs.TELETRANSPORTATION):
+    xcs.init_step()
+    action = xcs.decision(state, explore) # explore specifies whether to explore/exploit
+    next_state, reward, done = env.step(action)
+    xcs.update(reward, done) # update the current action set and/or previous action set
+    err += xcs.error(reward, done, env.max_payoff()) # system prediction error
+    xcs.end_step()
+    if done:
+        break
+    state = next_state
+cnt += 1
+xcs.end_trial()
+```
+
+### Reinforcement Learning Method 2
+
+The `fit()` function may be used as below to execute one single-step learning
+trial, i.e., creation of the match and action sets, updating the action set and
+running the EA as appropriate. The vector `state` must be a 1-D numpy array
+representing the feature values of a single instance; `action` must be an
+integer representing the selected action (and therefore the action set to
+update); and `reward` must be a scalar value representing the current
+environmental reward for having performed the action.
+
+```python
+xcs.fit(state, action, reward)
+```
+
+### Reinforcement Examples
+
+Reinforcement learning examples with action sets:
 
 `example_rmux.py`
 `example_maze.py`
+
+Reinforcement learning example (using experience replay) without action sets:
+
 `example_cartpole.py`
 
 *******************************************************************************
 
-## Supervised Regression
+## Supervised Learning
 
-See example:
+### Supervised Initialisation
+
+Initialise XCSF with a single (dummy) integer action. Set
+[conditions](#initialising-conditions) and
+[predictions](#initialising-predictions) as desired.
+
+```python
+import xcsf.xcsf as xcsf
+xcs = xcsf.XCS(x_dim, y_dim, 1) # single action
+xcs.action('integer') # dummy integer actions
+```
+
+### Supervised Fitting
+
+The `fit()` function may be used as below to execute `xcs.MAX_TRIALS` number of
+learning iterations (i.e., single-step trials) using a supplied training set.
+The input arrays `X_train` and `y_train` must be 2-D numpy arrays. The third
+parameter specifies whether to randomly shuffle the training data. The function
+will return the training prediction error using the loss function as specified
+by `xcs.LOSS_FUNC`. Returns a scalar representing the error.
+
+```python
+train_error = xcs.fit(X_train, y_train, True)
+```
+
+### Supervised Scoring
+
+The `score()` function may be used as below to calculate the prediction error
+over a single pass of a supplied data set without updates or the EA being
+invoked (e.g., for scoring a validation set). An optional third argument may be
+supplied that specifies the maximum number of iterations performed; if this
+value is less than the number of instances supplied, samples will be drawn
+randomly. Returns a scalar representing the error.
+
+```python
+val_error = xcs.score(X_val, y_val)
+```
+
+### Supervised Predicting
+
+The `predict()` function may be used as below to calculate the XCSF predictions
+for a supplied data set. No updates or EA invocations are performed. Returns a
+2-D numpy array.
+
+```python
+predictions = xcs.predict(X_test)
+```
+
+### Supervised Examples
 
 `example_regression.py`
-
-*******************************************************************************
-
-## Supervised Classification
-
-See example:
-
 `example_classification.py`
