@@ -167,6 +167,9 @@ cond_neural_neurons(const struct XCSF *xcsf, const struct Cl *c, int layer)
     int i = 0;
     while (iter != NULL) {
         if (i == layer) {
+            if (iter->layer->type == CONVOLUTIONAL) {
+                return iter->layer->n_filters;
+            }
             return iter->layer->n_outputs;
         }
         iter = iter->prev;
