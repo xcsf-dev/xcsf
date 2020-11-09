@@ -361,6 +361,7 @@ neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev)
     }
     l->workspace_size = get_workspace_size(l);
     l->temp = realloc(l->temp, l->workspace_size);
+    layer_calc_n_active(l);
 }
 
 /**
