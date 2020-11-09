@@ -605,6 +605,14 @@ environmental reward for having performed the action.
 xcs.fit(state, action, reward)
 ```
 
+The entire prediction array for a given state can be returned using the
+supervised `predict()` function, which must receive a 2-D numpy array. For
+example:
+
+```python
+prediction_array = xcs.predict(state.reshape(1,-1))[0]
+```
+
 ### Reinforcement Examples
 
 Reinforcement learning examples with action sets:
@@ -661,8 +669,8 @@ val_error = xcs.score(X_val, y_val)
 ### Supervised Predicting
 
 The `predict()` function may be used as below to calculate the XCSF predictions
-for a supplied data set. No updates or EA invocations are performed. Returns a
-2-D numpy array.
+for a supplied data set. No updates or EA invocations are performed. The input
+vector must be a 2-D numpy array. Returns a 2-D numpy array.
 
 ```python
 predictions = xcs.predict(X_test)
