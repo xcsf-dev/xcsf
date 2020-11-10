@@ -548,7 +548,7 @@ xcs.pop_mean_cond_size() # returns the mean condition size
 xcs.pop_mean_pred_size() # returns the mean prediction size
 
 # Neural network specific - population set averages
-# 'layer' argument specifies the location of a layer: first layer=0, 1, 2, ...
+# 'layer' argument is an integer specifying the location of a layer: first layer=0
 xcs.pop_mean_pred_eta(layer) # returns the mean eta for a prediction layer
 xcs.pop_mean_pred_neurons(layer) # returns the mean number of neurons for a prediction layer
 xcs.pop_mean_pred_layers() # returns the mean number of layers in the prediction networks
