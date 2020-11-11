@@ -25,6 +25,9 @@
 #include "sam.h"
 #include "utils.h"
 
+#define FUZZY_NOT (0) //!< Fuzzy NOT function
+#define FUZZY_CFMQVS_AND (1) //!< Fuzzy AND (CFMQVS) function
+#define FUZZY_CFMQVS_OR (2) //!< Fuzzy OR (CFMQVS) function
 #define NUM_FUNC (3) //!< Number of selectable node functions
 #define N_MU (3) //!< Number of DGP graph mutation rates
 
@@ -123,16 +126,16 @@ node_activate(int function, const double *inputs, const int K)
 {
     double state = 0;
     switch (function) {
-        case 0: // Fuzzy NOT
+        case FUZZY_NOT:
             state = 1 - inputs[0];
             break;
-        case 1: // Fuzzy AND (CFMQVS)
+        case FUZZY_CFMQVS_AND:
             state = inputs[0];
             for (int i = 1; i < K; ++i) {
                 state *= inputs[i];
             }
             break;
-        case 2: // Fuzzy OR (CFMQVS)
+        case FUZZY_CFMQVS_OR:
             state = inputs[0];
             for (int i = 1; i < K; ++i) {
                 state += inputs[i];
@@ -155,11 +158,11 @@ static const char *
 function_string(const int function)
 {
     switch (function) {
-        case 0:
+        case FUZZY_NOT:
             return "Fuzzy NOT";
-        case 1:
+        case FUZZY_CFMQVS_AND:
             return "Fuzzy AND (CFMQVS)";
-        case 2:
+        case FUZZY_CFMQVS_OR:
             return "Fuzzy OR (CFMQVS)";
         default:
             printf("function_string(): invalid node function: %d\n", function);
