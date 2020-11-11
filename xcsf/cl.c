@@ -195,9 +195,11 @@ cl_update(const struct XCSF *xcsf, struct Cl *c, const double *x,
         c->err += xcsf->BETA * (error - c->err);
         c->size += xcsf->BETA * (set_num - c->size);
     }
-    cond_update(xcsf, c, x, y);
-    pred_update(xcsf, c, x, y);
-    act_update(xcsf, c, x, y);
+    if (c->err > xcsf->EPS_0) {
+        cond_update(xcsf, c, x, y);
+        pred_update(xcsf, c, x, y);
+        act_update(xcsf, c, x, y);
+    }
 }
 
 /**
