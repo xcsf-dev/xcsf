@@ -61,7 +61,7 @@ xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000
 xcs.PERF_TRIALS = 1000
-xcs.EPS_0 = 0.01 # target error
+xcs.E0 = 0.01 # target error
 xcs.condition('hyperrectangle') # hyperrectangle conditions
 xcs.prediction('nlms-linear') # linear least squares predictions
 xcs.action('integer') # integer actions

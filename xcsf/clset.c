@@ -52,7 +52,7 @@ clset_pop_never_match(const struct XCSF *xcsf, struct Clist **del,
 
 /**
  * @brief Selects a classifier from the population for deletion via roulette.
- * @details If the average system error is below EPS_0, two classifiers are
+ * @details If the average system error is below E0, two classifiers are
  * selected using roulette wheel selection with the deletion vote and the one
  * with the largest condition + prediction size is chosen. For fixed-length
  * representations, the effect is the same as one roulete spin.
@@ -72,7 +72,7 @@ clset_pop_roulette(const struct XCSF *xcsf, struct Clist **del,
         iter = iter->next;
     }
     double delsize = 0;
-    const int n_spins = (xcsf->error < xcsf->EPS_0) ? 2 : 1;
+    const int n_spins = (xcsf->error < xcsf->E0) ? 2 : 1;
     for (int i = 0; i < n_spins; ++i) {
         // perform a single roulette spin with the deletion vote
         iter = xcsf->pset.list;
@@ -659,7 +659,7 @@ clset_mean_pred_size(const struct XCSF *xcsf, const struct Set *set)
 
 /**
  * @brief Returns the fraction of inputs matched by the most general rule with
- * error below EPS_0. If no rules below EPS_0, the lowest error rule is used.
+ * error below E0. If no rules below E0, the lowest error rule is used.
  * @param [in] xcsf The XCSF data structure.
  * @return The fraction of inputs matched.
  */
@@ -667,11 +667,11 @@ double
 clset_mfrac(const struct XCSF *xcsf)
 {
     double mfrac = 0;
-    // most general rule below EPS_0
+    // most general rule below E0
     const struct Clist *iter = xcsf->pset.list;
     while (iter != NULL) {
         const double e = iter->cl->err;
-        if (e < xcsf->EPS_0 && iter->cl->exp * xcsf->BETA > 1) {
+        if (e < xcsf->E0 && iter->cl->exp * xcsf->BETA > 1) {
             const double m = cl_mfrac(xcsf, iter->cl);
             if (m > mfrac) {
                 mfrac = m;

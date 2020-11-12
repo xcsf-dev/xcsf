@@ -161,8 +161,8 @@ cl_del_vote(const struct XCSF *xcsf, const struct Cl *c, const double avg_fit)
 double
 cl_acc(const struct XCSF *xcsf, const struct Cl *c)
 {
-    if (c->err > xcsf->EPS_0) {
-        const double acc = xcsf->ALPHA * pow(c->err / xcsf->EPS_0, -(xcsf->NU));
+    if (c->err > xcsf->E0) {
+        const double acc = xcsf->ALPHA * pow(c->err / xcsf->E0, -(xcsf->NU));
         return fmax(acc, DBL_EPSILON);
     }
     return 1;
@@ -195,7 +195,7 @@ cl_update(const struct XCSF *xcsf, struct Cl *c, const double *x,
         c->err += xcsf->BETA * (error - c->err);
         c->size += xcsf->BETA * (set_num - c->size);
     }
-    if (c->err > xcsf->EPS_0) {
+    if (c->err > xcsf->E0) {
         cond_update(xcsf, c, x, y);
         pred_update(xcsf, c, x, y);
         act_update(xcsf, c, x, y);
@@ -348,7 +348,7 @@ cl_predict(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 bool
 cl_subsumer(const struct XCSF *xcsf, const struct Cl *c)
 {
-    if (c->exp > xcsf->THETA_SUB && c->err < xcsf->EPS_0) {
+    if (c->exp > xcsf->THETA_SUB && c->err < xcsf->E0) {
         return true;
     }
     return false;

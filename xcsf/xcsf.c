@@ -37,7 +37,7 @@ void
 xcsf_init(struct XCSF *xcsf)
 {
     xcsf->time = 0;
-    xcsf->error = xcsf->EPS_0;
+    xcsf->error = xcsf->E0;
     xcsf->msetsize = 0;
     xcsf->asetsize = 0;
     xcsf->mfrac = 0;
@@ -53,7 +53,7 @@ void
 xcsf_free(struct XCSF *xcsf)
 {
     xcsf->time = 0;
-    xcsf->error = xcsf->EPS_0;
+    xcsf->error = xcsf->E0;
     xcsf->msetsize = 0;
     xcsf->asetsize = 0;
     xcsf->mfrac = 0;

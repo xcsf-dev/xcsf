@@ -84,9 +84,9 @@ xcs.LOSS_FUNC = 'huber' # Huber error
 xcs.HUBER_DELTA = 1 # delta parameter for Huber error calculation
 
 # General Classifier
-xcs.EPS_0 = 0.01 # target error, under which accuracy is set to 1
-xcs.ALPHA = 0.1 # accuracy offset for rules above EPS_0 (1=disabled)
-xcs.NU = 5 # accuracy slope for rules with error above EPS_0
+xcs.E0 = 0.01 # target error, under which accuracy is set to 1
+xcs.ALPHA = 0.1 # accuracy offset for rules above E0 (1=disabled)
+xcs.NU = 5 # accuracy slope for rules with error above E0
 xcs.BETA = 0.1 # learning rate for updating error, fitness, and set size
 xcs.DELTA = 0.1 # fraction of least fit classifiers to increase deletion vote
 xcs.THETA_DEL = 20 # min experience before fitness used in probability of deletion

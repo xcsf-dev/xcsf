@@ -167,8 +167,8 @@ config_cl_gen(struct XCSF *xcsf, const char *n, const char *v, const int i,
         param_set_init_fitness(xcsf, f);
     } else if (strncmp(n, "INIT_ERROR\0", 11) == 0) {
         param_set_init_error(xcsf, f);
-    } else if (strncmp(n, "EPS_0\0", 6) == 0) {
-        param_set_eps_0(xcsf, f);
+    } else if (strncmp(n, "E0\0", 3) == 0) {
+        param_set_e0(xcsf, f);
     } else if (strncmp(n, "M_PROBATION\0", 12) == 0) {
         param_set_m_probation(xcsf, i);
     } else if (strncmp(n, "STATEFUL\0", 9) == 0) {

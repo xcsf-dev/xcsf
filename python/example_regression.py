@@ -88,7 +88,7 @@ xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
 xcs.POP_SIZE = 500 # maximum population size
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.LOSS_FUNC = 'mse' # mean squared error
-xcs.EPS_0 = 0.005 # target error
+xcs.E0 = 0.005 # target error
 xcs.ALPHA = 1 # accuracy offset
 xcs.NU = 20 # accuracy slope
 xcs.THETA_EA = 50 # EA invocation frequency
@@ -179,7 +179,7 @@ plt.figure(figsize=(10, 6))
 plt.plot(trials, train_mse, label='Train MSE')
 plt.plot(trials, val_mse, label='Validation MSE')
 plt.grid(linestyle='dotted', linewidth=1)
-plt.axhline(y=xcs.EPS_0, xmin=0, xmax=1, linestyle='dashed', color='k')
+plt.axhline(y=xcs.E0, xmin=0, xmax=1, linestyle='dashed', color='k')
 plt.title('XCSF Training Performance', fontsize=14)
 plt.xlabel('Trials', fontsize=12)
 plt.ylabel('Mean Squared Error', fontsize=12)

@@ -89,7 +89,7 @@ xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 # override default.ini
 xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
 xcs.POP_SIZE = 1000 # maximum population size
-xcs.EPS_0 = 0.01 # target error
+xcs.E0 = 0.01 # target error
 xcs.BETA = 0.2 # classifier parameter update rate
 xcs.THETA_EA = 25 # EA frequency
 xcs.ALPHA = 0.1 # accuracy offset

@@ -543,9 +543,9 @@ class XCS
     }
 
     double
-    get_eps_0(void)
+    get_e0(void)
     {
-        return xcs.EPS_0;
+        return xcs.E0;
     }
 
     double
@@ -1236,9 +1236,9 @@ class XCS
     }
 
     void
-    set_eps_0(const double a)
+    set_e0(const double a)
     {
-        param_set_eps_0(&xcs, a);
+        param_set_e0(&xcs, a);
     }
 
     void
@@ -1439,7 +1439,7 @@ PYBIND11_MODULE(xcsf, m)
         .def_property("ALPHA", &XCS::get_alpha, &XCS::set_alpha)
         .def_property("BETA", &XCS::get_beta, &XCS::set_beta)
         .def_property("DELTA", &XCS::get_delta, &XCS::set_delta)
-        .def_property("EPS_0", &XCS::get_eps_0, &XCS::set_eps_0)
+        .def_property("E0", &XCS::get_e0, &XCS::set_e0)
         .def_property("STATEFUL", &XCS::get_stateful, &XCS::set_stateful)
         .def_property("INIT_ERROR", &XCS::get_init_error, &XCS::set_init_error)
         .def_property("INIT_FITNESS", &XCS::get_init_fitness,

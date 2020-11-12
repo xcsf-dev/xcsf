@@ -118,7 +118,7 @@ struct XCSF {
     double ALPHA; //!< Linear coefficient used to calculate classifier accuracy
     double BETA; //!< Learning rate for updating error, fitness, and set size
     double DELTA; //!< Fraction of population to increase deletion vote
-    double EPS_0; //!< Target error under which classifier accuracy is set to 1
+    double E0; //!< Target error under which classifier accuracy is set to 1
     double INIT_ERROR; //!< Initial classifier error value
     double INIT_FITNESS; //!< Initial classifier fitness value
     double NU; //!< Exponent used in calculating classifier accuracy

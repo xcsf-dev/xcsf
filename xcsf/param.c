@@ -114,7 +114,7 @@ param_load_general(struct XCSF *xcsf, FILE *fp)
 static void
 param_defaults_cl_general(struct XCSF *xcsf)
 {
-    param_set_eps_0(xcsf, 0.01);
+    param_set_e0(xcsf, 0.01);
     param_set_alpha(xcsf, 0.1);
     param_set_nu(xcsf, 5);
     param_set_beta(xcsf, 0.1);
@@ -133,7 +133,7 @@ param_defaults_cl_general(struct XCSF *xcsf)
 static void
 param_print_cl_general(const struct XCSF *xcsf)
 {
-    printf(", EPS_0=%f", xcsf->EPS_0);
+    printf(", E0=%f", xcsf->E0);
     printf(", ALPHA=%f", xcsf->ALPHA);
     printf(", NU=%f", xcsf->NU);
     printf(", BETA=%f", xcsf->BETA);
@@ -156,7 +156,7 @@ static size_t
 param_save_cl_general(const struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
-    s += fwrite(&xcsf->EPS_0, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->E0, sizeof(double), 1, fp);
     s += fwrite(&xcsf->ALPHA, sizeof(double), 1, fp);
     s += fwrite(&xcsf->NU, sizeof(double), 1, fp);
     s += fwrite(&xcsf->BETA, sizeof(double), 1, fp);
@@ -179,7 +179,7 @@ static size_t
 param_load_cl_general(struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
-    s += fread(&xcsf->EPS_0, sizeof(double), 1, fp);
+    s += fread(&xcsf->E0, sizeof(double), 1, fp);
     s += fread(&xcsf->ALPHA, sizeof(double), 1, fp);
     s += fread(&xcsf->NU, sizeof(double), 1, fp);
     s += fread(&xcsf->BETA, sizeof(double), 1, fp);
@@ -313,7 +313,7 @@ param_init(struct XCSF *xcsf, const int x_dim, const int y_dim,
            const int n_actions)
 {
     xcsf->time = 0;
-    xcsf->error = xcsf->EPS_0;
+    xcsf->error = xcsf->E0;
     xcsf->msetsize = 0;
     xcsf->asetsize = 0;
     xcsf->mfrac = 0;
@@ -625,13 +625,13 @@ param_set_delta(struct XCSF *xcsf, const double a)
 }
 
 void
-param_set_eps_0(struct XCSF *xcsf, const double a)
+param_set_e0(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set EPS_0 too small\n");
-        xcsf->EPS_0 = 0;
+        printf("Warning: tried to set E0 too small\n");
+        xcsf->E0 = 0;
     } else {
-        xcsf->EPS_0 = a;
+        xcsf->E0 = a;
     }
 }
 

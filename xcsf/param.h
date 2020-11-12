@@ -90,7 +90,7 @@ void
 param_set_delta(struct XCSF *xcsf, const double a);
 
 void
-param_set_eps_0(struct XCSF *xcsf, const double a);
+param_set_e0(struct XCSF *xcsf, const double a);
 
 void
 param_set_init_error(struct XCSF *xcsf, const double a);

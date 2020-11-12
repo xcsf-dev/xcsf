@@ -75,7 +75,7 @@ xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 500
 xcs.MAX_TRIALS = 1000 # number of trials per fit()
 xcs.LOSS_FUNC = 'onehot' # one-hot encoding classification error
-xcs.EPS_0 = 0.01 # 1% target error
+xcs.E0 = 0.01 # 1% target error
 xcs.ALPHA = 0.1 # accuracy offset
 xcs.NU = 5 # accuracy slope
 xcs.action('integer') # (dummy) integer actions
@@ -170,7 +170,7 @@ plt.figure(figsize=(10, 6))
 plt.plot(trials, train_err, label='Train Error')
 plt.plot(trials, test_err, label='Test Error')
 plt.grid(linestyle='dotted', linewidth=1)
-plt.axhline(y=xcs.EPS_0, xmin=0, xmax=1, linestyle='dashed', color='k')
+plt.axhline(y=xcs.E0, xmin=0, xmax=1, linestyle='dashed', color='k')
 plt.title('XCSF Training Performance', fontsize=14)
 plt.xlabel('Trials', fontsize=12)
 plt.ylabel('Error', fontsize=12)
