@@ -691,6 +691,10 @@ layer_args_validate_inputs(struct ArgsLayer *arg)
     if (arg->type == DROPOUT || arg->type == NOISE) {
         if (arg->n_inputs < 1) {
             arg->n_inputs = arg->channels * arg->height * arg->width;
+        } else {
+            arg->channels = 1;
+            arg->height = 1;
+            arg->width = arg->n_inputs;
         }
     }
     if (layer_receives_images(arg->type)) {
