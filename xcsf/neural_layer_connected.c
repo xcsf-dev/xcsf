@@ -79,6 +79,9 @@ neural_layer_connected_init(struct Layer *l, const struct ArgsLayer *args)
     l->n_inputs = args->n_inputs;
     l->n_outputs = args->n_init;
     l->max_outputs = args->n_max;
+    l->out_w = l->n_outputs;
+    l->out_h = 1;
+    l->out_c = 1;
     l->n_weights = l->n_inputs * l->n_outputs;
     l->n_biases = l->n_outputs;
     l->n_active = l->n_weights;
@@ -135,6 +138,9 @@ neural_layer_connected_copy(const struct Layer *src)
     l->n_inputs = src->n_inputs;
     l->n_outputs = src->n_outputs;
     l->max_outputs = src->max_outputs;
+    l->out_c = src->out_c;
+    l->out_h = src->out_h;
+    l->out_w = src->out_w;
     l->n_weights = src->n_weights;
     l->n_biases = src->n_biases;
     l->options = src->options;
@@ -393,6 +399,9 @@ neural_layer_connected_load(struct Layer *l, FILE *fp)
     s += fread(&l->momentum, sizeof(double), 1, fp);
     s += fread(&l->decay, sizeof(double), 1, fp);
     s += fread(&l->n_active, sizeof(int), 1, fp);
+    l->out_w = l->n_outputs;
+    l->out_c = 1;
+    l->out_h = 1;
     malloc_layer_arrays(l);
     s += fread(l->weights, sizeof(double), l->n_weights, fp);
     s += fread(l->weight_active, sizeof(bool), l->n_weights, fp);

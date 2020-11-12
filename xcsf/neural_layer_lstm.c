@@ -208,6 +208,9 @@ mutate_neurons(struct Layer *l)
         layer_resize(l->wg, l->uf);
         layer_resize(l->wo, l->uf);
         l->n_outputs = l->uf->n_outputs;
+        l->out_w = l->n_outputs;
+        l->out_c = 1;
+        l->out_h = 1;
         set_layer_n_weights(l);
         set_layer_n_biases(l);
         set_layer_n_active(l);
@@ -273,6 +276,9 @@ neural_layer_lstm_init(struct Layer *l, const struct ArgsLayer *args)
     l->n_inputs = args->n_inputs;
     l->n_outputs = args->n_init;
     l->max_outputs = args->n_max;
+    l->out_w = l->n_outputs;
+    l->out_c = 1;
+    l->out_h = 1;
     l->eta_max = args->eta;
     l->momentum = args->momentum;
     l->max_neuron_grow = args->max_neuron_grow;
@@ -320,6 +326,9 @@ neural_layer_lstm_copy(const struct Layer *src)
     l->options = src->options;
     l->n_inputs = src->n_inputs;
     l->n_outputs = src->n_outputs;
+    l->out_w = src->out_w;
+    l->out_h = src->out_h;
+    l->out_c = src->out_c;
     l->n_weights = src->n_weights;
     l->n_biases = src->n_biases;
     l->n_active = src->n_active;
@@ -660,6 +669,9 @@ neural_layer_lstm_load(struct Layer *l, FILE *fp)
     s += fread(&l->decay, sizeof(double), 1, fp);
     s += fread(&l->max_neuron_grow, sizeof(int), 1, fp);
     s += fread(&l->options, sizeof(uint32_t), 1, fp);
+    l->out_w = l->n_outputs;
+    l->out_c = 1;
+    l->out_h = 1;
     malloc_layer_arrays(l);
     l->mu = malloc(sizeof(double) * N_MU);
     s += fread(l->mu, sizeof(double), N_MU, fp);

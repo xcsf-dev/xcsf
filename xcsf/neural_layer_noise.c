@@ -65,6 +65,9 @@ neural_layer_noise_init(struct Layer *l, const struct ArgsLayer *args)
     l->n_inputs = args->n_inputs;
     l->n_outputs = args->n_inputs;
     l->max_outputs = args->n_inputs;
+    l->out_w = args->width;
+    l->out_h = args->height;
+    l->out_c = args->channels;
     l->probability = args->probability;
     l->scale = args->scale;
     malloc_layer_arrays(l);
@@ -88,6 +91,9 @@ neural_layer_noise_copy(const struct Layer *src)
     l->layer_vptr = src->layer_vptr;
     l->n_inputs = src->n_inputs;
     l->n_outputs = src->n_outputs;
+    l->out_w = src->out_w;
+    l->out_c = src->out_c;
+    l->out_h = src->out_h;
     l->max_outputs = src->max_outputs;
     l->probability = src->probability;
     l->scale = src->scale;
@@ -192,6 +198,9 @@ neural_layer_noise_resize(struct Layer *l, const struct Layer *prev)
     l->n_inputs = prev->n_outputs;
     l->n_outputs = prev->n_outputs;
     l->max_outputs = prev->n_outputs;
+    l->out_w = prev->out_w;
+    l->out_h = prev->out_h;
+    l->out_c = prev->out_c;
     free_layer_arrays(l);
     malloc_layer_arrays(l);
 }
@@ -235,6 +244,9 @@ neural_layer_noise_save(const struct Layer *l, FILE *fp)
     s += fwrite(&l->max_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->probability, sizeof(double), 1, fp);
     s += fwrite(&l->scale, sizeof(double), 1, fp);
+    s += fwrite(&l->out_w, sizeof(int), 1, fp);
+    s += fwrite(&l->out_h, sizeof(int), 1, fp);
+    s += fwrite(&l->out_c, sizeof(int), 1, fp);
     return s;
 }
 
@@ -253,6 +265,9 @@ neural_layer_noise_load(struct Layer *l, FILE *fp)
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->probability, sizeof(double), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
+    s += fread(&l->out_w, sizeof(int), 1, fp);
+    s += fread(&l->out_h, sizeof(int), 1, fp);
+    s += fread(&l->out_c, sizeof(int), 1, fp);
     malloc_layer_arrays(l);
     return s;
 }

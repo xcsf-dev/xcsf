@@ -64,6 +64,9 @@ neural_layer_softmax_init(struct Layer *l, const struct ArgsLayer *args)
     l->n_inputs = args->n_inputs;
     l->n_outputs = args->n_inputs;
     l->max_outputs = args->n_inputs;
+    l->out_w = l->n_outputs;
+    l->out_c = 1;
+    l->out_h = 1;
     malloc_layer_arrays(l);
 }
 
@@ -87,6 +90,9 @@ neural_layer_softmax_copy(const struct Layer *src)
     l->n_inputs = src->n_inputs;
     l->n_outputs = src->n_outputs;
     l->max_outputs = src->max_outputs;
+    l->out_w = src->out_w;
+    l->out_c = src->out_c;
+    l->out_h = src->out_h;
     malloc_layer_arrays(l);
     return l;
 }
@@ -193,6 +199,9 @@ neural_layer_softmax_resize(struct Layer *l, const struct Layer *prev)
     l->n_inputs = prev->n_outputs;
     l->n_outputs = prev->n_outputs;
     l->max_outputs = prev->n_outputs;
+    l->out_w = l->n_outputs;
+    l->out_h = 1;
+    l->out_c = 1;
     free_layer_arrays(l);
     malloc_layer_arrays(l);
 }
@@ -249,6 +258,9 @@ neural_layer_softmax_load(struct Layer *l, FILE *fp)
     s += fread(&l->n_outputs, sizeof(int), 1, fp);
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->scale, sizeof(double), 1, fp);
+    l->out_w = l->n_outputs;
+    l->out_h = 1;
+    l->out_c = 1;
     malloc_layer_arrays(l);
     return s;
 }

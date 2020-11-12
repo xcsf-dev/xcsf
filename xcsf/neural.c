@@ -55,12 +55,6 @@ neural_create(struct Net *net, struct ArgsLayer *arg)
     const struct Layer *prev_layer = NULL;
     while (arg != NULL) {
         if (prev_layer != NULL) {
-            if (layer_receives_images(arg->type) &&
-                !layer_receives_images(prev_layer->type)) {
-                printf("neural_create() error: %s layers expect input images\n",
-                       layer_type_as_string(arg->type));
-                exit(EXIT_FAILURE);
-            }
             arg->height = prev_layer->out_h; // pass through n inputs
             arg->width = prev_layer->out_w;
             arg->channels = prev_layer->out_c;

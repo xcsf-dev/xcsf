@@ -139,6 +139,9 @@ mutate_neurons(struct Layer *l)
             layer_resize(l->self_layer, l->input_layer);
             layer_resize(l->output_layer, l->input_layer);
             l->n_outputs = l->output_layer->n_outputs;
+            l->out_w = l->n_outputs;
+            l->out_h = 1;
+            l->out_c = 1;
             l->output = l->output_layer->output;
             l->delta = l->output_layer->delta;
             l->state = realloc(l->state, l->n_outputs * sizeof(double));
@@ -229,6 +232,9 @@ neural_layer_recurrent_init(struct Layer *l, const struct ArgsLayer *args)
     l->n_inputs = args->n_inputs;
     l->n_outputs = args->n_init;
     l->max_outputs = args->n_max;
+    l->out_w = l->n_outputs;
+    l->out_c = 1;
+    l->out_h = 1;
     struct ArgsLayer *cargs = layer_args_copy(args);
     cargs->type = CONNECTED; // recurrent layer is composed of 3 connected
     cargs->function = LINEAR; // input layer and self layer are linear
@@ -270,9 +276,12 @@ neural_layer_recurrent_copy(const struct Layer *src)
     l->function = src->function;
     l->n_inputs = src->n_inputs;
     l->n_outputs = src->n_outputs;
+    l->max_outputs = src->max_outputs;
+    l->out_w = src->out_w;
+    l->out_c = src->out_c;
+    l->out_h = src->out_h;
     l->n_active = src->n_active;
     l->eta = src->eta;
-    l->max_outputs = src->max_outputs;
     l->input_layer = layer_copy(src->input_layer);
     l->self_layer = layer_copy(src->self_layer);
     l->output_layer = layer_copy(src->output_layer);
@@ -469,6 +478,9 @@ neural_layer_recurrent_load(struct Layer *l, FILE *fp)
     s += fread(&l->function, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
     s += fread(&l->n_active, sizeof(int), 1, fp);
+    l->out_w = l->n_outputs;
+    l->out_c = 1;
+    l->out_h = 1;
     malloc_layer_arrays(l);
     s += fread(l->mu, sizeof(double), N_MU, fp);
     s += fread(l->state, sizeof(double), l->n_outputs, fp);

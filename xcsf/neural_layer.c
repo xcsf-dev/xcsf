@@ -684,12 +684,16 @@ layer_args_free(struct ArgsLayer **largs)
 /**
  * @brief Checks input layer arguments are valid.
  * @param [in] arg Input layer parameters.
- * @param [in] img_inputs Whether layer expects image inputs.
  */
 static void
-layer_args_validate_inputs(const struct ArgsLayer *arg, const _Bool img_inputs)
+layer_args_validate_inputs(struct ArgsLayer *arg)
 {
-    if (img_inputs) {
+    if (arg->type == DROPOUT || arg->type == NOISE) {
+        if (arg->n_inputs < 1) {
+            arg->n_inputs = arg->channels * arg->height * arg->width;
+        }
+    }
+    if (layer_receives_images(arg->type)) {
         if (arg->channels < 1) {
             printf("Error: input channels < 1\n");
             exit(EXIT_FAILURE);
@@ -720,8 +724,7 @@ layer_args_validate(struct ArgsLayer *args)
         printf("Error: empty layer argument list\n");
         exit(EXIT_FAILURE);
     }
-    _Bool img_inputs = layer_receives_images(arg->type);
-    layer_args_validate_inputs(arg, img_inputs);
+    layer_args_validate_inputs(arg);
     do {
         if (arg->evolve_neurons && arg->max_neuron_grow < 1) {
             printf("Error: evolving neurons but max_neuron_grow < 1\n");
@@ -731,14 +734,6 @@ layer_args_validate(struct ArgsLayer *args)
             arg->n_max = arg->n_init;
         }
         arg = arg->next;
-        if (arg != NULL) {
-            const _Bool img_inputs_next = layer_receives_images(arg->type);
-            if (img_inputs_next && !img_inputs) {
-                printf("Error: image inputs expected but not received\n");
-                exit(EXIT_FAILURE);
-            }
-            img_inputs = img_inputs_next;
-        }
     } while (arg != NULL);
 }
 
