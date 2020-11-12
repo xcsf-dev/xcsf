@@ -578,7 +578,9 @@ layer_args_print_sgd(const struct ArgsLayer *args)
             printf(", evolve_eta=false");
         }
         printf(", momentum=%f", args->momentum);
-        printf(", decay=%f", args->decay);
+        if (args->decay > 0) {
+            printf(", decay=%f", args->decay);
+        }
     }
 }
 
