@@ -523,7 +523,7 @@ To print the current XCSF population:
 print_condition = True # whether to print the classifier conditions
 print_action = True # whether to print the classifier actions
 print_prediction = True # whether to print the classifier predictions
-xcs.pset_print(print_condition, print_action, print_prediction)
+xcs.print_pset(print_condition, print_action, print_prediction)
 ```
 
 *******************************************************************************
