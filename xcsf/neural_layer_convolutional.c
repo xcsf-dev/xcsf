@@ -63,7 +63,7 @@ get_workspace_size(const struct Layer *l)
  * @param [in] l The layer to be allocated memory.
  */
 static void
-malloc_guard(struct Layer *l)
+malloc_guard(const struct Layer *l)
 {
     if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX || l->n_outputs < 1 ||
         l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
