@@ -59,11 +59,11 @@ get_workspace_size(const struct Layer *l)
 }
 
 /**
- * @brief Allocate memory used by a convolutional layer.
+ * @brief Check memory allocation is within bounds.
  * @param [in] l The layer to be allocated memory.
  */
 static void
-malloc_layer_arrays(struct Layer *l)
+malloc_guard(struct Layer *l)
 {
     if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX || l->n_outputs < 1 ||
         l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
@@ -75,16 +75,46 @@ malloc_layer_arrays(struct Layer *l)
         l->workspace_size = 1;
         exit(EXIT_FAILURE);
     }
+}
+
+/**
+ * @brief Allocate memory used by a convolutional layer.
+ * @param [in] l The layer to be allocated memory.
+ */
+static void
+malloc_layer_arrays(struct Layer *l)
+{
+    malloc_guard(l);
     l->delta = calloc(l->n_outputs, sizeof(double));
     l->state = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
     l->weights = malloc(sizeof(double) * l->n_weights);
-    l->biases = malloc(sizeof(double) * l->n_biases);
-    l->bias_updates = calloc(l->n_biases, sizeof(double));
     l->weight_updates = calloc(l->n_weights, sizeof(double));
     l->weight_active = malloc(sizeof(bool) * l->n_weights);
+    l->biases = malloc(sizeof(double) * l->n_biases);
+    l->bias_updates = calloc(l->n_biases, sizeof(double));
     l->temp = malloc(l->workspace_size);
     l->mu = malloc(sizeof(double) * N_MU);
+}
+
+/**
+ * @brief Resize memory used by a convolutional layer.
+ * @param [in] l The layer to be reallocated memory.
+ */
+static void
+realloc_layer_arrays(struct Layer *l)
+{
+    malloc_guard(l);
+    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
+    l->state = realloc(l->state, sizeof(double) * l->n_outputs);
+    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
+    l->weights = realloc(l->weights, sizeof(double) * l->n_weights);
+    l->weight_updates =
+        realloc(l->weight_updates, sizeof(double) * l->n_weights);
+    l->weight_active = realloc(l->weight_active, sizeof(bool) * l->n_weights);
+    l->biases = realloc(l->biases, sizeof(double) * l->n_biases);
+    l->bias_updates = realloc(l->bias_updates, sizeof(double) * l->n_biases);
+    l->temp = realloc(l->temp, l->workspace_size);
 }
 
 /**
@@ -342,25 +372,18 @@ neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev)
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->n_inputs = l->width * l->height * l->channels;
     l->n_weights = l->channels * l->n_filters * l->size * l->size;
-    l->weights = realloc(l->weights, sizeof(double) * l->n_weights);
-    l->weight_updates =
-        realloc(l->weight_updates, sizeof(double) * l->n_weights);
-    l->weight_active = realloc(l->weight_active, sizeof(bool) * l->n_weights);
+    l->workspace_size = get_workspace_size(l);
+    realloc_layer_arrays(l);
     for (int i = old_n_weights; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 0.1);
         l->weight_updates[i] = 0;
         l->weight_active[i] = true;
     }
-    l->state = realloc(l->state, sizeof(double) * l->n_outputs);
-    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
-    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
     for (int i = old_n_outputs; i < l->n_outputs; ++i) {
         l->delta[i] = 0;
         l->state[i] = 0;
         l->output[i] = 0;
     }
-    l->workspace_size = get_workspace_size(l);
-    l->temp = realloc(l->temp, l->workspace_size);
     layer_calc_n_active(l);
 }
 
@@ -397,43 +420,30 @@ neural_layer_convolutional_mutate_filter(const struct Layer *l, const double mu)
 static void
 neural_layer_convolutional_add_filters(struct Layer *l, const int N)
 {
-    const int n_filters = l->n_filters + N;
-    const int n_weights = l->channels * n_filters * l->size * l->size;
-    const int n_outputs = l->out_h * l->out_w * n_filters;
-    l->state = realloc(l->state, sizeof(double) * n_outputs);
-    l->output = realloc(l->output, sizeof(double) * n_outputs);
-    l->delta = realloc(l->delta, sizeof(double) * n_outputs);
-    l->weights = realloc(l->weights, sizeof(double) * n_weights);
-    l->weight_active = realloc(l->weight_active, sizeof(bool) * n_weights);
-    l->weight_updates = realloc(l->weight_updates, sizeof(double) * n_weights);
-    l->biases = realloc(l->biases, sizeof(double) * n_filters);
-    l->bias_updates = realloc(l->bias_updates, sizeof(double) * n_filters);
-    if (N > 0) {
-        for (int i = l->n_weights; i < n_weights; ++i) {
-            if (l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
-                l->weights[i] = 0;
-                l->weight_active[i] = false;
-            } else {
-                l->weights[i] = rand_normal(0, 0.1);
-                l->weight_active[i] = true;
-            }
-            l->weight_updates[i] = 0;
-        }
-        for (int i = l->n_filters; i < n_filters; ++i) {
-            l->biases[i] = 0;
-            l->bias_updates[i] = 0;
-            l->output[i] = 0;
-            l->state[i] = 0;
-            l->delta[i] = 0;
-        }
-    }
-    l->n_weights = n_weights;
-    l->n_filters = n_filters;
-    l->n_biases = n_filters;
-    l->out_c = n_filters;
-    l->n_outputs = n_outputs;
+    const int old_n_biases = l->n_biases;
+    const int old_n_weights = l->n_weights;
+    const int old_n_outputs = l->n_outputs;
+    l->n_filters += N;
+    l->n_biases = l->n_filters;
+    l->out_c = l->n_filters;
+    l->n_weights = l->channels * l->n_filters * l->size * l->size;
+    l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->workspace_size = get_workspace_size(l);
-    l->temp = realloc(l->temp, l->workspace_size);
+    realloc_layer_arrays(l);
+    for (int i = old_n_weights; i < l->n_weights; ++i) {
+        l->weights[i] = rand_normal(0, 0.1);
+        l->weight_active[i] = true;
+        l->weight_updates[i] = 0;
+    }
+    for (int i = old_n_biases; i < l->n_biases; ++i) {
+        l->biases[i] = 0;
+        l->bias_updates[i] = 0;
+    }
+    for (int i = old_n_outputs; i < l->n_outputs; ++i) {
+        l->output[i] = 0;
+        l->state[i] = 0;
+        l->delta[i] = 0;
+    }
     layer_calc_n_active(l);
 }
 
