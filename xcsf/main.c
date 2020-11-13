@@ -52,7 +52,7 @@ main(int argc, char **argv)
         const size_t s = xcsf_load(xcsf, argv[4]);
         printf("XCSF loaded: %d elements\n", (int) s);
     } else { // new experiment
-        clset_pop_init(xcsf);
+        clset_pset_init(xcsf);
     }
     pa_init(xcsf); // initialise prediction array
     param_print(xcsf); // print parameters used

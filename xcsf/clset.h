@@ -41,10 +41,10 @@ double
 clset_total_fit(const struct Set *set);
 
 size_t
-clset_pop_load(struct XCSF *xcsf, FILE *fp);
+clset_pset_load(struct XCSF *xcsf, FILE *fp);
 
 size_t
-clset_pop_save(const struct XCSF *xcsf, FILE *fp);
+clset_pset_save(const struct XCSF *xcsf, FILE *fp);
 
 void
 clset_action(struct XCSF *xcsf, const int action);
@@ -65,10 +65,10 @@ void
 clset_match(struct XCSF *xcsf, const double *x);
 
 void
-clset_pop_enforce_limit(struct XCSF *xcsf);
+clset_pset_enforce_limit(struct XCSF *xcsf);
 
 void
-clset_pop_init(struct XCSF *xcsf);
+clset_pset_init(struct XCSF *xcsf);
 
 void
 clset_print(const struct XCSF *xcsf, const struct Set *set,

@@ -219,8 +219,8 @@ def run_experiment(env):
         steps[i] /= float(xcs.PERF_TRIALS)
         error[i] /= float(xcs.PERF_TRIALS)
         trials[i] = (i + 1) * xcs.PERF_TRIALS
-        psize[i] = xcs.pop_size() # current population size
-        msize[i] = xcs.msetsize() # avg match set size
+        psize[i] = xcs.pset_size() # current population size
+        msize[i] = xcs.mset_size() # avg match set size
         # update status
         status = ('trials=%d steps=%.5f error=%.5f psize=%d msize=%.1f' %
                 (trials[i], steps[i], error[i], psize[i], msize[i]))

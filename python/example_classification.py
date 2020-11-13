@@ -153,8 +153,8 @@ for i in range(N):
     # train
     train_err[i] = xcs.fit(X_train, y_train, True) # True = shuffle
     trials[i] = xcs.time() # number of trials so far
-    psize[i] = xcs.pop_size() # current population size
-    msize[i] = xcs.msetsize() # avg match set size
+    psize[i] = xcs.pset_size() # current population size
+    msize[i] = xcs.mset_size() # avg match set size
     # test
     test_err[i] = xcs.score(X_test, y_test)
     # update status

@@ -38,8 +38,8 @@ xcsf_init(struct XCSF *xcsf)
 {
     xcsf->time = 0;
     xcsf->error = xcsf->E0;
-    xcsf->msetsize = 0;
-    xcsf->asetsize = 0;
+    xcsf->mset_size = 0;
+    xcsf->aset_size = 0;
     xcsf->mfrac = 0;
     clset_init(&xcsf->pset);
     clset_init(&xcsf->prev_pset);
@@ -54,8 +54,8 @@ xcsf_free(struct XCSF *xcsf)
 {
     xcsf->time = 0;
     xcsf->error = xcsf->E0;
-    xcsf->msetsize = 0;
-    xcsf->asetsize = 0;
+    xcsf->mset_size = 0;
+    xcsf->aset_size = 0;
     xcsf->mfrac = 0;
     clset_kill(xcsf, &xcsf->pset);
     clset_kill(xcsf, &xcsf->prev_pset);
@@ -69,8 +69,8 @@ xcsf_free(struct XCSF *xcsf)
  * @param [in] print_pred Whether to print prediction structures.
  */
 void
-xcsf_print_pop(const struct XCSF *xcsf, const bool print_cond,
-               const bool print_act, const bool print_pred)
+xcsf_print_pset(const struct XCSF *xcsf, const bool print_cond,
+                const bool print_act, const bool print_pred)
 {
     clset_print(xcsf, &xcsf->pset, print_cond, print_act, print_pred);
 }
@@ -94,7 +94,7 @@ xcsf_save(const struct XCSF *xcsf, const char *filename)
     s += fwrite(&VERSION_MINOR, sizeof(int), 1, fp);
     s += fwrite(&VERSION_BUILD, sizeof(int), 1, fp);
     s += param_save(xcsf, fp);
-    s += clset_pop_save(xcsf, fp);
+    s += clset_pset_save(xcsf, fp);
     fclose(fp);
     return s;
 }
@@ -134,7 +134,7 @@ xcsf_load(struct XCSF *xcsf, const char *filename)
         exit(EXIT_FAILURE);
     }
     s += param_load(xcsf, fp);
-    s += clset_pop_load(xcsf, fp);
+    s += clset_pset_load(xcsf, fp);
     fclose(fp);
     return s;
 }
@@ -189,7 +189,7 @@ xcsf_ae_to_classifier(struct XCSF *xcsf, const int y_dim, const int n_del)
  * @param [in] xcsf The XCSF data structure.
  */
 void
-xcsf_store_pop(struct XCSF *xcsf)
+xcsf_store_pset(struct XCSF *xcsf)
 {
     clset_kill(xcsf, &xcsf->prev_pset);
     const struct Clist *iter = xcsf->pset.list;
@@ -207,10 +207,10 @@ xcsf_store_pop(struct XCSF *xcsf)
  * @param [in] xcsf The XCSF data structure.
  */
 void
-xcsf_retrieve_pop(struct XCSF *xcsf)
+xcsf_retrieve_pset(struct XCSF *xcsf)
 {
     if (xcsf->prev_pset.size < 1) {
-        printf("warning: xcsf_retrieve_pop() no previous population found\n");
+        printf("warning: xcsf_retrieve_pset() no previous population found\n");
         return;
     }
     clset_kill(xcsf, &xcsf->pset);

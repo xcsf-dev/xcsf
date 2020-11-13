@@ -314,8 +314,8 @@ param_init(struct XCSF *xcsf, const int x_dim, const int y_dim,
 {
     xcsf->time = 0;
     xcsf->error = xcsf->E0;
-    xcsf->msetsize = 0;
-    xcsf->asetsize = 0;
+    xcsf->mset_size = 0;
+    xcsf->aset_size = 0;
     xcsf->mfrac = 0;
     xcsf->ea = malloc(sizeof(struct ArgsEA));
     xcsf->act = malloc(sizeof(struct ArgsAct));
@@ -389,8 +389,8 @@ param_save(const struct XCSF *xcsf, FILE *fp)
     size_t s = 0;
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
     s += fwrite(&xcsf->error, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->msetsize, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->asetsize, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->mset_size, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->aset_size, sizeof(double), 1, fp);
     s += fwrite(&xcsf->mfrac, sizeof(double), 1, fp);
     s += fwrite(&xcsf->explore, sizeof(bool), 1, fp);
     s += fwrite(&xcsf->x_dim, sizeof(int), 1, fp);
@@ -419,8 +419,8 @@ param_load(struct XCSF *xcsf, FILE *fp)
     size_t s = 0;
     s += fread(&xcsf->time, sizeof(int), 1, fp);
     s += fread(&xcsf->error, sizeof(double), 1, fp);
-    s += fread(&xcsf->msetsize, sizeof(double), 1, fp);
-    s += fread(&xcsf->asetsize, sizeof(double), 1, fp);
+    s += fread(&xcsf->mset_size, sizeof(double), 1, fp);
+    s += fread(&xcsf->aset_size, sizeof(double), 1, fp);
     s += fread(&xcsf->mfrac, sizeof(double), 1, fp);
     s += fread(&xcsf->explore, sizeof(bool), 1, fp);
     s += fread(&xcsf->x_dim, sizeof(int), 1, fp);

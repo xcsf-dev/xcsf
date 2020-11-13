@@ -228,7 +228,7 @@ ea(struct XCSF *xcsf, const struct Set *set)
         ea_add(xcsf, set, c1p, c2p, c1, cmod, m1mod);
         ea_add(xcsf, set, c2p, c1p, c2, cmod, m2mod);
     }
-    clset_pop_enforce_limit(xcsf);
+    clset_pset_enforce_limit(xcsf);
 }
 
 /**

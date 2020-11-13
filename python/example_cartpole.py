@@ -183,7 +183,7 @@ for ep in range(MAX_EPISODES):
     scores.append(ep_score)
     mean_score = np.mean(scores)
     print('episodes=%d steps=%d score=%.2f epsilon=%.5f error=%.5f msize=%.2f' %
-          (ep, total_steps, mean_score, epsilon, xcs.error(), xcs.msetsize()))
+          (ep, total_steps, mean_score, epsilon, xcs.error(), xcs.mset_size()))
     # is the problem solved?
     if ep > N and mean_score > env.spec.reward_threshold:
         print('solved after %d episodes: mean score %.2f > %.2f' %

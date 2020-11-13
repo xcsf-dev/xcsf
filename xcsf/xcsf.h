@@ -97,8 +97,8 @@ struct XCSF {
     struct EnvVtbl const *env_vptr; //!< Functions acting on environments
     void *env; //!< Environment structure (for built-in problems)
     double error; //!< Average system error
-    double msetsize; //!< Average match set size
-    double asetsize; //!< Average action set size
+    double mset_size; //!< Average match set size
+    double aset_size; //!< Average action set size
     double mfrac; //!< Generalisation measure
     double prev_reward; //!< Reward from previous step in a multi-step trial
     double prev_pred; //!< Payoff prediction made on the previous step
@@ -161,8 +161,8 @@ void
 xcsf_init(struct XCSF *xcsf);
 
 void
-xcsf_print_pop(const struct XCSF *xcsf, const bool print_cond,
-               const bool print_act, const bool print_pred);
+xcsf_print_pset(const struct XCSF *xcsf, const bool print_cond,
+                const bool print_act, const bool print_pred);
 
 void
 xcsf_ae_to_classifier(struct XCSF *xcsf, const int y_dim, const int n_del);
@@ -171,7 +171,7 @@ void
 xcsf_pred_expand(const struct XCSF *xcsf);
 
 void
-xcsf_retrieve_pop(struct XCSF *xcsf);
+xcsf_retrieve_pset(struct XCSF *xcsf);
 
 void
-xcsf_store_pop(struct XCSF *xcsf);
+xcsf_store_pset(struct XCSF *xcsf);

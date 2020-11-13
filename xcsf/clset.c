@@ -34,8 +34,8 @@
  * @param [out] delprev A pointer to the rule previous to the one being deleted.
  */
 static void
-clset_pop_never_match(const struct XCSF *xcsf, struct Clist **del,
-                      struct Clist **delprev)
+clset_pset_never_match(const struct XCSF *xcsf, struct Clist **del,
+                       struct Clist **delprev)
 {
     struct Clist *prev = NULL;
     struct Clist *iter = xcsf->pset.list;
@@ -61,8 +61,8 @@ clset_pop_never_match(const struct XCSF *xcsf, struct Clist **del,
  * @param [out] delprev A pointer to the rule previous to the one being deleted.
  */
 static void
-clset_pop_roulette(const struct XCSF *xcsf, struct Clist **del,
-                   struct Clist **delprev)
+clset_pset_roulette(const struct XCSF *xcsf, struct Clist **del,
+                    struct Clist **delprev)
 {
     const double avg_fit = clset_total_fit(&xcsf->pset) / xcsf->pset.num;
     double total_vote = 0;
@@ -100,15 +100,15 @@ clset_pop_roulette(const struct XCSF *xcsf, struct Clist **del,
  * @param [in] xcsf The XCSF data structure.
  */
 static void
-clset_pop_del(struct XCSF *xcsf)
+clset_pset_del(struct XCSF *xcsf)
 {
     struct Clist *del = NULL;
     struct Clist *delprev = NULL;
     // select any rules that never match
-    clset_pop_never_match(xcsf, &del, &delprev);
+    clset_pset_never_match(xcsf, &del, &delprev);
     // if none found, select a rule using roulette wheel
     if (del == NULL) {
-        clset_pop_roulette(xcsf, &del, &delprev);
+        clset_pset_roulette(xcsf, &del, &delprev);
     }
     // decrement numerosity
     --(del->cl->num);
@@ -174,7 +174,7 @@ clset_cover(struct XCSF *xcsf, const double *x)
         }
         // enforce population size
         const int prev_psize = xcsf->pset.size;
-        clset_pop_enforce_limit(xcsf);
+        clset_pset_enforce_limit(xcsf);
         // if a macro classifier was deleted,
         // remove any deleted rules from the match set
         if (prev_psize > xcsf->pset.size) {
@@ -281,7 +281,7 @@ clset_total_time(const struct Set *set)
  * @param [in] xcsf The XCSF data structure.
  */
 void
-clset_pop_init(struct XCSF *xcsf)
+clset_pset_init(struct XCSF *xcsf)
 {
     if (xcsf->POP_INIT) {
         while (xcsf->pset.num < xcsf->POP_SIZE) {
@@ -310,10 +310,10 @@ clset_init(struct Set *set)
  * @param [in] xcsf The XCSF data structure.
  */
 void
-clset_pop_enforce_limit(struct XCSF *xcsf)
+clset_pset_enforce_limit(struct XCSF *xcsf)
 {
     while (xcsf->pset.num > xcsf->POP_SIZE) {
-        clset_pop_del(xcsf);
+        clset_pset_del(xcsf);
     }
 }
 
@@ -364,7 +364,7 @@ clset_match(struct XCSF *xcsf, const double *x)
         clset_cover(xcsf, x);
     }
     // update statistics
-    xcsf->msetsize += (xcsf->mset.size - xcsf->msetsize) * xcsf->BETA;
+    xcsf->mset_size += (xcsf->mset.size - xcsf->mset_size) * xcsf->BETA;
     xcsf->mfrac += (clset_mfrac(xcsf) - xcsf->mfrac) * xcsf->BETA;
 }
 
@@ -384,7 +384,7 @@ clset_action(struct XCSF *xcsf, const int action)
         iter = iter->next;
     }
     // update statistics
-    xcsf->asetsize += (xcsf->aset.size - xcsf->asetsize) * xcsf->BETA;
+    xcsf->aset_size += (xcsf->aset.size - xcsf->aset_size) * xcsf->BETA;
 }
 
 /**
@@ -581,7 +581,7 @@ clset_kill(const struct XCSF *xcsf, struct Set *set)
  * @return The number of elements written.
  */
 size_t
-clset_pop_save(const struct XCSF *xcsf, FILE *fp)
+clset_pset_save(const struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&xcsf->pset.size, sizeof(int), 1, fp);
@@ -601,7 +601,7 @@ clset_pop_save(const struct XCSF *xcsf, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-clset_pop_load(struct XCSF *xcsf, FILE *fp)
+clset_pset_load(struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
     int size = 0;

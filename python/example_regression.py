@@ -156,8 +156,8 @@ for i in range(N):
     # train
     train_mse[i] = xcs.fit(X_train, y_train, True) # True = shuffle
     trials[i] = xcs.time() # number of trials so far
-    psize[i] = xcs.pop_size() # current population size
-    msize[i] = xcs.msetsize() # avg match set size
+    psize[i] = xcs.pset_size() # current population size
+    msize[i] = xcs.mset_size() # avg match set size
     # validate
     val_mse[i] = xcs.score(X_val, y_val)
     if i > VAL_PERIOD: # simple moving average of mean validation error

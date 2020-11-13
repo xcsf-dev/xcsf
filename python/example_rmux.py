@@ -143,8 +143,8 @@ def run_experiment():
         performance[i] /= float(PERF_TRIALS)
         error[i] /= PERF_TRIALS
         trials[i] = xcs.time() # number of learning updates performed
-        psize[i] = xcs.pop_size() # current population size
-        msize[i] = xcs.msetsize() # avg match set size
+        psize[i] = xcs.pset_size() # current population size
+        msize[i] = xcs.mset_size() # avg match set size
         # update status
         status = ('trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f' %
                 (trials[i], performance[i], error[i], psize[i], msize[i]))

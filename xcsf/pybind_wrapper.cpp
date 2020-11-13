@@ -165,7 +165,7 @@ class XCS
     void
     store(void)
     {
-        xcsf_store_pop(&xcs);
+        xcsf_store_pset(&xcs);
     }
 
     /**
@@ -174,7 +174,7 @@ class XCS
     void
     retrieve(void)
     {
-        xcsf_retrieve_pop(&xcs);
+        xcsf_retrieve_pset(&xcs);
     }
 
     /**
@@ -214,10 +214,10 @@ class XCS
      * @param [in] print_pred Whether to print the prediction.
      */
     void
-    print_pop(const bool print_cond, const bool print_act,
-              const bool print_pred)
+    print_pset(const bool print_cond, const bool print_act,
+               const bool print_pred)
     {
-        xcsf_print_pop(&xcs, print_cond, print_act, print_pred);
+        xcsf_print_pset(&xcs, print_cond, print_act, print_pred);
     }
 
     /* Reinforcement learning */
@@ -244,7 +244,7 @@ class XCS
     init_trial(void)
     {
         if (xcs.time == 0) {
-            clset_pop_init(&xcs);
+            clset_pset_init(&xcs);
         }
         xcs_rl_init_trial(&xcs);
     }
@@ -348,7 +348,7 @@ class XCS
         train_data->y = (double *) buf_y.ptr;
         // first execution
         if (xcs.time == 0) {
-            clset_pop_init(&xcs);
+            clset_pset_init(&xcs);
         }
         // execute
         return xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
@@ -403,7 +403,7 @@ class XCS
         test_data->y = (double *) buf_test_y.ptr;
         // first execution
         if (xcs.time == 0) {
-            clset_pop_init(&xcs);
+            clset_pset_init(&xcs);
         }
         // execute
         return xcs_supervised_fit(&xcs, train_data, test_data, shuffle);
@@ -597,13 +597,13 @@ class XCS
     }
 
     int
-    get_pop_size(void)
+    get_pset_size(void)
     {
         return xcs.pset.size;
     }
 
     int
-    get_pop_num(void)
+    get_pset_num(void)
     {
         return xcs.pset.num;
     }
@@ -633,69 +633,69 @@ class XCS
     }
 
     double
-    get_pop_mean_cond_size(void)
+    get_pset_mean_cond_size(void)
     {
         return clset_mean_cond_size(&xcs, &xcs.pset);
     }
 
     double
-    get_pop_mean_pred_size(void)
+    get_pset_mean_pred_size(void)
     {
         return clset_mean_pred_size(&xcs, &xcs.pset);
     }
 
     double
-    get_pop_mean_pred_eta(const int layer)
+    get_pset_mean_pred_eta(const int layer)
     {
         return clset_mean_pred_eta(&xcs, &xcs.pset, layer);
     }
 
     double
-    get_pop_mean_pred_neurons(const int layer)
+    get_pset_mean_pred_neurons(const int layer)
     {
         return clset_mean_pred_neurons(&xcs, &xcs.pset, layer);
     }
 
     double
-    get_pop_mean_pred_connections(const int layer)
+    get_pset_mean_pred_connections(const int layer)
     {
         return clset_mean_pred_connections(&xcs, &xcs.pset, layer);
     }
 
     double
-    get_pop_mean_pred_layers(void)
+    get_pset_mean_pred_layers(void)
     {
         return clset_mean_pred_layers(&xcs, &xcs.pset);
     }
 
     double
-    get_pop_mean_cond_connections(const int layer)
+    get_pset_mean_cond_connections(const int layer)
     {
         return clset_mean_cond_connections(&xcs, &xcs.pset, layer);
     }
 
     double
-    get_pop_mean_cond_neurons(const int layer)
+    get_pset_mean_cond_neurons(const int layer)
     {
         return clset_mean_cond_neurons(&xcs, &xcs.pset, layer);
     }
 
     double
-    get_pop_mean_cond_layers(void)
+    get_pset_mean_cond_layers(void)
     {
         return clset_mean_cond_layers(&xcs, &xcs.pset);
     }
 
     double
-    get_msetsize(void)
+    get_mset_size(void)
     {
-        return xcs.msetsize;
+        return xcs.mset_size;
     }
 
     double
-    get_asetsize(void)
+    get_aset_size(void)
     {
-        return xcs.asetsize;
+        return xcs.aset_size;
     }
 
     double
@@ -1469,24 +1469,24 @@ PYBIND11_MODULE(xcsf, m)
                       &XCS::set_ea_subsumption)
         .def_property("EA_PRED_RESET", &XCS::get_ea_pred_reset,
                       &XCS::set_ea_pred_reset)
-        .def("pop_size", &XCS::get_pop_size)
-        .def("pop_num", &XCS::get_pop_num)
         .def("time", &XCS::get_time)
         .def("x_dim", &XCS::get_x_dim)
         .def("y_dim", &XCS::get_y_dim)
         .def("n_actions", &XCS::get_n_actions)
-        .def("pop_mean_cond_size", &XCS::get_pop_mean_cond_size)
-        .def("pop_mean_pred_size", &XCS::get_pop_mean_pred_size)
-        .def("pop_mean_pred_eta", &XCS::get_pop_mean_pred_eta)
-        .def("pop_mean_pred_neurons", &XCS::get_pop_mean_pred_neurons)
-        .def("pop_mean_pred_layers", &XCS::get_pop_mean_pred_layers)
-        .def("pop_mean_pred_connections", &XCS::get_pop_mean_pred_connections)
-        .def("pop_mean_cond_neurons", &XCS::get_pop_mean_cond_neurons)
-        .def("pop_mean_cond_layers", &XCS::get_pop_mean_cond_layers)
-        .def("pop_mean_cond_connections", &XCS::get_pop_mean_cond_connections)
-        .def("print_pop", &XCS::print_pop)
-        .def("msetsize", &XCS::get_msetsize)
-        .def("asetsize", &XCS::get_asetsize)
+        .def("pset_size", &XCS::get_pset_size)
+        .def("pset_num", &XCS::get_pset_num)
+        .def("pset_mean_cond_size", &XCS::get_pset_mean_cond_size)
+        .def("pset_mean_pred_size", &XCS::get_pset_mean_pred_size)
+        .def("pset_mean_pred_eta", &XCS::get_pset_mean_pred_eta)
+        .def("pset_mean_pred_neurons", &XCS::get_pset_mean_pred_neurons)
+        .def("pset_mean_pred_layers", &XCS::get_pset_mean_pred_layers)
+        .def("pset_mean_pred_connections", &XCS::get_pset_mean_pred_connections)
+        .def("pset_mean_cond_neurons", &XCS::get_pset_mean_cond_neurons)
+        .def("pset_mean_cond_layers", &XCS::get_pset_mean_cond_layers)
+        .def("pset_mean_cond_connections", &XCS::get_pset_mean_cond_connections)
+        .def("mset_size", &XCS::get_mset_size)
+        .def("aset_size", &XCS::get_aset_size)
+        .def("print_pset", &XCS::print_pset)
         .def("mfrac", &XCS::get_mfrac)
         .def("print_params", &XCS::print_params)
         .def("pred_expand", &XCS::pred_expand)

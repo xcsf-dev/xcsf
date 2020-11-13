@@ -71,9 +71,9 @@ within python by using the following properties:
 # General XCSF
 xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use 
 xcs.POP_INIT = True # whether to seed the population with random rules
+xcs.POP_SIZE = 200 # maximum population size
 xcs.MAX_TRIALS = 1000 # number of trials to execute for each xcs.fit()
 xcs.PERF_TRIALS = 1000 # number of trials to avg performance
-xcs.POP_SIZE = 200 # maximum population size
 xcs.LOSS_FUNC = 'mae' # mean absolute error
 xcs.LOSS_FUNC = 'mse' # mean squared error
 xcs.LOSS_FUNC = 'rmse' # root mean squared error
@@ -523,7 +523,7 @@ To print the current XCSF population:
 print_condition = True # whether to print the classifier conditions
 print_action = True # whether to print the classifier actions
 print_prediction = True # whether to print the classifier predictions
-xcs.print_pop(print_condition, print_action, print_prediction)
+xcs.print_pset(print_condition, print_action, print_prediction)
 ```
 
 *******************************************************************************
@@ -535,27 +535,27 @@ directly accessible via the property. Specific getter functions:
 
 ```python
 # General
-xcs.pop_size() # returns the mean population size
-xcs.pop_num() # returns the mean population numerosity
-xcs.msetsize() # returns the mean match set size
-xcs.asetsize() # returns the mean action set size
+xcs.pset_size() # returns the mean population size
+xcs.pset_num() # returns the mean population numerosity
+xcs.mset_size() # returns the mean match set size
+xcs.aset_size() # returns the mean action set size
 xcs.mfrac() # returns the mean fraction of inputs matched by the best rule
 xcs.time() # returns the current EA time
 xcs.version_major() # returns the XCSF major version number
 xcs.version_minor() # returns the XCSF minor version number
 xcs.version_build() # returns the XCSF build version number
-xcs.pop_mean_cond_size() # returns the mean condition size
-xcs.pop_mean_pred_size() # returns the mean prediction size
+xcs.pset_mean_cond_size() # returns the mean condition size
+xcs.pset_mean_pred_size() # returns the mean prediction size
 
 # Neural network specific - population set averages
 # 'layer' argument is an integer specifying the location of a layer: first layer=0
-xcs.pop_mean_pred_eta(layer) # returns the mean eta for a prediction layer
-xcs.pop_mean_pred_neurons(layer) # returns the mean number of neurons for a prediction layer
-xcs.pop_mean_pred_layers() # returns the mean number of layers in the prediction networks
-xcs.pop_mean_pred_connections(layer) # returns the number of active connections for a prediction layer
-xcs.pop_mean_cond_neurons(layer) # returns the mean number of neurons for a condition layer
-xcs.pop_mean_cond_layers() # returns the mean number of layers in the condition networks
-xcs.pop_mean_cond_connections(layer) # returns the number of active connections for a condition layer
+xcs.pset_mean_pred_eta(layer) # returns the mean eta for a prediction layer
+xcs.pset_mean_pred_neurons(layer) # returns the mean number of neurons for a prediction layer
+xcs.pset_mean_pred_layers() # returns the mean number of layers in the prediction networks
+xcs.pset_mean_pred_connections(layer) # returns the number of active connections for a prediction layer
+xcs.pset_mean_cond_neurons(layer) # returns the mean number of neurons for a condition layer
+xcs.pset_mean_cond_layers() # returns the mean number of layers in the condition networks
+xcs.pset_mean_cond_connections(layer) # returns the number of active connections for a condition layer
 ```
 
 *******************************************************************************
