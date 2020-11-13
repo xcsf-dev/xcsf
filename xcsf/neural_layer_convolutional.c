@@ -69,10 +69,6 @@ malloc_guard(struct Layer *l)
         l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
         l->n_weights > N_WEIGHTS_MAX || l->workspace_size < 1) {
         printf("neural_layer_convolutional: malloc() invalid size\n");
-        l->n_biases = 1;
-        l->n_outputs = 1;
-        l->n_weights = 1;
-        l->workspace_size = 1;
         exit(EXIT_FAILURE);
     }
 }
