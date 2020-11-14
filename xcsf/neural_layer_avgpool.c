@@ -135,13 +135,15 @@ neural_layer_avgpool_forward(const struct Layer *l, const struct Net *net,
 /**
  * @brief Backward propagates an average pooling layer.
  * @param [in] l The layer to backward propagate.
+ * @param [in] net Network containing the layer.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's error.
  */
 void
-neural_layer_avgpool_backward(const struct Layer *l, const double *input,
-                              double *delta)
+neural_layer_avgpool_backward(const struct Layer *l, const struct Net *net,
+                              const double *input, double *delta)
 {
+    (void) net;
     (void) input;
     if (delta) {
         const int n = l->height * l->width;

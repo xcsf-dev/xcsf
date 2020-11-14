@@ -146,7 +146,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
                 }
             }
         }
-        neural_layer_convolutional_backward(l, x, 0);
+        neural_layer_convolutional_backward(l, &net, x, 0);
         neural_layer_convolutional_update(l);
     }
     neural_layer_convolutional_forward(l, &net, x);

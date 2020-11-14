@@ -176,8 +176,8 @@ struct LayerVtbl {
     void (*layer_impl_rand)(struct Layer *l);
     void (*layer_impl_print)(const struct Layer *l, const bool print_weights);
     void (*layer_impl_update)(const struct Layer *l);
-    void (*layer_impl_backward)(const struct Layer *l, const double *input,
-                                double *delta);
+    void (*layer_impl_backward)(const struct Layer *l, const struct Net *net,
+                                const double *input, double *delta);
     void (*layer_impl_forward)(const struct Layer *l, const struct Net *net,
                                const double *input);
     double *(*layer_impl_output)(const struct Layer *l);
@@ -235,13 +235,15 @@ layer_forward(const struct Layer *l, const struct Net *net, const double *input)
 /**
  * @brief Backward propagates the error through a layer.
  * @param [in] l The layer to be backward propagated.
+ * @param [in] net Network containing the layer.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's delta.
  */
 static inline void
-layer_backward(const struct Layer *l, const double *input, double *delta)
+layer_backward(const struct Layer *l, const struct Net *net,
+               const double *input, double *delta)
 {
-    (*l->layer_vptr->layer_impl_backward)(l, input, delta);
+    (*l->layer_vptr->layer_impl_backward)(l, net, input, delta);
 }
 
 /**

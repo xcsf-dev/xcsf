@@ -193,13 +193,15 @@ neural_layer_connected_forward(const struct Layer *l, const struct Net *net,
 /**
  * @brief Backward propagates a connected layer.
  * @param [in] l The layer to backward propagate.
+ * @param [in] net Network containing the layer.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's error.
  */
 void
-neural_layer_connected_backward(const struct Layer *l, const double *input,
-                                double *delta)
+neural_layer_connected_backward(const struct Layer *l, const struct Net *net,
+                                const double *input, double *delta)
 {
+    (void) net;
     neural_gradient_array(l->state, l->delta, l->n_outputs, l->function);
     if (l->options & LAYER_SGD_WEIGHTS) {
         const int m = l->n_outputs;

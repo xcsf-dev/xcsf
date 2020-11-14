@@ -105,7 +105,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     for (int i = 0; i < l->n_outputs; ++i) {
         l->delta[i] = y[i] - l->output[i];
     }
-    neural_layer_connected_backward(l, x, 0);
+    neural_layer_connected_backward(l, &net, x, 0);
     neural_layer_connected_update(l);
     double weight_error = 0;
     for (int i = 0; i < l->n_weights; ++i) {
@@ -131,7 +131,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
         for (int j = 0; j < l->n_outputs; ++j) {
             l->delta[j] = y[j] - l->output[j];
         }
-        neural_layer_connected_backward(l, x, 0);
+        neural_layer_connected_backward(l, &net, x, 0);
         neural_layer_connected_update(l);
     }
     neural_layer_connected_forward(l, &net, x);

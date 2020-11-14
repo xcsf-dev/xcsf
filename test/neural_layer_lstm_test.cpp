@@ -105,7 +105,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     for (int i = 0; i < l->n_outputs; ++i) {
         l->delta[i] = y[i] - l->output[i];
     }
-    neural_layer_lstm_backward(l, x, 0);
+    neural_layer_lstm_backward(l, &net, x, 0);
     neural_layer_lstm_update(l);
     // forward pass
     neural_layer_lstm_forward(l, &net, x);
@@ -116,7 +116,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
         for (int j = 0; j < l->n_outputs; ++j) {
             l->delta[j] = y[j] - l->output[j];
         }
-        neural_layer_lstm_backward(l, x, 0);
+        neural_layer_lstm_backward(l, &net, x, 0);
         neural_layer_lstm_update(l);
     }
     neural_layer_lstm_forward(l, &net, x);

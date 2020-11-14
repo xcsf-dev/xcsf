@@ -39,8 +39,8 @@ neural_layer_noise_forward(const struct Layer *l, const struct Net *net,
                            const double *input);
 
 void
-neural_layer_noise_backward(const struct Layer *l, const double *input,
-                            double *delta);
+neural_layer_noise_backward(const struct Layer *l, const struct Net *net,
+                            const double *input, double *delta);
 
 void
 neural_layer_noise_update(const struct Layer *l);

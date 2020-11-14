@@ -441,12 +441,13 @@ neural_layer_lstm_forward(const struct Layer *l, const struct Net *net,
 /**
  * @brief Backward propagates an LSTM layer.
  * @param [in] l The layer to backward propagate.
+ * @param [in] net Network containing the layer.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's error.
  */
 void
-neural_layer_lstm_backward(const struct Layer *l, const double *input,
-                           double *delta)
+neural_layer_lstm_backward(const struct Layer *l, const struct Net *net,
+                           const double *input, double *delta)
 {
     reset_layer_deltas(l);
     memcpy(l->temp3, l->delta, sizeof(double) * l->n_outputs);
@@ -461,30 +462,30 @@ neural_layer_lstm_backward(const struct Layer *l, const double *input,
     blas_mul(l->n_outputs, l->temp3, 1, l->temp, 1);
     neural_gradient_array(l->o, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wo->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(l->wo, l->prev_state, 0);
+    layer_backward(l->wo, net, l->prev_state, 0);
     memcpy(l->uo->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(l->uo, input, delta);
+    layer_backward(l->uo, net, input, delta);
     memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->i, 1, l->temp, 1);
     neural_gradient_array(l->g, l->temp, l->n_outputs, l->function);
     memcpy(l->wg->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(l->wg, l->prev_state, 0);
+    layer_backward(l->wg, net, l->prev_state, 0);
     memcpy(l->ug->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(l->ug, input, delta);
+    layer_backward(l->ug, net, input, delta);
     memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->g, 1, l->temp, 1);
     neural_gradient_array(l->i, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wi->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(l->wi, l->prev_state, 0);
+    layer_backward(l->wi, net, l->prev_state, 0);
     memcpy(l->ui->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(l->ui, input, delta);
+    layer_backward(l->ui, net, input, delta);
     memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->prev_cell, 1, l->temp, 1);
     neural_gradient_array(l->f, l->temp, l->n_outputs, l->recurrent_function);
     memcpy(l->wf->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(l->wf, l->prev_state, 0);
+    layer_backward(l->wf, net, l->prev_state, 0);
     memcpy(l->uf->delta, l->temp, sizeof(double) * l->n_outputs);
-    layer_backward(l->uf, input, delta);
+    layer_backward(l->uf, net, input, delta);
     memcpy(l->temp, l->temp2, sizeof(double) * l->n_outputs);
     blas_mul(l->n_outputs, l->f, 1, l->temp, 1);
     memcpy(l->dc, l->temp, sizeof(double) * l->n_outputs);

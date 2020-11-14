@@ -342,10 +342,10 @@ neural_learn(const struct Net *net, const double *truth, const double *input)
     while (iter != NULL) {
         const struct Layer *l = iter->layer;
         if (iter->next == NULL) {
-            layer_backward(l, input, 0);
+            layer_backward(l, net, input, 0);
         } else {
             const struct Layer *prev = iter->next->layer;
-            layer_backward(l, prev->output, prev->delta);
+            layer_backward(l, net, prev->output, prev->delta);
         }
         iter = iter->next;
     }

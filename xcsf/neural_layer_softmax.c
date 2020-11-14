@@ -110,6 +110,7 @@ neural_layer_softmax_rand(struct Layer *l)
 /**
  * @brief Forward propagates a softmax layer.
  * @param [in] l Layer to forward propagate.
+ * @param [in] net Network containing the layer.
  * @param [in] input Input to the layer.
  */
 void
@@ -137,13 +138,15 @@ neural_layer_softmax_forward(const struct Layer *l, const struct Net *net,
 /**
  * @brief Backward propagates a softmax layer.
  * @param [in] l The layer to backward propagate.
+ * @param [in] net Network containing the layer.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's error.
  */
 void
-neural_layer_softmax_backward(const struct Layer *l, const double *input,
-                              double *delta)
+neural_layer_softmax_backward(const struct Layer *l, const struct Net *net,
+                              const double *input, double *delta)
 {
+    (void) net;
     (void) input;
     if (delta) {
         for (int i = 0; i < l->n_inputs; ++i) {

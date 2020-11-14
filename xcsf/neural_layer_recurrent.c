@@ -342,20 +342,21 @@ neural_layer_recurrent_forward(const struct Layer *l, const struct Net *net,
 /**
  * @brief Backward propagates a recurrent layer.
  * @param [in] l The layer to backward propagate.
+ * @param [in] net Network containing the layer.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's error.
  */
 void
-neural_layer_recurrent_backward(const struct Layer *l, const double *input,
-                                double *delta)
+neural_layer_recurrent_backward(const struct Layer *l, const struct Net *net,
+                                const double *input, double *delta)
 {
     memset(l->input_layer->delta, 0, sizeof(double) * l->n_outputs);
     memset(l->self_layer->delta, 0, sizeof(double) * l->n_outputs);
-    layer_backward(l->output_layer, l->state, l->self_layer->delta);
+    layer_backward(l->output_layer, net, l->state, l->self_layer->delta);
     memcpy(l->input_layer->delta, l->self_layer->delta,
            sizeof(double) * l->n_outputs);
-    layer_backward(l->self_layer, l->prev_state, 0);
-    layer_backward(l->input_layer, input, delta);
+    layer_backward(l->self_layer, net, l->prev_state, 0);
+    layer_backward(l->input_layer, net, input, delta);
 }
 
 /**

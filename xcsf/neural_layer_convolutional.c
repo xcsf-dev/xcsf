@@ -288,13 +288,16 @@ neural_layer_convolutional_forward(const struct Layer *l, const struct Net *net,
 /**
  * @brief Backward propagates a convolutional layer.
  * @param [in] l The layer to backward propagate.
+ * @param [in] net Network containing the layer.
  * @param [in] input The input to the layer.
  * @param [out] delta The previous layer's error.
  */
 void
-neural_layer_convolutional_backward(const struct Layer *l, const double *input,
+neural_layer_convolutional_backward(const struct Layer *l,
+                                    const struct Net *net, const double *input,
                                     double *delta)
 {
+    (void) net;
     const int m = l->n_filters;
     const int n = l->size * l->size * l->channels;
     const int k = l->out_w * l->out_h;

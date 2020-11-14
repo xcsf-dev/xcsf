@@ -95,7 +95,7 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     for (int i = 0; i < l->n_outputs; ++i) {
         l->delta[i] = y[i] - l->output[i];
     }
-    neural_layer_recurrent_backward(l, x, 0);
+    neural_layer_recurrent_backward(l, &net, x, 0);
     neural_layer_recurrent_update(l);
     // forward pass
     neural_layer_recurrent_forward(l, &net, x);
@@ -107,7 +107,7 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
         for (int j = 0; j < l->n_outputs; ++j) {
             l->delta[j] = y[j] - l->output[j];
         }
-        neural_layer_recurrent_backward(l, x, 0);
+        neural_layer_recurrent_backward(l, &net, x, 0);
         neural_layer_recurrent_update(l);
     }
     neural_layer_recurrent_forward(l, &net, x);

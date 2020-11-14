@@ -39,7 +39,8 @@ neural_layer_convolutional_forward(const struct Layer *l, const struct Net *net,
                                    const double *input);
 
 void
-neural_layer_convolutional_backward(const struct Layer *l, const double *input,
+neural_layer_convolutional_backward(const struct Layer *l,
+                                    const struct Net *net, const double *input,
                                     double *delta);
 
 void
