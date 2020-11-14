@@ -14,7 +14,7 @@
  */
 
 /**
- * @file neural_layer_connected_test.cpp
+ * @file neural_layer_convolutional_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2020.
