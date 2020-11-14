@@ -50,12 +50,8 @@ static const int MU_TYPE[N_MU] = {
 static size_t
 get_workspace_size(const struct Layer *l)
 {
-    const int size = l->out_h * l->out_w * l->size * l->size * l->channels;
-    if (size < 1) {
-        printf("neural_layer_convolutional: workspace_size overflow\n");
-        exit(EXIT_FAILURE);
-    }
-    return sizeof(double) * size;
+    return (size_t) l->out_h * l->out_w * l->size * l->size * l->channels *
+        sizeof(double);
 }
 
 /**
