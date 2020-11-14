@@ -86,14 +86,14 @@ neural_layer_maxpool_copy(const struct Layer *src)
     l->width = src->width;
     l->channels = src->channels;
     l->pad = src->pad;
+    l->size = src->size;
+    l->stride = src->stride;
     l->out_w = src->out_w;
     l->out_h = src->out_h;
     l->out_c = src->out_c;
     l->n_outputs = src->n_outputs;
     l->max_outputs = src->max_outputs;
     l->n_inputs = src->n_inputs;
-    l->size = src->size;
-    l->stride = src->stride;
     malloc_layer_arrays(l);
     return l;
 }
