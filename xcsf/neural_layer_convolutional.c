@@ -50,8 +50,13 @@ static const int MU_TYPE[N_MU] = {
 static size_t
 get_workspace_size(const struct Layer *l)
 {
-    return (size_t) l->out_h * l->out_w * l->size * l->size * l->channels *
-        sizeof(double);
+    const size_t workspace_size = (size_t) l->out_h * l->out_w * l->size *
+        l->size * l->channels * sizeof(double);
+    if (workspace_size < 1) {
+        printf("neural_layer_convolutional: invalid workspace size\n");
+        exit(EXIT_FAILURE);
+    }
+    return workspace_size;
 }
 
 /**
@@ -63,7 +68,7 @@ malloc_guard(const struct Layer *l)
 {
     if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX || l->n_outputs < 1 ||
         l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
-        l->n_weights > N_WEIGHTS_MAX || l->workspace_size < 1) {
+        l->n_weights > N_WEIGHTS_MAX) {
         printf("neural_layer_convolutional: malloc() invalid size\n");
         exit(EXIT_FAILURE);
     }
@@ -85,7 +90,7 @@ malloc_layer_arrays(struct Layer *l)
     l->weight_active = malloc(sizeof(bool) * l->n_weights);
     l->biases = malloc(sizeof(double) * l->n_biases);
     l->bias_updates = calloc(l->n_biases, sizeof(double));
-    l->temp = malloc(l->workspace_size);
+    l->temp = malloc(get_workspace_size(l));
     l->mu = malloc(sizeof(double) * N_MU);
 }
 
@@ -106,7 +111,7 @@ realloc_layer_arrays(struct Layer *l)
     l->weight_active = realloc(l->weight_active, sizeof(bool) * l->n_weights);
     l->biases = realloc(l->biases, sizeof(double) * l->n_biases);
     l->bias_updates = realloc(l->bias_updates, sizeof(double) * l->n_biases);
-    l->temp = realloc(l->temp, l->workspace_size);
+    l->temp = malloc(get_workspace_size(l));
 }
 
 /**
@@ -162,7 +167,6 @@ neural_layer_convolutional_init(struct Layer *l, const struct ArgsLayer *args)
     l->out_c = l->n_filters;
     l->n_inputs = l->width * l->height * l->channels;
     l->n_outputs = l->out_h * l->out_w * l->out_c;
-    l->workspace_size = get_workspace_size(l);
     layer_init_eta(l);
     malloc_layer_arrays(l);
     for (int i = 0; i < l->n_weights; ++i) {
@@ -230,7 +234,6 @@ neural_layer_convolutional_copy(const struct Layer *src)
     l->eta = src->eta;
     l->eta_max = src->eta_max;
     l->eta_min = src->eta_min;
-    l->workspace_size = src->workspace_size;
     malloc_layer_arrays(l);
     memcpy(l->weights, src->weights, sizeof(double) * src->n_weights);
     memcpy(l->weight_active, src->weight_active, sizeof(bool) * src->n_weights);
@@ -364,7 +367,6 @@ neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev)
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->n_inputs = l->width * l->height * l->channels;
     l->n_weights = l->channels * l->n_filters * l->size * l->size;
-    l->workspace_size = get_workspace_size(l);
     realloc_layer_arrays(l);
     for (int i = old_n_weights; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 0.1);
@@ -420,7 +422,6 @@ neural_layer_convolutional_add_filters(struct Layer *l, const int N)
     l->out_c = l->n_filters;
     l->n_weights = l->channels * l->n_filters * l->size * l->size;
     l->n_outputs = l->out_h * l->out_w * l->out_c;
-    l->workspace_size = get_workspace_size(l);
     realloc_layer_arrays(l);
     for (int i = old_n_weights; i < l->n_weights; ++i) {
         l->weights[i] = rand_normal(0, 0.1);
@@ -530,7 +531,6 @@ neural_layer_convolutional_save(const struct Layer *l, FILE *fp)
     s += fwrite(&l->max_outputs, sizeof(int), 1, fp);
     s += fwrite(&l->n_weights, sizeof(int), 1, fp);
     s += fwrite(&l->n_active, sizeof(int), 1, fp);
-    s += fwrite(&l->workspace_size, sizeof(int), 1, fp);
     s += fwrite(&l->eta, sizeof(double), 1, fp);
     s += fwrite(&l->eta_max, sizeof(double), 1, fp);
     s += fwrite(&l->eta_min, sizeof(double), 1, fp);
@@ -574,7 +574,6 @@ neural_layer_convolutional_load(struct Layer *l, FILE *fp)
     s += fread(&l->max_outputs, sizeof(int), 1, fp);
     s += fread(&l->n_weights, sizeof(int), 1, fp);
     s += fread(&l->n_active, sizeof(int), 1, fp);
-    s += fread(&l->workspace_size, sizeof(int), 1, fp);
     s += fread(&l->eta, sizeof(double), 1, fp);
     s += fread(&l->eta_max, sizeof(double), 1, fp);
     s += fread(&l->eta_min, sizeof(double), 1, fp);

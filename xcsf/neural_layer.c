@@ -457,7 +457,6 @@ layer_defaults(struct Layer *l)
     l->stride = 0;
     l->indexes = NULL;
     l->n_filters = 0;
-    l->workspace_size = 0;
 }
 
 /**

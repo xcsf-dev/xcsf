@@ -161,7 +161,6 @@ struct Layer {
     int stride; //!< Pool, Conv, and Upsample
     int *indexes; //!< Pool
     int n_filters; //!< Conv
-    size_t workspace_size; //!< Conv
 };
 
 /**
