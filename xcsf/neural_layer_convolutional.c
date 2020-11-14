@@ -48,7 +48,7 @@ static const int MU_TYPE[N_MU] = {
  * @return The output height.
  */
 static int
-convolutional_out_height(const struct Layer *l)
+get_out_height(const struct Layer *l)
 {
     return (l->height + 2 * l->pad - l->size) / l->stride + 1;
 }
@@ -59,7 +59,7 @@ convolutional_out_height(const struct Layer *l)
  * @return The output width.
  */
 static int
-convolutional_out_width(const struct Layer *l)
+get_out_width(const struct Layer *l)
 {
     return (l->width + 2 * l->pad - l->size) / l->stride + 1;
 }
@@ -86,7 +86,7 @@ get_workspace_size(const struct Layer *l)
  * @param [in] l The layer to be allocated memory.
  */
 static void
-malloc_guard(const struct Layer *l)
+guard_malloc(const struct Layer *l)
 {
     if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX || l->n_outputs < 1 ||
         l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
@@ -103,7 +103,7 @@ malloc_guard(const struct Layer *l)
 static void
 malloc_layer_arrays(struct Layer *l)
 {
-    malloc_guard(l);
+    guard_malloc(l);
     l->delta = calloc(l->n_outputs, sizeof(double));
     l->state = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
@@ -123,7 +123,7 @@ malloc_layer_arrays(struct Layer *l)
 static void
 realloc_layer_arrays(struct Layer *l)
 {
-    malloc_guard(l);
+    guard_malloc(l);
     l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
     l->state = realloc(l->state, sizeof(double) * l->n_outputs);
     l->output = realloc(l->output, sizeof(double) * l->n_outputs);
@@ -181,8 +181,8 @@ neural_layer_convolutional_init(struct Layer *l, const struct ArgsLayer *args)
     l->n_biases = l->n_filters;
     l->n_weights = l->channels * l->n_filters * l->size * l->size;
     l->n_active = l->n_weights;
-    l->out_h = convolutional_out_height(l);
-    l->out_w = convolutional_out_width(l);
+    l->out_h = get_out_height(l);
+    l->out_w = get_out_width(l);
     l->out_c = l->n_filters;
     l->n_inputs = l->width * l->height * l->channels;
     l->n_outputs = l->out_h * l->out_w * l->out_c;
@@ -362,8 +362,8 @@ neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev)
     l->width = prev->out_w;
     l->height = prev->out_h;
     l->channels = prev->out_c;
-    l->out_w = convolutional_out_width(l);
-    l->out_h = convolutional_out_height(l);
+    l->out_w = get_out_width(l);
+    l->out_h = get_out_height(l);
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->n_inputs = l->width * l->height * l->channels;
     l->n_weights = l->channels * l->n_filters * l->size * l->size;
