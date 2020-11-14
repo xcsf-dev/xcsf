@@ -410,11 +410,10 @@ neural_layer_lstm_forward(const struct Layer *l, const struct Net *net,
     layer_forward(l->ui, net, input);
     layer_forward(l->ug, net, input);
     layer_forward(l->uo, net, input);
-    input = l->h;
-    layer_forward(l->wf, net, input);
-    layer_forward(l->wi, net, input);
-    layer_forward(l->wg, net, input);
-    layer_forward(l->wo, net, input);
+    layer_forward(l->wf, net, l->h);
+    layer_forward(l->wi, net, l->h);
+    layer_forward(l->wg, net, l->h);
+    layer_forward(l->wo, net, l->h);
     memcpy(l->f, l->wf->output, sizeof(double) * l->n_outputs);
     blas_axpy(l->n_outputs, 1, l->uf->output, 1, l->f, 1);
     memcpy(l->i, l->wi->output, sizeof(double) * l->n_outputs);
