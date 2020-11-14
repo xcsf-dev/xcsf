@@ -43,6 +43,28 @@ static const int MU_TYPE[N_MU] = {
 };
 
 /**
+ * @brief Returns the output height of a convolutional layer.
+ * @param [in] l A convolutional layer.
+ * @return The output height.
+ */
+static int
+convolutional_out_height(const struct Layer *l)
+{
+    return (l->height + 2 * l->pad - l->size) / l->stride + 1;
+}
+
+/**
+ * @brief Returns the output width of a convolutional layer.
+ * @param [in] l A convolutional layer.
+ * @return The output width.
+ */
+static int
+convolutional_out_width(const struct Layer *l)
+{
+    return (l->width + 2 * l->pad - l->size) / l->stride + 1;
+}
+
+/**
  * @brief Returns the memory workspace size for a convolutional layer.
  * @param [in] l A convolutional layer.
  * @return The workspace size.
@@ -115,25 +137,22 @@ realloc_layer_arrays(struct Layer *l)
 }
 
 /**
- * @brief Returns the output height of a convolutional layer.
- * @param [in] l A convolutional layer.
- * @return The output height.
+ * @brief Free memory used by a convolutional layer.
+ * @param [in] l The layer to be freed.
  */
-static int
-convolutional_out_height(const struct Layer *l)
+void
+neural_layer_convolutional_free(const struct Layer *l)
 {
-    return (l->height + 2 * l->pad - l->size) / l->stride + 1;
-}
-
-/**
- * @brief Returns the output width of a convolutional layer.
- * @param [in] l A convolutional layer.
- * @return The output width.
- */
-static int
-convolutional_out_width(const struct Layer *l)
-{
-    return (l->width + 2 * l->pad - l->size) / l->stride + 1;
+    free(l->delta);
+    free(l->state);
+    free(l->output);
+    free(l->weights);
+    free(l->biases);
+    free(l->bias_updates);
+    free(l->weight_updates);
+    free(l->weight_active);
+    free(l->temp);
+    free(l->mu);
 }
 
 /**
@@ -175,25 +194,6 @@ neural_layer_convolutional_init(struct Layer *l, const struct ArgsLayer *args)
     }
     memset(l->biases, 0, sizeof(double) * l->n_biases);
     sam_init(l->mu, N_MU, MU_TYPE);
-}
-
-/**
- * @brief Free memory used by a convolutional layer.
- * @param [in] l The layer to be freed.
- */
-void
-neural_layer_convolutional_free(const struct Layer *l)
-{
-    free(l->delta);
-    free(l->state);
-    free(l->output);
-    free(l->weights);
-    free(l->biases);
-    free(l->bias_updates);
-    free(l->weight_updates);
-    free(l->weight_active);
-    free(l->temp);
-    free(l->mu);
 }
 
 /**
