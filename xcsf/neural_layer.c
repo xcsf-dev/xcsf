@@ -359,16 +359,16 @@ layer_weight_clamp(const struct Layer *l)
 }
 
 /**
- * @brief Sets n_active to the number of non-zero weights within a layer.
- * @param [in] l The layer to calculate the number of non-zero weights.
+ * @brief Recalculates the number of active connections within a layer.
+ * @param [in] l The layer to recalculate the number of active connections.
  */
 void
 layer_calc_n_active(struct Layer *l)
 {
-    l->n_active = l->n_weights;
+    l->n_active = 0;
     for (int i = 0; i < l->n_weights; ++i) {
-        if (l->weights[i] == 0) {
-            --(l->n_active);
+        if (l->weight_active[i]) {
+            ++(l->n_active);
         }
     }
 }
