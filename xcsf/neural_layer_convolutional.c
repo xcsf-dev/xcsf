@@ -147,10 +147,10 @@ neural_layer_convolutional_free(const struct Layer *l)
     free(l->state);
     free(l->output);
     free(l->weights);
-    free(l->biases);
-    free(l->bias_updates);
     free(l->weight_updates);
     free(l->weight_active);
+    free(l->biases);
+    free(l->bias_updates);
     free(l->temp);
     free(l->mu);
 }
