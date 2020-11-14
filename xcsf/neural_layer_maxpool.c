@@ -27,20 +27,42 @@
 #include "xcsf.h"
 
 /**
+ * @brief Check memory allocation is within bounds.
+ * @param [in] l The layer to be allocated memory.
+ */
+static void
+guard_malloc(const struct Layer *l)
+{
+    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
+        printf("neural_layer_maxpool: malloc() invalid size\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
+/**
  * @brief Allocate memory used by a maxpooling layer.
  * @param [in] l The layer to be allocated memory.
  */
 static void
 malloc_layer_arrays(struct Layer *l)
 {
-    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
-        printf("neural_layer_maxpool: malloc() invalid size\n");
-        l->n_outputs = 1;
-        exit(EXIT_FAILURE);
-    }
+    guard_malloc(l);
     l->indexes = calloc(l->n_outputs, sizeof(int));
     l->output = calloc(l->n_outputs, sizeof(double));
     l->delta = calloc(l->n_outputs, sizeof(double));
+}
+
+/**
+ * @brief Resize memory used by a maxpooling layer.
+ * @param [in] l The layer to be allocated memory.
+ */
+static void
+realloc_layer_arrays(struct Layer *l)
+{
+    guard_malloc(l);
+    l->indexes = realloc(l->indexes, sizeof(int) * l->n_outputs);
+    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
+    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
 }
 
 /**
@@ -236,9 +258,7 @@ neural_layer_maxpool_resize(struct Layer *l, const struct Layer *prev)
     l->out_c = c;
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     l->max_outputs = l->n_outputs;
-    l->indexes = realloc(l->indexes, sizeof(int) * l->n_outputs);
-    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
-    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
+    realloc_layer_arrays(l);
 }
 
 /**
