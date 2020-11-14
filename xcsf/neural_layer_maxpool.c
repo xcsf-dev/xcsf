@@ -143,8 +143,8 @@ neural_layer_maxpool_rand(struct Layer *l)
 }
 
 /**
- * @brief Returns the index of the maximum value corresponding to a specified
- * output height, width, and channel for a maxpooling layer.
+ * @brief Returns the index of the maximum input value corresponding to a
+ * specified output height, width, and channel for a maxpooling layer.
  * @param [in] l A maxpooling layer.
  * @param [in] input The input to perform a maxpooling operation.
  * @param [in] i Output height index.
@@ -171,6 +171,10 @@ max_pool(const struct Layer *l, const double *input, const int i, const int j,
                 max = input[index];
             }
         }
+    }
+    if (max_index < 0 || max_index >= l->n_inputs) {
+        printf("max_pool() error: invalid max_index: (%d)\n", max_index);
+        exit(EXIT_FAILURE);
     }
     return max_index;
 }
