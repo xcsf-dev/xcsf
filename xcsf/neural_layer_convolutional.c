@@ -111,7 +111,7 @@ realloc_layer_arrays(struct Layer *l)
     l->weight_active = realloc(l->weight_active, sizeof(bool) * l->n_weights);
     l->biases = realloc(l->biases, sizeof(double) * l->n_biases);
     l->bias_updates = realloc(l->bias_updates, sizeof(double) * l->n_biases);
-    l->temp = malloc(get_workspace_size(l));
+    l->temp = realloc(l->temp, get_workspace_size(l));
 }
 
 /**
