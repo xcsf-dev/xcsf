@@ -254,15 +254,15 @@ neural_layer_convolutional_rand(struct Layer *l)
 
 /**
  * @brief Forward propagates a convolutional layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] l The layer to forward propagate.
+ * @param [in] l Layer to forward propagate.
+ * @param [in] net Network containing the layer.
  * @param [in] input The input to the layer.
  */
 void
-neural_layer_convolutional_forward(const struct XCSF *xcsf,
-                                   const struct Layer *l, const double *input)
+neural_layer_convolutional_forward(const struct Layer *l, const struct Net *net,
+                                   const double *input)
 {
-    (void) xcsf;
+    (void) net;
     const int m = l->n_filters;
     const int k = l->size * l->size * l->channels;
     const int n = l->out_w * l->out_h;

@@ -24,7 +24,7 @@
 #include "neural_layer_maxpool.h"
 #include "neural_activations.h"
 #include "utils.h"
-#include "xcsf.h"
+#include <float.h>
 
 /**
  * @brief Check memory allocation is within bounds.
@@ -181,15 +181,15 @@ max_pool(const struct Layer *l, const double *input, const int i, const int j,
 
 /**
  * @brief Forward propagates a maxpooling layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] l The layer to forward propagate.
- * @param [in] input The input to the layer.
+ * @param [in] l Layer to forward propagate.
+ * @param [in] net Network containing the layer.
+ * @param [in] input Input to the layer.
  */
 void
-neural_layer_maxpool_forward(const struct XCSF *xcsf, const struct Layer *l,
+neural_layer_maxpool_forward(const struct Layer *l, const struct Net *net,
                              const double *input)
 {
-    (void) xcsf;
+    (void) net;
     for (int k = 0; k < l->channels; ++k) {
         for (int i = 0; i < l->out_h; ++i) {
             for (int j = 0; j < l->out_w; ++j) {

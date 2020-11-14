@@ -23,7 +23,7 @@
 
 #pragma once
 
-#include "xcsf.h"
+#include "neural.h"
 
 #define CONNECTED (0) //!< Layer type connected
 #define DROPOUT (1) //!< Layer type dropout
@@ -178,7 +178,7 @@ struct LayerVtbl {
     void (*layer_impl_update)(const struct Layer *l);
     void (*layer_impl_backward)(const struct Layer *l, const double *input,
                                 double *delta);
-    void (*layer_impl_forward)(const struct XCSF *xcsf, const struct Layer *l,
+    void (*layer_impl_forward)(const struct Layer *l, const struct Net *net,
                                const double *input);
     double *(*layer_impl_output)(const struct Layer *l);
     size_t (*layer_impl_save)(const struct Layer *l, FILE *fp);
@@ -222,15 +222,14 @@ layer_output(const struct Layer *l)
 
 /**
  * @brief Forward propagates an input through the layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] l The layer to be forward propagated.
- * @param [in] input The input to the layer.
+ * @param [in] l Layer to be forward propagated.
+ * @param [in] net Network containing the layer.
+ * @param [in] input Input to the layer.
  */
 static inline void
-layer_forward(const struct XCSF *xcsf, const struct Layer *l,
-              const double *input)
+layer_forward(const struct Layer *l, const struct Net *net, const double *input)
 {
-    (*l->layer_vptr->layer_impl_forward)(xcsf, l, input);
+    (*l->layer_vptr->layer_impl_forward)(l, net, input);
 }
 
 /**

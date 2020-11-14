@@ -24,7 +24,6 @@
 #pragma once
 
 #include "neural_layer.h"
-#include "xcsf.h"
 
 void
 neural_layer_dropout_init(struct Layer *l, const struct ArgsLayer *args);
@@ -36,7 +35,7 @@ void
 neural_layer_dropout_rand(struct Layer *l);
 
 void
-neural_layer_dropout_forward(const struct XCSF *xcsf, const struct Layer *l,
+neural_layer_dropout_forward(const struct Layer *l, const struct Net *net,
                              const double *input);
 
 void

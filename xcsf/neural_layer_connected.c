@@ -171,15 +171,15 @@ neural_layer_connected_rand(struct Layer *l)
 
 /**
  * @brief Forward propagates a connected layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] l The layer to forward propagate.
- * @param [in] input The input to the layer.
+ * @param [in] l Layer to forward propagate.
+ * @param [in] net Network containing the layer.
+ * @param [in] input Input to the layer.
  */
 void
-neural_layer_connected_forward(const struct XCSF *xcsf, const struct Layer *l,
+neural_layer_connected_forward(const struct Layer *l, const struct Net *net,
                                const double *input)
 {
-    (void) xcsf;
+    (void) net;
     const int k = l->n_inputs;
     const int n = l->n_outputs;
     const double *a = input;

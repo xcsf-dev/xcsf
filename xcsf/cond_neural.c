@@ -86,8 +86,8 @@ cond_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
 bool
 cond_neural_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
-    const struct CondNeural *cond = c->cond;
-    neural_propagate(xcsf, &cond->net, x);
+    struct CondNeural *cond = c->cond;
+    neural_propagate(&cond->net, x, xcsf->explore);
     if (neural_output(&cond->net, 0) > 0.5) {
         return true;
     }

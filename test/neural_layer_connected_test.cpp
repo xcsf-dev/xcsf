@@ -86,7 +86,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     const double orig_biases[2] = { 0.1033557369, -1.2581317787 };
     memcpy(l->weights, orig_weights, sizeof(double) * l->n_weights);
     memcpy(l->biases, orig_biases, sizeof(double) * l->n_outputs);
-    neural_layer_connected_forward(&xcsf, l, x);
+    neural_layer_connected_forward(l, &net, x);
     double output_error = 0;
     for (int i = 0; i < l->n_outputs; ++i) {
         output_error += fabs(l->output[i] - output[i]);
@@ -127,14 +127,14 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     };
     const double conv_biases[2] = { -0.0637213195, -0.7397018847 };
     for (int i = 0; i < 200; ++i) {
-        neural_layer_connected_forward(&xcsf, l, x);
+        neural_layer_connected_forward(l, &net, x);
         for (int j = 0; j < l->n_outputs; ++j) {
             l->delta[j] = y[j] - l->output[j];
         }
         neural_layer_connected_backward(l, x, 0);
         neural_layer_connected_update(l);
     }
-    neural_layer_connected_forward(&xcsf, l, x);
+    neural_layer_connected_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);
     CHECK_EQ(doctest::Approx(l->output[1]), y[1]);
     double conv_weight_error = 0;

@@ -23,7 +23,7 @@
 
 #pragma once
 
-#include "xcsf.h"
+#include <math.h>
 
 #define LOGISTIC (0) //!< Logistic [0,1]
 #define RELU (1) //!< Rectified linear unit [0,inf]

@@ -323,20 +323,20 @@ neural_layer_recurrent_rand(struct Layer *l)
 
 /**
  * @brief Forward propagates a recurrent layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] l The layer to forward propagate.
- * @param [in] input The input to the layer.
+ * @param [in] l Layer to forward propagate.
+ * @param [in] net Network containing the layer.
+ * @param [in] input Input to the layer.
  */
 void
-neural_layer_recurrent_forward(const struct XCSF *xcsf, const struct Layer *l,
+neural_layer_recurrent_forward(const struct Layer *l, const struct Net *net,
                                const double *input)
 {
     memcpy(l->prev_state, l->state, sizeof(double) * l->n_outputs);
-    layer_forward(xcsf, l->input_layer, input);
-    layer_forward(xcsf, l->self_layer, l->output_layer->output);
+    layer_forward(l->input_layer, net, input);
+    layer_forward(l->self_layer, net, l->output_layer->output);
     memcpy(l->state, l->input_layer->output, sizeof(double) * l->n_outputs);
     blas_axpy(l->n_outputs, 1, l->self_layer->output, 1, l->state, 1);
-    layer_forward(xcsf, l->output_layer, l->state);
+    layer_forward(l->output_layer, net, l->state);
 }
 
 /**

@@ -105,8 +105,8 @@ void
 pred_neural_compute(const struct XCSF *xcsf, const struct Cl *c,
                     const double *x)
 {
-    const struct PredNeural *pred = c->pred;
-    neural_propagate(xcsf, &pred->net, x);
+    struct PredNeural *pred = c->pred;
+    neural_propagate(&pred->net, x, xcsf->explore);
     for (int i = 0; i < xcsf->y_dim; ++i) {
         c->prediction[i] = neural_output(&pred->net, i);
     }

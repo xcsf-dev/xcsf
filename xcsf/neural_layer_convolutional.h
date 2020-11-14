@@ -24,7 +24,6 @@
 #pragma once
 
 #include "neural_layer.h"
-#include "xcsf.h"
 
 void
 neural_layer_convolutional_init(struct Layer *l, const struct ArgsLayer *args);
@@ -36,8 +35,8 @@ void
 neural_layer_convolutional_rand(struct Layer *l);
 
 void
-neural_layer_convolutional_forward(const struct XCSF *xcsf,
-                                   const struct Layer *l, const double *input);
+neural_layer_convolutional_forward(const struct Layer *l, const struct Net *net,
+                                   const double *input);
 
 void
 neural_layer_convolutional_backward(const struct Layer *l, const double *input,

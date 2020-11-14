@@ -24,7 +24,6 @@
 #include "neural_layer_upsample.h"
 #include "neural_activations.h"
 #include "utils.h"
-#include "xcsf.h"
 
 /**
  * @brief Allocate memory used by an upsampling layer.
@@ -116,15 +115,14 @@ neural_layer_upsample_rand(struct Layer *l)
 
 /**
  * @brief Forward propagates an upsampling layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] l The layer to forward propagate.
- * @param [in] input The input to the layer.
+ * @param [in] l Layer to forward propagate.
+ * @param [in] input Input to the layer.
  */
 void
-neural_layer_upsample_forward(const struct XCSF *xcsf, const struct Layer *l,
+neural_layer_upsample_forward(const struct Layer *l, const struct Net *net,
                               const double *input)
 {
-    (void) xcsf;
+    (void) net;
     const int w = l->width;
     const int h = l->height;
     const int c = l->channels;

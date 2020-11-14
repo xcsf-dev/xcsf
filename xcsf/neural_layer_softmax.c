@@ -109,15 +109,14 @@ neural_layer_softmax_rand(struct Layer *l)
 
 /**
  * @brief Forward propagates a softmax layer.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] l The layer to forward propagate.
- * @param [in] input The input to the layer.
+ * @param [in] l Layer to forward propagate.
+ * @param [in] input Input to the layer.
  */
 void
-neural_layer_softmax_forward(const struct XCSF *xcsf, const struct Layer *l,
+neural_layer_softmax_forward(const struct Layer *l, const struct Net *net,
                              const double *input)
 {
-    (void) xcsf;
+    (void) net;
     double largest = input[0];
     for (int i = 1; i < l->n_inputs; ++i) {
         if (input[i] > largest) {

@@ -106,8 +106,8 @@ act_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
 int
 act_neural_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
-    const struct ActNeural *act = c->act;
-    neural_propagate(xcsf, &act->net, x);
+    struct ActNeural *act = c->act;
+    neural_propagate(&act->net, x, xcsf->explore);
     const double *outputs = neural_outputs(&act->net);
     return max_index(outputs, xcsf->n_actions);
 }

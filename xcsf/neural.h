@@ -23,8 +23,14 @@
 
 #pragma once
 
-#include "neural_layer.h"
-#include "xcsf.h"
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct ArgsLayer; //!< Forward declaration of layer parameter structure
+struct Layer; //!< Forward declaration of layer structure.
 
 /**
  * @brief Double linked list of layers data structure.
@@ -45,6 +51,7 @@ struct Net {
     double *output; //!< Pointer to the network output
     struct Llist *head; //!< Pointer to the head layer (output layer)
     struct Llist *tail; //!< Pointer to the tail layer (first layer)
+    bool train; //!< Whether the network is in training mode
 };
 
 bool
@@ -96,8 +103,7 @@ void
 neural_print(const struct Net *net, const bool print_weights);
 
 void
-neural_propagate(const struct XCSF *xcsf, const struct Net *net,
-                 const double *input);
+neural_propagate(struct Net *net, const double *input, const bool train);
 
 void
 neural_rand(const struct Net *net);

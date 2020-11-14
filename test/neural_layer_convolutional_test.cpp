@@ -111,7 +111,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
         }
     }
     memcpy(l->biases, orig_biases, sizeof(double) * l->n_filters);
-    neural_layer_convolutional_forward(&xcsf, l, x);
+    neural_layer_convolutional_forward(l, &net, x);
     double output_error = 0;
     index = 0;
     for (int k = 0; k < l->out_h; ++k) {
@@ -135,7 +135,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
                            1.0699066,  0.69851404, 1.7120876,  0.5649568,
                            1.8013113,  0.2873966,  1.2277601,  0. };
     for (int e = 0; e < 2000; ++e) {
-        neural_layer_convolutional_forward(&xcsf, l, x);
+        neural_layer_convolutional_forward(l, &net, x);
         index = 0;
         for (int k = 0; k < l->out_h; ++k) {
             for (int j = 0; j < l->out_w; ++j) {
@@ -149,7 +149,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
         neural_layer_convolutional_backward(l, x, 0);
         neural_layer_convolutional_update(l);
     }
-    neural_layer_convolutional_forward(&xcsf, l, x);
+    neural_layer_convolutional_forward(l, &net, x);
     double conv_error = 0;
     index = 0;
     for (int k = 0; k < l->out_h; ++k) {

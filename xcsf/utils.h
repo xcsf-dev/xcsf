@@ -23,7 +23,9 @@
 
 #pragma once
 
-#include "xcsf.h"
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 double
 rand_normal(const double mu, const double sigma);

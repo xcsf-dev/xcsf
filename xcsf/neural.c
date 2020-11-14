@@ -41,6 +41,7 @@ neural_init(struct Net *net)
     net->n_inputs = 0;
     net->n_outputs = 0;
     net->output = NULL;
+    net->train = false;
 }
 
 /**
@@ -300,17 +301,17 @@ neural_resize(const struct Net *net)
 
 /**
  * @brief Forward propagates a neural network.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] net The neural network to propagate.
- * @param [in] input The input state.
+ * @param [in] net Neural network to propagate.
+ * @param [in] input Input state.
+ * @param [in] train Whether the network is in training mode.
  */
 void
-neural_propagate(const struct XCSF *xcsf, const struct Net *net,
-                 const double *input)
+neural_propagate(struct Net *net, const double *input, const bool train)
 {
+    net->train = train;
     const struct Llist *iter = net->tail;
     while (iter != NULL) {
-        layer_forward(xcsf, iter->layer, input);
+        layer_forward(iter->layer, net, input);
         input = layer_output(iter->layer);
         iter = iter->prev;
     }

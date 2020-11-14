@@ -398,23 +398,23 @@ neural_layer_lstm_rand(struct Layer *l)
 
 /**
  * @brief Forward propagates an LSTM layer.
- * @param [in] xcsf The XCSF data structure.
  * @param [in] l The layer to forward propagate.
+ * @param [in] net Network containing the layer.
  * @param [in] input The input to the layer.
  */
 void
-neural_layer_lstm_forward(const struct XCSF *xcsf, const struct Layer *l,
+neural_layer_lstm_forward(const struct Layer *l, const struct Net *net,
                           const double *input)
 {
-    layer_forward(xcsf, l->uf, input);
-    layer_forward(xcsf, l->ui, input);
-    layer_forward(xcsf, l->ug, input);
-    layer_forward(xcsf, l->uo, input);
+    layer_forward(l->uf, net, input);
+    layer_forward(l->ui, net, input);
+    layer_forward(l->ug, net, input);
+    layer_forward(l->uo, net, input);
     input = l->h;
-    layer_forward(xcsf, l->wf, input);
-    layer_forward(xcsf, l->wi, input);
-    layer_forward(xcsf, l->wg, input);
-    layer_forward(xcsf, l->wo, input);
+    layer_forward(l->wf, net, input);
+    layer_forward(l->wi, net, input);
+    layer_forward(l->wg, net, input);
+    layer_forward(l->wo, net, input);
     memcpy(l->f, l->wf->output, sizeof(double) * l->n_outputs);
     blas_axpy(l->n_outputs, 1, l->uf->output, 1, l->f, 1);
     memcpy(l->i, l->wi->output, sizeof(double) * l->n_outputs);

@@ -79,15 +79,15 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     l->output_layer->weights[0] = 1;
     l->output_layer->biases[0] = 0;
     // first time
-    neural_layer_recurrent_forward(&xcsf, l, x);
+    neural_layer_recurrent_forward(l, &net, x);
     double output_error = fabs(l->output[0] - 0.48335347);
     CHECK_EQ(doctest::Approx(output_error), 0);
     // second time
-    neural_layer_recurrent_forward(&xcsf, l, x);
+    neural_layer_recurrent_forward(l, &net, x);
     output_error = fabs(l->output[0] - 0.3658727);
     CHECK_EQ(doctest::Approx(output_error), 0);
     // third time
-    neural_layer_recurrent_forward(&xcsf, l, x);
+    neural_layer_recurrent_forward(l, &net, x);
     output_error = fabs(l->output[0] - 0.39353347);
     CHECK_EQ(doctest::Approx(output_error), 0);
     /* test one backward pass of input */
@@ -98,18 +98,18 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     neural_layer_recurrent_backward(l, x, 0);
     neural_layer_recurrent_update(l);
     // forward pass
-    neural_layer_recurrent_forward(&xcsf, l, x);
+    neural_layer_recurrent_forward(l, &net, x);
     output_error = fabs(l->output[0] - 0.3988695229);
     CHECK_EQ(doctest::Approx(output_error), 0);
     /* test convergence on one input */
     for (int i = 0; i < 400; ++i) {
-        neural_layer_recurrent_forward(&xcsf, l, x);
+        neural_layer_recurrent_forward(l, &net, x);
         for (int j = 0; j < l->n_outputs; ++j) {
             l->delta[j] = y[j] - l->output[j];
         }
         neural_layer_recurrent_backward(l, x, 0);
         neural_layer_recurrent_update(l);
     }
-    neural_layer_recurrent_forward(&xcsf, l, x);
+    neural_layer_recurrent_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);
 }

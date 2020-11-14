@@ -86,7 +86,7 @@ TEST_CASE("NEURAL")
     memcpy(l->weights, orig_weights2, sizeof(double) * l->n_weights);
     memcpy(l->biases, orig_biases2, sizeof(double) * l->n_outputs);
     neural_push(&net, l);
-    neural_propagate(&xcsf, &net, x);
+    neural_propagate(&net, x, false);
     double output_error = 0;
     for (int i = 0; i < net.n_outputs; ++i) {
         output_error += fabs(neural_output(&net, i) - output[i]);
@@ -95,7 +95,7 @@ TEST_CASE("NEURAL")
     /* test convergence on one input */
     const double y[2] = { 0.7343893899, 0.2289711363 };
     for (int i = 0; i < 200; ++i) {
-        neural_propagate(&xcsf, &net, x);
+        neural_propagate(&net, x, false);
         neural_learn(&net, y, x);
     }
     CHECK_EQ(doctest::Approx(neural_output(&net, 0)), y[0]);

@@ -24,7 +24,6 @@
 #include "utils.h"
 #include "../lib/dSFMT/dSFMT.h"
 #include <limits.h>
-#include <math.h>
 #include <stdbool.h>
 #include <time.h>
 
