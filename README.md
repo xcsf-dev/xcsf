@@ -39,6 +39,29 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
 
 *******************************************************************************
 
+## Table of Contents
+
+* [XCSF Overview](#xcsf-overview)
+* [Features](#features)
+    * [Python Library](#python-library)
+    * [Conditions](#conditions)
+    * [Actions](#actions)
+    * [Predictions](#predictions)
+* [Requirements](#requirements)
+* [Building](#building)
+    * [Compiler Options](#compiler-options)
+    * [Ubuntu](#ubuntu)
+    * [OSX](#osx)
+    * [Windows](#windows)
+    * [Documentation](#documentation)
+* [Running](#running)
+    * [Stand-alone](#stand-alone)
+    * [Python](#python)
+* [Contributing](#contributing)
+* [License](#license)
+
+*******************************************************************************
+
 ## XCSF Overview
 
 XCSF is [rule-based](https://en.wikipedia.org/wiki/Rule-based_machine_learning) and maintains a population of classifiers where each classifier *cl* consists of:
@@ -91,9 +114,11 @@ A number of interacting pressures have been identified. A set pressure provides 
 
 ## Features
 
-Implements both [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning) via the updating of match set errors directly and [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) via the updating of action set predictions with an environment reward.
+Implements both [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning) via the updating of match set errors directly and [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) via the updating of action set predictions with an environment reward. See `default.ini` for a list of options.
 
-See `default.ini` for a list of options and [`python/README.md`](python/README.md) for Python library usage.
+### Python Library
+
+See [`python/README.md`](python/README.md) for Python library usage.
 
 ### Conditions
 
@@ -123,23 +148,15 @@ See `default.ini` for a list of options and [`python/README.md`](python/README.m
 
 *******************************************************************************
 
-## Compiler options
-
-* `XCSF_PYLIB = ON` : Python library (CMake default = OFF)
-* `PARALLEL = ON` : CPU parallelised matching, predicting, and updating with OpenMP (CMake default = ON)
-* `ENABLE_TESTS = ON` : Build and execute unit tests (CMake default = OFF)
-  
-*******************************************************************************
-
 ## Requirements
 
-### Stand-alone binary
+Stand-alone binary:
  
 * [C11](https://en.wikipedia.org/wiki/C11_(C_standard_revision)) compliant compiler.
 * [CMake](https://www.cmake.org "CMake") (>= 3.12)
-* [OpenMP](https://www.openmp.org "OpenMP") (Optional: PARALLEL=ON): supported by [GCC](https://gcc.gnu.org "GCC") and [Clang](https://clang.llvm.org "clang") with libomp.
+* [OpenMP](https://www.openmp.org "OpenMP") (optional): supported by [GCC](https://gcc.gnu.org "GCC") and [Clang](https://clang.llvm.org "clang") with libomp.
 
-### Python library
+Python library:
  
 * All of the above for building the stand-alone executable.
 * C++11 compliant compiler.
@@ -149,6 +166,12 @@ See `default.ini` for a list of options and [`python/README.md`](python/README.m
 
 ## Building
 
+### Compiler Options
+
+* `XCSF_PYLIB = ON` : Python library (CMake default = OFF)
+* `PARALLEL = ON` : CPU parallelised matching, predicting, and updating with OpenMP (CMake default = ON)
+* `ENABLE_TESTS = ON` : Build and execute unit tests (CMake default = OFF)
+  
 ### Ubuntu
 
 18.04 / 20.04
@@ -188,7 +211,7 @@ $ cmake --build . --config Release
 
 [Doxygen](http://www.doxygen.nl/download.html) + [graphviz](https://www.graphviz.org/download/)
 
-After running cmake:
+After running CMake:
 
 ```
 $ make doc
@@ -222,7 +245,7 @@ Example regression: learning `env/csv/sine_3var_train.csv` and testing `env/csv/
 $ ./xcsf/main csv ../env/csv/sine_3var
 ```
 
-### Python library
+### Python
 
 After building with CMake option: `-DXCSF_PYLIB=ON`
 
