@@ -387,9 +387,3 @@ pred_param_set_type_string(struct XCSF *xcsf, const char *a)
 {
     xcsf->pred->type = prediction_type_as_int(a);
 }
-
-const char *
-pred_param_type_as_string(const struct XCSF *xcsf)
-{
-    return prediction_type_as_string(xcsf->pred->type);
-}

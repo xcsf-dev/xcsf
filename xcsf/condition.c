@@ -470,12 +470,6 @@ cond_param_set_type_string(struct XCSF *xcsf, const char *a)
     xcsf->cond->type = condition_type_as_int(a);
 }
 
-const char *
-cond_param_type_as_string(const struct XCSF *xcsf)
-{
-    return condition_type_as_string(xcsf->cond->type);
-}
-
 void
 cond_param_set_type(struct XCSF *xcsf, const int a)
 {

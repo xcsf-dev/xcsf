@@ -208,12 +208,6 @@ action_param_set_type_string(struct XCSF *xcsf, const char *a)
     xcsf->act->type = action_type_as_int(a);
 }
 
-const char *
-action_param_type_as_string(const struct XCSF *xcsf)
-{
-    return action_type_as_string(xcsf->act->type);
-}
-
 void
 action_param_set_type(struct XCSF *xcsf, const int a)
 {

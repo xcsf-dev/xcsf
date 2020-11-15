@@ -265,6 +265,3 @@ pred_param_set_type(struct XCSF *xcsf, const int a);
 
 void
 pred_param_set_type_string(struct XCSF *xcsf, const char *a);
-
-const char *
-pred_param_type_as_string(const struct XCSF *xcsf);

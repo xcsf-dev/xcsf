@@ -298,8 +298,5 @@ cond_param_set_bits(struct XCSF *xcsf, const int a);
 void
 cond_param_set_type_string(struct XCSF *xcsf, const char *a);
 
-const char *
-cond_param_type_as_string(const struct XCSF *xcsf);
-
 void
 cond_param_set_type(struct XCSF *xcsf, const int a);

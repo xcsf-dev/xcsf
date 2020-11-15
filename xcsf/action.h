@@ -244,8 +244,5 @@ act_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
 void
 action_param_set_type_string(struct XCSF *xcsf, const char *a);
 
-const char *
-action_param_type_as_string(const struct XCSF *xcsf);
-
 void
 action_param_set_type(struct XCSF *xcsf, const int a);
