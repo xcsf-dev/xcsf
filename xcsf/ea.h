@@ -98,6 +98,3 @@ ea_param_set_select_type(struct XCSF *xcsf, const int a);
 
 void
 ea_param_set_type_string(struct XCSF *xcsf, const char *a);
-
-const char *
-ea_param_type_as_string(const struct XCSF *xcsf);

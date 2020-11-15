@@ -459,9 +459,3 @@ ea_param_set_type_string(struct XCSF *xcsf, const char *a)
 {
     xcsf->ea->select_type = ea_type_as_int(a);
 }
-
-const char *
-ea_param_type_as_string(const struct XCSF *xcsf)
-{
-    return ea_type_as_string(xcsf->ea->select_type);
-}
