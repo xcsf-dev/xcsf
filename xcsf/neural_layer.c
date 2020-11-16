@@ -129,38 +129,39 @@ layer_mutate_neurons(const struct Layer *l, const double mu)
 void
 layer_add_neurons(struct Layer *l, const int N)
 {
-    const int n_outputs = l->n_outputs + N;
-    const int n_weights = n_outputs * l->n_inputs;
-    l->weights = realloc(l->weights, sizeof(double) * n_weights);
-    l->weight_active = realloc(l->weight_active, sizeof(bool) * n_weights);
-    l->weight_updates = realloc(l->weight_updates, sizeof(double) * n_weights);
-    l->state = realloc(l->state, sizeof(double) * n_outputs);
-    l->output = realloc(l->output, sizeof(double) * n_outputs);
-    l->biases = realloc(l->biases, sizeof(double) * n_outputs);
-    l->bias_updates = realloc(l->bias_updates, sizeof(double) * n_outputs);
-    l->delta = realloc(l->delta, sizeof(double) * n_outputs);
-    if (N > 0) {
-        for (int i = l->n_weights; i < n_weights; ++i) {
-            if (l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
-                l->weights[i] = 0;
-                l->weight_active[i] = false;
-            } else {
-                l->weights[i] = rand_normal(0, 0.1);
-                l->weight_active[i] = true;
-            }
-            l->weight_updates[i] = 0;
+    const int old_n_outputs = l->n_outputs;
+    const int old_n_weights = l->n_weights;
+    l->n_outputs += N;
+    l->n_biases = l->n_outputs;
+    l->n_weights = l->n_outputs * l->n_inputs;
+    layer_guard_outputs(l);
+    layer_guard_weights(l);
+    l->weights = realloc(l->weights, sizeof(double) * l->n_weights);
+    l->weight_active = realloc(l->weight_active, sizeof(bool) * l->n_weights);
+    l->weight_updates =
+        realloc(l->weight_updates, sizeof(double) * l->n_weights);
+    l->state = realloc(l->state, sizeof(double) * l->n_outputs);
+    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
+    l->biases = realloc(l->biases, sizeof(double) * l->n_biases);
+    l->bias_updates = realloc(l->bias_updates, sizeof(double) * l->n_biases);
+    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
+    for (int i = old_n_weights; i < l->n_weights; ++i) {
+        if (l->options & LAYER_EVOLVE_CONNECT && rand_uniform(0, 1) < 0.5) {
+            l->weights[i] = 0;
+            l->weight_active[i] = false;
+        } else {
+            l->weights[i] = rand_normal(0, 0.1);
+            l->weight_active[i] = true;
         }
-        for (int i = l->n_outputs; i < n_outputs; ++i) {
-            l->biases[i] = 0;
-            l->bias_updates[i] = 0;
-            l->output[i] = 0;
-            l->state[i] = 0;
-            l->delta[i] = 0;
-        }
+        l->weight_updates[i] = 0;
     }
-    l->n_weights = n_weights;
-    l->n_outputs = n_outputs;
-    l->n_biases = n_outputs;
+    for (int i = old_n_outputs; i < l->n_outputs; ++i) {
+        l->biases[i] = 0;
+        l->bias_updates[i] = 0;
+        l->output[i] = 0;
+        l->state[i] = 0;
+        l->delta[i] = 0;
+    }
     layer_calc_n_active(l);
 }
 
