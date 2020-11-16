@@ -41,7 +41,7 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
 
 ## Table of Contents
 
-* [XCSF Overview](#xcsf-overview)
+* [Overview](#overview)
 * [Features](#features)
 * [Requirements](#requirements)
 * [Building](#building)
@@ -51,7 +51,7 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
 
 *******************************************************************************
 
-## XCSF Overview
+## Overview
 
 XCSF is [rule-based](https://en.wikipedia.org/wiki/Rule-based_machine_learning) and maintains a population of classifiers where each classifier *cl* consists of:
 
@@ -188,6 +188,8 @@ $ make
 ### Windows
 
 [MinGW64-gcc-8.1.0](http://mingw-w64.org) + [Python 3.6.6 x86-64](https://python.org/downloads/windows/)
+
+Notes: use 64-bit versions for both python and mingw. Tested with: python-3.6.6-amd64.exe and mingw-w64-install.exe (8.1.0; x86_64; posix; seh; 0). Some versions of python have difficulties compiling. XCSF build should generate only a single warning regarding a redundant redeclaration of 'double round(double)'. This is an issue with python and mingw having their own rounding functions, but this can safely be ignored.
 
 ```
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
