@@ -248,6 +248,7 @@ neural_layer_connected_resize(struct Layer *l, const struct Layer *prev)
     const int n_weights = prev->n_outputs * l->n_outputs;
     if (n_weights < 1 || n_weights > N_WEIGHTS_MAX) {
         printf("neural_layer_connected: malloc() invalid resize\n");
+        layer_print(l, false);
         exit(EXIT_FAILURE);
     }
     double *weights = malloc(sizeof(double) * n_weights);

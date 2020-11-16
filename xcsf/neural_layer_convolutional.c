@@ -76,6 +76,7 @@ get_workspace_size(const struct Layer *l)
         l->size * l->channels * sizeof(double);
     if (workspace_size < 1) {
         printf("neural_layer_convolutional: invalid workspace size\n");
+        layer_print(l, false);
         exit(EXIT_FAILURE);
     }
     return workspace_size;

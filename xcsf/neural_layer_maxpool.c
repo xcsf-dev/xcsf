@@ -161,6 +161,7 @@ max_pool(const struct Layer *l, const double *input, const int i, const int j,
     }
     if (max_index < 0 || max_index >= l->n_inputs) {
         printf("max_pool() error: invalid max_index: (%d)\n", max_index);
+        layer_print(l, false);
         exit(EXIT_FAILURE);
     }
     return max_index;
@@ -274,10 +275,10 @@ void
 neural_layer_maxpool_print(const struct Layer *l, const bool print_weights)
 {
     (void) print_weights;
-    printf(
-        "maxpool in=%d, out=%d, h=%d, w=%d, c=%d, size=%d, stride=%d, pad=%d\n",
-        l->n_inputs, l->n_outputs, l->height, l->width, l->channels, l->size,
-        l->stride, l->pad);
+    printf("maxpool in=%d, out=%d, h=%d, w=%d, c=%d, size=%d, stride=%d, "
+           "pad=%d, out_w=%d, out_h=%d, out_c=%d\n",
+           l->n_inputs, l->n_outputs, l->height, l->width, l->channels, l->size,
+           l->stride, l->pad, l->out_w, l->out_h, l->out_c);
 }
 
 /**
