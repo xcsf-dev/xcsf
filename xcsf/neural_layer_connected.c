@@ -48,11 +48,8 @@ static const int MU_TYPE[N_MU] = {
 static void
 malloc_layer_arrays(struct Layer *l)
 {
-    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
-        l->n_weights > N_WEIGHTS_MAX) {
-        printf("neural_layer_connected: malloc() invalid size\n");
-        exit(EXIT_FAILURE);
-    }
+    layer_guard_outputs(l);
+    layer_guard_weights(l);
     l->state = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
     l->biases = malloc(sizeof(double) * l->n_outputs);

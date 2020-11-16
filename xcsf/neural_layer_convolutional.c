@@ -88,12 +88,9 @@ get_workspace_size(const struct Layer *l)
 static void
 guard_malloc(const struct Layer *l)
 {
-    if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX || l->n_outputs < 1 ||
-        l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
-        l->n_weights > N_WEIGHTS_MAX) {
-        printf("neural_layer_convolutional: malloc() invalid size\n");
-        exit(EXIT_FAILURE);
-    }
+    layer_guard_biases(l);
+    layer_guard_outputs(l);
+    layer_guard_weights(l);
 }
 
 /**

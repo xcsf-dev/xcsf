@@ -32,14 +32,10 @@
 static void
 malloc_layer_arrays(struct Layer *l)
 {
-    if (l->n_inputs < 1 || l->n_inputs > N_INPUTS_MAX) {
-        printf("neural_layer_dropout: malloc() invalid size\n");
-        l->n_inputs = 1;
-        exit(EXIT_FAILURE);
-    }
-    l->output = calloc(l->n_inputs, sizeof(double));
-    l->delta = calloc(l->n_inputs, sizeof(double));
-    l->state = calloc(l->n_inputs, sizeof(double));
+    layer_guard_outputs(l);
+    l->output = calloc(l->n_outputs, sizeof(double));
+    l->delta = calloc(l->n_outputs, sizeof(double));
+    l->state = calloc(l->n_outputs, sizeof(double));
 }
 
 /**
@@ -205,9 +201,8 @@ neural_layer_dropout_resize(struct Layer *l, const struct Layer *prev)
     l->out_w = prev->out_w;
     l->out_h = prev->out_h;
     l->out_c = prev->out_c;
-    l->state = realloc(l->state, sizeof(double) * l->n_outputs);
-    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
-    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
+    free_layer_arrays(l);
+    malloc_layer_arrays(l);
 }
 
 /**

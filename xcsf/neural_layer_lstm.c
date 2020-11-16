@@ -87,11 +87,7 @@ set_layer_n_active(struct Layer *l)
 static void
 malloc_layer_arrays(struct Layer *l)
 {
-    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
-        printf("neural_layer_lstm: malloc() invalid size\n");
-        l->n_outputs = 1;
-        exit(EXIT_FAILURE);
-    }
+    layer_guard_outputs(l);
     l->delta = calloc(l->n_outputs, sizeof(double));
     l->output = calloc(l->n_outputs, sizeof(double));
     l->state = calloc(l->n_outputs, sizeof(double));

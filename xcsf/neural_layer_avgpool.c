@@ -32,13 +32,32 @@
 static void
 malloc_layer_arrays(struct Layer *l)
 {
-    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
-        printf("neural_layer_avgpool: malloc() invalid size\n");
-        l->n_outputs = 1;
-        exit(EXIT_FAILURE);
-    }
+    layer_guard_outputs(l);
     l->output = calloc(l->n_outputs, sizeof(double));
     l->delta = calloc(l->n_outputs, sizeof(double));
+}
+
+/**
+ * @brief Resize memory used by an average pooling layer.
+ * @param [in] l The layer to be allocated memory.
+ */
+static void
+realloc_layer_arrays(struct Layer *l)
+{
+    layer_guard_outputs(l);
+    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
+    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
+}
+
+/**
+ * @brief Free memory used by an average pooling layer.
+ * @param [in] l The layer to be freed.
+ */
+void
+neural_layer_avgpool_free(const struct Layer *l)
+{
+    free(l->output);
+    free(l->delta);
 }
 
 /**
@@ -88,17 +107,6 @@ neural_layer_avgpool_copy(const struct Layer *src)
     l->n_inputs = src->n_inputs;
     malloc_layer_arrays(l);
     return l;
-}
-
-/**
- * @brief Free memory used by an average pooling layer.
- * @param [in] l The layer to be freed.
- */
-void
-neural_layer_avgpool_free(const struct Layer *l)
-{
-    free(l->output);
-    free(l->delta);
 }
 
 /**
@@ -195,8 +203,7 @@ neural_layer_avgpool_resize(struct Layer *l, const struct Layer *prev)
     l->n_outputs = l->out_c;
     l->max_outputs = l->n_outputs;
     l->n_inputs = h * w * c;
-    l->output = realloc(l->output, sizeof(double) * l->n_outputs);
-    l->delta = realloc(l->delta, sizeof(double) * l->n_outputs);
+    realloc_layer_arrays(l);
 }
 
 /**

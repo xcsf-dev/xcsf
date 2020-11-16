@@ -50,14 +50,22 @@ static const int MU_TYPE[N_MU] = {
 static void
 malloc_layer_arrays(struct Layer *l)
 {
-    if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
-        printf("neural_layer_recurrent: malloc() invalid size\n");
-        l->n_outputs = 1;
-        exit(EXIT_FAILURE);
-    }
+    layer_guard_outputs(l);
     l->state = calloc(l->n_outputs, sizeof(double));
     l->prev_state = calloc(l->n_outputs, sizeof(double));
     l->mu = malloc(sizeof(double) * N_MU);
+}
+
+/**
+ * @brief Resize memory used by a recurrent layer.
+ * @param [in] l The layer to be allocated memory.
+ */
+static void
+realloc_layer_arrays(struct Layer *l)
+{
+    layer_guard_outputs(l);
+    l->state = realloc(l->state, l->n_outputs * sizeof(double));
+    l->prev_state = realloc(l->prev_state, l->n_outputs * sizeof(double));
 }
 
 /**
@@ -144,9 +152,7 @@ mutate_neurons(struct Layer *l)
             l->out_c = 1;
             l->output = l->output_layer->output;
             l->delta = l->output_layer->delta;
-            l->state = realloc(l->state, l->n_outputs * sizeof(double));
-            l->prev_state =
-                realloc(l->prev_state, l->n_outputs * sizeof(double));
+            realloc_layer_arrays(l);
             set_layer_n_weights(l);
             set_layer_n_biases(l);
             set_layer_n_active(l);

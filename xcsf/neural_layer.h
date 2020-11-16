@@ -394,6 +394,15 @@ layer_opt(const struct ArgsLayer *args);
 bool
 layer_receives_images(const int type);
 
+void
+layer_guard_biases(const struct Layer *l);
+
+void
+layer_guard_outputs(const struct Layer *l);
+
+void
+layer_guard_weights(const struct Layer *l);
+
 /**
  * @brief Creates and initialises a new layer.
  * @param [in] args Layer parameters used to initialise the layer.
