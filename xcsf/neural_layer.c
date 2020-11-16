@@ -890,8 +890,7 @@ void
 layer_guard_biases(const struct Layer *l)
 {
     if (l->n_biases < 1 || l->n_biases > N_OUTPUTS_MAX) {
-        printf("%s: layer_guard_biases() invalid size\n",
-               layer_type_as_string(l->type));
+        printf("layer_guard_biases() invalid size\n");
         layer_print(l, false);
         exit(EXIT_FAILURE);
     }
@@ -905,8 +904,7 @@ void
 layer_guard_outputs(const struct Layer *l)
 {
     if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX) {
-        printf("%s: layer_guard_outputs() invalid size\n",
-               layer_type_as_string(l->type));
+        printf("layer_guard_outputs() invalid size\n");
         layer_print(l, false);
         exit(EXIT_FAILURE);
     }
@@ -920,8 +918,7 @@ void
 layer_guard_weights(const struct Layer *l)
 {
     if (l->n_weights < 1 || l->n_weights > N_WEIGHTS_MAX) {
-        printf("%s: layer_guard_weights() invalid size\n",
-               layer_type_as_string(l->type));
+        printf("layer_guard_weights() invalid size\n");
         layer_print(l, false);
         exit(EXIT_FAILURE);
     }
