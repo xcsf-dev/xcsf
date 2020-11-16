@@ -54,8 +54,8 @@
 #define LAYER_EVOLVE_ETA (1 << 4) //!< Layer may evolve rate of gradient descent
 #define LAYER_EVOLVE_CONNECT (1 << 5) //!< Layer may evolve connectivity
 
-#define NEURON_MIN (-1000) //!< Minimum neuron state
-#define NEURON_MAX (1000) //!< Maximum neuron state
+#define NEURON_MIN (-100) //!< Minimum neuron state
+#define NEURON_MAX (100) //!< Maximum neuron state
 #define WEIGHT_MIN (-10) //!< Minimum value of a weight or bias
 #define WEIGHT_MAX (10) //!< Maximum value of a weight or bias
 #define N_WEIGHTS_MAX (20000000) //!< Maximum number of weights per layer
