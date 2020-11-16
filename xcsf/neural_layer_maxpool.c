@@ -149,11 +149,11 @@ max_pool(const struct Layer *l, const double *input, const int i, const int j,
     int max_index = -1;
     for (int n = 0; n < l->size; ++n) {
         for (int m = 0; m < l->size; ++m) {
-            int cur_h = h_offset + i * l->stride + n;
-            int cur_w = w_offset + j * l->stride + m;
-            int index = cur_w + l->width * (cur_h + l->height * k);
+            const int cur_h = h_offset + i * l->stride + n;
+            const int cur_w = w_offset + j * l->stride + m;
+            const int index = cur_w + l->width * (cur_h + l->height * k);
             if (cur_h >= 0 && cur_h < l->height && cur_w >= 0 &&
-                cur_w < l->width && input[index] > max) {
+                cur_w < l->width && index < l->n_inputs && input[index] > max) {
                 max_index = index;
                 max = input[index];
             }
@@ -182,9 +182,11 @@ neural_layer_maxpool_forward(const struct Layer *l, const struct Net *net,
         for (int i = 0; i < l->out_h; ++i) {
             for (int j = 0; j < l->out_w; ++j) {
                 const int out_index = j + l->out_w * (i + l->out_h * k);
-                const int max_index = max_pool(l, input, i, j, k);
-                l->indexes[out_index] = max_index;
-                l->output[out_index] = input[max_index];
+                if (out_index < l->n_outputs) {
+                    const int max_index = max_pool(l, input, i, j, k);
+                    l->indexes[out_index] = max_index;
+                    l->output[out_index] = input[max_index];
+                }
             }
         }
     }
