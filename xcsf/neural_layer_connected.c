@@ -51,8 +51,6 @@ malloc_layer_arrays(struct Layer *l)
     if (l->n_outputs < 1 || l->n_outputs > N_OUTPUTS_MAX || l->n_weights < 1 ||
         l->n_weights > N_WEIGHTS_MAX) {
         printf("neural_layer_connected: malloc() invalid size\n");
-        l->n_weights = 1;
-        l->n_outputs = 1;
         exit(EXIT_FAILURE);
     }
     l->state = calloc(l->n_outputs, sizeof(double));
@@ -251,6 +249,10 @@ void
 neural_layer_connected_resize(struct Layer *l, const struct Layer *prev)
 {
     const int n_weights = prev->n_outputs * l->n_outputs;
+    if (n_weights < 1 || n_weights > N_WEIGHTS_MAX) {
+        printf("neural_layer_connected: malloc() invalid resize\n");
+        exit(EXIT_FAILURE);
+    }
     double *weights = malloc(sizeof(double) * n_weights);
     double *weight_updates = malloc(sizeof(double) * n_weights);
     bool *weight_active = malloc(sizeof(bool) * n_weights);
