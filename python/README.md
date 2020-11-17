@@ -222,7 +222,7 @@ xcs.prediction('constant')
 ### Normalised Least Mean Squares
 
 ```python
-args {
+args = {
     'x0': 1, # offset value
     'eta': 0.1, # gradient descent update rate (maximum value, if evolved)
     'eta-min': 0.0001, # minimum gradient descent update rate (if evolved)
@@ -235,7 +235,7 @@ xcs.prediction('nlms-quadratic', args)
 ### Recursive Least Mean Squares
 
 ```python
-args {
+args = {
     'x0': 1, # offset value
     'rls-scale-factor': 1000, # initial diagonal values of the gain-matrix
     'rls-lambda': 1, # forget rate (small values may be unstable)
