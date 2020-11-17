@@ -47,6 +47,7 @@
     * [Supervised Scoring](#supervised-scoring)
     * [Supervised Predicting](#supervised-predicting)
     * [Supervised Examples](#supervised-examples)
+* [Notes](#notes)
 
 *******************************************************************************
 
@@ -685,3 +686,19 @@ predictions = xcs.predict(X_test)
 
 `example_regression.py`
 `example_classification.py`
+
+*******************************************************************************
+
+## Notes
+
+The use of [always matching dummy conditions](#always-match-dummy) results in
+the match set being equal to the population set, i.e., [M] = [P]. The
+evolutionary algorithm and classifier updates are thus performed within [P],
+and global models are designed (e.g., neural networks) that cover the entire
+state-space. This configuration operates as a more traditional evolutionary
+algorithm, which can be useful for debugging and benchmarking.
+
+Additionally, a single global model (e.g., a linear regression) can be fit by
+also setting `POP_SIZE = 1` and disabling the evolutionary algorithm by setting
+the invocation frequency to a larger number than will ever be executed, e.g.,
+`THETA_EA = 5000000`. This can also be useful for debugging and benchmarking.
