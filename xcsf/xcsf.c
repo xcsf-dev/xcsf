@@ -124,12 +124,10 @@ xcsf_load(struct XCSF *xcsf, const char *filename)
     s += fread(&major, sizeof(int), 1, fp);
     s += fread(&minor, sizeof(int), 1, fp);
     s += fread(&build, sizeof(int), 1, fp);
-    if (major != VERSION_MAJOR || minor != VERSION_MINOR ||
-        build != VERSION_BUILD) {
+    if (major != VERSION_MAJOR || minor != VERSION_MINOR) {
         printf("Error loading file: %s. Version mismatch. ", filename);
-        printf("This version: %d.%d.%d.\n", VERSION_MAJOR, VERSION_MINOR,
-               VERSION_BUILD);
-        printf("Loaded version: %d.%d.%d\n", major, minor, build);
+        printf("This version: %d.%d\n", VERSION_MAJOR, VERSION_MINOR);
+        printf("Loaded version: %d.%d\n", major, minor);
         fclose(fp);
         exit(EXIT_FAILURE);
     }
