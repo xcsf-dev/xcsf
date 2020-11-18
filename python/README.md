@@ -33,7 +33,7 @@
     * [Average-pooling Layers](#average-pooling-layers)
     * [Upsampling Layers](#upsampling-layers)
 * [Saving and Loading XCSF](#saving-and-loading-xcsf)
-* [Storing and Retreiving XCSF](#storing-and-retreiving-xcsf)
+* [Storing and Retrieving XCSF](#storing-and-retrieving-xcsf)
 * [Printing XCSF](#printing-xcsf)
 * [XCSF Getters](#xcsf-getters)
 * [Reinforcement Learning](#reinforcement-learning)
@@ -53,6 +53,13 @@
 
 ## Constructor
 
+XCSF can be initialised in the following way. The `x_dim` is an integer
+specifying the number of input feature variables; `y_dim` is an integer
+specifying the number of predicted target variables (1 for reinforcement
+learning); and `n_actions` is an integer specifying the number of actions or
+classes (1 for supervised learning). An optional fourth argument may be
+supplied as a string specifying the location of an `.ini` configuration file.
+
 ```python
 import xcsf.xcsf as xcsf
 
@@ -63,10 +70,10 @@ xcs = xcsf.XCS(x_dim, y_dim, n_actions)
 
 ## Initialising General Parameters
 
-Default parameter values are hard-coded within XCSF. The `default.ini`
-configuration file is parsed upon invocation of the [constructor](#constructor)
-and overrides these values. At run-time, the values may be further overridden
-within python by using the following properties:
+Default parameter values are hard-coded within XCSF. The `.ini` configuration
+file is parsed upon invocation of the [constructor](#constructor) and overrides
+these values. At run-time, the values may be further overridden within python
+by using the following properties:
 
 ```python
 # General XCSF
@@ -493,7 +500,7 @@ xcs.load('saved_name.bin')
 
 *******************************************************************************
 
-## Storing and Retreiving XCSF
+## Storing and Retrieving XCSF
 
 To store the current XCSF population in memory for later retreival, overwriting
 any previously stored population:
@@ -505,7 +512,7 @@ xcs.store()
 To retrieve the previously stored XCSF population from memory:
 
 ```python
-xcs.retreive()
+xcs.retrieve()
 ```
 
 *******************************************************************************
