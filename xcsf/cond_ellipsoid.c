@@ -33,6 +33,15 @@
  */
 static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL };
 
+/**
+ * @brief Returns the relative distance to a hyperellipsoid.
+ * @details Distance is zero at the center; one on the border; and greater than
+ * one outside of the hyperellipsoid.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose hyperellipsoid distance is to be computed.
+ * @param [in] x Input to compute the relative distance.
+ * @return The relative distance of an input to the hyperellipsoid.
+ */
 static double
 cond_ellipsoid_dist(const struct XCSF *xcsf, const struct Cl *c,
                     const double *x)
@@ -49,8 +58,8 @@ cond_ellipsoid_dist(const struct XCSF *xcsf, const struct Cl *c,
 /**
  * @brief Creates and initialises a hyperellipsoid condition.
  * @details Uses the center-spread representation.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] c The classifier whose condition is to be initialised.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be initialised.
  */
 void
 cond_ellipsoid_init(const struct XCSF *xcsf, struct Cl *c)
@@ -68,6 +77,11 @@ cond_ellipsoid_init(const struct XCSF *xcsf, struct Cl *c)
     c->cond = new;
 }
 
+/**
+ * @brief Frees the memory used by a hyperellipsoid condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be freed.
+ */
 void
 cond_ellipsoid_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -79,6 +93,12 @@ cond_ellipsoid_free(const struct XCSF *xcsf, const struct Cl *c)
     free(c->cond);
 }
 
+/**
+ * @brief Copies a hyperellipsoid condition from one classifier to another.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] dest Destination classifier.
+ * @param [in] src Source classifier.
+ */
 void
 cond_ellipsoid_copy(const struct XCSF *xcsf, struct Cl *dest,
                     const struct Cl *src)
@@ -94,6 +114,12 @@ cond_ellipsoid_copy(const struct XCSF *xcsf, struct Cl *dest,
     dest->cond = new;
 }
 
+/**
+ * @brief Generates a hyperellipsoid that matches the current input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being covered.
+ * @param [in] x Input state to cover.
+ */
 void
 cond_ellipsoid_cover(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
@@ -106,6 +132,13 @@ cond_ellipsoid_cover(const struct XCSF *xcsf, const struct Cl *c,
     }
 }
 
+/**
+ * @brief Updates a hyperellipsoid, sliding the centers towards the mean input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
+ */
 void
 cond_ellipsoid_update(const struct XCSF *xcsf, const struct Cl *c,
                       const double *x, const double *y)
@@ -119,6 +152,13 @@ cond_ellipsoid_update(const struct XCSF *xcsf, const struct Cl *c,
     }
 }
 
+/**
+ * @brief Calculates whether a hyperellipsoid condition matches an input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition to match.
+ * @param [in] x Input state.
+ * @return Whether the hyperellipsoid condition matches the input.
+ */
 bool
 cond_ellipsoid_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
@@ -126,6 +166,13 @@ cond_ellipsoid_match(const struct XCSF *xcsf, const struct Cl *c,
     return (cond_ellipsoid_dist(xcsf, c, x) < 1);
 }
 
+/**
+ * @brief Performs uniform crossover with two hyperellipsoid conditions.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 First classifier whose condition is being crossed.
+ * @param [in] c2 Second classifier whose condition is being crossed.
+ * @return Whether any alterations were made.
+ */
 bool
 cond_ellipsoid_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                          const struct Cl *c2)
@@ -152,6 +199,12 @@ cond_ellipsoid_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return changed;
 }
 
+/**
+ * @brief Mutates a hyperellipsoid condition with the self-adaptive rate.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being mutated.
+ * @return Whether any alterations were made.
+ */
 bool
 cond_ellipsoid_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -177,6 +230,13 @@ cond_ellipsoid_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return changed;
 }
 
+/**
+ * @brief Returns whether classifier c1 has a condition more general than c2.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 Classifier whose condition is tested to be more general.
+ * @param [in] c2 Classifier whose condition is tested to be more specific.
+ * @return Whether the hyperellipsoid condition of c1 is more general than c2.
+ */
 bool
 cond_ellipsoid_general(const struct XCSF *xcsf, const struct Cl *c1,
                        const struct Cl *c2)
@@ -205,6 +265,11 @@ cond_ellipsoid_general(const struct XCSF *xcsf, const struct Cl *c1,
     return true;
 }
 
+/**
+ * @brief Prints a hyperellipsoid condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be printed.
+ */
 void
 cond_ellipsoid_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -217,6 +282,12 @@ cond_ellipsoid_print(const struct XCSF *xcsf, const struct Cl *c)
     printf("\n");
 }
 
+/**
+ * @brief Returns the size of a hyperellipsoid condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition size to return.
+ * @return The length of the input dimension.
+ */
 double
 cond_ellipsoid_size(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -224,6 +295,13 @@ cond_ellipsoid_size(const struct XCSF *xcsf, const struct Cl *c)
     return xcsf->x_dim;
 }
 
+/**
+ * @brief Writes a hyperellipsoid condition to a file.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 cond_ellipsoid_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -235,6 +313,13 @@ cond_ellipsoid_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads a hyperellipsoid condition from a file.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be read.
+ * @param [in] fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 cond_ellipsoid_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {

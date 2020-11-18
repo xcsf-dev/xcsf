@@ -33,6 +33,15 @@
  */
 static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL };
 
+/**
+ * @brief Returns the relative distance to a hyperrectangle.
+ * @details Distance is zero at the center; one on the border; and greater than
+ * one outside of the hyperrectangle.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose hyperrectangle distance is to be computed.
+ * @param [in] x Input to compute the relative distance.
+ * @return The relative distance of an input to the hyperrectangle.
+ */
 static double
 cond_rectangle_dist(const struct XCSF *xcsf, const struct Cl *c,
                     const double *x)
@@ -51,8 +60,8 @@ cond_rectangle_dist(const struct XCSF *xcsf, const struct Cl *c,
 /**
  * @brief Creates and initialises a hyperrectangle condition.
  * @details Uses the center-spread representation.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] c The classifier whose condition is to be initialised.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be initialised.
  */
 void
 cond_rectangle_init(const struct XCSF *xcsf, struct Cl *c)
@@ -70,6 +79,11 @@ cond_rectangle_init(const struct XCSF *xcsf, struct Cl *c)
     c->cond = new;
 }
 
+/**
+ * @brief Frees the memory used by a hyperrectangle condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be freed.
+ */
 void
 cond_rectangle_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -81,6 +95,12 @@ cond_rectangle_free(const struct XCSF *xcsf, const struct Cl *c)
     free(c->cond);
 }
 
+/**
+ * @brief Copies a hyperrectangle condition from one classifier to another.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] dest Destination classifier.
+ * @param [in] src Source classifier.
+ */
 void
 cond_rectangle_copy(const struct XCSF *xcsf, struct Cl *dest,
                     const struct Cl *src)
@@ -96,6 +116,12 @@ cond_rectangle_copy(const struct XCSF *xcsf, struct Cl *dest,
     dest->cond = new;
 }
 
+/**
+ * @brief Generates a hyperrectangle that matches the current input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being covered.
+ * @param [in] x Input state to cover.
+ */
 void
 cond_rectangle_cover(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
@@ -108,6 +134,13 @@ cond_rectangle_cover(const struct XCSF *xcsf, const struct Cl *c,
     }
 }
 
+/**
+ * @brief Updates a hyperrectangle, sliding the centers towards the mean input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
+ */
 void
 cond_rectangle_update(const struct XCSF *xcsf, const struct Cl *c,
                       const double *x, const double *y)
@@ -121,6 +154,13 @@ cond_rectangle_update(const struct XCSF *xcsf, const struct Cl *c,
     }
 }
 
+/**
+ * @brief Calculates whether a hyperrectangle condition matches an input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition to match.
+ * @param [in] x Input state.
+ * @return Whether the hyperrectangle condition matches the input.
+ */
 bool
 cond_rectangle_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
@@ -128,6 +168,13 @@ cond_rectangle_match(const struct XCSF *xcsf, const struct Cl *c,
     return (cond_rectangle_dist(xcsf, c, x) < 1);
 }
 
+/**
+ * @brief Performs uniform crossover with two hyperrectangle conditions.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 First classifier whose condition is being crossed.
+ * @param [in] c2 Second classifier whose condition is being crossed.
+ * @return Whether any alterations were made.
+ */
 bool
 cond_rectangle_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                          const struct Cl *c2)
@@ -154,6 +201,12 @@ cond_rectangle_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return changed;
 }
 
+/**
+ * @brief Mutates a hyperrectangle condition with the self-adaptive rate.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being mutated.
+ * @return Whether any alterations were made.
+ */
 bool
 cond_rectangle_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -179,6 +232,13 @@ cond_rectangle_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return changed;
 }
 
+/**
+ * @brief Returns whether classifier c1 has a condition more general than c2.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 Classifier whose condition is tested to be more general.
+ * @param [in] c2 Classifier whose condition is tested to be more specific.
+ * @return Whether the hyperrectangle condition of c1 is more general than c2.
+ */
 bool
 cond_rectangle_general(const struct XCSF *xcsf, const struct Cl *c1,
                        const struct Cl *c2)
@@ -197,6 +257,11 @@ cond_rectangle_general(const struct XCSF *xcsf, const struct Cl *c1,
     return true;
 }
 
+/**
+ * @brief Prints a hyperrectangle condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be printed.
+ */
 void
 cond_rectangle_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -209,6 +274,12 @@ cond_rectangle_print(const struct XCSF *xcsf, const struct Cl *c)
     printf("\n");
 }
 
+/**
+ * @brief Returns the size of a hyperrectangle condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition size to return.
+ * @return The length of the input dimension.
+ */
 double
 cond_rectangle_size(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -216,6 +287,13 @@ cond_rectangle_size(const struct XCSF *xcsf, const struct Cl *c)
     return xcsf->x_dim;
 }
 
+/**
+ * @brief Writes a hyperrectangle condition to a file.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 cond_rectangle_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -227,6 +305,13 @@ cond_rectangle_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads a hyperrectangle condition from a file.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be read.
+ * @param [in] fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
