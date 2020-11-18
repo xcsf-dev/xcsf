@@ -502,7 +502,7 @@ xcs.load('saved_name.bin')
 
 ## Storing and Retrieving XCSF
 
-To store the current XCSF population in memory for later retreival, overwriting
+To store the current XCSF population in memory for later retrieval, overwriting
 any previously stored population:
 
 ```python
