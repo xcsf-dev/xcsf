@@ -39,6 +39,11 @@ cond_dgp_init(const struct XCSF *xcsf, struct Cl *c)
     c->cond = new;
 }
 
+/**
+ * @brief Frees the memory used by a dynamical GP graph condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be freed.
+ */
 void
 cond_dgp_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -48,6 +53,12 @@ cond_dgp_free(const struct XCSF *xcsf, const struct Cl *c)
     free(c->cond);
 }
 
+/**
+ * @brief Copies a dynamical GP graph condition from one classifier to another.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] dest Destination classifier.
+ * @param [in] src Source classifier.
+ */
 void
 cond_dgp_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
@@ -58,6 +69,12 @@ cond_dgp_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
     dest->cond = new;
 }
 
+/**
+ * @brief Generates a dynamical GP graph that matches the current input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being covered.
+ * @param [in] x Input state to cover.
+ */
 void
 cond_dgp_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -68,6 +85,13 @@ cond_dgp_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     } while (!cond_dgp_match(xcsf, c, x));
 }
 
+/**
+ * @brief Dummy update function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
+ */
 void
 cond_dgp_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                 const double *y)
@@ -78,6 +102,13 @@ cond_dgp_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) y;
 }
 
+/**
+ * @brief Calculates whether a dynamical GP graph condition matches an input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition to match.
+ * @param [in] x Input state.
+ * @return Whether the dynamical GP graph condition matches the input.
+ */
 bool
 cond_dgp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -89,6 +120,12 @@ cond_dgp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     return false;
 }
 
+/**
+ * @brief Mutates a dynamical GP graph condition with the self-adaptive rates.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being mutated.
+ * @return Whether any alterations were made.
+ */
 bool
 cond_dgp_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -97,6 +134,13 @@ cond_dgp_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return graph_mutate(&cond->dgp);
 }
 
+/**
+ * @brief Dummy crossover function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 First classifier whose condition is being crossed.
+ * @param [in] c2 Second classifier whose condition is being crossed.
+ * @return False.
+ */
 bool
 cond_dgp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                    const struct Cl *c2)
@@ -107,6 +151,13 @@ cond_dgp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Dummy general function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 Classifier whose condition is tested to be more general.
+ * @param [in] c2 Classifier whose condition is tested to be more specific.
+ * @return False.
+ */
 bool
 cond_dgp_general(const struct XCSF *xcsf, const struct Cl *c1,
                  const struct Cl *c2)
@@ -117,6 +168,11 @@ cond_dgp_general(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Prints a dynamical GP graph condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be printed.
+ */
 void
 cond_dgp_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -125,6 +181,12 @@ cond_dgp_print(const struct XCSF *xcsf, const struct Cl *c)
     graph_print(&cond->dgp);
 }
 
+/**
+ * @brief Returns the size of a dynamical GP graph condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition size to return.
+ * @return The number of nodes in the graph.
+ */
 double
 cond_dgp_size(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -133,6 +195,13 @@ cond_dgp_size(const struct XCSF *xcsf, const struct Cl *c)
     return cond->dgp.n;
 }
 
+/**
+ * @brief Writes a dynamical GP graph condition to a file.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 cond_dgp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -142,6 +211,13 @@ cond_dgp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads a dynamical GP graph condition from a file.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be read.
+ * @param [in] fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 cond_dgp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {

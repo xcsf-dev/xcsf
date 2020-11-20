@@ -39,6 +39,11 @@ cond_gp_init(const struct XCSF *xcsf, struct Cl *c)
     c->cond = new;
 }
 
+/**
+ * @brief Frees the memory used by a tree-GP condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be freed.
+ */
 void
 cond_gp_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -48,6 +53,12 @@ cond_gp_free(const struct XCSF *xcsf, const struct Cl *c)
     free(c->cond);
 }
 
+/**
+ * @brief Copies a tree-GP condition from one classifier to another.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] dest Destination classifier.
+ * @param [in] src Source classifier.
+ */
 void
 cond_gp_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
@@ -58,6 +69,12 @@ cond_gp_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
     dest->cond = new;
 }
 
+/**
+ * @brief Generates a GP tree that matches the current input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being covered.
+ * @param [in] x Input state to cover.
+ */
 void
 cond_gp_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -68,6 +85,13 @@ cond_gp_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     } while (!cond_gp_match(xcsf, c, x));
 }
 
+/**
+ * @brief Dummy update function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
+ */
 void
 cond_gp_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                const double *y)
@@ -78,6 +102,13 @@ cond_gp_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) y;
 }
 
+/**
+ * @brief Calculates whether a GP tree condition matches an input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition to match.
+ * @param [in] x Input state.
+ * @return Whether the hyperrectangle condition matches the input.
+ */
 bool
 cond_gp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -89,6 +120,12 @@ cond_gp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     return false;
 }
 
+/**
+ * @brief Mutates a tree-GP condition with the self-adaptive rate.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being mutated.
+ * @return Whether any alterations were made.
+ */
 bool
 cond_gp_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -97,6 +134,13 @@ cond_gp_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return tree_mutate(&cond->gp, xcsf->cond->targs);
 }
 
+/**
+ * @brief Performs sub-tree crossover with two tree-GP conditions.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 First classifier whose condition is being crossed.
+ * @param [in] c2 Second classifier whose condition is being crossed.
+ * @return Whether any alterations were made.
+ */
 bool
 cond_gp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                   const struct Cl *c2)
@@ -111,6 +155,13 @@ cond_gp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Dummy general function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 Classifier whose condition is tested to be more general.
+ * @param [in] c2 Classifier whose condition is tested to be more specific.
+ * @return False
+ */
 bool
 cond_gp_general(const struct XCSF *xcsf, const struct Cl *c1,
                 const struct Cl *c2)
@@ -121,6 +172,11 @@ cond_gp_general(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Prints a tree-GP condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be printed.
+ */
 void
 cond_gp_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -131,6 +187,12 @@ cond_gp_print(const struct XCSF *xcsf, const struct Cl *c)
     printf("\n");
 }
 
+/**
+ * @brief Returns the size of a tree-GP condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition size to return.
+ * @return The length of the tree.
+ */
 double
 cond_gp_size(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -139,6 +201,13 @@ cond_gp_size(const struct XCSF *xcsf, const struct Cl *c)
     return cond->gp.len;
 }
 
+/**
+ * @brief Writes a tree-GP condition to a file.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 cond_gp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -148,6 +217,13 @@ cond_gp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads a tree-GP condition from a file.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be read.
+ * @param [in] fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {

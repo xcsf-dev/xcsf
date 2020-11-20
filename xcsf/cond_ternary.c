@@ -134,7 +134,7 @@ cond_ternary_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 }
 
 /**
- * @brief Dummy function since ternary conditions are not updated.
+ * @brief Dummy update function.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] c Classifier whose condition is to be updated.
  * @param [in] x Input state.

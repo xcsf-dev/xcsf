@@ -23,6 +23,11 @@
 
 #include "cond_dummy.h"
 
+/**
+ * @brief Dummy initialisation function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be initialised.
+ */
 void
 cond_dummy_init(const struct XCSF *xcsf, struct Cl *c)
 {
@@ -30,6 +35,11 @@ cond_dummy_init(const struct XCSF *xcsf, struct Cl *c)
     (void) c;
 }
 
+/**
+ * @brief Dummy free function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be initialised.
+ */
 void
 cond_dummy_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -37,6 +47,12 @@ cond_dummy_free(const struct XCSF *xcsf, const struct Cl *c)
     (void) c;
 }
 
+/**
+ * @brief Dummy copy function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] dest Destination classifier.
+ * @param [in] src Source classifier.
+ */
 void
 cond_dummy_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
@@ -45,6 +61,12 @@ cond_dummy_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
     (void) src;
 }
 
+/**
+ * @brief Dummy cover function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being covered.
+ * @param [in] x Input state to cover.
+ */
 void
 cond_dummy_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -53,6 +75,13 @@ cond_dummy_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     (void) x;
 }
 
+/**
+ * @brief Dummy update function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
+ */
 void
 cond_dummy_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                   const double *y)
@@ -63,6 +92,13 @@ cond_dummy_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) y;
 }
 
+/**
+ * @brief Dummy match function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition to match.
+ * @param [in] x Input state.
+ * @return True.
+ */
 bool
 cond_dummy_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -72,6 +108,13 @@ cond_dummy_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     return true;
 }
 
+/**
+ * @brief Dummy crossover function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 First classifier whose condition is being crossed.
+ * @param [in] c2 Second classifier whose condition is being crossed.
+ * @return False.
+ */
 bool
 cond_dummy_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                      const struct Cl *c2)
@@ -82,6 +125,12 @@ cond_dummy_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Dummy mutate function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being mutated.
+ * @return False.
+ */
 bool
 cond_dummy_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -90,6 +139,13 @@ cond_dummy_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return false;
 }
 
+/**
+ * @brief Dummy general function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 Classifier whose condition is tested to be more general.
+ * @param [in] c2 Classifier whose condition is tested to be more specific.
+ * @return False.
+ */
 bool
 cond_dummy_general(const struct XCSF *xcsf, const struct Cl *c1,
                    const struct Cl *c2)
@@ -100,6 +156,11 @@ cond_dummy_general(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Dummy print function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be printed.
+ */
 void
 cond_dummy_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -107,6 +168,12 @@ cond_dummy_print(const struct XCSF *xcsf, const struct Cl *c)
     (void) c;
 }
 
+/**
+ * @brief Dummy size function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition size to return.
+ * @return 0.
+ */
 double
 cond_dummy_size(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -115,6 +182,13 @@ cond_dummy_size(const struct XCSF *xcsf, const struct Cl *c)
     return 0;
 }
 
+/**
+ * @brief Dummy save function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return 0.
+ */
 size_t
 cond_dummy_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -124,6 +198,13 @@ cond_dummy_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return 0;
 }
 
+/**
+ * @brief Dummy load function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return 0.
+ */
 size_t
 cond_dummy_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {

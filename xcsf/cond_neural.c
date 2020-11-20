@@ -45,6 +45,11 @@ cond_neural_init(const struct XCSF *xcsf, struct Cl *c)
     c->cond = new;
 }
 
+/**
+ * @brief Frees the memory used by a neural network condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be freed.
+ */
 void
 cond_neural_free(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -54,6 +59,12 @@ cond_neural_free(const struct XCSF *xcsf, const struct Cl *c)
     free(c->cond);
 }
 
+/**
+ * @brief Copies a neural network condition from one classifier to another.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] dest Destination classifier.
+ * @param [in] src Source classifier.
+ */
 void
 cond_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 {
@@ -64,6 +75,12 @@ cond_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
     dest->cond = new;
 }
 
+/**
+ * @brief Generates a neural network that matches the current input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being covered.
+ * @param [in] x Input state to cover.
+ */
 void
 cond_neural_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -73,6 +90,13 @@ cond_neural_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     } while (!cond_neural_match(xcsf, c, x));
 }
 
+/**
+ * @brief Dummy update function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be updated.
+ * @param [in] x Input state.
+ * @param [in] y Truth/payoff value.
+ */
 void
 cond_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                    const double *y)
@@ -83,6 +107,12 @@ cond_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) y;
 }
 
+/**
+ * @brief Generates a neural network that matches the current input.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being covered.
+ * @param [in] x Input state to cover.
+ */
 bool
 cond_neural_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 {
@@ -94,6 +124,12 @@ cond_neural_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     return false;
 }
 
+/**
+ * @brief Mutates a neural network condition with the self-adaptive rates.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is being mutated.
+ * @return Whether any alterations were made.
+ */
 bool
 cond_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -102,6 +138,13 @@ cond_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)
     return neural_mutate(&cond->net);
 }
 
+/**
+ * @brief Dummy crossover function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 First classifier whose condition is being crossed.
+ * @param [in] c2 Second classifier whose condition is being crossed.
+ * @return False
+ */
 bool
 cond_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                       const struct Cl *c2)
@@ -112,6 +155,13 @@ cond_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Dummy general function.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c1 Classifier whose condition is tested to be more general.
+ * @param [in] c2 Classifier whose condition is tested to be more specific.
+ * @return False.
+ */
 bool
 cond_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
                     const struct Cl *c2)
@@ -122,6 +172,11 @@ cond_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
     return false;
 }
 
+/**
+ * @brief Prints a neural network condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be printed.
+ */
 void
 cond_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -130,6 +185,13 @@ cond_neural_print(const struct XCSF *xcsf, const struct Cl *c)
     neural_print(&cond->net, false);
 }
 
+/**
+ * @brief Returns the size of a neural network condition.
+ * @see neural_size()
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition size to return.
+ * @return The network size.
+ */
 double
 cond_neural_size(const struct XCSF *xcsf, const struct Cl *c)
 {
@@ -138,6 +200,13 @@ cond_neural_size(const struct XCSF *xcsf, const struct Cl *c)
     return neural_size(&cond->net);
 }
 
+/**
+ * @brief Writes a neural network condition to a file.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
 size_t
 cond_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
@@ -147,6 +216,13 @@ cond_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Reads a neural network condition from a file.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be read.
+ * @param [in] fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
 size_t
 cond_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
@@ -157,6 +233,13 @@ cond_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Returns the number of neurons in a neural condition layer.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier maintaining a neural network prediction.
+ * @param [in] layer Position of a layer in the network.
+ * @return The current number of neurons in a layer.
+ */
 int
 cond_neural_neurons(const struct XCSF *xcsf, const struct Cl *c, int layer)
 {
@@ -178,6 +261,13 @@ cond_neural_neurons(const struct XCSF *xcsf, const struct Cl *c, int layer)
     return 0;
 }
 
+/**
+ * @brief Returns the number of active connections in a neural condition layer.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier maintaining a neural network condition.
+ * @param [in] layer Position of a layer in the network.
+ * @return The current number of active connections in a layer.
+ */
 int
 cond_neural_connections(const struct XCSF *xcsf, const struct Cl *c, int layer)
 {
@@ -196,6 +286,12 @@ cond_neural_connections(const struct XCSF *xcsf, const struct Cl *c, int layer)
     return 0;
 }
 
+/**
+ * @brief Returns the number of layers within a neural network condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier maintaining a neural network condition.
+ * @return The number of layers.
+ */
 int
 cond_neural_layers(const struct XCSF *xcsf, const struct Cl *c)
 {
