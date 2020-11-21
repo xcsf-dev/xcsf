@@ -20,20 +20,6 @@ matrix:
           organization: "rpreen"
       env: BUILD_TYPE="Debug" XCSF_PYLIB="OFF" SONAR="ON"
 
-    # Python library Ubuntu 18.04
-    - os: linux
-      compiler: gcc
-      addons: &gcc9
-        apt:
-          packages: ['g++-9', 'python3']
-      env: BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
-
-    # Python library OSX
-    - os: osx
-      osx_image: xcode10.1
-      compiler: clang
-      env: BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
-
     # Doxygen
     - os: linux
       compiler: gcc
