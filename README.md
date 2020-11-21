@@ -15,8 +15,8 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
     </tr>
     <tr>
         <td><a href="http://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a></td>
-        <td><a href="https://travis-ci.com/rpreen/xcsf"><img src="https://travis-matrix-badges.herokuapp.com/repos/rpreen/xcsf/branches/master/2?use_travis_com=true"></a></td>
-        <td><a href="https://travis-ci.com/rpreen/xcsf"><img src="https://travis-matrix-badges.herokuapp.com/repos/rpreen/xcsf/branches/master/3?use_travis_com=true"></a></td>
+        <td><img src="https://github.com/rpreen/xcsf/workflows/Ubuntu%20build/badge.svg"></td>
+        <td><img src="https://github.com/rpreen/xcsf/workflows/macOS%20build/badge.svg"></td>
         <td><a href="https://ci.appveyor.com/project/rpreen/xcsf"><img src="https://ci.appveyor.com/api/projects/status/s4xge68jmlbam005?svg=true"></a></td>
         <td><a href="https://travis-ci.com/rpreen/xcsf"><img src="https://travis-matrix-badges.herokuapp.com/repos/rpreen/xcsf/branches/master/4?use_travis_com=true"></a></td>
         <td><a href="https://zenodo.org/badge/latestdoi/28035841"><img src="https://zenodo.org/badge/28035841.svg"></a></td>
