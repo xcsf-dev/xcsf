@@ -20,5 +20,5 @@ before_build:
   - cmake --version
   - cmake -DCMAKE_BUILD_TYPE=%BUILD_TYPE% %CMAKE_ARGS% -G "%GENERATOR%" ..
 
-build_script: cmake --build . --config %CONFIGURATION% -j2
+build_script: cmake --build . --config %BUILD_TYPE% -j2
 ...
