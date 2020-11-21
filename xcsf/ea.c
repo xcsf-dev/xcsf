@@ -198,11 +198,9 @@ ea_select(const struct XCSF *xcsf, const struct Set *set, struct Cl **c1p,
 void
 ea(struct XCSF *xcsf, const struct Set *set)
 {
-    // increase EA time
     ++(xcsf->time);
-    // check if the EA should be run
     if (set->size == 0 || xcsf->time - clset_mean_time(set) < xcsf->ea->theta) {
-        return;
+        return; // not yet time to run the EA
     }
     clset_set_times(xcsf, set);
     // select parents
