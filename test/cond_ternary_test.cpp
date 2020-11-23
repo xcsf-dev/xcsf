@@ -79,4 +79,8 @@ TEST_CASE("COND_TERNARY")
     CHECK_EQ(general, true);
     general = cond_ternary_general(&xcsf, &c2, &c1);
     CHECK_EQ(general, false);
+    /* test covering */
+    cond_ternary_cover(&xcsf, &c2, x);
+    match = cond_ternary_match(&xcsf, &c2, x);
+    CHECK_EQ(match, true);
 }

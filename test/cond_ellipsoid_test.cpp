@@ -84,4 +84,8 @@ TEST_CASE("COND_ELLIPSOID")
     CHECK_EQ(general, true);
     general = cond_ellipsoid_general(&xcsf, &c2, &c1);
     CHECK_EQ(general, false);
+    /* test covering */
+    cond_ellipsoid_cover(&xcsf, &c2, x);
+    match = cond_ellipsoid_match(&xcsf, &c2, x);
+    CHECK_EQ(match, true);
 }
