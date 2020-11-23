@@ -123,7 +123,7 @@ xcs.EA_SUBSUMPTION = False # whether to try and subsume offspring classifiers
 xcs.EA_PRED_RESET = False # whether to reset offspring predictions instead of copying
 ```
 
-Related Literature:
+*Related Literature:*
 
 * S. W. Wilson (1995) "Classifier fitness based on accuracy"
   https://doi.org/10.1162/evco.1995.3.2.149
@@ -177,7 +177,7 @@ args = {
 xcs.condition('ternary', args)
 ```
 
-Related Literature:
+*Related Literature:*
 
 * S. W. Wilson (1995) "Classifier fitness based on accuracy"
   https://doi.org/10.1162/evco.1995.3.2.149
@@ -203,7 +203,7 @@ xcs.condition('hyperrectangle', args)
 xcs.condition('hyperellipsoid', args)
 ```
 
-Related Literature:
+*Related Literature:*
 
 * S. W. Wilson (2000) "Get real! XCS with continuous-valued inputs"
   https://doi.org/10.1007/3-540-45027-0_11
@@ -234,7 +234,7 @@ args = {
 xcs.condition('tree-gp', args)
 ```
 
-Related Literature:
+*Related Literature:*
 
 * M. Ahluwalia and L. Bull (1999) "A genetic programming-based classifier
   system".
@@ -264,7 +264,7 @@ xcs.condition('dgp', args)
 xcs.condition('rule-dgp', args) # conditions + actions in single DGP graphs
 ```
 
-Related Literature:
+*Related Literature:*
 
 * R. J. Preen and L. Bull (2013) "Dynamical genetic programming in XCSF"
   https://doi.org/10.1162/EVCO_a_00080
@@ -291,7 +291,7 @@ xcs.condition('neural', layer_args)
 xcs.condition('rule-neural', layer_args) # conditions + actions in single neural nets
 ```
 
-Related Literature:
+*Related Literature:*
 
 * L. Bull (2002) "On using constructivism in neural classifier systems"
   https://doi.org/10.1007/3-540-45712-7_54
@@ -306,7 +306,7 @@ Related Literature:
 xcs.action('integer')
 ```
 
-Related Literature:
+*Related Literature:*
 
 * S. W. Wilson (1995). "Classifier fitness based on accuracy".
   https://doi.org/10.1162/evco.1995.3.2.149
@@ -320,7 +320,7 @@ See [Neural Network Initialisation](#neural-network-initialisation).
 xcs.action('neural', layer_args)
 ```
 
-Related Literature:
+*Related Literature:*
 
 * T. O'Hara and L. Bull (2005) "A memetic accuracy-based neural learning
   classifier system"
@@ -339,7 +339,7 @@ xcs.BETA = 0.1 # classifier update rate includes constant predictions
 xcs.prediction('constant')
 ```
 
-Related Literature:
+*Related Literature:*
 
 * S. W. Wilson (1995) "Classifier fitness based on accuracy"
   https://doi.org/10.1162/evco.1995.3.2.149
@@ -362,7 +362,7 @@ xcs.prediction('nlms-linear', args)
 xcs.prediction('nlms-quadratic', args)
 ```
 
-Related Literature:
+*Related Literature:*
 
 * S. W. Wilson (2001) "Function approximation with a classifier system"
 * S. W. Wilson (2002) "Classifiers that approximate functions"
@@ -380,7 +380,7 @@ xcs.prediction('rls-linear', args)
 xcs.prediction('rls-quadratic', args)
 ```
 
-Related Literature:
+*Related Literature:*
 
 * M. V. Butz, P.-L. Lanzi, and S. W. Wilson (2008) "Function approximation with
   XCS: Hyperellipsoidal conditions, recursive least squares, and compaction
@@ -395,7 +395,7 @@ See [Neural Network Initialisation](#neural-network-initialisation).
 xcs.prediction('neural', layer_args)
 ```
 
-Related Literature:
+*Related Literature:*
 
 * P.-L. Lanzi and D. Loiacono (2006) "XCSF with neural prediction"
   https://doi.org/10.1109/CEC.2006.1688588
@@ -865,7 +865,7 @@ Rate selection adaptation: selects rates from the following set of 10 values:
 Initially the rate is selected at random. Offspring inherit the parent's rate,
 but with 10% probability the rate is randomly reselected.
 
-Related Literature:
+*Related Literature:*
 
 * L. Bull and J. Hurst (2003) "A neural learning classifier system with
   self-adaptive constructivism" https://doi.org/10.1109/CEC.2003.1299775
