@@ -112,6 +112,7 @@ env_csv_read(const char *filename, double **data, int *n_samples, int *n_dim)
     FILE *fin = fopen(filename, "rt");
     if (fin == 0) {
         printf("Error opening file: %s. %s.\n", filename, strerror(errno));
+        perror("");
         exit(EXIT_FAILURE);
     }
     *n_samples = env_csv_samples(fin);

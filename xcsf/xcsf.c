@@ -87,6 +87,7 @@ xcsf_save(const struct XCSF *xcsf, const char *filename)
     FILE *fp = fopen(filename, "wb");
     if (fp == 0) {
         printf("Error saving file: %s. %s.\n", filename, strerror(errno));
+        perror("");
         exit(EXIT_FAILURE);
     }
     size_t s = 0;
@@ -115,6 +116,7 @@ xcsf_load(struct XCSF *xcsf, const char *filename)
     FILE *fp = fopen(filename, "rb");
     if (fp == 0) {
         printf("Error loading file: %s. %s.\n", filename, strerror(errno));
+        perror("");
         exit(EXIT_FAILURE);
     }
     size_t s = 0;
