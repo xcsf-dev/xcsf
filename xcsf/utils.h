@@ -109,7 +109,7 @@ float_to_binary(const double f, char *binary, const int bits)
     } else {
         int a = (int) (f * pow(2, bits));
         for (int i = 0; i < bits; ++i) {
-            binary[bits-1-i] = (a % 2) + '0';
+            binary[bits - 1 - i] = (a % 2) + '0';
             a /= 2;
         }
     }

@@ -37,7 +37,7 @@ TEST_CASE("UTIL")
     // test float to binary
     char tmp[3];
     float_to_binary(1, tmp, 3);
-    char correct[3] = { '1','1','1' };
+    char correct[3] = { '1', '1', '1' };
     for (int i = 0; i < 3; ++i) {
         CHECK_EQ(correct[i], tmp[i]);
     }
