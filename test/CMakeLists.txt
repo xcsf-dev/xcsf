@@ -28,6 +28,7 @@ set(XCSF_TESTS
     neural_test.cpp
     pred_nlms_test.cpp
     pred_rls_test.cpp
+    util_test.cpp
     unit_tests.cpp
 )
 
