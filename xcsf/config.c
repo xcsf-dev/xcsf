@@ -619,9 +619,10 @@ config_process(struct XCSF *xcsf, const char *configline)
 void
 config_read(struct XCSF *xcsf, const char *filename)
 {
-    FILE *f = fopen(filename, "rte");
+    FILE *f = fopen(filename, "rt");
     if (f == NULL) {
         printf("Warning: could not open %s.\n", filename);
+        perror("");
         return;
     }
     // clear existing layer parameters
