@@ -129,11 +129,33 @@ xcs.EA_PRED_RESET = False # whether to reset offspring predictions instead of co
 
 ### Always match (dummy)
 
+The use of always matching conditions results in the match set being equal to
+the population set, i.e., [M] = [P]. The evolutionary algorithm and classifier
+updates are thus performed within [P], and global models are designed (e.g.,
+neural networks) that cover the entire state-space. This configuration operates
+as a more traditional evolutionary algorithm, which can be useful for debugging
+and benchmarking.
+
+Additionally, a single global model (e.g., a linear regression) can be fit by
+also setting `POP_SIZE = 1` and disabling the evolutionary algorithm by setting
+the invocation frequency to a larger number than will ever be executed, e.g.,
+`THETA_EA = 5000000`. This can also be useful for debugging and benchmarking.
+
 ```python
 xcs.condition('dummy')
 ```
 
 ### Ternary Bitstrings
+
+Ternary bitstrings binarise real-valued inputs to a specified number of `bits`
+with the assumption that the inputs are in the range [0,1]. For example with 2
+bits, an input vector `[0.23,0.76,0.45,0.5]` will be converted to
+`[0,0,1,1,0,1,0,1]` before being tested for matching with the ternary bitstring
+using the alphabet `{0,1,#}` where the don't care symbol `#` matches either
+bit.
+
+Uniform crossover is applied with probability `P_CROSSOVER` and a single
+self-adaptive mutation rate ([log normal](#notes)) is used.
 
 ```python
 args = {
@@ -144,6 +166,14 @@ xcs.condition('ternary', args)
 ```
 
 ### Hyperrectangles and Hyperellipsoids
+
+Hyperrectangles and hyperellipsoids currently use the centre-spread
+representation (and axis-rotation is not yet implemented.)
+
+Uniform crossover is applied with probability `P_CROSSOVER`. A single
+self-adaptive mutation rate ([log normal](#notes)) specifies the standard
+deviation used to sample a random Gaussian (with zero mean) which is added to
+each centre and spread value.
 
 ```python
 args = {
@@ -157,6 +187,15 @@ xcs.condition('hyperellipsoid', args)
 ```
 
 ### GP Trees
+
+GP trees currently use arithmetic operators from the set `{+,-,/,*}`. Return
+values from each node are clamped [-1000,1000].
+
+Sub-tree crossover is applied with probability `P_CROSSOVER`. A single
+self-adaptive mutation rate ([rate selection](#notes)) is used to specify the
+per allele probability of performing mutation where terminals are randomly
+replaced with other terminals and functions randomly replaced with other
+functions.
 
 ```python
 args = {
@@ -229,6 +268,11 @@ xcs.prediction('constant')
 
 ### Normalised Least Mean Squares
 
+If `eta` is evolved, the rate is initialised uniformly random `[eta-min, eta]`.
+Offspring inherit the rate and a single ([log normal](#notes)) self-adaptive
+mutation rate specifies the standard deviation used to sample a random Gaussian
+(with zero mean) which is added to `eta` (similar to evolution strategies).
+
 ```python
 args = {
     'x0': 1, # offset value
@@ -282,6 +326,9 @@ layer_args = {
 ```
 
 ### Activation Functions
+
+Note: Neuron states are clamped [-100,100] before activations are applied.
+Weights are clamped [-10,10].
 
 ```python
 'logistic', # logistic [0,1]
@@ -353,6 +400,7 @@ Softmax layers can be composed of a linear connected layer and softmax:
 layer_args = {
     'layer_0': {
         'type': 'connected',
+        'activation': 'linear',
         'n-init': N_ACTIONS, # number of (softmax) outputs
         ..., # other parameters same as for connected layers
     },       
@@ -698,14 +746,22 @@ predictions = xcs.predict(X_test)
 
 ## Notes
 
-The use of [always matching dummy conditions](#always-match-dummy) results in
-the match set being equal to the population set, i.e., [M] = [P]. The
-evolutionary algorithm and classifier updates are thus performed within [P],
-and global models are designed (e.g., neural networks) that cover the entire
-state-space. This configuration operates as a more traditional evolutionary
-algorithm, which can be useful for debugging and benchmarking.
+### Self-adaptive mutation
 
-Additionally, a single global model (e.g., a linear regression) can be fit by
-also setting `POP_SIZE = 1` and disabling the evolutionary algorithm by setting
-the invocation frequency to a larger number than will ever be executed, e.g.,
-`THETA_EA = 5000000`. This can also be useful for debugging and benchmarking.
+Currently 3 self-adaptive mutation methods are implemented and their use is
+defined within the various implementations of conditions, actions, and
+predictions. The smallest allowable mutation rate `MU_EPSILON = 0.0005`.
+
+Uniform adaptation: selects rates from a uniform random distribution.
+Initially the rate is drawn at random. Offspring inherit the parent's rate,
+but with 10% probability the rate is randomly redrawn.
+
+Log normal adaptation: selects rates using a log normal method (similar to
+evolution strategies). Initially the rate is selected at random from a uniform
+distribution. Offspring inherit the parent's rate, before applying log normal
+adaptation: *&mu; &larr; &mu; e<sup>N(0,1)</sup>*.
+
+Rate selection adaptation: selects rates from the following set of 10 values:
+`{0.0005, 0.001, 0.002, 0.003, 0.005, 0.01, 0.015, 0.02, 0.05, 0.1}`.
+Initially the rate is selected at random. Offspring inherit the parent's rate,
+but with 10% probability the rate is randomly reselected.
