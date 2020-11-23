@@ -123,21 +123,17 @@ xcs.EA_SUBSUMPTION = False # whether to try and subsume offspring classifiers
 xcs.EA_PRED_RESET = False # whether to reset offspring predictions instead of copying
 ```
 
-Further reading:
+Related Literature:
 
-S. W. Wilson (1995). "Classifier fitness based on accuracy".
-https://doi.org/10.1162/evco.1995.3.2.149
-
-S. W. Wilson (2001). "Function approximation with a classifier system".
-
-S. W. Wilson (2002). "Classifiers that approximate functions".
-https://doi.org/10.1023/A:1016535925043
-
-M. V. Butz (2006). "Rule-based evolutionary online learning systems".
-https://doi.org/10.1007/b104669
-
-L. Bull (2015). "A brief history of learning classifier systems: From CS-1 to
-XCS and its variants". https://doi.org/10.1007/s12065-015-0125-y
+* S. W. Wilson (1995). "Classifier fitness based on accuracy".
+  https://doi.org/10.1162/evco.1995.3.2.149
+* S. W. Wilson (2001). "Function approximation with a classifier system".
+* S. W. Wilson (2002). "Classifiers that approximate functions".
+  https://doi.org/10.1023/A:1016535925043
+* M. V. Butz (2006). "Rule-based evolutionary online learning systems".
+  https://doi.org/10.1007/b104669
+* L. Bull (2015). "A brief history of learning classifier systems: From CS-1 to
+  XCS and its variants". https://doi.org/10.1007/s12065-015-0125-y
 
 *******************************************************************************
 
@@ -181,10 +177,10 @@ args = {
 xcs.condition('ternary', args)
 ```
 
-Further reading:
+Related Literature:
 
-S. W. Wilson (1995). "Classifier fitness based on accuracy".
-https://doi.org/10.1162/evco.1995.3.2.149
+* S. W. Wilson (1995). "Classifier fitness based on accuracy".
+  https://doi.org/10.1162/evco.1995.3.2.149
 
 ### Hyperrectangles and Hyperellipsoids
 
@@ -207,16 +203,14 @@ xcs.condition('hyperrectangle', args)
 xcs.condition('hyperellipsoid', args)
 ```
 
-Further reading:
+Related Literature:
 
-S. W. Wilson (2000). "Get real! XCS with continuous-valued inputs".
-https://doi.org/10.1007/3-540-45027-0_11
-
-C. Stone and L. Bull (2003). "For real! XCS with continuous-valued inputs".
-https://doi.org/10.1162/106365603322365315
-
-M. V. Butz (2005). "Kernel-based, ellipsoidal conditions in the real-valued
-XCS classifier system". https://doi.org/10.1145/1068009.1068320
+* S. W. Wilson (2000). "Get real! XCS with continuous-valued inputs".
+  https://doi.org/10.1007/3-540-45027-0_11
+* C. Stone and L. Bull (2003). "For real! XCS with continuous-valued inputs".
+  https://doi.org/10.1162/106365603322365315
+* M. V. Butz (2005). "Kernel-based, ellipsoidal conditions in the real-valued
+  XCS classifier system". https://doi.org/10.1145/1068009.1068320
 
 ### GP Trees
 
@@ -240,23 +234,19 @@ args = {
 xcs.condition('tree-gp', args)
 ```
 
-Further reading:
+Related Literature:
 
-M. Ahluwalia and L. Bull (1999). "A genetic programming-based classifier
-system".
-
-P.-L. Lanzi (1999). "Extending the representation of classifier conditions Part
-II: From messy coding to S-expressions".
-
-P.-L. Lanzi (2003). "XCS with stack-based genetic programming".
-https://doi.org/10.1109/CEC.2003.1299803
-
-C. Ioannides and W. Browne (2007). "Investigating scaling of an abstracted LCS
-utilising ternary and S-expression alphabets."
-https://doi.org/10.1007/978-3-540-88138-4_3
-
-S. W. Wilson (2008). "Classifier conditions using gene expression programming"
-https://doi.org/10.1007/978-3-540-88138-4_12
+* M. Ahluwalia and L. Bull (1999). "A genetic programming-based classifier
+  system".
+* P.-L. Lanzi (1999). "Extending the representation of classifier conditions
+  Part II: From messy coding to S-expressions".
+* P.-L. Lanzi (2003). "XCS with stack-based genetic programming".
+  https://doi.org/10.1109/CEC.2003.1299803
+* C. Ioannides and W. Browne (2007). "Investigating scaling of an abstracted
+  LCS utilising ternary and S-expression alphabets."
+  https://doi.org/10.1007/978-3-540-88138-4_3 
+* S. W. Wilson (2008). "Classifier conditions using gene expression
+  programming" https://doi.org/10.1007/978-3-540-88138-4_12
 
 ### DGP Graphs
 
@@ -271,17 +261,16 @@ xcs.condition('dgp', args)
 xcs.condition('rule-dgp', args) # conditions + actions in single DGP graphs
 ```
 
-Further reading:
+Related Literature:
 
-R. J. Preen and L. Bull (2013). "Dynamical genetic programming in XCSF".
-https://doi.org/10.1162/EVCO_a_00080
-
-R. J. Preen and L. Bull (2014). "Discrete and fuzzy dynamical genetic
-programming in the XCSF learning classifier system".
-https://doi.org/10.1007/s00500-013-1044-4
-
-M. Iqbal, W. N. Browne, and M. Zhang (2017). "Extending XCS with cyclic graphs
-for scalability on complex Boolean problems". https://doi.org/10.1162/EVCO_a_00167
+* R. J. Preen and L. Bull (2013). "Dynamical genetic programming in XCSF".
+  https://doi.org/10.1162/EVCO_a_00080
+* R. J. Preen and L. Bull (2014). "Discrete and fuzzy dynamical genetic
+  programming in the XCSF learning classifier system".
+  https://doi.org/10.1007/s00500-013-1044-4
+* M. Iqbal, W. N. Browne, and M. Zhang (2017). "Extending XCS with cyclic
+  graphs for scalability on complex Boolean problems".
+  https://doi.org/10.1162/EVCO_a_00167
 
 ### Neural Networks
 
@@ -298,10 +287,10 @@ xcs.condition('neural', layer_args)
 xcs.condition('rule-neural', layer_args) # conditions + actions in single neural nets
 ```
 
-Further reading:
+Related Literature:
 
-L. Bull (2002). "On using constructivism in neural classifier systems".
-https://doi.org/10.1007/3-540-45712-7_54
+* L. Bull (2002). "On using constructivism in neural classifier systems".
+  https://doi.org/10.1007/3-540-45712-7_54
 
 *******************************************************************************
 
@@ -313,10 +302,10 @@ https://doi.org/10.1007/3-540-45712-7_54
 xcs.action('integer')
 ```
 
-Further reading:
+Related Literature:
 
-S. W. Wilson (1995). "Classifier fitness based on accuracy".
-https://doi.org/10.1162/evco.1995.3.2.149
+* S. W. Wilson (1995). "Classifier fitness based on accuracy".
+  https://doi.org/10.1162/evco.1995.3.2.149
 
 ### Neural Networks
 
@@ -327,14 +316,13 @@ See [Neural Network Initialisation](#neural-network-initialisation).
 xcs.action('neural', layer_args)
 ```
 
-Further reading:
+Related Literature:
 
-T. O'Hara and L. Bull (2005). "A memetic accuracy-based neural learning
-classifier system".
-
-D. Howard, L. Bull, and P.-L. Lanzi (2015). "A cognitive architecture based on
-a learning classifier system with spiking classifiers".
-https://doi.org/10.1007/s11063-015-9451-4
+* T. O'Hara and L. Bull (2005). "A memetic accuracy-based neural learning
+  classifier system".
+* D. Howard, L. Bull, and P.-L. Lanzi (2015). "A cognitive architecture based
+  on a learning classifier system with spiking classifiers".
+  https://doi.org/10.1007/s11063-015-9451-4
 
 *******************************************************************************
 
@@ -347,10 +335,10 @@ xcs.BETA = 0.1 # classifier update rate includes constant predictions
 xcs.prediction('constant')
 ```
 
-Further reading:
+Related Literature:
 
-S. W. Wilson (1995). "Classifier fitness based on accuracy".
-https://doi.org/10.1162/evco.1995.3.2.149
+* S. W. Wilson (1995). "Classifier fitness based on accuracy".
+  https://doi.org/10.1162/evco.1995.3.2.149
 
 ### Normalised Least Mean Squares
 
@@ -370,12 +358,11 @@ xcs.prediction('nlms-linear', args)
 xcs.prediction('nlms-quadratic', args)
 ```
 
-Further reading:
+Related Literature:
 
-S. W. Wilson (2001). "Function approximation with a classifier system".
-
-S. W. Wilson (2002). "Classifiers that approximate functions".
-https://doi.org/10.1023/A:1016535925043
+* S. W. Wilson (2001). "Function approximation with a classifier system".
+* S. W. Wilson (2002). "Classifiers that approximate functions".
+  https://doi.org/10.1023/A:1016535925043
 
 ### Recursive Least Mean Squares
 
@@ -389,11 +376,11 @@ xcs.prediction('rls-linear', args)
 xcs.prediction('rls-quadratic', args)
 ```
 
-Further reading:
+Related Literature:
 
-M. V. Butz, P.-L. Lanzi, and S. W. Wilson (2008). "Function approximation
-with XCS: Hyperellipsoidal conditions, recursive least squares, and
-compaction". https://doi.org/10.1109/TEVC.2007.903551
+* M. V. Butz, P.-L. Lanzi, and S. W. Wilson (2008). "Function approximation
+  with XCS: Hyperellipsoidal conditions, recursive least squares, and
+  compaction". https://doi.org/10.1109/TEVC.2007.903551
 
 ### Neural Networks
 
@@ -404,16 +391,14 @@ See [Neural Network Initialisation](#neural-network-initialisation).
 xcs.prediction('neural', layer_args)
 ```
 
-Further reading:
+Related Literature:
 
-P.-L. Lanzi and D. Loiacono (2006). "XCSF with neural prediction".
-https://doi.org/10.1109/CEC.2006.1688588
-
-T. O'Hara and L. Bull (2007). "Backpropagation in accuracy-based neural
-learning classifier systems".
-
-R. J. Preen, S. W. Wilson, and L. Bull (2019). "Autoencoding with a classifier
-system". https://arxiv.org/abs/1910.10579
+* P.-L. Lanzi and D. Loiacono (2006). "XCSF with neural prediction".
+  https://doi.org/10.1109/CEC.2006.1688588
+* T. O'Hara and L. Bull (2007). "Backpropagation in accuracy-based neural
+  learning classifier systems".
+* R. J. Preen, S. W. Wilson, and L. Bull (2019). "Autoencoding with a
+  classifier system". https://arxiv.org/abs/1910.10579
 
 *******************************************************************************
 
@@ -876,17 +861,14 @@ Rate selection adaptation: selects rates from the following set of 10 values:
 Initially the rate is selected at random. Offspring inherit the parent's rate,
 but with 10% probability the rate is randomly reselected.
 
-Further reading:
+Related Literature:
 
-L. Bull and J. Hurst (2003). "A neural learning classifier system with self-
-adaptive constructivism". https://doi.org/10.1109/CEC.2003.1299775
-
-G. D. Howard, L. Bull, and P.-L. Lanzi (2008). "Self-adaptive constructivism in
-neural XCS and XCSF". https://doi.org/10.1145/1389095.1389364
-
-M. V. Butz, P. O. Stalph, and P.-L. Lanzi (2008). "Self-adaptive mutation in
-XCSF". https://doi.org/10.1145/1389095.1389361
-
-M. Serpell and J. E. Smith (2010). "Self-adaptation of mutation operator and
-probability for permutation representations in genetic algorithms".
-https://doi.org/10.1162/EVCO_a_00006
+* L. Bull and J. Hurst (2003). "A neural learning classifier system with
+  self-adaptive constructivism". https://doi.org/10.1109/CEC.2003.1299775
+* G. D. Howard, L. Bull, and P.-L. Lanzi (2008). "Self-adaptive constructivism
+  in neural XCS and XCSF". https://doi.org/10.1145/1389095.1389364
+* M. V. Butz, P. O. Stalph, and P.-L. Lanzi (2008). "Self-adaptive mutation in
+  XCSF". https://doi.org/10.1145/1389095.1389361
+* M. Serpell and J. E. Smith (2010). "Self-adaptation of mutation operator and
+  probability for permutation representations in genetic algorithms".
+  https://doi.org/10.1162/EVCO_a_00006
