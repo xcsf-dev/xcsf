@@ -98,9 +98,19 @@ max_index(const double *X, const int N)
 static inline void
 float_to_binary(const double f, char *binary, const int bits)
 {
-    int a = (int) (f * pow(2, bits));
-    for (int i = 0; i < bits; ++i) {
-        binary[i] = (a % 2) + '0';
-        a /= 2;
+    if (f >= 1) {
+        for (int i = 0; i < bits; ++i) {
+            binary[i] = '1';
+        }
+    } else if (f <= 0) {
+        for (int i = 0; i < bits; ++i) {
+            binary[i] = '0';
+        }
+    } else {
+        int a = (int) (f * pow(2, bits));
+        for (int i = 0; i < bits; ++i) {
+            binary[bits-1-i] = (a % 2) + '0';
+            a /= 2;
+        }
     }
 }
