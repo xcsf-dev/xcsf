@@ -1,0 +1,49 @@
+---
+# Configuration script for CodeQL scan
+
+name: "CodeQL"
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['cpp']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Configure
+        env:
+          CC: gcc-9
+          CXX: g++-9
+        working-directory: build
+        run: cmake ..
+          -DCMAKE_BUILD_TYPE=Debug
+          -DXCSF_PYLIB=OFF
+          -DENABLE_TESTS=OFF
+
+      - name: Build
+        working-directory: build
+        run: cmake --build . --config Debug -j2
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+...
