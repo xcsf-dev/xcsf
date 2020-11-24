@@ -621,7 +621,7 @@ config_read(struct XCSF *xcsf, const char *filename)
 {
     FILE *f = fopen(filename, "rt");
     if (f == NULL) {
-        printf("Warning: could not open %s.\n", filename);
+        printf("Warning: could not open %s. %s.\n", filename, strerror(errno));
         perror("");
         return;
     }
