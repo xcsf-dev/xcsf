@@ -1,0 +1,10 @@
+<map id="XCS::set_action" name="XCS::set_action">
+<area shape="rect" id="node1" title="Sets the action type and initialisation arguments." alt="" coords="5,42,124,69"/>
+<area shape="rect" id="node2" href="$action_8h.html#a35ccee326f1c1a0b0d55cbe025711c76" title=" " alt="" coords="182,5,339,47"/>
+<area shape="rect" id="node4" href="$classXCS.html#a234d12eb3fb50d01dccff24a1515d74e" title=" " alt="" coords="172,71,349,98"/>
+<area shape="rect" id="node3" href="$action_8h.html#a38d3209ab8ce0417631ce2359f6590a7" title="Returns the integer representation of an action type given a name." alt="" coords="425,13,555,39"/>
+<area shape="rect" id="node5" href="$neural__layer_8c.html#a65346ec6bb4e55b3fe1583d3c9a20d4e" title="Sets layer parameters to default values." alt="" coords="437,67,543,94"/>
+<area shape="rect" id="node6" href="$classXCS.html#ae130d28abef1002c006751e3aa8fc537" title="Sets parameters used by a neural network layer." alt="" coords="397,118,583,145"/>
+<area shape="rect" id="node7" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="650,93,774,119"/>
+<area shape="rect" id="node8" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="631,143,793,170"/>
+</map>

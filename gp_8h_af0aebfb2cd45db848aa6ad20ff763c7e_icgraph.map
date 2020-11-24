@@ -1,0 +1,5 @@
+<map id="tree_free" name="tree_free">
+<area shape="rect" id="node1" title="Frees a GP tree." alt="" coords="164,31,237,57"/>
+<area shape="rect" id="node2" href="$cond__gp_8h.html#a1e740f931fc856fd7310874c7bf88195" title="Generates a GP tree that matches the current input." alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node3" href="$cond__gp_8h.html#a9ca5031cdfd76b3da76bf6bb58cce32c" title="Frees the memory used by a tree&#45;GP condition." alt="" coords="11,56,111,83"/>
+</map>

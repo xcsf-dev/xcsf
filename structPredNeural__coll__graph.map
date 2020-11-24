@@ -1,0 +1,7 @@
+<map id="PredNeural" name="PredNeural">
+<area shape="rect" id="node1" title="Multi&#45;layer perceptron neural network prediction data structure." alt="" coords="5,425,92,452"/>
+<area shape="rect" id="node2" href="$structNet.html" title="Neural network data structure." alt="" coords="27,336,70,363"/>
+<area shape="rect" id="node3" href="$structLlist.html" title="Forward declaration of layer structure." alt="" coords="25,231,72,257"/>
+<area shape="rect" id="node4" href="$structLayer.html" title="Neural network layer data structure." alt="" coords="85,73,140,99"/>
+<area shape="rect" id="node5" href="$structLayerVtbl.html" title="Neural network layer interface data structure." alt="" coords="177,231,254,257"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="neural_layer_maxpool.h" name="neural_layer_maxpool.h">
+<area shape="rect" id="node1" title="An implementation of a 2D maxpooling layer." alt="" coords="222,5,381,32"/>
+<area shape="rect" id="node2" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,80,99,107"/>
+<area shape="rect" id="node3" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="123,80,226,107"/>
+<area shape="rect" id="node4" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="250,80,353,107"/>
+<area shape="rect" id="node5" href="$neural__layer__maxpool_8c.html" title="An implementation of a 2D maxpooling layer." alt="" coords="377,80,535,107"/>
+<area shape="rect" id="node6" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="559,80,659,107"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="mutate_weights" name="mutate_weights">
+<area shape="rect" id="node1" title="Mutates the magnitude of weights and biases in a recurrent layer." alt="" coords="5,31,120,57"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#a98362fff8a171286f8bd8cd00950e92b" title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit..." alt="" coords="168,31,317,57"/>
+<area shape="rect" id="node3" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="383,5,441,32"/>
+<area shape="rect" id="node4" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="365,56,459,83"/>
+</map>

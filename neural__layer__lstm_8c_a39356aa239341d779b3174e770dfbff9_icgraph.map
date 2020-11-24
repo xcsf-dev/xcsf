@@ -1,0 +1,4 @@
+<map id="mutate_connectivity" name="mutate_connectivity">
+<area shape="rect" id="node1" title="Mutates the number of active weights in an LSTM layer." alt="" coords="224,5,363,32"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8h.html#a2ea952048d707d468067366c94f4e7c8" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
+</map>

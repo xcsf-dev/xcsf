@@ -1,0 +1,7 @@
+<map id="ActNeural" name="ActNeural">
+<area shape="rect" id="node1" title="Neural network action data structure." alt="" coords="5,425,85,452"/>
+<area shape="rect" id="node2" href="$structNet.html" title="Neural network data structure." alt="" coords="24,336,67,363"/>
+<area shape="rect" id="node3" href="$structLlist.html" title="Forward declaration of layer structure." alt="" coords="22,231,69,257"/>
+<area shape="rect" id="node4" href="$structLayer.html" title="Neural network layer data structure." alt="" coords="82,73,137,99"/>
+<area shape="rect" id="node5" href="$structLayerVtbl.html" title="Neural network layer interface data structure." alt="" coords="173,231,251,257"/>
+</map>

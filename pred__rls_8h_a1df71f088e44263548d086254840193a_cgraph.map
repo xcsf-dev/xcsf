@@ -1,0 +1,5 @@
+<map id="pred_rls_copy" name="pred_rls_copy">
+<area shape="rect" id="node1" title="Copies an RLS prediction from one classifier to another." alt="" coords="5,5,108,32"/>
+<area shape="rect" id="node2" href="$pred__rls_8c.html#a4cea952d9fd37c4fe53c925a1a278fba" title="Initialises an RLS prediction." alt="" coords="156,5,248,32"/>
+<area shape="rect" id="node3" href="$blas_8c.html#a5241e53bd01ced11592a718674fc4932" title="Fills the vector X with the value ALPHA." alt="" coords="296,5,363,32"/>
+</map>

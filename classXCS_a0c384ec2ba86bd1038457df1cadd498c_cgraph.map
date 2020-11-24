@@ -1,0 +1,5 @@
+<map id="XCS::get_pset_mean_cond_connections" name="XCS::get_pset_mean_cond_connections">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node2" href="$clset__neural_8c.html#ad58ba06ef88f57f79511ee961acd4c70" title="Calculates the mean number of condition connections in the set." alt="" coords="200,13,401,39"/>
+<area shape="rect" id="node3" href="$cond__neural_8c.html#aab00ba488c429f2ce3081d1176aeedfd" title="Returns the number of active connections in a neural condition layer." alt="" coords="449,13,619,39"/>
+</map>

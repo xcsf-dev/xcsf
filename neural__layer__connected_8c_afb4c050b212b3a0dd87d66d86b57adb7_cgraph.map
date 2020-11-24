@@ -1,0 +1,7 @@
+<map id="neural_layer_connected_update" name="neural_layer_connected_update">
+<area shape="rect" id="node1" title="Updates the weights and biases of a connected layer." alt="" coords="5,49,164,90"/>
+<area shape="rect" id="node2" href="$blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876" title="Multiplies vector X by the scalar ALPHA and adds it to the vector Y." alt="" coords="240,5,321,32"/>
+<area shape="rect" id="node3" href="$blas_8c.html#a59634a37fd370ffc05eb458503c5ab53" title="Scales vector X by the scalar ALPHA and overwrites it with the result." alt="" coords="242,56,319,83"/>
+<area shape="rect" id="node4" href="$neural__layer_8c.html#a80e54e8cdbe0776d6cc739f1a50ffd26" title="Clamps a layer&#39;s weights and biases in range [WEIGHT_MIN, WEIGHT_MAX]." alt="" coords="212,107,349,133"/>
+<area shape="rect" id="node5" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="397,107,455,133"/>
+</map>

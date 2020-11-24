@@ -1,0 +1,26 @@
+<map id="neural_layer_lstm_mutate" name="neural_layer_lstm_mutate">
+<area shape="rect" id="node1" title="Mutates an LSTM layer." alt="" coords="5,363,176,390"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#a50025a1c69fa89d1ee28171be85d8f7a" title="Mutates a layer&#39;s activation function by random selection." alt="" coords="224,34,381,61"/>
+<area shape="rect" id="node5" href="$neural__layer__lstm_8c.html#af1574ac1aaa2948e0e159e07e7c4d24a" title="Mutates the number of active weights in an LSTM layer." alt="" coords="233,287,372,314"/>
+<area shape="rect" id="node9" href="$neural__layer__lstm_8c.html#a50cb00ad1f6bc88f459b883a90017f1d" title="Mutates the gradient descent rate used to update an LSTM layer." alt="" coords="259,693,346,719"/>
+<area shape="rect" id="node13" href="$neural__layer__lstm_8c.html#afcb48f3675f1b209d3fa31e4f5179ddd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="245,439,360,466"/>
+<area shape="rect" id="node22" href="$neural__layer__lstm_8c.html#aa6189d30b38ebf21205ba9643c788776" title="Mutates the magnitude of weights and biases in an LSTM layer." alt="" coords="245,769,360,795"/>
+<area shape="rect" id="node24" href="$sam_8c.html#a8dfbd425ab3513d47726620e94fc861c" title="Self&#45;adapts mutation rates." alt="" coords="259,237,346,263"/>
+<area shape="rect" id="node3" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="672,110,769,137"/>
+<area shape="rect" id="node4" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="457,34,576,61"/>
+<area shape="rect" id="node6" href="$neural__layer_8c.html#a0540e1d6748c9b53c1114d869147340f" title="Mutates a layer&#39;s connectivity by zeroing weights." alt="" coords="429,135,604,162"/>
+<area shape="rect" id="node8" href="$neural__layer__lstm_8c.html#a9cf6a4d407837c532b89f9f457072203" title="Sets the number of active (non&#45;zero) weights in an LSTM layer." alt="" coords="451,287,582,314"/>
+<area shape="rect" id="node7" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="674,287,767,314"/>
+<area shape="rect" id="node10" href="$neural__layer_8c.html#ac612650b2947bbe43d3db32ea1c30838" title="Mutates the gradient descent rate of a neural layer." alt="" coords="455,693,578,719"/>
+<area shape="rect" id="node12" href="$neural__layer__lstm_8c.html#af20f0144500b2e2b3e1301c2a9282ea7" title="Sets the gradient descent rate used to update an LSTM layer." alt="" coords="484,743,549,770"/>
+<area shape="rect" id="node11" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="692,541,749,567"/>
+<area shape="rect" id="node14" href="$neural__layer__lstm_8c.html#a6a48f5438e8ccf76faeed24641a0f85a" title="Free memory used by an LSTM layer." alt="" coords="455,439,578,466"/>
+<area shape="rect" id="node15" href="$neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="451,186,582,213"/>
+<area shape="rect" id="node17" href="$neural__layer_8c.html#ab7950835157dec3db1648150d4a45579" title="Returns the number of neurons to add or remove from a layer." alt="" coords="441,338,592,365"/>
+<area shape="rect" id="node18" href="$neural__layer_8h.html#a7916662e52ccbd1ac34446ab20249d0d" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="471,490,563,517"/>
+<area shape="rect" id="node19" href="$neural__layer__lstm_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an LSTM layer." alt="" coords="447,541,586,567"/>
+<area shape="rect" id="node20" href="$neural__layer__lstm_8c.html#ab67b6e38da6db94e4735740f8521d5b1" title="Sets the total number of biases in an LSTM layer." alt="" coords="449,591,584,618"/>
+<area shape="rect" id="node21" href="$neural__layer__lstm_8c.html#a75386a5e5f7e81bf322e68e2c87ad374" title="Sets the total number of weights in an LSTM layer." alt="" coords="446,642,587,669"/>
+<area shape="rect" id="node16" href="$neural__layer_8c.html#abb27e5ed20353f12ec393c83e30372fe" title="Sets n_active to the number of non&#45;zero weights within a layer." alt="" coords="652,186,789,213"/>
+<area shape="rect" id="node23" href="$neural__layer_8c.html#af6edb9466e46b6cd7bc1e8556e86d8ed" title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit..." alt="" coords="442,794,591,821"/>
+</map>

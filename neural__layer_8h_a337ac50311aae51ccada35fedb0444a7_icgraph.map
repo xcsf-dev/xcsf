@@ -1,0 +1,10 @@
+<map id="layer_save" name="layer_save">
+<area shape="rect" id="node1" title="Writes the layer to a file." alt="" coords="441,56,527,83"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8h.html#aa2dbf2fb252518c4bbbf717e4a40e6f6" title="Writes an LSTM layer to a file." alt="" coords="221,5,380,32"/>
+<area shape="rect" id="node3" href="$neural__layer__recurrent_8h.html#a1ad28a10b158bcbb98e95cce0ce36ba0" title="Writes a recurrent layer to a file." alt="" coords="208,56,393,83"/>
+<area shape="rect" id="node4" href="$neural_8h.html#af4a09366d25068c50d42977482c4fc9e" title="Writes a neural network to a file." alt="" coords="255,107,347,133"/>
+<area shape="rect" id="node5" href="$act__neural_8h.html#af726a520296e74a5e31fb6c6eb6006a6" title="Writes a neural network action to a file." alt="" coords="24,31,141,57"/>
+<area shape="rect" id="node6" href="$cond__neural_8h.html#a3af6e916fb0d2a25b57d9d2535c76f3d" title="Writes a neural network condition to a file." alt="" coords="19,81,146,108"/>
+<area shape="rect" id="node7" href="$pred__neural_8h.html#a54585fad9ebe332fdcd02bf0042fc125" title="Writes a neural network prediction to a file." alt="" coords="21,132,145,159"/>
+<area shape="rect" id="node8" href="$rule__neural_8h.html#a184be7603b6dd1f4602fa0976b71d162" title=" " alt="" coords="5,183,160,209"/>
+</map>

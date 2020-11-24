@@ -1,0 +1,10 @@
+<map id="clset.h" name="clset.h">
+<area shape="rect" id="node1" title="Functions operating on sets of classifiers." alt="" coords="287,5,348,32"/>
+<area shape="rect" id="node2" href="$clset_8c.html" title="Functions operating on sets of classifiers." alt="" coords="5,80,67,107"/>
+<area shape="rect" id="node3" href="$ea_8c.html" title="Evolutionary algorithm functions." alt="" coords="91,80,138,107"/>
+<area shape="rect" id="node4" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="163,80,224,107"/>
+<area shape="rect" id="node5" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="249,80,386,107"/>
+<area shape="rect" id="node6" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="410,80,478,107"/>
+<area shape="rect" id="node7" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="502,80,626,107"/>
+<area shape="rect" id="node8" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="651,80,709,107"/>
+</map>

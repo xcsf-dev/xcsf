@@ -1,0 +1,7 @@
+<map id="mutate_connectivity" name="mutate_connectivity">
+<area shape="rect" id="node1" title="Mutates the number of active weights in a recurrent layer." alt="" coords="5,56,144,83"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#a70863e99cae44be052c923ba9699ce12" title="Mutates a layer&#39;s connectivity by zeroing weights." alt="" coords="192,31,367,57"/>
+<area shape="rect" id="node5" href="$neural__layer__recurrent_8c.html#a9cf6a4d407837c532b89f9f457072203" title="Sets the number of active (non&#45;zero) weights in a recurrent layer." alt="" coords="214,81,345,108"/>
+<area shape="rect" id="node3" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="417,5,510,32"/>
+<area shape="rect" id="node4" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="415,56,512,83"/>
+</map>

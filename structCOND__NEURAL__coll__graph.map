@@ -1,0 +1,7 @@
+<map id="COND_NEURAL" name="COND_NEURAL">
+<area shape="rect" id="node1" title="Multi&#45;layer perceptron neural network condition data structure." alt="" coords="5,425,129,452"/>
+<area shape="rect" id="node2" href="$structNET.html" title="Neural network data structure." alt="" coords="43,336,92,363"/>
+<area shape="rect" id="node3" href="$structLLIST.html" title="Double linked list of layers data structure." alt="" coords="39,231,96,257"/>
+<area shape="rect" id="node4" href="$structLAYER.html" title="Neural network layer data structure." alt="" coords="99,73,163,99"/>
+<area shape="rect" id="node5" href="$structLayerVtbl.html" title="Neural network layer interface data structure." alt="" coords="198,231,275,257"/>
+</map>

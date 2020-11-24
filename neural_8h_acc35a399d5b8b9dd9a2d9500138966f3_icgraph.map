@@ -1,0 +1,7 @@
+<map id="neural_copy" name="neural_copy">
+<area shape="rect" id="node1" title="Copies a neural network." alt="" coords="208,81,300,108"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#a6c3049bc82f3a2bd512e156a0f1c1a9b" title="Copies a neural network action from one classifier to another." alt="" coords="24,5,141,32"/>
+<area shape="rect" id="node3" href="$cond__neural_8h.html#ad37696d691025a38a0f8dafeb376ad44" title="Copies a neural network condition from one classifier to another." alt="" coords="19,56,146,83"/>
+<area shape="rect" id="node4" href="$pred__neural_8h.html#aabc294bd7043f7ea912832c3a26b73a1" title="Copies a neural network prediction from one classifier to another." alt="" coords="21,107,145,133"/>
+<area shape="rect" id="node5" href="$rule__neural_8h.html#ad4146518a1cee7c58589d9ea89e02a83" title=" " alt="" coords="5,157,160,184"/>
+</map>

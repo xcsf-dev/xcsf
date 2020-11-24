@@ -1,0 +1,10 @@
+<map id="XCS::end_trial" name="XCS::end_trial">
+<area shape="rect" id="node1" title="Frees memory used by a reinforcement learning trial." alt="" coords="5,31,112,57"/>
+<area shape="rect" id="node2" href="$xcs__rl_8c.html#aacfd74f90f7b56679f88ff944c31835a" title="Frees memory used by a reinforcement learning trial." alt="" coords="160,31,273,57"/>
+<area shape="rect" id="node3" href="$clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de" title="Frees the set, but not the classifiers." alt="" coords="321,5,400,32"/>
+<area shape="rect" id="node4" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="324,56,397,83"/>
+<area shape="rect" id="node5" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="448,56,509,83"/>
+<area shape="rect" id="node6" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="562,5,631,32"/>
+<area shape="rect" id="node7" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="557,56,636,83"/>
+<area shape="rect" id="node8" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="559,107,635,133"/>
+</map>

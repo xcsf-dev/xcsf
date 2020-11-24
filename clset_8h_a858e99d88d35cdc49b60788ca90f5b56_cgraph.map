@@ -1,0 +1,5 @@
+<map id="clset_mean_cond_size" name="clset_mean_cond_size">
+<area shape="rect" id="node1" title="Calculates the mean condition size of classifiers in the set." alt="" coords="5,5,160,32"/>
+<area shape="rect" id="node2" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="208,5,307,32"/>
+<area shape="rect" id="node3" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="355,5,436,32"/>
+</map>

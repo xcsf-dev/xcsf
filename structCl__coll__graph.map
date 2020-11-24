@@ -1,0 +1,6 @@
+<map id="Cl" name="Cl">
+<area shape="rect" id="node1" title="Classifier data structure." alt="" coords="112,95,151,121"/>
+<area shape="rect" id="node2" href="$structActVtbl.html" title="Action interface data structure." alt="" coords="5,5,71,32"/>
+<area shape="rect" id="node3" href="$structPredVtbl.html" title="Prediction interface data structure." alt="" coords="95,5,167,32"/>
+<area shape="rect" id="node4" href="$structCondVtbl.html" title="Condition interface data structure." alt="" coords="192,5,268,32"/>
+</map>

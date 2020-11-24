@@ -1,0 +1,4 @@
+<map id="neural_layer_recurrent_resize" name="neural_layer_recurrent_resize">
+<area shape="rect" id="node1" title="Resizes a recurrent layer if the previous layer has changed size." alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#a28fed9ac2d12fe1bad08b4540f3f0455" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="204,13,296,39"/>
+</map>

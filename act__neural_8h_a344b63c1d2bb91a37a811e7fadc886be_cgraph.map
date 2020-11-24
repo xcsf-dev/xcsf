@@ -1,0 +1,5 @@
+<map id="act_neural_free" name="act_neural_free">
+<area shape="rect" id="node1" title="Frees the memory used by a neural network action." alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node2" href="$neural_8c.html#a9c3e1da0425d0fc17daa12c21e4799ca" title="Frees a neural network." alt="" coords="164,5,251,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="299,5,377,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="neural_layer_noise_load" name="neural_layer_noise_load">
+<area shape="rect" id="node1" title="Reads a noise layer from a file." alt="" coords="5,5,167,32"/>
+<area shape="rect" id="node2" href="$neural__layer__noise_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a noise layer." alt="" coords="215,5,353,32"/>
+</map>

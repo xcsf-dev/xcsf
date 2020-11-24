@@ -1,0 +1,6 @@
+<map id="cl_free" name="cl_free">
+<area shape="rect" id="node1" title="Frees the memory used by a classifier." alt="" coords="5,56,67,83"/>
+<area shape="rect" id="node2" href="$action_8h.html#a5a5a0750972ad7cd0b1eecef427964a4" title="Frees the memory used by the classifier action." alt="" coords="119,5,189,32"/>
+<area shape="rect" id="node3" href="$condition_8h.html#a33fca7a6e9953aa7f89c3d1528a19e28" title="Frees the memory used by the classifier condition." alt="" coords="115,56,193,83"/>
+<area shape="rect" id="node4" href="$prediction_8h.html#a2211a31c93cf238c207666675d08fa5e" title="Frees the memory used by the classifier prediction." alt="" coords="116,107,192,133"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="col2im_add_pixel" name="col2im_add_pixel">
+<area shape="rect" id="node1" title=" " alt="" coords="336,13,459,39"/>
+<area shape="rect" id="node2" href="$image_8h.html#ad8cb701532dbd28770e4f90cab4f7073" title="Transforms a column vector to an image vector." alt="" coords="228,13,288,39"/>
+<area shape="rect" id="node3" href="$neural__layer__convolutional_8h.html#af9d56553f0be61bc808cac3898e35a82" title="Backward propagates a convolutional layer." alt="" coords="5,5,180,47"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="neural_copy" name="neural_copy">
+<area shape="rect" id="node1" title="Copies a neural network." alt="" coords="5,56,97,83"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#aa79cfd0ebc23b95d08b93d6594c0ed0e" title="Creates and returns a copy of a specified layer." alt="" coords="149,5,234,32"/>
+<area shape="rect" id="node3" href="$neural_8c.html#a71c91724de2afdf7358f8a2095d50db3" title="Initialises an empty neural network." alt="" coords="151,56,232,83"/>
+<area shape="rect" id="node4" href="$neural_8c.html#a3ae44122ecbd5f15bd29cd832155e792" title="Inserts a layer at the head of a neural network." alt="" coords="145,107,237,133"/>
+<area shape="rect" id="node5" href="$neural_8c.html#a95e17464f65861a0ab2dbb5a19b3e5c4" title="Inserts a layer into a neural network." alt="" coords="285,107,381,133"/>
+</map>

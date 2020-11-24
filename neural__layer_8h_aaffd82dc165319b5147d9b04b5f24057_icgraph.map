@@ -1,0 +1,17 @@
+<map id="layer_resize" name="layer_resize">
+<area shape="rect" id="node1" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="993,115,1085,141"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#aaa8f2e0b1cbb7dc53b276cd7b1bb44cc" title=" " alt="" coords="805,5,919,32"/>
+<area shape="rect" id="node4" href="$neural__layer__lstm_8h.html#a1e2d51e893ad675c29d2f1768ad9df4e" title=" " alt="" coords="779,56,945,83"/>
+<area shape="rect" id="node5" href="$neural__layer__recurrent_8h.html#aa24e198b7c816ad2ee9ab26e29d2727e" title=" " alt="" coords="787,107,937,149"/>
+<area shape="rect" id="node6" href="$neural_8h.html#ae20d96ba0df8bbb17815fa30a4718730" title="Mutates a neural network." alt="" coords="810,173,914,200"/>
+<area shape="rect" id="node11" href="$neural_8h.html#a07f742100076031e87bb681da9cc093e" title="Resizes neural network layers as necessary." alt="" coords="813,249,911,276"/>
+<area shape="rect" id="node3" href="$neural__layer__lstm_8h.html#a4e0505e49724d287d9fd97d49931905d" title=" " alt="" coords="560,5,731,32"/>
+<area shape="rect" id="node7" href="$act__neural_8h.html#a147635ed48592aa7eff66fb7854bae20" title=" " alt="" coords="581,72,710,99"/>
+<area shape="rect" id="node8" href="$cond__neural_8h.html#a8aa9b9eb1a71fb4486e67de58e1e1e64" title=" " alt="" coords="576,123,715,149"/>
+<area shape="rect" id="node9" href="$pred__neural_8h.html#a56178093fac344738d0d8f7e1824b7b7" title=" " alt="" coords="577,173,713,200"/>
+<area shape="rect" id="node10" href="$rule__neural_8h.html#ac70fa73dda398b4b2a6468b53d1b8718" title=" " alt="" coords="562,224,729,251"/>
+<area shape="rect" id="node12" href="$pred__neural_8h.html#ae2da77d32d851a83ba0222b7fa61a2a0" title=" " alt="" coords="576,275,715,301"/>
+<area shape="rect" id="node13" href="$xcsf_8h.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="384,275,512,301"/>
+<area shape="rect" id="node14" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="204,275,336,301"/>
+<area shape="rect" id="node15" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,275,156,301"/>
+</map>

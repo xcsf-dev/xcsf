@@ -1,0 +1,6 @@
+<map id="config_cl_pred_neural" name="config_cl_pred_neural">
+<area shape="rect" id="node1" title="Sets classifier neural network prediction parameters." alt="" coords="5,56,153,83"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#a65346ec6bb4e55b3fe1583d3c9a20d4e" title="Sets layer parameters to default values." alt="" coords="210,5,317,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8c.html#a1affd67d1bc485f81f8ec7aa4016c81e" title="Returns the current output layer arguments." alt="" coords="210,56,317,83"/>
+<area shape="rect" id="node4" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="201,107,325,133"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="XCS::get_act_type" name="XCS::get_act_type">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,139,32"/>
+<area shape="rect" id="node2" href="$param_8h.html#a0bcdbd49561e9195893832ff37485b56" title=" " alt="" coords="187,5,361,32"/>
+<area shape="rect" id="node3" href="$action_8c.html#a92f612de02989e82ef6c52bc7384f24f" title="Returns a string representation of an action type from an integer." alt="" coords="409,5,559,32"/>
+</map>

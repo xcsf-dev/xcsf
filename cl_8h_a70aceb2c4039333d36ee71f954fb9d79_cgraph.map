@@ -1,0 +1,6 @@
+<map id="cl_init_copy" name="cl_init_copy">
+<area shape="rect" id="node1" title="Initialises and creates a copy of one classifier from another." alt="" coords="5,56,96,83"/>
+<area shape="rect" id="node2" href="$action_8h.html#a319e5909d871e8146c4cbc66626ca5f3" title="Copies the action from one classifier to another." alt="" coords="149,5,224,32"/>
+<area shape="rect" id="node3" href="$condition_8h.html#aab327f8188ff446498294b76164f2d25" title="Copies the condition from one classifier to another." alt="" coords="144,56,229,83"/>
+<area shape="rect" id="node4" href="$prediction_8h.html#a8657fd08bb09fdf57a6d91db71f1b447" title="Copies the prediction from one classifier to another." alt="" coords="145,107,228,133"/>
+</map>

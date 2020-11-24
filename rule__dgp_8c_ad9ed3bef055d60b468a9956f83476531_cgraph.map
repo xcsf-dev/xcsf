@@ -1,0 +1,16 @@
+<map id="rule_dgp_act_cover" name="rule_dgp_act_cover">
+<area shape="rect" id="node1" title=" " alt="" coords="5,128,140,154"/>
+<area shape="rect" id="node2" href="$dgp_8c.html#a34dcc559c282cc59f6e8dc2c58c29297" title="Randomises a specified DGP graph." alt="" coords="221,52,308,78"/>
+<area shape="rect" id="node6" href="$rule__dgp_8c.html#a9ac0084a54111628d76b1d1b12a3b2b0" title=" " alt="" coords="188,128,341,154"/>
+<area shape="rect" id="node9" href="$rule__dgp_8c.html#af39537c675a0d3cc14df8361caab02f7" title=" " alt="" coords="190,178,339,205"/>
+<area shape="rect" id="node3" href="$utils_8c.html#a894e776eb1a127a7b31a52bd86327a2a" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="593,26,693,53"/>
+<area shape="rect" id="node4" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="765,26,863,53"/>
+<area shape="rect" id="node5" href="$dgp_8c.html#a60cad5226bcd3510b7c52b046c4cb5d6" title="Returns a random connection." alt="" coords="389,77,524,104"/>
+<area shape="rect" id="node7" href="$dgp_8c.html#a0f6be29465b8687eb5364d3378755914" title="Returns the current state of a specified node in the graph." alt="" coords="408,178,505,205"/>
+<area shape="rect" id="node8" href="$utils_8h.html#a6bdbacb8609e7daaffa9f38008f4b4a1" title="Returns an integer clamped within the specified range." alt="" coords="427,128,487,154"/>
+<area shape="rect" id="node10" href="$dgp_8c.html#ac9647fa05e224934cc0877d4d9cda134" title="Updates a DGP graph T cycles." alt="" coords="407,229,507,256"/>
+<area shape="rect" id="node11" href="$dgp_8c.html#a62232c20d3687386045145004bfc7bf6" title="Resets the states to their initial state." alt="" coords="598,254,689,281"/>
+<area shape="rect" id="node12" href="$dgp_8c.html#a106df9870c838bf5dbd042475e9f4fd8" title="Performs a synchronous update." alt="" coords="572,204,715,230"/>
+<area shape="rect" id="node13" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="763,204,865,230"/>
+<area shape="rect" id="node14" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="913,204,971,230"/>
+</map>

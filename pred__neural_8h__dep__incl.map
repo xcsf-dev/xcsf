@@ -1,0 +1,7 @@
+<map id="pred_neural.h" name="pred_neural.h">
+<area shape="rect" id="node1" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="191,5,291,32"/>
+<area shape="rect" id="node2" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="5,80,108,107"/>
+<area shape="rect" id="node3" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="132,80,232,107"/>
+<area shape="rect" id="node4" href="$prediction_8c.html" title="Interface for classifier predictions." alt="" coords="256,80,345,107"/>
+<area shape="rect" id="node5" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="370,80,429,107"/>
+</map>

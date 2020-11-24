@@ -1,0 +1,4 @@
+<map id="neural_layer_convolutional_mutate_filter" name="neural_layer_convolutional_mutate_filter">
+<area shape="rect" id="node1" title="Returns the number of kernel filters to add or remove from a layer." alt="" coords="228,5,403,47"/>
+<area shape="rect" id="node2" href="$neural__layer__convolutional_8h.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,5,180,47"/>
+</map>

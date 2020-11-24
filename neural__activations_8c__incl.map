@@ -1,0 +1,13 @@
+<map id="neural_activations.c" name="neural_activations.c">
+<area shape="rect" id="node1" title="Neural network activation functions." alt="" coords="128,5,267,32"/>
+<area shape="rect" id="node2" href="$neural__activations_8h.html" title="Neural network activation functions." alt="" coords="5,80,144,107"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="250,80,353,107"/>
+<area shape="rect" id="node11" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="169,80,226,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="46,155,109,181"/>
+<area shape="rect" id="node5" href="$neural_8h.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="267,155,335,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="264,229,339,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="363,229,429,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="179,229,240,256"/>
+<area shape="rect" id="node9" title=" " alt="" coords="91,229,155,256"/>
+<area shape="rect" id="node10" title=" " alt="" coords="453,229,518,256"/>
+</map>

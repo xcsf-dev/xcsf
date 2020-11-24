@@ -1,0 +1,6 @@
+<map id="Net" name="Net">
+<area shape="rect" id="node1" title="Neural network data structure." alt="" coords="7,336,50,363"/>
+<area shape="rect" id="node2" href="$structLlist.html" title="Forward declaration of layer structure." alt="" coords="5,231,52,257"/>
+<area shape="rect" id="node3" href="$structLayer.html" title="Neural network layer data structure." alt="" coords="65,73,120,99"/>
+<area shape="rect" id="node4" href="$structLayerVtbl.html" title="Neural network layer interface data structure." alt="" coords="157,231,234,257"/>
+</map>

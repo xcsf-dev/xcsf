@@ -1,0 +1,4 @@
+<map id="clset_mean_cond_connections" name="clset_mean_cond_connections">
+<area shape="rect" id="node1" title="Calculates the mean number of condition connections in the set." alt="" coords="5,5,207,32"/>
+<area shape="rect" id="node2" href="$cond__neural_8c.html#aab00ba488c429f2ce3081d1176aeedfd" title="Returns the number of active connections in a neural condition layer." alt="" coords="255,5,424,32"/>
+</map>

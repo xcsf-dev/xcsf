@@ -1,0 +1,4 @@
+<map id="cl_match" name="cl_match">
+<area shape="rect" id="node1" title="Calculates whether a classifier matches an input." alt="" coords="5,5,80,32"/>
+<area shape="rect" id="node2" href="$condition_8h.html#a4063d0124a727321403713ed794058a9" title="Calculates whether the condition matches the input." alt="" coords="128,5,221,32"/>
+</map>

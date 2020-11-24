@@ -1,0 +1,6 @@
+<map id="ArgsCond" name="ArgsCond">
+<area shape="rect" id="node1" title="Parameters for initialising and operating conditions." alt="" coords="163,95,243,121"/>
+<area shape="rect" id="node2" href="$structArgsLayer.html" title="Parameters for initialising a neural network layer." alt="" coords="5,5,87,32"/>
+<area shape="rect" id="node3" href="$structArgsDGP.html" title="Parameters for initialising DGP graphs." alt="" coords="164,5,243,32"/>
+<area shape="rect" id="node4" href="$structArgsGPTree.html" title="Parameters for initialising GP trees." alt="" coords="267,5,361,32"/>
+</map>

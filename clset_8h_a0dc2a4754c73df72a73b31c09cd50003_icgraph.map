@@ -1,0 +1,7 @@
+<map id="clset_pset_init" name="clset_pset_init">
+<area shape="rect" id="node1" title="Initialises a new population of random classifiers." alt="" coords="355,56,461,83"/>
+<area shape="rect" id="node2" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="221,5,290,32"/>
+<area shape="rect" id="node3" href="$classXCS.html#adbfb8e127ef8a800a661d284dda3f2ef" title="Initialises a reinforcement learning trial." alt="" coords="204,56,307,83"/>
+<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="230,107,281,133"/>
+<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,56,156,83"/>
+</map>

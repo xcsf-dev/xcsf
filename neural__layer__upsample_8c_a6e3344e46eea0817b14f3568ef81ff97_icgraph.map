@@ -1,0 +1,7 @@
+<map id="malloc_layer_arrays" name="malloc_layer_arrays">
+<area shape="rect" id="node1" title="Allocate memory used by an upsampling layer." alt="" coords="244,81,383,108"/>
+<area shape="rect" id="node2" href="$neural__layer__upsample_8h.html#adc112d2c9f2cbe584a47706d75d11ee9" title="Initialises and copies one upsampling layer from another." alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node3" href="$neural__layer__upsample_8h.html#aaac5547674e091e9c905cea0e58055f2" title="Initialises a 2D upsampling layer." alt="" coords="11,56,190,83"/>
+<area shape="rect" id="node4" href="$neural__layer__upsample_8h.html#ab4b98af15404832cef591126b83fabc3" title="Reads an upsampling layer from a file." alt="" coords="7,107,194,133"/>
+<area shape="rect" id="node5" href="$neural__layer__upsample_8h.html#a0bb6959136d4a1c70fa3ec778a8a8cca" title="Resizes an upsampling layer if the previous layer has changed size." alt="" coords="23,158,178,199"/>
+</map>

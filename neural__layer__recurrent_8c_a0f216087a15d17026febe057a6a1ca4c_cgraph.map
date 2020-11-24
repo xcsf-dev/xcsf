@@ -1,0 +1,6 @@
+<map id="neural_layer_recurrent_copy" name="neural_layer_recurrent_copy">
+<area shape="rect" id="node1" title="Initialises and creates a copy of one recurrent layer from another." alt="" coords="5,56,191,83"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#aa79cfd0ebc23b95d08b93d6594c0ed0e" title="Creates and returns a copy of a specified layer." alt="" coords="265,5,351,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8c.html#ae63f8af2add5b111ec9656b8fc616a2c" title="Initialises a layer to default values." alt="" coords="271,56,345,83"/>
+<area shape="rect" id="node4" href="$neural__layer__recurrent_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a recurrent layer." alt="" coords="239,107,377,133"/>
+</map>

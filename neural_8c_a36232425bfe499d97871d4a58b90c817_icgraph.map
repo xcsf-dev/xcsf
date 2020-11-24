@@ -1,0 +1,7 @@
+<map id="neural_layer_remove" name="neural_layer_remove">
+<area shape="rect" id="node1" title="Removes a layer from a neural network." alt="" coords="829,5,972,32"/>
+<area shape="rect" id="node2" href="$pred__neural_8h.html#a610669174ae845912b814e159f49b4af" title=" " alt="" coords="595,5,781,32"/>
+<area shape="rect" id="node3" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="401,5,547,32"/>
+<area shape="rect" id="node4" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="204,5,353,32"/>
+<area shape="rect" id="node5" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,5,156,32"/>
+</map>

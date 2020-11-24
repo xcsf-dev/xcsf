@@ -1,0 +1,7 @@
+<map id="neural_free" name="neural_free">
+<area shape="rect" id="node1" title="Frees a neural network." alt="" coords="203,81,289,108"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#a344b63c1d2bb91a37a811e7fadc886be" title="Frees the memory used by a neural network action." alt="" coords="25,5,135,32"/>
+<area shape="rect" id="node3" href="$cond__neural_8h.html#a3007869b0307eac31742ebdcb88f2a5a" title="Frees the memory used by a neural network condition." alt="" coords="19,56,141,83"/>
+<area shape="rect" id="node4" href="$pred__neural_8h.html#a82da5a504ede83fcfc72182c0f246c15" title="Frees the memory used by a neural network prediction." alt="" coords="21,107,139,133"/>
+<area shape="rect" id="node5" href="$rule__neural_8h.html#a70e418c499c0374927b5edd6c8b618d0" title=" " alt="" coords="5,157,155,184"/>
+</map>

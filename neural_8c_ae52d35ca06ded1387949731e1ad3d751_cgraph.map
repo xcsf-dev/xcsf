@@ -1,0 +1,5 @@
+<map id="neural_propagate" name="neural_propagate">
+<area shape="rect" id="node1" title="Forward propagates a neural network." alt="" coords="5,31,127,57"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#aabfac5227c61181614f84ebf5e00e462" title="Forward propagates an input through the layer." alt="" coords="175,5,275,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#a2ba51f939c19b5a2d9be3d219bbe3115" title="Returns the outputs of a layer." alt="" coords="178,56,271,83"/>
+</map>

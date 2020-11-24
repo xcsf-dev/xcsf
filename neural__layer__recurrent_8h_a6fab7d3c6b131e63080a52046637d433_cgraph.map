@@ -1,0 +1,4 @@
+<map id="neural_layer_recurrent_rand" name="neural_layer_recurrent_rand">
+<area shape="rect" id="node1" title="Randomises a recurrent layer weights." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#a6e7c502161f9d08081160a334f2ee85d" title="Randomises a layer." alt="" coords="236,5,319,32"/>
+</map>

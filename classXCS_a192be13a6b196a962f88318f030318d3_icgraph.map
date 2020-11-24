@@ -1,0 +1,4 @@
+<map id="XCS::unpack_pred_rls" name="XCS::unpack_pred_rls">
+<area shape="rect" id="node1" title="Sets parameters used by recursive least mean squares predictions." alt="" coords="192,5,345,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#a28e9fae0bf2d470377b25e032b7080af" title="Sets the prediction type and initialisation arguments." alt="" coords="5,5,144,32"/>
+</map>

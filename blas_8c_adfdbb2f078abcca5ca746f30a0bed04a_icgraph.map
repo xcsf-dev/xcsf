@@ -1,0 +1,5 @@
+<map id="blas_mul" name="blas_mul">
+<area shape="rect" id="node1" title="Multiplies vector X by the vector Y and stores the result in vector Y." alt="" coords="240,31,315,57"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8h.html#a00f097f7f5277fa3396e1feefc231e91" title="Backward propagates an LSTM layer." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node3" href="$neural__layer__lstm_8h.html#af2c3a4a9e6dd75cd00083c38733bddb0" title="Forward propagates an LSTM layer." alt="" coords="11,56,186,83"/>
+</map>

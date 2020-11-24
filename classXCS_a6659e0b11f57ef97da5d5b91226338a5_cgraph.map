@@ -1,0 +1,5 @@
+<map id="XCS::set_prediction" name="XCS::set_prediction">
+<area shape="rect" id="node1" title="Sets the prediction type." alt="" coords="5,13,144,39"/>
+<area shape="rect" id="node2" href="$prediction_8c.html#afec8e5a7f4efd4c6d1b484a0522e8da6" title=" " alt="" coords="192,5,339,47"/>
+<area shape="rect" id="node3" href="$prediction_8c.html#a5f5a019c886d5bdf8bf9a3876a5a95bd" title="Returns the integer representation of a prediction type given a name." alt="" coords="387,13,539,39"/>
+</map>

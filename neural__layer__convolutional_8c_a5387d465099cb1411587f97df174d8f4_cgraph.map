@@ -1,0 +1,5 @@
+<map id="neural_layer_convolutional_copy" name="neural_layer_convolutional_copy">
+<area shape="rect" id="node1" title="Initialises and copies one convolutional layer from another." alt="" coords="5,31,216,57"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#ae63f8af2add5b111ec9656b8fc616a2c" title="Initialises a layer to default values." alt="" coords="296,5,371,32"/>
+<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="264,56,403,83"/>
+</map>

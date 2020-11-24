@@ -1,0 +1,7 @@
+<map id="layer_backward" name="layer_backward">
+<area shape="rect" id="node1" title="Backward propagates the error through a layer." alt="" coords="423,64,536,91"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8h.html#a09bec8ad799319248783eaeda8b0c8b9" title="Backward propagates an LSTM layer." alt="" coords="188,5,375,32"/>
+<area shape="rect" id="node3" href="$neural__layer__recurrent_8h.html#aad8526a557324f1eec281fcd919805ae" title="Backward propagates a recurrent layer." alt="" coords="206,57,357,98"/>
+<area shape="rect" id="node4" href="$neural_8h.html#a2090e03e5cc8444408ce1cf834bd01c1" title="Performs a gradient descent update on a neural network." alt="" coords="235,123,327,149"/>
+<area shape="rect" id="node5" href="$pred__neural_8h.html#abfe6fe6bb45b0713afbf2820881cf750" title="Backward propagates and updates a neural network prediction." alt="" coords="5,123,140,149"/>
+</map>

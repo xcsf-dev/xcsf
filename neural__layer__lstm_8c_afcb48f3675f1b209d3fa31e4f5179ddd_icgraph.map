@@ -1,0 +1,4 @@
+<map id="mutate_neurons" name="mutate_neurons">
+<area shape="rect" id="node1" title="Mutates the number of neurons in an LSTM layer." alt="" coords="224,5,339,32"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8h.html#a486089ec35483009b94e3637802c9346" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="LLIST" name="LLIST">
+<area shape="rect" id="node1" title="Double linked list of layers data structure." alt="" coords="5,231,63,257"/>
+<area shape="rect" id="node2" href="$structLAYER.html" title="Neural network layer data structure." alt="" coords="66,73,130,99"/>
+<area shape="rect" id="node3" href="$structLayerVtbl.html" title="Neural network layer interface data structure." alt="" coords="165,231,242,257"/>
+</map>

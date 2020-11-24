@@ -1,0 +1,8 @@
+<map id="act_neural_copy" name="act_neural_copy">
+<area shape="rect" id="node1" title="Copies a neural network action from one classifier to another." alt="" coords="5,56,123,83"/>
+<area shape="rect" id="node2" href="$neural_8c.html#acc35a399d5b8b9dd9a2d9500138966f3" title="Copies a neural network." alt="" coords="171,56,263,83"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#a392e18d96d59f5739ebeec3b05d5b4ad" title="Creates and returns a copy of a specified layer." alt="" coords="314,5,399,32"/>
+<area shape="rect" id="node4" href="$neural_8c.html#ad70aee7c40f698d4be45e3d419051c2f" title="Initialises an empty neural network." alt="" coords="316,56,397,83"/>
+<area shape="rect" id="node5" href="$neural_8c.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="311,107,403,133"/>
+<area shape="rect" id="node6" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="451,107,547,133"/>
+</map>

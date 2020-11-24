@@ -1,0 +1,9 @@
+<map id="cl.h" name="cl.h">
+<area shape="rect" id="node1" title="Functions operating on classifiers." alt="" coords="237,5,280,32"/>
+<area shape="rect" id="node2" href="$cl_8c.html" title="Functions operating on classifiers." alt="" coords="5,80,48,107"/>
+<area shape="rect" id="node3" href="$clset_8c.html" title="Functions operating on sets of classifiers." alt="" coords="72,80,133,107"/>
+<area shape="rect" id="node4" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="158,80,261,107"/>
+<area shape="rect" id="node5" href="$ea_8c.html" title="Evolutionary algorithm functions." alt="" coords="285,80,331,107"/>
+<area shape="rect" id="node6" href="$pa_8c.html" title="Prediction array functions." alt="" coords="355,80,402,107"/>
+<area shape="rect" id="node7" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="427,80,485,107"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="ArgsPred" name="ArgsPred">
+<area shape="rect" id="node1" title="Parameters for initialising and operating predictions." alt="" coords="8,95,84,121"/>
+<area shape="rect" id="node2" href="$structArgsLayer.html" title="Parameters for initialising a neural network layer." alt="" coords="5,5,87,32"/>
+</map>

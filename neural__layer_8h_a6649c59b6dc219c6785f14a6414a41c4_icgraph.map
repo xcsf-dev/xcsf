@@ -1,0 +1,15 @@
+<map id="layer_free" name="layer_free">
+<area shape="rect" id="node1" title="Frees the memory used by the layer." alt="" coords="1056,157,1135,184"/>
+<area shape="rect" id="node2" href="$neural_8h.html#a8107be93287bbeb8def340f9b52b8315" title="Frees a neural network." alt="" coords="875,81,962,108"/>
+<area shape="rect" id="node7" href="$neural__layer__lstm_8h.html#a913eab886e0a48084a568a73a6718343" title=" " alt="" coords="842,132,995,159"/>
+<area shape="rect" id="node8" href="$neural__layer__recurrent_8h.html#a91b7e1ae3d04706ed3872628f2f84469" title=" " alt="" coords="829,183,1008,209"/>
+<area shape="rect" id="node9" href="$neural_8h.html#a36232425bfe499d97871d4a58b90c817" title="Removes a layer from a neural network." alt="" coords="847,233,990,260"/>
+<area shape="rect" id="node3" href="$act__neural_8h.html#af4e02d2c694c9eeddfe7c1407f29305d" title=" " alt="" coords="633,5,743,32"/>
+<area shape="rect" id="node4" href="$cond__neural_8h.html#a03eb2cc7736651f4e015a29319990b1a" title=" " alt="" coords="627,56,749,83"/>
+<area shape="rect" id="node5" href="$pred__neural_8h.html#a3f30c5096c03e974360396c678b53d40" title=" " alt="" coords="629,107,747,133"/>
+<area shape="rect" id="node6" href="$rule__neural_8h.html#a66602150b0b8b3b7e38b05e53f6e1abd" title=" " alt="" coords="613,157,763,184"/>
+<area shape="rect" id="node10" href="$pred__neural_8h.html#a610669174ae845912b814e159f49b4af" title=" " alt="" coords="595,233,781,260"/>
+<area shape="rect" id="node11" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="401,233,547,260"/>
+<area shape="rect" id="node12" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="204,233,353,260"/>
+<area shape="rect" id="node13" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,233,156,260"/>
+</map>

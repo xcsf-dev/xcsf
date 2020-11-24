@@ -1,0 +1,43 @@
+<map id="clamp" name="clamp">
+<area shape="rect" id="node1" title="Returns a float clamped within the specified range." alt="" coords="1061,417,1119,444"/>
+<area shape="rect" id="node2" href="$cond__ellipsoid_8h.html#ac6e825c20a547534a5c804e2a8259dab" title="Mutates a hyperellipsoid condition with the self&#45;adaptive rate." alt="" coords="622,291,773,317"/>
+<area shape="rect" id="node3" href="$cond__rectangle_8h.html#a969ef2bdf8fefbcac47746548863073b" title="Mutates a hyperrectangle condition with the self&#45;adaptive rate." alt="" coords="619,341,776,368"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html#ae0694e66ecd389f10d1d3857b699a561" title="Mutates the gradient descent rate of a neural layer." alt="" coords="865,217,987,244"/>
+<area shape="rect" id="node9" href="$neural__layer_8h.html#a35e1133cd8863d674d0506d963a93f08" title="Returns the number of neurons to add or remove from a layer." alt="" coords="851,115,1001,141"/>
+<area shape="rect" id="node11" href="$neural__layer_8h.html#af6edb9466e46b6cd7bc1e8556e86d8ed" title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit..." alt="" coords="851,165,1001,192"/>
+<area shape="rect" id="node13" href="$neural__layer_8h.html#a80e54e8cdbe0776d6cc739f1a50ffd26" title="Clamps a layer&#39;s weights and biases in range [WEIGHT_MIN, WEIGHT_MAX]." alt="" coords="857,771,995,797"/>
+<area shape="rect" id="node16" href="$neural__activations_8h.html#acef0d15cd01c7dcc5a4d6d8bdc1d8bad" title="Applies an activation function to a vector of neuron states." alt="" coords="853,945,999,972"/>
+<area shape="rect" id="node21" href="$neural__layer__convolutional_8c.html#ad54f1b4b3e465667caa810288f0d1ced" title="Returns the number of kernel filters to add or remove from a layer." alt="" coords="839,270,1013,311"/>
+<area shape="rect" id="node22" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="875,1023,977,1049"/>
+<area shape="rect" id="node29" href="$pred__nlms_8h.html#abfd2e8695677f15466100c5d3ce15cda" title="Mutates the gradient descent rate used to update an NLMS prediction." alt="" coords="633,712,762,739"/>
+<area shape="rect" id="node30" href="$sam_8h.html#a8dfbd425ab3513d47726620e94fc861c" title="Self&#45;adapts mutation rates." alt="" coords="883,443,969,469"/>
+<area shape="rect" id="node39" href="$gp_8h.html#a88f58058fc80e2e8c8735ed7843705b2" title="Evaluates a GP tree." alt="" coords="889,1151,963,1177"/>
+<area shape="rect" id="node5" href="$neural__layer__lstm_8c.html#a46d6667381b42e2d14554674328c8cde" title="Mutates the gradient descent rate used to update an LSTM layer." alt="" coords="654,173,741,200"/>
+<area shape="rect" id="node7" href="$neural__layer__connected_8h.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="618,107,777,149"/>
+<area shape="rect" id="node8" href="$neural__layer__convolutional_8h.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="610,225,785,266"/>
+<area shape="rect" id="node6" href="$neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="385,115,556,141"/>
+<area shape="rect" id="node10" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="640,5,755,32"/>
+<area shape="rect" id="node12" href="$neural__layer__lstm_8c.html#aa6189d30b38ebf21205ba9643c788776" title="Mutates the magnitude of weights and biases in an LSTM layer." alt="" coords="640,56,755,83"/>
+<area shape="rect" id="node14" href="$neural__layer__connected_8h.html#afb4c050b212b3a0dd87d66d86b57adb7" title="Updates the weights and biases of a connected layer." alt="" coords="618,763,777,805"/>
+<area shape="rect" id="node15" href="$neural__layer__convolutional_8h.html#a3e2922534009f8942017c7621f3b42e8" title="Updates the weights and biases of a convolutional layer." alt="" coords="610,829,785,870"/>
+<area shape="rect" id="node17" href="$neural__layer__connected_8h.html#ae984294bf3121be074bf77081b0ccdf2" title="Forward propagates a connected layer." alt="" coords="618,997,777,1038"/>
+<area shape="rect" id="node18" href="$neural__layer__convolutional_8h.html#a474f61e40569851884c0108ce2e40a1d" title="Forward propagates a convolutional layer." alt="" coords="610,1062,785,1103"/>
+<area shape="rect" id="node19" href="$neural__layer__lstm_8h.html#a00f097f7f5277fa3396e1feefc231e91" title="Backward propagates an LSTM layer." alt="" coords="604,895,791,921"/>
+<area shape="rect" id="node20" href="$neural__layer__lstm_8h.html#af2c3a4a9e6dd75cd00083c38733bddb0" title="Forward propagates an LSTM layer." alt="" coords="610,945,785,972"/>
+<area shape="rect" id="node23" href="$dgp_8c.html#a3086c105976334ceda0e9b8e97964220" title="Performs a synchronous update." alt="" coords="626,1128,769,1155"/>
+<area shape="rect" id="node24" href="$dgp_8h.html#a91b113eb2798ad1b958d47184ebbf1fb" title="Updates a DGP graph T cycles." alt="" coords="421,1128,521,1155"/>
+<area shape="rect" id="node25" href="$cond__dgp_8h.html#a8bb6fc747fba92c9a717c1b26f5ffca7" title="Calculates whether a dynamical GP graph condition matches an input." alt="" coords="202,1103,323,1129"/>
+<area shape="rect" id="node27" href="$rule__dgp_8h.html#a85eb12064cc539b1ec1fea93ee5f5e3e" title=" " alt="" coords="188,1153,337,1180"/>
+<area shape="rect" id="node26" href="$cond__dgp_8h.html#a585a3476b4473b1b19159a7d55daa6ae" title="Generates a dynamical GP graph that matches the current input." alt="" coords="14,1103,131,1129"/>
+<area shape="rect" id="node28" href="$rule__dgp_8h.html#ac1f0b0c11b92852e82b00ad7b4bb169f" title=" " alt="" coords="5,1153,140,1180"/>
+<area shape="rect" id="node31" href="$act__integer_8h.html#a9257ecae089153571be215040e75fb7f" title="Mutates an integer action." alt="" coords="631,443,764,469"/>
+<area shape="rect" id="node32" href="$cond__ternary_8h.html#a76eeeef8b9d7a232d1f5bf2ff917547a" title="Mutates a ternary condition." alt="" coords="625,544,769,571"/>
+<area shape="rect" id="node33" href="$dgp_8h.html#af71be7faf77196a067d8e69ac1493ee2" title="Mutates a specified DGP graph." alt="" coords="647,493,748,520"/>
+<area shape="rect" id="node36" href="$neural__layer__recurrent_8h.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="622,646,773,687"/>
+<area shape="rect" id="node37" href="$gp_8h.html#ac3437c50150dcb9aa715b664d7cf54ac" title="Performs point mutation on a GP tree." alt="" coords="652,595,743,621"/>
+<area shape="rect" id="node34" href="$cond__dgp_8h.html#a8c6aa1ea69d87295dec888622f6d4577" title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates." alt="" coords="408,468,533,495"/>
+<area shape="rect" id="node35" href="$rule__dgp_8h.html#a399e362d298b510125264e2fdfaaf6b6" title=" " alt="" coords="394,519,547,545"/>
+<area shape="rect" id="node38" href="$cond__gp_8h.html#a6fb9386b300b406ecfb08f8a9a97c077" title="Mutates a tree&#45;GP condition with the self&#45;adaptive rate." alt="" coords="411,595,530,621"/>
+<area shape="rect" id="node40" href="$cond__gp_8h.html#a9f417a6e9cdf49ef3ed1ad19be29b63d" title="Calculates whether a GP tree condition matches an input." alt="" coords="640,1179,755,1205"/>
+<area shape="rect" id="node41" href="$cond__gp_8h.html#a1e740f931fc856fd7310874c7bf88195" title="Generates a GP tree that matches the current input." alt="" coords="415,1179,526,1205"/>
+</map>

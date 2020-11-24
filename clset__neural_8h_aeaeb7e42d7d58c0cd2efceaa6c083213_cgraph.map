@@ -1,0 +1,4 @@
+<map id="clset_mean_pred_neurons" name="clset_mean_pred_neurons">
+<area shape="rect" id="node1" title="Calculates the mean number of prediction neurons for a given layer." alt="" coords="5,5,180,32"/>
+<area shape="rect" id="node2" href="$pred__neural_8c.html#aa629fe068b85b51ee3d439b4b659f030" title="Returns the number of neurons in a neural prediction layer." alt="" coords="228,5,371,32"/>
+</map>

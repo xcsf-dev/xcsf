@@ -1,0 +1,6 @@
+<map id="neural_layer_lstm_copy" name="neural_layer_lstm_copy">
+<area shape="rect" id="node1" title="Initialises and creates a copy of one LSTM layer from another." alt="" coords="5,56,164,83"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#aa79cfd0ebc23b95d08b93d6594c0ed0e" title="Creates and returns a copy of a specified layer." alt="" coords="239,5,324,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8c.html#ae63f8af2add5b111ec9656b8fc616a2c" title="Initialises a layer to default values." alt="" coords="244,56,319,83"/>
+<area shape="rect" id="node4" href="$neural__layer__lstm_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an LSTM layer." alt="" coords="212,107,351,133"/>
+</map>

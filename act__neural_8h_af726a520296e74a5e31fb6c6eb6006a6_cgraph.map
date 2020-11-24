@@ -1,0 +1,5 @@
+<map id="act_neural_save" name="act_neural_save">
+<area shape="rect" id="node1" title="Writes a neural network action to a file." alt="" coords="5,5,123,32"/>
+<area shape="rect" id="node2" href="$neural_8c.html#af4a09366d25068c50d42977482c4fc9e" title="Writes a neural network to a file." alt="" coords="171,5,263,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#a337ac50311aae51ccada35fedb0444a7" title="Writes the layer to a file." alt="" coords="311,5,396,32"/>
+</map>

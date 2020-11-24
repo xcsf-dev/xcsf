@@ -1,0 +1,4 @@
+<map id="neural_save" name="neural_save">
+<area shape="rect" id="node1" title="Writes a neural network to a file." alt="" coords="5,5,97,32"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#aa4fea558ee895276bbb3d56ca80a3fb4" title="Writes the layer to a file." alt="" coords="145,5,231,32"/>
+</map>

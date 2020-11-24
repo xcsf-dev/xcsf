@@ -1,0 +1,4 @@
+<map id="reset_layer_deltas" name="reset_layer_deltas">
+<area shape="rect" id="node1" title="Zeros the deltas used to update an LSTM layer." alt="" coords="240,5,368,32"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8h.html#a00f097f7f5277fa3396e1feefc231e91" title="Backward propagates an LSTM layer." alt="" coords="5,5,192,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="malloc_layer_arrays" name="malloc_layer_arrays">
+<area shape="rect" id="node1" title="Allocate memory used by a recurrent layer." alt="" coords="239,56,377,83"/>
+<area shape="rect" id="node2" href="$neural__layer__recurrent_8h.html#a5f01cc7e722e1426e5aba2a643e33036" title="Initialises and creates a copy of one recurrent layer from another." alt="" coords="5,5,191,32"/>
+<area shape="rect" id="node3" href="$neural__layer__recurrent_8h.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="11,56,185,83"/>
+<area shape="rect" id="node4" href="$neural__layer__recurrent_8h.html#a2492453a3912b4d17ecd3edf142069de" title="Reads a recurrent layer from a file." alt="" coords="7,107,189,133"/>
+</map>

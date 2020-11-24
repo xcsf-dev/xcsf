@@ -1,0 +1,13 @@
+<map id="param.h" name="param.h">
+<area shape="rect" id="node1" title="Functions for setting and printing parameters." alt="" coords="471,5,541,32"/>
+<area shape="rect" id="node2" href="$config_8c.html" title="Configuration file handling functions." alt="" coords="5,80,73,107"/>
+<area shape="rect" id="node3" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="98,80,178,107"/>
+<area shape="rect" id="node4" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="202,80,295,107"/>
+<area shape="rect" id="node5" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="320,80,407,107"/>
+<area shape="rect" id="node6" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="431,80,493,107"/>
+<area shape="rect" id="node7" href="$param_8c.html" title="Functions for setting and printing parameters." alt="" coords="517,80,586,107"/>
+<area shape="rect" id="node8" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="611,80,748,107"/>
+<area shape="rect" id="node9" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="772,80,840,107"/>
+<area shape="rect" id="node10" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="864,80,988,107"/>
+<area shape="rect" id="node11" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="1013,80,1071,107"/>
+</map>

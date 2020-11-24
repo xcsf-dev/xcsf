@@ -1,0 +1,5 @@
+<map id="xcsf_init" name="xcsf_init">
+<area shape="rect" id="node1" title="Initialises XCSF with an empty population." alt="" coords="140,31,211,57"/>
+<area shape="rect" id="node2" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="23,5,74,32"/>
+<area shape="rect" id="node3" href="$classXCS.html#a81bb7e5f76e05ad983d70fe848b73393" title="Constructor with a specified config." alt="" coords="5,56,92,83"/>
+</map>

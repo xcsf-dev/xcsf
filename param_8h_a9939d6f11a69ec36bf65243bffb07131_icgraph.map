@@ -1,0 +1,7 @@
+<map id="param_set_pred_type" name="param_set_pred_type">
+<area shape="rect" id="node1" title=" " alt="" coords="509,31,656,57"/>
+<area shape="rect" id="node2" href="$param_8c.html#a5de507d2da0f88d37c5f92f4fb1e9cb2" title="Initialises default classifier prediction parameters." alt="" coords="271,31,461,57"/>
+<area shape="rect" id="node3" href="$param_8h.html#a4f8540c63eec02eb3a86e12a5d370de9" title="Initialises default XCSF parameters." alt="" coords="140,31,223,57"/>
+<area shape="rect" id="node4" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="23,5,74,32"/>
+<area shape="rect" id="node5" href="$classXCS.html#a81bb7e5f76e05ad983d70fe848b73393" title="Constructor with a specified config." alt="" coords="5,56,92,83"/>
+</map>

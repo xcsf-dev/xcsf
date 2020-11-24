@@ -1,0 +1,5 @@
+<map id="XCS::error" name="XCS::error">
+<area shape="rect" id="node1" title="Returns the reinforcement learning system prediction error." alt="" coords="5,5,89,32"/>
+<area shape="rect" id="node2" href="$xcs__rl_8c.html#abf8d352eab798912daad5bd3fbedc540" title="Returns the reinforcement learning system prediction error." alt="" coords="137,5,228,32"/>
+<area shape="rect" id="node3" href="$pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" title="Returns the value of a specified action in the prediction array." alt="" coords="276,5,336,32"/>
+</map>

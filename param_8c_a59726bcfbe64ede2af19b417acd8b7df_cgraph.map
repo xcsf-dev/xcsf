@@ -1,0 +1,4 @@
+<map id="param_print_cl_action" name="param_print_cl_action">
+<area shape="rect" id="node1" title="Prints XCSF action parameters." alt="" coords="5,5,155,32"/>
+<area shape="rect" id="node2" href="$action_8c.html#a92f612de02989e82ef6c52bc7384f24f" title="Returns a string representation of an action type from an integer." alt="" coords="203,5,352,32"/>
+</map>

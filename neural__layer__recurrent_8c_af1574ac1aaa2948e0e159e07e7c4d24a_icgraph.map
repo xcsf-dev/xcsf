@@ -1,0 +1,4 @@
+<map id="mutate_connectivity" name="mutate_connectivity">
+<area shape="rect" id="node1" title="Mutates the number of active weights in a recurrent layer." alt="" coords="204,13,343,39"/>
+<area shape="rect" id="node2" href="$neural__layer__recurrent_8h.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="5,5,156,47"/>
+</map>

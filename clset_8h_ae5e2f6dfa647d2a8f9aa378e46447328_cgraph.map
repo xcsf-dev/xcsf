@@ -1,0 +1,6 @@
+<map id="clset_mean_pred_size" name="clset_mean_pred_size">
+<area shape="rect" id="node1" title="Calculates the mean prediction size of classifiers in the set." alt="" coords="5,31,157,57"/>
+<area shape="rect" id="node2" href="$cl_8c.html#ac841b8ff4d589e3c77e68b88b2dab1ed" title="Returns the size of a classifier&#39;s prediction." alt="" coords="205,5,300,32"/>
+<area shape="rect" id="node4" href="$CMakeLists_8txt.html#abb28d976c965ac9bcae2ee68ad8e0f0a" title=" " alt="" coords="233,56,273,83"/>
+<area shape="rect" id="node3" href="$prediction_8h.html#a68df60bf7cc9a1d894f149d9ae239a6c" title="Returns the size of the classifier prediction." alt="" coords="348,5,427,32"/>
+</map>

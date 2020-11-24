@@ -1,0 +1,5 @@
+<map id="free_layer_arrays" name="free_layer_arrays">
+<area shape="rect" id="node1" title="Free memory used by a softmax layer." alt="" coords="228,35,351,61"/>
+<area shape="rect" id="node2" href="$neural__layer__softmax_8h.html#a314875a074c00172bb8c3b613914ea46" title="Free memory used by a softmax layer." alt="" coords="5,5,180,32"/>
+<area shape="rect" id="node3" href="$neural__layer__softmax_8h.html#aa26a5d73cbae5aa58fd2ae5ba482fd71" title="Resizes a softmax layer if the previous layer has changed size." alt="" coords="19,57,166,98"/>
+</map>

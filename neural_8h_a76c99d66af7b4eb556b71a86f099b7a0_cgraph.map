@@ -1,0 +1,4 @@
+<map id="neural_resize" name="neural_resize">
+<area shape="rect" id="node1" title="Resizes neural network layers as necessary." alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#a28fed9ac2d12fe1bad08b4540f3f0455" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="152,5,244,32"/>
+</map>

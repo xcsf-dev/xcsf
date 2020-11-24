@@ -1,0 +1,5 @@
+<map id="cl_general" name="cl_general">
+<area shape="rect" id="node1" title="Returns whether classifier c1 is more general than c2." alt="" coords="5,31,87,57"/>
+<area shape="rect" id="node2" href="$action_8h.html#a2ea860e35a5f04f05abb691b7ed50e1c" title="Returns whether the action of classifier c1 is more general than c2." alt="" coords="139,5,229,32"/>
+<area shape="rect" id="node3" href="$condition_8h.html#a90d03819ea76d4ec9be6221473f48211" title="Returns whether classifier c1 has a condition more general than c2." alt="" coords="135,56,233,83"/>
+</map>

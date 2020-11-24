@@ -1,0 +1,4 @@
+<map id="cond_ellipsoid_match" name="cond_ellipsoid_match">
+<area shape="rect" id="node1" title="Calculates whether a hyperellipsoid condition matches an input." alt="" coords="5,5,152,32"/>
+<area shape="rect" id="node2" href="$cond__ellipsoid_8c.html#a9444c940c2df8b9c4a506151cf802091" title="Returns the relative distance to a hyperellipsoid." alt="" coords="200,5,332,32"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="cl_cover" name="cl_cover">
+<area shape="rect" id="node1" title="Covers the condition and action for a classifier." alt="" coords="5,132,76,159"/>
+<area shape="rect" id="node2" href="$action_8h.html#a4df165d2d0e79e83198ed0acef21b5a4" title="Generates an action that matches the specified value." alt="" coords="129,81,208,108"/>
+<area shape="rect" id="node3" href="$cl_8c.html#a350e1e44314eb3cc82e5f4fb0ea43363" title="Initialises random actions, conditions and predictions." alt="" coords="137,132,201,159"/>
+<area shape="rect" id="node10" href="$condition_8h.html#a960494adfce03b2bc21d1a3a3d4fe1ce" title="Generates a condition that matches the current input." alt="" coords="124,183,213,209"/>
+<area shape="rect" id="node4" href="$action_8h.html#a6ffeceb18469a1461777cfa8bbc31f96" title="Initialises a classifier&#39;s action." alt="" coords="281,5,345,32"/>
+<area shape="rect" id="node5" href="$action_8c.html#ae24f8558d2aa0661be9bf1e352e2ba3b" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="271,56,354,83"/>
+<area shape="rect" id="node6" href="$condition_8h.html#a86efd7fc1b9d8af04c2e3af357e1cee6" title="Initialises a classifier&#39;s condition." alt="" coords="275,107,350,133"/>
+<area shape="rect" id="node7" href="$condition_8c.html#aeea452ac4d09ece6c6f7108e5fc038d5" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="263,157,362,184"/>
+<area shape="rect" id="node8" href="$prediction_8h.html#af0b28976ddc474bf6b5f6deae8984101" title="Initialises a classifier&#39;s prediction." alt="" coords="277,208,348,235"/>
+<area shape="rect" id="node9" href="$prediction_8c.html#a1447724ff47305f396345b458b0aba23" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="261,259,364,285"/>
+</map>

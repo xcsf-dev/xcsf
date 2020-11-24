@@ -1,0 +1,4 @@
+<map id="mutate_weights" name="mutate_weights">
+<area shape="rect" id="node1" title="Mutates the magnitude of weights and biases in an LSTM layer." alt="" coords="224,5,339,32"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
+</map>

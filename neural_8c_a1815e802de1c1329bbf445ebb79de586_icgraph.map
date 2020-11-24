@@ -1,0 +1,7 @@
+<map id="neural_save" name="neural_save">
+<area shape="rect" id="node1" title="Writes a neural network to a file." alt="" coords="208,81,300,108"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#af726a520296e74a5e31fb6c6eb6006a6" title="Writes a neural network action to a file." alt="" coords="24,5,141,32"/>
+<area shape="rect" id="node3" href="$cond__neural_8h.html#a3af6e916fb0d2a25b57d9d2535c76f3d" title=" " alt="" coords="19,56,146,83"/>
+<area shape="rect" id="node4" href="$pred__neural_8h.html#a54585fad9ebe332fdcd02bf0042fc125" title="Writes a neural network prediction to a file." alt="" coords="21,107,145,133"/>
+<area shape="rect" id="node5" href="$rule__neural_8h.html#a184be7603b6dd1f4602fa0976b71d162" title=" " alt="" coords="5,157,160,184"/>
+</map>

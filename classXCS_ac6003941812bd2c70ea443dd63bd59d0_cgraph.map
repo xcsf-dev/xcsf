@@ -1,0 +1,47 @@
+<map id="XCS::decision" name="XCS::decision">
+<area shape="rect" id="node1" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="5,604,112,631"/>
+<area shape="rect" id="node2" href="$param_8c.html#a966c3e54f2e1977dd7b4776723efa2b4" title=" " alt="" coords="160,579,292,605"/>
+<area shape="rect" id="node3" href="$xcs__rl_8c.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="170,629,282,656"/>
+<area shape="rect" id="node4" href="$clset_8c.html#a101813e8460677fdb33f08e0226dce9b" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="349,296,442,323"/>
+<area shape="rect" id="node34" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="1217,579,1315,605"/>
+<area shape="rect" id="node38" href="$pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c" title="Returns the best action in the prediction array." alt="" coords="340,680,451,707"/>
+<area shape="rect" id="node40" href="$pa_8c.html#abcd11f4277bf0a24b4710389f9529015" title="Builds the prediction array for the specified input." alt="" coords="360,731,431,757"/>
+<area shape="rect" id="node44" href="$pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d" title="Returns a random action from the prediction array." alt="" coords="340,629,451,656"/>
+<area shape="rect" id="node5" href="$cl_8c.html#a60956375242a14df433347c54c40fb94" title="Computes the current classifier action using the input." alt="" coords="507,473,581,500"/>
+<area shape="rect" id="node7" href="$cl_8c.html#a1ccf0c57e37b72878dd521ef0e8d719a" title="Returns whether a classifier matched the most recent input." alt="" coords="519,5,569,32"/>
+<area shape="rect" id="node8" href="$cl_8c.html#a87846c65c6d158e77a63714535b28a59" title="Calculates whether a classifier matches an input." alt="" coords="507,56,581,83"/>
+<area shape="rect" id="node10" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="1047,123,1125,149"/>
+<area shape="rect" id="node11" href="$clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" title="Ensures all possible actions are covered by the match set." alt="" coords="499,296,589,323"/>
+<area shape="rect" id="node36" href="$clset_8c.html#ab7cb042e6b9a34ee1d7a81ed91b1a42d" title="Returns the fraction of inputs matched by the most general rule with error below E0...." alt="" coords="499,372,589,399"/>
+<area shape="rect" id="node6" href="$action_8h.html#a6a453cb80b07ecb3f18eabc178c81424" title="Computes the current classifier action using the input." alt="" coords="665,528,762,555"/>
+<area shape="rect" id="node9" href="$condition_8h.html#ae7763257380d2cc8a99aefac7d61f657" title="Calculates whether the condition matches the input." alt="" coords="667,56,760,83"/>
+<area shape="rect" id="node12" href="$cl_8c.html#ab80c62ad6a09b3243f499a7ad9ef95cd" title="Covers the condition and action for a classifier." alt="" coords="678,325,749,352"/>
+<area shape="rect" id="node22" href="$cl_8c.html#a188fac458e06c9a27e0e4069f7ddb68a" title="Initialises a new classifier &#45; but not condition, action, prediction." alt="" coords="685,376,741,403"/>
+<area shape="rect" id="node23" href="$clset_8c.html#af1f8c646fef336390c16b4ba0572ff6f" title="Checks whether each action is covered by the match set." alt="" coords="637,427,789,453"/>
+<area shape="rect" id="node24" href="$clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd" title="Enforces the maximum population size limit." alt="" coords="647,259,779,301"/>
+<area shape="rect" id="node35" href="$clset_8c.html#a3bb797f21eed0cdf6fc54b36692e213f" title="Removes classifiers with 0 numerosity from the set." alt="" coords="662,157,765,184"/>
+<area shape="rect" id="node13" href="$action_8h.html#a4760df86361ac4ed8c85d985c37a6d3d" title="Generates an action that matches the specified value." alt="" coords="857,427,936,453"/>
+<area shape="rect" id="node14" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="865,325,929,352"/>
+<area shape="rect" id="node21" href="$condition_8h.html#abfb169263bdeb3b4bac3fa532a6f6ef4" title="Generates a condition that matches the current input." alt="" coords="852,376,941,403"/>
+<area shape="rect" id="node15" href="$action_8h.html#a124e361f0b13d0c29206bd9c05bd9fd4" title="Initialises a classifier&#39;s action." alt="" coords="1054,528,1118,555"/>
+<area shape="rect" id="node16" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="1045,275,1127,301"/>
+<area shape="rect" id="node17" href="$condition_8h.html#ad8a71ebe28cc52430a49610bfe5f7836" title="Initialises a classifier&#39;s condition." alt="" coords="1049,325,1123,352"/>
+<area shape="rect" id="node18" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="1037,376,1135,403"/>
+<area shape="rect" id="node19" href="$prediction_8h.html#ac18761d16e606f80e814a15d1770d367" title="Initialises a classifier&#39;s prediction." alt="" coords="1051,427,1121,453"/>
+<area shape="rect" id="node20" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="1035,477,1137,504"/>
+<area shape="rect" id="node25" href="$clset_8c.html#a106a72afb7785af1d1b639736a6340be" title="Deletes a single classifier from the population set." alt="" coords="843,259,950,285"/>
+<area shape="rect" id="node26" href="$clset_8c.html#a7e9703db2e290a5b852b1112f52f4803" title="Finds a rule in the population that never matches an input." alt="" coords="1004,224,1168,251"/>
+<area shape="rect" id="node27" href="$clset_8c.html#a7ddb1248094ce9b41cf314b833798b29" title="Selects a classifier from the population for deletion via roulette." alt="" coords="1020,173,1152,200"/>
+<area shape="rect" id="node28" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="1217,148,1315,175"/>
+<area shape="rect" id="node30" href="$cl_8c.html#ae083f9dc65912cf983795d134006e236" title="Returns the deletion vote of a classifier." alt="" coords="1222,199,1310,225"/>
+<area shape="rect" id="node31" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="1219,249,1313,276"/>
+<area shape="rect" id="node33" href="$clset_8c.html#a27da8860873485883cc85edfac13da87" title="Calculates the total fitness of classifiers in the set." alt="" coords="1216,97,1316,124"/>
+<area shape="rect" id="node29" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="1364,148,1445,175"/>
+<area shape="rect" id="node32" href="$prediction_8h.html#a0ac1eb269367fc7adb967e3cb4b2db50" title="Returns the size of the classifier prediction." alt="" coords="1365,249,1444,276"/>
+<area shape="rect" id="node37" href="$cl_8c.html#a1358864e37832999f9688487ab8f8870" title="Returns the fraction of observed inputs matched by a classifier." alt="" coords="677,477,749,504"/>
+<area shape="rect" id="node39" href="$utils_8h.html#adc87687be632aa642e838b81a7404db1" title="Returns the index of the largest element in vector X." alt="" coords="501,680,587,707"/>
+<area shape="rect" id="node41" href="$cl_8c.html#a6d152849e51ed10765330586e574805f" title="Computes the current classifier prediction using the input." alt="" coords="505,781,583,808"/>
+<area shape="rect" id="node43" href="$pa_8c.html#a63ac1844cb7efa4e37b8c382f56b542b" title="Resets the prediction array to zero." alt="" coords="508,731,580,757"/>
+<area shape="rect" id="node42" href="$prediction_8h.html#a6b6f9e53800aae4a64991a811f670541" title="Computes the current classifier prediction using the input." alt="" coords="661,781,765,808"/>
+<area shape="rect" id="node45" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="837,629,956,656"/>
+</map>

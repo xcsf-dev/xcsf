@@ -1,0 +1,8 @@
+<map id="act_neural_compute" name="act_neural_compute">
+<area shape="rect" id="node1" title="Computes the current neural network action using the input." alt="" coords="5,56,144,83"/>
+<area shape="rect" id="node2" href="$utils_8h.html#adc87687be632aa642e838b81a7404db1" title="Returns the index of the largest element in vector X." alt="" coords="210,5,295,32"/>
+<area shape="rect" id="node3" href="$neural_8c.html#a1054bccbeafce6e26cc5a8bffed9f575" title="Returns the outputs from the output layer of a neural network." alt="" coords="199,56,306,83"/>
+<area shape="rect" id="node5" href="$neural_8c.html#ae52d35ca06ded1387949731e1ad3d751" title="Forward propagates a neural network." alt="" coords="192,107,313,133"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html#a2ba51f939c19b5a2d9be3d219bbe3115" title="Returns the outputs of a layer." alt="" coords="365,56,458,83"/>
+<area shape="rect" id="node6" href="$neural__layer_8h.html#aabfac5227c61181614f84ebf5e00e462" title="Forward propagates an input through the layer." alt="" coords="361,107,461,133"/>
+</map>

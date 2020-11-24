@@ -1,0 +1,5 @@
+<map id="neural_layer_lstm_free" name="neural_layer_lstm_free">
+<area shape="rect" id="node1" title="Free memory used by an LSTM layer." alt="" coords="5,31,159,57"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#a6a48f5438e8ccf76faeed24641a0f85a" title="Free memory used by an LSTM layer." alt="" coords="207,5,329,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="229,56,307,83"/>
+</map>

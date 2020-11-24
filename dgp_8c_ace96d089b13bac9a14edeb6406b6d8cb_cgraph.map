@@ -1,0 +1,4 @@
+<map id="node_activate" name="node_activate">
+<area shape="rect" id="node1" title="Returns the result from applying a specified activation function." alt="" coords="5,5,108,32"/>
+<area shape="rect" id="node2" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="156,5,213,32"/>
+</map>

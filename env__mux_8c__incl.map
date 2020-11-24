@@ -1,0 +1,19 @@
+<map id="env_mux.c" name="env_mux.c">
+<area shape="rect" id="node1" title="The real multiplexer problem environment." alt="" coords="569,5,656,32"/>
+<area shape="rect" id="node2" href="$env__mux_8h.html" title="The real multiplexer problem environment." alt="" coords="569,80,656,107"/>
+<area shape="rect" id="node15" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="471,80,541,107"/>
+<area shape="rect" id="node17" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="719,229,776,256"/>
+<area shape="rect" id="node3" href="$env_8h.html" title="Built&#45;in problem environment interface." alt="" coords="559,155,611,181"/>
+<area shape="rect" id="node4" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="477,229,535,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="475,304,537,331"/>
+<area shape="rect" id="node6" title=" " alt="" coords="562,304,621,331"/>
+<area shape="rect" id="node7" title=" " alt="" coords="5,304,84,331"/>
+<area shape="rect" id="node8" title=" " alt="" coords="109,304,173,331"/>
+<area shape="rect" id="node9" title=" " alt="" coords="645,304,708,331"/>
+<area shape="rect" id="node10" title=" " alt="" coords="197,304,271,331"/>
+<area shape="rect" id="node11" title=" " alt="" coords="296,304,361,331"/>
+<area shape="rect" id="node12" title=" " alt="" coords="733,304,794,331"/>
+<area shape="rect" id="node13" title=" " alt="" coords="818,304,882,331"/>
+<area shape="rect" id="node14" title=" " alt="" coords="385,304,451,331"/>
+<area shape="rect" id="node16" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="477,155,535,181"/>
+</map>

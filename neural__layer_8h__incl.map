@@ -1,0 +1,9 @@
+<map id="neural_layer.h" name="neural_layer.h">
+<area shape="rect" id="node1" title="Interface for neural network layers." alt="" coords="174,5,277,32"/>
+<area shape="rect" id="node2" href="$neural_8h.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="191,80,259,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,155,80,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="105,155,170,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="195,155,256,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="280,155,344,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="369,155,434,181"/>
+</map>

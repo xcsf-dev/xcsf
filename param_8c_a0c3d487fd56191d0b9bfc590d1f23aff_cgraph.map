@@ -1,0 +1,5 @@
+<map id="param_print_cl_prediction" name="param_print_cl_prediction">
+<area shape="rect" id="node1" title="Prints XCSF prediction parameters." alt="" coords="5,35,176,61"/>
+<area shape="rect" id="node2" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="224,5,383,32"/>
+<area shape="rect" id="node3" href="$prediction_8c.html#a085a8402296bdeab95f54299040e6e0e" title="Returns a string representation of a prediction type from the integer." alt="" coords="238,57,369,98"/>
+</map>

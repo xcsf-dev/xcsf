@@ -1,0 +1,7 @@
+<map id="neural_layer_avgpool.h" name="neural_layer_avgpool.h">
+<area shape="rect" id="node1" title="An implementation of an average pooling layer." alt="" coords="173,5,328,32"/>
+<area shape="rect" id="node2" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,80,99,107"/>
+<area shape="rect" id="node3" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="123,80,226,107"/>
+<area shape="rect" id="node4" href="$neural__layer__avgpool_8c.html" title="An implementation of an average pooling layer." alt="" coords="251,80,405,107"/>
+<area shape="rect" id="node5" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="430,80,530,107"/>
+</map>

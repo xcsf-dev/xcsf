@@ -1,0 +1,11 @@
+<map id="pred_rls_update" name="pred_rls_update">
+<area shape="rect" id="node1" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="5,81,120,108"/>
+<area shape="rect" id="node2" href="$blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876" title="Multiplies vector X by the scalar ALPHA and adds it to the vector Y." alt="" coords="172,5,253,32"/>
+<area shape="rect" id="node3" href="$blas_8c.html#a91a7826d9b40de8174cccb1e0ca53795" title="Computes the dot product of two vectors." alt="" coords="177,56,248,83"/>
+<area shape="rect" id="node4" href="$blas_8c.html#af641b4337bf32be77f094e40817a55b7" title="Performs the matrix&#45;matrix multiplication: ." alt="" coords="168,107,257,133"/>
+<area shape="rect" id="node9" href="$blas_8c.html#a59634a37fd370ffc05eb458503c5ab53" title="Scales vector X by the scalar ALPHA and overwrites it with the result." alt="" coords="174,157,251,184"/>
+<area shape="rect" id="node5" href="$blas_8c.html#a2a960e3645ec841778e7b85e7bb96e3d" title=" " alt="" coords="305,31,384,57"/>
+<area shape="rect" id="node6" href="$blas_8c.html#aa57c04fbd7b97c802c920578b88b658e" title=" " alt="" coords="307,81,383,108"/>
+<area shape="rect" id="node7" href="$blas_8c.html#a515bbd20d69faf17bfdbc9387a83779a" title=" " alt="" coords="307,132,383,159"/>
+<area shape="rect" id="node8" href="$blas_8c.html#abd0602933738dc1c44f69f27786bc603" title=" " alt="" coords="308,183,381,209"/>
+</map>

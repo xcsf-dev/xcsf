@@ -1,0 +1,5 @@
+<map id="rule_dgp_act_compute" name="rule_dgp_act_compute">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,159,57"/>
+<area shape="rect" id="node2" href="$utils_8h.html#a1c96b0520a47b6a4a106973bdbc9c871" title="Returns an integer clamped within the specified range." alt="" coords="216,5,295,32"/>
+<area shape="rect" id="node3" href="$dgp_8c.html#aa77646399b1b3d18c38e1597008880e0" title="Returns the current state of a specified node in the graph." alt="" coords="207,56,304,83"/>
+</map>

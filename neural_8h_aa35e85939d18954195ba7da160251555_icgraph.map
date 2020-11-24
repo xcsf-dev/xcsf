@@ -1,0 +1,7 @@
+<map id="neural_load" name="neural_load">
+<area shape="rect" id="node1" title="Reads a neural network from a binary file." alt="" coords="204,81,292,108"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#a64f268224873669855fd52fb96cb6590" title=" " alt="" coords="24,5,137,32"/>
+<area shape="rect" id="node3" href="$cond__neural_8h.html#a796505141745e795580c82a5150404ac" title=" " alt="" coords="19,56,142,83"/>
+<area shape="rect" id="node4" href="$pred__neural_8h.html#aacc63f3e2f01180cdf0394afe44ee81d" title=" " alt="" coords="21,107,141,133"/>
+<area shape="rect" id="node5" href="$rule__neural_8h.html#ab84701268761d10d8ca77c12517864df" title=" " alt="" coords="5,157,156,184"/>
+</map>

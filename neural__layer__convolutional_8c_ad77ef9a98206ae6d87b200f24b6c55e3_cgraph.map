@@ -1,0 +1,10 @@
+<map id="neural_layer_convolutional_load" name="neural_layer_convolutional_load">
+<area shape="rect" id="node1" title="Reads a convolutional layer from a file." alt="" coords="5,43,212,69"/>
+<area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="260,43,399,69"/>
+<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" title="Returns the memory workspace size for a convolutional layer." alt="" coords="447,5,588,32"/>
+<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="468,68,567,95"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="825,68,908,95"/>
+<area shape="rect" id="node6" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="639,43,774,69"/>
+<area shape="rect" id="node7" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="637,93,776,120"/>
+<area shape="rect" id="node8" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="636,144,777,171"/>
+</map>

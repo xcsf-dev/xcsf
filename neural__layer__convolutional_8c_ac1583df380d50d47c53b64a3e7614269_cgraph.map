@@ -1,0 +1,12 @@
+<map id="neural_layer_convolutional_add_filters" name="neural_layer_convolutional_add_filters">
+<area shape="rect" id="node1" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="5,49,180,90"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#abb27e5ed20353f12ec393c83e30372fe" title="Recalculates the number of active connections within a layer." alt="" coords="229,5,366,32"/>
+<area shape="rect" id="node3" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="251,56,344,83"/>
+<area shape="rect" id="node4" href="$neural__layer__convolutional_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a convolutional layer." alt="" coords="228,107,367,133"/>
+<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" title="Returns the memory workspace size for a convolutional layer." alt="" coords="415,69,556,96"/>
+<area shape="rect" id="node7" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="436,132,535,159"/>
+<area shape="rect" id="node6" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="793,132,876,159"/>
+<area shape="rect" id="node8" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="607,107,742,133"/>
+<area shape="rect" id="node9" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="605,157,744,184"/>
+<area shape="rect" id="node10" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="604,208,745,235"/>
+</map>

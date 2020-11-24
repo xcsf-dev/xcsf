@@ -1,0 +1,15 @@
+<map id="layer_args_tail" name="layer_args_tail">
+<area shape="rect" id="node1" title="Returns the current output layer arguments." alt="" coords="1139,56,1245,83"/>
+<area shape="rect" id="node2" href="$config_8c.html#a742d5489e36da7e3a8301aeb5b2d25f0" title="Sets classifier neural network action parameters." alt="" coords="945,5,1086,32"/>
+<area shape="rect" id="node10" href="$config_8c.html#a384fd5d57a7d2627d16d4a4c0988865a" title="Sets classifier neural network condition parameters." alt="" coords="940,56,1091,83"/>
+<area shape="rect" id="node12" href="$config_8c.html#a151c7b337e28320fd8821f401816a11d" title="Sets classifier neural network prediction parameters." alt="" coords="941,107,1089,133"/>
+<area shape="rect" id="node3" href="$config_8c.html#a59bf153e171e7edf5bfb7a45a025c1bb" title="Sets classifier action parameters." alt="" coords="788,5,887,32"/>
+<area shape="rect" id="node4" href="$config_8c.html#a0f0fcad0b6090da01e5bd58b77d98787" title="Sets specified parameter." alt="" coords="607,56,735,83"/>
+<area shape="rect" id="node5" href="$config_8c.html#a5b96815b9ebb26a8fc7bcc30a75ab36d" title="Adds a parameter to the list." alt="" coords="436,56,559,83"/>
+<area shape="rect" id="node6" href="$config_8c.html#a01c178cc1587140f60ecf27291a2032a" title="Parses a line of the config file and adds to the list." alt="" coords="277,56,388,83"/>
+<area shape="rect" id="node7" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="140,56,229,83"/>
+<area shape="rect" id="node8" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="23,31,74,57"/>
+<area shape="rect" id="node9" href="$classXCS.html#a81bb7e5f76e05ad983d70fe848b73393" title="Constructor with a specified config." alt="" coords="5,81,92,108"/>
+<area shape="rect" id="node11" href="$config_8c.html#aa4bde9b34202ac13b8d2fc4454f8fae0" title="Sets classifier condition parameters." alt="" coords="783,56,892,83"/>
+<area shape="rect" id="node13" href="$config_8c.html#a805cfd2c56d55c033ea40872f7ba0e70" title="Sets classifier prediction parameters." alt="" coords="784,107,891,133"/>
+</map>

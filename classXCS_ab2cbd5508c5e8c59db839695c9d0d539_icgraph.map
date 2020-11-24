@@ -1,0 +1,4 @@
+<map id="XCS::unpack_act_neural" name="XCS::unpack_act_neural">
+<area shape="rect" id="node1" title="Sets parameters used by neural network actions." alt="" coords="172,5,339,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#a87397ee045a1648cd9b1449518e217b2" title="Sets the action type and initialisation arguments." alt="" coords="5,5,124,32"/>
+</map>

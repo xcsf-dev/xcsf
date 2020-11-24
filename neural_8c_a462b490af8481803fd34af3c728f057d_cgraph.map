@@ -1,0 +1,5 @@
+<map id="neural_mutate" name="neural_mutate">
+<area shape="rect" id="node1" title="Mutates a neural network." alt="" coords="5,31,109,57"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#ad3229854f8e7c4c0eed64b22a8cd1cfa" title="Performs layer mutation." alt="" coords="157,5,255,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#a28fed9ac2d12fe1bad08b4540f3f0455" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="160,56,252,83"/>
+</map>

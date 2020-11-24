@@ -1,0 +1,9 @@
+<map id="cl_load" name="cl_load">
+<area shape="rect" id="node1" title="Reads a classifier from a binary file." alt="" coords="5,132,68,159"/>
+<area shape="rect" id="node2" href="$action_8h.html#af3b26670d0804ebad9ff8e00eba317bb" title="Reads the action from a binary file." alt="" coords="132,5,203,32"/>
+<area shape="rect" id="node3" href="$action_8c.html#ae24f8558d2aa0661be9bf1e352e2ba3b" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="126,56,209,83"/>
+<area shape="rect" id="node4" href="$condition_8h.html#a725d3a11516f694ace8875e875488d6b" title="Reads the condition from a binary file." alt="" coords="127,107,208,133"/>
+<area shape="rect" id="node5" href="$condition_8c.html#aeea452ac4d09ece6c6f7108e5fc038d5" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="118,157,217,184"/>
+<area shape="rect" id="node6" href="$prediction_8h.html#abf6d7e328ba239e822e405b5ff9d271b" title="Reads the prediction from a binary file." alt="" coords="128,208,207,235"/>
+<area shape="rect" id="node7" href="$prediction_8c.html#a1447724ff47305f396345b458b0aba23" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="116,259,219,285"/>
+</map>

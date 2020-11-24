@@ -1,0 +1,9 @@
+<map id="XCS::unpack_layer_params" name="XCS::unpack_layer_params">
+<area shape="rect" id="node1" title="Sets parameters used by a neural network layer." alt="" coords="417,56,603,83"/>
+<area shape="rect" id="node2" href="$classXCS.html#ab2cbd5508c5e8c59db839695c9d0d539" title="Sets parameters used by neural network actions." alt="" coords="197,5,364,32"/>
+<area shape="rect" id="node4" href="$classXCS.html#a234d12eb3fb50d01dccff24a1515d74e" title="Sets parameters used by neural network conditions." alt="" coords="192,56,369,83"/>
+<area shape="rect" id="node6" href="$classXCS.html#a8755a66390db00ab31e3574a18a0aae1" title="Sets parameters used by neural network predictions." alt="" coords="193,107,368,133"/>
+<area shape="rect" id="node3" href="$classXCS.html#a87397ee045a1648cd9b1449518e217b2" title="Sets the action type and initialisation arguments." alt="" coords="15,5,134,32"/>
+<area shape="rect" id="node5" href="$classXCS.html#a4eb6acf0a155d5e94fa843d7523df9b1" title="Sets the condition type and initialisation arguments." alt="" coords="7,56,142,83"/>
+<area shape="rect" id="node7" href="$classXCS.html#a28e9fae0bf2d470377b25e032b7080af" title="Sets the prediction type and initialisation arguments." alt="" coords="5,107,144,133"/>
+</map>

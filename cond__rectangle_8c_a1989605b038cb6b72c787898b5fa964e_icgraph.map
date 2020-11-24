@@ -1,0 +1,4 @@
+<map id="cond_rectangle_dist" name="cond_rectangle_dist">
+<area shape="rect" id="node1" title="Returns the relative distance to a hyperrectangle." alt="" coords="207,5,345,32"/>
+<area shape="rect" id="node2" href="$cond__rectangle_8h.html#ae859d7d13485cfe847e47caecf1c17ee" title="Calculates whether a hyperrectangle condition matches an input." alt="" coords="5,5,159,32"/>
+</map>

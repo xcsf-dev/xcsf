@@ -1,0 +1,5 @@
+<map id="neural_learn" name="neural_learn">
+<area shape="rect" id="node1" title="Performs a gradient descent update on a neural network." alt="" coords="5,31,97,57"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#a6966544bb6a9a50c006d6d39083434ae" title="Backward propagates the error through a layer." alt="" coords="145,5,259,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#a509c114fecb394f2b8771f4f0fd54cf3" title="Updates the weights and biases of a layer." alt="" coords="154,56,250,83"/>
+</map>

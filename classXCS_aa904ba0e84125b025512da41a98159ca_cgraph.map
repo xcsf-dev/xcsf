@@ -1,0 +1,5 @@
+<map id="XCS::init_step" name="XCS::init_step">
+<area shape="rect" id="node1" title="Initialises a step in a reinforcement learning trial." alt="" coords="5,5,112,32"/>
+<area shape="rect" id="node2" href="$xcs__rl_8c.html#a6bbd7dc6c04d7173cbc743ba47bd8b91" title="Initialises a step in a reinforcement learning trial." alt="" coords="160,5,273,32"/>
+<area shape="rect" id="node3" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="321,5,396,32"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="pa.h" name="pa.h">
+<area shape="rect" id="node1" title="Prediction array functions." alt="" coords="270,5,317,32"/>
+<area shape="rect" id="node2" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="5,80,67,107"/>
+<area shape="rect" id="node3" href="$pa_8c.html" title="Prediction array functions." alt="" coords="91,80,138,107"/>
+<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="162,80,299,107"/>
+<area shape="rect" id="node5" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="323,80,391,107"/>
+<area shape="rect" id="node6" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="415,80,539,107"/>
+<area shape="rect" id="node7" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="564,80,623,107"/>
+</map>

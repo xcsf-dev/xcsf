@@ -1,0 +1,28 @@
+var loss_8h =
+[
+    [ "LOSS_BINARY_LOG", "loss_8h.html#a7bcfbc96f60579fe3e5e8c6e4c4c0ab0", null ],
+    [ "LOSS_HUBER", "loss_8h.html#afe9b6f9fcfbd2379bcb572349971eff1", null ],
+    [ "LOSS_LOG", "loss_8h.html#adc3eb97e60129b1d917b328bfbfa8147", null ],
+    [ "LOSS_MAE", "loss_8h.html#ab933ef973a4fd9946b854f98a024a617", null ],
+    [ "LOSS_MSE", "loss_8h.html#a1a23cb399abaa46c19c1c28243b13f39", null ],
+    [ "LOSS_NUM", "loss_8h.html#a728f99aca96a717a7f936eb7ed77b451", null ],
+    [ "LOSS_ONEHOT", "loss_8h.html#afc96973c51cdcaa901061bd532081681", null ],
+    [ "LOSS_RMSE", "loss_8h.html#a0c448064834bdb151c405371b3c3faca", null ],
+    [ "LOSS_STRING_BINARY_LOG", "loss_8h.html#ad64ee14d6ef0982d6e64c0c5e37f9e6e", null ],
+    [ "LOSS_STRING_HUBER", "loss_8h.html#a767a4dc6d99122dbb9c226777fe4d6a8", null ],
+    [ "LOSS_STRING_LOG", "loss_8h.html#a5a5acb038f1c9cf311d36250f7111e28", null ],
+    [ "LOSS_STRING_MAE", "loss_8h.html#a5bd1a82a685eb1cc90ee76ab53a4fd36", null ],
+    [ "LOSS_STRING_MSE", "loss_8h.html#a4c5e78a7e5c40e956543546ca19e8cf9", null ],
+    [ "LOSS_STRING_ONEHOT", "loss_8h.html#ac9669a24e0f1a49a11ce85d3da2de4e8", null ],
+    [ "LOSS_STRING_RMSE", "loss_8h.html#afd20b54926dded45ac1f5c696e806036", null ],
+    [ "loss_binary_log", "loss_8h.html#a2687b111bc407194c64e07e2b933bb3c", null ],
+    [ "loss_huber", "loss_8h.html#adf5bc1e947369774d48b0355dbdbcc30", null ],
+    [ "loss_log", "loss_8h.html#a5b0fc07896aaa302b61213c450874d49", null ],
+    [ "loss_mae", "loss_8h.html#a7f1e236d219a5f551408639674b4a24a", null ],
+    [ "loss_mse", "loss_8h.html#aaeed4518371c4e75de20532e3a6aa601", null ],
+    [ "loss_onehot", "loss_8h.html#a38e786a5c46be2519aae23287c92cc23", null ],
+    [ "loss_rmse", "loss_8h.html#a3278a1ba45bd0ccbf39e25bde1562f8f", null ],
+    [ "loss_set_func", "loss_8h.html#a440b847b0f4edd503b919d3bebecd66c", null ],
+    [ "loss_type_as_int", "loss_8h.html#a6b76e413b2123f456c6656f0555208e1", null ],
+    [ "loss_type_as_string", "loss_8h.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe", null ]
+];

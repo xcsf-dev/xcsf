@@ -1,0 +1,6 @@
+<map id="neural_layer_maxpool_resize" name="neural_layer_maxpool_resize">
+<area shape="rect" id="node1" title="Resizes a maxpooling layer if the previous layer has changed size." alt="" coords="5,5,153,47"/>
+<area shape="rect" id="node2" href="$neural__layer__maxpool_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a maxpooling layer." alt="" coords="201,13,340,39"/>
+<area shape="rect" id="node3" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="388,13,527,39"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="575,13,657,39"/>
+</map>

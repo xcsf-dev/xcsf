@@ -1,0 +1,5 @@
+<map id="layer_ensure_input_represention" name="layer_ensure_input_represention">
+<area shape="rect" id="node1" title="Ensures that each neuron is connected to at least one input and each input is connected to at least o..." alt="" coords="212,39,343,80"/>
+<area shape="rect" id="node2" href="$neural__layer__connected_8h.html#ab59f3e8b771bc16a96229f1fe22c840a" title=" " alt="" coords="5,5,164,47"/>
+<area shape="rect" id="node3" href="$neural__layer__connected_8h.html#ac688a7b816df0b7ae0cf77a4d075ef3d" title=" " alt="" coords="5,71,164,112"/>
+</map>

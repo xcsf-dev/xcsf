@@ -1,0 +1,6 @@
+<map id="neural_layer_maxpool_forward" name="neural_layer_maxpool_forward">
+<area shape="rect" id="node1" title="Forward propagates a maxpooling layer." alt="" coords="5,23,153,65"/>
+<area shape="rect" id="node2" href="$utils_8h.html#adc87687be632aa642e838b81a7404db1" title="Returns the index of the largest element in vector X." alt="" coords="328,5,413,32"/>
+<area shape="rect" id="node3" href="$neural__layer__maxpool_8c.html#a03e721637071990d769895cac88b29a8" title="Returns the index of the maximum input value corresponding to a specified output height,..." alt="" coords="201,56,280,83"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="329,56,412,83"/>
+</map>

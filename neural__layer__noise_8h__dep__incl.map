@@ -1,0 +1,9 @@
+<map id="neural_layer_noise.h" name="neural_layer_noise.h">
+<area shape="rect" id="node1" title="An implementation of a Gaussian noise adding layer." alt="" coords="268,5,409,32"/>
+<area shape="rect" id="node2" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,80,99,107"/>
+<area shape="rect" id="node3" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="123,80,226,107"/>
+<area shape="rect" id="node4" href="$neural_8c.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="250,80,318,107"/>
+<area shape="rect" id="node5" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="342,80,445,107"/>
+<area shape="rect" id="node6" href="$neural__layer__noise_8c.html" title="An implementation of a Gaussian noise adding layer." alt="" coords="469,80,611,107"/>
+<area shape="rect" id="node7" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="635,80,735,107"/>
+</map>

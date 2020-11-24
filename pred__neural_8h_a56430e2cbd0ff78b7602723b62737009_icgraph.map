@@ -1,0 +1,6 @@
+<map id="pred_neural_connections" name="pred_neural_connections">
+<area shape="rect" id="node1" title="Returns the number of active connections in a neural prediction layer." alt="" coords="645,13,812,39"/>
+<area shape="rect" id="node2" href="$clset__neural_8h.html#a90680514a75d5513c5dfe1b0ccc2594b" title="Calculates the mean number of prediction connections in the set." alt="" coords="399,13,597,39"/>
+<area shape="rect" id="node3" href="$classXCS.html#a6e25bac5882fc79fe55109291daafde0" title=" " alt="" coords="204,5,351,47"/>
+<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,13,156,39"/>
+</map>

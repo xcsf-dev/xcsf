@@ -1,0 +1,5 @@
+<map id="layer_init_eta" name="layer_init_eta">
+<area shape="rect" id="node1" title="Initialises a layer&#39;s gradient descent rate." alt="" coords="252,31,351,57"/>
+<area shape="rect" id="node2" href="$neural__layer__connected_8h.html#af721369377e6bd5f2b691065f73a32f6" title="Initialises a fully&#45;connected layer." alt="" coords="13,5,196,32"/>
+<area shape="rect" id="node3" href="$neural__layer__convolutional_8h.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="5,56,204,83"/>
+</map>

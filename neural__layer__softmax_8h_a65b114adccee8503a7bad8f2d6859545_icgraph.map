@@ -1,0 +1,9 @@
+<map id="neural_layer_softmax_init" name="neural_layer_softmax_init">
+<area shape="rect" id="node1" title="Creates and initialises a softmax layer." alt="" coords="829,56,1000,83"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#abbdbc4d92f139ccc9816289233dbf934" title="Creates and initialises an action neural network." alt="" coords="635,5,741,32"/>
+<area shape="rect" id="node3" href="$pred__neural_8h.html#aa639a9130cac0c222bca241f86d6c135" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="595,56,781,83"/>
+<area shape="rect" id="node7" href="$pred__neural_8h.html#a8ff454a2da61b52670f4b70b71da2fe8" title="Creates and initialises a neural network prediction." alt="" coords="631,107,745,133"/>
+<area shape="rect" id="node4" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="401,56,547,83"/>
+<area shape="rect" id="node5" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="204,56,353,83"/>
+<area shape="rect" id="node6" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,56,156,83"/>
+</map>

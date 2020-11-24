@@ -1,0 +1,4 @@
+<map id="cond_dgp_free" name="cond_dgp_free">
+<area shape="rect" id="node1" title="Frees the memory used by a dynamical GP graph condition." alt="" coords="5,5,112,32"/>
+<area shape="rect" id="node2" href="$dgp_8c.html#a49d4c90eb5704b9a3ff9f72f41d11395" title="Frees a DGP graph." alt="" coords="160,5,243,32"/>
+</map>

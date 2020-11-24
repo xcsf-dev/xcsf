@@ -1,0 +1,7 @@
+<map id="layer_mutate_eta" name="layer_mutate_eta">
+<area shape="rect" id="node1" title="Mutates the gradient descent rate of a neural layer." alt="" coords="447,64,569,91"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#a46d6667381b42e2d14554674328c8cde" title="Mutates the gradient descent rate used to update an LSTM layer." alt="" coords="268,5,355,32"/>
+<area shape="rect" id="node4" href="$neural__layer__connected_8h.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="232,57,391,98"/>
+<area shape="rect" id="node5" href="$neural__layer__convolutional_8h.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="224,122,399,163"/>
+<area shape="rect" id="node3" href="$neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
+</map>

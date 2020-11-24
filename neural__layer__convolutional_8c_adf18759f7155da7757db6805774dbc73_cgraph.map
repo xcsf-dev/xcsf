@@ -1,0 +1,7 @@
+<map id="guard_malloc" name="guard_malloc">
+<area shape="rect" id="node1" title="Check memory allocation is within bounds." alt="" coords="5,56,104,83"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="155,5,290,32"/>
+<area shape="rect" id="node4" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="153,56,292,83"/>
+<area shape="rect" id="node5" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="152,107,293,133"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="341,56,424,83"/>
+</map>

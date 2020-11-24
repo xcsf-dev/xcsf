@@ -1,0 +1,5 @@
+<map id="cond_ellipsoid_dist" name="cond_ellipsoid_dist">
+<area shape="rect" id="node1" title="Returns the relative distance to a hyperellipsoid." alt="" coords="207,31,339,57"/>
+<area shape="rect" id="node2" href="$cond__ellipsoid_8h.html#aca843e209b567077d3102cb4d260ed34" title="Returns whether classifier c1 has a condition more general than c2." alt="" coords="5,5,159,32"/>
+<area shape="rect" id="node3" href="$cond__ellipsoid_8h.html#a6855f4c629d12c4831a27b4ea4e5d4b8" title="Calculates whether a hyperellipsoid condition matches an input." alt="" coords="9,56,155,83"/>
+</map>

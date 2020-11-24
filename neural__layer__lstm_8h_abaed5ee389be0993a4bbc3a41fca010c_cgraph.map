@@ -1,0 +1,4 @@
+<map id="neural_layer_lstm_update" name="neural_layer_lstm_update">
+<area shape="rect" id="node1" title="Updates the weights and biases of an LSTM layer." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#aa414f62704c1469ac851c78425b2b1ba" title="Updates the weights and biases of a layer." alt="" coords="224,5,320,32"/>
+</map>

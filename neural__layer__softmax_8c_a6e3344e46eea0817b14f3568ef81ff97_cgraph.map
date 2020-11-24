@@ -1,0 +1,5 @@
+<map id="malloc_layer_arrays" name="malloc_layer_arrays">
+<area shape="rect" id="node1" title="Allocate memory used by a softmax layer." alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="192,5,331,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="379,5,461,32"/>
+</map>

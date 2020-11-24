@@ -1,0 +1,7 @@
+<map id="malloc_layer_arrays" name="malloc_layer_arrays">
+<area shape="rect" id="node1" title="Allocate memory used by a softmax layer." alt="" coords="235,81,373,108"/>
+<area shape="rect" id="node2" href="$neural__layer__softmax_8h.html#a7511194d08647d475924e23c21da562a" title="Initialises and creates a copy of one softmax layer from another." alt="" coords="5,5,187,32"/>
+<area shape="rect" id="node3" href="$neural__layer__softmax_8h.html#a924b58251342121ab62ae385ace909aa" title="Creates and initialises a softmax layer." alt="" coords="11,56,181,83"/>
+<area shape="rect" id="node4" href="$neural__layer__softmax_8h.html#a82ab9964bfb9c258d64b5ae55b432bd3" title="Reads a softmax layer from a file." alt="" coords="7,107,185,133"/>
+<area shape="rect" id="node5" href="$neural__layer__softmax_8h.html#aa26a5d73cbae5aa58fd2ae5ba482fd71" title="Resizes a softmax layer if the previous layer has changed size." alt="" coords="23,158,169,199"/>
+</map>

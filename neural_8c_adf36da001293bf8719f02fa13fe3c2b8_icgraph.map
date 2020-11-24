@@ -1,0 +1,7 @@
+<map id="neural_copy" name="neural_copy">
+<area shape="rect" id="node1" title="Copies a neural network." alt="" coords="208,81,300,108"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#a607d454193c54b1d600f06b636ae6e28" title=" " alt="" coords="24,5,141,32"/>
+<area shape="rect" id="node3" href="$cond__neural_8h.html#a6085600791bf9218bbdbff81f19e47c6" title=" " alt="" coords="19,56,146,83"/>
+<area shape="rect" id="node4" href="$pred__neural_8h.html#a35237d50e16303ef4c982e8fa78f9633" title=" " alt="" coords="21,107,145,133"/>
+<area shape="rect" id="node5" href="$rule__neural_8h.html#a2e1878d308017794069eea76631d20b4" title=" " alt="" coords="5,157,160,184"/>
+</map>

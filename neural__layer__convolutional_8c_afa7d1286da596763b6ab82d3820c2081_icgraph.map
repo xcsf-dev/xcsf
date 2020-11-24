@@ -1,0 +1,5 @@
+<map id="convolutional_out_height" name="convolutional_out_height">
+<area shape="rect" id="node1" title="Returns the output height of a convolutional layer." alt="" coords="252,35,417,61"/>
+<area shape="rect" id="node2" href="$neural__layer__convolutional_8h.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="5,5,204,32"/>
+<area shape="rect" id="node3" href="$neural__layer__convolutional_8h.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="17,57,192,98"/>
+</map>

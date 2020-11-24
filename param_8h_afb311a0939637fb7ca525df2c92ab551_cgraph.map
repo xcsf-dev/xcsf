@@ -1,0 +1,4 @@
+<map id="param_free" name="param_free">
+<area shape="rect" id="node1" title="Frees XCSF parameter memory." alt="" coords="5,5,92,32"/>
+<area shape="rect" id="node2" href="$gp_8c.html#a6c1cd03d6a6d5cc050c750b2caa31d2a" title="Frees the constants shared among all GP trees." alt="" coords="140,5,248,32"/>
+</map>

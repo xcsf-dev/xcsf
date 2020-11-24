@@ -1,0 +1,5 @@
+<map id="pred_nlms_update" name="pred_nlms_update">
+<area shape="rect" id="node1" title="Updates an NLMS prediction for a given input and truth sample." alt="" coords="5,31,133,57"/>
+<area shape="rect" id="node2" href="$blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876" title="Multiplies vector X by the scalar ALPHA and adds it to the vector Y." alt="" coords="181,5,263,32"/>
+<area shape="rect" id="node3" href="$blas_8c.html#a91a7826d9b40de8174cccb1e0ca53795" title="Computes the dot product of two vectors." alt="" coords="187,56,257,83"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="blas_axpy" name="blas_axpy">
+<area shape="rect" id="node1" title="Multiplies vector X by the scalar ALPHA and adds it to the vector Y." alt="" coords="240,227,321,254"/>
+<area shape="rect" id="node2" href="$neural__layer__connected_8h.html#ab16bf1d293853d0403c2ec2ea01122ce" title="Backward propagates a connected layer." alt="" coords="19,5,178,47"/>
+<area shape="rect" id="node3" href="$neural__layer__connected_8h.html#afb4c050b212b3a0dd87d66d86b57adb7" title="Updates the weights and biases of a connected layer." alt="" coords="19,71,178,112"/>
+<area shape="rect" id="node4" href="$neural__layer__convolutional_8h.html#a3e2922534009f8942017c7621f3b42e8" title="Updates the weights and biases of a convolutional layer." alt="" coords="11,136,186,177"/>
+<area shape="rect" id="node5" href="$neural__layer__lstm_8h.html#a00f097f7f5277fa3396e1feefc231e91" title="Backward propagates an LSTM layer." alt="" coords="5,202,192,229"/>
+<area shape="rect" id="node6" href="$neural__layer__lstm_8h.html#af2c3a4a9e6dd75cd00083c38733bddb0" title="Forward propagates an LSTM layer." alt="" coords="11,253,186,279"/>
+<area shape="rect" id="node7" href="$neural__layer__recurrent_8h.html#af0904dad2dc7cb2170c5b98aae6c0aae" title="Forward propagates a recurrent layer." alt="" coords="23,304,174,345"/>
+<area shape="rect" id="node8" href="$pred__nlms_8h.html#ac583f28320a20a93d335688484e8ef91" title="Updates an NLMS prediction for a given input and truth sample." alt="" coords="35,370,163,397"/>
+<area shape="rect" id="node9" href="$pred__rls_8h.html#a34245842989abd5abef6b922983216d9" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="41,421,156,447"/>
+</map>

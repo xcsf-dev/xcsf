@@ -1,0 +1,10 @@
+<map id="layer_copy" name="layer_copy">
+<area shape="rect" id="node1" title="Creates and returns a copy of a specified layer." alt="" coords="441,132,527,159"/>
+<area shape="rect" id="node2" href="$neural_8h.html#adf36da001293bf8719f02fa13fe3c2b8" title="Copies a neural network." alt="" coords="255,81,347,108"/>
+<area shape="rect" id="node7" href="$neural__layer__lstm_8h.html#a146138cee4d683ff5910f965f2478d62" title=" " alt="" coords="221,132,380,159"/>
+<area shape="rect" id="node8" href="$neural__layer__recurrent_8h.html#a9571cd5d29ae7a684b56a6e9967a73bd" title=" " alt="" coords="208,183,393,209"/>
+<area shape="rect" id="node3" href="$act__neural_8h.html#a607d454193c54b1d600f06b636ae6e28" title=" " alt="" coords="24,5,141,32"/>
+<area shape="rect" id="node4" href="$cond__neural_8h.html#a6085600791bf9218bbdbff81f19e47c6" title=" " alt="" coords="19,56,146,83"/>
+<area shape="rect" id="node5" href="$pred__neural_8h.html#a35237d50e16303ef4c982e8fa78f9633" title=" " alt="" coords="21,107,145,133"/>
+<area shape="rect" id="node6" href="$rule__neural_8h.html#a2e1878d308017794069eea76631d20b4" title=" " alt="" coords="5,157,160,184"/>
+</map>

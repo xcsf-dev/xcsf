@@ -1,0 +1,4 @@
+<map id="cl_predict" name="cl_predict">
+<area shape="rect" id="node1" title="Computes the current classifier prediction using the input." alt="" coords="5,5,84,32"/>
+<area shape="rect" id="node2" href="$prediction_8h.html#adbbec4d6ceed26cb3fd421b6af0f7f0c" title="Computes the current classifier prediction using the input." alt="" coords="132,5,236,32"/>
+</map>

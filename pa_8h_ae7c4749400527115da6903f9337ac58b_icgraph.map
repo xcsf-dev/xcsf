@@ -1,0 +1,8 @@
+<map id="pa_init" name="pa_init">
+<area shape="rect" id="node1" title="Initialises the prediction array." alt="" coords="595,56,655,83"/>
+<area shape="rect" id="node2" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="449,5,499,32"/>
+<area shape="rect" id="node3" href="$classXCS.html#a81bb7e5f76e05ad983d70fe848b73393" title="Constructor with a specified config." alt="" coords="431,56,517,83"/>
+<area shape="rect" id="node4" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="401,107,547,133"/>
+<area shape="rect" id="node5" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="204,107,353,133"/>
+<area shape="rect" id="node6" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,107,156,133"/>
+</map>

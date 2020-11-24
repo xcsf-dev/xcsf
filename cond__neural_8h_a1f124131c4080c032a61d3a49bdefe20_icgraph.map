@@ -1,0 +1,6 @@
+<map id="cond_neural_layers" name="cond_neural_layers">
+<area shape="rect" id="node1" title="Returns the number of layers within a neural network condition." alt="" coords="613,13,748,39"/>
+<area shape="rect" id="node2" href="$clset__neural_8h.html#a6090aa6b432c00fb699a7c9a42f94056" title="Calculates the mean number of condition layers in the set." alt="" coords="399,13,565,39"/>
+<area shape="rect" id="node3" href="$classXCS.html#a6a871ac1eba130483ada73d1c1247cfd" title=" " alt="" coords="204,5,351,47"/>
+<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,13,156,39"/>
+</map>

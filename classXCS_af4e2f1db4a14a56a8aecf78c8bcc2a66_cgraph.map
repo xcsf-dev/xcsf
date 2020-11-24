@@ -1,0 +1,10 @@
+<map id="XCS::retrieve" name="XCS::retrieve">
+<area shape="rect" id="node1" title="Retrieves the stored population, setting it as current." alt="" coords="5,31,107,57"/>
+<area shape="rect" id="node2" href="$xcsf_8c.html#a58a321a976cf6a9bb01979d94703fa27" title="Retrieves the previously stored population." alt="" coords="155,31,284,57"/>
+<area shape="rect" id="node3" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="332,5,407,32"/>
+<area shape="rect" id="node4" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="333,56,406,83"/>
+<area shape="rect" id="node5" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="455,56,516,83"/>
+<area shape="rect" id="node6" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="569,5,638,32"/>
+<area shape="rect" id="node7" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="564,56,643,83"/>
+<area shape="rect" id="node8" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="565,107,641,133"/>
+</map>

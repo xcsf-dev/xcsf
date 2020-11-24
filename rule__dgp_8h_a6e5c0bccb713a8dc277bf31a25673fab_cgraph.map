@@ -1,0 +1,8 @@
+<map id="rule_dgp_cond_copy" name="rule_dgp_cond_copy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,147,57"/>
+<area shape="rect" id="node2" href="$dgp_8c.html#a3c327dd571aed17fc3683aa112fbd405" title="Copies a DGP graph." alt="" coords="195,5,284,32"/>
+<area shape="rect" id="node3" href="$dgp_8c.html#a9f8800d534121a0e036e7643100dff41" title="Initialises a new DGP graph." alt="" coords="200,56,279,83"/>
+<area shape="rect" id="node4" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="332,56,403,83"/>
+<area shape="rect" id="node5" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="617,56,715,83"/>
+<area shape="rect" id="node6" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="451,81,569,108"/>
+</map>

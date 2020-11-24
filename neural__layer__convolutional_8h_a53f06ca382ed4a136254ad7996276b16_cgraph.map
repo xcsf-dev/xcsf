@@ -1,0 +1,12 @@
+<map id="neural_layer_convolutional_mutate" name="neural_layer_convolutional_mutate">
+<area shape="rect" id="node1" title="Mutates a convolutional layer." alt="" coords="5,120,180,161"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#a70863e99cae44be052c923ba9699ce12" title="Mutates a layer&#39;s connectivity by zeroing weights." alt="" coords="228,228,403,255"/>
+<area shape="rect" id="node5" href="$neural__layer_8c.html#a97650f1d0004a34aa9929b7fe3aab2ac" title="Mutates the gradient descent rate of a neural layer." alt="" coords="254,178,377,204"/>
+<area shape="rect" id="node7" href="$neural__layer_8c.html#a4362513800056ce0557959f4f1e6e205" title="Mutates a layer&#39;s activation function by random selection." alt="" coords="237,26,394,52"/>
+<area shape="rect" id="node9" href="$neural__layer_8c.html#a98362fff8a171286f8bd8cd00950e92b" title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit..." alt="" coords="241,127,390,154"/>
+<area shape="rect" id="node10" href="$sam_8c.html#a8dfbd425ab3513d47726620e94fc861c" title="Self&#45;adapts mutation rates." alt="" coords="272,76,359,103"/>
+<area shape="rect" id="node3" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="463,178,557,204"/>
+<area shape="rect" id="node4" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="617,51,715,78"/>
+<area shape="rect" id="node6" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="481,127,539,154"/>
+<area shape="rect" id="node8" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="451,26,569,52"/>
+</map>

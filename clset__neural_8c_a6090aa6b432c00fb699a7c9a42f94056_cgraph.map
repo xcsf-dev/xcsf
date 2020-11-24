@@ -1,0 +1,4 @@
+<map id="clset_mean_cond_layers" name="clset_mean_cond_layers">
+<area shape="rect" id="node1" title="Calculates the mean number of condition layers in the set." alt="" coords="5,5,172,32"/>
+<area shape="rect" id="node2" href="$cond__neural_8c.html#a1f124131c4080c032a61d3a49bdefe20" title="Returns the number of layers within a neural network condition." alt="" coords="220,5,355,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="mutate_eta" name="mutate_eta">
+<area shape="rect" id="node1" title="Mutates the gradient descent rate used to update a recurrent layer." alt="" coords="204,13,291,39"/>
+<area shape="rect" id="node2" href="$neural__layer__recurrent_8h.html#ab73a175d4c0da286f1420a399ea6e91b" title="Mutates a recurrent layer." alt="" coords="5,5,156,47"/>
+</map>

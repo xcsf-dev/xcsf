@@ -1,0 +1,6 @@
+<map id="neural_size" name="neural_size">
+<area shape="rect" id="node1" title="Returns the total number of non&#45;zero weights in a neural network." alt="" coords="204,56,292,83"/>
+<area shape="rect" id="node2" href="$cond__neural_8h.html#a8260336517fc59e70eb1227d49447ebf" title=" " alt="" coords="19,5,142,32"/>
+<area shape="rect" id="node3" href="$pred__neural_8h.html#ace1090494da4732e5902e6178ac3b439" title="Returns the size of a neural network prediction." alt="" coords="21,56,141,83"/>
+<area shape="rect" id="node4" href="$rule__neural_8h.html#ae46abbbd6849447f3b942302ed2b5d03" title=" " alt="" coords="5,107,156,133"/>
+</map>

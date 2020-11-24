@@ -1,0 +1,8 @@
+<map id="xcs_supervised_sample" name="xcs_supervised_sample">
+<area shape="rect" id="node1" title="Selects a data sample for training or testing." alt="" coords="359,81,521,108"/>
+<area shape="rect" id="node2" href="$xcs__supervised_8h.html#aaa6d90d0e8a3b770fb49e99b4df88cf5" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="162,56,293,83"/>
+<area shape="rect" id="node5" href="$xcs__supervised_8h.html#aab0b746c6a8baf499f68b95b30096df8" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="144,107,311,133"/>
+<area shape="rect" id="node3" href="$classXCS.html#ab2117326ca56272ebfba6e9993ace801" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="16,5,85,32"/>
+<area shape="rect" id="node4" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="25,56,76,83"/>
+<area shape="rect" id="node6" href="$classXCS.html#a8be398df5d3f4333c9b0d19f48535609" title="Returns the error using N random samples from the provided data." alt="" coords="5,107,96,133"/>
+</map>

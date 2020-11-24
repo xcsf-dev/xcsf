@@ -1,0 +1,14 @@
+<map id="cond_dgp_cover" name="cond_dgp_cover">
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,123,159"/>
+<area shape="rect" id="node2" href="$cond__dgp_8c.html#abde7e834c043ad4b135813b3a44dcae9" title=" " alt="" coords="171,81,292,108"/>
+<area shape="rect" id="node9" href="$dgp_8c.html#a34dcc559c282cc59f6e8dc2c58c29297" title="Randomises a specified DGP graph." alt="" coords="188,157,275,184"/>
+<area shape="rect" id="node3" href="$dgp_8c.html#a0f6be29465b8687eb5364d3378755914" title="Returns the current state of a specified node in the graph." alt="" coords="359,81,456,108"/>
+<area shape="rect" id="node4" href="$dgp_8c.html#ac9647fa05e224934cc0877d4d9cda134" title="Updates a DGP graph T cycles." alt="" coords="357,31,457,57"/>
+<area shape="rect" id="node5" href="$dgp_8c.html#a62232c20d3687386045145004bfc7bf6" title="Resets the states to their initial state." alt="" coords="549,56,639,83"/>
+<area shape="rect" id="node6" href="$dgp_8c.html#a106df9870c838bf5dbd042475e9f4fd8" title="Performs a synchronous update." alt="" coords="523,5,665,32"/>
+<area shape="rect" id="node7" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="713,5,816,32"/>
+<area shape="rect" id="node8" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="864,5,921,32"/>
+<area shape="rect" id="node10" href="$utils_8c.html#a894e776eb1a127a7b31a52bd86327a2a" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="544,233,644,260"/>
+<area shape="rect" id="node11" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="716,183,813,209"/>
+<area shape="rect" id="node12" href="$dgp_8c.html#a60cad5226bcd3510b7c52b046c4cb5d6" title="Returns a random connection." alt="" coords="340,183,475,209"/>
+</map>

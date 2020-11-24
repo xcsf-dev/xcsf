@@ -1,0 +1,5 @@
+<map id="XCS::get_pset_mean_cond_layers" name="XCS::get_pset_mean_cond_layers">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node2" href="$clset__neural_8c.html#a6090aa6b432c00fb699a7c9a42f94056" title="Calculates the mean number of condition layers in the set." alt="" coords="200,13,367,39"/>
+<area shape="rect" id="node3" href="$cond__neural_8c.html#a1f124131c4080c032a61d3a49bdefe20" title="Returns the number of layers within a neural network condition." alt="" coords="415,13,549,39"/>
+</map>

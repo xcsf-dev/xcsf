@@ -1,0 +1,17 @@
+<map id="sam.h" name="sam.h">
+<area shape="rect" id="node1" title="Self&#45;adaptive mutation functions." alt="" coords="799,5,857,32"/>
+<area shape="rect" id="node2" href="$act__integer_8c.html" title="integer action functions." alt="" coords="5,80,101,107"/>
+<area shape="rect" id="node3" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="126,80,215,107"/>
+<area shape="rect" id="node4" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="240,80,355,107"/>
+<area shape="rect" id="node5" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="379,80,461,107"/>
+<area shape="rect" id="node6" href="$cond__rectangle_8c.html" title="Hyperrectangle condition functions." alt="" coords="486,80,607,107"/>
+<area shape="rect" id="node7" href="$cond__ternary_8c.html" title="Ternary condition functions." alt="" coords="632,80,739,107"/>
+<area shape="rect" id="node8" href="$dgp_8c.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="763,80,818,107"/>
+<area shape="rect" id="node9" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="842,80,889,107"/>
+<area shape="rect" id="node10" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="913,80,1084,107"/>
+<area shape="rect" id="node11" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="1108,80,1295,107"/>
+<area shape="rect" id="node12" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="1319,80,1454,107"/>
+<area shape="rect" id="node13" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="1478,80,1639,107"/>
+<area shape="rect" id="node14" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="1664,80,1757,107"/>
+<area shape="rect" id="node15" href="$sam_8c.html" title="Self&#45;adaptive mutation functions." alt="" coords="1781,80,1840,107"/>
+</map>

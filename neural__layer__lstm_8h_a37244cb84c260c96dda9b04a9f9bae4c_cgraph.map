@@ -1,0 +1,4 @@
+<map id="neural_layer_lstm_rand" name="neural_layer_lstm_rand">
+<area shape="rect" id="node1" title="Randomises an LSTM layer weights." alt="" coords="5,5,161,32"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#a1230cf25ba52027afad6f728089644ab" title="Randomises a layer." alt="" coords="209,5,292,32"/>
+</map>

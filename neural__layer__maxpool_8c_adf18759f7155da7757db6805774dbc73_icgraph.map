@@ -1,0 +1,9 @@
+<map id="guard_malloc" name="guard_malloc">
+<area shape="rect" id="node1" title="Check memory allocation is within bounds." alt="" coords="423,111,521,137"/>
+<area shape="rect" id="node2" href="$neural__layer__maxpool_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a maxpooling layer." alt="" coords="236,81,375,108"/>
+<area shape="rect" id="node6" href="$neural__layer__maxpool_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a maxpooling layer." alt="" coords="236,136,375,163"/>
+<area shape="rect" id="node3" href="$neural__layer__maxpool_8h.html#a6142b0ee7c8b1cdd97a5ea595e03204c" title="Initialises and creates a copy of one maxpooling layer from another." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node4" href="$neural__layer__maxpool_8h.html#a2a0197edd0fc484149f1b35e0d0c94e8" title="Initialises a 2D maxpooling layer." alt="" coords="11,56,183,83"/>
+<area shape="rect" id="node5" href="$neural__layer__maxpool_8h.html#ac91009faa234b027ecbfde0a55407bd8" title="Reads a maxpooling layer from a file." alt="" coords="7,107,186,133"/>
+<area shape="rect" id="node7" href="$neural__layer__maxpool_8h.html#a2ba512290c75f7ca9e8ab6005aefac6a" title="Resizes a maxpooling layer if the previous layer has changed size." alt="" coords="23,158,171,199"/>
+</map>

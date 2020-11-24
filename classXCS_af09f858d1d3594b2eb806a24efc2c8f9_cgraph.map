@@ -1,0 +1,5 @@
+<map id="XCS::unpack_layer_params" name="XCS::unpack_layer_params">
+<area shape="rect" id="node1" title="Sets parameters used by a neural network layer." alt="" coords="5,31,191,57"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="258,5,382,32"/>
+<area shape="rect" id="node3" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="239,56,401,83"/>
+</map>

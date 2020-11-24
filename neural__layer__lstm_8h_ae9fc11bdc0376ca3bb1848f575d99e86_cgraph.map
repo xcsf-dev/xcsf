@@ -1,0 +1,7 @@
+<map id="neural_layer_lstm_resize" name="neural_layer_lstm_resize">
+<area shape="rect" id="node1" title="Resizes an LSTM layer if the previous layer has changed size." alt="" coords="5,81,172,108"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#a7916662e52ccbd1ac34446ab20249d0d" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="245,5,337,32"/>
+<area shape="rect" id="node3" href="$neural__layer__lstm_8c.html#a9cf6a4d407837c532b89f9f457072203" title="Sets the number of active (non&#45;zero) weights in an LSTM layer." alt="" coords="225,56,356,83"/>
+<area shape="rect" id="node4" href="$neural__layer__lstm_8c.html#ab67b6e38da6db94e4735740f8521d5b1" title="Sets the total number of biases in an LSTM layer." alt="" coords="223,107,358,133"/>
+<area shape="rect" id="node5" href="$neural__layer__lstm_8c.html#a75386a5e5f7e81bf322e68e2c87ad374" title="Sets the total number of weights in an LSTM layer." alt="" coords="220,157,361,184"/>
+</map>

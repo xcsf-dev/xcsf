@@ -1,0 +1,5 @@
+<map id="xcs_rl_end_step" name="xcs_rl_end_step">
+<area shape="rect" id="node1" title="Ends a step in a reinforcement learning trial." alt="" coords="5,31,123,57"/>
+<area shape="rect" id="node2" href="$clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de" title="Frees the set, but not the classifiers." alt="" coords="171,5,249,32"/>
+<area shape="rect" id="node3" href="$pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" title="Returns the value of a specified action in the prediction array." alt="" coords="180,56,240,83"/>
+</map>

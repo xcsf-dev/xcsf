@@ -1,0 +1,5 @@
+<map id="free_layer_arrays" name="free_layer_arrays">
+<area shape="rect" id="node1" title="Free memory used by a noise layer." alt="" coords="212,35,335,61"/>
+<area shape="rect" id="node2" href="$neural__layer__noise_8h.html#a09a6ea6471765a98984abd35b081a78f" title="Free memory used by a noise layer." alt="" coords="5,5,164,32"/>
+<area shape="rect" id="node3" href="$neural__layer__noise_8h.html#a2464187d100209519f41aa1c4c640bca" title="Resizes a noise layer if the previous layer has changed size." alt="" coords="19,57,150,98"/>
+</map>

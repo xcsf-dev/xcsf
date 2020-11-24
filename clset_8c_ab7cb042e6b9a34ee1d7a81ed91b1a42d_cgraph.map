@@ -1,0 +1,4 @@
+<map id="clset_mfrac" name="clset_mfrac">
+<area shape="rect" id="node1" title="Returns the fraction of inputs matched by the most general rule with error below E0...." alt="" coords="5,5,96,32"/>
+<area shape="rect" id="node2" href="$cl_8c.html#a1358864e37832999f9688487ab8f8870" title="Returns the fraction of observed inputs matched by a classifier." alt="" coords="144,5,216,32"/>
+</map>

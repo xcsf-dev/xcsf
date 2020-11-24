@@ -1,0 +1,6 @@
+<map id="set_eta" name="set_eta">
+<area shape="rect" id="node1" title="Sets the gradient descent rate used to update an LSTM layer." alt="" coords="420,31,485,57"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#a46d6667381b42e2d14554674328c8cde" title="Mutates the gradient descent rate used to update an LSTM layer." alt="" coords="255,5,341,32"/>
+<area shape="rect" id="node4" href="$neural__layer__lstm_8h.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="224,56,372,83"/>
+<area shape="rect" id="node3" href="$neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
+</map>

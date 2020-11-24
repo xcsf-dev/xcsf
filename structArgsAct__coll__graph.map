@@ -1,0 +1,4 @@
+<map id="ArgsAct" name="ArgsAct">
+<area shape="rect" id="node1" title="Parameters for initialising and operating actions." alt="" coords="11,95,81,121"/>
+<area shape="rect" id="node2" href="$structArgsLayer.html" title="Parameters for initialising a neural network layer." alt="" coords="5,5,87,32"/>
+</map>

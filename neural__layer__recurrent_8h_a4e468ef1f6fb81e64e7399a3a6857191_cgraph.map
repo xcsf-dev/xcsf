@@ -1,0 +1,5 @@
+<map id="neural_layer_recurrent_load" name="neural_layer_recurrent_load">
+<area shape="rect" id="node1" title="Reads a recurrent layer from a file." alt="" coords="5,31,187,57"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#a6aeb7726ad2520738221c0be4f1f56a9" title="Reads the layer from a file." alt="" coords="263,5,345,32"/>
+<area shape="rect" id="node3" href="$neural__layer__recurrent_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a recurrent layer." alt="" coords="235,56,373,83"/>
+</map>

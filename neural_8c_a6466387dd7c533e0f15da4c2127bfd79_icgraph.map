@@ -1,0 +1,7 @@
+<map id="neural_create" name="neural_create">
+<area shape="rect" id="node1" title="Initialises and creates a new neural network from a parameter list." alt="" coords="197,81,297,108"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#abbdbc4d92f139ccc9816289233dbf934" title="Creates and initialises an action neural network." alt="" coords="24,5,131,32"/>
+<area shape="rect" id="node3" href="$cond__neural_8h.html#a16f80af76361587e6da53dd21fa05b7b" title="Creates and initialises a neural network condition." alt="" coords="19,56,135,83"/>
+<area shape="rect" id="node4" href="$pred__neural_8h.html#a8ff454a2da61b52670f4b70b71da2fe8" title="Creates and initialises a neural network prediction." alt="" coords="21,107,134,133"/>
+<area shape="rect" id="node5" href="$rule__neural_8h.html#accc0db627c6130e7c8680c008b47a2e2" title=" " alt="" coords="5,157,149,184"/>
+</map>

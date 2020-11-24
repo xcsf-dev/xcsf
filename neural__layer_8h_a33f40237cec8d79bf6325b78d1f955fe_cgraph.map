@@ -1,0 +1,5 @@
+<map id="layer_init" name="layer_init">
+<area shape="rect" id="node1" title="Creates and initialises a new layer." alt="" coords="5,31,80,57"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="129,5,231,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="128,56,232,83"/>
+</map>
