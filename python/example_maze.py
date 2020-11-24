@@ -93,11 +93,11 @@ class Maze:
             return 0.1
         if s == 'O':
             return 0.3
-        if s == 'G':
-            return 0.5
-        if s == 'F':
-            return 0.7
         if s == 'Q':
+            return 0.4
+        if s == 'G':
+            return 0.7
+        if s == 'F':
             return 0.9
         print('invalid maze state: '+str(s))
         sys.exit()
