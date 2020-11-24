@@ -17,14 +17,13 @@ matrix:
           packages: ['g++-9']
         sonarcloud:
           organization: "rpreen"
-      env: BUILD_TYPE=Debug XCSF_PYLIB=OFF
 
 script:
   - cd "${TRAVIS_BUILD_DIR}/build"
   - cmake
-    -DCMAKE_BUILD_TYPE="$BUILD_TYPE"
-    -DXCSF_PYLIB="$XCSF_PYLIB"
-    -DENABLE_TESTS="$ENABLE_TESTS"
+    -DCMAKE_BUILD_TYPE=Debug
+    -DXCSF_PYLIB=OFF
+    -DENABLE_TESTS=OFF
     ..
   - |
     cp ../.sonar-project.properties ./sonar-project.properties;
