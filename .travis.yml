@@ -10,7 +10,6 @@ dist: focal
 
 matrix:
   include:
-    # Sonar build
     - os: linux
       compiler: gcc
       addons: &gcc9
@@ -18,37 +17,7 @@ matrix:
           packages: ['g++-9']
         sonarcloud:
           organization: "rpreen"
-      env: BUILD_TYPE="Debug" XCSF_PYLIB="OFF" SONAR="ON"
-
-    # Doxygen
-    - os: linux
-      compiler: gcc
-      addons: &gcc9
-        apt:
-          packages:
-            - 'doxygen'
-            - 'doxygen-gui'
-            - 'doxygen-doc'
-            - 'doxygen-latex'
-            - 'graphviz'
-      env: DOXYGEN="ON" BUILD_TYPE="Release" XCSF_PYLIB="ON" ENABLE_TESTS="ON"
-      deploy:
-        provider: pages
-        skip_cleanup: true
-        keep_history: true
-        local_dir: build/doc/html
-        github_token: $GH_REPO_TOKEN
-        on:
-          branch: master
-
-before_script:
-  - |
-    if [[ "${TRAVIS_OS_NAME}" != "linux" ]]; then
-      brew unlink python@2
-      brew install llvm
-      brew install libomp
-      brew install cmake || brew upgrade cmake
-    fi
+      env: BUILD_TYPE=Debug XCSF_PYLIB=OFF
 
 script:
   - cd "${TRAVIS_BUILD_DIR}/build"
@@ -58,18 +27,12 @@ script:
     -DENABLE_TESTS="$ENABLE_TESTS"
     ..
   - |
-    if [[ "${SONAR}" == "ON" ]]; then
-      cp ../.sonar-project.properties ./sonar-project.properties;
-      wget -q https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip;
-      unzip -q build-wrapper-linux-x86.zip;
-      cp ./build-wrapper-linux-x86/libinterceptor-x86_64.so \
-      ./build-wrapper-linux-x86/libinterceptor-haswell.so;
-      ./build-wrapper-linux-x86/build-wrapper-linux-x86-64 \
-      --out-dir bw-output make clean all;
-      sonar-scanner;
-    elif [[ "${DOXYGEN}" == "ON" ]]; then
-      make doc -j2
-    else
-      make -j2
-    fi
+    cp ../.sonar-project.properties ./sonar-project.properties;
+    wget -q https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip;
+    unzip -q build-wrapper-linux-x86.zip;
+    cp ./build-wrapper-linux-x86/libinterceptor-x86_64.so \
+    ./build-wrapper-linux-x86/libinterceptor-haswell.so;
+    ./build-wrapper-linux-x86/build-wrapper-linux-x86-64 \
+    --out-dir bw-output make clean all;
+    sonar-scanner;
 ...
