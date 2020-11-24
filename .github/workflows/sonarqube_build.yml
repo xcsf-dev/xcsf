@@ -1,0 +1,53 @@
+---
+# Configuration script for github continuous integration service
+
+name: SonarScanner
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  CC: gcc-9
+  CXX: g++-9
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Configure and Build
+        working-directory: build
+        run: |
+          cmake .. -DCMAKE_BUILD_TYPE=Debug -DXCSF_PYLIB=OFF -DENABLE_TESTS=OFF -DPARALLEL=ON
+          cp ../.sonar-project.properties ./sonar-project.properties
+          wget -q https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
+          unzip -q build-wrapper-linux-x86.zip
+          cp ./build-wrapper-linux-x86/libinterceptor-x86_64.so ./build-wrapper-linux-x86/libinterceptor-haswell.so
+          ./build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output make clean all
+
+      - name: Setup sonarqube
+        uses: warchant/setup-sonar-scanner@v3
+
+      - name: Run sonarqube
+        run: sonar-scanner
+          -Dsonar.host.url=https://sonarcloud.io/
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.projectKey=rpreen_xcsf
+          -Dsonar.organization=rpreen
+          -Dsonar.projectVersion=1.0
+          -Dsonar.projectBaseDir=./
+          -Dsonar.cfamily.build-wrapper-output=build/bw-output
+          -Dsonar.cfamily.cache.enabled=false
+          -Dsonar.cfamily.threads=1
+          -Dsonar.coverage.exclusions=**
+          -Dsonar.exclusions="python/**,test/**,lib/**,doc/**"
+          -Dsonar.sourceEncoding=UTF-8
+...
