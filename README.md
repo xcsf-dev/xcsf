@@ -4,16 +4,16 @@ An implementation of the XCSF [learning classifier system](https://en.wikipedia.
 
 *******************************************************************************
 
-[![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
-[![Linux Build](https://github.com/rpreen/xcsf/workflows/Ubuntu%20build/badge.svg)](https://github.com/rpreen/xcsf/workflows/Ubuntu%20build/badge.svg)
-[![MacOS Build](https://github.com/rpreen/xcsf/workflows/macOS%20build/badge.svg)](https://github.com/rpreen/xcsf/workflows/macOS%20build/badge.svg)
-[![Windows Build](https://ci.appveyor.com/api/projects/status/s4xge68jmlbam005?svg=true)](https://ci.appveyor.com/project/rpreen/xcsf)
-[![Latest Version](https://badgen.now.sh/github/release/rpreen/xcsf)](https://github.com/rpreen/xcsf/releases)
+[![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0)
+[![Linux Build](https://img.shields.io/github/workflow/status/rpreen/xcsf/Ubuntu%20build?logo=linux&logoColor=white&style=flat&label=Ubuntu)](https://github.com/rpreen/xcsf/actions?query=workflow%3A%22Ubuntu+build%22)
+[![MacOS Build](https://img.shields.io/github/workflow/status/rpreen/xcsf/macOS%20build?logo=apple&logoColor=white&style=flat&label=macOS)](https://github.com/rpreen/xcsf/actions?query=workflow%3A%22macOS+build%22)
+[![Windows Build](https://img.shields.io/appveyor/build/rpreen/xcsf?logo=windows&logoColor=white&style=flat&label=Windows)](https://ci.appveyor.com/project/rpreen/xcsf)
+[![Latest Version](https://img.shields.io/github/v/release/rpreen/xcsf?style=flat)](https://github.com/rpreen/xcsf/releases)
 [![DOI](https://zenodo.org/badge/28035841.svg)](https://zenodo.org/badge/latestdoi/28035841)
 
-[![Codacy](https://api.codacy.com/project/badge/Grade/2213b9ad4e034482bf058d4598d1618b)](https://www.codacy.com/app/rpreen/xcsf)
-[![LGTM](https://img.shields.io/lgtm/grade/cpp/g/rpreen/xcsf.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/rpreen/xcsf/context:cpp)
-[![CodeFactor](https://www.codefactor.io/repository/github/rpreen/xcsf/badge)](https://www.codefactor.io/repository/github/rpreen/xcsf)
+[![Codacy](https://img.shields.io/codacy/grade/2213b9ad4e034482bf058d4598d1618b?logo=codacy&style=flat)](https://www.codacy.com/app/rpreen/xcsf)
+[![LGTM](https://img.shields.io/lgtm/grade/cpp/g/rpreen/xcsf.svg?logo=LGTM&style=flat)](https://lgtm.com/projects/g/rpreen/xcsf/context:cpp)
+[![CodeFactor](https://img.shields.io/codefactor/grade/github/rpreen/xcsf?logo=codefactor&style=flat)](https://www.codefactor.io/repository/github/rpreen/xcsf)
 [![Code Inspector](https://www.code-inspector.com/project/2064/status/svg)](https://www.code-inspector.com/public/project/2064/xcsf/dashboard)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=alert_status)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=ncloc)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
