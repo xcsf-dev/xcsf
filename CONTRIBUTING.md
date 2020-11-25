@@ -1,6 +1,6 @@
 # Contributing
 
-Contributions to this repository are very welcome. If you are interested in contributing feel free to contact me or create an issue in the [issue tracking system](https://github.com/rpreen/xcsf/issues). Alternatively, you may [fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the project and submit a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). All contributions must be made under the same license as the rest of the project: [GNU Public License v3](http://www.gnu.org/licenses/gpl-3.0).
+Contributions to this repository are very welcome. If you are interested in contributing feel free to contact me or create an issue in the [issue tracking system](https://github.com/rpreen/xcsf/issues). Alternatively, you may [fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the project and submit a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). All contributions must be made under the same license as the rest of the project: [GNU Public License v3](http://www.gnu.org/licenses/gpl-3.0). Ideally new code should be accompanied with appropriate test cases and documented.
 
 *******************************************************************************
 
