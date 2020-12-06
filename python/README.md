@@ -211,6 +211,8 @@ xcs.condition('hyperellipsoid', args)
   https://doi.org/10.1162/106365603322365315
 * M. V. Butz (2005) "Kernel-based, ellipsoidal conditions in the real-valued
   XCS classifier system" https://doi.org/10.1145/1068009.1068320
+* K. Tamee, L. Bull, and O. Pinngern (2007) "Towards clustering with XCS"
+  https://doi.org/10.1145/1276958.1277326
 
 ### GP Trees
 
@@ -302,6 +304,9 @@ xcs.condition('rule-neural', layer_args) # conditions + actions in single neural
 
 ### Integers
 
+A constant integer value. A single self-adaptive mutation rate ([log
+normal](#notes)) specifies the probability of randomly reselecting the value.
+
 ```python
 xcs.action('integer')
 ```
@@ -333,6 +338,15 @@ xcs.action('neural', layer_args)
 ## Initialising Predictions
 
 ### Constant
+
+Piece-wise constant predictions. Updated with (reward or payoff) target *y* and
+learning rate *&beta;*:
+
+- if *exp<sub>j</sub> < 1 / &beta;*:
+    * *p<sub>j</sub> &larr; (p<sub>j</sub> &times; (exp<sub>j</sub> &minus; 1) + y) / exp<sub>j</sub>*
+- otherwise:
+    * *p<sub>j</sub> &larr; p<sub>j</sub> + &beta;* (*y* &minus; *p<sub>j</sub>*)
+
 
 ```python
 xcs.BETA = 0.1 # classifier update rate includes constant predictions

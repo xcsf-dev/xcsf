@@ -84,7 +84,7 @@ A number of interacting pressures have been identified. A set pressure provides 
 
 ## Features
 
-Implements both [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning) via the updating of match set errors directly and [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) via the updating of action set predictions with an environment reward. See `default.ini` for a list of options.
+Implements both [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning) via the updating of match set errors directly and [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) via the updating of action set predictions with an environment reward. All mutation rates self-adapted. See `default.ini` for a list of options.
 
 ### Python Library
 
