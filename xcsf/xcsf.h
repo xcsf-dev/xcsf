@@ -38,8 +38,6 @@ static const int VERSION_MAJOR = 1; //!< XCSF major version number
 static const int VERSION_MINOR = 0; //!< XCSF minor version number
 static const int VERSION_BUILD = 1; //!< XCSF build version number
 
-#define MAX_LAYERS (100) //!< Maximum number of neural network layers
-
 /**
  * @brief Classifier data structure.
  */
