@@ -75,13 +75,13 @@ pred_constant_update(const struct XCSF *xcsf, const struct Cl *c,
 {
     (void) x;
     if (c->exp * xcsf->BETA < 1) {
-        for (int var = 0; var < xcsf->y_dim; ++var) {
-            c->prediction[var] =
-                (c->prediction[var] * (c->exp - 1) + y[var]) / c->exp;
+        for (int i = 0; i < xcsf->y_dim; ++i) {
+            c->prediction[i] =
+                (c->prediction[i] * (c->exp - 1) + y[i]) / c->exp;
         }
     } else {
-        for (int var = 0; var < xcsf->y_dim; ++var) {
-            c->prediction[var] += xcsf->BETA * (y[var] - c->prediction[var]);
+        for (int i = 0; i < xcsf->y_dim; ++i) {
+            c->prediction[i] += xcsf->BETA * (y[i] - c->prediction[i]);
         }
     }
 }
@@ -110,8 +110,8 @@ void
 pred_constant_print(const struct XCSF *xcsf, const struct Cl *c)
 {
     printf("constant prediction: %f", c->prediction[0]);
-    for (int var = 1; var < xcsf->y_dim; ++var) {
-        printf(", %f", c->prediction[var]);
+    for (int i = 1; i < xcsf->y_dim; ++i) {
+        printf(", %f", c->prediction[i]);
     }
     printf("\n");
 }
