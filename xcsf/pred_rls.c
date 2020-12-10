@@ -109,12 +109,12 @@ pred_rls_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
     (void) x;
     const struct PredRLS *pred = c->pred;
     const int n = pred->n;
-    // gain vector = matrix * tmp_input
+    // gain vector = matrix * tmp_input (tmp_input set during compute)
     const double *A = pred->matrix;
     const double *B = pred->tmp_input;
     double *C = pred->tmp_vec;
     blas_gemm(0, 0, n, 1, n, 1, A, n, B, 1, 0, C, 1);
-    // divide gain vector by lambda + tmp_vec
+    // divide gain vector by lambda + gain vector
     double divisor = blas_dot(n, pred->tmp_input, 1, pred->tmp_vec, 1);
     divisor = 1 / (divisor + xcsf->pred->lambda);
     blas_scal(n, divisor, pred->tmp_vec, 1);
@@ -252,7 +252,7 @@ pred_rls_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 }
 
 /**
- * @brief Reads an NLMS prediction from a file.
+ * @brief Reads an RLS prediction from a file.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] c The classifier whose prediction is to be read.
  * @param [in] fp Pointer to the file to be read.
