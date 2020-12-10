@@ -129,24 +129,6 @@ action_param_defaults(struct XCSF *xcsf)
 }
 
 /**
- * @brief Prints neural network action parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-action_param_print_neural(const struct XCSF *xcsf)
-{
-    const struct ArgsLayer *arg = xcsf->act->largs;
-    int cnt = 0;
-    while (arg != NULL) {
-        printf(", ACT_LAYER_%d={", cnt);
-        layer_args_print(arg);
-        arg = arg->next;
-        printf("}");
-        ++cnt;
-    }
-}
-
-/**
  * @brief Prints action parameters.
  * @param [in] xcsf The XCSF data structure.
  */
@@ -156,7 +138,7 @@ action_param_print(const struct XCSF *xcsf)
     const struct ArgsAct *act = xcsf->act;
     printf(", ACT_TYPE=%s", action_type_as_string(act->type));
     if (xcsf->act->type == ACT_TYPE_NEURAL) {
-        action_param_print_neural(xcsf);
+        layer_args_print(xcsf->act->largs, "ACT");
     }
 }
 

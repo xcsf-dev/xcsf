@@ -288,24 +288,6 @@ cond_param_print_dgp(const struct XCSF *xcsf)
 }
 
 /**
- * @brief Prints neural network condition parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-cond_param_print_neural(const struct XCSF *xcsf)
-{
-    const struct ArgsLayer *arg = xcsf->cond->largs;
-    int cnt = 0;
-    while (arg != NULL) {
-        printf(", COND_LAYER_%d={", cnt);
-        layer_args_print(arg);
-        arg = arg->next;
-        printf("}");
-        ++cnt;
-    }
-}
-
-/**
  * @brief Prints condition parameters.
  * @param [in] xcsf The XCSF data structure.
  */
@@ -332,7 +314,7 @@ cond_param_print(const struct XCSF *xcsf)
         case COND_TYPE_NEURAL:
         case RULE_TYPE_NEURAL:
         case RULE_TYPE_NETWORK:
-            cond_param_print_neural(xcsf);
+            layer_args_print(xcsf->cond->largs, "COND");
             break;
         default:
             break;

@@ -63,7 +63,7 @@ struct ArgsLayer *
 layer_args_tail(struct ArgsLayer *head);
 
 void
-layer_args_print(const struct ArgsLayer *args);
+layer_args_print(struct ArgsLayer *args, const char *prefix);
 
 void
 layer_args_free(struct ArgsLayer **largs);

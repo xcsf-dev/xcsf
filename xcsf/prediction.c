@@ -191,24 +191,6 @@ pred_param_print_rls(const struct XCSF *xcsf)
 }
 
 /**
- * @brief Prints neural network prediction parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-pred_param_print_neural(const struct XCSF *xcsf)
-{
-    const struct ArgsLayer *arg = xcsf->pred->largs;
-    int cnt = 0;
-    while (arg != NULL) {
-        printf(", PRED_LAYER_%d={", cnt);
-        layer_args_print(arg);
-        arg = arg->next;
-        printf("}");
-        ++cnt;
-    }
-}
-
-/**
  * @brief Prints prediction parameters.
  * @param [in] xcsf The XCSF data structure.
  */
@@ -227,7 +209,7 @@ pred_param_print(const struct XCSF *xcsf)
             pred_param_print_rls(xcsf);
             break;
         case PRED_TYPE_NEURAL:
-            pred_param_print_neural(xcsf);
+            layer_args_print(xcsf->pred->largs, "PRED");
             break;
         default:
             break;

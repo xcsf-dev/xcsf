@@ -132,6 +132,8 @@ layer_args_print_inputs(const struct ArgsLayer *args)
         if (args->pad > 0) {
             printf(", pad=%d", args->pad);
         }
+    } else {
+        printf(", n_inputs=%d", args->n_inputs);
     }
 }
 
@@ -207,38 +209,57 @@ layer_args_print_activation(const struct ArgsLayer *args)
 }
 
 /**
- * @brief Prints layer parameters.
+ * @brief Prints layer
  * @param [in] args The layer parameters to print.
  */
-void
-layer_args_print(const struct ArgsLayer *args)
+static bool
+layer_args_print_scale(const struct ArgsLayer *args)
 {
-    printf("type=%s", layer_type_as_string(args->type));
-    layer_args_print_activation(args);
-    layer_args_print_inputs(args);
-    switch (args->type) {
-        case AVGPOOL:
-        case MAXPOOL:
-        case UPSAMPLE:
-            return;
-        case NOISE:
-            printf(", probability=%f", args->probability);
-            printf(", scale=%f", args->scale);
-            break;
-        case DROPOUT:
-            printf(", probability=%f", args->probability);
-            break;
-        case SOFTMAX:
-            printf(", scale=%f", args->scale);
-            return;
-        default:
-            break;
+    bool cont = false;
+    if (args->type == NOISE || args->type == DROPOUT) {
+        printf(", probability=%f", args->probability);
+        cont = true;
     }
-    if (args->n_init > 0) {
-        printf(", n_init=%d", args->n_init);
+    if (args->type == NOISE || args->type == SOFTMAX) {
+        printf(", scale=%f", args->scale);
+        cont = true;
     }
-    layer_args_print_evo(args);
-    layer_args_print_sgd(args);
+    if (args->type == MAXPOOL) {
+        cont = true;
+    }
+    return cont;
+}
+
+/**
+ * @brief Prints layer parameters.
+ * @param [in] args The layer parameters to print.
+ * @param [in] prefix String to prefix layer type.
+ */
+void
+layer_args_print(struct ArgsLayer *args, const char *prefix)
+{
+    struct Net net; // create a temporary network to parse inputs
+    neural_init(&net);
+    neural_create(&net, args);
+    neural_free(&net);
+    int cnt = 0;
+    for (const struct ArgsLayer *a = args; a != NULL; a = a->next) {
+        printf(", %s_LAYER_%d={", prefix, cnt);
+        ++cnt;
+        printf("type=%s", layer_type_as_string(a->type));
+        layer_args_print_activation(a);
+        layer_args_print_inputs(a);
+        if (layer_args_print_scale(a)) {
+            printf("}");
+            continue;
+        }
+        if (a->n_init > 0) {
+            printf(", n_init=%d", a->n_init);
+        }
+        layer_args_print_evo(a);
+        layer_args_print_sgd(a);
+        printf("}");
+    }
 }
 
 /**
