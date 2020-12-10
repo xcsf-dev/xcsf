@@ -34,6 +34,8 @@ All yaml files should be linted with [yamllint](https://github.com/adrienverge/y
 
 For example: `yamllint .travis.yml`
 
+*******************************************************************************
+
 ## Version numbering
 
 Version number format: `MAJOR.MINOR.BUILD` - specified in `xcsf.h` and `CMakeLists.txt` (PROJECT_VERSION).
