@@ -33,3 +33,11 @@ For example: `cmake-format -c .cmake-format.yml -i CMakeLists.txt`
 All yaml files should be linted with [yamllint](https://github.com/adrienverge/yamllint).
 
 For example: `yamllint .travis.yml`
+
+## Version numbering
+
+Version number format: `MAJOR.MINOR.BUILD` - specified in `xcsf.h` and `CMakeLists.txt` (PROJECT_VERSION).
+
+* Increment `BUILD` number for minor bug fixes and changes that do not break compatability with file saving/loading.
+* Increment `MINOR` number for major bug fixes and changes that break compatability with file saving/loading.
+* Criteria for incrementing the `MAJOR` number to be determined later.
