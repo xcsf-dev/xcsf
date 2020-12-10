@@ -103,7 +103,6 @@ env_maze_init(struct XCSF *xcsf, const char *filename)
     FILE *fp = fopen(filename, "rt");
     if (fp == 0) {
         printf("could not open %s. %s.\n", filename, strerror(errno));
-        perror("");
         exit(EXIT_FAILURE);
     }
     // read maze
