@@ -1,7 +1,0 @@
-<map id="cl_print" name="cl_print">
-<area shape="rect" id="node1" title="Prints a classifier." alt="" coords="5,81,69,108"/>
-<area shape="rect" id="node2" href="$action_8h.html#a6c954556c09b79fe6cd741a50ac8538f" title="Prints the classifier action." alt="" coords="123,5,195,32"/>
-<area shape="rect" id="node3" href="$cl_8c.html#a1358864e37832999f9688487ab8f8870" title="Returns the fraction of observed inputs matched by a classifier." alt="" coords="123,56,195,83"/>
-<area shape="rect" id="node4" href="$condition_8h.html#a20491b078e8cccf911e34338edcc69ba" title="Prints the classifier condition." alt="" coords="117,107,200,133"/>
-<area shape="rect" id="node5" href="$prediction_8h.html#ac6e6364fe3504c597e286a5d2bd34d2c" title="Prints the classifier prediction." alt="" coords="119,157,198,184"/>
-</map>

@@ -24,11 +24,11 @@
 <area shape="rect" id="node22" href="$gp_8c.html#a9a12da4c3d6254d01924a949478bcc01" title=" " alt="" coords="419,797,610,824"/>
 <area shape="rect" id="node23" href="$gp_8c.html#a7d4de020b4aa827af41136faadab1fe7" title=" " alt="" coords="431,848,599,875"/>
 <area shape="rect" id="node17" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="691,528,789,555"/>
-<area shape="rect" id="node25" href="$neural__layer_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="459,899,570,925"/>
-<area shape="rect" id="node26" href="$neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="461,949,568,976"/>
-<area shape="rect" id="node27" href="$neural__layer_8c.html#a492de2de029ff6124f8fe466ad6b0d80" title="Checks network layer arguments are valid." alt="" coords="447,1000,582,1027"/>
+<area shape="rect" id="node25" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="459,899,570,925"/>
+<area shape="rect" id="node26" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="461,949,568,976"/>
+<area shape="rect" id="node27" href="$neural__layer__args_8c.html#a492de2de029ff6124f8fe466ad6b0d80" title="Checks network layer arguments are valid." alt="" coords="447,1000,582,1027"/>
 <area shape="rect" id="node30" href="$classXCS.html#af09f858d1d3594b2eb806a24efc2c8f9" title="Sets parameters used by a neural network layer." alt="" coords="422,1051,607,1077"/>
-<area shape="rect" id="node28" href="$neural__layer_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" title="Checks input layer arguments are valid." alt="" coords="673,985,807,1026"/>
+<area shape="rect" id="node28" href="$neural__layer__args_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" title="Checks input layer arguments are valid." alt="" coords="673,985,807,1026"/>
 <area shape="rect" id="node29" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="869,992,1024,1019"/>
 <area shape="rect" id="node31" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="678,1051,802,1077"/>
 <area shape="rect" id="node32" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="659,1101,821,1128"/>

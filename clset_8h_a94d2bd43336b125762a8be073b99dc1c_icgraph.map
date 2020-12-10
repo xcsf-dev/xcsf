@@ -1,6 +1,0 @@
-<map id="clset_print" name="clset_print">
-<area shape="rect" id="node1" title="Prints the classifiers in the set." alt="" coords="517,5,600,32"/>
-<area shape="rect" id="node2" href="$xcsf_8h.html#a80992cea39d67a465056b2094ed89202" title="Prints the current XCSF population." alt="" coords="363,5,469,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#add9544ed95fe407141bc0326bfa4b218" title="Prints the current population." alt="" coords="204,5,315,32"/>
-<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,5,156,32"/>
-</map>

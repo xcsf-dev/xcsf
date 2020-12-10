@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d" xlink:title="Returns whether the action of classifier c1 is more general than c2.">
+<g id="a_node2"><a xlink:href="action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d" target="_top" xlink:title="Returns whether the action of classifier c1 is more general than c2.">
 <polygon fill="none" stroke="black" points="100.5,-38.5 100.5,-57.5 167.5,-57.5 167.5,-38.5 100.5,-38.5"/>
 <text text-anchor="middle" x="134" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_general</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$condition_8h.html#a6a257a1407c9394b7def57701188422d" xlink:title="Returns whether classifier c1 has a condition more general than c2.">
+<g id="a_node3"><a xlink:href="condition_8h.html#a6a257a1407c9394b7def57701188422d" target="_top" xlink:title="Returns whether classifier c1 has a condition more general than c2.">
 <polygon fill="none" stroke="black" points="97,-0.5 97,-19.5 171,-19.5 171,-0.5 97,-0.5"/>
 <text text-anchor="middle" x="134" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_general</text>
 </a>

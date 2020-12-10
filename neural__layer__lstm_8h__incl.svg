@@ -12,8 +12,8 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="An implementation of a long short&#45;term memory layer.">
-<polygon fill="#bfbfbf" stroke="black" points="114.5,-168.5 114.5,-187.5 215.5,-187.5 215.5,-168.5 114.5,-168.5"/>
-<text text-anchor="middle" x="165" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm.h</text>
+<polygon fill="#bfbfbf" stroke="black" points="161.5,-168.5 161.5,-187.5 262.5,-187.5 262.5,-168.5 161.5,-168.5"/>
+<text text-anchor="middle" x="212" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm.h</text>
 </a>
 </g>
 </g>
@@ -21,16 +21,16 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="neural__layer_8h.html" target="_top" xlink:title="Interface for neural network layers.">
-<polygon fill="none" stroke="black" points="126.5,-112.5 126.5,-131.5 203.5,-131.5 203.5,-112.5 126.5,-112.5"/>
-<text text-anchor="middle" x="165" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer.h</text>
+<polygon fill="none" stroke="black" points="173.5,-112.5 173.5,-131.5 250.5,-131.5 250.5,-112.5 173.5,-112.5"/>
+<text text-anchor="middle" x="212" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer.h</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M165,-168.08C165,-161.01 165,-150.86 165,-141.99"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="168.5,-141.75 165,-131.75 161.5,-141.75 168.5,-141.75"/>
+<path fill="none" stroke="midnightblue" d="M212,-168.08C212,-161.01 212,-150.86 212,-141.99"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="215.5,-141.75 212,-131.75 208.5,-141.75 215.5,-141.75"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -44,8 +44,23 @@
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M165,-112.08C165,-105.01 165,-94.86 165,-85.99"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="168.5,-85.75 165,-75.75 161.5,-85.75 168.5,-85.75"/>
+<path fill="none" stroke="midnightblue" d="M204.24,-112.08C197.46,-104.3 187.46,-92.8 179.24,-83.37"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="181.82,-81 172.62,-75.75 176.54,-85.59 181.82,-81"/>
+</g>
+<!-- Node9 -->
+<g id="node9" class="node">
+<title>Node9</title>
+<g id="a_node9"><a xlink:href="neural__layer__args_8h.html" target="_top" xlink:title="Functions operating on neural network arguments/constants.">
+<polygon fill="none" stroke="black" points="208.5,-56.5 208.5,-75.5 309.5,-75.5 309.5,-56.5 208.5,-56.5"/>
+<text text-anchor="middle" x="259" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_args.h</text>
+</a>
+</g>
+</g>
+<!-- Node2&#45;&gt;Node9 -->
+<g id="edge8" class="edge">
+<title>Node2&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M219.76,-112.08C226.54,-104.3 236.54,-92.8 244.76,-83.37"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="247.46,-85.59 251.38,-75.75 242.18,-81 247.46,-85.59"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">

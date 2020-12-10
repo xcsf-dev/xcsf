@@ -1,6 +1,0 @@
-<map id="rule_neural_act_compute" name="rule_neural_act_compute">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,172,57"/>
-<area shape="rect" id="node2" href="$utils_8h.html#a6bdbacb8609e7daaffa9f38008f4b4a1" title="Returns an integer clamped within the specified range." alt="" coords="240,5,300,32"/>
-<area shape="rect" id="node3" href="$neural_8c.html#aea148f8cb311a148672f4c598ee3bbe4" title="Returns the output of a specified neuron in the output layer of a neural network." alt="" coords="220,56,320,83"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#a72aa2a09ea2bd24f78635233dd00be36" title="Returns the outputs of a layer." alt="" coords="368,56,461,83"/>
-</map>

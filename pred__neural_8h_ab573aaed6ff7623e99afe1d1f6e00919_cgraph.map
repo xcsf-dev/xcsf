@@ -1,6 +1,6 @@
 <map id="pred_neural_expand" name="pred_neural_expand">
 <area shape="rect" id="node1" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="5,81,144,108"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="192,5,299,32"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="192,5,299,32"/>
 <area shape="rect" id="node3" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="208,56,283,83"/>
 <area shape="rect" id="node6" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="197,107,293,133"/>
 <area shape="rect" id="node7" href="$neural_8c.html#a76c99d66af7b4eb556b71a86f099b7a0" title="Resizes neural network layers as necessary." alt="" coords="196,157,295,184"/>

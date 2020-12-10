@@ -1,6 +1,0 @@
-<map id="cl_save" name="cl_save">
-<area shape="rect" id="node1" title="Writes a classifier to a binary file." alt="" coords="5,56,72,83"/>
-<area shape="rect" id="node2" href="$action_8h.html#a73631045b5556df0db51b3b41ebd52d3" title="Writes the action to a binary file." alt="" coords="125,5,200,32"/>
-<area shape="rect" id="node3" href="$condition_8h.html#a4d2a1e35c24164fb036eef9f05808c46" title="Writes the condition to a binary file." alt="" coords="120,56,205,83"/>
-<area shape="rect" id="node4" href="$prediction_8h.html#a0741e72134793a9bc00a954bb5215189" title="Writes the prediction to a binary file." alt="" coords="121,107,204,133"/>
-</map>

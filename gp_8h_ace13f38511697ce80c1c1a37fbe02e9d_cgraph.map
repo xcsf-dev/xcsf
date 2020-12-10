@@ -1,7 +1,0 @@
-<map id="tree_rand" name="tree_rand">
-<area shape="rect" id="node1" title="Creates a random GP tree." alt="" coords="5,31,81,57"/>
-<area shape="rect" id="node2" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="133,56,204,83"/>
-<area shape="rect" id="node5" href="$gp_8c.html#a5bc2d6d3d8019907ef170a661142bef1" title="Grows a random GP tree of specified max length and depth." alt="" coords="129,5,208,32"/>
-<area shape="rect" id="node3" href="$utils_8c.html#a894e776eb1a127a7b31a52bd86327a2a" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="256,5,356,32"/>
-<area shape="rect" id="node4" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="404,31,501,57"/>
-</map>

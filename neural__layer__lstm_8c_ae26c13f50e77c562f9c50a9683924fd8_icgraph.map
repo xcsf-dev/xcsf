@@ -1,8 +1,0 @@
-<map id="set_layer_n_active" name="set_layer_n_active">
-<area shape="rect" id="node1" title=" " alt="" coords="439,81,569,108"/>
-<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#ae2e0c719e5f636c5afc5d8e332a4fc97" title=" " alt="" coords="238,5,377,32"/>
-<area shape="rect" id="node4" href="$neural__layer__lstm_8c.html#aaa8f2e0b1cbb7dc53b276cd7b1bb44cc" title=" " alt="" coords="250,56,365,83"/>
-<area shape="rect" id="node5" href="$neural__layer__lstm_8h.html#a52ba326c6d14cfcba9f090c1d2aeff8c" title="Creates and initialises a long short&#45;term memory layer." alt="" coords="233,107,381,133"/>
-<area shape="rect" id="node6" href="$neural__layer__lstm_8h.html#a1e2d51e893ad675c29d2f1768ad9df4e" title=" " alt="" coords="224,157,391,184"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8h.html#a4e0505e49724d287d9fd97d49931905d" title=" " alt="" coords="5,31,176,57"/>
-</map>

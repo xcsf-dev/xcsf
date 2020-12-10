@@ -1,7 +1,0 @@
-<map id="rule_neural_cond_match" name="rule_neural_cond_match">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,168,57"/>
-<area shape="rect" id="node2" href="$neural_8c.html#a0b49e1ef4907a320cff69a927b865412" title="Returns the output of a specified neuron in the output layer of a neural network." alt="" coords="227,5,327,32"/>
-<area shape="rect" id="node4" href="$neural_8c.html#a94701c98bb995b12a489860e6f330dfd" title="Forward propagates a neural network." alt="" coords="216,56,337,83"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#a906d0b98001035ffa5adebd3282f3b89" title="Returns the outputs of a layer." alt="" coords="389,5,482,32"/>
-<area shape="rect" id="node5" href="$neural__layer_8h.html#a79bc76a8fc5c325582abc3dbe5d6de33" title="Forward propagates an input through the layer." alt="" coords="385,56,485,83"/>
-</map>

@@ -50,47 +50,47 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer_8c.html#adaa85b5b91de990f50a023060e0c16c5" target="_top" xlink:title="Initialises a layer&#39;s gradient descent rate.">
-<polygon fill="none" stroke="black" points="341,-76.5 341,-95.5 415,-95.5 415,-76.5 341,-76.5"/>
-<text text-anchor="middle" x="378" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_init_eta</text>
+<g id="a_node4"><a xlink:href="neural__layer__args_8c.html#a4440b3fcacfd709042ae050958d757d6" target="_top" xlink:title="Returns a bitstring representing the permissions granted by a layer.">
+<polygon fill="none" stroke="black" points="197,-152.5 197,-171.5 277,-171.5 277,-152.5 197,-152.5"/>
+<text text-anchor="middle" x="237" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_opt</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M125.81,-114.48C144.36,-111.17 165.59,-107.64 185,-105 234.66,-98.24 291.86,-92.89 330.82,-89.62"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="331.14,-93.1 340.81,-88.79 330.56,-86.13 331.14,-93.1"/>
+<path fill="none" stroke="midnightblue" d="M116,-133.59C137.6,-138.7 164.34,-145.03 187.09,-150.42"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="186.36,-153.84 196.9,-152.74 187.97,-147.03 186.36,-153.84"/>
 </g>
-<!-- Node6 -->
-<g id="node6" class="node">
-<title>Node6</title>
-<g id="a_node6"><a xlink:href="neural__layer_8c.html#a4e149e9c2c1f79968447e8b9470a0e12" target="_top" xlink:title="Returns a bitstring representing the permissions granted by a layer.">
-<polygon fill="none" stroke="black" points="209,-114.5 209,-133.5 265,-133.5 265,-114.5 209,-114.5"/>
-<text text-anchor="middle" x="237" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_opt</text>
+<!-- Node5 -->
+<g id="node5" class="node">
+<title>Node5</title>
+<g id="a_node5"><a xlink:href="neural__layer_8c.html#adaa85b5b91de990f50a023060e0c16c5" target="_top" xlink:title="Initialises a layer&#39;s gradient descent rate.">
+<polygon fill="none" stroke="black" points="341,-76.5 341,-95.5 415,-95.5 415,-76.5 341,-76.5"/>
+<text text-anchor="middle" x="378" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_init_eta</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge5" class="edge">
-<title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M149.17,-124C166.28,-124 183.79,-124 198.56,-124"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="198.79,-127.5 208.79,-124 198.79,-120.5 198.79,-127.5"/>
+<!-- Node1&#45;&gt;Node5 -->
+<g id="edge4" class="edge">
+<title>Node1&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M125.81,-114.48C144.36,-111.17 165.59,-107.64 185,-105 234.66,-98.24 291.86,-92.89 330.82,-89.62"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="331.14,-93.1 340.81,-88.79 330.56,-86.13 331.14,-93.1"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" target="_top" xlink:title="Allocate memory used by a convolutional layer.">
-<polygon fill="none" stroke="black" points="185,-152.5 185,-171.5 289,-171.5 289,-152.5 185,-152.5"/>
-<text text-anchor="middle" x="237" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">malloc_layer_arrays</text>
+<polygon fill="none" stroke="black" points="185,-114.5 185,-133.5 289,-133.5 289,-114.5 185,-114.5"/>
+<text text-anchor="middle" x="237" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">malloc_layer_arrays</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M116,-133.59C137.18,-138.6 163.3,-144.79 185.76,-150.11"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="185.25,-153.58 195.79,-152.48 186.87,-146.77 185.25,-153.58"/>
+<path fill="none" stroke="midnightblue" d="M149.17,-124C157.73,-124 166.38,-124 174.74,-124"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="174.77,-127.5 184.77,-124 174.77,-120.5 174.77,-127.5"/>
 </g>
 <!-- Node14 -->
 <g id="node14" class="node">
@@ -122,18 +122,18 @@
 <path fill="none" stroke="midnightblue" d="M84.27,-114.37C101.78,-95.63 143.01,-53.92 185,-29 189.88,-26.11 195.27,-23.53 200.66,-21.27"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="202.21,-24.43 210.28,-17.56 199.69,-17.9 202.21,-24.43"/>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node">
-<title>Node5</title>
-<g id="a_node5"><a xlink:href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" target="_top" xlink:title="Returns a uniform random float [min,max].">
+<!-- Node6 -->
+<g id="node6" class="node">
+<title>Node6</title>
+<g id="a_node6"><a xlink:href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" target="_top" xlink:title="Returns a uniform random float [min,max].">
 <polygon fill="none" stroke="black" points="483.5,-38.5 483.5,-57.5 556.5,-57.5 556.5,-38.5 483.5,-38.5"/>
 <text text-anchor="middle" x="520" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node5 -->
-<g id="edge4" class="edge">
-<title>Node4&#45;&gt;Node5</title>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge5" class="edge">
+<title>Node5&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M414.33,-76.41C432.4,-71.51 454.6,-65.48 473.89,-60.24"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="474.95,-63.58 483.68,-57.59 473.12,-56.83 474.95,-63.58"/>
 </g>
@@ -141,31 +141,31 @@
 <g id="node8" class="node">
 <title>Node8</title>
 <g id="a_node8"><a xlink:href="neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" target="_top" xlink:title="Returns the memory workspace size for a convolutional layer.">
-<polygon fill="none" stroke="black" points="325,-180.5 325,-199.5 431,-199.5 431,-180.5 325,-180.5"/>
-<text text-anchor="middle" x="378" y="-187.5" font-family="Helvetica,sans-Serif" font-size="10.00">get_workspace_size</text>
+<polygon fill="none" stroke="black" points="325,-171.5 325,-190.5 431,-190.5 431,-171.5 325,-171.5"/>
+<text text-anchor="middle" x="378" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00">get_workspace_size</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
 <g id="edge7" class="edge">
 <title>Node7&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M285.45,-171.56C296.52,-173.79 308.42,-176.19 319.86,-178.49"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="319.27,-181.94 329.77,-180.49 320.65,-175.08 319.27,-181.94"/>
+<path fill="none" stroke="midnightblue" d="M264.31,-133.51C272.27,-136.47 281.02,-139.79 289,-143 308.23,-150.73 329.58,-159.93 346.44,-167.35"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="345.23,-170.64 355.79,-171.48 348.06,-164.24 345.23,-170.64"/>
 </g>
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
 <g id="a_node10"><a xlink:href="neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" target="_top" xlink:title="Check memory allocation is within bounds.">
-<polygon fill="none" stroke="black" points="341,-133.5 341,-152.5 415,-152.5 415,-133.5 341,-133.5"/>
-<text text-anchor="middle" x="378" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">guard_malloc</text>
+<polygon fill="none" stroke="black" points="341,-114.5 341,-133.5 415,-133.5 415,-114.5 341,-114.5"/>
+<text text-anchor="middle" x="378" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">guard_malloc</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node10 -->
 <g id="edge9" class="edge">
 <title>Node7&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M289.36,-154.98C302.79,-153.14 317.18,-151.18 330.35,-149.38"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="331.17,-152.8 340.6,-147.98 330.22,-145.86 331.17,-152.8"/>
+<path fill="none" stroke="midnightblue" d="M289.36,-124C302.79,-124 317.18,-124 330.35,-124"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="330.6,-127.5 340.6,-124 330.6,-120.5 330.6,-127.5"/>
 </g>
 <!-- Node9 -->
 <g id="node9" class="node">
@@ -179,8 +179,8 @@
 <!-- Node8&#45;&gt;Node9 -->
 <g id="edge8" class="edge">
 <title>Node8&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M431.15,-194.16C470.84,-195.77 526.4,-194.62 573,-181 589.34,-176.22 605.94,-166.64 618.4,-158.29"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="620.48,-161.11 626.68,-152.52 616.48,-155.37 620.48,-161.11"/>
+<path fill="none" stroke="midnightblue" d="M431,-188.19C470.62,-191.96 526.15,-193.52 573,-181 589.45,-176.6 606.04,-167.02 618.48,-158.57"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="620.61,-161.36 626.74,-152.72 616.56,-155.65 620.61,-161.36"/>
 </g>
 <!-- Node11 -->
 <g id="node11" class="node">
@@ -194,8 +194,8 @@
 <!-- Node10&#45;&gt;Node11 -->
 <g id="edge10" class="edge">
 <title>Node10&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M400.2,-133.44C417.93,-125.54 443.96,-114.17 467,-105 471.9,-103.05 477.08,-101.06 482.21,-99.15"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="483.73,-102.31 491.9,-95.57 481.31,-95.75 483.73,-102.31"/>
+<path fill="none" stroke="midnightblue" d="M414.33,-114.41C432.4,-109.51 454.6,-103.48 473.89,-98.24"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="474.95,-101.58 483.68,-95.59 473.12,-94.83 474.95,-101.58"/>
 </g>
 <!-- Node12 -->
 <g id="node12" class="node">
@@ -209,8 +209,8 @@
 <!-- Node10&#45;&gt;Node12 -->
 <g id="edge12" class="edge">
 <title>Node10&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M415.05,-147.89C428.09,-149.66 443.19,-151.71 457.78,-153.69"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="457.39,-157.17 467.77,-155.05 458.33,-150.23 457.39,-157.17"/>
+<path fill="none" stroke="midnightblue" d="M414.33,-133.59C432.4,-138.49 454.6,-144.52 473.89,-149.76"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="473.12,-153.17 483.68,-152.41 474.95,-146.42 473.12,-153.17"/>
 </g>
 <!-- Node13 -->
 <g id="node13" class="node">
@@ -224,8 +224,8 @@
 <!-- Node10&#45;&gt;Node13 -->
 <g id="edge14" class="edge">
 <title>Node10&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M415.05,-138.11C427.77,-136.38 442.45,-134.39 456.7,-132.45"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="457.53,-135.87 466.97,-131.06 456.59,-128.94 457.53,-135.87"/>
+<path fill="none" stroke="midnightblue" d="M415.05,-124C427.77,-124 442.45,-124 456.7,-124"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="456.97,-127.5 466.97,-124 456.97,-120.5 456.97,-127.5"/>
 </g>
 <!-- Node11&#45;&gt;Node9 -->
 <g id="edge11" class="edge">
@@ -245,9 +245,9 @@
 <path fill="none" stroke="midnightblue" d="M573.1,-132.39C581.7,-133.77 590.49,-135.19 598.74,-136.52"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="598.41,-140.01 608.84,-138.14 599.52,-133.1 598.41,-140.01"/>
 </g>
-<!-- Node15&#45;&gt;Node5 -->
+<!-- Node15&#45;&gt;Node6 -->
 <g id="edge18" class="edge">
-<title>Node15&#45;&gt;Node5</title>
+<title>Node15&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M263.74,-16.45C280.97,-20.57 304.23,-25.73 325,-29 375.48,-36.96 433.91,-42.14 473.34,-45.05"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="473.22,-48.55 483.44,-45.77 473.72,-41.57 473.22,-48.55"/>
 </g>
@@ -266,9 +266,9 @@
 <path fill="none" stroke="midnightblue" d="M263.82,-10C280.48,-10 302.76,-10 323.15,-10"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="323.29,-13.5 333.29,-10 323.29,-6.5 323.29,-13.5"/>
 </g>
-<!-- Node16&#45;&gt;Node5 -->
+<!-- Node16&#45;&gt;Node6 -->
 <g id="edge20" class="edge">
-<title>Node16&#45;&gt;Node5</title>
+<title>Node16&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M414.33,-19.59C432.4,-24.49 454.6,-30.52 473.89,-35.76"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="473.12,-39.17 483.68,-38.41 474.95,-32.42 473.12,-39.17"/>
 </g>

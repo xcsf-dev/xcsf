@@ -1,8 +1,0 @@
-<map id="SET" name="SET">
-<area shape="rect" id="node1" title="Classifier set." alt="" coords="107,273,155,300"/>
-<area shape="rect" id="node2" href="$structCLIST.html" title="Classifier linked list." alt="" coords="101,184,161,211"/>
-<area shape="rect" id="node3" href="$structCL.html" title="Classifier data structure." alt="" coords="112,95,151,121"/>
-<area shape="rect" id="node4" href="$structActVtbl.html" title="Action interface data structure." alt="" coords="5,5,71,32"/>
-<area shape="rect" id="node5" href="$structPredVtbl.html" title="Prediction interface data structure." alt="" coords="95,5,167,32"/>
-<area shape="rect" id="node6" href="$structCondVtbl.html" title="Condition interface data structure." alt="" coords="192,5,268,32"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="layer_weight_clamp" name="layer_weight_clamp">
-<area shape="rect" id="node1" title="Clamps a layer&#39;s weights and biases in range [WEIGHT_MIN, WEIGHT_MAX]." alt="" coords="228,46,365,73"/>
-<area shape="rect" id="node2" href="$neural__layer__connected_8h.html#ad59d714e059e96df040954364623692d" title=" " alt="" coords="13,5,172,47"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8h.html#a1e497ad07bdb91355092bedd3891d4fb" title=" " alt="" coords="5,71,180,112"/>
-</map>

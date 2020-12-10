@@ -398,7 +398,7 @@
 <!-- Node20 -->
 <g id="node20" class="node">
 <title>Node20</title>
-<g id="a_node20"><a xlink:href="neural__layer_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" target="_top" xlink:title="Creates and returns a copy of specified layer parameters.">
+<g id="a_node20"><a xlink:href="neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" target="_top" xlink:title="Creates and returns a copy of specified layer parameters.">
 <polygon fill="none" stroke="black" points="353.5,-218.5 353.5,-237.5 441.5,-237.5 441.5,-218.5 353.5,-218.5"/>
 <text text-anchor="middle" x="397.5" y="-225.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_copy</text>
 </a>
@@ -413,7 +413,7 @@
 <!-- Node21 -->
 <g id="node21" class="node">
 <title>Node21</title>
-<g id="a_node21"><a xlink:href="neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" target="_top" xlink:title="Sets layer parameters to default values.">
+<g id="a_node21"><a xlink:href="neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" target="_top" xlink:title="Sets layer parameters to default values.">
 <polygon fill="none" stroke="black" points="357.5,-180.5 357.5,-199.5 437.5,-199.5 437.5,-180.5 357.5,-180.5"/>
 <text text-anchor="middle" x="397.5" y="-187.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_init</text>
 </a>

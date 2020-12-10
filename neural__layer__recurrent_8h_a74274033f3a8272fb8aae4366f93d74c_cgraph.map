@@ -1,15 +1,15 @@
 <map id="neural_layer_recurrent_init" name="neural_layer_recurrent_init">
 <area shape="rect" id="node1" title="Initialises a recurrent layer." alt="" coords="5,183,180,209"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="240,5,357,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="261,56,336,83"/>
-<area shape="rect" id="node6" href="$neural__layer_8c.html#a4e149e9c2c1f79968447e8b9470a0e12" title="Returns a bitstring representing the permissions granted by a layer." alt="" coords="261,107,336,133"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="240,5,357,32"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a4440b3fcacfd709042ae050958d757d6" title="Returns a bitstring representing the permissions granted by a layer." alt="" coords="245,56,352,83"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="261,107,336,133"/>
 <area shape="rect" id="node7" href="$neural__layer__recurrent_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a recurrent layer." alt="" coords="229,157,368,184"/>
 <area shape="rect" id="node10" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="263,208,334,235"/>
 <area shape="rect" id="node13" href="$neural__layer__recurrent_8c.html#a9cf6a4d407837c532b89f9f457072203" title="Sets the number of active (non&#45;zero) weights in a recurrent layer." alt="" coords="233,259,364,285"/>
 <area shape="rect" id="node14" href="$neural__layer__recurrent_8c.html#ab67b6e38da6db94e4735740f8521d5b1" title="Sets the total number of biases in a recurrent layer." alt="" coords="231,309,366,336"/>
 <area shape="rect" id="node15" href="$neural__layer__recurrent_8c.html#a75386a5e5f7e81bf322e68e2c87ad374" title="Sets the total number of weights in a recurrent layer." alt="" coords="228,360,369,387"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="435,31,538,57"/>
-<area shape="rect" id="node5" href="$neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="435,81,539,108"/>
+<area shape="rect" id="node5" href="$neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="435,56,538,83"/>
+<area shape="rect" id="node6" href="$neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="435,107,539,133"/>
 <area shape="rect" id="node8" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="417,157,556,184"/>
 <area shape="rect" id="node9" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="611,157,694,184"/>
 <area shape="rect" id="node11" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="604,233,701,260"/>

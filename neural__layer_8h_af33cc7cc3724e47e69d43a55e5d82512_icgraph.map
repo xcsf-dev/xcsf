@@ -1,8 +1,0 @@
-<map id="layer_mutate" name="layer_mutate">
-<area shape="rect" id="node1" title="Performs layer mutation." alt="" coords="372,81,469,108"/>
-<area shape="rect" id="node2" href="$neural_8h.html#ae20d96ba0df8bbb17815fa30a4718730" title="Mutates a neural network." alt="" coords="220,81,324,108"/>
-<area shape="rect" id="node3" href="$act__neural_8h.html#a147635ed48592aa7eff66fb7854bae20" title=" " alt="" coords="24,5,153,32"/>
-<area shape="rect" id="node4" href="$cond__neural_8h.html#a8aa9b9eb1a71fb4486e67de58e1e1e64" title=" " alt="" coords="19,56,158,83"/>
-<area shape="rect" id="node5" href="$pred__neural_8h.html#a56178093fac344738d0d8f7e1824b7b7" title=" " alt="" coords="21,107,157,133"/>
-<area shape="rect" id="node6" href="$rule__neural_8h.html#ac70fa73dda398b4b2a6468b53d1b8718" title=" " alt="" coords="5,157,172,184"/>
-</map>

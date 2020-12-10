@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$action_8h.html#a44bf56cba57482ddbd8b1db0a6b835b9" xlink:title="Performs classifier action mutation.">
+<g id="a_node2"><a xlink:href="action_8h.html#a44bf56cba57482ddbd8b1db0a6b835b9" target="_top" xlink:title="Performs classifier action mutation.">
 <polygon fill="none" stroke="black" points="99,-76.5 99,-95.5 164,-95.5 164,-76.5 99,-76.5"/>
 <text text-anchor="middle" x="131.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_mutate</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$condition_8h.html#a2f4c5f7d01053ba51ccc7287c0b4cd4d" xlink:title="Performs classifier condition mutation.">
+<g id="a_node3"><a xlink:href="condition_8h.html#a2f4c5f7d01053ba51ccc7287c0b4cd4d" target="_top" xlink:title="Performs classifier condition mutation.">
 <polygon fill="none" stroke="black" points="95,-38.5 95,-57.5 168,-57.5 168,-38.5 95,-38.5"/>
 <text text-anchor="middle" x="131.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_mutate</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$prediction_8h.html#a54e0ad7eb1a2c24d35dd13e3212f7500" xlink:title="Performs classifier prediction mutation.">
+<g id="a_node4"><a xlink:href="prediction_8h.html#a54e0ad7eb1a2c24d35dd13e3212f7500" target="_top" xlink:title="Performs classifier prediction mutation.">
 <polygon fill="none" stroke="black" points="96,-0.5 96,-19.5 167,-19.5 167,-0.5 96,-0.5"/>
 <text text-anchor="middle" x="131.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_mutate</text>
 </a>

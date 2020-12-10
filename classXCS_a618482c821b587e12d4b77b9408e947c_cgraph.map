@@ -1,5 +1,0 @@
-<map id="XCS::set_cond_output_activation" name="XCS::set_cond_output_activation">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,160,47"/>
-<area shape="rect" id="node2" href="$param_8h.html#ac1a3915ca147294e4819fedc07326852" title=" " alt="" coords="208,5,369,47"/>
-<area shape="rect" id="node3" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="417,13,580,39"/>
-</map>

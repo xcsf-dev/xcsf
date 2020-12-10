@@ -1,8 +1,0 @@
-<map id="cond_save" name="cond_save">
-<area shape="rect" id="node1" title="Writes the condition to a binary file." alt="" coords="745,5,831,32"/>
-<area shape="rect" id="node2" href="$cl_8h.html#a92e3f9354abd2a0fea76c8c9ac34b233" title="Writes a classifier to a binary file." alt="" coords="631,5,697,32"/>
-<area shape="rect" id="node3" href="$clset_8h.html#aaed45bc898eed168aa64d573689cd595" title="Writes the population set to a binary file." alt="" coords="469,5,583,32"/>
-<area shape="rect" id="node4" href="$xcsf_8h.html#a2dd24ee181640aa90ec5d109aa717966" title="Writes the current state of XCSF to a binary file." alt="" coords="339,5,421,32"/>
-<area shape="rect" id="node5" href="$classXCS.html#a8501483f2f168c56448892cfbb5285ea" title="Writes the entire current state of XCSF to a binary file." alt="" coords="204,5,291,32"/>
-<area shape="rect" id="node6" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,5,156,32"/>
-</map>

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" xlink:title="Ensures all possible actions are covered by the match set.">
+<g id="a_node2"><a xlink:href="clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" target="_top" xlink:title="Ensures all possible actions are covered by the match set.">
 <polygon fill="none" stroke="black" points="730.5,-190.5 730.5,-209.5 797.5,-209.5 797.5,-190.5 730.5,-190.5"/>
 <text text-anchor="middle" x="764" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_cover</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node20 -->
 <g id="node20" class="node">
 <title>Node20</title>
-<g id="a_node20"><a xlink:href="$clset_8c.html#a4777af2f15c4a7b5abeecb35e7e8b6b3" xlink:title="Performs set subsumption.">
+<g id="a_node20"><a xlink:href="clset_8c.html#a4777af2f15c4a7b5abeecb35e7e8b6b3" target="_top" xlink:title="Performs set subsumption.">
 <polygon fill="none" stroke="black" points="715,-152.5 715,-171.5 813,-171.5 813,-152.5 715,-152.5"/>
 <text text-anchor="middle" x="764" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_subsumption</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node22 -->
 <g id="node22" class="node">
 <title>Node22</title>
-<g id="a_node22"><a xlink:href="$xcs__rl_8h.html#ac0d410321cd5627345e1b53856f7244c" xlink:title="Provides reinforcement to the sets.">
+<g id="a_node22"><a xlink:href="xcs__rl_8h.html#ac0d410321cd5627345e1b53856f7244c" target="_top" xlink:title="Provides reinforcement to the sets.">
 <polygon fill="none" stroke="black" points="479.5,-228.5 479.5,-247.5 556.5,-247.5 556.5,-228.5 479.5,-228.5"/>
 <text text-anchor="middle" x="518" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_update</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$clset_8h.html#a101813e8460677fdb33f08e0226dce9b" xlink:title="Constructs the match set &#45; forward propagates conditions and actions.">
+<g id="a_node3"><a xlink:href="clset_8h.html#a101813e8460677fdb33f08e0226dce9b" target="_top" xlink:title="Constructs the match set &#45; forward propagates conditions and actions.">
 <polygon fill="none" stroke="black" points="608,-190.5 608,-209.5 678,-209.5 678,-190.5 608,-190.5"/>
 <text text-anchor="middle" x="643" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_match</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$xcs__rl_8h.html#a6501735ba3cba5c77c1b8ad0aad0b26a" xlink:title="Selects an action to perform in a reinforcement learning problem.">
+<g id="a_node4"><a xlink:href="xcs__rl_8h.html#a6501735ba3cba5c77c1b8ad0aad0b26a" target="_top" xlink:title="Selects an action to perform in a reinforcement learning problem.">
 <polygon fill="none" stroke="black" points="476,-190.5 476,-209.5 560,-209.5 560,-190.5 476,-190.5"/>
 <text text-anchor="middle" x="518" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_decision</text>
 </a>
@@ -95,7 +95,7 @@
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="$xcs__rl_8h.html#a391abf9bd2540ff284f822b30899c438" xlink:title="Creates and updates an action set for a given (state, action, reward).">
+<g id="a_node10"><a xlink:href="xcs__rl_8h.html#a391abf9bd2540ff284f822b30899c438" target="_top" xlink:title="Creates and updates an action set for a given (state, action, reward).">
 <polygon fill="none" stroke="black" points="341.5,-285.5 341.5,-304.5 397.5,-304.5 397.5,-285.5 341.5,-285.5"/>
 <text text-anchor="middle" x="369.5" y="-292.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_fit</text>
 </a>
@@ -110,7 +110,7 @@
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="$xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9" xlink:title="Executes a single XCSF trial.">
+<g id="a_node12"><a xlink:href="xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9" target="_top" xlink:title="Executes a single XCSF trial.">
 <polygon fill="none" stroke="black" points="465,-114.5 465,-133.5 571,-133.5 571,-114.5 465,-114.5"/>
 <text text-anchor="middle" x="518" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_trial</text>
 </a>
@@ -125,7 +125,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" xlink:title="Selects an action to perform in a reinforcement learning problem.">
+<g id="a_node5"><a xlink:href="classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" target="_top" xlink:title="Selects an action to perform in a reinforcement learning problem.">
 <polygon fill="none" stroke="black" points="171.5,-209.5 171.5,-228.5 251.5,-228.5 251.5,-209.5 171.5,-209.5"/>
 <text text-anchor="middle" x="211.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::decision</text>
 </a>
@@ -140,7 +140,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" xlink:title="Executes a reinforcement learning trial using a built&#45;in environment.">
+<g id="a_node7"><a xlink:href="xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" target="_top" xlink:title="Executes a reinforcement learning trial using a built&#45;in environment.">
 <polygon fill="none" stroke="black" points="337.5,-209.5 337.5,-228.5 401.5,-228.5 401.5,-209.5 337.5,-209.5"/>
 <text text-anchor="middle" x="369.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_trial</text>
 </a>
@@ -155,7 +155,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" xlink:title=" ">
+<g id="a_node6"><a xlink:href="pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-228.5 0,-247.5 113,-247.5 113,-228.5 0,-228.5"/>
 <text text-anchor="middle" x="56.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">pybind11_init_wrapper</text>
 </a>
@@ -170,7 +170,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" xlink:title="Executes a reinforcement learning experiment.">
+<g id="a_node8"><a xlink:href="xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" target="_top" xlink:title="Executes a reinforcement learning experiment.">
 <polygon fill="none" stroke="black" points="179.5,-171.5 179.5,-190.5 243.5,-190.5 243.5,-171.5 179.5,-171.5"/>
 <text text-anchor="middle" x="211.5" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_exp</text>
 </a>
@@ -185,7 +185,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" xlink:title=" ">
+<g id="a_node9"><a xlink:href="main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="37.5,-114.5 37.5,-133.5 75.5,-133.5 75.5,-114.5 37.5,-114.5"/>
 <text text-anchor="middle" x="56.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>
@@ -200,7 +200,7 @@
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="$classXCS.html#ac12768292958a714a726b1c029e9616a" xlink:title="Creates/updates an action set for a given (state, action, reward).">
+<g id="a_node11"><a xlink:href="classXCS.html#ac12768292958a714a726b1c029e9616a" target="_top" xlink:title="Creates/updates an action set for a given (state, action, reward).">
 <polygon fill="none" stroke="black" points="185.5,-285.5 185.5,-304.5 237.5,-304.5 237.5,-285.5 185.5,-285.5"/>
 <text text-anchor="middle" x="211.5" y="-292.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::fit</text>
 </a>
@@ -221,7 +221,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="$xcs__supervised_8h.html#aac1347b7b83576d581a1b725b4c84e56" xlink:title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us...">
+<g id="a_node13"><a xlink:href="xcs__supervised_8h.html#aac1347b7b83576d581a1b725b4c84e56" target="_top" xlink:title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us...">
 <polygon fill="none" stroke="black" points="320.5,-95.5 320.5,-114.5 418.5,-114.5 418.5,-95.5 320.5,-95.5"/>
 <text text-anchor="middle" x="369.5" y="-102.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_fit</text>
 </a>
@@ -236,7 +236,7 @@
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="$xcs__supervised_8h.html#a2dc51452fdb0be0e27fd3ebfe6041474" xlink:title="Calculates the XCSF predictions for the provided input.">
+<g id="a_node15"><a xlink:href="xcs__supervised_8h.html#a2dc51452fdb0be0e27fd3ebfe6041474" target="_top" xlink:title="Calculates the XCSF predictions for the provided input.">
 <polygon fill="none" stroke="black" points="310,-133.5 310,-152.5 429,-152.5 429,-133.5 310,-133.5"/>
 <text text-anchor="middle" x="369.5" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_predict</text>
 </a>
@@ -251,7 +251,7 @@
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
-<g id="a_node17"><a xlink:href="$xcs__supervised_8h.html#ae05de18a53511ba46b2a6a733c780580" xlink:title="Calculates the XCSF error for the input data.">
+<g id="a_node17"><a xlink:href="xcs__supervised_8h.html#ae05de18a53511ba46b2a6a733c780580" target="_top" xlink:title="Calculates the XCSF error for the input data.">
 <polygon fill="none" stroke="black" points="312.5,-19.5 312.5,-38.5 426.5,-38.5 426.5,-19.5 312.5,-19.5"/>
 <text text-anchor="middle" x="369.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_score</text>
 </a>
@@ -266,7 +266,7 @@
 <!-- Node19 -->
 <g id="node19" class="node">
 <title>Node19</title>
-<g id="a_node19"><a xlink:href="$xcs__supervised_8h.html#a56ec80025279785376a569ec0130c29f" xlink:title="Calculates the XCSF error for a subsample of the input data.">
+<g id="a_node19"><a xlink:href="xcs__supervised_8h.html#a56ec80025279785376a569ec0130c29f" target="_top" xlink:title="Calculates the XCSF error for a subsample of the input data.">
 <polygon fill="none" stroke="black" points="149,-19.5 149,-38.5 274,-38.5 274,-19.5 149,-19.5"/>
 <text text-anchor="middle" x="211.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_score_n</text>
 </a>
@@ -287,7 +287,7 @@
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" xlink:title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data.">
+<g id="a_node14"><a xlink:href="classXCS.html#a3f8168ffade2d933d0971625200f1d92" target="_top" xlink:title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data.">
 <polygon fill="none" stroke="black" points="185.5,-95.5 185.5,-114.5 237.5,-114.5 237.5,-95.5 185.5,-95.5"/>
 <text text-anchor="middle" x="211.5" y="-102.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::fit</text>
 </a>
@@ -302,7 +302,7 @@
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="$classXCS.html#a7d0bfc2cf3447809fee4218f39921a81" xlink:title="Returns the XCSF prediction array for the provided input.">
+<g id="a_node16"><a xlink:href="classXCS.html#a7d0bfc2cf3447809fee4218f39921a81" target="_top" xlink:title="Returns the XCSF prediction array for the provided input.">
 <polygon fill="none" stroke="black" points="175,-133.5 175,-152.5 248,-152.5 248,-133.5 175,-133.5"/>
 <text text-anchor="middle" x="211.5" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::predict</text>
 </a>
@@ -323,7 +323,7 @@
 <!-- Node18 -->
 <g id="node18" class="node">
 <title>Node18</title>
-<g id="a_node18"><a xlink:href="$classXCS.html#a8be398df5d3f4333c9b0d19f48535609" xlink:title="Returns the error using N random samples from the provided data.">
+<g id="a_node18"><a xlink:href="classXCS.html#a8be398df5d3f4333c9b0d19f48535609" target="_top" xlink:title="Returns the error using N random samples from the provided data.">
 <polygon fill="none" stroke="black" points="22.5,-0.5 22.5,-19.5 90.5,-19.5 90.5,-0.5 22.5,-0.5"/>
 <text text-anchor="middle" x="56.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::score</text>
 </a>
@@ -350,7 +350,7 @@
 <!-- Node21 -->
 <g id="node21" class="node">
 <title>Node21</title>
-<g id="a_node21"><a xlink:href="$clset_8h.html#a27aedca23d7c37f4ca0f44845e9805c7" xlink:title="Provides reinforcement to the set and performs set subsumption.">
+<g id="a_node21"><a xlink:href="clset_8h.html#a27aedca23d7c37f4ca0f44845e9805c7" target="_top" xlink:title="Provides reinforcement to the set and performs set subsumption.">
 <polygon fill="none" stroke="black" points="607,-152.5 607,-171.5 679,-171.5 679,-152.5 607,-152.5"/>
 <text text-anchor="middle" x="643" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_update</text>
 </a>
@@ -389,7 +389,7 @@
 <!-- Node23 -->
 <g id="node23" class="node">
 <title>Node23</title>
-<g id="a_node23"><a xlink:href="$classXCS.html#af8970ba52403714439fda0d4383a390b" xlink:title="Creates the action set using the previously selected action, updates the classifiers,...">
+<g id="a_node23"><a xlink:href="classXCS.html#af8970ba52403714439fda0d4383a390b" target="_top" xlink:title="Creates the action set using the previously selected action, updates the classifiers,...">
 <polygon fill="none" stroke="black" points="333,-247.5 333,-266.5 406,-266.5 406,-247.5 333,-247.5"/>
 <text text-anchor="middle" x="369.5" y="-254.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::update</text>
 </a>

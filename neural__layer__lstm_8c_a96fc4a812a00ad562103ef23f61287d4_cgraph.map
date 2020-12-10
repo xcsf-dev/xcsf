@@ -1,5 +1,0 @@
-<map id="neural_layer_lstm_load" name="neural_layer_lstm_load">
-<area shape="rect" id="node1" title="Reads an LSTM layer from a file." alt="" coords="5,31,160,57"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#a6aeb7726ad2520738221c0be4f1f56a9" title="Reads the layer from a file." alt="" coords="237,5,318,32"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an LSTM layer." alt="" coords="208,56,347,83"/>
-</map>

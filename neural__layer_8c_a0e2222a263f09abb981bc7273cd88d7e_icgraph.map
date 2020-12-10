@@ -1,6 +1,6 @@
 <map id="layer_type_as_string" name="layer_type_as_string">
 <area shape="rect" id="node1" title="Returns a string representation of a layer type from an integer." alt="" coords="1081,71,1224,98"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#af08dab51e0e2d6380af376bb33708f17" title="Prints layer parameters." alt="" coords="919,71,1033,98"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8h.html#af08dab51e0e2d6380af376bb33708f17" title="Prints layer parameters." alt="" coords="919,71,1033,98"/>
 <area shape="rect" id="node3" href="$action_8c.html#a73b50a4bf8171c64d4c5bee3894398a0" title="Prints neural network action parameters." alt="" coords="721,5,853,47"/>
 <area shape="rect" id="node9" href="$condition_8c.html#a0767d3c6211bee598aec6b69ac497343" title="Prints neural network condition parameters." alt="" coords="704,71,871,98"/>
 <area shape="rect" id="node11" href="$prediction_8c.html#ad6658ac4505ce10b153ead939ebcd4f5" title="Prints neural network prediction parameters." alt="" coords="705,122,869,149"/>

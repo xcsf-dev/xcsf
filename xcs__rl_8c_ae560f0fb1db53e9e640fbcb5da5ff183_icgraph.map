@@ -1,8 +1,0 @@
-<map id="xcs_rl_error" name="xcs_rl_error">
-<area shape="rect" id="node1" title="Returns the reinforcement learning system prediction error." alt="" coords="436,31,527,57"/>
-<area shape="rect" id="node2" href="$classXCS.html#a9e14e934859428327fc9ca44ad049d61" title="Returns the reinforcement learning system prediction error." alt="" coords="303,5,387,32"/>
-<area shape="rect" id="node4" href="$xcs__rl_8c.html#a2f0a96843e8ce69fe321d557d34e9f38" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="303,56,388,83"/>
-<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="104,5,255,32"/>
-<area shape="rect" id="node5" href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="137,56,222,83"/>
-<area shape="rect" id="node6" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,56,56,83"/>
-</map>

@@ -25,6 +25,6 @@
 <area shape="rect" id="node17" href="$gp_8c.html#a9a12da4c3d6254d01924a949478bcc01" title=" " alt="" coords="440,645,631,672"/>
 <area shape="rect" id="node18" href="$gp_8c.html#a7d4de020b4aa827af41136faadab1fe7" title=" " alt="" coords="451,696,619,723"/>
 <area shape="rect" id="node12" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="679,376,776,403"/>
-<area shape="rect" id="node20" href="$neural__layer_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="477,747,594,773"/>
-<area shape="rect" id="node21" href="$neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="482,797,589,824"/>
+<area shape="rect" id="node20" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="477,747,594,773"/>
+<area shape="rect" id="node21" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="482,797,589,824"/>
 </map>

@@ -1,7 +1,0 @@
-<map id="neural_free" name="neural_free">
-<area shape="rect" id="node1" title="Frees a neural network." alt="" coords="203,81,289,108"/>
-<area shape="rect" id="node2" href="$act__neural_8h.html#af4e02d2c694c9eeddfe7c1407f29305d" title=" " alt="" coords="25,5,135,32"/>
-<area shape="rect" id="node3" href="$cond__neural_8h.html#a03eb2cc7736651f4e015a29319990b1a" title=" " alt="" coords="19,56,141,83"/>
-<area shape="rect" id="node4" href="$pred__neural_8h.html#a3f30c5096c03e974360396c678b53d40" title=" " alt="" coords="21,107,139,133"/>
-<area shape="rect" id="node5" href="$rule__neural_8h.html#a66602150b0b8b3b7e38b05e53f6e1abd" title=" " alt="" coords="5,157,155,184"/>
-</map>

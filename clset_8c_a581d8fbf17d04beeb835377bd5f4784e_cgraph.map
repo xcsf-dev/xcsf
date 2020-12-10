@@ -1,8 +1,0 @@
-<map id="clset_kill" name="clset_kill">
-<area shape="rect" id="node1" title="Frees the set and the classifiers." alt="" coords="5,81,79,108"/>
-<area shape="rect" id="node2" href="$cl_8c.html#a2189299bc53d8016b5e05653c9a2a39d" title="Frees the memory used by a classifier." alt="" coords="127,56,188,83"/>
-<area shape="rect" id="node6" href="$CMakeLists_8txt.html#abb28d976c965ac9bcae2ee68ad8e0f0a" title=" " alt="" coords="137,107,177,133"/>
-<area shape="rect" id="node3" href="$action_8h.html#a5a5a0750972ad7cd0b1eecef427964a4" title="Frees the memory used by the classifier action." alt="" coords="241,5,310,32"/>
-<area shape="rect" id="node4" href="$condition_8h.html#a33fca7a6e9953aa7f89c3d1528a19e28" title="Frees the memory used by the classifier condition." alt="" coords="236,56,315,83"/>
-<area shape="rect" id="node5" href="$prediction_8h.html#a2211a31c93cf238c207666675d08fa5e" title="Frees the memory used by the classifier prediction." alt="" coords="237,107,313,133"/>
-</map>

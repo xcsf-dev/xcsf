@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" xlink:title="Selects an action to perform in a reinforcement learning problem.">
+<g id="a_node2"><a xlink:href="classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" target="_top" xlink:title="Selects an action to perform in a reinforcement learning problem.">
 <polygon fill="none" stroke="black" points="223,-38.5 223,-57.5 303,-57.5 303,-38.5 223,-38.5"/>
 <text text-anchor="middle" x="263" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::decision</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" xlink:title="Executes a reinforcement learning trial using a built&#45;in environment.">
+<g id="a_node4"><a xlink:href="xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" target="_top" xlink:title="Executes a reinforcement learning trial using a built&#45;in environment.">
 <polygon fill="none" stroke="black" points="231,-0.5 231,-19.5 295,-19.5 295,-0.5 231,-0.5"/>
 <text text-anchor="middle" x="263" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_trial</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" xlink:title=" ">
+<g id="a_node3"><a xlink:href="pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="74,-38.5 74,-57.5 187,-57.5 187,-38.5 74,-38.5"/>
 <text text-anchor="middle" x="130.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">pybind11_init_wrapper</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" xlink:title="Executes a reinforcement learning experiment.">
+<g id="a_node5"><a xlink:href="xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" target="_top" xlink:title="Executes a reinforcement learning experiment.">
 <polygon fill="none" stroke="black" points="98.5,-0.5 98.5,-19.5 162.5,-19.5 162.5,-0.5 98.5,-0.5"/>
 <text text-anchor="middle" x="130.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_exp</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" xlink:title=" ">
+<g id="a_node6"><a xlink:href="main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 38,-19.5 38,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="19" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer_8c.html#af08dab51e0e2d6380af376bb33708f17" target="_top" xlink:title="Prints layer parameters.">
+<g id="a_node2"><a xlink:href="neural__layer__args_8c.html#af08dab51e0e2d6380af376bb33708f17" target="_top" xlink:title="Prints layer parameters.">
 <polygon fill="none" stroke="black" points="161,-76.5 161,-95.5 247,-95.5 247,-76.5 161,-76.5"/>
 <text text-anchor="middle" x="204" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_print</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer_8c.html#a56dcbd4bdf90e80ef81c676df60ff8b3" target="_top" xlink:title="Prints layer activation function parameters.">
+<g id="a_node3"><a xlink:href="neural__layer__args_8c.html#a56dcbd4bdf90e80ef81c676df60ff8b3" target="_top" xlink:title="Prints layer activation function parameters.">
 <polygon fill="none" stroke="black" points="283,-152.5 283,-171.5 416,-171.5 416,-152.5 283,-152.5"/>
 <text text-anchor="middle" x="349.5" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_print_activation</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="neural__layer_8c.html#ac617200b2ee8792381b8297d45fee174" target="_top" xlink:title="Prints layer evolutionary operator parameters.">
+<g id="a_node5"><a xlink:href="neural__layer__args_8c.html#ac617200b2ee8792381b8297d45fee174" target="_top" xlink:title="Prints layer evolutionary operator parameters.">
 <polygon fill="none" stroke="black" points="296,-114.5 296,-133.5 403,-133.5 403,-114.5 296,-114.5"/>
 <text text-anchor="middle" x="349.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_print_evo</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="neural__layer_8c.html#acead84ca91e1c410f24bc8b60517415b" target="_top" xlink:title="Prints layer input parameters.">
+<g id="a_node6"><a xlink:href="neural__layer__args_8c.html#acead84ca91e1c410f24bc8b60517415b" target="_top" xlink:title="Prints layer input parameters.">
 <polygon fill="none" stroke="black" points="291,-76.5 291,-95.5 408,-95.5 408,-76.5 291,-76.5"/>
 <text text-anchor="middle" x="349.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_print_inputs</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="neural__layer_8c.html#add3ff102fe13b879aa177e001e65a86c" target="_top" xlink:title="Prints layer gradient descent parameters.">
+<g id="a_node8"><a xlink:href="neural__layer__args_8c.html#add3ff102fe13b879aa177e001e65a86c" target="_top" xlink:title="Prints layer gradient descent parameters.">
 <polygon fill="none" stroke="black" points="296,-38.5 296,-57.5 403,-57.5 403,-38.5 296,-38.5"/>
 <text text-anchor="middle" x="349.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_print_sgd</text>
 </a>

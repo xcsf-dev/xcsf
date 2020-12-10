@@ -1,6 +1,0 @@
-<map id="neural_rand" name="neural_rand">
-<area shape="rect" id="node1" title="Randomises the layers within a neural network." alt="" coords="203,56,292,83"/>
-<area shape="rect" id="node2" href="$act__neural_8h.html#a66b7f4bdc1027594885d1c69fa37e637" title=" " alt="" coords="19,5,141,32"/>
-<area shape="rect" id="node3" href="$cond__neural_8h.html#a35958d4c2caf52875985a925cd995ab0" title=" " alt="" coords="15,56,145,83"/>
-<area shape="rect" id="node4" href="$rule__neural_8h.html#aaaeb3d25bde2bde8dbb75ce15358a844" title=" " alt="" coords="5,107,155,133"/>
-</map>

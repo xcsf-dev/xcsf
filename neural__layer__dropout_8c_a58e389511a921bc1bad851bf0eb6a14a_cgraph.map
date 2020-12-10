@@ -1,4 +1,0 @@
-<map id="neural_layer_dropout_init" name="neural_layer_dropout_init">
-<area shape="rect" id="node1" title="Initialises a dropout layer." alt="" coords="5,5,172,32"/>
-<area shape="rect" id="node2" href="$neural__layer__dropout_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a dropout layer." alt="" coords="220,5,359,32"/>
-</map>

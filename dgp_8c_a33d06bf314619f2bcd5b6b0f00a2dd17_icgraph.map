@@ -1,5 +1,0 @@
-<map id="graph_crossover" name="graph_crossover">
-<area shape="rect" id="node1" title="Performs uniform crossover with two DGP graphs." alt="" coords="224,31,343,57"/>
-<area shape="rect" id="node2" href="$cond__dgp_8h.html#a412802fbc38047c02ce5ffd5247d2372" title=" " alt="" coords="19,5,162,32"/>
-<area shape="rect" id="node3" href="$rule__dgp_8h.html#a3b6855b0f9eaa1378189c319f41f4629" title=" " alt="" coords="5,56,176,83"/>
-</map>

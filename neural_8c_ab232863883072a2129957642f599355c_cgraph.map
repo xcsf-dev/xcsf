@@ -1,4 +1,0 @@
-<map id="neural_rand" name="neural_rand">
-<area shape="rect" id="node1" title="Randomises the layers within a neural network." alt="" coords="5,5,95,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#a7707b48a8a5e45f506c2617eeb10b99b" title="Randomises a layer." alt="" coords="143,5,225,32"/>
-</map>

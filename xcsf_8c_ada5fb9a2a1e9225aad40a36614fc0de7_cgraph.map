@@ -1,38 +1,41 @@
 <map id="xcsf_load" name="xcsf_load">
 <area shape="rect" id="node1" title="Reads the state of XCSF from a file." alt="" coords="5,259,84,285"/>
 <area shape="rect" id="node2" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="341,233,416,260"/>
-<area shape="rect" id="node3" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="152,132,225,159"/>
+<area shape="rect" id="node3" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="152,157,225,184"/>
 <area shape="rect" id="node8" href="$clset_8c.html#af87479ea90c3c508352c4a89dae9fd08" title="Reads the population set from a file." alt="" coords="132,284,245,311"/>
-<area shape="rect" id="node17" href="$param_8c.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="144,575,233,601"/>
+<area shape="rect" id="node17" href="$param_8c.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="144,613,233,640"/>
 <area shape="rect" id="node4" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="348,81,409,108"/>
-<area shape="rect" id="node5" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="536,5,605,32"/>
-<area shape="rect" id="node6" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="531,56,610,83"/>
-<area shape="rect" id="node7" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="533,107,609,133"/>
+<area shape="rect" id="node5" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="536,56,605,83"/>
+<area shape="rect" id="node6" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="531,107,610,133"/>
+<area shape="rect" id="node7" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="533,5,609,32"/>
 <area shape="rect" id="node9" href="$cl_8c.html#aa1ac32b2cecb1ff414f4f8c405e9cc9d" title="Reads a classifier from a file." alt="" coords="347,284,410,311"/>
 <area shape="rect" id="node16" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="339,335,418,361"/>
-<area shape="rect" id="node10" href="$action_8h.html#a52378844456bccd5792fd83a66c3e024" title="Reads the action from a file." alt="" coords="535,157,606,184"/>
-<area shape="rect" id="node11" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="529,208,612,235"/>
-<area shape="rect" id="node12" href="$condition_8h.html#aecb888a4d67bac7930149265d00f2c60" title="Reads the condition from a file." alt="" coords="530,259,611,285"/>
-<area shape="rect" id="node13" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="521,309,620,336"/>
-<area shape="rect" id="node14" href="$prediction_8h.html#acb4453c3ff11e3b628432cdc2fa5e73b" title="Reads the prediction from a file." alt="" coords="531,360,610,387"/>
-<area shape="rect" id="node15" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="519,411,622,437"/>
-<area shape="rect" id="node18" href="$action_8c.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="313,625,444,652"/>
-<area shape="rect" id="node19" href="$condition_8c.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="317,676,441,703"/>
-<area shape="rect" id="node22" href="$ea_8c.html#a98847959ab2371b435176a89306207c5" title="Loads evolutionary algorithm parameters." alt="" coords="323,727,434,753"/>
-<area shape="rect" id="node23" href="$param_8c.html#a2a2271a513e5d53bc17162032835ef30" title="Loads XCSF general classifier parameters." alt="" coords="301,777,456,804"/>
-<area shape="rect" id="node24" href="$param_8c.html#ab61b9fbc450124b34f61b80093cffb1a" title="Loads XCSF general parameters." alt="" coords="309,423,448,449"/>
-<area shape="rect" id="node34" href="$param_8c.html#a96825d72a88e4af58b039b61467ed136" title="Saves multistep parameters." alt="" coords="304,473,453,500"/>
-<area shape="rect" id="node35" href="$param_8c.html#ad59e9ab3a114a751a6ff96b2a0bbbb72" title="Loads subsumption parameters." alt="" coords="293,524,464,551"/>
-<area shape="rect" id="node36" href="$prediction_8c.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="318,575,439,601"/>
-<area shape="rect" id="node20" href="$dgp_8c.html#a4e160f3ae49e0876bd5d9d03cff31a79" title="Loads DGP parameters." alt="" coords="512,701,629,728"/>
-<area shape="rect" id="node21" href="$gp_8c.html#ace6f12ff809357296578e8aa1d1b0b47" title="Loads Tree GP parameters." alt="" coords="517,651,624,677"/>
-<area shape="rect" id="node25" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="519,461,622,488"/>
-<area shape="rect" id="node26" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="677,309,789,336"/>
-<area shape="rect" id="node27" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="691,360,776,387"/>
-<area shape="rect" id="node28" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="698,411,769,437"/>
-<area shape="rect" id="node29" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="694,461,773,488"/>
-<area shape="rect" id="node30" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="841,537,919,564"/>
-<area shape="rect" id="node31" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="687,613,779,640"/>
-<area shape="rect" id="node33" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="692,512,775,539"/>
-<area shape="rect" id="node32" href="$utils_8h.html#adc87687be632aa642e838b81a7404db1" title="Returns the index of the largest element in vector X." alt="" coords="837,613,923,640"/>
+<area shape="rect" id="node10" href="$action_8h.html#a52378844456bccd5792fd83a66c3e024" title="Reads the action from a file." alt="" coords="535,208,606,235"/>
+<area shape="rect" id="node11" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="529,259,612,285"/>
+<area shape="rect" id="node12" href="$condition_8h.html#aecb888a4d67bac7930149265d00f2c60" title="Reads the condition from a file." alt="" coords="530,309,611,336"/>
+<area shape="rect" id="node13" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="521,360,620,387"/>
+<area shape="rect" id="node14" href="$prediction_8h.html#acb4453c3ff11e3b628432cdc2fa5e73b" title="Reads the prediction from a file." alt="" coords="531,411,610,437"/>
+<area shape="rect" id="node15" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="519,157,622,184"/>
+<area shape="rect" id="node18" href="$action_8c.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="313,664,444,691"/>
+<area shape="rect" id="node22" href="$condition_8c.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="317,715,441,741"/>
+<area shape="rect" id="node25" href="$ea_8c.html#a98847959ab2371b435176a89306207c5" title="Loads evolutionary algorithm parameters." alt="" coords="323,765,434,792"/>
+<area shape="rect" id="node26" href="$param_8c.html#a2a2271a513e5d53bc17162032835ef30" title="Loads XCSF general classifier parameters." alt="" coords="301,816,456,843"/>
+<area shape="rect" id="node27" href="$param_8c.html#ab61b9fbc450124b34f61b80093cffb1a" title="Loads XCSF general parameters." alt="" coords="309,461,448,488"/>
+<area shape="rect" id="node37" href="$param_8c.html#a96825d72a88e4af58b039b61467ed136" title="Saves multistep parameters." alt="" coords="304,512,453,539"/>
+<area shape="rect" id="node38" href="$param_8c.html#ad59e9ab3a114a751a6ff96b2a0bbbb72" title="Loads subsumption parameters." alt="" coords="293,563,464,589"/>
+<area shape="rect" id="node39" href="$prediction_8c.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="318,613,439,640"/>
+<area shape="rect" id="node19" href="$neural__layer__args_8c.html#a398a06830ed5cc20b78e7e04121897fd" title="Loads neural network layer parameters." alt="" coords="514,664,627,691"/>
+<area shape="rect" id="node20" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="678,664,789,691"/>
+<area shape="rect" id="node21" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="680,715,787,741"/>
+<area shape="rect" id="node23" href="$dgp_8c.html#a4e160f3ae49e0876bd5d9d03cff31a79" title="Loads DGP parameters." alt="" coords="512,715,629,741"/>
+<area shape="rect" id="node24" href="$gp_8c.html#ace6f12ff809357296578e8aa1d1b0b47" title="Loads Tree GP parameters." alt="" coords="517,765,624,792"/>
+<area shape="rect" id="node28" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="519,461,622,488"/>
+<area shape="rect" id="node29" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="677,411,789,437"/>
+<area shape="rect" id="node30" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="691,461,776,488"/>
+<area shape="rect" id="node31" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="698,512,769,539"/>
+<area shape="rect" id="node32" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="694,563,773,589"/>
+<area shape="rect" id="node33" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="841,487,919,513"/>
+<area shape="rect" id="node34" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="687,309,779,336"/>
+<area shape="rect" id="node36" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="692,613,775,640"/>
+<area shape="rect" id="node35" href="$utils_8h.html#adc87687be632aa642e838b81a7404db1" title="Returns the index of the largest element in vector X." alt="" coords="837,309,923,336"/>
 </map>

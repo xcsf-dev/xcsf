@@ -1,8 +1,0 @@
-<map id="cl_update" name="cl_update">
-<area shape="rect" id="node1" title="Updates a classifier&#39;s experience, error, and set size." alt="" coords="5,81,84,108"/>
-<area shape="rect" id="node2" href="$action_8h.html#abff2406a17ffc24bdc2f98dbecab1f80" title="Updates the classifier&#39;s action." alt="" coords="137,5,223,32"/>
-<area shape="rect" id="node3" href="$cl_8c.html#a6d152849e51ed10765330586e574805f" title="Computes the current classifier prediction using the input." alt="" coords="141,56,219,83"/>
-<area shape="rect" id="node5" href="$condition_8h.html#af8317dec779d25b369473111f5cbd0e1" title="Updates the classifier&#39;s condition." alt="" coords="132,107,228,133"/>
-<area shape="rect" id="node6" href="$prediction_8h.html#a81932bc605950c43bcc2852a77e47fbd" title="Updates the classifier&#39;s prediction." alt="" coords="133,157,227,184"/>
-<area shape="rect" id="node4" href="$prediction_8h.html#a6b6f9e53800aae4a64991a811f670541" title="Computes the current classifier prediction using the input." alt="" coords="276,56,380,83"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="cl_mutate" name="cl_mutate">
-<area shape="rect" id="node1" title="Performs classifier mutation." alt="" coords="5,56,84,83"/>
-<area shape="rect" id="node2" href="$action_8h.html#abb9b190d73732cc342bed9ae745c4060" title="Performs classifier action mutation." alt="" coords="137,5,224,32"/>
-<area shape="rect" id="node3" href="$condition_8h.html#ad6a3716d1c374dd24126bde6a460bf3f" title="Performs classifier condition mutation." alt="" coords="132,56,229,83"/>
-<area shape="rect" id="node4" href="$prediction_8h.html#a729a6e2224c30c5edc82fcc9cf8827ab" title="Performs classifier prediction mutation." alt="" coords="133,107,228,133"/>
-</map>

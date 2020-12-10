@@ -1,5 +1,0 @@
-<map id="graph_crossover" name="graph_crossover">
-<area shape="rect" id="node1" title="Dummy function since crossover is not performed on DGP graphs." alt="" coords="224,31,343,57"/>
-<area shape="rect" id="node2" href="$cond__dgp_8h.html#aecfc8d34586afbd5efbd5f139794e93e" title=" " alt="" coords="19,5,162,32"/>
-<area shape="rect" id="node3" href="$rule__dgp_8h.html#a928fe045e43e1823458806c45b522926" title=" " alt="" coords="5,56,176,83"/>
-</map>

@@ -57,6 +57,8 @@ var files_dup =
     [ "neural_activations.h", "neural__activations_8h.html", "neural__activations_8h" ],
     [ "neural_layer.c", "neural__layer_8c.html", "neural__layer_8c" ],
     [ "neural_layer.h", "neural__layer_8h.html", "neural__layer_8h" ],
+    [ "neural_layer_args.c", "neural__layer__args_8c.html", "neural__layer__args_8c" ],
+    [ "neural_layer_args.h", "neural__layer__args_8h.html", "neural__layer__args_8h" ],
     [ "neural_layer_avgpool.c", "neural__layer__avgpool_8c.html", "neural__layer__avgpool_8c" ],
     [ "neural_layer_avgpool.h", "neural__layer__avgpool_8h.html", "neural__layer__avgpool_8h" ],
     [ "neural_layer_connected.c", "neural__layer__connected_8c.html", "neural__layer__connected_8c" ],

@@ -1,10 +1,10 @@
 <map id="XCS::unpack_cond_neural" name="XCS::unpack_cond_neural">
 <area shape="rect" id="node1" title="Sets parameters used by neural network conditions." alt="" coords="5,81,183,108"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="268,5,379,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="270,56,377,83"/>
-<area shape="rect" id="node4" href="$neural__layer_8c.html#a492de2de029ff6124f8fe466ad6b0d80" title="Checks network layer arguments are valid." alt="" coords="256,107,391,133"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="268,5,379,32"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="270,56,377,83"/>
+<area shape="rect" id="node4" href="$neural__layer__args_8c.html#a492de2de029ff6124f8fe466ad6b0d80" title="Checks network layer arguments are valid." alt="" coords="256,107,391,133"/>
 <area shape="rect" id="node7" href="$classXCS.html#af09f858d1d3594b2eb806a24efc2c8f9" title="Sets parameters used by a neural network layer." alt="" coords="231,161,416,188"/>
-<area shape="rect" id="node5" href="$neural__layer_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" title="Checks input layer arguments are valid." alt="" coords="478,95,613,137"/>
+<area shape="rect" id="node5" href="$neural__layer__args_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" title="Checks input layer arguments are valid." alt="" coords="478,95,613,137"/>
 <area shape="rect" id="node6" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="675,103,829,129"/>
 <area shape="rect" id="node8" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="483,161,607,188"/>
 <area shape="rect" id="node9" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="464,212,627,239"/>

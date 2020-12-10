@@ -1,4 +1,0 @@
-<map id="cl_pred_size" name="cl_pred_size">
-<area shape="rect" id="node1" title="Returns the size of a classifier&#39;s prediction." alt="" coords="5,5,100,32"/>
-<area shape="rect" id="node2" href="$prediction_8h.html#a68df60bf7cc9a1d894f149d9ae239a6c" title="Returns the size of the classifier prediction." alt="" coords="148,5,227,32"/>
-</map>

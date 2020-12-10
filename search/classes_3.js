@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['gptree_1574',['GPTree',['../structGPTree.html',1,'']]],
-  ['graph_1575',['Graph',['../structGraph.html',1,'']]]
+  ['gptree_1578',['GPTree',['../structGPTree.html',1,'']]],
+  ['graph_1579',['Graph',['../structGraph.html',1,'']]]
 ];

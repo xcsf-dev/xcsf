@@ -1,6 +1,5 @@
 var neural__layer_8h =
 [
-    [ "ArgsLayer", "structArgsLayer.html", "structArgsLayer" ],
     [ "Layer", "structLayer.html", "structLayer" ],
     [ "LayerVtbl", "structLayerVtbl.html", "structLayerVtbl" ],
     [ "AVGPOOL", "neural__layer_8h.html#ac2f63c3b9a38c776a49f11cd8b8bcdae", null ],
@@ -37,12 +36,6 @@ var neural__layer_8h =
     [ "WEIGHT_MAX", "neural__layer_8h.html#a7577ffac6ca94b84b8aa7941baf9219c", null ],
     [ "WEIGHT_MIN", "neural__layer_8h.html#a93e7c8a1443894a56eaeaff166d88f1e", null ],
     [ "layer_add_neurons", "neural__layer_8h.html#a0d2dce0c19524796a83994927a84fd26", null ],
-    [ "layer_args_copy", "neural__layer_8h.html#ae2a39b39d39a77a51f0a9e85dd48c002", null ],
-    [ "layer_args_free", "neural__layer_8h.html#a477d2c5cf9da9413c6dba66b5d7f7aff", null ],
-    [ "layer_args_init", "neural__layer_8h.html#a3b06e82bed7fc9a8915d6187ce08d33e", null ],
-    [ "layer_args_print", "neural__layer_8h.html#af08dab51e0e2d6380af376bb33708f17", null ],
-    [ "layer_args_tail", "neural__layer_8h.html#a4125c294939dcfcb1e3aa4d66f91bb70", null ],
-    [ "layer_args_validate", "neural__layer_8h.html#a492de2de029ff6124f8fe466ad6b0d80", null ],
     [ "layer_backward", "neural__layer_8h.html#a65e55ed68e7035874ae32b5fc1f04302", null ],
     [ "layer_calc_n_active", "neural__layer_8h.html#abb27e5ed20353f12ec393c83e30372fe", null ],
     [ "layer_copy", "neural__layer_8h.html#a392e18d96d59f5739ebeec3b05d5b4ad", null ],
@@ -62,7 +55,6 @@ var neural__layer_8h =
     [ "layer_mutate_functions", "neural__layer_8h.html#a50025a1c69fa89d1ee28171be85d8f7a", null ],
     [ "layer_mutate_neurons", "neural__layer_8h.html#a35e1133cd8863d674d0506d963a93f08", null ],
     [ "layer_mutate_weights", "neural__layer_8h.html#af6edb9466e46b6cd7bc1e8556e86d8ed", null ],
-    [ "layer_opt", "neural__layer_8h.html#a4e149e9c2c1f79968447e8b9470a0e12", null ],
     [ "layer_output", "neural__layer_8h.html#a2ba51f939c19b5a2d9be3d219bbe3115", null ],
     [ "layer_print", "neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d", null ],
     [ "layer_rand", "neural__layer_8h.html#a1230cf25ba52027afad6f728089644ab", null ],

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" target="_top" xlink:title="Creates and returns a copy of specified layer parameters.">
+<g id="a_node2"><a xlink:href="neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" target="_top" xlink:title="Creates and returns a copy of specified layer parameters.">
 <polygon fill="none" stroke="black" points="156,-304.5 156,-323.5 244,-323.5 244,-304.5 156,-304.5"/>
 <text text-anchor="middle" x="200" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_copy</text>
 </a>
@@ -35,30 +35,30 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" target="_top" xlink:title="Creates and initialises a new layer.">
-<polygon fill="none" stroke="black" points="172,-266.5 172,-285.5 228,-285.5 228,-266.5 172,-266.5"/>
-<text text-anchor="middle" x="200" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_init</text>
+<g id="a_node3"><a xlink:href="neural__layer__args_8c.html#a4440b3fcacfd709042ae050958d757d6" target="_top" xlink:title="Returns a bitstring representing the permissions granted by a layer.">
+<polygon fill="none" stroke="black" points="160,-266.5 160,-285.5 240,-285.5 240,-266.5 160,-266.5"/>
+<text text-anchor="middle" x="200" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_opt</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M63.35,-171.76C77.12,-190.71 110.04,-232.78 147,-257 151.72,-260.09 157.02,-262.77 162.37,-265.05"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="161.37,-268.42 171.96,-268.75 163.89,-261.89 161.37,-268.42"/>
+<path fill="none" stroke="midnightblue" d="M63.35,-171.76C77.12,-190.71 110.04,-232.78 147,-257 149.94,-258.93 153.11,-260.69 156.37,-262.3"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="155.16,-265.6 165.72,-266.43 157.99,-259.19 155.16,-265.6"/>
 </g>
-<!-- Node6 -->
-<g id="node6" class="node">
-<title>Node6</title>
-<g id="a_node6"><a xlink:href="neural__layer_8c.html#a4e149e9c2c1f79968447e8b9470a0e12" target="_top" xlink:title="Returns a bitstring representing the permissions granted by a layer.">
+<!-- Node4 -->
+<g id="node4" class="node">
+<title>Node4</title>
+<g id="a_node4"><a xlink:href="neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" target="_top" xlink:title="Creates and initialises a new layer.">
 <polygon fill="none" stroke="black" points="172,-228.5 172,-247.5 228,-247.5 228,-228.5 172,-228.5"/>
-<text text-anchor="middle" x="200" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_opt</text>
+<text text-anchor="middle" x="200" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_init</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge5" class="edge">
-<title>Node1&#45;&gt;Node6</title>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge3" class="edge">
+<title>Node1&#45;&gt;Node4</title>
 <path fill="none" stroke="midnightblue" d="M69.78,-171.63C86.97,-183.79 118.16,-204.85 147,-219 151.91,-221.41 157.2,-223.68 162.47,-225.77"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="161.23,-229.04 171.83,-229.3 163.7,-222.49 161.23,-229.04"/>
 </g>
@@ -152,35 +152,35 @@
 <path fill="none" stroke="midnightblue" d="M60.47,-152.46C70.97,-128.31 101.83,-64.19 147,-29 149.31,-27.2 151.81,-25.56 154.41,-24.07"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="156.17,-27.1 163.59,-19.54 153.07,-20.83 156.17,-27.1"/>
 </g>
-<!-- Node4 -->
-<g id="node4" class="node">
-<title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" target="_top" xlink:title="Initialises a layer to default values.">
-<polygon fill="none" stroke="black" points="302.5,-285.5 302.5,-304.5 379.5,-304.5 379.5,-285.5 302.5,-285.5"/>
-<text text-anchor="middle" x="341" y="-292.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_defaults</text>
-</a>
-</g>
-</g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge3" class="edge">
-<title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M228.13,-279.71C246.41,-282.21 271.01,-285.57 292.49,-288.51"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="292.04,-291.98 302.42,-289.86 292.99,-285.04 292.04,-291.98"/>
-</g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" target="_top" xlink:title="Sets a neural network layer&#39;s functions to the implementations.">
-<polygon fill="none" stroke="black" points="302,-247.5 302,-266.5 380,-266.5 380,-247.5 302,-247.5"/>
-<text text-anchor="middle" x="341" y="-254.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_set_vptr</text>
+<g id="a_node5"><a xlink:href="neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" target="_top" xlink:title="Initialises a layer to default values.">
+<polygon fill="none" stroke="black" points="302.5,-266.5 302.5,-285.5 379.5,-285.5 379.5,-266.5 302.5,-266.5"/>
+<text text-anchor="middle" x="341" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_defaults</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node5 -->
+<!-- Node4&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
-<title>Node3&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M228.13,-272.29C246.19,-269.82 270.42,-266.51 291.72,-263.6"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="292.46,-267.03 301.9,-262.21 291.51,-260.1 292.46,-267.03"/>
+<title>Node4&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M228.13,-245.42C247.18,-250.62 273.09,-257.71 295.18,-263.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="294.45,-267.18 305.02,-266.44 296.3,-260.42 294.45,-267.18"/>
+</g>
+<!-- Node6 -->
+<g id="node6" class="node">
+<title>Node6</title>
+<g id="a_node6"><a xlink:href="neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" target="_top" xlink:title="Sets a neural network layer&#39;s functions to the implementations.">
+<polygon fill="none" stroke="black" points="302,-228.5 302,-247.5 380,-247.5 380,-228.5 302,-228.5"/>
+<text text-anchor="middle" x="341" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_set_vptr</text>
+</a>
+</g>
+</g>
+<!-- Node4&#45;&gt;Node6 -->
+<g id="edge5" class="edge">
+<title>Node4&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M228.13,-238C246.19,-238 270.42,-238 291.72,-238"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="291.9,-241.5 301.9,-238 291.9,-234.5 291.9,-241.5"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">

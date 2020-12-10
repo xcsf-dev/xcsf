@@ -1,7 +1,0 @@
-<map id="graph_init" name="graph_init">
-<area shape="rect" id="node1" title="Initialises a new DGP graph." alt="" coords="195,81,273,108"/>
-<area shape="rect" id="node2" href="$cond__dgp_8h.html#aa85c960376cf5892cb5fc18c82c6934a" title=" " alt="" coords="19,5,133,32"/>
-<area shape="rect" id="node3" href="$cond__dgp_8h.html#a36eb6c8e497eb217ea0423ffce18e8e4" title="Creates and initialises a dynamical GP graph condition." alt="" coords="25,56,127,83"/>
-<area shape="rect" id="node4" href="$rule__dgp_8h.html#a6e5c0bccb713a8dc277bf31a25673fab" title=" " alt="" coords="5,107,147,133"/>
-<area shape="rect" id="node5" href="$rule__dgp_8h.html#a242104780e9757fc9b303b8850f56382" title=" " alt="" coords="11,157,141,184"/>
-</map>

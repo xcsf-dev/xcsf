@@ -1,7 +1,0 @@
-<map id="clset_pop_save" name="clset_pop_save">
-<area shape="rect" id="node1" title="Writes the population set to a file." alt="" coords="5,56,119,83"/>
-<area shape="rect" id="node2" href="$cl_8c.html#a9d9005cabc5bb84749bc6fb29c4b9fd9" title="Writes a classifier to a file." alt="" coords="167,56,233,83"/>
-<area shape="rect" id="node3" href="$action_8h.html#a60392c9bd1cbef6582260ce68267ce87" title="Writes the action to a file." alt="" coords="287,5,361,32"/>
-<area shape="rect" id="node4" href="$condition_8h.html#a724ee05518d297e814f73a5192e582fc" title="Writes the condition to a file." alt="" coords="281,56,367,83"/>
-<area shape="rect" id="node5" href="$prediction_8h.html#a6b770c6e0195594d8ebc5dd1b57d0f39" title="Writes the prediction to a file." alt="" coords="283,107,365,133"/>
-</map>

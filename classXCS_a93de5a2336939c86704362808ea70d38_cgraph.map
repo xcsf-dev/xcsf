@@ -1,6 +1,0 @@
-<map id="XCS::get_pop_mean_pred_neurons" name="XCS::get_pop_mean_pred_neurons">
-<area shape="rect" id="node1" title=" " alt="" coords="5,23,180,65"/>
-<area shape="rect" id="node2" href="$clset__neural_8c.html#a0dddc6d58316b4b559db1f7d156b360f" title="Calculates the mean number of prediction neurons for a given layer." alt="" coords="228,31,403,57"/>
-<area shape="rect" id="node3" href="$pred__neural_8c.html#aa738d4da902a4051e27cb1405516b665" title=" " alt="" coords="451,5,593,32"/>
-<area shape="rect" id="node4" href="$CMakeLists_8txt.html#a919ef7f71e50ac4aa109fc9744fe9e7c" title=" " alt="" coords="502,56,542,83"/>
-</map>

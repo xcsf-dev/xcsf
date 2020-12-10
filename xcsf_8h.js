@@ -5,7 +5,6 @@ var xcsf_8h =
     [ "Set", "structSet.html", "structSet" ],
     [ "XCSF", "structXCSF.html", "structXCSF" ],
     [ "Input", "structInput.html", "structInput" ],
-    [ "MAX_LAYERS", "xcsf_8h.html#ade9d4b2ac5f29fe89ffea40e7c58c9d6", null ],
     [ "xcsf_ae_to_classifier", "xcsf_8h.html#ad77461184a11780681798ac593b090ab", null ],
     [ "xcsf_free", "xcsf_8h.html#aeeb273a5ee6d1e2419ab8a95d76d860b", null ],
     [ "xcsf_init", "xcsf_8h.html#ae4718dd9f579b8730e25a1a13a385d6a", null ],

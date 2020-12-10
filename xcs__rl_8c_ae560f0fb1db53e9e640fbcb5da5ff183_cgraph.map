@@ -1,4 +1,0 @@
-<map id="xcs_rl_error" name="xcs_rl_error">
-<area shape="rect" id="node1" title="Returns the reinforcement learning system prediction error." alt="" coords="5,5,96,32"/>
-<area shape="rect" id="node2" href="$pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" title="Returns the value of a specified action in the prediction array." alt="" coords="144,5,204,32"/>
-</map>

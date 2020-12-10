@@ -1,4 +1,4 @@
 <map id="pred_param_free" name="pred_param_free">
 <area shape="rect" id="node1" title="Frees prediction parameters." alt="" coords="5,5,124,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="172,5,283,32"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="172,5,283,32"/>
 </map>

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$cl_8c.html#a486392cc4fbb4f38ecbf8d6d8fc6df77" xlink:title="Updates a classifier&#39;s experience, error, and set size.">
+<g id="a_node2"><a xlink:href="cl_8c.html#a486392cc4fbb4f38ecbf8d6d8fc6df77" target="_top" xlink:title="Updates a classifier&#39;s experience, error, and set size.">
 <polygon fill="none" stroke="black" points="127.5,-266.5 127.5,-285.5 186.5,-285.5 186.5,-266.5 127.5,-266.5"/>
 <text text-anchor="middle" x="157" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_update</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="$clset_8c.html#a4777af2f15c4a7b5abeecb35e7e8b6b3" xlink:title="Performs set subsumption.">
+<g id="a_node8"><a xlink:href="clset_8c.html#a4777af2f15c4a7b5abeecb35e7e8b6b3" target="_top" xlink:title="Performs set subsumption.">
 <polygon fill="none" stroke="black" points="108,-133.5 108,-152.5 206,-152.5 206,-133.5 108,-133.5"/>
 <text text-anchor="middle" x="157" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_subsumption</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="$clset_8c.html#aa969b49afc6d934a12ea41e41514b360" xlink:title="Updates the fitness of classifiers in the set.">
+<g id="a_node15"><a xlink:href="clset_8c.html#aa969b49afc6d934a12ea41e41514b360" target="_top" xlink:title="Updates the fitness of classifiers in the set.">
 <polygon fill="none" stroke="black" points="114,-38.5 114,-57.5 200,-57.5 200,-38.5 114,-38.5"/>
 <text text-anchor="middle" x="157" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_update_fit</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$action_8h.html#abff2406a17ffc24bdc2f98dbecab1f80" xlink:title="Updates the classifier&#39;s action.">
+<g id="a_node3"><a xlink:href="action_8h.html#abff2406a17ffc24bdc2f98dbecab1f80" target="_top" xlink:title="Updates the classifier&#39;s action.">
 <polygon fill="none" stroke="black" points="248,-342.5 248,-361.5 313,-361.5 313,-342.5 248,-342.5"/>
 <text text-anchor="middle" x="280.5" y="-349.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_update</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$cl_8c.html#a6d152849e51ed10765330586e574805f" xlink:title="Computes the current classifier prediction using the input.">
+<g id="a_node4"><a xlink:href="cl_8c.html#a6d152849e51ed10765330586e574805f" target="_top" xlink:title="Computes the current classifier prediction using the input.">
 <polygon fill="none" stroke="black" points="251,-304.5 251,-323.5 310,-323.5 310,-304.5 251,-304.5"/>
 <text text-anchor="middle" x="280.5" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_predict</text>
 </a>
@@ -95,7 +95,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="$condition_8h.html#af8317dec779d25b369473111f5cbd0e1" xlink:title="Updates the classifier&#39;s condition.">
+<g id="a_node6"><a xlink:href="condition_8h.html#af8317dec779d25b369473111f5cbd0e1" target="_top" xlink:title="Updates the classifier&#39;s condition.">
 <polygon fill="none" stroke="black" points="244.5,-266.5 244.5,-285.5 316.5,-285.5 316.5,-266.5 244.5,-266.5"/>
 <text text-anchor="middle" x="280.5" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_update</text>
 </a>
@@ -110,7 +110,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="$prediction_8h.html#a81932bc605950c43bcc2852a77e47fbd" xlink:title="Updates the classifier&#39;s prediction.">
+<g id="a_node7"><a xlink:href="prediction_8h.html#a81932bc605950c43bcc2852a77e47fbd" target="_top" xlink:title="Updates the classifier&#39;s prediction.">
 <polygon fill="none" stroke="black" points="245.5,-228.5 245.5,-247.5 315.5,-247.5 315.5,-228.5 245.5,-228.5"/>
 <text text-anchor="middle" x="280.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_update</text>
 </a>
@@ -125,7 +125,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="$prediction_8h.html#a6b6f9e53800aae4a64991a811f670541" xlink:title="Computes the current classifier prediction using the input.">
+<g id="a_node5"><a xlink:href="prediction_8h.html#a6b6f9e53800aae4a64991a811f670541" target="_top" xlink:title="Computes the current classifier prediction using the input.">
 <polygon fill="none" stroke="black" points="355,-304.5 355,-323.5 433,-323.5 433,-304.5 355,-304.5"/>
 <text text-anchor="middle" x="394" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_compute</text>
 </a>
@@ -140,7 +140,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="$cl_8c.html#a702d046abd4a69246f5bfd302c523f92" xlink:title="Returns whether classifier c1 is more general than c2.">
+<g id="a_node9"><a xlink:href="cl_8c.html#a702d046abd4a69246f5bfd302c523f92" target="_top" xlink:title="Returns whether classifier c1 is more general than c2.">
 <polygon fill="none" stroke="black" points="250,-190.5 250,-209.5 311,-209.5 311,-190.5 250,-190.5"/>
 <text text-anchor="middle" x="280.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_general</text>
 </a>
@@ -155,7 +155,7 @@
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="$cl_8c.html#afb88481d6c45d9a8869936cd5b5d9fc1" xlink:title="Returns whether a classifier is a potential subsumer.">
+<g id="a_node12"><a xlink:href="cl_8c.html#afb88481d6c45d9a8869936cd5b5d9fc1" target="_top" xlink:title="Returns whether a classifier is a potential subsumer.">
 <polygon fill="none" stroke="black" points="244.5,-152.5 244.5,-171.5 316.5,-171.5 316.5,-152.5 244.5,-152.5"/>
 <text text-anchor="middle" x="280.5" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_subsumer</text>
 </a>
@@ -170,7 +170,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" xlink:title="Adds a classifier to the set.">
+<g id="a_node13"><a xlink:href="clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" target="_top" xlink:title="Adds a classifier to the set.">
 <polygon fill="none" stroke="black" points="251,-114.5 251,-133.5 310,-133.5 310,-114.5 251,-114.5"/>
 <text text-anchor="middle" x="280.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_add</text>
 </a>
@@ -185,7 +185,7 @@
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="$clset_8c.html#a3bb797f21eed0cdf6fc54b36692e213f" xlink:title="Removes classifiers with 0 numerosity from the set.">
+<g id="a_node14"><a xlink:href="clset_8c.html#a3bb797f21eed0cdf6fc54b36692e213f" target="_top" xlink:title="Removes classifiers with 0 numerosity from the set.">
 <polygon fill="none" stroke="black" points="242,-76.5 242,-95.5 319,-95.5 319,-76.5 242,-76.5"/>
 <text text-anchor="middle" x="280.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_validate</text>
 </a>
@@ -200,7 +200,7 @@
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="$action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d" xlink:title="Returns whether the action of classifier c1 is more general than c2.">
+<g id="a_node10"><a xlink:href="action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d" target="_top" xlink:title="Returns whether the action of classifier c1 is more general than c2.">
 <polygon fill="none" stroke="black" points="360.5,-209.5 360.5,-228.5 427.5,-228.5 427.5,-209.5 360.5,-209.5"/>
 <text text-anchor="middle" x="394" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_general</text>
 </a>
@@ -215,7 +215,7 @@
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="$condition_8h.html#a6a257a1407c9394b7def57701188422d" xlink:title="Returns whether classifier c1 has a condition more general than c2.">
+<g id="a_node11"><a xlink:href="condition_8h.html#a6a257a1407c9394b7def57701188422d" target="_top" xlink:title="Returns whether classifier c1 has a condition more general than c2.">
 <polygon fill="none" stroke="black" points="357,-171.5 357,-190.5 431,-190.5 431,-171.5 357,-171.5"/>
 <text text-anchor="middle" x="394" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_general</text>
 </a>
@@ -230,7 +230,7 @@
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" xlink:title="Returns the accuracy of a classifier.">
+<g id="a_node16"><a xlink:href="cl_8c.html#ad686da805e2ab762a3d32c321657775f" target="_top" xlink:title="Returns the accuracy of a classifier.">
 <polygon fill="none" stroke="black" points="258,-38.5 258,-57.5 303,-57.5 303,-38.5 258,-38.5"/>
 <text text-anchor="middle" x="280.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_acc</text>
 </a>
@@ -245,7 +245,7 @@
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
-<g id="a_node17"><a xlink:href="$cl_8c.html#a5fe8108de575672338fc8e602e469589" xlink:title="Updates the fitness of a classifier.">
+<g id="a_node17"><a xlink:href="cl_8c.html#a5fe8108de575672338fc8e602e469589" target="_top" xlink:title="Updates the fitness of a classifier.">
 <polygon fill="none" stroke="black" points="244.5,-0.5 244.5,-19.5 316.5,-19.5 316.5,-0.5 244.5,-0.5"/>
 <text text-anchor="middle" x="280.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_update_fit</text>
 </a>

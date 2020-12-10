@@ -1,5 +1,0 @@
-<map id="xcsf_retrieve_pop" name="xcsf_retrieve_pop">
-<area shape="rect" id="node1" title="Retrieves the previously stored population." alt="" coords="353,5,479,32"/>
-<area shape="rect" id="node2" href="$classXCS.html#af4e2f1db4a14a56a8aecf78c8bcc2a66" title="Retrieves the stored population, setting it as current." alt="" coords="204,5,305,32"/>
-<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,5,156,32"/>
-</map>

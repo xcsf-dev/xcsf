@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$xcs__supervised_8h.html#aac1347b7b83576d581a1b725b4c84e56" xlink:title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us...">
+<g id="a_node2"><a xlink:href="xcs__supervised_8h.html#aac1347b7b83576d581a1b725b4c84e56" target="_top" xlink:title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us...">
 <polygon fill="none" stroke="black" points="320.5,-114.5 320.5,-133.5 418.5,-133.5 418.5,-114.5 320.5,-114.5"/>
 <text text-anchor="middle" x="369.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_fit</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="$xcs__supervised_8h.html#a2dc51452fdb0be0e27fd3ebfe6041474" xlink:title="Calculates the XCSF predictions for the provided input.">
+<g id="a_node5"><a xlink:href="xcs__supervised_8h.html#a2dc51452fdb0be0e27fd3ebfe6041474" target="_top" xlink:title="Calculates the XCSF predictions for the provided input.">
 <polygon fill="none" stroke="black" points="310,-76.5 310,-95.5 429,-95.5 429,-76.5 310,-76.5"/>
 <text text-anchor="middle" x="369.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_predict</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="$xcs__supervised_8h.html#ae05de18a53511ba46b2a6a733c780580" xlink:title="Calculates the XCSF error for the input data.">
+<g id="a_node8"><a xlink:href="xcs__supervised_8h.html#ae05de18a53511ba46b2a6a733c780580" target="_top" xlink:title="Calculates the XCSF error for the input data.">
 <polygon fill="none" stroke="black" points="312.5,-38.5 312.5,-57.5 426.5,-57.5 426.5,-38.5 312.5,-38.5"/>
 <text text-anchor="middle" x="369.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_score</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="$xcs__supervised_8h.html#a56ec80025279785376a569ec0130c29f" xlink:title="Calculates the XCSF error for a subsample of the input data.">
+<g id="a_node10"><a xlink:href="xcs__supervised_8h.html#a56ec80025279785376a569ec0130c29f" target="_top" xlink:title="Calculates the XCSF error for a subsample of the input data.">
 <polygon fill="none" stroke="black" points="149,-0.5 149,-19.5 274,-19.5 274,-0.5 149,-0.5"/>
 <text text-anchor="middle" x="211.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_score_n</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" xlink:title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data.">
+<g id="a_node3"><a xlink:href="classXCS.html#a3f8168ffade2d933d0971625200f1d92" target="_top" xlink:title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data.">
 <polygon fill="none" stroke="black" points="185.5,-152.5 185.5,-171.5 237.5,-171.5 237.5,-152.5 185.5,-152.5"/>
 <text text-anchor="middle" x="211.5" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::fit</text>
 </a>
@@ -95,7 +95,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" xlink:title=" ">
+<g id="a_node4"><a xlink:href="main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="192.5,-114.5 192.5,-133.5 230.5,-133.5 230.5,-114.5 192.5,-114.5"/>
 <text text-anchor="middle" x="211.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>
@@ -110,7 +110,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="$classXCS.html#a7d0bfc2cf3447809fee4218f39921a81" xlink:title="Returns the XCSF prediction array for the provided input.">
+<g id="a_node6"><a xlink:href="classXCS.html#a7d0bfc2cf3447809fee4218f39921a81" target="_top" xlink:title="Returns the XCSF prediction array for the provided input.">
 <polygon fill="none" stroke="black" points="175,-76.5 175,-95.5 248,-95.5 248,-76.5 175,-76.5"/>
 <text text-anchor="middle" x="211.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::predict</text>
 </a>
@@ -125,7 +125,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" xlink:title=" ">
+<g id="a_node7"><a xlink:href="pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-76.5 0,-95.5 113,-95.5 113,-76.5 0,-76.5"/>
 <text text-anchor="middle" x="56.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">pybind11_init_wrapper</text>
 </a>
@@ -140,7 +140,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="$classXCS.html#a8be398df5d3f4333c9b0d19f48535609" xlink:title="Returns the error using N random samples from the provided data.">
+<g id="a_node9"><a xlink:href="classXCS.html#a8be398df5d3f4333c9b0d19f48535609" target="_top" xlink:title="Returns the error using N random samples from the provided data.">
 <polygon fill="none" stroke="black" points="22.5,-19.5 22.5,-38.5 90.5,-38.5 90.5,-19.5 22.5,-19.5"/>
 <text text-anchor="middle" x="56.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::score</text>
 </a>

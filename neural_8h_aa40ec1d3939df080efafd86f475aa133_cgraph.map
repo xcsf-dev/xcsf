@@ -1,5 +1,0 @@
-<map id="neural_pop" name="neural_pop">
-<area shape="rect" id="node1" title="Removes the layer at the head of a neural network." alt="" coords="5,5,91,32"/>
-<area shape="rect" id="node2" href="$neural_8c.html#a83df5976301963626a00cde220ea3fba" title="Removes a layer from a neural network." alt="" coords="139,5,245,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#ade9ed66a6ec6eff1c76db0a320826cce" title="Frees the memory used by the layer." alt="" coords="293,5,372,32"/>
-</map>

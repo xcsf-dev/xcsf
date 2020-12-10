@@ -1,5 +1,0 @@
-<map id="XCS::get_pop_mean_pred_layers" name="XCS::get_pop_mean_pred_layers">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,180,47"/>
-<area shape="rect" id="node2" href="$clset__neural_8c.html#aab856136c4498c44db62476faf8f4c6d" title="Calculates the mean number of prediction layers in the set." alt="" coords="228,13,391,39"/>
-<area shape="rect" id="node3" href="$pred__neural_8c.html#a185f1c6194af0b18fd006e40f15466de" title="Returns the number of layers within a neural network prediction." alt="" coords="439,13,569,39"/>
-</map>

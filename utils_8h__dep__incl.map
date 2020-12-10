@@ -1,5 +1,5 @@
 <map id="utils.h" name="utils.h">
-<area shape="rect" id="node1" title="Utility functions for random number handling, etc." alt="" coords="2131,5,2189,32"/>
+<area shape="rect" id="node1" title="Utility functions for random number handling, etc." alt="" coords="2198,5,2255,32"/>
 <area shape="rect" id="node2" href="$act__integer_8c.html" title="integer action functions." alt="" coords="5,80,101,107"/>
 <area shape="rect" id="node3" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="125,80,219,107"/>
 <area shape="rect" id="node4" href="$action_8c.html" title="Interface for classifier actions." alt="" coords="243,80,311,107"/>
@@ -20,24 +20,25 @@
 <area shape="rect" id="node19" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="1784,80,1845,107"/>
 <area shape="rect" id="node20" href="$neural__activations_8c.html" title="Neural network activation functions." alt="" coords="1869,80,2008,107"/>
 <area shape="rect" id="node21" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="2033,80,2135,107"/>
-<area shape="rect" id="node22" href="$neural__layer__avgpool_8c.html" title="An implementation of an average pooling layer." alt="" coords="2160,80,2315,107"/>
-<area shape="rect" id="node23" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="2339,80,2509,107"/>
-<area shape="rect" id="node24" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="2533,80,2720,107"/>
-<area shape="rect" id="node25" href="$neural__layer__dropout_8c.html" title="An implementation of a dropout layer." alt="" coords="2745,80,2898,107"/>
-<area shape="rect" id="node26" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="2922,80,3057,107"/>
-<area shape="rect" id="node27" href="$neural__layer__maxpool_8c.html" title="An implementation of a 2D maxpooling layer." alt="" coords="3081,80,3239,107"/>
-<area shape="rect" id="node28" href="$neural__layer__noise_8c.html" title="An implementation of a Gaussian noise adding layer." alt="" coords="3264,80,3405,107"/>
-<area shape="rect" id="node29" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="3430,80,3591,107"/>
-<area shape="rect" id="node30" href="$neural__layer__softmax_8c.html" title="An implementation of a softmax layer." alt="" coords="3616,80,3773,107"/>
-<area shape="rect" id="node31" href="$neural__layer__upsample_8c.html" title="An implementation of a 2D upsampling layer." alt="" coords="3798,80,3965,107"/>
-<area shape="rect" id="node32" href="$pa_8c.html" title="Prediction array functions." alt="" coords="3989,80,4035,107"/>
-<area shape="rect" id="node33" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="4060,80,4153,107"/>
-<area shape="rect" id="node34" href="$pred__rls_8c.html" title="Recursive least mean squares prediction functions." alt="" coords="4178,80,4257,107"/>
-<area shape="rect" id="node35" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="4281,80,4418,107"/>
-<area shape="rect" id="node36" href="$rule__dgp_8c.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="4443,80,4525,107"/>
-<area shape="rect" id="node37" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="4549,80,4645,107"/>
-<area shape="rect" id="node38" href="$sam_8c.html" title="Self&#45;adaptive mutation functions." alt="" coords="4669,80,4728,107"/>
-<area shape="rect" id="node39" href="$utils_8c.html" title="Utility functions for random number handling, etc." alt="" coords="4753,80,4810,107"/>
-<area shape="rect" id="node40" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="4834,80,4902,107"/>
-<area shape="rect" id="node41" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="4926,80,5050,107"/>
+<area shape="rect" id="node22" href="$neural__layer__args_8c.html" title="Functions operating on neural network arguments/constants." alt="" coords="2159,80,2294,107"/>
+<area shape="rect" id="node23" href="$neural__layer__avgpool_8c.html" title="An implementation of an average pooling layer." alt="" coords="2319,80,2473,107"/>
+<area shape="rect" id="node24" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="2497,80,2668,107"/>
+<area shape="rect" id="node25" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="2692,80,2879,107"/>
+<area shape="rect" id="node26" href="$neural__layer__dropout_8c.html" title="An implementation of a dropout layer." alt="" coords="2903,80,3057,107"/>
+<area shape="rect" id="node27" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="3081,80,3215,107"/>
+<area shape="rect" id="node28" href="$neural__layer__maxpool_8c.html" title="An implementation of a 2D maxpooling layer." alt="" coords="3239,80,3398,107"/>
+<area shape="rect" id="node29" href="$neural__layer__noise_8c.html" title="An implementation of a Gaussian noise adding layer." alt="" coords="3423,80,3564,107"/>
+<area shape="rect" id="node30" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="3589,80,3750,107"/>
+<area shape="rect" id="node31" href="$neural__layer__softmax_8c.html" title="An implementation of a softmax layer." alt="" coords="3775,80,3932,107"/>
+<area shape="rect" id="node32" href="$neural__layer__upsample_8c.html" title="An implementation of a 2D upsampling layer." alt="" coords="3957,80,4123,107"/>
+<area shape="rect" id="node33" href="$pa_8c.html" title="Prediction array functions." alt="" coords="4147,80,4194,107"/>
+<area shape="rect" id="node34" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="4219,80,4312,107"/>
+<area shape="rect" id="node35" href="$pred__rls_8c.html" title="Recursive least mean squares prediction functions." alt="" coords="4337,80,4415,107"/>
+<area shape="rect" id="node36" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="4439,80,4577,107"/>
+<area shape="rect" id="node37" href="$rule__dgp_8c.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="4601,80,4684,107"/>
+<area shape="rect" id="node38" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="4708,80,4804,107"/>
+<area shape="rect" id="node39" href="$sam_8c.html" title="Self&#45;adaptive mutation functions." alt="" coords="4828,80,4887,107"/>
+<area shape="rect" id="node40" href="$utils_8c.html" title="Utility functions for random number handling, etc." alt="" coords="4911,80,4969,107"/>
+<area shape="rect" id="node41" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="4993,80,5061,107"/>
+<area shape="rect" id="node42" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="5085,80,5209,107"/>
 </map>

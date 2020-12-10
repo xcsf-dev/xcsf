@@ -1,8 +1,0 @@
-<map id="act_integer_mutate" name="act_integer_mutate">
-<area shape="rect" id="node1" title="Mutates an integer action." alt="" coords="5,23,139,50"/>
-<area shape="rect" id="node2" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="488,23,585,50"/>
-<area shape="rect" id="node3" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="321,23,440,50"/>
-<area shape="rect" id="node4" href="$sam_8c.html#a8dfbd425ab3513d47726620e94fc861c" title="Self&#45;adapts mutation rates." alt="" coords="187,74,273,100"/>
-<area shape="rect" id="node5" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="352,124,409,151"/>
-<area shape="rect" id="node6" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="334,175,427,202"/>
-</map>

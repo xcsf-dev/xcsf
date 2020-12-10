@@ -1,8 +1,0 @@
-<map id="graph_output" name="graph_output">
-<area shape="rect" id="node1" title="Returns the current state of a specified node in the graph." alt="" coords="389,56,487,83"/>
-<area shape="rect" id="node2" href="$cond__dgp_8h.html#a8bb6fc747fba92c9a717c1b26f5ffca7" title=" " alt="" coords="204,5,325,32"/>
-<area shape="rect" id="node4" href="$rule__dgp_8h.html#ad20d1e81deeb95357c02154547c1669e" title=" " alt="" coords="188,56,341,83"/>
-<area shape="rect" id="node6" href="$rule__dgp_8h.html#a85eb12064cc539b1ec1fea93ee5f5e3e" title=" " alt="" coords="190,107,339,133"/>
-<area shape="rect" id="node3" href="$cond__dgp_8h.html#a585a3476b4473b1b19159a7d55daa6ae" title=" " alt="" coords="14,5,131,32"/>
-<area shape="rect" id="node5" href="$rule__dgp_8h.html#ac1f0b0c11b92852e82b00ad7b4bb169f" title=" " alt="" coords="5,81,140,108"/>
-</map>

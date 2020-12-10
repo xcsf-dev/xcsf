@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer_8c.html#acead84ca91e1c410f24bc8b60517415b" target="_top" xlink:title="Prints layer input parameters.">
+<g id="a_node2"><a xlink:href="neural__layer__args_8c.html#acead84ca91e1c410f24bc8b60517415b" target="_top" xlink:title="Prints layer input parameters.">
 <polygon fill="none" stroke="black" points="835,-190.5 835,-209.5 952,-209.5 952,-190.5 835,-190.5"/>
 <text text-anchor="middle" x="893.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_print_inputs</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="neural__layer_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" target="_top" xlink:title="Checks input layer arguments are valid.">
+<g id="a_node14"><a xlink:href="neural__layer__args_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" target="_top" xlink:title="Checks input layer arguments are valid.">
 <polygon fill="none" stroke="black" points="843,-109 843,-139 944,-139 944,-109 843,-109"/>
 <text text-anchor="start" x="851" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_validate</text>
 <text text-anchor="middle" x="893.5" y="-116" font-family="Helvetica,sans-Serif" font-size="10.00">_inputs</text>
@@ -51,7 +51,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer_8h.html#af08dab51e0e2d6380af376bb33708f17" target="_top" xlink:title="Prints layer parameters.">
+<g id="a_node3"><a xlink:href="neural__layer__args_8h.html#af08dab51e0e2d6380af376bb33708f17" target="_top" xlink:title="Prints layer parameters.">
 <polygon fill="none" stroke="black" points="705.5,-207.5 705.5,-226.5 791.5,-226.5 791.5,-207.5 705.5,-207.5"/>
 <text text-anchor="middle" x="748.5" y="-214.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_print</text>
 </a>
@@ -229,7 +229,7 @@
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="neural__layer_8h.html#a492de2de029ff6124f8fe466ad6b0d80" target="_top" xlink:title="Checks network layer arguments are valid.">
+<g id="a_node15"><a xlink:href="neural__layer__args_8h.html#a492de2de029ff6124f8fe466ad6b0d80" target="_top" xlink:title="Checks network layer arguments are valid.">
 <polygon fill="none" stroke="black" points="698,-76.5 698,-95.5 799,-95.5 799,-76.5 698,-76.5"/>
 <text text-anchor="middle" x="748.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_validate</text>
 </a>

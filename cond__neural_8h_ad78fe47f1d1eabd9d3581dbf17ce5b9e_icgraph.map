@@ -1,6 +1,0 @@
-<map id="cond_neural_neurons" name="cond_neural_neurons">
-<area shape="rect" id="node1" title=" " alt="" coords="656,13,801,39"/>
-<area shape="rect" id="node2" href="$clset__neural_8h.html#a413431b03c584b8d72229b13ea7e3ada" title="Calculates the mean number of condition neurons for a given layer." alt="" coords="431,13,608,39"/>
-<area shape="rect" id="node3" href="$classXCS.html#acab219687be76aa53a132cdf89b303c6" title=" " alt="" coords="204,5,383,47"/>
-<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,13,156,39"/>
-</map>

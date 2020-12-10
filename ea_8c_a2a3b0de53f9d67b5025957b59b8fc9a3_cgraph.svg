@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" xlink:title="Frees the memory used by a classifier.">
+<g id="a_node2"><a xlink:href="cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" target="_top" xlink:title="Frees the memory used by a classifier.">
 <polygon fill="none" stroke="black" points="213.5,-152.5 213.5,-171.5 259.5,-171.5 259.5,-152.5 213.5,-152.5"/>
 <text text-anchor="middle" x="236.5" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_free</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" xlink:title="Adds a classifier to the set.">
+<g id="a_node6"><a xlink:href="clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" target="_top" xlink:title="Adds a classifier to the set.">
 <polygon fill="none" stroke="black" points="207,-114.5 207,-133.5 266,-133.5 266,-114.5 207,-114.5"/>
 <text text-anchor="middle" x="236.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_add</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="$ea_8c.html#ac3134366cd64189d6386a3cf014987b7" xlink:title="Performs evolutionary algorithm subsumption.">
+<g id="a_node7"><a xlink:href="ea_8c.html#ac3134366cd64189d6386a3cf014987b7" target="_top" xlink:title="Performs evolutionary algorithm subsumption.">
 <polygon fill="none" stroke="black" points="84,-76.5 84,-95.5 156,-95.5 156,-76.5 84,-76.5"/>
 <text text-anchor="middle" x="120" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">ea_subsume</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" xlink:title="Frees the memory used by the classifier action.">
+<g id="a_node3"><a xlink:href="action_8h.html#a81912970283c86f80c5b7a38f1865ebd" target="_top" xlink:title="Frees the memory used by the classifier action.">
 <polygon fill="none" stroke="black" points="328,-190.5 328,-209.5 380,-209.5 380,-190.5 328,-190.5"/>
 <text text-anchor="middle" x="354" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_free</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" xlink:title="Frees the memory used by the classifier condition.">
+<g id="a_node4"><a xlink:href="condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" target="_top" xlink:title="Frees the memory used by the classifier condition.">
 <polygon fill="none" stroke="black" points="324.5,-152.5 324.5,-171.5 383.5,-171.5 383.5,-152.5 324.5,-152.5"/>
 <text text-anchor="middle" x="354" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_free</text>
 </a>
@@ -95,7 +95,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" xlink:title="Frees the memory used by the classifier prediction.">
+<g id="a_node5"><a xlink:href="prediction_8h.html#af19eafd52548ede9b90594c8b8949098" target="_top" xlink:title="Frees the memory used by the classifier prediction.">
 <polygon fill="none" stroke="black" points="325.5,-114.5 325.5,-133.5 382.5,-133.5 382.5,-114.5 325.5,-114.5"/>
 <text text-anchor="middle" x="354" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_free</text>
 </a>
@@ -122,7 +122,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="$cl_8c.html#a702d046abd4a69246f5bfd302c523f92" xlink:title="Returns whether classifier c1 is more general than c2.">
+<g id="a_node8"><a xlink:href="cl_8c.html#a702d046abd4a69246f5bfd302c523f92" target="_top" xlink:title="Returns whether classifier c1 is more general than c2.">
 <polygon fill="none" stroke="black" points="206,-76.5 206,-95.5 267,-95.5 267,-76.5 206,-76.5"/>
 <text text-anchor="middle" x="236.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_general</text>
 </a>
@@ -137,7 +137,7 @@
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="$cl_8c.html#afb88481d6c45d9a8869936cd5b5d9fc1" xlink:title="Returns whether a classifier is a potential subsumer.">
+<g id="a_node11"><a xlink:href="cl_8c.html#afb88481d6c45d9a8869936cd5b5d9fc1" target="_top" xlink:title="Returns whether a classifier is a potential subsumer.">
 <polygon fill="none" stroke="black" points="200.5,-38.5 200.5,-57.5 272.5,-57.5 272.5,-38.5 200.5,-38.5"/>
 <text text-anchor="middle" x="236.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_subsumer</text>
 </a>
@@ -152,7 +152,7 @@
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" xlink:title="Returns a uniform random integer [min,max] not inclusive of max.">
+<g id="a_node12"><a xlink:href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" target="_top" xlink:title="Returns a uniform random integer [min,max] not inclusive of max.">
 <polygon fill="none" stroke="black" points="192,-0.5 192,-19.5 281,-19.5 281,-0.5 192,-0.5"/>
 <text text-anchor="middle" x="236.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform_int</text>
 </a>
@@ -167,7 +167,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="$action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d" xlink:title="Returns whether the action of classifier c1 is more general than c2.">
+<g id="a_node9"><a xlink:href="action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d" target="_top" xlink:title="Returns whether the action of classifier c1 is more general than c2.">
 <polygon fill="none" stroke="black" points="320.5,-38.5 320.5,-57.5 387.5,-57.5 387.5,-38.5 320.5,-38.5"/>
 <text text-anchor="middle" x="354" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_general</text>
 </a>
@@ -182,7 +182,7 @@
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="$condition_8h.html#a6a257a1407c9394b7def57701188422d" xlink:title="Returns whether classifier c1 has a condition more general than c2.">
+<g id="a_node10"><a xlink:href="condition_8h.html#a6a257a1407c9394b7def57701188422d" target="_top" xlink:title="Returns whether classifier c1 has a condition more general than c2.">
 <polygon fill="none" stroke="black" points="317,-76.5 317,-95.5 391,-95.5 391,-76.5 317,-76.5"/>
 <text text-anchor="middle" x="354" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_general</text>
 </a>
@@ -197,7 +197,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" xlink:title="Returns a uniform random float [min,max].">
+<g id="a_node13"><a xlink:href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" target="_top" xlink:title="Returns a uniform random float [min,max].">
 <polygon fill="none" stroke="black" points="317.5,-0.5 317.5,-19.5 390.5,-19.5 390.5,-0.5 317.5,-0.5"/>
 <text text-anchor="middle" x="354" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform</text>
 </a>

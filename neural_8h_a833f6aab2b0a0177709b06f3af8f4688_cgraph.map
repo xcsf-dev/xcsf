@@ -1,9 +1,0 @@
-<map id="neural_load" name="neural_load">
-<area shape="rect" id="node1" title="Reads a neural network from a file." alt="" coords="5,107,93,133"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#ae63f8af2add5b111ec9656b8fc616a2c" title="Initialises a layer to default values." alt="" coords="156,5,231,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#a6aeb7726ad2520738221c0be4f1f56a9" title="Reads the layer from a file." alt="" coords="153,56,234,83"/>
-<area shape="rect" id="node4" href="$neural__layer_8c.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="141,107,245,133"/>
-<area shape="rect" id="node5" href="$neural_8c.html#a71c91724de2afdf7358f8a2095d50db3" title="Initialises an empty neural network." alt="" coords="153,157,234,184"/>
-<area shape="rect" id="node6" href="$neural_8c.html#a3ae44122ecbd5f15bd29cd832155e792" title="Inserts a layer at the head of a neural network." alt="" coords="147,208,239,235"/>
-<area shape="rect" id="node7" href="$neural_8c.html#a95e17464f65861a0ab2dbb5a19b3e5c4" title="Inserts a layer into a neural network." alt="" coords="293,208,389,235"/>
-</map>

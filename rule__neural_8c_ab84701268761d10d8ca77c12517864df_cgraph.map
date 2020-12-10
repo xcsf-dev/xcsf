@@ -1,9 +1,0 @@
-<map id="rule_neural_cond_load" name="rule_neural_cond_load">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,156,133"/>
-<area shape="rect" id="node2" href="$neural_8c.html#aa35e85939d18954195ba7da160251555" title="Reads a neural network from a binary file." alt="" coords="204,107,292,133"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#ab67d17f74ef104965ef77e9f3eb75043" title="Initialises a layer to default values." alt="" coords="368,5,443,32"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#a64e95f97472bd559dc674c52af7e07a1" title="Reads the layer from a binary file." alt="" coords="365,56,446,83"/>
-<area shape="rect" id="node5" href="$neural__layer_8c.html#a0a72d017a87458d51090d73aaf015760" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="353,107,457,133"/>
-<area shape="rect" id="node6" href="$neural_8c.html#a56885a11f96ebb0fecf492bfbfa9f456" title="Initialises an empty neural network." alt="" coords="365,157,446,184"/>
-<area shape="rect" id="node7" href="$neural_8c.html#a6985bd539c0fae51bef3e5f715669286" title="Inserts a layer into a neural network." alt="" coords="340,208,471,235"/>
-</map>

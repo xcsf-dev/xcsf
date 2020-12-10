@@ -1,5 +1,0 @@
-<map id="XCS::get_pop_mean_pred_eta" name="XCS::get_pop_mean_pred_eta">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,205,32"/>
-<area shape="rect" id="node2" href="$clset__neural_8c.html#a584c4d47a112fc4dab6e9b118a685e5e" title="Calculates the mean prediction layer ETA of classifiers in the set." alt="" coords="253,5,400,32"/>
-<area shape="rect" id="node3" href="$pred__neural_8c.html#abb0f86e4555ee62a1505d1f1707b506d" title="Returns the gradient descent rate of a neural prediction layer." alt="" coords="448,5,563,32"/>
-</map>

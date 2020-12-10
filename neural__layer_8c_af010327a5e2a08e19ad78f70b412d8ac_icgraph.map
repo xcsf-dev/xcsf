@@ -1,7 +1,0 @@
-<map id="layer_mutate_connectivity" name="layer_mutate_connectivity">
-<area shape="rect" id="node1" title="Mutates a layer&#39;s connectivity by zeroing weights." alt="" coords="447,64,621,91"/>
-<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#ae2e0c719e5f636c5afc5d8e332a4fc97" title=" " alt="" coords="242,5,381,32"/>
-<area shape="rect" id="node4" href="$neural__layer__connected_8h.html#ab59f3e8b771bc16a96229f1fe22c840a" title=" " alt="" coords="232,57,391,98"/>
-<area shape="rect" id="node5" href="$neural__layer__convolutional_8h.html#a124f66b8f961910e4c8ea4e870400f84" title=" " alt="" coords="224,122,399,163"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8h.html#a4e0505e49724d287d9fd97d49931905d" title=" " alt="" coords="5,5,176,32"/>
-</map>

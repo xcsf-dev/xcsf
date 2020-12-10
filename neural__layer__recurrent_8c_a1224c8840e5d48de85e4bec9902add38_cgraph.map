@@ -1,4 +1,0 @@
-<map id="neural_layer_recurrent_backward" name="neural_layer_recurrent_backward">
-<area shape="rect" id="node1" title="Backward propagates a recurrent layer." alt="" coords="5,5,156,47"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#a6966544bb6a9a50c006d6d39083434ae" title="Backward propagates the error through a layer." alt="" coords="204,13,317,39"/>
-</map>

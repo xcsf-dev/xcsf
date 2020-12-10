@@ -1,4 +1,0 @@
-<map id="neural_layer_remove" name="neural_layer_remove">
-<area shape="rect" id="node1" title="Removes a layer from a neural network." alt="" coords="5,5,148,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#a6649c59b6dc219c6785f14a6414a41c4" title="Frees the memory used by the layer." alt="" coords="196,5,275,32"/>
-</map>

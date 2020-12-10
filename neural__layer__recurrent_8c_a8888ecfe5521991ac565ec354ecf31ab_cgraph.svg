@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$neural__layer_8c.html#a50025a1c69fa89d1ee28171be85d8f7a" xlink:title="Mutates a layer&#39;s activation function by random selection.">
+<g id="a_node2"><a xlink:href="neural__layer_8c.html#a50025a1c69fa89d1ee28171be85d8f7a" target="_top" xlink:title="Mutates a layer&#39;s activation function by random selection.">
 <polygon fill="none" stroke="black" points="128,-19.5 128,-38.5 246,-38.5 246,-19.5 128,-19.5"/>
 <text text-anchor="middle" x="187" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_mutate_functions</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" xlink:title="Returns a uniform random float [min,max].">
+<g id="a_node3"><a xlink:href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" target="_top" xlink:title="Returns a uniform random float [min,max].">
 <polygon fill="none" stroke="black" points="407,-19.5 407,-38.5 480,-38.5 480,-19.5 407,-19.5"/>
 <text text-anchor="middle" x="443.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" xlink:title="Returns a uniform random integer [min,max] not inclusive of max.">
+<g id="a_node4"><a xlink:href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" target="_top" xlink:title="Returns a uniform random integer [min,max] not inclusive of max.">
 <polygon fill="none" stroke="black" points="282,-0.5 282,-19.5 371,-19.5 371,-0.5 282,-0.5"/>
 <text text-anchor="middle" x="326.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform_int</text>
 </a>

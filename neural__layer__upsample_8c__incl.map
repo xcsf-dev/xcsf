@@ -1,14 +1,15 @@
 <map id="neural_layer_upsample.c" name="neural_layer_upsample.c">
-<area shape="rect" id="node1" title="An implementation of a 2D upsampling layer." alt="" coords="279,5,446,32"/>
-<area shape="rect" id="node2" href="$neural__layer__upsample_8h.html" title="An implementation of a 2D upsampling layer." alt="" coords="143,80,310,107"/>
-<area shape="rect" id="node10" href="$neural__activations_8h.html" title="Neural network activation functions." alt="" coords="416,80,555,107"/>
-<area shape="rect" id="node12" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="334,80,391,107"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="175,155,278,181"/>
-<area shape="rect" id="node4" href="$neural_8h.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="193,229,261,256"/>
+<area shape="rect" id="node1" title="An implementation of a 2D upsampling layer." alt="" coords="301,5,467,32"/>
+<area shape="rect" id="node2" href="$neural__layer__upsample_8h.html" title="An implementation of a 2D upsampling layer." alt="" coords="165,80,331,107"/>
+<area shape="rect" id="node11" href="$neural__activations_8h.html" title="Neural network activation functions." alt="" coords="437,80,576,107"/>
+<area shape="rect" id="node13" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="355,80,413,107"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="197,155,299,181"/>
+<area shape="rect" id="node4" href="$neural_8h.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="103,229,171,256"/>
+<area shape="rect" id="node10" href="$neural__layer__args_8h.html" title="Functions operating on neural network arguments/constants." alt="" coords="195,229,330,256"/>
 <area shape="rect" id="node5" title=" " alt="" coords="5,304,80,331"/>
 <area shape="rect" id="node6" title=" " alt="" coords="105,304,170,331"/>
-<area shape="rect" id="node7" title=" " alt="" coords="284,304,345,331"/>
-<area shape="rect" id="node8" title=" " alt="" coords="369,304,433,331"/>
+<area shape="rect" id="node7" title=" " alt="" coords="289,304,351,331"/>
+<area shape="rect" id="node8" title=" " alt="" coords="383,304,447,331"/>
 <area shape="rect" id="node9" title=" " alt="" coords="194,304,259,331"/>
-<area shape="rect" id="node11" title=" " alt="" coords="446,155,509,181"/>
+<area shape="rect" id="node12" title=" " alt="" coords="466,155,529,181"/>
 </map>

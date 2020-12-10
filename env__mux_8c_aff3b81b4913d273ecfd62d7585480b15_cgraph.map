@@ -14,8 +14,8 @@
 <area shape="rect" id="node82" href="$prediction_8c.html#af2e3b26751cb8f9af4c608e534ee6894" title="Initialises default prediction parameters." alt="" coords="307,341,450,368"/>
 <area shape="rect" id="node4" href="$action_8c.html#a4ef2c098a36e5937c1171ccb5b9304a5" title="Initialises default neural action parameters." alt="" coords="545,57,698,98"/>
 <area shape="rect" id="node7" href="$action_8c.html#a1a07a69a801b65052f3679d317507363" title=" " alt="" coords="543,5,700,32"/>
-<area shape="rect" id="node5" href="$neural__layer_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="805,207,922,233"/>
-<area shape="rect" id="node6" href="$neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="810,156,917,183"/>
+<area shape="rect" id="node5" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="805,207,922,233"/>
+<area shape="rect" id="node6" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="810,156,917,183"/>
 <area shape="rect" id="node9" href="$condition_8c.html#a55966dbe2d7405bc8457c44adf1a7e55" title="Initialises default DGP condition parameters." alt="" coords="534,779,709,805"/>
 <area shape="rect" id="node16" href="$condition_8c.html#aecbe8da74bb7593c8562b0e58aee2e80" title="Initialises default tree GP condition parameters." alt="" coords="538,829,705,856"/>
 <area shape="rect" id="node26" href="$condition_8c.html#a4af7104f5b202ebd68ffaa21e35f690d" title="Initialises default neural condition parameters." alt="" coords="548,713,695,754"/>

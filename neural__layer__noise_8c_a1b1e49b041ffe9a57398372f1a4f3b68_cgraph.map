@@ -1,4 +1,0 @@
-<map id="neural_layer_noise_init" name="neural_layer_noise_init">
-<area shape="rect" id="node1" title="Initialises a noise layer." alt="" coords="5,5,160,32"/>
-<area shape="rect" id="node2" href="$neural__layer__noise_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a noise layer." alt="" coords="208,5,347,32"/>
-</map>

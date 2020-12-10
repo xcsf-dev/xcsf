@@ -1,5 +1,0 @@
-<map id="pred_param_neural_defaults" name="pred_param_neural_defaults">
-<area shape="rect" id="node1" title="Initialises default neural prediction parameters." alt="" coords="5,31,191,57"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a46e0c002841fd309be015b1ee0186cd7" title="Creates and returns a copy of specified layer parameters." alt="" coords="239,5,356,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#a65346ec6bb4e55b3fe1583d3c9a20d4e" title="Sets layer parameters to default values." alt="" coords="244,56,351,83"/>
-</map>

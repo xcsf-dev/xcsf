@@ -8,11 +8,11 @@
 <area shape="rect" id="node17" href="$condition_8c.html#af5a052e347755190271b32d8b09ec026" title="Returns a string representation of a condition type from an integer." alt="" coords="181,259,348,285"/>
 <area shape="rect" id="node4" href="$dgp_8c.html#a82bf94151f10f27b38b15beb14d86888" title="Prints DGP parameters." alt="" coords="399,56,517,83"/>
 <area shape="rect" id="node6" href="$gp_8c.html#a3a8ed73923e43a072adc4d92e17b594b" title="Prints Tree GP parameters." alt="" coords="404,107,512,133"/>
-<area shape="rect" id="node8" href="$neural__layer_8c.html#af08dab51e0e2d6380af376bb33708f17" title="Prints layer parameters." alt="" coords="401,157,515,184"/>
-<area shape="rect" id="node9" href="$neural__layer_8c.html#a56dcbd4bdf90e80ef81c676df60ff8b3" title="Prints layer activation function parameters." alt="" coords="565,56,743,83"/>
-<area shape="rect" id="node11" href="$neural__layer_8c.html#ac617200b2ee8792381b8297d45fee174" title="Prints layer evolutionary operator parameters." alt="" coords="583,107,725,133"/>
-<area shape="rect" id="node12" href="$neural__layer_8c.html#acead84ca91e1c410f24bc8b60517415b" title="Prints layer input parameters." alt="" coords="576,157,732,184"/>
-<area shape="rect" id="node14" href="$neural__layer_8c.html#add3ff102fe13b879aa177e001e65a86c" title="Prints layer gradient descent parameters." alt="" coords="583,208,725,235"/>
+<area shape="rect" id="node8" href="$neural__layer__args_8c.html#af08dab51e0e2d6380af376bb33708f17" title="Prints layer parameters." alt="" coords="401,157,515,184"/>
+<area shape="rect" id="node9" href="$neural__layer__args_8c.html#a56dcbd4bdf90e80ef81c676df60ff8b3" title="Prints layer activation function parameters." alt="" coords="565,56,743,83"/>
+<area shape="rect" id="node11" href="$neural__layer__args_8c.html#ac617200b2ee8792381b8297d45fee174" title="Prints layer evolutionary operator parameters." alt="" coords="583,107,725,133"/>
+<area shape="rect" id="node12" href="$neural__layer__args_8c.html#acead84ca91e1c410f24bc8b60517415b" title="Prints layer input parameters." alt="" coords="576,157,732,184"/>
+<area shape="rect" id="node14" href="$neural__layer__args_8c.html#add3ff102fe13b879aa177e001e65a86c" title="Prints layer gradient descent parameters." alt="" coords="583,208,725,235"/>
 <area shape="rect" id="node15" href="$neural__layer_8c.html#a0e2222a263f09abb981bc7273cd88d7e" title="Returns a string representation of a layer type from an integer." alt="" coords="583,259,725,285"/>
 <area shape="rect" id="node10" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="791,56,949,83"/>
 <area shape="rect" id="node13" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="793,157,947,184"/>

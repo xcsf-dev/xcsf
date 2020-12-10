@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$classXCS.html#a88f48cdccb3af0fb924f97633e38df94" xlink:title="Returns the reinforcement learning system prediction error.">
+<g id="a_node2"><a xlink:href="classXCS.html#a88f48cdccb3af0fb924f97633e38df94" target="_top" xlink:title="Returns the reinforcement learning system prediction error.">
 <polygon fill="none" stroke="black" points="174.5,-38.5 174.5,-57.5 237.5,-57.5 237.5,-38.5 174.5,-38.5"/>
 <text text-anchor="middle" x="206" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::error</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" xlink:title="Executes a reinforcement learning trial using a built&#45;in environment.">
+<g id="a_node3"><a xlink:href="xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" target="_top" xlink:title="Executes a reinforcement learning trial using a built&#45;in environment.">
 <polygon fill="none" stroke="black" points="174,-0.5 174,-19.5 238,-19.5 238,-0.5 174,-0.5"/>
 <text text-anchor="middle" x="206" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_trial</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" xlink:title="Executes a reinforcement learning experiment.">
+<g id="a_node4"><a xlink:href="xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" target="_top" xlink:title="Executes a reinforcement learning experiment.">
 <polygon fill="none" stroke="black" points="74,-0.5 74,-19.5 138,-19.5 138,-0.5 74,-0.5"/>
 <text text-anchor="middle" x="106" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_exp</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" xlink:title=" ">
+<g id="a_node5"><a xlink:href="main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 38,-19.5 38,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="19" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>

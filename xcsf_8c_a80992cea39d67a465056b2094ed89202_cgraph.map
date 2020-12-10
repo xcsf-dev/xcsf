@@ -1,9 +1,0 @@
-<map id="xcsf_print_pop" name="xcsf_print_pop">
-<area shape="rect" id="node1" title="Prints the current XCSF population." alt="" coords="5,81,112,108"/>
-<area shape="rect" id="node2" href="$clset_8c.html#a58a5237e8441e4900c0decb003da659c" title="Prints the classifiers in the set." alt="" coords="160,81,243,108"/>
-<area shape="rect" id="node3" href="$cl_8c.html#a8e9482a760bb27f44fe1a045b8a869e5" title="Prints a classifier." alt="" coords="291,81,355,108"/>
-<area shape="rect" id="node4" href="$action_8h.html#a6c954556c09b79fe6cd741a50ac8538f" title="Prints the classifier action." alt="" coords="408,5,480,32"/>
-<area shape="rect" id="node5" href="$cl_8c.html#a1358864e37832999f9688487ab8f8870" title="Returns the fraction of observed inputs matched by a classifier." alt="" coords="408,56,480,83"/>
-<area shape="rect" id="node6" href="$condition_8h.html#a20491b078e8cccf911e34338edcc69ba" title="Prints the classifier condition." alt="" coords="403,107,485,133"/>
-<area shape="rect" id="node7" href="$prediction_8h.html#ac6e6364fe3504c597e286a5d2bd34d2c" title="Prints the classifier prediction." alt="" coords="405,157,483,184"/>
-</map>

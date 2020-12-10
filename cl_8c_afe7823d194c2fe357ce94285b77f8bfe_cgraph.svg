@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$action_8h.html#a6c954556c09b79fe6cd741a50ac8538f" xlink:title="Prints the classifier action.">
+<g id="a_node2"><a xlink:href="action_8h.html#a6c954556c09b79fe6cd741a50ac8538f" target="_top" xlink:title="Prints the classifier action.">
 <polygon fill="none" stroke="black" points="88,-114.5 88,-133.5 142,-133.5 142,-114.5 88,-114.5"/>
 <text text-anchor="middle" x="115" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_print</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$cl_8c.html#a1358864e37832999f9688487ab8f8870" xlink:title="Returns the fraction of observed inputs matched by a classifier.">
+<g id="a_node3"><a xlink:href="cl_8c.html#a1358864e37832999f9688487ab8f8870" target="_top" xlink:title="Returns the fraction of observed inputs matched by a classifier.">
 <polygon fill="none" stroke="black" points="88,-76.5 88,-95.5 142,-95.5 142,-76.5 88,-76.5"/>
 <text text-anchor="middle" x="115" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_mfrac</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$condition_8h.html#a20491b078e8cccf911e34338edcc69ba" xlink:title="Prints the classifier condition.">
+<g id="a_node4"><a xlink:href="condition_8h.html#a20491b078e8cccf911e34338edcc69ba" target="_top" xlink:title="Prints the classifier condition.">
 <polygon fill="none" stroke="black" points="84,-38.5 84,-57.5 146,-57.5 146,-38.5 84,-38.5"/>
 <text text-anchor="middle" x="115" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_print</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="$prediction_8h.html#ac6e6364fe3504c597e286a5d2bd34d2c" xlink:title="Prints the classifier prediction.">
+<g id="a_node5"><a xlink:href="prediction_8h.html#ac6e6364fe3504c597e286a5d2bd34d2c" target="_top" xlink:title="Prints the classifier prediction.">
 <polygon fill="none" stroke="black" points="85.5,-0.5 85.5,-19.5 144.5,-19.5 144.5,-0.5 85.5,-0.5"/>
 <text text-anchor="middle" x="115" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_print</text>
 </a>

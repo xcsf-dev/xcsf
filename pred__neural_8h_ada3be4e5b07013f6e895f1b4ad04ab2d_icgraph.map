@@ -1,6 +1,0 @@
-<map id="pred_neural_eta" name="pred_neural_eta">
-<area shape="rect" id="node1" title=" " alt="" coords="647,5,761,32"/>
-<area shape="rect" id="node2" href="$clset__neural_8h.html#adb5aa66abd7938d0eb43a80362e372f6" title="Calculates the mean prediction layer ETA of classifiers in the set." alt="" coords="452,5,599,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#a445f93ee7cf4b0011d2656bd785d59eb" title=" " alt="" coords="204,5,404,32"/>
-<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,5,156,32"/>
-</map>

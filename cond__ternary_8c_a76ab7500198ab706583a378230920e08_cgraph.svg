@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$utils_8h.html#ac0f9e38a3bca200fe25abd29ce3672cc" xlink:title="Generates a binary string from a float.">
+<g id="a_node2"><a xlink:href="utils_8h.html#ac0f9e38a3bca200fe25abd29ce3672cc" target="_top" xlink:title="Generates a binary string from a float.">
 <polygon fill="none" stroke="black" points="138,-38.5 138,-57.5 218,-57.5 218,-38.5 138,-38.5"/>
 <text text-anchor="middle" x="178" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">float_to_binary</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" xlink:title="Returns a uniform random float [min,max].">
+<g id="a_node3"><a xlink:href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" target="_top" xlink:title="Returns a uniform random float [min,max].">
 <polygon fill="none" stroke="black" points="141.5,-0.5 141.5,-19.5 214.5,-19.5 214.5,-0.5 141.5,-0.5"/>
 <text text-anchor="middle" x="178" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform</text>
 </a>

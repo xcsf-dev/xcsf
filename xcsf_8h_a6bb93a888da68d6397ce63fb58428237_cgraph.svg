@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" target="_top" xlink:title="Sets layer parameters to default values.">
+<g id="a_node3"><a xlink:href="neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" target="_top" xlink:title="Sets layer parameters to default values.">
 <polygon fill="none" stroke="black" points="272,-114.5 272,-133.5 352,-133.5 352,-114.5 272,-114.5"/>
 <text text-anchor="middle" x="312" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_init</text>
 </a>

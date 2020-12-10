@@ -1,6 +1,0 @@
-<map id="graph_mutate_cycles" name="graph_mutate_cycles">
-<area shape="rect" id="node1" title="Mutates the number of update cycles performed by a DGP graph." alt="" coords="356,31,503,57"/>
-<area shape="rect" id="node2" href="$dgp_8h.html#acba078fef9f3ee44084c6f70ee36f07d" title="Mutates a specified DGP graph." alt="" coords="207,31,308,57"/>
-<area shape="rect" id="node3" href="$cond__dgp_8h.html#a8c6aa1ea69d87295dec888622f6d4577" title=" " alt="" coords="19,5,145,32"/>
-<area shape="rect" id="node4" href="$rule__dgp_8h.html#a399e362d298b510125264e2fdfaaf6b6" title=" " alt="" coords="5,56,159,83"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="layer_weight_print" name="layer_weight_print">
-<area shape="rect" id="node1" title="Prints a layer&#39;s weights and biases." alt="" coords="228,46,355,73"/>
-<area shape="rect" id="node2" href="$neural__layer__connected_8h.html#a737d4cdd1236c76568fd08297d361fb2" title=" " alt="" coords="13,5,172,47"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8h.html#af5aa6852ba521eaab212799d6faf1209" title=" " alt="" coords="5,71,180,112"/>
-</map>

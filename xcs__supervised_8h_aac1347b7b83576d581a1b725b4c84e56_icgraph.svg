@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" xlink:title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data.">
+<g id="a_node2"><a xlink:href="classXCS.html#a3f8168ffade2d933d0971625200f1d92" target="_top" xlink:title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data.">
 <polygon fill="none" stroke="black" points="0,-38.5 0,-57.5 52,-57.5 52,-38.5 0,-38.5"/>
 <text text-anchor="middle" x="26" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::fit</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" xlink:title=" ">
+<g id="a_node3"><a xlink:href="main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="7,-0.5 7,-19.5 45,-19.5 45,-0.5 7,-0.5"/>
 <text text-anchor="middle" x="26" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>

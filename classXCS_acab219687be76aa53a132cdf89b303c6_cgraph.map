@@ -1,5 +1,0 @@
-<map id="XCS::get_pop_mean_cond_neurons" name="XCS::get_pop_mean_cond_neurons">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,184,47"/>
-<area shape="rect" id="node2" href="$clset__neural_8c.html#a0870eeca9a51d6612bb4dc1d28537df1" title="Calculates the mean number of condition neurons for a given layer." alt="" coords="232,13,409,39"/>
-<area shape="rect" id="node3" href="$cond__neural_8c.html#a139c52a0af8f5535597d0cb6a6be1abe" title=" " alt="" coords="457,13,603,39"/>
-</map>

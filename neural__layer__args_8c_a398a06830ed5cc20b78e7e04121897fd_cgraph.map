@@ -1,0 +1,5 @@
+<map id="layer_args_load" name="layer_args_load">
+<area shape="rect" id="node1" title="Loads neural network layer parameters." alt="" coords="5,31,119,57"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="167,5,277,32"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="169,56,275,83"/>
+</map>

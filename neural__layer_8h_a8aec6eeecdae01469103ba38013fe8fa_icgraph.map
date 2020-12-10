@@ -1,6 +1,0 @@
-<map id="layer_add_neurons" name="layer_add_neurons">
-<area shape="rect" id="node1" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="431,35,561,61"/>
-<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#aaa8f2e0b1cbb7dc53b276cd7b1bb44cc" title=" " alt="" coords="246,5,361,32"/>
-<area shape="rect" id="node4" href="$neural__layer__connected_8h.html#ab59f3e8b771bc16a96229f1fe22c840a" title=" " alt="" coords="224,57,383,98"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8h.html#a4e0505e49724d287d9fd97d49931905d" title=" " alt="" coords="5,5,176,32"/>
-</map>

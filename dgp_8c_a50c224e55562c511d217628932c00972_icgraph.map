@@ -1,6 +1,0 @@
-<map id="graph_mutate_connectivity" name="graph_mutate_connectivity">
-<area shape="rect" id="node1" title="Mutates the connectivity of a DGP graph." alt="" coords="356,31,535,57"/>
-<area shape="rect" id="node2" href="$dgp_8h.html#a02b9ee2de87267a91f585f77f0cc7b85" title="Mutates a specified DGP graph." alt="" coords="207,31,308,57"/>
-<area shape="rect" id="node3" href="$cond__dgp_8h.html#a7cd54610fd4b54d01d1de45f55b77419" title=" " alt="" coords="19,5,145,32"/>
-<area shape="rect" id="node4" href="$rule__dgp_8h.html#a63df43e78ff71d7051679c9af77a6079" title=" " alt="" coords="5,56,159,83"/>
-</map>

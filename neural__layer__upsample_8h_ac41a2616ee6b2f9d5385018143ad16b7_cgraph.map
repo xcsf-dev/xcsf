@@ -1,5 +1,0 @@
-<map id="neural_layer_upsample_init" name="neural_layer_upsample_init">
-<area shape="rect" id="node1" title="Creates and initialises a 2D upsampling layer." alt="" coords="5,31,184,57"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#ab67d17f74ef104965ef77e9f3eb75043" title="Initialises a layer to default values." alt="" coords="264,5,339,32"/>
-<area shape="rect" id="node3" href="$neural__layer__upsample_8c.html#aafbaba8d834345793abe553e5624b09d" title=" " alt="" coords="232,56,371,83"/>
-</map>

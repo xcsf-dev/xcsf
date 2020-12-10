@@ -20,8 +20,8 @@
 <area shape="rect" id="node17" href="$gp_8c.html#a31aa4c7ee72dd3c66fa9fb093d3d8519" title=" " alt="" coords="379,595,547,621"/>
 <area shape="rect" id="node18" href="$gp_8c.html#ace8b76bf8fcb4b48723dd94efae893c9" title=" " alt="" coords="393,645,533,672"/>
 <area shape="rect" id="node19" href="$gp_8c.html#a9a12da4c3d6254d01924a949478bcc01" title=" " alt="" coords="367,696,558,723"/>
-<area shape="rect" id="node21" href="$neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="409,747,516,773"/>
-<area shape="rect" id="node22" href="$neural__layer_8c.html#a4125c294939dcfcb1e3aa4d66f91bb70" title="Returns the current output layer arguments." alt="" coords="409,797,516,824"/>
+<area shape="rect" id="node21" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="409,747,516,773"/>
+<area shape="rect" id="node22" href="$neural__layer__args_8c.html#a4125c294939dcfcb1e3aa4d66f91bb70" title="Returns the current output layer arguments." alt="" coords="409,797,516,824"/>
 <area shape="rect" id="node23" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="401,848,525,875"/>
 <area shape="rect" id="node25" href="$condition_8c.html#a6d08714de7bb2d395de2a8171635afac" title=" " alt="" coords="389,899,536,925"/>
 <area shape="rect" id="node26" href="$condition_8c.html#a95e3f93f8f4d82e7a6f5ef3b7a6a71ef" title=" " alt="" coords="368,949,557,976"/>

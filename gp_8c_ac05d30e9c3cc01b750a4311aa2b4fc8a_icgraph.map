@@ -1,6 +1,0 @@
-<map id="tree_grow" name="tree_grow">
-<area shape="rect" id="node1" title="Grows a random GP tree of specified max length and depth." alt="" coords="288,31,367,57"/>
-<area shape="rect" id="node2" href="$gp_8h.html#a03cc411465f67ecfa38e80e8a43a9789" title="Creates a random GP tree." alt="" coords="164,31,240,57"/>
-<area shape="rect" id="node3" href="$cond__gp_8h.html#a1e740f931fc856fd7310874c7bf88195" title=" " alt="" coords="5,5,116,32"/>
-<area shape="rect" id="node4" href="$cond__gp_8h.html#aa688690c3fa9cb73c35c98db35867789" title="Creates and initialises a tree&#45;GP condition." alt="" coords="13,56,108,83"/>
-</map>

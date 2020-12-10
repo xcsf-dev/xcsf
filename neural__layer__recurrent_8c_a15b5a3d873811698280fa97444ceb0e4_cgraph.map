@@ -1,5 +1,0 @@
-<map id="neural_layer_recurrent_forward" name="neural_layer_recurrent_forward">
-<area shape="rect" id="node1" title="Forward propagates a recurrent layer." alt="" coords="5,23,156,65"/>
-<area shape="rect" id="node2" href="$blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876" title="Multiplies vector X by the scalar ALPHA and adds it to the vector Y." alt="" coords="213,5,295,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#a79bc76a8fc5c325582abc3dbe5d6de33" title="Forward propagates an input through the layer." alt="" coords="204,56,304,83"/>
-</map>

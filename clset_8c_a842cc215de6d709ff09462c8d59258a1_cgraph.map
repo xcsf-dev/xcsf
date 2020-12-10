@@ -1,6 +1,0 @@
-<map id="clset_update_fit" name="clset_update_fit">
-<area shape="rect" id="node1" title="Updates the fitness of classifiers in the set." alt="" coords="5,56,120,83"/>
-<area shape="rect" id="node2" href="$cl_8c.html#aef7fdd358b2c0ea8a55ed6549eabe8e0" title="Returns the accuracy of a classifier." alt="" coords="186,5,246,32"/>
-<area shape="rect" id="node3" href="$cl_8c.html#aa7f8dd01f0b8d4942520162cf857121a" title="Updates the fitness of a classifier." alt="" coords="168,56,264,83"/>
-<area shape="rect" id="node4" href="$CMakeLists_8txt.html#abb28d976c965ac9bcae2ee68ad8e0f0a" title=" " alt="" coords="196,107,236,133"/>
-</map>

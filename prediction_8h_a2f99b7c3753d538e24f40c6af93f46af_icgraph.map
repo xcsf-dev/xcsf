@@ -1,8 +1,0 @@
-<map id="pred_print" name="pred_print">
-<area shape="rect" id="node1" title="Prints the classifier prediction." alt="" coords="760,5,839,32"/>
-<area shape="rect" id="node2" href="$cl_8h.html#a423cf5c737f01a3bed06481384f61c74" title="Prints a classifier." alt="" coords="648,5,712,32"/>
-<area shape="rect" id="node3" href="$clset_8h.html#a94d2bd43336b125762a8be073b99dc1c" title="Prints the classifiers in the set." alt="" coords="517,5,600,32"/>
-<area shape="rect" id="node4" href="$xcsf_8h.html#a80992cea39d67a465056b2094ed89202" title="Prints the current XCSF population." alt="" coords="363,5,469,32"/>
-<area shape="rect" id="node5" href="$classXCS.html#add9544ed95fe407141bc0326bfa4b218" title="Prints the current population." alt="" coords="204,5,315,32"/>
-<area shape="rect" id="node6" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,5,156,32"/>
-</map>

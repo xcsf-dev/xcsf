@@ -1,6 +1,0 @@
-<map id="pred_neural_mutate" name="pred_neural_mutate">
-<area shape="rect" id="node1" title="Mutates a neural network prediction." alt="" coords="5,31,141,57"/>
-<area shape="rect" id="node2" href="$neural_8c.html#a9b084089ce7a9b48d94935f60ad589b7" title="Mutates a neural network." alt="" coords="189,31,293,57"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#afd243208228433217751dd11cd9c5f0a" title="Performs layer mutation." alt="" coords="341,5,439,32"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#a7916662e52ccbd1ac34446ab20249d0d" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="344,56,436,83"/>
-</map>

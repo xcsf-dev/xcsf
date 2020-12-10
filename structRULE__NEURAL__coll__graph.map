@@ -1,7 +1,0 @@
-<map id="RULE_NEURAL" name="RULE_NEURAL">
-<area shape="rect" id="node1" title="Neural network rule data structure." alt="" coords="5,425,125,452"/>
-<area shape="rect" id="node2" href="$structNET.html" title="Neural network data structure." alt="" coords="41,336,90,363"/>
-<area shape="rect" id="node3" href="$structLLIST.html" title="Double linked list of layers data structure." alt="" coords="37,231,94,257"/>
-<area shape="rect" id="node4" href="$structLAYER.html" title="Neural network layer data structure." alt="" coords="97,73,161,99"/>
-<area shape="rect" id="node5" href="$structLayerVtbl.html" title="Neural network layer interface data structure." alt="" coords="196,231,273,257"/>
-</map>

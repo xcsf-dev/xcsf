@@ -1,5 +1,0 @@
-<map id="XCS::get_cond_output_activation" name="XCS::get_cond_output_activation">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,160,47"/>
-<area shape="rect" id="node2" href="$param_8h.html#a0bea03c59d205d37e117a8e026d136a3" title=" " alt="" coords="208,5,407,47"/>
-<area shape="rect" id="node3" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="455,13,613,39"/>
-</map>

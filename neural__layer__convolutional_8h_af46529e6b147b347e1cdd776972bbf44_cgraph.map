@@ -2,14 +2,14 @@
 <area shape="rect" id="node1" title="Initialises a 2D convolutional layer." alt="" coords="5,157,204,184"/>
 <area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#ab9a151a0ae1949f83dd78b6c1aacd1b0" title="Returns the output height of a convolutional layer." alt="" coords="268,5,375,32"/>
 <area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#a26c29594cebe8a9a5f1c8bb28c1d3132" title="Returns the output width of a convolutional layer." alt="" coords="270,56,373,83"/>
-<area shape="rect" id="node4" href="$neural__layer_8c.html#adaa85b5b91de990f50a023060e0c16c5" title="Initialises a layer&#39;s gradient descent rate." alt="" coords="460,208,559,235"/>
-<area shape="rect" id="node6" href="$neural__layer_8c.html#a4e149e9c2c1f79968447e8b9470a0e12" title="Returns a bitstring representing the permissions granted by a layer." alt="" coords="284,157,359,184"/>
-<area shape="rect" id="node7" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="252,107,391,133"/>
+<area shape="rect" id="node4" href="$neural__layer__args_8c.html#a4440b3fcacfd709042ae050958d757d6" title="Returns a bitstring representing the permissions granted by a layer." alt="" coords="268,107,375,133"/>
+<area shape="rect" id="node5" href="$neural__layer_8c.html#adaa85b5b91de990f50a023060e0c16c5" title="Initialises a layer&#39;s gradient descent rate." alt="" coords="460,208,559,235"/>
+<area shape="rect" id="node7" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="252,157,391,184"/>
 <area shape="rect" id="node14" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="275,259,368,285"/>
 <area shape="rect" id="node15" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="286,309,357,336"/>
-<area shape="rect" id="node5" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="650,259,747,285"/>
-<area shape="rect" id="node8" href="$neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" title="Returns the memory workspace size for a convolutional layer." alt="" coords="439,69,580,96"/>
-<area shape="rect" id="node10" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="460,132,559,159"/>
+<area shape="rect" id="node6" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="650,259,747,285"/>
+<area shape="rect" id="node8" href="$neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" title="Returns the memory workspace size for a convolutional layer." alt="" coords="439,81,580,108"/>
+<area shape="rect" id="node10" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="460,157,559,184"/>
 <area shape="rect" id="node9" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="817,132,900,159"/>
 <area shape="rect" id="node11" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="631,208,766,235"/>
 <area shape="rect" id="node12" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="629,107,768,133"/>

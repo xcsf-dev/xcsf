@@ -1,5 +1,0 @@
-<map id="param_print_cl_condition" name="param_print_cl_condition">
-<area shape="rect" id="node1" title="Prints XCSF condtion parameters." alt="" coords="5,31,172,57"/>
-<area shape="rect" id="node2" href="$condition_8c.html#af5a052e347755190271b32d8b09ec026" title="Returns a string representation of a condition type from an integer." alt="" coords="220,5,387,32"/>
-<area shape="rect" id="node3" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="224,56,383,83"/>
-</map>

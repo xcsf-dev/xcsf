@@ -1,16 +1,16 @@
 <map id="neural_layer_lstm_init" name="neural_layer_lstm_init">
 <area shape="rect" id="node1" title="Initialises a long short&#45;term memory layer." alt="" coords="5,208,153,235"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="213,5,331,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="235,56,309,83"/>
-<area shape="rect" id="node6" href="$neural__layer_8c.html#a4e149e9c2c1f79968447e8b9470a0e12" title="Returns a bitstring representing the permissions granted by a layer." alt="" coords="235,107,309,133"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="213,5,331,32"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a4440b3fcacfd709042ae050958d757d6" title="Returns a bitstring representing the permissions granted by a layer." alt="" coords="219,56,325,83"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="235,107,309,133"/>
 <area shape="rect" id="node7" href="$neural__layer__lstm_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an LSTM layer." alt="" coords="203,157,341,184"/>
 <area shape="rect" id="node10" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="237,208,307,235"/>
 <area shape="rect" id="node13" href="$neural__layer__lstm_8c.html#af20f0144500b2e2b3e1301c2a9282ea7" title="Sets the gradient descent rate used to update an LSTM layer." alt="" coords="239,259,305,285"/>
 <area shape="rect" id="node14" href="$neural__layer__lstm_8c.html#a9cf6a4d407837c532b89f9f457072203" title="Sets the number of active (non&#45;zero) weights in an LSTM layer." alt="" coords="207,309,337,336"/>
 <area shape="rect" id="node15" href="$neural__layer__lstm_8c.html#ab67b6e38da6db94e4735740f8521d5b1" title="Sets the total number of biases in an LSTM layer." alt="" coords="205,360,339,387"/>
 <area shape="rect" id="node16" href="$neural__layer__lstm_8c.html#a75386a5e5f7e81bf322e68e2c87ad374" title="Sets the total number of weights in an LSTM layer." alt="" coords="201,411,343,437"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="409,31,511,57"/>
-<area shape="rect" id="node5" href="$neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="408,81,512,108"/>
+<area shape="rect" id="node5" href="$neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="409,56,511,83"/>
+<area shape="rect" id="node6" href="$neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="408,107,512,133"/>
 <area shape="rect" id="node8" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="391,157,529,184"/>
 <area shape="rect" id="node9" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="585,157,667,184"/>
 <area shape="rect" id="node11" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="577,233,675,260"/>

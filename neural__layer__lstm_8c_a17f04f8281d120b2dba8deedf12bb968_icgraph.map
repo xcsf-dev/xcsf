@@ -1,6 +1,0 @@
-<map id="set_eta" name="set_eta">
-<area shape="rect" id="node1" title=" " alt="" coords="420,31,485,57"/>
-<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#a71dca750988689cfebb5d0cac1a7e497" title=" " alt="" coords="255,5,341,32"/>
-<area shape="rect" id="node4" href="$neural__layer__lstm_8h.html#a52ba326c6d14cfcba9f090c1d2aeff8c" title="Creates and initialises a long short&#45;term memory layer." alt="" coords="224,56,372,83"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8h.html#a4e0505e49724d287d9fd97d49931905d" title=" " alt="" coords="5,5,176,32"/>
-</map>

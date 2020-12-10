@@ -1,6 +1,0 @@
-<map id="layer_mutate_neurons" name="layer_mutate_neurons">
-<area shape="rect" id="node1" title="Returns the number of neurons to add or remove from a layer." alt="" coords="5,56,156,83"/>
-<area shape="rect" id="node2" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="224,5,281,32"/>
-<area shape="rect" id="node3" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="206,56,299,83"/>
-<area shape="rect" id="node4" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="204,107,301,133"/>
-</map>

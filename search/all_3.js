@@ -3,7 +3,7 @@ var searchData=
   ['c_107',['c',['../structLayer.html#a6655287ee091cb7b612daee78f5597a5',1,'Layer']]],
   ['cell_108',['cell',['../structLayer.html#ab9dde06f07ed484a9bcc908eb8fb5d35',1,'Layer']]],
   ['center_109',['center',['../structCondEllipsoid.html#a2b319403913259d89ecc96448072a29b',1,'CondEllipsoid::center()'],['../structCondRectangle.html#a6d8c77f4f04f86c2759c0233c52d322f',1,'CondRectangle::center()']]],
-  ['channels_110',['channels',['../structArgsLayer.html#a8c001edfa35bbcf412d6868cc1a9a9fd',1,'ArgsLayer::channels()'],['../structLayer.html#a51a378c744844bf8fa17d9bedb45e597',1,'Layer::channels()']]],
+  ['channels_110',['channels',['../structLayer.html#a51a378c744844bf8fa17d9bedb45e597',1,'Layer::channels()'],['../structArgsLayer.html#a8c001edfa35bbcf412d6868cc1a9a9fd',1,'ArgsLayer::channels()']]],
   ['cl_111',['Cl',['../structCl.html',1,'Cl'],['../structClist.html#ad909c9fc3a1d025ba35c31e11150fe74',1,'Clist::cl()']]],
   ['cl_2ec_112',['cl.c',['../cl_8c.html',1,'']]],
   ['cl_2eh_113',['cl.h',['../cl_8h.html',1,'']]],

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$action_8h.html#abff2406a17ffc24bdc2f98dbecab1f80" xlink:title="Updates the classifier&#39;s action.">
+<g id="a_node2"><a xlink:href="action_8h.html#abff2406a17ffc24bdc2f98dbecab1f80" target="_top" xlink:title="Updates the classifier&#39;s action.">
 <polygon fill="none" stroke="black" points="98.5,-114.5 98.5,-133.5 163.5,-133.5 163.5,-114.5 98.5,-114.5"/>
 <text text-anchor="middle" x="131" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_update</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$cl_8c.html#a6d152849e51ed10765330586e574805f" xlink:title="Computes the current classifier prediction using the input.">
+<g id="a_node3"><a xlink:href="cl_8c.html#a6d152849e51ed10765330586e574805f" target="_top" xlink:title="Computes the current classifier prediction using the input.">
 <polygon fill="none" stroke="black" points="101.5,-76.5 101.5,-95.5 160.5,-95.5 160.5,-76.5 101.5,-76.5"/>
 <text text-anchor="middle" x="131" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl_predict</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="$condition_8h.html#af8317dec779d25b369473111f5cbd0e1" xlink:title="Updates the classifier&#39;s condition.">
+<g id="a_node5"><a xlink:href="condition_8h.html#af8317dec779d25b369473111f5cbd0e1" target="_top" xlink:title="Updates the classifier&#39;s condition.">
 <polygon fill="none" stroke="black" points="95,-38.5 95,-57.5 167,-57.5 167,-38.5 95,-38.5"/>
 <text text-anchor="middle" x="131" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_update</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="$prediction_8h.html#a81932bc605950c43bcc2852a77e47fbd" xlink:title="Updates the classifier&#39;s prediction.">
+<g id="a_node6"><a xlink:href="prediction_8h.html#a81932bc605950c43bcc2852a77e47fbd" target="_top" xlink:title="Updates the classifier&#39;s prediction.">
 <polygon fill="none" stroke="black" points="96,-0.5 96,-19.5 166,-19.5 166,-0.5 96,-0.5"/>
 <text text-anchor="middle" x="131" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_update</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$prediction_8h.html#a6b6f9e53800aae4a64991a811f670541" xlink:title="Computes the current classifier prediction using the input.">
+<g id="a_node4"><a xlink:href="prediction_8h.html#a6b6f9e53800aae4a64991a811f670541" target="_top" xlink:title="Computes the current classifier prediction using the input.">
 <polygon fill="none" stroke="black" points="203,-76.5 203,-95.5 281,-95.5 281,-76.5 203,-76.5"/>
 <text text-anchor="middle" x="242" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_compute</text>
 </a>

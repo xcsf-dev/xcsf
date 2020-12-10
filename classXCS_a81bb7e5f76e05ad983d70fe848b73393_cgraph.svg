@@ -110,7 +110,7 @@
 <!-- Node96 -->
 <g id="node96" class="node">
 <title>Node96</title>
-<g id="a_node96"><a xlink:href="neural__layer_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" target="_top" xlink:title="Frees memory used by a list of layer parameters and points to NULL.">
+<g id="a_node96"><a xlink:href="neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" target="_top" xlink:title="Frees memory used by a list of layer parameters and points to NULL.">
 <polygon fill="none" stroke="black" points="213,-331.5 213,-350.5 296,-350.5 296,-331.5 213,-331.5"/>
 <text text-anchor="middle" x="254.5" y="-338.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_free</text>
 </a>
@@ -125,7 +125,7 @@
 <!-- Node97 -->
 <g id="node97" class="node">
 <title>Node97</title>
-<g id="a_node97"><a xlink:href="neural__layer_8c.html#a492de2de029ff6124f8fe466ad6b0d80" target="_top" xlink:title="Checks network layer arguments are valid.">
+<g id="a_node97"><a xlink:href="neural__layer__args_8c.html#a492de2de029ff6124f8fe466ad6b0d80" target="_top" xlink:title="Checks network layer arguments are valid.">
 <polygon fill="none" stroke="black" points="204,-255.5 204,-274.5 305,-274.5 305,-255.5 204,-255.5"/>
 <text text-anchor="middle" x="254.5" y="-262.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_validate</text>
 </a>
@@ -366,7 +366,7 @@
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" target="_top" xlink:title="Sets layer parameters to default values.">
+<g id="a_node10"><a xlink:href="neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" target="_top" xlink:title="Sets layer parameters to default values.">
 <polygon fill="none" stroke="black" points="1205.5,-616.5 1205.5,-635.5 1285.5,-635.5 1285.5,-616.5 1205.5,-616.5"/>
 <text text-anchor="middle" x="1245.5" y="-623.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_init</text>
 </a>
@@ -381,7 +381,7 @@
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="neural__layer_8c.html#a4125c294939dcfcb1e3aa4d66f91bb70" target="_top" xlink:title="Returns the current output layer arguments.">
+<g id="a_node11"><a xlink:href="neural__layer__args_8c.html#a4125c294939dcfcb1e3aa4d66f91bb70" target="_top" xlink:title="Returns the current output layer arguments.">
 <polygon fill="none" stroke="black" points="1026,-366.5 1026,-385.5 1106,-385.5 1106,-366.5 1026,-366.5"/>
 <text text-anchor="middle" x="1066" y="-373.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_tail</text>
 </a>
@@ -1569,7 +1569,7 @@
 <!-- Node98 -->
 <g id="node98" class="node">
 <title>Node98</title>
-<g id="a_node98"><a xlink:href="neural__layer_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" target="_top" xlink:title="Checks input layer arguments are valid.">
+<g id="a_node98"><a xlink:href="neural__layer__args_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" target="_top" xlink:title="Checks input layer arguments are valid.">
 <polygon fill="none" stroke="black" points="341,-253 341,-283 442,-283 442,-253 341,-253"/>
 <text text-anchor="start" x="349" y="-271" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_validate</text>
 <text text-anchor="middle" x="391.5" y="-260" font-family="Helvetica,sans-Serif" font-size="10.00">_inputs</text>
@@ -1817,7 +1817,7 @@
 <!-- Node106 -->
 <g id="node106" class="node">
 <title>Node106</title>
-<g id="a_node106"><a xlink:href="neural__layer_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" target="_top" xlink:title="Creates and returns a copy of specified layer parameters.">
+<g id="a_node106"><a xlink:href="neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" target="_top" xlink:title="Creates and returns a copy of specified layer parameters.">
 <polygon fill="none" stroke="black" points="1201.5,-1156.5 1201.5,-1175.5 1289.5,-1175.5 1289.5,-1156.5 1201.5,-1156.5"/>
 <text text-anchor="middle" x="1245.5" y="-1163.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_copy</text>
 </a>

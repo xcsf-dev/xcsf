@@ -1,4 +1,0 @@
-<map id="layer_weight_clamp" name="layer_weight_clamp">
-<area shape="rect" id="node1" title="Clamps a layer&#39;s weights and biases in range [WEIGHT_MIN, WEIGHT_MAX]." alt="" coords="5,5,143,32"/>
-<area shape="rect" id="node2" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="191,5,248,32"/>
-</map>

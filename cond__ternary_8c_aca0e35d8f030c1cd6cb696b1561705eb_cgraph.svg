@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" xlink:title="Returns a uniform random float [min,max].">
+<g id="a_node2"><a xlink:href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" target="_top" xlink:title="Returns a uniform random float [min,max].">
 <polygon fill="none" stroke="black" points="157,-0.5 157,-19.5 230,-19.5 230,-0.5 157,-0.5"/>
 <text text-anchor="middle" x="193.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform</text>
 </a>

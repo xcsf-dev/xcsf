@@ -3,6 +3,6 @@
 <area shape="rect" id="node2" href="$action_8c.html#acc202dbe3c6a1d3f745383aec209c780" title="Frees action parameters." alt="" coords="140,5,269,32"/>
 <area shape="rect" id="node4" href="$condition_8c.html#af22e6e5a357ef08e482555291cfc612b" title="Frees condition parameters." alt="" coords="143,107,266,133"/>
 <area shape="rect" id="node6" href="$prediction_8c.html#a05bc6d7f4f01d3891fe4af373f0b573d" title="Frees prediction parameters." alt="" coords="145,56,264,83"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="317,56,428,83"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="317,56,428,83"/>
 <area shape="rect" id="node5" href="$gp_8c.html#a1756fddb02ca93b4891d0a672ac72fc8" title="Frees memory used by GP tree parameters." alt="" coords="320,107,425,133"/>
 </map>

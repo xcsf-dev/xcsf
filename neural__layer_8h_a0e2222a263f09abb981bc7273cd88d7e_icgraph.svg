@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer_8h.html#af08dab51e0e2d6380af376bb33708f17" target="_top" xlink:title="Prints layer parameters.">
+<g id="a_node2"><a xlink:href="neural__layer__args_8h.html#af08dab51e0e2d6380af376bb33708f17" target="_top" xlink:title="Prints layer parameters.">
 <polygon fill="none" stroke="black" points="685,-38.5 685,-57.5 771,-57.5 771,-38.5 685,-38.5"/>
 <text text-anchor="middle" x="728" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_print</text>
 </a>

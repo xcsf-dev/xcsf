@@ -2,10 +2,10 @@ var searchData=
 [
   ['dargs_409',['dargs',['../structArgsCond.html#a4eb42686f8a6999709a13c42fa4eb303',1,'ArgsCond']]],
   ['dc_410',['dc',['../structLayer.html#a76f3ccb70c9da1f8dc3ec2b0849c4994',1,'Layer']]],
-  ['decay_411',['decay',['../structArgsLayer.html#a333523d1618182c5b42f3640b549f148',1,'ArgsLayer::decay()'],['../structLayer.html#a07df8b16b1a4baa255368d5497e62906',1,'Layer::decay()']]],
+  ['decay_411',['decay',['../structLayer.html#a07df8b16b1a4baa255368d5497e62906',1,'Layer::decay()'],['../structArgsLayer.html#a333523d1618182c5b42f3640b549f148',1,'ArgsLayer::decay()']]],
   ['decision_412',['decision',['../classXCS.html#ac6003941812bd2c70ea443dd63bd59d0',1,'XCS']]],
   ['delim_413',['DELIM',['../env__csv_8c.html#a1129d7e0bed7c31561c8664cfe73ad07',1,'env_csv.c']]],
-  ['delta_414',['DELTA',['../structXCSF.html#a8f4b8bebee13b0cf90fc13c1d32d8d02',1,'XCSF::DELTA()'],['../structLayer.html#ac7bd4a66eea113ca134bc417dfc7596d',1,'Layer::delta()']]],
+  ['delta_414',['delta',['../structLayer.html#ac7bd4a66eea113ca134bc417dfc7596d',1,'Layer::delta()'],['../structXCSF.html#a8f4b8bebee13b0cf90fc13c1d32d8d02',1,'XCSF::DELTA()']]],
   ['dgp_415',['dgp',['../structCondDGP.html#ab507bc534ba97ce5b8907e98a8aaa6f0',1,'CondDGP::dgp()'],['../structRuleDGP.html#aedf96aac8e5c78a03e9dbcac8e2723ee',1,'RuleDGP::dgp()']]],
   ['dgp_2ec_416',['dgp.c',['../dgp_8c.html',1,'']]],
   ['dgp_2eh_417',['dgp.h',['../dgp_8h.html',1,'']]],

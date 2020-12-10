@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" xlink:title="Returns a uniform random integer [min,max] not inclusive of max.">
+<g id="a_node2"><a xlink:href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" target="_top" xlink:title="Returns a uniform random integer [min,max] not inclusive of max.">
 <polygon fill="none" stroke="black" points="158,-0.5 158,-19.5 247,-19.5 247,-0.5 158,-0.5"/>
 <text text-anchor="middle" x="202.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform_int</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" xlink:title="Returns a uniform random float [min,max].">
+<g id="a_node3"><a xlink:href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" target="_top" xlink:title="Returns a uniform random float [min,max].">
 <polygon fill="none" stroke="black" points="283,-0.5 283,-19.5 356,-19.5 356,-0.5 283,-0.5"/>
 <text text-anchor="middle" x="319.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform</text>
 </a>

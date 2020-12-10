@@ -1,5 +1,0 @@
-<map id="neural_layer_convolutional_print" name="neural_layer_convolutional_print">
-<area shape="rect" id="node1" title="Prints a convolutional layer." alt="" coords="5,23,180,65"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a0d6d72b763049aab59c2602288d8216a" title="Prints a layer&#39;s weights and biases." alt="" coords="244,5,371,32"/>
-<area shape="rect" id="node3" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="228,56,387,83"/>
-</map>

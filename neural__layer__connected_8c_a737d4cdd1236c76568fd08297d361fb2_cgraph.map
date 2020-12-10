@@ -1,5 +1,0 @@
-<map id="neural_layer_connected_print" name="neural_layer_connected_print">
-<area shape="rect" id="node1" title=" " alt="" coords="5,23,164,65"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a1355cb704ef9196be012e96ad99f1f09" title="Prints a layer&#39;s weights and biases." alt="" coords="228,5,355,32"/>
-<area shape="rect" id="node3" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="212,56,371,83"/>
-</map>

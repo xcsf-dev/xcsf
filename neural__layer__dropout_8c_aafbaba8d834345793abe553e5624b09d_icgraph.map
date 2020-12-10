@@ -1,6 +1,0 @@
-<map id="malloc_layer_arrays" name="malloc_layer_arrays">
-<area shape="rect" id="node1" title=" " alt="" coords="231,56,369,83"/>
-<area shape="rect" id="node2" href="$neural__layer__dropout_8h.html#af0404ebafb82e77c108b188bf852cf31" title=" " alt="" coords="5,5,183,32"/>
-<area shape="rect" id="node3" href="$neural__layer__dropout_8h.html#ac587f3a1350fe8d4351935252f072d9e" title="Creates and initialises a dropout layer." alt="" coords="11,56,177,83"/>
-<area shape="rect" id="node4" href="$neural__layer__dropout_8h.html#ace751d37dbfbd75adb7733127a3c3b08" title=" " alt="" coords="7,107,181,133"/>
-</map>

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$xcs__rl_8c.html#ab5029df41800b6186c6c90239430da69" xlink:title="Returns the reinforcement learning system prediction error.">
+<g id="a_node2"><a xlink:href="xcs__rl_8c.html#ab5029df41800b6186c6c90239430da69" target="_top" xlink:title="Returns the reinforcement learning system prediction error.">
 <polygon fill="none" stroke="black" points="99,-0.5 99,-19.5 167,-19.5 167,-0.5 99,-0.5"/>
 <text text-anchor="middle" x="133" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_error</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" xlink:title="Returns the value of a specified action in the prediction array.">
+<g id="a_node3"><a xlink:href="pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" target="_top" xlink:title="Returns the value of a specified action in the prediction array.">
 <polygon fill="none" stroke="black" points="203,-0.5 203,-19.5 248,-19.5 248,-0.5 203,-0.5"/>
 <text text-anchor="middle" x="225.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pa_val</text>
 </a>

@@ -1,7 +1,0 @@
-<map id="graph_update" name="graph_update">
-<area shape="rect" id="node1" title="Updates a DGP graph T cycles." alt="" coords="5,31,105,57"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a36f9294ea7c9d84f1c39ad356445f664" title="Resets the states to their initial state." alt="" coords="179,5,270,32"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#a512333d7626fea1425b471bd7a3ec273" title="Performs a synchronous update." alt="" coords="153,56,296,83"/>
-<area shape="rect" id="node4" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="344,56,447,83"/>
-<area shape="rect" id="node5" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="495,56,552,83"/>
-</map>

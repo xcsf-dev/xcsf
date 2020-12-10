@@ -1,7 +1,0 @@
-<map id="cond_ternary_init" name="cond_ternary_init">
-<area shape="rect" id="node1" title="Creates and initialises a ternary bitstring condition." alt="" coords="5,31,127,57"/>
-<area shape="rect" id="node2" href="$cond__ternary_8c.html#ae9746444a7e89a7d7f3b70debec05b1a" title=" " alt="" coords="293,5,423,32"/>
-<area shape="rect" id="node4" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="175,56,245,83"/>
-<area shape="rect" id="node3" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="471,56,568,83"/>
-<area shape="rect" id="node5" href="$utils_8c.html#a894e776eb1a127a7b31a52bd86327a2a" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="308,107,408,133"/>
-</map>

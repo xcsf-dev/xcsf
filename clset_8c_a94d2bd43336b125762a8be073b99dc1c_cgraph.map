@@ -1,9 +1,0 @@
-<map id="clset_print" name="clset_print">
-<area shape="rect" id="node1" title="Prints the classifiers in the set." alt="" coords="5,107,88,133"/>
-<area shape="rect" id="node2" href="$cl_8c.html#a423cf5c737f01a3bed06481384f61c74" title="Prints a classifier." alt="" coords="136,81,200,108"/>
-<area shape="rect" id="node7" href="$CMakeLists_8txt.html#abb28d976c965ac9bcae2ee68ad8e0f0a" title=" " alt="" coords="148,132,188,159"/>
-<area shape="rect" id="node3" href="$action_8h.html#ade343808d1cd2cb6f71072b712ba7e53" title="Prints the classifier action." alt="" coords="253,5,325,32"/>
-<area shape="rect" id="node4" href="$cl_8c.html#ac6fad398859e384ee0bd37766ee18883" title="Returns the fraction of observed inputs matched by a classifier." alt="" coords="253,56,325,83"/>
-<area shape="rect" id="node5" href="$condition_8h.html#a150133c746c54f98c52e9cb1a10a2edc" title="Prints the classifier condition." alt="" coords="248,107,331,133"/>
-<area shape="rect" id="node6" href="$prediction_8h.html#a2f99b7c3753d538e24f40c6af93f46af" title="Prints the classifier prediction." alt="" coords="250,157,329,184"/>
-</map>

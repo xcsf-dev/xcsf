@@ -65,7 +65,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" target="_top" xlink:title="Frees memory used by a list of layer parameters and points to NULL.">
+<g id="a_node3"><a xlink:href="neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" target="_top" xlink:title="Frees memory used by a list of layer parameters and points to NULL.">
 <polygon fill="none" stroke="black" points="234,-38.5 234,-57.5 317,-57.5 317,-38.5 234,-38.5"/>
 <text text-anchor="middle" x="275.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_free</text>
 </a>

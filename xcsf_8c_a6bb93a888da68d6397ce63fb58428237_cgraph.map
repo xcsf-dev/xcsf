@@ -1,7 +1,7 @@
 <map id="xcsf_pred_expand" name="xcsf_pred_expand">
 <area shape="rect" id="node1" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="5,81,133,108"/>
 <area shape="rect" id="node2" href="$pred__neural_8c.html#ab573aaed6ff7623e99afe1d1f6e00919" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="181,81,320,108"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="368,5,475,32"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="368,5,475,32"/>
 <area shape="rect" id="node4" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="384,56,459,83"/>
 <area shape="rect" id="node7" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="373,107,469,133"/>
 <area shape="rect" id="node8" href="$neural_8c.html#a76c99d66af7b4eb556b71a86f099b7a0" title="Resizes neural network layers as necessary." alt="" coords="372,157,471,184"/>

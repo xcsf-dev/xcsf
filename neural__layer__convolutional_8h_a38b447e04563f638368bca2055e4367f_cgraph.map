@@ -1,6 +1,0 @@
-<map id="neural_layer_convolutional_resize" name="neural_layer_convolutional_resize">
-<area shape="rect" id="node1" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="5,49,180,90"/>
-<area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#afa7d1286da596763b6ab82d3820c2081" title="Returns the output height of a convolutional layer." alt="" coords="228,5,393,32"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#a6db6e391775a4f6c5305ce1bf438cb76" title="Returns the output width of a convolutional layer." alt="" coords="230,56,391,83"/>
-<area shape="rect" id="node4" href="$neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" title="Returns the memory workspace size for a convolutional layer." alt="" coords="240,107,381,133"/>
-</map>

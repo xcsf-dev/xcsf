@@ -1,6 +1,0 @@
-<map id="CondArgs" name="CondArgs">
-<area shape="rect" id="node1" title="Parameters for initialising and operating conditions." alt="" coords="125,95,205,121"/>
-<area shape="rect" id="node2" href="$structGPTreeArgs.html" title="Parameters for initialising GP trees." alt="" coords="5,5,100,32"/>
-<area shape="rect" id="node3" href="$structLayerArgs.html" title="Parameters for initialising a neural network layer." alt="" coords="124,5,205,32"/>
-<area shape="rect" id="node4" href="$structDGPArgs.html" title="Parameters for initialising DGP graphs." alt="" coords="283,5,359,32"/>
-</map>

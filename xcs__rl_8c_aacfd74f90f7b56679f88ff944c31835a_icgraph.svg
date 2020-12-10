@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="$classXCS.html#a173bb0ba504bc7e97cda5841a6534944" xlink:title="Frees memory used by a reinforcement learning trial.">
+<g id="a_node2"><a xlink:href="classXCS.html#a173bb0ba504bc7e97cda5841a6534944" target="_top" xlink:title="Frees memory used by a reinforcement learning trial.">
 <polygon fill="none" stroke="black" points="149,-76.5 149,-95.5 229,-95.5 229,-76.5 149,-76.5"/>
 <text text-anchor="middle" x="189" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::end_trial</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="$xcs__rl_8h.html#a391abf9bd2540ff284f822b30899c438" xlink:title="Creates and updates an action set for a given (state, action, reward).">
+<g id="a_node4"><a xlink:href="xcs__rl_8h.html#a391abf9bd2540ff284f822b30899c438" target="_top" xlink:title="Creates and updates an action set for a given (state, action, reward).">
 <polygon fill="none" stroke="black" points="269,-38.5 269,-57.5 325,-57.5 325,-38.5 269,-38.5"/>
 <text text-anchor="middle" x="297" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_fit</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" xlink:title="Executes a reinforcement learning trial using a built&#45;in environment.">
+<g id="a_node6"><a xlink:href="xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" target="_top" xlink:title="Executes a reinforcement learning trial using a built&#45;in environment.">
 <polygon fill="none" stroke="black" points="265,-0.5 265,-19.5 329,-19.5 329,-0.5 265,-0.5"/>
 <text text-anchor="middle" x="297" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_trial</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" xlink:title=" ">
+<g id="a_node3"><a xlink:href="pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-57.5 0,-76.5 113,-76.5 113,-57.5 0,-57.5"/>
 <text text-anchor="middle" x="56.5" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">pybind11_init_wrapper</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="$classXCS.html#ac12768292958a714a726b1c029e9616a" xlink:title="Creates/updates an action set for a given (state, action, reward).">
+<g id="a_node5"><a xlink:href="classXCS.html#ac12768292958a714a726b1c029e9616a" target="_top" xlink:title="Creates/updates an action set for a given (state, action, reward).">
 <polygon fill="none" stroke="black" points="163,-38.5 163,-57.5 215,-57.5 215,-38.5 163,-38.5"/>
 <text text-anchor="middle" x="189" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::fit</text>
 </a>
@@ -101,7 +101,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" xlink:title="Executes a reinforcement learning experiment.">
+<g id="a_node7"><a xlink:href="xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" target="_top" xlink:title="Executes a reinforcement learning experiment.">
 <polygon fill="none" stroke="black" points="157,-0.5 157,-19.5 221,-19.5 221,-0.5 157,-0.5"/>
 <text text-anchor="middle" x="189" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_exp</text>
 </a>
@@ -116,7 +116,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" xlink:title=" ">
+<g id="a_node8"><a xlink:href="main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="37.5,-0.5 37.5,-19.5 75.5,-19.5 75.5,-0.5 37.5,-0.5"/>
 <text text-anchor="middle" x="56.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>

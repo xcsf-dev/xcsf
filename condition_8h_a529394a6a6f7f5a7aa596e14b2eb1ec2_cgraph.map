@@ -1,5 +1,8 @@
 <map id="cond_param_load" name="cond_param_load">
-<area shape="rect" id="node1" title="Loads condition parameters." alt="" coords="5,31,129,57"/>
+<area shape="rect" id="node1" title="Loads condition parameters." alt="" coords="5,56,129,83"/>
 <area shape="rect" id="node2" href="$dgp_8c.html#a4e160f3ae49e0876bd5d9d03cff31a79" title="Loads DGP parameters." alt="" coords="177,5,295,32"/>
-<area shape="rect" id="node3" href="$gp_8c.html#ace6f12ff809357296578e8aa1d1b0b47" title="Loads Tree GP parameters." alt="" coords="183,56,289,83"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a398a06830ed5cc20b78e7e04121897fd" title="Loads neural network layer parameters." alt="" coords="179,56,293,83"/>
+<area shape="rect" id="node6" href="$gp_8c.html#ace6f12ff809357296578e8aa1d1b0b47" title="Loads Tree GP parameters." alt="" coords="183,107,289,133"/>
+<area shape="rect" id="node4" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="343,31,453,57"/>
+<area shape="rect" id="node5" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="345,81,451,108"/>
 </map>

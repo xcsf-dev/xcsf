@@ -1,5 +1,0 @@
-<map id="pred_transform_input" name="pred_transform_input">
-<area shape="rect" id="node1" title="Prepares the input state for least squares computation." alt="" coords="192,31,336,57"/>
-<area shape="rect" id="node2" href="$pred__nlms_8h.html#a51b8eb7d83c9b73cb298691505af10c0" title="Computes the current NLMS prediction for a provided input." alt="" coords="5,5,144,32"/>
-<area shape="rect" id="node3" href="$pred__rls_8h.html#ae7fd78fa9f7a442ed68b25e8eac51469" title="Computes the current RLS prediction for a provided input." alt="" coords="12,56,137,83"/>
-</map>

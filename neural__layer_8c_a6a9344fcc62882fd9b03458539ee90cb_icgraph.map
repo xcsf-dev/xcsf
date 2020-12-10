@@ -1,8 +1,0 @@
-<map id="layer_calc_n_active" name="layer_calc_n_active">
-<area shape="rect" id="node1" title="Sets n_active to the number of non&#45;zero weights within a layer." alt="" coords="637,64,775,91"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#a8aec6eeecdae01469103ba38013fe8fa" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="445,35,575,61"/>
-<area shape="rect" id="node6" href="$neural__layer__connected_8h.html#ac688a7b816df0b7ae0cf77a4d075ef3d" title=" " alt="" coords="431,86,589,127"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8c.html#aaa8f2e0b1cbb7dc53b276cd7b1bb44cc" title=" " alt="" coords="246,5,361,32"/>
-<area shape="rect" id="node5" href="$neural__layer__connected_8h.html#ab59f3e8b771bc16a96229f1fe22c840a" title=" " alt="" coords="224,57,383,98"/>
-<area shape="rect" id="node4" href="$neural__layer__lstm_8h.html#a4e0505e49724d287d9fd97d49931905d" title=" " alt="" coords="5,5,176,32"/>
-</map>

@@ -1,6 +1,6 @@
 <map id="pred_neural_ae_to_classifier" name="pred_neural_ae_to_classifier">
 <area shape="rect" id="node1" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="5,81,192,108"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="240,5,347,32"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="240,5,347,32"/>
 <area shape="rect" id="node3" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="256,56,331,83"/>
 <area shape="rect" id="node6" href="$neural_8c.html#af2d255733445f37ec77b106a21215baf" title="Removes the layer at the head of a neural network." alt="" coords="251,107,336,133"/>
 <area shape="rect" id="node9" href="$neural_8c.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="247,157,339,184"/>

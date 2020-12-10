@@ -1,4 +1,0 @@
-<map id="config_layer" name="config_layer">
-<area shape="rect" id="node1" title="Sets neural network layer parameters." alt="" coords="5,5,97,32"/>
-<area shape="rect" id="node2" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="145,5,308,32"/>
-</map>

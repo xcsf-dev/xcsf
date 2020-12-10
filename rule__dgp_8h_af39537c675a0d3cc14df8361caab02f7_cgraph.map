@@ -1,9 +1,0 @@
-<map id="rule_dgp_cond_match" name="rule_dgp_cond_match">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,155,57"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a0f6be29465b8687eb5364d3378755914" title="Returns the current state of a specified node in the graph." alt="" coords="204,5,301,32"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#ac9647fa05e224934cc0877d4d9cda134" title="Updates a DGP graph T cycles." alt="" coords="203,56,303,83"/>
-<area shape="rect" id="node4" href="$dgp_8c.html#a62232c20d3687386045145004bfc7bf6" title="Resets the states to their initial state." alt="" coords="377,31,467,57"/>
-<area shape="rect" id="node5" href="$dgp_8c.html#a106df9870c838bf5dbd042475e9f4fd8" title="Performs a synchronous update." alt="" coords="351,81,493,108"/>
-<area shape="rect" id="node6" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="541,81,644,108"/>
-<area shape="rect" id="node7" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="692,81,749,108"/>
-</map>

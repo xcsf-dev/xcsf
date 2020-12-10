@@ -1,6 +1,0 @@
-<map id="mutate_eta" name="mutate_eta">
-<area shape="rect" id="node1" title="Mutates the gradient descent rate used to update a recurrent layer." alt="" coords="5,31,92,57"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a97650f1d0004a34aa9929b7fe3aab2ac" title="Mutates the gradient descent rate of a neural layer." alt="" coords="140,31,263,57"/>
-<area shape="rect" id="node3" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="329,5,386,32"/>
-<area shape="rect" id="node4" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="311,56,404,83"/>
-</map>

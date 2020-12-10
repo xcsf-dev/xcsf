@@ -1,7 +1,0 @@
-<map id="neural_layer_convolutional_update" name="neural_layer_convolutional_update">
-<area shape="rect" id="node1" title=" " alt="" coords="5,49,180,90"/>
-<area shape="rect" id="node2" href="$blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876" title="Multiplies vector X by the scalar ALPHA and adds it to the vector Y." alt="" coords="256,5,337,32"/>
-<area shape="rect" id="node3" href="$blas_8c.html#a59634a37fd370ffc05eb458503c5ab53" title="Scales vector X by the scalar ALPHA and overwrites it with the result." alt="" coords="258,56,335,83"/>
-<area shape="rect" id="node4" href="$neural__layer_8c.html#accf7cf4e96d2ed3ffbfc568dd51c0130" title="Clamps a layer&#39;s weights and biases in range [WEIGHT_MIN, WEIGHT_MAX]." alt="" coords="228,107,365,133"/>
-<area shape="rect" id="node5" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="413,107,471,133"/>
-</map>

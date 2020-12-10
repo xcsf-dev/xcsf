@@ -1,5 +1,0 @@
-<map id="XCS::get_pop_mean_pred_connections" name="XCS::get_pop_mean_pred_connections">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,180,47"/>
-<area shape="rect" id="node2" href="$clset__neural_8c.html#a90680514a75d5513c5dfe1b0ccc2594b" title="Calculates the mean number of prediction connections in the set." alt="" coords="228,13,427,39"/>
-<area shape="rect" id="node3" href="$pred__neural_8c.html#a56430e2cbd0ff78b7602723b62737009" title="Returns the number of active connections in a neural prediction layer." alt="" coords="475,13,641,39"/>
-</map>
