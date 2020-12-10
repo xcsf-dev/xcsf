@@ -252,6 +252,7 @@ pred_param_save(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&pred->scale_factor, sizeof(double), 1, fp);
     s += fwrite(&pred->x0, sizeof(double), 1, fp);
     s += fwrite(&pred->evolve_eta, sizeof(bool), 1, fp);
+    s += layer_args_save(pred->largs, fp);
     return s;
 }
 
@@ -273,6 +274,7 @@ pred_param_load(struct XCSF *xcsf, FILE *fp)
     s += fread(&pred->scale_factor, sizeof(double), 1, fp);
     s += fread(&pred->x0, sizeof(double), 1, fp);
     s += fread(&pred->evolve_eta, sizeof(bool), 1, fp);
+    s += layer_args_load(&pred->largs, fp);
     return s;
 }
 

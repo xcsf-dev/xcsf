@@ -359,6 +359,7 @@ cond_param_save(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&cond->bits, sizeof(int), 1, fp);
     s += graph_args_save(cond->dargs, fp);
     s += tree_args_save(cond->targs, fp);
+    s += layer_args_save(cond->largs, fp);
     return s;
 }
 
@@ -382,6 +383,7 @@ cond_param_load(struct XCSF *xcsf, FILE *fp)
     s += fread(&cond->bits, sizeof(int), 1, fp);
     s += graph_args_load(cond->dargs, fp);
     s += tree_args_load(cond->targs, fp);
+    s += layer_args_load(&cond->largs, fp);
     return s;
 }
 

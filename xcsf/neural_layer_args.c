@@ -359,3 +359,118 @@ layer_args_opt(const struct ArgsLayer *args)
     }
     return lopt;
 }
+
+/**
+ * @brief Returns the length of the neural network layer parameter list.
+ * @param [in] args Layer initialisation parameters.
+ * @return The list length.
+ */
+static int
+layer_args_length(const struct ArgsLayer *args)
+{
+    int n = 0;
+    const struct ArgsLayer *iter = args;
+    while (iter != NULL) {
+        iter = iter->next;
+        ++n;
+    }
+    return n;
+}
+
+/**
+ * @brief Saves neural network layer parameters.
+ * @param [in] args Layer initialisation parameters.
+ * @param [in] fp Pointer to the output file.
+ * @return The total number of elements written.
+ */
+size_t
+layer_args_save(const struct ArgsLayer *args, FILE *fp)
+{
+    size_t s = 0;
+    const int n = layer_args_length(args);
+    s += fwrite(&n, sizeof(int), 1, fp);
+    const struct ArgsLayer *iter = args;
+    while (iter != NULL) {
+        s += fwrite(&iter->type, sizeof(int), 1, fp);
+        s += fwrite(&iter->n_inputs, sizeof(int), 1, fp);
+        s += fwrite(&iter->n_init, sizeof(int), 1, fp);
+        s += fwrite(&iter->n_max, sizeof(int), 1, fp);
+        s += fwrite(&iter->max_neuron_grow, sizeof(int), 1, fp);
+        s += fwrite(&iter->function, sizeof(int), 1, fp);
+        s += fwrite(&iter->recurrent_function, sizeof(int), 1, fp);
+        s += fwrite(&iter->height, sizeof(int), 1, fp);
+        s += fwrite(&iter->width, sizeof(int), 1, fp);
+        s += fwrite(&iter->channels, sizeof(int), 1, fp);
+        s += fwrite(&iter->size, sizeof(int), 1, fp);
+        s += fwrite(&iter->stride, sizeof(int), 1, fp);
+        s += fwrite(&iter->pad, sizeof(int), 1, fp);
+        s += fwrite(&iter->eta, sizeof(double), 1, fp);
+        s += fwrite(&iter->eta_min, sizeof(double), 1, fp);
+        s += fwrite(&iter->momentum, sizeof(double), 1, fp);
+        s += fwrite(&iter->decay, sizeof(double), 1, fp);
+        s += fwrite(&iter->probability, sizeof(double), 1, fp);
+        s += fwrite(&iter->scale, sizeof(double), 1, fp);
+        s += fwrite(&iter->evolve_weights, sizeof(bool), 1, fp);
+        s += fwrite(&iter->evolve_neurons, sizeof(bool), 1, fp);
+        s += fwrite(&iter->evolve_functions, sizeof(bool), 1, fp);
+        s += fwrite(&iter->evolve_eta, sizeof(bool), 1, fp);
+        s += fwrite(&iter->evolve_connect, sizeof(bool), 1, fp);
+        s += fwrite(&iter->sgd_weights, sizeof(bool), 1, fp);
+        iter = iter->next;
+    }
+    return s;
+}
+
+/**
+ * @brief Loads neural network layer parameters.
+ * @param [in] largs Pointer to the list of layer parameters to load.
+ * @param [in] fp Pointer to the output file.
+ * @return The total number of elements read.
+ */
+size_t
+layer_args_load(struct ArgsLayer **largs, FILE *fp)
+{
+    layer_args_free(largs);
+    size_t s = 0;
+    int n = 0;
+    s += fread(&n, sizeof(int), 1, fp);
+    for (int i = 0; i < n; ++i) {
+        struct ArgsLayer *arg = malloc(sizeof(struct ArgsLayer));
+        layer_args_init(arg);
+        s += fread(&arg->type, sizeof(int), 1, fp);
+        s += fread(&arg->n_inputs, sizeof(int), 1, fp);
+        s += fread(&arg->n_init, sizeof(int), 1, fp);
+        s += fread(&arg->n_max, sizeof(int), 1, fp);
+        s += fread(&arg->max_neuron_grow, sizeof(int), 1, fp);
+        s += fread(&arg->function, sizeof(int), 1, fp);
+        s += fread(&arg->recurrent_function, sizeof(int), 1, fp);
+        s += fread(&arg->height, sizeof(int), 1, fp);
+        s += fread(&arg->width, sizeof(int), 1, fp);
+        s += fread(&arg->channels, sizeof(int), 1, fp);
+        s += fread(&arg->size, sizeof(int), 1, fp);
+        s += fread(&arg->stride, sizeof(int), 1, fp);
+        s += fread(&arg->pad, sizeof(int), 1, fp);
+        s += fread(&arg->eta, sizeof(double), 1, fp);
+        s += fread(&arg->eta_min, sizeof(double), 1, fp);
+        s += fread(&arg->momentum, sizeof(double), 1, fp);
+        s += fread(&arg->decay, sizeof(double), 1, fp);
+        s += fread(&arg->probability, sizeof(double), 1, fp);
+        s += fread(&arg->scale, sizeof(double), 1, fp);
+        s += fread(&arg->evolve_weights, sizeof(bool), 1, fp);
+        s += fread(&arg->evolve_neurons, sizeof(bool), 1, fp);
+        s += fread(&arg->evolve_functions, sizeof(bool), 1, fp);
+        s += fread(&arg->evolve_eta, sizeof(bool), 1, fp);
+        s += fread(&arg->evolve_connect, sizeof(bool), 1, fp);
+        s += fread(&arg->sgd_weights, sizeof(bool), 1, fp);
+        if (*largs == NULL) {
+            *largs = arg;
+        } else {
+            struct ArgsLayer *iter = *largs;
+            while (iter->next != NULL) {
+                iter = iter->next;
+            }
+            iter->next = arg;
+        }
+    }
+    return s;
+}

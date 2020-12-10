@@ -73,3 +73,9 @@ layer_args_validate(struct ArgsLayer *args);
 
 uint32_t
 layer_args_opt(const struct ArgsLayer *args);
+
+size_t
+layer_args_save(const struct ArgsLayer *args, FILE *fp);
+
+size_t
+layer_args_load(struct ArgsLayer **largs, FILE *fp);

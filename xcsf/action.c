@@ -172,6 +172,7 @@ action_param_save(const struct XCSF *xcsf, FILE *fp)
     const struct ArgsAct *act = xcsf->act;
     size_t s = 0;
     s += fwrite(&act->type, sizeof(int), 1, fp);
+    s += layer_args_save(act->largs, fp);
     return s;
 }
 
@@ -187,6 +188,7 @@ action_param_load(struct XCSF *xcsf, FILE *fp)
     struct ArgsAct *act = xcsf->act;
     size_t s = 0;
     s += fread(&act->type, sizeof(int), 1, fp);
+    s += layer_args_load(&act->largs, fp);
     return s;
 }
 
