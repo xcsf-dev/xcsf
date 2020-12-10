@@ -69,7 +69,7 @@ malloc_layer_arrays(struct Layer *l)
 void
 neural_layer_connected_init(struct Layer *l, const struct ArgsLayer *args)
 {
-    l->options = layer_opt(args);
+    l->options = layer_args_opt(args);
     l->function = args->function;
     l->n_inputs = args->n_inputs;
     l->n_outputs = args->n_init;

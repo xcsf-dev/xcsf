@@ -24,6 +24,7 @@
 #pragma once
 
 #include "neural.h"
+#include "neural_layer_args.h"
 
 #define CONNECTED (0) //!< Layer type connected
 #define DROPOUT (1) //!< Layer type dropout
@@ -61,38 +62,6 @@
 #define N_WEIGHTS_MAX (20000000) //!< Maximum number of weights per layer
 #define N_INPUTS_MAX (2000000) //!< Maximum number of inputs per layer
 #define N_OUTPUTS_MAX (2000000) //!< Maximum number of outputs per layer
-
-/**
- * @brief Parameters for initialising a neural network layer.
- */
-struct ArgsLayer {
-    int type; //!< Layer type: CONNECTED, DROPOUT, etc.
-    int n_inputs; //!< Number of inputs
-    int n_init; //!< Initial number of units / neurons / filters
-    int n_max; //!< Maximum number of units / neurons
-    int max_neuron_grow; //!< Maximum number neurons to add per mutation event
-    int function; //!< Activation function
-    int recurrent_function; //!< Recurrent activation function
-    int height; //!< Pool, Conv, and Upsample
-    int width; //!< Pool, Conv, and Upsample
-    int channels; //!< Pool, Conv, and Upsample
-    int size; //!< Pool and Conv
-    int stride; //!< Pool, Conv, and Upsample
-    int pad; //!< Pool and Conv
-    double eta; //!< Gradient descent rate
-    double eta_min; //!< Current gradient descent rate
-    double momentum; //!< Momentum for gradient descent
-    double decay; //!< Weight decay for gradient descent
-    double probability; //!< Usage depends on layer implementation
-    double scale; //!< Usage depends on layer implementation
-    _Bool evolve_weights; //!< Ability to evolve weights
-    _Bool evolve_neurons; //!< Ability to evolve number of units
-    _Bool evolve_functions; //!< Ability to evolve activation function
-    _Bool evolve_eta; //!< Ability to evolve gradient descent rate
-    _Bool evolve_connect; //!< Ability to evolve weight connectivity
-    _Bool sgd_weights; //!< Ability to update weights with gradient descent
-    struct ArgsLayer *next; //!< Next layer parameters
-};
 
 /**
  * @brief Neural network layer data structure.
@@ -369,27 +338,6 @@ layer_type_as_string(const int type);
 
 int
 layer_type_as_int(const char *type);
-
-void
-layer_args_init(struct ArgsLayer *args);
-
-struct ArgsLayer *
-layer_args_copy(const struct ArgsLayer *src);
-
-struct ArgsLayer *
-layer_args_tail(struct ArgsLayer *head);
-
-void
-layer_args_print(const struct ArgsLayer *args);
-
-void
-layer_args_free(struct ArgsLayer **largs);
-
-void
-layer_args_validate(struct ArgsLayer *args);
-
-uint32_t
-layer_opt(const struct ArgsLayer *args);
 
 bool
 layer_receives_images(const int type);

@@ -266,7 +266,7 @@ mutate_weights(struct Layer *l)
 void
 neural_layer_lstm_init(struct Layer *l, const struct ArgsLayer *args)
 {
-    l->options = layer_opt(args);
+    l->options = layer_args_opt(args);
     l->function = args->function;
     l->recurrent_function = args->recurrent_function;
     l->n_inputs = args->n_inputs;
