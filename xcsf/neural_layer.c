@@ -150,7 +150,7 @@ layer_add_neurons(struct Layer *l, const int N)
             l->weights[i] = 0;
             l->weight_active[i] = false;
         } else {
-            l->weights[i] = rand_normal(0, 0.1);
+            l->weights[i] = rand_normal(0, WEIGHT_SD);
             l->weight_active[i] = true;
         }
         l->weight_updates[i] = 0;
@@ -181,7 +181,7 @@ layer_mutate_connectivity(struct Layer *l, const double mu_enable,
         for (int i = 0; i < l->n_weights; ++i) {
             if (!l->weight_active[i] && rand_uniform(0, 1) < mu_enable) {
                 l->weight_active[i] = true;
-                l->weights[i] = rand_normal(0, 0.1);
+                l->weights[i] = rand_normal(0, WEIGHT_SD);
                 ++(l->n_active);
                 mod = true;
             } else if (l->weight_active[i] && rand_uniform(0, 1) < mu_disable) {
@@ -214,7 +214,7 @@ layer_ensure_input_represention(struct Layer *l)
         }
         if (active < 1) {
             const int r = rand_uniform_int(0, l->n_inputs);
-            l->weights[offset + r] = rand_normal(0, 0.1);
+            l->weights[offset + r] = rand_normal(0, WEIGHT_SD);
             l->weight_active[offset + r] = true;
             ++(l->n_active);
             ++active;
@@ -231,7 +231,7 @@ layer_ensure_input_represention(struct Layer *l)
         while (active < 1) {
             const int offset = l->n_inputs * rand_uniform_int(0, l->n_outputs);
             if (!l->weight_active[offset + i]) {
-                l->weights[offset + i] = rand_normal(0, 0.1);
+                l->weights[offset + i] = rand_normal(0, WEIGHT_SD);
                 l->weight_active[offset + i] = true;
                 ++(l->n_active);
                 ++active;
@@ -332,11 +332,11 @@ layer_weight_rand(struct Layer *l)
 {
     l->n_active = l->n_weights;
     for (int i = 0; i < l->n_weights; ++i) {
-        l->weights[i] = rand_normal(0, 1);
+        l->weights[i] = rand_normal(0, WEIGHT_SD_RAND);
         l->weight_active[i] = true;
     }
     for (int i = 0; i < l->n_biases; ++i) {
-        l->biases[i] = rand_normal(0, 1);
+        l->biases[i] = rand_normal(0, WEIGHT_SD_RAND);
     }
 }
 

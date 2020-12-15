@@ -63,6 +63,10 @@
 #define N_INPUTS_MAX (2000000) //!< Maximum number of inputs per layer
 #define N_OUTPUTS_MAX (2000000) //!< Maximum number of outputs per layer
 
+#define WEIGHT_SD_INIT (0.1) //!< Std dev of Gaussian for weight initialisation
+#define WEIGHT_SD (0.1) //!< Std dev of Gaussian for weight resizing
+#define WEIGHT_SD_RAND (1.0) //!< Std dev of Gaussian for weight randomising
+
 /**
  * @brief Neural network layer data structure.
  */

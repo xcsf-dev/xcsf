@@ -88,7 +88,7 @@ neural_layer_connected_init(struct Layer *l, const struct ArgsLayer *args)
     layer_init_eta(l);
     malloc_layer_arrays(l);
     for (int i = 0; i < l->n_weights; ++i) {
-        l->weights[i] = rand_normal(0, 0.1);
+        l->weights[i] = rand_normal(0, WEIGHT_SD_INIT);
         l->weight_active[i] = true;
     }
     memset(l->biases, 0, sizeof(double) * l->n_biases);
@@ -263,7 +263,7 @@ neural_layer_connected_resize(struct Layer *l, const struct Layer *prev)
                 weight_updates[offset + j] = l->weight_updates[orig_offset + j];
                 weight_active[offset + j] = l->weight_active[orig_offset + j];
             } else {
-                weights[offset + j] = rand_normal(0, 0.1);
+                weights[offset + j] = rand_normal(0, WEIGHT_SD);
                 weight_updates[offset + j] = 0;
                 weight_active[offset + j] = true;
             }

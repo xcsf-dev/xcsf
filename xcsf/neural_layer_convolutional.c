@@ -187,7 +187,7 @@ neural_layer_convolutional_init(struct Layer *l, const struct ArgsLayer *args)
     layer_init_eta(l);
     malloc_layer_arrays(l);
     for (int i = 0; i < l->n_weights; ++i) {
-        l->weights[i] = rand_normal(0, 0.1);
+        l->weights[i] = rand_normal(0, WEIGHT_SD_INIT);
         l->weight_active[i] = true;
     }
     memset(l->biases, 0, sizeof(double) * l->n_biases);
@@ -370,7 +370,7 @@ neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev)
     l->n_weights = l->channels * l->n_filters * l->size * l->size;
     realloc_layer_arrays(l);
     for (int i = old_n_weights; i < l->n_weights; ++i) {
-        l->weights[i] = rand_normal(0, 0.1);
+        l->weights[i] = rand_normal(0, WEIGHT_SD);
         l->weight_updates[i] = 0;
         l->weight_active[i] = true;
     }
@@ -425,7 +425,7 @@ neural_layer_convolutional_add_filters(struct Layer *l, const int N)
     l->n_outputs = l->out_h * l->out_w * l->out_c;
     realloc_layer_arrays(l);
     for (int i = old_n_weights; i < l->n_weights; ++i) {
-        l->weights[i] = rand_normal(0, 0.1);
+        l->weights[i] = rand_normal(0, WEIGHT_SD);
         l->weight_active[i] = true;
         l->weight_updates[i] = 0;
     }
