@@ -124,6 +124,7 @@ param_defaults_cl_general(struct XCSF *xcsf)
     param_set_init_error(xcsf, 0);
     param_set_m_probation(xcsf, 10000);
     param_set_stateful(xcsf, true);
+    param_set_compaction(xcsf, false);
 }
 
 /**
@@ -144,6 +145,8 @@ param_print_cl_general(const struct XCSF *xcsf)
     printf(", M_PROBATION=%d", xcsf->M_PROBATION);
     printf(", STATEFUL=");
     xcsf->STATEFUL ? printf("true") : printf("false");
+    printf(", COMPACTION=");
+    xcsf->COMPACTION ? printf("true") : printf("false");
 }
 
 /**
@@ -166,6 +169,7 @@ param_save_cl_general(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->INIT_ERROR, sizeof(double), 1, fp);
     s += fwrite(&xcsf->M_PROBATION, sizeof(int), 1, fp);
     s += fwrite(&xcsf->STATEFUL, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->COMPACTION, sizeof(bool), 1, fp);
     return s;
 }
 
@@ -189,6 +193,7 @@ param_load_cl_general(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->INIT_ERROR, sizeof(double), 1, fp);
     s += fread(&xcsf->M_PROBATION, sizeof(int), 1, fp);
     s += fread(&xcsf->STATEFUL, sizeof(bool), 1, fp);
+    s += fread(&xcsf->COMPACTION, sizeof(bool), 1, fp);
     return s;
 }
 
@@ -530,6 +535,12 @@ void
 param_set_stateful(struct XCSF *xcsf, const bool a)
 {
     xcsf->STATEFUL = a;
+}
+
+void
+param_set_compaction(struct XCSF *xcsf, const bool a)
+{
+    xcsf->COMPACTION = a;
 }
 
 void

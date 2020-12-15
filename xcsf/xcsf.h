@@ -133,6 +133,7 @@ struct XCSF {
     bool POP_INIT; //!< Pop initially empty or filled with random conditions
     bool SET_SUBSUMPTION; //!< Whether to perform match set subsumption
     bool STATEFUL; //!< Whether classifiers should retain state across trials
+    bool COMPACTION; //!< if sys err < E0: largest of 2 roulette spins deleted
 };
 
 /**

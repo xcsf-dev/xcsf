@@ -104,6 +104,7 @@ xcs.M_PROBATION = 10000 # trials since creation a rule must match at least 1 inp
 xcs.STATEFUL = True # whether classifiers should retain state across trials
 xcs.SET_SUBSUMPTION = False # whether to perform set subsumption
 xcs.THETA_SUB = 100 # minimum experience of a classifier to become a subsumer
+xcs.COMPACTION = False # if enabled and sys err < E0, the largest of 2 roulette spins is deleted
 
 # Multi-step Problems
 xcs.TELETRANSPORTATION = 50 # num steps to reset a multistep problem if goal not found

@@ -173,6 +173,8 @@ config_cl_gen(struct XCSF *xcsf, const char *n, const char *v, const int i,
         param_set_m_probation(xcsf, i);
     } else if (strncmp(n, "STATEFUL\0", 9) == 0) {
         param_set_stateful(xcsf, i);
+    } else if (strncmp(n, "COMPACTION\0", 11) == 0) {
+        param_set_compaction(xcsf, i);
     }
 }
 

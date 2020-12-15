@@ -52,10 +52,11 @@ clset_pset_never_match(const struct XCSF *xcsf, struct Clist **del,
 
 /**
  * @brief Selects a classifier from the population for deletion via roulette.
- * @details If the average system error is below E0, two classifiers are
- * selected using roulette wheel selection with the deletion vote and the one
- * with the largest condition + prediction size is chosen. For fixed-length
- * representations, the effect is the same as one roulete spin.
+ * @details If compaction is enabled and the average system error is below E0,
+ * two classifiers are selected using roulette wheel selection with the
+ * deletion vote and the rule with the largest condition + prediction size is
+ * chosen. For fixed-length representations, the effect is the same as one
+ * roulete spin.
  * @param [in] xcsf The XCSF data structure.
  * @param [out] del A pointer to the rule to be deleted.
  * @param [out] delprev A pointer to the rule previous to the one being deleted.
@@ -72,7 +73,7 @@ clset_pset_roulette(const struct XCSF *xcsf, struct Clist **del,
         iter = iter->next;
     }
     double delsize = 0;
-    const int n_spins = (xcsf->error < xcsf->E0) ? 2 : 1;
+    const int n_spins = (xcsf->COMPACTION && xcsf->error < xcsf->E0) ? 2 : 1;
     for (int i = 0; i < n_spins; ++i) {
         // perform a single roulette spin with the deletion vote
         iter = xcsf->pset.list;

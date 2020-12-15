@@ -69,6 +69,9 @@ void
 param_set_stateful(struct XCSF *xcsf, const bool a);
 
 void
+param_set_compaction(struct XCSF *xcsf, const bool a);
+
+void
 param_set_huber_delta(struct XCSF *xcsf, const double a);
 
 void

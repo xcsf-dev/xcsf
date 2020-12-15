@@ -578,6 +578,12 @@ class XCS
         return xcs.STATEFUL;
     }
 
+    bool
+    get_compaction(void)
+    {
+        return xcs.COMPACTION;
+    }
+
     int
     get_theta_del(void)
     {
@@ -1296,6 +1302,12 @@ class XCS
     }
 
     void
+    set_compaction(const bool a)
+    {
+        param_set_compaction(&xcs, a);
+    }
+
+    void
     set_gamma(const double a)
     {
         param_set_gamma(&xcs, a);
@@ -1441,6 +1453,7 @@ PYBIND11_MODULE(xcsf, m)
         .def_property("DELTA", &XCS::get_delta, &XCS::set_delta)
         .def_property("E0", &XCS::get_e0, &XCS::set_e0)
         .def_property("STATEFUL", &XCS::get_stateful, &XCS::set_stateful)
+        .def_property("COMPACTION", &XCS::get_compaction, &XCS::set_compaction)
         .def_property("INIT_ERROR", &XCS::get_init_error, &XCS::set_init_error)
         .def_property("INIT_FITNESS", &XCS::get_init_fitness,
                       &XCS::set_init_fitness)
