@@ -170,7 +170,7 @@ $ make
 
 [MinGW64-gcc-8.1.0](http://mingw-w64.org) + [Python 3.6.6 x86-64](https://python.org/downloads/windows/)
 
-Notes: use 64-bit versions for both python and mingw. Tested with: python-3.6.6-amd64.exe and mingw-w64-install.exe (8.1.0; x86_64; posix; seh; 0). Some versions of python have difficulties compiling. XCSF build should generate only a single warning regarding a redundant redeclaration of 'double round(double)'. This is an issue with python and mingw having their own rounding functions, but this can safely be ignored.
+Notes: use 64-bit versions for both python and mingw. Tested with: python-3.6.6-amd64.exe and mingw-w64-install.exe (8.1.0; x86_64; posix; seh; 0). Some versions of python have difficulties compiling. XCSF build should generate only a single warning regarding a redundant redeclaration of 'double round(double)'. This is an issue with python and mingw having their own rounding functions, but this can safely be ignored. A simple method to get started is: Start -> MinGW-W64 project -> Run terminal -> change to the desired install location and enter the commands below. [Compilation should also be possible within an IDE such as Visual Studio or Eclipse.]
 
 ```
 $ git clone --recurse-submodules https://github.com/rpreen/xcsf.git
