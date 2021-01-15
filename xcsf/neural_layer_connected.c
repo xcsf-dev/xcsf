@@ -338,8 +338,9 @@ neural_layer_connected_output(const struct Layer *l)
 void
 neural_layer_connected_print(const struct Layer *l, const bool print_weights)
 {
-    printf("connected %s, in = %d, out = %d, ",
-           neural_activation_string(l->function), l->n_inputs, l->n_outputs);
+    printf("connected %s, in=%d, out=%d, eta=%f, ",
+           neural_activation_string(l->function), l->n_inputs, l->n_outputs,
+           l->eta);
     layer_weight_print(l, print_weights);
     printf("\n");
 }

@@ -430,8 +430,9 @@ neural_layer_recurrent_mutate(struct Layer *l)
 void
 neural_layer_recurrent_print(const struct Layer *l, const bool print_weights)
 {
-    printf("recurrent %s, in = %d, out = %d\n",
-           neural_activation_string(l->function), l->n_inputs, l->n_outputs);
+    printf("recurrent %s, in=%d, out=%d, eta=%f\n",
+           neural_activation_string(l->function), l->n_inputs, l->n_outputs,
+           l->eta);
     if (print_weights) {
         printf("recurrent input layer:\n");
         layer_print(l->input_layer, print_weights);

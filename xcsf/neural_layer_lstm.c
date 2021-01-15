@@ -572,10 +572,10 @@ neural_layer_lstm_mutate(struct Layer *l)
 void
 neural_layer_lstm_print(const struct Layer *l, const bool print_weights)
 {
-    printf("lstm, f = %s, rf = %s,  in = %d, out = %d\n",
+    printf("lstm, f=%s, rf=%s, in=%d, out=%d, eta=%f\n",
            neural_activation_string(l->function),
            neural_activation_string(l->recurrent_function), l->n_inputs,
-           l->n_outputs);
+           l->n_outputs, l->eta);
     if (print_weights) {
         printf("uf layer:\n");
         layer_print(l->uf, print_weights);

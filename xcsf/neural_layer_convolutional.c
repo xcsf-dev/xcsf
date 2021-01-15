@@ -497,9 +497,9 @@ neural_layer_convolutional_print(const struct Layer *l,
                                  const bool print_weights)
 {
     printf("convolutional %s, in=%d, out=%d, filters=%d, size=%d, stride=%d, "
-           "pad=%d, ",
+           "pad=%d, eta=%f, ",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs,
-           l->n_filters, l->size, l->stride, l->pad);
+           l->n_filters, l->size, l->stride, l->pad, l->eta);
     layer_weight_print(l, print_weights);
     printf("\n");
 }
