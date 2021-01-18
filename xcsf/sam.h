@@ -17,7 +17,7 @@
  * @file sam.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Self-adaptive mutation functions.
  */
 
@@ -34,3 +34,6 @@ sam_adapt(double *mu, const int N, const int *type);
 
 void
 sam_init(double *mu, const int N, const int *type);
+
+void
+sam_print(const double *mu, const int N);

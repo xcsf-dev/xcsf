@@ -17,7 +17,7 @@
  * @file neural_layer_lstm.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a long short-term memory layer.
  * @details Stateful, and with a step of 1.
  * Typically the output activation is TANH and recurrent activation LOGISTIC.
@@ -576,6 +576,7 @@ neural_layer_lstm_print(const struct Layer *l, const bool print_weights)
            neural_activation_string(l->function),
            neural_activation_string(l->recurrent_function), l->n_inputs,
            l->n_outputs, l->eta);
+    sam_print(l->mu, N_MU);
     if (print_weights) {
         printf("uf layer:\n");
         layer_print(l->uf, print_weights);

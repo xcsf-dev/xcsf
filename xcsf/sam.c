@@ -17,7 +17,7 @@
  * @file sam.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Self-adaptive mutation functions.
  */
 
@@ -87,5 +87,18 @@ sam_adapt(double *mu, const int N, const int *type)
                 printf("sam_adapt(): invalid sam function: %d\n", type[i]);
                 exit(EXIT_FAILURE);
         }
+    }
+}
+
+/**
+ * @brief Prints mutation rates.
+ * @param [in] mu Vector of mutation rates.
+ * @param [in] N Number of mutation rates.
+ */
+void
+sam_print(const double *mu, const int N)
+{
+    for (int i = 0; i < N; ++i) {
+        printf("mu%d=%f, ", i, mu[i]);
     }
 }

@@ -17,7 +17,7 @@
  * @file neural_layer_connected.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a fully-connected layer of perceptrons.
  */
 
@@ -341,6 +341,7 @@ neural_layer_connected_print(const struct Layer *l, const bool print_weights)
     printf("connected %s, in=%d, out=%d, eta=%f, ",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs,
            l->eta);
+    sam_print(l->mu, N_MU);
     layer_weight_print(l, print_weights);
     printf("\n");
 }

@@ -17,7 +17,7 @@
  * @file neural_layer_convolutional.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a 2D convolutional layer.
  */
 
@@ -500,6 +500,7 @@ neural_layer_convolutional_print(const struct Layer *l,
            "pad=%d, eta=%f, ",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs,
            l->n_filters, l->size, l->stride, l->pad, l->eta);
+    sam_print(l->mu, N_MU);
     layer_weight_print(l, print_weights);
     printf("\n");
 }

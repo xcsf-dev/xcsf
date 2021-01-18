@@ -17,7 +17,7 @@
  * @file neural_layer_recurrent.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a recurrent layer of perceptrons.
  * @details Fully-connected, stateful, and with a step of 1.
  */
@@ -433,6 +433,7 @@ neural_layer_recurrent_print(const struct Layer *l, const bool print_weights)
     printf("recurrent %s, in=%d, out=%d, eta=%f\n",
            neural_activation_string(l->function), l->n_inputs, l->n_outputs,
            l->eta);
+    sam_print(l->mu, N_MU);
     if (print_weights) {
         printf("recurrent input layer:\n");
         layer_print(l->input_layer, print_weights);
