@@ -337,7 +337,7 @@ neural_layer_convolutional_backward(const struct Layer *l,
 void
 neural_layer_convolutional_update(const struct Layer *l)
 {
-    if (l->options & LAYER_SGD_WEIGHTS) {
+    if (l->options & LAYER_SGD_WEIGHTS && l->eta > 0) {
         blas_axpy(l->n_biases, l->eta, l->bias_updates, 1, l->biases, 1);
         blas_scal(l->n_biases, l->momentum, l->bias_updates, 1);
         if (l->decay > 0) {

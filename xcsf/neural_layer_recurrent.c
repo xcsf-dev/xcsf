@@ -372,7 +372,7 @@ neural_layer_recurrent_backward(const struct Layer *l, const struct Net *net,
 void
 neural_layer_recurrent_update(const struct Layer *l)
 {
-    if (l->options & LAYER_SGD_WEIGHTS) {
+    if (l->options & LAYER_SGD_WEIGHTS && l->eta > 0) {
         layer_update(l->input_layer);
         layer_update(l->self_layer);
         layer_update(l->output_layer);

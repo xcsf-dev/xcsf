@@ -493,7 +493,7 @@ neural_layer_lstm_backward(const struct Layer *l, const struct Net *net,
 void
 neural_layer_lstm_update(const struct Layer *l)
 {
-    if (l->options & LAYER_SGD_WEIGHTS) {
+    if (l->options & LAYER_SGD_WEIGHTS && l->eta > 0) {
         layer_update(l->wf);
         layer_update(l->wi);
         layer_update(l->wg);
