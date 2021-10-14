@@ -1372,6 +1372,12 @@ class XCS
     {
         ea_param_set_pred_reset(&xcs, a);
     }
+
+    void
+    seed(const uint32_t seed)
+    {
+        rand_init_seed(seed);
+    }
 };
 
 PYBIND11_MODULE(xcsf, m)
@@ -1437,6 +1443,7 @@ PYBIND11_MODULE(xcsf, m)
         .def("end_step", &XCS::end_step)
         .def("decision", &XCS::decision)
         .def("update", &XCS::update)
+        .def("seed", &XCS::seed)
         .def_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads,
                       &XCS::set_omp_num_threads)
         .def_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)

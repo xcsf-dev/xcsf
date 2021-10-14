@@ -22,7 +22,6 @@
  */
 
 #include "utils.h"
-#include "../lib/dSFMT/dSFMT.h"
 #include <limits.h>
 #include <stdbool.h>
 #include <time.h>
@@ -39,6 +38,16 @@ rand_init(void)
     for (size_t i = 0; i < sizeof(now); ++i) {
         seed = (seed * (UCHAR_MAX + 2U)) + p[i];
     }
+    dsfmt_gv_init_gen_rand(seed);
+}
+
+/**
+ * @brief Initialises the pseudo-random number generator with a fixed seed.
+ * @param [in] a seed
+ */
+void
+rand_init_seed(const uint32_t seed)
+{
     dsfmt_gv_init_gen_rand(seed);
 }
 

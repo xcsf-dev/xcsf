@@ -23,6 +23,7 @@
 
 #pragma once
 
+#include "../lib/dSFMT/dSFMT.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,6 +39,9 @@ rand_uniform_int(const int min, const int max);
 
 void
 rand_init(void);
+
+void
+rand_init_seed(const uint32_t seed);
 
 /**
  * @brief Returns a float clamped within the specified range.
