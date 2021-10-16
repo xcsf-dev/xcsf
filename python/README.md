@@ -36,6 +36,7 @@
 * [Storing and Retrieving XCSF](#storing-and-retrieving-xcsf)
 * [Printing XCSF](#printing-xcsf)
 * [XCSF Getters](#xcsf-getters)
+* [Random Number Seed](#random-number-seed)
 * [Reinforcement Learning](#reinforcement-learning)
     * [Reinforcement Initialisation](#reinforcement-initialisation)
     * [Reinforcement Learning Method 1](#reinforcement-learning-method-1)
@@ -726,6 +727,16 @@ xcs.pset_mean_pred_connections(layer) # returns the number of active connections
 xcs.pset_mean_cond_neurons(layer) # returns the mean number of neurons for a condition layer
 xcs.pset_mean_cond_layers() # returns the mean number of layers in the condition networks
 xcs.pset_mean_cond_connections(layer) # returns the number of active connections for a condition layer
+```
+
+*******************************************************************************
+
+## Random Number Seed
+
+To set the random number seed:
+
+```python
+xcs.seed(seed)
 ```
 
 *******************************************************************************

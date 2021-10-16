@@ -16,8 +16,9 @@
 /**
  * @file utils.h
  * @author Richard Preen <rpreen@gmail.com>
+ * @author David Pätzel
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Utility functions for random number handling, etc.
  */
 

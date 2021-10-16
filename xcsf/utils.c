@@ -16,8 +16,9 @@
 /**
  * @file utils.c
  * @author Richard Preen <rpreen@gmail.com>
+ * @author David Pätzel
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Utility functions for random number handling, etc.
  */
 
@@ -43,7 +44,7 @@ rand_init(void)
 
 /**
  * @brief Initialises the pseudo-random number generator with a fixed seed.
- * @param [in] a seed
+ * @param [in] seed Random number seed.
  */
 void
 rand_init_seed(const uint32_t seed)

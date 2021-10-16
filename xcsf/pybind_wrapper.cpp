@@ -16,8 +16,9 @@
 /**
  * @file pybind_wrapper.cpp
  * @author Richard Preen <rpreen@gmail.com>
+ * @author David Pätzel
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2021.
  * @brief Python library wrapper functions.
  */
 
