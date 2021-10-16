@@ -32,6 +32,8 @@ set(XCSF_TESTS
     unit_tests.cpp
 )
 
+add_definitions(-DDSFMT_MEXP=19937)
+
 add_executable(tests ${XCSF_TESTS})
 target_link_libraries(tests xcs)
 
