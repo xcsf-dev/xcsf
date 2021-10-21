@@ -407,7 +407,7 @@ clset_add(struct Set *set, struct Cl *c)
         set->list = new;
     }
     ++(set->size);
-    ++(set->num);
+    set->num += c->num;
 }
 
 /**
