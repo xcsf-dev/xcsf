@@ -257,6 +257,19 @@ xcs.condition('tree-gp', args)
 
 ### DGP Graphs
 
+Cyclical graphs with fuzzy activation functions selected from the CFMQVS set:
+`{fuzzy NOT, fuzzy AND, fuzzy OR}`. Each graph is initialised with a randomly
+selected function assigned to each node and random connectivity (including
+recurrent connections) and is synchronously updated in parallel for T cycles
+before sampling the output node(s). These graphs can exhibit inherent memory by
+retaining state across inputs.
+
+Currently implements a fixed number of nodes with the number of connections and
+update cycles evolved along with the function for each node.
+
+Log normal self-adaptive mutation is used for node function and connectivity
+and uniform self-adaptive mutation for the number of update cycles.
+
 ```python
 args = {
     'max-k': 2, # number of connections per node
