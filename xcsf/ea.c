@@ -141,7 +141,7 @@ ea_select_rw(const struct XCSF *xcsf, const struct Set *set,
     double sum = iter->cl->fit;
     while (p > sum) {
         iter = iter->next;
-        sum += iter->cl->fit * iter->cl->num;
+        sum += iter->cl->fit;
     }
     return iter->cl;
 }

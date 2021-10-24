@@ -522,7 +522,7 @@ clset_total_fit(const struct Set *set)
     double sum = 0;
     const struct Clist *iter = set->list;
     while (iter != NULL) {
-        sum += iter->cl->fit * iter->cl->num;
+        sum += iter->cl->fit;
         iter = iter->next;
     }
     return sum;
