@@ -88,7 +88,7 @@ Implements both [supervised learning](https://en.wikipedia.org/wiki/Supervised_l
 
 ### Python Library
 
-See [`python/README.md`](python/README.md) for Python library usage.
+See [Wiki](https://github.com/rpreen/xcsf/wiki/Python-Library-Usage) for Python library usage.
 
 ### Conditions
 
