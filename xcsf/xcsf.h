@@ -35,8 +35,8 @@
 #include <string.h>
 
 static const int VERSION_MAJOR = 1; //!< XCSF major version number
-static const int VERSION_MINOR = 2; //!< XCSF minor version number
-static const int VERSION_BUILD = 0; //!< XCSF build version number
+static const int VERSION_MINOR = 1; //!< XCSF minor version number
+static const int VERSION_BUILD = 2; //!< XCSF build version number
 
 /**
  * @brief Classifier data structure.
