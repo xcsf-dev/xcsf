@@ -19,16 +19,3 @@ See the project [wiki](https://github.com/rpreen/xcsf/wiki) for details on featu
 [![Code Inspector](https://www.code-inspector.com/project/2064/status/svg)](https://www.code-inspector.com/public/project/2064/xcsf/dashboard)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=alert_status)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=ncloc)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
-
-
-*******************************************************************************
-
-## Contributing
-
-Contributions are always welcome. See `CONTRIBUTING.md` for details.
-
-*******************************************************************************
-
-## License
-
-This project is released under the GNU Public License v3. See `LICENSE.md` for details.
