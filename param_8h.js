@@ -7,6 +7,7 @@ var param_8h =
     [ "param_save", "param_8h.html#aeee8da56faaeace4ed44adc45a42d359", null ],
     [ "param_set_alpha", "param_8h.html#a182ee50f5c048bc54246480e1098d8f2", null ],
     [ "param_set_beta", "param_8h.html#af77999a550e9301daff82311b7c610e6", null ],
+    [ "param_set_compaction", "param_8h.html#a4c7f760ecd35ae43a3120cfb9e55bff2", null ],
     [ "param_set_delta", "param_8h.html#a9fac691b5fd2e113223368bd70927259", null ],
     [ "param_set_e0", "param_8h.html#aaa456227887cdbc6101fd041edd3c47d", null ],
     [ "param_set_explore", "param_8h.html#a966c3e54f2e1977dd7b4776723efa2b4", null ],

@@ -1,26 +1,33 @@
 <map id="neural_insert" name="neural_insert">
-<area shape="rect" id="node1" title="Inserts a layer into a neural network." alt="" coords="1025,563,1121,589"/>
-<area shape="rect" id="node2" href="$neural_8h.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="862,487,954,513"/>
-<area shape="rect" id="node22" href="$pred__neural_8h.html#ab573aaed6ff7623e99afe1d1f6e00919" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="839,588,977,615"/>
-<area shape="rect" id="node3" href="$neural_8h.html#acc35a399d5b8b9dd9a2d9500138966f3" title="Copies a neural network." alt="" coords="651,107,743,133"/>
-<area shape="rect" id="node8" href="$neural_8h.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="647,309,747,336"/>
-<area shape="rect" id="node13" href="$neural_8h.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08" title="Reads a neural network from a file." alt="" coords="653,487,741,513"/>
-<area shape="rect" id="node18" href="$pred__neural_8h.html#aa639a9130cac0c222bca241f86d6c135" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="604,576,791,603"/>
-<area shape="rect" id="node4" href="$act__neural_8h.html#a6c3049bc82f3a2bd512e156a0f1c1a9b" title="Copies a neural network action from one classifier to another." alt="" coords="420,5,537,32"/>
-<area shape="rect" id="node5" href="$cond__neural_8h.html#ad37696d691025a38a0f8dafeb376ad44" title="Copies a neural network condition from one classifier to another." alt="" coords="415,56,542,83"/>
-<area shape="rect" id="node6" href="$pred__neural_8h.html#aabc294bd7043f7ea912832c3a26b73a1" title="Copies a neural network prediction from one classifier to another." alt="" coords="417,107,541,133"/>
-<area shape="rect" id="node7" href="$rule__neural_8h.html#ad4146518a1cee7c58589d9ea89e02a83" title=" " alt="" coords="401,157,556,184"/>
-<area shape="rect" id="node9" href="$act__neural_8h.html#abbdbc4d92f139ccc9816289233dbf934" title="Creates and initialises an action neural network." alt="" coords="425,208,532,235"/>
-<area shape="rect" id="node10" href="$cond__neural_8h.html#a16f80af76361587e6da53dd21fa05b7b" title="Creates and initialises a neural network condition." alt="" coords="421,259,537,285"/>
-<area shape="rect" id="node11" href="$pred__neural_8h.html#a8ff454a2da61b52670f4b70b71da2fe8" title="Creates and initialises a neural network prediction." alt="" coords="422,309,535,336"/>
-<area shape="rect" id="node12" href="$rule__neural_8h.html#accc0db627c6130e7c8680c008b47a2e2" title=" " alt="" coords="407,360,551,387"/>
-<area shape="rect" id="node14" href="$act__neural_8h.html#a241289b5c61dec98b854ee24fdf16d67" title="Reads a neural network action from a file." alt="" coords="422,411,535,437"/>
-<area shape="rect" id="node15" href="$cond__neural_8h.html#a8decac2646ea64aba95cd8522d295c83" title="Reads a neural network condition from a file." alt="" coords="417,461,540,488"/>
-<area shape="rect" id="node16" href="$pred__neural_8h.html#aee98eff48767b879343983d0717952cc" title="Reads a neural network prediction from a file." alt="" coords="419,512,539,539"/>
-<area shape="rect" id="node17" href="$rule__neural_8h.html#a0e1e69e3c01307e2423a9c3c05409d63" title=" " alt="" coords="403,563,554,589"/>
-<area shape="rect" id="node19" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="406,613,551,640"/>
-<area shape="rect" id="node20" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="204,613,353,640"/>
-<area shape="rect" id="node21" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,639,156,665"/>
-<area shape="rect" id="node23" href="$xcsf_8h.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="633,652,761,679"/>
-<area shape="rect" id="node24" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="213,664,345,691"/>
+<area shape="rect" id="node1" title="Inserts a layer into a neural network." alt="" coords="1387,612,1483,639"/>
+<area shape="rect" id="node2" href="$neural_8h.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="1223,524,1315,551"/>
+<area shape="rect" id="node29" href="$pred__neural_8h.html#ab573aaed6ff7623e99afe1d1f6e00919" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="1200,637,1339,664"/>
+<area shape="rect" id="node3" href="$neural_8h.html#acc35a399d5b8b9dd9a2d9500138966f3" title="Copies a neural network." alt="" coords="1013,107,1105,133"/>
+<area shape="rect" id="node8" href="$neural_8h.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="1009,335,1109,361"/>
+<area shape="rect" id="node21" href="$neural_8h.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08" title="Reads a neural network from a file." alt="" coords="1015,524,1103,551"/>
+<area shape="rect" id="node26" href="$pred__neural_8h.html#aa639a9130cac0c222bca241f86d6c135" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="965,625,1152,652"/>
+<area shape="rect" id="node4" href="$act__neural_8h.html#a6c3049bc82f3a2bd512e156a0f1c1a9b" title="Copies a neural network action from one classifier to another." alt="" coords="781,5,899,32"/>
+<area shape="rect" id="node5" href="$cond__neural_8h.html#ad37696d691025a38a0f8dafeb376ad44" title="Copies a neural network condition from one classifier to another." alt="" coords="777,56,903,83"/>
+<area shape="rect" id="node6" href="$pred__neural_8h.html#aabc294bd7043f7ea912832c3a26b73a1" title="Copies a neural network prediction from one classifier to another." alt="" coords="778,107,902,133"/>
+<area shape="rect" id="node7" href="$rule__neural_8h.html#ad4146518a1cee7c58589d9ea89e02a83" title=" " alt="" coords="763,157,917,184"/>
+<area shape="rect" id="node9" href="$act__neural_8h.html#abbdbc4d92f139ccc9816289233dbf934" title="Creates and initialises an action neural network." alt="" coords="787,208,893,235"/>
+<area shape="rect" id="node10" href="$cond__neural_8h.html#a16f80af76361587e6da53dd21fa05b7b" title="Creates and initialises a neural network condition." alt="" coords="782,259,898,285"/>
+<area shape="rect" id="node11" href="$neural__layer__args_8h.html#a8d6f5c91f58e29ae70807de0d0b25d0e" title="Prints layer parameters." alt="" coords="783,309,897,336"/>
+<area shape="rect" id="node19" href="$pred__neural_8h.html#a8ff454a2da61b52670f4b70b71da2fe8" title="Creates and initialises a neural network prediction." alt="" coords="783,360,897,387"/>
+<area shape="rect" id="node20" href="$rule__neural_8h.html#accc0db627c6130e7c8680c008b47a2e2" title=" " alt="" coords="768,411,912,437"/>
+<area shape="rect" id="node12" href="$action_8h.html#a1e6bb9a3116b23d3bb6b676607501923" title="Prints action parameters." alt="" coords="583,284,715,311"/>
+<area shape="rect" id="node17" href="$condition_8h.html#adc81d1c6371eb0ef613ba3df5f2b1fb4" title="Prints condition parameters." alt="" coords="586,335,711,361"/>
+<area shape="rect" id="node18" href="$prediction_8h.html#a8358abee65ddd688514040ef8851d9f2" title="Prints prediction parameters." alt="" coords="587,385,710,412"/>
+<area shape="rect" id="node13" href="$param_8h.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="415,360,505,387"/>
+<area shape="rect" id="node14" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="245,360,296,387"/>
+<area shape="rect" id="node15" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="204,499,337,525"/>
+<area shape="rect" id="node16" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,664,156,691"/>
+<area shape="rect" id="node22" href="$act__neural_8h.html#a241289b5c61dec98b854ee24fdf16d67" title="Reads a neural network action from a file." alt="" coords="783,461,897,488"/>
+<area shape="rect" id="node23" href="$cond__neural_8h.html#a8decac2646ea64aba95cd8522d295c83" title="Reads a neural network condition from a file." alt="" coords="779,512,901,539"/>
+<area shape="rect" id="node24" href="$pred__neural_8h.html#aee98eff48767b879343983d0717952cc" title="Reads a neural network prediction from a file." alt="" coords="780,563,900,589"/>
+<area shape="rect" id="node25" href="$rule__neural_8h.html#a0e1e69e3c01307e2423a9c3c05409d63" title=" " alt="" coords="765,613,915,640"/>
+<area shape="rect" id="node27" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="767,664,913,691"/>
+<area shape="rect" id="node28" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="385,664,535,691"/>
+<area shape="rect" id="node30" href="$xcsf_8h.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="995,701,1123,728"/>
+<area shape="rect" id="node31" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="394,715,526,741"/>
 </map>

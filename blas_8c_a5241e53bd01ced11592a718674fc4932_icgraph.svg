@@ -95,7 +95,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="pred__rls_8h.html#a8d82d194af63bd7feb392c8b8fc17d6c" target="_top" xlink:title="Reads an NLMS prediction from a file.">
+<g id="a_node7"><a xlink:href="pred__rls_8h.html#a8d82d194af63bd7feb392c8b8fc17d6c" target="_top" xlink:title="Reads an RLS prediction from a file.">
 <polygon fill="none" stroke="black" points="7,-0.5 7,-19.5 81,-19.5 81,-0.5 7,-0.5"/>
 <text text-anchor="middle" x="44" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_rls_load</text>
 </a>

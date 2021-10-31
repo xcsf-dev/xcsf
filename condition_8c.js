@@ -10,7 +10,6 @@ var condition_8c =
     [ "cond_param_print_csr", "condition_8c.html#aea377b513c7f68361082e1fcedd2a07f", null ],
     [ "cond_param_print_dgp", "condition_8c.html#a6e026ed762c0d77fa9ba14999f37200c", null ],
     [ "cond_param_print_gp", "condition_8c.html#af803f36b261ce6a5bac8ccbf35d95d0b", null ],
-    [ "cond_param_print_neural", "condition_8c.html#a0767d3c6211bee598aec6b69ac497343", null ],
     [ "cond_param_print_ternary", "condition_8c.html#a4014fbd185aa14dace6d42b3c6986285", null ],
     [ "cond_param_save", "condition_8c.html#a8f670b7aa04f9e43ec146e1a7b3917a5", null ],
     [ "cond_param_set_bits", "condition_8c.html#a6d08714de7bb2d395de2a8171635afac", null ],

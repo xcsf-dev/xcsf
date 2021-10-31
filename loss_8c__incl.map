@@ -1,16 +1,17 @@
 <map id="loss.c" name="loss.c">
-<area shape="rect" id="node1" title="Loss functions for calculating prediction error." alt="" coords="563,5,620,32"/>
-<area shape="rect" id="node2" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="529,80,587,107"/>
-<area shape="rect" id="node14" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="691,155,748,181"/>
-<area shape="rect" id="node3" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="477,155,535,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="475,229,537,256"/>
-<area shape="rect" id="node5" title=" " alt="" coords="562,229,621,256"/>
-<area shape="rect" id="node6" title=" " alt="" coords="5,229,84,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="109,229,173,256"/>
+<area shape="rect" id="node1" title="Loss functions for calculating prediction error." alt="" coords="597,5,655,32"/>
+<area shape="rect" id="node2" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="564,80,621,107"/>
+<area shape="rect" id="node14" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="735,155,792,181"/>
+<area shape="rect" id="node3" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="461,155,519,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="184,229,247,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="271,229,330,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="355,229,433,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="458,229,522,256"/>
 <area shape="rect" id="node8" title=" " alt="" coords="645,229,708,256"/>
-<area shape="rect" id="node9" title=" " alt="" coords="197,229,271,256"/>
-<area shape="rect" id="node10" title=" " alt="" coords="296,229,361,256"/>
+<area shape="rect" id="node9" title=" " alt="" coords="546,229,621,256"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,229,71,256"/>
 <area shape="rect" id="node11" title=" " alt="" coords="733,229,794,256"/>
 <area shape="rect" id="node12" title=" " alt="" coords="818,229,882,256"/>
-<area shape="rect" id="node13" title=" " alt="" coords="385,229,451,256"/>
+<area shape="rect" id="node13" title=" " alt="" coords="95,229,160,256"/>
+<area shape="rect" id="node15" title=" " alt="" coords="907,229,1057,256"/>
 </map>

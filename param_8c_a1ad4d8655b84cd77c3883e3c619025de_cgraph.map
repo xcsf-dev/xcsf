@@ -1,13 +1,14 @@
 <map id="param_defaults_cl_general" name="param_defaults_cl_general">
-<area shape="rect" id="node1" title="Initialises default general classifier parameters." alt="" coords="5,233,183,260"/>
+<area shape="rect" id="node1" title="Initialises default general classifier parameters." alt="" coords="5,259,183,285"/>
 <area shape="rect" id="node2" href="$param_8c.html#a182ee50f5c048bc54246480e1098d8f2" title=" " alt="" coords="251,5,372,32"/>
 <area shape="rect" id="node3" href="$param_8c.html#af77999a550e9301daff82311b7c610e6" title=" " alt="" coords="254,56,369,83"/>
-<area shape="rect" id="node4" href="$param_8c.html#a9fac691b5fd2e113223368bd70927259" title=" " alt="" coords="252,107,371,133"/>
-<area shape="rect" id="node5" href="$param_8c.html#aaa456227887cdbc6101fd041edd3c47d" title=" " alt="" coords="259,157,363,184"/>
-<area shape="rect" id="node6" href="$param_8c.html#a60297014c75d27b96d36bac6eb00e569" title=" " alt="" coords="241,208,381,235"/>
-<area shape="rect" id="node7" href="$param_8c.html#afe1d8c81dd7d8a229c53c0f0324612e1" title=" " alt="" coords="235,259,388,285"/>
-<area shape="rect" id="node8" href="$param_8c.html#aef1c757a3e9cfe6fe3fdf42e667f6f60" title=" " alt="" coords="231,309,392,336"/>
-<area shape="rect" id="node9" href="$param_8c.html#ac94d05c5e4828498e7006e2ab31ce050" title=" " alt="" coords="259,360,363,387"/>
-<area shape="rect" id="node10" href="$param_8c.html#adeb70dd4bf601eb772406ed52d9911ab" title=" " alt="" coords="245,411,378,437"/>
-<area shape="rect" id="node11" href="$param_8c.html#afcfac120f601c97790b51a8169146ab4" title=" " alt="" coords="240,461,383,488"/>
+<area shape="rect" id="node4" href="$param_8c.html#a4c7f760ecd35ae43a3120cfb9e55bff2" title=" " alt="" coords="233,107,390,133"/>
+<area shape="rect" id="node5" href="$param_8c.html#a9fac691b5fd2e113223368bd70927259" title=" " alt="" coords="252,157,371,184"/>
+<area shape="rect" id="node6" href="$param_8c.html#aaa456227887cdbc6101fd041edd3c47d" title=" " alt="" coords="259,208,363,235"/>
+<area shape="rect" id="node7" href="$param_8c.html#a60297014c75d27b96d36bac6eb00e569" title=" " alt="" coords="241,259,381,285"/>
+<area shape="rect" id="node8" href="$param_8c.html#afe1d8c81dd7d8a229c53c0f0324612e1" title=" " alt="" coords="235,309,388,336"/>
+<area shape="rect" id="node9" href="$param_8c.html#aef1c757a3e9cfe6fe3fdf42e667f6f60" title=" " alt="" coords="231,360,392,387"/>
+<area shape="rect" id="node10" href="$param_8c.html#ac94d05c5e4828498e7006e2ab31ce050" title=" " alt="" coords="259,411,363,437"/>
+<area shape="rect" id="node11" href="$param_8c.html#adeb70dd4bf601eb772406ed52d9911ab" title=" " alt="" coords="245,461,378,488"/>
+<area shape="rect" id="node12" href="$param_8c.html#afcfac120f601c97790b51a8169146ab4" title=" " alt="" coords="240,512,383,539"/>
 </map>

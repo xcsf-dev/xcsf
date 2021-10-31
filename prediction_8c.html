@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.1</span>
+   &#160;<span id="projectnumber">1.1.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -134,9 +134,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a727103c799ce0fd0e50e018c10802839"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prediction_8c.html#a727103c799ce0fd0e50e018c10802839">pred_param_print_rls</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
 <tr class="memdesc:a727103c799ce0fd0e50e018c10802839"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints recursive least mean squres prediction parameters.  <a href="prediction_8c.html#a727103c799ce0fd0e50e018c10802839">More...</a><br /></td></tr>
 <tr class="separator:a727103c799ce0fd0e50e018c10802839"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6658ac4505ce10b153ead939ebcd4f5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prediction_8c.html#ad6658ac4505ce10b153ead939ebcd4f5">pred_param_print_neural</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
-<tr class="memdesc:ad6658ac4505ce10b153ead939ebcd4f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints neural network prediction parameters.  <a href="prediction_8c.html#ad6658ac4505ce10b153ead939ebcd4f5">More...</a><br /></td></tr>
-<tr class="separator:ad6658ac4505ce10b153ead939ebcd4f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8358abee65ddd688514040ef8851d9f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prediction_8c.html#a8358abee65ddd688514040ef8851d9f2">pred_param_print</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
 <tr class="memdesc:a8358abee65ddd688514040ef8851d9f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints prediction parameters.  <a href="prediction_8c.html#a8358abee65ddd688514040ef8851d9f2">More...</a><br /></td></tr>
 <tr class="separator:a8358abee65ddd688514040ef8851d9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,9 +200,9 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00152">152</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
-<p class="reference">References <a class="el" href="prediction_8c_source.html#l00120">pred_param_defaults_neural()</a>, <a class="el" href="prediction_8c_source.html#l00325">pred_param_set_eta()</a>, <a class="el" href="prediction_8c_source.html#l00339">pred_param_set_eta_min()</a>, <a class="el" href="prediction_8c_source.html#l00371">pred_param_set_evolve_eta()</a>, <a class="el" href="prediction_8c_source.html#l00353">pred_param_set_lambda()</a>, <a class="el" href="prediction_8c_source.html#l00359">pred_param_set_scale_factor()</a>, <a class="el" href="prediction_8c_source.html#l00377">pred_param_set_type()</a>, <a class="el" href="prediction_8c_source.html#l00365">pred_param_set_x0()</a>, and <a class="el" href="prediction_8h_source.html#l00029">PRED_TYPE_NLMS_LINEAR</a>.</p>
+<p class="reference">References <a class="el" href="prediction_8c_source.html#l00120">pred_param_defaults_neural()</a>, <a class="el" href="prediction_8c_source.html#l00307">pred_param_set_eta()</a>, <a class="el" href="prediction_8c_source.html#l00321">pred_param_set_eta_min()</a>, <a class="el" href="prediction_8c_source.html#l00353">pred_param_set_evolve_eta()</a>, <a class="el" href="prediction_8c_source.html#l00335">pred_param_set_lambda()</a>, <a class="el" href="prediction_8c_source.html#l00341">pred_param_set_scale_factor()</a>, <a class="el" href="prediction_8c_source.html#l00359">pred_param_set_type()</a>, <a class="el" href="prediction_8c_source.html#l00347">pred_param_set_x0()</a>, and <a class="el" href="prediction_8h_source.html#l00029">PRED_TYPE_NLMS_LINEAR</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00312">param_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00317">param_init()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -293,11 +290,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00286">286</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00268">268</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
-<p class="reference">References <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00249">layer_args_free()</a>, and <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>.</p>
+<p class="reference">References <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00270">layer_args_free()</a>, and <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00338">param_free()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00343">param_free()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -347,11 +344,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00266">266</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00248">248</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
-<p class="reference">References <a class="el" href="prediction_8h_source.html#l00048">ArgsPred::eta</a>, <a class="el" href="prediction_8h_source.html#l00049">ArgsPred::eta_min</a>, <a class="el" href="prediction_8h_source.html#l00047">ArgsPred::evolve_eta</a>, <a class="el" href="prediction_8h_source.html#l00050">ArgsPred::lambda</a>, <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00431">layer_args_load()</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8h_source.html#l00051">ArgsPred::scale_factor</a>, <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>, and <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>.</p>
+<p class="reference">References <a class="el" href="prediction_8h_source.html#l00048">ArgsPred::eta</a>, <a class="el" href="prediction_8h_source.html#l00049">ArgsPred::eta_min</a>, <a class="el" href="prediction_8h_source.html#l00047">ArgsPred::evolve_eta</a>, <a class="el" href="prediction_8h_source.html#l00050">ArgsPred::lambda</a>, <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00452">layer_args_load()</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8h_source.html#l00051">ArgsPred::scale_factor</a>, <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>, and <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00417">param_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00422">param_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -389,70 +386,20 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00216">216</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00198">198</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8c_source.html#l00198">pred_param_print_neural()</a>, <a class="el" href="prediction_8c_source.html#l00169">pred_param_print_nlms()</a>, <a class="el" href="prediction_8c_source.html#l00185">pred_param_print_rls()</a>, <a class="el" href="prediction_8h_source.html#l00033">PRED_TYPE_NEURAL</a>, <a class="el" href="prediction_8h_source.html#l00029">PRED_TYPE_NLMS_LINEAR</a>, <a class="el" href="prediction_8h_source.html#l00030">PRED_TYPE_NLMS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00031">PRED_TYPE_RLS_LINEAR</a>, <a class="el" href="prediction_8h_source.html#l00032">PRED_TYPE_RLS_QUADRATIC</a>, <a class="el" href="prediction_8c_source.html#l00064">prediction_type_as_string()</a>, and <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>.</p>
+<p class="reference">References <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00239">layer_args_print()</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8c_source.html#l00169">pred_param_print_nlms()</a>, <a class="el" href="prediction_8c_source.html#l00185">pred_param_print_rls()</a>, <a class="el" href="prediction_8h_source.html#l00033">PRED_TYPE_NEURAL</a>, <a class="el" href="prediction_8h_source.html#l00029">PRED_TYPE_NLMS_LINEAR</a>, <a class="el" href="prediction_8h_source.html#l00030">PRED_TYPE_NLMS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00031">PRED_TYPE_RLS_LINEAR</a>, <a class="el" href="prediction_8h_source.html#l00032">PRED_TYPE_RLS_QUADRATIC</a>, <a class="el" href="prediction_8c_source.html#l00064">prediction_type_as_string()</a>, and <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00354">param_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00359">param_print()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="prediction_8c_a8358abee65ddd688514040ef8851d9f2_cgraph.svg" width="940" height="307"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="prediction_8c_a8358abee65ddd688514040ef8851d9f2_cgraph.svg" width="923" height="443"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="prediction_8c_a8358abee65ddd688514040ef8851d9f2_icgraph.svg" width="652" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="ad6658ac4505ce10b153ead939ebcd4f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6658ac4505ce10b153ead939ebcd4f5">&#9670;&nbsp;</a></span>pred_param_print_neural()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void pred_param_print_neural </td>
-          <td>(</td>
-          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
-          <td class="paramname"><em>xcsf</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Prints neural network prediction parameters. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00198">198</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
-
-<p class="reference">References <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00214">layer_args_print()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::next</a>, and <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00216">pred_param_print()</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="prediction_8c_ad6658ac4505ce10b153ead939ebcd4f5_cgraph.svg" width="770" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="prediction_8c_ad6658ac4505ce10b153ead939ebcd4f5_icgraph.svg" width="864" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -493,7 +440,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="prediction_8h_source.html#l00048">ArgsPred::eta</a>, <a class="el" href="prediction_8h_source.html#l00049">ArgsPred::eta_min</a>, <a class="el" href="prediction_8h_source.html#l00047">ArgsPred::evolve_eta</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, and <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00216">pred_param_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00198">pred_param_print()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -538,7 +485,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="prediction_8h_source.html#l00050">ArgsPred::lambda</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8h_source.html#l00051">ArgsPred::scale_factor</a>, and <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00216">pred_param_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00198">pred_param_print()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -583,11 +530,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00244">244</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00226">226</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
-<p class="reference">References <a class="el" href="prediction_8h_source.html#l00048">ArgsPred::eta</a>, <a class="el" href="prediction_8h_source.html#l00049">ArgsPred::eta_min</a>, <a class="el" href="prediction_8h_source.html#l00047">ArgsPred::evolve_eta</a>, <a class="el" href="prediction_8h_source.html#l00050">ArgsPred::lambda</a>, <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00387">layer_args_save()</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8h_source.html#l00051">ArgsPred::scale_factor</a>, <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>, and <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>.</p>
+<p class="reference">References <a class="el" href="prediction_8h_source.html#l00048">ArgsPred::eta</a>, <a class="el" href="prediction_8h_source.html#l00049">ArgsPred::eta_min</a>, <a class="el" href="prediction_8h_source.html#l00047">ArgsPred::evolve_eta</a>, <a class="el" href="prediction_8h_source.html#l00050">ArgsPred::lambda</a>, <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00408">layer_args_save()</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8h_source.html#l00051">ArgsPred::scale_factor</a>, <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>, and <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00387">param_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00392">param_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -627,11 +574,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00325">325</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00307">307</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
 <p class="reference">References <a class="el" href="prediction_8h_source.html#l00048">ArgsPred::eta</a>, and <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00423">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">XCS::unpack_pred_nlms()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00425">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01144">XCS::unpack_pred_nlms()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -666,11 +613,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00339">339</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00321">321</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
 <p class="reference">References <a class="el" href="prediction_8h_source.html#l00049">ArgsPred::eta_min</a>, and <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00423">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">XCS::unpack_pred_nlms()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00425">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01144">XCS::unpack_pred_nlms()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -705,11 +652,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00371">371</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00353">353</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
 <p class="reference">References <a class="el" href="prediction_8h_source.html#l00047">ArgsPred::evolve_eta</a>, and <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00423">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">XCS::unpack_pred_nlms()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00425">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01144">XCS::unpack_pred_nlms()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -744,11 +691,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00353">353</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00335">335</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
 <p class="reference">References <a class="el" href="prediction_8h_source.html#l00050">ArgsPred::lambda</a>, and <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00423">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01161">XCS::unpack_pred_rls()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00425">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01168">XCS::unpack_pred_rls()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -783,11 +730,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00359">359</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00341">341</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, and <a class="el" href="prediction_8h_source.html#l00051">ArgsPred::scale_factor</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00423">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01161">XCS::unpack_pred_rls()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00425">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01168">XCS::unpack_pred_rls()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -822,7 +769,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00377">377</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00359">359</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, and <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>.</p>
 
@@ -861,11 +808,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00388">388</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00370">370</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8c_source.html#l00091">prediction_type_as_int()</a>, and <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00451">config_cl_pred()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00806">XCS::set_prediction()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00453">config_cl_pred()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00813">XCS::set_prediction()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -905,11 +852,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00365">365</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00347">347</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, and <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00423">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">XCS::unpack_pred_nlms()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01161">XCS::unpack_pred_rls()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00425">config_cl_pred_ls()</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01144">XCS::unpack_pred_nlms()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01168">XCS::unpack_pred_rls()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -967,7 +914,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00299">299</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prediction_8c_source.html#l00281">281</a> of file <a class="el" href="prediction_8c_source.html">prediction.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8h_source.html#l00030">PRED_TYPE_NLMS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00032">PRED_TYPE_RLS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>, and <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
 
@@ -1057,7 +1004,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="prediction_8h_source.html#l00035">PRED_STRING_CONSTANT</a>, <a class="el" href="prediction_8h_source.html#l00040">PRED_STRING_NEURAL</a>, <a class="el" href="prediction_8h_source.html#l00036">PRED_STRING_NLMS_LINEAR</a>, <a class="el" href="prediction_8h_source.html#l00037">PRED_STRING_NLMS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00038">PRED_STRING_RLS_LINEAR</a>, <a class="el" href="prediction_8h_source.html#l00039">PRED_STRING_RLS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00028">PRED_TYPE_CONSTANT</a>, <a class="el" href="prediction_8h_source.html#l00033">PRED_TYPE_NEURAL</a>, <a class="el" href="prediction_8h_source.html#l00029">PRED_TYPE_NLMS_LINEAR</a>, <a class="el" href="prediction_8h_source.html#l00030">PRED_TYPE_NLMS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00031">PRED_TYPE_RLS_LINEAR</a>, and <a class="el" href="prediction_8h_source.html#l00032">PRED_TYPE_RLS_QUADRATIC</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00388">pred_param_set_type_string()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00370">pred_param_set_type_string()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1095,7 +1042,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="prediction_8h_source.html#l00035">PRED_STRING_CONSTANT</a>, <a class="el" href="prediction_8h_source.html#l00040">PRED_STRING_NEURAL</a>, <a class="el" href="prediction_8h_source.html#l00036">PRED_STRING_NLMS_LINEAR</a>, <a class="el" href="prediction_8h_source.html#l00037">PRED_STRING_NLMS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00038">PRED_STRING_RLS_LINEAR</a>, <a class="el" href="prediction_8h_source.html#l00039">PRED_STRING_RLS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00028">PRED_TYPE_CONSTANT</a>, <a class="el" href="prediction_8h_source.html#l00033">PRED_TYPE_NEURAL</a>, <a class="el" href="prediction_8h_source.html#l00029">PRED_TYPE_NLMS_LINEAR</a>, <a class="el" href="prediction_8h_source.html#l00030">PRED_TYPE_NLMS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00031">PRED_TYPE_RLS_LINEAR</a>, and <a class="el" href="prediction_8h_source.html#l00032">PRED_TYPE_RLS_QUADRATIC</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00216">pred_param_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00198">pred_param_print()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

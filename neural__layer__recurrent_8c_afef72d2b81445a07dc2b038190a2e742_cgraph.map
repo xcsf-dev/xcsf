@@ -1,5 +1,6 @@
 <map id="neural_layer_recurrent_print" name="neural_layer_recurrent_print">
-<area shape="rect" id="node1" title="Prints a recurrent layer." alt="" coords="5,23,156,65"/>
+<area shape="rect" id="node1" title="Prints a recurrent layer." alt="" coords="5,49,156,90"/>
 <area shape="rect" id="node2" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="242,5,325,32"/>
 <area shape="rect" id="node3" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="204,56,363,83"/>
+<area shape="rect" id="node4" href="$sam_8c.html#a9131a7c79bb813647604527b5b761af9" title="Prints mutation rates." alt="" coords="244,107,323,133"/>
 </map>

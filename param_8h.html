@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.1</span>
+   &#160;<span id="projectnumber">1.1.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -147,6 +147,8 @@ Functions</h2></td></tr>
 <tr class="separator:a802ad715416c4b9ac967c43f51399d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adeb70dd4bf601eb772406ed52d9911ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#adeb70dd4bf601eb772406ed52d9911ab">param_set_stateful</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
 <tr class="separator:adeb70dd4bf601eb772406ed52d9911ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c7f760ecd35ae43a3120cfb9e55bff2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a4c7f760ecd35ae43a3120cfb9e55bff2">param_set_compaction</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
+<tr class="separator:a4c7f760ecd35ae43a3120cfb9e55bff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3da5d5549f174e35653ca6834e16c96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#af3da5d5549f174e35653ca6834e16c96">param_set_huber_delta</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
 <tr class="separator:af3da5d5549f174e35653ca6834e16c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4926a3ec09cbe9dc1feace3a2e87376"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#ae4926a3ec09cbe9dc1feace3a2e87376">param_set_gamma</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
@@ -210,9 +212,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00338">338</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00343">343</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8c_source.html#l00200">action_param_free()</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8c_source.html#l00395">cond_param_free()</a>, <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, and <a class="el" href="prediction_8c_source.html#l00286">pred_param_free()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8c_source.html#l00182">action_param_free()</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8c_source.html#l00377">cond_param_free()</a>, <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, and <a class="el" href="prediction_8c_source.html#l00268">pred_param_free()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00035">main()</a>.</p>
 <div class="dynheader">
@@ -277,15 +279,15 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00312">312</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00317">317</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8c_source.html#l00125">action_param_defaults()</a>, <a class="el" href="xcsf_8h_source.html#l00099">XCSF::aset_size</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8c_source.html#l00224">cond_param_defaults()</a>, <a class="el" href="xcsf_8h_source.html#l00119">XCSF::E0</a>, <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="xcsf_8h_source.html#l00097">XCSF::error</a>, <a class="el" href="xcsf_8h_source.html#l00100">XCSF::mfrac</a>, <a class="el" href="xcsf_8h_source.html#l00098">XCSF::mset_size</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, <a class="el" href="param_8c_source.html#l00200">param_defaults_multistep()</a>, <a class="el" href="param_8c_source.html#l00256">param_defaults_subsumption()</a>, <a class="el" href="param_8c_source.html#l00739">param_set_n_actions()</a>, <a class="el" href="param_8c_source.html#l00711">param_set_x_dim()</a>, <a class="el" href="param_8c_source.html#l00728">param_set_y_dim()</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="xcsf_8h_source.html#l00106">XCSF::time</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8c_source.html#l00125">action_param_defaults()</a>, <a class="el" href="xcsf_8h_source.html#l00099">XCSF::aset_size</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8c_source.html#l00224">cond_param_defaults()</a>, <a class="el" href="xcsf_8h_source.html#l00119">XCSF::E0</a>, <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="xcsf_8h_source.html#l00097">XCSF::error</a>, <a class="el" href="xcsf_8h_source.html#l00100">XCSF::mfrac</a>, <a class="el" href="xcsf_8h_source.html#l00098">XCSF::mset_size</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, <a class="el" href="param_8c_source.html#l00205">param_defaults_multistep()</a>, <a class="el" href="param_8c_source.html#l00261">param_defaults_subsumption()</a>, <a class="el" href="param_8c_source.html#l00750">param_set_n_actions()</a>, <a class="el" href="param_8c_source.html#l00722">param_set_x_dim()</a>, <a class="el" href="param_8c_source.html#l00739">param_set_y_dim()</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8c_source.html#l00152">pred_param_defaults()</a>, and <a class="el" href="xcsf_8h_source.html#l00106">XCSF::time</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="env__csv_8c_source.html#l00160">env_csv_init()</a>, <a class="el" href="env__maze_8c_source.html#l00100">env_maze_init()</a>, <a class="el" href="env__mux_8c_source.html#l00044">env_mux_init()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00086">XCS::XCS()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="env__csv_8c_source.html#l00160">env_csv_init()</a>, <a class="el" href="env__maze_8c_source.html#l00100">env_maze_init()</a>, <a class="el" href="env__mux_8c_source.html#l00044">env_mux_init()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00087">XCS::XCS()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ac8218a170803be0bcd974764e7494b0e_cgraph.svg" width="1111" height="2635"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ac8218a170803be0bcd974764e7494b0e_cgraph.svg" width="1111" height="2734"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -331,9 +333,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00417">417</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00422">422</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00186">action_param_load()</a>, <a class="el" href="xcsf_8h_source.html#l00099">XCSF::aset_size</a>, <a class="el" href="condition_8c_source.html#l00373">cond_param_load()</a>, <a class="el" href="ea_8c_source.html#l00301">ea_param_load()</a>, <a class="el" href="xcsf_8h_source.html#l00097">XCSF::error</a>, <a class="el" href="xcsf_8h_source.html#l00111">XCSF::explore</a>, <a class="el" href="xcsf_8h_source.html#l00100">XCSF::mfrac</a>, <a class="el" href="xcsf_8h_source.html#l00098">XCSF::mset_size</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="param_8c_source.html#l00179">param_load_cl_general()</a>, <a class="el" href="param_8c_source.html#l00096">param_load_general()</a>, <a class="el" href="param_8c_source.html#l00242">param_load_multistep()</a>, <a class="el" href="param_8c_source.html#l00296">param_load_subsumption()</a>, <a class="el" href="prediction_8c_source.html#l00266">pred_param_load()</a>, <a class="el" href="xcsf_8h_source.html#l00106">XCSF::time</a>, <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00168">action_param_load()</a>, <a class="el" href="xcsf_8h_source.html#l00099">XCSF::aset_size</a>, <a class="el" href="condition_8c_source.html#l00355">cond_param_load()</a>, <a class="el" href="ea_8c_source.html#l00301">ea_param_load()</a>, <a class="el" href="xcsf_8h_source.html#l00097">XCSF::error</a>, <a class="el" href="xcsf_8h_source.html#l00111">XCSF::explore</a>, <a class="el" href="xcsf_8h_source.html#l00100">XCSF::mfrac</a>, <a class="el" href="xcsf_8h_source.html#l00098">XCSF::mset_size</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="param_8c_source.html#l00183">param_load_cl_general()</a>, <a class="el" href="param_8c_source.html#l00096">param_load_general()</a>, <a class="el" href="param_8c_source.html#l00247">param_load_multistep()</a>, <a class="el" href="param_8c_source.html#l00301">param_load_subsumption()</a>, <a class="el" href="prediction_8c_source.html#l00248">pred_param_load()</a>, <a class="el" href="xcsf_8h_source.html#l00106">XCSF::time</a>, <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcsf_8c_source.html#l00109">xcsf_load()</a>.</p>
 <div class="dynheader">
@@ -373,15 +375,15 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00354">354</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00359">359</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00154">action_param_print()</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8c_source.html#l00313">cond_param_print()</a>, <a class="el" href="ea_8c_source.html#l00255">ea_param_print()</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="param_8c_source.html#l00134">param_print_cl_general()</a>, <a class="el" href="param_8c_source.html#l00055">param_print_general()</a>, <a class="el" href="param_8c_source.html#l00212">param_print_multistep()</a>, <a class="el" href="param_8c_source.html#l00267">param_print_subsumption()</a>, <a class="el" href="prediction_8c_source.html#l00216">pred_param_print()</a>, <a class="el" href="condition_8h_source.html#l00035">RULE_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00037">RULE_TYPE_NETWORK</a>, <a class="el" href="condition_8h_source.html#l00036">RULE_TYPE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>, <a class="el" href="xcsf_8h_source.html#l00039">VERSION_BUILD</a>, <a class="el" href="xcsf_8h_source.html#l00037">VERSION_MAJOR</a>, and <a class="el" href="xcsf_8h_source.html#l00038">VERSION_MINOR</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00136">action_param_print()</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8c_source.html#l00295">cond_param_print()</a>, <a class="el" href="ea_8c_source.html#l00255">ea_param_print()</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="param_8c_source.html#l00135">param_print_cl_general()</a>, <a class="el" href="param_8c_source.html#l00055">param_print_general()</a>, <a class="el" href="param_8c_source.html#l00217">param_print_multistep()</a>, <a class="el" href="param_8c_source.html#l00272">param_print_subsumption()</a>, <a class="el" href="prediction_8c_source.html#l00198">pred_param_print()</a>, <a class="el" href="condition_8h_source.html#l00035">RULE_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00037">RULE_TYPE_NETWORK</a>, <a class="el" href="condition_8h_source.html#l00036">RULE_TYPE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>, <a class="el" href="xcsf_8h_source.html#l00039">VERSION_BUILD</a>, <a class="el" href="xcsf_8h_source.html#l00037">VERSION_MAJOR</a>, and <a class="el" href="xcsf_8h_source.html#l00038">VERSION_MINOR</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00035">main()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00184">XCS::print_params()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00035">main()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00185">XCS::print_params()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a1e92bde5285ed6ded96ba4af5fd27bd2_cgraph.svg" width="1139" height="804"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a1e92bde5285ed6ded96ba4af5fd27bd2_cgraph.svg" width="1124" height="924"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -427,9 +429,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00387">387</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00392">392</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00170">action_param_save()</a>, <a class="el" href="xcsf_8h_source.html#l00099">XCSF::aset_size</a>, <a class="el" href="condition_8c_source.html#l00349">cond_param_save()</a>, <a class="el" href="ea_8c_source.html#l00279">ea_param_save()</a>, <a class="el" href="xcsf_8h_source.html#l00097">XCSF::error</a>, <a class="el" href="xcsf_8h_source.html#l00111">XCSF::explore</a>, <a class="el" href="xcsf_8h_source.html#l00100">XCSF::mfrac</a>, <a class="el" href="xcsf_8h_source.html#l00098">XCSF::mset_size</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="param_8c_source.html#l00156">param_save_cl_general()</a>, <a class="el" href="param_8c_source.html#l00076">param_save_general()</a>, <a class="el" href="param_8c_source.html#l00226">param_save_multistep()</a>, <a class="el" href="param_8c_source.html#l00281">param_save_subsumption()</a>, <a class="el" href="prediction_8c_source.html#l00244">pred_param_save()</a>, <a class="el" href="xcsf_8h_source.html#l00106">XCSF::time</a>, <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00152">action_param_save()</a>, <a class="el" href="xcsf_8h_source.html#l00099">XCSF::aset_size</a>, <a class="el" href="condition_8c_source.html#l00331">cond_param_save()</a>, <a class="el" href="ea_8c_source.html#l00279">ea_param_save()</a>, <a class="el" href="xcsf_8h_source.html#l00097">XCSF::error</a>, <a class="el" href="xcsf_8h_source.html#l00111">XCSF::explore</a>, <a class="el" href="xcsf_8h_source.html#l00100">XCSF::mfrac</a>, <a class="el" href="xcsf_8h_source.html#l00098">XCSF::mset_size</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="param_8c_source.html#l00159">param_save_cl_general()</a>, <a class="el" href="param_8c_source.html#l00076">param_save_general()</a>, <a class="el" href="param_8c_source.html#l00231">param_save_multistep()</a>, <a class="el" href="param_8c_source.html#l00286">param_save_subsumption()</a>, <a class="el" href="prediction_8c_source.html#l00226">pred_param_save()</a>, <a class="el" href="xcsf_8h_source.html#l00106">XCSF::time</a>, <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcsf_8c_source.html#l00085">xcsf_save()</a>.</p>
 <div class="dynheader">
@@ -471,11 +473,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00586">586</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00597">597</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00116">XCSF::ALPHA</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01221">XCS::set_alpha()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01228">XCS::set_alpha()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -510,15 +512,54 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00600">600</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00611">611</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00117">XCSF::BETA</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01227">XCS::set_beta()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01234">XCS::set_beta()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_af77999a550e9301daff82311b7c610e6_icgraph.svg" width="1151" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a4c7f760ecd35ae43a3120cfb9e55bff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c7f760ecd35ae43a3120cfb9e55bff2">&#9670;&nbsp;</a></span>param_set_compaction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void param_set_compaction </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>a</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00541">541</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00136">XCSF::COMPACTION</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01306">XCS::set_compaction()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a4c7f760ecd35ae43a3120cfb9e55bff2_icgraph.svg" width="1194" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -549,11 +590,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00614">614</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00625">625</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00118">XCSF::DELTA</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01233">XCS::set_delta()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01240">XCS::set_delta()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -588,11 +629,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00628">628</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00639">639</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00119">XCSF::E0</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01239">XCS::set_e0()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01246">XCS::set_e0()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -627,11 +668,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00722">722</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00733">733</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00111">XCSF::explore</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00287">XCS::decision()</a>, <a class="el" href="xcs__rl_8c_source.html#l00104">xcs_rl_fit()</a>, <a class="el" href="xcs__rl_8c_source.html#l00043">xcs_rl_trial()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00120">xcs_supervised_predict()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00138">xcs_supervised_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00159">xcs_supervised_score_n()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00288">XCS::decision()</a>, <a class="el" href="xcs__rl_8c_source.html#l00104">xcs_rl_fit()</a>, <a class="el" href="xcs__rl_8c_source.html#l00043">xcs_rl_trial()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00120">xcs_supervised_predict()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00138">xcs_supervised_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00159">xcs_supervised_score_n()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -666,11 +707,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00547">547</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00558">558</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00114">XCSF::GAMMA</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00078">config_multi()</a>, <a class="el" href="param_8c_source.html#l00200">param_defaults_multistep()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01299">XCS::set_gamma()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00078">config_multi()</a>, <a class="el" href="param_8c_source.html#l00205">param_defaults_multistep()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01312">XCS::set_gamma()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -705,11 +746,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00536">536</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00547">547</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00123">XCSF::HUBER_DELTA</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01215">XCS::set_huber_delta()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01222">XCS::set_huber_delta()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -744,11 +785,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00639">639</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00650">650</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00120">XCSF::INIT_ERROR</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01245">XCS::set_init_error()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01252">XCS::set_init_error()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -783,11 +824,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00650">650</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00661">661</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00121">XCSF::INIT_FITNESS</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01251">XCS::set_init_fitness()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01258">XCS::set_init_fitness()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -822,7 +863,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00515">515</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00520">520</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00128">XCSF::LOSS_FUNC</a>, <a class="el" href="loss_8h_source.html#l00035">LOSS_NUM</a>, and <a class="el" href="loss_8c_source.html#l00158">loss_set_func()</a>.</p>
 
@@ -866,11 +907,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00508">508</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00513">513</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00128">XCSF::LOSS_FUNC</a>, <a class="el" href="loss_8c_source.html#l00158">loss_set_func()</a>, and <a class="el" href="loss_8c_source.html#l00223">loss_type_as_int()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01209">XCS::set_loss_func()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01216">XCS::set_loss_func()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -910,11 +951,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00683">683</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00694">694</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00131">XCSF::M_PROBATION</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01263">XCS::set_m_probation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01270">XCS::set_m_probation()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -949,11 +990,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00475">475</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00480">480</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00125">XCSF::MAX_TRIALS</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01191">XCS::set_max_trials()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01198">XCS::set_max_trials()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -988,11 +1029,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00739">739</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00750">750</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00312">param_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00317">param_init()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1027,11 +1068,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00661">661</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00672">672</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00122">XCSF::NU</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01257">XCS::set_nu()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01264">XCS::set_nu()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1075,11 +1116,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00452">452</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00457">457</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00124">XCSF::OMP_NUM_THREADS</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01179">XCS::set_omp_num_threads()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01186">XCS::set_omp_num_threads()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1114,11 +1155,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00572">572</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00583">583</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00115">XCSF::P_EXPLORE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00078">config_multi()</a>, <a class="el" href="param_8c_source.html#l00200">param_defaults_multistep()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01305">XCS::set_p_explore()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00078">config_multi()</a>, <a class="el" href="param_8c_source.html#l00205">param_defaults_multistep()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01318">XCS::set_p_explore()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1153,11 +1194,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00486">486</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00491">491</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00126">XCSF::PERF_TRIALS</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01197">XCS::set_perf_trials()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01204">XCS::set_perf_trials()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1192,11 +1233,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00469">469</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00474">474</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00133">XCSF::POP_INIT</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01185">XCS::set_pop_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01192">XCS::set_pop_init()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1231,11 +1272,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00497">497</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00502">502</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00127">XCSF::POP_SIZE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01203">XCS::set_pop_max_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00049">config_general()</a>, <a class="el" href="param_8c_source.html#l00039">param_defaults_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01210">XCS::set_pop_max_size()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1270,11 +1311,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00694">694</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00705">705</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00134">XCSF::SET_SUBSUMPTION</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00100">config_subsump()</a>, <a class="el" href="param_8c_source.html#l00256">param_defaults_subsumption()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01281">XCS::set_set_subsumption()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00100">config_subsump()</a>, <a class="el" href="param_8c_source.html#l00261">param_defaults_subsumption()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01288">XCS::set_set_subsumption()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1309,11 +1350,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00530">530</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00535">535</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00135">XCSF::STATEFUL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01293">XCS::set_stateful()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01300">XCS::set_stateful()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1348,11 +1389,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00561">561</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00572">572</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00129">XCSF::TELETRANSPORTATION</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00078">config_multi()</a>, <a class="el" href="param_8c_source.html#l00200">param_defaults_multistep()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01287">XCS::set_teletransportation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00078">config_multi()</a>, <a class="el" href="param_8c_source.html#l00205">param_defaults_multistep()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01294">XCS::set_teletransportation()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1387,11 +1428,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00672">672</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00683">683</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00130">XCSF::THETA_DEL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01269">XCS::set_theta_del()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00152">config_cl_gen()</a>, <a class="el" href="param_8c_source.html#l00115">param_defaults_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01276">XCS::set_theta_del()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1426,11 +1467,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00700">700</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00711">711</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00132">XCSF::THETA_SUB</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00100">config_subsump()</a>, <a class="el" href="param_8c_source.html#l00256">param_defaults_subsumption()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01275">XCS::set_theta_sub()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00100">config_subsump()</a>, <a class="el" href="param_8c_source.html#l00261">param_defaults_subsumption()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01282">XCS::set_theta_sub()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1465,11 +1506,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00711">711</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00722">722</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00312">param_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00317">param_init()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1504,11 +1545,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00728">728</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00739">739</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00312">param_init()</a>, and <a class="el" href="xcsf_8c_source.html#l00166">xcsf_ae_to_classifier()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00317">param_init()</a>, and <a class="el" href="xcsf_8c_source.html#l00166">xcsf_ae_to_classifier()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

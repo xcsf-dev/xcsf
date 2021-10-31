@@ -1,5 +1,6 @@
 <map id="neural_layer_connected_print" name="neural_layer_connected_print">
-<area shape="rect" id="node1" title="Prints a connected layer." alt="" coords="5,23,164,65"/>
+<area shape="rect" id="node1" title="Prints a connected layer." alt="" coords="5,49,164,90"/>
 <area shape="rect" id="node2" href="$neural__layer_8c.html#a0d6d72b763049aab59c2602288d8216a" title="Prints a layer&#39;s weights and biases." alt="" coords="228,5,355,32"/>
 <area shape="rect" id="node3" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="212,56,371,83"/>
+<area shape="rect" id="node4" href="$sam_8c.html#a9131a7c79bb813647604527b5b761af9" title="Prints mutation rates." alt="" coords="252,107,331,133"/>
 </map>

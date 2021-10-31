@@ -5,7 +5,6 @@ var prediction_8c =
     [ "pred_param_free", "prediction_8c.html#a05bc6d7f4f01d3891fe4af373f0b573d", null ],
     [ "pred_param_load", "prediction_8c.html#a022e1e3dabeddd6cc051aa63a9af5924", null ],
     [ "pred_param_print", "prediction_8c.html#a8358abee65ddd688514040ef8851d9f2", null ],
-    [ "pred_param_print_neural", "prediction_8c.html#ad6658ac4505ce10b153ead939ebcd4f5", null ],
     [ "pred_param_print_nlms", "prediction_8c.html#ab4e885c4aea369642e1f9ab827157366", null ],
     [ "pred_param_print_rls", "prediction_8c.html#a727103c799ce0fd0e50e018c10802839", null ],
     [ "pred_param_save", "prediction_8c.html#a5c3b578b46347ad8abb67366d741e61c", null ],

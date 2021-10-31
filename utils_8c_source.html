@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.1</span>
+   &#160;<span id="projectnumber">1.1.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -109,8 +109,7 @@ $(document).ready(function(){initNavTree('utils_8c_source.html',''); initResizab
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utils_8h.html">utils.h</a>&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;../lib/dSFMT/dSFMT.h&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utils_8h.html">utils.h</a>&quot;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;limits.h&gt;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
@@ -127,41 +126,48 @@ $(document).ready(function(){initNavTree('utils_8c_source.html',''); initResizab
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    dsfmt_gv_init_gen_rand(seed);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">double</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="utils_8h.html#a972761ba8f47a6c3e7396a7c685158fc">   52</a></span>&#160;<a class="code" href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> min, <span class="keyword">const</span> <span class="keywordtype">double</span> max)</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> min + (dsfmt_gv_genrand_open_open() * (max - min));</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="utils_8h.html#a5e6304fd9b177f36684d4bb00af49f91">   64</a></span>&#160;<a class="code" href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> min, <span class="keyword">const</span> <span class="keywordtype">int</span> max)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> (<span class="keywordtype">int</span>) floor(<a class="code" href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a>(min, max));</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">double</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="utils_8h.html#a6a36d869b4a218a3f55cd19067f62c0f">   77</a></span>&#160;<a class="code" href="utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f">rand_normal</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> mu, <span class="keyword">const</span> <span class="keywordtype">double</span> sigma)</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">double</span> two_pi = 2 * M_PI;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">double</span> z1;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> generate;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    generate = !generate;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (!generate) {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> z1 * sigma + mu;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> u1 = dsfmt_gv_genrand_open_open();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> u2 = dsfmt_gv_genrand_open_open();</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> z0 = sqrt(-2 * log(u1)) * cos(two_pi * u2);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    z1 = sqrt(-2 * log(u1)) * sin(two_pi * u2);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">return</span> z0 * sigma + mu;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="utils_8h.html#ad163bbefbbb9754feb94f468cab51b3a">   50</a></span>&#160;<a class="code" href="utils_8c.html#ad163bbefbbb9754feb94f468cab51b3a">rand_init_seed</a>(<span class="keyword">const</span> uint32_t seed)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    dsfmt_gv_init_gen_rand(seed);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">double</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="utils_8h.html#a972761ba8f47a6c3e7396a7c685158fc">   62</a></span>&#160;<a class="code" href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> min, <span class="keyword">const</span> <span class="keywordtype">double</span> max)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">return</span> min + (dsfmt_gv_genrand_open_open() * (max - min));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">int</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="utils_8h.html#a5e6304fd9b177f36684d4bb00af49f91">   74</a></span>&#160;<a class="code" href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> min, <span class="keyword">const</span> <span class="keywordtype">int</span> max)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">return</span> (<span class="keywordtype">int</span>) floor(<a class="code" href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a>(min, max));</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keywordtype">double</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="utils_8h.html#a6a36d869b4a218a3f55cd19067f62c0f">   87</a></span>&#160;<a class="code" href="utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f">rand_normal</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> mu, <span class="keyword">const</span> <span class="keywordtype">double</span> sigma)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">double</span> two_pi = 2 * M_PI;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">double</span> z1;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> generate;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    generate = !generate;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">if</span> (!generate) {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span> z1 * sigma + mu;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> u1 = dsfmt_gv_genrand_open_open();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> u2 = dsfmt_gv_genrand_open_open();</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> z0 = sqrt(-2 * log(u1)) * cos(two_pi * u2);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    z1 = sqrt(-2 * log(u1)) * sin(two_pi * u2);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> z0 * sigma + mu;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="autils_8c_html_ab74192959d5c945feaf0a630b58fd123"><div class="ttname"><a href="utils_8c.html#ab74192959d5c945feaf0a630b58fd123">rand_init</a></div><div class="ttdeci">void rand_init(void)</div><div class="ttdoc">Initialises the pseudo-random number generator.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00034">utils.c:34</a></div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">Utility functions for random number handling, etc.</div></div>
-<div class="ttc" id="autils_8c_html_a5e6304fd9b177f36684d4bb00af49f91"><div class="ttname"><a href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a></div><div class="ttdeci">int rand_uniform_int(const int min, const int max)</div><div class="ttdoc">Returns a uniform random integer [min,max] not inclusive of max.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00064">utils.c:64</a></div></div>
-<div class="ttc" id="autils_8c_html_a6a36d869b4a218a3f55cd19067f62c0f"><div class="ttname"><a href="utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f">rand_normal</a></div><div class="ttdeci">double rand_normal(const double mu, const double sigma)</div><div class="ttdoc">Returns a random Gaussian with specified mean and standard deviation.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00077">utils.c:77</a></div></div>
-<div class="ttc" id="autils_8c_html_a972761ba8f47a6c3e7396a7c685158fc"><div class="ttname"><a href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a></div><div class="ttdeci">double rand_uniform(const double min, const double max)</div><div class="ttdoc">Returns a uniform random float [min,max].</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00052">utils.c:52</a></div></div>
+<div class="ttc" id="autils_8c_html_ad163bbefbbb9754feb94f468cab51b3a"><div class="ttname"><a href="utils_8c.html#ad163bbefbbb9754feb94f468cab51b3a">rand_init_seed</a></div><div class="ttdeci">void rand_init_seed(const uint32_t seed)</div><div class="ttdoc">Initialises the pseudo-random number generator with a fixed seed.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00050">utils.c:50</a></div></div>
+<div class="ttc" id="autils_8c_html_a5e6304fd9b177f36684d4bb00af49f91"><div class="ttname"><a href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a></div><div class="ttdeci">int rand_uniform_int(const int min, const int max)</div><div class="ttdoc">Returns a uniform random integer [min,max] not inclusive of max.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00074">utils.c:74</a></div></div>
+<div class="ttc" id="autils_8c_html_a6a36d869b4a218a3f55cd19067f62c0f"><div class="ttname"><a href="utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f">rand_normal</a></div><div class="ttdeci">double rand_normal(const double mu, const double sigma)</div><div class="ttdoc">Returns a random Gaussian with specified mean and standard deviation.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00087">utils.c:87</a></div></div>
+<div class="ttc" id="autils_8c_html_a972761ba8f47a6c3e7396a7c685158fc"><div class="ttname"><a href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a></div><div class="ttdeci">double rand_uniform(const double min, const double max)</div><div class="ttdoc">Returns a uniform random float [min,max].</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00062">utils.c:62</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

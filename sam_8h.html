@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.1</span>
+   &#160;<span id="projectnumber">1.1.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -134,12 +134,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a7f7f30716900f06683a74486aca5f5a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sam_8h.html#a7f7f30716900f06683a74486aca5f5a0">sam_init</a> (double *mu, const int N, const int *type)</td></tr>
 <tr class="memdesc:a7f7f30716900f06683a74486aca5f5a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises self-adaptive mutation rates.  <a href="sam_8h.html#a7f7f30716900f06683a74486aca5f5a0">More...</a><br /></td></tr>
 <tr class="separator:a7f7f30716900f06683a74486aca5f5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9131a7c79bb813647604527b5b761af9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sam_8h.html#a9131a7c79bb813647604527b5b761af9">sam_print</a> (const double *mu, const int N)</td></tr>
+<tr class="memdesc:a9131a7c79bb813647604527b5b761af9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints mutation rates.  <a href="sam_8h.html#a9131a7c79bb813647604527b5b761af9">More...</a><br /></td></tr>
+<tr class="separator:a9131a7c79bb813647604527b5b761af9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Self-adaptive mutation functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2015&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="sam_8h_source.html">sam.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -242,7 +245,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="sam_8c_source.html#l00068">68</a> of file <a class="el" href="sam_8c_source.html">sam.c</a>.</p>
 
-<p class="reference">References <a class="el" href="utils_8h_source.html#l00050">clamp()</a>, <a class="el" href="sam_8c_source.html#l00033">mrates</a>, <a class="el" href="sam_8c_source.html#l00027">MU_EPSILON</a>, <a class="el" href="sam_8c_source.html#l00028">N_RATES</a>, <a class="el" href="utils_8c_source.html#l00077">rand_normal()</a>, <a class="el" href="utils_8c_source.html#l00052">rand_uniform()</a>, <a class="el" href="utils_8c_source.html#l00064">rand_uniform_int()</a>, <a class="el" href="sam_8h_source.html#l00028">SAM_LOG_NORMAL</a>, <a class="el" href="sam_8h_source.html#l00029">SAM_RATE_SELECT</a>, and <a class="el" href="sam_8h_source.html#l00030">SAM_UNIFORM</a>.</p>
+<p class="reference">References <a class="el" href="utils_8h_source.html#l00055">clamp()</a>, <a class="el" href="sam_8c_source.html#l00033">mrates</a>, <a class="el" href="sam_8c_source.html#l00027">MU_EPSILON</a>, <a class="el" href="sam_8c_source.html#l00028">N_RATES</a>, <a class="el" href="utils_8c_source.html#l00087">rand_normal()</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>, <a class="el" href="sam_8h_source.html#l00028">SAM_LOG_NORMAL</a>, <a class="el" href="sam_8h_source.html#l00029">SAM_RATE_SELECT</a>, and <a class="el" href="sam_8h_source.html#l00030">SAM_UNIFORM</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="act__integer_8c_source.html#l00079">act_integer_mutate()</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00209">cond_ellipsoid_mutate()</a>, <a class="el" href="cond__rectangle_8c_source.html#l00211">cond_rectangle_mutate()</a>, <a class="el" href="cond__ternary_8c_source.html#l00211">cond_ternary_mutate()</a>, <a class="el" href="dgp_8c_source.html#l00346">graph_mutate()</a>, <a class="el" href="neural__layer__connected_8c_source.html#l00292">neural_layer_connected_mutate()</a>, <a class="el" href="neural__layer__convolutional_8c_source.html#l00450">neural_layer_convolutional_mutate()</a>, <a class="el" href="neural__layer__lstm_8c_source.html#l00544">neural_layer_lstm_mutate()</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00413">neural_layer_recurrent_mutate()</a>, <a class="el" href="pred__nlms_8c_source.html#l00192">pred_nlms_mutate()</a>, and <a class="el" href="gp_8c_source.html#l00259">tree_mutate()</a>.</p>
 <div class="dynheader">
@@ -302,7 +305,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="sam_8c_source.html#l00043">43</a> of file <a class="el" href="sam_8c_source.html">sam.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sam_8c_source.html#l00033">mrates</a>, <a class="el" href="sam_8c_source.html#l00027">MU_EPSILON</a>, <a class="el" href="sam_8c_source.html#l00028">N_RATES</a>, <a class="el" href="utils_8c_source.html#l00052">rand_uniform()</a>, <a class="el" href="utils_8c_source.html#l00064">rand_uniform_int()</a>, <a class="el" href="sam_8h_source.html#l00028">SAM_LOG_NORMAL</a>, <a class="el" href="sam_8h_source.html#l00029">SAM_RATE_SELECT</a>, and <a class="el" href="sam_8h_source.html#l00030">SAM_UNIFORM</a>.</p>
+<p class="reference">References <a class="el" href="sam_8c_source.html#l00033">mrates</a>, <a class="el" href="sam_8c_source.html#l00027">MU_EPSILON</a>, <a class="el" href="sam_8c_source.html#l00028">N_RATES</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>, <a class="el" href="sam_8h_source.html#l00028">SAM_LOG_NORMAL</a>, <a class="el" href="sam_8h_source.html#l00029">SAM_RATE_SELECT</a>, and <a class="el" href="sam_8h_source.html#l00030">SAM_UNIFORM</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="act__integer_8c_source.html#l00178">act_integer_init()</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00065">cond_ellipsoid_init()</a>, <a class="el" href="cond__rectangle_8c_source.html#l00067">cond_rectangle_init()</a>, <a class="el" href="cond__ternary_8c_source.html#l00064">cond_ternary_init()</a>, <a class="el" href="dgp_8c_source.html#l00202">graph_init()</a>, <a class="el" href="neural__layer__connected_8c_source.html#l00070">neural_layer_connected_init()</a>, <a class="el" href="neural__layer__convolutional_8c_source.html#l00162">neural_layer_convolutional_init()</a>, <a class="el" href="neural__layer__lstm_8c_source.html#l00267">neural_layer_lstm_init()</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00234">neural_layer_recurrent_init()</a>, <a class="el" href="pred__nlms_8c_source.html#l00044">pred_nlms_init()</a>, and <a class="el" href="gp_8c_source.html#l00097">tree_rand()</a>.</p>
 <div class="dynheader">
@@ -314,6 +317,52 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="sam_8h_a7f7f30716900f06683a74486aca5f5a0_icgraph.svg" width="518" height="595"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a9131a7c79bb813647604527b5b761af9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9131a7c79bb813647604527b5b761af9">&#9670;&nbsp;</a></span>sam_print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sam_print </td>
+          <td>(</td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>mu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>N</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints mutation rates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mu</td><td>Vector of mutation rates. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">N</td><td>Number of mutation rates. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sam_8c_source.html#l00099">99</a> of file <a class="el" href="sam_8c_source.html">sam.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="neural__layer__connected_8c_source.html#l00339">neural_layer_connected_print()</a>, <a class="el" href="neural__layer__convolutional_8c_source.html#l00496">neural_layer_convolutional_print()</a>, <a class="el" href="neural__layer__lstm_8c_source.html#l00573">neural_layer_lstm_print()</a>, and <a class="el" href="neural__layer__recurrent_8c_source.html#l00431">neural_layer_recurrent_print()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="sam_8h_a9131a7c79bb813647604527b5b761af9_icgraph.svg" width="312" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

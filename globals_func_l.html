@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.1</span>
+   &#160;<span id="projectnumber">1.1.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -121,8 +121,8 @@ $(document).ready(function(){initNavTree('globals_func_l.html',''); initResizabl
 , <a class="el" href="neural__layer__args_8h.html#a4440b3fcacfd709042ae050958d757d6">neural_layer_args.h</a>
 </li>
 <li>layer_args_print()
-: <a class="el" href="neural__layer__args_8c.html#af08dab51e0e2d6380af376bb33708f17">neural_layer_args.c</a>
-, <a class="el" href="neural__layer__args_8h.html#af08dab51e0e2d6380af376bb33708f17">neural_layer_args.h</a>
+: <a class="el" href="neural__layer__args_8c.html#a8d6f5c91f58e29ae70807de0d0b25d0e">neural_layer_args.c</a>
+, <a class="el" href="neural__layer__args_8h.html#a8d6f5c91f58e29ae70807de0d0b25d0e">neural_layer_args.h</a>
 </li>
 <li>layer_args_print_activation()
 : <a class="el" href="neural__layer__args_8c.html#a56dcbd4bdf90e80ef81c676df60ff8b3">neural_layer_args.c</a>
@@ -132,6 +132,9 @@ $(document).ready(function(){initNavTree('globals_func_l.html',''); initResizabl
 </li>
 <li>layer_args_print_inputs()
 : <a class="el" href="neural__layer__args_8c.html#acead84ca91e1c410f24bc8b60517415b">neural_layer_args.c</a>
+</li>
+<li>layer_args_print_scale()
+: <a class="el" href="neural__layer__args_8c.html#a78d120a156a1991d06ee0297f0beb0c7">neural_layer_args.c</a>
 </li>
 <li>layer_args_print_sgd()
 : <a class="el" href="neural__layer__args_8c.html#add3ff102fe13b879aa177e001e65a86c">neural_layer_args.c</a>
@@ -162,8 +165,8 @@ $(document).ready(function(){initNavTree('globals_func_l.html',''); initResizabl
 : <a class="el" href="neural__layer_8h.html#a392e18d96d59f5739ebeec3b05d5b4ad">neural_layer.h</a>
 </li>
 <li>layer_defaults()
-: <a class="el" href="neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95">neural_layer.h</a>
-, <a class="el" href="neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95">neural_layer.c</a>
+: <a class="el" href="neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95">neural_layer.c</a>
+, <a class="el" href="neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95">neural_layer.h</a>
 </li>
 <li>layer_ensure_input_represention()
 : <a class="el" href="neural__layer_8c.html#aa2cdee32220a13c467c9ae5d4982332d">neural_layer.c</a>
@@ -230,8 +233,8 @@ $(document).ready(function(){initNavTree('globals_func_l.html',''); initResizabl
 : <a class="el" href="neural__layer_8h.html#a1230cf25ba52027afad6f728089644ab">neural_layer.h</a>
 </li>
 <li>layer_receives_images()
-: <a class="el" href="neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a">neural_layer.c</a>
-, <a class="el" href="neural__layer_8h.html#ad1b7188119d0d96791ee0d87c105896a">neural_layer.h</a>
+: <a class="el" href="neural__layer_8h.html#ad1b7188119d0d96791ee0d87c105896a">neural_layer.h</a>
+, <a class="el" href="neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a">neural_layer.c</a>
 </li>
 <li>layer_resize()
 : <a class="el" href="neural__layer_8h.html#a28fed9ac2d12fe1bad08b4540f3f0455">neural_layer.h</a>
@@ -255,8 +258,8 @@ $(document).ready(function(){initNavTree('globals_func_l.html',''); initResizabl
 : <a class="el" href="neural__layer_8h.html#aa414f62704c1469ac851c78425b2b1ba">neural_layer.h</a>
 </li>
 <li>layer_weight_clamp()
-: <a class="el" href="neural__layer_8h.html#a80e54e8cdbe0776d6cc739f1a50ffd26">neural_layer.h</a>
-, <a class="el" href="neural__layer_8c.html#a80e54e8cdbe0776d6cc739f1a50ffd26">neural_layer.c</a>
+: <a class="el" href="neural__layer_8c.html#a80e54e8cdbe0776d6cc739f1a50ffd26">neural_layer.c</a>
+, <a class="el" href="neural__layer_8h.html#a80e54e8cdbe0776d6cc739f1a50ffd26">neural_layer.h</a>
 </li>
 <li>layer_weight_print()
 : <a class="el" href="neural__layer_8c.html#a0d6d72b763049aab59c2602288d8216a">neural_layer.c</a>
@@ -291,32 +294,32 @@ $(document).ready(function(){initNavTree('globals_func_l.html',''); initResizabl
 : <a class="el" href="neural__activations_8h.html#acd860c96bee8c36d8b046c9165676798">neural_activations.h</a>
 </li>
 <li>loss_binary_log()
-: <a class="el" href="loss_8c.html#a2687b111bc407194c64e07e2b933bb3c">loss.c</a>
-, <a class="el" href="loss_8h.html#a2687b111bc407194c64e07e2b933bb3c">loss.h</a>
+: <a class="el" href="loss_8h.html#a2687b111bc407194c64e07e2b933bb3c">loss.h</a>
+, <a class="el" href="loss_8c.html#a2687b111bc407194c64e07e2b933bb3c">loss.c</a>
 </li>
 <li>loss_huber()
-: <a class="el" href="loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30">loss.c</a>
-, <a class="el" href="loss_8h.html#adf5bc1e947369774d48b0355dbdbcc30">loss.h</a>
+: <a class="el" href="loss_8h.html#adf5bc1e947369774d48b0355dbdbcc30">loss.h</a>
+, <a class="el" href="loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30">loss.c</a>
 </li>
 <li>loss_log()
 : <a class="el" href="loss_8h.html#a5b0fc07896aaa302b61213c450874d49">loss.h</a>
 , <a class="el" href="loss_8c.html#a5b0fc07896aaa302b61213c450874d49">loss.c</a>
 </li>
 <li>loss_mae()
-: <a class="el" href="loss_8h.html#a7f1e236d219a5f551408639674b4a24a">loss.h</a>
-, <a class="el" href="loss_8c.html#a7f1e236d219a5f551408639674b4a24a">loss.c</a>
+: <a class="el" href="loss_8c.html#a7f1e236d219a5f551408639674b4a24a">loss.c</a>
+, <a class="el" href="loss_8h.html#a7f1e236d219a5f551408639674b4a24a">loss.h</a>
 </li>
 <li>loss_mse()
-: <a class="el" href="loss_8h.html#aaeed4518371c4e75de20532e3a6aa601">loss.h</a>
-, <a class="el" href="loss_8c.html#aaeed4518371c4e75de20532e3a6aa601">loss.c</a>
+: <a class="el" href="loss_8c.html#aaeed4518371c4e75de20532e3a6aa601">loss.c</a>
+, <a class="el" href="loss_8h.html#aaeed4518371c4e75de20532e3a6aa601">loss.h</a>
 </li>
 <li>loss_onehot()
-: <a class="el" href="loss_8h.html#a38e786a5c46be2519aae23287c92cc23">loss.h</a>
-, <a class="el" href="loss_8c.html#a38e786a5c46be2519aae23287c92cc23">loss.c</a>
+: <a class="el" href="loss_8c.html#a38e786a5c46be2519aae23287c92cc23">loss.c</a>
+, <a class="el" href="loss_8h.html#a38e786a5c46be2519aae23287c92cc23">loss.h</a>
 </li>
 <li>loss_rmse()
-: <a class="el" href="loss_8h.html#a3278a1ba45bd0ccbf39e25bde1562f8f">loss.h</a>
-, <a class="el" href="loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f">loss.c</a>
+: <a class="el" href="loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f">loss.c</a>
+, <a class="el" href="loss_8h.html#a3278a1ba45bd0ccbf39e25bde1562f8f">loss.h</a>
 </li>
 <li>loss_set_func()
 : <a class="el" href="loss_8c.html#a440b847b0f4edd503b919d3bebecd66c">loss.c</a>
@@ -327,8 +330,8 @@ $(document).ready(function(){initNavTree('globals_func_l.html',''); initResizabl
 , <a class="el" href="loss_8h.html#a6b76e413b2123f456c6656f0555208e1">loss.h</a>
 </li>
 <li>loss_type_as_string()
-: <a class="el" href="loss_8h.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe">loss.h</a>
-, <a class="el" href="loss_8c.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe">loss.c</a>
+: <a class="el" href="loss_8c.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe">loss.c</a>
+, <a class="el" href="loss_8h.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe">loss.h</a>
 </li>
 </ul>
 </div><!-- contents -->

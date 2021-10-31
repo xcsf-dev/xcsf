@@ -1,0 +1,5 @@
+<map id="rand_init_seed" name="rand_init_seed">
+<area shape="rect" id="node1" title="Initialises the pseudo&#45;random number generator with a fixed seed." alt="" coords="339,5,445,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#ae60bbc29681a75e99b261a3e01ea99c5" title=" " alt="" coords="204,5,291,32"/>
+<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,5,156,32"/>
+</map>

@@ -5,6 +5,7 @@ var structXCSF =
     [ "aset", "structXCSF.html#ab1bd9ccb6906f8af96d5deb6ee53f1a9", null ],
     [ "aset_size", "structXCSF.html#a6399a9abb032b159bfae20613a6fde84", null ],
     [ "BETA", "structXCSF.html#a90f971a6d7d1596cac1cef8d5dec947a", null ],
+    [ "COMPACTION", "structXCSF.html#a75d84b91eb141d20b16b84e791e4c1f8", null ],
     [ "cond", "structXCSF.html#a5cea2cbbae1a49c35eb3bacdead0094f", null ],
     [ "DELTA", "structXCSF.html#a8f4b8bebee13b0cf90fc13c1d32d8d02", null ],
     [ "E0", "structXCSF.html#ad4ad731a1a2a547bf5255378c6707a0f", null ],

@@ -1,18 +1,26 @@
 <map id="neural_init" name="neural_init">
-<area shape="rect" id="node1" title="Initialises an empty neural network." alt="" coords="356,284,437,311"/>
-<area shape="rect" id="node2" href="$neural_8h.html#acc35a399d5b8b9dd9a2d9500138966f3" title="Copies a neural network." alt="" coords="212,107,304,133"/>
-<area shape="rect" id="node7" href="$neural_8h.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="208,284,308,311"/>
-<area shape="rect" id="node12" href="$neural_8h.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08" title="Reads a neural network from a file." alt="" coords="214,461,302,488"/>
-<area shape="rect" id="node3" href="$act__neural_8h.html#a6c3049bc82f3a2bd512e156a0f1c1a9b" title="Copies a neural network action from one classifier to another." alt="" coords="24,5,141,32"/>
-<area shape="rect" id="node4" href="$cond__neural_8h.html#ad37696d691025a38a0f8dafeb376ad44" title="Copies a neural network condition from one classifier to another." alt="" coords="19,56,146,83"/>
-<area shape="rect" id="node5" href="$pred__neural_8h.html#aabc294bd7043f7ea912832c3a26b73a1" title="Copies a neural network prediction from one classifier to another." alt="" coords="21,107,145,133"/>
-<area shape="rect" id="node6" href="$rule__neural_8h.html#ad4146518a1cee7c58589d9ea89e02a83" title=" " alt="" coords="5,157,160,184"/>
-<area shape="rect" id="node8" href="$act__neural_8h.html#abbdbc4d92f139ccc9816289233dbf934" title="Creates and initialises an action neural network." alt="" coords="29,208,136,235"/>
-<area shape="rect" id="node9" href="$cond__neural_8h.html#a16f80af76361587e6da53dd21fa05b7b" title="Creates and initialises a neural network condition." alt="" coords="25,259,141,285"/>
-<area shape="rect" id="node10" href="$pred__neural_8h.html#a8ff454a2da61b52670f4b70b71da2fe8" title="Creates and initialises a neural network prediction." alt="" coords="26,309,139,336"/>
-<area shape="rect" id="node11" href="$rule__neural_8h.html#accc0db627c6130e7c8680c008b47a2e2" title=" " alt="" coords="11,360,155,387"/>
-<area shape="rect" id="node13" href="$act__neural_8h.html#a241289b5c61dec98b854ee24fdf16d67" title="Reads a neural network action from a file." alt="" coords="26,411,139,437"/>
-<area shape="rect" id="node14" href="$cond__neural_8h.html#a8decac2646ea64aba95cd8522d295c83" title="Reads a neural network condition from a file." alt="" coords="21,461,144,488"/>
-<area shape="rect" id="node15" href="$pred__neural_8h.html#aee98eff48767b879343983d0717952cc" title="Reads a neural network prediction from a file." alt="" coords="23,512,143,539"/>
-<area shape="rect" id="node16" href="$rule__neural_8h.html#a0e1e69e3c01307e2423a9c3c05409d63" title=" " alt="" coords="7,563,158,589"/>
+<area shape="rect" id="node1" title="Initialises an empty neural network." alt="" coords="1055,233,1136,260"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8h.html#a8d6f5c91f58e29ae70807de0d0b25d0e" title="Prints layer parameters." alt="" coords="724,208,839,235"/>
+<area shape="rect" id="node10" href="$neural_8h.html#acc35a399d5b8b9dd9a2d9500138966f3" title="Copies a neural network." alt="" coords="911,107,1003,133"/>
+<area shape="rect" id="node15" href="$neural_8h.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="907,284,1007,311"/>
+<area shape="rect" id="node20" href="$neural_8h.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08" title="Reads a neural network from a file." alt="" coords="913,512,1001,539"/>
+<area shape="rect" id="node3" href="$action_8h.html#a1e6bb9a3116b23d3bb6b676607501923" title="Prints action parameters." alt="" coords="524,157,656,184"/>
+<area shape="rect" id="node8" href="$condition_8h.html#adc81d1c6371eb0ef613ba3df5f2b1fb4" title="Prints condition parameters." alt="" coords="527,208,653,235"/>
+<area shape="rect" id="node9" href="$prediction_8h.html#a8358abee65ddd688514040ef8851d9f2" title="Prints prediction parameters." alt="" coords="529,259,651,285"/>
+<area shape="rect" id="node4" href="$param_8h.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="385,208,476,235"/>
+<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="245,183,296,209"/>
+<area shape="rect" id="node6" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="204,233,337,260"/>
+<area shape="rect" id="node7" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,233,156,260"/>
+<area shape="rect" id="node11" href="$act__neural_8h.html#a6c3049bc82f3a2bd512e156a0f1c1a9b" title="Copies a neural network action from one classifier to another." alt="" coords="723,157,840,184"/>
+<area shape="rect" id="node12" href="$cond__neural_8h.html#ad37696d691025a38a0f8dafeb376ad44" title="Copies a neural network condition from one classifier to another." alt="" coords="718,5,845,32"/>
+<area shape="rect" id="node13" href="$pred__neural_8h.html#aabc294bd7043f7ea912832c3a26b73a1" title="Copies a neural network prediction from one classifier to another." alt="" coords="719,56,843,83"/>
+<area shape="rect" id="node14" href="$rule__neural_8h.html#ad4146518a1cee7c58589d9ea89e02a83" title=" " alt="" coords="704,107,859,133"/>
+<area shape="rect" id="node16" href="$act__neural_8h.html#abbdbc4d92f139ccc9816289233dbf934" title="Creates and initialises an action neural network." alt="" coords="728,309,835,336"/>
+<area shape="rect" id="node17" href="$cond__neural_8h.html#a16f80af76361587e6da53dd21fa05b7b" title="Creates and initialises a neural network condition." alt="" coords="723,360,839,387"/>
+<area shape="rect" id="node18" href="$pred__neural_8h.html#a8ff454a2da61b52670f4b70b71da2fe8" title="Creates and initialises a neural network prediction." alt="" coords="725,411,838,437"/>
+<area shape="rect" id="node19" href="$rule__neural_8h.html#accc0db627c6130e7c8680c008b47a2e2" title=" " alt="" coords="709,259,853,285"/>
+<area shape="rect" id="node21" href="$act__neural_8h.html#a241289b5c61dec98b854ee24fdf16d67" title="Reads a neural network action from a file." alt="" coords="725,512,838,539"/>
+<area shape="rect" id="node22" href="$cond__neural_8h.html#a8decac2646ea64aba95cd8522d295c83" title="Reads a neural network condition from a file." alt="" coords="720,563,843,589"/>
+<area shape="rect" id="node23" href="$pred__neural_8h.html#aee98eff48767b879343983d0717952cc" title="Reads a neural network prediction from a file." alt="" coords="721,613,841,640"/>
+<area shape="rect" id="node24" href="$rule__neural_8h.html#a0e1e69e3c01307e2423a9c3c05409d63" title=" " alt="" coords="706,461,857,488"/>
 </map>

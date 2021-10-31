@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"dgp_8c.html#aee734e2659ea39d69c4fdd8f567ef63c":[2,0,32,26],
 "dgp_8c.html#af71be7faf77196a067d8e69ac1493ee2":[2,0,32,14],
 "dgp_8c_source.html":[2,0,32],
 "dgp_8h.html":[2,0,33],
@@ -212,8 +213,8 @@ var NAVTREEINDEX3 =
 "functions_w.html":[1,2,0,20],
 "functions_x.html":[1,2,0,21],
 "functions_y.html":[1,2,0,22],
-"globals.html":[2,1,0],
 "globals.html":[2,1,0,0],
+"globals.html":[2,1,0],
 "globals_a.html":[2,1,0,1],
 "globals_b.html":[2,1,0,2],
 "globals_c.html":[2,1,0,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "globals_s.html":[2,1,0,14],
 "globals_t.html":[2,1,0,15],
 "globals_u.html":[2,1,0,16],
-"globals_v.html":[2,1,0,17],
-"globals_vars.html":[2,1,2]
+"globals_v.html":[2,1,0,17]
 };
