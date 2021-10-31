@@ -136,6 +136,8 @@ xcs.EA_PRED_RESET = False # whether to reset offspring predictions instead of co
   https://doi.org/10.1007/b104669
 * L. Bull (2015) "A brief history of learning classifier systems: From CS-1 to
   XCS and its variants" https://doi.org/10.1007/s12065-015-0125-y
+* R. J. Urbanowicz and W. N. Browne (2017) "Introduction to learning classifier
+  systems" https://doi.org/10.1007/978-3-662-55007-6
 
 *******************************************************************************
 
@@ -219,7 +221,8 @@ xcs.condition('hyperellipsoid', args)
 ### GP Trees
 
 GP trees currently use arithmetic operators from the set `{+,-,/,*}`. Return
-values from each node are clamped [-1000,1000].
+values from each node are clamped [-1000,1000]. The rule matches if the output
+node is greater than 0.5.
 
 Sub-tree crossover is applied with probability `P_CROSSOVER`. A single
 self-adaptive mutation rate ([rate selection](#notes)) is used to specify the
@@ -262,13 +265,18 @@ Cyclical graphs with fuzzy activation functions selected from the CFMQVS set:
 selected function assigned to each node and random connectivity (including
 recurrent connections) and is synchronously updated in parallel for T cycles
 before sampling the output node(s). These graphs can exhibit inherent memory by
-retaining state across inputs.
+retaining state across inputs. Inputs must be in the range [0,1].
 
 Currently implements a fixed number of nodes with the number of connections and
-update cycles evolved along with the function for each node.
-
-Log normal self-adaptive mutation is used for node function and connectivity
+update cycles evolved along with the function for each node. Log normal
+self-adaptive mutation is used for node function and connectivity
 and uniform self-adaptive mutation for the number of update cycles.
+
+When used as conditions, the number of nodes `n` must be at least 1 and the
+rule matches a given input if the state of that node is greater than 0.5 after
+updating the graph T times. When used as condition + action rules, the action
+is encoded as binary (discretising the node outputs with threshold 0.5); for
+example with 8 actions, a minimum of 3 additional nodes are required.
 
 ```python
 args = {
@@ -292,14 +300,17 @@ xcs.condition('rule-dgp', args) # conditions + actions in single DGP graphs
   for scalability on complex Boolean problems"
   https://doi.org/10.1162/EVCO_a_00167
 
-
 ### Neural Networks
 
-Condition output layers should be ```'n-init': 1```.
+Condition output layers should be set to a single neuron, i.e., ```'n-init':
+1```. A classifier matches an input if this output neuron is greater than 0.5.
 
-Rule output layers should be ```'n-init': 1 + binary``` where binary is the
-number of outputs required to output binary actions. For example, for 8 actions,
-3 binary outputs are required and the output layer should be of size 4.
+When used to represent conditions and actions within a single network ("rules")
+the output layers should be ```'n-init': 1 + binary``` where binary is the
+number of outputs required to output binary actions. For example, for 8
+actions, 3 binary outputs are required and the output layer should contain 4
+neurons. Again, the neuron states of the action outputs are discretised with
+threshold 0.5.
 
 See [Neural Network Initialisation](#neural-network-initialisation).
 
@@ -312,6 +323,8 @@ xcs.condition('rule-neural', layer_args) # conditions + actions in single neural
 
 * L. Bull (2002) "On using constructivism in neural classifier systems"
   https://doi.org/10.1007/3-540-45712-7_54
+* R. J. Preen, S. W. Wilson, and L. Bull (2021) "Autoencoding with a classifier
+  system" https://doi.org/10.1109/TEVC.2021.3079320
 
 *******************************************************************************
 
@@ -412,7 +425,7 @@ xcs.prediction('rls-quadratic', args)
 *Related Literature:*
 
 * M. V. Butz, P.-L. Lanzi, and S. W. Wilson (2008) "Function approximation with
-  XCS: Hyperellipsoidal conditions, recursive least squares, and compaction
+  XCS: Hyperellipsoidal conditions, recursive least squares, and compaction"
   https://doi.org/10.1109/TEVC.2007.903551
 
 ### Neural Networks
@@ -430,8 +443,8 @@ xcs.prediction('neural', layer_args)
   https://doi.org/10.1109/CEC.2006.1688588
 * T. O'Hara and L. Bull (2007) "Backpropagation in accuracy-based neural
   learning classifier systems" https://doi.org/10.1007/978-3-540-71231-2_3
-* R. J. Preen, S. W. Wilson, and L. Bull (2019) "Autoencoding with a classifier
-  system" https://arxiv.org/abs/1910.10579
+* R. J. Preen, S. W. Wilson, and L. Bull (2021) "Autoencoding with a classifier
+  system" https://doi.org/10.1109/TEVC.2021.3079320
 
 *******************************************************************************
 
@@ -822,6 +835,11 @@ Reinforcement learning examples with action sets:
 Reinforcement learning example (using experience replay) without action sets:
 
 `example_cartpole.py`
+
+*Related Literature:*
+
+* A. Stein, R. Maier, L. Rosenbauer, and J. Hähner (2020) "XCS classifier
+  system with experience replay" https://doi.org/10.1145/3377930.3390249
 
 *******************************************************************************
 
