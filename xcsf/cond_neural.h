@@ -17,7 +17,7 @@
  * @file cond_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief Multi-layer perceptron neural network condition functions.
  */
 
@@ -88,6 +88,9 @@ cond_neural_layers(const struct XCSF *xcsf, const struct Cl *c);
 int
 cond_neural_connections(const struct XCSF *xcsf, const struct Cl *c, int layer);
 
+const char *
+cond_neural_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Multi-layer perceptron neural network condition implemented functions.
  */
@@ -96,5 +99,5 @@ static struct CondVtbl const cond_neural_vtbl = {
     &cond_neural_mutate,    &cond_neural_copy,    &cond_neural_cover,
     &cond_neural_free,      &cond_neural_init,    &cond_neural_print,
     &cond_neural_update,    &cond_neural_size,    &cond_neural_save,
-    &cond_neural_load
+    &cond_neural_load,      &cond_neural_json
 };

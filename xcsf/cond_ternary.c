@@ -17,7 +17,7 @@
  * @file cond_ternary.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2021.
  * @brief Ternary condition functions.
  * @details Binarises inputs.
  */
@@ -330,4 +330,29 @@ cond_ternary_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     s += fread(new->mu, sizeof(double), N_MU, fp);
     c->cond = new;
     return s;
+}
+
+/**
+ * @brief Returns a json formatted string representation of a ternary condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+cond_ternary_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    (void) xcsf;
+    const struct CondTernary *cond = c->cond;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("ternary");
+    cJSON_AddItemToObject(json, "type", type);
+    char buff[cond->length + 1];
+    memcpy(buff, cond->string, sizeof(char) * cond->length);
+    buff[cond->length] = '\0';
+    cJSON_AddStringToObject(json, "string", buff);
+    cJSON *mutation = cJSON_CreateDoubleArray(cond->mu, N_MU);
+    cJSON_AddItemToObject(json, "mutation", mutation);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }

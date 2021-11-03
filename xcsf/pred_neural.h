@@ -17,7 +17,7 @@
  * @file pred_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief Multi-layer perceptron neural network prediction functions.
  */
 
@@ -94,6 +94,9 @@ void
 pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct Cl *c,
                              const int n_del);
 
+const char *
+pred_neural_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Multi-layer perceptron neural network prediction implemented
  * functions.
@@ -102,5 +105,5 @@ static struct PredVtbl const pred_neural_vtbl = {
     &pred_neural_crossover, &pred_neural_mutate, &pred_neural_compute,
     &pred_neural_copy,      &pred_neural_free,   &pred_neural_init,
     &pred_neural_print,     &pred_neural_update, &pred_neural_size,
-    &pred_neural_save,      &pred_neural_load
+    &pred_neural_save,      &pred_neural_load,   &pred_neural_json
 };

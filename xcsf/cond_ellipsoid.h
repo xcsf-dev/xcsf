@@ -17,7 +17,7 @@
  * @file cond_ellipsoid.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2021.
  * @brief Hyperellipsoid condition functions.
  */
 
@@ -80,6 +80,9 @@ cond_ellipsoid_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 cond_ellipsoid_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
+const char *
+cond_ellipsoid_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Hyperellipsoid condition implemented functions.
  */
@@ -88,5 +91,5 @@ static struct CondVtbl const cond_ellipsoid_vtbl = {
     &cond_ellipsoid_mutate,    &cond_ellipsoid_copy,    &cond_ellipsoid_cover,
     &cond_ellipsoid_free,      &cond_ellipsoid_init,    &cond_ellipsoid_print,
     &cond_ellipsoid_update,    &cond_ellipsoid_size,    &cond_ellipsoid_save,
-    &cond_ellipsoid_load
+    &cond_ellipsoid_load,      &cond_ellipsoid_json
 };

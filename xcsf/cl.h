@@ -17,7 +17,7 @@
  * @file cl.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Functions operating on classifiers.
  */
 
@@ -101,3 +101,6 @@ cl_update(const struct XCSF *xcsf, struct Cl *c, const double *x,
 void
 cl_update_fit(const struct XCSF *xcsf, struct Cl *c, const double acc_sum,
               const double acc);
+
+const char *
+cl_json(const struct XCSF *xcsf, const struct Cl *c);

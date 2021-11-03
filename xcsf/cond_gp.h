@@ -17,7 +17,7 @@
  * @file cond_gp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief Tree GP condition functions.
  */
 
@@ -76,6 +76,9 @@ cond_gp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
+const char *
+cond_gp_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Tree GP condition implemented functions.
  */
@@ -83,5 +86,5 @@ static struct CondVtbl const cond_gp_vtbl = {
     &cond_gp_crossover, &cond_gp_general, &cond_gp_match, &cond_gp_mutate,
     &cond_gp_copy,      &cond_gp_cover,   &cond_gp_free,  &cond_gp_init,
     &cond_gp_print,     &cond_gp_update,  &cond_gp_size,  &cond_gp_save,
-    &cond_gp_load
+    &cond_gp_load,      &cond_gp_json
 };

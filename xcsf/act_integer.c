@@ -17,7 +17,7 @@
  * @file act_integer.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief integer action functions.
  */
 
@@ -237,4 +237,26 @@ act_integer_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     s += fread(new->mu, sizeof(double), N_MU, fp);
     c->act = new;
     return s;
+}
+
+/**
+ * @brief Returns a json formatted string representation of an integer action.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose action is to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+act_integer_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    (void) xcsf;
+    const struct ActInteger *act = c->act;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("integer");
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddNumberToObject(json, "action", act->action);
+    cJSON *mutation = cJSON_CreateDoubleArray(act->mu, N_MU);
+    cJSON_AddItemToObject(json, "mutation", mutation);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }

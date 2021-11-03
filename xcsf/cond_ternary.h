@@ -17,7 +17,7 @@
  * @file cond_ternary.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2021.
  * @brief Ternary condition functions.
  */
 
@@ -81,6 +81,9 @@ cond_ternary_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 cond_ternary_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
+const char *
+cond_ternary_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Ternary condition implemented functions.
  */
@@ -89,5 +92,5 @@ static struct CondVtbl const cond_ternary_vtbl = {
     &cond_ternary_mutate,    &cond_ternary_copy,    &cond_ternary_cover,
     &cond_ternary_free,      &cond_ternary_init,    &cond_ternary_print,
     &cond_ternary_update,    &cond_ternary_size,    &cond_ternary_save,
-    &cond_ternary_load
+    &cond_ternary_load,      &cond_ternary_json
 };

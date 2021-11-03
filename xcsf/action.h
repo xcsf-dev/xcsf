@@ -17,7 +17,7 @@
  * @file action.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Interface for classifier actions.
  */
 
@@ -87,6 +87,7 @@ struct ActVtbl {
     size_t (*act_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                             FILE *fp);
     size_t (*act_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+    const char *(*act_impl_json)(const struct XCSF *xcsf, const struct Cl *c);
 };
 
 /**
@@ -237,6 +238,18 @@ act_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
            const double *y)
 {
     (*c->act_vptr->act_impl_update)(xcsf, c, x, y);
+}
+
+/**
+ * @brief Returns a json formatted string representation of an action .
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier whose action is to be returned.
+ * @return String encoded in json format.
+ */
+static inline const char *
+act_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    return (*c->act_vptr->act_impl_json)(xcsf, c);
 }
 
 /* parameter setters */

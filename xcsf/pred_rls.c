@@ -271,3 +271,28 @@ pred_rls_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     s += fread(pred->matrix, sizeof(double), n_sqrd, fp);
     return s;
 }
+
+/**
+ * @brief Returns a json formatted string representation of an RLS prediction.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose prediction is to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+pred_rls_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    struct PredRLS *pred = c->pred;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type;
+    if (xcsf->pred->type == PRED_TYPE_RLS_QUADRATIC) {
+        type = cJSON_CreateString("rls-quadratic");
+    } else {
+        type = cJSON_CreateString("rls-linear");
+    }
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON *weights = cJSON_CreateDoubleArray(pred->weights, pred->n_weights);
+    cJSON_AddItemToObject(json, "weights", weights);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
+}

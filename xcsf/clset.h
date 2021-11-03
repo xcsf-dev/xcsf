@@ -83,3 +83,6 @@ clset_update(struct XCSF *xcsf, struct Set *set, const double *x,
 
 void
 clset_validate(struct Set *set);
+
+const char *
+clset_json(const struct XCSF *xcsf, const struct Set *set);

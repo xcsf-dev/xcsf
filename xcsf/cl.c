@@ -17,7 +17,7 @@
  * @file cl.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Functions operating on classifiers.
  */
 
@@ -487,4 +487,38 @@ cl_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     s += pred_load(xcsf, c, fp);
     s += cond_load(xcsf, c, fp);
     return s;
+}
+
+/**
+ * @brief Returns a json formatted string representation of a classifier.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+cl_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "error", c->err);
+    cJSON_AddNumberToObject(json, "fitness", c->fit);
+    cJSON_AddNumberToObject(json, "accuracy", cl_acc(xcsf, c));
+    cJSON_AddNumberToObject(json, "size", c->size);
+    cJSON_AddNumberToObject(json, "numerosity", c->num);
+    cJSON_AddNumberToObject(json, "experience", c->exp);
+    cJSON_AddNumberToObject(json, "time", c->time);
+    cJSON_AddNumberToObject(json, "age", c->age);
+    cJSON_AddNumberToObject(json, "mtotal", c->mtotal);
+    cJSON_AddBoolToObject(json, "current match", c->m);
+    cJSON_AddNumberToObject(json, "current action", c->action);
+    cJSON *p = cJSON_CreateDoubleArray(c->prediction, xcsf->y_dim);
+    cJSON_AddItemToObject(json, "current prediction", p);
+    cJSON *condition = cJSON_Parse(cond_json(xcsf, c));
+    cJSON_AddItemToObject(json, "condition", condition);
+    cJSON *action = cJSON_Parse(act_json(xcsf, c));
+    cJSON_AddItemToObject(json, "action", action);
+    cJSON *prediction = cJSON_Parse(pred_json(xcsf, c));
+    cJSON_AddItemToObject(json, "prediction", prediction);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }

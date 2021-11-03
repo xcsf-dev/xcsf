@@ -17,7 +17,7 @@
  * @file cond_gp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief Tree GP condition functions.
  */
 
@@ -232,4 +232,23 @@ cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     size_t s = tree_load(&new->gp, fp);
     c->cond = new;
     return s;
+}
+
+/**
+ * @brief Returns a json formatted string representation of a tree-GP condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+cond_gp_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    (void) xcsf;
+    (void) c;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("tree-gp");
+    cJSON_AddItemToObject(json, "type", type);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }

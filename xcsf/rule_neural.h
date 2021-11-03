@@ -17,7 +17,7 @@
  * @file rule_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2021.
  * @brief Neural network rule (condition + action) functions.
  */
 
@@ -80,6 +80,9 @@ rule_neural_cond_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 rule_neural_cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
+const char *
+rule_neural_cond_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Neural network rule condition implemented functions.
  */
@@ -90,7 +93,7 @@ static struct CondVtbl const rule_neural_cond_vtbl = {
     &rule_neural_cond_free,      &rule_neural_cond_init,
     &rule_neural_cond_print,     &rule_neural_cond_update,
     &rule_neural_cond_size,      &rule_neural_cond_save,
-    &rule_neural_cond_load
+    &rule_neural_cond_load,      &rule_neural_cond_json
 };
 
 bool
@@ -135,6 +138,9 @@ rule_neural_act_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 rule_neural_act_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
+const char *
+rule_neural_act_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Neural network rule action implemented functions.
  */
@@ -144,5 +150,6 @@ static struct ActVtbl const rule_neural_act_vtbl = {
     &rule_neural_act_copy,    &rule_neural_act_cover,
     &rule_neural_act_free,    &rule_neural_act_init,
     &rule_neural_act_print,   &rule_neural_act_update,
-    &rule_neural_act_save,    &rule_neural_act_load
+    &rule_neural_act_save,    &rule_neural_act_load,
+    &rule_neural_act_json
 };

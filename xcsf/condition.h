@@ -112,6 +112,7 @@ struct CondVtbl {
     size_t (*cond_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                              FILE *fp);
     size_t (*cond_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+    const char *(*cond_impl_json)(const struct XCSF *xcsf, const struct Cl *c);
 };
 
 /**
@@ -273,6 +274,18 @@ static inline void
 cond_print(const struct XCSF *xcsf, const struct Cl *c)
 {
     (*c->cond_vptr->cond_impl_print)(xcsf, c);
+}
+
+/**
+ * @brief Returns a json formatted string representation of a condition.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier whose condition is to be returned.
+ * @return String encoded in json format.
+ */
+static inline const char *
+cond_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    return (*c->cond_vptr->cond_impl_json)(xcsf, c);
 }
 
 /* parameter setters */

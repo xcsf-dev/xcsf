@@ -17,7 +17,7 @@
  * @file prediction.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Interface for classifier predictions.
  */
 
@@ -102,6 +102,7 @@ struct PredVtbl {
     size_t (*pred_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                              FILE *fp);
     size_t (*pred_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+    const char *(*pred_impl_json)(const struct XCSF *xcsf, const struct Cl *c);
 };
 
 /**
@@ -238,6 +239,18 @@ pred_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
             const double *y)
 {
     (*c->pred_vptr->pred_impl_update)(xcsf, c, x, y);
+}
+
+/**
+ * @brief Returns a json formatted string representation of a prediction.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] c Classifier whose prediction is to be returned.
+ * @return String encoded in json format.
+ */
+static inline const char *
+pred_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    return (*c->pred_vptr->pred_impl_json)(xcsf, c);
 }
 
 /* parameter setters */

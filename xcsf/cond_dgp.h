@@ -17,7 +17,7 @@
  * @file cond_dgp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief Dynamical GP graph condition functions.
  */
 
@@ -76,6 +76,9 @@ cond_dgp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 cond_dgp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
+const char *
+cond_dgp_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Dynamical GP graph condition implemented functions.
  */
@@ -83,5 +86,5 @@ static struct CondVtbl const cond_dgp_vtbl = {
     &cond_dgp_crossover, &cond_dgp_general, &cond_dgp_match, &cond_dgp_mutate,
     &cond_dgp_copy,      &cond_dgp_cover,   &cond_dgp_free,  &cond_dgp_init,
     &cond_dgp_print,     &cond_dgp_update,  &cond_dgp_size,  &cond_dgp_save,
-    &cond_dgp_load
+    &cond_dgp_load,      &cond_dgp_json
 };

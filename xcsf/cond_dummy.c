@@ -17,7 +17,7 @@
  * @file cond_dummy.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2021.
  * @brief Always-matching dummy condition functions.
  */
 
@@ -212,4 +212,23 @@ cond_dummy_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     (void) c;
     (void) fp;
     return 0;
+}
+
+/**
+ * @brief Returns a json formatted string representation of a dummy condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+cond_dummy_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    (void) xcsf;
+    (void) c;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("dummy");
+    cJSON_AddItemToObject(json, "type", type);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }

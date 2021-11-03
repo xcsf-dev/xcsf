@@ -7,3 +7,6 @@
 [submodule "lib/dSFMT"]
 	path = lib/dSFMT
 	url = https://github.com/MersenneTwister-Lab/dSFMT
+[submodule "lib/cJSON"]
+	path = lib/cJSON
+	url = https://github.com/DaveGamble/cJSON.git

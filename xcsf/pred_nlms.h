@@ -17,7 +17,7 @@
  * @file pred_nlms.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Normalised least mean squares prediction functions.
  */
 
@@ -73,6 +73,9 @@ void
 pred_nlms_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                  const double *y);
 
+const char *
+pred_nlms_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Normalised least mean squares prediction implemented functions.
  */
@@ -80,5 +83,5 @@ static struct PredVtbl const pred_nlms_vtbl = {
     &pred_nlms_crossover, &pred_nlms_mutate, &pred_nlms_compute,
     &pred_nlms_copy,      &pred_nlms_free,   &pred_nlms_init,
     &pred_nlms_print,     &pred_nlms_update, &pred_nlms_size,
-    &pred_nlms_save,      &pred_nlms_load
+    &pred_nlms_save,      &pred_nlms_load,   &pred_nlms_json
 };

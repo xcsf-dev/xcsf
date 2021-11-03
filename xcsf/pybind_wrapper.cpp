@@ -50,6 +50,9 @@ extern "C" {
 #include "utils.h"
 #include "xcs_rl.h"
 #include "xcs_supervised.h"
+
+#include "cl.h"
+#include "cond_rectangle.h"
 }
 
 /**
@@ -219,6 +222,18 @@ class XCS
                const bool print_pred)
     {
         xcsf_print_pset(&xcs, print_cond, print_act, print_pred);
+    }
+
+    /**
+     * @brief Returns a JSON formatted string representing the population set.
+     */
+    const char *
+    json()
+    {
+        if (xcs.pset.list != NULL) {
+            return clset_json(&xcs, &xcs.pset);
+        }
+        return "null";
     }
 
     /* Reinforcement learning */
@@ -1511,5 +1526,6 @@ PYBIND11_MODULE(xcsf, m)
         .def("print_pset", &XCS::print_pset)
         .def("print_params", &XCS::print_params)
         .def("pred_expand", &XCS::pred_expand)
-        .def("ae_to_classifier", &XCS::ae_to_classifier);
+        .def("ae_to_classifier", &XCS::ae_to_classifier)
+        .def("json", &XCS::json);
 }

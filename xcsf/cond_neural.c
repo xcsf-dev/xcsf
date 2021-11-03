@@ -17,7 +17,7 @@
  * @file cond_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief Multi-layer perceptron neural network condition functions.
  */
 
@@ -299,4 +299,23 @@ cond_neural_layers(const struct XCSF *xcsf, const struct Cl *c)
     const struct CondNeural *cond = c->cond;
     const struct Net *net = &cond->net;
     return net->n_layers;
+}
+
+/**
+ * @brief Returns a json formatted string representation of a neural condition.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+cond_neural_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    (void) xcsf;
+    (void) c;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("neural");
+    cJSON_AddItemToObject(json, "type", type);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }

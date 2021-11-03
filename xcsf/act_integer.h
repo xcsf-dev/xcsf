@@ -17,7 +17,7 @@
  * @file act_integer.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2021.
  * @brief integer action functions.
  */
 
@@ -76,6 +76,9 @@ act_integer_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 act_integer_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
+const char *
+act_integer_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Integer action implemented functions.
  */
@@ -83,5 +86,6 @@ static struct ActVtbl const act_integer_vtbl = {
     &act_integer_general, &act_integer_crossover, &act_integer_mutate,
     &act_integer_compute, &act_integer_copy,      &act_integer_cover,
     &act_integer_free,    &act_integer_init,      &act_integer_print,
-    &act_integer_update,  &act_integer_save,      &act_integer_load
+    &act_integer_update,  &act_integer_save,      &act_integer_load,
+    &act_integer_json
 };

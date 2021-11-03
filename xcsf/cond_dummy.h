@@ -17,7 +17,7 @@
  * @file cond_dummy.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019-2020.
+ * @date 2019-2021.
  * @brief Always-matching dummy condition functions.
  */
 
@@ -68,6 +68,9 @@ cond_dummy_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 cond_dummy_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
+const char *
+cond_dummy_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Dummy condition implemented functions.
  */
@@ -76,5 +79,5 @@ static struct CondVtbl const cond_dummy_vtbl = {
     &cond_dummy_mutate,    &cond_dummy_copy,    &cond_dummy_cover,
     &cond_dummy_free,      &cond_dummy_init,    &cond_dummy_print,
     &cond_dummy_update,    &cond_dummy_size,    &cond_dummy_save,
-    &cond_dummy_load
+    &cond_dummy_load,      &cond_dummy_json
 };

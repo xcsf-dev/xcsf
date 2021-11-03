@@ -17,7 +17,7 @@
  * @file act_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2021.
  * @brief Neural network action functions.
  */
 
@@ -220,4 +220,23 @@ act_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     size_t s = neural_load(&new->net, fp);
     c->act = new;
     return s;
+}
+
+/**
+ * @brief Returns a json formatted string representation of a neural action.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose action is to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+act_neural_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    (void) xcsf;
+    (void) c;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("neural");
+    cJSON_AddItemToObject(json, "type", type);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }

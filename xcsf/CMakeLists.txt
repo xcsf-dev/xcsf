@@ -1,16 +1,16 @@
-# 
-#  Copyright (C) 2019--2020 Richard Preen <rpreen@gmail.com>
-# 
+#
+#  Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
+#
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation, either version 3 of the License, or
 #  (at your option) any later version.
-# 
+#
 #  This program is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
-# 
+#
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
@@ -69,8 +69,7 @@ set(XCSF_SOURCES
     utils.c
     xcs_rl.c
     xcs_supervised.c
-    xcsf.c
-)
+    xcsf.c)
 
 set(XCSF_HEADERS
     act_integer.h
@@ -126,26 +125,26 @@ set(XCSF_HEADERS
     utils.h
     xcs_rl.h
     xcs_supervised.h
-    xcsf.h
-)
+    xcsf.h)
 
-set(dSFMT_SOURCES
-    ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT.c
-)
+set(dSFMT_SOURCES ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT.c)
 
 set(dSFMT_HEADERS
-    ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT.h
-    ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-common.h
+    ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT.h ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-common.h
     ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-params.h
-    ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-params19937.h
-)
+    ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-params19937.h)
+
+set(cJSON_SOURCES ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.c)
+
+set(cJSON_HEADERS ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.h)
 
 #################################################
 # target: libxcs - main functions
 #################################################
 
 add_definitions(-DDSFMT_MEXP=19937)
-add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${dSFMT_SOURCES} ${dSFMT_HEADERS})
+add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${dSFMT_SOURCES} ${dSFMT_HEADERS}
+                       ${cJSON_SOURCES} ${cJSON_HEADERS})
 target_link_libraries(xcs m)
 
 #################################################
@@ -161,11 +160,9 @@ target_link_libraries(main xcs)
 
 if(XCSF_PYLIB)
 
-    set(XCSF_PY_SOURCES
-        pybind_wrapper.cpp
-    )
+    set(XCSF_PY_SOURCES pybind_wrapper.cpp)
 
-    PYTHON_ADD_MODULE(xcsf SHARED ${XCSF_PY_SOURCES})
+    python_add_module(xcsf SHARED ${XCSF_PY_SOURCES})
     target_link_libraries(xcsf xcs)
     file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
 

@@ -17,7 +17,7 @@
  * @file pred_nlms.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Normalised least mean squares prediction functions.
  */
 
@@ -258,4 +258,32 @@ pred_nlms_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     s += fread(pred->mu, sizeof(double), N_MU, fp);
     s += fread(&pred->eta, sizeof(double), 1, fp);
     return s;
+}
+
+/**
+ * @brief Returns a json formatted string representation of an NLMS prediction.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose prediction is to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+pred_nlms_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    struct PredNLMS *pred = c->pred;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type;
+    if (xcsf->pred->type == PRED_TYPE_NLMS_QUADRATIC) {
+        type = cJSON_CreateString("nlms-quadratic");
+    } else {
+        type = cJSON_CreateString("nlms-linear");
+    }
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON *weights = cJSON_CreateDoubleArray(pred->weights, pred->n_weights);
+    cJSON_AddItemToObject(json, "weights", weights);
+    cJSON_AddNumberToObject(json, "eta", pred->eta);
+    cJSON *mutation = cJSON_CreateDoubleArray(pred->mu, N_MU);
+    cJSON_AddItemToObject(json, "mutation", mutation);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }

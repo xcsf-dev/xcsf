@@ -17,7 +17,7 @@
  * @file rule_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2021.
  * @brief Neural network rule (condition + action) functions.
  */
 
@@ -160,6 +160,19 @@ rule_neural_cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     return s;
 }
 
+const char *
+rule_neural_cond_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    (void) xcsf;
+    (void) c;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("rule-neural");
+    cJSON_AddItemToObject(json, "type", type);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
+}
+
 /* ACTION FUNCTIONS */
 
 void
@@ -274,4 +287,17 @@ rule_neural_act_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     (void) c;
     (void) fp;
     return 0;
+}
+
+const char *
+rule_neural_act_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    (void) xcsf;
+    (void) c;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("rule-neural");
+    cJSON_AddItemToObject(json, "type", type);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }

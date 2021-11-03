@@ -17,7 +17,7 @@
  * @file act_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2021.
  * @brief Neural network action functions.
  */
 
@@ -77,6 +77,9 @@ act_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 act_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
+const char *
+act_neural_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief neural action implemented functions.
  */
@@ -84,5 +87,6 @@ static struct ActVtbl const act_neural_vtbl = {
     &act_neural_general, &act_neural_crossover, &act_neural_mutate,
     &act_neural_compute, &act_neural_copy,      &act_neural_cover,
     &act_neural_free,    &act_neural_init,      &act_neural_print,
-    &act_neural_update,  &act_neural_save,      &act_neural_load
+    &act_neural_update,  &act_neural_save,      &act_neural_load,
+    &act_neural_json
 };

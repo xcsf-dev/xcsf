@@ -17,7 +17,7 @@
  * @file cond_rectangle.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2021.
  * @brief Hyperrectangle condition functions.
  */
 
@@ -80,6 +80,9 @@ cond_rectangle_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
+const char *
+cond_rectangle_json(const struct XCSF *xcsf, const struct Cl *c);
+
 /**
  * @brief Hyperrectangle condition implemented functions.
  */
@@ -88,5 +91,5 @@ static struct CondVtbl const cond_rectangle_vtbl = {
     &cond_rectangle_mutate,    &cond_rectangle_copy,    &cond_rectangle_cover,
     &cond_rectangle_free,      &cond_rectangle_init,    &cond_rectangle_print,
     &cond_rectangle_update,    &cond_rectangle_size,    &cond_rectangle_save,
-    &cond_rectangle_load
+    &cond_rectangle_load,      &cond_rectangle_json
 };

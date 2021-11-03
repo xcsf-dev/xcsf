@@ -17,7 +17,7 @@
  * @file pred_constant.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Piece-wise constant prediction functions.
  */
 
@@ -190,4 +190,23 @@ pred_constant_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     (void) c;
     (void) fp;
     return 0;
+}
+
+/**
+ * @brief Returns a json formatted string representation of a prediction.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose prediction is to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+pred_constant_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("constant");
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON *prediction = cJSON_CreateDoubleArray(c->prediction, xcsf->y_dim);
+    cJSON_AddItemToObject(json, "prediction", prediction);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }

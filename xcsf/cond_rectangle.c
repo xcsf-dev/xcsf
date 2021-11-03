@@ -17,7 +17,7 @@
  * @file cond_rectangle.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2021.
  * @brief Hyperrectangle condition functions.
  */
 
@@ -325,4 +325,28 @@ cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
     s += fread(new->mu, sizeof(double), N_MU, fp);
     c->cond = new;
     return s;
+}
+
+/**
+ * @brief Returns a json formatted string representation of a hyperrectangle.
+ * @param [in] xcsf XCSF data structure.
+ * @param [in] c Classifier whose condition is to be returned.
+ * @return String encoded in json format.
+ */
+const char *
+cond_rectangle_json(const struct XCSF *xcsf, const struct Cl *c)
+{
+    const struct CondRectangle *cond = c->cond;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("hyperrectangle");
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON *center = cJSON_CreateDoubleArray(cond->center, xcsf->x_dim);
+    cJSON *spread = cJSON_CreateDoubleArray(cond->spread, xcsf->x_dim);
+    cJSON *mutation = cJSON_CreateDoubleArray(cond->mu, N_MU);
+    cJSON_AddItemToObject(json, "center", center);
+    cJSON_AddItemToObject(json, "spread", spread);
+    cJSON_AddItemToObject(json, "mutation", mutation);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
