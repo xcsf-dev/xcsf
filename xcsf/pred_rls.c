@@ -281,7 +281,7 @@ pred_rls_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 const char *
 pred_rls_json(const struct XCSF *xcsf, const struct Cl *c)
 {
-    struct PredRLS *pred = c->pred;
+    const struct PredRLS *pred = c->pred;
     cJSON *json = cJSON_CreateObject();
     cJSON *type;
     if (xcsf->pred->type == PRED_TYPE_RLS_QUADRATIC) {

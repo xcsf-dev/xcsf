@@ -269,7 +269,7 @@ pred_nlms_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 const char *
 pred_nlms_json(const struct XCSF *xcsf, const struct Cl *c)
 {
-    struct PredNLMS *pred = c->pred;
+    const struct PredNLMS *pred = c->pred;
     cJSON *json = cJSON_CreateObject();
     cJSON *type;
     if (xcsf->pred->type == PRED_TYPE_NLMS_QUADRATIC) {
