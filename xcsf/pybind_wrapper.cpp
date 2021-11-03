@@ -50,9 +50,6 @@ extern "C" {
 #include "utils.h"
 #include "xcs_rl.h"
 #include "xcs_supervised.h"
-
-#include "cl.h"
-#include "cond_rectangle.h"
 }
 
 /**
