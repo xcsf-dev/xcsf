@@ -612,7 +612,7 @@ neural_layer_lstm_json(const struct Layer *l, const bool return_weights)
     cJSON *wg = cJSON_Parse(layer_weight_json(l->wg, return_weights));
     cJSON_AddItemToObject(json, "wg_layer", wg);
     cJSON *wo = cJSON_Parse(layer_weight_json(l->wo, return_weights));
-    cJSON_AddItemToObject(json, "uo_layer", wo);
+    cJSON_AddItemToObject(json, "wo_layer", wo);
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
