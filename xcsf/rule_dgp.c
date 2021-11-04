@@ -155,10 +155,12 @@ const char *
 rule_dgp_cond_json(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
-    (void) c;
+    const struct RuleDGP *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
     cJSON *type = cJSON_CreateString("rule-dgp");
     cJSON_AddItemToObject(json, "type", type);
+    cJSON *graph = cJSON_Parse(graph_json(&cond->dgp));
+    cJSON_AddItemToObject(json, "graph", graph);
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;

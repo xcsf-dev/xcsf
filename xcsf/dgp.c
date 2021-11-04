@@ -322,6 +322,36 @@ graph_print(const struct Graph *dgp)
 }
 
 /**
+ * @brief Returns a json formatted string representation of a DGP graph.
+ * @param [in] dgp The DGP graph to return.
+ * @return String encoded in json format.
+ */
+const char *
+graph_json(const struct Graph *dgp)
+{
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "n", dgp->n);
+    cJSON_AddNumberToObject(json, "t", dgp->t);
+    cJSON *istate = cJSON_CreateDoubleArray(dgp->initial_state, dgp->n);
+    cJSON_AddItemToObject(json, "initial state", istate);
+    cJSON *state = cJSON_CreateDoubleArray(dgp->state, dgp->n);
+    cJSON_AddItemToObject(json, "current state", state);
+    cJSON *functions = cJSON_CreateArray();
+    cJSON_AddItemToObject(json, "functions", functions);
+    for (int i = 0; i < dgp->n; ++i) {
+        cJSON *str = cJSON_CreateString(function_string(dgp->function[i]));
+        cJSON_AddItemToArray(functions, str);
+    }
+    cJSON *connectivity = cJSON_CreateIntArray(dgp->connectivity, dgp->klen);
+    cJSON_AddItemToObject(json, "connectivity", connectivity);
+    cJSON *mutation = cJSON_CreateDoubleArray(dgp->mu, N_MU);
+    cJSON_AddItemToObject(json, "mutation", mutation);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
+}
+
+/**
  * @brief Frees a DGP graph.
  * @param [in] dgp The DGP graph to be freed.
  */

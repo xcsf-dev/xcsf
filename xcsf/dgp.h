@@ -59,6 +59,9 @@ struct Graph {
 bool
 graph_mutate(struct Graph *dgp);
 
+const char *
+graph_json(const struct Graph *dgp);
+
 double
 graph_output(const struct Graph *dgp, const int IDX);
 
