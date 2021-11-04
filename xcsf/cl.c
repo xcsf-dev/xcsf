@@ -493,10 +493,14 @@ cl_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @brief Returns a json formatted string representation of a classifier.
  * @param [in] xcsf XCSF data structure.
  * @param [in] c Classifier to be returned.
+ * @param [in] return_cond Whether to return the condition.
+ * @param [in] return_act Whether to return the action.
+ * @param [in] return_pred Whether to return the prediction.
  * @return String encoded in json format.
  */
 const char *
-cl_json(const struct XCSF *xcsf, const struct Cl *c)
+cl_json(const struct XCSF *xcsf, const struct Cl *c, const bool return_cond,
+        const bool return_act, const bool return_pred)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON_AddNumberToObject(json, "error", c->err);
@@ -512,12 +516,18 @@ cl_json(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_AddNumberToObject(json, "current action", c->action);
     cJSON *p = cJSON_CreateDoubleArray(c->prediction, xcsf->y_dim);
     cJSON_AddItemToObject(json, "current prediction", p);
-    cJSON *condition = cJSON_Parse(cond_json(xcsf, c));
-    cJSON_AddItemToObject(json, "condition", condition);
-    cJSON *action = cJSON_Parse(act_json(xcsf, c));
-    cJSON_AddItemToObject(json, "action", action);
-    cJSON *prediction = cJSON_Parse(pred_json(xcsf, c));
-    cJSON_AddItemToObject(json, "prediction", prediction);
+    if (return_cond) {
+        cJSON *condition = cJSON_Parse(cond_json(xcsf, c));
+        cJSON_AddItemToObject(json, "condition", condition);
+    }
+    if (return_act) {
+        cJSON *action = cJSON_Parse(act_json(xcsf, c));
+        cJSON_AddItemToObject(json, "action", action);
+    }
+    if (return_pred) {
+        cJSON *prediction = cJSON_Parse(pred_json(xcsf, c));
+        cJSON_AddItemToObject(json, "prediction", prediction);
+    }
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;

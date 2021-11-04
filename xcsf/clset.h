@@ -85,4 +85,6 @@ void
 clset_validate(struct Set *set);
 
 const char *
-clset_json(const struct XCSF *xcsf, const struct Set *set);
+clset_json(const struct XCSF *xcsf, const struct Set *set,
+           const bool return_cond, const bool return_act,
+           const bool return_pred);

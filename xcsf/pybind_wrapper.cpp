@@ -223,12 +223,17 @@ class XCS
 
     /**
      * @brief Returns a JSON formatted string representing the population set.
+     * @param [in] return_cond Whether to return the condition.
+     * @param [in] return_act Whether to return the action.
+     * @param [in] return_pred Whether to return the prediction.
+     * @return String encoded in json format.
      */
     const char *
-    json()
+    json(const bool return_cond, const bool return_act, const bool return_pred)
     {
         if (xcs.pset.list != NULL) {
-            return clset_json(&xcs, &xcs.pset);
+            return clset_json(&xcs, &xcs.pset, return_cond, return_act,
+                              return_pred);
         }
         return "null";
     }

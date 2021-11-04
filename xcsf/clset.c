@@ -700,15 +700,23 @@ clset_mfrac(const struct XCSF *xcsf)
  * @brief Returns a json formatted string representation of a classifier set.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] set The set to be returned.
+ * @param [in] return_cond Whether to return the condition.
+ * @param [in] return_act Whether to return the action.
+ * @param [in] return_pred Whether to return the prediction.
+ * @return String encoded in json format.
  */
 const char *
-clset_json(const struct XCSF *xcsf, const struct Set *set)
+clset_json(const struct XCSF *xcsf, const struct Set *set,
+           const bool return_cond, const bool return_act,
+           const bool return_pred)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON *classifiers = cJSON_AddArrayToObject(json, "classifiers");
     const struct Clist *iter = set->list;
     while (iter != NULL) {
-        cJSON *classifier = cJSON_Parse(cl_json(xcsf, iter->cl));
+        const char *str =
+            cl_json(xcsf, iter->cl, return_cond, return_act, return_pred);
+        cJSON *classifier = cJSON_Parse(str);
         cJSON_AddItemToArray(classifiers, classifier);
         iter = iter->next;
     }
