@@ -506,7 +506,7 @@ cl_json(const struct XCSF *xcsf, const struct Cl *c, const bool return_cond,
     cJSON_AddNumberToObject(json, "error", c->err);
     cJSON_AddNumberToObject(json, "fitness", c->fit);
     cJSON_AddNumberToObject(json, "accuracy", cl_acc(xcsf, c));
-    cJSON_AddNumberToObject(json, "size", c->size);
+    cJSON_AddNumberToObject(json, "set_size", c->size);
     cJSON_AddNumberToObject(json, "numerosity", c->num);
     cJSON_AddNumberToObject(json, "experience", c->exp);
     cJSON_AddNumberToObject(json, "time", c->time);
