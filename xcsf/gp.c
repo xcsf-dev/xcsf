@@ -17,7 +17,7 @@
  * @file gp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of GP trees based upon TinyGP.
  * @see Poli, Langdon, and McPhee (2008) "A Field Guide to Genetic Programming"
  */
@@ -153,48 +153,91 @@ tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x)
 }
 
 /**
- * @brief Prints a GP tree.
+ * @brief Returns a json formatted string represetation of a GP tree.
  * @param [in] gp The GP tree to print.
  * @param [in] args Tree GP parameters.
  * @param [in] pos The position from which to traverse (start at 0).
+ * @param [in] json cJSON object.
  * @return The position after traversal.
  */
-int
-tree_print(const struct GPTree *gp, const struct ArgsGPTree *args, int pos)
+static int
+tree_string(const struct GPTree *gp, const struct ArgsGPTree *args, int pos,
+            cJSON *json)
 {
     const int node = gp->tree[pos];
     if (node >= GP_NUM_FUNC) {
         if (node >= GP_NUM_FUNC + args->n_constants) {
-            printf("I:%d", node - GP_NUM_FUNC - args->n_constants);
+            const int val = node - GP_NUM_FUNC - args->n_constants;
+            char buff[256];
+            snprintf(buff, 256, "feature_%d", val);
+            cJSON *input = cJSON_CreateString(buff);
+            cJSON_AddItemToArray(json, input);
         } else {
-            printf("%f", args->constants[node - GP_NUM_FUNC]);
+            const double val = args->constants[node - GP_NUM_FUNC];
+            cJSON *constant = cJSON_CreateNumber(val);
+            cJSON_AddItemToArray(json, constant);
         }
         ++pos;
         return pos;
     }
-    printf("(");
+    cJSON *leftp = cJSON_CreateString("(");
+    cJSON_AddItemToArray(json, leftp);
     ++pos;
-    const int a1 = tree_print(gp, args, pos);
+    const int a1 = tree_string(gp, args, pos, json);
+    cJSON *func;
     switch (node) {
         case ADD:
-            printf(" + ");
+            func = cJSON_CreateString("+");
             break;
         case SUB:
-            printf(" - ");
+            func = cJSON_CreateString("-");
             break;
         case MUL:
-            printf(" * ");
+            func = cJSON_CreateString("*");
             break;
         case DIV:
-            printf(" / ");
+            func = cJSON_CreateString("/");
             break;
         default:
-            printf("tree_print() invalid function: %d\n", node);
+            printf("tree_string() invalid function: %d\n", node);
             exit(EXIT_FAILURE);
     }
-    const int a2 = tree_print(gp, args, a1);
-    printf(")");
+    cJSON_AddItemToArray(json, func);
+    const int a2 = tree_string(gp, args, a1, json);
+    cJSON *rightp = cJSON_CreateString(")");
+    cJSON_AddItemToArray(json, rightp);
     return a2;
+}
+
+/**
+ * @brief Returns a json formatted string representation of a GP tree.
+ * @param [in] gp The GP tree to return.
+ * @param [in] args Tree GP parameters.
+ * @return String encoded in json format.
+ */
+const char *
+tree_json(const struct GPTree *gp, const struct ArgsGPTree *args)
+{
+    cJSON *json = cJSON_CreateObject();
+    cJSON *tree = cJSON_CreateArray();
+    cJSON_AddItemToObject(json, "array", tree);
+    tree_string(gp, args, 0, tree);
+    cJSON *mutation = cJSON_CreateDoubleArray(gp->mu, N_MU);
+    cJSON_AddItemToObject(json, "mutation", mutation);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
+}
+
+/**
+ * @brief Prints a GP tree.
+ * @param [in] gp The GP tree to print.
+ * @param [in] args Tree GP parameters.
+ */
+void
+tree_print(const struct GPTree *gp, const struct ArgsGPTree *args)
+{
+    printf("%s\n", tree_json(gp, args));
 }
 
 /**

@@ -183,7 +183,7 @@ cond_gp_print(const struct XCSF *xcsf, const struct Cl *c)
     (void) xcsf;
     const struct CondGP *cond = c->cond;
     printf("GP tree: ");
-    tree_print(&cond->gp, xcsf->cond->targs, 0);
+    tree_print(&cond->gp, xcsf->cond->targs);
     printf("\n");
 }
 
@@ -243,11 +243,12 @@ cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 const char *
 cond_gp_json(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    (void) c;
+    const struct CondGP *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
     cJSON *type = cJSON_CreateString("tree-gp");
     cJSON_AddItemToObject(json, "type", type);
+    cJSON *tree = cJSON_Parse(tree_json(&cond->gp, xcsf->cond->targs));
+    cJSON_AddItemToObject(json, "tree", tree);
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;

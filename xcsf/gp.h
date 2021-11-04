@@ -17,7 +17,7 @@
  * @file gp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of GP trees based upon TinyGP.
  */
 
@@ -57,8 +57,11 @@ tree_rand(struct GPTree *gp, const struct ArgsGPTree *args);
 void
 tree_copy(struct GPTree *dest, const struct GPTree *src);
 
-int
-tree_print(const struct GPTree *gp, const struct ArgsGPTree *args, int pos);
+void
+tree_print(const struct GPTree *gp, const struct ArgsGPTree *args);
+
+const char *
+tree_json(const struct GPTree *gp, const struct ArgsGPTree *args);
 
 double
 tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x);
