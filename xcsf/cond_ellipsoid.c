@@ -273,13 +273,7 @@ cond_ellipsoid_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_ellipsoid_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct CondEllipsoid *cond = c->cond;
-    printf("ellipsoid:");
-    for (int i = 0; i < xcsf->x_dim; ++i) {
-        printf(" (%5f, ", cond->center[i]);
-        printf("%5f)", cond->spread[i]);
-    }
-    printf("\n");
+    printf("%s\n", cond_ellipsoid_json(xcsf, c));
 }
 
 /**

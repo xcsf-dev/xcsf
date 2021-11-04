@@ -119,9 +119,7 @@ rule_dgp_cond_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 rule_dgp_cond_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    const struct RuleDGP *cond = c->cond;
-    graph_print(&cond->dgp);
+    printf("%s\n", rule_dgp_cond_json(xcsf, c));
 }
 
 double
@@ -194,8 +192,7 @@ rule_dgp_act_copy(const struct XCSF *xcsf, struct Cl *dest,
 void
 rule_dgp_act_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    (void) c;
+    printf("%s\n", rule_dgp_act_json(xcsf, c));
 }
 
 void

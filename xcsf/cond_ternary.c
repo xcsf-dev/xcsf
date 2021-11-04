@@ -262,13 +262,7 @@ cond_ternary_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_ternary_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    const struct CondTernary *cond = c->cond;
-    printf("ternary:");
-    for (int i = 0; i < cond->length; ++i) {
-        printf("%c", cond->string[i]);
-    }
-    printf("\n");
+    printf("%s\n", cond_ternary_json(xcsf, c));
 }
 
 /**

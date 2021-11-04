@@ -265,13 +265,7 @@ cond_rectangle_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_rectangle_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct CondRectangle *cond = c->cond;
-    printf("rectangle:");
-    for (int i = 0; i < xcsf->x_dim; ++i) {
-        printf(" (c=%5f, ", cond->center[i]);
-        printf("s=%5f)", cond->spread[i]);
-    }
-    printf("\n");
+    printf("%s\n", cond_rectangle_json(xcsf, c));
 }
 
 /**

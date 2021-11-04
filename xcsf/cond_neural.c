@@ -180,9 +180,7 @@ cond_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    const struct CondNeural *cond = c->cond;
-    neural_print(&cond->net, false);
+    printf("%s\n", cond_neural_json(xcsf, c));
 }
 
 /**

@@ -154,15 +154,7 @@ pred_nlms_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 void
 pred_nlms_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct PredNLMS *pred = c->pred;
-    const int n = pred->n;
-    printf("eta: %.5f, weights: ", pred->eta);
-    for (int i = 0; i < xcsf->y_dim; ++i) {
-        for (int j = 0; j < n; ++j) {
-            printf("%f, ", pred->weights[i * n + j]);
-        }
-        printf("\n");
-    }
+    printf("%s\n", pred_nlms_json(xcsf, c));
 }
 
 /**

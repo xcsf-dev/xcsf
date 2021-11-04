@@ -164,8 +164,7 @@ cond_dummy_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_dummy_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    (void) c;
+    printf("%s\n", cond_dummy_json(xcsf, c));
 }
 
 /**

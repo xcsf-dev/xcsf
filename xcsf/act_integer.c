@@ -133,9 +133,7 @@ act_integer_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 void
 act_integer_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    const struct ActInteger *act = c->act;
-    printf("%d\n", act->action);
+    printf("%s\n", act_integer_json(xcsf, c));
 }
 
 /**

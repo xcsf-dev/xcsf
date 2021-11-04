@@ -180,11 +180,7 @@ cond_gp_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_gp_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    const struct CondGP *cond = c->cond;
-    printf("GP tree: ");
-    tree_print(&cond->gp, xcsf->cond->targs);
-    printf("\n");
+    printf("%s\n", cond_gp_json(xcsf, c));
 }
 
 /**

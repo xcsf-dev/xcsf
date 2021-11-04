@@ -176,9 +176,7 @@ cond_dgp_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_dgp_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    const struct CondDGP *cond = c->cond;
-    graph_print(&cond->dgp);
+    printf("%s\n", cond_dgp_json(xcsf, c));
 }
 
 /**

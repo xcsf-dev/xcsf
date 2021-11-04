@@ -174,15 +174,7 @@ pred_rls_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 void
 pred_rls_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    const struct PredRLS *pred = c->pred;
-    printf("RLS weights: ");
-    const int n = pred->n;
-    for (int i = 0; i < xcsf->y_dim; ++i) {
-        for (int j = 0; j < n; ++j) {
-            printf("%f, ", pred->weights[i * n + j]);
-        }
-        printf("\n");
-    }
+    printf("%s\n", pred_rls_json(xcsf, c));
 }
 
 /**

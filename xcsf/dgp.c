@@ -308,17 +308,7 @@ graph_update(const struct Graph *dgp, const double *inputs, const bool reset)
 void
 graph_print(const struct Graph *dgp)
 {
-    printf("Graph: N=%d; T=%d\n", dgp->n, dgp->t);
-    for (int i = 0; i < dgp->n; ++i) {
-        printf("Node %d: func=%s state=%f init_state=%f con=[", i,
-               function_string(dgp->function[i]), dgp->state[i],
-               dgp->initial_state[i]);
-        printf("%d", dgp->connectivity[0]);
-        for (int j = 1; j < dgp->max_k; ++j) {
-            printf(",%d", dgp->connectivity[i]);
-        }
-        printf("]\n");
-    }
+    printf("%s\n", graph_json(dgp));
 }
 
 /**

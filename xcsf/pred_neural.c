@@ -120,9 +120,7 @@ pred_neural_compute(const struct XCSF *xcsf, const struct Cl *c,
 void
 pred_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    const struct PredNeural *pred = c->pred;
-    neural_print(&pred->net, false);
+    printf("%s\n", pred_neural_json(xcsf, c));
 }
 
 /**

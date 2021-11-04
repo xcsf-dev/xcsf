@@ -109,11 +109,7 @@ pred_constant_compute(const struct XCSF *xcsf, const struct Cl *c,
 void
 pred_constant_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("constant prediction: %f", c->prediction[0]);
-    for (int i = 1; i < xcsf->y_dim; ++i) {
-        printf(", %f", c->prediction[i]);
-    }
-    printf("\n");
+    printf("%s\n", pred_constant_json(xcsf, c));
 }
 
 /**

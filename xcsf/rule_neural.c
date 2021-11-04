@@ -128,9 +128,7 @@ rule_neural_cond_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 rule_neural_cond_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    const struct RuleNeural *cond = c->cond;
-    neural_print(&cond->net, false);
+    printf("%s\n", rule_neural_cond_json(xcsf, c));
 }
 
 double
@@ -201,8 +199,7 @@ rule_neural_act_copy(const struct XCSF *xcsf, struct Cl *dest,
 void
 rule_neural_act_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    (void) c;
+    printf("%s\n", rule_neural_act_json(xcsf, c));
 }
 
 void

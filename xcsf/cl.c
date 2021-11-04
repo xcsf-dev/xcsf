@@ -241,25 +241,7 @@ void
 cl_print(const struct XCSF *xcsf, const struct Cl *c, const bool print_cond,
          const bool print_act, const bool print_pred)
 {
-    if (print_cond || print_act || print_pred) {
-        printf("***********************************************\n");
-        if (print_cond) {
-            printf("\nCONDITION\n");
-            cond_print(xcsf, c);
-        }
-        if (print_pred) {
-            printf("\nPREDICTOR\n");
-            pred_print(xcsf, c);
-        }
-        if (print_act) {
-            printf("\nACTION\n");
-            act_print(xcsf, c);
-        }
-        printf("\n");
-    }
-    printf("err=%f fit=%f num=%d exp=%d size=%f time=%d age=%d mfrac=%f\n",
-           c->err, c->fit, c->num, c->exp, c->size, c->time, c->age,
-           cl_mfrac(xcsf, c));
+    printf("%s\n", cl_json(xcsf, c, print_cond, print_act, print_pred));
 }
 
 /**

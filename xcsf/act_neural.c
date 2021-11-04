@@ -136,9 +136,7 @@ act_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 void
 act_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    (void) xcsf;
-    const struct ActNeural *act = c->act;
-    neural_print(&act->net, false);
+    printf("%s\n", act_neural_json(xcsf, c));
 }
 
 /**
