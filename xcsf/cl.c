@@ -510,8 +510,8 @@ cl_json(const struct XCSF *xcsf, const struct Cl *c, const bool return_cond,
     cJSON_AddNumberToObject(json, "numerosity", c->num);
     cJSON_AddNumberToObject(json, "experience", c->exp);
     cJSON_AddNumberToObject(json, "time", c->time);
-    cJSON_AddNumberToObject(json, "age", c->age);
-    cJSON_AddNumberToObject(json, "mtotal", c->mtotal);
+    cJSON_AddNumberToObject(json, "samples seen", c->age);
+    cJSON_AddNumberToObject(json, "samples matched", c->mtotal);
     cJSON_AddBoolToObject(json, "current match", c->m);
     cJSON_AddNumberToObject(json, "current action", c->action);
     cJSON *p = cJSON_CreateDoubleArray(c->prediction, xcsf->y_dim);
