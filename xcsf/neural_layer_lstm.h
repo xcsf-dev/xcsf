@@ -17,7 +17,7 @@
  * @file neural_layer_lstm.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a long short-term memory layer.
  */
 
@@ -66,6 +66,9 @@ neural_layer_lstm_load(struct Layer *l, FILE *fp);
 void
 neural_layer_lstm_resize(struct Layer *l, const struct Layer *prev);
 
+const char *
+neural_layer_lstm_json(const struct Layer *l, const bool return_weights);
+
 /**
  * @brief Neural long short-term memory layer implemented functions.
  */
@@ -76,5 +79,5 @@ static struct LayerVtbl const layer_lstm_vtbl = {
     &neural_layer_lstm_print,    &neural_layer_lstm_update,
     &neural_layer_lstm_backward, &neural_layer_lstm_forward,
     &neural_layer_lstm_output,   &neural_layer_lstm_save,
-    &neural_layer_lstm_load,
+    &neural_layer_lstm_load,     &neural_layer_lstm_json
 };

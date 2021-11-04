@@ -17,7 +17,7 @@
  * @file neural_layer_maxpool.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a 2D maxpooling layer.
  */
 
@@ -276,11 +276,37 @@ neural_layer_maxpool_output(const struct Layer *l)
 void
 neural_layer_maxpool_print(const struct Layer *l, const bool print_weights)
 {
-    (void) print_weights;
-    printf("maxpool in=%d, out=%d, h=%d, w=%d, c=%d, size=%d, stride=%d, "
-           "pad=%d, out_w=%d, out_h=%d, out_c=%d\n",
-           l->n_inputs, l->n_outputs, l->height, l->width, l->channels, l->size,
-           l->stride, l->pad, l->out_w, l->out_h, l->out_c);
+    printf("%s\n", neural_layer_maxpool_json(l, print_weights));
+}
+
+/**
+ * @brief Returns a json formatted string representation of a maxpooling layer.
+ * @param [in] l The layer to return.
+ * @param [in] return_weights Whether to return the values of weights and
+ * biases.
+ * @return String encoded in json format.
+ */
+const char *
+neural_layer_maxpool_json(const struct Layer *l, const bool return_weights)
+{
+    (void) return_weights;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("maxpool");
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
+    cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
+    cJSON_AddNumberToObject(json, "height", l->height);
+    cJSON_AddNumberToObject(json, "width", l->width);
+    cJSON_AddNumberToObject(json, "channels", l->channels);
+    cJSON_AddNumberToObject(json, "size", l->size);
+    cJSON_AddNumberToObject(json, "stride", l->stride);
+    cJSON_AddNumberToObject(json, "pad", l->pad);
+    cJSON_AddNumberToObject(json, "out_w", l->out_w);
+    cJSON_AddNumberToObject(json, "out_h", l->out_h);
+    cJSON_AddNumberToObject(json, "out_c", l->out_c);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

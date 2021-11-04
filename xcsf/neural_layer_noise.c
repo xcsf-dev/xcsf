@@ -17,7 +17,7 @@
  * @file neural_layer_noise.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a Gaussian noise adding layer.
  */
 
@@ -222,9 +222,30 @@ neural_layer_noise_output(const struct Layer *l)
 void
 neural_layer_noise_print(const struct Layer *l, const bool print_weights)
 {
-    (void) print_weights;
-    printf("noise in = %d, out = %d, prob = %f, stdev = %f\n", l->n_inputs,
-           l->n_outputs, l->probability, l->scale);
+    printf("%s\n", neural_layer_noise_json(l, print_weights));
+}
+
+/**
+ * @brief Returns a json formatted string representation of a noise layer.
+ * @param [in] l The layer to return.
+ * @param [in] return_weights Whether to return the values of weights and
+ * biases.
+ * @return String encoded in json format.
+ */
+const char *
+neural_layer_noise_json(const struct Layer *l, const bool return_weights)
+{
+    (void) return_weights;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("noise");
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
+    cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
+    cJSON_AddNumberToObject(json, "probability", l->probability);
+    cJSON_AddNumberToObject(json, "stdev", l->scale);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

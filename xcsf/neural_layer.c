@@ -308,19 +308,34 @@ layer_mutate_functions(struct Layer *l, const double mu)
 void
 layer_weight_print(const struct Layer *l, const bool print_weights)
 {
-    printf("weights (%d): ", l->n_weights);
-    if (print_weights) {
-        for (int i = 0; i < l->n_weights; ++i) {
-            printf("%.4f, ", l->weights[i]);
-        }
+    printf("%s\n", layer_weight_json(l, print_weights));
+}
+
+/**
+ * @brief Returns a json formatted string representation of a layer's weights.
+ * @param [in] l The layer to return.
+ * @param [in] return_weights Whether to return the values of weights and
+ * biases.
+ * @return String encoded in json format.
+ */
+const char *
+layer_weight_json(const struct Layer *l, const bool return_weights)
+{
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "n_weights", l->n_weights);
+    if (return_weights) {
+        cJSON *weights = cJSON_CreateDoubleArray(l->weights, l->n_weights);
+        cJSON_AddItemToObject(json, "weights", weights);
     }
-    printf("biases (%d): ", l->n_biases);
-    if (print_weights) {
-        for (int i = 0; i < l->n_biases; ++i) {
-            printf("%.4f, ", l->biases[i]);
-        }
+    cJSON_AddNumberToObject(json, "n_biases", l->n_biases);
+    if (return_weights) {
+        cJSON *biases = cJSON_CreateDoubleArray(l->biases, l->n_biases);
+        cJSON_AddItemToObject(json, "biases", biases);
     }
-    printf("n_active: %d", l->n_active);
+    cJSON_AddNumberToObject(json, "n_active", l->n_active);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

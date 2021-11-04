@@ -22,6 +22,7 @@
  */
 
 #include "pred_constant.h"
+#include "utils.h"
 
 /**
  * @brief Dummy function since constant predictions have no data structure.

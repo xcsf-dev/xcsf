@@ -17,7 +17,7 @@
  * @file neural_layer_noise.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a Gaussian noise adding layer.
  */
 
@@ -66,6 +66,9 @@ neural_layer_noise_load(struct Layer *l, FILE *fp);
 void
 neural_layer_noise_resize(struct Layer *l, const struct Layer *prev);
 
+const char *
+neural_layer_noise_json(const struct Layer *l, const bool return_weights);
+
 /**
  * @brief Neural Gaussian noise layer implemented functions.
  */
@@ -76,5 +79,5 @@ static struct LayerVtbl const layer_noise_vtbl = {
     &neural_layer_noise_print,    &neural_layer_noise_update,
     &neural_layer_noise_backward, &neural_layer_noise_forward,
     &neural_layer_noise_output,   &neural_layer_noise_save,
-    &neural_layer_noise_load
+    &neural_layer_noise_load,     &neural_layer_noise_json
 };

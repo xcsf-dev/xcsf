@@ -17,7 +17,7 @@
  * @file neural_layer.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief Interface for neural network layers.
  */
 
@@ -156,6 +156,8 @@ struct LayerVtbl {
     double *(*layer_impl_output)(const struct Layer *l);
     size_t (*layer_impl_save)(const struct Layer *l, FILE *fp);
     size_t (*layer_impl_load)(struct Layer *l, FILE *fp);
+    const char *(*layer_impl_json)(const struct Layer *l,
+                                   const bool return_weights);
 };
 
 /**
@@ -294,6 +296,17 @@ layer_print(const struct Layer *l, const bool print_weights)
     (*l->layer_vptr->layer_impl_print)(l, print_weights);
 }
 
+/**
+ * @brief Returns a json formatted string representation of a layer.
+ * @param [in] l The layer to be returned.
+ * @param [in] return_weights Whether to return the weights.
+ */
+static inline const char *
+layer_json(const struct Layer *l, const bool return_weights)
+{
+    return (*l->layer_vptr->layer_impl_json)(l, return_weights);
+}
+
 bool
 layer_mutate_connectivity(struct Layer *l, const double mu_enable,
                           const double mu_disable);
@@ -330,6 +343,9 @@ layer_weight_clamp(const struct Layer *l);
 
 void
 layer_weight_print(const struct Layer *l, const bool print_weights);
+
+const char *
+layer_weight_json(const struct Layer *l, const bool return_weights);
 
 void
 layer_weight_rand(struct Layer *l);

@@ -23,7 +23,6 @@
 
 #pragma once
 
-#include "../lib/cJSON/cJSON.h"
 #include <errno.h>
 #include <float.h>
 #include <inttypes.h>

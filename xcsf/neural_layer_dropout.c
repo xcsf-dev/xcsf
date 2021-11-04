@@ -17,7 +17,7 @@
  * @file neural_layer_dropout.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a dropout layer.
  */
 
@@ -224,9 +224,29 @@ neural_layer_dropout_output(const struct Layer *l)
 void
 neural_layer_dropout_print(const struct Layer *l, const bool print_weights)
 {
-    (void) print_weights;
-    printf("dropout in = %d, out = %d prob = %f\n", l->n_inputs, l->n_outputs,
-           l->probability);
+    printf("%s\n", neural_layer_dropout_json(l, print_weights));
+}
+
+/**
+ * @brief Returns a json formatted string representation of a dropout layer.
+ * @param [in] l The layer to return.
+ * @param [in] return_weights Whether to return the values of weights and
+ * biases.
+ * @return String encoded in json format.
+ */
+const char *
+neural_layer_dropout_json(const struct Layer *l, const bool return_weights)
+{
+    (void) return_weights;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("dropout");
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
+    cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
+    cJSON_AddNumberToObject(json, "probability", l->probability);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

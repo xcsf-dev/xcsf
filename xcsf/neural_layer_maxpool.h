@@ -17,7 +17,7 @@
  * @file neural_layer_maxpool.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a 2D maxpooling layer.
  */
 
@@ -66,6 +66,9 @@ neural_layer_maxpool_load(struct Layer *l, FILE *fp);
 void
 neural_layer_maxpool_resize(struct Layer *l, const struct Layer *prev);
 
+const char *
+neural_layer_maxpool_json(const struct Layer *l, const bool return_weights);
+
 /**
  * @brief Neural maxpooling layer implemented functions.
  */
@@ -76,5 +79,5 @@ static struct LayerVtbl const layer_maxpool_vtbl = {
     &neural_layer_maxpool_print,    &neural_layer_maxpool_update,
     &neural_layer_maxpool_backward, &neural_layer_maxpool_forward,
     &neural_layer_maxpool_output,   &neural_layer_maxpool_save,
-    &neural_layer_maxpool_load
+    &neural_layer_maxpool_load,     &neural_layer_maxpool_json
 };

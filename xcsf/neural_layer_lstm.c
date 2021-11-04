@@ -572,29 +572,50 @@ neural_layer_lstm_mutate(struct Layer *l)
 void
 neural_layer_lstm_print(const struct Layer *l, const bool print_weights)
 {
-    printf("lstm, f=%s, rf=%s, in=%d, out=%d, eta=%f\n",
-           neural_activation_string(l->function),
-           neural_activation_string(l->recurrent_function), l->n_inputs,
-           l->n_outputs, l->eta);
-    sam_print(l->mu, N_MU);
-    if (print_weights) {
-        printf("uf layer:\n");
-        layer_print(l->uf, print_weights);
-        printf("ui layer:\n");
-        layer_print(l->ui, print_weights);
-        printf("ug layer:\n");
-        layer_print(l->ug, print_weights);
-        printf("uo layer:\n");
-        layer_print(l->uo, print_weights);
-        printf("wf layer:\n");
-        layer_print(l->wf, print_weights);
-        printf("wi layer:\n");
-        layer_print(l->wi, print_weights);
-        printf("wg layer:\n");
-        layer_print(l->wg, print_weights);
-        printf("wo layer:\n");
-        layer_print(l->wo, print_weights);
-    }
+    printf("%s\n", neural_layer_lstm_json(l, print_weights));
+}
+
+/**
+ * @brief Returns a json formatted string representation of an LSTM layer.
+ * @param [in] l The layer to return.
+ * @param [in] return_weights Whether to returnprint the values of weights and
+ * biases.
+ * @return String encoded in json format.
+ */
+const char *
+neural_layer_lstm_json(const struct Layer *l, const bool return_weights)
+{
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("lstm");
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON *func = cJSON_CreateString(neural_activation_string(l->function));
+    cJSON_AddItemToObject(json, "activation", func);
+    func = cJSON_CreateString(neural_activation_string(l->recurrent_function));
+    cJSON_AddItemToObject(json, "recurrent_activation", func);
+    cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
+    cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
+    cJSON_AddNumberToObject(json, "eta", l->eta);
+    cJSON *mutation = cJSON_CreateDoubleArray(l->mu, N_MU);
+    cJSON_AddItemToObject(json, "mutation", mutation);
+    cJSON *uf = cJSON_Parse(layer_weight_json(l->uf, return_weights));
+    cJSON_AddItemToObject(json, "uf_layer", uf);
+    cJSON *ui = cJSON_Parse(layer_weight_json(l->ui, return_weights));
+    cJSON_AddItemToObject(json, "ui_layer", ui);
+    cJSON *ug = cJSON_Parse(layer_weight_json(l->ug, return_weights));
+    cJSON_AddItemToObject(json, "ug_layer", ug);
+    cJSON *uo = cJSON_Parse(layer_weight_json(l->uo, return_weights));
+    cJSON_AddItemToObject(json, "uo_layer", uo);
+    cJSON *wf = cJSON_Parse(layer_weight_json(l->wf, return_weights));
+    cJSON_AddItemToObject(json, "wf_layer", wf);
+    cJSON *wi = cJSON_Parse(layer_weight_json(l->wi, return_weights));
+    cJSON_AddItemToObject(json, "wi_layer", wi);
+    cJSON *wg = cJSON_Parse(layer_weight_json(l->wg, return_weights));
+    cJSON_AddItemToObject(json, "wg_layer", wg);
+    cJSON *wo = cJSON_Parse(layer_weight_json(l->wo, return_weights));
+    cJSON_AddItemToObject(json, "uo_layer", wo);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

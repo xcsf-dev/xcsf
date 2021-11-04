@@ -17,7 +17,7 @@
  * @file neural_layer_softmax.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a softmax layer.
  */
 
@@ -65,6 +65,9 @@ neural_layer_softmax_load(struct Layer *l, FILE *fp);
 void
 neural_layer_softmax_resize(struct Layer *l, const struct Layer *prev);
 
+const char *
+neural_layer_softmax_json(const struct Layer *l, const bool return_weights);
+
 /**
  * @brief Neural softmax layer implemented functions.
  */
@@ -75,5 +78,5 @@ static struct LayerVtbl const layer_softmax_vtbl = {
     &neural_layer_softmax_print,    &neural_layer_softmax_update,
     &neural_layer_softmax_backward, &neural_layer_softmax_forward,
     &neural_layer_softmax_output,   &neural_layer_softmax_save,
-    &neural_layer_softmax_load
+    &neural_layer_softmax_load,     &neural_layer_softmax_json
 };

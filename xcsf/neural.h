@@ -17,7 +17,7 @@
  * @file neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2012--2020.
+ * @date 2012--2021.
  * @brief An implementation of a multi-layer perceptron neural network.
  */
 
@@ -56,6 +56,9 @@ struct Net {
 
 bool
 neural_mutate(const struct Net *net);
+
+const char *
+neural_json(const struct Net *net, const bool return_weights);
 
 double
 neural_output(const struct Net *net, const int IDX);

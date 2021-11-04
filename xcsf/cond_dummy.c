@@ -22,6 +22,7 @@
  */
 
 #include "cond_dummy.h"
+#include "utils.h"
 
 /**
  * @brief Dummy initialisation function.

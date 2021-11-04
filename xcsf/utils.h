@@ -24,6 +24,7 @@
 
 #pragma once
 
+#include "../lib/cJSON/cJSON.h"
 #include "../lib/dSFMT/dSFMT.h"
 #include <math.h>
 #include <stdio.h>

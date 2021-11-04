@@ -17,7 +17,7 @@
  * @file neural_layer_connected.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a fully-connected layer of perceptrons.
  */
 
@@ -66,6 +66,9 @@ neural_layer_connected_load(struct Layer *l, FILE *fp);
 void
 neural_layer_connected_resize(struct Layer *l, const struct Layer *prev);
 
+const char *
+neural_layer_connected_json(const struct Layer *l, const bool return_weights);
+
 /**
  * @brief Neural connected layer implemented functions.
  */
@@ -76,5 +79,5 @@ static struct LayerVtbl const layer_connected_vtbl = {
     &neural_layer_connected_print,    &neural_layer_connected_update,
     &neural_layer_connected_backward, &neural_layer_connected_forward,
     &neural_layer_connected_output,   &neural_layer_connected_save,
-    &neural_layer_connected_load,
+    &neural_layer_connected_load,     &neural_layer_connected_json
 };

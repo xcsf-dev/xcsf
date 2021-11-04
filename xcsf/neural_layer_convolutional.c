@@ -496,13 +496,40 @@ void
 neural_layer_convolutional_print(const struct Layer *l,
                                  const bool print_weights)
 {
-    printf("convolutional %s, in=%d, out=%d, filters=%d, size=%d, stride=%d, "
-           "pad=%d, eta=%f, ",
-           neural_activation_string(l->function), l->n_inputs, l->n_outputs,
-           l->n_filters, l->size, l->stride, l->pad, l->eta);
-    sam_print(l->mu, N_MU);
-    layer_weight_print(l, print_weights);
-    printf("\n");
+    printf("%s\n", neural_layer_convolutional_json(l, print_weights));
+}
+
+/**
+ * @brief Returns a json formatted string representation of a convolutional
+ * layer.
+ * @param [in] l The layer to return.
+ * @param [in] return_weights Whether to return the values of weights and
+ * biases.
+ * @return String encoded in json format.
+ */
+const char *
+neural_layer_convolutional_json(const struct Layer *l,
+                                const bool return_weights)
+{
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("convolutional");
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON *func = cJSON_CreateString(neural_activation_string(l->function));
+    cJSON_AddItemToObject(json, "activation", func);
+    cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
+    cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
+    cJSON_AddNumberToObject(json, "n_filters", l->n_filters);
+    cJSON_AddNumberToObject(json, "size", l->size);
+    cJSON_AddNumberToObject(json, "stride", l->stride);
+    cJSON_AddNumberToObject(json, "pad", l->pad);
+    cJSON_AddNumberToObject(json, "eta", l->eta);
+    cJSON *mutation = cJSON_CreateDoubleArray(l->mu, N_MU);
+    cJSON_AddItemToObject(json, "mutation", mutation);
+    cJSON *weights = cJSON_Parse(layer_weight_json(l, return_weights));
+    cJSON_AddItemToObject(json, "weights", weights);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

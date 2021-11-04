@@ -430,18 +430,38 @@ neural_layer_recurrent_mutate(struct Layer *l)
 void
 neural_layer_recurrent_print(const struct Layer *l, const bool print_weights)
 {
-    printf("recurrent %s, in=%d, out=%d, eta=%f\n",
-           neural_activation_string(l->function), l->n_inputs, l->n_outputs,
-           l->eta);
-    sam_print(l->mu, N_MU);
-    if (print_weights) {
-        printf("recurrent input layer:\n");
-        layer_print(l->input_layer, print_weights);
-        printf("recurrent self layer:\n");
-        layer_print(l->self_layer, print_weights);
-        printf("recurrent output layer:\n");
-        layer_print(l->output_layer, print_weights);
-    }
+    printf("%s\n", neural_layer_recurrent_json(l, print_weights));
+}
+
+/**
+ * @brief Returns a json formatted string representation of a recurrent layer.
+ * @param [in] l The layer to return.
+ * @param [in] return_weights Whether to return the values of weights and
+ * biases.
+ * @return String encoded in json format.
+ */
+const char *
+neural_layer_recurrent_json(const struct Layer *l, const bool return_weights)
+{
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("recurrent");
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON *func = cJSON_CreateString(neural_activation_string(l->function));
+    cJSON_AddItemToObject(json, "activation", func);
+    cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
+    cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
+    cJSON_AddNumberToObject(json, "eta", l->eta);
+    cJSON *mutation = cJSON_CreateDoubleArray(l->mu, N_MU);
+    cJSON_AddItemToObject(json, "mutation", mutation);
+    cJSON *il = cJSON_Parse(layer_weight_json(l->input_layer, return_weights));
+    cJSON_AddItemToObject(json, "input_layer", il);
+    cJSON *sl = cJSON_Parse(layer_weight_json(l->self_layer, return_weights));
+    cJSON_AddItemToObject(json, "self_layer", sl);
+    cJSON *ol = cJSON_Parse(layer_weight_json(l->output_layer, return_weights));
+    cJSON_AddItemToObject(json, "output_layer", ol);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

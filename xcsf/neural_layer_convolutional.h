@@ -17,7 +17,7 @@
  * @file neural_layer_convolutional.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a 2D convolutional layer.
  */
 
@@ -68,6 +68,10 @@ neural_layer_convolutional_load(struct Layer *l, FILE *fp);
 void
 neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev);
 
+const char *
+neural_layer_convolutional_json(const struct Layer *l,
+                                const bool return_weights);
+
 /**
  * @brief Neural convolutional layer implemented functions.
  */
@@ -78,5 +82,5 @@ static struct LayerVtbl const layer_convolutional_vtbl = {
     &neural_layer_convolutional_print,    &neural_layer_convolutional_update,
     &neural_layer_convolutional_backward, &neural_layer_convolutional_forward,
     &neural_layer_convolutional_output,   &neural_layer_convolutional_save,
-    &neural_layer_convolutional_load,
+    &neural_layer_convolutional_load,     &neural_layer_convolutional_json
 };

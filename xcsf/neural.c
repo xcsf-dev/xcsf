@@ -17,7 +17,7 @@
  * @file neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2012--2020.
+ * @date 2012--2021.
  * @brief An implementation of a multi-layer perceptron neural network.
  */
 
@@ -27,6 +27,7 @@
 #include "neural_layer_noise.h"
 #include "neural_layer_recurrent.h"
 #include "neural_layer_softmax.h"
+#include "utils.h"
 
 /**
  * @brief Initialises an empty neural network.
@@ -393,14 +394,33 @@ neural_outputs(const struct Net *net)
 void
 neural_print(const struct Net *net, const bool print_weights)
 {
+    printf("%s\n", neural_json(net, print_weights));
+}
+
+/**
+ * @brief Returns a json formatted string representation of a neural network.
+ * @param [in] net The neural network to return.
+ * @param [in] return_weights Whether to return the weights in each layer.
+ * @return String encoded in json format.
+ */
+const char *
+neural_json(const struct Net *net, const bool return_weights)
+{
+    cJSON *json = cJSON_CreateObject();
     const struct Llist *iter = net->tail;
     int i = 0;
+    char layer_name[256];
     while (iter != NULL) {
-        printf("layer (%d) ", i);
-        layer_print(iter->layer, print_weights);
+        const char *str = layer_json(iter->layer, return_weights);
+        cJSON *layer = cJSON_Parse(str);
+        snprintf(layer_name, 256, "layer_%d", i);
+        cJSON_AddItemToObject(json, layer_name, layer);
         iter = iter->prev;
         ++i;
     }
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

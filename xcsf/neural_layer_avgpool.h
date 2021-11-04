@@ -17,7 +17,7 @@
  * @file neural_layer_avgpool.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of an average pooling layer.
  */
 
@@ -66,6 +66,9 @@ neural_layer_avgpool_load(struct Layer *l, FILE *fp);
 void
 neural_layer_avgpool_resize(struct Layer *l, const struct Layer *prev);
 
+const char *
+neural_layer_avgpool_json(const struct Layer *l, const bool return_weights);
+
 /**
  * @brief Neural average pooling layer implemented functions.
  */
@@ -76,5 +79,5 @@ static struct LayerVtbl const layer_avgpool_vtbl = {
     &neural_layer_avgpool_print,    &neural_layer_avgpool_update,
     &neural_layer_avgpool_backward, &neural_layer_avgpool_forward,
     &neural_layer_avgpool_output,   &neural_layer_avgpool_save,
-    &neural_layer_avgpool_load
+    &neural_layer_avgpool_load,     &neural_layer_avgpool_json
 };

@@ -17,7 +17,7 @@
  * @file neural_layer_upsample.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of a 2D upsampling layer.
  */
 
@@ -238,9 +238,32 @@ neural_layer_upsample_output(const struct Layer *l)
 void
 neural_layer_upsample_print(const struct Layer *l, const bool print_weights)
 {
-    (void) print_weights;
-    printf("upsample in=%d, out=%d, h=%d, w=%d, c=%d, stride=%d\n", l->n_inputs,
-           l->n_outputs, l->height, l->width, l->channels, l->stride);
+    printf("%s\n", neural_layer_upsample_json(l, print_weights));
+}
+
+/**
+ * @brief Returns a json formatted string representation of an upsample layer.
+ * @param [in] l The layer to return.
+ * @param [in] return_weights Whether to return the values of weights and
+ * biases.
+ * @return String encoded in json format.
+ */
+const char *
+neural_layer_upsample_json(const struct Layer *l, const bool return_weights)
+{
+    (void) return_weights;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *type = cJSON_CreateString("upsample");
+    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
+    cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
+    cJSON_AddNumberToObject(json, "height", l->height);
+    cJSON_AddNumberToObject(json, "width", l->width);
+    cJSON_AddNumberToObject(json, "channels", l->channels);
+    cJSON_AddNumberToObject(json, "stride", l->stride);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**
