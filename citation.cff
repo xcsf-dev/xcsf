@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Preen
+    given-names: Richard
+    orcid: https://orcid.org/0000-0003-3351-8132
+  - family-names: David
+    given-names: Pätzel
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.5634286
+    description: The concept DOI for the collection containing all versions of the Citation File Format.
+date-released: 2021-10-31
+title: "XCSF"
+version: 1.1.2
+license: "GPL-3.0"
+doi: 10.5281/zenodo.5634286
+url: "https://github.com/rpreen/xcsf"
