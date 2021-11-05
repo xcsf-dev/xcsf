@@ -2,6 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "XCSF"
 version: 1.1.2
+doi: 10.5281/zenodo.5634286
 date-released: 2021-10-31
 license: "GPL-3.0"
 url: "https://github.com/rpreen/xcsf"
