@@ -489,11 +489,7 @@ void
 clset_print(const struct XCSF *xcsf, const struct Set *set,
             const bool print_cond, const bool print_act, const bool print_pred)
 {
-    const struct Clist *iter = set->list;
-    while (iter != NULL) {
-        cl_print(xcsf, iter->cl, print_cond, print_act, print_pred);
-        iter = iter->next;
-    }
+    printf("%s\n", clset_json(xcsf, set, print_cond, print_act, print_pred));
 }
 
 /**
