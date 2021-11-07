@@ -161,9 +161,9 @@ function_string(const int function)
         case FUZZY_NOT:
             return "Fuzzy NOT";
         case FUZZY_CFMQVS_AND:
-            return "Fuzzy AND (CFMQVS)";
+            return "Fuzzy AND";
         case FUZZY_CFMQVS_OR:
-            return "Fuzzy OR (CFMQVS)";
+            return "Fuzzy OR";
         default:
             printf("function_string(): invalid node function: %d\n", function);
             exit(EXIT_FAILURE);
@@ -322,10 +322,11 @@ graph_json(const struct Graph *dgp)
     cJSON *json = cJSON_CreateObject();
     cJSON_AddNumberToObject(json, "n", dgp->n);
     cJSON_AddNumberToObject(json, "t", dgp->t);
+    cJSON_AddNumberToObject(json, "n_inputs", dgp->n_inputs);
     cJSON *istate = cJSON_CreateDoubleArray(dgp->initial_state, dgp->n);
-    cJSON_AddItemToObject(json, "initial state", istate);
+    cJSON_AddItemToObject(json, "initial_state", istate);
     cJSON *state = cJSON_CreateDoubleArray(dgp->state, dgp->n);
-    cJSON_AddItemToObject(json, "current state", state);
+    cJSON_AddItemToObject(json, "current_state", state);
     cJSON *functions = cJSON_CreateArray();
     cJSON_AddItemToObject(json, "functions", functions);
     for (int i = 0; i < dgp->n; ++i) {
