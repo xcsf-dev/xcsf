@@ -42,6 +42,8 @@ class TreeViz:
             start, end = symbol.split('_') if '_' in symbol else (symbol, '')
             if start == 'feature' and int(end) < len(self.feature_names):
                 return self.feature_names[int(end)]
+        elif isinstance(symbol, float):
+            return '%.5f' % symbol
         return str(symbol)
 
     def read_function(self):
