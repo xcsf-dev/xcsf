@@ -25,14 +25,24 @@ import graphviz
 class TreeViz:
     """ Visualises a GP tree with graphviz. """
 
-    def __init__(self, tree, fname):
-        """ Plots a tree with graphviz, saving to fname. """
+    def __init__(self, tree, filename, feature_names=None):
+        """ Plots a tree with graphviz, saving to filename.
+        Optionally uses a list of feature names. """
+        self.feature_names = feature_names
         self.tree = tree
         self.cnt = 0
         self.pos = 0
-        self.gviz = graphviz.Digraph('G', filename=fname+'.gv')
+        self.gviz = graphviz.Digraph('G', filename=filename+'.gv')
         self.read_subexpr()
         self.gviz.view()
+
+    def label(self, symbol):
+        """ Returns the node label for a symbol. """
+        if not self.feature_names is None and isinstance(symbol, str):
+            start, end = symbol.split('_') if '_' in symbol else (symbol, '')
+            if start == 'feature' and int(end) < len(self.feature_names):
+                return self.feature_names[int(end)]
+        return str(symbol)
 
     def read_function(self):
         """ Parses functions. """
@@ -44,7 +54,7 @@ class TreeViz:
             self.cnt += 1
             self.gviz.edge(str(self.cnt), str(expr1))
             self.gviz.edge(str(self.cnt), str(expr2))
-            self.gviz.node(str(self.cnt), label=str(symbol))
+            self.gviz.node(str(self.cnt), label=self.label(symbol))
             return expr2
         return expr1
 
@@ -57,5 +67,5 @@ class TreeViz:
             self.pos += 1 # ')'
         else:
             self.cnt += 1
-            self.gviz.node(str(self.cnt), label=str(symbol))
+            self.gviz.node(str(self.cnt), label=self.label(symbol))
         return self.cnt
