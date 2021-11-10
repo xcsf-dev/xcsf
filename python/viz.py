@@ -32,7 +32,7 @@ class TreeViz:
         self.tree = tree
         self.cnt = 0
         self.pos = 0
-        self.gviz = graphviz.Digraph('G', filename=filename+'.gv')
+        self.gviz = graphviz.Graph('G', filename=filename+'.gv')
         self.read_subexpr()
         self.gviz.view()
 
