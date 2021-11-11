@@ -623,19 +623,19 @@ class XCS
         return xcs.time;
     }
 
-    double
+    int
     get_x_dim(void)
     {
         return xcs.x_dim;
     }
 
-    double
+    int
     get_y_dim(void)
     {
         return xcs.y_dim;
     }
 
-    double
+    int
     get_n_actions(void)
     {
         return xcs.n_actions;
