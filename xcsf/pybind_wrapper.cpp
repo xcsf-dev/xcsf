@@ -38,7 +38,6 @@ extern "C" {
 #include "clset.h"
 #include "clset_neural.h"
 #include "condition.h"
-#include "config.h"
 #include "dgp.h"
 #include "ea.h"
 #include "gp.h"
@@ -67,28 +66,14 @@ class XCS
 
   public:
     /**
-     * @brief Constructor with default config.
+     * @brief Constructor.
      * @param [in] x_dim The dimensionality of the input variables.
      * @param [in] y_dim The dimensionality of the prediction variables.
      * @param [in] n_actions The total number of possible actions.
      */
-    XCS(const int x_dim, const int y_dim, const int n_actions) :
-        XCS(x_dim, y_dim, n_actions, "default.ini")
-    {
-    }
-
-    /**
-     * @brief Constructor with a specified config.
-     * @param [in] x_dim The dimensionality of the input variables.
-     * @param [in] y_dim The dimensionality of the prediction variables.
-     * @param [in] n_actions The total number of possible actions.
-     * @param [in] filename The name of a parameter configuration file.
-     */
-    XCS(const int x_dim, const int y_dim, const int n_actions,
-        const char *filename)
+    XCS(const int x_dim, const int y_dim, const int n_actions)
     {
         param_init(&xcs, x_dim, y_dim, n_actions);
-        config_read(&xcs, filename);
         xcsf_init(&xcs);
         pa_init(&xcs);
         state = NULL;
@@ -1433,7 +1418,6 @@ PYBIND11_MODULE(xcsf, m)
 
     py::class_<XCS>(m, "XCS")
         .def(py::init<const int, const int, const int>())
-        .def(py::init<const int, const int, const int, const char *>())
         .def("condition", condition1)
         .def("condition", condition2)
         .def("action", action1)
