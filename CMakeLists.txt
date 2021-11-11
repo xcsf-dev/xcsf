@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2019--2020 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -136,7 +136,7 @@ if(XCSF_PYLIB)
 endif()
 
 add_subdirectory(xcsf)
-file(COPY default.ini DESTINATION .)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/cfg/default.ini DESTINATION .)
 
 option(ENABLE_TESTS "Build unit tests" OFF)
 if(ENABLE_TESTS)
@@ -155,10 +155,6 @@ if(DOXYGEN_FOUND)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
-    file(COPY doc/schematic.png DESTINATION doc/html/doc)
-    file(COPY doc/maze4_perf.png DESTINATION doc/html/doc)
-    file(COPY doc/maze4_visual.png DESTINATION doc/html/doc)
-    file(COPY doc/cartpole_visual.gif DESTINATION doc/html/doc)
 endif()
 
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
