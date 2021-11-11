@@ -746,10 +746,10 @@ class XCS
         return xcs.P_EXPLORE;
     }
 
-    int
+    const char *
     get_ea_select_type(void)
     {
-        return xcs.ea->select_type;
+        return ea_type_as_string(xcs.ea->select_type);
     }
 
     double
