@@ -148,22 +148,21 @@ add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${dSFMT_SOURCES} ${dSFMT_
 target_link_libraries(xcs m)
 
 #################################################
-# target: main - standalone binary execution
+# target: main - stand-alone binary execution
 #################################################
 
-add_executable(main main.c)
-target_link_libraries(main xcs)
+if(XCSF_MAIN)
+    add_executable(main main.c)
+    target_link_libraries(main xcs)
+endif()
 
 #################################################
 # target: xcsf.so / pyd - Python library
 #################################################
 
 if(XCSF_PYLIB)
-
     set(XCSF_PY_SOURCES pybind_wrapper.cpp)
-
     python_add_module(xcsf SHARED ${XCSF_PY_SOURCES})
     target_link_libraries(xcsf xcs)
     file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
-
 endif()

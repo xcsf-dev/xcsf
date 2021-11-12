@@ -122,6 +122,11 @@ if(CMAKE_C_COMPILER_ID MATCHES "GNU")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fno-semantic-interposition")
 endif()
 
+option(XCSF_MAIN "Build XCSF stand-alone main executable" ON)
+if(XCSF_MAIN)
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/cfg/default.ini DESTINATION .)
+endif()
+
 option(XCSF_PYLIB "Build XCSF Python library" OFF)
 if(XCSF_PYLIB)
     find_package(PythonInterp 3 REQUIRED)
@@ -134,9 +139,6 @@ if(XCSF_PYLIB)
     message(STATUS "PYTHON_EXECUTABLE = ${PYTHON_EXECUTABLE}")
     message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
 endif()
-
-add_subdirectory(xcsf)
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/cfg/default.ini DESTINATION .)
 
 option(ENABLE_TESTS "Build unit tests" OFF)
 if(ENABLE_TESTS)
@@ -156,6 +158,8 @@ if(DOXYGEN_FOUND)
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
 endif()
+
+add_subdirectory(xcsf)
 
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS_DEBUG: ${CMAKE_C_FLAGS_DEBUG}")
