@@ -326,6 +326,39 @@ class XCS
     /* Supervised learning */
 
     /**
+     * @brief Loads an input data structure for fitting.
+     * @param [in] data Input data structure used to point to the data.
+     * @param [in] X Vector of features with shape (n_samples, x_dim).
+     * @param [in] Y Vector of truth values with shape (n_samples, y_dim).
+     */
+    void
+    fit_load_input(struct Input *data, const py::array_t<double> X,
+                   const py::array_t<double> Y)
+    {
+        const py::buffer_info buf_x = X.request();
+        const py::buffer_info buf_y = Y.request();
+        if (buf_x.shape[0] != buf_y.shape[0]) {
+            printf("fit() error: X and Y n_samples are not equal\n");
+            exit(EXIT_FAILURE);
+        }
+        if (buf_x.shape[1] != xcs.x_dim) {
+            printf("fit() error: x_dim is not equal to: %d.\n", xcs.x_dim);
+            printf("2-D arrays are required. Perhaps reshape your data.\n");
+            exit(EXIT_FAILURE);
+        }
+        if (buf_y.shape[1] != xcs.y_dim) {
+            printf("fit() error: y_dim is not equal to: %d.\n", xcs.y_dim);
+            printf("2-D arrays are required. Perhaps reshape your data.\n");
+            exit(EXIT_FAILURE);
+        }
+        data->n_samples = buf_x.shape[0];
+        data->x_dim = buf_x.shape[1];
+        data->y_dim = buf_y.shape[1];
+        data->x = (double *) buf_x.ptr;
+        data->y = (double *) buf_y.ptr;
+    }
+
+    /**
      * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
      * provided training data.
      * @param [in] train_X The input values to use for training.
@@ -337,23 +370,10 @@ class XCS
     fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
         const bool shuffle)
     {
-        const py::buffer_info buf_x = train_X.request();
-        const py::buffer_info buf_y = train_Y.request();
-        if (buf_x.shape[0] != buf_y.shape[0]) {
-            printf("error: training X and Y n_samples are not equal\n");
-            exit(EXIT_FAILURE);
-        }
-        // load training data
-        train_data->n_samples = buf_x.shape[0];
-        train_data->x_dim = buf_x.shape[1];
-        train_data->y_dim = buf_y.shape[1];
-        train_data->x = (double *) buf_x.ptr;
-        train_data->y = (double *) buf_y.ptr;
-        // first execution
-        if (xcs.time == 0) {
+        fit_load_input(train_data, train_X, train_Y);
+        if (xcs.time == 0) { // first execution
             clset_pset_init(&xcs);
         }
-        // execute
         return xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
     }
 
@@ -372,43 +392,11 @@ class XCS
         const py::array_t<double> test_X, const py::array_t<double> test_Y,
         const bool shuffle)
     {
-        const py::buffer_info buf_train_x = train_X.request();
-        const py::buffer_info buf_train_y = train_Y.request();
-        const py::buffer_info buf_test_x = test_X.request();
-        const py::buffer_info buf_test_y = test_Y.request();
-        if (buf_train_x.shape[0] != buf_train_y.shape[0]) {
-            printf("error: training X and Y n_samples are not equal\n");
-            exit(EXIT_FAILURE);
-        }
-        if (buf_test_x.shape[0] != buf_test_y.shape[0]) {
-            printf("error: testing X and Y n_samples are not equal\n");
-            exit(EXIT_FAILURE);
-        }
-        if (buf_train_x.shape[1] != buf_test_x.shape[1]) {
-            printf("error: number of train and test X cols are not equal\n");
-            exit(EXIT_FAILURE);
-        }
-        if (buf_train_y.shape[1] != buf_test_y.shape[1]) {
-            printf("error: number of train and test Y cols are not equal\n");
-            exit(EXIT_FAILURE);
-        }
-        // load training data
-        train_data->n_samples = buf_train_x.shape[0];
-        train_data->x_dim = buf_train_x.shape[1];
-        train_data->y_dim = buf_train_y.shape[1];
-        train_data->x = (double *) buf_train_x.ptr;
-        train_data->y = (double *) buf_train_y.ptr;
-        // load testing data
-        test_data->n_samples = buf_test_x.shape[0];
-        test_data->x_dim = buf_test_x.shape[1];
-        test_data->y_dim = buf_test_y.shape[1];
-        test_data->x = (double *) buf_test_x.ptr;
-        test_data->y = (double *) buf_test_y.ptr;
-        // first execution
-        if (xcs.time == 0) {
+        fit_load_input(train_data, train_X, train_Y);
+        fit_load_input(test_data, test_X, test_Y);
+        if (xcs.time == 0) { // first execution
             clset_pset_init(&xcs);
         }
-        // execute
         return xcs_supervised_fit(&xcs, train_data, test_data, shuffle);
     }
 
