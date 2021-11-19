@@ -236,6 +236,10 @@ class XCS
     fit(const py::array_t<double> input, const int action, const double reward)
     {
         py::buffer_info buf = input.request();
+        if (buf.shape[0] != xcs.x_dim) {
+            printf("fit() error: x_dim is not equal to: %d.\n", xcs.x_dim);
+            exit(EXIT_FAILURE);
+        }
         state = (double *) buf.ptr;
         return xcs_rl_fit(&xcs, state, action, reward);
     }
@@ -290,6 +294,10 @@ class XCS
     decision(const py::array_t<double> input, const bool explore)
     {
         py::buffer_info buf = input.request();
+        if (buf.shape[0] != xcs.x_dim) {
+            printf("decision() error: x_dim is not equal to: %d.\n", xcs.x_dim);
+            exit(EXIT_FAILURE);
+        }
         state = (double *) buf.ptr;
         param_set_explore(&xcs, explore);
         action = xcs_rl_decision(&xcs, state);
@@ -327,7 +335,7 @@ class XCS
 
     /**
      * @brief Loads an input data structure for fitting.
-     * @param [in] data Input data structure used to point to the data.
+     * @param [in,out] data Input data structure used to point to the data.
      * @param [in] X Vector of features with shape (n_samples, x_dim).
      * @param [in] Y Vector of truth values with shape (n_samples, y_dim).
      */
