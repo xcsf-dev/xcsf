@@ -332,8 +332,8 @@ class XCS
      * @param [in] Y Vector of truth values with shape (n_samples, y_dim).
      */
     void
-    fit_load_input(struct Input *data, const py::array_t<double> X,
-                   const py::array_t<double> Y)
+    load_input(struct Input *data, const py::array_t<double> X,
+               const py::array_t<double> Y)
     {
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
@@ -370,7 +370,7 @@ class XCS
     fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
         const bool shuffle)
     {
-        fit_load_input(train_data, train_X, train_Y);
+        load_input(train_data, train_X, train_Y);
         if (xcs.time == 0) { // first execution
             clset_pset_init(&xcs);
         }
@@ -392,8 +392,8 @@ class XCS
         const py::array_t<double> test_X, const py::array_t<double> test_Y,
         const bool shuffle)
     {
-        fit_load_input(train_data, train_X, train_Y);
-        fit_load_input(test_data, test_X, test_Y);
+        load_input(train_data, train_X, train_Y);
+        load_input(test_data, test_X, test_Y);
         if (xcs.time == 0) { // first execution
             clset_pset_init(&xcs);
         }
@@ -402,13 +402,13 @@ class XCS
 
     /**
      * @brief Returns the XCSF prediction array for the provided input.
-     * @param [in] x The input variables.
+     * @param [in] X The input variables.
      * @return The prediction array values.
      */
     py::array_t<double>
-    predict(const py::array_t<double> x)
+    predict(const py::array_t<double> X)
     {
-        const py::buffer_info buf_x = x.request();
+        const py::buffer_info buf_x = X.request();
         const int n_samples = buf_x.shape[0];
         if (buf_x.shape[1] != xcs.x_dim) {
             printf("predict() error: x_dim is not equal to: %d.\n", xcs.x_dim);
@@ -425,38 +425,27 @@ class XCS
 
     /**
      * @brief Returns the error over one sequential pass of the provided data.
-     * @param [in] test_X The input values to use for scoring.
-     * @param [in] test_Y The true output values to use for scoring.
+     * @param [in] X The input values to use for scoring.
+     * @param [in] Y The true output values to use for scoring.
      * @return The average XCSF error using the loss function.
      */
     double
-    score(const py::array_t<double> test_X, const py::array_t<double> test_Y)
+    score(const py::array_t<double> X, const py::array_t<double> Y)
     {
-        return score(test_X, test_Y, 0);
+        return score(X, Y, 0);
     }
 
     /**
      * @brief Returns the error using N random samples from the provided data.
-     * @param [in] test_X The input values to use for scoring.
-     * @param [in] test_Y The true output values to use for scoring.
+     * @param [in] X The input values to use for scoring.
+     * @param [in] Y The true output values to use for scoring.
      * @param [in] N The maximum number of samples to draw randomly for scoring.
      * @return The average XCSF error using the loss function.
      */
     double
-    score(const py::array_t<double> test_X, const py::array_t<double> test_Y,
-          const int N)
+    score(const py::array_t<double> X, const py::array_t<double> Y, const int N)
     {
-        const py::buffer_info buf_x = test_X.request();
-        const py::buffer_info buf_y = test_Y.request();
-        if (buf_x.shape[0] != buf_y.shape[0]) {
-            printf("error: training X and Y n_samples are not equal\n");
-            exit(EXIT_FAILURE);
-        }
-        test_data->n_samples = buf_x.shape[0];
-        test_data->x_dim = buf_x.shape[1];
-        test_data->y_dim = buf_y.shape[1];
-        test_data->x = (double *) buf_x.ptr;
-        test_data->y = (double *) buf_y.ptr;
+        load_input(test_data, X, Y);
         if (N > 1) {
             return xcs_supervised_score_n(&xcs, test_data, N);
         }
