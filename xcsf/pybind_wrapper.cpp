@@ -408,15 +408,17 @@ class XCS
     py::array_t<double>
     predict(const py::array_t<double> x)
     {
-        // inputs to predict
         const py::buffer_info buf_x = x.request();
         const int n_samples = buf_x.shape[0];
+        if (buf_x.shape[1] != xcs.x_dim) {
+            printf("predict() error: x_dim is not equal to: %d.\n", xcs.x_dim);
+            printf("2-D arrays are required. Perhaps reshape your data.\n");
+            exit(EXIT_FAILURE);
+        }
         const double *input = (double *) buf_x.ptr;
-        // predicted outputs
         double *output =
             (double *) malloc(sizeof(double) * n_samples * xcs.pa_size);
         xcs_supervised_predict(&xcs, input, output, n_samples);
-        // return numpy array
         return py::array_t<double>(
             std::vector<ptrdiff_t>{ n_samples, xcs.pa_size }, output);
     }
