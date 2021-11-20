@@ -28,6 +28,7 @@
 
 #include "../lib/pybind11/include/pybind11/numpy.h"
 #include "../lib/pybind11/include/pybind11/pybind11.h"
+#include "pset_io.h"
 #include <string>
 #include <vector>
 
@@ -221,6 +222,18 @@ class XCS
                               return_pred);
         }
         return "null";
+    }
+
+    void
+    write_pset_to_file(const std::string &filename)
+    {
+        pset_write_to_file(&xcs, filename);
+    }
+
+    void
+    load_pset_from_file(const std::string &filename)
+    {
+        pset_load_from_file(&xcs, filename);
     }
 
     /* Reinforcement learning */
@@ -1513,5 +1526,7 @@ PYBIND11_MODULE(xcsf, m)
         .def("print_params", &XCS::print_params)
         .def("pred_expand", &XCS::pred_expand)
         .def("ae_to_classifier", &XCS::ae_to_classifier)
-        .def("json", &XCS::json);
+        .def("json", &XCS::json)
+        .def("write_pset_to_file", &XCS::write_pset_to_file)
+        .def("load_pset_from_file", &XCS::load_pset_from_file);
 }
