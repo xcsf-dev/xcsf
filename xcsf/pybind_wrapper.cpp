@@ -350,16 +350,16 @@ class XCS
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
         if (buf_x.shape[0] != buf_y.shape[0]) {
-            printf("fit() error: X and Y n_samples are not equal\n");
+            printf("load_input() error: X and Y n_samples are not equal.\n");
             exit(EXIT_FAILURE);
         }
         if (buf_x.shape[1] != xcs.x_dim) {
-            printf("fit() error: x_dim is not equal to: %d.\n", xcs.x_dim);
+            printf("load_input() error: x_dim != %d.\n", xcs.x_dim);
             printf("2-D arrays are required. Perhaps reshape your data.\n");
             exit(EXIT_FAILURE);
         }
         if (buf_y.shape[1] != xcs.y_dim) {
-            printf("fit() error: y_dim is not equal to: %d.\n", xcs.y_dim);
+            printf("load_input() error: y_dim != %d.\n", xcs.y_dim);
             printf("2-D arrays are required. Perhaps reshape your data.\n");
             exit(EXIT_FAILURE);
         }
