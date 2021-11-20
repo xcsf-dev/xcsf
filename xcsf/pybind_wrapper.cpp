@@ -240,6 +240,10 @@ class XCS
             printf("fit() error: x_dim is not equal to: %d.\n", xcs.x_dim);
             exit(EXIT_FAILURE);
         }
+        if (action < 0 || action >= xcs.n_actions) {
+            printf("fit() error: action outside: [0,%d).\n", xcs.n_actions);
+            exit(EXIT_FAILURE);
+        }
         state = (double *) buf.ptr;
         return xcs_rl_fit(&xcs, state, action, reward);
     }
