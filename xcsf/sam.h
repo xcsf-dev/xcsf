@@ -34,6 +34,3 @@ sam_adapt(double *mu, const int N, const int *type);
 
 void
 sam_init(double *mu, const int N, const int *type);
-
-void
-sam_print(const double *mu, const int N);

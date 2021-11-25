@@ -89,16 +89,3 @@ sam_adapt(double *mu, const int N, const int *type)
         }
     }
 }
-
-/**
- * @brief Prints mutation rates.
- * @param [in] mu Vector of mutation rates.
- * @param [in] N Number of mutation rates.
- */
-void
-sam_print(const double *mu, const int N)
-{
-    for (int i = 0; i < N; ++i) {
-        printf("mu%d=%f, ", i, mu[i]);
-    }
-}
