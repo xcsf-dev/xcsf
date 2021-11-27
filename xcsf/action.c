@@ -17,7 +17,7 @@
  * @file action.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Interface for classifier actions.
  */
 
@@ -129,17 +129,26 @@ action_param_defaults(struct XCSF *xcsf)
 }
 
 /**
- * @brief Prints action parameters.
- * @param [in] xcsf The XCSF data structure.
+ * @brief Returns a json formatted string of the action parameters.
+ * @param [in] xcsf XCSF data structure.
+ * @return String encoded in json format.
  */
-void
-action_param_print(const struct XCSF *xcsf)
+const char *
+action_param_json(const struct XCSF *xcsf)
 {
     const struct ArgsAct *act = xcsf->act;
-    printf(", ACT_TYPE=%s", action_type_as_string(act->type));
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddStringToObject(json, "type", action_type_as_string(act->type));
+    cJSON *params = NULL;
     if (xcsf->act->type == ACT_TYPE_NEURAL) {
-        layer_args_print(xcsf->act->largs, "ACT");
+        params = cJSON_Parse(layer_args_json(xcsf->act->largs));
     }
+    if (params != NULL) {
+        cJSON_AddItemToObject(json, "args", params);
+    }
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

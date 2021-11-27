@@ -17,7 +17,7 @@
  * @file dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of dynamical GP graphs with fuzzy activations.
  */
 
@@ -455,18 +455,21 @@ graph_args_init(struct ArgsDGP *args)
 }
 
 /**
- * @brief Prints DGP parameters.
+ * @brief Returns a json formatted string of the DGP parameters.
  * @param [in] args Parameters for initialising and operating DGP graphs.
+ * @return String encoded in json format.
  */
-void
-graph_args_print(const struct ArgsDGP *args)
+const char *
+graph_args_json(const struct ArgsDGP *args)
 {
-    printf("max_k=%d", args->max_k);
-    printf(", max_t=%d", args->max_t);
-    printf(", n=%d", args->n);
-    if (args->evolve_cycles) {
-        printf(", evolve_cycles=true");
-    }
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "max_k", args->max_k);
+    cJSON_AddNumberToObject(json, "max_t", args->max_t);
+    cJSON_AddNumberToObject(json, "n", args->n);
+    cJSON_AddBoolToObject(json, "evolve_cycles", args->evolve_cycles);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

@@ -17,7 +17,7 @@
  * @file ea.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Evolutionary algorithm functions.
  */
 
@@ -52,8 +52,8 @@ ea(struct XCSF *xcsf, const struct Set *set);
 void
 ea_param_defaults(struct XCSF *xcsf);
 
-void
-ea_param_print(const struct XCSF *xcsf);
+const char *
+ea_param_json(const struct XCSF *xcsf);
 
 size_t
 ea_param_save(const struct XCSF *xcsf, FILE *fp);

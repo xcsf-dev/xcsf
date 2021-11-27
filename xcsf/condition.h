@@ -17,7 +17,7 @@
  * @file condition.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Interface for classifier conditions.
  */
 
@@ -78,8 +78,8 @@ cond_param_defaults(struct XCSF *xcsf);
 void
 cond_param_free(struct XCSF *xcsf);
 
-void
-cond_param_print(const struct XCSF *xcsf);
+const char *
+cond_param_json(const struct XCSF *xcsf);
 
 size_t
 cond_param_save(const struct XCSF *xcsf, FILE *fp);

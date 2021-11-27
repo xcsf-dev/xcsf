@@ -17,7 +17,7 @@
  * @file prediction.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Interface for classifier predictions.
  */
 
@@ -25,6 +25,7 @@
 #include "pred_neural.h"
 #include "pred_nlms.h"
 #include "pred_rls.h"
+#include "utils.h"
 
 /**
  * @brief Sets a classifier's prediction functions to the implementations.
@@ -162,58 +163,78 @@ pred_param_defaults(struct XCSF *xcsf)
 }
 
 /**
- * @brief Prints least mean squres prediction parameters.
+ * @brief Returns a json formatted string of the NLMS parameters.
  * @param [in] xcsf The XCSF data structure.
+ * @return String encoded in json format.
  */
-static void
-pred_param_print_nlms(const struct XCSF *xcsf)
+static const char *
+pred_param_json_nlms(const struct XCSF *xcsf)
 {
     const struct ArgsPred *pred = xcsf->pred;
-    printf(", PRED_X0=%f", pred->x0);
-    printf(", PRED_ETA=%f", pred->eta);
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "x0", pred->x0);
+    cJSON_AddNumberToObject(json, "eta", pred->eta);
+    cJSON_AddBoolToObject(json, "evolve_eta", pred->evolve_eta);
     if (pred->evolve_eta) {
-        printf(", PRED_EVOLVE_ETA=true");
-        printf(", PRED_ETA_MIN=%f", pred->eta_min);
+        cJSON_AddNumberToObject(json, "eta_min", pred->eta_min);
     }
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**
- * @brief Prints recursive least mean squres prediction parameters.
+ * @brief Returns a json formatted string of the RLS parameters.
  * @param [in] xcsf The XCSF data structure.
+ * @return String encoded in json format.
  */
-static void
-pred_param_print_rls(const struct XCSF *xcsf)
+static const char *
+pred_param_json_rls(const struct XCSF *xcsf)
 {
     const struct ArgsPred *pred = xcsf->pred;
-    printf(", PRED_X0=%f", pred->x0);
-    printf(", PRED_LAMBDA=%f", pred->lambda);
-    printf(", PRED_SCALE_FACTOR=%f", pred->scale_factor);
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "x0", pred->x0);
+    cJSON_AddNumberToObject(json, "lambda", pred->lambda);
+    cJSON_AddNumberToObject(json, "scale_factor", pred->scale_factor);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**
- * @brief Prints prediction parameters.
- * @param [in] xcsf The XCSF data structure.
+ * @brief Returns a json formatted string of the prediction parameters.
+ * @param [in] xcsf XCSF data structure.
+ * @return String encoded in json format.
  */
-void
-pred_param_print(const struct XCSF *xcsf)
+const char *
+pred_param_json(const struct XCSF *xcsf)
 {
     const struct ArgsPred *pred = xcsf->pred;
-    printf(", PRED_TYPE=%s", prediction_type_as_string(pred->type));
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddStringToObject(json, "type",
+                            prediction_type_as_string(pred->type));
+    cJSON *params = NULL;
     switch (pred->type) {
         case PRED_TYPE_NLMS_LINEAR:
         case PRED_TYPE_NLMS_QUADRATIC:
-            pred_param_print_nlms(xcsf);
+            params = cJSON_Parse(pred_param_json_nlms(xcsf));
             break;
         case PRED_TYPE_RLS_LINEAR:
         case PRED_TYPE_RLS_QUADRATIC:
-            pred_param_print_rls(xcsf);
+            params = cJSON_Parse(pred_param_json_rls(xcsf));
             break;
         case PRED_TYPE_NEURAL:
-            layer_args_print(xcsf->pred->largs, "PRED");
+            params = cJSON_Parse(layer_args_json(xcsf->pred->largs));
             break;
         default:
             break;
     }
+    if (params != NULL) {
+        cJSON_AddItemToObject(json, "args", params);
+    }
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

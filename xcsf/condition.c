@@ -17,7 +17,7 @@
  * @file condition.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Interface for classifier conditions.
  */
 
@@ -30,6 +30,7 @@
 #include "cond_ternary.h"
 #include "rule_dgp.h"
 #include "rule_neural.h"
+#include "utils.h"
 
 /**
  * @brief Sets a classifier's condition functions to the implementations.
@@ -236,89 +237,82 @@ cond_param_defaults(struct XCSF *xcsf)
 }
 
 /**
- * @brief Prints ternary condition parameters.
+ * @brief Returns a json formatted string of the ternary parameters.
  * @param [in] xcsf The XCSF data structure.
+ * @return String encoded in json format.
  */
-static void
-cond_param_print_ternary(const struct XCSF *xcsf)
+static const char *
+cond_param_json_ternary(const struct XCSF *xcsf)
 {
     const struct ArgsCond *cond = xcsf->cond;
-    printf(", COND_P_DONTCARE=%f", cond->p_dontcare);
-    printf(", COND_BITS=%d", cond->bits);
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "p_dontcare", cond->p_dontcare);
+    cJSON_AddNumberToObject(json, "bits", cond->bits);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**
- * @brief Prints center-spread representation condition parameters.
+ * @brief Returns a json formatted string of the center-spread parameters.
  * @param [in] xcsf The XCSF data structure.
+ * @return String encoded in json format.
  */
-static void
-cond_param_print_csr(const struct XCSF *xcsf)
+static const char *
+cond_param_json_csr(const struct XCSF *xcsf)
 {
     const struct ArgsCond *cond = xcsf->cond;
-    printf(", COND_ETA=%f", cond->eta);
-    printf(", COND_MIN=%f", cond->min);
-    printf(", COND_MAX=%f", cond->max);
-    printf(", COND_SPREAD_MIN=%f", cond->spread_min);
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "eta", cond->eta);
+    cJSON_AddNumberToObject(json, "min", cond->min);
+    cJSON_AddNumberToObject(json, "max", cond->max);
+    cJSON_AddNumberToObject(json, "spread_min", cond->spread_min);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**
- * @brief Prints Tree GP condition parameters.
- * @param [in] xcsf The XCSF data structure.
+ * @brief Returns a json formatted string of the condition parameters.
+ * @param [in] xcsf XCSF data structure.
+ * @return String encoded in json format.
  */
-static void
-cond_param_print_gp(const struct XCSF *xcsf)
-{
-    const struct ArgsGPTree *arg = xcsf->cond->targs;
-    printf(", COND_GP={");
-    tree_args_print(arg);
-    printf("}");
-}
-
-/**
- * @brief Prints DGP graph condition parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-cond_param_print_dgp(const struct XCSF *xcsf)
-{
-    const struct ArgsDGP *arg = xcsf->cond->dargs;
-    printf(", COND_DGP={");
-    graph_args_print(arg);
-    printf("}");
-}
-
-/**
- * @brief Prints condition parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-void
-cond_param_print(const struct XCSF *xcsf)
+const char *
+cond_param_json(const struct XCSF *xcsf)
 {
     const struct ArgsCond *cond = xcsf->cond;
-    printf(", COND_TYPE=%s", condition_type_as_string(cond->type));
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddStringToObject(json, "type", condition_type_as_string(cond->type));
+    cJSON *params = NULL;
     switch (cond->type) {
         case COND_TYPE_TERNARY:
-            cond_param_print_ternary(xcsf);
+            params = cJSON_Parse(cond_param_json_ternary(xcsf));
             break;
         case COND_TYPE_HYPERELLIPSOID:
         case COND_TYPE_HYPERRECTANGLE:
-            cond_param_print_csr(xcsf);
+            params = cJSON_Parse(cond_param_json_csr(xcsf));
             break;
         case COND_TYPE_GP:
-            cond_param_print_gp(xcsf);
+            params = cJSON_Parse(tree_args_json(xcsf->cond->targs));
             break;
         case COND_TYPE_DGP:
         case RULE_TYPE_DGP:
-            cond_param_print_dgp(xcsf);
+            params = cJSON_Parse(graph_args_json(xcsf->cond->dargs));
             break;
         case COND_TYPE_NEURAL:
         case RULE_TYPE_NEURAL:
         case RULE_TYPE_NETWORK:
-            layer_args_print(xcsf->cond->largs, "COND");
+            params = cJSON_Parse(layer_args_json(xcsf->cond->largs));
             break;
         default:
             break;
     }
+    if (params != NULL) {
+        cJSON_AddItemToObject(json, "args", params);
+    }
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

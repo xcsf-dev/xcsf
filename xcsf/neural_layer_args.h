@@ -17,7 +17,7 @@
  * @file neural_layer_args.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2021.
  * @brief Functions operating on neural network arguments/constants.
  */
 
@@ -62,8 +62,8 @@ layer_args_copy(const struct ArgsLayer *src);
 struct ArgsLayer *
 layer_args_tail(struct ArgsLayer *head);
 
-void
-layer_args_print(struct ArgsLayer *args, const char *prefix);
+const char *
+layer_args_json(struct ArgsLayer *args);
 
 void
 layer_args_free(struct ArgsLayer **largs);

@@ -17,7 +17,7 @@
  * @file neural_layer_args.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2021.
  * @brief Functions operating on neural network arguments/constants.
  */
 
@@ -107,88 +107,82 @@ layer_args_copy(const struct ArgsLayer *src)
 }
 
 /**
- * @brief Prints layer input parameters.
- * @param [in] args The layer parameters to print.
+ * @brief Adds layer input parameters to a json object.
+ * @param [in,out] json cJSON object.
+ * @param [in] args The layer parameters.
  */
 static void
-layer_args_print_inputs(const struct ArgsLayer *args)
+layer_args_json_inputs(cJSON *json, const struct ArgsLayer *args)
 {
     if (layer_receives_images(args->type)) {
         if (args->height > 0) {
-            printf(", height=%d", args->height);
+            cJSON_AddNumberToObject(json, "height", args->height);
         }
         if (args->width > 0) {
-            printf(", width=%d", args->width);
+            cJSON_AddNumberToObject(json, "width", args->width);
         }
         if (args->channels > 0) {
-            printf(", channels=%d", args->channels);
+            cJSON_AddNumberToObject(json, "channels", args->channels);
         }
         if (args->size > 0) {
-            printf(", size=%d", args->size);
+            cJSON_AddNumberToObject(json, "size", args->size);
         }
         if (args->stride > 0) {
-            printf(", stride=%d", args->stride);
+            cJSON_AddNumberToObject(json, "stride", args->stride);
         }
         if (args->pad > 0) {
-            printf(", pad=%d", args->pad);
+            cJSON_AddNumberToObject(json, "pad", args->pad);
         }
     } else {
-        printf(", n_inputs=%d", args->n_inputs);
+        cJSON_AddNumberToObject(json, "n_inputs", args->n_inputs);
     }
 }
 
 /**
- * @brief Prints layer gradient descent parameters.
+ * @brief Adds layer gradient descent parameters to a json object.
+ * @param [in,out] json cJSON object.
  * @param [in] args The layer parameters to print.
  */
 static void
-layer_args_print_sgd(const struct ArgsLayer *args)
+layer_args_json_sgd(cJSON *json, const struct ArgsLayer *args)
 {
+    cJSON_AddBoolToObject(json, "sgd_weights", args->sgd_weights);
     if (args->sgd_weights) {
-        printf(", sgd_weights=true");
-        printf(", eta=%f", args->eta);
+        cJSON_AddNumberToObject(json, "eta", args->eta);
+        cJSON_AddBoolToObject(json, "evolve_eta", args->evolve_eta);
         if (args->evolve_eta) {
-            printf(", evolve_eta=true");
-            printf(", eta_min=%f", args->eta_min);
-        } else {
-            printf(", evolve_eta=false");
+            cJSON_AddNumberToObject(json, "eta_min", args->eta_min);
         }
-        printf(", momentum=%f", args->momentum);
-        if (args->decay > 0) {
-            printf(", decay=%f", args->decay);
-        }
+        cJSON_AddNumberToObject(json, "momentum", args->momentum);
+        cJSON_AddNumberToObject(json, "decay", args->decay);
     }
 }
 
 /**
- * @brief Prints layer evolutionary operator parameters.
+ * @brief Adds layer evolutionary parameters to a json object.
+ * @param [in,out] json cJSON object.
  * @param [in] args The layer parameters to print.
  */
 static void
-layer_args_print_evo(const struct ArgsLayer *args)
+layer_args_json_evo(cJSON *json, const struct ArgsLayer *args)
 {
-    if (args->evolve_weights) {
-        printf(", evolve_weights=true");
-    }
-    if (args->evolve_functions) {
-        printf(", evolve_functions=true");
-    }
-    if (args->evolve_connect) {
-        printf(", evolve_connect=true");
-    }
+    cJSON_AddBoolToObject(json, "evolve_weights", args->evolve_weights);
+    cJSON_AddBoolToObject(json, "evolve_functions", args->evolve_functions);
+    cJSON_AddBoolToObject(json, "evolve_connect", args->evolve_connect);
+    cJSON_AddBoolToObject(json, "evolve_neurons", args->evolve_neurons);
     if (args->evolve_neurons) {
-        printf(", evolve_neurons=true");
-        printf(", n_max=%d", args->n_max);
-        printf(", max_neuron_grow=%d", args->max_neuron_grow);
+        cJSON_AddNumberToObject(json, "n_max", args->n_max);
+        cJSON_AddNumberToObject(json, "max_neuron_grow", args->max_neuron_grow);
     }
 }
 
 /**
- * @brief Prints layer activation function parameters.
- * @param [in] args The layer parameters to print.
+ * @brief Adds layer activation function to a json object.
+ * @param [in,out] json cJSON object.
+ * @param [in] args The layer parameters.
  */
 static void
-layer_args_print_activation(const struct ArgsLayer *args)
+layer_args_json_activation(cJSON *json, const struct ArgsLayer *args)
 {
     switch (args->type) {
         case AVGPOOL:
@@ -201,65 +195,64 @@ layer_args_print_activation(const struct ArgsLayer *args)
         default:
             break;
     }
-    printf(", activation=%s", neural_activation_string(args->function));
+    cJSON_AddStringToObject(json, "activation",
+                            neural_activation_string(args->function));
     if (args->type == LSTM) {
-        printf(", recurrent_activation=%s",
-               neural_activation_string(args->recurrent_function));
+        cJSON_AddStringToObject(
+            json, "recurrent_activation",
+            neural_activation_string(args->recurrent_function));
     }
 }
 
 /**
- * @brief Prints layer
+ * @brief Adds layer scaling parameters to a json object.
+ * @param [in,out] json cJSON object.
  * @param [in] args The layer parameters to print.
  */
-static bool
-layer_args_print_scale(const struct ArgsLayer *args)
+static void
+layer_args_json_scale(cJSON *json, const struct ArgsLayer *args)
 {
-    bool cont = false;
     if (args->type == NOISE || args->type == DROPOUT) {
-        printf(", probability=%f", args->probability);
-        cont = true;
+        cJSON_AddNumberToObject(json, "probability", args->probability);
     }
     if (args->type == NOISE || args->type == SOFTMAX) {
-        printf(", scale=%f", args->scale);
-        cont = true;
+        cJSON_AddNumberToObject(json, "scale", args->scale);
     }
-    if (args->type == MAXPOOL) {
-        cont = true;
-    }
-    return cont;
 }
 
 /**
- * @brief Prints layer parameters.
+ * @brief Returns a json formatted string of the neural layer parameters.
  * @param [in] args The layer parameters to print.
- * @param [in] prefix String to prefix layer type.
+ * @return String encoded in json format.
  */
-void
-layer_args_print(struct ArgsLayer *args, const char *prefix)
+const char *
+layer_args_json(struct ArgsLayer *args)
 {
     struct Net net; // create a temporary network to parse inputs
     neural_init(&net);
     neural_create(&net, args);
     neural_free(&net);
+    cJSON *json = cJSON_CreateObject();
     int cnt = 0;
     for (const struct ArgsLayer *a = args; a != NULL; a = a->next) {
-        printf(", %s_LAYER_%d={", prefix, cnt);
-        ++cnt;
-        printf("type=%s", layer_type_as_string(a->type));
-        layer_args_print_activation(a);
-        layer_args_print_inputs(a);
-        if (layer_args_print_scale(a)) {
-            printf("}");
-            continue;
-        }
+        char name[256];
+        snprintf(name, 256, "layer_%d", cnt);
+        cJSON *l = cJSON_CreateObject();
+        cJSON_AddItemToObject(json, name, l);
+        cJSON_AddStringToObject(l, "type", layer_type_as_string(a->type));
+        layer_args_json_activation(l, a);
+        layer_args_json_inputs(l, a);
+        layer_args_json_scale(l, a);
         if (a->n_init > 0) {
-            printf(", n_init=%d", a->n_init);
+            cJSON_AddNumberToObject(l, "n_init", a->n_init);
         }
-        layer_args_print_evo(a);
-        layer_args_print_sgd(a);
-        printf("}");
+        layer_args_json_evo(l, a);
+        layer_args_json_sgd(l, a);
+        ++cnt;
     }
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

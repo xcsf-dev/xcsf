@@ -387,17 +387,22 @@ tree_args_free(struct ArgsGPTree *args)
 }
 
 /**
- * @brief Prints Tree GP parameters.
+ * @brief Returns a json formatted string of the GP tree parameters.
  * @param [in] args Parameters for initialising and operating GP trees.
+ * @return String encoded in json format.
  */
-void
-tree_args_print(const struct ArgsGPTree *args)
+const char *
+tree_args_json(const struct ArgsGPTree *args)
 {
-    printf("min_constant=%f", args->min);
-    printf(", max_constant=%f", args->max);
-    printf(", n_constants=%d", args->n_constants);
-    printf(", init_depth=%d", args->init_depth);
-    printf(", max_len=%d", args->max_len);
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "min_constant", args->min);
+    cJSON_AddNumberToObject(json, "max_constant", args->max);
+    cJSON_AddNumberToObject(json, "n_constants", args->n_constants);
+    cJSON_AddNumberToObject(json, "init_depth", args->init_depth);
+    cJSON_AddNumberToObject(json, "max_len", args->max_len);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**

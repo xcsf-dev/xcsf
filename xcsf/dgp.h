@@ -17,7 +17,7 @@
  * @file dgp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2020.
+ * @date 2016--2021.
  * @brief An implementation of dynamical GP graphs with fuzzy activations.
  */
 
@@ -95,8 +95,8 @@ graph_update(const struct Graph *dgp, const double *inputs, const bool reset);
 void
 graph_args_init(struct ArgsDGP *args);
 
-void
-graph_args_print(const struct ArgsDGP *args);
+const char *
+graph_args_json(const struct ArgsDGP *args);
 
 size_t
 graph_args_save(const struct ArgsDGP *args, FILE *fp);

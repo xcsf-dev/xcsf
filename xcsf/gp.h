@@ -84,8 +84,8 @@ tree_args_init(struct ArgsGPTree *args);
 void
 tree_args_free(struct ArgsGPTree *args);
 
-void
-tree_args_print(const struct ArgsGPTree *args);
+const char *
+tree_args_json(const struct ArgsGPTree *args);
 
 size_t
 tree_args_save(const struct ArgsGPTree *args, FILE *fp);

@@ -17,7 +17,7 @@
  * @file param.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Functions for setting and printing parameters.
  */
 
@@ -26,285 +26,11 @@
 #include "condition.h"
 #include "ea.h"
 #include "prediction.h"
+#include "utils.h"
 
 #ifdef PARALLEL
     #include <omp.h>
 #endif
-
-/**
- * @brief Initialises default XCSF general parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-param_defaults_general(struct XCSF *xcsf)
-{
-    param_set_omp_num_threads(xcsf, 8);
-    param_set_pop_init(xcsf, true);
-    param_set_max_trials(xcsf, 100000);
-    param_set_perf_trials(xcsf, 1000);
-    param_set_pop_size(xcsf, 2000);
-    param_set_loss_func(xcsf, LOSS_MAE);
-    param_set_huber_delta(xcsf, 1);
-}
-
-/**
- * @brief Prints XCSF general parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-param_print_general(const struct XCSF *xcsf)
-{
-    printf("OMP_NUM_THREADS=%d", xcsf->OMP_NUM_THREADS);
-    printf(", POP_INIT=");
-    xcsf->POP_INIT ? printf("true") : printf("false");
-    printf(", MAX_TRIALS=%d", xcsf->MAX_TRIALS);
-    printf(", PERF_TRIALS=%d", xcsf->PERF_TRIALS);
-    printf(", POP_SIZE=%d", xcsf->POP_SIZE);
-    printf(", LOSS_FUNC=%s", loss_type_as_string(xcsf->LOSS_FUNC));
-    if (xcsf->LOSS_FUNC == LOSS_HUBER) {
-        printf(", HUBER_DELTA=%f", xcsf->HUBER_DELTA);
-    }
-}
-
-/**
- * @brief Saves XCSF general parameters.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] fp Pointer to the output file.
- * @return The total number of elements written.
- */
-static size_t
-param_save_general(const struct XCSF *xcsf, FILE *fp)
-{
-    size_t s = 0;
-    s += fwrite(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->POP_INIT, sizeof(bool), 1, fp);
-    s += fwrite(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->POP_SIZE, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->HUBER_DELTA, sizeof(double), 1, fp);
-    return s;
-}
-
-/**
- * @brief Loads XCSF general parameters.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] fp Pointer to the output file.
- * @return The total number of elements read.
- */
-static size_t
-param_load_general(struct XCSF *xcsf, FILE *fp)
-{
-    size_t s = 0;
-    s += fread(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
-    s += fread(&xcsf->POP_INIT, sizeof(bool), 1, fp);
-    s += fread(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
-    s += fread(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
-    s += fread(&xcsf->POP_SIZE, sizeof(int), 1, fp);
-    s += fread(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
-    s += fread(&xcsf->HUBER_DELTA, sizeof(double), 1, fp);
-    loss_set_func(xcsf);
-    return s;
-}
-
-/**
- * @brief Initialises default general classifier parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-param_defaults_cl_general(struct XCSF *xcsf)
-{
-    param_set_e0(xcsf, 0.01);
-    param_set_alpha(xcsf, 0.1);
-    param_set_nu(xcsf, 5);
-    param_set_beta(xcsf, 0.1);
-    param_set_delta(xcsf, 0.1);
-    param_set_theta_del(xcsf, 20);
-    param_set_init_fitness(xcsf, 0.01);
-    param_set_init_error(xcsf, 0);
-    param_set_m_probation(xcsf, 10000);
-    param_set_stateful(xcsf, true);
-    param_set_compaction(xcsf, false);
-}
-
-/**
- * @brief Prints XCSF general classifier parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-param_print_cl_general(const struct XCSF *xcsf)
-{
-    printf(", E0=%f", xcsf->E0);
-    printf(", ALPHA=%f", xcsf->ALPHA);
-    printf(", NU=%f", xcsf->NU);
-    printf(", BETA=%f", xcsf->BETA);
-    printf(", DELTA=%f", xcsf->DELTA);
-    printf(", THETA_DEL=%d", xcsf->THETA_DEL);
-    printf(", INIT_FITNESS=%f", xcsf->INIT_FITNESS);
-    printf(", INIT_ERROR=%f", xcsf->INIT_ERROR);
-    printf(", M_PROBATION=%d", xcsf->M_PROBATION);
-    printf(", STATEFUL=");
-    xcsf->STATEFUL ? printf("true") : printf("false");
-    printf(", COMPACTION=");
-    xcsf->COMPACTION ? printf("true") : printf("false");
-}
-
-/**
- * @brief Saves XCSF general classifier parameters.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] fp Pointer to the output file.
- * @return The total number of elements written.
- */
-static size_t
-param_save_cl_general(const struct XCSF *xcsf, FILE *fp)
-{
-    size_t s = 0;
-    s += fwrite(&xcsf->E0, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->ALPHA, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->NU, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->BETA, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->DELTA, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->THETA_DEL, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->INIT_FITNESS, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->INIT_ERROR, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->M_PROBATION, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->STATEFUL, sizeof(bool), 1, fp);
-    s += fwrite(&xcsf->COMPACTION, sizeof(bool), 1, fp);
-    return s;
-}
-
-/**
- * @brief Loads XCSF general classifier parameters.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] fp Pointer to the output file.
- * @return The total number of elements read.
- */
-static size_t
-param_load_cl_general(struct XCSF *xcsf, FILE *fp)
-{
-    size_t s = 0;
-    s += fread(&xcsf->E0, sizeof(double), 1, fp);
-    s += fread(&xcsf->ALPHA, sizeof(double), 1, fp);
-    s += fread(&xcsf->NU, sizeof(double), 1, fp);
-    s += fread(&xcsf->BETA, sizeof(double), 1, fp);
-    s += fread(&xcsf->DELTA, sizeof(double), 1, fp);
-    s += fread(&xcsf->THETA_DEL, sizeof(int), 1, fp);
-    s += fread(&xcsf->INIT_FITNESS, sizeof(double), 1, fp);
-    s += fread(&xcsf->INIT_ERROR, sizeof(double), 1, fp);
-    s += fread(&xcsf->M_PROBATION, sizeof(int), 1, fp);
-    s += fread(&xcsf->STATEFUL, sizeof(bool), 1, fp);
-    s += fread(&xcsf->COMPACTION, sizeof(bool), 1, fp);
-    return s;
-}
-
-/**
- * @brief Initialises default multistep parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-param_defaults_multistep(struct XCSF *xcsf)
-{
-    param_set_gamma(xcsf, 0.95);
-    param_set_teletransportation(xcsf, 50);
-    param_set_p_explore(xcsf, 0.9);
-}
-
-/**
- * @brief Prints XCSF multistep parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-param_print_multistep(const struct XCSF *xcsf)
-{
-    printf(", GAMMA=%f", xcsf->GAMMA);
-    printf(", TELETRANSPORTATION=%d", xcsf->TELETRANSPORTATION);
-    printf(", P_EXPLORE=%f", xcsf->P_EXPLORE);
-}
-
-/**
- * @brief Saves multistep parameters.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] fp Pointer to the output file.
- * @return The total number of elements written.
- */
-static size_t
-param_save_multistep(const struct XCSF *xcsf, FILE *fp)
-{
-    size_t s = 0;
-    s += fwrite(&xcsf->GAMMA, sizeof(double), 1, fp);
-    s += fwrite(&xcsf->TELETRANSPORTATION, sizeof(int), 1, fp);
-    s += fwrite(&xcsf->P_EXPLORE, sizeof(double), 1, fp);
-    return s;
-}
-
-/**
- * @brief Saves multistep parameters.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] fp Pointer to the output file.
- * @return The total number of elements read.
- */
-static size_t
-param_load_multistep(struct XCSF *xcsf, FILE *fp)
-{
-    size_t s = 0;
-    s += fread(&xcsf->GAMMA, sizeof(double), 1, fp);
-    s += fread(&xcsf->TELETRANSPORTATION, sizeof(int), 1, fp);
-    s += fread(&xcsf->P_EXPLORE, sizeof(double), 1, fp);
-    return s;
-}
-
-/**
- * @brief Initialises default subsumption parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-param_defaults_subsumption(struct XCSF *xcsf)
-{
-    param_set_set_subsumption(xcsf, false);
-    param_set_theta_sub(xcsf, 100);
-}
-
-/**
- * @brief Prints XCSF subsumption parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-param_print_subsumption(const struct XCSF *xcsf)
-{
-    printf(", SET_SUBSUMPTION=");
-    xcsf->SET_SUBSUMPTION ? printf("true") : printf("false");
-    printf(", THETA_SUB=%d", xcsf->THETA_SUB);
-}
-
-/**
- * @brief Saves subsumption parameters.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] fp Pointer to the output file.
- * @return The total number of elements written.
- */
-static size_t
-param_save_subsumption(const struct XCSF *xcsf, FILE *fp)
-{
-    size_t s = 0;
-    s += fwrite(&xcsf->SET_SUBSUMPTION, sizeof(bool), 1, fp);
-    s += fwrite(&xcsf->THETA_SUB, sizeof(int), 1, fp);
-    return s;
-}
-
-/**
- * @brief Loads subsumption parameters.
- * @param [in] xcsf The XCSF data structure.
- * @param [in] fp Pointer to the output file.
- * @return The total number of elements read.
- */
-static size_t
-param_load_subsumption(struct XCSF *xcsf, FILE *fp)
-{
-    size_t s = 0;
-    s += fread(&xcsf->SET_SUBSUMPTION, sizeof(bool), 1, fp);
-    s += fread(&xcsf->THETA_SUB, sizeof(int), 1, fp);
-    return s;
-}
 
 /**
  * @brief Initialises default XCSF parameters.
@@ -329,10 +55,29 @@ param_init(struct XCSF *xcsf, const int x_dim, const int y_dim,
     param_set_n_actions(xcsf, n_actions);
     param_set_x_dim(xcsf, x_dim);
     param_set_y_dim(xcsf, y_dim);
-    param_defaults_cl_general(xcsf);
-    param_defaults_general(xcsf);
-    param_defaults_multistep(xcsf);
-    param_defaults_subsumption(xcsf);
+    param_set_omp_num_threads(xcsf, 8);
+    param_set_pop_init(xcsf, true);
+    param_set_max_trials(xcsf, 100000);
+    param_set_perf_trials(xcsf, 1000);
+    param_set_pop_size(xcsf, 2000);
+    param_set_loss_func(xcsf, LOSS_MAE);
+    param_set_huber_delta(xcsf, 1);
+    param_set_e0(xcsf, 0.01);
+    param_set_alpha(xcsf, 0.1);
+    param_set_nu(xcsf, 5);
+    param_set_beta(xcsf, 0.1);
+    param_set_delta(xcsf, 0.1);
+    param_set_theta_del(xcsf, 20);
+    param_set_init_fitness(xcsf, 0.01);
+    param_set_init_error(xcsf, 0);
+    param_set_m_probation(xcsf, 10000);
+    param_set_stateful(xcsf, true);
+    param_set_compaction(xcsf, false);
+    param_set_gamma(xcsf, 0.95);
+    param_set_teletransportation(xcsf, 50);
+    param_set_p_explore(xcsf, 0.9);
+    param_set_set_subsumption(xcsf, false);
+    param_set_theta_sub(xcsf, 100);
     ea_param_defaults(xcsf);
     action_param_defaults(xcsf);
     cond_param_defaults(xcsf);
@@ -352,20 +97,47 @@ param_free(struct XCSF *xcsf)
 }
 
 /**
- * @brief Prints all XCSF parameters.
- * @param [in] xcsf The XCSF data structure.
+ * @brief Returns a json formatted string representation of the parameters.
+ * @param [in] xcsf XCSF data structure.
+ * @return String encoded in json format.
  */
-void
-param_print(const struct XCSF *xcsf)
+const char *
+param_json(const struct XCSF *xcsf)
 {
-    printf("VERSION=%d.%d.%d, ", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
-    param_print_general(xcsf);
-    if (xcsf->n_actions > 1) {
-        param_print_multistep(xcsf);
+    char v[256];
+    snprintf(v, 256, "%d.%d.%d", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddStringToObject(json, "version", v);
+    cJSON_AddNumberToObject(json, "omp_num_threads", xcsf->OMP_NUM_THREADS);
+    cJSON_AddBoolToObject(json, "pop_init", xcsf->POP_INIT);
+    cJSON_AddNumberToObject(json, "max_trials", xcsf->MAX_TRIALS);
+    cJSON_AddNumberToObject(json, "perf_trials", xcsf->PERF_TRIALS);
+    cJSON_AddNumberToObject(json, "pop_size", xcsf->POP_SIZE);
+    cJSON_AddStringToObject(json, "loss_func",
+                            loss_type_as_string(xcsf->LOSS_FUNC));
+    if (xcsf->LOSS_FUNC == LOSS_HUBER) {
+        cJSON_AddNumberToObject(json, "huber_delta", xcsf->HUBER_DELTA);
     }
-    param_print_subsumption(xcsf);
-    param_print_cl_general(xcsf);
-    ea_param_print(xcsf);
+    if (xcsf->n_actions > 1) {
+        cJSON_AddNumberToObject(json, "gamma", xcsf->GAMMA);
+        cJSON_AddNumberToObject(json, "teletransportation",
+                                xcsf->TELETRANSPORTATION);
+        cJSON_AddNumberToObject(json, "p_explore", xcsf->P_EXPLORE);
+    }
+    cJSON_AddBoolToObject(json, "set_subsumption", xcsf->SET_SUBSUMPTION);
+    cJSON_AddNumberToObject(json, "theta_sub", xcsf->THETA_SUB);
+    cJSON_AddNumberToObject(json, "e0", xcsf->E0);
+    cJSON_AddNumberToObject(json, "alpha", xcsf->ALPHA);
+    cJSON_AddNumberToObject(json, "nu", xcsf->NU);
+    cJSON_AddNumberToObject(json, "beta", xcsf->BETA);
+    cJSON_AddNumberToObject(json, "delta", xcsf->DELTA);
+    cJSON_AddNumberToObject(json, "theta_del", xcsf->THETA_DEL);
+    cJSON_AddNumberToObject(json, "init_fitness", xcsf->INIT_FITNESS);
+    cJSON_AddNumberToObject(json, "init_error", xcsf->INIT_ERROR);
+    cJSON_AddNumberToObject(json, "m_probation", xcsf->M_PROBATION);
+    cJSON_AddBoolToObject(json, "stateful", xcsf->STATEFUL);
+    cJSON_AddBoolToObject(json, "compaction", xcsf->COMPACTION);
+    cJSON_AddItemToObject(json, "ea", cJSON_Parse(ea_param_json(xcsf)));
     switch (xcsf->cond->type) {
         case RULE_TYPE_DGP:
         case RULE_TYPE_NEURAL:
@@ -373,13 +145,28 @@ param_print(const struct XCSF *xcsf)
             break;
         default:
             if (xcsf->n_actions > 1) {
-                action_param_print(xcsf);
+                cJSON *act_params = cJSON_Parse(action_param_json(xcsf));
+                cJSON_AddItemToObject(json, "action", act_params);
             }
             break;
     }
-    cond_param_print(xcsf);
-    pred_param_print(xcsf);
-    printf("\n");
+    cJSON *cond_params = cJSON_Parse(cond_param_json(xcsf));
+    cJSON_AddItemToObject(json, "condition", cond_params);
+    cJSON *pred_params = cJSON_Parse(pred_param_json(xcsf));
+    cJSON_AddItemToObject(json, "prediction", pred_params);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
+}
+
+/**
+ * @brief Prints all XCSF parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+param_print(const struct XCSF *xcsf)
+{
+    printf("%s\n", param_json(xcsf));
 }
 
 /**
@@ -401,10 +188,29 @@ param_save(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->n_actions, sizeof(int), 1, fp);
-    s += param_save_general(xcsf, fp);
-    s += param_save_multistep(xcsf, fp);
-    s += param_save_subsumption(xcsf, fp);
-    s += param_save_cl_general(xcsf, fp);
+    s += fwrite(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->POP_INIT, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->POP_SIZE, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->HUBER_DELTA, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->GAMMA, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->TELETRANSPORTATION, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->P_EXPLORE, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->SET_SUBSUMPTION, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->THETA_SUB, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->E0, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->ALPHA, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->NU, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->BETA, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->DELTA, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->THETA_DEL, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->INIT_FITNESS, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->INIT_ERROR, sizeof(double), 1, fp);
+    s += fwrite(&xcsf->M_PROBATION, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->STATEFUL, sizeof(bool), 1, fp);
+    s += fwrite(&xcsf->COMPACTION, sizeof(bool), 1, fp);
     s += ea_param_save(xcsf, fp);
     s += action_param_save(xcsf, fp);
     s += cond_param_save(xcsf, fp);
@@ -431,18 +237,38 @@ param_load(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->n_actions, sizeof(int), 1, fp);
-    if (xcsf->x_dim < 1 || xcsf->y_dim < 1) {
+    if (xcsf->x_dim < 1 || xcsf->y_dim < 1 || xcsf->n_actions < 1) {
         printf("param_load(): read error\n");
         exit(EXIT_FAILURE);
     }
-    s += param_load_general(xcsf, fp);
-    s += param_load_multistep(xcsf, fp);
-    s += param_load_subsumption(xcsf, fp);
-    s += param_load_cl_general(xcsf, fp);
+    s += fread(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
+    s += fread(&xcsf->POP_INIT, sizeof(bool), 1, fp);
+    s += fread(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
+    s += fread(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
+    s += fread(&xcsf->POP_SIZE, sizeof(int), 1, fp);
+    s += fread(&xcsf->LOSS_FUNC, sizeof(int), 1, fp);
+    s += fread(&xcsf->HUBER_DELTA, sizeof(double), 1, fp);
+    s += fread(&xcsf->GAMMA, sizeof(double), 1, fp);
+    s += fread(&xcsf->TELETRANSPORTATION, sizeof(int), 1, fp);
+    s += fread(&xcsf->P_EXPLORE, sizeof(double), 1, fp);
+    s += fread(&xcsf->SET_SUBSUMPTION, sizeof(bool), 1, fp);
+    s += fread(&xcsf->THETA_SUB, sizeof(int), 1, fp);
+    s += fread(&xcsf->E0, sizeof(double), 1, fp);
+    s += fread(&xcsf->ALPHA, sizeof(double), 1, fp);
+    s += fread(&xcsf->NU, sizeof(double), 1, fp);
+    s += fread(&xcsf->BETA, sizeof(double), 1, fp);
+    s += fread(&xcsf->DELTA, sizeof(double), 1, fp);
+    s += fread(&xcsf->THETA_DEL, sizeof(int), 1, fp);
+    s += fread(&xcsf->INIT_FITNESS, sizeof(double), 1, fp);
+    s += fread(&xcsf->INIT_ERROR, sizeof(double), 1, fp);
+    s += fread(&xcsf->M_PROBATION, sizeof(int), 1, fp);
+    s += fread(&xcsf->STATEFUL, sizeof(bool), 1, fp);
+    s += fread(&xcsf->COMPACTION, sizeof(bool), 1, fp);
     s += ea_param_load(xcsf, fp);
     s += action_param_load(xcsf, fp);
     s += cond_param_load(xcsf, fp);
     s += pred_param_load(xcsf, fp);
+    loss_set_func(xcsf);
     return s;
 }
 

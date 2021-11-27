@@ -17,7 +17,7 @@
  * @file param.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Functions for setting and printing parameters.
  */
 
@@ -25,6 +25,9 @@
 
 #include "loss.h"
 #include "xcsf.h"
+
+const char *
+param_json(const struct XCSF *xcsf);
 
 void
 param_free(struct XCSF *xcsf);

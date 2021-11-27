@@ -223,6 +223,16 @@ class XCS
         return "null";
     }
 
+    /**
+     * @brief Returns a JSON formatted string representing the parameters.
+     * @return String encoded in json format.
+     */
+    const char *
+    json_parameters()
+    {
+        return param_json(&xcs);
+    }
+
     /* Reinforcement learning */
 
     /**
@@ -1504,5 +1514,6 @@ PYBIND11_MODULE(xcsf, m)
         .def("print_params", &XCS::print_params)
         .def("pred_expand", &XCS::pred_expand)
         .def("ae_to_classifier", &XCS::ae_to_classifier)
-        .def("json", &XCS::json);
+        .def("json", &XCS::json)
+        .def("json_parameters", &XCS::json_parameters);
 }

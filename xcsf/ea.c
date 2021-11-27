@@ -17,7 +17,7 @@
  * @file ea.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Evolutionary algorithm functions.
  */
 
@@ -248,25 +248,29 @@ ea_param_defaults(struct XCSF *xcsf)
 }
 
 /**
- * @brief Prints evolutionary algorithm parameters.
- * @param [in] xcsf The XCSF data structure.
+ * @brief Returns a json formatted string representation of the EA parameters.
+ * @param [in] xcsf XCSF data structure.
+ * @return String encoded in json format.
  */
-void
-ea_param_print(const struct XCSF *xcsf)
+const char *
+ea_param_json(const struct XCSF *xcsf)
 {
-    printf(", EA_SELECT_TYPE=%s", ea_type_as_string(xcsf->ea->select_type));
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddStringToObject(json, "select_type",
+                            ea_type_as_string(xcsf->ea->select_type));
     if (xcsf->ea->select_type == EA_SELECT_TOURNAMENT) {
-        printf(", EA_SELECT_SIZE=%f", xcsf->ea->select_size);
+        cJSON_AddNumberToObject(json, "select_size", xcsf->ea->select_size);
     }
-    printf(", THETA_EA=%f", xcsf->ea->theta);
-    printf(", LAMBDA=%d", xcsf->ea->lambda);
-    printf(", P_CROSSOVER=%f", xcsf->ea->p_crossover);
-    printf(", ERR_REDUC=%f", xcsf->ea->err_reduc);
-    printf(", FIT_REDUC=%f", xcsf->ea->fit_reduc);
-    printf(", EA_SUBSUMPTION=");
-    xcsf->ea->subsumption ? printf("true") : printf("false");
-    printf(", EA_PRED_RESET=");
-    xcsf->ea->pred_reset ? printf("true") : printf("false");
+    cJSON_AddNumberToObject(json, "theta_ea", xcsf->ea->theta);
+    cJSON_AddNumberToObject(json, "lambda", xcsf->ea->lambda);
+    cJSON_AddNumberToObject(json, "p_crossover", xcsf->ea->p_crossover);
+    cJSON_AddNumberToObject(json, "err_reduc", xcsf->ea->err_reduc);
+    cJSON_AddNumberToObject(json, "fit_reduc", xcsf->ea->fit_reduc);
+    cJSON_AddBoolToObject(json, "subsumption", xcsf->ea->subsumption);
+    cJSON_AddBoolToObject(json, "pred_reset", xcsf->ea->pred_reset);
+    const char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
 }
 
 /**
