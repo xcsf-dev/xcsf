@@ -338,8 +338,7 @@ cond_ternary_json(const struct XCSF *xcsf, const struct Cl *c)
     (void) xcsf;
     const struct CondTernary *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("ternary");
-    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddStringToObject(json, "type", "ternary");
     char buff[cond->length + 1];
     memcpy(buff, cond->string, sizeof(char) * cond->length);
     buff[cond->length] = '\0';

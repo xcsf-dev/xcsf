@@ -241,8 +241,7 @@ cond_gp_json(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct CondGP *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("tree-gp");
-    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddStringToObject(json, "type", "tree-gp");
     cJSON *tree = cJSON_Parse(tree_json(&cond->gp, xcsf->cond->targs));
     cJSON_AddItemToObject(json, "tree", tree);
     const char *string = cJSON_Print(json);

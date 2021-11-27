@@ -184,8 +184,7 @@ neural_layer_softmax_json(const struct Layer *l, const bool return_weights)
 {
     (void) return_weights;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("softmax");
-    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddStringToObject(json, "type", "softmax");
     cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
     cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
     cJSON_AddNumberToObject(json, "temperature", l->scale);

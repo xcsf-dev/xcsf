@@ -199,8 +199,7 @@ const char *
 pred_constant_json(const struct XCSF *xcsf, const struct Cl *c)
 {
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("constant");
-    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddStringToObject(json, "type", "constant");
     cJSON *prediction = cJSON_CreateDoubleArray(c->prediction, xcsf->y_dim);
     cJSON_AddItemToObject(json, "prediction", prediction);
     const char *string = cJSON_Print(json);

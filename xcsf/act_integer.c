@@ -249,8 +249,7 @@ act_integer_json(const struct XCSF *xcsf, const struct Cl *c)
     (void) xcsf;
     const struct ActInteger *act = c->act;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("integer");
-    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddStringToObject(json, "type", "integer");
     cJSON_AddNumberToObject(json, "action", act->action);
     cJSON *mutation = cJSON_CreateDoubleArray(act->mu, N_MU);
     cJSON_AddItemToObject(json, "mutation", mutation);

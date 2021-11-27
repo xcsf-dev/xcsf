@@ -237,8 +237,7 @@ neural_layer_noise_json(const struct Layer *l, const bool return_weights)
 {
     (void) return_weights;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("noise");
-    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddStringToObject(json, "type", "noise");
     cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
     cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
     cJSON_AddNumberToObject(json, "probability", l->probability);

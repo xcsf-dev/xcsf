@@ -263,13 +263,11 @@ pred_nlms_json(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct PredNLMS *pred = c->pred;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type;
     if (xcsf->pred->type == PRED_TYPE_NLMS_QUADRATIC) {
-        type = cJSON_CreateString("nlms-quadratic");
+        cJSON_AddStringToObject(json, "type", "nlms-quadratic");
     } else {
-        type = cJSON_CreateString("nlms-linear");
+        cJSON_AddStringToObject(json, "type", "nlms-linear");
     }
-    cJSON_AddItemToObject(json, "type", type);
     cJSON *weights = cJSON_CreateDoubleArray(pred->weights, pred->n_weights);
     cJSON_AddItemToObject(json, "weights", weights);
     cJSON_AddNumberToObject(json, "eta", pred->eta);

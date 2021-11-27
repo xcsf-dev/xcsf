@@ -232,8 +232,7 @@ act_neural_json(const struct XCSF *xcsf, const struct Cl *c)
     (void) xcsf;
     const struct ActNeural *act = c->act;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("neural");
-    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddStringToObject(json, "type", "neural");
     cJSON *network = cJSON_Parse(neural_json(&act->net, false));
     cJSON_AddItemToObject(json, "network", network);
     const char *string = cJSON_Print(json);

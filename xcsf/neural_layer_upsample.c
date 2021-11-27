@@ -253,8 +253,7 @@ neural_layer_upsample_json(const struct Layer *l, const bool return_weights)
 {
     (void) return_weights;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("upsample");
-    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddStringToObject(json, "type", "upsample");
     cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
     cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
     cJSON_AddNumberToObject(json, "height", l->height);

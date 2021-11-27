@@ -512,10 +512,9 @@ neural_layer_convolutional_json(const struct Layer *l,
                                 const bool return_weights)
 {
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("convolutional");
-    cJSON_AddItemToObject(json, "type", type);
-    cJSON *func = cJSON_CreateString(neural_activation_string(l->function));
-    cJSON_AddItemToObject(json, "activation", func);
+    cJSON_AddStringToObject(json, "type", "convolutional");
+    cJSON_AddStringToObject(json, "activation",
+                            neural_activation_string(l->function));
     cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
     cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
     cJSON_AddNumberToObject(json, "n_filters", l->n_filters);

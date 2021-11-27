@@ -275,13 +275,11 @@ pred_rls_json(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct PredRLS *pred = c->pred;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type;
     if (xcsf->pred->type == PRED_TYPE_RLS_QUADRATIC) {
-        type = cJSON_CreateString("rls-quadratic");
+        cJSON_AddStringToObject(json, "type", "rls-quadratic");
     } else {
-        type = cJSON_CreateString("rls-linear");
+        cJSON_AddStringToObject(json, "type", "rls-linear");
     }
-    cJSON_AddItemToObject(json, "type", type);
     cJSON *weights = cJSON_CreateDoubleArray(pred->weights, pred->n_weights);
     cJSON_AddItemToObject(json, "weights", weights);
     const char *string = cJSON_Print(json);

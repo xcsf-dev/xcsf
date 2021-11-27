@@ -586,12 +586,11 @@ const char *
 neural_layer_lstm_json(const struct Layer *l, const bool return_weights)
 {
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("lstm");
-    cJSON_AddItemToObject(json, "type", type);
-    cJSON *func = cJSON_CreateString(neural_activation_string(l->function));
-    cJSON_AddItemToObject(json, "activation", func);
-    func = cJSON_CreateString(neural_activation_string(l->recurrent_function));
-    cJSON_AddItemToObject(json, "recurrent_activation", func);
+    cJSON_AddStringToObject(json, "type", "lstm");
+    cJSON_AddStringToObject(json, "activation",
+                            neural_activation_string(l->function));
+    cJSON_AddStringToObject(json, "recurrent_activation",
+                            neural_activation_string(l->recurrent_function));
     cJSON_AddNumberToObject(json, "n_inputs", l->n_inputs);
     cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
     cJSON_AddNumberToObject(json, "eta", l->eta);

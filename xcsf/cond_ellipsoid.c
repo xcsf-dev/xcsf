@@ -340,8 +340,7 @@ cond_ellipsoid_json(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct CondEllipsoid *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("hyperellipsoid");
-    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddStringToObject(json, "type", "hyperellipsoid");
     cJSON *center = cJSON_CreateDoubleArray(cond->center, xcsf->x_dim);
     cJSON *spread = cJSON_CreateDoubleArray(cond->spread, xcsf->x_dim);
     cJSON *mutation = cJSON_CreateDoubleArray(cond->mu, N_MU);

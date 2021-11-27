@@ -226,8 +226,7 @@ cond_dummy_json(const struct XCSF *xcsf, const struct Cl *c)
     (void) xcsf;
     (void) c;
     cJSON *json = cJSON_CreateObject();
-    cJSON *type = cJSON_CreateString("dummy");
-    cJSON_AddItemToObject(json, "type", type);
+    cJSON_AddStringToObject(json, "type", "dummy");
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
