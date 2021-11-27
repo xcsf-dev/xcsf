@@ -208,16 +208,24 @@ layer_args_json_activation(cJSON *json, const struct ArgsLayer *args)
  * @brief Adds layer scaling parameters to a json object.
  * @param [in,out] json cJSON object.
  * @param [in] args The layer parameters to print.
+ * @return Whether to move to the next layer.
  */
-static void
+static bool
 layer_args_json_scale(cJSON *json, const struct ArgsLayer *args)
 {
+    bool cont = false;
     if (args->type == NOISE || args->type == DROPOUT) {
         cJSON_AddNumberToObject(json, "probability", args->probability);
+        cont = true;
     }
     if (args->type == NOISE || args->type == SOFTMAX) {
         cJSON_AddNumberToObject(json, "scale", args->scale);
+        cont = true;
     }
+    if (args->type == MAXPOOL) {
+        cont = true;
+    }
+    return cont;
 }
 
 /**
@@ -237,18 +245,20 @@ layer_args_json(struct ArgsLayer *args)
     for (const struct ArgsLayer *a = args; a != NULL; a = a->next) {
         char name[256];
         snprintf(name, 256, "layer_%d", cnt);
+        ++cnt;
         cJSON *l = cJSON_CreateObject();
         cJSON_AddItemToObject(json, name, l);
         cJSON_AddStringToObject(l, "type", layer_type_as_string(a->type));
         layer_args_json_activation(l, a);
         layer_args_json_inputs(l, a);
-        layer_args_json_scale(l, a);
+        if (layer_args_json_scale(l, a)) {
+            continue;
+        }
         if (a->n_init > 0) {
             cJSON_AddNumberToObject(l, "n_init", a->n_init);
         }
         layer_args_json_evo(l, a);
         layer_args_json_sgd(l, a);
-        ++cnt;
     }
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);
