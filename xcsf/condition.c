@@ -242,7 +242,7 @@ cond_param_defaults(struct XCSF *xcsf)
  * @return String encoded in json format.
  */
 static const char *
-cond_param_json_ternary(const struct XCSF *xcsf)
+cond_param_json_export_ternary(const struct XCSF *xcsf)
 {
     const struct ArgsCond *cond = xcsf->cond;
     cJSON *json = cJSON_CreateObject();
@@ -259,7 +259,7 @@ cond_param_json_ternary(const struct XCSF *xcsf)
  * @return String encoded in json format.
  */
 static const char *
-cond_param_json_csr(const struct XCSF *xcsf)
+cond_param_json_export_csr(const struct XCSF *xcsf)
 {
     const struct ArgsCond *cond = xcsf->cond;
     cJSON *json = cJSON_CreateObject();
@@ -278,7 +278,7 @@ cond_param_json_csr(const struct XCSF *xcsf)
  * @return String encoded in json format.
  */
 const char *
-cond_param_json(const struct XCSF *xcsf)
+cond_param_json_export(const struct XCSF *xcsf)
 {
     const struct ArgsCond *cond = xcsf->cond;
     cJSON *json = cJSON_CreateObject();
@@ -286,23 +286,23 @@ cond_param_json(const struct XCSF *xcsf)
     cJSON *params = NULL;
     switch (cond->type) {
         case COND_TYPE_TERNARY:
-            params = cJSON_Parse(cond_param_json_ternary(xcsf));
+            params = cJSON_Parse(cond_param_json_export_ternary(xcsf));
             break;
         case COND_TYPE_HYPERELLIPSOID:
         case COND_TYPE_HYPERRECTANGLE:
-            params = cJSON_Parse(cond_param_json_csr(xcsf));
+            params = cJSON_Parse(cond_param_json_export_csr(xcsf));
             break;
         case COND_TYPE_GP:
-            params = cJSON_Parse(tree_args_json(xcsf->cond->targs));
+            params = cJSON_Parse(tree_args_json_export(xcsf->cond->targs));
             break;
         case COND_TYPE_DGP:
         case RULE_TYPE_DGP:
-            params = cJSON_Parse(graph_args_json(xcsf->cond->dargs));
+            params = cJSON_Parse(graph_args_json_export(xcsf->cond->dargs));
             break;
         case COND_TYPE_NEURAL:
         case RULE_TYPE_NEURAL:
         case RULE_TYPE_NETWORK:
-            params = cJSON_Parse(layer_args_json(xcsf->cond->largs));
+            params = cJSON_Parse(layer_args_json_export(xcsf->cond->largs));
             break;
         default:
             break;

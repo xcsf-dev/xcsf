@@ -134,14 +134,14 @@ action_param_defaults(struct XCSF *xcsf)
  * @return String encoded in json format.
  */
 const char *
-action_param_json(const struct XCSF *xcsf)
+action_param_json_export(const struct XCSF *xcsf)
 {
     const struct ArgsAct *act = xcsf->act;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", action_type_as_string(act->type));
     cJSON *params = NULL;
     if (xcsf->act->type == ACT_TYPE_NEURAL) {
-        params = cJSON_Parse(layer_args_json(xcsf->act->largs));
+        params = cJSON_Parse(layer_args_json_export(xcsf->act->largs));
     }
     if (params != NULL) {
         cJSON_AddItemToObject(json, "args", params);

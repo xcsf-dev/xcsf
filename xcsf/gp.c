@@ -392,7 +392,7 @@ tree_args_free(struct ArgsGPTree *args)
  * @return String encoded in json format.
  */
 const char *
-tree_args_json(const struct ArgsGPTree *args)
+tree_args_json_export(const struct ArgsGPTree *args)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON_AddNumberToObject(json, "min_constant", args->min);

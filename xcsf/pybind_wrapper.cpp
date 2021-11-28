@@ -230,7 +230,7 @@ class XCS
     const char *
     json_parameters()
     {
-        return param_json(&xcs);
+        return param_json_export(&xcs);
     }
 
     /* Reinforcement learning */

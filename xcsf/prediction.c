@@ -168,7 +168,7 @@ pred_param_defaults(struct XCSF *xcsf)
  * @return String encoded in json format.
  */
 static const char *
-pred_param_json_nlms(const struct XCSF *xcsf)
+pred_param_json_export_nlms(const struct XCSF *xcsf)
 {
     const struct ArgsPred *pred = xcsf->pred;
     cJSON *json = cJSON_CreateObject();
@@ -189,7 +189,7 @@ pred_param_json_nlms(const struct XCSF *xcsf)
  * @return String encoded in json format.
  */
 static const char *
-pred_param_json_rls(const struct XCSF *xcsf)
+pred_param_json_export_rls(const struct XCSF *xcsf)
 {
     const struct ArgsPred *pred = xcsf->pred;
     cJSON *json = cJSON_CreateObject();
@@ -207,7 +207,7 @@ pred_param_json_rls(const struct XCSF *xcsf)
  * @return String encoded in json format.
  */
 const char *
-pred_param_json(const struct XCSF *xcsf)
+pred_param_json_export(const struct XCSF *xcsf)
 {
     const struct ArgsPred *pred = xcsf->pred;
     cJSON *json = cJSON_CreateObject();
@@ -217,14 +217,14 @@ pred_param_json(const struct XCSF *xcsf)
     switch (pred->type) {
         case PRED_TYPE_NLMS_LINEAR:
         case PRED_TYPE_NLMS_QUADRATIC:
-            params = cJSON_Parse(pred_param_json_nlms(xcsf));
+            params = cJSON_Parse(pred_param_json_export_nlms(xcsf));
             break;
         case PRED_TYPE_RLS_LINEAR:
         case PRED_TYPE_RLS_QUADRATIC:
-            params = cJSON_Parse(pred_param_json_rls(xcsf));
+            params = cJSON_Parse(pred_param_json_export_rls(xcsf));
             break;
         case PRED_TYPE_NEURAL:
-            params = cJSON_Parse(layer_args_json(xcsf->pred->largs));
+            params = cJSON_Parse(layer_args_json_export(xcsf->pred->largs));
             break;
         default:
             break;

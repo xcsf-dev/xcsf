@@ -55,7 +55,7 @@ void
 action_param_free(struct XCSF *xcsf);
 
 const char *
-action_param_json(const struct XCSF *xcsf);
+action_param_json_export(const struct XCSF *xcsf);
 
 size_t
 action_param_save(const struct XCSF *xcsf, FILE *fp);

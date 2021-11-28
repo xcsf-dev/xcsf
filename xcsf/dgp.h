@@ -96,7 +96,7 @@ void
 graph_args_init(struct ArgsDGP *args);
 
 const char *
-graph_args_json(const struct ArgsDGP *args);
+graph_args_json_export(const struct ArgsDGP *args);
 
 size_t
 graph_args_save(const struct ArgsDGP *args, FILE *fp);

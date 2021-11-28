@@ -63,7 +63,7 @@ struct ArgsLayer *
 layer_args_tail(struct ArgsLayer *head);
 
 const char *
-layer_args_json(struct ArgsLayer *args);
+layer_args_json_export(struct ArgsLayer *args);
 
 void
 layer_args_free(struct ArgsLayer **largs);

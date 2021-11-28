@@ -460,7 +460,7 @@ graph_args_init(struct ArgsDGP *args)
  * @return String encoded in json format.
  */
 const char *
-graph_args_json(const struct ArgsDGP *args)
+graph_args_json_export(const struct ArgsDGP *args)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON_AddNumberToObject(json, "max_k", args->max_k);

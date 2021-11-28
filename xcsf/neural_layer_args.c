@@ -112,7 +112,7 @@ layer_args_copy(const struct ArgsLayer *src)
  * @param [in] args The layer parameters.
  */
 static void
-layer_args_json_inputs(cJSON *json, const struct ArgsLayer *args)
+layer_args_json_export_inputs(cJSON *json, const struct ArgsLayer *args)
 {
     if (layer_receives_images(args->type)) {
         if (args->height > 0) {
@@ -144,7 +144,7 @@ layer_args_json_inputs(cJSON *json, const struct ArgsLayer *args)
  * @param [in] args The layer parameters to print.
  */
 static void
-layer_args_json_sgd(cJSON *json, const struct ArgsLayer *args)
+layer_args_json_export_sgd(cJSON *json, const struct ArgsLayer *args)
 {
     cJSON_AddBoolToObject(json, "sgd_weights", args->sgd_weights);
     if (args->sgd_weights) {
@@ -164,7 +164,7 @@ layer_args_json_sgd(cJSON *json, const struct ArgsLayer *args)
  * @param [in] args The layer parameters to print.
  */
 static void
-layer_args_json_evo(cJSON *json, const struct ArgsLayer *args)
+layer_args_json_export_evo(cJSON *json, const struct ArgsLayer *args)
 {
     cJSON_AddBoolToObject(json, "evolve_weights", args->evolve_weights);
     cJSON_AddBoolToObject(json, "evolve_functions", args->evolve_functions);
@@ -182,7 +182,7 @@ layer_args_json_evo(cJSON *json, const struct ArgsLayer *args)
  * @param [in] args The layer parameters.
  */
 static void
-layer_args_json_activation(cJSON *json, const struct ArgsLayer *args)
+layer_args_json_export_activation(cJSON *json, const struct ArgsLayer *args)
 {
     switch (args->type) {
         case AVGPOOL:
@@ -211,7 +211,7 @@ layer_args_json_activation(cJSON *json, const struct ArgsLayer *args)
  * @return Whether to move to the next layer.
  */
 static bool
-layer_args_json_scale(cJSON *json, const struct ArgsLayer *args)
+layer_args_json_export_scale(cJSON *json, const struct ArgsLayer *args)
 {
     bool cont = false;
     if (args->type == NOISE || args->type == DROPOUT) {
@@ -234,7 +234,7 @@ layer_args_json_scale(cJSON *json, const struct ArgsLayer *args)
  * @return String encoded in json format.
  */
 const char *
-layer_args_json(struct ArgsLayer *args)
+layer_args_json_export(struct ArgsLayer *args)
 {
     struct Net net; // create a temporary network to parse inputs
     neural_init(&net);
@@ -249,16 +249,16 @@ layer_args_json(struct ArgsLayer *args)
         cJSON *l = cJSON_CreateObject();
         cJSON_AddItemToObject(json, name, l);
         cJSON_AddStringToObject(l, "type", layer_type_as_string(a->type));
-        layer_args_json_activation(l, a);
-        layer_args_json_inputs(l, a);
-        if (layer_args_json_scale(l, a)) {
+        layer_args_json_export_activation(l, a);
+        layer_args_json_export_inputs(l, a);
+        if (layer_args_json_export_scale(l, a)) {
             continue;
         }
         if (a->n_init > 0) {
             cJSON_AddNumberToObject(l, "n_init", a->n_init);
         }
-        layer_args_json_evo(l, a);
-        layer_args_json_sgd(l, a);
+        layer_args_json_export_evo(l, a);
+        layer_args_json_export_sgd(l, a);
     }
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);

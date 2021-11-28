@@ -102,12 +102,15 @@ param_free(struct XCSF *xcsf)
  * @return String encoded in json format.
  */
 const char *
-param_json(const struct XCSF *xcsf)
+param_json_export(const struct XCSF *xcsf)
 {
     char v[256];
     snprintf(v, 256, "%d.%d.%d", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "version", v);
+    cJSON_AddNumberToObject(json, "x_dim", xcsf->x_dim);
+    cJSON_AddNumberToObject(json, "y_dim", xcsf->y_dim);
+    cJSON_AddNumberToObject(json, "n_actions", xcsf->n_actions);
     cJSON_AddNumberToObject(json, "omp_num_threads", xcsf->OMP_NUM_THREADS);
     cJSON_AddBoolToObject(json, "pop_init", xcsf->POP_INIT);
     cJSON_AddNumberToObject(json, "max_trials", xcsf->MAX_TRIALS);
@@ -137,7 +140,7 @@ param_json(const struct XCSF *xcsf)
     cJSON_AddNumberToObject(json, "m_probation", xcsf->M_PROBATION);
     cJSON_AddBoolToObject(json, "stateful", xcsf->STATEFUL);
     cJSON_AddBoolToObject(json, "compaction", xcsf->COMPACTION);
-    cJSON_AddItemToObject(json, "ea", cJSON_Parse(ea_param_json(xcsf)));
+    cJSON_AddItemToObject(json, "ea", cJSON_Parse(ea_param_json_export(xcsf)));
     switch (xcsf->cond->type) {
         case RULE_TYPE_DGP:
         case RULE_TYPE_NEURAL:
@@ -145,14 +148,14 @@ param_json(const struct XCSF *xcsf)
             break;
         default:
             if (xcsf->n_actions > 1) {
-                cJSON *act_params = cJSON_Parse(action_param_json(xcsf));
+                cJSON *act_params = cJSON_Parse(action_param_json_export(xcsf));
                 cJSON_AddItemToObject(json, "action", act_params);
             }
             break;
     }
-    cJSON *cond_params = cJSON_Parse(cond_param_json(xcsf));
+    cJSON *cond_params = cJSON_Parse(cond_param_json_export(xcsf));
     cJSON_AddItemToObject(json, "condition", cond_params);
-    cJSON *pred_params = cJSON_Parse(pred_param_json(xcsf));
+    cJSON *pred_params = cJSON_Parse(pred_param_json_export(xcsf));
     cJSON_AddItemToObject(json, "prediction", pred_params);
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);
@@ -166,7 +169,7 @@ param_json(const struct XCSF *xcsf)
 void
 param_print(const struct XCSF *xcsf)
 {
-    printf("%s\n", param_json(xcsf));
+    printf("%s\n", param_json_export(xcsf));
 }
 
 /**

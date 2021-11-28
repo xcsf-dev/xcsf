@@ -79,7 +79,7 @@ void
 cond_param_free(struct XCSF *xcsf);
 
 const char *
-cond_param_json(const struct XCSF *xcsf);
+cond_param_json_export(const struct XCSF *xcsf);
 
 size_t
 cond_param_save(const struct XCSF *xcsf, FILE *fp);

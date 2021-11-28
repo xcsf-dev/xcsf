@@ -53,7 +53,7 @@ void
 ea_param_defaults(struct XCSF *xcsf);
 
 const char *
-ea_param_json(const struct XCSF *xcsf);
+ea_param_json_export(const struct XCSF *xcsf);
 
 size_t
 ea_param_save(const struct XCSF *xcsf, FILE *fp);

@@ -27,7 +27,7 @@
 #include "xcsf.h"
 
 const char *
-param_json(const struct XCSF *xcsf);
+param_json_export(const struct XCSF *xcsf);
 
 void
 param_free(struct XCSF *xcsf);

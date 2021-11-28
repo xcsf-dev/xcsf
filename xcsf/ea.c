@@ -253,7 +253,7 @@ ea_param_defaults(struct XCSF *xcsf)
  * @return String encoded in json format.
  */
 const char *
-ea_param_json(const struct XCSF *xcsf)
+ea_param_json_export(const struct XCSF *xcsf)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "select_type",

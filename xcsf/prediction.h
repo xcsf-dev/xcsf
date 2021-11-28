@@ -72,7 +72,7 @@ void
 pred_param_free(struct XCSF *xcsf);
 
 const char *
-pred_param_json(const struct XCSF *xcsf);
+pred_param_json_export(const struct XCSF *xcsf);
 
 void
 pred_transform_input(const struct XCSF *xcsf, const double *x, const double X0,
