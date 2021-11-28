@@ -67,7 +67,8 @@ void
 neural_layer_noise_resize(struct Layer *l, const struct Layer *prev);
 
 const char *
-neural_layer_noise_json(const struct Layer *l, const bool return_weights);
+neural_layer_noise_json_export(const struct Layer *l,
+                               const bool return_weights);
 
 /**
  * @brief Neural Gaussian noise layer implemented functions.
@@ -79,5 +80,5 @@ static struct LayerVtbl const layer_noise_vtbl = {
     &neural_layer_noise_print,    &neural_layer_noise_update,
     &neural_layer_noise_backward, &neural_layer_noise_forward,
     &neural_layer_noise_output,   &neural_layer_noise_save,
-    &neural_layer_noise_load,     &neural_layer_noise_json
+    &neural_layer_noise_load,     &neural_layer_noise_json_export
 };

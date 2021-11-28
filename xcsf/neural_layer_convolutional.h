@@ -69,18 +69,25 @@ void
 neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev);
 
 const char *
-neural_layer_convolutional_json(const struct Layer *l,
-                                const bool return_weights);
+neural_layer_convolutional_json_export(const struct Layer *l,
+                                       const bool return_weights);
 
 /**
  * @brief Neural convolutional layer implemented functions.
  */
 static struct LayerVtbl const layer_convolutional_vtbl = {
-    &neural_layer_convolutional_init,     &neural_layer_convolutional_mutate,
-    &neural_layer_convolutional_resize,   &neural_layer_convolutional_copy,
-    &neural_layer_convolutional_free,     &neural_layer_convolutional_rand,
-    &neural_layer_convolutional_print,    &neural_layer_convolutional_update,
-    &neural_layer_convolutional_backward, &neural_layer_convolutional_forward,
-    &neural_layer_convolutional_output,   &neural_layer_convolutional_save,
-    &neural_layer_convolutional_load,     &neural_layer_convolutional_json
+    &neural_layer_convolutional_init,
+    &neural_layer_convolutional_mutate,
+    &neural_layer_convolutional_resize,
+    &neural_layer_convolutional_copy,
+    &neural_layer_convolutional_free,
+    &neural_layer_convolutional_rand,
+    &neural_layer_convolutional_print,
+    &neural_layer_convolutional_update,
+    &neural_layer_convolutional_backward,
+    &neural_layer_convolutional_forward,
+    &neural_layer_convolutional_output,
+    &neural_layer_convolutional_save,
+    &neural_layer_convolutional_load,
+    &neural_layer_convolutional_json_export
 };

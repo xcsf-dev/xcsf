@@ -102,7 +102,8 @@ struct PredVtbl {
     size_t (*pred_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                              FILE *fp);
     size_t (*pred_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
-    const char *(*pred_impl_json)(const struct XCSF *xcsf, const struct Cl *c);
+    const char *(*pred_impl_json_export)(const struct XCSF *xcsf,
+                                         const struct Cl *c);
 };
 
 /**
@@ -248,9 +249,9 @@ pred_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
  * @return String encoded in json format.
  */
 static inline const char *
-pred_json(const struct XCSF *xcsf, const struct Cl *c)
+pred_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
-    return (*c->pred_vptr->pred_impl_json)(xcsf, c);
+    return (*c->pred_vptr->pred_impl_json_export)(xcsf, c);
 }
 
 /* parameter setters */

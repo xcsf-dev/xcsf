@@ -216,7 +216,7 @@ tree_string(const struct GPTree *gp, const struct ArgsGPTree *args, int pos,
  * @return String encoded in json format.
  */
 const char *
-tree_json(const struct GPTree *gp, const struct ArgsGPTree *args)
+tree_json_export(const struct GPTree *gp, const struct ArgsGPTree *args)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON *tree = cJSON_CreateArray();
@@ -237,7 +237,7 @@ tree_json(const struct GPTree *gp, const struct ArgsGPTree *args)
 void
 tree_print(const struct GPTree *gp, const struct ArgsGPTree *args)
 {
-    printf("%s\n", tree_json(gp, args));
+    printf("%s\n", tree_json_export(gp, args));
 }
 
 /**

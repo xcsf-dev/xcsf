@@ -394,7 +394,7 @@ neural_outputs(const struct Net *net)
 void
 neural_print(const struct Net *net, const bool print_weights)
 {
-    printf("%s\n", neural_json(net, print_weights));
+    printf("%s\n", neural_json_export(net, print_weights));
 }
 
 /**
@@ -404,14 +404,14 @@ neural_print(const struct Net *net, const bool print_weights)
  * @return String encoded in json format.
  */
 const char *
-neural_json(const struct Net *net, const bool return_weights)
+neural_json_export(const struct Net *net, const bool return_weights)
 {
     cJSON *json = cJSON_CreateObject();
     const struct Llist *iter = net->tail;
     int i = 0;
     char layer_name[256];
     while (iter != NULL) {
-        const char *str = layer_json(iter->layer, return_weights);
+        const char *str = layer_json_export(iter->layer, return_weights);
         cJSON *layer = cJSON_Parse(str);
         snprintf(layer_name, 256, "layer_%d", i);
         cJSON_AddItemToObject(json, layer_name, layer);

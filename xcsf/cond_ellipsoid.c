@@ -273,7 +273,7 @@ cond_ellipsoid_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_ellipsoid_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_ellipsoid_json(xcsf, c));
+    printf("%s\n", cond_ellipsoid_json_export(xcsf, c));
 }
 
 /**
@@ -336,7 +336,7 @@ cond_ellipsoid_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @return String encoded in json format.
  */
 const char *
-cond_ellipsoid_json(const struct XCSF *xcsf, const struct Cl *c)
+cond_ellipsoid_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct CondEllipsoid *cond = c->cond;
     cJSON *json = cJSON_CreateObject();

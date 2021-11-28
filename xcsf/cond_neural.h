@@ -89,15 +89,15 @@ int
 cond_neural_connections(const struct XCSF *xcsf, const struct Cl *c, int layer);
 
 const char *
-cond_neural_json(const struct XCSF *xcsf, const struct Cl *c);
+cond_neural_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**
  * @brief Multi-layer perceptron neural network condition implemented functions.
  */
 static struct CondVtbl const cond_neural_vtbl = {
-    &cond_neural_crossover, &cond_neural_general, &cond_neural_match,
-    &cond_neural_mutate,    &cond_neural_copy,    &cond_neural_cover,
-    &cond_neural_free,      &cond_neural_init,    &cond_neural_print,
-    &cond_neural_update,    &cond_neural_size,    &cond_neural_save,
-    &cond_neural_load,      &cond_neural_json
+    &cond_neural_crossover, &cond_neural_general,    &cond_neural_match,
+    &cond_neural_mutate,    &cond_neural_copy,       &cond_neural_cover,
+    &cond_neural_free,      &cond_neural_init,       &cond_neural_print,
+    &cond_neural_update,    &cond_neural_size,       &cond_neural_save,
+    &cond_neural_load,      &cond_neural_json_export
 };

@@ -181,7 +181,7 @@ cond_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_neural_json(xcsf, c));
+    printf("%s\n", cond_neural_json_export(xcsf, c));
 }
 
 /**
@@ -307,13 +307,13 @@ cond_neural_layers(const struct XCSF *xcsf, const struct Cl *c)
  * @return String encoded in json format.
  */
 const char *
-cond_neural_json(const struct XCSF *xcsf, const struct Cl *c)
+cond_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     const struct CondNeural *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "neural");
-    cJSON *network = cJSON_Parse(neural_json(&cond->net, false));
+    cJSON *network = cJSON_Parse(neural_json_export(&cond->net, false));
     cJSON_AddItemToObject(json, "network", network);
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);

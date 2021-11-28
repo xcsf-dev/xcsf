@@ -61,7 +61,7 @@ void
 tree_print(const struct GPTree *gp, const struct ArgsGPTree *args);
 
 const char *
-tree_json(const struct GPTree *gp, const struct ArgsGPTree *args);
+tree_json_export(const struct GPTree *gp, const struct ArgsGPTree *args);
 
 double
 tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x);

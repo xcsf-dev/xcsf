@@ -66,7 +66,8 @@ void
 neural_layer_softmax_resize(struct Layer *l, const struct Layer *prev);
 
 const char *
-neural_layer_softmax_json(const struct Layer *l, const bool return_weights);
+neural_layer_softmax_json_export(const struct Layer *l,
+                                 const bool return_weights);
 
 /**
  * @brief Neural softmax layer implemented functions.
@@ -78,5 +79,5 @@ static struct LayerVtbl const layer_softmax_vtbl = {
     &neural_layer_softmax_print,    &neural_layer_softmax_update,
     &neural_layer_softmax_backward, &neural_layer_softmax_forward,
     &neural_layer_softmax_output,   &neural_layer_softmax_save,
-    &neural_layer_softmax_load,     &neural_layer_softmax_json
+    &neural_layer_softmax_load,     &neural_layer_softmax_json_export
 };

@@ -119,7 +119,7 @@ rule_dgp_cond_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 rule_dgp_cond_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", rule_dgp_cond_json(xcsf, c));
+    printf("%s\n", rule_dgp_cond_json_export(xcsf, c));
 }
 
 double
@@ -150,13 +150,13 @@ rule_dgp_cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 }
 
 const char *
-rule_dgp_cond_json(const struct XCSF *xcsf, const struct Cl *c)
+rule_dgp_cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     const struct RuleDGP *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "rule-dgp");
-    cJSON *graph = cJSON_Parse(graph_json(&cond->dgp));
+    cJSON *graph = cJSON_Parse(graph_json_export(&cond->dgp));
     cJSON_AddItemToObject(json, "graph", graph);
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);
@@ -191,7 +191,7 @@ rule_dgp_act_copy(const struct XCSF *xcsf, struct Cl *dest,
 void
 rule_dgp_act_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", rule_dgp_act_json(xcsf, c));
+    printf("%s\n", rule_dgp_act_json_export(xcsf, c));
 }
 
 void
@@ -279,7 +279,7 @@ rule_dgp_act_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 }
 
 const char *
-rule_dgp_act_json(const struct XCSF *xcsf, const struct Cl *c)
+rule_dgp_act_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     (void) c;

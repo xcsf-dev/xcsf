@@ -81,15 +81,17 @@ size_t
 cond_ellipsoid_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 const char *
-cond_ellipsoid_json(const struct XCSF *xcsf, const struct Cl *c);
+cond_ellipsoid_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**
  * @brief Hyperellipsoid condition implemented functions.
  */
 static struct CondVtbl const cond_ellipsoid_vtbl = {
-    &cond_ellipsoid_crossover, &cond_ellipsoid_general, &cond_ellipsoid_match,
-    &cond_ellipsoid_mutate,    &cond_ellipsoid_copy,    &cond_ellipsoid_cover,
-    &cond_ellipsoid_free,      &cond_ellipsoid_init,    &cond_ellipsoid_print,
-    &cond_ellipsoid_update,    &cond_ellipsoid_size,    &cond_ellipsoid_save,
-    &cond_ellipsoid_load,      &cond_ellipsoid_json
+    &cond_ellipsoid_crossover, &cond_ellipsoid_general,
+    &cond_ellipsoid_match,     &cond_ellipsoid_mutate,
+    &cond_ellipsoid_copy,      &cond_ellipsoid_cover,
+    &cond_ellipsoid_free,      &cond_ellipsoid_init,
+    &cond_ellipsoid_print,     &cond_ellipsoid_update,
+    &cond_ellipsoid_size,      &cond_ellipsoid_save,
+    &cond_ellipsoid_load,      &cond_ellipsoid_json_export
 };

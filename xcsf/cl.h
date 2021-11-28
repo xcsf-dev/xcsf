@@ -103,5 +103,6 @@ cl_update_fit(const struct XCSF *xcsf, struct Cl *c, const double acc_sum,
               const double acc);
 
 const char *
-cl_json(const struct XCSF *xcsf, const struct Cl *c, const bool return_cond,
-        const bool return_act, const bool return_pred);
+cl_json_export(const struct XCSF *xcsf, const struct Cl *c,
+               const bool return_cond, const bool return_act,
+               const bool return_pred);

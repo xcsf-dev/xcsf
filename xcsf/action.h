@@ -87,7 +87,8 @@ struct ActVtbl {
     size_t (*act_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                             FILE *fp);
     size_t (*act_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
-    const char *(*act_impl_json)(const struct XCSF *xcsf, const struct Cl *c);
+    const char *(*act_impl_json_export)(const struct XCSF *xcsf,
+                                        const struct Cl *c);
 };
 
 /**
@@ -247,9 +248,9 @@ act_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
  * @return String encoded in json format.
  */
 static inline const char *
-act_json(const struct XCSF *xcsf, const struct Cl *c)
+act_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
-    return (*c->act_vptr->act_impl_json)(xcsf, c);
+    return (*c->act_vptr->act_impl_json_export)(xcsf, c);
 }
 
 /* parameter setters */

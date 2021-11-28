@@ -67,7 +67,8 @@ void
 neural_layer_upsample_resize(struct Layer *l, const struct Layer *prev);
 
 const char *
-neural_layer_upsample_json(const struct Layer *l, const bool return_weights);
+neural_layer_upsample_json_export(const struct Layer *l,
+                                  const bool return_weights);
 
 /**
  * @brief Neural upsampling layer implemented functions.
@@ -79,5 +80,5 @@ static struct LayerVtbl const layer_upsample_vtbl = {
     &neural_layer_upsample_print,    &neural_layer_upsample_update,
     &neural_layer_upsample_backward, &neural_layer_upsample_forward,
     &neural_layer_upsample_output,   &neural_layer_upsample_save,
-    &neural_layer_upsample_load,     &neural_layer_upsample_json
+    &neural_layer_upsample_load,     &neural_layer_upsample_json_export
 };

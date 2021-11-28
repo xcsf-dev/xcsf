@@ -81,7 +81,7 @@ size_t
 rule_neural_cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 const char *
-rule_neural_cond_json(const struct XCSF *xcsf, const struct Cl *c);
+rule_neural_cond_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**
  * @brief Neural network rule condition implemented functions.
@@ -93,7 +93,7 @@ static struct CondVtbl const rule_neural_cond_vtbl = {
     &rule_neural_cond_free,      &rule_neural_cond_init,
     &rule_neural_cond_print,     &rule_neural_cond_update,
     &rule_neural_cond_size,      &rule_neural_cond_save,
-    &rule_neural_cond_load,      &rule_neural_cond_json
+    &rule_neural_cond_load,      &rule_neural_cond_json_export
 };
 
 bool
@@ -139,17 +139,17 @@ size_t
 rule_neural_act_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 const char *
-rule_neural_act_json(const struct XCSF *xcsf, const struct Cl *c);
+rule_neural_act_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**
  * @brief Neural network rule action implemented functions.
  */
 static struct ActVtbl const rule_neural_act_vtbl = {
-    &rule_neural_act_general, &rule_neural_act_crossover,
-    &rule_neural_act_mutate,  &rule_neural_act_compute,
-    &rule_neural_act_copy,    &rule_neural_act_cover,
-    &rule_neural_act_free,    &rule_neural_act_init,
-    &rule_neural_act_print,   &rule_neural_act_update,
-    &rule_neural_act_save,    &rule_neural_act_load,
-    &rule_neural_act_json
+    &rule_neural_act_general,    &rule_neural_act_crossover,
+    &rule_neural_act_mutate,     &rule_neural_act_compute,
+    &rule_neural_act_copy,       &rule_neural_act_cover,
+    &rule_neural_act_free,       &rule_neural_act_init,
+    &rule_neural_act_print,      &rule_neural_act_update,
+    &rule_neural_act_save,       &rule_neural_act_load,
+    &rule_neural_act_json_export
 };

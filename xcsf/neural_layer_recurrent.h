@@ -67,7 +67,8 @@ void
 neural_layer_recurrent_resize(struct Layer *l, const struct Layer *prev);
 
 const char *
-neural_layer_recurrent_json(const struct Layer *l, const bool return_weights);
+neural_layer_recurrent_json_export(const struct Layer *l,
+                                   const bool return_weights);
 
 /**
  * @brief Neural recurrent layer implemented functions.
@@ -79,5 +80,5 @@ static struct LayerVtbl const layer_recurrent_vtbl = {
     &neural_layer_recurrent_print,    &neural_layer_recurrent_update,
     &neural_layer_recurrent_backward, &neural_layer_recurrent_forward,
     &neural_layer_recurrent_output,   &neural_layer_recurrent_save,
-    &neural_layer_recurrent_load,     &neural_layer_recurrent_json
+    &neural_layer_recurrent_load,     &neural_layer_recurrent_json_export
 };

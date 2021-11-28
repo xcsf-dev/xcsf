@@ -69,15 +69,15 @@ size_t
 cond_dummy_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 const char *
-cond_dummy_json(const struct XCSF *xcsf, const struct Cl *c);
+cond_dummy_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**
  * @brief Dummy condition implemented functions.
  */
 static struct CondVtbl const cond_dummy_vtbl = {
-    &cond_dummy_crossover, &cond_dummy_general, &cond_dummy_match,
-    &cond_dummy_mutate,    &cond_dummy_copy,    &cond_dummy_cover,
-    &cond_dummy_free,      &cond_dummy_init,    &cond_dummy_print,
-    &cond_dummy_update,    &cond_dummy_size,    &cond_dummy_save,
-    &cond_dummy_load,      &cond_dummy_json
+    &cond_dummy_crossover, &cond_dummy_general,    &cond_dummy_match,
+    &cond_dummy_mutate,    &cond_dummy_copy,       &cond_dummy_cover,
+    &cond_dummy_free,      &cond_dummy_init,       &cond_dummy_print,
+    &cond_dummy_update,    &cond_dummy_size,       &cond_dummy_save,
+    &cond_dummy_load,      &cond_dummy_json_export
 };

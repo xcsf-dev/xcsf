@@ -265,7 +265,7 @@ cond_rectangle_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_rectangle_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_rectangle_json(xcsf, c));
+    printf("%s\n", cond_rectangle_json_export(xcsf, c));
 }
 
 /**
@@ -328,7 +328,7 @@ cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @return String encoded in json format.
  */
 const char *
-cond_rectangle_json(const struct XCSF *xcsf, const struct Cl *c)
+cond_rectangle_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct CondRectangle *cond = c->cond;
     cJSON *json = cJSON_CreateObject();

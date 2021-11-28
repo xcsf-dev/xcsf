@@ -58,7 +58,7 @@ bool
 neural_mutate(const struct Net *net);
 
 const char *
-neural_json(const struct Net *net, const bool return_weights);
+neural_json_export(const struct Net *net, const bool return_weights);
 
 double
 neural_output(const struct Net *net, const int IDX);

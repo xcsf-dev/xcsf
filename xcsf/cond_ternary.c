@@ -262,7 +262,7 @@ cond_ternary_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_ternary_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_ternary_json(xcsf, c));
+    printf("%s\n", cond_ternary_json_export(xcsf, c));
 }
 
 /**
@@ -333,7 +333,7 @@ cond_ternary_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @return String encoded in json format.
  */
 const char *
-cond_ternary_json(const struct XCSF *xcsf, const struct Cl *c)
+cond_ternary_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     const struct CondTernary *cond = c->cond;

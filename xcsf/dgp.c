@@ -308,7 +308,7 @@ graph_update(const struct Graph *dgp, const double *inputs, const bool reset)
 void
 graph_print(const struct Graph *dgp)
 {
-    printf("%s\n", graph_json(dgp));
+    printf("%s\n", graph_json_export(dgp));
 }
 
 /**
@@ -317,7 +317,7 @@ graph_print(const struct Graph *dgp)
  * @return String encoded in json format.
  */
 const char *
-graph_json(const struct Graph *dgp)
+graph_json_export(const struct Graph *dgp)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON_AddNumberToObject(json, "n", dgp->n);

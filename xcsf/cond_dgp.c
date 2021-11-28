@@ -176,7 +176,7 @@ cond_dgp_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_dgp_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_dgp_json(xcsf, c));
+    printf("%s\n", cond_dgp_json_export(xcsf, c));
 }
 
 /**
@@ -233,13 +233,13 @@ cond_dgp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @return String encoded in json format.
  */
 const char *
-cond_dgp_json(const struct XCSF *xcsf, const struct Cl *c)
+cond_dgp_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     const struct CondDGP *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "dgp");
-    cJSON *graph = cJSON_Parse(graph_json(&cond->dgp));
+    cJSON *graph = cJSON_Parse(graph_json_export(&cond->dgp));
     cJSON_AddItemToObject(json, "graph", graph);
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);

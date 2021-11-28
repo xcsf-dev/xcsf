@@ -136,7 +136,7 @@ act_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 void
 act_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", act_neural_json(xcsf, c));
+    printf("%s\n", act_neural_json_export(xcsf, c));
 }
 
 /**
@@ -227,13 +227,13 @@ act_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @return String encoded in json format.
  */
 const char *
-act_neural_json(const struct XCSF *xcsf, const struct Cl *c)
+act_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     const struct ActNeural *act = c->act;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "neural");
-    cJSON *network = cJSON_Parse(neural_json(&act->net, false));
+    cJSON *network = cJSON_Parse(neural_json_export(&act->net, false));
     cJSON_AddItemToObject(json, "network", network);
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);

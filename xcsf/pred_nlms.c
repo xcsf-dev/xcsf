@@ -154,7 +154,7 @@ pred_nlms_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 void
 pred_nlms_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", pred_nlms_json(xcsf, c));
+    printf("%s\n", pred_nlms_json_export(xcsf, c));
 }
 
 /**
@@ -259,7 +259,7 @@ pred_nlms_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @return String encoded in json format.
  */
 const char *
-pred_nlms_json(const struct XCSF *xcsf, const struct Cl *c)
+pred_nlms_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct PredNLMS *pred = c->pred;
     cJSON *json = cJSON_CreateObject();

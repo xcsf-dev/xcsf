@@ -67,7 +67,8 @@ void
 neural_layer_connected_resize(struct Layer *l, const struct Layer *prev);
 
 const char *
-neural_layer_connected_json(const struct Layer *l, const bool return_weights);
+neural_layer_connected_json_export(const struct Layer *l,
+                                   const bool return_weights);
 
 /**
  * @brief Neural connected layer implemented functions.
@@ -79,5 +80,5 @@ static struct LayerVtbl const layer_connected_vtbl = {
     &neural_layer_connected_print,    &neural_layer_connected_update,
     &neural_layer_connected_backward, &neural_layer_connected_forward,
     &neural_layer_connected_output,   &neural_layer_connected_save,
-    &neural_layer_connected_load,     &neural_layer_connected_json
+    &neural_layer_connected_load,     &neural_layer_connected_json_export
 };

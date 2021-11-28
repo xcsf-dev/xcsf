@@ -214,11 +214,12 @@ class XCS
      * @return String encoded in json format.
      */
     const char *
-    json(const bool return_cond, const bool return_act, const bool return_pred)
+    json_export(const bool return_cond, const bool return_act,
+                const bool return_pred)
     {
         if (xcs.pset.list != NULL) {
-            return clset_json(&xcs, &xcs.pset, return_cond, return_act,
-                              return_pred);
+            return clset_json_export(&xcs, &xcs.pset, return_cond, return_act,
+                                     return_pred);
         }
         return "null";
     }
@@ -1514,6 +1515,6 @@ PYBIND11_MODULE(xcsf, m)
         .def("print_params", &XCS::print_params)
         .def("pred_expand", &XCS::pred_expand)
         .def("ae_to_classifier", &XCS::ae_to_classifier)
-        .def("json", &XCS::json)
+        .def("json", &XCS::json_export)
         .def("json_parameters", &XCS::json_parameters);
 }

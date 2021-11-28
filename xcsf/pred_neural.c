@@ -121,7 +121,7 @@ pred_neural_compute(const struct XCSF *xcsf, const struct Cl *c,
 void
 pred_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", pred_neural_json(xcsf, c));
+    printf("%s\n", pred_neural_json_export(xcsf, c));
 }
 
 /**
@@ -387,13 +387,13 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct Cl *c,
  * @return String encoded in json format.
  */
 const char *
-pred_neural_json(const struct XCSF *xcsf, const struct Cl *c)
+pred_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     const struct PredNeural *pred = c->pred;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "neural");
-    cJSON *network = cJSON_Parse(neural_json(&pred->net, false));
+    cJSON *network = cJSON_Parse(neural_json_export(&pred->net, false));
     cJSON_AddItemToObject(json, "network", network);
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);

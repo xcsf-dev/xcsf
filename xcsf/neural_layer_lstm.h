@@ -67,7 +67,7 @@ void
 neural_layer_lstm_resize(struct Layer *l, const struct Layer *prev);
 
 const char *
-neural_layer_lstm_json(const struct Layer *l, const bool return_weights);
+neural_layer_lstm_json_export(const struct Layer *l, const bool return_weights);
 
 /**
  * @brief Neural long short-term memory layer implemented functions.
@@ -79,5 +79,5 @@ static struct LayerVtbl const layer_lstm_vtbl = {
     &neural_layer_lstm_print,    &neural_layer_lstm_update,
     &neural_layer_lstm_backward, &neural_layer_lstm_forward,
     &neural_layer_lstm_output,   &neural_layer_lstm_save,
-    &neural_layer_lstm_load,     &neural_layer_lstm_json
+    &neural_layer_lstm_load,     &neural_layer_lstm_json_export
 };

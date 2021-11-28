@@ -180,7 +180,7 @@ cond_gp_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_gp_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_gp_json(xcsf, c));
+    printf("%s\n", cond_gp_json_export(xcsf, c));
 }
 
 /**
@@ -237,12 +237,12 @@ cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @return String encoded in json format.
  */
 const char *
-cond_gp_json(const struct XCSF *xcsf, const struct Cl *c)
+cond_gp_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct CondGP *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "tree-gp");
-    cJSON *tree = cJSON_Parse(tree_json(&cond->gp, xcsf->cond->targs));
+    cJSON *tree = cJSON_Parse(tree_json_export(&cond->gp, xcsf->cond->targs));
     cJSON_AddItemToObject(json, "tree", tree);
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);

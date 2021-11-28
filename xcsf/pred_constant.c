@@ -110,7 +110,7 @@ pred_constant_compute(const struct XCSF *xcsf, const struct Cl *c,
 void
 pred_constant_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", pred_constant_json(xcsf, c));
+    printf("%s\n", pred_constant_json_export(xcsf, c));
 }
 
 /**
@@ -196,7 +196,7 @@ pred_constant_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @return String encoded in json format.
  */
 const char *
-pred_constant_json(const struct XCSF *xcsf, const struct Cl *c)
+pred_constant_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "constant");
