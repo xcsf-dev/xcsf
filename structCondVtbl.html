@@ -130,6 +130,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:aa049ec8ad3bfcf88aecf4deb59c50434"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a24c8b144bd3fdf78e686b5b8203887"><td class="memItemLeft" align="right" valign="top">size_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCondVtbl.html#a8a24c8b144bd3fdf78e686b5b8203887">cond_impl_load</a> )(const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, FILE *fp)</td></tr>
 <tr class="separator:a8a24c8b144bd3fdf78e686b5b8203887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8340ce3ee93861f4c825c5b046dbf1e"><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCondVtbl.html#ac8340ce3ee93861f4c825c5b046dbf1e">cond_impl_json_export</a> )(const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="separator:ac8340ce3ee93861f4c825c5b046dbf1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Condition interface data structure. </p>
@@ -151,7 +153,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00102">102</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00228">cond_copy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00230">cond_copy()</a>.</p>
 
 </div>
 </div>
@@ -169,7 +171,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00104">104</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00240">cond_cover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00242">cond_cover()</a>.</p>
 
 </div>
 </div>
@@ -187,7 +189,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00095">95</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00177">cond_crossover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00179">cond_crossover()</a>.</p>
 
 </div>
 </div>
@@ -205,7 +207,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00106">106</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00251">cond_free()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00253">cond_free()</a>.</p>
 
 </div>
 </div>
@@ -223,7 +225,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00097">97</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00191">cond_general()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00193">cond_general()</a>.</p>
 
 </div>
 </div>
@@ -241,7 +243,25 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00107">107</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00262">cond_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00264">cond_init()</a>.</p>
+
+</div>
+</div>
+<a id="ac8340ce3ee93861f4c825c5b046dbf1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8340ce3ee93861f4c825c5b046dbf1e">&#9670;&nbsp;</a></span>cond_impl_json_export</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* CondVtbl::cond_impl_json_export) (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00115">115</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00287">cond_json_export()</a>.</p>
 
 </div>
 </div>
@@ -259,7 +279,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00114">114</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00138">cond_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00140">cond_load()</a>.</p>
 
 </div>
 </div>
@@ -277,7 +297,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00099">99</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00204">cond_match()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00206">cond_match()</a>.</p>
 
 </div>
 </div>
@@ -295,7 +315,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00101">101</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00216">cond_mutate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00218">cond_mutate()</a>.</p>
 
 </div>
 </div>
@@ -313,7 +333,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00108">108</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00273">cond_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00275">cond_print()</a>.</p>
 
 </div>
 </div>
@@ -331,7 +351,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00112">112</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00125">cond_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00127">cond_save()</a>.</p>
 
 </div>
 </div>
@@ -349,7 +369,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00111">111</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00150">cond_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00152">cond_size()</a>.</p>
 
 </div>
 </div>
@@ -367,7 +387,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="condition_8h_source.html#l00109">109</a> of file <a class="el" href="condition_8h_source.html">condition.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00163">cond_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8h_source.html#l00165">cond_update()</a>.</p>
 
 </div>
 </div>

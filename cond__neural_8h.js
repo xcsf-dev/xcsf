@@ -8,6 +8,7 @@ var cond__neural_8h =
     [ "cond_neural_free", "cond__neural_8h.html#a3007869b0307eac31742ebdcb88f2a5a", null ],
     [ "cond_neural_general", "cond__neural_8h.html#a03b9b5f94c8f2563a723d015fa42d719", null ],
     [ "cond_neural_init", "cond__neural_8h.html#a16f80af76361587e6da53dd21fa05b7b", null ],
+    [ "cond_neural_json_export", "cond__neural_8h.html#a963d4cd70d4cfdb8e35eac4bbdfd7d39", null ],
     [ "cond_neural_layers", "cond__neural_8h.html#a1f124131c4080c032a61d3a49bdefe20", null ],
     [ "cond_neural_load", "cond__neural_8h.html#a8decac2646ea64aba95cd8522d295c83", null ],
     [ "cond_neural_match", "cond__neural_8h.html#a431867aa5e420b58fde321b23762987c", null ],

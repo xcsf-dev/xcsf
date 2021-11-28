@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classXCS.html#a8be398df5d3f4333c9b0d19f48535609" target="_top" xlink:title="Returns the error using N random samples from the provided data.">
+<g id="a_node2"><a xlink:href="classXCS.html#a4bb9f3f8613abf7ba95837a03bbb931d" target="_top" xlink:title="Returns the error using N random samples from the provided data.">
 <polygon fill="none" stroke="black" points="0,-19.5 0,-38.5 68,-38.5 68,-19.5 0,-19.5"/>
 <text text-anchor="middle" x="34" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::score</text>
 </a>

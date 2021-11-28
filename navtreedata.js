@@ -48,16 +48,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "act__integer_8c.html",
-"classXCS.html#aa1b8668f5e51b9625c143a865715dee1",
-"cond__gp_8h.html#a9ca5031cdfd76b3da76bf6bb58cce32c",
-"dgp_8c.html#aee734e2659ea39d69c4fdd8f567ef63c",
-"globals_vars.html",
-"neural__layer_8h.html#a1114e14260b2089089e52a8b1a6ddf67",
-"neural__layer__lstm_8c.html#aa231e9e933f62d85cd3dab3f0f9fe765",
-"param_8c.html#aa8c87e81df977c35fe8c02cb0c59636f",
-"prediction_8h.html#aff5b8881c0841c5ce673956e5339bb8b",
-"structClist.html#ad909c9fc3a1d025ba35c31e11150fe74",
-"structXCSF.html#ab02d61d7acb7e4bddb3e8f3e4f56d019"
+"classXCS.html#a8c67042b503e901a1fc778b8332a5b19",
+"cond__gp_8c.html#a6e0236b6db83efa0e347bbcbad69413b",
+"dgp_8c.html#a49d4c90eb5704b9a3ff9f72f41d11395",
+"globals_func.html",
+"neural__activations_8h.html#af56cb9e9ea1f429b60042455a660a2a6",
+"neural__layer__dropout_8c.html#a981f6d214eb436c4ed6a9dc2f9114d85",
+"neural__layer__upsample_8h.html#a6a09f194b546261a7bab251b608d02b5",
+"prediction_8c.html#aa784fcce14bebce205bd26b8e6649e62",
+"structArgsGPTree.html#add43f132a2def19f7a4c22feb4912b55",
+"structPredVtbl.html#a3e6e32ca6f8c3e32758c760a39e717c5"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

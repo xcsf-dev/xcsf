@@ -1,6 +1,6 @@
 <map id="neural_layer_lstm_print" name="neural_layer_lstm_print">
-<area shape="rect" id="node1" title="Prints an LSTM layer." alt="" coords="5,56,161,83"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="247,5,330,32"/>
-<area shape="rect" id="node3" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="209,56,368,83"/>
-<area shape="rect" id="node4" href="$sam_8c.html#a9131a7c79bb813647604527b5b761af9" title="Prints mutation rates." alt="" coords="249,107,328,133"/>
+<area shape="rect" id="node1" title="Prints an LSTM layer." alt="" coords="5,31,161,57"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#aef595b2b531e5ef7e064c7fa312a176f" title="Returns a json formatted string representation of an LSTM layer." alt="" coords="209,23,364,65"/>
+<area shape="rect" id="node3" href="$neural__layer_8c.html#a76be9c80bef04ba1a799825d96526d6d" title="Returns a json formatted string representation of a layer&#39;s weights." alt="" coords="428,5,555,32"/>
+<area shape="rect" id="node4" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="412,56,571,83"/>
 </map>

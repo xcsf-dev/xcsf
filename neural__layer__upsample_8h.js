@@ -5,6 +5,7 @@ var neural__layer__upsample_8h =
     [ "neural_layer_upsample_forward", "neural__layer__upsample_8h.html#a6a09f194b546261a7bab251b608d02b5", null ],
     [ "neural_layer_upsample_free", "neural__layer__upsample_8h.html#a4b57e2faa924a34426421ee74dc7e854", null ],
     [ "neural_layer_upsample_init", "neural__layer__upsample_8h.html#aaac5547674e091e9c905cea0e58055f2", null ],
+    [ "neural_layer_upsample_json_export", "neural__layer__upsample_8h.html#a7f162941478c332902fcf4b69ace95ef", null ],
     [ "neural_layer_upsample_load", "neural__layer__upsample_8h.html#ab4b98af15404832cef591126b83fabc3", null ],
     [ "neural_layer_upsample_mutate", "neural__layer__upsample_8h.html#a7e86be054879307abd6d65098959ca96", null ],
     [ "neural_layer_upsample_output", "neural__layer__upsample_8h.html#a0d2bccb4d76e03385da3f84fe571e5a9", null ],

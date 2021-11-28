@@ -155,6 +155,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae977e3a6877399ab4be43387735a7ab5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__avgpool_8h.html#ae977e3a6877399ab4be43387735a7ab5">neural_layer_avgpool_resize</a> (struct <a class="el" href="structLayer.html">Layer</a> *l, const struct <a class="el" href="structLayer.html">Layer</a> *prev)</td></tr>
 <tr class="memdesc:ae977e3a6877399ab4be43387735a7ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes an avg pooling layer if the previous layer has changed size.  <a href="neural__layer__avgpool_8h.html#ae977e3a6877399ab4be43387735a7ab5">More...</a><br /></td></tr>
 <tr class="separator:ae977e3a6877399ab4be43387735a7ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a486202ccbd45c1b6fc792c487b062ac7"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__avgpool_8h.html#a486202ccbd45c1b6fc792c487b062ac7">neural_layer_avgpool_json</a> (const struct <a class="el" href="structLayer.html">Layer</a> *l, const bool return_weights)</td></tr>
+<tr class="memdesc:a486202ccbd45c1b6fc792c487b062ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of an average pool layer.  <a href="neural__layer__avgpool_8h.html#a486202ccbd45c1b6fc792c487b062ac7">More...</a><br /></td></tr>
+<tr class="separator:a486202ccbd45c1b6fc792c487b062ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -166,7 +169,7 @@ Variables</h2></td></tr>
 <div class="textblock"><p>An implementation of an average pooling layer. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2016&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="neural__layer__avgpool_8h_source.html">neural_layer_avgpool.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -252,7 +255,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__avgpool_8c_source.html#l00089">89</a> of file <a class="el" href="neural__layer__avgpool_8c_source.html">neural_layer_avgpool.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00037">AVGPOOL</a>, <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8c_source.html#l00396">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00100">Layer::layer_vptr</a>, <a class="el" href="neural__layer__avgpool_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00037">AVGPOOL</a>, <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8c_source.html#l00411">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00100">Layer::layer_vptr</a>, <a class="el" href="neural__layer__avgpool_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -385,6 +388,55 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a486202ccbd45c1b6fc792c487b062ac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a486202ccbd45c1b6fc792c487b062ac7">&#9670;&nbsp;</a></span>neural_layer_avgpool_json()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* neural_layer_avgpool_json </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structLayer.html">Layer</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>return_weights</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of an average pool layer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">l</td><td>The layer to return. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">return_weights</td><td>Whether to return the values of weights and biases. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="neural__layer__avgpool_8c_source.html#l00240">240</a> of file <a class="el" href="neural__layer__avgpool_8c_source.html">neural_layer_avgpool.c</a>.</p>
+
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="neural__layer__avgpool_8c_source.html#l00226">neural_layer_avgpool_print()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__avgpool_8h_a486202ccbd45c1b6fc792c487b062ac7_icgraph.svg" width="378" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="a8e84bcdfb1b1343390aaf1f8e6ec0523"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e84bcdfb1b1343390aaf1f8e6ec0523">&#9670;&nbsp;</a></span>neural_layer_avgpool_load()</h2>
 
@@ -421,7 +473,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__avgpool_8c_source.html#l00262">262</a> of file <a class="el" href="neural__layer__avgpool_8c_source.html">neural_layer_avgpool.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__avgpool_8c_source.html#l00284">284</a> of file <a class="el" href="neural__layer__avgpool_8c_source.html">neural_layer_avgpool.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer__avgpool_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 <div class="dynheader">
@@ -529,7 +581,12 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__avgpool_8c_source.html#l00226">226</a> of file <a class="el" href="neural__layer__avgpool_8c_source.html">neural_layer_avgpool.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__avgpool_8c_source.html#l00240">neural_layer_avgpool_json()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__avgpool_8h_ae8d15c9104ace1d2e7d9b2657da90088_cgraph.svg" width="378" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -643,7 +700,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__avgpool_8c_source.html#l00240">240</a> of file <a class="el" href="neural__layer__avgpool_8c_source.html">neural_layer_avgpool.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__avgpool_8c_source.html#l00262">262</a> of file <a class="el" href="neural__layer__avgpool_8c_source.html">neural_layer_avgpool.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 
@@ -704,12 +761,12 @@ Here is the call graph for this function:</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__avgpool_8h.html#ae8d15c9104ace1d2e7d9b2657da90088">neural_layer_avgpool_print</a>,    &amp;<a class="code" href="neural__layer__avgpool_8h.html#a0ce179ef71e70a653728af6a6ec58046">neural_layer_avgpool_update</a>,</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__avgpool_8h.html#a0eed3b75e07addcf12603d14ee270ce8">neural_layer_avgpool_backward</a>, &amp;<a class="code" href="neural__layer__avgpool_8h.html#a8305189ab187aae459aa3c4715674459">neural_layer_avgpool_forward</a>,</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__avgpool_8h.html#af42137f70db11a8ba99ecf0530a33999">neural_layer_avgpool_output</a>,   &amp;<a class="code" href="neural__layer__avgpool_8h.html#ad83b2e12d8d0a4ba9fc33001fb02c5e3">neural_layer_avgpool_save</a>,</div>
-<div class="line">    &amp;<a class="code" href="neural__layer__avgpool_8h.html#a8e84bcdfb1b1343390aaf1f8e6ec0523">neural_layer_avgpool_load</a></div>
+<div class="line">    &amp;<a class="code" href="neural__layer__avgpool_8h.html#a8e84bcdfb1b1343390aaf1f8e6ec0523">neural_layer_avgpool_load</a>,     &amp;<a class="code" href="neural__layer__avgpool_8h.html#a486202ccbd45c1b6fc792c487b062ac7">neural_layer_avgpool_json</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Neural average pooling layer implemented functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__avgpool_8h_source.html#l00072">72</a> of file <a class="el" href="neural__layer__avgpool_8h_source.html">neural_layer_avgpool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__avgpool_8h_source.html#l00075">75</a> of file <a class="el" href="neural__layer__avgpool_8h_source.html">neural_layer_avgpool.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="neural__layer_8c_source.html#l00042">layer_set_vptr()</a>.</p>
 
@@ -722,10 +779,11 @@ Here is the call graph for this function:</div>
 <div class="ttc" id="aneural__layer__avgpool_8h_html_a0ce179ef71e70a653728af6a6ec58046"><div class="ttname"><a href="neural__layer__avgpool_8h.html#a0ce179ef71e70a653728af6a6ec58046">neural_layer_avgpool_update</a></div><div class="ttdeci">void neural_layer_avgpool_update(const struct Layer *l)</div><div class="ttdoc">Dummy function since average pooling layers have no weights.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00171">neural_layer_avgpool.c:171</a></div></div>
 <div class="ttc" id="aneural__layer__avgpool_8h_html_a118c2b627be12f74f9b27740f136faac"><div class="ttname"><a href="neural__layer__avgpool_8h.html#a118c2b627be12f74f9b27740f136faac">neural_layer_avgpool_free</a></div><div class="ttdeci">void neural_layer_avgpool_free(const struct Layer *l)</div><div class="ttdoc">Free memory used by an average pooling layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00057">neural_layer_avgpool.c:57</a></div></div>
 <div class="ttc" id="aneural__layer__avgpool_8h_html_af42137f70db11a8ba99ecf0530a33999"><div class="ttname"><a href="neural__layer__avgpool_8h.html#af42137f70db11a8ba99ecf0530a33999">neural_layer_avgpool_output</a></div><div class="ttdeci">double * neural_layer_avgpool_output(const struct Layer *l)</div><div class="ttdoc">Returns the output from an average pooling layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00215">neural_layer_avgpool.c:215</a></div></div>
-<div class="ttc" id="aneural__layer__avgpool_8h_html_ad83b2e12d8d0a4ba9fc33001fb02c5e3"><div class="ttname"><a href="neural__layer__avgpool_8h.html#ad83b2e12d8d0a4ba9fc33001fb02c5e3">neural_layer_avgpool_save</a></div><div class="ttdeci">size_t neural_layer_avgpool_save(const struct Layer *l, FILE *fp)</div><div class="ttdoc">Writes an average pooling layer to a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00240">neural_layer_avgpool.c:240</a></div></div>
+<div class="ttc" id="aneural__layer__avgpool_8h_html_a486202ccbd45c1b6fc792c487b062ac7"><div class="ttname"><a href="neural__layer__avgpool_8h.html#a486202ccbd45c1b6fc792c487b062ac7">neural_layer_avgpool_json</a></div><div class="ttdeci">const char * neural_layer_avgpool_json(const struct Layer *l, const bool return_weights)</div><div class="ttdoc">Returns a json formatted string representation of an average pool layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00240">neural_layer_avgpool.c:240</a></div></div>
+<div class="ttc" id="aneural__layer__avgpool_8h_html_ad83b2e12d8d0a4ba9fc33001fb02c5e3"><div class="ttname"><a href="neural__layer__avgpool_8h.html#ad83b2e12d8d0a4ba9fc33001fb02c5e3">neural_layer_avgpool_save</a></div><div class="ttdeci">size_t neural_layer_avgpool_save(const struct Layer *l, FILE *fp)</div><div class="ttdoc">Writes an average pooling layer to a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00262">neural_layer_avgpool.c:262</a></div></div>
 <div class="ttc" id="aneural__layer__avgpool_8h_html_aac38c297b6ec2440be737791d86f0af6"><div class="ttname"><a href="neural__layer__avgpool_8h.html#aac38c297b6ec2440be737791d86f0af6">neural_layer_avgpool_copy</a></div><div class="ttdeci">struct Layer * neural_layer_avgpool_copy(const struct Layer *src)</div><div class="ttdoc">Initialises and copies one average pooling layer from another.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00089">neural_layer_avgpool.c:89</a></div></div>
 <div class="ttc" id="aneural__layer__avgpool_8h_html_a0eed3b75e07addcf12603d14ee270ce8"><div class="ttname"><a href="neural__layer__avgpool_8h.html#a0eed3b75e07addcf12603d14ee270ce8">neural_layer_avgpool_backward</a></div><div class="ttdeci">void neural_layer_avgpool_backward(const struct Layer *l, const struct Net *net, const double *input, double *delta)</div><div class="ttdoc">Backward propagates an average pooling layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00151">neural_layer_avgpool.c:151</a></div></div>
-<div class="ttc" id="aneural__layer__avgpool_8h_html_a8e84bcdfb1b1343390aaf1f8e6ec0523"><div class="ttname"><a href="neural__layer__avgpool_8h.html#a8e84bcdfb1b1343390aaf1f8e6ec0523">neural_layer_avgpool_load</a></div><div class="ttdeci">size_t neural_layer_avgpool_load(struct Layer *l, FILE *fp)</div><div class="ttdoc">Reads an average pooling layer from a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00262">neural_layer_avgpool.c:262</a></div></div>
+<div class="ttc" id="aneural__layer__avgpool_8h_html_a8e84bcdfb1b1343390aaf1f8e6ec0523"><div class="ttname"><a href="neural__layer__avgpool_8h.html#a8e84bcdfb1b1343390aaf1f8e6ec0523">neural_layer_avgpool_load</a></div><div class="ttdeci">size_t neural_layer_avgpool_load(struct Layer *l, FILE *fp)</div><div class="ttdoc">Reads an average pooling layer from a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00284">neural_layer_avgpool.c:284</a></div></div>
 <div class="ttc" id="aneural__layer__avgpool_8h_html_a1e3c2800f09684332ee24b00868360fc"><div class="ttname"><a href="neural__layer__avgpool_8h.html#a1e3c2800f09684332ee24b00868360fc">neural_layer_avgpool_init</a></div><div class="ttdeci">void neural_layer_avgpool_init(struct Layer *l, const struct ArgsLayer *args)</div><div class="ttdoc">Initialises an average pooling layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00069">neural_layer_avgpool.c:69</a></div></div>
 <div class="ttc" id="aneural__layer__avgpool_8h_html_ae977e3a6877399ab4be43387735a7ab5"><div class="ttname"><a href="neural__layer__avgpool_8h.html#ae977e3a6877399ab4be43387735a7ab5">neural_layer_avgpool_resize</a></div><div class="ttdeci">void neural_layer_avgpool_resize(struct Layer *l, const struct Layer *prev)</div><div class="ttdoc">Resizes an avg pooling layer if the previous layer has changed size.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00194">neural_layer_avgpool.c:194</a></div></div>
 <div class="ttc" id="aneural__layer__avgpool_8h_html_a06c81073b510580c947be35670e01011"><div class="ttname"><a href="neural__layer__avgpool_8h.html#a06c81073b510580c947be35670e01011">neural_layer_avgpool_rand</a></div><div class="ttdeci">void neural_layer_avgpool_rand(struct Layer *l)</div><div class="ttdoc">Dummy function since average pooling layers have no weights.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__avgpool_8c_source.html#l00117">neural_layer_avgpool.c:117</a></div></div>

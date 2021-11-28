@@ -155,6 +155,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a383f53e66f13f290bdd424d256a895ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__recurrent_8h.html#a383f53e66f13f290bdd424d256a895ad">neural_layer_recurrent_resize</a> (struct <a class="el" href="structLayer.html">Layer</a> *l, const struct <a class="el" href="structLayer.html">Layer</a> *prev)</td></tr>
 <tr class="memdesc:a383f53e66f13f290bdd424d256a895ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes a recurrent layer if the previous layer has changed size.  <a href="neural__layer__recurrent_8h.html#a383f53e66f13f290bdd424d256a895ad">More...</a><br /></td></tr>
 <tr class="separator:a383f53e66f13f290bdd424d256a895ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9982db0b36457e45374f6c969addafc4"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__recurrent_8h.html#a9982db0b36457e45374f6c969addafc4">neural_layer_recurrent_json_export</a> (const struct <a class="el" href="structLayer.html">Layer</a> *l, const bool return_weights)</td></tr>
+<tr class="memdesc:a9982db0b36457e45374f6c969addafc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a recurrent layer.  <a href="neural__layer__recurrent_8h.html#a9982db0b36457e45374f6c969addafc4">More...</a><br /></td></tr>
+<tr class="separator:a9982db0b36457e45374f6c969addafc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -166,7 +169,7 @@ Variables</h2></td></tr>
 <div class="textblock"><p>An implementation of a recurrent layer of perceptrons. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2016&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="neural__layer__recurrent_8h_source.html">neural_layer_recurrent.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -221,7 +224,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00356">356</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00083">Layer::delta</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00216">layer_backward()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00101">Layer::prev_state</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00075">Layer::state</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00083">Layer::delta</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00218">layer_backward()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00101">Layer::prev_state</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00075">Layer::state</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -257,7 +260,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00271">271</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00083">Layer::delta</a>, <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer_8h_source.html#l00097">Layer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00261">layer_copy()</a>, <a class="el" href="neural__layer_8c_source.html#l00396">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00100">Layer::layer_vptr</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00051">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00084">Layer::mu</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00032">N_MU</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00077">Layer::options</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00101">Layer::prev_state</a>, <a class="el" href="neural__layer_8h_source.html#l00033">RECURRENT</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00083">Layer::delta</a>, <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer_8h_source.html#l00097">Layer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00263">layer_copy()</a>, <a class="el" href="neural__layer_8c_source.html#l00411">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00100">Layer::layer_vptr</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00051">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00084">Layer::mu</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00032">N_MU</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00077">Layer::options</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00101">Layer::prev_state</a>, <a class="el" href="neural__layer_8h_source.html#l00033">RECURRENT</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -310,7 +313,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00337">337</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="blas_8c_source.html#l00138">blas_axpy()</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00203">layer_forward()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00101">Layer::prev_state</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00075">Layer::state</a>.</p>
+<p class="reference">References <a class="el" href="blas_8c_source.html#l00138">blas_axpy()</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00205">layer_forward()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00101">Layer::prev_state</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00075">Layer::state</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -345,7 +348,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00307">307</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__recurrent_8c_source.html#l00076">free_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00271">layer_free()</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__recurrent_8c_source.html#l00076">free_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00273">layer_free()</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -391,11 +394,67 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00234">234</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer_8h_source.html#l00083">Layer::delta</a>, <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00097">Layer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer__args_8c_source.html#l00077">layer_args_copy()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00360">layer_args_opt()</a>, <a class="el" href="neural__layer_8h_source.html#l00364">layer_init()</a>, <a class="el" href="neural__activations_8h_source.html#l00031">LINEAR</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00051">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00084">Layer::mu</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00037">MU_TYPE</a>, <a class="el" href="neural__layer__args_8h_source.html#l00030">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00029">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00031">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00032">N_MU</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00077">Layer::options</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="sam_8c_source.html#l00043">sam_init()</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00088">set_layer_n_active()</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00110">set_layer_n_biases()</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00099">set_layer_n_weights()</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00028">ArgsLayer::type</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer_8h_source.html#l00083">Layer::delta</a>, <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00097">Layer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer__args_8c_source.html#l00077">layer_args_copy()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00363">layer_args_opt()</a>, <a class="el" href="neural__layer_8h_source.html#l00380">layer_init()</a>, <a class="el" href="neural__activations_8h_source.html#l00031">LINEAR</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00051">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00084">Layer::mu</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00037">MU_TYPE</a>, <a class="el" href="neural__layer__args_8h_source.html#l00030">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00029">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00031">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00032">N_MU</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00077">Layer::options</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="sam_8c_source.html#l00043">sam_init()</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00088">set_layer_n_active()</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00110">set_layer_n_biases()</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00099">set_layer_n_weights()</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00028">ArgsLayer::type</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__recurrent_8h_a74274033f3a8272fb8aae4366f93d74c_cgraph.svg" width="707" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a9982db0b36457e45374f6c969addafc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9982db0b36457e45374f6c969addafc4">&#9670;&nbsp;</a></span>neural_layer_recurrent_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* neural_layer_recurrent_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structLayer.html">Layer</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>return_weights</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of a recurrent layer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">l</td><td>The layer to return. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">return_weights</td><td>Whether to return the values of weights and biases. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00444">444</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
+
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer_8h_source.html#l00097">Layer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8c_source.html#l00322">layer_weight_json()</a>, <a class="el" href="neural__layer_8h_source.html#l00084">Layer::mu</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00032">N_MU</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__activations_8c_source.html#l00110">neural_activation_string()</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="neural__layer__recurrent_8c_source.html#l00431">neural_layer_recurrent_print()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__recurrent_8h_a9982db0b36457e45374f6c969addafc4_cgraph.svg" width="368" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__recurrent_8h_a9982db0b36457e45374f6c969addafc4_icgraph.svg" width="360" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -436,9 +495,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00480">480</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00500">500</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer_8h_source.html#l00097">Layer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00180">layer_load()</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00051">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00084">Layer::mu</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00032">N_MU</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00077">Layer::options</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00101">Layer::prev_state</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00075">Layer::state</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer_8h_source.html#l00097">Layer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00182">layer_load()</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00051">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00084">Layer::mu</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00032">N_MU</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00077">Layer::options</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00101">Layer::prev_state</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00075">Layer::state</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -551,11 +610,12 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00431">431</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer_8h_source.html#l00097">Layer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00292">layer_print()</a>, <a class="el" href="neural__layer_8h_source.html#l00084">Layer::mu</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00032">N_MU</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__activations_8c_source.html#l00110">neural_activation_string()</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="sam_8c_source.html#l00099">sam_print()</a>, and <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__recurrent_8c_source.html#l00444">neural_layer_recurrent_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__recurrent_8h_afef72d2b81445a07dc2b038190a2e742_cgraph.svg" width="368" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__recurrent_8h_afef72d2b81445a07dc2b038190a2e742_cgraph.svg" width="567" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -586,7 +646,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00323">323</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00281">layer_rand()</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00283">layer_rand()</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -632,7 +692,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00388">388</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00250">layer_resize()</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00252">layer_resize()</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -677,9 +737,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00454">454</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00474">474</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer_8h_source.html#l00097">Layer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00168">layer_save()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00084">Layer::mu</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00032">N_MU</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00077">Layer::options</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00101">Layer::prev_state</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00075">Layer::state</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer_8h_source.html#l00097">Layer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00170">layer_save()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00084">Layer::mu</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00032">N_MU</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00077">Layer::options</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00101">Layer::prev_state</a>, <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00075">Layer::state</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -714,7 +774,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8c_source.html#l00373">373</a> of file <a class="el" href="neural__layer__recurrent_8c_source.html">neural_layer_recurrent.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00054">LAYER_SGD_WEIGHTS</a>, <a class="el" href="neural__layer_8h_source.html#l00227">layer_update()</a>, <a class="el" href="neural__layer_8h_source.html#l00077">Layer::options</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural__layer_8h_source.html#l00102">Layer::input_layer</a>, <a class="el" href="neural__layer_8h_source.html#l00054">LAYER_SGD_WEIGHTS</a>, <a class="el" href="neural__layer_8h_source.html#l00229">layer_update()</a>, <a class="el" href="neural__layer_8h_source.html#l00077">Layer::options</a>, <a class="el" href="neural__layer_8h_source.html#l00104">Layer::output_layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00103">Layer::self_layer</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -750,12 +810,12 @@ Here is the call graph for this function:</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__recurrent_8h.html#afef72d2b81445a07dc2b038190a2e742">neural_layer_recurrent_print</a>,    &amp;<a class="code" href="neural__layer__recurrent_8h.html#a31b5d846257bac4a15dcfddd753c4e3b">neural_layer_recurrent_update</a>,</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__recurrent_8h.html#afa1e35bc8d3f40c4af58db77c1d55f93">neural_layer_recurrent_backward</a>, &amp;<a class="code" href="neural__layer__recurrent_8h.html#af0904dad2dc7cb2170c5b98aae6c0aae">neural_layer_recurrent_forward</a>,</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__recurrent_8h.html#a836f37ff8f65c52cc46135785a7ea8b5">neural_layer_recurrent_output</a>,   &amp;<a class="code" href="neural__layer__recurrent_8h.html#a1ad28a10b158bcbb98e95cce0ce36ba0">neural_layer_recurrent_save</a>,</div>
-<div class="line">    &amp;<a class="code" href="neural__layer__recurrent_8h.html#a2492453a3912b4d17ecd3edf142069de">neural_layer_recurrent_load</a>,</div>
+<div class="line">    &amp;<a class="code" href="neural__layer__recurrent_8h.html#a2492453a3912b4d17ecd3edf142069de">neural_layer_recurrent_load</a>,     &amp;<a class="code" href="neural__layer__recurrent_8h.html#a9982db0b36457e45374f6c969addafc4">neural_layer_recurrent_json_export</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Neural recurrent layer implemented functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8h_source.html#l00072">72</a> of file <a class="el" href="neural__layer__recurrent_8h_source.html">neural_layer_recurrent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__recurrent_8h_source.html#l00076">76</a> of file <a class="el" href="neural__layer__recurrent_8h_source.html">neural_layer_recurrent.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="neural__layer_8c_source.html#l00042">layer_set_vptr()</a>.</p>
 
@@ -768,12 +828,13 @@ Here is the call graph for this function:</div>
 <div class="ttc" id="aneural__layer__recurrent_8h_html_a836f37ff8f65c52cc46135785a7ea8b5"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a836f37ff8f65c52cc46135785a7ea8b5">neural_layer_recurrent_output</a></div><div class="ttdeci">double * neural_layer_recurrent_output(const struct Layer *l)</div><div class="ttdoc">Returns the output from a recurrent layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00402">neural_layer_recurrent.c:402</a></div></div>
 <div class="ttc" id="aneural__layer__recurrent_8h_html_a65b07dd0f77a209229c7b9cee1bc9c23"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a65b07dd0f77a209229c7b9cee1bc9c23">neural_layer_recurrent_rand</a></div><div class="ttdeci">void neural_layer_recurrent_rand(struct Layer *l)</div><div class="ttdoc">Randomises a recurrent layer weights.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00323">neural_layer_recurrent.c:323</a></div></div>
 <div class="ttc" id="aneural__layer__recurrent_8h_html_a74274033f3a8272fb8aae4366f93d74c"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a74274033f3a8272fb8aae4366f93d74c">neural_layer_recurrent_init</a></div><div class="ttdeci">void neural_layer_recurrent_init(struct Layer *l, const struct ArgsLayer *args)</div><div class="ttdoc">Initialises a recurrent layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00234">neural_layer_recurrent.c:234</a></div></div>
+<div class="ttc" id="aneural__layer__recurrent_8h_html_a9982db0b36457e45374f6c969addafc4"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a9982db0b36457e45374f6c969addafc4">neural_layer_recurrent_json_export</a></div><div class="ttdeci">const char * neural_layer_recurrent_json_export(const struct Layer *l, const bool return_weights)</div><div class="ttdoc">Returns a json formatted string representation of a recurrent layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00444">neural_layer_recurrent.c:444</a></div></div>
 <div class="ttc" id="aneural__layer__recurrent_8h_html_a383f53e66f13f290bdd424d256a895ad"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a383f53e66f13f290bdd424d256a895ad">neural_layer_recurrent_resize</a></div><div class="ttdeci">void neural_layer_recurrent_resize(struct Layer *l, const struct Layer *prev)</div><div class="ttdoc">Resizes a recurrent layer if the previous layer has changed size.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00388">neural_layer_recurrent.c:388</a></div></div>
-<div class="ttc" id="aneural__layer__recurrent_8h_html_a1ad28a10b158bcbb98e95cce0ce36ba0"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a1ad28a10b158bcbb98e95cce0ce36ba0">neural_layer_recurrent_save</a></div><div class="ttdeci">size_t neural_layer_recurrent_save(const struct Layer *l, FILE *fp)</div><div class="ttdoc">Writes a recurrent layer to a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00454">neural_layer_recurrent.c:454</a></div></div>
+<div class="ttc" id="aneural__layer__recurrent_8h_html_a1ad28a10b158bcbb98e95cce0ce36ba0"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a1ad28a10b158bcbb98e95cce0ce36ba0">neural_layer_recurrent_save</a></div><div class="ttdeci">size_t neural_layer_recurrent_save(const struct Layer *l, FILE *fp)</div><div class="ttdoc">Writes a recurrent layer to a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00474">neural_layer_recurrent.c:474</a></div></div>
 <div class="ttc" id="aneural__layer__recurrent_8h_html_a5f6793ef0a2d69438a499632e360f9e6"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a5f6793ef0a2d69438a499632e360f9e6">neural_layer_recurrent_mutate</a></div><div class="ttdeci">bool neural_layer_recurrent_mutate(struct Layer *l)</div><div class="ttdoc">Mutates a recurrent layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00413">neural_layer_recurrent.c:413</a></div></div>
 <div class="ttc" id="aneural__layer__recurrent_8h_html_a5f01cc7e722e1426e5aba2a643e33036"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a5f01cc7e722e1426e5aba2a643e33036">neural_layer_recurrent_copy</a></div><div class="ttdeci">struct Layer * neural_layer_recurrent_copy(const struct Layer *src)</div><div class="ttdoc">Initialises and creates a copy of one recurrent layer from another.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00271">neural_layer_recurrent.c:271</a></div></div>
 <div class="ttc" id="aneural__layer__recurrent_8h_html_afef72d2b81445a07dc2b038190a2e742"><div class="ttname"><a href="neural__layer__recurrent_8h.html#afef72d2b81445a07dc2b038190a2e742">neural_layer_recurrent_print</a></div><div class="ttdeci">void neural_layer_recurrent_print(const struct Layer *l, const bool print_weights)</div><div class="ttdoc">Prints a recurrent layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00431">neural_layer_recurrent.c:431</a></div></div>
-<div class="ttc" id="aneural__layer__recurrent_8h_html_a2492453a3912b4d17ecd3edf142069de"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a2492453a3912b4d17ecd3edf142069de">neural_layer_recurrent_load</a></div><div class="ttdeci">size_t neural_layer_recurrent_load(struct Layer *l, FILE *fp)</div><div class="ttdoc">Reads a recurrent layer from a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00480">neural_layer_recurrent.c:480</a></div></div>
+<div class="ttc" id="aneural__layer__recurrent_8h_html_a2492453a3912b4d17ecd3edf142069de"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a2492453a3912b4d17ecd3edf142069de">neural_layer_recurrent_load</a></div><div class="ttdeci">size_t neural_layer_recurrent_load(struct Layer *l, FILE *fp)</div><div class="ttdoc">Reads a recurrent layer from a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00500">neural_layer_recurrent.c:500</a></div></div>
 <div class="ttc" id="aneural__layer__recurrent_8h_html_af0904dad2dc7cb2170c5b98aae6c0aae"><div class="ttname"><a href="neural__layer__recurrent_8h.html#af0904dad2dc7cb2170c5b98aae6c0aae">neural_layer_recurrent_forward</a></div><div class="ttdeci">void neural_layer_recurrent_forward(const struct Layer *l, const struct Net *net, const double *input)</div><div class="ttdoc">Forward propagates a recurrent layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00337">neural_layer_recurrent.c:337</a></div></div>
 <div class="ttc" id="aneural__layer__recurrent_8h_html_a31b5d846257bac4a15dcfddd753c4e3b"><div class="ttname"><a href="neural__layer__recurrent_8h.html#a31b5d846257bac4a15dcfddd753c4e3b">neural_layer_recurrent_update</a></div><div class="ttdeci">void neural_layer_recurrent_update(const struct Layer *l)</div><div class="ttdoc">Updates the weights and biases of a recurrent layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__recurrent_8c_source.html#l00373">neural_layer_recurrent.c:373</a></div></div>
 <!-- start footer part -->

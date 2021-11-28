@@ -160,6 +160,9 @@ Functions</h2></td></tr>
 <tr class="memitem:abbd185b5dc9c1f4a8a40630dc5719e1f"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="act__integer_8h.html#abbd185b5dc9c1f4a8a40630dc5719e1f">act_integer_load</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, FILE *fp)</td></tr>
 <tr class="memdesc:abbd185b5dc9c1f4a8a40630dc5719e1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads an integer action from a file.  <a href="act__integer_8h.html#abbd185b5dc9c1f4a8a40630dc5719e1f">More...</a><br /></td></tr>
 <tr class="separator:abbd185b5dc9c1f4a8a40630dc5719e1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05c33d1bfd16e37420176842fb41aa97"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="act__integer_8h.html#a05c33d1bfd16e37420176842fb41aa97">act_integer_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="memdesc:a05c33d1bfd16e37420176842fb41aa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of an integer action.  <a href="act__integer_8h.html#a05c33d1bfd16e37420176842fb41aa97">More...</a><br /></td></tr>
+<tr class="separator:a05c33d1bfd16e37420176842fb41aa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -171,7 +174,7 @@ Variables</h2></td></tr>
 <div class="textblock"><p>integer action functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2019&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2019&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="act__integer_8h_source.html">act_integer.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -321,7 +324,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00149">149</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00147">147</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00050">Cl::act</a>, and <a class="el" href="act__integer_8h_source.html#l00033">ActInteger::action</a>.</p>
 
@@ -409,7 +412,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00164">164</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00162">162</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00050">Cl::act</a>, and <a class="el" href="act__integer_8h_source.html#l00034">ActInteger::mu</a>.</p>
 
@@ -499,13 +502,63 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00178">178</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00176">176</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00050">Cl::act</a>, <a class="el" href="act__integer_8c_source.html#l00033">MU_TYPE</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="act__integer_8c_source.html#l00028">N_MU</a>, <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>, and <a class="el" href="sam_8c_source.html#l00043">sam_init()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="act__integer_8h_a817599cabf0a80751fad61e9af1cb793_cgraph.svg" width="552" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a05c33d1bfd16e37420176842fb41aa97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05c33d1bfd16e37420176842fb41aa97">&#9670;&nbsp;</a></span>act_integer_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* act_integer_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of an integer action. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td><a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>Classifier whose action is to be returned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00247">247</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
+
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00050">Cl::act</a>, <a class="el" href="act__integer_8h_source.html#l00033">ActInteger::action</a>, <a class="el" href="act__integer_8h_source.html#l00034">ActInteger::mu</a>, and <a class="el" href="act__integer_8c_source.html#l00028">N_MU</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="act__integer_8c_source.html#l00134">act_integer_print()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="act__integer_8h_a05c33d1bfd16e37420176842fb41aa97_icgraph.svg" width="338" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -553,7 +606,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00230">230</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00228">228</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00050">Cl::act</a>, and <a class="el" href="act__integer_8c_source.html#l00028">N_MU</a>.</p>
 
@@ -643,7 +696,13 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00134">134</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00050">Cl::act</a>, and <a class="el" href="act__integer_8h_source.html#l00033">ActInteger::action</a>.</p>
+<p class="reference">References <a class="el" href="act__integer_8c_source.html#l00247">act_integer_json_export()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="act__integer_8h_ae761eca6d8397542992b7c29f252c83a_cgraph.svg" width="338" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -690,7 +749,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00212">212</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00210">210</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00050">Cl::act</a>, <a class="el" href="act__integer_8h_source.html#l00033">ActInteger::action</a>, <a class="el" href="act__integer_8h_source.html#l00034">ActInteger::mu</a>, and <a class="el" href="act__integer_8c_source.html#l00028">N_MU</a>.</p>
 
@@ -745,7 +804,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00195">195</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="act__integer_8c_source.html#l00193">193</a> of file <a class="el" href="act__integer_8c_source.html">act_integer.c</a>.</p>
 
 </div>
 </div>
@@ -770,15 +829,16 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    &amp;<a class="code" href="act__integer_8h.html#aaf5d8b3d6769d721044cc177a05b45d1">act_integer_general</a>, &amp;<a class="code" href="act__integer_8h.html#a0ed1e376f4a0c04002749cc716775595">act_integer_crossover</a>, &amp;<a class="code" href="act__integer_8h.html#a9257ecae089153571be215040e75fb7f">act_integer_mutate</a>,</div>
-<div class="line">    &amp;<a class="code" href="act__integer_8h.html#a41cc2ab0a3cecd28e8ed68d977fd6358">act_integer_compute</a>, &amp;<a class="code" href="act__integer_8h.html#a05c6be9a1df7edb0395c69683cdaff1a">act_integer_copy</a>,      &amp;<a class="code" href="act__integer_8h.html#aceb52e83a8ebe4a69a52d839da567025">act_integer_cover</a>,</div>
-<div class="line">    &amp;<a class="code" href="act__integer_8h.html#a07b476c854d97775a44be7e1c5500d2d">act_integer_free</a>,    &amp;<a class="code" href="act__integer_8h.html#a817599cabf0a80751fad61e9af1cb793">act_integer_init</a>,      &amp;<a class="code" href="act__integer_8h.html#ae761eca6d8397542992b7c29f252c83a">act_integer_print</a>,</div>
-<div class="line">    &amp;<a class="code" href="act__integer_8h.html#a596f5e7d5202d64056b62fad02e3d395">act_integer_update</a>,  &amp;<a class="code" href="act__integer_8h.html#a4aa49e4f28bcb7a36cb07fa90927e3bd">act_integer_save</a>,      &amp;<a class="code" href="act__integer_8h.html#abbd185b5dc9c1f4a8a40630dc5719e1f">act_integer_load</a></div>
+<div class="line">    &amp;<a class="code" href="act__integer_8h.html#aaf5d8b3d6769d721044cc177a05b45d1">act_integer_general</a>,    &amp;<a class="code" href="act__integer_8h.html#a0ed1e376f4a0c04002749cc716775595">act_integer_crossover</a>, &amp;<a class="code" href="act__integer_8h.html#a9257ecae089153571be215040e75fb7f">act_integer_mutate</a>,</div>
+<div class="line">    &amp;<a class="code" href="act__integer_8h.html#a41cc2ab0a3cecd28e8ed68d977fd6358">act_integer_compute</a>,    &amp;<a class="code" href="act__integer_8h.html#a05c6be9a1df7edb0395c69683cdaff1a">act_integer_copy</a>,      &amp;<a class="code" href="act__integer_8h.html#aceb52e83a8ebe4a69a52d839da567025">act_integer_cover</a>,</div>
+<div class="line">    &amp;<a class="code" href="act__integer_8h.html#a07b476c854d97775a44be7e1c5500d2d">act_integer_free</a>,       &amp;<a class="code" href="act__integer_8h.html#a817599cabf0a80751fad61e9af1cb793">act_integer_init</a>,      &amp;<a class="code" href="act__integer_8h.html#ae761eca6d8397542992b7c29f252c83a">act_integer_print</a>,</div>
+<div class="line">    &amp;<a class="code" href="act__integer_8h.html#a596f5e7d5202d64056b62fad02e3d395">act_integer_update</a>,     &amp;<a class="code" href="act__integer_8h.html#a4aa49e4f28bcb7a36cb07fa90927e3bd">act_integer_save</a>,      &amp;<a class="code" href="act__integer_8h.html#abbd185b5dc9c1f4a8a40630dc5719e1f">act_integer_load</a>,</div>
+<div class="line">    &amp;<a class="code" href="act__integer_8h.html#a05c33d1bfd16e37420176842fb41aa97">act_integer_json_export</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Integer action implemented functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="act__integer_8h_source.html#l00082">82</a> of file <a class="el" href="act__integer_8h_source.html">act_integer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="act__integer_8h_source.html#l00085">85</a> of file <a class="el" href="act__integer_8h_source.html">act_integer.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00035">action_set()</a>.</p>
 
@@ -786,16 +846,17 @@ Here is the call graph for this function:</div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aact__integer_8h_html_a817599cabf0a80751fad61e9af1cb793"><div class="ttname"><a href="act__integer_8h.html#a817599cabf0a80751fad61e9af1cb793">act_integer_init</a></div><div class="ttdeci">void act_integer_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Initialises an integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00178">act_integer.c:178</a></div></div>
+<div class="ttc" id="aact__integer_8h_html_a05c33d1bfd16e37420176842fb41aa97"><div class="ttname"><a href="act__integer_8h.html#a05c33d1bfd16e37420176842fb41aa97">act_integer_json_export</a></div><div class="ttdeci">const char * act_integer_json_export(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns a json formatted string representation of an integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00247">act_integer.c:247</a></div></div>
+<div class="ttc" id="aact__integer_8h_html_a817599cabf0a80751fad61e9af1cb793"><div class="ttname"><a href="act__integer_8h.html#a817599cabf0a80751fad61e9af1cb793">act_integer_init</a></div><div class="ttdeci">void act_integer_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Initialises an integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00176">act_integer.c:176</a></div></div>
 <div class="ttc" id="aact__integer_8h_html_a41cc2ab0a3cecd28e8ed68d977fd6358"><div class="ttname"><a href="act__integer_8h.html#a41cc2ab0a3cecd28e8ed68d977fd6358">act_integer_compute</a></div><div class="ttdeci">int act_integer_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Returns a classifier's integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00101">act_integer.c:101</a></div></div>
-<div class="ttc" id="aact__integer_8h_html_a596f5e7d5202d64056b62fad02e3d395"><div class="ttname"><a href="act__integer_8h.html#a596f5e7d5202d64056b62fad02e3d395">act_integer_update</a></div><div class="ttdeci">void act_integer_update(const struct XCSF *xcsf, const struct Cl *c, const double *x, const double *y)</div><div class="ttdoc">Dummy function since integer actions are not updated.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00195">act_integer.c:195</a></div></div>
-<div class="ttc" id="aact__integer_8h_html_aceb52e83a8ebe4a69a52d839da567025"><div class="ttname"><a href="act__integer_8h.html#aceb52e83a8ebe4a69a52d839da567025">act_integer_cover</a></div><div class="ttdeci">void act_integer_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x, const int action)</div><div class="ttdoc">Sets an integer action to a specified value.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00149">act_integer.c:149</a></div></div>
-<div class="ttc" id="aact__integer_8h_html_abbd185b5dc9c1f4a8a40630dc5719e1f"><div class="ttname"><a href="act__integer_8h.html#abbd185b5dc9c1f4a8a40630dc5719e1f">act_integer_load</a></div><div class="ttdeci">size_t act_integer_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Reads an integer action from a file.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00230">act_integer.c:230</a></div></div>
+<div class="ttc" id="aact__integer_8h_html_a596f5e7d5202d64056b62fad02e3d395"><div class="ttname"><a href="act__integer_8h.html#a596f5e7d5202d64056b62fad02e3d395">act_integer_update</a></div><div class="ttdeci">void act_integer_update(const struct XCSF *xcsf, const struct Cl *c, const double *x, const double *y)</div><div class="ttdoc">Dummy function since integer actions are not updated.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00193">act_integer.c:193</a></div></div>
+<div class="ttc" id="aact__integer_8h_html_aceb52e83a8ebe4a69a52d839da567025"><div class="ttname"><a href="act__integer_8h.html#aceb52e83a8ebe4a69a52d839da567025">act_integer_cover</a></div><div class="ttdeci">void act_integer_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x, const int action)</div><div class="ttdoc">Sets an integer action to a specified value.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00147">act_integer.c:147</a></div></div>
+<div class="ttc" id="aact__integer_8h_html_abbd185b5dc9c1f4a8a40630dc5719e1f"><div class="ttname"><a href="act__integer_8h.html#abbd185b5dc9c1f4a8a40630dc5719e1f">act_integer_load</a></div><div class="ttdeci">size_t act_integer_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Reads an integer action from a file.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00228">act_integer.c:228</a></div></div>
 <div class="ttc" id="aact__integer_8h_html_ae761eca6d8397542992b7c29f252c83a"><div class="ttname"><a href="act__integer_8h.html#ae761eca6d8397542992b7c29f252c83a">act_integer_print</a></div><div class="ttdeci">void act_integer_print(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Prints an integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00134">act_integer.c:134</a></div></div>
-<div class="ttc" id="aact__integer_8h_html_a4aa49e4f28bcb7a36cb07fa90927e3bd"><div class="ttname"><a href="act__integer_8h.html#a4aa49e4f28bcb7a36cb07fa90927e3bd">act_integer_save</a></div><div class="ttdeci">size_t act_integer_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes an integer action to a file.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00212">act_integer.c:212</a></div></div>
+<div class="ttc" id="aact__integer_8h_html_a4aa49e4f28bcb7a36cb07fa90927e3bd"><div class="ttname"><a href="act__integer_8h.html#a4aa49e4f28bcb7a36cb07fa90927e3bd">act_integer_save</a></div><div class="ttdeci">size_t act_integer_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes an integer action to a file.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00210">act_integer.c:210</a></div></div>
 <div class="ttc" id="aact__integer_8h_html_a9257ecae089153571be215040e75fb7f"><div class="ttname"><a href="act__integer_8h.html#a9257ecae089153571be215040e75fb7f">act_integer_mutate</a></div><div class="ttdeci">bool act_integer_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Mutates an integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00079">act_integer.c:79</a></div></div>
 <div class="ttc" id="aact__integer_8h_html_a0ed1e376f4a0c04002749cc716775595"><div class="ttname"><a href="act__integer_8h.html#a0ed1e376f4a0c04002749cc716775595">act_integer_crossover</a></div><div class="ttdeci">bool act_integer_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Dummy function since integer actions do not perform crossover.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00043">act_integer.c:43</a></div></div>
-<div class="ttc" id="aact__integer_8h_html_a07b476c854d97775a44be7e1c5500d2d"><div class="ttname"><a href="act__integer_8h.html#a07b476c854d97775a44be7e1c5500d2d">act_integer_free</a></div><div class="ttdeci">void act_integer_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Frees the memory used by an integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00164">act_integer.c:164</a></div></div>
+<div class="ttc" id="aact__integer_8h_html_a07b476c854d97775a44be7e1c5500d2d"><div class="ttname"><a href="act__integer_8h.html#a07b476c854d97775a44be7e1c5500d2d">act_integer_free</a></div><div class="ttdeci">void act_integer_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Frees the memory used by an integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00162">act_integer.c:162</a></div></div>
 <div class="ttc" id="aact__integer_8h_html_aaf5d8b3d6769d721044cc177a05b45d1"><div class="ttname"><a href="act__integer_8h.html#aaf5d8b3d6769d721044cc177a05b45d1">act_integer_general</a></div><div class="ttdeci">bool act_integer_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Returns whether the action of classifier c1 is more general than c2.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00060">act_integer.c:60</a></div></div>
 <div class="ttc" id="aact__integer_8h_html_a05c6be9a1df7edb0395c69683cdaff1a"><div class="ttname"><a href="act__integer_8h.html#a05c6be9a1df7edb0395c69683cdaff1a">act_integer_copy</a></div><div class="ttdeci">void act_integer_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)</div><div class="ttdoc">Copies an integer action from one classifier to another.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00117">act_integer.c:117</a></div></div>
 <!-- start footer part -->

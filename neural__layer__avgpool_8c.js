@@ -6,6 +6,7 @@ var neural__layer__avgpool_8c =
     [ "neural_layer_avgpool_forward", "neural__layer__avgpool_8c.html#a8305189ab187aae459aa3c4715674459", null ],
     [ "neural_layer_avgpool_free", "neural__layer__avgpool_8c.html#a118c2b627be12f74f9b27740f136faac", null ],
     [ "neural_layer_avgpool_init", "neural__layer__avgpool_8c.html#a1e3c2800f09684332ee24b00868360fc", null ],
+    [ "neural_layer_avgpool_json", "neural__layer__avgpool_8c.html#a486202ccbd45c1b6fc792c487b062ac7", null ],
     [ "neural_layer_avgpool_load", "neural__layer__avgpool_8c.html#a8e84bcdfb1b1343390aaf1f8e6ec0523", null ],
     [ "neural_layer_avgpool_mutate", "neural__layer__avgpool_8c.html#a25d5d2280a01f258e3f256e3a93f18cc", null ],
     [ "neural_layer_avgpool_output", "neural__layer__avgpool_8c.html#af42137f70db11a8ba99ecf0530a33999", null ],

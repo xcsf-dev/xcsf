@@ -9,6 +9,7 @@ var pred__neural_8c =
     [ "pred_neural_expand", "pred__neural_8c.html#ab573aaed6ff7623e99afe1d1f6e00919", null ],
     [ "pred_neural_free", "pred__neural_8c.html#a82da5a504ede83fcfc72182c0f246c15", null ],
     [ "pred_neural_init", "pred__neural_8c.html#a8ff454a2da61b52670f4b70b71da2fe8", null ],
+    [ "pred_neural_json_export", "pred__neural_8c.html#ac9c7b01713d1b135dfdcc2709263274b", null ],
     [ "pred_neural_layers", "pred__neural_8c.html#a185f1c6194af0b18fd006e40f15466de", null ],
     [ "pred_neural_load", "pred__neural_8c.html#aee98eff48767b879343983d0717952cc", null ],
     [ "pred_neural_mutate", "pred__neural_8c.html#a1c13604a74857eb73ac249bfe40aab2e", null ],

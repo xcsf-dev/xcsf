@@ -164,6 +164,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a33a7ce490b663d05af0b11ad26689147"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__dgp_8h.html#a33a7ce490b663d05af0b11ad26689147">cond_dgp_load</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, FILE *fp)</td></tr>
 <tr class="memdesc:a33a7ce490b663d05af0b11ad26689147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a dynamical GP graph condition from a file.  <a href="cond__dgp_8h.html#a33a7ce490b663d05af0b11ad26689147">More...</a><br /></td></tr>
 <tr class="separator:a33a7ce490b663d05af0b11ad26689147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a38282b6ffe06bbf7894db3fc919102"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__dgp_8h.html#a1a38282b6ffe06bbf7894db3fc919102">cond_dgp_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="memdesc:a1a38282b6ffe06bbf7894db3fc919102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a DGP condition.  <a href="cond__dgp_8h.html#a1a38282b6ffe06bbf7894db3fc919102">More...</a><br /></td></tr>
+<tr class="separator:a1a38282b6ffe06bbf7894db3fc919102"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -175,7 +178,7 @@ Variables</h2></td></tr>
 <div class="textblock"><p>Dynamical GP graph condition functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2016&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="cond__dgp_8h_source.html">cond_dgp.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -369,7 +372,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cond__dgp_8c_source.html#l00048">48</a> of file <a class="el" href="cond__dgp_8c_source.html">cond_dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__dgp_8h_source.html#l00034">CondDGP::dgp</a>, and <a class="el" href="dgp_8c_source.html#l00329">graph_free()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__dgp_8h_source.html#l00034">CondDGP::dgp</a>, and <a class="el" href="dgp_8c_source.html#l00350">graph_free()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -471,6 +474,62 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a1a38282b6ffe06bbf7894db3fc919102"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a38282b6ffe06bbf7894db3fc919102">&#9670;&nbsp;</a></span>cond_dgp_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* cond_dgp_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of a DGP condition. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td><a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>Classifier whose condition is to be returned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="cond__dgp_8c_source.html#l00236">236</a> of file <a class="el" href="cond__dgp_8c_source.html">cond_dgp.c</a>.</p>
+
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__dgp_8h_source.html#l00034">CondDGP::dgp</a>, and <a class="el" href="dgp_8c_source.html#l00320">graph_json_export()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00177">cond_dgp_print()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__dgp_8h_a1a38282b6ffe06bbf7894db3fc919102_cgraph.svg" width="494" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__dgp_8h_a1a38282b6ffe06bbf7894db3fc919102_icgraph.svg" width="322" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
 <a id="a33a7ce490b663d05af0b11ad26689147"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a33a7ce490b663d05af0b11ad26689147">&#9670;&nbsp;</a></span>cond_dgp_load()</h2>
 
@@ -514,9 +573,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__dgp_8c_source.html#l00222">222</a> of file <a class="el" href="cond__dgp_8c_source.html">cond_dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__dgp_8c_source.html#l00220">220</a> of file <a class="el" href="cond__dgp_8c_source.html">cond_dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, and <a class="el" href="dgp_8c_source.html#l00393">graph_load()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, and <a class="el" href="dgp_8c_source.html#l00414">graph_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -624,7 +683,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cond__dgp_8c_source.html#l00130">130</a> of file <a class="el" href="cond__dgp_8c_source.html">cond_dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__dgp_8h_source.html#l00034">CondDGP::dgp</a>, and <a class="el" href="dgp_8c_source.html#l00346">graph_mutate()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__dgp_8h_source.html#l00034">CondDGP::dgp</a>, and <a class="el" href="dgp_8c_source.html#l00367">graph_mutate()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -670,11 +729,12 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cond__dgp_8c_source.html#l00177">177</a> of file <a class="el" href="cond__dgp_8c_source.html">cond_dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__dgp_8h_source.html#l00034">CondDGP::dgp</a>, and <a class="el" href="dgp_8c_source.html#l00309">graph_print()</a>.</p>
+<p class="reference">References <a class="el" href="cond__dgp_8c_source.html#l00236">cond_dgp_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cond__dgp_8h_a092ceb2e9dc6a81da9341066f2a671e3_cgraph.svg" width="411" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__dgp_8h_a092ceb2e9dc6a81da9341066f2a671e3_cgraph.svg" width="652" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -722,9 +782,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__dgp_8c_source.html#l00206">206</a> of file <a class="el" href="cond__dgp_8c_source.html">cond_dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__dgp_8c_source.html#l00204">204</a> of file <a class="el" href="cond__dgp_8c_source.html">cond_dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__dgp_8h_source.html#l00034">CondDGP::dgp</a>, and <a class="el" href="dgp_8c_source.html#l00369">graph_save()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__dgp_8h_source.html#l00034">CondDGP::dgp</a>, and <a class="el" href="dgp_8c_source.html#l00390">graph_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -769,7 +829,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of nodes in the graph. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__dgp_8c_source.html#l00191">191</a> of file <a class="el" href="cond__dgp_8c_source.html">cond_dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__dgp_8c_source.html#l00189">189</a> of file <a class="el" href="cond__dgp_8c_source.html">cond_dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__dgp_8h_source.html#l00034">CondDGP::dgp</a>, and <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>.</p>
 
@@ -849,17 +909,18 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    &amp;<a class="code" href="cond__dgp_8h.html#abe91bb9afbf10656b8e6b9952760c4cf">cond_dgp_crossover</a>, &amp;<a class="code" href="cond__dgp_8h.html#a4e9a95a7c61b3446bc50b99e4cbd1602">cond_dgp_general</a>, &amp;<a class="code" href="cond__dgp_8h.html#a8bb6fc747fba92c9a717c1b26f5ffca7">cond_dgp_match</a>, &amp;<a class="code" href="cond__dgp_8h.html#a8c6aa1ea69d87295dec888622f6d4577">cond_dgp_mutate</a>,</div>
-<div class="line">    &amp;<a class="code" href="cond__dgp_8h.html#aa85c960376cf5892cb5fc18c82c6934a">cond_dgp_copy</a>,      &amp;<a class="code" href="cond__dgp_8h.html#a585a3476b4473b1b19159a7d55daa6ae">cond_dgp_cover</a>,   &amp;<a class="code" href="cond__dgp_8h.html#aa06270e18c525af427ee4d88d553443d">cond_dgp_free</a>,  &amp;<a class="code" href="cond__dgp_8h.html#a36eb6c8e497eb217ea0423ffce18e8e4">cond_dgp_init</a>,</div>
-<div class="line">    &amp;<a class="code" href="cond__dgp_8h.html#a092ceb2e9dc6a81da9341066f2a671e3">cond_dgp_print</a>,     &amp;<a class="code" href="cond__dgp_8h.html#a5542b4dbdded248fa5a2a097a8f1a2df">cond_dgp_update</a>,  &amp;<a class="code" href="cond__dgp_8h.html#aa256603d668210795115bc99ad4d6ef7">cond_dgp_size</a>,  &amp;<a class="code" href="cond__dgp_8h.html#aa9799f3254419594eeeb972e0bd515f1">cond_dgp_save</a>,</div>
-<div class="line">    &amp;<a class="code" href="cond__dgp_8h.html#a33a7ce490b663d05af0b11ad26689147">cond_dgp_load</a></div>
+<div class="line">    &amp;<a class="code" href="cond__dgp_8h.html#abe91bb9afbf10656b8e6b9952760c4cf">cond_dgp_crossover</a>, &amp;<a class="code" href="cond__dgp_8h.html#a4e9a95a7c61b3446bc50b99e4cbd1602">cond_dgp_general</a>,    &amp;<a class="code" href="cond__dgp_8h.html#a8bb6fc747fba92c9a717c1b26f5ffca7">cond_dgp_match</a>,</div>
+<div class="line">    &amp;<a class="code" href="cond__dgp_8h.html#a8c6aa1ea69d87295dec888622f6d4577">cond_dgp_mutate</a>,    &amp;<a class="code" href="cond__dgp_8h.html#aa85c960376cf5892cb5fc18c82c6934a">cond_dgp_copy</a>,       &amp;<a class="code" href="cond__dgp_8h.html#a585a3476b4473b1b19159a7d55daa6ae">cond_dgp_cover</a>,</div>
+<div class="line">    &amp;<a class="code" href="cond__dgp_8h.html#aa06270e18c525af427ee4d88d553443d">cond_dgp_free</a>,      &amp;<a class="code" href="cond__dgp_8h.html#a36eb6c8e497eb217ea0423ffce18e8e4">cond_dgp_init</a>,       &amp;<a class="code" href="cond__dgp_8h.html#a092ceb2e9dc6a81da9341066f2a671e3">cond_dgp_print</a>,</div>
+<div class="line">    &amp;<a class="code" href="cond__dgp_8h.html#a5542b4dbdded248fa5a2a097a8f1a2df">cond_dgp_update</a>,    &amp;<a class="code" href="cond__dgp_8h.html#aa256603d668210795115bc99ad4d6ef7">cond_dgp_size</a>,       &amp;<a class="code" href="cond__dgp_8h.html#aa9799f3254419594eeeb972e0bd515f1">cond_dgp_save</a>,</div>
+<div class="line">    &amp;<a class="code" href="cond__dgp_8h.html#a33a7ce490b663d05af0b11ad26689147">cond_dgp_load</a>,      &amp;<a class="code" href="cond__dgp_8h.html#a1a38282b6ffe06bbf7894db3fc919102">cond_dgp_json_export</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Dynamical GP graph condition implemented functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="cond__dgp_8h_source.html#l00082">82</a> of file <a class="el" href="cond__dgp_8h_source.html">cond_dgp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__dgp_8h_source.html#l00085">85</a> of file <a class="el" href="cond__dgp_8h_source.html">cond_dgp.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00040">condition_set()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00041">condition_set()</a>.</p>
 
 </div>
 </div>
@@ -870,14 +931,15 @@ Here is the call graph for this function:</div>
 <div class="ttc" id="acond__dgp_8h_html_a8c6aa1ea69d87295dec888622f6d4577"><div class="ttname"><a href="cond__dgp_8h.html#a8c6aa1ea69d87295dec888622f6d4577">cond_dgp_mutate</a></div><div class="ttdeci">bool cond_dgp_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Mutates a dynamical GP graph condition with the self-adaptive rates.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00130">cond_dgp.c:130</a></div></div>
 <div class="ttc" id="acond__dgp_8h_html_a092ceb2e9dc6a81da9341066f2a671e3"><div class="ttname"><a href="cond__dgp_8h.html#a092ceb2e9dc6a81da9341066f2a671e3">cond_dgp_print</a></div><div class="ttdeci">void cond_dgp_print(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Prints a dynamical GP graph condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00177">cond_dgp.c:177</a></div></div>
 <div class="ttc" id="acond__dgp_8h_html_aa06270e18c525af427ee4d88d553443d"><div class="ttname"><a href="cond__dgp_8h.html#aa06270e18c525af427ee4d88d553443d">cond_dgp_free</a></div><div class="ttdeci">void cond_dgp_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Frees the memory used by a dynamical GP graph condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00048">cond_dgp.c:48</a></div></div>
+<div class="ttc" id="acond__dgp_8h_html_a1a38282b6ffe06bbf7894db3fc919102"><div class="ttname"><a href="cond__dgp_8h.html#a1a38282b6ffe06bbf7894db3fc919102">cond_dgp_json_export</a></div><div class="ttdeci">const char * cond_dgp_json_export(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns a json formatted string representation of a DGP condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00236">cond_dgp.c:236</a></div></div>
 <div class="ttc" id="acond__dgp_8h_html_a36eb6c8e497eb217ea0423ffce18e8e4"><div class="ttname"><a href="cond__dgp_8h.html#a36eb6c8e497eb217ea0423ffce18e8e4">cond_dgp_init</a></div><div class="ttdeci">void cond_dgp_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Creates and initialises a dynamical GP graph condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00034">cond_dgp.c:34</a></div></div>
 <div class="ttc" id="acond__dgp_8h_html_a8bb6fc747fba92c9a717c1b26f5ffca7"><div class="ttname"><a href="cond__dgp_8h.html#a8bb6fc747fba92c9a717c1b26f5ffca7">cond_dgp_match</a></div><div class="ttdeci">bool cond_dgp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Calculates whether a dynamical GP graph condition matches an input.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00113">cond_dgp.c:113</a></div></div>
-<div class="ttc" id="acond__dgp_8h_html_aa256603d668210795115bc99ad4d6ef7"><div class="ttname"><a href="cond__dgp_8h.html#aa256603d668210795115bc99ad4d6ef7">cond_dgp_size</a></div><div class="ttdeci">double cond_dgp_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a dynamical GP graph condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00191">cond_dgp.c:191</a></div></div>
-<div class="ttc" id="acond__dgp_8h_html_a33a7ce490b663d05af0b11ad26689147"><div class="ttname"><a href="cond__dgp_8h.html#a33a7ce490b663d05af0b11ad26689147">cond_dgp_load</a></div><div class="ttdeci">size_t cond_dgp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Reads a dynamical GP graph condition from a file.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00222">cond_dgp.c:222</a></div></div>
+<div class="ttc" id="acond__dgp_8h_html_aa256603d668210795115bc99ad4d6ef7"><div class="ttname"><a href="cond__dgp_8h.html#aa256603d668210795115bc99ad4d6ef7">cond_dgp_size</a></div><div class="ttdeci">double cond_dgp_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a dynamical GP graph condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00189">cond_dgp.c:189</a></div></div>
+<div class="ttc" id="acond__dgp_8h_html_a33a7ce490b663d05af0b11ad26689147"><div class="ttname"><a href="cond__dgp_8h.html#a33a7ce490b663d05af0b11ad26689147">cond_dgp_load</a></div><div class="ttdeci">size_t cond_dgp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Reads a dynamical GP graph condition from a file.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00220">cond_dgp.c:220</a></div></div>
 <div class="ttc" id="acond__dgp_8h_html_abe91bb9afbf10656b8e6b9952760c4cf"><div class="ttname"><a href="cond__dgp_8h.html#abe91bb9afbf10656b8e6b9952760c4cf">cond_dgp_crossover</a></div><div class="ttdeci">bool cond_dgp_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Dummy crossover function.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00145">cond_dgp.c:145</a></div></div>
 <div class="ttc" id="acond__dgp_8h_html_a585a3476b4473b1b19159a7d55daa6ae"><div class="ttname"><a href="cond__dgp_8h.html#a585a3476b4473b1b19159a7d55daa6ae">cond_dgp_cover</a></div><div class="ttdeci">void cond_dgp_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Generates a dynamical GP graph that matches the current input.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00079">cond_dgp.c:79</a></div></div>
 <div class="ttc" id="acond__dgp_8h_html_aa85c960376cf5892cb5fc18c82c6934a"><div class="ttname"><a href="cond__dgp_8h.html#aa85c960376cf5892cb5fc18c82c6934a">cond_dgp_copy</a></div><div class="ttdeci">void cond_dgp_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)</div><div class="ttdoc">Copies a dynamical GP graph condition from one classifier to another.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00063">cond_dgp.c:63</a></div></div>
-<div class="ttc" id="acond__dgp_8h_html_aa9799f3254419594eeeb972e0bd515f1"><div class="ttname"><a href="cond__dgp_8h.html#aa9799f3254419594eeeb972e0bd515f1">cond_dgp_save</a></div><div class="ttdeci">size_t cond_dgp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes a dynamical GP graph condition to a file.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00206">cond_dgp.c:206</a></div></div>
+<div class="ttc" id="acond__dgp_8h_html_aa9799f3254419594eeeb972e0bd515f1"><div class="ttname"><a href="cond__dgp_8h.html#aa9799f3254419594eeeb972e0bd515f1">cond_dgp_save</a></div><div class="ttdeci">size_t cond_dgp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes a dynamical GP graph condition to a file.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dgp_8c_source.html#l00204">cond_dgp.c:204</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

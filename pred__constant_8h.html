@@ -150,6 +150,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa5c57feb094f13c43d551cd337eeee96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__constant_8h.html#aa5c57feb094f13c43d551cd337eeee96">pred_constant_update</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c, const double *x, const double *y)</td></tr>
 <tr class="memdesc:aa5c57feb094f13c43d551cd337eeee96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a constant prediction for a given input and truth sample.  <a href="pred__constant_8h.html#aa5c57feb094f13c43d551cd337eeee96">More...</a><br /></td></tr>
 <tr class="separator:aa5c57feb094f13c43d551cd337eeee96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a612b442e29fa3db64ddfa3e3128de736"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__constant_8h.html#a612b442e29fa3db64ddfa3e3128de736">pred_constant_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="memdesc:a612b442e29fa3db64ddfa3e3128de736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a prediction.  <a href="pred__constant_8h.html#a612b442e29fa3db64ddfa3e3128de736">More...</a><br /></td></tr>
+<tr class="separator:a612b442e29fa3db64ddfa3e3128de736"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -161,7 +164,7 @@ Variables</h2></td></tr>
 <div class="textblock"><p>Piece-wise constant prediction functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2015&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="pred__constant_8h_source.html">pred_constant.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -207,7 +210,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00096">96</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00097">97</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
 
 </div>
 </div>
@@ -253,7 +256,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00045">45</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00046">46</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
 
 </div>
 </div>
@@ -300,7 +303,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00127">127</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00124">124</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
 
 </div>
 </div>
@@ -339,7 +342,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00059">59</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00060">60</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
 
 </div>
 </div>
@@ -378,7 +381,57 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00032">32</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00033">33</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+
+</div>
+</div>
+<a id="a612b442e29fa3db64ddfa3e3128de736"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a612b442e29fa3db64ddfa3e3128de736">&#9670;&nbsp;</a></span>pred_constant_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* pred_constant_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of a prediction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td><a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>Classifier whose prediction is to be returned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00199">199</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="pred__constant_8c_source.html#l00111">pred_constant_print()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__constant_8h_a612b442e29fa3db64ddfa3e3128de736_icgraph.svg" width="330" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -425,7 +478,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00187">187</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00184">184</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
 
 </div>
 </div>
@@ -465,7 +518,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00143">143</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00140">140</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
 
 </div>
 </div>
@@ -504,9 +557,15 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00110">110</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00111">111</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="pred__constant_8c_source.html#l00199">pred_constant_json_export()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__constant_8h_a930a990c6661215f4e922da06d8042d4_cgraph.svg" width="330" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -553,7 +612,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00171">171</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00168">168</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
 
 </div>
 </div>
@@ -593,7 +652,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The output dimension. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00157">157</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00154">154</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
 
@@ -648,7 +707,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00073">73</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00074">74</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00117">XCSF::BETA</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
 
@@ -678,30 +737,31 @@ Variables</h2></td></tr>
 <div class="line">    &amp;<a class="code" href="pred__constant_8h.html#a83401cdbdc1f04afae12ffe6842343ad">pred_constant_crossover</a>, &amp;<a class="code" href="pred__constant_8h.html#abc58dcf5873f7d9c72e20f536bcda931">pred_constant_mutate</a>, &amp;<a class="code" href="pred__constant_8h.html#a493d4b018f9703ebfcd6ac296aefd315">pred_constant_compute</a>,</div>
 <div class="line">    &amp;<a class="code" href="pred__constant_8h.html#adefc5cb9f96d09c51d0c03577af84399">pred_constant_copy</a>,      &amp;<a class="code" href="pred__constant_8h.html#a4147db3dc82ef81ccc236a1d145268ab">pred_constant_free</a>,   &amp;<a class="code" href="pred__constant_8h.html#a150da44c5f7e0181d52ad5578888f401">pred_constant_init</a>,</div>
 <div class="line">    &amp;<a class="code" href="pred__constant_8h.html#a930a990c6661215f4e922da06d8042d4">pred_constant_print</a>,     &amp;<a class="code" href="pred__constant_8h.html#aa5c57feb094f13c43d551cd337eeee96">pred_constant_update</a>, &amp;<a class="code" href="pred__constant_8h.html#a90268cd912408b6cd11e272dd240ef32">pred_constant_size</a>,</div>
-<div class="line">    &amp;<a class="code" href="pred__constant_8h.html#aea6ffe1624fbd496206dddc869b936b5">pred_constant_save</a>,      &amp;<a class="code" href="pred__constant_8h.html#a0de1c13af7bfa2067d25f5336e92d77f">pred_constant_load</a></div>
+<div class="line">    &amp;<a class="code" href="pred__constant_8h.html#aea6ffe1624fbd496206dddc869b936b5">pred_constant_save</a>,      &amp;<a class="code" href="pred__constant_8h.html#a0de1c13af7bfa2067d25f5336e92d77f">pred_constant_load</a>,   &amp;<a class="code" href="pred__constant_8h.html#a612b442e29fa3db64ddfa3e3128de736">pred_constant_json_export</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Constant prediction implemented functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="pred__constant_8h_source.html#l00069">69</a> of file <a class="el" href="pred__constant_8h_source.html">pred_constant.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__constant_8h_source.html#l00072">72</a> of file <a class="el" href="pred__constant_8h_source.html">pred_constant.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00035">prediction_set()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00036">prediction_set()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="apred__constant_8h_html_a90268cd912408b6cd11e272dd240ef32"><div class="ttname"><a href="pred__constant_8h.html#a90268cd912408b6cd11e272dd240ef32">pred_constant_size</a></div><div class="ttdeci">double pred_constant_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a constant prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00157">pred_constant.c:157</a></div></div>
-<div class="ttc" id="apred__constant_8h_html_a4147db3dc82ef81ccc236a1d145268ab"><div class="ttname"><a href="pred__constant_8h.html#a4147db3dc82ef81ccc236a1d145268ab">pred_constant_free</a></div><div class="ttdeci">void pred_constant_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00059">pred_constant.c:59</a></div></div>
-<div class="ttc" id="apred__constant_8h_html_abc58dcf5873f7d9c72e20f536bcda931"><div class="ttname"><a href="pred__constant_8h.html#abc58dcf5873f7d9c72e20f536bcda931">pred_constant_mutate</a></div><div class="ttdeci">bool pred_constant_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Dummy function since constant predictions do not perform mutation.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00143">pred_constant.c:143</a></div></div>
-<div class="ttc" id="apred__constant_8h_html_a493d4b018f9703ebfcd6ac296aefd315"><div class="ttname"><a href="pred__constant_8h.html#a493d4b018f9703ebfcd6ac296aefd315">pred_constant_compute</a></div><div class="ttdeci">void pred_constant_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Dummy function since constant predictions are not computed.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00096">pred_constant.c:96</a></div></div>
-<div class="ttc" id="apred__constant_8h_html_a0de1c13af7bfa2067d25f5336e92d77f"><div class="ttname"><a href="pred__constant_8h.html#a0de1c13af7bfa2067d25f5336e92d77f">pred_constant_load</a></div><div class="ttdeci">size_t pred_constant_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00187">pred_constant.c:187</a></div></div>
-<div class="ttc" id="apred__constant_8h_html_adefc5cb9f96d09c51d0c03577af84399"><div class="ttname"><a href="pred__constant_8h.html#adefc5cb9f96d09c51d0c03577af84399">pred_constant_copy</a></div><div class="ttdeci">void pred_constant_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00045">pred_constant.c:45</a></div></div>
-<div class="ttc" id="apred__constant_8h_html_aa5c57feb094f13c43d551cd337eeee96"><div class="ttname"><a href="pred__constant_8h.html#aa5c57feb094f13c43d551cd337eeee96">pred_constant_update</a></div><div class="ttdeci">void pred_constant_update(const struct XCSF *xcsf, const struct Cl *c, const double *x, const double *y)</div><div class="ttdoc">Updates a constant prediction for a given input and truth sample.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00073">pred_constant.c:73</a></div></div>
-<div class="ttc" id="apred__constant_8h_html_a83401cdbdc1f04afae12ffe6842343ad"><div class="ttname"><a href="pred__constant_8h.html#a83401cdbdc1f04afae12ffe6842343ad">pred_constant_crossover</a></div><div class="ttdeci">bool pred_constant_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Dummy function since constant predictions do not perform crossover.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00127">pred_constant.c:127</a></div></div>
-<div class="ttc" id="apred__constant_8h_html_a930a990c6661215f4e922da06d8042d4"><div class="ttname"><a href="pred__constant_8h.html#a930a990c6661215f4e922da06d8042d4">pred_constant_print</a></div><div class="ttdeci">void pred_constant_print(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Prints a constant prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00110">pred_constant.c:110</a></div></div>
-<div class="ttc" id="apred__constant_8h_html_a150da44c5f7e0181d52ad5578888f401"><div class="ttname"><a href="pred__constant_8h.html#a150da44c5f7e0181d52ad5578888f401">pred_constant_init</a></div><div class="ttdeci">void pred_constant_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00032">pred_constant.c:32</a></div></div>
-<div class="ttc" id="apred__constant_8h_html_aea6ffe1624fbd496206dddc869b936b5"><div class="ttname"><a href="pred__constant_8h.html#aea6ffe1624fbd496206dddc869b936b5">pred_constant_save</a></div><div class="ttdeci">size_t pred_constant_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00171">pred_constant.c:171</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_a90268cd912408b6cd11e272dd240ef32"><div class="ttname"><a href="pred__constant_8h.html#a90268cd912408b6cd11e272dd240ef32">pred_constant_size</a></div><div class="ttdeci">double pred_constant_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a constant prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00154">pred_constant.c:154</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_a612b442e29fa3db64ddfa3e3128de736"><div class="ttname"><a href="pred__constant_8h.html#a612b442e29fa3db64ddfa3e3128de736">pred_constant_json_export</a></div><div class="ttdeci">const char * pred_constant_json_export(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns a json formatted string representation of a prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00199">pred_constant.c:199</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_a4147db3dc82ef81ccc236a1d145268ab"><div class="ttname"><a href="pred__constant_8h.html#a4147db3dc82ef81ccc236a1d145268ab">pred_constant_free</a></div><div class="ttdeci">void pred_constant_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00060">pred_constant.c:60</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_abc58dcf5873f7d9c72e20f536bcda931"><div class="ttname"><a href="pred__constant_8h.html#abc58dcf5873f7d9c72e20f536bcda931">pred_constant_mutate</a></div><div class="ttdeci">bool pred_constant_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Dummy function since constant predictions do not perform mutation.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00140">pred_constant.c:140</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_a493d4b018f9703ebfcd6ac296aefd315"><div class="ttname"><a href="pred__constant_8h.html#a493d4b018f9703ebfcd6ac296aefd315">pred_constant_compute</a></div><div class="ttdeci">void pred_constant_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Dummy function since constant predictions are not computed.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00097">pred_constant.c:97</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_a0de1c13af7bfa2067d25f5336e92d77f"><div class="ttname"><a href="pred__constant_8h.html#a0de1c13af7bfa2067d25f5336e92d77f">pred_constant_load</a></div><div class="ttdeci">size_t pred_constant_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00184">pred_constant.c:184</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_adefc5cb9f96d09c51d0c03577af84399"><div class="ttname"><a href="pred__constant_8h.html#adefc5cb9f96d09c51d0c03577af84399">pred_constant_copy</a></div><div class="ttdeci">void pred_constant_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00046">pred_constant.c:46</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_aa5c57feb094f13c43d551cd337eeee96"><div class="ttname"><a href="pred__constant_8h.html#aa5c57feb094f13c43d551cd337eeee96">pred_constant_update</a></div><div class="ttdeci">void pred_constant_update(const struct XCSF *xcsf, const struct Cl *c, const double *x, const double *y)</div><div class="ttdoc">Updates a constant prediction for a given input and truth sample.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00074">pred_constant.c:74</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_a83401cdbdc1f04afae12ffe6842343ad"><div class="ttname"><a href="pred__constant_8h.html#a83401cdbdc1f04afae12ffe6842343ad">pred_constant_crossover</a></div><div class="ttdeci">bool pred_constant_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Dummy function since constant predictions do not perform crossover.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00124">pred_constant.c:124</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_a930a990c6661215f4e922da06d8042d4"><div class="ttname"><a href="pred__constant_8h.html#a930a990c6661215f4e922da06d8042d4">pred_constant_print</a></div><div class="ttdeci">void pred_constant_print(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Prints a constant prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00111">pred_constant.c:111</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_a150da44c5f7e0181d52ad5578888f401"><div class="ttname"><a href="pred__constant_8h.html#a150da44c5f7e0181d52ad5578888f401">pred_constant_init</a></div><div class="ttdeci">void pred_constant_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00033">pred_constant.c:33</a></div></div>
+<div class="ttc" id="apred__constant_8h_html_aea6ffe1624fbd496206dddc869b936b5"><div class="ttname"><a href="pred__constant_8h.html#aea6ffe1624fbd496206dddc869b936b5">pred_constant_save</a></div><div class="ttdeci">size_t pred_constant_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00168">pred_constant.c:168</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

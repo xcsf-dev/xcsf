@@ -6,6 +6,7 @@ var structCondVtbl =
     [ "cond_impl_free", "structCondVtbl.html#a4db109f96bf0c836225f534f6cf7d04a", null ],
     [ "cond_impl_general", "structCondVtbl.html#a78da99794d0c635e1e60219123991f9f", null ],
     [ "cond_impl_init", "structCondVtbl.html#a13be81205139196323f69fe1bccdb9e6", null ],
+    [ "cond_impl_json_export", "structCondVtbl.html#ac8340ce3ee93861f4c825c5b046dbf1e", null ],
     [ "cond_impl_load", "structCondVtbl.html#a8a24c8b144bd3fdf78e686b5b8203887", null ],
     [ "cond_impl_match", "structCondVtbl.html#aaaae601901e71da8ff83193be13023ff", null ],
     [ "cond_impl_mutate", "structCondVtbl.html#a7a38ce5c17bade2b4f528da5c0948059", null ],

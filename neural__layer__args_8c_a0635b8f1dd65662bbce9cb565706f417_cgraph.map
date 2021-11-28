@@ -1,0 +1,4 @@
+<map id="layer_args_json_activation" name="layer_args_json_activation">
+<area shape="rect" id="node1" title="Adds layer activation function to a json object." alt="" coords="5,5,181,32"/>
+<area shape="rect" id="node2" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="229,5,388,32"/>
+</map>

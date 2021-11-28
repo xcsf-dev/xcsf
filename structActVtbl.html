@@ -128,6 +128,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:a363e13f1c84579452c85c4c72585c7bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aac189071da41e2d0d99ce9c0cdbfe3"><td class="memItemLeft" align="right" valign="top">size_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structActVtbl.html#a1aac189071da41e2d0d99ce9c0cdbfe3">act_impl_load</a> )(const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, FILE *fp)</td></tr>
 <tr class="separator:a1aac189071da41e2d0d99ce9c0cdbfe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92c58d507db0a356cf1af9f24a45338"><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structActVtbl.html#ae92c58d507db0a356cf1af9f24a45338">act_impl_json_export</a> )(const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="separator:ae92c58d507db0a356cf1af9f24a45338"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Action interface data structure. </p>
@@ -149,7 +151,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00076">76</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00164">act_compute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00166">act_compute()</a>.</p>
 
 </div>
 </div>
@@ -167,7 +169,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00078">78</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00176">act_copy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00178">act_copy()</a>.</p>
 
 </div>
 </div>
@@ -185,7 +187,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00080">80</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00189">act_cover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00191">act_cover()</a>.</p>
 
 </div>
 </div>
@@ -203,7 +205,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00073">73</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00139">act_crossover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00141">act_crossover()</a>.</p>
 
 </div>
 </div>
@@ -221,7 +223,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00082">82</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00201">act_free()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00203">act_free()</a>.</p>
 
 </div>
 </div>
@@ -239,7 +241,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00071">71</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00126">act_general()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00128">act_general()</a>.</p>
 
 </div>
 </div>
@@ -257,7 +259,25 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00083">83</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00212">act_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00214">act_init()</a>.</p>
+
+</div>
+</div>
+<a id="ae92c58d507db0a356cf1af9f24a45338"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae92c58d507db0a356cf1af9f24a45338">&#9670;&nbsp;</a></span>act_impl_json_export</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* ActVtbl::act_impl_json_export) (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00090">90</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00251">act_json_export()</a>.</p>
 
 </div>
 </div>
@@ -275,7 +295,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00089">89</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00113">act_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00115">act_load()</a>.</p>
 
 </div>
 </div>
@@ -293,7 +313,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00075">75</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00151">act_mutate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00153">act_mutate()</a>.</p>
 
 </div>
 </div>
@@ -311,7 +331,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00084">84</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00223">act_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00225">act_print()</a>.</p>
 
 </div>
 </div>
@@ -329,7 +349,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00087">87</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00100">act_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00102">act_save()</a>.</p>
 
 </div>
 </div>
@@ -347,7 +367,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00085">85</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00236">act_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00238">act_update()</a>.</p>
 
 </div>
 </div>

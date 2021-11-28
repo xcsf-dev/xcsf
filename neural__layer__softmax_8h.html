@@ -155,6 +155,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa26a5d73cbae5aa58fd2ae5ba482fd71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__softmax_8h.html#aa26a5d73cbae5aa58fd2ae5ba482fd71">neural_layer_softmax_resize</a> (struct <a class="el" href="structLayer.html">Layer</a> *l, const struct <a class="el" href="structLayer.html">Layer</a> *prev)</td></tr>
 <tr class="memdesc:aa26a5d73cbae5aa58fd2ae5ba482fd71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes a softmax layer if the previous layer has changed size.  <a href="neural__layer__softmax_8h.html#aa26a5d73cbae5aa58fd2ae5ba482fd71">More...</a><br /></td></tr>
 <tr class="separator:aa26a5d73cbae5aa58fd2ae5ba482fd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8a3e69b4d155808941905abf27dc134"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__softmax_8h.html#ab8a3e69b4d155808941905abf27dc134">neural_layer_softmax_json_export</a> (const struct <a class="el" href="structLayer.html">Layer</a> *l, const bool return_weights)</td></tr>
+<tr class="memdesc:ab8a3e69b4d155808941905abf27dc134"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a softmax layer.  <a href="neural__layer__softmax_8h.html#ab8a3e69b4d155808941905abf27dc134">More...</a><br /></td></tr>
+<tr class="separator:ab8a3e69b4d155808941905abf27dc134"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -166,7 +169,7 @@ Variables</h2></td></tr>
 <div class="textblock"><p>An implementation of a softmax layer. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2016&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="neural__layer__softmax_8h_source.html">neural_layer_softmax.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -252,7 +255,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00075">75</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8c_source.html#l00396">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00100">Layer::layer_vptr</a>, <a class="el" href="neural__layer__softmax_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00098">Layer::scale</a>, <a class="el" href="neural__layer_8h_source.html#l00032">SOFTMAX</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8c_source.html#l00411">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00100">Layer::layer_vptr</a>, <a class="el" href="neural__layer__softmax_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00098">Layer::scale</a>, <a class="el" href="neural__layer_8h_source.html#l00032">SOFTMAX</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -333,7 +336,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00212">212</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00232">232</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer__softmax_8c_source.html#l00045">free_layer_arrays()</a>.</p>
 <div class="dynheader">
@@ -390,6 +393,56 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="ab8a3e69b4d155808941905abf27dc134"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8a3e69b4d155808941905abf27dc134">&#9670;&nbsp;</a></span>neural_layer_softmax_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* neural_layer_softmax_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structLayer.html">Layer</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>return_weights</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of a softmax layer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">l</td><td>The layer to return. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">return_weights</td><td>Whether to return the values of weights and biases. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00183">183</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
+
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, and <a class="el" href="neural__layer_8h_source.html#l00098">Layer::scale</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="neural__layer__softmax_8c_source.html#l00170">neural_layer_softmax_print()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__softmax_8h_ab8a3e69b4d155808941905abf27dc134_icgraph.svg" width="352" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
 <a id="a82ab9964bfb9c258d64b5ae55b432bd3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a82ab9964bfb9c258d64b5ae55b432bd3">&#9670;&nbsp;</a></span>neural_layer_softmax_load()</h2>
 
@@ -426,7 +479,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00252">252</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00272">272</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer__softmax_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, and <a class="el" href="neural__layer_8h_source.html#l00098">Layer::scale</a>.</p>
 <div class="dynheader">
@@ -462,7 +515,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00183">183</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00203">203</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
 
 </div>
 </div>
@@ -491,7 +544,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The layer output. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00223">223</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00243">243</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>.</p>
 
@@ -534,7 +587,13 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00170">170</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, and <a class="el" href="neural__layer_8h_source.html#l00098">Layer::scale</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__softmax_8c_source.html#l00183">neural_layer_softmax_json_export()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__softmax_8h_a8b733035044a0ceac72f4e7f9615d696_cgraph.svg" width="352" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -601,7 +660,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00195">195</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00215">215</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer__softmax_8c_source.html#l00045">free_layer_arrays()</a>, <a class="el" href="neural__layer__softmax_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, and <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>.</p>
 <div class="dynheader">
@@ -648,7 +707,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00235">235</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8c_source.html#l00255">255</a> of file <a class="el" href="neural__layer__softmax_8c_source.html">neural_layer_softmax.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, and <a class="el" href="neural__layer_8h_source.html#l00098">Layer::scale</a>.</p>
 
@@ -709,12 +768,12 @@ Here is the call graph for this function:</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__softmax_8h.html#a8b733035044a0ceac72f4e7f9615d696">neural_layer_softmax_print</a>,    &amp;<a class="code" href="neural__layer__softmax_8h.html#aa02ddd4c0cdcc8382d39567d2fe96530">neural_layer_softmax_update</a>,</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__softmax_8h.html#a137c0c40fc737d1fe3075d768127c322">neural_layer_softmax_backward</a>, &amp;<a class="code" href="neural__layer__softmax_8h.html#a9f18f694cf0f0a9ccd86bb7fd24630d5">neural_layer_softmax_forward</a>,</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__softmax_8h.html#a08d8453a238419b4e6221055965b8c09">neural_layer_softmax_output</a>,   &amp;<a class="code" href="neural__layer__softmax_8h.html#a9e031218a421bcffd92c4fcfdd72949d">neural_layer_softmax_save</a>,</div>
-<div class="line">    &amp;<a class="code" href="neural__layer__softmax_8h.html#a82ab9964bfb9c258d64b5ae55b432bd3">neural_layer_softmax_load</a></div>
+<div class="line">    &amp;<a class="code" href="neural__layer__softmax_8h.html#a82ab9964bfb9c258d64b5ae55b432bd3">neural_layer_softmax_load</a>,     &amp;<a class="code" href="neural__layer__softmax_8h.html#ab8a3e69b4d155808941905abf27dc134">neural_layer_softmax_json_export</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Neural softmax layer implemented functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8h_source.html#l00071">71</a> of file <a class="el" href="neural__layer__softmax_8h_source.html">neural_layer_softmax.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__softmax_8h_source.html#l00075">75</a> of file <a class="el" href="neural__layer__softmax_8h_source.html">neural_layer_softmax.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="neural__layer_8c_source.html#l00042">layer_set_vptr()</a>.</p>
 
@@ -722,19 +781,20 @@ Here is the call graph for this function:</div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aneural__layer__softmax_8h_html_acec593f1d5b677e6c0dad8d9e9c142d8"><div class="ttname"><a href="neural__layer__softmax_8h.html#acec593f1d5b677e6c0dad8d9e9c142d8">neural_layer_softmax_mutate</a></div><div class="ttdeci">bool neural_layer_softmax_mutate(struct Layer *l)</div><div class="ttdoc">Dummy function since a softmax layer cannot be mutated.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00183">neural_layer_softmax.c:183</a></div></div>
+<div class="ttc" id="aneural__layer__softmax_8h_html_acec593f1d5b677e6c0dad8d9e9c142d8"><div class="ttname"><a href="neural__layer__softmax_8h.html#acec593f1d5b677e6c0dad8d9e9c142d8">neural_layer_softmax_mutate</a></div><div class="ttdeci">bool neural_layer_softmax_mutate(struct Layer *l)</div><div class="ttdoc">Dummy function since a softmax layer cannot be mutated.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00203">neural_layer_softmax.c:203</a></div></div>
+<div class="ttc" id="aneural__layer__softmax_8h_html_ab8a3e69b4d155808941905abf27dc134"><div class="ttname"><a href="neural__layer__softmax_8h.html#ab8a3e69b4d155808941905abf27dc134">neural_layer_softmax_json_export</a></div><div class="ttdeci">const char * neural_layer_softmax_json_export(const struct Layer *l, const bool return_weights)</div><div class="ttdoc">Returns a json formatted string representation of a softmax layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00183">neural_layer_softmax.c:183</a></div></div>
 <div class="ttc" id="aneural__layer__softmax_8h_html_aa0ee9cf1eeb73ba969e984e58836ba0e"><div class="ttname"><a href="neural__layer__softmax_8h.html#aa0ee9cf1eeb73ba969e984e58836ba0e">neural_layer_softmax_rand</a></div><div class="ttdeci">void neural_layer_softmax_rand(struct Layer *l)</div><div class="ttdoc">Dummy function since softmax layers have no weights.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00101">neural_layer_softmax.c:101</a></div></div>
 <div class="ttc" id="aneural__layer__softmax_8h_html_a7511194d08647d475924e23c21da562a"><div class="ttname"><a href="neural__layer__softmax_8h.html#a7511194d08647d475924e23c21da562a">neural_layer_softmax_copy</a></div><div class="ttdeci">struct Layer * neural_layer_softmax_copy(const struct Layer *src)</div><div class="ttdoc">Initialises and creates a copy of one softmax layer from another.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00075">neural_layer_softmax.c:75</a></div></div>
 <div class="ttc" id="aneural__layer__softmax_8h_html_a9f18f694cf0f0a9ccd86bb7fd24630d5"><div class="ttname"><a href="neural__layer__softmax_8h.html#a9f18f694cf0f0a9ccd86bb7fd24630d5">neural_layer_softmax_forward</a></div><div class="ttdeci">void neural_layer_softmax_forward(const struct Layer *l, const struct Net *net, const double *input)</div><div class="ttdoc">Forward propagates a softmax layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00113">neural_layer_softmax.c:113</a></div></div>
-<div class="ttc" id="aneural__layer__softmax_8h_html_a9e031218a421bcffd92c4fcfdd72949d"><div class="ttname"><a href="neural__layer__softmax_8h.html#a9e031218a421bcffd92c4fcfdd72949d">neural_layer_softmax_save</a></div><div class="ttdeci">size_t neural_layer_softmax_save(const struct Layer *l, FILE *fp)</div><div class="ttdoc">Writes a softmax layer to a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00235">neural_layer_softmax.c:235</a></div></div>
+<div class="ttc" id="aneural__layer__softmax_8h_html_a9e031218a421bcffd92c4fcfdd72949d"><div class="ttname"><a href="neural__layer__softmax_8h.html#a9e031218a421bcffd92c4fcfdd72949d">neural_layer_softmax_save</a></div><div class="ttdeci">size_t neural_layer_softmax_save(const struct Layer *l, FILE *fp)</div><div class="ttdoc">Writes a softmax layer to a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00255">neural_layer_softmax.c:255</a></div></div>
 <div class="ttc" id="aneural__layer__softmax_8h_html_a137c0c40fc737d1fe3075d768127c322"><div class="ttname"><a href="neural__layer__softmax_8h.html#a137c0c40fc737d1fe3075d768127c322">neural_layer_softmax_backward</a></div><div class="ttdeci">void neural_layer_softmax_backward(const struct Layer *l, const struct Net *net, const double *input, double *delta)</div><div class="ttdoc">Backward propagates a softmax layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00142">neural_layer_softmax.c:142</a></div></div>
-<div class="ttc" id="aneural__layer__softmax_8h_html_aa26a5d73cbae5aa58fd2ae5ba482fd71"><div class="ttname"><a href="neural__layer__softmax_8h.html#aa26a5d73cbae5aa58fd2ae5ba482fd71">neural_layer_softmax_resize</a></div><div class="ttdeci">void neural_layer_softmax_resize(struct Layer *l, const struct Layer *prev)</div><div class="ttdoc">Resizes a softmax layer if the previous layer has changed size.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00195">neural_layer_softmax.c:195</a></div></div>
-<div class="ttc" id="aneural__layer__softmax_8h_html_a08d8453a238419b4e6221055965b8c09"><div class="ttname"><a href="neural__layer__softmax_8h.html#a08d8453a238419b4e6221055965b8c09">neural_layer_softmax_output</a></div><div class="ttdeci">double * neural_layer_softmax_output(const struct Layer *l)</div><div class="ttdoc">Returns the output from a softmax layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00223">neural_layer_softmax.c:223</a></div></div>
+<div class="ttc" id="aneural__layer__softmax_8h_html_aa26a5d73cbae5aa58fd2ae5ba482fd71"><div class="ttname"><a href="neural__layer__softmax_8h.html#aa26a5d73cbae5aa58fd2ae5ba482fd71">neural_layer_softmax_resize</a></div><div class="ttdeci">void neural_layer_softmax_resize(struct Layer *l, const struct Layer *prev)</div><div class="ttdoc">Resizes a softmax layer if the previous layer has changed size.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00215">neural_layer_softmax.c:215</a></div></div>
+<div class="ttc" id="aneural__layer__softmax_8h_html_a08d8453a238419b4e6221055965b8c09"><div class="ttname"><a href="neural__layer__softmax_8h.html#a08d8453a238419b4e6221055965b8c09">neural_layer_softmax_output</a></div><div class="ttdeci">double * neural_layer_softmax_output(const struct Layer *l)</div><div class="ttdoc">Returns the output from a softmax layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00243">neural_layer_softmax.c:243</a></div></div>
 <div class="ttc" id="aneural__layer__softmax_8h_html_aa02ddd4c0cdcc8382d39567d2fe96530"><div class="ttname"><a href="neural__layer__softmax_8h.html#aa02ddd4c0cdcc8382d39567d2fe96530">neural_layer_softmax_update</a></div><div class="ttdeci">void neural_layer_softmax_update(const struct Layer *l)</div><div class="ttdoc">Dummy function since a softmax layer has no weights.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00159">neural_layer_softmax.c:159</a></div></div>
 <div class="ttc" id="aneural__layer__softmax_8h_html_a924b58251342121ab62ae385ace909aa"><div class="ttname"><a href="neural__layer__softmax_8h.html#a924b58251342121ab62ae385ace909aa">neural_layer_softmax_init</a></div><div class="ttdeci">void neural_layer_softmax_init(struct Layer *l, const struct ArgsLayer *args)</div><div class="ttdoc">Creates and initialises a softmax layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00057">neural_layer_softmax.c:57</a></div></div>
-<div class="ttc" id="aneural__layer__softmax_8h_html_a82ab9964bfb9c258d64b5ae55b432bd3"><div class="ttname"><a href="neural__layer__softmax_8h.html#a82ab9964bfb9c258d64b5ae55b432bd3">neural_layer_softmax_load</a></div><div class="ttdeci">size_t neural_layer_softmax_load(struct Layer *l, FILE *fp)</div><div class="ttdoc">Reads a softmax layer from a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00252">neural_layer_softmax.c:252</a></div></div>
+<div class="ttc" id="aneural__layer__softmax_8h_html_a82ab9964bfb9c258d64b5ae55b432bd3"><div class="ttname"><a href="neural__layer__softmax_8h.html#a82ab9964bfb9c258d64b5ae55b432bd3">neural_layer_softmax_load</a></div><div class="ttdeci">size_t neural_layer_softmax_load(struct Layer *l, FILE *fp)</div><div class="ttdoc">Reads a softmax layer from a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00272">neural_layer_softmax.c:272</a></div></div>
 <div class="ttc" id="aneural__layer__softmax_8h_html_a8b733035044a0ceac72f4e7f9615d696"><div class="ttname"><a href="neural__layer__softmax_8h.html#a8b733035044a0ceac72f4e7f9615d696">neural_layer_softmax_print</a></div><div class="ttdeci">void neural_layer_softmax_print(const struct Layer *l, const bool print_weights)</div><div class="ttdoc">Prints a softmax layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00170">neural_layer_softmax.c:170</a></div></div>
-<div class="ttc" id="aneural__layer__softmax_8h_html_a314875a074c00172bb8c3b613914ea46"><div class="ttname"><a href="neural__layer__softmax_8h.html#a314875a074c00172bb8c3b613914ea46">neural_layer_softmax_free</a></div><div class="ttdeci">void neural_layer_softmax_free(const struct Layer *l)</div><div class="ttdoc">Free memory used by a softmax layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00212">neural_layer_softmax.c:212</a></div></div>
+<div class="ttc" id="aneural__layer__softmax_8h_html_a314875a074c00172bb8c3b613914ea46"><div class="ttname"><a href="neural__layer__softmax_8h.html#a314875a074c00172bb8c3b613914ea46">neural_layer_softmax_free</a></div><div class="ttdeci">void neural_layer_softmax_free(const struct Layer *l)</div><div class="ttdoc">Free memory used by a softmax layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__softmax_8c_source.html#l00232">neural_layer_softmax.c:232</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

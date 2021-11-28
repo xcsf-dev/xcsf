@@ -51,6 +51,7 @@ var neural__layer_8h =
     [ "layer_guard_weights", "neural__layer_8h.html#afb8c6762568c65726b62ee12c816fb2b", null ],
     [ "layer_init", "neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe", null ],
     [ "layer_init_eta", "neural__layer_8h.html#adaa85b5b91de990f50a023060e0c16c5", null ],
+    [ "layer_json_export", "neural__layer_8h.html#ade7b33f507c20b3be75914174844bc4c", null ],
     [ "layer_load", "neural__layer_8h.html#a69ce571bb41dc2df362e3987fe595b63", null ],
     [ "layer_mutate", "neural__layer_8h.html#ad3229854f8e7c4c0eed64b22a8cd1cfa", null ],
     [ "layer_mutate_connectivity", "neural__layer_8h.html#a0540e1d6748c9b53c1114d869147340f", null ],
@@ -69,6 +70,7 @@ var neural__layer_8h =
     [ "layer_type_as_string", "neural__layer_8h.html#a0e2222a263f09abb981bc7273cd88d7e", null ],
     [ "layer_update", "neural__layer_8h.html#aa414f62704c1469ac851c78425b2b1ba", null ],
     [ "layer_weight_clamp", "neural__layer_8h.html#a80e54e8cdbe0776d6cc739f1a50ffd26", null ],
+    [ "layer_weight_json", "neural__layer_8h.html#a76be9c80bef04ba1a799825d96526d6d", null ],
     [ "layer_weight_print", "neural__layer_8h.html#a0d6d72b763049aab59c2602288d8216a", null ],
     [ "layer_weight_rand", "neural__layer_8h.html#a994d2e24681f8933e4a7e57b3930fcbc", null ]
 ];

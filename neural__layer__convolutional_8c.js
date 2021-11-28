@@ -12,6 +12,7 @@ var neural__layer__convolutional_8c =
     [ "neural_layer_convolutional_forward", "neural__layer__convolutional_8c.html#a474f61e40569851884c0108ce2e40a1d", null ],
     [ "neural_layer_convolutional_free", "neural__layer__convolutional_8c.html#aa47c710ef49cfccb7aa570792ae2673e", null ],
     [ "neural_layer_convolutional_init", "neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44", null ],
+    [ "neural_layer_convolutional_json_export", "neural__layer__convolutional_8c.html#acaf8ecd003f5b8767f3d4a5459a6df4d", null ],
     [ "neural_layer_convolutional_load", "neural__layer__convolutional_8c.html#ad77ef9a98206ae6d87b200f24b6c55e3", null ],
     [ "neural_layer_convolutional_mutate", "neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db", null ],
     [ "neural_layer_convolutional_mutate_filter", "neural__layer__convolutional_8c.html#ad54f1b4b3e465667caa810288f0d1ced", null ],

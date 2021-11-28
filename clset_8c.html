@@ -106,7 +106,7 @@ $(document).ready(function(){initNavTree('clset_8c.html',''); initResizable(); }
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for clset.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c__incl.svg" width="1063" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c__incl.svg" width="1239" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="clset_8c_source.html">Go to the source code of this file.</a></p>
@@ -200,6 +200,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ab7cb042e6b9a34ee1d7a81ed91b1a42d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clset_8c.html#ab7cb042e6b9a34ee1d7a81ed91b1a42d">clset_mfrac</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
 <tr class="memdesc:ab7cb042e6b9a34ee1d7a81ed91b1a42d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the fraction of inputs matched by the most general rule with error below E0. If no rules below E0, the lowest error rule is used.  <a href="clset_8c.html#ab7cb042e6b9a34ee1d7a81ed91b1a42d">More...</a><br /></td></tr>
 <tr class="separator:ab7cb042e6b9a34ee1d7a81ed91b1a42d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08704f16d6437de720dc03f30bf0abf7"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clset_8c.html#a08704f16d6437de720dc03f30bf0abf7">clset_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structSet.html">Set</a> *set, const bool return_cond, const bool return_act, const bool return_pred)</td></tr>
+<tr class="memdesc:a08704f16d6437de720dc03f30bf0abf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a classifier set.  <a href="clset_8c.html#a08704f16d6437de720dc03f30bf0abf7">More...</a><br /></td></tr>
+<tr class="separator:a08704f16d6437de720dc03f30bf0abf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions operating on sets of classifiers. </p>
@@ -377,7 +380,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::num</a>, and <a class="el" href="xcsf_8h_source.html#l00077">Set::size</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00378">clset_action()</a>, <a class="el" href="clset_8c_source.html#l00159">clset_cover()</a>, <a class="el" href="clset_8c_source.html#l00330">clset_match()</a>, <a class="el" href="clset_8c_source.html#l00104">clset_pset_del()</a>, <a class="el" href="clset_8c_source.html#l00285">clset_pset_init()</a>, <a class="el" href="clset_8c_source.html#l00605">clset_pset_load()</a>, <a class="el" href="clset_8c_source.html#l00230">clset_subsumption()</a>, <a class="el" href="ea_8c_source.html#l00113">ea_add()</a>, <a class="el" href="ea_8c_source.html#l00067">ea_subsume()</a>, and <a class="el" href="xcsf_8c_source.html#l00190">xcsf_store_pset()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00378">clset_action()</a>, <a class="el" href="clset_8c_source.html#l00159">clset_cover()</a>, <a class="el" href="clset_8c_source.html#l00330">clset_match()</a>, <a class="el" href="clset_8c_source.html#l00104">clset_pset_del()</a>, <a class="el" href="clset_8c_source.html#l00285">clset_pset_init()</a>, <a class="el" href="clset_8c_source.html#l00602">clset_pset_load()</a>, <a class="el" href="clset_8c_source.html#l00230">clset_subsumption()</a>, <a class="el" href="ea_8c_source.html#l00113">ea_add()</a>, <a class="el" href="ea_8c_source.html#l00067">ea_subsume()</a>, and <a class="el" href="xcsf_8c_source.html#l00190">xcsf_store_pset()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -471,7 +474,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00547">547</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00544">544</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::num</a>, and <a class="el" href="xcsf_8h_source.html#l00077">Set::size</a>.</p>
 
@@ -512,11 +515,88 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::num</a>, and <a class="el" href="xcsf_8h_source.html#l00077">Set::size</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00605">clset_pset_load()</a>, <a class="el" href="xcs__rl_8c_source.html#l00157">xcs_rl_init_step()</a>, <a class="el" href="xcs__rl_8c_source.html#l00126">xcs_rl_init_trial()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8c_source.html#l00037">xcsf_init()</a>, <a class="el" href="xcsf_8c_source.html#l00109">xcsf_load()</a>, and <a class="el" href="xcsf_8c_source.html#l00208">xcsf_retrieve_pset()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00602">clset_pset_load()</a>, <a class="el" href="xcs__rl_8c_source.html#l00157">xcs_rl_init_step()</a>, <a class="el" href="xcs__rl_8c_source.html#l00126">xcs_rl_init_trial()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8c_source.html#l00037">xcsf_init()</a>, <a class="el" href="xcsf_8c_source.html#l00109">xcsf_load()</a>, and <a class="el" href="xcsf_8c_source.html#l00208">xcsf_retrieve_pset()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a9af546abf9de1bc840d605e949d3ef47_icgraph.svg" width="895" height="646"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a08704f16d6437de720dc03f30bf0abf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08704f16d6437de720dc03f30bf0abf7">&#9670;&nbsp;</a></span>clset_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* clset_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structSet.html">Set</a> *&#160;</td>
+          <td class="paramname"><em>set</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>return_cond</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>return_act</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>return_pred</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of a classifier set. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">set</td><td>The set to be returned. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">return_cond</td><td>Whether to return the condition. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">return_act</td><td>Whether to return the action. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">return_pred</td><td>Whether to return the prediction. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00706">706</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00484">cl_json_export()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, and <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00489">clset_print()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00217">XCS::json_export()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a08704f16d6437de720dc03f30bf0abf7_cgraph.svg" width="462" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a08704f16d6437de720dc03f30bf0abf7_icgraph.svg" width="800" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -556,7 +636,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00565">565</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00562">562</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00223">cl_free()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::num</a>, and <a class="el" href="xcsf_8h_source.html#l00077">Set::size</a>.</p>
 
@@ -611,7 +691,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00330">330</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00117">XCSF::BETA</a>, <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00320">cl_action()</a>, <a class="el" href="cl_8c_source.html#l00306">cl_m()</a>, <a class="el" href="cl_8c_source.html#l00273">cl_match()</a>, <a class="el" href="clset_8c_source.html#l00397">clset_add()</a>, <a class="el" href="clset_8c_source.html#l00159">clset_cover()</a>, <a class="el" href="clset_8c_source.html#l00668">clset_mfrac()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00100">XCSF::mfrac</a>, <a class="el" href="xcsf_8h_source.html#l00087">XCSF::mset</a>, <a class="el" href="xcsf_8h_source.html#l00098">XCSF::mset_size</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>, and <a class="el" href="xcsf_8h_source.html#l00077">Set::size</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00117">XCSF::BETA</a>, <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00302">cl_action()</a>, <a class="el" href="cl_8c_source.html#l00288">cl_m()</a>, <a class="el" href="cl_8c_source.html#l00255">cl_match()</a>, <a class="el" href="clset_8c_source.html#l00397">clset_add()</a>, <a class="el" href="clset_8c_source.html#l00159">clset_cover()</a>, <a class="el" href="clset_8c_source.html#l00665">clset_mfrac()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00100">XCSF::mfrac</a>, <a class="el" href="xcsf_8h_source.html#l00087">XCSF::mset</a>, <a class="el" href="xcsf_8h_source.html#l00098">XCSF::mset_size</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>, and <a class="el" href="xcsf_8h_source.html#l00077">Set::size</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00247">xcs_rl_decision()</a>, <a class="el" href="xcs__rl_8c_source.html#l00104">xcs_rl_fit()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>.</p>
 <div class="dynheader">
@@ -663,11 +743,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The mean condition size of classifiers in the set. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00628">628</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00625">625</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00415">cl_cond_size()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, and <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00397">cl_cond_size()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, and <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00643">XCS::get_pset_mean_cond_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00647">XCS::get_pset_mean_cond_size()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -717,11 +797,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The mean prediction size of classifiers in the set. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00648">648</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00645">645</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00427">cl_pred_size()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, and <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00409">cl_pred_size()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, and <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00649">XCS::get_pset_mean_pred_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00653">XCS::get_pset_mean_pred_size()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -760,7 +840,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The mean time of classifiers in the set. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00537">537</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00534">534</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
 <p class="reference">References <a class="el" href="clset_8c_source.html#l00269">clset_total_time()</a>, and <a class="el" href="xcsf_8h_source.html#l00078">Set::num</a>.</p>
 
@@ -803,9 +883,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The fraction of inputs matched. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00668">668</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00665">665</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00117">XCSF::BETA</a>, <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00290">cl_mfrac()</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, and <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00117">XCSF::BETA</a>, <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00272">cl_mfrac()</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, and <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00330">clset_match()</a>.</p>
 <div class="dynheader">
@@ -879,13 +959,14 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00489">489</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00241">cl_print()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, and <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>.</p>
+<p class="reference">References <a class="el" href="clset_8c_source.html#l00706">clset_json_export()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcsf_8c_source.html#l00072">xcsf_print_pset()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a724354141b3185c19ac6f3fb7920308b_cgraph.svg" width="336" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a724354141b3185c19ac6f3fb7920308b_cgraph.svg" width="592" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1015,7 +1096,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="cl_8c_source.html#l00040">cl_init()</a>, <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>, <a class="el" href="clset_8c_source.html#l00397">clset_add()</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::num</a>, <a class="el" href="xcsf_8h_source.html#l00133">XCSF::POP_INIT</a>, <a class="el" href="xcsf_8h_source.html#l00127">XCSF::POP_SIZE</a>, and <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00335">XCS::fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00245">XCS::init_trial()</a>, and <a class="el" href="main_8c_source.html#l00035">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00393">XCS::fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00266">XCS::init_trial()</a>, and <a class="el" href="main_8c_source.html#l00035">main()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1065,9 +1146,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00605">605</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00602">602</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
-<p class="reference">References <a class="el" href="cl_8c_source.html#l00468">cl_load()</a>, <a class="el" href="clset_8c_source.html#l00397">clset_add()</a>, <a class="el" href="clset_8c_source.html#l00302">clset_init()</a>, and <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>.</p>
+<p class="reference">References <a class="el" href="cl_8c_source.html#l00450">cl_load()</a>, <a class="el" href="clset_8c_source.html#l00397">clset_add()</a>, <a class="el" href="clset_8c_source.html#l00302">clset_init()</a>, and <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcsf_8c_source.html#l00109">xcsf_load()</a>.</p>
 <div class="dynheader">
@@ -1198,7 +1279,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00065">65</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00415">cl_cond_size()</a>, <a class="el" href="cl_8c_source.html#l00147">cl_del_vote()</a>, <a class="el" href="cl_8c_source.html#l00427">cl_pred_size()</a>, <a class="el" href="clset_8c_source.html#l00520">clset_total_fit()</a>, <a class="el" href="xcsf_8h_source.html#l00136">XCSF::COMPACTION</a>, <a class="el" href="xcsf_8h_source.html#l00119">XCSF::E0</a>, <a class="el" href="xcsf_8h_source.html#l00097">XCSF::error</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::num</a>, <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>, and <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00397">cl_cond_size()</a>, <a class="el" href="cl_8c_source.html#l00147">cl_del_vote()</a>, <a class="el" href="cl_8c_source.html#l00409">cl_pred_size()</a>, <a class="el" href="clset_8c_source.html#l00517">clset_total_fit()</a>, <a class="el" href="xcsf_8h_source.html#l00136">XCSF::COMPACTION</a>, <a class="el" href="xcsf_8h_source.html#l00119">XCSF::E0</a>, <a class="el" href="xcsf_8h_source.html#l00097">XCSF::error</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::num</a>, <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>, and <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00104">clset_pset_del()</a>.</p>
 <div class="dynheader">
@@ -1250,9 +1331,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00585">585</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00582">582</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00440">cl_save()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::num</a>, <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>, and <a class="el" href="xcsf_8h_source.html#l00077">Set::size</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00422">cl_save()</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::num</a>, <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>, and <a class="el" href="xcsf_8h_source.html#l00077">Set::size</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcsf_8c_source.html#l00085">xcsf_save()</a>.</p>
 <div class="dynheader">
@@ -1303,7 +1384,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00505">505</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00502">502</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>, and <a class="el" href="xcsf_8h_source.html#l00106">XCSF::time</a>.</p>
 
@@ -1361,7 +1442,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00230">230</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00363">cl_general()</a>, <a class="el" href="cl_8c_source.html#l00347">cl_subsumer()</a>, <a class="el" href="clset_8c_source.html#l00397">clset_add()</a>, <a class="el" href="clset_8c_source.html#l00454">clset_validate()</a>, <a class="el" href="xcsf_8h_source.html#l00089">XCSF::kset</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, and <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00345">cl_general()</a>, <a class="el" href="cl_8c_source.html#l00329">cl_subsumer()</a>, <a class="el" href="clset_8c_source.html#l00397">clset_add()</a>, <a class="el" href="clset_8c_source.html#l00454">clset_validate()</a>, <a class="el" href="xcsf_8h_source.html#l00089">XCSF::kset</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, and <a class="el" href="xcsf_8h_source.html#l00085">XCSF::pset</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00422">clset_update()</a>.</p>
 <div class="dynheader">
@@ -1402,7 +1483,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total fitness of classifiers in the set. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00520">520</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clset_8c_source.html#l00517">517</a> of file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="xcsf_8h_source.html#l00052">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, and <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>.</p>
 
@@ -1452,7 +1533,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00068">Clist::cl</a>, <a class="el" href="xcsf_8h_source.html#l00076">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00069">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, and <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00537">clset_mean_time()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00534">clset_mean_time()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

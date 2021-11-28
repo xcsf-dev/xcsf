@@ -1,4 +1,5 @@
 <map id="neural_print" name="neural_print">
 <area shape="rect" id="node1" title="Prints a neural network." alt="" coords="5,5,95,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="143,5,225,32"/>
+<area shape="rect" id="node2" href="$neural_8c.html#a99f4af43712739691174e770a9090ca2" title="Returns a json formatted string representation of a neural network." alt="" coords="143,5,273,32"/>
+<area shape="rect" id="node3" href="$neural__layer_8h.html#ade7b33f507c20b3be75914174844bc4c" title="Returns a json formatted string representation of a layer." alt="" coords="321,5,445,32"/>
 </map>

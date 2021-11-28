@@ -5,6 +5,7 @@ var neural_8c =
     [ "neural_free", "neural_8c.html#a9c3e1da0425d0fc17daa12c21e4799ca", null ],
     [ "neural_init", "neural_8c.html#ad70aee7c40f698d4be45e3d419051c2f", null ],
     [ "neural_insert", "neural_8c.html#afab574137fbf9da9a286d020917c8295", null ],
+    [ "neural_json_export", "neural_8c.html#a99f4af43712739691174e770a9090ca2", null ],
     [ "neural_learn", "neural_8c.html#a9226c300b9de597334244bf57e9b53f6", null ],
     [ "neural_load", "neural_8c.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08", null ],
     [ "neural_mutate", "neural_8c.html#a462b490af8481803fd34af3c728f057d", null ],

@@ -1,7 +1,8 @@
 <map id="cl_print" name="cl_print">
 <area shape="rect" id="node1" title="Prints a classifier." alt="" coords="5,81,69,108"/>
-<area shape="rect" id="node2" href="$action_8h.html#a6c954556c09b79fe6cd741a50ac8538f" title="Prints the classifier action." alt="" coords="123,5,195,32"/>
-<area shape="rect" id="node3" href="$cl_8c.html#a1358864e37832999f9688487ab8f8870" title="Returns the fraction of observed inputs matched by a classifier." alt="" coords="123,56,195,83"/>
-<area shape="rect" id="node4" href="$condition_8h.html#a20491b078e8cccf911e34338edcc69ba" title="Prints the classifier condition." alt="" coords="117,107,200,133"/>
-<area shape="rect" id="node5" href="$prediction_8h.html#ac6e6364fe3504c597e286a5d2bd34d2c" title="Prints the classifier prediction." alt="" coords="119,157,198,184"/>
+<area shape="rect" id="node2" href="$cl_8c.html#a4b7254d769aa29b397de95e2b700951a" title="Returns a json formatted string representation of a classifier." alt="" coords="117,81,224,108"/>
+<area shape="rect" id="node3" href="$action_8h.html#adf334ef0d27241fb85b333102dac7789" title="Returns a json formatted string representation of an action ." alt="" coords="277,5,391,32"/>
+<area shape="rect" id="node4" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="304,56,364,83"/>
+<area shape="rect" id="node5" href="$condition_8h.html#a03df5f9ceaeadba3d0c4f355163a6ffc" title="Returns a json formatted string representation of a condition." alt="" coords="272,107,396,133"/>
+<area shape="rect" id="node6" href="$prediction_8h.html#aa2742a310e1734a05fcc731717ba61b9" title="Returns a json formatted string representation of a prediction." alt="" coords="273,157,395,184"/>
 </map>

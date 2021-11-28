@@ -1,0 +1,9 @@
+<map id="XCS::json" name="XCS::json">
+<area shape="rect" id="node1" title="Returns a JSON formatted string representing the population set." alt="" coords="5,81,88,108"/>
+<area shape="rect" id="node2" href="$clset_8c.html#af68bce8ea8d5e8bb2b3ba27e748bc9c4" title="Returns a json formatted string representation of a classifier set." alt="" coords="136,81,217,108"/>
+<area shape="rect" id="node3" href="$cl_8c.html#a3ced97d2a8ea11bd013cd782338803cf" title="Returns a json formatted string representation of a classifier." alt="" coords="265,81,328,108"/>
+<area shape="rect" id="node4" href="$action_8h.html#a4a107f6e656b970ff78149f43a92c9ba" title="Returns a json formatted string representation of an action ." alt="" coords="381,5,452,32"/>
+<area shape="rect" id="node5" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="387,56,447,83"/>
+<area shape="rect" id="node6" href="$condition_8h.html#a982c2f6d85f16b2fa551eaed86c36fa8" title="Returns a json formatted string representation of a condition." alt="" coords="376,107,457,133"/>
+<area shape="rect" id="node7" href="$prediction_8h.html#aec68a45ab05535fb179732d0a70f2fa3" title="Returns a json formatted string representation of a prediction." alt="" coords="377,157,456,184"/>
+</map>

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classXCS.html#a7d0bfc2cf3447809fee4218f39921a81" target="_top" xlink:title="Returns the XCSF prediction array for the provided input.">
+<g id="a_node2"><a xlink:href="classXCS.html#a4d7d398d90d5f695fcbfe0fa99354436" target="_top" xlink:title="Returns the XCSF prediction array for the provided input.">
 <polygon fill="none" stroke="black" points="149,-0.5 149,-19.5 222,-19.5 222,-0.5 149,-0.5"/>
 <text text-anchor="middle" x="185.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::predict</text>
 </a>

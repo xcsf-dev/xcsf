@@ -5,6 +5,7 @@ var neural__layer__recurrent_8h =
     [ "neural_layer_recurrent_forward", "neural__layer__recurrent_8h.html#af0904dad2dc7cb2170c5b98aae6c0aae", null ],
     [ "neural_layer_recurrent_free", "neural__layer__recurrent_8h.html#ae432e30b57089c0a3fc6547ebe26616d", null ],
     [ "neural_layer_recurrent_init", "neural__layer__recurrent_8h.html#a74274033f3a8272fb8aae4366f93d74c", null ],
+    [ "neural_layer_recurrent_json_export", "neural__layer__recurrent_8h.html#a9982db0b36457e45374f6c969addafc4", null ],
     [ "neural_layer_recurrent_load", "neural__layer__recurrent_8h.html#a2492453a3912b4d17ecd3edf142069de", null ],
     [ "neural_layer_recurrent_mutate", "neural__layer__recurrent_8h.html#a5f6793ef0a2d69438a499632e360f9e6", null ],
     [ "neural_layer_recurrent_output", "neural__layer__recurrent_8h.html#a836f37ff8f65c52cc46135785a7ea8b5", null ],

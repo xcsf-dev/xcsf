@@ -1,0 +1,4 @@
+<map id="neural_layer_dropout_print" name="neural_layer_dropout_print">
+<area shape="rect" id="node1" title="Prints a dropout layer." alt="" coords="5,5,148,47"/>
+<area shape="rect" id="node2" href="$neural__layer__dropout_8c.html#a0e7c9cafb27cd862ae009829b9ebb900" title="Returns a json formatted string representation of a dropout layer." alt="" coords="196,5,339,47"/>
+</map>

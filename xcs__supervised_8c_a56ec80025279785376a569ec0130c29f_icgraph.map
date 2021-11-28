@@ -1,4 +1,4 @@
 <map id="xcs_supervised_score_n" name="xcs_supervised_score_n">
 <area shape="rect" id="node1" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="144,5,311,32"/>
-<area shape="rect" id="node2" href="$classXCS.html#a8be398df5d3f4333c9b0d19f48535609" title="Returns the error using N random samples from the provided data." alt="" coords="5,5,96,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#a4bb9f3f8613abf7ba95837a03bbb931d" title="Returns the error using N random samples from the provided data." alt="" coords="5,5,96,32"/>
 </map>

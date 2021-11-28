@@ -108,7 +108,7 @@ $(document).ready(function(){initNavTree('cond__rectangle_8c.html',''); initResi
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for cond_rectangle.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cond__rectangle_8c__incl.svg" width="1063" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__rectangle_8c__incl.svg" width="1239" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="cond__rectangle_8c_source.html">Go to the source code of this file.</a></p>
@@ -163,6 +163,9 @@ Functions</h2></td></tr>
 <tr class="memitem:acdca638026f2b5aa695b7bea21851cd5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__rectangle_8c.html#acdca638026f2b5aa695b7bea21851cd5">cond_rectangle_load</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, FILE *fp)</td></tr>
 <tr class="memdesc:acdca638026f2b5aa695b7bea21851cd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a hyperrectangle condition from a file.  <a href="cond__rectangle_8c.html#acdca638026f2b5aa695b7bea21851cd5">More...</a><br /></td></tr>
 <tr class="separator:acdca638026f2b5aa695b7bea21851cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b4ff106d10680923fc8a3fb661da956"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__rectangle_8c.html#a6b4ff106d10680923fc8a3fb661da956">cond_rectangle_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="memdesc:a6b4ff106d10680923fc8a3fb661da956"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a hyperrectangle.  <a href="cond__rectangle_8c.html#a6b4ff106d10680923fc8a3fb661da956">More...</a><br /></td></tr>
+<tr class="separator:a6b4ff106d10680923fc8a3fb661da956"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -174,7 +177,7 @@ Variables</h2></td></tr>
 <div class="textblock"><p>Hyperrectangle condition functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2019&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2019&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="cond__rectangle_8c_source.html">cond_rectangle.c</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -552,6 +555,56 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a6b4ff106d10680923fc8a3fb661da956"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b4ff106d10680923fc8a3fb661da956">&#9670;&nbsp;</a></span>cond_rectangle_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* cond_rectangle_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of a hyperrectangle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td><a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>Classifier whose condition is to be returned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="cond__rectangle_8c_source.html#l00331">331</a> of file <a class="el" href="cond__rectangle_8c_source.html">cond_rectangle.c</a>.</p>
+
+<p class="reference">References <a class="el" href="cond__rectangle_8h_source.html#l00033">CondRectangle::center</a>, <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__rectangle_8h_source.html#l00035">CondRectangle::mu</a>, <a class="el" href="cond__rectangle_8c_source.html#l00029">N_MU</a>, <a class="el" href="cond__rectangle_8h_source.html#l00034">CondRectangle::spread</a>, and <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="cond__rectangle_8c_source.html#l00266">cond_rectangle_print()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__rectangle_8c_a6b4ff106d10680923fc8a3fb661da956_icgraph.svg" width="343" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
 <a id="acdca638026f2b5aa695b7bea21851cd5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acdca638026f2b5aa695b7bea21851cd5">&#9670;&nbsp;</a></span>cond_rectangle_load()</h2>
 
@@ -595,7 +648,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__rectangle_8c_source.html#l00316">316</a> of file <a class="el" href="cond__rectangle_8c_source.html">cond_rectangle.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__rectangle_8c_source.html#l00310">310</a> of file <a class="el" href="cond__rectangle_8c_source.html">cond_rectangle.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__rectangle_8c_source.html#l00029">N_MU</a>, and <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
 
@@ -693,7 +746,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cond__rectangle_8c_source.html#l00211">211</a> of file <a class="el" href="cond__rectangle_8c_source.html">cond_rectangle.c</a>.</p>
 
-<p class="reference">References <a class="el" href="cond__rectangle_8h_source.html#l00033">CondRectangle::center</a>, <a class="el" href="utils_8h_source.html#l00055">clamp()</a>, <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8h_source.html#l00056">ArgsCond::max</a>, <a class="el" href="condition_8h_source.html#l00057">ArgsCond::min</a>, <a class="el" href="cond__rectangle_8h_source.html#l00035">CondRectangle::mu</a>, <a class="el" href="cond__rectangle_8c_source.html#l00034">MU_TYPE</a>, <a class="el" href="cond__rectangle_8c_source.html#l00029">N_MU</a>, <a class="el" href="utils_8c_source.html#l00087">rand_normal()</a>, <a class="el" href="sam_8c_source.html#l00068">sam_adapt()</a>, <a class="el" href="cond__rectangle_8h_source.html#l00034">CondRectangle::spread</a>, and <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
+<p class="reference">References <a class="el" href="cond__rectangle_8h_source.html#l00033">CondRectangle::center</a>, <a class="el" href="utils_8h_source.html#l00056">clamp()</a>, <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8h_source.html#l00056">ArgsCond::max</a>, <a class="el" href="condition_8h_source.html#l00057">ArgsCond::min</a>, <a class="el" href="cond__rectangle_8h_source.html#l00035">CondRectangle::mu</a>, <a class="el" href="cond__rectangle_8c_source.html#l00034">MU_TYPE</a>, <a class="el" href="cond__rectangle_8c_source.html#l00029">N_MU</a>, <a class="el" href="utils_8c_source.html#l00087">rand_normal()</a>, <a class="el" href="sam_8c_source.html#l00068">sam_adapt()</a>, <a class="el" href="cond__rectangle_8h_source.html#l00034">CondRectangle::spread</a>, and <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -739,7 +792,13 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cond__rectangle_8c_source.html#l00266">266</a> of file <a class="el" href="cond__rectangle_8c_source.html">cond_rectangle.c</a>.</p>
 
-<p class="reference">References <a class="el" href="cond__rectangle_8h_source.html#l00033">CondRectangle::center</a>, <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__rectangle_8h_source.html#l00034">CondRectangle::spread</a>, and <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
+<p class="reference">References <a class="el" href="cond__rectangle_8c_source.html#l00331">cond_rectangle_json_export()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__rectangle_8c_a6138c6da267239b4961599a152c7b85c_cgraph.svg" width="343" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -786,7 +845,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__rectangle_8c_source.html#l00298">298</a> of file <a class="el" href="cond__rectangle_8c_source.html">cond_rectangle.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__rectangle_8c_source.html#l00292">292</a> of file <a class="el" href="cond__rectangle_8c_source.html">cond_rectangle.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__rectangle_8h_source.html#l00033">CondRectangle::center</a>, <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__rectangle_8h_source.html#l00035">CondRectangle::mu</a>, <a class="el" href="cond__rectangle_8c_source.html#l00029">N_MU</a>, <a class="el" href="cond__rectangle_8h_source.html#l00034">CondRectangle::spread</a>, and <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
 
@@ -828,7 +887,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the input dimension. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__rectangle_8c_source.html#l00284">284</a> of file <a class="el" href="cond__rectangle_8c_source.html">cond_rectangle.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__rectangle_8c_source.html#l00278">278</a> of file <a class="el" href="cond__rectangle_8c_source.html">cond_rectangle.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
 

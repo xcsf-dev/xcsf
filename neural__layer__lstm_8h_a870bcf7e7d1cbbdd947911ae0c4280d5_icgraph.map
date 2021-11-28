@@ -1,0 +1,4 @@
+<map id="neural_layer_lstm_json" name="neural_layer_lstm_json">
+<area shape="rect" id="node1" title="Returns a json formatted string representation of an LSTM layer." alt="" coords="209,5,364,32"/>
+<area shape="rect" id="node2" href="$neural__layer__lstm_8h.html#a95c799424033bc661eb8b9a5c432140b" title="Prints an LSTM layer." alt="" coords="5,5,161,32"/>
+</map>

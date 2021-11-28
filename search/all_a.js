@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['klen_649',['klen',['../structGraph.html#af8c3e0876129f24d2316112bba9fec36',1,'Graph']]],
-  ['kset_650',['kset',['../structXCSF.html#aa465f54c7f43c6a6e34f8b465111417f',1,'XCSF']]]
+  ['json_5fexport_663',['json_export',['../classXCS.html#a39764d3cf7b1ffc5807541b59452d092',1,'XCS']]],
+  ['json_5fparameters_664',['json_parameters',['../classXCS.html#adb57289e76542083f52f422992e4ee13',1,'XCS']]]
 ];

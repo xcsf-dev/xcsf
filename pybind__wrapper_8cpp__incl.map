@@ -1,5 +1,5 @@
 <map id="pybind_wrapper.cpp" name="pybind_wrapper.cpp">
-<area shape="rect" id="node1" title="Python library wrapper functions." alt="" coords="3595,5,3732,32"/>
+<area shape="rect" id="node1" title="Python library wrapper functions." alt="" coords="3557,5,3695,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,87,153,129"/>
 <area shape="rect" id="node3" title=" " alt="" coords="177,80,323,136"/>
 <area shape="rect" id="node4" title=" " alt="" coords="347,80,489,136"/>
@@ -42,35 +42,35 @@
 <area shape="rect" id="node41" title=" " alt="" coords="4885,95,4954,121"/>
 <area shape="rect" id="node42" title=" " alt="" coords="4979,95,5057,121"/>
 <area shape="rect" id="node43" title=" " alt="" coords="5081,87,5229,129"/>
-<area shape="rect" id="node44" href="$action_8h.html" title="Interface for classifier actions." alt="" coords="6044,184,6112,211"/>
-<area shape="rect" id="node56" href="$clset_8h.html" title="Functions operating on sets of classifiers." alt="" coords="5169,184,5230,211"/>
-<area shape="rect" id="node57" href="$clset__neural_8h.html" title="Functions operating on sets of neural classifiers." alt="" coords="5255,184,5357,211"/>
-<area shape="rect" id="node58" href="$condition_8h.html" title="Interface for classifier conditions." alt="" coords="5622,184,5707,211"/>
-<area shape="rect" id="node59" href="$config_8h.html" title="Configuration file handling functions." alt="" coords="5732,184,5800,211"/>
-<area shape="rect" id="node60" href="$dgp_8h.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="5824,184,5879,211"/>
-<area shape="rect" id="node61" href="$ea_8h.html" title="Evolutionary algorithm functions." alt="" coords="5903,184,5949,211"/>
-<area shape="rect" id="node62" href="$gp_8h.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="5973,184,6020,211"/>
-<area shape="rect" id="node63" href="$neural__activations_8h.html" title="Neural network activation functions." alt="" coords="6314,184,6453,211"/>
-<area shape="rect" id="node64" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="6136,184,6239,211"/>
-<area shape="rect" id="node67" href="$pa_8h.html" title="Prediction array functions." alt="" coords="4851,184,4897,211"/>
-<area shape="rect" id="node68" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="5305,95,5374,121"/>
-<area shape="rect" id="node70" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="5055,184,5144,211"/>
-<area shape="rect" id="node71" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="6243,259,6300,285"/>
-<area shape="rect" id="node73" href="$xcs__rl_8h.html" title="Reinforcement learning functions." alt="" coords="5381,184,5449,211"/>
-<area shape="rect" id="node74" href="$xcs__supervised_8h.html" title="Supervised regression learning functions." alt="" coords="5473,184,5597,211"/>
-<area shape="rect" id="node45" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="5645,259,5703,285"/>
-<area shape="rect" id="node46" title=" " alt="" coords="5660,333,5723,360"/>
-<area shape="rect" id="node47" title=" " alt="" coords="5385,333,5443,360"/>
-<area shape="rect" id="node48" title=" " alt="" coords="5468,333,5547,360"/>
-<area shape="rect" id="node49" title=" " alt="" coords="5571,333,5635,360"/>
-<area shape="rect" id="node50" title=" " alt="" coords="6236,333,6299,360"/>
-<area shape="rect" id="node51" title=" " alt="" coords="5747,333,5822,360"/>
-<area shape="rect" id="node52" title=" " alt="" coords="5847,333,5912,360"/>
-<area shape="rect" id="node53" title=" " alt="" coords="6114,333,6175,360"/>
-<area shape="rect" id="node54" title=" " alt="" coords="6026,333,6090,360"/>
-<area shape="rect" id="node55" title=" " alt="" coords="5936,333,6001,360"/>
-<area shape="rect" id="node65" href="$neural_8h.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="5963,259,6031,285"/>
-<area shape="rect" id="node66" href="$neural__layer__args_8h.html" title="Functions operating on neural network arguments/constants." alt="" coords="6084,259,6219,285"/>
-<area shape="rect" id="node69" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="4921,184,4979,211"/>
-<area shape="rect" id="node72" title=" " alt="" coords="6323,333,6473,360"/>
+<area shape="rect" id="node44" href="$action_8h.html" title="Interface for classifier actions." alt="" coords="5889,184,5957,211"/>
+<area shape="rect" id="node56" href="$clset_8h.html" title="Functions operating on sets of classifiers." alt="" coords="5106,184,5167,211"/>
+<area shape="rect" id="node57" href="$clset__neural_8h.html" title="Functions operating on sets of neural classifiers." alt="" coords="5192,184,5295,211"/>
+<area shape="rect" id="node58" href="$condition_8h.html" title="Interface for classifier conditions." alt="" coords="5559,184,5645,211"/>
+<area shape="rect" id="node59" href="$dgp_8h.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="5669,184,5724,211"/>
+<area shape="rect" id="node60" href="$ea_8h.html" title="Evolutionary algorithm functions." alt="" coords="5748,184,5795,211"/>
+<area shape="rect" id="node61" href="$gp_8h.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="5819,184,5865,211"/>
+<area shape="rect" id="node62" href="$neural__activations_8h.html" title="Neural network activation functions." alt="" coords="6261,184,6399,211"/>
+<area shape="rect" id="node63" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="6052,184,6155,211"/>
+<area shape="rect" id="node66" href="$pa_8h.html" title="Prediction array functions." alt="" coords="5981,184,6028,211"/>
+<area shape="rect" id="node67" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="5254,95,5323,121"/>
+<area shape="rect" id="node69" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="4992,184,5081,211"/>
+<area shape="rect" id="node70" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="6164,259,6221,285"/>
+<area shape="rect" id="node73" href="$xcs__rl_8h.html" title="Reinforcement learning functions." alt="" coords="5319,184,5387,211"/>
+<area shape="rect" id="node74" href="$xcs__supervised_8h.html" title="Supervised regression learning functions." alt="" coords="5411,184,5535,211"/>
+<area shape="rect" id="node45" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="5535,259,5594,285"/>
+<area shape="rect" id="node46" title=" " alt="" coords="5165,333,5228,360"/>
+<area shape="rect" id="node47" title=" " alt="" coords="5253,333,5311,360"/>
+<area shape="rect" id="node48" title=" " alt="" coords="5336,333,5415,360"/>
+<area shape="rect" id="node49" title=" " alt="" coords="5439,333,5503,360"/>
+<area shape="rect" id="node50" title=" " alt="" coords="6331,333,6393,360"/>
+<area shape="rect" id="node51" title=" " alt="" coords="5527,333,5602,360"/>
+<area shape="rect" id="node52" title=" " alt="" coords="5627,333,5692,360"/>
+<area shape="rect" id="node53" title=" " alt="" coords="5806,333,5867,360"/>
+<area shape="rect" id="node54" title=" " alt="" coords="5891,333,5955,360"/>
+<area shape="rect" id="node55" title=" " alt="" coords="5716,333,5781,360"/>
+<area shape="rect" id="node64" href="$neural_8h.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="5759,259,5827,285"/>
+<area shape="rect" id="node65" href="$neural__layer__args_8h.html" title="Functions operating on neural network arguments/constants." alt="" coords="6005,259,6140,285"/>
+<area shape="rect" id="node68" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="4911,184,4968,211"/>
+<area shape="rect" id="node71" title=" " alt="" coords="5979,333,6131,360"/>
+<area shape="rect" id="node72" title=" " alt="" coords="6156,333,6307,360"/>
 </map>

@@ -155,6 +155,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a2ba512290c75f7ca9e8ab6005aefac6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__maxpool_8h.html#a2ba512290c75f7ca9e8ab6005aefac6a">neural_layer_maxpool_resize</a> (struct <a class="el" href="structLayer.html">Layer</a> *l, const struct <a class="el" href="structLayer.html">Layer</a> *prev)</td></tr>
 <tr class="memdesc:a2ba512290c75f7ca9e8ab6005aefac6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes a maxpooling layer if the previous layer has changed size.  <a href="neural__layer__maxpool_8h.html#a2ba512290c75f7ca9e8ab6005aefac6a">More...</a><br /></td></tr>
 <tr class="separator:a2ba512290c75f7ca9e8ab6005aefac6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a568c8044362242e50e002811f7b113a0"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__maxpool_8h.html#a568c8044362242e50e002811f7b113a0">neural_layer_maxpool_json</a> (const struct <a class="el" href="structLayer.html">Layer</a> *l, const bool return_weights)</td></tr>
+<tr class="memdesc:a568c8044362242e50e002811f7b113a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a maxpooling layer.  <a href="neural__layer__maxpool_8h.html#a568c8044362242e50e002811f7b113a0">More...</a><br /></td></tr>
+<tr class="separator:a568c8044362242e50e002811f7b113a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -166,7 +169,7 @@ Variables</h2></td></tr>
 <div class="textblock"><p>An implementation of a 2D maxpooling layer. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2016&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="neural__layer__maxpool_8h_source.html">neural_layer_maxpool.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -252,7 +255,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__maxpool_8c_source.html#l00084">84</a> of file <a class="el" href="neural__layer__maxpool_8c_source.html">neural_layer_maxpool.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8c_source.html#l00396">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00100">Layer::layer_vptr</a>, <a class="el" href="neural__layer__maxpool_8c_source.html#l00034">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00035">MAXPOOL</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00129">Layer::pad</a>, <a class="el" href="neural__layer_8h_source.html#l00133">Layer::size</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8c_source.html#l00411">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00100">Layer::layer_vptr</a>, <a class="el" href="neural__layer__maxpool_8c_source.html#l00034">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00035">MAXPOOL</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00129">Layer::pad</a>, <a class="el" href="neural__layer_8h_source.html#l00133">Layer::size</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -305,7 +308,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__maxpool_8c_source.html#l00177">177</a> of file <a class="el" href="neural__layer__maxpool_8c_source.html">neural_layer_maxpool.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00117">Layer::i</a>, <a class="el" href="neural__layer_8h_source.html#l00135">Layer::indexes</a>, <a class="el" href="utils_8h_source.html#l00080">max_index()</a>, <a class="el" href="neural__layer__maxpool_8c_source.html#l00143">max_pool()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, and <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00117">Layer::i</a>, <a class="el" href="neural__layer_8h_source.html#l00135">Layer::indexes</a>, <a class="el" href="utils_8h_source.html#l00081">max_index()</a>, <a class="el" href="neural__layer__maxpool_8c_source.html#l00143">max_pool()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, and <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -390,6 +393,55 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a568c8044362242e50e002811f7b113a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a568c8044362242e50e002811f7b113a0">&#9670;&nbsp;</a></span>neural_layer_maxpool_json()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* neural_layer_maxpool_json </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structLayer.html">Layer</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>return_weights</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of a maxpooling layer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">l</td><td>The layer to return. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">return_weights</td><td>Whether to return the values of weights and biases. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="neural__layer__maxpool_8c_source.html#l00290">290</a> of file <a class="el" href="neural__layer__maxpool_8c_source.html">neural_layer_maxpool.c</a>.</p>
+
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00129">Layer::pad</a>, <a class="el" href="neural__layer_8h_source.html#l00133">Layer::size</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="neural__layer__maxpool_8c_source.html#l00277">neural_layer_maxpool_print()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__maxpool_8h_a568c8044362242e50e002811f7b113a0_icgraph.svg" width="386" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="ac91009faa234b027ecbfde0a55407bd8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac91009faa234b027ecbfde0a55407bd8">&#9670;&nbsp;</a></span>neural_layer_maxpool_load()</h2>
 
@@ -426,7 +478,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__maxpool_8c_source.html#l00318">318</a> of file <a class="el" href="neural__layer__maxpool_8c_source.html">neural_layer_maxpool.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__maxpool_8c_source.html#l00343">343</a> of file <a class="el" href="neural__layer__maxpool_8c_source.html">neural_layer_maxpool.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer__maxpool_8c_source.html#l00034">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00129">Layer::pad</a>, <a class="el" href="neural__layer_8h_source.html#l00133">Layer::size</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 <div class="dynheader">
@@ -534,7 +586,12 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__maxpool_8c_source.html#l00277">277</a> of file <a class="el" href="neural__layer__maxpool_8c_source.html">neural_layer_maxpool.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00129">Layer::pad</a>, <a class="el" href="neural__layer_8h_source.html#l00133">Layer::size</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__maxpool_8c_source.html#l00290">neural_layer_maxpool_json()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__maxpool_8h_a08779087bbf304a3958d97fbafa907c9_cgraph.svg" width="386" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -648,7 +705,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__maxpool_8c_source.html#l00293">293</a> of file <a class="el" href="neural__layer__maxpool_8c_source.html">neural_layer_maxpool.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__maxpool_8c_source.html#l00318">318</a> of file <a class="el" href="neural__layer__maxpool_8c_source.html">neural_layer_maxpool.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00129">Layer::pad</a>, <a class="el" href="neural__layer_8h_source.html#l00133">Layer::size</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 
@@ -709,12 +766,12 @@ Here is the call graph for this function:</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__maxpool_8h.html#a08779087bbf304a3958d97fbafa907c9">neural_layer_maxpool_print</a>,    &amp;<a class="code" href="neural__layer__maxpool_8h.html#a41b89dd7e8e3be0a0d97b9538a2fea38">neural_layer_maxpool_update</a>,</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__maxpool_8h.html#ad03e1a4248f2a4fc7b3cadc12f369a0a">neural_layer_maxpool_backward</a>, &amp;<a class="code" href="neural__layer__maxpool_8h.html#ab6439ffb382e4898aa9885d5a98bd642">neural_layer_maxpool_forward</a>,</div>
 <div class="line">    &amp;<a class="code" href="neural__layer__maxpool_8h.html#a6ccb6c5a9e47aafc5711bf2ec224ca66">neural_layer_maxpool_output</a>,   &amp;<a class="code" href="neural__layer__maxpool_8h.html#aa1e58f233b4a5e92461a6b270ba1c70c">neural_layer_maxpool_save</a>,</div>
-<div class="line">    &amp;<a class="code" href="neural__layer__maxpool_8h.html#ac91009faa234b027ecbfde0a55407bd8">neural_layer_maxpool_load</a></div>
+<div class="line">    &amp;<a class="code" href="neural__layer__maxpool_8h.html#ac91009faa234b027ecbfde0a55407bd8">neural_layer_maxpool_load</a>,     &amp;<a class="code" href="neural__layer__maxpool_8h.html#a568c8044362242e50e002811f7b113a0">neural_layer_maxpool_json</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Neural maxpooling layer implemented functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__maxpool_8h_source.html#l00072">72</a> of file <a class="el" href="neural__layer__maxpool_8h_source.html">neural_layer_maxpool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__maxpool_8h_source.html#l00075">75</a> of file <a class="el" href="neural__layer__maxpool_8h_source.html">neural_layer_maxpool.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="neural__layer_8c_source.html#l00042">layer_set_vptr()</a>.</p>
 
@@ -726,12 +783,13 @@ Here is the call graph for this function:</div>
 <div class="ttc" id="aneural__layer__maxpool_8h_html_a2a0197edd0fc484149f1b35e0d0c94e8"><div class="ttname"><a href="neural__layer__maxpool_8h.html#a2a0197edd0fc484149f1b35e0d0c94e8">neural_layer_maxpool_init</a></div><div class="ttdeci">void neural_layer_maxpool_init(struct Layer *l, const struct ArgsLayer *args)</div><div class="ttdoc">Initialises a 2D maxpooling layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00061">neural_layer_maxpool.c:61</a></div></div>
 <div class="ttc" id="aneural__layer__maxpool_8h_html_a2a5a1f2b9eb2dc3aa54050e8f7d3cfd7"><div class="ttname"><a href="neural__layer__maxpool_8h.html#a2a5a1f2b9eb2dc3aa54050e8f7d3cfd7">neural_layer_maxpool_rand</a></div><div class="ttdeci">void neural_layer_maxpool_rand(struct Layer *l)</div><div class="ttdoc">Dummy function since maxpooling layers have no weights.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00127">neural_layer_maxpool.c:127</a></div></div>
 <div class="ttc" id="aneural__layer__maxpool_8h_html_a41b89dd7e8e3be0a0d97b9538a2fea38"><div class="ttname"><a href="neural__layer__maxpool_8h.html#a41b89dd7e8e3be0a0d97b9538a2fea38">neural_layer_maxpool_update</a></div><div class="ttdeci">void neural_layer_maxpool_update(const struct Layer *l)</div><div class="ttdoc">Dummy function since a maxpooling layer has no weights.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00220">neural_layer_maxpool.c:220</a></div></div>
-<div class="ttc" id="aneural__layer__maxpool_8h_html_ac91009faa234b027ecbfde0a55407bd8"><div class="ttname"><a href="neural__layer__maxpool_8h.html#ac91009faa234b027ecbfde0a55407bd8">neural_layer_maxpool_load</a></div><div class="ttdeci">size_t neural_layer_maxpool_load(struct Layer *l, FILE *fp)</div><div class="ttdoc">Reads a maxpooling layer from a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00318">neural_layer_maxpool.c:318</a></div></div>
+<div class="ttc" id="aneural__layer__maxpool_8h_html_ac91009faa234b027ecbfde0a55407bd8"><div class="ttname"><a href="neural__layer__maxpool_8h.html#ac91009faa234b027ecbfde0a55407bd8">neural_layer_maxpool_load</a></div><div class="ttdeci">size_t neural_layer_maxpool_load(struct Layer *l, FILE *fp)</div><div class="ttdoc">Reads a maxpooling layer from a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00343">neural_layer_maxpool.c:343</a></div></div>
 <div class="ttc" id="aneural__layer__maxpool_8h_html_a08779087bbf304a3958d97fbafa907c9"><div class="ttname"><a href="neural__layer__maxpool_8h.html#a08779087bbf304a3958d97fbafa907c9">neural_layer_maxpool_print</a></div><div class="ttdeci">void neural_layer_maxpool_print(const struct Layer *l, const bool print_weights)</div><div class="ttdoc">Prints a maxpooling layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00277">neural_layer_maxpool.c:277</a></div></div>
 <div class="ttc" id="aneural__layer__maxpool_8h_html_ab6439ffb382e4898aa9885d5a98bd642"><div class="ttname"><a href="neural__layer__maxpool_8h.html#ab6439ffb382e4898aa9885d5a98bd642">neural_layer_maxpool_forward</a></div><div class="ttdeci">void neural_layer_maxpool_forward(const struct Layer *l, const struct Net *net, const double *input)</div><div class="ttdoc">Forward propagates a maxpooling layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00177">neural_layer_maxpool.c:177</a></div></div>
-<div class="ttc" id="aneural__layer__maxpool_8h_html_aa1e58f233b4a5e92461a6b270ba1c70c"><div class="ttname"><a href="neural__layer__maxpool_8h.html#aa1e58f233b4a5e92461a6b270ba1c70c">neural_layer_maxpool_save</a></div><div class="ttdeci">size_t neural_layer_maxpool_save(const struct Layer *l, FILE *fp)</div><div class="ttdoc">Writes a maxpooling layer to a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00293">neural_layer_maxpool.c:293</a></div></div>
+<div class="ttc" id="aneural__layer__maxpool_8h_html_aa1e58f233b4a5e92461a6b270ba1c70c"><div class="ttname"><a href="neural__layer__maxpool_8h.html#aa1e58f233b4a5e92461a6b270ba1c70c">neural_layer_maxpool_save</a></div><div class="ttdeci">size_t neural_layer_maxpool_save(const struct Layer *l, FILE *fp)</div><div class="ttdoc">Writes a maxpooling layer to a file.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00318">neural_layer_maxpool.c:318</a></div></div>
 <div class="ttc" id="aneural__layer__maxpool_8h_html_a2ba512290c75f7ca9e8ab6005aefac6a"><div class="ttname"><a href="neural__layer__maxpool_8h.html#a2ba512290c75f7ca9e8ab6005aefac6a">neural_layer_maxpool_resize</a></div><div class="ttdeci">void neural_layer_maxpool_resize(struct Layer *l, const struct Layer *prev)</div><div class="ttdoc">Resizes a maxpooling layer if the previous layer has changed size.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00243">neural_layer_maxpool.c:243</a></div></div>
 <div class="ttc" id="aneural__layer__maxpool_8h_html_a68d2fd5dfc9dd98fbac8bf66f9d74283"><div class="ttname"><a href="neural__layer__maxpool_8h.html#a68d2fd5dfc9dd98fbac8bf66f9d74283">neural_layer_maxpool_mutate</a></div><div class="ttdeci">bool neural_layer_maxpool_mutate(struct Layer *l)</div><div class="ttdoc">Dummy function since a maxpooling layer cannot be mutated.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00231">neural_layer_maxpool.c:231</a></div></div>
+<div class="ttc" id="aneural__layer__maxpool_8h_html_a568c8044362242e50e002811f7b113a0"><div class="ttname"><a href="neural__layer__maxpool_8h.html#a568c8044362242e50e002811f7b113a0">neural_layer_maxpool_json</a></div><div class="ttdeci">const char * neural_layer_maxpool_json(const struct Layer *l, const bool return_weights)</div><div class="ttdoc">Returns a json formatted string representation of a maxpooling layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00290">neural_layer_maxpool.c:290</a></div></div>
 <div class="ttc" id="aneural__layer__maxpool_8h_html_a6142b0ee7c8b1cdd97a5ea595e03204c"><div class="ttname"><a href="neural__layer__maxpool_8h.html#a6142b0ee7c8b1cdd97a5ea595e03204c">neural_layer_maxpool_copy</a></div><div class="ttdeci">struct Layer * neural_layer_maxpool_copy(const struct Layer *src)</div><div class="ttdoc">Initialises and creates a copy of one maxpooling layer from another.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00084">neural_layer_maxpool.c:84</a></div></div>
 <div class="ttc" id="aneural__layer__maxpool_8h_html_a6ccb6c5a9e47aafc5711bf2ec224ca66"><div class="ttname"><a href="neural__layer__maxpool_8h.html#a6ccb6c5a9e47aafc5711bf2ec224ca66">neural_layer_maxpool_output</a></div><div class="ttdeci">double * neural_layer_maxpool_output(const struct Layer *l)</div><div class="ttdoc">Returns the output from a maxpooling layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00266">neural_layer_maxpool.c:266</a></div></div>
 <div class="ttc" id="aneural__layer__maxpool_8h_html_a4d7b7449a0158bbf448eb8f18da88f69"><div class="ttname"><a href="neural__layer__maxpool_8h.html#a4d7b7449a0158bbf448eb8f18da88f69">neural_layer_maxpool_free</a></div><div class="ttdeci">void neural_layer_maxpool_free(const struct Layer *l)</div><div class="ttdoc">Free memory used by a maxpooling layer.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer__maxpool_8c_source.html#l00115">neural_layer_maxpool.c:115</a></div></div>

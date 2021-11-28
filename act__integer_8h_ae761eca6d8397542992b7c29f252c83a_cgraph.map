@@ -1,0 +1,4 @@
+<map id="act_integer_print" name="act_integer_print">
+<area shape="rect" id="node1" title="Prints an integer action." alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node2" href="$act__integer_8c.html#a05c33d1bfd16e37420176842fb41aa97" title="Returns a json formatted string representation of an integer action." alt="" coords="172,5,332,32"/>
+</map>

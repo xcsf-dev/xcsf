@@ -1,6 +1,5 @@
 <map id="config.h" name="config.h">
-<area shape="rect" id="node1" title="Configuration file handling functions." alt="" coords="95,5,163,32"/>
+<area shape="rect" id="node1" title="Configuration file handling functions." alt="" coords="49,5,117,32"/>
 <area shape="rect" id="node2" href="$config_8c.html" title="Configuration file handling functions." alt="" coords="5,80,73,107"/>
 <area shape="rect" id="node3" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="98,80,159,107"/>
-<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="184,80,321,107"/>
 </map>

@@ -6,6 +6,7 @@ var cond__dgp_8c =
     [ "cond_dgp_free", "cond__dgp_8c.html#aa06270e18c525af427ee4d88d553443d", null ],
     [ "cond_dgp_general", "cond__dgp_8c.html#a4e9a95a7c61b3446bc50b99e4cbd1602", null ],
     [ "cond_dgp_init", "cond__dgp_8c.html#a36eb6c8e497eb217ea0423ffce18e8e4", null ],
+    [ "cond_dgp_json_export", "cond__dgp_8c.html#a1a38282b6ffe06bbf7894db3fc919102", null ],
     [ "cond_dgp_load", "cond__dgp_8c.html#a33a7ce490b663d05af0b11ad26689147", null ],
     [ "cond_dgp_match", "cond__dgp_8c.html#a8bb6fc747fba92c9a717c1b26f5ffca7", null ],
     [ "cond_dgp_mutate", "cond__dgp_8c.html#a8c6aa1ea69d87295dec888622f6d4577", null ],

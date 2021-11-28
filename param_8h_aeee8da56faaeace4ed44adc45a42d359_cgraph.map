@@ -1,15 +1,11 @@
 <map id="param_save" name="param_save">
-<area shape="rect" id="node1" title="Writes the XCSF data structure to a file." alt="" coords="5,183,99,209"/>
-<area shape="rect" id="node2" href="$action_8c.html#a95fbb463d8e044d1dadc5fdb1b6b1e05" title="Saves action parameters." alt="" coords="167,5,301,32"/>
-<area shape="rect" id="node5" href="$condition_8c.html#a8f670b7aa04f9e43ec146e1a7b3917a5" title="Saves condition parameters." alt="" coords="170,360,298,387"/>
-<area shape="rect" id="node8" href="$ea_8c.html#ac604379821374a521040a1495e8752ad" title="Saves evolutionary algorithm parameters." alt="" coords="177,107,291,133"/>
-<area shape="rect" id="node9" href="$param_8c.html#a3b41a6df5b23f52ae533379a4a9b1fbc" title="Saves XCSF general classifier parameters." alt="" coords="155,157,313,184"/>
-<area shape="rect" id="node10" href="$param_8c.html#a80c15e4b12768b1cd0f5e0938c05787b" title="Saves XCSF general parameters." alt="" coords="163,208,305,235"/>
-<area shape="rect" id="node11" href="$param_8c.html#a87ad4f0fab889d010056fd7c238db2cb" title="Saves multistep parameters." alt="" coords="157,259,311,285"/>
-<area shape="rect" id="node12" href="$param_8c.html#af66f5c958a593c2d8a75dd19fda5e986" title="Saves subsumption parameters." alt="" coords="147,309,321,336"/>
-<area shape="rect" id="node13" href="$prediction_8c.html#a5c3b578b46347ad8abb67366d741e61c" title="Saves prediction parameters." alt="" coords="171,56,297,83"/>
-<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a48c9d23bdc9f7694e2ef4c0a5dd2f59a" title="Saves neural network layer parameters." alt="" coords="371,56,489,83"/>
-<area shape="rect" id="node4" href="$neural__layer__args_8c.html#af686286fbe62a7bcbf3ab9f4e8dcaa17" title="Returns the length of the neural network layer parameter list." alt="" coords="539,56,663,83"/>
-<area shape="rect" id="node6" href="$dgp_8c.html#a0a55dcba4f8e944721e7dad5c03fcaa7" title="Saves DGP parameters." alt="" coords="369,335,491,361"/>
-<area shape="rect" id="node7" href="$gp_8c.html#afeae0667e724564d74d36c9fe6ad9682" title="Saves Tree GP parameters." alt="" coords="375,385,485,412"/>
+<area shape="rect" id="node1" title="Writes the XCSF data structure to a file." alt="" coords="5,81,99,108"/>
+<area shape="rect" id="node2" href="$action_8c.html#a95fbb463d8e044d1dadc5fdb1b6b1e05" title="Saves action parameters." alt="" coords="147,5,281,32"/>
+<area shape="rect" id="node5" href="$condition_8c.html#a8f670b7aa04f9e43ec146e1a7b3917a5" title="Saves condition parameters." alt="" coords="150,157,278,184"/>
+<area shape="rect" id="node8" href="$ea_8c.html#ac604379821374a521040a1495e8752ad" title="Saves evolutionary algorithm parameters." alt="" coords="157,107,271,133"/>
+<area shape="rect" id="node9" href="$prediction_8c.html#a5c3b578b46347ad8abb67366d741e61c" title="Saves prediction parameters." alt="" coords="151,56,277,83"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a48c9d23bdc9f7694e2ef4c0a5dd2f59a" title="Saves neural network layer parameters." alt="" coords="331,56,449,83"/>
+<area shape="rect" id="node4" href="$neural__layer__args_8c.html#af686286fbe62a7bcbf3ab9f4e8dcaa17" title="Returns the length of the neural network layer parameter list." alt="" coords="499,56,623,83"/>
+<area shape="rect" id="node6" href="$dgp_8c.html#a0a55dcba4f8e944721e7dad5c03fcaa7" title="Saves DGP parameters." alt="" coords="329,132,451,159"/>
+<area shape="rect" id="node7" href="$gp_8c.html#afeae0667e724564d74d36c9fe6ad9682" title="Saves Tree GP parameters." alt="" coords="335,183,445,209"/>
 </map>

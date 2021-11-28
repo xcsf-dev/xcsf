@@ -7,6 +7,7 @@ var cond__rectangle_8h =
     [ "cond_rectangle_free", "cond__rectangle_8h.html#a062d27556395de5eee6c0391a66a62d6", null ],
     [ "cond_rectangle_general", "cond__rectangle_8h.html#a3c34dec9226959953543681d43be07c0", null ],
     [ "cond_rectangle_init", "cond__rectangle_8h.html#a7dc946eb1c89529cc56125fad748c531", null ],
+    [ "cond_rectangle_json_export", "cond__rectangle_8h.html#a6b4ff106d10680923fc8a3fb661da956", null ],
     [ "cond_rectangle_load", "cond__rectangle_8h.html#acdca638026f2b5aa695b7bea21851cd5", null ],
     [ "cond_rectangle_match", "cond__rectangle_8h.html#ae859d7d13485cfe847e47caecf1c17ee", null ],
     [ "cond_rectangle_mutate", "cond__rectangle_8h.html#a969ef2bdf8fefbcac47746548863073b", null ],

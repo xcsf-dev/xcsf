@@ -1,0 +1,4 @@
+<map id="layer_args_json_export_inputs" name="layer_args_json_export_inputs">
+<area shape="rect" id="node1" title="Adds layer input parameters to a json object." alt="" coords="5,5,161,47"/>
+<area shape="rect" id="node2" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="209,13,364,39"/>
+</map>

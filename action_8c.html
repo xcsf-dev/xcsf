@@ -106,7 +106,7 @@ $(document).ready(function(){initNavTree('action_8c.html',''); initResizable(); 
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for action.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c__incl.svg" width="1064" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c__incl.svg" width="1240" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="action_8c_source.html">Go to the source code of this file.</a></p>
@@ -128,9 +128,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa7e0cd00c920c30b15e0d1cc409cada5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#aa7e0cd00c920c30b15e0d1cc409cada5">action_param_defaults</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
 <tr class="memdesc:aa7e0cd00c920c30b15e0d1cc409cada5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises default action parameters.  <a href="action_8c.html#aa7e0cd00c920c30b15e0d1cc409cada5">More...</a><br /></td></tr>
 <tr class="separator:aa7e0cd00c920c30b15e0d1cc409cada5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e6bb9a3116b23d3bb6b676607501923"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#a1e6bb9a3116b23d3bb6b676607501923">action_param_print</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
-<tr class="memdesc:a1e6bb9a3116b23d3bb6b676607501923"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints action parameters.  <a href="action_8c.html#a1e6bb9a3116b23d3bb6b676607501923">More...</a><br /></td></tr>
-<tr class="separator:a1e6bb9a3116b23d3bb6b676607501923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd5f8e0c76c65e3986e0c03a26a7ecdf"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#abd5f8e0c76c65e3986e0c03a26a7ecdf">action_param_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
+<tr class="memdesc:abd5f8e0c76c65e3986e0c03a26a7ecdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the action parameters.  <a href="action_8c.html#abd5f8e0c76c65e3986e0c03a26a7ecdf">More...</a><br /></td></tr>
+<tr class="separator:abd5f8e0c76c65e3986e0c03a26a7ecdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95fbb463d8e044d1dadc5fdb1b6b1e05"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#a95fbb463d8e044d1dadc5fdb1b6b1e05">action_param_save</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, FILE *fp)</td></tr>
 <tr class="memdesc:a95fbb463d8e044d1dadc5fdb1b6b1e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves action parameters.  <a href="action_8c.html#a95fbb463d8e044d1dadc5fdb1b6b1e05">More...</a><br /></td></tr>
 <tr class="separator:a95fbb463d8e044d1dadc5fdb1b6b1e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,7 +149,7 @@ Functions</h2></td></tr>
 <div class="textblock"><p>Interface for classifier actions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2015&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -179,9 +179,9 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00125">125</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, <a class="el" href="action_8c_source.html#l00092">action_param_defaults_neural()</a>, and <a class="el" href="action_8c_source.html#l00196">action_param_set_type()</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, <a class="el" href="action_8c_source.html#l00092">action_param_defaults_neural()</a>, and <a class="el" href="action_8c_source.html#l00205">action_param_set_type()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00317">param_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -269,11 +269,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00182">182</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00191">191</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, and <a class="el" href="neural__layer__args_8c_source.html#l00270">layer_args_free()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, and <a class="el" href="neural__layer__args_8c_source.html#l00273">layer_args_free()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00343">param_free()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00088">param_free()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -283,6 +283,51 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_acc202dbe3c6a1d3f745383aec209c780_icgraph.svg" width="374" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="abd5f8e0c76c65e3986e0c03a26a7ecdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd5f8e0c76c65e3986e0c03a26a7ecdf">&#9670;&nbsp;</a></span>action_param_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* action_param_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string of the action parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td><a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00137">137</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, <a class="el" href="action_8c_source.html#l00056">action_type_as_string()</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00237">layer_args_json_export()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00105">param_json_export()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_abd5f8e0c76c65e3986e0c03a26a7ecdf_cgraph.svg" width="980" height="490"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_abd5f8e0c76c65e3986e0c03a26a7ecdf_icgraph.svg" width="948" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -323,11 +368,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00168">168</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00177">177</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00452">layer_args_load()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00455">layer_args_load()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00422">param_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00231">param_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -337,48 +382,6 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_a08b64f3c3cc1e112d0859880ea767c53_icgraph.svg" width="735" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="a1e6bb9a3116b23d3bb6b676607501923"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e6bb9a3116b23d3bb6b676607501923">&#9670;&nbsp;</a></span>action_param_print()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void action_param_print </td>
-          <td>(</td>
-          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
-          <td class="paramname"><em>xcsf</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints action parameters. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00136">136</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
-
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, <a class="el" href="action_8c_source.html#l00056">action_type_as_string()</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00239">layer_args_print()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00359">param_print()</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_a1e6bb9a3116b23d3bb6b676607501923_cgraph.svg" width="924" height="443"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_a1e6bb9a3116b23d3bb6b676607501923_icgraph.svg" width="662" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -419,11 +422,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00152">152</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00161">161</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00408">layer_args_save()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00411">layer_args_save()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00392">param_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00182">param_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -463,7 +466,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00196">196</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00205">205</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
 
@@ -502,11 +505,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00190">190</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00199">199</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8c_source.html#l00075">action_type_as_int()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00499">config_cl_act()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00803">XCS::set_action()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00499">config_cl_act()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00807">XCS::set_action()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -515,7 +518,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_a55974a228c3a692a22c9d6ce0c4cc869_icgraph.svg" width="1135" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_a55974a228c3a692a22c9d6ce0c4cc869_icgraph.svg" width="1099" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -557,9 +560,9 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00035">35</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="act__integer_8h_source.html#l00082">act_integer_vtbl</a>, <a class="el" href="act__neural_8h_source.html#l00083">act_neural_vtbl</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="act__integer_8h_source.html#l00085">act_integer_vtbl</a>, <a class="el" href="act__neural_8h_source.html#l00086">act_neural_vtbl</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00468">cl_load()</a>, and <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00450">cl_load()</a>, and <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -597,11 +600,11 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00031">ACT_STRING_INTEGER</a>, <a class="el" href="action_8h_source.html#l00032">ACT_STRING_NEURAL</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, and <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00190">action_param_set_type_string()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00199">action_param_set_type_string()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_a38d3209ab8ce0417631ce2359f6590a7_icgraph.svg" width="1314" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_a38d3209ab8ce0417631ce2359f6590a7_icgraph.svg" width="1278" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -635,11 +638,12 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00031">ACT_STRING_INTEGER</a>, <a class="el" href="action_8h_source.html#l00032">ACT_STRING_NEURAL</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, and <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00136">action_param_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00137">action_param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_a92f612de02989e82ef6c52bc7384f24f_icgraph.svg" width="859" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8c_a92f612de02989e82ef6c52bc7384f24f_icgraph.svg" width="1146" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>

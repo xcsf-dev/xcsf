@@ -1,10 +1,9 @@
 <map id="config_cl_act_neural" name="config_cl_act_neural">
-<area shape="rect" id="node1" title="Sets classifier neural network action parameters." alt="" coords="929,31,1071,57"/>
-<area shape="rect" id="node2" href="$config_8c.html#a59bf153e171e7edf5bfb7a45a025c1bb" title="Sets classifier action parameters." alt="" coords="783,31,881,57"/>
-<area shape="rect" id="node3" href="$config_8c.html#a0f0fcad0b6090da01e5bd58b77d98787" title="Sets specified parameter." alt="" coords="607,31,735,57"/>
-<area shape="rect" id="node4" href="$config_8c.html#a5b96815b9ebb26a8fc7bcc30a75ab36d" title="Adds a parameter to the list." alt="" coords="436,31,559,57"/>
-<area shape="rect" id="node5" href="$config_8c.html#a01c178cc1587140f60ecf27291a2032a" title="Parses a line of the config file and adds to the list." alt="" coords="277,31,388,57"/>
-<area shape="rect" id="node6" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="140,31,229,57"/>
-<area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="23,5,74,32"/>
-<area shape="rect" id="node8" href="$classXCS.html#a81bb7e5f76e05ad983d70fe848b73393" title="Constructor with a specified config." alt="" coords="5,56,92,83"/>
+<area shape="rect" id="node1" title="Sets classifier neural network action parameters." alt="" coords="893,5,1035,32"/>
+<area shape="rect" id="node2" href="$config_8c.html#a59bf153e171e7edf5bfb7a45a025c1bb" title="Sets classifier action parameters." alt="" coords="747,5,845,32"/>
+<area shape="rect" id="node3" href="$config_8c.html#a0f0fcad0b6090da01e5bd58b77d98787" title="Sets specified parameter." alt="" coords="571,5,699,32"/>
+<area shape="rect" id="node4" href="$config_8c.html#a5b96815b9ebb26a8fc7bcc30a75ab36d" title="Adds a parameter to the list." alt="" coords="400,5,523,32"/>
+<area shape="rect" id="node5" href="$config_8c.html#a01c178cc1587140f60ecf27291a2032a" title="Parses a line of the config file and adds to the list." alt="" coords="241,5,352,32"/>
+<area shape="rect" id="node6" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,5,193,32"/>
+<area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,56,32"/>
 </map>

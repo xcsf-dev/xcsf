@@ -8,6 +8,7 @@ var cond__ternary_8c =
     [ "cond_ternary_free", "cond__ternary_8c.html#ab73dde76f3524c402f8ddb494a9c02df", null ],
     [ "cond_ternary_general", "cond__ternary_8c.html#a707bcb34c341da3068581346e00ff67d", null ],
     [ "cond_ternary_init", "cond__ternary_8c.html#a2acf40c98ee873be680ec5f0c4002452", null ],
+    [ "cond_ternary_json_export", "cond__ternary_8c.html#a4e6906f3526ca97000b755cd4184c380", null ],
     [ "cond_ternary_load", "cond__ternary_8c.html#af5d2dcc7eac947573454a9dbecfd298b", null ],
     [ "cond_ternary_match", "cond__ternary_8c.html#a38a12a34e9676ae5326bc200d69f9822", null ],
     [ "cond_ternary_mutate", "cond__ternary_8c.html#a76eeeef8b9d7a232d1f5bf2ff917547a", null ],

@@ -7,6 +7,7 @@ var neural__layer__noise_8c =
     [ "neural_layer_noise_forward", "neural__layer__noise_8c.html#ad10ce7182aceca90afeef6a42392c6a7", null ],
     [ "neural_layer_noise_free", "neural__layer__noise_8c.html#a09a6ea6471765a98984abd35b081a78f", null ],
     [ "neural_layer_noise_init", "neural__layer__noise_8c.html#a433252b61a22c508b4c943191124ce03", null ],
+    [ "neural_layer_noise_json_export", "neural__layer__noise_8c.html#ae6dcf178b09c14c96f6363143bb5110e", null ],
     [ "neural_layer_noise_load", "neural__layer__noise_8c.html#a79a3cce0f83b86c08dd45b14088a7519", null ],
     [ "neural_layer_noise_mutate", "neural__layer__noise_8c.html#aa91ccb44e67d0e491d922e5640379ce5", null ],
     [ "neural_layer_noise_output", "neural__layer__noise_8c.html#aebed0c2eb28ea8089f6bac796af49734", null ],

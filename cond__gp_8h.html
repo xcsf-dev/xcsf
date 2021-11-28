@@ -164,6 +164,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6e0236b6db83efa0e347bbcbad69413b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__gp_8h.html#a6e0236b6db83efa0e347bbcbad69413b">cond_gp_load</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, FILE *fp)</td></tr>
 <tr class="memdesc:a6e0236b6db83efa0e347bbcbad69413b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a tree-GP condition from a file.  <a href="cond__gp_8h.html#a6e0236b6db83efa0e347bbcbad69413b">More...</a><br /></td></tr>
 <tr class="separator:a6e0236b6db83efa0e347bbcbad69413b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e3e313ea283fd38b09d6584253887c1"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__gp_8h.html#a4e3e313ea283fd38b09d6584253887c1">cond_gp_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="memdesc:a4e3e313ea283fd38b09d6584253887c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a tree-GP condition.  <a href="cond__gp_8h.html#a4e3e313ea283fd38b09d6584253887c1">More...</a><br /></td></tr>
+<tr class="separator:a4e3e313ea283fd38b09d6584253887c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -175,7 +178,7 @@ Variables</h2></td></tr>
 <div class="textblock"><p>Tree GP condition functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2016&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="cond__gp_8h_source.html">cond_gp.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -223,7 +226,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00063">63</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, and <a class="el" href="gp_8c_source.html#l00206">tree_copy()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, and <a class="el" href="gp_8c_source.html#l00249">tree_copy()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -330,7 +333,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00145">145</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, <a class="el" href="ea_8h_source.html#l00042">ArgsEA::p_crossover</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, and <a class="el" href="gp_8c_source.html#l00222">tree_crossover()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, <a class="el" href="ea_8h_source.html#l00042">ArgsEA::p_crossover</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, and <a class="el" href="gp_8c_source.html#l00265">tree_crossover()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -478,6 +481,62 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a4e3e313ea283fd38b09d6584253887c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e3e313ea283fd38b09d6584253887c1">&#9670;&nbsp;</a></span>cond_gp_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* cond_gp_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of a tree-GP condition. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td><a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>Classifier whose condition is to be returned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00240">240</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
+
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, and <a class="el" href="gp_8c_source.html#l00219">tree_json_export()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00181">cond_gp_print()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__gp_8h_a4e3e313ea283fd38b09d6584253887c1_cgraph.svg" width="454" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__gp_8h_a4e3e313ea283fd38b09d6584253887c1_icgraph.svg" width="307" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
 <a id="a6e0236b6db83efa0e347bbcbad69413b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6e0236b6db83efa0e347bbcbad69413b">&#9670;&nbsp;</a></span>cond_gp_load()</h2>
 
@@ -521,9 +580,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00228">228</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00224">224</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, and <a class="el" href="gp_8c_source.html#l00304">tree_load()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, and <a class="el" href="gp_8c_source.html#l00347">tree_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -631,7 +690,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00130">130</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, and <a class="el" href="gp_8c_source.html#l00259">tree_mutate()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, and <a class="el" href="gp_8c_source.html#l00302">tree_mutate()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -677,11 +736,12 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00181">181</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, and <a class="el" href="gp_8c_source.html#l00163">tree_print()</a>.</p>
+<p class="reference">References <a class="el" href="cond__gp_8c_source.html#l00240">cond_gp_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cond__gp_8h_a096c64bae58b314e1a303f0e3887d412_cgraph.svg" width="238" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__gp_8h_a096c64bae58b314e1a303f0e3887d412_cgraph.svg" width="604" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -729,9 +789,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00212">212</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00208">208</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, and <a class="el" href="gp_8c_source.html#l00287">tree_save()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, and <a class="el" href="gp_8c_source.html#l00330">tree_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -776,7 +836,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the tree. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00197">197</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__gp_8c_source.html#l00193">193</a> of file <a class="el" href="cond__gp_8c_source.html">cond_gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="cond__gp_8h_source.html#l00034">CondGP::gp</a>, and <a class="el" href="gp_8h_source.html#l00046">GPTree::len</a>.</p>
 
@@ -856,34 +916,35 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    &amp;<a class="code" href="cond__gp_8h.html#a6ae653caf56edad1cbb0e0517dfea270">cond_gp_crossover</a>, &amp;<a class="code" href="cond__gp_8h.html#a50094187aa13389d9253eb518af6c1a2">cond_gp_general</a>, &amp;<a class="code" href="cond__gp_8h.html#a9f417a6e9cdf49ef3ed1ad19be29b63d">cond_gp_match</a>, &amp;<a class="code" href="cond__gp_8h.html#a6fb9386b300b406ecfb08f8a9a97c077">cond_gp_mutate</a>,</div>
-<div class="line">    &amp;<a class="code" href="cond__gp_8h.html#a3cbfd06b08a6811364c53d619e2728b3">cond_gp_copy</a>,      &amp;<a class="code" href="cond__gp_8h.html#a1e740f931fc856fd7310874c7bf88195">cond_gp_cover</a>,   &amp;<a class="code" href="cond__gp_8h.html#a9ca5031cdfd76b3da76bf6bb58cce32c">cond_gp_free</a>,  &amp;<a class="code" href="cond__gp_8h.html#aa688690c3fa9cb73c35c98db35867789">cond_gp_init</a>,</div>
-<div class="line">    &amp;<a class="code" href="cond__gp_8h.html#a096c64bae58b314e1a303f0e3887d412">cond_gp_print</a>,     &amp;<a class="code" href="cond__gp_8h.html#ac5509d3bf784603165a19c6279234c4b">cond_gp_update</a>,  &amp;<a class="code" href="cond__gp_8h.html#a9f78764137287fa8691ed122a8217ce6">cond_gp_size</a>,  &amp;<a class="code" href="cond__gp_8h.html#a4615b8adc6d2186e93a0ce58b534de32">cond_gp_save</a>,</div>
-<div class="line">    &amp;<a class="code" href="cond__gp_8h.html#a6e0236b6db83efa0e347bbcbad69413b">cond_gp_load</a></div>
+<div class="line">    &amp;<a class="code" href="cond__gp_8h.html#a6ae653caf56edad1cbb0e0517dfea270">cond_gp_crossover</a>, &amp;<a class="code" href="cond__gp_8h.html#a50094187aa13389d9253eb518af6c1a2">cond_gp_general</a>,    &amp;<a class="code" href="cond__gp_8h.html#a9f417a6e9cdf49ef3ed1ad19be29b63d">cond_gp_match</a>, &amp;<a class="code" href="cond__gp_8h.html#a6fb9386b300b406ecfb08f8a9a97c077">cond_gp_mutate</a>,</div>
+<div class="line">    &amp;<a class="code" href="cond__gp_8h.html#a3cbfd06b08a6811364c53d619e2728b3">cond_gp_copy</a>,      &amp;<a class="code" href="cond__gp_8h.html#a1e740f931fc856fd7310874c7bf88195">cond_gp_cover</a>,      &amp;<a class="code" href="cond__gp_8h.html#a9ca5031cdfd76b3da76bf6bb58cce32c">cond_gp_free</a>,  &amp;<a class="code" href="cond__gp_8h.html#aa688690c3fa9cb73c35c98db35867789">cond_gp_init</a>,</div>
+<div class="line">    &amp;<a class="code" href="cond__gp_8h.html#a096c64bae58b314e1a303f0e3887d412">cond_gp_print</a>,     &amp;<a class="code" href="cond__gp_8h.html#ac5509d3bf784603165a19c6279234c4b">cond_gp_update</a>,     &amp;<a class="code" href="cond__gp_8h.html#a9f78764137287fa8691ed122a8217ce6">cond_gp_size</a>,  &amp;<a class="code" href="cond__gp_8h.html#a4615b8adc6d2186e93a0ce58b534de32">cond_gp_save</a>,</div>
+<div class="line">    &amp;<a class="code" href="cond__gp_8h.html#a6e0236b6db83efa0e347bbcbad69413b">cond_gp_load</a>,      &amp;<a class="code" href="cond__gp_8h.html#a4e3e313ea283fd38b09d6584253887c1">cond_gp_json_export</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Tree GP condition implemented functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="cond__gp_8h_source.html#l00082">82</a> of file <a class="el" href="cond__gp_8h_source.html">cond_gp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__gp_8h_source.html#l00085">85</a> of file <a class="el" href="cond__gp_8h_source.html">cond_gp.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00040">condition_set()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00041">condition_set()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="acond__gp_8h_html_a4e3e313ea283fd38b09d6584253887c1"><div class="ttname"><a href="cond__gp_8h.html#a4e3e313ea283fd38b09d6584253887c1">cond_gp_json_export</a></div><div class="ttdeci">const char * cond_gp_json_export(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns a json formatted string representation of a tree-GP condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00240">cond_gp.c:240</a></div></div>
 <div class="ttc" id="acond__gp_8h_html_a096c64bae58b314e1a303f0e3887d412"><div class="ttname"><a href="cond__gp_8h.html#a096c64bae58b314e1a303f0e3887d412">cond_gp_print</a></div><div class="ttdeci">void cond_gp_print(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Prints a tree-GP condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00181">cond_gp.c:181</a></div></div>
-<div class="ttc" id="acond__gp_8h_html_a4615b8adc6d2186e93a0ce58b534de32"><div class="ttname"><a href="cond__gp_8h.html#a4615b8adc6d2186e93a0ce58b534de32">cond_gp_save</a></div><div class="ttdeci">size_t cond_gp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes a tree-GP condition to a file.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00212">cond_gp.c:212</a></div></div>
+<div class="ttc" id="acond__gp_8h_html_a4615b8adc6d2186e93a0ce58b534de32"><div class="ttname"><a href="cond__gp_8h.html#a4615b8adc6d2186e93a0ce58b534de32">cond_gp_save</a></div><div class="ttdeci">size_t cond_gp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes a tree-GP condition to a file.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00208">cond_gp.c:208</a></div></div>
 <div class="ttc" id="acond__gp_8h_html_a3cbfd06b08a6811364c53d619e2728b3"><div class="ttname"><a href="cond__gp_8h.html#a3cbfd06b08a6811364c53d619e2728b3">cond_gp_copy</a></div><div class="ttdeci">void cond_gp_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)</div><div class="ttdoc">Copies a tree-GP condition from one classifier to another.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00063">cond_gp.c:63</a></div></div>
 <div class="ttc" id="acond__gp_8h_html_a6ae653caf56edad1cbb0e0517dfea270"><div class="ttname"><a href="cond__gp_8h.html#a6ae653caf56edad1cbb0e0517dfea270">cond_gp_crossover</a></div><div class="ttdeci">bool cond_gp_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Performs sub-tree crossover with two tree-GP conditions.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00145">cond_gp.c:145</a></div></div>
-<div class="ttc" id="acond__gp_8h_html_a9f78764137287fa8691ed122a8217ce6"><div class="ttname"><a href="cond__gp_8h.html#a9f78764137287fa8691ed122a8217ce6">cond_gp_size</a></div><div class="ttdeci">double cond_gp_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a tree-GP condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00197">cond_gp.c:197</a></div></div>
+<div class="ttc" id="acond__gp_8h_html_a9f78764137287fa8691ed122a8217ce6"><div class="ttname"><a href="cond__gp_8h.html#a9f78764137287fa8691ed122a8217ce6">cond_gp_size</a></div><div class="ttdeci">double cond_gp_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a tree-GP condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00193">cond_gp.c:193</a></div></div>
 <div class="ttc" id="acond__gp_8h_html_a50094187aa13389d9253eb518af6c1a2"><div class="ttname"><a href="cond__gp_8h.html#a50094187aa13389d9253eb518af6c1a2">cond_gp_general</a></div><div class="ttdeci">bool cond_gp_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Dummy general function.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00166">cond_gp.c:166</a></div></div>
 <div class="ttc" id="acond__gp_8h_html_a6fb9386b300b406ecfb08f8a9a97c077"><div class="ttname"><a href="cond__gp_8h.html#a6fb9386b300b406ecfb08f8a9a97c077">cond_gp_mutate</a></div><div class="ttdeci">bool cond_gp_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Mutates a tree-GP condition with the self-adaptive rate.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00130">cond_gp.c:130</a></div></div>
 <div class="ttc" id="acond__gp_8h_html_ac5509d3bf784603165a19c6279234c4b"><div class="ttname"><a href="cond__gp_8h.html#ac5509d3bf784603165a19c6279234c4b">cond_gp_update</a></div><div class="ttdeci">void cond_gp_update(const struct XCSF *xcsf, const struct Cl *c, const double *x, const double *y)</div><div class="ttdoc">Dummy update function.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00096">cond_gp.c:96</a></div></div>
 <div class="ttc" id="acond__gp_8h_html_a9ca5031cdfd76b3da76bf6bb58cce32c"><div class="ttname"><a href="cond__gp_8h.html#a9ca5031cdfd76b3da76bf6bb58cce32c">cond_gp_free</a></div><div class="ttdeci">void cond_gp_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Frees the memory used by a tree-GP condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00048">cond_gp.c:48</a></div></div>
 <div class="ttc" id="acond__gp_8h_html_a9f417a6e9cdf49ef3ed1ad19be29b63d"><div class="ttname"><a href="cond__gp_8h.html#a9f417a6e9cdf49ef3ed1ad19be29b63d">cond_gp_match</a></div><div class="ttdeci">bool cond_gp_match(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Calculates whether a GP tree condition matches an input.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00113">cond_gp.c:113</a></div></div>
 <div class="ttc" id="acond__gp_8h_html_a1e740f931fc856fd7310874c7bf88195"><div class="ttname"><a href="cond__gp_8h.html#a1e740f931fc856fd7310874c7bf88195">cond_gp_cover</a></div><div class="ttdeci">void cond_gp_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Generates a GP tree that matches the current input.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00079">cond_gp.c:79</a></div></div>
-<div class="ttc" id="acond__gp_8h_html_a6e0236b6db83efa0e347bbcbad69413b"><div class="ttname"><a href="cond__gp_8h.html#a6e0236b6db83efa0e347bbcbad69413b">cond_gp_load</a></div><div class="ttdeci">size_t cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Reads a tree-GP condition from a file.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00228">cond_gp.c:228</a></div></div>
+<div class="ttc" id="acond__gp_8h_html_a6e0236b6db83efa0e347bbcbad69413b"><div class="ttname"><a href="cond__gp_8h.html#a6e0236b6db83efa0e347bbcbad69413b">cond_gp_load</a></div><div class="ttdeci">size_t cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Reads a tree-GP condition from a file.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00224">cond_gp.c:224</a></div></div>
 <div class="ttc" id="acond__gp_8h_html_aa688690c3fa9cb73c35c98db35867789"><div class="ttname"><a href="cond__gp_8h.html#aa688690c3fa9cb73c35c98db35867789">cond_gp_init</a></div><div class="ttdeci">void cond_gp_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Creates and initialises a tree-GP condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__gp_8c_source.html#l00035">cond_gp.c:35</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

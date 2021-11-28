@@ -126,6 +126,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:ad1c4bc1c562000b4436b0e6309583750"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7fda91e98682aeeacfe7aa6e23e4ebd"><td class="memItemLeft" align="right" valign="top">size_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPredVtbl.html#af7fda91e98682aeeacfe7aa6e23e4ebd">pred_impl_load</a> )(const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, FILE *fp)</td></tr>
 <tr class="separator:af7fda91e98682aeeacfe7aa6e23e4ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae22fb81ae253136174bd36228fd90d21"><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPredVtbl.html#ae22fb81ae253136174bd36228fd90d21">pred_impl_json_export</a> )(const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="separator:ae22fb81ae253136174bd36228fd90d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Prediction interface data structure. </p>
@@ -147,7 +149,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00092">92</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00178">pred_compute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00180">pred_compute()</a>.</p>
 
 </div>
 </div>
@@ -165,7 +167,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00094">94</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00190">pred_copy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00192">pred_copy()</a>.</p>
 
 </div>
 </div>
@@ -183,7 +185,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00089">89</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00153">pred_crossover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00155">pred_crossover()</a>.</p>
 
 </div>
 </div>
@@ -201,7 +203,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00096">96</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00201">pred_free()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00203">pred_free()</a>.</p>
 
 </div>
 </div>
@@ -219,7 +221,25 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00097">97</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00212">pred_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00214">pred_init()</a>.</p>
+
+</div>
+</div>
+<a id="ae22fb81ae253136174bd36228fd90d21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae22fb81ae253136174bd36228fd90d21">&#9670;&nbsp;</a></span>pred_impl_json_export</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* PredVtbl::pred_impl_json_export) (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00105">105</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00252">pred_json_export()</a>.</p>
 
 </div>
 </div>
@@ -237,7 +257,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00104">104</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00128">pred_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00130">pred_load()</a>.</p>
 
 </div>
 </div>
@@ -255,7 +275,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00091">91</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00166">pred_mutate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00168">pred_mutate()</a>.</p>
 
 </div>
 </div>
@@ -273,7 +293,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00098">98</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00223">pred_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00225">pred_print()</a>.</p>
 
 </div>
 </div>
@@ -291,7 +311,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00102">102</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00115">pred_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00117">pred_save()</a>.</p>
 
 </div>
 </div>
@@ -309,7 +329,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00101">101</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00140">pred_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00142">pred_size()</a>.</p>
 
 </div>
 </div>
@@ -327,7 +347,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="prediction_8h_source.html#l00099">99</a> of file <a class="el" href="prediction_8h_source.html">prediction.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00237">pred_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="prediction_8h_source.html#l00239">pred_update()</a>.</p>
 
 </div>
 </div>

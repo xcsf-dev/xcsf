@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('rule__neural_8c.html',''); initResizab
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for rule_neural.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="rule__neural_8c__incl.svg" width="1250" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="rule__neural_8c__incl.svg" width="1240" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="rule__neural_8c_source.html">Go to the source code of this file.</a></p>
@@ -142,6 +142,8 @@ Functions</h2></td></tr>
 <tr class="separator:a184be7603b6dd1f4602fa0976b71d162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e1e69e3c01307e2423a9c3c05409d63"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rule__neural_8c.html#a0e1e69e3c01307e2423a9c3c05409d63">rule_neural_cond_load</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, FILE *fp)</td></tr>
 <tr class="separator:a0e1e69e3c01307e2423a9c3c05409d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae37cba95f687a7e8ae691fc665b2b3c5"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rule__neural_8c.html#ae37cba95f687a7e8ae691fc665b2b3c5">rule_neural_cond_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="separator:ae37cba95f687a7e8ae691fc665b2b3c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2df77549675488482c3ea7e1fba32704"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rule__neural_8c.html#a2df77549675488482c3ea7e1fba32704">rule_neural_act_init</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
 <tr class="separator:a2df77549675488482c3ea7e1fba32704"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82ccc0ab96dd509d8bd05b6e684d40fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rule__neural_8c.html#a82ccc0ab96dd509d8bd05b6e684d40fc">rule_neural_act_free</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
@@ -166,12 +168,14 @@ Functions</h2></td></tr>
 <tr class="separator:a281ce6b86fae3cca70a3217ad8c1ac0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84980873859a0e16006ec98443eeeb25"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rule__neural_8c.html#a84980873859a0e16006ec98443eeeb25">rule_neural_act_load</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, FILE *fp)</td></tr>
 <tr class="separator:a84980873859a0e16006ec98443eeeb25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f88a27cc24f8341483ba6f6d3372a1a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rule__neural_8c.html#a1f88a27cc24f8341483ba6f6d3372a1a">rule_neural_act_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="separator:a1f88a27cc24f8341483ba6f6d3372a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Neural network rule (condition + action) functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2019&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2019&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -207,11 +211,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00207">207</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00219">219</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="utils_8h_source.html#l00068">clamp_int()</a>, <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_outputs</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00368">neural_output()</a>.</p>
+<p class="reference">References <a class="el" href="utils_8h_source.html#l00069">clamp_int()</a>, <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_outputs</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00369">neural_output()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="rule__neural_8c_source.html#l00196">rule_neural_act_cover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="rule__neural_8c_source.html#l00208">rule_neural_act_cover()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -257,7 +261,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00180">180</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00193">193</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
 </div>
 </div>
@@ -299,9 +303,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00196">196</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00208">208</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, <a class="el" href="neural_8c_source.html#l00241">neural_rand()</a>, <a class="el" href="rule__neural_8c_source.html#l00207">rule_neural_act_compute()</a>, and <a class="el" href="rule__neural_8c_source.html#l00089">rule_neural_cond_match()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, <a class="el" href="neural_8c_source.html#l00242">neural_rand()</a>, <a class="el" href="rule__neural_8c_source.html#l00219">rule_neural_act_compute()</a>, and <a class="el" href="rule__neural_8c_source.html#l00089">rule_neural_cond_match()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -342,7 +346,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00234">234</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00246">246</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
 </div>
 </div>
@@ -372,7 +376,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00173">173</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00186">186</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
 </div>
 </div>
@@ -408,7 +412,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00244">244</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00256">256</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
 </div>
 </div>
@@ -438,7 +442,45 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00166">166</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00179">179</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+
+</div>
+</div>
+<a id="a1f88a27cc24f8341483ba6f6d3372a1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f88a27cc24f8341483ba6f6d3372a1a">&#9670;&nbsp;</a></span>rule_neural_act_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* rule_neural_act_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00292">292</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="rule__neural_8c_source.html#l00202">rule_neural_act_print()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="rule__neural_8c_a1f88a27cc24f8341483ba6f6d3372a1a_icgraph.svg" width="343" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -474,7 +516,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00271">271</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00283">283</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
 </div>
 </div>
@@ -504,7 +546,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00254">254</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00266">266</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
 </div>
 </div>
@@ -534,7 +576,15 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00189">189</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00202">202</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+
+<p class="reference">References <a class="el" href="rule__neural_8c_source.html#l00292">rule_neural_act_json_export()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="rule__neural_8c_afba3be3deb02309cd6a60c47222a2201_cgraph.svg" width="343" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -570,7 +620,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00262">262</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00274">274</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
 </div>
 </div>
@@ -612,7 +662,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00224">224</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00236">236</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
 </div>
 </div>
@@ -650,7 +700,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00059">59</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00207">neural_copy()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00208">neural_copy()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -759,7 +809,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00050">50</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00223">neural_free()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00224">neural_free()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -832,11 +882,57 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00035">35</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8h_source.html#l00061">ArgsCond::largs</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, and <a class="el" href="neural_8c_source.html#l00053">neural_create()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8h_source.html#l00061">ArgsCond::largs</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, and <a class="el" href="neural_8c_source.html#l00054">neural_create()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="rule__neural_8c_accc0db627c6130e7c8680c008b47a2e2_cgraph.svg" width="595" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ae37cba95f687a7e8ae691fc665b2b3c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae37cba95f687a7e8ae691fc665b2b3c5">&#9670;&nbsp;</a></span>rule_neural_cond_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* rule_neural_cond_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00162">162</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00407">neural_json_export()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="rule__neural_8c_source.html#l00129">rule_neural_cond_print()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="rule__neural_8c_ae37cba95f687a7e8ae691fc665b2b3c5_cgraph.svg" width="512" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="rule__neural_8c_ae37cba95f687a7e8ae691fc665b2b3c5_icgraph.svg" width="362" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -873,9 +969,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00154">154</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00152">152</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, and <a class="el" href="neural_8c_source.html#l00462">neural_load()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, and <a class="el" href="neural_8c_source.html#l00482">neural_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -918,9 +1014,9 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00089">89</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00111">XCSF::explore</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, <a class="el" href="neural_8c_source.html#l00368">neural_output()</a>, and <a class="el" href="neural_8c_source.html#l00309">neural_propagate()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="xcsf_8h_source.html#l00111">XCSF::explore</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, <a class="el" href="neural_8c_source.html#l00369">neural_output()</a>, and <a class="el" href="neural_8c_source.html#l00310">neural_propagate()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="rule__neural_8c_source.html#l00196">rule_neural_act_cover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="rule__neural_8c_source.html#l00208">rule_neural_act_cover()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -962,7 +1058,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00101">101</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00256">neural_mutate()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00257">neural_mutate()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -999,11 +1095,12 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00129">129</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00394">neural_print()</a>.</p>
+<p class="reference">References <a class="el" href="rule__neural_8c_source.html#l00162">rule_neural_cond_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="rule__neural_8c_a58fe829282a240e23301cf432e85fed4_cgraph.svg" width="431" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="rule__neural_8c_a58fe829282a240e23301cf432e85fed4_cgraph.svg" width="712" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1040,9 +1137,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00145">145</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00143">143</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00440">neural_save()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00460">neural_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1077,9 +1174,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00137">137</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rule__neural_8c_source.html#l00135">135</a> of file <a class="el" href="rule__neural_8c_source.html">rule_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00412">neural_size()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::cond</a>, <a class="el" href="rule__neural_8h_source.html#l00035">RuleNeural::net</a>, and <a class="el" href="neural_8c_source.html#l00432">neural_size()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

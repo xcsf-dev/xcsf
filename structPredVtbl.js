@@ -5,6 +5,7 @@ var structPredVtbl =
     [ "pred_impl_crossover", "structPredVtbl.html#a95ff5c2d85dde32fee54dcc265803a12", null ],
     [ "pred_impl_free", "structPredVtbl.html#aebf0faaf4a586d837a5a8b6725db0a35", null ],
     [ "pred_impl_init", "structPredVtbl.html#a7caf8a2ca0fc0392a43775d4d4d54ee6", null ],
+    [ "pred_impl_json_export", "structPredVtbl.html#ae22fb81ae253136174bd36228fd90d21", null ],
     [ "pred_impl_load", "structPredVtbl.html#af7fda91e98682aeeacfe7aa6e23e4ebd", null ],
     [ "pred_impl_mutate", "structPredVtbl.html#a3e6e32ca6f8c3e32758c760a39e717c5", null ],
     [ "pred_impl_print", "structPredVtbl.html#a45f150f81d02b5a0f3406af7f33a8f7b", null ],

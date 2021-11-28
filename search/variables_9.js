@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['klen_2813',['klen',['../structGraph.html#af8c3e0876129f24d2316112bba9fec36',1,'Graph']]],
-  ['kset_2814',['kset',['../structXCSF.html#aa465f54c7f43c6a6e34f8b465111417f',1,'XCSF']]]
+  ['klen_2865',['klen',['../structGraph.html#af8c3e0876129f24d2316112bba9fec36',1,'Graph']]],
+  ['kset_2866',['kset',['../structXCSF.html#aa465f54c7f43c6a6e34f8b465111417f',1,'XCSF']]]
 ];

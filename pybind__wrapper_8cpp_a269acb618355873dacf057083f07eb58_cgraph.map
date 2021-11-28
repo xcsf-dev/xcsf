@@ -1,72 +1,74 @@
 <map id="pybind11_init_wrapper" name="pybind11_init_wrapper">
-<area shape="rect" id="node1" title=" " alt="" coords="5,3356,156,3383"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,3305,156,3332"/>
 <area shape="rect" id="node2" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="225,284,374,311"/>
 <area shape="rect" id="node9" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="246,461,353,488"/>
-<area shape="rect" id="node18" href="$classXCS.html#aaa50fffbade66dcb1a1bd48e28ea838d" title="Ends a step in a reinforcement learning trial." alt="" coords="488,1019,599,1045"/>
-<area shape="rect" id="node22" href="$classXCS.html#a173bb0ba504bc7e97cda5841a6534944" title="Frees memory used by a reinforcement learning trial." alt="" coords="490,968,597,995"/>
-<area shape="rect" id="node25" href="$classXCS.html#aef1e4c62e78f82a058d0008d2b308735" title="Returns the current system error." alt="" coords="257,1120,341,1147"/>
-<area shape="rect" id="node26" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="265,816,334,843"/>
-<area shape="rect" id="node32" href="$classXCS.html#ad497d3bfba6b07f98c7673f08ce02f9b" title=" " alt="" coords="242,1171,357,1197"/>
-<area shape="rect" id="node33" href="$classXCS.html#a37d82ab82948e10d4f4b0426673d86e0" title=" " alt="" coords="230,1221,369,1248"/>
-<area shape="rect" id="node34" href="$classXCS.html#aa0fe9e7314fb9d08fd7616ae5199eb59" title=" " alt="" coords="245,1272,353,1299"/>
-<area shape="rect" id="node35" href="$classXCS.html#a31f72b8be25ddc0a9953a9e34d70c6b7" title=" " alt="" coords="224,1323,375,1349"/>
-<area shape="rect" id="node36" href="$classXCS.html#a8f11e2f80b3f3d68e9a1282103d33bba" title=" " alt="" coords="244,1373,355,1400"/>
-<area shape="rect" id="node37" href="$classXCS.html#acbb6aeb1fce46e512525c892893cafea" title=" " alt="" coords="251,1424,348,1451"/>
-<area shape="rect" id="node38" href="$classXCS.html#a9c17e3b572609fbc418a67682a34266f" title=" " alt="" coords="217,1475,382,1501"/>
-<area shape="rect" id="node39" href="$classXCS.html#abc95c6feb828811d951947ff473e157d" title=" " alt="" coords="214,1525,385,1552"/>
-<area shape="rect" id="node40" href="$classXCS.html#ad8b1d4ddb79c439c83e79dcc4c51cb1d" title=" " alt="" coords="214,1576,385,1603"/>
-<area shape="rect" id="node41" href="$classXCS.html#a4e25e5c99c4b2d5ae7c301ff6dcfb24f" title=" " alt="" coords="210,1627,389,1653"/>
-<area shape="rect" id="node42" href="$classXCS.html#ace215316e5a5459bd541755cc4003126" title=" " alt="" coords="231,1677,368,1704"/>
-<area shape="rect" id="node43" href="$classXCS.html#a5c990601f7f652662a41fb2ffadde43c" title=" " alt="" coords="233,1728,366,1755"/>
-<area shape="rect" id="node44" href="$classXCS.html#a415d33f2f0a9bbc327dd94b7689181a5" title=" " alt="" coords="236,1779,363,1805"/>
-<area shape="rect" id="node45" href="$classXCS.html#a670d409e080ac55acf7e49c7ad13ad30" title=" " alt="" coords="224,1829,375,1856"/>
-<area shape="rect" id="node46" href="$classXCS.html#a1b19827f769f8aba421b2b957f158efa" title=" " alt="" coords="233,1880,366,1907"/>
-<area shape="rect" id="node47" href="$classXCS.html#a0c3813a786f3ef13fba64010808f3ad8" title=" " alt="" coords="226,1931,373,1957"/>
-<area shape="rect" id="node48" href="$classXCS.html#ac282d3fcfb4172ff17b9a931f37d2b16" title=" " alt="" coords="237,1981,362,2008"/>
-<area shape="rect" id="node49" href="$classXCS.html#a4f7e32089d94a997c24b7a424953dabb" title=" " alt="" coords="230,2032,369,2059"/>
-<area shape="rect" id="node51" href="$classXCS.html#acf838c3c90cc791010cba4b5d7660d30" title=" " alt="" coords="222,2083,377,2109"/>
-<area shape="rect" id="node52" href="$classXCS.html#aa61d26e422587d4e91e8174fe7a50501" title=" " alt="" coords="228,2133,371,2160"/>
-<area shape="rect" id="node53" href="$classXCS.html#aa6f9edb31af785155a699deac0b08c78" title=" " alt="" coords="241,2184,357,2211"/>
-<area shape="rect" id="node54" href="$classXCS.html#a147d45e2af2b0adc78485a3b7b8d754d" title=" " alt="" coords="228,2235,371,2261"/>
-<area shape="rect" id="node55" href="$classXCS.html#aeb6fa8234b85bc02be01b582d3f0f100" title=" " alt="" coords="230,2285,369,2312"/>
-<area shape="rect" id="node56" href="$classXCS.html#accbe600837847502c304b715ba6ca79a" title=" " alt="" coords="251,2336,348,2363"/>
-<area shape="rect" id="node57" href="$classXCS.html#adcf58aa3dff2dfbbb2aa9bec4cdec5a7" title=" " alt="" coords="204,2387,395,2413"/>
-<area shape="rect" id="node58" href="$classXCS.html#ad6d8f9134eeccdf17b0ccab6b42e3713" title=" " alt="" coords="222,2437,377,2464"/>
-<area shape="rect" id="node59" href="$classXCS.html#af8c9f2328d1f3d280defa2d1da699b91" title=" " alt="" coords="230,2488,369,2515"/>
-<area shape="rect" id="node60" href="$classXCS.html#ab67379e985551a7844c7abb652115e57" title=" " alt="" coords="229,2539,369,2565"/>
-<area shape="rect" id="node61" href="$classXCS.html#a3db141a1635a07da02087f519cc61ca8" title=" " alt="" coords="235,2589,363,2616"/>
-<area shape="rect" id="node62" href="$classXCS.html#af01b1a2feec9fb2bfa1b087ccbd65d6a" title=" " alt="" coords="216,2640,383,2667"/>
-<area shape="rect" id="node63" href="$classXCS.html#a0c384ec2ba86bd1038457df1cadd498c" title=" " alt="" coords="226,2691,373,2733"/>
-<area shape="rect" id="node66" href="$classXCS.html#a6a871ac1eba130483ada73d1c1247cfd" title=" " alt="" coords="226,2757,373,2798"/>
-<area shape="rect" id="node69" href="$classXCS.html#a0ce16d3be0a878bff98dd47043370c0d" title=" " alt="" coords="226,2822,373,2863"/>
-<area shape="rect" id="node72" href="$classXCS.html#a00bade27d3561f7e3032fb294dabe940" title=" " alt="" coords="226,2887,373,2929"/>
-<area shape="rect" id="node75" href="$classXCS.html#a6e25bac5882fc79fe55109291daafde0" title=" " alt="" coords="226,2953,373,2994"/>
-<area shape="rect" id="node78" href="$classXCS.html#a4b58ad095103bedca3a73671a856504f" title=" " alt="" coords="226,3018,373,3059"/>
-<area shape="rect" id="node81" href="$classXCS.html#af55c119f816a7e19be2ce0b6de103970" title=" " alt="" coords="226,3083,373,3125"/>
-<area shape="rect" id="node84" href="$classXCS.html#aeea58e6bf26eb5f80c73bccd7780bad9" title=" " alt="" coords="226,3149,373,3190"/>
-<area shape="rect" id="node87" href="$classXCS.html#a87cab592d7a90552cd8ae3defc08f835" title=" " alt="" coords="226,3214,373,3255"/>
-<area shape="rect" id="node90" href="$classXCS.html#adf735b9b8261af4f8a8ac7b6d1b500ce" title=" " alt="" coords="229,3280,369,3307"/>
-<area shape="rect" id="node91" href="$classXCS.html#ab77bd7ac701ee13f40e3f951bb6b4f5d" title=" " alt="" coords="230,3331,369,3357"/>
-<area shape="rect" id="node92" href="$classXCS.html#ad73e41be7a4e43968e037bb8308e619d" title=" " alt="" coords="208,3381,391,3408"/>
-<area shape="rect" id="node93" href="$classXCS.html#a301140f73ccf49325ff43d40210eb50b" title=" " alt="" coords="236,3432,363,3459"/>
-<area shape="rect" id="node94" href="$classXCS.html#a8c67042b503e901a1fc778b8332a5b19" title=" " alt="" coords="208,3483,391,3509"/>
-<area shape="rect" id="node95" href="$classXCS.html#aac191e03caba8945f95122fe7f0fb6c7" title=" " alt="" coords="231,3533,367,3560"/>
-<area shape="rect" id="node96" href="$classXCS.html#ac3ac6ccde15e3e32e9e2874681a3a35f" title=" " alt="" coords="233,3584,366,3611"/>
-<area shape="rect" id="node97" href="$classXCS.html#a3106a800b19f722f626ad8f1911b6a5c" title=" " alt="" coords="229,3635,369,3661"/>
-<area shape="rect" id="node98" href="$classXCS.html#a11151bf7f544f693b268495bcdab60df" title=" " alt="" coords="245,3685,353,3712"/>
-<area shape="rect" id="node99" href="$classXCS.html#ae1a8f5adda35ffff17fde67cc2d8e56b" title=" " alt="" coords="240,3736,359,3763"/>
-<area shape="rect" id="node100" href="$classXCS.html#ad3bd7272bad930a3c08f1e6e8a976216" title=" " alt="" coords="240,3787,359,3813"/>
-<area shape="rect" id="node101" href="$classXCS.html#aa904ba0e84125b025512da41a98159ca" title="Initialises a step in a reinforcement learning trial." alt="" coords="490,867,597,893"/>
-<area shape="rect" id="node102" href="$classXCS.html#adbfb8e127ef8a800a661d284dda3f2ef" title="Initialises a reinforcement learning trial." alt="" coords="492,664,595,691"/>
-<area shape="rect" id="node106" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="258,715,341,741"/>
-<area shape="rect" id="node109" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="233,3837,365,3864"/>
-<area shape="rect" id="node111" href="$classXCS.html#a7d0bfc2cf3447809fee4218f39921a81" title="Returns the XCSF prediction array for the provided input." alt="" coords="251,563,348,589"/>
-<area shape="rect" id="node113" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="233,3888,366,3915"/>
+<area shape="rect" id="node17" href="$classXCS.html#aaa50fffbade66dcb1a1bd48e28ea838d" title="Ends a step in a reinforcement learning trial." alt="" coords="488,563,599,589"/>
+<area shape="rect" id="node21" href="$classXCS.html#a173bb0ba504bc7e97cda5841a6534944" title="Frees memory used by a reinforcement learning trial." alt="" coords="490,664,597,691"/>
+<area shape="rect" id="node24" href="$classXCS.html#aef1e4c62e78f82a058d0008d2b308735" title="Returns the current system error." alt="" coords="257,1019,341,1045"/>
+<area shape="rect" id="node25" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="265,613,334,640"/>
+<area shape="rect" id="node30" href="$classXCS.html#ad497d3bfba6b07f98c7673f08ce02f9b" title=" " alt="" coords="242,1069,357,1096"/>
+<area shape="rect" id="node31" href="$classXCS.html#a37d82ab82948e10d4f4b0426673d86e0" title=" " alt="" coords="230,1120,369,1147"/>
+<area shape="rect" id="node32" href="$classXCS.html#aa0fe9e7314fb9d08fd7616ae5199eb59" title=" " alt="" coords="245,1171,353,1197"/>
+<area shape="rect" id="node33" href="$classXCS.html#a31f72b8be25ddc0a9953a9e34d70c6b7" title=" " alt="" coords="224,1221,375,1248"/>
+<area shape="rect" id="node34" href="$classXCS.html#a8f11e2f80b3f3d68e9a1282103d33bba" title=" " alt="" coords="244,1272,355,1299"/>
+<area shape="rect" id="node35" href="$classXCS.html#acbb6aeb1fce46e512525c892893cafea" title=" " alt="" coords="251,1323,348,1349"/>
+<area shape="rect" id="node36" href="$classXCS.html#a9c17e3b572609fbc418a67682a34266f" title=" " alt="" coords="217,1373,382,1400"/>
+<area shape="rect" id="node37" href="$classXCS.html#abc95c6feb828811d951947ff473e157d" title=" " alt="" coords="214,1424,385,1451"/>
+<area shape="rect" id="node38" href="$classXCS.html#a9a149de91f7efc1b65cd048e082ed844" title=" " alt="" coords="214,1475,385,1501"/>
+<area shape="rect" id="node40" href="$classXCS.html#a4e25e5c99c4b2d5ae7c301ff6dcfb24f" title=" " alt="" coords="210,1525,389,1552"/>
+<area shape="rect" id="node41" href="$classXCS.html#ace215316e5a5459bd541755cc4003126" title=" " alt="" coords="231,1576,368,1603"/>
+<area shape="rect" id="node42" href="$classXCS.html#a5c990601f7f652662a41fb2ffadde43c" title=" " alt="" coords="233,1627,366,1653"/>
+<area shape="rect" id="node43" href="$classXCS.html#a415d33f2f0a9bbc327dd94b7689181a5" title=" " alt="" coords="236,1677,363,1704"/>
+<area shape="rect" id="node44" href="$classXCS.html#a670d409e080ac55acf7e49c7ad13ad30" title=" " alt="" coords="224,1728,375,1755"/>
+<area shape="rect" id="node45" href="$classXCS.html#a1b19827f769f8aba421b2b957f158efa" title=" " alt="" coords="233,1779,366,1805"/>
+<area shape="rect" id="node46" href="$classXCS.html#a0c3813a786f3ef13fba64010808f3ad8" title=" " alt="" coords="226,1829,373,1856"/>
+<area shape="rect" id="node47" href="$classXCS.html#ac282d3fcfb4172ff17b9a931f37d2b16" title=" " alt="" coords="237,1880,362,1907"/>
+<area shape="rect" id="node48" href="$classXCS.html#a4f7e32089d94a997c24b7a424953dabb" title=" " alt="" coords="716,1931,855,1957"/>
+<area shape="rect" id="node50" href="$classXCS.html#acf838c3c90cc791010cba4b5d7660d30" title=" " alt="" coords="222,2083,377,2109"/>
+<area shape="rect" id="node51" href="$classXCS.html#aa61d26e422587d4e91e8174fe7a50501" title=" " alt="" coords="228,2133,371,2160"/>
+<area shape="rect" id="node52" href="$classXCS.html#aa6f9edb31af785155a699deac0b08c78" title=" " alt="" coords="241,2184,357,2211"/>
+<area shape="rect" id="node53" href="$classXCS.html#a147d45e2af2b0adc78485a3b7b8d754d" title=" " alt="" coords="228,2235,371,2261"/>
+<area shape="rect" id="node54" href="$classXCS.html#a01bde586a3ee9728cb7c45c0bb230df6" title=" " alt="" coords="230,2285,369,2312"/>
+<area shape="rect" id="node55" href="$classXCS.html#accbe600837847502c304b715ba6ca79a" title=" " alt="" coords="251,2336,348,2363"/>
+<area shape="rect" id="node56" href="$classXCS.html#adcf58aa3dff2dfbbb2aa9bec4cdec5a7" title=" " alt="" coords="204,2387,395,2413"/>
+<area shape="rect" id="node57" href="$classXCS.html#ad6d8f9134eeccdf17b0ccab6b42e3713" title=" " alt="" coords="222,2437,377,2464"/>
+<area shape="rect" id="node58" href="$classXCS.html#af8c9f2328d1f3d280defa2d1da699b91" title=" " alt="" coords="230,2488,369,2515"/>
+<area shape="rect" id="node59" href="$classXCS.html#ab67379e985551a7844c7abb652115e57" title=" " alt="" coords="229,2539,369,2565"/>
+<area shape="rect" id="node60" href="$classXCS.html#a3db141a1635a07da02087f519cc61ca8" title=" " alt="" coords="235,2589,363,2616"/>
+<area shape="rect" id="node61" href="$classXCS.html#af01b1a2feec9fb2bfa1b087ccbd65d6a" title=" " alt="" coords="216,2640,383,2667"/>
+<area shape="rect" id="node62" href="$classXCS.html#a0c384ec2ba86bd1038457df1cadd498c" title=" " alt="" coords="226,2691,373,2733"/>
+<area shape="rect" id="node65" href="$classXCS.html#a6a871ac1eba130483ada73d1c1247cfd" title=" " alt="" coords="226,2757,373,2798"/>
+<area shape="rect" id="node68" href="$classXCS.html#a0ce16d3be0a878bff98dd47043370c0d" title=" " alt="" coords="226,2822,373,2863"/>
+<area shape="rect" id="node71" href="$classXCS.html#a00bade27d3561f7e3032fb294dabe940" title=" " alt="" coords="226,2887,373,2929"/>
+<area shape="rect" id="node74" href="$classXCS.html#a6e25bac5882fc79fe55109291daafde0" title=" " alt="" coords="226,2953,373,2994"/>
+<area shape="rect" id="node77" href="$classXCS.html#a4b58ad095103bedca3a73671a856504f" title=" " alt="" coords="226,3018,373,3059"/>
+<area shape="rect" id="node80" href="$classXCS.html#af55c119f816a7e19be2ce0b6de103970" title=" " alt="" coords="226,3083,373,3125"/>
+<area shape="rect" id="node83" href="$classXCS.html#aeea58e6bf26eb5f80c73bccd7780bad9" title=" " alt="" coords="226,3149,373,3190"/>
+<area shape="rect" id="node86" href="$classXCS.html#a87cab592d7a90552cd8ae3defc08f835" title=" " alt="" coords="226,3214,373,3255"/>
+<area shape="rect" id="node89" href="$classXCS.html#adf735b9b8261af4f8a8ac7b6d1b500ce" title=" " alt="" coords="229,3280,369,3307"/>
+<area shape="rect" id="node90" href="$classXCS.html#ab77bd7ac701ee13f40e3f951bb6b4f5d" title=" " alt="" coords="230,3331,369,3357"/>
+<area shape="rect" id="node91" href="$classXCS.html#ad73e41be7a4e43968e037bb8308e619d" title=" " alt="" coords="208,3381,391,3408"/>
+<area shape="rect" id="node92" href="$classXCS.html#a301140f73ccf49325ff43d40210eb50b" title=" " alt="" coords="236,3432,363,3459"/>
+<area shape="rect" id="node93" href="$classXCS.html#a8c67042b503e901a1fc778b8332a5b19" title=" " alt="" coords="208,3483,391,3509"/>
+<area shape="rect" id="node94" href="$classXCS.html#aac191e03caba8945f95122fe7f0fb6c7" title=" " alt="" coords="231,3533,367,3560"/>
+<area shape="rect" id="node95" href="$classXCS.html#ac3ac6ccde15e3e32e9e2874681a3a35f" title=" " alt="" coords="233,3584,366,3611"/>
+<area shape="rect" id="node96" href="$classXCS.html#a3106a800b19f722f626ad8f1911b6a5c" title=" " alt="" coords="229,3635,369,3661"/>
+<area shape="rect" id="node97" href="$classXCS.html#a11151bf7f544f693b268495bcdab60df" title=" " alt="" coords="245,3685,353,3712"/>
+<area shape="rect" id="node98" href="$classXCS.html#a4b927e4811d43869331942ca79bab7d5" title=" " alt="" coords="240,3736,359,3763"/>
+<area shape="rect" id="node99" href="$classXCS.html#ac051975fbd076ccc5b66b924ff6ac3b5" title=" " alt="" coords="240,3787,359,3813"/>
+<area shape="rect" id="node100" href="$classXCS.html#aa904ba0e84125b025512da41a98159ca" title="Initialises a step in a reinforcement learning trial." alt="" coords="490,715,597,741"/>
+<area shape="rect" id="node101" href="$classXCS.html#adbfb8e127ef8a800a661d284dda3f2ef" title="Initialises a reinforcement learning trial." alt="" coords="248,816,351,843"/>
+<area shape="rect" id="node103" href="$classXCS.html#a39764d3cf7b1ffc5807541b59452d092" title="Returns a JSON formatted string representing the population set." alt="" coords="237,3837,362,3864"/>
+<area shape="rect" id="node105" href="$classXCS.html#adb57289e76542083f52f422992e4ee13" title="Returns a JSON formatted string representing the parameters." alt="" coords="466,1981,621,2008"/>
+<area shape="rect" id="node107" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="258,917,341,944"/>
+<area shape="rect" id="node109" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="233,3888,365,3915"/>
+<area shape="rect" id="node111" href="$classXCS.html#a4d7d398d90d5f695fcbfe0fa99354436" title="Returns the XCSF prediction array for the provided input." alt="" coords="251,512,348,539"/>
+<area shape="rect" id="node113" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="233,2032,366,2059"/>
 <area shape="rect" id="node115" href="$classXCS.html#a7af3631a2e50a3c2a22774d60600014d" title="Prints the current population." alt="" coords="242,3939,357,3965"/>
 <area shape="rect" id="node117" href="$utils_8c.html#ab74192959d5c945feaf0a630b58fd123" title="Initialises the pseudo&#45;random number generator." alt="" coords="264,3989,335,4016"/>
-<area shape="rect" id="node118" href="$classXCS.html#af4e2f1db4a14a56a8aecf78c8bcc2a66" title="Retrieves the stored population, setting it as current." alt="" coords="493,917,594,944"/>
+<area shape="rect" id="node118" href="$classXCS.html#af4e2f1db4a14a56a8aecf78c8bcc2a66" title="Retrieves the stored population, setting it as current." alt="" coords="249,968,350,995"/>
 <area shape="rect" id="node120" href="$classXCS.html#a8501483f2f168c56448892cfbb5285ea" title="Writes the entire current state of XCSF to a file." alt="" coords="256,4040,343,4067"/>
-<area shape="rect" id="node122" href="$classXCS.html#a2387812edaa2fca234038c0dc12666ef" title="Returns the error over one sequential pass of the provided data." alt="" coords="254,4091,345,4117"/>
+<area shape="rect" id="node122" href="$classXCS.html#aa0c9078a497b39792b20be07a4d65a5e" title="Returns the error over one sequential pass of the provided data." alt="" coords="254,4091,345,4117"/>
 <area shape="rect" id="node123" href="$classXCS.html#ae60bbc29681a75e99b261a3e01ea99c5" title=" " alt="" coords="256,4141,343,4168"/>
 <area shape="rect" id="node125" href="$classXCS.html#af3b9793a64608f827dabb989bf9b72ef" title="Sets the action type." alt="" coords="240,4192,359,4219"/>
 <area shape="rect" id="node127" href="$classXCS.html#ac7b42948062e53f85dbb8554c5bb5989" title=" " alt="" coords="242,4243,357,4269"/>
@@ -103,64 +105,62 @@
 <area shape="rect" id="node189" href="$classXCS.html#a3cf8339cd3cde1fa08938824cc919fe8" title=" " alt="" coords="231,5813,367,5840"/>
 <area shape="rect" id="node191" href="$classXCS.html#a5a2c02597816c080b1bb10af8a9611f8" title=" " alt="" coords="233,5864,366,5891"/>
 <area shape="rect" id="node193" href="$classXCS.html#ade8f05749f54ef4e62c721e695657660" title=" " alt="" coords="229,5915,369,5941"/>
-<area shape="rect" id="node195" href="$classXCS.html#a0d5d38e87da92827cee73290b030ff9f" title="Stores the current population in memory for later retrieval." alt="" coords="500,765,587,792"/>
-<area shape="rect" id="node197" href="$classXCS.html#af8970ba52403714439fda0d4383a390b" title="Creates the action set using the previously selected action, updates the classifiers,..." alt="" coords="495,1095,592,1121"/>
+<area shape="rect" id="node195" href="$classXCS.html#a0d5d38e87da92827cee73290b030ff9f" title="Stores the current population in memory for later retrieval." alt="" coords="256,867,343,893"/>
+<area shape="rect" id="node197" href="$classXCS.html#af8970ba52403714439fda0d4383a390b" title="Creates the action set using the previously selected action, updates the classifiers,..." alt="" coords="495,765,592,792"/>
 <area shape="rect" id="node198" href="$classXCS.html#a0f6de56e2ef395dd537f26ed1b71b5be" title="Returns the XCSF build version number." alt="" coords="232,5965,367,5992"/>
 <area shape="rect" id="node199" href="$classXCS.html#a1176e9d5bc2a6d4af8a880f398442224" title="Returns the XCSF major version number." alt="" coords="230,6016,369,6043"/>
 <area shape="rect" id="node200" href="$classXCS.html#af9f1c795b5a8d9f82a2e7b132f585031" title="Returns the XCSF minor version number." alt="" coords="230,6067,369,6093"/>
 <area shape="rect" id="node3" href="$xcsf_8c.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="471,132,616,159"/>
-<area shape="rect" id="node4" href="$pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95" title="Frees the prediction array." alt="" coords="753,56,818,83"/>
-<area shape="rect" id="node5" href="$pa_8c.html#ae7c4749400527115da6903f9337ac58b" title="Initialises the prediction array." alt="" coords="755,107,815,133"/>
-<area shape="rect" id="node6" href="$param_8c.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="712,157,859,184"/>
-<area shape="rect" id="node7" href="$param_8c.html#a18f68adfb73dad5267d0074b02fbdf50" title=" " alt="" coords="723,208,848,235"/>
-<area shape="rect" id="node8" href="$pred__neural_8c.html#aa639a9130cac0c222bca241f86d6c135" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="692,5,879,32"/>
-<area shape="rect" id="node10" href="$param_8c.html#a966c3e54f2e1977dd7b4776723efa2b4" title=" " alt="" coords="719,461,851,488"/>
+<area shape="rect" id="node4" href="$pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95" title="Frees the prediction array." alt="" coords="753,208,818,235"/>
+<area shape="rect" id="node5" href="$pa_8c.html#ae7c4749400527115da6903f9337ac58b" title="Initialises the prediction array." alt="" coords="755,5,815,32"/>
+<area shape="rect" id="node6" href="$param_8c.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="712,56,859,83"/>
+<area shape="rect" id="node7" href="$param_8c.html#a18f68adfb73dad5267d0074b02fbdf50" title=" " alt="" coords="723,107,848,133"/>
+<area shape="rect" id="node8" href="$pred__neural_8c.html#aa639a9130cac0c222bca241f86d6c135" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="692,157,879,184"/>
+<area shape="rect" id="node10" href="$param_8c.html#a966c3e54f2e1977dd7b4776723efa2b4" title=" " alt="" coords="719,512,851,539"/>
 <area shape="rect" id="node11" href="$xcs__rl_8c.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="487,385,599,412"/>
-<area shape="rect" id="node12" href="$clset_8c.html#a101813e8460677fdb33f08e0226dce9b" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="739,563,832,589"/>
-<area shape="rect" id="node14" href="$pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c" title="Returns the best action in the prediction array." alt="" coords="730,259,841,285"/>
-<area shape="rect" id="node15" href="$pa_8c.html#abcd11f4277bf0a24b4710389f9529015" title="Builds the prediction array for the specified input." alt="" coords="750,411,821,437"/>
-<area shape="rect" id="node16" href="$pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d" title="Returns a random action from the prediction array." alt="" coords="730,309,841,336"/>
-<area shape="rect" id="node17" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="737,360,834,387"/>
-<area shape="rect" id="node13" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="927,601,1005,628"/>
-<area shape="rect" id="node19" href="$xcs__rl_8c.html#aee0c56c15edc80945cda6de450e3ceb7" title="Ends a step in a reinforcement learning trial." alt="" coords="727,1069,844,1096"/>
-<area shape="rect" id="node20" href="$clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de" title="Frees the set, but not the classifiers." alt="" coords="927,1044,1005,1071"/>
-<area shape="rect" id="node21" href="$pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" title="Returns the value of a specified action in the prediction array." alt="" coords="936,980,996,1007"/>
-<area shape="rect" id="node23" href="$xcs__rl_8c.html#aacfd74f90f7b56679f88ff944c31835a" title="Frees memory used by a reinforcement learning trial." alt="" coords="729,1019,842,1045"/>
-<area shape="rect" id="node24" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="929,867,1003,893"/>
-<area shape="rect" id="node27" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="506,816,581,843"/>
-<area shape="rect" id="node28" href="$xcs__rl_8c.html#a6bbd7dc6c04d7173cbc743ba47bd8b91" title="Initialises a step in a reinforcement learning trial." alt="" coords="729,867,842,893"/>
-<area shape="rect" id="node30" href="$xcs__rl_8c.html#adca6cf3218b5080457ff2d1a7fbb8017" title="Initialises a reinforcement learning trial." alt="" coords="731,664,840,691"/>
-<area shape="rect" id="node31" href="$xcs__rl_8c.html#a5e5ba8c28646690f0b1c51aae7f6aa78" title="Provides reinforcement to the sets." alt="" coords="734,1120,837,1147"/>
-<area shape="rect" id="node29" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="929,715,1003,741"/>
-<area shape="rect" id="node50" href="$loss_8c.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe" title="Returns a string representation of a loss type from the integer." alt="" coords="474,2032,613,2059"/>
-<area shape="rect" id="node64" href="$clset__neural_8c.html#ad58ba06ef88f57f79511ee961acd4c70" title="Calculates the mean number of condition connections in the set." alt="" coords="443,2699,644,2725"/>
-<area shape="rect" id="node65" href="$cond__neural_8c.html#aab00ba488c429f2ce3081d1176aeedfd" title="Returns the number of active connections in a neural condition layer." alt="" coords="701,2699,870,2725"/>
-<area shape="rect" id="node67" href="$clset__neural_8c.html#a6090aa6b432c00fb699a7c9a42f94056" title="Calculates the mean number of condition layers in the set." alt="" coords="460,2764,627,2791"/>
-<area shape="rect" id="node68" href="$cond__neural_8c.html#a1f124131c4080c032a61d3a49bdefe20" title="Returns the number of layers within a neural network condition." alt="" coords="718,2764,853,2791"/>
-<area shape="rect" id="node70" href="$clset__neural_8c.html#a0870eeca9a51d6612bb4dc1d28537df1" title="Calculates the mean number of condition neurons for a given layer." alt="" coords="455,2829,632,2856"/>
-<area shape="rect" id="node71" href="$cond__neural_8c.html#a139c52a0af8f5535597d0cb6a6be1abe" title="Returns the number of neurons in a neural condition layer." alt="" coords="713,2829,858,2856"/>
-<area shape="rect" id="node73" href="$clset_8c.html#a858e99d88d35cdc49b60788ca90f5b56" title="Calculates the mean condition size of classifiers in the set." alt="" coords="466,2895,621,2921"/>
-<area shape="rect" id="node74" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="736,2895,835,2921"/>
-<area shape="rect" id="node76" href="$clset__neural_8c.html#a90680514a75d5513c5dfe1b0ccc2594b" title="Calculates the mean number of prediction connections in the set." alt="" coords="444,2960,643,2987"/>
-<area shape="rect" id="node77" href="$pred__neural_8c.html#a56430e2cbd0ff78b7602723b62737009" title="Returns the number of active connections in a neural prediction layer." alt="" coords="702,2960,869,2987"/>
-<area shape="rect" id="node79" href="$clset__neural_8c.html#a584c4d47a112fc4dab6e9b118a685e5e" title="Calculates the mean prediction layer ETA of classifiers in the set." alt="" coords="470,3025,617,3052"/>
-<area shape="rect" id="node80" href="$pred__neural_8c.html#abb0f86e4555ee62a1505d1f1707b506d" title="Returns the gradient descent rate of a neural prediction layer." alt="" coords="728,3025,843,3052"/>
-<area shape="rect" id="node82" href="$clset__neural_8c.html#aab856136c4498c44db62476faf8f4c6d" title="Calculates the mean number of prediction layers in the set." alt="" coords="462,3091,625,3117"/>
-<area shape="rect" id="node83" href="$pred__neural_8c.html#a185f1c6194af0b18fd006e40f15466de" title="Returns the number of layers within a neural network prediction." alt="" coords="720,3091,851,3117"/>
-<area shape="rect" id="node85" href="$clset__neural_8c.html#aeaeb7e42d7d58c0cd2efceaa6c083213" title="Calculates the mean number of prediction neurons for a given layer." alt="" coords="456,3156,631,3183"/>
-<area shape="rect" id="node86" href="$pred__neural_8c.html#aa629fe068b85b51ee3d439b4b659f030" title="Returns the number of neurons in a neural prediction layer." alt="" coords="714,3156,857,3183"/>
-<area shape="rect" id="node88" href="$clset_8c.html#a0afeb87ed1c766c0cde8adfaf73cdf50" title="Calculates the mean prediction size of classifiers in the set." alt="" coords="467,3221,619,3248"/>
-<area shape="rect" id="node89" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="738,3221,833,3248"/>
-<area shape="rect" id="node103" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="732,512,839,539"/>
-<area shape="rect" id="node104" href="$cl_8c.html#a188fac458e06c9a27e0e4069f7ddb68a" title="Initialises a new classifier &#45; but not condition, action, prediction." alt="" coords="938,525,994,552"/>
-<area shape="rect" id="node105" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="934,475,998,501"/>
-<area shape="rect" id="node107" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="504,715,583,741"/>
-<area shape="rect" id="node108" href="$clset_8c.html#af87479ea90c3c508352c4a89dae9fd08" title="Reads the population set from a file." alt="" coords="729,613,842,640"/>
-<area shape="rect" id="node110" href="$xcsf_8c.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="479,3837,607,3864"/>
+<area shape="rect" id="node12" href="$clset_8c.html#a101813e8460677fdb33f08e0226dce9b" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="739,461,832,488"/>
+<area shape="rect" id="node13" href="$pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c" title="Returns the best action in the prediction array." alt="" coords="730,309,841,336"/>
+<area shape="rect" id="node14" href="$pa_8c.html#abcd11f4277bf0a24b4710389f9529015" title="Builds the prediction array for the specified input." alt="" coords="750,411,821,437"/>
+<area shape="rect" id="node15" href="$pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d" title="Returns a random action from the prediction array." alt="" coords="730,360,841,387"/>
+<area shape="rect" id="node16" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="737,259,834,285"/>
+<area shape="rect" id="node18" href="$xcs__rl_8c.html#aee0c56c15edc80945cda6de450e3ceb7" title="Ends a step in a reinforcement learning trial." alt="" coords="727,563,844,589"/>
+<area shape="rect" id="node19" href="$clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de" title="Frees the set, but not the classifiers." alt="" coords="957,652,1035,679"/>
+<area shape="rect" id="node20" href="$pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" title="Returns the value of a specified action in the prediction array." alt="" coords="966,576,1026,603"/>
+<area shape="rect" id="node22" href="$xcs__rl_8c.html#aacfd74f90f7b56679f88ff944c31835a" title="Frees memory used by a reinforcement learning trial." alt="" coords="729,664,842,691"/>
+<area shape="rect" id="node23" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="959,943,1033,969"/>
+<area shape="rect" id="node26" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="506,613,581,640"/>
+<area shape="rect" id="node27" href="$xcs__rl_8c.html#a6bbd7dc6c04d7173cbc743ba47bd8b91" title="Initialises a step in a reinforcement learning trial." alt="" coords="729,715,842,741"/>
+<area shape="rect" id="node28" href="$xcs__rl_8c.html#adca6cf3218b5080457ff2d1a7fbb8017" title="Initialises a reinforcement learning trial." alt="" coords="731,816,840,843"/>
+<area shape="rect" id="node29" href="$xcs__rl_8c.html#a5e5ba8c28646690f0b1c51aae7f6aa78" title="Provides reinforcement to the sets." alt="" coords="734,765,837,792"/>
+<area shape="rect" id="node39" href="$ea_8c.html#a53acdbcd7a77faf6d38068559ae03b8b" title="Returns a string representation of an EA select type from an integer." alt="" coords="479,1475,607,1501"/>
+<area shape="rect" id="node49" href="$loss_8c.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe" title="Returns a string representation of a loss type from the integer." alt="" coords="927,1956,1065,1983"/>
+<area shape="rect" id="node63" href="$clset__neural_8c.html#ad58ba06ef88f57f79511ee961acd4c70" title="Calculates the mean number of condition connections in the set." alt="" coords="443,2699,644,2725"/>
+<area shape="rect" id="node64" href="$cond__neural_8c.html#aab00ba488c429f2ce3081d1176aeedfd" title="Returns the number of active connections in a neural condition layer." alt="" coords="701,2699,870,2725"/>
+<area shape="rect" id="node66" href="$clset__neural_8c.html#a6090aa6b432c00fb699a7c9a42f94056" title="Calculates the mean number of condition layers in the set." alt="" coords="460,2764,627,2791"/>
+<area shape="rect" id="node67" href="$cond__neural_8c.html#a1f124131c4080c032a61d3a49bdefe20" title="Returns the number of layers within a neural network condition." alt="" coords="718,2764,853,2791"/>
+<area shape="rect" id="node69" href="$clset__neural_8c.html#a0870eeca9a51d6612bb4dc1d28537df1" title="Calculates the mean number of condition neurons for a given layer." alt="" coords="455,2829,632,2856"/>
+<area shape="rect" id="node70" href="$cond__neural_8c.html#a139c52a0af8f5535597d0cb6a6be1abe" title="Returns the number of neurons in a neural condition layer." alt="" coords="713,2829,858,2856"/>
+<area shape="rect" id="node72" href="$clset_8c.html#a858e99d88d35cdc49b60788ca90f5b56" title="Calculates the mean condition size of classifiers in the set." alt="" coords="466,2895,621,2921"/>
+<area shape="rect" id="node73" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="736,2895,835,2921"/>
+<area shape="rect" id="node75" href="$clset__neural_8c.html#a90680514a75d5513c5dfe1b0ccc2594b" title="Calculates the mean number of prediction connections in the set." alt="" coords="444,2960,643,2987"/>
+<area shape="rect" id="node76" href="$pred__neural_8c.html#a56430e2cbd0ff78b7602723b62737009" title="Returns the number of active connections in a neural prediction layer." alt="" coords="702,2960,869,2987"/>
+<area shape="rect" id="node78" href="$clset__neural_8c.html#a584c4d47a112fc4dab6e9b118a685e5e" title="Calculates the mean prediction layer ETA of classifiers in the set." alt="" coords="470,3025,617,3052"/>
+<area shape="rect" id="node79" href="$pred__neural_8c.html#abb0f86e4555ee62a1505d1f1707b506d" title="Returns the gradient descent rate of a neural prediction layer." alt="" coords="728,3025,843,3052"/>
+<area shape="rect" id="node81" href="$clset__neural_8c.html#aab856136c4498c44db62476faf8f4c6d" title="Calculates the mean number of prediction layers in the set." alt="" coords="462,3091,625,3117"/>
+<area shape="rect" id="node82" href="$pred__neural_8c.html#a185f1c6194af0b18fd006e40f15466de" title="Returns the number of layers within a neural network prediction." alt="" coords="720,3091,851,3117"/>
+<area shape="rect" id="node84" href="$clset__neural_8c.html#aeaeb7e42d7d58c0cd2efceaa6c083213" title="Calculates the mean number of prediction neurons for a given layer." alt="" coords="456,3156,631,3183"/>
+<area shape="rect" id="node85" href="$pred__neural_8c.html#aa629fe068b85b51ee3d439b4b659f030" title="Returns the number of neurons in a neural prediction layer." alt="" coords="714,3156,857,3183"/>
+<area shape="rect" id="node87" href="$clset_8c.html#a0afeb87ed1c766c0cde8adfaf73cdf50" title="Calculates the mean prediction size of classifiers in the set." alt="" coords="467,3221,619,3248"/>
+<area shape="rect" id="node88" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="738,3221,833,3248"/>
+<area shape="rect" id="node102" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="490,867,597,893"/>
+<area shape="rect" id="node104" href="$clset_8c.html#a08704f16d6437de720dc03f30bf0abf7" title="Returns a json formatted string representation of a classifier set." alt="" coords="481,3837,605,3864"/>
+<area shape="rect" id="node106" href="$param_8c.html#a631e4068e661e64840366188b60075dc" title="Returns a json formatted string representation of the parameters." alt="" coords="719,1981,851,2008"/>
+<area shape="rect" id="node108" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="746,968,825,995"/>
+<area shape="rect" id="node110" href="$xcsf_8c.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="479,3888,607,3915"/>
 <area shape="rect" id="node112" href="$xcs__supervised_8c.html#a2dc51452fdb0be0e27fd3ebfe6041474" title="Calculates the XCSF predictions for the provided input." alt="" coords="464,512,623,539"/>
-<area shape="rect" id="node114" href="$param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="498,3888,589,3915"/>
+<area shape="rect" id="node114" href="$param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="498,2032,589,2059"/>
 <area shape="rect" id="node116" href="$xcsf_8c.html#ae18311260dd4c51978ef361f6f14e8c0" title="Prints the current XCSF population." alt="" coords="488,3939,599,3965"/>
-<area shape="rect" id="node119" href="$xcsf_8c.html#a58a321a976cf6a9bb01979d94703fa27" title="Retrieves the previously stored population." alt="" coords="721,917,850,944"/>
+<area shape="rect" id="node119" href="$xcsf_8c.html#a58a321a976cf6a9bb01979d94703fa27" title="Retrieves the previously stored population." alt="" coords="721,1019,850,1045"/>
 <area shape="rect" id="node121" href="$xcsf_8c.html#a2dd24ee181640aa90ec5d109aa717966" title="Writes the current state of XCSF to a file." alt="" coords="502,4040,585,4067"/>
 <area shape="rect" id="node124" href="$utils_8c.html#ad163bbefbbb9754feb94f468cab51b3a" title="Initialises the pseudo&#45;random number generator with a fixed seed." alt="" coords="490,4109,597,4136"/>
 <area shape="rect" id="node126" href="$action_8c.html#a55974a228c3a692a22c9d6ce0c4cc869" title=" " alt="" coords="465,4161,622,4202"/>
@@ -198,5 +198,5 @@
 <area shape="rect" id="node190" href="$param_8c.html#afcfac120f601c97790b51a8169146ab4" title=" " alt="" coords="472,5845,615,5872"/>
 <area shape="rect" id="node192" href="$ea_8c.html#a52b662c3b88d9b173a8b228f5c526b96" title=" " alt="" coords="473,5896,613,5923"/>
 <area shape="rect" id="node194" href="$param_8c.html#a5c265c2d45caf36ed96e1da113f9f971" title=" " alt="" coords="470,5947,617,5973"/>
-<area shape="rect" id="node196" href="$xcsf_8c.html#a10d0342ac640d2cd32e9cb95d0cd3bbe" title="Stores the current population." alt="" coords="728,765,843,792"/>
+<area shape="rect" id="node196" href="$xcsf_8c.html#a10d0342ac640d2cd32e9cb95d0cd3bbe" title="Stores the current population." alt="" coords="728,917,843,944"/>
 </map>

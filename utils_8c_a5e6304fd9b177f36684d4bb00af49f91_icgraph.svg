@@ -513,7 +513,7 @@
 <!-- Node19 -->
 <g id="node19" class="node">
 <title>Node19</title>
-<g id="a_node19"><a xlink:href="classXCS.html#a7d0bfc2cf3447809fee4218f39921a81" target="_top" xlink:title="Returns the XCSF prediction array for the provided input.">
+<g id="a_node19"><a xlink:href="classXCS.html#a4d7d398d90d5f695fcbfe0fa99354436" target="_top" xlink:title="Returns the XCSF prediction array for the provided input.">
 <polygon fill="none" stroke="black" points="175,-156.22 175,-175.22 248,-175.22 248,-156.22 175,-156.22"/>
 <text text-anchor="middle" x="211.5" y="-163.22" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::predict</text>
 </a>
@@ -534,7 +534,7 @@
 <!-- Node21 -->
 <g id="node21" class="node">
 <title>Node21</title>
-<g id="a_node21"><a xlink:href="classXCS.html#a8be398df5d3f4333c9b0d19f48535609" target="_top" xlink:title="Returns the error using N random samples from the provided data.">
+<g id="a_node21"><a xlink:href="classXCS.html#a4bb9f3f8613abf7ba95837a03bbb931d" target="_top" xlink:title="Returns the error using N random samples from the provided data.">
 <polygon fill="none" stroke="black" points="22.5,-104.22 22.5,-123.22 90.5,-123.22 90.5,-104.22 22.5,-104.22"/>
 <text text-anchor="middle" x="56.5" y="-111.22" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::score</text>
 </a>

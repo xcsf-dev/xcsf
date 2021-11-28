@@ -1,5 +1,6 @@
 <map id="act_neural_print" name="act_neural_print">
 <area shape="rect" id="node1" title="Prints a neural network action." alt="" coords="5,5,120,32"/>
-<area shape="rect" id="node2" href="$neural_8c.html#ab5c47a049b73e0a95b0ff56bd8085583" title="Prints a neural network." alt="" coords="168,5,257,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="305,5,388,32"/>
+<area shape="rect" id="node2" href="$act__neural_8c.html#aa5ae8d62a1b4656dd47c2a704ed7400c" title="Returns a json formatted string representation of a neural action." alt="" coords="168,5,324,32"/>
+<area shape="rect" id="node3" href="$neural_8c.html#a99f4af43712739691174e770a9090ca2" title="Returns a json formatted string representation of a neural network." alt="" coords="372,5,503,32"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html#ade7b33f507c20b3be75914174844bc4c" title="Returns a json formatted string representation of a layer." alt="" coords="551,5,675,32"/>
 </map>

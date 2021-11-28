@@ -1,0 +1,36 @@
+<map id="param_json" name="param_json">
+<area shape="rect" id="node1" title="Returns a json formatted string representation of the parameters." alt="" coords="5,360,95,387"/>
+<area shape="rect" id="node2" href="$action_8c.html#ab631e0a1c0c3c592fec00a0423259920" title="Returns a json formatted string of the action parameters." alt="" coords="147,183,277,209"/>
+<area shape="rect" id="node22" href="$condition_8c.html#a20b5ab7648d42629fcf0d9a58826b3ef" title="Returns a json formatted string of the condition parameters." alt="" coords="150,233,274,260"/>
+<area shape="rect" id="node28" href="$ea_8c.html#ad3a7b4d68ad52d51cb87e889205a544d" title="Returns a json formatted string representation of the EA parameters." alt="" coords="157,411,267,437"/>
+<area shape="rect" id="node30" href="$loss_8c.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe" title="Returns a string representation of a loss type from the integer." alt="" coords="143,461,281,488"/>
+<area shape="rect" id="node31" href="$prediction_8c.html#a0de6dc3baac5ebc58a0ea704584ad52c" title="Returns a json formatted string of the prediction parameters." alt="" coords="151,360,273,387"/>
+<area shape="rect" id="node3" href="$action_8c.html#a92f612de02989e82ef6c52bc7384f24f" title="Returns a string representation of an action type from an integer." alt="" coords="340,5,489,32"/>
+<area shape="rect" id="node4" href="$neural__layer__args_8c.html#a4002c3d86d59466fedc3e7e5c5427ed8" title="Returns a json formatted string of the neural layer parameters." alt="" coords="358,208,471,235"/>
+<area shape="rect" id="node5" href="$neural__layer__args_8c.html#a0635b8f1dd65662bbce9cb565706f417" title="Adds layer activation function to a json object." alt="" coords="548,5,724,32"/>
+<area shape="rect" id="node7" href="$neural__layer__args_8c.html#a11aad6e0f69c2aef223078265b1b7ace" title="Adds layer evolutionary parameters to a json object." alt="" coords="565,56,707,83"/>
+<area shape="rect" id="node8" href="$neural__layer__args_8c.html#a14885643bef2140f41362e052071c171" title="Adds layer input parameters to a json object." alt="" coords="559,107,713,133"/>
+<area shape="rect" id="node10" href="$neural__layer__args_8c.html#af973f08974ab0e9f30b84019086f3e0b" title="Adds layer scaling parameters to a json object." alt="" coords="561,157,711,184"/>
+<area shape="rect" id="node11" href="$neural__layer__args_8c.html#a1209e3663df82d0ae98cdc47b9990958" title="Adds layer gradient descent parameters to a json object." alt="" coords="565,208,707,235"/>
+<area shape="rect" id="node12" href="$neural__layer_8c.html#a0e2222a263f09abb981bc7273cd88d7e" title="Returns a string representation of a layer type from an integer." alt="" coords="565,259,707,285"/>
+<area shape="rect" id="node13" href="$neural_8c.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="586,309,686,336"/>
+<area shape="rect" id="node17" href="$neural_8c.html#ad70aee7c40f698d4be45e3d419051c2f" title="Initialises an empty neural network." alt="" coords="811,360,892,387"/>
+<area shape="rect" id="node20" href="$neural_8c.html#a9c3e1da0425d0fc17daa12c21e4799ca" title="Frees a neural network." alt="" coords="593,411,679,437"/>
+<area shape="rect" id="node6" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="772,5,931,32"/>
+<area shape="rect" id="node9" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="774,107,929,133"/>
+<area shape="rect" id="node14" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="814,259,889,285"/>
+<area shape="rect" id="node18" href="$neural_8c.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="805,309,897,336"/>
+<area shape="rect" id="node15" href="$neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="979,259,1082,285"/>
+<area shape="rect" id="node16" href="$neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="979,208,1083,235"/>
+<area shape="rect" id="node19" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="983,309,1079,336"/>
+<area shape="rect" id="node21" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="812,411,891,437"/>
+<area shape="rect" id="node23" href="$condition_8c.html#acc91ec8f99d19ee82758077531f7f3e0" title="Returns a json formatted string of the center&#45;spread parameters." alt="" coords="340,259,489,285"/>
+<area shape="rect" id="node24" href="$condition_8c.html#a717210d97f3b4c39a07843b712cdef18" title="Returns a json formatted string of the ternary parameters." alt="" coords="329,309,500,336"/>
+<area shape="rect" id="node25" href="$condition_8c.html#af5a052e347755190271b32d8b09ec026" title="Returns a string representation of a condition type from an integer." alt="" coords="331,56,498,83"/>
+<area shape="rect" id="node26" href="$dgp_8c.html#a92510db4a703536f03cb4c4617f1ed42" title="Returns a json formatted string of the DGP parameters." alt="" coords="356,107,473,133"/>
+<area shape="rect" id="node27" href="$gp_8c.html#a801781782baae050374ff9edddea4b94" title="Returns a json formatted string of the GP tree parameters." alt="" coords="361,157,468,184"/>
+<area shape="rect" id="node29" href="$ea_8c.html#a53acdbcd7a77faf6d38068559ae03b8b" title="Returns a string representation of an EA select type from an integer." alt="" coords="351,528,479,555"/>
+<area shape="rect" id="node32" href="$prediction_8c.html#a7e3fa45f4c43335e6bf6a330f79fcacd" title="Returns a json formatted string of the NLMS parameters." alt="" coords="337,360,493,387"/>
+<area shape="rect" id="node33" href="$prediction_8c.html#a7f5ae0877aa43253c20d42ffe8219b0c" title="Returns a json formatted string of the RLS parameters." alt="" coords="343,411,486,437"/>
+<area shape="rect" id="node34" href="$prediction_8c.html#a085a8402296bdeab95f54299040e6e0e" title="Returns a string representation of a prediction type from the integer." alt="" coords="349,462,480,503"/>
+</map>

@@ -1,5 +1,6 @@
 <map id="cond_neural_print" name="cond_neural_print">
 <area shape="rect" id="node1" title="Prints a neural network condition." alt="" coords="5,5,129,32"/>
-<area shape="rect" id="node2" href="$neural_8c.html#ab5c47a049b73e0a95b0ff56bd8085583" title="Prints a neural network." alt="" coords="177,5,267,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="315,5,397,32"/>
+<area shape="rect" id="node2" href="$cond__neural_8c.html#a963d4cd70d4cfdb8e35eac4bbdfd7d39" title="Returns a json formatted string representation of a neural condition." alt="" coords="177,5,344,32"/>
+<area shape="rect" id="node3" href="$neural_8c.html#a99f4af43712739691174e770a9090ca2" title="Returns a json formatted string representation of a neural network." alt="" coords="392,5,523,32"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html#ade7b33f507c20b3be75914174844bc4c" title="Returns a json formatted string representation of a layer." alt="" coords="571,5,695,32"/>
 </map>

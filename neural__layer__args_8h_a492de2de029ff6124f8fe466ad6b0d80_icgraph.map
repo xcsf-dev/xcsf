@@ -1,12 +1,11 @@
 <map id="layer_args_validate" name="layer_args_validate">
-<area shape="rect" id="node1" title="Checks network layer arguments are valid." alt="" coords="417,132,552,159"/>
-<area shape="rect" id="node2" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="236,56,325,83"/>
-<area shape="rect" id="node5" href="$classXCS.html#ab2cbd5508c5e8c59db839695c9d0d539" title="Sets parameters used by neural network actions." alt="" coords="197,107,364,133"/>
-<area shape="rect" id="node7" href="$classXCS.html#a234d12eb3fb50d01dccff24a1515d74e" title="Sets parameters used by neural network conditions." alt="" coords="192,157,369,184"/>
-<area shape="rect" id="node9" href="$classXCS.html#a8755a66390db00ab31e3574a18a0aae1" title="Sets parameters used by neural network predictions." alt="" coords="193,208,368,235"/>
+<area shape="rect" id="node1" title="Checks network layer arguments are valid." alt="" coords="417,81,552,108"/>
+<area shape="rect" id="node2" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="236,5,325,32"/>
+<area shape="rect" id="node4" href="$classXCS.html#ab2cbd5508c5e8c59db839695c9d0d539" title="Sets parameters used by neural network actions." alt="" coords="197,56,364,83"/>
+<area shape="rect" id="node6" href="$classXCS.html#a234d12eb3fb50d01dccff24a1515d74e" title="Sets parameters used by neural network conditions." alt="" coords="192,107,369,133"/>
+<area shape="rect" id="node8" href="$classXCS.html#a8755a66390db00ab31e3574a18a0aae1" title="Sets parameters used by neural network predictions." alt="" coords="193,157,368,184"/>
 <area shape="rect" id="node3" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="49,5,100,32"/>
-<area shape="rect" id="node4" href="$classXCS.html#a81bb7e5f76e05ad983d70fe848b73393" title="Constructor with a specified config." alt="" coords="31,56,118,83"/>
-<area shape="rect" id="node6" href="$classXCS.html#a87397ee045a1648cd9b1449518e217b2" title="Sets the action type and initialisation arguments." alt="" coords="15,107,134,133"/>
-<area shape="rect" id="node8" href="$classXCS.html#a4eb6acf0a155d5e94fa843d7523df9b1" title="Sets the condition type and initialisation arguments." alt="" coords="7,157,142,184"/>
-<area shape="rect" id="node10" href="$classXCS.html#a28e9fae0bf2d470377b25e032b7080af" title="Sets the prediction type and initialisation arguments." alt="" coords="5,208,144,235"/>
+<area shape="rect" id="node5" href="$classXCS.html#a87397ee045a1648cd9b1449518e217b2" title="Sets the action type and initialisation arguments." alt="" coords="15,56,134,83"/>
+<area shape="rect" id="node7" href="$classXCS.html#a4eb6acf0a155d5e94fa843d7523df9b1" title="Sets the condition type and initialisation arguments." alt="" coords="7,107,142,133"/>
+<area shape="rect" id="node9" href="$classXCS.html#a28e9fae0bf2d470377b25e032b7080af" title="Sets the prediction type and initialisation arguments." alt="" coords="5,157,144,184"/>
 </map>

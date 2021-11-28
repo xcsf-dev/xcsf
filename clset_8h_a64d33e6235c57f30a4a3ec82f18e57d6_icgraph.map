@@ -26,8 +26,8 @@
 <area shape="rect" id="node20" href="$xcs__supervised_8h.html#ae05de18a53511ba46b2a6a733c780580" title="Calculates the XCSF error for the input data." alt="" coords="422,640,574,667"/>
 <area shape="rect" id="node22" href="$xcs__supervised_8h.html#a56ec80025279785376a569ec0130c29f" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="204,640,371,667"/>
 <area shape="rect" id="node17" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="253,235,322,262"/>
-<area shape="rect" id="node19" href="$classXCS.html#a7d0bfc2cf3447809fee4218f39921a81" title="Returns the XCSF prediction array for the provided input." alt="" coords="239,488,336,515"/>
-<area shape="rect" id="node21" href="$classXCS.html#a8be398df5d3f4333c9b0d19f48535609" title="Returns the error using N random samples from the provided data." alt="" coords="35,666,126,692"/>
+<area shape="rect" id="node19" href="$classXCS.html#a4d7d398d90d5f695fcbfe0fa99354436" title="Returns the XCSF prediction array for the provided input." alt="" coords="239,488,336,515"/>
+<area shape="rect" id="node21" href="$classXCS.html#a4bb9f3f8613abf7ba95837a03bbb931d" title="Returns the error using N random samples from the provided data." alt="" coords="35,666,126,692"/>
 <area shape="rect" id="node24" href="$clset_8h.html#a5e05b1d84c921f8f83e90d636b2f59fd" title="Enforces the maximum population size limit." alt="" coords="1109,438,1241,480"/>
 <area shape="rect" id="node25" href="$ea_8h.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="994,467,1033,494"/>
 <area shape="rect" id="node27" href="$classXCS.html#adbfb8e127ef8a800a661d284dda3f2ef" title="Initialises a reinforcement learning trial." alt="" coords="236,184,339,211"/>

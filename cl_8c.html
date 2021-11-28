@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('cl_8c.html',''); initResizable(); });
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for cl.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c__incl.svg" width="1063" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c__incl.svg" width="1239" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="cl_8c_source.html">Go to the source code of this file.</a></p>
@@ -188,12 +188,15 @@ Functions</h2></td></tr>
 <tr class="memitem:aa1ac32b2cecb1ff414f4f8c405e9cc9d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl_8c.html#aa1ac32b2cecb1ff414f4f8c405e9cc9d">cl_load</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, FILE *fp)</td></tr>
 <tr class="memdesc:aa1ac32b2cecb1ff414f4f8c405e9cc9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a classifier from a file.  <a href="cl_8c.html#aa1ac32b2cecb1ff414f4f8c405e9cc9d">More...</a><br /></td></tr>
 <tr class="separator:aa1ac32b2cecb1ff414f4f8c405e9cc9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b7254d769aa29b397de95e2b700951a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl_8c.html#a4b7254d769aa29b397de95e2b700951a">cl_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c, const bool return_cond, const bool return_act, const bool return_pred)</td></tr>
+<tr class="memdesc:a4b7254d769aa29b397de95e2b700951a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a classifier.  <a href="cl_8c.html#a4b7254d769aa29b397de95e2b700951a">More...</a><br /></td></tr>
+<tr class="separator:a4b7254d769aa29b397de95e2b700951a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions operating on classifiers. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2015&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015&ndash;2021. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -237,11 +240,12 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00116">XCSF::ALPHA</a>, <a class="el" href="xcsf_8h_source.html#l00119">XCSF::E0</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, and <a class="el" href="xcsf_8h_source.html#l00122">XCSF::NU</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00205">clset_update_fit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00484">cl_json_export()</a>, and <a class="el" href="clset_8c_source.html#l00205">clset_update_fit()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c_ad686da805e2ab762a3d32c321657775f_icgraph.svg" width="1187" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c_ad686da805e2ab762a3d32c321657775f_icgraph.svg" width="1215" height="468"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -289,9 +293,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The classifier's action. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00320">320</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00302">302</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00164">act_compute()</a>, and <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00166">act_compute()</a>, and <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00330">clset_match()</a>.</p>
 <div class="dynheader">
@@ -343,11 +347,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The size of the condition. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00415">415</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00397">397</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="condition_8h_source.html#l00150">cond_size()</a>.</p>
+<p class="reference">References <a class="el" href="condition_8h_source.html#l00152">cond_size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00628">clset_mean_cond_size()</a>, and <a class="el" href="clset_8c_source.html#l00065">clset_pset_roulette()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00625">clset_mean_cond_size()</a>, and <a class="el" href="clset_8c_source.html#l00065">clset_pset_roulette()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -405,7 +409,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00063">63</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00176">act_copy()</a>, <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>, <a class="el" href="condition_8h_source.html#l00228">cond_copy()</a>, <a class="el" href="xcsf_8h_source.html#l00045">Cl::cond_vptr</a>, <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="prediction_8h_source.html#l00190">pred_copy()</a>, <a class="el" href="prediction_8h_source.html#l00212">pred_init()</a>, <a class="el" href="ea_8h_source.html#l00046">ArgsEA::pred_reset</a>, and <a class="el" href="xcsf_8h_source.html#l00046">Cl::pred_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00178">act_copy()</a>, <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>, <a class="el" href="condition_8h_source.html#l00230">cond_copy()</a>, <a class="el" href="xcsf_8h_source.html#l00045">Cl::cond_vptr</a>, <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="prediction_8h_source.html#l00192">pred_copy()</a>, <a class="el" href="prediction_8h_source.html#l00214">pred_init()</a>, <a class="el" href="ea_8h_source.html#l00046">ArgsEA::pred_reset</a>, and <a class="el" href="xcsf_8h_source.html#l00046">Cl::pred_vptr</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00199">ea()</a>.</p>
 <div class="dynheader">
@@ -472,7 +476,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00113">113</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00189">act_cover()</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>, <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>, <a class="el" href="condition_8h_source.html#l00240">cond_cover()</a>, and <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00191">act_cover()</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>, <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>, <a class="el" href="condition_8h_source.html#l00242">cond_cover()</a>, and <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00159">clset_cover()</a>.</p>
 <div class="dynheader">
@@ -531,9 +535,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00397">397</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00379">379</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00139">act_crossover()</a>, <a class="el" href="condition_8h_source.html#l00177">cond_crossover()</a>, and <a class="el" href="prediction_8h_source.html#l00153">pred_crossover()</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00141">act_crossover()</a>, <a class="el" href="condition_8h_source.html#l00179">cond_crossover()</a>, and <a class="el" href="prediction_8h_source.html#l00155">pred_crossover()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00199">ea()</a>.</p>
 <div class="dynheader">
@@ -642,9 +646,9 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00223">223</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00201">act_free()</a>, <a class="el" href="condition_8h_source.html#l00251">cond_free()</a>, <a class="el" href="prediction_8h_source.html#l00201">pred_free()</a>, and <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00203">act_free()</a>, <a class="el" href="condition_8h_source.html#l00253">cond_free()</a>, <a class="el" href="prediction_8h_source.html#l00203">pred_free()</a>, and <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00565">clset_kill()</a>, <a class="el" href="ea_8c_source.html#l00113">ea_add()</a>, and <a class="el" href="ea_8c_source.html#l00067">ea_subsume()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00562">clset_kill()</a>, <a class="el" href="ea_8c_source.html#l00113">ea_add()</a>, and <a class="el" href="ea_8c_source.html#l00067">ea_subsume()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -701,9 +705,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether classifier c1 is more general than c2. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00363">363</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00345">345</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00126">act_general()</a>, and <a class="el" href="condition_8h_source.html#l00191">cond_general()</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00128">act_general()</a>, and <a class="el" href="condition_8h_source.html#l00193">cond_general()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00230">clset_subsumption()</a>, and <a class="el" href="ea_8c_source.html#l00067">ea_subsume()</a>.</p>
 <div class="dynheader">
@@ -825,7 +829,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00084">84</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00176">act_copy()</a>, <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>, <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, <a class="el" href="condition_8h_source.html#l00228">cond_copy()</a>, <a class="el" href="xcsf_8h_source.html#l00045">Cl::cond_vptr</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00052">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>, <a class="el" href="xcsf_8h_source.html#l00061">Cl::mtotal</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, <a class="el" href="prediction_8h_source.html#l00190">pred_copy()</a>, <a class="el" href="xcsf_8h_source.html#l00046">Cl::pred_vptr</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00178">act_copy()</a>, <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>, <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, <a class="el" href="condition_8h_source.html#l00230">cond_copy()</a>, <a class="el" href="xcsf_8h_source.html#l00045">Cl::cond_vptr</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00052">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>, <a class="el" href="xcsf_8h_source.html#l00061">Cl::mtotal</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, <a class="el" href="prediction_8h_source.html#l00192">pred_copy()</a>, <a class="el" href="xcsf_8h_source.html#l00046">Cl::pred_vptr</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcsf_8c_source.html#l00190">xcsf_store_pset()</a>.</p>
 <div class="dynheader">
@@ -837,6 +841,83 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c_a70aceb2c4039333d36ee71f954fb9d79_icgraph.svg" width="598" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a4b7254d769aa29b397de95e2b700951a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b7254d769aa29b397de95e2b700951a">&#9670;&nbsp;</a></span>cl_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* cl_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>return_cond</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>return_act</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>return_pred</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string representation of a classifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td><a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>Classifier to be returned. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">return_cond</td><td>Whether to return the condition. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">return_act</td><td>Whether to return the action. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">return_pred</td><td>Whether to return the prediction. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00484">484</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+
+<p class="reference">References <a class="el" href="action_8h_source.html#l00251">act_json_export()</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>, <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, <a class="el" href="cl_8c_source.html#l00162">cl_acc()</a>, <a class="el" href="condition_8h_source.html#l00287">cond_json_export()</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00052">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>, <a class="el" href="xcsf_8h_source.html#l00061">Cl::mtotal</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, <a class="el" href="prediction_8h_source.html#l00252">pred_json_export()</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00241">cl_print()</a>, and <a class="el" href="clset_8c_source.html#l00706">clset_json_export()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c_a4b7254d769aa29b397de95e2b700951a_cgraph.svg" width="290" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c_a4b7254d769aa29b397de95e2b700951a_icgraph.svg" width="955" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -884,11 +965,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00468">468</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00450">450</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00113">act_load()</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>, <a class="el" href="action_8c_source.html#l00035">action_set()</a>, <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, <a class="el" href="condition_8h_source.html#l00138">cond_load()</a>, <a class="el" href="condition_8c_source.html#l00040">condition_set()</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00052">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>, <a class="el" href="xcsf_8h_source.html#l00061">Cl::mtotal</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, <a class="el" href="prediction_8h_source.html#l00128">pred_load()</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, <a class="el" href="prediction_8c_source.html#l00035">prediction_set()</a>, <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00115">act_load()</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>, <a class="el" href="action_8c_source.html#l00035">action_set()</a>, <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, <a class="el" href="condition_8h_source.html#l00140">cond_load()</a>, <a class="el" href="condition_8c_source.html#l00041">condition_set()</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00052">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>, <a class="el" href="xcsf_8h_source.html#l00061">Cl::mtotal</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, <a class="el" href="prediction_8h_source.html#l00130">pred_load()</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, <a class="el" href="prediction_8c_source.html#l00036">prediction_set()</a>, <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00605">clset_pset_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00602">clset_pset_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -938,7 +1019,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the classifier matched the most recent input. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00306">306</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00288">288</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>.</p>
 
@@ -994,9 +1075,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the classifier matches the input. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00273">273</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00255">255</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, <a class="el" href="condition_8h_source.html#l00204">cond_match()</a>, <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>, and <a class="el" href="xcsf_8h_source.html#l00061">Cl::mtotal</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, <a class="el" href="condition_8h_source.html#l00206">cond_match()</a>, <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>, and <a class="el" href="xcsf_8h_source.html#l00061">Cl::mtotal</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00330">clset_match()</a>.</p>
 <div class="dynheader">
@@ -1048,15 +1129,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The fraction of matching inputs. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00290">290</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00272">272</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, and <a class="el" href="xcsf_8h_source.html#l00061">Cl::mtotal</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00241">cl_print()</a>, and <a class="el" href="clset_8c_source.html#l00668">clset_mfrac()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00665">clset_mfrac()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c_a1358864e37832999f9688487ab8f8870_icgraph.svg" width="1172" height="443"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c_a1358864e37832999f9688487ab8f8870_icgraph.svg" width="1172" height="367"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1097,9 +1178,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00378">378</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00360">360</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00151">act_mutate()</a>, <a class="el" href="condition_8h_source.html#l00216">cond_mutate()</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, and <a class="el" href="prediction_8h_source.html#l00166">pred_mutate()</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00153">act_mutate()</a>, <a class="el" href="condition_8h_source.html#l00218">cond_mutate()</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::n_actions</a>, and <a class="el" href="prediction_8h_source.html#l00168">pred_mutate()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00199">ea()</a>.</p>
 <div class="dynheader">
@@ -1151,11 +1232,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The size of the prediction. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00427">427</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00409">409</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="prediction_8h_source.html#l00140">pred_size()</a>.</p>
+<p class="reference">References <a class="el" href="prediction_8h_source.html#l00142">pred_size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00648">clset_mean_pred_size()</a>, and <a class="el" href="clset_8c_source.html#l00065">clset_pset_roulette()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00645">clset_mean_pred_size()</a>, and <a class="el" href="clset_8c_source.html#l00065">clset_pset_roulette()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1212,9 +1293,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The classifier's (payoff) predictions. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00334">334</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00316">316</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="prediction_8h_source.html#l00178">pred_compute()</a>, and <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>.</p>
+<p class="reference">References <a class="el" href="prediction_8h_source.html#l00180">pred_compute()</a>, and <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00183">cl_update()</a>, and <a class="el" href="pa_8c_source.html#l00061">pa_build()</a>.</p>
 <div class="dynheader">
@@ -1288,18 +1369,12 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00241">241</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00223">act_print()</a>, <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, <a class="el" href="cl_8c_source.html#l00290">cl_mfrac()</a>, <a class="el" href="condition_8h_source.html#l00273">cond_print()</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00052">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, <a class="el" href="prediction_8h_source.html#l00223">pred_print()</a>, <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>, and <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00489">clset_print()</a>.</p>
+<p class="reference">References <a class="el" href="cl_8c_source.html#l00484">cl_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c_afe7823d194c2fe357ce94285b77f8bfe_cgraph.svg" width="206" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c_afe7823d194c2fe357ce94285b77f8bfe_cgraph.svg" width="402" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cl_8c_afe7823d194c2fe357ce94285b77f8bfe_icgraph.svg" width="726" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1341,7 +1416,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00129">129</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00212">act_init()</a>, <a class="el" href="action_8c_source.html#l00035">action_set()</a>, <a class="el" href="condition_8h_source.html#l00262">cond_init()</a>, <a class="el" href="condition_8c_source.html#l00040">condition_set()</a>, <a class="el" href="prediction_8h_source.html#l00212">pred_init()</a>, and <a class="el" href="prediction_8c_source.html#l00035">prediction_set()</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00214">act_init()</a>, <a class="el" href="action_8c_source.html#l00035">action_set()</a>, <a class="el" href="condition_8h_source.html#l00264">cond_init()</a>, <a class="el" href="condition_8c_source.html#l00041">condition_set()</a>, <a class="el" href="prediction_8h_source.html#l00214">pred_init()</a>, and <a class="el" href="prediction_8c_source.html#l00036">prediction_set()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00113">cl_cover()</a>, and <a class="el" href="clset_8c_source.html#l00285">clset_pset_init()</a>.</p>
 <div class="dynheader">
@@ -1400,11 +1475,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00440">440</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00422">422</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00100">act_save()</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>, <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, <a class="el" href="condition_8h_source.html#l00125">cond_save()</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00052">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>, <a class="el" href="xcsf_8h_source.html#l00061">Cl::mtotal</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, <a class="el" href="prediction_8h_source.html#l00115">pred_save()</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00102">act_save()</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>, <a class="el" href="xcsf_8h_source.html#l00060">Cl::age</a>, <a class="el" href="condition_8h_source.html#l00127">cond_save()</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00052">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00057">Cl::m</a>, <a class="el" href="xcsf_8h_source.html#l00061">Cl::mtotal</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::num</a>, <a class="el" href="prediction_8h_source.html#l00117">pred_save()</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00585">clset_pset_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00582">clset_pset_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1454,7 +1529,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the classifier is an eligible subsumer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00347">347</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00329">329</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00119">XCSF::E0</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, and <a class="el" href="xcsf_8h_source.html#l00132">XCSF::THETA_SUB</a>.</p>
 
@@ -1532,7 +1607,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cl_8c_source.html#l00183">183</a> of file <a class="el" href="cl_8c_source.html">cl.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00236">act_update()</a>, <a class="el" href="xcsf_8h_source.html#l00117">XCSF::BETA</a>, <a class="el" href="cl_8c_source.html#l00334">cl_predict()</a>, <a class="el" href="condition_8h_source.html#l00163">cond_update()</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00112">XCSF::loss_ptr</a>, <a class="el" href="prediction_8h_source.html#l00237">pred_update()</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, and <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00238">act_update()</a>, <a class="el" href="xcsf_8h_source.html#l00117">XCSF::BETA</a>, <a class="el" href="cl_8c_source.html#l00316">cl_predict()</a>, <a class="el" href="condition_8h_source.html#l00165">cond_update()</a>, <a class="el" href="xcsf_8h_source.html#l00051">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::exp</a>, <a class="el" href="xcsf_8h_source.html#l00112">XCSF::loss_ptr</a>, <a class="el" href="prediction_8h_source.html#l00239">pred_update()</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, and <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00422">clset_update()</a>.</p>
 <div class="dynheader">
