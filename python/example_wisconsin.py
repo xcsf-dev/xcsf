@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019--2020 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.datasets import load_breast_cancer
 from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier
-import xcsf.xcsf as xcsf
+import xcsf
 
 data = load_breast_cancer() # 30 features, 2 classes # 569 instances
 X_train, X_test, y_train, y_test = \

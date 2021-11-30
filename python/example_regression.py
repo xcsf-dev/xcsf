@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019--2020 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import minmax_scale, StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
-import xcsf.xcsf as xcsf
+import xcsf
 np.set_printoptions(suppress=True)
 
 ###############################

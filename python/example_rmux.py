@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019--2020 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-import xcsf.xcsf as xcsf
+import xcsf
 
 class Mux:
     """

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2020 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2020--2021 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ from matplotlib import rcParams
 from matplotlib import animation
 import numpy as np
 import gym
-import xcsf.xcsf as xcsf
+import xcsf
 
 ############################################
 # Initialise OpenAI Gym problem environment
