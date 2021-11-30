@@ -82,7 +82,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
-        'Operating System :: POSIX :: Linux"',
+        'Operating System :: POSIX :: Linux',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows :: Windows 10',
         ],
