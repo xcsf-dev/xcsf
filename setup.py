@@ -23,6 +23,7 @@ import sys
 import subprocess
 from setuptools import Extension, setup
 from setuptools.command.build_ext import build_ext
+from pathlib import Path
 
 class CMakeExtension(Extension):
     """ Creates a CMake extension module. """
@@ -58,6 +59,9 @@ class CMakeBuild(build_ext):
             ['cmake', '--build', '.'] + build_args, cwd=self.build_temp
         )
 
+this_directory = Path(__file__).parent
+long_description = (this_directory / 'README.md').read_text()
+
 setup(
     name = 'xcsf',
     version = '1.1.2',
@@ -65,6 +69,8 @@ setup(
     maintainer = 'Richard Preen',
     maintainer_email = 'rpreen@gmail.com',
     description = 'XCSF learning classifier system: rule-based evolutionary machine learning',
+    long_description = long_description,
+    long_description_content_type = 'text/markdown',
     url = 'https://github.com/rpreen/xcsf',
     packages = ['xcsf'],
     install_requires = ['numpy'],
@@ -83,8 +89,6 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Operating System :: POSIX :: Linux',
-        'Operating System :: MacOS :: MacOS X',
-        'Operating System :: Microsoft :: Windows :: Windows 10',
         ],
     keywords='XCS, XCSF, learning-classifier-systems',
 )
