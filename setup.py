@@ -73,7 +73,6 @@ setup(
     long_description_content_type = 'text/markdown',
     url = 'https://github.com/rpreen/xcsf',
     packages = ['xcsf'],
-    install_requires = ['numpy'],
     ext_modules = [CMakeExtension('xcsf')],
     cmdclass = {'build_ext': CMakeBuild},
     zip_safe = False,
