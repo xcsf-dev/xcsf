@@ -20,6 +20,7 @@
 
 import os
 import sys
+import shutil
 import subprocess
 from pathlib import Path
 from setuptools import Extension, setup, find_packages
@@ -34,11 +35,13 @@ class CMakeExtension(Extension):
 class CMakeBuild(build_ext):
     """ Builds CMake extension. """
     def build_extension(self, ext):
+        self.announce('Configuring CMake project', level=3)
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
         if not extdir.endswith(os.path.sep):
             extdir += os.path.sep
+        if not os.path.exists(self.build_temp):
+            os.makedirs(self.build_temp)
         cmake_args = [
-            f'-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={extdir}',
             f'-DPYTHON_EXECUTABLE={sys.executable}',
             '-DCMAKE_BUILD_TYPE=Release',
             '-DCMAKE_C_COMPILER=gcc',
@@ -47,19 +50,32 @@ class CMakeBuild(build_ext):
             '-DXCSF_PYLIB=ON',
             '-DENABLE_DOXYGEN=OFF',
         ]
-        if os.name == 'nt':
-            cmake_args += ['-GMinGW Makefiles']
         build_args = [
             '--config', 'Release',
         ]
-        if not os.path.exists(self.build_temp):
-            os.makedirs(self.build_temp)
+        if os.name == 'nt':
+            cmake_args += ['-GMinGW Makefiles']
+        else:
+            build_args += ['-j4']
         subprocess.check_call(
             ['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp
         )
+        self.announce('Building Python module', level=3)
         subprocess.check_call(
             ['cmake', '--build', '.'] + build_args, cwd=self.build_temp
         )
+        self.announce('Moving built Python module', level=3)
+        extension_path = Path(self.get_ext_fullpath(ext.name))
+        os.makedirs(extension_path.parent.absolute(), exist_ok=True)
+        build_dir = Path(self.build_temp)
+        bin_dir = os.path.join(build_dir, 'xcsf')
+        self.distribution.bin_dir = bin_dir
+        pyd_path = [os.path.join(bin_dir, _pyd) for _pyd in
+                    os.listdir(bin_dir) if
+                    os.path.isfile(os.path.join(bin_dir, _pyd)) and
+                    os.path.splitext(_pyd)[0].startswith('xcsf') and
+                    os.path.splitext(_pyd)[1] in ['.pyd', '.so']][0]
+        shutil.move(pyd_path, extension_path)
 
 this_directory = Path(__file__).parent
 long_description = (this_directory / 'README.md').read_text()
@@ -90,6 +106,7 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Operating System :: POSIX :: Linux',
+        'Operating System :: Microsoft :: Windows :: Windows 10',
         ],
     keywords='XCS, XCSF, learning-classifier-systems',
 )
