@@ -21,9 +21,9 @@
 import os
 import sys
 import subprocess
-from setuptools import Extension, setup
-from setuptools.command.build_ext import build_ext
 from pathlib import Path
+from setuptools import Extension, setup, find_packages
+from setuptools.command.build_ext import build_ext
 
 class CMakeExtension(Extension):
     """ Creates a CMake extension module. """
@@ -37,18 +37,20 @@ class CMakeBuild(build_ext):
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
         if not extdir.endswith(os.path.sep):
             extdir += os.path.sep
-        os.environ['CC'] = 'gcc'
-        os.environ['CXX'] = 'g++'
         cmake_args = [
             f'-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={extdir}',
             f'-DPYTHON_EXECUTABLE={sys.executable}',
             '-DCMAKE_BUILD_TYPE=Release',
+            '-DCMAKE_C_COMPILER=gcc',
+            '-DCMAKE_CXX_COMPILER=g++',
             '-DXCSF_MAIN=OFF',
             '-DXCSF_PYLIB=ON',
             '-DENABLE_DOXYGEN=OFF',
         ]
+        if os.name == 'nt':
+            cmake_args += ['-GMinGW Makefiles']
         build_args = [
-            '--config', 'Release', '--', '-j4',
+            '--config', 'Release',
         ]
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
@@ -72,7 +74,7 @@ setup(
     long_description = long_description,
     long_description_content_type = 'text/markdown',
     url = 'https://github.com/rpreen/xcsf',
-    packages = ['xcsf'],
+    packages = find_packages(),
     ext_modules = [CMakeExtension('xcsf')],
     cmdclass = {'build_ext': CMakeBuild},
     zip_safe = False,
