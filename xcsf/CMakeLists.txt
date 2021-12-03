@@ -142,9 +142,9 @@ set(cJSON ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.c ${CMAKE_SOURCE_DIR}/lib/cJSON/cJ
 
 add_definitions(-DDSFMT_MEXP=19937)
 add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${dSFMT} ${cJSON})
-target_link_libraries(xcs m)
+target_link_libraries(xcs PUBLIC m)
 if(PARALLEL AND OpenMP_FOUND)
-    target_link_libraries(xcs OpenMP::OpenMP_C)
+    target_link_libraries(xcs PUBLIC OpenMP::OpenMP_C)
 endif()
 
 #################################################
@@ -153,7 +153,7 @@ endif()
 
 if(XCSF_MAIN)
     add_executable(main main.c)
-    target_link_libraries(main xcs)
+    target_link_libraries(main PUBLIC xcs)
 endif()
 
 #################################################
@@ -163,22 +163,24 @@ endif()
 if(XCSF_PYLIB)
     set(XCSF_PY_SOURCES pybind_wrapper.cpp)
     python_add_module(xcsf SHARED ${XCSF_PY_SOURCES})
+    target_include_directories(xcsf PUBLIC ${PYTHON_INCLUDE_DIRS})
+    target_link_libraries(xcsf PUBLIC ${PYTHON_LIBRARIES})
     if(PARALLEL AND OpenMP_FOUND)
-        target_link_libraries(xcsf OpenMP::OpenMP_CXX)
+        target_link_libraries(xcsf PUBLIC OpenMP::OpenMP_CXX)
     endif()
     if(WIN32) # https://cython.readthedocs.io/en/latest/src/tutorial/appendix.html
         target_link_libraries(
             xcsf
-            xcs
-            -static-libgcc
-            -static-libstdc++
-            -Wl,-Bstatic,--whole-archive
-            -lwinpthread
-            -Wl,--no-whole-archive
-            -lgomp
-            -Wl,--no-whole-archive)
+            PUBLIC xcs
+                   -static-libgcc
+                   -static-libstdc++
+                   -Wl,-Bstatic,--whole-archive
+                   -lwinpthread
+                   -Wl,--no-whole-archive
+                   -lgomp
+                   -Wl,--no-whole-archive)
     else()
-        target_link_libraries(xcsf xcs)
+        target_link_libraries(xcsf PUBLIC xcs)
     endif()
     file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
 endif()
