@@ -127,25 +127,25 @@ set(XCSF_HEADERS
     xcs_supervised.h
     xcsf.h)
 
-set(dSFMT_SOURCES ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT.c)
-
-set(dSFMT_HEADERS
-    ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT.h ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-common.h
+set(dSFMT
+    ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT.c
+    ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT.h
+    ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-common.h
     ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-params.h
     ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-params19937.h)
 
-set(cJSON_SOURCES ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.c)
-
-set(cJSON_HEADERS ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.h)
+set(cJSON ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.c ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.h)
 
 #################################################
 # target: libxcs - main functions
 #################################################
 
 add_definitions(-DDSFMT_MEXP=19937)
-add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${dSFMT_SOURCES} ${dSFMT_HEADERS}
-                       ${cJSON_SOURCES} ${cJSON_HEADERS})
+add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${dSFMT} ${cJSON})
 target_link_libraries(xcs m)
+if(OpenMP_FOUND)
+    target_link_libraries(xcs OpenMP::OpenMP_C)
+endif()
 
 #################################################
 # target: main - stand-alone binary execution
@@ -163,6 +163,22 @@ endif()
 if(XCSF_PYLIB)
     set(XCSF_PY_SOURCES pybind_wrapper.cpp)
     python_add_module(xcsf SHARED ${XCSF_PY_SOURCES})
-    target_link_libraries(xcsf xcs)
+    if(OpenMP_FOUND)
+        target_link_libraries(xcsf OpenMP::OpenMP_CXX)
+    endif()
+    if(WIN32) # https://cython.readthedocs.io/en/latest/src/tutorial/appendix.html
+        target_link_libraries(
+            xcsf
+            xcs
+            -static-libgcc
+            -static-libstdc++
+            -Wl,-Bstatic,--whole-archive
+            -lwinpthread
+            -Wl,--no-whole-archive
+            -lgomp
+            -Wl,--no-whole-archive)
+    else()
+        target_link_libraries(xcsf xcs)
+    endif()
     file(TOUCH ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
 endif()
