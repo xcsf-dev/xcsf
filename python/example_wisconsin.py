@@ -57,7 +57,6 @@ print('train len = %d, test len = %d' % (train_len, test_len))
 # constructor = (x_dim, y_dim, n_actions)
 xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
-# override default.ini
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000
 xcs.PERF_TRIALS = 1000

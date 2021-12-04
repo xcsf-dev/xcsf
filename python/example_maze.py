@@ -157,7 +157,6 @@ Y_DIM = 1
 N_ACTIONS = 8
 xcs = xcsf.XCS(X_DIM, Y_DIM, N_ACTIONS)
 
-# override default.ini
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000
 xcs.PERF_TRIALS = 50

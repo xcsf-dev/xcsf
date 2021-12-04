@@ -88,7 +88,6 @@ print('y_test shape = ' + str(np.shape(y_test)))
 
 xcs = xcsf.XCS(X_DIM, Y_DIM, 1) # initialise XCSF for supervised learning
 
-# override default.ini
 xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
 xcs.POP_SIZE = 500 # maximum population size
 xcs.MAX_TRIALS = 1000 # number of trials per fit()

@@ -86,7 +86,6 @@ Y_DIM = np.shape(y_train)[1]
 
 xcs = xcsf.XCS(X_DIM, Y_DIM, 1) # initialise XCSF for supervised learning
 
-# override default.ini
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 500
 xcs.MAX_TRIALS = 1000 # number of trials per fit()

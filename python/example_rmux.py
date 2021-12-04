@@ -86,7 +86,6 @@ MAX_PAYOFF = mux.max_payoff
 # constructor = (x_dim, y_dim, n_actions)
 xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
-# override default.ini
 xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
 xcs.POP_SIZE = 1000 # maximum population size
 xcs.E0 = 0.01 # target error
