@@ -46,10 +46,16 @@ data = fetch_openml(data_id=189)
 X_train, X_test, y_train, y_test = \
     train_test_split(data.data, data.target, test_size=0.1)
 
-# reshape into 2D numpy arrays
+# numpy
+X_train = np.asarray(X_train)
+X_test = np.asarray(X_test)
+y_train = np.asarray(y_train)
+y_test = np.asarray(y_test)
+
+# reshape into 2D arrays
 if len(np.shape(y_train)) == 1:
-    y_train = np.reshape(y_train, (y_train.shape[0], 1))
-    y_test = np.reshape(y_test, (y_test.shape[0], 1))
+    y_train = y_train.reshape(-1, 1)
+    y_test = y_test.reshape(-1, 1)
 
 # normalise inputs (zero mean and unit variance)
 scaler = StandardScaler()
@@ -64,7 +70,6 @@ y_test = minmax_scale(y_test, feature_range=(0, 1))
 # get number of input and output variables
 X_DIM = np.shape(X_train)[1]
 Y_DIM = np.shape(y_train)[1]
-print('x_dim = '+str(X_DIM) + ', y_dim = ' + str(Y_DIM))
 
 # 10% of training for validation
 X_train, X_val, y_train, y_val = \

@@ -47,6 +47,12 @@ INPUT_CHANNELS = 1
 X_train, X_test, y_train, y_test = \
     train_test_split(data.data, data.target, test_size=0.1)
 
+# numpy
+X_train = np.asarray(X_train)
+X_test = np.asarray(X_test)
+y_train = np.asarray(y_train)
+y_test = np.asarray(y_test)
+
 # scale features [0,1]
 scaler = MinMaxScaler()
 scaler.fit(X_train)
@@ -73,7 +79,6 @@ print('y_test shape = ' + str(np.shape(y_test)))
 # get number of input and output variables
 X_DIM = np.shape(X_train)[1]
 Y_DIM = np.shape(y_train)[1]
-print('x_dim = ' + str(X_DIM) + ', y_dim = ' + str(Y_DIM))
 
 ###################
 # Initialise XCSF
