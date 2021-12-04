@@ -16,6 +16,6 @@ See the project [wiki](https://github.com/rpreen/xcsf/wiki) for details on featu
 [![Codacy](https://img.shields.io/codacy/grade/2213b9ad4e034482bf058d4598d1618b?logo=codacy&style=flat)](https://www.codacy.com/app/rpreen/xcsf)
 [![LGTM](https://img.shields.io/lgtm/grade/cpp/g/rpreen/xcsf.svg?logo=LGTM&style=flat)](https://lgtm.com/projects/g/rpreen/xcsf/context:cpp)
 [![CodeFactor](https://img.shields.io/codefactor/grade/github/rpreen/xcsf?logo=codefactor&style=flat)](https://www.codefactor.io/repository/github/rpreen/xcsf)
-[![Code Inspector](https://www.code-inspector.com/project/2064/status/svg)](https://www.code-inspector.com/public/project/2064/xcsf/dashboard)
+[![Codiga](https://api.codiga.io/project/2064/status/svg)](https://app.codiga.io/public/project/2064/xcsf/dashboard)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=alert_status)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=ncloc)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
