@@ -10,9 +10,11 @@ authors:
   - family-names: Preen
     given-names: Richard John
     orcid: https://orcid.org/0000-0003-3351-8132
+    affiliation: University of the West of England
   - family-names: Pätzel 
     given-names: David
     orcid: https://orcid.org/0000-0002-8238-8461
+    affiliation: Universität Augsburg
 identifiers:
   - type: doi
     value: 10.5281/zenodo.4277257
