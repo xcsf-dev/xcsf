@@ -1,4 +1,0 @@
-<map id="XCS::fit_load_input" name="XCS::fit_load_input">
-<area shape="rect" id="node1" title="Loads an input data structure for fitting." alt="" coords="123,5,257,32"/>
-<area shape="rect" id="node2" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,5,75,32"/>
-</map>

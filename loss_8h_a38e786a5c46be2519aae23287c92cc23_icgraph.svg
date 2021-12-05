@@ -126,9 +126,9 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" target="_top" xlink:title=" ">
+<g id="a_node6"><a xlink:href="pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="296,-228.5 296,-247.5 409,-247.5 409,-228.5 296,-228.5"/>
-<text text-anchor="middle" x="352.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">pybind11_init_wrapper</text>
+<text text-anchor="middle" x="352.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">PYBIND11_MODULE</text>
 </a>
 </g>
 </g>

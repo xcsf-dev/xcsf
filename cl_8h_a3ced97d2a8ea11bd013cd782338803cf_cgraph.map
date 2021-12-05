@@ -1,7 +1,0 @@
-<map id="cl_json" name="cl_json">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of a classifier." alt="" coords="5,81,68,108"/>
-<area shape="rect" id="node2" href="$action_8h.html#a4a107f6e656b970ff78149f43a92c9ba" title="Returns a json formatted string representation of an action ." alt="" coords="121,5,192,32"/>
-<area shape="rect" id="node3" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="127,56,187,83"/>
-<area shape="rect" id="node4" href="$condition_8h.html#a982c2f6d85f16b2fa551eaed86c36fa8" title="Returns a json formatted string representation of a condition." alt="" coords="116,107,197,133"/>
-<area shape="rect" id="node5" href="$prediction_8h.html#aec68a45ab05535fb179732d0a70f2fa3" title="Returns a json formatted string representation of a prediction." alt="" coords="117,157,196,184"/>
-</map>

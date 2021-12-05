@@ -1,5 +1,0 @@
-<map id="rule_dgp_cond_json" name="rule_dgp_cond_json">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,143,32"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a6473e9854cf92f6093c46ba2bb23334b" title="Returns a json formatted string representation of a DGP graph." alt="" coords="191,5,276,32"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#adacd704e517eabb4de2b9c586169ad45" title="Returns the name of a specified node function." alt="" coords="324,5,431,32"/>
-</map>

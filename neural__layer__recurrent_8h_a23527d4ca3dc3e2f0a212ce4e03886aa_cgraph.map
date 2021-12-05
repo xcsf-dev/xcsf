@@ -1,5 +1,0 @@
-<map id="neural_layer_recurrent_json" name="neural_layer_recurrent_json">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of a recurrent layer." alt="" coords="5,31,187,57"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a76be9c80bef04ba1a799825d96526d6d" title="Returns a json formatted string representation of a layer&#39;s weights." alt="" coords="251,5,377,32"/>
-<area shape="rect" id="node3" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="235,56,393,83"/>
-</map>

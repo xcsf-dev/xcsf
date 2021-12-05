@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.2</span>
+   &#160;<span id="projectnumber">1.1.3</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -113,8 +113,8 @@ $(document).ready(function(){initNavTree('pybind__wrapper_8cpp_source.html','');
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">    #define _hypot hypot</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;../lib/pybind11/include/pybind11/numpy.h&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;../lib/pybind11/include/pybind11/pybind11.h&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;pybind11/numpy.h&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;pybind11/pybind11.h&gt;</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
@@ -1253,7 +1253,7 @@ $(document).ready(function(){initNavTree('pybind__wrapper_8cpp_source.html','');
 <div class="line"><a name="l01385"></a><span class="lineno"> 1385</span>&#160;    }</div>
 <div class="line"><a name="l01386"></a><span class="lineno"> 1386</span>&#160;};</div>
 <div class="line"><a name="l01387"></a><span class="lineno"> 1387</span>&#160; </div>
-<div class="line"><a name="l01388"></a><span class="lineno"><a class="line" href="pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58"> 1388</a></span>&#160;PYBIND11_MODULE(xcsf, m)</div>
+<div class="line"><a name="l01388"></a><span class="lineno"><a class="line" href="pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5"> 1388</a></span>&#160;<a class="code" href="pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5">PYBIND11_MODULE</a>(xcsf, m)</div>
 <div class="line"><a name="l01389"></a><span class="lineno"> 1389</span>&#160;{</div>
 <div class="line"><a name="l01390"></a><span class="lineno"> 1390</span>&#160;    <a class="code" href="utils_8c.html#ab74192959d5c945feaf0a630b58fd123">rand_init</a>();</div>
 <div class="line"><a name="l01391"></a><span class="lineno"> 1391</span>&#160; </div>
@@ -1586,6 +1586,7 @@ $(document).ready(function(){initNavTree('pybind__wrapper_8cpp_source.html','');
 <div class="ttc" id="aclassXCS_html_aa6f9edb31af785155a699deac0b08c78"><div class="ttname"><a href="classXCS.html#aa6f9edb31af785155a699deac0b08c78">XCS::get_mfrac</a></div><div class="ttdeci">double get_mfrac(void)</div><div class="ttdef"><b>Definition:</b> <a href="pybind__wrapper_8cpp_source.html#l00713">pybind_wrapper.cpp:713</a></div></div>
 <div class="ttc" id="astructArgsEA_html_af4c669d88b4d82ac6278385ad5f24557"><div class="ttname"><a href="structArgsEA.html#af4c669d88b4d82ac6278385ad5f24557">ArgsEA::pred_reset</a></div><div class="ttdeci">bool pred_reset</div><div class="ttdoc">Whether to reset or copy offspring predictions.</div><div class="ttdef"><b>Definition:</b> <a href="ea_8h_source.html#l00046">ea.h:46</a></div></div>
 <div class="ttc" id="astructSet_html_a23d81d64eeecbdb306c81e0d04ed8a9a"><div class="ttname"><a href="structSet.html#a23d81d64eeecbdb306c81e0d04ed8a9a">Set::list</a></div><div class="ttdeci">struct Clist * list</div><div class="ttdoc">Linked list of classifiers.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00076">xcsf.h:76</a></div></div>
+<div class="ttc" id="apybind__wrapper_8cpp_html_a172daba0778fe2bd38d723d5f52a23d5"><div class="ttname"><a href="pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5">PYBIND11_MODULE</a></div><div class="ttdeci">PYBIND11_MODULE(xcsf, m)</div><div class="ttdef"><b>Definition:</b> <a href="pybind__wrapper_8cpp_source.html#l01388">pybind_wrapper.cpp:1388</a></div></div>
 <div class="ttc" id="astructXCSF_html_a6ffb8993fdb50334736dbaf51b7592bd"><div class="ttname"><a href="structXCSF.html#a6ffb8993fdb50334736dbaf51b7592bd">XCSF::NU</a></div><div class="ttdeci">double NU</div><div class="ttdoc">Exponent used in calculating classifier accuracy.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00122">xcsf.h:122</a></div></div>
 <div class="ttc" id="aclassXCS_html_ac12768292958a714a726b1c029e9616a"><div class="ttname"><a href="classXCS.html#ac12768292958a714a726b1c029e9616a">XCS::fit</a></div><div class="ttdeci">double fit(const py::array_t&lt; double &gt; input, const int action, const double reward)</div><div class="ttdoc">Creates/updates an action set for a given (state, action, reward).</div><div class="ttdef"><b>Definition:</b> <a href="pybind__wrapper_8cpp_source.html#l00247">pybind_wrapper.cpp:247</a></div></div>
 <div class="ttc" id="aneural__activations_8c_html_aaba6ef52952c92bb15f6231b6b42fa73"><div class="ttname"><a href="neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73">neural_activation_as_int</a></div><div class="ttdeci">int neural_activation_as_int(const char *a)</div><div class="ttdoc">Returns the integer representation of an activation function.</div><div class="ttdef"><b>Definition:</b> <a href="neural__activations_8c_source.html#l00149">neural_activations.c:149</a></div></div>

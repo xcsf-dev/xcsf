@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.2</span>
+   &#160;<span id="projectnumber">1.1.3</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -100,8 +100,10 @@ $(document).ready(function(){initNavTree('pybind__wrapper_8cpp.html',''); initRe
 
 <p>Python library wrapper functions.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;../lib/pybind11/include/pybind11/numpy.h&quot;</code><br />
-<code>#include &quot;../lib/pybind11/include/pybind11/pybind11.h&quot;</code><br />
+<div class="textblock"><code>#include &lt;pybind11/numpy.h&gt;</code><br />
+<code>#include &lt;pybind11/pybind11.h&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="action_8h_source.html">action.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="clset_8h_source.html">clset.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="clset__neural_8h_source.html">clset_neural.h</a>&quot;</code><br />
@@ -120,7 +122,8 @@ $(document).ready(function(){initNavTree('pybind__wrapper_8cpp.html',''); initRe
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for pybind_wrapper.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pybind__wrapper_8cpp__incl.svg" width="6406" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pybind__wrapper_8cpp__incl.svg" width="1772" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="pybind__wrapper_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -133,18 +136,8 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a58833806fcecd85d141ecf997090fa85"><td class="memItemLeft" align="right" valign="top">::pybind11::module_::module_def pybind11_module_def_xcsf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pybind__wrapper_8cpp.html#a58833806fcecd85d141ecf997090fa85">__attribute__</a> ((__unused__))</td></tr>
-<tr class="separator:a58833806fcecd85d141ecf997090fa85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a573d525878c4786c468fa488a982b8fd"><td class="memItemLeft" align="right" valign="top">static PYBIND11_MAYBE_UNUSED void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pybind__wrapper_8cpp.html#a573d525878c4786c468fa488a982b8fd">pybind11_init_xcsf</a> (::pybind11::module_ &amp;)</td></tr>
-<tr class="separator:a573d525878c4786c468fa488a982b8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a269acb618355873dacf057083f07eb58"><td class="memItemLeft" align="right" valign="top">static PyObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58">pybind11_init_wrapper</a> ()</td></tr>
-<tr class="separator:a269acb618355873dacf057083f07eb58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c6843d49bf24307d213dcd8bda641a2"><td class="memItemLeft" align="right" valign="top">C PYBIND11_MAYBE_UNUSED&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pybind__wrapper_8cpp.html#a0c6843d49bf24307d213dcd8bda641a2">__attribute__</a> ((visibility(&quot;default&quot;))) void <a class="el" href="pybind__wrapper_8cpp.html#a28b863762a1ebbf59138ea39e92688fd">initxcsf</a>()</td></tr>
-<tr class="separator:a0c6843d49bf24307d213dcd8bda641a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28b863762a1ebbf59138ea39e92688fd"><td class="memItemLeft" align="right" valign="top">C PYBIND11_EXPORT void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pybind__wrapper_8cpp.html#a28b863762a1ebbf59138ea39e92688fd">initxcsf</a> ()</td></tr>
-<tr class="separator:a28b863762a1ebbf59138ea39e92688fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af06bd3f5b03f2ce11a8d22706df0dcc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pybind__wrapper_8cpp.html#af06bd3f5b03f2ce11a8d22706df0dcc4">PYBIND11_CONCAT</a> (pybind11_init_, xcsf)(</td></tr>
-<tr class="separator:af06bd3f5b03f2ce11a8d22706df0dcc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a172daba0778fe2bd38d723d5f52a23d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5">PYBIND11_MODULE</a> (xcsf, m)</td></tr>
+<tr class="separator:a172daba0778fe2bd38d723d5f52a23d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Python library wrapper functions. </p>
@@ -156,85 +149,22 @@ David Pätzel </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a58833806fcecd85d141ecf997090fa85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58833806fcecd85d141ecf997090fa85">&#9670;&nbsp;</a></span>__attribute__() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">::pybind11::module_::module_def pybind11_module_def_xcsf __attribute__ </td>
-          <td>(</td>
-          <td class="paramtype">(__unused__)&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0c6843d49bf24307d213dcd8bda641a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c6843d49bf24307d213dcd8bda641a2">&#9670;&nbsp;</a></span>__attribute__() <span class="overload">[2/2]</span></h2>
+<a id="a172daba0778fe2bd38d723d5f52a23d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a172daba0778fe2bd38d723d5f52a23d5">&#9670;&nbsp;</a></span>PYBIND11_MODULE()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">C PYBIND11_MAYBE_UNUSED __attribute__ </td>
+          <td class="memname">PYBIND11_MODULE </td>
           <td>(</td>
-          <td class="paramtype">(visibility(&quot;default&quot;))&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a28b863762a1ebbf59138ea39e92688fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28b863762a1ebbf59138ea39e92688fd">&#9670;&nbsp;</a></span>initxcsf()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">C PYBIND11_EXPORT void initxcsf </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01388">1388</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
-
-</div>
-</div>
-<a id="af06bd3f5b03f2ce11a8d22706df0dcc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af06bd3f5b03f2ce11a8d22706df0dcc4">&#9670;&nbsp;</a></span>PYBIND11_CONCAT()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PYBIND11_CONCAT </td>
-          <td>(</td>
-          <td class="paramtype">pybind11_init_&#160;</td>
+          <td class="paramtype">xcsf&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">xcsf&#160;</td>
+          <td class="paramtype">m&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -247,66 +177,13 @@ David Pätzel </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01388">1388</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-</div>
-</div>
-<a id="a269acb618355873dacf057083f07eb58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a269acb618355873dacf057083f07eb58">&#9670;&nbsp;</a></span>pybind11_init_wrapper()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">PyObject * pybind11_init_wrapper </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01388">1388</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
-
 <p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00191">XCS::ae_to_classifier()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00309">XCS::decision()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00296">XCS::end_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00278">XCS::end_trial()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00485">XCS::error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00247">XCS::fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00533">XCS::get_alpha()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00707">XCS::get_aset_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00539">XCS::get_beta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00587">XCS::get_compaction()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00545">XCS::get_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00551">XCS::get_e0()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00785">XCS::get_ea_pred_reset()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00743">XCS::get_ea_select_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00737">XCS::get_ea_select_type()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00779">XCS::get_ea_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00767">XCS::get_err_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00773">XCS::get_fit_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00725">XCS::get_gamma()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00527">XCS::get_huber_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00557">XCS::get_init_error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00563">XCS::get_init_fitness()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00755">XCS::get_lambda()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00521">XCS::get_loss_func()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00575">XCS::get_m_probation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00503">XCS::get_max_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00713">XCS::get_mfrac()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00701">XCS::get_mset_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00641">XCS::get_n_actions()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00569">XCS::get_nu()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00491">XCS::get_omp_num_threads()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00761">XCS::get_p_crossover()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00731">XCS::get_p_explore()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00509">XCS::get_perf_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00497">XCS::get_pop_init()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00515">XCS::get_pop_max_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00683">XCS::get_pset_mean_cond_connections()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00695">XCS::get_pset_mean_cond_layers()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00689">XCS::get_pset_mean_cond_neurons()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00647">XCS::get_pset_mean_cond_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00671">XCS::get_pset_mean_pred_connections()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00659">XCS::get_pset_mean_pred_eta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00677">XCS::get_pset_mean_pred_layers()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00665">XCS::get_pset_mean_pred_neurons()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00653">XCS::get_pset_mean_pred_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00617">XCS::get_pset_num()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00611">XCS::get_pset_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00605">XCS::get_set_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00581">XCS::get_stateful()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00719">XCS::get_teletransportation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00593">XCS::get_theta_del()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00749">XCS::get_theta_ea()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00599">XCS::get_theta_sub()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00623">XCS::get_time()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00629">XCS::get_x_dim()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00635">XCS::get_y_dim()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00287">XCS::init_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00266">XCS::init_trial()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00217">XCS::json_export()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00232">XCS::json_parameters()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00143">XCS::load()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00180">XCS::pred_expand()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00432">XCS::predict()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00170">XCS::print_params()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00203">XCS::print_pset()</a>, <a class="el" href="utils_8c_source.html#l00034">rand_init()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00161">XCS::retrieve()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00132">XCS::save()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00456">XCS::score()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01382">XCS::seed()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00807">XCS::set_action()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01232">XCS::set_alpha()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01238">XCS::set_beta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01310">XCS::set_compaction()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00797">XCS::set_condition()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01244">XCS::set_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01250">XCS::set_e0()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01376">XCS::set_ea_pred_reset()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01334">XCS::set_ea_select_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01328">XCS::set_ea_select_type()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01370">XCS::set_ea_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01358">XCS::set_err_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01364">XCS::set_fit_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01316">XCS::set_gamma()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01226">XCS::set_huber_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01256">XCS::set_init_error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01262">XCS::set_init_fitness()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01346">XCS::set_lambda()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01220">XCS::set_loss_func()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01274">XCS::set_m_probation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01202">XCS::set_max_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01268">XCS::set_nu()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01190">XCS::set_omp_num_threads()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01352">XCS::set_p_crossover()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01322">XCS::set_p_explore()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01208">XCS::set_perf_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01196">XCS::set_pop_init()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01214">XCS::set_pop_max_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00817">XCS::set_prediction()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01292">XCS::set_set_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01304">XCS::set_stateful()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01298">XCS::set_teletransportation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01280">XCS::set_theta_del()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01340">XCS::set_theta_ea()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01286">XCS::set_theta_sub()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00152">XCS::store()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00329">XCS::update()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00121">XCS::version_build()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00101">XCS::version_major()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00111">XCS::version_minor()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pybind__wrapper_8cpp_a269acb618355873dacf057083f07eb58_cgraph.svg" width="1071" height="6099"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pybind__wrapper_8cpp_a172daba0778fe2bd38d723d5f52a23d5_cgraph.svg" width="1071" height="6099"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
-
-</div>
-</div>
-<a id="a573d525878c4786c468fa488a982b8fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a573d525878c4786c468fa488a982b8fd">&#9670;&nbsp;</a></span>pybind11_init_xcsf()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static PYBIND11_MAYBE_UNUSED void pybind11_init_xcsf </td>
-          <td>(</td>
-          <td class="paramtype">::pybind11::module_ &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>

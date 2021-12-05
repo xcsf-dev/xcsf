@@ -1,7 +1,5 @@
 var NAVTREEINDEX8 =
 {
-"prediction_8c.html#aa784fcce14bebce205bd26b8e6649e62":[2,0,93,13],
-"prediction_8c.html#ab59b2b572c1ff05157b89759ab7162f5":[2,0,93,9],
 "prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512":[2,0,93,10],
 "prediction_8c.html#abf258a7e5dec62efd980dcd56bdc9e5d":[2,0,93,8],
 "prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441":[2,0,93,12],
@@ -53,12 +51,7 @@ var NAVTREEINDEX8 =
 "prediction_8h.html#aff5b8881c0841c5ce673956e5339bb8b":[2,0,94,6],
 "prediction_8h_source.html":[2,0,94],
 "pybind__wrapper_8cpp.html":[2,0,95],
-"pybind__wrapper_8cpp.html#a0c6843d49bf24307d213dcd8bda641a2":[2,0,95,2],
-"pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58":[2,0,95,5],
-"pybind__wrapper_8cpp.html#a28b863762a1ebbf59138ea39e92688fd":[2,0,95,3],
-"pybind__wrapper_8cpp.html#a573d525878c4786c468fa488a982b8fd":[2,0,95,6],
-"pybind__wrapper_8cpp.html#a58833806fcecd85d141ecf997090fa85":[2,0,95,1],
-"pybind__wrapper_8cpp.html#af06bd3f5b03f2ce11a8d22706df0dcc4":[2,0,95,4],
+"pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5":[2,0,95,1],
 "pybind__wrapper_8cpp_source.html":[2,0,95],
 "rule__dgp_8c.html":[2,0,96],
 "rule__dgp_8c.html#a0e3e4c2fea1cc78291c8bd8a79cfea1b":[2,0,96,9],
@@ -249,5 +242,12 @@ var NAVTREEINDEX8 =
 "structArgsGPTree.html#aa66c58c7531249bc015f166ef1aa4ceb":[1,0,7,1],
 "structArgsGPTree.html#aa8b9f47f12d06d8fccf2e9bc4c6502a6":[1,0,7,3],
 "structArgsGPTree.html#aaa632b679479846ab77f90a02677ae80":[1,0,7,4],
-"structArgsGPTree.html#ab998ff15290c47948c470303b2ce45f1":[1,0,7,6]
+"structArgsGPTree.html#ab998ff15290c47948c470303b2ce45f1":[1,0,7,6],
+"structArgsGPTree.html#add43f132a2def19f7a4c22feb4912b55":[1,0,7,2],
+"structArgsLayer.html":[1,0,8],
+"structArgsLayer.html#a04dcc3115bebd31b09db9ae114f065a5":[1,0,8,8],
+"structArgsLayer.html#a056b85ea67af7fc498b688ddbd3bcd84":[1,0,8,13],
+"structArgsLayer.html#a0d05d866046095feea58547e81b14697":[1,0,8,7],
+"structArgsLayer.html#a2085a84724d838c01557ef4496d52677":[1,0,8,21],
+"structArgsLayer.html#a297bf90073ea79b3363ac40751b35759":[1,0,8,6]
 };

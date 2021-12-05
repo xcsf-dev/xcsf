@@ -1,6 +1,0 @@
-<map id="tree_json" name="tree_json">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of a GP tree." alt="" coords="307,31,381,57"/>
-<area shape="rect" id="node2" href="$cond__gp_8h.html#aecaa107bc0700128ddffb1efd00e36cd" title="Returns a json formatted string representation of a tree&#45;GP condition." alt="" coords="156,5,259,32"/>
-<area shape="rect" id="node4" href="$gp_8h.html#a776ec7119667ca4611451522c3c4d247" title="Prints a GP tree." alt="" coords="169,56,245,83"/>
-<area shape="rect" id="node3" href="$cond__gp_8h.html#a096c64bae58b314e1a303f0e3887d412" title="Prints a tree&#45;GP condition." alt="" coords="5,5,108,32"/>
-</map>

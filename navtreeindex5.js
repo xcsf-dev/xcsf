@@ -1,7 +1,5 @@
 var NAVTREEINDEX5 =
 {
-"neural__activations_8h.html#af56cb9e9ea1f429b60042455a660a2a6":[2,0,54,22],
-"neural__activations_8h_source.html":[2,0,54],
 "neural__layer_8c.html":[2,0,55],
 "neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50":[2,0,55,4],
 "neural__layer_8c.html#a0540e1d6748c9b53c1114d869147340f":[2,0,55,8],
@@ -249,5 +247,7 @@ var NAVTREEINDEX5 =
 "neural__layer__dropout_8c.html#a62cdabbcba0e526d4ebbaec796859622":[2,0,65,12],
 "neural__layer__dropout_8c.html#a6a48f5438e8ccf76faeed24641a0f85a":[2,0,65,0],
 "neural__layer__dropout_8c.html#a6e3344e46eea0817b14f3568ef81ff97":[2,0,65,1],
-"neural__layer__dropout_8c.html#a8df95ff85faff27a46a3046368ba0598":[2,0,65,15]
+"neural__layer__dropout_8c.html#a8df95ff85faff27a46a3046368ba0598":[2,0,65,15],
+"neural__layer__dropout_8c.html#a981f6d214eb436c4ed6a9dc2f9114d85":[2,0,65,14],
+"neural__layer__dropout_8c.html#a9c7df624a8ad24b693b2e431f0f0b176":[2,0,65,10]
 };

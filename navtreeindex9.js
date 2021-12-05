@@ -1,12 +1,5 @@
 var NAVTREEINDEX9 =
 {
-"structArgsGPTree.html#add43f132a2def19f7a4c22feb4912b55":[1,0,7,2],
-"structArgsLayer.html":[1,0,8],
-"structArgsLayer.html#a04dcc3115bebd31b09db9ae114f065a5":[1,0,8,8],
-"structArgsLayer.html#a056b85ea67af7fc498b688ddbd3bcd84":[1,0,8,13],
-"structArgsLayer.html#a0d05d866046095feea58547e81b14697":[1,0,8,7],
-"structArgsLayer.html#a2085a84724d838c01557ef4496d52677":[1,0,8,21],
-"structArgsLayer.html#a297bf90073ea79b3363ac40751b35759":[1,0,8,6],
 "structArgsLayer.html#a333523d1618182c5b42f3640b549f148":[1,0,8,1],
 "structArgsLayer.html#a495d84d36d072b8374b727b94a20e4be":[1,0,8,12],
 "structArgsLayer.html#a4a06cf5537555bd4c08240c9abd806ed":[1,0,8,9],
@@ -249,5 +242,12 @@ var NAVTREEINDEX9 =
 "structPredRLS.html#a9c617981e4e2b0d0f5ca62548a6ac868":[1,0,32,2],
 "structPredRLS.html#aed60f4bad978074b93393fc05882238f":[1,0,32,5],
 "structPredRLS.html#af82ce4ccbb2688a054fd4e24414ae092":[1,0,32,4],
-"structPredVtbl.html":[1,0,33]
+"structPredVtbl.html":[1,0,33],
+"structPredVtbl.html#a3e6e32ca6f8c3e32758c760a39e717c5":[1,0,33,7],
+"structPredVtbl.html#a3fc44173a136f4c1c3f1f8e1b394cb85":[1,0,33,11],
+"structPredVtbl.html#a45f150f81d02b5a0f3406af7f33a8f7b":[1,0,33,8],
+"structPredVtbl.html#a7caf8a2ca0fc0392a43775d4d4d54ee6":[1,0,33,4],
+"structPredVtbl.html#a95ff5c2d85dde32fee54dcc265803a12":[1,0,33,2],
+"structPredVtbl.html#a9b6eaeb264fe374331e94603809d715c":[1,0,33,10],
+"structPredVtbl.html#ab077da17c381102ccbabe0ae0d9e1393":[1,0,33,1]
 };

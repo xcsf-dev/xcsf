@@ -1,21 +1,6 @@
 var searchData=
 [
-  ['uf_1511',['uf',['../structLayer.html#a830da1b9d43d6bb8900e5b96c9f512da',1,'Layer']]],
-  ['ug_1512',['ug',['../structLayer.html#a26063e4eeeaf08a2a5fc7d436d42791d',1,'Layer']]],
-  ['ui_1513',['ui',['../structLayer.html#aa2344baa66ca9758145c3a34ebcd3e8d',1,'Layer']]],
-  ['unpack_5fact_5fneural_1514',['unpack_act_neural',['../classXCS.html#ab2cbd5508c5e8c59db839695c9d0d539',1,'XCS']]],
-  ['unpack_5fcond_5fcsr_1515',['unpack_cond_csr',['../classXCS.html#aa1b8668f5e51b9625c143a865715dee1',1,'XCS']]],
-  ['unpack_5fcond_5fdgp_1516',['unpack_cond_dgp',['../classXCS.html#aea930ef16731a87eec08c4056e964534',1,'XCS']]],
-  ['unpack_5fcond_5fgp_1517',['unpack_cond_gp',['../classXCS.html#a6aacc7d961d4cb50169d9be7fe3db47f',1,'XCS']]],
-  ['unpack_5fcond_5fneural_1518',['unpack_cond_neural',['../classXCS.html#a234d12eb3fb50d01dccff24a1515d74e',1,'XCS']]],
-  ['unpack_5fcond_5fternary_1519',['unpack_cond_ternary',['../classXCS.html#ad4b099907255947f3034bf4b22c08613',1,'XCS']]],
-  ['unpack_5flayer_5fparams_1520',['unpack_layer_params',['../classXCS.html#af09f858d1d3594b2eb806a24efc2c8f9',1,'XCS']]],
-  ['unpack_5fpred_5fneural_1521',['unpack_pred_neural',['../classXCS.html#a8755a66390db00ab31e3574a18a0aae1',1,'XCS']]],
-  ['unpack_5fpred_5fnlms_1522',['unpack_pred_nlms',['../classXCS.html#a764e0c05b99b060c56cb44b239257c3a',1,'XCS']]],
-  ['unpack_5fpred_5frls_1523',['unpack_pred_rls',['../classXCS.html#a192be13a6b196a962f88318f030318d3',1,'XCS']]],
-  ['uo_1524',['uo',['../structLayer.html#a183584f75c1f36388e89b97b8ac236d3',1,'Layer']]],
-  ['update_1525',['update',['../classXCS.html#af8970ba52403714439fda0d4383a390b',1,'XCS']]],
-  ['upsample_1526',['UPSAMPLE',['../neural__layer_8h.html#a4db485a4340e1642963b520cb80cc903',1,'neural_layer.h']]],
-  ['utils_2ec_1527',['utils.c',['../utils_8c.html',1,'']]],
-  ['utils_2eh_1528',['utils.h',['../utils_8h.html',1,'']]]
+  ['version_5fbuild_1525',['version_build',['../classXCS.html#a0f6de56e2ef395dd537f26ed1b71b5be',1,'XCS::version_build()'],['../xcsf_8h.html#acfc4576d90923701a60adbafb2c4a600',1,'VERSION_BUILD():&#160;xcsf.h']]],
+  ['version_5fmajor_1526',['version_major',['../classXCS.html#a1176e9d5bc2a6d4af8a880f398442224',1,'XCS::version_major()'],['../xcsf_8h.html#a556a08d9254eb4ed73e31cf5423020f7',1,'VERSION_MAJOR():&#160;xcsf.h']]],
+  ['version_5fminor_1527',['version_minor',['../classXCS.html#af9f1c795b5a8d9f82a2e7b132f585031',1,'XCS::version_minor()'],['../xcsf_8h.html#a0d6deb233e18f1f1f7037cedd97d39dc',1,'VERSION_MINOR():&#160;xcsf.h']]]
 ];

@@ -51,13 +51,13 @@ var NAVTREEINDEX =
 "classXCS.html#a8c67042b503e901a1fc778b8332a5b19",
 "cond__gp_8c.html#a6e0236b6db83efa0e347bbcbad69413b",
 "dgp_8c.html#a49d4c90eb5704b9a3ff9f72f41d11395",
-"globals_func.html",
-"neural__activations_8h.html#af56cb9e9ea1f429b60042455a660a2a6",
-"neural__layer__dropout_8c.html#a981f6d214eb436c4ed6a9dc2f9114d85",
-"neural__layer__upsample_8h.html#a6a09f194b546261a7bab251b608d02b5",
-"prediction_8c.html#aa784fcce14bebce205bd26b8e6649e62",
-"structArgsGPTree.html#add43f132a2def19f7a4c22feb4912b55",
-"structPredVtbl.html#a3e6e32ca6f8c3e32758c760a39e717c5"
+"globals_func_b.html",
+"neural__layer_8c.html",
+"neural__layer__dropout_8c.html#aa75205ed94c527687e32d9cb4aaa37d1",
+"neural__layer__upsample_8h.html#a7e86be054879307abd6d65098959ca96",
+"prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512",
+"structArgsLayer.html#a333523d1618182c5b42f3640b549f148",
+"structPredVtbl.html#ad1c4bc1c562000b4436b0e6309583750"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

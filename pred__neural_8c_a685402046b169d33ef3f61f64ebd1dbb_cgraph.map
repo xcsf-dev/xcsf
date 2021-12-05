@@ -1,5 +1,0 @@
-<map id="pred_neural_json" name="pred_neural_json">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of a neural prediction." alt="" coords="5,5,125,32"/>
-<area shape="rect" id="node2" href="$neural_8c.html#ab93b72f5c7653d9b1cd728f0d6655a0b" title="Returns a json formatted string representation of a neural network." alt="" coords="173,5,261,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#a421f2288e2ac211976bd15907617c675" title="Returns a json formatted string representation of a layer." alt="" coords="309,5,391,32"/>
-</map>

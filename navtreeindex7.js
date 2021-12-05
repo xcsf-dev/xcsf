@@ -1,7 +1,5 @@
 var NAVTREEINDEX7 =
 {
-"neural__layer__upsample_8h.html#a6a09f194b546261a7bab251b608d02b5":[2,0,78,2],
-"neural__layer__upsample_8h.html#a741bbde50ccfba73f433d94adb38e714":[2,0,78,10],
 "neural__layer__upsample_8h.html#a7e86be054879307abd6d65098959ca96":[2,0,78,7],
 "neural__layer__upsample_8h.html#a7f162941478c332902fcf4b69ace95ef":[2,0,78,5],
 "neural__layer__upsample_8h.html#a96f75c0f445fc4c2d2692b7187680fac":[2,0,78,13],
@@ -249,5 +247,7 @@ var NAVTREEINDEX7 =
 "prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c":[2,0,93,15],
 "prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da":[2,0,93,11],
 "prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4":[2,0,93,17],
-"prediction_8c.html#a8c10e8e3bb923a105e3eee1968a3f110":[2,0,93,4]
+"prediction_8c.html#a8c10e8e3bb923a105e3eee1968a3f110":[2,0,93,4],
+"prediction_8c.html#aa784fcce14bebce205bd26b8e6649e62":[2,0,93,13],
+"prediction_8c.html#ab59b2b572c1ff05157b89759ab7162f5":[2,0,93,9]
 };

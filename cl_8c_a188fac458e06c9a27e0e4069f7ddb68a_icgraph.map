@@ -9,7 +9,7 @@
 <area shape="rect" id="node12" href="$xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9" title="Executes a single XCSF trial." alt="" coords="625,260,767,287"/>
 <area shape="rect" id="node5" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="234,488,341,515"/>
 <area shape="rect" id="node7" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="455,387,541,413"/>
-<area shape="rect" id="node6" href="$pybind__wrapper_8cpp.html#a269acb618355873dacf057083f07eb58" title=" " alt="" coords="5,387,156,413"/>
+<area shape="rect" id="node6" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,387,156,413"/>
 <area shape="rect" id="node8" href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="245,336,330,363"/>
 <area shape="rect" id="node9" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,133,106,160"/>
 <area shape="rect" id="node11" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="253,437,322,464"/>

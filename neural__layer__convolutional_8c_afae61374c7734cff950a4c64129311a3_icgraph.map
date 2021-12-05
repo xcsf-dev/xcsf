@@ -1,4 +1,0 @@
-<map id="neural_layer_convolutional_json" name="neural_layer_convolutional_json">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of a convolutional layer." alt="" coords="228,13,435,39"/>
-<area shape="rect" id="node2" href="$neural__layer__convolutional_8h.html#a8f3884461f9f8e028e4bab4b0e7e84c7" title="Prints a convolutional layer." alt="" coords="5,5,180,47"/>
-</map>

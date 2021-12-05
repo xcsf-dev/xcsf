@@ -1,4 +1,0 @@
-<map id="cond_rectangle_json" name="cond_rectangle_json">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of a hyperrectangle." alt="" coords="196,5,337,32"/>
-<area shape="rect" id="node2" href="$cond__rectangle_8h.html#a6138c6da267239b4961599a152c7b85c" title="Prints a hyperrectangle condition." alt="" coords="5,5,148,32"/>
-</map>
