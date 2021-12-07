@@ -22,6 +22,7 @@ import os
 import sys
 import shutil
 import subprocess
+import platform
 from pathlib import Path
 from setuptools import Extension, setup, find_packages
 from setuptools.command.build_ext import build_ext
@@ -53,9 +54,11 @@ class CMakeBuild(build_ext):
         build_args = [
             '--config', 'Release',
         ]
-        if os.name == 'nt':
+        if platform.system() == 'Windows':
+            cmake_args += ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE=' + extdir]
             cmake_args += ['-GMinGW Makefiles']
         else:
+            cmake_args += ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir]
             build_args += ['-j4']
         subprocess.check_call(
             ['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp
@@ -64,18 +67,18 @@ class CMakeBuild(build_ext):
         subprocess.check_call(
             ['cmake', '--build', '.'] + build_args, cwd=self.build_temp
         )
-        self.announce('Moving built Python module', level=3)
-        extension_path = Path(self.get_ext_fullpath(ext.name))
-        os.makedirs(extension_path.parent.absolute(), exist_ok=True)
-        build_dir = Path(self.build_temp)
-        bin_dir = os.path.join(build_dir, 'xcsf')
-        self.distribution.bin_dir = bin_dir
-        pyd_path = [os.path.join(bin_dir, _pyd) for _pyd in
-                    os.listdir(bin_dir) if
-                    os.path.isfile(os.path.join(bin_dir, _pyd)) and
-                    os.path.splitext(_pyd)[0].startswith('xcsf') and
-                    os.path.splitext(_pyd)[1] in ['.pyd', '.so']][0]
-        shutil.move(pyd_path, extension_path)
+#        self.announce('Moving built Python module', level=3)
+#        extension_path = Path(self.get_ext_fullpath(ext.name))
+#        os.makedirs(extension_path.parent.absolute(), exist_ok=True)
+#        build_dir = Path(self.build_temp)
+#        bin_dir = os.path.join(build_dir, 'xcsf')
+#        self.distribution.bin_dir = bin_dir
+#        pyd_path = [os.path.join(bin_dir, _pyd) for _pyd in
+#                    os.listdir(bin_dir) if
+#                    os.path.isfile(os.path.join(bin_dir, _pyd)) and
+#                    os.path.splitext(_pyd)[0].startswith('xcsf') and
+#                    os.path.splitext(_pyd)[1] in ['.pyd', '.so']][0]
+#        shutil.move(pyd_path, extension_path)
 
 this_directory = Path(__file__).parent
 long_description = (this_directory / 'README.md').read_text()
@@ -91,7 +94,7 @@ setup(
     long_description_content_type = 'text/markdown',
     url = 'https://github.com/rpreen/xcsf',
     packages = find_packages(),
-    ext_modules = [CMakeExtension('xcsf')],
+    ext_modules = [CMakeExtension('xcsf/xcsf')],
     cmdclass = {'build_ext': CMakeBuild},
     zip_safe = False,
     python_requires = '>=3.6',
