@@ -34,82 +34,87 @@ import xcsf
 # Initialise OpenAI Gym problem environment
 ############################################
 
-env = gym.make('CartPole-v0')
+env = gym.make("CartPole-v0")
 X_DIM = env.observation_space.shape[0]
 N_ACTIONS = env.action_space.n
 
-SAVE_GIF = False # for creating a gif
+SAVE_GIF = False  # for creating a gif
 SAVE_GIF_EPISODES = 50
 frames = []
 fscore = []
 ftrial = []
 
-def save_frames_as_gif(path='./', filename='animation.gif'):
-    """ Save animation as gif """
-    rcParams['font.family'] = 'monospace'
+
+def save_frames_as_gif(path="./", filename="animation.gif"):
+    """Save animation as gif"""
+    rcParams["font.family"] = "monospace"
     fig = plt.figure(dpi=90)
     fig.set_size_inches(3, 3)
     ax = fig.add_subplot(111)
     patch = plt.imshow(frames[0])
-    bbox = dict(boxstyle='round', fc='0.8')
-    plt.axis('off')
+    bbox = dict(boxstyle="round", fc="0.8")
+    plt.axis("off")
+
     def animate(i):
         patch.set_data(frames[i])
         strial = str(ftrial[i])
         sscore = str(int(fscore[i]))
-        text = ('episode = %3s, score = %3s' % (strial, sscore))
-        ax.annotate(text, xy=(0,100), xytext=(-40,1), fontsize=12, bbox=bbox)
-    anim = animation.FuncAnimation(plt.gcf(), animate, frames=len(frames),
-            interval=100, blit=False)
-    anim.save(path + filename, writer='imagemagick', fps=30)
+        text = "episode = %3s, score = %3s" % (strial, sscore)
+        ax.annotate(text, xy=(0, 100), xytext=(-40, 1), fontsize=12, bbox=bbox)
+
+    anim = animation.FuncAnimation(
+        plt.gcf(), animate, frames=len(frames), interval=100, blit=False
+    )
+    anim.save(path + filename, writer="imagemagick", fps=30)
+
 
 ###################
 # Initialise XCSF
 ###################
 
 # constructor = (x_dim, y_dim, n_actions)
-xcs = xcsf.XCS(X_DIM, N_ACTIONS, 1) # Supervised mode: i.e, single action
+xcs = xcsf.XCS(X_DIM, N_ACTIONS, 1)  # Supervised mode: i.e, single action
 
-xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
-xcs.POP_INIT = False # use covering to initialise
-xcs.MAX_TRIALS = 1 # one trial per fit
-xcs.POP_SIZE = 200 # maximum population size
-xcs.E0 = 0.001 # target error
-xcs.BETA = 0.05 # classifier parameter update rate
-xcs.ALPHA = 1 # accuracy offset
-xcs.NU = 5 # accuracy slope
+xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
+xcs.POP_INIT = False  # use covering to initialise
+xcs.MAX_TRIALS = 1  # one trial per fit
+xcs.POP_SIZE = 200  # maximum population size
+xcs.E0 = 0.001  # target error
+xcs.BETA = 0.05  # classifier parameter update rate
+xcs.ALPHA = 1  # accuracy offset
+xcs.NU = 5  # accuracy slope
 xcs.EA_SUBSUMPTION = False
 xcs.SET_SUBSUMPTION = False
-xcs.THETA_EA = 100 # EA invocation frequency
-xcs.THETA_DEL = 100 # min experience before fitness used for deletion
+xcs.THETA_EA = 100  # EA invocation frequency
+xcs.THETA_DEL = 100  # min experience before fitness used for deletion
 
 condition_layers = {
-    'layer_0': { # hidden layer
-        'type': 'connected',
-        'activation': 'selu',
-        'evolve-weights': True,
-        'evolve-neurons': True,
-        'n-init': 1,
-        'n-max': 100,
-        'max-neuron-grow': 1,
+    "layer_0": {  # hidden layer
+        "type": "connected",
+        "activation": "selu",
+        "evolve-weights": True,
+        "evolve-neurons": True,
+        "n-init": 1,
+        "n-max": 100,
+        "max-neuron-grow": 1,
     },
-    'layer_1': { # output layer
-        'type': 'connected',
-        'activation': 'linear',
-        'evolve-weights': True,
-        'n-init': 1,
-    }
+    "layer_1": {  # output layer
+        "type": "connected",
+        "activation": "linear",
+        "evolve-weights": True,
+        "n-init": 1,
+    },
 }
 
-xcs.condition('neural', condition_layers) # neural network conditions
-xcs.action('integer') # (dummy) integer actions
-xcs.prediction('rls-quadratic') # Quadratic RLS
+xcs.condition("neural", condition_layers)  # neural network conditions
+xcs.action("integer")  # (dummy) integer actions
+xcs.prediction("rls-quadratic")  # Quadratic RLS
 
-GAMMA = 0.95 # discount rate for delayed reward
-epsilon = 1 # initial probability of exploring
-EPSILON_MIN = 0.1 # the minimum exploration rate
-EPSILON_DECAY = 0.98 # the decay of exploration after each batch replay
-REPLAY_TIME = 1 # perform replay update every n episodes
+GAMMA = 0.95  # discount rate for delayed reward
+epsilon = 1  # initial probability of exploring
+EPSILON_MIN = 0.1  # the minimum exploration rate
+EPSILON_DECAY = 0.98  # the decay of exploration after each batch replay
+REPLAY_TIME = 1  # perform replay update every n episodes
 
 xcs.print_params()
 
@@ -117,34 +122,37 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-total_steps = 0 # total number of steps performed
-MAX_EPISODES = 2000 # maximum number of episodes to run
-N = 100 # number of episodes to average performance
-memory = deque(maxlen = 50000) # memory buffer for experience replay
-scores = deque(maxlen = N) # scores used to calculate moving average
+total_steps = 0  # total number of steps performed
+MAX_EPISODES = 2000  # maximum number of episodes to run
+N = 100  # number of episodes to average performance
+memory = deque(maxlen=50000)  # memory buffer for experience replay
+scores = deque(maxlen=N)  # scores used to calculate moving average
+
 
 def replay(replay_size=5000):
-    """ Performs experience replay updates """
+    """Performs experience replay updates"""
     batch_size = min(len(memory), replay_size)
     batch = random.sample(memory, batch_size)
     for state, action, reward, next_state, done in batch:
         y_target = reward
         if not done:
-            prediction_array = xcs.predict(next_state.reshape(1,-1))[0]
+            prediction_array = xcs.predict(next_state.reshape(1, -1))[0]
             y_target += GAMMA * np.max(prediction_array)
-        target = xcs.predict(state.reshape(1,-1))[0]
+        target = xcs.predict(state.reshape(1, -1))[0]
         target[action] = y_target
-        xcs.fit(state.reshape(1,-1), target.reshape(1,-1), True)
+        xcs.fit(state.reshape(1, -1), target.reshape(1, -1), True)
+
 
 def egreedy_action(state):
-    """ Selects an action using an epsilon greedy policy """
+    """Selects an action using an epsilon greedy policy"""
     if np.random.rand() < epsilon:
         return random.randrange(N_ACTIONS)
-    prediction_array = xcs.predict(state.reshape(1,-1))[0]
+    prediction_array = xcs.predict(state.reshape(1, -1))[0]
     return np.argmax(prediction_array)
 
+
 def episode(episode_nr, create_gif):
-    """ Executes a single episode, saving to memory buffer """
+    """Executes a single episode, saving to memory buffer"""
     episode_score = 0
     episode_steps = 0
     state = env.reset()
@@ -155,7 +163,7 @@ def episode(episode_nr, create_gif):
         episode_score += reward
         memory.append((state, action, reward, next_state, done))
         if create_gif:
-            frames.append(env.render(mode='rgb_array'))
+            frames.append(env.render(mode="rgb_array"))
             fscore.append(episode_score)
             ftrial.append(episode_nr)
         if done:
@@ -167,6 +175,7 @@ def episode(episode_nr, create_gif):
             break
         state = next_state
     return episode_score, episode_steps
+
 
 # learning episodes
 for ep in range(MAX_EPISODES):
@@ -182,12 +191,16 @@ for ep in range(MAX_EPISODES):
     total_steps += ep_steps
     scores.append(ep_score)
     mean_score = np.mean(scores)
-    print('episodes=%d steps=%d score=%.2f epsilon=%.5f error=%.5f msize=%.2f' %
-          (ep, total_steps, mean_score, epsilon, xcs.error(), xcs.mset_size()))
+    print(
+        "episodes=%d steps=%d score=%.2f epsilon=%.5f error=%.5f msize=%.2f"
+        % (ep, total_steps, mean_score, epsilon, xcs.error(), xcs.mset_size())
+    )
     # is the problem solved?
     if ep > N and mean_score > env.spec.reward_threshold:
-        print('solved after %d episodes: mean score %.2f > %.2f' %
-              (ep, mean_score, env.spec.reward_threshold))
+        print(
+            "solved after %d episodes: mean score %.2f > %.2f"
+            % (ep, mean_score, env.spec.reward_threshold)
+        )
         break
     # decay the exploration rate
     if epsilon > EPSILON_MIN:
@@ -201,8 +214,10 @@ ep_score, ep_steps = episode(ep, SAVE_GIF)
 env.close()
 
 if SAVE_GIF:
-    print('Creating gif. This may take a while...')
+    print("Creating gif. This may take a while...")
     save_frames_as_gif()
-    print('To crop and optimise gif:')
-    print('gifsicle -O3 --colors=64 --use-col=web --lossy=100 ' \
-          '--crop 0,10-270,220 --output out.gif animation.gif')
+    print("To crop and optimise gif:")
+    print(
+        "gifsicle -O3 --colors=64 --use-col=web --lossy=100 "
+        "--crop 0,10-270,220 --output out.gif animation.gif"
+    )

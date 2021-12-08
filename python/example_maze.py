@@ -30,6 +30,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 import xcsf
 
+
 class Maze:
     """
     Maze problem environment.
@@ -46,64 +47,77 @@ class Maze:
     Some mazes require a form of memory to be solved optimally.
     """
 
-    OPTIMAL = { 'woods1': 1.7, 'woods2': 1.7, 'woods14': 9.5, 'maze4': 3.5,
-            'maze5': 4.61, 'maze6': 5.19, 'maze7': 4.33, 'maze10': 5.11,
-            'woods101': 2.9, 'woods101half': 3.1, 'woods102': 3.31,
-            'mazef1': 1.8, 'mazef2': 2.5, 'mazef3': 3.375, 'mazef4': 4.5 }
-    MAX_PAYOFF = 1 #: reward for finding the goal
-    X_MOVES = [0, 1, 1, 1, 0, -1, -1, -1] #: possible moves on x-axis
-    Y_MOVES = [-1, -1, 0, 1, 1, 1, 0, -1] #: possible moves on y-axis
+    OPTIMAL = {
+        "woods1": 1.7,
+        "woods2": 1.7,
+        "woods14": 9.5,
+        "maze4": 3.5,
+        "maze5": 4.61,
+        "maze6": 5.19,
+        "maze7": 4.33,
+        "maze10": 5.11,
+        "woods101": 2.9,
+        "woods101half": 3.1,
+        "woods102": 3.31,
+        "mazef1": 1.8,
+        "mazef2": 2.5,
+        "mazef3": 3.375,
+        "mazef4": 4.5,
+    }
+    MAX_PAYOFF = 1  #: reward for finding the goal
+    X_MOVES = [0, 1, 1, 1, 0, -1, -1, -1]  #: possible moves on x-axis
+    Y_MOVES = [-1, -1, 0, 1, 1, 1, 0, -1]  #: possible moves on y-axis
 
     def __init__(self, filename):
-        """ Constructs a new maze problem given a maze file name. """
-        self.name = filename #: maze name
-        self.maze = [] #: maze as read from the input file
+        """Constructs a new maze problem given a maze file name."""
+        self.name = filename  #: maze name
+        self.maze = []  #: maze as read from the input file
         line = []
-        path = os.path.normpath('../env/maze/'+filename+'.txt')
+        path = os.path.normpath("../env/maze/" + filename + ".txt")
         with open(path) as f:
             while True:
                 c = f.read(1)
                 if not c:
                     break
-                if c == '\n':
+                if c == "\n":
                     self.maze.insert(0, line)
                     line = []
                 else:
                     line.append(c)
-        self.x_size = len(self.maze[0]) #: maze width
-        self.y_size = len(self.maze) #: maze height
-        self.state = np.zeros(8) #: current maze state
-        self.x_pos = 0 #: current x position within the maze
-        self.y_pos = 0 #: current y position within the maze
+        self.x_size = len(self.maze[0])  #: maze width
+        self.y_size = len(self.maze)  #: maze height
+        self.state = np.zeros(8)  #: current maze state
+        self.x_pos = 0  #: current x position within the maze
+        self.y_pos = 0  #: current y position within the maze
 
     def reset(self):
-        """ Resets a maze problem: generating a new random start position. """
+        """Resets a maze problem: generating a new random start position."""
         while True:
             self.x_pos = random.randint(0, self.x_size - 1)
             self.y_pos = random.randint(0, self.y_size - 1)
-            if self.maze[self.y_pos][self.x_pos] == '*':
+            if self.maze[self.y_pos][self.x_pos] == "*":
                 break
         self.update_state()
         return np.copy(self.state)
 
     def sensor(self, x_pos, y_pos):
-        """ Returns the real-number representation of a discrete maze cell. """
+        """Returns the real-number representation of a discrete maze cell."""
         s = self.maze[y_pos][x_pos]
-        if s == '*':
+        if s == "*":
             return 0.1
-        if s == 'O':
+        if s == "O":
             return 0.3
-        if s == 'Q':
+        if s == "Q":
             return 0.4
-        if s == 'G':
+        if s == "G":
             return 0.7
-        if s == 'F':
+        if s == "F":
             return 0.9
-        print('invalid maze state: '+str(s))
+        print("invalid maze state: " + str(s))
         sys.exit()
 
     def update_state(self):
-        """ Sets the state to a real-vector representing the sensory input. """
+        """Sets the state to a real-vector representing the sensory input."""
         spos = 0
         for i in range(-1, 2):
             for j in range(-1, 2):
@@ -120,32 +134,33 @@ class Maze:
         Returns next state, immediate reward and whether terminal state reached.
         """
         if act < 0 or act > 7:
-            print('invalid maze action')
+            print("invalid maze action")
             sys.exit()
         x_vec = Maze.X_MOVES[act]
         y_vec = Maze.Y_MOVES[act]
         x_new = ((self.x_pos + x_vec) % self.x_size + self.x_size) % self.x_size
         y_new = ((self.y_pos + y_vec) % self.y_size + self.y_size) % self.y_size
         s = self.maze[y_new][x_new]
-        if s in ('O', 'Q'):
+        if s in ("O", "Q"):
             return np.copy(self.state), 0, False
         self.x_pos = x_new
         self.y_pos = y_new
         self.update_state()
-        if s == '*':
+        if s == "*":
             return np.copy(self.state), 0, False
-        if s in ('F', 'G'):
+        if s in ("F", "G"):
             return np.copy(self.state), self.max_payoff(), True
-        print('invalid maze type')
+        print("invalid maze type")
         sys.exit()
 
     def optimal(self):
-        """ Returns the optimal number of steps to the goal. """
+        """Returns the optimal number of steps to the goal."""
         return Maze.OPTIMAL[self.name]
 
     def max_payoff(self):
-        """ Returns the reward for reaching the goal state. """
+        """Returns the reward for reaching the goal state."""
         return float(Maze.MAX_PAYOFF)
+
 
 ###################
 # Initialise XCSF
@@ -160,17 +175,17 @@ xcs = xcsf.XCS(X_DIM, Y_DIM, N_ACTIONS)
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000
 xcs.PERF_TRIALS = 50
-xcs.E0 = 0.001 # target error
-xcs.BETA = 0.2 # classifier parameter update rate
-xcs.THETA_EA = 25 # EA frequency
-xcs.ALPHA = 0.1 # accuracy offset
-xcs.NU = 5 # accuracy slope
+xcs.E0 = 0.001  # target error
+xcs.BETA = 0.2  # classifier parameter update rate
+xcs.THETA_EA = 25  # EA frequency
+xcs.ALPHA = 0.1  # accuracy offset
+xcs.NU = 5  # accuracy slope
 xcs.EA_SUBSUMPTION = True
 xcs.SET_SUBSUMPTION = True
-xcs.THETA_SUB = 100 # minimum experience of a subsumer
-xcs.action('integer') # integer actions
-xcs.condition('ternary', { 'bits': 2 }) # ternary conditions: 2-bits per float
-xcs.prediction('rls-linear') # linear recursive least squares predictions
+xcs.THETA_SUB = 100  # minimum experience of a subsumer
+xcs.action("integer")  # integer actions
+xcs.condition("ternary", {"bits": 2})  # ternary conditions: 2-bits per float
+xcs.prediction("rls-linear")  # linear recursive least squares predictions
 
 xcs.print_params()
 
@@ -178,15 +193,16 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-N = 40 # 2,000 trials
+N = 40  # 2,000 trials
 trials = np.zeros(N)
 psize = np.zeros(N)
 msize = np.zeros(N)
 steps = np.zeros(N)
 error = np.zeros(N)
 
+
 def trial(env, explore):
-    """ Executes a single trial/episode. """
+    """Executes a single trial/episode."""
     err = 0
     state = env.reset()
     xcs.init_trial()
@@ -204,9 +220,10 @@ def trial(env, explore):
     xcs.end_trial()
     return cnt, err / cnt
 
+
 def run_experiment(env):
-    """ Executes a single experiment. """
-    bar = tqdm(total=N) # progress bar
+    """Executes a single experiment."""
+    bar = tqdm(total=N)  # progress bar
     for i in range(N):
         for _ in range(xcs.PERF_TRIALS):
             # explore
@@ -218,29 +235,36 @@ def run_experiment(env):
         steps[i] /= float(xcs.PERF_TRIALS)
         error[i] /= float(xcs.PERF_TRIALS)
         trials[i] = (i + 1) * xcs.PERF_TRIALS
-        psize[i] = xcs.pset_size() # current population size
-        msize[i] = xcs.mset_size() # avg match set size
+        psize[i] = xcs.pset_size()  # current population size
+        msize[i] = xcs.mset_size()  # avg match set size
         # update status
-        status = ('trials=%d steps=%.5f error=%.5f psize=%d msize=%.1f' %
-                (trials[i], steps[i], error[i], psize[i], msize[i]))
+        status = "trials=%d steps=%.5f error=%.5f psize=%d msize=%.1f" % (
+            trials[i],
+            steps[i],
+            error[i],
+            psize[i],
+            msize[i],
+        )
         bar.set_description(status)
         bar.refresh()
         bar.update(1)
     bar.close()
 
+
 def plot_performance(env):
-    """ Plots learning performance. """
+    """Plots learning performance."""
     plt.figure(figsize=(10, 6))
     plt.plot(trials, steps)
-    plt.grid(linestyle='dotted', linewidth=1)
-    plt.axhline(y=env.optimal(), xmin=0, xmax=1, linestyle='--', color='k')
+    plt.grid(linestyle="dotted", linewidth=1)
+    plt.axhline(y=env.optimal(), xmin=0, xmax=1, linestyle="--", color="k")
     plt.title(env.name, fontsize=14)
-    plt.ylabel('Steps to Goal', fontsize=12)
-    plt.xlabel('Trials', fontsize=12)
+    plt.ylabel("Steps to Goal", fontsize=12)
+    plt.xlabel("Trials", fontsize=12)
     plt.xlim([0, N * xcs.PERF_TRIALS])
     plt.show()
 
-maze = Maze('maze4')
+
+maze = Maze("maze4")
 run_experiment(maze)
 plot_performance(maze)
 
@@ -256,33 +280,34 @@ screen = Screen()
 screen.setup(WIDTH + 4, HEIGHT + 8)
 screen.setworldcoordinates(0, 0, WIDTH, HEIGHT)
 
+
 def draw_maze(xoff, yoff):
-    """ Draws the background and outline of the current maze. """
+    """Draws the background and outline of the current maze."""
     bg = Turtle(visible=False)
     screen.tracer(False)
     bg.penup()
-    bg.shape('square')
+    bg.shape("square")
     bg.shapesize(1, 1)
     for y in range(maze.y_size):
         for x in range(maze.x_size):
             s = maze.maze[y][x]
-            if s == '*':
-                bg.color('white')
-            if s == 'O':
-                bg.color('black')
-            if s == 'G':
-                bg.color('yellow')
-            if s == 'F':
-                bg.color('yellow')
-            if s == 'Q':
-                bg.color('brown')
+            if s == "*":
+                bg.color("white")
+            if s == "O":
+                bg.color("black")
+            if s == "G":
+                bg.color("yellow")
+            if s == "F":
+                bg.color("yellow")
+            if s == "Q":
+                bg.color("brown")
             bg.goto(xoff + x * CELL_SIZE, yoff + y * CELL_SIZE)
             bg.stamp()
     xoff = xoff - CELL_SIZE / 2
     yoff = yoff - CELL_SIZE / 2
     bg.goto(xoff, yoff)
     bg.pensize(2)
-    bg.color('black')
+    bg.color("black")
     bg.pendown()
     bg.goto(xoff, yoff + GRID_HEIGHT * CELL_SIZE)
     bg.goto(xoff + GRID_WIDTH * CELL_SIZE, yoff + GRID_HEIGHT * CELL_SIZE)
@@ -290,13 +315,14 @@ def draw_maze(xoff, yoff):
     bg.goto(xoff, yoff)
     bg.penup()
 
+
 def visualise(xoff, yoff):
-    """ Executes an XCSF exploit run through the maze and draws the path. """
+    """Executes an XCSF exploit run through the maze and draws the path."""
     state = maze.reset()
     agent = Turtle(visible=True)
-    agent.shape('turtle')
-    agent.color('green')
-    agent.speed('normal')
+    agent.shape("turtle")
+    agent.color("green")
+    agent.speed("normal")
     agent.shapesize(0.5, 0.5)
     agent.pensize(2)
     agent.penup()
@@ -316,10 +342,11 @@ def visualise(xoff, yoff):
         state = next_state
     xcs.end_trial()
 
+
 def draw_runs():
-    """ Draw some runs through the maze. """
-    grid_xoff = (GRID_WIDTH * CELL_SIZE)
-    grid_yoff = (GRID_HEIGHT * CELL_SIZE)
+    """Draw some runs through the maze."""
+    grid_xoff = GRID_WIDTH * CELL_SIZE
+    grid_yoff = GRID_HEIGHT * CELL_SIZE
     for i in range(8):
         for j in range(4):
             xoff = i * (grid_xoff + CELL_SIZE)
@@ -327,5 +354,6 @@ def draw_runs():
             draw_maze(xoff, yoff)
             visualise(xoff, yoff)
 
+
 draw_runs()
-input('Press enter to exit.')
+input("Press enter to exit.")

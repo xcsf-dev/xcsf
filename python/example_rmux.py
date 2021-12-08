@@ -28,6 +28,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 import xcsf
 
+
 class Mux:
     """
     Real-multiplexer problem environment.
@@ -41,24 +42,24 @@ class Mux:
     """
 
     def __init__(self, n_bits):
-        """ Constructs a new real-multiplexer problem of maximum size n_bits. """
-        self.n_bits = n_bits #: total number of bits
-        self.n_actions = 2 #: total number of actions
-        self.state = np.zeros(n_bits) #: current mux state
-        self.max_payoff = 1 #: reward for a correct prediction
-        self.pos_bits = 1 #: number of addressing bits
+        """Constructs a new real-multiplexer problem of maximum size n_bits."""
+        self.n_bits = n_bits  #: total number of bits
+        self.n_actions = 2  #: total number of actions
+        self.state = np.zeros(n_bits)  #: current mux state
+        self.max_payoff = 1  #: reward for a correct prediction
+        self.pos_bits = 1  #: number of addressing bits
         while self.pos_bits + pow(2, self.pos_bits) <= self.n_bits:
             self.pos_bits += 1
         self.pos_bits -= 1
-        print(str(self.n_bits)+' bits, '+str(self.pos_bits)+' position bits')
+        print(str(self.n_bits) + " bits, " + str(self.pos_bits) + " position bits")
 
     def reset(self):
-        """ Generates a random real-multiplexer state. """
+        """Generates a random real-multiplexer state."""
         for k in range(self.n_bits):
             self.state[k] = random.random()
 
     def answer(self):
-        """ Returns the (discretised) bit addressed by the current mux state. """
+        """Returns the (discretised) bit addressed by the current mux state."""
         pos = self.pos_bits
         for k in range(self.pos_bits):
             if self.state[k] > 0.5:
@@ -68,10 +69,11 @@ class Mux:
         return 0
 
     def execute(self, act):
-        """ Returns the reward for performing an action. """
+        """Returns the reward for performing an action."""
         if act == self.answer():
             return self.max_payoff
         return 0
+
 
 # Create new real-multiplexer problem
 mux = Mux(6)
@@ -86,19 +88,19 @@ MAX_PAYOFF = mux.max_payoff
 # constructor = (x_dim, y_dim, n_actions)
 xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
-xcs.OMP_NUM_THREADS = 8 # number of CPU cores to use
-xcs.POP_SIZE = 1000 # maximum population size
-xcs.E0 = 0.01 # target error
-xcs.BETA = 0.2 # classifier parameter update rate
-xcs.THETA_EA = 25 # EA frequency
-xcs.ALPHA = 0.1 # accuracy offset
-xcs.NU = 5 # accuracy slope
+xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
+xcs.POP_SIZE = 1000  # maximum population size
+xcs.E0 = 0.01  # target error
+xcs.BETA = 0.2  # classifier parameter update rate
+xcs.THETA_EA = 25  # EA frequency
+xcs.ALPHA = 0.1  # accuracy offset
+xcs.NU = 5  # accuracy slope
 xcs.EA_SUBSUMPTION = True
 xcs.SET_SUBSUMPTION = True
-xcs.THETA_SUB = 100 # minimum experience of a subsumer
-xcs.action('integer')
-xcs.condition('hyperrectangle', { 'min': 0, 'max': 1, 'spread-min': 0.1 })
-xcs.prediction('nlms-linear', {'eta': 1, 'eta-min': 0.0001, 'evolve-eta': True})
+xcs.THETA_SUB = 100  # minimum experience of a subsumer
+xcs.action("integer")
+xcs.condition("hyperrectangle", {"min": 0, "max": 1, "spread-min": 0.1})
+xcs.prediction("nlms-linear", {"eta": 1, "eta-min": 0.0001, "evolve-eta": True})
 
 xcs.print_params()
 
@@ -106,53 +108,60 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-PERF_TRIALS = 1000 # number of trials over which to average performance
-N = 100 # 100,000 trials in total to run
+PERF_TRIALS = 1000  # number of trials over which to average performance
+N = 100  # 100,000 trials in total to run
 trials = np.zeros(N)
 psize = np.zeros(N)
 msize = np.zeros(N)
 performance = np.zeros(N)
 error = np.zeros(N)
 
+
 def egreedy_action(state, epsilon):
-    """ Selects an action using an epsilon greedy policy. """
+    """Selects an action using an epsilon greedy policy."""
     if np.random.rand() < epsilon:
         return random.randrange(N_ACTIONS), 0
-    prediction_array = xcs.predict(state.reshape(1,-1))[0]
+    prediction_array = xcs.predict(state.reshape(1, -1))[0]
     action = np.argmax(prediction_array)
     prediction = prediction_array[action]
     return action, prediction
 
+
 def run_experiment():
-    """ Executes a single experiment. """
-    bar = tqdm(total=N) # progress bar
+    """Executes a single experiment."""
+    bar = tqdm(total=N)  # progress bar
     for i in range(N):
         for _ in range(PERF_TRIALS):
             # explore trial
             mux.reset()
-            action, prediction = egreedy_action(mux.state, 1) # random action
+            action, prediction = egreedy_action(mux.state, 1)  # random action
             reward = mux.execute(action)
-            xcs.fit(mux.state, action, reward) # update action set, run EA, etc.
+            xcs.fit(mux.state, action, reward)  # update action set, run EA, etc.
             # exploit trial
             mux.reset()
-            action, prediction = egreedy_action(mux.state, 0) # best action
+            action, prediction = egreedy_action(mux.state, 0)  # best action
             reward = mux.execute(action)
             performance[i] += reward / MAX_PAYOFF
             error[i] += abs(reward - prediction) / MAX_PAYOFF
         performance[i] /= float(PERF_TRIALS)
         error[i] /= PERF_TRIALS
-        trials[i] = xcs.time() # number of learning updates performed
-        psize[i] = xcs.pset_size() # current population size
-        msize[i] = xcs.mset_size() # avg match set size
+        trials[i] = xcs.time()  # number of learning updates performed
+        psize[i] = xcs.pset_size()  # current population size
+        msize[i] = xcs.mset_size()  # avg match set size
         # update status
-        status = ('trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f' %
-                (trials[i], performance[i], error[i], psize[i], msize[i]))
+        status = "trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f" % (
+            trials[i],
+            performance[i],
+            error[i],
+            psize[i],
+            msize[i],
+        )
         bar.set_description(status)
         bar.refresh()
         bar.update(1)
     bar.close()
 
-# run
+
 run_experiment()
 
 #################################
@@ -160,11 +169,11 @@ run_experiment()
 #################################
 
 plt.figure(figsize=(10, 6))
-plt.plot(trials, performance, label='Performance')
-plt.plot(trials, error, label='System error')
-plt.grid(linestyle='dotted', linewidth=1)
-plt.title(str(mux.n_bits)+'-bit Real Multiplexer', fontsize=14)
-plt.xlabel('Trials', fontsize=12)
+plt.plot(trials, performance, label="Performance")
+plt.plot(trials, error, label="System error")
+plt.grid(linestyle="dotted", linewidth=1)
+plt.title(str(mux.n_bits) + "-bit Real Multiplexer", fontsize=14)
+plt.xlabel("Trials", fontsize=12)
 plt.xlim([0, N * PERF_TRIALS])
 plt.legend()
 plt.show()
