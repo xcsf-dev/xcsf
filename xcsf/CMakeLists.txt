@@ -1,18 +1,18 @@
 #
-#  Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
 #
-#  This program is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or
-#  (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
 #
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
 #
-#  You should have received a copy of the GNU General Public License
-#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with
+# this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
 set(XCSF_SOURCES
@@ -127,57 +127,58 @@ set(XCSF_HEADERS
     xcs_supervised.h
     xcsf.h)
 
-set(dSFMT
+set(DSFMT
     ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT.c
     ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT.h
     ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-common.h
     ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-params.h
     ${CMAKE_SOURCE_DIR}/lib/dSFMT/dSFMT-params19937.h)
 
-set(cJSON ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.c ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.h)
+set(CJSON ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.c
+          ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.h)
 
-#################################################
+# ##############################################################################
 # target: libxcs - main functions
-#################################################
+# ##############################################################################
 
 add_definitions(-DDSFMT_MEXP=19937)
-add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${dSFMT} ${cJSON})
+add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${DSFMT} ${CJSON})
 target_link_libraries(xcs PUBLIC m)
 if(PARALLEL AND OpenMP_FOUND)
-    target_link_libraries(xcs PUBLIC OpenMP::OpenMP_C)
+  target_link_libraries(xcs PUBLIC OpenMP::OpenMP_C)
 endif()
 
-#################################################
+# ##############################################################################
 # target: main - stand-alone binary execution
-#################################################
+# ##############################################################################
 
 if(XCSF_MAIN)
-    add_executable(main main.c)
-    target_link_libraries(main PUBLIC xcs)
+  add_executable(main main.c)
+  target_link_libraries(main PUBLIC xcs)
 endif()
 
-#################################################
+# ##############################################################################
 # target: xcsf.so / pyd - Python library
-#################################################
+# ##############################################################################
 
 if(XCSF_PYLIB)
-    set(XCSF_PY_SOURCES pybind_wrapper.cpp)
-    pybind11_add_module(xcsf ${XCSF_PY_SOURCES})
-    if(PARALLEL AND OpenMP_FOUND)
-        target_link_libraries(xcsf PUBLIC OpenMP::OpenMP_CXX)
-    endif()
-    if(WIN32) # https://cython.readthedocs.io/en/latest/src/tutorial/appendix.html
-        target_link_libraries(
-            xcsf
-            PUBLIC xcs
-                   -static-libgcc
-                   -static-libstdc++
-                   -Wl,-Bstatic,--whole-archive
-                   -lwinpthread
-                   -Wl,--no-whole-archive
-                   -lgomp
-                   -Wl,--no-whole-archive)
-    else()
-        target_link_libraries(xcsf PUBLIC xcs)
-    endif()
+  set(XCSF_PY_SOURCES pybind_wrapper.cpp)
+  pybind11_add_module(xcsf ${XCSF_PY_SOURCES})
+  if(PARALLEL AND OpenMP_FOUND)
+    target_link_libraries(xcsf PUBLIC OpenMP::OpenMP_CXX)
+  endif()
+  if(WIN32) # https://cython.readthedocs.io/en/latest/src/tutorial/appendix.html
+    target_link_libraries(
+      xcsf
+      PUBLIC xcs
+             -static-libgcc
+             -static-libstdc++
+             -Wl,-Bstatic,--whole-archive
+             -lwinpthread
+             -Wl,--no-whole-archive
+             -lgomp
+             -Wl,--no-whole-archive)
+  else()
+    target_link_libraries(xcsf PUBLIC xcs)
+  endif()
 endif()
