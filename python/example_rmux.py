@@ -23,9 +23,11 @@ conditions, linear least squares predictions, and integer actions.
 """
 
 import random
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
 from tqdm import tqdm
+
 import xcsf
 
 

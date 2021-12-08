@@ -24,13 +24,14 @@ prediction output and labels are one-hot encoded. Similar to regression, a
 single dummy action is performed such that [A] = [M].
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-from tqdm import tqdm
+import numpy as np
 from sklearn.datasets import fetch_openml
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
+from tqdm import tqdm
+
 import xcsf
 
 ###############################

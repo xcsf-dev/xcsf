@@ -22,12 +22,14 @@ to solve discrete mazes loaded from a specified input file.
 """
 
 import os
-import sys
 import random
+import sys
 from turtle import Screen, Turtle
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
 from tqdm import tqdm
+
 import xcsf
 
 

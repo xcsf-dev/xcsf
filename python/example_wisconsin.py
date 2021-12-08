@@ -24,18 +24,18 @@ actions.
 """
 
 import random
-import numpy as np
+
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-from tqdm import tqdm
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import minmax_scale
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import f1_score
-from sklearn.metrics import confusion_matrix
+import numpy as np
 from sklearn.datasets import load_breast_cancer
+from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
+from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import minmax_scale
 from sklearn.tree import DecisionTreeClassifier
+from tqdm import tqdm
+
 import xcsf
 
 data = load_breast_cancer()  # 30 features, 2 classes # 569 instances

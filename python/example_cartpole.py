@@ -23,11 +23,12 @@ cart-pole problem from the OpenAI Gym.
 
 import random
 from collections import deque
-import matplotlib.pyplot as plt
-from matplotlib import rcParams
-from matplotlib import animation
-import numpy as np
+
 import gym
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import animation, rcParams
+
 import xcsf
 
 ############################################

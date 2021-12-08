@@ -23,15 +23,16 @@ GP conditions and neural network predictions. A single dummy action is
 performed such that [A] = [M].
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-from tqdm import tqdm
+import numpy as np
 from sklearn.datasets import fetch_openml
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import minmax_scale, StandardScaler
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPRegressor
+from sklearn.preprocessing import StandardScaler, minmax_scale
+from tqdm import tqdm
+
 import xcsf
 
 np.set_printoptions(suppress=True)
