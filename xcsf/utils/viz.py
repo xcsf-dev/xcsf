@@ -36,13 +36,13 @@ class TreeViz:
         self.pos = 0
         self.gviz = graphviz.Graph("G", filename=filename + ".gv")
         self.read_subexpr()
-        if not note is None:
+        if note is not None:
             self.gviz.attr(label=note)
         self.gviz.view()
 
     def label(self, symbol):
         """Returns the node label for a symbol."""
-        if not self.feature_names is None and isinstance(symbol, str):
+        if self.feature_names is not None and isinstance(symbol, str):
             start, end = symbol.split("_") if "_" in symbol else (symbol, "")
             if start == "feature" and int(end) < len(self.feature_names):
                 return self.feature_names[int(end)]
@@ -101,7 +101,7 @@ class DGPViz:
 
     def label(self, symbol):
         """Returns the node label for a symbol."""
-        if not self.feature_names is None and isinstance(symbol, str):
+        if self.feature_names is not None and isinstance(symbol, str):
             start, end = symbol.split("_") if "_" in symbol else (symbol, "")
             if start == "feature" and int(end) < len(self.feature_names):
                 return self.feature_names[int(end)]
