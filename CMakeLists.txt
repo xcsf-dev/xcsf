@@ -130,8 +130,6 @@ endif()
 
 option(XCSF_PYLIB "Build XCSF Python library" OFF)
 if(XCSF_PYLIB)
-  find_package(PythonInterp 3 REQUIRED)
-  find_package(PythonLibs 3 REQUIRED)
   add_subdirectory(lib/pybind11)
   file(GLOB PYTHON_EXAMPLES "python/*.py")
   file(COPY ${PYTHON_EXAMPLES} DESTINATION .)
