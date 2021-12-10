@@ -22,7 +22,10 @@ the real-multiplexer problem. Classifiers are composed of hyperrectangle
 conditions, linear least squares predictions, and integer actions.
 """
 
+from __future__ import annotations
+
 import random
+from typing import Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -43,24 +46,24 @@ class Mux:
     Example valid lengths: 3, 6, 11, 20, 37, 70, 135, 264.
     """
 
-    def __init__(self, n_bits):
+    def __init__(self, n_bits: int) -> None:
         """Constructs a new real-multiplexer problem of maximum size n_bits."""
-        self.n_bits = n_bits  #: total number of bits
-        self.n_actions = 2  #: total number of actions
-        self.state = np.zeros(n_bits)  #: current mux state
-        self.max_payoff = 1  #: reward for a correct prediction
-        self.pos_bits = 1  #: number of addressing bits
+        self.n_bits: int = n_bits  #: total number of bits
+        self.n_actions: int = 2  #: total number of actions
+        self.state: np.ndarray = np.zeros(n_bits)  #: current mux state
+        self.max_payoff: float = 1  #: reward for a correct prediction
+        self.pos_bits: int = 1  #: number of addressing bits
         while self.pos_bits + pow(2, self.pos_bits) <= self.n_bits:
             self.pos_bits += 1
         self.pos_bits -= 1
         print(str(self.n_bits) + " bits, " + str(self.pos_bits) + " position bits")
 
-    def reset(self):
+    def reset(self) -> None:
         """Generates a random real-multiplexer state."""
         for k in range(self.n_bits):
             self.state[k] = random.random()
 
-    def answer(self):
+    def answer(self) -> int:
         """Returns the (discretised) bit addressed by the current mux state."""
         pos = self.pos_bits
         for k in range(self.pos_bits):
@@ -70,7 +73,7 @@ class Mux:
             return 1
         return 0
 
-    def execute(self, act):
+    def execute(self, act: int) -> float:
         """Returns the reward for performing an action."""
         if act == self.answer():
             return self.max_payoff
@@ -78,17 +81,17 @@ class Mux:
 
 
 # Create new real-multiplexer problem
-mux = Mux(6)
-X_DIM = mux.n_bits
-N_ACTIONS = mux.n_actions
-MAX_PAYOFF = mux.max_payoff
+mux: Mux = Mux(6)
+X_DIM: int = mux.n_bits
+N_ACTIONS: int = mux.n_actions
+MAX_PAYOFF: float = mux.max_payoff
 
 ###################
 # Initialise XCSF
 ###################
 
 # constructor = (x_dim, y_dim, n_actions)
-xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
+xcs: xcsf.XCS = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
 xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
 xcs.POP_SIZE = 1000  # maximum population size
@@ -110,16 +113,16 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-PERF_TRIALS = 1000  # number of trials over which to average performance
-N = 100  # 100,000 trials in total to run
-trials = np.zeros(N)
-psize = np.zeros(N)
-msize = np.zeros(N)
-performance = np.zeros(N)
-error = np.zeros(N)
+PERF_TRIALS: int = 1000  # number of trials over which to average performance
+N: int = 100  # 100,000 trials in total to run
+trials: np.ndarray = np.zeros(N)
+psize: np.ndarray = np.zeros(N)
+msize: np.ndarray = np.zeros(N)
+performance: np.ndarray = np.zeros(N)
+error: np.ndarray = np.zeros(N)
 
 
-def egreedy_action(state, epsilon):
+def egreedy_action(state: np.ndarray, epsilon: float) -> Tuple[int, float]:
     """Selects an action using an epsilon greedy policy."""
     if np.random.rand() < epsilon:
         return random.randrange(N_ACTIONS), 0
@@ -129,7 +132,7 @@ def egreedy_action(state, epsilon):
     return action, prediction
 
 
-def run_experiment():
+def run_experiment() -> None:
     """Executes a single experiment."""
     bar = tqdm(total=N)  # progress bar
     for i in range(N):

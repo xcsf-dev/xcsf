@@ -23,6 +23,8 @@ GP conditions and neural network predictions. A single dummy action is
 performed such that [A] = [M].
 """
 
+from __future__ import annotations
+
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import fetch_openml
@@ -71,8 +73,8 @@ y_train = minmax_scale(y_train, feature_range=(0, 1))
 y_test = minmax_scale(y_test, feature_range=(0, 1))
 
 # get number of input and output variables
-X_DIM = np.shape(X_train)[1]
-Y_DIM = np.shape(y_train)[1]
+X_DIM: int = np.shape(X_train)[1]
+Y_DIM: int = np.shape(y_train)[1]
 
 # 10% of training for validation
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1)
@@ -88,7 +90,7 @@ print("y_test shape = " + str(np.shape(y_test)))
 # Initialise XCSF
 ###################
 
-xcs = xcsf.XCS(X_DIM, Y_DIM, 1)  # initialise XCSF for supervised learning
+xcs: xcsf.XCS = xcsf.XCS(X_DIM, Y_DIM, 1)  # initialise for supervised learning
 
 xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
 xcs.POP_SIZE = 500  # maximum population size
@@ -102,7 +104,7 @@ xcs.THETA_DEL = 50  # min experience before fitness used in deletion
 xcs.BETA = 0.1  # update rate for error, etc.
 xcs.action("integer")  # (dummy) integer actions
 
-tree_args = {
+tree_args: dict = {
     "min": 0,  # minimum value of a constant
     "max": 1,  # maximum value of a constant
     "n-constants": 100,  # number of (global) constants
@@ -111,7 +113,7 @@ tree_args = {
 }
 xcs.condition("tree-gp", tree_args)  # GP tree conditions
 
-prediction_layers = {
+prediction_layers: dict = {
     "layer_0": {  # hidden layer
         "type": "connected",
         "activation": "relu",
@@ -146,16 +148,16 @@ xcs.print_params()
 # Run experiment
 #################
 
-N = 200  # 200,000 trials
-trials = np.zeros(N)
-psize = np.zeros(N)
-msize = np.zeros(N)
-train_mse = np.zeros(N)
-val_mse = np.zeros(N)
+N: int = 200  # 200,000 trials
+trials: np.ndarray = np.zeros(N)
+psize: np.ndarray = np.zeros(N)
+msize: np.ndarray = np.zeros(N)
+train_mse: np.ndarray = np.zeros(N)
+val_mse: np.ndarray = np.zeros(N)
 
-VAL_PERIOD = 10  # validation mean moving average length
-val_min = 999999  # minimum validation error
-val_trial = 0  # trial number the system was checkpointed
+VAL_PERIOD: int = 10  # validation mean moving average length
+val_min: float = 999999  # minimum validation error
+val_trial: int = 0  # trial number the system was checkpointed
 
 bar = tqdm(total=N)  # progress bar
 for i in range(N):

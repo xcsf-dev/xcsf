@@ -88,6 +88,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/rpreen/xcsf",
     packages=find_packages(),
+    package_data={"xcsf": ["__init__.pyi"]},
     ext_modules=[CMakeExtension("xcsf/xcsf")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,

@@ -24,6 +24,8 @@ prediction output and labels are one-hot encoded. Similar to regression, a
 single dummy action is performed such that [A] = [M].
 """
 
+from __future__ import annotations
+
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import fetch_openml
@@ -40,9 +42,9 @@ import xcsf
 
 # Load USPS data from https://www.openml.org/d/41082
 data = fetch_openml(data_id=41082)  # 256 features, 10 classes, 9298 instances
-INPUT_HEIGHT = 16
-INPUT_WIDTH = 16
-INPUT_CHANNELS = 1
+INPUT_HEIGHT: int = 16
+INPUT_WIDTH: int = 16
+INPUT_CHANNELS: int = 1
 
 # split into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(
@@ -78,14 +80,14 @@ print("X_test shape = " + str(np.shape(X_test)))
 print("y_test shape = " + str(np.shape(y_test)))
 
 # get number of input and output variables
-X_DIM = np.shape(X_train)[1]
-Y_DIM = np.shape(y_train)[1]
+X_DIM: int = np.shape(X_train)[1]
+Y_DIM: int = np.shape(y_train)[1]
 
 ###################
 # Initialise XCSF
 ###################
 
-xcs = xcsf.XCS(X_DIM, Y_DIM, 1)  # initialise XCSF for supervised learning
+xcs: xcsf.XCS = xcsf.XCS(X_DIM, Y_DIM, 1)  # initialise for supervised learning
 
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 500
@@ -99,21 +101,21 @@ xcs.THETA_EA = 100
 xcs.THETA_DEL = 100
 xcs.action("integer")  # (dummy) integer actions
 
-ACTIVATION = "selu"
-SGD_WEIGHTS = True
-EVOLVE_WEIGHTS = True
-EVOLVE_CONNECT = True
-EVOLVE_ETA = True
-EVOLVE_NEURONS = True
-ETA = 0.01
-ETA_MIN = 0.00001
-MOMENTUM = 0.9
-DECAY = 0
-N_INIT = 5
-N_MAX = 100
-MAX_GROW = 1
+ACTIVATION: str = "selu"
+SGD_WEIGHTS: bool = True
+EVOLVE_WEIGHTS: bool = True
+EVOLVE_CONNECT: bool = True
+EVOLVE_ETA: bool = True
+EVOLVE_NEURONS: bool = True
+ETA: float = 0.01
+ETA_MIN: float = 0.00001
+MOMENTUM: float = 0.9
+DECAY: float = 0
+N_INIT: int = 5
+N_MAX: int = 100
+MAX_GROW: int = 1
 
-condition_layers = {
+condition_layers: dict = {
     "layer_0": {  # hidden layer
         "type": "connected",
         "activation": ACTIVATION,
@@ -134,7 +136,7 @@ condition_layers = {
 }
 xcs.condition("neural", condition_layers)  # neural network conditions
 
-layer_conv = {
+layer_conv: dict = {
     "type": "convolutional",
     "activation": ACTIVATION,
     "sgd-weights": SGD_WEIGHTS,
@@ -157,7 +159,7 @@ layer_conv = {
     "channels": INPUT_CHANNELS,
 }
 
-layer_maxpool = {
+layer_maxpool: dict = {
     "type": "maxpool",
     "stride": 2,
     "size": 2,
@@ -167,7 +169,7 @@ layer_maxpool = {
     "channels": INPUT_CHANNELS,
 }
 
-layer_connected = {
+layer_connected: dict = {
     "type": "connected",
     "activation": ACTIVATION,
     "sgd-weights": SGD_WEIGHTS,
@@ -184,7 +186,7 @@ layer_connected = {
     "n-max": N_MAX,
 }
 
-prediction_layers = {
+prediction_layers: dict = {
     "layer_0": layer_conv,
     "layer_1": layer_maxpool,
     "layer_2": layer_conv,
@@ -216,14 +218,14 @@ xcs.print_params()
 # Run experiment
 ##################################
 
-N = 100  # 100,000 trials
-trials = np.zeros(N)
-psize = np.zeros(N)
-msize = np.zeros(N)
-train_err = np.zeros(N)
-val_err = np.zeros(N)
-val_min = 1000  # minimum validation error observed
-val_trial = 0  # number of trials at validation minimum
+N: int = 100  # 100,000 trials
+trials: np.ndarray = np.zeros(N)
+psize: np.ndarray = np.zeros(N)
+msize: np.ndarray = np.zeros(N)
+train_err: np.ndarray = np.zeros(N)
+val_err: np.ndarray = np.zeros(N)
+val_min: float = 1000  # minimum validation error observed
+val_trial: int = 0  # number of trials at validation minimum
 
 bar = tqdm(total=N)  # progress bar
 for i in range(N):

@@ -23,6 +23,8 @@ hyperrectangle conditions, linear least squares predictions, and integer
 actions.
 """
 
+from __future__ import annotations
+
 import random
 
 import matplotlib.pyplot as plt
@@ -44,11 +46,11 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 X_train = minmax_scale(X_train, feature_range=(0, 1))
 X_test = minmax_scale(X_test, feature_range=(0, 1))
-X_DIM = 30
-N_ACTIONS = 2
-MAX_PAYOFF = 1
-train_len = len(X_train)
-test_len = len(X_test)
+X_DIM: int = 30
+N_ACTIONS: int = 2
+MAX_PAYOFF: float = 1
+train_len: int = len(X_train)
+test_len: int = len(X_test)
 print("train len = %d, test len = %d" % (train_len, test_len))
 
 ###################
@@ -56,7 +58,7 @@ print("train len = %d, test len = %d" % (train_len, test_len))
 ###################
 
 # constructor = (x_dim, y_dim, n_actions)
-xcs = xcsf.XCS(X_DIM, 1, N_ACTIONS)
+xcs: xcsf.XCS = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000
@@ -72,22 +74,22 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-N = 100  # 100,000 trials
-trials = np.zeros(N)
-psize = np.zeros(N)
-msize = np.zeros(N)
-performance = np.zeros(N)
-error = np.zeros(N)
+N: int = 100  # 100,000 trials
+trials: np.ndarray = np.zeros(N)
+psize: np.ndarray = np.zeros(N)
+msize: np.ndarray = np.zeros(N)
+performance: np.ndarray = np.zeros(N)
+error: np.ndarray = np.zeros(N)
 bar = tqdm(total=N)  # progress bar
 
 for i in range(N):
-    for j in range(xcs.PERF_TRIALS):
+    for _ in range(xcs.PERF_TRIALS):
         # learning trial
-        sample = random.randint(0, train_len - 1)
-        state = X_train[sample]
-        answer = y_train[sample]
-        action = random.randrange(N_ACTIONS)  # random action
-        reward = MAX_PAYOFF if action == answer else 0
+        sample: int = random.randint(0, train_len - 1)
+        state: np.ndarray = X_train[sample]
+        answer: int = y_train[sample]
+        action: int = random.randrange(N_ACTIONS)  # random action
+        reward: float = MAX_PAYOFF if action == answer else 0
         xcs.fit(state, action, reward)  # update action set, run EA, etc.
         # testing trial
         sample = random.randint(0, test_len - 1)

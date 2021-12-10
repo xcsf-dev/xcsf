@@ -21,8 +21,11 @@ This example demonstrates the use of experience replay with XCSF to solve the
 cart-pole problem from the OpenAI Gym.
 """
 
+from __future__ import annotations
+
 import random
 from collections import deque
+from typing import Deque, List, Tuple
 
 import gym
 import matplotlib.pyplot as plt
@@ -36,17 +39,17 @@ import xcsf
 ############################################
 
 env = gym.make("CartPole-v0")
-X_DIM = env.observation_space.shape[0]
-N_ACTIONS = env.action_space.n
+X_DIM: int = env.observation_space.shape[0]
+N_ACTIONS: int = env.action_space.n
 
-SAVE_GIF = False  # for creating a gif
-SAVE_GIF_EPISODES = 50
-frames = []
-fscore = []
-ftrial = []
+SAVE_GIF: bool = False  # for creating a gif
+SAVE_GIF_EPISODES: int = 50
+frames: List[List[float]] = []
+fscore: List[float] = []
+ftrial: List[int] = []
 
 
-def save_frames_as_gif(path="./", filename="animation.gif"):
+def save_frames_as_gif(path: str = "./", filename: str = "animation.gif") -> None:
     """Save animation as gif"""
     rcParams["font.family"] = "monospace"
     fig = plt.figure(dpi=90)
@@ -56,7 +59,7 @@ def save_frames_as_gif(path="./", filename="animation.gif"):
     bbox = dict(boxstyle="round", fc="0.8")
     plt.axis("off")
 
-    def animate(i):
+    def animate(i: int) -> None:
         patch.set_data(frames[i])
         strial = str(ftrial[i])
         sscore = str(int(fscore[i]))
@@ -74,7 +77,7 @@ def save_frames_as_gif(path="./", filename="animation.gif"):
 ###################
 
 # constructor = (x_dim, y_dim, n_actions)
-xcs = xcsf.XCS(X_DIM, N_ACTIONS, 1)  # Supervised mode: i.e, single action
+xcs: xcsf.XCS = xcsf.XCS(X_DIM, N_ACTIONS, 1)  # Supervised: i.e, single action
 
 xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
 xcs.POP_INIT = False  # use covering to initialise
@@ -111,11 +114,11 @@ xcs.condition("neural", condition_layers)  # neural network conditions
 xcs.action("integer")  # (dummy) integer actions
 xcs.prediction("rls-quadratic")  # Quadratic RLS
 
-GAMMA = 0.95  # discount rate for delayed reward
-epsilon = 1  # initial probability of exploring
-EPSILON_MIN = 0.1  # the minimum exploration rate
-EPSILON_DECAY = 0.98  # the decay of exploration after each batch replay
-REPLAY_TIME = 1  # perform replay update every n episodes
+GAMMA: float = 0.95  # discount rate for delayed reward
+epsilon: float = 1  # initial probability of exploring
+EPSILON_MIN: float = 0.1  # the minimum exploration rate
+EPSILON_DECAY: float = 0.98  # the decay of exploration after each batch replay
+REPLAY_TIME: int = 1  # perform replay update every n episodes
 
 xcs.print_params()
 
@@ -123,16 +126,16 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-total_steps = 0  # total number of steps performed
-MAX_EPISODES = 2000  # maximum number of episodes to run
-N = 100  # number of episodes to average performance
-memory = deque(maxlen=50000)  # memory buffer for experience replay
-scores = deque(maxlen=N)  # scores used to calculate moving average
+total_steps: int = 0  # total number of steps performed
+MAX_EPISODES: int = 2000  # maximum number of episodes to run
+N: int = 100  # number of episodes to average performance
+memory: Deque[Tuple[np.ndarray, int, float, np.ndarray, bool]] = deque(maxlen=50000)
+scores: Deque[float] = deque(maxlen=N)  # used to calculate moving average
 
 
-def replay(replay_size=5000):
+def replay(replay_size: int = 5000) -> None:
     """Performs experience replay updates"""
-    batch_size = min(len(memory), replay_size)
+    batch_size: int = min(len(memory), replay_size)
     batch = random.sample(memory, batch_size)
     for state, action, reward, next_state, done in batch:
         y_target = reward
@@ -144,7 +147,7 @@ def replay(replay_size=5000):
         xcs.fit(state.reshape(1, -1), target.reshape(1, -1), True)
 
 
-def egreedy_action(state):
+def egreedy_action(state: np.ndarray) -> int:
     """Selects an action using an epsilon greedy policy"""
     if np.random.rand() < epsilon:
         return random.randrange(N_ACTIONS)
@@ -152,11 +155,11 @@ def egreedy_action(state):
     return np.argmax(prediction_array)
 
 
-def episode(episode_nr, create_gif):
+def episode(episode_nr: int, create_gif: bool) -> Tuple[float, int]:
     """Executes a single episode, saving to memory buffer"""
-    episode_score = 0
-    episode_steps = 0
-    state = env.reset()
+    episode_score: int = 0
+    episode_steps: int = 0
+    state: np.ndarray = env.reset()
     while True:
         action = egreedy_action(state)
         next_state, reward, done, _ = env.step(action)
