@@ -1,22 +1,58 @@
 from __future__ import annotations
 import typing
-from typing import Any
+from typing import Any, Literal, Union
 import numpy
 
 _Shape = typing.Tuple[int, ...]
 
+EATypes = Union[Literal["roulette"], Literal["tournament"]]
+
+ActionTypes = Union[Literal["integer"], Literal["neural"]]
+
+ConditionTypes = Union[
+    Literal["dummy"],
+    Literal["hyperrectangle"],
+    Literal["hyperellipsoid"],
+    Literal["neural"],
+    Literal["tree-gp"],
+    Literal["dgp"],
+    Literal["ternary"],
+    Literal["rule-dgp"],
+    Literal["rule-neural"],
+    Literal["rule-network"],
+]
+
+PredictionTypes = Union[
+    Literal["constant"],
+    Literal["nlms-linear"],
+    Literal["nlms-quadratic"],
+    Literal["rls-linear"],
+    Literal["rls-quadratic"],
+    Literal["neural"],
+]
+
+LossTypes = Union[
+    Literal["mae"],
+    Literal["mse"],
+    Literal["rmse"],
+    Literal["log"],
+    Literal["binary-log"],
+    Literal["onehot"],
+    Literal["huber"],
+]
+
 class XCS:
     def __init__(self, arg0: int, arg1: int, arg2: int) -> None: ...
     @typing.overload
-    def action(self, arg0: str) -> None: ...
+    def action(self, arg0: ActionTypes) -> None: ...
     @typing.overload
-    def action(self, arg0: str, arg1: dict) -> None: ...
+    def action(self, arg0: ActionTypes, arg1: dict) -> None: ...
     def ae_to_classifier(self, arg0: int, arg1: int) -> None: ...
     def aset_size(self) -> float: ...
     @typing.overload
-    def condition(self, arg0: str) -> None: ...
+    def condition(self, arg0: ConditionTypes) -> None: ...
     @typing.overload
-    def condition(self, arg0: str, arg1: dict) -> None: ...
+    def condition(self, arg0: ConditionTypes, arg1: dict) -> None: ...
     def decision(self, arg0: numpy.ndarray[numpy.float64, Any], arg1: bool) -> int: ...
     def end_step(self) -> None: ...
     def end_trial(self) -> None: ...
@@ -57,9 +93,9 @@ class XCS:
         self, arg0: numpy.ndarray[numpy.float64, Any]
     ) -> numpy.ndarray[numpy.float64, Any]: ...
     @typing.overload
-    def prediction(self, arg0: str) -> None: ...
+    def prediction(self, arg0: PredictionTypes) -> None: ...
     @typing.overload
-    def prediction(self, arg0: str, arg1: dict) -> None: ...
+    def prediction(self, arg0: PredictionTypes, arg1: dict) -> None: ...
     def print_params(self) -> None: ...
     def print_pset(self, arg0: bool, arg1: bool, arg2: bool) -> None: ...
     def pset_mean_cond_connections(self, arg0: int) -> float: ...
@@ -154,12 +190,12 @@ class XCS:
     def EA_SELECT_SIZE(self, arg1: float) -> None:
         pass
     @property
-    def EA_SELECT_TYPE(self) -> str:
+    def EA_SELECT_TYPE(self) -> EATypes:
         """
-        :type: str
+        :type: Union[Literal["roulette"], Literal["tournament"]]
         """
     @EA_SELECT_TYPE.setter
-    def EA_SELECT_TYPE(self, arg1: str) -> None:
+    def EA_SELECT_TYPE(self, arg1: EATypes) -> None:
         pass
     @property
     def EA_SUBSUMPTION(self) -> bool:
@@ -226,12 +262,13 @@ class XCS:
     def LAMBDA(self, arg1: int) -> None:
         pass
     @property
-    def LOSS_FUNC(self) -> str:
+    def LOSS_FUNC(self) -> LossTypes:
         """
-        :type: str
+        :type: Union[Literal["mae"], Literal["mse"], Literal["rmse"], Literal["log"],
+                     Literal["binary-log"], Literal["onehot"], Literal["huber"]]
         """
     @LOSS_FUNC.setter
-    def LOSS_FUNC(self, arg1: str) -> None:
+    def LOSS_FUNC(self, arg1: LossTypes) -> None:
         pass
     @property
     def MAX_TRIALS(self) -> int:
