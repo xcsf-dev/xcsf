@@ -152,7 +152,7 @@ def egreedy_action(state: np.ndarray) -> int:
     if np.random.rand() < epsilon:
         return random.randrange(N_ACTIONS)
     prediction_array = xcs.predict(state.reshape(1, -1))[0]
-    return np.argmax(prediction_array)
+    return int(np.argmax(prediction_array))
 
 
 def episode(episode_nr: int, create_gif: bool) -> Tuple[float, int]:

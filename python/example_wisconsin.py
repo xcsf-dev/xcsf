@@ -96,7 +96,7 @@ for i in range(N):
         state = X_test[sample]
         answer = y_test[sample]
         prediction_array = xcs.predict(state.reshape(1, -1))[0]
-        action = np.argmax(prediction_array)  # best action
+        action = int(np.argmax(prediction_array))  # best action
         reward = MAX_PAYOFF if action == answer else 0
         performance[i] += reward
         error[i] += xcs.error(reward, True, MAX_PAYOFF)

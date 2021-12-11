@@ -127,7 +127,7 @@ def egreedy_action(state: np.ndarray, epsilon: float) -> Tuple[int, float]:
     if np.random.rand() < epsilon:
         return random.randrange(N_ACTIONS), 0
     prediction_array = xcs.predict(state.reshape(1, -1))[0]
-    action = np.argmax(prediction_array)
+    action = int(np.argmax(prediction_array))
     prediction = prediction_array[action]
     return action, prediction
 
