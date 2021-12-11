@@ -1,9 +1,7 @@
 from __future__ import annotations
 import typing
 from typing import Any, Literal, Union
-import numpy
-
-_Shape = typing.Tuple[int, ...]
+import numpy as np
 
 EATypes = Union[Literal["roulette"], Literal["tournament"]]
 
@@ -53,7 +51,11 @@ class XCS:
     def condition(self, arg0: ConditionTypes) -> None: ...
     @typing.overload
     def condition(self, arg0: ConditionTypes, arg1: dict) -> None: ...
-    def decision(self, arg0: numpy.ndarray[numpy.float64, Any], arg1: bool) -> int: ...
+    def decision(
+        self,
+        arg0: np.ndarray[Any, np.dtype[np.float64]],
+        arg1: bool,
+    ) -> int: ...
     def end_step(self) -> None: ...
     def end_trial(self) -> None: ...
     @typing.overload
@@ -62,22 +64,25 @@ class XCS:
     def error(self, arg0: float, arg1: bool, arg2: float) -> float: ...
     @typing.overload
     def fit(
-        self, arg0: numpy.ndarray[numpy.float64, Any], arg1: int, arg2: float
+        self,
+        arg0: np.ndarray[Any, np.dtype[np.float64]],
+        arg1: int,
+        arg2: float,
     ) -> float: ...
     @typing.overload
     def fit(
         self,
-        arg0: numpy.ndarray[numpy.float64, Any],
-        arg1: numpy.ndarray[numpy.float64, Any],
+        arg0: np.ndarray[Any, np.dtype[np.float64]],
+        arg1: np.ndarray[Any, np.dtype[np.float64]],
         arg2: bool,
     ) -> float: ...
     @typing.overload
     def fit(
         self,
-        arg0: numpy.ndarray[numpy.float64, Any],
-        arg1: numpy.ndarray[numpy.float64, Any],
-        arg2: numpy.ndarray[numpy.float64, Any],
-        arg3: numpy.ndarray[numpy.float64, Any],
+        arg0: np.ndarray[Any, np.dtype[np.float64]],
+        arg1: np.ndarray[Any, np.dtype[np.float64]],
+        arg2: np.ndarray[Any, np.dtype[np.float64]],
+        arg3: np.ndarray[Any, np.dtype[np.float64]],
         arg4: bool,
     ) -> float: ...
     def init_step(self) -> None: ...
@@ -90,8 +95,8 @@ class XCS:
     def n_actions(self) -> int: ...
     def pred_expand(self) -> None: ...
     def predict(
-        self, arg0: numpy.ndarray[numpy.float64, Any]
-    ) -> numpy.ndarray[numpy.float64, Any]: ...
+        self, arg0: np.ndarray[Any, np.dtype[np.float64]]
+    ) -> np.ndarray[Any, np.dtype[np.float64]]: ...
     @typing.overload
     def prediction(self, arg0: PredictionTypes) -> None: ...
     @typing.overload
@@ -114,14 +119,14 @@ class XCS:
     @typing.overload
     def score(
         self,
-        arg0: numpy.ndarray[numpy.float64, Any],
-        arg1: numpy.ndarray[numpy.float64, Any],
+        arg0: np.ndarray[Any, np.dtype[np.float64]],
+        arg1: np.ndarray[Any, np.dtype[np.float64]],
     ) -> float: ...
     @typing.overload
     def score(
         self,
-        arg0: numpy.ndarray[numpy.float64, Any],
-        arg1: numpy.ndarray[numpy.float64, Any],
+        arg0: np.ndarray[Any, np.dtype[np.float64]],
+        arg1: np.ndarray[Any, np.dtype[np.float64]],
         arg2: int,
     ) -> float: ...
     def seed(self, arg0: int) -> None: ...
