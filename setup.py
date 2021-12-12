@@ -49,6 +49,8 @@ class CMakeBuild(build_ext):
         cmake_args = [
             f"-DPYTHON_EXECUTABLE={sys.executable}",
             "-DCMAKE_BUILD_TYPE=Release",
+            "-DCMAKE_C_COMPILER=gcc",
+            "-DCMAKE_CXX_COMPILER=g++",
             "-DXCSF_MAIN=OFF",
             "-DXCSF_PYLIB=ON",
             "-DENABLE_DOXYGEN=OFF",
@@ -57,13 +59,6 @@ class CMakeBuild(build_ext):
             "--config",
             "Release",
         ]
-        if platform.system() == "Darwin":
-            cmake_args += ["-DCMAKE_C_COMPILER=gcc-11"]
-            cmake_args += ["-DCMAKE_CXX_COMPILER=g++-11"]
-        else:
-            cmake_args += ["-DCMAKE_C_COMPILER=gcc"]
-            cmake_args += ["-DCMAKE_CXX_COMPILER=g++"]
-
         if platform.system() == "Windows":
             cmake_args += ["-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE=" + extdir]
             cmake_args += ["-GMinGW Makefiles"]
