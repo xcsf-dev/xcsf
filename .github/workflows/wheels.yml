@@ -1,0 +1,81 @@
+---
+# Workflow to build wheels.
+
+name: Wheel builder
+
+on: workflow_dispatch
+
+jobs:
+  build_wheels:
+    name: Build wheel for ${{ matrix.python }}-${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      # Ensure that a wheel builder finishes even if another fails
+      fail-fast: false
+      matrix:
+        include:
+          # manylinux builds
+          - os: ubuntu-20.04
+            python: "cp38"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "cp39"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "cp310"
+            platform: manylinux_x86_64
+          # manylinux pypy builds
+          - os: ubuntu-20.04
+            python: "pp38"
+            platform: manylinux_x86_64
+
+          # MacOS builds
+          - os: macos-10.15
+            python: "cp38"
+            platform: macosx_*
+          - os: macos-10.15
+            python: "cp39"
+            platform: macosx_*
+          - os: macos-10.15
+            python: "cp310"
+            platform: macosx_*
+          # MacOS PyPy builds
+          # Disabled for now because of a PyPy bug
+          # that prevents successful compilation
+          # - os: macos-10.15
+          #   python: "pp38"
+          #   platform: macosx_x86_64
+
+          # Windows builds
+          - os: windows-2019
+            python: "cp38"
+            platform: win_amd64
+          - os: windows-2019
+            python: "cp39"
+            platform: win_amd64
+          - os: windows-2019
+            python: "cp310"
+            platform: win_amd64
+          # Windows PyPy builds
+          - os: windows-2019
+            python: "pp38"
+            platform: win_amd64
+
+    steps:
+      - name: Checkout xcsf
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.3.0
+        env:
+          CIBW_BUILD: ${{ matrix.python }}-${{ matrix.platform }}
+          CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
+          CIBW_ARCHS_MACOS: x86_64 arm64
+          CIBW_BUILD_VERBOSITY: 3
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ./wheelhouse/*.whl
+...
