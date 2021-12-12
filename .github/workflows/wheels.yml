@@ -73,7 +73,6 @@ jobs:
           CIBW_BEFORE_ALL_MACOS: brew install libomp
           CIBW_BUILD: ${{ matrix.python }}-${{ matrix.platform }}
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
-          CIBW_ARCHS_MACOS: x86_64 arm64
           CIBW_BUILD_VERBOSITY: 3
 
       - uses: actions/upload-artifact@v2
