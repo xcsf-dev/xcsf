@@ -17,7 +17,7 @@
  * @file xcsf.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2021.
  * @brief XCSF data structures.
  */
 
@@ -36,7 +36,7 @@
 
 static const int VERSION_MAJOR = 1; //!< XCSF major version number
 static const int VERSION_MINOR = 1; //!< XCSF minor version number
-static const int VERSION_BUILD = 3; //!< XCSF build version number
+static const int VERSION_BUILD = 4; //!< XCSF build version number
 
 /**
  * @brief Classifier data structure.
