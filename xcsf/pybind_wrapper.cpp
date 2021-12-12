@@ -866,7 +866,7 @@ class XCS
                 cond_param_set_min(&xcs, item.second.cast<double>());
             } else if (name == "max") {
                 cond_param_set_max(&xcs, item.second.cast<double>());
-            } else if (name == "spread-min") {
+            } else if (name == "spread_min") {
                 cond_param_set_spread_min(&xcs, item.second.cast<double>());
             } else if (name == "eta") {
                 cond_param_set_eta(&xcs, item.second.cast<double>());
@@ -888,11 +888,11 @@ class XCS
         tree_param_set_n_inputs(targs, xcs.x_dim);
         for (std::pair<py::handle, py::handle> item : args) {
             auto name = item.first.cast<std::string>();
-            if (name == "n-constants") {
+            if (name == "n_constants") {
                 tree_param_set_n_constants(targs, item.second.cast<int>());
-            } else if (name == "init-depth") {
+            } else if (name == "init_depth") {
                 tree_param_set_init_depth(targs, item.second.cast<int>());
-            } else if (name == "max-len") {
+            } else if (name == "max_len") {
                 tree_param_set_max_len(targs, item.second.cast<int>());
             } else if (name == "min") {
                 tree_param_set_min(targs, item.second.cast<double>());
@@ -917,13 +917,13 @@ class XCS
         graph_param_set_n_inputs(dargs, xcs.x_dim);
         for (std::pair<py::handle, py::handle> item : args) {
             auto name = item.first.cast<std::string>();
-            if (name == "max-k") {
+            if (name == "max_k") {
                 graph_param_set_max_k(dargs, item.second.cast<int>());
-            } else if (name == "max-t") {
+            } else if (name == "max_t") {
                 graph_param_set_max_t(dargs, item.second.cast<int>());
             } else if (name == "n") {
                 graph_param_set_n(dargs, item.second.cast<int>());
-            } else if (name == "evolve-cycles") {
+            } else if (name == "evolve_cycles") {
                 graph_param_set_evolve_cycles(dargs, item.second.cast<bool>());
             } else {
                 printf("Unknown DGP parameter: %s\n", name.c_str());
@@ -943,7 +943,7 @@ class XCS
             auto name = item.first.cast<std::string>();
             if (name == "bits") {
                 cond_param_set_bits(&xcs, item.second.cast<int>());
-            } else if (name == "p-dontcare") {
+            } else if (name == "p_dontcare") {
                 cond_param_set_p_dontcare(&xcs, item.second.cast<double>());
             } else {
                 printf("Unknown ternary parameter: %s\n", name.c_str());
@@ -992,34 +992,34 @@ class XCS
             if (name == "type") {
                 const auto value = item.second.cast<std::string>();
                 larg->type = layer_type_as_int(value.c_str());
-            } else if (name == "max-neuron-grow") {
+            } else if (name == "max_neuron_grow") {
                 larg->max_neuron_grow = item.second.cast<int>();
-            } else if (name == "evolve-weights") {
+            } else if (name == "evolve_weights") {
                 larg->evolve_weights = item.second.cast<bool>();
-            } else if (name == "evolve-neurons") {
+            } else if (name == "evolve_neurons") {
                 larg->evolve_neurons = item.second.cast<bool>();
-            } else if (name == "evolve-functions") {
+            } else if (name == "evolve_functions") {
                 larg->evolve_functions = item.second.cast<bool>();
-            } else if (name == "evolve-connect") {
+            } else if (name == "evolve_connect") {
                 larg->evolve_connect = item.second.cast<bool>();
-            } else if (name == "evolve-eta") {
+            } else if (name == "evolve_eta") {
                 larg->evolve_eta = item.second.cast<bool>();
-            } else if (name == "sgd-weights") {
+            } else if (name == "sgd_weights") {
                 larg->sgd_weights = item.second.cast<bool>();
             } else if (name == "activation") {
                 const auto value = item.second.cast<std::string>();
                 larg->function = neural_activation_as_int(value.c_str());
-            } else if (name == "recurrent-activation") {
+            } else if (name == "recurrent_activation") {
                 const auto value = item.second.cast<std::string>();
                 larg->recurrent_function =
                     neural_activation_as_int(value.c_str());
-            } else if (name == "n-init") {
+            } else if (name == "n_init") {
                 larg->n_init = item.second.cast<int>();
-            } else if (name == "n-max") {
+            } else if (name == "n_max") {
                 larg->n_max = item.second.cast<int>();
             } else if (name == "eta") {
                 larg->eta = item.second.cast<double>();
-            } else if (name == "eta-min") {
+            } else if (name == "eta_min") {
                 larg->eta_min = item.second.cast<double>();
             } else if (name == "momentum") {
                 larg->momentum = item.second.cast<double>();
@@ -1153,9 +1153,9 @@ class XCS
                 pred_param_set_x0(&xcs, item.second.cast<double>());
             } else if (name == "eta") {
                 pred_param_set_eta(&xcs, item.second.cast<double>());
-            } else if (name == "eta-min") {
+            } else if (name == "eta_min") {
                 pred_param_set_eta_min(&xcs, item.second.cast<double>());
-            } else if (name == "evolve-eta") {
+            } else if (name == "evolve_eta") {
                 pred_param_set_evolve_eta(&xcs, item.second.cast<bool>());
             } else {
                 printf("Unknown NLMS parameter: %s\n", name.c_str());
@@ -1175,9 +1175,9 @@ class XCS
             auto name = item.first.cast<std::string>();
             if (name == "x0") {
                 pred_param_set_x0(&xcs, item.second.cast<double>());
-            } else if (name == "rls-scale-factor") {
+            } else if (name == "rls_scale_factor") {
                 pred_param_set_scale_factor(&xcs, item.second.cast<double>());
-            } else if (name == "rls-lambda") {
+            } else if (name == "rls_lambda") {
                 pred_param_set_lambda(&xcs, item.second.cast<double>());
             } else {
                 printf("Unknown RLS parameter: %s\n", name.c_str());

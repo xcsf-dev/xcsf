@@ -40,12 +40,12 @@
 #define COND_STRING_HYPERRECTANGLE ("hyperrectangle\0") //!< Hyperrectangle
 #define COND_STRING_HYPERELLIPSOID ("hyperellipsoid\0") //!< Hyperellipsoid
 #define COND_STRING_NEURAL ("neural\0") //!< Neural
-#define COND_STRING_GP ("tree-gp\0") //!< Tree GP
+#define COND_STRING_GP ("tree_gp\0") //!< Tree GP
 #define COND_STRING_DGP ("dgp\0") //!< DGP
 #define COND_STRING_TERNARY ("ternary\0") //!< Ternary
-#define COND_STRING_RULE_DGP ("rule-dgp\0") //!< Rule DGP
-#define COND_STRING_RULE_NEURAL ("rule-neural\0") //!< Rule neural
-#define COND_STRING_RULE_NETWORK ("rule-network\0") //!< Rule network
+#define COND_STRING_RULE_DGP ("rule_dgp\0") //!< Rule DGP
+#define COND_STRING_RULE_NEURAL ("rule_neural\0") //!< Rule neural
+#define COND_STRING_RULE_NETWORK ("rule_network\0") //!< Rule network
 
 /**
  * @brief Parameters for initialising and operating conditions.

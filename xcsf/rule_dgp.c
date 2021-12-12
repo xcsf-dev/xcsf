@@ -155,7 +155,7 @@ rule_dgp_cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
     (void) xcsf;
     const struct RuleDGP *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
-    cJSON_AddStringToObject(json, "type", "rule-dgp");
+    cJSON_AddStringToObject(json, "type", "rule_dgp");
     cJSON *graph = cJSON_Parse(graph_json_export(&cond->dgp));
     cJSON_AddItemToObject(json, "graph", graph);
     const char *string = cJSON_Print(json);
@@ -284,7 +284,7 @@ rule_dgp_act_json_export(const struct XCSF *xcsf, const struct Cl *c)
     (void) xcsf;
     (void) c;
     cJSON *json = cJSON_CreateObject();
-    cJSON_AddStringToObject(json, "type", "rule-dgp");
+    cJSON_AddStringToObject(json, "type", "rule_dgp");
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;

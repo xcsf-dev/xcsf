@@ -165,7 +165,7 @@ rule_neural_cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
     (void) c;
     const struct RuleNeural *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
-    cJSON_AddStringToObject(json, "type", "rule-neural");
+    cJSON_AddStringToObject(json, "type", "rule_neural");
     cJSON *network = cJSON_Parse(neural_json_export(&cond->net, false));
     cJSON_AddItemToObject(json, "network", network);
     const char *string = cJSON_Print(json);
@@ -294,7 +294,7 @@ rule_neural_act_json_export(const struct XCSF *xcsf, const struct Cl *c)
     (void) xcsf;
     (void) c;
     cJSON *json = cJSON_CreateObject();
-    cJSON_AddStringToObject(json, "type", "rule-neural");
+    cJSON_AddStringToObject(json, "type", "rule_neural");
     const char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;

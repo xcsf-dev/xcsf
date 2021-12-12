@@ -276,9 +276,9 @@ pred_rls_json_export(const struct XCSF *xcsf, const struct Cl *c)
     const struct PredRLS *pred = c->pred;
     cJSON *json = cJSON_CreateObject();
     if (xcsf->pred->type == PRED_TYPE_RLS_QUADRATIC) {
-        cJSON_AddStringToObject(json, "type", "rls-quadratic");
+        cJSON_AddStringToObject(json, "type", "rls_quadratic");
     } else {
-        cJSON_AddStringToObject(json, "type", "rls-linear");
+        cJSON_AddStringToObject(json, "type", "rls_linear");
     }
     cJSON *weights = cJSON_CreateDoubleArray(pred->weights, pred->n_weights);
     cJSON_AddItemToObject(json, "weights", weights);

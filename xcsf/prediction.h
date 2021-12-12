@@ -33,10 +33,10 @@
 #define PRED_TYPE_NEURAL (5) //!< Prediction type neural
 
 #define PRED_STRING_CONSTANT ("constant\0") //!< Constant
-#define PRED_STRING_NLMS_LINEAR ("nlms-linear\0") //!< Linear nlms
-#define PRED_STRING_NLMS_QUADRATIC ("nlms-quadratic\0") //!< Quadratic nlms
-#define PRED_STRING_RLS_LINEAR ("rls-linear\0") //!< Linear rls
-#define PRED_STRING_RLS_QUADRATIC ("rls-quadratic\0") //!< Quadratic rls
+#define PRED_STRING_NLMS_LINEAR ("nlms_linear\0") //!< Linear nlms
+#define PRED_STRING_NLMS_QUADRATIC ("nlms_quadratic\0") //!< Quadratic nlms
+#define PRED_STRING_RLS_LINEAR ("rls_linear\0") //!< Linear rls
+#define PRED_STRING_RLS_QUADRATIC ("rls_quadratic\0") //!< Quadratic rls
 #define PRED_STRING_NEURAL ("neural\0") //!< Neural
 
 /**

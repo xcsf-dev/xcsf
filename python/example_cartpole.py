@@ -92,27 +92,27 @@ xcs.SET_SUBSUMPTION = False
 xcs.THETA_EA = 100  # EA invocation frequency
 xcs.THETA_DEL = 100  # min experience before fitness used for deletion
 
-condition_layers = {
+condition_layers: dict = {
     "layer_0": {  # hidden layer
         "type": "connected",
         "activation": "selu",
-        "evolve-weights": True,
-        "evolve-neurons": True,
-        "n-init": 1,
-        "n-max": 100,
-        "max-neuron-grow": 1,
+        "evolve_weights": True,
+        "evolve_neurons": True,
+        "n_init": 1,
+        "n_max": 100,
+        "max_neuron_grow": 1,
     },
     "layer_1": {  # output layer
         "type": "connected",
         "activation": "linear",
-        "evolve-weights": True,
-        "n-init": 1,
+        "evolve_weights": True,
+        "n_init": 1,
     },
 }
 
 xcs.condition("neural", condition_layers)  # neural network conditions
 xcs.action("integer")  # (dummy) integer actions
-xcs.prediction("rls-quadratic")  # Quadratic RLS
+xcs.prediction("rls_quadratic")  # Quadratic RLS
 
 GAMMA: float = 0.95  # discount rate for delayed reward
 epsilon: float = 1  # initial probability of exploring

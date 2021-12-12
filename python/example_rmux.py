@@ -104,8 +104,8 @@ xcs.EA_SUBSUMPTION = True
 xcs.SET_SUBSUMPTION = True
 xcs.THETA_SUB = 100  # minimum experience of a subsumer
 xcs.action("integer")
-xcs.condition("hyperrectangle", {"min": 0, "max": 1, "spread-min": 0.1})
-xcs.prediction("nlms-linear", {"eta": 1, "eta-min": 0.0001, "evolve-eta": True})
+xcs.condition("hyperrectangle", {"min": 0, "max": 1, "spread_min": 0.1})
+xcs.prediction("nlms_linear", {"eta": 1, "eta_min": 0.0001, "evolve_eta": True})
 
 xcs.print_params()
 

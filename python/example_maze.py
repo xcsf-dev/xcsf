@@ -190,7 +190,7 @@ xcs.SET_SUBSUMPTION = True
 xcs.THETA_SUB = 100  # minimum experience of a subsumer
 xcs.action("integer")  # integer actions
 xcs.condition("ternary", {"bits": 2})  # ternary conditions: 2-bits per float
-xcs.prediction("rls-linear")  # linear recursive least squares predictions
+xcs.prediction("rls_linear")  # linear recursive least squares predictions
 
 xcs.print_params()
 

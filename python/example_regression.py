@@ -107,37 +107,37 @@ xcs.action("integer")  # (dummy) integer actions
 tree_args: dict = {
     "min": 0,  # minimum value of a constant
     "max": 1,  # maximum value of a constant
-    "n-constants": 100,  # number of (global) constants
-    "init-depth": 5,  # initial tree depth
-    "max-len": 10000,  # maximum initial length
+    "n_constants": 100,  # number of (global) constants
+    "init_depth": 5,  # initial tree depth
+    "max_len": 10000,  # maximum initial length
 }
-xcs.condition("tree-gp", tree_args)  # GP tree conditions
+xcs.condition("tree_gp", tree_args)  # GP tree conditions
 
 prediction_layers: dict = {
     "layer_0": {  # hidden layer
         "type": "connected",
         "activation": "relu",
-        "sgd-weights": True,
-        "evolve-weights": True,
-        "evolve-connect": True,
-        "evolve-eta": True,
+        "sgd_weights": True,
+        "evolve_weights": True,
+        "evolve_connect": True,
+        "evolve_eta": True,
         "eta": 0.1,
-        "eta-min": 0.000001,
+        "eta_min": 0.000001,
         "momentum": 0.9,
-        "n-init": 10,
-        "n-max": 10,
+        "n_init": 10,
+        "n_max": 10,
     },
     "layer_1": {  # output layer
         "type": "connected",
         "activation": "softplus",
-        "sgd-weights": True,
-        "evolve-weights": True,
-        "evolve-connect": True,
-        "evolve-eta": True,
+        "sgd_weights": True,
+        "evolve_weights": True,
+        "evolve_connect": True,
+        "evolve_eta": True,
         "eta": 0.1,
-        "eta-min": 0.000001,
+        "eta_min": 0.000001,
         "momentum": 0.9,
-        "n-init": Y_DIM,
+        "n_init": Y_DIM,
     },
 }
 xcs.prediction("neural", prediction_layers)  # neural network predictions
