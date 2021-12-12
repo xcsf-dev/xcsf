@@ -70,8 +70,7 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.3.0
         env:
-          CC: gcc-9
-          CXX: g++-9
+          CIBW_ENVIRONMENT: CC=gcc CXX=g++
           CIBW_BUILD: ${{ matrix.python }}-${{ matrix.platform }}
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
           CIBW_ARCHS_MACOS: x86_64 arm64
