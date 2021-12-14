@@ -226,7 +226,7 @@ env_maze_execute(const struct XCSF *xcsf, const int action)
         ((env->xpos + x_moves[action]) % env->xsize + env->xsize) % env->xsize;
     const int newy =
         ((env->ypos + y_moves[action]) % env->ysize + env->ysize) % env->ysize;
-    // make the move and recieve reward
+    // make the move and receive reward
     double reward = 0;
     switch (env->maze[newy][newx]) {
         case 'O':

@@ -153,7 +153,7 @@ tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x)
 }
 
 /**
- * @brief Returns a json formatted string represetation of a GP tree.
+ * @brief Returns a json formatted string representation of a GP tree.
  * @param [in] gp The GP tree to print.
  * @param [in] args Tree GP parameters.
  * @param [in] pos The position from which to traverse (start at 0).
