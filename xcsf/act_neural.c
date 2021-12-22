@@ -292,11 +292,11 @@ act_neural_param_json_import(struct XCSF *xcsf, cJSON *json)
         if (xcsf->act->largs == NULL) {
             xcsf->act->largs = larg;
         } else {
-            struct ArgsLayer *iter = xcsf->act->largs;
-            while (iter->next != NULL) {
-                iter = iter->next;
+            struct ArgsLayer *layer_iter = xcsf->act->largs;
+            while (layer_iter->next != NULL) {
+                layer_iter = layer_iter->next;
             }
-            iter->next = larg;
+            layer_iter->next = larg;
         }
     }
     layer_args_validate(xcsf->act->largs);

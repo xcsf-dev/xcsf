@@ -339,11 +339,11 @@ cond_neural_param_json_import(struct XCSF *xcsf, cJSON *json)
         if (xcsf->cond->largs == NULL) {
             xcsf->cond->largs = larg;
         } else {
-            struct ArgsLayer *iter = xcsf->cond->largs;
-            while (iter->next != NULL) {
-                iter = iter->next;
+            struct ArgsLayer *layer_iter = xcsf->cond->largs;
+            while (layer_iter->next != NULL) {
+                layer_iter = layer_iter->next;
             }
-            iter->next = larg;
+            layer_iter->next = larg;
         }
     }
     layer_args_validate(xcsf->cond->largs);

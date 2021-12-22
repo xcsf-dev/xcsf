@@ -451,11 +451,11 @@ pred_neural_param_json_import(struct XCSF *xcsf, cJSON *json)
         if (xcsf->pred->largs == NULL) {
             xcsf->pred->largs = larg;
         } else {
-            struct ArgsLayer *iter = xcsf->pred->largs;
-            while (iter->next != NULL) {
-                iter = iter->next;
+            struct ArgsLayer *layer_iter = xcsf->pred->largs;
+            while (layer_iter->next != NULL) {
+                layer_iter = layer_iter->next;
             }
-            iter->next = larg;
+            layer_iter->next = larg;
         }
     }
     layer_args_validate(xcsf->pred->largs);
