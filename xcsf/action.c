@@ -137,10 +137,9 @@ action_param_json_import(struct XCSF *xcsf, cJSON *json)
         return false;
     }
     json = json->next;
-    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
-        if (xcsf->act->type == ACT_TYPE_NEURAL) {
-            act_neural_param_json_import(xcsf, json->child);
-        }
+    if (json != NULL && strncmp(json->string, "args\0", 5) == 0 &&
+        xcsf->act->type == ACT_TYPE_NEURAL) {
+        act_neural_param_json_import(xcsf, json->child);
     }
     return true;
 }
