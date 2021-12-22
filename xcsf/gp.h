@@ -60,7 +60,7 @@ tree_copy(struct GPTree *dest, const struct GPTree *src);
 void
 tree_print(const struct GPTree *gp, const struct ArgsGPTree *args);
 
-const char *
+char *
 tree_json_export(const struct GPTree *gp, const struct ArgsGPTree *args);
 
 double
@@ -84,7 +84,10 @@ tree_args_init(struct ArgsGPTree *args);
 void
 tree_args_free(struct ArgsGPTree *args);
 
-const char *
+void
+tree_args_json_import(struct ArgsGPTree *args, cJSON *json);
+
+char *
 tree_args_json_export(const struct ArgsGPTree *args);
 
 size_t

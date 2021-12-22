@@ -215,7 +215,7 @@ tree_string(const struct GPTree *gp, const struct ArgsGPTree *args, int pos,
  * @param [in] args Tree GP parameters.
  * @return String encoded in json format.
  */
-const char *
+char *
 tree_json_export(const struct GPTree *gp, const struct ArgsGPTree *args)
 {
     cJSON *json = cJSON_CreateObject();
@@ -224,7 +224,7 @@ tree_json_export(const struct GPTree *gp, const struct ArgsGPTree *args)
     tree_string(gp, args, 0, tree);
     cJSON *mutation = cJSON_CreateDoubleArray(gp->mu, N_MU);
     cJSON_AddItemToObject(json, "mutation", mutation);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }
@@ -237,7 +237,9 @@ tree_json_export(const struct GPTree *gp, const struct ArgsGPTree *args)
 void
 tree_print(const struct GPTree *gp, const struct ArgsGPTree *args)
 {
-    printf("%s\n", tree_json_export(gp, args));
+    char *json_str = tree_json_export(gp, args);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -391,7 +393,7 @@ tree_args_free(struct ArgsGPTree *args)
  * @param [in] args Parameters for initialising and operating GP trees.
  * @return String encoded in json format.
  */
-const char *
+char *
 tree_args_json_export(const struct ArgsGPTree *args)
 {
     cJSON *json = cJSON_CreateObject();
@@ -400,9 +402,40 @@ tree_args_json_export(const struct ArgsGPTree *args)
     cJSON_AddNumberToObject(json, "n_constants", args->n_constants);
     cJSON_AddNumberToObject(json, "init_depth", args->init_depth);
     cJSON_AddNumberToObject(json, "max_len", args->max_len);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets the GP tree parameters from a cJSON object.
+ * @param [in,out] args GP tree parameter data structure.
+ * @param [in] json cJSON object.
+ */
+void
+tree_args_json_import(struct ArgsGPTree *args, cJSON *json)
+{
+    for (cJSON *iter = json; iter != NULL; iter = iter->next) {
+        if (strncmp(iter->string, "min_constant\0", 13) == 0 &&
+            cJSON_IsNumber(iter)) {
+            tree_param_set_min(args, iter->valuedouble);
+        } else if (strncmp(iter->string, "max_constant\0", 13) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            tree_param_set_max(args, iter->valuedouble);
+        } else if (strncmp(iter->string, "n_constants\0", 12) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            tree_param_set_n_constants(args, iter->valueint);
+        } else if (strncmp(iter->string, "init_depth\0", 11) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            tree_param_set_init_depth(args, iter->valueint);
+        } else if (strncmp(iter->string, "max_len\0", 8) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            tree_param_set_max_len(args, iter->valueint);
+        } else {
+            printf("Error importing tree-GP parameter %s\n", iter->string);
+            exit(EXIT_FAILURE);
+        }
+    }
 }
 
 /**
