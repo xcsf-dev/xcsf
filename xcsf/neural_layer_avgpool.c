@@ -225,19 +225,21 @@ neural_layer_avgpool_output(const struct Layer *l)
 void
 neural_layer_avgpool_print(const struct Layer *l, const bool print_weights)
 {
-    printf("%s\n", neural_layer_avgpool_json(l, print_weights));
+    char *json_str = neural_layer_avgpool_json_export(l, print_weights);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
- * @brief Returns a json formatted string representation of an average pool
- * layer.
+ * @brief Returns a json formatted string of an average pool layer.
  * @param [in] l The layer to return.
  * @param [in] return_weights Whether to return the values of weights and
  * biases.
  * @return String encoded in json format.
  */
-const char *
-neural_layer_avgpool_json(const struct Layer *l, const bool return_weights)
+char *
+neural_layer_avgpool_json_export(const struct Layer *l,
+                                 const bool return_weights)
 {
     (void) return_weights;
     cJSON *json = cJSON_CreateObject();
@@ -247,7 +249,7 @@ neural_layer_avgpool_json(const struct Layer *l, const bool return_weights)
     cJSON_AddNumberToObject(json, "height", l->height);
     cJSON_AddNumberToObject(json, "width", l->width);
     cJSON_AddNumberToObject(json, "channels", l->channels);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

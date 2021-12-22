@@ -66,8 +66,9 @@ neural_layer_maxpool_load(struct Layer *l, FILE *fp);
 void
 neural_layer_maxpool_resize(struct Layer *l, const struct Layer *prev);
 
-const char *
-neural_layer_maxpool_json(const struct Layer *l, const bool return_weights);
+char *
+neural_layer_maxpool_json_export(const struct Layer *l,
+                                 const bool return_weights);
 
 /**
  * @brief Neural maxpooling layer implemented functions.
@@ -79,5 +80,5 @@ static struct LayerVtbl const layer_maxpool_vtbl = {
     &neural_layer_maxpool_print,    &neural_layer_maxpool_update,
     &neural_layer_maxpool_backward, &neural_layer_maxpool_forward,
     &neural_layer_maxpool_output,   &neural_layer_maxpool_save,
-    &neural_layer_maxpool_load,     &neural_layer_maxpool_json
+    &neural_layer_maxpool_load,     &neural_layer_maxpool_json_export
 };

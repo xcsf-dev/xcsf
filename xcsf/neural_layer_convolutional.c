@@ -496,18 +496,19 @@ void
 neural_layer_convolutional_print(const struct Layer *l,
                                  const bool print_weights)
 {
-    printf("%s\n", neural_layer_convolutional_json_export(l, print_weights));
+    char *json_str = neural_layer_convolutional_json_export(l, print_weights);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
- * @brief Returns a json formatted string representation of a convolutional
- * layer.
+ * @brief Returns a json formatted string of a convolutional layer.
  * @param [in] l The layer to return.
  * @param [in] return_weights Whether to return the values of weights and
  * biases.
  * @return String encoded in json format.
  */
-const char *
+char *
 neural_layer_convolutional_json_export(const struct Layer *l,
                                        const bool return_weights)
 {
@@ -526,7 +527,7 @@ neural_layer_convolutional_json_export(const struct Layer *l,
     cJSON_AddItemToObject(json, "mutation", mutation);
     cJSON *weights = cJSON_Parse(layer_weight_json(l, return_weights));
     cJSON_AddItemToObject(json, "weights", weights);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

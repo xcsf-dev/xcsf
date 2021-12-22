@@ -238,7 +238,9 @@ neural_layer_upsample_output(const struct Layer *l)
 void
 neural_layer_upsample_print(const struct Layer *l, const bool print_weights)
 {
-    printf("%s\n", neural_layer_upsample_json_export(l, print_weights));
+    char *json_str = neural_layer_upsample_json_export(l, print_weights);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -248,7 +250,7 @@ neural_layer_upsample_print(const struct Layer *l, const bool print_weights)
  * biases.
  * @return String encoded in json format.
  */
-const char *
+char *
 neural_layer_upsample_json_export(const struct Layer *l,
                                   const bool return_weights)
 {
@@ -261,7 +263,7 @@ neural_layer_upsample_json_export(const struct Layer *l,
     cJSON_AddNumberToObject(json, "width", l->width);
     cJSON_AddNumberToObject(json, "channels", l->channels);
     cJSON_AddNumberToObject(json, "stride", l->stride);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

@@ -23,6 +23,7 @@
 
 #pragma once
 
+#include "utils.h"
 #include <errno.h>
 #include <float.h>
 #include <inttypes.h>

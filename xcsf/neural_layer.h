@@ -156,8 +156,8 @@ struct LayerVtbl {
     double *(*layer_impl_output)(const struct Layer *l);
     size_t (*layer_impl_save)(const struct Layer *l, FILE *fp);
     size_t (*layer_impl_load)(struct Layer *l, FILE *fp);
-    const char *(*layer_impl_json_export)(const struct Layer *l,
-                                          const bool return_weights);
+    char *(*layer_impl_json_export)(const struct Layer *l,
+                                    const bool return_weights);
 };
 
 /**
@@ -301,7 +301,7 @@ layer_print(const struct Layer *l, const bool print_weights)
  * @param [in] l The layer to be returned.
  * @param [in] return_weights Whether to return the weights.
  */
-static inline const char *
+static inline char *
 layer_json_export(const struct Layer *l, const bool return_weights)
 {
     return (*l->layer_vptr->layer_impl_json_export)(l, return_weights);
@@ -344,7 +344,7 @@ layer_weight_clamp(const struct Layer *l);
 void
 layer_weight_print(const struct Layer *l, const bool print_weights);
 
-const char *
+char *
 layer_weight_json(const struct Layer *l, const bool return_weights);
 
 void

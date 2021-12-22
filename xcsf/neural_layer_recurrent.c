@@ -430,7 +430,9 @@ neural_layer_recurrent_mutate(struct Layer *l)
 void
 neural_layer_recurrent_print(const struct Layer *l, const bool print_weights)
 {
-    printf("%s\n", neural_layer_recurrent_json_export(l, print_weights));
+    char *json_str = neural_layer_recurrent_json_export(l, print_weights);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -440,7 +442,7 @@ neural_layer_recurrent_print(const struct Layer *l, const bool print_weights)
  * biases.
  * @return String encoded in json format.
  */
-const char *
+char *
 neural_layer_recurrent_json_export(const struct Layer *l,
                                    const bool return_weights)
 {
@@ -459,7 +461,7 @@ neural_layer_recurrent_json_export(const struct Layer *l,
     cJSON_AddItemToObject(json, "self_layer", sl);
     cJSON *ol = cJSON_Parse(layer_weight_json(l->output_layer, return_weights));
     cJSON_AddItemToObject(json, "output_layer", ol);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

@@ -308,7 +308,9 @@ layer_mutate_functions(struct Layer *l, const double mu)
 void
 layer_weight_print(const struct Layer *l, const bool print_weights)
 {
-    printf("%s\n", layer_weight_json(l, print_weights));
+    char *json_str = layer_weight_json(l, print_weights);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -318,7 +320,7 @@ layer_weight_print(const struct Layer *l, const bool print_weights)
  * biases.
  * @return String encoded in json format.
  */
-const char *
+char *
 layer_weight_json(const struct Layer *l, const bool return_weights)
 {
     cJSON *json = cJSON_CreateObject();
@@ -333,7 +335,7 @@ layer_weight_json(const struct Layer *l, const bool return_weights)
         cJSON_AddItemToObject(json, "biases", biases);
     }
     cJSON_AddNumberToObject(json, "n_active", l->n_active);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

@@ -66,7 +66,7 @@ neural_layer_recurrent_load(struct Layer *l, FILE *fp);
 void
 neural_layer_recurrent_resize(struct Layer *l, const struct Layer *prev);
 
-const char *
+char *
 neural_layer_recurrent_json_export(const struct Layer *l,
                                    const bool return_weights);
 

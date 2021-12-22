@@ -222,7 +222,9 @@ neural_layer_noise_output(const struct Layer *l)
 void
 neural_layer_noise_print(const struct Layer *l, const bool print_weights)
 {
-    printf("%s\n", neural_layer_noise_json_export(l, print_weights));
+    char *json_str = neural_layer_noise_json_export(l, print_weights);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -232,7 +234,7 @@ neural_layer_noise_print(const struct Layer *l, const bool print_weights)
  * biases.
  * @return String encoded in json format.
  */
-const char *
+char *
 neural_layer_noise_json_export(const struct Layer *l, const bool return_weights)
 {
     (void) return_weights;
@@ -242,7 +244,7 @@ neural_layer_noise_json_export(const struct Layer *l, const bool return_weights)
     cJSON_AddNumberToObject(json, "n_outputs", l->n_outputs);
     cJSON_AddNumberToObject(json, "probability", l->probability);
     cJSON_AddNumberToObject(json, "stdev", l->scale);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

@@ -66,8 +66,9 @@ neural_layer_avgpool_load(struct Layer *l, FILE *fp);
 void
 neural_layer_avgpool_resize(struct Layer *l, const struct Layer *prev);
 
-const char *
-neural_layer_avgpool_json(const struct Layer *l, const bool return_weights);
+char *
+neural_layer_avgpool_json_export(const struct Layer *l,
+                                 const bool return_weights);
 
 /**
  * @brief Neural average pooling layer implemented functions.
@@ -79,5 +80,5 @@ static struct LayerVtbl const layer_avgpool_vtbl = {
     &neural_layer_avgpool_print,    &neural_layer_avgpool_update,
     &neural_layer_avgpool_backward, &neural_layer_avgpool_forward,
     &neural_layer_avgpool_output,   &neural_layer_avgpool_save,
-    &neural_layer_avgpool_load,     &neural_layer_avgpool_json
+    &neural_layer_avgpool_load,     &neural_layer_avgpool_json_export
 };

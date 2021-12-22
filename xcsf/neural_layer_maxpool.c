@@ -276,7 +276,9 @@ neural_layer_maxpool_output(const struct Layer *l)
 void
 neural_layer_maxpool_print(const struct Layer *l, const bool print_weights)
 {
-    printf("%s\n", neural_layer_maxpool_json(l, print_weights));
+    char *json_str = neural_layer_maxpool_json_export(l, print_weights);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -286,8 +288,9 @@ neural_layer_maxpool_print(const struct Layer *l, const bool print_weights)
  * biases.
  * @return String encoded in json format.
  */
-const char *
-neural_layer_maxpool_json(const struct Layer *l, const bool return_weights)
+char *
+neural_layer_maxpool_json_export(const struct Layer *l,
+                                 const bool return_weights)
 {
     (void) return_weights;
     cJSON *json = cJSON_CreateObject();
@@ -303,7 +306,7 @@ neural_layer_maxpool_json(const struct Layer *l, const bool return_weights)
     cJSON_AddNumberToObject(json, "out_w", l->out_w);
     cJSON_AddNumberToObject(json, "out_h", l->out_h);
     cJSON_AddNumberToObject(json, "out_c", l->out_c);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

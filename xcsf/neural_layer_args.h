@@ -21,6 +21,10 @@
  * @brief Functions operating on neural network arguments/constants.
  */
 
+#pragma once
+
+#include "utils.h"
+
 /**
  * @brief Parameters for initialising a neural network layer.
  */
@@ -62,7 +66,10 @@ layer_args_copy(const struct ArgsLayer *src);
 struct ArgsLayer *
 layer_args_tail(struct ArgsLayer *head);
 
-const char *
+void
+layer_args_json_import(struct ArgsLayer *largs, cJSON *json);
+
+char *
 layer_args_json_export(struct ArgsLayer *args);
 
 void

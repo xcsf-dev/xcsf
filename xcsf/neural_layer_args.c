@@ -139,6 +139,40 @@ layer_args_json_export_inputs(cJSON *json, const struct ArgsLayer *args)
 }
 
 /**
+ * @brief Sets the layer input parameters from a cJSON object.
+ * @param [in,out] args Layer parameters data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ */
+static bool
+layer_args_json_import_inputs(struct ArgsLayer *args, const cJSON *json)
+{
+    if (strncmp(json->string, "height\0", 7) == 0 && cJSON_IsNumber(json)) {
+        args->height = json->valueint;
+    } else if (strncmp(json->string, "width\0", 6) == 0 &&
+               cJSON_IsNumber(json)) {
+        args->width = json->valueint;
+    } else if (strncmp(json->string, "channels\0", 9) == 0 &&
+               cJSON_IsNumber(json)) {
+        args->channels = json->valueint;
+    } else if (strncmp(json->string, "size\0", 5) == 0 &&
+               cJSON_IsNumber(json)) {
+        args->size = json->valueint;
+    } else if (strncmp(json->string, "stride\0", 7) == 0 &&
+               cJSON_IsNumber(json)) {
+        args->stride = json->valueint;
+    } else if (strncmp(json->string, "pad\0", 4) == 0 && cJSON_IsNumber(json)) {
+        args->pad = json->valueint;
+    } else if (strncmp(json->string, "n_inputs\0", 9) == 0 &&
+               cJSON_IsNumber(json)) {
+        (void) args->n_inputs; // set automatically
+    } else {
+        return false;
+    }
+    return true;
+}
+
+/**
  * @brief Adds layer gradient descent parameters to a json object.
  * @param [in,out] json cJSON object.
  * @param [in] args The layer parameters to print.
@@ -159,6 +193,37 @@ layer_args_json_export_sgd(cJSON *json, const struct ArgsLayer *args)
 }
 
 /**
+ * @brief Sets the layer SGD parameters from a cJSON object.
+ * @param [in,out] args Layer parameters data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ */
+static bool
+layer_args_json_import_sgd(struct ArgsLayer *args, const cJSON *json)
+{
+    if (strncmp(json->string, "sgd_weights\0", 12) == 0 && cJSON_IsBool(json)) {
+        args->sgd_weights = json->valueint;
+    } else if (strncmp(json->string, "eta\0", 4) == 0 && cJSON_IsNumber(json)) {
+        args->eta = json->valuedouble;
+    } else if (strncmp(json->string, "evolve_eta\0", 11) == 0 &&
+               cJSON_IsBool(json)) {
+        args->evolve_eta = json->valueint;
+    } else if (strncmp(json->string, "eta_min\0", 8) == 0 &&
+               cJSON_IsNumber(json)) {
+        args->eta_min = json->valuedouble;
+    } else if (strncmp(json->string, "momentum\0", 9) == 0 &&
+               cJSON_IsNumber(json)) {
+        args->momentum = json->valuedouble;
+    } else if (strncmp(json->string, "decay\0", 6) == 0 &&
+               cJSON_IsNumber(json)) {
+        args->decay = json->valuedouble;
+    } else {
+        return false;
+    }
+    return true;
+}
+
+/**
  * @brief Adds layer evolutionary parameters to a json object.
  * @param [in,out] json cJSON object.
  * @param [in] args The layer parameters to print.
@@ -174,6 +239,39 @@ layer_args_json_export_evo(cJSON *json, const struct ArgsLayer *args)
         cJSON_AddNumberToObject(json, "n_max", args->n_max);
         cJSON_AddNumberToObject(json, "max_neuron_grow", args->max_neuron_grow);
     }
+}
+
+/**
+ * @brief Sets the layer evolutionary parameters from a cJSON object.
+ * @param [in,out] args Layer parameters data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ */
+static bool
+layer_args_json_import_evo(struct ArgsLayer *args, const cJSON *json)
+{
+    if (strncmp(json->string, "evolve_weights\0", 15) == 0 &&
+        cJSON_IsBool(json)) {
+        args->evolve_weights = json->valueint;
+    } else if (strncmp(json->string, "evolve_functions\0", 17) == 0 &&
+               cJSON_IsBool(json)) {
+        args->evolve_functions = json->valueint;
+    } else if (strncmp(json->string, "evolve_connect\0", 15) == 0 &&
+               cJSON_IsBool(json)) {
+        args->evolve_connect = json->valueint;
+    } else if (strncmp(json->string, "evolve_neurons\0", 15) == 0 &&
+               cJSON_IsBool(json)) {
+        args->evolve_neurons = json->valueint;
+    } else if (strncmp(json->string, "n_max\0", 6) == 0 &&
+               cJSON_IsNumber(json)) {
+        args->n_max = json->valueint;
+    } else if (strncmp(json->string, "max_neuron_grow\0", 16) == 0 &&
+               cJSON_IsNumber(json)) {
+        args->max_neuron_grow = json->valueint;
+    } else {
+        return false;
+    }
+    return true;
 }
 
 /**
@@ -205,6 +303,27 @@ layer_args_json_export_activation(cJSON *json, const struct ArgsLayer *args)
 }
 
 /**
+ * @brief Sets the layer activation from a cJSON object.
+ * @param [in,out] args Layer parameters data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ */
+static bool
+layer_args_json_import_activation(struct ArgsLayer *args, const cJSON *json)
+{
+    if (strncmp(json->string, "activation\0", 15) == 0 &&
+        cJSON_IsString(json)) {
+        args->function = neural_activation_as_int(json->valuestring);
+    } else if (strncmp(json->string, "recurrent_activation\0", 17) == 0 &&
+               cJSON_IsString(json)) {
+        args->recurrent_function = neural_activation_as_int(json->valuestring);
+    } else {
+        return false;
+    }
+    return true;
+}
+
+/**
  * @brief Adds layer scaling parameters to a json object.
  * @param [in,out] json cJSON object.
  * @param [in] args The layer parameters to print.
@@ -229,11 +348,32 @@ layer_args_json_export_scale(cJSON *json, const struct ArgsLayer *args)
 }
 
 /**
+ * @brief Sets the layer scaling parameters from a cJSON object.
+ * @param [in,out] args Layer parameters data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ */
+static bool
+layer_args_json_import_scale(struct ArgsLayer *args, const cJSON *json)
+{
+    if (strncmp(json->string, "probability\0", 15) == 0 &&
+        cJSON_IsNumber(json)) {
+        args->probability = json->valuedouble;
+    } else if (strncmp(json->string, "scale\0", 6) == 0 &&
+               cJSON_IsNumber(json)) {
+        args->scale = json->valuedouble;
+    } else {
+        return false;
+    }
+    return true;
+}
+
+/**
  * @brief Returns a json formatted string of the neural layer parameters.
  * @param [in] args The layer parameters to print.
  * @return String encoded in json format.
  */
-const char *
+char *
 layer_args_json_export(struct ArgsLayer *args)
 {
     struct Net net; // create a temporary network to parse inputs
@@ -260,9 +400,46 @@ layer_args_json_export(struct ArgsLayer *args)
         layer_args_json_export_evo(l, a);
         layer_args_json_export_sgd(l, a);
     }
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets the layer parameters from a cJSON object.
+ * @param [in,out] args Layer parameters data structure.
+ * @param [in] json cJSON object.
+ */
+void
+layer_args_json_import(struct ArgsLayer *args, cJSON *json)
+{
+    for (cJSON *iter = json; iter != NULL; iter = iter->next) {
+        if (strncmp(iter->string, "type\0", 5) == 0 && cJSON_IsString(iter)) {
+            args->type = layer_type_as_int(iter->valuestring);
+            continue;
+        }
+        if (layer_args_json_import_activation(args, iter)) {
+            continue;
+        }
+        if (layer_args_json_import_inputs(args, iter)) {
+            continue;
+        }
+        if (layer_args_json_import_scale(args, iter)) {
+            continue;
+        }
+        if (strncmp(iter->string, "n_init\0", 7) == 0 && cJSON_IsNumber(iter)) {
+            args->n_init = iter->valueint;
+            continue;
+        }
+        if (layer_args_json_import_evo(args, iter)) {
+            continue;
+        }
+        if (layer_args_json_import_sgd(args, iter)) {
+            continue;
+        }
+        printf("Error: unable to import neural parameter: %s\n", iter->string);
+        exit(EXIT_FAILURE);
+    }
 }
 
 /**

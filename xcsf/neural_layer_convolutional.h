@@ -68,7 +68,7 @@ neural_layer_convolutional_load(struct Layer *l, FILE *fp);
 void
 neural_layer_convolutional_resize(struct Layer *l, const struct Layer *prev);
 
-const char *
+char *
 neural_layer_convolutional_json_export(const struct Layer *l,
                                        const bool return_weights);
 
