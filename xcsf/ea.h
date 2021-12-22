@@ -52,7 +52,10 @@ ea(struct XCSF *xcsf, const struct Set *set);
 void
 ea_param_defaults(struct XCSF *xcsf);
 
-const char *
+void
+ea_param_json_import(struct XCSF *xcsf, cJSON *json);
+
+char *
 ea_param_json_export(const struct XCSF *xcsf);
 
 size_t

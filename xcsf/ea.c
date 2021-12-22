@@ -252,7 +252,7 @@ ea_param_defaults(struct XCSF *xcsf)
  * @param [in] xcsf XCSF data structure.
  * @return String encoded in json format.
  */
-const char *
+char *
 ea_param_json_export(const struct XCSF *xcsf)
 {
     cJSON *json = cJSON_CreateObject();
@@ -268,9 +268,52 @@ ea_param_json_export(const struct XCSF *xcsf)
     cJSON_AddNumberToObject(json, "fit_reduc", xcsf->ea->fit_reduc);
     cJSON_AddBoolToObject(json, "subsumption", xcsf->ea->subsumption);
     cJSON_AddBoolToObject(json, "pred_reset", xcsf->ea->pred_reset);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets the EA parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+ea_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    for (cJSON *iter = json; iter != NULL; iter = iter->next) {
+        if (strncmp(iter->string, "select_type\0", 12) == 0 &&
+            cJSON_IsString(iter)) {
+            ea_param_set_type_string(xcsf, iter->valuestring);
+        } else if (strncmp(iter->string, "select_size\0", 12) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            ea_param_set_select_size(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "theta_ea\0", 9) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            ea_param_set_theta(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "lambda\0", 7) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            ea_param_set_lambda(xcsf, iter->valueint);
+        } else if (strncmp(iter->string, "p_crossover\0", 12) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            ea_param_set_p_crossover(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "err_reduc\0", 10) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            ea_param_set_err_reduc(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "fit_reduc\0", 10) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            ea_param_set_fit_reduc(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "subsumption\0", 12) == 0 &&
+                   cJSON_IsBool(iter)) {
+            ea_param_set_subsumption(xcsf, iter->valueint);
+        } else if (strncmp(iter->string, "pred_reset\0", 11) == 0 &&
+                   cJSON_IsBool(iter)) {
+            ea_param_set_pred_reset(xcsf, iter->valueint);
+        } else {
+            printf("Error importing EA parameter %s\n", iter->string);
+            exit(EXIT_FAILURE);
+        }
+    }
 }
 
 /**
