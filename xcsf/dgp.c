@@ -308,7 +308,9 @@ graph_update(const struct Graph *dgp, const double *inputs, const bool reset)
 void
 graph_print(const struct Graph *dgp)
 {
-    printf("%s\n", graph_json_export(dgp));
+    char *json_str = graph_json_export(dgp);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -316,7 +318,7 @@ graph_print(const struct Graph *dgp)
  * @param [in] dgp The DGP graph to return.
  * @return String encoded in json format.
  */
-const char *
+char *
 graph_json_export(const struct Graph *dgp)
 {
     cJSON *json = cJSON_CreateObject();
@@ -337,7 +339,7 @@ graph_json_export(const struct Graph *dgp)
     cJSON_AddItemToObject(json, "connectivity", connectivity);
     cJSON *mutation = cJSON_CreateDoubleArray(dgp->mu, N_MU);
     cJSON_AddItemToObject(json, "mutation", mutation);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }
@@ -459,7 +461,7 @@ graph_args_init(struct ArgsDGP *args)
  * @param [in] args Parameters for initialising and operating DGP graphs.
  * @return String encoded in json format.
  */
-const char *
+char *
 graph_args_json_export(const struct ArgsDGP *args)
 {
     cJSON *json = cJSON_CreateObject();
@@ -467,9 +469,36 @@ graph_args_json_export(const struct ArgsDGP *args)
     cJSON_AddNumberToObject(json, "max_t", args->max_t);
     cJSON_AddNumberToObject(json, "n", args->n);
     cJSON_AddBoolToObject(json, "evolve_cycles", args->evolve_cycles);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets the DGP graph parameters from a cJSON object.
+ * @param [in,out] args DGP parameter data structure.
+ * @param [in] json cJSON object.
+ */
+void
+graph_args_json_import(struct ArgsDGP *args, cJSON *json)
+{
+    for (cJSON *iter = json; iter != NULL; iter = iter->next) {
+        if (strncmp(iter->string, "max_k\0", 6) == 0 && cJSON_IsNumber(iter)) {
+            graph_param_set_max_k(args, iter->valueint);
+        } else if (strncmp(iter->string, "max_t\0", 6) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            graph_param_set_max_t(args, iter->valueint);
+        } else if (strncmp(iter->string, "n\0", 2) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            graph_param_set_n(args, iter->valueint);
+        } else if (strncmp(iter->string, "evolve_cycles\0", 14) == 0 &&
+                   cJSON_IsBool(iter)) {
+            graph_param_set_evolve_cycles(args, iter->valueint);
+        } else {
+            printf("Error importing DGP parameter %s\n", iter->string);
+            exit(EXIT_FAILURE);
+        }
+    }
 }
 
 /**

@@ -59,7 +59,7 @@ struct Graph {
 bool
 graph_mutate(struct Graph *dgp);
 
-const char *
+char *
 graph_json_export(const struct Graph *dgp);
 
 double
@@ -95,7 +95,10 @@ graph_update(const struct Graph *dgp, const double *inputs, const bool reset);
 void
 graph_args_init(struct ArgsDGP *args);
 
-const char *
+void
+graph_args_json_import(struct ArgsDGP *args, cJSON *json);
+
+char *
 graph_args_json_export(const struct ArgsDGP *args);
 
 size_t
