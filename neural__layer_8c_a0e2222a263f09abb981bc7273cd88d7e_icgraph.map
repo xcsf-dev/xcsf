@@ -1,10 +1,10 @@
 <map id="layer_type_as_string" name="layer_type_as_string">
 <area shape="rect" id="node1" title="Returns a string representation of a layer type from an integer." alt="" coords="1195,56,1337,83"/>
-<area shape="rect" id="node2" href="$neural__layer__args_8h.html#a660f9e96fa6caf7aa200a6eead34501b" title="Returns a json formatted string of the neural layer parameters." alt="" coords="991,56,1147,83"/>
-<area shape="rect" id="node3" href="$action_8h.html#abd5f8e0c76c65e3986e0c03a26a7ecdf" title="Returns a json formatted string of the action parameters." alt="" coords="768,5,943,32"/>
-<area shape="rect" id="node10" href="$condition_8h.html#a0e0e347822daa85547f6369c239b4c87" title="Returns a json formatted string of the condition parameters." alt="" coords="772,56,939,83"/>
-<area shape="rect" id="node11" href="$prediction_8h.html#a4efc41175016bfdcf6eaa51ae07aaaf8" title="Returns a json formatted string of the prediction parameters." alt="" coords="773,107,937,133"/>
-<area shape="rect" id="node4" href="$param_8h.html#a631e4068e661e64840366188b60075dc" title="Returns a json formatted string representation of the parameters." alt="" coords="588,56,720,83"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8h.html#a390bf97769999138966232a530c705e8" title="Returns a json formatted string of the neural layer parameters." alt="" coords="991,56,1147,83"/>
+<area shape="rect" id="node3" href="$action_8h.html#ae4c75dacfa854514efe71cc00515d6c0" title="Returns a json formatted string of the action parameters." alt="" coords="768,5,943,32"/>
+<area shape="rect" id="node10" href="$condition_8h.html#ac3384a0731c16bed95c104111873c6e2" title="Returns a json formatted string of the condition parameters." alt="" coords="772,56,939,83"/>
+<area shape="rect" id="node11" href="$prediction_8h.html#afb4c9f7647df17c3b4ab748f01b5e301" title="Returns a json formatted string of the prediction parameters." alt="" coords="773,107,937,133"/>
+<area shape="rect" id="node4" href="$param_8h.html#a92d92fc270b6ed2e2637ccb590eb15d5" title="Returns a json formatted string representation of the parameters." alt="" coords="588,56,720,83"/>
 <area shape="rect" id="node5" href="$classXCS.html#adb57289e76542083f52f422992e4ee13" title="Returns a JSON formatted string representing the parameters." alt="" coords="385,31,540,57"/>
 <area shape="rect" id="node7" href="$param_8h.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="417,81,508,108"/>
 <area shape="rect" id="node6" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,81,156,108"/>

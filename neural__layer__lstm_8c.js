@@ -12,7 +12,7 @@ var neural__layer__lstm_8c =
     [ "neural_layer_lstm_forward", "neural__layer__lstm_8c.html#af2c3a4a9e6dd75cd00083c38733bddb0", null ],
     [ "neural_layer_lstm_free", "neural__layer__lstm_8c.html#a5a415724e5bf8ff59f922b80b9a6bdb9", null ],
     [ "neural_layer_lstm_init", "neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b", null ],
-    [ "neural_layer_lstm_json_export", "neural__layer__lstm_8c.html#aef595b2b531e5ef7e064c7fa312a176f", null ],
+    [ "neural_layer_lstm_json_export", "neural__layer__lstm_8c.html#ad29d67cc7febe76bf36ec51ec2a46a7e", null ],
     [ "neural_layer_lstm_load", "neural__layer__lstm_8c.html#a6f8cf6bf022b03c7513b8360002720af", null ],
     [ "neural_layer_lstm_mutate", "neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b", null ],
     [ "neural_layer_lstm_output", "neural__layer__lstm_8c.html#a483d330a7545f428581e0c39a96e536f", null ],

@@ -2,7 +2,12 @@ var param_8c =
 [
     [ "param_free", "param_8c.html#acde6664d083676244bfc1105b1712984", null ],
     [ "param_init", "param_8c.html#ac8218a170803be0bcd974764e7494b0e", null ],
-    [ "param_json_export", "param_8c.html#a631e4068e661e64840366188b60075dc", null ],
+    [ "param_json_export", "param_8c.html#a92d92fc270b6ed2e2637ccb590eb15d5", null ],
+    [ "param_json_import", "param_8c.html#a130260988988535419aee8abe51986c1", null ],
+    [ "param_json_import_cl_general", "param_8c.html#a97aa83082509d7fe3de540e1f6137318", null ],
+    [ "param_json_import_general", "param_8c.html#ad7d3421611d8020079446a6a190df8f8", null ],
+    [ "param_json_import_multi", "param_8c.html#a7d152ab74c6a8c9096303ae3331eb015", null ],
+    [ "param_json_import_subsump", "param_8c.html#ac51f8770dba4b66f28d6d4eaa631123e", null ],
     [ "param_load", "param_8c.html#ae7f8932981ba2f49027da90acfd121b1", null ],
     [ "param_print", "param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2", null ],
     [ "param_save", "param_8c.html#aeee8da56faaeace4ed44adc45a42d359", null ],

@@ -1,7 +1,8 @@
 <map id="cond_neural.h" name="cond_neural.h">
-<area shape="rect" id="node1" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="191,5,293,32"/>
+<area shape="rect" id="node1" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="251,5,353,32"/>
 <area shape="rect" id="node2" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="5,80,108,107"/>
 <area shape="rect" id="node3" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="132,80,235,107"/>
 <area shape="rect" id="node4" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="259,80,345,107"/>
-<area shape="rect" id="node5" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="369,80,427,107"/>
+<area shape="rect" id="node5" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="369,80,507,107"/>
+<area shape="rect" id="node6" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="531,80,590,107"/>
 </map>

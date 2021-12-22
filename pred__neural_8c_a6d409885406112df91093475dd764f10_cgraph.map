@@ -1,6 +1,6 @@
 <map id="pred_neural_print" name="pred_neural_print">
 <area shape="rect" id="node1" title="Prints a neural network prediction." alt="" coords="5,5,127,32"/>
-<area shape="rect" id="node2" href="$pred__neural_8c.html#ac9c7b01713d1b135dfdcc2709263274b" title="Returns a json formatted string representation of a neural prediction." alt="" coords="175,5,337,32"/>
+<area shape="rect" id="node2" href="$pred__neural_8c.html#a3893bcacdef034a27bd771a599d0b5f0" title="Returns a json formatted string representation of a neural prediction." alt="" coords="175,5,337,32"/>
 <area shape="rect" id="node3" href="$neural_8c.html#a99f4af43712739691174e770a9090ca2" title="Returns a json formatted string representation of a neural network." alt="" coords="385,5,516,32"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#ade7b33f507c20b3be75914174844bc4c" title="Returns a json formatted string representation of a layer." alt="" coords="564,5,688,32"/>
+<area shape="rect" id="node4" href="$neural__layer_8h.html#abed58073ee996eda6dad51a18ab7946e" title="Returns a json formatted string representation of a layer." alt="" coords="564,5,688,32"/>
 </map>

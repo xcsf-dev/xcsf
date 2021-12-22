@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('env_8c_source.html',''); initResizable
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -114,18 +114,18 @@ $(document).ready(function(){initNavTree('env_8c_source.html',''); initResizable
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="env__mux_8h.html">env_mux.h</a>&quot;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9">   34</a></span>&#160;<a class="code" href="env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9">env_init</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *xcsf, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9">   34</a></span>&#160;<a class="code" href="env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9">env_init</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keywordtype">char</span> **argv)</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">char</span> *end = NULL;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">if</span> (strcmp(argv[1], <span class="stringliteral">&quot;mp&quot;</span>) == 0) {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        xcsf-&gt;<a class="code" href="structXCSF.html#ad1acf6b6babb08072dccf79993c186fd">env_vptr</a> = &amp;<a class="code" href="env__mux_8h.html#acca46becabfbe6d58860d0b37061c2b8">env_mux_vtbl</a>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="env__mux_8c.html#aff3b81b4913d273ecfd62d7585480b15">env_mux_init</a>(xcsf, (<span class="keywordtype">int</span>) strtoimax(argv[2], &amp;end, 10));</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;env_vptr = &amp;<a class="code" href="env__mux_8h.html#acca46becabfbe6d58860d0b37061c2b8">env_mux_vtbl</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="env__mux_8c.html#aff3b81b4913d273ecfd62d7585480b15">env_mux_init</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, (<span class="keywordtype">int</span>) strtoimax(argv[2], &amp;end, 10));</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strcmp(argv[1], <span class="stringliteral">&quot;maze&quot;</span>) == 0) {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        xcsf-&gt;<a class="code" href="structXCSF.html#ad1acf6b6babb08072dccf79993c186fd">env_vptr</a> = &amp;<a class="code" href="env__maze_8h.html#aeadc5097082bb9a1d71b5c44a99d3651">env_maze_vtbl</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="env__maze_8c.html#acad3cc6e9fe2b7e07e878f1f517ad3a6">env_maze_init</a>(xcsf, argv[2]);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;env_vptr = &amp;<a class="code" href="env__maze_8h.html#aeadc5097082bb9a1d71b5c44a99d3651">env_maze_vtbl</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="env__maze_8c.html#acad3cc6e9fe2b7e07e878f1f517ad3a6">env_maze_init</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, argv[2]);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strcmp(argv[1], <span class="stringliteral">&quot;csv&quot;</span>) == 0) {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        xcsf-&gt;<a class="code" href="structXCSF.html#ad1acf6b6babb08072dccf79993c186fd">env_vptr</a> = &amp;<a class="code" href="env__csv_8h.html#a6b0995a33629ab289317bf7a1417f9fd">env_csv_vtbl</a>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="env__csv_8c.html#ab26a39a388f0ac83b9ac14726ad14b16">env_csv_init</a>(xcsf, argv[2]);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;env_vptr = &amp;<a class="code" href="env__csv_8h.html#a6b0995a33629ab289317bf7a1417f9fd">env_csv_vtbl</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="env__csv_8c.html#ab26a39a388f0ac83b9ac14726ad14b16">env_csv_init</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, argv[2]);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        printf(<span class="stringliteral">&quot;Invalid environment specified: %s\n&quot;</span>, argv[1]);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        printf(<span class="stringliteral">&quot;Available environments: {mp, maze, csv}\n&quot;</span>);</div>
@@ -137,14 +137,14 @@ $(document).ready(function(){initNavTree('env_8c_source.html',''); initResizable
 <div class="ttc" id="aenv__mux_8c_html_aff3b81b4913d273ecfd62d7585480b15"><div class="ttname"><a href="env__mux_8c.html#aff3b81b4913d273ecfd62d7585480b15">env_mux_init</a></div><div class="ttdeci">void env_mux_init(struct XCSF *xcsf, const int bits)</div><div class="ttdoc">Initialises a real multiplexer environment of specified length.</div><div class="ttdef"><b>Definition:</b> <a href="env__mux_8c_source.html#l00044">env_mux.c:44</a></div></div>
 <div class="ttc" id="aenv__csv_8h_html"><div class="ttname"><a href="env__csv_8h.html">env_csv.h</a></div><div class="ttdoc">CSV input file handling functions.</div></div>
 <div class="ttc" id="aenv__csv_8h_html_a6b0995a33629ab289317bf7a1417f9fd"><div class="ttname"><a href="env__csv_8h.html#a6b0995a33629ab289317bf7a1417f9fd">env_csv_vtbl</a></div><div class="ttdeci">static struct EnvVtbl const env_csv_vtbl</div><div class="ttdoc">csv input environment implemented functions.</div><div class="ttdef"><b>Definition:</b> <a href="env__csv_8h_source.html#l00064">env_csv.h:64</a></div></div>
+<div class="ttc" id="anamespacexcsf_html"><div class="ttname"><a href="namespacexcsf.html">xcsf</a></div><div class="ttdef"><b>Definition:</b> <a href="____init_____8py_source.html#l00001">__init__.py:1</a></div></div>
 <div class="ttc" id="aenv__mux_8h_html_acca46becabfbe6d58860d0b37061c2b8"><div class="ttname"><a href="env__mux_8h.html#acca46becabfbe6d58860d0b37061c2b8">env_mux_vtbl</a></div><div class="ttdeci">static struct EnvVtbl const env_mux_vtbl</div><div class="ttdoc">Real multiplexer environment implemented functions.</div><div class="ttdef"><b>Definition:</b> <a href="env__mux_8h_source.html#l00064">env_mux.h:64</a></div></div>
 <div class="ttc" id="aenv__csv_8c_html_ab26a39a388f0ac83b9ac14726ad14b16"><div class="ttname"><a href="env__csv_8c.html#ab26a39a388f0ac83b9ac14726ad14b16">env_csv_init</a></div><div class="ttdeci">void env_csv_init(struct XCSF *xcsf, const char *filename)</div><div class="ttdoc">Initialises a CSV input environment from a specified filename.</div><div class="ttdef"><b>Definition:</b> <a href="env__csv_8c_source.html#l00160">env_csv.c:160</a></div></div>
 <div class="ttc" id="aenv__mux_8h_html"><div class="ttname"><a href="env__mux_8h.html">env_mux.h</a></div><div class="ttdoc">The real multiplexer problem environment.</div></div>
-<div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00084">xcsf.h:84</a></div></div>
+<div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
 <div class="ttc" id="aenv__maze_8c_html_acad3cc6e9fe2b7e07e878f1f517ad3a6"><div class="ttname"><a href="env__maze_8c.html#acad3cc6e9fe2b7e07e878f1f517ad3a6">env_maze_init</a></div><div class="ttdeci">void env_maze_init(struct XCSF *xcsf, const char *filename)</div><div class="ttdoc">Initialises a maze environment from a specified file.</div><div class="ttdef"><b>Definition:</b> <a href="env__maze_8c_source.html#l00100">env_maze.c:100</a></div></div>
 <div class="ttc" id="aenv__maze_8h_html"><div class="ttname"><a href="env__maze_8h.html">env_maze.h</a></div><div class="ttdoc">The discrete maze problem environment module.</div></div>
 <div class="ttc" id="aenv__maze_8h_html_aeadc5097082bb9a1d71b5c44a99d3651"><div class="ttname"><a href="env__maze_8h.html#aeadc5097082bb9a1d71b5c44a99d3651">env_maze_vtbl</a></div><div class="ttdeci">static struct EnvVtbl const env_maze_vtbl</div><div class="ttdoc">Maze environment implemented functions.</div><div class="ttdef"><b>Definition:</b> <a href="env__maze_8h_source.html#l00071">env_maze.h:71</a></div></div>
-<div class="ttc" id="astructXCSF_html_ad1acf6b6babb08072dccf79993c186fd"><div class="ttname"><a href="structXCSF.html#ad1acf6b6babb08072dccf79993c186fd">XCSF::env_vptr</a></div><div class="ttdeci">struct EnvVtbl const  * env_vptr</div><div class="ttdoc">Functions acting on environments.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00095">xcsf.h:95</a></div></div>
 <div class="ttc" id="aenv_8c_html_a9213fcf5fc422d6a77bce853b1d78dc9"><div class="ttname"><a href="env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9">env_init</a></div><div class="ttdeci">void env_init(struct XCSF *xcsf, char **argv)</div><div class="ttdoc">Initialises a built-in problem environment.</div><div class="ttdef"><b>Definition:</b> <a href="env_8c_source.html#l00034">env.c:34</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

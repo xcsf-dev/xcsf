@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="dgp_8c.html#a8077f8c0f7927dd2e91abbf7aafd6349" target="_top" xlink:title="Returns a json formatted string representation of a DGP graph.">
+<g id="a_node2"><a xlink:href="dgp_8c.html#ac1f6f6714cd298c49c7ba05cf7f994e1" target="_top" xlink:title="Returns a json formatted string representation of a DGP graph.">
 <polygon fill="none" stroke="black" points="101,-0.5 101,-19.5 197,-19.5 197,-0.5 101,-0.5"/>
 <text text-anchor="middle" x="149" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">graph_json_export</text>
 </a>

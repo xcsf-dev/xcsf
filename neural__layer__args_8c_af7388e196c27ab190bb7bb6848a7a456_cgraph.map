@@ -1,0 +1,4 @@
+<map id="layer_args_json_import_activation" name="layer_args_json_import_activation">
+<area shape="rect" id="node1" title="Sets the layer activation from a cJSON object." alt="" coords="5,5,161,47"/>
+<area shape="rect" id="node2" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="209,13,372,39"/>
+</map>

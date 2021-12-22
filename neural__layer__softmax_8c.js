@@ -7,7 +7,7 @@ var neural__layer__softmax_8c =
     [ "neural_layer_softmax_forward", "neural__layer__softmax_8c.html#a9f18f694cf0f0a9ccd86bb7fd24630d5", null ],
     [ "neural_layer_softmax_free", "neural__layer__softmax_8c.html#a314875a074c00172bb8c3b613914ea46", null ],
     [ "neural_layer_softmax_init", "neural__layer__softmax_8c.html#a924b58251342121ab62ae385ace909aa", null ],
-    [ "neural_layer_softmax_json_export", "neural__layer__softmax_8c.html#ab8a3e69b4d155808941905abf27dc134", null ],
+    [ "neural_layer_softmax_json_export", "neural__layer__softmax_8c.html#a7172ce6c699c31a34e09c9bbc60cd118", null ],
     [ "neural_layer_softmax_load", "neural__layer__softmax_8c.html#a82ab9964bfb9c258d64b5ae55b432bd3", null ],
     [ "neural_layer_softmax_mutate", "neural__layer__softmax_8c.html#acec593f1d5b677e6c0dad8d9e9c142d8", null ],
     [ "neural_layer_softmax_output", "neural__layer__softmax_8c.html#a08d8453a238419b4e6221055965b8c09", null ],

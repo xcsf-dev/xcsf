@@ -8,7 +8,7 @@ var act__integer_8h =
     [ "act_integer_free", "act__integer_8h.html#a07b476c854d97775a44be7e1c5500d2d", null ],
     [ "act_integer_general", "act__integer_8h.html#aaf5d8b3d6769d721044cc177a05b45d1", null ],
     [ "act_integer_init", "act__integer_8h.html#a817599cabf0a80751fad61e9af1cb793", null ],
-    [ "act_integer_json_export", "act__integer_8h.html#a05c33d1bfd16e37420176842fb41aa97", null ],
+    [ "act_integer_json_export", "act__integer_8h.html#ac235c7dc2f575e993284d0414f830c18", null ],
     [ "act_integer_load", "act__integer_8h.html#abbd185b5dc9c1f4a8a40630dc5719e1f", null ],
     [ "act_integer_mutate", "act__integer_8h.html#a9257ecae089153571be215040e75fb7f", null ],
     [ "act_integer_print", "act__integer_8h.html#ae761eca6d8397542992b7c29f252c83a", null ],

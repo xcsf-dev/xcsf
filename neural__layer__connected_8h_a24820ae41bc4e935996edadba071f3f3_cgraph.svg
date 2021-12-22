@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__connected_8c.html#a76534b7043fefbbd0f8df75354bfdd08" target="_top" xlink:title="Returns a json formatted string representation of a connected layer.">
+<g id="a_node2"><a xlink:href="neural__layer__connected_8c.html#a28ca264a776f46ee6188a3481fa96be8" target="_top" xlink:title="Returns a json formatted string representation of a connected layer.">
 <polygon fill="none" stroke="black" points="155,-14 155,-44 274,-44 274,-14 155,-14"/>
 <text text-anchor="start" x="163" y="-32" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="214.5" y="-21" font-family="Helvetica,sans-Serif" font-size="10.00">_json_export</text>
@@ -37,7 +37,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer_8c.html#a76be9c80bef04ba1a799825d96526d6d" target="_top" xlink:title="Returns a json formatted string representation of a layer&#39;s weights.">
+<g id="a_node3"><a xlink:href="neural__layer_8c.html#a78127a80046f674b62342f5a8d8cdbf1" target="_top" xlink:title="Returns a json formatted string representation of a layer&#39;s weights.">
 <polygon fill="none" stroke="black" points="322,-38.5 322,-57.5 417,-57.5 417,-38.5 322,-38.5"/>
 <text text-anchor="middle" x="369.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_weight_json</text>
 </a>

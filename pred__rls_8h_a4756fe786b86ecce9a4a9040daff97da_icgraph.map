@@ -1,0 +1,8 @@
+<map id="pred_rls_param_json_import" name="pred_rls_param_json_import">
+<area shape="rect" id="node1" title="Sets the RLS parameters from a cJSON object." alt="" coords="633,23,776,65"/>
+<area shape="rect" id="node2" href="$prediction_8h.html#a3da29e38981e8b98ec136766a79d074a" title="Sets the prediction parameters from a cJSON object." alt="" coords="421,5,585,32"/>
+<area shape="rect" id="node6" href="$classXCS.html#a76f72805cdd38df46ecbc8bd8a592376" title="Sets the prediction type and initialisation arguments." alt="" coords="434,56,573,83"/>
+<area shape="rect" id="node3" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="241,5,373,32"/>
+<area shape="rect" id="node4" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,5,193,32"/>
+<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,56,32"/>
+</map>

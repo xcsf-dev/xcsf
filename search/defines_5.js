@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['fuzzy_5fcfmqvs_5fand_3082',['FUZZY_CFMQVS_AND',['../dgp_8c.html#a74cd3e6c1357ed2e74b60aa8760d4d4a',1,'dgp.c']]],
-  ['fuzzy_5fcfmqvs_5for_3083',['FUZZY_CFMQVS_OR',['../dgp_8c.html#a93d7eb9ef2653a4fb0ad789358059c25',1,'dgp.c']]],
-  ['fuzzy_5fnot_3084',['FUZZY_NOT',['../dgp_8c.html#a487f9eb0adadd9798172c21741dc7949',1,'dgp.c']]]
+  ['gaussian_3146',['GAUSSIAN',['../neural__activations_8h.html#ad751f1b6909c0124a4ca151036b28a0e',1,'neural_activations.h']]],
+  ['gp_5fnum_5ffunc_3147',['GP_NUM_FUNC',['../gp_8c.html#aee9a8f46de9c5a8da3f840df8825453f',1,'gp.c']]]
 ];

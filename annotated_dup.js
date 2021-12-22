@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "xcsf", "namespacexcsf.html", "namespacexcsf" ],
     [ "ActInteger", "structActInteger.html", "structActInteger" ],
     [ "ActNeural", "structActNeural.html", "structActNeural" ],
     [ "ActVtbl", "structActVtbl.html", "structActVtbl" ],

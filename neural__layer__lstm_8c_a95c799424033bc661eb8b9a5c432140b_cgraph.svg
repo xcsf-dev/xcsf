@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__lstm_8c.html#aef595b2b531e5ef7e064c7fa312a176f" target="_top" xlink:title="Returns a json formatted string representation of an LSTM layer.">
+<g id="a_node2"><a xlink:href="neural__layer__lstm_8c.html#ad29d67cc7febe76bf36ec51ec2a46a7e" target="_top" xlink:title="Returns a json formatted string representation of an LSTM layer.">
 <polygon fill="none" stroke="black" points="153,-14 153,-44 269,-44 269,-14 153,-14"/>
 <text text-anchor="start" x="161" y="-32" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_json</text>
 <text text-anchor="middle" x="211" y="-21" font-family="Helvetica,sans-Serif" font-size="10.00">_export</text>
@@ -36,7 +36,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer_8c.html#a76be9c80bef04ba1a799825d96526d6d" target="_top" xlink:title="Returns a json formatted string representation of a layer&#39;s weights.">
+<g id="a_node3"><a xlink:href="neural__layer_8c.html#a78127a80046f674b62342f5a8d8cdbf1" target="_top" xlink:title="Returns a json formatted string representation of a layer&#39;s weights.">
 <polygon fill="none" stroke="black" points="317,-38.5 317,-57.5 412,-57.5 412,-38.5 317,-38.5"/>
 <text text-anchor="middle" x="364.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_weight_json</text>
 </a>

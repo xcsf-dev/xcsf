@@ -1,13 +1,16 @@
 <map id="ea_param_set_subsumption" name="ea_param_set_subsumption">
-<area shape="rect" id="node1" title=" " alt="" coords="799,107,984,133"/>
-<area shape="rect" id="node2" href="$ea_8h.html#a2e9957163a28eeb4c6f9c3f72f0213f3" title="Initialises default evolutionary algorithm parameters." alt="" coords="595,81,727,108"/>
-<area shape="rect" id="node10" href="$classXCS.html#ab64cf40b82c63095ec42f483e8cebb0a" title=" " alt="" coords="572,132,751,159"/>
-<area shape="rect" id="node3" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="407,81,490,108"/>
-<area shape="rect" id="node4" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="225,5,319,32"/>
-<area shape="rect" id="node7" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="219,56,325,83"/>
-<area shape="rect" id="node8" href="$env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" title="Initialises a real multiplexer environment of specified length." alt="" coords="223,107,321,133"/>
-<area shape="rect" id="node9" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="229,157,315,184"/>
-<area shape="rect" id="node5" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="104,56,171,83"/>
-<area shape="rect" id="node6" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,56,56,83"/>
-<area shape="rect" id="node11" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="373,132,524,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="821,183,1007,209"/>
+<area shape="rect" id="node2" href="$ea_8h.html#a2e9957163a28eeb4c6f9c3f72f0213f3" title="Initialises default evolutionary algorithm parameters." alt="" coords="618,119,750,145"/>
+<area shape="rect" id="node10" href="$ea_8h.html#ae78d49893c85cfe792ceafc58e590965" title="Sets the EA parameters from a cJSON object." alt="" coords="607,183,761,209"/>
+<area shape="rect" id="node13" href="$classXCS.html#ab64cf40b82c63095ec42f483e8cebb0a" title=" " alt="" coords="595,233,773,260"/>
+<area shape="rect" id="node3" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="430,107,513,133"/>
+<area shape="rect" id="node4" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="247,5,342,32"/>
+<area shape="rect" id="node7" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="241,56,348,83"/>
+<area shape="rect" id="node8" href="$env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" title="Initialises a real multiplexer environment of specified length." alt="" coords="245,107,344,133"/>
+<area shape="rect" id="node9" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="251,157,338,184"/>
+<area shape="rect" id="node5" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="115,81,182,108"/>
+<area shape="rect" id="node6" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,132,56,159"/>
+<area shape="rect" id="node11" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="405,183,537,209"/>
+<area shape="rect" id="node12" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,157,193,184"/>
+<area shape="rect" id="node14" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="396,233,547,260"/>
 </map>

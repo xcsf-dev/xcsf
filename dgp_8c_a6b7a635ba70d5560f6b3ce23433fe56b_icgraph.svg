@@ -20,9 +20,9 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="condition_8c.html#a55966dbe2d7405bc8457c44adf1a7e55" target="_top" xlink:title="Initialises default DGP condition parameters.">
+<g id="a_node2"><a xlink:href="cond__dgp_8h.html#aa9eb7a2cd9c34375726b5afa3aaff18e" target="_top" xlink:title="Initialises default DGP condition parameters.">
 <polygon fill="none" stroke="black" points="520,-57.5 520,-76.5 651,-76.5 651,-57.5 520,-57.5"/>
-<text text-anchor="middle" x="585.5" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_param_defaults_dgp</text>
+<text text-anchor="middle" x="585.5" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_param_defaults</text>
 </a>
 </g>
 </g>

@@ -19,13 +19,13 @@
 <area shape="rect" id="node23" href="$pred__neural_8h.html#ab573aaed6ff7623e99afe1d1f6e00919" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="1236,309,1375,336"/>
 <area shape="rect" id="node4" href="$act__neural_8h.html#abbdbc4d92f139ccc9816289233dbf934" title="Creates and initialises an action neural network." alt="" coords="1033,5,1139,32"/>
 <area shape="rect" id="node5" href="$cond__neural_8h.html#a16f80af76361587e6da53dd21fa05b7b" title="Creates and initialises a neural network condition." alt="" coords="1028,56,1144,83"/>
-<area shape="rect" id="node6" href="$neural__layer__args_8h.html#a660f9e96fa6caf7aa200a6eead34501b" title="Returns a json formatted string of the neural layer parameters." alt="" coords="1008,107,1164,133"/>
+<area shape="rect" id="node6" href="$neural__layer__args_8h.html#a390bf97769999138966232a530c705e8" title="Returns a json formatted string of the neural layer parameters." alt="" coords="1008,107,1164,133"/>
 <area shape="rect" id="node16" href="$pred__neural_8h.html#a8ff454a2da61b52670f4b70b71da2fe8" title="Creates and initialises a neural network prediction." alt="" coords="1029,157,1143,184"/>
 <area shape="rect" id="node17" href="$rule__neural_8h.html#accc0db627c6130e7c8680c008b47a2e2" title=" " alt="" coords="1014,208,1158,235"/>
-<area shape="rect" id="node7" href="$action_8h.html#abd5f8e0c76c65e3986e0c03a26a7ecdf" title="Returns a json formatted string of the action parameters." alt="" coords="785,56,960,83"/>
-<area shape="rect" id="node14" href="$condition_8h.html#a0e0e347822daa85547f6369c239b4c87" title="Returns a json formatted string of the condition parameters." alt="" coords="789,107,956,133"/>
-<area shape="rect" id="node15" href="$prediction_8h.html#a4efc41175016bfdcf6eaa51ae07aaaf8" title="Returns a json formatted string of the prediction parameters." alt="" coords="791,157,955,184"/>
-<area shape="rect" id="node8" href="$param_8h.html#a631e4068e661e64840366188b60075dc" title="Returns a json formatted string representation of the parameters." alt="" coords="597,107,729,133"/>
+<area shape="rect" id="node7" href="$action_8h.html#ae4c75dacfa854514efe71cc00515d6c0" title="Returns a json formatted string of the action parameters." alt="" coords="785,56,960,83"/>
+<area shape="rect" id="node14" href="$condition_8h.html#ac3384a0731c16bed95c104111873c6e2" title="Returns a json formatted string of the condition parameters." alt="" coords="789,107,956,133"/>
+<area shape="rect" id="node15" href="$prediction_8h.html#afb4c9f7647df17c3b4ab748f01b5e301" title="Returns a json formatted string of the prediction parameters." alt="" coords="791,157,955,184"/>
+<area shape="rect" id="node8" href="$param_8h.html#a92d92fc270b6ed2e2637ccb590eb15d5" title="Returns a json formatted string representation of the parameters." alt="" coords="597,107,729,133"/>
 <area shape="rect" id="node9" href="$classXCS.html#adb57289e76542083f52f422992e4ee13" title="Returns a JSON formatted string representing the parameters." alt="" coords="385,107,540,133"/>
 <area shape="rect" id="node11" href="$param_8h.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="417,157,508,184"/>
 <area shape="rect" id="node10" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,233,156,260"/>

@@ -1,46 +1,41 @@
 <map id="layer_args_init" name="layer_args_init">
-<area shape="rect" id="node1" title="Sets layer parameters to default values." alt="" coords="1287,341,1393,367"/>
-<area shape="rect" id="node2" href="$action_8c.html#a4ef2c098a36e5937c1171ccb5b9304a5" title="Initialises default neural action parameters." alt="" coords="1069,5,1222,47"/>
-<area shape="rect" id="node11" href="$condition_8c.html#a4af7104f5b202ebd68ffaa21e35f690d" title="Initialises default neural condition parameters." alt="" coords="1072,71,1219,112"/>
-<area shape="rect" id="node13" href="$config_8c.html#a742d5489e36da7e3a8301aeb5b2d25f0" title="Sets classifier neural network action parameters." alt="" coords="1075,203,1216,230"/>
-<area shape="rect" id="node19" href="$config_8c.html#a384fd5d57a7d2627d16d4a4c0988865a" title="Sets classifier neural network condition parameters." alt="" coords="1070,255,1221,282"/>
-<area shape="rect" id="node21" href="$config_8c.html#a151c7b337e28320fd8821f401816a11d" title="Sets classifier neural network prediction parameters." alt="" coords="1071,309,1219,335"/>
-<area shape="rect" id="node23" href="$neural__layer__args_8h.html#a398a06830ed5cc20b78e7e04121897fd" title="Loads neural network layer parameters." alt="" coords="1089,366,1202,393"/>
-<area shape="rect" id="node31" href="$pred__neural_8h.html#aa639a9130cac0c222bca241f86d6c135" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="1052,442,1239,469"/>
-<area shape="rect" id="node34" href="$pred__neural_8h.html#ab573aaed6ff7623e99afe1d1f6e00919" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="1076,506,1215,533"/>
-<area shape="rect" id="node37" href="$prediction_8c.html#a4834581193fa96b3d626da899efbaf6f" title="Initialises default neural prediction parameters." alt="" coords="1074,136,1217,177"/>
-<area shape="rect" id="node39" href="$classXCS.html#ab2cbd5508c5e8c59db839695c9d0d539" title="Sets parameters used by neural network actions." alt="" coords="1062,569,1229,595"/>
-<area shape="rect" id="node41" href="$classXCS.html#a234d12eb3fb50d01dccff24a1515d74e" title="Sets parameters used by neural network conditions." alt="" coords="1057,619,1234,646"/>
-<area shape="rect" id="node43" href="$classXCS.html#a8755a66390db00ab31e3574a18a0aae1" title="Sets parameters used by neural network predictions." alt="" coords="1058,670,1233,697"/>
-<area shape="rect" id="node3" href="$action_8h.html#aa7e0cd00c920c30b15e0d1cc409cada5" title="Initialises default action parameters." alt="" coords="851,11,1004,38"/>
-<area shape="rect" id="node4" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="695,62,778,89"/>
-<area shape="rect" id="node5" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="514,11,609,38"/>
-<area shape="rect" id="node8" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="508,62,615,89"/>
-<area shape="rect" id="node9" href="$env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" title="Initialises a real multiplexer environment of specified length." alt="" coords="512,113,611,139"/>
-<area shape="rect" id="node10" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="518,163,605,190"/>
-<area shape="rect" id="node6" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="344,87,411,114"/>
-<area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,214,56,241"/>
-<area shape="rect" id="node12" href="$condition_8h.html#ac7f09d43efc7400318fe32c917a92292" title="Initialises default condition parameters." alt="" coords="854,62,1001,89"/>
-<area shape="rect" id="node14" href="$config_8c.html#a59bf153e171e7edf5bfb7a45a025c1bb" title="Sets classifier action parameters." alt="" coords="878,163,977,190"/>
-<area shape="rect" id="node15" href="$config_8c.html#a0f0fcad0b6090da01e5bd58b77d98787" title="Sets specified parameter." alt="" coords="673,214,801,241"/>
-<area shape="rect" id="node16" href="$config_8c.html#a5b96815b9ebb26a8fc7bcc30a75ab36d" title="Adds a parameter to the list." alt="" coords="500,214,623,241"/>
-<area shape="rect" id="node17" href="$config_8c.html#a01c178cc1587140f60ecf27291a2032a" title="Parses a line of the config file and adds to the list." alt="" coords="322,214,433,241"/>
-<area shape="rect" id="node18" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="135,214,224,241"/>
-<area shape="rect" id="node20" href="$config_8c.html#aa4bde9b34202ac13b8d2fc4454f8fae0" title="Sets classifier condition parameters." alt="" coords="873,214,982,241"/>
-<area shape="rect" id="node22" href="$config_8c.html#a805cfd2c56d55c033ea40872f7ba0e70" title="Sets classifier prediction parameters." alt="" coords="874,265,981,291"/>
-<area shape="rect" id="node24" href="$action_8h.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="862,315,993,342"/>
-<area shape="rect" id="node29" href="$condition_8h.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="865,366,989,393"/>
-<area shape="rect" id="node30" href="$prediction_8h.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="867,417,988,443"/>
-<area shape="rect" id="node25" href="$param_8h.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="692,366,781,393"/>
-<area shape="rect" id="node26" href="$xcsf_8h.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="522,366,601,393"/>
-<area shape="rect" id="node27" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="336,391,419,418"/>
-<area shape="rect" id="node28" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="104,467,255,494"/>
-<area shape="rect" id="node32" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="855,467,1000,494"/>
-<area shape="rect" id="node33" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="303,467,452,494"/>
-<area shape="rect" id="node35" href="$xcsf_8h.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="863,518,991,545"/>
-<area shape="rect" id="node36" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="671,518,803,545"/>
-<area shape="rect" id="node38" href="$prediction_8h.html#af2e3b26751cb8f9af4c608e534ee6894" title="Initialises default prediction parameters." alt="" coords="856,113,999,139"/>
-<area shape="rect" id="node40" href="$classXCS.html#a87397ee045a1648cd9b1449518e217b2" title="Sets the action type and initialisation arguments." alt="" coords="868,569,987,595"/>
-<area shape="rect" id="node42" href="$classXCS.html#a4eb6acf0a155d5e94fa843d7523df9b1" title="Sets the condition type and initialisation arguments." alt="" coords="860,619,995,646"/>
-<area shape="rect" id="node44" href="$classXCS.html#a28e9fae0bf2d470377b25e032b7080af" title="Sets the prediction type and initialisation arguments." alt="" coords="858,670,997,697"/>
+<area shape="rect" id="node1" title="Sets layer parameters to default values." alt="" coords="1195,284,1301,311"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#ae9c1117ca77c9dbe5b509c508483d56b" title="Initialises default neural action parameters." alt="" coords="963,128,1142,155"/>
+<area shape="rect" id="node11" href="$act__neural_8h.html#a8733352425cce2fa68d995b3a991b057" title="Sets the neural network parameters from a cJSON object." alt="" coords="975,201,1131,242"/>
+<area shape="rect" id="node16" href="$cond__neural_8h.html#a935ca37ecd32e1b791066e3bc0f7536e" title="Initialises default neural condition parameters." alt="" coords="959,11,1147,37"/>
+<area shape="rect" id="node18" href="$cond__neural_8h.html#a36aaa09b20127f91f09523074191d3ac" title="Sets the neural network parameters from a cJSON object." alt="" coords="969,277,1136,318"/>
+<area shape="rect" id="node21" href="$neural__layer__args_8h.html#a398a06830ed5cc20b78e7e04121897fd" title="Loads neural network layer parameters." alt="" coords="996,473,1109,500"/>
+<area shape="rect" id="node29" href="$pred__neural_8h.html#aa639a9130cac0c222bca241f86d6c135" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="959,549,1146,576"/>
+<area shape="rect" id="node32" href="$pred__neural_8h.html#ab573aaed6ff7623e99afe1d1f6e00919" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="983,651,1122,677"/>
+<area shape="rect" id="node35" href="$pred__neural_8h.html#ad98412e2a2999778290478e22b868859" title="Initialises default neural prediction parameters." alt="" coords="960,67,1145,93"/>
+<area shape="rect" id="node37" href="$pred__neural_8h.html#aaf2d30b8d2123b423b251f88f7c772ff" title="Sets the neural network parameters from a cJSON object." alt="" coords="971,353,1134,394"/>
+<area shape="rect" id="node3" href="$action_8h.html#aa7e0cd00c920c30b15e0d1cc409cada5" title="Initialises default action parameters." alt="" coords="747,107,900,133"/>
+<area shape="rect" id="node4" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="581,81,663,108"/>
+<area shape="rect" id="node5" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="407,132,502,159"/>
+<area shape="rect" id="node8" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="401,31,508,57"/>
+<area shape="rect" id="node9" href="$env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" title="Initialises a real multiplexer environment of specified length." alt="" coords="405,81,504,108"/>
+<area shape="rect" id="node10" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="411,183,498,209"/>
+<area shape="rect" id="node6" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="245,107,312,133"/>
+<area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,309,106,336"/>
+<area shape="rect" id="node12" href="$action_8h.html#aaa5c433092521a4fe5159eee76b1c141" title="Sets the action parameters from a cJSON object." alt="" coords="736,208,911,235"/>
+<area shape="rect" id="node15" href="$classXCS.html#a1298087e3a06734561965359b4d74468" title="Sets the action type and initialisation arguments." alt="" coords="764,157,883,184"/>
+<area shape="rect" id="node13" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="556,309,688,336"/>
+<area shape="rect" id="node14" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="234,309,323,336"/>
+<area shape="rect" id="node17" href="$condition_8h.html#ac7f09d43efc7400318fe32c917a92292" title="Initialises default condition parameters." alt="" coords="750,5,897,32"/>
+<area shape="rect" id="node19" href="$condition_8h.html#aac2f9eaa3555b7e4b8d6106fe46f7d41" title="Sets the condition parameters from a cJSON object." alt="" coords="740,309,907,336"/>
+<area shape="rect" id="node20" href="$classXCS.html#ab16720d21296ba0832318f67e55522e3" title="Sets the condition type and initialisation arguments." alt="" coords="756,259,891,285"/>
+<area shape="rect" id="node22" href="$action_8h.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="758,563,889,589"/>
+<area shape="rect" id="node27" href="$condition_8h.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="761,461,885,488"/>
+<area shape="rect" id="node28" href="$prediction_8h.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="763,512,884,539"/>
+<area shape="rect" id="node23" href="$param_8h.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="577,512,667,539"/>
+<area shape="rect" id="node24" href="$xcsf_8h.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="415,512,494,539"/>
+<area shape="rect" id="node25" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="237,537,320,564"/>
+<area shape="rect" id="node26" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,613,156,640"/>
+<area shape="rect" id="node30" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="751,613,896,640"/>
+<area shape="rect" id="node31" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="204,613,353,640"/>
+<area shape="rect" id="node33" href="$xcsf_8h.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="759,664,887,691"/>
+<area shape="rect" id="node34" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="213,664,345,691"/>
+<area shape="rect" id="node36" href="$prediction_8h.html#af2e3b26751cb8f9af4c608e534ee6894" title="Initialises default prediction parameters." alt="" coords="752,56,895,83"/>
+<area shape="rect" id="node38" href="$prediction_8h.html#a3da29e38981e8b98ec136766a79d074a" title="Sets the prediction parameters from a cJSON object." alt="" coords="741,360,905,387"/>
+<area shape="rect" id="node39" href="$classXCS.html#a76f72805cdd38df46ecbc8bd8a592376" title="Sets the prediction type and initialisation arguments." alt="" coords="754,411,893,437"/>
 </map>

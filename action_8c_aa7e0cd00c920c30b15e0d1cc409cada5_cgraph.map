@@ -1,7 +1,7 @@
 <map id="action_param_defaults" name="action_param_defaults">
-<area shape="rect" id="node1" title="Initialises default action parameters." alt="" coords="5,60,159,87"/>
-<area shape="rect" id="node2" href="$action_8c.html#a4ef2c098a36e5937c1171ccb5b9304a5" title="Initialises default neural action parameters." alt="" coords="209,23,362,65"/>
-<area shape="rect" id="node5" href="$action_8c.html#a1a07a69a801b65052f3679d317507363" title=" " alt="" coords="207,89,364,116"/>
-<area shape="rect" id="node3" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="412,5,529,32"/>
-<area shape="rect" id="node4" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="417,56,524,83"/>
+<area shape="rect" id="node1" title="Initialises default action parameters." alt="" coords="5,56,159,83"/>
+<area shape="rect" id="node2" href="$act__neural_8c.html#ae9c1117ca77c9dbe5b509c508483d56b" title="Initialises default neural action parameters." alt="" coords="207,31,385,57"/>
+<area shape="rect" id="node5" href="$action_8c.html#a1a07a69a801b65052f3679d317507363" title=" " alt="" coords="217,81,375,108"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="433,5,551,32"/>
+<area shape="rect" id="node4" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="439,56,545,83"/>
 </map>

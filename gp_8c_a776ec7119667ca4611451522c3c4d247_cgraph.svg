@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="gp_8c.html#a8de24783562d95fb99f47664821dabc0" target="_top" xlink:title="Returns a json formatted string representation of a GP tree.">
+<g id="a_node2"><a xlink:href="gp_8c.html#ae500c8ca8754458d2830363563e35799" target="_top" xlink:title="Returns a json formatted string representation of a GP tree.">
 <polygon fill="none" stroke="black" points="93,-0.5 93,-19.5 182,-19.5 182,-0.5 93,-0.5"/>
 <text text-anchor="middle" x="137.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">tree_json_export</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="gp_8c.html#a7d9e5de8f96b49e28beba7017673fb2a" target="_top" xlink:title="Returns a json formatted string represetation of a GP tree.">
+<g id="a_node3"><a xlink:href="gp_8c.html#a7d9e5de8f96b49e28beba7017673fb2a" target="_top" xlink:title="Returns a json formatted string representation of a GP tree.">
 <polygon fill="none" stroke="black" points="218,-0.5 218,-19.5 280,-19.5 280,-0.5 218,-0.5"/>
 <text text-anchor="middle" x="249" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">tree_string</text>
 </a>

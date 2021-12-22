@@ -153,8 +153,8 @@
 <area shape="rect" id="node87" href="$clset_8c.html#a0afeb87ed1c766c0cde8adfaf73cdf50" title="Calculates the mean prediction size of classifiers in the set." alt="" coords="467,3221,619,3248"/>
 <area shape="rect" id="node88" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="738,3221,833,3248"/>
 <area shape="rect" id="node102" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="490,867,597,893"/>
-<area shape="rect" id="node104" href="$clset_8c.html#a08704f16d6437de720dc03f30bf0abf7" title="Returns a json formatted string representation of a classifier set." alt="" coords="481,3837,605,3864"/>
-<area shape="rect" id="node106" href="$param_8c.html#a631e4068e661e64840366188b60075dc" title="Returns a json formatted string representation of the parameters." alt="" coords="719,1981,851,2008"/>
+<area shape="rect" id="node104" href="$clset_8c.html#af7d4ec3f5c5bcebc48045a6724beed12" title="Returns a json formatted string representation of a classifier set." alt="" coords="481,3837,605,3864"/>
+<area shape="rect" id="node106" href="$param_8c.html#a92d92fc270b6ed2e2637ccb590eb15d5" title="Returns a json formatted string representation of the parameters." alt="" coords="719,1981,851,2008"/>
 <area shape="rect" id="node108" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="746,968,825,995"/>
 <area shape="rect" id="node110" href="$xcsf_8c.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="479,3888,607,3915"/>
 <area shape="rect" id="node112" href="$xcs__supervised_8c.html#a2dc51452fdb0be0e27fd3ebfe6041474" title="Calculates the XCSF predictions for the provided input." alt="" coords="464,512,623,539"/>

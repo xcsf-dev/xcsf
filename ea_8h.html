@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('ea_8h.html',''); initResizable(); });
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -99,19 +99,19 @@ $(document).ready(function(){initNavTree('ea_8h.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
-<p>Evolutionary algorithm functions.  
+<p>Evolutionary algorithm functions.
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="xcsf_8h_source.html">xcsf.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ea.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h__incl.svg" width="890" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h__incl.svg" width="1168" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h__dep__incl.svg" width="1236" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h__dep__incl.svg" width="1144" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -146,9 +146,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a2e9957163a28eeb4c6f9c3f72f0213f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ea_8h.html#a2e9957163a28eeb4c6f9c3f72f0213f3">ea_param_defaults</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
 <tr class="memdesc:a2e9957163a28eeb4c6f9c3f72f0213f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises default evolutionary algorithm parameters.  <a href="ea_8h.html#a2e9957163a28eeb4c6f9c3f72f0213f3">More...</a><br /></td></tr>
 <tr class="separator:a2e9957163a28eeb4c6f9c3f72f0213f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5952d7531f708d79463da56e3d81389"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ea_8h.html#ac5952d7531f708d79463da56e3d81389">ea_param_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
-<tr class="memdesc:ac5952d7531f708d79463da56e3d81389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of the EA parameters.  <a href="ea_8h.html#ac5952d7531f708d79463da56e3d81389">More...</a><br /></td></tr>
-<tr class="separator:ac5952d7531f708d79463da56e3d81389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae78d49893c85cfe792ceafc58e590965"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ea_8h.html#ae78d49893c85cfe792ceafc58e590965">ea_param_json_import</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, cJSON *json)</td></tr>
+<tr class="memdesc:ae78d49893c85cfe792ceafc58e590965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the EA parameters from a cJSON object.  <a href="ea_8h.html#ae78d49893c85cfe792ceafc58e590965">More...</a><br /></td></tr>
+<tr class="separator:ae78d49893c85cfe792ceafc58e590965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a9251875e8fbefb5dc08774cb7edc8e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ea_8h.html#a5a9251875e8fbefb5dc08774cb7edc8e">ea_param_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
+<tr class="memdesc:a5a9251875e8fbefb5dc08774cb7edc8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of the EA parameters.  <a href="ea_8h.html#a5a9251875e8fbefb5dc08774cb7edc8e">More...</a><br /></td></tr>
+<tr class="separator:a5a9251875e8fbefb5dc08774cb7edc8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac604379821374a521040a1495e8752ad"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ea_8h.html#ac604379821374a521040a1495e8752ad">ea_param_save</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, FILE *fp)</td></tr>
 <tr class="memdesc:ac604379821374a521040a1495e8752ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves evolutionary algorithm parameters.  <a href="ea_8h.html#ac604379821374a521040a1495e8752ad">More...</a><br /></td></tr>
 <tr class="separator:ac604379821374a521040a1495e8752ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -300,7 +303,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00199">199</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="cl_8c_source.html#l00063">cl_copy()</a>, <a class="el" href="cl_8c_source.html#l00379">cl_crossover()</a>, <a class="el" href="cl_8c_source.html#l00040">cl_init()</a>, <a class="el" href="cl_8c_source.html#l00360">cl_mutate()</a>, <a class="el" href="clset_8c_source.html#l00534">clset_mean_time()</a>, <a class="el" href="clset_8c_source.html#l00314">clset_pset_enforce_limit()</a>, <a class="el" href="clset_8c_source.html#l00502">clset_set_times()</a>, <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="ea_8c_source.html#l00113">ea_add()</a>, <a class="el" href="ea_8c_source.html#l00039">ea_init_offspring()</a>, <a class="el" href="ea_8c_source.html#l00180">ea_select()</a>, <a class="el" href="ea_8h_source.html#l00044">ArgsEA::lambda</a>, <a class="el" href="xcsf_8h_source.html#l00055">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::size</a>, <a class="el" href="ea_8h_source.html#l00043">ArgsEA::theta</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::time</a>, and <a class="el" href="xcsf_8h_source.html#l00106">XCSF::time</a>.</p>
+<p class="reference">References <a class="el" href="cl_8c_source.html#l00063">cl_copy()</a>, <a class="el" href="cl_8c_source.html#l00381">cl_crossover()</a>, <a class="el" href="cl_8c_source.html#l00040">cl_init()</a>, <a class="el" href="cl_8c_source.html#l00362">cl_mutate()</a>, <a class="el" href="clset_8c_source.html#l00536">clset_mean_time()</a>, <a class="el" href="clset_8c_source.html#l00314">clset_pset_enforce_limit()</a>, <a class="el" href="clset_8c_source.html#l00504">clset_set_times()</a>, <a class="el" href="ea_8c_source.html#l00113">ea_add()</a>, <a class="el" href="ea_8c_source.html#l00039">ea_init_offspring()</a>, <a class="el" href="ea_8c_source.html#l00180">ea_select()</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::size</a>, and <a class="el" href="xcsf_8h_source.html#l00057">Cl::time</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00192">xcs_rl_update()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>.</p>
 <div class="dynheader">
@@ -344,7 +347,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00237">237</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00409">ea_param_set_err_reduc()</a>, <a class="el" href="ea_8c_source.html#l00423">ea_param_set_fit_reduc()</a>, <a class="el" href="ea_8c_source.html#l00398">ea_param_set_lambda()</a>, <a class="el" href="ea_8c_source.html#l00384">ea_param_set_p_crossover()</a>, <a class="el" href="ea_8c_source.html#l00443">ea_param_set_pred_reset()</a>, <a class="el" href="ea_8c_source.html#l00359">ea_param_set_select_size()</a>, <a class="el" href="ea_8c_source.html#l00449">ea_param_set_select_type()</a>, <a class="el" href="ea_8c_source.html#l00437">ea_param_set_subsumption()</a>, <a class="el" href="ea_8c_source.html#l00373">ea_param_set_theta()</a>, and <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_ROULETTE</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00452">ea_param_set_err_reduc()</a>, <a class="el" href="ea_8c_source.html#l00466">ea_param_set_fit_reduc()</a>, <a class="el" href="ea_8c_source.html#l00441">ea_param_set_lambda()</a>, <a class="el" href="ea_8c_source.html#l00427">ea_param_set_p_crossover()</a>, <a class="el" href="ea_8c_source.html#l00486">ea_param_set_pred_reset()</a>, <a class="el" href="ea_8c_source.html#l00402">ea_param_set_select_size()</a>, <a class="el" href="ea_8c_source.html#l00492">ea_param_set_select_type()</a>, <a class="el" href="ea_8c_source.html#l00480">ea_param_set_subsumption()</a>, <a class="el" href="ea_8c_source.html#l00416">ea_param_set_theta()</a>, and <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_ROULETTE</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>.</p>
 <div class="dynheader">
@@ -362,14 +365,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ac5952d7531f708d79463da56e3d81389"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5952d7531f708d79463da56e3d81389">&#9670;&nbsp;</a></span>ea_param_json_export()</h2>
+<a id="a5a9251875e8fbefb5dc08774cb7edc8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a9251875e8fbefb5dc08774cb7edc8e">&#9670;&nbsp;</a></span>ea_param_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* ea_param_json_export </td>
+          <td class="memname">char* ea_param_json_export </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em></td><td>)</td>
@@ -389,19 +392,74 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00256">256</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_TOURNAMENT</a>, <a class="el" href="ea_8c_source.html#l00326">ea_type_as_string()</a>, <a class="el" href="ea_8h_source.html#l00040">ArgsEA::err_reduc</a>, <a class="el" href="ea_8h_source.html#l00041">ArgsEA::fit_reduc</a>, <a class="el" href="ea_8h_source.html#l00044">ArgsEA::lambda</a>, <a class="el" href="ea_8h_source.html#l00042">ArgsEA::p_crossover</a>, <a class="el" href="ea_8h_source.html#l00046">ArgsEA::pred_reset</a>, <a class="el" href="ea_8h_source.html#l00039">ArgsEA::select_size</a>, <a class="el" href="ea_8h_source.html#l00045">ArgsEA::select_type</a>, <a class="el" href="ea_8h_source.html#l00038">ArgsEA::subsumption</a>, and <a class="el" href="ea_8h_source.html#l00043">ArgsEA::theta</a>.</p>
+<p class="reference">References <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_TOURNAMENT</a>, and <a class="el" href="ea_8c_source.html#l00369">ea_type_as_string()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00105">param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_ac5952d7531f708d79463da56e3d81389_cgraph.svg" width="340" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a5a9251875e8fbefb5dc08774cb7edc8e_cgraph.svg" width="340" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_ac5952d7531f708d79463da56e3d81389_icgraph.svg" width="927" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a5a9251875e8fbefb5dc08774cb7edc8e_icgraph.svg" width="927" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae78d49893c85cfe792ceafc58e590965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae78d49893c85cfe792ceafc58e590965">&#9670;&nbsp;</a></span>ea_param_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ea_param_json_import </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the EA parameters from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00282">282</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00452">ea_param_set_err_reduc()</a>, <a class="el" href="ea_8c_source.html#l00466">ea_param_set_fit_reduc()</a>, <a class="el" href="ea_8c_source.html#l00441">ea_param_set_lambda()</a>, <a class="el" href="ea_8c_source.html#l00427">ea_param_set_p_crossover()</a>, <a class="el" href="ea_8c_source.html#l00486">ea_param_set_pred_reset()</a>, <a class="el" href="ea_8c_source.html#l00402">ea_param_set_select_size()</a>, <a class="el" href="ea_8c_source.html#l00480">ea_param_set_subsumption()</a>, <a class="el" href="ea_8c_source.html#l00416">ea_param_set_theta()</a>, and <a class="el" href="ea_8c_source.html#l00503">ea_param_set_type_string()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00305">param_json_import()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_ae78d49893c85cfe792ceafc58e590965_cgraph.svg" width="556" height="443"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_ae78d49893c85cfe792ceafc58e590965_icgraph.svg" width="580" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -443,11 +501,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00305">305</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00348">348</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00040">ArgsEA::err_reduc</a>, <a class="el" href="ea_8h_source.html#l00041">ArgsEA::fit_reduc</a>, <a class="el" href="ea_8h_source.html#l00044">ArgsEA::lambda</a>, <a class="el" href="ea_8h_source.html#l00042">ArgsEA::p_crossover</a>, <a class="el" href="ea_8h_source.html#l00046">ArgsEA::pred_reset</a>, <a class="el" href="ea_8h_source.html#l00039">ArgsEA::select_size</a>, <a class="el" href="ea_8h_source.html#l00045">ArgsEA::select_type</a>, <a class="el" href="ea_8h_source.html#l00038">ArgsEA::subsumption</a>, and <a class="el" href="ea_8h_source.html#l00043">ArgsEA::theta</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00231">param_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00411">param_load()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -493,11 +549,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00283">283</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00326">326</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00040">ArgsEA::err_reduc</a>, <a class="el" href="ea_8h_source.html#l00041">ArgsEA::fit_reduc</a>, <a class="el" href="ea_8h_source.html#l00044">ArgsEA::lambda</a>, <a class="el" href="ea_8h_source.html#l00042">ArgsEA::p_crossover</a>, <a class="el" href="ea_8h_source.html#l00046">ArgsEA::pred_reset</a>, <a class="el" href="ea_8h_source.html#l00039">ArgsEA::select_size</a>, <a class="el" href="ea_8h_source.html#l00045">ArgsEA::select_type</a>, <a class="el" href="ea_8h_source.html#l00038">ArgsEA::subsumption</a>, and <a class="el" href="ea_8h_source.html#l00043">ArgsEA::theta</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00182">param_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00362">param_save()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -533,15 +587,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00409">409</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00452">452</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, and <a class="el" href="ea_8h_source.html#l00040">ArgsEA::err_reduc</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00121">config_ea()</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01358">XCS::set_err_reduc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01097">XCS::set_err_reduc()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a4be66886818c14f052f716e5a0c15ae2_icgraph.svg" width="1126" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a4be66886818c14f052f716e5a0c15ae2_icgraph.svg" width="967" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -573,15 +625,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00423">423</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00466">466</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, and <a class="el" href="ea_8h_source.html#l00041">ArgsEA::fit_reduc</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00121">config_ea()</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01364">XCS::set_fit_reduc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01103">XCS::set_fit_reduc()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_affcf2eabbf962a8ab121b367ab20ff01_icgraph.svg" width="1118" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_affcf2eabbf962a8ab121b367ab20ff01_icgraph.svg" width="963" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -613,15 +663,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00398">398</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00441">441</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, and <a class="el" href="ea_8h_source.html#l00044">ArgsEA::lambda</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00121">config_ea()</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01346">XCS::set_lambda()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01085">XCS::set_lambda()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a6797cc0af53da9245eee4e9f0ed7535e_icgraph.svg" width="1108" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a6797cc0af53da9245eee4e9f0ed7535e_icgraph.svg" width="955" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -653,15 +701,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00384">384</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00427">427</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, and <a class="el" href="ea_8h_source.html#l00042">ArgsEA::p_crossover</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00121">config_ea()</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01352">XCS::set_p_crossover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01091">XCS::set_p_crossover()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a8c27863a9a35c490125367e6a1b0a62b_icgraph.svg" width="1160" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a8c27863a9a35c490125367e6a1b0a62b_icgraph.svg" width="986" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -693,15 +739,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00443">443</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00486">486</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, and <a class="el" href="ea_8h_source.html#l00046">ArgsEA::pred_reset</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00121">config_ea()</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01376">XCS::set_ea_pred_reset()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01115">XCS::set_ea_pred_reset()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_ab7e0167e54c11f1eb8cc1fc5ef6b6c1f_icgraph.svg" width="1160" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_ab7e0167e54c11f1eb8cc1fc5ef6b6c1f_icgraph.svg" width="986" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -733,15 +777,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00359">359</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00402">402</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, and <a class="el" href="ea_8h_source.html#l00039">ArgsEA::select_size</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00121">config_ea()</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01334">XCS::set_ea_select_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01073">XCS::set_ea_select_size()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_ad3c1b032efa2f8619039a40d8fc938cd_icgraph.svg" width="1171" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_ad3c1b032efa2f8619039a40d8fc938cd_icgraph.svg" width="996" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -773,9 +815,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00449">449</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00492">492</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_ROULETTE</a>, <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_TOURNAMENT</a>, and <a class="el" href="ea_8h_source.html#l00045">ArgsEA::select_type</a>.</p>
+<p class="reference">References <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_ROULETTE</a>, and <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_TOURNAMENT</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>.</p>
 <div class="dynheader">
@@ -813,15 +855,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00437">437</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00480">480</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, and <a class="el" href="ea_8h_source.html#l00038">ArgsEA::subsumption</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01370">XCS::set_ea_subsumption()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01109">XCS::set_ea_subsumption()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a3e60f7eba39b8a5df5d124b535480f36_icgraph.svg" width="990" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a3e60f7eba39b8a5df5d124b535480f36_icgraph.svg" width="1012" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -853,15 +893,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00373">373</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00416">416</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, and <a class="el" href="ea_8h_source.html#l00043">ArgsEA::theta</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00121">config_ea()</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01340">XCS::set_theta_ea()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01079">XCS::set_theta_ea()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a52b662c3b88d9b173a8b228f5c526b96_icgraph.svg" width="1096" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a52b662c3b88d9b173a8b228f5c526b96_icgraph.svg" width="942" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -893,11 +931,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00460">460</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00503">503</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00094">XCSF::ea</a>, <a class="el" href="ea_8c_source.html#l00344">ea_type_as_int()</a>, and <a class="el" href="ea_8h_source.html#l00045">ArgsEA::select_type</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00387">ea_type_as_int()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00121">config_ea()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01328">XCS::set_ea_select_type()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01067">XCS::set_ea_select_type()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -907,7 +945,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a7c618001ea65594331df774b0d84cde2_icgraph.svg" width="1168" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_a7c618001ea65594331df774b0d84cde2_icgraph.svg" width="839" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -938,15 +976,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Integer representing the EA type. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00344">344</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00387">387</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
 <p class="reference">References <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_ROULETTE</a>, <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_TOURNAMENT</a>, <a class="el" href="ea_8h_source.html#l00031">EA_STRING_ROULETTE</a>, and <a class="el" href="ea_8h_source.html#l00032">EA_STRING_TOURNAMENT</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00460">ea_param_set_type_string()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00503">ea_param_set_type_string()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_aa0505eb5ed3eb60094e9aa48bec5c02f_icgraph.svg" width="1327" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8h_aa0505eb5ed3eb60094e9aa48bec5c02f_icgraph.svg" width="998" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -977,11 +1015,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String representing the name of the EA select type. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00326">326</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00369">369</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
 <p class="reference">References <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_ROULETTE</a>, <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_TOURNAMENT</a>, <a class="el" href="ea_8h_source.html#l00031">EA_STRING_ROULETTE</a>, and <a class="el" href="ea_8h_source.html#l00032">EA_STRING_TOURNAMENT</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_json_export()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00737">XCS::get_ea_select_type()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_json_export()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00747">XCS::get_ea_select_type()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

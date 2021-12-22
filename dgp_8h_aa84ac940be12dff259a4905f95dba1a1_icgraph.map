@@ -1,7 +1,6 @@
 <map id="graph_param_set_n_inputs" name="graph_param_set_n_inputs">
-<area shape="rect" id="node1" title=" " alt="" coords="921,107,1100,133"/>
-<area shape="rect" id="node2" href="$condition_8c.html#a55966dbe2d7405bc8457c44adf1a7e55" title="Initialises default DGP condition parameters." alt="" coords="699,81,873,108"/>
-<area shape="rect" id="node11" href="$classXCS.html#aea930ef16731a87eec08c4056e964534" title="Sets parameters used by dynamical GP graph conditions." alt="" coords="705,132,867,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="921,81,1100,108"/>
+<area shape="rect" id="node2" href="$cond__dgp_8h.html#aa9eb7a2cd9c34375726b5afa3aaff18e" title="Initialises default DGP condition parameters." alt="" coords="699,81,873,108"/>
 <area shape="rect" id="node3" href="$condition_8h.html#ac7f09d43efc7400318fe32c917a92292" title="Initialises default condition parameters." alt="" coords="504,81,651,108"/>
 <area shape="rect" id="node4" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="373,81,456,108"/>
 <area shape="rect" id="node5" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="225,5,319,32"/>
@@ -10,5 +9,4 @@
 <area shape="rect" id="node10" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="229,157,315,184"/>
 <area shape="rect" id="node6" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="104,56,171,83"/>
 <area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,56,56,83"/>
-<area shape="rect" id="node12" href="$classXCS.html#a4eb6acf0a155d5e94fa843d7523df9b1" title="Sets the condition type and initialisation arguments." alt="" coords="510,132,645,159"/>
 </map>

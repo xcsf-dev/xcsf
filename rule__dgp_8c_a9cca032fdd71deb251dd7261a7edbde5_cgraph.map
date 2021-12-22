@@ -1,5 +1,0 @@
-<map id="rule_dgp_cond_json_export" name="rule_dgp_cond_json_export">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,143,47"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a8077f8c0f7927dd2e91abbf7aafd6349" title="Returns a json formatted string representation of a DGP graph." alt="" coords="191,13,319,39"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#adacd704e517eabb4de2b9c586169ad45" title="Returns the name of a specified node function." alt="" coords="367,13,473,39"/>
-</map>

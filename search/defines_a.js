@@ -1,15 +1,10 @@
 var searchData=
 [
-  ['pred_5fstring_5fconstant_3133',['PRED_STRING_CONSTANT',['../prediction_8h.html#a9c6ffeb6088be00ce472d1169c24299d',1,'prediction.h']]],
-  ['pred_5fstring_5fneural_3134',['PRED_STRING_NEURAL',['../prediction_8h.html#aacdc24c6c7ae1a09c8ca4b769e6f6cc3',1,'prediction.h']]],
-  ['pred_5fstring_5fnlms_5flinear_3135',['PRED_STRING_NLMS_LINEAR',['../prediction_8h.html#a28cd42be9cf6ed328c04272d205d5c31',1,'prediction.h']]],
-  ['pred_5fstring_5fnlms_5fquadratic_3136',['PRED_STRING_NLMS_QUADRATIC',['../prediction_8h.html#ae12146d2f4577869984c007f1a9a75e4',1,'prediction.h']]],
-  ['pred_5fstring_5frls_5flinear_3137',['PRED_STRING_RLS_LINEAR',['../prediction_8h.html#aff5b8881c0841c5ce673956e5339bb8b',1,'prediction.h']]],
-  ['pred_5fstring_5frls_5fquadratic_3138',['PRED_STRING_RLS_QUADRATIC',['../prediction_8h.html#a42a511ef9dc720799528317d0b922c07',1,'prediction.h']]],
-  ['pred_5ftype_5fconstant_3139',['PRED_TYPE_CONSTANT',['../prediction_8h.html#ae7d5f53d421c017ceb10c05f0e6090c0',1,'prediction.h']]],
-  ['pred_5ftype_5fneural_3140',['PRED_TYPE_NEURAL',['../prediction_8h.html#a60cd83e6c910f5c02187ad74e45b587e',1,'prediction.h']]],
-  ['pred_5ftype_5fnlms_5flinear_3141',['PRED_TYPE_NLMS_LINEAR',['../prediction_8h.html#a17aac70a656503856bab6d988b8f33b2',1,'prediction.h']]],
-  ['pred_5ftype_5fnlms_5fquadratic_3142',['PRED_TYPE_NLMS_QUADRATIC',['../prediction_8h.html#ab9a680ad534a2eee657e39d49f11a9a4',1,'prediction.h']]],
-  ['pred_5ftype_5frls_5flinear_3143',['PRED_TYPE_RLS_LINEAR',['../prediction_8h.html#afc4cec761b72b5348c5c21acc22c6168',1,'prediction.h']]],
-  ['pred_5ftype_5frls_5fquadratic_3144',['PRED_TYPE_RLS_QUADRATIC',['../prediction_8h.html#a90f10300f1552e1221eaaac6ea7028b9',1,'prediction.h']]]
+  ['recurrent_3206',['RECURRENT',['../neural__layer_8h.html#aa803b647efbe5ffe72a2ed8fc4cf7274',1,'neural_layer.h']]],
+  ['relu_3207',['RELU',['../neural__activations_8h.html#a6a9f120917c6b18fde3cb85c95af7550',1,'neural_activations.h']]],
+  ['ret_5fmax_3208',['RET_MAX',['../gp_8c.html#a5eac0279a5860c936d75909029b48d4a',1,'gp.c']]],
+  ['ret_5fmin_3209',['RET_MIN',['../gp_8c.html#a73797880be8d2023aac53e23ca556157',1,'gp.c']]],
+  ['rule_5ftype_5fdgp_3210',['RULE_TYPE_DGP',['../condition_8h.html#a8e91611196dde8fc77b115c7ca337eb6',1,'condition.h']]],
+  ['rule_5ftype_5fnetwork_3211',['RULE_TYPE_NETWORK',['../condition_8h.html#ac102d0edec71f99c5980858de0b78917',1,'condition.h']]],
+  ['rule_5ftype_5fneural_3212',['RULE_TYPE_NEURAL',['../condition_8h.html#a80ee0bc9e46fc9007c95371b4e86a20f',1,'condition.h']]]
 ];

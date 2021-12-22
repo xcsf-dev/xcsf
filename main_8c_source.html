@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('main_8c_source.html',''); initResizabl
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -127,34 +127,34 @@ $(document).ready(function(){initNavTree('main_8c_source.html',''); initResizabl
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        printf(<span class="stringliteral">&quot;problem{.csv|size|maze} [config.ini] [xcs.bin]\n&quot;</span>);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        exit(EXIT_FAILURE);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">struct </span><a class="code" href="structXCSF.html">XCSF</a> *xcsf = malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a>));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">struct </span><a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a> = malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a>));</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="utils_8c.html#ab74192959d5c945feaf0a630b58fd123">rand_init</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9">env_init</a>(xcsf, argv); <span class="comment">// initialise environment and default parameters</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9">env_init</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, argv); <span class="comment">// initialise environment and default parameters</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (argc &gt; 3) { <span class="comment">// load parameter config</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698">config_read</a>(xcsf, argv[3]);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698">config_read</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, argv[3]);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698">config_read</a>(xcsf, <span class="stringliteral">&quot;default.ini&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698">config_read</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="stringliteral">&quot;default.json&quot;</span>);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a">xcsf_init</a>(xcsf); <span class="comment">// initialise empty sets</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a">xcsf_init</a>(<a class="code" href="namespacexcsf.html">xcsf</a>); <span class="comment">// initialise empty sets</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">if</span> (argc == 5) { <span class="comment">// reload state of a previous experiment</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">size_t</span> s = <a class="code" href="xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7">xcsf_load</a>(xcsf, argv[4]);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">size_t</span> s = <a class="code" href="xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7">xcsf_load</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, argv[4]);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        printf(<span class="stringliteral">&quot;XCSF loaded: %d elements\n&quot;</span>, (<span class="keywordtype">int</span>) s);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    } <span class="keywordflow">else</span> { <span class="comment">// new experiment</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003">clset_pset_init</a>(xcsf);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003">clset_pset_init</a>(<a class="code" href="namespacexcsf.html">xcsf</a>);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="pa_8c.html#ae7c4749400527115da6903f9337ac58b">pa_init</a>(xcsf); <span class="comment">// initialise prediction array</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2">param_print</a>(xcsf); <span class="comment">// print parameters used</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="pa_8c.html#ae7c4749400527115da6903f9337ac58b">pa_init</a>(<a class="code" href="namespacexcsf.html">xcsf</a>); <span class="comment">// initialise prediction array</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2">param_print</a>(<a class="code" href="namespacexcsf.html">xcsf</a>); <span class="comment">// print parameters used</span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span> (strcmp(argv[1], <span class="stringliteral">&quot;csv&quot;</span>) == 0) { <span class="comment">// supervised regression - csv file</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structEnvCSV.html">EnvCSV</a> *env = xcsf-&gt;<a class="code" href="structXCSF.html#aef04a4290ed1bad6dc0406d938026896">env</a>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="xcs__supervised_8c.html#aac1347b7b83576d581a1b725b4c84e56">xcs_supervised_fit</a>(xcsf, env-&gt;<a class="code" href="structEnvCSV.html#a2aaf6621770fc292d34ec09000bd7fdc">train_data</a>, env-&gt;<a class="code" href="structEnvCSV.html#aecade4fd92122f607840f0176b840d7f">test_data</a>, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structEnvCSV.html">EnvCSV</a> *env = <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;env;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="xcs__supervised_8c.html#aac1347b7b83576d581a1b725b4c84e56">xcs_supervised_fit</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, env-&gt;<a class="code" href="structEnvCSV.html#a2aaf6621770fc292d34ec09000bd7fdc">train_data</a>, env-&gt;<a class="code" href="structEnvCSV.html#aecade4fd92122f607840f0176b840d7f">test_data</a>, <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    } <span class="keywordflow">else</span> { <span class="comment">// reinforcement learning - maze or mux</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20">xcs_rl_exp</a>(xcsf);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20">xcs_rl_exp</a>(<a class="code" href="namespacexcsf.html">xcsf</a>);</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95">pa_free</a>(xcsf); <span class="comment">// clean up</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="env_8h.html#af42ed793d7e5b52290384a467bbc3c25">env_free</a>(xcsf);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="xcsf_8c.html#aeeb273a5ee6d1e2419ab8a95d76d860b">xcsf_free</a>(xcsf);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="param_8c.html#acde6664d083676244bfc1105b1712984">param_free</a>(xcsf);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    free(xcsf);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95">pa_free</a>(<a class="code" href="namespacexcsf.html">xcsf</a>); <span class="comment">// clean up</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="env_8h.html#af42ed793d7e5b52290384a467bbc3c25">env_free</a>(<a class="code" href="namespacexcsf.html">xcsf</a>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="xcsf_8c.html#aeeb273a5ee6d1e2419ab8a95d76d860b">xcsf_free</a>(<a class="code" href="namespacexcsf.html">xcsf</a>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="param_8c.html#acde6664d083676244bfc1105b1712984">param_free</a>(<a class="code" href="namespacexcsf.html">xcsf</a>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    free(<a class="code" href="namespacexcsf.html">xcsf</a>);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
@@ -167,17 +167,17 @@ $(document).ready(function(){initNavTree('main_8c_source.html',''); initResizabl
 <div class="ttc" id="axcs__supervised_8c_html_aac1347b7b83576d581a1b725b4c84e56"><div class="ttname"><a href="xcs__supervised_8c.html#aac1347b7b83576d581a1b725b4c84e56">xcs_supervised_fit</a></div><div class="ttdeci">double xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data, const struct Input *test_data, const bool shuffle)</div><div class="ttdoc">Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us...</div><div class="ttdef"><b>Definition:</b> <a href="xcs__supervised_8c_source.html#l00081">xcs_supervised.c:81</a></div></div>
 <div class="ttc" id="aenv_8h_html_af42ed793d7e5b52290384a467bbc3c25"><div class="ttname"><a href="env_8h.html#af42ed793d7e5b52290384a467bbc3c25">env_free</a></div><div class="ttdeci">static void env_free(const struct XCSF *xcsf)</div><div class="ttdoc">Frees the environment.</div><div class="ttdef"><b>Definition:</b> <a href="env_8h_source.html#l00106">env.h:106</a></div></div>
 <div class="ttc" id="axcsf_8h_html"><div class="ttname"><a href="xcsf_8h.html">xcsf.h</a></div><div class="ttdoc">XCSF data structures.</div></div>
+<div class="ttc" id="anamespacexcsf_html"><div class="ttname"><a href="namespacexcsf.html">xcsf</a></div><div class="ttdef"><b>Definition:</b> <a href="____init_____8py_source.html#l00001">__init__.py:1</a></div></div>
 <div class="ttc" id="amain_8c_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00035">main.c:35</a></div></div>
 <div class="ttc" id="aparam_8c_html_acde6664d083676244bfc1105b1712984"><div class="ttname"><a href="param_8c.html#acde6664d083676244bfc1105b1712984">param_free</a></div><div class="ttdeci">void param_free(struct XCSF *xcsf)</div><div class="ttdef"><b>Definition:</b> <a href="param_8c_source.html#l00088">param.c:88</a></div></div>
 <div class="ttc" id="axcs__supervised_8h_html"><div class="ttname"><a href="xcs__supervised_8h.html">xcs_supervised.h</a></div><div class="ttdoc">Supervised regression learning functions.</div></div>
 <div class="ttc" id="axcsf_8c_html_ae4718dd9f579b8730e25a1a13a385d6a"><div class="ttname"><a href="xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a">xcsf_init</a></div><div class="ttdeci">void xcsf_init(struct XCSF *xcsf)</div><div class="ttdoc">Initialises XCSF with an empty population.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8c_source.html#l00037">xcsf.c:37</a></div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">Utility functions for random number handling, etc.</div></div>
-<div class="ttc" id="astructXCSF_html_aef04a4290ed1bad6dc0406d938026896"><div class="ttname"><a href="structXCSF.html#aef04a4290ed1bad6dc0406d938026896">XCSF::env</a></div><div class="ttdeci">void * env</div><div class="ttdoc">Environment structure (for built-in problems)</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00096">xcsf.h:96</a></div></div>
-<div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00084">xcsf.h:84</a></div></div>
+<div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
 <div class="ttc" id="axcsf_8c_html_aeeb273a5ee6d1e2419ab8a95d76d860b"><div class="ttname"><a href="xcsf_8c.html#aeeb273a5ee6d1e2419ab8a95d76d860b">xcsf_free</a></div><div class="ttdeci">void xcsf_free(struct XCSF *xcsf)</div><div class="ttdoc">Frees XCSF population sets.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8c_source.html#l00053">xcsf.c:53</a></div></div>
 <div class="ttc" id="aparam_8h_html"><div class="ttname"><a href="param_8h.html">param.h</a></div><div class="ttdoc">Functions for setting and printing parameters.</div></div>
 <div class="ttc" id="aclset_8c_html_a0dc2a4754c73df72a73b31c09cd50003"><div class="ttname"><a href="clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003">clset_pset_init</a></div><div class="ttdeci">void clset_pset_init(struct XCSF *xcsf)</div><div class="ttdoc">Initialises a new population of random classifiers.</div><div class="ttdef"><b>Definition:</b> <a href="clset_8c_source.html#l00285">clset.c:285</a></div></div>
-<div class="ttc" id="aparam_8c_html_a1e92bde5285ed6ded96ba4af5fd27bd2"><div class="ttname"><a href="param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2">param_print</a></div><div class="ttdeci">void param_print(const struct XCSF *xcsf)</div><div class="ttdoc">Prints all XCSF parameters.</div><div class="ttdef"><b>Definition:</b> <a href="param_8c_source.html#l00170">param.c:170</a></div></div>
+<div class="ttc" id="aparam_8c_html_a1e92bde5285ed6ded96ba4af5fd27bd2"><div class="ttname"><a href="param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2">param_print</a></div><div class="ttdeci">void param_print(const struct XCSF *xcsf)</div><div class="ttdoc">Prints all XCSF parameters.</div><div class="ttdef"><b>Definition:</b> <a href="param_8c_source.html#l00348">param.c:348</a></div></div>
 <div class="ttc" id="apa_8c_html_ac5cf37aa0da4e57fc2a38138fa35dc95"><div class="ttname"><a href="pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95">pa_free</a></div><div class="ttdeci">void pa_free(const struct XCSF *xcsf)</div><div class="ttdoc">Frees the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00171">pa.c:171</a></div></div>
 <div class="ttc" id="aclset_8h_html"><div class="ttname"><a href="clset_8h.html">clset.h</a></div><div class="ttdoc">Functions operating on sets of classifiers.</div></div>
 <div class="ttc" id="axcs__rl_8c_html_adb4c284d19eeaed2b4a629f9b939ed20"><div class="ttname"><a href="xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20">xcs_rl_exp</a></div><div class="ttdeci">double xcs_rl_exp(struct XCSF *xcsf)</div><div class="ttdoc">Executes a reinforcement learning experiment.</div><div class="ttdef"><b>Definition:</b> <a href="xcs__rl_8c_source.html#l00078">xcs_rl.c:78</a></div></div>
@@ -187,7 +187,7 @@ $(document).ready(function(){initNavTree('main_8c_source.html',''); initResizabl
 <div class="ttc" id="astructEnvCSV_html_a2aaf6621770fc292d34ec09000bd7fdc"><div class="ttname"><a href="structEnvCSV.html#a2aaf6621770fc292d34ec09000bd7fdc">EnvCSV::train_data</a></div><div class="ttdeci">struct Input * train_data</div><div class="ttdef"><b>Definition:</b> <a href="env__csv_8h_source.html#l00033">env_csv.h:33</a></div></div>
 <div class="ttc" id="aenv_8c_html_a9213fcf5fc422d6a77bce853b1d78dc9"><div class="ttname"><a href="env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9">env_init</a></div><div class="ttdeci">void env_init(struct XCSF *xcsf, char **argv)</div><div class="ttdoc">Initialises a built-in problem environment.</div><div class="ttdef"><b>Definition:</b> <a href="env_8c_source.html#l00034">env.c:34</a></div></div>
 <div class="ttc" id="apa_8c_html_ae7c4749400527115da6903f9337ac58b"><div class="ttname"><a href="pa_8c.html#ae7c4749400527115da6903f9337ac58b">pa_init</a></div><div class="ttdeci">void pa_init(struct XCSF *xcsf)</div><div class="ttdoc">Initialises the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00046">pa.c:46</a></div></div>
-<div class="ttc" id="aconfig_8c_html_a045a64a30d99a4bef2ebfd9b54aa9698"><div class="ttname"><a href="config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698">config_read</a></div><div class="ttdeci">void config_read(struct XCSF *xcsf, const char *filename)</div><div class="ttdoc">Reads the specified configuration file.</div><div class="ttdef"><b>Definition:</b> <a href="config_8c_source.html#l00622">config.c:622</a></div></div>
+<div class="ttc" id="aconfig_8c_html_a045a64a30d99a4bef2ebfd9b54aa9698"><div class="ttname"><a href="config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698">config_read</a></div><div class="ttdeci">void config_read(struct XCSF *xcsf, const char *filename)</div><div class="ttdoc">Reads the specified configuration file.</div><div class="ttdef"><b>Definition:</b> <a href="config_8c_source.html#l00050">config.c:50</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

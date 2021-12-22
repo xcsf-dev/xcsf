@@ -1,13 +1,11 @@
 var condition_8c =
 [
     [ "cond_param_defaults", "condition_8c.html#ac7f09d43efc7400318fe32c917a92292", null ],
-    [ "cond_param_defaults_dgp", "condition_8c.html#a55966dbe2d7405bc8457c44adf1a7e55", null ],
-    [ "cond_param_defaults_gp", "condition_8c.html#aecbe8da74bb7593c8562b0e58aee2e80", null ],
-    [ "cond_param_defaults_neural", "condition_8c.html#a4af7104f5b202ebd68ffaa21e35f690d", null ],
     [ "cond_param_free", "condition_8c.html#af22e6e5a357ef08e482555291cfc612b", null ],
-    [ "cond_param_json_export", "condition_8c.html#a0e0e347822daa85547f6369c239b4c87", null ],
-    [ "cond_param_json_export_csr", "condition_8c.html#acd584c89e889fee4610d4a70e89c6402", null ],
-    [ "cond_param_json_export_ternary", "condition_8c.html#a54a3d044167738974491766ddc699d14", null ],
+    [ "cond_param_json_export", "condition_8c.html#ac3384a0731c16bed95c104111873c6e2", null ],
+    [ "cond_param_json_export_csr", "condition_8c.html#a2c6bd28191ba3318455d46004e9e845a", null ],
+    [ "cond_param_json_import", "condition_8c.html#aac2f9eaa3555b7e4b8d6106fe46f7d41", null ],
+    [ "cond_param_json_import_csr", "condition_8c.html#ac06b90b17f5b4d5cf9bc5d976a175e82", null ],
     [ "cond_param_load", "condition_8c.html#a529394a6a6f7f5a7aa596e14b2eb1ec2", null ],
     [ "cond_param_save", "condition_8c.html#a8f670b7aa04f9e43ec146e1a7b3917a5", null ],
     [ "cond_param_set_bits", "condition_8c.html#a6d08714de7bb2d395de2a8171635afac", null ],

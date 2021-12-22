@@ -5,7 +5,7 @@
 <area shape="rect" id="node12" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="864,155,988,181"/>
 <area shape="rect" id="node13" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="1013,155,1071,181"/>
 <area shape="rect" id="node14" href="$loss_8c.html" title="Loss functions for calculating prediction error." alt="" coords="945,80,1003,107"/>
-<area shape="rect" id="node4" href="$config_8c.html" title="Configuration file handling functions." alt="" coords="259,155,327,181"/>
+<area shape="rect" id="node4" href="$config_8c.html" title="Configuration file (JSON) handling functions." alt="" coords="259,155,327,181"/>
 <area shape="rect" id="node5" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="351,155,431,181"/>
 <area shape="rect" id="node6" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="455,155,549,181"/>
 <area shape="rect" id="node7" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="573,155,660,181"/>

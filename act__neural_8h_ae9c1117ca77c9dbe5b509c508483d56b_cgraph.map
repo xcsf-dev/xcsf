@@ -1,0 +1,5 @@
+<map id="act_neural_param_defaults" name="act_neural_param_defaults">
+<area shape="rect" id="node1" title="Initialises default neural action parameters." alt="" coords="5,31,184,57"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="232,5,349,32"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="237,56,344,83"/>
+</map>

@@ -12,40 +12,25 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title=" ">
-<polygon fill="#bfbfbf" stroke="black" points="687,-38.5 687,-57.5 821,-57.5 821,-38.5 687,-38.5"/>
-<text text-anchor="middle" x="754" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">graph_param_set_n_inputs</text>
+<polygon fill="#bfbfbf" stroke="black" points="687,-57.5 687,-76.5 821,-76.5 821,-57.5 687,-57.5"/>
+<text text-anchor="middle" x="754" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">graph_param_set_n_inputs</text>
 </a>
 </g>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="condition_8c.html#a55966dbe2d7405bc8457c44adf1a7e55" target="_top" xlink:title="Initialises default DGP condition parameters.">
+<g id="a_node2"><a xlink:href="cond__dgp_8h.html#aa9eb7a2cd9c34375726b5afa3aaff18e" target="_top" xlink:title="Initialises default DGP condition parameters.">
 <polygon fill="none" stroke="black" points="520,-57.5 520,-76.5 651,-76.5 651,-57.5 520,-57.5"/>
-<text text-anchor="middle" x="585.5" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_param_defaults_dgp</text>
+<text text-anchor="middle" x="585.5" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_param_defaults</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M676.76,-56.7C668.22,-57.68 659.57,-58.66 651.2,-59.62"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="677.18,-60.18 686.72,-55.56 676.38,-53.22 677.18,-60.18"/>
-</g>
-<!-- Node11 -->
-<g id="node11" class="node">
-<title>Node11</title>
-<g id="a_node11"><a xlink:href="classXCS.html#aea930ef16731a87eec08c4056e964534" target="_top" xlink:title="Sets parameters used by dynamical GP graph conditions.">
-<polygon fill="none" stroke="black" points="524.5,-19.5 524.5,-38.5 646.5,-38.5 646.5,-19.5 524.5,-19.5"/>
-<text text-anchor="middle" x="585.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::unpack_cond_dgp</text>
-</a>
-</g>
-</g>
-<!-- Node1&#45;&gt;Node11 -->
-<g id="edge12" class="edge">
-<title>Node1&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M676.7,-39.29C666.61,-38.14 656.38,-36.97 646.62,-35.86"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="676.38,-42.78 686.72,-40.44 677.18,-35.82 676.38,-42.78"/>
+<path fill="none" stroke="midnightblue" d="M676.48,-67C668.03,-67 659.48,-67 651.2,-67"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="676.72,-70.5 686.72,-67 676.72,-63.5 676.72,-70.5"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -178,21 +163,6 @@
 <title>Node9&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M164.68,-61.17C151.37,-66.28 136.45,-72.01 124.29,-76.68"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="165.94,-64.44 174.02,-57.59 163.43,-57.9 165.94,-64.44"/>
-</g>
-<!-- Node12 -->
-<g id="node12" class="node">
-<title>Node12</title>
-<g id="a_node12"><a xlink:href="classXCS.html#a4eb6acf0a155d5e94fa843d7523df9b1" target="_top" xlink:title="Sets the condition type and initialisation arguments.">
-<polygon fill="none" stroke="black" points="378.5,-19.5 378.5,-38.5 479.5,-38.5 479.5,-19.5 378.5,-19.5"/>
-<text text-anchor="middle" x="429" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_condition</text>
-</a>
-</g>
-</g>
-<!-- Node11&#45;&gt;Node12 -->
-<g id="edge13" class="edge">
-<title>Node11&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M514.2,-29C502.58,-29 490.75,-29 479.77,-29"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="514.32,-32.5 524.32,-29 514.32,-25.5 514.32,-32.5"/>
 </g>
 </g>
 </svg>

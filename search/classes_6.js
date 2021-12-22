@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['net_1615',['Net',['../structNet.html',1,'']]]
+  ['layer_1647',['Layer',['../structLayer.html',1,'']]],
+  ['layervtbl_1648',['LayerVtbl',['../structLayerVtbl.html',1,'']]],
+  ['llist_1649',['Llist',['../structLlist.html',1,'']]]
 ];

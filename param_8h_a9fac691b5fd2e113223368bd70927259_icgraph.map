@@ -1,17 +1,15 @@
 <map id="param_set_delta" name="param_set_delta">
-<area shape="rect" id="node1" title=" " alt="" coords="928,132,1047,159"/>
-<area shape="rect" id="node2" href="$config_8c.html#a901348ae6930989b225a6e1bdfa8a865" title="Sets general classifier parameters." alt="" coords="773,44,876,71"/>
-<area shape="rect" id="node8" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="783,132,866,159"/>
-<area shape="rect" id="node14" href="$classXCS.html#a8323058a309af0a4575ac311729e80e5" title=" " alt="" coords="769,208,880,235"/>
-<area shape="rect" id="node3" href="$config_8c.html#a0f0fcad0b6090da01e5bd58b77d98787" title="Sets specified parameter." alt="" coords="582,5,710,32"/>
-<area shape="rect" id="node4" href="$config_8c.html#a5b96815b9ebb26a8fc7bcc30a75ab36d" title="Adds a parameter to the list." alt="" coords="400,8,523,35"/>
-<area shape="rect" id="node5" href="$config_8c.html#a01c178cc1587140f60ecf27291a2032a" title="Parses a line of the config file and adds to the list." alt="" coords="241,11,352,37"/>
-<area shape="rect" id="node6" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,17,193,44"/>
-<area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,55,56,81"/>
-<area shape="rect" id="node9" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="599,56,693,83"/>
-<area shape="rect" id="node11" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="593,107,699,133"/>
-<area shape="rect" id="node12" href="$env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" title="Initialises a real multiplexer environment of specified length." alt="" coords="597,157,695,184"/>
-<area shape="rect" id="node13" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="603,208,689,235"/>
-<area shape="rect" id="node10" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="428,105,495,132"/>
-<area shape="rect" id="node15" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="571,259,721,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="637,204,756,231"/>
+<area shape="rect" id="node2" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="473,107,556,133"/>
+<area shape="rect" id="node9" href="$param_8c.html#a97aa83082509d7fe3de540e1f6137318" title="Sets the general classifier parameters from a cJSON object." alt="" coords="440,197,589,238"/>
+<area shape="rect" id="node12" href="$classXCS.html#a8323058a309af0a4575ac311729e80e5" title=" " alt="" coords="459,263,570,289"/>
+<area shape="rect" id="node3" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="269,5,364,32"/>
+<area shape="rect" id="node6" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="263,56,370,83"/>
+<area shape="rect" id="node7" href="$env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" title="Initialises a real multiplexer environment of specified length." alt="" coords="267,107,366,133"/>
+<area shape="rect" id="node8" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="273,157,360,184"/>
+<area shape="rect" id="node4" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="115,81,182,108"/>
+<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,132,56,159"/>
+<area shape="rect" id="node10" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="251,208,383,235"/>
+<area shape="rect" id="node11" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,157,193,184"/>
+<area shape="rect" id="node13" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="241,263,392,289"/>
 </map>

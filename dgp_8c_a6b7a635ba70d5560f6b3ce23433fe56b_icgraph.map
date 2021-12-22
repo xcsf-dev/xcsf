@@ -1,6 +1,6 @@
 <map id="graph_args_init" name="graph_args_init">
 <area shape="rect" id="node1" title="Sets DGP parameters to default values." alt="" coords="921,81,1032,108"/>
-<area shape="rect" id="node2" href="$condition_8c.html#a55966dbe2d7405bc8457c44adf1a7e55" title="Initialises default DGP condition parameters." alt="" coords="699,81,873,108"/>
+<area shape="rect" id="node2" href="$cond__dgp_8h.html#aa9eb7a2cd9c34375726b5afa3aaff18e" title="Initialises default DGP condition parameters." alt="" coords="699,81,873,108"/>
 <area shape="rect" id="node3" href="$condition_8h.html#ac7f09d43efc7400318fe32c917a92292" title="Initialises default condition parameters." alt="" coords="504,81,651,108"/>
 <area shape="rect" id="node4" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="373,81,456,108"/>
 <area shape="rect" id="node5" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="225,5,319,32"/>

@@ -1,4 +1,0 @@
-<map id="neural_layer_avgpool_json" name="neural_layer_avgpool_json">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of an average pool layer." alt="" coords="197,13,372,39"/>
-<area shape="rect" id="node2" href="$neural__layer__avgpool_8h.html#ae8d15c9104ace1d2e7d9b2657da90088" title="Prints an average pooling layer." alt="" coords="5,5,149,47"/>
-</map>

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__neural_8c.html#a963d4cd70d4cfdb8e35eac4bbdfd7d39" target="_top" xlink:title="Returns a json formatted string representation of a neural condition.">
+<g id="a_node2"><a xlink:href="cond__neural_8c.html#a4145d0d67f9d079a3656e6ec7f262baa" target="_top" xlink:title="Returns a json formatted string representation of a neural condition.">
 <polygon fill="none" stroke="black" points="129,-0.5 129,-19.5 254,-19.5 254,-0.5 129,-0.5"/>
 <text text-anchor="middle" x="191.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_neural_json_export</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer_8h.html#ade7b33f507c20b3be75914174844bc4c" target="_top" xlink:title="Returns a json formatted string representation of a layer.">
+<g id="a_node4"><a xlink:href="neural__layer_8h.html#abed58073ee996eda6dad51a18ab7946e" target="_top" xlink:title="Returns a json formatted string representation of a layer.">
 <polygon fill="none" stroke="black" points="424,-0.5 424,-19.5 517,-19.5 517,-0.5 424,-0.5"/>
 <text text-anchor="middle" x="470.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_json_export</text>
 </a>

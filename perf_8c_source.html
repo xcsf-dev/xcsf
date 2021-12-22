@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('perf_8c_source.html',''); initResizabl
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -112,13 +112,13 @@ $(document).ready(function(){initNavTree('perf_8c_source.html',''); initResizabl
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="perf_8h.html">perf.h</a>&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="perf_8h.html#ac15feab73f15fadd432e0615ada25fd6">   34</a></span>&#160;<a class="code" href="perf_8c.html#ac15feab73f15fadd432e0615ada25fd6">perf_print</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *xcsf, <span class="keywordtype">double</span> *error, <span class="keywordtype">double</span> *terror,</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="perf_8h.html#ac15feab73f15fadd432e0615ada25fd6">   34</a></span>&#160;<a class="code" href="perf_8c.html#ac15feab73f15fadd432e0615ada25fd6">perf_print</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keywordtype">double</span> *error, <span class="keywordtype">double</span> *terror,</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;           <span class="keyword">const</span> <span class="keywordtype">int</span> trial)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">if</span> (trial % xcsf-&gt;<a class="code" href="structXCSF.html#a487d9deb0e6deca1af2f0b0eb66750fc">PERF_TRIALS</a> == 0 &amp;&amp; trial &gt; 0) {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        *error /= xcsf-&gt;<a class="code" href="structXCSF.html#a487d9deb0e6deca1af2f0b0eb66750fc">PERF_TRIALS</a>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        *terror /= xcsf-&gt;<a class="code" href="structXCSF.html#a487d9deb0e6deca1af2f0b0eb66750fc">PERF_TRIALS</a>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        printf(<span class="stringliteral">&quot;%d %.5f %.5f %d\n&quot;</span>, trial, *error, *terror, xcsf-&gt;<a class="code" href="structXCSF.html#a90355ae36c13dba28aeb71d16271e157">pset</a>.<a class="code" href="structSet.html#a0f50dfb77ba9e5eb804b67b2b86888f3">size</a>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">if</span> (trial % <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;PERF_TRIALS == 0 &amp;&amp; trial &gt; 0) {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        *error /= <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;PERF_TRIALS;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        *terror /= <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;PERF_TRIALS;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        printf(<span class="stringliteral">&quot;%d %.5f %.5f %d\n&quot;</span>, trial, *error, *terror, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pset.size);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        fflush(stdout);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        *error = 0;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        *terror = 0;</div>
@@ -126,12 +126,10 @@ $(document).ready(function(){initNavTree('perf_8c_source.html',''); initResizabl
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructSet_html_a0f50dfb77ba9e5eb804b67b2b86888f3"><div class="ttname"><a href="structSet.html#a0f50dfb77ba9e5eb804b67b2b86888f3">Set::size</a></div><div class="ttdeci">int size</div><div class="ttdoc">Number of macro-classifiers.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00077">xcsf.h:77</a></div></div>
-<div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00084">xcsf.h:84</a></div></div>
-<div class="ttc" id="astructXCSF_html_a90355ae36c13dba28aeb71d16271e157"><div class="ttname"><a href="structXCSF.html#a90355ae36c13dba28aeb71d16271e157">XCSF::pset</a></div><div class="ttdeci">struct Set pset</div><div class="ttdoc">Population set.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
+<div class="ttc" id="anamespacexcsf_html"><div class="ttname"><a href="namespacexcsf.html">xcsf</a></div><div class="ttdef"><b>Definition:</b> <a href="____init_____8py_source.html#l00001">__init__.py:1</a></div></div>
+<div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
 <div class="ttc" id="aperf_8h_html"><div class="ttname"><a href="perf_8h.html">perf.h</a></div><div class="ttdoc">System performance printing.</div></div>
 <div class="ttc" id="aperf_8c_html_ac15feab73f15fadd432e0615ada25fd6"><div class="ttname"><a href="perf_8c.html#ac15feab73f15fadd432e0615ada25fd6">perf_print</a></div><div class="ttdeci">void perf_print(const struct XCSF *xcsf, double *error, double *terror, const int trial)</div><div class="ttdoc">Displays the current training and test performance.</div><div class="ttdef"><b>Definition:</b> <a href="perf_8c_source.html#l00034">perf.c:34</a></div></div>
-<div class="ttc" id="astructXCSF_html_a487d9deb0e6deca1af2f0b0eb66750fc"><div class="ttname"><a href="structXCSF.html#a487d9deb0e6deca1af2f0b0eb66750fc">XCSF::PERF_TRIALS</a></div><div class="ttdeci">int PERF_TRIALS</div><div class="ttdoc">Number of problem instances to avg performance output.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00126">xcsf.h:126</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

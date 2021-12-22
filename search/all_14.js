@@ -1,6 +1,12 @@
 var searchData=
 [
-  ['version_5fbuild_1525',['version_build',['../classXCS.html#a0f6de56e2ef395dd537f26ed1b71b5be',1,'XCS::version_build()'],['../xcsf_8h.html#acfc4576d90923701a60adbafb2c4a600',1,'VERSION_BUILD():&#160;xcsf.h']]],
-  ['version_5fmajor_1526',['version_major',['../classXCS.html#a1176e9d5bc2a6d4af8a880f398442224',1,'XCS::version_major()'],['../xcsf_8h.html#a556a08d9254eb4ed73e31cf5423020f7',1,'VERSION_MAJOR():&#160;xcsf.h']]],
-  ['version_5fminor_1527',['version_minor',['../classXCS.html#af9f1c795b5a8d9f82a2e7b132f585031',1,'XCS::version_minor()'],['../xcsf_8h.html#a0d6deb233e18f1f1f7037cedd97d39dc',1,'VERSION_MINOR():&#160;xcsf.h']]]
+  ['_5f_5finit_5f_5f_2epy_1542',['__init__.py',['../utils_2____init_____8py.html',1,'']]],
+  ['uf_1543',['uf',['../structLayer.html#a830da1b9d43d6bb8900e5b96c9f512da',1,'Layer']]],
+  ['ug_1544',['ug',['../structLayer.html#a26063e4eeeaf08a2a5fc7d436d42791d',1,'Layer']]],
+  ['ui_1545',['ui',['../structLayer.html#aa2344baa66ca9758145c3a34ebcd3e8d',1,'Layer']]],
+  ['uo_1546',['uo',['../structLayer.html#a183584f75c1f36388e89b97b8ac236d3',1,'Layer']]],
+  ['update_1547',['update',['../classXCS.html#af8970ba52403714439fda0d4383a390b',1,'XCS']]],
+  ['upsample_1548',['UPSAMPLE',['../neural__layer_8h.html#a4db485a4340e1642963b520cb80cc903',1,'neural_layer.h']]],
+  ['utils_2ec_1549',['utils.c',['../utils_8c.html',1,'']]],
+  ['utils_2eh_1550',['utils.h',['../utils_8h.html',1,'']]]
 ];

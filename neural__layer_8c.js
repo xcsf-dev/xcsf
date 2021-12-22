@@ -18,7 +18,7 @@ var neural__layer_8c =
     [ "layer_type_as_int", "neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128", null ],
     [ "layer_type_as_string", "neural__layer_8c.html#a0e2222a263f09abb981bc7273cd88d7e", null ],
     [ "layer_weight_clamp", "neural__layer_8c.html#a80e54e8cdbe0776d6cc739f1a50ffd26", null ],
-    [ "layer_weight_json", "neural__layer_8c.html#a76be9c80bef04ba1a799825d96526d6d", null ],
+    [ "layer_weight_json", "neural__layer_8c.html#a78127a80046f674b62342f5a8d8cdbf1", null ],
     [ "layer_weight_print", "neural__layer_8c.html#a0d6d72b763049aab59c2602288d8216a", null ],
     [ "layer_weight_rand", "neural__layer_8c.html#a994d2e24681f8933e4a7e57b3930fcbc", null ]
 ];

@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['ea_5fselect_5froulette_3078',['EA_SELECT_ROULETTE',['../ea_8h.html#aeb166d481b9c61c177c155402335e4e2',1,'ea.h']]],
-  ['ea_5fselect_5ftournament_3079',['EA_SELECT_TOURNAMENT',['../ea_8h.html#a3e45cbb20be181c5186ed716880823af',1,'ea.h']]],
-  ['ea_5fstring_5froulette_3080',['EA_STRING_ROULETTE',['../ea_8h.html#a81931ef27fd4a19cecfe937bed753d6a',1,'ea.h']]],
-  ['ea_5fstring_5ftournament_3081',['EA_STRING_TOURNAMENT',['../ea_8h.html#a6095cfec96dd8c2f2e6a005470794b4e',1,'ea.h']]]
+  ['fuzzy_5fcfmqvs_5fand_3143',['FUZZY_CFMQVS_AND',['../dgp_8c.html#a74cd3e6c1357ed2e74b60aa8760d4d4a',1,'dgp.c']]],
+  ['fuzzy_5fcfmqvs_5for_3144',['FUZZY_CFMQVS_OR',['../dgp_8c.html#a93d7eb9ef2653a4fb0ad789358059c25',1,'dgp.c']]],
+  ['fuzzy_5fnot_3145',['FUZZY_NOT',['../dgp_8c.html#a487f9eb0adadd9798172c21741dc7949',1,'dgp.c']]]
 ];

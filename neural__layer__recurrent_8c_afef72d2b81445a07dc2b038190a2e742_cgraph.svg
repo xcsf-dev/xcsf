@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__recurrent_8c.html#a9982db0b36457e45374f6c969addafc4" target="_top" xlink:title="Returns a json formatted string representation of a recurrent layer.">
+<g id="a_node2"><a xlink:href="neural__layer__recurrent_8c.html#a7ef5f7e605fb5aa466859c42431fedc8" target="_top" xlink:title="Returns a json formatted string representation of a recurrent layer.">
 <polygon fill="none" stroke="black" points="149,-14 149,-44 262,-44 262,-14 149,-14"/>
 <text text-anchor="start" x="157" y="-32" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_recurrent</text>
 <text text-anchor="middle" x="205.5" y="-21" font-family="Helvetica,sans-Serif" font-size="10.00">_json_export</text>
@@ -37,7 +37,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer_8c.html#a76be9c80bef04ba1a799825d96526d6d" target="_top" xlink:title="Returns a json formatted string representation of a layer&#39;s weights.">
+<g id="a_node3"><a xlink:href="neural__layer_8c.html#a78127a80046f674b62342f5a8d8cdbf1" target="_top" xlink:title="Returns a json formatted string representation of a layer&#39;s weights.">
 <polygon fill="none" stroke="black" points="310,-38.5 310,-57.5 405,-57.5 405,-38.5 310,-38.5"/>
 <text text-anchor="middle" x="357.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_weight_json</text>
 </a>

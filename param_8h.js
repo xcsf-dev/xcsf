@@ -2,7 +2,8 @@ var param_8h =
 [
     [ "param_free", "param_8h.html#acde6664d083676244bfc1105b1712984", null ],
     [ "param_init", "param_8h.html#ac8218a170803be0bcd974764e7494b0e", null ],
-    [ "param_json_export", "param_8h.html#a631e4068e661e64840366188b60075dc", null ],
+    [ "param_json_export", "param_8h.html#a92d92fc270b6ed2e2637ccb590eb15d5", null ],
+    [ "param_json_import", "param_8h.html#a130260988988535419aee8abe51986c1", null ],
     [ "param_load", "param_8h.html#ae7f8932981ba2f49027da90acfd121b1", null ],
     [ "param_print", "param_8h.html#a1e92bde5285ed6ded96ba4af5fd27bd2", null ],
     [ "param_save", "param_8h.html#aeee8da56faaeace4ed44adc45a42d359", null ],

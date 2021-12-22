@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="dgp_8h.html#a8077f8c0f7927dd2e91abbf7aafd6349" target="_top" xlink:title="Returns a json formatted string representation of a DGP graph.">
+<g id="a_node2"><a xlink:href="dgp_8h.html#ac1f6f6714cd298c49c7ba05cf7f994e1" target="_top" xlink:title="Returns a json formatted string representation of a DGP graph.">
 <polygon fill="none" stroke="black" points="290,-50 290,-69 386,-69 386,-50 290,-50"/>
 <text text-anchor="middle" x="338" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">graph_json_export</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="cond__dgp_8h.html#a1a38282b6ffe06bbf7894db3fc919102" target="_top" xlink:title="Returns a json formatted string representation of a DGP condition.">
+<g id="a_node3"><a xlink:href="cond__dgp_8h.html#af439b56394d5f265da1414019a1f326b" target="_top" xlink:title="Returns a json formatted string representation of a DGP condition.">
 <polygon fill="none" stroke="black" points="140,-88 140,-107 254,-107 254,-88 140,-88"/>
 <text text-anchor="middle" x="197" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_json_export</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="rule__dgp_8h.html#a9cca032fdd71deb251dd7261a7edbde5" target="_top" xlink:title=" ">
+<g id="a_node6"><a xlink:href="rule__dgp_8h.html#a393cf29178b4456b2bf2a208b0275fe8" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="145.5,-0.5 145.5,-30.5 248.5,-30.5 248.5,-0.5 145.5,-0.5"/>
 <text text-anchor="start" x="153.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_json</text>
 <text text-anchor="middle" x="197" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_export</text>

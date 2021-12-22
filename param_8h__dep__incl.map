@@ -1,6 +1,6 @@
 <map id="param.h" name="param.h">
 <area shape="rect" id="node1" title="Functions for setting and printing parameters." alt="" coords="471,5,541,32"/>
-<area shape="rect" id="node2" href="$config_8c.html" title="Configuration file handling functions." alt="" coords="5,80,73,107"/>
+<area shape="rect" id="node2" href="$config_8c.html" title="Configuration file (JSON) handling functions." alt="" coords="5,80,73,107"/>
 <area shape="rect" id="node3" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="98,80,178,107"/>
 <area shape="rect" id="node4" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="202,80,295,107"/>
 <area shape="rect" id="node5" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="320,80,407,107"/>

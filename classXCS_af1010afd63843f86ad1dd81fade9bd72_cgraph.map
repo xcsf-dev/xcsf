@@ -1,92 +1,93 @@
 <map id="XCS::XCS" name="XCS::XCS">
-<area shape="rect" id="node1" title="Constructor." alt="" coords="5,1587,92,1614"/>
-<area shape="rect" id="node2" href="$pa_8c.html#ae7c4749400527115da6903f9337ac58b" title="Initialises the prediction array." alt="" coords="151,1537,211,1563"/>
-<area shape="rect" id="node3" href="$param_8c.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="140,1587,223,1614"/>
-<area shape="rect" id="node89" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="146,1993,217,2019"/>
-<area shape="rect" id="node4" href="$action_8c.html#aa7e0cd00c920c30b15e0d1cc409cada5" title="Initialises default action parameters." alt="" coords="293,341,446,367"/>
-<area shape="rect" id="node9" href="$condition_8c.html#ac7f09d43efc7400318fe32c917a92292" title="Initialises default condition parameters." alt="" coords="296,827,443,854"/>
-<area shape="rect" id="node35" href="$ea_8c.html#a2e9957163a28eeb4c6f9c3f72f0213f3" title="Initialises default evolutionary algorithm parameters." alt="" coords="303,1131,435,1158"/>
-<area shape="rect" id="node45" href="$param_8c.html#a182ee50f5c048bc54246480e1098d8f2" title=" " alt="" coords="309,1182,430,1209"/>
-<area shape="rect" id="node46" href="$param_8c.html#af77999a550e9301daff82311b7c610e6" title=" " alt="" coords="312,1233,427,1259"/>
-<area shape="rect" id="node47" href="$param_8c.html#a4c7f760ecd35ae43a3120cfb9e55bff2" title=" " alt="" coords="291,1283,448,1310"/>
-<area shape="rect" id="node48" href="$param_8c.html#a9fac691b5fd2e113223368bd70927259" title=" " alt="" coords="310,1334,429,1361"/>
-<area shape="rect" id="node49" href="$param_8c.html#aaa456227887cdbc6101fd041edd3c47d" title=" " alt="" coords="317,1385,421,1411"/>
-<area shape="rect" id="node50" href="$param_8c.html#ae4926a3ec09cbe9dc1feace3a2e87376" title=" " alt="" coords="303,1435,436,1462"/>
-<area shape="rect" id="node51" href="$param_8c.html#af3da5d5549f174e35653ca6834e16c96" title=" " alt="" coords="291,1486,448,1513"/>
-<area shape="rect" id="node52" href="$param_8c.html#a60297014c75d27b96d36bac6eb00e569" title=" " alt="" coords="299,1537,439,1563"/>
-<area shape="rect" id="node53" href="$param_8c.html#afe1d8c81dd7d8a229c53c0f0324612e1" title=" " alt="" coords="293,1587,446,1614"/>
-<area shape="rect" id="node54" href="$param_8c.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="296,1638,443,1665"/>
-<area shape="rect" id="node64" href="$param_8c.html#aef1c757a3e9cfe6fe3fdf42e667f6f60" title=" " alt="" coords="289,1689,450,1715"/>
-<area shape="rect" id="node65" href="$param_8c.html#addd4cd1ef9faf5c05ad450d905bde1fc" title=" " alt="" coords="294,1739,445,1766"/>
-<area shape="rect" id="node66" href="$param_8c.html#afc268a6c862be5031bc63ab4d299e05b" title=" " alt="" coords="296,1790,443,1817"/>
-<area shape="rect" id="node67" href="$param_8c.html#ac94d05c5e4828498e7006e2ab31ce050" title=" " alt="" coords="317,1841,421,1867"/>
-<area shape="rect" id="node68" href="$param_8c.html#a9f0e1a7a7a073f46fcfbf6634b8b32da" title="Sets the number of OMP threads." alt="" coords="271,1891,468,1918"/>
-<area shape="rect" id="node69" href="$param_8c.html#a2d623cf9e14e6a9a450f6f2f7f20376e" title=" " alt="" coords="296,1942,443,1969"/>
-<area shape="rect" id="node70" href="$param_8c.html#a9bffca041153cd16843fee676ac47b75" title=" " alt="" coords="296,1993,443,2019"/>
-<area shape="rect" id="node71" href="$param_8c.html#a1468ad94460124bbd3c0982f5a8c5d0a" title=" " alt="" coords="302,2043,437,2070"/>
-<area shape="rect" id="node72" href="$param_8c.html#aa8c87e81df977c35fe8c02cb0c59636f" title=" " alt="" coords="298,2094,441,2121"/>
-<area shape="rect" id="node73" href="$param_8c.html#a2d8681adea9f23f7f0fe437edad2a10d" title=" " alt="" coords="275,2145,464,2171"/>
-<area shape="rect" id="node74" href="$param_8c.html#adeb70dd4bf601eb772406ed52d9911ab" title=" " alt="" coords="303,2195,436,2222"/>
-<area shape="rect" id="node75" href="$param_8c.html#abe3e53803e5cdb2d9c812a0025c68449" title=" " alt="" coords="274,2246,465,2273"/>
-<area shape="rect" id="node76" href="$param_8c.html#afcfac120f601c97790b51a8169146ab4" title=" " alt="" coords="298,2297,441,2323"/>
-<area shape="rect" id="node77" href="$param_8c.html#a5c265c2d45caf36ed96e1da113f9f971" title=" " alt="" coords="296,189,443,215"/>
-<area shape="rect" id="node78" href="$param_8c.html#a58e52d66d93a41c3f298b78bf4c9c34c" title=" " alt="" coords="307,239,432,266"/>
-<area shape="rect" id="node79" href="$param_8c.html#a18f68adfb73dad5267d0074b02fbdf50" title=" " alt="" coords="307,290,432,317"/>
-<area shape="rect" id="node80" href="$prediction_8c.html#af2e3b26751cb8f9af4c608e534ee6894" title="Initialises default prediction parameters." alt="" coords="298,391,441,418"/>
-<area shape="rect" id="node5" href="$action_8c.html#a4ef2c098a36e5937c1171ccb5b9304a5" title="Initialises default neural action parameters." alt="" coords="535,5,689,47"/>
-<area shape="rect" id="node8" href="$action_8c.html#a1a07a69a801b65052f3679d317507363" title=" " alt="" coords="533,71,691,98"/>
-<area shape="rect" id="node6" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="793,257,910,283"/>
-<area shape="rect" id="node7" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="798,206,905,233"/>
-<area shape="rect" id="node10" href="$condition_8c.html#a55966dbe2d7405bc8457c44adf1a7e55" title="Initialises default DGP condition parameters." alt="" coords="525,625,699,651"/>
-<area shape="rect" id="node17" href="$condition_8c.html#aecbe8da74bb7593c8562b0e58aee2e80" title="Initialises default tree GP condition parameters." alt="" coords="529,675,695,702"/>
-<area shape="rect" id="node27" href="$condition_8c.html#a4af7104f5b202ebd68ffaa21e35f690d" title="Initialises default neural condition parameters." alt="" coords="539,559,685,600"/>
-<area shape="rect" id="node28" href="$condition_8c.html#a6d08714de7bb2d395de2a8171635afac" title=" " alt="" coords="539,726,685,753"/>
-<area shape="rect" id="node29" href="$condition_8c.html#afba6bf151b5efdac267a5acea6ec6f98" title=" " alt="" coords="541,777,683,803"/>
-<area shape="rect" id="node30" href="$condition_8c.html#a96145ee4b72dff5896f1d441501f788b" title=" " alt="" coords="537,827,687,854"/>
-<area shape="rect" id="node31" href="$condition_8c.html#a76bc79f6e7f0ad3c034ef9c66b987dfd" title=" " alt="" coords="539,878,685,905"/>
-<area shape="rect" id="node32" href="$condition_8c.html#a95e3f93f8f4d82e7a6f5ef3b7a6a71ef" title=" " alt="" coords="517,929,707,955"/>
-<area shape="rect" id="node33" href="$condition_8c.html#a508893aeed24ea2c0eab380f49b05f8b" title=" " alt="" coords="516,979,708,1006"/>
-<area shape="rect" id="node34" href="$condition_8c.html#a1a56501eb780502f01089a4be562ba62" title=" " alt="" coords="537,1030,687,1057"/>
-<area shape="rect" id="node11" href="$dgp_8c.html#a6b7a635ba70d5560f6b3ce23433fe56b" title="Sets DGP parameters to default values." alt="" coords="796,483,907,510"/>
-<area shape="rect" id="node12" href="$dgp_8c.html#aed1478bc3f88ad1f133a130dca8609d6" title=" " alt="" coords="768,535,935,576"/>
-<area shape="rect" id="node13" href="$dgp_8c.html#ad00d04d5a1aa9f62c635775765099ca7" title=" " alt="" coords="767,601,935,627"/>
-<area shape="rect" id="node14" href="$dgp_8c.html#a2032837921a137ebe4c7704c47fd420f" title=" " alt="" coords="769,331,934,358"/>
-<area shape="rect" id="node15" href="$dgp_8c.html#a5fae5c843dd7b47d4a7a136122efd24b" title=" " alt="" coords="783,382,919,409"/>
-<area shape="rect" id="node16" href="$dgp_8c.html#aa84ac940be12dff259a4905f95dba1a1" title=" " alt="" coords="762,433,941,459"/>
-<area shape="rect" id="node18" href="$gp_8c.html#acd3e34432bec5b919602c0def8656f68" title="Sets tree GP parameters to default values." alt="" coords="801,905,901,931"/>
-<area shape="rect" id="node19" href="$gp_8c.html#ab1a2a5d4c1921eeb8d76a3fae68b2d13" title="Builds global constants used by GP trees." alt="" coords="769,955,933,982"/>
-<area shape="rect" id="node21" href="$gp_8c.html#ab912e7b472f6fdc6bf9a7565bac8f063" title=" " alt="" coords="783,1007,919,1048"/>
-<area shape="rect" id="node22" href="$gp_8c.html#a7ce902011f75d08acceed528c688a3d0" title=" " alt="" coords="779,651,923,678"/>
-<area shape="rect" id="node23" href="$gp_8c.html#a31aa4c7ee72dd3c66fa9fb093d3d8519" title=" " alt="" coords="767,702,935,729"/>
-<area shape="rect" id="node24" href="$gp_8c.html#ace8b76bf8fcb4b48723dd94efae893c9" title=" " alt="" coords="781,753,921,779"/>
-<area shape="rect" id="node25" href="$gp_8c.html#a9a12da4c3d6254d01924a949478bcc01" title=" " alt="" coords="756,803,947,830"/>
-<area shape="rect" id="node26" href="$gp_8c.html#a7d4de020b4aa827af41136faadab1fe7" title=" " alt="" coords="767,854,935,881"/>
-<area shape="rect" id="node20" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="995,955,1092,982"/>
-<area shape="rect" id="node36" href="$ea_8c.html#a4be66886818c14f052f716e5a0c15ae2" title=" " alt="" coords="529,1081,695,1107"/>
-<area shape="rect" id="node37" href="$ea_8c.html#affcf2eabbf962a8ab121b367ab20ff01" title=" " alt="" coords="531,1131,693,1158"/>
-<area shape="rect" id="node38" href="$ea_8c.html#a6797cc0af53da9245eee4e9f0ed7535e" title=" " alt="" coords="535,1182,689,1209"/>
-<area shape="rect" id="node39" href="$ea_8c.html#a8c27863a9a35c490125367e6a1b0a62b" title=" " alt="" coords="521,1233,703,1259"/>
-<area shape="rect" id="node40" href="$ea_8c.html#ab7e0167e54c11f1eb8cc1fc5ef6b6c1f" title=" " alt="" coords="526,1283,698,1310"/>
-<area shape="rect" id="node41" href="$ea_8c.html#ad3c1b032efa2f8619039a40d8fc938cd" title=" " alt="" coords="523,1334,701,1361"/>
-<area shape="rect" id="node42" href="$ea_8c.html#af97d8f0ba77e3911bce4f78019ac92f2" title=" " alt="" coords="523,1385,701,1411"/>
-<area shape="rect" id="node43" href="$ea_8c.html#a3e60f7eba39b8a5df5d124b535480f36" title=" " alt="" coords="519,1435,705,1462"/>
-<area shape="rect" id="node44" href="$ea_8c.html#a52b662c3b88d9b173a8b228f5c526b96" title=" " alt="" coords="542,1486,682,1513"/>
-<area shape="rect" id="node55" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="561,1638,663,1665"/>
-<area shape="rect" id="node56" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="795,1790,907,1817"/>
-<area shape="rect" id="node57" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="809,1486,894,1513"/>
-<area shape="rect" id="node58" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="816,1537,887,1563"/>
-<area shape="rect" id="node59" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="812,1587,891,1614"/>
-<area shape="rect" id="node60" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="1004,1663,1083,1690"/>
-<area shape="rect" id="node61" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="805,1739,897,1766"/>
-<area shape="rect" id="node63" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="810,1638,893,1665"/>
-<area shape="rect" id="node62" href="$utils_8h.html#adc87687be632aa642e838b81a7404db1" title="Returns the index of the largest element in vector X." alt="" coords="1001,1739,1086,1766"/>
-<area shape="rect" id="node81" href="$prediction_8c.html#a4834581193fa96b3d626da899efbaf6f" title="Initialises default neural prediction parameters." alt="" coords="541,224,683,265"/>
-<area shape="rect" id="node82" href="$prediction_8c.html#abf258a7e5dec62efd980dcd56bdc9e5d" title=" " alt="" coords="542,290,682,317"/>
-<area shape="rect" id="node83" href="$prediction_8c.html#ab59b2b572c1ff05157b89759ab7162f5" title=" " alt="" coords="528,341,696,367"/>
-<area shape="rect" id="node84" href="$prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512" title=" " alt="" coords="519,391,705,418"/>
-<area shape="rect" id="node85" href="$prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da" title=" " alt="" coords="530,442,694,469"/>
-<area shape="rect" id="node86" href="$prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441" title=" " alt="" coords="535,493,689,535"/>
-<area shape="rect" id="node87" href="$prediction_8c.html#aa784fcce14bebce205bd26b8e6649e62" title=" " alt="" coords="539,122,685,149"/>
-<area shape="rect" id="node88" href="$prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c" title=" " alt="" coords="544,173,680,199"/>
-<area shape="rect" id="node90" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="332,2347,407,2374"/>
+<area shape="rect" id="node1" title="Constructor." alt="" coords="5,1507,92,1533"/>
+<area shape="rect" id="node2" href="$pa_8c.html#ae7c4749400527115da6903f9337ac58b" title="Initialises the prediction array." alt="" coords="151,1456,211,1483"/>
+<area shape="rect" id="node3" href="$param_8c.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="140,1507,223,1533"/>
+<area shape="rect" id="node90" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="146,1912,217,1939"/>
+<area shape="rect" id="node4" href="$action_8c.html#aa7e0cd00c920c30b15e0d1cc409cada5" title="Initialises default action parameters." alt="" coords="293,477,446,504"/>
+<area shape="rect" id="node9" href="$condition_8c.html#ac7f09d43efc7400318fe32c917a92292" title="Initialises default condition parameters." alt="" coords="296,756,443,783"/>
+<area shape="rect" id="node36" href="$ea_8c.html#a2e9957163a28eeb4c6f9c3f72f0213f3" title="Initialises default evolutionary algorithm parameters." alt="" coords="303,1051,435,1077"/>
+<area shape="rect" id="node46" href="$param_8c.html#a182ee50f5c048bc54246480e1098d8f2" title=" " alt="" coords="309,1101,430,1128"/>
+<area shape="rect" id="node47" href="$param_8c.html#af77999a550e9301daff82311b7c610e6" title=" " alt="" coords="312,1152,427,1179"/>
+<area shape="rect" id="node48" href="$param_8c.html#a4c7f760ecd35ae43a3120cfb9e55bff2" title=" " alt="" coords="291,1203,448,1229"/>
+<area shape="rect" id="node49" href="$param_8c.html#a9fac691b5fd2e113223368bd70927259" title=" " alt="" coords="310,1253,429,1280"/>
+<area shape="rect" id="node50" href="$param_8c.html#aaa456227887cdbc6101fd041edd3c47d" title=" " alt="" coords="317,1304,421,1331"/>
+<area shape="rect" id="node51" href="$param_8c.html#ae4926a3ec09cbe9dc1feace3a2e87376" title=" " alt="" coords="303,1355,436,1381"/>
+<area shape="rect" id="node52" href="$param_8c.html#af3da5d5549f174e35653ca6834e16c96" title=" " alt="" coords="291,1405,448,1432"/>
+<area shape="rect" id="node53" href="$param_8c.html#a60297014c75d27b96d36bac6eb00e569" title=" " alt="" coords="299,1456,439,1483"/>
+<area shape="rect" id="node54" href="$param_8c.html#afe1d8c81dd7d8a229c53c0f0324612e1" title=" " alt="" coords="293,1507,446,1533"/>
+<area shape="rect" id="node55" href="$param_8c.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="296,1557,443,1584"/>
+<area shape="rect" id="node65" href="$param_8c.html#aef1c757a3e9cfe6fe3fdf42e667f6f60" title=" " alt="" coords="289,1608,450,1635"/>
+<area shape="rect" id="node66" href="$param_8c.html#addd4cd1ef9faf5c05ad450d905bde1fc" title=" " alt="" coords="294,1659,445,1685"/>
+<area shape="rect" id="node67" href="$param_8c.html#afc268a6c862be5031bc63ab4d299e05b" title=" " alt="" coords="296,1709,443,1736"/>
+<area shape="rect" id="node68" href="$param_8c.html#ac94d05c5e4828498e7006e2ab31ce050" title=" " alt="" coords="317,1760,421,1787"/>
+<area shape="rect" id="node69" href="$param_8c.html#a9f0e1a7a7a073f46fcfbf6634b8b32da" title="Sets the number of OMP threads." alt="" coords="271,1811,468,1837"/>
+<area shape="rect" id="node70" href="$param_8c.html#a2d623cf9e14e6a9a450f6f2f7f20376e" title=" " alt="" coords="296,1861,443,1888"/>
+<area shape="rect" id="node71" href="$param_8c.html#a9bffca041153cd16843fee676ac47b75" title=" " alt="" coords="296,1912,443,1939"/>
+<area shape="rect" id="node72" href="$param_8c.html#a1468ad94460124bbd3c0982f5a8c5d0a" title=" " alt="" coords="302,1963,437,1989"/>
+<area shape="rect" id="node73" href="$param_8c.html#aa8c87e81df977c35fe8c02cb0c59636f" title=" " alt="" coords="298,2013,441,2040"/>
+<area shape="rect" id="node74" href="$param_8c.html#a2d8681adea9f23f7f0fe437edad2a10d" title=" " alt="" coords="275,2064,464,2091"/>
+<area shape="rect" id="node75" href="$param_8c.html#adeb70dd4bf601eb772406ed52d9911ab" title=" " alt="" coords="303,2115,436,2141"/>
+<area shape="rect" id="node76" href="$param_8c.html#abe3e53803e5cdb2d9c812a0025c68449" title=" " alt="" coords="274,2165,465,2192"/>
+<area shape="rect" id="node77" href="$param_8c.html#afcfac120f601c97790b51a8169146ab4" title=" " alt="" coords="298,2216,441,2243"/>
+<area shape="rect" id="node78" href="$param_8c.html#a5c265c2d45caf36ed96e1da113f9f971" title=" " alt="" coords="296,148,443,175"/>
+<area shape="rect" id="node79" href="$param_8c.html#a58e52d66d93a41c3f298b78bf4c9c34c" title=" " alt="" coords="307,199,432,225"/>
+<area shape="rect" id="node80" href="$param_8c.html#a18f68adfb73dad5267d0074b02fbdf50" title=" " alt="" coords="307,249,432,276"/>
+<area shape="rect" id="node81" href="$prediction_8c.html#af2e3b26751cb8f9af4c608e534ee6894" title="Initialises default prediction parameters." alt="" coords="298,300,441,327"/>
+<area shape="rect" id="node5" href="$act__neural_8c.html#ae9c1117ca77c9dbe5b509c508483d56b" title="Initialises default neural action parameters." alt="" coords="523,427,701,453"/>
+<area shape="rect" id="node8" href="$action_8c.html#a1a07a69a801b65052f3679d317507363" title=" " alt="" coords="533,477,691,504"/>
+<area shape="rect" id="node6" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="793,452,910,479"/>
+<area shape="rect" id="node7" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="798,401,905,428"/>
+<area shape="rect" id="node10" href="$cond__dgp_8c.html#aa9eb7a2cd9c34375726b5afa3aaff18e" title="Initialises default DGP condition parameters." alt="" coords="525,899,699,925"/>
+<area shape="rect" id="node17" href="$cond__gp_8c.html#a59163dacf829d985cdfe39037762d03d" title="Initialises default tree GP condition parameters." alt="" coords="529,949,695,976"/>
+<area shape="rect" id="node27" href="$cond__neural_8c.html#a935ca37ecd32e1b791066e3bc0f7536e" title="Initialises default neural condition parameters." alt="" coords="518,528,706,555"/>
+<area shape="rect" id="node28" href="$condition_8c.html#afba6bf151b5efdac267a5acea6ec6f98" title=" " alt="" coords="541,579,683,605"/>
+<area shape="rect" id="node29" href="$condition_8c.html#a96145ee4b72dff5896f1d441501f788b" title=" " alt="" coords="537,629,687,656"/>
+<area shape="rect" id="node30" href="$condition_8c.html#a76bc79f6e7f0ad3c034ef9c66b987dfd" title=" " alt="" coords="539,680,685,707"/>
+<area shape="rect" id="node31" href="$condition_8c.html#a508893aeed24ea2c0eab380f49b05f8b" title=" " alt="" coords="516,731,708,757"/>
+<area shape="rect" id="node32" href="$condition_8c.html#a1a56501eb780502f01089a4be562ba62" title=" " alt="" coords="537,781,687,808"/>
+<area shape="rect" id="node33" href="$cond__ternary_8c.html#ae43a7aeb5fd85f6620d8f56359db587d" title="Initialises default ternary condition parameters." alt="" coords="542,833,682,874"/>
+<area shape="rect" id="node11" href="$dgp_8c.html#a6b7a635ba70d5560f6b3ce23433fe56b" title="Sets DGP parameters to default values." alt="" coords="796,680,907,707"/>
+<area shape="rect" id="node12" href="$dgp_8c.html#aed1478bc3f88ad1f133a130dca8609d6" title=" " alt="" coords="768,731,935,773"/>
+<area shape="rect" id="node13" href="$dgp_8c.html#ad00d04d5a1aa9f62c635775765099ca7" title=" " alt="" coords="767,797,935,824"/>
+<area shape="rect" id="node14" href="$dgp_8c.html#a2032837921a137ebe4c7704c47fd420f" title=" " alt="" coords="769,848,934,875"/>
+<area shape="rect" id="node15" href="$dgp_8c.html#a5fae5c843dd7b47d4a7a136122efd24b" title=" " alt="" coords="783,899,919,925"/>
+<area shape="rect" id="node16" href="$dgp_8c.html#aa84ac940be12dff259a4905f95dba1a1" title=" " alt="" coords="762,629,941,656"/>
+<area shape="rect" id="node18" href="$gp_8c.html#acd3e34432bec5b919602c0def8656f68" title="Sets tree GP parameters to default values." alt="" coords="801,1000,901,1027"/>
+<area shape="rect" id="node19" href="$gp_8c.html#ab1a2a5d4c1921eeb8d76a3fae68b2d13" title="Builds global constants used by GP trees." alt="" coords="769,1051,933,1077"/>
+<area shape="rect" id="node21" href="$gp_8c.html#ab912e7b472f6fdc6bf9a7565bac8f063" title=" " alt="" coords="783,1102,919,1143"/>
+<area shape="rect" id="node22" href="$gp_8c.html#a7ce902011f75d08acceed528c688a3d0" title=" " alt="" coords="779,1168,923,1195"/>
+<area shape="rect" id="node23" href="$gp_8c.html#a31aa4c7ee72dd3c66fa9fb093d3d8519" title=" " alt="" coords="767,1219,935,1245"/>
+<area shape="rect" id="node24" href="$gp_8c.html#ace8b76bf8fcb4b48723dd94efae893c9" title=" " alt="" coords="781,1269,921,1296"/>
+<area shape="rect" id="node25" href="$gp_8c.html#a9a12da4c3d6254d01924a949478bcc01" title=" " alt="" coords="756,1320,947,1347"/>
+<area shape="rect" id="node26" href="$gp_8c.html#a7d4de020b4aa827af41136faadab1fe7" title=" " alt="" coords="767,949,935,976"/>
+<area shape="rect" id="node20" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="995,1051,1092,1077"/>
+<area shape="rect" id="node34" href="$condition_8c.html#a6d08714de7bb2d395de2a8171635afac" title=" " alt="" coords="778,579,925,605"/>
+<area shape="rect" id="node35" href="$condition_8c.html#a95e3f93f8f4d82e7a6f5ef3b7a6a71ef" title=" " alt="" coords="757,528,946,555"/>
+<area shape="rect" id="node37" href="$ea_8c.html#a4be66886818c14f052f716e5a0c15ae2" title=" " alt="" coords="529,1304,695,1331"/>
+<area shape="rect" id="node38" href="$ea_8c.html#affcf2eabbf962a8ab121b367ab20ff01" title=" " alt="" coords="531,1355,693,1381"/>
+<area shape="rect" id="node39" href="$ea_8c.html#a6797cc0af53da9245eee4e9f0ed7535e" title=" " alt="" coords="535,1405,689,1432"/>
+<area shape="rect" id="node40" href="$ea_8c.html#a8c27863a9a35c490125367e6a1b0a62b" title=" " alt="" coords="521,1000,703,1027"/>
+<area shape="rect" id="node41" href="$ea_8c.html#ab7e0167e54c11f1eb8cc1fc5ef6b6c1f" title=" " alt="" coords="526,1051,698,1077"/>
+<area shape="rect" id="node42" href="$ea_8c.html#ad3c1b032efa2f8619039a40d8fc938cd" title=" " alt="" coords="523,1101,701,1128"/>
+<area shape="rect" id="node43" href="$ea_8c.html#af97d8f0ba77e3911bce4f78019ac92f2" title=" " alt="" coords="523,1152,701,1179"/>
+<area shape="rect" id="node44" href="$ea_8c.html#a3e60f7eba39b8a5df5d124b535480f36" title=" " alt="" coords="519,1203,705,1229"/>
+<area shape="rect" id="node45" href="$ea_8c.html#a52b662c3b88d9b173a8b228f5c526b96" title=" " alt="" coords="542,1253,682,1280"/>
+<area shape="rect" id="node56" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="561,1557,663,1584"/>
+<area shape="rect" id="node57" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="795,1659,907,1685"/>
+<area shape="rect" id="node58" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="809,1709,894,1736"/>
+<area shape="rect" id="node59" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="816,1405,887,1432"/>
+<area shape="rect" id="node60" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="812,1456,891,1483"/>
+<area shape="rect" id="node61" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="1004,1532,1083,1559"/>
+<area shape="rect" id="node62" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="805,1608,897,1635"/>
+<area shape="rect" id="node64" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="810,1507,893,1533"/>
+<area shape="rect" id="node63" href="$utils_8h.html#adc87687be632aa642e838b81a7404db1" title="Returns the index of the largest element in vector X." alt="" coords="1001,1608,1086,1635"/>
+<area shape="rect" id="node82" href="$pred__neural_8c.html#ad98412e2a2999778290478e22b868859" title="Initialises default neural prediction parameters." alt="" coords="519,376,705,403"/>
+<area shape="rect" id="node83" href="$prediction_8c.html#abf258a7e5dec62efd980dcd56bdc9e5d" title=" " alt="" coords="542,5,682,32"/>
+<area shape="rect" id="node84" href="$prediction_8c.html#ab59b2b572c1ff05157b89759ab7162f5" title=" " alt="" coords="528,56,696,83"/>
+<area shape="rect" id="node85" href="$prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512" title=" " alt="" coords="519,107,705,133"/>
+<area shape="rect" id="node86" href="$prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da" title=" " alt="" coords="530,157,694,184"/>
+<area shape="rect" id="node87" href="$prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441" title=" " alt="" coords="535,209,689,250"/>
+<area shape="rect" id="node88" href="$prediction_8c.html#aa784fcce14bebce205bd26b8e6649e62" title=" " alt="" coords="539,275,685,301"/>
+<area shape="rect" id="node89" href="$prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c" title=" " alt="" coords="544,325,680,352"/>
+<area shape="rect" id="node91" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="332,2267,407,2293"/>
 </map>

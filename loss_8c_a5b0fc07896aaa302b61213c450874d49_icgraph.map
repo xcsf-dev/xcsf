@@ -1,25 +1,23 @@
 <map id="loss_log" name="loss_log">
-<area shape="rect" id="node1" title="Logistic log loss for multi&#45;class classification." alt="" coords="1335,93,1405,120"/>
-<area shape="rect" id="node2" href="$loss_8h.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="1184,93,1287,120"/>
-<area shape="rect" id="node3" href="$param_8h.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="1018,43,1107,69"/>
-<area shape="rect" id="node8" href="$param_8h.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="989,93,1136,120"/>
-<area shape="rect" id="node17" href="$param_8h.html#a7a98b432d0cdc32b5f333d918b243b13" title=" " alt="" coords="989,145,1136,186"/>
-<area shape="rect" id="node4" href="$xcsf_8h.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="829,43,908,69"/>
-<area shape="rect" id="node5" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="632,43,715,69"/>
-<area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,296,56,323"/>
-<area shape="rect" id="node6" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="400,93,551,120"/>
-<area shape="rect" id="node9" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="827,245,910,272"/>
-<area shape="rect" id="node15" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="796,93,941,120"/>
-<area shape="rect" id="node10" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="626,347,721,373"/>
-<area shape="rect" id="node12" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="620,195,727,221"/>
-<area shape="rect" id="node13" href="$env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" title="Initialises a real multiplexer environment of specified length." alt="" coords="624,296,723,323"/>
-<area shape="rect" id="node14" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="630,245,717,272"/>
-<area shape="rect" id="node11" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="442,296,509,323"/>
-<area shape="rect" id="node16" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="599,93,748,120"/>
-<area shape="rect" id="node18" href="$config_8c.html#a75d4810fb584c4e983fb8b972f1b1654" title="Sets general XCSF parameters." alt="" coords="815,347,922,373"/>
-<area shape="rect" id="node23" href="$classXCS.html#a049260ddd3681d8f475d4102d3a93cb4" title=" " alt="" coords="799,148,938,175"/>
-<area shape="rect" id="node19" href="$config_8c.html#a0f0fcad0b6090da01e5bd58b77d98787" title="Sets specified parameter." alt="" coords="609,397,737,424"/>
-<area shape="rect" id="node20" href="$config_8c.html#a5b96815b9ebb26a8fc7bcc30a75ab36d" title="Adds a parameter to the list." alt="" coords="414,391,537,417"/>
-<area shape="rect" id="node21" href="$config_8c.html#a01c178cc1587140f60ecf27291a2032a" title="Parses a line of the config file and adds to the list." alt="" coords="241,365,352,392"/>
-<area shape="rect" id="node22" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,353,193,380"/>
+<area shape="rect" id="node1" title="Logistic log loss for multi&#45;class classification." alt="" coords="1075,309,1145,336"/>
+<area shape="rect" id="node2" href="$loss_8h.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="924,309,1027,336"/>
+<area shape="rect" id="node3" href="$param_8h.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="758,360,847,387"/>
+<area shape="rect" id="node8" href="$param_8h.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="729,309,876,336"/>
+<area shape="rect" id="node17" href="$param_8h.html#a7a98b432d0cdc32b5f333d918b243b13" title=" " alt="" coords="729,243,876,285"/>
+<area shape="rect" id="node4" href="$xcsf_8h.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="551,360,630,387"/>
+<area shape="rect" id="node5" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="336,360,419,387"/>
+<area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,107,56,133"/>
+<area shape="rect" id="node6" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="104,309,255,336"/>
+<area shape="rect" id="node9" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="549,157,632,184"/>
+<area shape="rect" id="node15" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="518,309,663,336"/>
+<area shape="rect" id="node10" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="330,56,425,83"/>
+<area shape="rect" id="node12" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="324,107,431,133"/>
+<area shape="rect" id="node13" href="$env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" title="Initialises a real multiplexer environment of specified length." alt="" coords="328,157,427,184"/>
+<area shape="rect" id="node14" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="334,208,421,235"/>
+<area shape="rect" id="node11" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="146,107,213,133"/>
+<area shape="rect" id="node16" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="303,309,452,336"/>
+<area shape="rect" id="node18" href="$param_8c.html#ad7d3421611d8020079446a6a190df8f8" title="Sets the general parameters from a cJSON object." alt="" coords="500,56,681,83"/>
+<area shape="rect" id="node21" href="$classXCS.html#a049260ddd3681d8f475d4102d3a93cb4" title=" " alt="" coords="521,255,660,281"/>
+<area shape="rect" id="node19" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="311,5,443,32"/>
+<area shape="rect" id="node20" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="135,31,224,57"/>
 </map>

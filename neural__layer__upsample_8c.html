@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('neural__layer__upsample_8c.html',''); 
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('neural__layer__upsample_8c.html',''); 
 </div><!--header-->
 <div class="contents">
 
-<p>An implementation of a 2D upsampling layer.  
+<p>An implementation of a 2D upsampling layer.
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="neural__layer__upsample_8h_source.html">neural_layer_upsample.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="neural__activations_8h_source.html">neural_activations.h</a>&quot;</code><br />
@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('neural__layer__upsample_8c.html',''); 
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for neural_layer_upsample.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__upsample_8c__incl.svg" width="694" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__upsample_8c__incl.svg" width="878" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -152,9 +152,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a05a5c0a5fbeab2bd9f9be306ea2990ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__upsample_8c.html#a05a5c0a5fbeab2bd9f9be306ea2990ca">neural_layer_upsample_print</a> (const struct <a class="el" href="structLayer.html">Layer</a> *l, const bool print_weights)</td></tr>
 <tr class="memdesc:a05a5c0a5fbeab2bd9f9be306ea2990ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints an upsampling layer.  <a href="neural__layer__upsample_8c.html#a05a5c0a5fbeab2bd9f9be306ea2990ca">More...</a><br /></td></tr>
 <tr class="separator:a05a5c0a5fbeab2bd9f9be306ea2990ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f162941478c332902fcf4b69ace95ef"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__upsample_8c.html#a7f162941478c332902fcf4b69ace95ef">neural_layer_upsample_json_export</a> (const struct <a class="el" href="structLayer.html">Layer</a> *l, const bool return_weights)</td></tr>
-<tr class="memdesc:a7f162941478c332902fcf4b69ace95ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of an upsample layer.  <a href="neural__layer__upsample_8c.html#a7f162941478c332902fcf4b69ace95ef">More...</a><br /></td></tr>
-<tr class="separator:a7f162941478c332902fcf4b69ace95ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1e934e89938747a8b973a5c5235ff71"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__upsample_8c.html#ac1e934e89938747a8b973a5c5235ff71">neural_layer_upsample_json_export</a> (const struct <a class="el" href="structLayer.html">Layer</a> *l, const bool return_weights)</td></tr>
+<tr class="memdesc:ac1e934e89938747a8b973a5c5235ff71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of an upsample layer.  <a href="neural__layer__upsample_8c.html#ac1e934e89938747a8b973a5c5235ff71">More...</a><br /></td></tr>
+<tr class="separator:ac1e934e89938747a8b973a5c5235ff71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f1cee567f12fdcb1d6b4490442ca810"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__upsample_8c.html#a0f1cee567f12fdcb1d6b4490442ca810">neural_layer_upsample_save</a> (const struct <a class="el" href="structLayer.html">Layer</a> *l, FILE *fp)</td></tr>
 <tr class="memdesc:a0f1cee567f12fdcb1d6b4490442ca810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes an upsampling layer to a file.  <a href="neural__layer__upsample_8c.html#a0f1cee567f12fdcb1d6b4490442ca810">More...</a><br /></td></tr>
 <tr class="separator:a0f1cee567f12fdcb1d6b4490442ca810"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -250,9 +250,9 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__upsample_8c_source.html#l00033">33</a> of file <a class="el" href="neural__layer__upsample_8c_source.html">neural_layer_upsample.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00083">Layer::delta</a>, <a class="el" href="neural__layer_8c_source.html#l00593">layer_guard_outputs()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, and <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00083">Layer::delta</a>, <a class="el" href="neural__layer_8c_source.html#l00595">layer_guard_outputs()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, and <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="neural__layer__upsample_8c_source.html#l00088">neural_layer_upsample_copy()</a>, <a class="el" href="neural__layer__upsample_8c_source.html#l00067">neural_layer_upsample_init()</a>, <a class="el" href="neural__layer__upsample_8c_source.html#l00299">neural_layer_upsample_load()</a>, and <a class="el" href="neural__layer__upsample_8c_source.html#l00207">neural_layer_upsample_resize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="neural__layer__upsample_8c_source.html#l00088">neural_layer_upsample_copy()</a>, <a class="el" href="neural__layer__upsample_8c_source.html#l00067">neural_layer_upsample_init()</a>, <a class="el" href="neural__layer__upsample_8c_source.html#l00301">neural_layer_upsample_load()</a>, and <a class="el" href="neural__layer__upsample_8c_source.html#l00207">neural_layer_upsample_resize()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -350,7 +350,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__upsample_8c_source.html#l00088">88</a> of file <a class="el" href="neural__layer__upsample_8c_source.html">neural_layer_upsample.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8c_source.html#l00411">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00100">Layer::layer_vptr</a>, <a class="el" href="neural__layer__upsample_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>, <a class="el" href="neural__layer_8h_source.html#l00038">UPSAMPLE</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8c_source.html#l00413">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00100">Layer::layer_vptr</a>, <a class="el" href="neural__layer__upsample_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>, <a class="el" href="neural__layer_8h_source.html#l00038">UPSAMPLE</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -481,7 +481,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__upsample_8c_source.html#l00067">67</a> of file <a class="el" href="neural__layer__upsample_8c_source.html">neural_layer_upsample.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer__upsample_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::stride</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::width</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer__upsample_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::stride</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::width</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -491,14 +491,14 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a7f162941478c332902fcf4b69ace95ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f162941478c332902fcf4b69ace95ef">&#9670;&nbsp;</a></span>neural_layer_upsample_json_export()</h2>
+<a id="ac1e934e89938747a8b973a5c5235ff71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1e934e89938747a8b973a5c5235ff71">&#9670;&nbsp;</a></span>neural_layer_upsample_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* neural_layer_upsample_json_export </td>
+          <td class="memname">char* neural_layer_upsample_json_export </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structLayer.html">Layer</a> *&#160;</td>
           <td class="paramname"><em>l</em>, </td>
@@ -527,7 +527,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__upsample_8c_source.html#l00252">252</a> of file <a class="el" href="neural__layer__upsample_8c_source.html">neural_layer_upsample.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__upsample_8c_source.html#l00254">254</a> of file <a class="el" href="neural__layer__upsample_8c_source.html">neural_layer_upsample.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 
@@ -535,7 +535,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__upsample_8c_a7f162941478c332902fcf4b69ace95ef_icgraph.svg" width="368" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__upsample_8c_ac1e934e89938747a8b973a5c5235ff71_icgraph.svg" width="368" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -577,7 +577,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__upsample_8c_source.html#l00299">299</a> of file <a class="el" href="neural__layer__upsample_8c_source.html">neural_layer_upsample.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__upsample_8c_source.html#l00301">301</a> of file <a class="el" href="neural__layer__upsample_8c_source.html">neural_layer_upsample.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer__upsample_8c_source.html#l00033">malloc_layer_arrays()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 <div class="dynheader">
@@ -686,7 +686,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__upsample_8c_source.html#l00239">239</a> of file <a class="el" href="neural__layer__upsample_8c_source.html">neural_layer_upsample.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__upsample_8c_source.html#l00252">neural_layer_upsample_json_export()</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__upsample_8c_source.html#l00254">neural_layer_upsample_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -807,7 +807,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__upsample_8c_source.html#l00276">276</a> of file <a class="el" href="neural__layer__upsample_8c_source.html">neural_layer_upsample.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__upsample_8c_source.html#l00278">278</a> of file <a class="el" href="neural__layer__upsample_8c_source.html">neural_layer_upsample.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00128">Layer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00126">Layer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00134">Layer::stride</a>, and <a class="el" href="neural__layer_8h_source.html#l00127">Layer::width</a>.</p>
 

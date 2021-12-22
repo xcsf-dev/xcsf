@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('condition_8c.html',''); initResizable(
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('condition_8c.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 
-<p>Interface for classifier conditions.  
+<p>Interface for classifier conditions.
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="cond__dgp_8h_source.html">cond_dgp.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="cond__dummy_8h_source.html">cond_dummy.h</a>&quot;</code><br />
@@ -112,7 +112,7 @@ $(document).ready(function(){initNavTree('condition_8c.html',''); initResizable(
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for condition.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c__incl.svg" width="1632" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c__incl.svg" width="1346" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -129,27 +129,21 @@ Functions</h2></td></tr>
 <tr class="memitem:a654e570bc807e2c15a6d963b31d3caf2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#a654e570bc807e2c15a6d963b31d3caf2">condition_type_as_int</a> (const char *type)</td></tr>
 <tr class="memdesc:a654e570bc807e2c15a6d963b31d3caf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the integer representation of a condition type given a name.  <a href="condition_8c.html#a654e570bc807e2c15a6d963b31d3caf2">More...</a><br /></td></tr>
 <tr class="separator:a654e570bc807e2c15a6d963b31d3caf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecbe8da74bb7593c8562b0e58aee2e80"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#aecbe8da74bb7593c8562b0e58aee2e80">cond_param_defaults_gp</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
-<tr class="memdesc:aecbe8da74bb7593c8562b0e58aee2e80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises default tree GP condition parameters.  <a href="condition_8c.html#aecbe8da74bb7593c8562b0e58aee2e80">More...</a><br /></td></tr>
-<tr class="separator:aecbe8da74bb7593c8562b0e58aee2e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55966dbe2d7405bc8457c44adf1a7e55"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#a55966dbe2d7405bc8457c44adf1a7e55">cond_param_defaults_dgp</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
-<tr class="memdesc:a55966dbe2d7405bc8457c44adf1a7e55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises default DGP condition parameters.  <a href="condition_8c.html#a55966dbe2d7405bc8457c44adf1a7e55">More...</a><br /></td></tr>
-<tr class="separator:a55966dbe2d7405bc8457c44adf1a7e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4af7104f5b202ebd68ffaa21e35f690d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#a4af7104f5b202ebd68ffaa21e35f690d">cond_param_defaults_neural</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
-<tr class="memdesc:a4af7104f5b202ebd68ffaa21e35f690d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises default neural condition parameters.  <a href="condition_8c.html#a4af7104f5b202ebd68ffaa21e35f690d">More...</a><br /></td></tr>
-<tr class="separator:a4af7104f5b202ebd68ffaa21e35f690d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7f09d43efc7400318fe32c917a92292"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#ac7f09d43efc7400318fe32c917a92292">cond_param_defaults</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
 <tr class="memdesc:ac7f09d43efc7400318fe32c917a92292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises default condition parameters.  <a href="condition_8c.html#ac7f09d43efc7400318fe32c917a92292">More...</a><br /></td></tr>
 <tr class="separator:ac7f09d43efc7400318fe32c917a92292"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54a3d044167738974491766ddc699d14"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#a54a3d044167738974491766ddc699d14">cond_param_json_export_ternary</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
-<tr class="memdesc:a54a3d044167738974491766ddc699d14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the ternary parameters.  <a href="condition_8c.html#a54a3d044167738974491766ddc699d14">More...</a><br /></td></tr>
-<tr class="separator:a54a3d044167738974491766ddc699d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd584c89e889fee4610d4a70e89c6402"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#acd584c89e889fee4610d4a70e89c6402">cond_param_json_export_csr</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
-<tr class="memdesc:acd584c89e889fee4610d4a70e89c6402"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the center-spread parameters.  <a href="condition_8c.html#acd584c89e889fee4610d4a70e89c6402">More...</a><br /></td></tr>
-<tr class="separator:acd584c89e889fee4610d4a70e89c6402"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e0e347822daa85547f6369c239b4c87"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#a0e0e347822daa85547f6369c239b4c87">cond_param_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
-<tr class="memdesc:a0e0e347822daa85547f6369c239b4c87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the condition parameters.  <a href="condition_8c.html#a0e0e347822daa85547f6369c239b4c87">More...</a><br /></td></tr>
-<tr class="separator:a0e0e347822daa85547f6369c239b4c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c6bd28191ba3318455d46004e9e845a"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#a2c6bd28191ba3318455d46004e9e845a">cond_param_json_export_csr</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
+<tr class="memdesc:a2c6bd28191ba3318455d46004e9e845a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the center-spread parameters.  <a href="condition_8c.html#a2c6bd28191ba3318455d46004e9e845a">More...</a><br /></td></tr>
+<tr class="separator:a2c6bd28191ba3318455d46004e9e845a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac06b90b17f5b4d5cf9bc5d976a175e82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#ac06b90b17f5b4d5cf9bc5d976a175e82">cond_param_json_import_csr</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, cJSON *json)</td></tr>
+<tr class="memdesc:ac06b90b17f5b4d5cf9bc5d976a175e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the center-spread parameters from a cJSON object.  <a href="condition_8c.html#ac06b90b17f5b4d5cf9bc5d976a175e82">More...</a><br /></td></tr>
+<tr class="separator:ac06b90b17f5b4d5cf9bc5d976a175e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3384a0731c16bed95c104111873c6e2"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#ac3384a0731c16bed95c104111873c6e2">cond_param_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
+<tr class="memdesc:ac3384a0731c16bed95c104111873c6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the condition parameters.  <a href="condition_8c.html#ac3384a0731c16bed95c104111873c6e2">More...</a><br /></td></tr>
+<tr class="separator:ac3384a0731c16bed95c104111873c6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2f9eaa3555b7e4b8d6106fe46f7d41"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#aac2f9eaa3555b7e4b8d6106fe46f7d41">cond_param_json_import</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, cJSON *json)</td></tr>
+<tr class="memdesc:aac2f9eaa3555b7e4b8d6106fe46f7d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the condition parameters from a cJSON object.  <a href="condition_8c.html#aac2f9eaa3555b7e4b8d6106fe46f7d41">More...</a><br /></td></tr>
+<tr class="separator:aac2f9eaa3555b7e4b8d6106fe46f7d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f670b7aa04f9e43ec146e1a7b3917a5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condition_8c.html#a8f670b7aa04f9e43ec146e1a7b3917a5">cond_param_save</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, FILE *fp)</td></tr>
 <tr class="memdesc:a8f670b7aa04f9e43ec146e1a7b3917a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves condition parameters.  <a href="condition_8c.html#a8f670b7aa04f9e43ec146e1a7b3917a5">More...</a><br /></td></tr>
 <tr class="separator:a8f670b7aa04f9e43ec146e1a7b3917a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,177 +202,21 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00225">225</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00161">161</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="condition_8c_source.html#l00180">cond_param_defaults_dgp()</a>, <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults_gp()</a>, <a class="el" href="condition_8c_source.html#l00197">cond_param_defaults_neural()</a>, <a class="el" href="condition_8c_source.html#l00435">cond_param_set_bits()</a>, <a class="el" href="condition_8c_source.html#l00384">cond_param_set_eta()</a>, <a class="el" href="condition_8c_source.html#l00404">cond_param_set_max()</a>, <a class="el" href="condition_8c_source.html#l00398">cond_param_set_min()</a>, <a class="el" href="condition_8c_source.html#l00410">cond_param_set_p_dontcare()</a>, <a class="el" href="condition_8c_source.html#l00424">cond_param_set_spread_min()</a>, <a class="el" href="condition_8c_source.html#l00452">cond_param_set_type()</a>, and <a class="el" href="condition_8h_source.html#l00029">COND_TYPE_HYPERRECTANGLE</a>.</p>
+<p class="reference">References <a class="el" href="cond__dgp_8c_source.html#l00279">cond_dgp_param_defaults()</a>, <a class="el" href="cond__gp_8c_source.html#l00282">cond_gp_param_defaults()</a>, <a class="el" href="cond__neural_8c_source.html#l00357">cond_neural_param_defaults()</a>, <a class="el" href="condition_8c_source.html#l00377">cond_param_set_eta()</a>, <a class="el" href="condition_8c_source.html#l00397">cond_param_set_max()</a>, <a class="el" href="condition_8c_source.html#l00391">cond_param_set_min()</a>, <a class="el" href="condition_8c_source.html#l00417">cond_param_set_spread_min()</a>, <a class="el" href="condition_8c_source.html#l00445">cond_param_set_type()</a>, <a class="el" href="cond__ternary_8c_source.html#l00399">cond_ternary_param_defaults()</a>, and <a class="el" href="condition_8h_source.html#l00029">COND_TYPE_HYPERRECTANGLE</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_ac7f09d43efc7400318fe32c917a92292_cgraph.svg" width="782" height="1070"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_ac7f09d43efc7400318fe32c917a92292_cgraph.svg" width="782" height="1040"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_ac7f09d43efc7400318fe32c917a92292_icgraph.svg" width="656" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a55966dbe2d7405bc8457c44adf1a7e55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55966dbe2d7405bc8457c44adf1a7e55">&#9670;&nbsp;</a></span>cond_param_defaults_dgp()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void cond_param_defaults_dgp </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
-          <td class="paramname"><em>xcsf</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Initialises default DGP condition parameters. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00180">180</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
-
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8h_source.html#l00062">ArgsCond::dargs</a>, <a class="el" href="dgp_8c_source.html#l00448">graph_args_init()</a>, <a class="el" href="dgp_8c_source.html#l00558">graph_param_set_evolve_cycles()</a>, <a class="el" href="dgp_8c_source.html#l00514">graph_param_set_max_k()</a>, <a class="el" href="dgp_8c_source.html#l00525">graph_param_set_max_t()</a>, <a class="el" href="dgp_8c_source.html#l00536">graph_param_set_n()</a>, <a class="el" href="dgp_8c_source.html#l00547">graph_param_set_n_inputs()</a>, and <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00225">cond_param_defaults()</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a55966dbe2d7405bc8457c44adf1a7e55_cgraph.svg" width="412" height="307"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a55966dbe2d7405bc8457c44adf1a7e55_icgraph.svg" width="879" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-
-</div>
-</div>
-<a id="aecbe8da74bb7593c8562b0e58aee2e80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aecbe8da74bb7593c8562b0e58aee2e80">&#9670;&nbsp;</a></span>cond_param_defaults_gp()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void cond_param_defaults_gp </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
-          <td class="paramname"><em>xcsf</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Initialises default tree GP condition parameters. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00161">161</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
-
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, <a class="el" href="gp_8c_source.html#l00368">tree_args_init()</a>, <a class="el" href="gp_8c_source.html#l00453">tree_args_init_constants()</a>, <a class="el" href="gp_8c_source.html#l00501">tree_param_set_init_depth()</a>, <a class="el" href="gp_8c_source.html#l00467">tree_param_set_max()</a>, <a class="el" href="gp_8c_source.html#l00512">tree_param_set_max_len()</a>, <a class="el" href="gp_8c_source.html#l00473">tree_param_set_min()</a>, <a class="el" href="gp_8c_source.html#l00490">tree_param_set_n_constants()</a>, <a class="el" href="gp_8c_source.html#l00479">tree_param_set_n_inputs()</a>, and <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00225">cond_param_defaults()</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_aecbe8da74bb7593c8562b0e58aee2e80_cgraph.svg" width="562" height="408"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_aecbe8da74bb7593c8562b0e58aee2e80_icgraph.svg" width="871" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a4af7104f5b202ebd68ffaa21e35f690d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4af7104f5b202ebd68ffaa21e35f690d">&#9670;&nbsp;</a></span>cond_param_defaults_neural()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void cond_param_defaults_neural </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
-          <td class="paramname"><em>xcsf</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Initialises default neural condition parameters. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00197">197</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
-
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::function</a>, <a class="el" href="condition_8h_source.html#l00061">ArgsCond::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00077">layer_args_copy()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00042">layer_args_init()</a>, <a class="el" href="neural__activations_8h_source.html#l00031">LINEAR</a>, <a class="el" href="neural__activations_8h_source.html#l00028">LOGISTIC</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00030">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00029">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00031">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::next</a>, <a class="el" href="neural__layer__args_8h_source.html#l00028">ArgsLayer::type</a>, and <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00225">cond_param_defaults()</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a4af7104f5b202ebd68ffaa21e35f690d_cgraph.svg" width="323" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a4af7104f5b202ebd68ffaa21e35f690d_icgraph.svg" width="851" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -408,9 +246,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00371">371</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00364">364</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8h_source.html#l00062">ArgsCond::dargs</a>, <a class="el" href="condition_8h_source.html#l00061">ArgsCond::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00273">layer_args_free()</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, and <a class="el" href="gp_8c_source.html#l00384">tree_args_free()</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8c_source.html#l00450">layer_args_free()</a>, and <a class="el" href="gp_8c_source.html#l00386">tree_args_free()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00088">param_free()</a>.</p>
 <div class="dynheader">
@@ -428,14 +266,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a0e0e347822daa85547f6369c239b4c87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e0e347822daa85547f6369c239b4c87">&#9670;&nbsp;</a></span>cond_param_json_export()</h2>
+<a id="ac3384a0731c16bed95c104111873c6e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3384a0731c16bed95c104111873c6e2">&#9670;&nbsp;</a></span>cond_param_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* cond_param_json_export </td>
+          <td class="memname">char* cond_param_json_export </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em></td><td>)</td>
@@ -453,28 +291,28 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00281">281</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00226">226</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8c_source.html#l00262">cond_param_json_export_csr()</a>, <a class="el" href="condition_8c_source.html#l00245">cond_param_json_export_ternary()</a>, <a class="el" href="condition_8h_source.html#l00033">COND_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00032">COND_TYPE_GP</a>, <a class="el" href="condition_8h_source.html#l00030">COND_TYPE_HYPERELLIPSOID</a>, <a class="el" href="condition_8h_source.html#l00029">COND_TYPE_HYPERRECTANGLE</a>, <a class="el" href="condition_8h_source.html#l00031">COND_TYPE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00034">COND_TYPE_TERNARY</a>, <a class="el" href="condition_8c_source.html#l00085">condition_type_as_string()</a>, <a class="el" href="condition_8h_source.html#l00062">ArgsCond::dargs</a>, <a class="el" href="dgp_8c_source.html#l00463">graph_args_json_export()</a>, <a class="el" href="condition_8h_source.html#l00061">ArgsCond::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00237">layer_args_json_export()</a>, <a class="el" href="condition_8h_source.html#l00035">RULE_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00037">RULE_TYPE_NETWORK</a>, <a class="el" href="condition_8h_source.html#l00036">RULE_TYPE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, <a class="el" href="gp_8c_source.html#l00395">tree_args_json_export()</a>, and <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>.</p>
+<p class="reference">References <a class="el" href="cond__dgp_8c_source.html#l00257">cond_dgp_param_json_export()</a>, <a class="el" href="cond__gp_8c_source.html#l00260">cond_gp_param_json_export()</a>, <a class="el" href="condition_8c_source.html#l00180">cond_param_json_export_csr()</a>, <a class="el" href="cond__ternary_8c_source.html#l00361">cond_ternary_param_json_export()</a>, <a class="el" href="condition_8h_source.html#l00033">COND_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00032">COND_TYPE_GP</a>, <a class="el" href="condition_8h_source.html#l00030">COND_TYPE_HYPERELLIPSOID</a>, <a class="el" href="condition_8h_source.html#l00029">COND_TYPE_HYPERRECTANGLE</a>, <a class="el" href="condition_8h_source.html#l00031">COND_TYPE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00034">COND_TYPE_TERNARY</a>, <a class="el" href="condition_8c_source.html#l00085">condition_type_as_string()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00377">layer_args_json_export()</a>, <a class="el" href="condition_8h_source.html#l00035">RULE_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00037">RULE_TYPE_NETWORK</a>, <a class="el" href="condition_8h_source.html#l00036">RULE_TYPE_NEURAL</a>, and <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00105">param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a0e0e347822daa85547f6369c239b4c87_cgraph.svg" width="1008" height="490"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_ac3384a0731c16bed95c104111873c6e2_cgraph.svg" width="1008" height="606"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a0e0e347822daa85547f6369c239b4c87_icgraph.svg" width="940" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_ac3384a0731c16bed95c104111873c6e2_icgraph.svg" width="940" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="acd584c89e889fee4610d4a70e89c6402"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd584c89e889fee4610d4a70e89c6402">&#9670;&nbsp;</a></span>cond_param_json_export_csr()</h2>
+<a id="a2c6bd28191ba3318455d46004e9e845a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c6bd28191ba3318455d46004e9e845a">&#9670;&nbsp;</a></span>cond_param_json_export_csr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -483,7 +321,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static const char* cond_param_json_export_csr </td>
+          <td class="memname">static char* cond_param_json_export_csr </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em></td><td>)</td>
@@ -506,62 +344,126 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00262">262</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00180">180</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8h_source.html#l00055">ArgsCond::eta</a>, <a class="el" href="condition_8h_source.html#l00056">ArgsCond::max</a>, <a class="el" href="condition_8h_source.html#l00057">ArgsCond::min</a>, and <a class="el" href="condition_8h_source.html#l00059">ArgsCond::spread_min</a>.</p>
+<p class="reference">References <a class="el" href="condition_8h_source.html#l00055">ArgsCond::eta</a>, <a class="el" href="condition_8h_source.html#l00056">ArgsCond::max</a>, <a class="el" href="condition_8h_source.html#l00057">ArgsCond::min</a>, and <a class="el" href="condition_8h_source.html#l00059">ArgsCond::spread_min</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00281">cond_param_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00226">cond_param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_acd584c89e889fee4610d4a70e89c6402_icgraph.svg" width="1180" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a2c6bd28191ba3318455d46004e9e845a_icgraph.svg" width="1180" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a54a3d044167738974491766ddc699d14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54a3d044167738974491766ddc699d14">&#9670;&nbsp;</a></span>cond_param_json_export_ternary()</h2>
+<a id="aac2f9eaa3555b7e4b8d6106fe46f7d41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac2f9eaa3555b7e4b8d6106fe46f7d41">&#9670;&nbsp;</a></span>cond_param_json_import()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static const char* cond_param_json_export_ternary </td>
+          <td class="memname">bool cond_param_json_import </td>
           <td>(</td>
-          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
-          <td class="paramname"><em>xcsf</em></td><td>)</td>
+          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Returns a json formatted string of the ternary parameters. </p>
+<p>Sets the condition parameters from a cJSON object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether a parameter was found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00245">245</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00274">274</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="condition_8h_source.html#l00060">ArgsCond::bits</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, and <a class="el" href="condition_8h_source.html#l00058">ArgsCond::p_dontcare</a>.</p>
+<p class="reference">References <a class="el" href="cond__dgp_8c_source.html#l00269">cond_dgp_param_json_import()</a>, <a class="el" href="cond__gp_8c_source.html#l00271">cond_gp_param_json_import()</a>, <a class="el" href="cond__neural_8c_source.html#l00331">cond_neural_param_json_import()</a>, <a class="el" href="condition_8c_source.html#l00199">cond_param_json_import_csr()</a>, <a class="el" href="condition_8c_source.html#l00439">cond_param_set_type_string()</a>, <a class="el" href="cond__ternary_8c_source.html#l00378">cond_ternary_param_json_import()</a>, <a class="el" href="condition_8h_source.html#l00033">COND_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00032">COND_TYPE_GP</a>, <a class="el" href="condition_8h_source.html#l00030">COND_TYPE_HYPERELLIPSOID</a>, <a class="el" href="condition_8h_source.html#l00029">COND_TYPE_HYPERRECTANGLE</a>, <a class="el" href="condition_8h_source.html#l00031">COND_TYPE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00034">COND_TYPE_TERNARY</a>, <a class="el" href="condition_8h_source.html#l00035">RULE_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00037">RULE_TYPE_NETWORK</a>, and <a class="el" href="condition_8h_source.html#l00036">RULE_TYPE_NEURAL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00281">cond_param_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00305">param_json_import()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_aac2f9eaa3555b7e4b8d6106fe46f7d41_cgraph.svg" width="1107" height="1107"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a54a3d044167738974491766ddc699d14_icgraph.svg" width="1155" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_aac2f9eaa3555b7e4b8d6106fe46f7d41_icgraph.svg" width="594" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ac06b90b17f5b4d5cf9bc5d976a175e82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac06b90b17f5b4d5cf9bc5d976a175e82">&#9670;&nbsp;</a></span>cond_param_json_import_csr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cond_param_json_import_csr </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the center-spread parameters from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00199">199</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+
+<p class="reference">References <a class="el" href="condition_8c_source.html#l00377">cond_param_set_eta()</a>, <a class="el" href="condition_8c_source.html#l00397">cond_param_set_max()</a>, <a class="el" href="condition_8c_source.html#l00391">cond_param_set_min()</a>, and <a class="el" href="condition_8c_source.html#l00417">cond_param_set_spread_min()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00274">cond_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00854">XCS::set_condition()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_ac06b90b17f5b4d5cf9bc5d976a175e82_cgraph.svg" width="443" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_ac06b90b17f5b4d5cf9bc5d976a175e82_icgraph.svg" width="834" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -603,11 +505,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00349">349</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00342">342</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="condition_8h_source.html#l00060">ArgsCond::bits</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8h_source.html#l00062">ArgsCond::dargs</a>, <a class="el" href="condition_8h_source.html#l00055">ArgsCond::eta</a>, <a class="el" href="dgp_8c_source.html#l00500">graph_args_load()</a>, <a class="el" href="condition_8h_source.html#l00061">ArgsCond::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00455">layer_args_load()</a>, <a class="el" href="condition_8h_source.html#l00056">ArgsCond::max</a>, <a class="el" href="condition_8h_source.html#l00057">ArgsCond::min</a>, <a class="el" href="condition_8h_source.html#l00058">ArgsCond::p_dontcare</a>, <a class="el" href="condition_8h_source.html#l00059">ArgsCond::spread_min</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, <a class="el" href="gp_8c_source.html#l00435">tree_args_load()</a>, and <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>.</p>
+<p class="reference">References <a class="el" href="condition_8h_source.html#l00060">ArgsCond::bits</a>, <a class="el" href="condition_8h_source.html#l00062">ArgsCond::dargs</a>, <a class="el" href="condition_8h_source.html#l00055">ArgsCond::eta</a>, <a class="el" href="dgp_8c_source.html#l00529">graph_args_load()</a>, <a class="el" href="condition_8h_source.html#l00061">ArgsCond::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00632">layer_args_load()</a>, <a class="el" href="condition_8h_source.html#l00056">ArgsCond::max</a>, <a class="el" href="condition_8h_source.html#l00057">ArgsCond::min</a>, <a class="el" href="condition_8h_source.html#l00058">ArgsCond::p_dontcare</a>, <a class="el" href="condition_8h_source.html#l00059">ArgsCond::spread_min</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, <a class="el" href="gp_8c_source.html#l00468">tree_args_load()</a>, and <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00231">param_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00411">param_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -659,11 +561,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00325">325</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00318">318</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="condition_8h_source.html#l00060">ArgsCond::bits</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8h_source.html#l00062">ArgsCond::dargs</a>, <a class="el" href="condition_8h_source.html#l00055">ArgsCond::eta</a>, <a class="el" href="dgp_8c_source.html#l00482">graph_args_save()</a>, <a class="el" href="condition_8h_source.html#l00061">ArgsCond::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00411">layer_args_save()</a>, <a class="el" href="condition_8h_source.html#l00056">ArgsCond::max</a>, <a class="el" href="condition_8h_source.html#l00057">ArgsCond::min</a>, <a class="el" href="condition_8h_source.html#l00058">ArgsCond::p_dontcare</a>, <a class="el" href="condition_8h_source.html#l00059">ArgsCond::spread_min</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, <a class="el" href="gp_8c_source.html#l00415">tree_args_save()</a>, and <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>.</p>
+<p class="reference">References <a class="el" href="condition_8h_source.html#l00060">ArgsCond::bits</a>, <a class="el" href="condition_8h_source.html#l00062">ArgsCond::dargs</a>, <a class="el" href="condition_8h_source.html#l00055">ArgsCond::eta</a>, <a class="el" href="dgp_8c_source.html#l00511">graph_args_save()</a>, <a class="el" href="condition_8h_source.html#l00061">ArgsCond::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00588">layer_args_save()</a>, <a class="el" href="condition_8h_source.html#l00056">ArgsCond::max</a>, <a class="el" href="condition_8h_source.html#l00057">ArgsCond::min</a>, <a class="el" href="condition_8h_source.html#l00058">ArgsCond::p_dontcare</a>, <a class="el" href="condition_8h_source.html#l00059">ArgsCond::spread_min</a>, <a class="el" href="condition_8h_source.html#l00063">ArgsCond::targs</a>, <a class="el" href="gp_8c_source.html#l00448">tree_args_save()</a>, and <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00182">param_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00362">param_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -705,15 +607,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00435">435</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00428">428</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="condition_8h_source.html#l00060">ArgsCond::bits</a>, and <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00225">cond_param_defaults()</a>, <a class="el" href="config_8c_source.html#l00356">config_cl_cond_ternary()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00940">XCS::unpack_cond_ternary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__ternary_8c_source.html#l00399">cond_ternary_param_defaults()</a>, and <a class="el" href="cond__ternary_8c_source.html#l00378">cond_ternary_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a6d08714de7bb2d395de2a8171635afac_icgraph.svg" width="1312" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a6d08714de7bb2d395de2a8171635afac_icgraph.svg" width="1131" height="286"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -745,15 +645,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00384">384</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00377">377</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, and <a class="el" href="condition_8h_source.html#l00055">ArgsCond::eta</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00225">cond_param_defaults()</a>, <a class="el" href="config_8c_source.html#l00331">config_cl_cond_csr()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00861">XCS::unpack_cond_csr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults()</a>, and <a class="el" href="condition_8c_source.html#l00199">cond_param_json_import_csr()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_afba6bf151b5efdac267a5acea6ec6f98_icgraph.svg" width="1286" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_afba6bf151b5efdac267a5acea6ec6f98_icgraph.svg" width="1024" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -785,15 +683,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00404">404</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00397">397</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, and <a class="el" href="condition_8h_source.html#l00056">ArgsCond::max</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00225">cond_param_defaults()</a>, <a class="el" href="config_8c_source.html#l00331">config_cl_cond_csr()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00861">XCS::unpack_cond_csr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults()</a>, and <a class="el" href="condition_8c_source.html#l00199">cond_param_json_import_csr()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a96145ee4b72dff5896f1d441501f788b_icgraph.svg" width="1294" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a96145ee4b72dff5896f1d441501f788b_icgraph.svg" width="1032" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -825,15 +721,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00398">398</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00391">391</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, and <a class="el" href="condition_8h_source.html#l00057">ArgsCond::min</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00225">cond_param_defaults()</a>, <a class="el" href="config_8c_source.html#l00331">config_cl_cond_csr()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00861">XCS::unpack_cond_csr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults()</a>, and <a class="el" href="condition_8c_source.html#l00199">cond_param_json_import_csr()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a76bc79f6e7f0ad3c034ef9c66b987dfd_icgraph.svg" width="1290" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a76bc79f6e7f0ad3c034ef9c66b987dfd_icgraph.svg" width="1028" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -865,15 +759,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00410">410</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00403">403</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, and <a class="el" href="condition_8h_source.html#l00058">ArgsCond::p_dontcare</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00225">cond_param_defaults()</a>, <a class="el" href="config_8c_source.html#l00356">config_cl_cond_ternary()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00940">XCS::unpack_cond_ternary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__ternary_8c_source.html#l00399">cond_ternary_param_defaults()</a>, and <a class="el" href="cond__ternary_8c_source.html#l00378">cond_ternary_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a95e3f93f8f4d82e7a6f5ef3b7a6a71ef_icgraph.svg" width="1355" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a95e3f93f8f4d82e7a6f5ef3b7a6a71ef_icgraph.svg" width="1174" height="286"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -905,15 +797,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00424">424</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00417">417</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, and <a class="el" href="condition_8h_source.html#l00059">ArgsCond::spread_min</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00225">cond_param_defaults()</a>, <a class="el" href="config_8c_source.html#l00331">config_cl_cond_csr()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00861">XCS::unpack_cond_csr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults()</a>, and <a class="el" href="condition_8c_source.html#l00199">cond_param_json_import_csr()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a508893aeed24ea2c0eab380f49b05f8b_icgraph.svg" width="1335" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a508893aeed24ea2c0eab380f49b05f8b_icgraph.svg" width="1074" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -945,11 +835,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00452">452</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00445">445</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, and <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00225">cond_param_defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -985,11 +873,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00446">446</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00439">439</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="condition_8c_source.html#l00120">condition_type_as_int()</a>, and <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>.</p>
+<p class="reference">References <a class="el" href="condition_8c_source.html#l00120">condition_type_as_int()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00376">config_cl_cond()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00797">XCS::set_condition()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00274">cond_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00807">XCS::set_condition()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -999,7 +887,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_ae31b2fb432f0fa9d38c18eb5d2f0be18_icgraph.svg" width="1108" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_ae31b2fb432f0fa9d38c18eb5d2f0be18_icgraph.svg" width="811" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1042,9 +930,9 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="condition_8c_source.html#l00041">41</a> of file <a class="el" href="condition_8c_source.html">condition.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>, <a class="el" href="xcsf_8h_source.html#l00092">XCSF::cond</a>, <a class="el" href="cond__dgp_8h_source.html#l00085">cond_dgp_vtbl</a>, <a class="el" href="cond__dummy_8h_source.html#l00077">cond_dummy_vtbl</a>, <a class="el" href="cond__ellipsoid_8h_source.html#l00089">cond_ellipsoid_vtbl</a>, <a class="el" href="cond__gp_8h_source.html#l00085">cond_gp_vtbl</a>, <a class="el" href="cond__neural_8h_source.html#l00097">cond_neural_vtbl</a>, <a class="el" href="cond__rectangle_8h_source.html#l00089">cond_rectangle_vtbl</a>, <a class="el" href="cond__ternary_8h_source.html#l00090">cond_ternary_vtbl</a>, <a class="el" href="condition_8h_source.html#l00033">COND_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00028">COND_TYPE_DUMMY</a>, <a class="el" href="condition_8h_source.html#l00032">COND_TYPE_GP</a>, <a class="el" href="condition_8h_source.html#l00030">COND_TYPE_HYPERELLIPSOID</a>, <a class="el" href="condition_8h_source.html#l00029">COND_TYPE_HYPERRECTANGLE</a>, <a class="el" href="condition_8h_source.html#l00031">COND_TYPE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00034">COND_TYPE_TERNARY</a>, <a class="el" href="xcsf_8h_source.html#l00045">Cl::cond_vptr</a>, <a class="el" href="rule__dgp_8h_source.html#l00146">rule_dgp_act_vtbl</a>, <a class="el" href="rule__dgp_8h_source.html#l00090">rule_dgp_cond_vtbl</a>, <a class="el" href="rule__neural_8h_source.html#l00147">rule_neural_act_vtbl</a>, <a class="el" href="rule__neural_8h_source.html#l00089">rule_neural_cond_vtbl</a>, <a class="el" href="condition_8h_source.html#l00035">RULE_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00036">RULE_TYPE_NEURAL</a>, and <a class="el" href="condition_8h_source.html#l00054">ArgsCond::type</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>, <a class="el" href="cond__dgp_8h_source.html#l00094">cond_dgp_vtbl</a>, <a class="el" href="cond__dummy_8h_source.html#l00077">cond_dummy_vtbl</a>, <a class="el" href="cond__ellipsoid_8h_source.html#l00089">cond_ellipsoid_vtbl</a>, <a class="el" href="cond__gp_8h_source.html#l00094">cond_gp_vtbl</a>, <a class="el" href="cond__neural_8h_source.html#l00103">cond_neural_vtbl</a>, <a class="el" href="cond__rectangle_8h_source.html#l00089">cond_rectangle_vtbl</a>, <a class="el" href="cond__ternary_8h_source.html#l00099">cond_ternary_vtbl</a>, <a class="el" href="condition_8h_source.html#l00033">COND_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00028">COND_TYPE_DUMMY</a>, <a class="el" href="condition_8h_source.html#l00032">COND_TYPE_GP</a>, <a class="el" href="condition_8h_source.html#l00030">COND_TYPE_HYPERELLIPSOID</a>, <a class="el" href="condition_8h_source.html#l00029">COND_TYPE_HYPERRECTANGLE</a>, <a class="el" href="condition_8h_source.html#l00031">COND_TYPE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00034">COND_TYPE_TERNARY</a>, <a class="el" href="xcsf_8h_source.html#l00046">Cl::cond_vptr</a>, <a class="el" href="rule__dgp_8h_source.html#l00146">rule_dgp_act_vtbl</a>, <a class="el" href="rule__dgp_8h_source.html#l00090">rule_dgp_cond_vtbl</a>, <a class="el" href="rule__neural_8h_source.html#l00147">rule_neural_act_vtbl</a>, <a class="el" href="rule__neural_8h_source.html#l00089">rule_neural_cond_vtbl</a>, <a class="el" href="condition_8h_source.html#l00035">RULE_TYPE_DGP</a>, and <a class="el" href="condition_8h_source.html#l00036">RULE_TYPE_NEURAL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00450">cl_load()</a>, and <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00452">cl_load()</a>, and <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1083,11 +971,11 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="condition_8h_source.html#l00044">COND_STRING_DGP</a>, <a class="el" href="condition_8h_source.html#l00039">COND_STRING_DUMMY</a>, <a class="el" href="condition_8h_source.html#l00043">COND_STRING_GP</a>, <a class="el" href="condition_8h_source.html#l00041">COND_STRING_HYPERELLIPSOID</a>, <a class="el" href="condition_8h_source.html#l00040">COND_STRING_HYPERRECTANGLE</a>, <a class="el" href="condition_8h_source.html#l00042">COND_STRING_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00046">COND_STRING_RULE_DGP</a>, <a class="el" href="condition_8h_source.html#l00048">COND_STRING_RULE_NETWORK</a>, <a class="el" href="condition_8h_source.html#l00047">COND_STRING_RULE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00045">COND_STRING_TERNARY</a>, <a class="el" href="condition_8h_source.html#l00033">COND_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00028">COND_TYPE_DUMMY</a>, <a class="el" href="condition_8h_source.html#l00032">COND_TYPE_GP</a>, <a class="el" href="condition_8h_source.html#l00030">COND_TYPE_HYPERELLIPSOID</a>, <a class="el" href="condition_8h_source.html#l00029">COND_TYPE_HYPERRECTANGLE</a>, <a class="el" href="condition_8h_source.html#l00031">COND_TYPE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00034">COND_TYPE_TERNARY</a>, <a class="el" href="condition_8h_source.html#l00035">RULE_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00037">RULE_TYPE_NETWORK</a>, and <a class="el" href="condition_8h_source.html#l00036">RULE_TYPE_NEURAL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00446">cond_param_set_type_string()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00439">cond_param_set_type_string()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a654e570bc807e2c15a6d963b31d3caf2_icgraph.svg" width="1304" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="condition_8c_a654e570bc807e2c15a6d963b31d3caf2_icgraph.svg" width="1007" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1122,7 +1010,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="condition_8h_source.html#l00044">COND_STRING_DGP</a>, <a class="el" href="condition_8h_source.html#l00039">COND_STRING_DUMMY</a>, <a class="el" href="condition_8h_source.html#l00043">COND_STRING_GP</a>, <a class="el" href="condition_8h_source.html#l00041">COND_STRING_HYPERELLIPSOID</a>, <a class="el" href="condition_8h_source.html#l00040">COND_STRING_HYPERRECTANGLE</a>, <a class="el" href="condition_8h_source.html#l00042">COND_STRING_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00046">COND_STRING_RULE_DGP</a>, <a class="el" href="condition_8h_source.html#l00048">COND_STRING_RULE_NETWORK</a>, <a class="el" href="condition_8h_source.html#l00047">COND_STRING_RULE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00045">COND_STRING_TERNARY</a>, <a class="el" href="condition_8h_source.html#l00033">COND_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00028">COND_TYPE_DUMMY</a>, <a class="el" href="condition_8h_source.html#l00032">COND_TYPE_GP</a>, <a class="el" href="condition_8h_source.html#l00030">COND_TYPE_HYPERELLIPSOID</a>, <a class="el" href="condition_8h_source.html#l00029">COND_TYPE_HYPERRECTANGLE</a>, <a class="el" href="condition_8h_source.html#l00031">COND_TYPE_NEURAL</a>, <a class="el" href="condition_8h_source.html#l00034">COND_TYPE_TERNARY</a>, <a class="el" href="condition_8h_source.html#l00035">RULE_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00037">RULE_TYPE_NETWORK</a>, and <a class="el" href="condition_8h_source.html#l00036">RULE_TYPE_NEURAL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00281">cond_param_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00226">cond_param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

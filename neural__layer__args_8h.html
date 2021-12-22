@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('neural__layer__args_8h.html',''); init
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -98,12 +98,19 @@ $(document).ready(function(){initNavTree('neural__layer__args_8h.html',''); init
 </div><!--header-->
 <div class="contents">
 
-<p>Functions operating on neural network arguments/constants.  
+<p>Functions operating on neural network arguments/constants.
 <a href="#details">More...</a></p>
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &quot;<a class="el" href="utils_8h_source.html">utils.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for neural_layer_args.h:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h__incl.svg" width="599" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h__dep__incl.svg" width="3210" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h__dep__incl.svg" width="3372" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -126,9 +133,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a4125c294939dcfcb1e3aa4d66f91bb70"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__args_8h.html#a4125c294939dcfcb1e3aa4d66f91bb70">layer_args_tail</a> (struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> *head)</td></tr>
 <tr class="memdesc:a4125c294939dcfcb1e3aa4d66f91bb70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current output layer arguments.  <a href="neural__layer__args_8h.html#a4125c294939dcfcb1e3aa4d66f91bb70">More...</a><br /></td></tr>
 <tr class="separator:a4125c294939dcfcb1e3aa4d66f91bb70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a660f9e96fa6caf7aa200a6eead34501b"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__args_8h.html#a660f9e96fa6caf7aa200a6eead34501b">layer_args_json_export</a> (struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> *args)</td></tr>
-<tr class="memdesc:a660f9e96fa6caf7aa200a6eead34501b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the neural layer parameters.  <a href="neural__layer__args_8h.html#a660f9e96fa6caf7aa200a6eead34501b">More...</a><br /></td></tr>
-<tr class="separator:a660f9e96fa6caf7aa200a6eead34501b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac57afe37d1a38950670a5c2749b00884"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__args_8h.html#ac57afe37d1a38950670a5c2749b00884">layer_args_json_import</a> (struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> *largs, cJSON *json)</td></tr>
+<tr class="memdesc:ac57afe37d1a38950670a5c2749b00884"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the layer parameters from a cJSON object.  <a href="neural__layer__args_8h.html#ac57afe37d1a38950670a5c2749b00884">More...</a><br /></td></tr>
+<tr class="separator:ac57afe37d1a38950670a5c2749b00884"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a390bf97769999138966232a530c705e8"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__args_8h.html#a390bf97769999138966232a530c705e8">layer_args_json_export</a> (struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> *args)</td></tr>
+<tr class="memdesc:a390bf97769999138966232a530c705e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the neural layer parameters.  <a href="neural__layer__args_8h.html#a390bf97769999138966232a530c705e8">More...</a><br /></td></tr>
+<tr class="separator:a390bf97769999138966232a530c705e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a477d2c5cf9da9413c6dba66b5d7f7aff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural__layer__args_8h.html#a477d2c5cf9da9413c6dba66b5d7f7aff">layer_args_free</a> (struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> **largs)</td></tr>
 <tr class="memdesc:a477d2c5cf9da9413c6dba66b5d7f7aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees memory used by a list of layer parameters and points to NULL.  <a href="neural__layer__args_8h.html#a477d2c5cf9da9413c6dba66b5d7f7aff">More...</a><br /></td></tr>
 <tr class="separator:a477d2c5cf9da9413c6dba66b5d7f7aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,13 +189,13 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00077">77</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::channels</a>, <a class="el" href="neural__layer__args_8h_source.html#l00044">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00042">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00049">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::height</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00030">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00029">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00031">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::pad</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::probability</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::recurrent_function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00046">ArgsLayer::scale</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::sgd_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00038">ArgsLayer::size</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::stride</a>, <a class="el" href="neural__layer__args_8h_source.html#l00028">ArgsLayer::type</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::channels</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00046">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00055">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00054">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::height</a>, <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__args_8h_source.html#l00044">ArgsLayer::pad</a>, <a class="el" href="neural__layer__args_8h_source.html#l00049">ArgsLayer::probability</a>, <a class="el" href="neural__layer__args_8h_source.html#l00038">ArgsLayer::recurrent_function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::scale</a>, <a class="el" href="neural__layer__args_8h_source.html#l00056">ArgsLayer::sgd_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00042">ArgsLayer::size</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::stride</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::type</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::width</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00092">action_param_defaults_neural()</a>, <a class="el" href="condition_8c_source.html#l00197">cond_param_defaults_neural()</a>, <a class="el" href="neural__layer__lstm_8c_source.html#l00267">neural_layer_lstm_init()</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00234">neural_layer_recurrent_init()</a>, and <a class="el" href="prediction_8c_source.html#l00121">pred_param_defaults_neural()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00250">act_neural_param_defaults()</a>, <a class="el" href="cond__neural_8c_source.html#l00357">cond_neural_param_defaults()</a>, <a class="el" href="neural__layer__lstm_8c_source.html#l00267">neural_layer_lstm_init()</a>, <a class="el" href="neural__layer__recurrent_8c_source.html#l00234">neural_layer_recurrent_init()</a>, and <a class="el" href="pred__neural_8c_source.html#l00410">pred_neural_param_defaults()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_ae2a39b39d39a77a51f0a9e85dd48c002_icgraph.svg" width="1051" height="290"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_ae2a39b39d39a77a51f0a9e85dd48c002_icgraph.svg" width="1064" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -215,15 +225,15 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00273">273</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00450">450</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::next</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00191">action_param_free()</a>, <a class="el" href="condition_8c_source.html#l00371">cond_param_free()</a>, <a class="el" href="config_8c_source.html#l00622">config_read()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00455">layer_args_load()</a>, <a class="el" href="prediction_8c_source.html#l00289">pred_param_free()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01070">XCS::unpack_act_neural()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00960">XCS::unpack_cond_neural()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01122">XCS::unpack_pred_neural()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00284">act_neural_param_json_import()</a>, <a class="el" href="action_8c_source.html#l00184">action_param_free()</a>, <a class="el" href="cond__neural_8c_source.html#l00331">cond_neural_param_json_import()</a>, <a class="el" href="condition_8c_source.html#l00364">cond_param_free()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00632">layer_args_load()</a>, <a class="el" href="pred__neural_8c_source.html#l00443">pred_neural_param_json_import()</a>, and <a class="el" href="prediction_8c_source.html#l00260">pred_param_free()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a477d2c5cf9da9413c6dba66b5d7f7aff_icgraph.svg" width="1127" height="443"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a477d2c5cf9da9413c6dba66b5d7f7aff_icgraph.svg" width="1206" height="498"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -255,26 +265,26 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00042">42</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer__args_8h_source.html#l00044">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00042">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00049">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::height</a>, <a class="el" href="neural__activations_8h_source.html#l00028">LOGISTIC</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00030">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00029">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00031">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::next</a>, <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::pad</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::probability</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::recurrent_function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00046">ArgsLayer::scale</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::sgd_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00038">ArgsLayer::size</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::stride</a>, <a class="el" href="neural__layer__args_8h_source.html#l00028">ArgsLayer::type</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00046">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00055">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00054">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::height</a>, <a class="el" href="neural__activations_8h_source.html#l00028">LOGISTIC</a>, <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>, <a class="el" href="neural__layer__args_8h_source.html#l00044">ArgsLayer::pad</a>, <a class="el" href="neural__layer__args_8h_source.html#l00049">ArgsLayer::probability</a>, <a class="el" href="neural__layer__args_8h_source.html#l00038">ArgsLayer::recurrent_function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::scale</a>, <a class="el" href="neural__layer__args_8h_source.html#l00056">ArgsLayer::sgd_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00042">ArgsLayer::size</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::stride</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::type</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::width</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00092">action_param_defaults_neural()</a>, <a class="el" href="condition_8c_source.html#l00197">cond_param_defaults_neural()</a>, <a class="el" href="config_8c_source.html#l00470">config_cl_act_neural()</a>, <a class="el" href="config_8c_source.html#l00249">config_cl_cond_neural()</a>, <a class="el" href="config_8c_source.html#l00396">config_cl_pred_neural()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00455">layer_args_load()</a>, <a class="el" href="pred__neural_8c_source.html#l00347">pred_neural_ae_to_classifier()</a>, <a class="el" href="pred__neural_8c_source.html#l00304">pred_neural_expand()</a>, <a class="el" href="prediction_8c_source.html#l00121">pred_param_defaults_neural()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01070">XCS::unpack_act_neural()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00960">XCS::unpack_cond_neural()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01122">XCS::unpack_pred_neural()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00250">act_neural_param_defaults()</a>, <a class="el" href="act__neural_8c_source.html#l00284">act_neural_param_json_import()</a>, <a class="el" href="cond__neural_8c_source.html#l00357">cond_neural_param_defaults()</a>, <a class="el" href="cond__neural_8c_source.html#l00331">cond_neural_param_json_import()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00632">layer_args_load()</a>, <a class="el" href="pred__neural_8c_source.html#l00349">pred_neural_ae_to_classifier()</a>, <a class="el" href="pred__neural_8c_source.html#l00306">pred_neural_expand()</a>, <a class="el" href="pred__neural_8c_source.html#l00410">pred_neural_param_defaults()</a>, and <a class="el" href="pred__neural_8c_source.html#l00443">pred_neural_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a3b06e82bed7fc9a8915d6187ce08d33e_icgraph.svg" width="1399" height="703"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a3b06e82bed7fc9a8915d6187ce08d33e_icgraph.svg" width="1307" height="696"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a660f9e96fa6caf7aa200a6eead34501b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a660f9e96fa6caf7aa200a6eead34501b">&#9670;&nbsp;</a></span>layer_args_json_export()</h2>
+<a id="a390bf97769999138966232a530c705e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a390bf97769999138966232a530c705e8">&#9670;&nbsp;</a></span>layer_args_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* layer_args_json_export </td>
+          <td class="memname">char* layer_args_json_export </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> *&#160;</td>
           <td class="paramname"><em>args</em></td><td>)</td>
@@ -292,21 +302,76 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00237">237</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00377">377</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__args_8c_source.html#l00185">layer_args_json_export_activation()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00167">layer_args_json_export_evo()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00115">layer_args_json_export_inputs()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00214">layer_args_json_export_scale()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00147">layer_args_json_export_sgd()</a>, <a class="el" href="neural__layer_8c_source.html#l00484">layer_type_as_string()</a>, <a class="el" href="neural_8c_source.html#l00054">neural_create()</a>, <a class="el" href="neural_8c_source.html#l00224">neural_free()</a>, <a class="el" href="neural_8c_source.html#l00037">neural_init()</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::next</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8c_source.html#l00283">layer_args_json_export_activation()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00232">layer_args_json_export_evo()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00115">layer_args_json_export_inputs()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00333">layer_args_json_export_scale()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00181">layer_args_json_export_sgd()</a>, <a class="el" href="neural__layer_8c_source.html#l00486">layer_type_as_string()</a>, <a class="el" href="neural_8c_source.html#l00054">neural_create()</a>, <a class="el" href="neural_8c_source.html#l00224">neural_free()</a>, <a class="el" href="neural_8c_source.html#l00037">neural_init()</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00137">action_param_json_export()</a>, <a class="el" href="condition_8c_source.html#l00281">cond_param_json_export()</a>, and <a class="el" href="prediction_8c_source.html#l00210">pred_param_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00104">action_param_json_export()</a>, <a class="el" href="condition_8c_source.html#l00226">cond_param_json_export()</a>, and <a class="el" href="prediction_8c_source.html#l00139">pred_param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a660f9e96fa6caf7aa200a6eead34501b_cgraph.svg" width="758" height="490"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a390bf97769999138966232a530c705e8_cgraph.svg" width="758" height="490"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a660f9e96fa6caf7aa200a6eead34501b_icgraph.svg" width="1152" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a390bf97769999138966232a530c705e8_icgraph.svg" width="1152" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ac57afe37d1a38950670a5c2749b00884"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac57afe37d1a38950670a5c2749b00884">&#9670;&nbsp;</a></span>layer_args_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void layer_args_json_import </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> *&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the layer parameters from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">args</td><td><a class="el" href="structLayer.html" title="Neural network layer data structure.">Layer</a> parameters data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00414">414</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
+
+<p class="reference">References <a class="el" href="neural__layer__args_8c_source.html#l00312">layer_args_json_import_activation()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00251">layer_args_json_import_evo()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00148">layer_args_json_import_inputs()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00357">layer_args_json_import_scale()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00202">layer_args_json_import_sgd()</a>, <a class="el" href="neural__layer_8c_source.html#l00540">layer_type_as_int()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::n_init</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00284">act_neural_param_json_import()</a>, <a class="el" href="cond__neural_8c_source.html#l00331">cond_neural_param_json_import()</a>, and <a class="el" href="pred__neural_8c_source.html#l00443">pred_neural_param_json_import()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_ac57afe37d1a38950670a5c2749b00884_cgraph.svg" width="610" height="338"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_ac57afe37d1a38950670a5c2749b00884_icgraph.svg" width="1020" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -348,11 +413,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00455">455</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00632">632</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::channels</a>, <a class="el" href="neural__layer__args_8h_source.html#l00044">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00042">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00049">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::height</a>, <a class="el" href="neural__layer__args_8c_source.html#l00273">layer_args_free()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00042">layer_args_init()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00030">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00029">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00031">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::next</a>, <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::pad</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::probability</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::recurrent_function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00046">ArgsLayer::scale</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::sgd_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00038">ArgsLayer::size</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::stride</a>, <a class="el" href="neural__layer__args_8h_source.html#l00028">ArgsLayer::type</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::channels</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00046">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00055">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00054">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::height</a>, <a class="el" href="neural__layer__args_8c_source.html#l00450">layer_args_free()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00042">layer_args_init()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>, <a class="el" href="neural__layer__args_8h_source.html#l00044">ArgsLayer::pad</a>, <a class="el" href="neural__layer__args_8h_source.html#l00049">ArgsLayer::probability</a>, <a class="el" href="neural__layer__args_8h_source.html#l00038">ArgsLayer::recurrent_function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::scale</a>, <a class="el" href="neural__layer__args_8h_source.html#l00056">ArgsLayer::sgd_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00042">ArgsLayer::size</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::stride</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::type</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::width</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00177">action_param_load()</a>, <a class="el" href="condition_8c_source.html#l00349">cond_param_load()</a>, and <a class="el" href="prediction_8c_source.html#l00269">pred_param_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00170">action_param_load()</a>, <a class="el" href="condition_8c_source.html#l00342">cond_param_load()</a>, and <a class="el" href="prediction_8c_source.html#l00240">pred_param_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -393,9 +458,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Bitstring representing the layer options. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00363">363</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00540">540</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00049">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer_8h_source.html#l00056">LAYER_EVOLVE_CONNECT</a>, <a class="el" href="neural__layer_8h_source.html#l00055">LAYER_EVOLVE_ETA</a>, <a class="el" href="neural__layer_8h_source.html#l00053">LAYER_EVOLVE_FUNCTIONS</a>, <a class="el" href="neural__layer_8h_source.html#l00052">LAYER_EVOLVE_NEURONS</a>, <a class="el" href="neural__layer_8h_source.html#l00051">LAYER_EVOLVE_WEIGHTS</a>, <a class="el" href="neural__layer_8h_source.html#l00054">LAYER_SGD_WEIGHTS</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::sgd_weights</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00055">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00054">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer_8h_source.html#l00056">LAYER_EVOLVE_CONNECT</a>, <a class="el" href="neural__layer_8h_source.html#l00055">LAYER_EVOLVE_ETA</a>, <a class="el" href="neural__layer_8h_source.html#l00053">LAYER_EVOLVE_FUNCTIONS</a>, <a class="el" href="neural__layer_8h_source.html#l00052">LAYER_EVOLVE_NEURONS</a>, <a class="el" href="neural__layer_8h_source.html#l00051">LAYER_EVOLVE_WEIGHTS</a>, <a class="el" href="neural__layer_8h_source.html#l00054">LAYER_SGD_WEIGHTS</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00056">ArgsLayer::sgd_weights</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="neural__layer__connected_8c_source.html#l00070">neural_layer_connected_init()</a>, <a class="el" href="neural__layer__convolutional_8c_source.html#l00162">neural_layer_convolutional_init()</a>, <a class="el" href="neural__layer__lstm_8c_source.html#l00267">neural_layer_lstm_init()</a>, and <a class="el" href="neural__layer__recurrent_8c_source.html#l00234">neural_layer_recurrent_init()</a>.</p>
 <div class="dynheader">
@@ -443,11 +508,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00411">411</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00588">588</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::channels</a>, <a class="el" href="neural__layer__args_8h_source.html#l00044">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00042">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00049">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::height</a>, <a class="el" href="neural__layer__args_8c_source.html#l00393">layer_args_length()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00030">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00029">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00031">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::next</a>, <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::pad</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::probability</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::recurrent_function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00046">ArgsLayer::scale</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::sgd_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00038">ArgsLayer::size</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::stride</a>, <a class="el" href="neural__layer__args_8h_source.html#l00028">ArgsLayer::type</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::channels</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00046">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00055">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00054">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::height</a>, <a class="el" href="neural__layer__args_8c_source.html#l00570">layer_args_length()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>, <a class="el" href="neural__layer__args_8h_source.html#l00044">ArgsLayer::pad</a>, <a class="el" href="neural__layer__args_8h_source.html#l00049">ArgsLayer::probability</a>, <a class="el" href="neural__layer__args_8h_source.html#l00038">ArgsLayer::recurrent_function</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::scale</a>, <a class="el" href="neural__layer__args_8h_source.html#l00056">ArgsLayer::sgd_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00042">ArgsLayer::size</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::stride</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::type</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::width</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00161">action_param_save()</a>, <a class="el" href="condition_8c_source.html#l00325">cond_param_save()</a>, and <a class="el" href="prediction_8c_source.html#l00247">pred_param_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00154">action_param_save()</a>, <a class="el" href="condition_8c_source.html#l00318">cond_param_save()</a>, and <a class="el" href="prediction_8c_source.html#l00218">pred_param_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -488,17 +553,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structLayer.html" title="Neural network layer data structure.">Layer</a> parameters pertaining to the current output layer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00348">348</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00525">525</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::next</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00470">config_cl_act_neural()</a>, <a class="el" href="config_8c_source.html#l00249">config_cl_cond_neural()</a>, and <a class="el" href="config_8c_source.html#l00396">config_cl_pred_neural()</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a4125c294939dcfcb1e3aa4d66f91bb70_icgraph.svg" width="1215" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
+<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>.</p>
 
 </div>
 </div>
@@ -526,11 +583,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00322">322</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural__layer__args_8c_source.html#l00499">499</a> of file <a class="el" href="neural__layer__args_8c_source.html">neural_layer_args.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8c_source.html#l00287">layer_args_validate_inputs()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00030">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00031">ArgsLayer::n_max</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::next</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8c_source.html#l00464">layer_args_validate_inputs()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::n_max</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00622">config_read()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01070">XCS::unpack_act_neural()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00960">XCS::unpack_cond_neural()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01122">XCS::unpack_pred_neural()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00284">act_neural_param_json_import()</a>, <a class="el" href="cond__neural_8c_source.html#l00331">cond_neural_param_json_import()</a>, and <a class="el" href="pred__neural_8c_source.html#l00443">pred_neural_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -540,7 +597,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a492de2de029ff6124f8fe466ad6b0d80_icgraph.svg" width="558" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural__layer__args_8h_a492de2de029ff6124f8fe466ad6b0d80_icgraph.svg" width="999" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 

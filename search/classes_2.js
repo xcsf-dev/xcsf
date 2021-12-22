@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['envcsv_1605',['EnvCSV',['../structEnvCSV.html',1,'']]],
-  ['envmaze_1606',['EnvMaze',['../structEnvMaze.html',1,'']]],
-  ['envmux_1607',['EnvMux',['../structEnvMux.html',1,'']]],
-  ['envvtbl_1608',['EnvVtbl',['../structEnvVtbl.html',1,'']]]
+  ['dgpviz_1639',['DGPViz',['../classxcsf_1_1utils_1_1viz_1_1DGPViz.html',1,'xcsf::utils::viz']]]
 ];

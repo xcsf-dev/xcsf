@@ -5,7 +5,7 @@ var neural__layer__maxpool_8h =
     [ "neural_layer_maxpool_forward", "neural__layer__maxpool_8h.html#ab6439ffb382e4898aa9885d5a98bd642", null ],
     [ "neural_layer_maxpool_free", "neural__layer__maxpool_8h.html#a4d7b7449a0158bbf448eb8f18da88f69", null ],
     [ "neural_layer_maxpool_init", "neural__layer__maxpool_8h.html#a2a0197edd0fc484149f1b35e0d0c94e8", null ],
-    [ "neural_layer_maxpool_json", "neural__layer__maxpool_8h.html#a568c8044362242e50e002811f7b113a0", null ],
+    [ "neural_layer_maxpool_json_export", "neural__layer__maxpool_8h.html#a9b377cd182fb51c1a2a6552376544148", null ],
     [ "neural_layer_maxpool_load", "neural__layer__maxpool_8h.html#ac91009faa234b027ecbfde0a55407bd8", null ],
     [ "neural_layer_maxpool_mutate", "neural__layer__maxpool_8h.html#a68d2fd5dfc9dd98fbac8bf66f9d74283", null ],
     [ "neural_layer_maxpool_output", "neural__layer__maxpool_8h.html#a6ccb6c5a9e47aafc5711bf2ec224ca66", null ],

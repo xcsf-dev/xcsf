@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['set_1622',['Set',['../structSet.html',1,'']]]
+  ['ruledgp_1658',['RuleDGP',['../structRuleDGP.html',1,'']]],
+  ['ruleneural_1659',['RuleNeural',['../structRuleNeural.html',1,'']]]
 ];

@@ -1,13 +1,15 @@
 var searchData=
 [
-  ['n_5finputs_5fmax_3123',['N_INPUTS_MAX',['../neural__layer_8h.html#a9ec42e42bbafbf93f42b90b765d90133',1,'neural_layer.h']]],
-  ['n_5fmu_3124',['N_MU',['../act__integer_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;act_integer.c'],['../cond__ellipsoid_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;cond_ellipsoid.c'],['../cond__rectangle_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;cond_rectangle.c'],['../cond__ternary_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;cond_ternary.c'],['../dgp_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;dgp.c'],['../gp_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;gp.c'],['../neural__layer__connected_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;neural_layer_connected.c'],['../neural__layer__convolutional_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;neural_layer_convolutional.c'],['../neural__layer__lstm_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;neural_layer_lstm.c'],['../neural__layer__recurrent_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;neural_layer_recurrent.c'],['../pred__nlms_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30',1,'N_MU():&#160;pred_nlms.c']]],
-  ['n_5foutputs_5fmax_3125',['N_OUTPUTS_MAX',['../neural__layer_8h.html#a7f6c176d8533b53195b2c25ffd19a7c1',1,'neural_layer.h']]],
-  ['n_5frates_3126',['N_RATES',['../sam_8c.html#ab911b800398fac0f4107388d8e702d7e',1,'sam.c']]],
-  ['n_5fweights_5fmax_3127',['N_WEIGHTS_MAX',['../neural__layer_8h.html#afd33ac1d4f43fd827daee5cdb3b79c94',1,'neural_layer.h']]],
-  ['neuron_5fmax_3128',['NEURON_MAX',['../neural__layer_8h.html#a7151ee90be6df263425eeac1e7af9ac0',1,'neural_layer.h']]],
-  ['neuron_5fmin_3129',['NEURON_MIN',['../neural__layer_8h.html#a412fe61b36a46edaf51f17429f6b4637',1,'neural_layer.h']]],
-  ['noise_3130',['NOISE',['../neural__layer_8h.html#a1252823eae0fb4c87dddc5c2caef7790',1,'neural_layer.h']]],
-  ['num_5factivations_3131',['NUM_ACTIVATIONS',['../neural__activations_8h.html#a4937a4f2709888cde5189a2f35e4de09',1,'neural_activations.h']]],
-  ['num_5ffunc_3132',['NUM_FUNC',['../dgp_8c.html#a9aad0046191b9926d17eb7e3b3b53c66',1,'dgp.c']]]
+  ['pred_5fstring_5fconstant_3194',['PRED_STRING_CONSTANT',['../prediction_8h.html#a9c6ffeb6088be00ce472d1169c24299d',1,'prediction.h']]],
+  ['pred_5fstring_5fneural_3195',['PRED_STRING_NEURAL',['../prediction_8h.html#aacdc24c6c7ae1a09c8ca4b769e6f6cc3',1,'prediction.h']]],
+  ['pred_5fstring_5fnlms_5flinear_3196',['PRED_STRING_NLMS_LINEAR',['../prediction_8h.html#a28cd42be9cf6ed328c04272d205d5c31',1,'prediction.h']]],
+  ['pred_5fstring_5fnlms_5fquadratic_3197',['PRED_STRING_NLMS_QUADRATIC',['../prediction_8h.html#ae12146d2f4577869984c007f1a9a75e4',1,'prediction.h']]],
+  ['pred_5fstring_5frls_5flinear_3198',['PRED_STRING_RLS_LINEAR',['../prediction_8h.html#aff5b8881c0841c5ce673956e5339bb8b',1,'prediction.h']]],
+  ['pred_5fstring_5frls_5fquadratic_3199',['PRED_STRING_RLS_QUADRATIC',['../prediction_8h.html#a42a511ef9dc720799528317d0b922c07',1,'prediction.h']]],
+  ['pred_5ftype_5fconstant_3200',['PRED_TYPE_CONSTANT',['../prediction_8h.html#ae7d5f53d421c017ceb10c05f0e6090c0',1,'prediction.h']]],
+  ['pred_5ftype_5fneural_3201',['PRED_TYPE_NEURAL',['../prediction_8h.html#a60cd83e6c910f5c02187ad74e45b587e',1,'prediction.h']]],
+  ['pred_5ftype_5fnlms_5flinear_3202',['PRED_TYPE_NLMS_LINEAR',['../prediction_8h.html#a17aac70a656503856bab6d988b8f33b2',1,'prediction.h']]],
+  ['pred_5ftype_5fnlms_5fquadratic_3203',['PRED_TYPE_NLMS_QUADRATIC',['../prediction_8h.html#ab9a680ad534a2eee657e39d49f11a9a4',1,'prediction.h']]],
+  ['pred_5ftype_5frls_5flinear_3204',['PRED_TYPE_RLS_LINEAR',['../prediction_8h.html#afc4cec761b72b5348c5c21acc22c6168',1,'prediction.h']]],
+  ['pred_5ftype_5frls_5fquadratic_3205',['PRED_TYPE_RLS_QUADRATIC',['../prediction_8h.html#a90f10300f1552e1221eaaac6ea7028b9',1,'prediction.h']]]
 ];

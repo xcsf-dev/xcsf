@@ -24,9 +24,17 @@ var NAVTREE =
 [
   [ "XCSF", "index.html", [
     [ "XCSF learning classifier system", "index.html", null ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ]
+      ] ]
+    ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
@@ -47,17 +55,17 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"act__integer_8c.html",
-"classXCS.html#a8c67042b503e901a1fc778b8332a5b19",
-"cond__gp_8c.html#a6e0236b6db83efa0e347bbcbad69413b",
-"dgp_8c.html#a49d4c90eb5704b9a3ff9f72f41d11395",
-"globals_func_b.html",
-"neural__layer_8c.html",
-"neural__layer__dropout_8c.html#aa75205ed94c527687e32d9cb4aaa37d1",
-"neural__layer__upsample_8h.html#a7e86be054879307abd6d65098959ca96",
-"prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512",
-"structArgsLayer.html#a333523d1618182c5b42f3640b549f148",
-"structPredVtbl.html#ad1c4bc1c562000b4436b0e6309583750"
+"____init_____8py.html",
+"classXCS.html#a87cab592d7a90552cd8ae3defc08f835",
+"cond__ellipsoid_8h.html#a49d9110d8f02b114d27befc6891c7a9e",
+"config_8c.html",
+"functions_vars_p.html",
+"neural__activations_8h.html#a54fca7a19218547112acfd5a782ec69d",
+"neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db",
+"neural__layer__softmax_8h.html#a314875a074c00172bb8c3b613914ea46",
+"pred__nlms_8h.html#a78982afc8634f133cb69c7488e295872",
+"structActNeural.html#acdcbea3b91c55de15feee85b90e967f2",
+"structLayer.html#ad36a27d22ed2d6f31a4cfc0b1ede8703"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

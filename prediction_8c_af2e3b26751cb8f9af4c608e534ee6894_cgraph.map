@@ -1,13 +1,13 @@
 <map id="pred_param_defaults" name="pred_param_defaults">
-<area shape="rect" id="node1" title="Initialises default prediction parameters." alt="" coords="5,216,148,243"/>
-<area shape="rect" id="node2" href="$prediction_8c.html#a4834581193fa96b3d626da899efbaf6f" title="Initialises default neural prediction parameters." alt="" coords="217,23,360,65"/>
-<area shape="rect" id="node5" href="$prediction_8c.html#abf258a7e5dec62efd980dcd56bdc9e5d" title=" " alt="" coords="219,89,359,116"/>
-<area shape="rect" id="node6" href="$prediction_8c.html#ab59b2b572c1ff05157b89759ab7162f5" title=" " alt="" coords="205,140,373,167"/>
-<area shape="rect" id="node7" href="$prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512" title=" " alt="" coords="196,191,381,217"/>
-<area shape="rect" id="node8" href="$prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da" title=" " alt="" coords="207,241,371,268"/>
-<area shape="rect" id="node9" href="$prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441" title=" " alt="" coords="212,293,365,334"/>
-<area shape="rect" id="node10" href="$prediction_8c.html#aa784fcce14bebce205bd26b8e6649e62" title=" " alt="" coords="215,359,362,385"/>
-<area shape="rect" id="node11" href="$prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c" title=" " alt="" coords="221,409,357,436"/>
+<area shape="rect" id="node1" title="Initialises default prediction parameters." alt="" coords="5,208,148,235"/>
+<area shape="rect" id="node2" href="$pred__neural_8c.html#ad98412e2a2999778290478e22b868859" title="Initialises default neural prediction parameters." alt="" coords="196,31,381,57"/>
+<area shape="rect" id="node5" href="$prediction_8c.html#abf258a7e5dec62efd980dcd56bdc9e5d" title=" " alt="" coords="219,81,359,108"/>
+<area shape="rect" id="node6" href="$prediction_8c.html#ab59b2b572c1ff05157b89759ab7162f5" title=" " alt="" coords="205,132,373,159"/>
+<area shape="rect" id="node7" href="$prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512" title=" " alt="" coords="196,183,381,209"/>
+<area shape="rect" id="node8" href="$prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da" title=" " alt="" coords="207,233,371,260"/>
+<area shape="rect" id="node9" href="$prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441" title=" " alt="" coords="212,285,365,326"/>
+<area shape="rect" id="node10" href="$prediction_8c.html#aa784fcce14bebce205bd26b8e6649e62" title=" " alt="" coords="215,351,362,377"/>
+<area shape="rect" id="node11" href="$prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c" title=" " alt="" coords="221,401,357,428"/>
 <area shape="rect" id="node3" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="429,5,547,32"/>
 <area shape="rect" id="node4" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="435,56,541,83"/>
 </map>

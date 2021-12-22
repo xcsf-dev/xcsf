@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer_8c.html#a76be9c80bef04ba1a799825d96526d6d" target="_top" xlink:title="Returns a json formatted string representation of a layer&#39;s weights.">
+<g id="a_node2"><a xlink:href="neural__layer_8c.html#a78127a80046f674b62342f5a8d8cdbf1" target="_top" xlink:title="Returns a json formatted string representation of a layer&#39;s weights.">
 <polygon fill="none" stroke="black" points="131,-0.5 131,-19.5 226,-19.5 226,-0.5 131,-0.5"/>
 <text text-anchor="middle" x="178.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_weight_json</text>
 </a>

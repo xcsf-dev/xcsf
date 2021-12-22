@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('env__mux_8c_source.html',''); initResi
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('env__mux_8c_source.html',''); initResi
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span> </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd">   44</a></span>&#160;<a class="code" href="env__mux_8c.html#aff3b81b4913d273ecfd62d7585480b15">env_mux_init</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *xcsf, <span class="keyword">const</span> <span class="keywordtype">int</span> bits)</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd">   44</a></span>&#160;<a class="code" href="env__mux_8c.html#aff3b81b4913d273ecfd62d7585480b15">env_mux_init</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> bits)</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">struct </span><a class="code" href="structEnvMux.html">EnvMux</a> *env = malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structEnvMux.html">EnvMux</a>));</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    env-&gt;<a class="code" href="structEnvMux.html#a370c4edb2f68d25521a5f5980e1fab2b">pos_bits</a> = 1;</div>
@@ -127,32 +127,32 @@ $(document).ready(function(){initNavTree('env__mux_8c_source.html',''); initResi
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    --(env-&gt;<a class="code" href="structEnvMux.html#a370c4edb2f68d25521a5f5980e1fab2b">pos_bits</a>);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> n = env-&gt;<a class="code" href="structEnvMux.html#a370c4edb2f68d25521a5f5980e1fab2b">pos_bits</a> + (int) pow(2, env-&gt;<a class="code" href="structEnvMux.html#a370c4edb2f68d25521a5f5980e1fab2b">pos_bits</a>);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    env-&gt;<a class="code" href="structEnvMux.html#add95565622d19791e84335729ac60466">state</a> = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">double</span>) * n);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    xcsf-&gt;<a class="code" href="structXCSF.html#aef04a4290ed1bad6dc0406d938026896">env</a> = env;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="param_8c.html#ac8218a170803be0bcd974764e7494b0e">param_init</a>(xcsf, n, 1, 2);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;env = env;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="param_8c.html#ac8218a170803be0bcd974764e7494b0e">param_init</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, n, 1, 2);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="env__mux_8h.html#a0a745693c6aed35b7c5ae6f6d90acd95">   63</a></span>&#160;<a class="code" href="env__mux_8c.html#a0a745693c6aed35b7c5ae6f6d90acd95">env_mux_free</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *xcsf)</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="env__mux_8h.html#a0a745693c6aed35b7c5ae6f6d90acd95">   63</a></span>&#160;<a class="code" href="env__mux_8c.html#a0a745693c6aed35b7c5ae6f6d90acd95">env_mux_free</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">struct </span><a class="code" href="structEnvMux.html">EnvMux</a> *env = xcsf-&gt;<a class="code" href="structXCSF.html#aef04a4290ed1bad6dc0406d938026896">env</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">struct </span><a class="code" href="structEnvMux.html">EnvMux</a> *env = <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;env;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    free(env-&gt;<a class="code" href="structEnvMux.html#add95565622d19791e84335729ac60466">state</a>);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    free(env);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> *</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="env__mux_8h.html#a162e03be4ac761b07078a4e3135fff9d">   76</a></span>&#160;<a class="code" href="env__mux_8c.html#a162e03be4ac761b07078a4e3135fff9d">env_mux_get_state</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *xcsf)</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="env__mux_8h.html#a162e03be4ac761b07078a4e3135fff9d">   76</a></span>&#160;<a class="code" href="env__mux_8c.html#a162e03be4ac761b07078a4e3135fff9d">env_mux_get_state</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structEnvMux.html">EnvMux</a> *env = xcsf-&gt;<a class="code" href="structXCSF.html#aef04a4290ed1bad6dc0406d938026896">env</a>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; xcsf-&gt;<a class="code" href="structXCSF.html#a3f4e92535768c38b9dd3a2c50f40192d">x_dim</a>; ++i) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structEnvMux.html">EnvMux</a> *env = <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;env;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;x_dim; ++i) {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        env-&gt;<a class="code" href="structEnvMux.html#add95565622d19791e84335729ac60466">state</a>[i] = <a class="code" href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a>(0, 1);</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">return</span> env-&gt;<a class="code" href="structEnvMux.html#add95565622d19791e84335729ac60466">state</a>;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">double</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="env__mux_8h.html#a24d0271ca8746410b855204e5ed8932a">   92</a></span>&#160;<a class="code" href="env__mux_8c.html#a24d0271ca8746410b855204e5ed8932a">env_mux_execute</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *xcsf, <span class="keyword">const</span> <span class="keywordtype">int</span> action)</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="env__mux_8h.html#a24d0271ca8746410b855204e5ed8932a">   92</a></span>&#160;<a class="code" href="env__mux_8c.html#a24d0271ca8746410b855204e5ed8932a">env_mux_execute</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> action)</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structEnvMux.html">EnvMux</a> *env = xcsf-&gt;<a class="code" href="structXCSF.html#aef04a4290ed1bad6dc0406d938026896">env</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structEnvMux.html">EnvMux</a> *env = <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;env;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">int</span> pos = env-&gt;<a class="code" href="structEnvMux.html#a370c4edb2f68d25521a5f5980e1fab2b">pos_bits</a>;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; env-&gt;<a class="code" href="structEnvMux.html#a370c4edb2f68d25521a5f5980e1fab2b">pos_bits</a>; ++i) {</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">if</span> (env-&gt;<a class="code" href="structEnvMux.html#add95565622d19791e84335729ac60466">state</a>[i] &gt; 0.5) {</div>
@@ -164,44 +164,43 @@ $(document).ready(function(){initNavTree('env__mux_8c_source.html',''); initResi
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="env__mux_8h.html#a784e6dffd97314274169edff53339efc">  110</a></span>&#160;<a class="code" href="env__mux_8c.html#a784e6dffd97314274169edff53339efc">env_mux_reset</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *xcsf)</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="env__mux_8h.html#a784e6dffd97314274169edff53339efc">  110</a></span>&#160;<a class="code" href="env__mux_8c.html#a784e6dffd97314274169edff53339efc">env_mux_reset</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;{</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    (void) xcsf;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    (void) <a class="code" href="namespacexcsf.html">xcsf</a>;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="env__mux_8h.html#a92e5313f6656c1cf8df7902bee505a1a">  121</a></span>&#160;<a class="code" href="env__mux_8c.html#a92e5313f6656c1cf8df7902bee505a1a">env_mux_is_done</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *xcsf)</div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="env__mux_8h.html#a92e5313f6656c1cf8df7902bee505a1a">  121</a></span>&#160;<a class="code" href="env__mux_8c.html#a92e5313f6656c1cf8df7902bee505a1a">env_mux_is_done</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    (void) xcsf;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    (void) <a class="code" href="namespacexcsf.html">xcsf</a>;</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keywordtype">double</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="env__mux_8h.html#ae2680600180dd48f82e4522eb2f6b628">  133</a></span>&#160;<a class="code" href="env__mux_8c.html#ae2680600180dd48f82e4522eb2f6b628">env_mux_maxpayoff</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *xcsf)</div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="env__mux_8h.html#ae2680600180dd48f82e4522eb2f6b628">  133</a></span>&#160;<a class="code" href="env__mux_8c.html#ae2680600180dd48f82e4522eb2f6b628">env_mux_maxpayoff</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;{</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    (void) xcsf;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    (void) <a class="code" href="namespacexcsf.html">xcsf</a>;</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="env__mux_8c.html#af20ccb66105d757d227a0e6975d2726f">MAX_PAYOFF</a>;</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="env__mux_8h.html#adb3c66bf7eba23941be2dce873f55cee">  145</a></span>&#160;<a class="code" href="env__mux_8c.html#adb3c66bf7eba23941be2dce873f55cee">env_mux_multistep</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *xcsf)</div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="env__mux_8h.html#adb3c66bf7eba23941be2dce873f55cee">  145</a></span>&#160;<a class="code" href="env__mux_8c.html#adb3c66bf7eba23941be2dce873f55cee">env_mux_multistep</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;{</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    (void) xcsf;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    (void) <a class="code" href="namespacexcsf.html">xcsf</a>;</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aenv__mux_8c_html_aff3b81b4913d273ecfd62d7585480b15"><div class="ttname"><a href="env__mux_8c.html#aff3b81b4913d273ecfd62d7585480b15">env_mux_init</a></div><div class="ttdeci">void env_mux_init(struct XCSF *xcsf, const int bits)</div><div class="ttdoc">Initialises a real multiplexer environment of specified length.</div><div class="ttdef"><b>Definition:</b> <a href="env__mux_8c_source.html#l00044">env_mux.c:44</a></div></div>
 <div class="ttc" id="aenv__mux_8c_html_a92e5313f6656c1cf8df7902bee505a1a"><div class="ttname"><a href="env__mux_8c.html#a92e5313f6656c1cf8df7902bee505a1a">env_mux_is_done</a></div><div class="ttdeci">bool env_mux_is_done(const struct XCSF *xcsf)</div><div class="ttdoc">Returns whether the multiplexer is in a terminal state.</div><div class="ttdef"><b>Definition:</b> <a href="env__mux_8c_source.html#l00121">env_mux.c:121</a></div></div>
-<div class="ttc" id="astructXCSF_html_a3f4e92535768c38b9dd3a2c50f40192d"><div class="ttname"><a href="structXCSF.html#a3f4e92535768c38b9dd3a2c50f40192d">XCSF::x_dim</a></div><div class="ttdeci">int x_dim</div><div class="ttdoc">Number of problem input variables.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00108">xcsf.h:108</a></div></div>
 <div class="ttc" id="astructEnvMux_html_add95565622d19791e84335729ac60466"><div class="ttname"><a href="structEnvMux.html#add95565622d19791e84335729ac60466">EnvMux::state</a></div><div class="ttdeci">double * state</div><div class="ttdoc">Current state.</div><div class="ttdef"><b>Definition:</b> <a href="env__mux_8h_source.html#l00033">env_mux.h:33</a></div></div>
 <div class="ttc" id="aenv__mux_8c_html_a162e03be4ac761b07078a4e3135fff9d"><div class="ttname"><a href="env__mux_8c.html#a162e03be4ac761b07078a4e3135fff9d">env_mux_get_state</a></div><div class="ttdeci">const double * env_mux_get_state(const struct XCSF *xcsf)</div><div class="ttdoc">Returns a random multiplexer problem instance.</div><div class="ttdef"><b>Definition:</b> <a href="env__mux_8c_source.html#l00076">env_mux.c:76</a></div></div>
 <div class="ttc" id="aenv__mux_8c_html_a24d0271ca8746410b855204e5ed8932a"><div class="ttname"><a href="env__mux_8c.html#a24d0271ca8746410b855204e5ed8932a">env_mux_execute</a></div><div class="ttdeci">double env_mux_execute(const struct XCSF *xcsf, const int action)</div><div class="ttdoc">Returns the reward for executing a multiplexer action.</div><div class="ttdef"><b>Definition:</b> <a href="env__mux_8c_source.html#l00092">env_mux.c:92</a></div></div>
+<div class="ttc" id="anamespacexcsf_html"><div class="ttname"><a href="namespacexcsf.html">xcsf</a></div><div class="ttdef"><b>Definition:</b> <a href="____init_____8py_source.html#l00001">__init__.py:1</a></div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">Utility functions for random number handling, etc.</div></div>
 <div class="ttc" id="aparam_8c_html_ac8218a170803be0bcd974764e7494b0e"><div class="ttname"><a href="param_8c.html#ac8218a170803be0bcd974764e7494b0e">param_init</a></div><div class="ttdeci">void param_init(struct XCSF *xcsf, const int x_dim, const int y_dim, const int n_actions)</div><div class="ttdoc">Initialises default XCSF parameters.</div><div class="ttdef"><b>Definition:</b> <a href="param_8c_source.html#l00043">param.c:43</a></div></div>
 <div class="ttc" id="aenv__mux_8h_html"><div class="ttname"><a href="env__mux_8h.html">env_mux.h</a></div><div class="ttdoc">The real multiplexer problem environment.</div></div>
-<div class="ttc" id="astructXCSF_html_aef04a4290ed1bad6dc0406d938026896"><div class="ttname"><a href="structXCSF.html#aef04a4290ed1bad6dc0406d938026896">XCSF::env</a></div><div class="ttdeci">void * env</div><div class="ttdoc">Environment structure (for built-in problems)</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00096">xcsf.h:96</a></div></div>
-<div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00084">xcsf.h:84</a></div></div>
+<div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
 <div class="ttc" id="aparam_8h_html"><div class="ttname"><a href="param_8h.html">param.h</a></div><div class="ttdoc">Functions for setting and printing parameters.</div></div>
 <div class="ttc" id="aenv__mux_8c_html_adb3c66bf7eba23941be2dce873f55cee"><div class="ttname"><a href="env__mux_8c.html#adb3c66bf7eba23941be2dce873f55cee">env_mux_multistep</a></div><div class="ttdeci">bool env_mux_multistep(const struct XCSF *xcsf)</div><div class="ttdoc">Returns whether the multiplexer is a multistep problem.</div><div class="ttdef"><b>Definition:</b> <a href="env__mux_8c_source.html#l00145">env_mux.c:145</a></div></div>
 <div class="ttc" id="aenv__mux_8c_html_af20ccb66105d757d227a0e6975d2726f"><div class="ttname"><a href="env__mux_8c.html#af20ccb66105d757d227a0e6975d2726f">MAX_PAYOFF</a></div><div class="ttdeci">#define MAX_PAYOFF</div><div class="ttdoc">Payoff provided for making a correct classification.</div><div class="ttdef"><b>Definition:</b> <a href="env__mux_8c_source.html#l00035">env_mux.c:35</a></div></div>

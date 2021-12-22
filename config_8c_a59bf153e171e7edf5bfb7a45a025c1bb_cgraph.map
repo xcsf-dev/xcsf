@@ -1,9 +1,0 @@
-<map id="config_cl_act" name="config_cl_act">
-<area shape="rect" id="node1" title="Sets classifier action parameters." alt="" coords="5,56,104,83"/>
-<area shape="rect" id="node2" href="$action_8c.html#a55974a228c3a692a22c9d6ce0c4cc869" title=" " alt="" coords="152,9,309,50"/>
-<area shape="rect" id="node4" href="$config_8c.html#a742d5489e36da7e3a8301aeb5b2d25f0" title="Sets classifier neural network action parameters." alt="" coords="160,85,301,112"/>
-<area shape="rect" id="node3" href="$action_8c.html#a38d3209ab8ce0417631ce2359f6590a7" title="Returns the integer representation of an action type given a name." alt="" coords="357,5,488,32"/>
-<area shape="rect" id="node5" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="369,56,476,83"/>
-<area shape="rect" id="node6" href="$neural__layer__args_8c.html#a4125c294939dcfcb1e3aa4d66f91bb70" title="Returns the current output layer arguments." alt="" coords="369,107,476,133"/>
-<area shape="rect" id="node7" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="361,157,485,184"/>
-</map>

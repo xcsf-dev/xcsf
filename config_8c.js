@@ -1,28 +1,6 @@
 var config_8c =
 [
-    [ "BASE", "config_8c.html#a79bcfb6bde984f42d1124b068a509af7", null ],
     [ "MAXLEN", "config_8c.html#ae6648cd71a8bd49d58ae8ed33ba910d1", null ],
-    [ "config_add_param", "config_8c.html#a0f0fcad0b6090da01e5bd58b77d98787", null ],
-    [ "config_cl_act", "config_8c.html#a59bf153e171e7edf5bfb7a45a025c1bb", null ],
-    [ "config_cl_act_neural", "config_8c.html#a742d5489e36da7e3a8301aeb5b2d25f0", null ],
-    [ "config_cl_cond", "config_8c.html#aa4bde9b34202ac13b8d2fc4454f8fae0", null ],
-    [ "config_cl_cond_csr", "config_8c.html#a16fe6217c3cd463c88153e110f75cb20", null ],
-    [ "config_cl_cond_dgp", "config_8c.html#a2137789b58c95df9d00dab05f695076e", null ],
-    [ "config_cl_cond_gp", "config_8c.html#afb5882dc02d07165e95f5286293bc780", null ],
-    [ "config_cl_cond_neural", "config_8c.html#a384fd5d57a7d2627d16d4a4c0988865a", null ],
-    [ "config_cl_cond_ternary", "config_8c.html#aee08a340f82915ded2e126c55378a9f7", null ],
-    [ "config_cl_gen", "config_8c.html#a901348ae6930989b225a6e1bdfa8a865", null ],
-    [ "config_cl_pred", "config_8c.html#a805cfd2c56d55c033ea40872f7ba0e70", null ],
-    [ "config_cl_pred_ls", "config_8c.html#a5edae882100a6c549823a0691cd00f8d", null ],
-    [ "config_cl_pred_neural", "config_8c.html#a151c7b337e28320fd8821f401816a11d", null ],
-    [ "config_ea", "config_8c.html#a12c8cc12508ee7d6365606deeffc87da", null ],
-    [ "config_general", "config_8c.html#a75d4810fb584c4e983fb8b972f1b1654", null ],
-    [ "config_layer", "config_8c.html#ad3fbc4d4643e901c4e894677fefc69ff", null ],
-    [ "config_multi", "config_8c.html#a5c5e2db6c2d081ffbda4be36ccb5dfe3", null ],
-    [ "config_newnvpair", "config_8c.html#a5b96815b9ebb26a8fc7bcc30a75ab36d", null ],
-    [ "config_process", "config_8c.html#a01c178cc1587140f60ecf27291a2032a", null ],
     [ "config_read", "config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698", null ],
-    [ "config_subsump", "config_8c.html#abd2e0879ec19c2ec60a66af19451cb5f", null ],
-    [ "config_trim", "config_8c.html#a0c81724e9bdc867a3dd41bafab67cbd3", null ],
-    [ "current_layer", "config_8c.html#a9cc8ad55a46c6ceb96c742f084df340c", null ]
+    [ "config_trim", "config_8c.html#a0c81724e9bdc867a3dd41bafab67cbd3", null ]
 ];

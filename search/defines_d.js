@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tanh_3183',['TANH',['../neural__activations_8h.html#a1acfe6a311aa86bd70faa9032bf3c6bb',1,'neural_activations.h']]]
+  ['upsample_3245',['UPSAMPLE',['../neural__layer_8h.html#a4db485a4340e1642963b520cb80cc903',1,'neural_layer.h']]]
 ];

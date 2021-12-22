@@ -1,40 +1,38 @@
 <map id="max_index" name="max_index">
-<area shape="rect" id="node1" title="Returns the index of the largest element in vector X." alt="" coords="1567,527,1652,553"/>
-<area shape="rect" id="node2" href="$act__neural_8h.html#aa4616932ee69561f2324af10da2865de" title="Computes the current neural network action using the input." alt="" coords="1380,384,1519,411"/>
-<area shape="rect" id="node4" href="$loss_8h.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="1403,443,1495,469"/>
-<area shape="rect" id="node27" href="$neural__layer__maxpool_8c.html#a03e721637071990d769895cac88b29a8" title="Returns the index of the maximum input value corresponding to a specified output height,..." alt="" coords="1410,653,1489,680"/>
-<area shape="rect" id="node28" href="$neural__layer__maxpool_8h.html#ab6439ffb382e4898aa9885d5a98bd642" title="Forward propagates a maxpooling layer." alt="" coords="1184,625,1332,666"/>
-<area shape="rect" id="node29" href="$pa_8h.html#adf55daf0e18f0cb5e48f8b65464bab9c" title="Returns the best action in the prediction array." alt="" coords="1394,552,1505,579"/>
-<area shape="rect" id="node34" href="$pa_8h.html#a02c46d587d23074fddbf23c118ecbd0c" title="Returns the highest value in the prediction array." alt="" coords="1403,501,1495,528"/>
-<area shape="rect" id="node3" href="$act__neural_8h.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="1197,384,1319,411"/>
-<area shape="rect" id="node5" href="$loss_8h.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="1207,435,1309,461"/>
-<area shape="rect" id="node6" href="$param_8h.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="1018,435,1107,461"/>
-<area shape="rect" id="node11" href="$param_8h.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="989,384,1136,411"/>
-<area shape="rect" id="node20" href="$param_8h.html#a7a98b432d0cdc32b5f333d918b243b13" title=" " alt="" coords="989,302,1136,343"/>
-<area shape="rect" id="node7" href="$xcsf_8h.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="829,360,908,387"/>
-<area shape="rect" id="node8" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="632,360,715,387"/>
+<area shape="rect" id="node1" title="Returns the index of the largest element in vector X." alt="" coords="1307,436,1392,463"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#aa4616932ee69561f2324af10da2865de" title="Computes the current neural network action using the input." alt="" coords="1120,309,1259,336"/>
+<area shape="rect" id="node4" href="$loss_8h.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="1143,360,1235,387"/>
+<area shape="rect" id="node25" href="$neural__layer__maxpool_8c.html#a03e721637071990d769895cac88b29a8" title="Returns the index of the maximum input value corresponding to a specified output height,..." alt="" coords="1150,411,1229,437"/>
+<area shape="rect" id="node26" href="$neural__layer__maxpool_8h.html#ab6439ffb382e4898aa9885d5a98bd642" title="Forward propagates a maxpooling layer." alt="" coords="924,429,1072,470"/>
+<area shape="rect" id="node27" href="$pa_8h.html#adf55daf0e18f0cb5e48f8b65464bab9c" title="Returns the best action in the prediction array." alt="" coords="1134,563,1245,589"/>
+<area shape="rect" id="node32" href="$pa_8h.html#a02c46d587d23074fddbf23c118ecbd0c" title="Returns the highest value in the prediction array." alt="" coords="1143,512,1235,539"/>
+<area shape="rect" id="node3" href="$act__neural_8h.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="937,309,1059,336"/>
+<area shape="rect" id="node5" href="$loss_8h.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="947,360,1049,387"/>
+<area shape="rect" id="node6" href="$param_8h.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="758,327,847,353"/>
+<area shape="rect" id="node11" href="$param_8h.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="729,276,876,303"/>
+<area shape="rect" id="node20" href="$param_8h.html#a7a98b432d0cdc32b5f333d918b243b13" title=" " alt="" coords="729,378,876,419"/>
+<area shape="rect" id="node7" href="$xcsf_8h.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="551,259,630,285"/>
+<area shape="rect" id="node8" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="336,259,419,285"/>
 <area shape="rect" id="node10" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,233,56,260"/>
-<area shape="rect" id="node9" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="400,436,551,463"/>
-<area shape="rect" id="node12" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="827,157,910,184"/>
-<area shape="rect" id="node18" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="796,411,941,437"/>
-<area shape="rect" id="node13" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="626,157,721,184"/>
-<area shape="rect" id="node15" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="620,208,727,235"/>
-<area shape="rect" id="node16" href="$env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" title="Initialises a real multiplexer environment of specified length." alt="" coords="624,56,723,83"/>
-<area shape="rect" id="node17" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="630,107,717,133"/>
-<area shape="rect" id="node14" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="442,171,509,197"/>
-<area shape="rect" id="node19" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="599,411,748,437"/>
-<area shape="rect" id="node21" href="$config_8c.html#a75d4810fb584c4e983fb8b972f1b1654" title="Sets general XCSF parameters." alt="" coords="815,56,922,83"/>
-<area shape="rect" id="node26" href="$classXCS.html#a049260ddd3681d8f475d4102d3a93cb4" title=" " alt="" coords="799,309,938,336"/>
-<area shape="rect" id="node22" href="$config_8c.html#a0f0fcad0b6090da01e5bd58b77d98787" title="Sets specified parameter." alt="" coords="609,5,737,32"/>
-<area shape="rect" id="node23" href="$config_8c.html#a5b96815b9ebb26a8fc7bcc30a75ab36d" title="Adds a parameter to the list." alt="" coords="414,31,537,57"/>
-<area shape="rect" id="node24" href="$config_8c.html#a01c178cc1587140f60ecf27291a2032a" title="Parses a line of the config file and adds to the list." alt="" coords="241,107,352,133"/>
-<area shape="rect" id="node25" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,119,193,145"/>
-<area shape="rect" id="node30" href="$xcs__rl_8h.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="1007,563,1119,589"/>
-<area shape="rect" id="node31" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="815,613,922,640"/>
-<area shape="rect" id="node32" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="826,563,911,589"/>
-<area shape="rect" id="node33" href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="254,537,339,564"/>
-<area shape="rect" id="node35" href="$xcs__rl_8h.html#ac0d410321cd5627345e1b53856f7244c" title="Provides reinforcement to the sets." alt="" coords="1011,509,1114,536"/>
-<area shape="rect" id="node36" href="$classXCS.html#af8970ba52403714439fda0d4383a390b" title="Creates the action set using the previously selected action, updates the classifiers,..." alt="" coords="820,461,917,488"/>
-<area shape="rect" id="node37" href="$xcs__rl_8h.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="831,512,906,539"/>
-<area shape="rect" id="node38" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="639,512,708,539"/>
+<area shape="rect" id="node9" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="104,436,255,463"/>
+<area shape="rect" id="node12" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="549,107,632,133"/>
+<area shape="rect" id="node18" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="518,360,663,387"/>
+<area shape="rect" id="node13" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="330,5,425,32"/>
+<area shape="rect" id="node15" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="324,56,431,83"/>
+<area shape="rect" id="node16" href="$env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" title="Initialises a real multiplexer environment of specified length." alt="" coords="328,107,427,133"/>
+<area shape="rect" id="node17" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="334,157,421,184"/>
+<area shape="rect" id="node14" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="146,81,213,108"/>
+<area shape="rect" id="node19" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="303,360,452,387"/>
+<area shape="rect" id="node21" href="$param_8c.html#ad7d3421611d8020079446a6a190df8f8" title="Sets the general parameters from a cJSON object." alt="" coords="500,309,681,336"/>
+<area shape="rect" id="node24" href="$classXCS.html#a049260ddd3681d8f475d4102d3a93cb4" title=" " alt="" coords="521,411,660,437"/>
+<area shape="rect" id="node22" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="311,309,443,336"/>
+<area shape="rect" id="node23" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="135,284,224,311"/>
+<area shape="rect" id="node28" href="$xcs__rl_8h.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="747,563,859,589"/>
+<area shape="rect" id="node29" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="537,613,644,640"/>
+<area shape="rect" id="node30" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="548,563,633,589"/>
+<area shape="rect" id="node31" href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="137,563,222,589"/>
+<area shape="rect" id="node33" href="$xcs__rl_8h.html#ac0d410321cd5627345e1b53856f7244c" title="Provides reinforcement to the sets." alt="" coords="751,512,854,539"/>
+<area shape="rect" id="node34" href="$classXCS.html#af8970ba52403714439fda0d4383a390b" title="Creates the action set using the previously selected action, updates the classifiers,..." alt="" coords="542,461,639,488"/>
+<area shape="rect" id="node35" href="$xcs__rl_8h.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="553,512,628,539"/>
+<area shape="rect" id="node36" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="343,512,412,539"/>
 </map>

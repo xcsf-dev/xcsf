@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('pred__nlms_8h.html',''); initResizable
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -99,20 +99,20 @@ $(document).ready(function(){initNavTree('pred__nlms_8h.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 
-<p>Normalised least mean squares prediction functions.  
+<p>Normalised least mean squares prediction functions.
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="prediction_8h_source.html">prediction.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="xcsf_8h_source.html">xcsf.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for pred_nlms.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pred__nlms_8h__incl.svg" width="890" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__nlms_8h__incl.svg" width="1168" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pred__nlms_8h__dep__incl.svg" width="219" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__nlms_8h__dep__incl.svg" width="380" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -126,6 +126,12 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a8964c1670f4fb4a398a842d154aab033"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__nlms_8h.html#a8964c1670f4fb4a398a842d154aab033">pred_nlms_param_json_import</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, cJSON *json)</td></tr>
+<tr class="memdesc:a8964c1670f4fb4a398a842d154aab033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the NLMS parameters from a cJSON object.  <a href="pred__nlms_8h.html#a8964c1670f4fb4a398a842d154aab033">More...</a><br /></td></tr>
+<tr class="separator:a8964c1670f4fb4a398a842d154aab033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ed879edc5785d8f0c208e83ff62382a"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__nlms_8h.html#a3ed879edc5785d8f0c208e83ff62382a">pred_nlms_param_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
+<tr class="memdesc:a3ed879edc5785d8f0c208e83ff62382a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the NLMS parameters.  <a href="pred__nlms_8h.html#a3ed879edc5785d8f0c208e83ff62382a">More...</a><br /></td></tr>
+<tr class="separator:a3ed879edc5785d8f0c208e83ff62382a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78982afc8634f133cb69c7488e295872"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__nlms_8h.html#a78982afc8634f133cb69c7488e295872">pred_nlms_crossover</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c1, const struct <a class="el" href="structCl.html">Cl</a> *c2)</td></tr>
 <tr class="memdesc:a78982afc8634f133cb69c7488e295872"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dummy function since NLMS predictions do not perform crossover.  <a href="pred__nlms_8h.html#a78982afc8634f133cb69c7488e295872">More...</a><br /></td></tr>
 <tr class="separator:a78982afc8634f133cb69c7488e295872"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,9 +165,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac583f28320a20a93d335688484e8ef91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__nlms_8h.html#ac583f28320a20a93d335688484e8ef91">pred_nlms_update</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c, const double *x, const double *y)</td></tr>
 <tr class="memdesc:ac583f28320a20a93d335688484e8ef91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates an NLMS prediction for a given input and truth sample.  <a href="pred__nlms_8h.html#ac583f28320a20a93d335688484e8ef91">More...</a><br /></td></tr>
 <tr class="separator:ac583f28320a20a93d335688484e8ef91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ecb1e9ead41285165aa9fbe0e4e0d3f"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__nlms_8h.html#a1ecb1e9ead41285165aa9fbe0e4e0d3f">pred_nlms_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
-<tr class="memdesc:a1ecb1e9ead41285165aa9fbe0e4e0d3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of an NLMS prediction.  <a href="pred__nlms_8h.html#a1ecb1e9ead41285165aa9fbe0e4e0d3f">More...</a><br /></td></tr>
-<tr class="separator:a1ecb1e9ead41285165aa9fbe0e4e0d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61de1c1a3f6cada526c9f5c3f12bf2d8"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__nlms_8h.html#a61de1c1a3f6cada526c9f5c3f12bf2d8">pred_nlms_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="memdesc:a61de1c1a3f6cada526c9f5c3f12bf2d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of an NLMS prediction.  <a href="pred__nlms_8h.html#a61de1c1a3f6cada526c9f5c3f12bf2d8">More...</a><br /></td></tr>
+<tr class="separator:a61de1c1a3f6cada526c9f5c3f12bf2d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -221,7 +227,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00138">138</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="blas_8c_source.html#l00198">blas_dot()</a>, <a class="el" href="pred__nlms_8h_source.html#l00033">PredNLMS::n</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8c_source.html#l00302">pred_transform_input()</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, <a class="el" href="pred__nlms_8h_source.html#l00038">PredNLMS::tmp_input</a>, <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>, <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="blas_8c_source.html#l00198">blas_dot()</a>, <a class="el" href="pred__nlms_8h_source.html#l00033">PredNLMS::n</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="prediction_8c_source.html#l00273">pred_transform_input()</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::prediction</a>, <a class="el" href="pred__nlms_8h_source.html#l00038">PredNLMS::tmp_input</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -275,7 +281,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00079">79</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="pred__nlms_8c_source.html#l00044">pred_nlms_init()</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
+<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="pred__nlms_8c_source.html#l00044">pred_nlms_init()</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -328,7 +334,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00168">168</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00170">170</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
 </div>
 </div>
@@ -369,7 +375,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00096">96</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="pred__nlms_8h_source.html#l00038">PredNLMS::tmp_input</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
+<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="pred__nlms_8h_source.html#l00038">PredNLMS::tmp_input</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
 
 </div>
 </div>
@@ -410,9 +416,9 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00044">44</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="blas_8c_source.html#l00181">blas_fill()</a>, <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="prediction_8h_source.html#l00048">ArgsPred::eta</a>, <a class="el" href="prediction_8h_source.html#l00049">ArgsPred::eta_min</a>, <a class="el" href="prediction_8h_source.html#l00047">ArgsPred::evolve_eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8c_source.html#l00034">MU_TYPE</a>, <a class="el" href="pred__nlms_8h_source.html#l00033">PredNLMS::n</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8h_source.html#l00030">PRED_TYPE_NLMS_QUADRATIC</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, <a class="el" href="sam_8c_source.html#l00043">sam_init()</a>, <a class="el" href="pred__nlms_8h_source.html#l00038">PredNLMS::tmp_input</a>, <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>, <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>, <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>, <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="blas_8c_source.html#l00181">blas_fill()</a>, <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8c_source.html#l00034">MU_TYPE</a>, <a class="el" href="pred__nlms_8h_source.html#l00033">PredNLMS::n</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="prediction_8h_source.html#l00030">PRED_TYPE_NLMS_QUADRATIC</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, <a class="el" href="sam_8c_source.html#l00043">sam_init()</a>, <a class="el" href="pred__nlms_8h_source.html#l00038">PredNLMS::tmp_input</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pred__nlms_8c_source.html#l00079">pred_nlms_copy()</a>, and <a class="el" href="pred__nlms_8c_source.html#l00242">pred_nlms_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pred__nlms_8c_source.html#l00079">pred_nlms_copy()</a>, and <a class="el" href="pred__nlms_8c_source.html#l00244">pred_nlms_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -428,14 +434,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a1ecb1e9ead41285165aa9fbe0e4e0d3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ecb1e9ead41285165aa9fbe0e4e0d3f">&#9670;&nbsp;</a></span>pred_nlms_json_export()</h2>
+<a id="a61de1c1a3f6cada526c9f5c3f12bf2d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61de1c1a3f6cada526c9f5c3f12bf2d8">&#9670;&nbsp;</a></span>pred_nlms_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* pred_nlms_json_export </td>
+          <td class="memname">char* pred_nlms_json_export </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -464,15 +470,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00262">262</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00264">264</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="prediction_8h_source.html#l00030">PRED_TYPE_NLMS_QUADRATIC</a>, <a class="el" href="prediction_8h_source.html#l00046">ArgsPred::type</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
+<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="prediction_8h_source.html#l00030">PRED_TYPE_NLMS_QUADRATIC</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pred__nlms_8c_source.html#l00155">pred_nlms_print()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pred__nlms_8h_a1ecb1e9ead41285165aa9fbe0e4e0d3f_icgraph.svg" width="330" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__nlms_8h_a61de1c1a3f6cada526c9f5c3f12bf2d8_icgraph.svg" width="330" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -521,9 +527,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00242">242</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00244">244</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8h_source.html#l00033">PredNLMS::n</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="pred__nlms_8c_source.html#l00044">pred_nlms_init()</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
+<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8h_source.html#l00033">PredNLMS::n</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="pred__nlms_8c_source.html#l00044">pred_nlms_init()</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -569,13 +575,107 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00184">184</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00186">186</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="utils_8h_source.html#l00056">clamp()</a>, <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="prediction_8h_source.html#l00048">ArgsPred::eta</a>, <a class="el" href="prediction_8h_source.html#l00049">ArgsPred::eta_min</a>, <a class="el" href="prediction_8h_source.html#l00047">ArgsPred::evolve_eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8c_source.html#l00034">MU_TYPE</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="utils_8c_source.html#l00087">rand_normal()</a>, and <a class="el" href="sam_8c_source.html#l00068">sam_adapt()</a>.</p>
+<p class="reference">References <a class="el" href="utils_8h_source.html#l00056">clamp()</a>, <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8c_source.html#l00034">MU_TYPE</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="utils_8c_source.html#l00087">rand_normal()</a>, and <a class="el" href="sam_8c_source.html#l00068">sam_adapt()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="pred__nlms_8h_abfd2e8695677f15466100c5d3ce15cda_cgraph.svg" width="587" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a3ed879edc5785d8f0c208e83ff62382a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ed879edc5785d8f0c208e83ff62382a">&#9670;&nbsp;</a></span>pred_nlms_param_json_export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* pred_nlms_param_json_export </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a json formatted string of the NLMS parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00289">289</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
+
+<p class="reference">References <a class="el" href="prediction_8h_source.html#l00048">ArgsPred::eta</a>, <a class="el" href="prediction_8h_source.html#l00049">ArgsPred::eta_min</a>, <a class="el" href="prediction_8h_source.html#l00047">ArgsPred::evolve_eta</a>, and <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00139">pred_param_json_export()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__nlms_8h_a3ed879edc5785d8f0c208e83ff62382a_icgraph.svg" width="1142" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a8964c1670f4fb4a398a842d154aab033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8964c1670f4fb4a398a842d154aab033">&#9670;&nbsp;</a></span>pred_nlms_param_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pred_nlms_param_json_import </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the NLMS parameters from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00310">310</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
+
+<p class="reference">References <a class="el" href="prediction_8c_source.html#l00299">pred_param_set_eta()</a>, <a class="el" href="prediction_8c_source.html#l00313">pred_param_set_eta_min()</a>, <a class="el" href="prediction_8c_source.html#l00345">pred_param_set_evolve_eta()</a>, and <a class="el" href="prediction_8c_source.html#l00339">pred_param_set_x0()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00180">pred_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00906">XCS::set_prediction()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__nlms_8h_a8964c1670f4fb4a398a842d154aab033_cgraph.svg" width="400" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__nlms_8h_a8964c1670f4fb4a398a842d154aab033_icgraph.svg" width="795" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -618,7 +718,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00155">155</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__nlms_8c_source.html#l00262">pred_nlms_json_export()</a>.</p>
+<p class="reference">References <a class="el" href="pred__nlms_8c_source.html#l00264">pred_nlms_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -671,9 +771,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00221">221</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00223">223</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8h_source.html#l00033">PredNLMS::n</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
+<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00036">PredNLMS::mu</a>, <a class="el" href="pred__nlms_8h_source.html#l00033">PredNLMS::n</a>, <a class="el" href="pred__nlms_8c_source.html#l00029">N_MU</a>, <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
 
 </div>
 </div>
@@ -713,9 +813,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of weights. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00206">206</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00208">208</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>.</p>
+<p class="reference">References <a class="el" href="pred__nlms_8h_source.html#l00034">PredNLMS::n_weights</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 
 </div>
 </div>
@@ -771,7 +871,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__nlms_8c_source.html#l00115">115</a> of file <a class="el" href="pred__nlms_8c_source.html">pred_nlms.c</a>.</p>
 
-<p class="reference">References <a class="el" href="blas_8c_source.html#l00138">blas_axpy()</a>, <a class="el" href="blas_8c_source.html#l00198">blas_dot()</a>, <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00033">PredNLMS::n</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, <a class="el" href="pred__nlms_8h_source.html#l00038">PredNLMS::tmp_input</a>, <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>, <a class="el" href="prediction_8h_source.html#l00052">ArgsPred::x0</a>, <a class="el" href="xcsf_8h_source.html#l00108">XCSF::x_dim</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="blas_8c_source.html#l00138">blas_axpy()</a>, <a class="el" href="blas_8c_source.html#l00198">blas_dot()</a>, <a class="el" href="pred__nlms_8h_source.html#l00037">PredNLMS::eta</a>, <a class="el" href="pred__nlms_8h_source.html#l00033">PredNLMS::n</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="xcsf_8h_source.html#l00059">Cl::prediction</a>, <a class="el" href="pred__nlms_8h_source.html#l00038">PredNLMS::tmp_input</a>, and <a class="el" href="pred__nlms_8h_source.html#l00035">PredNLMS::weights</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -805,12 +905,12 @@ Here is the call graph for this function:</div>
 <div class="line">    &amp;<a class="code" href="pred__nlms_8h.html#a78982afc8634f133cb69c7488e295872">pred_nlms_crossover</a>, &amp;<a class="code" href="pred__nlms_8h.html#abfd2e8695677f15466100c5d3ce15cda">pred_nlms_mutate</a>, &amp;<a class="code" href="pred__nlms_8h.html#a51b8eb7d83c9b73cb298691505af10c0">pred_nlms_compute</a>,</div>
 <div class="line">    &amp;<a class="code" href="pred__nlms_8h.html#ada811faf3779d3feab90d99914101d2c">pred_nlms_copy</a>,      &amp;<a class="code" href="pred__nlms_8h.html#abde046237bcb9e6361f33a1ebc7a2fa8">pred_nlms_free</a>,   &amp;<a class="code" href="pred__nlms_8h.html#ab5f1a783eafab36fcbffdff41bdbd13f">pred_nlms_init</a>,</div>
 <div class="line">    &amp;<a class="code" href="pred__nlms_8h.html#a96b4528e810101dba5b5bb2ac05cfd87">pred_nlms_print</a>,     &amp;<a class="code" href="pred__nlms_8h.html#ac583f28320a20a93d335688484e8ef91">pred_nlms_update</a>, &amp;<a class="code" href="pred__nlms_8h.html#ac42086623ab9698aa5bdcff090c2c22e">pred_nlms_size</a>,</div>
-<div class="line">    &amp;<a class="code" href="pred__nlms_8h.html#a6dda1993f36e0e3370a8c2c39ffaed2a">pred_nlms_save</a>,      &amp;<a class="code" href="pred__nlms_8h.html#ae02728e1f2dd6d8ddab9ca0cff4968fa">pred_nlms_load</a>,   &amp;<a class="code" href="pred__nlms_8h.html#a1ecb1e9ead41285165aa9fbe0e4e0d3f">pred_nlms_json_export</a></div>
+<div class="line">    &amp;<a class="code" href="pred__nlms_8h.html#a6dda1993f36e0e3370a8c2c39ffaed2a">pred_nlms_save</a>,      &amp;<a class="code" href="pred__nlms_8h.html#ae02728e1f2dd6d8ddab9ca0cff4968fa">pred_nlms_load</a>,   &amp;<a class="code" href="pred__nlms_8h.html#a61de1c1a3f6cada526c9f5c3f12bf2d8">pred_nlms_json_export</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Normalised least mean squares prediction implemented functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="pred__nlms_8h_source.html#l00082">82</a> of file <a class="el" href="pred__nlms_8h_source.html">pred_nlms.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__nlms_8h_source.html#l00088">88</a> of file <a class="el" href="pred__nlms_8h_source.html">pred_nlms.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00036">prediction_set()</a>.</p>
 
@@ -819,15 +919,15 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="apred__nlms_8h_html_a96b4528e810101dba5b5bb2ac05cfd87"><div class="ttname"><a href="pred__nlms_8h.html#a96b4528e810101dba5b5bb2ac05cfd87">pred_nlms_print</a></div><div class="ttdeci">void pred_nlms_print(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Prints an NLMS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00155">pred_nlms.c:155</a></div></div>
-<div class="ttc" id="apred__nlms_8h_html_a78982afc8634f133cb69c7488e295872"><div class="ttname"><a href="pred__nlms_8h.html#a78982afc8634f133cb69c7488e295872">pred_nlms_crossover</a></div><div class="ttdeci">bool pred_nlms_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Dummy function since NLMS predictions do not perform crossover.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00168">pred_nlms.c:168</a></div></div>
-<div class="ttc" id="apred__nlms_8h_html_ae02728e1f2dd6d8ddab9ca0cff4968fa"><div class="ttname"><a href="pred__nlms_8h.html#ae02728e1f2dd6d8ddab9ca0cff4968fa">pred_nlms_load</a></div><div class="ttdeci">size_t pred_nlms_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Reads an NLMS prediction from a file.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00242">pred_nlms.c:242</a></div></div>
-<div class="ttc" id="apred__nlms_8h_html_abfd2e8695677f15466100c5d3ce15cda"><div class="ttname"><a href="pred__nlms_8h.html#abfd2e8695677f15466100c5d3ce15cda">pred_nlms_mutate</a></div><div class="ttdeci">bool pred_nlms_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Mutates the gradient descent rate used to update an NLMS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00184">pred_nlms.c:184</a></div></div>
-<div class="ttc" id="apred__nlms_8h_html_a6dda1993f36e0e3370a8c2c39ffaed2a"><div class="ttname"><a href="pred__nlms_8h.html#a6dda1993f36e0e3370a8c2c39ffaed2a">pred_nlms_save</a></div><div class="ttdeci">size_t pred_nlms_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes an NLMS prediction to a file.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00221">pred_nlms.c:221</a></div></div>
-<div class="ttc" id="apred__nlms_8h_html_ac42086623ab9698aa5bdcff090c2c22e"><div class="ttname"><a href="pred__nlms_8h.html#ac42086623ab9698aa5bdcff090c2c22e">pred_nlms_size</a></div><div class="ttdeci">double pred_nlms_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of an NLMS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00206">pred_nlms.c:206</a></div></div>
+<div class="ttc" id="apred__nlms_8h_html_a78982afc8634f133cb69c7488e295872"><div class="ttname"><a href="pred__nlms_8h.html#a78982afc8634f133cb69c7488e295872">pred_nlms_crossover</a></div><div class="ttdeci">bool pred_nlms_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Dummy function since NLMS predictions do not perform crossover.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00170">pred_nlms.c:170</a></div></div>
+<div class="ttc" id="apred__nlms_8h_html_ae02728e1f2dd6d8ddab9ca0cff4968fa"><div class="ttname"><a href="pred__nlms_8h.html#ae02728e1f2dd6d8ddab9ca0cff4968fa">pred_nlms_load</a></div><div class="ttdeci">size_t pred_nlms_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Reads an NLMS prediction from a file.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00244">pred_nlms.c:244</a></div></div>
+<div class="ttc" id="apred__nlms_8h_html_abfd2e8695677f15466100c5d3ce15cda"><div class="ttname"><a href="pred__nlms_8h.html#abfd2e8695677f15466100c5d3ce15cda">pred_nlms_mutate</a></div><div class="ttdeci">bool pred_nlms_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Mutates the gradient descent rate used to update an NLMS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00186">pred_nlms.c:186</a></div></div>
+<div class="ttc" id="apred__nlms_8h_html_a6dda1993f36e0e3370a8c2c39ffaed2a"><div class="ttname"><a href="pred__nlms_8h.html#a6dda1993f36e0e3370a8c2c39ffaed2a">pred_nlms_save</a></div><div class="ttdeci">size_t pred_nlms_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes an NLMS prediction to a file.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00223">pred_nlms.c:223</a></div></div>
+<div class="ttc" id="apred__nlms_8h_html_ac42086623ab9698aa5bdcff090c2c22e"><div class="ttname"><a href="pred__nlms_8h.html#ac42086623ab9698aa5bdcff090c2c22e">pred_nlms_size</a></div><div class="ttdeci">double pred_nlms_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of an NLMS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00208">pred_nlms.c:208</a></div></div>
 <div class="ttc" id="apred__nlms_8h_html_ada811faf3779d3feab90d99914101d2c"><div class="ttname"><a href="pred__nlms_8h.html#ada811faf3779d3feab90d99914101d2c">pred_nlms_copy</a></div><div class="ttdeci">void pred_nlms_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)</div><div class="ttdoc">Copies an NLMS prediction from one classifier to another.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00079">pred_nlms.c:79</a></div></div>
-<div class="ttc" id="apred__nlms_8h_html_a1ecb1e9ead41285165aa9fbe0e4e0d3f"><div class="ttname"><a href="pred__nlms_8h.html#a1ecb1e9ead41285165aa9fbe0e4e0d3f">pred_nlms_json_export</a></div><div class="ttdeci">const char * pred_nlms_json_export(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns a json formatted string representation of an NLMS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00262">pred_nlms.c:262</a></div></div>
 <div class="ttc" id="apred__nlms_8h_html_abde046237bcb9e6361f33a1ebc7a2fa8"><div class="ttname"><a href="pred__nlms_8h.html#abde046237bcb9e6361f33a1ebc7a2fa8">pred_nlms_free</a></div><div class="ttdeci">void pred_nlms_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Frees the memory used by an NLMS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00096">pred_nlms.c:96</a></div></div>
 <div class="ttc" id="apred__nlms_8h_html_ab5f1a783eafab36fcbffdff41bdbd13f"><div class="ttname"><a href="pred__nlms_8h.html#ab5f1a783eafab36fcbffdff41bdbd13f">pred_nlms_init</a></div><div class="ttdeci">void pred_nlms_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Initialises an NLMS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00044">pred_nlms.c:44</a></div></div>
+<div class="ttc" id="apred__nlms_8h_html_a61de1c1a3f6cada526c9f5c3f12bf2d8"><div class="ttname"><a href="pred__nlms_8h.html#a61de1c1a3f6cada526c9f5c3f12bf2d8">pred_nlms_json_export</a></div><div class="ttdeci">char * pred_nlms_json_export(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns a json formatted string representation of an NLMS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00264">pred_nlms.c:264</a></div></div>
 <div class="ttc" id="apred__nlms_8h_html_ac583f28320a20a93d335688484e8ef91"><div class="ttname"><a href="pred__nlms_8h.html#ac583f28320a20a93d335688484e8ef91">pred_nlms_update</a></div><div class="ttdeci">void pred_nlms_update(const struct XCSF *xcsf, const struct Cl *c, const double *x, const double *y)</div><div class="ttdoc">Updates an NLMS prediction for a given input and truth sample.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00115">pred_nlms.c:115</a></div></div>
 <div class="ttc" id="apred__nlms_8h_html_a51b8eb7d83c9b73cb298691505af10c0"><div class="ttname"><a href="pred__nlms_8h.html#a51b8eb7d83c9b73cb298691505af10c0">pred_nlms_compute</a></div><div class="ttdeci">void pred_nlms_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Computes the current NLMS prediction for a provided input.</div><div class="ttdef"><b>Definition:</b> <a href="pred__nlms_8c_source.html#l00138">pred_nlms.c:138</a></div></div>
 <!-- start footer part -->

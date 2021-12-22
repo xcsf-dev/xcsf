@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('action_8h.html',''); initResizable(); 
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -99,19 +99,19 @@ $(document).ready(function(){initNavTree('action_8h.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 
-<p>Interface for classifier actions.  
+<p>Interface for classifier actions.
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="xcsf_8h_source.html">xcsf.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for action.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h__incl.svg" width="890" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h__incl.svg" width="1168" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h__dep__incl.svg" width="939" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h__dep__incl.svg" width="816" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -158,9 +158,12 @@ Functions</h2></td></tr>
 <tr class="memitem:acc202dbe3c6a1d3f745383aec209c780"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#acc202dbe3c6a1d3f745383aec209c780">action_param_free</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
 <tr class="memdesc:acc202dbe3c6a1d3f745383aec209c780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees action parameters.  <a href="action_8h.html#acc202dbe3c6a1d3f745383aec209c780">More...</a><br /></td></tr>
 <tr class="separator:acc202dbe3c6a1d3f745383aec209c780"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd5f8e0c76c65e3986e0c03a26a7ecdf"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#abd5f8e0c76c65e3986e0c03a26a7ecdf">action_param_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
-<tr class="memdesc:abd5f8e0c76c65e3986e0c03a26a7ecdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the action parameters.  <a href="action_8h.html#abd5f8e0c76c65e3986e0c03a26a7ecdf">More...</a><br /></td></tr>
-<tr class="separator:abd5f8e0c76c65e3986e0c03a26a7ecdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa5c433092521a4fe5159eee76b1c141"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#aaa5c433092521a4fe5159eee76b1c141">action_param_json_import</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, cJSON *json)</td></tr>
+<tr class="memdesc:aaa5c433092521a4fe5159eee76b1c141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the action parameters from a cJSON object.  <a href="action_8h.html#aaa5c433092521a4fe5159eee76b1c141">More...</a><br /></td></tr>
+<tr class="separator:aaa5c433092521a4fe5159eee76b1c141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c75dacfa854514efe71cc00515d6c0"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#ae4c75dacfa854514efe71cc00515d6c0">action_param_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
+<tr class="memdesc:ae4c75dacfa854514efe71cc00515d6c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the action parameters.  <a href="action_8h.html#ae4c75dacfa854514efe71cc00515d6c0">More...</a><br /></td></tr>
+<tr class="separator:ae4c75dacfa854514efe71cc00515d6c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95fbb463d8e044d1dadc5fdb1b6b1e05"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#a95fbb463d8e044d1dadc5fdb1b6b1e05">action_param_save</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, FILE *fp)</td></tr>
 <tr class="memdesc:a95fbb463d8e044d1dadc5fdb1b6b1e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves action parameters.  <a href="action_8h.html#a95fbb463d8e044d1dadc5fdb1b6b1e05">More...</a><br /></td></tr>
 <tr class="separator:a95fbb463d8e044d1dadc5fdb1b6b1e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,9 +206,9 @@ Functions</h2></td></tr>
 <tr class="memitem:abff2406a17ffc24bdc2f98dbecab1f80"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#abff2406a17ffc24bdc2f98dbecab1f80">act_update</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c, const double *x, const double *y)</td></tr>
 <tr class="memdesc:abff2406a17ffc24bdc2f98dbecab1f80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the classifier's action.  <a href="action_8h.html#abff2406a17ffc24bdc2f98dbecab1f80">More...</a><br /></td></tr>
 <tr class="separator:abff2406a17ffc24bdc2f98dbecab1f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf334ef0d27241fb85b333102dac7789"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#adf334ef0d27241fb85b333102dac7789">act_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
-<tr class="memdesc:adf334ef0d27241fb85b333102dac7789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of an action .  <a href="action_8h.html#adf334ef0d27241fb85b333102dac7789">More...</a><br /></td></tr>
-<tr class="separator:adf334ef0d27241fb85b333102dac7789"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31b90b0384c02bd54a0abd49211401fc"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#a31b90b0384c02bd54a0abd49211401fc">act_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="memdesc:a31b90b0384c02bd54a0abd49211401fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of an action .  <a href="action_8h.html#a31b90b0384c02bd54a0abd49211401fc">More...</a><br /></td></tr>
+<tr class="separator:a31b90b0384c02bd54a0abd49211401fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55974a228c3a692a22c9d6ce0c4cc869"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#a55974a228c3a692a22c9d6ce0c4cc869">action_param_set_type_string</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const char *a)</td></tr>
 <tr class="separator:a55974a228c3a692a22c9d6ce0c4cc869"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a07a69a801b65052f3679d317507363"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#a1a07a69a801b65052f3679d317507363">action_param_set_type</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
@@ -327,7 +330,7 @@ Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -343,11 +346,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The classifier's action. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00166">166</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00168">168</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00076">ActVtbl::act_impl_compute</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00079">ActVtbl::act_impl_compute</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00302">cl_action()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00304">cl_action()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -392,7 +395,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -407,9 +410,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00178">178</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00180">180</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00078">ActVtbl::act_impl_copy</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00081">ActVtbl::act_impl_copy</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00063">cl_copy()</a>, and <a class="el" href="cl_8c_source.html#l00084">cl_init_copy()</a>.</p>
 <div class="dynheader">
@@ -462,7 +465,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -478,9 +481,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00191">191</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00193">193</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00080">ActVtbl::act_impl_cover</a>, <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>, and <a class="el" href="xcsf_8h_source.html#l00059">Cl::action</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00083">ActVtbl::act_impl_cover</a>, <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>, and <a class="el" href="xcsf_8h_source.html#l00060">Cl::action</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00113">cl_cover()</a>.</p>
 <div class="dynheader">
@@ -527,7 +530,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -543,11 +546,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00141">141</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00143">143</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00073">ActVtbl::act_impl_crossover</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00076">ActVtbl::act_impl_crossover</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00379">cl_crossover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00381">cl_crossover()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -586,7 +589,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -600,9 +603,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00203">203</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00205">205</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00082">ActVtbl::act_impl_free</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00085">ActVtbl::act_impl_free</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00223">cl_free()</a>.</p>
 <div class="dynheader">
@@ -649,7 +652,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -665,11 +668,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the action of c1 is more general than c2. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00128">128</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00130">130</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00071">ActVtbl::act_impl_general</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00074">ActVtbl::act_impl_general</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00345">cl_general()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00347">cl_general()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -708,7 +711,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -722,9 +725,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00214">214</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00216">216</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00083">ActVtbl::act_impl_init</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00086">ActVtbl::act_impl_init</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>.</p>
 <div class="dynheader">
@@ -736,8 +739,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="adf334ef0d27241fb85b333102dac7789"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf334ef0d27241fb85b333102dac7789">&#9670;&nbsp;</a></span>act_json_export()</h2>
+<a id="a31b90b0384c02bd54a0abd49211401fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31b90b0384c02bd54a0abd49211401fc">&#9670;&nbsp;</a></span>act_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -746,7 +749,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static const char* act_json_export </td>
+          <td class="memname">static char* act_json_export </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -765,7 +768,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -780,15 +783,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00251">251</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00253">253</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00090">ActVtbl::act_impl_json_export</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00093">ActVtbl::act_impl_json_export</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00484">cl_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00486">cl_json_export()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_adf334ef0d27241fb85b333102dac7789_icgraph.svg" width="1118" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a31b90b0384c02bd54a0abd49211401fc_icgraph.svg" width="1118" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -829,7 +832,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -845,11 +848,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00115">115</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00117">117</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00089">ActVtbl::act_impl_load</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00092">ActVtbl::act_impl_load</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00450">cl_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00452">cl_load()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -888,7 +891,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -903,11 +906,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00153">153</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00155">155</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00075">ActVtbl::act_impl_mutate</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00078">ActVtbl::act_impl_mutate</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00360">cl_mutate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00362">cl_mutate()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -946,7 +949,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -960,9 +963,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00225">225</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00227">227</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00084">ActVtbl::act_impl_print</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00087">ActVtbl::act_impl_print</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
 </div>
 </div>
@@ -1001,7 +1004,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1017,11 +1020,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00102">102</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00104">104</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00087">ActVtbl::act_impl_save</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00090">ActVtbl::act_impl_save</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00422">cl_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00424">cl_save()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1072,7 +1075,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1088,9 +1091,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00238">238</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00240">240</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00085">ActVtbl::act_impl_update</a>, and <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00088">ActVtbl::act_impl_update</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00183">cl_update()</a>.</p>
 <div class="dynheader">
@@ -1126,15 +1129,15 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00125">125</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00092">92</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, <a class="el" href="action_8c_source.html#l00092">action_param_defaults_neural()</a>, and <a class="el" href="action_8c_source.html#l00205">action_param_set_type()</a>.</p>
+<p class="reference">References <a class="el" href="act__neural_8c_source.html#l00250">act_neural_param_defaults()</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, and <a class="el" href="action_8c_source.html#l00198">action_param_set_type()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aa7e0cd00c920c30b15e0d1cc409cada5_cgraph.svg" width="535" height="122"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aa7e0cd00c920c30b15e0d1cc409cada5_cgraph.svg" width="556" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
@@ -1170,9 +1173,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00191">191</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00184">184</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, and <a class="el" href="neural__layer__args_8c_source.html#l00273">layer_args_free()</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer__args_8c_source.html#l00450">layer_args_free()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00088">param_free()</a>.</p>
 <div class="dynheader">
@@ -1190,14 +1193,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="abd5f8e0c76c65e3986e0c03a26a7ecdf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd5f8e0c76c65e3986e0c03a26a7ecdf">&#9670;&nbsp;</a></span>action_param_json_export()</h2>
+<a id="ae4c75dacfa854514efe71cc00515d6c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c75dacfa854514efe71cc00515d6c0">&#9670;&nbsp;</a></span>action_param_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* action_param_json_export </td>
+          <td class="memname">char* action_param_json_export </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em></td><td>)</td>
@@ -1215,21 +1218,77 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00137">137</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00104">104</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, <a class="el" href="action_8c_source.html#l00056">action_type_as_string()</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00237">layer_args_json_export()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, <a class="el" href="action_8c_source.html#l00056">action_type_as_string()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00377">layer_args_json_export()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00105">param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_abd5f8e0c76c65e3986e0c03a26a7ecdf_cgraph.svg" width="980" height="490"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_ae4c75dacfa854514efe71cc00515d6c0_cgraph.svg" width="980" height="490"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_abd5f8e0c76c65e3986e0c03a26a7ecdf_icgraph.svg" width="948" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_ae4c75dacfa854514efe71cc00515d6c0_icgraph.svg" width="948" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aaa5c433092521a4fe5159eee76b1c141"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa5c433092521a4fe5159eee76b1c141">&#9670;&nbsp;</a></span>action_param_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool action_param_json_import </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the action parameters from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">xcsf</td><td><a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether a parameter was found. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00132">132</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+
+<p class="reference">References <a class="el" href="act__neural_8c_source.html#l00284">act_neural_param_json_import()</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, and <a class="el" href="action_8c_source.html#l00192">action_param_set_type_string()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00305">param_json_import()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aaa5c433092521a4fe5159eee76b1c141_cgraph.svg" width="1038" height="403"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aaa5c433092521a4fe5159eee76b1c141_icgraph.svg" width="602" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1271,11 +1330,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00177">177</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00170">170</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00455">layer_args_load()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00632">layer_args_load()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00231">param_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00411">param_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1327,11 +1386,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00161">161</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00154">154</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00411">layer_args_save()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
+<p class="reference">References <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00588">layer_args_save()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00182">param_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00362">param_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1373,11 +1432,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00205">205</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00198">198</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00125">action_param_defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00092">action_param_defaults()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1413,11 +1470,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00199">199</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00192">192</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="action_8c_source.html#l00075">action_type_as_int()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00075">action_type_as_int()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00499">config_cl_act()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00807">XCS::set_action()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00132">action_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00817">XCS::set_action()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1427,7 +1484,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a55974a228c3a692a22c9d6ce0c4cc869_icgraph.svg" width="1099" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a55974a228c3a692a22c9d6ce0c4cc869_icgraph.svg" width="826" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1470,9 +1527,9 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00035">35</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00091">XCSF::act</a>, <a class="el" href="act__integer_8h_source.html#l00085">act_integer_vtbl</a>, <a class="el" href="act__neural_8h_source.html#l00086">act_neural_vtbl</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, <a class="el" href="xcsf_8h_source.html#l00047">Cl::act_vptr</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
+<p class="reference">References <a class="el" href="act__integer_8h_source.html#l00085">act_integer_vtbl</a>, <a class="el" href="act__neural_8h_source.html#l00092">act_neural_vtbl</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00450">cl_load()</a>, and <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00452">cl_load()</a>, and <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1511,11 +1568,11 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00031">ACT_STRING_INTEGER</a>, <a class="el" href="action_8h_source.html#l00032">ACT_STRING_NEURAL</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, and <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00199">action_param_set_type_string()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00192">action_param_set_type_string()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a38d3209ab8ce0417631ce2359f6590a7_icgraph.svg" width="1278" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a38d3209ab8ce0417631ce2359f6590a7_icgraph.svg" width="1004" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1550,7 +1607,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00031">ACT_STRING_INTEGER</a>, <a class="el" href="action_8h_source.html#l00032">ACT_STRING_NEURAL</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, and <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00137">action_param_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00104">action_param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

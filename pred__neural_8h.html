@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('pred__neural_8h.html',''); initResizab
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('pred__neural_8h.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 
-<p>Multi-layer perceptron neural network prediction functions.  
+<p>Multi-layer perceptron neural network prediction functions.
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="neural_8h_source.html">neural.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="neural__activations_8h_source.html">neural_activations.h</a>&quot;</code><br />
@@ -109,13 +109,13 @@ $(document).ready(function(){initNavTree('pred__neural_8h.html',''); initResizab
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for pred_neural.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h__incl.svg" width="890" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h__incl.svg" width="950" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h__dep__incl.svg" width="435" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h__dep__incl.svg" width="596" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -129,6 +129,12 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ad98412e2a2999778290478e22b868859"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__neural_8h.html#ad98412e2a2999778290478e22b868859">pred_neural_param_defaults</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
+<tr class="memdesc:ad98412e2a2999778290478e22b868859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises default neural prediction parameters.  <a href="pred__neural_8h.html#ad98412e2a2999778290478e22b868859">More...</a><br /></td></tr>
+<tr class="separator:ad98412e2a2999778290478e22b868859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf2d30b8d2123b423b251f88f7c772ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__neural_8h.html#aaf2d30b8d2123b423b251f88f7c772ff">pred_neural_param_json_import</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, cJSON *json)</td></tr>
+<tr class="memdesc:aaf2d30b8d2123b423b251f88f7c772ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the neural network parameters from a cJSON object.  <a href="pred__neural_8h.html#aaf2d30b8d2123b423b251f88f7c772ff">More...</a><br /></td></tr>
+<tr class="separator:aaf2d30b8d2123b423b251f88f7c772ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfecea5950b261514326d62398cc36f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__neural_8h.html#abfecea5950b261514326d62398cc36f4">pred_neural_crossover</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c1, const struct <a class="el" href="structCl.html">Cl</a> *c2)</td></tr>
 <tr class="memdesc:abfecea5950b261514326d62398cc36f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dummy function since neural predictions do not perform crossover.  <a href="pred__neural_8h.html#abfecea5950b261514326d62398cc36f4">More...</a><br /></td></tr>
 <tr class="separator:abfecea5950b261514326d62398cc36f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,9 +186,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa639a9130cac0c222bca241f86d6c135"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__neural_8h.html#aa639a9130cac0c222bca241f86d6c135">pred_neural_ae_to_classifier</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c, const int n_del)</td></tr>
 <tr class="memdesc:aa639a9130cac0c222bca241f86d6c135"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes prediction (decoder) layers and inserts softmax output layer.  <a href="pred__neural_8h.html#aa639a9130cac0c222bca241f86d6c135">More...</a><br /></td></tr>
 <tr class="separator:aa639a9130cac0c222bca241f86d6c135"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9c7b01713d1b135dfdcc2709263274b"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__neural_8h.html#ac9c7b01713d1b135dfdcc2709263274b">pred_neural_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
-<tr class="memdesc:ac9c7b01713d1b135dfdcc2709263274b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a neural prediction.  <a href="pred__neural_8h.html#ac9c7b01713d1b135dfdcc2709263274b">More...</a><br /></td></tr>
-<tr class="separator:ac9c7b01713d1b135dfdcc2709263274b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3893bcacdef034a27bd771a599d0b5f0"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__neural_8h.html#a3893bcacdef034a27bd771a599d0b5f0">pred_neural_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
+<tr class="memdesc:a3893bcacdef034a27bd771a599d0b5f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a neural prediction.  <a href="pred__neural_8h.html#a3893bcacdef034a27bd771a599d0b5f0">More...</a><br /></td></tr>
+<tr class="separator:a3893bcacdef034a27bd771a599d0b5f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -240,9 +246,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00347">347</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00349">349</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer__args_8h_source.html#l00044">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00042">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer_8h_source.html#l00117">Layer::i</a>, <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00042">layer_args_init()</a>, <a class="el" href="neural__layer_8h_source.html#l00380">layer_init()</a>, <a class="el" href="neural__activations_8h_source.html#l00031">LINEAR</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::momentum</a>, <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_outputs</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00197">neural_pop()</a>, <a class="el" href="neural_8c_source.html#l00187">neural_push()</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::sgd_weights</a>, <a class="el" href="neural__layer_8h_source.html#l00032">SOFTMAX</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00046">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00055">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00054">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer_8h_source.html#l00117">Layer::i</a>, <a class="el" href="neural__layer__args_8c_source.html#l00042">layer_args_init()</a>, <a class="el" href="neural__layer_8h_source.html#l00380">layer_init()</a>, <a class="el" href="neural__activations_8h_source.html#l00031">LINEAR</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::momentum</a>, <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_outputs</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00197">neural_pop()</a>, <a class="el" href="neural_8c_source.html#l00187">neural_push()</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="neural__layer__args_8h_source.html#l00056">ArgsLayer::sgd_weights</a>, and <a class="el" href="neural__layer_8h_source.html#l00032">SOFTMAX</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcsf_8c_source.html#l00166">xcsf_ae_to_classifier()</a>.</p>
 <div class="dynheader">
@@ -304,7 +310,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00106">106</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00111">XCSF::explore</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00369">neural_output()</a>, <a class="el" href="neural_8c_source.html#l00310">neural_propagate()</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="xcsf_8h_source.html#l00058">Cl::prediction</a>, and <a class="el" href="xcsf_8h_source.html#l00109">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00369">neural_output()</a>, <a class="el" href="neural_8c_source.html#l00310">neural_propagate()</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, and <a class="el" href="xcsf_8h_source.html#l00059">Cl::prediction</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -357,9 +363,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The current number of active (non-zero) connections in a layer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00266">266</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00268">268</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset__neural_8c_source.html#l00200">clset_mean_pred_connections()</a>.</p>
 <div class="dynheader">
@@ -415,7 +421,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00073">73</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00208">neural_copy()</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>.</p>
+<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00208">neural_copy()</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -468,7 +474,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00135">135</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00137">137</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
 </div>
 </div>
@@ -515,9 +521,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The current gradient descent rate of a layer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00214">214</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00216">216</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00085">Layer::eta</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset__neural_8c_source.html#l00173">clset_mean_pred_eta()</a>.</p>
 <div class="dynheader">
@@ -564,9 +570,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00304">304</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00306">306</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer__args_8h_source.html#l00044">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00042">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00050">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00049">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00121">Layer::h</a>, <a class="el" href="neural_8h_source.html#l00052">Net::head</a>, <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer__args_8c_source.html#l00042">layer_args_init()</a>, <a class="el" href="neural__layer_8h_source.html#l00380">layer_init()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00043">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00029">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00095">neural_insert()</a>, <a class="el" href="neural_8c_source.html#l00290">neural_resize()</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::next</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::sgd_weights</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer__args_8h_source.html#l00048">ArgsLayer::decay</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00046">ArgsLayer::eta_min</a>, <a class="el" href="neural__layer__args_8h_source.html#l00055">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00054">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00053">ArgsLayer::evolve_functions</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::function</a>, <a class="el" href="neural__layer_8h_source.html#l00121">Layer::h</a>, <a class="el" href="neural_8h_source.html#l00052">Net::head</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer__args_8c_source.html#l00042">layer_args_init()</a>, <a class="el" href="neural__layer_8h_source.html#l00380">layer_init()</a>, <a class="el" href="neural__layer_8h_source.html#l00092">Layer::max_outputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00095">neural_insert()</a>, <a class="el" href="neural_8c_source.html#l00290">neural_resize()</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::next</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00056">ArgsLayer::sgd_weights</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcsf_8c_source.html#l00146">xcsf_pred_expand()</a>.</p>
 <div class="dynheader">
@@ -621,7 +627,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00058">58</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00224">neural_free()</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>.</p>
+<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00224">neural_free()</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -668,7 +674,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00045">45</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="prediction_8h_source.html#l00053">ArgsPred::largs</a>, <a class="el" href="neural_8c_source.html#l00054">neural_create()</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, and <a class="el" href="xcsf_8h_source.html#l00093">XCSF::pred</a>.</p>
+<p class="reference">References <a class="el" href="neural_8c_source.html#l00054">neural_create()</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -678,14 +684,14 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ac9c7b01713d1b135dfdcc2709263274b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9c7b01713d1b135dfdcc2709263274b">&#9670;&nbsp;</a></span>pred_neural_json_export()</h2>
+<a id="a3893bcacdef034a27bd771a599d0b5f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3893bcacdef034a27bd771a599d0b5f0">&#9670;&nbsp;</a></span>pred_neural_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* pred_neural_json_export </td>
+          <td class="memname">char* pred_neural_json_export </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -714,21 +720,21 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00390">390</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00392">392</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00407">neural_json_export()</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>.</p>
+<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00407">neural_json_export()</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pred__neural_8c_source.html#l00122">pred_neural_print()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h_ac9c7b01713d1b135dfdcc2709263274b_cgraph.svg" width="524" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h_a3893bcacdef034a27bd771a599d0b5f0_cgraph.svg" width="524" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h_ac9c7b01713d1b135dfdcc2709263274b_icgraph.svg" width="343" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h_a3893bcacdef034a27bd771a599d0b5f0_icgraph.svg" width="343" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -770,9 +776,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of layers. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00290">290</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00292">292</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset__neural_8c_source.html#l00147">clset_mean_pred_layers()</a>.</p>
 <div class="dynheader">
@@ -827,9 +833,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00197">197</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00199">199</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8c_source.html#l00482">neural_load()</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>.</p>
+<p class="reference">References <a class="el" href="neural_8c_source.html#l00482">neural_load()</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -875,9 +881,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00151">151</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00153">153</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00257">neural_mutate()</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>.</p>
+<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00257">neural_mutate()</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -930,15 +936,114 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The current number of neurons in a layer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00238">238</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00240">240</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00036">CONVOLUTIONAL</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00136">Layer::n_filters</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00036">CONVOLUTIONAL</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00136">Layer::n_filters</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="clset__neural_8c_source.html#l00121">clset_mean_pred_neurons()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h_aa629fe068b85b51ee3d439b4b659f030_icgraph.svg" width="770" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad98412e2a2999778290478e22b868859"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad98412e2a2999778290478e22b868859">&#9670;&nbsp;</a></span>pred_neural_param_defaults()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pred_neural_param_defaults </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialises default neural prediction parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00410">410</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer__args_8h_source.html#l00045">ArgsLayer::eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00055">ArgsLayer::evolve_connect</a>, <a class="el" href="neural__layer__args_8h_source.html#l00054">ArgsLayer::evolve_eta</a>, <a class="el" href="neural__layer__args_8h_source.html#l00052">ArgsLayer::evolve_neurons</a>, <a class="el" href="neural__layer__args_8h_source.html#l00051">ArgsLayer::evolve_weights</a>, <a class="el" href="neural__layer__args_8h_source.html#l00037">ArgsLayer::function</a>, <a class="el" href="neural__layer__args_8c_source.html#l00077">layer_args_copy()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00042">layer_args_init()</a>, <a class="el" href="neural__activations_8h_source.html#l00028">LOGISTIC</a>, <a class="el" href="neural__layer__args_8h_source.html#l00036">ArgsLayer::max_neuron_grow</a>, <a class="el" href="neural__layer__args_8h_source.html#l00047">ArgsLayer::momentum</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::n_inputs</a>, <a class="el" href="neural__layer__args_8h_source.html#l00035">ArgsLayer::n_max</a>, <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>, <a class="el" href="neural__layer__args_8h_source.html#l00056">ArgsLayer::sgd_weights</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00121">pred_param_defaults()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h_ad98412e2a2999778290478e22b868859_cgraph.svg" width="362" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h_ad98412e2a2999778290478e22b868859_icgraph.svg" width="886" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aaf2d30b8d2123b423b251f88f7c772ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf2d30b8d2123b423b251f88f7c772ff">&#9670;&nbsp;</a></span>pred_neural_param_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pred_neural_param_json_import </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the neural network parameters from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00443">443</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+
+<p class="reference">References <a class="el" href="neural__layer__args_8c_source.html#l00450">layer_args_free()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00042">layer_args_init()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00414">layer_args_json_import()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00499">layer_args_validate()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::n_inputs</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00180">pred_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00906">XCS::set_prediction()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h_aaf2d30b8d2123b423b251f88f7c772ff_cgraph.svg" width="820" height="403"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__neural_8h_aaf2d30b8d2123b423b251f88f7c772ff_icgraph.svg" width="802" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -981,7 +1086,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00122">122</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__neural_8c_source.html#l00390">pred_neural_json_export()</a>.</p>
+<p class="reference">References <a class="el" href="pred__neural_8c_source.html#l00392">pred_neural_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1034,9 +1139,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00181">181</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00183">183</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00460">neural_save()</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>.</p>
+<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00460">neural_save()</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1083,9 +1188,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The network size. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00166">166</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00168">168</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00432">neural_size()</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>.</p>
+<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00432">neural_size()</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1147,7 +1252,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="pred__neural_8c_source.html#l00091">91</a> of file <a class="el" href="pred__neural_8c_source.html">pred_neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00328">neural_learn()</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::pred</a>.</p>
+<p class="reference">References <a class="el" href="pred__neural_8h_source.html#l00036">PredNeural::net</a>, <a class="el" href="neural_8c_source.html#l00328">neural_learn()</a>, and <a class="el" href="xcsf_8h_source.html#l00050">Cl::pred</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1181,12 +1286,12 @@ Here is the call graph for this function:</div>
 <div class="line">    &amp;<a class="code" href="pred__neural_8h.html#abfecea5950b261514326d62398cc36f4">pred_neural_crossover</a>, &amp;<a class="code" href="pred__neural_8h.html#a1c13604a74857eb73ac249bfe40aab2e">pred_neural_mutate</a>, &amp;<a class="code" href="pred__neural_8h.html#a620fbeb95758715776b84ee1628a637d">pred_neural_compute</a>,</div>
 <div class="line">    &amp;<a class="code" href="pred__neural_8h.html#aabc294bd7043f7ea912832c3a26b73a1">pred_neural_copy</a>,      &amp;<a class="code" href="pred__neural_8h.html#a82da5a504ede83fcfc72182c0f246c15">pred_neural_free</a>,   &amp;<a class="code" href="pred__neural_8h.html#a8ff454a2da61b52670f4b70b71da2fe8">pred_neural_init</a>,</div>
 <div class="line">    &amp;<a class="code" href="pred__neural_8h.html#a6d409885406112df91093475dd764f10">pred_neural_print</a>,     &amp;<a class="code" href="pred__neural_8h.html#abfe6fe6bb45b0713afbf2820881cf750">pred_neural_update</a>, &amp;<a class="code" href="pred__neural_8h.html#ace1090494da4732e5902e6178ac3b439">pred_neural_size</a>,</div>
-<div class="line">    &amp;<a class="code" href="pred__neural_8h.html#a54585fad9ebe332fdcd02bf0042fc125">pred_neural_save</a>,      &amp;<a class="code" href="pred__neural_8h.html#aee98eff48767b879343983d0717952cc">pred_neural_load</a>,   &amp;<a class="code" href="pred__neural_8h.html#ac9c7b01713d1b135dfdcc2709263274b">pred_neural_json_export</a></div>
+<div class="line">    &amp;<a class="code" href="pred__neural_8h.html#a54585fad9ebe332fdcd02bf0042fc125">pred_neural_save</a>,      &amp;<a class="code" href="pred__neural_8h.html#aee98eff48767b879343983d0717952cc">pred_neural_load</a>,   &amp;<a class="code" href="pred__neural_8h.html#a3893bcacdef034a27bd771a599d0b5f0">pred_neural_json_export</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Multi-layer perceptron neural network prediction implemented functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="pred__neural_8h_source.html#l00104">104</a> of file <a class="el" href="pred__neural_8h_source.html">pred_neural.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pred__neural_8h_source.html#l00110">110</a> of file <a class="el" href="pred__neural_8h_source.html">pred_neural.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="prediction_8c_source.html#l00036">prediction_set()</a>.</p>
 
@@ -1194,14 +1299,14 @@ Here is the call graph for this function:</div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="apred__neural_8h_html_a54585fad9ebe332fdcd02bf0042fc125"><div class="ttname"><a href="pred__neural_8h.html#a54585fad9ebe332fdcd02bf0042fc125">pred_neural_save</a></div><div class="ttdeci">size_t pred_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes a neural network prediction to a file.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00181">pred_neural.c:181</a></div></div>
+<div class="ttc" id="apred__neural_8h_html_a54585fad9ebe332fdcd02bf0042fc125"><div class="ttname"><a href="pred__neural_8h.html#a54585fad9ebe332fdcd02bf0042fc125">pred_neural_save</a></div><div class="ttdeci">size_t pred_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes a neural network prediction to a file.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00183">pred_neural.c:183</a></div></div>
 <div class="ttc" id="apred__neural_8h_html_a82da5a504ede83fcfc72182c0f246c15"><div class="ttname"><a href="pred__neural_8h.html#a82da5a504ede83fcfc72182c0f246c15">pred_neural_free</a></div><div class="ttdeci">void pred_neural_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Frees the memory used by a neural network prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00058">pred_neural.c:58</a></div></div>
-<div class="ttc" id="apred__neural_8h_html_abfecea5950b261514326d62398cc36f4"><div class="ttname"><a href="pred__neural_8h.html#abfecea5950b261514326d62398cc36f4">pred_neural_crossover</a></div><div class="ttdeci">bool pred_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Dummy function since neural predictions do not perform crossover.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00135">pred_neural.c:135</a></div></div>
+<div class="ttc" id="apred__neural_8h_html_abfecea5950b261514326d62398cc36f4"><div class="ttname"><a href="pred__neural_8h.html#abfecea5950b261514326d62398cc36f4">pred_neural_crossover</a></div><div class="ttdeci">bool pred_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Dummy function since neural predictions do not perform crossover.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00137">pred_neural.c:137</a></div></div>
 <div class="ttc" id="apred__neural_8h_html_a8ff454a2da61b52670f4b70b71da2fe8"><div class="ttname"><a href="pred__neural_8h.html#a8ff454a2da61b52670f4b70b71da2fe8">pred_neural_init</a></div><div class="ttdeci">void pred_neural_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Creates and initialises a neural network prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00045">pred_neural.c:45</a></div></div>
-<div class="ttc" id="apred__neural_8h_html_ac9c7b01713d1b135dfdcc2709263274b"><div class="ttname"><a href="pred__neural_8h.html#ac9c7b01713d1b135dfdcc2709263274b">pred_neural_json_export</a></div><div class="ttdeci">const char * pred_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns a json formatted string representation of a neural prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00390">pred_neural.c:390</a></div></div>
-<div class="ttc" id="apred__neural_8h_html_ace1090494da4732e5902e6178ac3b439"><div class="ttname"><a href="pred__neural_8h.html#ace1090494da4732e5902e6178ac3b439">pred_neural_size</a></div><div class="ttdeci">double pred_neural_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a neural network prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00166">pred_neural.c:166</a></div></div>
-<div class="ttc" id="apred__neural_8h_html_aee98eff48767b879343983d0717952cc"><div class="ttname"><a href="pred__neural_8h.html#aee98eff48767b879343983d0717952cc">pred_neural_load</a></div><div class="ttdeci">size_t pred_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Reads a neural network prediction from a file.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00197">pred_neural.c:197</a></div></div>
-<div class="ttc" id="apred__neural_8h_html_a1c13604a74857eb73ac249bfe40aab2e"><div class="ttname"><a href="pred__neural_8h.html#a1c13604a74857eb73ac249bfe40aab2e">pred_neural_mutate</a></div><div class="ttdeci">bool pred_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Mutates a neural network prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00151">pred_neural.c:151</a></div></div>
+<div class="ttc" id="apred__neural_8h_html_ace1090494da4732e5902e6178ac3b439"><div class="ttname"><a href="pred__neural_8h.html#ace1090494da4732e5902e6178ac3b439">pred_neural_size</a></div><div class="ttdeci">double pred_neural_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a neural network prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00168">pred_neural.c:168</a></div></div>
+<div class="ttc" id="apred__neural_8h_html_a3893bcacdef034a27bd771a599d0b5f0"><div class="ttname"><a href="pred__neural_8h.html#a3893bcacdef034a27bd771a599d0b5f0">pred_neural_json_export</a></div><div class="ttdeci">char * pred_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns a json formatted string representation of a neural prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00392">pred_neural.c:392</a></div></div>
+<div class="ttc" id="apred__neural_8h_html_aee98eff48767b879343983d0717952cc"><div class="ttname"><a href="pred__neural_8h.html#aee98eff48767b879343983d0717952cc">pred_neural_load</a></div><div class="ttdeci">size_t pred_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Reads a neural network prediction from a file.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00199">pred_neural.c:199</a></div></div>
+<div class="ttc" id="apred__neural_8h_html_a1c13604a74857eb73ac249bfe40aab2e"><div class="ttname"><a href="pred__neural_8h.html#a1c13604a74857eb73ac249bfe40aab2e">pred_neural_mutate</a></div><div class="ttdeci">bool pred_neural_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Mutates a neural network prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00153">pred_neural.c:153</a></div></div>
 <div class="ttc" id="apred__neural_8h_html_aabc294bd7043f7ea912832c3a26b73a1"><div class="ttname"><a href="pred__neural_8h.html#aabc294bd7043f7ea912832c3a26b73a1">pred_neural_copy</a></div><div class="ttdeci">void pred_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)</div><div class="ttdoc">Copies a neural network prediction from one classifier to another.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00073">pred_neural.c:73</a></div></div>
 <div class="ttc" id="apred__neural_8h_html_abfe6fe6bb45b0713afbf2820881cf750"><div class="ttname"><a href="pred__neural_8h.html#abfe6fe6bb45b0713afbf2820881cf750">pred_neural_update</a></div><div class="ttdeci">void pred_neural_update(const struct XCSF *xcsf, const struct Cl *c, const double *x, const double *y)</div><div class="ttdoc">Backward propagates and updates a neural network prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00091">pred_neural.c:91</a></div></div>
 <div class="ttc" id="apred__neural_8h_html_a620fbeb95758715776b84ee1628a637d"><div class="ttname"><a href="pred__neural_8h.html#a620fbeb95758715776b84ee1628a637d">pred_neural_compute</a></div><div class="ttdeci">void pred_neural_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Forward propagates a neural network prediction with a provided input.</div><div class="ttdef"><b>Definition:</b> <a href="pred__neural_8c_source.html#l00106">pred_neural.c:106</a></div></div>

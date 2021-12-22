@@ -1,4 +1,0 @@
-<map id="neural_layer_maxpool_json" name="neural_layer_maxpool_json">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of a maxpooling layer." alt="" coords="201,13,380,39"/>
-<area shape="rect" id="node2" href="$neural__layer__maxpool_8h.html#a08779087bbf304a3958d97fbafa907c9" title="Prints a maxpooling layer." alt="" coords="5,5,153,47"/>
-</map>

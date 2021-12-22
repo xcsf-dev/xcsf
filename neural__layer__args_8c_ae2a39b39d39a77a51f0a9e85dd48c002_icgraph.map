@@ -1,11 +1,11 @@
 <map id="layer_args_copy" name="layer_args_copy">
-<area shape="rect" id="node1" title="Creates and returns a copy of specified layer parameters." alt="" coords="928,140,1045,167"/>
-<area shape="rect" id="node2" href="$action_8c.html#a4ef2c098a36e5937c1171ccb5b9304a5" title="Initialises default neural action parameters." alt="" coords="716,9,869,50"/>
-<area shape="rect" id="node11" href="$condition_8c.html#a4af7104f5b202ebd68ffaa21e35f690d" title="Initialises default neural condition parameters." alt="" coords="719,74,866,115"/>
-<area shape="rect" id="node13" href="$neural__layer__lstm_8h.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="719,140,867,167"/>
-<area shape="rect" id="node14" href="$neural__layer__recurrent_8h.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="705,191,880,217"/>
-<area shape="rect" id="node15" href="$prediction_8c.html#a4834581193fa96b3d626da899efbaf6f" title="Initialises default neural prediction parameters." alt="" coords="721,242,864,283"/>
-<area shape="rect" id="node3" href="$action_8h.html#aa7e0cd00c920c30b15e0d1cc409cada5" title="Initialises default action parameters." alt="" coords="504,24,657,51"/>
+<area shape="rect" id="node1" title="Creates and returns a copy of specified layer parameters." alt="" coords="941,132,1059,159"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#ae9c1117ca77c9dbe5b509c508483d56b" title="Initialises default neural action parameters." alt="" coords="710,31,889,57"/>
+<area shape="rect" id="node11" href="$cond__neural_8h.html#a935ca37ecd32e1b791066e3bc0f7536e" title="Initialises default neural condition parameters." alt="" coords="705,81,893,108"/>
+<area shape="rect" id="node13" href="$neural__layer__lstm_8h.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="725,132,873,159"/>
+<area shape="rect" id="node14" href="$neural__layer__recurrent_8h.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="712,183,887,209"/>
+<area shape="rect" id="node15" href="$pred__neural_8h.html#ad98412e2a2999778290478e22b868859" title="Initialises default neural prediction parameters." alt="" coords="707,233,892,260"/>
+<area shape="rect" id="node3" href="$action_8h.html#aa7e0cd00c920c30b15e0d1cc409cada5" title="Initialises default action parameters." alt="" coords="504,31,657,57"/>
 <area shape="rect" id="node4" href="$param_8h.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="373,81,456,108"/>
 <area shape="rect" id="node5" href="$env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="225,5,319,32"/>
 <area shape="rect" id="node8" href="$env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="219,56,325,83"/>
@@ -14,5 +14,5 @@
 <area shape="rect" id="node6" href="$env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="104,56,171,83"/>
 <area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,56,56,83"/>
 <area shape="rect" id="node12" href="$condition_8h.html#ac7f09d43efc7400318fe32c917a92292" title="Initialises default condition parameters." alt="" coords="507,81,654,108"/>
-<area shape="rect" id="node16" href="$prediction_8h.html#af2e3b26751cb8f9af4c608e534ee6894" title="Initialises default prediction parameters." alt="" coords="509,191,652,217"/>
+<area shape="rect" id="node16" href="$prediction_8h.html#af2e3b26751cb8f9af4c608e534ee6894" title="Initialises default prediction parameters." alt="" coords="509,183,652,209"/>
 </map>

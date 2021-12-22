@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.3</span>
+   &#160;<span id="projectnumber">1.1.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('gp_8h.html',''); initResizable(); });
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -98,19 +98,19 @@ $(document).ready(function(){initNavTree('gp_8h.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
-<p>An implementation of GP trees based upon TinyGP.  
+<p>An implementation of GP trees based upon TinyGP.
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="xcsf_8h_source.html">xcsf.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for gp.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h__incl.svg" width="890" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h__incl.svg" width="1168" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h__dep__incl.svg" width="472" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h__dep__incl.svg" width="367" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -139,9 +139,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a776ec7119667ca4611451522c3c4d247"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gp_8h.html#a776ec7119667ca4611451522c3c4d247">tree_print</a> (const struct <a class="el" href="structGPTree.html">GPTree</a> *gp, const struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *args)</td></tr>
 <tr class="memdesc:a776ec7119667ca4611451522c3c4d247"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a GP tree.  <a href="gp_8h.html#a776ec7119667ca4611451522c3c4d247">More...</a><br /></td></tr>
 <tr class="separator:a776ec7119667ca4611451522c3c4d247"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8de24783562d95fb99f47664821dabc0"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gp_8h.html#a8de24783562d95fb99f47664821dabc0">tree_json_export</a> (const struct <a class="el" href="structGPTree.html">GPTree</a> *gp, const struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *args)</td></tr>
-<tr class="memdesc:a8de24783562d95fb99f47664821dabc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a GP tree.  <a href="gp_8h.html#a8de24783562d95fb99f47664821dabc0">More...</a><br /></td></tr>
-<tr class="separator:a8de24783562d95fb99f47664821dabc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae500c8ca8754458d2830363563e35799"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gp_8h.html#ae500c8ca8754458d2830363563e35799">tree_json_export</a> (const struct <a class="el" href="structGPTree.html">GPTree</a> *gp, const struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *args)</td></tr>
+<tr class="memdesc:ae500c8ca8754458d2830363563e35799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a GP tree.  <a href="gp_8h.html#ae500c8ca8754458d2830363563e35799">More...</a><br /></td></tr>
+<tr class="separator:ae500c8ca8754458d2830363563e35799"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88f58058fc80e2e8c8735ed7843705b2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gp_8h.html#a88f58058fc80e2e8c8735ed7843705b2">tree_eval</a> (struct <a class="el" href="structGPTree.html">GPTree</a> *gp, const struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *args, const double *x)</td></tr>
 <tr class="memdesc:a88f58058fc80e2e8c8735ed7843705b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a GP tree.  <a href="gp_8h.html#a88f58058fc80e2e8c8735ed7843705b2">More...</a><br /></td></tr>
 <tr class="separator:a88f58058fc80e2e8c8735ed7843705b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,9 +163,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a1756fddb02ca93b4891d0a672ac72fc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gp_8h.html#a1756fddb02ca93b4891d0a672ac72fc8">tree_args_free</a> (struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *args)</td></tr>
 <tr class="memdesc:a1756fddb02ca93b4891d0a672ac72fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees memory used by GP tree parameters.  <a href="gp_8h.html#a1756fddb02ca93b4891d0a672ac72fc8">More...</a><br /></td></tr>
 <tr class="separator:a1756fddb02ca93b4891d0a672ac72fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff82366cbfae9c6c193acf4a52674270"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gp_8h.html#aff82366cbfae9c6c193acf4a52674270">tree_args_json_export</a> (const struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *args)</td></tr>
-<tr class="memdesc:aff82366cbfae9c6c193acf4a52674270"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the GP tree parameters.  <a href="gp_8h.html#aff82366cbfae9c6c193acf4a52674270">More...</a><br /></td></tr>
-<tr class="separator:aff82366cbfae9c6c193acf4a52674270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab18704a8506b92693030fd12464c876a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gp_8h.html#ab18704a8506b92693030fd12464c876a">tree_args_json_import</a> (struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *args, cJSON *json)</td></tr>
+<tr class="memdesc:ab18704a8506b92693030fd12464c876a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the GP tree parameters from a cJSON object.  <a href="gp_8h.html#ab18704a8506b92693030fd12464c876a">More...</a><br /></td></tr>
+<tr class="separator:ab18704a8506b92693030fd12464c876a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acedba2c1610ffd5e67effc0f0f482652"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gp_8h.html#acedba2c1610ffd5e67effc0f0f482652">tree_args_json_export</a> (const struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *args)</td></tr>
+<tr class="memdesc:acedba2c1610ffd5e67effc0f0f482652"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string of the GP tree parameters.  <a href="gp_8h.html#acedba2c1610ffd5e67effc0f0f482652">More...</a><br /></td></tr>
+<tr class="separator:acedba2c1610ffd5e67effc0f0f482652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeae0667e724564d74d36c9fe6ad9682"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gp_8h.html#afeae0667e724564d74d36c9fe6ad9682">tree_args_save</a> (const struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *args, FILE *fp)</td></tr>
 <tr class="memdesc:afeae0667e724564d74d36c9fe6ad9682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves Tree GP parameters.  <a href="gp_8h.html#afeae0667e724564d74d36c9fe6ad9682">More...</a><br /></td></tr>
 <tr class="separator:afeae0667e724564d74d36c9fe6ad9682"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,11 +223,11 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00384">384</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00386">386</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00038">ArgsGPTree::constants</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00371">cond_param_free()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00364">cond_param_free()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -258,11 +261,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00368">368</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00370">370</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00038">ArgsGPTree::constants</a>, <a class="el" href="gp_8h_source.html#l00036">ArgsGPTree::init_depth</a>, <a class="el" href="gp_8h_source.html#l00032">ArgsGPTree::max</a>, <a class="el" href="gp_8h_source.html#l00037">ArgsGPTree::max_len</a>, <a class="el" href="gp_8h_source.html#l00033">ArgsGPTree::min</a>, <a class="el" href="gp_8h_source.html#l00035">ArgsGPTree::n_constants</a>, and <a class="el" href="gp_8h_source.html#l00034">ArgsGPTree::n_inputs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults_gp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00282">cond_gp_param_defaults()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -296,11 +299,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00453">453</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00486">486</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00038">ArgsGPTree::constants</a>, <a class="el" href="gp_8h_source.html#l00032">ArgsGPTree::max</a>, <a class="el" href="gp_8h_source.html#l00033">ArgsGPTree::min</a>, <a class="el" href="gp_8h_source.html#l00035">ArgsGPTree::n_constants</a>, and <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults_gp()</a>, <a class="el" href="config_8c_source.html#l00622">config_read()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00885">XCS::unpack_cond_gp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00282">cond_gp_param_defaults()</a>, and <a class="el" href="cond__gp_8c_source.html#l00271">cond_gp_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -310,20 +313,20 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_ab1a2a5d4c1921eeb8d76a3fae68b2d13_icgraph.svg" width="1090" height="252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_ab1a2a5d4c1921eeb8d76a3fae68b2d13_icgraph.svg" width="1175" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="aff82366cbfae9c6c193acf4a52674270"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff82366cbfae9c6c193acf4a52674270">&#9670;&nbsp;</a></span>tree_args_json_export()</h2>
+<a id="acedba2c1610ffd5e67effc0f0f482652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acedba2c1610ffd5e67effc0f0f482652">&#9670;&nbsp;</a></span>tree_args_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* tree_args_json_export </td>
+          <td class="memname">char* tree_args_json_export </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *&#160;</td>
           <td class="paramname"><em>args</em></td><td>)</td>
@@ -341,15 +344,70 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00395">395</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00397">397</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00036">ArgsGPTree::init_depth</a>, <a class="el" href="gp_8h_source.html#l00032">ArgsGPTree::max</a>, <a class="el" href="gp_8h_source.html#l00037">ArgsGPTree::max_len</a>, <a class="el" href="gp_8h_source.html#l00033">ArgsGPTree::min</a>, and <a class="el" href="gp_8h_source.html#l00035">ArgsGPTree::n_constants</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00281">cond_param_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00260">cond_gp_param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_aff82366cbfae9c6c193acf4a52674270_icgraph.svg" width="1139" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_acedba2c1610ffd5e67effc0f0f482652_icgraph.svg" width="1332" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab18704a8506b92693030fd12464c876a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab18704a8506b92693030fd12464c876a">&#9670;&nbsp;</a></span>tree_args_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tree_args_json_import </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structArgsGPTree.html">ArgsGPTree</a> *&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the GP tree parameters from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">args</td><td>GP tree parameter data structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00416">416</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+
+<p class="reference">References <a class="el" href="gp_8c_source.html#l00534">tree_param_set_init_depth()</a>, <a class="el" href="gp_8c_source.html#l00500">tree_param_set_max()</a>, <a class="el" href="gp_8c_source.html#l00545">tree_param_set_max_len()</a>, <a class="el" href="gp_8c_source.html#l00506">tree_param_set_min()</a>, and <a class="el" href="gp_8c_source.html#l00523">tree_param_set_n_constants()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00271">cond_gp_param_json_import()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_ab18704a8506b92693030fd12464c876a_cgraph.svg" width="400" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_ab18704a8506b92693030fd12464c876a_icgraph.svg" width="986" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -391,11 +449,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00435">435</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00468">468</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00038">ArgsGPTree::constants</a>, <a class="el" href="gp_8h_source.html#l00036">ArgsGPTree::init_depth</a>, <a class="el" href="gp_8h_source.html#l00032">ArgsGPTree::max</a>, <a class="el" href="gp_8h_source.html#l00037">ArgsGPTree::max_len</a>, <a class="el" href="gp_8h_source.html#l00033">ArgsGPTree::min</a>, <a class="el" href="gp_8h_source.html#l00035">ArgsGPTree::n_constants</a>, and <a class="el" href="gp_8h_source.html#l00034">ArgsGPTree::n_inputs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00349">cond_param_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00342">cond_param_load()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -441,11 +499,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00415">415</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00448">448</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00038">ArgsGPTree::constants</a>, <a class="el" href="gp_8h_source.html#l00036">ArgsGPTree::init_depth</a>, <a class="el" href="gp_8h_source.html#l00032">ArgsGPTree::max</a>, <a class="el" href="gp_8h_source.html#l00037">ArgsGPTree::max_len</a>, <a class="el" href="gp_8h_source.html#l00033">ArgsGPTree::min</a>, <a class="el" href="gp_8h_source.html#l00035">ArgsGPTree::n_constants</a>, and <a class="el" href="gp_8h_source.html#l00034">ArgsGPTree::n_inputs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00325">cond_param_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00318">cond_param_save()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -490,7 +548,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00249">249</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00251">251</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00046">GPTree::len</a>, <a class="el" href="gp_8h_source.html#l00048">GPTree::mu</a>, <a class="el" href="gp_8c_source.html#l00035">N_MU</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree::pos</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree::tree</a>.</p>
 
@@ -539,7 +597,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00265">265</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00267">267</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00046">GPTree::len</a>, <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>, <a class="el" href="gp_8h_source.html#l00045">GPTree::tree</a>, and <a class="el" href="gp_8c_source.html#l00051">tree_traverse()</a>.</p>
 
@@ -660,14 +718,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a8de24783562d95fb99f47664821dabc0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8de24783562d95fb99f47664821dabc0">&#9670;&nbsp;</a></span>tree_json_export()</h2>
+<a id="ae500c8ca8754458d2830363563e35799"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae500c8ca8754458d2830363563e35799">&#9670;&nbsp;</a></span>tree_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* tree_json_export </td>
+          <td class="memname">char* tree_json_export </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structGPTree.html">GPTree</a> *&#160;</td>
           <td class="paramname"><em>gp</em>, </td>
@@ -700,17 +758,17 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00048">GPTree::mu</a>, <a class="el" href="gp_8c_source.html#l00035">N_MU</a>, and <a class="el" href="gp_8c_source.html#l00164">tree_string()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00240">cond_gp_json_export()</a>, and <a class="el" href="gp_8c_source.html#l00238">tree_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00242">cond_gp_json_export()</a>, and <a class="el" href="gp_8c_source.html#l00238">tree_print()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_a8de24783562d95fb99f47664821dabc0_cgraph.svg" width="260" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_ae500c8ca8754458d2830363563e35799_cgraph.svg" width="260" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_a8de24783562d95fb99f47664821dabc0_icgraph.svg" width="474" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_ae500c8ca8754458d2830363563e35799_icgraph.svg" width="474" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -752,11 +810,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00347">347</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00349">349</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00046">GPTree::len</a>, <a class="el" href="gp_8h_source.html#l00048">GPTree::mu</a>, <a class="el" href="gp_8c_source.html#l00035">N_MU</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree::pos</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree::tree</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00224">cond_gp_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00226">cond_gp_load()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -802,7 +860,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00302">302</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00304">304</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8c_source.html#l00029">GP_NUM_FUNC</a>, <a class="el" href="gp_8h_source.html#l00046">GPTree::len</a>, <a class="el" href="gp_8h_source.html#l00048">GPTree::mu</a>, <a class="el" href="gp_8c_source.html#l00042">MU_TYPE</a>, <a class="el" href="gp_8h_source.html#l00035">ArgsGPTree::n_constants</a>, <a class="el" href="gp_8h_source.html#l00034">ArgsGPTree::n_inputs</a>, <a class="el" href="gp_8c_source.html#l00035">N_MU</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>, <a class="el" href="sam_8c_source.html#l00068">sam_adapt()</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree::tree</a>.</p>
 
@@ -848,15 +906,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00501">501</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00534">534</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00036">ArgsGPTree::init_depth</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults_gp()</a>, <a class="el" href="config_8c_source.html#l00305">config_cl_cond_gp()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00885">XCS::unpack_cond_gp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00282">cond_gp_param_defaults()</a>, and <a class="el" href="gp_8c_source.html#l00416">tree_args_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_ab912e7b472f6fdc6bf9a7565bac8f063_icgraph.svg" width="1298" height="252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_ab912e7b472f6fdc6bf9a7565bac8f063_icgraph.svg" width="1187" height="280"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -888,15 +946,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00467">467</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00500">500</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00032">ArgsGPTree::max</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults_gp()</a>, <a class="el" href="config_8c_source.html#l00305">config_cl_cond_gp()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00885">XCS::unpack_cond_gp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00282">cond_gp_param_defaults()</a>, and <a class="el" href="gp_8c_source.html#l00416">tree_args_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_a7ce902011f75d08acceed528c688a3d0_icgraph.svg" width="1306" height="252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_a7ce902011f75d08acceed528c688a3d0_icgraph.svg" width="1195" height="280"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -928,15 +986,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00512">512</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00545">545</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00037">ArgsGPTree::max_len</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults_gp()</a>, <a class="el" href="config_8c_source.html#l00305">config_cl_cond_gp()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00885">XCS::unpack_cond_gp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00282">cond_gp_param_defaults()</a>, and <a class="el" href="gp_8c_source.html#l00416">tree_args_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_a31aa4c7ee72dd3c66fa9fb093d3d8519_icgraph.svg" width="1330" height="252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_a31aa4c7ee72dd3c66fa9fb093d3d8519_icgraph.svg" width="1219" height="280"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -968,15 +1026,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00473">473</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00506">506</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00033">ArgsGPTree::min</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults_gp()</a>, <a class="el" href="config_8c_source.html#l00305">config_cl_cond_gp()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00885">XCS::unpack_cond_gp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00282">cond_gp_param_defaults()</a>, and <a class="el" href="gp_8c_source.html#l00416">tree_args_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_ace8b76bf8fcb4b48723dd94efae893c9_icgraph.svg" width="1302" height="252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_ace8b76bf8fcb4b48723dd94efae893c9_icgraph.svg" width="1191" height="280"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1008,15 +1066,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00490">490</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00523">523</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00035">ArgsGPTree::n_constants</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults_gp()</a>, <a class="el" href="config_8c_source.html#l00305">config_cl_cond_gp()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00885">XCS::unpack_cond_gp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00282">cond_gp_param_defaults()</a>, and <a class="el" href="gp_8c_source.html#l00416">tree_args_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_a9a12da4c3d6254d01924a949478bcc01_icgraph.svg" width="1352" height="252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="gp_8h_a9a12da4c3d6254d01924a949478bcc01_icgraph.svg" width="1242" height="280"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1048,11 +1106,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00479">479</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00512">512</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00034">ArgsGPTree::n_inputs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="condition_8c_source.html#l00161">cond_param_defaults_gp()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00885">XCS::unpack_cond_gp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00282">cond_gp_param_defaults()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1200,11 +1258,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00330">330</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gp_8c_source.html#l00332">332</a> of file <a class="el" href="gp_8c_source.html">gp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00046">GPTree::len</a>, <a class="el" href="gp_8h_source.html#l00048">GPTree::mu</a>, <a class="el" href="gp_8c_source.html#l00035">N_MU</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree::pos</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree::tree</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00208">cond_gp_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__gp_8c_source.html#l00210">cond_gp_save()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
