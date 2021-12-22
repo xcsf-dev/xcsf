@@ -17,7 +17,7 @@
  * @file main.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2021.
  * @brief Main function for stand-alone binary execution.
  */
 
@@ -36,7 +36,7 @@ main(int argc, char **argv)
 {
     if (argc < 3 || argc > 5) {
         printf("Usage: xcsf problemType{csv|mp|maze} ");
-        printf("problem{.csv|size|maze} [config.ini] [xcs.bin]\n");
+        printf("problem{.csv|size|maze} [config.json] [xcs.bin]\n");
         exit(EXIT_FAILURE);
     }
     struct XCSF *xcsf = malloc(sizeof(struct XCSF));
