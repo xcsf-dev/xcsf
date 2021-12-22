@@ -26,17 +26,24 @@
     #define _hypot hypot
 #endif
 
+#include <iostream>
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
+#include <regex>
 #include <string>
 #include <vector>
 
 namespace py = pybind11;
 
 extern "C" {
+#include "act_neural.h"
 #include "action.h"
 #include "clset.h"
 #include "clset_neural.h"
+#include "cond_dgp.h"
+#include "cond_gp.h"
+#include "cond_neural.h"
+#include "cond_ternary.h"
 #include "condition.h"
 #include "dgp.h"
 #include "ea.h"
@@ -45,6 +52,9 @@ extern "C" {
 #include "neural_layer.h"
 #include "pa.h"
 #include "param.h"
+#include "pred_neural.h"
+#include "pred_nlms.h"
+#include "pred_rls.h"
 #include "prediction.h"
 #include "utils.h"
 #include "xcs_rl.h"
@@ -820,370 +830,99 @@ class XCS
     }
 
     /**
+     * @brief Converts a Python dictionary to a C++ string (JSON).
+     * @param [in] kwargs Python dictionary of argument name:value pairs.
+     * @return JSON string representation of a dictionary.
+     */
+    cJSON *
+    dict_to_json(const py::dict &kwargs)
+    {
+        py::str s = py::str(*kwargs);
+        std::string cs = s.cast<std::string>();
+        cs = std::regex_replace(cs, std::regex("\'"), "\""); // cJSON format
+        cs = std::regex_replace(cs, std::regex("True"), "true");
+        cs = std::regex_replace(cs, std::regex("False"), "false");
+        return cJSON_Parse(cs.c_str());
+    }
+
+    /**
      * @brief Sets the condition type and initialisation arguments.
      * @param [in] type String representing a name of a condition type.
-     * @param [in] args Python dictionary of argument name:value pairs.
+     * @param [in] kwargs Python dictionary of argument name:value pairs.
      */
     void
-    set_condition(const std::string &type, const py::dict &args)
+    set_condition(const std::string &type, const py::dict &kwargs)
     {
         cond_param_set_type_string(&xcs, type.c_str());
+        cJSON *json = dict_to_json(kwargs);
         switch (xcs.cond->type) {
             case COND_TYPE_HYPERRECTANGLE:
             case COND_TYPE_HYPERELLIPSOID:
-                unpack_cond_csr(args);
+                cond_param_json_import_csr(&xcs, json->child);
                 break;
             case COND_TYPE_NEURAL:
             case RULE_TYPE_NEURAL:
             case RULE_TYPE_NETWORK:
-                unpack_cond_neural(args);
+                cond_neural_param_json_import(&xcs, json->child);
                 break;
             case COND_TYPE_GP:
-                unpack_cond_gp(args);
+                cond_gp_param_json_import(&xcs, json->child);
                 break;
             case COND_TYPE_DGP:
             case RULE_TYPE_DGP:
-                unpack_cond_dgp(args);
+                cond_dgp_param_json_import(&xcs, json->child);
                 break;
             case COND_TYPE_TERNARY:
-                unpack_cond_ternary(args);
+                cond_ternary_param_json_import(&xcs, json->child);
                 break;
             default:
                 break;
         }
-    }
-
-    /**
-     * @brief Sets parameters used by center-spread conditions.
-     * @param [in] args Python dictionary of argument name:value pairs.
-     */
-    void
-    unpack_cond_csr(const py::dict &args)
-    {
-        for (std::pair<py::handle, py::handle> item : args) {
-            auto name = item.first.cast<std::string>();
-            if (name == "min") {
-                cond_param_set_min(&xcs, item.second.cast<double>());
-            } else if (name == "max") {
-                cond_param_set_max(&xcs, item.second.cast<double>());
-            } else if (name == "spread_min") {
-                cond_param_set_spread_min(&xcs, item.second.cast<double>());
-            } else if (name == "eta") {
-                cond_param_set_eta(&xcs, item.second.cast<double>());
-            } else {
-                printf("Unknown center-spread parameter: %s\n", name.c_str());
-                exit(EXIT_FAILURE);
-            }
-        }
-    }
-
-    /**
-     * @brief Sets parameters used by tree-GP conditions.
-     * @param [in] args Python dictionary of argument name:value pairs.
-     */
-    void
-    unpack_cond_gp(const py::dict &args)
-    {
-        struct ArgsGPTree *targs = xcs.cond->targs;
-        tree_param_set_n_inputs(targs, xcs.x_dim);
-        for (std::pair<py::handle, py::handle> item : args) {
-            auto name = item.first.cast<std::string>();
-            if (name == "n_constants") {
-                tree_param_set_n_constants(targs, item.second.cast<int>());
-            } else if (name == "init_depth") {
-                tree_param_set_init_depth(targs, item.second.cast<int>());
-            } else if (name == "max_len") {
-                tree_param_set_max_len(targs, item.second.cast<int>());
-            } else if (name == "min") {
-                tree_param_set_min(targs, item.second.cast<double>());
-            } else if (name == "max") {
-                tree_param_set_max(targs, item.second.cast<double>());
-            } else {
-                printf("Unknown tree-GP parameter: %s\n", name.c_str());
-                exit(EXIT_FAILURE);
-            }
-        }
-        tree_args_init_constants(targs);
-    }
-
-    /**
-     * @brief Sets parameters used by dynamical GP graph conditions.
-     * @param [in] args Python dictionary of argument name:value pairs.
-     */
-    void
-    unpack_cond_dgp(const py::dict &args)
-    {
-        struct ArgsDGP *dargs = xcs.cond->dargs;
-        graph_param_set_n_inputs(dargs, xcs.x_dim);
-        for (std::pair<py::handle, py::handle> item : args) {
-            auto name = item.first.cast<std::string>();
-            if (name == "max_k") {
-                graph_param_set_max_k(dargs, item.second.cast<int>());
-            } else if (name == "max_t") {
-                graph_param_set_max_t(dargs, item.second.cast<int>());
-            } else if (name == "n") {
-                graph_param_set_n(dargs, item.second.cast<int>());
-            } else if (name == "evolve_cycles") {
-                graph_param_set_evolve_cycles(dargs, item.second.cast<bool>());
-            } else {
-                printf("Unknown DGP parameter: %s\n", name.c_str());
-                exit(EXIT_FAILURE);
-            }
-        }
-    }
-
-    /**
-     * @brief Sets parameters used by ternary conditions.
-     * @param [in] args Python dictionary of argument name:value pairs.
-     */
-    void
-    unpack_cond_ternary(const py::dict &args)
-    {
-        for (std::pair<py::handle, py::handle> item : args) {
-            auto name = item.first.cast<std::string>();
-            if (name == "bits") {
-                cond_param_set_bits(&xcs, item.second.cast<int>());
-            } else if (name == "p_dontcare") {
-                cond_param_set_p_dontcare(&xcs, item.second.cast<double>());
-            } else {
-                printf("Unknown ternary parameter: %s\n", name.c_str());
-                exit(EXIT_FAILURE);
-            }
-        }
-    }
-
-    /**
-     * @brief Sets parameters used by neural network conditions.
-     * @param [in] args Python dictionary of argument name:value pairs.
-     */
-    void
-    unpack_cond_neural(const py::dict &args)
-    {
-        layer_args_free(&xcs.cond->largs);
-        for (auto item : args) {
-            struct ArgsLayer *larg =
-                (struct ArgsLayer *) malloc(sizeof(struct ArgsLayer));
-            layer_args_init(larg);
-            unpack_layer_params(larg, item.second.cast<py::dict>());
-            if (xcs.cond->largs == NULL) {
-                xcs.cond->largs = larg;
-            } else {
-                struct ArgsLayer *iter = xcs.cond->largs;
-                while (iter->next != NULL) {
-                    iter = iter->next;
-                }
-                iter->next = larg;
-            }
-        }
-        layer_args_validate(xcs.cond->largs);
-    }
-
-    /**
-     * @brief Sets parameters used by a neural network layer.
-     * @param [in] larg Layer parameter structure to set.
-     * @param [in] args Python dictionary of argument name:value pairs.
-     */
-    void
-    unpack_layer_params(struct ArgsLayer *larg, const py::dict &args)
-    {
-        larg->n_inputs = xcs.x_dim;
-        for (std::pair<py::handle, py::handle> item : args) {
-            const auto name = item.first.cast<std::string>();
-            if (name == "type") {
-                const auto value = item.second.cast<std::string>();
-                larg->type = layer_type_as_int(value.c_str());
-            } else if (name == "max_neuron_grow") {
-                larg->max_neuron_grow = item.second.cast<int>();
-            } else if (name == "evolve_weights") {
-                larg->evolve_weights = item.second.cast<bool>();
-            } else if (name == "evolve_neurons") {
-                larg->evolve_neurons = item.second.cast<bool>();
-            } else if (name == "evolve_functions") {
-                larg->evolve_functions = item.second.cast<bool>();
-            } else if (name == "evolve_connect") {
-                larg->evolve_connect = item.second.cast<bool>();
-            } else if (name == "evolve_eta") {
-                larg->evolve_eta = item.second.cast<bool>();
-            } else if (name == "sgd_weights") {
-                larg->sgd_weights = item.second.cast<bool>();
-            } else if (name == "activation") {
-                const auto value = item.second.cast<std::string>();
-                larg->function = neural_activation_as_int(value.c_str());
-            } else if (name == "recurrent_activation") {
-                const auto value = item.second.cast<std::string>();
-                larg->recurrent_function =
-                    neural_activation_as_int(value.c_str());
-            } else if (name == "n_init") {
-                larg->n_init = item.second.cast<int>();
-            } else if (name == "n_max") {
-                larg->n_max = item.second.cast<int>();
-            } else if (name == "eta") {
-                larg->eta = item.second.cast<double>();
-            } else if (name == "eta_min") {
-                larg->eta_min = item.second.cast<double>();
-            } else if (name == "momentum") {
-                larg->momentum = item.second.cast<double>();
-            } else if (name == "decay") {
-                larg->decay = item.second.cast<double>();
-            } else if (name == "scale") {
-                larg->scale = item.second.cast<double>();
-            } else if (name == "probability") {
-                larg->probability = item.second.cast<double>();
-            } else if (name == "height") {
-                larg->height = item.second.cast<int>();
-            } else if (name == "width") {
-                larg->width = item.second.cast<int>();
-            } else if (name == "channels") {
-                larg->channels = item.second.cast<int>();
-            } else if (name == "size") {
-                larg->size = item.second.cast<int>();
-            } else if (name == "stride") {
-                larg->stride = item.second.cast<int>();
-            } else if (name == "pad") {
-                larg->pad = item.second.cast<int>();
-            } else {
-                printf("Unknown neural layer parameter: %s\n", name.c_str());
-                exit(EXIT_FAILURE);
-            }
-        }
+        cJSON_Delete(json);
     }
 
     /**
      * @brief Sets the action type and initialisation arguments.
      * @param [in] type String representing a name of a condition type.
-     * @param [in] args Python dictionary of argument name:value pairs.
+     * @param [in] kwargs Python dictionary of argument name:value pairs.
      */
     void
-    set_action(const std::string &type, const py::dict &args)
+    set_action(const std::string &type, const py::dict &kwargs)
     {
         action_param_set_type_string(&xcs, type.c_str());
         if (xcs.act->type == ACT_TYPE_NEURAL) {
-            unpack_act_neural(args);
+            cJSON *json = dict_to_json(kwargs);
+            act_neural_param_json_import(&xcs, json->child);
+            cJSON_Delete(json);
         }
-    }
-
-    /**
-     * @brief Sets parameters used by neural network actions.
-     * @param [in] args Python dictionary of argument name:value pairs.
-     */
-    void
-    unpack_act_neural(const py::dict &args)
-    {
-        layer_args_free(&xcs.act->largs);
-        for (auto item : args) {
-            struct ArgsLayer *larg =
-                (struct ArgsLayer *) malloc(sizeof(struct ArgsLayer));
-            layer_args_init(larg);
-            unpack_layer_params(larg, item.second.cast<py::dict>());
-            if (xcs.act->largs == NULL) {
-                xcs.act->largs = larg;
-            } else {
-                struct ArgsLayer *iter = xcs.act->largs;
-                while (iter->next != NULL) {
-                    iter = iter->next;
-                }
-                iter->next = larg;
-            }
-        }
-        layer_args_validate(xcs.act->largs);
     }
 
     /**
      * @brief Sets the prediction type and initialisation arguments.
      * @param [in] type String representing a name of a condition type.
-     * @param [in] args Python dictionary of argument name:value pairs.
+     * @param [in] kwargs Python dictionary of argument name:value pairs.
      */
     void
-    set_prediction(const std::string &type, const py::dict &args)
+    set_prediction(const std::string &type, const py::dict &kwargs)
     {
         pred_param_set_type_string(&xcs, type.c_str());
+        cJSON *json = dict_to_json(kwargs);
         switch (xcs.pred->type) {
             case PRED_TYPE_NLMS_LINEAR:
             case PRED_TYPE_NLMS_QUADRATIC:
-                unpack_pred_nlms(args);
+                pred_nlms_param_json_import(&xcs, json->child);
                 break;
             case PRED_TYPE_RLS_LINEAR:
             case PRED_TYPE_RLS_QUADRATIC:
-                unpack_pred_rls(args);
+                pred_rls_param_json_import(&xcs, json->child);
                 break;
             case PRED_TYPE_NEURAL:
-                unpack_pred_neural(args);
+                pred_neural_param_json_import(&xcs, json->child);
                 break;
             default:
                 break;
         }
-    }
-
-    /**
-     * @brief Sets parameters used by neural network predictions.
-     * @param [in] args Python dictionary of argument name:value pairs.
-     */
-    void
-    unpack_pred_neural(const py::dict &args)
-    {
-        layer_args_free(&xcs.pred->largs);
-        for (auto item : args) {
-            struct ArgsLayer *larg =
-                (struct ArgsLayer *) malloc(sizeof(struct ArgsLayer));
-            layer_args_init(larg);
-            unpack_layer_params(larg, item.second.cast<py::dict>());
-            if (xcs.pred->largs == NULL) {
-                xcs.pred->largs = larg;
-            } else {
-                struct ArgsLayer *iter = xcs.pred->largs;
-                while (iter->next != NULL) {
-                    iter = iter->next;
-                }
-                iter->next = larg;
-            }
-        }
-        layer_args_validate(xcs.pred->largs);
-    }
-
-    /**
-     * @brief Sets parameters used by least mean squares predictions.
-     * @param [in] args Python dictionary of argument name:value pairs.
-     */
-    void
-    unpack_pred_nlms(const py::dict &args)
-    {
-        for (std::pair<py::handle, py::handle> item : args) {
-            auto name = item.first.cast<std::string>();
-            if (name == "x0") {
-                pred_param_set_x0(&xcs, item.second.cast<double>());
-            } else if (name == "eta") {
-                pred_param_set_eta(&xcs, item.second.cast<double>());
-            } else if (name == "eta_min") {
-                pred_param_set_eta_min(&xcs, item.second.cast<double>());
-            } else if (name == "evolve_eta") {
-                pred_param_set_evolve_eta(&xcs, item.second.cast<bool>());
-            } else {
-                printf("Unknown NLMS parameter: %s\n", name.c_str());
-                exit(EXIT_FAILURE);
-            }
-        }
-    }
-
-    /**
-     * @brief Sets parameters used by recursive least mean squares predictions.
-     * @param [in] args Python dictionary of argument name:value pairs.
-     */
-    void
-    unpack_pred_rls(const py::dict &args)
-    {
-        for (std::pair<py::handle, py::handle> item : args) {
-            auto name = item.first.cast<std::string>();
-            if (name == "x0") {
-                pred_param_set_x0(&xcs, item.second.cast<double>());
-            } else if (name == "rls_scale_factor") {
-                pred_param_set_scale_factor(&xcs, item.second.cast<double>());
-            } else if (name == "rls_lambda") {
-                pred_param_set_lambda(&xcs, item.second.cast<double>());
-            } else {
-                printf("Unknown RLS parameter: %s\n", name.c_str());
-                exit(EXIT_FAILURE);
-            }
-        }
+        cJSON_Delete(json);
     }
 
     void

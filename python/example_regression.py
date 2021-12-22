@@ -105,8 +105,8 @@ xcs.BETA = 0.1  # update rate for error, etc.
 xcs.action("integer")  # (dummy) integer actions
 
 tree_args: dict = {
-    "min": 0,  # minimum value of a constant
-    "max": 1,  # maximum value of a constant
+    "min_constant": 0,  # minimum value of a constant
+    "max_constant": 1,  # maximum value of a constant
     "n_constants": 100,  # number of (global) constants
     "init_depth": 5,  # initial tree depth
     "max_len": 10000,  # maximum initial length
