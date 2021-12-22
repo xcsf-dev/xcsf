@@ -241,7 +241,9 @@ void
 cl_print(const struct XCSF *xcsf, const struct Cl *c, const bool print_cond,
          const bool print_act, const bool print_pred)
 {
-    printf("%s\n", cl_json_export(xcsf, c, print_cond, print_act, print_pred));
+    char *json_str = cl_json_export(xcsf, c, print_cond, print_act, print_pred);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -480,7 +482,7 @@ cl_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] return_pred Whether to return the prediction.
  * @return String encoded in json format.
  */
-const char *
+char *
 cl_json_export(const struct XCSF *xcsf, const struct Cl *c,
                const bool return_cond, const bool return_act,
                const bool return_pred)
@@ -499,19 +501,26 @@ cl_json_export(const struct XCSF *xcsf, const struct Cl *c,
     cJSON_AddNumberToObject(json, "current_action", c->action);
     cJSON *p = cJSON_CreateDoubleArray(c->prediction, xcsf->y_dim);
     cJSON_AddItemToObject(json, "current_prediction", p);
+    char *json_str = NULL;
     if (return_cond) {
-        cJSON *condition = cJSON_Parse(cond_json_export(xcsf, c));
+        json_str = cond_json_export(xcsf, c);
+        cJSON *condition = cJSON_Parse(json_str);
         cJSON_AddItemToObject(json, "condition", condition);
+        free(json_str);
     }
     if (return_act) {
-        cJSON *action = cJSON_Parse(act_json_export(xcsf, c));
+        json_str = act_json_export(xcsf, c);
+        cJSON *action = cJSON_Parse(json_str);
         cJSON_AddItemToObject(json, "action", action);
+        free(json_str);
     }
     if (return_pred) {
-        cJSON *prediction = cJSON_Parse(pred_json_export(xcsf, c));
+        json_str = pred_json_export(xcsf, c);
+        cJSON *prediction = cJSON_Parse(json_str);
         cJSON_AddItemToObject(json, "prediction", prediction);
+        free(json_str);
     }
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

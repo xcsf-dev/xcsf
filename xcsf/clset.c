@@ -489,8 +489,10 @@ void
 clset_print(const struct XCSF *xcsf, const struct Set *set,
             const bool print_cond, const bool print_act, const bool print_pred)
 {
-    printf("%s\n",
-           clset_json_export(xcsf, set, print_cond, print_act, print_pred));
+    char *json_str =
+        clset_json_export(xcsf, set, print_cond, print_act, print_pred);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -702,7 +704,7 @@ clset_mfrac(const struct XCSF *xcsf)
  * @param [in] return_pred Whether to return the prediction.
  * @return String encoded in json format.
  */
-const char *
+char *
 clset_json_export(const struct XCSF *xcsf, const struct Set *set,
                   const bool return_cond, const bool return_act,
                   const bool return_pred)
@@ -711,13 +713,14 @@ clset_json_export(const struct XCSF *xcsf, const struct Set *set,
     cJSON *classifiers = cJSON_AddArrayToObject(json, "classifiers");
     const struct Clist *iter = set->list;
     while (iter != NULL) {
-        const char *str = cl_json_export(xcsf, iter->cl, return_cond,
-                                         return_act, return_pred);
+        char *str = cl_json_export(xcsf, iter->cl, return_cond, return_act,
+                                   return_pred);
         cJSON *classifier = cJSON_Parse(str);
         cJSON_AddItemToArray(classifiers, classifier);
+        free(str);
         iter = iter->next;
     }
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }
