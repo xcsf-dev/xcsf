@@ -154,70 +154,6 @@ condition_type_as_int(const char *type)
 }
 
 /**
- * @brief Initialises default tree GP condition parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-cond_param_defaults_gp(struct XCSF *xcsf)
-{
-    struct ArgsGPTree *args = malloc(sizeof(struct ArgsGPTree));
-    tree_args_init(args);
-    tree_param_set_max(args, 1);
-    tree_param_set_min(args, 0);
-    tree_param_set_init_depth(args, 5);
-    tree_param_set_max_len(args, 10000);
-    tree_param_set_n_constants(args, 100);
-    tree_param_set_n_inputs(args, xcsf->x_dim);
-    tree_args_init_constants(args);
-    xcsf->cond->targs = args;
-}
-
-/**
- * @brief Initialises default DGP condition parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-cond_param_defaults_dgp(struct XCSF *xcsf)
-{
-    struct ArgsDGP *args = malloc(sizeof(struct ArgsDGP));
-    graph_args_init(args);
-    graph_param_set_max_k(args, 2);
-    graph_param_set_max_t(args, 10);
-    graph_param_set_n(args, 10);
-    graph_param_set_n_inputs(args, xcsf->x_dim);
-    graph_param_set_evolve_cycles(args, true);
-    xcsf->cond->dargs = args;
-}
-
-/**
- * @brief Initialises default neural condition parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-cond_param_defaults_neural(struct XCSF *xcsf)
-{
-    // hidden layer
-    struct ArgsLayer *args = malloc(sizeof(struct ArgsLayer));
-    layer_args_init(args);
-    args->type = CONNECTED;
-    args->n_inputs = xcsf->x_dim;
-    args->n_init = 10;
-    args->n_max = 100;
-    args->max_neuron_grow = 1;
-    args->function = LOGISTIC;
-    args->evolve_weights = true;
-    args->evolve_neurons = true;
-    args->evolve_connect = true;
-    xcsf->cond->largs = args;
-    // output layer
-    args->next = layer_args_copy(args);
-    args->next->function = LINEAR;
-    args->next->n_inputs = args->n_init;
-    args->next->n_max = 1;
-    args->next->evolve_neurons = false;
-}
-
-/**
  * @brief Initialises default condition parameters.
  * @param [in] xcsf The XCSF data structure.
  */
@@ -229,28 +165,10 @@ cond_param_defaults(struct XCSF *xcsf)
     cond_param_set_min(xcsf, 0);
     cond_param_set_max(xcsf, 1);
     cond_param_set_spread_min(xcsf, 0.1);
-    cond_param_set_p_dontcare(xcsf, 0.5);
-    cond_param_set_bits(xcsf, 1);
-    cond_param_defaults_neural(xcsf);
-    cond_param_defaults_dgp(xcsf);
-    cond_param_defaults_gp(xcsf);
-}
-
-/**
- * @brief Returns a json formatted string of the ternary parameters.
- * @param [in] xcsf The XCSF data structure.
- * @return String encoded in json format.
- */
-static const char *
-cond_param_json_export_ternary(const struct XCSF *xcsf)
-{
-    const struct ArgsCond *cond = xcsf->cond;
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(json, "p_dontcare", cond->p_dontcare);
-    cJSON_AddNumberToObject(json, "bits", cond->bits);
-    const char *string = cJSON_Print(json);
-    cJSON_Delete(json);
-    return string;
+    cond_ternary_param_defaults(xcsf);
+    cond_neural_param_defaults(xcsf);
+    cond_dgp_param_defaults(xcsf);
+    cond_gp_param_defaults(xcsf);
 }
 
 /**
@@ -258,7 +176,7 @@ cond_param_json_export_ternary(const struct XCSF *xcsf)
  * @param [in] xcsf The XCSF data structure.
  * @return String encoded in json format.
  */
-static const char *
+static char *
 cond_param_json_export_csr(const struct XCSF *xcsf)
 {
     const struct ArgsCond *cond = xcsf->cond;
@@ -267,9 +185,36 @@ cond_param_json_export_csr(const struct XCSF *xcsf)
     cJSON_AddNumberToObject(json, "min", cond->min);
     cJSON_AddNumberToObject(json, "max", cond->max);
     cJSON_AddNumberToObject(json, "spread_min", cond->spread_min);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets the center-spread parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+cond_param_json_import_csr(struct XCSF *xcsf, cJSON *json)
+{
+    for (cJSON *iter = json; iter != NULL; iter = iter->next) {
+        if (strncmp(iter->string, "eta\0", 4) == 0 && cJSON_IsNumber(iter)) {
+            cond_param_set_eta(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "min\0", 4) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            cond_param_set_min(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "max\0", 4) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            cond_param_set_max(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "spread_min\0", 11) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            cond_param_set_spread_min(xcsf, iter->valuedouble);
+        } else {
+            printf("Error importing CSR parameter %s\n", iter->string);
+            exit(EXIT_FAILURE);
+        }
+    }
 }
 
 /**
@@ -277,42 +222,90 @@ cond_param_json_export_csr(const struct XCSF *xcsf)
  * @param [in] xcsf XCSF data structure.
  * @return String encoded in json format.
  */
-const char *
+char *
 cond_param_json_export(const struct XCSF *xcsf)
 {
     const struct ArgsCond *cond = xcsf->cond;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", condition_type_as_string(cond->type));
-    cJSON *params = NULL;
+    char *json_str = NULL;
     switch (cond->type) {
         case COND_TYPE_TERNARY:
-            params = cJSON_Parse(cond_param_json_export_ternary(xcsf));
+            json_str = cond_ternary_param_json_export(xcsf);
             break;
         case COND_TYPE_HYPERELLIPSOID:
         case COND_TYPE_HYPERRECTANGLE:
-            params = cJSON_Parse(cond_param_json_export_csr(xcsf));
+            json_str = cond_param_json_export_csr(xcsf);
             break;
         case COND_TYPE_GP:
-            params = cJSON_Parse(tree_args_json_export(xcsf->cond->targs));
+            json_str = cond_gp_param_json_export(xcsf);
             break;
         case COND_TYPE_DGP:
         case RULE_TYPE_DGP:
-            params = cJSON_Parse(graph_args_json_export(xcsf->cond->dargs));
+            json_str = cond_dgp_param_json_export(xcsf);
             break;
         case COND_TYPE_NEURAL:
         case RULE_TYPE_NEURAL:
         case RULE_TYPE_NETWORK:
-            params = cJSON_Parse(layer_args_json_export(xcsf->cond->largs));
+            json_str = layer_args_json_export(xcsf->cond->largs);
             break;
         default:
             break;
     }
-    if (params != NULL) {
-        cJSON_AddItemToObject(json, "args", params);
+    if (json_str != NULL) {
+        cJSON *params = cJSON_Parse(json_str);
+        if (params != NULL) {
+            cJSON_AddItemToObject(json, "args", params);
+        }
+        free(json_str);
     }
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets the condition parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ */
+bool
+cond_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
+        cond_param_set_type_string(xcsf, json->valuestring);
+    } else {
+        return false;
+    }
+    json = json->next;
+    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
+        switch (xcsf->cond->type) {
+            case COND_TYPE_TERNARY:
+                cond_ternary_param_json_import(xcsf, json->child);
+                break;
+            case COND_TYPE_HYPERELLIPSOID:
+            case COND_TYPE_HYPERRECTANGLE:
+                cond_param_json_import_csr(xcsf, json->child);
+                break;
+            case COND_TYPE_GP:
+                cond_gp_param_json_import(xcsf, json->child);
+                break;
+            case COND_TYPE_DGP:
+            case RULE_TYPE_DGP:
+                cond_dgp_param_json_import(xcsf, json->child);
+                break;
+            case COND_TYPE_NEURAL:
+            case RULE_TYPE_NEURAL:
+            case RULE_TYPE_NETWORK:
+                cond_neural_param_json_import(xcsf, json->child);
+                break;
+            default:
+                printf("cond_param_json_import(): unknown type.\n");
+                exit(EXIT_FAILURE);
+        }
+    }
+    return true;
 }
 
 /**

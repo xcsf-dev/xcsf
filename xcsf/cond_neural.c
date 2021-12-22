@@ -181,7 +181,9 @@ cond_neural_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_neural_json_export(xcsf, c));
+    char *json_str = cond_neural_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -306,7 +308,7 @@ cond_neural_layers(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c Classifier whose condition is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 cond_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
@@ -315,7 +317,62 @@ cond_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_AddStringToObject(json, "type", "neural");
     cJSON *network = cJSON_Parse(neural_json_export(&cond->net, false));
     cJSON_AddItemToObject(json, "network", network);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets the neural network parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+cond_neural_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    layer_args_free(&xcsf->cond->largs);
+    for (cJSON *iter = json; iter != NULL; iter = iter->next) {
+        struct ArgsLayer *larg = malloc(sizeof(struct ArgsLayer));
+        layer_args_init(larg);
+        larg->n_inputs = xcsf->x_dim;
+        layer_args_json_import(larg, iter->child);
+        if (xcsf->cond->largs == NULL) {
+            xcsf->cond->largs = larg;
+        } else {
+            struct ArgsLayer *iter = xcsf->cond->largs;
+            while (iter->next != NULL) {
+                iter = iter->next;
+            }
+            iter->next = larg;
+        }
+    }
+    layer_args_validate(xcsf->cond->largs);
+}
+
+/**
+ * @brief Initialises default neural condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+cond_neural_param_defaults(struct XCSF *xcsf)
+{
+    // hidden layer
+    struct ArgsLayer *args = malloc(sizeof(struct ArgsLayer));
+    layer_args_init(args);
+    args->type = CONNECTED;
+    args->n_inputs = xcsf->x_dim;
+    args->n_init = 10;
+    args->n_max = 100;
+    args->max_neuron_grow = 1;
+    args->function = LOGISTIC;
+    args->evolve_weights = true;
+    args->evolve_neurons = true;
+    args->evolve_connect = true;
+    xcsf->cond->largs = args;
+    // output layer
+    args->next = layer_args_copy(args);
+    args->next->function = LINEAR;
+    args->next->n_inputs = args->n_init;
+    args->next->n_max = 1;
+    args->next->evolve_neurons = false;
 }

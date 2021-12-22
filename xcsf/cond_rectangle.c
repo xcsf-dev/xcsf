@@ -265,7 +265,9 @@ cond_rectangle_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_rectangle_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_rectangle_json_export(xcsf, c));
+    char *json_str = cond_rectangle_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -327,7 +329,7 @@ cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] c Classifier whose condition is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 cond_rectangle_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct CondRectangle *cond = c->cond;
@@ -339,7 +341,7 @@ cond_rectangle_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_AddItemToObject(json, "center", center);
     cJSON_AddItemToObject(json, "spread", spread);
     cJSON_AddItemToObject(json, "mutation", mutation);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

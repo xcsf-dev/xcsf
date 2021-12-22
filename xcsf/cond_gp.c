@@ -180,7 +180,9 @@ cond_gp_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_gp_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_gp_json_export(xcsf, c));
+    char *json_str = cond_gp_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -236,7 +238,7 @@ cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] c Classifier whose condition is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 cond_gp_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct CondGP *cond = c->cond;
@@ -244,7 +246,49 @@ cond_gp_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_AddStringToObject(json, "type", "tree_gp");
     cJSON *tree = cJSON_Parse(tree_json_export(&cond->gp, xcsf->cond->targs));
     cJSON_AddItemToObject(json, "tree", tree);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Returns a json formatted string of the tree GP parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @return String encoded in json format.
+ */
+char *
+cond_gp_param_json_export(const struct XCSF *xcsf)
+{
+    return tree_args_json_export(xcsf->cond->targs);
+}
+
+/**
+ * @brief Sets the tree GP parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+cond_gp_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    tree_args_json_import(xcsf->cond->targs, json);
+    tree_args_init_constants(xcsf->cond->targs);
+}
+
+/**
+ * @brief Initialises default tree GP condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+cond_gp_param_defaults(struct XCSF *xcsf)
+{
+    struct ArgsGPTree *args = malloc(sizeof(struct ArgsGPTree));
+    tree_args_init(args);
+    tree_param_set_max(args, 1);
+    tree_param_set_min(args, 0);
+    tree_param_set_init_depth(args, 5);
+    tree_param_set_max_len(args, 10000);
+    tree_param_set_n_constants(args, 100);
+    tree_param_set_n_inputs(args, xcsf->x_dim);
+    tree_args_init_constants(args);
+    xcsf->cond->targs = args;
 }

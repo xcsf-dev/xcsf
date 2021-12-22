@@ -54,7 +54,10 @@ action_param_defaults(struct XCSF *xcsf);
 void
 action_param_free(struct XCSF *xcsf);
 
-const char *
+bool
+action_param_json_import(struct XCSF *xcsf, cJSON *json);
+
+char *
 action_param_json_export(const struct XCSF *xcsf);
 
 size_t
@@ -87,8 +90,7 @@ struct ActVtbl {
     size_t (*act_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                             FILE *fp);
     size_t (*act_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
-    const char *(*act_impl_json_export)(const struct XCSF *xcsf,
-                                        const struct Cl *c);
+    char *(*act_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
 };
 
 /**
@@ -247,7 +249,7 @@ act_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
  * @param [in] c Classifier whose action is to be returned.
  * @return String encoded in json format.
  */
-static inline const char *
+static inline char *
 act_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->act_vptr->act_impl_json_export)(xcsf, c);

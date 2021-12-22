@@ -78,7 +78,13 @@ cond_param_defaults(struct XCSF *xcsf);
 void
 cond_param_free(struct XCSF *xcsf);
 
-const char *
+bool
+cond_param_json_import(struct XCSF *xcsf, cJSON *json);
+
+void
+cond_param_json_import_csr(struct XCSF *xcsf, cJSON *json);
+
+char *
 cond_param_json_export(const struct XCSF *xcsf);
 
 size_t
@@ -112,8 +118,7 @@ struct CondVtbl {
     size_t (*cond_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                              FILE *fp);
     size_t (*cond_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
-    const char *(*cond_impl_json_export)(const struct XCSF *xcsf,
-                                         const struct Cl *c);
+    char *(*cond_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
 };
 
 /**
@@ -283,7 +288,7 @@ cond_print(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c Classifier whose condition is to be returned.
  * @return String encoded in json format.
  */
-static inline const char *
+static inline char *
 cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->cond_vptr->cond_impl_json_export)(xcsf, c);

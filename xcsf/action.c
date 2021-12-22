@@ -85,39 +85,6 @@ action_type_as_int(const char *type)
 }
 
 /**
- * @brief Initialises default neural action parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-action_param_defaults_neural(struct XCSF *xcsf)
-{
-    // hidden layer
-    struct ArgsLayer *la = malloc(sizeof(struct ArgsLayer));
-    layer_args_init(la);
-    la->type = CONNECTED;
-    la->n_inputs = xcsf->x_dim;
-    la->n_init = 1;
-    la->n_max = 100;
-    la->max_neuron_grow = 1;
-    la->function = LOGISTIC;
-    la->evolve_weights = true;
-    la->evolve_neurons = true;
-    la->evolve_connect = true;
-    xcsf->act->largs = la;
-    // softmax output layer
-    la->next = layer_args_copy(la);
-    la->next->function = LINEAR;
-    la->next->n_inputs = la->n_init;
-    la->next->n_init = xcsf->n_actions;
-    la->next->n_max = xcsf->n_actions;
-    la->next->evolve_neurons = false;
-    la->next->next = layer_args_copy(la->next);
-    la->next->next->n_inputs = la->next->n_init;
-    la->next->next->type = SOFTMAX;
-    la->next->next->scale = 1;
-}
-
-/**
  * @brief Initialises default action parameters.
  * @param [in] xcsf The XCSF data structure.
  */
@@ -125,7 +92,7 @@ void
 action_param_defaults(struct XCSF *xcsf)
 {
     action_param_set_type(xcsf, ACT_TYPE_NEURAL);
-    action_param_defaults_neural(xcsf);
+    act_neural_param_defaults(xcsf);
 }
 
 /**
@@ -133,22 +100,49 @@ action_param_defaults(struct XCSF *xcsf)
  * @param [in] xcsf XCSF data structure.
  * @return String encoded in json format.
  */
-const char *
+char *
 action_param_json_export(const struct XCSF *xcsf)
 {
     const struct ArgsAct *act = xcsf->act;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", action_type_as_string(act->type));
-    cJSON *params = NULL;
+    char *json_str = NULL;
     if (xcsf->act->type == ACT_TYPE_NEURAL) {
-        params = cJSON_Parse(layer_args_json_export(xcsf->act->largs));
+        json_str = layer_args_json_export(xcsf->act->largs);
     }
-    if (params != NULL) {
-        cJSON_AddItemToObject(json, "args", params);
+    if (json_str != NULL) {
+        cJSON *params = cJSON_Parse(json_str);
+        if (params != NULL) {
+            cJSON_AddItemToObject(json, "args", params);
+        }
+        free(json_str);
     }
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets the action parameters from a cJSON object.
+ * @param [in,out] xcsf XCSF data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ */
+bool
+action_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
+        action_param_set_type_string(xcsf, json->valuestring);
+    } else {
+        return false;
+    }
+    json = json->next;
+    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
+        if (xcsf->act->type == ACT_TYPE_NEURAL) {
+            act_neural_param_json_import(xcsf, json->child);
+        }
+    }
+    return true;
 }
 
 /**

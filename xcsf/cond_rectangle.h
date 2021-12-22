@@ -80,7 +80,7 @@ cond_rectangle_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
-const char *
+char *
 cond_rectangle_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

@@ -36,6 +36,12 @@ struct CondNeural {
     struct Net net; //!< Neural network
 };
 
+void
+cond_neural_param_json_import(struct XCSF *xcsf, cJSON *json);
+
+void
+cond_neural_param_defaults(struct XCSF *xcsf);
+
 bool
 cond_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                       const struct Cl *c2);
@@ -88,7 +94,7 @@ cond_neural_layers(const struct XCSF *xcsf, const struct Cl *c);
 int
 cond_neural_connections(const struct XCSF *xcsf, const struct Cl *c, int layer);
 
-const char *
+char *
 cond_neural_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

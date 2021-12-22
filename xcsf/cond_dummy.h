@@ -68,7 +68,7 @@ cond_dummy_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 cond_dummy_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
-const char *
+char *
 cond_dummy_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

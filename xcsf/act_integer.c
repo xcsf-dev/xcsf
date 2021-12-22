@@ -133,7 +133,9 @@ act_integer_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 void
 act_integer_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", act_integer_json_export(xcsf, c));
+    char *json_str = act_integer_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -243,7 +245,7 @@ act_integer_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] c Classifier whose action is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 act_integer_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
@@ -253,7 +255,7 @@ act_integer_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_AddNumberToObject(json, "action", act->action);
     cJSON *mutation = cJSON_CreateDoubleArray(act->mu, N_MU);
     cJSON_AddItemToObject(json, "mutation", mutation);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

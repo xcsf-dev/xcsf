@@ -81,7 +81,7 @@ rule_dgp_cond_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 rule_dgp_cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
-const char *
+char *
 rule_dgp_cond_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**
@@ -137,7 +137,7 @@ rule_dgp_act_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 rule_dgp_act_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
-const char *
+char *
 rule_dgp_act_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

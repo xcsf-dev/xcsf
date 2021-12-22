@@ -36,6 +36,12 @@ struct ActNeural {
     struct Net net; //!< Neural network
 };
 
+void
+act_neural_param_defaults(struct XCSF *xcsf);
+
+void
+act_neural_param_json_import(struct XCSF *xcsf, cJSON *json);
+
 bool
 act_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                      const struct Cl *c2);
@@ -77,7 +83,7 @@ act_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 act_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
-const char *
+char *
 act_neural_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

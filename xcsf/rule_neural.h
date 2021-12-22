@@ -80,7 +80,7 @@ rule_neural_cond_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 rule_neural_cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
-const char *
+char *
 rule_neural_cond_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**
@@ -138,7 +138,7 @@ rule_neural_act_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 rule_neural_act_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
-const char *
+char *
 rule_neural_act_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

@@ -36,6 +36,15 @@ struct CondTernary {
     char *tmp_input; //!< Temporary storage for float conversion
 };
 
+void
+cond_ternary_param_defaults(struct XCSF *xcsf);
+
+char *
+cond_ternary_param_json_export(const struct XCSF *xcsf);
+
+void
+cond_ternary_param_json_import(struct XCSF *xcsf, cJSON *json);
+
 bool
 cond_ternary_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                        const struct Cl *c2);
@@ -81,7 +90,7 @@ cond_ternary_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 cond_ternary_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
-const char *
+char *
 cond_ternary_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

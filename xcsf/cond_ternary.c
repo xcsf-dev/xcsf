@@ -262,7 +262,9 @@ cond_ternary_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_ternary_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_ternary_json_export(xcsf, c));
+    char *json_str = cond_ternary_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -332,7 +334,7 @@ cond_ternary_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] c Classifier whose condition is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 cond_ternary_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
@@ -345,7 +347,57 @@ cond_ternary_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_AddStringToObject(json, "string", buff);
     cJSON *mutation = cJSON_CreateDoubleArray(cond->mu, N_MU);
     cJSON_AddItemToObject(json, "mutation", mutation);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Returns a json formatted string of the ternary parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @return String encoded in json format.
+ */
+char *
+cond_ternary_param_json_export(const struct XCSF *xcsf)
+{
+    const struct ArgsCond *cond = xcsf->cond;
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "p_dontcare", cond->p_dontcare);
+    cJSON_AddNumberToObject(json, "bits", cond->bits);
+    char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
+}
+
+/**
+ * @brief Sets the ternary parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+cond_ternary_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    for (cJSON *iter = json; iter != NULL; iter = iter->next) {
+        if (strncmp(iter->string, "p_dontcare\0", 11) == 0 &&
+            cJSON_IsNumber(iter)) {
+            cond_param_set_p_dontcare(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "bits\0", 5) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            cond_param_set_bits(xcsf, iter->valueint);
+        } else {
+            printf("Error importing ternary parameter %s\n", iter->string);
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+/**
+ * @brief Initialises default ternary condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+cond_ternary_param_defaults(struct XCSF *xcsf)
+{
+    cond_param_set_p_dontcare(xcsf, 0.5);
+    cond_param_set_bits(xcsf, 1);
 }

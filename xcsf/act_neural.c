@@ -136,7 +136,9 @@ act_neural_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
 void
 act_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", act_neural_json_export(xcsf, c));
+    char *json_str = act_neural_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -226,7 +228,7 @@ act_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] c Classifier whose action is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 act_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
@@ -235,7 +237,67 @@ act_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_AddStringToObject(json, "type", "neural");
     cJSON *network = cJSON_Parse(neural_json_export(&act->net, false));
     cJSON_AddItemToObject(json, "network", network);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Initialises default neural action parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+act_neural_param_defaults(struct XCSF *xcsf)
+{
+    // hidden layer
+    struct ArgsLayer *la = malloc(sizeof(struct ArgsLayer));
+    layer_args_init(la);
+    la->type = CONNECTED;
+    la->n_inputs = xcsf->x_dim;
+    la->n_init = 1;
+    la->n_max = 100;
+    la->max_neuron_grow = 1;
+    la->function = LOGISTIC;
+    la->evolve_weights = true;
+    la->evolve_neurons = true;
+    la->evolve_connect = true;
+    xcsf->act->largs = la;
+    // softmax output layer
+    la->next = layer_args_copy(la);
+    la->next->function = LINEAR;
+    la->next->n_inputs = la->n_init;
+    la->next->n_init = xcsf->n_actions;
+    la->next->n_max = xcsf->n_actions;
+    la->next->evolve_neurons = false;
+    la->next->next = layer_args_copy(la->next);
+    la->next->next->n_inputs = la->next->n_init;
+    la->next->next->type = SOFTMAX;
+    la->next->next->scale = 1;
+}
+
+/**
+ * @brief Sets the neural network parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+act_neural_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    layer_args_free(&xcsf->act->largs);
+    for (cJSON *iter = json; iter != NULL; iter = iter->next) {
+        struct ArgsLayer *larg = malloc(sizeof(struct ArgsLayer));
+        layer_args_init(larg);
+        larg->n_inputs = xcsf->x_dim;
+        layer_args_json_import(larg, iter->child);
+        if (xcsf->act->largs == NULL) {
+            xcsf->act->largs = larg;
+        } else {
+            struct ArgsLayer *iter = xcsf->act->largs;
+            while (iter->next != NULL) {
+                iter = iter->next;
+            }
+            iter->next = larg;
+        }
+    }
+    layer_args_validate(xcsf->act->largs);
 }

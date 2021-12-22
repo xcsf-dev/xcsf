@@ -176,7 +176,9 @@ cond_dgp_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_dgp_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_dgp_json_export(xcsf, c));
+    char *json_str = cond_dgp_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -232,7 +234,7 @@ cond_dgp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] c Classifier whose condition is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 cond_dgp_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
@@ -241,7 +243,47 @@ cond_dgp_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_AddStringToObject(json, "type", "dgp");
     cJSON *graph = cJSON_Parse(graph_json_export(&cond->dgp));
     cJSON_AddItemToObject(json, "graph", graph);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Returns a json formatted string of the DGP parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @return String encoded in json format.
+ */
+char *
+cond_dgp_param_json_export(const struct XCSF *xcsf)
+{
+    return graph_args_json_export(xcsf->cond->dargs);
+}
+
+/**
+ * @brief Sets the DGP parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ *
+ */
+void
+cond_dgp_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    graph_args_json_import(xcsf->cond->dargs, json);
+}
+
+/**
+ * @brief Initialises default DGP condition parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+cond_dgp_param_defaults(struct XCSF *xcsf)
+{
+    struct ArgsDGP *args = malloc(sizeof(struct ArgsDGP));
+    graph_args_init(args);
+    graph_param_set_max_k(args, 2);
+    graph_param_set_max_t(args, 10);
+    graph_param_set_n(args, 10);
+    graph_param_set_n_inputs(args, xcsf->x_dim);
+    graph_param_set_evolve_cycles(args, true);
+    xcsf->cond->dargs = args;
 }

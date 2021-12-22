@@ -76,7 +76,7 @@ act_integer_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 size_t
 act_integer_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
-const char *
+char *
 act_integer_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

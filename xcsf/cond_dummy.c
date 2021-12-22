@@ -165,7 +165,9 @@ cond_dummy_general(const struct XCSF *xcsf, const struct Cl *c1,
 void
 cond_dummy_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", cond_dummy_json_export(xcsf, c));
+    char *json_str = cond_dummy_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -220,14 +222,14 @@ cond_dummy_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] c Classifier whose condition is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 cond_dummy_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     (void) c;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "dummy");
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }
