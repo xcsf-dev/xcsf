@@ -243,7 +243,7 @@ param_json_import_subsump(struct XCSF *xcsf, const cJSON *json)
         param_set_set_subsumption(xcsf, json->valueint);
     } else if (strncmp(json->string, "theta_sub\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_theta_sub(xcsf, json->valuedouble);
+        param_set_theta_sub(xcsf, json->valueint);
     } else {
         return false;
     }
@@ -272,7 +272,7 @@ param_json_import_cl_general(struct XCSF *xcsf, const cJSON *json)
         param_set_nu(xcsf, json->valuedouble);
     } else if (strncmp(json->string, "theta_del\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_theta_del(xcsf, json->valuedouble);
+        param_set_theta_del(xcsf, json->valueint);
     } else if (strncmp(json->string, "init_fitness\0", 13) == 0 &&
                cJSON_IsNumber(json)) {
         param_set_init_fitness(xcsf, json->valuedouble);
