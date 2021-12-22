@@ -26,8 +26,11 @@
 #include "loss.h"
 #include "xcsf.h"
 
-const char *
+char *
 param_json_export(const struct XCSF *xcsf);
+
+void
+param_json_import(struct XCSF *xcsf, const char *json_str);
 
 void
 param_free(struct XCSF *xcsf);

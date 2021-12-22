@@ -101,7 +101,7 @@ param_free(struct XCSF *xcsf)
  * @param [in] xcsf XCSF data structure.
  * @return String encoded in json format.
  */
-const char *
+char *
 param_json_export(const struct XCSF *xcsf)
 {
     char v[256];
@@ -157,9 +157,187 @@ param_json_export(const struct XCSF *xcsf)
     cJSON_AddItemToObject(json, "condition", cond_params);
     cJSON *pred_params = cJSON_Parse(pred_param_json_export(xcsf));
     cJSON_AddItemToObject(json, "prediction", pred_params);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets the general parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ */
+static bool
+param_json_import_general(struct XCSF *xcsf, const cJSON *json)
+{
+    if (strncmp(json->string, "version\0", 8) == 0 ||
+        strncmp(json->string, "x_dim\0", 6) == 0 ||
+        strncmp(json->string, "y_dim\0", 6) == 0 ||
+        strncmp(json->string, "n_actions\0", 10) == 0) {
+        return true; // set internally
+    } else if (strncmp(json->string, "omp_num_threads\0", 16) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_omp_num_threads(xcsf, json->valueint);
+    } else if (strncmp(json->string, "pop_size\0", 9) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_pop_size(xcsf, json->valueint);
+    } else if (strncmp(json->string, "max_trials\0", 10) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_max_trials(xcsf, json->valueint);
+    } else if (strncmp(json->string, "pop_init\0", 9) == 0 &&
+               cJSON_IsBool(json)) {
+        param_set_pop_init(xcsf, json->valueint);
+    } else if (strncmp(json->string, "perf_trials\0", 12) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_perf_trials(xcsf, json->valueint);
+    } else if (strncmp(json->string, "loss_func\0", 10) == 0 &&
+               cJSON_IsString(json)) {
+        param_set_loss_func_string(xcsf, json->valuestring);
+    } else if (strncmp(json->string, "huber_delta\0", 12) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_huber_delta(xcsf, json->valuedouble);
+    } else {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * @brief Sets the multi-step parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ *
+ */
+static bool
+param_json_import_multi(struct XCSF *xcsf, const cJSON *json)
+{
+    if (strncmp(json->string, "teletransportation\0", 19) == 0 &&
+        cJSON_IsNumber(json)) {
+        param_set_teletransportation(xcsf, json->valueint);
+    } else if (strncmp(json->string, "gamma\0", 6) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_gamma(xcsf, json->valuedouble);
+    } else if (strncmp(json->string, "p_explore\0", 10) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_p_explore(xcsf, json->valuedouble);
+    } else {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * @brief Sets the subsumption parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ *
+ */
+static bool
+param_json_import_subsump(struct XCSF *xcsf, const cJSON *json)
+{
+    if (strncmp(json->string, "set_subsumption\0", 16) == 0 &&
+        cJSON_IsBool(json)) {
+        param_set_set_subsumption(xcsf, json->valueint);
+    } else if (strncmp(json->string, "theta_sub\0", 10) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_theta_sub(xcsf, json->valuedouble);
+    } else {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * @brief Sets the general classifier parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ *
+ */
+static bool
+param_json_import_cl_general(struct XCSF *xcsf, const cJSON *json)
+{
+    if (strncmp(json->string, "alpha\0", 6) == 0 && cJSON_IsNumber(json)) {
+        param_set_alpha(xcsf, json->valuedouble);
+    } else if (strncmp(json->string, "beta\0", 5) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_beta(xcsf, json->valuedouble);
+    } else if (strncmp(json->string, "delta\0", 6) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_delta(xcsf, json->valuedouble);
+    } else if (strncmp(json->string, "nu\0", 3) == 0 && cJSON_IsNumber(json)) {
+        param_set_nu(xcsf, json->valuedouble);
+    } else if (strncmp(json->string, "theta_del\0", 10) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_theta_del(xcsf, json->valuedouble);
+    } else if (strncmp(json->string, "init_fitness\0", 13) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_init_fitness(xcsf, json->valuedouble);
+    } else if (strncmp(json->string, "init_error\0", 11) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_init_error(xcsf, json->valuedouble);
+    } else if (strncmp(json->string, "e0\0", 3) == 0 && cJSON_IsNumber(json)) {
+        param_set_e0(xcsf, json->valuedouble);
+    } else if (strncmp(json->string, "m_probation\0", 12) == 0 &&
+               cJSON_IsNumber(json)) {
+        param_set_m_probation(xcsf, json->valueint);
+    } else if (strncmp(json->string, "stateful\0", 9) == 0 &&
+               cJSON_IsBool(json)) {
+        param_set_stateful(xcsf, json->valueint);
+    } else if (strncmp(json->string, "compaction\0", 11) == 0 &&
+               cJSON_IsBool(json)) {
+        param_set_compaction(xcsf, json->valueint);
+    } else {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * @brief Sets the parameters from a json formatted string.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json_str String encoded in json format.
+ */
+void
+param_json_import(struct XCSF *xcsf, const char *json_str)
+{
+    cJSON *json = cJSON_Parse(json_str);
+    for (cJSON *iter = json->child; iter != NULL; iter = iter->next) {
+        if (param_json_import_general(xcsf, iter)) {
+            continue;
+        }
+        if (param_json_import_multi(xcsf, iter)) {
+            continue;
+        }
+        if (param_json_import_subsump(xcsf, iter)) {
+            continue;
+        }
+        if (param_json_import_cl_general(xcsf, iter)) {
+            continue;
+        }
+        if (strncmp(iter->string, "ea\0", 3) == 0) {
+            ea_param_json_import(xcsf, iter->child);
+            continue;
+        }
+        if (strncmp(iter->string, "action\0", 7) == 0) {
+            action_param_json_import(xcsf, iter->child);
+            continue;
+        }
+        if (strncmp(iter->string, "condition\0", 10) == 0) {
+            cond_param_json_import(xcsf, iter->child);
+            continue;
+        }
+        if (strncmp(iter->string, "prediction\0", 11) == 0) {
+            pred_param_json_import(xcsf, iter->child);
+            continue;
+        }
+        printf("Error: unable to import parameter: %s\n", iter->string);
+        exit(EXIT_FAILURE);
+    }
+    cJSON_Delete(json);
 }
 
 /**
@@ -169,7 +347,9 @@ param_json_export(const struct XCSF *xcsf)
 void
 param_print(const struct XCSF *xcsf)
 {
-    printf("%s\n", param_json_export(xcsf));
+    char *json_str = param_json_export(xcsf);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
