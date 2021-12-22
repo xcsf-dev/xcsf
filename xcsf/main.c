@@ -45,7 +45,7 @@ main(int argc, char **argv)
     if (argc > 3) { // load parameter config
         config_read(xcsf, argv[3]);
     } else {
-        config_read(xcsf, "default.ini");
+        config_read(xcsf, "default.json");
     }
     xcsf_init(xcsf); // initialise empty sets
     if (argc == 5) { // reload state of a previous experiment

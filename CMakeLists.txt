@@ -125,7 +125,7 @@ endif()
 
 option(XCSF_MAIN "Build XCSF stand-alone main executable" ON)
 if(XCSF_MAIN)
-  file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/cfg/default.ini DESTINATION .)
+  file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/cfg/default.json DESTINATION .)
 endif()
 
 option(XCSF_PYLIB "Build XCSF Python library" OFF)

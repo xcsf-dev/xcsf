@@ -1,0 +1,55 @@
+{
+    "omp_num_threads": 8,
+    "pop_init": true,
+    "max_trials": 100000,
+    "perf_trials": 1000,
+    "pop_size": 1000,
+    "loss_func": "mae",
+    "gamma": 0.95,
+    "teletransportation": 50,
+    "p_explore": 0.9,
+    "set_subsumption": true,
+    "theta_sub": 100,
+    "e0": 0.01,
+    "alpha": 0.1,
+    "nu": 5,
+    "beta": 0.2,
+    "delta": 0.1,
+    "theta_del": 20,
+    "init_fitness": 0.01,
+    "init_error": 0,
+    "m_probation": 10000,
+    "stateful": true,
+    "compaction": false,
+    "ea": {
+        "select_type": "roulette",
+        "theta_ea": 25,
+        "lambda": 2,
+        "p_crossover": 0.8,
+        "err_reduc": 1,
+        "fit_reduc": 0.1,
+        "subsumption": true,
+        "pred_reset": false
+    },
+    "action": {
+        "type": "integer"
+    },
+    "condition": {
+        "type": "hyperrectangle",
+        "args": {
+            "eta": 0,
+            "min": 0,
+            "max": 1,
+            "spread_min": 0.1
+        }
+    },
+    "prediction": {
+        "type": "nlms_linear",
+        "args": {
+            "x0": 1,
+            "eta": 1,
+            "evolve_eta": true,
+            "eta_min": 0.0001
+        }
+    }
+}
