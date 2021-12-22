@@ -121,7 +121,9 @@ pred_neural_compute(const struct XCSF *xcsf, const struct Cl *c,
 void
 pred_neural_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", pred_neural_json_export(xcsf, c));
+    char *json_str = pred_neural_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -386,7 +388,7 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct Cl *c,
  * @param [in] c Classifier whose prediction is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 pred_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
@@ -395,7 +397,66 @@ pred_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_AddStringToObject(json, "type", "neural");
     cJSON *network = cJSON_Parse(neural_json_export(&pred->net, false));
     cJSON_AddItemToObject(json, "network", network);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Initialises default neural prediction parameters.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+pred_neural_param_defaults(struct XCSF *xcsf)
+{
+    // hidden layer
+    struct ArgsLayer *la = malloc(sizeof(struct ArgsLayer));
+    layer_args_init(la);
+    la->type = CONNECTED;
+    la->n_inputs = xcsf->x_dim;
+    la->n_init = 10;
+    la->n_max = 100;
+    la->max_neuron_grow = 1;
+    la->function = LOGISTIC;
+    la->evolve_weights = true;
+    la->evolve_neurons = true;
+    la->evolve_connect = true;
+    la->evolve_eta = true;
+    la->sgd_weights = true;
+    la->eta = 0.01;
+    la->momentum = 0.9;
+    xcsf->pred->largs = la;
+    // output layer
+    la->next = layer_args_copy(la);
+    la->next->n_inputs = la->n_init;
+    la->next->n_init = xcsf->y_dim;
+    la->next->n_max = xcsf->y_dim;
+    la->next->evolve_neurons = false;
+}
+
+/**
+ * @brief Sets the neural network parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+pred_neural_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    layer_args_free(&xcsf->pred->largs);
+    for (cJSON *iter = json; iter != NULL; iter = iter->next) {
+        struct ArgsLayer *larg = malloc(sizeof(struct ArgsLayer));
+        layer_args_init(larg);
+        larg->n_inputs = xcsf->x_dim;
+        layer_args_json_import(larg, iter->child);
+        if (xcsf->pred->largs == NULL) {
+            xcsf->pred->largs = larg;
+        } else {
+            struct ArgsLayer *iter = xcsf->pred->largs;
+            while (iter->next != NULL) {
+                iter = iter->next;
+            }
+            iter->next = larg;
+        }
+    }
+    layer_args_validate(xcsf->pred->largs);
 }

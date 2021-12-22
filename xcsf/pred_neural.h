@@ -36,6 +36,12 @@ struct PredNeural {
     struct Net net; //!< Neural network
 };
 
+void
+pred_neural_param_defaults(struct XCSF *xcsf);
+
+void
+pred_neural_param_json_import(struct XCSF *xcsf, cJSON *json);
+
 bool
 pred_neural_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                       const struct Cl *c2);
@@ -94,7 +100,7 @@ void
 pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct Cl *c,
                              const int n_del);
 
-const char *
+char *
 pred_neural_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

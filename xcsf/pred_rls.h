@@ -40,6 +40,12 @@ struct PredRLS {
     double *tmp_matrix2; //!< Temporary storage for updating gain matrix
 };
 
+char *
+pred_rls_param_json_export(const struct XCSF *xcsf);
+
+void
+pred_rls_param_json_import(struct XCSF *xcsf, cJSON *json);
+
 bool
 pred_rls_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                    const struct Cl *c2);
@@ -75,7 +81,7 @@ void
 pred_rls_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                 const double *y);
 
-const char *
+char *
 pred_rls_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

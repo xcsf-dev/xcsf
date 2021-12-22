@@ -110,7 +110,9 @@ pred_constant_compute(const struct XCSF *xcsf, const struct Cl *c,
 void
 pred_constant_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", pred_constant_json_export(xcsf, c));
+    char *json_str = pred_constant_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -195,14 +197,14 @@ pred_constant_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] c Classifier whose prediction is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 pred_constant_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "constant");
     cJSON *prediction = cJSON_CreateDoubleArray(c->prediction, xcsf->y_dim);
     cJSON_AddItemToObject(json, "prediction", prediction);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

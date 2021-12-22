@@ -174,7 +174,9 @@ pred_rls_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
 void
 pred_rls_print(const struct XCSF *xcsf, const struct Cl *c)
 {
-    printf("%s\n", pred_rls_json_export(xcsf, c));
+    char *json_str = pred_rls_json_export(xcsf, c);
+    printf("%s\n", json_str);
+    free(json_str);
 }
 
 /**
@@ -270,7 +272,7 @@ pred_rls_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
  * @param [in] c Classifier whose prediction is to be returned.
  * @return String encoded in json format.
  */
-const char *
+char *
 pred_rls_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct PredRLS *pred = c->pred;
@@ -282,7 +284,49 @@ pred_rls_json_export(const struct XCSF *xcsf, const struct Cl *c)
     }
     cJSON *weights = cJSON_CreateDoubleArray(pred->weights, pred->n_weights);
     cJSON_AddItemToObject(json, "weights", weights);
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Returns a json formatted string of the RLS parameters.
+ * @param [in] xcsf The XCSF data structure.
+ * @return String encoded in json format.
+ */
+char *
+pred_rls_param_json_export(const struct XCSF *xcsf)
+{
+    const struct ArgsPred *pred = xcsf->pred;
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "x0", pred->x0);
+    cJSON_AddNumberToObject(json, "lambda", pred->lambda);
+    cJSON_AddNumberToObject(json, "scale_factor", pred->scale_factor);
+    char *string = cJSON_Print(json);
+    cJSON_Delete(json);
+    return string;
+}
+
+/**
+ * @brief Sets the RLS parameters from a cJSON object.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+pred_rls_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    for (cJSON *iter = json; iter != NULL; iter = iter->next) {
+        if (strncmp(iter->string, "x0\0", 3) == 0 && cJSON_IsNumber(iter)) {
+            pred_param_set_x0(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "lambda\0", 7) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            pred_param_set_lambda(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "scale_factor\0", 13) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            pred_param_set_scale_factor(xcsf, iter->valuedouble);
+        } else {
+            printf("Error importing RLS parameter %s\n", iter->string);
+            exit(EXIT_FAILURE);
+        }
+    }
 }

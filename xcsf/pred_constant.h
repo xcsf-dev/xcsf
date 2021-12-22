@@ -63,7 +63,7 @@ void
 pred_constant_update(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x, const double *y);
 
-const char *
+char *
 pred_constant_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

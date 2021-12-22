@@ -114,38 +114,6 @@ prediction_type_as_int(const char *type)
 }
 
 /**
- * @brief Initialises default neural prediction parameters.
- * @param [in] xcsf The XCSF data structure.
- */
-static void
-pred_param_defaults_neural(struct XCSF *xcsf)
-{
-    // hidden layer
-    struct ArgsLayer *la = malloc(sizeof(struct ArgsLayer));
-    layer_args_init(la);
-    la->type = CONNECTED;
-    la->n_inputs = xcsf->x_dim;
-    la->n_init = 10;
-    la->n_max = 100;
-    la->max_neuron_grow = 1;
-    la->function = LOGISTIC;
-    la->evolve_weights = true;
-    la->evolve_neurons = true;
-    la->evolve_connect = true;
-    la->evolve_eta = true;
-    la->sgd_weights = true;
-    la->eta = 0.01;
-    la->momentum = 0.9;
-    xcsf->pred->largs = la;
-    // output layer
-    la->next = layer_args_copy(la);
-    la->next->n_inputs = la->n_init;
-    la->next->n_init = xcsf->y_dim;
-    la->next->n_max = xcsf->y_dim;
-    la->next->evolve_neurons = false;
-}
-
-/**
  * @brief Initialises default prediction parameters.
  * @param [in] xcsf The XCSF data structure.
  */
@@ -159,46 +127,7 @@ pred_param_defaults(struct XCSF *xcsf)
     pred_param_set_scale_factor(xcsf, 1000);
     pred_param_set_x0(xcsf, 1);
     pred_param_set_evolve_eta(xcsf, true);
-    pred_param_defaults_neural(xcsf);
-}
-
-/**
- * @brief Returns a json formatted string of the NLMS parameters.
- * @param [in] xcsf The XCSF data structure.
- * @return String encoded in json format.
- */
-static const char *
-pred_param_json_export_nlms(const struct XCSF *xcsf)
-{
-    const struct ArgsPred *pred = xcsf->pred;
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(json, "x0", pred->x0);
-    cJSON_AddNumberToObject(json, "eta", pred->eta);
-    cJSON_AddBoolToObject(json, "evolve_eta", pred->evolve_eta);
-    if (pred->evolve_eta) {
-        cJSON_AddNumberToObject(json, "eta_min", pred->eta_min);
-    }
-    const char *string = cJSON_Print(json);
-    cJSON_Delete(json);
-    return string;
-}
-
-/**
- * @brief Returns a json formatted string of the RLS parameters.
- * @param [in] xcsf The XCSF data structure.
- * @return String encoded in json format.
- */
-static const char *
-pred_param_json_export_rls(const struct XCSF *xcsf)
-{
-    const struct ArgsPred *pred = xcsf->pred;
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(json, "x0", pred->x0);
-    cJSON_AddNumberToObject(json, "lambda", pred->lambda);
-    cJSON_AddNumberToObject(json, "scale_factor", pred->scale_factor);
-    const char *string = cJSON_Print(json);
-    cJSON_Delete(json);
-    return string;
+    pred_neural_param_defaults(xcsf);
 }
 
 /**
@@ -206,35 +135,77 @@ pred_param_json_export_rls(const struct XCSF *xcsf)
  * @param [in] xcsf XCSF data structure.
  * @return String encoded in json format.
  */
-const char *
+char *
 pred_param_json_export(const struct XCSF *xcsf)
 {
     const struct ArgsPred *pred = xcsf->pred;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type",
                             prediction_type_as_string(pred->type));
-    cJSON *params = NULL;
+    char *json_str = NULL;
     switch (pred->type) {
         case PRED_TYPE_NLMS_LINEAR:
         case PRED_TYPE_NLMS_QUADRATIC:
-            params = cJSON_Parse(pred_param_json_export_nlms(xcsf));
+            json_str = pred_nlms_param_json_export(xcsf);
             break;
         case PRED_TYPE_RLS_LINEAR:
         case PRED_TYPE_RLS_QUADRATIC:
-            params = cJSON_Parse(pred_param_json_export_rls(xcsf));
+            json_str = pred_rls_param_json_export(xcsf);
             break;
         case PRED_TYPE_NEURAL:
-            params = cJSON_Parse(layer_args_json_export(xcsf->pred->largs));
+            json_str = layer_args_json_export(xcsf->pred->largs);
             break;
         default:
             break;
     }
-    if (params != NULL) {
-        cJSON_AddItemToObject(json, "args", params);
+    if (json_str != NULL) {
+        cJSON *params = cJSON_Parse(json_str);
+        if (params != NULL) {
+            cJSON_AddItemToObject(json, "args", params);
+        }
+        free(json_str);
     }
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets the prediction parameters from a cJSON object.
+ * @param [in,out] xcsf XCSF data structure.
+ * @param [in] json cJSON object.
+ * @return Whether a parameter was found.
+ */
+bool
+pred_param_json_import(struct XCSF *xcsf, cJSON *json)
+{
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
+        pred_param_set_type_string(xcsf, json->valuestring);
+    } else {
+        return false;
+    }
+    json = json->next;
+    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
+        switch (xcsf->pred->type) {
+            case PRED_TYPE_CONSTANT:
+                break;
+            case PRED_TYPE_NLMS_LINEAR:
+            case PRED_TYPE_NLMS_QUADRATIC:
+                pred_nlms_param_json_import(xcsf, json->child);
+                break;
+            case PRED_TYPE_RLS_LINEAR:
+            case PRED_TYPE_RLS_QUADRATIC:
+                pred_rls_param_json_import(xcsf, json->child);
+                break;
+            case PRED_TYPE_NEURAL:
+                pred_neural_param_json_import(xcsf, json->child);
+                break;
+            default:
+                printf("pred_param_json_import(): unknown type.\n");
+                exit(EXIT_FAILURE);
+        }
+    }
+    return true;
 }
 
 /**

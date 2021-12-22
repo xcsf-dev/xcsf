@@ -38,6 +38,12 @@ struct PredNLMS {
     double *tmp_input; //!< Temporary storage for updating weights
 };
 
+void
+pred_nlms_param_json_import(struct XCSF *xcsf, cJSON *json);
+
+char *
+pred_nlms_param_json_export(const struct XCSF *xcsf);
+
 bool
 pred_nlms_crossover(const struct XCSF *xcsf, const struct Cl *c1,
                     const struct Cl *c2);
@@ -73,7 +79,7 @@ void
 pred_nlms_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
                  const double *y);
 
-const char *
+char *
 pred_nlms_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 /**

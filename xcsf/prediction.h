@@ -71,7 +71,10 @@ pred_param_defaults(struct XCSF *xcsf);
 void
 pred_param_free(struct XCSF *xcsf);
 
-const char *
+bool
+pred_param_json_import(struct XCSF *xcsf, cJSON *json);
+
+char *
 pred_param_json_export(const struct XCSF *xcsf);
 
 void
@@ -102,8 +105,7 @@ struct PredVtbl {
     size_t (*pred_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                              FILE *fp);
     size_t (*pred_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
-    const char *(*pred_impl_json_export)(const struct XCSF *xcsf,
-                                         const struct Cl *c);
+    char *(*pred_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
 };
 
 /**
@@ -248,7 +250,7 @@ pred_update(const struct XCSF *xcsf, const struct Cl *c, const double *x,
  * @param [in] c Classifier whose prediction is to be returned.
  * @return String encoded in json format.
  */
-static inline const char *
+static inline char *
 pred_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->pred_vptr->pred_impl_json_export)(xcsf, c);
