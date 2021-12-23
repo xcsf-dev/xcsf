@@ -853,31 +853,11 @@ class XCS
     void
     set_condition(const std::string &type, const py::dict &kwargs)
     {
-        cond_param_set_type_string(&xcs, type.c_str());
-        cJSON *json = dict_to_json(kwargs);
-        switch (xcs.cond->type) {
-            case COND_TYPE_HYPERRECTANGLE:
-            case COND_TYPE_HYPERELLIPSOID:
-                cond_param_json_import_csr(&xcs, json->child);
-                break;
-            case COND_TYPE_NEURAL:
-            case RULE_TYPE_NEURAL:
-            case RULE_TYPE_NETWORK:
-                cond_neural_param_json_import(&xcs, json->child);
-                break;
-            case COND_TYPE_GP:
-                cond_gp_param_json_import(&xcs, json->child);
-                break;
-            case COND_TYPE_DGP:
-            case RULE_TYPE_DGP:
-                cond_dgp_param_json_import(&xcs, json->child);
-                break;
-            case COND_TYPE_TERNARY:
-                cond_ternary_param_json_import(&xcs, json->child);
-                break;
-            default:
-                break;
-        }
+        cJSON *json = cJSON_CreateObject();
+        cJSON_AddStringToObject(json, "type", type.c_str());
+        cJSON *args = dict_to_json(kwargs);
+        cJSON_AddItemToObject(json, "args", args);
+        cond_param_json_import(&xcs, json->child);
         cJSON_Delete(json);
     }
 
@@ -889,12 +869,12 @@ class XCS
     void
     set_action(const std::string &type, const py::dict &kwargs)
     {
-        action_param_set_type_string(&xcs, type.c_str());
-        if (xcs.act->type == ACT_TYPE_NEURAL) {
-            cJSON *json = dict_to_json(kwargs);
-            act_neural_param_json_import(&xcs, json->child);
-            cJSON_Delete(json);
-        }
+        cJSON *json = cJSON_CreateObject();
+        cJSON_AddStringToObject(json, "type", type.c_str());
+        cJSON *args = dict_to_json(kwargs);
+        cJSON_AddItemToObject(json, "args", args);
+        action_param_json_import(&xcs, json->child);
+        cJSON_Delete(json);
     }
 
     /**
@@ -905,23 +885,11 @@ class XCS
     void
     set_prediction(const std::string &type, const py::dict &kwargs)
     {
-        pred_param_set_type_string(&xcs, type.c_str());
-        cJSON *json = dict_to_json(kwargs);
-        switch (xcs.pred->type) {
-            case PRED_TYPE_NLMS_LINEAR:
-            case PRED_TYPE_NLMS_QUADRATIC:
-                pred_nlms_param_json_import(&xcs, json->child);
-                break;
-            case PRED_TYPE_RLS_LINEAR:
-            case PRED_TYPE_RLS_QUADRATIC:
-                pred_rls_param_json_import(&xcs, json->child);
-                break;
-            case PRED_TYPE_NEURAL:
-                pred_neural_param_json_import(&xcs, json->child);
-                break;
-            default:
-                break;
-        }
+        cJSON *json = cJSON_CreateObject();
+        cJSON_AddStringToObject(json, "type", type.c_str());
+        cJSON *args = dict_to_json(kwargs);
+        cJSON_AddItemToObject(json, "args", args);
+        pred_param_json_import(&xcs, json->child);
         cJSON_Delete(json);
     }
 
