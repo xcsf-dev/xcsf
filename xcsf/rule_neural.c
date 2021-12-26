@@ -179,11 +179,13 @@ void
 rule_neural_cond_json_import(const struct XCSF *xcsf, struct Cl *c,
                              const cJSON *json)
 {
-    (void) xcsf;
-    (void) c;
-    (void) json;
-    printf("Import error: neural rules not yet implemented\n");
-    exit(EXIT_FAILURE);
+    const cJSON *item = cJSON_GetObjectItem(json, "network");
+    if (item == NULL) {
+        printf("Import error: missing network\n");
+        exit(EXIT_FAILURE);
+    }
+    struct RuleNeural *cond = c->cond;
+    neural_json_import(&cond->net, xcsf->cond->largs, item);
 }
 
 /* ACTION FUNCTIONS */

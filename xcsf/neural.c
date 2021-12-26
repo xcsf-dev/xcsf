@@ -424,6 +424,23 @@ neural_json_export(const struct Net *net, const bool return_weights)
 }
 
 /**
+ * @brief Creates a neural network from a cJSON object.
+ * @param [in,out] net The neural network to return.
+ * @param [in] arg List of layer parameters defining the initial network.
+ * @param [in] json cJSON object.
+ */
+void
+neural_json_import(struct Net *net, const struct ArgsLayer *arg,
+                   const cJSON *json)
+{
+    (void) net;
+    (void) arg;
+    (void) json;
+    printf("Import error: neural networks not yet implemented\n");
+    exit(EXIT_FAILURE);
+}
+
+/**
  * @brief Returns the total number of non-zero weights in a neural network.
  * @param [in] net A neural network.
  * @return The calculated network size.

@@ -23,6 +23,7 @@
 
 #pragma once
 
+#include "utils.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -59,6 +60,10 @@ neural_mutate(const struct Net *net);
 
 const char *
 neural_json_export(const struct Net *net, const bool return_weights);
+
+void
+neural_json_import(struct Net *net, const struct ArgsLayer *arg,
+                   const cJSON *json);
 
 double
 neural_output(const struct Net *net, const int IDX);
