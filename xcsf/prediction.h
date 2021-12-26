@@ -106,6 +106,8 @@ struct PredVtbl {
                              FILE *fp);
     size_t (*pred_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
     char *(*pred_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
+    void (*pred_impl_json_import)(const struct XCSF *xcsf, struct Cl *c,
+                                  cJSON *json);
 };
 
 /**
@@ -254,6 +256,30 @@ static inline char *
 pred_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->pred_vptr->pred_impl_json_export)(xcsf, c);
+}
+
+/**
+ * @brief Creates a prediction from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier whose prediction is to be initialised.
+ * @param [in] json cJSON object.
+ */
+static inline void
+pred_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "type");
+    if (item == NULL || !cJSON_IsString(item)) {
+        printf("pred_json_import(): missing type\n");
+        exit(EXIT_FAILURE);
+    }
+    const char *type = item->valuestring;
+    if (prediction_type_as_int(type) != xcsf->pred->type) {
+        printf("pred_json_import(): mismatched type\n");
+        printf("XCSF type = %s, but imported type = %s\n",
+               prediction_type_as_string(xcsf->pred->type), type);
+        exit(EXIT_FAILURE);
+    }
+    (*c->pred_vptr->pred_impl_json_import)(xcsf, c, json);
 }
 
 /* parameter setters */

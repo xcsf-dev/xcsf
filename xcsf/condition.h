@@ -81,9 +81,6 @@ cond_param_free(struct XCSF *xcsf);
 bool
 cond_param_json_import(struct XCSF *xcsf, cJSON *json);
 
-void
-cond_param_json_import_csr(struct XCSF *xcsf, cJSON *json);
-
 char *
 cond_param_json_export(const struct XCSF *xcsf);
 
@@ -119,6 +116,8 @@ struct CondVtbl {
                              FILE *fp);
     size_t (*cond_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
     char *(*cond_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
+    void (*cond_impl_json_import)(const struct XCSF *xcsf, struct Cl *c,
+                                  cJSON *json);
 };
 
 /**
@@ -292,6 +291,30 @@ static inline char *
 cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->cond_vptr->cond_impl_json_export)(xcsf, c);
+}
+
+/**
+ * @brief Creates a condition from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier whose condition is to be initialised.
+ * @param [in] json cJSON object.
+ */
+static inline void
+cond_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "type");
+    if (item == NULL || !cJSON_IsString(item)) {
+        printf("cond_json_import(): missing type\n");
+        exit(EXIT_FAILURE);
+    }
+    const char *type = item->valuestring;
+    if (condition_type_as_int(type) != xcsf->cond->type) {
+        printf("cond_json_import(): mismatched type\n");
+        printf("XCSF type = %s, but imported type = %s\n",
+               condition_type_as_string(xcsf->cond->type), type);
+        exit(EXIT_FAILURE);
+    }
+    (*c->cond_vptr->cond_impl_json_import)(xcsf, c, json);
 }
 
 /* parameter setters */

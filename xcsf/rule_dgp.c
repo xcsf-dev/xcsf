@@ -165,6 +165,19 @@ rule_dgp_cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
     return string;
 }
 
+void
+rule_dgp_cond_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "graph");
+    if (item == NULL) {
+        printf("Import error: missing graph\n");
+        exit(EXIT_FAILURE);
+    }
+    struct RuleDGP *cond = c->cond;
+    graph_free(&cond->dgp);
+    graph_json_import(&cond->dgp, xcsf->cond->dargs, item);
+}
+
 /* ACTION FUNCTIONS */
 
 void
@@ -292,4 +305,12 @@ rule_dgp_act_json_export(const struct XCSF *xcsf, const struct Cl *c)
     char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+void
+rule_dgp_act_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    (void) xcsf;
+    (void) c;
+    (void) json;
 }

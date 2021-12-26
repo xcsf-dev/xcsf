@@ -259,3 +259,21 @@ act_integer_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_Delete(json);
     return string;
 }
+
+/**
+ * @brief Creates an integer action from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+act_integer_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    (void) xcsf;
+    struct ActInteger *act = c->act;
+    cJSON *item = cJSON_GetObjectItem(json, "action");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        act->action = item->valueint;
+    }
+    sam_json_import(act->mu, N_MU, json);
+}

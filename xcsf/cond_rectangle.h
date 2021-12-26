@@ -83,15 +83,19 @@ cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 char *
 cond_rectangle_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
+void
+cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+
 /**
  * @brief Hyperrectangle condition implemented functions.
  */
 static struct CondVtbl const cond_rectangle_vtbl = {
-    &cond_rectangle_crossover, &cond_rectangle_general,
-    &cond_rectangle_match,     &cond_rectangle_mutate,
-    &cond_rectangle_copy,      &cond_rectangle_cover,
-    &cond_rectangle_free,      &cond_rectangle_init,
-    &cond_rectangle_print,     &cond_rectangle_update,
-    &cond_rectangle_size,      &cond_rectangle_save,
-    &cond_rectangle_load,      &cond_rectangle_json_export
+    &cond_rectangle_crossover,  &cond_rectangle_general,
+    &cond_rectangle_match,      &cond_rectangle_mutate,
+    &cond_rectangle_copy,       &cond_rectangle_cover,
+    &cond_rectangle_free,       &cond_rectangle_init,
+    &cond_rectangle_print,      &cond_rectangle_update,
+    &cond_rectangle_size,       &cond_rectangle_save,
+    &cond_rectangle_load,       &cond_rectangle_json_export,
+    &cond_rectangle_json_import
 };

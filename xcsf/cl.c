@@ -524,3 +524,72 @@ cl_json_export(const struct XCSF *xcsf, const struct Cl *c,
     cJSON_Delete(json);
     return string;
 }
+
+/**
+ * @brief Sets a classifier's properties from a cJSON object.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+static void
+cl_json_import_properties(struct Cl *c, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "error");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        c->err = item->valuedouble;
+    }
+    item = cJSON_GetObjectItem(json, "fitness");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        c->fit = item->valuedouble;
+    }
+    item = cJSON_GetObjectItem(json, "set_size");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        c->size = item->valuedouble;
+    }
+    item = cJSON_GetObjectItem(json, "numerosity");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        c->num = item->valueint;
+    }
+    item = cJSON_GetObjectItem(json, "experience");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        c->exp = item->valueint;
+    }
+    item = cJSON_GetObjectItem(json, "time");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        c->time = item->valueint;
+    }
+    item = cJSON_GetObjectItem(json, "samples_seen");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        c->age = item->valueint;
+    }
+    item = cJSON_GetObjectItem(json, "samples_matched");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        c->mtotal = item->valueint;
+    }
+}
+
+/**
+ * @brief Creates a classifier from a cJSON object.
+ * @details Creates a random classifier and overrides with imported values.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+cl_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    cl_init(xcsf, c, xcsf->pset.num, xcsf->time);
+    cl_rand(xcsf, c);
+    cl_json_import_properties(c, json);
+    cJSON *item = cJSON_GetObjectItem(json, "action");
+    if (item != NULL) {
+        act_json_import(xcsf, c, item);
+    }
+    item = cJSON_GetObjectItem(json, "prediction");
+    if (item != NULL) {
+        pred_json_import(xcsf, c, item);
+    }
+    item = cJSON_GetObjectItem(json, "condition");
+    if (item != NULL) {
+        cond_json_import(xcsf, c, item);
+    }
+}

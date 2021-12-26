@@ -353,6 +353,31 @@ cond_ternary_json_export(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 /**
+ * @brief Creates a ternary condition from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+cond_ternary_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    (void) xcsf;
+    struct CondTernary *cond = c->cond;
+    cJSON *item = cJSON_GetObjectItem(json, "string");
+    if (item != NULL && cJSON_IsString(item)) {
+        for (int i = 0; i < cond->length; ++i) {
+            const char bit = item->valuestring[i];
+            if (bit == '\0') {
+                printf("Import error: string terminated early\n");
+                exit(EXIT_FAILURE);
+            }
+            cond->string[i] = bit;
+        }
+    }
+    sam_json_import(cond->mu, N_MU, json);
+}
+
+/**
  * @brief Returns a json formatted string of the ternary parameters.
  * @param [in] xcsf The XCSF data structure.
  * @return String encoded in json format.

@@ -32,6 +32,11 @@
 #define MUL (2) //!< Multiplication function
 #define DIV (3) //!< Division function
 
+#define STRING_ADD ("+\0") //!< Addition
+#define STRING_SUB ("-\0") //!< Subtraction
+#define STRING_MUL ("*\0") //!< Multiplication
+#define STRING_DIV ("/\0") //!< Division
+
 #define N_MU (1) //!< Number of tree-GP mutation rates
 #define RET_MIN (-1000) //!< Minimum tree return value
 #define RET_MAX (1000) //!< Maximum tree return value
@@ -153,6 +158,52 @@ tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x)
 }
 
 /**
+ * @brief Returns a string representation of a node function.
+ * @param [in] node Integer representing a function.
+ * @return String representing a function.
+ */
+static const char *
+tree_function_string(const int node)
+{
+    switch (node) {
+        case ADD:
+            return STRING_ADD;
+        case SUB:
+            return STRING_SUB;
+        case MUL:
+            return STRING_MUL;
+        case DIV:
+            return STRING_DIV;
+        default:
+            printf("tree_function_string() invalid function: %d\n", node);
+            exit(EXIT_FAILURE);
+    }
+}
+
+/**
+ * @brief Returns an integer representation of a node function.
+ * @param [in] node String representing a function.
+ * @return Integer representing a function.
+ */
+static int
+tree_function_int(const char *node)
+{
+    if (strncmp(node, STRING_ADD, 2) == 0) {
+        return ADD;
+    }
+    if (strncmp(node, STRING_SUB, 2) == 0) {
+        return SUB;
+    }
+    if (strncmp(node, STRING_MUL, 2) == 0) {
+        return MUL;
+    }
+    if (strncmp(node, STRING_DIV, 2) == 0) {
+        return DIV;
+    }
+    return -1;
+}
+
+/**
  * @brief Returns a json formatted string representation of a GP tree.
  * @param [in] gp The GP tree to print.
  * @param [in] args Tree GP parameters.
@@ -184,24 +235,7 @@ tree_string(const struct GPTree *gp, const struct ArgsGPTree *args, int pos,
     cJSON_AddItemToArray(json, leftp);
     ++pos;
     const int a1 = tree_string(gp, args, pos, json);
-    cJSON *func;
-    switch (node) {
-        case ADD:
-            func = cJSON_CreateString("+");
-            break;
-        case SUB:
-            func = cJSON_CreateString("-");
-            break;
-        case MUL:
-            func = cJSON_CreateString("*");
-            break;
-        case DIV:
-            func = cJSON_CreateString("/");
-            break;
-        default:
-            printf("tree_string() invalid function: %d\n", node);
-            exit(EXIT_FAILURE);
-    }
+    cJSON *func = cJSON_CreateString(tree_function_string(node));
     cJSON_AddItemToArray(json, func);
     const int a2 = tree_string(gp, args, a1, json);
     cJSON *rightp = cJSON_CreateString(")");
@@ -227,6 +261,22 @@ tree_json_export(const struct GPTree *gp, const struct ArgsGPTree *args)
     char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Creates a GP tree from a cJSON object.
+ * @param [in,out] gp The GP tree to initialise.
+ * @param [in] args Parameters for initialising a GP tree.
+ * @param [in] json cJSON object.
+ */
+void
+tree_json_import(struct GPTree *gp, const struct ArgsGPTree *args, cJSON *json)
+{
+    (void) gp;
+    (void) args;
+    (void) json;
+    printf("Import error: GP trees not yet implemented\n");
+    exit(EXIT_FAILURE);
 }
 
 /**

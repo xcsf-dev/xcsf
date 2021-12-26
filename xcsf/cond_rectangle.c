@@ -345,3 +345,40 @@ cond_rectangle_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_Delete(json);
     return string;
 }
+
+/**
+ * @brief Creates a hyperrectangle from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    struct CondRectangle *cond = c->cond;
+    cJSON *item = cJSON_GetObjectItem(json, "center");
+    if (item != NULL && cJSON_IsArray(item)) {
+        if (cJSON_GetArraySize(item) == xcsf->x_dim) {
+            for (int i = 0; i < xcsf->x_dim; ++i) {
+                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                cond->center[i] = item_i->valuedouble;
+            }
+        } else {
+            printf("Import error: center length mismatch\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    item = cJSON_GetObjectItem(json, "spread");
+    if (item != NULL && cJSON_IsArray(item)) {
+        if (cJSON_GetArraySize(item) == xcsf->x_dim) {
+            for (int i = 0; i < xcsf->x_dim; ++i) {
+                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                cond->spread[i] = item_i->valuedouble;
+            }
+        } else {
+            printf("Import error: spread length mismatch\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    sam_json_import(cond->mu, N_MU, json);
+}

@@ -208,3 +208,26 @@ pred_constant_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_Delete(json);
     return string;
 }
+
+/**
+ * @brief Creates a constant prediction from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+pred_constant_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "prediction");
+    if (item != NULL && cJSON_IsArray(item)) {
+        if (cJSON_GetArraySize(item) == xcsf->y_dim) {
+            for (int i = 0; i < xcsf->y_dim; ++i) {
+                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                c->prediction[i] = item_i->valuedouble;
+            }
+        } else {
+            printf("Import error: prediction length mismatch\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+}

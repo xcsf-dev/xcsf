@@ -233,3 +233,17 @@ cond_dummy_json_export(const struct XCSF *xcsf, const struct Cl *c)
     cJSON_Delete(json);
     return string;
 }
+
+/**
+ * @brief Dummy import function.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+cond_dummy_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    (void) xcsf;
+    (void) c;
+    (void) json;
+}

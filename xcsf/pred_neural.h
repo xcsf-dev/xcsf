@@ -103,13 +103,17 @@ pred_neural_ae_to_classifier(const struct XCSF *xcsf, const struct Cl *c,
 char *
 pred_neural_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
+void
+pred_neural_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+
 /**
  * @brief Multi-layer perceptron neural network prediction implemented
  * functions.
  */
 static struct PredVtbl const pred_neural_vtbl = {
-    &pred_neural_crossover, &pred_neural_mutate, &pred_neural_compute,
-    &pred_neural_copy,      &pred_neural_free,   &pred_neural_init,
-    &pred_neural_print,     &pred_neural_update, &pred_neural_size,
-    &pred_neural_save,      &pred_neural_load,   &pred_neural_json_export
+    &pred_neural_crossover,  &pred_neural_mutate, &pred_neural_compute,
+    &pred_neural_copy,       &pred_neural_free,   &pred_neural_init,
+    &pred_neural_print,      &pred_neural_update, &pred_neural_size,
+    &pred_neural_save,       &pred_neural_load,   &pred_neural_json_export,
+    &pred_neural_json_import
 };

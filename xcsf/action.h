@@ -91,6 +91,8 @@ struct ActVtbl {
                             FILE *fp);
     size_t (*act_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
     char *(*act_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
+    void (*act_impl_json_import)(const struct XCSF *xcsf, struct Cl *c,
+                                 cJSON *json);
 };
 
 /**
@@ -253,6 +255,30 @@ static inline char *
 act_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     return (*c->act_vptr->act_impl_json_export)(xcsf, c);
+}
+
+/**
+ * @brief Creates an action from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier whose action is to be initialised.
+ * @param [in] json cJSON object.
+ */
+static inline void
+act_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "type");
+    if (item == NULL || !cJSON_IsString(item)) {
+        printf("action_json_import(): missing type\n");
+        exit(EXIT_FAILURE);
+    }
+    const char *type = item->valuestring;
+    if (action_type_as_int(type) != xcsf->act->type) {
+        printf("action_json_import(): mismatched type\n");
+        printf("XCSF type = %s, but imported type = %s\n",
+               action_type_as_string(xcsf->act->type), type);
+        exit(EXIT_FAILURE);
+    }
+    (*c->act_vptr->act_impl_json_import)(xcsf, c, json);
 }
 
 /* parameter setters */

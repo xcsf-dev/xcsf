@@ -175,6 +175,16 @@ rule_neural_cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
     return string;
 }
 
+void
+rule_neural_cond_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    (void) xcsf;
+    (void) c;
+    (void) json;
+    printf("Import error: neural rules not yet implemented\n");
+    exit(EXIT_FAILURE);
+}
+
 /* ACTION FUNCTIONS */
 
 void
@@ -302,4 +312,12 @@ rule_neural_act_json_export(const struct XCSF *xcsf, const struct Cl *c)
     char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+void
+rule_neural_act_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    (void) xcsf;
+    (void) c;
+    (void) json;
 }

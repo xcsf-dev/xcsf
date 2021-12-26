@@ -249,6 +249,25 @@ cond_dgp_json_export(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 /**
+ * @brief Creates a DGP condition from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+cond_dgp_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "graph");
+    if (item == NULL) {
+        printf("Import error: missing graph\n");
+        exit(EXIT_FAILURE);
+    }
+    struct CondDGP *cond = c->cond;
+    graph_free(&cond->dgp);
+    graph_json_import(&cond->dgp, xcsf->cond->dargs, item);
+}
+
+/**
  * @brief Returns a json formatted string of the DGP parameters.
  * @param [in] xcsf The XCSF data structure.
  * @return String encoded in json format.

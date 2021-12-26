@@ -403,6 +403,22 @@ pred_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 /**
+ * @brief Creates a neural prediction from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+pred_neural_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    (void) xcsf;
+    (void) c;
+    (void) json;
+    printf("Import error: neural predictions not yet implemented\n");
+    exit(EXIT_FAILURE);
+}
+
+/**
  * @brief Initialises default neural prediction parameters.
  * @param [in] xcsf The XCSF data structure.
  */

@@ -292,3 +292,21 @@ cond_gp_param_defaults(struct XCSF *xcsf)
     tree_args_init_constants(args);
     xcsf->cond->targs = args;
 }
+
+/**
+ * @brief Creates a tree GP condition from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+cond_gp_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "tree");
+    if (item == NULL) {
+        printf("Import error: missing tree\n");
+        exit(EXIT_FAILURE);
+    }
+    struct CondGP *cond = c->cond;
+    tree_json_import(&cond->gp, xcsf->cond->targs, item);
+}

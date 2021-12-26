@@ -195,7 +195,7 @@ cond_param_json_export_csr(const struct XCSF *xcsf)
  * @param [in,out] xcsf The XCSF data structure.
  * @param [in] json cJSON object.
  */
-void
+static void
 cond_param_json_import_csr(struct XCSF *xcsf, cJSON *json)
 {
     for (cJSON *iter = json; iter != NULL; iter = iter->next) {

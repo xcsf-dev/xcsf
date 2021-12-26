@@ -86,13 +86,16 @@ act_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
 char *
 act_neural_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
+void
+act_neural_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+
 /**
  * @brief neural action implemented functions.
  */
 static struct ActVtbl const act_neural_vtbl = {
-    &act_neural_general,    &act_neural_crossover, &act_neural_mutate,
-    &act_neural_compute,    &act_neural_copy,      &act_neural_cover,
-    &act_neural_free,       &act_neural_init,      &act_neural_print,
-    &act_neural_update,     &act_neural_save,      &act_neural_load,
-    &act_neural_json_export
+    &act_neural_general,     &act_neural_crossover,  &act_neural_mutate,
+    &act_neural_compute,     &act_neural_copy,       &act_neural_cover,
+    &act_neural_free,        &act_neural_init,       &act_neural_print,
+    &act_neural_update,      &act_neural_save,       &act_neural_load,
+    &act_neural_json_export, &act_neural_json_import
 };

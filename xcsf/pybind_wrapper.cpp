@@ -883,6 +883,18 @@ class XCS
         cJSON_Delete(json);
     }
 
+    /**
+     * @brief Creates a classifier from JSON and inserts into the population.
+     * @param [in] json_str JSON formatted string representing a classifier.
+     */
+    void
+    json_insert(const std::string &json_str)
+    {
+        cJSON *json = cJSON_Parse(json_str.c_str());
+        clset_json_insert(&xcs, json);
+        cJSON_Delete(json);
+    }
+
     void
     set_omp_num_threads(const int a)
     {
@@ -1213,5 +1225,6 @@ PYBIND11_MODULE(xcsf, m)
         .def("pred_expand", &XCS::pred_expand)
         .def("ae_to_classifier", &XCS::ae_to_classifier)
         .def("json", &XCS::json_export)
-        .def("json_parameters", &XCS::json_parameters);
+        .def("json_parameters", &XCS::json_parameters)
+        .def("json_insert", &XCS::json_insert);
 }

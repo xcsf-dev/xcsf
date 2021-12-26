@@ -323,6 +323,22 @@ cond_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 /**
+ * @brief Creates a neural condition from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+cond_neural_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    (void) xcsf;
+    (void) c;
+    (void) json;
+    printf("Import error: neural conditions not yet implemented\n");
+    exit(EXIT_FAILURE);
+}
+
+/**
  * @brief Sets the neural network parameters from a cJSON object.
  * @param [in,out] xcsf The XCSF data structure.
  * @param [in] json cJSON object.

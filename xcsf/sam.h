@@ -34,3 +34,6 @@ sam_adapt(double *mu, const int N, const int *type);
 
 void
 sam_init(double *mu, const int N, const int *type);
+
+void
+sam_json_import(double *mu, const int N, cJSON *json);

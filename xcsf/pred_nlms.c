@@ -281,6 +281,36 @@ pred_nlms_json_export(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 /**
+ * @brief Creates an NLMS prediction from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+void
+pred_nlms_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+{
+    (void) xcsf;
+    struct PredNLMS *pred = c->pred;
+    cJSON *item = cJSON_GetObjectItem(json, "weights");
+    if (item != NULL && cJSON_IsArray(item)) {
+        if (cJSON_GetArraySize(item) == pred->n_weights) {
+            for (int i = 0; i < pred->n_weights; ++i) {
+                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                pred->weights[i] = item_i->valuedouble;
+            }
+        } else {
+            printf("Import error: weight length mismatch\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    item = cJSON_GetObjectItem(json, "eta");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        pred->eta = item->valuedouble;
+    }
+    sam_json_import(pred->mu, N_MU, json);
+}
+
+/**
  * @brief Returns a json formatted string of the NLMS parameters.
  * @param [in] xcsf The XCSF data structure.
  * @return String encoded in json format.

@@ -88,3 +88,6 @@ char *
 clset_json_export(const struct XCSF *xcsf, const struct Set *set,
                   const bool return_cond, const bool return_act,
                   const bool return_pred);
+
+void
+clset_json_insert(struct XCSF *xcsf, cJSON *json);

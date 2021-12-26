@@ -31,6 +31,10 @@
 #define NUM_FUNC (3) //!< Number of selectable node functions
 #define N_MU (3) //!< Number of DGP graph mutation rates
 
+#define STRING_FUZZY_NOT ("Fuzzy NOT\0") //!< Fuzzy NOT
+#define STRING_FUZZY_CFMQVS_AND ("Fuzzy AND\0") //!< Fuzzy AND
+#define STRING_FUZZY_CFMQVS_OR ("Fuzzy OR\0") //!< Fuzzy OR
+
 /**
  * @brief Self-adaptation method for mutating DGP graphs.
  */
@@ -159,15 +163,35 @@ function_string(const int function)
 {
     switch (function) {
         case FUZZY_NOT:
-            return "Fuzzy NOT";
+            return STRING_FUZZY_NOT;
         case FUZZY_CFMQVS_AND:
-            return "Fuzzy AND";
+            return STRING_FUZZY_CFMQVS_AND;
         case FUZZY_CFMQVS_OR:
-            return "Fuzzy OR";
+            return STRING_FUZZY_CFMQVS_OR;
         default:
-            printf("function_string(): invalid node function: %d\n", function);
+            printf("dgp_function_string(): invalid node function: %d\n",
+                   function);
             exit(EXIT_FAILURE);
     }
+}
+
+/**
+ * @brief Returns the integer value of a specified node function.
+ * @param [in] function The node function.
+ * @return An integer representing a node function.
+ */
+static int
+function_int(const char *function)
+{
+    if (strncmp(function, STRING_FUZZY_NOT, 10) == 0) {
+        return FUZZY_NOT;
+    } else if (strncmp(function, STRING_FUZZY_CFMQVS_AND, 10) == 0) {
+        return FUZZY_CFMQVS_AND;
+    } else if (strncmp(function, STRING_FUZZY_CFMQVS_OR, 9) == 0) {
+        return FUZZY_CFMQVS_OR;
+    }
+    printf("dgp_function_int(): invalid node function: %s\n", function);
+    exit(EXIT_FAILURE);
 }
 
 /**
@@ -342,6 +366,156 @@ graph_json_export(const struct Graph *dgp)
     char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
+}
+
+/**
+ * @brief Sets DGP current states from a cJSON object.
+ * @param [in,out] dgp The DGP to initialise.
+ * @param [in] json cJSON object.
+ */
+static void
+graph_json_import_current_state(struct Graph *dgp, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "current_state");
+    if (item != NULL && cJSON_IsArray(item)) {
+        if (cJSON_GetArraySize(item) == dgp->n) {
+            for (int i = 0; i < dgp->n; ++i) {
+                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
+                    printf("Import error: current state value out of bounds\n");
+                    exit(EXIT_FAILURE);
+                }
+                dgp->state[i] = item_i->valuedouble;
+            }
+        } else {
+            printf("Import error: current_state length mismatch\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+/**
+ * @brief Sets DGP initial states from a cJSON object.
+ * @param [in,out] dgp The DGP to initialise.
+ * @param [in] json cJSON object.
+ */
+static void
+graph_json_import_initial_state(struct Graph *dgp, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "initial_state");
+    if (item != NULL && cJSON_IsArray(item)) {
+        if (cJSON_GetArraySize(item) == dgp->n) {
+            for (int i = 0; i < dgp->n; ++i) {
+                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
+                    printf("Import error: initial state value out of bounds\n");
+                    exit(EXIT_FAILURE);
+                }
+                dgp->initial_state[i] = item_i->valuedouble;
+            }
+        } else {
+            printf("Import error: initial_state length mismatch\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+/**
+ * @brief Sets DGP functions from a cJSON object.
+ * @param [in,out] dgp The DGP to initialise.
+ * @param [in] json cJSON object.
+ */
+static void
+graph_json_import_functions(struct Graph *dgp, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "functions");
+    if (item != NULL && cJSON_IsArray(item)) {
+        if (cJSON_GetArraySize(item) == dgp->n) {
+            for (int i = 0; i < dgp->n; ++i) {
+                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                if (cJSON_IsString(item_i)) {
+                    dgp->function[i] = function_int(item_i->valuestring);
+                }
+            }
+        } else {
+            printf("Import error: functions length mismatch\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+/**
+ * @brief Sets DGP mutation rates from a cJSON object.
+ * @param [in,out] dgp The DGP to initialise.
+ * @param [in] json cJSON object.
+ */
+static void
+graph_json_import_connectivity(struct Graph *dgp, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "connectivity");
+    if (item != NULL && cJSON_IsArray(item)) {
+        if (cJSON_GetArraySize(item) == dgp->klen) {
+            const int max_c = dgp->n + dgp->n_inputs;
+            for (int i = 0; i < dgp->klen; ++i) {
+                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                if (item_i->valueint < 0 || item_i->valueint > max_c) {
+                    printf("Import error: connectivity value out of bounds\n");
+                    exit(EXIT_FAILURE);
+                }
+                dgp->connectivity[i] = item_i->valueint;
+            }
+        } else {
+            printf("Import error: connectivity length mismatch\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+/**
+ * @brief Creates a DGP graph from a cJSON object.
+ * @param [in,out] dgp The DGP to initialise.
+ * @param [in] args Parameters for initialising a DGP graph.
+ * @param [in] json cJSON object.
+ */
+void
+graph_json_import(struct Graph *dgp, const struct ArgsDGP *args, cJSON *json)
+{
+    dgp->n = args->n;
+    cJSON *n = cJSON_GetObjectItem(json, "n");
+    if (n != NULL) {
+        if (!cJSON_IsNumber(n) || n->valueint < 1) {
+            printf("Import error: invalid n\n");
+            exit(EXIT_FAILURE);
+        }
+        dgp->n = n->valueint;
+    }
+    dgp->n_inputs = args->n_inputs;
+    dgp->max_t = args->max_t;
+    dgp->max_k = args->max_k;
+    dgp->evolve_cycles = args->evolve_cycles;
+    dgp->klen = dgp->n * dgp->max_k;
+    dgp->state = malloc(sizeof(double) * dgp->n);
+    dgp->initial_state = malloc(sizeof(double) * dgp->n);
+    dgp->tmp_state = malloc(sizeof(double) * dgp->n);
+    dgp->tmp_input = malloc(sizeof(double) * dgp->max_k);
+    dgp->function = malloc(sizeof(int) * dgp->n);
+    dgp->connectivity = malloc(sizeof(int) * dgp->klen);
+    dgp->mu = malloc(sizeof(double) * N_MU);
+    graph_rand(dgp);
+    cJSON *t = cJSON_GetObjectItem(json, "t");
+    if (t != NULL) {
+        if (!cJSON_IsNumber(t) || t->valueint < 1) {
+            printf("Import error: invalid t}\n");
+            exit(EXIT_FAILURE);
+        } else {
+            dgp->t = t->valueint;
+        }
+    }
+    graph_json_import_current_state(dgp, json);
+    graph_json_import_initial_state(dgp, json);
+    graph_json_import_functions(dgp, json);
+    graph_json_import_connectivity(dgp, json);
+    sam_json_import(dgp->mu, N_MU, json);
 }
 
 /**

@@ -89,3 +89,30 @@ sam_adapt(double *mu, const int N, const int *type)
         }
     }
 }
+
+/**
+ * @brief Initialises a mutation vector from a cJSON object.
+ * @param [in,out] mu Vector of mutation rates.
+ * @param [in] N Number of mutation rates.
+ * @param [in] json cJSON object.
+ */
+void
+sam_json_import(double *mu, const int N, cJSON *json)
+{
+    cJSON *item = cJSON_GetObjectItem(json, "mutation");
+    if (item != NULL && cJSON_IsArray(item)) {
+        if (cJSON_GetArraySize(item) == N) {
+            for (int i = 0; i < N; ++i) {
+                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
+                    printf("Import error: mutation value out of bounds\n");
+                    exit(EXIT_FAILURE);
+                }
+                mu[i] = item_i->valuedouble;
+            }
+        } else {
+            printf("Import error: mutation length mismatch\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+}
