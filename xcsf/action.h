@@ -92,7 +92,7 @@ struct ActVtbl {
     size_t (*act_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
     char *(*act_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
     void (*act_impl_json_import)(const struct XCSF *xcsf, struct Cl *c,
-                                 cJSON *json);
+                                 const cJSON *json);
 };
 
 /**
@@ -264,9 +264,9 @@ act_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 static inline void
-act_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+act_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
-    cJSON *item = cJSON_GetObjectItem(json, "type");
+    const cJSON *item = cJSON_GetObjectItem(json, "type");
     if (item == NULL || !cJSON_IsString(item)) {
         printf("action_json_import(): missing type\n");
         exit(EXIT_FAILURE);

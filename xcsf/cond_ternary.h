@@ -94,7 +94,8 @@ char *
 cond_ternary_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ternary_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+cond_ternary_json_import(const struct XCSF *xcsf, struct Cl *c,
+                         const cJSON *json);
 
 /**
  * @brief Ternary condition implemented functions.

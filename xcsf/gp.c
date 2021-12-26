@@ -270,7 +270,8 @@ tree_json_export(const struct GPTree *gp, const struct ArgsGPTree *args)
  * @param [in] json cJSON object.
  */
 void
-tree_json_import(struct GPTree *gp, const struct ArgsGPTree *args, cJSON *json)
+tree_json_import(struct GPTree *gp, const struct ArgsGPTree *args,
+                 const cJSON *json)
 {
     (void) gp;
     (void) args;

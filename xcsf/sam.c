@@ -97,13 +97,13 @@ sam_adapt(double *mu, const int N, const int *type)
  * @param [in] json cJSON object.
  */
 void
-sam_json_import(double *mu, const int N, cJSON *json)
+sam_json_import(double *mu, const int N, const cJSON *json)
 {
-    cJSON *item = cJSON_GetObjectItem(json, "mutation");
+    const cJSON *item = cJSON_GetObjectItem(json, "mutation");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == N) {
             for (int i = 0; i < N; ++i) {
-                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                const cJSON *item_i = cJSON_GetArrayItem(item, i);
                 if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
                     printf("Import error: mutation value out of bounds\n");
                     exit(EXIT_FAILURE);

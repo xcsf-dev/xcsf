@@ -107,7 +107,7 @@ struct PredVtbl {
     size_t (*pred_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
     char *(*pred_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
     void (*pred_impl_json_import)(const struct XCSF *xcsf, struct Cl *c,
-                                  cJSON *json);
+                                  const cJSON *json);
 };
 
 /**
@@ -265,9 +265,9 @@ pred_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 static inline void
-pred_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+pred_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
-    cJSON *item = cJSON_GetObjectItem(json, "type");
+    const cJSON *item = cJSON_GetObjectItem(json, "type");
     if (item == NULL || !cJSON_IsString(item)) {
         printf("pred_json_import(): missing type\n");
         exit(EXIT_FAILURE);

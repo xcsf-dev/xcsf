@@ -84,7 +84,8 @@ char *
 cond_rectangle_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c,
+                           const cJSON *json);
 
 /**
  * @brief Hyperrectangle condition implemented functions.

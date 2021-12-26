@@ -296,15 +296,15 @@ pred_rls_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-pred_rls_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+pred_rls_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     (void) xcsf;
     struct PredRLS *pred = c->pred;
-    cJSON *item = cJSON_GetObjectItem(json, "weights");
+    const cJSON *item = cJSON_GetObjectItem(json, "weights");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == pred->n_weights) {
             for (int i = 0; i < pred->n_weights; ++i) {
-                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                const cJSON *item_i = cJSON_GetArrayItem(item, i);
                 pred->weights[i] = item_i->valuedouble;
             }
         } else {

@@ -63,7 +63,8 @@ char *
 graph_json_export(const struct Graph *dgp);
 
 void
-graph_json_import(struct Graph *dgp, const struct ArgsDGP *args, cJSON *json);
+graph_json_import(struct Graph *dgp, const struct ArgsDGP *args,
+                  const cJSON *json);
 
 double
 graph_output(const struct Graph *dgp, const int IDX);

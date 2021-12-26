@@ -374,13 +374,13 @@ graph_json_export(const struct Graph *dgp)
  * @param [in] json cJSON object.
  */
 static void
-graph_json_import_current_state(struct Graph *dgp, cJSON *json)
+graph_json_import_current_state(struct Graph *dgp, const cJSON *json)
 {
-    cJSON *item = cJSON_GetObjectItem(json, "current_state");
+    const cJSON *item = cJSON_GetObjectItem(json, "current_state");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == dgp->n) {
             for (int i = 0; i < dgp->n; ++i) {
-                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                const cJSON *item_i = cJSON_GetArrayItem(item, i);
                 if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
                     printf("Import error: current state value out of bounds\n");
                     exit(EXIT_FAILURE);
@@ -400,13 +400,13 @@ graph_json_import_current_state(struct Graph *dgp, cJSON *json)
  * @param [in] json cJSON object.
  */
 static void
-graph_json_import_initial_state(struct Graph *dgp, cJSON *json)
+graph_json_import_initial_state(struct Graph *dgp, const cJSON *json)
 {
-    cJSON *item = cJSON_GetObjectItem(json, "initial_state");
+    const cJSON *item = cJSON_GetObjectItem(json, "initial_state");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == dgp->n) {
             for (int i = 0; i < dgp->n; ++i) {
-                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                const cJSON *item_i = cJSON_GetArrayItem(item, i);
                 if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
                     printf("Import error: initial state value out of bounds\n");
                     exit(EXIT_FAILURE);
@@ -426,13 +426,13 @@ graph_json_import_initial_state(struct Graph *dgp, cJSON *json)
  * @param [in] json cJSON object.
  */
 static void
-graph_json_import_functions(struct Graph *dgp, cJSON *json)
+graph_json_import_functions(struct Graph *dgp, const cJSON *json)
 {
-    cJSON *item = cJSON_GetObjectItem(json, "functions");
+    const cJSON *item = cJSON_GetObjectItem(json, "functions");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == dgp->n) {
             for (int i = 0; i < dgp->n; ++i) {
-                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                const cJSON *item_i = cJSON_GetArrayItem(item, i);
                 if (cJSON_IsString(item_i)) {
                     dgp->function[i] = function_int(item_i->valuestring);
                 }
@@ -450,14 +450,14 @@ graph_json_import_functions(struct Graph *dgp, cJSON *json)
  * @param [in] json cJSON object.
  */
 static void
-graph_json_import_connectivity(struct Graph *dgp, cJSON *json)
+graph_json_import_connectivity(struct Graph *dgp, const cJSON *json)
 {
-    cJSON *item = cJSON_GetObjectItem(json, "connectivity");
+    const cJSON *item = cJSON_GetObjectItem(json, "connectivity");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == dgp->klen) {
             const int max_c = dgp->n + dgp->n_inputs;
             for (int i = 0; i < dgp->klen; ++i) {
-                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                const cJSON *item_i = cJSON_GetArrayItem(item, i);
                 if (item_i->valueint < 0 || item_i->valueint > max_c) {
                     printf("Import error: connectivity value out of bounds\n");
                     exit(EXIT_FAILURE);
@@ -478,10 +478,11 @@ graph_json_import_connectivity(struct Graph *dgp, cJSON *json)
  * @param [in] json cJSON object.
  */
 void
-graph_json_import(struct Graph *dgp, const struct ArgsDGP *args, cJSON *json)
+graph_json_import(struct Graph *dgp, const struct ArgsDGP *args,
+                  const cJSON *json)
 {
     dgp->n = args->n;
-    cJSON *n = cJSON_GetObjectItem(json, "n");
+    const cJSON *n = cJSON_GetObjectItem(json, "n");
     if (n != NULL) {
         if (!cJSON_IsNumber(n) || n->valueint < 1) {
             printf("Import error: invalid n\n");
@@ -502,7 +503,7 @@ graph_json_import(struct Graph *dgp, const struct ArgsDGP *args, cJSON *json)
     dgp->connectivity = malloc(sizeof(int) * dgp->klen);
     dgp->mu = malloc(sizeof(double) * N_MU);
     graph_rand(dgp);
-    cJSON *t = cJSON_GetObjectItem(json, "t");
+    const cJSON *t = cJSON_GetObjectItem(json, "t");
     if (t != NULL) {
         if (!cJSON_IsNumber(t) || t->valueint < 1) {
             printf("Import error: invalid t}\n");

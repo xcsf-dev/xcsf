@@ -361,14 +361,15 @@ cond_ellipsoid_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-cond_ellipsoid_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+cond_ellipsoid_json_import(const struct XCSF *xcsf, struct Cl *c,
+                           const cJSON *json)
 {
     struct CondEllipsoid *cond = c->cond;
     cJSON *item = cJSON_GetObjectItem(json, "center");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->x_dim) {
             for (int i = 0; i < xcsf->x_dim; ++i) {
-                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                const cJSON *item_i = cJSON_GetArrayItem(item, i);
                 cond->center[i] = item_i->valuedouble;
             }
         } else {
@@ -380,7 +381,7 @@ cond_ellipsoid_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->x_dim) {
             for (int i = 0; i < xcsf->x_dim; ++i) {
-                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                const cJSON *item_i = cJSON_GetArrayItem(item, i);
                 cond->spread[i] = item_i->valuedouble;
             }
         } else {

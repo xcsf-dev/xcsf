@@ -85,7 +85,7 @@ char *
 pred_rls_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-pred_rls_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+pred_rls_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Recursive least mean squares prediction implemented functions.

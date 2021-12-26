@@ -216,9 +216,10 @@ pred_constant_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-pred_constant_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+pred_constant_json_import(const struct XCSF *xcsf, struct Cl *c,
+                          const cJSON *json)
 {
-    cJSON *item = cJSON_GetObjectItem(json, "prediction");
+    const cJSON *item = cJSON_GetObjectItem(json, "prediction");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->y_dim) {
             for (int i = 0; i < xcsf->y_dim; ++i) {

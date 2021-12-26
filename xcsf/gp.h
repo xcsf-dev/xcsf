@@ -64,7 +64,8 @@ char *
 tree_json_export(const struct GPTree *gp, const struct ArgsGPTree *args);
 
 void
-tree_json_import(struct GPTree *gp, const struct ArgsGPTree *args, cJSON *json);
+tree_json_import(struct GPTree *gp, const struct ArgsGPTree *args,
+                 const cJSON *json);
 
 double
 tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x);

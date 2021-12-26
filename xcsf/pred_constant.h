@@ -67,7 +67,8 @@ char *
 pred_constant_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-pred_constant_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+pred_constant_json_import(const struct XCSF *xcsf, struct Cl *c,
+                          const cJSON *json);
 
 /**
  * @brief Constant prediction implemented functions.

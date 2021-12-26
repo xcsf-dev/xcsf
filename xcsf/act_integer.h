@@ -80,7 +80,8 @@ char *
 act_integer_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-act_integer_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+act_integer_json_import(const struct XCSF *xcsf, struct Cl *c,
+                        const cJSON *json);
 
 /**
  * @brief Integer action implemented functions.

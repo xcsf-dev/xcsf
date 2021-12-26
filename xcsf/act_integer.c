@@ -267,11 +267,12 @@ act_integer_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-act_integer_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+act_integer_json_import(const struct XCSF *xcsf, struct Cl *c,
+                        const cJSON *json)
 {
     (void) xcsf;
     struct ActInteger *act = c->act;
-    cJSON *item = cJSON_GetObjectItem(json, "action");
+    const cJSON *item = cJSON_GetObjectItem(json, "action");
     if (item != NULL && cJSON_IsNumber(item)) {
         act->action = item->valueint;
     }

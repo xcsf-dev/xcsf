@@ -359,11 +359,12 @@ cond_ternary_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-cond_ternary_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+cond_ternary_json_import(const struct XCSF *xcsf, struct Cl *c,
+                         const cJSON *json)
 {
     (void) xcsf;
     struct CondTernary *cond = c->cond;
-    cJSON *item = cJSON_GetObjectItem(json, "string");
+    const cJSON *item = cJSON_GetObjectItem(json, "string");
     if (item != NULL && cJSON_IsString(item)) {
         for (int i = 0; i < cond->length; ++i) {
             const char bit = item->valuestring[i];

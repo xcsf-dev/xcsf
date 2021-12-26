@@ -85,7 +85,8 @@ char *
 rule_dgp_cond_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-rule_dgp_cond_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+rule_dgp_cond_json_import(const struct XCSF *xcsf, struct Cl *c,
+                          const cJSON *json);
 
 /**
  * @brief Dynamical GP rule condition implemented functions.
@@ -147,7 +148,8 @@ char *
 rule_dgp_act_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-rule_dgp_act_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+rule_dgp_act_json_import(const struct XCSF *xcsf, struct Cl *c,
+                         const cJSON *json);
 
 /**
  * @brief Dynamical GP rule action implemented functions.

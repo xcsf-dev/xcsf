@@ -89,7 +89,7 @@ char *
 cond_dgp_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_dgp_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+cond_dgp_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Dynamical GP graph condition implemented functions.

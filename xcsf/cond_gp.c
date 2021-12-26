@@ -300,9 +300,9 @@ cond_gp_param_defaults(struct XCSF *xcsf)
  * @param [in] json cJSON object.
  */
 void
-cond_gp_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+cond_gp_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
-    cJSON *item = cJSON_GetObjectItem(json, "tree");
+    const cJSON *item = cJSON_GetObjectItem(json, "tree");
     if (item == NULL) {
         printf("Import error: missing tree\n");
         exit(EXIT_FAILURE);

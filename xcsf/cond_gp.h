@@ -89,7 +89,7 @@ char *
 cond_gp_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_gp_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+cond_gp_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Tree GP condition implemented functions.

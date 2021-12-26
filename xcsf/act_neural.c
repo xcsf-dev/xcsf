@@ -249,7 +249,7 @@ act_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-act_neural_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+act_neural_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     (void) xcsf;
     (void) c;

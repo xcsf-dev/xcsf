@@ -85,7 +85,7 @@ rule_neural_cond_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
 rule_neural_cond_json_import(const struct XCSF *xcsf, struct Cl *c,
-                             cJSON *json);
+                             const cJSON *json);
 
 /**
  * @brief Neural network rule condition implemented functions.
@@ -147,7 +147,8 @@ char *
 rule_neural_act_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-rule_neural_act_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+rule_neural_act_json_import(const struct XCSF *xcsf, struct Cl *c,
+                            const cJSON *json);
 
 /**
  * @brief Neural network rule action implemented functions.
