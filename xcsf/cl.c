@@ -568,6 +568,36 @@ cl_json_import_properties(struct Cl *c, const cJSON *json)
 }
 
 /**
+ * @brief Sets a classifier's current properties from a cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in,out] c The classifier to initialise.
+ * @param [in] json cJSON object.
+ */
+static void
+cl_json_import_current(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+{
+    const cJSON *item = cJSON_GetObjectItem(json, "current_match");
+    if (item != NULL && cJSON_IsBool(item)) {
+        c->m = item->valueint;
+    }
+    item = cJSON_GetObjectItem(json, "current_action");
+    if (item != NULL && cJSON_IsNumber(item)) {
+        c->action = item->valueint;
+    }
+    item = cJSON_GetObjectItem(json, "current_prediction");
+    if (item != NULL && cJSON_IsArray(item)) {
+        if (cJSON_GetArraySize(item) != xcsf->y_dim) {
+            printf("Import error: current prediction length mismatch\n");
+            exit(EXIT_FAILURE);
+        }
+        for (int i = 0; i < xcsf->y_dim; ++i) {
+            const cJSON *item_i = cJSON_GetArrayItem(item, i);
+            c->prediction[i] = item_i->valuedouble;
+        }
+    }
+}
+
+/**
  * @brief Creates a classifier from a cJSON object.
  * @details Creates a random classifier and overrides with imported values.
  * @param [in] xcsf The XCSF data structure.
@@ -580,6 +610,7 @@ cl_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
     cl_init(xcsf, c, xcsf->pset.num, xcsf->time);
     cl_rand(xcsf, c);
     cl_json_import_properties(c, json);
+    cl_json_import_current(xcsf, c, json);
     const cJSON *item = cJSON_GetObjectItem(json, "action");
     if (item != NULL) {
         act_json_import(xcsf, c, item);

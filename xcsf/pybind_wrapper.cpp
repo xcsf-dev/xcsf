@@ -26,6 +26,7 @@
     #define _hypot hypot
 #endif
 
+#include <fstream>
 #include <iostream>
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
@@ -203,34 +204,6 @@ class XCS
                const bool print_pred)
     {
         xcsf_print_pset(&xcs, print_cond, print_act, print_pred);
-    }
-
-    /**
-     * @brief Returns a JSON formatted string representing the population set.
-     * @param [in] return_cond Whether to return the condition.
-     * @param [in] return_act Whether to return the action.
-     * @param [in] return_pred Whether to return the prediction.
-     * @return String encoded in json format.
-     */
-    const char *
-    json_export(const bool return_cond, const bool return_act,
-                const bool return_pred)
-    {
-        if (xcs.pset.list != NULL) {
-            return clset_json_export(&xcs, &xcs.pset, return_cond, return_act,
-                                     return_pred);
-        }
-        return "null";
-    }
-
-    /**
-     * @brief Returns a JSON formatted string representing the parameters.
-     * @return String encoded in json format.
-     */
-    const char *
-    json_parameters()
-    {
-        return param_json_export(&xcs);
     }
 
     /* Reinforcement learning */
@@ -873,18 +846,6 @@ class XCS
         cJSON_Delete(json);
     }
 
-    /**
-     * @brief Creates a classifier from JSON and inserts into the population.
-     * @param [in] json_str JSON formatted string representing a classifier.
-     */
-    void
-    json_insert(const std::string &json_str)
-    {
-        cJSON *json = cJSON_Parse(json_str.c_str());
-        clset_json_insert(&xcs, json);
-        cJSON_Delete(json);
-    }
-
     void
     set_omp_num_threads(const int a)
     {
@@ -1082,6 +1043,95 @@ class XCS
     {
         rand_init_seed(seed);
     }
+
+    /* JSON */
+
+    /**
+     * @brief Returns a JSON formatted string representing the population set.
+     * @param [in] return_cond Whether to return the condition.
+     * @param [in] return_act Whether to return the action.
+     * @param [in] return_pred Whether to return the prediction.
+     * @return String encoded in json format.
+     */
+    const char *
+    json_export(const bool return_cond, const bool return_act,
+                const bool return_pred)
+    {
+        if (xcs.pset.list != NULL) {
+            return clset_json_export(&xcs, &xcs.pset, return_cond, return_act,
+                                     return_pred);
+        }
+        return "null";
+    }
+
+    /**
+     * @brief Returns a JSON formatted string representing the parameters.
+     * @return String encoded in json format.
+     */
+    const char *
+    json_parameters()
+    {
+        return param_json_export(&xcs);
+    }
+
+    /**
+     * @brief Creates a classifier from JSON and inserts into the population.
+     * @param [in] json_str JSON formatted string representing a classifier.
+     */
+    void
+    json_insert_cl(const std::string &json_str)
+    {
+        cJSON *json = cJSON_Parse(json_str.c_str());
+        clset_json_insert(&xcs, json);
+        cJSON_Delete(json);
+    }
+
+    /**
+     * @brief Creates classifiers from JSON and inserts into the population.
+     * @param [in] json_str JSON formatted string representing a classifier.
+     */
+    void
+    json_insert(const std::string &json_str)
+    {
+        cJSON *json = cJSON_Parse(json_str.c_str());
+        if (json != NULL && json->child != NULL && cJSON_IsArray(json->child)) {
+            cJSON *tail = json->child->child; // insert inverted for consistency
+            tail->prev = NULL; // this should have been set by cJSON!
+            while (tail->next != NULL) {
+                tail = tail->next;
+            }
+            while (tail != NULL) {
+                clset_json_insert(&xcs, tail);
+                tail = tail->prev;
+            }
+        }
+        cJSON_Delete(json);
+    }
+
+    /**
+     * @brief Writes the current population set to a file in JSON.
+     * @param [in] filename Name of the output file.
+     */
+    void
+    json_write(const std::string &filename)
+    {
+        std::ofstream outfile(filename);
+        outfile << json_export(true, true, true);
+        outfile.close();
+    }
+
+    /**
+     * @brief Reads classifiers from a JSON file and adds to the population.
+     * @param [in] filename Name of the input file.
+     */
+    void
+    json_read(const std::string &filename)
+    {
+        std::ifstream infile(filename);
+        std::stringstream buffer;
+        buffer << infile.rdbuf();
+        json_insert(buffer.str().c_str());
+    }
 };
 
 PYBIND11_MODULE(xcsf, m)
@@ -1215,6 +1265,9 @@ PYBIND11_MODULE(xcsf, m)
         .def("pred_expand", &XCS::pred_expand)
         .def("ae_to_classifier", &XCS::ae_to_classifier)
         .def("json", &XCS::json_export)
+        .def("json_write", &XCS::json_write)
+        .def("json_read", &XCS::json_read)
         .def("json_parameters", &XCS::json_parameters)
+        .def("json_insert_cl", &XCS::json_insert_cl)
         .def("json_insert", &XCS::json_insert);
 }
