@@ -125,6 +125,9 @@ xcs_rl_fit(struct XCSF *xcsf, const double *state, const int action,
 void
 xcs_rl_init_trial(struct XCSF *xcsf)
 {
+    if (xcsf->time == 0) {
+        clset_pset_init(xcsf);
+    }
     xcsf->prev_reward = 0;
     xcsf->prev_pred = 0;
     if (xcsf->x_dim < 1) { // memory allocation guard

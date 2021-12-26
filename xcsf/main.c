@@ -47,14 +47,11 @@ main(int argc, char **argv)
     } else {
         config_read(xcsf, "default.json");
     }
-    xcsf_init(xcsf); // initialise empty sets
+    xcsf_init(xcsf); // initialise XCSF
     if (argc == 5) { // reload state of a previous experiment
         const size_t s = xcsf_load(xcsf, argv[4]);
         printf("XCSF loaded: %d elements\n", (int) s);
-    } else { // new experiment
-        clset_pset_init(xcsf);
     }
-    pa_init(xcsf); // initialise prediction array
     param_print(xcsf); // print parameters used
     if (strcmp(argv[1], "csv") == 0) { // supervised regression - csv file
         const struct EnvCSV *env = xcsf->env;

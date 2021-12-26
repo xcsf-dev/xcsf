@@ -75,7 +75,6 @@ class XCS
     {
         param_init(&xcs, x_dim, y_dim, n_actions);
         xcsf_init(&xcs);
-        pa_init(&xcs);
         state = NULL;
         action = 0;
         payoff = 0;
@@ -265,9 +264,6 @@ class XCS
     void
     init_trial(void)
     {
-        if (xcs.time == 0) {
-            clset_pset_init(&xcs);
-        }
         xcs_rl_init_trial(&xcs);
     }
 
@@ -394,9 +390,6 @@ class XCS
         const bool shuffle)
     {
         load_input(train_data, train_X, train_Y);
-        if (xcs.time == 0) { // first execution
-            clset_pset_init(&xcs);
-        }
         return xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
     }
 
@@ -417,9 +410,6 @@ class XCS
     {
         load_input(train_data, train_X, train_Y);
         load_input(test_data, test_X, test_Y);
-        if (xcs.time == 0) { // first execution
-            clset_pset_init(&xcs);
-        }
         return xcs_supervised_fit(&xcs, train_data, test_data, shuffle);
     }
 
