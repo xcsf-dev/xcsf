@@ -736,4 +736,5 @@ clset_json_insert(struct XCSF *xcsf, const cJSON *json)
     struct Cl *new = malloc(sizeof(struct Cl));
     cl_json_import(xcsf, new, json);
     clset_add(&xcsf->pset, new);
+    clset_pset_enforce_limit(xcsf);
 }
