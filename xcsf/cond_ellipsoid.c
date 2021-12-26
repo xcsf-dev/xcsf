@@ -365,7 +365,7 @@ cond_ellipsoid_json_import(const struct XCSF *xcsf, struct Cl *c,
                            const cJSON *json)
 {
     struct CondEllipsoid *cond = c->cond;
-    cJSON *item = cJSON_GetObjectItem(json, "center");
+    const cJSON *item = cJSON_GetObjectItem(json, "center");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->x_dim) {
             for (int i = 0; i < xcsf->x_dim; ++i) {

@@ -223,7 +223,7 @@ pred_constant_json_import(const struct XCSF *xcsf, struct Cl *c,
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->y_dim) {
             for (int i = 0; i < xcsf->y_dim; ++i) {
-                cJSON *item_i = cJSON_GetArrayItem(item, i);
+                const cJSON *item_i = cJSON_GetArrayItem(item, i);
                 c->prediction[i] = item_i->valuedouble;
             }
         } else {

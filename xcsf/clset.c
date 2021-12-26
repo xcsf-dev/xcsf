@@ -731,7 +731,7 @@ clset_json_export(const struct XCSF *xcsf, const struct Set *set,
  * @param [in] json cJSON object.
  */
 void
-clset_json_insert(struct XCSF *xcsf, cJSON *json)
+clset_json_insert(struct XCSF *xcsf, const cJSON *json)
 {
     struct Cl *new = malloc(sizeof(struct Cl));
     cl_json_import(xcsf, new, json);

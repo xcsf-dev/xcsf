@@ -101,18 +101,17 @@ sam_json_import(double *mu, const int N, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "mutation");
     if (item != NULL && cJSON_IsArray(item)) {
-        if (cJSON_GetArraySize(item) == N) {
-            for (int i = 0; i < N; ++i) {
-                const cJSON *item_i = cJSON_GetArrayItem(item, i);
-                if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
-                    printf("Import error: mutation value out of bounds\n");
-                    exit(EXIT_FAILURE);
-                }
-                mu[i] = item_i->valuedouble;
-            }
-        } else {
+        if (cJSON_GetArraySize(item) != N) {
             printf("Import error: mutation length mismatch\n");
             exit(EXIT_FAILURE);
+        }
+        for (int i = 0; i < N; ++i) {
+            const cJSON *item_i = cJSON_GetArrayItem(item, i);
+            if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
+                printf("Import error: mutation value out of bounds\n");
+                exit(EXIT_FAILURE);
+            }
+            mu[i] = item_i->valuedouble;
         }
     }
 }

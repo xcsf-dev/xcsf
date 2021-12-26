@@ -378,18 +378,17 @@ graph_json_import_current_state(struct Graph *dgp, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "current_state");
     if (item != NULL && cJSON_IsArray(item)) {
-        if (cJSON_GetArraySize(item) == dgp->n) {
-            for (int i = 0; i < dgp->n; ++i) {
-                const cJSON *item_i = cJSON_GetArrayItem(item, i);
-                if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
-                    printf("Import error: current state value out of bounds\n");
-                    exit(EXIT_FAILURE);
-                }
-                dgp->state[i] = item_i->valuedouble;
-            }
-        } else {
+        if (cJSON_GetArraySize(item) != dgp->n) {
             printf("Import error: current_state length mismatch\n");
             exit(EXIT_FAILURE);
+        }
+        for (int i = 0; i < dgp->n; ++i) {
+            const cJSON *item_i = cJSON_GetArrayItem(item, i);
+            if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
+                printf("Import error: current state value out of bounds\n");
+                exit(EXIT_FAILURE);
+            }
+            dgp->state[i] = item_i->valuedouble;
         }
     }
 }
@@ -404,18 +403,17 @@ graph_json_import_initial_state(struct Graph *dgp, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "initial_state");
     if (item != NULL && cJSON_IsArray(item)) {
-        if (cJSON_GetArraySize(item) == dgp->n) {
-            for (int i = 0; i < dgp->n; ++i) {
-                const cJSON *item_i = cJSON_GetArrayItem(item, i);
-                if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
-                    printf("Import error: initial state value out of bounds\n");
-                    exit(EXIT_FAILURE);
-                }
-                dgp->initial_state[i] = item_i->valuedouble;
-            }
-        } else {
+        if (cJSON_GetArraySize(item) != dgp->n) {
             printf("Import error: initial_state length mismatch\n");
             exit(EXIT_FAILURE);
+        }
+        for (int i = 0; i < dgp->n; ++i) {
+            const cJSON *item_i = cJSON_GetArrayItem(item, i);
+            if (item_i->valuedouble < 0 || item_i->valuedouble > 1) {
+                printf("Import error: initial state value out of bounds\n");
+                exit(EXIT_FAILURE);
+            }
+            dgp->initial_state[i] = item_i->valuedouble;
         }
     }
 }
@@ -430,16 +428,15 @@ graph_json_import_functions(struct Graph *dgp, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "functions");
     if (item != NULL && cJSON_IsArray(item)) {
-        if (cJSON_GetArraySize(item) == dgp->n) {
-            for (int i = 0; i < dgp->n; ++i) {
-                const cJSON *item_i = cJSON_GetArrayItem(item, i);
-                if (cJSON_IsString(item_i)) {
-                    dgp->function[i] = function_int(item_i->valuestring);
-                }
-            }
-        } else {
+        if (cJSON_GetArraySize(item) != dgp->n) {
             printf("Import error: functions length mismatch\n");
             exit(EXIT_FAILURE);
+        }
+        for (int i = 0; i < dgp->n; ++i) {
+            const cJSON *item_i = cJSON_GetArrayItem(item, i);
+            if (cJSON_IsString(item_i)) {
+                dgp->function[i] = function_int(item_i->valuestring);
+            }
         }
     }
 }
@@ -454,19 +451,18 @@ graph_json_import_connectivity(struct Graph *dgp, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "connectivity");
     if (item != NULL && cJSON_IsArray(item)) {
-        if (cJSON_GetArraySize(item) == dgp->klen) {
-            const int max_c = dgp->n + dgp->n_inputs;
-            for (int i = 0; i < dgp->klen; ++i) {
-                const cJSON *item_i = cJSON_GetArrayItem(item, i);
-                if (item_i->valueint < 0 || item_i->valueint > max_c) {
-                    printf("Import error: connectivity value out of bounds\n");
-                    exit(EXIT_FAILURE);
-                }
-                dgp->connectivity[i] = item_i->valueint;
-            }
-        } else {
+        if (cJSON_GetArraySize(item) != dgp->klen) {
             printf("Import error: connectivity length mismatch\n");
             exit(EXIT_FAILURE);
+        }
+        const int max_c = dgp->n + dgp->n_inputs;
+        for (int i = 0; i < dgp->klen; ++i) {
+            const cJSON *item_i = cJSON_GetArrayItem(item, i);
+            if (item_i->valueint < 0 || item_i->valueint > max_c) {
+                printf("Import error: connectivity value out of bounds\n");
+                exit(EXIT_FAILURE);
+            }
+            dgp->connectivity[i] = item_i->valueint;
         }
     }
 }

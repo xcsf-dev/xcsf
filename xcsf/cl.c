@@ -531,9 +531,9 @@ cl_json_export(const struct XCSF *xcsf, const struct Cl *c,
  * @param [in] json cJSON object.
  */
 static void
-cl_json_import_properties(struct Cl *c, cJSON *json)
+cl_json_import_properties(struct Cl *c, const cJSON *json)
 {
-    cJSON *item = cJSON_GetObjectItem(json, "error");
+    const cJSON *item = cJSON_GetObjectItem(json, "error");
     if (item != NULL && cJSON_IsNumber(item)) {
         c->err = item->valuedouble;
     }
@@ -575,12 +575,12 @@ cl_json_import_properties(struct Cl *c, cJSON *json)
  * @param [in] json cJSON object.
  */
 void
-cl_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json)
+cl_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     cl_init(xcsf, c, xcsf->pset.num, xcsf->time);
     cl_rand(xcsf, c);
     cl_json_import_properties(c, json);
-    cJSON *item = cJSON_GetObjectItem(json, "action");
+    const cJSON *item = cJSON_GetObjectItem(json, "action");
     if (item != NULL) {
         act_json_import(xcsf, c, item);
     }

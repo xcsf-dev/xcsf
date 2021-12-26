@@ -108,4 +108,4 @@ cl_json_export(const struct XCSF *xcsf, const struct Cl *c,
                const bool return_pred);
 
 void
-cl_json_import(const struct XCSF *xcsf, struct Cl *c, cJSON *json);
+cl_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json);

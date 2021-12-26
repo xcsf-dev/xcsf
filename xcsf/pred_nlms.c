@@ -291,7 +291,7 @@ pred_nlms_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     (void) xcsf;
     struct PredNLMS *pred = c->pred;
-    cJSON *item = cJSON_GetObjectItem(json, "weights");
+    const cJSON *item = cJSON_GetObjectItem(json, "weights");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == pred->n_weights) {
             for (int i = 0; i < pred->n_weights; ++i) {
