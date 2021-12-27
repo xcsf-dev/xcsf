@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('pred__constant_8c_source.html',''); in
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -223,6 +223,24 @@ $(document).ready(function(){initNavTree('pred__constant_8c_source.html',''); in
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    cJSON_Delete(json);</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">return</span> string;</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;}</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="pred__constant_8h.html#a762504db52051fcb3a88ee3109c160cf">  219</a></span>&#160;<a class="code" href="pred__constant_8c.html#a762504db52051fcb3a88ee3109c160cf">pred_constant_json_import</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">struct</span> <a class="code" href="structCl.html">Cl</a> *c,</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                          <span class="keyword">const</span> cJSON *json)</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;{</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keyword">const</span> cJSON *item = cJSON_GetObjectItem(json, <span class="stringliteral">&quot;prediction&quot;</span>);</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">if</span> (item != NULL &amp;&amp; cJSON_IsArray(item)) {</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <span class="keywordflow">if</span> (cJSON_GetArraySize(item) == <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;y_dim) {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;y_dim; ++i) {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                <span class="keyword">const</span> cJSON *item_i = cJSON_GetArrayItem(item, i);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                c-&gt;<a class="code" href="structCl.html#afffaeeb82ebcbf7e15356c6b7a6fb42e">prediction</a>[i] = item_i-&gt;valuedouble;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            printf(<span class="stringliteral">&quot;Import error: prediction length mismatch\n&quot;</span>);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astructCl_html_adb949177d8b82842946c1859e6fc6001"><div class="ttname"><a href="structCl.html#adb949177d8b82842946c1859e6fc6001">Cl::exp</a></div><div class="ttdeci">int exp</div><div class="ttdoc">Experience.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00055">xcsf.h:55</a></div></div>
@@ -244,6 +262,7 @@ $(document).ready(function(){initNavTree('pred__constant_8c_source.html',''); in
 <div class="ttc" id="apred__constant_8c_html_adefc5cb9f96d09c51d0c03577af84399"><div class="ttname"><a href="pred__constant_8c.html#adefc5cb9f96d09c51d0c03577af84399">pred_constant_copy</a></div><div class="ttdeci">void pred_constant_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00046">pred_constant.c:46</a></div></div>
 <div class="ttc" id="apred__constant_8c_html_a90268cd912408b6cd11e272dd240ef32"><div class="ttname"><a href="pred__constant_8c.html#a90268cd912408b6cd11e272dd240ef32">pred_constant_size</a></div><div class="ttdeci">double pred_constant_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a constant prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00156">pred_constant.c:156</a></div></div>
 <div class="ttc" id="apred__constant_8c_html_a0de1c13af7bfa2067d25f5336e92d77f"><div class="ttname"><a href="pred__constant_8c.html#a0de1c13af7bfa2067d25f5336e92d77f">pred_constant_load</a></div><div class="ttdeci">size_t pred_constant_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Dummy function since constant predictions have no data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00186">pred_constant.c:186</a></div></div>
+<div class="ttc" id="apred__constant_8c_html_a762504db52051fcb3a88ee3109c160cf"><div class="ttname"><a href="pred__constant_8c.html#a762504db52051fcb3a88ee3109c160cf">pred_constant_json_import</a></div><div class="ttdeci">void pred_constant_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)</div><div class="ttdoc">Creates a constant prediction from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="pred__constant_8c_source.html#l00219">pred_constant.c:219</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

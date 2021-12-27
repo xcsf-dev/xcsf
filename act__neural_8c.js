@@ -8,6 +8,7 @@ var act__neural_8c =
     [ "act_neural_general", "act__neural_8c.html#a25308e16a9005eecdd14afb9b34556dc", null ],
     [ "act_neural_init", "act__neural_8c.html#abbdbc4d92f139ccc9816289233dbf934", null ],
     [ "act_neural_json_export", "act__neural_8c.html#af5dd183fdacf478efeac81b6921ffa86", null ],
+    [ "act_neural_json_import", "act__neural_8c.html#a29fd2f475f9ca50e0d1a1f79429c8563", null ],
     [ "act_neural_load", "act__neural_8c.html#a241289b5c61dec98b854ee24fdf16d67", null ],
     [ "act_neural_mutate", "act__neural_8c.html#af4f2ea0a36b3c72e3c80b7d5903458a8", null ],
     [ "act_neural_param_defaults", "act__neural_8c.html#ae9c1117ca77c9dbe5b509c508483d56b", null ],

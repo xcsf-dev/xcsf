@@ -14,6 +14,7 @@ var gp_8h =
     [ "tree_eval", "gp_8h.html#a88f58058fc80e2e8c8735ed7843705b2", null ],
     [ "tree_free", "gp_8h.html#af0aebfb2cd45db848aa6ad20ff763c7e", null ],
     [ "tree_json_export", "gp_8h.html#ae500c8ca8754458d2830363563e35799", null ],
+    [ "tree_json_import", "gp_8h.html#a00cf9a67258de51c4ea1ac19fbbb64fe", null ],
     [ "tree_load", "gp_8h.html#a30eef1fbdd87b137ea2b448a1411dff1", null ],
     [ "tree_mutate", "gp_8h.html#ac3437c50150dcb9aa715b664d7cf54ac", null ],
     [ "tree_param_set_init_depth", "gp_8h.html#ab912e7b472f6fdc6bf9a7565bac8f063", null ],

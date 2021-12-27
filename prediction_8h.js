@@ -20,6 +20,7 @@ var prediction_8h =
     [ "pred_free", "prediction_8h.html#af19eafd52548ede9b90594c8b8949098", null ],
     [ "pred_init", "prediction_8h.html#ac18761d16e606f80e814a15d1770d367", null ],
     [ "pred_json_export", "prediction_8h.html#a18199616c368658b3bbebeb7bf358306", null ],
+    [ "pred_json_import", "prediction_8h.html#a2e189fd3243b2e77d73b7fac5b52a9eb", null ],
     [ "pred_load", "prediction_8h.html#acb4453c3ff11e3b628432cdc2fa5e73b", null ],
     [ "pred_mutate", "prediction_8h.html#a54e0ad7eb1a2c24d35dd13e3212f7500", null ],
     [ "pred_param_defaults", "prediction_8h.html#af2e3b26751cb8f9af4c608e534ee6894", null ],

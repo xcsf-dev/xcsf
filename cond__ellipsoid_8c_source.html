@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('cond__ellipsoid_8c_source.html',''); i
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -342,6 +342,38 @@ $(document).ready(function(){initNavTree('cond__ellipsoid_8c_source.html',''); i
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    cJSON_Delete(json);</div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keywordflow">return</span> string;</div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;}</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno"><a class="line" href="cond__ellipsoid_8h.html#a6fe764be0fa2166a226ce759545d4a29">  364</a></span>&#160;<a class="code" href="cond__ellipsoid_8c.html#a6fe764be0fa2166a226ce759545d4a29">cond_ellipsoid_json_import</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">struct</span> <a class="code" href="structCl.html">Cl</a> *c,</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                           <span class="keyword">const</span> cJSON *json)</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;{</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="keyword">struct </span><a class="code" href="structCondEllipsoid.html">CondEllipsoid</a> *cond = c-&gt;<a class="code" href="structCl.html#a5c8a8879aa9a510147255589b9948d77">cond</a>;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="keyword">const</span> cJSON *item = cJSON_GetObjectItem(json, <span class="stringliteral">&quot;center&quot;</span>);</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="keywordflow">if</span> (item != NULL &amp;&amp; cJSON_IsArray(item)) {</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        <span class="keywordflow">if</span> (cJSON_GetArraySize(item) == <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;x_dim) {</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;x_dim; ++i) {</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                <span class="keyword">const</span> cJSON *item_i = cJSON_GetArrayItem(item, i);</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                cond-&gt;<a class="code" href="structCondEllipsoid.html#a2b319403913259d89ecc96448072a29b">center</a>[i] = item_i-&gt;valuedouble;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;            }</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;            printf(<span class="stringliteral">&quot;Import error: center length mismatch\n&quot;</span>);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        }</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    }</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    item = cJSON_GetObjectItem(json, <span class="stringliteral">&quot;spread&quot;</span>);</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="keywordflow">if</span> (item != NULL &amp;&amp; cJSON_IsArray(item)) {</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        <span class="keywordflow">if</span> (cJSON_GetArraySize(item) == <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;x_dim) {</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;x_dim; ++i) {</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                <span class="keyword">const</span> cJSON *item_i = cJSON_GetArrayItem(item, i);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                cond-&gt;<a class="code" href="structCondEllipsoid.html#ac52ad978dd78ba0eb8ea751f8e5ae670">spread</a>[i] = item_i-&gt;valuedouble;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;            }</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;            printf(<span class="stringliteral">&quot;Import error: spread length mismatch\n&quot;</span>);</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        }</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    }</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <a class="code" href="sam_8c.html#a7af63fa58413563b25933f08b97852b9">sam_json_import</a>(cond-&gt;<a class="code" href="structCondEllipsoid.html#ad97e3a3032177ccc8e6a0f5f76b31697">mu</a>, <a class="code" href="cond__ellipsoid_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30">N_MU</a>, json);</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="acond__ellipsoid_8c_html_a14b87797f90f846715640f4980cb6b9b"><div class="ttname"><a href="cond__ellipsoid_8c.html#a14b87797f90f846715640f4980cb6b9b">MU_TYPE</a></div><div class="ttdeci">static const int MU_TYPE[(1)]</div><div class="ttdoc">Self-adaptation method for mutating hyperellipsoids.</div><div class="ttdef"><b>Definition:</b> <a href="cond__ellipsoid_8c_source.html#l00034">cond_ellipsoid.c:34</a></div></div>
@@ -371,6 +403,7 @@ $(document).ready(function(){initNavTree('cond__ellipsoid_8c_source.html',''); i
 <div class="ttc" id="acond__ellipsoid_8c_html_a4eea5efaac59cd6d6b2586cd5620bac4"><div class="ttname"><a href="cond__ellipsoid_8c.html#a4eea5efaac59cd6d6b2586cd5620bac4">cond_ellipsoid_save</a></div><div class="ttdeci">size_t cond_ellipsoid_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes a hyperellipsoid condition to a file.</div><div class="ttdef"><b>Definition:</b> <a href="cond__ellipsoid_8c_source.html#l00302">cond_ellipsoid.c:302</a></div></div>
 <div class="ttc" id="acond__ellipsoid_8c_html_adb4e3d4361513a72e6c323fe2e6fad13"><div class="ttname"><a href="cond__ellipsoid_8c.html#adb4e3d4361513a72e6c323fe2e6fad13">cond_ellipsoid_copy</a></div><div class="ttdeci">void cond_ellipsoid_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)</div><div class="ttdoc">Copies a hyperellipsoid condition from one classifier to another.</div><div class="ttdef"><b>Definition:</b> <a href="cond__ellipsoid_8c_source.html#l00103">cond_ellipsoid.c:103</a></div></div>
 <div class="ttc" id="autils_8c_html_a972761ba8f47a6c3e7396a7c685158fc"><div class="ttname"><a href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a></div><div class="ttdeci">double rand_uniform(const double min, const double max)</div><div class="ttdoc">Returns a uniform random float [min,max].</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00062">utils.c:62</a></div></div>
+<div class="ttc" id="acond__ellipsoid_8c_html_a6fe764be0fa2166a226ce759545d4a29"><div class="ttname"><a href="cond__ellipsoid_8c.html#a6fe764be0fa2166a226ce759545d4a29">cond_ellipsoid_json_import</a></div><div class="ttdeci">void cond_ellipsoid_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)</div><div class="ttdoc">Creates a hyperellipsoid from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="cond__ellipsoid_8c_source.html#l00364">cond_ellipsoid.c:364</a></div></div>
 <div class="ttc" id="astructCondEllipsoid_html_ad97e3a3032177ccc8e6a0f5f76b31697"><div class="ttname"><a href="structCondEllipsoid.html#ad97e3a3032177ccc8e6a0f5f76b31697">CondEllipsoid::mu</a></div><div class="ttdeci">double * mu</div><div class="ttdoc">Mutation rates.</div><div class="ttdef"><b>Definition:</b> <a href="cond__ellipsoid_8h_source.html#l00035">cond_ellipsoid.h:35</a></div></div>
 <div class="ttc" id="acond__ellipsoid_8c_html_aca843e209b567077d3102cb4d260ed34"><div class="ttname"><a href="cond__ellipsoid_8c.html#aca843e209b567077d3102cb4d260ed34">cond_ellipsoid_general</a></div><div class="ttdeci">bool cond_ellipsoid_general(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Returns whether classifier c1 has a condition more general than c2.</div><div class="ttdef"><b>Definition:</b> <a href="cond__ellipsoid_8c_source.html#l00241">cond_ellipsoid.c:241</a></div></div>
 <div class="ttc" id="asam_8h_html"><div class="ttname"><a href="sam_8h.html">sam.h</a></div><div class="ttdoc">Self-adaptive mutation functions.</div></div>
@@ -378,6 +411,7 @@ $(document).ready(function(){initNavTree('cond__ellipsoid_8c_source.html',''); i
 <div class="ttc" id="astructCondEllipsoid_html"><div class="ttname"><a href="structCondEllipsoid.html">CondEllipsoid</a></div><div class="ttdoc">Hyperellipsoid condition data structure.</div><div class="ttdef"><b>Definition:</b> <a href="cond__ellipsoid_8h_source.html#l00032">cond_ellipsoid.h:32</a></div></div>
 <div class="ttc" id="asam_8c_html_a8dfbd425ab3513d47726620e94fc861c"><div class="ttname"><a href="sam_8c.html#a8dfbd425ab3513d47726620e94fc861c">sam_adapt</a></div><div class="ttdeci">void sam_adapt(double *mu, const int N, const int *type)</div><div class="ttdoc">Self-adapts mutation rates.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00068">sam.c:68</a></div></div>
 <div class="ttc" id="acond__ellipsoid_8c_html_aa929424db0fbd1fa3659ea6c285ca0ae"><div class="ttname"><a href="cond__ellipsoid_8c.html#aa929424db0fbd1fa3659ea6c285ca0ae">cond_ellipsoid_size</a></div><div class="ttdeci">double cond_ellipsoid_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a hyperellipsoid condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__ellipsoid_8c_source.html#l00288">cond_ellipsoid.c:288</a></div></div>
+<div class="ttc" id="asam_8c_html_a7af63fa58413563b25933f08b97852b9"><div class="ttname"><a href="sam_8c.html#a7af63fa58413563b25933f08b97852b9">sam_json_import</a></div><div class="ttdeci">void sam_json_import(double *mu, const int N, const cJSON *json)</div><div class="ttdoc">Initialises a mutation vector from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00100">sam.c:100</a></div></div>
 <div class="ttc" id="asam_8h_html_a7bb706f447cc9034816dd45431bb2955"><div class="ttname"><a href="sam_8h.html#a7bb706f447cc9034816dd45431bb2955">SAM_LOG_NORMAL</a></div><div class="ttdeci">#define SAM_LOG_NORMAL</div><div class="ttdoc">Log normal self-adaptation.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8h_source.html#l00028">sam.h:28</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

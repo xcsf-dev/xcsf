@@ -1,0 +1,5 @@
+<map id="XCS::json_insert" name="XCS::json_insert">
+<area shape="rect" id="node1" title="Creates classifiers from JSON and inserts into the population." alt="" coords="367,31,488,57"/>
+<area shape="rect" id="node2" href="$classXCS.html#a1a882e28a64c4e2b92ae234d79f327de" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="204,5,319,32"/>
+<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,31,156,57"/>
+</map>

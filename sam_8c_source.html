@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('sam_8c_source.html',''); initResizable
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -163,6 +163,26 @@ $(document).ready(function(){initNavTree('sam_8c_source.html',''); initResizable
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        }</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="sam_8h.html#a7af63fa58413563b25933f08b97852b9">  100</a></span>&#160;<a class="code" href="sam_8c.html#a7af63fa58413563b25933f08b97852b9">sam_json_import</a>(<span class="keywordtype">double</span> *mu, <span class="keyword">const</span> <span class="keywordtype">int</span> N, <span class="keyword">const</span> cJSON *json)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;{</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">const</span> cJSON *item = cJSON_GetObjectItem(json, <span class="stringliteral">&quot;mutation&quot;</span>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">if</span> (item != NULL &amp;&amp; cJSON_IsArray(item)) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">if</span> (cJSON_GetArraySize(item) != N) {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            printf(<span class="stringliteral">&quot;Import error: mutation length mismatch\n&quot;</span>);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N; ++i) {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keyword">const</span> cJSON *item_i = cJSON_GetArrayItem(item, i);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">if</span> (item_i-&gt;valuedouble &lt; 0 || item_i-&gt;valuedouble &gt; 1) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                printf(<span class="stringliteral">&quot;Import error: mutation value out of bounds\n&quot;</span>);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            mu[i] = item_i-&gt;valuedouble;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="asam_8c_html_a7f7f30716900f06683a74486aca5f5a0"><div class="ttname"><a href="sam_8c.html#a7f7f30716900f06683a74486aca5f5a0">sam_init</a></div><div class="ttdeci">void sam_init(double *mu, const int N, const int *type)</div><div class="ttdoc">Initialises self-adaptive mutation rates.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00043">sam.c:43</a></div></div>
@@ -177,6 +197,7 @@ $(document).ready(function(){initNavTree('sam_8c_source.html',''); initResizable
 <div class="ttc" id="asam_8h_html"><div class="ttname"><a href="sam_8h.html">sam.h</a></div><div class="ttdoc">Self-adaptive mutation functions.</div></div>
 <div class="ttc" id="asam_8c_html_a225a63ec444f1d4cb51e6b3bd71157ed"><div class="ttname"><a href="sam_8c.html#a225a63ec444f1d4cb51e6b3bd71157ed">mrates</a></div><div class="ttdeci">static const double mrates[(10)]</div><div class="ttdoc">Values for rate selection adaptation.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00033">sam.c:33</a></div></div>
 <div class="ttc" id="asam_8c_html_a8dfbd425ab3513d47726620e94fc861c"><div class="ttname"><a href="sam_8c.html#a8dfbd425ab3513d47726620e94fc861c">sam_adapt</a></div><div class="ttdeci">void sam_adapt(double *mu, const int N, const int *type)</div><div class="ttdoc">Self-adapts mutation rates.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00068">sam.c:68</a></div></div>
+<div class="ttc" id="asam_8c_html_a7af63fa58413563b25933f08b97852b9"><div class="ttname"><a href="sam_8c.html#a7af63fa58413563b25933f08b97852b9">sam_json_import</a></div><div class="ttdeci">void sam_json_import(double *mu, const int N, const cJSON *json)</div><div class="ttdoc">Initialises a mutation vector from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00100">sam.c:100</a></div></div>
 <div class="ttc" id="asam_8h_html_a7bb706f447cc9034816dd45431bb2955"><div class="ttname"><a href="sam_8h.html#a7bb706f447cc9034816dd45431bb2955">SAM_LOG_NORMAL</a></div><div class="ttdeci">#define SAM_LOG_NORMAL</div><div class="ttdoc">Log normal self-adaptation.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8h_source.html#l00028">sam.h:28</a></div></div>
 <div class="ttc" id="asam_8h_html_ad0c7453038295a935f79fddf36051556"><div class="ttname"><a href="sam_8h.html#ad0c7453038295a935f79fddf36051556">SAM_UNIFORM</a></div><div class="ttdeci">#define SAM_UNIFORM</div><div class="ttdoc">Uniformly random self-adaptation.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8h_source.html#l00030">sam.h:30</a></div></div>
 <!-- start footer part -->

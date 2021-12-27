@@ -12,85 +12,100 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Initialises the prediction array.">
-<polygon fill="#bfbfbf" stroke="black" points="442,-38.5 442,-57.5 487,-57.5 487,-38.5 442,-38.5"/>
-<text text-anchor="middle" x="464.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">pa_init</text>
+<polygon fill="#bfbfbf" stroke="black" points="442,-57.5 442,-76.5 487,-76.5 487,-57.5 442,-57.5"/>
+<text text-anchor="middle" x="464.5" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">pa_init</text>
 </a>
 </g>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="332.5,-76.5 332.5,-95.5 370.5,-95.5 370.5,-76.5 332.5,-76.5"/>
-<text text-anchor="middle" x="351.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
+<g id="a_node2"><a xlink:href="xcsf_8h.html#ad77461184a11780681798ac593b090ab" target="_top" xlink:title="Switches from autoencoding to classification.">
+<polygon fill="none" stroke="black" points="297,-76.5 297,-95.5 406,-95.5 406,-76.5 297,-76.5"/>
+<text text-anchor="middle" x="351.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcsf_ae_to_classifier</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M432.29,-58.68C412.46,-65.47 387.48,-74.02 370.8,-79.73"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="433.51,-61.97 441.83,-55.42 431.24,-55.34 433.51,-61.97"/>
-</g>
-<!-- Node3 -->
-<g id="node3" class="node">
-<title>Node3</title>
-<g id="a_node3"><a xlink:href="classXCS.html#af1010afd63843f86ad1dd81fade9bd72" target="_top" xlink:title="Constructor.">
-<polygon fill="none" stroke="black" points="319,-38.5 319,-57.5 384,-57.5 384,-38.5 319,-38.5"/>
-<text text-anchor="middle" x="351.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::XCS</text>
-</a>
-</g>
-</g>
-<!-- Node1&#45;&gt;Node3 -->
-<g id="edge2" class="edge">
-<title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M431.57,-48C416.7,-48 399.05,-48 384.2,-48"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="431.83,-51.5 441.83,-48 431.83,-44.5 431.83,-51.5"/>
-</g>
-<!-- Node4 -->
-<g id="node4" class="node">
-<title>Node4</title>
-<g id="a_node4"><a xlink:href="xcsf_8h.html#ad77461184a11780681798ac593b090ab" target="_top" xlink:title="Switches from autoencoding to classification.">
-<polygon fill="none" stroke="black" points="297,-0.5 297,-19.5 406,-19.5 406,-0.5 297,-0.5"/>
-<text text-anchor="middle" x="351.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcsf_ae_to_classifier</text>
-</a>
-</g>
-</g>
-<!-- Node1&#45;&gt;Node4 -->
-<g id="edge3" class="edge">
-<title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M432.21,-37.29C415.93,-31.72 396.19,-24.96 380.43,-19.56"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="431.24,-40.66 441.83,-40.58 433.51,-34.03 431.24,-40.66"/>
+<path fill="none" stroke="midnightblue" d="M431.88,-72.41C423.89,-73.78 415.08,-75.29 406.33,-76.79"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="432.57,-75.85 441.83,-70.71 431.39,-68.95 432.57,-75.85"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="classXCS.html#ad73009d926d395ee03bf7586f194fcbe" target="_top" xlink:title="Switches from autoencoding to classification.">
-<polygon fill="none" stroke="black" points="149,-0.5 149,-19.5 261,-19.5 261,-0.5 149,-0.5"/>
-<text text-anchor="middle" x="205" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::ae_to_classifier</text>
+<g id="a_node5"><a xlink:href="xcsf_8h.html#ae4718dd9f579b8730e25a1a13a385d6a" target="_top" xlink:title="Initialises XCSF with an empty population.">
+<polygon fill="none" stroke="black" points="325,-38.5 325,-57.5 378,-57.5 378,-38.5 325,-38.5"/>
+<text text-anchor="middle" x="351.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcsf_init</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node5 -->
+<!-- Node1&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
-<title>Node4&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M286.54,-10C278.12,-10 269.55,-10 261.3,-10"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="286.69,-13.5 296.69,-10 286.69,-6.5 286.69,-13.5"/>
+<title>Node1&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M431.77,-61.57C414.73,-58.65 393.99,-55.1 378,-52.37"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="431.39,-65.05 441.83,-63.29 432.57,-58.15 431.39,-65.05"/>
+</g>
+<!-- Node3 -->
+<g id="node3" class="node">
+<title>Node3</title>
+<g id="a_node3"><a xlink:href="classXCS.html#ad73009d926d395ee03bf7586f194fcbe" target="_top" xlink:title="Switches from autoencoding to classification.">
+<polygon fill="none" stroke="black" points="149,-76.5 149,-95.5 261,-95.5 261,-76.5 149,-76.5"/>
+<text text-anchor="middle" x="205" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::ae_to_classifier</text>
+</a>
+</g>
+</g>
+<!-- Node2&#45;&gt;Node3 -->
+<g id="edge2" class="edge">
+<title>Node2&#45;&gt;Node3</title>
+<path fill="none" stroke="midnightblue" d="M286.54,-86C278.12,-86 269.55,-86 261.3,-86"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="286.69,-89.5 296.69,-86 286.69,-82.5 286.69,-89.5"/>
+</g>
+<!-- Node4 -->
+<g id="node4" class="node">
+<title>Node4</title>
+<g id="a_node4"><a xlink:href="pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" target="_top" xlink:title=" ">
+<polygon fill="none" stroke="black" points="0,-76.5 0,-95.5 113,-95.5 113,-76.5 0,-76.5"/>
+<text text-anchor="middle" x="56.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">PYBIND11_MODULE</text>
+</a>
+</g>
+</g>
+<!-- Node3&#45;&gt;Node4 -->
+<g id="edge3" class="edge">
+<title>Node3&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M138.51,-86C130.15,-86 121.64,-86 113.45,-86"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="138.61,-89.5 148.61,-86 138.61,-82.5 138.61,-89.5"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 113,-19.5 113,-0.5 0,-0.5"/>
-<text text-anchor="middle" x="56.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">PYBIND11_MODULE</text>
+<g id="a_node6"><a xlink:href="main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" target="_top" xlink:title=" ">
+<polygon fill="none" stroke="black" points="186,-38.5 186,-57.5 224,-57.5 224,-38.5 186,-38.5"/>
+<text text-anchor="middle" x="205" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>
 </g>
 </g>
 <!-- Node5&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node5&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M138.51,-10C130.15,-10 121.64,-10 113.45,-10"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="138.61,-13.5 148.61,-10 138.61,-6.5 138.61,-13.5"/>
+<path fill="none" stroke="midnightblue" d="M314.96,-48C286.28,-48 247.1,-48 224.38,-48"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="315,-51.5 325,-48 315,-44.5 315,-51.5"/>
+</g>
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:href="classXCS.html#af1010afd63843f86ad1dd81fade9bd72" target="_top" xlink:title="Constructor.">
+<polygon fill="none" stroke="black" points="172.5,-0.5 172.5,-19.5 237.5,-19.5 237.5,-0.5 172.5,-0.5"/>
+<text text-anchor="middle" x="205" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::XCS</text>
+</a>
+</g>
+</g>
+<!-- Node5&#45;&gt;Node7 -->
+<g id="edge6" class="edge">
+<title>Node5&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M315.31,-38.75C291.57,-32.5 260.49,-24.33 237.55,-18.3"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="314.44,-42.14 325,-41.29 316.22,-35.37 314.44,-42.14"/>
 </g>
 </g>
 </svg>

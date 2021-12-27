@@ -8,6 +8,7 @@ var clset_8c =
     [ "clset_free", "clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de", null ],
     [ "clset_init", "clset_8c.html#a9af546abf9de1bc840d605e949d3ef47", null ],
     [ "clset_json_export", "clset_8c.html#af7d4ec3f5c5bcebc48045a6724beed12", null ],
+    [ "clset_json_insert", "clset_8c.html#a9f71f62cb4c5216fb3a3e76a6b3df82f", null ],
     [ "clset_kill", "clset_8c.html#a236baf24659360891f944761f88a30f4", null ],
     [ "clset_match", "clset_8c.html#a101813e8460677fdb33f08e0226dce9b", null ],
     [ "clset_mean_cond_size", "clset_8c.html#a858e99d88d35cdc49b60788ca90f5b56", null ],

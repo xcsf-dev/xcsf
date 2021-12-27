@@ -12,6 +12,7 @@ var cl_8h =
     [ "cl_init", "cl_8h.html#a188fac458e06c9a27e0e4069f7ddb68a", null ],
     [ "cl_init_copy", "cl_8h.html#a70aceb2c4039333d36ee71f954fb9d79", null ],
     [ "cl_json_export", "cl_8h.html#a6fccc77f8093c33617be7fc29175614c", null ],
+    [ "cl_json_import", "cl_8h.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c", null ],
     [ "cl_load", "cl_8h.html#aa1ac32b2cecb1ff414f4f8c405e9cc9d", null ],
     [ "cl_m", "cl_8h.html#a1ccf0c57e37b72878dd521ef0e8d719a", null ],
     [ "cl_match", "cl_8h.html#a87846c65c6d158e77a63714535b28a59", null ],

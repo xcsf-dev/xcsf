@@ -1,8 +1,7 @@
 <map id="gp.h" name="gp.h">
-<area shape="rect" id="node1" title="An implementation of GP trees based upon TinyGP." alt="" coords="253,5,299,32"/>
-<area shape="rect" id="node2" href="$cond__gp_8h.html" title="Tree GP condition functions." alt="" coords="141,80,224,107"/>
-<area shape="rect" id="node5" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="222,155,359,181"/>
-<area shape="rect" id="node6" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="314,80,361,107"/>
+<area shape="rect" id="node1" title="An implementation of GP trees based upon TinyGP." alt="" coords="121,5,167,32"/>
+<area shape="rect" id="node2" href="$cond__gp_8h.html" title="Tree GP condition functions." alt="" coords="59,80,141,107"/>
+<area shape="rect" id="node5" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="166,80,213,107"/>
 <area shape="rect" id="node3" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="5,155,88,181"/>
 <area shape="rect" id="node4" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="112,155,197,181"/>
 </map>

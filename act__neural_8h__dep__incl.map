@@ -1,6 +1,5 @@
 <map id="act_neural.h" name="act_neural.h">
-<area shape="rect" id="node1" title="Neural network action functions." alt="" coords="111,5,204,32"/>
+<area shape="rect" id="node1" title="Neural network action functions." alt="" coords="57,5,151,32"/>
 <area shape="rect" id="node2" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,80,99,107"/>
 <area shape="rect" id="node3" href="$action_8c.html" title="Interface for classifier actions." alt="" coords="123,80,191,107"/>
-<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="215,80,353,107"/>
 </map>

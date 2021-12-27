@@ -1,27 +1,27 @@
 <map id="layer_receives_images" name="layer_receives_images">
-<area shape="rect" id="node1" title="Returns a whether a layer type expects images as input." alt="" coords="1440,151,1595,177"/>
-<area shape="rect" id="node2" href="$neural__layer__args_8c.html#a7b6e5027adbd710fc3653c7056c22fa2" title="Adds layer input parameters to a json object." alt="" coords="1236,81,1392,122"/>
-<area shape="rect" id="node13" href="$neural__layer__args_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" title="Checks input layer arguments are valid." alt="" coords="1247,175,1381,217"/>
-<area shape="rect" id="node3" href="$neural__layer__args_8h.html#a390bf97769999138966232a530c705e8" title="Returns a json formatted string of the neural layer parameters." alt="" coords="1032,81,1188,108"/>
-<area shape="rect" id="node4" href="$action_8h.html#ae4c75dacfa854514efe71cc00515d6c0" title="Returns a json formatted string of the action parameters." alt="" coords="809,5,984,32"/>
-<area shape="rect" id="node11" href="$condition_8h.html#ac3384a0731c16bed95c104111873c6e2" title="Returns a json formatted string of the condition parameters." alt="" coords="813,56,980,83"/>
-<area shape="rect" id="node12" href="$prediction_8h.html#afb4c9f7647df17c3b4ab748f01b5e301" title="Returns a json formatted string of the prediction parameters." alt="" coords="815,107,979,133"/>
-<area shape="rect" id="node5" href="$param_8h.html#a92d92fc270b6ed2e2637ccb590eb15d5" title="Returns a json formatted string representation of the parameters." alt="" coords="608,56,740,83"/>
-<area shape="rect" id="node6" href="$classXCS.html#adb57289e76542083f52f422992e4ee13" title="Returns a JSON formatted string representing the parameters." alt="" coords="204,56,359,83"/>
-<area shape="rect" id="node8" href="$param_8h.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="427,107,518,133"/>
-<area shape="rect" id="node7" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,95,156,121"/>
-<area shape="rect" id="node9" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,171,106,197"/>
-<area shape="rect" id="node10" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="215,107,348,133"/>
-<area shape="rect" id="node14" href="$neural__layer__args_8h.html#a492de2de029ff6124f8fe466ad6b0d80" title="Checks network layer arguments are valid." alt="" coords="1043,216,1177,243"/>
-<area shape="rect" id="node15" href="$act__neural_8h.html#a8733352425cce2fa68d995b3a991b057" title="Sets the neural network parameters from a cJSON object." alt="" coords="819,158,975,199"/>
-<area shape="rect" id="node20" href="$cond__neural_8h.html#a36aaa09b20127f91f09523074191d3ac" title="Sets the neural network parameters from a cJSON object." alt="" coords="813,223,980,265"/>
-<area shape="rect" id="node23" href="$pred__neural_8h.html#aaf2d30b8d2123b423b251f88f7c772ff" title="Sets the neural network parameters from a cJSON object." alt="" coords="815,309,978,350"/>
-<area shape="rect" id="node16" href="$action_8h.html#aaa5c433092521a4fe5159eee76b1c141" title="Sets the action parameters from a cJSON object." alt="" coords="587,113,761,140"/>
-<area shape="rect" id="node19" href="$classXCS.html#a1298087e3a06734561965359b4d74468" title="Sets the action type and initialisation arguments." alt="" coords="615,164,733,191"/>
-<area shape="rect" id="node17" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="407,215,539,241"/>
-<area shape="rect" id="node18" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="237,211,326,237"/>
-<area shape="rect" id="node21" href="$condition_8h.html#aac2f9eaa3555b7e4b8d6106fe46f7d41" title="Sets the condition parameters from a cJSON object." alt="" coords="591,215,757,241"/>
-<area shape="rect" id="node22" href="$classXCS.html#ab16720d21296ba0832318f67e55522e3" title="Sets the condition type and initialisation arguments." alt="" coords="607,265,741,292"/>
-<area shape="rect" id="node24" href="$prediction_8h.html#a3da29e38981e8b98ec136766a79d074a" title="Sets the prediction parameters from a cJSON object." alt="" coords="592,316,756,343"/>
-<area shape="rect" id="node25" href="$classXCS.html#a76f72805cdd38df46ecbc8bd8a592376" title="Sets the prediction type and initialisation arguments." alt="" coords="605,367,743,393"/>
+<area shape="rect" id="node1" title="Returns a whether a layer type expects images as input." alt="" coords="1447,151,1601,177"/>
+<area shape="rect" id="node2" href="$neural__layer__args_8c.html#a7b6e5027adbd710fc3653c7056c22fa2" title="Adds layer input parameters to a json object." alt="" coords="1243,81,1399,122"/>
+<area shape="rect" id="node13" href="$neural__layer__args_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" title="Checks input layer arguments are valid." alt="" coords="1253,175,1388,217"/>
+<area shape="rect" id="node3" href="$neural__layer__args_8h.html#a390bf97769999138966232a530c705e8" title="Returns a json formatted string of the neural layer parameters." alt="" coords="1039,81,1195,108"/>
+<area shape="rect" id="node4" href="$action_8h.html#ae4c75dacfa854514efe71cc00515d6c0" title="Returns a json formatted string of the action parameters." alt="" coords="816,5,991,32"/>
+<area shape="rect" id="node11" href="$condition_8h.html#ac3384a0731c16bed95c104111873c6e2" title="Returns a json formatted string of the condition parameters." alt="" coords="820,56,987,83"/>
+<area shape="rect" id="node12" href="$prediction_8h.html#afb4c9f7647df17c3b4ab748f01b5e301" title="Returns a json formatted string of the prediction parameters." alt="" coords="821,107,985,133"/>
+<area shape="rect" id="node5" href="$param_8h.html#a92d92fc270b6ed2e2637ccb590eb15d5" title="Returns a json formatted string representation of the parameters." alt="" coords="615,56,747,83"/>
+<area shape="rect" id="node6" href="$classXCS.html#adb57289e76542083f52f422992e4ee13" title="Returns a JSON formatted string representing the parameters." alt="" coords="204,49,359,76"/>
+<area shape="rect" id="node8" href="$param_8h.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="431,100,521,127"/>
+<area shape="rect" id="node7" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,88,156,115"/>
+<area shape="rect" id="node9" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,164,106,191"/>
+<area shape="rect" id="node10" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="215,100,348,127"/>
+<area shape="rect" id="node14" href="$neural__layer__args_8h.html#a492de2de029ff6124f8fe466ad6b0d80" title="Checks network layer arguments are valid." alt="" coords="1049,216,1184,243"/>
+<area shape="rect" id="node15" href="$act__neural_8h.html#a8733352425cce2fa68d995b3a991b057" title="Sets the neural network parameters from a cJSON object." alt="" coords="825,158,981,199"/>
+<area shape="rect" id="node20" href="$cond__neural_8h.html#a36aaa09b20127f91f09523074191d3ac" title="Sets the neural network parameters from a cJSON object." alt="" coords="820,223,987,265"/>
+<area shape="rect" id="node23" href="$pred__neural_8h.html#aaf2d30b8d2123b423b251f88f7c772ff" title="Sets the neural network parameters from a cJSON object." alt="" coords="822,289,985,330"/>
+<area shape="rect" id="node16" href="$action_8h.html#aaa5c433092521a4fe5159eee76b1c141" title="Sets the action parameters from a cJSON object." alt="" coords="593,165,768,192"/>
+<area shape="rect" id="node17" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="410,201,542,228"/>
+<area shape="rect" id="node19" href="$classXCS.html#a1298087e3a06734561965359b4d74468" title="Sets the action type and initialisation arguments." alt="" coords="417,151,535,177"/>
+<area shape="rect" id="node18" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="237,201,326,228"/>
+<area shape="rect" id="node21" href="$condition_8h.html#aac2f9eaa3555b7e4b8d6106fe46f7d41" title="Sets the condition parameters from a cJSON object." alt="" coords="597,231,764,257"/>
+<area shape="rect" id="node22" href="$classXCS.html#ab16720d21296ba0832318f67e55522e3" title="Sets the condition type and initialisation arguments." alt="" coords="409,252,543,279"/>
+<area shape="rect" id="node24" href="$prediction_8h.html#a3da29e38981e8b98ec136766a79d074a" title="Sets the prediction parameters from a cJSON object." alt="" coords="599,296,763,323"/>
+<area shape="rect" id="node25" href="$classXCS.html#a76f72805cdd38df46ecbc8bd8a592376" title="Sets the prediction type and initialisation arguments." alt="" coords="407,303,545,329"/>
 </map>

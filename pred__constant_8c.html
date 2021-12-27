@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('pred__constant_8c.html',''); initResiz
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -97,15 +97,14 @@ $(document).ready(function(){initNavTree('pred__constant_8c.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 
-<p>Piece-wise constant prediction functions.
+<p>Piece-wise constant prediction functions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="pred__constant_8h_source.html">pred_constant.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="utils_8h_source.html">utils.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for pred_constant.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pred__constant_8c__incl.svg" width="1143" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__constant_8c__incl.svg" width="1143" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="pred__constant_8c_source.html">Go to the source code of this file.</a></p>
@@ -148,6 +147,9 @@ Functions</h2></td></tr>
 <tr class="memitem:adf82e471616f786f781413e7f4bcf49e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__constant_8c.html#adf82e471616f786f781413e7f4bcf49e">pred_constant_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
 <tr class="memdesc:adf82e471616f786f781413e7f4bcf49e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a prediction.  <a href="pred__constant_8c.html#adf82e471616f786f781413e7f4bcf49e">More...</a><br /></td></tr>
 <tr class="separator:adf82e471616f786f781413e7f4bcf49e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a762504db52051fcb3a88ee3109c160cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pred__constant_8c.html#a762504db52051fcb3a88ee3109c160cf">pred_constant_json_import</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, const cJSON *json)</td></tr>
+<tr class="memdesc:a762504db52051fcb3a88ee3109c160cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a constant prediction from a cJSON object.  <a href="pred__constant_8c.html#a762504db52051fcb3a88ee3109c160cf">More...</a><br /></td></tr>
+<tr class="separator:a762504db52051fcb3a88ee3109c160cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Piece-wise constant prediction functions. </p>
@@ -418,9 +420,56 @@ Functions</h2></td></tr>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pred__constant_8c_adf82e471616f786f781413e7f4bcf49e_icgraph.svg" width="330" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__constant_8c_adf82e471616f786f781413e7f4bcf49e_icgraph.svg" width="330" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
 </div>
 </div>
+<a id="a762504db52051fcb3a88ee3109c160cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a762504db52051fcb3a88ee3109c160cf">&#9670;&nbsp;</a></span>pred_constant_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pred_constant_json_import </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a constant prediction from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">c</td><td>The classifier to initialise. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pred__constant_8c_source.html#l00219">219</a> of file <a class="el" href="pred__constant_8c_source.html">pred_constant.c</a>.</p>
+
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00059">Cl::prediction</a>.</p>
 
 </div>
 </div>
@@ -552,8 +601,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pred__constant_8c_a930a990c6661215f4e922da06d8042d4_cgraph.svg" width="330" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pred__constant_8c_a930a990c6661215f4e922da06d8042d4_cgraph.svg" width="330" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

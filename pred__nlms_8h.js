@@ -7,6 +7,7 @@ var pred__nlms_8h =
     [ "pred_nlms_free", "pred__nlms_8h.html#abde046237bcb9e6361f33a1ebc7a2fa8", null ],
     [ "pred_nlms_init", "pred__nlms_8h.html#ab5f1a783eafab36fcbffdff41bdbd13f", null ],
     [ "pred_nlms_json_export", "pred__nlms_8h.html#a61de1c1a3f6cada526c9f5c3f12bf2d8", null ],
+    [ "pred_nlms_json_import", "pred__nlms_8h.html#a29b0c6887ec7c8f39ca98a78d2809516", null ],
     [ "pred_nlms_load", "pred__nlms_8h.html#ae02728e1f2dd6d8ddab9ca0cff4968fa", null ],
     [ "pred_nlms_mutate", "pred__nlms_8h.html#abfd2e8695677f15466100c5d3ce15cda", null ],
     [ "pred_nlms_param_json_export", "pred__nlms_8h.html#a3ed879edc5785d8f0c208e83ff62382a", null ],

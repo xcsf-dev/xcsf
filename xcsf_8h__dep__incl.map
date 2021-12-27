@@ -1,82 +1,82 @@
 <map id="xcsf.h" name="xcsf.h">
-<area shape="rect" id="node1" title="XCSF data structures." alt="" coords="3132,5,3191,32"/>
-<area shape="rect" id="node2" href="$action_8h.html" title="Interface for classifier actions." alt="" coords="1167,80,1235,107"/>
-<area shape="rect" id="node3" href="$act__integer_8h.html" title="integer action functions." alt="" coords="920,155,1016,181"/>
-<area shape="rect" id="node6" href="$act__neural_8h.html" title="Neural network action functions." alt="" coords="752,155,845,181"/>
-<area shape="rect" id="node10" href="$rule__dgp_8h.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="1160,155,1243,181"/>
-<area shape="rect" id="node13" href="$rule__neural_8h.html" title="Neural network rule (condition + action) functions." alt="" coords="1040,155,1136,181"/>
-<area shape="rect" id="node16" href="$sam_8h.html" title="Self&#45;adaptive mutation functions." alt="" coords="1317,155,1376,181"/>
-<area shape="rect" id="node30" href="$cl_8h.html" title="Functions operating on classifiers." alt="" coords="3743,155,3785,181"/>
-<area shape="rect" id="node36" href="$condition_8h.html" title="Interface for classifier conditions." alt="" coords="2047,80,2132,107"/>
-<area shape="rect" id="node37" href="$cond__neural_8h.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="2851,155,2954,181"/>
-<area shape="rect" id="node39" href="$cond__dgp_8h.html" title="Dynamical GP graph condition functions." alt="" coords="1451,155,1541,181"/>
-<area shape="rect" id="node40" href="$cond__dummy_8h.html" title="Always&#45;matching dummy condition functions." alt="" coords="1565,155,1675,181"/>
-<area shape="rect" id="node42" href="$cond__ellipsoid_8h.html" title="Hyperellipsoid condition functions." alt="" coords="1699,155,1813,181"/>
-<area shape="rect" id="node43" href="$cond__gp_8h.html" title="Tree GP condition functions." alt="" coords="2317,155,2400,181"/>
-<area shape="rect" id="node44" href="$cond__rectangle_8h.html" title="Hyperrectangle condition functions." alt="" coords="1838,155,1959,181"/>
-<area shape="rect" id="node45" href="$cond__ternary_8h.html" title="Ternary condition functions." alt="" coords="2187,155,2293,181"/>
-<area shape="rect" id="node46" href="$ea_8h.html" title="Evolutionary algorithm functions." alt="" coords="2425,155,2471,181"/>
-<area shape="rect" id="node49" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="3843,80,3901,107"/>
-<area shape="rect" id="node50" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="4471,155,4540,181"/>
-<area shape="rect" id="node55" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="4471,229,4532,256"/>
-<area shape="rect" id="node57" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="3117,80,3206,107"/>
-<area shape="rect" id="node58" href="$pred__neural_8h.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="3377,155,3477,181"/>
-<area shape="rect" id="node61" href="$pred__constant_8h.html" title="Piece&#45;wise constant prediction functions." alt="" coords="3604,155,3719,181"/>
-<area shape="rect" id="node63" href="$pred__nlms_8h.html" title="Normalised least mean squares prediction functions." alt="" coords="3029,155,3123,181"/>
-<area shape="rect" id="node64" href="$pred__rls_8h.html" title="Recursive least mean squares prediction functions." alt="" coords="3501,155,3579,181"/>
-<area shape="rect" id="node66" href="$clset_8h.html" title="Functions operating on sets of classifiers." alt="" coords="3943,155,4004,181"/>
-<area shape="rect" id="node67" href="$clset__neural_8h.html" title="Functions operating on sets of neural classifiers." alt="" coords="3198,155,3301,181"/>
-<area shape="rect" id="node68" href="$dgp_8h.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="1469,80,1523,107"/>
-<area shape="rect" id="node69" href="$gp_8h.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="2723,80,2770,107"/>
-<area shape="rect" id="node70" href="$config_8h.html" title="Configuration file handling functions." alt="" coords="4666,155,4734,181"/>
-<area shape="rect" id="node71" href="$env_8h.html" title="Built&#45;in problem environment interface." alt="" coords="4773,80,4825,107"/>
-<area shape="rect" id="node72" href="$env__csv_8h.html" title="CSV input file handling functions." alt="" coords="4759,155,4839,181"/>
-<area shape="rect" id="node74" href="$env__maze_8h.html" title="The discrete maze problem environment module." alt="" coords="4863,155,4956,181"/>
-<area shape="rect" id="node75" href="$env__mux_8h.html" title="The real multiplexer problem environment." alt="" coords="4981,155,5067,181"/>
-<area shape="rect" id="node76" href="$pa_8h.html" title="Prediction array functions." alt="" coords="4029,155,4075,181"/>
-<area shape="rect" id="node77" href="$xcs__rl_8h.html" title="Reinforcement learning functions." alt="" coords="4299,155,4367,181"/>
-<area shape="rect" id="node78" href="$xcs__supervised_8h.html" title="Supervised regression learning functions." alt="" coords="4151,155,4275,181"/>
-<area shape="rect" id="node79" href="$perf_8h.html" title="System performance printing." alt="" coords="4391,155,4446,181"/>
+<area shape="rect" id="node1" title="XCSF data structures." alt="" coords="3008,5,3067,32"/>
+<area shape="rect" id="node2" href="$action_8h.html" title="Interface for classifier actions." alt="" coords="1726,80,1794,107"/>
+<area shape="rect" id="node3" href="$act__integer_8h.html" title="integer action functions." alt="" coords="863,155,959,181"/>
+<area shape="rect" id="node6" href="$act__neural_8h.html" title="Neural network action functions." alt="" coords="159,155,252,181"/>
+<area shape="rect" id="node9" href="$rule__dgp_8h.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="1537,155,1620,181"/>
+<area shape="rect" id="node12" href="$rule__neural_8h.html" title="Neural network rule (condition + action) functions." alt="" coords="1417,155,1513,181"/>
+<area shape="rect" id="node16" href="$sam_8h.html" title="Self&#45;adaptive mutation functions." alt="" coords="1169,155,1228,181"/>
+<area shape="rect" id="node30" href="$cl_8h.html" title="Functions operating on classifiers." alt="" coords="3441,155,3484,181"/>
+<area shape="rect" id="node36" href="$condition_8h.html" title="Interface for classifier conditions." alt="" coords="2177,80,2263,107"/>
+<area shape="rect" id="node37" href="$cond__neural_8h.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="2503,155,2606,181"/>
+<area shape="rect" id="node39" href="$cond__dgp_8h.html" title="Dynamical GP graph condition functions." alt="" coords="1253,155,1342,181"/>
+<area shape="rect" id="node40" href="$cond__dummy_8h.html" title="Always&#45;matching dummy condition functions." alt="" coords="1751,155,1860,181"/>
+<area shape="rect" id="node42" href="$cond__ellipsoid_8h.html" title="Hyperellipsoid condition functions." alt="" coords="1884,155,1999,181"/>
+<area shape="rect" id="node43" href="$cond__gp_8h.html" title="Tree GP condition functions." alt="" coords="1644,155,1727,181"/>
+<area shape="rect" id="node44" href="$cond__rectangle_8h.html" title="Hyperrectangle condition functions." alt="" coords="2023,155,2145,181"/>
+<area shape="rect" id="node45" href="$cond__ternary_8h.html" title="Ternary condition functions." alt="" coords="2169,155,2276,181"/>
+<area shape="rect" id="node46" href="$ea_8h.html" title="Evolutionary algorithm functions." alt="" coords="2749,155,2795,181"/>
+<area shape="rect" id="node49" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="3794,80,3851,107"/>
+<area shape="rect" id="node50" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="4449,155,4519,181"/>
+<area shape="rect" id="node55" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="4285,229,4347,256"/>
+<area shape="rect" id="node57" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="2993,80,3082,107"/>
+<area shape="rect" id="node58" href="$pred__neural_8h.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="3074,155,3174,181"/>
+<area shape="rect" id="node61" href="$pred__constant_8h.html" title="Piece&#45;wise constant prediction functions." alt="" coords="3199,155,3313,181"/>
+<area shape="rect" id="node63" href="$pred__nlms_8h.html" title="Normalised least mean squares prediction functions." alt="" coords="2631,155,2724,181"/>
+<area shape="rect" id="node64" href="$pred__rls_8h.html" title="Recursive least mean squares prediction functions." alt="" coords="3338,155,3417,181"/>
+<area shape="rect" id="node66" href="$clset_8h.html" title="Functions operating on sets of classifiers." alt="" coords="3921,155,3983,181"/>
+<area shape="rect" id="node67" href="$clset__neural_8h.html" title="Functions operating on sets of neural classifiers." alt="" coords="3509,155,3611,181"/>
+<area shape="rect" id="node68" href="$dgp_8h.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="1465,80,1519,107"/>
+<area shape="rect" id="node69" href="$gp_8h.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="1603,80,1650,107"/>
+<area shape="rect" id="node70" href="$config_8h.html" title="Configuration file handling functions." alt="" coords="4645,155,4713,181"/>
+<area shape="rect" id="node71" href="$env_8h.html" title="Built&#45;in problem environment interface." alt="" coords="4751,80,4803,107"/>
+<area shape="rect" id="node72" href="$env__csv_8h.html" title="CSV input file handling functions." alt="" coords="4737,155,4817,181"/>
+<area shape="rect" id="node74" href="$env__maze_8h.html" title="The discrete maze problem environment module." alt="" coords="4841,155,4935,181"/>
+<area shape="rect" id="node75" href="$env__mux_8h.html" title="The real multiplexer problem environment." alt="" coords="4959,155,5046,181"/>
+<area shape="rect" id="node76" href="$pa_8h.html" title="Prediction array functions." alt="" coords="4007,155,4054,181"/>
+<area shape="rect" id="node77" href="$xcs__rl_8h.html" title="Reinforcement learning functions." alt="" coords="4278,155,4346,181"/>
+<area shape="rect" id="node78" href="$xcs__supervised_8h.html" title="Supervised regression learning functions." alt="" coords="4130,155,4254,181"/>
+<area shape="rect" id="node79" href="$perf_8h.html" title="System performance printing." alt="" coords="4370,155,4425,181"/>
 <area shape="rect" id="node5" href="$action_8c.html" title="Interface for classifier actions." alt="" coords="123,229,191,256"/>
-<area shape="rect" id="node8" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="2989,229,3126,256"/>
-<area shape="rect" id="node9" href="$cl_8c.html" title="Functions operating on classifiers." alt="" coords="2637,229,2680,256"/>
-<area shape="rect" id="node15" href="$param_8c.html" title="Functions for setting and printing parameters." alt="" coords="2544,229,2613,256"/>
-<area shape="rect" id="node4" href="$act__integer_8c.html" title="integer action functions." alt="" coords="336,229,432,256"/>
+<area shape="rect" id="node8" href="$cl_8c.html" title="Functions operating on classifiers." alt="" coords="2844,229,2887,256"/>
+<area shape="rect" id="node14" href="$param_8c.html" title="Functions for setting and printing parameters." alt="" coords="2737,229,2807,256"/>
+<area shape="rect" id="node15" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="3877,229,4014,256"/>
+<area shape="rect" id="node4" href="$act__integer_8c.html" title="integer action functions." alt="" coords="216,229,312,256"/>
 <area shape="rect" id="node7" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,229,99,256"/>
-<area shape="rect" id="node11" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="1795,229,1880,256"/>
-<area shape="rect" id="node12" href="$rule__dgp_8c.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="456,229,539,256"/>
-<area shape="rect" id="node14" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="216,229,312,256"/>
-<area shape="rect" id="node17" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="1475,229,1565,256"/>
-<area shape="rect" id="node18" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="1904,229,2019,256"/>
-<area shape="rect" id="node19" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="2320,229,2403,256"/>
-<area shape="rect" id="node20" href="$cond__rectangle_8c.html" title="Hyperrectangle condition functions." alt="" coords="2043,229,2165,256"/>
-<area shape="rect" id="node21" href="$cond__ternary_8c.html" title="Ternary condition functions." alt="" coords="2189,229,2296,256"/>
-<area shape="rect" id="node22" href="$dgp_8c.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="563,229,618,256"/>
-<area shape="rect" id="node23" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="1723,229,1770,256"/>
-<area shape="rect" id="node24" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="1069,229,1240,256"/>
-<area shape="rect" id="node25" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="1264,229,1451,256"/>
-<area shape="rect" id="node26" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="642,229,777,256"/>
-<area shape="rect" id="node27" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="801,229,962,256"/>
-<area shape="rect" id="node28" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="2427,229,2520,256"/>
-<area shape="rect" id="node29" href="$sam_8c.html" title="Self&#45;adaptive mutation functions." alt="" coords="987,229,1045,256"/>
-<area shape="rect" id="node31" href="$clset_8c.html" title="Functions operating on sets of classifiers." alt="" coords="3937,229,3999,256"/>
-<area shape="rect" id="node32" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="3155,229,3258,256"/>
-<area shape="rect" id="node33" href="$ea_8c.html" title="Evolutionary algorithm functions." alt="" coords="3762,229,3809,256"/>
-<area shape="rect" id="node34" href="$pa_8c.html" title="Prediction array functions." alt="" coords="4023,229,4070,256"/>
-<area shape="rect" id="node35" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="3855,229,3913,256"/>
-<area shape="rect" id="node38" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="2851,229,2954,256"/>
-<area shape="rect" id="node41" href="$cond__dummy_8c.html" title="Always&#45;matching dummy condition functions." alt="" coords="1589,229,1699,256"/>
-<area shape="rect" id="node47" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="4299,229,4367,256"/>
-<area shape="rect" id="node48" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="4094,229,4218,256"/>
-<area shape="rect" id="node56" href="$loss_8c.html" title="Loss functions for calculating prediction error." alt="" coords="3810,155,3867,181"/>
-<area shape="rect" id="node51" href="$config_8c.html" title="Configuration file (JSON) handling functions." alt="" coords="4557,229,4625,256"/>
-<area shape="rect" id="node52" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="4649,229,4729,256"/>
-<area shape="rect" id="node53" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="4753,229,4847,256"/>
-<area shape="rect" id="node54" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="4871,229,4958,256"/>
-<area shape="rect" id="node59" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="3282,229,3382,256"/>
-<area shape="rect" id="node60" href="$prediction_8c.html" title="Interface for classifier predictions." alt="" coords="3406,229,3495,256"/>
-<area shape="rect" id="node62" href="$pred__constant_8c.html" title="Piece&#45;wise constant prediction functions." alt="" coords="3623,229,3737,256"/>
-<area shape="rect" id="node65" href="$pred__rls_8c.html" title="Recursive least mean squares prediction functions." alt="" coords="3519,229,3598,256"/>
-<area shape="rect" id="node73" href="$env_8c.html" title="Built&#45;in problem environment interface." alt="" coords="4982,229,5034,256"/>
-<area shape="rect" id="node80" href="$perf_8c.html" title="System performance printing." alt="" coords="4391,229,4446,256"/>
+<area shape="rect" id="node10" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="2017,229,2103,256"/>
+<area shape="rect" id="node11" href="$rule__dgp_8c.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="1671,229,1753,256"/>
+<area shape="rect" id="node13" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="1433,229,1529,256"/>
+<area shape="rect" id="node17" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="1249,229,1338,256"/>
+<area shape="rect" id="node18" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="2127,229,2241,256"/>
+<area shape="rect" id="node19" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="1777,229,1860,256"/>
+<area shape="rect" id="node20" href="$cond__rectangle_8c.html" title="Hyperrectangle condition functions." alt="" coords="2266,229,2387,256"/>
+<area shape="rect" id="node21" href="$cond__ternary_8c.html" title="Ternary condition functions." alt="" coords="2412,229,2519,256"/>
+<area shape="rect" id="node22" href="$dgp_8c.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="337,229,391,256"/>
+<area shape="rect" id="node23" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="1362,229,1409,256"/>
+<area shape="rect" id="node24" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="843,229,1013,256"/>
+<area shape="rect" id="node25" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="1037,229,1224,256"/>
+<area shape="rect" id="node26" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="415,229,550,256"/>
+<area shape="rect" id="node27" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="574,229,735,256"/>
+<area shape="rect" id="node28" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="1553,229,1647,256"/>
+<area shape="rect" id="node29" href="$sam_8c.html" title="Self&#45;adaptive mutation functions." alt="" coords="760,229,819,256"/>
+<area shape="rect" id="node31" href="$clset_8c.html" title="Functions operating on sets of classifiers." alt="" coords="3628,229,3689,256"/>
+<area shape="rect" id="node32" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="2935,229,3038,256"/>
+<area shape="rect" id="node33" href="$ea_8c.html" title="Evolutionary algorithm functions." alt="" coords="3542,229,3589,256"/>
+<area shape="rect" id="node34" href="$pa_8c.html" title="Prediction array functions." alt="" coords="3806,229,3853,256"/>
+<area shape="rect" id="node35" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="3723,229,3781,256"/>
+<area shape="rect" id="node38" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="2543,229,2646,256"/>
+<area shape="rect" id="node41" href="$cond__dummy_8c.html" title="Always&#45;matching dummy condition functions." alt="" coords="1884,229,1993,256"/>
+<area shape="rect" id="node47" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="4193,229,4261,256"/>
+<area shape="rect" id="node48" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="4038,229,4162,256"/>
+<area shape="rect" id="node56" href="$loss_8c.html" title="Loss functions for calculating prediction error." alt="" coords="3839,155,3897,181"/>
+<area shape="rect" id="node51" href="$config_8c.html" title="Configuration file (JSON) handling functions." alt="" coords="4450,229,4518,256"/>
+<area shape="rect" id="node52" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="4543,229,4623,256"/>
+<area shape="rect" id="node53" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="4647,229,4740,256"/>
+<area shape="rect" id="node54" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="4765,229,4851,256"/>
+<area shape="rect" id="node59" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="3062,229,3162,256"/>
+<area shape="rect" id="node60" href="$prediction_8c.html" title="Interface for classifier predictions." alt="" coords="3186,229,3275,256"/>
+<area shape="rect" id="node62" href="$pred__constant_8c.html" title="Piece&#45;wise constant prediction functions." alt="" coords="3300,229,3415,256"/>
+<area shape="rect" id="node65" href="$pred__rls_8c.html" title="Recursive least mean squares prediction functions." alt="" coords="3439,229,3518,256"/>
+<area shape="rect" id="node73" href="$env_8c.html" title="Built&#45;in problem environment interface." alt="" coords="4875,229,4927,256"/>
+<area shape="rect" id="node80" href="$perf_8c.html" title="System performance printing." alt="" coords="4371,229,4426,256"/>
 </map>

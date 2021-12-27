@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('pred__rls_8c_source.html',''); initRes
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -303,42 +303,61 @@ $(document).ready(function(){initNavTree('pred__rls_8c_source.html',''); initRes
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordflow">return</span> string;</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;}</div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="keywordtype">char</span> *</div>
-<div class="line"><a name="l00298"></a><span class="lineno"><a class="line" href="pred__rls_8h.html#aa75d18939833eb602a768c5bfbd7d75b">  298</a></span>&#160;<a class="code" href="pred__rls_8c.html#aa75d18939833eb602a768c5bfbd7d75b">pred_rls_param_json_export</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;{</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structArgsPred.html">ArgsPred</a> *pred = <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pred;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    cJSON *json = cJSON_CreateObject();</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    cJSON_AddNumberToObject(json, <span class="stringliteral">&quot;x0&quot;</span>, pred-&gt;<a class="code" href="structArgsPred.html#a57715091783a67c11269508e11a0f4f2">x0</a>);</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    cJSON_AddNumberToObject(json, <span class="stringliteral">&quot;lambda&quot;</span>, pred-&gt;<a class="code" href="structArgsPred.html#ab9715dd76070cfa6d48ae0a50ba97d02">lambda</a>);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    cJSON_AddNumberToObject(json, <span class="stringliteral">&quot;scale_factor&quot;</span>, pred-&gt;<a class="code" href="structArgsPred.html#a4bd9ed010602a4b09f3c0da9aa765e80">scale_factor</a>);</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordtype">char</span> *<span class="keywordtype">string</span> = cJSON_Print(json);</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    cJSON_Delete(json);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <span class="keywordflow">return</span> string;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;}</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00316"></a><span class="lineno"><a class="line" href="pred__rls_8h.html#a4756fe786b86ecce9a4a9040daff97da">  316</a></span>&#160;<a class="code" href="pred__rls_8c.html#a4756fe786b86ecce9a4a9040daff97da">pred_rls_param_json_import</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, cJSON *json)</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;{</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordflow">for</span> (cJSON *iter = json; iter != NULL; iter = iter-&gt;next) {</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        <span class="keywordflow">if</span> (strncmp(iter-&gt;string, <span class="stringliteral">&quot;x0\0&quot;</span>, 3) == 0 &amp;&amp; cJSON_IsNumber(iter)) {</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            <a class="code" href="prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c">pred_param_set_x0</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, iter-&gt;valuedouble);</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(iter-&gt;string, <span class="stringliteral">&quot;lambda\0&quot;</span>, 7) == 0 &amp;&amp;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                   cJSON_IsNumber(iter)) {</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            <a class="code" href="prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da">pred_param_set_lambda</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, iter-&gt;valuedouble);</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(iter-&gt;string, <span class="stringliteral">&quot;scale_factor\0&quot;</span>, 13) == 0 &amp;&amp;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                   cJSON_IsNumber(iter)) {</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            <a class="code" href="prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441">pred_param_set_scale_factor</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, iter-&gt;valuedouble);</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            printf(<span class="stringliteral">&quot;Error importing RLS parameter %s\n&quot;</span>, iter-&gt;string);</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            exit(EXIT_FAILURE);</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        }</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    }</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;}</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00299"></a><span class="lineno"><a class="line" href="pred__rls_8h.html#aba78cd7c02c48387a691555cb278ff67">  299</a></span>&#160;<a class="code" href="pred__rls_8c.html#aba78cd7c02c48387a691555cb278ff67">pred_rls_json_import</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">struct</span> <a class="code" href="structCl.html">Cl</a> *c, <span class="keyword">const</span> cJSON *json)</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;{</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    (void) <a class="code" href="namespacexcsf.html">xcsf</a>;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keyword">struct </span><a class="code" href="structPredRLS.html">PredRLS</a> *pred = c-&gt;<a class="code" href="structCl.html#a31da7ec3161e360058ea748bd91e45ae">pred</a>;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keyword">const</span> cJSON *item = cJSON_GetObjectItem(json, <span class="stringliteral">&quot;weights&quot;</span>);</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="keywordflow">if</span> (item != NULL &amp;&amp; cJSON_IsArray(item)) {</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <span class="keywordflow">if</span> (cJSON_GetArraySize(item) == pred-&gt;<a class="code" href="structPredRLS.html#a9c617981e4e2b0d0f5ca62548a6ac868">n_weights</a>) {</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pred-&gt;<a class="code" href="structPredRLS.html#a9c617981e4e2b0d0f5ca62548a6ac868">n_weights</a>; ++i) {</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                <span class="keyword">const</span> cJSON *item_i = cJSON_GetArrayItem(item, i);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                pred-&gt;<a class="code" href="structPredRLS.html#a9b8a767cc555eadcb77d6c04085c1934">weights</a>[i] = item_i-&gt;valuedouble;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            }</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            printf(<span class="stringliteral">&quot;Import error: weight length mismatch\n&quot;</span>);</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        }</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    }</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;}</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; </div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="keywordtype">char</span> *</div>
+<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="pred__rls_8h.html#aa75d18939833eb602a768c5bfbd7d75b">  323</a></span>&#160;<a class="code" href="pred__rls_8c.html#aa75d18939833eb602a768c5bfbd7d75b">pred_rls_param_json_export</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;{</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structArgsPred.html">ArgsPred</a> *pred = <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pred;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    cJSON *json = cJSON_CreateObject();</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    cJSON_AddNumberToObject(json, <span class="stringliteral">&quot;x0&quot;</span>, pred-&gt;<a class="code" href="structArgsPred.html#a57715091783a67c11269508e11a0f4f2">x0</a>);</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    cJSON_AddNumberToObject(json, <span class="stringliteral">&quot;lambda&quot;</span>, pred-&gt;<a class="code" href="structArgsPred.html#ab9715dd76070cfa6d48ae0a50ba97d02">lambda</a>);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    cJSON_AddNumberToObject(json, <span class="stringliteral">&quot;scale_factor&quot;</span>, pred-&gt;<a class="code" href="structArgsPred.html#a4bd9ed010602a4b09f3c0da9aa765e80">scale_factor</a>);</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="keywordtype">char</span> *<span class="keywordtype">string</span> = cJSON_Print(json);</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    cJSON_Delete(json);</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    <span class="keywordflow">return</span> string;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;}</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno"><a class="line" href="pred__rls_8h.html#a4756fe786b86ecce9a4a9040daff97da">  341</a></span>&#160;<a class="code" href="pred__rls_8c.html#a4756fe786b86ecce9a4a9040daff97da">pred_rls_param_json_import</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, cJSON *json)</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;{</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="keywordflow">for</span> (cJSON *iter = json; iter != NULL; iter = iter-&gt;next) {</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        <span class="keywordflow">if</span> (strncmp(iter-&gt;string, <span class="stringliteral">&quot;x0\0&quot;</span>, 3) == 0 &amp;&amp; cJSON_IsNumber(iter)) {</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            <a class="code" href="prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c">pred_param_set_x0</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, iter-&gt;valuedouble);</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(iter-&gt;string, <span class="stringliteral">&quot;lambda\0&quot;</span>, 7) == 0 &amp;&amp;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                   cJSON_IsNumber(iter)) {</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            <a class="code" href="prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da">pred_param_set_lambda</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, iter-&gt;valuedouble);</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(iter-&gt;string, <span class="stringliteral">&quot;scale_factor\0&quot;</span>, 13) == 0 &amp;&amp;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                   cJSON_IsNumber(iter)) {</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;            <a class="code" href="prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441">pred_param_set_scale_factor</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, iter-&gt;valuedouble);</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            printf(<span class="stringliteral">&quot;Error importing RLS parameter %s\n&quot;</span>, iter-&gt;string);</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        }</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    }</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="apred__rls_8c_html_a1cec3117920835c03d1c15a9a80248b0"><div class="ttname"><a href="pred__rls_8c.html#a1cec3117920835c03d1c15a9a80248b0">pred_rls_free</a></div><div class="ttdeci">void pred_rls_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Frees the memory used by an RLS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00084">pred_rls.c:84</a></div></div>
 <div class="ttc" id="astructCl_html_a31da7ec3161e360058ea748bd91e45ae"><div class="ttname"><a href="structCl.html#a31da7ec3161e360058ea748bd91e45ae">Cl::pred</a></div><div class="ttdeci">void * pred</div><div class="ttdoc">Prediction structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00050">xcsf.h:50</a></div></div>
-<div class="ttc" id="apred__rls_8c_html_aa75d18939833eb602a768c5bfbd7d75b"><div class="ttname"><a href="pred__rls_8c.html#aa75d18939833eb602a768c5bfbd7d75b">pred_rls_param_json_export</a></div><div class="ttdeci">char * pred_rls_param_json_export(const struct XCSF *xcsf)</div><div class="ttdoc">Returns a json formatted string of the RLS parameters.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00298">pred_rls.c:298</a></div></div>
+<div class="ttc" id="apred__rls_8c_html_aa75d18939833eb602a768c5bfbd7d75b"><div class="ttname"><a href="pred__rls_8c.html#aa75d18939833eb602a768c5bfbd7d75b">pred_rls_param_json_export</a></div><div class="ttdeci">char * pred_rls_param_json_export(const struct XCSF *xcsf)</div><div class="ttdoc">Returns a json formatted string of the RLS parameters.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00323">pred_rls.c:323</a></div></div>
 <div class="ttc" id="ablas_8c_html_a5241e53bd01ced11592a718674fc4932"><div class="ttname"><a href="blas_8c.html#a5241e53bd01ced11592a718674fc4932">blas_fill</a></div><div class="ttdeci">void blas_fill(const int N, const double ALPHA, double *X, const int INCX)</div><div class="ttdoc">Fills the vector X with the value ALPHA.</div><div class="ttdef"><b>Definition:</b> <a href="blas_8c_source.html#l00181">blas.c:181</a></div></div>
 <div class="ttc" id="apred__rls_8c_html_a77b1bc0fe274c512aedd39ed7e7cb431"><div class="ttname"><a href="pred__rls_8c.html#a77b1bc0fe274c512aedd39ed7e7cb431">pred_rls_json_export</a></div><div class="ttdeci">char * pred_rls_json_export(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns a json formatted string representation of an RLS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00276">pred_rls.c:276</a></div></div>
 <div class="ttc" id="astructArgsPred_html_a57715091783a67c11269508e11a0f4f2"><div class="ttname"><a href="structArgsPred.html#a57715091783a67c11269508e11a0f4f2">ArgsPred::x0</a></div><div class="ttdeci">double x0</div><div class="ttdoc">Prediction weight vector offset value.</div><div class="ttdef"><b>Definition:</b> <a href="prediction_8h_source.html#l00052">prediction.h:52</a></div></div>
@@ -350,7 +369,7 @@ $(document).ready(function(){initNavTree('pred__rls_8c_source.html',''); initRes
 <div class="ttc" id="aprediction_8c_html_acc0ceeaf35d0e232c23d94d258fe1e79"><div class="ttname"><a href="prediction_8c.html#acc0ceeaf35d0e232c23d94d258fe1e79">pred_transform_input</a></div><div class="ttdeci">void pred_transform_input(const struct XCSF *xcsf, const double *x, const double X0, double *tmp_input)</div><div class="ttdoc">Prepares the input state for least squares computation.</div><div class="ttdef"><b>Definition:</b> <a href="prediction_8c_source.html#l00273">prediction.c:273</a></div></div>
 <div class="ttc" id="apred__rls_8c_html_afae7e84466de607530e838e1322d9dca"><div class="ttname"><a href="pred__rls_8c.html#afae7e84466de607530e838e1322d9dca">pred_rls_save</a></div><div class="ttdeci">size_t pred_rls_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes an RLS prediction to a file.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00235">pred_rls.c:235</a></div></div>
 <div class="ttc" id="apred__rls_8h_html"><div class="ttname"><a href="pred__rls_8h.html">pred_rls.h</a></div><div class="ttdoc">Recursive least mean squares prediction functions.</div></div>
-<div class="ttc" id="apred__rls_8c_html_a4756fe786b86ecce9a4a9040daff97da"><div class="ttname"><a href="pred__rls_8c.html#a4756fe786b86ecce9a4a9040daff97da">pred_rls_param_json_import</a></div><div class="ttdeci">void pred_rls_param_json_import(struct XCSF *xcsf, cJSON *json)</div><div class="ttdoc">Sets the RLS parameters from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00316">pred_rls.c:316</a></div></div>
+<div class="ttc" id="apred__rls_8c_html_a4756fe786b86ecce9a4a9040daff97da"><div class="ttname"><a href="pred__rls_8c.html#a4756fe786b86ecce9a4a9040daff97da">pred_rls_param_json_import</a></div><div class="ttdeci">void pred_rls_param_json_import(struct XCSF *xcsf, cJSON *json)</div><div class="ttdoc">Sets the RLS parameters from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00341">pred_rls.c:341</a></div></div>
 <div class="ttc" id="apred__rls_8c_html_af83df202f9ceb8362465fef7629aa254"><div class="ttname"><a href="pred__rls_8c.html#af83df202f9ceb8362465fef7629aa254">pred_rls_mutate</a></div><div class="ttdeci">bool pred_rls_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Dummy function since RLS predictions do not perform mutation.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00206">pred_rls.c:206</a></div></div>
 <div class="ttc" id="aprediction_8c_html_acb71e8f11fe64ba35150417afa4c9441"><div class="ttname"><a href="prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441">pred_param_set_scale_factor</a></div><div class="ttdeci">void pred_param_set_scale_factor(struct XCSF *xcsf, const double a)</div><div class="ttdef"><b>Definition:</b> <a href="prediction_8c_source.html#l00333">prediction.c:333</a></div></div>
 <div class="ttc" id="aprediction_8c_html_a618accb7ec3239f16fc794f9efa8f89c"><div class="ttname"><a href="prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c">pred_param_set_x0</a></div><div class="ttdeci">void pred_param_set_x0(struct XCSF *xcsf, const double a)</div><div class="ttdef"><b>Definition:</b> <a href="prediction_8c_source.html#l00339">prediction.c:339</a></div></div>
@@ -366,6 +385,7 @@ $(document).ready(function(){initNavTree('pred__rls_8c_source.html',''); initRes
 <div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
 <div class="ttc" id="astructPredRLS_html"><div class="ttname"><a href="structPredRLS.html">PredRLS</a></div><div class="ttdoc">Recursive least mean squares prediction data structure.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8h_source.html#l00032">pred_rls.h:32</a></div></div>
 <div class="ttc" id="apred__rls_8c_html_a4cea952d9fd37c4fe53c925a1a278fba"><div class="ttname"><a href="pred__rls_8c.html#a4cea952d9fd37c4fe53c925a1a278fba">pred_rls_init</a></div><div class="ttdeci">void pred_rls_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Initialises an RLS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00034">pred_rls.c:34</a></div></div>
+<div class="ttc" id="apred__rls_8c_html_aba78cd7c02c48387a691555cb278ff67"><div class="ttname"><a href="pred__rls_8c.html#aba78cd7c02c48387a691555cb278ff67">pred_rls_json_import</a></div><div class="ttdeci">void pred_rls_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)</div><div class="ttdoc">Creates an RLS prediction from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00299">pred_rls.c:299</a></div></div>
 <div class="ttc" id="apred__rls_8c_html_a4107d40787ef2ee662c58dc4c122b90f"><div class="ttname"><a href="pred__rls_8c.html#a4107d40787ef2ee662c58dc4c122b90f">pred_rls_size</a></div><div class="ttdeci">double pred_rls_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of an RLS prediction.</div><div class="ttdef"><b>Definition:</b> <a href="pred__rls_8c_source.html#l00220">pred_rls.c:220</a></div></div>
 <div class="ttc" id="astructArgsPred_html"><div class="ttname"><a href="structArgsPred.html">ArgsPred</a></div><div class="ttdoc">Parameters for initialising and operating predictions.</div><div class="ttdef"><b>Definition:</b> <a href="prediction_8h_source.html#l00045">prediction.h:45</a></div></div>
 <div class="ttc" id="ablas_8c_html_ad4fa7c98f973bedeaf96fa3757229876"><div class="ttname"><a href="blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876">blas_axpy</a></div><div class="ttdeci">void blas_axpy(const int N, const double ALPHA, const double *X, const int INCX, double *Y, const int INCY)</div><div class="ttdoc">Multiplies vector X by the scalar ALPHA and adds it to the vector Y.</div><div class="ttdef"><b>Definition:</b> <a href="blas_8c_source.html#l00138">blas.c:138</a></div></div>

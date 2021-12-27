@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('cl_8h_source.html',''); initResizable(
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -194,8 +194,12 @@ $(document).ready(function(){initNavTree('cl_8h_source.html',''); initResizable(
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<a class="code" href="cl_8h.html#a6fccc77f8093c33617be7fc29175614c">cl_json_export</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structCl.html">Cl</a> *c,</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;               <span class="keyword">const</span> <span class="keywordtype">bool</span> return_cond, <span class="keyword">const</span> <span class="keywordtype">bool</span> return_act,</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;               <span class="keyword">const</span> <span class="keywordtype">bool</span> return_pred);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<a class="code" href="cl_8h.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c">cl_json_import</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">struct</span> <a class="code" href="structCl.html">Cl</a> *c, <span class="keyword">const</span> cJSON *json);</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="acl_8h_html_ada9e7ce4c9c81af8ea0d1fd0dda59e3c"><div class="ttname"><a href="cl_8h.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c">cl_json_import</a></div><div class="ttdeci">void cl_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)</div><div class="ttdoc">Creates a classifier from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="cl_8c_source.html#l00608">cl.c:608</a></div></div>
 <div class="ttc" id="acl_8h_html_afe7823d194c2fe357ce94285b77f8bfe"><div class="ttname"><a href="cl_8h.html#afe7823d194c2fe357ce94285b77f8bfe">cl_print</a></div><div class="ttdeci">void cl_print(const struct XCSF *xcsf, const struct Cl *c, const bool print_cond, const bool print_act, const bool print_pred)</div><div class="ttdoc">Prints a classifier.</div><div class="ttdef"><b>Definition:</b> <a href="cl_8c_source.html#l00241">cl.c:241</a></div></div>
 <div class="ttc" id="acl_8h_html_a1ccf0c57e37b72878dd521ef0e8d719a"><div class="ttname"><a href="cl_8h.html#a1ccf0c57e37b72878dd521ef0e8d719a">cl_m</a></div><div class="ttdeci">bool cl_m(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns whether a classifier matched the most recent input.</div><div class="ttdef"><b>Definition:</b> <a href="cl_8c_source.html#l00290">cl.c:290</a></div></div>
 <div class="ttc" id="acl_8h_html_a9d9005cabc5bb84749bc6fb29c4b9fd9"><div class="ttname"><a href="cl_8h.html#a9d9005cabc5bb84749bc6fb29c4b9fd9">cl_save</a></div><div class="ttdeci">size_t cl_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes a classifier to a file.</div><div class="ttdef"><b>Definition:</b> <a href="cl_8c_source.html#l00424">cl.c:424</a></div></div>

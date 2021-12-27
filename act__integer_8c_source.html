@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('act__integer_8c_source.html',''); init
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -263,6 +263,19 @@ $(document).ready(function(){initNavTree('act__integer_8c_source.html',''); init
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    cJSON_Delete(json);</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordflow">return</span> string;</div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;}</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno"><a class="line" href="act__integer_8h.html#a64363b8dc308fb3e14c3419d34d051f5">  270</a></span>&#160;<a class="code" href="act__integer_8c.html#a64363b8dc308fb3e14c3419d34d051f5">act_integer_json_import</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">struct</span> <a class="code" href="structCl.html">Cl</a> *c,</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                        <span class="keyword">const</span> cJSON *json)</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;{</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    (void) <a class="code" href="namespacexcsf.html">xcsf</a>;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <span class="keyword">struct </span><a class="code" href="structActInteger.html">ActInteger</a> *act = c-&gt;<a class="code" href="structCl.html#a21916a4d709c27936c6e2659116d4285">act</a>;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="keyword">const</span> cJSON *item = cJSON_GetObjectItem(json, <span class="stringliteral">&quot;action&quot;</span>);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="keywordflow">if</span> (item != NULL &amp;&amp; cJSON_IsNumber(item)) {</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        act-&gt;<a class="code" href="structActInteger.html#a13f8cc4ff699cedaf3f6a9c0aa7ccab1">action</a> = item-&gt;valueint;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    }</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <a class="code" href="sam_8c.html#a7af63fa58413563b25933f08b97852b9">sam_json_import</a>(act-&gt;<a class="code" href="structActInteger.html#a637f1a480307687ec001cba8c627d755">mu</a>, <a class="code" href="act__integer_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30">N_MU</a>, json);</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aact__integer_8c_html_a817599cabf0a80751fad61e9af1cb793"><div class="ttname"><a href="act__integer_8c.html#a817599cabf0a80751fad61e9af1cb793">act_integer_init</a></div><div class="ttdeci">void act_integer_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Initialises an integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00178">act_integer.c:178</a></div></div>
@@ -272,6 +285,7 @@ $(document).ready(function(){initNavTree('act__integer_8c_source.html',''); init
 <div class="ttc" id="aact__integer_8c_html_a07b476c854d97775a44be7e1c5500d2d"><div class="ttname"><a href="act__integer_8c.html#a07b476c854d97775a44be7e1c5500d2d">act_integer_free</a></div><div class="ttdeci">void act_integer_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Frees the memory used by an integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00164">act_integer.c:164</a></div></div>
 <div class="ttc" id="asam_8c_html_a7f7f30716900f06683a74486aca5f5a0"><div class="ttname"><a href="sam_8c.html#a7f7f30716900f06683a74486aca5f5a0">sam_init</a></div><div class="ttdeci">void sam_init(double *mu, const int N, const int *type)</div><div class="ttdoc">Initialises self-adaptive mutation rates.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00043">sam.c:43</a></div></div>
 <div class="ttc" id="aact__integer_8h_html"><div class="ttname"><a href="act__integer_8h.html">act_integer.h</a></div><div class="ttdoc">integer action functions.</div></div>
+<div class="ttc" id="aact__integer_8c_html_a64363b8dc308fb3e14c3419d34d051f5"><div class="ttname"><a href="act__integer_8c.html#a64363b8dc308fb3e14c3419d34d051f5">act_integer_json_import</a></div><div class="ttdeci">void act_integer_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)</div><div class="ttdoc">Creates an integer action from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00270">act_integer.c:270</a></div></div>
 <div class="ttc" id="aact__integer_8c_html_a7ad8e86a318f2d3d354e0a4e5bc23b30"><div class="ttname"><a href="act__integer_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30">N_MU</a></div><div class="ttdeci">#define N_MU</div><div class="ttdoc">Number of integer action mutation rates.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00028">act_integer.c:28</a></div></div>
 <div class="ttc" id="aact__integer_8c_html_a596f5e7d5202d64056b62fad02e3d395"><div class="ttname"><a href="act__integer_8c.html#a596f5e7d5202d64056b62fad02e3d395">act_integer_update</a></div><div class="ttdeci">void act_integer_update(const struct XCSF *xcsf, const struct Cl *c, const double *x, const double *y)</div><div class="ttdoc">Dummy function since integer actions are not updated.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00195">act_integer.c:195</a></div></div>
 <div class="ttc" id="aact__integer_8c_html_a05c6be9a1df7edb0395c69683cdaff1a"><div class="ttname"><a href="act__integer_8c.html#a05c6be9a1df7edb0395c69683cdaff1a">act_integer_copy</a></div><div class="ttdeci">void act_integer_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)</div><div class="ttdoc">Copies an integer action from one classifier to another.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00117">act_integer.c:117</a></div></div>
@@ -294,6 +308,7 @@ $(document).ready(function(){initNavTree('act__integer_8c_source.html',''); init
 <div class="ttc" id="aact__integer_8c_html_a9257ecae089153571be215040e75fb7f"><div class="ttname"><a href="act__integer_8c.html#a9257ecae089153571be215040e75fb7f">act_integer_mutate</a></div><div class="ttdeci">bool act_integer_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Mutates an integer action.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00079">act_integer.c:79</a></div></div>
 <div class="ttc" id="aact__integer_8c_html_a0ed1e376f4a0c04002749cc716775595"><div class="ttname"><a href="act__integer_8c.html#a0ed1e376f4a0c04002749cc716775595">act_integer_crossover</a></div><div class="ttdeci">bool act_integer_crossover(const struct XCSF *xcsf, const struct Cl *c1, const struct Cl *c2)</div><div class="ttdoc">Dummy function since integer actions do not perform crossover.</div><div class="ttdef"><b>Definition:</b> <a href="act__integer_8c_source.html#l00043">act_integer.c:43</a></div></div>
 <div class="ttc" id="asam_8c_html_a8dfbd425ab3513d47726620e94fc861c"><div class="ttname"><a href="sam_8c.html#a8dfbd425ab3513d47726620e94fc861c">sam_adapt</a></div><div class="ttdeci">void sam_adapt(double *mu, const int N, const int *type)</div><div class="ttdoc">Self-adapts mutation rates.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00068">sam.c:68</a></div></div>
+<div class="ttc" id="asam_8c_html_a7af63fa58413563b25933f08b97852b9"><div class="ttname"><a href="sam_8c.html#a7af63fa58413563b25933f08b97852b9">sam_json_import</a></div><div class="ttdeci">void sam_json_import(double *mu, const int N, const cJSON *json)</div><div class="ttdoc">Initialises a mutation vector from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00100">sam.c:100</a></div></div>
 <div class="ttc" id="asam_8h_html_a7bb706f447cc9034816dd45431bb2955"><div class="ttname"><a href="sam_8h.html#a7bb706f447cc9034816dd45431bb2955">SAM_LOG_NORMAL</a></div><div class="ttdeci">#define SAM_LOG_NORMAL</div><div class="ttdoc">Log normal self-adaptation.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8h_source.html#l00028">sam.h:28</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -1,5 +1,7 @@
 <map id="graph_free" name="graph_free">
-<area shape="rect" id="node1" title="Frees a DGP graph." alt="" coords="188,31,271,57"/>
-<area shape="rect" id="node2" href="$cond__dgp_8h.html#aa06270e18c525af427ee4d88d553443d" title="Frees the memory used by a dynamical GP graph condition." alt="" coords="19,5,126,32"/>
-<area shape="rect" id="node3" href="$rule__dgp_8h.html#a3b23cad8929b489990523c7417aba93d" title=" " alt="" coords="5,56,140,83"/>
+<area shape="rect" id="node1" title="Frees a DGP graph." alt="" coords="205,81,288,108"/>
+<area shape="rect" id="node2" href="$cond__dgp_8h.html#aa06270e18c525af427ee4d88d553443d" title="Frees the memory used by a dynamical GP graph condition." alt="" coords="28,5,135,32"/>
+<area shape="rect" id="node3" href="$cond__dgp_8h.html#ad5fd6cccf1ece3ebaac69644a86bcfb5" title="Creates a DGP condition from a cJSON object." alt="" coords="5,56,157,83"/>
+<area shape="rect" id="node4" href="$rule__dgp_8h.html#a3b23cad8929b489990523c7417aba93d" title=" " alt="" coords="14,107,149,133"/>
+<area shape="rect" id="node5" href="$rule__dgp_8h.html#afc876278ab001399d3cd9b2d4a097aa8" title=" " alt="" coords="13,158,150,199"/>
 </map>

@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('dgp_8h.html',''); initResizable(); });
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -98,20 +98,18 @@ $(document).ready(function(){initNavTree('dgp_8h.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
-<p>An implementation of dynamical GP graphs with fuzzy activations.
+<p>An implementation of dynamical GP graphs with fuzzy activations.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="xcsf_8h_source.html">xcsf.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for dgp.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h__incl.svg" width="1168" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h__incl.svg" width="1168" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h__dep__incl.svg" width="479" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h__dep__incl.svg" width="342" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="dgp_8h_source.html">Go to the source code of this file.</a></p>
@@ -133,6 +131,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac1f6f6714cd298c49c7ba05cf7f994e1"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dgp_8h.html#ac1f6f6714cd298c49c7ba05cf7f994e1">graph_json_export</a> (const struct <a class="el" href="structGraph.html">Graph</a> *dgp)</td></tr>
 <tr class="memdesc:ac1f6f6714cd298c49c7ba05cf7f994e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a DGP graph.  <a href="dgp_8h.html#ac1f6f6714cd298c49c7ba05cf7f994e1">More...</a><br /></td></tr>
 <tr class="separator:ac1f6f6714cd298c49c7ba05cf7f994e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ffd1789a8d7f668658d61f97f6de1fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dgp_8h.html#a6ffd1789a8d7f668658d61f97f6de1fc">graph_json_import</a> (struct <a class="el" href="structGraph.html">Graph</a> *dgp, const struct <a class="el" href="structArgsDGP.html">ArgsDGP</a> *args, const cJSON *json)</td></tr>
+<tr class="memdesc:a6ffd1789a8d7f668658d61f97f6de1fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a DGP graph from a cJSON object.  <a href="dgp_8h.html#a6ffd1789a8d7f668658d61f97f6de1fc">More...</a><br /></td></tr>
+<tr class="separator:a6ffd1789a8d7f668658d61f97f6de1fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa77646399b1b3d18c38e1597008880e0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dgp_8h.html#aa77646399b1b3d18c38e1597008880e0">graph_output</a> (const struct <a class="el" href="structGraph.html">Graph</a> *dgp, const int IDX)</td></tr>
 <tr class="memdesc:aa77646399b1b3d18c38e1597008880e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current state of a specified node in the graph.  <a href="dgp_8h.html#aa77646399b1b3d18c38e1597008880e0">More...</a><br /></td></tr>
 <tr class="separator:aa77646399b1b3d18c38e1597008880e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,16 +222,15 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00450">450</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00621">621</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00032">ArgsDGP::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00033">ArgsDGP::max_k</a>, <a class="el" href="dgp_8h_source.html#l00034">ArgsDGP::max_t</a>, <a class="el" href="dgp_8h_source.html#l00035">ArgsDGP::n</a>, and <a class="el" href="dgp_8h_source.html#l00036">ArgsDGP::n_inputs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00279">cond_dgp_param_defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00298">cond_dgp_param_defaults()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a6b7a635ba70d5560f6b3ce23433fe56b_icgraph.svg" width="1038" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a6b7a635ba70d5560f6b3ce23433fe56b_icgraph.svg" width="1038" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -260,16 +260,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00465">465</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00636">636</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00032">ArgsDGP::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00033">ArgsDGP::max_k</a>, <a class="el" href="dgp_8h_source.html#l00034">ArgsDGP::max_t</a>, and <a class="el" href="dgp_8h_source.html#l00035">ArgsDGP::n</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00257">cond_dgp_param_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00276">cond_dgp_param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a198a40a55adefa4b97666309231694c3_icgraph.svg" width="1348" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a198a40a55adefa4b97666309231694c3_icgraph.svg" width="1348" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -309,22 +308,20 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00483">483</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00654">654</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="dgp_8c_source.html#l00587">graph_param_set_evolve_cycles()</a>, <a class="el" href="dgp_8c_source.html#l00543">graph_param_set_max_k()</a>, <a class="el" href="dgp_8c_source.html#l00554">graph_param_set_max_t()</a>, and <a class="el" href="dgp_8c_source.html#l00565">graph_param_set_n()</a>.</p>
+<p class="reference">References <a class="el" href="dgp_8c_source.html#l00758">graph_param_set_evolve_cycles()</a>, <a class="el" href="dgp_8c_source.html#l00714">graph_param_set_max_k()</a>, <a class="el" href="dgp_8c_source.html#l00725">graph_param_set_max_t()</a>, and <a class="el" href="dgp_8c_source.html#l00736">graph_param_set_n()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00269">cond_dgp_param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00288">cond_dgp_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a3208cc6d02deae06dd2faea89f32f873_cgraph.svg" width="387" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a3208cc6d02deae06dd2faea89f32f873_cgraph.svg" width="387" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a3208cc6d02deae06dd2faea89f32f873_icgraph.svg" width="1002" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a3208cc6d02deae06dd2faea89f32f873_icgraph.svg" width="1004" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -365,7 +362,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00529">529</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00700">700</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00032">ArgsDGP::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00033">ArgsDGP::max_k</a>, <a class="el" href="dgp_8h_source.html#l00034">ArgsDGP::max_t</a>, <a class="el" href="dgp_8h_source.html#l00035">ArgsDGP::n</a>, and <a class="el" href="dgp_8h_source.html#l00036">ArgsDGP::n_inputs</a>.</p>
 
@@ -373,8 +370,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a4e160f3ae49e0876bd5d9d03cff31a79_icgraph.svg" width="894" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a4e160f3ae49e0876bd5d9d03cff31a79_icgraph.svg" width="894" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -415,7 +411,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00511">511</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00682">682</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00032">ArgsDGP::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00033">ArgsDGP::max_k</a>, <a class="el" href="dgp_8h_source.html#l00034">ArgsDGP::max_t</a>, <a class="el" href="dgp_8h_source.html#l00035">ArgsDGP::n</a>, and <a class="el" href="dgp_8h_source.html#l00036">ArgsDGP::n_inputs</a>.</p>
 
@@ -423,8 +419,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a0a55dcba4f8e944721e7dad5c03fcaa7_icgraph.svg" width="914" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a0a55dcba4f8e944721e7dad5c03fcaa7_icgraph.svg" width="914" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -464,7 +459,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00227">227</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00251">251</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00043">Graph::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00050">Graph::klen</a>, <a class="el" href="dgp_8h_source.html#l00051">Graph::max_k</a>, <a class="el" href="dgp_8h_source.html#l00052">Graph::max_t</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, <a class="el" href="dgp_8h_source.html#l00054">Graph::n_inputs</a>, <a class="el" href="dgp_8c_source.html#l00032">N_MU</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, and <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>.</p>
 
@@ -472,8 +467,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a3c327dd571aed17fc3683aa112fbd405_icgraph.svg" width="290" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a3c327dd571aed17fc3683aa112fbd405_icgraph.svg" width="290" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -502,16 +496,15 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00352">352</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00523">523</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, <a class="el" href="dgp_8h_source.html#l00046">Graph::tmp_input</a>, and <a class="el" href="dgp_8h_source.html#l00047">Graph::tmp_state</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00048">cond_dgp_free()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00040">rule_dgp_cond_free()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00048">cond_dgp_free()</a>, <a class="el" href="cond__dgp_8c_source.html#l00258">cond_dgp_json_import()</a>, <a class="el" href="rule__dgp_8c_source.html#l00040">rule_dgp_cond_free()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00169">rule_dgp_cond_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a49d4c90eb5704b9a3ff9f72f41d11395_icgraph.svg" width="276" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a49d4c90eb5704b9a3ff9f72f41d11395_icgraph.svg" width="294" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -551,22 +544,20 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00202">202</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00226">226</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00032">ArgsDGP::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00043">Graph::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00050">Graph::klen</a>, <a class="el" href="dgp_8h_source.html#l00033">ArgsDGP::max_k</a>, <a class="el" href="dgp_8h_source.html#l00051">Graph::max_k</a>, <a class="el" href="dgp_8h_source.html#l00034">ArgsDGP::max_t</a>, <a class="el" href="dgp_8h_source.html#l00052">Graph::max_t</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8c_source.html#l00037">MU_TYPE</a>, <a class="el" href="dgp_8h_source.html#l00035">ArgsDGP::n</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, <a class="el" href="dgp_8h_source.html#l00036">ArgsDGP::n_inputs</a>, <a class="el" href="dgp_8h_source.html#l00054">Graph::n_inputs</a>, <a class="el" href="dgp_8c_source.html#l00032">N_MU</a>, <a class="el" href="sam_8c_source.html#l00043">sam_init()</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>, <a class="el" href="dgp_8h_source.html#l00046">Graph::tmp_input</a>, and <a class="el" href="dgp_8h_source.html#l00047">Graph::tmp_state</a>.</p>
+<p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00032">ArgsDGP::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00043">Graph::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00050">Graph::klen</a>, <a class="el" href="dgp_8h_source.html#l00033">ArgsDGP::max_k</a>, <a class="el" href="dgp_8h_source.html#l00051">Graph::max_k</a>, <a class="el" href="dgp_8h_source.html#l00034">ArgsDGP::max_t</a>, <a class="el" href="dgp_8h_source.html#l00052">Graph::max_t</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8c_source.html#l00041">MU_TYPE</a>, <a class="el" href="dgp_8h_source.html#l00035">ArgsDGP::n</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, <a class="el" href="dgp_8h_source.html#l00036">ArgsDGP::n_inputs</a>, <a class="el" href="dgp_8h_source.html#l00054">Graph::n_inputs</a>, <a class="el" href="dgp_8c_source.html#l00032">N_MU</a>, <a class="el" href="sam_8c_source.html#l00043">sam_init()</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>, <a class="el" href="dgp_8h_source.html#l00046">Graph::tmp_input</a>, and <a class="el" href="dgp_8h_source.html#l00047">Graph::tmp_state</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00063">cond_dgp_copy()</a>, <a class="el" href="cond__dgp_8c_source.html#l00034">cond_dgp_init()</a>, <a class="el" href="rule__dgp_8c_source.html#l00049">rule_dgp_cond_copy()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00030">rule_dgp_cond_init()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a9f8800d534121a0e036e7643100dff41_cgraph.svg" width="520" height="63"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a9f8800d534121a0e036e7643100dff41_cgraph.svg" width="520" height="63"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a9f8800d534121a0e036e7643100dff41_icgraph.svg" width="279" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a9f8800d534121a0e036e7643100dff41_icgraph.svg" width="279" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -596,22 +587,80 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00322">322</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00346">346</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8c_source.html#l00158">function_string()</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00050">Graph::klen</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, <a class="el" href="dgp_8h_source.html#l00054">Graph::n_inputs</a>, <a class="el" href="dgp_8c_source.html#l00032">N_MU</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, and <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>.</p>
+<p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8c_source.html#l00162">function_string()</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00050">Graph::klen</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, <a class="el" href="dgp_8h_source.html#l00054">Graph::n_inputs</a>, <a class="el" href="dgp_8c_source.html#l00032">N_MU</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, and <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00238">cond_dgp_json_export()</a>, <a class="el" href="dgp_8c_source.html#l00309">graph_print()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00155">rule_dgp_cond_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00238">cond_dgp_json_export()</a>, <a class="el" href="dgp_8c_source.html#l00333">graph_print()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00155">rule_dgp_cond_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_ac1f6f6714cd298c49c7ba05cf7f994e1_cgraph.svg" width="294" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_ac1f6f6714cd298c49c7ba05cf7f994e1_cgraph.svg" width="294" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_ac1f6f6714cd298c49c7ba05cf7f994e1_icgraph.svg" width="526" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_ac1f6f6714cd298c49c7ba05cf7f994e1_icgraph.svg" width="526" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="a6ffd1789a8d7f668658d61f97f6de1fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ffd1789a8d7f668658d61f97f6de1fc">&#9670;&nbsp;</a></span>graph_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void graph_json_import </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structGraph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>dgp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structArgsDGP.html">ArgsDGP</a> *&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a DGP graph from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dgp</td><td>The DGP to initialise. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>Parameters for initialising a DGP graph. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00477">477</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+
+<p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00032">ArgsDGP::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00043">Graph::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8c_source.html#l00450">graph_json_import_connectivity()</a>, <a class="el" href="dgp_8c_source.html#l00377">graph_json_import_current_state()</a>, <a class="el" href="dgp_8c_source.html#l00427">graph_json_import_functions()</a>, <a class="el" href="dgp_8c_source.html#l00402">graph_json_import_initial_state()</a>, <a class="el" href="dgp_8c_source.html#l00296">graph_rand()</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00050">Graph::klen</a>, <a class="el" href="dgp_8h_source.html#l00033">ArgsDGP::max_k</a>, <a class="el" href="dgp_8h_source.html#l00051">Graph::max_k</a>, <a class="el" href="dgp_8h_source.html#l00034">ArgsDGP::max_t</a>, <a class="el" href="dgp_8h_source.html#l00052">Graph::max_t</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8h_source.html#l00035">ArgsDGP::n</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, <a class="el" href="dgp_8h_source.html#l00036">ArgsDGP::n_inputs</a>, <a class="el" href="dgp_8h_source.html#l00054">Graph::n_inputs</a>, <a class="el" href="dgp_8c_source.html#l00032">N_MU</a>, <a class="el" href="sam_8c_source.html#l00100">sam_json_import()</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>, <a class="el" href="dgp_8h_source.html#l00046">Graph::tmp_input</a>, and <a class="el" href="dgp_8h_source.html#l00047">Graph::tmp_state</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00258">cond_dgp_json_import()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00169">rule_dgp_cond_json_import()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a6ffd1789a8d7f668658d61f97f6de1fc_cgraph.svg" width="887" height="323"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a6ffd1789a8d7f668658d61f97f6de1fc_icgraph.svg" width="339" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -652,7 +701,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00416">416</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00587">587</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00043">Graph::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00050">Graph::klen</a>, <a class="el" href="dgp_8h_source.html#l00051">Graph::max_k</a>, <a class="el" href="dgp_8h_source.html#l00052">Graph::max_t</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, <a class="el" href="dgp_8c_source.html#l00032">N_MU</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>, <a class="el" href="dgp_8h_source.html#l00046">Graph::tmp_input</a>, and <a class="el" href="dgp_8h_source.html#l00047">Graph::tmp_state</a>.</p>
 
@@ -660,8 +709,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_ada0d974917fd977ef9ab8908c8e43782_icgraph.svg" width="282" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_ada0d974917fd977ef9ab8908c8e43782_icgraph.svg" width="282" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -691,22 +739,20 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00369">369</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00540">540</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="dgp_8h_source.html#l00043">Graph::evolve_cycles</a>, <a class="el" href="dgp_8c_source.html#l00086">graph_mutate_connectivity()</a>, <a class="el" href="dgp_8c_source.html#l00107">graph_mutate_cycles()</a>, <a class="el" href="dgp_8c_source.html#l00065">graph_mutate_functions()</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8c_source.html#l00037">MU_TYPE</a>, <a class="el" href="dgp_8c_source.html#l00032">N_MU</a>, and <a class="el" href="sam_8c_source.html#l00068">sam_adapt()</a>.</p>
+<p class="reference">References <a class="el" href="dgp_8h_source.html#l00043">Graph::evolve_cycles</a>, <a class="el" href="dgp_8c_source.html#l00090">graph_mutate_connectivity()</a>, <a class="el" href="dgp_8c_source.html#l00111">graph_mutate_cycles()</a>, <a class="el" href="dgp_8c_source.html#l00069">graph_mutate_functions()</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8c_source.html#l00041">MU_TYPE</a>, <a class="el" href="dgp_8c_source.html#l00032">N_MU</a>, and <a class="el" href="sam_8c_source.html#l00068">sam_adapt()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00130">cond_dgp_mutate()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00092">rule_dgp_cond_mutate()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_af71be7faf77196a067d8e69ac1493ee2_cgraph.svg" width="860" height="290"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_af71be7faf77196a067d8e69ac1493ee2_cgraph.svg" width="860" height="290"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_af71be7faf77196a067d8e69ac1493ee2_icgraph.svg" width="314" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_af71be7faf77196a067d8e69ac1493ee2_icgraph.svg" width="314" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -747,16 +793,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The current state of the specified node. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00250">250</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00274">274</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00113">cond_dgp_match()</a>, <a class="el" href="rule__dgp_8c_source.html#l00213">rule_dgp_act_compute()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00080">rule_dgp_cond_match()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00113">cond_dgp_match()</a>, <a class="el" href="rule__dgp_8c_source.html#l00227">rule_dgp_act_compute()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00080">rule_dgp_cond_match()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_aa77646399b1b3d18c38e1597008880e0_icgraph.svg" width="492" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_aa77646399b1b3d18c38e1597008880e0_icgraph.svg" width="492" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -787,16 +832,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00587">587</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00758">758</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00032">ArgsDGP::evolve_cycles</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00279">cond_dgp_param_defaults()</a>, and <a class="el" href="dgp_8c_source.html#l00483">graph_args_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00298">cond_dgp_param_defaults()</a>, and <a class="el" href="dgp_8c_source.html#l00654">graph_args_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_aed1478bc3f88ad1f133a130dca8609d6_icgraph.svg" width="1231" height="280"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_aed1478bc3f88ad1f133a130dca8609d6_icgraph.svg" width="1234" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -827,16 +871,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00543">543</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00714">714</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00033">ArgsDGP::max_k</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00279">cond_dgp_param_defaults()</a>, and <a class="el" href="dgp_8c_source.html#l00483">graph_args_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00298">cond_dgp_param_defaults()</a>, and <a class="el" href="dgp_8c_source.html#l00654">graph_args_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_ad00d04d5a1aa9f62c635775765099ca7_icgraph.svg" width="1232" height="280"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_ad00d04d5a1aa9f62c635775765099ca7_icgraph.svg" width="1235" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -867,16 +910,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00554">554</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00725">725</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00034">ArgsDGP::max_t</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00279">cond_dgp_param_defaults()</a>, and <a class="el" href="dgp_8c_source.html#l00483">graph_args_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00298">cond_dgp_param_defaults()</a>, and <a class="el" href="dgp_8c_source.html#l00654">graph_args_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a2032837921a137ebe4c7704c47fd420f_icgraph.svg" width="1230" height="280"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a2032837921a137ebe4c7704c47fd420f_icgraph.svg" width="1232" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -907,16 +949,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00565">565</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00736">736</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00035">ArgsDGP::n</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00279">cond_dgp_param_defaults()</a>, and <a class="el" href="dgp_8c_source.html#l00483">graph_args_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00298">cond_dgp_param_defaults()</a>, and <a class="el" href="dgp_8c_source.html#l00654">graph_args_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a5fae5c843dd7b47d4a7a136122efd24b_icgraph.svg" width="1200" height="280"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a5fae5c843dd7b47d4a7a136122efd24b_icgraph.svg" width="1203" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -947,16 +988,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00576">576</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00747">747</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00036">ArgsDGP::n_inputs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00279">cond_dgp_param_defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00298">cond_dgp_param_defaults()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_aa84ac940be12dff259a4905f95dba1a1_icgraph.svg" width="1106" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_aa84ac940be12dff259a4905f95dba1a1_icgraph.svg" width="1106" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -985,14 +1025,13 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00309">309</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00333">333</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="dgp_8c_source.html#l00322">graph_json_export()</a>.</p>
+<p class="reference">References <a class="el" href="dgp_8c_source.html#l00346">graph_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a1536710c682332c80237d59720e951d4_cgraph.svg" width="428" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a1536710c682332c80237d59720e951d4_cgraph.svg" width="428" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1021,22 +1060,20 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00272">272</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00296">296</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00043">Graph::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00050">Graph::klen</a>, <a class="el" href="dgp_8h_source.html#l00052">Graph::max_t</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, <a class="el" href="dgp_8h_source.html#l00054">Graph::n_inputs</a>, <a class="el" href="dgp_8c_source.html#l00031">NUM_FUNC</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>, <a class="el" href="dgp_8c_source.html#l00049">random_connection()</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, and <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>.</p>
+<p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00043">Graph::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00050">Graph::klen</a>, <a class="el" href="dgp_8h_source.html#l00052">Graph::max_t</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, <a class="el" href="dgp_8h_source.html#l00054">Graph::n_inputs</a>, <a class="el" href="dgp_8c_source.html#l00031">NUM_FUNC</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>, <a class="el" href="dgp_8c_source.html#l00053">random_connection()</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, and <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00079">cond_dgp_cover()</a>, <a class="el" href="cond__dgp_8c_source.html#l00034">cond_dgp_init()</a>, <a class="el" href="rule__dgp_8c_source.html#l00202">rule_dgp_act_cover()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00030">rule_dgp_cond_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00079">cond_dgp_cover()</a>, <a class="el" href="cond__dgp_8c_source.html#l00034">cond_dgp_init()</a>, <a class="el" href="dgp_8c_source.html#l00477">graph_json_import()</a>, <a class="el" href="rule__dgp_8c_source.html#l00216">rule_dgp_act_cover()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00030">rule_dgp_cond_init()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a58fe69583d92f2c818d007d899fdbbb6_cgraph.svg" width="592" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a58fe69583d92f2c818d007d899fdbbb6_cgraph.svg" width="592" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a58fe69583d92f2c818d007d899fdbbb6_icgraph.svg" width="280" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a58fe69583d92f2c818d007d899fdbbb6_icgraph.svg" width="480" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1065,16 +1102,15 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00260">260</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00284">284</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, and <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="dgp_8c_source.html#l00294">graph_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="dgp_8c_source.html#l00318">graph_update()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_aee734e2659ea39d69c4fdd8f567ef63c_icgraph.svg" width="630" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_aee734e2659ea39d69c4fdd8f567ef63c_icgraph.svg" width="630" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1115,7 +1151,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00392">392</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00563">563</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
 <p class="reference">References <a class="el" href="dgp_8h_source.html#l00048">Graph::connectivity</a>, <a class="el" href="dgp_8h_source.html#l00043">Graph::evolve_cycles</a>, <a class="el" href="dgp_8h_source.html#l00049">Graph::function</a>, <a class="el" href="dgp_8h_source.html#l00044">Graph::initial_state</a>, <a class="el" href="dgp_8h_source.html#l00050">Graph::klen</a>, <a class="el" href="dgp_8h_source.html#l00051">Graph::max_k</a>, <a class="el" href="dgp_8h_source.html#l00052">Graph::max_t</a>, <a class="el" href="dgp_8h_source.html#l00056">Graph::mu</a>, <a class="el" href="dgp_8h_source.html#l00053">Graph::n</a>, <a class="el" href="dgp_8c_source.html#l00032">N_MU</a>, <a class="el" href="dgp_8h_source.html#l00045">Graph::state</a>, and <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>.</p>
 
@@ -1123,8 +1159,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a617b755a80529d6d8db90ce873242b61_icgraph.svg" width="290" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a617b755a80529d6d8db90ce873242b61_icgraph.svg" width="290" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1171,22 +1206,20 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00294">294</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dgp_8c_source.html#l00318">318</a> of file <a class="el" href="dgp_8c_source.html">dgp.c</a>.</p>
 
-<p class="reference">References <a class="el" href="dgp_8c_source.html#l00260">graph_reset()</a>, <a class="el" href="dgp_8c_source.html#l00179">synchronous_update()</a>, and <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>.</p>
+<p class="reference">References <a class="el" href="dgp_8c_source.html#l00284">graph_reset()</a>, <a class="el" href="dgp_8c_source.html#l00203">synchronous_update()</a>, and <a class="el" href="dgp_8h_source.html#l00055">Graph::t</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cond__dgp_8c_source.html#l00113">cond_dgp_match()</a>, and <a class="el" href="rule__dgp_8c_source.html#l00080">rule_dgp_cond_match()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a91b113eb2798ad1b958d47184ebbf1fb_cgraph.svg" width="558" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a91b113eb2798ad1b958d47184ebbf1fb_cgraph.svg" width="558" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a91b113eb2798ad1b958d47184ebbf1fb_icgraph.svg" width="491" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dgp_8h_a91b113eb2798ad1b958d47184ebbf1fb_icgraph.svg" width="491" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

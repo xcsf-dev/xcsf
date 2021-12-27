@@ -1,8 +1,12 @@
 <map id="neural.h" name="neural.h">
-<area shape="rect" id="node1" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="191,5,259,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,80,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="105,80,170,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="195,80,256,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="280,80,344,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="369,80,434,107"/>
+<area shape="rect" id="node1" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="529,5,597,32"/>
+<area shape="rect" id="node2" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="370,80,427,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="444,155,505,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="529,155,593,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="563,80,637,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="662,80,727,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="751,80,817,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,155,157,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="182,155,333,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="357,155,419,181"/>
 </map>

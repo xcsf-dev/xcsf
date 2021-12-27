@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('cond__dummy_8c.html',''); initResizabl
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -97,15 +97,14 @@ $(document).ready(function(){initNavTree('cond__dummy_8c.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 
-<p>Always-matching dummy condition functions.
+<p>Always-matching dummy condition functions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="cond__dummy_8h_source.html">cond_dummy.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="utils_8h_source.html">utils.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for cond_dummy.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cond__dummy_8c__incl.svg" width="1143" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__dummy_8c__incl.svg" width="1143" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="cond__dummy_8c_source.html">Go to the source code of this file.</a></p>
@@ -154,6 +153,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a01a18a4b963790398a551a8a07088272"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__dummy_8c.html#a01a18a4b963790398a551a8a07088272">cond_dummy_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
 <tr class="memdesc:a01a18a4b963790398a551a8a07088272"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a dummy condition.  <a href="cond__dummy_8c.html#a01a18a4b963790398a551a8a07088272">More...</a><br /></td></tr>
 <tr class="separator:a01a18a4b963790398a551a8a07088272"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4ca6058a686401b3f1244059494c392"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__dummy_8c.html#ae4ca6058a686401b3f1244059494c392">cond_dummy_json_import</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, const cJSON *json)</td></tr>
+<tr class="memdesc:ae4ca6058a686401b3f1244059494c392"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dummy import function.  <a href="cond__dummy_8c.html#ae4ca6058a686401b3f1244059494c392">More...</a><br /></td></tr>
+<tr class="separator:ae4ca6058a686401b3f1244059494c392"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Always-matching dummy condition functions. </p>
@@ -469,9 +471,54 @@ Functions</h2></td></tr>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cond__dummy_8c_a01a18a4b963790398a551a8a07088272_icgraph.svg" width="366" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__dummy_8c_a01a18a4b963790398a551a8a07088272_icgraph.svg" width="366" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
 </div>
 </div>
+<a id="ae4ca6058a686401b3f1244059494c392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4ca6058a686401b3f1244059494c392">&#9670;&nbsp;</a></span>cond_dummy_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cond_dummy_json_import </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dummy import function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">c</td><td>The classifier to initialise. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="cond__dummy_8c_source.html#l00244">244</a> of file <a class="el" href="cond__dummy_8c_source.html">cond_dummy.c</a>.</p>
 
 </div>
 </div>
@@ -650,8 +697,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cond__dummy_8c_a8040fa2c66ce53bed12725ee437928fd_cgraph.svg" width="366" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__dummy_8c_a8040fa2c66ce53bed12725ee437928fd_cgraph.svg" width="366" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

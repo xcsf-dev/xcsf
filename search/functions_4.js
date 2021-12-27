@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['decision_2060',['decision',['../classXCS.html#ac6003941812bd2c70ea443dd63bd59d0',1,'XCS']]],
-  ['dict_5fto_5fjson_2061',['dict_to_json',['../classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11',1,'XCS']]],
-  ['draw_2062',['draw',['../classxcsf_1_1utils_1_1viz_1_1DGPViz.html#a291230e10f8beb2f17b243e48a153e96',1,'xcsf::utils::viz::DGPViz']]]
+  ['decision_2124',['decision',['../classXCS.html#ac6003941812bd2c70ea443dd63bd59d0',1,'XCS']]],
+  ['dict_5fto_5fjson_2125',['dict_to_json',['../classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11',1,'XCS']]],
+  ['draw_2126',['draw',['../classxcsf_1_1utils_1_1viz_1_1DGPViz.html#a291230e10f8beb2f17b243e48a153e96',1,'xcsf::utils::viz::DGPViz']]]
 ];

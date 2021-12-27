@@ -14,6 +14,7 @@ var action_8h =
     [ "act_general", "action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d", null ],
     [ "act_init", "action_8h.html#a124e361f0b13d0c29206bd9c05bd9fd4", null ],
     [ "act_json_export", "action_8h.html#a31b90b0384c02bd54a0abd49211401fc", null ],
+    [ "act_json_import", "action_8h.html#a8ddc4aefec0235d2af07465f6d48e2ce", null ],
     [ "act_load", "action_8h.html#a52378844456bccd5792fd83a66c3e024", null ],
     [ "act_mutate", "action_8h.html#a44bf56cba57482ddbd8b1db0a6b835b9", null ],
     [ "act_print", "action_8h.html#a6c954556c09b79fe6cd741a50ac8538f", null ],

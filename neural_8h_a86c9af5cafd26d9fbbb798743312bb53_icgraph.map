@@ -1,0 +1,7 @@
+<map id="neural_json_import" name="neural_json_import">
+<area shape="rect" id="node1" title="Creates a neural network from a cJSON object." alt="" coords="220,81,351,108"/>
+<area shape="rect" id="node2" href="$act__neural_8h.html#a29fd2f475f9ca50e0d1a1f79429c8563" title="Creates a neural action from a cJSON object." alt="" coords="11,5,167,32"/>
+<area shape="rect" id="node3" href="$cond__neural_8h.html#a1155b7cd5115107052590dc619f54324" title="Creates a neural condition from a cJSON object." alt="" coords="5,56,172,83"/>
+<area shape="rect" id="node4" href="$pred__neural_8h.html#aa67c3c14a64f4903873c2c4d30938458" title="Creates a neural prediction from a cJSON object." alt="" coords="7,107,170,133"/>
+<area shape="rect" id="node5" href="$rule__neural_8h.html#a68b347d2f7c7252116d66758039935b9" title=" " alt="" coords="13,158,164,199"/>
+</map>

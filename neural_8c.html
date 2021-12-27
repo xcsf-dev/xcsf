@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('neural_8c.html',''); initResizable(); 
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('neural_8c.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 
-<p>An implementation of a multi-layer perceptron neural network.
+<p>An implementation of a multi-layer perceptron neural network.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="neural_8h_source.html">neural.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="neural__layer__connected_8h_source.html">neural_layer_connected.h</a>&quot;</code><br />
@@ -109,8 +109,7 @@ $(document).ready(function(){initNavTree('neural_8c.html',''); initResizable(); 
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for neural.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c__incl.svg" width="955" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c__incl.svg" width="1004" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="neural_8c_source.html">Go to the source code of this file.</a></p>
@@ -168,6 +167,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a99f4af43712739691174e770a9090ca2"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural_8c.html#a99f4af43712739691174e770a9090ca2">neural_json_export</a> (const struct <a class="el" href="structNet.html">Net</a> *net, const bool return_weights)</td></tr>
 <tr class="memdesc:a99f4af43712739691174e770a9090ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a neural network.  <a href="neural_8c.html#a99f4af43712739691174e770a9090ca2">More...</a><br /></td></tr>
 <tr class="separator:a99f4af43712739691174e770a9090ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86c9af5cafd26d9fbbb798743312bb53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural_8c.html#a86c9af5cafd26d9fbbb798743312bb53">neural_json_import</a> (struct <a class="el" href="structNet.html">Net</a> *net, const struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> *arg, const cJSON *json)</td></tr>
+<tr class="memdesc:a86c9af5cafd26d9fbbb798743312bb53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a neural network from a cJSON object.  <a href="neural_8c.html#a86c9af5cafd26d9fbbb798743312bb53">More...</a><br /></td></tr>
+<tr class="separator:a86c9af5cafd26d9fbbb798743312bb53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a610bf0c797a4877216d39dab2a91a4c9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural_8c.html#a610bf0c797a4877216d39dab2a91a4c9">neural_size</a> (const struct <a class="el" href="structNet.html">Net</a> *net)</td></tr>
 <tr class="memdesc:a610bf0c797a4877216d39dab2a91a4c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total number of non-zero weights in a neural network.  <a href="neural_8c.html#a610bf0c797a4877216d39dab2a91a4c9">More...</a><br /></td></tr>
 <tr class="separator:a610bf0c797a4877216d39dab2a91a4c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,20 +225,18 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00208">208</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00263">layer_copy()</a>, <a class="el" href="neural_8c_source.html#l00037">neural_init()</a>, <a class="el" href="neural_8c_source.html#l00187">neural_push()</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00263">layer_copy()</a>, <a class="el" href="neural_8c_source.html#l00037">neural_init()</a>, <a class="el" href="neural_8c_source.html#l00187">neural_push()</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00122">act_neural_copy()</a>, <a class="el" href="cond__neural_8c_source.html#l00070">cond_neural_copy()</a>, <a class="el" href="pred__neural_8c_source.html#l00073">pred_neural_copy()</a>, and <a class="el" href="rule__neural_8c_source.html#l00059">rule_neural_cond_copy()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_acc35a399d5b8b9dd9a2d9500138966f3_cgraph.svg" width="387" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_acc35a399d5b8b9dd9a2d9500138966f3_cgraph.svg" width="387" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_acc35a399d5b8b9dd9a2d9500138966f3_icgraph.svg" width="306" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_acc35a399d5b8b9dd9a2d9500138966f3_icgraph.svg" width="306" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -278,20 +278,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00054">54</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00037">AVGPOOL</a>, <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00030">DROPOUT</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00380">layer_init()</a>, <a class="el" href="neural__layer_8h_source.html#l00035">MAXPOOL</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00049">Net::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural_8c_source.html#l00037">neural_init()</a>, <a class="el" href="neural_8c_source.html#l00187">neural_push()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>, <a class="el" href="neural__layer_8h_source.html#l00031">NOISE</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00032">SOFTMAX</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::type</a>, <a class="el" href="neural__layer_8h_source.html#l00038">UPSAMPLE</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::width</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00037">AVGPOOL</a>, <a class="el" href="neural__layer__args_8h_source.html#l00041">ArgsLayer::channels</a>, <a class="el" href="neural__layer_8h_source.html#l00030">DROPOUT</a>, <a class="el" href="neural__layer__args_8h_source.html#l00039">ArgsLayer::height</a>, <a class="el" href="neural__layer_8h_source.html#l00380">layer_init()</a>, <a class="el" href="neural__layer_8h_source.html#l00035">MAXPOOL</a>, <a class="el" href="neural__layer__args_8h_source.html#l00034">ArgsLayer::n_init</a>, <a class="el" href="neural__layer__args_8h_source.html#l00033">ArgsLayer::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00049">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00051">Net::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural_8c_source.html#l00037">neural_init()</a>, <a class="el" href="neural_8c_source.html#l00187">neural_push()</a>, <a class="el" href="neural__layer__args_8h_source.html#l00057">ArgsLayer::next</a>, <a class="el" href="neural__layer_8h_source.html#l00031">NOISE</a>, <a class="el" href="neural__layer_8h_source.html#l00132">Layer::out_c</a>, <a class="el" href="neural__layer_8h_source.html#l00131">Layer::out_h</a>, <a class="el" href="neural__layer_8h_source.html#l00130">Layer::out_w</a>, <a class="el" href="neural__layer_8h_source.html#l00032">SOFTMAX</a>, <a class="el" href="neural__layer__args_8h_source.html#l00032">ArgsLayer::type</a>, <a class="el" href="neural__layer_8h_source.html#l00038">UPSAMPLE</a>, and <a class="el" href="neural__layer__args_8h_source.html#l00040">ArgsLayer::width</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00044">act_neural_init()</a>, <a class="el" href="cond__neural_8c_source.html#l00042">cond_neural_init()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00377">layer_args_json_export()</a>, <a class="el" href="pred__neural_8c_source.html#l00045">pred_neural_init()</a>, and <a class="el" href="rule__neural_8c_source.html#l00035">rule_neural_cond_init()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a6466387dd7c533e0f15da4c2127bfd79_cgraph.svg" width="403" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a6466387dd7c533e0f15da4c2127bfd79_cgraph.svg" width="403" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a6466387dd7c533e0f15da4c2127bfd79_icgraph.svg" width="1300" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a6466387dd7c533e0f15da4c2127bfd79_icgraph.svg" width="1300" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -322,20 +320,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00224">224</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00273">layer_free()</a>, <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00273">layer_free()</a>, <a class="el" href="neural_8h_source.html#l00049">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00167">act_neural_free()</a>, <a class="el" href="cond__neural_8c_source.html#l00055">cond_neural_free()</a>, <a class="el" href="neural__layer__args_8c_source.html#l00377">layer_args_json_export()</a>, <a class="el" href="pred__neural_8c_source.html#l00058">pred_neural_free()</a>, and <a class="el" href="rule__neural_8c_source.html#l00050">rule_neural_cond_free()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a9c3e1da0425d0fc17daa12c21e4799ca_cgraph.svg" width="224" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a9c3e1da0425d0fc17daa12c21e4799ca_cgraph.svg" width="224" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a9c3e1da0425d0fc17daa12c21e4799ca_icgraph.svg" width="1287" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a9c3e1da0425d0fc17daa12c21e4799ca_icgraph.svg" width="1287" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -366,14 +362,13 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00037">37</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00052">Net::head</a>, <a class="el" href="neural_8h_source.html#l00049">Net::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00051">Net::output</a>, <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::train</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00053">Net::head</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00049">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00051">Net::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00052">Net::output</a>, <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>, and <a class="el" href="neural_8h_source.html#l00055">Net::train</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="neural__layer__args_8c_source.html#l00377">layer_args_json_export()</a>, <a class="el" href="neural_8c_source.html#l00208">neural_copy()</a>, <a class="el" href="neural_8c_source.html#l00054">neural_create()</a>, and <a class="el" href="neural_8c_source.html#l00482">neural_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="neural__layer__args_8c_source.html#l00377">layer_args_json_export()</a>, <a class="el" href="neural_8c_source.html#l00208">neural_copy()</a>, <a class="el" href="neural_8c_source.html#l00054">neural_create()</a>, and <a class="el" href="neural_8c_source.html#l00499">neural_load()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ad70aee7c40f698d4be45e3d419051c2f_icgraph.svg" width="1430" height="646"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ad70aee7c40f698d4be45e3d419051c2f_icgraph.svg" width="1430" height="646"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -422,14 +417,13 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00095">95</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00052">Net::head</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural_8h_source.html#l00049">Net::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::next</a>, <a class="el" href="neural_8h_source.html#l00051">Net::output</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00053">Net::head</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_inputs</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00049">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00051">Net::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00042">Llist::next</a>, <a class="el" href="neural_8h_source.html#l00052">Net::output</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="neural_8c_source.html#l00187">neural_push()</a>, and <a class="el" href="pred__neural_8c_source.html#l00306">pred_neural_expand()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_afab574137fbf9da9a286d020917c8295_icgraph.svg" width="1735" height="744"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_afab574137fbf9da9a286d020917c8295_icgraph.svg" width="1735" height="744"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -472,20 +466,71 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00407">407</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00305">layer_json_export()</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00305">layer_json_export()</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00232">act_neural_json_export()</a>, <a class="el" href="cond__neural_8c_source.html#l00312">cond_neural_json_export()</a>, <a class="el" href="neural_8c_source.html#l00395">neural_print()</a>, <a class="el" href="pred__neural_8c_source.html#l00392">pred_neural_json_export()</a>, and <a class="el" href="rule__neural_8c_source.html#l00164">rule_neural_cond_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a99f4af43712739691174e770a9090ca2_cgraph.svg" width="314" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a99f4af43712739691174e770a9090ca2_cgraph.svg" width="314" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a99f4af43712739691174e770a9090ca2_icgraph.svg" width="556" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a99f4af43712739691174e770a9090ca2_icgraph.svg" width="556" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="a86c9af5cafd26d9fbbb798743312bb53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86c9af5cafd26d9fbbb798743312bb53">&#9670;&nbsp;</a></span>neural_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void neural_json_import </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structNet.html">Net</a> *&#160;</td>
+          <td class="paramname"><em>net</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> *&#160;</td>
+          <td class="paramname"><em>arg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a neural network from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">net</td><td>The neural network to return. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arg</td><td>List of layer parameters defining the initial network. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00433">433</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00252">act_neural_json_import()</a>, <a class="el" href="cond__neural_8c_source.html#l00332">cond_neural_json_import()</a>, <a class="el" href="pred__neural_8c_source.html#l00412">pred_neural_json_import()</a>, and <a class="el" href="rule__neural_8c_source.html#l00179">rule_neural_cond_json_import()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a86c9af5cafd26d9fbbb798743312bb53_icgraph.svg" width="356" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -534,20 +579,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00328">328</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00083">Layer::delta</a>, <a class="el" href="neural_8h_source.html#l00052">Net::head</a>, <a class="el" href="neural__layer_8h_source.html#l00117">Layer::i</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00218">layer_backward()</a>, <a class="el" href="neural__layer_8h_source.html#l00229">layer_update()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::next</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00083">Layer::delta</a>, <a class="el" href="neural_8h_source.html#l00053">Net::head</a>, <a class="el" href="neural__layer_8h_source.html#l00117">Layer::i</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00218">layer_backward()</a>, <a class="el" href="neural__layer_8h_source.html#l00229">layer_update()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00042">Llist::next</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pred__neural_8c_source.html#l00091">pred_neural_update()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a9226c300b9de597334244bf57e9b53f6_cgraph.svg" width="264" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a9226c300b9de597334244bf57e9b53f6_cgraph.svg" width="264" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a9226c300b9de597334244bf57e9b53f6_icgraph.svg" width="286" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a9226c300b9de597334244bf57e9b53f6_icgraph.svg" width="286" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -588,7 +631,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00482">482</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00499">499</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
 <p class="reference">References <a class="el" href="neural__layer_8c_source.html#l00413">layer_defaults()</a>, <a class="el" href="neural__layer_8h_source.html#l00182">layer_load()</a>, <a class="el" href="neural__layer_8c_source.html#l00042">layer_set_vptr()</a>, <a class="el" href="neural_8c_source.html#l00037">neural_init()</a>, <a class="el" href="neural_8c_source.html#l00187">neural_push()</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
 
@@ -596,14 +639,12 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a7cb2bd3f18f66f9ccd9512b9d35d6d08_cgraph.svg" width="395" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a7cb2bd3f18f66f9ccd9512b9d35d6d08_cgraph.svg" width="395" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a7cb2bd3f18f66f9ccd9512b9d35d6d08_icgraph.svg" width="298" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a7cb2bd3f18f66f9ccd9512b9d35d6d08_icgraph.svg" width="298" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -635,20 +676,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00257">257</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00240">layer_mutate()</a>, <a class="el" href="neural__layer_8h_source.html#l00252">layer_resize()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00240">layer_mutate()</a>, <a class="el" href="neural__layer_8h_source.html#l00252">layer_resize()</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00092">act_neural_mutate()</a>, <a class="el" href="cond__neural_8c_source.html#l00135">cond_neural_mutate()</a>, <a class="el" href="pred__neural_8c_source.html#l00153">pred_neural_mutate()</a>, and <a class="el" href="rule__neural_8c_source.html#l00101">rule_neural_cond_mutate()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a462b490af8481803fd34af3c728f057d_cgraph.svg" width="260" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a462b490af8481803fd34af3c728f057d_cgraph.svg" width="260" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a462b490af8481803fd34af3c728f057d_icgraph.svg" width="330" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a462b490af8481803fd34af3c728f057d_icgraph.svg" width="330" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -691,20 +730,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00369">369</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00052">Net::head</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00193">layer_output()</a>, and <a class="el" href="neural_8h_source.html#l00050">Net::n_outputs</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00053">Net::head</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00193">layer_output()</a>, and <a class="el" href="neural_8h_source.html#l00051">Net::n_outputs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__neural_8c_source.html#l00118">cond_neural_match()</a>, <a class="el" href="pred__neural_8c_source.html#l00106">pred_neural_compute()</a>, <a class="el" href="rule__neural_8c_source.html#l00223">rule_neural_act_compute()</a>, and <a class="el" href="rule__neural_8c_source.html#l00089">rule_neural_cond_match()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__neural_8c_source.html#l00118">cond_neural_match()</a>, <a class="el" href="pred__neural_8c_source.html#l00106">pred_neural_compute()</a>, <a class="el" href="rule__neural_8c_source.html#l00236">rule_neural_act_compute()</a>, and <a class="el" href="rule__neural_8c_source.html#l00089">rule_neural_cond_match()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a700dd0e8ee581681b32f1ffe5c7c709b_cgraph.svg" width="252" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a700dd0e8ee581681b32f1ffe5c7c709b_cgraph.svg" width="252" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a700dd0e8ee581681b32f1ffe5c7c709b_icgraph.svg" width="523" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a700dd0e8ee581681b32f1ffe5c7c709b_icgraph.svg" width="523" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -736,20 +773,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00384">384</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00052">Net::head</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00193">layer_output()</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00053">Net::head</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, and <a class="el" href="neural__layer_8h_source.html#l00193">layer_output()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00107">act_neural_compute()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a1054bccbeafce6e26cc5a8bffed9f575_cgraph.svg" width="259" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a1054bccbeafce6e26cc5a8bffed9f575_cgraph.svg" width="259" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a1054bccbeafce6e26cc5a8bffed9f575_icgraph.svg" width="474" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a1054bccbeafce6e26cc5a8bffed9f575_icgraph.svg" width="474" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -780,20 +815,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00197">197</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, and <a class="el" href="neural_8c_source.html#l00140">neural_remove()</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00049">Net::n_layers</a>, and <a class="el" href="neural_8c_source.html#l00140">neural_remove()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pred__neural_8c_source.html#l00349">pred_neural_ae_to_classifier()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_af2d255733445f37ec77b106a21215baf_cgraph.svg" width="378" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_af2d255733445f37ec77b106a21215baf_cgraph.svg" width="378" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_af2d255733445f37ec77b106a21215baf_icgraph.svg" width="920" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_af2d255733445f37ec77b106a21215baf_icgraph.svg" width="920" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -839,8 +872,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ab5c47a049b73e0a95b0ff56bd8085583_cgraph.svg" width="451" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ab5c47a049b73e0a95b0ff56bd8085583_cgraph.svg" width="451" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -889,20 +921,18 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00310">310</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00205">layer_forward()</a>, <a class="el" href="neural__layer_8h_source.html#l00193">layer_output()</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::train</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00205">layer_forward()</a>, <a class="el" href="neural__layer_8h_source.html#l00193">layer_output()</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>, and <a class="el" href="neural_8h_source.html#l00055">Net::train</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00107">act_neural_compute()</a>, <a class="el" href="cond__neural_8c_source.html#l00118">cond_neural_match()</a>, <a class="el" href="pred__neural_8c_source.html#l00106">pred_neural_compute()</a>, and <a class="el" href="rule__neural_8c_source.html#l00089">rule_neural_cond_match()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ae52d35ca06ded1387949731e1ad3d751_cgraph.svg" width="280" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ae52d35ca06ded1387949731e1ad3d751_cgraph.svg" width="280" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ae52d35ca06ded1387949731e1ad3d751_icgraph.svg" width="540" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ae52d35ca06ded1387949731e1ad3d751_icgraph.svg" width="540" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -944,20 +974,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00187">187</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, and <a class="el" href="neural_8c_source.html#l00095">neural_insert()</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00049">Net::n_layers</a>, and <a class="el" href="neural_8c_source.html#l00095">neural_insert()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="neural_8c_source.html#l00208">neural_copy()</a>, <a class="el" href="neural_8c_source.html#l00054">neural_create()</a>, <a class="el" href="neural_8c_source.html#l00482">neural_load()</a>, and <a class="el" href="pred__neural_8c_source.html#l00349">pred_neural_ae_to_classifier()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="neural_8c_source.html#l00208">neural_copy()</a>, <a class="el" href="neural_8c_source.html#l00054">neural_create()</a>, <a class="el" href="neural_8c_source.html#l00499">neural_load()</a>, and <a class="el" href="pred__neural_8c_source.html#l00349">pred_neural_ae_to_classifier()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a1c1c06446fc719b8293aade2ded8433c_cgraph.svg" width="247" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a1c1c06446fc719b8293aade2ded8433c_cgraph.svg" width="247" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a1c1c06446fc719b8293aade2ded8433c_icgraph.svg" width="1544" height="696"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a1c1c06446fc719b8293aade2ded8433c_icgraph.svg" width="1544" height="696"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -988,20 +1016,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00242">242</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00283">layer_rand()</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00283">layer_rand()</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00152">act_neural_cover()</a>, <a class="el" href="cond__neural_8c_source.html#l00086">cond_neural_cover()</a>, and <a class="el" href="rule__neural_8c_source.html#l00212">rule_neural_act_cover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00152">act_neural_cover()</a>, <a class="el" href="cond__neural_8c_source.html#l00086">cond_neural_cover()</a>, and <a class="el" href="rule__neural_8c_source.html#l00225">rule_neural_act_cover()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ab83a82e116953e1b969198cd1cdff5e4_cgraph.svg" width="231" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ab83a82e116953e1b969198cd1cdff5e4_cgraph.svg" width="231" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ab83a82e116953e1b969198cd1cdff5e4_icgraph.svg" width="298" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_ab83a82e116953e1b969198cd1cdff5e4_icgraph.svg" width="298" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1043,20 +1069,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00140">140</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00052">Net::head</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00273">layer_free()</a>, <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::next</a>, <a class="el" href="neural_8h_source.html#l00051">Net::output</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00053">Net::head</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00273">layer_free()</a>, <a class="el" href="neural_8h_source.html#l00049">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00051">Net::n_outputs</a>, <a class="el" href="neural__layer_8h_source.html#l00091">Layer::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00042">Llist::next</a>, <a class="el" href="neural_8h_source.html#l00052">Net::output</a>, <a class="el" href="neural__layer_8h_source.html#l00076">Layer::output</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="neural_8c_source.html#l00197">neural_pop()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_aa21d6a71eb14fd94a17e7937d3ccd6c9_cgraph.svg" width="244" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_aa21d6a71eb14fd94a17e7937d3ccd6c9_cgraph.svg" width="244" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_aa21d6a71eb14fd94a17e7937d3ccd6c9_icgraph.svg" width="1075" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_aa21d6a71eb14fd94a17e7937d3ccd6c9_icgraph.svg" width="1075" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1087,20 +1111,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00290">290</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00252">layer_resize()</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00252">layer_resize()</a>, <a class="el" href="neural__layer_8h_source.html#l00090">Layer::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pred__neural_8c_source.html#l00306">pred_neural_expand()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a76c99d66af7b4eb556b71a86f099b7a0_cgraph.svg" width="250" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a76c99d66af7b4eb556b71a86f099b7a0_cgraph.svg" width="250" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a76c99d66af7b4eb556b71a86f099b7a0_icgraph.svg" width="851" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a76c99d66af7b4eb556b71a86f099b7a0_icgraph.svg" width="851" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1141,22 +1163,20 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00460">460</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00477">477</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00170">layer_save()</a>, <a class="el" href="neural_8h_source.html#l00049">Net::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00048">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
+<p class="reference">References <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00170">layer_save()</a>, <a class="el" href="neural_8h_source.html#l00050">Net::n_inputs</a>, <a class="el" href="neural_8h_source.html#l00049">Net::n_layers</a>, <a class="el" href="neural_8h_source.html#l00051">Net::n_outputs</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00200">act_neural_save()</a>, <a class="el" href="cond__neural_8c_source.html#l00212">cond_neural_save()</a>, <a class="el" href="pred__neural_8c_source.html#l00183">pred_neural_save()</a>, and <a class="el" href="rule__neural_8c_source.html#l00145">rule_neural_cond_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_af4a09366d25068c50d42977482c4fc9e_cgraph.svg" width="236" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_af4a09366d25068c50d42977482c4fc9e_cgraph.svg" width="236" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_af4a09366d25068c50d42977482c4fc9e_icgraph.svg" width="306" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_af4a09366d25068c50d42977482c4fc9e_icgraph.svg" width="306" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1186,16 +1206,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The calculated network size. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00432">432</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00449">449</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer_8h_source.html#l00036">CONVOLUTIONAL</a>, <a class="el" href="neural_8h_source.html#l00039">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00034">LSTM</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::prev</a>, <a class="el" href="neural__layer_8h_source.html#l00033">RECURRENT</a>, <a class="el" href="neural__layer_8h_source.html#l00133">Layer::size</a>, <a class="el" href="neural_8h_source.html#l00053">Net::tail</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
+<p class="reference">References <a class="el" href="neural__layer_8h_source.html#l00029">CONNECTED</a>, <a class="el" href="neural__layer_8h_source.html#l00036">CONVOLUTIONAL</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00034">LSTM</a>, <a class="el" href="neural__layer_8h_source.html#l00096">Layer::n_active</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, <a class="el" href="neural__layer_8h_source.html#l00033">RECURRENT</a>, <a class="el" href="neural__layer_8h_source.html#l00133">Layer::size</a>, <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>, and <a class="el" href="neural__layer_8h_source.html#l00074">Layer::type</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cond__neural_8c_source.html#l00197">cond_neural_size()</a>, <a class="el" href="pred__neural_8c_source.html#l00168">pred_neural_size()</a>, and <a class="el" href="rule__neural_8c_source.html#l00137">rule_neural_cond_size()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a610bf0c797a4877216d39dab2a91a4c9_icgraph.svg" width="298" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a610bf0c797a4877216d39dab2a91a4c9_icgraph.svg" width="298" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

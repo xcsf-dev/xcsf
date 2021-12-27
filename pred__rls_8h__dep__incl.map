@@ -1,6 +1,5 @@
 <map id="pred_rls.h" name="pred_rls.h">
-<area shape="rect" id="node1" title="Recursive least mean squares prediction functions." alt="" coords="113,5,192,32"/>
+<area shape="rect" id="node1" title="Recursive least mean squares prediction functions." alt="" coords="59,5,137,32"/>
 <area shape="rect" id="node2" href="$pred__rls_8c.html" title="Recursive least mean squares prediction functions." alt="" coords="5,80,84,107"/>
 <area shape="rect" id="node3" href="$prediction_8c.html" title="Interface for classifier predictions." alt="" coords="108,80,197,107"/>
-<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="221,80,359,107"/>
 </map>

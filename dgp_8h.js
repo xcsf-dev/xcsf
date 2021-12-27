@@ -11,6 +11,7 @@ var dgp_8h =
     [ "graph_free", "dgp_8h.html#a49d4c90eb5704b9a3ff9f72f41d11395", null ],
     [ "graph_init", "dgp_8h.html#a9f8800d534121a0e036e7643100dff41", null ],
     [ "graph_json_export", "dgp_8h.html#ac1f6f6714cd298c49c7ba05cf7f994e1", null ],
+    [ "graph_json_import", "dgp_8h.html#a6ffd1789a8d7f668658d61f97f6de1fc", null ],
     [ "graph_load", "dgp_8h.html#ada0d974917fd977ef9ab8908c8e43782", null ],
     [ "graph_mutate", "dgp_8h.html#af71be7faf77196a067d8e69ac1493ee2", null ],
     [ "graph_output", "dgp_8h.html#aa77646399b1b3d18c38e1597008880e0", null ],

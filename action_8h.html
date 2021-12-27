@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('action_8h.html',''); initResizable(); 
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -99,20 +99,18 @@ $(document).ready(function(){initNavTree('action_8h.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 
-<p>Interface for classifier actions.
+<p>Interface for classifier actions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="xcsf_8h_source.html">xcsf.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for action.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h__incl.svg" width="1168" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h__incl.svg" width="1168" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h__dep__incl.svg" width="816" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h__dep__incl.svg" width="846" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="action_8h_source.html">Go to the source code of this file.</a></p>
@@ -209,6 +207,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a31b90b0384c02bd54a0abd49211401fc"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#a31b90b0384c02bd54a0abd49211401fc">act_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structCl.html">Cl</a> *c)</td></tr>
 <tr class="memdesc:a31b90b0384c02bd54a0abd49211401fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of an action .  <a href="action_8h.html#a31b90b0384c02bd54a0abd49211401fc">More...</a><br /></td></tr>
 <tr class="separator:a31b90b0384c02bd54a0abd49211401fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ddc4aefec0235d2af07465f6d48e2ce"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#a8ddc4aefec0235d2af07465f6d48e2ce">act_json_import</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, struct <a class="el" href="structCl.html">Cl</a> *c, const cJSON *json)</td></tr>
+<tr class="memdesc:a8ddc4aefec0235d2af07465f6d48e2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an action from a cJSON object.  <a href="action_8h.html#a8ddc4aefec0235d2af07465f6d48e2ce">More...</a><br /></td></tr>
+<tr class="separator:a8ddc4aefec0235d2af07465f6d48e2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55974a228c3a692a22c9d6ce0c4cc869"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#a55974a228c3a692a22c9d6ce0c4cc869">action_param_set_type_string</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const char *a)</td></tr>
 <tr class="separator:a55974a228c3a692a22c9d6ce0c4cc869"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a07a69a801b65052f3679d317507363"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8h.html#a1a07a69a801b65052f3679d317507363">action_param_set_type</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
@@ -346,7 +347,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The classifier's action. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00168">168</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00170">170</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00079">ActVtbl::act_impl_compute</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -354,8 +355,7 @@ Functions</h2></td></tr>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a6a453cb80b07ecb3f18eabc178c81424_icgraph.svg" width="1182" height="367"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a6a453cb80b07ecb3f18eabc178c81424_icgraph.svg" width="1182" height="367"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -410,7 +410,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00180">180</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00182">182</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00081">ActVtbl::act_impl_copy</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -418,8 +418,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a319e5909d871e8146c4cbc66626ca5f3_icgraph.svg" width="1196" height="398"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a319e5909d871e8146c4cbc66626ca5f3_icgraph.svg" width="1196" height="398"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -481,7 +480,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00193">193</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00195">195</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00083">ActVtbl::act_impl_cover</a>, <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>, and <a class="el" href="xcsf_8h_source.html#l00060">Cl::action</a>.</p>
 
@@ -489,8 +488,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a4760df86361ac4ed8c85d985c37a6d3d_icgraph.svg" width="1296" height="367"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a4760df86361ac4ed8c85d985c37a6d3d_icgraph.svg" width="1296" height="367"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -546,7 +544,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00143">143</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00145">145</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00076">ActVtbl::act_impl_crossover</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -554,8 +552,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a1cb59126839b6577e98f066504dde5df_icgraph.svg" width="1155" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a1cb59126839b6577e98f066504dde5df_icgraph.svg" width="1155" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -603,7 +600,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00205">205</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00207">207</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00085">ActVtbl::act_impl_free</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -611,8 +608,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a81912970283c86f80c5b7a38f1865ebd_icgraph.svg" width="1376" height="671"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a81912970283c86f80c5b7a38f1865ebd_icgraph.svg" width="1376" height="671"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -668,7 +664,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the action of c1 is more general than c2. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00130">130</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00132">132</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00074">ActVtbl::act_impl_general</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -676,8 +672,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a7ac7036a6ec0ef8bc76f38ba5d30579d_icgraph.svg" width="1474" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a7ac7036a6ec0ef8bc76f38ba5d30579d_icgraph.svg" width="1474" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -725,7 +720,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00216">216</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00218">218</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00086">ActVtbl::act_impl_init</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -733,8 +728,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a124e361f0b13d0c29206bd9c05bd9fd4_icgraph.svg" width="1394" height="494"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a124e361f0b13d0c29206bd9c05bd9fd4_icgraph.svg" width="1443" height="584"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -783,7 +777,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00253">253</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00255">255</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00093">ActVtbl::act_impl_json_export</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -791,8 +785,75 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a31b90b0384c02bd54a0abd49211401fc_icgraph.svg" width="1118" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a31b90b0384c02bd54a0abd49211401fc_icgraph.svg" width="1120" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="a8ddc4aefec0235d2af07465f6d48e2ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ddc4aefec0235d2af07465f6d48e2ce">&#9670;&nbsp;</a></span>act_json_import()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void act_json_import </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
+          <td class="paramname"><em>xcsf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structCl.html">Cl</a> *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cJSON *&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates an action from a cJSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">c</td><td>The classifier whose action is to be initialised. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>cJSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00267">267</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+
+<p class="reference">References <a class="el" href="action_8h_source.html#l00094">ActVtbl::act_impl_json_import</a>, <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>, <a class="el" href="action_8c_source.html#l00075">action_type_as_int()</a>, and <a class="el" href="action_8c_source.html#l00056">action_type_as_string()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00608">cl_json_import()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a8ddc4aefec0235d2af07465f6d48e2ce_cgraph.svg" width="323" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a8ddc4aefec0235d2af07465f6d48e2ce_icgraph.svg" width="1003" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -848,7 +909,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00117">117</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00119">119</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00092">ActVtbl::act_impl_load</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -856,8 +917,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a52378844456bccd5792fd83a66c3e024_icgraph.svg" width="810" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a52378844456bccd5792fd83a66c3e024_icgraph.svg" width="810" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -906,7 +966,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00155">155</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00157">157</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00078">ActVtbl::act_impl_mutate</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -914,8 +974,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a44bf56cba57482ddbd8b1db0a6b835b9_icgraph.svg" width="1120" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a44bf56cba57482ddbd8b1db0a6b835b9_icgraph.svg" width="1120" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -963,7 +1022,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00227">227</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00229">229</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00087">ActVtbl::act_impl_print</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -1020,7 +1079,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00104">104</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00106">106</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00090">ActVtbl::act_impl_save</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -1028,8 +1087,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a60392c9bd1cbef6582260ce68267ce87_icgraph.svg" width="830" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a60392c9bd1cbef6582260ce68267ce87_icgraph.svg" width="830" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1091,7 +1149,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00240">240</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="action_8h_source.html#l00242">242</a> of file <a class="el" href="action_8h_source.html">action.h</a>.</p>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00088">ActVtbl::act_impl_update</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
@@ -1099,8 +1157,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_abff2406a17ffc24bdc2f98dbecab1f80_icgraph.svg" width="1178" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_abff2406a17ffc24bdc2f98dbecab1f80_icgraph.svg" width="1178" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1131,20 +1188,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00092">92</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="act__neural_8c_source.html#l00250">act_neural_param_defaults()</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, and <a class="el" href="action_8c_source.html#l00198">action_param_set_type()</a>.</p>
+<p class="reference">References <a class="el" href="act__neural_8c_source.html#l00268">act_neural_param_defaults()</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, and <a class="el" href="action_8c_source.html#l00198">action_param_set_type()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aa7e0cd00c920c30b15e0d1cc409cada5_cgraph.svg" width="556" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aa7e0cd00c920c30b15e0d1cc409cada5_cgraph.svg" width="556" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aa7e0cd00c920c30b15e0d1cc409cada5_icgraph.svg" width="663" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aa7e0cd00c920c30b15e0d1cc409cada5_icgraph.svg" width="663" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1181,14 +1236,12 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_acc202dbe3c6a1d3f745383aec209c780_cgraph.svg" width="299" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_acc202dbe3c6a1d3f745383aec209c780_cgraph.svg" width="299" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_acc202dbe3c6a1d3f745383aec209c780_icgraph.svg" width="374" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_acc202dbe3c6a1d3f745383aec209c780_icgraph.svg" width="374" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1226,14 +1279,12 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_ae4c75dacfa854514efe71cc00515d6c0_cgraph.svg" width="980" height="490"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_ae4c75dacfa854514efe71cc00515d6c0_cgraph.svg" width="980" height="490"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_ae4c75dacfa854514efe71cc00515d6c0_icgraph.svg" width="948" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_ae4c75dacfa854514efe71cc00515d6c0_icgraph.svg" width="948" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1276,20 +1327,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00132">132</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="act__neural_8c_source.html#l00284">act_neural_param_json_import()</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, and <a class="el" href="action_8c_source.html#l00192">action_param_set_type_string()</a>.</p>
+<p class="reference">References <a class="el" href="act__neural_8c_source.html#l00302">act_neural_param_json_import()</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, and <a class="el" href="action_8c_source.html#l00192">action_param_set_type_string()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00305">param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00305">param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00823">XCS::set_action()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aaa5c433092521a4fe5159eee76b1c141_cgraph.svg" width="1038" height="403"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aaa5c433092521a4fe5159eee76b1c141_cgraph.svg" width="1038" height="403"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aaa5c433092521a4fe5159eee76b1c141_icgraph.svg" width="602" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_aaa5c433092521a4fe5159eee76b1c141_icgraph.svg" width="602" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1334,18 +1383,16 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00632">layer_args_load()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00411">param_load()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00419">param_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a08b64f3c3cc1e112d0859880ea767c53_cgraph.svg" width="462" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a08b64f3c3cc1e112d0859880ea767c53_cgraph.svg" width="462" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a08b64f3c3cc1e112d0859880ea767c53_icgraph.svg" width="735" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a08b64f3c3cc1e112d0859880ea767c53_icgraph.svg" width="735" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1390,18 +1437,16 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00039">ArgsAct::largs</a>, <a class="el" href="neural__layer__args_8c_source.html#l00588">layer_args_save()</a>, and <a class="el" href="action_8h_source.html#l00038">ArgsAct::type</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00362">param_save()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00370">param_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a95fbb463d8e044d1dadc5fdb1b6b1e05_cgraph.svg" width="483" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a95fbb463d8e044d1dadc5fdb1b6b1e05_cgraph.svg" width="483" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a95fbb463d8e044d1dadc5fdb1b6b1e05_icgraph.svg" width="751" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a95fbb463d8e044d1dadc5fdb1b6b1e05_icgraph.svg" width="751" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1438,8 +1483,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a1a07a69a801b65052f3679d317507363_icgraph.svg" width="868" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a1a07a69a801b65052f3679d317507363_icgraph.svg" width="868" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1474,18 +1518,16 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="action_8c_source.html#l00075">action_type_as_int()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00132">action_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00817">XCS::set_action()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00132">action_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00770">XCS::set_action()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a55974a228c3a692a22c9d6ce0c4cc869_cgraph.svg" width="347" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a55974a228c3a692a22c9d6ce0c4cc869_cgraph.svg" width="347" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a55974a228c3a692a22c9d6ce0c4cc869_icgraph.svg" width="826" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a55974a228c3a692a22c9d6ce0c4cc869_icgraph.svg" width="826" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1527,14 +1569,13 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="action_8c_source.html#l00035">35</a> of file <a class="el" href="action_8c_source.html">action.c</a>.</p>
 
-<p class="reference">References <a class="el" href="act__integer_8h_source.html#l00085">act_integer_vtbl</a>, <a class="el" href="act__neural_8h_source.html#l00092">act_neural_vtbl</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
+<p class="reference">References <a class="el" href="act__integer_8h_source.html#l00089">act_integer_vtbl</a>, <a class="el" href="act__neural_8h_source.html#l00096">act_neural_vtbl</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>, and <a class="el" href="xcsf_8h_source.html#l00048">Cl::act_vptr</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="cl_8c_source.html#l00452">cl_load()</a>, and <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a57d1606f2517912f1f56018f095761e9_icgraph.svg" width="1455" height="571"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a57d1606f2517912f1f56018f095761e9_icgraph.svg" width="1486" height="658"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1568,12 +1609,11 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00031">ACT_STRING_INTEGER</a>, <a class="el" href="action_8h_source.html#l00032">ACT_STRING_NEURAL</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, and <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00192">action_param_set_type_string()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00267">act_json_import()</a>, and <a class="el" href="action_8c_source.html#l00192">action_param_set_type_string()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a38d3209ab8ce0417631ce2359f6590a7_icgraph.svg" width="1004" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a38d3209ab8ce0417631ce2359f6590a7_icgraph.svg" width="1302" height="252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1607,12 +1647,11 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="action_8h_source.html#l00031">ACT_STRING_INTEGER</a>, <a class="el" href="action_8h_source.html#l00032">ACT_STRING_NEURAL</a>, <a class="el" href="action_8h_source.html#l00028">ACT_TYPE_INTEGER</a>, and <a class="el" href="action_8h_source.html#l00029">ACT_TYPE_NEURAL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="action_8c_source.html#l00104">action_param_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="action_8h_source.html#l00267">act_json_import()</a>, and <a class="el" href="action_8c_source.html#l00104">action_param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a92f612de02989e82ef6c52bc7384f24f_icgraph.svg" width="1146" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="action_8h_a92f612de02989e82ef6c52bc7384f24f_icgraph.svg" width="1306" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

@@ -1,25 +1,29 @@
 <map id="clset_pset_del" name="clset_pset_del">
-<area shape="rect" id="node1" title="Deletes a single classifier from the population set." alt="" coords="1273,132,1380,159"/>
-<area shape="rect" id="node2" href="$clset_8h.html#a5e05b1d84c921f8f83e90d636b2f59fd" title="Enforces the maximum population size limit." alt="" coords="1093,125,1225,166"/>
-<area shape="rect" id="node3" href="$clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" title="Ensures all possible actions are covered by the match set." alt="" coords="956,107,1045,133"/>
-<area shape="rect" id="node21" href="$ea_8h.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="842,157,881,184"/>
-<area shape="rect" id="node4" href="$clset_8h.html#a101813e8460677fdb33f08e0226dce9b" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="815,107,908,133"/>
-<area shape="rect" id="node5" href="$xcs__rl_8h.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="640,56,752,83"/>
-<area shape="rect" id="node11" href="$xcs__rl_8h.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="461,107,535,133"/>
-<area shape="rect" id="node13" href="$xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9" title="Executes a single XCSF trial." alt="" coords="625,233,767,260"/>
-<area shape="rect" id="node6" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="234,5,341,32"/>
-<area shape="rect" id="node8" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="455,56,541,83"/>
-<area shape="rect" id="node7" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,107,156,133"/>
-<area shape="rect" id="node9" href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="245,107,330,133"/>
-<area shape="rect" id="node10" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,233,106,260"/>
-<area shape="rect" id="node12" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="253,56,322,83"/>
-<area shape="rect" id="node14" href="$xcs__supervised_8h.html#aac1347b7b83576d581a1b725b4c84e56" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="433,259,563,285"/>
-<area shape="rect" id="node16" href="$xcs__supervised_8h.html#a2dc51452fdb0be0e27fd3ebfe6041474" title="Calculates the XCSF predictions for the provided input." alt="" coords="419,208,577,235"/>
-<area shape="rect" id="node18" href="$xcs__supervised_8h.html#ae05de18a53511ba46b2a6a733c780580" title="Calculates the XCSF error for the input data." alt="" coords="422,360,574,387"/>
-<area shape="rect" id="node20" href="$xcs__supervised_8h.html#a56ec80025279785376a569ec0130c29f" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="204,360,371,387"/>
-<area shape="rect" id="node15" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="253,259,322,285"/>
-<area shape="rect" id="node17" href="$classXCS.html#a4d7d398d90d5f695fcbfe0fa99354436" title="Returns the XCSF prediction array for the provided input." alt="" coords="239,208,336,235"/>
-<area shape="rect" id="node19" href="$classXCS.html#a4bb9f3f8613abf7ba95837a03bbb931d" title="Returns the error using N random samples from the provided data." alt="" coords="35,385,126,412"/>
-<area shape="rect" id="node22" href="$xcs__rl_8h.html#ac0d410321cd5627345e1b53856f7244c" title="Provides reinforcement to the sets." alt="" coords="645,157,747,184"/>
-<area shape="rect" id="node23" href="$classXCS.html#af8970ba52403714439fda0d4383a390b" title="Creates the action set using the previously selected action, updates the classifiers,..." alt="" coords="449,157,547,184"/>
+<area shape="rect" id="node1" title="Deletes a single classifier from the population set." alt="" coords="1273,284,1380,311"/>
+<area shape="rect" id="node2" href="$clset_8h.html#a5e05b1d84c921f8f83e90d636b2f59fd" title="Enforces the maximum population size limit." alt="" coords="1093,277,1225,318"/>
+<area shape="rect" id="node3" href="$clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" title="Ensures all possible actions are covered by the match set." alt="" coords="956,284,1045,311"/>
+<area shape="rect" id="node21" href="$clset_8h.html#a9f71f62cb4c5216fb3a3e76a6b3df82f" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="636,461,756,488"/>
+<area shape="rect" id="node25" href="$ea_8h.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="842,233,881,260"/>
+<area shape="rect" id="node4" href="$clset_8h.html#a101813e8460677fdb33f08e0226dce9b" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="815,284,908,311"/>
+<area shape="rect" id="node5" href="$xcs__rl_8h.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="640,284,752,311"/>
+<area shape="rect" id="node11" href="$xcs__rl_8h.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="461,335,535,361"/>
+<area shape="rect" id="node13" href="$xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9" title="Executes a single XCSF trial." alt="" coords="625,157,767,184"/>
+<area shape="rect" id="node6" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="234,385,341,412"/>
+<area shape="rect" id="node8" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="455,284,541,311"/>
+<area shape="rect" id="node7" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,385,156,412"/>
+<area shape="rect" id="node9" href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="245,284,330,311"/>
+<area shape="rect" id="node10" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,157,106,184"/>
+<area shape="rect" id="node12" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="253,335,322,361"/>
+<area shape="rect" id="node14" href="$xcs__supervised_8h.html#aac1347b7b83576d581a1b725b4c84e56" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="433,132,563,159"/>
+<area shape="rect" id="node16" href="$xcs__supervised_8h.html#a2dc51452fdb0be0e27fd3ebfe6041474" title="Calculates the XCSF predictions for the provided input." alt="" coords="419,183,577,209"/>
+<area shape="rect" id="node18" href="$xcs__supervised_8h.html#ae05de18a53511ba46b2a6a733c780580" title="Calculates the XCSF error for the input data." alt="" coords="422,31,574,57"/>
+<area shape="rect" id="node20" href="$xcs__supervised_8h.html#a56ec80025279785376a569ec0130c29f" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="204,31,371,57"/>
+<area shape="rect" id="node15" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="253,132,322,159"/>
+<area shape="rect" id="node17" href="$classXCS.html#a4d7d398d90d5f695fcbfe0fa99354436" title="Returns the XCSF prediction array for the provided input." alt="" coords="239,183,336,209"/>
+<area shape="rect" id="node19" href="$classXCS.html#a4bb9f3f8613abf7ba95837a03bbb931d" title="Returns the error using N random samples from the provided data." alt="" coords="35,5,126,32"/>
+<area shape="rect" id="node22" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="437,461,559,488"/>
+<area shape="rect" id="node24" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="429,537,567,564"/>
+<area shape="rect" id="node23" href="$classXCS.html#a1a882e28a64c4e2b92ae234d79f327de" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="230,487,345,513"/>
+<area shape="rect" id="node26" href="$xcs__rl_8h.html#ac0d410321cd5627345e1b53856f7244c" title="Provides reinforcement to the sets." alt="" coords="645,233,747,260"/>
+<area shape="rect" id="node27" href="$classXCS.html#af8970ba52403714439fda0d4383a390b" title="Creates the action set using the previously selected action, updates the classifiers,..." alt="" coords="239,233,336,260"/>
 </map>

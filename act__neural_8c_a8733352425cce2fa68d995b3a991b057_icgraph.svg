@@ -22,31 +22,16 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="action_8h.html#aaa5c433092521a4fe5159eee76b1c141" target="_top" xlink:title="Sets the action parameters from a cJSON object.">
-<polygon fill="none" stroke="black" points="312,-38.5 312,-57.5 443,-57.5 443,-38.5 312,-38.5"/>
-<text text-anchor="middle" x="377.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">action_param_json_import</text>
+<polygon fill="none" stroke="black" points="312,-19.5 312,-38.5 443,-38.5 443,-19.5 312,-19.5"/>
+<text text-anchor="middle" x="377.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">action_param_json_import</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M468.42,-37.19C460.02,-38.2 451.45,-39.23 443.1,-40.23"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="469.05,-40.64 478.56,-35.97 468.22,-33.69 469.05,-40.64"/>
-</g>
-<!-- Node6 -->
-<g id="node6" class="node">
-<title>Node6</title>
-<g id="a_node6"><a xlink:href="classXCS.html#a1298087e3a06734561965359b4d74468" target="_top" xlink:title="Sets the action type and initialisation arguments.">
-<polygon fill="none" stroke="black" points="333,-0.5 333,-19.5 422,-19.5 422,-0.5 333,-0.5"/>
-<text text-anchor="middle" x="377.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_action</text>
-</a>
-</g>
-</g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge5" class="edge">
-<title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M468.36,-20.81C452.67,-18.92 436.39,-16.96 422.07,-15.24"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="468.22,-24.31 478.56,-22.03 469.05,-17.36 468.22,-24.31"/>
+<path fill="none" stroke="midnightblue" d="M468.42,-29C460.02,-29 451.45,-29 443.1,-29"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="468.56,-32.5 478.56,-29 468.56,-25.5 468.56,-32.5"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -60,8 +45,23 @@
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M301.47,-48C292.84,-48 284.22,-48 276.07,-48"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="301.58,-51.5 311.58,-48 301.58,-44.5 301.58,-51.5"/>
+<path fill="none" stroke="midnightblue" d="M301.47,-38.57C292.84,-39.67 284.22,-40.77 276.07,-41.81"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="302.1,-42.02 311.58,-37.28 301.22,-35.07 302.1,-42.02"/>
+</g>
+<!-- Node6 -->
+<g id="node6" class="node">
+<title>Node6</title>
+<g id="a_node6"><a xlink:href="classXCS.html#a1298087e3a06734561965359b4d74468" target="_top" xlink:title="Sets the action type and initialisation arguments.">
+<polygon fill="none" stroke="black" points="182,-0.5 182,-19.5 271,-19.5 271,-0.5 182,-0.5"/>
+<text text-anchor="middle" x="226.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_action</text>
+</a>
+</g>
+</g>
+<!-- Node2&#45;&gt;Node6 -->
+<g id="edge5" class="edge">
+<title>Node2&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M301.62,-19.45C291.2,-18.12 280.79,-16.8 271.21,-15.57"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="301.22,-22.93 311.58,-20.72 302.1,-15.98 301.22,-22.93"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">

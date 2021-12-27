@@ -56,16 +56,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____init_____8py.html",
-"classXCS.html#a87cab592d7a90552cd8ae3defc08f835",
-"cond__ellipsoid_8h.html#a49d9110d8f02b114d27befc6891c7a9e",
-"config_8c.html",
-"functions_vars_p.html",
-"neural__activations_8h.html#a54fca7a19218547112acfd5a782ec69d",
-"neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db",
-"neural__layer__softmax_8h.html#a314875a074c00172bb8c3b613914ea46",
-"pred__nlms_8h.html#a78982afc8634f133cb69c7488e295872",
-"structActNeural.html#acdcbea3b91c55de15feee85b90e967f2",
-"structLayer.html#ad36a27d22ed2d6f31a4cfc0b1ede8703"
+"classXCS.html#a6659e0b11f57ef97da5d5b91226338a5",
+"cond__ellipsoid_8c.html#a2a160bf8e2816eb8ab7a92c95745cff2",
+"condition_8h.html#a8e91611196dde8fc77b115c7ca337eb6",
+"functions.html",
+"neural_8h.html#a1c1c06446fc719b8293aade2ded8433c",
+"neural__layer__avgpool_8h_source.html",
+"neural__layer__recurrent_8c.html#a8888ecfe5521991ac565ec354ecf31ab",
+"pred__neural_8c.html#abfe6fe6bb45b0713afbf2820881cf750",
+"rule__neural_8c.html#a84980873859a0e16006ec98443eeeb25",
+"structGraph.html#a9a634d57f7a89c977fd6a0a8daaec1bf",
+"xcs__rl_8h.html#adca6cf3218b5080457ff2d1a7fbb8017"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

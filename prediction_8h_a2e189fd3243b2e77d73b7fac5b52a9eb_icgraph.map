@@ -1,0 +1,9 @@
+<map id="pred_json_import" name="pred_json_import">
+<area shape="rect" id="node1" title="Creates a prediction from a cJSON object." alt="" coords="883,81,1004,108"/>
+<area shape="rect" id="node2" href="$cl_8h.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c" title="Creates a classifier from a cJSON object." alt="" coords="728,81,835,108"/>
+<area shape="rect" id="node3" href="$clset_8h.html#a9f71f62cb4c5216fb3a3e76a6b3df82f" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="560,81,680,108"/>
+<area shape="rect" id="node4" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="391,56,512,83"/>
+<area shape="rect" id="node7" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="204,107,343,133"/>
+<area shape="rect" id="node5" href="$classXCS.html#a1a882e28a64c4e2b92ae234d79f327de" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="216,5,331,32"/>
+<area shape="rect" id="node6" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,56,156,83"/>
+</map>

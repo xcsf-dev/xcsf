@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('cond__rectangle_8c_source.html',''); i
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -334,6 +334,38 @@ $(document).ready(function(){initNavTree('cond__rectangle_8c_source.html',''); i
 <div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    cJSON_Delete(json);</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keywordflow">return</span> string;</div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;}</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160; </div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00356"></a><span class="lineno"><a class="line" href="cond__rectangle_8h.html#a464e3d40e0e564e6f5576f41fc092ee8">  356</a></span>&#160;<a class="code" href="cond__rectangle_8c.html#a464e3d40e0e564e6f5576f41fc092ee8">cond_rectangle_json_import</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">struct</span> <a class="code" href="structCl.html">Cl</a> *c,</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                           <span class="keyword">const</span> cJSON *json)</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;{</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="keyword">struct </span><a class="code" href="structCondRectangle.html">CondRectangle</a> *cond = c-&gt;<a class="code" href="structCl.html#a5c8a8879aa9a510147255589b9948d77">cond</a>;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <span class="keyword">const</span> cJSON *item = cJSON_GetObjectItem(json, <span class="stringliteral">&quot;center&quot;</span>);</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="keywordflow">if</span> (item != NULL &amp;&amp; cJSON_IsArray(item)) {</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        <span class="keywordflow">if</span> (cJSON_GetArraySize(item) == <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;x_dim) {</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;x_dim; ++i) {</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                <span class="keyword">const</span> cJSON *item_i = cJSON_GetArrayItem(item, i);</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                cond-&gt;<a class="code" href="structCondRectangle.html#a6d8c77f4f04f86c2759c0233c52d322f">center</a>[i] = item_i-&gt;valuedouble;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;            }</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            printf(<span class="stringliteral">&quot;Import error: center length mismatch\n&quot;</span>);</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;            exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        }</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    }</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    item = cJSON_GetObjectItem(json, <span class="stringliteral">&quot;spread&quot;</span>);</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="keywordflow">if</span> (item != NULL &amp;&amp; cJSON_IsArray(item)) {</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <span class="keywordflow">if</span> (cJSON_GetArraySize(item) == <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;x_dim) {</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;x_dim; ++i) {</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                <span class="keyword">const</span> cJSON *item_i = cJSON_GetArrayItem(item, i);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                cond-&gt;<a class="code" href="structCondRectangle.html#adb4cfe8b74117520644238a07cae25cd">spread</a>[i] = item_i-&gt;valuedouble;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            }</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            printf(<span class="stringliteral">&quot;Import error: spread length mismatch\n&quot;</span>);</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        }</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    }</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <a class="code" href="sam_8c.html#a7af63fa58413563b25933f08b97852b9">sam_json_import</a>(cond-&gt;<a class="code" href="structCondRectangle.html#a8d28d6186228c5424992a721fd10e1b9">mu</a>, <a class="code" href="cond__rectangle_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30">N_MU</a>, json);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="acond__rectangle_8c_html_a89b67cc85e9c32c92d122473b46584af"><div class="ttname"><a href="cond__rectangle_8c.html#a89b67cc85e9c32c92d122473b46584af">cond_rectangle_save</a></div><div class="ttdeci">size_t cond_rectangle_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes a hyperrectangle condition to a file.</div><div class="ttdef"><b>Definition:</b> <a href="cond__rectangle_8c_source.html#l00294">cond_rectangle.c:294</a></div></div>
@@ -357,6 +389,7 @@ $(document).ready(function(){initNavTree('cond__rectangle_8c_source.html',''); i
 <div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
 <div class="ttc" id="acond__rectangle_8c_html_a72a5aff8fba4c05e1a98905c8f374b0a"><div class="ttname"><a href="cond__rectangle_8c.html#a72a5aff8fba4c05e1a98905c8f374b0a">cond_rectangle_update</a></div><div class="ttdeci">void cond_rectangle_update(const struct XCSF *xcsf, const struct Cl *c, const double *x, const double *y)</div><div class="ttdoc">Updates a hyperrectangle, sliding the centers towards the mean input.</div><div class="ttdef"><b>Definition:</b> <a href="cond__rectangle_8c_source.html#l00145">cond_rectangle.c:145</a></div></div>
 <div class="ttc" id="acond__rectangle_8c_html_a7dc946eb1c89529cc56125fad748c531"><div class="ttname"><a href="cond__rectangle_8c.html#a7dc946eb1c89529cc56125fad748c531">cond_rectangle_init</a></div><div class="ttdeci">void cond_rectangle_init(const struct XCSF *xcsf, struct Cl *c)</div><div class="ttdoc">Creates and initialises a hyperrectangle condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__rectangle_8c_source.html#l00067">cond_rectangle.c:67</a></div></div>
+<div class="ttc" id="acond__rectangle_8c_html_a464e3d40e0e564e6f5576f41fc092ee8"><div class="ttname"><a href="cond__rectangle_8c.html#a464e3d40e0e564e6f5576f41fc092ee8">cond_rectangle_json_import</a></div><div class="ttdeci">void cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)</div><div class="ttdoc">Creates a hyperrectangle from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="cond__rectangle_8c_source.html#l00356">cond_rectangle.c:356</a></div></div>
 <div class="ttc" id="acond__rectangle_8h_html"><div class="ttname"><a href="cond__rectangle_8h.html">cond_rectangle.h</a></div><div class="ttdoc">Hyperrectangle condition functions.</div></div>
 <div class="ttc" id="autils_8c_html_a6a36d869b4a218a3f55cd19067f62c0f"><div class="ttname"><a href="utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f">rand_normal</a></div><div class="ttdeci">double rand_normal(const double mu, const double sigma)</div><div class="ttdoc">Returns a random Gaussian with specified mean and standard deviation.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00087">utils.c:87</a></div></div>
 <div class="ttc" id="acond__rectangle_8c_html_a7ad8e86a318f2d3d354e0a4e5bc23b30"><div class="ttname"><a href="cond__rectangle_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30">N_MU</a></div><div class="ttdeci">#define N_MU</div><div class="ttdoc">Number of hyperrectangle mutation rates.</div><div class="ttdef"><b>Definition:</b> <a href="cond__rectangle_8c_source.html#l00029">cond_rectangle.c:29</a></div></div>
@@ -370,6 +403,7 @@ $(document).ready(function(){initNavTree('cond__rectangle_8c_source.html',''); i
 <div class="ttc" id="acond__rectangle_8c_html_addf696c3363b008f9da9312fece28057"><div class="ttname"><a href="cond__rectangle_8c.html#addf696c3363b008f9da9312fece28057">cond_rectangle_cover</a></div><div class="ttdeci">void cond_rectangle_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Generates a hyperrectangle that matches the current input.</div><div class="ttdef"><b>Definition:</b> <a href="cond__rectangle_8c_source.html#l00126">cond_rectangle.c:126</a></div></div>
 <div class="ttc" id="acond__rectangle_8c_html_a062d27556395de5eee6c0391a66a62d6"><div class="ttname"><a href="cond__rectangle_8c.html#a062d27556395de5eee6c0391a66a62d6">cond_rectangle_free</a></div><div class="ttdeci">void cond_rectangle_free(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Frees the memory used by a hyperrectangle condition.</div><div class="ttdef"><b>Definition:</b> <a href="cond__rectangle_8c_source.html#l00088">cond_rectangle.c:88</a></div></div>
 <div class="ttc" id="asam_8c_html_a8dfbd425ab3513d47726620e94fc861c"><div class="ttname"><a href="sam_8c.html#a8dfbd425ab3513d47726620e94fc861c">sam_adapt</a></div><div class="ttdeci">void sam_adapt(double *mu, const int N, const int *type)</div><div class="ttdoc">Self-adapts mutation rates.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00068">sam.c:68</a></div></div>
+<div class="ttc" id="asam_8c_html_a7af63fa58413563b25933f08b97852b9"><div class="ttname"><a href="sam_8c.html#a7af63fa58413563b25933f08b97852b9">sam_json_import</a></div><div class="ttdeci">void sam_json_import(double *mu, const int N, const cJSON *json)</div><div class="ttdoc">Initialises a mutation vector from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8c_source.html#l00100">sam.c:100</a></div></div>
 <div class="ttc" id="asam_8h_html_a7bb706f447cc9034816dd45431bb2955"><div class="ttname"><a href="sam_8h.html#a7bb706f447cc9034816dd45431bb2955">SAM_LOG_NORMAL</a></div><div class="ttdeci">#define SAM_LOG_NORMAL</div><div class="ttdoc">Log normal self-adaptation.</div><div class="ttdef"><b>Definition:</b> <a href="sam_8h_source.html#l00028">sam.h:28</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

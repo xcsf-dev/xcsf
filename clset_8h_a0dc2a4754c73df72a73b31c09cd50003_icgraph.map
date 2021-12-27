@@ -1,7 +1,13 @@
 <map id="clset_pset_init" name="clset_pset_init">
-<area shape="rect" id="node1" title="Initialises a new population of random classifiers." alt="" coords="355,56,461,83"/>
-<area shape="rect" id="node2" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="221,5,290,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#adbfb8e127ef8a800a661d284dda3f2ef" title="Initialises a reinforcement learning trial." alt="" coords="204,56,307,83"/>
-<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="230,107,281,133"/>
-<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,56,156,83"/>
+<area shape="rect" id="node1" title="Initialises a new population of random classifiers." alt="" coords="667,132,773,159"/>
+<area shape="rect" id="node2" href="$xcs__rl_8h.html#adca6cf3218b5080457ff2d1a7fbb8017" title="Initialises a reinforcement learning trial." alt="" coords="499,81,608,108"/>
+<area shape="rect" id="node10" href="$xcs__supervised_8h.html#aac1347b7b83576d581a1b725b4c84e56" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="488,157,619,184"/>
+<area shape="rect" id="node3" href="$classXCS.html#adbfb8e127ef8a800a661d284dda3f2ef" title="Initialises a reinforcement learning trial." alt="" coords="204,5,307,32"/>
+<area shape="rect" id="node5" href="$xcs__rl_8h.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="360,56,435,83"/>
+<area shape="rect" id="node7" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="355,107,440,133"/>
+<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,44,156,71"/>
+<area shape="rect" id="node6" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="221,56,290,83"/>
+<area shape="rect" id="node8" href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="213,107,298,133"/>
+<area shape="rect" id="node9" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,120,106,147"/>
+<area shape="rect" id="node11" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="363,208,432,235"/>
 </map>

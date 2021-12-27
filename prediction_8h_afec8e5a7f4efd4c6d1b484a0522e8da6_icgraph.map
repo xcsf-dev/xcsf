@@ -1,9 +1,10 @@
 <map id="pred_param_set_type_string" name="pred_param_set_type_string">
-<area shape="rect" id="node1" title=" " alt="" coords="652,23,799,65"/>
-<area shape="rect" id="node2" href="$prediction_8h.html#a3da29e38981e8b98ec136766a79d074a" title="Sets the prediction parameters from a cJSON object." alt="" coords="440,5,604,32"/>
-<area shape="rect" id="node6" href="$classXCS.html#a6659e0b11f57ef97da5d5b91226338a5" title="Sets the prediction type." alt="" coords="453,56,591,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="652,74,799,115"/>
+<area shape="rect" id="node2" href="$prediction_8h.html#a3da29e38981e8b98ec136766a79d074a" title="Sets the prediction parameters from a cJSON object." alt="" coords="440,56,604,83"/>
+<area shape="rect" id="node7" href="$classXCS.html#a6659e0b11f57ef97da5d5b91226338a5" title="Sets the prediction type." alt="" coords="453,107,591,133"/>
 <area shape="rect" id="node3" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="251,5,383,32"/>
+<area shape="rect" id="node6" href="$classXCS.html#a76f72805cdd38df46ecbc8bd8a592376" title="Sets the prediction type and initialisation arguments." alt="" coords="247,56,386,83"/>
 <area shape="rect" id="node4" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,5,193,32"/>
 <area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,56,32"/>
-<area shape="rect" id="node7" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="241,56,392,83"/>
+<area shape="rect" id="node8" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="241,107,392,133"/>
 </map>

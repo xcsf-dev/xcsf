@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('clset_8c_source.html',''); initResizab
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -653,6 +653,15 @@ $(document).ready(function(){initNavTree('clset_8c_source.html',''); initResizab
 <div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;    cJSON_Delete(json);</div>
 <div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;    <span class="keywordflow">return</span> string;</div>
 <div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;}</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160; </div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00734"></a><span class="lineno"><a class="line" href="clset_8h.html#a9f71f62cb4c5216fb3a3e76a6b3df82f">  734</a></span>&#160;<a class="code" href="clset_8c.html#a9f71f62cb4c5216fb3a3e76a6b3df82f">clset_json_insert</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">const</span> cJSON *json)</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;{</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;    <span class="keyword">struct </span><a class="code" href="structCl.html">Cl</a> *<span class="keyword">new</span> = malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structCl.html">Cl</a>));</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;    <a class="code" href="cl_8c.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c">cl_json_import</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">new</span>, json);</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;    <a class="code" href="clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6">clset_add</a>(&amp;<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pset, <span class="keyword">new</span>);</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;    <a class="code" href="clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd">clset_pset_enforce_limit</a>(<a class="code" href="namespacexcsf.html">xcsf</a>);</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astructCl_html_adb949177d8b82842946c1859e6fc6001"><div class="ttname"><a href="structCl.html#adb949177d8b82842946c1859e6fc6001">Cl::exp</a></div><div class="ttdeci">int exp</div><div class="ttdoc">Experience.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00055">xcsf.h:55</a></div></div>
@@ -671,6 +680,7 @@ $(document).ready(function(){initNavTree('clset_8c_source.html',''); initResizab
 <div class="ttc" id="astructSet_html_a0f50dfb77ba9e5eb804b67b2b86888f3"><div class="ttname"><a href="structSet.html#a0f50dfb77ba9e5eb804b67b2b86888f3">Set::size</a></div><div class="ttdeci">int size</div><div class="ttdoc">Number of macro-classifiers.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00078">xcsf.h:78</a></div></div>
 <div class="ttc" id="astructCl_html"><div class="ttname"><a href="structCl.html">Cl</a></div><div class="ttdoc">Classifier data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00045">xcsf.h:45</a></div></div>
 <div class="ttc" id="aclset_8c_html_a106a72afb7785af1d1b639736a6340be"><div class="ttname"><a href="clset_8c.html#a106a72afb7785af1d1b639736a6340be">clset_pset_del</a></div><div class="ttdeci">static void clset_pset_del(struct XCSF *xcsf)</div><div class="ttdoc">Deletes a single classifier from the population set.</div><div class="ttdef"><b>Definition:</b> <a href="clset_8c_source.html#l00104">clset.c:104</a></div></div>
+<div class="ttc" id="aclset_8c_html_a9f71f62cb4c5216fb3a3e76a6b3df82f"><div class="ttname"><a href="clset_8c.html#a9f71f62cb4c5216fb3a3e76a6b3df82f">clset_json_insert</a></div><div class="ttdeci">void clset_json_insert(struct XCSF *xcsf, const cJSON *json)</div><div class="ttdoc">Creates a classifier from cJSON and inserts in the population set.</div><div class="ttdef"><b>Definition:</b> <a href="clset_8c_source.html#l00734">clset.c:734</a></div></div>
 <div class="ttc" id="aclset_8c_html_a5e05b1d84c921f8f83e90d636b2f59fd"><div class="ttname"><a href="clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd">clset_pset_enforce_limit</a></div><div class="ttdeci">void clset_pset_enforce_limit(struct XCSF *xcsf)</div><div class="ttdoc">Enforces the maximum population size limit.</div><div class="ttdef"><b>Definition:</b> <a href="clset_8c_source.html#l00314">clset.c:314</a></div></div>
 <div class="ttc" id="aclset_8c_html_a101813e8460677fdb33f08e0226dce9b"><div class="ttname"><a href="clset_8c.html#a101813e8460677fdb33f08e0226dce9b">clset_match</a></div><div class="ttdeci">void clset_match(struct XCSF *xcsf, const double *x)</div><div class="ttdoc">Constructs the match set - forward propagates conditions and actions.</div><div class="ttdef"><b>Definition:</b> <a href="clset_8c_source.html#l00330">clset.c:330</a></div></div>
 <div class="ttc" id="acl_8c_html_a9d9005cabc5bb84749bc6fb29c4b9fd9"><div class="ttname"><a href="cl_8c.html#a9d9005cabc5bb84749bc6fb29c4b9fd9">cl_save</a></div><div class="ttdeci">size_t cl_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)</div><div class="ttdoc">Writes a classifier to a file.</div><div class="ttdef"><b>Definition:</b> <a href="cl_8c_source.html#l00424">cl.c:424</a></div></div>
@@ -683,6 +693,7 @@ $(document).ready(function(){initNavTree('clset_8c_source.html',''); initResizab
 <div class="ttc" id="acl_8c_html_a281f748c300892281088a51455c6657b"><div class="ttname"><a href="cl_8c.html#a281f748c300892281088a51455c6657b">cl_cond_size</a></div><div class="ttdeci">double cl_cond_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Returns the size of a classifier's condition.</div><div class="ttdef"><b>Definition:</b> <a href="cl_8c_source.html#l00399">cl.c:399</a></div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">Utility functions for random number handling, etc.</div></div>
 <div class="ttc" id="aclset_8c_html_a724354141b3185c19ac6f3fb7920308b"><div class="ttname"><a href="clset_8c.html#a724354141b3185c19ac6f3fb7920308b">clset_print</a></div><div class="ttdeci">void clset_print(const struct XCSF *xcsf, const struct Set *set, const bool print_cond, const bool print_act, const bool print_pred)</div><div class="ttdoc">Prints the classifiers in the set.</div><div class="ttdef"><b>Definition:</b> <a href="clset_8c_source.html#l00489">clset.c:489</a></div></div>
+<div class="ttc" id="acl_8c_html_ada9e7ce4c9c81af8ea0d1fd0dda59e3c"><div class="ttname"><a href="cl_8c.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c">cl_json_import</a></div><div class="ttdeci">void cl_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)</div><div class="ttdoc">Creates a classifier from a cJSON object.</div><div class="ttdef"><b>Definition:</b> <a href="cl_8c_source.html#l00608">cl.c:608</a></div></div>
 <div class="ttc" id="aclset_8c_html_a236baf24659360891f944761f88a30f4"><div class="ttname"><a href="clset_8c.html#a236baf24659360891f944761f88a30f4">clset_kill</a></div><div class="ttdeci">void clset_kill(const struct XCSF *xcsf, struct Set *set)</div><div class="ttdoc">Frees the set and the classifiers.</div><div class="ttdef"><b>Definition:</b> <a href="clset_8c_source.html#l00564">clset.c:564</a></div></div>
 <div class="ttc" id="acl_8c_html_a188fac458e06c9a27e0e4069f7ddb68a"><div class="ttname"><a href="cl_8c.html#a188fac458e06c9a27e0e4069f7ddb68a">cl_init</a></div><div class="ttdeci">void cl_init(const struct XCSF *xcsf, struct Cl *c, const double size, const int time)</div><div class="ttdoc">Initialises a new classifier - but not condition, action, prediction.</div><div class="ttdef"><b>Definition:</b> <a href="cl_8c_source.html#l00040">cl.c:40</a></div></div>
 <div class="ttc" id="aclset_8c_html_a2948f1764d173335c2c53783077b52ae"><div class="ttname"><a href="clset_8c.html#a2948f1764d173335c2c53783077b52ae">clset_mean_time</a></div><div class="ttdeci">double clset_mean_time(const struct Set *set)</div><div class="ttdoc">Calculates the mean time stamp of classifiers in the set.</div><div class="ttdef"><b>Definition:</b> <a href="clset_8c_source.html#l00536">clset.c:536</a></div></div>

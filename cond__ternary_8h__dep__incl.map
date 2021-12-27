@@ -1,6 +1,5 @@
 <map id="cond_ternary.h" name="cond_ternary.h">
-<area shape="rect" id="node1" title="Ternary condition functions." alt="" coords="125,5,232,32"/>
+<area shape="rect" id="node1" title="Ternary condition functions." alt="" coords="65,5,172,32"/>
 <area shape="rect" id="node2" href="$cond__ternary_8c.html" title="Ternary condition functions." alt="" coords="5,80,112,107"/>
 <area shape="rect" id="node3" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="136,80,221,107"/>
-<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="246,80,383,107"/>
 </map>

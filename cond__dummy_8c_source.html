@@ -65,7 +65,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('cond__dummy_8c_source.html',''); initR
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -234,6 +234,14 @@ $(document).ready(function(){initNavTree('cond__dummy_8c_source.html',''); initR
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    cJSON_Delete(json);</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordflow">return</span> string;</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;}</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno"><a class="line" href="cond__dummy_8h.html#ae4ca6058a686401b3f1244059494c392">  244</a></span>&#160;<a class="code" href="cond__dummy_8c.html#ae4ca6058a686401b3f1244059494c392">cond_dummy_json_import</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">struct</span> <a class="code" href="structCl.html">Cl</a> *c, <span class="keyword">const</span> cJSON *json)</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;{</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    (void) <a class="code" href="namespacexcsf.html">xcsf</a>;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    (void) c;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    (void) json;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="acond__dummy_8h_html"><div class="ttname"><a href="cond__dummy_8h.html">cond_dummy.h</a></div><div class="ttdoc">Always-matching dummy condition functions.</div></div>
@@ -247,6 +255,7 @@ $(document).ready(function(){initNavTree('cond__dummy_8c_source.html',''); initR
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">Utility functions for random number handling, etc.</div></div>
 <div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
 <div class="ttc" id="acond__dummy_8c_html_ade5b1aaad3b671291893a13195f637e4"><div class="ttname"><a href="cond__dummy_8c.html#ade5b1aaad3b671291893a13195f637e4">cond_dummy_load</a></div><div class="ttdeci">size_t cond_dummy_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)</div><div class="ttdoc">Dummy load function.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dummy_8c_source.html#l00211">cond_dummy.c:211</a></div></div>
+<div class="ttc" id="acond__dummy_8c_html_ae4ca6058a686401b3f1244059494c392"><div class="ttname"><a href="cond__dummy_8c.html#ae4ca6058a686401b3f1244059494c392">cond_dummy_json_import</a></div><div class="ttdeci">void cond_dummy_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)</div><div class="ttdoc">Dummy import function.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dummy_8c_source.html#l00244">cond_dummy.c:244</a></div></div>
 <div class="ttc" id="acond__dummy_8c_html_ab11466e074db687e4435ce05efb82ff7"><div class="ttname"><a href="cond__dummy_8c.html#ab11466e074db687e4435ce05efb82ff7">cond_dummy_size</a></div><div class="ttdeci">double cond_dummy_size(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Dummy size function.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dummy_8c_source.html#l00180">cond_dummy.c:180</a></div></div>
 <div class="ttc" id="acond__dummy_8c_html_a228ac925bea217009d26225990f4fdc6"><div class="ttname"><a href="cond__dummy_8c.html#a228ac925bea217009d26225990f4fdc6">cond_dummy_cover</a></div><div class="ttdeci">void cond_dummy_cover(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Dummy cover function.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dummy_8c_source.html#l00072">cond_dummy.c:72</a></div></div>
 <div class="ttc" id="acond__dummy_8c_html_a552aeb24e39908b0bed6fd6f0b04645b"><div class="ttname"><a href="cond__dummy_8c.html#a552aeb24e39908b0bed6fd6f0b04645b">cond_dummy_mutate</a></div><div class="ttdeci">bool cond_dummy_mutate(const struct XCSF *xcsf, const struct Cl *c)</div><div class="ttdoc">Dummy mutate function.</div><div class="ttdef"><b>Definition:</b> <a href="cond__dummy_8c_source.html#l00136">cond_dummy.c:136</a></div></div>

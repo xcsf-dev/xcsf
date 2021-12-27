@@ -1,0 +1,4 @@
+<map id="cond_neural_json_import" name="cond_neural_json_import">
+<area shape="rect" id="node1" title="Creates a neural condition from a cJSON object." alt="" coords="5,5,172,32"/>
+<area shape="rect" id="node2" href="$neural_8c.html#a86c9af5cafd26d9fbbb798743312bb53" title="Creates a neural network from a cJSON object." alt="" coords="220,5,351,32"/>
+</map>

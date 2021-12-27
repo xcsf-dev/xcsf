@@ -1,0 +1,6 @@
+<map id="graph_json_import_initial_state" name="graph_json_import_initial_state">
+<area shape="rect" id="node1" title="Sets DGP initial states from a cJSON object." alt="" coords="381,27,547,69"/>
+<area shape="rect" id="node2" href="$dgp_8h.html#a0e7d0e7b06c33b68fb8e775fba4c5368" title="Creates a DGP graph from a cJSON object." alt="" coords="205,35,333,61"/>
+<area shape="rect" id="node3" href="$cond__dgp_8h.html#ae4931f90074332016dcee9832c5abf58" title="Creates a DGP condition from a cJSON object." alt="" coords="5,5,157,32"/>
+<area shape="rect" id="node4" href="$rule__dgp_8h.html#aa00ed860083203642cfbab3046df4f51" title=" " alt="" coords="13,57,150,98"/>
+</map>

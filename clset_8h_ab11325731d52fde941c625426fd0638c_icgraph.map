@@ -1,0 +1,5 @@
+<map id="clset_json_insert" name="clset_json_insert">
+<area shape="rect" id="node1" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="373,5,493,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates a classifier from JSON and inserts into the population." alt="" coords="204,5,325,32"/>
+<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,5,156,32"/>
+</map>

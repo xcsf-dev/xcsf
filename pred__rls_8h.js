@@ -7,6 +7,7 @@ var pred__rls_8h =
     [ "pred_rls_free", "pred__rls_8h.html#a1cec3117920835c03d1c15a9a80248b0", null ],
     [ "pred_rls_init", "pred__rls_8h.html#a4cea952d9fd37c4fe53c925a1a278fba", null ],
     [ "pred_rls_json_export", "pred__rls_8h.html#a77b1bc0fe274c512aedd39ed7e7cb431", null ],
+    [ "pred_rls_json_import", "pred__rls_8h.html#aba78cd7c02c48387a691555cb278ff67", null ],
     [ "pred_rls_load", "pred__rls_8h.html#a8d82d194af63bd7feb392c8b8fc17d6c", null ],
     [ "pred_rls_mutate", "pred__rls_8h.html#af83df202f9ceb8362465fef7629aa254", null ],
     [ "pred_rls_param_json_export", "pred__rls_8h.html#aa75d18939833eb602a768c5bfbd7d75b", null ],

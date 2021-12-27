@@ -7,6 +7,7 @@ var cond__dummy_8h =
     [ "cond_dummy_general", "cond__dummy_8h.html#aa3a973df18e53251d4e93dce6afd61e8", null ],
     [ "cond_dummy_init", "cond__dummy_8h.html#a35da8842430616532224fc02fd59440a", null ],
     [ "cond_dummy_json_export", "cond__dummy_8h.html#a01a18a4b963790398a551a8a07088272", null ],
+    [ "cond_dummy_json_import", "cond__dummy_8h.html#ae4ca6058a686401b3f1244059494c392", null ],
     [ "cond_dummy_load", "cond__dummy_8h.html#ade5b1aaad3b671291893a13195f637e4", null ],
     [ "cond_dummy_match", "cond__dummy_8h.html#a4e355e540c0474f58dba2059298a907b", null ],
     [ "cond_dummy_mutate", "cond__dummy_8h.html#a552aeb24e39908b0bed6fd6f0b04645b", null ],
