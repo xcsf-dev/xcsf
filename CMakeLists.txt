@@ -105,12 +105,18 @@ endif()
 set(CMAKE_C_FLAGS_DEBUG "-g3")
 set(CMAKE_CXX_FLAGS_DEBUG "-g3")
 
-set(CMAKE_C_FLAGS_RELEASE "-Ofast -march=native")
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -flto")
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -funroll-loops")
+set(CMAKE_C_FLAGS_RELEASE "-Ofast")
+set(CMAKE_CXX_FLAGS_RELEASE "-Ofast")
 
-set(CMAKE_CXX_FLAGS_RELEASE "-Ofast -march=native")
+option(NATIVE_OPT "Optimise for the native architecture" ON)
+if(NATIVE_OPT)
+  set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
+endif()
+
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -flto")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -flto")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -funroll-loops")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -funroll-loops")
 
 if(CMAKE_C_COMPILER_ID MATCHES "GNU")

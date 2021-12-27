@@ -54,6 +54,7 @@ class CMakeBuild(build_ext):
             "-DXCSF_MAIN=OFF",
             "-DXCSF_PYLIB=ON",
             "-DENABLE_DOXYGEN=OFF",
+            "-DNATIVE_OPT=OFF",
         ]
         build_args = [
             "--config",
