@@ -1,11 +1,12 @@
 cff-version: 1.2.0
 title: XCSF
 version: 1.1.5
+doi: 10.5281/zenodo.5806234
 date-released: 2021-12-27
 license: GPL-3.0
 repository-code: https://github.com/rpreen/xcsf
 languages:
-  - eng
+  - English
 keywords:
   - divide and conquer
   - evolutionary algorithm
@@ -52,3 +53,6 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.5774758
     description: This is the archived snapshot of XCSF v.1.1.4.
+  - type: doi
+    value: 10.5281/zenodo.5806234
+    description: This is the archived snapshot of XCSF v.1.1.5.
