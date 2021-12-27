@@ -30,7 +30,6 @@
 #include <iostream>
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
-#include <regex>
 #include <string>
 #include <vector>
 
@@ -783,6 +782,25 @@ class XCS
     }
 
     /**
+     * @brief Finds and replaces all occurrences of a substring.
+     * @param [in] subject String to be searched and replaced.
+     * @param [in] search String within the subject to find.
+     * @param [in] replace String to replace the found text with.
+     * @return String.
+     */
+    std::string
+    find_replace_all(std::string subject, const std::string &search,
+                     const std::string &replace)
+    {
+        size_t pos = 0;
+        while ((pos = subject.find(search, pos)) != std::string::npos) {
+            subject.replace(pos, search.length(), replace);
+            pos += replace.length();
+        }
+        return subject;
+    }
+
+    /**
      * @brief Converts a Python dictionary to a C++ string (JSON).
      * @param [in] kwargs Python dictionary of argument name:value pairs.
      * @return JSON string representation of a dictionary.
@@ -792,9 +810,9 @@ class XCS
     {
         py::str s = py::str(*kwargs);
         std::string cs = s.cast<std::string>();
-        cs = std::regex_replace(cs, std::regex("\'"), "\""); // cJSON format
-        cs = std::regex_replace(cs, std::regex("True"), "true");
-        cs = std::regex_replace(cs, std::regex("False"), "false");
+        cs = find_replace_all(cs, "True", "true");
+        cs = find_replace_all(cs, "False", "false");
+        cs = find_replace_all(cs, "\'", "\"");
         return cJSON_Parse(cs.c_str());
     }
 
