@@ -1,4 +1,0 @@
-<map id="cond_gp_json_import" name="cond_gp_json_import">
-<area shape="rect" id="node1" title="Creates a tree GP condition from a cJSON object." alt="" coords="5,5,151,32"/>
-<area shape="rect" id="node2" href="$gp_8c.html#a79d78a5e74eb8603df13e561a17ae180" title="Creates a GP tree from a cJSON object." alt="" coords="199,5,317,32"/>
-</map>

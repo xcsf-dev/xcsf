@@ -1,4 +1,0 @@
-<map id="act_integer_json_import" name="act_integer_json_import">
-<area shape="rect" id="node1" title="Creates an integer action from a cJSON object." alt="" coords="5,5,165,32"/>
-<area shape="rect" id="node2" href="$sam_8c.html#ac319d3871073ef8c480f46697417da2b" title="Initialises a mutation vector from a cJSON object." alt="" coords="213,5,335,32"/>
-</map>

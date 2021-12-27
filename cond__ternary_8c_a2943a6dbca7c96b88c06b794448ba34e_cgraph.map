@@ -1,4 +1,0 @@
-<map id="cond_ternary_json_import" name="cond_ternary_json_import">
-<area shape="rect" id="node1" title="Creates a ternary condition from a cJSON object." alt="" coords="5,5,176,32"/>
-<area shape="rect" id="node2" href="$sam_8c.html#ac319d3871073ef8c480f46697417da2b" title="Initialises a mutation vector from a cJSON object." alt="" coords="224,5,345,32"/>
-</map>

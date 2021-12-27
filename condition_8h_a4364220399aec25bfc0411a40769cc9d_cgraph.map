@@ -1,5 +1,0 @@
-<map id="cond_json_import" name="cond_json_import">
-<area shape="rect" id="node1" title="Creates a condition from a cJSON object." alt="" coords="5,31,129,57"/>
-<area shape="rect" id="node2" href="$condition_8h.html#a654e570bc807e2c15a6d963b31d3caf2" title="Returns the integer representation of a condition type given a name." alt="" coords="187,5,335,32"/>
-<area shape="rect" id="node3" href="$condition_8h.html#af5a052e347755190271b32d8b09ec026" title="Returns a string representation of a condition type from an integer." alt="" coords="177,56,344,83"/>
-</map>

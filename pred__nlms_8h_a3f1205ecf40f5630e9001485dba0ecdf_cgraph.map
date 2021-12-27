@@ -1,4 +1,0 @@
-<map id="pred_nlms_json_import" name="pred_nlms_json_import">
-<area shape="rect" id="node1" title="Creates an NLMS prediction from a cJSON object." alt="" coords="5,5,161,32"/>
-<area shape="rect" id="node2" href="$sam_8c.html#ac319d3871073ef8c480f46697417da2b" title="Initialises a mutation vector from a cJSON object." alt="" coords="209,5,331,32"/>
-</map>
