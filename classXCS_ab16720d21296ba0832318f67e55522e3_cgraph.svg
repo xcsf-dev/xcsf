@@ -12,8 +12,8 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Sets the condition type and initialisation arguments.">
-<polygon fill="#bfbfbf" stroke="black" points="0,-228.5 0,-247.5 101,-247.5 101,-228.5 0,-228.5"/>
-<text text-anchor="middle" x="50.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_condition</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-103.5 0,-122.5 101,-122.5 101,-103.5 0,-103.5"/>
+<text text-anchor="middle" x="50.5" y="-110.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_condition</text>
 </a>
 </g>
 </g>
@@ -21,31 +21,31 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="condition_8c.html#aac2f9eaa3555b7e4b8d6106fe46f7d41" target="_top" xlink:title="Sets the condition parameters from a cJSON object.">
-<polygon fill="none" stroke="black" points="137,-247.5 137,-266.5 262,-266.5 262,-247.5 137,-247.5"/>
-<text text-anchor="middle" x="199.5" y="-254.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_param_json_import</text>
+<polygon fill="none" stroke="black" points="137,-171.5 137,-190.5 262,-190.5 262,-171.5 137,-171.5"/>
+<text text-anchor="middle" x="199.5" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_param_json_import</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M101.27,-244.43C109.47,-245.49 118.11,-246.61 126.72,-247.72"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="126.42,-251.21 136.79,-249.02 127.32,-244.27 126.42,-251.21"/>
+<path fill="none" stroke="midnightblue" d="M72.25,-122.6C97.42,-134.24 140.04,-153.96 168.71,-167.22"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="167.31,-170.43 177.86,-171.45 170.25,-164.08 167.31,-170.43"/>
 </g>
 <!-- Node42 -->
 <g id="node42" class="node">
 <title>Node42</title>
 <g id="a_node42"><a xlink:href="classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11" target="_top" xlink:title="Converts a Python dictionary to a C++ string (JSON).">
-<polygon fill="none" stroke="black" points="151.5,-209.5 151.5,-228.5 247.5,-228.5 247.5,-209.5 151.5,-209.5"/>
-<text text-anchor="middle" x="199.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::dict_to_json</text>
+<polygon fill="none" stroke="black" points="151.5,-84.5 151.5,-103.5 247.5,-103.5 247.5,-84.5 151.5,-84.5"/>
+<text text-anchor="middle" x="199.5" y="-91.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::dict_to_json</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node42 -->
 <g id="edge41" class="edge">
 <title>Node1&#45;&gt;Node42</title>
-<path fill="none" stroke="midnightblue" d="M101.27,-231.57C114.14,-229.9 128.11,-228.1 141.33,-226.39"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="141.8,-229.86 151.27,-225.1 140.9,-222.92 141.8,-229.86"/>
+<path fill="none" stroke="midnightblue" d="M101.27,-106.57C114.14,-104.9 128.11,-103.1 141.33,-101.39"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="141.8,-104.86 151.27,-100.1 140.9,-97.92 141.8,-104.86"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -60,8 +60,8 @@
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M202.66,-266.67C211.24,-304.17 245.11,-443.1 298,-547 312.39,-575.26 334.07,-604.49 349.69,-623.99"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="347.15,-626.43 356.18,-631.98 352.59,-622.01 347.15,-626.43"/>
+<path fill="none" stroke="midnightblue" d="M201.8,-190.77C207.83,-234.25 235.55,-413.96 298,-547 311.4,-575.54 333.05,-604.53 348.93,-623.89"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="346.46,-626.39 355.55,-631.82 351.83,-621.9 346.46,-626.39"/>
 </g>
 <!-- Node9 -->
 <g id="node9" class="node">
@@ -76,8 +76,8 @@
 <!-- Node2&#45;&gt;Node9 -->
 <g id="edge8" class="edge">
 <title>Node2&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M206.7,-266.75C230.77,-304.6 318.49,-442.56 353.96,-498.35"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="351.06,-500.31 359.38,-506.87 356.97,-496.55 351.06,-500.31"/>
+<path fill="none" stroke="midnightblue" d="M205.36,-190.84C227.94,-236.53 322.9,-428.71 356.86,-497.44"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="353.85,-499.23 361.41,-506.65 360.12,-496.13 353.85,-499.23"/>
 </g>
 <!-- Node18 -->
 <g id="node18" class="node">
@@ -92,55 +92,55 @@
 <!-- Node2&#45;&gt;Node18 -->
 <g id="edge17" class="edge">
 <title>Node2&#45;&gt;Node18</title>
-<path fill="none" stroke="midnightblue" d="M228.7,-266.54C252.19,-274.48 286.3,-286.03 315.01,-295.74"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="313.93,-299.06 324.52,-298.95 316.17,-292.43 313.93,-299.06"/>
+<path fill="none" stroke="midnightblue" d="M212.62,-190.57C239.49,-211.77 304.62,-263.18 341.8,-292.53"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="339.71,-295.34 349.72,-298.79 344.04,-289.84 339.71,-295.34"/>
 </g>
 <!-- Node32 -->
 <g id="node32" class="node">
 <title>Node32</title>
 <g id="a_node32"><a xlink:href="condition_8c.html#a92ddb368e6e9bc004ff90e59798b053e" target="_top" xlink:title="Sets the center&#45;spread parameters from a cJSON object.">
-<polygon fill="none" stroke="black" points="298,-190.5 298,-209.5 442,-209.5 442,-190.5 298,-190.5"/>
-<text text-anchor="middle" x="370" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_param_json_import_csr</text>
+<polygon fill="none" stroke="black" points="298,-171.5 298,-190.5 442,-190.5 442,-171.5 298,-171.5"/>
+<text text-anchor="middle" x="370" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_param_json_import_csr</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node32 -->
 <g id="edge31" class="edge">
 <title>Node2&#45;&gt;Node32</title>
-<path fill="none" stroke="midnightblue" d="M232.18,-247.49C241.79,-244.53 252.35,-241.2 262,-238 285.96,-230.05 312.72,-220.55 333.48,-213.03"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="334.95,-216.22 343.16,-209.52 332.56,-209.64 334.95,-216.22"/>
+<path fill="none" stroke="midnightblue" d="M262.29,-181C270.59,-181 279.21,-181 287.78,-181"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="287.81,-184.5 297.81,-181 287.81,-177.5 287.81,-184.5"/>
 </g>
 <!-- Node37 -->
 <g id="node37" class="node">
 <title>Node37</title>
 <g id="a_node37"><a xlink:href="condition_8c.html#ae31b2fb432f0fa9d38c18eb5d2f0be18" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="313.5,-112 313.5,-142 426.5,-142 426.5,-112 313.5,-112"/>
-<text text-anchor="start" x="321.5" y="-130" font-family="Helvetica,sans-Serif" font-size="10.00">cond_param_set_type</text>
-<text text-anchor="middle" x="370" y="-119" font-family="Helvetica,sans-Serif" font-size="10.00">_string</text>
+<polygon fill="none" stroke="black" points="313.5,-117 313.5,-147 426.5,-147 426.5,-117 313.5,-117"/>
+<text text-anchor="start" x="321.5" y="-135" font-family="Helvetica,sans-Serif" font-size="10.00">cond_param_set_type</text>
+<text text-anchor="middle" x="370" y="-124" font-family="Helvetica,sans-Serif" font-size="10.00">_string</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node37 -->
 <g id="edge36" class="edge">
 <title>Node2&#45;&gt;Node37</title>
-<path fill="none" stroke="midnightblue" d="M245.04,-247.43C251.09,-244.96 256.94,-241.87 262,-238 285.79,-219.78 277.75,-203.09 298,-181 309.22,-168.76 323.5,-157.29 336.31,-148.11"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="338.68,-150.72 344.89,-142.13 334.68,-144.98 338.68,-150.72"/>
+<path fill="none" stroke="midnightblue" d="M233.39,-171.44C254.44,-165.31 282.41,-157.18 307.48,-149.89"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="308.67,-153.19 317.29,-147.04 306.71,-146.47 308.67,-153.19"/>
 </g>
 <!-- Node39 -->
 <g id="node39" class="node">
 <title>Node39</title>
 <g id="a_node39"><a xlink:href="cond__ternary_8c.html#acc0d446f6079b76f436e4f9be08f78d6" target="_top" xlink:title="Sets the ternary parameters from a cJSON object.">
-<polygon fill="none" stroke="black" points="317.5,-33 317.5,-63 422.5,-63 422.5,-33 317.5,-33"/>
-<text text-anchor="start" x="325.5" y="-51" font-family="Helvetica,sans-Serif" font-size="10.00">cond_ternary_param</text>
-<text text-anchor="middle" x="370" y="-40" font-family="Helvetica,sans-Serif" font-size="10.00">_json_import</text>
+<polygon fill="none" stroke="black" points="317.5,-58 317.5,-88 422.5,-88 422.5,-58 317.5,-58"/>
+<text text-anchor="start" x="325.5" y="-76" font-family="Helvetica,sans-Serif" font-size="10.00">cond_ternary_param</text>
+<text text-anchor="middle" x="370" y="-65" font-family="Helvetica,sans-Serif" font-size="10.00">_json_import</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node39 -->
 <g id="edge38" class="edge">
 <title>Node2&#45;&gt;Node39</title>
-<path fill="none" stroke="midnightblue" d="M248.96,-247.41C253.8,-244.95 258.28,-241.87 262,-238 305.04,-193.24 263.65,-154.73 298,-103 306.97,-89.49 320.37,-77.88 333.12,-68.86"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="335.44,-71.52 341.78,-63.03 331.53,-65.71 335.44,-71.52"/>
+<path fill="none" stroke="midnightblue" d="M212.01,-171.27C229.76,-156.53 265.2,-128.13 298,-108 306.79,-102.61 316.52,-97.37 325.89,-92.66"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="327.65,-95.7 335.09,-88.14 324.57,-89.41 327.65,-95.7"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
@@ -550,8 +550,8 @@
 <!-- Node32&#45;&gt;Node33 -->
 <g id="edge32" class="edge">
 <title>Node32&#45;&gt;Node33</title>
-<path fill="none" stroke="midnightblue" d="M415.92,-209.59C439.83,-214.69 469.42,-221.01 494.62,-226.39"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="493.9,-229.81 504.41,-228.48 495.36,-222.97 493.9,-229.81"/>
+<path fill="none" stroke="midnightblue" d="M396.32,-190.64C417.88,-198.69 449.76,-210.22 478,-219 485.54,-221.34 493.58,-223.66 501.44,-225.84"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="500.69,-229.26 511.25,-228.5 502.52,-222.5 500.69,-229.26"/>
 </g>
 <!-- Node34 -->
 <g id="node34" class="node">
@@ -565,8 +565,8 @@
 <!-- Node32&#45;&gt;Node34 -->
 <g id="edge33" class="edge">
 <title>Node32&#45;&gt;Node34</title>
-<path fill="none" stroke="midnightblue" d="M442.12,-200C455.7,-200 469.86,-200 483.26,-200"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="483.34,-203.5 493.34,-200 483.34,-196.5 483.34,-203.5"/>
+<path fill="none" stroke="midnightblue" d="M442.12,-188.59C455.7,-190.04 469.86,-191.55 483.26,-192.98"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="483.03,-196.48 493.34,-194.06 483.77,-189.52 483.03,-196.48"/>
 </g>
 <!-- Node35 -->
 <g id="node35" class="node">
@@ -580,8 +580,8 @@
 <!-- Node32&#45;&gt;Node35 -->
 <g id="edge34" class="edge">
 <title>Node32&#45;&gt;Node35</title>
-<path fill="none" stroke="midnightblue" d="M415.92,-190.41C439.83,-185.31 469.42,-178.99 494.62,-173.61"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="495.36,-177.03 504.41,-171.52 493.9,-170.19 495.36,-177.03"/>
+<path fill="none" stroke="midnightblue" d="M442.12,-173.41C456.3,-171.89 471.11,-170.31 485.04,-168.83"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="485.42,-172.31 495,-167.76 484.68,-165.35 485.42,-172.31"/>
 </g>
 <!-- Node36 -->
 <g id="node36" class="node">
@@ -595,8 +595,8 @@
 <!-- Node32&#45;&gt;Node36 -->
 <g id="edge35" class="edge">
 <title>Node32&#45;&gt;Node36</title>
-<path fill="none" stroke="midnightblue" d="M386.41,-190.34C406.74,-177.94 443.93,-156.43 478,-143 484,-140.64 490.4,-138.46 496.8,-136.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="498.19,-139.74 506.81,-133.59 496.23,-133.02 498.19,-139.74"/>
+<path fill="none" stroke="midnightblue" d="M400.12,-171.48C413,-167.19 428.3,-161.98 442,-157 458.14,-151.14 461.68,-148.34 478,-143 485.17,-140.66 492.81,-138.38 500.33,-136.27"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="501.36,-139.61 510.08,-133.59 499.51,-132.86 501.36,-139.61"/>
 </g>
 <!-- Node38 -->
 <g id="node38" class="node">
@@ -610,8 +610,8 @@
 <!-- Node37&#45;&gt;Node38 -->
 <g id="edge37" class="edge">
 <title>Node37&#45;&gt;Node38</title>
-<path fill="none" stroke="midnightblue" d="M426.83,-114.14C449.47,-108.93 475.44,-102.94 497.6,-97.84"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="498.53,-101.22 507.49,-95.56 496.96,-94.39 498.53,-101.22"/>
+<path fill="none" stroke="midnightblue" d="M426.83,-117.57C451.08,-111.31 479.16,-104.05 502.28,-98.07"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="503.38,-101.4 512.19,-95.51 501.63,-94.63 503.38,-101.4"/>
 </g>
 <!-- Node40 -->
 <g id="node40" class="node">
@@ -625,8 +625,8 @@
 <!-- Node39&#45;&gt;Node40 -->
 <g id="edge39" class="edge">
 <title>Node39&#45;&gt;Node40</title>
-<path fill="none" stroke="midnightblue" d="M422.96,-48C442.28,-48 464.42,-48 484.71,-48"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="484.8,-51.5 494.8,-48 484.8,-44.5 484.8,-51.5"/>
+<path fill="none" stroke="midnightblue" d="M422.96,-65.7C442.28,-62.99 464.42,-59.88 484.71,-57.03"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="485.39,-60.47 494.8,-55.61 484.42,-53.54 485.39,-60.47"/>
 </g>
 <!-- Node41 -->
 <g id="node41" class="node">
@@ -640,8 +640,23 @@
 <!-- Node39&#45;&gt;Node41 -->
 <g id="edge40" class="edge">
 <title>Node39&#45;&gt;Node41</title>
-<path fill="none" stroke="midnightblue" d="M422.96,-36.91C445.4,-32.12 471.66,-26.51 494.38,-21.66"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="495.17,-25.07 504.22,-19.56 493.7,-18.23 495.17,-25.07"/>
+<path fill="none" stroke="midnightblue" d="M416.84,-57.98C425.29,-54.89 433.98,-51.51 442,-48 458.58,-40.75 461.16,-35.6 478,-29 484.23,-26.56 490.88,-24.32 497.52,-22.31"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="498.56,-25.65 507.2,-19.52 496.62,-18.92 498.56,-25.65"/>
+</g>
+<!-- Node43 -->
+<g id="node43" class="node">
+<title>Node43</title>
+<g id="a_node43"><a xlink:href="classXCS.html#aa324fa8d2f623753926ed7b32607860b" target="_top" xlink:title="Finds and replaces all occurrences of a substring.">
+<polygon fill="none" stroke="black" points="314.5,-19.5 314.5,-38.5 425.5,-38.5 425.5,-19.5 314.5,-19.5"/>
+<text text-anchor="middle" x="370" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::find_replace_all</text>
+</a>
+</g>
+</g>
+<!-- Node42&#45;&gt;Node43 -->
+<g id="edge42" class="edge">
+<title>Node42&#45;&gt;Node43</title>
+<path fill="none" stroke="midnightblue" d="M218.82,-84.48C238.15,-74.7 269.67,-59.46 298,-49 305.35,-46.29 313.24,-43.73 320.99,-41.41"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="322.06,-44.74 330.69,-38.6 320.11,-38.02 322.06,-44.74"/>
 </g>
 </g>
 </svg>

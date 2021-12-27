@@ -12,8 +12,8 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Sets the action type and initialisation arguments.">
-<polygon fill="#bfbfbf" stroke="black" points="0,-82 0,-101 89,-101 89,-82 0,-82"/>
-<text text-anchor="middle" x="44.5" y="-89" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_action</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-47 0,-66 89,-66 89,-47 0,-47"/>
+<text text-anchor="middle" x="44.5" y="-54" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_action</text>
 </a>
 </g>
 </g>
@@ -21,31 +21,31 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="action_8c.html#aaa5c433092521a4fe5159eee76b1c141" target="_top" xlink:title="Sets the action parameters from a cJSON object.">
-<polygon fill="none" stroke="black" points="125,-101 125,-120 256,-120 256,-101 125,-101"/>
-<text text-anchor="middle" x="190.5" y="-108" font-family="Helvetica,sans-Serif" font-size="10.00">action_param_json_import</text>
+<polygon fill="none" stroke="black" points="125,-69 125,-88 256,-88 256,-69 125,-69"/>
+<text text-anchor="middle" x="190.5" y="-76" font-family="Helvetica,sans-Serif" font-size="10.00">action_param_json_import</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M89.1,-97.25C97.28,-98.33 106.04,-99.49 114.85,-100.65"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="114.43,-104.12 124.8,-101.96 115.34,-97.18 114.43,-104.12"/>
+<path fill="none" stroke="midnightblue" d="M89.1,-63.16C98,-64.52 107.6,-65.99 117.21,-67.46"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="116.78,-70.93 127.19,-68.98 117.84,-64.01 116.78,-70.93"/>
 </g>
 <!-- Node19 -->
 <g id="node19" class="node">
 <title>Node19</title>
 <g id="a_node19"><a xlink:href="classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11" target="_top" xlink:title="Converts a Python dictionary to a C++ string (JSON).">
-<polygon fill="none" stroke="black" points="142.5,-63 142.5,-82 238.5,-82 238.5,-63 142.5,-63"/>
-<text text-anchor="middle" x="190.5" y="-70" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::dict_to_json</text>
+<polygon fill="none" stroke="black" points="142.5,-28 142.5,-47 238.5,-47 238.5,-28 142.5,-28"/>
+<text text-anchor="middle" x="190.5" y="-35" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::dict_to_json</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node19 -->
 <g id="edge18" class="edge">
 <title>Node1&#45;&gt;Node19</title>
-<path fill="none" stroke="midnightblue" d="M89.1,-85.75C102.62,-83.96 117.73,-81.97 132.05,-80.08"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="132.84,-83.51 142.29,-78.73 131.92,-76.57 132.84,-83.51"/>
+<path fill="none" stroke="midnightblue" d="M89.1,-50.75C102.62,-48.96 117.73,-46.97 132.05,-45.08"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="132.84,-48.51 142.29,-43.73 131.92,-41.57 132.84,-48.51"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -60,24 +60,24 @@
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M240.35,-120.05C253.6,-122.65 268.18,-125.5 282.27,-128.25"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="281.93,-131.75 292.41,-130.24 283.27,-124.88 281.93,-131.75"/>
+<path fill="none" stroke="midnightblue" d="M215.57,-88.07C238.6,-97.22 273.98,-111.28 302.66,-122.68"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="301.51,-125.99 312.1,-126.43 304.1,-119.49 301.51,-125.99"/>
 </g>
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
 <g id="a_node17"><a xlink:href="action_8c.html#a55974a228c3a692a22c9d6ce0c4cc869" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="292,-64.5 292,-94.5 410,-94.5 410,-64.5 292,-64.5"/>
-<text text-anchor="start" x="300" y="-82.5" font-family="Helvetica,sans-Serif" font-size="10.00">action_param_set_type</text>
-<text text-anchor="middle" x="351" y="-71.5" font-family="Helvetica,sans-Serif" font-size="10.00">_string</text>
+<polygon fill="none" stroke="black" points="292,-63.5 292,-93.5 410,-93.5 410,-63.5 292,-63.5"/>
+<text text-anchor="start" x="300" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">action_param_set_type</text>
+<text text-anchor="middle" x="351" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00">_string</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node17 -->
 <g id="edge16" class="edge">
 <title>Node2&#45;&gt;Node17</title>
-<path fill="none" stroke="midnightblue" d="M240.35,-100.95C253.45,-98.38 267.86,-95.57 281.8,-92.84"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="282.7,-96.23 291.85,-90.87 281.36,-89.36 282.7,-96.23"/>
+<path fill="none" stroke="midnightblue" d="M256.43,-78.5C264.75,-78.5 273.3,-78.5 281.68,-78.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="281.79,-82 291.79,-78.5 281.79,-75 281.79,-82"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
@@ -290,8 +290,23 @@
 <!-- Node17&#45;&gt;Node18 -->
 <g id="edge17" class="edge">
 <title>Node17&#45;&gt;Node18</title>
-<path fill="none" stroke="midnightblue" d="M410.14,-74.13C421.51,-73.08 433.45,-71.97 444.83,-70.92"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="445.47,-74.38 455.11,-69.97 444.83,-67.41 445.47,-74.38"/>
+<path fill="none" stroke="midnightblue" d="M410.14,-73.51C421.51,-72.54 433.45,-71.51 444.83,-70.53"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="445.44,-73.99 455.11,-69.65 444.85,-67.02 445.44,-73.99"/>
+</g>
+<!-- Node20 -->
+<g id="node20" class="node">
+<title>Node20</title>
+<g id="a_node20"><a xlink:href="classXCS.html#aa324fa8d2f623753926ed7b32607860b" target="_top" xlink:title="Finds and replaces all occurrences of a substring.">
+<polygon fill="none" stroke="black" points="295.5,-25 295.5,-44 406.5,-44 406.5,-25 295.5,-25"/>
+<text text-anchor="middle" x="351" y="-32" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::find_replace_all</text>
+</a>
+</g>
+</g>
+<!-- Node19&#45;&gt;Node20 -->
+<g id="edge19" class="edge">
+<title>Node19&#45;&gt;Node20</title>
+<path fill="none" stroke="midnightblue" d="M238.63,-36.61C253.22,-36.33 269.57,-36.02 285.15,-35.73"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="285.32,-39.22 295.25,-35.54 285.19,-32.23 285.32,-39.22"/>
 </g>
 </g>
 </svg>

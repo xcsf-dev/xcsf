@@ -1,9 +1,9 @@
 <map id="XCS::set_action" name="XCS::set_action">
-<area shape="rect" id="node1" title="Sets the action type and initialisation arguments." alt="" coords="5,262,124,289"/>
-<area shape="rect" id="node2" href="$action_8c.html#aaa5c433092521a4fe5159eee76b1c141" title="Sets the action parameters from a cJSON object." alt="" coords="172,237,347,263"/>
-<area shape="rect" id="node19" href="$classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11" title="Converts a Python dictionary to a C++ string (JSON)." alt="" coords="195,287,323,314"/>
+<area shape="rect" id="node1" title="Sets the action type and initialisation arguments." alt="" coords="5,309,124,335"/>
+<area shape="rect" id="node2" href="$action_8c.html#aaa5c433092521a4fe5159eee76b1c141" title="Sets the action parameters from a cJSON object." alt="" coords="172,279,347,306"/>
+<area shape="rect" id="node19" href="$classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11" title="Converts a Python dictionary to a C++ string (JSON)." alt="" coords="195,334,323,361"/>
 <area shape="rect" id="node3" href="$act__neural_8c.html#a8733352425cce2fa68d995b3a991b057" title="Sets the neural network parameters from a cJSON object." alt="" coords="395,188,551,229"/>
-<area shape="rect" id="node17" href="$action_8c.html#a55974a228c3a692a22c9d6ce0c4cc869" title=" " alt="" coords="395,271,552,312"/>
+<area shape="rect" id="node17" href="$action_8c.html#a55974a228c3a692a22c9d6ce0c4cc869" title=" " alt="" coords="395,272,552,313"/>
 <area shape="rect" id="node4" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="623,94,733,121"/>
 <area shape="rect" id="node5" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="625,145,731,171"/>
 <area shape="rect" id="node6" href="$neural__layer__args_8c.html#abc0a9e83a53e871f873bf08af74e7a29" title="Sets the layer parameters from a cJSON object." alt="" coords="600,195,756,222"/>
@@ -18,4 +18,5 @@
 <area shape="rect" id="node15" href="$neural__layer__args_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" title="Checks input layer arguments are valid." alt="" coords="829,356,963,397"/>
 <area shape="rect" id="node16" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="1040,363,1195,390"/>
 <area shape="rect" id="node18" href="$action_8c.html#a38d3209ab8ce0417631ce2359f6590a7" title="Returns the integer representation of an action type given a name." alt="" coords="613,297,743,323"/>
+<area shape="rect" id="node20" href="$classXCS.html#aa324fa8d2f623753926ed7b32607860b" title="Finds and replaces all occurrences of a substring." alt="" coords="399,338,547,365"/>
 </map>

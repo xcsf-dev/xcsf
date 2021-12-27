@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.5</span>
+   &#160;<span id="projectnumber">1.1.6</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -161,9 +161,19 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Plots a tree with graphviz, saving to filename.
-Optionally accepts a string to be added as a note/caption.
-Optionally uses a list of feature names.</pre> 
+<pre class="fragment">Plots a tree with graphviz, saving to a file.
+
+Parameters
+----------
+tree : List[str]
+    List of strings representing a GP tree.
+filename : str
+    Name of the output file to save the drawn tree.
+note : str, optional
+    Optional string to be added as a note/caption.
+feature_names : List[str], optional
+    Optional list of feature names.
+</pre> 
 <p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00033">33</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 
 </div>
@@ -195,9 +205,9 @@ Optionally uses a list of feature names.</pre>
       </table>
 </div><div class="memdoc">
 <pre class="fragment">Returns the node label for a symbol.</pre> 
-<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00053">53</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00064">64</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00128">xcsf.utils.viz.DGPViz.draw()</a>, <a class="el" href="viz_8py_source.html#l00063">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00077">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00150">xcsf.utils.viz.DGPViz.draw()</a>, <a class="el" href="viz_8py_source.html#l00074">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00088">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -223,11 +233,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <pre class="fragment">Parses functions.</pre> 
-<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00063">63</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00074">74</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 
-<p class="reference">References <a class="el" href="viz_8py_source.html#l00041">xcsf.utils.viz.TreeViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00053">xcsf.utils.viz.TreeViz.label()</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree.pos</a>, <a class="el" href="viz_8py_source.html#l00063">xcsf.utils.viz.TreeViz.read_function()</a>, <a class="el" href="viz_8py_source.html#l00077">xcsf.utils.viz.TreeViz.read_subexpr()</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree.tree</a>.</p>
+<p class="reference">References <a class="el" href="viz_8py_source.html#l00052">xcsf.utils.viz.TreeViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00064">xcsf.utils.viz.TreeViz.label()</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree.pos</a>, <a class="el" href="viz_8py_source.html#l00074">xcsf.utils.viz.TreeViz.read_function()</a>, <a class="el" href="viz_8py_source.html#l00088">xcsf.utils.viz.TreeViz.read_subexpr()</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree.tree</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00063">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00077">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00074">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00088">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -259,11 +269,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <pre class="fragment">Parses sub-expressions.</pre> 
-<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00077">77</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00088">88</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 
-<p class="reference">References <a class="el" href="viz_8py_source.html#l00041">xcsf.utils.viz.TreeViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00053">xcsf.utils.viz.TreeViz.label()</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree.pos</a>, <a class="el" href="viz_8py_source.html#l00063">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree.tree</a>.</p>
+<p class="reference">References <a class="el" href="viz_8py_source.html#l00052">xcsf.utils.viz.TreeViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00064">xcsf.utils.viz.TreeViz.label()</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree.pos</a>, <a class="el" href="viz_8py_source.html#l00074">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree.tree</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00063">xcsf.utils.viz.TreeViz.read_function()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00074">xcsf.utils.viz.TreeViz.read_function()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -292,9 +302,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00041">41</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00052">52</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00128">xcsf.utils.viz.DGPViz.draw()</a>, <a class="el" href="viz_8py_source.html#l00063">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00077">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00150">xcsf.utils.viz.DGPViz.draw()</a>, <a class="el" href="viz_8py_source.html#l00074">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00088">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
 
 </div>
 </div>

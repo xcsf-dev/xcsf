@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['xcs_1711',['XCS',['../classXCS.html',1,'']]],
-  ['xcsf_1712',['XCSF',['../structXCSF.html',1,'']]]
+  ['xcs_1712',['XCS',['../classXCS.html',1,'']]],
+  ['xcsf_1713',['XCSF',['../structXCSF.html',1,'']]]
 ];

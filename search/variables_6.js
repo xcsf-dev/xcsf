@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['g_2989',['g',['../structLayer.html#a35312f57ed603a1e7c68daa9d9f294d5',1,'Layer']]],
-  ['gamma_2990',['GAMMA',['../structXCSF.html#a463f529dbc01388938f04eddf65f12d6',1,'XCSF']]],
-  ['gp_2991',['gp',['../structCondGP.html#a2995f914465afc7ae955ceea3f9d20fd',1,'CondGP']]],
-  ['gviz_2992',['gviz',['../classxcsf_1_1utils_1_1viz_1_1TreeViz.html#aa82a1bc282566504902455bc1ec23fde',1,'xcsf.utils.viz.TreeViz.gviz()'],['../classxcsf_1_1utils_1_1viz_1_1DGPViz.html#a1e905dd89edb90b6378a2f423cd16c8d',1,'xcsf.utils.viz.DGPViz.gviz()']]]
+  ['g_2991',['g',['../structLayer.html#a35312f57ed603a1e7c68daa9d9f294d5',1,'Layer']]],
+  ['gamma_2992',['GAMMA',['../structXCSF.html#a463f529dbc01388938f04eddf65f12d6',1,'XCSF']]],
+  ['gp_2993',['gp',['../structCondGP.html#a2995f914465afc7ae955ceea3f9d20fd',1,'CondGP']]],
+  ['gviz_2994',['gviz',['../classxcsf_1_1utils_1_1viz_1_1TreeViz.html#aa82a1bc282566504902455bc1ec23fde',1,'xcsf.utils.viz.TreeViz.gviz()'],['../classxcsf_1_1utils_1_1viz_1_1DGPViz.html#a1e905dd89edb90b6378a2f423cd16c8d',1,'xcsf.utils.viz.DGPViz.gviz()']]]
 ];

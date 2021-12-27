@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"files.html":[3,0],
 "functions.html":[2,3,0],
 "functions.html":[2,3,0,0],
 "functions_a.html":[2,3,0,1],
@@ -24,8 +25,8 @@ var NAVTREEINDEX4 =
 "functions_t.html":[2,3,0,19],
 "functions_u.html":[2,3,0,20],
 "functions_v.html":[2,3,0,21],
-"functions_vars.html":[2,3,2],
 "functions_vars.html":[2,3,2,0],
+"functions_vars.html":[2,3,2],
 "functions_vars_b.html":[2,3,2,1],
 "functions_vars_c.html":[2,3,2,2],
 "functions_vars_d.html":[2,3,2,3],
@@ -50,16 +51,16 @@ var NAVTREEINDEX4 =
 "functions_w.html":[2,3,0,22],
 "functions_x.html":[2,3,0,23],
 "functions_y.html":[2,3,0,24],
-"globals.html":[3,1,0,0],
 "globals.html":[3,1,0],
+"globals.html":[3,1,0,0],
 "globals_b.html":[3,1,0,1],
 "globals_c.html":[3,1,0,2],
 "globals_d.html":[3,1,0,3],
 "globals_defs.html":[3,1,3],
 "globals_e.html":[3,1,0,4],
 "globals_f.html":[3,1,0,5],
-"globals_func.html":[3,1,1],
 "globals_func.html":[3,1,1,0],
+"globals_func.html":[3,1,1],
 "globals_func_b.html":[3,1,1,1],
 "globals_func_c.html":[3,1,1,2],
 "globals_func_e.html":[3,1,1,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "neural_8c.html#af4a09366d25068c50d42977482c4fc9e":[3,0,53,19],
 "neural_8c.html#afab574137fbf9da9a286d020917c8295":[3,0,53,4],
 "neural_8c_source.html":[3,0,53],
-"neural_8h.html":[3,0,54],
-"neural_8h.html#a1054bccbeafce6e26cc5a8bffed9f575":[3,0,54,13]
+"neural_8h.html":[3,0,54]
 };

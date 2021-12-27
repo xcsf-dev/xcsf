@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.1.5</span>
+   &#160;<span id="projectnumber">1.1.6</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -299,6 +299,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6659e0b11f57ef97da5d5b91226338a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXCS.html#a6659e0b11f57ef97da5d5b91226338a5">set_prediction</a> (const std::string &amp;type)</td></tr>
 <tr class="memdesc:a6659e0b11f57ef97da5d5b91226338a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the prediction type.  <a href="classXCS.html#a6659e0b11f57ef97da5d5b91226338a5">More...</a><br /></td></tr>
 <tr class="separator:a6659e0b11f57ef97da5d5b91226338a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa324fa8d2f623753926ed7b32607860b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXCS.html#aa324fa8d2f623753926ed7b32607860b">find_replace_all</a> (std::string subject, const std::string &amp;search, const std::string &amp;replace)</td></tr>
+<tr class="memdesc:aa324fa8d2f623753926ed7b32607860b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds and replaces all occurrences of a substring.  <a href="classXCS.html#aa324fa8d2f623753926ed7b32607860b">More...</a><br /></td></tr>
+<tr class="separator:aa324fa8d2f623753926ed7b32607860b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83803dda1df95ab1bd02f3b7ba69fc11"><td class="memItemLeft" align="right" valign="top">cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11">dict_to_json</a> (const py::dict &amp;kwargs)</td></tr>
 <tr class="memdesc:a83803dda1df95ab1bd02f3b7ba69fc11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a Python dictionary to a C++ string (JSON).  <a href="classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11">More...</a><br /></td></tr>
 <tr class="separator:a83803dda1df95ab1bd02f3b7ba69fc11"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -420,7 +423,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Python <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> class data structure. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00058">58</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00057">57</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af1010afd63843f86ad1dd81fade9bd72"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af1010afd63843f86ad1dd81fade9bd72">&#9670;&nbsp;</a></span>XCS()</h2>
@@ -472,9 +475,9 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00075">75</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00074">74</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">action</a>, <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00064">payoff</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">state</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00066">test_data</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00065">train_data</a>, <a class="el" href="xcsf_8h_source.html#l00144">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00146">Input::x_dim</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, <a class="el" href="xcsf_8c_source.html#l00037">xcsf_init()</a>, <a class="el" href="xcsf_8h_source.html#l00145">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">action</a>, <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">payoff</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">state</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00065">test_data</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00064">train_data</a>, <a class="el" href="xcsf_8h_source.html#l00144">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00146">Input::x_dim</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, <a class="el" href="xcsf_8c_source.html#l00037">xcsf_init()</a>, <a class="el" href="xcsf_8h_source.html#l00145">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -528,11 +531,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00191">191</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00190">190</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, <a class="el" href="xcsf_8c_source.html#l00167">xcsf_ae_to_classifier()</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, <a class="el" href="xcsf_8c_source.html#l00167">xcsf_ae_to_classifier()</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -592,11 +595,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The selected action. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00278">278</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00277">277</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">action</a>, <a class="el" href="param_8c_source.html#l00750">param_set_explore()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">state</a>, <a class="el" href="xcsf_8h_source.html#l00109">XCSF::x_dim</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00250">xcs_rl_decision()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">action</a>, <a class="el" href="param_8c_source.html#l00750">param_set_explore()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">state</a>, <a class="el" href="xcsf_8h_source.html#l00109">XCSF::x_dim</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00250">xcs_rl_decision()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -645,9 +648,17 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>JSON string representation of a dictionary. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00791">791</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00809">809</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00823">set_action()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00807">set_condition()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00839">set_prediction()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00792">find_replace_all()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00841">set_action()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00825">set_condition()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00857">set_prediction()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classXCS_a83803dda1df95ab1bd02f3b7ba69fc11_cgraph.svg" width="335" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -683,11 +694,11 @@ Here is the caller graph for this function:</div>
 
 <p>Ends a step in a reinforcement learning trial. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00265">265</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00264">264</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">action</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00064">payoff</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">state</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00174">xcs_rl_end_step()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">action</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">payoff</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">state</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00174">xcs_rl_end_step()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -729,11 +740,11 @@ Here is the caller graph for this function:</div>
 
 <p>Frees memory used by a reinforcement learning trial. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00247">247</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00246">246</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00148">xcs_rl_end_trial()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00148">xcs_rl_end_trial()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -800,9 +811,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The prediction error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00312">312</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00311">311</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">action</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00064">payoff</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00226">xcs_rl_error()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">action</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">payoff</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00226">xcs_rl_error()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -839,15 +850,78 @@ Here is the call graph for this function:</div>
 <p>Returns the current system error. </p>
 <dl class="section return"><dt>Returns</dt><dd>Moving average of the system error, updated with step size BETA. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00448">448</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00447">447</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00098">XCSF::error</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00098">XCSF::error</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classXCS_aef1e4c62e78f82a058d0008d2b308735_icgraph.svg" width="294" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa324fa8d2f623753926ed7b32607860b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa324fa8d2f623753926ed7b32607860b">&#9670;&nbsp;</a></span>find_replace_all()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string XCS::find_replace_all </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>subject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>search</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>replace</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds and replaces all occurrences of a substring. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">subject</td><td>String to be searched and replaced. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">search</td><td>String within the subject to find. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">replace</td><td>String to replace the found text with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00792">792</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00809">dict_to_json()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classXCS_aa324fa8d2f623753926ed7b32607860b_icgraph.svg" width="522" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -904,11 +978,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The prediction error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00219">219</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00218">218</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">action</a>, <a class="el" href="xcsf_8h_source.html#l00111">XCSF::n_actions</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">state</a>, <a class="el" href="xcsf_8h_source.html#l00109">XCSF::x_dim</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00104">xcs_rl_fit()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">action</a>, <a class="el" href="xcsf_8h_source.html#l00111">XCSF::n_actions</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">state</a>, <a class="el" href="xcsf_8h_source.html#l00109">XCSF::x_dim</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00104">xcs_rl_fit()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -975,9 +1049,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> training error using the loss function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00362">362</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00361">361</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00327">load_input()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00065">train_data</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00326">load_input()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00064">train_data</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1052,9 +1126,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> training error using the loss function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00380">380</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00379">379</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00327">load_input()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00066">test_data</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00065">train_data</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00326">load_input()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00065">test_data</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00064">train_data</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1088,11 +1162,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00496">496</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00495">495</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00117">XCSF::ALPHA</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00117">XCSF::ALPHA</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1126,11 +1200,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00670">670</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00669">669</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00100">XCSF::aset_size</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00100">XCSF::aset_size</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1164,11 +1238,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00502">502</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00501">501</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00118">XCSF::BETA</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00118">XCSF::BETA</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1202,11 +1276,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00550">550</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00549">549</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00137">XCSF::COMPACTION</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00137">XCSF::COMPACTION</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1240,11 +1314,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00508">508</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00507">507</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00119">XCSF::DELTA</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00119">XCSF::DELTA</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1278,11 +1352,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00514">514</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00513">513</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00120">XCSF::E0</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00120">XCSF::E0</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1316,11 +1390,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00748">748</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00747">747</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00046">ArgsEA::pred_reset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00046">ArgsEA::pred_reset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1354,11 +1428,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00706">706</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00705">705</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00039">ArgsEA::select_size</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00039">ArgsEA::select_size</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1392,11 +1466,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00700">700</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00699">699</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8c_source.html#l00369">ea_type_as_string()</a>, <a class="el" href="ea_8h_source.html#l00045">ArgsEA::select_type</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8c_source.html#l00369">ea_type_as_string()</a>, <a class="el" href="ea_8h_source.html#l00045">ArgsEA::select_type</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1436,11 +1510,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00742">742</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00741">741</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00038">ArgsEA::subsumption</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00038">ArgsEA::subsumption</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1474,11 +1548,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00730">730</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00729">729</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00040">ArgsEA::err_reduc</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00040">ArgsEA::err_reduc</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1512,11 +1586,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00736">736</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00735">735</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00041">ArgsEA::fit_reduc</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00041">ArgsEA::fit_reduc</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1550,11 +1624,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00688">688</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00687">687</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00115">XCSF::GAMMA</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00115">XCSF::GAMMA</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1588,11 +1662,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00490">490</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00489">489</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00124">XCSF::HUBER_DELTA</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00124">XCSF::HUBER_DELTA</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1626,11 +1700,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00520">520</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00519">519</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00121">XCSF::INIT_ERROR</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00121">XCSF::INIT_ERROR</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1664,11 +1738,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00526">526</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00525">525</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00122">XCSF::INIT_FITNESS</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00122">XCSF::INIT_FITNESS</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1702,11 +1776,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00718">718</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00717">717</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00044">ArgsEA::lambda</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00044">ArgsEA::lambda</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1740,11 +1814,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00484">484</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00483">483</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00129">XCSF::LOSS_FUNC</a>, <a class="el" href="loss_8c_source.html#l00194">loss_type_as_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00129">XCSF::LOSS_FUNC</a>, <a class="el" href="loss_8c_source.html#l00194">loss_type_as_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1784,11 +1858,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00538">538</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00537">537</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00132">XCSF::M_PROBATION</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00132">XCSF::M_PROBATION</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1822,11 +1896,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00466">466</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00465">465</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00126">XCSF::MAX_TRIALS</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00126">XCSF::MAX_TRIALS</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1860,11 +1934,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00676">676</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00675">675</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00101">XCSF::mfrac</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00101">XCSF::mfrac</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1898,11 +1972,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00664">664</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00663">663</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00099">XCSF::mset_size</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00099">XCSF::mset_size</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1936,11 +2010,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00604">604</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00603">603</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00111">XCSF::n_actions</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00111">XCSF::n_actions</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1974,11 +2048,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00532">532</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00531">531</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00123">XCSF::NU</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00123">XCSF::NU</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2012,11 +2086,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00454">454</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00453">453</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00125">XCSF::OMP_NUM_THREADS</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00125">XCSF::OMP_NUM_THREADS</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2050,11 +2124,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00724">724</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00723">723</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00042">ArgsEA::p_crossover</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00042">ArgsEA::p_crossover</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2088,11 +2162,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00694">694</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00693">693</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00116">XCSF::P_EXPLORE</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00116">XCSF::P_EXPLORE</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2126,11 +2200,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00472">472</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00471">471</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00127">XCSF::PERF_TRIALS</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00127">XCSF::PERF_TRIALS</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2164,11 +2238,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00460">460</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00459">459</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00134">XCSF::POP_INIT</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00134">XCSF::POP_INIT</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2202,11 +2276,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00478">478</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00477">477</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00128">XCSF::POP_SIZE</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00128">XCSF::POP_SIZE</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2240,11 +2314,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00646">646</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00645">645</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00093">clset_mean_cond_connections()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00093">clset_mean_cond_connections()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2284,11 +2358,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00658">658</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00657">657</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00039">clset_mean_cond_layers()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00039">clset_mean_cond_layers()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2328,11 +2402,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00652">652</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00651">651</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00065">clset_mean_cond_neurons()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00065">clset_mean_cond_neurons()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2372,11 +2446,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00610">610</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00609">609</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset_8c_source.html#l00627">clset_mean_cond_size()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset_8c_source.html#l00627">clset_mean_cond_size()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2416,11 +2490,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00634">634</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00633">633</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00200">clset_mean_pred_connections()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00200">clset_mean_pred_connections()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2460,11 +2534,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00622">622</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00621">621</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00173">clset_mean_pred_eta()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00173">clset_mean_pred_eta()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2504,11 +2578,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00640">640</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00639">639</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00147">clset_mean_pred_layers()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00147">clset_mean_pred_layers()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2548,11 +2622,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00628">628</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00627">627</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00121">clset_mean_pred_neurons()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset__neural_8c_source.html#l00121">clset_mean_pred_neurons()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2592,11 +2666,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00616">616</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00615">615</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset_8c_source.html#l00647">clset_mean_pred_size()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset_8c_source.html#l00647">clset_mean_pred_size()</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2636,11 +2710,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00580">580</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00579">579</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00079">Set::num</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00079">Set::num</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2674,11 +2748,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00574">574</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00573">573</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::size</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::size</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2712,11 +2786,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00568">568</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00567">567</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00135">XCSF::SET_SUBSUMPTION</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00135">XCSF::SET_SUBSUMPTION</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2750,11 +2824,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00544">544</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00543">543</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00136">XCSF::STATEFUL</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00136">XCSF::STATEFUL</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2788,11 +2862,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00682">682</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00681">681</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00130">XCSF::TELETRANSPORTATION</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00130">XCSF::TELETRANSPORTATION</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2826,11 +2900,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00556">556</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00555">555</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00131">XCSF::THETA_DEL</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00131">XCSF::THETA_DEL</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2864,11 +2938,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00712">712</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00711">711</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00043">ArgsEA::theta</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00095">XCSF::ea</a>, <a class="el" href="ea_8h_source.html#l00043">ArgsEA::theta</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2902,11 +2976,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00562">562</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00561">561</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00133">XCSF::THETA_SUB</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00133">XCSF::THETA_SUB</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2940,11 +3014,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00586">586</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00585">585</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00107">XCSF::time</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00107">XCSF::time</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2978,11 +3052,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00592">592</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00591">591</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00109">XCSF::x_dim</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00109">XCSF::x_dim</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -3016,11 +3090,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00598">598</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00597">597</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcsf_8h_source.html#l00110">XCSF::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcsf_8h_source.html#l00110">XCSF::y_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -3056,11 +3130,11 @@ Here is the caller graph for this function:</div>
 
 <p>Initialises a step in a reinforcement learning trial. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00256">256</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00255">255</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00160">xcs_rl_init_step()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00160">xcs_rl_init_step()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3102,11 +3176,11 @@ Here is the caller graph for this function:</div>
 
 <p>Initialises a reinforcement learning trial. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00238">238</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00237">237</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00126">xcs_rl_init_trial()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00126">xcs_rl_init_trial()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3173,11 +3247,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01057">1057</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01075">1075</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset_8c_source.html#l00708">clset_json_export()</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset_8c_source.html#l00708">clset_json_export()</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00086">XCSF::pset</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01116">json_write()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01134">json_write()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3225,11 +3299,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01094">1094</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01112">1112</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset_8c_source.html#l00734">clset_json_insert()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset_8c_source.html#l00734">clset_json_insert()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01128">json_read()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01146">json_read()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3277,11 +3351,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01082">1082</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01100">1100</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="clset_8c_source.html#l00734">clset_json_insert()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="clset_8c_source.html#l00734">clset_json_insert()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3323,11 +3397,11 @@ Here is the caller graph for this function:</div>
 <p>Returns a JSON formatted string representing the parameters. </p>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01072">1072</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01090">1090</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00105">param_json_export()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00105">param_json_export()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3375,11 +3449,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01128">1128</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01146">1146</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l01094">json_insert()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l01112">json_insert()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3427,11 +3501,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01116">1116</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01134">1134</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l01057">json_export()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l01075">json_export()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3480,11 +3554,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00143">143</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00142">142</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00110">xcsf_load()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00110">xcsf_load()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3550,11 +3624,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00327">327</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00326">326</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, <a class="el" href="xcsf_8h_source.html#l00144">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00109">XCSF::x_dim</a>, <a class="el" href="xcsf_8h_source.html#l00146">Input::x_dim</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, <a class="el" href="xcsf_8h_source.html#l00145">Input::y</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::y_dim</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, <a class="el" href="xcsf_8h_source.html#l00144">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00109">XCSF::x_dim</a>, <a class="el" href="xcsf_8h_source.html#l00146">Input::x_dim</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, <a class="el" href="xcsf_8h_source.html#l00145">Input::y</a>, <a class="el" href="xcsf_8h_source.html#l00110">XCSF::y_dim</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00362">fit()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00432">score()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00361">fit()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00431">score()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -3590,11 +3664,11 @@ Here is the caller graph for this function:</div>
 
 <p>Inserts a new hidden layer before the output layer within all prediction neural networks in the population. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00180">180</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00179">179</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00147">xcsf_pred_expand()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00147">xcsf_pred_expand()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3643,11 +3717,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The prediction array values. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00395">395</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00394">394</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, <a class="el" href="xcsf_8h_source.html#l00108">XCSF::pa_size</a>, <a class="el" href="xcsf_8h_source.html#l00109">XCSF::x_dim</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00123">xcs_supervised_predict()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, <a class="el" href="xcsf_8h_source.html#l00108">XCSF::pa_size</a>, <a class="el" href="xcsf_8h_source.html#l00109">XCSF::x_dim</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00123">xcs_supervised_predict()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3689,11 +3763,11 @@ Here is the caller graph for this function:</div>
 
 <p>Prints the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> parameters and their current values. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00170">170</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00169">169</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00356">param_print()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00356">param_print()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3759,11 +3833,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00203">203</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00202">202</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00073">xcsf_print_pset()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00073">xcsf_print_pset()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3805,11 +3879,11 @@ Here is the caller graph for this function:</div>
 
 <p>Retrieves the stored population, setting it as current. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00161">161</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00160">160</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00209">xcsf_retrieve_pset()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00209">xcsf_retrieve_pset()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3858,11 +3932,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00132">132</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00131">131</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00086">xcsf_save()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00086">xcsf_save()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3922,9 +3996,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> error using the loss function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00419">419</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00418">418</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -3985,9 +4059,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> error using the loss function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00432">432</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00431">431</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00327">load_input()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00066">test_data</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, <a class="el" href="xcs__supervised_8c_source.html#l00141">xcs_supervised_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00162">xcs_supervised_score_n()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00326">load_input()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00065">test_data</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, <a class="el" href="xcs__supervised_8c_source.html#l00141">xcs_supervised_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00162">xcs_supervised_score_n()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4021,11 +4095,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01042">1042</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01060">1060</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="utils_8c_source.html#l00050">rand_init_seed()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4073,11 +4147,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00770">770</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00769">769</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00192">action_param_set_type_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00192">action_param_set_type_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4136,9 +4210,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00823">823</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00841">841</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00132">action_param_json_import()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00791">dict_to_json()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00132">action_param_json_import()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00809">dict_to_json()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4172,11 +4246,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00892">892</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00910">910</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00614">param_set_alpha()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00614">param_set_alpha()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4216,11 +4290,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00898">898</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00916">916</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00628">param_set_beta()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00628">param_set_beta()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4260,11 +4334,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00970">970</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00988">988</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00558">param_set_compaction()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00558">param_set_compaction()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4312,11 +4386,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00760">760</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00759">759</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="condition_8c_source.html#l00439">cond_param_set_type_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="condition_8c_source.html#l00439">cond_param_set_type_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4375,9 +4449,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00807">807</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00825">825</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="condition_8c_source.html#l00274">cond_param_json_import()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00791">dict_to_json()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="condition_8c_source.html#l00274">cond_param_json_import()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00809">dict_to_json()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4411,11 +4485,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00904">904</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00922">922</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00642">param_set_delta()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00642">param_set_delta()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4455,11 +4529,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00910">910</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00928">928</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00656">param_set_e0()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00656">param_set_e0()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4499,11 +4573,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01036">1036</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01054">1054</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00486">ea_param_set_pred_reset()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00486">ea_param_set_pred_reset()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4543,11 +4617,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00994">994</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01012">1012</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00402">ea_param_set_select_size()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00402">ea_param_set_select_size()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4587,11 +4661,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00988">988</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01006">1006</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00503">ea_param_set_type_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00503">ea_param_set_type_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4631,11 +4705,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01030">1030</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01048">1048</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00480">ea_param_set_subsumption()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00480">ea_param_set_subsumption()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4675,11 +4749,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01018">1018</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01036">1036</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00452">ea_param_set_err_reduc()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00452">ea_param_set_err_reduc()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4719,11 +4793,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01024">1024</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01042">1042</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00466">ea_param_set_fit_reduc()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00466">ea_param_set_fit_reduc()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4763,11 +4837,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00976">976</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00994">994</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00575">param_set_gamma()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00575">param_set_gamma()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4807,11 +4881,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00886">886</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00904">904</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00564">param_set_huber_delta()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00564">param_set_huber_delta()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4851,11 +4925,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00916">916</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00934">934</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00667">param_set_init_error()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00667">param_set_init_error()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4895,11 +4969,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00922">922</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00940">940</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00678">param_set_init_fitness()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00678">param_set_init_fitness()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4939,11 +5013,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01006">1006</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01024">1024</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00441">ea_param_set_lambda()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00441">ea_param_set_lambda()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4983,11 +5057,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00880">880</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00898">898</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00530">param_set_loss_func_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00530">param_set_loss_func_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5027,11 +5101,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00934">934</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00952">952</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00711">param_set_m_probation()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00711">param_set_m_probation()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5071,11 +5145,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00862">862</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00880">880</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00497">param_set_max_trials()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00497">param_set_max_trials()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5115,11 +5189,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00928">928</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00946">946</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00689">param_set_nu()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00689">param_set_nu()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5159,11 +5233,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00850">850</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00868">868</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00474">param_set_omp_num_threads()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00474">param_set_omp_num_threads()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5203,11 +5277,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01012">1012</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01030">1030</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00427">ea_param_set_p_crossover()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00427">ea_param_set_p_crossover()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5247,11 +5321,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00982">982</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01000">1000</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00600">param_set_p_explore()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00600">param_set_p_explore()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5291,11 +5365,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00868">868</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00886">886</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00508">param_set_perf_trials()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00508">param_set_perf_trials()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5335,11 +5409,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00856">856</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00874">874</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00491">param_set_pop_init()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00491">param_set_pop_init()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5379,11 +5453,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00874">874</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00892">892</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00519">param_set_pop_size()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00519">param_set_pop_size()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5431,11 +5505,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00780">780</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00779">779</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="prediction_8c_source.html#l00362">pred_param_set_type_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="prediction_8c_source.html#l00362">pred_param_set_type_string()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5494,9 +5568,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00839">839</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00857">857</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00791">dict_to_json()</a>, <a class="el" href="prediction_8c_source.html#l00180">pred_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00809">dict_to_json()</a>, <a class="el" href="prediction_8c_source.html#l00180">pred_param_json_import()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5530,11 +5604,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00952">952</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00970">970</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00722">param_set_set_subsumption()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00722">param_set_set_subsumption()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5574,11 +5648,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00964">964</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00982">982</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00552">param_set_stateful()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00552">param_set_stateful()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5618,11 +5692,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00958">958</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00976">976</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00589">param_set_teletransportation()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00589">param_set_teletransportation()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5662,11 +5736,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00940">940</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00958">958</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00700">param_set_theta_del()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00700">param_set_theta_del()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5706,11 +5780,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01000">1000</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l01018">1018</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00416">ea_param_set_theta()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00416">ea_param_set_theta()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5750,11 +5824,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00946">946</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00964">964</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00728">param_set_theta_sub()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00728">param_set_theta_sub()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5796,11 +5870,11 @@ Here is the caller graph for this function:</div>
 
 <p>Stores the current population in memory for later retrieval. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00152">152</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00151">151</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00191">xcsf_store_pset()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcsf_8c_source.html#l00191">xcsf_store_pset()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5859,11 +5933,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00298">298</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00297">297</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">action</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00064">payoff</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">state</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00195">xcs_rl_update()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">action</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">payoff</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">state</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">xcs</a>, and <a class="el" href="xcs__rl_8c_source.html#l00195">xcs_rl_update()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5906,11 +5980,11 @@ Here is the caller graph for this function:</div>
 <p>Returns the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> build version number. </p>
 <dl class="section return"><dt>Returns</dt><dd>Build version number. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00121">121</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00120">120</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00040">VERSION_BUILD</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -5947,11 +6021,11 @@ Here is the caller graph for this function:</div>
 <p>Returns the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> major version number. </p>
 <dl class="section return"><dt>Returns</dt><dd>Major version number. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00101">101</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00100">100</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00038">VERSION_MAJOR</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -5988,11 +6062,11 @@ Here is the caller graph for this function:</div>
 <p>Returns the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> minor version number. </p>
 <dl class="section return"><dt>Returns</dt><dd>Minor version number. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00111">111</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00110">110</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00039">VERSION_MINOR</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01137">PYBIND11_MODULE()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01155">PYBIND11_MODULE()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -6025,9 +6099,9 @@ Here is the caller graph for this function:</div>
 
 <p>Current action for RL. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">63</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">62</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00278">decision()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00265">end_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00312">error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00219">fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00298">update()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00075">XCS()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00277">decision()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00264">end_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00311">error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00218">fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00297">update()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00074">XCS()</a>.</p>
 
 </div>
 </div>
@@ -6053,9 +6127,9 @@ Here is the caller graph for this function:</div>
 
 <p>Current reward for RL. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00064">64</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00063">63</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00265">end_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00312">error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00298">update()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00075">XCS()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00264">end_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00311">error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00297">update()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00074">XCS()</a>.</p>
 
 </div>
 </div>
@@ -6081,9 +6155,9 @@ Here is the caller graph for this function:</div>
 
 <p>Current input state for RL. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00062">62</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">61</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00278">decision()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00265">end_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00219">fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00298">update()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00075">XCS()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00277">decision()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00264">end_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00218">fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00297">update()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00074">XCS()</a>.</p>
 
 </div>
 </div>
@@ -6109,9 +6183,9 @@ Here is the caller graph for this function:</div>
 
 <p>Test data for supervised learning. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00066">66</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00065">65</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00380">fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00432">score()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00075">XCS()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00379">fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00431">score()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00074">XCS()</a>.</p>
 
 </div>
 </div>
@@ -6137,9 +6211,9 @@ Here is the caller graph for this function:</div>
 
 <p>Training data for supervised learning. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00065">65</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00064">64</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00362">fit()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00075">XCS()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00361">fit()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00074">XCS()</a>.</p>
 
 </div>
 </div>
@@ -6165,9 +6239,9 @@ Here is the caller graph for this function:</div>
 
 <p><a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00061">61</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__wrapper_8cpp_source.html#l00060">60</a> of file <a class="el" href="pybind__wrapper_8cpp_source.html">pybind_wrapper.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00191">ae_to_classifier()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00278">decision()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00265">end_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00247">end_trial()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00312">error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00219">fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00496">get_alpha()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00670">get_aset_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00502">get_beta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00550">get_compaction()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00508">get_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00514">get_e0()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00748">get_ea_pred_reset()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00706">get_ea_select_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00700">get_ea_select_type()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00742">get_ea_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00730">get_err_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00736">get_fit_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00688">get_gamma()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00490">get_huber_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00520">get_init_error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00526">get_init_fitness()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00718">get_lambda()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00484">get_loss_func()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00538">get_m_probation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00466">get_max_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00676">get_mfrac()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00664">get_mset_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00604">get_n_actions()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00532">get_nu()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00454">get_omp_num_threads()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00724">get_p_crossover()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00694">get_p_explore()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00472">get_perf_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00460">get_pop_init()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00478">get_pop_max_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00646">get_pset_mean_cond_connections()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00658">get_pset_mean_cond_layers()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00652">get_pset_mean_cond_neurons()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00610">get_pset_mean_cond_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00634">get_pset_mean_pred_connections()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00622">get_pset_mean_pred_eta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00640">get_pset_mean_pred_layers()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00628">get_pset_mean_pred_neurons()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00616">get_pset_mean_pred_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00580">get_pset_num()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00574">get_pset_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00568">get_set_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00544">get_stateful()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00682">get_teletransportation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00556">get_theta_del()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00712">get_theta_ea()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00562">get_theta_sub()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00586">get_time()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00592">get_x_dim()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00598">get_y_dim()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00256">init_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00238">init_trial()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01057">json_export()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01094">json_insert()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01082">json_insert_cl()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01072">json_parameters()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00143">load()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00327">load_input()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00180">pred_expand()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00395">predict()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00170">print_params()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00203">print_pset()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00161">retrieve()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00132">save()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00432">score()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00770">set_action()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00892">set_alpha()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00898">set_beta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00970">set_compaction()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00760">set_condition()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00904">set_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00910">set_e0()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01036">set_ea_pred_reset()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00994">set_ea_select_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00988">set_ea_select_type()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01030">set_ea_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01018">set_err_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01024">set_fit_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00976">set_gamma()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00886">set_huber_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00916">set_init_error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00922">set_init_fitness()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01006">set_lambda()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00880">set_loss_func()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00934">set_m_probation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00862">set_max_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00928">set_nu()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00850">set_omp_num_threads()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01012">set_p_crossover()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00982">set_p_explore()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00868">set_perf_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00856">set_pop_init()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00874">set_pop_max_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00780">set_prediction()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00952">set_set_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00964">set_stateful()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00958">set_teletransportation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00940">set_theta_del()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01000">set_theta_ea()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00946">set_theta_sub()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00152">store()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00298">update()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00075">XCS()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00190">ae_to_classifier()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00277">decision()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00264">end_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00246">end_trial()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00311">error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00218">fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00495">get_alpha()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00669">get_aset_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00501">get_beta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00549">get_compaction()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00507">get_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00513">get_e0()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00747">get_ea_pred_reset()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00705">get_ea_select_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00699">get_ea_select_type()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00741">get_ea_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00729">get_err_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00735">get_fit_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00687">get_gamma()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00489">get_huber_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00519">get_init_error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00525">get_init_fitness()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00717">get_lambda()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00483">get_loss_func()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00537">get_m_probation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00465">get_max_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00675">get_mfrac()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00663">get_mset_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00603">get_n_actions()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00531">get_nu()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00453">get_omp_num_threads()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00723">get_p_crossover()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00693">get_p_explore()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00471">get_perf_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00459">get_pop_init()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00477">get_pop_max_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00645">get_pset_mean_cond_connections()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00657">get_pset_mean_cond_layers()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00651">get_pset_mean_cond_neurons()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00609">get_pset_mean_cond_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00633">get_pset_mean_pred_connections()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00621">get_pset_mean_pred_eta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00639">get_pset_mean_pred_layers()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00627">get_pset_mean_pred_neurons()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00615">get_pset_mean_pred_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00579">get_pset_num()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00573">get_pset_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00567">get_set_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00543">get_stateful()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00681">get_teletransportation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00555">get_theta_del()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00711">get_theta_ea()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00561">get_theta_sub()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00585">get_time()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00591">get_x_dim()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00597">get_y_dim()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00255">init_step()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00237">init_trial()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01075">json_export()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01112">json_insert()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01100">json_insert_cl()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01090">json_parameters()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00142">load()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00326">load_input()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00179">pred_expand()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00394">predict()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00169">print_params()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00202">print_pset()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00160">retrieve()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00131">save()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00431">score()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00769">set_action()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00910">set_alpha()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00916">set_beta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00988">set_compaction()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00759">set_condition()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00922">set_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00928">set_e0()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01054">set_ea_pred_reset()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01012">set_ea_select_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01006">set_ea_select_type()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01048">set_ea_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01036">set_err_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01042">set_fit_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00994">set_gamma()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00904">set_huber_delta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00934">set_init_error()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00940">set_init_fitness()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01024">set_lambda()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00898">set_loss_func()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00952">set_m_probation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00880">set_max_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00946">set_nu()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00868">set_omp_num_threads()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01030">set_p_crossover()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01000">set_p_explore()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00886">set_perf_trials()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00874">set_pop_init()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00892">set_pop_max_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00779">set_prediction()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00970">set_set_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00982">set_stateful()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00976">set_teletransportation()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00958">set_theta_del()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l01018">set_theta_ea()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00964">set_theta_sub()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00151">store()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00297">update()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00074">XCS()</a>.</p>
 
 </div>
 </div>

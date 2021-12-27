@@ -8,6 +8,7 @@ var classXCS =
     [ "end_trial", "classXCS.html#a173bb0ba504bc7e97cda5841a6534944", null ],
     [ "error", "classXCS.html#a88f48cdccb3af0fb924f97633e38df94", null ],
     [ "error", "classXCS.html#aef1e4c62e78f82a058d0008d2b308735", null ],
+    [ "find_replace_all", "classXCS.html#aa324fa8d2f623753926ed7b32607860b", null ],
     [ "fit", "classXCS.html#ac12768292958a714a726b1c029e9616a", null ],
     [ "fit", "classXCS.html#a3f8168ffade2d933d0971625200f1d92", null ],
     [ "fit", "classXCS.html#adfd14ab2eda18549e07d5d70d6332d70", null ],

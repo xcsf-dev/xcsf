@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"neural__layer__avgpool_8h.html#af42137f70db11a8ba99ecf0530a33999":[3,0,62,8],
 "neural__layer__avgpool_8h_source.html":[3,0,62],
 "neural__layer__connected_8c.html":[3,0,63],
 "neural__layer__connected_8c.html#a19cca87ca818b59328b21d4f3d0e9a0e":[3,0,63,14],
@@ -248,6 +249,5 @@ var NAVTREEINDEX6 =
 "neural__layer__recurrent_8c.html#a7575ee8d3534af2a6dcc865e02e5351f":[3,0,75,22],
 "neural__layer__recurrent_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30":[3,0,75,0],
 "neural__layer__recurrent_8c.html#a7ef5f7e605fb5aa466859c42431fedc8":[3,0,75,13],
-"neural__layer__recurrent_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd":[3,0,75,6],
-"neural__layer__recurrent_8c.html#a836f37ff8f65c52cc46135785a7ea8b5":[3,0,75,16]
+"neural__layer__recurrent_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd":[3,0,75,6]
 };
