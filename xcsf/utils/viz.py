@@ -37,9 +37,20 @@ class TreeViz:
         note: Optional[str] = None,
         feature_names: Optional[List[str]] = None,
     ) -> None:
-        """Plots a tree with graphviz, saving to filename.
-        Optionally accepts a string to be added as a note/caption.
-        Optionally uses a list of feature names."""
+        """
+        Plots a tree with graphviz, saving to a file.
+
+        Parameters
+        ----------
+        tree : List[str]
+            List of strings representing a GP tree.
+        filename : str
+            Name of the output file to save the drawn tree.
+        note : str, optional
+            Optional string to be added as a note/caption.
+        feature_names : List[str], optional
+            Optional list of feature names.
+        """
         self.feature_names: Optional[List[str]] = feature_names
         self.tree: List[str] = tree
         self.cnt: int = 0
@@ -97,9 +108,20 @@ class DGPViz:
         note: Optional[str] = None,
         feature_names: Optional[List[str]] = None,
     ) -> None:
-        """Plots a DGP graph with graphviz, saving to filename.
-        Optionally accepts a string to be added as a note/caption.
-        Optionally uses a list of feature names."""
+        """
+        Plots a DGP graph with graphviz, saving to a file.
+
+        Parameters
+        ----------
+        graph : dict
+            Dictionary representing a DGP graph.
+        filename : str
+            Name of the output file to save the drawn graph.
+        note : str, optional
+            Optional string to be added as a note/caption.
+        feature_names : List[str], optional
+            Optional list of feature names.
+        """
         self.feature_names: Optional[List[str]] = feature_names
         self.n: int = graph["n"]
         self.n_inputs: int = graph["n_inputs"]
