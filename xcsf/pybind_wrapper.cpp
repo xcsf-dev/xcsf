@@ -813,7 +813,9 @@ class XCS
         cs = find_replace_all(cs, "True", "true");
         cs = find_replace_all(cs, "False", "false");
         cs = find_replace_all(cs, "\'", "\"");
-        return cJSON_Parse(cs.c_str());
+        cJSON *json = cJSON_Parse(cs.c_str());
+        utils_json_parse_check(json);
+        return json;
     }
 
     /**
@@ -1100,6 +1102,7 @@ class XCS
     json_insert_cl(const std::string &json_str)
     {
         cJSON *json = cJSON_Parse(json_str.c_str());
+        utils_json_parse_check(json);
         clset_json_insert(&xcs, json);
         cJSON_Delete(json);
     }
@@ -1112,7 +1115,8 @@ class XCS
     json_insert(const std::string &json_str)
     {
         cJSON *json = cJSON_Parse(json_str.c_str());
-        if (json != NULL && json->child != NULL && cJSON_IsArray(json->child)) {
+        utils_json_parse_check(json);
+        if (json->child != NULL && cJSON_IsArray(json->child)) {
             cJSON *tail = json->child->child; // insert inverted for consistency
             tail->prev = NULL; // this should have been set by cJSON!
             while (tail->next != NULL) {

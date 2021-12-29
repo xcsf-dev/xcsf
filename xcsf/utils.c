@@ -99,3 +99,21 @@ rand_normal(const double mu, const double sigma)
     z1 = sqrt(-2 * log(u1)) * sin(two_pi * u2);
     return z0 * sigma + mu;
 }
+
+/**
+ * @brief Checks whether JSON parsed correctly.
+ * @pre cJSON_Parse() called on the cJSON object.
+ * @param [in] json cJSON object.
+ */
+void
+utils_json_parse_check(const cJSON *json)
+{
+    if (json == NULL) {
+        printf("Error reading JSON\n");
+        const char *error_ptr = cJSON_GetErrorPtr();
+        if (error_ptr != NULL) {
+            printf("Error before: %s\n", error_ptr);
+        }
+        exit(EXIT_FAILURE);
+    }
+}

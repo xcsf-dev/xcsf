@@ -305,14 +305,7 @@ void
 param_json_import(struct XCSF *xcsf, const char *json_str)
 {
     cJSON *json = cJSON_Parse(json_str);
-    if (json == NULL) {
-        printf("Error reading JSON\n");
-        const char *error_ptr = cJSON_GetErrorPtr();
-        if (error_ptr != NULL) {
-            printf("Error before: %s\n", error_ptr);
-        }
-        exit(EXIT_FAILURE);
-    }
+    utils_json_parse_check(json);
     for (cJSON *iter = json->child; iter != NULL; iter = iter->next) {
         if (param_json_import_general(xcsf, iter)) {
             continue;

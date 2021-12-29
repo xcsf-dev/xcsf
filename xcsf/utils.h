@@ -45,6 +45,9 @@ rand_init(void);
 void
 rand_init_seed(const uint32_t seed);
 
+void
+utils_json_parse_check(const cJSON *json);
+
 /**
  * @brief Returns a float clamped within the specified range.
  * @param [in] a The value to be clamped.
