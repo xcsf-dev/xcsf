@@ -1149,7 +1149,7 @@ class XCS
         std::ifstream infile(filename);
         std::stringstream buffer;
         buffer << infile.rdbuf();
-        json_insert(buffer.str().c_str());
+        json_insert(buffer.str());
     }
 };
 
