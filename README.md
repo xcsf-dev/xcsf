@@ -13,7 +13,7 @@ See the project [wiki](https://github.com/rpreen/xcsf/wiki) for details on featu
 [![Latest Version](https://img.shields.io/github/v/release/rpreen/xcsf?style=flat)](https://github.com/rpreen/xcsf/releases)
 [![DOI](https://zenodo.org/badge/28035841.svg)](https://zenodo.org/badge/latestdoi/28035841)
 
-[![Codacy](https://img.shields.io/codacy/grade/2213b9ad4e034482bf058d4598d1618b?logo=codacy&style=flat)](https://www.codacy.com/app/rpreen/xcsf)
+[![Codacy](https://img.shields.io/codacy/grade/2213b9ad4e034482bf058d4598d1618b?logo=codacy&style=flat)](https://www.codacy.com/gh/rpreen/xcsf/dashboard)
 [![LGTM](https://img.shields.io/lgtm/grade/cpp/g/rpreen/xcsf.svg?logo=LGTM&style=flat)](https://lgtm.com/projects/g/rpreen/xcsf/context:cpp)
 [![CodeFactor](https://img.shields.io/codefactor/grade/github/rpreen/xcsf?logo=codefactor&style=flat)](https://www.codefactor.io/repository/github/rpreen/xcsf)
 [![Codiga](https://api.codiga.io/project/2064/status/svg)](https://app.codiga.io/public/project/2064/xcsf/dashboard)
