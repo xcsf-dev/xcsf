@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import random
 from collections import deque
+from typing import Final
 
 import gym
 import matplotlib.pyplot as plt
@@ -38,18 +39,18 @@ import xcsf
 ############################################
 
 env = gym.make("CartPole-v0")
-X_DIM: int = env.observation_space.shape[0]
-N_ACTIONS: int = env.action_space.n
+X_DIM: Final[int] = env.observation_space.shape[0]
+N_ACTIONS: Final[int] = env.action_space.n
 
-SAVE_GIF: bool = False  # for creating a gif
-SAVE_GIF_EPISODES: int = 50
+SAVE_GIF: Final[bool] = False  # for creating a gif
+SAVE_GIF_EPISODES: Final[int] = 50
 frames: list[list[float]] = []
 fscore: list[float] = []
 ftrial: list[int] = []
 
 
 def save_frames_as_gif(path: str = "./", filename: str = "animation.gif") -> None:
-    """Save animation as gif"""
+    """Save animation as gif."""
     rcParams["font.family"] = "monospace"
     fig = plt.figure(dpi=90)
     fig.set_size_inches(3, 3)
@@ -62,7 +63,7 @@ def save_frames_as_gif(path: str = "./", filename: str = "animation.gif") -> Non
         patch.set_data(frames[i])
         strial = str(ftrial[i])
         sscore = str(int(fscore[i]))
-        text = "episode = %3s, score = %3s" % (strial, sscore)
+        text = f"episode = {strial:3s}, score = {sscore:3s}"
         ax.annotate(text, xy=(0, 100), xytext=(-40, 1), fontsize=12, bbox=bbox)
 
     anim = animation.FuncAnimation(
@@ -91,7 +92,7 @@ xcs.SET_SUBSUMPTION = False
 xcs.THETA_EA = 100  # EA invocation frequency
 xcs.THETA_DEL = 100  # min experience before fitness used for deletion
 
-condition_layers: dict = {
+condition_layers: Final[dict] = {
     "layer_0": {  # hidden layer
         "type": "connected",
         "activation": "selu",
@@ -113,11 +114,11 @@ xcs.condition("neural", condition_layers)  # neural network conditions
 xcs.action("integer")  # (dummy) integer actions
 xcs.prediction("rls_quadratic")  # Quadratic RLS
 
-GAMMA: float = 0.95  # discount rate for delayed reward
+GAMMA: Final[float] = 0.95  # discount rate for delayed reward
 epsilon: float = 1  # initial probability of exploring
-EPSILON_MIN: float = 0.1  # the minimum exploration rate
-EPSILON_DECAY: float = 0.98  # the decay of exploration after each batch replay
-REPLAY_TIME: int = 1  # perform replay update every n episodes
+EPSILON_MIN: Final[float] = 0.1  # the minimum exploration rate
+EPSILON_DECAY: Final[float] = 0.98  # the decay of exploration after each batch replay
+REPLAY_TIME: Final[int] = 1  # perform replay update every n episodes
 
 xcs.print_params()
 
@@ -126,15 +127,15 @@ xcs.print_params()
 #####################
 
 total_steps: int = 0  # total number of steps performed
-MAX_EPISODES: int = 2000  # maximum number of episodes to run
-N: int = 100  # number of episodes to average performance
+MAX_EPISODES: Final[int] = 2000  # maximum number of episodes to run
+N: Final[int] = 100  # number of episodes to average performance
 memory: deque[tuple[np.ndarray, int, float, np.ndarray, bool]] = deque(maxlen=50000)
 scores: deque[float] = deque(maxlen=N)  # used to calculate moving average
 
 
 def replay(replay_size: int = 5000) -> None:
     """Performs experience replay updates"""
-    batch_size: int = min(len(memory), replay_size)
+    batch_size: Final[int] = min(len(memory), replay_size)
     batch = random.sample(memory, batch_size)
     for state, action, reward, next_state, done in batch:
         y_target = reward
@@ -182,7 +183,7 @@ def episode(episode_nr: int, create_gif: bool) -> tuple[float, int]:
 
 # learning episodes
 for ep in range(MAX_EPISODES):
-    gif = False
+    gif: bool = False
     if SAVE_GIF and ep % SAVE_GIF_EPISODES == 0:
         gif = True
     # execute a single episode
@@ -195,14 +196,18 @@ for ep in range(MAX_EPISODES):
     scores.append(ep_score)
     mean_score = np.mean(scores)
     print(
-        "episodes=%d steps=%d score=%.2f epsilon=%.5f error=%.5f msize=%.2f"
-        % (ep, total_steps, mean_score, epsilon, xcs.error(), xcs.mset_size())
+        f"episodes={ep} "
+        f"steps={total_steps} "
+        f"score={mean_score:.2f} "
+        f"epsilon={epsilon:.5f} "
+        f"error={xcs.error():.5f} "
+        f"msize={xcs.mset_size():.2f}"
     )
     # is the problem solved?
     if ep > N and mean_score > env.spec.reward_threshold:
         print(
-            "solved after %d episodes: mean score %.2f > %.2f"
-            % (ep, mean_score, env.spec.reward_threshold)
+            f"solved after {ep} episodes: "
+            f"mean score {mean_score:.2f} > {env.spec.reward_threshold:.2f}"
         )
         break
     # decay the exploration rate

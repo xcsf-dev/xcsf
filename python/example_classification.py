@@ -26,6 +26,8 @@ single dummy action is performed such that [A] = [M].
 
 from __future__ import annotations
 
+from typing import Final
+
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import fetch_openml
@@ -42,9 +44,9 @@ import xcsf
 
 # Load USPS data from https://www.openml.org/d/41082
 data = fetch_openml(data_id=41082)  # 256 features, 10 classes, 9298 instances
-INPUT_HEIGHT: int = 16
-INPUT_WIDTH: int = 16
-INPUT_CHANNELS: int = 1
+INPUT_HEIGHT: Final[int] = 16
+INPUT_WIDTH: Final[int] = 16
+INPUT_CHANNELS: Final[int] = 1
 
 # split into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(
@@ -72,16 +74,16 @@ y_test = onehot_encoder.transform(y_test.reshape(-1, 1))
 # 10% of training for validation
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1)
 
-print("X_train shape = " + str(np.shape(X_train)))
-print("y_train shape = " + str(np.shape(y_train)))
-print("X_val shape = " + str(np.shape(X_val)))
-print("y_val shape = " + str(np.shape(y_val)))
-print("X_test shape = " + str(np.shape(X_test)))
-print("y_test shape = " + str(np.shape(y_test)))
+print(f"X_train shape = {np.shape(X_train)}")
+print(f"y_train shape = {np.shape(y_train)}")
+print(f"X_val shape = {np.shape(X_val)}")
+print(f"y_val shape = {np.shape(y_val)}")
+print(f"X_test shape = {np.shape(X_test)}")
+print(f"y_test shape = {np.shape(y_test)}")
 
 # get number of input and output variables
-X_DIM: int = np.shape(X_train)[1]
-Y_DIM: int = np.shape(y_train)[1]
+X_DIM: Final[int] = np.shape(X_train)[1]
+Y_DIM: Final[int] = np.shape(y_train)[1]
 
 ###################
 # Initialise XCSF
@@ -101,21 +103,21 @@ xcs.THETA_EA = 100
 xcs.THETA_DEL = 100
 xcs.action("integer")  # (dummy) integer actions
 
-ACTIVATION: str = "selu"
-SGD_WEIGHTS: bool = True
-EVOLVE_WEIGHTS: bool = True
-EVOLVE_CONNECT: bool = True
-EVOLVE_ETA: bool = True
-EVOLVE_NEURONS: bool = True
-ETA: float = 0.01
-ETA_MIN: float = 0.00001
-MOMENTUM: float = 0.9
-DECAY: float = 0
-N_INIT: int = 5
-N_MAX: int = 100
-MAX_GROW: int = 1
+ACTIVATION: Final[str] = "selu"
+SGD_WEIGHTS: Final[bool] = True
+EVOLVE_WEIGHTS: Final[bool] = True
+EVOLVE_CONNECT: Final[bool] = True
+EVOLVE_ETA: Final[bool] = True
+EVOLVE_NEURONS: Final[bool] = True
+ETA: Final[float] = 0.01
+ETA_MIN: Final[float] = 0.00001
+MOMENTUM: Final[float] = 0.9
+DECAY: Final[float] = 0
+N_INIT: Final[int] = 5
+N_MAX: Final[int] = 100
+MAX_GROW: Final[int] = 1
 
-condition_layers: dict = {
+CONDITION_LAYERS: Final[dict] = {
     "layer_0": {  # hidden layer
         "type": "connected",
         "activation": ACTIVATION,
@@ -134,9 +136,9 @@ condition_layers: dict = {
         "n_init": 1,
     },
 }
-xcs.condition("neural", condition_layers)  # neural network conditions
+xcs.condition("neural", CONDITION_LAYERS)  # neural network conditions
 
-layer_conv: dict = {
+LAYER_CONV: Final[dict] = {
     "type": "convolutional",
     "activation": ACTIVATION,
     "sgd_weights": SGD_WEIGHTS,
@@ -159,7 +161,7 @@ layer_conv: dict = {
     "channels": INPUT_CHANNELS,
 }
 
-layer_maxpool: dict = {
+LAYER_MAXPOOL: Final[dict] = {
     "type": "maxpool",
     "stride": 2,
     "size": 2,
@@ -169,7 +171,7 @@ layer_maxpool: dict = {
     "channels": INPUT_CHANNELS,
 }
 
-layer_connected: dict = {
+LAYER_CONNECTED: Final[dict] = {
     "type": "connected",
     "activation": ACTIVATION,
     "sgd_weights": SGD_WEIGHTS,
@@ -186,12 +188,12 @@ layer_connected: dict = {
     "n_max": N_MAX,
 }
 
-prediction_layers: dict = {
-    "layer_0": layer_conv,
-    "layer_1": layer_maxpool,
-    "layer_2": layer_conv,
-    "layer_3": layer_maxpool,
-    "layer_4": layer_connected,
+PREDICTION_LAYERS: Final[dict] = {
+    "layer_0": LAYER_CONV,
+    "layer_1": LAYER_MAXPOOL,
+    "layer_2": LAYER_CONV,
+    "layer_3": LAYER_MAXPOOL,
+    "layer_4": LAYER_CONNECTED,
     "layer_out1": {  # output layer - softmax composed of two layers
         "type": "connected",
         "activation": "linear",
@@ -210,7 +212,7 @@ prediction_layers: dict = {
         "scale": 1,
     },
 }
-xcs.prediction("neural", prediction_layers)  # neural network predictions
+xcs.prediction("neural", PREDICTION_LAYERS)  # neural network predictions
 
 xcs.print_params()
 
@@ -218,7 +220,7 @@ xcs.print_params()
 # Run experiment
 ##################################
 
-N: int = 100  # 100,000 trials
+N: Final[int] = 100  # 100,000 trials
 trials: np.ndarray = np.zeros(N)
 psize: np.ndarray = np.zeros(N)
 msize: np.ndarray = np.zeros(N)
@@ -240,13 +242,12 @@ for i in range(N):
         xcs.store()
         val_min = val_err[i]
         val_trial = trials[i]
-    # update status
-    status = "trials=%d train_err=%.5f val_err=%.5f psize=%d msize=%.1f" % (
-        trials[i],
-        train_err[i],
-        val_err[i],
-        psize[i],
-        msize[i],
+    status = (  # update status
+        f"trials={trials[i]:.0f} "
+        f"train_err={train_err[i]:.5f} "
+        f"val_err={val_err[i]:.5f} "
+        f"psize={psize[i]:.1f} "
+        f"msize={msize[i]:.1f}"
     )
     bar.set_description(status)
     bar.refresh()
@@ -255,7 +256,7 @@ bar.close()
 
 # final XCSF test score
 print("*****************************")
-print("Restoring system from trial %d with val_err=%.5f" % (val_trial, val_min))
+print(f"Restoring system from trial {val_trial:.0f} with val_mse={val_min:.5f}")
 xcs.retrieve()
 pred = xcs.predict(X_test)  # soft max predictions
 pred = np.argmax(pred, axis=1)  # select most likely class

@@ -25,6 +25,7 @@ conditions, linear least squares predictions, and integer actions.
 from __future__ import annotations
 
 import random
+from typing import Final
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -47,15 +48,15 @@ class Mux:
 
     def __init__(self, n_bits: int) -> None:
         """Constructs a new real-multiplexer problem of maximum size n_bits."""
-        self.n_bits: int = n_bits  #: total number of bits
-        self.n_actions: int = 2  #: total number of actions
+        self.n_bits: Final[int] = n_bits  #: total number of bits
+        self.n_actions: Final[int] = 2  #: total number of actions
         self.state: np.ndarray = np.zeros(n_bits)  #: current mux state
-        self.max_payoff: float = 1  #: reward for a correct prediction
+        self.max_payoff: Final[float] = 1  #: reward for a correct prediction
         self.pos_bits: int = 1  #: number of addressing bits
         while self.pos_bits + pow(2, self.pos_bits) <= self.n_bits:
             self.pos_bits += 1
         self.pos_bits -= 1
-        print(str(self.n_bits) + " bits, " + str(self.pos_bits) + " position bits")
+        print(f"{self.n_bits} bits, {self.pos_bits} position bits")
 
     def reset(self) -> None:
         """Generates a random real-multiplexer state."""
@@ -64,7 +65,7 @@ class Mux:
 
     def answer(self) -> int:
         """Returns the (discretised) bit addressed by the current mux state."""
-        pos = self.pos_bits
+        pos: int = self.pos_bits
         for k in range(self.pos_bits):
             if self.state[k] > 0.5:
                 pos += pow(2, self.pos_bits - 1 - k)
@@ -81,9 +82,9 @@ class Mux:
 
 # Create new real-multiplexer problem
 mux: Mux = Mux(6)
-X_DIM: int = mux.n_bits
-N_ACTIONS: int = mux.n_actions
-MAX_PAYOFF: float = mux.max_payoff
+X_DIM: Final[int] = mux.n_bits
+N_ACTIONS: Final[int] = mux.n_actions
+MAX_PAYOFF: Final[float] = mux.max_payoff
 
 ###################
 # Initialise XCSF
@@ -112,8 +113,8 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-PERF_TRIALS: int = 1000  # number of trials over which to average performance
-N: int = 100  # 100,000 trials in total to run
+PERF_TRIALS: Final[int] = 1000  # number of trials over which to average performance
+N: Final[int] = 100  # 100,000 trials in total to run
 trials: np.ndarray = np.zeros(N)
 psize: np.ndarray = np.zeros(N)
 msize: np.ndarray = np.zeros(N)
@@ -152,13 +153,12 @@ def run_experiment() -> None:
         trials[i] = xcs.time()  # number of learning updates performed
         psize[i] = xcs.pset_size()  # current population size
         msize[i] = xcs.mset_size()  # avg match set size
-        # update status
-        status = "trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f" % (
-            trials[i],
-            performance[i],
-            error[i],
-            psize[i],
-            msize[i],
+        status = (  # update status
+            f"trials={trials[i]:.0f} "
+            f"performance={performance[i]:.5f} "
+            f"error={error[i]:.5f} "
+            f"psize={psize[i]:.1f} "
+            f"msize={msize[i]:.1f}"
         )
         bar.set_description(status)
         bar.refresh()

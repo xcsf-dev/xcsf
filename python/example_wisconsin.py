@@ -26,10 +26,11 @@ actions.
 from __future__ import annotations
 
 import random
+from typing import Final
 
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
 import numpy as np
+from matplotlib import ticker
 from sklearn.datasets import load_breast_cancer
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
 from sklearn.model_selection import train_test_split
@@ -46,12 +47,12 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 X_train = minmax_scale(X_train, feature_range=(0, 1))
 X_test = minmax_scale(X_test, feature_range=(0, 1))
-X_DIM: int = 30
-N_ACTIONS: int = 2
-MAX_PAYOFF: float = 1
-train_len: int = len(X_train)
-test_len: int = len(X_test)
-print("train len = %d, test len = %d" % (train_len, test_len))
+X_DIM: Final[int] = 30
+N_ACTIONS: Final[int] = 2
+MAX_PAYOFF: Final[float] = 1
+train_len: Final[int] = len(X_train)
+test_len: Final[int] = len(X_test)
+print(f"train len = {train_len}, test len = {test_len}")
 
 ###################
 # Initialise XCSF
@@ -74,7 +75,7 @@ xcs.print_params()
 # Execute experiment
 #####################
 
-N: int = 100  # 100,000 trials
+N: Final[int] = 100  # 100,000 trials
 trials: np.ndarray = np.zeros(N)
 psize: np.ndarray = np.zeros(N)
 msize: np.ndarray = np.zeros(N)
@@ -105,13 +106,12 @@ for i in range(N):
     trials[i] = xcs.time()  # number of trials so far
     psize[i] = xcs.pset_size()  # current population size
     msize[i] = xcs.mset_size()  # avg match set size
-    # update status
-    status = "trials=%d performance=%.5f error=%.5f psize=%d msize=%.1f" % (
-        trials[i],
-        performance[i],
-        error[i],
-        psize[i],
-        msize[i],
+    status = (  # update status
+        f"trials={trials[i]:.0f} "
+        f"performance={performance[i]:.5f} "
+        f"error={error[i]:.5f} "
+        f"psize={psize[i]:.1f} "
+        f"msize={msize[i]:.1f}"
     )
     bar.set_description(status)
     bar.refresh()
@@ -159,8 +159,8 @@ plt.show()
 # Compare with alternatives
 ############################
 
-print("XCSF accuracy: " + str(accuracy_score(y_test, y_pred)))
-print("XCSF f1: " + str(f1_score(y_test, y_pred, average=None)))
+print(f"XCSF accuracy: {accuracy_score(y_test, y_pred)}")
+print(f"XCSF f1: {f1_score(y_test, y_pred, average=None)}")
 
 mlp = MLPClassifier(
     hidden_layer_sizes=(100,),
@@ -171,11 +171,11 @@ mlp = MLPClassifier(
 )
 mlp.fit(X_train, y_train)
 y_pred = mlp.predict(X_test)
-print("MLP accuracy: " + str(accuracy_score(y_test, y_pred)))
-print("MLP f1: " + str(f1_score(y_test, y_pred, average=None)))
+print(f"MLP accuracy: {accuracy_score(y_test, y_pred)}")
+print(f"MLP f1: {f1_score(y_test, y_pred, average=None)}")
 
 dtc = DecisionTreeClassifier()
 dtc.fit(X_train, y_train)
 y_pred = dtc.predict(X_test)
-print("Decision tree accuracy: " + str(accuracy_score(y_test, y_pred)))
-print("Decision tree f1: " + str(f1_score(y_test, y_pred, average=None)))
+print(f"Decision tree accuracy: {accuracy_score(y_test, y_pred)}")
+print(f"Decision tree f1: {f1_score(y_test, y_pred, average=None)}")

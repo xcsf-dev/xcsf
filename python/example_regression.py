@@ -25,6 +25,8 @@ performed such that [A] = [M].
 
 from __future__ import annotations
 
+from typing import Final
+
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import fetch_openml
@@ -73,8 +75,8 @@ y_train = minmax_scale(y_train, feature_range=(0, 1))
 y_test = minmax_scale(y_test, feature_range=(0, 1))
 
 # get number of input and output variables
-X_DIM: int = np.shape(X_train)[1]
-Y_DIM: int = np.shape(y_train)[1]
+X_DIM: Final[int] = np.shape(X_train)[1]
+Y_DIM: Final[int] = np.shape(y_train)[1]
 
 # 10% of training for validation
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1)
@@ -104,16 +106,16 @@ xcs.THETA_DEL = 50  # min experience before fitness used in deletion
 xcs.BETA = 0.1  # update rate for error, etc.
 xcs.action("integer")  # (dummy) integer actions
 
-tree_args: dict = {
+TREE_ARGS: Final[dict] = {
     "min_constant": 0,  # minimum value of a constant
     "max_constant": 1,  # maximum value of a constant
     "n_constants": 100,  # number of (global) constants
     "init_depth": 5,  # initial tree depth
     "max_len": 10000,  # maximum initial length
 }
-xcs.condition("tree_gp", tree_args)  # GP tree conditions
+xcs.condition("tree_gp", TREE_ARGS)  # GP tree conditions
 
-prediction_layers: dict = {
+PREDICTION_LAYERS: Final[dict] = {
     "layer_0": {  # hidden layer
         "type": "connected",
         "activation": "relu",
@@ -140,7 +142,7 @@ prediction_layers: dict = {
         "n_init": Y_DIM,
     },
 }
-xcs.prediction("neural", prediction_layers)  # neural network predictions
+xcs.prediction("neural", PREDICTION_LAYERS)  # neural network predictions
 
 xcs.print_params()
 
@@ -148,14 +150,14 @@ xcs.print_params()
 # Run experiment
 #################
 
-N: int = 200  # 200,000 trials
+N: Final[int] = 200  # 200,000 trials
 trials: np.ndarray = np.zeros(N)
 psize: np.ndarray = np.zeros(N)
 msize: np.ndarray = np.zeros(N)
 train_mse: np.ndarray = np.zeros(N)
 val_mse: np.ndarray = np.zeros(N)
 
-VAL_PERIOD: int = 10  # validation mean moving average length
+VAL_PERIOD: Final[int] = 10  # validation mean moving average length
 val_min: float = 999999  # minimum validation error
 val_trial: int = 0  # trial number the system was checkpointed
 
@@ -174,13 +176,12 @@ for i in range(N):
             xcs.store()
             val_min = val_mean
             val_trial = trials[i]
-    # update status
-    status = "trials=%d train_mse=%.5f val_mse=%.5f psize=%d msize=%.1f" % (
-        trials[i],
-        train_mse[i],
-        val_mse[i],
-        psize[i],
-        msize[i],
+    status = (  # update status
+        f"trials={trials[i]:.0f} "
+        f"train_mse={train_mse[i]:.5f} "
+        f"val_mse={val_mse[i]:.5f} "
+        f"psize={psize[i]:.1f} "
+        f"msize={msize[i]:.1f}"
     )
     bar.set_description(status)
     bar.refresh()
@@ -206,18 +207,18 @@ plt.show()
 
 # final XCSF test score
 print("*****************************")
-print("Restoring system from trial %d with val_mse=%.5f" % (val_trial, val_min))
+print(f"Restoring system from trial {val_trial:.0f} with val_mse={val_min:.5f}")
 xcs.retrieve()
 xcsf_pred = xcs.predict(X_test)
 xcsf_mse = mean_squared_error(xcsf_pred, y_test)
-print("XCSF Test MSE = %.4f" % (xcsf_mse))
+print(f"XCSF Test MSE = {xcsf_mse:.4f}")
 
 # compare with linear regression
 lm = LinearRegression()
 lm.fit(X_train, y_train)
 lm_pred = lm.predict(X_test)
 lm_mse = mean_squared_error(lm_pred, y_test)
-print("Linear regression Test MSE = %.4f" % (lm_mse))
+print(f"Linear regression Test MSE = {lm_mse:.4f}")
 
 # compare with MLP regressor
 X_train = np.vstack((X_train, X_val))
@@ -235,7 +236,7 @@ mlp = MLPRegressor(
 mlp.fit(X_train, y_train.ravel())
 mlp_pred = mlp.predict(X_test)
 mlp_mse = mean_squared_error(mlp_pred, y_test)
-print("MLP Regressor Test MSE = %.4f" % (mlp_mse))
+print(f"MLP Regressor Test MSE = {mlp_mse:.4f}")
 
 #####################################
 # Show some predictions vs. answers
