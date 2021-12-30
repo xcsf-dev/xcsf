@@ -25,7 +25,6 @@ conditions, linear least squares predictions, and integer actions.
 from __future__ import annotations
 
 import random
-from typing import Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -122,7 +121,7 @@ performance: np.ndarray = np.zeros(N)
 error: np.ndarray = np.zeros(N)
 
 
-def egreedy_action(state: np.ndarray, epsilon: float) -> Tuple[int, float]:
+def egreedy_action(state: np.ndarray, epsilon: float) -> tuple[int, float]:
     """Selects an action using an epsilon greedy policy."""
     if np.random.rand() < epsilon:
         return random.randrange(N_ACTIONS), 0

@@ -22,8 +22,6 @@ Classes for visualising classifier knowledge representations.
 
 from __future__ import annotations
 
-from typing import List, Optional
-
 import graphviz
 
 
@@ -32,10 +30,10 @@ class TreeViz:
 
     def __init__(
         self,
-        tree: List[str],
+        tree: list[str],
         filename: str,
-        note: Optional[str] = None,
-        feature_names: Optional[List[str]] = None,
+        note: str | None = None,
+        feature_names: list[str] | None = None,
     ) -> None:
         """
         Plots a tree with graphviz, saving to a file.
@@ -51,8 +49,8 @@ class TreeViz:
         feature_names : List[str], optional
             Optional list of feature names.
         """
-        self.feature_names: Optional[List[str]] = feature_names
-        self.tree: List[str] = tree
+        self.feature_names: list[str] | None = feature_names
+        self.tree: list[str] = tree
         self.cnt: int = 0
         self.pos: int = 0
         self.gviz = graphviz.Graph("G", filename=filename + ".gv")
@@ -105,8 +103,8 @@ class DGPViz:
         self,
         graph: dict,
         filename: str,
-        note: Optional[str] = None,
-        feature_names: Optional[List[str]] = None,
+        note: str | None = None,
+        feature_names: list[str] | None = None,
     ) -> None:
         """
         Plots a DGP graph with graphviz, saving to a file.
@@ -122,11 +120,11 @@ class DGPViz:
         feature_names : List[str], optional
             Optional list of feature names.
         """
-        self.feature_names: Optional[List[str]] = feature_names
+        self.feature_names: list[str] | None = feature_names
         self.n: int = graph["n"]
         self.n_inputs: int = graph["n_inputs"]
-        self.functions: List[str] = graph["functions"]
-        self.connectivity: List[int] = graph["connectivity"]
+        self.functions: list[str] = graph["functions"]
+        self.connectivity: list[int] = graph["connectivity"]
         self.k: int = int(len(self.connectivity) / self.n)
         self.gviz = graphviz.Digraph("G", filename=filename + ".gv")
         self.draw()

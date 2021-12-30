@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import random
 from collections import deque
-from typing import Deque, List, Tuple
+from typing import Deque
 
 import gym
 import matplotlib.pyplot as plt
@@ -44,9 +44,9 @@ N_ACTIONS: int = env.action_space.n
 
 SAVE_GIF: bool = False  # for creating a gif
 SAVE_GIF_EPISODES: int = 50
-frames: List[List[float]] = []
-fscore: List[float] = []
-ftrial: List[int] = []
+frames: list[list[float]] = []
+fscore: list[float] = []
+ftrial: list[int] = []
 
 
 def save_frames_as_gif(path: str = "./", filename: str = "animation.gif") -> None:
@@ -129,7 +129,7 @@ xcs.print_params()
 total_steps: int = 0  # total number of steps performed
 MAX_EPISODES: int = 2000  # maximum number of episodes to run
 N: int = 100  # number of episodes to average performance
-memory: Deque[Tuple[np.ndarray, int, float, np.ndarray, bool]] = deque(maxlen=50000)
+memory: Deque[tuple[np.ndarray, int, float, np.ndarray, bool]] = deque(maxlen=50000)
 scores: Deque[float] = deque(maxlen=N)  # used to calculate moving average
 
 
@@ -155,7 +155,7 @@ def egreedy_action(state: np.ndarray) -> int:
     return int(np.argmax(prediction_array))
 
 
-def episode(episode_nr: int, create_gif: bool) -> Tuple[float, int]:
+def episode(episode_nr: int, create_gif: bool) -> tuple[float, int]:
     """Executes a single episode, saving to memory buffer"""
     episode_score: int = 0
     episode_steps: int = 0

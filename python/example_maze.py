@@ -27,7 +27,6 @@ import os
 import random
 import sys
 from turtle import Screen, Turtle
-from typing import List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -70,14 +69,14 @@ class Maze:
         "mazef4": 4.5,
     }
     MAX_PAYOFF: float = 1  #: reward for finding the goal
-    X_MOVES: List[int] = [0, 1, 1, 1, 0, -1, -1, -1]  #: possible moves on x-axis
-    Y_MOVES: List[int] = [-1, -1, 0, 1, 1, 1, 0, -1]  #: possible moves on y-axis
+    X_MOVES: list[int] = [0, 1, 1, 1, 0, -1, -1, -1]  #: possible moves on x-axis
+    Y_MOVES: list[int] = [-1, -1, 0, 1, 1, 1, 0, -1]  #: possible moves on y-axis
 
     def __init__(self, filename: str) -> None:
         """Constructs a new maze problem given a maze file name."""
         self.name: str = filename  #: maze name
-        self.maze: List[List[str]] = []  #: maze as read from the input file
-        line: List[str] = []
+        self.maze: list[list[str]] = []  #: maze as read from the input file
+        line: list[str] = []
         path = os.path.normpath("../env/maze/" + filename + ".txt")
         with open(path) as f:
             while True:
@@ -133,7 +132,7 @@ class Maze:
                 self.state[spos] = self.sensor(x, y)
                 spos += 1
 
-    def step(self, act: int) -> Tuple[np.ndarray, float, bool]:
+    def step(self, act: int) -> tuple[np.ndarray, float, bool]:
         """
         Takes a step in the maze, performing the specified action.
         Returns next state, immediate reward and whether terminal state reached.
@@ -206,7 +205,7 @@ steps: np.ndarray = np.zeros(N)
 error: np.ndarray = np.zeros(N)
 
 
-def trial(env: Maze, explore: bool) -> Tuple[int, float]:
+def trial(env: Maze, explore: bool) -> tuple[int, float]:
     """Executes a single trial/episode."""
     err: float = 0
     cnt: int = 0
