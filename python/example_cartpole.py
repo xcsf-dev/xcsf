@@ -25,7 +25,6 @@ from __future__ import annotations
 
 import random
 from collections import deque
-from typing import Deque
 
 import gym
 import matplotlib.pyplot as plt
@@ -129,8 +128,8 @@ xcs.print_params()
 total_steps: int = 0  # total number of steps performed
 MAX_EPISODES: int = 2000  # maximum number of episodes to run
 N: int = 100  # number of episodes to average performance
-memory: Deque[tuple[np.ndarray, int, float, np.ndarray, bool]] = deque(maxlen=50000)
-scores: Deque[float] = deque(maxlen=N)  # used to calculate moving average
+memory: deque[tuple[np.ndarray, int, float, np.ndarray, bool]] = deque(maxlen=50000)
+scores: deque[float] = deque(maxlen=N)  # used to calculate moving average
 
 
 def replay(replay_size: int = 5000) -> None:
