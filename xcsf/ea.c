@@ -125,7 +125,7 @@ ea_add(struct XCSF *xcsf, const struct Set *set, struct Cl *c1p, struct Cl *c2p,
 }
 
 /**
- * @brief Selects a classifier from the set via roulete wheel.
+ * @brief Selects a classifier from the set via roulette wheel.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] set The set to select from.
  * @param [in] fit_sum The sum of all the fitnesses in the set.

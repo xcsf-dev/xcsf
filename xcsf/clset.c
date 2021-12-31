@@ -56,7 +56,7 @@ clset_pset_never_match(const struct XCSF *xcsf, struct Clist **del,
  * two classifiers are selected using roulette wheel selection with the
  * deletion vote and the rule with the largest condition + prediction size is
  * chosen. For fixed-length representations, the effect is the same as one
- * roulete spin.
+ * roulette spin.
  * @param [in] xcsf The XCSF data structure.
  * @param [out] del A pointer to the rule to be deleted.
  * @param [out] delprev A pointer to the rule previous to the one being deleted.
