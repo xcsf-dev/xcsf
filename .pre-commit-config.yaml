@@ -20,8 +20,12 @@ repos:
     rev: v2.1.0
     hooks:
       - id: codespell
-        exclude: ".txt"
         args: ["-L", "larg"]
+        exclude: >
+            (?x)^(
+                .*\.txt|
+                .*\.ipynb
+            )$
   - repo: https://github.com/pre-commit/mirrors-clang-format
     rev: v13.0.0
     hooks:
