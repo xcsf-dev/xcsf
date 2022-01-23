@@ -40,3 +40,4 @@ cmake_install.cmake
 cmake_uninstall.cmake
 ehthumbs.db
 tags
+.ipynb_checkpoints
