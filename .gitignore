@@ -1,3 +1,4 @@
+*.*.pdf
 *.*.swp
 *.7z
 *.a
@@ -7,6 +8,7 @@
 *.dmg
 *.exe
 *.filters
+*.gv
 *.gz
 *.iso
 *.jar
