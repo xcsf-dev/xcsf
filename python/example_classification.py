@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2022 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,10 +54,14 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # numpy
-X_train = np.asarray(X_train)
-X_test = np.asarray(X_test)
-y_train = np.asarray(y_train)
-y_test = np.asarray(y_test)
+X_train = np.asarray(X_train, dtype=np.float64)
+X_test = np.asarray(X_test, dtype=np.float64)
+y_train = np.asarray(y_train, dtype=np.int16)
+y_test = np.asarray(y_test, dtype=np.int16)
+
+# USPS labels start at 1
+y_train = np.subtract(y_train, 1)
+y_test = np.subtract(y_test, 1)
 
 # scale features [0,1]
 scaler = MinMaxScaler()
