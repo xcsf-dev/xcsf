@@ -48,45 +48,37 @@ np.set_printoptions(suppress=True)
 # Load data from https://www.openml.org/d/189
 data = fetch_openml(data_id=189)
 
-# split into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(
-    data.data, data.target, test_size=0.1
-)
-
 # numpy
-X_train = np.asarray(X_train)
-X_test = np.asarray(X_test)
-y_train = np.asarray(y_train)
-y_test = np.asarray(y_test)
-
-# reshape into 2D arrays
-if len(np.shape(y_train)) == 1:
-    y_train = y_train.reshape(-1, 1)
-    y_test = y_test.reshape(-1, 1)
+X = np.asarray(data.data, dtype=np.float64)
+y = np.asarray(data.target, dtype=np.float64)
 
 # normalise inputs (zero mean and unit variance)
 scaler = StandardScaler()
-scaler.fit(X_train)
-X_train = scaler.transform(X_train)
-X_test = scaler.transform(X_test)
+scaler.fit_transform(X)
 
 # scale outputs [0,1]
-y_train = minmax_scale(y_train, feature_range=(0, 1))
-y_test = minmax_scale(y_test, feature_range=(0, 1))
+y = minmax_scale(y, feature_range=(0, 1))
+
+# reshape into 2D arrays
+if len(np.shape(y)) == 1:
+    y = y.reshape(-1, 1)
+
+# split into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
+
+# 10% of training for validation
+X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1)
 
 # get number of input and output variables
 X_DIM: Final[int] = np.shape(X_train)[1]
 Y_DIM: Final[int] = np.shape(y_train)[1]
 
-# 10% of training for validation
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1)
-
-print("X_train shape = " + str(np.shape(X_train)))
-print("y_train shape = " + str(np.shape(y_train)))
-print("X_val shape = " + str(np.shape(X_val)))
-print("y_val shape = " + str(np.shape(y_val)))
-print("X_test shape = " + str(np.shape(X_test)))
-print("y_test shape = " + str(np.shape(y_test)))
+print(f"X_train shape = {np.shape(X_train)}")
+print(f"y_train shape = {np.shape(y_train)}")
+print(f"X_val shape = {np.shape(X_val)}")
+print(f"y_val shape = {np.shape(y_val)}")
+print(f"X_test shape = {np.shape(X_test)}")
+print(f"y_test shape = {np.shape(y_test)}")
 
 ###################
 # Initialise XCSF
