@@ -48,35 +48,31 @@ INPUT_HEIGHT: Final[int] = 16
 INPUT_WIDTH: Final[int] = 16
 INPUT_CHANNELS: Final[int] = 1
 
-# split into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(
-    data.data, data.target, test_size=0.1
-)
-
 # numpy
-X_train = np.asarray(X_train, dtype=np.float64)
-X_test = np.asarray(X_test, dtype=np.float64)
-y_train = np.asarray(y_train, dtype=np.int16)
-y_test = np.asarray(y_test, dtype=np.int16)
-
-# USPS labels start at 1
-y_train = np.subtract(y_train, 1)
-y_test = np.subtract(y_test, 1)
+X = np.asarray(data.data, dtype=np.float64)
+y = np.asarray(data.target, dtype=np.int16)
 
 # scale features [0,1]
 scaler = MinMaxScaler()
-scaler.fit(X_train)
-X_train = scaler.transform(X_train)
-X_test = scaler.transform(X_test)
+scaler.fit_transform(X)
+
+# USPS labels start at 1
+y = np.subtract(y, 1)
 
 # one hot encode labels
 onehot_encoder = OneHotEncoder(sparse=False, categories="auto")
-onehot_encoder.fit(y_train.reshape(-1, 1))
-y_train = onehot_encoder.transform(y_train.reshape(-1, 1))
-y_test = onehot_encoder.transform(y_test.reshape(-1, 1))
+onehot_encoder.fit(y.reshape(-1, 1))
+y = onehot_encoder.transform(y.reshape(-1, 1))
+
+# split into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
 
 # 10% of training for validation
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1)
+
+# get number of input and output variables
+X_DIM: Final[int] = np.shape(X_train)[1]
+Y_DIM: Final[int] = np.shape(y_train)[1]
 
 print(f"X_train shape = {np.shape(X_train)}")
 print(f"y_train shape = {np.shape(y_train)}")
@@ -84,10 +80,6 @@ print(f"X_val shape = {np.shape(X_val)}")
 print(f"y_val shape = {np.shape(y_val)}")
 print(f"X_test shape = {np.shape(X_test)}")
 print(f"y_test shape = {np.shape(y_test)}")
-
-# get number of input and output variables
-X_DIM: Final[int] = np.shape(X_train)[1]
-Y_DIM: Final[int] = np.shape(y_train)[1]
 
 ###################
 # Initialise XCSF
