@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2022 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,9 +18,9 @@
 
 """
 This example demonstrates the XCSF supervised learning mechanisms to perform
-regression on the Boston house price dataset. Classifiers are composed of tree
-GP conditions and neural network predictions. A single dummy action is
-performed such that [A] = [M].
+regression on the kin8nm dataset. Classifiers are composed of tree GP
+conditions and neural network predictions. A single dummy action is performed
+such that [A] = [M].
 """
 
 from __future__ import annotations
