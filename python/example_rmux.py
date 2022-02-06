@@ -44,13 +44,11 @@ class Mux:
     the following 2 bits are the (rounded) output.
 
     Example valid lengths: 3, 6, 11, 20, 37, 70, 135, 264.
-
-    When XCSF ternary conditions are used with bits=1, this class becomes the
-    binary multiplexer problem.
     """
 
-    def __init__(self, n_bits: int, payoff_map: bool) -> None:
+    def __init__(self, binary: bool, n_bits: int, payoff_map: bool) -> None:
         """Constructs a new real-multiplexer problem of maximum size n_bits."""
+        self.binary: Final[bool] = binary  #: whether binary or real mux
         self.n_bits: Final[int] = n_bits  #: total number of bits
         self.n_actions: Final[int] = 2  #: total number of actions
         self.state: np.ndarray = np.zeros(n_bits)  #: current mux state
@@ -62,12 +60,18 @@ class Mux:
         self.max_payoff: float = 1  #: reward for a correct prediction
         if payoff_map:
             self.max_payoff = 0.2 + 0.2 * pow(2, self.pos_bits)
+        if self.binary:
+            print("Binary multiplexer:")
+        else:
+            print("Real multiplexer:")
         print(f"{self.n_bits} bits, {self.pos_bits} position bits")
 
     def reset(self) -> None:
         """Generates a random real-multiplexer state."""
         for i in range(self.n_bits):
             self.state[i] = random.random()
+        if self.binary:
+            self.state = np.rint(self.state)
 
     def answer_pos(self) -> int:
         """Returns the position of the bit addressed by the current mux state."""
@@ -108,7 +112,7 @@ class Mux:
 
 
 # Create new real-multiplexer problem
-mux: Mux = Mux(11, False)  # True = use payoff map
+mux: Mux = Mux(binary=False, n_bits=11, payoff_map=False)
 X_DIM: Final[int] = mux.n_bits
 N_ACTIONS: Final[int] = mux.n_actions
 MAX_PAYOFF: Final[float] = mux.max_payoff
