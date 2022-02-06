@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2022 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,44 +44,71 @@ class Mux:
     the following 2 bits are the (rounded) output.
 
     Example valid lengths: 3, 6, 11, 20, 37, 70, 135, 264.
+
+    When XCSF ternary conditions are used with bits=1, this class becomes the
+    binary multiplexer problem.
     """
 
-    def __init__(self, n_bits: int) -> None:
+    def __init__(self, n_bits: int, payoff_map: bool) -> None:
         """Constructs a new real-multiplexer problem of maximum size n_bits."""
         self.n_bits: Final[int] = n_bits  #: total number of bits
         self.n_actions: Final[int] = 2  #: total number of actions
         self.state: np.ndarray = np.zeros(n_bits)  #: current mux state
-        self.max_payoff: Final[float] = 1  #: reward for a correct prediction
         self.pos_bits: int = 1  #: number of addressing bits
         while self.pos_bits + pow(2, self.pos_bits) <= self.n_bits:
             self.pos_bits += 1
         self.pos_bits -= 1
+        self.payoff_map: Final[bool] = payoff_map  #: whether to use a payoff map
+        self.max_payoff: float = 1  #: reward for a correct prediction
+        if payoff_map:
+            self.max_payoff = 0.2 + 0.2 * pow(2, self.pos_bits)
         print(f"{self.n_bits} bits, {self.pos_bits} position bits")
 
     def reset(self) -> None:
         """Generates a random real-multiplexer state."""
-        for k in range(self.n_bits):
-            self.state[k] = random.random()
+        for i in range(self.n_bits):
+            self.state[i] = round(random.random())
 
-    def answer(self) -> int:
-        """Returns the (discretised) bit addressed by the current mux state."""
+    def answer_pos(self) -> int:
+        """Returns the position of the bit addressed by the current mux state."""
         pos: int = self.pos_bits
-        for k in range(self.pos_bits):
-            if self.state[k] > 0.5:
-                pos += pow(2, self.pos_bits - 1 - k)
+        for i in range(self.pos_bits):
+            if self.answer(i) == 1:
+                pos += pow(2, self.pos_bits - 1 - i)
+        return pos
+
+    def answer(self, pos: int) -> int:
+        """Returns the (discretised) bit at a given position in the mux state."""
         if self.state[pos] > 0.5:
             return 1
         return 0
 
-    def execute(self, act: int) -> float:
+    def execute(self, act: int) -> tuple[bool, float]:
         """Returns the reward for performing an action."""
-        if act == self.answer():
-            return self.max_payoff
-        return 0
+        correct: bool = False
+        reward: float = 0
+        pos: Final[int] = self.answer_pos()
+        answer: Final[int] = self.answer(pos)
+        if act == answer:
+            correct = True
+            if self.payoff_map:
+                reward = 0.3 + (pos - self.pos_bits) * 0.2
+                if answer == 1:
+                    reward += 0.1
+            else:
+                reward = self.max_payoff
+        else:
+            if self.payoff_map:
+                reward = (pos - self.pos_bits) * 0.2
+                if answer == 1:
+                    reward += 0.1
+            else:
+                reward = 0
+        return correct, reward
 
 
 # Create new real-multiplexer problem
-mux: Mux = Mux(6)
+mux: Mux = Mux(20, True)  # True = use payoff map
 X_DIM: Final[int] = mux.n_bits
 N_ACTIONS: Final[int] = mux.n_actions
 MAX_PAYOFF: Final[float] = mux.max_payoff
@@ -94,17 +121,22 @@ MAX_PAYOFF: Final[float] = mux.max_payoff
 xcs: xcsf.XCS = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
 xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
-xcs.POP_SIZE = 1000  # maximum population size
+xcs.POP_SIZE = 5000  # maximum population size
+xcs.POP_INIT = False  # use covering to to initialise
 xcs.E0 = 0.01  # target error
 xcs.BETA = 0.2  # classifier parameter update rate
 xcs.THETA_EA = 25  # EA frequency
 xcs.ALPHA = 0.1  # accuracy offset
 xcs.NU = 5  # accuracy slope
-xcs.EA_SUBSUMPTION = True
-xcs.SET_SUBSUMPTION = True
-xcs.THETA_SUB = 100  # minimum experience of a subsumer
+xcs.THETA_SUB = 20  # minimum experience of a subsumer
+xcs.ERR_REDUC = 0.25
+xcs.FIT_REDUC = 0.1
+xcs.EA_SELECT_TYPE = "tournament"
+xcs.EA_SELECT_SIZE = 0.4
+xcs.EA_SUBSUMPTION = False
+xcs.SET_SUBSUMPTION = False
 xcs.action("integer")
-xcs.condition("hyperrectangle", {"min": 0, "max": 1, "spread_min": 0.1})
+xcs.condition("hyperrectangle", {"min": 0, "max": 1, "spread_min": 1.0})
 xcs.prediction("nlms_linear", {"eta": 1, "eta_min": 0.0001, "evolve_eta": True})
 
 xcs.print_params()
@@ -140,13 +172,13 @@ def run_experiment() -> None:
             # explore trial
             mux.reset()
             action, prediction = egreedy_action(mux.state, 1)  # random action
-            reward = mux.execute(action)
+            _, reward = mux.execute(action)
             xcs.fit(mux.state, action, reward)  # update action set, run EA, etc.
             # exploit trial
             mux.reset()
             action, prediction = egreedy_action(mux.state, 0)  # best action
-            reward = mux.execute(action)
-            performance[i] += reward / MAX_PAYOFF
+            correct, reward = mux.execute(action)
+            performance[i] += 1 if correct else 0
             error[i] += abs(reward - prediction) / MAX_PAYOFF
         performance[i] /= float(PERF_TRIALS)
         error[i] /= PERF_TRIALS
