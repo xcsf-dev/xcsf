@@ -67,7 +67,7 @@ class Mux:
     def reset(self) -> None:
         """Generates a random real-multiplexer state."""
         for i in range(self.n_bits):
-            self.state[i] = round(random.random())
+            self.state[i] = random.random()
 
     def answer_pos(self) -> int:
         """Returns the position of the bit addressed by the current mux state."""
@@ -108,7 +108,7 @@ class Mux:
 
 
 # Create new real-multiplexer problem
-mux: Mux = Mux(20, True)  # True = use payoff map
+mux: Mux = Mux(11, False)  # True = use payoff map
 X_DIM: Final[int] = mux.n_bits
 N_ACTIONS: Final[int] = mux.n_actions
 MAX_PAYOFF: Final[float] = mux.max_payoff
