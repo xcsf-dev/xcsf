@@ -122,7 +122,7 @@ xcs: xcsf.XCS = xcsf.XCS(X_DIM, 1, N_ACTIONS)
 
 xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
 xcs.POP_SIZE = 5000  # maximum population size
-xcs.POP_INIT = False  # use covering to to initialise
+xcs.POP_INIT = False  # use covering to initialise
 xcs.E0 = 0.01  # target error
 xcs.BETA = 0.2  # classifier parameter update rate
 xcs.THETA_EA = 25  # EA frequency
