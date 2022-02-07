@@ -19,19 +19,15 @@
 """XCSF Python type stub."""
 
 from __future__ import annotations
+
 import typing
 from typing import Any, Literal, Union
+
 import numpy as np
-from xcsf.utils.types import (
-    EATypes,
-    ActionTypes,
-    ConditionTypes,
-    PredictionTypes,
-    LossTypes,
-    ConditionArgs,
-    PredictionArgs,
-    ActionArgs,
-)
+
+from xcsf.utils.types import (ActionArgs, ActionTypes, ConditionArgs,
+                              ConditionTypes, EATypes, LossTypes,
+                              PredictionArgs, PredictionTypes)
 
 class XCS:
     """XCS class type stub."""
