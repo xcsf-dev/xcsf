@@ -36,15 +36,15 @@ repos:
       - id: cmake-format
       - id: cmake-lint
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.30.0
+    rev: v2.31.0
     hooks:
       - id: pyupgrade
   - repo: https://github.com/psf/black
-    rev: 21.12b0
+    rev: 22.1.0
     hooks:
       - id: black-jupyter
-  - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.9.3
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.10.1
     hooks:
       - id: isort
   - repo: https://github.com/pycqa/flake8
