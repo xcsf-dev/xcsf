@@ -39,14 +39,15 @@ repos:
     rev: v2.31.0
     hooks:
       - id: pyupgrade
-  - repo: https://github.com/psf/black
-    rev: 22.1.0
-    hooks:
-      - id: black-jupyter
   - repo: https://github.com/PyCQA/isort
     rev: 5.10.1
     hooks:
       - id: isort
+        args: ["--profile", "black"]
+  - repo: https://github.com/psf/black
+    rev: 22.1.0
+    hooks:
+      - id: black-jupyter
   - repo: https://github.com/pycqa/flake8
     rev: 4.0.1
     hooks:

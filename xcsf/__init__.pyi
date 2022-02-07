@@ -25,9 +25,16 @@ from typing import Any, Literal, Union
 
 import numpy as np
 
-from xcsf.utils.types import (ActionArgs, ActionTypes, ConditionArgs,
-                              ConditionTypes, EATypes, LossTypes,
-                              PredictionArgs, PredictionTypes)
+from xcsf.utils.types import (
+    ActionArgs,
+    ActionTypes,
+    ConditionArgs,
+    ConditionTypes,
+    EATypes,
+    LossTypes,
+    PredictionArgs,
+    PredictionTypes,
+)
 
 class XCS:
     """XCS class type stub."""
