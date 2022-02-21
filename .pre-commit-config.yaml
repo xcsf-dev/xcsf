@@ -6,16 +6,10 @@ repos:
     hooks:
       - id: check-added-large-files
       - id: check-merge-conflict
-      - id: check-yaml
       - id: end-of-file-fixer
       - id: mixed-line-ending
       - id: trailing-whitespace
       - id: check-json
-      - id: pretty-format-json
-        args:
-          - --indent=4
-          - --no-sort-keys
-          - --autofix
   - repo: https://github.com/codespell-project/codespell
     rev: v2.1.0
     hooks:
@@ -27,7 +21,7 @@ repos:
                 .*\.ipynb
             )$
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v13.0.0
+    rev: v13.0.1
     hooks:
       - id: clang-format
   - repo: https://github.com/cheshirekow/cmake-format-precommit
