@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2021 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2021--2022 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ from typing import Final
 import xcsf
 
 xcs = xcsf.XCS(8, 1, 2)  # (x_dim, y_dim, n_actions)
-xcs.condition("hyperrectangle")
+xcs.condition("hyperrectangle_csr")
 xcs.action("integer")
 xcs.prediction("nlms_linear")
 
@@ -44,7 +44,7 @@ classifier: Final[dict] = {
     "samples_seen": 2,
     "samples_matched": 1,
     "condition": {
-        "type": "hyperrectangle",
+        "type": "hyperrectangle_csr",
         "center": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
         "spread": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
         "mutation": [0.2],  # this parameter still self-adapts

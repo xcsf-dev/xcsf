@@ -140,7 +140,7 @@ xcs.EA_SELECT_SIZE = 0.4
 xcs.EA_SUBSUMPTION = False
 xcs.SET_SUBSUMPTION = False
 xcs.action("integer")
-xcs.condition("hyperrectangle", {"min": 0, "max": 1, "spread_min": 1.0})
+xcs.condition("hyperrectangle_ubr", {"min": 0, "max": 1, "spread_min": 1.0})
 xcs.prediction("nlms_linear", {"eta": 1, "eta_min": 0.0001, "evolve_eta": True})
 
 xcs.print_params()

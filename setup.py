@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2021 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2021--2022 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="xcsf",
-    version="1.1.6",
+    version="1.2.0",
     license="GPL-3.0",
     maintainer="Richard Preen",
     maintainer_email="rpreen@gmail.com",
@@ -93,7 +93,7 @@ setup(
     ext_modules=[CMakeExtension("xcsf/xcsf")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
@@ -107,6 +107,7 @@ setup(
         "Operating System :: POSIX :: Linux",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows :: Windows 10",
+        "Operating System :: Microsoft :: Windows :: Windows 11",
     ],
     keywords=[
         "divide and conquer",

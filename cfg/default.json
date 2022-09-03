@@ -35,7 +35,7 @@
         "type": "integer"
     },
     "condition": {
-        "type": "hyperrectangle",
+        "type": "hyperrectangle_ubr",
         "args": {
             "eta": 0,
             "min": 0,

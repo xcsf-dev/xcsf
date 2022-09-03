@@ -17,7 +17,7 @@
  * @file condition.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Interface for classifier conditions.
  */
 
@@ -44,7 +44,8 @@ condition_set(const struct XCSF *xcsf, struct Cl *c)
         case COND_TYPE_DUMMY:
             c->cond_vptr = &cond_dummy_vtbl;
             break;
-        case COND_TYPE_HYPERRECTANGLE:
+        case COND_TYPE_HYPERRECTANGLE_CSR:
+        case COND_TYPE_HYPERRECTANGLE_UBR:
             c->cond_vptr = &cond_rectangle_vtbl;
             break;
         case COND_TYPE_HYPERELLIPSOID:
@@ -87,8 +88,10 @@ condition_type_as_string(const int type)
     switch (type) {
         case COND_TYPE_DUMMY:
             return COND_STRING_DUMMY;
-        case COND_TYPE_HYPERRECTANGLE:
-            return COND_STRING_HYPERRECTANGLE;
+        case COND_TYPE_HYPERRECTANGLE_CSR:
+            return COND_STRING_HYPERRECTANGLE_CSR;
+        case COND_TYPE_HYPERRECTANGLE_UBR:
+            return COND_STRING_HYPERRECTANGLE_UBR;
         case COND_TYPE_HYPERELLIPSOID:
             return COND_STRING_HYPERELLIPSOID;
         case COND_TYPE_NEURAL:
@@ -122,8 +125,11 @@ condition_type_as_int(const char *type)
     if (strncmp(type, COND_STRING_DUMMY, 6) == 0) {
         return COND_TYPE_DUMMY;
     }
-    if (strncmp(type, COND_STRING_HYPERRECTANGLE, 15) == 0) {
-        return COND_TYPE_HYPERRECTANGLE;
+    if (strncmp(type, COND_STRING_HYPERRECTANGLE_CSR, 19) == 0) {
+        return COND_TYPE_HYPERRECTANGLE_CSR;
+    }
+    if (strncmp(type, COND_STRING_HYPERRECTANGLE_UBR, 19) == 0) {
+        return COND_TYPE_HYPERRECTANGLE_UBR;
     }
     if (strncmp(type, COND_STRING_HYPERELLIPSOID, 15) == 0) {
         return COND_TYPE_HYPERELLIPSOID;
@@ -160,7 +166,7 @@ condition_type_as_int(const char *type)
 void
 cond_param_defaults(struct XCSF *xcsf)
 {
-    cond_param_set_type(xcsf, COND_TYPE_HYPERRECTANGLE);
+    cond_param_set_type(xcsf, COND_TYPE_HYPERRECTANGLE_CSR);
     cond_param_set_eta(xcsf, 0);
     cond_param_set_min(xcsf, 0);
     cond_param_set_max(xcsf, 1);
@@ -234,7 +240,8 @@ cond_param_json_export(const struct XCSF *xcsf)
             json_str = cond_ternary_param_json_export(xcsf);
             break;
         case COND_TYPE_HYPERELLIPSOID:
-        case COND_TYPE_HYPERRECTANGLE:
+        case COND_TYPE_HYPERRECTANGLE_CSR:
+        case COND_TYPE_HYPERRECTANGLE_UBR:
             json_str = cond_param_json_export_csr(xcsf);
             break;
         case COND_TYPE_GP:
@@ -285,7 +292,8 @@ cond_param_json_import(struct XCSF *xcsf, cJSON *json)
                 cond_ternary_param_json_import(xcsf, json->child);
                 break;
             case COND_TYPE_HYPERELLIPSOID:
-            case COND_TYPE_HYPERRECTANGLE:
+            case COND_TYPE_HYPERRECTANGLE_CSR:
+            case COND_TYPE_HYPERRECTANGLE_UBR:
                 cond_param_json_import_csr(xcsf, json->child);
                 break;
             case COND_TYPE_GP:
