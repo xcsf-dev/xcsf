@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2021 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2021--2022 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,7 +28,8 @@ ActionTypes = Union[Literal["integer"], Literal["neural"]]
 
 ConditionTypes = Union[
     Literal["dummy"],
-    Literal["hyperrectangle"],
+    Literal["hyperrectangle_csr"],
+    Literal["hyperrectangle_ubr"],
     Literal["hyperellipsoid"],
     Literal["neural"],
     Literal["tree_gp"],
