@@ -113,7 +113,7 @@ TEST_CASE("COND_RECTANGLE_UBR")
     const double false_b2[5] = { 0.9658827122, 0.7107445754, 0.7048862747,
                                  0.1036188594, 0.4501471722 };
     /* test for true match condition */
-    struct CondRectangle *p = (struct CondRectangle *) c1.cond;
+    struct CondRectangle *p = reinterpret_cast<struct CondRectangle *>(c1.cond);
     memcpy(p->b1, true_b1, sizeof(double) * xcsf.x_dim);
     memcpy(p->b2, true_b2, sizeof(double) * xcsf.x_dim);
     bool match = cond_rectangle_match(&xcsf, &c1, x);
@@ -127,7 +127,8 @@ TEST_CASE("COND_RECTANGLE_UBR")
     struct Cl c2;
     cl_init(&xcsf, &c2, 1, 1);
     cond_rectangle_init(&xcsf, &c2);
-    struct CondRectangle *p2 = (struct CondRectangle *) c2.cond;
+    struct CondRectangle *p2 =
+        reinterpret_cast<struct CondRectangle *>(c2.cond);
     const double b1_2[5] = { 0.7, 0.8, 0.3, 0.3, 0.0 };
     const double b2_2[5] = { 0.6, 0.75, 0.31, 0.4, 0.1 };
     memcpy(p2->b1, b1_2, sizeof(double) * xcsf.x_dim);
