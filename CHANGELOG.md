@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.2.1 (Sep 3, 2022)
+
+Changes:
+*    Fix hyperrectangle_ubr json population seeding import/export asymmetry.
+
 ## Version 1.2.0 (Sep 3, 2022)
 
 Changes:
