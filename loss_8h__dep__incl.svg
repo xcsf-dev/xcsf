@@ -12,8 +12,8 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Loss functions for calculating prediction error.">
-<polygon fill="#bfbfbf" stroke="black" points="617,-112.5 617,-131.5 660,-131.5 660,-112.5 617,-112.5"/>
-<text text-anchor="middle" x="638.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss.h</text>
+<polygon fill="#bfbfbf" stroke="black" points="471,-112.5 471,-131.5 514,-131.5 514,-112.5 471,-112.5"/>
+<text text-anchor="middle" x="492.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss.h</text>
 </a>
 </g>
 </g>
@@ -21,208 +21,208 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="cl_8c.html" target="_top" xlink:title="Functions operating on classifiers.">
-<polygon fill="none" stroke="black" points="419.5,-56.5 419.5,-75.5 451.5,-75.5 451.5,-56.5 419.5,-56.5"/>
-<text text-anchor="middle" x="435.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl.c</text>
+<polygon fill="none" stroke="black" points="354.5,-56.5 354.5,-75.5 386.5,-75.5 386.5,-56.5 354.5,-56.5"/>
+<text text-anchor="middle" x="370.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">cl.c</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M607.09,-114.04C571.33,-105.89 511.27,-91.52 460.5,-76 457.59,-75.11 454.52,-74.08 451.56,-73.04"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="606.42,-117.48 616.94,-116.27 607.96,-110.65 606.42,-117.48"/>
+<path fill="none" stroke="midnightblue" d="M463.82,-108.31C439.75,-97.65 406.25,-82.82 386.62,-74.14"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="462.61,-111.6 473.17,-112.44 465.44,-105.2 462.61,-111.6"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="param_8h.html" target="_top" xlink:title="Functions for setting and printing parameters.">
-<polygon fill="none" stroke="black" points="469.5,-56.5 469.5,-75.5 521.5,-75.5 521.5,-56.5 469.5,-56.5"/>
-<text text-anchor="middle" x="495.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">param.h</text>
+<g id="a_node3"><a xlink:href="loss_8c.html" target="_top" xlink:title="Loss functions for calculating prediction error.">
+<polygon fill="none" stroke="black" points="405,-56.5 405,-75.5 448,-75.5 448,-56.5 405,-56.5"/>
+<text text-anchor="middle" x="426.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss.c</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M607.1,-109.14C580.3,-99.02 542.38,-84.7 518.37,-75.64"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="606.19,-112.54 616.78,-112.8 608.66,-105.99 606.19,-112.54"/>
+<path fill="none" stroke="midnightblue" d="M473.95,-105.82C462.12,-96.15 447.21,-83.95 437.3,-75.83"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="471.94,-108.7 481.9,-112.32 476.37,-103.28 471.94,-108.7"/>
 </g>
-<!-- Node12 -->
-<g id="node12" class="node">
-<title>Node12</title>
-<g id="a_node12"><a xlink:href="xcs__supervised_8c.html" target="_top" xlink:title="Supervised regression learning functions.">
+<!-- Node4 -->
+<g id="node4" class="node">
+<title>Node4</title>
+<g id="a_node4"><a xlink:href="param_8h.html" target="_top" xlink:title="Functions for setting and printing parameters.">
+<polygon fill="none" stroke="black" points="466.5,-56.5 466.5,-75.5 518.5,-75.5 518.5,-56.5 466.5,-56.5"/>
+<text text-anchor="middle" x="492.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">param.h</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge3" class="edge">
+<title>Node1&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M492.5,-101.8C492.5,-92.91 492.5,-82.78 492.5,-75.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="489,-102.08 492.5,-112.08 496,-102.08 489,-102.08"/>
+</g>
+<!-- Node13 -->
+<g id="node13" class="node">
+<title>Node13</title>
+<g id="a_node13"><a xlink:href="xcs__supervised_8c.html" target="_top" xlink:title="Supervised regression learning functions.">
 <polygon fill="none" stroke="black" points="644,-0.5 644,-19.5 737,-19.5 737,-0.5 644,-0.5"/>
 <text text-anchor="middle" x="690.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised.c</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node12 -->
+<!-- Node1&#45;&gt;Node13 -->
 <g id="edge14" class="edge">
-<title>Node1&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M644.2,-102.55C648.56,-89.31 655.06,-71.19 662.5,-56 668.97,-42.78 678.29,-28.5 684.37,-19.66"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="640.78,-101.77 641.07,-112.36 647.44,-103.89 640.78,-101.77"/>
+<title>Node1&#45;&gt;Node13</title>
+<path fill="none" stroke="midnightblue" d="M516.9,-107.45C558.2,-84.5 640.76,-38.63 675.04,-19.59"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="515.08,-104.45 508.04,-112.37 518.48,-110.57 515.08,-104.45"/>
 </g>
-<!-- Node13 -->
-<g id="node13" class="node">
-<title>Node13</title>
-<g id="a_node13"><a xlink:href="xcsf_8c.html" target="_top" xlink:title="System&#45;level functions for initialising, saving, loading, etc.">
+<!-- Node14 -->
+<g id="node14" class="node">
+<title>Node14</title>
+<g id="a_node14"><a xlink:href="xcsf_8c.html" target="_top" xlink:title="System&#45;level functions for initialising, saving, loading, etc.">
 <polygon fill="none" stroke="black" points="755.5,-0.5 755.5,-19.5 799.5,-19.5 799.5,-0.5 755.5,-0.5"/>
 <text text-anchor="middle" x="777.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcsf.c</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node13 -->
-<g id="edge15" class="edge">
-<title>Node1&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M651.14,-103.89C662.07,-89.86 678.87,-70.1 696.5,-56 715.72,-40.63 740.9,-27.55 758.05,-19.53"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="648.12,-102.08 644.85,-112.16 653.69,-106.32 648.12,-102.08"/>
-</g>
-<!-- Node14 -->
-<g id="node14" class="node">
-<title>Node14</title>
-<g id="a_node14"><a xlink:href="loss_8c.html" target="_top" xlink:title="Loss functions for calculating prediction error.">
-<polygon fill="none" stroke="black" points="705,-56.5 705,-75.5 748,-75.5 748,-56.5 705,-56.5"/>
-<text text-anchor="middle" x="726.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss.c</text>
-</a>
-</g>
-</g>
 <!-- Node1&#45;&gt;Node14 -->
-<g id="edge13" class="edge">
+<g id="edge15" class="edge">
 <title>Node1&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M661.48,-106.9C677.61,-97 698.68,-84.07 712.4,-75.65"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="659.33,-104.11 652.64,-112.32 662.99,-110.08 659.33,-104.11"/>
+<path fill="none" stroke="midnightblue" d="M523.78,-108.93C581.77,-86.54 704.67,-39.11 755.14,-19.63"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="522.46,-105.69 514.39,-112.55 524.98,-112.22 522.46,-105.69"/>
 </g>
-<!-- Node4 -->
-<g id="node4" class="node">
-<title>Node4</title>
-<g id="a_node4"><a xlink:href="config_8c.html" target="_top" xlink:title="Configuration file (JSON) handling functions.">
+<!-- Node5 -->
+<g id="node5" class="node">
+<title>Node5</title>
+<g id="a_node5"><a xlink:href="config_8c.html" target="_top" xlink:title="Configuration file (JSON) handling functions.">
 <polygon fill="none" stroke="black" points="190,-0.5 190,-19.5 241,-19.5 241,-0.5 190,-0.5"/>
 <text text-anchor="middle" x="215.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">config.c</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge3" class="edge">
-<title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M459.34,-55.9C366.18,-36.41 340.03,-39.15 250.5,-20 247.43,-19.34 244.23,-18.6 241.06,-17.83"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="458.67,-59.33 469.18,-57.99 460.13,-52.49 458.67,-59.33"/>
+<!-- Node4&#45;&gt;Node5 -->
+<g id="edge4" class="edge">
+<title>Node4&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M456.15,-56.08C363.85,-36.89 338.25,-38.92 250.5,-20 247.43,-19.34 244.23,-18.59 241.06,-17.82"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="455.7,-59.56 466.2,-58.19 457.14,-52.71 455.7,-59.56"/>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node">
-<title>Node5</title>
-<g id="a_node5"><a xlink:href="env__csv_8c.html" target="_top" xlink:title="CSV input file handling functions.">
+<!-- Node6 -->
+<g id="node6" class="node">
+<title>Node6</title>
+<g id="a_node6"><a xlink:href="env__csv_8c.html" target="_top" xlink:title="CSV input file handling functions.">
 <polygon fill="none" stroke="black" points="259.5,-0.5 259.5,-19.5 319.5,-19.5 319.5,-0.5 259.5,-0.5"/>
 <text text-anchor="middle" x="289.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">env_csv.c</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node5 -->
-<g id="edge4" class="edge">
-<title>Node3&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M459.63,-55.6C420.01,-45.21 356.92,-28.67 319.72,-18.92"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="458.85,-59.01 469.41,-58.16 460.62,-52.24 458.85,-59.01"/>
+<!-- Node4&#45;&gt;Node6 -->
+<g id="edge5" class="edge">
+<title>Node4&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M456.52,-55.43C417.64,-45.09 356.35,-28.78 319.82,-19.07"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="455.81,-58.86 466.38,-58.05 457.61,-52.1 455.81,-58.86"/>
 </g>
-<!-- Node6 -->
-<g id="node6" class="node">
-<title>Node6</title>
-<g id="a_node6"><a xlink:href="env__maze_8c.html" target="_top" xlink:title="The discrete maze problem environment module.">
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:href="env__maze_8c.html" target="_top" xlink:title="The discrete maze problem environment module.">
 <polygon fill="none" stroke="black" points="337.5,-0.5 337.5,-19.5 407.5,-19.5 407.5,-0.5 337.5,-0.5"/>
 <text text-anchor="middle" x="372.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">env_maze.c</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node6 -->
-<g id="edge5" class="edge">
-<title>Node3&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M466.73,-52.37C443.69,-42.26 412.02,-28.35 391.9,-19.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="465.45,-55.63 476.01,-56.44 468.26,-49.22 465.45,-55.63"/>
+<!-- Node4&#45;&gt;Node7 -->
+<g id="edge6" class="edge">
+<title>Node4&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M464.13,-52.23C441.68,-42.13 410.96,-28.31 391.43,-19.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="462.93,-55.53 473.49,-56.44 465.8,-49.15 462.93,-55.53"/>
 </g>
-<!-- Node7 -->
-<g id="node7" class="node">
-<title>Node7</title>
-<g id="a_node7"><a xlink:href="env__mux_8c.html" target="_top" xlink:title="The real multiplexer problem environment.">
+<!-- Node8 -->
+<g id="node8" class="node">
+<title>Node8</title>
+<g id="a_node8"><a xlink:href="env__mux_8c.html" target="_top" xlink:title="The real multiplexer problem environment.">
 <polygon fill="none" stroke="black" points="426,-0.5 426,-19.5 491,-19.5 491,-0.5 426,-0.5"/>
 <text text-anchor="middle" x="458.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">env_mux.c</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node7 -->
-<g id="edge6" class="edge">
-<title>Node3&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M483.55,-47.57C477.19,-38.27 469.63,-27.25 464.5,-19.75"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="480.85,-49.81 489.39,-56.08 486.63,-45.86 480.85,-49.81"/>
+<!-- Node4&#45;&gt;Node8 -->
+<g id="edge7" class="edge">
+<title>Node4&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M481.52,-47.57C475.67,-38.27 468.73,-27.25 464.01,-19.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="478.6,-49.49 486.89,-56.08 484.52,-45.76 478.6,-49.49"/>
 </g>
-<!-- Node8 -->
-<g id="node8" class="node">
-<title>Node8</title>
-<g id="a_node8"><a xlink:href="main_8c.html" target="_top" xlink:title="Main function for stand&#45;alone binary execution.">
+<!-- Node9 -->
+<g id="node9" class="node">
+<title>Node9</title>
+<g id="a_node9"><a xlink:href="main_8c.html" target="_top" xlink:title="Main function for stand&#45;alone binary execution.">
 <polygon fill="none" stroke="black" points="509.5,-0.5 509.5,-19.5 555.5,-19.5 555.5,-0.5 509.5,-0.5"/>
 <text text-anchor="middle" x="532.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">main.c</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node8 -->
-<g id="edge7" class="edge">
-<title>Node3&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M507.45,-47.57C513.81,-38.27 521.37,-27.25 526.5,-19.75"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="504.37,-45.86 501.61,-56.08 510.15,-49.81 504.37,-45.86"/>
+<!-- Node4&#45;&gt;Node9 -->
+<g id="edge8" class="edge">
+<title>Node4&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M505.2,-47.86C512.13,-38.5 520.41,-27.33 526.02,-19.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="502.25,-45.96 499.11,-56.08 507.87,-50.13 502.25,-45.96"/>
 </g>
-<!-- Node9 -->
-<g id="node9" class="node">
-<title>Node9</title>
-<g id="a_node9"><a xlink:href="param_8c.html" target="_top" xlink:title="Functions for setting and printing parameters.">
+<!-- Node10 -->
+<g id="node10" class="node">
+<title>Node10</title>
+<g id="a_node10"><a xlink:href="param_8c.html" target="_top" xlink:title="Functions for setting and printing parameters.">
 <polygon fill="none" stroke="black" points="573.5,-0.5 573.5,-19.5 625.5,-19.5 625.5,-0.5 573.5,-0.5"/>
 <text text-anchor="middle" x="599.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">param.c</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node9 -->
-<g id="edge8" class="edge">
-<title>Node3&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M521.33,-51.59C540.56,-41.61 566.24,-28.27 582.83,-19.65"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="519.47,-48.61 512.21,-56.32 522.7,-54.82 519.47,-48.61"/>
+<!-- Node4&#45;&gt;Node10 -->
+<g id="edge9" class="edge">
+<title>Node4&#45;&gt;Node10</title>
+<path fill="none" stroke="midnightblue" d="M518.8,-51.73C538.61,-41.73 565.21,-28.31 582.35,-19.65"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="517.04,-48.69 509.69,-56.32 520.2,-54.94 517.04,-48.69"/>
 </g>
-<!-- Node10 -->
-<g id="node10" class="node">
-<title>Node10</title>
-<g id="a_node10"><a xlink:href="pybind__wrapper_8cpp.html" target="_top" xlink:title="Python library wrapper functions.">
+<!-- Node11 -->
+<g id="node11" class="node">
+<title>Node11</title>
+<g id="a_node11"><a xlink:href="pybind__wrapper_8cpp.html" target="_top" xlink:title="Python library wrapper functions.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 103,-19.5 103,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="51.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pybind_wrapper.cpp</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node10 -->
-<g id="edge9" class="edge">
-<title>Node3&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M458.93,-55.96C305.2,-28.97 262.88,-39.15 111.5,-20 108.78,-19.66 106,-19.29 103.19,-18.91"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="458.76,-59.49 469.22,-57.79 459.99,-52.6 458.76,-59.49"/>
+<!-- Node4&#45;&gt;Node11 -->
+<g id="edge10" class="edge">
+<title>Node4&#45;&gt;Node11</title>
+<path fill="none" stroke="midnightblue" d="M456,-56.18C302.89,-29.66 261.15,-39.02 111.5,-20 108.78,-19.65 106,-19.29 103.19,-18.9"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="455.79,-59.7 466.25,-57.98 457,-52.81 455.79,-59.7"/>
 </g>
-<!-- Node11 -->
-<g id="node11" class="node">
-<title>Node11</title>
-<g id="a_node11"><a xlink:href="xcs__rl_8c.html" target="_top" xlink:title="Reinforcement learning functions.">
+<!-- Node12 -->
+<g id="node12" class="node">
+<title>Node12</title>
+<g id="a_node12"><a xlink:href="xcs__rl_8c.html" target="_top" xlink:title="Reinforcement learning functions.">
 <polygon fill="none" stroke="black" points="121,-0.5 121,-19.5 172,-19.5 172,-0.5 121,-0.5"/>
 <text text-anchor="middle" x="146.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl.c</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node11 -->
-<g id="edge10" class="edge">
-<title>Node3&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M459.34,-55.99C335.52,-32.91 300.51,-43.49 180.5,-20 177.74,-19.46 174.88,-18.82 172.04,-18.14"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="458.73,-59.44 469.21,-57.87 460.03,-52.56 458.73,-59.44"/>
-</g>
-<!-- Node3&#45;&gt;Node12 -->
+<!-- Node4&#45;&gt;Node12 -->
 <g id="edge11" class="edge">
-<title>Node3&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M531.61,-55C568.35,-44.83 624.69,-29.22 659.48,-19.59"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="530.5,-51.68 521.8,-57.72 532.37,-58.42 530.5,-51.68"/>
+<title>Node4&#45;&gt;Node12</title>
+<path fill="none" stroke="midnightblue" d="M456.05,-56.15C333.15,-33.51 298.68,-43.25 180.5,-20 177.74,-19.46 174.88,-18.82 172.04,-18.14"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="455.76,-59.66 466.23,-58.06 457.05,-52.78 455.76,-59.66"/>
 </g>
-<!-- Node3&#45;&gt;Node13 -->
+<!-- Node4&#45;&gt;Node13 -->
 <g id="edge12" class="edge">
-<title>Node3&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M531.81,-59.72C580.84,-52.31 670.8,-37.72 746.5,-20 749.34,-19.34 752.3,-18.57 755.22,-17.77"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="531.07,-56.29 521.7,-61.23 532.11,-63.21 531.07,-56.29"/>
+<title>Node4&#45;&gt;Node13</title>
+<path fill="none" stroke="midnightblue" d="M528.76,-55.11C566.12,-44.92 623.76,-29.2 659.2,-19.54"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="527.52,-51.82 518.79,-57.83 529.36,-58.57 527.52,-51.82"/>
+</g>
+<!-- Node4&#45;&gt;Node14 -->
+<g id="edge13" class="edge">
+<title>Node4&#45;&gt;Node14</title>
+<path fill="none" stroke="midnightblue" d="M528.69,-59.71C578,-52.24 668.93,-37.53 745.5,-20 748.65,-19.28 751.95,-18.44 755.19,-17.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="527.9,-56.29 518.53,-61.23 528.94,-63.21 527.9,-56.29"/>
 </g>
 </g>
 </svg>

@@ -1,11 +1,10 @@
 <map id="cl_json_export" name="cl_json_export">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of a classifier." alt="" coords="845,31,952,57"/>
-<area shape="rect" id="node2" href="$cl_8h.html#afe7823d194c2fe357ce94285b77f8bfe" title="Prints a classifier." alt="" coords="703,5,767,32"/>
-<area shape="rect" id="node3" href="$clset_8h.html#af7d4ec3f5c5bcebc48045a6724beed12" title="Returns a json formatted string representation of a classifier set." alt="" coords="673,56,797,83"/>
-<area shape="rect" id="node4" href="$clset_8h.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="543,31,625,57"/>
-<area shape="rect" id="node8" href="$classXCS.html#a39764d3cf7b1ffc5807541b59452d092" title="Returns a JSON formatted string representing the population set." alt="" coords="369,81,495,108"/>
-<area shape="rect" id="node5" href="$xcsf_8h.html#ae18311260dd4c51978ef361f6f14e8c0" title="Prints the current XCSF population." alt="" coords="377,31,487,57"/>
-<area shape="rect" id="node6" href="$classXCS.html#a7af3631a2e50a3c2a22774d60600014d" title="Prints the current population." alt="" coords="205,31,320,57"/>
-<area shape="rect" id="node7" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,81,156,108"/>
-<area shape="rect" id="node9" href="$classXCS.html#a589dc6f43e28dcf5ad4edd505e30a531" title="Writes the current population set to a file in JSON." alt="" coords="204,132,321,159"/>
+<area shape="rect" id="node1" title="Returns a json formatted string representation of a classifier." alt="" coords="679,31,785,57"/>
+<area shape="rect" id="node2" href="$cl_8c.html#afe7823d194c2fe357ce94285b77f8bfe" title="Prints a classifier." alt="" coords="537,5,601,32"/>
+<area shape="rect" id="node3" href="$clset_8c.html#af7d4ec3f5c5bcebc48045a6724beed12" title="Returns a json formatted string representation of a classifier set." alt="" coords="507,56,631,83"/>
+<area shape="rect" id="node4" href="$clset_8c.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="355,31,437,57"/>
+<area shape="rect" id="node7" href="$classXCS.html#a39764d3cf7b1ffc5807541b59452d092" title="Returns a JSON formatted string representing the population set." alt="" coords="333,81,459,108"/>
+<area shape="rect" id="node5" href="$xcsf_8c.html#ae18311260dd4c51978ef361f6f14e8c0" title="Prints the current XCSF population." alt="" coords="171,31,282,57"/>
+<area shape="rect" id="node6" href="$classXCS.html#a7af3631a2e50a3c2a22774d60600014d" title="Prints the current population." alt="" coords="5,31,120,57"/>
+<area shape="rect" id="node8" href="$classXCS.html#a589dc6f43e28dcf5ad4edd505e30a531" title="Writes the current population set to a file in JSON." alt="" coords="168,81,285,108"/>
 </map>

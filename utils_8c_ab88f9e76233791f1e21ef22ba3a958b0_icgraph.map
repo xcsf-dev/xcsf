@@ -1,0 +1,13 @@
+<map id="utils_json_parse_check" name="utils_json_parse_check">
+<area shape="rect" id="node1" title="Checks whether JSON parsed correctly." alt="" coords="477,169,636,196"/>
+<area shape="rect" id="node2" href="$classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11" title="Converts a Python dictionary to a C++ string (JSON)." alt="" coords="296,68,424,95"/>
+<area shape="rect" id="node6" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="299,144,421,171"/>
+<area shape="rect" id="node8" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="291,195,429,221"/>
+<area shape="rect" id="node9" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="294,245,426,272"/>
+<area shape="rect" id="node3" href="$classXCS.html#a1298087e3a06734561965359b4d74468" title="Sets the action type and initialisation arguments." alt="" coords="114,5,233,32"/>
+<area shape="rect" id="node4" href="$classXCS.html#ab16720d21296ba0832318f67e55522e3" title="Sets the condition type and initialisation arguments." alt="" coords="106,56,241,83"/>
+<area shape="rect" id="node5" href="$classXCS.html#a76f72805cdd38df46ecbc8bd8a592376" title="Sets the prediction type and initialisation arguments." alt="" coords="104,107,243,133"/>
+<area shape="rect" id="node7" href="$classXCS.html#a1a882e28a64c4e2b92ae234d79f327de" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="116,157,231,184"/>
+<area shape="rect" id="node10" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="129,245,218,272"/>
+<area shape="rect" id="node11" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,245,56,272"/>
+</map>

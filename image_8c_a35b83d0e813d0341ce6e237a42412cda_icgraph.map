@@ -1,6 +1,6 @@
 <map id="im2col_get_pixel" name="im2col_get_pixel">
 <area shape="rect" id="node1" title=" " alt="" coords="336,46,455,73"/>
-<area shape="rect" id="node2" href="$image_8h.html#a33557bb05f10824eef9cc5775ac17c0d" title="Transforms an image vector to a column vector." alt="" coords="228,46,288,73"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8h.html#af9d56553f0be61bc808cac3898e35a82" title="Backward propagates a convolutional layer." alt="" coords="5,5,180,47"/>
-<area shape="rect" id="node4" href="$neural__layer__convolutional_8h.html#a474f61e40569851884c0108ce2e40a1d" title="Forward propagates a convolutional layer." alt="" coords="5,71,180,112"/>
+<area shape="rect" id="node2" href="$image_8c.html#a33557bb05f10824eef9cc5775ac17c0d" title="Transforms an image vector to a column vector." alt="" coords="228,46,288,73"/>
+<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#af9d56553f0be61bc808cac3898e35a82" title="Backward propagates a convolutional layer." alt="" coords="5,5,180,47"/>
+<area shape="rect" id="node4" href="$neural__layer__convolutional_8c.html#a474f61e40569851884c0108ce2e40a1d" title="Forward propagates a convolutional layer." alt="" coords="5,71,180,112"/>
 </map>

@@ -1,8 +1,8 @@
 <map id="layer_mutate_functions" name="layer_mutate_functions">
 <area shape="rect" id="node1" title="Mutates a layer&#39;s activation function by random selection." alt="" coords="427,105,584,131"/>
 <area shape="rect" id="node2" href="$neural__layer__recurrent_8c.html#a8888ecfe5521991ac565ec354ecf31ab" title="Mutates the activation function of a recurrent layer." alt="" coords="230,13,353,39"/>
-<area shape="rect" id="node4" href="$neural__layer__connected_8h.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="212,64,371,105"/>
-<area shape="rect" id="node5" href="$neural__layer__convolutional_8h.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="204,129,379,171"/>
-<area shape="rect" id="node6" href="$neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="206,195,377,222"/>
-<area shape="rect" id="node3" href="$neural__layer__recurrent_8h.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node4" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="212,64,371,105"/>
+<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="204,129,379,171"/>
+<area shape="rect" id="node6" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="206,195,377,222"/>
+<area shape="rect" id="node3" href="$neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="5,5,156,47"/>
 </map>

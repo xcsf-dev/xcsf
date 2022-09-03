@@ -1359,7 +1359,7 @@
 <!-- Node83 -->
 <g id="node83" class="node">
 <title>Node83</title>
-<g id="a_node83"><a xlink:href="ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" target="_top" xlink:title="Selects a classifier from the set via roulete wheel.">
+<g id="a_node83"><a xlink:href="ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" target="_top" xlink:title="Selects a classifier from the set via roulette wheel.">
 <polygon fill="none" stroke="black" points="999.5,-817.5 999.5,-836.5 1073.5,-836.5 1073.5,-817.5 999.5,-817.5"/>
 <text text-anchor="middle" x="1036.5" y="-824.5" font-family="Helvetica,sans-Serif" font-size="10.00">ea_select_rw</text>
 </a>

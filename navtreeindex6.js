@@ -1,5 +1,14 @@
 var NAVTREEINDEX6 =
 {
+"neural__layer__avgpool_8h.html#a25d5d2280a01f258e3f256e3a93f18cc":[3,0,62,7],
+"neural__layer__avgpool_8h.html#a7f4307f7113f8955a426d330f9472ec6":[3,0,62,14],
+"neural__layer__avgpool_8h.html#a8305189ab187aae459aa3c4715674459":[3,0,62,2],
+"neural__layer__avgpool_8h.html#a8e84bcdfb1b1343390aaf1f8e6ec0523":[3,0,62,6],
+"neural__layer__avgpool_8h.html#aac38c297b6ec2440be737791d86f0af6":[3,0,62,1],
+"neural__layer__avgpool_8h.html#acd8d298ed28774c848e032a98c33e783":[3,0,62,5],
+"neural__layer__avgpool_8h.html#ad83b2e12d8d0a4ba9fc33001fb02c5e3":[3,0,62,12],
+"neural__layer__avgpool_8h.html#ae8d15c9104ace1d2e7d9b2657da90088":[3,0,62,9],
+"neural__layer__avgpool_8h.html#ae977e3a6877399ab4be43387735a7ab5":[3,0,62,11],
 "neural__layer__avgpool_8h.html#af42137f70db11a8ba99ecf0530a33999":[3,0,62,8],
 "neural__layer__avgpool_8h_source.html":[3,0,62],
 "neural__layer__connected_8c.html":[3,0,63],
@@ -240,14 +249,5 @@ var NAVTREEINDEX6 =
 "neural__layer__recurrent_8c.html#a383f53e66f13f290bdd424d256a895ad":[3,0,75,19],
 "neural__layer__recurrent_8c.html#a46d6667381b42e2d14554674328c8cde":[3,0,75,4],
 "neural__layer__recurrent_8c.html#a5f01cc7e722e1426e5aba2a643e33036":[3,0,75,9],
-"neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6":[3,0,75,15],
-"neural__layer__recurrent_8c.html#a65b07dd0f77a209229c7b9cee1bc9c23":[3,0,75,18],
-"neural__layer__recurrent_8c.html#a6a48f5438e8ccf76faeed24641a0f85a":[3,0,75,1],
-"neural__layer__recurrent_8c.html#a6e3344e46eea0817b14f3568ef81ff97":[3,0,75,2],
-"neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c":[3,0,75,12],
-"neural__layer__recurrent_8c.html#a75386a5e5f7e81bf322e68e2c87ad374":[3,0,75,25],
-"neural__layer__recurrent_8c.html#a7575ee8d3534af2a6dcc865e02e5351f":[3,0,75,22],
-"neural__layer__recurrent_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30":[3,0,75,0],
-"neural__layer__recurrent_8c.html#a7ef5f7e605fb5aa466859c42431fedc8":[3,0,75,13],
-"neural__layer__recurrent_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd":[3,0,75,6]
+"neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6":[3,0,75,15]
 };

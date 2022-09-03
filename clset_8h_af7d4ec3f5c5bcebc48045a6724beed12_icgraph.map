@@ -1,9 +1,8 @@
 <map id="clset_json_export" name="clset_json_export">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of a classifier set." alt="" coords="673,31,797,57"/>
-<area shape="rect" id="node2" href="$clset_8h.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="543,5,625,32"/>
-<area shape="rect" id="node6" href="$classXCS.html#a39764d3cf7b1ffc5807541b59452d092" title="Returns a JSON formatted string representing the population set." alt="" coords="369,56,495,83"/>
-<area shape="rect" id="node3" href="$xcsf_8h.html#ae18311260dd4c51978ef361f6f14e8c0" title="Prints the current XCSF population." alt="" coords="377,5,487,32"/>
-<area shape="rect" id="node4" href="$classXCS.html#a7af3631a2e50a3c2a22774d60600014d" title="Prints the current population." alt="" coords="205,5,320,32"/>
-<area shape="rect" id="node5" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,56,156,83"/>
-<area shape="rect" id="node7" href="$classXCS.html#a589dc6f43e28dcf5ad4edd505e30a531" title="Writes the current population set to a file in JSON." alt="" coords="204,107,321,133"/>
+<area shape="rect" id="node1" title="Returns a json formatted string representation of a classifier set." alt="" coords="507,31,631,57"/>
+<area shape="rect" id="node2" href="$clset_8c.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="355,5,437,32"/>
+<area shape="rect" id="node5" href="$classXCS.html#a39764d3cf7b1ffc5807541b59452d092" title="Returns a JSON formatted string representing the population set." alt="" coords="333,56,459,83"/>
+<area shape="rect" id="node3" href="$xcsf_8c.html#ae18311260dd4c51978ef361f6f14e8c0" title="Prints the current XCSF population." alt="" coords="171,5,282,32"/>
+<area shape="rect" id="node4" href="$classXCS.html#a7af3631a2e50a3c2a22774d60600014d" title="Prints the current population." alt="" coords="5,5,120,32"/>
+<area shape="rect" id="node6" href="$classXCS.html#a589dc6f43e28dcf5ad4edd505e30a531" title="Writes the current population set to a file in JSON." alt="" coords="168,56,285,83"/>
 </map>

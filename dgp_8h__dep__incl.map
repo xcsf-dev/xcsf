@@ -1,9 +1,9 @@
 <map id="dgp.h" name="dgp.h">
-<area shape="rect" id="node1" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="188,5,243,32"/>
-<area shape="rect" id="node2" href="$cond__dgp_8h.html" title="Dynamical GP graph condition functions." alt="" coords="60,80,149,107"/>
-<area shape="rect" id="node5" href="$rule__dgp_8h.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="174,80,257,107"/>
-<area shape="rect" id="node7" href="$dgp_8c.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="281,80,336,107"/>
+<area shape="rect" id="node1" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="133,5,188,32"/>
+<area shape="rect" id="node2" href="$cond__dgp_8h.html" title="Dynamical GP graph condition functions." alt="" coords="20,80,109,107"/>
+<area shape="rect" id="node5" href="$dgp_8c.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="133,80,188,107"/>
+<area shape="rect" id="node6" href="$rule__dgp_8h.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="213,80,295,107"/>
 <area shape="rect" id="node3" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="5,155,95,181"/>
 <area shape="rect" id="node4" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="119,155,205,181"/>
-<area shape="rect" id="node6" href="$rule__dgp_8c.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="229,155,311,181"/>
+<area shape="rect" id="node7" href="$rule__dgp_8c.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="229,155,311,181"/>
 </map>

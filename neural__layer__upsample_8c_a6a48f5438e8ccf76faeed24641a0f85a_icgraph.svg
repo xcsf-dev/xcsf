@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__upsample_8h.html#a4b57e2faa924a34426421ee74dc7e854" target="_top" xlink:title="Free memory used by an upsampling layer.">
+<g id="a_node2"><a xlink:href="neural__layer__upsample_8c.html#a4b57e2faa924a34426421ee74dc7e854" target="_top" xlink:title="Free memory used by an upsampling layer.">
 <polygon fill="none" stroke="black" points="0,-50 0,-69 138,-69 138,-50 0,-50"/>
 <text text-anchor="middle" x="69" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_upsample_free</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__upsample_8h.html#a0bb6959136d4a1c70fa3ec778a8a8cca" target="_top" xlink:title="Resizes an upsampling layer if the previous layer has changed size.">
+<g id="a_node3"><a xlink:href="neural__layer__upsample_8c.html#a0bb6959136d4a1c70fa3ec778a8a8cca" target="_top" xlink:title="Resizes an upsampling layer if the previous layer has changed size.">
 <polygon fill="none" stroke="black" points="11,-0.5 11,-30.5 127,-30.5 127,-0.5 11,-0.5"/>
 <text text-anchor="start" x="19" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_upsample</text>
 <text text-anchor="middle" x="69" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_resize</text>

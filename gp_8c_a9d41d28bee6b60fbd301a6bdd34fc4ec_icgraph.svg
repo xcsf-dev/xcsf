@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="gp_8h.html#a716c3b813a0907d3cff786eaa73d995a" target="_top" xlink:title="Performs sub&#45;tree crossover.">
+<g id="a_node2"><a xlink:href="gp_8c.html#a716c3b813a0907d3cff786eaa73d995a" target="_top" xlink:title="Performs sub&#45;tree crossover.">
 <polygon fill="none" stroke="black" points="137,-0.5 137,-19.5 218,-19.5 218,-0.5 137,-0.5"/>
 <text text-anchor="middle" x="177.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">tree_crossover</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="cond__gp_8h.html#a6ae653caf56edad1cbb0e0517dfea270" target="_top" xlink:title="Performs sub&#45;tree crossover with two tree&#45;GP conditions.">
+<g id="a_node3"><a xlink:href="cond__gp_8c.html#a6ae653caf56edad1cbb0e0517dfea270" target="_top" xlink:title="Performs sub&#45;tree crossover with two tree&#45;GP conditions.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 101,-19.5 101,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="50.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_gp_crossover</text>
 </a>

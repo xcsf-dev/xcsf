@@ -1,7 +1,7 @@
 <map id="graph_update" name="graph_update">
 <area shape="rect" id="node1" title="Updates a DGP graph T cycles." alt="" coords="385,31,485,57"/>
-<area shape="rect" id="node2" href="$cond__dgp_8h.html#a8bb6fc747fba92c9a717c1b26f5ffca7" title="Calculates whether a dynamical GP graph condition matches an input." alt="" coords="202,5,323,32"/>
-<area shape="rect" id="node4" href="$rule__dgp_8h.html#a85eb12064cc539b1ec1fea93ee5f5e3e" title=" " alt="" coords="188,56,337,83"/>
-<area shape="rect" id="node3" href="$cond__dgp_8h.html#a585a3476b4473b1b19159a7d55daa6ae" title="Generates a dynamical GP graph that matches the current input." alt="" coords="14,5,131,32"/>
-<area shape="rect" id="node5" href="$rule__dgp_8h.html#ac1f0b0c11b92852e82b00ad7b4bb169f" title=" " alt="" coords="5,56,140,83"/>
+<area shape="rect" id="node2" href="$cond__dgp_8c.html#a8bb6fc747fba92c9a717c1b26f5ffca7" title="Calculates whether a dynamical GP graph condition matches an input." alt="" coords="202,5,323,32"/>
+<area shape="rect" id="node4" href="$rule__dgp_8c.html#a85eb12064cc539b1ec1fea93ee5f5e3e" title=" " alt="" coords="188,56,337,83"/>
+<area shape="rect" id="node3" href="$cond__dgp_8c.html#a585a3476b4473b1b19159a7d55daa6ae" title="Generates a dynamical GP graph that matches the current input." alt="" coords="14,5,131,32"/>
+<area shape="rect" id="node5" href="$rule__dgp_8c.html#ac1f0b0c11b92852e82b00ad7b4bb169f" title=" " alt="" coords="5,56,140,83"/>
 </map>

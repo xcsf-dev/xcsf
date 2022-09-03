@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="pred__neural_8h.html#a6d409885406112df91093475dd764f10" target="_top" xlink:title="Prints a neural network prediction.">
+<g id="a_node2"><a xlink:href="pred__neural_8c.html#a6d409885406112df91093475dd764f10" target="_top" xlink:title="Prints a neural network prediction.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 91,-19.5 91,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="45.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_neural_print</text>
 </a>

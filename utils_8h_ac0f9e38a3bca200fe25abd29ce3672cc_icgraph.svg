@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__ternary_8h.html#a76ab7500198ab706583a378230920e08" target="_top" xlink:title="Generates a ternary condition that matches the current input.">
+<g id="a_node2"><a xlink:href="cond__ternary_8c.html#a76ab7500198ab706583a378230920e08" target="_top" xlink:title="Generates a ternary condition that matches the current input.">
 <polygon fill="none" stroke="black" points="1.5,-38.5 1.5,-57.5 103.5,-57.5 103.5,-38.5 1.5,-38.5"/>
 <text text-anchor="middle" x="52.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_ternary_cover</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="cond__ternary_8h.html#a38a12a34e9676ae5326bc200d69f9822" target="_top" xlink:title="Calculates whether a ternary condition matches an input.">
+<g id="a_node3"><a xlink:href="cond__ternary_8c.html#a38a12a34e9676ae5326bc200d69f9822" target="_top" xlink:title="Calculates whether a ternary condition matches an input.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 105,-19.5 105,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="52.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_ternary_match</text>
 </a>

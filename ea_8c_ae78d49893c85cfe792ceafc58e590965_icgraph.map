@@ -1,6 +1,6 @@
 <map id="ea_param_json_import" name="ea_param_json_import">
 <area shape="rect" id="node1" title="Sets the EA parameters from a cJSON object." alt="" coords="421,5,575,32"/>
-<area shape="rect" id="node2" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="241,5,373,32"/>
-<area shape="rect" id="node3" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,5,193,32"/>
+<area shape="rect" id="node2" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="241,5,373,32"/>
+<area shape="rect" id="node3" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,5,193,32"/>
 <area shape="rect" id="node4" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,56,32"/>
 </map>

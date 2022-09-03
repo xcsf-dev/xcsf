@@ -36,7 +36,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__convolutional_8h.html#a6c9ca01e07720bcdade79e664bed4c05" target="_top" xlink:title="Resizes a convolutional layer if the previous layer has changed size.">
+<g id="a_node4"><a xlink:href="neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" target="_top" xlink:title="Resizes a convolutional layer if the previous layer has changed size.">
 <polygon fill="none" stroke="black" points="167,-0.5 167,-30.5 298,-30.5 298,-0.5 167,-0.5"/>
 <text text-anchor="start" x="175" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="232.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_resize</text>
@@ -52,7 +52,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__convolutional_8h.html#a9e4f5fb82855910a5a4fecad093033db" target="_top" xlink:title="Mutates a convolutional layer.">
+<g id="a_node3"><a xlink:href="neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" target="_top" xlink:title="Mutates a convolutional layer.">
 <polygon fill="none" stroke="black" points="0,-49.5 0,-79.5 131,-79.5 131,-49.5 0,-49.5"/>
 <text text-anchor="start" x="8" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="65.5" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>

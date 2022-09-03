@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="pred__nlms_8h.html#a51b8eb7d83c9b73cb298691505af10c0" target="_top" xlink:title="Computes the current NLMS prediction for a provided input.">
+<g id="a_node2"><a xlink:href="pred__nlms_8c.html#a51b8eb7d83c9b73cb298691505af10c0" target="_top" xlink:title="Computes the current NLMS prediction for a provided input.">
 <polygon fill="none" stroke="black" points="0,-114.5 0,-133.5 104,-133.5 104,-114.5 0,-114.5"/>
 <text text-anchor="middle" x="52" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_nlms_compute</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="pred__nlms_8h.html#ac583f28320a20a93d335688484e8ef91" target="_top" xlink:title="Updates an NLMS prediction for a given input and truth sample.">
+<g id="a_node3"><a xlink:href="pred__nlms_8c.html#ac583f28320a20a93d335688484e8ef91" target="_top" xlink:title="Updates an NLMS prediction for a given input and truth sample.">
 <polygon fill="none" stroke="black" points="4,-76.5 4,-95.5 100,-95.5 100,-76.5 4,-76.5"/>
 <text text-anchor="middle" x="52" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_nlms_update</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="pred__rls_8h.html#ae7fd78fa9f7a442ed68b25e8eac51469" target="_top" xlink:title="Computes the current RLS prediction for a provided input.">
+<g id="a_node4"><a xlink:href="pred__rls_8c.html#ae7fd78fa9f7a442ed68b25e8eac51469" target="_top" xlink:title="Computes the current RLS prediction for a provided input.">
 <polygon fill="none" stroke="black" points="5,-38.5 5,-57.5 99,-57.5 99,-38.5 5,-38.5"/>
 <text text-anchor="middle" x="52" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_rls_compute</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="pred__rls_8h.html#a34245842989abd5abef6b922983216d9" target="_top" xlink:title="Updates an RLS prediction for a given input and truth sample.">
+<g id="a_node5"><a xlink:href="pred__rls_8c.html#a34245842989abd5abef6b922983216d9" target="_top" xlink:title="Updates an RLS prediction for a given input and truth sample.">
 <polygon fill="none" stroke="black" points="9,-0.5 9,-19.5 95,-19.5 95,-0.5 9,-0.5"/>
 <text text-anchor="middle" x="52" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_rls_update</text>
 </a>

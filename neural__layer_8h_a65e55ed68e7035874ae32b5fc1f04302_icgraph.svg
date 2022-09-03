@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__lstm_8h.html#a00f097f7f5277fa3396e1feefc231e91" target="_top" xlink:title="Backward propagates an LSTM layer.">
+<g id="a_node2"><a xlink:href="neural__layer__lstm_8c.html#a00f097f7f5277fa3396e1feefc231e91" target="_top" xlink:title="Backward propagates an LSTM layer.">
 <polygon fill="none" stroke="black" points="137,-88.5 137,-107.5 277,-107.5 277,-88.5 137,-88.5"/>
 <text text-anchor="middle" x="207" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_backward</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__recurrent_8h.html#afa1e35bc8d3f40c4af58db77c1d55f93" target="_top" xlink:title="Backward propagates a recurrent layer.">
+<g id="a_node3"><a xlink:href="neural__layer__recurrent_8c.html#afa1e35bc8d3f40c4af58db77c1d55f93" target="_top" xlink:title="Backward propagates a recurrent layer.">
 <polygon fill="none" stroke="black" points="150.5,-39 150.5,-69 263.5,-69 263.5,-39 150.5,-39"/>
 <text text-anchor="start" x="158.5" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_recurrent</text>
 <text text-anchor="middle" x="207" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">_backward</text>
@@ -51,7 +51,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural_8h.html#a2090e03e5cc8444408ce1cf834bd01c1" target="_top" xlink:title="Performs a gradient descent update on a neural network.">
+<g id="a_node4"><a xlink:href="neural_8c.html#a9226c300b9de597334244bf57e9b53f6" target="_top" xlink:title="Performs a gradient descent update on a neural network.">
 <polygon fill="none" stroke="black" points="172.5,-0.5 172.5,-19.5 241.5,-19.5 241.5,-0.5 172.5,-0.5"/>
 <text text-anchor="middle" x="207" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_learn</text>
 </a>
@@ -66,7 +66,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="pred__neural_8h.html#abfe6fe6bb45b0713afbf2820881cf750" target="_top" xlink:title="Backward propagates and updates a neural network prediction.">
+<g id="a_node5"><a xlink:href="pred__neural_8c.html#abfe6fe6bb45b0713afbf2820881cf750" target="_top" xlink:title="Backward propagates and updates a neural network prediction.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 101,-19.5 101,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="50.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_neural_update</text>
 </a>

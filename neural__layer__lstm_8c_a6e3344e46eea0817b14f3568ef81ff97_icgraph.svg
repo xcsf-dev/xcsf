@@ -35,7 +35,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__lstm_8h.html#a6ec181dbf42f15b8c04c04005c399def" target="_top" xlink:title="Initialises and creates a copy of one LSTM layer from another.">
+<g id="a_node4"><a xlink:href="neural__layer__lstm_8c.html#a6ec181dbf42f15b8c04c04005c399def" target="_top" xlink:title="Initialises and creates a copy of one LSTM layer from another.">
 <polygon fill="none" stroke="black" points="164,-76.5 164,-95.5 283,-95.5 283,-76.5 164,-76.5"/>
 <text text-anchor="middle" x="223.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_copy</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="neural__layer__lstm_8h.html#ae10001d478d05d7503e4ce76e02cbf6b" target="_top" xlink:title="Initialises a long short&#45;term memory layer.">
+<g id="a_node5"><a xlink:href="neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" target="_top" xlink:title="Initialises a long short&#45;term memory layer.">
 <polygon fill="none" stroke="black" points="168,-38.5 168,-57.5 279,-57.5 279,-38.5 168,-38.5"/>
 <text text-anchor="middle" x="223.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_init</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="neural__layer__lstm_8h.html#a6f8cf6bf022b03c7513b8360002720af" target="_top" xlink:title="Reads an LSTM layer from a file.">
+<g id="a_node6"><a xlink:href="neural__layer__lstm_8c.html#a6f8cf6bf022b03c7513b8360002720af" target="_top" xlink:title="Reads an LSTM layer from a file.">
 <polygon fill="none" stroke="black" points="165.5,-0.5 165.5,-19.5 281.5,-19.5 281.5,-0.5 165.5,-0.5"/>
 <text text-anchor="middle" x="223.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_load</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
+<g id="a_node3"><a xlink:href="neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
 <polygon fill="none" stroke="black" points="0,-114.5 0,-133.5 128,-133.5 128,-114.5 0,-114.5"/>
 <text text-anchor="middle" x="64" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_mutate</text>
 </a>

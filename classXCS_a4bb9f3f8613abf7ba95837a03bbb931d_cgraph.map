@@ -83,7 +83,7 @@
 <area shape="rect" id="node76" href="$clset_8c.html#ad2bced61b3addd5c4d95dd3460338e0b" title="Calculates the total time stamps of classifiers in the set." alt="" coords="1273,93,1388,120"/>
 <area shape="rect" id="node79" href="$ea_8c.html#ac3134366cd64189d6386a3cf014987b7" title="Performs evolutionary algorithm subsumption." alt="" coords="1283,245,1379,272"/>
 <area shape="rect" id="node80" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="1467,93,1585,120"/>
-<area shape="rect" id="node83" href="$ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" title="Selects a classifier from the set via roulete wheel." alt="" coords="1477,144,1575,171"/>
+<area shape="rect" id="node83" href="$ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" title="Selects a classifier from the set via roulette wheel." alt="" coords="1477,144,1575,171"/>
 <area shape="rect" id="node84" href="$ea_8c.html#a1e69096825e17626b2015dd730e66638" title="Selects a classifier from the set via tournament." alt="" coords="1451,195,1601,221"/>
 <area shape="rect" id="node86" href="$pa_8c.html#a63ac1844cb7efa4e37b8c382f56b542b" title="Resets the prediction array to zero." alt="" coords="924,1588,996,1615"/>
 <area shape="rect" id="node88" href="$xcs__supervised_8c.html#ad7cd5a443870a2cd32b124942dc81ff5" title="Selects a data sample for training or testing." alt="" coords="359,397,521,424"/>

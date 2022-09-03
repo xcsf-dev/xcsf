@@ -1,13 +1,13 @@
 <map id="XCS::set_condition" name="XCS::set_condition">
-<area shape="rect" id="node1" title="Sets the condition type and initialisation arguments." alt="" coords="5,937,140,963"/>
-<area shape="rect" id="node2" href="$condition_8c.html#aac2f9eaa3555b7e4b8d6106fe46f7d41" title="Sets the condition parameters from a cJSON object." alt="" coords="188,846,355,873"/>
-<area shape="rect" id="node42" href="$classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11" title="Converts a Python dictionary to a C++ string (JSON)." alt="" coords="207,962,335,989"/>
+<area shape="rect" id="node1" title="Sets the condition type and initialisation arguments." alt="" coords="5,981,140,1007"/>
+<area shape="rect" id="node2" href="$condition_8c.html#aac2f9eaa3555b7e4b8d6106fe46f7d41" title="Sets the condition parameters from a cJSON object." alt="" coords="188,830,355,857"/>
+<area shape="rect" id="node42" href="$classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11" title="Converts a Python dictionary to a C++ string (JSON)." alt="" coords="207,1071,335,1098"/>
 <area shape="rect" id="node3" href="$cond__dgp_8c.html#ade1c67058d4786b83eb509bf0970f488" title="Sets the DGP parameters from a cJSON object." alt="" coords="423,217,575,259"/>
 <area shape="rect" id="node9" href="$cond__gp_8c.html#a7b76673569fb43ab54519f80765f3472" title="Sets the tree GP parameters from a cJSON object." alt="" coords="426,384,571,425"/>
 <area shape="rect" id="node18" href="$cond__neural_8c.html#a36aaa09b20127f91f09523074191d3ac" title="Sets the neural network parameters from a cJSON object." alt="" coords="415,661,582,703"/>
-<area shape="rect" id="node32" href="$condition_8c.html#a92ddb368e6e9bc004ff90e59798b053e" title="Sets the center&#45;spread parameters from a cJSON object." alt="" coords="403,846,595,873"/>
-<area shape="rect" id="node37" href="$condition_8c.html#ae31b2fb432f0fa9d38c18eb5d2f0be18" title=" " alt="" coords="423,904,574,945"/>
-<area shape="rect" id="node39" href="$cond__ternary_8c.html#acc0d446f6079b76f436e4f9be08f78d6" title="Sets the ternary parameters from a cJSON object." alt="" coords="429,983,569,1024"/>
+<area shape="rect" id="node32" href="$condition_8c.html#a92ddb368e6e9bc004ff90e59798b053e" title="Sets the center&#45;spread parameters from a cJSON object." alt="" coords="403,830,595,857"/>
+<area shape="rect" id="node37" href="$condition_8c.html#ae31b2fb432f0fa9d38c18eb5d2f0be18" title=" " alt="" coords="423,901,574,943"/>
+<area shape="rect" id="node39" href="$cond__ternary_8c.html#acc0d446f6079b76f436e4f9be08f78d6" title="Sets the ternary parameters from a cJSON object." alt="" coords="429,1005,569,1047"/>
 <area shape="rect" id="node4" href="$dgp_8c.html#a3208cc6d02deae06dd2faea89f32f873" title="Sets the DGP graph parameters from a cJSON object." alt="" coords="659,122,819,149"/>
 <area shape="rect" id="node5" href="$dgp_8c.html#aed1478bc3f88ad1f133a130dca8609d6" title=" " alt="" coords="895,5,1061,47"/>
 <area shape="rect" id="node6" href="$dgp_8c.html#ad00d04d5a1aa9f62c635775765099ca7" title=" " alt="" coords="894,71,1062,98"/>
@@ -41,5 +41,6 @@
 <area shape="rect" id="node38" href="$condition_8c.html#a654e570bc807e2c15a6d963b31d3caf2" title="Returns the integer representation of a condition type given a name." alt="" coords="665,973,813,999"/>
 <area shape="rect" id="node40" href="$condition_8c.html#a6d08714de7bb2d395de2a8171635afac" title=" " alt="" coords="665,1023,812,1050"/>
 <area shape="rect" id="node41" href="$condition_8c.html#a95e3f93f8f4d82e7a6f5ef3b7a6a71ef" title=" " alt="" coords="644,1074,833,1101"/>
-<area shape="rect" id="node43" href="$classXCS.html#aa324fa8d2f623753926ed7b32607860b" title="Finds and replaces all occurrences of a substring." alt="" coords="425,1049,573,1075"/>
+<area shape="rect" id="node43" href="$classXCS.html#aa324fa8d2f623753926ed7b32607860b" title="Finds and replaces all occurrences of a substring." alt="" coords="425,1071,573,1098"/>
+<area shape="rect" id="node44" href="$utils_8c.html#ab88f9e76233791f1e21ef22ba3a958b0" title="Checks whether JSON parsed correctly." alt="" coords="419,1122,578,1149"/>
 </map>

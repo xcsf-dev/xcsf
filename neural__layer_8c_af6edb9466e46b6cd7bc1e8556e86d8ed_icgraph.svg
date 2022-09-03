@@ -35,7 +35,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__connected_8h.html#abfd38ab832a6f70d7b61065fe3dc25c3" target="_top" xlink:title="Mutates a connected layer.">
+<g id="a_node4"><a xlink:href="neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" target="_top" xlink:title="Mutates a connected layer.">
 <polygon fill="none" stroke="black" points="170,-49.5 170,-79.5 289,-79.5 289,-49.5 170,-49.5"/>
 <text text-anchor="start" x="178" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="229.5" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>
@@ -51,7 +51,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="neural__layer__convolutional_8h.html#a9e4f5fb82855910a5a4fecad093033db" target="_top" xlink:title="Mutates a convolutional layer.">
+<g id="a_node5"><a xlink:href="neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" target="_top" xlink:title="Mutates a convolutional layer.">
 <polygon fill="none" stroke="black" points="164,-0.5 164,-30.5 295,-30.5 295,-0.5 164,-0.5"/>
 <text text-anchor="start" x="172" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="229.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>
@@ -67,7 +67,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
+<g id="a_node3"><a xlink:href="neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
 <polygon fill="none" stroke="black" points="0,-99 0,-118 128,-118 128,-99 0,-99"/>
 <text text-anchor="middle" x="64" y="-106" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_mutate</text>
 </a>

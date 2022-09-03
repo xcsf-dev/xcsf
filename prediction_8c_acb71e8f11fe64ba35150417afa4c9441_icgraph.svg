@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="prediction_8h.html#af2e3b26751cb8f9af4c608e534ee6894" target="_top" xlink:title="Initialises default prediction parameters.">
+<g id="a_node2"><a xlink:href="prediction_8c.html#af2e3b26751cb8f9af4c608e534ee6894" target="_top" xlink:title="Initialises default prediction parameters.">
 <polygon fill="none" stroke="black" points="476,-106.5 476,-125.5 583,-125.5 583,-106.5 476,-106.5"/>
 <text text-anchor="middle" x="529.5" y="-113.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_param_defaults</text>
 </a>
@@ -36,7 +36,7 @@
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="pred__rls_8h.html#a4756fe786b86ecce9a4a9040daff97da" target="_top" xlink:title="Sets the RLS parameters from a cJSON object.">
+<g id="a_node10"><a xlink:href="pred__rls_8c.html#a4756fe786b86ecce9a4a9040daff97da" target="_top" xlink:title="Sets the RLS parameters from a cJSON object.">
 <polygon fill="none" stroke="black" points="476,-41 476,-71 583,-71 583,-41 476,-41"/>
 <text text-anchor="start" x="484" y="-59" font-family="Helvetica,sans-Serif" font-size="10.00">pred_rls_param_json</text>
 <text text-anchor="middle" x="529.5" y="-48" font-family="Helvetica,sans-Serif" font-size="10.00">_import</text>
@@ -52,7 +52,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="param_8h.html#ac8218a170803be0bcd974764e7494b0e" target="_top" xlink:title="Initialises default XCSF parameters.">
+<g id="a_node3"><a xlink:href="param_8c.html#ac8218a170803be0bcd974764e7494b0e" target="_top" xlink:title="Initialises default XCSF parameters.">
 <polygon fill="none" stroke="black" points="347.5,-114.5 347.5,-133.5 409.5,-133.5 409.5,-114.5 347.5,-114.5"/>
 <text text-anchor="middle" x="378.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_init</text>
 </a>
@@ -67,7 +67,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="env__csv_8h.html#ab26a39a388f0ac83b9ac14726ad14b16" target="_top" xlink:title="Initialises a CSV input environment from a specified filename.">
+<g id="a_node4"><a xlink:href="env__csv_8c.html#ab26a39a388f0ac83b9ac14726ad14b16" target="_top" xlink:title="Initialises a CSV input environment from a specified filename.">
 <polygon fill="none" stroke="black" points="193.5,-190.5 193.5,-209.5 264.5,-209.5 264.5,-190.5 193.5,-190.5"/>
 <text text-anchor="middle" x="229" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">env_csv_init</text>
 </a>
@@ -82,7 +82,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="env__maze_8h.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" target="_top" xlink:title="Initialises a maze environment from a specified file.">
+<g id="a_node7"><a xlink:href="env__maze_8c.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" target="_top" xlink:title="Initialises a maze environment from a specified file.">
 <polygon fill="none" stroke="black" points="189,-152.5 189,-171.5 269,-171.5 269,-152.5 189,-152.5"/>
 <text text-anchor="middle" x="229" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">env_maze_init</text>
 </a>
@@ -97,7 +97,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="env__mux_8h.html#acc5dab817235c6910ba43b9dc4158ccd" target="_top" xlink:title="Initialises a real multiplexer environment of specified length.">
+<g id="a_node8"><a xlink:href="env__mux_8c.html#aff3b81b4913d273ecfd62d7585480b15" target="_top" xlink:title="Initialises a real multiplexer environment of specified length.">
 <polygon fill="none" stroke="black" points="192,-114.5 192,-133.5 266,-133.5 266,-114.5 192,-114.5"/>
 <text text-anchor="middle" x="229" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">env_mux_init</text>
 </a>
@@ -127,7 +127,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="env_8h.html#a9213fcf5fc422d6a77bce853b1d78dc9" target="_top" xlink:title="Initialises a built&#45;in problem environment.">
+<g id="a_node5"><a xlink:href="env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9" target="_top" xlink:title="Initialises a built&#45;in problem environment.">
 <polygon fill="none" stroke="black" points="82.5,-133.5 82.5,-152.5 132.5,-152.5 132.5,-133.5 82.5,-133.5"/>
 <text text-anchor="middle" x="107.5" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">env_init</text>
 </a>
@@ -169,7 +169,7 @@
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="prediction_8h.html#a3da29e38981e8b98ec136766a79d074a" target="_top" xlink:title="Sets the prediction parameters from a cJSON object.">
+<g id="a_node11"><a xlink:href="prediction_8c.html#a3da29e38981e8b98ec136766a79d074a" target="_top" xlink:title="Sets the prediction parameters from a cJSON object.">
 <polygon fill="none" stroke="black" points="317,-38.5 317,-57.5 440,-57.5 440,-38.5 317,-38.5"/>
 <text text-anchor="middle" x="378.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_param_json_import</text>
 </a>
@@ -184,7 +184,7 @@
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="param_8h.html#a130260988988535419aee8abe51986c1" target="_top" xlink:title="Sets the parameters from a json formatted string.">
+<g id="a_node12"><a xlink:href="param_8c.html#a130260988988535419aee8abe51986c1" target="_top" xlink:title="Sets the parameters from a json formatted string.">
 <polygon fill="none" stroke="black" points="179.5,-38.5 179.5,-57.5 278.5,-57.5 278.5,-38.5 179.5,-38.5"/>
 <text text-anchor="middle" x="229" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_json_import</text>
 </a>
@@ -214,7 +214,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" target="_top" xlink:title="Reads the specified configuration file.">
+<g id="a_node13"><a xlink:href="config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" target="_top" xlink:title="Reads the specified configuration file.">
 <polygon fill="none" stroke="black" points="74,-76.5 74,-95.5 141,-95.5 141,-76.5 74,-76.5"/>
 <text text-anchor="middle" x="107.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">config_read</text>
 </a>

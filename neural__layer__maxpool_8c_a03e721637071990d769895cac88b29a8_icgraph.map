@@ -1,4 +1,4 @@
 <map id="max_pool" name="max_pool">
 <area shape="rect" id="node1" title="Returns the index of the maximum input value corresponding to a specified output height,..." alt="" coords="201,13,280,39"/>
-<area shape="rect" id="node2" href="$neural__layer__maxpool_8h.html#ab6439ffb382e4898aa9885d5a98bd642" title="Forward propagates a maxpooling layer." alt="" coords="5,5,153,47"/>
+<area shape="rect" id="node2" href="$neural__layer__maxpool_8c.html#ab6439ffb382e4898aa9885d5a98bd642" title="Forward propagates a maxpooling layer." alt="" coords="5,5,153,47"/>
 </map>

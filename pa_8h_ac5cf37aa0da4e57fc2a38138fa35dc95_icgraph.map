@@ -1,7 +1,6 @@
 <map id="pa_free" name="pa_free">
-<area shape="rect" id="node1" title="Frees the prediction array." alt="" coords="595,31,660,57"/>
-<area shape="rect" id="node2" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="449,5,499,32"/>
-<area shape="rect" id="node3" href="$xcsf_8h.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="401,56,547,83"/>
-<area shape="rect" id="node4" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="204,56,353,83"/>
-<area shape="rect" id="node5" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,56,156,83"/>
+<area shape="rect" id="node1" title="Frees the prediction array." alt="" coords="396,31,461,57"/>
+<area shape="rect" id="node2" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="250,5,301,32"/>
+<area shape="rect" id="node3" href="$xcsf_8c.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="203,56,348,83"/>
+<area shape="rect" id="node4" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="5,56,155,83"/>
 </map>

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__dgp_8h.html#ad5fd6cccf1ece3ebaac69644a86bcfb5" target="_top" xlink:title="Creates a DGP condition from a cJSON object.">
+<g id="a_node2"><a xlink:href="cond__dgp_8c.html#ad5fd6cccf1ece3ebaac69644a86bcfb5" target="_top" xlink:title="Creates a DGP condition from a cJSON object.">
 <polygon fill="none" stroke="black" points="0,-50 0,-69 114,-69 114,-50 0,-50"/>
 <text text-anchor="middle" x="57" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_json_import</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="rule__dgp_8h.html#afc876278ab001399d3cd9b2d4a097aa8" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="rule__dgp_8c.html#afc876278ab001399d3cd9b2d4a097aa8" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="5.5,-0.5 5.5,-30.5 108.5,-30.5 108.5,-0.5 5.5,-0.5"/>
 <text text-anchor="start" x="13.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_json</text>
 <text text-anchor="middle" x="57" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_import</text>

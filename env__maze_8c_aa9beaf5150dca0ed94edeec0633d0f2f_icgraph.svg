@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="env__maze_8h.html#ac076c3f4a2971924cd083f02c96d57ea" target="_top" xlink:title="Returns the current animat perceptions in the maze.">
+<g id="a_node2"><a xlink:href="env__maze_8c.html#ac076c3f4a2971924cd083f02c96d57ea" target="_top" xlink:title="Returns the current animat perceptions in the maze.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 107,-19.5 107,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="53.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">env_maze_get_state</text>
 </a>

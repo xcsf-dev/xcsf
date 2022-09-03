@@ -1,4 +1,4 @@
 <map id="pred_nlms_json_export" name="pred_nlms_json_export">
 <area shape="rect" id="node1" title="Returns a json formatted string representation of an NLMS prediction." alt="" coords="168,5,324,32"/>
-<area shape="rect" id="node2" href="$pred__nlms_8h.html#a96b4528e810101dba5b5bb2ac05cfd87" title="Prints an NLMS prediction." alt="" coords="5,5,120,32"/>
+<area shape="rect" id="node2" href="$pred__nlms_8c.html#a96b4528e810101dba5b5bb2ac05cfd87" title="Prints an NLMS prediction." alt="" coords="5,5,120,32"/>
 </map>

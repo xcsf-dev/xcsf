@@ -1,15 +1,15 @@
 <map id="random_connection" name="random_connection">
 <area shape="rect" id="node1" title="Returns a random connection." alt="" coords="616,132,751,159"/>
 <area shape="rect" id="node2" href="$dgp_8c.html#a9f7258ad6f516679d0f6f42cc132e786" title="Mutates the connectivity of a DGP graph." alt="" coords="389,69,568,96"/>
-<area shape="rect" id="node6" href="$dgp_8h.html#a58fe69583d92f2c818d007d899fdbbb6" title="Randomises a specified DGP graph." alt="" coords="435,157,522,184"/>
-<area shape="rect" id="node3" href="$dgp_8h.html#af71be7faf77196a067d8e69ac1493ee2" title="Mutates a specified DGP graph." alt="" coords="223,31,325,57"/>
-<area shape="rect" id="node4" href="$cond__dgp_8h.html#a8c6aa1ea69d87295dec888622f6d4577" title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates." alt="" coords="19,5,145,32"/>
-<area shape="rect" id="node5" href="$rule__dgp_8h.html#a399e362d298b510125264e2fdfaaf6b6" title=" " alt="" coords="5,56,159,83"/>
-<area shape="rect" id="node7" href="$cond__dgp_8h.html#a585a3476b4473b1b19159a7d55daa6ae" title="Generates a dynamical GP graph that matches the current input." alt="" coords="215,81,333,108"/>
-<area shape="rect" id="node8" href="$cond__dgp_8h.html#a36eb6c8e497eb217ea0423ffce18e8e4" title="Creates and initialises a dynamical GP graph condition." alt="" coords="223,132,325,159"/>
-<area shape="rect" id="node9" href="$dgp_8h.html#a6ffd1789a8d7f668658d61f97f6de1fc" title="Creates a DGP graph from a cJSON object." alt="" coords="210,183,338,209"/>
-<area shape="rect" id="node12" href="$rule__dgp_8h.html#ac1f0b0c11b92852e82b00ad7b4bb169f" title=" " alt="" coords="207,233,341,260"/>
-<area shape="rect" id="node13" href="$rule__dgp_8h.html#a242104780e9757fc9b303b8850f56382" title=" " alt="" coords="209,284,339,311"/>
-<area shape="rect" id="node10" href="$cond__dgp_8h.html#ad5fd6cccf1ece3ebaac69644a86bcfb5" title="Creates a DGP condition from a cJSON object." alt="" coords="6,157,158,184"/>
-<area shape="rect" id="node11" href="$rule__dgp_8h.html#afc876278ab001399d3cd9b2d4a097aa8" title=" " alt="" coords="13,209,151,250"/>
+<area shape="rect" id="node6" href="$dgp_8c.html#a58fe69583d92f2c818d007d899fdbbb6" title="Randomises a specified DGP graph." alt="" coords="435,157,522,184"/>
+<area shape="rect" id="node3" href="$dgp_8c.html#af71be7faf77196a067d8e69ac1493ee2" title="Mutates a specified DGP graph." alt="" coords="223,31,325,57"/>
+<area shape="rect" id="node4" href="$cond__dgp_8c.html#a8c6aa1ea69d87295dec888622f6d4577" title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates." alt="" coords="19,5,145,32"/>
+<area shape="rect" id="node5" href="$rule__dgp_8c.html#a399e362d298b510125264e2fdfaaf6b6" title=" " alt="" coords="5,56,159,83"/>
+<area shape="rect" id="node7" href="$cond__dgp_8c.html#a585a3476b4473b1b19159a7d55daa6ae" title="Generates a dynamical GP graph that matches the current input." alt="" coords="215,81,333,108"/>
+<area shape="rect" id="node8" href="$cond__dgp_8c.html#a36eb6c8e497eb217ea0423ffce18e8e4" title="Creates and initialises a dynamical GP graph condition." alt="" coords="223,132,325,159"/>
+<area shape="rect" id="node9" href="$dgp_8c.html#a6ffd1789a8d7f668658d61f97f6de1fc" title="Creates a DGP graph from a cJSON object." alt="" coords="210,183,338,209"/>
+<area shape="rect" id="node12" href="$rule__dgp_8c.html#ac1f0b0c11b92852e82b00ad7b4bb169f" title=" " alt="" coords="207,233,341,260"/>
+<area shape="rect" id="node13" href="$rule__dgp_8c.html#a242104780e9757fc9b303b8850f56382" title=" " alt="" coords="209,284,339,311"/>
+<area shape="rect" id="node10" href="$cond__dgp_8c.html#ad5fd6cccf1ece3ebaac69644a86bcfb5" title="Creates a DGP condition from a cJSON object." alt="" coords="6,157,158,184"/>
+<area shape="rect" id="node11" href="$rule__dgp_8c.html#afc876278ab001399d3cd9b2d4a097aa8" title=" " alt="" coords="13,209,151,250"/>
 </map>

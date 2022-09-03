@@ -1,7 +1,7 @@
 <map id="layer_args_opt" name="layer_args_opt">
 <area shape="rect" id="node1" title="Returns a bitstring representing the permissions granted by a layer." alt="" coords="252,81,359,108"/>
-<area shape="rect" id="node2" href="$neural__layer__connected_8h.html#af721369377e6bd5f2b691065f73a32f6" title="Initialises a fully&#45;connected layer." alt="" coords="13,5,196,32"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8h.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="5,56,204,83"/>
-<area shape="rect" id="node4" href="$neural__layer__lstm_8h.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="31,107,179,133"/>
-<area shape="rect" id="node5" href="$neural__layer__recurrent_8h.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="17,157,192,184"/>
+<area shape="rect" id="node2" href="$neural__layer__connected_8c.html#af721369377e6bd5f2b691065f73a32f6" title="Initialises a fully&#45;connected layer." alt="" coords="13,5,196,32"/>
+<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="5,56,204,83"/>
+<area shape="rect" id="node4" href="$neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="31,107,179,133"/>
+<area shape="rect" id="node5" href="$neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="17,157,192,184"/>
 </map>

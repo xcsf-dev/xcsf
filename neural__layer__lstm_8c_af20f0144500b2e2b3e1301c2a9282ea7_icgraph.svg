@@ -35,7 +35,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__lstm_8h.html#ae10001d478d05d7503e4ce76e02cbf6b" target="_top" xlink:title="Initialises a long short&#45;term memory layer.">
+<g id="a_node4"><a xlink:href="neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" target="_top" xlink:title="Initialises a long short&#45;term memory layer.">
 <polygon fill="none" stroke="black" points="164,-0.5 164,-19.5 275,-19.5 275,-0.5 164,-0.5"/>
 <text text-anchor="middle" x="219.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_init</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
+<g id="a_node3"><a xlink:href="neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
 <polygon fill="none" stroke="black" points="0,-38.5 0,-57.5 128,-57.5 128,-38.5 0,-38.5"/>
 <text text-anchor="middle" x="64" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_mutate</text>
 </a>

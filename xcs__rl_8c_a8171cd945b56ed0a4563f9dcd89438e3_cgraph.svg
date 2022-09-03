@@ -1677,7 +1677,7 @@
 <!-- Node101 -->
 <g id="node101" class="node">
 <title>Node101</title>
-<g id="a_node101"><a xlink:href="ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" target="_top" xlink:title="Selects a classifier from the set via roulete wheel.">
+<g id="a_node101"><a xlink:href="ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" target="_top" xlink:title="Selects a classifier from the set via roulette wheel.">
 <polygon fill="none" stroke="black" points="766.5,-779.5 766.5,-798.5 840.5,-798.5 840.5,-779.5 766.5,-779.5"/>
 <text text-anchor="middle" x="803.5" y="-786.5" font-family="Helvetica,sans-Serif" font-size="10.00">ea_select_rw</text>
 </a>

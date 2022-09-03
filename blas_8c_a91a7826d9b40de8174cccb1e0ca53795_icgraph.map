@@ -1,7 +1,7 @@
 <map id="blas_dot" name="blas_dot">
 <area shape="rect" id="node1" title="Computes the dot product of two vectors." alt="" coords="192,81,263,108"/>
-<area shape="rect" id="node2" href="$pred__nlms_8h.html#a51b8eb7d83c9b73cb298691505af10c0" title="Computes the current NLMS prediction for a provided input." alt="" coords="5,5,144,32"/>
-<area shape="rect" id="node3" href="$pred__nlms_8h.html#ac583f28320a20a93d335688484e8ef91" title="Updates an NLMS prediction for a given input and truth sample." alt="" coords="11,56,139,83"/>
-<area shape="rect" id="node4" href="$pred__rls_8h.html#ae7fd78fa9f7a442ed68b25e8eac51469" title="Computes the current RLS prediction for a provided input." alt="" coords="12,107,137,133"/>
-<area shape="rect" id="node5" href="$pred__rls_8h.html#a34245842989abd5abef6b922983216d9" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="17,157,132,184"/>
+<area shape="rect" id="node2" href="$pred__nlms_8c.html#a51b8eb7d83c9b73cb298691505af10c0" title="Computes the current NLMS prediction for a provided input." alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node3" href="$pred__nlms_8c.html#ac583f28320a20a93d335688484e8ef91" title="Updates an NLMS prediction for a given input and truth sample." alt="" coords="11,56,139,83"/>
+<area shape="rect" id="node4" href="$pred__rls_8c.html#ae7fd78fa9f7a442ed68b25e8eac51469" title="Computes the current RLS prediction for a provided input." alt="" coords="12,107,137,133"/>
+<area shape="rect" id="node5" href="$pred__rls_8c.html#a34245842989abd5abef6b922983216d9" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="17,157,132,184"/>
 </map>

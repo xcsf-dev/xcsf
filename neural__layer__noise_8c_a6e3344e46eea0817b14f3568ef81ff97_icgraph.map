@@ -1,7 +1,7 @@
 <map id="malloc_layer_arrays" name="malloc_layer_arrays">
 <area shape="rect" id="node1" title="Allocate memory used by a noise layer." alt="" coords="219,81,357,108"/>
-<area shape="rect" id="node2" href="$neural__layer__noise_8h.html#aa3f48c8d743c54f4934fea0597969200" title="Initialises and creates a copy of one noise layer from another." alt="" coords="5,5,171,32"/>
-<area shape="rect" id="node3" href="$neural__layer__noise_8h.html#a433252b61a22c508b4c943191124ce03" title="Initialises a noise layer." alt="" coords="11,56,165,83"/>
-<area shape="rect" id="node4" href="$neural__layer__noise_8h.html#a79a3cce0f83b86c08dd45b14088a7519" title="Reads a noise layer from a file." alt="" coords="7,107,169,133"/>
-<area shape="rect" id="node5" href="$neural__layer__noise_8h.html#a2464187d100209519f41aa1c4c640bca" title="Resizes a noise layer if the previous layer has changed size." alt="" coords="23,158,153,199"/>
+<area shape="rect" id="node2" href="$neural__layer__noise_8c.html#aa3f48c8d743c54f4934fea0597969200" title="Initialises and creates a copy of one noise layer from another." alt="" coords="5,5,171,32"/>
+<area shape="rect" id="node3" href="$neural__layer__noise_8c.html#a433252b61a22c508b4c943191124ce03" title="Initialises a noise layer." alt="" coords="11,56,165,83"/>
+<area shape="rect" id="node4" href="$neural__layer__noise_8c.html#a79a3cce0f83b86c08dd45b14088a7519" title="Reads a noise layer from a file." alt="" coords="7,107,169,133"/>
+<area shape="rect" id="node5" href="$neural__layer__noise_8c.html#a2464187d100209519f41aa1c4c640bca" title="Resizes a noise layer if the previous layer has changed size." alt="" coords="23,158,153,199"/>
 </map>

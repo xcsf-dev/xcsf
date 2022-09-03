@@ -1,5 +1,4 @@
 <map id="clset_mean_cond_connections" name="clset_mean_cond_connections">
-<area shape="rect" id="node1" title="Calculates the mean number of condition connections in the set." alt="" coords="399,13,600,39"/>
-<area shape="rect" id="node2" href="$classXCS.html#a0c384ec2ba86bd1038457df1cadd498c" title=" " alt="" coords="204,5,351,47"/>
-<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,13,156,39"/>
+<area shape="rect" id="node1" title="Calculates the mean number of condition connections in the set." alt="" coords="200,13,401,39"/>
+<area shape="rect" id="node2" href="$classXCS.html#a0c384ec2ba86bd1038457df1cadd498c" title=" " alt="" coords="5,5,152,47"/>
 </map>

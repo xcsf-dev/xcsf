@@ -1,27 +1,27 @@
 <map id="condition.h" name="condition.h">
-<area shape="rect" id="node1" title="Interface for classifier conditions." alt="" coords="729,5,814,32"/>
-<area shape="rect" id="node2" href="$cl_8c.html" title="Functions operating on classifiers." alt="" coords="99,80,142,107"/>
-<area shape="rect" id="node3" href="$cond__neural_8h.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="217,80,320,107"/>
-<area shape="rect" id="node4" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="5,155,108,181"/>
-<area shape="rect" id="node8" href="$cond__dgp_8h.html" title="Dynamical GP graph condition functions." alt="" coords="344,80,433,107"/>
-<area shape="rect" id="node10" href="$cond__dummy_8h.html" title="Always&#45;matching dummy condition functions." alt="" coords="458,80,567,107"/>
-<area shape="rect" id="node12" href="$cond__ellipsoid_8h.html" title="Hyperellipsoid condition functions." alt="" coords="591,80,706,107"/>
-<area shape="rect" id="node14" href="$cond__gp_8h.html" title="Tree GP condition functions." alt="" coords="730,80,813,107"/>
-<area shape="rect" id="node16" href="$cond__rectangle_8h.html" title="Hyperrectangle condition functions." alt="" coords="837,80,959,107"/>
-<area shape="rect" id="node18" href="$cond__ternary_8h.html" title="Ternary condition functions." alt="" coords="983,80,1090,107"/>
-<area shape="rect" id="node20" href="$rule__dgp_8h.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="1114,80,1197,107"/>
-<area shape="rect" id="node22" href="$rule__neural_8h.html" title="Neural network rule (condition + action) functions." alt="" coords="1221,80,1317,107"/>
-<area shape="rect" id="node24" href="$param_8c.html" title="Functions for setting and printing parameters." alt="" coords="1341,80,1410,107"/>
-<area shape="rect" id="node25" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="1435,80,1572,107"/>
-<area shape="rect" id="node5" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="132,155,235,181"/>
-<area shape="rect" id="node6" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="729,155,814,181"/>
-<area shape="rect" id="node7" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="259,155,318,181"/>
-<area shape="rect" id="node9" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="343,155,432,181"/>
-<area shape="rect" id="node11" href="$cond__dummy_8c.html" title="Always&#45;matching dummy condition functions." alt="" coords="457,155,566,181"/>
-<area shape="rect" id="node13" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="590,155,705,181"/>
-<area shape="rect" id="node15" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="838,155,921,181"/>
-<area shape="rect" id="node17" href="$cond__rectangle_8c.html" title="Hyperrectangle condition functions." alt="" coords="945,155,1067,181"/>
-<area shape="rect" id="node19" href="$cond__ternary_8c.html" title="Ternary condition functions." alt="" coords="1091,155,1198,181"/>
-<area shape="rect" id="node21" href="$rule__dgp_8c.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="1222,155,1305,181"/>
-<area shape="rect" id="node23" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="1329,155,1425,181"/>
+<area shape="rect" id="node1" title="Interface for classifier conditions." alt="" coords="765,5,850,32"/>
+<area shape="rect" id="node2" href="$cl_8c.html" title="Functions operating on classifiers." alt="" coords="47,80,90,107"/>
+<area shape="rect" id="node3" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="1112,155,1215,181"/>
+<area shape="rect" id="node4" href="$cond__dgp_8h.html" title="Dynamical GP graph condition functions." alt="" coords="115,80,204,107"/>
+<area shape="rect" id="node7" href="$cond__dummy_8h.html" title="Always&#45;matching dummy condition functions." alt="" coords="229,80,338,107"/>
+<area shape="rect" id="node9" href="$cond__ellipsoid_8h.html" title="Hyperellipsoid condition functions." alt="" coords="362,80,477,107"/>
+<area shape="rect" id="node11" href="$cond__gp_8h.html" title="Tree GP condition functions." alt="" coords="501,80,583,107"/>
+<area shape="rect" id="node13" href="$cond__neural_8h.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="1163,80,1265,107"/>
+<area shape="rect" id="node16" href="$cond__rectangle_8h.html" title="Hyperrectangle condition functions." alt="" coords="608,80,729,107"/>
+<area shape="rect" id="node18" href="$cond__ternary_8h.html" title="Ternary condition functions." alt="" coords="754,80,861,107"/>
+<area shape="rect" id="node20" href="$param_8c.html" title="Functions for setting and printing parameters." alt="" coords="1290,80,1359,107"/>
+<area shape="rect" id="node21" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="1384,80,1521,107"/>
+<area shape="rect" id="node22" href="$rule__dgp_8h.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="885,80,967,107"/>
+<area shape="rect" id="node24" href="$rule__neural_8h.html" title="Neural network rule (condition + action) functions." alt="" coords="991,80,1087,107"/>
+<area shape="rect" id="node5" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="5,155,95,181"/>
+<area shape="rect" id="node6" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="645,155,730,181"/>
+<area shape="rect" id="node8" href="$cond__dummy_8c.html" title="Always&#45;matching dummy condition functions." alt="" coords="119,155,229,181"/>
+<area shape="rect" id="node10" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="253,155,367,181"/>
+<area shape="rect" id="node12" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="391,155,474,181"/>
+<area shape="rect" id="node14" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="1239,155,1341,181"/>
+<area shape="rect" id="node15" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="1366,155,1425,181"/>
+<area shape="rect" id="node17" href="$cond__rectangle_8c.html" title="Hyperrectangle condition functions." alt="" coords="499,155,620,181"/>
+<area shape="rect" id="node19" href="$cond__ternary_8c.html" title="Ternary condition functions." alt="" coords="754,155,861,181"/>
+<area shape="rect" id="node23" href="$rule__dgp_8c.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="885,155,967,181"/>
+<area shape="rect" id="node25" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="991,155,1087,181"/>
 </map>

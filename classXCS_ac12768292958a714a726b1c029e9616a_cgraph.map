@@ -90,7 +90,7 @@
 <area shape="rect" id="node84" href="$clset_8c.html#ad2bced61b3addd5c4d95dd3460338e0b" title="Calculates the total time stamps of classifiers in the set." alt="" coords="780,832,895,859"/>
 <area shape="rect" id="node87" href="$ea_8c.html#ac3134366cd64189d6386a3cf014987b7" title="Performs evolutionary algorithm subsumption." alt="" coords="789,1237,885,1264"/>
 <area shape="rect" id="node88" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="965,1237,1084,1264"/>
-<area shape="rect" id="node91" href="$ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" title="Selects a classifier from the set via roulete wheel." alt="" coords="975,1187,1074,1213"/>
+<area shape="rect" id="node91" href="$ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" title="Selects a classifier from the set via roulette wheel." alt="" coords="975,1187,1074,1213"/>
 <area shape="rect" id="node92" href="$ea_8c.html#a1e69096825e17626b2015dd730e66638" title="Selects a classifier from the set via tournament." alt="" coords="949,1136,1100,1163"/>
 <area shape="rect" id="node94" href="$utils_8h.html#adc87687be632aa642e838b81a7404db1" title="Returns the index of the largest element in vector X." alt="" coords="613,1389,699,1416"/>
 </map>

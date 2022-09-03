@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__gp_8h.html#a1e740f931fc856fd7310874c7bf88195" target="_top" xlink:title="Generates a GP tree that matches the current input.">
+<g id="a_node2"><a xlink:href="cond__gp_8c.html#a1e740f931fc856fd7310874c7bf88195" target="_top" xlink:title="Generates a GP tree that matches the current input.">
 <polygon fill="none" stroke="black" points="0,-38.5 0,-57.5 83,-57.5 83,-38.5 0,-38.5"/>
 <text text-anchor="middle" x="41.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_gp_cover</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="cond__gp_8h.html#aa688690c3fa9cb73c35c98db35867789" target="_top" xlink:title="Creates and initialises a tree&#45;GP condition.">
+<g id="a_node3"><a xlink:href="cond__gp_8c.html#aa688690c3fa9cb73c35c98db35867789" target="_top" xlink:title="Creates and initialises a tree&#45;GP condition.">
 <polygon fill="none" stroke="black" points="6,-0.5 6,-19.5 77,-19.5 77,-0.5 6,-0.5"/>
 <text text-anchor="middle" x="41.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_gp_init</text>
 </a>

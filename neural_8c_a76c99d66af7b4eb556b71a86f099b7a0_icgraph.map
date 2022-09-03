@@ -1,7 +1,6 @@
 <map id="neural_resize" name="neural_resize">
-<area shape="rect" id="node1" title="Resizes neural network layers as necessary." alt="" coords="747,5,845,32"/>
-<area shape="rect" id="node2" href="$pred__neural_8h.html#ab573aaed6ff7623e99afe1d1f6e00919" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="560,5,699,32"/>
-<area shape="rect" id="node3" href="$xcsf_8h.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="384,5,512,32"/>
-<area shape="rect" id="node4" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="204,5,336,32"/>
-<area shape="rect" id="node5" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node1" title="Resizes neural network layers as necessary." alt="" coords="548,5,647,32"/>
+<area shape="rect" id="node2" href="$pred__neural_8c.html#ab573aaed6ff7623e99afe1d1f6e00919" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="361,5,500,32"/>
+<area shape="rect" id="node3" href="$xcsf_8c.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="185,5,313,32"/>
+<area shape="rect" id="node4" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="5,5,137,32"/>
 </map>

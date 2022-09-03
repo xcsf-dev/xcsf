@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__dgp_8h.html#a33a7ce490b663d05af0b11ad26689147" target="_top" xlink:title="Reads a dynamical GP graph condition from a file.">
+<g id="a_node2"><a xlink:href="cond__dgp_8c.html#a33a7ce490b663d05af0b11ad26689147" target="_top" xlink:title="Reads a dynamical GP graph condition from a file.">
 <polygon fill="none" stroke="black" points="10.5,-38.5 10.5,-57.5 92.5,-57.5 92.5,-38.5 10.5,-38.5"/>
 <text text-anchor="middle" x="51.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_load</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="rule__dgp_8h.html#afabb3ac60aabc10c8b04ae6b0a0f8497" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="rule__dgp_8c.html#afabb3ac60aabc10c8b04ae6b0a0f8497" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 103,-19.5 103,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="51.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_load</text>
 </a>

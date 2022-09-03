@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__ellipsoid_8h.html#ac6e825c20a547534a5c804e2a8259dab" target="_top" xlink:title="Mutates a hyperellipsoid condition with the self&#45;adaptive rate.">
+<g id="a_node2"><a xlink:href="cond__ellipsoid_8c.html#ac6e825c20a547534a5c804e2a8259dab" target="_top" xlink:title="Mutates a hyperellipsoid condition with the self&#45;adaptive rate.">
 <polygon fill="none" stroke="black" points="462.5,-666.5 462.5,-685.5 575.5,-685.5 575.5,-666.5 462.5,-666.5"/>
 <text text-anchor="middle" x="519" y="-673.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_ellipsoid_mutate</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="cond__rectangle_8h.html#a969ef2bdf8fefbcac47746548863073b" target="_top" xlink:title="Mutates a hyperrectangle condition with the self&#45;adaptive rate.">
+<g id="a_node3"><a xlink:href="cond__rectangle_8c.html#a969ef2bdf8fefbcac47746548863073b" target="_top" xlink:title="Mutates a hyperrectangle condition with the self&#45;adaptive rate.">
 <polygon fill="none" stroke="black" points="460,-628.5 460,-647.5 578,-647.5 578,-628.5 460,-628.5"/>
 <text text-anchor="middle" x="519" y="-635.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_rectangle_mutate</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer_8h.html#ae0694e66ecd389f10d1d3857b699a561" target="_top" xlink:title="Mutates the gradient descent rate of a neural layer.">
+<g id="a_node4"><a xlink:href="neural__layer_8c.html#ae0694e66ecd389f10d1d3857b699a561" target="_top" xlink:title="Mutates the gradient descent rate of a neural layer.">
 <polygon fill="none" stroke="black" points="644.5,-721.5 644.5,-740.5 736.5,-740.5 736.5,-721.5 644.5,-721.5"/>
 <text text-anchor="middle" x="690.5" y="-728.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_mutate_eta</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="neural__layer_8h.html#a35e1133cd8863d674d0506d963a93f08" target="_top" xlink:title="Returns the number of neurons to add or remove from a layer.">
+<g id="a_node9"><a xlink:href="neural__layer_8c.html#a35e1133cd8863d674d0506d963a93f08" target="_top" xlink:title="Returns the number of neurons to add or remove from a layer.">
 <polygon fill="none" stroke="black" points="634,-798.5 634,-817.5 747,-817.5 747,-798.5 634,-798.5"/>
 <text text-anchor="middle" x="690.5" y="-805.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_mutate_neurons</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="neural__layer_8h.html#af6edb9466e46b6cd7bc1e8556e86d8ed" target="_top" xlink:title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit...">
+<g id="a_node11"><a xlink:href="neural__layer_8c.html#af6edb9466e46b6cd7bc1e8556e86d8ed" target="_top" xlink:title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit...">
 <polygon fill="none" stroke="black" points="634.5,-760.5 634.5,-779.5 746.5,-779.5 746.5,-760.5 634.5,-760.5"/>
 <text text-anchor="middle" x="690.5" y="-767.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_mutate_weights</text>
 </a>
@@ -95,7 +95,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="neural__layer_8h.html#a80e54e8cdbe0776d6cc739f1a50ffd26" target="_top" xlink:title="Clamps a layer&#39;s weights and biases in range [WEIGHT_MIN, WEIGHT_MAX].">
+<g id="a_node13"><a xlink:href="neural__layer_8c.html#a80e54e8cdbe0776d6cc739f1a50ffd26" target="_top" xlink:title="Clamps a layer&#39;s weights and biases in range [WEIGHT_MIN, WEIGHT_MAX].">
 <polygon fill="none" stroke="black" points="639,-306.5 639,-325.5 742,-325.5 742,-306.5 639,-306.5"/>
 <text text-anchor="middle" x="690.5" y="-313.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_weight_clamp</text>
 </a>
@@ -110,7 +110,7 @@
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="neural__activations_8h.html#acef0d15cd01c7dcc5a4d6d8bdc1d8bad" target="_top" xlink:title="Applies an activation function to a vector of neuron states.">
+<g id="a_node16"><a xlink:href="neural__activations_8c.html#acef0d15cd01c7dcc5a4d6d8bdc1d8bad" target="_top" xlink:title="Applies an activation function to a vector of neuron states.">
 <polygon fill="none" stroke="black" points="635.5,-175.5 635.5,-194.5 745.5,-194.5 745.5,-175.5 635.5,-175.5"/>
 <text text-anchor="middle" x="690.5" y="-182.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_activate_array</text>
 </a>
@@ -142,21 +142,21 @@
 <g id="node22" class="node">
 <title>Node22</title>
 <g id="a_node22"><a xlink:href="dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" target="_top" xlink:title="Returns the result from applying a specified activation function.">
-<polygon fill="none" stroke="black" points="652,-117.5 652,-136.5 729,-136.5 729,-117.5 652,-117.5"/>
-<text text-anchor="middle" x="690.5" y="-124.5" font-family="Helvetica,sans-Serif" font-size="10.00">node_activate</text>
+<polygon fill="none" stroke="black" points="652,-112.5 652,-131.5 729,-131.5 729,-112.5 652,-112.5"/>
+<text text-anchor="middle" x="690.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">node_activate</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node22 -->
 <g id="edge27" class="edge">
 <title>Node1&#45;&gt;Node22</title>
-<path fill="none" stroke="midnightblue" d="M812.02,-560.99C809.92,-487.36 799.57,-232.34 756,-166 747.09,-152.44 731.68,-142.86 718.16,-136.6"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="808.53,-561.29 812.29,-571.19 815.52,-561.1 808.53,-561.29"/>
+<path fill="none" stroke="midnightblue" d="M811.9,-561.06C809.38,-487.7 797.74,-233.51 756,-166 746.31,-150.32 728.71,-138.88 714.34,-131.6"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="808.41,-561.35 812.23,-571.23 815.4,-561.12 808.41,-561.35"/>
 </g>
 <!-- Node29 -->
 <g id="node29" class="node">
 <title>Node29</title>
-<g id="a_node29"><a xlink:href="pred__nlms_8h.html#abfd2e8695677f15466100c5d3ce15cda" target="_top" xlink:title="Mutates the gradient descent rate used to update an NLMS prediction.">
+<g id="a_node29"><a xlink:href="pred__nlms_8c.html#abfd2e8695677f15466100c5d3ce15cda" target="_top" xlink:title="Mutates the gradient descent rate used to update an NLMS prediction.">
 <polygon fill="none" stroke="black" points="470.5,-350.5 470.5,-369.5 567.5,-369.5 567.5,-350.5 470.5,-350.5"/>
 <text text-anchor="middle" x="519" y="-357.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_nlms_mutate</text>
 </a>
@@ -171,7 +171,7 @@
 <!-- Node30 -->
 <g id="node30" class="node">
 <title>Node30</title>
-<g id="a_node30"><a xlink:href="sam_8h.html#a8dfbd425ab3513d47726620e94fc861c" target="_top" xlink:title="Self&#45;adapts mutation rates.">
+<g id="a_node30"><a xlink:href="sam_8c.html#a8dfbd425ab3513d47726620e94fc861c" target="_top" xlink:title="Self&#45;adapts mutation rates.">
 <polygon fill="none" stroke="black" points="658,-552.5 658,-571.5 723,-571.5 723,-552.5 658,-552.5"/>
 <text text-anchor="middle" x="690.5" y="-559.5" font-family="Helvetica,sans-Serif" font-size="10.00">sam_adapt</text>
 </a>
@@ -186,17 +186,17 @@
 <!-- Node39 -->
 <g id="node39" class="node">
 <title>Node39</title>
-<g id="a_node39"><a xlink:href="gp_8h.html#a88f58058fc80e2e8c8735ed7843705b2" target="_top" xlink:title="Evaluates a GP tree.">
-<polygon fill="none" stroke="black" points="662.5,-21.5 662.5,-40.5 718.5,-40.5 718.5,-21.5 662.5,-21.5"/>
-<text text-anchor="middle" x="690.5" y="-28.5" font-family="Helvetica,sans-Serif" font-size="10.00">tree_eval</text>
+<g id="a_node39"><a xlink:href="gp_8c.html#a88f58058fc80e2e8c8735ed7843705b2" target="_top" xlink:title="Evaluates a GP tree.">
+<polygon fill="none" stroke="black" points="662.5,-25.5 662.5,-44.5 718.5,-44.5 718.5,-25.5 662.5,-25.5"/>
+<text text-anchor="middle" x="690.5" y="-32.5" font-family="Helvetica,sans-Serif" font-size="10.00">tree_eval</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node39 -->
 <g id="edge50" class="edge">
 <title>Node1&#45;&gt;Node39</title>
-<path fill="none" stroke="midnightblue" d="M811.64,-561.22C807.97,-482.51 792.21,-191.75 756,-108 743.82,-79.83 717.9,-54 702.89,-40.61"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="808.14,-561.42 812.09,-571.25 815.13,-561.1 808.14,-561.42"/>
+<path fill="none" stroke="midnightblue" d="M811.82,-561.46C808.84,-482.43 795.21,-186.66 756,-103 744.33,-78.1 719.96,-56.44 704.74,-44.6"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="808.33,-561.63 812.19,-571.5 815.32,-561.38 808.33,-561.63"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
@@ -216,7 +216,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="neural__layer__connected_8h.html#abfd38ab832a6f70d7b61065fe3dc25c3" target="_top" xlink:title="Mutates a connected layer.">
+<g id="a_node7"><a xlink:href="neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" target="_top" xlink:title="Mutates a connected layer.">
 <polygon fill="none" stroke="black" points="459.5,-793 459.5,-823 578.5,-823 578.5,-793 459.5,-793"/>
 <text text-anchor="start" x="467.5" y="-811" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="519" y="-800" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>
@@ -232,7 +232,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="neural__layer__convolutional_8h.html#a9e4f5fb82855910a5a4fecad093033db" target="_top" xlink:title="Mutates a convolutional layer.">
+<g id="a_node8"><a xlink:href="neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" target="_top" xlink:title="Mutates a convolutional layer.">
 <polygon fill="none" stroke="black" points="453.5,-705 453.5,-735 584.5,-735 584.5,-705 453.5,-705"/>
 <text text-anchor="start" x="461.5" y="-723" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="519" y="-712" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>
@@ -248,7 +248,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
+<g id="a_node6"><a xlink:href="neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
 <polygon fill="none" stroke="black" points="285,-798.5 285,-817.5 413,-817.5 413,-798.5 285,-798.5"/>
 <text text-anchor="middle" x="349" y="-805.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_mutate</text>
 </a>
@@ -323,7 +323,7 @@
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="neural__layer__connected_8h.html#afb4c050b212b3a0dd87d66d86b57adb7" target="_top" xlink:title="Updates the weights and biases of a connected layer.">
+<g id="a_node14"><a xlink:href="neural__layer__connected_8c.html#afb4c050b212b3a0dd87d66d86b57adb7" target="_top" xlink:title="Updates the weights and biases of a connected layer.">
 <polygon fill="none" stroke="black" points="459.5,-301 459.5,-331 578.5,-331 578.5,-301 459.5,-301"/>
 <text text-anchor="start" x="467.5" y="-319" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="519" y="-308" font-family="Helvetica,sans-Serif" font-size="10.00">_update</text>
@@ -339,7 +339,7 @@
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="neural__layer__convolutional_8h.html#a3e2922534009f8942017c7621f3b42e8" target="_top" xlink:title="Updates the weights and biases of a convolutional layer.">
+<g id="a_node15"><a xlink:href="neural__layer__convolutional_8c.html#a3e2922534009f8942017c7621f3b42e8" target="_top" xlink:title="Updates the weights and biases of a convolutional layer.">
 <polygon fill="none" stroke="black" points="453.5,-252 453.5,-282 584.5,-282 584.5,-252 453.5,-252"/>
 <text text-anchor="start" x="461.5" y="-270" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="519" y="-259" font-family="Helvetica,sans-Serif" font-size="10.00">_update</text>
@@ -355,7 +355,7 @@
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
-<g id="a_node17"><a xlink:href="neural__layer__connected_8h.html#ae984294bf3121be074bf77081b0ccdf2" target="_top" xlink:title="Forward propagates a connected layer.">
+<g id="a_node17"><a xlink:href="neural__layer__connected_8c.html#ae984294bf3121be074bf77081b0ccdf2" target="_top" xlink:title="Forward propagates a connected layer.">
 <polygon fill="none" stroke="black" points="459.5,-126 459.5,-156 578.5,-156 578.5,-126 459.5,-126"/>
 <text text-anchor="start" x="467.5" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="519" y="-133" font-family="Helvetica,sans-Serif" font-size="10.00">_forward</text>
@@ -371,7 +371,7 @@
 <!-- Node18 -->
 <g id="node18" class="node">
 <title>Node18</title>
-<g id="a_node18"><a xlink:href="neural__layer__convolutional_8h.html#a474f61e40569851884c0108ce2e40a1d" target="_top" xlink:title="Forward propagates a convolutional layer.">
+<g id="a_node18"><a xlink:href="neural__layer__convolutional_8c.html#a474f61e40569851884c0108ce2e40a1d" target="_top" xlink:title="Forward propagates a convolutional layer.">
 <polygon fill="none" stroke="black" points="453.5,-77 453.5,-107 584.5,-107 584.5,-77 453.5,-77"/>
 <text text-anchor="start" x="461.5" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="519" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">_forward</text>
@@ -381,13 +381,13 @@
 <!-- Node16&#45;&gt;Node18 -->
 <g id="edge22" class="edge">
 <title>Node16&#45;&gt;Node18</title>
-<path fill="none" stroke="midnightblue" d="M663.14,-170.14C651.25,-163.17 637.18,-154.53 625,-146 608.17,-134.21 606.9,-127.08 589,-117 582.45,-113.31 575.25,-110 568.06,-107.08"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="661.72,-173.37 672.13,-175.34 665.23,-167.31 661.72,-173.37"/>
+<path fill="none" stroke="midnightblue" d="M667.15,-169.78C638.17,-150.06 591.07,-118.06 589,-117 581.96,-113.41 574.28,-110.1 566.69,-107.13"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="665.25,-172.72 675.49,-175.46 669.19,-166.94 665.25,-172.72"/>
 </g>
 <!-- Node19 -->
 <g id="node19" class="node">
 <title>Node19</title>
-<g id="a_node19"><a xlink:href="neural__layer__lstm_8h.html#a00f097f7f5277fa3396e1feefc231e91" target="_top" xlink:title="Backward propagates an LSTM layer.">
+<g id="a_node19"><a xlink:href="neural__layer__lstm_8c.html#a00f097f7f5277fa3396e1feefc231e91" target="_top" xlink:title="Backward propagates an LSTM layer.">
 <polygon fill="none" stroke="black" points="449,-213.5 449,-232.5 589,-232.5 589,-213.5 449,-213.5"/>
 <text text-anchor="middle" x="519" y="-220.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_backward</text>
 </a>
@@ -402,7 +402,7 @@
 <!-- Node20 -->
 <g id="node20" class="node">
 <title>Node20</title>
-<g id="a_node20"><a xlink:href="neural__layer__lstm_8h.html#af2c3a4a9e6dd75cd00083c38733bddb0" target="_top" xlink:title="Forward propagates an LSTM layer.">
+<g id="a_node20"><a xlink:href="neural__layer__lstm_8c.html#af2c3a4a9e6dd75cd00083c38733bddb0" target="_top" xlink:title="Forward propagates an LSTM layer.">
 <polygon fill="none" stroke="black" points="453.5,-175.5 453.5,-194.5 584.5,-194.5 584.5,-175.5 453.5,-175.5"/>
 <text text-anchor="middle" x="519" y="-182.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_forward</text>
 </a>
@@ -432,13 +432,13 @@
 <!-- Node22&#45;&gt;Node23 -->
 <g id="edge28" class="edge">
 <title>Node22&#45;&gt;Node23</title>
-<path fill="none" stroke="midnightblue" d="M667.45,-111.88C647.63,-98.83 617.36,-80.21 589,-68 579.61,-63.96 569.15,-60.45 559.28,-57.55"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="665.51,-114.8 675.77,-117.44 669.4,-108.98 665.51,-114.8"/>
+<path fill="none" stroke="midnightblue" d="M665.27,-107.1C645.34,-95.31 616.07,-79.05 589,-68 579.3,-64.04 568.54,-60.53 558.45,-57.59"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="663.61,-110.19 673.99,-112.33 667.21,-104.19 663.61,-110.19"/>
 </g>
 <!-- Node24 -->
 <g id="node24" class="node">
 <title>Node24</title>
-<g id="a_node24"><a xlink:href="dgp_8h.html#a91b113eb2798ad1b958d47184ebbf1fb" target="_top" xlink:title="Updates a DGP graph T cycles.">
+<g id="a_node24"><a xlink:href="dgp_8c.html#a91b113eb2798ad1b958d47184ebbf1fb" target="_top" xlink:title="Updates a DGP graph T cycles.">
 <polygon fill="none" stroke="black" points="311.5,-38.5 311.5,-57.5 386.5,-57.5 386.5,-38.5 311.5,-38.5"/>
 <text text-anchor="middle" x="349" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">graph_update</text>
 </a>
@@ -453,7 +453,7 @@
 <!-- Node25 -->
 <g id="node25" class="node">
 <title>Node25</title>
-<g id="a_node25"><a xlink:href="cond__dgp_8h.html#a8bb6fc747fba92c9a717c1b26f5ffca7" target="_top" xlink:title="Calculates whether a dynamical GP graph condition matches an input.">
+<g id="a_node25"><a xlink:href="cond__dgp_8c.html#a8bb6fc747fba92c9a717c1b26f5ffca7" target="_top" xlink:title="Calculates whether a dynamical GP graph condition matches an input.">
 <polygon fill="none" stroke="black" points="147.5,-57.5 147.5,-76.5 238.5,-76.5 238.5,-57.5 147.5,-57.5"/>
 <text text-anchor="middle" x="193" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_match</text>
 </a>
@@ -468,7 +468,7 @@
 <!-- Node27 -->
 <g id="node27" class="node">
 <title>Node27</title>
-<g id="a_node27"><a xlink:href="rule__dgp_8h.html#a85eb12064cc539b1ec1fea93ee5f5e3e" target="_top" xlink:title=" ">
+<g id="a_node27"><a xlink:href="rule__dgp_8c.html#a85eb12064cc539b1ec1fea93ee5f5e3e" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="137,-19.5 137,-38.5 249,-38.5 249,-19.5 137,-19.5"/>
 <text text-anchor="middle" x="193" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_match</text>
 </a>
@@ -483,7 +483,7 @@
 <!-- Node26 -->
 <g id="node26" class="node">
 <title>Node26</title>
-<g id="a_node26"><a xlink:href="cond__dgp_8h.html#a585a3476b4473b1b19159a7d55daa6ae" target="_top" xlink:title="Generates a dynamical GP graph that matches the current input.">
+<g id="a_node26"><a xlink:href="cond__dgp_8c.html#a585a3476b4473b1b19159a7d55daa6ae" target="_top" xlink:title="Generates a dynamical GP graph that matches the current input.">
 <polygon fill="none" stroke="black" points="6.5,-57.5 6.5,-76.5 94.5,-76.5 94.5,-57.5 6.5,-57.5"/>
 <text text-anchor="middle" x="50.5" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_cover</text>
 </a>
@@ -498,7 +498,7 @@
 <!-- Node28 -->
 <g id="node28" class="node">
 <title>Node28</title>
-<g id="a_node28"><a xlink:href="rule__dgp_8h.html#ac1f0b0c11b92852e82b00ad7b4bb169f" target="_top" xlink:title=" ">
+<g id="a_node28"><a xlink:href="rule__dgp_8c.html#ac1f0b0c11b92852e82b00ad7b4bb169f" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-19.5 0,-38.5 101,-38.5 101,-19.5 0,-19.5"/>
 <text text-anchor="middle" x="50.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_act_cover</text>
 </a>
@@ -549,7 +549,7 @@
 <!-- Node31 -->
 <g id="node31" class="node">
 <title>Node31</title>
-<g id="a_node31"><a xlink:href="act__integer_8h.html#a9257ecae089153571be215040e75fb7f" target="_top" xlink:title="Mutates an integer action.">
+<g id="a_node31"><a xlink:href="act__integer_8c.html#a9257ecae089153571be215040e75fb7f" target="_top" xlink:title="Mutates an integer action.">
 <polygon fill="none" stroke="black" points="469,-552.5 469,-571.5 569,-571.5 569,-552.5 469,-552.5"/>
 <text text-anchor="middle" x="519" y="-559.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_integer_mutate</text>
 </a>
@@ -564,7 +564,7 @@
 <!-- Node32 -->
 <g id="node32" class="node">
 <title>Node32</title>
-<g id="a_node32"><a xlink:href="cond__ternary_8h.html#a76eeeef8b9d7a232d1f5bf2ff917547a" target="_top" xlink:title="Mutates a ternary condition.">
+<g id="a_node32"><a xlink:href="cond__ternary_8c.html#a76eeeef8b9d7a232d1f5bf2ff917547a" target="_top" xlink:title="Mutates a ternary condition.">
 <polygon fill="none" stroke="black" points="465,-476.5 465,-495.5 573,-495.5 573,-476.5 465,-476.5"/>
 <text text-anchor="middle" x="519" y="-483.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_ternary_mutate</text>
 </a>
@@ -579,7 +579,7 @@
 <!-- Node33 -->
 <g id="node33" class="node">
 <title>Node33</title>
-<g id="a_node33"><a xlink:href="dgp_8h.html#af71be7faf77196a067d8e69ac1493ee2" target="_top" xlink:title="Mutates a specified DGP graph.">
+<g id="a_node33"><a xlink:href="dgp_8c.html#af71be7faf77196a067d8e69ac1493ee2" target="_top" xlink:title="Mutates a specified DGP graph.">
 <polygon fill="none" stroke="black" points="481,-514.5 481,-533.5 557,-533.5 557,-514.5 481,-514.5"/>
 <text text-anchor="middle" x="519" y="-521.5" font-family="Helvetica,sans-Serif" font-size="10.00">graph_mutate</text>
 </a>
@@ -594,7 +594,7 @@
 <!-- Node36 -->
 <g id="node36" class="node">
 <title>Node36</title>
-<g id="a_node36"><a xlink:href="neural__layer__recurrent_8h.html#a5f6793ef0a2d69438a499632e360f9e6" target="_top" xlink:title="Mutates a recurrent layer.">
+<g id="a_node36"><a xlink:href="neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" target="_top" xlink:title="Mutates a recurrent layer.">
 <polygon fill="none" stroke="black" points="462.5,-389 462.5,-419 575.5,-419 575.5,-389 462.5,-389"/>
 <text text-anchor="start" x="470.5" y="-407" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_recurrent</text>
 <text text-anchor="middle" x="519" y="-396" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>
@@ -610,7 +610,7 @@
 <!-- Node37 -->
 <g id="node37" class="node">
 <title>Node37</title>
-<g id="a_node37"><a xlink:href="gp_8h.html#ac3437c50150dcb9aa715b664d7cf54ac" target="_top" xlink:title="Performs point mutation on a GP tree.">
+<g id="a_node37"><a xlink:href="gp_8c.html#ac3437c50150dcb9aa715b664d7cf54ac" target="_top" xlink:title="Performs point mutation on a GP tree.">
 <polygon fill="none" stroke="black" points="485,-438.5 485,-457.5 553,-457.5 553,-438.5 485,-438.5"/>
 <text text-anchor="middle" x="519" y="-445.5" font-family="Helvetica,sans-Serif" font-size="10.00">tree_mutate</text>
 </a>
@@ -625,7 +625,7 @@
 <!-- Node34 -->
 <g id="node34" class="node">
 <title>Node34</title>
-<g id="a_node34"><a xlink:href="cond__dgp_8h.html#a8c6aa1ea69d87295dec888622f6d4577" target="_top" xlink:title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates.">
+<g id="a_node34"><a xlink:href="cond__dgp_8c.html#a8c6aa1ea69d87295dec888622f6d4577" target="_top" xlink:title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates.">
 <polygon fill="none" stroke="black" points="302,-533.5 302,-552.5 396,-552.5 396,-533.5 302,-533.5"/>
 <text text-anchor="middle" x="349" y="-540.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_mutate</text>
 </a>
@@ -640,7 +640,7 @@
 <!-- Node35 -->
 <g id="node35" class="node">
 <title>Node35</title>
-<g id="a_node35"><a xlink:href="rule__dgp_8h.html#a399e362d298b510125264e2fdfaaf6b6" target="_top" xlink:title=" ">
+<g id="a_node35"><a xlink:href="rule__dgp_8c.html#a399e362d298b510125264e2fdfaaf6b6" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="291.5,-495.5 291.5,-514.5 406.5,-514.5 406.5,-495.5 291.5,-495.5"/>
 <text text-anchor="middle" x="349" y="-502.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_mutate</text>
 </a>
@@ -655,7 +655,7 @@
 <!-- Node38 -->
 <g id="node38" class="node">
 <title>Node38</title>
-<g id="a_node38"><a xlink:href="cond__gp_8h.html#a6fb9386b300b406ecfb08f8a9a97c077" target="_top" xlink:title="Mutates a tree&#45;GP condition with the self&#45;adaptive rate.">
+<g id="a_node38"><a xlink:href="cond__gp_8c.html#a6fb9386b300b406ecfb08f8a9a97c077" target="_top" xlink:title="Mutates a tree&#45;GP condition with the self&#45;adaptive rate.">
 <polygon fill="none" stroke="black" points="304.5,-438.5 304.5,-457.5 393.5,-457.5 393.5,-438.5 304.5,-438.5"/>
 <text text-anchor="middle" x="349" y="-445.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_gp_mutate</text>
 </a>
@@ -667,16 +667,10 @@
 <path fill="none" stroke="midnightblue" d="M474.56,-448C449.68,-448 418.55,-448 393.63,-448"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="474.81,-451.5 484.81,-448 474.81,-444.5 474.81,-451.5"/>
 </g>
-<!-- Node39&#45;&gt;Node39 -->
-<g id="edge53" class="edge">
-<title>Node39&#45;&gt;Node39</title>
-<path fill="none" stroke="midnightblue" d="M713.19,-50.03C711.96,-55.13 704.39,-59 690.5,-59 668.82,-59 662.55,-49.57 671.7,-40.76"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="716.4,-48.62 709.3,-40.76 709.94,-51.33 716.4,-48.62"/>
-</g>
 <!-- Node40 -->
 <g id="node40" class="node">
 <title>Node40</title>
-<g id="a_node40"><a xlink:href="cond__gp_8h.html#a9f417a6e9cdf49ef3ed1ad19be29b63d" target="_top" xlink:title="Calculates whether a GP tree condition matches an input.">
+<g id="a_node40"><a xlink:href="cond__gp_8c.html#a9f417a6e9cdf49ef3ed1ad19be29b63d" target="_top" xlink:title="Calculates whether a GP tree condition matches an input.">
 <polygon fill="none" stroke="black" points="476,-0.5 476,-19.5 562,-19.5 562,-0.5 476,-0.5"/>
 <text text-anchor="middle" x="519" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_gp_match</text>
 </a>
@@ -685,13 +679,13 @@
 <!-- Node39&#45;&gt;Node40 -->
 <g id="edge51" class="edge">
 <title>Node39&#45;&gt;Node40</title>
-<path fill="none" stroke="midnightblue" d="M652.19,-26.38C625.56,-23.08 589.71,-18.64 562.06,-15.21"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="651.91,-29.87 662.27,-27.63 652.77,-22.92 651.91,-29.87"/>
+<path fill="none" stroke="midnightblue" d="M652.19,-29.5C625.56,-25.57 589.71,-20.28 562.06,-16.2"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="651.86,-32.99 662.27,-30.98 652.88,-26.06 651.86,-32.99"/>
 </g>
 <!-- Node41 -->
 <g id="node41" class="node">
 <title>Node41</title>
-<g id="a_node41"><a xlink:href="cond__gp_8h.html#a1e740f931fc856fd7310874c7bf88195" target="_top" xlink:title="Generates a GP tree that matches the current input.">
+<g id="a_node41"><a xlink:href="cond__gp_8c.html#a1e740f931fc856fd7310874c7bf88195" target="_top" xlink:title="Generates a GP tree that matches the current input.">
 <polygon fill="none" stroke="black" points="307.5,-0.5 307.5,-19.5 390.5,-19.5 390.5,-0.5 307.5,-0.5"/>
 <text text-anchor="middle" x="349" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_gp_cover</text>
 </a>

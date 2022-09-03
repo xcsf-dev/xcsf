@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__dropout_8h.html#a53c6652e7bdcb412cd5173a34f994906" target="_top" xlink:title="Initialises and creates a copy of one dropout layer from another.">
+<g id="a_node2"><a xlink:href="neural__layer__dropout_8c.html#a53c6652e7bdcb412cd5173a34f994906" target="_top" xlink:title="Initialises and creates a copy of one dropout layer from another.">
 <polygon fill="none" stroke="black" points="0,-126 0,-145 133,-145 133,-126 0,-126"/>
 <text text-anchor="middle" x="66.5" y="-133" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_dropout_copy</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__dropout_8h.html#aa96fffc3ae2e176c86142debc8faf512" target="_top" xlink:title="Initialises a dropout layer.">
+<g id="a_node3"><a xlink:href="neural__layer__dropout_8c.html#aa96fffc3ae2e176c86142debc8faf512" target="_top" xlink:title="Initialises a dropout layer.">
 <polygon fill="none" stroke="black" points="4,-88 4,-107 129,-107 129,-88 4,-88"/>
 <text text-anchor="middle" x="66.5" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_dropout_init</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__dropout_8h.html#ad6efd45d8c8f564208504cc5f71e47f4" target="_top" xlink:title="Reads a dropout layer from a file.">
+<g id="a_node4"><a xlink:href="neural__layer__dropout_8c.html#ad6efd45d8c8f564208504cc5f71e47f4" target="_top" xlink:title="Reads a dropout layer from a file.">
 <polygon fill="none" stroke="black" points="1.5,-50 1.5,-69 131.5,-69 131.5,-50 1.5,-50"/>
 <text text-anchor="middle" x="66.5" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_dropout_load</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="neural__layer__dropout_8h.html#a41d440982cb69c9769ac696c731b4e17" target="_top" xlink:title="Resizes a dropout layer if the previous layer has changed size.">
+<g id="a_node5"><a xlink:href="neural__layer__dropout_8c.html#a41d440982cb69c9769ac696c731b4e17" target="_top" xlink:title="Resizes a dropout layer if the previous layer has changed size.">
 <polygon fill="none" stroke="black" points="13,-0.5 13,-30.5 120,-30.5 120,-0.5 13,-0.5"/>
 <text text-anchor="start" x="21" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_dropout</text>
 <text text-anchor="middle" x="66.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_resize</text>

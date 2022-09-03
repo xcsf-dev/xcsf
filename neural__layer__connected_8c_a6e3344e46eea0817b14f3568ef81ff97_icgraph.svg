@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__connected_8h.html#a1d4a072908a0df8dcc9ff31add3fdcad" target="_top" xlink:title="Initialises and creates a copy of one connected layer from another.">
+<g id="a_node2"><a xlink:href="neural__layer__connected_8c.html#a1d4a072908a0df8dcc9ff31add3fdcad" target="_top" xlink:title="Initialises and creates a copy of one connected layer from another.">
 <polygon fill="none" stroke="black" points="0,-76.5 0,-95.5 146,-95.5 146,-76.5 0,-76.5"/>
 <text text-anchor="middle" x="73" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected_copy</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__connected_8h.html#af721369377e6bd5f2b691065f73a32f6" target="_top" xlink:title="Initialises a fully&#45;connected layer.">
+<g id="a_node3"><a xlink:href="neural__layer__connected_8c.html#af721369377e6bd5f2b691065f73a32f6" target="_top" xlink:title="Initialises a fully&#45;connected layer.">
 <polygon fill="none" stroke="black" points="4.5,-38.5 4.5,-57.5 141.5,-57.5 141.5,-38.5 4.5,-38.5"/>
 <text text-anchor="middle" x="73" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected_init</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__connected_8h.html#aacd5e7b2682eae2870f22205a399d89c" target="_top" xlink:title="Reads a connected layer from a file.">
+<g id="a_node4"><a xlink:href="neural__layer__connected_8c.html#aacd5e7b2682eae2870f22205a399d89c" target="_top" xlink:title="Reads a connected layer from a file.">
 <polygon fill="none" stroke="black" points="1.5,-0.5 1.5,-19.5 144.5,-19.5 144.5,-0.5 1.5,-0.5"/>
 <text text-anchor="middle" x="73" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected_load</text>
 </a>

@@ -1,6 +1,6 @@
 <map id="graph_mutate_connectivity" name="graph_mutate_connectivity">
 <area shape="rect" id="node1" title="Mutates the connectivity of a DGP graph." alt="" coords="356,31,535,57"/>
-<area shape="rect" id="node2" href="$dgp_8h.html#af71be7faf77196a067d8e69ac1493ee2" title="Mutates a specified DGP graph." alt="" coords="207,31,308,57"/>
-<area shape="rect" id="node3" href="$cond__dgp_8h.html#a8c6aa1ea69d87295dec888622f6d4577" title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates." alt="" coords="19,5,145,32"/>
-<area shape="rect" id="node4" href="$rule__dgp_8h.html#a399e362d298b510125264e2fdfaaf6b6" title=" " alt="" coords="5,56,159,83"/>
+<area shape="rect" id="node2" href="$dgp_8c.html#af71be7faf77196a067d8e69ac1493ee2" title="Mutates a specified DGP graph." alt="" coords="207,31,308,57"/>
+<area shape="rect" id="node3" href="$cond__dgp_8c.html#a8c6aa1ea69d87295dec888622f6d4577" title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates." alt="" coords="19,5,145,32"/>
+<area shape="rect" id="node4" href="$rule__dgp_8c.html#a399e362d298b510125264e2fdfaaf6b6" title=" " alt="" coords="5,56,159,83"/>
 </map>

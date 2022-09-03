@@ -1,6 +1,5 @@
 <map id="xcsf_load" name="xcsf_load">
-<area shape="rect" id="node1" title="Reads the state of XCSF from a file." alt="" coords="335,31,413,57"/>
-<area shape="rect" id="node2" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="204,5,287,32"/>
-<area shape="rect" id="node4" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="220,56,271,83"/>
-<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node1" title="Reads the state of XCSF from a file." alt="" coords="136,31,215,57"/>
+<area shape="rect" id="node2" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="5,5,88,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="21,56,72,83"/>
 </map>

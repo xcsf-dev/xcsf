@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__noise_8h.html#a09a6ea6471765a98984abd35b081a78f" target="_top" xlink:title="Free memory used by a noise layer.">
+<g id="a_node2"><a xlink:href="neural__layer__noise_8c.html#a09a6ea6471765a98984abd35b081a78f" target="_top" xlink:title="Free memory used by a noise layer.">
 <polygon fill="none" stroke="black" points="0,-50 0,-69 119,-69 119,-50 0,-50"/>
 <text text-anchor="middle" x="59.5" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_noise_free</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__noise_8h.html#a2464187d100209519f41aa1c4c640bca" target="_top" xlink:title="Resizes a noise layer if the previous layer has changed size.">
+<g id="a_node3"><a xlink:href="neural__layer__noise_8c.html#a2464187d100209519f41aa1c4c640bca" target="_top" xlink:title="Resizes a noise layer if the previous layer has changed size.">
 <polygon fill="none" stroke="black" points="10.5,-0.5 10.5,-30.5 108.5,-30.5 108.5,-0.5 10.5,-0.5"/>
 <text text-anchor="start" x="18.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_noise</text>
 <text text-anchor="middle" x="59.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_resize</text>

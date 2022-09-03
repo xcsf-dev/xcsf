@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="condition_8h.html#af22e6e5a357ef08e482555291cfc612b" target="_top" xlink:title="Frees condition parameters.">
+<g id="a_node2"><a xlink:href="condition_8c.html#af22e6e5a357ef08e482555291cfc612b" target="_top" xlink:title="Frees condition parameters.">
 <polygon fill="none" stroke="black" points="175,-0.5 175,-19.5 267,-19.5 267,-0.5 175,-0.5"/>
 <text text-anchor="middle" x="221" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_param_free</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="param_8h.html#acde6664d083676244bfc1105b1712984" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="param_8c.html#acde6664d083676244bfc1105b1712984" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="74,-0.5 74,-19.5 139,-19.5 139,-0.5 74,-0.5"/>
 <text text-anchor="middle" x="106.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_free</text>
 </a>

@@ -1,7 +1,7 @@
 <map id="perf_print" name="perf_print">
 <area shape="rect" id="node1" title="Displays the current training and test performance." alt="" coords="301,31,377,57"/>
-<area shape="rect" id="node2" href="$xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="145,5,231,32"/>
-<area shape="rect" id="node4" href="$xcs__supervised_8h.html#aac1347b7b83576d581a1b725b4c84e56" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="123,56,253,83"/>
+<area shape="rect" id="node2" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="145,5,231,32"/>
+<area shape="rect" id="node4" href="$xcs__supervised_8c.html#aac1347b7b83576d581a1b725b4c84e56" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="123,56,253,83"/>
 <area shape="rect" id="node3" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="15,5,65,32"/>
 <area shape="rect" id="node5" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,56,75,83"/>
 </map>

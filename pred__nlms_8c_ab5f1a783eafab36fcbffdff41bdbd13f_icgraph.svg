@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="pred__nlms_8h.html#ada811faf3779d3feab90d99914101d2c" target="_top" xlink:title="Copies an NLMS prediction from one classifier to another.">
+<g id="a_node2"><a xlink:href="pred__nlms_8c.html#ada811faf3779d3feab90d99914101d2c" target="_top" xlink:title="Copies an NLMS prediction from one classifier to another.">
 <polygon fill="none" stroke="black" points="0,-38.5 0,-57.5 88,-57.5 88,-38.5 0,-38.5"/>
 <text text-anchor="middle" x="44" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_nlms_copy</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="pred__nlms_8h.html#ae02728e1f2dd6d8ddab9ca0cff4968fa" target="_top" xlink:title="Reads an NLMS prediction from a file.">
+<g id="a_node3"><a xlink:href="pred__nlms_8c.html#ae02728e1f2dd6d8ddab9ca0cff4968fa" target="_top" xlink:title="Reads an NLMS prediction from a file.">
 <polygon fill="none" stroke="black" points="1.5,-0.5 1.5,-19.5 86.5,-19.5 86.5,-0.5 1.5,-0.5"/>
 <text text-anchor="middle" x="44" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_nlms_load</text>
 </a>

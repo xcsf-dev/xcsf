@@ -1,5 +1,4 @@
 <map id="tree_eval" name="tree_eval">
-<area shape="rect" id="node1" title="Evaluates a GP tree." alt="" coords="5,7,80,33"/>
-<area shape="rect" id="node2" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="251,7,308,33"/>
-<area shape="rect" id="node3" href="$gp_8c.html#a88f58058fc80e2e8c8735ed7843705b2" title="Evaluates a GP tree." alt="" coords="128,44,203,71"/>
+<area shape="rect" id="node1" title="Evaluates a GP tree." alt="" coords="5,5,80,32"/>
+<area shape="rect" id="node2" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="128,5,185,32"/>
 </map>

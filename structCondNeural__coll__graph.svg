@@ -55,8 +55,8 @@
 <title>Node3&#45;&gt;Node3</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M61.71,-161.92C66.32,-161.09 69.5,-159.12 69.5,-156 69.5,-150.89 60.94,-148.85 51.53,-149.89"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="61.47,-158.42 51.53,-162.11 61.6,-165.42 61.47,-158.42"/>
-<text text-anchor="middle" x="80.5" y="-159" font-family="Helvetica,sans-Serif" font-size="10.00"> prev</text>
-<text text-anchor="middle" x="80.5" y="-148" font-family="Helvetica,sans-Serif" font-size="10.00">next</text>
+<text text-anchor="middle" x="80.5" y="-159" font-family="Helvetica,sans-Serif" font-size="10.00"> next</text>
+<text text-anchor="middle" x="80.5" y="-148" font-family="Helvetica,sans-Serif" font-size="10.00">prev</text>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
@@ -79,17 +79,17 @@
 <title>Node4&#45;&gt;Node4</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M99.32,-289.11C110.16,-292.7 120.5,-287.83 120.5,-274.5 120.5,-257.44 103.56,-254.24 90.32,-264.9"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="100.76,-285.9 90.32,-284.1 97.36,-292.02 100.76,-285.9"/>
-<text text-anchor="middle" x="144.5" y="-327" font-family="Helvetica,sans-Serif" font-size="10.00"> wf</text>
-<text text-anchor="middle" x="144.5" y="-316" font-family="Helvetica,sans-Serif" font-size="10.00">wg</text>
-<text text-anchor="middle" x="144.5" y="-305" font-family="Helvetica,sans-Serif" font-size="10.00">self_layer</text>
-<text text-anchor="middle" x="144.5" y="-294" font-family="Helvetica,sans-Serif" font-size="10.00">uf</text>
-<text text-anchor="middle" x="144.5" y="-283" font-family="Helvetica,sans-Serif" font-size="10.00">wi</text>
-<text text-anchor="middle" x="144.5" y="-272" font-family="Helvetica,sans-Serif" font-size="10.00">ug</text>
-<text text-anchor="middle" x="144.5" y="-261" font-family="Helvetica,sans-Serif" font-size="10.00">ui</text>
-<text text-anchor="middle" x="144.5" y="-250" font-family="Helvetica,sans-Serif" font-size="10.00">input_layer</text>
-<text text-anchor="middle" x="144.5" y="-239" font-family="Helvetica,sans-Serif" font-size="10.00">wo</text>
-<text text-anchor="middle" x="144.5" y="-228" font-family="Helvetica,sans-Serif" font-size="10.00">uo</text>
-<text text-anchor="middle" x="144.5" y="-217" font-family="Helvetica,sans-Serif" font-size="10.00">...</text>
+<text text-anchor="middle" x="147.5" y="-327" font-family="Helvetica,sans-Serif" font-size="10.00"> input_layer</text>
+<text text-anchor="middle" x="147.5" y="-316" font-family="Helvetica,sans-Serif" font-size="10.00">output_layer</text>
+<text text-anchor="middle" x="147.5" y="-305" font-family="Helvetica,sans-Serif" font-size="10.00">self_layer</text>
+<text text-anchor="middle" x="147.5" y="-294" font-family="Helvetica,sans-Serif" font-size="10.00">uf</text>
+<text text-anchor="middle" x="147.5" y="-283" font-family="Helvetica,sans-Serif" font-size="10.00">ug</text>
+<text text-anchor="middle" x="147.5" y="-272" font-family="Helvetica,sans-Serif" font-size="10.00">ui</text>
+<text text-anchor="middle" x="147.5" y="-261" font-family="Helvetica,sans-Serif" font-size="10.00">uo</text>
+<text text-anchor="middle" x="147.5" y="-250" font-family="Helvetica,sans-Serif" font-size="10.00">wf</text>
+<text text-anchor="middle" x="147.5" y="-239" font-family="Helvetica,sans-Serif" font-size="10.00">wg</text>
+<text text-anchor="middle" x="147.5" y="-228" font-family="Helvetica,sans-Serif" font-size="10.00">wi</text>
+<text text-anchor="middle" x="147.5" y="-217" font-family="Helvetica,sans-Serif" font-size="10.00">...</text>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">

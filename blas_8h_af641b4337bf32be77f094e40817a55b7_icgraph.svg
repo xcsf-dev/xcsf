@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__connected_8h.html#ab16bf1d293853d0403c2ec2ea01122ce" target="_top" xlink:title="Backward propagates a connected layer.">
+<g id="a_node2"><a xlink:href="neural__layer__connected_8c.html#ab16bf1d293853d0403c2ec2ea01122ce" target="_top" xlink:title="Backward propagates a connected layer.">
 <polygon fill="none" stroke="black" points="6,-186 6,-216 125,-216 125,-186 6,-186"/>
 <text text-anchor="start" x="14" y="-204" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="65.5" y="-193" font-family="Helvetica,sans-Serif" font-size="10.00">_backward</text>
@@ -36,7 +36,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__connected_8h.html#ae984294bf3121be074bf77081b0ccdf2" target="_top" xlink:title="Forward propagates a connected layer.">
+<g id="a_node3"><a xlink:href="neural__layer__connected_8c.html#ae984294bf3121be074bf77081b0ccdf2" target="_top" xlink:title="Forward propagates a connected layer.">
 <polygon fill="none" stroke="black" points="6,-137 6,-167 125,-167 125,-137 6,-137"/>
 <text text-anchor="start" x="14" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="65.5" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">_forward</text>
@@ -52,7 +52,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__convolutional_8h.html#af9d56553f0be61bc808cac3898e35a82" target="_top" xlink:title="Backward propagates a convolutional layer.">
+<g id="a_node4"><a xlink:href="neural__layer__convolutional_8c.html#af9d56553f0be61bc808cac3898e35a82" target="_top" xlink:title="Backward propagates a convolutional layer.">
 <polygon fill="none" stroke="black" points="0,-88 0,-118 131,-118 131,-88 0,-88"/>
 <text text-anchor="start" x="8" y="-106" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="65.5" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">_backward</text>
@@ -68,7 +68,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="neural__layer__convolutional_8h.html#a474f61e40569851884c0108ce2e40a1d" target="_top" xlink:title="Forward propagates a convolutional layer.">
+<g id="a_node5"><a xlink:href="neural__layer__convolutional_8c.html#a474f61e40569851884c0108ce2e40a1d" target="_top" xlink:title="Forward propagates a convolutional layer.">
 <polygon fill="none" stroke="black" points="0,-39 0,-69 131,-69 131,-39 0,-39"/>
 <text text-anchor="start" x="8" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="65.5" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">_forward</text>
@@ -84,7 +84,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="pred__rls_8h.html#a34245842989abd5abef6b922983216d9" target="_top" xlink:title="Updates an RLS prediction for a given input and truth sample.">
+<g id="a_node6"><a xlink:href="pred__rls_8c.html#a34245842989abd5abef6b922983216d9" target="_top" xlink:title="Updates an RLS prediction for a given input and truth sample.">
 <polygon fill="none" stroke="black" points="22.5,-0.5 22.5,-19.5 108.5,-19.5 108.5,-0.5 22.5,-0.5"/>
 <text text-anchor="middle" x="65.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_rls_update</text>
 </a>

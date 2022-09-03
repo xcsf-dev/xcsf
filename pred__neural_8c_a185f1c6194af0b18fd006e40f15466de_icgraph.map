@@ -1,6 +1,5 @@
 <map id="pred_neural_layers" name="pred_neural_layers">
-<area shape="rect" id="node1" title="Returns the number of layers within a neural network prediction." alt="" coords="609,13,740,39"/>
-<area shape="rect" id="node2" href="$clset__neural_8h.html#aab856136c4498c44db62476faf8f4c6d" title="Calculates the mean number of prediction layers in the set." alt="" coords="399,13,561,39"/>
-<area shape="rect" id="node3" href="$classXCS.html#af55c119f816a7e19be2ce0b6de103970" title=" " alt="" coords="204,5,351,47"/>
-<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,13,156,39"/>
+<area shape="rect" id="node1" title="Returns the number of layers within a neural network prediction." alt="" coords="411,13,541,39"/>
+<area shape="rect" id="node2" href="$clset__neural_8c.html#aab856136c4498c44db62476faf8f4c6d" title="Calculates the mean number of prediction layers in the set." alt="" coords="200,13,363,39"/>
+<area shape="rect" id="node3" href="$classXCS.html#af55c119f816a7e19be2ce0b6de103970" title=" " alt="" coords="5,5,152,47"/>
 </map>

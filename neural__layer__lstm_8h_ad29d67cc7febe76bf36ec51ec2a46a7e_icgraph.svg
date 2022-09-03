@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__lstm_8h.html#a95c799424033bc661eb8b9a5c432140b" target="_top" xlink:title="Prints an LSTM layer.">
+<g id="a_node2"><a xlink:href="neural__layer__lstm_8c.html#a95c799424033bc661eb8b9a5c432140b" target="_top" xlink:title="Prints an LSTM layer.">
 <polygon fill="none" stroke="black" points="0,-6 0,-25 117,-25 117,-6 0,-6"/>
 <text text-anchor="middle" x="58.5" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_print</text>
 </a>

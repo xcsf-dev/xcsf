@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="act__neural_8h.html#aa4616932ee69561f2324af10da2865de" target="_top" xlink:title="Computes the current neural network action using the input.">
+<g id="a_node2"><a xlink:href="act__neural_8c.html#aa4616932ee69561f2324af10da2865de" target="_top" xlink:title="Computes the current neural network action using the input.">
 <polygon fill="none" stroke="black" points="127,-0.5 127,-19.5 231,-19.5 231,-0.5 127,-0.5"/>
 <text text-anchor="middle" x="179" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_neural_compute</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="act__neural_8h.html#aa8b1494c14b289da3f86f4e8a2db5de7" target="_top" xlink:title="Generates a neural network that covers the specified input:action.">
+<g id="a_node3"><a xlink:href="act__neural_8c.html#aa8b1494c14b289da3f86f4e8a2db5de7" target="_top" xlink:title="Generates a neural network that covers the specified input:action.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 91,-19.5 91,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="45.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_neural_cover</text>
 </a>

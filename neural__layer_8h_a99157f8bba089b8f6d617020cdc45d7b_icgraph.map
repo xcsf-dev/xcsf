@@ -1,22 +1,22 @@
 <map id="layer_guard_outputs" name="layer_guard_outputs">
 <area shape="rect" id="node1" title="Check number of outputs is within bounds." alt="" coords="900,359,1039,385"/>
 <area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="733,184,832,211"/>
-<area shape="rect" id="node11" href="$neural__layer_8h.html#a0d2dce0c19524796a83994927a84fd26" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="717,329,848,356"/>
+<area shape="rect" id="node11" href="$neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="717,329,848,356"/>
 <area shape="rect" id="node15" href="$neural__layer__avgpool_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an average pooling layer." alt="" coords="713,413,852,440"/>
 <area shape="rect" id="node19" href="$neural__layer__avgpool_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by an average pooling layer." alt="" coords="713,493,852,520"/>
 <area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="507,81,645,108"/>
 <area shape="rect" id="node7" href="$neural__layer__convolutional_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a convolutional layer." alt="" coords="507,184,645,211"/>
-<area shape="rect" id="node4" href="$neural__layer__convolutional_8h.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" title="Initialises and copies one convolutional layer from another." alt="" coords="228,5,439,32"/>
-<area shape="rect" id="node5" href="$neural__layer__convolutional_8h.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="234,56,433,83"/>
-<area shape="rect" id="node6" href="$neural__layer__convolutional_8h.html#ad77ef9a98206ae6d87b200f24b6c55e3" title="Reads a convolutional layer from a file." alt="" coords="230,107,437,133"/>
+<area shape="rect" id="node4" href="$neural__layer__convolutional_8c.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" title="Initialises and copies one convolutional layer from another." alt="" coords="228,5,439,32"/>
+<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="234,56,433,83"/>
+<area shape="rect" id="node6" href="$neural__layer__convolutional_8c.html#ad77ef9a98206ae6d87b200f24b6c55e3" title="Reads a convolutional layer from a file." alt="" coords="230,107,437,133"/>
 <area shape="rect" id="node8" href="$neural__layer__convolutional_8c.html#ac1583df380d50d47c53b64a3e7614269" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="246,158,421,199"/>
-<area shape="rect" id="node10" href="$neural__layer__convolutional_8h.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="246,223,421,265"/>
-<area shape="rect" id="node9" href="$neural__layer__convolutional_8h.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,158,180,199"/>
+<area shape="rect" id="node10" href="$neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="246,223,421,265"/>
+<area shape="rect" id="node9" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,158,180,199"/>
 <area shape="rect" id="node12" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="519,271,633,297"/>
-<area shape="rect" id="node14" href="$neural__layer__connected_8h.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="497,322,655,363"/>
-<area shape="rect" id="node13" href="$neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="248,289,419,316"/>
-<area shape="rect" id="node16" href="$neural__layer__avgpool_8h.html#aac38c297b6ec2440be737791d86f0af6" title="Initialises and copies one average pooling layer from another." alt="" coords="487,388,665,415"/>
-<area shape="rect" id="node17" href="$neural__layer__avgpool_8h.html#a1e3c2800f09684332ee24b00868360fc" title="Initialises an average pooling layer." alt="" coords="492,439,660,465"/>
-<area shape="rect" id="node18" href="$neural__layer__avgpool_8h.html#a8e84bcdfb1b1343390aaf1f8e6ec0523" title="Reads an average pooling layer from a file." alt="" coords="489,489,663,516"/>
-<area shape="rect" id="node20" href="$neural__layer__avgpool_8h.html#ae977e3a6877399ab4be43387735a7ab5" title="Resizes an avg pooling layer if the previous layer has changed size." alt="" coords="504,541,648,582"/>
+<area shape="rect" id="node14" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="497,322,655,363"/>
+<area shape="rect" id="node13" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="248,289,419,316"/>
+<area shape="rect" id="node16" href="$neural__layer__avgpool_8c.html#aac38c297b6ec2440be737791d86f0af6" title="Initialises and copies one average pooling layer from another." alt="" coords="487,388,665,415"/>
+<area shape="rect" id="node17" href="$neural__layer__avgpool_8c.html#a1e3c2800f09684332ee24b00868360fc" title="Initialises an average pooling layer." alt="" coords="492,439,660,465"/>
+<area shape="rect" id="node18" href="$neural__layer__avgpool_8c.html#a8e84bcdfb1b1343390aaf1f8e6ec0523" title="Reads an average pooling layer from a file." alt="" coords="489,489,663,516"/>
+<area shape="rect" id="node20" href="$neural__layer__avgpool_8c.html#ae977e3a6877399ab4be43387735a7ab5" title="Resizes an avg pooling layer if the previous layer has changed size." alt="" coords="504,541,648,582"/>
 </map>

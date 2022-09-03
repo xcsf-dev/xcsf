@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__ellipsoid_8h.html#aca843e209b567077d3102cb4d260ed34" target="_top" xlink:title="Returns whether classifier c1 has a condition more general than c2.">
+<g id="a_node2"><a xlink:href="cond__ellipsoid_8c.html#aca843e209b567077d3102cb4d260ed34" target="_top" xlink:title="Returns whether classifier c1 has a condition more general than c2.">
 <polygon fill="none" stroke="black" points="0,-38.5 0,-57.5 115,-57.5 115,-38.5 0,-38.5"/>
 <text text-anchor="middle" x="57.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_ellipsoid_general</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="cond__ellipsoid_8h.html#a6855f4c629d12c4831a27b4ea4e5d4b8" target="_top" xlink:title="Calculates whether a hyperellipsoid condition matches an input.">
+<g id="a_node3"><a xlink:href="cond__ellipsoid_8c.html#a6855f4c629d12c4831a27b4ea4e5d4b8" target="_top" xlink:title="Calculates whether a hyperellipsoid condition matches an input.">
 <polygon fill="none" stroke="black" points="2.5,-0.5 2.5,-19.5 112.5,-19.5 112.5,-0.5 2.5,-0.5"/>
 <text text-anchor="middle" x="57.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_ellipsoid_match</text>
 </a>

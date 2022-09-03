@@ -1,9 +1,9 @@
 <map id="linear_activate" name="linear_activate">
 <area shape="rect" id="node1" title=" " alt="" coords="593,107,700,134"/>
-<area shape="rect" id="node2" href="$neural__activations_8h.html#a00b26b831c9b6ad65114ee7c1dd6760e" title="Returns the result from applying a specified activation function." alt="" coords="435,107,545,134"/>
-<area shape="rect" id="node3" href="$neural__activations_8h.html#acef0d15cd01c7dcc5a4d6d8bdc1d8bad" title="Applies an activation function to a vector of neuron states." alt="" coords="240,107,387,134"/>
-<area shape="rect" id="node4" href="$neural__layer__connected_8h.html#ae984294bf3121be074bf77081b0ccdf2" title="Forward propagates a connected layer." alt="" coords="19,5,178,47"/>
-<area shape="rect" id="node5" href="$neural__layer__convolutional_8h.html#a474f61e40569851884c0108ce2e40a1d" title="Forward propagates a convolutional layer." alt="" coords="11,71,186,112"/>
-<area shape="rect" id="node6" href="$neural__layer__lstm_8h.html#a00f097f7f5277fa3396e1feefc231e91" title="Backward propagates an LSTM layer." alt="" coords="5,137,192,163"/>
-<area shape="rect" id="node7" href="$neural__layer__lstm_8h.html#af2c3a4a9e6dd75cd00083c38733bddb0" title="Forward propagates an LSTM layer." alt="" coords="11,187,186,214"/>
+<area shape="rect" id="node2" href="$neural__activations_8c.html#a00b26b831c9b6ad65114ee7c1dd6760e" title="Returns the result from applying a specified activation function." alt="" coords="435,107,545,134"/>
+<area shape="rect" id="node3" href="$neural__activations_8c.html#acef0d15cd01c7dcc5a4d6d8bdc1d8bad" title="Applies an activation function to a vector of neuron states." alt="" coords="240,107,387,134"/>
+<area shape="rect" id="node4" href="$neural__layer__connected_8c.html#ae984294bf3121be074bf77081b0ccdf2" title="Forward propagates a connected layer." alt="" coords="19,5,178,47"/>
+<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#a474f61e40569851884c0108ce2e40a1d" title="Forward propagates a convolutional layer." alt="" coords="11,71,186,112"/>
+<area shape="rect" id="node6" href="$neural__layer__lstm_8c.html#a00f097f7f5277fa3396e1feefc231e91" title="Backward propagates an LSTM layer." alt="" coords="5,137,192,163"/>
+<area shape="rect" id="node7" href="$neural__layer__lstm_8c.html#af2c3a4a9e6dd75cd00083c38733bddb0" title="Forward propagates an LSTM layer." alt="" coords="11,187,186,214"/>
 </map>

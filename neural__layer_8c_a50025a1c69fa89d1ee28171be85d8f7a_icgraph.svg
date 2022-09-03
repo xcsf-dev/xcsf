@@ -35,7 +35,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__connected_8h.html#abfd38ab832a6f70d7b61065fe3dc25c3" target="_top" xlink:title="Mutates a connected layer.">
+<g id="a_node4"><a xlink:href="neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" target="_top" xlink:title="Mutates a connected layer.">
 <polygon fill="none" stroke="black" points="155,-88 155,-118 274,-118 274,-88 155,-88"/>
 <text text-anchor="start" x="163" y="-106" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="214.5" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>
@@ -51,7 +51,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="neural__layer__convolutional_8h.html#a9e4f5fb82855910a5a4fecad093033db" target="_top" xlink:title="Mutates a convolutional layer.">
+<g id="a_node5"><a xlink:href="neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" target="_top" xlink:title="Mutates a convolutional layer.">
 <polygon fill="none" stroke="black" points="149,-39 149,-69 280,-69 280,-39 149,-39"/>
 <text text-anchor="start" x="157" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="214.5" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>
@@ -67,7 +67,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
+<g id="a_node6"><a xlink:href="neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
 <polygon fill="none" stroke="black" points="150.5,-0.5 150.5,-19.5 278.5,-19.5 278.5,-0.5 150.5,-0.5"/>
 <text text-anchor="middle" x="214.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_mutate</text>
 </a>
@@ -82,7 +82,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__recurrent_8h.html#a5f6793ef0a2d69438a499632e360f9e6" target="_top" xlink:title="Mutates a recurrent layer.">
+<g id="a_node3"><a xlink:href="neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" target="_top" xlink:title="Mutates a recurrent layer.">
 <polygon fill="none" stroke="black" points="0,-132 0,-162 113,-162 113,-132 0,-132"/>
 <text text-anchor="start" x="8" y="-150" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_recurrent</text>
 <text text-anchor="middle" x="56.5" y="-139" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>

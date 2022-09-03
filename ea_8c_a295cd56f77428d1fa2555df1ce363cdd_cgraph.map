@@ -42,6 +42,6 @@
 <area shape="rect" id="node41" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="457,765,576,792"/>
 <area shape="rect" id="node38" href="$action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d" title="Returns whether the action of classifier c1 is more general than c2." alt="" coords="652,727,741,753"/>
 <area shape="rect" id="node39" href="$condition_8h.html#a6a257a1407c9394b7def57701188422d" title="Returns whether classifier c1 has a condition more general than c2." alt="" coords="647,676,746,703"/>
-<area shape="rect" id="node44" href="$ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" title="Selects a classifier from the set via roulete wheel." alt="" coords="467,867,566,893"/>
+<area shape="rect" id="node44" href="$ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" title="Selects a classifier from the set via roulette wheel." alt="" coords="467,867,566,893"/>
 <area shape="rect" id="node45" href="$ea_8c.html#a1e69096825e17626b2015dd730e66638" title="Selects a classifier from the set via tournament." alt="" coords="441,816,592,843"/>
 </map>

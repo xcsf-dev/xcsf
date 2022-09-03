@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="act__integer_8h.html#a817599cabf0a80751fad61e9af1cb793" target="_top" xlink:title="Initialises an integer action.">
+<g id="a_node2"><a xlink:href="act__integer_8c.html#a817599cabf0a80751fad61e9af1cb793" target="_top" xlink:title="Initialises an integer action.">
 <polygon fill="none" stroke="black" points="175,-418.5 175,-437.5 258,-437.5 258,-418.5 175,-418.5"/>
 <text text-anchor="middle" x="216.5" y="-425.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_integer_init</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="cond__ellipsoid_8h.html#ad509e2956ac901ca8500ded892dbd3ae" target="_top" xlink:title="Creates and initialises a hyperellipsoid condition.">
+<g id="a_node3"><a xlink:href="cond__ellipsoid_8c.html#ad509e2956ac901ca8500ded892dbd3ae" target="_top" xlink:title="Creates and initialises a hyperellipsoid condition.">
 <polygon fill="none" stroke="black" points="168.5,-380.5 168.5,-399.5 264.5,-399.5 264.5,-380.5 168.5,-380.5"/>
 <text text-anchor="middle" x="216.5" y="-387.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_ellipsoid_init</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="cond__rectangle_8h.html#a7dc946eb1c89529cc56125fad748c531" target="_top" xlink:title="Creates and initialises a hyperrectangle condition.">
+<g id="a_node4"><a xlink:href="cond__rectangle_8c.html#a7dc946eb1c89529cc56125fad748c531" target="_top" xlink:title="Creates and initialises a hyperrectangle condition.">
 <polygon fill="none" stroke="black" points="166,-342.5 166,-361.5 267,-361.5 267,-342.5 166,-342.5"/>
 <text text-anchor="middle" x="216.5" y="-349.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_rectangle_init</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="cond__ternary_8h.html#a2acf40c98ee873be680ec5f0c4002452" target="_top" xlink:title="Creates and initialises a ternary bitstring condition.">
+<g id="a_node5"><a xlink:href="cond__ternary_8c.html#a2acf40c98ee873be680ec5f0c4002452" target="_top" xlink:title="Creates and initialises a ternary bitstring condition.">
 <polygon fill="none" stroke="black" points="171,-304.5 171,-323.5 262,-323.5 262,-304.5 171,-304.5"/>
 <text text-anchor="middle" x="216.5" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_ternary_init</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="dgp_8h.html#a9f8800d534121a0e036e7643100dff41" target="_top" xlink:title="Initialises a new DGP graph.">
+<g id="a_node6"><a xlink:href="dgp_8c.html#a9f8800d534121a0e036e7643100dff41" target="_top" xlink:title="Initialises a new DGP graph.">
 <polygon fill="none" stroke="black" points="187,-266.5 187,-285.5 246,-285.5 246,-266.5 187,-266.5"/>
 <text text-anchor="middle" x="216.5" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">graph_init</text>
 </a>
@@ -95,7 +95,7 @@
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="neural__layer__connected_8h.html#af721369377e6bd5f2b691065f73a32f6" target="_top" xlink:title="Initialises a fully&#45;connected layer.">
+<g id="a_node11"><a xlink:href="neural__layer__connected_8c.html#af721369377e6bd5f2b691065f73a32f6" target="_top" xlink:title="Initialises a fully&#45;connected layer.">
 <polygon fill="none" stroke="black" points="148,-228.5 148,-247.5 285,-247.5 285,-228.5 148,-228.5"/>
 <text text-anchor="middle" x="216.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected_init</text>
 </a>
@@ -110,7 +110,7 @@
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="neural__layer__convolutional_8h.html#af46529e6b147b347e1cdd776972bbf44" target="_top" xlink:title="Initialises a 2D convolutional layer.">
+<g id="a_node12"><a xlink:href="neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" target="_top" xlink:title="Initialises a 2D convolutional layer.">
 <polygon fill="none" stroke="black" points="142,-190.5 142,-209.5 291,-209.5 291,-190.5 142,-190.5"/>
 <text text-anchor="middle" x="216.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional_init</text>
 </a>
@@ -125,7 +125,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="neural__layer__lstm_8h.html#ae10001d478d05d7503e4ce76e02cbf6b" target="_top" xlink:title="Initialises a long short&#45;term memory layer.">
+<g id="a_node13"><a xlink:href="neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" target="_top" xlink:title="Initialises a long short&#45;term memory layer.">
 <polygon fill="none" stroke="black" points="161,-152.5 161,-171.5 272,-171.5 272,-152.5 161,-152.5"/>
 <text text-anchor="middle" x="216.5" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_init</text>
 </a>
@@ -140,7 +140,7 @@
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="neural__layer__recurrent_8h.html#a74274033f3a8272fb8aae4366f93d74c" target="_top" xlink:title="Initialises a recurrent layer.">
+<g id="a_node14"><a xlink:href="neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" target="_top" xlink:title="Initialises a recurrent layer.">
 <polygon fill="none" stroke="black" points="151,-114.5 151,-133.5 282,-133.5 282,-114.5 151,-114.5"/>
 <text text-anchor="middle" x="216.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_recurrent_init</text>
 </a>
@@ -155,7 +155,7 @@
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="pred__nlms_8h.html#ab5f1a783eafab36fcbffdff41bdbd13f" target="_top" xlink:title="Initialises an NLMS prediction.">
+<g id="a_node15"><a xlink:href="pred__nlms_8c.html#ab5f1a783eafab36fcbffdff41bdbd13f" target="_top" xlink:title="Initialises an NLMS prediction.">
 <polygon fill="none" stroke="black" points="176.5,-76.5 176.5,-95.5 256.5,-95.5 256.5,-76.5 176.5,-76.5"/>
 <text text-anchor="middle" x="216.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_nlms_init</text>
 </a>
@@ -170,7 +170,7 @@
 <!-- Node18 -->
 <g id="node18" class="node">
 <title>Node18</title>
-<g id="a_node18"><a xlink:href="gp_8h.html#affeb808d791121907611f01eb00de3ca" target="_top" xlink:title="Creates a random GP tree.">
+<g id="a_node18"><a xlink:href="gp_8c.html#affeb808d791121907611f01eb00de3ca" target="_top" xlink:title="Creates a random GP tree.">
 <polygon fill="none" stroke="black" points="188,-38.5 188,-57.5 245,-57.5 245,-38.5 188,-38.5"/>
 <text text-anchor="middle" x="216.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">tree_rand</text>
 </a>
@@ -185,7 +185,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="cond__dgp_8h.html#aa85c960376cf5892cb5fc18c82c6934a" target="_top" xlink:title="Copies a dynamical GP graph condition from one classifier to another.">
+<g id="a_node7"><a xlink:href="cond__dgp_8c.html#aa85c960376cf5892cb5fc18c82c6934a" target="_top" xlink:title="Copies a dynamical GP graph condition from one classifier to another.">
 <polygon fill="none" stroke="black" points="10.5,-323.5 10.5,-342.5 95.5,-342.5 95.5,-323.5 10.5,-323.5"/>
 <text text-anchor="middle" x="53" y="-330.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_copy</text>
 </a>
@@ -200,7 +200,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="cond__dgp_8h.html#a36eb6c8e497eb217ea0423ffce18e8e4" target="_top" xlink:title="Creates and initialises a dynamical GP graph condition.">
+<g id="a_node8"><a xlink:href="cond__dgp_8c.html#a36eb6c8e497eb217ea0423ffce18e8e4" target="_top" xlink:title="Creates and initialises a dynamical GP graph condition.">
 <polygon fill="none" stroke="black" points="14.5,-285.5 14.5,-304.5 91.5,-304.5 91.5,-285.5 14.5,-285.5"/>
 <text text-anchor="middle" x="53" y="-292.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_init</text>
 </a>
@@ -215,7 +215,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="rule__dgp_8h.html#a6e5c0bccb713a8dc277bf31a25673fab" target="_top" xlink:title=" ">
+<g id="a_node9"><a xlink:href="rule__dgp_8c.html#a6e5c0bccb713a8dc277bf31a25673fab" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-247.5 0,-266.5 106,-266.5 106,-247.5 0,-247.5"/>
 <text text-anchor="middle" x="53" y="-254.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_copy</text>
 </a>
@@ -230,7 +230,7 @@
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="rule__dgp_8h.html#a242104780e9757fc9b303b8850f56382" target="_top" xlink:title=" ">
+<g id="a_node10"><a xlink:href="rule__dgp_8c.html#a242104780e9757fc9b303b8850f56382" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="4,-209.5 4,-228.5 102,-228.5 102,-209.5 4,-209.5"/>
 <text text-anchor="middle" x="53" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_init</text>
 </a>
@@ -245,7 +245,7 @@
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="pred__nlms_8h.html#ada811faf3779d3feab90d99914101d2c" target="_top" xlink:title="Copies an NLMS prediction from one classifier to another.">
+<g id="a_node16"><a xlink:href="pred__nlms_8c.html#ada811faf3779d3feab90d99914101d2c" target="_top" xlink:title="Copies an NLMS prediction from one classifier to another.">
 <polygon fill="none" stroke="black" points="9,-114.5 9,-133.5 97,-133.5 97,-114.5 9,-114.5"/>
 <text text-anchor="middle" x="53" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_nlms_copy</text>
 </a>
@@ -260,7 +260,7 @@
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
-<g id="a_node17"><a xlink:href="pred__nlms_8h.html#ae02728e1f2dd6d8ddab9ca0cff4968fa" target="_top" xlink:title="Reads an NLMS prediction from a file.">
+<g id="a_node17"><a xlink:href="pred__nlms_8c.html#ae02728e1f2dd6d8ddab9ca0cff4968fa" target="_top" xlink:title="Reads an NLMS prediction from a file.">
 <polygon fill="none" stroke="black" points="10.5,-76.5 10.5,-95.5 95.5,-95.5 95.5,-76.5 10.5,-76.5"/>
 <text text-anchor="middle" x="53" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_nlms_load</text>
 </a>
@@ -275,7 +275,7 @@
 <!-- Node19 -->
 <g id="node19" class="node">
 <title>Node19</title>
-<g id="a_node19"><a xlink:href="cond__gp_8h.html#a1e740f931fc856fd7310874c7bf88195" target="_top" xlink:title="Generates a GP tree that matches the current input.">
+<g id="a_node19"><a xlink:href="cond__gp_8c.html#a1e740f931fc856fd7310874c7bf88195" target="_top" xlink:title="Generates a GP tree that matches the current input.">
 <polygon fill="none" stroke="black" points="11.5,-38.5 11.5,-57.5 94.5,-57.5 94.5,-38.5 11.5,-38.5"/>
 <text text-anchor="middle" x="53" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_gp_cover</text>
 </a>
@@ -290,7 +290,7 @@
 <!-- Node20 -->
 <g id="node20" class="node">
 <title>Node20</title>
-<g id="a_node20"><a xlink:href="cond__gp_8h.html#aa688690c3fa9cb73c35c98db35867789" target="_top" xlink:title="Creates and initialises a tree&#45;GP condition.">
+<g id="a_node20"><a xlink:href="cond__gp_8c.html#aa688690c3fa9cb73c35c98db35867789" target="_top" xlink:title="Creates and initialises a tree&#45;GP condition.">
 <polygon fill="none" stroke="black" points="17.5,-0.5 17.5,-19.5 88.5,-19.5 88.5,-0.5 17.5,-0.5"/>
 <text text-anchor="middle" x="53" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_gp_init</text>
 </a>

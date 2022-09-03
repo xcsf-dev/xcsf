@@ -1,6 +1,5 @@
 <map id="param_save" name="param_save">
-<area shape="rect" id="node1" title="Writes the XCSF data structure to a file." alt="" coords="469,5,563,32"/>
-<area shape="rect" id="node2" href="$xcsf_8h.html#a2dd24ee181640aa90ec5d109aa717966" title="Writes the current state of XCSF to a file." alt="" coords="339,5,421,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#a8501483f2f168c56448892cfbb5285ea" title="Writes the entire current state of XCSF to a file." alt="" coords="204,5,291,32"/>
-<area shape="rect" id="node4" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node1" title="Writes the XCSF data structure to a file." alt="" coords="271,5,364,32"/>
+<area shape="rect" id="node2" href="$xcsf_8c.html#a2dd24ee181640aa90ec5d109aa717966" title="Writes the current state of XCSF to a file." alt="" coords="140,5,223,32"/>
+<area shape="rect" id="node3" href="$classXCS.html#a8501483f2f168c56448892cfbb5285ea" title="Writes the entire current state of XCSF to a file." alt="" coords="5,5,92,32"/>
 </map>

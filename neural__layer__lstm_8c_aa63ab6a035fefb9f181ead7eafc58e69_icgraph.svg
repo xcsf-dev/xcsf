@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__lstm_8h.html#a00f097f7f5277fa3396e1feefc231e91" target="_top" xlink:title="Backward propagates an LSTM layer.">
+<g id="a_node2"><a xlink:href="neural__layer__lstm_8c.html#a00f097f7f5277fa3396e1feefc231e91" target="_top" xlink:title="Backward propagates an LSTM layer.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 140,-19.5 140,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="70" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_backward</text>
 </a>

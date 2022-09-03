@@ -1,5 +1,4 @@
 <map id="xcs_rl_fit" name="xcs_rl_fit">
-<area shape="rect" id="node1" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="321,5,396,32"/>
-<area shape="rect" id="node2" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="204,5,273,32"/>
-<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node1" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="123,5,197,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="5,5,75,32"/>
 </map>

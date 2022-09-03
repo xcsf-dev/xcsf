@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__dgp_8h.html#a092ceb2e9dc6a81da9341066f2a671e3" target="_top" xlink:title="Prints a dynamical GP graph condition.">
+<g id="a_node2"><a xlink:href="cond__dgp_8c.html#a092ceb2e9dc6a81da9341066f2a671e3" target="_top" xlink:title="Prints a dynamical GP graph condition.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 83,-19.5 83,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="41.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_print</text>
 </a>

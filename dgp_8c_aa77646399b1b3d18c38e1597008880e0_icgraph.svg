@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__dgp_8h.html#a8bb6fc747fba92c9a717c1b26f5ffca7" target="_top" xlink:title="Calculates whether a dynamical GP graph condition matches an input.">
+<g id="a_node2"><a xlink:href="cond__dgp_8c.html#a8bb6fc747fba92c9a717c1b26f5ffca7" target="_top" xlink:title="Calculates whether a dynamical GP graph condition matches an input.">
 <polygon fill="none" stroke="black" points="149,-76.5 149,-95.5 240,-95.5 240,-76.5 149,-76.5"/>
 <text text-anchor="middle" x="194.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_match</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="rule__dgp_8h.html#ad20d1e81deeb95357c02154547c1669e" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="rule__dgp_8c.html#ad20d1e81deeb95357c02154547c1669e" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="137,-38.5 137,-57.5 252,-57.5 252,-38.5 137,-38.5"/>
 <text text-anchor="middle" x="194.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_act_compute</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="rule__dgp_8h.html#a85eb12064cc539b1ec1fea93ee5f5e3e" target="_top" xlink:title=" ">
+<g id="a_node6"><a xlink:href="rule__dgp_8c.html#a85eb12064cc539b1ec1fea93ee5f5e3e" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="138.5,-0.5 138.5,-19.5 250.5,-19.5 250.5,-0.5 138.5,-0.5"/>
 <text text-anchor="middle" x="194.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_match</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="cond__dgp_8h.html#a585a3476b4473b1b19159a7d55daa6ae" target="_top" xlink:title="Generates a dynamical GP graph that matches the current input.">
+<g id="a_node3"><a xlink:href="cond__dgp_8c.html#a585a3476b4473b1b19159a7d55daa6ae" target="_top" xlink:title="Generates a dynamical GP graph that matches the current input.">
 <polygon fill="none" stroke="black" points="6.5,-76.5 6.5,-95.5 94.5,-95.5 94.5,-76.5 6.5,-76.5"/>
 <text text-anchor="middle" x="50.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_cover</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="rule__dgp_8h.html#ac1f0b0c11b92852e82b00ad7b4bb169f" target="_top" xlink:title=" ">
+<g id="a_node5"><a xlink:href="rule__dgp_8c.html#ac1f0b0c11b92852e82b00ad7b4bb169f" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-19.5 0,-38.5 101,-38.5 101,-19.5 0,-19.5"/>
 <text text-anchor="middle" x="50.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_act_cover</text>
 </a>

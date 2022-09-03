@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__maxpool_8h.html#a6142b0ee7c8b1cdd97a5ea595e03204c" target="_top" xlink:title="Initialises and creates a copy of one maxpooling layer from another.">
+<g id="a_node2"><a xlink:href="neural__layer__maxpool_8c.html#a6142b0ee7c8b1cdd97a5ea595e03204c" target="_top" xlink:title="Initialises and creates a copy of one maxpooling layer from another.">
 <polygon fill="none" stroke="black" points="0,-76.5 0,-95.5 137,-95.5 137,-76.5 0,-76.5"/>
 <text text-anchor="middle" x="68.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_maxpool_copy</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__maxpool_8h.html#a2a0197edd0fc484149f1b35e0d0c94e8" target="_top" xlink:title="Initialises a 2D maxpooling layer.">
+<g id="a_node3"><a xlink:href="neural__layer__maxpool_8c.html#a2a0197edd0fc484149f1b35e0d0c94e8" target="_top" xlink:title="Initialises a 2D maxpooling layer.">
 <polygon fill="none" stroke="black" points="4,-38.5 4,-57.5 133,-57.5 133,-38.5 4,-38.5"/>
 <text text-anchor="middle" x="68.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_maxpool_init</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__maxpool_8h.html#ac91009faa234b027ecbfde0a55407bd8" target="_top" xlink:title="Reads a maxpooling layer from a file.">
+<g id="a_node4"><a xlink:href="neural__layer__maxpool_8c.html#ac91009faa234b027ecbfde0a55407bd8" target="_top" xlink:title="Reads a maxpooling layer from a file.">
 <polygon fill="none" stroke="black" points="1.5,-0.5 1.5,-19.5 135.5,-19.5 135.5,-0.5 1.5,-0.5"/>
 <text text-anchor="middle" x="68.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_maxpool_load</text>
 </a>

@@ -1,5 +1,6 @@
 <map id="xcsf.utils.viz.TreeViz.read_subexpr" name="xcsf.utils.viz.TreeViz.read_subexpr">
-<area shape="rect" id="node1" title=" " alt="" coords="5,51,180,93"/>
-<area shape="rect" id="node2" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a8d91773ee959a8b829712cdd686fa683" title=" " alt="" coords="451,17,627,44"/>
-<area shape="rect" id="node3" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a45ff2d8d6eefa38ba7fb478b4dbf9ae6" title=" " alt="" coords="228,51,403,93"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,50,180,91"/>
+<area shape="rect" id="node2" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a8d91773ee959a8b829712cdd686fa683" title=" " alt="" coords="452,31,628,57"/>
+<area shape="rect" id="node3" href="$classxcsf_1_1utils_1_1viz_1_1DGPViz.html#ab30761352a4a304a84e403dce20784ac" title=" " alt="" coords="451,85,629,112"/>
+<area shape="rect" id="node4" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a45ff2d8d6eefa38ba7fb478b4dbf9ae6" title=" " alt="" coords="228,50,403,91"/>
 </map>

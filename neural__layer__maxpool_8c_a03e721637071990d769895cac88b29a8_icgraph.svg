@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__maxpool_8h.html#ab6439ffb382e4898aa9885d5a98bd642" target="_top" xlink:title="Forward propagates a maxpooling layer.">
+<g id="a_node2"><a xlink:href="neural__layer__maxpool_8c.html#ab6439ffb382e4898aa9885d5a98bd642" target="_top" xlink:title="Forward propagates a maxpooling layer.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-30.5 111,-30.5 111,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_maxpool</text>
 <text text-anchor="middle" x="55.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_forward</text>

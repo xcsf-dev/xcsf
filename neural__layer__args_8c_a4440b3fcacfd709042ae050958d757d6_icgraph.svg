@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__connected_8h.html#af721369377e6bd5f2b691065f73a32f6" target="_top" xlink:title="Initialises a fully&#45;connected layer.">
+<g id="a_node2"><a xlink:href="neural__layer__connected_8c.html#af721369377e6bd5f2b691065f73a32f6" target="_top" xlink:title="Initialises a fully&#45;connected layer.">
 <polygon fill="none" stroke="black" points="6,-114.5 6,-133.5 143,-133.5 143,-114.5 6,-114.5"/>
 <text text-anchor="middle" x="74.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected_init</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__convolutional_8h.html#af46529e6b147b347e1cdd776972bbf44" target="_top" xlink:title="Initialises a 2D convolutional layer.">
+<g id="a_node3"><a xlink:href="neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" target="_top" xlink:title="Initialises a 2D convolutional layer.">
 <polygon fill="none" stroke="black" points="0,-76.5 0,-95.5 149,-95.5 149,-76.5 0,-76.5"/>
 <text text-anchor="middle" x="74.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional_init</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__lstm_8h.html#ae10001d478d05d7503e4ce76e02cbf6b" target="_top" xlink:title="Initialises a long short&#45;term memory layer.">
+<g id="a_node4"><a xlink:href="neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" target="_top" xlink:title="Initialises a long short&#45;term memory layer.">
 <polygon fill="none" stroke="black" points="19,-38.5 19,-57.5 130,-57.5 130,-38.5 19,-38.5"/>
 <text text-anchor="middle" x="74.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_init</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="neural__layer__recurrent_8h.html#a74274033f3a8272fb8aae4366f93d74c" target="_top" xlink:title="Initialises a recurrent layer.">
+<g id="a_node5"><a xlink:href="neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" target="_top" xlink:title="Initialises a recurrent layer.">
 <polygon fill="none" stroke="black" points="9,-0.5 9,-19.5 140,-19.5 140,-0.5 9,-0.5"/>
 <text text-anchor="middle" x="74.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_recurrent_init</text>
 </a>

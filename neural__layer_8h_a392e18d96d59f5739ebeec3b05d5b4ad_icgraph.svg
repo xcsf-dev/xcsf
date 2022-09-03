@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural_8h.html#acc35a399d5b8b9dd9a2d9500138966f3" target="_top" xlink:title="Copies a neural network.">
+<g id="a_node2"><a xlink:href="neural_8c.html#acc35a399d5b8b9dd9a2d9500138966f3" target="_top" xlink:title="Copies a neural network.">
 <polygon fill="none" stroke="black" points="187,-76.5 187,-95.5 256,-95.5 256,-76.5 187,-76.5"/>
 <text text-anchor="middle" x="221.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_copy</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="neural__layer__lstm_8h.html#a6ec181dbf42f15b8c04c04005c399def" target="_top" xlink:title="Initialises and creates a copy of one LSTM layer from another.">
+<g id="a_node7"><a xlink:href="neural__layer__lstm_8c.html#a6ec181dbf42f15b8c04c04005c399def" target="_top" xlink:title="Initialises and creates a copy of one LSTM layer from another.">
 <polygon fill="none" stroke="black" points="162,-38.5 162,-57.5 281,-57.5 281,-38.5 162,-38.5"/>
 <text text-anchor="middle" x="221.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_copy</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="neural__layer__recurrent_8h.html#a5f01cc7e722e1426e5aba2a643e33036" target="_top" xlink:title="Initialises and creates a copy of one recurrent layer from another.">
+<g id="a_node8"><a xlink:href="neural__layer__recurrent_8c.html#a5f01cc7e722e1426e5aba2a643e33036" target="_top" xlink:title="Initialises and creates a copy of one recurrent layer from another.">
 <polygon fill="none" stroke="black" points="152,-0.5 152,-19.5 291,-19.5 291,-0.5 152,-0.5"/>
 <text text-anchor="middle" x="221.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_recurrent_copy</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="act__neural_8h.html#a6c3049bc82f3a2bd512e156a0f1c1a9b" target="_top" xlink:title="Copies a neural network action from one classifier to another.">
+<g id="a_node3"><a xlink:href="act__neural_8c.html#a6c3049bc82f3a2bd512e156a0f1c1a9b" target="_top" xlink:title="Copies a neural network action from one classifier to another.">
 <polygon fill="none" stroke="black" points="14,-133.5 14,-152.5 102,-152.5 102,-133.5 14,-133.5"/>
 <text text-anchor="middle" x="58" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_neural_copy</text>
 </a>
@@ -80,7 +80,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="cond__neural_8h.html#ad37696d691025a38a0f8dafeb376ad44" target="_top" xlink:title="Copies a neural network condition from one classifier to another.">
+<g id="a_node4"><a xlink:href="cond__neural_8c.html#ad37696d691025a38a0f8dafeb376ad44" target="_top" xlink:title="Copies a neural network condition from one classifier to another.">
 <polygon fill="none" stroke="black" points="10.5,-95.5 10.5,-114.5 105.5,-114.5 105.5,-95.5 10.5,-95.5"/>
 <text text-anchor="middle" x="58" y="-102.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_neural_copy</text>
 </a>
@@ -95,7 +95,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="pred__neural_8h.html#aabc294bd7043f7ea912832c3a26b73a1" target="_top" xlink:title="Copies a neural network prediction from one classifier to another.">
+<g id="a_node5"><a xlink:href="pred__neural_8c.html#aabc294bd7043f7ea912832c3a26b73a1" target="_top" xlink:title="Copies a neural network prediction from one classifier to another.">
 <polygon fill="none" stroke="black" points="11.5,-57.5 11.5,-76.5 104.5,-76.5 104.5,-57.5 11.5,-57.5"/>
 <text text-anchor="middle" x="58" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_neural_copy</text>
 </a>
@@ -110,7 +110,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="rule__neural_8h.html#ad4146518a1cee7c58589d9ea89e02a83" target="_top" xlink:title=" ">
+<g id="a_node6"><a xlink:href="rule__neural_8c.html#ad4146518a1cee7c58589d9ea89e02a83" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-19.5 0,-38.5 116,-38.5 116,-19.5 0,-19.5"/>
 <text text-anchor="middle" x="58" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_neural_cond_copy</text>
 </a>

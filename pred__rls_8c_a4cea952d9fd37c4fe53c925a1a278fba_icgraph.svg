@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="pred__rls_8h.html#a1df71f088e44263548d086254840193a" target="_top" xlink:title="Copies an RLS prediction from one classifier to another.">
+<g id="a_node2"><a xlink:href="pred__rls_8c.html#a1df71f088e44263548d086254840193a" target="_top" xlink:title="Copies an RLS prediction from one classifier to another.">
 <polygon fill="none" stroke="black" points="0,-38.5 0,-57.5 77,-57.5 77,-38.5 0,-38.5"/>
 <text text-anchor="middle" x="38.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_rls_copy</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="pred__rls_8h.html#a8d82d194af63bd7feb392c8b8fc17d6c" target="_top" xlink:title="Reads an RLS prediction from a file.">
+<g id="a_node3"><a xlink:href="pred__rls_8c.html#a8d82d194af63bd7feb392c8b8fc17d6c" target="_top" xlink:title="Reads an RLS prediction from a file.">
 <polygon fill="none" stroke="black" points="1.5,-0.5 1.5,-19.5 75.5,-19.5 75.5,-0.5 1.5,-0.5"/>
 <text text-anchor="middle" x="38.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_rls_load</text>
 </a>

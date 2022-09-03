@@ -1,5 +1,4 @@
 <map id="clset_mean_pred_eta" name="clset_mean_pred_eta">
-<area shape="rect" id="node1" title="Calculates the mean prediction layer ETA of classifiers in the set." alt="" coords="399,13,545,39"/>
-<area shape="rect" id="node2" href="$classXCS.html#a4b58ad095103bedca3a73671a856504f" title=" " alt="" coords="204,5,351,47"/>
-<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,13,156,39"/>
+<area shape="rect" id="node1" title="Calculates the mean prediction layer ETA of classifiers in the set." alt="" coords="200,13,347,39"/>
+<area shape="rect" id="node2" href="$classXCS.html#a4b58ad095103bedca3a73671a856504f" title=" " alt="" coords="5,5,152,47"/>
 </map>

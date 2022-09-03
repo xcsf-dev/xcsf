@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__convolutional_8h.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" target="_top" xlink:title="Initialises and copies one convolutional layer from another.">
+<g id="a_node2"><a xlink:href="neural__layer__convolutional_8c.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" target="_top" xlink:title="Initialises and copies one convolutional layer from another.">
 <polygon fill="none" stroke="black" points="0,-76.5 0,-95.5 158,-95.5 158,-76.5 0,-76.5"/>
 <text text-anchor="middle" x="79" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional_copy</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__convolutional_8h.html#af46529e6b147b347e1cdd776972bbf44" target="_top" xlink:title="Initialises a 2D convolutional layer.">
+<g id="a_node3"><a xlink:href="neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" target="_top" xlink:title="Initialises a 2D convolutional layer.">
 <polygon fill="none" stroke="black" points="4.5,-38.5 4.5,-57.5 153.5,-57.5 153.5,-38.5 4.5,-38.5"/>
 <text text-anchor="middle" x="79" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional_init</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__convolutional_8h.html#ad77ef9a98206ae6d87b200f24b6c55e3" target="_top" xlink:title="Reads a convolutional layer from a file.">
+<g id="a_node4"><a xlink:href="neural__layer__convolutional_8c.html#ad77ef9a98206ae6d87b200f24b6c55e3" target="_top" xlink:title="Reads a convolutional layer from a file.">
 <polygon fill="none" stroke="black" points="1.5,-0.5 1.5,-19.5 156.5,-19.5 156.5,-0.5 1.5,-0.5"/>
 <text text-anchor="middle" x="79" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional_load</text>
 </a>

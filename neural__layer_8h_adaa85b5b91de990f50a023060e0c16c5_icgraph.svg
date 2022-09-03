@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__connected_8h.html#af721369377e6bd5f2b691065f73a32f6" target="_top" xlink:title="Initialises a fully&#45;connected layer.">
+<g id="a_node2"><a xlink:href="neural__layer__connected_8c.html#af721369377e6bd5f2b691065f73a32f6" target="_top" xlink:title="Initialises a fully&#45;connected layer.">
 <polygon fill="none" stroke="black" points="6,-38.5 6,-57.5 143,-57.5 143,-38.5 6,-38.5"/>
 <text text-anchor="middle" x="74.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected_init</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__convolutional_8h.html#af46529e6b147b347e1cdd776972bbf44" target="_top" xlink:title="Initialises a 2D convolutional layer.">
+<g id="a_node3"><a xlink:href="neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" target="_top" xlink:title="Initialises a 2D convolutional layer.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 149,-19.5 149,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="74.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional_init</text>
 </a>

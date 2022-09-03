@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="xcs__rl_8h.html#adb4c284d19eeaed2b4a629f9b939ed20" target="_top" xlink:title="Executes a reinforcement learning experiment.">
+<g id="a_node3"><a xlink:href="xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" target="_top" xlink:title="Executes a reinforcement learning experiment.">
 <polygon fill="none" stroke="black" points="74,-0.5 74,-19.5 138,-19.5 138,-0.5 74,-0.5"/>
 <text text-anchor="middle" x="106" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_rl_exp</text>
 </a>

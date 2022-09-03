@@ -1,17 +1,16 @@
 <map id="prediction_type_as_int" name="prediction_type_as_int">
-<area shape="rect" id="node1" title="Returns the integer representation of a prediction type given a name." alt="" coords="1171,160,1323,187"/>
-<area shape="rect" id="node2" href="$prediction_8h.html#a2e189fd3243b2e77d73b7fac5b52a9eb" title="Creates a prediction from a cJSON object." alt="" coords="989,120,1110,147"/>
-<area shape="rect" id="node9" href="$prediction_8h.html#afec8e5a7f4efd4c6d1b484a0522e8da6" title=" " alt="" coords="976,182,1123,223"/>
-<area shape="rect" id="node3" href="$cl_8h.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c" title="Creates a classifier from a cJSON object." alt="" coords="793,99,899,125"/>
-<area shape="rect" id="node4" href="$clset_8h.html#a9f71f62cb4c5216fb3a3e76a6b3df82f" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="587,93,707,120"/>
-<area shape="rect" id="node5" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="399,56,521,83"/>
-<area shape="rect" id="node8" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="391,107,529,133"/>
-<area shape="rect" id="node6" href="$classXCS.html#a1a882e28a64c4e2b92ae234d79f327de" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="216,5,331,32"/>
-<area shape="rect" id="node7" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,81,156,108"/>
-<area shape="rect" id="node10" href="$prediction_8h.html#a3da29e38981e8b98ec136766a79d074a" title="Sets the prediction parameters from a cJSON object." alt="" coords="764,189,928,216"/>
-<area shape="rect" id="node15" href="$classXCS.html#a6659e0b11f57ef97da5d5b91226338a5" title="Sets the prediction type." alt="" coords="204,220,343,247"/>
-<area shape="rect" id="node11" href="$param_8h.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="581,144,713,171"/>
-<area shape="rect" id="node14" href="$classXCS.html#a76f72805cdd38df46ecbc8bd8a592376" title="Sets the prediction type and initialisation arguments." alt="" coords="577,195,716,221"/>
-<area shape="rect" id="node12" href="$config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="415,157,505,184"/>
-<area shape="rect" id="node13" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="248,157,299,184"/>
+<area shape="rect" id="node1" title="Returns the integer representation of a prediction type given a name." alt="" coords="948,84,1100,111"/>
+<area shape="rect" id="node2" href="$prediction_8h.html#a2e189fd3243b2e77d73b7fac5b52a9eb" title="Creates a prediction from a cJSON object." alt="" coords="766,55,887,81"/>
+<area shape="rect" id="node8" href="$prediction_8c.html#afec8e5a7f4efd4c6d1b484a0522e8da6" title=" " alt="" coords="753,106,900,147"/>
+<area shape="rect" id="node3" href="$cl_8c.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c" title="Creates a classifier from a cJSON object." alt="" coords="570,55,677,81"/>
+<area shape="rect" id="node4" href="$clset_8c.html#a9f71f62cb4c5216fb3a3e76a6b3df82f" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="364,55,484,81"/>
+<area shape="rect" id="node5" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="177,5,298,32"/>
+<area shape="rect" id="node7" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="168,56,307,83"/>
+<area shape="rect" id="node6" href="$classXCS.html#a1a882e28a64c4e2b92ae234d79f327de" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="5,5,120,32"/>
+<area shape="rect" id="node9" href="$prediction_8c.html#a3da29e38981e8b98ec136766a79d074a" title="Sets the prediction parameters from a cJSON object." alt="" coords="541,112,705,139"/>
+<area shape="rect" id="node14" href="$classXCS.html#a6659e0b11f57ef97da5d5b91226338a5" title="Sets the prediction type." alt="" coords="554,163,693,189"/>
+<area shape="rect" id="node10" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="358,111,490,137"/>
+<area shape="rect" id="node13" href="$classXCS.html#a76f72805cdd38df46ecbc8bd8a592376" title="Sets the prediction type and initialisation arguments." alt="" coords="355,161,493,188"/>
+<area shape="rect" id="node11" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="193,111,282,137"/>
+<area shape="rect" id="node12" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="37,111,88,137"/>
 </map>

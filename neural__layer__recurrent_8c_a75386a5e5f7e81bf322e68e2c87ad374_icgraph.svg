@@ -35,7 +35,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__recurrent_8h.html#a74274033f3a8272fb8aae4366f93d74c" target="_top" xlink:title="Initialises a recurrent layer.">
+<g id="a_node4"><a xlink:href="neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" target="_top" xlink:title="Initialises a recurrent layer.">
 <polygon fill="none" stroke="black" points="149,-0.5 149,-19.5 280,-19.5 280,-0.5 149,-0.5"/>
 <text text-anchor="middle" x="214.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_recurrent_init</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__recurrent_8h.html#a5f6793ef0a2d69438a499632e360f9e6" target="_top" xlink:title="Mutates a recurrent layer.">
+<g id="a_node3"><a xlink:href="neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" target="_top" xlink:title="Mutates a recurrent layer.">
 <polygon fill="none" stroke="black" points="0,-33 0,-63 113,-63 113,-33 0,-33"/>
 <text text-anchor="start" x="8" y="-51" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_recurrent</text>
 <text text-anchor="middle" x="56.5" y="-40" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>

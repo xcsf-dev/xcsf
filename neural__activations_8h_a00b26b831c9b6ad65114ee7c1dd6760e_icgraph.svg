@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__activations_8h.html#acef0d15cd01c7dcc5a4d6d8bdc1d8bad" target="_top" xlink:title="Applies an activation function to a vector of neuron states.">
+<g id="a_node2"><a xlink:href="neural__activations_8c.html#acef0d15cd01c7dcc5a4d6d8bdc1d8bad" target="_top" xlink:title="Applies an activation function to a vector of neuron states.">
 <polygon fill="none" stroke="black" points="176,-60.5 176,-79.5 286,-79.5 286,-60.5 176,-60.5"/>
 <text text-anchor="middle" x="231" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_activate_array</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__connected_8h.html#ae984294bf3121be074bf77081b0ccdf2" target="_top" xlink:title="Forward propagates a connected layer.">
+<g id="a_node3"><a xlink:href="neural__layer__connected_8c.html#ae984294bf3121be074bf77081b0ccdf2" target="_top" xlink:title="Forward propagates a connected layer.">
 <polygon fill="none" stroke="black" points="10.5,-126 10.5,-156 129.5,-156 129.5,-126 10.5,-126"/>
 <text text-anchor="start" x="18.5" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="70" y="-133" font-family="Helvetica,sans-Serif" font-size="10.00">_forward</text>
@@ -51,7 +51,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__convolutional_8h.html#a474f61e40569851884c0108ce2e40a1d" target="_top" xlink:title="Forward propagates a convolutional layer.">
+<g id="a_node4"><a xlink:href="neural__layer__convolutional_8c.html#a474f61e40569851884c0108ce2e40a1d" target="_top" xlink:title="Forward propagates a convolutional layer.">
 <polygon fill="none" stroke="black" points="4.5,-77 4.5,-107 135.5,-107 135.5,-77 4.5,-77"/>
 <text text-anchor="start" x="12.5" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="70" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">_forward</text>
@@ -67,7 +67,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="neural__layer__lstm_8h.html#a00f097f7f5277fa3396e1feefc231e91" target="_top" xlink:title="Backward propagates an LSTM layer.">
+<g id="a_node5"><a xlink:href="neural__layer__lstm_8c.html#a00f097f7f5277fa3396e1feefc231e91" target="_top" xlink:title="Backward propagates an LSTM layer.">
 <polygon fill="none" stroke="black" points="0,-38.5 0,-57.5 140,-57.5 140,-38.5 0,-38.5"/>
 <text text-anchor="middle" x="70" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_backward</text>
 </a>
@@ -82,7 +82,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="neural__layer__lstm_8h.html#af2c3a4a9e6dd75cd00083c38733bddb0" target="_top" xlink:title="Forward propagates an LSTM layer.">
+<g id="a_node6"><a xlink:href="neural__layer__lstm_8c.html#af2c3a4a9e6dd75cd00083c38733bddb0" target="_top" xlink:title="Forward propagates an LSTM layer.">
 <polygon fill="none" stroke="black" points="4.5,-0.5 4.5,-19.5 135.5,-19.5 135.5,-0.5 4.5,-0.5"/>
 <text text-anchor="middle" x="70" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_forward</text>
 </a>

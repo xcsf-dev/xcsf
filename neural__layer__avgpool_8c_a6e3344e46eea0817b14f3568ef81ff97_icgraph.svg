@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__avgpool_8h.html#aac38c297b6ec2440be737791d86f0af6" target="_top" xlink:title="Initialises and copies one average pooling layer from another.">
+<g id="a_node2"><a xlink:href="neural__layer__avgpool_8c.html#aac38c297b6ec2440be737791d86f0af6" target="_top" xlink:title="Initialises and copies one average pooling layer from another.">
 <polygon fill="none" stroke="black" points="0,-76.5 0,-95.5 134,-95.5 134,-76.5 0,-76.5"/>
 <text text-anchor="middle" x="67" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_avgpool_copy</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__avgpool_8h.html#a1e3c2800f09684332ee24b00868360fc" target="_top" xlink:title="Initialises an average pooling layer.">
+<g id="a_node3"><a xlink:href="neural__layer__avgpool_8c.html#a1e3c2800f09684332ee24b00868360fc" target="_top" xlink:title="Initialises an average pooling layer.">
 <polygon fill="none" stroke="black" points="4,-38.5 4,-57.5 130,-57.5 130,-38.5 4,-38.5"/>
 <text text-anchor="middle" x="67" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_avgpool_init</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__avgpool_8h.html#a8e84bcdfb1b1343390aaf1f8e6ec0523" target="_top" xlink:title="Reads an average pooling layer from a file.">
+<g id="a_node4"><a xlink:href="neural__layer__avgpool_8c.html#a8e84bcdfb1b1343390aaf1f8e6ec0523" target="_top" xlink:title="Reads an average pooling layer from a file.">
 <polygon fill="none" stroke="black" points="1.5,-0.5 1.5,-19.5 132.5,-19.5 132.5,-0.5 1.5,-0.5"/>
 <text text-anchor="middle" x="67" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_avgpool_load</text>
 </a>

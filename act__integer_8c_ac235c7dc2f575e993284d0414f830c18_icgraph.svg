@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="act__integer_8h.html#ae761eca6d8397542992b7c29f252c83a" target="_top" xlink:title="Prints an integer action.">
+<g id="a_node2"><a xlink:href="act__integer_8c.html#ae761eca6d8397542992b7c29f252c83a" target="_top" xlink:title="Prints an integer action.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 89,-19.5 89,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="44.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">act_integer_print</text>
 </a>

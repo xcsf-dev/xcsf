@@ -1,4 +1,4 @@
 <map id="realloc_layer_arrays" name="realloc_layer_arrays">
 <area shape="rect" id="node1" title="Resize memory used by an average pooling layer." alt="" coords="197,13,336,39"/>
-<area shape="rect" id="node2" href="$neural__layer__avgpool_8h.html#ae977e3a6877399ab4be43387735a7ab5" title="Resizes an avg pooling layer if the previous layer has changed size." alt="" coords="5,5,149,47"/>
+<area shape="rect" id="node2" href="$neural__layer__avgpool_8c.html#ae977e3a6877399ab4be43387735a7ab5" title="Resizes an avg pooling layer if the previous layer has changed size." alt="" coords="5,5,149,47"/>
 </map>

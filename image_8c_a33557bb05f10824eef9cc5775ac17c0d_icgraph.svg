@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__convolutional_8h.html#af9d56553f0be61bc808cac3898e35a82" target="_top" xlink:title="Backward propagates a convolutional layer.">
+<g id="a_node2"><a xlink:href="neural__layer__convolutional_8c.html#af9d56553f0be61bc808cac3898e35a82" target="_top" xlink:title="Backward propagates a convolutional layer.">
 <polygon fill="none" stroke="black" points="0,-49.5 0,-79.5 131,-79.5 131,-49.5 0,-49.5"/>
 <text text-anchor="start" x="8" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="65.5" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">_backward</text>
@@ -36,7 +36,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__convolutional_8h.html#a474f61e40569851884c0108ce2e40a1d" target="_top" xlink:title="Forward propagates a convolutional layer.">
+<g id="a_node3"><a xlink:href="neural__layer__convolutional_8c.html#a474f61e40569851884c0108ce2e40a1d" target="_top" xlink:title="Forward propagates a convolutional layer.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-30.5 131,-30.5 131,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="65.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_forward</text>

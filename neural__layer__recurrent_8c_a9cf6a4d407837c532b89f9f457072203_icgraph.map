@@ -2,6 +2,6 @@
 <area shape="rect" id="node1" title="Sets the number of active (non&#45;zero) weights in a recurrent layer." alt="" coords="427,56,557,83"/>
 <area shape="rect" id="node2" href="$neural__layer__recurrent_8c.html#af1574ac1aaa2948e0e159e07e7c4d24a" title="Mutates the number of active weights in a recurrent layer." alt="" coords="222,5,361,32"/>
 <area shape="rect" id="node4" href="$neural__layer__recurrent_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in a recurrent layer." alt="" coords="234,56,349,83"/>
-<area shape="rect" id="node5" href="$neural__layer__recurrent_8h.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="204,107,379,133"/>
-<area shape="rect" id="node3" href="$neural__layer__recurrent_8h.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="5,23,156,65"/>
+<area shape="rect" id="node5" href="$neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="204,107,379,133"/>
+<area shape="rect" id="node3" href="$neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="5,23,156,65"/>
 </map>

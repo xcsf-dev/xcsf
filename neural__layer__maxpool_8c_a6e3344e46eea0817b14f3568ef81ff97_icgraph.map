@@ -1,6 +1,6 @@
 <map id="malloc_layer_arrays" name="malloc_layer_arrays">
 <area shape="rect" id="node1" title="Allocate memory used by a maxpooling layer." alt="" coords="236,56,375,83"/>
-<area shape="rect" id="node2" href="$neural__layer__maxpool_8h.html#a6142b0ee7c8b1cdd97a5ea595e03204c" title="Initialises and creates a copy of one maxpooling layer from another." alt="" coords="5,5,188,32"/>
-<area shape="rect" id="node3" href="$neural__layer__maxpool_8h.html#a2a0197edd0fc484149f1b35e0d0c94e8" title="Initialises a 2D maxpooling layer." alt="" coords="11,56,183,83"/>
-<area shape="rect" id="node4" href="$neural__layer__maxpool_8h.html#ac91009faa234b027ecbfde0a55407bd8" title="Reads a maxpooling layer from a file." alt="" coords="7,107,186,133"/>
+<area shape="rect" id="node2" href="$neural__layer__maxpool_8c.html#a6142b0ee7c8b1cdd97a5ea595e03204c" title="Initialises and creates a copy of one maxpooling layer from another." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node3" href="$neural__layer__maxpool_8c.html#a2a0197edd0fc484149f1b35e0d0c94e8" title="Initialises a 2D maxpooling layer." alt="" coords="11,56,183,83"/>
+<area shape="rect" id="node4" href="$neural__layer__maxpool_8c.html#ac91009faa234b027ecbfde0a55407bd8" title="Reads a maxpooling layer from a file." alt="" coords="7,107,186,133"/>
 </map>

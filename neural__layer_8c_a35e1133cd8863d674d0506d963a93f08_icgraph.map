@@ -1,6 +1,6 @@
 <map id="layer_mutate_neurons" name="layer_mutate_neurons">
 <area shape="rect" id="node1" title="Returns the number of neurons to add or remove from a layer." alt="" coords="431,35,581,61"/>
 <area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="246,5,361,32"/>
-<area shape="rect" id="node4" href="$neural__layer__connected_8h.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="224,57,383,98"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="node4" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="224,57,383,98"/>
+<area shape="rect" id="node3" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
 </map>

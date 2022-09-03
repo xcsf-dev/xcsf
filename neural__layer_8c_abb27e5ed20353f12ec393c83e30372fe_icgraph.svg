@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer_8h.html#a0d2dce0c19524796a83994927a84fd26" target="_top" xlink:title="Adds N neurons to a layer. Negative N removes neurons.">
+<g id="a_node2"><a xlink:href="neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" target="_top" xlink:title="Adds N neurons to a layer. Negative N removes neurons.">
 <polygon fill="none" stroke="black" points="347.5,-148 347.5,-167 445.5,-167 445.5,-148 347.5,-148"/>
 <text text-anchor="middle" x="396.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00">layer_add_neurons</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="neural__layer__connected_8h.html#a59fadd69e4cf947b9c23f10e6a30e6dc" target="_top" xlink:title="Resizes a connected layer if the previous layer has changed size.">
+<g id="a_node6"><a xlink:href="neural__layer__connected_8c.html#a59fadd69e4cf947b9c23f10e6a30e6dc" target="_top" xlink:title="Resizes a connected layer if the previous layer has changed size.">
 <polygon fill="none" stroke="black" points="337,-98.5 337,-128.5 456,-128.5 456,-98.5 337,-98.5"/>
 <text text-anchor="start" x="345" y="-116.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="396.5" y="-105.5" font-family="Helvetica,sans-Serif" font-size="10.00">_resize</text>
@@ -67,7 +67,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="neural__layer__convolutional_8h.html#a6c9ca01e07720bcdade79e664bed4c05" target="_top" xlink:title="Resizes a convolutional layer if the previous layer has changed size.">
+<g id="a_node9"><a xlink:href="neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" target="_top" xlink:title="Resizes a convolutional layer if the previous layer has changed size.">
 <polygon fill="none" stroke="black" points="331,-0.5 331,-30.5 462,-30.5 462,-0.5 331,-0.5"/>
 <text text-anchor="start" x="339" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="396.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_resize</text>
@@ -98,7 +98,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="neural__layer__connected_8h.html#abfd38ab832a6f70d7b61065fe3dc25c3" target="_top" xlink:title="Mutates a connected layer.">
+<g id="a_node5"><a xlink:href="neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" target="_top" xlink:title="Mutates a connected layer.">
 <polygon fill="none" stroke="black" points="170,-120.5 170,-150.5 289,-150.5 289,-120.5 170,-120.5"/>
 <text text-anchor="start" x="178" y="-138.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="229.5" y="-127.5" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>
@@ -114,7 +114,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="neural__layer__lstm_8h.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
+<g id="a_node4"><a xlink:href="neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" target="_top" xlink:title="Mutates an LSTM layer.">
 <polygon fill="none" stroke="black" points="0,-170 0,-189 128,-189 128,-170 0,-170"/>
 <text text-anchor="middle" x="64" y="-177" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_lstm_mutate</text>
 </a>
@@ -129,7 +129,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="neural__layer__convolutional_8h.html#a9e4f5fb82855910a5a4fecad093033db" target="_top" xlink:title="Mutates a convolutional layer.">
+<g id="a_node8"><a xlink:href="neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" target="_top" xlink:title="Mutates a convolutional layer.">
 <polygon fill="none" stroke="black" points="164,-49.5 164,-79.5 295,-79.5 295,-49.5 164,-49.5"/>
 <text text-anchor="start" x="172" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="229.5" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">_mutate</text>

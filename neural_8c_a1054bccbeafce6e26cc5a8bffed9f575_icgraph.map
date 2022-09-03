@@ -1,5 +1,5 @@
 <map id="neural_outputs" name="neural_outputs">
 <area shape="rect" id="node1" title="Returns the outputs from the output layer of a neural network." alt="" coords="361,5,468,32"/>
-<area shape="rect" id="node2" href="$act__neural_8h.html#aa4616932ee69561f2324af10da2865de" title="Computes the current neural network action using the input." alt="" coords="175,5,313,32"/>
-<area shape="rect" id="node3" href="$act__neural_8h.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="5,5,127,32"/>
+<area shape="rect" id="node2" href="$act__neural_8c.html#aa4616932ee69561f2324af10da2865de" title="Computes the current neural network action using the input." alt="" coords="175,5,313,32"/>
+<area shape="rect" id="node3" href="$act__neural_8c.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="5,5,127,32"/>
 </map>

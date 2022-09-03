@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__neural_8h.html#ad1218afacd3efb2cfe911de3f2daa280" target="_top" xlink:title="Prints a neural network condition.">
+<g id="a_node2"><a xlink:href="cond__neural_8c.html#ad1218afacd3efb2cfe911de3f2daa280" target="_top" xlink:title="Prints a neural network condition.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 93,-19.5 93,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="46.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_neural_print</text>
 </a>

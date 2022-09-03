@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__connected_8h.html#afb4c050b212b3a0dd87d66d86b57adb7" target="_top" xlink:title="Updates the weights and biases of a connected layer.">
+<g id="a_node2"><a xlink:href="neural__layer__connected_8c.html#afb4c050b212b3a0dd87d66d86b57adb7" target="_top" xlink:title="Updates the weights and biases of a connected layer.">
 <polygon fill="none" stroke="black" points="6,-49.5 6,-79.5 125,-79.5 125,-49.5 6,-49.5"/>
 <text text-anchor="start" x="14" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_connected</text>
 <text text-anchor="middle" x="65.5" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">_update</text>
@@ -36,7 +36,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__convolutional_8h.html#a3e2922534009f8942017c7621f3b42e8" target="_top" xlink:title="Updates the weights and biases of a convolutional layer.">
+<g id="a_node3"><a xlink:href="neural__layer__convolutional_8c.html#a3e2922534009f8942017c7621f3b42e8" target="_top" xlink:title="Updates the weights and biases of a convolutional layer.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-30.5 131,-30.5 131,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="65.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_update</text>

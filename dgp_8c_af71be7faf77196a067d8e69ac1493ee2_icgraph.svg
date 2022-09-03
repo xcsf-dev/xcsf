@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__dgp_8h.html#a8c6aa1ea69d87295dec888622f6d4577" target="_top" xlink:title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates.">
+<g id="a_node2"><a xlink:href="cond__dgp_8c.html#a8c6aa1ea69d87295dec888622f6d4577" target="_top" xlink:title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates.">
 <polygon fill="none" stroke="black" points="10.5,-38.5 10.5,-57.5 104.5,-57.5 104.5,-38.5 10.5,-38.5"/>
 <text text-anchor="middle" x="57.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_mutate</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="rule__dgp_8h.html#a399e362d298b510125264e2fdfaaf6b6" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="rule__dgp_8c.html#a399e362d298b510125264e2fdfaaf6b6" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 115,-19.5 115,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="57.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_mutate</text>
 </a>

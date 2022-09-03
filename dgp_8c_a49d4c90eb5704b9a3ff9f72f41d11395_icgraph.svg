@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__dgp_8h.html#aa06270e18c525af427ee4d88d553443d" target="_top" xlink:title="Frees the memory used by a dynamical GP graph condition.">
+<g id="a_node2"><a xlink:href="cond__dgp_8c.html#aa06270e18c525af427ee4d88d553443d" target="_top" xlink:title="Frees the memory used by a dynamical GP graph condition.">
 <polygon fill="none" stroke="black" points="17,-126 17,-145 97,-145 97,-126 17,-126"/>
 <text text-anchor="middle" x="57" y="-133" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_free</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="cond__dgp_8h.html#ad5fd6cccf1ece3ebaac69644a86bcfb5" target="_top" xlink:title="Creates a DGP condition from a cJSON object.">
+<g id="a_node3"><a xlink:href="cond__dgp_8c.html#ad5fd6cccf1ece3ebaac69644a86bcfb5" target="_top" xlink:title="Creates a DGP condition from a cJSON object.">
 <polygon fill="none" stroke="black" points="0,-88 0,-107 114,-107 114,-88 0,-88"/>
 <text text-anchor="middle" x="57" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_json_import</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="rule__dgp_8h.html#a3b23cad8929b489990523c7417aba93d" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="rule__dgp_8c.html#a3b23cad8929b489990523c7417aba93d" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="6.5,-50 6.5,-69 107.5,-69 107.5,-50 6.5,-50"/>
 <text text-anchor="middle" x="57" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_free</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="rule__dgp_8h.html#afc876278ab001399d3cd9b2d4a097aa8" target="_top" xlink:title=" ">
+<g id="a_node5"><a xlink:href="rule__dgp_8c.html#afc876278ab001399d3cd9b2d4a097aa8" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="5.5,-0.5 5.5,-30.5 108.5,-30.5 108.5,-0.5 5.5,-0.5"/>
 <text text-anchor="start" x="13.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_json</text>
 <text text-anchor="middle" x="57" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_import</text>

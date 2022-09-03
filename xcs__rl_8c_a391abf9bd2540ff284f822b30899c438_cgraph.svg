@@ -1500,7 +1500,7 @@
 <!-- Node90 -->
 <g id="node90" class="node">
 <title>Node90</title>
-<g id="a_node90"><a xlink:href="ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" target="_top" xlink:title="Selects a classifier from the set via roulete wheel.">
+<g id="a_node90"><a xlink:href="ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" target="_top" xlink:title="Selects a classifier from the set via roulette wheel.">
 <polygon fill="none" stroke="black" points="639.5,-494.5 639.5,-513.5 713.5,-513.5 713.5,-494.5 639.5,-494.5"/>
 <text text-anchor="middle" x="676.5" y="-501.5" font-family="Helvetica,sans-Serif" font-size="10.00">ea_select_rw</text>
 </a>

@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__convolutional_8h.html#a8f3884461f9f8e028e4bab4b0e7e84c7" target="_top" xlink:title="Prints a convolutional layer.">
+<g id="a_node2"><a xlink:href="neural__layer__convolutional_8c.html#a8f3884461f9f8e028e4bab4b0e7e84c7" target="_top" xlink:title="Prints a convolutional layer.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-30.5 131,-30.5 131,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_convolutional</text>
 <text text-anchor="middle" x="65.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_print</text>

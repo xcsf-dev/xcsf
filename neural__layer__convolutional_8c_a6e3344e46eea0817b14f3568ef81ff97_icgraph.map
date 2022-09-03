@@ -1,6 +1,6 @@
 <map id="malloc_layer_arrays" name="malloc_layer_arrays">
 <area shape="rect" id="node1" title="Allocate memory used by a convolutional layer." alt="" coords="264,56,403,83"/>
-<area shape="rect" id="node2" href="$neural__layer__convolutional_8h.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" title="Initialises and copies one convolutional layer from another." alt="" coords="5,5,216,32"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8h.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="11,56,210,83"/>
-<area shape="rect" id="node4" href="$neural__layer__convolutional_8h.html#ad77ef9a98206ae6d87b200f24b6c55e3" title="Reads a convolutional layer from a file." alt="" coords="7,107,214,133"/>
+<area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" title="Initialises and copies one convolutional layer from another." alt="" coords="5,5,216,32"/>
+<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="11,56,210,83"/>
+<area shape="rect" id="node4" href="$neural__layer__convolutional_8c.html#ad77ef9a98206ae6d87b200f24b6c55e3" title="Reads a convolutional layer from a file." alt="" coords="7,107,214,133"/>
 </map>

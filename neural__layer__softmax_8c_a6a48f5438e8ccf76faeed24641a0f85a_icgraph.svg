@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="neural__layer__softmax_8h.html#a314875a074c00172bb8c3b613914ea46" target="_top" xlink:title="Free memory used by a softmax layer.">
+<g id="a_node2"><a xlink:href="neural__layer__softmax_8c.html#a314875a074c00172bb8c3b613914ea46" target="_top" xlink:title="Free memory used by a softmax layer.">
 <polygon fill="none" stroke="black" points="0,-50 0,-69 131,-69 131,-50 0,-50"/>
 <text text-anchor="middle" x="65.5" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_softmax_free</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="neural__layer__softmax_8h.html#aa26a5d73cbae5aa58fd2ae5ba482fd71" target="_top" xlink:title="Resizes a softmax layer if the previous layer has changed size.">
+<g id="a_node3"><a xlink:href="neural__layer__softmax_8c.html#aa26a5d73cbae5aa58fd2ae5ba482fd71" target="_top" xlink:title="Resizes a softmax layer if the previous layer has changed size.">
 <polygon fill="none" stroke="black" points="10.5,-0.5 10.5,-30.5 120.5,-30.5 120.5,-0.5 10.5,-0.5"/>
 <text text-anchor="start" x="18.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">neural_layer_softmax</text>
 <text text-anchor="middle" x="65.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_resize</text>

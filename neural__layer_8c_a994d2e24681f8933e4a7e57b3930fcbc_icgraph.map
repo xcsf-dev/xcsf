@@ -1,5 +1,5 @@
 <map id="layer_weight_rand" name="layer_weight_rand">
 <area shape="rect" id="node1" title="Randomises a layer&#39;s weights and biases." alt="" coords="260,31,387,57"/>
-<area shape="rect" id="node2" href="$neural__layer__connected_8h.html#a3ab04d23c4aad7b801af733af257dd32" title="Randomises a connected layer weights." alt="" coords="13,5,204,32"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8h.html#af11d0cbedc42072f1b15bae578cbb807" title="Randomises the weights of a convolutional layer." alt="" coords="5,56,212,83"/>
+<area shape="rect" id="node2" href="$neural__layer__connected_8c.html#a3ab04d23c4aad7b801af733af257dd32" title="Randomises a connected layer weights." alt="" coords="13,5,204,32"/>
+<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#af11d0cbedc42072f1b15bae578cbb807" title="Randomises the weights of a convolutional layer." alt="" coords="5,56,212,83"/>
 </map>

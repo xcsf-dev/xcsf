@@ -1,4 +1,4 @@
 <map id="col2im" name="col2im">
 <area shape="rect" id="node1" title="Transforms a column vector to an image vector." alt="" coords="228,13,288,39"/>
-<area shape="rect" id="node2" href="$neural__layer__convolutional_8h.html#af9d56553f0be61bc808cac3898e35a82" title="Backward propagates a convolutional layer." alt="" coords="5,5,180,47"/>
+<area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#af9d56553f0be61bc808cac3898e35a82" title="Backward propagates a convolutional layer." alt="" coords="5,5,180,47"/>
 </map>

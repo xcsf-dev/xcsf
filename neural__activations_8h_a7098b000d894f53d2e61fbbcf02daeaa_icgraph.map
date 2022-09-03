@@ -1,8 +1,8 @@
 <map id="loggy_gradient" name="loggy_gradient">
 <area shape="rect" id="node1" title=" " alt="" coords="593,78,700,105"/>
-<area shape="rect" id="node2" href="$neural__activations_8h.html#af1e6b151408fad2e90b248ff314da5b2" title="Returns the derivative from applying a specified activation function." alt="" coords="435,78,545,105"/>
-<area shape="rect" id="node3" href="$neural__activations_8h.html#a5ccdc55bfed79e093028c3670f3009fd" title="Applies a gradient function to a vector of neuron states." alt="" coords="240,78,387,105"/>
-<area shape="rect" id="node4" href="$neural__layer__connected_8h.html#ab16bf1d293853d0403c2ec2ea01122ce" title="Backward propagates a connected layer." alt="" coords="19,5,178,47"/>
-<area shape="rect" id="node5" href="$neural__layer__convolutional_8h.html#af9d56553f0be61bc808cac3898e35a82" title="Backward propagates a convolutional layer." alt="" coords="11,71,186,112"/>
-<area shape="rect" id="node6" href="$neural__layer__lstm_8h.html#a00f097f7f5277fa3396e1feefc231e91" title="Backward propagates an LSTM layer." alt="" coords="5,137,192,163"/>
+<area shape="rect" id="node2" href="$neural__activations_8c.html#af1e6b151408fad2e90b248ff314da5b2" title="Returns the derivative from applying a specified activation function." alt="" coords="435,78,545,105"/>
+<area shape="rect" id="node3" href="$neural__activations_8c.html#a5ccdc55bfed79e093028c3670f3009fd" title="Applies a gradient function to a vector of neuron states." alt="" coords="240,78,387,105"/>
+<area shape="rect" id="node4" href="$neural__layer__connected_8c.html#ab16bf1d293853d0403c2ec2ea01122ce" title="Backward propagates a connected layer." alt="" coords="19,5,178,47"/>
+<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#af9d56553f0be61bc808cac3898e35a82" title="Backward propagates a convolutional layer." alt="" coords="11,71,186,112"/>
+<area shape="rect" id="node6" href="$neural__layer__lstm_8c.html#a00f097f7f5277fa3396e1feefc231e91" title="Backward propagates an LSTM layer." alt="" coords="5,137,192,163"/>
 </map>

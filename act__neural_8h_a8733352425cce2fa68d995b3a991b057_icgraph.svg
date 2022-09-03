@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="action_8h.html#aaa5c433092521a4fe5159eee76b1c141" target="_top" xlink:title="Sets the action parameters from a cJSON object.">
+<g id="a_node2"><a xlink:href="action_8c.html#aaa5c433092521a4fe5159eee76b1c141" target="_top" xlink:title="Sets the action parameters from a cJSON object.">
 <polygon fill="none" stroke="black" points="312,-19.5 312,-38.5 443,-38.5 443,-19.5 312,-19.5"/>
 <text text-anchor="middle" x="377.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">action_param_json_import</text>
 </a>
@@ -36,7 +36,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="param_8h.html#a130260988988535419aee8abe51986c1" target="_top" xlink:title="Sets the parameters from a json formatted string.">
+<g id="a_node3"><a xlink:href="param_8c.html#a130260988988535419aee8abe51986c1" target="_top" xlink:title="Sets the parameters from a json formatted string.">
 <polygon fill="none" stroke="black" points="177,-38.5 177,-57.5 276,-57.5 276,-38.5 177,-38.5"/>
 <text text-anchor="middle" x="226.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_json_import</text>
 </a>
@@ -66,7 +66,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="config_8h.html#a045a64a30d99a4bef2ebfd9b54aa9698" target="_top" xlink:title="Reads the specified configuration file.">
+<g id="a_node4"><a xlink:href="config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" target="_top" xlink:title="Reads the specified configuration file.">
 <polygon fill="none" stroke="black" points="74,-38.5 74,-57.5 141,-57.5 141,-38.5 74,-38.5"/>
 <text text-anchor="middle" x="107.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">config_read</text>
 </a>

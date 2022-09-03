@@ -1,15 +1,16 @@
 <map id="config_read" name="config_read">
-<area shape="rect" id="node1" title="Reads the specified configuration file." alt="" coords="5,1499,95,1525"/>
-<area shape="rect" id="node2" href="$config_8c.html#a0c81724e9bdc867a3dd41bafab67cbd3" title="Removes tabs/spaces/lf/cr." alt="" coords="165,1473,252,1500"/>
-<area shape="rect" id="node3" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="143,1524,275,1551"/>
+<area shape="rect" id="node1" title="Reads the specified configuration file." alt="" coords="5,1777,95,1804"/>
+<area shape="rect" id="node2" href="$config_8c.html#a0c81724e9bdc867a3dd41bafab67cbd3" title="Removes tabs/spaces/lf/cr." alt="" coords="165,1752,252,1779"/>
+<area shape="rect" id="node3" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="143,1803,275,1829"/>
 <area shape="rect" id="node4" href="$action_8c.html#aaa5c433092521a4fe5159eee76b1c141" title="Sets the action parameters from a cJSON object." alt="" coords="331,639,506,665"/>
 <area shape="rect" id="node21" href="$condition_8c.html#aac2f9eaa3555b7e4b8d6106fe46f7d41" title="Sets the condition parameters from a cJSON object." alt="" coords="335,896,502,923"/>
 <area shape="rect" id="node48" href="$ea_8c.html#ae78d49893c85cfe792ceafc58e590965" title="Sets the EA parameters from a cJSON object." alt="" coords="342,1321,495,1348"/>
-<area shape="rect" id="node59" href="$param_8c.html#a97aa83082509d7fe3de540e1f6137318" title="Sets the general classifier parameters from a cJSON object." alt="" coords="344,1770,493,1811"/>
+<area shape="rect" id="node59" href="$param_8c.html#a97aa83082509d7fe3de540e1f6137318" title="Sets the general classifier parameters from a cJSON object." alt="" coords="344,1795,493,1837"/>
 <area shape="rect" id="node71" href="$param_8c.html#ad7d3421611d8020079446a6a190df8f8" title="Sets the general parameters from a cJSON object." alt="" coords="328,2249,509,2276"/>
 <area shape="rect" id="node89" href="$param_8c.html#a7d152ab74c6a8c9096303ae3331eb015" title="Sets the multi&#45;step parameters from a cJSON object." alt="" coords="335,2503,502,2529"/>
-<area shape="rect" id="node93" href="$param_8c.html#ac51f8770dba4b66f28d6d4eaa631123e" title="Sets the subsumption parameters from a cJSON object." alt="" coords="323,2629,515,2656"/>
+<area shape="rect" id="node93" href="$param_8c.html#ac51f8770dba4b66f28d6d4eaa631123e" title="Sets the subsumption parameters from a cJSON object." alt="" coords="323,2604,515,2631"/>
 <area shape="rect" id="node96" href="$prediction_8c.html#a3da29e38981e8b98ec136766a79d074a" title="Sets the prediction parameters from a cJSON object." alt="" coords="337,325,501,352"/>
+<area shape="rect" id="node108" href="$utils_8c.html#ab88f9e76233791f1e21ef22ba3a958b0" title="Checks whether JSON parsed correctly." alt="" coords="339,2655,498,2681"/>
 <area shape="rect" id="node5" href="$act__neural_8c.html#a8733352425cce2fa68d995b3a991b057" title="Sets the neural network parameters from a cJSON object." alt="" coords="583,455,739,497"/>
 <area shape="rect" id="node19" href="$action_8c.html#a55974a228c3a692a22c9d6ce0c4cc869" title=" " alt="" coords="583,631,740,673"/>
 <area shape="rect" id="node6" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="849,376,959,403"/>

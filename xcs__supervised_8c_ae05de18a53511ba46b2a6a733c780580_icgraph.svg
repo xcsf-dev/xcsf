@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="xcs__supervised_8h.html#a56ec80025279785376a569ec0130c29f" target="_top" xlink:title="Calculates the XCSF error for a subsample of the input data.">
+<g id="a_node3"><a xlink:href="xcs__supervised_8c.html#a56ec80025279785376a569ec0130c29f" target="_top" xlink:title="Calculates the XCSF error for a subsample of the input data.">
 <polygon fill="none" stroke="black" points="104,-0.5 104,-19.5 229,-19.5 229,-0.5 104,-0.5"/>
 <text text-anchor="middle" x="166.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_score_n</text>
 </a>

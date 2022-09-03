@@ -1,7 +1,7 @@
 <map id="neural_load" name="neural_load">
 <area shape="rect" id="node1" title="Reads a neural network from a file." alt="" coords="204,81,292,108"/>
-<area shape="rect" id="node2" href="$act__neural_8h.html#a241289b5c61dec98b854ee24fdf16d67" title="Reads a neural network action from a file." alt="" coords="24,5,137,32"/>
-<area shape="rect" id="node3" href="$cond__neural_8h.html#a8decac2646ea64aba95cd8522d295c83" title="Reads a neural network condition from a file." alt="" coords="19,56,142,83"/>
-<area shape="rect" id="node4" href="$pred__neural_8h.html#aee98eff48767b879343983d0717952cc" title="Reads a neural network prediction from a file." alt="" coords="21,107,141,133"/>
-<area shape="rect" id="node5" href="$rule__neural_8h.html#a0e1e69e3c01307e2423a9c3c05409d63" title=" " alt="" coords="5,157,156,184"/>
+<area shape="rect" id="node2" href="$act__neural_8c.html#a241289b5c61dec98b854ee24fdf16d67" title="Reads a neural network action from a file." alt="" coords="24,5,137,32"/>
+<area shape="rect" id="node3" href="$cond__neural_8c.html#a8decac2646ea64aba95cd8522d295c83" title="Reads a neural network condition from a file." alt="" coords="19,56,142,83"/>
+<area shape="rect" id="node4" href="$pred__neural_8c.html#aee98eff48767b879343983d0717952cc" title="Reads a neural network prediction from a file." alt="" coords="21,107,141,133"/>
+<area shape="rect" id="node5" href="$rule__neural_8c.html#a0e1e69e3c01307e2423a9c3c05409d63" title=" " alt="" coords="5,157,156,184"/>
 </map>

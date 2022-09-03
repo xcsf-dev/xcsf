@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="cond__dgp_8h.html#aa85c960376cf5892cb5fc18c82c6934a" target="_top" xlink:title="Copies a dynamical GP graph condition from one classifier to another.">
+<g id="a_node2"><a xlink:href="cond__dgp_8c.html#aa85c960376cf5892cb5fc18c82c6934a" target="_top" xlink:title="Copies a dynamical GP graph condition from one classifier to another.">
 <polygon fill="none" stroke="black" points="10.5,-38.5 10.5,-57.5 95.5,-57.5 95.5,-38.5 10.5,-38.5"/>
 <text text-anchor="middle" x="53" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cond_dgp_copy</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="rule__dgp_8h.html#a6e5c0bccb713a8dc277bf31a25673fab" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="rule__dgp_8c.html#a6e5c0bccb713a8dc277bf31a25673fab" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 106,-19.5 106,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="53" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">rule_dgp_cond_copy</text>
 </a>
