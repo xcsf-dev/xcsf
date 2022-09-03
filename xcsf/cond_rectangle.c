@@ -410,8 +410,8 @@ cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c,
     if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
         csr = true;
     }
-    const char *b1_name = csr ? "center" : "b1";
-    const char *b2_name = csr ? "spread" : "b2";
+    const char *b1_name = csr ? "center" : "bound1";
+    const char *b2_name = csr ? "spread" : "bound2";
     const cJSON *item = cJSON_GetObjectItem(json, b1_name);
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->x_dim) {
