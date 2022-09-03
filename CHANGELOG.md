@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 1.2.0 (Sep, 3, 2022)
+## Version 1.2.0 (Sep 3, 2022)
 
 Changes:
 *    Added extra JSON parsing input checks.
