@@ -17,7 +17,7 @@
  * @file cond_rectangle.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2021.
+ * @date 2019--2022.
  * @brief Hyperrectangle condition functions.
  */
 
@@ -30,8 +30,8 @@
  * @brief Hyperrectangle condition data structure.
  */
 struct CondRectangle {
-    double *center; //!< Centers
-    double *spread; //!< Spreads
+    double *b1; //!< Centers for CSR, first bound for UBR
+    double *b2; //!< Spreads for CSR, second bound for UBR
     double *mu; //!< Mutation rates
 };
 

@@ -17,7 +17,7 @@
  * @file condition.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Interface for classifier conditions.
  */
 
@@ -26,18 +26,22 @@
 #include "xcsf.h"
 
 #define COND_TYPE_DUMMY (0) //!< Condition type dummy
-#define COND_TYPE_HYPERRECTANGLE (1) //!< Condition type hyperrectangle
-#define COND_TYPE_HYPERELLIPSOID (2) //!< Condition type hyperellipsoid
-#define COND_TYPE_NEURAL (3) //!< Condition type neural network
-#define COND_TYPE_GP (4) //!< Condition type tree GP
-#define COND_TYPE_DGP (5) //!< Condition type DGP
-#define COND_TYPE_TERNARY (6) //!< Condition type ternary
+#define COND_TYPE_HYPERRECTANGLE_CSR (1) //!< Condition type CSR hyperrectangle
+#define COND_TYPE_HYPERRECTANGLE_UBR (2) //!< Condition type UBR hyperrectangle
+#define COND_TYPE_HYPERELLIPSOID (3) //!< Condition type hyperellipsoid
+#define COND_TYPE_NEURAL (4) //!< Condition type neural network
+#define COND_TYPE_GP (5) //!< Condition type tree GP
+#define COND_TYPE_DGP (6) //!< Condition type DGP
+#define COND_TYPE_TERNARY (7) //!< Condition type ternary
 #define RULE_TYPE_DGP (11) //!< Condition type and action type DGP
 #define RULE_TYPE_NEURAL (12) //!< Condition type and action type neural
 #define RULE_TYPE_NETWORK (13) //!< Condition type and prediction type neural
 
 #define COND_STRING_DUMMY ("dummy\0") //!< Dummy
-#define COND_STRING_HYPERRECTANGLE ("hyperrectangle\0") //!< Hyperrectangle
+#define COND_STRING_HYPERRECTANGLE_CSR                                         \
+    ("hyperrectangle_csr\0") //!< rectangle CSR
+#define COND_STRING_HYPERRECTANGLE_UBR                                         \
+    ("hyperrectangle_ubr\0") //!< rectangle UBR
 #define COND_STRING_HYPERELLIPSOID ("hyperellipsoid\0") //!< Hyperellipsoid
 #define COND_STRING_NEURAL ("neural\0") //!< Neural
 #define COND_STRING_GP ("tree_gp\0") //!< Tree GP

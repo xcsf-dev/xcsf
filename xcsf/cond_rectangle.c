@@ -17,7 +17,7 @@
  * @file cond_rectangle.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2021.
+ * @date 2019--2022.
  * @brief Hyperrectangle condition functions.
  */
 
@@ -49,7 +49,7 @@ cond_rectangle_dist(const struct XCSF *xcsf, const struct Cl *c,
     const struct CondRectangle *cond = c->cond;
     double dist = 0;
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        const double d = fabs((x[i] - cond->center[i]) / cond->spread[i]);
+        const double d = fabs((x[i] - cond->b1[i]) / cond->b2[i]);
         if (d > dist) {
             dist = d;
         }
@@ -59,7 +59,6 @@ cond_rectangle_dist(const struct XCSF *xcsf, const struct Cl *c,
 
 /**
  * @brief Creates and initialises a hyperrectangle condition.
- * @details Uses the center-spread representation.
  * @param [in] xcsf XCSF data structure.
  * @param [in] c Classifier whose condition is to be initialised.
  */
@@ -67,12 +66,18 @@ void
 cond_rectangle_init(const struct XCSF *xcsf, struct Cl *c)
 {
     struct CondRectangle *new = malloc(sizeof(struct CondRectangle));
-    new->center = malloc(sizeof(double) * xcsf->x_dim);
-    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    new->b1 = malloc(sizeof(double) * xcsf->x_dim);
+    new->b2 = malloc(sizeof(double) * xcsf->x_dim);
     const double spread_max = fabs(xcsf->cond->max - xcsf->cond->min);
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        new->center[i] = rand_uniform(xcsf->cond->min, xcsf->cond->max);
-        new->spread[i] = rand_uniform(xcsf->cond->spread_min, spread_max);
+        new->b1[i] = rand_uniform(xcsf->cond->min, xcsf->cond->max);
+        new->b2[i] = rand_uniform(xcsf->cond->min, xcsf->cond->max);
+    }
+    if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
+        // csr: b1 = center, b2 = spread
+        for (int i = 0; i < xcsf->x_dim; ++i) {
+            new->b2[i] = rand_uniform(xcsf->cond->spread_min, spread_max);
+        }
     }
     new->mu = malloc(sizeof(double) * N_MU);
     sam_init(new->mu, N_MU, MU_TYPE);
@@ -89,8 +94,8 @@ cond_rectangle_free(const struct XCSF *xcsf, const struct Cl *c)
 {
     (void) xcsf;
     const struct CondRectangle *cond = c->cond;
-    free(cond->center);
-    free(cond->spread);
+    free(cond->b1);
+    free(cond->b2);
     free(cond->mu);
     free(c->cond);
 }
@@ -107,11 +112,11 @@ cond_rectangle_copy(const struct XCSF *xcsf, struct Cl *dest,
 {
     struct CondRectangle *new = malloc(sizeof(struct CondRectangle));
     const struct CondRectangle *src_cond = src->cond;
-    new->center = malloc(sizeof(double) * xcsf->x_dim);
-    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    new->b1 = malloc(sizeof(double) * xcsf->x_dim);
+    new->b2 = malloc(sizeof(double) * xcsf->x_dim);
     new->mu = malloc(sizeof(double) * N_MU);
-    memcpy(new->center, src_cond->center, sizeof(double) * xcsf->x_dim);
-    memcpy(new->spread, src_cond->spread, sizeof(double) * xcsf->x_dim);
+    memcpy(new->b1, src_cond->b1, sizeof(double) * xcsf->x_dim);
+    memcpy(new->b2, src_cond->b2, sizeof(double) * xcsf->x_dim);
     memcpy(new->mu, src_cond->mu, sizeof(double) * N_MU);
     dest->cond = new;
 }
@@ -128,9 +133,18 @@ cond_rectangle_cover(const struct XCSF *xcsf, const struct Cl *c,
 {
     const struct CondRectangle *cond = c->cond;
     const double spread_max = fabs(xcsf->cond->max - xcsf->cond->min);
-    for (int i = 0; i < xcsf->x_dim; ++i) {
-        cond->center[i] = x[i];
-        cond->spread[i] = rand_uniform(xcsf->cond->spread_min, spread_max);
+    if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
+        for (int i = 0; i < xcsf->x_dim; ++i) {
+            cond->b1[i] = x[i];
+            cond->b2[i] = rand_uniform(xcsf->cond->spread_min, spread_max);
+        }
+    } else {
+        for (int i = 0; i < xcsf->x_dim; ++i) {
+            const double r1 = rand_uniform(xcsf->cond->spread_min, spread_max);
+            const double r2 = rand_uniform(xcsf->cond->spread_min, spread_max);
+            cond->b1[i] = x[i] - (r1 * 0.5);
+            cond->b2[i] = x[i] + (r2 * 0.5);
+        }
     }
 }
 
@@ -146,10 +160,11 @@ cond_rectangle_update(const struct XCSF *xcsf, const struct Cl *c,
                       const double *x, const double *y)
 {
     (void) y;
-    if (xcsf->cond->eta > 0) {
+    if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR &&
+        xcsf->cond->eta > 0) {
         const struct CondRectangle *cond = c->cond;
         for (int i = 0; i < xcsf->x_dim; ++i) {
-            cond->center[i] += xcsf->cond->eta * (x[i] - cond->center[i]);
+            cond->b1[i] += xcsf->cond->eta * (x[i] - cond->b1[i]);
         }
     }
 }
@@ -165,7 +180,19 @@ bool
 cond_rectangle_match(const struct XCSF *xcsf, const struct Cl *c,
                      const double *x)
 {
-    return (cond_rectangle_dist(xcsf, c, x) < 1);
+    const struct CondRectangle *cond = c->cond;
+    if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
+        return (cond_rectangle_dist(xcsf, c, x) < 1);
+    } else { // ubr
+        for (int i = 0; i < xcsf->x_dim; ++i) {
+            const double lb = fmin(cond->b1[i], cond->b2[i]);
+            const double ub = fmax(cond->b1[i], cond->b2[i]);
+            if (x[i] < lb || x[i] > ub) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 /**
@@ -185,15 +212,15 @@ cond_rectangle_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     if (rand_uniform(0, 1) < xcsf->ea->p_crossover) {
         for (int i = 0; i < xcsf->x_dim; ++i) {
             if (rand_uniform(0, 1) < 0.5) {
-                const double tmp = cond1->center[i];
-                cond1->center[i] = cond2->center[i];
-                cond2->center[i] = tmp;
+                const double tmp = cond1->b1[i];
+                cond1->b1[i] = cond2->b1[i];
+                cond2->b1[i] = tmp;
                 changed = true;
             }
             if (rand_uniform(0, 1) < 0.5) {
-                const double tmp = cond1->spread[i];
-                cond1->spread[i] = cond2->spread[i];
-                cond2->spread[i] = tmp;
+                const double tmp = cond1->b2[i];
+                cond1->b2[i] = cond2->b2[i];
+                cond2->b2[i] = tmp;
                 changed = true;
             }
         }
@@ -212,20 +239,24 @@ cond_rectangle_mutate(const struct XCSF *xcsf, const struct Cl *c)
 {
     bool changed = false;
     const struct CondRectangle *cond = c->cond;
-    double *center = cond->center;
-    double *spread = cond->spread;
+    double *b1 = cond->b1;
+    double *b2 = cond->b2;
     sam_adapt(cond->mu, N_MU, MU_TYPE);
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        double orig = center[i];
-        center[i] += rand_normal(0, cond->mu[0]);
-        center[i] = clamp(center[i], xcsf->cond->min, xcsf->cond->max);
-        if (orig != center[i]) {
+        double orig = b1[i];
+        b1[i] += rand_normal(0, cond->mu[0]);
+        b1[i] = clamp(b1[i], xcsf->cond->min, xcsf->cond->max);
+        if (orig != b1[i]) {
             changed = true;
         }
-        orig = spread[i];
-        spread[i] += rand_normal(0, cond->mu[0]);
-        spread[i] = fmax(DBL_EPSILON, spread[i]);
-        if (orig != spread[i]) {
+        orig = b2[i];
+        b2[i] += rand_normal(0, cond->mu[0]);
+        if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
+            b2[i] = fmax(DBL_EPSILON, b2[i]);
+        } else {
+            b2[i] = clamp(b2[i], xcsf->cond->min, xcsf->cond->max);
+        }
+        if (orig != b2[i]) {
             changed = true;
         }
     }
@@ -245,13 +276,25 @@ cond_rectangle_general(const struct XCSF *xcsf, const struct Cl *c1,
 {
     const struct CondRectangle *cond1 = c1->cond;
     const struct CondRectangle *cond2 = c2->cond;
-    for (int i = 0; i < xcsf->x_dim; ++i) {
-        const double l1 = cond1->center[i] - cond1->spread[i];
-        const double l2 = cond2->center[i] - cond2->spread[i];
-        const double u1 = cond1->center[i] + cond1->spread[i];
-        const double u2 = cond2->center[i] + cond2->spread[i];
-        if (l1 > l2 || u1 < u2) {
-            return false;
+    if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
+        for (int i = 0; i < xcsf->x_dim; ++i) {
+            const double l1 = cond1->b1[i] - cond1->b2[i];
+            const double l2 = cond2->b1[i] - cond2->b2[i];
+            const double u1 = cond1->b1[i] + cond1->b2[i];
+            const double u2 = cond2->b1[i] + cond2->b2[i];
+            if (l1 > l2 || u1 < u2) {
+                return false;
+            }
+        }
+    } else {
+        for (int i = 0; i < xcsf->x_dim; ++i) {
+            const double l1 = fmin(cond1->b1[i], cond1->b2[i]);
+            const double l2 = fmin(cond2->b1[i], cond2->b2[i]);
+            const double u1 = fmax(cond1->b1[i], cond1->b2[i]);
+            const double u2 = fmax(cond2->b1[i], cond2->b2[i]);
+            if (l1 > l2 || u1 < u2) {
+                return false;
+            }
         }
     }
     return true;
@@ -295,8 +338,8 @@ cond_rectangle_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 {
     size_t s = 0;
     const struct CondRectangle *cond = c->cond;
-    s += fwrite(cond->center, sizeof(double), xcsf->x_dim, fp);
-    s += fwrite(cond->spread, sizeof(double), xcsf->x_dim, fp);
+    s += fwrite(cond->b1, sizeof(double), xcsf->x_dim, fp);
+    s += fwrite(cond->b2, sizeof(double), xcsf->x_dim, fp);
     s += fwrite(cond->mu, sizeof(double), N_MU, fp);
     return s;
 }
@@ -313,11 +356,11 @@ cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     size_t s = 0;
     struct CondRectangle *new = malloc(sizeof(struct CondRectangle));
-    new->center = malloc(sizeof(double) * xcsf->x_dim);
-    new->spread = malloc(sizeof(double) * xcsf->x_dim);
+    new->b1 = malloc(sizeof(double) * xcsf->x_dim);
+    new->b2 = malloc(sizeof(double) * xcsf->x_dim);
     new->mu = malloc(sizeof(double) * N_MU);
-    s += fread(new->center, sizeof(double), xcsf->x_dim, fp);
-    s += fread(new->spread, sizeof(double), xcsf->x_dim, fp);
+    s += fread(new->b1, sizeof(double), xcsf->x_dim, fp);
+    s += fread(new->b2, sizeof(double), xcsf->x_dim, fp);
     s += fread(new->mu, sizeof(double), N_MU, fp);
     c->cond = new;
     return s;
@@ -334,12 +377,18 @@ cond_rectangle_json_export(const struct XCSF *xcsf, const struct Cl *c)
 {
     const struct CondRectangle *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
-    cJSON_AddStringToObject(json, "type", "hyperrectangle");
-    cJSON *center = cJSON_CreateDoubleArray(cond->center, xcsf->x_dim);
-    cJSON *spread = cJSON_CreateDoubleArray(cond->spread, xcsf->x_dim);
+    cJSON *b1 = cJSON_CreateDoubleArray(cond->b1, xcsf->x_dim);
+    cJSON *b2 = cJSON_CreateDoubleArray(cond->b2, xcsf->x_dim);
     cJSON *mutation = cJSON_CreateDoubleArray(cond->mu, N_MU);
-    cJSON_AddItemToObject(json, "center", center);
-    cJSON_AddItemToObject(json, "spread", spread);
+    if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
+        cJSON_AddStringToObject(json, "type", "hyperrectangle_csr");
+        cJSON_AddItemToObject(json, "center", b1);
+        cJSON_AddItemToObject(json, "spread", b2);
+    } else {
+        cJSON_AddStringToObject(json, "type", "hyperrectangle_ubr");
+        cJSON_AddItemToObject(json, "bound1", b1);
+        cJSON_AddItemToObject(json, "bound2", b2);
+    }
     cJSON_AddItemToObject(json, "mutation", mutation);
     char *string = cJSON_Print(json);
     cJSON_Delete(json);
@@ -357,27 +406,33 @@ cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c,
                            const cJSON *json)
 {
     struct CondRectangle *cond = c->cond;
-    const cJSON *item = cJSON_GetObjectItem(json, "center");
+    bool csr = false;
+    if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
+        csr = true;
+    }
+    const char *b1_name = csr ? "center" : "b1";
+    const char *b2_name = csr ? "spread" : "b2";
+    const cJSON *item = cJSON_GetObjectItem(json, b1_name);
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->x_dim) {
             for (int i = 0; i < xcsf->x_dim; ++i) {
                 const cJSON *item_i = cJSON_GetArrayItem(item, i);
-                cond->center[i] = item_i->valuedouble;
+                cond->b1[i] = item_i->valuedouble;
             }
         } else {
-            printf("Import error: center length mismatch\n");
+            printf("Import error: %s length mismatch\n", b1_name);
             exit(EXIT_FAILURE);
         }
     }
-    item = cJSON_GetObjectItem(json, "spread");
+    item = cJSON_GetObjectItem(json, b2_name);
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->x_dim) {
             for (int i = 0; i < xcsf->x_dim; ++i) {
                 const cJSON *item_i = cJSON_GetArrayItem(item, i);
-                cond->spread[i] = item_i->valuedouble;
+                cond->b2[i] = item_i->valuedouble;
             }
         } else {
-            printf("Import error: spread length mismatch\n");
+            printf("Import error: %s length mismatch\n", b2_name);
             exit(EXIT_FAILURE);
         }
     }
