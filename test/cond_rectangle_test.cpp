@@ -17,7 +17,7 @@
  * @file cond_rectangle_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020-2022.
+ * @date 2020--2022.
  * @brief Hyperrectangle condition tests.
  */
 

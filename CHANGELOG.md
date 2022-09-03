@@ -1,11 +1,13 @@
 # Changelog
 
-## Post 1.1.6
+## Version 1.2.0 (TBA)
 
 Changes:
 * Added extra JSON parsing input checks.
 * Cleaned up Python examples.
 * Added Jupyter notebook examples.
+* Replaced hyperrectangle conditions with hyperrectangle_csr.
+* Added unordered-bound hyperrectangle conditions with hyperrectangle_ubr.
 
 ## Version 1.1.6 (Dec 27, 2021)
 

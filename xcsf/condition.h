@@ -38,10 +38,8 @@
 #define RULE_TYPE_NETWORK (13) //!< Condition type and prediction type neural
 
 #define COND_STRING_DUMMY ("dummy\0") //!< Dummy
-#define COND_STRING_HYPERRECTANGLE_CSR                                         \
-    ("hyperrectangle_csr\0") //!< rectangle CSR
-#define COND_STRING_HYPERRECTANGLE_UBR                                         \
-    ("hyperrectangle_ubr\0") //!< rectangle UBR
+#define COND_STRING_HYPERRECTANGLE_CSR ("hyperrectangle_csr\0") //!< CSR
+#define COND_STRING_HYPERRECTANGLE_UBR ("hyperrectangle_ubr\0") //!< UBR
 #define COND_STRING_HYPERELLIPSOID ("hyperellipsoid\0") //!< Hyperellipsoid
 #define COND_STRING_NEURAL ("neural\0") //!< Neural
 #define COND_STRING_GP ("tree_gp\0") //!< Tree GP
