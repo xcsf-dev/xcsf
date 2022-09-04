@@ -20,7 +20,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Literal, TypedDict, Union
+from typing import Literal, TypedDict, Union
 
 EATypes = Union[Literal["roulette"], Literal["tournament"]]
 
@@ -170,16 +170,16 @@ class NeuralLayerArgs(TypedDict, total=False):
     width: int
 
 
-ActionArgs = Dict[str, NeuralLayerArgs]
+ActionArgs = dict[str, NeuralLayerArgs]
 
 ConditionArgs = Union[
     ConditionTernaryArgs,
     ConditionCSRArgs,
     ConditionGPArgs,
     ConditionDGPArgs,
-    Dict[str, NeuralLayerArgs],
+    dict[str, NeuralLayerArgs],
 ]
 
 PredictionArgs = Union[
-    PredictionNLMSArgs, PredictionRLSArgs, Dict[str, NeuralLayerArgs]
+    PredictionNLMSArgs, PredictionRLSArgs, dict[str, NeuralLayerArgs]
 ]
