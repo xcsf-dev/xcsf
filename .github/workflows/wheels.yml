@@ -30,19 +30,19 @@ jobs:
             platform: manylinux_x86_64
 
           # MacOS builds
-          - os: macos-10.15
+          - os: macos-11
             python: "cp38"
             platform: macosx_*
-          - os: macos-10.15
+          - os: macos-11
             python: "cp39"
             platform: macosx_*
-          - os: macos-10.15
+          - os: macos-11
             python: "cp310"
             platform: macosx_*
           # MacOS PyPy builds
           # Disabled for now because of a PyPy bug
           # that prevents successful compilation
-          # - os: macos-10.15
+          # - os: macos-11
           #   python: "pp38"
           #   platform: macosx_x86_64
 
