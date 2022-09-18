@@ -24,9 +24,15 @@ jobs:
           - os: ubuntu-20.04
             python: "cp310"
             platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "cp311"
+            platform: manylinux_x86_64
           # manylinux pypy builds
           - os: ubuntu-20.04
             python: "pp38"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "pp39"
             platform: manylinux_x86_64
 
           # MacOS builds
@@ -39,12 +45,16 @@ jobs:
           - os: macos-11
             python: "cp310"
             platform: macosx_*
+          - os: macos-11
+            python: "cp311"
+            platform: macosx_*
           # MacOS PyPy builds
-          # Disabled for now because of a PyPy bug
-          # that prevents successful compilation
-          # - os: macos-11
-          #   python: "pp38"
-          #   platform: macosx_x86_64
+          - os: macos-11
+            python: "pp38"
+            platform: macosx_x86_64
+          - os: macos-11
+            python: "pp39"
+            platform: macosx_x86_64
 
           # Windows builds
           - os: windows-2019
@@ -56,10 +66,17 @@ jobs:
           - os: windows-2019
             python: "cp310"
             platform: win_amd64
+          - os: windows-2019
+            python: "cp311"
+            platform: win_amd64
           # Windows PyPy builds
           - os: windows-2019
             python: "pp38"
             platform: win_amd64
+          - os: windows-2019
+            python: "pp39"
+            platform: win_amd64
+
 
     steps:
       - name: Checkout xcsf
@@ -68,7 +85,7 @@ jobs:
           submodules: true
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2.3.0
+        uses: pypa/cibuildwheel@v2.10.1
         env:
           CIBW_BEFORE_ALL_MACOS: brew install libomp
           CIBW_BUILD: ${{ matrix.python }}-${{ matrix.platform }}
