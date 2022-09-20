@@ -111,13 +111,30 @@ pa_build(const struct XCSF *xcsf, const double *x)
 
 /**
  * @brief Returns the best action in the prediction array.
+ * @details Ties broken uniformly random.
  * @param [in] xcsf The XCSF data structure.
  * @return The best action.
  */
 int
 pa_best_action(const struct XCSF *xcsf)
 {
-    return argmax(xcsf->pa, xcsf->n_actions);
+    int *max_i = calloc(xcsf->n_actions, sizeof(int));
+    double max = xcsf->pa[0];
+    int n_max = 1;
+    for (int i = 1; i < xcsf->n_actions; ++i) {
+        const double val = xcsf->pa[i];
+        if (val > max) {
+            max = val;
+            max_i[0] = i;
+            n_max = 1;
+        } else if (val == max) {
+            max_i[n_max] = i;
+            ++n_max;
+        }
+    }
+    const int best = max_i[rand_uniform_int(0, n_max)];
+    free(max_i);
+    return best;
 }
 
 /**

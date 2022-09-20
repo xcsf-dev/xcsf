@@ -1,6 +1,7 @@
 #
-# Copyright (C) 2020 Richard Preen <rpreen@gmail.com> Copyright (C) 2021 David
-# Pätzel
+# Copyright (C) 2020--2022 Richard Preen <rpreen@gmail.com>
+#
+# Copyright (C) 2021 David Pätzel
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -27,6 +28,7 @@ set(XCSF_TESTS
     neural_layer_maxpool_test.cpp
     neural_layer_recurrent_test.cpp
     neural_test.cpp
+    pa_test.cpp
     pred_nlms_test.cpp
     pred_rls_test.cpp
     util_test.cpp
