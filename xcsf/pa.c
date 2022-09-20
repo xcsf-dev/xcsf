@@ -17,7 +17,7 @@
  * @file pa.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2022.
  * @brief Prediction array functions.
  */
 
@@ -117,7 +117,7 @@ pa_build(const struct XCSF *xcsf, const double *x)
 int
 pa_best_action(const struct XCSF *xcsf)
 {
-    return max_index(xcsf->pa, xcsf->n_actions);
+    return argmax(xcsf->pa, xcsf->n_actions);
 }
 
 /**
@@ -143,7 +143,7 @@ pa_rand_action(const struct XCSF *xcsf)
 double
 pa_best_val(const struct XCSF *xcsf)
 {
-    const int max_i = max_index(xcsf->pa, xcsf->pa_size);
+    const int max_i = argmax(xcsf->pa, xcsf->pa_size);
     return xcsf->pa[max_i];
 }
 

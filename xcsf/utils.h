@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @author David Pätzel
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Utility functions for random number handling, etc.
  */
 
@@ -76,15 +76,16 @@ clamp_int(const int a, const int min, const int max)
 
 /**
  * @brief Returns the index of the largest element in vector X.
+ * @details First occurrence is selected in the case of a tie.
  * @param [in] X Vector with N elements.
  * @param [in] N The number of elements in vector X.
  * @return The index of the largest element.
  */
 static inline int
-max_index(const double *X, const int N)
+argmax(const double *X, const int N)
 {
     if (N < 1) {
-        printf("max_index() error: N < 1\n");
+        printf("argmax() error: N < 1\n");
         exit(EXIT_FAILURE);
     }
     int max_i = 0;

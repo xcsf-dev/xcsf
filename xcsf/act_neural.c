@@ -17,7 +17,7 @@
  * @file act_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2021.
+ * @date 2020--2022.
  * @brief Neural network action functions.
  */
 
@@ -109,7 +109,7 @@ act_neural_compute(const struct XCSF *xcsf, const struct Cl *c, const double *x)
     struct ActNeural *act = c->act;
     neural_propagate(&act->net, x, xcsf->explore);
     const double *outputs = neural_outputs(&act->net);
-    return max_index(outputs, xcsf->n_actions);
+    return argmax(outputs, xcsf->n_actions);
 }
 
 /**

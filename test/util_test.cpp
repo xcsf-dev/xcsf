@@ -17,7 +17,7 @@
  * @file util_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2022.
  * @brief Utility tests.
  */
 
@@ -87,14 +87,14 @@ TEST_CASE("UTIL")
     for (int i = 0; i < 2; ++i) {
         CHECK_EQ(correct[i], tmp[i]);
     }
-    // test max index
+    // test argmax
     double x[5] = { 0.214, 0.6423, 0.111, 0.775, 0.445 };
-    int max = max_index(x, 5);
+    int max = argmax(x, 5);
     CHECK_EQ(max, 3);
     x[3] = 0.1;
-    max = max_index(x, 5);
+    max = argmax(x, 5);
     CHECK_EQ(max, 1);
     x[1] = -0.2;
-    max = max_index(x, 5);
+    max = argmax(x, 5);
     CHECK_EQ(max, 4);
 }
