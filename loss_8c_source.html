@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.1</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('loss_8c_source.html',''); initResizabl
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keywordtype">double</span></div>
 <div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="loss_8c.html#a38e786a5c46be2519aae23287c92cc23">  120</a></span>&#160;<a class="code" href="loss_8c.html#a38e786a5c46be2519aae23287c92cc23">loss_onehot</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">const</span> <span class="keywordtype">double</span> *pred, <span class="keyword">const</span> <span class="keywordtype">double</span> *y)</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;{</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> max_i = <a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a>(pred, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;y_dim);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> max_i = <a class="code" href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">argmax</a>(pred, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;y_dim);</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">if</span> (y[max_i] != 1) {</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
@@ -298,7 +298,7 @@ $(document).ready(function(){initNavTree('loss_8c_source.html',''); initResizabl
 <div class="ttc" id="anamespacexcsf_html"><div class="ttname"><a href="namespacexcsf.html">xcsf</a></div><div class="ttdef"><b>Definition:</b> <a href="____init_____8py_source.html#l00001">__init__.py:1</a></div></div>
 <div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">Utility functions for random number handling, etc.</div></div>
-<div class="ttc" id="autils_8h_html_adc87687be632aa642e838b81a7404db1"><div class="ttname"><a href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a></div><div class="ttdeci">static int max_index(const double *X, const int N)</div><div class="ttdoc">Returns the index of the largest element in vector X.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00084">utils.h:84</a></div></div>
+<div class="ttc" id="autils_8h_html_ae85373ce85c9be81cf1456fb58478274"><div class="ttname"><a href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">argmax</a></div><div class="ttdeci">static int argmax(const double *X, const int N)</div><div class="ttdoc">Returns the index of the largest element in vector X.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00085">utils.h:85</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

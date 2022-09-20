@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.1</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -142,7 +142,7 @@ Functions</h2></td></tr>
 <div class="textblock"><p>Prediction array functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2015&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015&ndash;2022. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -163,7 +163,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the best action in the prediction array. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Ties broken uniformly random. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
   </table>
@@ -171,15 +171,15 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The best action. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pa_8c_source.html#l00118">118</a> of file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pa_8c_source.html#l00119">119</a> of file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
 
-<p class="reference">References <a class="el" href="utils_8h_source.html#l00084">max_index()</a>.</p>
+<p class="reference">References <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00250">xcs_rl_decision()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pa_8c_adf55daf0e18f0cb5e48f8b65464bab9c_cgraph.svg" width="255" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pa_8c_adf55daf0e18f0cb5e48f8b65464bab9c_cgraph.svg" width="434" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
@@ -216,15 +216,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The highest value in the prediction array. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pa_8c_source.html#l00144">144</a> of file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pa_8c_source.html#l00161">161</a> of file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
 
-<p class="reference">References <a class="el" href="utils_8h_source.html#l00084">max_index()</a>.</p>
+<p class="reference">References <a class="el" href="utils_8h_source.html#l00085">argmax()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00195">xcs_rl_update()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pa_8c_a02c46d587d23074fddbf23c118ecbd0c_cgraph.svg" width="236" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pa_8c_a02c46d587d23074fddbf23c118ecbd0c_cgraph.svg" width="216" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
@@ -315,7 +315,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pa_8c_source.html#l00171">171</a> of file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pa_8c_source.html#l00188">188</a> of file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00035">main()</a>, and <a class="el" href="xcsf_8c_source.html#l00167">xcsf_ae_to_classifier()</a>.</p>
 <div class="dynheader">
@@ -388,7 +388,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A random action. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pa_8c_source.html#l00129">129</a> of file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pa_8c_source.html#l00146">146</a> of file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
 
 <p class="reference">References <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>.</p>
 
@@ -488,7 +488,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The value of the action in the prediction array. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pa_8c_source.html#l00157">157</a> of file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pa_8c_source.html#l00174">174</a> of file <a class="el" href="pa_8c_source.html">pa.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00174">xcs_rl_end_step()</a>, <a class="el" href="xcs__rl_8c_source.html#l00226">xcs_rl_error()</a>, and <a class="el" href="xcs__rl_8c_source.html#l00104">xcs_rl_fit()</a>.</p>
 <div class="dynheader">

@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.1</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -165,7 +165,7 @@ $(document).ready(function(){initNavTree('act__neural_8c_source.html',''); initR
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">struct </span><a class="code" href="structActNeural.html">ActNeural</a> *act = c-&gt;<a class="code" href="structCl.html#a21916a4d709c27936c6e2659116d4285">act</a>;</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="neural_8c.html#ae52d35ca06ded1387949731e1ad3d751">neural_propagate</a>(&amp;act-&gt;<a class="code" href="structActNeural.html#acdcbea3b91c55de15feee85b90e967f2">net</a>, x, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;explore);</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> *outputs = <a class="code" href="neural_8c.html#a1054bccbeafce6e26cc5a8bffed9f575">neural_outputs</a>(&amp;act-&gt;<a class="code" href="structActNeural.html#acdcbea3b91c55de15feee85b90e967f2">net</a>);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a>(outputs, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;n_actions);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">argmax</a>(outputs, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;n_actions);</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keywordtype">void</span></div>
@@ -377,7 +377,7 @@ $(document).ready(function(){initNavTree('act__neural_8c_source.html',''); initR
 <div class="ttc" id="astructCl_html_a21916a4d709c27936c6e2659116d4285"><div class="ttname"><a href="structCl.html#a21916a4d709c27936c6e2659116d4285">Cl::act</a></div><div class="ttdeci">void * act</div><div class="ttdoc">Action structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00051">xcsf.h:51</a></div></div>
 <div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">Utility functions for random number handling, etc.</div></div>
-<div class="ttc" id="autils_8h_html_adc87687be632aa642e838b81a7404db1"><div class="ttname"><a href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a></div><div class="ttdeci">static int max_index(const double *X, const int N)</div><div class="ttdoc">Returns the index of the largest element in vector X.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00084">utils.h:84</a></div></div>
+<div class="ttc" id="autils_8h_html_ae85373ce85c9be81cf1456fb58478274"><div class="ttname"><a href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">argmax</a></div><div class="ttdeci">static int argmax(const double *X, const int N)</div><div class="ttdoc">Returns the index of the largest element in vector X.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00085">utils.h:85</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -11,10 +11,10 @@
 <area shape="rect" id="node8" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="799,56,884,83"/>
 <area shape="rect" id="node9" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="806,107,877,133"/>
 <area shape="rect" id="node10" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="802,157,881,184"/>
-<area shape="rect" id="node11" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="949,233,1027,260"/>
+<area shape="rect" id="node11" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="945,233,1024,260"/>
 <area shape="rect" id="node12" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="795,309,887,336"/>
 <area shape="rect" id="node14" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="800,259,883,285"/>
-<area shape="rect" id="node13" href="$utils_8h.html#adc87687be632aa642e838b81a7404db1" title="Returns the index of the largest element in vector X." alt="" coords="945,309,1031,336"/>
+<area shape="rect" id="node13" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="952,309,1017,336"/>
 <area shape="rect" id="node17" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="631,360,737,387"/>
 <area shape="rect" id="node18" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="647,411,721,437"/>
 <area shape="rect" id="node21" href="$neural_8c.html#af2d255733445f37ec77b106a21215baf" title="Removes the layer at the head of a neural network." alt="" coords="641,461,727,488"/>
@@ -22,6 +22,6 @@
 <area shape="rect" id="node19" href="$neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="790,360,893,387"/>
 <area shape="rect" id="node20" href="$neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="789,411,893,437"/>
 <area shape="rect" id="node22" href="$neural_8c.html#aa21d6a71eb14fd94a17e7937d3ccd6c9" title="Removes a layer from a neural network." alt="" coords="788,461,895,488"/>
-<area shape="rect" id="node23" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="949,461,1027,488"/>
+<area shape="rect" id="node23" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="945,461,1024,488"/>
 <area shape="rect" id="node25" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="793,512,889,539"/>
 </map>

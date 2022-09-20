@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.1</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -131,7 +131,7 @@ Variables</h2></td></tr>
 <tr class="separator:aa565a88862936e2b17aede828994091c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3b11963a00bc6b12da571969b601de3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexcsf_1_1utils_1_1types.html#af3b11963a00bc6b12da571969b601de3">NeuralLayerType</a></td></tr>
 <tr class="separator:af3b11963a00bc6b12da571969b601de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa455bfa289fff1a4593d2f881c802b8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexcsf_1_1utils_1_1types.html#aa455bfa289fff1a4593d2f881c802b8a">ActionArgs</a> = Dict[str, <a class="el" href="classxcsf_1_1utils_1_1types_1_1NeuralLayerArgs.html">NeuralLayerArgs</a>]</td></tr>
+<tr class="memitem:aa455bfa289fff1a4593d2f881c802b8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexcsf_1_1utils_1_1types.html#aa455bfa289fff1a4593d2f881c802b8a">ActionArgs</a> = dict[str, <a class="el" href="classxcsf_1_1utils_1_1types_1_1NeuralLayerArgs.html">NeuralLayerArgs</a>]</td></tr>
 <tr class="separator:aa455bfa289fff1a4593d2f881c802b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3c5e947425ee52bcf48fc88c48bc3ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexcsf_1_1utils_1_1types.html#ad3c5e947425ee52bcf48fc88c48bc3ee">ConditionArgs</a></td></tr>
 <tr class="separator:ad3c5e947425ee52bcf48fc88c48bc3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,12 +146,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">xcsf.utils.types.ActionArgs = Dict[str, <a class="el" href="classxcsf_1_1utils_1_1types_1_1NeuralLayerArgs.html">NeuralLayerArgs</a>]</td>
+          <td class="memname">xcsf.utils.types.ActionArgs = dict[str, <a class="el" href="classxcsf_1_1utils_1_1types_1_1NeuralLayerArgs.html">NeuralLayerArgs</a>]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00172">172</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00173">173</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
 
 </div>
 </div>
@@ -187,10 +187,10 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    ConditionCSRArgs,</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    ConditionGPArgs,</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    ConditionDGPArgs,</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    Dict[str, NeuralLayerArgs],</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    dict[str, NeuralLayerArgs],</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00174">174</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00175">175</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
 
 </div>
 </div>
@@ -207,16 +207,17 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  Union[</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    Literal[<span class="stringliteral">&quot;dummy&quot;</span>],</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    Literal[<span class="stringliteral">&quot;hyperrectangle&quot;</span>],</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    Literal[<span class="stringliteral">&quot;hyperellipsoid&quot;</span>],</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    Literal[<span class="stringliteral">&quot;neural&quot;</span>],</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    Literal[<span class="stringliteral">&quot;tree_gp&quot;</span>],</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    Literal[<span class="stringliteral">&quot;dgp&quot;</span>],</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    Literal[<span class="stringliteral">&quot;ternary&quot;</span>],</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    Literal[<span class="stringliteral">&quot;rule_dgp&quot;</span>],</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    Literal[<span class="stringliteral">&quot;rule_neural&quot;</span>],</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    Literal[<span class="stringliteral">&quot;rule_network&quot;</span>],</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;]</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    Literal[<span class="stringliteral">&quot;hyperrectangle_csr&quot;</span>],</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    Literal[<span class="stringliteral">&quot;hyperrectangle_ubr&quot;</span>],</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    Literal[<span class="stringliteral">&quot;hyperellipsoid&quot;</span>],</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    Literal[<span class="stringliteral">&quot;neural&quot;</span>],</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    Literal[<span class="stringliteral">&quot;tree_gp&quot;</span>],</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    Literal[<span class="stringliteral">&quot;dgp&quot;</span>],</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    Literal[<span class="stringliteral">&quot;ternary&quot;</span>],</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    Literal[<span class="stringliteral">&quot;rule_dgp&quot;</span>],</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    Literal[<span class="stringliteral">&quot;rule_neural&quot;</span>],</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    Literal[<span class="stringliteral">&quot;rule_network&quot;</span>],</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;]</div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00029">29</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
 
@@ -259,7 +260,7 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    Literal[<span class="stringliteral">&quot;huber&quot;</span>],</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00051">51</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00052">52</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
 
 </div>
 </div>
@@ -289,7 +290,7 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    Literal[<span class="stringliteral">&quot;softmax&quot;</span>],</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00114">114</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00115">115</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
 
 </div>
 </div>
@@ -317,7 +318,7 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    Literal[<span class="stringliteral">&quot;upsamples&quot;</span>],</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00129">129</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00130">130</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
 
 </div>
 </div>
@@ -333,10 +334,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  Union[</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    PredictionNLMSArgs, PredictionRLSArgs, Dict[str, NeuralLayerArgs]</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    PredictionNLMSArgs, PredictionRLSArgs, dict[str, NeuralLayerArgs]</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00182">182</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00183">183</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
 
 </div>
 </div>
@@ -360,7 +361,7 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    Literal[<span class="stringliteral">&quot;neural&quot;</span>],</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00042">42</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8py_source.html#l00043">43</a> of file <a class="el" href="types_8py_source.html">types.py</a>.</p>
 
 </div>
 </div>

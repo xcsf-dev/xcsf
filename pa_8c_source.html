@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.1</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -182,55 +182,71 @@ $(document).ready(function(){initNavTree('pa_8c_source.html',''); initResizable(
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c">  118</a></span>&#160;<a class="code" href="pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c">pa_best_action</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a>(<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;n_actions);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d">  129</a></span>&#160;<a class="code" href="pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d">pa_rand_action</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;{</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">int</span> action = 0;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">do</span> {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        action = <a class="code" href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a>(0, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;n_actions);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    } <span class="keywordflow">while</span> (<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;nr[action] == 0);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordflow">return</span> action;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="keywordtype">double</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c">  144</a></span>&#160;<a class="code" href="pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c">pa_best_val</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;{</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> max_i = <a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a>(<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa_size);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa[max_i];</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;}</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="keywordtype">double</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6">  157</a></span>&#160;<a class="code" href="pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6">pa_val</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> action)</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;{</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">if</span> (action &lt; 0 || action &gt;= <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;n_actions) {</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        printf(<span class="stringliteral">&quot;pa_val() error: invalid action specified: %d\n&quot;</span>, action);</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        exit(EXIT_FAILURE);</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa[action];</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;}</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95">  171</a></span>&#160;<a class="code" href="pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95">pa_free</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;{</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    free(<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    free(<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;nr);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;}</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordtype">int</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c">  119</a></span>&#160;<a class="code" href="pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c">pa_best_action</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;{</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">int</span> *max_i = calloc(<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;n_actions, <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">double</span> max = <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa[0];</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">int</span> n_max = 1;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;n_actions; ++i) {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">double</span> val = <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa[i];</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">if</span> (val &gt; max) {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            max = val;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            max_i[0] = i;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            n_max = 1;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (val == max) {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            max_i[n_max] = i;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            ++n_max;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> best = max_i[<a class="code" href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a>(0, n_max)];</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    free(max_i);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordflow">return</span> best;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="keywordtype">int</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d">  146</a></span>&#160;<a class="code" href="pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d">pa_rand_action</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;{</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">int</span> action = 0;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        action = <a class="code" href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a>(0, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;n_actions);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    } <span class="keywordflow">while</span> (<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;nr[action] == 0);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordflow">return</span> action;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;}</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="keywordtype">double</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c">  161</a></span>&#160;<a class="code" href="pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c">pa_best_val</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;{</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> max_i = <a class="code" href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">argmax</a>(<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa, <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa_size);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa[max_i];</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;}</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="keywordtype">double</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6">  174</a></span>&#160;<a class="code" href="pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6">pa_val</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> action)</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;{</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordflow">if</span> (action &lt; 0 || action &gt;= <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;n_actions) {</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        printf(<span class="stringliteral">&quot;pa_val() error: invalid action specified: %d\n&quot;</span>, action);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa[action];</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;}</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95">  188</a></span>&#160;<a class="code" href="pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95">pa_free</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>)</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;{</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    free(<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;pa);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    free(<a class="code" href="namespacexcsf.html">xcsf</a>-&gt;nr);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;}</div>
 <div class="ttc" id="acl_8c_html_a6d152849e51ed10765330586e574805f"><div class="ttname"><a href="cl_8c.html#a6d152849e51ed10765330586e574805f">cl_predict</a></div><div class="ttdeci">const double * cl_predict(const struct XCSF *xcsf, const struct Cl *c, const double *x)</div><div class="ttdoc">Computes the current classifier prediction using the input.</div><div class="ttdef"><b>Definition:</b> <a href="cl_8c_source.html#l00318">cl.c:318</a></div></div>
 <div class="ttc" id="acl_8h_html"><div class="ttname"><a href="cl_8h.html">cl.h</a></div><div class="ttdoc">Functions operating on classifiers.</div></div>
 <div class="ttc" id="anamespacexcsf_html"><div class="ttname"><a href="namespacexcsf.html">xcsf</a></div><div class="ttdef"><b>Definition:</b> <a href="____init_____8py_source.html#l00001">__init__.py:1</a></div></div>
-<div class="ttc" id="apa_8c_html_a02c46d587d23074fddbf23c118ecbd0c"><div class="ttname"><a href="pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c">pa_best_val</a></div><div class="ttdeci">double pa_best_val(const struct XCSF *xcsf)</div><div class="ttdoc">Returns the highest value in the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00144">pa.c:144</a></div></div>
-<div class="ttc" id="apa_8c_html_a5f7fe0f7014294c40ff55b5e7498a43d"><div class="ttname"><a href="pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d">pa_rand_action</a></div><div class="ttdeci">int pa_rand_action(const struct XCSF *xcsf)</div><div class="ttdoc">Returns a random action from the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00129">pa.c:129</a></div></div>
+<div class="ttc" id="apa_8c_html_a02c46d587d23074fddbf23c118ecbd0c"><div class="ttname"><a href="pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c">pa_best_val</a></div><div class="ttdeci">double pa_best_val(const struct XCSF *xcsf)</div><div class="ttdoc">Returns the highest value in the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00161">pa.c:161</a></div></div>
+<div class="ttc" id="apa_8c_html_a5f7fe0f7014294c40ff55b5e7498a43d"><div class="ttname"><a href="pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d">pa_rand_action</a></div><div class="ttdeci">int pa_rand_action(const struct XCSF *xcsf)</div><div class="ttdoc">Returns a random action from the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00146">pa.c:146</a></div></div>
 <div class="ttc" id="apa_8c_html_a63ac1844cb7efa4e37b8c382f56b542b"><div class="ttname"><a href="pa_8c.html#a63ac1844cb7efa4e37b8c382f56b542b">pa_reset</a></div><div class="ttdeci">static void pa_reset(const struct XCSF *xcsf)</div><div class="ttdoc">Resets the prediction array to zero.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00033">pa.c:33</a></div></div>
-<div class="ttc" id="apa_8c_html_a8fad4c2dc045d99e9715f7a0cbb2a5e6"><div class="ttname"><a href="pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6">pa_val</a></div><div class="ttdeci">double pa_val(const struct XCSF *xcsf, const int action)</div><div class="ttdoc">Returns the value of a specified action in the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00157">pa.c:157</a></div></div>
+<div class="ttc" id="apa_8c_html_a8fad4c2dc045d99e9715f7a0cbb2a5e6"><div class="ttname"><a href="pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6">pa_val</a></div><div class="ttdeci">double pa_val(const struct XCSF *xcsf, const int action)</div><div class="ttdoc">Returns the value of a specified action in the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00174">pa.c:174</a></div></div>
 <div class="ttc" id="apa_8c_html_abcd11f4277bf0a24b4710389f9529015"><div class="ttname"><a href="pa_8c.html#abcd11f4277bf0a24b4710389f9529015">pa_build</a></div><div class="ttdeci">void pa_build(const struct XCSF *xcsf, const double *x)</div><div class="ttdoc">Builds the prediction array for the specified input.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00061">pa.c:61</a></div></div>
-<div class="ttc" id="apa_8c_html_ac5cf37aa0da4e57fc2a38138fa35dc95"><div class="ttname"><a href="pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95">pa_free</a></div><div class="ttdeci">void pa_free(const struct XCSF *xcsf)</div><div class="ttdoc">Frees the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00171">pa.c:171</a></div></div>
-<div class="ttc" id="apa_8c_html_adf55daf0e18f0cb5e48f8b65464bab9c"><div class="ttname"><a href="pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c">pa_best_action</a></div><div class="ttdeci">int pa_best_action(const struct XCSF *xcsf)</div><div class="ttdoc">Returns the best action in the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00118">pa.c:118</a></div></div>
+<div class="ttc" id="apa_8c_html_ac5cf37aa0da4e57fc2a38138fa35dc95"><div class="ttname"><a href="pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95">pa_free</a></div><div class="ttdeci">void pa_free(const struct XCSF *xcsf)</div><div class="ttdoc">Frees the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00188">pa.c:188</a></div></div>
+<div class="ttc" id="apa_8c_html_adf55daf0e18f0cb5e48f8b65464bab9c"><div class="ttname"><a href="pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c">pa_best_action</a></div><div class="ttdeci">int pa_best_action(const struct XCSF *xcsf)</div><div class="ttdoc">Returns the best action in the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00119">pa.c:119</a></div></div>
 <div class="ttc" id="apa_8c_html_ae7c4749400527115da6903f9337ac58b"><div class="ttname"><a href="pa_8c.html#ae7c4749400527115da6903f9337ac58b">pa_init</a></div><div class="ttdeci">void pa_init(struct XCSF *xcsf)</div><div class="ttdoc">Initialises the prediction array.</div><div class="ttdef"><b>Definition:</b> <a href="pa_8c_source.html#l00046">pa.c:46</a></div></div>
 <div class="ttc" id="apa_8h_html"><div class="ttname"><a href="pa_8h.html">pa.h</a></div><div class="ttdoc">Prediction array functions.</div></div>
 <div class="ttc" id="astructCl_html"><div class="ttname"><a href="structCl.html">Cl</a></div><div class="ttdoc">Classifier data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00045">xcsf.h:45</a></div></div>
@@ -245,7 +261,7 @@ $(document).ready(function(){initNavTree('pa_8c_source.html',''); initResizable(
 <div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>
 <div class="ttc" id="autils_8c_html_a5e6304fd9b177f36684d4bb00af49f91"><div class="ttname"><a href="utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a></div><div class="ttdeci">int rand_uniform_int(const int min, const int max)</div><div class="ttdoc">Returns a uniform random integer [min,max] not inclusive of max.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00074">utils.c:74</a></div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">Utility functions for random number handling, etc.</div></div>
-<div class="ttc" id="autils_8h_html_adc87687be632aa642e838b81a7404db1"><div class="ttname"><a href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a></div><div class="ttdeci">static int max_index(const double *X, const int N)</div><div class="ttdoc">Returns the index of the largest element in vector X.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00084">utils.h:84</a></div></div>
+<div class="ttc" id="autils_8h_html_ae85373ce85c9be81cf1456fb58478274"><div class="ttname"><a href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">argmax</a></div><div class="ttdeci">static int argmax(const double *X, const int N)</div><div class="ttdoc">Returns the index of the largest element in vector X.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00085">utils.h:85</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

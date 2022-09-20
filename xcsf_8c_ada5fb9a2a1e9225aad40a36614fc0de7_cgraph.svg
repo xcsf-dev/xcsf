@@ -527,17 +527,17 @@
 <!-- Node33 -->
 <g id="node33" class="node">
 <title>Node33</title>
-<g id="a_node33"><a xlink:href="utils_8h.html#adc87687be632aa642e838b81a7404db1" target="_top" xlink:title="Returns the index of the largest element in vector X.">
-<polygon fill="none" stroke="black" points="483.5,-76.5 483.5,-95.5 547.5,-95.5 547.5,-76.5 483.5,-76.5"/>
-<text text-anchor="middle" x="515.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">max_index</text>
+<g id="a_node33"><a xlink:href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274" target="_top" xlink:title="Returns the index of the largest element in vector X.">
+<polygon fill="none" stroke="black" points="491,-76.5 491,-95.5 540,-95.5 540,-76.5 491,-76.5"/>
+<text text-anchor="middle" x="515.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">argmax</text>
 </a>
 </g>
 </g>
 <!-- Node32&#45;&gt;Node33 -->
 <g id="edge34" class="edge">
 <title>Node32&#45;&gt;Node33</title>
-<path fill="none" stroke="midnightblue" d="M428.61,-86C442.38,-86 458.47,-86 472.97,-86"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="473.2,-89.5 483.2,-86 473.2,-82.5 473.2,-89.5"/>
+<path fill="none" stroke="midnightblue" d="M428.61,-86C444.91,-86 464.46,-86 480.78,-86"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="480.98,-89.5 490.98,-86 480.98,-82.5 480.98,-89.5"/>
 </g>
 <!-- Node34&#45;&gt;Node31 -->
 <g id="edge36" class="edge">

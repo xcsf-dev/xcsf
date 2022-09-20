@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.1</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -198,7 +198,7 @@ $(document).ready(function(){initNavTree('neural__layer__maxpool_8c_source.html'
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> w_offset = -l-&gt;<a class="code" href="structLayer.html#a188060ee891fc16630afb232b86d4d39">pad</a> / 2;</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> h_offset = w_offset;</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">double</span> max = -DBL_MAX;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a> = -1;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">int</span> max_index = -1;</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 0; n &lt; l-&gt;<a class="code" href="structLayer.html#a0cd2a3e0ca4609f7bc73278fac0749f2">size</a>; ++n) {</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> m = 0; m &lt; l-&gt;<a class="code" href="structLayer.html#a0cd2a3e0ca4609f7bc73278fac0749f2">size</a>; ++m) {</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">int</span> cur_h = h_offset + <a class="code" href="structLayer.html#a8933d801709cbf65d6c148b420dcc9b4">i</a> * l-&gt;<a class="code" href="structLayer.html#a2a7d5301da0ed82b8d68b3400856ee00">stride</a> + n;</div>
@@ -206,17 +206,17 @@ $(document).ready(function(){initNavTree('neural__layer__maxpool_8c_source.html'
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">int</span> index = cur_w + l-&gt;<a class="code" href="structLayer.html#a724d3020ddbe5f9280caa325541e70a3">width</a> * (cur_h + l-&gt;<a class="code" href="structLayer.html#a6a0bc24033339368a0ca9747485f0053">height</a> * k);</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordflow">if</span> (cur_h &gt;= 0 &amp;&amp; cur_h &lt; l-&gt;<a class="code" href="structLayer.html#a6a0bc24033339368a0ca9747485f0053">height</a> &amp;&amp; cur_w &gt;= 0 &amp;&amp;</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                cur_w &lt; l-&gt;<a class="code" href="structLayer.html#a724d3020ddbe5f9280caa325541e70a3">width</a> &amp;&amp; index &lt; l-&gt;<a class="code" href="structLayer.html#a32e577b9acb8152bc646c25d96927909">n_inputs</a> &amp;&amp; input[index] &gt; max) {</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                <a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a> = index;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                max_index = index;</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                max = input[index];</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            }</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        }</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">if</span> (max_index &lt; 0 || max_index &gt;= l-&gt;<a class="code" href="structLayer.html#a32e577b9acb8152bc646c25d96927909">n_inputs</a>) {</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        printf(<span class="stringliteral">&quot;max_pool() error: invalid max_index: (%d)\n&quot;</span>, <a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a>);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        printf(<span class="stringliteral">&quot;max_pool() error: invalid max_index: (%d)\n&quot;</span>, max_index);</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <a class="code" href="neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d">layer_print</a>(l, <span class="keyword">false</span>);</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        exit(EXIT_FAILURE);</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    }</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a>;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">return</span> max_index;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="keywordtype">void</span></div>
@@ -229,9 +229,9 @@ $(document).ready(function(){initNavTree('neural__layer__maxpool_8c_source.html'
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; l-&gt;<a class="code" href="structLayer.html#aadf04412947127d62c6e55a4be505ff4">out_w</a>; ++j) {</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> out_index = j + l-&gt;<a class="code" href="structLayer.html#aadf04412947127d62c6e55a4be505ff4">out_w</a> * (<a class="code" href="structLayer.html#a8933d801709cbf65d6c148b420dcc9b4">i</a> + l-&gt;<a class="code" href="structLayer.html#ada58bdff3af98233a5c118d85f6a2891">out_h</a> * k);</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                <span class="keywordflow">if</span> (out_index &lt; l-&gt;<a class="code" href="structLayer.html#a9b39498ba30d5c644deeb3b8c566e902">n_outputs</a>) {</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a> = <a class="code" href="neural__layer__maxpool_8c.html#a03e721637071990d769895cac88b29a8">max_pool</a>(l, input, <a class="code" href="structLayer.html#a8933d801709cbf65d6c148b420dcc9b4">i</a>, j, k);</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    l-&gt;<a class="code" href="structLayer.html#abf951efc8243cd52257423416c5d0121">indexes</a>[out_index] = <a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a>;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                    l-&gt;<a class="code" href="structLayer.html#a074762aaae0afcaf9eaadf3b75b1296e">output</a>[out_index] = input[<a class="code" href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a>];</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                    <span class="keyword">const</span> <span class="keywordtype">int</span> max_index = <a class="code" href="neural__layer__maxpool_8c.html#a03e721637071990d769895cac88b29a8">max_pool</a>(l, input, <a class="code" href="structLayer.html#a8933d801709cbf65d6c148b420dcc9b4">i</a>, j, k);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    l-&gt;<a class="code" href="structLayer.html#abf951efc8243cd52257423416c5d0121">indexes</a>[out_index] = max_index;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                    l-&gt;<a class="code" href="structLayer.html#a074762aaae0afcaf9eaadf3b75b1296e">output</a>[out_index] = input[max_index];</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                }</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            }</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        }</div>
@@ -410,7 +410,6 @@ $(document).ready(function(){initNavTree('neural__layer__maxpool_8c_source.html'
 <div class="ttc" id="astructLayer_html_ada58bdff3af98233a5c118d85f6a2891"><div class="ttname"><a href="structLayer.html#ada58bdff3af98233a5c118d85f6a2891">Layer::out_h</a></div><div class="ttdeci">int out_h</div><div class="ttdoc">Pool, Conv, and Upsample.</div><div class="ttdef"><b>Definition:</b> <a href="neural__layer_8h_source.html#l00131">neural_layer.h:131</a></div></div>
 <div class="ttc" id="astructNet_html"><div class="ttname"><a href="structNet.html">Net</a></div><div class="ttdoc">Neural network data structure.</div><div class="ttdef"><b>Definition:</b> <a href="neural_8h_source.html#l00048">neural.h:48</a></div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">Utility functions for random number handling, etc.</div></div>
-<div class="ttc" id="autils_8h_html_adc87687be632aa642e838b81a7404db1"><div class="ttname"><a href="utils_8h.html#adc87687be632aa642e838b81a7404db1">max_index</a></div><div class="ttdeci">static int max_index(const double *X, const int N)</div><div class="ttdoc">Returns the index of the largest element in vector X.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00084">utils.h:84</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
