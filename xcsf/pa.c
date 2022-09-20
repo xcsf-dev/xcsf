@@ -17,7 +17,7 @@
  * @file pa.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2022.
  * @brief Prediction array functions.
  */
 
@@ -111,13 +111,30 @@ pa_build(const struct XCSF *xcsf, const double *x)
 
 /**
  * @brief Returns the best action in the prediction array.
+ * @details Ties broken uniformly random.
  * @param [in] xcsf The XCSF data structure.
  * @return The best action.
  */
 int
 pa_best_action(const struct XCSF *xcsf)
 {
-    return max_index(xcsf->pa, xcsf->n_actions);
+    int *max_i = calloc(xcsf->n_actions, sizeof(int));
+    double max = xcsf->pa[0];
+    int n_max = 1;
+    for (int i = 1; i < xcsf->n_actions; ++i) {
+        const double val = xcsf->pa[i];
+        if (val > max) {
+            max = val;
+            max_i[0] = i;
+            n_max = 1;
+        } else if (val == max) {
+            max_i[n_max] = i;
+            ++n_max;
+        }
+    }
+    const int best = max_i[rand_uniform_int(0, n_max)];
+    free(max_i);
+    return best;
 }
 
 /**
@@ -143,7 +160,7 @@ pa_rand_action(const struct XCSF *xcsf)
 double
 pa_best_val(const struct XCSF *xcsf)
 {
-    const int max_i = max_index(xcsf->pa, xcsf->pa_size);
+    const int max_i = argmax(xcsf->pa, xcsf->pa_size);
     return xcsf->pa[max_i];
 }
 

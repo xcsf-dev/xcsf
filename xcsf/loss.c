@@ -17,7 +17,7 @@
  * @file loss.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2022.
  * @brief Loss functions for calculating prediction error.
  */
 
@@ -119,7 +119,7 @@ loss_binary_log(const struct XCSF *xcsf, const double *pred, const double *y)
 double
 loss_onehot(const struct XCSF *xcsf, const double *pred, const double *y)
 {
-    const int max_i = max_index(pred, xcsf->y_dim);
+    const int max_i = argmax(pred, xcsf->y_dim);
     if (y[max_i] != 1) {
         return 1;
     }
