@@ -80,7 +80,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="xcsf",
-    version="1.2.1",
+    version="1.2.2",
     license="GPL-3.0",
     maintainer="Richard Preen",
     maintainer_email="rpreen@gmail.com",

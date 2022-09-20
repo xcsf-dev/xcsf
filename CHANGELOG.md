@@ -1,5 +1,11 @@
 # Changelog
 
+
+## Version 1.2.2 (Sep 20, 2022)
+
+Changes:
+*    Best action selection now breaks ties randomly.
+
 ## Version 1.2.1 (Sep 3, 2022)
 
 Changes:
