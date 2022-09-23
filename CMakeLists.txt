@@ -105,8 +105,8 @@ endif()
 set(CMAKE_C_FLAGS_DEBUG "-g3")
 set(CMAKE_CXX_FLAGS_DEBUG "-g3")
 
-set(CMAKE_C_FLAGS_RELEASE "-Ofast")
-set(CMAKE_CXX_FLAGS_RELEASE "-Ofast")
+set(CMAKE_C_FLAGS_RELEASE "-O3")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 option(NATIVE_OPT "Optimise for the native architecture" ON)
 if(NATIVE_OPT)
