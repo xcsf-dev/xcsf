@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.2.3 (Sep 23, 2022)
+
+Changes:
+*    Fix numpy subnormal warning.
+
 
 ## Version 1.2.2 (Sep 20, 2022)
 
