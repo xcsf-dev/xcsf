@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @author David Pätzel
  * @copyright The Authors.
- * @date 2020--2021.
+ * @date 2020--2022.
  * @brief Python library wrapper functions.
  */
 
@@ -30,6 +30,7 @@
 #include <iostream>
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -216,12 +217,15 @@ class XCS
     {
         py::buffer_info buf = input.request();
         if (buf.shape[0] != xcs.x_dim) {
-            printf("fit() error: x_dim is not equal to: %d.\n", xcs.x_dim);
-            exit(EXIT_FAILURE);
+            std::ostringstream error;
+            error << "fit(): x_dim is not equal to: " << xcs.x_dim << std::endl;
+            throw std::invalid_argument(error.str());
         }
         if (action < 0 || action >= xcs.n_actions) {
-            printf("fit() error: action outside: [0,%d).\n", xcs.n_actions);
-            exit(EXIT_FAILURE);
+            std::ostringstream error;
+            error << "fit(): action outside: [0," << xcs.n_actions << ")"
+                  << std::endl;
+            throw std::invalid_argument(error.str());
         }
         state = (double *) buf.ptr;
         return xcs_rl_fit(&xcs, state, action, reward);
@@ -275,8 +279,9 @@ class XCS
     {
         py::buffer_info buf = input.request();
         if (buf.shape[0] != xcs.x_dim) {
-            printf("decision() error: x_dim is not equal to: %d.\n", xcs.x_dim);
-            exit(EXIT_FAILURE);
+            std::ostringstream error;
+            error << "decision(): x_dim is not equal to: " << xcs.x_dim;
+            throw std::invalid_argument(error.str());
         }
         state = (double *) buf.ptr;
         param_set_explore(&xcs, explore);
@@ -326,18 +331,21 @@ class XCS
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
         if (buf_x.shape[0] != buf_y.shape[0]) {
-            printf("load_input() error: X and Y n_samples are not equal.\n");
-            exit(EXIT_FAILURE);
+            std::string error =
+                "load_input(): X and Y n_samples are not equal.";
+            throw std::invalid_argument(error);
         }
         if (buf_x.shape[1] != xcs.x_dim) {
-            printf("load_input() error: x_dim != %d.\n", xcs.x_dim);
-            printf("2-D arrays are required. Perhaps reshape your data.\n");
-            exit(EXIT_FAILURE);
+            std::ostringstream error;
+            error << "load_input(): x_dim != " << xcs.x_dim << std::endl;
+            error << "2-D arrays are required. Perhaps reshape your data.";
+            throw std::invalid_argument(error.str());
         }
         if (buf_y.shape[1] != xcs.y_dim) {
-            printf("load_input() error: y_dim != %d.\n", xcs.y_dim);
-            printf("2-D arrays are required. Perhaps reshape your data.\n");
-            exit(EXIT_FAILURE);
+            std::ostringstream error;
+            error << "load_input(): y_dim != " << xcs.y_dim << std::endl;
+            error << "2-D arrays are required. Perhaps reshape your data.";
+            throw std::invalid_argument(error.str());
         }
         data->n_samples = buf_x.shape[0];
         data->x_dim = buf_x.shape[1];
@@ -393,9 +401,11 @@ class XCS
         const py::buffer_info buf_x = X.request();
         const int n_samples = buf_x.shape[0];
         if (buf_x.shape[1] != xcs.x_dim) {
-            printf("predict() error: x_dim is not equal to: %d.\n", xcs.x_dim);
-            printf("2-D arrays are required. Perhaps reshape your data.\n");
-            exit(EXIT_FAILURE);
+            std::ostringstream error;
+            error << "predict(): x_dim is not equal to: " << xcs.x_dim
+                  << std::endl;
+            error << "2-D arrays are required. Perhaps reshape your data.";
+            throw std::invalid_argument(error.str());
         }
         const double *input = (double *) buf_x.ptr;
         double *output =

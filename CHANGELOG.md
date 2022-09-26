@@ -1,10 +1,14 @@
 # Changelog
 
+## Post 1.2.3
+
+Changes:
+*    Python library throws exceptions rather than hard exiting where possible.
+
 ## Version 1.2.3 (Sep 23, 2022)
 
 Changes:
 *    Fix numpy subnormal warning.
-
 
 ## Version 1.2.2 (Sep 20, 2022)
 
