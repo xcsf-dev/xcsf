@@ -913,9 +913,19 @@ class XCS
     }
 
     void
+    catch_error(const char *ret)
+    {
+        if (ret != NULL) {
+            std::ostringstream msg;
+            msg << ret << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
+    }
+
+    void
     set_max_trials(const int a)
     {
-        param_set_max_trials(&xcs, a);
+        catch_error(param_set_max_trials(&xcs, a));
     }
 
     void
@@ -927,7 +937,7 @@ class XCS
     void
     set_pop_max_size(const int a)
     {
-        param_set_pop_size(&xcs, a);
+        catch_error(param_set_pop_size(&xcs, a));
     }
 
     void
@@ -950,13 +960,13 @@ class XCS
     void
     set_alpha(const double a)
     {
-        param_set_alpha(&xcs, a);
+        catch_error(param_set_alpha(&xcs, a));
     }
 
     void
     set_beta(const double a)
     {
-        param_set_beta(&xcs, a);
+        catch_error(param_set_beta(&xcs, a));
     }
 
     void
@@ -1034,13 +1044,13 @@ class XCS
     void
     set_gamma(const double a)
     {
-        param_set_gamma(&xcs, a);
+        catch_error(param_set_gamma(&xcs, a));
     }
 
     void
     set_p_explore(const double a)
     {
-        param_set_p_explore(&xcs, a);
+        catch_error(param_set_p_explore(&xcs, a));
     }
 
     void

@@ -33,6 +33,19 @@
 #endif
 
 /**
+ * @brief Catches parameter value errors.
+ * @param [in] ret String return type from JSON import.
+ */
+static void
+catch_error(const char *ret)
+{
+    if (ret != NULL) {
+        printf("%s\n", ret);
+        exit(EXIT_FAILURE);
+    }
+}
+
+/**
  * @brief Initialises default XCSF parameters.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] x_dim The dimensionality of the input variables.
@@ -181,10 +194,10 @@ param_json_import_general(struct XCSF *xcsf, const cJSON *json)
         param_set_omp_num_threads(xcsf, json->valueint);
     } else if (strncmp(json->string, "pop_size\0", 9) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_pop_size(xcsf, json->valueint);
+        catch_error(param_set_pop_size(xcsf, json->valueint));
     } else if (strncmp(json->string, "max_trials\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_max_trials(xcsf, json->valueint);
+        catch_error(param_set_max_trials(xcsf, json->valueint));
     } else if (strncmp(json->string, "pop_init\0", 9) == 0 &&
                cJSON_IsBool(json)) {
         param_set_pop_init(xcsf, json->valueint);
@@ -223,10 +236,10 @@ param_json_import_multi(struct XCSF *xcsf, const cJSON *json)
         param_set_teletransportation(xcsf, json->valueint);
     } else if (strncmp(json->string, "gamma\0", 6) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_gamma(xcsf, json->valuedouble);
+        catch_error(param_set_gamma(xcsf, json->valuedouble));
     } else if (strncmp(json->string, "p_explore\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_p_explore(xcsf, json->valuedouble);
+        catch_error(param_set_p_explore(xcsf, json->valuedouble));
     } else {
         return false;
     }
@@ -266,10 +279,10 @@ static bool
 param_json_import_cl_general(struct XCSF *xcsf, const cJSON *json)
 {
     if (strncmp(json->string, "alpha\0", 6) == 0 && cJSON_IsNumber(json)) {
-        param_set_alpha(xcsf, json->valuedouble);
+        catch_error(param_set_alpha(xcsf, json->valuedouble));
     } else if (strncmp(json->string, "beta\0", 5) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_beta(xcsf, json->valuedouble);
+        catch_error(param_set_beta(xcsf, json->valuedouble));
     } else if (strncmp(json->string, "delta\0", 6) == 0 &&
                cJSON_IsNumber(json)) {
         param_set_delta(xcsf, json->valuedouble);
@@ -566,15 +579,14 @@ param_set_pop_init(struct XCSF *xcsf, const bool a)
     xcsf->POP_INIT = a;
 }
 
-void
+const char *
 param_set_max_trials(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        printf("Warning: tried to set MAX_TRIALS too small\n");
-        xcsf->MAX_TRIALS = 1;
-    } else {
-        xcsf->MAX_TRIALS = a;
+        return "MAX_TRIALS too small";
     }
+    xcsf->MAX_TRIALS = a;
+    return NULL;
 }
 
 void
@@ -588,15 +600,14 @@ param_set_perf_trials(struct XCSF *xcsf, const int a)
     }
 }
 
-void
+const char *
 param_set_pop_size(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        printf("Warning: tried to set POP_SIZE too small\n");
-        xcsf->POP_SIZE = 1;
-    } else {
-        xcsf->POP_SIZE = a;
+        return "POP_SIZE too small";
     }
+    xcsf->POP_SIZE = a;
+    return NULL;
 }
 
 int
@@ -650,18 +661,16 @@ param_set_huber_delta(struct XCSF *xcsf, const double a)
     }
 }
 
-void
+const char *
 param_set_gamma(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set GAMMA too small\n");
-        xcsf->GAMMA = 0;
+        return "GAMMA too small";
     } else if (a > 1) {
-        printf("Warning: tried to set GAMMA too large\n");
-        xcsf->GAMMA = 1;
-    } else {
-        xcsf->GAMMA = a;
+        return "GAMMA too large";
     }
+    xcsf->GAMMA = a;
+    return NULL;
 }
 
 void
@@ -675,46 +684,40 @@ param_set_teletransportation(struct XCSF *xcsf, const int a)
     }
 }
 
-void
+const char *
 param_set_p_explore(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set P_EXPLORE too small\n");
-        xcsf->P_EXPLORE = 0;
+        return "P_EXPLORE too small";
     } else if (a > 1) {
-        printf("Warning: tried to set P_EXPLORE too large\n");
-        xcsf->P_EXPLORE = 1;
-    } else {
-        xcsf->P_EXPLORE = a;
+        return "P_EXPLORE too large";
     }
+    xcsf->P_EXPLORE = a;
+    return NULL;
 }
 
-void
+const char *
 param_set_alpha(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set ALPHA too small\n");
-        xcsf->ALPHA = 0;
+        return "ALPHA too small";
     } else if (a > 1) {
-        printf("Warning: tried to set ALPHA too large\n");
-        xcsf->ALPHA = 1;
-    } else {
-        xcsf->ALPHA = a;
+        return "ALPHA too large";
     }
+    xcsf->ALPHA = a;
+    return NULL;
 }
 
-void
+const char *
 param_set_beta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set BETA too small\n");
-        xcsf->BETA = 0;
+        return "BETA too small";
     } else if (a > 1) {
-        printf("Warning: tried to set BETA too large\n");
-        xcsf->BETA = 1;
-    } else {
-        xcsf->BETA = a;
+        return "BETA too large";
     }
+    xcsf->BETA = a;
+    return NULL;
 }
 
 void

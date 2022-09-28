@@ -60,13 +60,13 @@ param_set_omp_num_threads(struct XCSF *xcsf, const int a);
 void
 param_set_pop_init(struct XCSF *xcsf, const bool a);
 
-void
+const char *
 param_set_max_trials(struct XCSF *xcsf, const int a);
 
 void
 param_set_perf_trials(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_pop_size(struct XCSF *xcsf, const int a);
 
 int
@@ -84,19 +84,19 @@ param_set_compaction(struct XCSF *xcsf, const bool a);
 void
 param_set_huber_delta(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_gamma(struct XCSF *xcsf, const double a);
 
 void
 param_set_teletransportation(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_p_explore(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_alpha(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_beta(struct XCSF *xcsf, const double a);
 
 void
