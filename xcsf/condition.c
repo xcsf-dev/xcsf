@@ -155,8 +155,7 @@ condition_type_as_int(const char *type)
     if (strncmp(type, COND_STRING_RULE_NETWORK, 13) == 0) {
         return RULE_TYPE_NETWORK;
     }
-    printf("condition_type_as_int(): invalid type: %s\n", type);
-    exit(EXIT_FAILURE);
+    return COND_TYPE_INVALID;
 }
 
 /**
@@ -275,45 +274,35 @@ cond_param_json_export(const struct XCSF *xcsf)
  * @brief Sets the condition parameters from a cJSON object.
  * @param [in,out] xcsf The XCSF data structure.
  * @param [in] json cJSON object.
- * @return Whether a parameter was found.
  */
-bool
+void
 cond_param_json_import(struct XCSF *xcsf, cJSON *json)
 {
-    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
-        cond_param_set_type_string(xcsf, json->valuestring);
-    } else {
-        return false;
+    switch (xcsf->cond->type) {
+        case COND_TYPE_TERNARY:
+            cond_ternary_param_json_import(xcsf, json->child);
+            break;
+        case COND_TYPE_HYPERELLIPSOID:
+        case COND_TYPE_HYPERRECTANGLE_CSR:
+        case COND_TYPE_HYPERRECTANGLE_UBR:
+            cond_param_json_import_csr(xcsf, json->child);
+            break;
+        case COND_TYPE_GP:
+            cond_gp_param_json_import(xcsf, json->child);
+            break;
+        case COND_TYPE_DGP:
+        case RULE_TYPE_DGP:
+            cond_dgp_param_json_import(xcsf, json->child);
+            break;
+        case COND_TYPE_NEURAL:
+        case RULE_TYPE_NEURAL:
+        case RULE_TYPE_NETWORK:
+            cond_neural_param_json_import(xcsf, json->child);
+            break;
+        default:
+            printf("cond_param_json_import(): unknown type.\n");
+            exit(EXIT_FAILURE);
     }
-    json = json->next;
-    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
-        switch (xcsf->cond->type) {
-            case COND_TYPE_TERNARY:
-                cond_ternary_param_json_import(xcsf, json->child);
-                break;
-            case COND_TYPE_HYPERELLIPSOID:
-            case COND_TYPE_HYPERRECTANGLE_CSR:
-            case COND_TYPE_HYPERRECTANGLE_UBR:
-                cond_param_json_import_csr(xcsf, json->child);
-                break;
-            case COND_TYPE_GP:
-                cond_gp_param_json_import(xcsf, json->child);
-                break;
-            case COND_TYPE_DGP:
-            case RULE_TYPE_DGP:
-                cond_dgp_param_json_import(xcsf, json->child);
-                break;
-            case COND_TYPE_NEURAL:
-            case RULE_TYPE_NEURAL:
-            case RULE_TYPE_NETWORK:
-                cond_neural_param_json_import(xcsf, json->child);
-                break;
-            default:
-                printf("cond_param_json_import(): unknown type.\n");
-                exit(EXIT_FAILURE);
-        }
-    }
-    return true;
 }
 
 /**
@@ -443,10 +432,14 @@ cond_param_set_bits(struct XCSF *xcsf, const int a)
     }
 }
 
-void
+int
 cond_param_set_type_string(struct XCSF *xcsf, const char *a)
 {
-    xcsf->cond->type = condition_type_as_int(a);
+    const int type = condition_type_as_int(a);
+    if (type != COND_TYPE_INVALID) {
+        xcsf->cond->type = type;
+    }
+    return type;
 }
 
 void

@@ -17,7 +17,7 @@
  * @file prediction.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Interface for classifier predictions.
  */
 
@@ -25,6 +25,7 @@
 
 #include "xcsf.h"
 
+#define PRED_TYPE_INVALID (-1) //!< Error code for invalid prediction
 #define PRED_TYPE_CONSTANT (0) //!< Prediction type constant
 #define PRED_TYPE_NLMS_LINEAR (1) //!< Prediction type linear nlms
 #define PRED_TYPE_NLMS_QUADRATIC (2) //!< Prediction type quadratic nlms
@@ -38,6 +39,10 @@
 #define PRED_STRING_RLS_LINEAR ("rls_linear\0") //!< Linear rls
 #define PRED_STRING_RLS_QUADRATIC ("rls_quadratic\0") //!< Quadratic rls
 #define PRED_STRING_NEURAL ("neural\0") //!< Neural
+
+#define PRED_TYPE_OPTIONS                                                      \
+    ("constant, nlms_linear, nlms_quadratic, rls_linear, rls_quadratic, "      \
+     "neural")
 
 /**
  * @brief Parameters for initialising and operating predictions.
@@ -71,7 +76,7 @@ pred_param_defaults(struct XCSF *xcsf);
 void
 pred_param_free(struct XCSF *xcsf);
 
-bool
+void
 pred_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 char *
@@ -305,5 +310,5 @@ pred_param_set_evolve_eta(struct XCSF *xcsf, const bool a);
 void
 pred_param_set_type(struct XCSF *xcsf, const int a);
 
-void
+int
 pred_param_set_type_string(struct XCSF *xcsf, const char *a);

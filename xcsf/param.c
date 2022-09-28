@@ -17,7 +17,7 @@
  * @file param.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Functions for setting and printing parameters.
  */
 
@@ -193,7 +193,12 @@ param_json_import_general(struct XCSF *xcsf, const cJSON *json)
         param_set_perf_trials(xcsf, json->valueint);
     } else if (strncmp(json->string, "loss_func\0", 10) == 0 &&
                cJSON_IsString(json)) {
-        param_set_loss_func_string(xcsf, json->valuestring);
+        if (param_set_loss_func_string(xcsf, json->valuestring) ==
+            PARAM_INVALID) {
+            printf("Invalid loss function: %s\n", json->valuestring);
+            printf("Options: {%s}\n", LOSS_OPTIONS);
+            exit(EXIT_FAILURE);
+        }
     } else if (strncmp(json->string, "huber_delta\0", 12) == 0 &&
                cJSON_IsNumber(json)) {
         param_set_huber_delta(xcsf, json->valuedouble);
@@ -297,6 +302,72 @@ param_json_import_cl_general(struct XCSF *xcsf, const cJSON *json)
 }
 
 /**
+ * @brief Sets the action parameters from a json formatted string.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+static void
+param_json_import_action(struct XCSF *xcsf, cJSON *json)
+{
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
+        if (action_param_set_type_string(xcsf, json->valuestring) ==
+            ACT_TYPE_INVALID) {
+            printf("Invalid action type: %s\n", json->valuestring);
+            printf("Options: {%s}\n", ACT_TYPE_OPTIONS);
+            exit(EXIT_FAILURE);
+        }
+    }
+    json = json->next;
+    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
+        action_param_json_import(xcsf, json);
+    }
+}
+
+/**
+ * @brief Sets the condition parameters from a json formatted string.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+static void
+param_json_import_condition(struct XCSF *xcsf, cJSON *json)
+{
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
+        if (cond_param_set_type_string(xcsf, json->valuestring) ==
+            COND_TYPE_INVALID) {
+            printf("Invalid condition type: %s\n", json->valuestring);
+            printf("Options: {%s}\n", COND_TYPE_OPTIONS);
+            exit(EXIT_FAILURE);
+        }
+    }
+    json = json->next;
+    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
+        cond_param_json_import(xcsf, json);
+    }
+}
+
+/**
+ * @brief Sets the prediction parameters from a json formatted string.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+static void
+param_json_import_prediction(struct XCSF *xcsf, cJSON *json)
+{
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
+        if (pred_param_set_type_string(xcsf, json->valuestring) ==
+            PRED_TYPE_INVALID) {
+            printf("Invalid prediction type: %s\n", json->valuestring);
+            printf("Options: {%s}\n", PRED_TYPE_OPTIONS);
+            exit(EXIT_FAILURE);
+        }
+    }
+    json = json->next;
+    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
+        pred_param_json_import(xcsf, json);
+    }
+}
+
+/**
  * @brief Sets the parameters from a json formatted string.
  * @param [in,out] xcsf The XCSF data structure.
  * @param [in] json_str String encoded in json format.
@@ -324,15 +395,15 @@ param_json_import(struct XCSF *xcsf, const char *json_str)
             continue;
         }
         if (strncmp(iter->string, "action\0", 7) == 0) {
-            action_param_json_import(xcsf, iter->child);
+            param_json_import_action(xcsf, iter->child);
             continue;
         }
         if (strncmp(iter->string, "condition\0", 10) == 0) {
-            cond_param_json_import(xcsf, iter->child);
+            param_json_import_condition(xcsf, iter->child);
             continue;
         }
         if (strncmp(iter->string, "prediction\0", 11) == 0) {
-            pred_param_json_import(xcsf, iter->child);
+            param_json_import_prediction(xcsf, iter->child);
             continue;
         }
         printf("Error: unable to import parameter: %s\n", iter->string);
@@ -519,11 +590,17 @@ param_set_pop_size(struct XCSF *xcsf, const int a)
     }
 }
 
-void
+int
 param_set_loss_func_string(struct XCSF *xcsf, const char *a)
 {
-    xcsf->LOSS_FUNC = loss_type_as_int(a);
-    loss_set_func(xcsf);
+    const int loss = loss_type_as_int(a);
+    if (loss != LOSS_INVALID) {
+        xcsf->LOSS_FUNC = loss;
+        if (loss_set_func(xcsf) != LOSS_INVALID) {
+            return PARAM_FOUND;
+        }
+    }
+    return PARAM_INVALID;
 }
 
 void

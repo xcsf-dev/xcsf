@@ -25,6 +25,7 @@
 
 #include "xcsf.h"
 
+#define COND_TYPE_INVALID (-1) //!< Error code for invalid condition
 #define COND_TYPE_DUMMY (0) //!< Condition type dummy
 #define COND_TYPE_HYPERRECTANGLE_CSR (1) //!< Condition type CSR hyperrectangle
 #define COND_TYPE_HYPERRECTANGLE_UBR (2) //!< Condition type UBR hyperrectangle
@@ -48,6 +49,10 @@
 #define COND_STRING_RULE_DGP ("rule_dgp\0") //!< Rule DGP
 #define COND_STRING_RULE_NEURAL ("rule_neural\0") //!< Rule neural
 #define COND_STRING_RULE_NETWORK ("rule_network\0") //!< Rule network
+
+#define COND_TYPE_OPTIONS                                                      \
+    ("dummy, hyperrectangle_csr, hyperrectangle_ubr, hyperellipsoid, neural, " \
+     "tree_gp, dgp, ternary, rule_dgp, rule_neural, rule_network")
 
 /**
  * @brief Parameters for initialising and operating conditions.
@@ -80,7 +85,7 @@ cond_param_defaults(struct XCSF *xcsf);
 void
 cond_param_free(struct XCSF *xcsf);
 
-bool
+void
 cond_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 char *
@@ -339,7 +344,7 @@ cond_param_set_spread_min(struct XCSF *xcsf, const double a);
 void
 cond_param_set_bits(struct XCSF *xcsf, const int a);
 
-void
+int
 cond_param_set_type_string(struct XCSF *xcsf, const char *a);
 
 void

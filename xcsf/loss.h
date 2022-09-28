@@ -17,7 +17,7 @@
  * @file loss.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2020.
+ * @date 2019--2022.
  * @brief Loss functions for calculating prediction error.
  */
 
@@ -25,6 +25,7 @@
 
 #include "xcsf.h"
 
+#define LOSS_INVALID (-1) //!< Error code for invalid loss type
 #define LOSS_MAE (0) //!< Mean absolute error
 #define LOSS_MSE (1) //!< Mean squared error
 #define LOSS_RMSE (2) //!< Root mean squared error
@@ -41,6 +42,8 @@
 #define LOSS_STRING_BINARY_LOG ("binary_log\0") //!< Binary log loss
 #define LOSS_STRING_ONEHOT ("onehot\0") //!< One-hot classification error
 #define LOSS_STRING_HUBER ("huber\0") //!< Huber loss
+
+#define LOSS_OPTIONS ("mae, mse, rmse, log, binary_log, one_hot, huber")
 
 double
 loss_huber(const struct XCSF *xcsf, const double *pred, const double *y);
@@ -63,7 +66,7 @@ loss_binary_log(const struct XCSF *xcsf, const double *pred, const double *y);
 double
 loss_onehot(const struct XCSF *xcsf, const double *pred, const double *y);
 
-void
+int
 loss_set_func(struct XCSF *xcsf);
 
 const char *

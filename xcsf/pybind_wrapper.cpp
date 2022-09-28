@@ -765,7 +765,13 @@ class XCS
     void
     set_condition(const std::string &type)
     {
-        cond_param_set_type_string(&xcs, type.c_str());
+        if (cond_param_set_type_string(&xcs, type.c_str()) ==
+            COND_TYPE_INVALID) {
+            std::ostringstream error;
+            error << "Invalid condition type: " << type << ". Options: {"
+                  << COND_TYPE_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(error.str());
+        }
     }
 
     /**
@@ -775,7 +781,13 @@ class XCS
     void
     set_action(const std::string &type)
     {
-        action_param_set_type_string(&xcs, type.c_str());
+        if (action_param_set_type_string(&xcs, type.c_str()) ==
+            ACT_TYPE_INVALID) {
+            std::ostringstream error;
+            error << "Invalid action type: " << type << ". Options: {"
+                  << ACT_TYPE_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(error.str());
+        }
     }
 
     /**
@@ -785,7 +797,13 @@ class XCS
     void
     set_prediction(const std::string &type)
     {
-        pred_param_set_type_string(&xcs, type.c_str());
+        if (pred_param_set_type_string(&xcs, type.c_str()) ==
+            PRED_TYPE_INVALID) {
+            std::ostringstream error;
+            error << "Invalid prediction type: " << type << ". Options: {"
+                  << PRED_TYPE_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(error.str());
+        }
     }
 
     /**
@@ -833,12 +851,10 @@ class XCS
     void
     set_condition(const std::string &type, const py::dict &kwargs)
     {
-        cJSON *json = cJSON_CreateObject();
-        cJSON_AddStringToObject(json, "type", type.c_str());
+        set_condition(type);
         cJSON *args = dict_to_json(kwargs);
-        cJSON_AddItemToObject(json, "args", args);
-        cond_param_json_import(&xcs, json->child);
-        cJSON_Delete(json);
+        cond_param_json_import(&xcs, args);
+        cJSON_Delete(args);
     }
 
     /**
@@ -849,12 +865,10 @@ class XCS
     void
     set_action(const std::string &type, const py::dict &kwargs)
     {
-        cJSON *json = cJSON_CreateObject();
-        cJSON_AddStringToObject(json, "type", type.c_str());
+        set_action(type);
         cJSON *args = dict_to_json(kwargs);
-        cJSON_AddItemToObject(json, "args", args);
-        action_param_json_import(&xcs, json->child);
-        cJSON_Delete(json);
+        action_param_json_import(&xcs, args);
+        cJSON_Delete(args);
     }
 
     /**
@@ -865,12 +879,10 @@ class XCS
     void
     set_prediction(const std::string &type, const py::dict &kwargs)
     {
-        cJSON *json = cJSON_CreateObject();
-        cJSON_AddStringToObject(json, "type", type.c_str());
+        set_prediction(type);
         cJSON *args = dict_to_json(kwargs);
-        cJSON_AddItemToObject(json, "args", args);
-        pred_param_json_import(&xcs, json->child);
-        cJSON_Delete(json);
+        pred_param_json_import(&xcs, args);
+        cJSON_Delete(args);
     }
 
     void
@@ -906,7 +918,12 @@ class XCS
     void
     set_loss_func(const char *a)
     {
-        param_set_loss_func_string(&xcs, a);
+        if (param_set_loss_func_string(&xcs, a) == PARAM_INVALID) {
+            std::ostringstream error;
+            error << "Invalid loss function: " << a << ". Options: {"
+                  << LOSS_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(error.str());
+        }
     }
 
     void
@@ -1014,7 +1031,12 @@ class XCS
     void
     set_ea_select_type(const char *a)
     {
-        ea_param_set_type_string(&xcs, a);
+        if (ea_param_set_type_string(&xcs, a) == EA_SELECT_INVALID) {
+            std::ostringstream error;
+            error << "Invalid EA SELECT_TYPE: " << a << ". Options: {"
+                  << EA_SELECT_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(error.str());
+        }
     }
 
     void

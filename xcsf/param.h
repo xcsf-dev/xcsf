@@ -17,7 +17,7 @@
  * @file param.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Functions for setting and printing parameters.
  */
 
@@ -25,6 +25,10 @@
 
 #include "loss.h"
 #include "xcsf.h"
+
+#define PARAM_INVALID (-1) //!< Code for invalid parameter
+#define PARAM_NOT_FOUND (0) //!< Code for unable to find parameter
+#define PARAM_FOUND (1) //!< Code for a found parameter
 
 char *
 param_json_export(const struct XCSF *xcsf);
@@ -65,7 +69,7 @@ param_set_perf_trials(struct XCSF *xcsf, const int a);
 void
 param_set_pop_size(struct XCSF *xcsf, const int a);
 
-void
+int
 param_set_loss_func_string(struct XCSF *xcsf, const char *a);
 
 void

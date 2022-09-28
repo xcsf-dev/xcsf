@@ -17,7 +17,7 @@
  * @file ea.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Evolutionary algorithm functions.
  */
 
@@ -25,11 +25,14 @@
 
 #include "xcsf.h"
 
+#define EA_SELECT_INVALID (-1) //!< Error code for invalid selection
 #define EA_SELECT_ROULETTE (0) //!< Roulette wheel parental selection
 #define EA_SELECT_TOURNAMENT (1) //!< Tournament parental selection
 
 #define EA_STRING_ROULETTE ("roulette\0") //!< Roulette
 #define EA_STRING_TOURNAMENT ("tournament\0") //!< Tournament
+
+#define EA_SELECT_OPTIONS ("roulette, tournament") //!< Valid EA types
 
 /**
  * @brief Parameters for operating the evolutionary algorithm.
@@ -96,8 +99,8 @@ ea_param_set_subsumption(struct XCSF *xcsf, const bool a);
 void
 ea_param_set_pred_reset(struct XCSF *xcsf, const bool a);
 
-void
+int
 ea_param_set_select_type(struct XCSF *xcsf, const int a);
 
-void
+int
 ea_param_set_type_string(struct XCSF *xcsf, const char *a);

@@ -17,7 +17,7 @@
  * @file action.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Interface for classifier actions.
  */
 
@@ -25,11 +25,14 @@
 
 #include "xcsf.h"
 
+#define ACT_TYPE_INVALID (-1) //!< Error code for invalid actions
 #define ACT_TYPE_INTEGER (0) //!< Action type integer
 #define ACT_TYPE_NEURAL (1) //!< Action type neural network
 
 #define ACT_STRING_INTEGER ("integer\0") //!< Integer
 #define ACT_STRING_NEURAL ("neural\0") //!< Neural
+
+#define ACT_TYPE_OPTIONS ("integer, neural")
 
 /**
  * @brief Parameters for initialising and operating actions.
@@ -54,7 +57,7 @@ action_param_defaults(struct XCSF *xcsf);
 void
 action_param_free(struct XCSF *xcsf);
 
-bool
+void
 action_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 char *
@@ -283,7 +286,7 @@ act_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 
 /* parameter setters */
 
-void
+int
 action_param_set_type_string(struct XCSF *xcsf, const char *a);
 
 void
