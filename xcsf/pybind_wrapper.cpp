@@ -760,49 +760,49 @@ class XCS
 
     /**
      * @brief Sets the condition type.
-     * @param [in] cond_type String representing a name of a condition type.
+     * @param [in] type String representing a name of a condition type.
      */
     void
-    set_condition(const std::string &cond_type)
+    set_condition(const std::string &type)
     {
-        if (cond_param_set_type_string(&xcs, cond_type.c_str()) ==
+        if (cond_param_set_type_string(&xcs, type.c_str()) ==
             COND_TYPE_INVALID) {
-            std::ostringstream error;
-            error << "Invalid condition type: " << cond_type << ". Options: {"
-                  << COND_TYPE_OPTIONS << "}" << std::endl;
-            throw std::invalid_argument(error.str());
+            std::ostringstream msg;
+            msg << "Invalid condition type: " << type << ". Options: {"
+                << COND_TYPE_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(msg.str());
         }
     }
 
     /**
      * @brief Sets the action type.
-     * @param [in] act_type String representing a name of an action type.
+     * @param [in] type String representing a name of an action type.
      */
     void
-    set_action(const std::string &act_type)
+    set_action(const std::string &type)
     {
-        if (action_param_set_type_string(&xcs, act_type.c_str()) ==
+        if (action_param_set_type_string(&xcs, type.c_str()) ==
             ACT_TYPE_INVALID) {
-            std::ostringstream error;
-            error << "Invalid action type: " << act_type << ". Options: {"
-                  << ACT_TYPE_OPTIONS << "}" << std::endl;
-            throw std::invalid_argument(error.str());
+            std::ostringstream msg;
+            msg << "Invalid action type: " << type << ". Options: {"
+                << ACT_TYPE_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(msg.str());
         }
     }
 
     /**
      * @brief Sets the prediction type.
-     * @param [in] pred_type String representing a name of a prediction type.
+     * @param [in] type String representing a name of a prediction type.
      */
     void
-    set_prediction(const std::string &pred_type)
+    set_prediction(const std::string &type)
     {
-        if (pred_param_set_type_string(&xcs, pred_type.c_str()) ==
+        if (pred_param_set_type_string(&xcs, type.c_str()) ==
             PRED_TYPE_INVALID) {
-            std::ostringstream error;
-            error << "Invalid prediction type: " << pred_type << ". Options: {"
-                  << PRED_TYPE_OPTIONS << "}" << std::endl;
-            throw std::invalid_argument(error.str());
+            std::ostringstream msg;
+            msg << "Invalid prediction type: " << type << ". Options: {"
+                << PRED_TYPE_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(msg.str());
         }
     }
 
