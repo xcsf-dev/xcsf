@@ -309,13 +309,12 @@ param_json_import_cl_general(struct XCSF *xcsf, const cJSON *json)
 static void
 param_json_import_action(struct XCSF *xcsf, cJSON *json)
 {
-    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
-        if (action_param_set_type_string(xcsf, json->valuestring) ==
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json) &&
+        action_param_set_type_string(xcsf, json->valuestring) ==
             ACT_TYPE_INVALID) {
-            printf("Invalid action type: %s\n", json->valuestring);
-            printf("Options: {%s}\n", ACT_TYPE_OPTIONS);
-            exit(EXIT_FAILURE);
-        }
+        printf("Invalid action type: %s\n", json->valuestring);
+        printf("Options: {%s}\n", ACT_TYPE_OPTIONS);
+        exit(EXIT_FAILURE);
     }
     json = json->next;
     if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
@@ -331,13 +330,12 @@ param_json_import_action(struct XCSF *xcsf, cJSON *json)
 static void
 param_json_import_condition(struct XCSF *xcsf, cJSON *json)
 {
-    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
-        if (cond_param_set_type_string(xcsf, json->valuestring) ==
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json) &&
+        cond_param_set_type_string(xcsf, json->valuestring) ==
             COND_TYPE_INVALID) {
-            printf("Invalid condition type: %s\n", json->valuestring);
-            printf("Options: {%s}\n", COND_TYPE_OPTIONS);
-            exit(EXIT_FAILURE);
-        }
+        printf("Invalid condition type: %s\n", json->valuestring);
+        printf("Options: {%s}\n", COND_TYPE_OPTIONS);
+        exit(EXIT_FAILURE);
     }
     json = json->next;
     if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
@@ -353,13 +351,12 @@ param_json_import_condition(struct XCSF *xcsf, cJSON *json)
 static void
 param_json_import_prediction(struct XCSF *xcsf, cJSON *json)
 {
-    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
-        if (pred_param_set_type_string(xcsf, json->valuestring) ==
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json) &&
+        pred_param_set_type_string(xcsf, json->valuestring) ==
             PRED_TYPE_INVALID) {
-            printf("Invalid prediction type: %s\n", json->valuestring);
-            printf("Options: {%s}\n", PRED_TYPE_OPTIONS);
-            exit(EXIT_FAILURE);
-        }
+        printf("Invalid prediction type: %s\n", json->valuestring);
+        printf("Options: {%s}\n", PRED_TYPE_OPTIONS);
+        exit(EXIT_FAILURE);
     }
     json = json->next;
     if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
