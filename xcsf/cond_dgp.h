@@ -17,7 +17,7 @@
  * @file cond_dgp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief Dynamical GP graph condition functions.
  */
 
@@ -37,7 +37,7 @@ struct CondDGP {
 char *
 cond_dgp_param_json_export(const struct XCSF *xcsf);
 
-void
+char *
 cond_dgp_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 void

@@ -318,7 +318,11 @@ param_json_import_action(struct XCSF *xcsf, cJSON *json)
     }
     json = json->next;
     if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
-        action_param_json_import(xcsf, json);
+        const char *ret = action_param_json_import(xcsf, json);
+        if (ret != NULL) {
+            printf("Invalid action parameter %s\n", ret);
+            exit(EXIT_FAILURE);
+        }
     }
 }
 
@@ -339,7 +343,11 @@ param_json_import_condition(struct XCSF *xcsf, cJSON *json)
     }
     json = json->next;
     if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
-        cond_param_json_import(xcsf, json);
+        const char *ret = cond_param_json_import(xcsf, json);
+        if (ret != NULL) {
+            printf("Invalid condition parameter %s\n", ret);
+            exit(EXIT_FAILURE);
+        }
     }
 }
 
@@ -360,7 +368,11 @@ param_json_import_prediction(struct XCSF *xcsf, cJSON *json)
     }
     json = json->next;
     if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
-        pred_param_json_import(xcsf, json);
+        const char *ret = pred_param_json_import(xcsf, json);
+        if (ret != NULL) {
+            printf("Invalid prediction parameter %s\n", ret);
+            exit(EXIT_FAILURE);
+        }
     }
 }
 

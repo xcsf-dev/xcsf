@@ -57,7 +57,7 @@ action_param_defaults(struct XCSF *xcsf);
 void
 action_param_free(struct XCSF *xcsf);
 
-void
+char *
 action_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 char *

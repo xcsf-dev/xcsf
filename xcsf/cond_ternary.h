@@ -17,7 +17,7 @@
  * @file cond_ternary.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2021.
+ * @date 2019--2022.
  * @brief Ternary condition functions.
  */
 
@@ -42,7 +42,7 @@ cond_ternary_param_defaults(struct XCSF *xcsf);
 char *
 cond_ternary_param_json_export(const struct XCSF *xcsf);
 
-void
+char *
 cond_ternary_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 bool

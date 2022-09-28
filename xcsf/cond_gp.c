@@ -17,7 +17,7 @@
  * @file cond_gp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief Tree GP condition functions.
  */
 
@@ -266,12 +266,14 @@ cond_gp_param_json_export(const struct XCSF *xcsf)
  * @brief Sets the tree GP parameters from a cJSON object.
  * @param [in,out] xcsf The XCSF data structure.
  * @param [in] json cJSON object.
+ * @return NULL if successful; or the name of parameter if not found.
  */
-void
+char *
 cond_gp_param_json_import(struct XCSF *xcsf, cJSON *json)
 {
-    tree_args_json_import(xcsf->cond->targs, json);
+    char *ret = tree_args_json_import(xcsf->cond->targs, json);
     tree_args_init_constants(xcsf->cond->targs);
+    return ret;
 }
 
 /**

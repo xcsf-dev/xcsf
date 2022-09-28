@@ -125,20 +125,23 @@ action_param_json_export(const struct XCSF *xcsf)
  * @brief Sets the action parameters from a cJSON object.
  * @param [in,out] xcsf XCSF data structure.
  * @param [in] json cJSON object.
+ * @return NULL if successful; or the name of parameter if not found.
  */
-void
+char *
 action_param_json_import(struct XCSF *xcsf, cJSON *json)
 {
+    char *ret = NULL;
     switch (xcsf->act->type) {
         case ACT_TYPE_INTEGER:
             break;
         case ACT_TYPE_NEURAL:
-            act_neural_param_json_import(xcsf, json->child);
+            ret = act_neural_param_json_import(xcsf, json->child);
             break;
         default:
             printf("action_param_json_import(): unknown type.\n");
             exit(EXIT_FAILURE);
     }
+    return ret;
 }
 
 /**

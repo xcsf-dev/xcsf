@@ -17,7 +17,7 @@
  * @file gp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief An implementation of GP trees based upon TinyGP.
  * @see Poli, Langdon, and McPhee (2008) "A Field Guide to Genetic Programming"
  */
@@ -462,8 +462,9 @@ tree_args_json_export(const struct ArgsGPTree *args)
  * @brief Sets the GP tree parameters from a cJSON object.
  * @param [in,out] args GP tree parameter data structure.
  * @param [in] json cJSON object.
+ * @return NULL if successful; or the name of parameter if not found.
  */
-void
+char *
 tree_args_json_import(struct ArgsGPTree *args, cJSON *json)
 {
     for (cJSON *iter = json; iter != NULL; iter = iter->next) {
@@ -483,10 +484,10 @@ tree_args_json_import(struct ArgsGPTree *args, cJSON *json)
                    cJSON_IsNumber(iter)) {
             tree_param_set_max_len(args, iter->valueint);
         } else {
-            printf("Error importing tree-GP parameter %s\n", iter->string);
-            exit(EXIT_FAILURE);
+            return iter->string;
         }
     }
+    return NULL;
 }
 
 /**

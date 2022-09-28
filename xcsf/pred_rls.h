@@ -17,7 +17,7 @@
  * @file pred_rls.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Recursive least mean squares prediction functions.
  */
 
@@ -43,7 +43,7 @@ struct PredRLS {
 char *
 pred_rls_param_json_export(const struct XCSF *xcsf);
 
-void
+char *
 pred_rls_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 bool

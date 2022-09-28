@@ -17,7 +17,7 @@
  * @file cond_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief Multi-layer perceptron neural network condition functions.
  */
 
@@ -36,7 +36,7 @@ struct CondNeural {
     struct Net net; //!< Neural network
 };
 
-void
+char *
 cond_neural_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 void

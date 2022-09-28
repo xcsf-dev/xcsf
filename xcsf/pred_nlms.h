@@ -17,7 +17,7 @@
  * @file pred_nlms.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Normalised least mean squares prediction functions.
  */
 
@@ -38,7 +38,7 @@ struct PredNLMS {
     double *tmp_input; //!< Temporary storage for updating weights
 };
 
-void
+char *
 pred_nlms_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 char *

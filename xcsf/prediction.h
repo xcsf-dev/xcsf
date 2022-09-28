@@ -76,7 +76,7 @@ pred_param_defaults(struct XCSF *xcsf);
 void
 pred_param_free(struct XCSF *xcsf);
 
-void
+char *
 pred_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 char *

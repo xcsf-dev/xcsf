@@ -173,28 +173,31 @@ pred_param_json_export(const struct XCSF *xcsf)
  * @brief Sets the prediction parameters from a cJSON object.
  * @param [in,out] xcsf XCSF data structure.
  * @param [in] json cJSON object.
+ * @return NULL if successful; or the name of parameter if not found.
  */
-void
+char *
 pred_param_json_import(struct XCSF *xcsf, cJSON *json)
 {
+    char *ret = NULL;
     switch (xcsf->pred->type) {
         case PRED_TYPE_CONSTANT:
             break;
         case PRED_TYPE_NLMS_LINEAR:
         case PRED_TYPE_NLMS_QUADRATIC:
-            pred_nlms_param_json_import(xcsf, json->child);
+            ret = pred_nlms_param_json_import(xcsf, json->child);
             break;
         case PRED_TYPE_RLS_LINEAR:
         case PRED_TYPE_RLS_QUADRATIC:
-            pred_rls_param_json_import(xcsf, json->child);
+            ret = pred_rls_param_json_import(xcsf, json->child);
             break;
         case PRED_TYPE_NEURAL:
-            pred_neural_param_json_import(xcsf, json->child);
+            ret = pred_neural_param_json_import(xcsf, json->child);
             break;
         default:
             printf("pred_param_json_import(): unknown type.\n");
             exit(EXIT_FAILURE);
     }
+    return ret;
 }
 
 /**

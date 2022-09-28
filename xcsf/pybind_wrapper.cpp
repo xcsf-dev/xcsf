@@ -853,7 +853,12 @@ class XCS
     {
         set_condition(type);
         cJSON *args = dict_to_json(kwargs);
-        cond_param_json_import(&xcs, args);
+        const char *ret = cond_param_json_import(&xcs, args);
+        if (ret != NULL) {
+            std::ostringstream msg;
+            msg << "Invalid condition parameter: " << ret << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
         cJSON_Delete(args);
     }
 
@@ -867,7 +872,12 @@ class XCS
     {
         set_action(type);
         cJSON *args = dict_to_json(kwargs);
-        action_param_json_import(&xcs, args);
+        const char *ret = action_param_json_import(&xcs, args);
+        if (ret != NULL) {
+            std::ostringstream msg;
+            msg << "Invalid action parameter: " << ret << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
         cJSON_Delete(args);
     }
 
@@ -881,7 +891,12 @@ class XCS
     {
         set_prediction(type);
         cJSON *args = dict_to_json(kwargs);
-        pred_param_json_import(&xcs, args);
+        const char *ret = pred_param_json_import(&xcs, args);
+        if (ret != NULL) {
+            std::ostringstream msg;
+            msg << "Invalid prediction parameter: " << ret << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
         cJSON_Delete(args);
     }
 

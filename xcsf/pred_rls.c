@@ -17,7 +17,7 @@
  * @file pred_rls.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2022.
  * @brief Recursive least mean squares prediction functions.
  */
 
@@ -336,8 +336,9 @@ pred_rls_param_json_export(const struct XCSF *xcsf)
  * @brief Sets the RLS parameters from a cJSON object.
  * @param [in,out] xcsf The XCSF data structure.
  * @param [in] json cJSON object.
+ * @return NULL if successful; or the name of parameter if not found.
  */
-void
+char *
 pred_rls_param_json_import(struct XCSF *xcsf, cJSON *json)
 {
     for (cJSON *iter = json; iter != NULL; iter = iter->next) {
@@ -350,8 +351,8 @@ pred_rls_param_json_import(struct XCSF *xcsf, cJSON *json)
                    cJSON_IsNumber(iter)) {
             pred_param_set_scale_factor(xcsf, iter->valuedouble);
         } else {
-            printf("Error importing RLS parameter %s\n", iter->string);
-            exit(EXIT_FAILURE);
+            return iter->string;
         }
     }
+    return NULL;
 }

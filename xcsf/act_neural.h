@@ -17,7 +17,7 @@
  * @file act_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2021.
+ * @date 2020--2022.
  * @brief Neural network action functions.
  */
 
@@ -39,7 +39,7 @@ struct ActNeural {
 void
 act_neural_param_defaults(struct XCSF *xcsf);
 
-void
+char *
 act_neural_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 bool

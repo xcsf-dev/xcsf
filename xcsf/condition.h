@@ -85,7 +85,7 @@ cond_param_defaults(struct XCSF *xcsf);
 void
 cond_param_free(struct XCSF *xcsf);
 
-void
+char *
 cond_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 char *
