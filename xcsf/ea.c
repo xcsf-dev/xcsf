@@ -17,7 +17,7 @@
  * @file ea.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Evolutionary algorithm functions.
  */
 
@@ -284,7 +284,12 @@ ea_param_json_import(struct XCSF *xcsf, cJSON *json)
     for (cJSON *iter = json; iter != NULL; iter = iter->next) {
         if (strncmp(iter->string, "select_type\0", 12) == 0 &&
             cJSON_IsString(iter)) {
-            ea_param_set_type_string(xcsf, iter->valuestring);
+            if (ea_param_set_type_string(xcsf, iter->valuestring) ==
+                EA_SELECT_INVALID) {
+                printf("Invalid EA SELECT_TYPE: %s\n", iter->valuestring);
+                printf("Options: {%s}\n", EA_SELECT_OPTIONS);
+                exit(EXIT_FAILURE);
+            }
         } else if (strncmp(iter->string, "select_size\0", 12) == 0 &&
                    cJSON_IsNumber(iter)) {
             ea_param_set_select_size(xcsf, iter->valuedouble);
@@ -392,8 +397,7 @@ ea_type_as_int(const char *type)
     if (strncmp(type, EA_STRING_TOURNAMENT, 11) == 0) {
         return EA_SELECT_TOURNAMENT;
     }
-    printf("ea_type_as_int(): invalid type: %s\n", type);
-    exit(EXIT_FAILURE);
+    return EA_SELECT_INVALID;
 }
 
 /* parameter setters */
@@ -488,19 +492,23 @@ ea_param_set_pred_reset(struct XCSF *xcsf, const bool a)
     xcsf->ea->pred_reset = a;
 }
 
-void
+int
 ea_param_set_select_type(struct XCSF *xcsf, const int a)
 {
     if (a == EA_SELECT_ROULETTE || a == EA_SELECT_TOURNAMENT) {
         xcsf->ea->select_type = a;
-    } else {
-        printf("Error setting EA SELECT_TYPE\n");
-        exit(EXIT_FAILURE);
+        return a;
     }
+    return EA_SELECT_INVALID;
 }
 
-void
+int
 ea_param_set_type_string(struct XCSF *xcsf, const char *a)
 {
-    xcsf->ea->select_type = ea_type_as_int(a);
+    const int type = ea_type_as_int(a);
+    if (type != EA_SELECT_INVALID) {
+        xcsf->ea->select_type = type;
+        return type;
+    }
+    return EA_SELECT_INVALID;
 }

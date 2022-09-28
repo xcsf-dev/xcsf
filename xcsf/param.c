@@ -17,7 +17,7 @@
  * @file param.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Functions for setting and printing parameters.
  */
 
@@ -31,6 +31,19 @@
 #ifdef PARALLEL
     #include <omp.h>
 #endif
+
+/**
+ * @brief Catches parameter value errors.
+ * @param [in] ret String return type from JSON import.
+ */
+static void
+catch_error(const char *ret)
+{
+    if (ret != NULL) {
+        printf("%s\n", ret);
+        exit(EXIT_FAILURE);
+    }
+}
 
 /**
  * @brief Initialises default XCSF parameters.
@@ -181,10 +194,10 @@ param_json_import_general(struct XCSF *xcsf, const cJSON *json)
         param_set_omp_num_threads(xcsf, json->valueint);
     } else if (strncmp(json->string, "pop_size\0", 9) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_pop_size(xcsf, json->valueint);
+        catch_error(param_set_pop_size(xcsf, json->valueint));
     } else if (strncmp(json->string, "max_trials\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_max_trials(xcsf, json->valueint);
+        catch_error(param_set_max_trials(xcsf, json->valueint));
     } else if (strncmp(json->string, "pop_init\0", 9) == 0 &&
                cJSON_IsBool(json)) {
         param_set_pop_init(xcsf, json->valueint);
@@ -193,7 +206,12 @@ param_json_import_general(struct XCSF *xcsf, const cJSON *json)
         param_set_perf_trials(xcsf, json->valueint);
     } else if (strncmp(json->string, "loss_func\0", 10) == 0 &&
                cJSON_IsString(json)) {
-        param_set_loss_func_string(xcsf, json->valuestring);
+        if (param_set_loss_func_string(xcsf, json->valuestring) ==
+            PARAM_INVALID) {
+            printf("Invalid loss function: %s\n", json->valuestring);
+            printf("Options: {%s}\n", LOSS_OPTIONS);
+            exit(EXIT_FAILURE);
+        }
     } else if (strncmp(json->string, "huber_delta\0", 12) == 0 &&
                cJSON_IsNumber(json)) {
         param_set_huber_delta(xcsf, json->valuedouble);
@@ -218,10 +236,10 @@ param_json_import_multi(struct XCSF *xcsf, const cJSON *json)
         param_set_teletransportation(xcsf, json->valueint);
     } else if (strncmp(json->string, "gamma\0", 6) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_gamma(xcsf, json->valuedouble);
+        catch_error(param_set_gamma(xcsf, json->valuedouble));
     } else if (strncmp(json->string, "p_explore\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_p_explore(xcsf, json->valuedouble);
+        catch_error(param_set_p_explore(xcsf, json->valuedouble));
     } else {
         return false;
     }
@@ -261,10 +279,10 @@ static bool
 param_json_import_cl_general(struct XCSF *xcsf, const cJSON *json)
 {
     if (strncmp(json->string, "alpha\0", 6) == 0 && cJSON_IsNumber(json)) {
-        param_set_alpha(xcsf, json->valuedouble);
+        catch_error(param_set_alpha(xcsf, json->valuedouble));
     } else if (strncmp(json->string, "beta\0", 5) == 0 &&
                cJSON_IsNumber(json)) {
-        param_set_beta(xcsf, json->valuedouble);
+        catch_error(param_set_beta(xcsf, json->valuedouble));
     } else if (strncmp(json->string, "delta\0", 6) == 0 &&
                cJSON_IsNumber(json)) {
         param_set_delta(xcsf, json->valuedouble);
@@ -297,6 +315,81 @@ param_json_import_cl_general(struct XCSF *xcsf, const cJSON *json)
 }
 
 /**
+ * @brief Sets the action parameters from a json formatted string.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+static void
+param_json_import_action(struct XCSF *xcsf, cJSON *json)
+{
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json) &&
+        action_param_set_type_string(xcsf, json->valuestring) ==
+            ACT_TYPE_INVALID) {
+        printf("Invalid action type: %s\n", json->valuestring);
+        printf("Options: {%s}\n", ACT_TYPE_OPTIONS);
+        exit(EXIT_FAILURE);
+    }
+    json = json->next;
+    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
+        const char *ret = action_param_json_import(xcsf, json);
+        if (ret != NULL) {
+            printf("Invalid action parameter %s\n", ret);
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+/**
+ * @brief Sets the condition parameters from a json formatted string.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+static void
+param_json_import_condition(struct XCSF *xcsf, cJSON *json)
+{
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json) &&
+        cond_param_set_type_string(xcsf, json->valuestring) ==
+            COND_TYPE_INVALID) {
+        printf("Invalid condition type: %s\n", json->valuestring);
+        printf("Options: {%s}\n", COND_TYPE_OPTIONS);
+        exit(EXIT_FAILURE);
+    }
+    json = json->next;
+    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
+        const char *ret = cond_param_json_import(xcsf, json);
+        if (ret != NULL) {
+            printf("Invalid condition parameter %s\n", ret);
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+/**
+ * @brief Sets the prediction parameters from a json formatted string.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+static void
+param_json_import_prediction(struct XCSF *xcsf, cJSON *json)
+{
+    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json) &&
+        pred_param_set_type_string(xcsf, json->valuestring) ==
+            PRED_TYPE_INVALID) {
+        printf("Invalid prediction type: %s\n", json->valuestring);
+        printf("Options: {%s}\n", PRED_TYPE_OPTIONS);
+        exit(EXIT_FAILURE);
+    }
+    json = json->next;
+    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
+        const char *ret = pred_param_json_import(xcsf, json);
+        if (ret != NULL) {
+            printf("Invalid prediction parameter %s\n", ret);
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+/**
  * @brief Sets the parameters from a json formatted string.
  * @param [in,out] xcsf The XCSF data structure.
  * @param [in] json_str String encoded in json format.
@@ -324,15 +417,15 @@ param_json_import(struct XCSF *xcsf, const char *json_str)
             continue;
         }
         if (strncmp(iter->string, "action\0", 7) == 0) {
-            action_param_json_import(xcsf, iter->child);
+            param_json_import_action(xcsf, iter->child);
             continue;
         }
         if (strncmp(iter->string, "condition\0", 10) == 0) {
-            cond_param_json_import(xcsf, iter->child);
+            param_json_import_condition(xcsf, iter->child);
             continue;
         }
         if (strncmp(iter->string, "prediction\0", 11) == 0) {
-            pred_param_json_import(xcsf, iter->child);
+            param_json_import_prediction(xcsf, iter->child);
             continue;
         }
         printf("Error: unable to import parameter: %s\n", iter->string);
@@ -486,15 +579,14 @@ param_set_pop_init(struct XCSF *xcsf, const bool a)
     xcsf->POP_INIT = a;
 }
 
-void
+const char *
 param_set_max_trials(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        printf("Warning: tried to set MAX_TRIALS too small\n");
-        xcsf->MAX_TRIALS = 1;
-    } else {
-        xcsf->MAX_TRIALS = a;
+        return "MAX_TRIALS too small";
     }
+    xcsf->MAX_TRIALS = a;
+    return NULL;
 }
 
 void
@@ -508,22 +600,27 @@ param_set_perf_trials(struct XCSF *xcsf, const int a)
     }
 }
 
-void
+const char *
 param_set_pop_size(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        printf("Warning: tried to set POP_SIZE too small\n");
-        xcsf->POP_SIZE = 1;
-    } else {
-        xcsf->POP_SIZE = a;
+        return "POP_SIZE too small";
     }
+    xcsf->POP_SIZE = a;
+    return NULL;
 }
 
-void
+int
 param_set_loss_func_string(struct XCSF *xcsf, const char *a)
 {
-    xcsf->LOSS_FUNC = loss_type_as_int(a);
-    loss_set_func(xcsf);
+    const int loss = loss_type_as_int(a);
+    if (loss != LOSS_INVALID) {
+        xcsf->LOSS_FUNC = loss;
+        if (loss_set_func(xcsf) != LOSS_INVALID) {
+            return PARAM_FOUND;
+        }
+    }
+    return PARAM_INVALID;
 }
 
 void
@@ -564,18 +661,16 @@ param_set_huber_delta(struct XCSF *xcsf, const double a)
     }
 }
 
-void
+const char *
 param_set_gamma(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set GAMMA too small\n");
-        xcsf->GAMMA = 0;
+        return "GAMMA too small";
     } else if (a > 1) {
-        printf("Warning: tried to set GAMMA too large\n");
-        xcsf->GAMMA = 1;
-    } else {
-        xcsf->GAMMA = a;
+        return "GAMMA too large";
     }
+    xcsf->GAMMA = a;
+    return NULL;
 }
 
 void
@@ -589,46 +684,40 @@ param_set_teletransportation(struct XCSF *xcsf, const int a)
     }
 }
 
-void
+const char *
 param_set_p_explore(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set P_EXPLORE too small\n");
-        xcsf->P_EXPLORE = 0;
+        return "P_EXPLORE too small";
     } else if (a > 1) {
-        printf("Warning: tried to set P_EXPLORE too large\n");
-        xcsf->P_EXPLORE = 1;
-    } else {
-        xcsf->P_EXPLORE = a;
+        return "P_EXPLORE too large";
     }
+    xcsf->P_EXPLORE = a;
+    return NULL;
 }
 
-void
+const char *
 param_set_alpha(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set ALPHA too small\n");
-        xcsf->ALPHA = 0;
+        return "ALPHA too small";
     } else if (a > 1) {
-        printf("Warning: tried to set ALPHA too large\n");
-        xcsf->ALPHA = 1;
-    } else {
-        xcsf->ALPHA = a;
+        return "ALPHA too large";
     }
+    xcsf->ALPHA = a;
+    return NULL;
 }
 
-void
+const char *
 param_set_beta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set BETA too small\n");
-        xcsf->BETA = 0;
+        return "BETA too small";
     } else if (a > 1) {
-        printf("Warning: tried to set BETA too large\n");
-        xcsf->BETA = 1;
-    } else {
-        xcsf->BETA = a;
+        return "BETA too large";
     }
+    xcsf->BETA = a;
+    return NULL;
 }
 
 void

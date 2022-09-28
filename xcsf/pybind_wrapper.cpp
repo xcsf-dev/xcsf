@@ -765,7 +765,13 @@ class XCS
     void
     set_condition(const std::string &type)
     {
-        cond_param_set_type_string(&xcs, type.c_str());
+        if (cond_param_set_type_string(&xcs, type.c_str()) ==
+            COND_TYPE_INVALID) {
+            std::ostringstream msg;
+            msg << "Invalid condition type: " << type << ". Options: {"
+                << COND_TYPE_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
     }
 
     /**
@@ -775,7 +781,13 @@ class XCS
     void
     set_action(const std::string &type)
     {
-        action_param_set_type_string(&xcs, type.c_str());
+        if (action_param_set_type_string(&xcs, type.c_str()) ==
+            ACT_TYPE_INVALID) {
+            std::ostringstream msg;
+            msg << "Invalid action type: " << type << ". Options: {"
+                << ACT_TYPE_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
     }
 
     /**
@@ -785,7 +797,13 @@ class XCS
     void
     set_prediction(const std::string &type)
     {
-        pred_param_set_type_string(&xcs, type.c_str());
+        if (pred_param_set_type_string(&xcs, type.c_str()) ==
+            PRED_TYPE_INVALID) {
+            std::ostringstream msg;
+            msg << "Invalid prediction type: " << type << ". Options: {"
+                << PRED_TYPE_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
     }
 
     /**
@@ -833,12 +851,15 @@ class XCS
     void
     set_condition(const std::string &type, const py::dict &kwargs)
     {
-        cJSON *json = cJSON_CreateObject();
-        cJSON_AddStringToObject(json, "type", type.c_str());
+        set_condition(type);
         cJSON *args = dict_to_json(kwargs);
-        cJSON_AddItemToObject(json, "args", args);
-        cond_param_json_import(&xcs, json->child);
-        cJSON_Delete(json);
+        const char *ret = cond_param_json_import(&xcs, args);
+        if (ret != NULL) {
+            std::ostringstream msg;
+            msg << "Invalid condition parameter: " << ret << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
+        cJSON_Delete(args);
     }
 
     /**
@@ -849,12 +870,15 @@ class XCS
     void
     set_action(const std::string &type, const py::dict &kwargs)
     {
-        cJSON *json = cJSON_CreateObject();
-        cJSON_AddStringToObject(json, "type", type.c_str());
+        set_action(type);
         cJSON *args = dict_to_json(kwargs);
-        cJSON_AddItemToObject(json, "args", args);
-        action_param_json_import(&xcs, json->child);
-        cJSON_Delete(json);
+        const char *ret = action_param_json_import(&xcs, args);
+        if (ret != NULL) {
+            std::ostringstream msg;
+            msg << "Invalid action parameter: " << ret << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
+        cJSON_Delete(args);
     }
 
     /**
@@ -865,12 +889,15 @@ class XCS
     void
     set_prediction(const std::string &type, const py::dict &kwargs)
     {
-        cJSON *json = cJSON_CreateObject();
-        cJSON_AddStringToObject(json, "type", type.c_str());
+        set_prediction(type);
         cJSON *args = dict_to_json(kwargs);
-        cJSON_AddItemToObject(json, "args", args);
-        pred_param_json_import(&xcs, json->child);
-        cJSON_Delete(json);
+        const char *ret = pred_param_json_import(&xcs, args);
+        if (ret != NULL) {
+            std::ostringstream msg;
+            msg << "Invalid prediction parameter: " << ret << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
+        cJSON_Delete(args);
     }
 
     void
@@ -886,9 +913,19 @@ class XCS
     }
 
     void
+    catch_error(const char *ret)
+    {
+        if (ret != NULL) {
+            std::ostringstream msg;
+            msg << ret << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
+    }
+
+    void
     set_max_trials(const int a)
     {
-        param_set_max_trials(&xcs, a);
+        catch_error(param_set_max_trials(&xcs, a));
     }
 
     void
@@ -900,13 +937,18 @@ class XCS
     void
     set_pop_max_size(const int a)
     {
-        param_set_pop_size(&xcs, a);
+        catch_error(param_set_pop_size(&xcs, a));
     }
 
     void
     set_loss_func(const char *a)
     {
-        param_set_loss_func_string(&xcs, a);
+        if (param_set_loss_func_string(&xcs, a) == PARAM_INVALID) {
+            std::ostringstream msg;
+            msg << "Invalid loss function: " << a << ". Options: {"
+                << LOSS_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
     }
 
     void
@@ -918,13 +960,13 @@ class XCS
     void
     set_alpha(const double a)
     {
-        param_set_alpha(&xcs, a);
+        catch_error(param_set_alpha(&xcs, a));
     }
 
     void
     set_beta(const double a)
     {
-        param_set_beta(&xcs, a);
+        catch_error(param_set_beta(&xcs, a));
     }
 
     void
@@ -1002,19 +1044,24 @@ class XCS
     void
     set_gamma(const double a)
     {
-        param_set_gamma(&xcs, a);
+        catch_error(param_set_gamma(&xcs, a));
     }
 
     void
     set_p_explore(const double a)
     {
-        param_set_p_explore(&xcs, a);
+        catch_error(param_set_p_explore(&xcs, a));
     }
 
     void
     set_ea_select_type(const char *a)
     {
-        ea_param_set_type_string(&xcs, a);
+        if (ea_param_set_type_string(&xcs, a) == EA_SELECT_INVALID) {
+            std::ostringstream msg;
+            msg << "Invalid EA SELECT_TYPE: " << a << ". Options: {"
+                << EA_SELECT_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(msg.str());
+        }
     }
 
     void

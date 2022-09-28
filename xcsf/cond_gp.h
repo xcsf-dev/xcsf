@@ -17,7 +17,7 @@
  * @file cond_gp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief Tree GP condition functions.
  */
 
@@ -40,7 +40,7 @@ cond_gp_param_defaults(struct XCSF *xcsf);
 char *
 cond_gp_param_json_export(const struct XCSF *xcsf);
 
-void
+char *
 cond_gp_param_json_import(struct XCSF *xcsf, cJSON *json);
 
 bool

@@ -17,7 +17,7 @@
  * @file gp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief An implementation of GP trees based upon TinyGP.
  */
 
@@ -88,7 +88,7 @@ tree_args_init(struct ArgsGPTree *args);
 void
 tree_args_free(struct ArgsGPTree *args);
 
-void
+char *
 tree_args_json_import(struct ArgsGPTree *args, cJSON *json);
 
 char *

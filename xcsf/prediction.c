@@ -17,7 +17,7 @@
  * @file prediction.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Interface for classifier predictions.
  */
 
@@ -109,8 +109,7 @@ prediction_type_as_int(const char *type)
     if (strncmp(type, PRED_STRING_NEURAL, 7) == 0) {
         return PRED_TYPE_NEURAL;
     }
-    printf("prediction_type_as_int(): invalid type: %s\n", type);
-    exit(EXIT_FAILURE);
+    return PRED_TYPE_INVALID;
 }
 
 /**
@@ -174,38 +173,31 @@ pred_param_json_export(const struct XCSF *xcsf)
  * @brief Sets the prediction parameters from a cJSON object.
  * @param [in,out] xcsf XCSF data structure.
  * @param [in] json cJSON object.
- * @return Whether a parameter was found.
+ * @return NULL if successful; or the name of parameter if not found.
  */
-bool
+char *
 pred_param_json_import(struct XCSF *xcsf, cJSON *json)
 {
-    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
-        pred_param_set_type_string(xcsf, json->valuestring);
-    } else {
-        return false;
+    char *ret = NULL;
+    switch (xcsf->pred->type) {
+        case PRED_TYPE_CONSTANT:
+            break;
+        case PRED_TYPE_NLMS_LINEAR:
+        case PRED_TYPE_NLMS_QUADRATIC:
+            ret = pred_nlms_param_json_import(xcsf, json->child);
+            break;
+        case PRED_TYPE_RLS_LINEAR:
+        case PRED_TYPE_RLS_QUADRATIC:
+            ret = pred_rls_param_json_import(xcsf, json->child);
+            break;
+        case PRED_TYPE_NEURAL:
+            ret = pred_neural_param_json_import(xcsf, json->child);
+            break;
+        default:
+            printf("pred_param_json_import(): unknown type.\n");
+            exit(EXIT_FAILURE);
     }
-    json = json->next;
-    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
-        switch (xcsf->pred->type) {
-            case PRED_TYPE_CONSTANT:
-                break;
-            case PRED_TYPE_NLMS_LINEAR:
-            case PRED_TYPE_NLMS_QUADRATIC:
-                pred_nlms_param_json_import(xcsf, json->child);
-                break;
-            case PRED_TYPE_RLS_LINEAR:
-            case PRED_TYPE_RLS_QUADRATIC:
-                pred_rls_param_json_import(xcsf, json->child);
-                break;
-            case PRED_TYPE_NEURAL:
-                pred_neural_param_json_import(xcsf, json->child);
-                break;
-            default:
-                printf("pred_param_json_import(): unknown type.\n");
-                exit(EXIT_FAILURE);
-        }
-    }
-    return true;
+    return ret;
 }
 
 /**
@@ -358,8 +350,12 @@ pred_param_set_type(struct XCSF *xcsf, const int a)
     }
 }
 
-void
+int
 pred_param_set_type_string(struct XCSF *xcsf, const char *a)
 {
-    xcsf->pred->type = prediction_type_as_int(a);
+    const int type = prediction_type_as_int(a);
+    if (type != PRED_TYPE_INVALID) {
+        xcsf->pred->type = type;
+    }
+    return type;
 }

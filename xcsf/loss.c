@@ -153,35 +153,35 @@ loss_huber(const struct XCSF *xcsf, const double *pred, const double *y)
 /**
  * @brief Sets the XCSF error function to the implemented function.
  * @param [in] xcsf The XCSF data structure.
+ * @return Integer representation of the loss function.
  */
-void
+int
 loss_set_func(struct XCSF *xcsf)
 {
     switch (xcsf->LOSS_FUNC) {
         case LOSS_MAE:
             xcsf->loss_ptr = &loss_mae;
-            break;
+            return LOSS_MAE;
         case LOSS_MSE:
             xcsf->loss_ptr = &loss_mse;
-            break;
+            return LOSS_MSE;
         case LOSS_RMSE:
             xcsf->loss_ptr = &loss_rmse;
-            break;
+            return LOSS_RMSE;
         case LOSS_LOG:
             xcsf->loss_ptr = &loss_log;
-            break;
+            return LOSS_LOG;
         case LOSS_BINARY_LOG:
             xcsf->loss_ptr = &loss_binary_log;
-            break;
+            return LOSS_BINARY_LOG;
         case LOSS_ONEHOT:
             xcsf->loss_ptr = &loss_onehot;
-            break;
+            return LOSS_ONEHOT;
         case LOSS_HUBER:
             xcsf->loss_ptr = &loss_huber;
-            break;
+            return LOSS_HUBER;
         default:
-            printf("invalid loss function: %d\n", xcsf->LOSS_FUNC);
-            exit(EXIT_FAILURE);
+            return LOSS_INVALID;
     }
 }
 
@@ -243,6 +243,5 @@ loss_type_as_int(const char *type)
     if (strncmp(type, LOSS_STRING_HUBER, 6) == 0) {
         return LOSS_HUBER;
     }
-    printf("loss_type_as_int(): invalid type: %s\n", type);
-    exit(EXIT_FAILURE);
+    return LOSS_INVALID;
 }

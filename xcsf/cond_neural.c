@@ -17,7 +17,7 @@
  * @file cond_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief Multi-layer perceptron neural network condition functions.
  */
 
@@ -345,8 +345,9 @@ cond_neural_json_import(const struct XCSF *xcsf, struct Cl *c,
  * @brief Sets the neural network parameters from a cJSON object.
  * @param [in,out] xcsf The XCSF data structure.
  * @param [in] json cJSON object.
+ * @return NULL if successful; or the name of parameter if not found.
  */
-void
+char *
 cond_neural_param_json_import(struct XCSF *xcsf, cJSON *json)
 {
     layer_args_free(&xcsf->cond->largs);
@@ -354,7 +355,10 @@ cond_neural_param_json_import(struct XCSF *xcsf, cJSON *json)
         struct ArgsLayer *larg = malloc(sizeof(struct ArgsLayer));
         layer_args_init(larg);
         larg->n_inputs = xcsf->x_dim;
-        layer_args_json_import(larg, iter->child);
+        char *ret = layer_args_json_import(larg, iter->child);
+        if (ret != NULL) {
+            return ret;
+        }
         if (xcsf->cond->largs == NULL) {
             xcsf->cond->largs = larg;
         } else {
@@ -366,6 +370,7 @@ cond_neural_param_json_import(struct XCSF *xcsf, cJSON *json)
         }
     }
     layer_args_validate(xcsf->cond->largs);
+    return NULL;
 }
 
 /**

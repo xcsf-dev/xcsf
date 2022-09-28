@@ -17,7 +17,7 @@
  * @file neural_layer_args.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2021.
+ * @date 2020--2022.
  * @brief Functions operating on neural network arguments/constants.
  */
 
@@ -409,8 +409,9 @@ layer_args_json_export(struct ArgsLayer *args)
  * @brief Sets the layer parameters from a cJSON object.
  * @param [in,out] args Layer parameters data structure.
  * @param [in] json cJSON object.
+ * @return NULL if successful; or the name of parameter if not found.
  */
-void
+char *
 layer_args_json_import(struct ArgsLayer *args, cJSON *json)
 {
     for (cJSON *iter = json; iter != NULL; iter = iter->next) {
@@ -437,9 +438,9 @@ layer_args_json_import(struct ArgsLayer *args, cJSON *json)
         if (layer_args_json_import_sgd(args, iter)) {
             continue;
         }
-        printf("Error: unable to import neural parameter: %s\n", iter->string);
-        exit(EXIT_FAILURE);
+        return iter->string;
     }
+    return NULL;
 }
 
 /**

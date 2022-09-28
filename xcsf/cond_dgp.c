@@ -17,7 +17,7 @@
  * @file cond_dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief Dynamical GP graph condition functions.
  */
 
@@ -282,12 +282,12 @@ cond_dgp_param_json_export(const struct XCSF *xcsf)
  * @brief Sets the DGP parameters from a cJSON object.
  * @param [in,out] xcsf The XCSF data structure.
  * @param [in] json cJSON object.
- *
+ * @return NULL if successful; or the name of parameter if not found.
  */
-void
+char *
 cond_dgp_param_json_import(struct XCSF *xcsf, cJSON *json)
 {
-    graph_args_json_import(xcsf->cond->dargs, json);
+    return graph_args_json_import(xcsf->cond->dargs, json);
 }
 
 /**

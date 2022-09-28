@@ -17,7 +17,7 @@
  * @file param.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Functions for setting and printing parameters.
  */
 
@@ -25,6 +25,10 @@
 
 #include "loss.h"
 #include "xcsf.h"
+
+#define PARAM_INVALID (-1) //!< Code for invalid parameter
+#define PARAM_NOT_FOUND (0) //!< Code for unable to find parameter
+#define PARAM_FOUND (1) //!< Code for a found parameter
 
 char *
 param_json_export(const struct XCSF *xcsf);
@@ -56,16 +60,16 @@ param_set_omp_num_threads(struct XCSF *xcsf, const int a);
 void
 param_set_pop_init(struct XCSF *xcsf, const bool a);
 
-void
+const char *
 param_set_max_trials(struct XCSF *xcsf, const int a);
 
 void
 param_set_perf_trials(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_pop_size(struct XCSF *xcsf, const int a);
 
-void
+int
 param_set_loss_func_string(struct XCSF *xcsf, const char *a);
 
 void
@@ -80,19 +84,19 @@ param_set_compaction(struct XCSF *xcsf, const bool a);
 void
 param_set_huber_delta(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_gamma(struct XCSF *xcsf, const double a);
 
 void
 param_set_teletransportation(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_p_explore(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_alpha(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_beta(struct XCSF *xcsf, const double a);
 
 void

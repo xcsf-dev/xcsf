@@ -17,7 +17,7 @@
  * @file cond_ternary.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2021.
+ * @date 2019--2022.
  * @brief Ternary condition functions.
  * @details Binarises inputs.
  */
@@ -399,8 +399,9 @@ cond_ternary_param_json_export(const struct XCSF *xcsf)
  * @brief Sets the ternary parameters from a cJSON object.
  * @param [in,out] xcsf The XCSF data structure.
  * @param [in] json cJSON object.
+ * @return NULL if successful; or the name of parameter if not found.
  */
-void
+char *
 cond_ternary_param_json_import(struct XCSF *xcsf, cJSON *json)
 {
     for (cJSON *iter = json; iter != NULL; iter = iter->next) {
@@ -411,10 +412,10 @@ cond_ternary_param_json_import(struct XCSF *xcsf, cJSON *json)
                    cJSON_IsNumber(iter)) {
             cond_param_set_bits(xcsf, iter->valueint);
         } else {
-            printf("Error importing ternary parameter %s\n", iter->string);
-            exit(EXIT_FAILURE);
+            return iter->string;
         }
     }
+    return NULL;
 }
 
 /**

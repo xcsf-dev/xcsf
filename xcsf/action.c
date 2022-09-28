@@ -17,7 +17,7 @@
  * @file action.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2022.
  * @brief Interface for classifier actions.
  */
 
@@ -80,8 +80,7 @@ action_type_as_int(const char *type)
     if (strncmp(type, ACT_STRING_NEURAL, 7) == 0) {
         return ACT_TYPE_NEURAL;
     }
-    printf("action_type_as_int(): invalid type: %s\n", type);
-    exit(EXIT_FAILURE);
+    return ACT_TYPE_INVALID;
 }
 
 /**
@@ -126,22 +125,23 @@ action_param_json_export(const struct XCSF *xcsf)
  * @brief Sets the action parameters from a cJSON object.
  * @param [in,out] xcsf XCSF data structure.
  * @param [in] json cJSON object.
- * @return Whether a parameter was found.
+ * @return NULL if successful; or the name of parameter if not found.
  */
-bool
+char *
 action_param_json_import(struct XCSF *xcsf, cJSON *json)
 {
-    if (strncmp(json->string, "type\0", 5) == 0 && cJSON_IsString(json)) {
-        action_param_set_type_string(xcsf, json->valuestring);
-    } else {
-        return false;
+    char *ret = NULL;
+    switch (xcsf->act->type) {
+        case ACT_TYPE_INTEGER:
+            break;
+        case ACT_TYPE_NEURAL:
+            ret = act_neural_param_json_import(xcsf, json->child);
+            break;
+        default:
+            printf("action_param_json_import(): unknown type.\n");
+            exit(EXIT_FAILURE);
     }
-    json = json->next;
-    if (json != NULL && strncmp(json->string, "args\0", 5) == 0 &&
-        xcsf->act->type == ACT_TYPE_NEURAL) {
-        act_neural_param_json_import(xcsf, json->child);
-    }
-    return true;
+    return ret;
 }
 
 /**
@@ -188,10 +188,14 @@ action_param_free(struct XCSF *xcsf)
 
 /* parameter setters */
 
-void
+int
 action_param_set_type_string(struct XCSF *xcsf, const char *a)
 {
-    xcsf->act->type = action_type_as_int(a);
+    const int type = action_type_as_int(a);
+    if (type != ACT_TYPE_INVALID) {
+        xcsf->act->type = type;
+    }
+    return type;
 }
 
 void
