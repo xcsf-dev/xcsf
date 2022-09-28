@@ -919,10 +919,10 @@ class XCS
     set_loss_func(const char *a)
     {
         if (param_set_loss_func_string(&xcs, a) == PARAM_INVALID) {
-            std::ostringstream error;
-            error << "Invalid loss function: " << a << ". Options: {"
-                  << LOSS_OPTIONS << "}" << std::endl;
-            throw std::invalid_argument(error.str());
+            std::ostringstream msg;
+            msg << "Invalid loss function: " << a << ". Options: {"
+                << LOSS_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(msg.str());
         }
     }
 
@@ -1032,10 +1032,10 @@ class XCS
     set_ea_select_type(const char *a)
     {
         if (ea_param_set_type_string(&xcs, a) == EA_SELECT_INVALID) {
-            std::ostringstream error;
-            error << "Invalid EA SELECT_TYPE: " << a << ". Options: {"
-                  << EA_SELECT_OPTIONS << "}" << std::endl;
-            throw std::invalid_argument(error.str());
+            std::ostringstream msg;
+            msg << "Invalid EA SELECT_TYPE: " << a << ". Options: {"
+                << EA_SELECT_OPTIONS << "}" << std::endl;
+            throw std::invalid_argument(msg.str());
         }
     }
 
